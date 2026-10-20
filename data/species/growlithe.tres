@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_80pa4"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="2_5foyf"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="3_45p15"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="4_ubeh2"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_uots2"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_rd4vk"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_iyuqs"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_m7sye"]
+
+[resource]
+script = ExtResource("6_rd4vk")
+id = "growlithe"
+display_name = "Growlithe"
+dex = 58
+types = Array[ExtResource("7_iyuqs")]([ExtResource("8_m7sye")])
+base_hp = 68.0
+base_atk = 13.0
+move_speed = 78.0
+moves = Array[ExtResource("1_80pa4")]([ExtResource("2_5foyf"), ExtResource("3_45p15"), ExtResource("4_ubeh2"), ExtResource("5_uots2")])
+catch_rate = 0.4

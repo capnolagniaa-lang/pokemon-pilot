@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ElementType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_m15pc"]
+
+[resource]
+script = ExtResource("1_m15pc")
+id = "normal"
+display_name = "Normal"
+color = Color(0.72, 0.66, 0.56, 1)

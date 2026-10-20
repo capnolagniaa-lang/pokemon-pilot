@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_1jl4n"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8dx4n"]
+
+[resource]
+script = ExtResource("2_8dx4n")
+id = "lanzallamas"
+display_name = "Lanzallamas"
+element = ExtResource("1_1jl4n")
+power = 14.0
+cooldown = 0.9
+energy_cost = 14.0
+speed = 310.0
+size = 4.5
+lifetime = 0.8
+radius = 45.0

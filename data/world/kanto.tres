@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WorldData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="1_0oca4"]
+[ext_resource type="Script" path="res://scripts/resources/zone_entry.gd" id="2_3wmne"]
+
+[sub_resource type="Resource" id="Resource_c5s1r"]
+script = ExtResource("2_3wmne")
+id = "pradera"
+display_name = "Ruta 1 - Pradera"
+scene_path = "res://scenes/world/zones/pradera.tscn"
+
+[sub_resource type="Resource" id="Resource_f8nvh"]
+script = ExtResource("2_3wmne")
+id = "bosque"
+display_name = "Bosque Verde"
+scene_path = "res://scenes/world/zones/bosque.tscn"
+origin = Vector2i(0, -26)
+biome = "bosque"
+
+[resource]
+script = ExtResource("1_0oca4")
+zones = Array[ExtResource("2_3wmne")]([SubResource("Resource_c5s1r"), SubResource("Resource_f8nvh")])
+spawn_cell = Vector2i(20, 21)

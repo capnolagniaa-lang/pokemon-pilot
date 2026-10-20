@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_upg3l"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_u0784"]
+
+[resource]
+script = ExtResource("2_u0784")
+id = "danza_petalo"
+display_name = "Danza Pétalo"
+element = ExtResource("1_upg3l")
+kind = 2
+power = 20.0
+cooldown = 4.0
+energy_cost = 30.0
+speed = 150.0
+radius = 58.5

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_dukq2"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dd1cl"]
+
+[resource]
+script = ExtResource("2_dd1cl")
+id = "surf"
+display_name = "Surf"
+element = ExtResource("1_dukq2")
+kind = 2
+power = 19.0
+cooldown = 3.8
+energy_cost = 30.0
+speed = 150.0
+radius = 65.25

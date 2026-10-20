@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_bk64l"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_ywyvp"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_5ulau"]
+[ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_fjdas"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_vhb54"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_mvwui"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_12vpq"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="8_61kdy"]
+
+[resource]
+script = ExtResource("6_mvwui")
+id = "squirtle"
+display_name = "Squirtle"
+dex = 7
+types = Array[ExtResource("7_12vpq")]([ExtResource("8_61kdy")])
+base_hp = 66.0
+base_atk = 11.0
+move_speed = 72.0
+moves = Array[ExtResource("1_bk64l")]([ExtResource("2_ywyvp"), ExtResource("3_5ulau"), ExtResource("4_fjdas"), ExtResource("5_vhb54")])
+catch_rate = 0.35

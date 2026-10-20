@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_8pjly"]
+[ext_resource type="Resource" path="res://data/moves/tornado.tres" id="2_p5iqk"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_muvct"]
+[ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="4_naq0o"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_p3w12"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_cree8"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_e0dml"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="8_m7bew"]
+
+[resource]
+script = ExtResource("6_cree8")
+id = "pidgey"
+display_name = "Pidgey"
+dex = 16
+types = Array[ExtResource("7_e0dml")]([ExtResource("8_m7bew")])
+move_speed = 88.0
+moves = Array[ExtResource("1_8pjly")]([ExtResource("2_p5iqk"), ExtResource("3_muvct"), ExtResource("4_naq0o"), ExtResource("5_p3w12")])
+catch_rate = 0.7

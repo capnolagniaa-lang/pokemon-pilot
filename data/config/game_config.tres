@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GameConfig" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/game_config.gd" id="1_535kl"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="2_gykk5"]
+[ext_resource type="Resource" path="res://data/species/bulbasaur.tres" id="3_tkh7l"]
+[ext_resource type="Resource" path="res://data/species/charmander.tres" id="4_aw2fe"]
+[ext_resource type="Resource" path="res://data/species/squirtle.tres" id="5_br1ti"]
+[ext_resource type="Resource" path="res://data/world/kanto.tres" id="6_gykk5"]
+
+[resource]
+script = ExtResource("1_535kl")
+starters = Array[ExtResource("2_gykk5")]([ExtResource("3_tkh7l"), ExtResource("4_aw2fe"), ExtResource("5_br1ti")])
+world = ExtResource("6_gykk5")

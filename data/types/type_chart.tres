@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="TypeChart" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/type_chart.gd" id="1_kbd4c"]
+
+[resource]
+script = ExtResource("1_kbd4c")
+multipliers = {
+"agua": {
+"agua": 0.5,
+"fuego": 2.0,
+"planta": 0.5
+},
+"fuego": {
+"agua": 0.5,
+"fuego": 0.5,
+"planta": 2.0
+},
+"planta": {
+"agua": 2.0,
+"fuego": 0.5,
+"planta": 0.5
+}
+}

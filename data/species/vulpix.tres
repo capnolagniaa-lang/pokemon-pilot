@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_8s5hk"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_i73rs"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_rkvq6"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="4_xls4m"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_laq3w"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_7uxqu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_fy6n3"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_6ul6a"]
+
+[resource]
+script = ExtResource("6_7uxqu")
+id = "vulpix"
+display_name = "Vulpix"
+dex = 37
+types = Array[ExtResource("7_fy6n3")]([ExtResource("8_6ul6a")])
+base_atk = 12.0
+move_speed = 86.0
+moves = Array[ExtResource("1_8s5hk")]([ExtResource("2_i73rs"), ExtResource("3_rkvq6"), ExtResource("4_xls4m"), ExtResource("5_laq3w")])
+catch_rate = 0.45

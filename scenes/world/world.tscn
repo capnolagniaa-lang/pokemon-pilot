@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/world.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/world/zone_streamer.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/characters/trainer.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1")
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Zones" type="Node2D" parent="YSort"]
+y_sort_enabled = true
+
+[node name="Entities" type="Node2D" parent="YSort"]
+y_sort_enabled = true
+
+[node name="Trainer" parent="YSort/Entities" instance=ExtResource("3")]
+
+[node name="ZoneStreamer" type="Node" parent="." node_paths=PackedStringArray("zones_root")]
+script = ExtResource("2")
+zones_root = NodePath("../YSort/Zones")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("4")]

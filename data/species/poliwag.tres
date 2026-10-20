@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_g3w7n"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_r6x3q"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_fjwno"]
+[ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_nrj5d"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_44mrl"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_j21u2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_inumd"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="8_tlbdr"]
+
+[resource]
+script = ExtResource("6_j21u2")
+id = "poliwag"
+display_name = "Poliwag"
+dex = 60
+types = Array[ExtResource("7_inumd")]([ExtResource("8_tlbdr")])
+base_hp = 52.0
+move_speed = 84.0
+moves = Array[ExtResource("1_g3w7n")]([ExtResource("2_r6x3q"), ExtResource("3_fjwno"), ExtResource("4_nrj5d"), ExtResource("5_44mrl")])
+catch_rate = 0.6

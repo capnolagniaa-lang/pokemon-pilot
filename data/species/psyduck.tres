@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_a2e4d"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_gumxw"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_sihyx"]
+[ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_t0c8y"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_gniud"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_wwmc1"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_llbsy"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="8_kvyim"]
+
+[resource]
+script = ExtResource("6_wwmc1")
+id = "psyduck"
+display_name = "Psyduck"
+dex = 54
+types = Array[ExtResource("7_llbsy")]([ExtResource("8_kvyim")])
+base_hp = 64.0
+base_atk = 11.0
+move_speed = 68.0
+moves = Array[ExtResource("1_a2e4d")]([ExtResource("2_gumxw"), ExtResource("3_sihyx"), ExtResource("4_t0c8y"), ExtResource("5_gniud")])
+catch_rate = 0.55

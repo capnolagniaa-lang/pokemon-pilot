@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_0vo34"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_65dpy"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_fsuga"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="4_tljsa"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_jtnfp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_ivo62"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_1yptp"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_yuxux"]
+
+[resource]
+script = ExtResource("6_ivo62")
+id = "charmander"
+display_name = "Charmander"
+dex = 4
+types = Array[ExtResource("7_1yptp")]([ExtResource("8_yuxux")])
+base_hp = 55.0
+base_atk = 13.0
+move_speed = 82.0
+moves = Array[ExtResource("1_0vo34")]([ExtResource("2_65dpy"), ExtResource("3_fsuga"), ExtResource("4_tljsa"), ExtResource("5_jtnfp")])
+catch_rate = 0.35

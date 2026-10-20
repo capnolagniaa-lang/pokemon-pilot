@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_danq4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5reyg"]
+
+[resource]
+script = ExtResource("2_5reyg")
+id = "ascuas"
+display_name = "Ascuas"
+element = ExtResource("1_danq4")
+power = 9.0
+cooldown = 0.45
+energy_cost = 8.0
+speed = 280.0
+size = 3.5
+lifetime = 0.9
+radius = 45.0

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_ortna"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7i4ne"]
+
+[resource]
+script = ExtResource("2_7i4ne")
+id = "burbuja"
+display_name = "Burbuja"
+element = ExtResource("1_ortna")
+power = 11.0
+cooldown = 0.6
+energy_cost = 9.0
+speed = 210.0
+size = 5.0
+lifetime = 1.2
+radius = 45.0

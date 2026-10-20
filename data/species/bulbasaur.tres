@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_jgs44"]
+[ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="2_yyf8n"]
+[ext_resource type="Resource" path="res://data/moves/latigo_cepa.tres" id="3_jvu2p"]
+[ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="4_1luoi"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_ibq27"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_l46yy"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_eo1rb"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="8_xegt2"]
+
+[resource]
+script = ExtResource("6_l46yy")
+id = "bulbasaur"
+display_name = "Bulbasaur"
+dex = 1
+types = Array[ExtResource("7_eo1rb")]([ExtResource("8_xegt2")])
+base_hp = 62.0
+base_atk = 12.0
+move_speed = 74.0
+moves = Array[ExtResource("1_jgs44")]([ExtResource("2_yyf8n"), ExtResource("3_jvu2p"), ExtResource("4_1luoi"), ExtResource("5_ibq27")])
+catch_rate = 0.35

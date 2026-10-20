@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_kc5hb"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rpqre"]
+
+[resource]
+script = ExtResource("2_rpqre")
+id = "pistola_agua"
+display_name = "Pistola Agua"
+element = ExtResource("1_kc5hb")
+cooldown = 0.5
+energy_cost = 8.0
+size = 3.5
+lifetime = 0.9
+radius = 45.0

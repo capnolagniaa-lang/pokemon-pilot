@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_ekhcr"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_n0m1o"]
+
+[resource]
+script = ExtResource("2_n0m1o")
+id = "vozarron"
+display_name = "Vozarrón"
+element = ExtResource("1_ekhcr")
+kind = 2
+power = 19.0
+cooldown = 4.0
+energy_cost = 30.0
+speed = 150.0
+radius = 63.0

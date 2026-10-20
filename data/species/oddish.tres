@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_68w5j"]
+[ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="2_i4gho"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_woh8u"]
+[ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="4_fd8ac"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_q7ka7"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_cyrj2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_eqil7"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="8_utxk4"]
+
+[resource]
+script = ExtResource("6_cyrj2")
+id = "oddish"
+display_name = "Oddish"
+dex = 43
+types = Array[ExtResource("7_eqil7")]([ExtResource("8_utxk4")])
+base_hp = 60.0
+base_atk = 11.0
+move_speed = 64.0
+moves = Array[ExtResource("1_68w5j")]([ExtResource("2_i4gho"), ExtResource("3_woh8u"), ExtResource("4_fd8ac"), ExtResource("5_q7ka7")])
+catch_rate = 0.6

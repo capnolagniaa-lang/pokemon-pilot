@@ -1,0 +1,57 @@
+[gd_resource type="TileSet" format=3]
+
+[ext_resource type="Texture2D" path="res://art/tiles/tileset.png" id="1_4yiir"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0a3ta"]
+texture = ExtResource("1_4yiir")
+0:0/0 = 0
+0:0/0/custom_data_0 = PackedStringArray("suelo", "pasto")
+1:0/0 = 0
+1:0/0/custom_data_0 = PackedStringArray("suelo", "pasto", "inflamable")
+2:0/0 = 0
+2:0/0/custom_data_0 = PackedStringArray("suelo", "pasto_alto", "inflamable")
+3:0/0 = 0
+3:0/0/custom_data_0 = PackedStringArray("suelo", "tierra")
+4:0/0 = 0
+4:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0/custom_data_0 = PackedStringArray("agua", "conductor", "congelable")
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/custom_data_0 = PackedStringArray("solido", "roca")
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/0/custom_data_0 = PackedStringArray("solido", "roca", "fragil")
+7:0/0 = 0
+7:0/0/custom_data_0 = PackedStringArray("suelo", "arena")
+0:1/0 = 0
+0:1/0/y_sort_origin = 16
+0:1/0/custom_data_0 = PackedStringArray("arbol", "inflamable")
+1:1/0 = 0
+1:1/0/y_sort_origin = 16
+1:1/0/custom_data_0 = PackedStringArray("arbol", "inflamable")
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0/custom_data_0 = PackedStringArray("arbol", "solido", "inflamable")
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0/custom_data_0 = PackedStringArray("arbol", "solido", "inflamable")
+2:1/0 = 0
+2:1/0/custom_data_0 = PackedStringArray("suelo", "quemado")
+3:1/0 = 0
+3:1/0/custom_data_0 = PackedStringArray("suelo", "mojado", "conductor")
+4:1/0 = 0
+4:1/0/custom_data_0 = PackedStringArray("hielo", "suelo")
+5:1/0 = 0
+5:1/0/custom_data_0 = PackedStringArray("escombros")
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0/custom_data_0 = PackedStringArray("planta", "solido", "inflamable")
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 0
+custom_data_layer_0/name = "tags"
+custom_data_layer_0/type = 34
+sources/0 = SubResource("TileSetAtlasSource_0a3ta")

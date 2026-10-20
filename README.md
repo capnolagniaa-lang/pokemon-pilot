@@ -1,33 +1,56 @@
-# Criaturas en Tiempo Real
+# Pokémon Pilot
 
-Prototipo en Godot 4.7 de un juego de criaturas con combate en tiempo real (estilo Pokémon Reloaded).
+Juego tipo Pokémon en Godot 4.7: mundo abierto 2D top-down con combate en tiempo real.
 
 ## Cómo jugar
-Bajá [Godot 4.7](https://godotengine.org/download) (versión estándar), abrilo, importá esta carpeta (`project.godot`) y apretá **F5**.
+Bajá [Godot 4.7](https://godotengine.org/download) (versión estándar), importá esta carpeta (`project.godot`) y apretá **F5**.
 
 | Acción | Tecla |
 |---|---|
 | Moverse | WASD / flechas |
-| Apuntar | Mouse |
-| Ataques 1-4 | 1, 2, 3, 4 (o Clic izq. = 1, Clic der. = 2) |
-| Esquivar (invulnerable un instante) | Espacio / Shift |
-| Tirar Poké Ball | E |
-| Cambiar de criatura | Tab / Q |
-
-Cuanto menos vida tenga el salvaje, más fácil es atraparlo.
+| Correr | Shift |
 
 ## Estructura
-- `scripts/game.gd`: datos globales (tipos, ataques, especies, equipo, controles). Para agregar especies o ataques se edita este archivo.
-- `scripts/creature.gd`: base de cualquier criatura (stats, ataques, esquive, daño, dibujo).
-- `scripts/player_creature.gd`: control del jugador.
-- `scripts/wild_creature.gd`: IA de las salvajes.
-- `scripts/main.gd`: arena, aparición de salvajes, captura, experiencia, cambio de criatura.
-- `scripts/hud.gd`: interfaz.
 
-- `scripts/sprite_data.gd` + `sprites/`: generados por `tools/download_sprites.ps1`. Para sumar un Pokémon: agregá su número de Pokédex en ese script, correlo y sumá la especie en `game.gd`.
+```
+data/                 Contenido (Resources .tres): se agrega sin tocar código
+  types/              ElementType + type_chart.tres (tabla de efectividad)
+  moves/              MoveData
+  species/            SpeciesData
+  world/kanto.tres    WorldData: zonas y su posición en el mundo
+  config/             GameConfig: iniciales, nivel y objetos iniciales
+scripts/
+  autoload/           Events (bus de señales), DB (carga data/), GameState, Controls, Autotest
+  resources/          Clases de los Resources
+  core/               StateMachine + State
+  characters/         Entrenador y sus estados
+  creatures/          Criatura, su sprite PMD y sus estados
+  world/              World, ZoneStreamer (carga de zonas sin corte), Zone
+  ui/                 HUD, selección de inicial
+  generated/          sprite_data.gd (lo genera tools/download_sprites.ps1)
+scenes/               Una escena por responsabilidad (world, zones/, characters, creatures, ui)
+art/                  Tiles y entrenador generados por tools/gen_art.gd
+sprites/              Sprites PMD de los Pokémon
+tools/                Generadores de contenido
+```
+
+### Capas de colisión
+1 mundo · 2 agua · 3 jugador · 4 criatura aliada · 5 criatura salvaje · 6 hurtbox aliada · 7 hurtbox salvaje · 8 entorno
+
+### Tiles con tags
+Cada tile del TileSet (`art/tiles/world_tileset.tres`) tiene un *custom data* `tags` (`inflamable`, `agua`, `conductor`, `fragil`, ...). `Zone.get_tags(celda)` los devuelve; el sistema de entorno reactivo los usa.
+
+## Agregar contenido
+- **Ataque/especie:** duplicá un `.tres` en `data/moves` o `data/species` y editalo en el inspector.
+- **Pokémon nuevo (sprites):** sumá su número de Pokédex en `tools/download_sprites.ps1` y corrélo.
+- **Zona nueva:** creá la escena (copiá una de `scenes/world/zones`), pintala en el editor y agregala a `data/world/kanto.tres` con su origen en celdas.
+
+## Herramientas
+```
+godot --headless --path . --script res://tools/gen_art.gd                 # regenera tiles/entrenador
+godot --headless --path . --script res://tools/build_world.gd -- --force  # regenera TileSet y zonas (pisa cambios)
+godot --headless --path . -- --autotest                                   # prueba automática
+```
 
 ## Créditos
-Sprites y retratos: [PMDCollab/SpriteCollab](https://github.com/PMDCollab/SpriteCollab) (artistas de la comunidad PMD). Poké Ball: [PokeAPI/sprites](https://github.com/PokeAPI/sprites). Pokémon es de Nintendo/Game Freak/The Pokémon Company; proyecto de fans sin fines de lucro.
-
-Prueba automática sin ventana:
-`Godot_v4.7.2-stable_win64_console.exe --headless --path . -- --autotest`
+Sprites y retratos: [PMDCollab/SpriteCollab](https://github.com/PMDCollab/SpriteCollab). Poké Ball: [PokeAPI/sprites](https://github.com/PokeAPI/sprites). Pokémon es de Nintendo/Game Freak/The Pokémon Company; proyecto de fans sin fines de lucro.

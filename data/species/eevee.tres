@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_lmnbl"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="2_ugdki"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_d1y6a"]
+[ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="4_qesf0"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_qqvwa"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_4dooq"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_aol1m"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="8_2a5gm"]
+
+[resource]
+script = ExtResource("6_4dooq")
+id = "eevee"
+display_name = "Eevee"
+dex = 133
+types = Array[ExtResource("7_aol1m")]([ExtResource("8_2a5gm")])
+base_hp = 60.0
+base_atk = 12.0
+move_speed = 80.0
+moves = Array[ExtResource("1_lmnbl")]([ExtResource("2_ugdki"), ExtResource("3_d1y6a"), ExtResource("4_qesf0"), ExtResource("5_qqvwa")])
+catch_rate = 0.45

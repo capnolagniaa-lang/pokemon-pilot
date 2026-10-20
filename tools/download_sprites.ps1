@@ -42,5 +42,5 @@ $ball = Join-Path $items "poke-ball.png"
 if (-not (Test-Path $ball)) { Invoke-WebRequest "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" -OutFile $ball -UseBasicParsing }
 
 $gd = @("extends RefCounted", "## Generado por tools/download_sprites.ps1 - no editar a mano.", "", "const ANIMS := {") + $out + @("}")
-[IO.File]::WriteAllText((Join-Path $root "scripts/sprite_data.gd"), ($gd -join "`n") + "`n", (New-Object Text.UTF8Encoding($false)))
+[IO.File]::WriteAllText((Join-Path $root "scripts/generated/sprite_data.gd"), ($gd -join "`n") + "`n", (New-Object Text.UTF8Encoding($false)))
 Write-Host "Listo."

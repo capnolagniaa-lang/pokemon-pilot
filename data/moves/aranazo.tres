@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_0i463"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_aallm"]
+
+[resource]
+script = ExtResource("2_aallm")
+id = "aranazo"
+display_name = "Arañazo"
+element = ExtResource("1_0i463")
+kind = 1
+power = 12.0
+cooldown = 1.1
+energy_cost = 12.0
+speed = 150.0
+radius = 45.0
+dash_time = 0.18

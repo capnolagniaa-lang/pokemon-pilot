@@ -6,13 +6,17 @@ config_version=5
 
 [application]
 
-config/name="Criaturas en Tiempo Real"
-run/main_scene="res://scenes/main.tscn"
+config/name="Pokémon Pilot"
+run/main_scene="res://scenes/ui/starter_select.tscn"
 config/features=PackedStringArray("4.7")
 
 [autoload]
 
-Game="*res://scripts/game.gd"
+Events="*res://scripts/autoload/events.gd"
+DB="*res://scripts/autoload/db.gd"
+GameState="*res://scripts/autoload/game_state.gd"
+Controls="*res://scripts/autoload/controls.gd"
+Autotest="*res://scripts/autoload/autotest.gd"
 
 [display]
 
@@ -20,7 +24,19 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
+[layer_names]
+
+2d_physics/layer_1="mundo"
+2d_physics/layer_2="agua"
+2d_physics/layer_3="jugador"
+2d_physics/layer_4="criatura_aliada"
+2d_physics/layer_5="criatura_salvaje"
+2d_physics/layer_6="hurtbox_aliada"
+2d_physics/layer_7="hurtbox_salvaje"
+2d_physics/layer_8="entorno"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

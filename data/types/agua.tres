@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ElementType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_vfcst"]
+
+[resource]
+script = ExtResource("1_vfcst")
+id = "agua"
+display_name = "Agua"
+color = Color(0.25, 0.55, 0.95, 1)
