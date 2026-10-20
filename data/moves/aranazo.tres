@@ -12,6 +12,7 @@ kind = 1
 power = 12.0
 cooldown = 1.1
 energy_cost = 12.0
+knockback = 180.0
 speed = 150.0
 radius = 45.0
 dash_time = 0.18

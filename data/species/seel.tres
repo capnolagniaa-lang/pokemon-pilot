@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_rfi0n"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="2_7o4bw"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_xyfw3"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="4_epuj5"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_vfjnl"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_88q5k"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_2i8dt"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="8_5aa2p"]
+
+[resource]
+script = ExtResource("6_88q5k")
+id = "seel"
+display_name = "Seel"
+dex = 86
+types = Array[ExtResource("7_2i8dt")]([ExtResource("8_5aa2p")])
+base_hp = 66.0
+base_atk = 11.0
+move_speed = 68.0
+moves = Array[ExtResource("1_rfi0n")]([ExtResource("2_7o4bw"), ExtResource("3_xyfw3"), ExtResource("4_epuj5"), ExtResource("5_vfjnl")])

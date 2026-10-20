@@ -10,6 +10,7 @@ display_name = "Tornado"
 element = ExtResource("1_hprqg")
 power = 11.0
 cooldown = 0.65
+knockback = 150.0
 speed = 240.0
 size = 5.5
 radius = 45.0

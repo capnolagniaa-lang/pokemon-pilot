@@ -12,5 +12,6 @@ kind = 3
 power = 0.0
 cooldown = 6.0
 energy_cost = 20.0
+knockback = 0.0
 speed = 150.0
 radius = 45.0

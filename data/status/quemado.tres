@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_t10k4"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="2_43xid"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="3_k5ags"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_ktu42"]
+
+[resource]
+script = ExtResource("4_ktu42")
+id = "quemado"
+display_name = "Quemado"
+color = Color(1, 0.5, 0.2, 1)
+duration = 5.0
+damage_per_second = 0.03
+attack_mult = 0.75
+cured_by = Array[ExtResource("1_t10k4")]([ExtResource("2_43xid")])
+element = ExtResource("3_k5ags")

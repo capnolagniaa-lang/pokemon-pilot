@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="1_yjs5d"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_q4r6b"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="3_qkg61"]
+
+[resource]
+script = ExtResource("2_q4r6b")
+id = "impactrueno"
+display_name = "Impactrueno"
+element = ExtResource("1_yjs5d")
+cooldown = 0.5
+energy_cost = 9.0
+knockback = 120.0
+status = ExtResource("3_qkg61")
+status_chance = 0.25
+speed = 330.0
+lifetime = 0.7

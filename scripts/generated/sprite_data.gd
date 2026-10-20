@@ -37,6 +37,13 @@ const ANIMS := {
 		"Attack": {"file": "res://sprites/pokemon/0019/Attack-Anim.png", "w": 64, "h": 72, "durations": [2, 4, 1, 1, 1, 2, 2, 2, 2, 2]},
 		"Hurt": {"file": "res://sprites/pokemon/0019/Hurt-Anim.png", "w": 56, "h": 56, "durations": [2, 8]},
 	},
+	25: {
+		"portrait": "res://sprites/pokemon/0025/portrait.png",
+		"Idle": {"file": "res://sprites/pokemon/0025/Idle-Anim.png", "w": 40, "h": 56, "durations": [40, 2, 3, 3, 3, 2]},
+		"Walk": {"file": "res://sprites/pokemon/0025/Walk-Anim.png", "w": 32, "h": 40, "durations": [8, 10, 8, 10]},
+		"Attack": {"file": "res://sprites/pokemon/0025/Attack-Anim.png", "w": 80, "h": 80, "durations": [2, 4, 1, 1, 1, 2, 2, 2, 2, 4]},
+		"Hurt": {"file": "res://sprites/pokemon/0025/Hurt-Anim.png", "w": 48, "h": 64, "durations": [2, 8]},
+	},
 	37: {
 		"portrait": "res://sprites/pokemon/0037/portrait.png",
 		"Idle": {"file": "res://sprites/pokemon/0037/Idle-Anim.png", "w": 32, "h": 32, "durations": [40, 12, 20, 12]},
@@ -78,6 +85,13 @@ const ANIMS := {
 		"Walk": {"file": "res://sprites/pokemon/0069/Walk-Anim.png", "w": 24, "h": 32, "durations": [8, 10, 8, 10]},
 		"Attack": {"file": "res://sprites/pokemon/0069/Attack-Anim.png", "w": 72, "h": 72, "durations": [2, 4, 1, 1, 1, 2, 2, 2, 2, 2]},
 		"Hurt": {"file": "res://sprites/pokemon/0069/Hurt-Anim.png", "w": 48, "h": 48, "durations": [2, 8]},
+	},
+	86: {
+		"portrait": "res://sprites/pokemon/0086/portrait.png",
+		"Idle": {"file": "res://sprites/pokemon/0086/Idle-Anim.png", "w": 32, "h": 32, "durations": [30, 20]},
+		"Walk": {"file": "res://sprites/pokemon/0086/Walk-Anim.png", "w": 32, "h": 40, "durations": [8, 6, 8, 10, 6, 6, 6]},
+		"Attack": {"file": "res://sprites/pokemon/0086/Attack-Anim.png", "w": 72, "h": 72, "durations": [2, 6, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2]},
+		"Hurt": {"file": "res://sprites/pokemon/0086/Hurt-Anim.png", "w": 40, "h": 56, "durations": [2, 8]},
 	},
 	133: {
 		"portrait": "res://sprites/pokemon/0133/portrait.png",

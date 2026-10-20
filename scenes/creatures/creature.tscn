@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://scripts/creatures/creature.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/creatures/creature_sprite.gd" id="2"]
@@ -6,9 +6,29 @@
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_idle.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_follow.gd" id="5"]
 [ext_resource type="Script" path="res://scripts/fx/tall_grass_overlay.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/combat/health.gd" id="7"]
+[ext_resource type="Script" path="res://scripts/combat/status_effects.gd" id="8"]
+[ext_resource type="Script" path="res://scripts/combat/move_user.gd" id="9"]
+[ext_resource type="Script" path="res://scripts/combat/hurtbox.gd" id="10"]
+[ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="11"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_controlled.gd" id="12"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_cast.gd" id="13"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_dash.gd" id="14"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_stunned.gd" id="15"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_fainted.gd" id="16"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_wander.gd" id="17"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_chase.gd" id="18"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_attack.gd" id="19"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_flee.gd" id="20"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hurt"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dash"]
+radius = 10.0
 
 [node name="Creature" type="CharacterBody2D"]
 collision_layer = 8
@@ -26,6 +46,35 @@ script = ExtResource("2")
 [node name="GrassOverlay" type="Sprite2D" parent="."]
 script = ExtResource("6")
 
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("10")
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_hurt")
+
+[node name="DashHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+script = ExtResource("11")
+
+[node name="Shape" type="CollisionShape2D" parent="DashHitbox"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_dash")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("7")
+
+[node name="StatusEffects" type="Node" parent="."]
+script = ExtResource("8")
+
+[node name="MoveUser" type="Node" parent="."]
+script = ExtResource("9")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3")
 initial_state = NodePath("Idle")
@@ -35,3 +84,30 @@ script = ExtResource("4")
 
 [node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("5")
+
+[node name="Controlled" type="Node" parent="StateMachine"]
+script = ExtResource("12")
+
+[node name="Cast" type="Node" parent="StateMachine"]
+script = ExtResource("13")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("14")
+
+[node name="Stunned" type="Node" parent="StateMachine"]
+script = ExtResource("15")
+
+[node name="Fainted" type="Node" parent="StateMachine"]
+script = ExtResource("16")
+
+[node name="Wander" type="Node" parent="StateMachine"]
+script = ExtResource("17")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("18")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("19")
+
+[node name="Flee" type="Node" parent="StateMachine"]
+script = ExtResource("20")

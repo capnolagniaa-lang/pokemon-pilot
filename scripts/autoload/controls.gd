@@ -14,6 +14,7 @@ const KEYS := {
 	"dodge": [KEY_SPACE],
 	"capture": [KEY_E],
 	"switch": [KEY_TAB, KEY_Q],
+	"battle_toggle": [KEY_F],
 }
 
 const MOUSE := {

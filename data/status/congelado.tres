@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_5ltr3"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="2_pjn7l"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="3_yad1k"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_ddbc3"]
+
+[resource]
+script = ExtResource("4_ddbc3")
+id = "congelado"
+display_name = "Congelado"
+color = Color(0.6, 0.9, 1, 1)
+duration = 2.2
+speed_mult = 0.0
+can_act = false
+cured_by = Array[ExtResource("1_5ltr3")]([ExtResource("2_pjn7l")])
+element = ExtResource("3_yad1k")

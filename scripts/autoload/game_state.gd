@@ -4,6 +4,8 @@ extends Node
 var party: Array[CreatureInstance] = []
 var active_index := 0
 var balls := 0
+## Si es false no aparecen salvajes (lo usa el autotest de recorrido).
+var wilds_enabled := true
 
 
 func new_game(starter: SpeciesData) -> void:

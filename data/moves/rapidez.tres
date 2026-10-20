@@ -10,5 +10,6 @@ display_name = "Rapidez"
 element = ExtResource("1_7jpqq")
 cooldown = 0.6
 energy_cost = 9.0
+knockback = 110.0
 speed = 260.0
 radius = 45.0

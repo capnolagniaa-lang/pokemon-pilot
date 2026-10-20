@@ -2,7 +2,7 @@
 # Uso: powershell -ExecutionPolicy Bypass -File tools/download_sprites.ps1
 # Para agregar especies, sumá su número de Pokédex a $dex.
 
-$dex = @(1, 4, 7, 16, 19, 37, 43, 54, 58, 60, 69, 133)
+$dex = @(1, 4, 7, 16, 19, 25, 37, 43, 54, 58, 60, 69, 86, 133)
 $anims = @("Idle", "Walk", "Attack", "Hurt")
 $base = "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master"
 $root = Split-Path -Parent $PSScriptRoot

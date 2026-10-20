@@ -13,6 +13,13 @@ Bajá [Godot 4.7](https://godotengine.org/download) (versión estándar), import
 |---|---|
 | Moverse | WASD / flechas |
 | Correr | Shift |
+| Sacar / guardar a tu Pokémon para pelear | F |
+| Mover al Pokémon (en combate) | WASD |
+| Apuntar | Mouse |
+| Ataques 1-4 | 1, 2, 3, 4 (o Clic izq. = 1, Clic der. = 2) |
+| Esquivar (invulnerable un instante) | Espacio |
+
+Si un salvaje te ve, el combate empieza solo y pasás a controlar a tu Pokémon. Algunos ataques tienen carga (un golpe fuerte la interrumpe) y pueden quemar, paralizar o congelar.
 
 ## Estructura
 

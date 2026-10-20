@@ -12,5 +12,7 @@ kind = 2
 power = 20.0
 cooldown = 4.0
 energy_cost = 30.0
+cast_time = 0.35
+knockback = 220.0
 speed = 150.0
 radius = 58.5

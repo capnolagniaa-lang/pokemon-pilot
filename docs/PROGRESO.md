@@ -9,8 +9,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 1 | Refactor data-driven + mundo abierto con zonas | ✅ Hecha |
 | 1b | Arte FireRed + efectos modernos | ✅ Hecha |
 | 1c | Región grande (3×3 zonas, 9 biomas) | ✅ Hecha |
-| 2 | Combate en tiempo real en el mapa + estados alterados | ⏭️ Siguiente |
-| 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | Pendiente |
+| 2 | Combate en tiempo real en el mapa + estados alterados | ✅ Hecha |
+| 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | ⏭️ Siguiente |
 | 4 | IA salvaje con estados + spawns por bioma/hora | Pendiente |
 | 5 | Ciclo día/noche, clima, NPCs con horarios | Pendiente |
 | 6 | Captura, equipo y progresión | Pendiente |
@@ -34,17 +34,45 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Lago Celeste / Pradera Florida, **Ruta 1 (inicio)**, Colinas Rocosas / Humedal, Pradera Sur, Arboleda.
 - Ruta 1 tiene un rincón de flores cerrado por rocas con 2 rocas frágiles (puzzle para la Etapa 3).
   Bosque Verde tiene un arroyo con vados donde lo cruzan los caminos (candidato a puente de hielo).
-- 12 especies en `data/species`, 17 ataques en `data/moves` (todavía sin combate en el mapa).
-- El combate del prototipo viejo se sacó en la Etapa 1 (queda en el historial de git, commit d77e28b).
+- 14 especies (`data/species`; se sumaron Pikachu y Seel), 21 ataques (`data/moves`), 6 tipos
+  (fuego, agua, planta, normal, eléctrico, hielo), 3 estados (`data/status`: quemado, paralizado, congelado).
 
-## Próximo paso concreto (Etapa 2)
-1. Componentes `Hitbox`/`Hurtbox` (Area2D, capas 6/7) y `Health`; `Projectile` y `AreaEffect` como
-   escenas que chocan con el mundo (capa 1).
-2. Estados de criatura: `attack`, `stunned`, `controlled` (jugador maneja al Pokémon), `chase`, `flee`.
-3. Modo combate: transición entrenador → Pokémon (cámara), hotkeys 1-4 / clic, cooldown, cast time, esquive.
-4. Un salvaje en Ruta 1 con IA básica; estados alterados (quemado, paralizado, congelado) como Resources.
-5. Feedback: números de daño, hitstop, screen shake; ataques de fuego/eléctrico con luz (glow HDR).
-6. Ampliar autotest: combate automático contra el salvaje.
+### Combate (Etapa 2)
+- **Modo combate** (`scripts/combat/combat_director.gd`): un salvaje te detecta (o apretás **F**) → controlás
+  al Pokémon (WASD, mouse, 1-4/clic, espacio esquiva), la cámara (`CameraRig`) lo sigue y el entrenador queda
+  quieto. Termina si no quedan enemigos cerca por 1,5 s, si tu Pokémon se debilita o con F. Si lo sacaste con
+  F sin enemigos, no termina solo.
+- **Componentes de la criatura** (`scenes/creatures/creature.tscn`): `Health`, `StatusEffects`, `MoveUser`
+  (recargas/energía), `Hurtbox` (capa 6 aliada / 7 salvaje), `DashHitbox`. Estados: idle, follow, controlled,
+  cast, dash, stunned, fainted, wander, chase, attack, flee.
+- **Ataques**: `Projectile` (choca con paredes, capa 1), `AreaEffect`, embestida (hitbox durante el dash),
+  escudo. La carga (cast time) la interrumpe un golpe fuerte (knockback ≥ 200). Daño en `Damage` (escala 0.4).
+- **Estados alterados**: quemado (daño por segundo, -25% ataque, lo cura el agua), paralizado (lento +
+  inmovilizado al azar), congelado (no actúa, lo derrite el fuego).
+- **Feedback** (`scripts/fx/combat_feedback.gd`): números de daño (súper eficaz en grande), hitstop, temblor,
+  chispas, luces dinámicas en ataques de fuego/eléctrico/hielo, destello HDR al recibir golpes, estelas al esquivar.
+- `Events.element_impact(element, pos, radius)` ya se emite en cada impacto: **es la entrada del sistema de
+  entorno reactivo de la Etapa 3**.
+- **Provisorio** (lo reemplazan etapas futuras): `WildSpawner` (salvajes en el pasto alto según bioma; Etapa 4)
+  y regeneración fuera de combate de 2%/s con vuelta al 30% (Etapa 6: Centros Pokémon / objetos).
+
+### Pruebas automáticas
+`--autotest` (recorre las 9 zonas), `--autotest-combat` (3 peleas: Charmander/Bulbasaur, Pikachu/Squirtle,
+Seel/Oddish), `--autotest-input` (simula teclas reales y verifica el spawner). Correr siempre con
+`--quit-after 60000` como límite por si algo se cuelga.
+
+## Próximo paso concreto (Etapa 3: entorno reactivo)
+1. `EnvironmentGrid` por zona: estado dinámico por celda (ardiendo, quemado, mojado, congelado, crecido)
+   encima de los tags del TileSet; overlays visuales (llamas animadas con luz, charcos, hielo).
+2. `ReactionRule` (.tres en `data/reactions/`): elemento × condición (tags/estado) → efectos (cambiar estado,
+   propagar a vecinos con probabilidad/demora, dañar o aplicar estado a criaturas encima, emitir otro elemento).
+   `ReactionSystem` escucha `Events.element_impact`; las cadenas salen de los efectos que emiten elementos.
+3. Reglas iniciales: fuego quema pasto/pasto alto/árboles/arbusto cortable y se propaga; agua apaga y moja;
+   eléctrico se propaga por agua y suelo mojado (paraliza a quien esté encima); fuego sobre mojado → vapor.
+4. Hielo (ya hay ataques): congela agua → camino transitable temporal (puente de hielo en Bosque Verde).
+5. Roca frágil: se rompe con golpes fuertes (embestidas) → abre el rincón de Ruta 1.
+6. Las criaturas paradas sobre celdas en llamas se queman.
+7. Autotest del entorno: prender pasto y verificar propagación y apagado; romper la roca frágil.
 
 ## Pendientes de pulido (anotados)
 - Esquinas interiores donde se cruzan caminos (quedan cuadradas).

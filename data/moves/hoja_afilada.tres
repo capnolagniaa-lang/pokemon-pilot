@@ -11,6 +11,7 @@ element = ExtResource("1_kiuxi")
 power = 8.0
 cooldown = 0.35
 energy_cost = 7.0
+knockback = 100.0
 speed = 340.0
 size = 3.0
 lifetime = 0.8

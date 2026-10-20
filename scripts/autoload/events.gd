@@ -12,6 +12,23 @@ signal zone_unloaded(zone: ZoneEntry)
 signal game_started()
 signal party_changed()
 
+# Combate
+## Un salvaje detectó a un objetivo (normalmente tu Pokémon o el entrenador).
+signal wild_aggro(wild: Node, target: Node)
+signal battle_started()
+signal battle_ended()
+signal move_used(user: Node, move: MoveData)
+signal creature_damaged(creature: Node, amount: float, hit: HitInfo)
+signal creature_fainted(creature: Node)
+signal status_applied(creature: Node, status: StatusEffect)
+signal status_removed(creature: Node, status: StatusEffect)
+## Un elemento impactó el mundo en una posición (lo usa el entorno reactivo en la Etapa 3).
+signal element_impact(element: ElementType, position: Vector2, radius: float)
+
+# Feedback
+signal camera_shake(strength: float)
+signal hitstop(duration: float)
+
 # Interfaz
 signal message_requested(text: String)
 

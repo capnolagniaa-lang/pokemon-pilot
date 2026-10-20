@@ -10,9 +10,21 @@ multipliers = {
 "fuego": 2.0,
 "planta": 0.5
 },
+"electrico": {
+"agua": 2.0,
+"electrico": 0.5,
+"planta": 0.5
+},
 "fuego": {
 "agua": 0.5,
 "fuego": 0.5,
+"hielo": 2.0,
+"planta": 2.0
+},
+"hielo": {
+"agua": 0.5,
+"fuego": 0.5,
+"hielo": 0.5,
 "planta": 2.0
 },
 "planta": {

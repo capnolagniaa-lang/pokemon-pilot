@@ -14,6 +14,8 @@ var trail: Array[Vector2] = []
 ## Si no es cero, reemplaza al input (lo usa el autotest).
 var autopilot := Vector2.ZERO
 var autopilot_run := false
+## Durante un combate el entrenador se queda quieto mirando (no responde al input).
+var locked := false
 
 var _anim_time := 0.0
 
@@ -26,6 +28,8 @@ func _ready() -> void:
 
 
 func input_dir() -> Vector2:
+	if locked:
+		return Vector2.ZERO
 	if autopilot != Vector2.ZERO:
 		return autopilot
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")

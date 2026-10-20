@@ -33,12 +33,6 @@ hframes = 9
 [node name="GrassOverlay" type="Sprite2D" parent="."]
 script = ExtResource("7")
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2(0, -10)
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
-position_smoothing_speed = 6.0
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3")
 initial_state = NodePath("Idle")

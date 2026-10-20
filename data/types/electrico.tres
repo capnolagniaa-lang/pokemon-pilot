@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ElementType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_td6ba"]
+
+[resource]
+script = ExtResource("1_td6ba")
+id = "electrico"
+display_name = "Eléctrico"
+color = Color(0.98, 0.85, 0.2, 1)
+glow = 1.8

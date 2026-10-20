@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_f3x8u"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="2_i8t4d"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_a7mo8"]
+
+[resource]
+script = ExtResource("3_a7mo8")
+id = "paralizado"
+display_name = "Paralizado"
+color = Color(1, 0.9, 0.3, 1)
+speed_mult = 0.55
+stun_chance_per_second = 0.35
+element = ExtResource("2_i8t4d")

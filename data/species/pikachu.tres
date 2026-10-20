@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_i6vw7"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="2_qs2rp"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_0snj4"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="4_fee7b"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_fc0l2"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_gsu1e"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_xqbbk"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="8_maw5u"]
+
+[resource]
+script = ExtResource("6_gsu1e")
+id = "pikachu"
+display_name = "Pikachu"
+dex = 25
+types = Array[ExtResource("7_xqbbk")]([ExtResource("8_maw5u")])
+base_atk = 13.0
+move_speed = 92.0
+moves = Array[ExtResource("1_i6vw7")]([ExtResource("2_qs2rp"), ExtResource("3_0snj4"), ExtResource("4_fee7b"), ExtResource("5_fc0l2")])
+catch_rate = 0.4

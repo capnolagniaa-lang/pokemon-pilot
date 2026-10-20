@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="1_ongq7"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1fej6"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="3_wbsup"]
+
+[resource]
+script = ExtResource("2_1fej6")
+id = "trueno"
+display_name = "Trueno"
+element = ExtResource("1_ongq7")
+kind = 2
+power = 21.0
+cooldown = 4.5
+energy_cost = 32.0
+cast_time = 0.45
+knockback = 200.0
+status = ExtResource("3_wbsup")
+status_chance = 0.4
+radius = 60.0

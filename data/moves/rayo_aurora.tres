@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="1_kpma8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_c6rq4"]
+[ext_resource type="Resource" path="res://data/status/congelado.tres" id="3_abwt0"]
+
+[resource]
+script = ExtResource("2_c6rq4")
+id = "rayo_aurora"
+display_name = "Rayo Aurora"
+element = ExtResource("1_kpma8")
+cooldown = 0.6
+cast_time = 0.15
+knockback = 110.0
+status = ExtResource("3_abwt0")
+status_chance = 0.15
+speed = 260.0
+size = 4.5
+lifetime = 0.9
