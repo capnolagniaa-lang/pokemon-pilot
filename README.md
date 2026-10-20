@@ -2,6 +2,10 @@
 
 Juego tipo Pokémon en Godot 4.7: mundo abierto 2D top-down con combate en tiempo real.
 
+Estado y próximos pasos: [docs/PROGRESO.md](docs/PROGRESO.md). Guía técnica: [CLAUDE.md](CLAUDE.md).
+
+La región tiene 9 zonas (3×3, 144×96 celdas) que se cargan sin cortes: Bosque Profundo, Bosque Verde, Lago Celeste, Pradera Florida, Ruta 1 (inicio), Colinas Rocosas, Humedal, Pradera Sur y Arboleda.
+
 ## Cómo jugar
 Bajá [Godot 4.7](https://godotengine.org/download) (versión estándar), importá esta carpeta (`project.godot`) y apretá **F5**.
 
@@ -47,13 +51,14 @@ Cada tile del TileSet (`art/tiles/world_tileset.tres`) tiene un *custom data* `t
 ## Agregar contenido
 - **Ataque/especie:** duplicá un `.tres` en `data/moves` o `data/species` y editalo en el inspector.
 - **Pokémon nuevo (sprites):** sumá su número de Pokédex en `tools/download_sprites.ps1` y corrélo.
-- **Zona nueva:** creá la escena (copiá una de `scenes/world/zones`), pintala en el editor y agregala a `data/world/kanto.tres` con su origen en celdas.
+- **Zona nueva:** sumá una fila a `REGION` en `tools/build_world.gd` (id, nombre, columna, fila, bioma) y regenerá; o creá la escena a mano y agregala a `data/world/kanto.tres`.
 
 ## Herramientas
 ```
 python -I tools/pret_import.py art_src/pret art/pret                     # convierte los gráficos de FireRed
 godot --headless --path . --script res://tools/build_world.gd -- --force  # regenera TileSet y zonas (pisa cambios)
-godot --headless --path . -- --autotest                                   # prueba automática
+godot --headless --path . -- --autotest                                   # recorre las 9 zonas
+godot --path . --write-movie mapa.png --fixed-fps 30 -- --overview      # imagen de toda la región
 ```
 
 ## Créditos

@@ -5,19 +5,125 @@
 
 [sub_resource type="Resource" id="Resource_c5s1r"]
 script = ExtResource("2_3wmne")
-id = "pradera"
-display_name = "Ruta 1 - Pradera"
-scene_path = "res://scenes/world/zones/pradera.tscn"
+id = "bosque_profundo"
+display_name = "Bosque Profundo"
+scene_path = "res://scenes/world/zones/bosque_profundo.tscn"
+biome = "bosque_denso"
+hub = Vector2i(18, 16)
+exits = {
+"down": Vector2i(22, 30),
+"right": Vector2i(46, 22)
+}
 
 [sub_resource type="Resource" id="Resource_f8nvh"]
 script = ExtResource("2_3wmne")
 id = "bosque"
 display_name = "Bosque Verde"
 scene_path = "res://scenes/world/zones/bosque.tscn"
-origin = Vector2i(0, -26)
+origin = Vector2i(48, 0)
 biome = "bosque"
+hub = Vector2i(26, 12)
+exits = {
+"down": Vector2i(30, 30),
+"left": Vector2i(0, 22),
+"right": Vector2i(46, 22)
+}
+
+[sub_resource type="Resource" id="Resource_dgxt3"]
+script = ExtResource("2_3wmne")
+id = "lago"
+display_name = "Lago Celeste"
+scene_path = "res://scenes/world/zones/lago.tscn"
+origin = Vector2i(96, 0)
+biome = "lago"
+hub = Vector2i(28, 14)
+exits = {
+"down": Vector2i(8, 30),
+"left": Vector2i(0, 22)
+}
+
+[sub_resource type="Resource" id="Resource_6v2ea"]
+script = ExtResource("2_3wmne")
+id = "pradera_florida"
+display_name = "Pradera Florida"
+scene_path = "res://scenes/world/zones/pradera_florida.tscn"
+origin = Vector2i(0, 32)
+biome = "pradera_florida"
+hub = Vector2i(20, 14)
+exits = {
+"down": Vector2i(18, 30),
+"right": Vector2i(46, 14),
+"up": Vector2i(22, 0)
+}
+
+[sub_resource type="Resource" id="Resource_pqsf8"]
+script = ExtResource("2_3wmne")
+id = "ruta1"
+display_name = "Ruta 1"
+scene_path = "res://scenes/world/zones/ruta1.tscn"
+origin = Vector2i(48, 32)
+hub = Vector2i(22, 14)
+exits = {
+"down": Vector2i(36, 30),
+"left": Vector2i(0, 14),
+"right": Vector2i(46, 8),
+"up": Vector2i(30, 0)
+}
+
+[sub_resource type="Resource" id="Resource_hytxv"]
+script = ExtResource("2_3wmne")
+id = "colinas"
+display_name = "Colinas Rocosas"
+scene_path = "res://scenes/world/zones/colinas.tscn"
+origin = Vector2i(96, 32)
+biome = "rocoso"
+hub = Vector2i(24, 14)
+exits = {
+"down": Vector2i(24, 30),
+"left": Vector2i(0, 8),
+"up": Vector2i(8, 0)
+}
+
+[sub_resource type="Resource" id="Resource_wlkjo"]
+script = ExtResource("2_3wmne")
+id = "humedal"
+display_name = "Humedal"
+scene_path = "res://scenes/world/zones/humedal.tscn"
+origin = Vector2i(0, 64)
+biome = "humedal"
+hub = Vector2i(20, 18)
+exits = {
+"right": Vector2i(46, 22),
+"up": Vector2i(18, 0)
+}
+
+[sub_resource type="Resource" id="Resource_l0sq1"]
+script = ExtResource("2_3wmne")
+id = "pradera_sur"
+display_name = "Pradera Sur"
+scene_path = "res://scenes/world/zones/pradera_sur.tscn"
+origin = Vector2i(48, 64)
+hub = Vector2i(28, 16)
+exits = {
+"left": Vector2i(0, 22),
+"right": Vector2i(46, 18),
+"up": Vector2i(36, 0)
+}
+
+[sub_resource type="Resource" id="Resource_7gffs"]
+script = ExtResource("2_3wmne")
+id = "arboleda"
+display_name = "Arboleda"
+scene_path = "res://scenes/world/zones/arboleda.tscn"
+origin = Vector2i(96, 64)
+biome = "arboleda"
+hub = Vector2i(26, 14)
+exits = {
+"left": Vector2i(0, 18),
+"up": Vector2i(24, 0)
+}
 
 [resource]
 script = ExtResource("1_0oca4")
-zones = Array[ExtResource("2_3wmne")]([SubResource("Resource_c5s1r"), SubResource("Resource_f8nvh")])
-spawn_cell = Vector2i(20, 21)
+zones = Array[ExtResource("2_3wmne")]([SubResource("Resource_c5s1r"), SubResource("Resource_f8nvh"), SubResource("Resource_dgxt3"), SubResource("Resource_6v2ea"), SubResource("Resource_pqsf8"), SubResource("Resource_hytxv"), SubResource("Resource_wlkjo"), SubResource("Resource_l0sq1"), SubResource("Resource_7gffs")])
+spawn_cell = Vector2i(71, 47)

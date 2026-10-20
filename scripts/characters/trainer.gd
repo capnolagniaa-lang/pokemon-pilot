@@ -13,6 +13,7 @@ var facing := Vector2.DOWN
 var trail: Array[Vector2] = []
 ## Si no es cero, reemplaza al input (lo usa el autotest).
 var autopilot := Vector2.ZERO
+var autopilot_run := false
 
 var _anim_time := 0.0
 
@@ -31,7 +32,7 @@ func input_dir() -> Vector2:
 
 
 func wants_run() -> bool:
-	return Input.is_action_pressed("run")
+	return (autopilot_run and autopilot != Vector2.ZERO) or Input.is_action_pressed("run")
 
 
 func move(dir: Vector2, speed: float) -> void:

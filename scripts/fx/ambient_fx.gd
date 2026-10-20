@@ -5,7 +5,13 @@ extends Node2D
 ## Cantidades por bioma: [hojas, motas]
 const BIOMES := {
 	"pradera": [5, 18],
+	"pradera_florida": [4, 26],
 	"bosque": [30, 14],
+	"bosque_denso": [40, 10],
+	"lago": [4, 20],
+	"rocoso": [2, 8],
+	"humedal": [6, 30],
+	"arboleda": [18, 18],
 }
 
 @export var area := Vector2(520, 320)
