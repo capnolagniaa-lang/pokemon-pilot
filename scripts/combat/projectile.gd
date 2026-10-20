@@ -1,6 +1,7 @@
 class_name Projectile
 extends Hitbox
 ## Proyectil de un ataque: vuela, choca con paredes (capa 1) o con la hurtbox enemiga.
+## Colores del ElementType: halo y cuerpo con `color`, centro con `core_color` (el fuego es rojizo, no blanco).
 
 const LIGHT_TEX := preload("res://art/fx/soft_shadow.tres")
 
@@ -8,31 +9,33 @@ var velocity := Vector2.ZERO
 var life := 1.0
 var radius := 4.0
 var color := Color.WHITE
+var core := Color.WHITE
 var _time := 0.0
 var _dead := false
 
 
 func launch(p_hit: HitInfo, from: Vector2, dir: Vector2) -> void:
 	var m := p_hit.move
+	var el := m.element
 	setup(p_hit, true)
 	global_position = from
 	velocity = dir.normalized() * m.speed
 	life = m.lifetime
 	radius = m.size
-	var glow := m.element.glow
-	color = Color(m.element.color.r * glow, m.element.color.g * glow, m.element.color.b * glow)
+	color = el.hdr(el.color)
+	core = el.hdr(el.core_color, 0.9)
 	var shape := CircleShape2D.new()
 	shape.radius = radius
 	var col := CollisionShape2D.new()
 	col.shape = shape
 	add_child(col)
 	z_index = 3
-	if glow > 1.2:
+	if el.glow > 1.15:
 		var light := PointLight2D.new()
 		light.texture = LIGHT_TEX
-		light.color = m.element.color
-		light.energy = 0.9
-		light.texture_scale = 1.6
+		light.color = el.color
+		light.energy = 0.3
+		light.texture_scale = 0.75
 		add_child(light)
 	add_child(_trail())
 	hit_landed.connect(func(_h): _impact())
@@ -60,17 +63,18 @@ func _impact() -> void:
 
 func _draw() -> void:
 	var pulse := 1.0 + 0.15 * sin(_time * 30.0)
-	draw_circle(Vector2.ZERO, radius * 1.9 * pulse, Color(color, 0.25))
+	var base := hit.move.element.color if hit != null else color
+	draw_circle(Vector2.ZERO, radius * 1.8 * pulse, Color(base, 0.22))
 	draw_circle(Vector2.ZERO, radius * pulse, color)
-	draw_circle(Vector2.ZERO, radius * 0.45, Color(2.0, 2.0, 2.0))
+	draw_circle(Vector2.ZERO, radius * 0.5, core)
 
 
 func _trail() -> CPUParticles2D:
 	var p := CPUParticles2D.new()
-	p.amount = 14
+	p.amount = 16
 	p.lifetime = 0.3
 	p.local_coords = false
-	p.gravity = Vector2.ZERO
+	p.gravity = Vector2(0, -15)
 	p.initial_velocity_min = 2.0
 	p.initial_velocity_max = 8.0
 	p.spread = 180.0
@@ -78,6 +82,6 @@ func _trail() -> CPUParticles2D:
 	p.scale_amount_max = 2.5
 	var ramp := Gradient.new()
 	ramp.set_color(0, color)
-	ramp.set_color(1, Color(color, 0.0))
+	ramp.set_color(1, Color(color.r * 0.4, color.g * 0.2, color.b * 0.2, 0.0))
 	p.color_ramp = ramp
 	return p

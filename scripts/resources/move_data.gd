@@ -3,12 +3,16 @@ extends Resource
 ## Definición de un ataque. Cada .tres en data/moves es un ataque.
 
 enum Kind { PROJECTILE, DASH, AREA, SHIELD }
+## Físico usa Ataque/Defensa; Especial usa At. Esp./Def. Esp. (como en los juegos desde la 4ª gen).
+enum Category { PHYSICAL, SPECIAL, STATUS }
 
 @export var id: String = ""
 @export var display_name: String = ""
 @export var element: ElementType
 @export var kind: Kind = Kind.PROJECTILE
-@export var power: float = 10.0
+@export var category: Category = Category.PHYSICAL
+## Potencia oficial (data/source/official.json).
+@export var power: float = 40.0
 @export var cooldown: float = 1.0
 @export var energy_cost: float = 10.0
 ## Tiempo de carga antes de que salga el ataque (lo interrumpe un golpe fuerte).

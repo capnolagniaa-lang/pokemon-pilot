@@ -8,13 +8,21 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_cree8"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_e0dml"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="8_m7bew"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="9_p5iqk"]
 
 [resource]
 script = ExtResource("6_cree8")
 id = "pidgey"
 display_name = "Pidgey"
 dex = 16
-types = Array[ExtResource("7_e0dml")]([ExtResource("8_m7bew")])
-move_speed = 88.0
+types = Array[ExtResource("7_e0dml")]([ExtResource("8_m7bew"), ExtResource("9_p5iqk")])
 moves = Array[ExtResource("1_8pjly")]([ExtResource("2_p5iqk"), ExtResource("3_muvct"), ExtResource("4_naq0o"), ExtResource("5_p3w12")])
-catch_rate = 0.7
+base_hp = 40
+base_attack = 45
+base_defense = 40
+base_sp_attack = 35
+base_sp_defense = 35
+base_speed = 56
+base_experience = 50
+growth_rate = "medium-slow"
+capture_rate = 255

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ElementType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_6dv5l"]
+
+[resource]
+script = ExtResource("1_6dv5l")
+id = "siniestro"
+display_name = "Siniestro"
+color = Color(0.38, 0.3, 0.32, 1)
+core_color = Color(0.62, 0.52, 0.56, 1)

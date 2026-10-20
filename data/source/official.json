@@ -1,0 +1,417 @@
+{
+ "source": "https://pokeapi.co (datos de los juegos actuales)",
+ "species": {
+  "bulbasaur": {
+   "dex": 1,
+   "types": [
+    "grass",
+    "poison"
+   ],
+   "base_stats": {
+    "hp": 45,
+    "attack": 49,
+    "defense": 49,
+    "sp_attack": 65,
+    "sp_defense": 65,
+    "speed": 45
+   },
+   "base_experience": 64,
+   "growth_rate": "medium-slow",
+   "capture_rate": 45
+  },
+  "charmander": {
+   "dex": 4,
+   "types": [
+    "fire"
+   ],
+   "base_stats": {
+    "hp": 39,
+    "attack": 52,
+    "defense": 43,
+    "sp_attack": 60,
+    "sp_defense": 50,
+    "speed": 65
+   },
+   "base_experience": 62,
+   "growth_rate": "medium-slow",
+   "capture_rate": 45
+  },
+  "squirtle": {
+   "dex": 7,
+   "types": [
+    "water"
+   ],
+   "base_stats": {
+    "hp": 44,
+    "attack": 48,
+    "defense": 65,
+    "sp_attack": 50,
+    "sp_defense": 64,
+    "speed": 43
+   },
+   "base_experience": 63,
+   "growth_rate": "medium-slow",
+   "capture_rate": 45
+  },
+  "pidgey": {
+   "dex": 16,
+   "types": [
+    "normal",
+    "flying"
+   ],
+   "base_stats": {
+    "hp": 40,
+    "attack": 45,
+    "defense": 40,
+    "sp_attack": 35,
+    "sp_defense": 35,
+    "speed": 56
+   },
+   "base_experience": 50,
+   "growth_rate": "medium-slow",
+   "capture_rate": 255
+  },
+  "rattata": {
+   "dex": 19,
+   "types": [
+    "normal"
+   ],
+   "base_stats": {
+    "hp": 30,
+    "attack": 56,
+    "defense": 35,
+    "sp_attack": 25,
+    "sp_defense": 35,
+    "speed": 72
+   },
+   "base_experience": 51,
+   "growth_rate": "medium",
+   "capture_rate": 255
+  },
+  "pikachu": {
+   "dex": 25,
+   "types": [
+    "electric"
+   ],
+   "base_stats": {
+    "hp": 35,
+    "attack": 55,
+    "defense": 40,
+    "sp_attack": 50,
+    "sp_defense": 50,
+    "speed": 90
+   },
+   "base_experience": 112,
+   "growth_rate": "medium",
+   "capture_rate": 190
+  },
+  "vulpix": {
+   "dex": 37,
+   "types": [
+    "fire"
+   ],
+   "base_stats": {
+    "hp": 38,
+    "attack": 41,
+    "defense": 40,
+    "sp_attack": 50,
+    "sp_defense": 65,
+    "speed": 65
+   },
+   "base_experience": 60,
+   "growth_rate": "medium",
+   "capture_rate": 190
+  },
+  "oddish": {
+   "dex": 43,
+   "types": [
+    "grass",
+    "poison"
+   ],
+   "base_stats": {
+    "hp": 45,
+    "attack": 50,
+    "defense": 55,
+    "sp_attack": 75,
+    "sp_defense": 65,
+    "speed": 30
+   },
+   "base_experience": 64,
+   "growth_rate": "medium-slow",
+   "capture_rate": 255
+  },
+  "psyduck": {
+   "dex": 54,
+   "types": [
+    "water"
+   ],
+   "base_stats": {
+    "hp": 50,
+    "attack": 52,
+    "defense": 48,
+    "sp_attack": 65,
+    "sp_defense": 50,
+    "speed": 55
+   },
+   "base_experience": 64,
+   "growth_rate": "medium",
+   "capture_rate": 190
+  },
+  "growlithe": {
+   "dex": 58,
+   "types": [
+    "fire"
+   ],
+   "base_stats": {
+    "hp": 55,
+    "attack": 70,
+    "defense": 45,
+    "sp_attack": 70,
+    "sp_defense": 50,
+    "speed": 60
+   },
+   "base_experience": 70,
+   "growth_rate": "slow",
+   "capture_rate": 190
+  },
+  "poliwag": {
+   "dex": 60,
+   "types": [
+    "water"
+   ],
+   "base_stats": {
+    "hp": 40,
+    "attack": 50,
+    "defense": 40,
+    "sp_attack": 40,
+    "sp_defense": 40,
+    "speed": 90
+   },
+   "base_experience": 60,
+   "growth_rate": "medium-slow",
+   "capture_rate": 255
+  },
+  "bellsprout": {
+   "dex": 69,
+   "types": [
+    "grass",
+    "poison"
+   ],
+   "base_stats": {
+    "hp": 50,
+    "attack": 75,
+    "defense": 35,
+    "sp_attack": 70,
+    "sp_defense": 30,
+    "speed": 40
+   },
+   "base_experience": 60,
+   "growth_rate": "medium-slow",
+   "capture_rate": 255
+  },
+  "seel": {
+   "dex": 86,
+   "types": [
+    "water"
+   ],
+   "base_stats": {
+    "hp": 65,
+    "attack": 45,
+    "defense": 55,
+    "sp_attack": 45,
+    "sp_defense": 70,
+    "speed": 45
+   },
+   "base_experience": 65,
+   "growth_rate": "medium",
+   "capture_rate": 190
+  },
+  "eevee": {
+   "dex": 133,
+   "types": [
+    "normal"
+   ],
+   "base_stats": {
+    "hp": 55,
+    "attack": 55,
+    "defense": 50,
+    "sp_attack": 45,
+    "sp_defense": 65,
+    "speed": 55
+   },
+   "base_experience": 65,
+   "growth_rate": "medium",
+   "capture_rate": 45
+  }
+ },
+ "moves": {
+  "ascuas": {
+   "name_en": "ember",
+   "type": "fire",
+   "power": 40,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "lanzallamas": {
+   "name_en": "flamethrower",
+   "type": "fire",
+   "power": 90,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "giro_fuego": {
+   "name_en": "fire-spin",
+   "type": "fire",
+   "power": 35,
+   "category": "special",
+   "accuracy": 85,
+   "effect_chance": 100
+  },
+  "pistola_agua": {
+   "name_en": "water-gun",
+   "type": "water",
+   "power": 40,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "burbuja": {
+   "name_en": "bubble",
+   "type": "water",
+   "power": 40,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "surf": {
+   "name_en": "surf",
+   "type": "water",
+   "power": 90,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "hoja_afilada": {
+   "name_en": "razor-leaf",
+   "type": "grass",
+   "power": 55,
+   "category": "physical",
+   "accuracy": 95,
+   "effect_chance": 0
+  },
+  "latigo_cepa": {
+   "name_en": "vine-whip",
+   "type": "grass",
+   "power": 45,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "danza_petalo": {
+   "name_en": "petal-dance",
+   "type": "grass",
+   "power": 120,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "placaje": {
+   "name_en": "tackle",
+   "type": "normal",
+   "power": 40,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "aranazo": {
+   "name_en": "scratch",
+   "type": "normal",
+   "power": 40,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "ataque_rapido": {
+   "name_en": "quick-attack",
+   "type": "normal",
+   "power": 40,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "mordisco": {
+   "name_en": "bite",
+   "type": "dark",
+   "power": 60,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 30
+  },
+  "rapidez": {
+   "name_en": "swift",
+   "type": "normal",
+   "power": 60,
+   "category": "special",
+   "accuracy": null,
+   "effect_chance": 0
+  },
+  "tornado": {
+   "name_en": "gust",
+   "type": "flying",
+   "power": 40,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "vozarron": {
+   "name_en": "hyper-voice",
+   "type": "normal",
+   "power": 90,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "proteccion": {
+   "name_en": "protect",
+   "type": "normal",
+   "power": 0,
+   "category": "status",
+   "accuracy": null,
+   "effect_chance": 0
+  },
+  "impactrueno": {
+   "name_en": "thunder-shock",
+   "type": "electric",
+   "power": 40,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "trueno": {
+   "name_en": "thunder",
+   "type": "electric",
+   "power": 110,
+   "category": "special",
+   "accuracy": 70,
+   "effect_chance": 30
+  },
+  "rayo_aurora": {
+   "name_en": "aurora-beam",
+   "type": "ice",
+   "power": 65,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "ventisca": {
+   "name_en": "blizzard",
+   "type": "ice",
+   "power": 110,
+   "category": "special",
+   "accuracy": 70,
+   "effect_chance": 10
+  }
+ }
+}

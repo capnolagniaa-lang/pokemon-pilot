@@ -8,15 +8,20 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_l46yy"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_eo1rb"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="8_xegt2"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="9_yyf8n"]
 
 [resource]
 script = ExtResource("6_l46yy")
 id = "bulbasaur"
 display_name = "Bulbasaur"
 dex = 1
-types = Array[ExtResource("7_eo1rb")]([ExtResource("8_xegt2")])
-base_hp = 62.0
-base_atk = 12.0
-move_speed = 74.0
+types = Array[ExtResource("7_eo1rb")]([ExtResource("8_xegt2"), ExtResource("9_yyf8n")])
 moves = Array[ExtResource("1_jgs44")]([ExtResource("2_yyf8n"), ExtResource("3_jvu2p"), ExtResource("4_1luoi"), ExtResource("5_ibq27")])
-catch_rate = 0.35
+base_hp = 45
+base_attack = 49
+base_defense = 49
+base_sp_attack = 65
+base_sp_defense = 65
+base_speed = 45
+base_experience = 64
+growth_rate = "medium-slow"

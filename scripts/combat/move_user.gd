@@ -3,9 +3,10 @@ extends Node
 ## Recargas y energía de los ataques de una criatura.
 
 const MAX_ENERGY := 100.0
-const ENERGY_REGEN := 22.0
-const DODGE_COST := 18.0
-const DODGE_COOLDOWN := 0.7
+## Energía por segundo: con 12/s se puede tirar un ataque fuerte cada ~3 s y uno chico cada ~1,4 s.
+const ENERGY_REGEN := 12.0
+const DODGE_COST := 22.0
+const DODGE_COOLDOWN := 0.9
 
 var moves: Array[MoveData] = []
 var cooldowns: Dictionary = {}  # id -> segundos restantes

@@ -17,7 +17,7 @@ func trigger(p_hit: HitInfo, at: Vector2) -> void:
 	global_position = at
 	radius = m.radius
 	var glow := minf(m.element.glow, 1.3)
-	color = Color(m.element.color.r * glow, m.element.color.g * glow, m.element.color.b * glow)
+	color = m.element.hdr(m.element.color, glow / m.element.glow)
 	var shape := CircleShape2D.new()
 	shape.radius = radius
 	var col := CollisionShape2D.new()
@@ -28,8 +28,8 @@ func trigger(p_hit: HitInfo, at: Vector2) -> void:
 		_light = PointLight2D.new()
 		_light.texture = LIGHT_TEX
 		_light.color = m.element.color
-		_light.energy = 0.7
-		_light.texture_scale = radius / 20.0
+		_light.energy = 0.35
+		_light.texture_scale = radius / 32.0
 		add_child(_light)
 	Events.element_impact.emit(m.element, at, radius)
 	Fx.burst(get_parent(), at, color, 20, radius * 2.0)
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	if _time > 0.1 and monitoring:
 		set_deferred("monitoring", false)
 	if _light:
-		_light.energy = 0.7 * (1.0 - _time / DURATION)
+		_light.energy = 0.35 * (1.0 - _time / DURATION)
 	if _time >= DURATION:
 		queue_free()
 	queue_redraw()

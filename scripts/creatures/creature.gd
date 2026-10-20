@@ -67,12 +67,21 @@ func is_down() -> bool:
 	return health.is_dead() or machine.current_name() == "fainted"
 
 
+## Velocidad de movimiento (píxeles/seg) a partir del stat oficial de Velocidad, con rendimiento
+## decreciente: a nivel 5 Pikachu (15) ~80 px/s y Oddish (9) ~68; a nivel 50 Pikachu (110) ~140.
+static func move_speed_for(speed_stat: float) -> float:
+	return 40.0 + 26.0 * log(1.0 + speed_stat / 8.0) / log(2.0)
+
+
 func speed() -> float:
-	return instance.species.move_speed * statuses.speed_mult()
+	return move_speed_for(instance.stat("speed")) * statuses.speed_mult()
 
 
-func attack_stat() -> float:
-	return instance.attack() * statuses.attack_mult()
+## Ataque (físico) o At. Esp. (especial) según la categoría; la quemadura baja solo el físico.
+func attack_stat_for(category: MoveData.Category) -> float:
+	if category == MoveData.Category.SPECIAL:
+		return instance.stat("sp_attack")
+	return instance.stat("attack") * statuses.attack_mult()
 
 
 func move(dir: Vector2, spd: float) -> void:
@@ -148,7 +157,7 @@ func take_status_damage(amount: float) -> void:
 func _on_hit(hit: HitInfo) -> void:
 	if health.is_invulnerable():
 		return
-	var dmg := Damage.resolve(hit, instance.species.types)
+	var dmg := Damage.resolve(hit, instance)
 	var dealt := health.apply_damage(dmg)
 	statuses.on_hit(hit)
 	knockback = (global_position - hit.origin).normalized() * hit.move.knockback

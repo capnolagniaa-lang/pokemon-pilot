@@ -133,8 +133,9 @@ func _draw() -> void:
 	var tint := Color.WHITE
 	if c is Creature and c.statuses != null and not c.statuses.active.is_empty():
 		var st: Color = c.statuses.tint()
-		var pulse := 0.35 + 0.15 * sin(_time * 8.0)
-		tint = Color.WHITE.lerp(st, 0.75 if _status_frozen() else pulse)
+		var k: float = c.statuses.tint_strength()
+		var pulse := k * (0.7 + 0.3 * sin(_time * 9.0))
+		tint = Color.WHITE.lerp(st, k if _status_frozen() else pulse)
 	if c is Creature and c.health != null and c.health.invulnerable_time > 0.0 and not c.health.is_dead():
 		tint.a = 0.55
 	if _flash > 0.0:
@@ -146,6 +147,13 @@ func _draw() -> void:
 
 
 func _draw_combat_ui(c: Creature, dst: Rect2) -> void:
+	if _status_frozen():
+		# Bloque de hielo translúcido con brillo (se distingue aunque la criatura ya sea azul).
+		var ice := Rect2(-10, -24, 20, 23)
+		draw_rect(ice, Color(0.7, 0.92, 1.0, 0.38))
+		draw_rect(ice, Color(1.0, 1.15, 1.35, 0.9), false, 1.0)
+		draw_line(ice.position + Vector2(3, 3), ice.position + Vector2(9, 3), Color(1.6, 1.7, 1.9), 1.0)
+		draw_line(ice.position + Vector2(3, 3), ice.position + Vector2(3, 8), Color(1.6, 1.7, 1.9), 1.0)
 	if charge >= 0.0:
 		var r := 11.0
 		var col := Color(charge_color.r * 1.6, charge_color.g * 1.6, charge_color.b * 1.6)

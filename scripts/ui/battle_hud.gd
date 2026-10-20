@@ -57,7 +57,7 @@ func _draw_party(c: Creature, in_battle: bool) -> void:
 	draw_string(font, Vector2(x + 4, r.position.y + 45), "PS %d/%d" % [ceili(inst.hp), ceili(inst.max_hp())], HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
 	if is_instance_valid(c) and in_battle:
 		_bar(Rect2(x, r.position.y + 52, 290, 6), c.moves.energy / MoveUser.MAX_ENERGY, Color(0.95, 0.85, 0.3))
-	_bar(Rect2(x, r.position.y + 62, 290, 4), float(inst.xp) / inst.xp_to_next(), Color(0.4, 0.7, 1.0))
+	_bar(Rect2(x, r.position.y + 62, 290, 4), inst.exp_progress(), Color(0.4, 0.7, 1.0))
 	if is_instance_valid(c) and not c.statuses.active.is_empty():
 		var s: StatusEffect = c.statuses.active.values()[-1]["status"]
 		draw_string(font, Vector2(x, r.position.y + 82), s.display_name.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, s.color)

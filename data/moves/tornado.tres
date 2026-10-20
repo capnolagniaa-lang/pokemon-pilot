@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_hprqg"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_hprqg"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uvffb"]
 
 [resource]
@@ -8,8 +8,9 @@ script = ExtResource("2_uvffb")
 id = "tornado"
 display_name = "Tornado"
 element = ExtResource("1_hprqg")
-power = 11.0
-cooldown = 0.65
+category = 1
+cooldown = 1.4500000000000002
+energy_cost = 16.0
 knockback = 150.0
 speed = 240.0
 size = 5.5

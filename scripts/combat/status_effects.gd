@@ -76,6 +76,13 @@ func tint() -> Color:
 	return c
 
 
+func tint_strength() -> float:
+	var t := 0.0
+	for id in active:
+		t = active[id]["status"].tint_strength
+	return t
+
+
 func _physics_process(delta: float) -> void:
 	if active.is_empty() or creature.health.is_dead():
 		return
@@ -97,22 +104,54 @@ func _physics_process(delta: float) -> void:
 		_dot_accum = 0.0
 
 
+## Partículas (y luz opcional) del estado, configuradas desde el StatusEffect.
 func _make_fx(s: StatusEffect) -> CPUParticles2D:
+	var el := s.element
 	var p := CPUParticles2D.new()
-	p.amount = 6
-	p.lifetime = 0.7
+	p.amount = s.fx_amount
+	p.lifetime = 0.65
+	p.texture = _flame_texture() if s.fx_gravity < 0.0 else null
 	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
-	p.emission_rect_extents = Vector2(7, 5)
-	p.position = Vector2(0, -10)
-	p.direction = Vector2.UP
-	p.spread = 25.0
-	p.gravity = Vector2(0, -20) if s.damage_per_second > 0.0 else Vector2(0, 10)
-	p.initial_velocity_min = 6.0
-	p.initial_velocity_max = 14.0
-	p.scale_amount_min = 1.0
-	p.scale_amount_max = 1.5
-	var glow := s.element.glow if s.element != null else 1.0
-	p.color = Color(s.color.r * glow, s.color.g * glow, s.color.b * glow)
+	p.emission_rect_extents = Vector2(7, 6)
+	p.position = Vector2(0, -9)
+	p.direction = Vector2.UP if s.fx_gravity < 0.0 else Vector2.DOWN
+	p.spread = 30.0 if s.fx_gravity != 0.0 else 180.0
+	p.gravity = Vector2(0, s.fx_gravity)
+	p.initial_velocity_min = 4.0
+	p.initial_velocity_max = 14.0 if s.fx_gravity != 0.0 else 30.0
+	p.scale_amount_min = s.fx_size * 0.6
+	p.scale_amount_max = s.fx_size
+	var ramp := Gradient.new()
+	var core := el.hdr(el.core_color) if el != null else s.color
+	var body := el.hdr(s.color) if el != null else s.color
+	ramp.set_color(0, core)
+	ramp.set_color(1, Color(body.r * 0.5, body.g * 0.3, body.b * 0.3, 0.0))
+	ramp.add_point(0.45, body)
+	p.color_ramp = ramp
 	p.z_index = 2
 	creature.add_child(p)
+	if s.fx_light:
+		var light := PointLight2D.new()
+		light.texture = preload("res://art/fx/soft_shadow.tres")
+		light.color = s.color
+		light.energy = 0.22
+		light.texture_scale = 0.45
+		p.add_child(light)
+		var tw := light.create_tween().set_loops()
+		tw.tween_property(light, "energy", 0.1, 0.09)
+		tw.tween_property(light, "energy", 0.26, 0.13)
 	return p
+
+
+static var _flame: Texture2D
+
+
+## Llamita de 3x5 píxeles (más ancha abajo) para las partículas de la quemadura.
+static func _flame_texture() -> Texture2D:
+	if _flame == null:
+		var img := Image.create(3, 5, false, Image.FORMAT_RGBA8)
+		for p in [Vector2i(1, 0), Vector2i(1, 1), Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2),
+				Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(1, 4)]:
+			img.set_pixelv(p, Color.WHITE)
+		_flame = ImageTexture.create_from_image(img)
+	return _flame

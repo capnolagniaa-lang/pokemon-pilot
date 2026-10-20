@@ -13,7 +13,8 @@ multipliers = {
 "electrico": {
 "agua": 2.0,
 "electrico": 0.5,
-"planta": 0.5
+"planta": 0.5,
+"volador": 2.0
 },
 "fuego": {
 "agua": 0.5,
@@ -25,11 +26,26 @@ multipliers = {
 "agua": 0.5,
 "fuego": 0.5,
 "hielo": 0.5,
-"planta": 2.0
+"planta": 2.0,
+"volador": 2.0
 },
+"normal": {},
 "planta": {
 "agua": 2.0,
 "fuego": 0.5,
-"planta": 0.5
+"planta": 0.5,
+"veneno": 0.5,
+"volador": 0.5
+},
+"siniestro": {
+"siniestro": 0.5
+},
+"veneno": {
+"planta": 2.0,
+"veneno": 0.5
+},
+"volador": {
+"electrico": 0.5,
+"planta": 2.0
 }
 }

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ElementType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_fvfjm"]
+
+[resource]
+script = ExtResource("1_fvfjm")
+id = "veneno"
+display_name = "Veneno"
+color = Color(0.62, 0.3, 0.75, 1)
+core_color = Color(0.9, 0.6, 1, 1)

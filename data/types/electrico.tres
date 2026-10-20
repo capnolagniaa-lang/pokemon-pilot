@@ -7,4 +7,5 @@ script = ExtResource("1_td6ba")
 id = "electrico"
 display_name = "Eléctrico"
 color = Color(0.98, 0.85, 0.2, 1)
-glow = 1.8
+core_color = Color(1, 1, 0.8, 1)
+glow = 1.6

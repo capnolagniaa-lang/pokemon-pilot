@@ -45,7 +45,7 @@ func _on_damaged(c: Creature, amount: float, hit: HitInfo) -> void:
 	if hit == null:
 		return
 	var el := hit.move.element
-	Fx.burst(c.get_parent(), c.global_position + Vector2(0, -8), Color(el.color.r * el.glow, el.color.g * el.glow, el.color.b * el.glow), 8, 70.0)
+	Fx.burst(c.get_parent(), c.global_position + Vector2(0, -8), el.hdr(el.color), 8, 70.0)
 	var strong := eff > 1.0 or hit.move.knockback >= Creature.STAGGER_KNOCKBACK
 	Events.hitstop.emit(HITSTOP_STRONG if strong else HITSTOP_NORMAL)
 	Events.camera_shake.emit((4.0 if c.team == Creature.Team.ALLY else 2.0) + (2.0 if strong else 0.0))

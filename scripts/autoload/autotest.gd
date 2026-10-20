@@ -23,6 +23,14 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-stats" in OS.get_cmdline_user_args():
+		set_process(false)
+		_stats_test.call_deferred()
+		return
+	if "--showcase" in OS.get_cmdline_user_args():
+		set_process(false)
+		_showcase.call_deferred()
+		return
 	if "--autotest-input" in OS.get_cmdline_user_args():
 		set_process(false)
 		_input_test.call_deferred()
@@ -248,3 +256,66 @@ func _tap(action: String, physics: bool = false) -> void:
 	for i in 3:
 		await get_tree().physics_frame
 	Input.action_release(action)
+
+# --- Stats oficiales (godot --path . -- --autotest-stats) ----------------------------------
+
+## Valores conocidos (IV 31, EV 0, naturaleza neutra), de las calculadoras de las wikis.
+const KNOWN_STATS := {
+	"pikachu": [50, {"hp": 110, "attack": 75, "defense": 60, "sp_attack": 70, "sp_defense": 70, "speed": 110}],
+	"charmander": [5, {"hp": 20, "attack": 11, "defense": 10, "sp_attack": 12, "sp_defense": 11, "speed": 13}],
+	"seel": [100, {"hp": 271, "attack": 126, "defense": 146, "sp_attack": 126, "sp_defense": 176, "speed": 126}],
+}
+const KNOWN_EXP := {"medium-slow": [[5, 135], [100, 1059860]], "medium": [[100, 1000000]], "fast": [[100, 800000]], "slow": [[100, 1250000]]}
+
+
+func _stats_test() -> void:
+	var ok := true
+	for id in KNOWN_STATS:
+		var inst := CreatureInstance.create(DB.species[id], KNOWN_STATS[id][0])
+		var got := {}
+		for s in CreatureInstance.STATS:
+			got[s] = inst.stat(s)
+		var match_all: bool = got == KNOWN_STATS[id][1]
+		ok = ok and match_all
+		print("[stats] %s Nv.%d %s -> %s" % [id, inst.level, got, "OK" if match_all else "esperado %s" % KNOWN_STATS[id][1]])
+	for growth in KNOWN_EXP:
+		for pair in KNOWN_EXP[growth]:
+			var v := CreatureInstance.exp_for_level(growth, pair[0])
+			ok = ok and v == pair[1]
+			print("[exp] %s Nv.%d = %d %s" % [growth, pair[0], v, "OK" if v == pair[1] else "(esperado %d)" % pair[1]])
+	print("[velocidad] px/s a Nv.5 y Nv.50:")
+	for id in DB.species:
+		var a := CreatureInstance.create(DB.species[id], 5)
+		var b := CreatureInstance.create(DB.species[id], 50)
+		print("   %-11s base %3d -> %5.1f / %5.1f" % [id, DB.species[id].base_speed, Creature.move_speed_for(a.stat("speed")), Creature.move_speed_for(b.stat("speed"))])
+	print("[autotest-stats] -> ", "OK" if ok else "FALLO")
+	get_tree().quit(0 if ok else 1)
+
+
+# --- Vitrina visual (godot --path . --write-movie out/f.png -- --showcase) -------------------
+
+func _showcase() -> void:
+	GameState.new_game(DB.species["charmander"])
+	GameState.wilds_enabled = false
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await get_tree().process_frame
+	await get_tree().process_frame
+	var world := get_tree().current_scene
+	var base: Vector2 = world.trainer.global_position
+	var row := [["bulbasaur", "quemado"], ["squirtle", "paralizado"], ["oddish", "congelado"]]
+	var wilds := []
+	for i in row.size():
+		var w: Creature = world.spawner.spawn(DB.species[row[i][0]], 5, base + Vector2(-40 + i * 40, -46))
+		w.get_node("StateMachine/Wander").aggro_radius = 0.0
+		wilds.append(w)
+	await get_tree().create_timer(0.3).timeout
+	for i in row.size():
+		wilds[i].statuses.apply(load("res://data/status/%s.tres" % row[i][1]))
+	world.combat.start_battle()
+	var c: Creature = world.companion
+	c.global_position = base + Vector2(0, 10)
+	for k in 8:
+		await get_tree().create_timer(0.45).timeout
+		c.facing = Vector2.UP
+		c.release_move(DB.moves["ascuas"], (wilds[0].global_position - c.global_position).normalized() if is_instance_valid(wilds[0]) else Vector2.UP)
+	get_tree().quit()

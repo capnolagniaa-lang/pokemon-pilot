@@ -23,6 +23,8 @@ $G --headless --path . --import                        # tras crear/cambiar asse
 $G --headless --path . --quit-after 60000 -- --autotest          # recorre las 9 zonas ("-> OK"/"-> FALLO")
 $G --headless --path . --quit-after 30000 -- --autotest-combat   # 3 peleas manejadas por un bot
 $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas reales + spawner
+$G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
+$G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
 $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
 ```
@@ -45,9 +47,31 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Combate**: `CombatDirector` (modo combate), componentes `Health`/`StatusEffects`/`MoveUser`/`Hurtbox`/
   `Hitbox` en la criatura, `Projectile`/`AreaEffect`, `HitInfo` + `Damage`. El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
+- **Stats y progresión = reglas oficiales** (ver sección abajo). Nunca inventar stats: salen de PokeAPI.
 - **Tags de entorno**: custom data `tags` del TileSet (`inflamable`, `agua`, `conductor`, `congelable`,
   `pasto_alto`, `solido`, `arbol`...) + `EnvObject.tags` (`fragil`, `pesado`, `cortable`...).
   Base del sistema de entorno reactivo (Etapa 3).
+
+## Stats, daño y progresión (oficiales + adaptaciones al tiempo real)
+- **Fuente**: `data/source/official.json`, bajado de PokeAPI con `tools/fetch_official_data.py`
+  (stats base, experiencia base, curva de crecimiento, tasa de captura, tipos; potencia, categoría
+  física/especial, tipo y probabilidad de efecto de los ataques). Se aplica a los `.tres` con
+  `tools/apply_official_data.gd`, que también define la **tabla de tipos oficial** y la recarga/energía.
+  Para sumar especie/ataque: agregarlo en `SPECIES`/`MOVES` del fetcher, correr fetcher + apply.
+- **Stats** (`CreatureInstance.stat`): fórmula oficial 3ª gen+; IV 31 en todos los stats por ahora
+  (**decisión del usuario: "stats máximos para su nivel"**), EV 0, naturaleza neutra.
+  - **Plan futuro (Etapa 6)**: IVs al azar al capturar (0-31 por stat), con un perfecto (31 en todo)
+    **muy difícil de conseguir**; después naturalezas y EVs. El código ya guarda `ivs`/`evs` por criatura.
+- **Experiencia**: curvas oficiales (`exp_for_level`: fast, medium, medium-slow, slow, errática,
+  fluctuante); EXP ganada = experiencia base × nivel del derrotado / 7 (fórmula 1ª-4ª gen).
+- **Daño** (`Damage.resolve`): fórmula oficial con STAB 1.5, efectividad, variación 0.85-1, físico vs
+  especial; la quemadura divide el Ataque físico por 2.
+- **Adaptaciones al tiempo real** (documentarlas si se cambian):
+  - `CreatureInstance.HP_SCALE = 3`: la vida se triplica para que un combate dure varios golpes.
+  - Velocidad de movimiento = `40 + 26·log2(1 + Velocidad/8)` px/s (`Creature.move_speed_for`).
+  - Recarga y energía derivadas de la potencia (`apply_official_data.gd::_pace`); energía 100, +12/s.
+  - Se ignora la precisión (el jugador apunta). Giro Fuego quema 30% (en los juegos atrapa).
+  - Tipos de ataques secundarios no implementados (retroceso, bajar stats) se omiten por ahora.
 
 ## Pipeline de contenido
 - `tools/pret_import.py` (Python sin dependencias): convierte gráficos de `art_src/pret` (decomp
@@ -66,5 +90,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - Godot `--script` + `class_name`: correr `--import` antes para registrar las clases.
 - Simular input en tests: `Input.action_press` justo después de `process_frame` (acciones leídas en
   `_process`) o de `physics_frame` (leídas en `_physics_process`); si no, `is_action_just_pressed` no lo ve.
+- Las `PointLight2D` se suman sobre el suelo claro y lo saturan a amarillo: mantener energía ≤ 0,35 y
+  escala chica (el usuario se quejó de que el fuego se veía amarillo). El color del fuego va en
+  `ElementType.color`/`core_color` (rojizo/naranja, no blanco).
 - Correr Godot headless siempre con `--quit-after`: si un script no compila, el autotest no carga y queda colgado.
 - PowerShell 5: archivos .ps1 sin BOM se leen como ANSI → evitar caracteres no ASCII en scripts .ps1.

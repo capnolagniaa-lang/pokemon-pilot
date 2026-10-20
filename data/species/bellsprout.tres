@@ -8,15 +8,19 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_rmcym"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_y3vui"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="8_8mak5"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="9_ins1p"]
 
 [resource]
 script = ExtResource("6_rmcym")
 id = "bellsprout"
 display_name = "Bellsprout"
 dex = 69
-types = Array[ExtResource("7_y3vui")]([ExtResource("8_8mak5")])
-base_hp = 56.0
-base_atk = 13.0
-move_speed = 76.0
+types = Array[ExtResource("7_y3vui")]([ExtResource("8_8mak5"), ExtResource("9_ins1p")])
 moves = Array[ExtResource("1_kybx6")]([ExtResource("2_ins1p"), ExtResource("3_xcug5"), ExtResource("4_6n3aa"), ExtResource("5_ax623")])
-catch_rate = 0.6
+base_attack = 75
+base_defense = 35
+base_sp_attack = 70
+base_sp_defense = 30
+base_speed = 40
+growth_rate = "medium-slow"
+capture_rate = 255

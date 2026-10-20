@@ -8,15 +8,20 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_cyrj2"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_eqil7"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="8_utxk4"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="9_i4gho"]
 
 [resource]
 script = ExtResource("6_cyrj2")
 id = "oddish"
 display_name = "Oddish"
 dex = 43
-types = Array[ExtResource("7_eqil7")]([ExtResource("8_utxk4")])
-base_hp = 60.0
-base_atk = 11.0
-move_speed = 64.0
+types = Array[ExtResource("7_eqil7")]([ExtResource("8_utxk4"), ExtResource("9_i4gho")])
 moves = Array[ExtResource("1_68w5j")]([ExtResource("2_i4gho"), ExtResource("3_woh8u"), ExtResource("4_fd8ac"), ExtResource("5_q7ka7")])
-catch_rate = 0.6
+base_hp = 45
+base_defense = 55
+base_sp_attack = 75
+base_sp_defense = 65
+base_speed = 30
+base_experience = 64
+growth_rate = "medium-slow"
+capture_rate = 255

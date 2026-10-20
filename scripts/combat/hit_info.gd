@@ -4,6 +4,8 @@ extends RefCounted
 
 var move: MoveData
 var attacker: Node
+var attacker_level: int = 1
+## Ataque o At. Esp. del atacante según la categoría del ataque (con la quemadura ya aplicada).
 var attack: float = 10.0
 var attacker_types: Array[ElementType] = []
 var origin: Vector2 = Vector2.ZERO
@@ -16,7 +18,8 @@ static func from(user: Node, p_move: MoveData) -> HitInfo:
 	var h := HitInfo.new()
 	h.move = p_move
 	h.attacker = user
-	h.attack = user.attack_stat()
+	h.attacker_level = user.instance.level
+	h.attack = user.attack_stat_for(p_move.category)
 	h.attacker_types = user.instance.species.types
 	h.origin = user.global_position
 	h.team = user.team

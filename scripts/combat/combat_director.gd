@@ -92,9 +92,9 @@ func _on_creature_fainted(c: Creature) -> void:
 		end_battle()
 	elif enemies.has(c):
 		enemies.erase(c)
-		var gained := 10 + c.instance.level * 5
+		var gained := CreatureInstance.exp_yield(c.instance)
 		var mine: CreatureInstance = GameState.active()
-		var ups := mine.add_xp(gained) if mine != null else 0
+		var ups := mine.add_exp(gained) if mine != null else 0
 		var text := "¡%s salvaje se debilitó! +%d EXP" % [c.instance.species.display_name, gained]
 		if ups > 0:
 			text += " — ¡%s subió a Nv. %d!" % [mine.species.display_name, mine.level]
