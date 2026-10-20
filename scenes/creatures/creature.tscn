@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/creatures/creature.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/creatures/creature_sprite.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/core/state_machine.gd" id="3"]
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_idle.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_follow.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/fx/tall_grass_overlay.gd" id="6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 5.0
@@ -21,6 +22,9 @@ shape = SubResource("CircleShape2D_feet")
 
 [node name="Sprite" type="Node2D" parent="."]
 script = ExtResource("2")
+
+[node name="GrassOverlay" type="Sprite2D" parent="."]
+script = ExtResource("6")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3")

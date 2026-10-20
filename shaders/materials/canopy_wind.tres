@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://shaders/wind_sway.gdshader" id="1"]
+
+[resource]
+shader = ExtResource("1")
+shader_parameter/strength = 1.0
+shader_parameter/speed = 0.9
+shader_parameter/wave_scale = 0.02
+shader_parameter/gust = 0.9
+shader_parameter/tile_size = 16.0

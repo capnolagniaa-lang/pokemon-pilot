@@ -22,6 +22,17 @@ func _ready() -> void:
 	_spawn_companion()
 
 
+## Tags de la celda del mundo en una posición global (vacío si la zona no está cargada).
+func tags_at(global_pos: Vector2) -> PackedStringArray:
+	var entry := streamer.world_data.zone_at(global_pos)
+	if entry == null:
+		return PackedStringArray()
+	var zone := streamer.zone_node(entry.id)
+	if zone == null:
+		return PackedStringArray()
+	return zone.get_tags(zone.cell_at(global_pos))
+
+
 func _spawn_companion() -> void:
 	if companion != null:
 		companion.queue_free()

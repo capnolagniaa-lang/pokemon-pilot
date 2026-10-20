@@ -29,7 +29,11 @@ scripts/
   ui/                 HUD, selección de inicial
   generated/          sprite_data.gd (lo genera tools/download_sprites.ps1)
 scenes/               Una escena por responsabilidad (world, zones/, characters, creatures, ui)
-art/                  Tiles y entrenador generados por tools/gen_art.gd
+art/pret/             Tiles, entrenador y objetos de FireRed (generados por tools/pret_import.py)
+art/tiles/            TileSet del mundo (tags + colisiones)
+art/fx/               Entorno de render (glow) y texturas de efectos
+art_src/pret/         Gráficos originales del decomp pret/pokefirered
+shaders/              Viento, agua, sombras de nubes, post-procesado (tilt-shift, color, viñeta)
 sprites/              Sprites PMD de los Pokémon
 tools/                Generadores de contenido
 ```
@@ -47,10 +51,10 @@ Cada tile del TileSet (`art/tiles/world_tileset.tres`) tiene un *custom data* `t
 
 ## Herramientas
 ```
-godot --headless --path . --script res://tools/gen_art.gd                 # regenera tiles/entrenador
+python -I tools/pret_import.py art_src/pret art/pret                     # convierte los gráficos de FireRed
 godot --headless --path . --script res://tools/build_world.gd -- --force  # regenera TileSet y zonas (pisa cambios)
 godot --headless --path . -- --autotest                                   # prueba automática
 ```
 
 ## Créditos
-Sprites y retratos: [PMDCollab/SpriteCollab](https://github.com/PMDCollab/SpriteCollab). Poké Ball: [PokeAPI/sprites](https://github.com/PokeAPI/sprites). Pokémon es de Nintendo/Game Freak/The Pokémon Company; proyecto de fans sin fines de lucro.
+Sprites y retratos: [PMDCollab/SpriteCollab](https://github.com/PMDCollab/SpriteCollab). Tiles, entrenador y objetos: [pret/pokefirered](https://github.com/pret/pokefirered). Poké Ball: [PokeAPI/sprites](https://github.com/PokeAPI/sprites). Pokémon es de Nintendo/Game Freak/The Pokémon Company; proyecto de fans sin fines de lucro.
