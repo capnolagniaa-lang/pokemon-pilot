@@ -9,6 +9,8 @@ La región tiene 9 zonas (3×3, 144×96 celdas) que se cargan sin cortes: Bosque
 ## Cómo jugar
 Bajá [Godot 4.7](https://godotengine.org/download) (versión estándar), importá esta carpeta (`project.godot`) y apretá **F5**.
 
+Acceso directo sin abrir el editor: un `.lnk` que apunte a `Godot_v4.7.2-stable_win64.exe` con argumentos `--path "<carpeta del proyecto>"` e ícono `icon.ico` (en la PC de desarrollo está en el escritorio como **Pokémon Pilot**).
+
 | Acción | Tecla |
 |---|---|
 | Moverse | WASD / flechas |

@@ -28,6 +28,10 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
 $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
 ```
+El usuario lanza el juego con el acceso directo **"Pokémon Pilot"** del escritorio
+(`Godot_v4.7.2-stable_win64.exe --path <proyecto>`, ícono `icon.ico` generado por `tools/make_icon.py`).
+Si se mueve la carpeta del proyecto o de Godot, hay que recrear el acceso directo.
+
 Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta scratchpad y leer los PNG.
 
 ## Arquitectura (respetarla)

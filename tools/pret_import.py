@@ -33,7 +33,7 @@ GENERAL_ANIMS = [
 def read_png(path):
     data = open(path, "rb").read()
     assert data[:8] == b"\x89PNG\r\n\x1a\n", path
-    pos, idat, plte = 8, b"", None
+    pos, idat, plte, trns = 8, b"", None, b""
     while pos < len(data):
         (ln,) = struct.unpack(">I", data[pos:pos + 4])
         typ, body = data[pos + 4:pos + 8], data[pos + 8:pos + 8 + ln]
@@ -43,6 +43,8 @@ def read_png(path):
             assert inter == 0, "PNG entrelazado no soportado"
         elif typ == b"PLTE":
             plte = [tuple(body[i:i + 3]) for i in range(0, len(body), 3)]
+        elif typ == b"tRNS":
+            trns = body
         elif typ == b"IDAT":
             idat += body
     raw = zlib.decompress(idat)
@@ -77,7 +79,7 @@ def read_png(path):
             px.append(list(line[:w]))
         else:
             px.append([tuple(line[x * channels:(x + 1) * channels]) for x in range(w)])
-    return {"w": w, "h": h, "ct": ct, "bd": bd, "plte": plte, "px": px}
+    return {"w": w, "h": h, "ct": ct, "bd": bd, "plte": plte, "trns": trns, "px": px}
 
 
 def write_png(path, img):
