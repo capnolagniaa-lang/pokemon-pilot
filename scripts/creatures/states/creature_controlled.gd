@@ -1,9 +1,9 @@
 extends State
-## Lo controla el jugador: WASD para moverse, mouse para apuntar y las 5 ranuras del kit
-## (Clic izq. básico · Clic der. habilidad 1 · Q habilidad 2 · Espacio movilidad · R definitiva).
+## Lo controla el jugador: WASD para moverse, mouse para apuntar, Espacio esquiva y 4 ataques
+## (Clic izq., Clic der., Q, R).
 
-## Orden en que se revisan las ranuras: movilidad primero (para esquivar a tiempo), definitiva al final.
-const ORDER := [Kit.Slot.MOBILITY, Kit.Slot.ABILITY_1, Kit.Slot.ABILITY_2, Kit.Slot.ULTIMATE, Kit.Slot.BASIC]
+## Orden en que se revisan: el ataque 4 (el grande) primero, así no lo tapa un clic que se mantiene.
+const ORDER := [3, 2, 1, 0]
 
 
 func physics_update(_delta: float) -> void:
@@ -15,9 +15,8 @@ func physics_update(_delta: float) -> void:
 	actor.move(dir, actor.speed())
 	if aim.length() > 4.0:
 		actor.facing = aim.normalized()
+	if input.wants_dodge() and actor.dodge(dir if dir.length() > 0.1 else aim):
+		return
 	for slot in ORDER:
-		if not input.wants_slot(slot):
-			continue
-		var a: Vector2 = (dir if dir.length() > 0.1 else aim) if slot == Kit.Slot.MOBILITY else aim
-		if actor.use_slot(slot, a, input.aim_point(actor)):
+		if input.wants_slot(slot) and actor.use_slot(slot, aim, input.aim_point(actor)):
 			return

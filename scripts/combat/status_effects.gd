@@ -102,6 +102,16 @@ func heal_mult() -> float:
 	return _product("heal_mult")
 
 
+## Multiplica el daño que recibe (Arraigo).
+func damage_taken_mult() -> float:
+	return _product("damage_taken_mult")
+
+
+## Multiplica el empuje que recibe (0 = inamovible).
+func knockback_mult() -> float:
+	return _product("knockback_mult")
+
+
 ## Desvío máximo de apuntado/movimiento en radianes (Desorientado).
 func aim_jitter() -> float:
 	var j := 0.0
@@ -144,6 +154,8 @@ func _physics_process(delta: float) -> void:
 				cure(s)
 			continue
 		entry["time"] -= delta
+		if s.heal_per_second > 0.0:
+			creature.health.heal(creature.health.max_hp() * s.heal_per_second * delta)
 		if s.damage_per_second > 0.0:
 			_dot_accum += creature.health.max_hp() * s.damage_per_second * entry["stacks"] * delta
 		if entry["time"] <= 0.0:

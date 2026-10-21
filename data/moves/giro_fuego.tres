@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_jnmhv"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2wroc"]
 [ext_resource type="Resource" path="res://data/status/quemado.tres" id="3_2wroc"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_1wj47"]
 
 [resource]
 script = ExtResource("2_2wroc")
@@ -13,7 +14,6 @@ kind = 2
 category = 1
 power = 35.0
 cooldown = 3.0
-energy_cost = 23.0
 cast_time = 0.35
 knockback = 220.0
 recovery = 0.3

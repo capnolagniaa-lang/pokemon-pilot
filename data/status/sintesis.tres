@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_q0mxm"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_i8mhp"]
+
+[resource]
+script = ExtResource("2_i8mhp")
+id = "sintesis"
+display_name = "Síntesis"
+color = Color(0.75, 1, 0.45, 1)
+duration = 3.0
+speed_mult = 0.8
+element = ExtResource("1_q0mxm")
+damage_taken_mult = 0.75
+heal_per_second = 0.05
+fx_amount = 8
+fx_gravity = -20.0
+fx_size = 1.3
+fx_light = true
+tint_strength = 0.3

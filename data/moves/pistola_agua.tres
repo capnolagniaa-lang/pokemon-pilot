@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="1_kc5hb"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rpqre"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_rpqre"]
 
 [resource]
 script = ExtResource("2_rpqre")
@@ -10,7 +11,6 @@ display_name = "Pistola Agua"
 element = ExtResource("1_kc5hb")
 category = 1
 cooldown = 1.4500000000000002
-energy_cost = 16.0
 knockback = 130.0
 recovery = 0.08
 size = 3.5

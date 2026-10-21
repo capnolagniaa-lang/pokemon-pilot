@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="1_ongq7"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1fej6"]
 [ext_resource type="Resource" path="res://data/status/paralizado.tres" id="3_wbsup"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_1fej6"]
 
 [resource]
 script = ExtResource("2_1fej6")
@@ -13,7 +14,6 @@ kind = 2
 category = 1
 power = 110.0
 cooldown = 5.15
-energy_cost = 42.0
 cast_time = 0.45
 knockback = 200.0
 recovery = 0.5

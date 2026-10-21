@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_5nt6m"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tnxxf"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_06ij1"]
+[ext_resource type="Resource" path="res://data/status/enraizado.tres" id="4_tnxxf"]
+
+[resource]
+script = ExtResource("2_tnxxf")
+id = "latigo_cepa"
+display_name = "Látigo Cepa"
+element = ExtResource("1_5nt6m")
+kind = 8
+power = 45.0
+cooldown = 4.0
+knockback = -240.0
+recovery = 0.12
+statuses_on_hit = Array[ExtResource("3_06ij1")]([ExtResource("4_tnxxf")])
+whip_length = 72.0

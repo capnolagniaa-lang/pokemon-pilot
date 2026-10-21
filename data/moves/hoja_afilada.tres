@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="1_kiuxi"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wb11u"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_wb11u"]
 
 [resource]
 script = ExtResource("2_wb11u")
@@ -10,7 +11,6 @@ display_name = "Hoja Afilada"
 element = ExtResource("1_kiuxi")
 power = 55.0
 cooldown = 1.7000000000000002
-energy_cost = 19.0
 knockback = 100.0
 recovery = 0.08
 speed = 340.0

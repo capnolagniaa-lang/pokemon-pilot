@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/hielo.tres" id="1_kpma8"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_c6rq4"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_kpma8"]
 
 [resource]
 script = ExtResource("2_c6rq4")
@@ -10,8 +11,7 @@ display_name = "Rayo Aurora"
 element = ExtResource("1_kpma8")
 category = 1
 power = 65.0
-cooldown = 1.9
-energy_cost = 21.0
+cooldown = 1.9000000000000001
 cast_time = 0.15
 knockback = 110.0
 recovery = 0.15

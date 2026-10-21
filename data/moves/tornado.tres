@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="1_hprqg"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uvffb"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_uvffb"]
 
 [resource]
 script = ExtResource("2_uvffb")
@@ -10,7 +11,6 @@ display_name = "Tornado"
 element = ExtResource("1_hprqg")
 category = 1
 cooldown = 1.4500000000000002
-energy_cost = 16.0
 knockback = 150.0
 recovery = 0.1
 speed = 240.0

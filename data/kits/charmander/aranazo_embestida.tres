@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_aw0lc"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_galdf"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_eigqn"]
+
+[resource]
+script = ExtResource("2_galdf")
+id = "aranazo_embestida"
+display_name = "Arañazo"
+element = ExtResource("1_aw0lc")
+kind = 7
+power_mult = 0.8
+cooldown = 1.1
+knockback = 40.0
+recovery = 0.15
+lunge_range = 64.0
+followup_delay = 0.16
+followup_power_mult = 1.25
+followup_knockback = 150.0
+melee_range = 12.0
+swing_radius = 12.0

@@ -97,21 +97,17 @@ func _init() -> void:
 	quit()
 
 
-## Recarga y energía según la potencia: los ataques fuertes tardan más y cuestan más.
+## Recarga según la potencia: los ataques fuertes tardan más y cuestan más.
 func _pace(m: MoveData) -> void:
 	match m.kind:
 		MoveData.Kind.PROJECTILE:
 			m.cooldown = snappedf(0.7 + m.power / 55.0, 0.05)
-			m.energy_cost = roundf(8.0 + m.power / 5.0)
 		MoveData.Kind.AREA:
 			m.cooldown = snappedf(2.0 + m.power / 35.0, 0.05)
-			m.energy_cost = roundf(14.0 + m.power / 4.0)
 		MoveData.Kind.DASH:
 			m.cooldown = snappedf(1.0 + m.power / 70.0, 0.05)
-			m.energy_cost = roundf(8.0 + m.power / 6.0)
 		MoveData.Kind.SHIELD:
 			m.cooldown = 8.0
-			m.energy_cost = 25.0
 
 
 func _save(res: Resource, path: String) -> void:

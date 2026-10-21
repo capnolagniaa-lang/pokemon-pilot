@@ -45,6 +45,8 @@ func apply_damage(amount: float) -> float:
 		return 0.0
 	if shield_time > 0.0:
 		amount *= SHIELD_FACTOR
+	if heal_mult_source != null:
+		amount *= heal_mult_source.damage_taken_mult()
 	var before := instance.hp
 	instance.hp = maxf(0.0, instance.hp - amount)
 	changed.emit(instance.hp, max_hp())

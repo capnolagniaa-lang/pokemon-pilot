@@ -3,7 +3,10 @@
 Juego tipo Pokémon en **Godot 4.7 (GDScript)**: mundo abierto 2D top-down con combate en tiempo real
 (estilo Pokémon Reloaded). Proyecto personal para el usuario y sus amigos (no se publica).
 
-**Al empezar una sesión: leé `docs/PROGRESO.md`** (estado de cada etapa, decisiones, próximo paso).
+**Al empezar una sesión: leé `docs/PROGRESO.md` (sección "Dónde estamos") y
+`docs/PLAN_IDENTIDAD_COMBATE.md` (sección "ESTADO VIGENTE")** antes de tocar código. Ahí están las decisiones
+ya tomadas (no volver a preguntarlas), lo implementado, las propuestas en discusión y el próximo paso.
+Antes de cerrar una sesión larga: actualizar esos dos archivos, commit y push.
 
 Hay **dos planes**:
 1. `docs/PROGRESO.md` — plan de etapas del juego (mundo, entorno, IA, clima, captura, gimnasios...).
@@ -31,8 +34,8 @@ $G --headless --path . --quit-after 30000 -- --autotest-combat   # 3 peleas mane
 $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas reales + spawner
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
-$G --headless --path . --quit-after 3000 -- --autotest-kit       # kit de Charmander (combo, zona, Calor...)
-$G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit   # vitrina del kit
+$G --headless --path . --quit-after 5000 -- --autotest-kit       # kits: Charmander (bruiser) + Bellsprout (control)
+$G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit   # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
 $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
@@ -60,11 +63,12 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Combate**: `CombatDirector` (modo combate), componentes `Health`/`StatusEffects`/`MoveUser`/`Hurtbox`/
   `Hitbox` en la criatura, `Projectile`/`AreaEffect`, `HitInfo` + `Damage`. El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
-- **Kits** (plan de identidad): `SpeciesData.kit` → `Kit` (arquetipo, `SignatureData`, 5 ranuras de `MoveData`).
-  Ranuras = `Kit.Slot` (BASIC, ABILITY_1, ABILITY_2, MOBILITY, ULTIMATE); acciones en `Controls.SLOT_ACTIONS`
-  (Clic izq., Clic der., Q, Espacio, R). La criatura usa `use_slot(slot, aim, point)`. Las mecánicas de firma
-  son subclases de `SignatureMechanic` (`scripts/combat/signatures/`) que se conectan a las señales de la
-  criatura; **nunca** agregar `if especie == ...` en el código central.
+- **Kits / estilos de pelea** (plan de identidad, **v2 vigente**): `SpeciesData.kit` → `Kit` (`archetype`,
+  `preferred_range`, `signature` opcional, `moves` = 4 `MoveData`). **Sin energía**: solo recargas. Teclas en
+  `Controls.SLOT_ACTIONS` (Clic izq., Clic der., Q, R) + `dodge` (Espacio, igual para todos). La criatura usa
+  `use_slot(slot 0-3, aim, point)` y `dodge(dir)`. Las mecánicas de firma son subclases de `SignatureMechanic`
+  (`scripts/combat/signatures/`) conectadas a las señales de la criatura; **nunca** agregar
+  `if especie == ...` en el código central. Spawns de Ruta 1 restringidos en `WildSpawner.BY_ZONE`.
 - **Stats y progresión = reglas oficiales** (ver sección abajo). Nunca inventar stats: salen de PokeAPI.
 - **Tags de entorno**: custom data `tags` del TileSet (`inflamable`, `agua`, `conductor`, `congelable`,
   `pasto_alto`, `solido`, `arbol`...) + `EnvObject.tags` (`fragil`, `pesado`, `cortable`...).

@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_danq4"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5reyg"]
 [ext_resource type="Resource" path="res://data/status/quemado.tres" id="3_5reyg"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_qfbi1"]
 
 [resource]
 script = ExtResource("2_5reyg")
@@ -11,7 +12,6 @@ display_name = "Ascuas"
 element = ExtResource("1_danq4")
 category = 1
 cooldown = 1.4500000000000002
-energy_cost = 16.0
 knockback = 110.0
 recovery = 0.08
 status = ExtResource("3_5reyg")

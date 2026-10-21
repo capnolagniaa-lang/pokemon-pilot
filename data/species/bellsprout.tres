@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_kybx6"]
+[ext_resource type="Resource" path="res://data/kits/bellsprout/kit.tres" id="1_xcug5"]
 [ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="2_ins1p"]
 [ext_resource type="Resource" path="res://data/moves/latigo_cepa.tres" id="3_xcug5"]
 [ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="4_6n3aa"]
@@ -17,6 +18,7 @@ display_name = "Bellsprout"
 dex = 69
 types = Array[ExtResource("7_y3vui")]([ExtResource("8_8mak5"), ExtResource("9_ins1p")])
 moves = Array[ExtResource("1_kybx6")]([ExtResource("2_ins1p"), ExtResource("3_xcug5"), ExtResource("4_6n3aa"), ExtResource("5_ax623")])
+kit = ExtResource("1_xcug5")
 base_attack = 75
 base_defense = 35
 base_sp_attack = 70

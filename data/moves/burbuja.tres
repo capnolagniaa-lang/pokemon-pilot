@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="1_ortna"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7i4ne"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_7i4ne"]
 
 [resource]
 script = ExtResource("2_7i4ne")
@@ -10,7 +11,6 @@ display_name = "Burbuja"
 element = ExtResource("1_ortna")
 category = 1
 cooldown = 1.4500000000000002
-energy_cost = 16.0
 knockback = 110.0
 recovery = 0.08
 speed = 210.0

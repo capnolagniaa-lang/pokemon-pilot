@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Kit" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_qj78k"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/polvo_veneno.tres" id="2_gbbvn"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/latigo_cepa.tres" id="3_e3tom"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/sintesis.tres" id="4_m6su0"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/somnifero.tres" id="5_vhvs2"]
+[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="6_qbgwo"]
+
+[resource]
+script = ExtResource("6_qbgwo")
+archetype = "control"
+preferred_range = 60.0
+moves = Array[ExtResource("1_qj78k")]([ExtResource("2_gbbvn"), ExtResource("3_e3tom"), ExtResource("4_m6su0"), ExtResource("5_vhvs2")])

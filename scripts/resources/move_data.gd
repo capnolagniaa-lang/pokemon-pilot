@@ -1,11 +1,13 @@
 class_name MoveData
 extends Resource
-## Definición de un ataque o habilidad de kit. Los ataques sueltos están en data/moves; las habilidades de
-## cada kit (plan de identidad) en data/kits/<pokémon>/.
+## Definición de un ataque. Los ataques sueltos están en data/moves; los de cada kit (plan de identidad)
+## en data/kits/<pokémon>/. Sin energía: lo único que limita es la recarga.
 
-## PROJECTILE disparo · DASH embestida/movilidad · AREA onda alrededor · SHIELD escudo ·
-## MELEE golpe cuerpo a cuerpo (con combo) · ZONE zona en el suelo (trampa) · CHANNEL canalizado en cono
-enum Kind { PROJECTILE, DASH, AREA, SHIELD, MELEE, ZONE, CHANNEL }
+## PROJECTILE disparo (o abanico) · DASH embestida · AREA onda alrededor · SHIELD escudo ·
+## MELEE golpe cuerpo a cuerpo (con combo) · ZONE zona en el suelo (trampa, esporas, nube) ·
+## CHANNEL canalizado en cono · LUNGE se lanza al punto apuntado y si conecta encadena un 2º golpe ·
+## WHIP látigo en línea que agarra al primero que alcanza · SELF_BUFF se aplica un estado a sí mismo
+enum Kind { PROJECTILE, DASH, AREA, SHIELD, MELEE, ZONE, CHANNEL, LUNGE, WHIP, SELF_BUFF }
 ## Físico usa Ataque/Defensa; Especial usa At. Esp./Def. Esp. (como en los juegos desde la 4ª gen).
 enum Category { PHYSICAL, SPECIAL, STATUS }
 
@@ -16,20 +18,22 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export var category: Category = Category.PHYSICAL
 ## Potencia oficial (data/source/official.json).
 @export var power: float = 40.0
-## Multiplicador sobre la potencia (para repartirla: abanico de 3 brasas, ticks de un canalizado...).
+## Multiplicador sobre la potencia (para repartirla: abanico de 3 brasas, ticks de una zona...).
 @export var power_mult: float = 1.0
 @export var cooldown: float = 1.0
-@export var energy_cost: float = 10.0
 ## Tiempo de carga antes de que salga el ataque (lo interrumpe un golpe fuerte). Se telegrafía.
 @export var cast_time: float = 0.0
-## Empuje que recibe el que es golpeado (píxeles/segundo iniciales).
+## Empuje que recibe el que es golpeado (negativo = lo atrae hacia el atacante).
 @export var knockback: float = 160.0
 ## Recuperación: después de lanzarlo, el usuario queda expuesto este tiempo (ventana de castigo).
 @export var recovery: float = 0.0
 
-@export_group("Estado alterado")
+@export_group("Estados")
+## Estado con probabilidad (ej: Ascuas quema 10%).
 @export var status: StatusEffect
 @export_range(0.0, 1.0) var status_chance: float = 0.0
+## Estados que aplica siempre (ej: las esporas ralentizan y envenenan).
+@export var statuses_on_hit: Array[StatusEffect] = []
 
 @export_group("Recurso de firma")
 ## Cuánto recurso de la mecánica de firma consume (-1 = todo lo que haya).
@@ -48,16 +52,26 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export_group("Área")
 @export var radius: float = 48.0
 
-@export_group("Embestida / movilidad")
+@export_group("Embestida")
 @export var dash_time: float = 0.22
-## Si la embestida golpea. Las movilidades sin golpe dan invulnerabilidad breve.
+## Si la embestida golpea.
 @export var dash_hits: bool = true
+## Invulnerabilidad durante la embestida.
 @export var invulnerable_time: float = 0.0
 ## Estela que deja en el suelo (fuego de la Embestida Ígnea): potencia por toque, estado y duración.
 @export var trail_power: float = 0.0
 @export var trail_status: StatusEffect
 @export_range(0.0, 1.0) var trail_status_chance: float = 0.0
 @export var trail_duration: float = 0.0
+
+@export_group("Embestida con combo (LUNGE)")
+## Hasta qué distancia se lanza hacia el punto apuntado.
+@export var lunge_range: float = 60.0
+@export var lunge_speed: float = 380.0
+## Si la embestida conecta: segundo golpe tras esta demora.
+@export var followup_delay: float = 0.18
+@export var followup_power_mult: float = 1.0
+@export var followup_knockback: float = 140.0
 
 @export_group("Cuerpo a cuerpo")
 @export var melee_range: float = 14.0
@@ -75,10 +89,22 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export var zone_duration: float = 3.0
 ## Hasta qué distancia se puede ubicar la zona (apuntando con el mouse).
 @export var placement_range: float = 110.0
-## Si atrapa: quien está adentro al aparecer no puede salir (Giro Fuego).
+## Si atrapa: quien está adentro al aparecer no puede salir (Giro Fuego). Si no, es un parche/nube.
 @export var zone_traps: bool = true
+## Parche/nube: cada cuánto afecta a los enemigos de adentro (daño de la zona + estados).
+@export var zone_tick: float = 0.5
+## Máximo de zonas de este ataque a la vez (al pasarse, se borra la más vieja). 0 = sin límite.
+@export var zone_max_count: int = 0
+## Nube: si un enemigo se queda adentro este tiempo seguido, recibe `dwell_status` (Somnífero duerme).
+@export var dwell_time: float = 0.0
+@export var dwell_status: StatusEffect
 
-@export_group("Escudo")
+@export_group("Látigo (WHIP)")
+@export var whip_length: float = 70.0
+@export var whip_width: float = 8.0
+
+@export_group("Mejora propia (SELF_BUFF) / escudo")
+@export var self_status: StatusEffect
 @export var duration: float = 1.4
 
 @export_group("Canalizado")
@@ -103,4 +129,10 @@ func reach() -> float:
 			return placement_range
 		Kind.CHANNEL:
 			return cone_length * 0.9
+		Kind.LUNGE:
+			return lunge_range + 8.0
+		Kind.WHIP:
+			return whip_length
+		Kind.SELF_BUFF:
+			return 9999.0
 	return 0.0

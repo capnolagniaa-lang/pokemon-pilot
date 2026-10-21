@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/siniestro.tres" id="1_hxf7s"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_o0lgm"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_o0lgm"]
 
 [resource]
 script = ExtResource("2_o0lgm")
@@ -11,7 +12,6 @@ element = ExtResource("1_hxf7s")
 kind = 1
 power = 60.0
 cooldown = 1.85
-energy_cost = 18.0
 knockback = 240.0
 recovery = 0.2
 speed = 150.0

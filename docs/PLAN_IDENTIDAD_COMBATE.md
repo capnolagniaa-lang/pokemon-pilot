@@ -7,6 +7,64 @@
 
 ---
 
+# ⚠️ ESTADO VIGENTE (v2, 2026-10-21) — LEER PRIMERO
+
+El usuario **rediseñó el sistema** después de probar la versión de 5 ranuras. Lo de esta sección **manda** sobre
+el documento original de abajo (que queda como referencia de ideas: estados, sinergias, fichas).
+
+## Reglas vigentes
+- **Sin energía.** Todo funciona con **recargas** por ataque.
+- **4 ataques por Pokémon** + **esquive en Espacio** (igual para todos, recarga 0,9 s, invulnerable un instante).
+- **Controles:** Clic izq. = ataque 1 · Clic der. = ataque 2 · Q = ataque 3 · R = ataque 4 (el de más recarga) ·
+  Espacio = esquive. (Números 1-4 como alternativa.) `Controls.SLOT_ACTIONS` / `SLOT_KEYS`.
+- **Estilos de pelea** (arquetipos) definidos por el kit: `data/kits/<pokémon>/kit.tres` → `Kit` con
+  `archetype`, `preferred_range`, `signature` (opcional) y `moves` (4 `MoveData`).
+- **Spawns de Ruta 1 (zona de prueba del combate):** solo **Pidgey, Bellsprout, Rattata y Vulpix**
+  (`WildSpawner.BY_ZONE`). Los demás Pokémon siguen existiendo y aparecen en otras zonas.
+- Stats oficiales, estados del plan (I-1), interacciones, resistencia a control, telegrafiado y recuperación:
+  **siguen igual**.
+
+## Estilos implementados
+| Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Mecánica |
+|---|---|---|---|---|---|---|
+| Charmander | **Bruiser** | Ascuas: abanico de 3 brasas, rango medio (1,4 s) | Arañazo: se lanza al punto apuntado (≤64 px); si conecta, 2 golpes (el 2º empuja) (1,1 s) | Giro Fuego: anillo que atrapa (7 s) | Embestida Ígnea: dash que golpea con leve empuje (90), invulnerable, deja estela de fuego (6 s) | **Calor** → Mar Llamas (el usuario lo aprobó) |
+| Bellsprout | **Control** | Polvo Veneno: parche de esporas (máx. 3, 6 s) que ralentiza y suma veneno (1,3 s) | Látigo Cepa: agarra al primero que alcanza (72 px), lo enraíza y lo atrae (4 s) | Arraigo: se enraíza 3 s, recibe la mitad, se cura 3%/s, no lo empujan (10 s) | Somnífero: nube telegrafiada; quien se queda 1,5 s adentro se duerme (12 s) | (ninguna aún) |
+| Bulbasaur | **Control** | Polvo Veneno | Látigo Cepa | Síntesis: se cura 5%/s 3 s, recibe ×0,75, más lento (12 s) | Somnífero | (ninguna aún) |
+
+Los demás (Pidgey, Rattata, Vulpix, Squirtle, Pikachu, etc.) **todavía usan sus 4 ataques sueltos** de
+`SpeciesData.moves` (mapeados a las 4 teclas) hasta tener kit.
+
+## Propuestas en discusión (a confirmar con el usuario antes de implementar)
+- **Squirtle — Tanque** (bloqueo, empujes, resistencia): Clic izq. Placaje pesado (empuja fuerte) · Clic der.
+  Pistola Agua (chorro que empuja y Empapa) · Q **Refugio** (mantener: bloquea 70% del daño frontal; si se
+  activa justo antes del golpe = **parry**: anula y aturde breve al atacante) · R Giro Rápido (rueda en el
+  caparazón: no lo empujan, limpia estados, choca y desplaza). Mecánica **Presión**: el daño bloqueado carga una
+  barra que potencia el siguiente ataque. Opcional: charcos que Empapan.
+- **Pikachu — Velocista de cargas**: mecánica **Estática**: moverse y esquivar generan cargas (máx. 5); quieto
+  las pierde. Clic izq. Impactrueno (rápido; con cargas pega más; contra Empapado aturde) · Clic der. Ataque
+  Rápido (dash que atraviesa; con cargas se puede reusar una vez) · Q Onda Trueno (onda corta que llena mucho la
+  barra de parálisis) · R Rayo/Trueno (consume todas las cargas: rayos en área, daño por carga). **Descarga**:
+  golpear con 5 cargas paraliza y rebota a un enemigo cercano.
+- **Pidgey — Hostigador** (golpea y se va): Tornado empuja y desvía proyectiles · Ataque Arena desorienta ·
+  Ataque Rápido · Remolino (zona de viento que separa). Mecánica posible: **Vuelo** (elevarse = inmune a golpes
+  cuerpo a cuerpo, gasta aliento).
+- **Rattata — Asesino** (remata): Mordisco rápido · Ataque Rápido de entrada · Foco Energía (próximo golpe
+  crítico) · Hipercolmillo (ejecuta bajo un umbral). Mecánica **Instinto**: +daño contra enemigos con <40% de
+  vida o con estado; rematar reinicia Ataque Rápido.
+- **Vulpix — Desgaste de quemaduras** (variante de fuego distinta de Charmander): Ascuas · Fuego Fatuo
+  (proyectil lento que quema seguro) · Rayo Confuso (desorienta) · Giro Fuego o Lanzallamas. Mecánica posible:
+  más daño contra quemados.
+
+## Próximo paso sugerido
+1. Que el usuario pruebe Charmander y Bellsprout en Ruta 1 y dé su opinión (sensación, recargas, rangos).
+2. Confirmar/ajustar las propuestas de arriba y hacer los kits de los otros 3 de Ruta 1 (**Pidgey, Rattata,
+   Vulpix**), así todo lo que aparece en la zona de prueba tiene estilo propio.
+3. Después Squirtle (tanque/parry) y Pikachu (cargas), que necesitan mecánicas nuevas (bloqueo mantenido, cargas).
+4. Pendientes técnicos: mecánica de firma para el estilo control (ej. Siembra/Punta del documento original);
+   la IA salvaje todavía elige ataques al azar dentro del alcance (falta que use las defensivas con criterio).
+
+---
+
 # Sistema de Estilos de Pelea — Combate Pokémon en Tiempo Real
 
 > Documento de diseño para modelar a los Pokémon jugables. Objetivo: que cada uno **se sienta distinto de jugar**, no solo que tenga números distintos.
@@ -375,7 +433,8 @@ interface HabilidadDef {
 |---|---|---|
 | I-0 | Plan guardado; análisis de choques con lo construido; decisiones abiertas | ✅ Hecho |
 | I-1 | Base compartida: estados nuevos (empapado, enraizado, envenenado con stacks, dormido, desorientado, herido; parálisis por acumulación), eventos de combate, resistencia a control, telegrafiado y recuperación | ✅ Hecho |
-| I-2 | Kit de 5 ranuras + controles nuevos; Charmander completo (Calor, Mar Llamas, Sobrecalentado) | ✅ Hecho |
+| I-2 | Kit de 5 ranuras + controles nuevos; Charmander completo (Calor, Mar Llamas, Sobrecalentado) | ✅ Hecho (reemplazado por v2) |
+| v2 | **Rediseño del usuario:** sin energía, 4 ataques + esquive, Charmander bruiser rearmado, Bellsprout/Bulbasaur control, spawns de Ruta 1 | ✅ Hecho |
 | I-3 | Pikachu (Estática, cargas, cancelación de combos) | Pendiente |
 | I-4 | Squirtle (Refugio, parry, Presión, charcos) | Pendiente |
 | I-5 | Bulbasaur (semillas en el suelo, Somnífero telegrafiado, Rayo Solar) | Pendiente |
@@ -392,9 +451,9 @@ interface HabilidadDef {
 - **Estados:** se usan **los del documento** (identidad): Quemado −15% daño físico, Paralizado por
   acumulación, Empapado, Enraizado, Envenenado con stacks, Dormido, Desorientado, Herido. **Congelado se
   mantiene** para el hielo.
-- **Controles del kit (5 ranuras):** Clic izq. = básico · Clic der. = habilidad 1 · **Q** = habilidad 2 ·
-  **Espacio** = movilidad propia (reemplaza el esquive genérico) · **R** = definitiva. (Tab queda para cambiar
-  de Pokémon; F para sacar/guardar.)
+- ~~Controles del kit (5 ranuras con movilidad propia en Espacio)~~ → **reemplazado en v2**: 4 ataques
+  (Clic izq., Clic der., Q, R), **sin energía**, esquive genérico en Espacio. (Tab = cambiar de Pokémon;
+  F = sacar/guardar.)
 
 ## Cómo quedó implementado (I-1)
 - **Estados** (`scripts/resources/status_effect.gd`, datos en `data/status/*.tres`): además de duración,
@@ -418,7 +477,19 @@ interface HabilidadDef {
 - Visual: raíces a los pies (Enraizado), "z" (Dormido), barra de parálisis, puntitos por stack de veneno.
 - Autotest: `--autotest-identity` verifica cada regla (14 chequeos).
 
-## Cómo quedó implementado (I-2: kit + Charmander)
+## Cómo quedó implementado (v2, vigente)
+- `Kit` = `archetype` + `preferred_range` + `signature` opcional + `moves` (4). `MoveUser` sin energía: 4 ranuras
+  con recarga (combos opcionales) + `dodge_cooldown`. Pokémon sin kit: sus `SpeciesData.moves` a las 4 teclas.
+- Tipos de ataque nuevos en `MoveData.Kind`: `LUNGE` (estado `lunge`: se lanza al punto; si el contacto pega,
+  `followup_delay` y 2º golpe con `followup_knockback`), `WHIP` (`WhipLash`: agarra al primero), `SELF_BUFF`
+  (aplica `self_status`). `ZONE` con `zone_traps=false` = `GroundZone` (parche/nube: `zone_tick`,
+  `zone_max_count`, `dwell_time`/`dwell_status`). `statuses_on_hit` = estados que aplica siempre.
+- Estados nuevos: `ralentizado` (×0,6 velocidad), `arraigado` (Arraigo), `sintesis` (Síntesis); campos nuevos
+  en `StatusEffect`: `damage_taken_mult`, `heal_per_second`, `knockback_mult`.
+- Golpes de daño 0 (esporas) ya no hacen destello ni empuje: solo aplican estados.
+- Autotests: `--autotest-kit` (Charmander bruiser + Bellsprout control, 19 chequeos), vitrina `--showcase-kit`.
+
+## Cómo quedó implementado (I-2: kit + Charmander) — HISTÓRICO, reemplazado por v2
 - **Datos** (todo editable en el inspector): `Kit` (`scripts/resources/kit.gd`): arquetipo, rango preferido
   (IA), mecánica de firma y 5 ranuras. `SignatureData`: recurso máximo, `gains` por evento, decaimiento en/fuera
   de combate, umbrales (marcas de la barra), `params` y el script de comportamiento. Las habilidades son

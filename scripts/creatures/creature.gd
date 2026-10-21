@@ -144,11 +144,9 @@ func can_act() -> bool:
 ## Usa la habilidad de una ranura (Kit.Slot) apuntando a `aim`; `point` es el lugar del mundo apuntado
 ## (para ubicar zonas). Con cast_time pasa por el estado "cast" (telegrafiado).
 func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
-	if slot == Kit.Slot.MOBILITY and moves.slots[slot] == null:
-		return _generic_dodge(aim)
-	if not can_act() or slot >= moves.slots.size() or moves.slots[slot] == null:
+	if not can_act() or slot < 0 or slot >= moves.slots.size() or moves.slots[slot] == null:
 		return false
-	if moves.slots[slot].kind == MoveData.Kind.DASH and not statuses.can_move():
+	if moves.slots[slot].kind in [MoveData.Kind.DASH, MoveData.Kind.LUNGE] and not statuses.can_move():
 		return false
 	var used := moves.consume(slot)
 	if used.is_empty():
@@ -212,19 +210,42 @@ func release_move(msg: Dictionary) -> void:
 			get_parent().add_child(s)
 			s.swing(hit, global_position + Vector2(0, -8) + aim * m.melee_range, m.swing_radius * hit.area_mult, aim)
 		MoveData.Kind.ZONE:
-			var z := ZoneTrap.new()
-			get_parent().add_child(z)
-			z.place(hit, zone_point(m, msg.get("point", Vector2.INF), aim))
+			var at := zone_point(m, msg.get("point", Vector2.INF), aim)
+			if m.zone_traps:
+				var z := ZoneTrap.new()
+				get_parent().add_child(z)
+				z.place(hit, at)
+			else:
+				var gz := GroundZone.new()
+				get_parent().add_child(gz)
+				gz.place(hit, at)
+				_track_zone(m, gz)
 		MoveData.Kind.DASH:
 			if m.dash_hits:
 				dash_hitbox.setup(hit)
 				dash_hitbox.reset_targets()
-			else:
+			if m.invulnerable_time > 0.0:
 				health.invulnerable_time = maxf(health.invulnerable_time, m.invulnerable_time)
-				dodged.emit()
 			machine.transition_to("dash", {"dir": aim, "time": m.dash_time, "attack": m.dash_hits,
 				"recovery": recovery, "trail": m if m.trail_power > 0.0 else null})
 			return
+		MoveData.Kind.LUNGE:
+			# Se lanza hacia el punto apuntado; si conecta, el estado "lunge" encadena el 2º golpe.
+			var p: Vector2 = msg.get("point", Vector2.INF)
+			if p == Vector2.INF:
+				p = target.global_position if is_instance_valid(target) else global_position + aim * m.lunge_range
+			var dist := minf(global_position.distance_to(p), m.lunge_range)
+			dash_hitbox.setup(hit)
+			dash_hitbox.reset_targets()
+			machine.transition_to("lunge", {"move": m, "dir": aim, "distance": maxf(dist, 10.0)})
+			return
+		MoveData.Kind.WHIP:
+			var w := WhipLash.new()
+			get_parent().add_child(w)
+			w.lash(hit, global_position + Vector2(0, -8), aim)
+		MoveData.Kind.SELF_BUFF:
+			if m.self_status != null:
+				statuses.apply(m.self_status)
 		MoveData.Kind.SHIELD:
 			health.shield_time = m.duration
 		MoveData.Kind.CHANNEL:
@@ -242,14 +263,22 @@ func zone_point(m: MoveData, point: Vector2, aim: Vector2) -> Vector2:
 	return global_position + d.limit_length(m.placement_range)
 
 
-## Esquivar: usa la movilidad propia del kit si tiene; si no, el esquive genérico.
+## Zonas activas por ataque (para respetar zone_max_count: se borra la más vieja).
+var _zones: Dictionary = {}
+
+
+func _track_zone(m: MoveData, zone: Node) -> void:
+	if m.zone_max_count <= 0:
+		return
+	var list: Array = _zones.get(m, []).filter(func(z): return is_instance_valid(z))
+	list.append(zone)
+	while list.size() > m.zone_max_count:
+		list.pop_front().expire()
+	_zones[m] = list
+
+
+## Esquive (Espacio): igual para todos. Breve invulnerabilidad.
 func dodge(dir: Vector2) -> bool:
-	if moves.slots.size() > Kit.Slot.MOBILITY and moves.slots[Kit.Slot.MOBILITY] != null:
-		return use_slot(Kit.Slot.MOBILITY, dir if dir.length() > 0.1 else facing)
-	return _generic_dodge(dir)
-
-
-func _generic_dodge(dir: Vector2) -> bool:
 	if not can_act() or not statuses.can_move() or not moves.consume_dodge():
 		return false
 	health.invulnerable_time = DODGE_TIME + 0.12
@@ -283,10 +312,12 @@ func _on_hit(hit: HitInfo) -> void:
 	for it in interactions:
 		mult *= it.damage_mult
 	var dealt := health.apply_damage(Damage.resolve(hit, instance) * mult)
-	statuses.on_damaged()
-	knockback = (global_position - hit.origin).normalized() * hit.knockback
-	sprite.flash()
-	sprite.play_once("Hurt", 0.25)
+	if dealt > 0.0:
+		statuses.on_damaged()
+		sprite.flash()
+		sprite.play_once("Hurt", 0.25)
+	if hit.knockback != 0.0:
+		knockback = (global_position - hit.origin).normalized() * hit.knockback * statuses.knockback_mult()
 	var attacker: Creature = hit.attacker if is_instance_valid(hit.attacker) else null
 	damage_received.emit(dealt, hit)
 	if attacker:
@@ -297,7 +328,10 @@ func _on_hit(hit: HitInfo) -> void:
 			attacker.killed.emit(self)
 		return
 	var state := machine.current_name()
-	for pair in [[hit.move.status, hit.move.status_chance], [hit.extra_status, hit.extra_status_chance]]:
+	var to_apply := [[hit.move.status, hit.move.status_chance], [hit.extra_status, hit.extra_status_chance]]
+	for s in hit.move.statuses_on_hit:
+		to_apply.append([s, 1.0])
+	for pair in to_apply:
 		if pair[0] != null and randf() < pair[1]:
 			statuses.apply(pair[0])
 			if attacker:

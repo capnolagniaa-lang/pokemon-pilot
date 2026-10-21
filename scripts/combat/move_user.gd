@@ -1,21 +1,16 @@
 class_name MoveUser
 extends Node
-## Ranuras de habilidades (Kit.Slot: básico, habilidad 1, habilidad 2, movilidad, definitiva), recargas,
-## energía y combos. Los Pokémon sin kit propio usan sus 4 ataques: 1-3 en básico/hab.1/hab.2, el 4º como
-## definitiva y el esquive genérico como movilidad.
+## Los 4 ataques de una criatura (kit propio o sus ataques sueltos) y sus recargas. Sin energía: lo único
+## que limita es la recarga de cada ataque. El esquive (Espacio) tiene su propia recarga.
 
-const MAX_ENERGY := 100.0
-## Energía por segundo: con 12/s se puede tirar un ataque fuerte cada ~3 s y uno chico cada ~1,4 s.
-const ENERGY_REGEN := 12.0
-const DODGE_COST := 22.0
+const SLOT_COUNT := 4
 const DODGE_COOLDOWN := 0.9
 
-## Habilidad de cada ranura (null en movilidad = esquive genérico).
+## Ataque de cada tecla (Clic izq., Clic der., Q, R); puede haber huecos (null).
 var slots: Array[MoveData] = []
 var cooldowns: Array[float] = []
 ## Duración completa de la recarga en curso de cada ranura (para la interfaz).
 var cooldown_total: Array[float] = []
-var energy := MAX_ENERGY
 var dodge_cooldown := 0.0
 
 var _combo_step: Array[int] = []
@@ -23,23 +18,21 @@ var _combo_timer: Array[float] = []
 
 
 func setup(species: SpeciesData) -> void:
-	if species.kit != null:
-		slots = species.kit.slots()
-	else:
-		var m := species.moves
-		slots = [m[0] if m.size() > 0 else null, m[1] if m.size() > 1 else null,
-			m[2] if m.size() > 2 else null, null, m[3] if m.size() > 3 else null]
-	cooldowns.resize(Kit.SLOT_COUNT)
+	var source: Array[MoveData] = species.kit.moves if species.kit != null else species.moves
+	slots.clear()
+	for i in SLOT_COUNT:
+		slots.append(source[i] if i < source.size() else null)
+	cooldowns.resize(SLOT_COUNT)
 	cooldowns.fill(0.0)
-	cooldown_total.resize(Kit.SLOT_COUNT)
+	cooldown_total.resize(SLOT_COUNT)
 	cooldown_total.fill(1.0)
-	_combo_step.resize(Kit.SLOT_COUNT)
+	_combo_step.resize(SLOT_COUNT)
 	_combo_step.fill(0)
-	_combo_timer.resize(Kit.SLOT_COUNT)
+	_combo_timer.resize(SLOT_COUNT)
 	_combo_timer.fill(0.0)
 
 
-## Lista de habilidades no vacías (para la IA y el autotest).
+## Ataques no vacíos (para la IA y el autotest).
 var moves: Array[MoveData]:
 	get:
 		var out: Array[MoveData] = []
@@ -50,14 +43,12 @@ var moves: Array[MoveData]:
 
 
 func _physics_process(delta: float) -> void:
-	energy = minf(MAX_ENERGY, energy + ENERGY_REGEN * delta)
 	dodge_cooldown = maxf(0.0, dodge_cooldown - delta)
 	for i in cooldowns.size():
 		cooldowns[i] = maxf(0.0, cooldowns[i] - delta)
 		if _combo_timer[i] > 0.0:
 			_combo_timer[i] -= delta
 			if _combo_timer[i] <= 0.0 and _combo_step[i] > 0:
-				# Se cortó el combo: arranca la recarga completa.
 				_combo_step[i] = 0
 				_start_cooldown(i, slots[i].cooldown)
 
@@ -67,17 +58,14 @@ func slot_of(m: MoveData) -> int:
 
 
 func can_use(slot: int) -> bool:
-	if slot < 0 or slot >= slots.size() or slots[slot] == null:
-		return false
-	return cooldowns[slot] <= 0.0 and energy >= slots[slot].energy_cost
+	return slot >= 0 and slot < slots.size() and slots[slot] != null and cooldowns[slot] <= 0.0
 
 
-## Gasta energía y arranca la recarga (o avanza el combo). Devuelve [habilidad, paso del combo] o [].
+## Arranca la recarga (o avanza el combo). Devuelve [ataque, paso del combo] o [] si no se puede.
 func consume(slot: int) -> Array:
 	if not can_use(slot):
 		return []
 	var m := slots[slot]
-	energy -= m.energy_cost
 	var step := 0
 	if m.combo_steps > 1:
 		step = _combo_step[slot]
@@ -93,7 +81,7 @@ func consume(slot: int) -> Array:
 	return [m, step]
 
 
-## Reduce la recarga de una ranura (lo usan mecánicas como el Ritmo de Bellsprout).
+## Reduce la recarga de una ranura (para mecánicas futuras, ej. el Ritmo de Bellsprout).
 func reduce_cooldown(slot: int, seconds: float) -> void:
 	cooldowns[slot] = maxf(0.0, cooldowns[slot] - seconds)
 
@@ -108,22 +96,17 @@ func _start_cooldown(slot: int, t: float) -> void:
 
 
 func can_dodge() -> bool:
-	if slots.size() > Kit.Slot.MOBILITY and slots[Kit.Slot.MOBILITY] != null:
-		return can_use(Kit.Slot.MOBILITY)
-	return dodge_cooldown <= 0.0 and energy >= DODGE_COST
+	return dodge_cooldown <= 0.0
 
 
 func consume_dodge() -> bool:
-	if dodge_cooldown > 0.0 or energy < DODGE_COST:
+	if dodge_cooldown > 0.0:
 		return false
-	energy -= DODGE_COST
 	dodge_cooldown = DODGE_COOLDOWN
 	return true
 
 
 func cooldown_ratio(slot: int) -> float:
-	if slot == Kit.Slot.MOBILITY and slots[slot] == null:
-		return dodge_cooldown / DODGE_COOLDOWN
 	return cooldowns[slot] / cooldown_total[slot]
 
 

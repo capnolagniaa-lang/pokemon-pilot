@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="1_0i463"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_aallm"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_aallm"]
 
 [resource]
 script = ExtResource("2_aallm")
@@ -10,7 +11,6 @@ display_name = "Arañazo"
 element = ExtResource("1_0i463")
 kind = 1
 cooldown = 1.55
-energy_cost = 15.0
 knockback = 180.0
 recovery = 0.1
 speed = 150.0

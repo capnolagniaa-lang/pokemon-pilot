@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="1_dukq2"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dd1cl"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_dd1cl"]
 
 [resource]
 script = ExtResource("2_dd1cl")
@@ -12,7 +13,6 @@ kind = 2
 category = 1
 power = 90.0
 cooldown = 4.55
-energy_cost = 37.0
 cast_time = 0.4
 knockback = 260.0
 recovery = 0.4

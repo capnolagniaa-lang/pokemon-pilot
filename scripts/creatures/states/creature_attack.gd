@@ -73,10 +73,10 @@ func _ideal_range() -> float:
 	return r
 
 
-## Elige una ranura del kit según el alcance. La definitiva se guarda para cuando conviene (mucho recurso
-## de firma, o 30% de las veces si no tiene mecánica). La movilidad no se usa para atacar (la usa _try_dodge).
+## Elige uno de los 4 ataques según el alcance (las recargas ya regulan cuánto usa cada uno).
+## Las mejoras propias (Arraigo, Síntesis) las usa cuando está herido.
 func _choose_attack(dist: float, dir: Vector2) -> bool:
-	var order := [Kit.Slot.ULTIMATE, Kit.Slot.ABILITY_2, Kit.Slot.ABILITY_1, Kit.Slot.BASIC]
+	var order := range(MoveUser.SLOT_COUNT)
 	order.shuffle()
 	for slot in order:
 		var m: MoveData = actor.moves.slots[slot]
@@ -84,14 +84,12 @@ func _choose_attack(dist: float, dir: Vector2) -> bool:
 			continue
 		var ok := false
 		match m.kind:
-			MoveData.Kind.SHIELD:
+			MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF:
 				ok = actor.health.ratio() < 0.6 and randf() < 0.3
 			MoveData.Kind.DASH:
 				ok = m.dash_hits and dist < m.reach()
 			_:
 				ok = dist < m.reach()
-		if ok and slot == Kit.Slot.ULTIMATE:
-			ok = actor.signature.ratio() >= 0.6 if actor.signature != null else randf() < 0.3
 		if ok:
 			var target_point: Vector2 = actor.target.global_position if is_instance_valid(actor.target) else Vector2.INF
 			return actor.use_slot(slot, dir.rotated(randf_range(-0.12, 0.12)), target_point)

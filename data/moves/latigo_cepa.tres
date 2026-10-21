@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="1_x2xf0"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_aww45"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_aww45"]
 
 [resource]
 script = ExtResource("2_aww45")
@@ -10,8 +11,7 @@ display_name = "Látigo Cepa"
 element = ExtResource("1_x2xf0")
 kind = 1
 power = 45.0
-cooldown = 1.65
-energy_cost = 16.0
+cooldown = 1.6500000000000001
 knockback = 220.0
 recovery = 0.15
 speed = 150.0

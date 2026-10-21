@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Kit" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_xvehx"]
+[ext_resource type="Resource" path="res://data/kits/bellsprout/polvo_veneno.tres" id="2_5wvao"]
+[ext_resource type="Resource" path="res://data/kits/bellsprout/latigo_cepa.tres" id="3_ctvgy"]
+[ext_resource type="Resource" path="res://data/kits/bellsprout/arraigo.tres" id="4_i5lqo"]
+[ext_resource type="Resource" path="res://data/kits/bellsprout/somnifero.tres" id="5_i23iw"]
+[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="6_a4vsg"]
+
+[resource]
+script = ExtResource("6_a4vsg")
+archetype = "control"
+preferred_range = 60.0
+moves = Array[ExtResource("1_xvehx")]([ExtResource("2_5wvao"), ExtResource("3_ctvgy"), ExtResource("4_i5lqo"), ExtResource("5_i23iw")])

@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="1_yjs5d"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_q4r6b"]
 [ext_resource type="Resource" path="res://data/status/paralizado.tres" id="3_qkg61"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_q4r6b"]
 
 [resource]
 script = ExtResource("2_q4r6b")
@@ -11,7 +12,6 @@ display_name = "Impactrueno"
 element = ExtResource("1_yjs5d")
 category = 1
 cooldown = 1.4500000000000002
-energy_cost = 16.0
 knockback = 120.0
 recovery = 0.08
 status = ExtResource("3_qkg61")

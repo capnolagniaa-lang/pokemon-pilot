@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/status/dormido.tres" id="1_8rn3x"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="2_ceumf"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="3_iequy"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_6vql2"]
+
+[resource]
+script = ExtResource("3_iequy")
+id = "somnifero"
+display_name = "Somnífero"
+element = ExtResource("2_ceumf")
+kind = 5
+category = 2
+power = 0.0
+cooldown = 12.0
+cast_time = 0.3
+knockback = 0.0
+recovery = 0.2
+placement_range = 100.0
+zone_traps = false
+zone_tick = 99.0
+dwell_time = 1.5
+dwell_status = ExtResource("1_8rn3x")

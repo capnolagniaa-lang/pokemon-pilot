@@ -18,14 +18,14 @@ Acceso directo sin abrir el editor: un `.lnk` que apunte a `Godot_v4.7.2-stable_
 | Sacar / guardar a tu Pokémon para pelear | F |
 | Mover al Pokémon (en combate) | WASD |
 | Apuntar | Mouse |
-| Básico (mantener para el combo) | Clic izq. (o 1) |
-| Habilidad 1 | Clic der. (o 2) |
-| Habilidad 2 | Q (o 3) |
-| Movilidad (esquive propio) | Espacio |
-| Definitiva | R (o 4) |
+| Ataque 1 | Clic izq. (o 1) |
+| Ataque 2 | Clic der. (o 2) |
+| Ataque 3 | Q (o 3) |
+| Ataque 4 (el de más recarga) | R (o 4) |
+| Esquivar | Espacio |
 | Cambiar de Pokémon | Tab |
 
-Si un salvaje te ve, el combate empieza solo y pasás a controlar a tu Pokémon. Cada Pokémon con kit propio tiene un arquetipo y una **mecánica de firma** (por ejemplo, el **Calor** de Charmander: sube peleando, desde 50 quema y en 100 entra en Mar Llamas). Los ataques fuertes se telegrafían en el suelo y dejan una ventana de recuperación. Diseño completo: [docs/PLAN_IDENTIDAD_COMBATE.md](docs/PLAN_IDENTIDAD_COMBATE.md).
+Si un salvaje te ve, el combate empieza solo y pasás a controlar a tu Pokémon. Sin energía: cada ataque tiene su recarga. Cada Pokémon con kit tiene un **estilo de pelea**: Charmander es **bruiser** (Ascuas en abanico, Arañazo que se lanza y encadena 2 golpes, Giro Fuego que atrapa, Embestida Ígnea; y su **Calor** lo lleva a Mar Llamas), Bellsprout y Bulbasaur son **control** (esporas que ralentizan y envenenan, Látigo Cepa que agarra, defensiva y Somnífero). Diseño: [docs/PLAN_IDENTIDAD_COMBATE.md](docs/PLAN_IDENTIDAD_COMBATE.md).
 
 ## Estructura
 

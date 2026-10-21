@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="1_6euqs"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x6ny6"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_x6ny6"]
 
 [resource]
 script = ExtResource("2_x6ny6")
@@ -10,7 +11,6 @@ display_name = "Ataque Rápido"
 element = ExtResource("1_6euqs")
 kind = 1
 cooldown = 1.55
-energy_cost = 15.0
 knockback = 200.0
 recovery = 0.1
 speed = 150.0

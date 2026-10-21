@@ -2,8 +2,8 @@ extends Control
 ## Interfaz dibujada: panel de tu Pokémon (siempre), ataques y rival (en combate), mensajes y ayuda.
 
 const KIND := {MoveData.Kind.PROJECTILE: "Disparo", MoveData.Kind.DASH: "Embestida", MoveData.Kind.AREA: "Área",
-	MoveData.Kind.SHIELD: "Defensa", MoveData.Kind.MELEE: "Golpe", MoveData.Kind.ZONE: "Zona", MoveData.Kind.CHANNEL: "Canalizado"}
-const SLOT_NAMES := ["Básico", "Habilidad", "Habilidad", "Movilidad", "Definitiva"]
+	MoveData.Kind.SHIELD: "Defensa", MoveData.Kind.MELEE: "Golpe", MoveData.Kind.ZONE: "Zona", MoveData.Kind.CHANNEL: "Canalizado",
+	MoveData.Kind.LUNGE: "Embestida", MoveData.Kind.WHIP: "Látigo", MoveData.Kind.SELF_BUFF: "Defensa"}
 const ARCHETYPES := {"bruiser": "Bruiser", "tanque": "Tanque", "control": "Control", "velocista": "Velocista",
 	"hostigador": "Hostigador", "desgaste": "Desgaste", "espaciador": "Espaciador", "asesino": "Asesino"}
 
@@ -39,7 +39,7 @@ func _draw() -> void:
 		_draw_moves(c)
 		_draw_enemy()
 	_draw_message()
-	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / Espacio / R habilidades · F volver" if in_battle \
+	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · F volver" if in_battle \
 		else "WASD mover · Shift correr · F sacar a tu Pokémon a pelear"
 	draw_string(font, Vector2(0, size.y - 14), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
 
@@ -63,8 +63,6 @@ func _draw_party(c: Creature, in_battle: bool) -> void:
 	var ratio := clampf(inst.hp / inst.max_hp(), 0.0, 1.0)
 	_bar(Rect2(x, r.position.y + 34, 290, 12), ratio, _hp_color(ratio))
 	draw_string(font, Vector2(x + 4, r.position.y + 45), "PS %d/%d" % [ceili(inst.hp), ceili(inst.max_hp())], HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
-	if is_instance_valid(c) and in_battle:
-		_bar(Rect2(x, r.position.y + 52, 290, 6), c.moves.energy / MoveUser.MAX_ENERGY, Color(0.95, 0.85, 0.3))
 	_bar(Rect2(x, r.position.y + 62, 290, 4), inst.exp_progress(), Color(0.4, 0.7, 1.0))
 	if is_instance_valid(c) and not c.statuses.active.is_empty():
 		var s: StatusEffect = c.statuses.active.values()[-1]["status"]
@@ -95,31 +93,33 @@ func _draw_moves(c: Creature) -> void:
 	var slots: Array[MoveData] = c.moves.slots
 	for i in slots.size():
 		var m: MoveData = slots[i]
-		var r := Rect2(412 + i * 104, size.y - 104, 98, 88)
+		var r := Rect2(412 + i * 112, size.y - 104, 106, 88)
 		_panel(r)
-		var col: Color = m.element.color if m != null else Color(0.7, 0.7, 0.75)
-		draw_rect(Rect2(r.position, Vector2(r.size.x, 5)), col)
+		if m == null:
+			continue
+		draw_rect(Rect2(r.position, Vector2(r.size.x, 5)), m.element.color)
 		draw_string(font, r.position + Vector2(6, 22), Controls.SLOT_KEYS[i], HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(1, 1, 1, 0.75))
-		var name := m.display_name if m != null else "Esquive"
-		draw_string(font, r.position + Vector2(6, 46), name, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 14 if name.length() <= 10 else 12)
-		var info := "%s · %d EN" % [KIND[m.kind], int(m.energy_cost)] if m != null else "%d EN" % int(MoveUser.DODGE_COST)
-		if m != null and m.combo_steps > 1:
-			info = "Combo x%d" % m.combo_steps
+		draw_string(font, r.position + Vector2(6, 46), m.display_name, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 14 if m.display_name.length() <= 11 else 12)
+		var info := "%s · %ss" % [KIND.get(m.kind, ""), _secs(m.cooldown)]
 		draw_string(font, r.position + Vector2(6, 68), info, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 10, Color(1, 1, 1, 0.6))
-		if m != null and m.combo_steps > 1:
-			for k in m.combo_steps:  # pasos del combo
-				var on := k < c.moves.combo_step(i)
-				draw_circle(r.position + Vector2(10 + k * 9, 80), 2.5, Color(1.4, 1.2, 0.8) if on else Color(1, 1, 1, 0.25))
-		if m != null and m.cast_time > 0.0:  # ícono de carga
+		if m.cast_time > 0.0:  # ícono de carga
 			draw_arc(r.position + Vector2(r.size.x - 12, 36), 4.5, -PI / 2.0, PI, 12, Color(1, 1, 1, 0.8), 1.5)
-		if m != null and m.resource_cost != 0.0 and c.signature != null:  # consume el recurso de firma
-			draw_rect(Rect2(r.position + Vector2(r.size.x - 16, 52), Vector2(8, 8)), c.signature.data.color)
 		var cd: float = c.moves.cooldown_ratio(i)
-		var cost: float = m.energy_cost if m != null else MoveUser.DODGE_COST
 		if cd > 0.0:
 			draw_rect(Rect2(r.position.x, r.end.y - r.size.y * cd, r.size.x, r.size.y * cd), Color(0, 0, 0, 0.55))
-		elif c.moves.energy < cost:
-			draw_rect(r, Color(0, 0, 0, 0.45))
+			draw_string(font, r.position + Vector2(0, 30), _secs(c.moves.cooldowns[i]), HORIZONTAL_ALIGNMENT_RIGHT, r.size.x - 8, 13)
+	# Esquive (Espacio)
+	var d := Rect2(412 + 4 * 112, size.y - 104, 62, 88)
+	_panel(d)
+	draw_string(font, d.position + Vector2(0, 30), "Espacio", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 11, Color(1, 1, 1, 0.75))
+	draw_string(font, d.position + Vector2(0, 54), "Esquive", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 12)
+	var dk := c.moves.dodge_cooldown / MoveUser.DODGE_COOLDOWN
+	if dk > 0.0:
+		draw_rect(Rect2(d.position.x, d.end.y - d.size.y * dk, d.size.x, d.size.y * dk), Color(0, 0, 0, 0.55))
+
+
+func _secs(t: float) -> String:
+	return ("%.1f" % t) if t < 10.0 else str(roundi(t))
 
 
 func _draw_enemy() -> void:

@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="1_upg3l"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_u0784"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_u0784"]
 
 [resource]
 script = ExtResource("2_u0784")
@@ -12,7 +13,6 @@ kind = 2
 category = 1
 power = 120.0
 cooldown = 5.45
-energy_cost = 44.0
 cast_time = 0.35
 knockback = 220.0
 recovery = 0.5

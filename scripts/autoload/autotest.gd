@@ -242,11 +242,11 @@ func _input_test() -> void:
 	await get_tree().create_timer(0.3).timeout
 	Input.action_release("move_right")
 	results["WASD lo mueve"] = world.companion.global_position.x > world.trainer.global_position.x + 10.0
-	await _tap("basic", true)
-	results["Clic usa el básico (Arañazo)"] = used.has("aranazo_combo")
+	await _tap("attack_1", true)
+	results["Clic izq. usa el ataque 1 (Ascuas)"] = used.has("ascuas_abanico")
 	await get_tree().create_timer(1.0).timeout
-	await _tap("mobility", true)
-	results["Espacio usa la movilidad"] = world.companion.machine.current_name() == "dash" or world.companion.health.invulnerable_time > 0.0
+	await _tap("dodge", true)
+	results["Espacio esquiva"] = world.companion.machine.current_name() == "dash" or world.companion.health.invulnerable_time > 0.0
 	await get_tree().create_timer(1.5).timeout
 	results["sigue en combate sin enemigos"] = world.combat.in_battle
 	await _tap("battle_toggle")
@@ -423,8 +423,7 @@ func _identity_test() -> void:
 
 	world.combat.start_battle()
 	await get_tree().physics_frame
-	me.moves.energy = 100.0
-	var idx := Kit.Slot.ABILITY_2
+	var idx := 2  # Giro Fuego (Q)
 	me.use_slot(idx, Vector2.UP)
 	await get_tree().physics_frame
 	r["Telegrafiado durante la carga"] = me.machine.current_name() == "cast" and me.telegraph.shape == Telegraph.Shape.CIRCLE
@@ -439,8 +438,10 @@ func _identity_test() -> void:
 
 # --- Kit de Charmander (godot --path . -- --autotest-kit) -----------------------------------
 
-func _kit_test() -> void:
-	GameState.new_game(DB.species["charmander"])
+
+## Prepara un combate de prueba: tu Pokémon (nivel 10) contra muñecos que no se mueven.
+func _setup_kit_world(species_id: String) -> Node:
+	GameState.new_game(DB.species[species_id])
 	GameState.active().level = 10
 	GameState.active().hp = GameState.active().max_hp()
 	GameState.wilds_enabled = false
@@ -450,45 +451,53 @@ func _kit_test() -> void:
 	var world := get_tree().current_scene
 	world.respawn_companion()
 	await get_tree().process_frame
-	var me: Creature = world.companion
-	var r := {}
-	var hits := {"n": 0}
-	var dummy: Creature = world.spawner.spawn(DB.species["bulbasaur"], 40, me.global_position + Vector2(20, 0))
-	dummy.get_node("StateMachine/Wander").aggro_radius = 0.0
-	await get_tree().physics_frame
-	dummy.machine.set_physics_process(false)  # muñeco de práctica: no se mueve ni contesta
-	Events.creature_damaged.connect(func(c, _a, h): if c == dummy and h != null: hits["n"] += 1)
 	world.combat.start_battle()
 	await get_tree().physics_frame
-	me.input_source = null  # sin mouse: las habilidades usan la dirección/punto que les pasamos
-	var right := Vector2.RIGHT
+	world.companion.input_source = null  # sin mouse: los ataques usan la dirección/punto que les pasamos
+	return world
+
+
+func _dummy(world: Node, species_id: String, pos: Vector2, frozen: bool = true) -> Creature:
+	var d: Creature = world.spawner.spawn(DB.species[species_id], 40, pos)
+	d.get_node("StateMachine/Wander").aggro_radius = 0.0
+	if frozen:
+		d.machine.set_physics_process.call_deferred(false)
+	return d
+
+
+func _kit_test() -> void:
+	var r := {}
+	# --- Charmander (bruiser): Ascuas, Arañazo, Giro Fuego, Embestida Ígnea + Calor ---
+	var world: Node = await _setup_kit_world("charmander")
+	var me: Creature = world.companion
 	var sig: SignatureMechanic = me.signature
-	r["Charmander tiene kit y Calor"] = me.instance.species.kit != null and sig != null and sig.data.id == "calor"
+	var hits := {}
+	Events.creature_damaged.connect(func(c, _a, h): if h != null: hits[c] = hits.get(c, 0) + 1)
+	r["Charmander: 4 ataques + Calor"] = me.moves.moves.size() == 4 and sig != null and sig.data.id == "calor"
+	var dummy := _dummy(world, "bulbasaur", me.global_position + Vector2(40, 0))
+	await get_tree().physics_frame
 
-	# Básico: combo de 3 golpes, el tercero empuja fuerte
-	var steps := []
-	for k in 3:
-		me.moves.energy = 100.0
-		me.use_slot(Kit.Slot.BASIC, right)
-		steps.append(me.moves.combo_step(Kit.Slot.BASIC))
-		await get_tree().create_timer(0.32).timeout
-	r["Combo de 3 golpes (pasos 1, 2, cierre)"] = steps == [1, 2, 0] and hits["n"] >= 3
-	r["El tercer golpe empuja más"] = dummy.knockback.length() > 0.0 or true
-	r["Recarga completa al cerrar el combo"] = me.moves.cooldowns[Kit.Slot.BASIC] > 0.2
-	r["Pegar sube el Calor"] = sig.value > 0.0
-
-	# Ascuas: 3 brasas en abanico
-	await get_tree().create_timer(0.3).timeout
 	var before := _count(world.entities, Projectile)
-	me.moves.energy = 100.0
-	me.use_slot(Kit.Slot.ABILITY_1, right)
-	r["Ascuas tira 3 brasas en abanico"] = _count(world.entities, Projectile) - before == 3
+	me.use_slot(0, Vector2.RIGHT)
+	r["Clic izq. Ascuas: 3 brasas en abanico"] = _count(world.entities, Projectile) - before == 3
+	await get_tree().create_timer(0.5).timeout
 
-	# Giro Fuego: anillo que atrapa
-	await get_tree().create_timer(0.3).timeout
-	me.moves.energy = 100.0
-	me.use_slot(Kit.Slot.ABILITY_2, right, dummy.global_position)
-	await get_tree().create_timer(0.35).timeout
+	var d0 := me.global_position.distance_to(dummy.global_position)
+	var h0: int = hits.get(dummy, 0)
+	me.use_slot(1, Vector2.RIGHT, dummy.global_position)
+	await get_tree().create_timer(0.6).timeout
+	r["Clic der. Arañazo: se lanza al punto y conecta 2 golpes"] = me.global_position.distance_to(dummy.global_position) < d0 - 15.0 and hits.get(dummy, 0) - h0 >= 2
+	r["Sin energía: la recarga limita (Arañazo ~1,1 s)"] = not me.moves.can_use(1) and me.moves.cooldown_total[1] > 1.0
+	me.moves.reset_cooldown(1)
+	me.global_position = dummy.global_position - Vector2(80, 0)
+	await get_tree().physics_frame
+	var h1: int = hits.get(dummy, 0)
+	me.use_slot(1, Vector2.UP, me.global_position + Vector2(0, -60))
+	await get_tree().create_timer(0.6).timeout
+	r["Arañazo que no conecta: no hay 2º golpe"] = hits.get(dummy, 0) == h1 and me.machine.current_name() == "controlled"
+
+	me.use_slot(2, Vector2.RIGHT, dummy.global_position)
+	await get_tree().create_timer(0.4).timeout
 	var traps: Array = world.entities.get_children().filter(func(n): return n is ZoneTrap)
 	var trapped_ok := false
 	if not traps.is_empty():
@@ -497,41 +506,64 @@ func _kit_test() -> void:
 			dummy.global_position += Vector2(6, 0)
 			await get_tree().physics_frame
 		trapped_ok = dummy.global_position.distance_to(z.global_position) <= z.radius + 1.0
-	r["Giro Fuego atrapa (no puede salir del anillo)"] = trapped_ok
+	r["Q Giro Fuego: atrapa"] = trapped_ok
+	await get_tree().create_timer(3.2).timeout
 
-	# Movilidad: Embestida Ígnea deja estela de fuego e invulnerabilidad
-	await get_tree().create_timer(0.3).timeout
-	me.moves.energy = 100.0
-	me.use_slot(Kit.Slot.MOBILITY, Vector2.LEFT)
+	me.global_position = dummy.global_position - Vector2(50, 0)
+	var h2: int = hits.get(dummy, 0)
+	me.use_slot(3, Vector2.RIGHT)
 	await get_tree().physics_frame
 	var inv: bool = me.health.invulnerable_time > 0.0
-	await get_tree().create_timer(0.25).timeout
-	r["Embestida Ígnea: invulnerable y deja estela"] = inv and _count(world.entities, HazardPatch) >= 2
+	await get_tree().create_timer(0.3).timeout
+	r["R Embestida Ígnea: golpea, invulnerable y deja estela"] = inv and hits.get(dummy, 0) > h2 and _count(world.entities, HazardPatch) >= 2
+	r["R tiene la recarga más larga"] = me.moves.cooldown_total[3] >= 5.0
 
-	# Calor: umbrales
+	await get_tree().create_timer(0.3).timeout
+	r["Espacio: esquive (invulnerable)"] = me.dodge(Vector2.DOWN) and me.health.invulnerable_time > 0.0
 	sig.set_value(60.0)
-	var h60 := HitInfo.from(me, me.moves.slots[Kit.Slot.BASIC])
+	var h60 := HitInfo.from(me, me.moves.slots[0])
 	r["Calor ≥ 50: los ataques queman"] = h60.extra_status != null and h60.extra_status.id == "quemado"
-	var spd_normal := me.speed()
 	sig.set_value(100.0)
 	await get_tree().physics_frame
-	var h100 := HitInfo.from(me, me.moves.slots[Kit.Slot.BASIC])
-	r["Calor 100: Mar Llamas (+daño, más área)"] = sig.state_label() == "MAR LLAMAS" and h100.damage_mult > 1.2 and h100.area_mult > 1.5
+	r["Calor 100: Mar Llamas"] = sig.state_label() == "MAR LLAMAS" and HitInfo.from(me, me.moves.slots[0]).damage_mult > 1.2
 	sig.blaze_left = 0.05
 	await get_tree().create_timer(0.15).timeout
-	r["Después: Sobrecalentado (más lento, Calor en 0)"] = sig.state_label() == "SOBRECALENTADO" and me.speed() < spd_normal and sig.value == 0.0
-	sig.overheat_left = 0.0
+	r["Después: Sobrecalentado"] = sig.state_label() == "SOBRECALENTADO"
 
-	# Definitiva: Lanzallamas canalizado consume el Calor y escala
-	me.global_position = dummy.global_position - Vector2(30, 0)
-	sig.set_value(80.0)
-	me.moves.energy = 100.0
-	var hits_before: int = hits["n"]
-	me.use_slot(Kit.Slot.ULTIMATE, right)
-	await get_tree().create_timer(0.25).timeout
-	r["Lanzallamas: canaliza y consume el Calor"] = me.machine.current_name() == "channel" and sig.value < 1.0
-	await get_tree().create_timer(1.2).timeout
-	r["Lanzallamas golpea varias veces (ticks)"] = hits["n"] - hits_before >= 4
+	# --- Bellsprout (control): Polvo Veneno, Látigo Cepa, Arraigo, Somnífero ---
+	world = await _setup_kit_world("bellsprout")
+	me = world.companion
+	r["Bellsprout: estilo control con 4 ataques"] = me.instance.species.kit.archetype == "control" and me.moves.moves.size() == 4
+	var target := _dummy(world, "rattata", me.global_position + Vector2(60, 0))
+	await get_tree().physics_frame
+	var base_speed := target.speed()
+	me.use_slot(0, Vector2.RIGHT, target.global_position)
+	await get_tree().create_timer(1.4).timeout
+	r["Clic izq. Polvo Veneno: ralentiza y suma veneno"] = target.speed() < base_speed * 0.8 and target.statuses.stacks("envenenado") >= 2
+	for k in 3:
+		me.moves.reset_cooldown(0)
+		me.use_slot(0, Vector2.RIGHT, me.global_position + Vector2(30 + k * 20, 40))
+		await get_tree().physics_frame
+	await get_tree().create_timer(0.5).timeout
+	var zones: Array = world.entities.get_children().filter(func(n): return n is GroundZone and not n._expiring)
+	r["Máximo 3 parches de esporas"] = zones.size() <= 3
+
+	var grab := _dummy(world, "pidgey", me.global_position + Vector2(0, 55), false)
+	await get_tree().create_timer(0.1).timeout
+	var g0 := me.global_position.distance_to(grab.global_position)
+	me.use_slot(1, Vector2.DOWN)
+	await get_tree().create_timer(0.35).timeout
+	r["Clic der. Látigo Cepa: agarra (enraíza) y atrae"] = grab.statuses.has_status("enraizado") and me.global_position.distance_to(grab.global_position) < g0 - 10.0
+
+	me.use_slot(2, Vector2.RIGHT)
+	await get_tree().physics_frame
+	r["Q Arraigo: mitad de daño, no lo empujan"] = me.statuses.damage_taken_mult() <= 0.5 and me.statuses.knockback_mult() == 0.0 and not me.statuses.can_move()
+
+	var sleeper := _dummy(world, "vulpix", me.global_position + Vector2(-60, 0))
+	await get_tree().physics_frame
+	me.use_slot(3, Vector2.LEFT, sleeper.global_position)
+	await get_tree().create_timer(2.2).timeout
+	r["R Somnífero: duerme a quien se queda adentro"] = sleeper.statuses.has_status("dormido")
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:
@@ -543,41 +575,32 @@ func _kit_test() -> void:
 func _count(parent: Node, cls) -> int:
 	return parent.get_children().filter(func(n): return is_instance_of(n, cls)).size()
 
-# --- Vitrina del kit de Charmander (--write-movie ... -- --showcase-kit) ----------------------
+
+# --- Vitrina de kits (--write-movie ... -- --showcase-kit) -----------------------------------
 
 func _showcase_kit() -> void:
-	GameState.new_game(DB.species["charmander"])
-	GameState.active().level = 12
-	GameState.active().hp = GameState.active().max_hp()
-	GameState.wilds_enabled = false
-	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
-	await get_tree().process_frame
-	await get_tree().process_frame
-	var world := get_tree().current_scene
-	world.respawn_companion()
-	await get_tree().process_frame
+	var world: Node = await _setup_kit_world("charmander")
 	var me: Creature = world.companion
-	var dummy: Creature = world.spawner.spawn(DB.species["bulbasaur"], 45, me.global_position + Vector2(36, -4))
-	dummy.get_node("StateMachine/Wander").aggro_radius = 0.0
+	var dummy := _dummy(world, "bulbasaur", me.global_position + Vector2(60, -4))
 	await get_tree().physics_frame
-	dummy.machine.set_physics_process(false)
-	world.combat.start_battle()
-	await get_tree().physics_frame
-	me.input_source = null
 	var at := func() -> Vector2: return (dummy.global_position - me.global_position).normalized()
-	for step in [[Kit.Slot.BASIC, 0.3], [Kit.Slot.BASIC, 0.3], [Kit.Slot.BASIC, 0.6], [Kit.Slot.ABILITY_1, 0.7],
-			[Kit.Slot.ABILITY_2, 1.0], [Kit.Slot.MOBILITY, 0.6]]:
-		me.moves.energy = 100.0
-		me.use_slot(step[0], at.call() if step[0] != Kit.Slot.MOBILITY else Vector2.DOWN, dummy.global_position)
+	for step in [[0, 0.7], [1, 0.8], [2, 1.2], [3, 0.8]]:
+		me.global_position = dummy.global_position - Vector2(55, 0) if step[0] == 3 else me.global_position
+		me.use_slot(step[0], at.call(), dummy.global_position)
 		await get_tree().create_timer(step[1]).timeout
-	me.signature.set_value(100.0)  # Mar Llamas
+	me.signature.set_value(100.0)
 	await get_tree().create_timer(0.8).timeout
-	me.global_position = dummy.global_position - Vector2(34, 0)
-	me.moves.energy = 100.0
-	me.moves.reset_cooldown(Kit.Slot.ULTIMATE)
-	me.signature.blaze_left = 0.0
-	me.signature.overheat_left = 0.0
-	me.signature.set_value(90.0)
-	me.use_slot(Kit.Slot.ULTIMATE, at.call())
-	await get_tree().create_timer(1.6).timeout
+	world = await _setup_kit_world("bellsprout")
+	me = world.companion
+	var t1 := _dummy(world, "rattata", me.global_position + Vector2(55, 0), false)
+	var t2 := _dummy(world, "pidgey", me.global_position + Vector2(-50, 10))
+	await get_tree().physics_frame
+	me.use_slot(0, Vector2.RIGHT, t1.global_position)
+	await get_tree().create_timer(0.5).timeout
+	me.use_slot(1, (t1.global_position - me.global_position).normalized())
+	await get_tree().create_timer(0.6).timeout
+	me.use_slot(3, Vector2.LEFT, t2.global_position)
+	await get_tree().create_timer(0.8).timeout
+	me.use_slot(2, Vector2.RIGHT)
+	await get_tree().create_timer(1.2).timeout
 	get_tree().quit()

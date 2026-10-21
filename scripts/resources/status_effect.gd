@@ -40,6 +40,12 @@ extends Resource
 @export var heal_mult: float = 1.0
 ## Cuenta como control (aturde/inmoviliza): dispara la resistencia a control al terminar.
 @export var is_cc: bool = false
+## Multiplica el daño que recibe (Arraigo: 0.5).
+@export var damage_taken_mult: float = 1.0
+## Curación por segundo (fracción de la vida máxima): Arraigo, Síntesis.
+@export var heal_per_second: float = 0.0
+## Multiplica el empuje que recibe (0 = no lo pueden empujar).
+@export var knockback_mult: float = 1.0
 
 @export_group("Efecto visual")
 ## Partículas sobre la criatura.

@@ -11,7 +11,7 @@ extends Resource
 @export var types: Array[ElementType] = []
 ## Ataques sueltos (para los Pokémon que todavía no tienen kit propio).
 @export var moves: Array[MoveData] = []
-## Kit del plan de identidad (arquetipo + mecánica de firma + 5 habilidades). Si está, manda sobre `moves`.
+## Kit del plan de identidad (estilo + mecánica de firma + 4 ataques). Si está, manda sobre `moves`.
 @export var kit: Kit
 
 @export_group("Stats base oficiales")

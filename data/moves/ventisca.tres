@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/hielo.tres" id="1_b55p5"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_k583e"]
 [ext_resource type="Resource" path="res://data/status/congelado.tres" id="3_espym"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_k583e"]
 
 [resource]
 script = ExtResource("2_k583e")
@@ -13,7 +14,6 @@ kind = 2
 category = 1
 power = 110.0
 cooldown = 5.15
-energy_cost = 42.0
 cast_time = 0.45
 knockback = 180.0
 recovery = 0.5
