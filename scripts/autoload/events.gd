@@ -22,6 +22,8 @@ signal creature_damaged(creature: Node, amount: float, hit: HitInfo)
 signal creature_fainted(creature: Node)
 signal status_applied(creature: Node, status: StatusEffect)
 signal status_removed(creature: Node, status: StatusEffect)
+## Una mecánica de firma hizo algo destacable (Mar Llamas, Descarga...): texto flotante.
+signal signature_triggered(creature: Node, text: String, color: Color)
 ## Se disparó una interacción elemento × estado (agua apaga quemado, eléctrico sobre empapado...).
 signal interaction_triggered(creature: Node, interaction: StatusInteraction)
 ## Un elemento impactó el mundo en una posición (lo usa el entorno reactivo en la Etapa 3).

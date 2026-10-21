@@ -375,7 +375,7 @@ interface HabilidadDef {
 |---|---|---|
 | I-0 | Plan guardado; análisis de choques con lo construido; decisiones abiertas | ✅ Hecho |
 | I-1 | Base compartida: estados nuevos (empapado, enraizado, envenenado con stacks, dormido, desorientado, herido; parálisis por acumulación), eventos de combate, resistencia a control, telegrafiado y recuperación | ✅ Hecho |
-| I-2 | Kit de 5 ranuras + controles nuevos; Charmander completo (Calor, Mar Llamas, Sobrecalentado) | Pendiente |
+| I-2 | Kit de 5 ranuras + controles nuevos; Charmander completo (Calor, Mar Llamas, Sobrecalentado) | ✅ Hecho |
 | I-3 | Pikachu (Estática, cargas, cancelación de combos) | Pendiente |
 | I-4 | Squirtle (Refugio, parry, Presión, charcos) | Pendiente |
 | I-5 | Bulbasaur (semillas en el suelo, Somnífero telegrafiado, Rayo Solar) | Pendiente |
@@ -417,6 +417,30 @@ interface HabilidadDef {
 - **Recuperación:** `MoveData.recovery` → estado `recovery` (no ataca ni esquiva, se mueve al 35%).
 - Visual: raíces a los pies (Enraizado), "z" (Dormido), barra de parálisis, puntitos por stack de veneno.
 - Autotest: `--autotest-identity` verifica cada regla (14 chequeos).
+
+## Cómo quedó implementado (I-2: kit + Charmander)
+- **Datos** (todo editable en el inspector): `Kit` (`scripts/resources/kit.gd`): arquetipo, rango preferido
+  (IA), mecánica de firma y 5 ranuras. `SignatureData`: recurso máximo, `gains` por evento, decaimiento en/fuera
+  de combate, umbrales (marcas de la barra), `params` y el script de comportamiento. Las habilidades son
+  `MoveData` con tipos nuevos: `MELEE` (combo), `ZONE` (zona que atrapa), `CHANNEL` (cono canalizado), además de
+  abanico de proyectiles, estela de la movilidad, costo/escalado de recurso. `SpeciesData.kit` lo conecta.
+- **Kit de Charmander** en `data/kits/charmander/`: Arañazo (combo ×3, el 3º empuja 260), Ascuas (3 brasas en
+  abanico de 24°), Giro Fuego (zona de 30 px que atrapa, carga 0,25 s), Embestida Ígnea (dash invulnerable que
+  deja fuego en el suelo 2,5 s), Lanzallamas (canalizado 1,3 s en cono de 40°, consume todo el Calor y hace
+  hasta ×2 de daño).
+- **Calor** (`scripts/combat/signatures/heat_mechanic.gd`): +7 al pegar, +5 al recibir daño, −6/s fuera de
+  combate. ≥50: los golpes queman. 100: Mar Llamas 6 s (×1,25 daño, áreas ×1,6, regenera 1,5%/s, aura de fuego).
+  Después: Sobrecalentado 3 s (×0,7 velocidad).
+- **Mecánica de firma genérica** (`SignatureMechanic`): escucha las señales de su criatura y expone ganchos
+  (`modify_hit`, `speed_mult`, `state_label`, `consume`). Mientras canaliza una habilidad que gastó recurso,
+  no gana recurso.
+- **Pokémon sin kit**: sus 4 ataques se mapean solos (1-3 en básico/hab.1/hab.2, el 4º como definitiva) y la
+  movilidad es el esquive genérico.
+- **IA**: usa el rango preferido del kit, guarda la definitiva para cuando tiene ≥60% de recurso y esquiva con la
+  movilidad propia.
+- **Interfaz**: 5 ranuras con su tecla, pasos del combo, ícono de carga y de costo de recurso; barra de la mecánica
+  de firma con marcas en los umbrales y estado ("MAR LLAMAS", "SOBRECALENTADO", "QUEMA"); arquetipo en el panel.
+- Autotests: `--autotest-kit` (13 chequeos del kit de Charmander); vitrina visual `--showcase-kit`.
 
 ## Qué ya existe y se reutiliza
 - **Estados como Resources** (`StatusEffect` + `StatusEffects`): duración, daño por tiempo, multiplicadores,

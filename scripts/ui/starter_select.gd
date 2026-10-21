@@ -41,7 +41,7 @@ func _card(sp: SpeciesData, index: int) -> Control:
 
 func _unhandled_input(event: InputEvent) -> void:
 	for i in DB.config.starters.size():
-		if event.is_action_pressed("attack_%d" % (i + 1)) and event is InputEventKey:
+		if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_1 + i:
 			_choose(DB.config.starters[i])
 
 

@@ -12,9 +12,15 @@ func aim(actor: Creature) -> Vector2:
 	return actor.get_global_mouse_position() - (actor.global_position + Vector2(0, -8))
 
 
-func wants_move(i: int) -> bool:
-	return Input.is_action_pressed("attack_%d" % (i + 1))
+## Punto del mundo apuntado (para ubicar zonas como Giro Fuego).
+func aim_point(actor: Creature) -> Vector2:
+	return actor.get_global_mouse_position()
 
 
-func wants_dodge() -> bool:
-	return Input.is_action_just_pressed("dodge")
+## ¿Quiere usar la habilidad de esta ranura (Kit.Slot)? La movilidad se activa al apretar; el resto
+## mientras se mantenga apretado (así el combo básico sale manteniendo el clic).
+func wants_slot(slot: int) -> bool:
+	var action: String = Controls.SLOT_ACTIONS[slot]
+	if slot == Kit.Slot.MOBILITY:
+		return Input.is_action_just_pressed(action)
+	return Input.is_action_pressed(action)

@@ -21,6 +21,8 @@ func physics_update(_delta: float) -> void:
 
 
 func _preferred_range() -> float:
+	if actor.instance.species.kit != null:
+		return actor.instance.species.kit.preferred_range
 	var best := 30.0
 	for m in actor.moves.moves:
 		if m.kind == MoveData.Kind.PROJECTILE:

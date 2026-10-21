@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_46t5i"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_g146w"]
+
+[resource]
+script = ExtResource("2_g146w")
+id = "aranazo_combo"
+display_name = "Arañazo"
+element = ExtResource("1_46t5i")
+kind = 4
+power_mult = 0.6
+cooldown = 0.7
+energy_cost = 3.0
+knockback = 70.0
+recovery = 0.15
+melee_range = 13.0
+combo_steps = 3
+combo_window = 0.6
+combo_step_cooldown = 0.28

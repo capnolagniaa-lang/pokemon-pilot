@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_1ukug"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rtetx"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="3_nm1l1"]
+
+[resource]
+script = ExtResource("2_rtetx")
+id = "embestida_ignea"
+display_name = "Embestida Ígnea"
+element = ExtResource("1_1ukug")
+kind = 1
+power = 50.0
+cooldown = 2.2
+energy_cost = 12.0
+dash_time = 0.18
+dash_hits = false
+invulnerable_time = 0.18
+trail_power = 20.0
+trail_status = ExtResource("3_nm1l1")
+trail_status_chance = 0.4
+trail_duration = 2.5

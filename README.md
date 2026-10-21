@@ -18,10 +18,14 @@ Acceso directo sin abrir el editor: un `.lnk` que apunte a `Godot_v4.7.2-stable_
 | Sacar / guardar a tu Pokémon para pelear | F |
 | Mover al Pokémon (en combate) | WASD |
 | Apuntar | Mouse |
-| Ataques 1-4 | 1, 2, 3, 4 (o Clic izq. = 1, Clic der. = 2) |
-| Esquivar (invulnerable un instante) | Espacio |
+| Básico (mantener para el combo) | Clic izq. (o 1) |
+| Habilidad 1 | Clic der. (o 2) |
+| Habilidad 2 | Q (o 3) |
+| Movilidad (esquive propio) | Espacio |
+| Definitiva | R (o 4) |
+| Cambiar de Pokémon | Tab |
 
-Si un salvaje te ve, el combate empieza solo y pasás a controlar a tu Pokémon. Algunos ataques tienen carga (un golpe fuerte la interrumpe) y pueden quemar, paralizar o congelar.
+Si un salvaje te ve, el combate empieza solo y pasás a controlar a tu Pokémon. Cada Pokémon con kit propio tiene un arquetipo y una **mecánica de firma** (por ejemplo, el **Calor** de Charmander: sube peleando, desde 50 quema y en 100 entra en Mar Llamas). Los ataques fuertes se telegrafían en el suelo y dejan una ventana de recuperación. Diseño completo: [docs/PLAN_IDENTIDAD_COMBATE.md](docs/PLAN_IDENTIDAD_COMBATE.md).
 
 ## Estructura
 

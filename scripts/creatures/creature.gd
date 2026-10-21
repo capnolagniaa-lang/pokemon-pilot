@@ -43,6 +43,8 @@ var facing := Vector2.DOWN
 var knockback := Vector2.ZERO
 ## Segundos que quedan de resistencia a control.
 var cc_resist_left := 0.0
+## Mecánica de firma (si la especie tiene kit con una).
+var signature: SignatureMechanic
 
 var _clock := 0.0
 
@@ -60,7 +62,12 @@ func _ready() -> void:
 	sprite.species = instance.species
 	health.instance = instance
 	health.heal_mult_source = statuses
-	moves.setup(instance.species.moves)
+	moves.setup(instance.species)
+	var kit := instance.species.kit
+	if kit != null and kit.signature != null and kit.signature.mechanic_script != null:
+		signature = kit.signature.mechanic_script.new()
+		add_child(signature)
+		signature.setup(self, kit.signature)
 	hurtbox.set_team(team)
 	collision_layer = BODY_LAYER_ALLY if team == Team.ALLY else BODY_LAYER_WILD
 	dash_hitbox.monitoring = false
@@ -100,7 +107,10 @@ static func move_speed_for(speed_stat: float) -> float:
 
 
 func speed() -> float:
-	return move_speed_for(instance.stat("speed")) * statuses.speed_mult()
+	var m := statuses.speed_mult()
+	if signature != null:
+		m *= signature.speed_mult()
+	return move_speed_for(instance.stat("speed")) * m
 
 
 ## Ataque (físico) o At. Esp. (especial) según la categoría; la quemadura baja solo el físico.
@@ -131,55 +141,115 @@ func can_act() -> bool:
 	return not health.is_dead() and statuses.can_act() and machine.current_name() in ["controlled", "attack", "chase", "flee", "wander", "idle", "follow"]
 
 
-## Intenta usar el ataque i apuntando a aim. Con cast_time pasa por el estado "cast".
-func use_move(i: int, aim: Vector2) -> bool:
-	if not can_act() or i >= moves.moves.size():
+## Usa la habilidad de una ranura (Kit.Slot) apuntando a `aim`; `point` es el lugar del mundo apuntado
+## (para ubicar zonas). Con cast_time pasa por el estado "cast" (telegrafiado).
+func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
+	if slot == Kit.Slot.MOBILITY and moves.slots[slot] == null:
+		return _generic_dodge(aim)
+	if not can_act() or slot >= moves.slots.size() or moves.slots[slot] == null:
 		return false
-	if moves.moves[i].kind == MoveData.Kind.DASH and not statuses.can_move():
+	if moves.slots[slot].kind == MoveData.Kind.DASH and not statuses.can_move():
 		return false
-	var m := moves.consume(i)
-	if m == null:
+	var used := moves.consume(slot)
+	if used.is_empty():
 		return false
+	var m: MoveData = used[0]
+	var step: int = used[1]
 	var jitter := statuses.aim_jitter()
 	if jitter > 0.0:
 		aim = aim.rotated(randf_range(-jitter, jitter))
 	if aim.length() > 0.01:
 		facing = aim.normalized()
+	var spent := 0.0
+	if m.resource_cost != 0.0 and signature != null:
+		spent = signature.consume(m.resource_cost)
 	Events.move_used.emit(self, m)
+	var msg := {"move": m, "aim": facing, "step": step, "point": point, "spent": spent}
 	if m.cast_time > 0.0:
-		machine.transition_to("cast", {"move": m, "aim": facing})
+		machine.transition_to("cast", msg)
 	else:
-		release_move(m, facing)
+		release_move(msg)
 	return true
 
 
-## Lanza el efecto del ataque (después de la carga, si tenía). Si el ataque tiene recuperación, la
-## criatura queda expuesta ese tiempo (ventana de castigo).
-func release_move(m: MoveData, aim: Vector2) -> void:
+## Compatibilidad: usar "el ataque i" = la ranura i.
+func use_move(i: int, aim: Vector2) -> bool:
+	return use_slot(i, aim)
+
+
+## Lanza el efecto de la habilidad (después de la carga, si tenía). msg: move, aim, step (combo),
+## point (zona), spent (recurso de firma consumido). Si tiene recuperación, queda expuesto (ventana de castigo).
+func release_move(msg: Dictionary) -> void:
+	var m: MoveData = msg["move"]
+	var aim: Vector2 = msg.get("aim", facing)
+	var step: int = msg.get("step", 0)
 	sprite.play_once("Attack", 0.35)
 	var hit := HitInfo.from(self, m)
+	if m.resource_scaling > 0.0 and signature != null:
+		hit.damage_mult *= 1.0 + m.resource_scaling * msg.get("spent", 0.0) / signature.data.max_value
 	move_released.emit(m)
+	var recovery := m.recovery
 	match m.kind:
 		MoveData.Kind.PROJECTILE:
-			var p := Projectile.new()
-			get_parent().add_child(p)
-			p.launch(hit, global_position + Vector2(0, -8) + aim * 8.0, aim)
+			var n := maxi(1, m.projectile_count)
+			for k in n:
+				var ang := 0.0 if n == 1 else deg_to_rad(lerpf(-m.spread_deg / 2.0, m.spread_deg / 2.0, k / float(n - 1)))
+				var d := aim.rotated(ang)
+				var p := Projectile.new()
+				get_parent().add_child(p)
+				p.launch(hit, global_position + Vector2(0, -8) + d * 8.0, d)
 		MoveData.Kind.AREA:
 			var a := AreaEffect.new()
 			get_parent().add_child(a)
 			a.trigger(hit, global_position + Vector2(0, -6))
+		MoveData.Kind.MELEE:
+			var final := step == m.combo_steps - 1
+			if final:
+				hit.knockback = m.final_knockback
+			else:
+				recovery = 0.0
+			var s := MeleeSwing.new()
+			get_parent().add_child(s)
+			s.swing(hit, global_position + Vector2(0, -8) + aim * m.melee_range, m.swing_radius * hit.area_mult, aim)
+		MoveData.Kind.ZONE:
+			var z := ZoneTrap.new()
+			get_parent().add_child(z)
+			z.place(hit, zone_point(m, msg.get("point", Vector2.INF), aim))
 		MoveData.Kind.DASH:
-			dash_hitbox.setup(hit)
-			dash_hitbox.reset_targets()
-			machine.transition_to("dash", {"dir": aim, "time": m.dash_time, "attack": true, "recovery": m.recovery})
+			if m.dash_hits:
+				dash_hitbox.setup(hit)
+				dash_hitbox.reset_targets()
+			else:
+				health.invulnerable_time = maxf(health.invulnerable_time, m.invulnerable_time)
+				dodged.emit()
+			machine.transition_to("dash", {"dir": aim, "time": m.dash_time, "attack": m.dash_hits,
+				"recovery": recovery, "trail": m if m.trail_power > 0.0 else null})
 			return
 		MoveData.Kind.SHIELD:
 			health.shield_time = m.duration
-	if m.recovery > 0.0:
-		machine.transition_to("recovery", {"time": m.recovery})
+		MoveData.Kind.CHANNEL:
+			machine.transition_to("channel", {"move": m, "aim": aim, "hit": hit})
+			return
+	if recovery > 0.0:
+		machine.transition_to("recovery", {"time": recovery})
 
 
+## Dónde cae una zona: en el punto apuntado (limitado al alcance), en el objetivo, o delante.
+func zone_point(m: MoveData, point: Vector2, aim: Vector2) -> Vector2:
+	if point == Vector2.INF:
+		point = target.global_position if is_instance_valid(target) else global_position + aim * m.placement_range * 0.6
+	var d := point - global_position
+	return global_position + d.limit_length(m.placement_range)
+
+
+## Esquivar: usa la movilidad propia del kit si tiene; si no, el esquive genérico.
 func dodge(dir: Vector2) -> bool:
+	if moves.slots.size() > Kit.Slot.MOBILITY and moves.slots[Kit.Slot.MOBILITY] != null:
+		return use_slot(Kit.Slot.MOBILITY, dir if dir.length() > 0.1 else facing)
+	return _generic_dodge(dir)
+
+
+func _generic_dodge(dir: Vector2) -> bool:
 	if not can_act() or not statuses.can_move() or not moves.consume_dodge():
 		return false
 	health.invulnerable_time = DODGE_TIME + 0.12
@@ -214,7 +284,7 @@ func _on_hit(hit: HitInfo) -> void:
 		mult *= it.damage_mult
 	var dealt := health.apply_damage(Damage.resolve(hit, instance) * mult)
 	statuses.on_damaged()
-	knockback = (global_position - hit.origin).normalized() * hit.move.knockback
+	knockback = (global_position - hit.origin).normalized() * hit.knockback
 	sprite.flash()
 	sprite.play_once("Hurt", 0.25)
 	var attacker: Creature = hit.attacker if is_instance_valid(hit.attacker) else null
@@ -227,13 +297,14 @@ func _on_hit(hit: HitInfo) -> void:
 			attacker.killed.emit(self)
 		return
 	var state := machine.current_name()
-	if hit.move.status != null and randf() < hit.move.status_chance:
-		statuses.apply(hit.move.status)
-		if attacker:
-			attacker.status_inflicted.emit(self, hit.move.status)
+	for pair in [[hit.move.status, hit.move.status_chance], [hit.extra_status, hit.extra_status_chance]]:
+		if pair[0] != null and randf() < pair[1]:
+			statuses.apply(pair[0])
+			if attacker:
+				attacker.status_inflicted.emit(self, pair[0])
 	for it in interactions:
 		_apply_interaction(it)
-	if (hit.move.knockback >= STAGGER_KNOCKBACK or state == "cast") and machine.current_name() != "stunned":
+	if (hit.knockback >= STAGGER_KNOCKBACK or state in ["cast", "channel"]) and machine.current_name() != "stunned":
 		stun(0.25)
 	if team == Team.WILD and not is_instance_valid(target) and attacker:
 		target = attacker

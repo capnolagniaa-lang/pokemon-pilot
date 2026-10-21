@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Kit" format=3]
+
+[ext_resource type="Resource" path="res://data/kits/charmander/ascuas_abanico.tres" id="1_syffm"]
+[ext_resource type="Resource" path="res://data/kits/charmander/giro_fuego_trampa.tres" id="2_16tdk"]
+[ext_resource type="Resource" path="res://data/kits/charmander/aranazo_combo.tres" id="3_kcndw"]
+[ext_resource type="Resource" path="res://data/kits/charmander/embestida_ignea.tres" id="4_xhb42"]
+[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="5_ho2nc"]
+[ext_resource type="Resource" path="res://data/kits/charmander/calor.tres" id="6_0vytt"]
+[ext_resource type="Resource" path="res://data/kits/charmander/lanzallamas_canalizado.tres" id="7_1xqjq"]
+
+[resource]
+script = ExtResource("5_ho2nc")
+archetype = "bruiser"
+preferred_range = 34.0
+signature = ExtResource("6_0vytt")
+basic = ExtResource("3_kcndw")
+ability_1 = ExtResource("1_syffm")
+ability_2 = ExtResource("2_16tdk")
+mobility = ExtResource("4_xhb42")
+ultimate = ExtResource("7_1xqjq")

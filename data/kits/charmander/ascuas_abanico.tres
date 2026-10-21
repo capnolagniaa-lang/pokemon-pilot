@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_uds70"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ow7c8"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="3_701gw"]
+
+[resource]
+script = ExtResource("2_ow7c8")
+id = "ascuas_abanico"
+display_name = "Ascuas"
+element = ExtResource("1_uds70")
+category = 1
+power_mult = 0.55
+cooldown = 1.6
+energy_cost = 14.0
+knockback = 80.0
+recovery = 0.08
+status = ExtResource("3_701gw")
+status_chance = 0.1
+speed = 280.0
+size = 3.5
+lifetime = 0.75
+projectile_count = 3
+spread_deg = 24.0

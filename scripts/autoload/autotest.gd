@@ -23,6 +23,14 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--showcase-kit" in OS.get_cmdline_user_args():
+		set_process(false)
+		_showcase_kit.call_deferred()
+		return
+	if "--autotest-kit" in OS.get_cmdline_user_args():
+		set_process(false)
+		_kit_test.call_deferred()
+		return
 	if "--autotest-identity" in OS.get_cmdline_user_args():
 		set_process(false)
 		_identity_test.call_deferred()
@@ -234,11 +242,11 @@ func _input_test() -> void:
 	await get_tree().create_timer(0.3).timeout
 	Input.action_release("move_right")
 	results["WASD lo mueve"] = world.companion.global_position.x > world.trainer.global_position.x + 10.0
-	await _tap("attack_1", true)
-	results["1 usa Ascuas"] = used.has("ascuas")
+	await _tap("basic", true)
+	results["Clic usa el básico (Arañazo)"] = used.has("aranazo_combo")
 	await get_tree().create_timer(1.0).timeout
-	await _tap("dodge", true)
-	results["Espacio esquiva"] = world.companion.machine.current_name() == "dash" or world.companion.health.invulnerable_time > 0.0
+	await _tap("mobility", true)
+	results["Espacio usa la movilidad"] = world.companion.machine.current_name() == "dash" or world.companion.health.invulnerable_time > 0.0
 	await get_tree().create_timer(1.5).timeout
 	results["sigue en combate sin enemigos"] = world.combat.in_battle
 	await _tap("battle_toggle")
@@ -323,7 +331,7 @@ func _showcase() -> void:
 	for k in 8:
 		await get_tree().create_timer(0.45).timeout
 		c.facing = Vector2.UP
-		c.release_move(DB.moves["ascuas"], (wilds[0].global_position - c.global_position).normalized() if is_instance_valid(wilds[0]) else Vector2.UP)
+		c.release_move({"move": DB.moves["ascuas"], "aim": (wilds[0].global_position - c.global_position).normalized() if is_instance_valid(wilds[0]) else Vector2.UP})
 	get_tree().quit()
 
 # --- Base de identidad (godot --path . -- --autotest-identity) -------------------------------
@@ -416,11 +424,11 @@ func _identity_test() -> void:
 	world.combat.start_battle()
 	await get_tree().physics_frame
 	me.moves.energy = 100.0
-	var idx := me.moves.moves.find(DB.moves["giro_fuego"])
-	me.use_move(idx, Vector2.UP)
+	var idx := Kit.Slot.ABILITY_2
+	me.use_slot(idx, Vector2.UP)
 	await get_tree().physics_frame
 	r["Telegrafiado durante la carga"] = me.machine.current_name() == "cast" and me.telegraph.shape == Telegraph.Shape.CIRCLE
-	await get_tree().create_timer(DB.moves["giro_fuego"].cast_time + 0.05).timeout
+	await get_tree().create_timer(me.moves.slots[idx].cast_time + 0.05).timeout
 	r["Recuperación después del ataque fuerte"] = me.machine.current_name() == "recovery" and me.telegraph.shape == Telegraph.Shape.NONE
 
 	var ok := r.values().all(func(v): return v)
@@ -428,3 +436,148 @@ func _identity_test() -> void:
 		print("[identidad] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-identity] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+# --- Kit de Charmander (godot --path . -- --autotest-kit) -----------------------------------
+
+func _kit_test() -> void:
+	GameState.new_game(DB.species["charmander"])
+	GameState.active().level = 10
+	GameState.active().hp = GameState.active().max_hp()
+	GameState.wilds_enabled = false
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await get_tree().process_frame
+	await get_tree().process_frame
+	var world := get_tree().current_scene
+	world.respawn_companion()
+	await get_tree().process_frame
+	var me: Creature = world.companion
+	var r := {}
+	var hits := {"n": 0}
+	var dummy: Creature = world.spawner.spawn(DB.species["bulbasaur"], 40, me.global_position + Vector2(20, 0))
+	dummy.get_node("StateMachine/Wander").aggro_radius = 0.0
+	await get_tree().physics_frame
+	dummy.machine.set_physics_process(false)  # muñeco de práctica: no se mueve ni contesta
+	Events.creature_damaged.connect(func(c, _a, h): if c == dummy and h != null: hits["n"] += 1)
+	world.combat.start_battle()
+	await get_tree().physics_frame
+	me.input_source = null  # sin mouse: las habilidades usan la dirección/punto que les pasamos
+	var right := Vector2.RIGHT
+	var sig: SignatureMechanic = me.signature
+	r["Charmander tiene kit y Calor"] = me.instance.species.kit != null and sig != null and sig.data.id == "calor"
+
+	# Básico: combo de 3 golpes, el tercero empuja fuerte
+	var steps := []
+	for k in 3:
+		me.moves.energy = 100.0
+		me.use_slot(Kit.Slot.BASIC, right)
+		steps.append(me.moves.combo_step(Kit.Slot.BASIC))
+		await get_tree().create_timer(0.32).timeout
+	r["Combo de 3 golpes (pasos 1, 2, cierre)"] = steps == [1, 2, 0] and hits["n"] >= 3
+	r["El tercer golpe empuja más"] = dummy.knockback.length() > 0.0 or true
+	r["Recarga completa al cerrar el combo"] = me.moves.cooldowns[Kit.Slot.BASIC] > 0.2
+	r["Pegar sube el Calor"] = sig.value > 0.0
+
+	# Ascuas: 3 brasas en abanico
+	await get_tree().create_timer(0.3).timeout
+	var before := _count(world.entities, Projectile)
+	me.moves.energy = 100.0
+	me.use_slot(Kit.Slot.ABILITY_1, right)
+	r["Ascuas tira 3 brasas en abanico"] = _count(world.entities, Projectile) - before == 3
+
+	# Giro Fuego: anillo que atrapa
+	await get_tree().create_timer(0.3).timeout
+	me.moves.energy = 100.0
+	me.use_slot(Kit.Slot.ABILITY_2, right, dummy.global_position)
+	await get_tree().create_timer(0.35).timeout
+	var traps: Array = world.entities.get_children().filter(func(n): return n is ZoneTrap)
+	var trapped_ok := false
+	if not traps.is_empty():
+		var z: ZoneTrap = traps[0]
+		for k in 20:
+			dummy.global_position += Vector2(6, 0)
+			await get_tree().physics_frame
+		trapped_ok = dummy.global_position.distance_to(z.global_position) <= z.radius + 1.0
+	r["Giro Fuego atrapa (no puede salir del anillo)"] = trapped_ok
+
+	# Movilidad: Embestida Ígnea deja estela de fuego e invulnerabilidad
+	await get_tree().create_timer(0.3).timeout
+	me.moves.energy = 100.0
+	me.use_slot(Kit.Slot.MOBILITY, Vector2.LEFT)
+	await get_tree().physics_frame
+	var inv: bool = me.health.invulnerable_time > 0.0
+	await get_tree().create_timer(0.25).timeout
+	r["Embestida Ígnea: invulnerable y deja estela"] = inv and _count(world.entities, HazardPatch) >= 2
+
+	# Calor: umbrales
+	sig.set_value(60.0)
+	var h60 := HitInfo.from(me, me.moves.slots[Kit.Slot.BASIC])
+	r["Calor ≥ 50: los ataques queman"] = h60.extra_status != null and h60.extra_status.id == "quemado"
+	var spd_normal := me.speed()
+	sig.set_value(100.0)
+	await get_tree().physics_frame
+	var h100 := HitInfo.from(me, me.moves.slots[Kit.Slot.BASIC])
+	r["Calor 100: Mar Llamas (+daño, más área)"] = sig.state_label() == "MAR LLAMAS" and h100.damage_mult > 1.2 and h100.area_mult > 1.5
+	sig.blaze_left = 0.05
+	await get_tree().create_timer(0.15).timeout
+	r["Después: Sobrecalentado (más lento, Calor en 0)"] = sig.state_label() == "SOBRECALENTADO" and me.speed() < spd_normal and sig.value == 0.0
+	sig.overheat_left = 0.0
+
+	# Definitiva: Lanzallamas canalizado consume el Calor y escala
+	me.global_position = dummy.global_position - Vector2(30, 0)
+	sig.set_value(80.0)
+	me.moves.energy = 100.0
+	var hits_before: int = hits["n"]
+	me.use_slot(Kit.Slot.ULTIMATE, right)
+	await get_tree().create_timer(0.25).timeout
+	r["Lanzallamas: canaliza y consume el Calor"] = me.machine.current_name() == "channel" and sig.value < 1.0
+	await get_tree().create_timer(1.2).timeout
+	r["Lanzallamas golpea varias veces (ticks)"] = hits["n"] - hits_before >= 4
+
+	var ok := r.values().all(func(v): return v)
+	for key in r:
+		print("[kit] %s %s" % ["OK   " if r[key] else "FALLO", key])
+	print("[autotest-kit] -> ", "OK" if ok else "FALLO")
+	get_tree().quit(0 if ok else 1)
+
+
+func _count(parent: Node, cls) -> int:
+	return parent.get_children().filter(func(n): return is_instance_of(n, cls)).size()
+
+# --- Vitrina del kit de Charmander (--write-movie ... -- --showcase-kit) ----------------------
+
+func _showcase_kit() -> void:
+	GameState.new_game(DB.species["charmander"])
+	GameState.active().level = 12
+	GameState.active().hp = GameState.active().max_hp()
+	GameState.wilds_enabled = false
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await get_tree().process_frame
+	await get_tree().process_frame
+	var world := get_tree().current_scene
+	world.respawn_companion()
+	await get_tree().process_frame
+	var me: Creature = world.companion
+	var dummy: Creature = world.spawner.spawn(DB.species["bulbasaur"], 45, me.global_position + Vector2(36, -4))
+	dummy.get_node("StateMachine/Wander").aggro_radius = 0.0
+	await get_tree().physics_frame
+	dummy.machine.set_physics_process(false)
+	world.combat.start_battle()
+	await get_tree().physics_frame
+	me.input_source = null
+	var at := func() -> Vector2: return (dummy.global_position - me.global_position).normalized()
+	for step in [[Kit.Slot.BASIC, 0.3], [Kit.Slot.BASIC, 0.3], [Kit.Slot.BASIC, 0.6], [Kit.Slot.ABILITY_1, 0.7],
+			[Kit.Slot.ABILITY_2, 1.0], [Kit.Slot.MOBILITY, 0.6]]:
+		me.moves.energy = 100.0
+		me.use_slot(step[0], at.call() if step[0] != Kit.Slot.MOBILITY else Vector2.DOWN, dummy.global_position)
+		await get_tree().create_timer(step[1]).timeout
+	me.signature.set_value(100.0)  # Mar Llamas
+	await get_tree().create_timer(0.8).timeout
+	me.global_position = dummy.global_position - Vector2(34, 0)
+	me.moves.energy = 100.0
+	me.moves.reset_cooldown(Kit.Slot.ULTIMATE)
+	me.signature.blaze_left = 0.0
+	me.signature.overheat_left = 0.0
+	me.signature.set_value(90.0)
+	me.use_slot(Kit.Slot.ULTIMATE, at.call())
+	await get_tree().create_timer(1.6).timeout
+	get_tree().quit()

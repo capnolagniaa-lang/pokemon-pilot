@@ -15,7 +15,7 @@ func trigger(p_hit: HitInfo, at: Vector2) -> void:
 	var m := p_hit.move
 	setup(p_hit, false)
 	global_position = at
-	radius = m.radius
+	radius = m.radius * p_hit.area_mult
 	var glow := minf(m.element.glow, 1.3)
 	color = m.element.hdr(m.element.color, glow / m.element.glow)
 	var shape := CircleShape2D.new()

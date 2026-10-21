@@ -40,6 +40,7 @@ func show_line(p_dir: Vector2, p_length: float, p_width: float, p_color: Color) 
 
 func clear() -> void:
 	shape = Shape.NONE
+	position = Vector2.ZERO
 	queue_redraw()
 
 

@@ -9,7 +9,10 @@ extends Resource
 ## Número de Pokédex: se usa para buscar sus sprites.
 @export var dex: int = 0
 @export var types: Array[ElementType] = []
+## Ataques sueltos (para los Pokémon que todavía no tienen kit propio).
 @export var moves: Array[MoveData] = []
+## Kit del plan de identidad (arquetipo + mecánica de firma + 5 habilidades). Si está, manda sobre `moves`.
+@export var kit: Kit
 
 @export_group("Stats base oficiales")
 @export var base_hp: int = 50

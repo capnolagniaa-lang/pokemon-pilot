@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_0vo34"]
+[ext_resource type="Resource" path="res://data/kits/charmander/kit.tres" id="1_65dpy"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_65dpy"]
 [ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_fsuga"]
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="4_tljsa"]
@@ -16,6 +17,7 @@ display_name = "Charmander"
 dex = 4
 types = Array[ExtResource("7_1yptp")]([ExtResource("8_yuxux")])
 moves = Array[ExtResource("1_0vo34")]([ExtResource("2_65dpy"), ExtResource("3_fsuga"), ExtResource("4_tljsa"), ExtResource("5_jtnfp")])
+kit = ExtResource("1_65dpy")
 base_hp = 39
 base_attack = 52
 base_defense = 43

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/heat_mechanic.gd" id="1_tkysn"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_m2glx"]
+
+[resource]
+script = ExtResource("2_m2glx")
+id = "calor"
+display_name = "Calor"
+color = Color(1, 0.42, 0.15, 1)
+gains = {
+"damage_received": 5.0,
+"hit_dealt": 7.0
+}
+decay_out_of_combat = 6.0
+thresholds = Array[float]([50.0, 100.0])
+mechanic_script = ExtResource("1_tkysn")
+params = {
+"blaze_area_mult": 1.6,
+"blaze_damage_mult": 1.25,
+"blaze_duration": 6.0,
+"blaze_regen": 0.015,
+"burn_threshold": 50.0,
+"overheat_duration": 3.0,
+"overheat_speed": 0.7
+}

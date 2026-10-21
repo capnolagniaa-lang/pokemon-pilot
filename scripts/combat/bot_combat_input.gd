@@ -1,6 +1,7 @@
 class_name BotCombatInput
 extends CombatInput
-## Órdenes automáticas para el Pokémon controlado (autotest): mantiene distancia, rodea, ataca y esquiva.
+## Órdenes automáticas para el Pokémon controlado (autotest): mantiene distancia, rodea, usa las ranuras
+## del kit al azar y esquiva de vez en cuando.
 
 var world: Node
 var _choice := -1
@@ -28,9 +29,9 @@ func move_dir(actor: Creature) -> Vector2:
 	var d := to.length()
 	if randf() < 0.01:
 		_strafe = -_strafe
-	if d > 70.0:
+	if d > 60.0:
 		return to.normalized()
-	if d < 35.0:
+	if d < 22.0:
 		return -to.normalized()
 	return to.normalized().orthogonal() * _strafe
 
@@ -40,13 +41,16 @@ func aim(actor: Creature) -> Vector2:
 	return (e.global_position - actor.global_position) if e != null else actor.facing
 
 
-func wants_move(i: int) -> bool:
+func aim_point(actor: Creature) -> Vector2:
+	var e := _enemy(actor)
+	return e.global_position if e != null else actor.global_position + actor.facing * 40.0
+
+
+func wants_slot(slot: int) -> bool:
+	if slot == Kit.Slot.MOBILITY:
+		return randf() < 0.01
 	var now := Time.get_ticks_msec() / 1000.0
 	if now - _choice_time > 0.35:
 		_choice_time = now
-		_choice = randi() % 4
-	return i == _choice
-
-
-func wants_dodge() -> bool:
-	return randf() < 0.01
+		_choice = [Kit.Slot.BASIC, Kit.Slot.BASIC, Kit.Slot.ABILITY_1, Kit.Slot.ABILITY_2, Kit.Slot.ULTIMATE][randi() % 5]
+	return slot == _choice

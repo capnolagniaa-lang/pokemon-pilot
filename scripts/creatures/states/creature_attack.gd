@@ -65,27 +65,36 @@ func physics_update(delta: float) -> void:
 
 func _ideal_range() -> float:
 	var r := 28.0
+	if actor.instance.species.kit != null:
+		return actor.instance.species.kit.preferred_range
 	for m in actor.moves.moves:
 		if m.kind == MoveData.Kind.PROJECTILE:
 			r = maxf(r, m.reach() * 0.55)
 	return r
 
 
+## Elige una ranura del kit según el alcance. La definitiva se guarda para cuando conviene (mucho recurso
+## de firma, o 30% de las veces si no tiene mecánica). La movilidad no se usa para atacar (la usa _try_dodge).
 func _choose_attack(dist: float, dir: Vector2) -> bool:
-	var order := range(actor.moves.moves.size())
+	var order := [Kit.Slot.ULTIMATE, Kit.Slot.ABILITY_2, Kit.Slot.ABILITY_1, Kit.Slot.BASIC]
 	order.shuffle()
-	for i in order:
-		var m: MoveData = actor.moves.moves[i]
-		if not actor.moves.can_use(i):
+	for slot in order:
+		var m: MoveData = actor.moves.slots[slot]
+		if m == null or not actor.moves.can_use(slot):
 			continue
 		var ok := false
 		match m.kind:
-			MoveData.Kind.PROJECTILE, MoveData.Kind.DASH, MoveData.Kind.AREA:
-				ok = dist < m.reach()
 			MoveData.Kind.SHIELD:
 				ok = actor.health.ratio() < 0.6 and randf() < 0.3
+			MoveData.Kind.DASH:
+				ok = m.dash_hits and dist < m.reach()
+			_:
+				ok = dist < m.reach()
+		if ok and slot == Kit.Slot.ULTIMATE:
+			ok = actor.signature.ratio() >= 0.6 if actor.signature != null else randf() < 0.3
 		if ok:
-			return actor.use_move(i, dir.rotated(randf_range(-0.12, 0.12)))
+			var target_point: Vector2 = actor.target.global_position if is_instance_valid(actor.target) else Vector2.INF
+			return actor.use_slot(slot, dir.rotated(randf_range(-0.12, 0.12)), target_point)
 	return false
 
 

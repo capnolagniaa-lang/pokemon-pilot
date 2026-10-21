@@ -14,6 +14,7 @@ func _ready() -> void:
 	Events.creature_damaged.connect(_on_damaged)
 	Events.status_applied.connect(_on_status)
 	Events.interaction_triggered.connect(_on_interaction)
+	Events.signature_triggered.connect(func(c, text, col): _float_text(c.global_position + Vector2(-12, -48), text, col, 11))
 	Events.creature_fainted.connect(_on_fainted)
 	Events.hitstop.connect(_hitstop)
 

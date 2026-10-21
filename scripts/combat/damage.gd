@@ -15,6 +15,7 @@ static func resolve(hit: HitInfo, defender: CreatureInstance) -> float:
 		return 0.0
 	var def_stat := "defense" if move.category == MoveData.Category.PHYSICAL else "sp_defense"
 	var d := float(maxi(1, defender.stat(def_stat)))
-	var base := (2.0 * hit.attacker_level / 5.0 + 2.0) * move.power * hit.attack / d / 50.0 + 2.0
+	var power := move.power * move.power_mult
+	var base := (2.0 * hit.attacker_level / 5.0 + 2.0) * power * hit.attack / d / 50.0 + 2.0 * move.power_mult
 	var stab := STAB if move.element in hit.attacker_types else 1.0
-	return base * stab * hit.effectiveness * randf_range(0.85, 1.0)
+	return base * stab * hit.effectiveness * hit.damage_mult * randf_range(0.85, 1.0)
