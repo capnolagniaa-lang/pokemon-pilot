@@ -13,6 +13,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Events.creature_damaged.connect(_on_damaged)
 	Events.status_applied.connect(_on_status)
+	Events.interaction_triggered.connect(_on_interaction)
 	Events.creature_fainted.connect(_on_fainted)
 	Events.hitstop.connect(_hitstop)
 
@@ -53,7 +54,19 @@ func _on_damaged(c: Creature, amount: float, hit: HitInfo) -> void:
 
 func _on_status(c: Creature, s: StatusEffect) -> void:
 	var g := s.element.glow if s.element != null else 1.0
-	_float_text(c.global_position + Vector2(0, -36), "¡%s!" % s.display_name, Color(s.color.r * g, s.color.g * g, s.color.b * g), 8)
+	var text := "¡%s!" % s.display_name
+	var stacks := c.statuses.stacks(s.id)
+	if s.max_stacks > 1 and stacks > 1:
+		text = "%s x%d" % [s.display_name, stacks]
+	_float_text(c.global_position + Vector2(0, -36), text, Color(s.color.r * g, s.color.g * g, s.color.b * g), 8)
+
+
+func _on_interaction(c: Creature, it: StatusInteraction) -> void:
+	if it.label == "":
+		return
+	var col := it.element.hdr(it.element.color, 1.2) if it.element != null else Color.WHITE
+	_float_text(c.global_position + Vector2(-8, -46), it.label, col, 10)
+	Events.camera_shake.emit(3.0)
 
 
 func _on_fainted(c: Creature) -> void:

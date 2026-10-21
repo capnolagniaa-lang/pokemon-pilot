@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusInteraction" format=3]
+
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="1_a2pbl"]
+[ext_resource type="Resource" path="res://data/status/empapado.tres" id="2_moarl"]
+[ext_resource type="Script" path="res://scripts/resources/status_interaction.gd" id="3_wmdm7"]
+
+[resource]
+script = ExtResource("3_wmdm7")
+description = "Eléctrico contra Empapado: aturde y pega más."
+label = "¡Cortocircuito!"
+element = ExtResource("1_a2pbl")
+requires = ExtResource("2_moarl")
+consume = true
+damage_mult = 1.5
+stun_time = 0.9

@@ -23,6 +23,10 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-identity" in OS.get_cmdline_user_args():
+		set_process(false)
+		_identity_test.call_deferred()
+		return
 	if "--autotest-stats" in OS.get_cmdline_user_args():
 		set_process(false)
 		_stats_test.call_deferred()
@@ -302,20 +306,125 @@ func _showcase() -> void:
 	await get_tree().process_frame
 	var world := get_tree().current_scene
 	var base: Vector2 = world.trainer.global_position
-	var row := [["bulbasaur", "quemado"], ["squirtle", "paralizado"], ["oddish", "congelado"]]
+	var row := [["bulbasaur", "quemado"], ["squirtle", "paralizado"], ["oddish", "congelado"], ["psyduck", "empapado"],
+		["rattata", "enraizado"], ["bellsprout", "envenenado"], ["eevee", "dormido"], ["pidgey", "desorientado"], ["vulpix", "herido"]]
 	var wilds := []
 	for i in row.size():
-		var w: Creature = world.spawner.spawn(DB.species[row[i][0]], 5, base + Vector2(-40 + i * 40, -46))
+		var w: Creature = world.spawner.spawn(DB.species[row[i][0]], 5, base + Vector2(-80 + (i % 5) * 40, -60 + (i / 5) * 40))
 		w.get_node("StateMachine/Wander").aggro_radius = 0.0
 		wilds.append(w)
 	await get_tree().create_timer(0.3).timeout
 	for i in row.size():
-		wilds[i].statuses.apply(load("res://data/status/%s.tres" % row[i][1]))
+		for n in (3 if row[i][1] == "envenenado" else 1):
+			wilds[i].statuses.apply(load("res://data/status/%s.tres" % row[i][1]))
 	world.combat.start_battle()
 	var c: Creature = world.companion
-	c.global_position = base + Vector2(0, 10)
+	c.global_position = base + Vector2(0, 40)
 	for k in 8:
 		await get_tree().create_timer(0.45).timeout
 		c.facing = Vector2.UP
 		c.release_move(DB.moves["ascuas"], (wilds[0].global_position - c.global_position).normalized() if is_instance_valid(wilds[0]) else Vector2.UP)
 	get_tree().quit()
+
+# --- Base de identidad (godot --path . -- --autotest-identity) -------------------------------
+# Reglas compartidas del plan de identidad: estados, interacciones, resistencia a control, etc.
+
+func _identity_test() -> void:
+	GameState.new_game(DB.species["charmander"])
+	GameState.wilds_enabled = false
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await get_tree().process_frame
+	await get_tree().process_frame
+	var world := get_tree().current_scene
+	var me: Creature = world.companion
+	var base: Vector2 = world.trainer.global_position
+	var r := {}
+	var spawn := func(sp: String, offset: Vector2) -> Creature:
+		var w: Creature = world.spawner.spawn(DB.species[sp], 30, base + offset)
+		w.get_node("StateMachine/Wander").aggro_radius = 0.0
+		return w
+	var hit := func(target: Creature, move_id: String) -> void:
+		target.hurtbox.receive(HitInfo.from(me, DB.moves[move_id]))
+	var st := func(id: String) -> StatusEffect: return DB.statuses[id]
+	await get_tree().create_timer(0.3).timeout
+
+	var a: Creature = spawn.call("bulbasaur", Vector2(60, -40))
+	for i in 6:
+		a.statuses.apply(st.call("envenenado"))
+	r["Envenenado acumula hasta 5 stacks"] = a.statuses.stacks("envenenado") == 5
+
+	var b: Creature = spawn.call("squirtle", Vector2(-60, -40))
+	b.statuses.apply(st.call("paralizado"))
+	b.statuses.apply(st.call("paralizado"))
+	var before_full := b.machine.current_name() != "stunned"
+	b.statuses.apply(st.call("paralizado"))
+	r["Paralizado: la barra llena aturde"] = before_full and b.machine.current_name() == "stunned" and not b.statuses.has_status("paralizado")
+	await get_tree().create_timer(1.1).timeout
+	r["Resistencia a control al terminar"] = b.cc_resist_left > 0.0
+	b.stun(1.0, true)
+	await get_tree().create_timer(0.45).timeout
+	r["Con resistencia el control dura menos"] = b.machine.current_name() != "stunned"
+
+	var c: Creature = spawn.call("oddish", Vector2(0, -70))
+	c.statuses.apply(st.call("dormido"))
+	await get_tree().physics_frame
+	var asleep := c.machine.current_name() == "stunned"
+	c.take_status_damage(1.0)
+	await get_tree().create_timer(0.35).timeout
+	r["Dormido despierta al recibir daño"] = asleep and not c.statuses.has_status("dormido") and c.machine.current_name() != "stunned"
+
+	var d: Creature = spawn.call("rattata", Vector2(90, 20))
+	d.statuses.apply(st.call("enraizado"))
+	var p0 := d.global_position
+	for i in 10:
+		d.move(Vector2.RIGHT, 100.0)
+		await get_tree().physics_frame
+	r["Enraizado no se mueve pero puede actuar"] = d.global_position.distance_to(p0) < 1.0 and d.statuses.can_act()
+
+	var e: Creature = spawn.call("psyduck", Vector2(-90, 20))
+	e.statuses.apply(st.call("empapado"))
+	var seen := []
+	Events.interaction_triggered.connect(func(_cr, it): seen.append(it.label))
+	hit.call(e, "impactrueno")
+	await get_tree().physics_frame
+	r["Eléctrico sobre Empapado: cortocircuito y aturde"] = "¡Cortocircuito!" in seen and not e.statuses.has_status("empapado") and e.machine.current_name() == "stunned"
+
+	var f: Creature = spawn.call("eevee", Vector2(-30, 60))
+	f.statuses.apply(st.call("quemado"))
+	hit.call(f, "pistola_agua")
+	r["Agua apaga Quemado"] = not f.statuses.has_status("quemado")
+
+	var g: Creature = spawn.call("pidgey", Vector2(30, 60))
+	g.statuses.apply(st.call("enraizado"))
+	hit.call(g, "ascuas")
+	r["Fuego sobre Enraizado: rompe la raíz y quema"] = not g.statuses.has_status("enraizado") and g.statuses.has_status("quemado")
+
+	var h1: Creature = spawn.call("bellsprout", Vector2(0, 110))
+	var h2: Creature = spawn.call("vulpix", Vector2(25, 110))
+	h1.statuses.apply(st.call("quemado"))
+	hit.call(h1, "tornado")
+	r["Viento contagia Quemado a compañeros cercanos"] = h2.statuses.has_status("quemado")
+
+	var k: Creature = spawn.call("seel", Vector2(-60, 110))
+	k.statuses.apply(st.call("desorientado"))
+	k.statuses.apply(st.call("herido"))
+	k.instance.hp = k.instance.max_hp() * 0.5
+	var healed := k.health.heal(10.0)
+	r["Desorientado desvía el apuntado"] = k.statuses.aim_jitter() > 0.0
+	r["Herido reduce la curación a la mitad"] = absf(healed - 5.0) < 0.01
+
+	world.combat.start_battle()
+	await get_tree().physics_frame
+	me.moves.energy = 100.0
+	var idx := me.moves.moves.find(DB.moves["giro_fuego"])
+	me.use_move(idx, Vector2.UP)
+	await get_tree().physics_frame
+	r["Telegrafiado durante la carga"] = me.machine.current_name() == "cast" and me.telegraph.shape == Telegraph.Shape.CIRCLE
+	await get_tree().create_timer(DB.moves["giro_fuego"].cast_time + 0.05).timeout
+	r["Recuperación después del ataque fuerte"] = me.machine.current_name() == "recovery" and me.telegraph.shape == Telegraph.Shape.NONE
+
+	var ok := r.values().all(func(v): return v)
+	for key in r:
+		print("[identidad] %s %s" % ["OK   " if r[key] else "FALLO", key])
+	print("[autotest-identity] -> ", "OK" if ok else "FALLO")
+	get_tree().quit(0 if ok else 1)

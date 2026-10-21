@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusInteraction" format=3]
+
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_cdl64"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="2_nwfn4"]
+[ext_resource type="Script" path="res://scripts/resources/status_interaction.gd" id="3_lvuft"]
+
+[resource]
+script = ExtResource("3_lvuft")
+description = "El viento contagia el Quemado a los compañeros cercanos."
+label = "¡El viento aviva el fuego!"
+element = ExtResource("1_cdl64")
+requires = ExtResource("2_nwfn4")
+spread_radius = 48.0

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_it0m2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_6o6v3"]
+
+[resource]
+script = ExtResource("2_6o6v3")
+id = "dormido"
+display_name = "Dormido"
+color = Color(0.75, 0.78, 1, 1)
+duration = 3.0
+speed_mult = 0.0
+can_act = false
+element = ExtResource("1_it0m2")
+wake_on_damage = true
+is_cc = true
+fx_amount = 3
+fx_gravity = -8.0
+fx_size = 1.4
+tint_strength = 0.3

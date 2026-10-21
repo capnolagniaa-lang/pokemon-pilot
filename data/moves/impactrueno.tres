@@ -13,6 +13,7 @@ category = 1
 cooldown = 1.4500000000000002
 energy_cost = 16.0
 knockback = 120.0
+recovery = 0.08
 status = ExtResource("3_qkg61")
 status_chance = 0.1
 speed = 330.0

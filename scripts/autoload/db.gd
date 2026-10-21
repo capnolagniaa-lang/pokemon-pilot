@@ -7,6 +7,8 @@ const SpriteData = preload("res://scripts/generated/sprite_data.gd")
 var types: Dictionary = {}    # id -> ElementType
 var moves: Dictionary = {}    # id -> MoveData
 var species: Dictionary = {}  # id -> SpeciesData
+var statuses: Dictionary = {}  # id -> StatusEffect
+var interactions: Dictionary = {}  # nombre de archivo -> StatusInteraction
 var type_chart: TypeChart
 var config: GameConfig
 
@@ -17,19 +19,33 @@ func _ready() -> void:
 	types = _load_dir("res://data/types", "ElementType")
 	moves = _load_dir("res://data/moves", "MoveData")
 	species = _load_dir("res://data/species", "SpeciesData")
+	statuses = _load_dir("res://data/status", "StatusEffect")
+	interactions = _load_dir("res://data/status/interactions", "StatusInteraction")
 	type_chart = load("res://data/types/type_chart.tres")
 	config = load("res://data/config/game_config.tres")
 
 
 func _load_dir(path: String, class_hint: String) -> Dictionary:
 	var out := {}
+	if not DirAccess.dir_exists_absolute(path):
+		return out
 	for f in DirAccess.get_files_at(path):
 		f = f.trim_suffix(".remap")  # en exportaciones los .tres vienen remapeados
 		if not f.ends_with(".tres"):
 			continue
 		var res = load(path.path_join(f))
 		if res != null and res.get_script() != null and res.get_script().get_global_name() == class_hint:
-			out[res.id] = res
+			var key = res.get("id")
+			out[key if key != null and key != "" else f.get_basename()] = res
+	return out
+
+
+## Interacciones que se disparan cuando un golpe de `element` le pega a alguien con estos estados.
+func interactions_for(element: ElementType, statuses_node: StatusEffects) -> Array[StatusInteraction]:
+	var out: Array[StatusInteraction] = []
+	for it: StatusInteraction in interactions.values():
+		if it.element == element and it.requires != null and statuses_node.has_status(it.requires.id):
+			out.append(it)
 	return out
 
 

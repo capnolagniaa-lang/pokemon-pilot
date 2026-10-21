@@ -1,25 +1,45 @@
 class_name StatusEffect
 extends Resource
-## Estado alterado (quemado, paralizado, congelado...). Cada .tres en data/status es uno.
+## Estado alterado. Cada .tres en data/status es uno. Las interacciones con elementos (agua apaga quemado,
+## eléctrico sobre empapado aturde...) están aparte, en data/status/interactions (StatusInteraction).
+## Diseño: docs/PLAN_IDENTIDAD_COMBATE.md, sección 3.
 
 @export var id: String = ""
 @export var display_name: String = ""
 @export var color: Color = Color.WHITE
 @export var duration: float = 4.0
-## Daño por segundo como fracción de la vida máxima.
+## Daño por segundo (fracción de la vida máxima), por cada stack.
 @export var damage_per_second: float = 0.0
+## Multiplicador de velocidad de movimiento.
 @export var speed_mult: float = 1.0
-## Multiplica el Ataque en ataques físicos (la quemadura lo divide por 2, como en los juegos).
+## Multiplica el daño físico que hace el afectado (Quemado: 0.85).
 @export var attack_mult: float = 1.0
-## Si es false, no puede moverse ni atacar (congelado).
+## Si es false, no puede moverse ni atacar (congelado, dormido).
 @export var can_act: bool = true
-## Probabilidad por segundo de quedar inmovilizado un instante (parálisis).
-@export var stun_chance_per_second: float = 0.0
-@export var stun_time: float = 0.6
-## Elementos que lo curan al recibir un golpe (ej: el fuego descongela).
-@export var cured_by: Array[ElementType] = []
+## Si es false, no puede moverse pero sí atacar (enraizado).
+@export var can_move: bool = true
 ## Elemento que lo representa (para el entorno: un quemado prende el pasto, etc.).
 @export var element: ElementType
+
+@export_group("Stacks y acumulación")
+## Máximo de stacks (Envenenado: 5). Cada aplicación suma uno y renueva la duración.
+@export var max_stacks: int = 1
+## Acumulación por barra (Paralizado): cada aplicación llena `buildup_per_apply`; al llegar a 1 aturde
+## `stun_time` segundos y se vacía. La barra baja `buildup_decay` por segundo; en 0 se va el estado.
+@export var buildup: bool = false
+@export var buildup_per_apply: float = 0.35
+@export var buildup_decay: float = 0.12
+@export var stun_time: float = 0.8
+
+@export_group("Reglas especiales")
+## Se cura al recibir daño (Dormido).
+@export var wake_on_damage: bool = false
+## Desorienta: el apuntado y el movimiento se desvían hasta estos grados.
+@export var aim_jitter_deg: float = 0.0
+## Multiplica la curación que recibe (Herido: 0.5).
+@export var heal_mult: float = 1.0
+## Cuenta como control (aturde/inmoviliza): dispara la resistencia a control al terminar.
+@export var is_cc: bool = false
 
 @export_group("Efecto visual")
 ## Partículas sobre la criatura.

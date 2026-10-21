@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_mr2x4"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_k61ao"]
+
+[resource]
+script = ExtResource("2_k61ao")
+id = "desorientado"
+display_name = "Desorientado"
+color = Color(0.95, 0.85, 0.55, 1)
+duration = 3.0
+element = ExtResource("1_mr2x4")
+aim_jitter_deg = 28.0
+fx_amount = 4
+fx_gravity = 0.0
+fx_size = 1.1
+tint_strength = 0.25

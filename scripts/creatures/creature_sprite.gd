@@ -99,7 +99,7 @@ func _current() -> Array:
 
 func _status_frozen() -> bool:
 	var c := get_parent()
-	return c is Creature and c.statuses != null and not c.statuses.can_act()
+	return c is Creature and c.statuses != null and c.statuses.has_status("congelado")
 
 
 func _update_ghosts(delta: float) -> void:
@@ -147,6 +147,30 @@ func _draw() -> void:
 
 
 func _draw_combat_ui(c: Creature, dst: Rect2) -> void:
+	var st: StatusEffects = c.statuses
+	if st.has_status("enraizado"):
+		# Raíces que salen del suelo alrededor de los pies.
+		var root_col := Color(0.35, 0.55, 0.18)
+		for k in 5:
+			var a := -PI * 0.9 + k * PI * 0.45
+			var base := Vector2(cos(a) * 8.0, 2.0 + sin(a) * 2.5)
+			draw_line(base, base + Vector2(cos(a) * 2.0, -5.0 - (k % 2) * 2.0), root_col, 1.5)
+	if st.has_status("dormido"):
+		var t := fmod(_time, 1.5) / 1.5
+		draw_string(ThemeDB.fallback_font, Vector2(6 + t * 4.0, dst.position.y + 6 - t * 8.0), "z", HORIZONTAL_ALIGNMENT_LEFT, -1, 8, Color(0.85, 0.9, 1.3, 1.0 - t))
+	if st.has_status("paralizado"):
+		# Barra de parálisis acumulada: al llenarse, aturde.
+		var w := 16.0
+		draw_rect(Rect2(-w / 2.0, 4.0, w, 2.0), Color(0, 0, 0, 0.6))
+		draw_rect(Rect2(-w / 2.0, 4.0, w * st.meter("paralizado"), 2.0), Color(1.6, 1.4, 0.4))
+	if st.stacks("envenenado") > 0:
+		for k in st.stacks("envenenado"):
+			draw_circle(Vector2(-8.0 + k * 4.0, 8.0), 1.2, Color(0.8, 0.4, 1.0))
+	if c.cc_resist_left > 0.0:
+		# Resistencia a control activa: aro blanco tenue a los pies.
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, 0.45))
+		draw_arc(Vector2.ZERO, 10.0, 0.0, TAU, 24, Color(1, 1, 1, 0.35 * minf(1.0, c.cc_resist_left)), 1.0)
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	if _status_frozen():
 		# Bloque de hielo translúcido con brillo (se distingue aunque la criatura ya sea azul).
 		var ice := Rect2(-10, -24, 20, 23)

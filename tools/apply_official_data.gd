@@ -55,31 +55,8 @@ func _init() -> void:
 	chart.multipliers = CHART.duplicate(true)
 	_save(chart, T % "type_chart")
 
-	var burn: StatusEffect = load("res://data/status/quemado.tres")
-	burn.duration = 6.0
-	burn.damage_per_second = 0.035
-	burn.attack_mult = 0.5
-	burn.fx_amount = 16
-	burn.fx_gravity = -45.0
-	burn.fx_size = 1.6
-	burn.fx_light = true
-	burn.tint_strength = 0.55
-	_save(burn, "res://data/status/quemado.tres")
-	var para: StatusEffect = load("res://data/status/paralizado.tres")
-	para.speed_mult = 0.5
-	para.stun_chance_per_second = 0.3
-	para.fx_amount = 8
-	para.fx_gravity = 0.0
-	para.fx_size = 1.2
-	para.fx_light = true
-	para.tint_strength = 0.4
-	_save(para, "res://data/status/paralizado.tres")
-	var freeze: StatusEffect = load("res://data/status/congelado.tres")
-	freeze.fx_amount = 6
-	freeze.fx_gravity = 14.0
-	freeze.fx_size = 1.3
-	freeze.tint_strength = 0.7
-	_save(freeze, "res://data/status/congelado.tres")
+	# Los estados NO se tocan acá: siguen el plan de identidad (docs/PLAN_IDENTIDAD_COMBATE.md) y se
+	# editan directo en data/status/*.tres.
 
 	for id in data["moves"]:
 		var src: Dictionary = data["moves"][id]

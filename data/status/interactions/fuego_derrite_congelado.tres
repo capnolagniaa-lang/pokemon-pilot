@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusInteraction" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_xeu6k"]
+[ext_resource type="Resource" path="res://data/status/congelado.tres" id="2_ugp1l"]
+[ext_resource type="Script" path="res://scripts/resources/status_interaction.gd" id="3_adqli"]
+
+[resource]
+script = ExtResource("3_adqli")
+description = "El fuego derrite el hielo."
+label = "¡Derretido!"
+element = ExtResource("1_xeu6k")
+requires = ExtResource("2_ugp1l")
+consume = true

@@ -12,6 +12,7 @@ category = 1
 cooldown = 1.4500000000000002
 energy_cost = 16.0
 knockback = 110.0
+recovery = 0.08
 speed = 210.0
 size = 5.0
 lifetime = 1.2

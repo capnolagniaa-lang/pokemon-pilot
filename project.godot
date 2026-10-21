@@ -10,7 +10,6 @@ config/name="Pokémon Pilot"
 run/main_scene="res://scenes/ui/starter_select.tscn"
 config/features=PackedStringArray("4.7")
 config/icon="res://art/icon.png"
-config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

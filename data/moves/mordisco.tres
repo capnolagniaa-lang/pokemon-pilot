@@ -13,5 +13,6 @@ power = 60.0
 cooldown = 1.85
 energy_cost = 18.0
 knockback = 240.0
+recovery = 0.2
 speed = 150.0
 radius = 45.0

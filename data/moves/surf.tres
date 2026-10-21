@@ -15,5 +15,6 @@ cooldown = 4.55
 energy_cost = 37.0
 cast_time = 0.4
 knockback = 260.0
+recovery = 0.4
 speed = 150.0
 radius = 65.25

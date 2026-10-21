@@ -19,6 +19,8 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export var cast_time: float = 0.0
 ## Empuje que recibe el que es golpeado (píxeles/segundo iniciales).
 @export var knockback: float = 160.0
+## Recuperación: después de lanzarlo, el usuario queda expuesto este tiempo (ventana de castigo).
+@export var recovery: float = 0.0
 
 @export_group("Estado alterado")
 @export var status: StatusEffect

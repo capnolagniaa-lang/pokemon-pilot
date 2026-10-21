@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusInteraction" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_iivyp"]
+[ext_resource type="Resource" path="res://data/status/enraizado.tres" id="2_bb1sb"]
+[ext_resource type="Resource" path="res://data/status/empapado.tres" id="3_cl3d1"]
+[ext_resource type="Script" path="res://scripts/resources/status_interaction.gd" id="4_nysg0"]
+
+[resource]
+script = ExtResource("4_nysg0")
+description = "Planta sobre Empapado: el Enraizado dura más."
+label = "¡Raíces profundas!"
+element = ExtResource("1_iivyp")
+requires = ExtResource("3_cl3d1")
+extend = ExtResource("2_bb1sb")

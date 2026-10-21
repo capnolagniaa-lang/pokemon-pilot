@@ -374,7 +374,7 @@ interface HabilidadDef {
 | Paso | Contenido | Estado |
 |---|---|---|
 | I-0 | Plan guardado; análisis de choques con lo construido; decisiones abiertas | ✅ Hecho |
-| I-1 | Base compartida: estados nuevos (empapado, enraizado, envenenado con stacks, dormido, desorientado, herido; parálisis por acumulación), eventos de combate, resistencia a control, telegrafiado y recuperación | Pendiente |
+| I-1 | Base compartida: estados nuevos (empapado, enraizado, envenenado con stacks, dormido, desorientado, herido; parálisis por acumulación), eventos de combate, resistencia a control, telegrafiado y recuperación | ✅ Hecho |
 | I-2 | Kit de 5 ranuras + controles nuevos; Charmander completo (Calor, Mar Llamas, Sobrecalentado) | Pendiente |
 | I-3 | Pikachu (Estática, cargas, cancelación de combos) | Pendiente |
 | I-4 | Squirtle (Refugio, parry, Presión, charcos) | Pendiente |
@@ -383,6 +383,40 @@ interface HabilidadDef {
 | I-7 | Oddish (stacks de esporas en el enemigo, florecer, enterrarse) | Pendiente |
 | I-8 | Rattata (Instinto por umbral de vida, Foco Energía, ejecución) | Pendiente |
 | I-9 | Pidgey (estado aéreo, Aliento, viento que desvía proyectiles) | Pendiente |
+
+## Decisiones del usuario (2026-10-21, no volver a preguntar)
+- **Orden:** el plan de identidad va **ahora, antes de la Etapa 3** (entorno reactivo). Después la Etapa 3
+  reutiliza charcos, semillas, estelas de fuego y viento de los kits.
+- **Stats:** los **oficiales** siguen siendo la base numérica (vida, daño, velocidad por nivel). La tabla 1–5
+  es **guía de diseño del kit** (alcance, control, dificultad), no reemplaza números.
+- **Estados:** se usan **los del documento** (identidad): Quemado −15% daño físico, Paralizado por
+  acumulación, Empapado, Enraizado, Envenenado con stacks, Dormido, Desorientado, Herido. **Congelado se
+  mantiene** para el hielo.
+- **Controles del kit (5 ranuras):** Clic izq. = básico · Clic der. = habilidad 1 · **Q** = habilidad 2 ·
+  **Espacio** = movilidad propia (reemplaza el esquive genérico) · **R** = definitiva. (Tab queda para cambiar
+  de Pokémon; F para sacar/guardar.)
+
+## Cómo quedó implementado (I-1)
+- **Estados** (`scripts/resources/status_effect.gd`, datos en `data/status/*.tres`): además de duración,
+  daño por segundo y multiplicadores, ahora tienen `can_move` (Enraizado), `max_stacks` (Envenenado ×5),
+  barra de acumulación `buildup` (Paralizado: cada aplicación suma 0,4; al llenarse aturde 0,9 s),
+  `wake_on_damage` (Dormido), `aim_jitter_deg` (Desorientado), `heal_mult` (Herido 0,5), `is_cc`.
+  Valores: Quemado 5 s, 3%/s, −15% daño físico · Empapado 5 s, −10% velocidad · Enraizado 2 s ·
+  Envenenado 6 s, 1,2%/s por stack · Dormido 3 s · Desorientado 3 s, ±28° · Herido 6 s · Congelado 2,2 s.
+- **Interacciones** (`StatusInteraction`, `data/status/interactions/*.tres`): elemento × estado →
+  consumir, multiplicar daño, aturdir, aplicar otro estado, extender duración, contagiar en radio.
+  Las 6 del documento: agua apaga Quemado · fuego derrite Congelado · viento (volador) contagia Quemado
+  a compañeros a 48 px · eléctrico sobre Empapado ×1,5 daño + aturde 0,9 s · planta sobre Empapado
+  alarga Enraizado ×1,5 · fuego sobre Enraizado rompe la raíz y quema. Texto flotante al dispararse.
+- **Eventos de combate por criatura** (señales en `Creature`): `hit_dealt`, `damage_received`, `moved`,
+  `dodged`, `killed`, `status_inflicted`, `move_released`. Las mecánicas de firma se conectan a estas.
+- **Resistencia a control:** al terminar un control (`stun(..., cc=true)`), 2,5 s en los que otro control
+  dura 30%. Aro blanco tenue a los pies mientras dura.
+- **Telegrafiado:** nodo `Telegraph` en cada criatura: círculo (áreas) o línea (proyectiles/embestidas) en
+  el suelo, que se llena durante la carga.
+- **Recuperación:** `MoveData.recovery` → estado `recovery` (no ataca ni esquiva, se mueve al 35%).
+- Visual: raíces a los pies (Enraizado), "z" (Dormido), barra de parálisis, puntitos por stack de veneno.
+- Autotest: `--autotest-identity` verifica cada regla (14 chequeos).
 
 ## Qué ya existe y se reutiliza
 - **Estados como Resources** (`StatusEffect` + `StatusEffects`): duración, daño por tiempo, multiplicadores,

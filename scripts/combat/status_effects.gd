@@ -1,8 +1,9 @@
 class_name StatusEffects
 extends Node
-## Estados alterados activos de una criatura: duración, daño por tiempo, parálisis, congelamiento y partículas.
+## Estados alterados activos de una criatura: duración, stacks, barra de acumulación, daño por tiempo,
+## multiplicadores y partículas. Las interacciones con elementos las resuelve Creature (StatusInteraction).
 
-## id -> {"status": StatusEffect, "time": float, "fx": CPUParticles2D}
+## id -> {"status": StatusEffect, "time": float, "stacks": int, "meter": float, "fx": CPUParticles2D}
 var active: Dictionary = {}
 var _dot_accum := 0.0
 var _dot_timer := 0.0
@@ -10,14 +11,27 @@ var _dot_timer := 0.0
 @onready var creature = get_parent()
 
 
-func apply(s: StatusEffect) -> void:
-	if active.has(s.id):
-		active[s.id]["time"] = s.duration
-		return
-	active[s.id] = {"status": s, "time": s.duration, "fx": _make_fx(s)}
+## Aplica (o refuerza) un estado. `duration_mult` alarga o acorta la duración de esta aplicación.
+func apply(s: StatusEffect, duration_mult: float = 1.0) -> void:
+	var fresh := not active.has(s.id)
+	if fresh:
+		active[s.id] = {"status": s, "time": 0.0, "stacks": 0, "meter": 0.0, "fx": _make_fx(s)}
+	var e: Dictionary = active[s.id]
+	if s.buildup:
+		e["meter"] += s.buildup_per_apply
+		e["time"] = INF
+		if e["meter"] >= 1.0:
+			e["meter"] = 0.0
+			creature.stun(s.stun_time, true)
+			cure(s)
+			return
+	else:
+		e["stacks"] = mini(e["stacks"] + 1, s.max_stacks)
+		e["time"] = maxf(e["time"], s.duration * duration_mult)
 	if not s.can_act:
-		creature.stun(s.duration)
-	Events.status_applied.emit(creature, s)
+		creature.stun(e["time"], s.is_cc)
+	if fresh or s.max_stacks > 1:
+		Events.status_applied.emit(creature, s)
 
 
 func cure(s: StatusEffect) -> void:
@@ -35,16 +49,29 @@ func clear() -> void:
 		cure(active[id]["status"])
 
 
-## Al recibir un golpe: algunos estados se curan con ciertos elementos (el fuego descongela).
-func on_hit(hit: HitInfo) -> void:
+## Al recibir daño: los estados que se curan con daño (Dormido) se van.
+func on_damaged() -> void:
 	for id in active.keys():
-		var s: StatusEffect = active[id]["status"]
-		if hit.move.element in s.cured_by:
-			cure(s)
+		if active[id]["status"].wake_on_damage:
+			cure(active[id]["status"])
+
+
+func extend(s: StatusEffect, mult: float) -> void:
+	if active.has(s.id) and active[s.id]["time"] != INF:
+		active[s.id]["time"] *= mult
 
 
 func has_status(id: String) -> bool:
 	return active.has(id)
+
+
+func stacks(id: String) -> int:
+	return active[id]["stacks"] if active.has(id) else 0
+
+
+## Barra de acumulación (0..1) de un estado como Paralizado.
+func meter(id: String) -> float:
+	return active[id]["meter"] if active.has(id) else 0.0
 
 
 func can_act() -> bool:
@@ -54,17 +81,39 @@ func can_act() -> bool:
 	return true
 
 
+func can_move() -> bool:
+	for id in active:
+		var s: StatusEffect = active[id]["status"]
+		if not s.can_move or not s.can_act:
+			return false
+	return true
+
+
 func speed_mult() -> float:
-	var m := 1.0
-	for id in active:
-		m *= active[id]["status"].speed_mult
-	return m
+	return _product("speed_mult")
 
 
+## Multiplica el daño físico que hace (Quemado).
 func attack_mult() -> float:
+	return _product("attack_mult")
+
+
+func heal_mult() -> float:
+	return _product("heal_mult")
+
+
+## Desvío máximo de apuntado/movimiento en radianes (Desorientado).
+func aim_jitter() -> float:
+	var j := 0.0
+	for id in active:
+		j = maxf(j, active[id]["status"].aim_jitter_deg)
+	return deg_to_rad(j)
+
+
+func _product(prop: String) -> float:
 	var m := 1.0
 	for id in active:
-		m *= active[id]["status"].attack_mult
+		m *= active[id]["status"].get(prop)
 	return m
 
 
@@ -89,26 +138,30 @@ func _physics_process(delta: float) -> void:
 	for id in active.keys():
 		var entry: Dictionary = active[id]
 		var s: StatusEffect = entry["status"]
+		if s.buildup:
+			entry["meter"] -= s.buildup_decay * delta
+			if entry["meter"] <= 0.0:
+				cure(s)
+			continue
 		entry["time"] -= delta
 		if s.damage_per_second > 0.0:
-			_dot_accum += creature.health.max_hp() * s.damage_per_second * delta
-		if s.stun_chance_per_second > 0.0 and randf() < s.stun_chance_per_second * delta:
-			creature.stun(s.stun_time)
+			_dot_accum += creature.health.max_hp() * s.damage_per_second * entry["stacks"] * delta
 		if entry["time"] <= 0.0:
 			cure(s)
 	# El daño por tiempo se aplica de a un número por segundo (no spamea la pantalla).
 	_dot_timer += delta
-	if _dot_timer >= 1.0 and _dot_accum > 0.0:
+	if _dot_timer >= 1.0:
 		_dot_timer = 0.0
-		creature.take_status_damage(_dot_accum)
-		_dot_accum = 0.0
+		if _dot_accum > 0.0:
+			creature.take_status_damage(_dot_accum)
+			_dot_accum = 0.0
 
 
 ## Partículas (y luz opcional) del estado, configuradas desde el StatusEffect.
 func _make_fx(s: StatusEffect) -> CPUParticles2D:
 	var el := s.element
 	var p := CPUParticles2D.new()
-	p.amount = s.fx_amount
+	p.amount = maxi(1, s.fx_amount)
 	p.lifetime = 0.65
 	p.texture = _flame_texture() if s.fx_gravity < 0.0 else null
 	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
@@ -129,6 +182,7 @@ func _make_fx(s: StatusEffect) -> CPUParticles2D:
 	ramp.add_point(0.45, body)
 	p.color_ramp = ramp
 	p.z_index = 2
+	p.emitting = s.fx_amount > 0
 	creature.add_child(p)
 	if s.fx_light:
 		var light := PointLight2D.new()

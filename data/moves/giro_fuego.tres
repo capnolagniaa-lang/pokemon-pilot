@@ -16,6 +16,7 @@ cooldown = 3.0
 energy_cost = 23.0
 cast_time = 0.35
 knockback = 220.0
+recovery = 0.3
 status = ExtResource("3_2wroc")
 status_chance = 0.3
 speed = 150.0

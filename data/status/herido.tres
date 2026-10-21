@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="1_tdhew"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_w04qw"]
+
+[resource]
+script = ExtResource("2_w04qw")
+id = "herido"
+display_name = "Herido"
+color = Color(0.85, 0.2, 0.25, 1)
+duration = 6.0
+element = ExtResource("1_tdhew")
+heal_mult = 0.5
+fx_amount = 3
+fx_gravity = 22.0
+fx_size = 1.1
+tint_strength = 0.25

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusInteraction" format=3]
+
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="1_f03aw"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="2_bxso2"]
+[ext_resource type="Resource" path="res://data/status/enraizado.tres" id="3_mc2qk"]
+[ext_resource type="Script" path="res://scripts/resources/status_interaction.gd" id="4_3wgnx"]
+
+[resource]
+script = ExtResource("4_3wgnx")
+description = "Fuego sobre Enraizado: rompe la raíz y quema."
+label = "¡Raíces en llamas!"
+element = ExtResource("2_bxso2")
+requires = ExtResource("3_mc2qk")
+consume = true
+apply = ExtResource("1_f03aw")

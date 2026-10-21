@@ -30,6 +30,7 @@ $G --headless --path . --quit-after 60000 -- --autotest          # recorre las 9
 $G --headless --path . --quit-after 30000 -- --autotest-combat   # 3 peleas manejadas por un bot
 $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas reales + spawner
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
+$G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
 $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
@@ -75,7 +76,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Experiencia**: curvas oficiales (`exp_for_level`: fast, medium, medium-slow, slow, errática,
   fluctuante); EXP ganada = experiencia base × nivel del derrotado / 7 (fórmula 1ª-4ª gen).
 - **Daño** (`Damage.resolve`): fórmula oficial con STAB 1.5, efectividad, variación 0.85-1, físico vs
-  especial; la quemadura divide el Ataque físico por 2.
+  especial. Los **estados siguen el plan de identidad** (no los oficiales): Quemado −15% daño físico,
+  Paralizado por acumulación, etc. (ver `docs/PLAN_IDENTIDAD_COMBATE.md`). No tocarlos desde
+  `apply_official_data.gd`.
 - **Adaptaciones al tiempo real** (documentarlas si se cambian):
   - `CreatureInstance.HP_SCALE = 3`: la vida se triplica para que un combate dure varios golpes.
   - Velocidad de movimiento = `40 + 26·log2(1 + Velocidad/8)` px/s (`Creature.move_speed_for`).

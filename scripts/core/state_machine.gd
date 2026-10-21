@@ -21,6 +21,9 @@ func _ready() -> void:
 
 
 func _start() -> void:
+	# Si algo ya la hizo cambiar de estado antes de arrancar (ej. la aturdieron al aparecer), se respeta.
+	if current != null:
+		return
 	var first := initial_state if initial_state != null else (get_child(0) as State)
 	current = first
 	current.enter()

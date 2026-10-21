@@ -16,6 +16,7 @@ cooldown = 5.15
 energy_cost = 42.0
 cast_time = 0.45
 knockback = 200.0
+recovery = 0.5
 status = ExtResource("3_wbsup")
 status_chance = 0.3
 radius = 60.0

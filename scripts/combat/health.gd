@@ -8,6 +8,8 @@ signal depleted
 const SHIELD_FACTOR := 0.2
 
 var instance: CreatureInstance
+## De dónde sale el multiplicador de curación (StatusEffects: Herido la reduce).
+var heal_mult_source: Node
 var shield_time := 0.0
 var invulnerable_time := 0.0
 
@@ -51,6 +53,11 @@ func apply_damage(amount: float) -> float:
 	return before - instance.hp
 
 
-func heal(amount: float) -> void:
+## Cura (afectado por estados como Herido). Devuelve lo curado.
+func heal(amount: float) -> float:
+	if heal_mult_source != null:
+		amount *= heal_mult_source.heal_mult()
+	var before := instance.hp
 	instance.hp = minf(max_hp(), instance.hp + amount)
 	changed.emit(instance.hp, max_hp())
+	return instance.hp - before

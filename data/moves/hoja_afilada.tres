@@ -12,6 +12,7 @@ power = 55.0
 cooldown = 1.7000000000000002
 energy_cost = 19.0
 knockback = 100.0
+recovery = 0.08
 speed = 340.0
 size = 3.0
 lifetime = 0.8

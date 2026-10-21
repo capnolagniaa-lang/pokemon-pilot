@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusInteraction" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_vyl2c"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="2_pouws"]
+[ext_resource type="Script" path="res://scripts/resources/status_interaction.gd" id="3_c6van"]
+
+[resource]
+script = ExtResource("3_c6van")
+description = "El agua apaga el Quemado."
+label = "¡Apagado!"
+element = ExtResource("1_vyl2c")
+requires = ExtResource("2_pouws")
+consume = true

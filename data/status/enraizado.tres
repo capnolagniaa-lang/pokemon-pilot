@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_2i748"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_f5yrr"]
+
+[resource]
+script = ExtResource("2_f5yrr")
+id = "enraizado"
+display_name = "Enraizado"
+color = Color(0.45, 0.75, 0.25, 1)
+duration = 2.0
+can_move = false
+element = ExtResource("1_2i748")
+fx_amount = 4
+fx_gravity = 0.0
+fx_size = 1.2
+tint_strength = 0.25
