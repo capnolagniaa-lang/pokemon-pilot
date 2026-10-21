@@ -17,11 +17,16 @@ const BY_BIOME := {
 	"arboleda": ["pikachu", "eevee", "pidgey", "growlithe"],
 }
 
-## Especies por zona puntual (mandan sobre el bioma). Ruta 1 es la zona de prueba del combate: solo
-## Pidgey, Bellsprout, Rattata y Vulpix (pedido del usuario; el resto sigue existiendo en otras zonas).
+## Especies por zona puntual (mandan sobre el bioma).
 const BY_ZONE := {
 	"ruta1": ["pidgey", "bellsprout", "rattata", "vulpix"],
 }
+
+## Fase de prueba del combate (pedido del usuario): en TODAS las zonas aparecen solo estos 4, porque las
+## zonas vecinas a Ruta 1 (lago, humedal) se cargan al acercarse a sus bordes y metían Pokémon de agua.
+## Los demás Pokémon no se borran: al poner `use_test_pool = false` vuelven los spawns por zona/bioma.
+const TEST_POOL := ["pidgey", "bellsprout", "rattata", "vulpix"]
+@export var use_test_pool := true
 
 @export var per_zone := 3
 @export var respawn_time := 25.0
@@ -80,7 +85,7 @@ func _spawn_in(zone_id: String) -> void:
 	var pos: Vector2 = zone.to_global(zone.ground.map_to_local(cells[randi() % cells.size()]))
 	if pos.distance_to(world.trainer.global_position) < 120.0:
 		return
-	var options: Array = BY_ZONE.get(zone_id, BY_BIOME.get(entry.biome, ["rattata"]))
+	var options: Array = TEST_POOL if use_test_pool else BY_ZONE.get(zone_id, BY_BIOME.get(entry.biome, ["rattata"]))
 	var sp: SpeciesData = DB.species[options[randi() % options.size()]]
 	var level: int = maxi(2, (GameState.active().level if GameState.active() else 5) + randi_range(-2, 1))
 	_alive[zone_id].append(spawn(sp, level, pos))

@@ -642,6 +642,23 @@ func _modes_test() -> void:
 	await get_tree().create_timer(1.3).timeout
 	r["Sin práctica: queda debilitado (se recupera de a poco)"] = inst.hp < inst.max_hp() * 0.3
 
+	# Spawns: con todas las zonas cargadas, solo aparecen las 4 especies de prueba.
+	GameState.wilds_enabled = true
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await get_tree().process_frame
+	await get_tree().process_frame
+	world = get_tree().current_scene
+	for z in DB.config.world.zones:
+		world.streamer.load_around_now(z.world_rect(DB.config.world.tile_size).get_center())
+	world.streamer.target = null
+	await get_tree().create_timer(0.5).timeout
+	var seen := {}
+	for n in world.entities.get_children():
+		if n is Creature and n.team == Creature.Team.WILD:
+			seen[n.instance.species.id] = true
+	print("[modos] especies salvajes en las 9 zonas: ", seen.keys())
+	r["Solo Pidgey, Bellsprout, Rattata y Vulpix en todo el mapa"] = not seen.is_empty() and seen.keys().all(func(id): return id in WildSpawner.TEST_POOL)
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[modos] %s %s" % ["OK   " if r[key] else "FALLO", key])

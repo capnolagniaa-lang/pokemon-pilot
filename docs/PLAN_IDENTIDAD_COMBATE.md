@@ -19,8 +19,10 @@ el documento original de abajo (que queda como referencia de ideas: estados, sin
   Espacio = esquive. (Números 1-4 como alternativa.) `Controls.SLOT_ACTIONS` / `SLOT_KEYS`.
 - **Estilos de pelea** (arquetipos) definidos por el kit: `data/kits/<pokémon>/kit.tres` → `Kit` con
   `archetype`, `preferred_range`, `signature` (opcional) y `moves` (4 `MoveData`).
-- **Spawns de Ruta 1 (zona de prueba del combate):** solo **Pidgey, Bellsprout, Rattata y Vulpix**
-  (`WildSpawner.BY_ZONE`). Los demás Pokémon siguen existiendo y aparecen en otras zonas.
+- **Spawns durante la prueba del combate:** solo **Pidgey, Bellsprout, Rattata y Vulpix en todo el mapa**
+  (`WildSpawner.TEST_POOL`, `use_test_pool = true`). Se extendió a todas las zonas porque las vecinas de Ruta 1
+  (lago, humedal) se cargan al acercarse a sus bordes y metían Pokémon de agua. Los demás Pokémon no se borraron:
+  con `use_test_pool = false` vuelven los spawns por zona/bioma (`BY_ZONE`, `BY_BIOME`).
 - Stats oficiales, estados del plan (I-1), interacciones, resistencia a control, telegrafiado y recuperación:
   **siguen igual**.
 - **Pantalla de inicio** (pedido del usuario): **Modo práctica** (por defecto activado: si tu Pokémon se debilita,

@@ -69,7 +69,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `Controls.SLOT_ACTIONS` (Clic izq., Clic der., Q, R) + `dodge` (Espacio, igual para todos). La criatura usa
   `use_slot(slot 0-3, aim, point)` y `dodge(dir)`. Las mecánicas de firma son subclases de `SignatureMechanic`
   (`scripts/combat/signatures/`) conectadas a las señales de la criatura; **nunca** agregar
-  `if especie == ...` en el código central. Spawns de Ruta 1 restringidos en `WildSpawner.BY_ZONE`.
+  `if especie == ...` en el código central. Spawns: por ahora todo el mapa usa `WildSpawner.TEST_POOL`
+  (Pidgey, Bellsprout, Rattata, Vulpix) mientras se prueba el combate; `use_test_pool = false` vuelve a los
+  spawns por zona/bioma.
 - **Stats y progresión = reglas oficiales** (ver sección abajo). Nunca inventar stats: salen de PokeAPI.
 - **Tags de entorno**: custom data `tags` del TileSet (`inflamable`, `agua`, `conductor`, `congelable`,
   `pasto_alto`, `solido`, `arbol`...) + `EnvObject.tags` (`fragil`, `pesado`, `cortable`...).
