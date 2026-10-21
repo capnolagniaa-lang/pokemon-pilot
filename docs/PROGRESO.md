@@ -2,6 +2,9 @@
 
 Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el contexto de una sesión).
 
+> **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
+> [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
+
 ## Etapas
 
 | # | Etapa | Estado |

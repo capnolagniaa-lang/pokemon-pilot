@@ -5,6 +5,12 @@ Juego tipo Pokémon en **Godot 4.7 (GDScript)**: mundo abierto 2D top-down con c
 
 **Al empezar una sesión: leé `docs/PROGRESO.md`** (estado de cada etapa, decisiones, próximo paso).
 
+Hay **dos planes**:
+1. `docs/PROGRESO.md` — plan de etapas del juego (mundo, entorno, IA, clima, captura, gimnasios...).
+2. `docs/PLAN_IDENTIDAD_COMBATE.md` — **plan de identidad de combate en tiempo real** (definido por el
+   usuario): arquetipos, mecánica de firma y kit propio por Pokémon. Es la dirección del combate: cada
+   Pokémon tiene que sentirse distinto de jugar. Tiene su propia tabla de avance (pasos I-0 a I-9).
+
 ## Reglas de trabajo (acordadas con el usuario)
 - Hablar en **español rioplatense** (voseo).
 - Se trabaja **por etapas** (ver `docs/PROGRESO.md`). Al terminar cada una: autotest OK, explicar brevemente
