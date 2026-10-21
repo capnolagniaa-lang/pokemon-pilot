@@ -39,6 +39,9 @@ func _draw() -> void:
 		_draw_moves(c)
 		_draw_enemy()
 	_draw_message()
+	if GameState.difficulty != null:
+		var mode := "IA: %s%s" % [GameState.difficulty.display_name, "  ·  Modo práctica" if GameState.practice_mode else ""]
+		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
 	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · F volver" if in_battle \
 		else "WASD mover · Shift correr · F sacar a tu Pokémon a pelear"
 	draw_string(font, Vector2(0, size.y - 14), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))

@@ -6,6 +6,19 @@ var active_index := 0
 var balls := 0
 ## Si es false no aparecen salvajes (lo usa el autotest de recorrido).
 var wilds_enabled := true
+## Modo práctica (se elige al iniciar): si tu Pokémon se debilita, vuelve al instante con la vida al máximo.
+var practice_mode := true
+## Dificultad de la IA salvaje (se elige al iniciar). Por defecto Normal.
+var difficulty: AiDifficulty
+
+
+func _ready() -> void:
+	difficulty = DB.difficulties.get("normal")
+
+
+func set_difficulty(id: String) -> void:
+	if DB.difficulties.has(id):
+		difficulty = DB.difficulties[id]
 
 
 func new_game(starter: SpeciesData) -> void:

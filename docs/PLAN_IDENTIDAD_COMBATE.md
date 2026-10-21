@@ -23,6 +23,13 @@ el documento original de abajo (que queda como referencia de ideas: estados, sin
   (`WildSpawner.BY_ZONE`). Los demás Pokémon siguen existiendo y aparecen en otras zonas.
 - Stats oficiales, estados del plan (I-1), interacciones, resistencia a control, telegrafiado y recuperación:
   **siguen igual**.
+- **Pantalla de inicio** (pedido del usuario): **Modo práctica** (por defecto activado: si tu Pokémon se debilita,
+  vuelve a los 0,8 s con la vida al máximo) y **Dificultad de la IA**: Fácil / **Normal (por defecto)** / Difícil.
+  Difícil = la IA original ("está MUY fuerte, hace todo bien"). Datos en `data/config/difficulty/*.tres`
+  (`AiDifficulty`: intervalo entre ataques, error de puntería, probabilidad de esquivar, daño de los salvajes,
+  ritmo de cambio de táctica). Estado en `GameState.practice_mode` / `GameState.difficulty`.
+  Fácil: ataca ×2,2 más lento, erra ±28°, no esquiva, 60% de daño · Normal: ×1,5, ±15°, esquiva 12%, 80% ·
+  Difícil: ×1, ±7°, esquiva 30%, 100%. Autotest: `--autotest-modes`.
 
 ## Estilos implementados
 | Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Mecánica |

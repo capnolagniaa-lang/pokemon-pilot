@@ -90,6 +90,8 @@ func _on_creature_fainted(c: Creature) -> void:
 	if c == world.companion:
 		Events.message_requested.emit("¡%s se debilitó!" % c.instance.species.display_name)
 		end_battle()
+		if GameState.practice_mode:
+			get_tree().create_timer(0.8).timeout.connect(_practice_revive.bind(c.instance))
 	elif enemies.has(c):
 		enemies.erase(c)
 		var gained := CreatureInstance.exp_yield(c.instance)
@@ -116,6 +118,15 @@ func _update_battle(delta: float) -> void:
 	_calm = 0.0 if near else _calm + delta
 	if _calm >= calm_time:
 		end_battle()
+
+
+## Modo práctica: el Pokémon debilitado vuelve enseguida con la vida al máximo.
+func _practice_revive(inst: CreatureInstance) -> void:
+	if inst != GameState.active():
+		return
+	inst.hp = inst.max_hp()
+	world.respawn_companion()
+	Events.message_requested.emit("Modo práctica: %s vuelve con la vida al máximo." % inst.species.display_name)
 
 
 func _regen(delta: float) -> void:

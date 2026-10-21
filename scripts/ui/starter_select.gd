@@ -10,6 +10,47 @@ func _ready() -> void:
 	var starters := DB.config.starters
 	for i in starters.size():
 		cards.add_child(_card(starters[i], i))
+	_build_options()
+
+
+## Opciones de la partida: dificultad de la IA y modo práctica.
+func _build_options() -> void:
+	var box := VBoxContainer.new()
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
+	box.add_theme_constant_override("separation", 12)
+	$Center/VBox.add_child(box)
+
+	var row := HBoxContainer.new()
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", 10)
+	box.add_child(row)
+	var label := Label.new()
+	label.text = "Dificultad de la IA:"
+	label.add_theme_font_size_override("font_size", 18)
+	row.add_child(label)
+	var group := ButtonGroup.new()
+	for id in ["facil", "normal", "dificil"]:
+		var diff: AiDifficulty = DB.difficulties.get(id)
+		if diff == null:
+			continue
+		var b := Button.new()
+		b.text = diff.display_name
+		b.toggle_mode = true
+		b.button_group = group
+		b.custom_minimum_size = Vector2(110, 36)
+		b.add_theme_color_override("font_pressed_color", Color(1.0, 0.85, 0.3))
+		b.add_theme_color_override("font_hover_pressed_color", Color(1.0, 0.85, 0.3))
+		b.button_pressed = GameState.difficulty == diff
+		b.pressed.connect(GameState.set_difficulty.bind(id))
+		row.add_child(b)
+
+	var practice := CheckBox.new()
+	practice.text = "Modo práctica (si tu Pokémon se debilita, vuelve al instante con la vida al máximo)"
+	practice.button_pressed = GameState.practice_mode
+	practice.toggled.connect(func(on: bool): GameState.practice_mode = on)
+	var center := CenterContainer.new()
+	center.add_child(practice)
+	box.add_child(center)
 
 
 func _card(sp: SpeciesData, index: int) -> Control:

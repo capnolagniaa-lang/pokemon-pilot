@@ -9,6 +9,7 @@ var moves: Dictionary = {}    # id -> MoveData
 var species: Dictionary = {}  # id -> SpeciesData
 var statuses: Dictionary = {}  # id -> StatusEffect
 var interactions: Dictionary = {}  # nombre de archivo -> StatusInteraction
+var difficulties: Dictionary = {}  # id -> AiDifficulty (facil, normal, dificil)
 var type_chart: TypeChart
 var config: GameConfig
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	species = _load_dir("res://data/species", "SpeciesData")
 	statuses = _load_dir("res://data/status", "StatusEffect")
 	interactions = _load_dir("res://data/status/interactions", "StatusInteraction")
+	difficulties = _load_dir("res://data/config/difficulty", "AiDifficulty")
 	type_chart = load("res://data/types/type_chart.tres")
 	config = load("res://data/config/game_config.tres")
 

@@ -25,6 +25,8 @@ Acceso directo sin abrir el editor: un `.lnk` que apunte a `Godot_v4.7.2-stable_
 | Esquivar | Espacio |
 | Cambiar de Pokémon | Tab |
 
+Al empezar elegís la **dificultad de la IA** (Fácil, Normal o Difícil) y si querés el **modo práctica** (tu Pokémon vuelve al instante con la vida al máximo si se debilita).
+
 Si un salvaje te ve, el combate empieza solo y pasás a controlar a tu Pokémon. Sin energía: cada ataque tiene su recarga. Cada Pokémon con kit tiene un **estilo de pelea**: Charmander es **bruiser** (Ascuas en abanico, Arañazo que se lanza y encadena 2 golpes, Giro Fuego que atrapa, Embestida Ígnea; y su **Calor** lo lleva a Mar Llamas), Bellsprout y Bulbasaur son **control** (esporas que ralentizan y envenenan, Látigo Cepa que agarra, defensiva y Somnífero). Diseño: [docs/PLAN_IDENTIDAD_COMBATE.md](docs/PLAN_IDENTIDAD_COMBATE.md).
 
 ## Estructura

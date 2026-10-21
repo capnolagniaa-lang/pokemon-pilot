@@ -10,8 +10,13 @@ var _mode := "strafe"
 var _checked: Dictionary = {}
 
 
+## Dificultad elegida al iniciar (Fácil / Normal / Difícil).
+func _diff() -> AiDifficulty:
+	return GameState.difficulty if GameState.difficulty != null else AiDifficulty.new()
+
+
 func enter(_msg: Dictionary = {}) -> void:
-	_attack_timer = randf_range(0.3, 0.8)
+	_attack_timer = randf_range(0.3, 0.8) * _diff().attack_interval_mult
 
 
 func physics_update(delta: float) -> void:
@@ -34,7 +39,7 @@ func physics_update(delta: float) -> void:
 
 	_think -= delta
 	if _think <= 0.0:
-		_think = randf_range(0.4, 0.9)
+		_think = randf_range(0.4, 0.9) * _diff().think_interval_mult
 		var ideal := _ideal_range()
 		if dist > ideal * 1.3:
 			_mode = "approach"
@@ -47,7 +52,7 @@ func physics_update(delta: float) -> void:
 
 	_attack_timer -= delta
 	if _attack_timer <= 0.0:
-		_attack_timer = randf_range(0.6, 1.4)
+		_attack_timer = randf_range(0.6, 1.4) * _diff().attack_interval_mult
 		if _choose_attack(dist, dir):
 			return
 
@@ -91,8 +96,13 @@ func _choose_attack(dist: float, dir: Vector2) -> bool:
 			_:
 				ok = dist < m.reach()
 		if ok:
-			var target_point: Vector2 = actor.target.global_position if is_instance_valid(actor.target) else Vector2.INF
-			return actor.use_slot(slot, dir.rotated(randf_range(-0.12, 0.12)), target_point)
+			var err := deg_to_rad(_diff().aim_error_deg)
+			var target_point: Vector2 = Vector2.INF
+			if is_instance_valid(actor.target):
+				# Mismo error de puntería para las zonas y el Arañazo (apuntan a un punto).
+				var off: Vector2 = actor.target.global_position - actor.global_position
+				target_point = actor.global_position + off.rotated(randf_range(-err, err)) * randf_range(1.0 - err, 1.0 + err)
+			return actor.use_slot(slot, dir.rotated(randf_range(-err, err)), target_point)
 	return false
 
 

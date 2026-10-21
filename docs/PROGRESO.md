@@ -10,6 +10,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   el usuario esté conforme con los estilos de pelea.
 - v2 hecho: **sin energía** (solo recargas), **4 ataques + esquive en Espacio**, Charmander **bruiser** rearmado,
   Bellsprout/Bulbasaur **control**, Ruta 1 solo hace aparecer **Pidgey, Bellsprout, Rattata y Vulpix**.
+- Pantalla de inicio con **Modo práctica** (por defecto on) y **Dificultad de la IA** (Fácil / Normal por
+  defecto / Difícil = la IA original). Detalle en el plan de identidad.
 - **Siguiente:** que el usuario pruebe y opine; después kits de **Pidgey, Rattata y Vulpix** (los otros de
   Ruta 1), luego **Squirtle** (tanque/parry) y **Pikachu** (cargas). Propuestas en `PLAN_IDENTIDAD_COMBATE.md`.
 - Lo de la sección "Combate (Etapa 2)" más abajo que hable de energía o de ataques 1-4 genéricos quedó

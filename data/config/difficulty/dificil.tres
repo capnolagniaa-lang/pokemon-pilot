@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AiDifficulty" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/ai_difficulty.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "dificil"
+display_name = "Difícil"
+attack_interval_mult = 1.0
+aim_error_deg = 7.0
+dodge_chance = 0.3
+damage_mult = 1.0
+think_interval_mult = 1.0

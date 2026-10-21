@@ -23,6 +23,10 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-modes" in OS.get_cmdline_user_args():
+		set_process(false)
+		_modes_test.call_deferred()
+		return
 	if "--showcase-kit" in OS.get_cmdline_user_args():
 		set_process(false)
 		_showcase_kit.call_deferred()
@@ -604,3 +608,42 @@ func _showcase_kit() -> void:
 	me.use_slot(2, Vector2.RIGHT)
 	await get_tree().create_timer(1.2).timeout
 	get_tree().quit()
+
+# --- Modo práctica y dificultad (godot --path . -- --autotest-modes) -------------------------
+
+func _modes_test() -> void:
+	var r := {}
+	r["Por defecto: dificultad Normal"] = GameState.difficulty != null and GameState.difficulty.id == "normal"
+	r["Hay 3 dificultades (Fácil, Normal, Difícil)"] = DB.difficulties.has("facil") and DB.difficulties.has("normal") and DB.difficulties.has("dificil")
+	var hard: AiDifficulty = DB.difficulties["dificil"]
+	var easy: AiDifficulty = DB.difficulties["facil"]
+	r["Difícil = comportamiento original"] = hard.attack_interval_mult == 1.0 and hard.dodge_chance == 0.3 and hard.damage_mult == 1.0
+	r["Fácil: ataca menos, erra más, no esquiva, pega menos"] = easy.attack_interval_mult > 1.5 and easy.aim_error_deg > 20.0 and easy.dodge_chance == 0.0 and easy.damage_mult < 1.0
+
+	GameState.practice_mode = true
+	GameState.set_difficulty("facil")
+	var world: Node = await _setup_kit_world("charmander")
+	var me: Creature = world.companion
+	var wild: Creature = world.spawner.spawn(DB.species["rattata"], 5, me.global_position + Vector2(60, 0))
+	await get_tree().physics_frame
+	var h := HitInfo.from(wild, wild.moves.slots[0])
+	r["El daño salvaje usa la dificultad"] = absf(h.damage_mult - easy.damage_mult) < 0.001
+	var inst: CreatureInstance = me.instance
+	me.health.apply_damage(inst.max_hp() * 2.0)
+	await get_tree().create_timer(1.3).timeout
+	var c2: Creature = world.companion
+	r["Modo práctica: vuelve al instante con la vida al máximo"] = is_instance_valid(c2) and c2 != me and not c2.is_down() and inst.hp >= inst.max_hp()
+
+	GameState.practice_mode = false
+	world = await _setup_kit_world("charmander")
+	me = world.companion
+	inst = me.instance
+	me.health.apply_damage(inst.max_hp() * 2.0)
+	await get_tree().create_timer(1.3).timeout
+	r["Sin práctica: queda debilitado (se recupera de a poco)"] = inst.hp < inst.max_hp() * 0.3
+
+	var ok := r.values().all(func(v): return v)
+	for key in r:
+		print("[modos] %s %s" % ["OK   " if r[key] else "FALLO", key])
+	print("[autotest-modes] -> ", "OK" if ok else "FALLO")
+	get_tree().quit(0 if ok else 1)

@@ -35,6 +35,7 @@ $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
 $G --headless --path . --quit-after 5000 -- --autotest-kit       # kits: Charmander (bruiser) + Bellsprout (control)
+$G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit   # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
