@@ -10,6 +10,7 @@ size = Vector2(16, 14)
 collision_layer = 129
 collision_mask = 0
 script = ExtResource("1")
+display_name = "Roca frágil"
 tags = PackedStringArray("solido", "roca", "fragil")
 
 [node name="Collision" type="CollisionShape2D" parent="."]

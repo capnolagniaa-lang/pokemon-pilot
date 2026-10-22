@@ -7,6 +7,8 @@ const TILE := 16
 @export var zone_id: String = ""
 ## Celda superior izquierda de cada árbol (2x2), para dibujar sus sombras.
 @export var tree_cells: Array[Vector2i] = []
+## Editada con el editor de mapas: tools/build_world.gd --force no la regenera (salvo con --force-all).
+@export var hand_edited: bool = false
 
 @onready var ground: TileMapLayer = $Ground
 @onready var water: TileMapLayer = $Water

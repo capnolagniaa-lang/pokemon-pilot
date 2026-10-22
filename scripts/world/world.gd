@@ -24,11 +24,12 @@ func _ready() -> void:
 	var spawn := Vector2(world.spawn_cell * world.tile_size) + Vector2(world.tile_size / 2.0, world.tile_size / 2.0)
 	if GameState.trainer_position != Vector2.INF and world.zone_at(GameState.trainer_position) != null:
 		spawn = GameState.trainer_position  # partida cargada: aparece donde guardó
+	streamer.load_around_now(spawn)
+	spawn = _safe_spawn(spawn)
 	trainer.global_position = spawn
 	trainer.trail = [spawn]
 	camera.target = trainer
 	camera.snap()
-	streamer.load_around_now(spawn)
 	# Las zonas se cargan alrededor de lo que mira la cámara (el entrenador o tu Pokémon en combate).
 	streamer.target = camera
 	trainer.add_to_group("trainer")
@@ -53,6 +54,20 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_add_pokemon") and debug_enabled():
 		debug_add_pokemon()
+
+
+## Si el mapa cambió (editor de mapas) y la posición guardada quedó en algo sólido o en el agua, lleva al
+## entrenador al centro de la celda transitable más cercana.
+func _safe_spawn(pos: Vector2) -> Vector2:
+	var entry := streamer.world_data.zone_at(pos)
+	var zone: Zone = streamer.zone_node(entry.id) if entry != null else null
+	if zone == null:
+		return pos
+	var cell := zone.cell_at(pos)
+	var free := MapRules.nearest_walkable(zone, entry, cell)
+	if free == cell:
+		return pos
+	return zone.to_global(zone.ground.map_to_local(free))
 
 
 ## Herramientas de debug: solo con `-- --debug` o corriendo desde el editor.

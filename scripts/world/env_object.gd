@@ -3,6 +3,8 @@ extends StaticBody2D
 ## Objeto del entorno con tags (roca frágil, roca pesada, arbusto cortable...).
 ## El entorno reactivo (ReactionSystem) rompe lo frágil con una embestida de al menos `break_power` de potencia.
 
+## Nombre para mostrar (editor de mapas).
+@export var display_name: String = ""
 @export var tags: PackedStringArray = []
 ## Potencia mínima de la embestida que lo rompe (si es "fragil").
 @export var break_power: float = 30.0

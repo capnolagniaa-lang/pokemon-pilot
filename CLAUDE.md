@@ -45,10 +45,15 @@ $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showca
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
 $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
+$G --headless --path . --quit-after 20000 -- --autotest-map-editor  # editor de mapas (ida y vuelta, pinceles, UI...)
+$G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-map-editor  # capturas del editor
+$G --path . -- --map-editor                                        # editor de mapas (herramienta)
+$G --path . -- --debug --start-zone ruta1 --start-cell 20,12        # juego directo en una zona (lo usa F5 del editor)
 ```
 El usuario lanza el juego con el acceso directo **"Pokémon Pilot"** del escritorio
 (`Godot_v4.7.2-stable_win64.exe --path <proyecto>`, ícono `icon.ico` generado por `tools/make_icon.py`).
-Si se mueve la carpeta del proyecto o de Godot, hay que recrear el acceso directo.
+El **editor de mapas** tiene su acceso directo **"Pokémon Pilot — Editor de mapas"** (mismos argumentos +
+`-- --map-editor`, ícono `Pokemon.ico`). Si se mueve la carpeta del proyecto o de Godot, hay que recrear los dos.
 
 Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta scratchpad y leer los PNG.
 
@@ -71,6 +76,14 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `ZoneStreamer` carga/descarga zonas en segundo plano (sin pantallas de carga). `World.tags_at(pos)`.
 - **Zonas** (`scenes/world/zones/*.tscn`): capas `Ground` (z-10), `Water` (shader agua), `Foliage`
   (shader viento), `TreeShadows`, `Overhead` (z 20, copas que tapan), `Objects` (EnvObject con tags).
+  La estructura la arma **un solo lugar**: `ZoneBuilder.new_zone_root` (`scripts/world/zone_builder.gd`), que usan
+  el generador (`ZoneGenerator`) y el editor de mapas. `Zone.hand_edited` = editada con el editor.
+  `MapRules` (`scripts/world/map_rules.gd`): colisión real por celda, celda libre más cercana (World reubica al
+  entrenador si la posición guardada quedó en algo sólido) y validaciones de zona.
+- **Editor de mapas** (herramienta, no etapa; `scenes/tools/map_editor.tscn`, `scripts/tools/map_editor/`):
+  `MapDocument` = la zona real abierta + operaciones con reglas (pinceles por rol, autotile, árboles, objetos,
+  balde, copiar/pegar con `TileMapPattern`, `UndoRedo`, guardar con backup). La UI (`map_editor.gd` + paneles)
+  no tiene lógica de mapa. Ver README, "Editor de mapas".
 - **Combate**: `CombatDirector` (modo combate), componentes `Health`/`StatusEffects`/`MoveUser`/`Hurtbox`/
   `Hitbox` en la criatura, `Projectile`/`AreaEffect`, `HitInfo` + `Damage`. El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
@@ -117,9 +130,19 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - `tools/pret_import.py` (Python sin dependencias): convierte gráficos de `art_src/pret` (decomp
   pret/pokefirered) en atlas `art/pret/tiles/*_below|above|anim.png` + `manifest.json`, y sprites
   (Red, rocas, arbusto). Ojo: los metatiles se identifican por número (ver tabla en `tools/build_world.gd`).
-- `tools/build_world.gd`: arma el TileSet y **genera las zonas** a partir de `REGION` y `BIOMES`.
-  `-- --force` pisa las zonas (perdés lo pintado a mano en el editor). Para agrandar el mundo:
-  sumar filas a `REGION`.
+- **Roles de tile** (`data/world/tile_roles.tres`, `TileRoleSet` de `TileRole`): pasto, arena, agua, árbol...
+  con sus metatiles, capa, lo que va abajo, autotile 3×3, tags y colisión, + `overrides` por metatile (los
+  escribe el panel "Tile" del editor) y `behavior_hints` (sugerencias por behavior de FireRed). **Es la fuente
+  de los tags y la colisión del TileSet**: tocar tags acá (o con el editor), no a mano en `world_tileset.tres`.
+- `tools/build_world.gd`: arma el TileSet (desde los roles) y **genera las zonas** a partir de `REGION` y
+  `ZoneGenerator.BIOMES` (`scripts/world/zone_generator.gd`). Sin flags no pisa nada.
+  `-- --force` regenera TileSet y zonas **salvo las marcadas `hand_edited`** (editadas con el editor de mapas),
+  que conservan también su entrada en `kanto.tres` (hub, salidas, nombre); `-- --force-all` pisa todo.
+  Las zonas creadas con el editor (que no están en `REGION`) se conservan siempre. Para agrandar el mundo:
+  sumar filas a `REGION` o usar "Nueva zona" en el editor.
+- **Editor de mapas**: guarda zonas en `scenes/world/zones/<id>.tscn` (backup en `.backup/`, últimos 5) y el
+  TileSet con backup en `art/tiles/.backup/`. El autotile es `ZoneBuilder.autotile_piece` (no terrains de
+  Godot: ver README).
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + extras de la tabla `EXTRAS`, niveles de
   FRLG) y los guarda en las especies. Correrlo después de cambiar un kit o los extras.
 - `tools/download_sprites.ps1`: sprites PMD (PMDCollab/SpriteCollab) de Pokémon por número de Pokédex

@@ -31,6 +31,14 @@ func _ready() -> void:
 			add_child(env)
 			(env.run if flag == "--autotest-env" else env.showcase).call_deferred()
 			return
+	for flag in ["--autotest-map-editor", "--showcase-map-editor"]:
+		if flag in OS.get_cmdline_user_args():
+			set_process(false)
+			var me := MapEditorTests.new()
+			me.autotest = self
+			add_child(me)
+			(me.run if flag == "--autotest-map-editor" else me.showcase).call_deferred()
+			return
 	var meta_flags := {"--autotest-save": "save_test", "--autotest-party": "party_test", "--showcase-menus": "showcase_menus"}
 	for flag in meta_flags:
 		if flag in OS.get_cmdline_user_args():

@@ -1,0 +1,167 @@
+[gd_resource type="Resource" script_class="TileRoleSet" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/tile_role.gd" id="1_86yaw"]
+[ext_resource type="Script" path="res://scripts/resources/tile_role_set.gd" id="2_trh8o"]
+
+[sub_resource type="Resource" id="Resource_e5un0"]
+script = ExtResource("1_86yaw")
+id = "grass"
+display_name = "Pasto"
+symbol = "."
+metatiles = PackedInt32Array(1, 8, 9, 16, 17)
+variants = PackedInt32Array(1, 1, 1, 1, 1, 8, 9, 16, 17)
+tags = PackedStringArray("suelo", "pasto")
+color = Color(0.45, 0.75, 0.35, 1)
+
+[sub_resource type="Resource" id="Resource_n3xu0"]
+script = ExtResource("1_86yaw")
+id = "meadow"
+display_name = "Pradera clara"
+kind = 1
+symbol = "m"
+metatiles = PackedInt32Array(189, 190, 191, 197, 198, 199, 205, 206, 207)
+variants = PackedInt32Array()
+tags = PackedStringArray("suelo", "pasto")
+color = Color(0.65, 0.85, 0.45, 1)
+
+[sub_resource type="Resource" id="Resource_www1e"]
+script = ExtResource("1_86yaw")
+id = "tall_grass"
+display_name = "Pasto alto"
+symbol = ","
+layer = "Foliage"
+under = "grass"
+metatiles = PackedInt32Array(13)
+variants = PackedInt32Array()
+tags = PackedStringArray("suelo", "pasto_alto", "inflamable")
+color = Color(0.25, 0.6, 0.25, 1)
+
+[sub_resource type="Resource" id="Resource_0mgam"]
+script = ExtResource("1_86yaw")
+id = "flowers"
+display_name = "Flores"
+symbol = "*"
+layer = "Foliage"
+under = "grass"
+metatiles = PackedInt32Array(4)
+variants = PackedInt32Array()
+tags = PackedStringArray("suelo", "pasto", "flores", "inflamable")
+color = Color(0.95, 0.55, 0.65, 1)
+
+[sub_resource type="Resource" id="Resource_ml1y7"]
+script = ExtResource("1_86yaw")
+id = "sand"
+display_name = "Arena"
+kind = 1
+symbol = "="
+metatiles = PackedInt32Array(211, 212, 213, 219, 220, 221, 227, 228, 229)
+variants = PackedInt32Array()
+tags = PackedStringArray("suelo", "arena")
+color = Color(0.9, 0.82, 0.55, 1)
+
+[sub_resource type="Resource" id="Resource_h4ci2"]
+script = ExtResource("1_86yaw")
+id = "dirt"
+display_name = "Tierra"
+kind = 1
+symbol = "-"
+metatiles = PackedInt32Array(208, 209, 210, 216, 217, 218, 224, 225, 226)
+variants = PackedInt32Array()
+tags = PackedStringArray("suelo", "tierra")
+color = Color(0.7, 0.55, 0.38, 1)
+
+[sub_resource type="Resource" id="Resource_tq4x0"]
+script = ExtResource("1_86yaw")
+id = "water"
+display_name = "Agua / laguna"
+kind = 1
+symbol = "~"
+layer = "Water"
+under = "grass"
+metatiles = PackedInt32Array(416, 417, 418, 424, 425, 426, 432, 433, 434)
+variants = PackedInt32Array()
+tags = PackedStringArray("agua", "conductor", "congelable")
+physics = 1
+color = Color(0.35, 0.6, 0.95, 1)
+
+[sub_resource type="Resource" id="Resource_20l5r"]
+script = ExtResource("1_86yaw")
+id = "tree"
+display_name = "Árbol"
+kind = 2
+metatiles = PackedInt32Array(14, 15, 26, 27, 30, 31)
+variants = PackedInt32Array()
+tags = PackedStringArray("arbol", "solido", "inflamable")
+physics = 0
+color = Color(0.2, 0.45, 0.25, 1)
+
+[resource]
+script = ExtResource("2_trh8o")
+roles = Array[ExtResource("1_86yaw")]([SubResource("Resource_e5un0"), SubResource("Resource_n3xu0"), SubResource("Resource_www1e"), SubResource("Resource_0mgam"), SubResource("Resource_ml1y7"), SubResource("Resource_h4ci2"), SubResource("Resource_tq4x0"), SubResource("Resource_20l5r")])
+behavior_hints = {
+2: {
+"name": "Pasto alto",
+"physics": -1,
+"tags": PackedStringArray("suelo", "pasto_alto", "inflamable")
+},
+16: {
+"name": "Agua de estanque",
+"physics": 1,
+"tags": PackedStringArray("agua", "conductor", "congelable")
+},
+17: {
+"name": "Agua semiprofunda",
+"physics": 1,
+"tags": PackedStringArray("agua", "conductor", "congelable")
+},
+18: {
+"name": "Agua profunda",
+"physics": 1,
+"tags": PackedStringArray("agua", "conductor", "congelable")
+},
+19: {
+"name": "Cascada",
+"physics": 1,
+"tags": PackedStringArray("agua", "conductor")
+},
+21: {
+"name": "Agua de mar",
+"physics": 1,
+"tags": PackedStringArray("agua", "conductor", "congelable")
+},
+22: {
+"name": "Agua",
+"physics": 1,
+"tags": PackedStringArray("agua", "conductor", "congelable")
+},
+23: {
+"name": "Agua poco profunda",
+"physics": -1,
+"tags": PackedStringArray("suelo", "agua_baja")
+},
+33: {
+"name": "Arena",
+"physics": -1,
+"tags": PackedStringArray("suelo", "arena")
+},
+56: {
+"name": "Saliente (salto)",
+"physics": 0,
+"tags": PackedStringArray("saliente", "solido")
+},
+57: {
+"name": "Saliente (salto)",
+"physics": 0,
+"tags": PackedStringArray("saliente", "solido")
+},
+58: {
+"name": "Saliente (salto)",
+"physics": 0,
+"tags": PackedStringArray("saliente", "solido")
+},
+59: {
+"name": "Saliente (salto)",
+"physics": 0,
+"tags": PackedStringArray("saliente", "solido")
+}
+}

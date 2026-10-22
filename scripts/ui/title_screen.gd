@@ -4,6 +4,9 @@ extends Control
 
 const STARTER_SCENE := "res://scenes/ui/starter_select.tscn"
 const WORLD_SCENE := "res://scenes/world/world.tscn"
+const MAP_EDITOR_SCENE := "res://scenes/tools/map_editor.tscn"
+## Partida de prueba del editor de mapas: guarda aparte para no pisar la partida real.
+const TEST_SLOT := "user://saves/map_editor_test.json"
 
 var _menu: VBoxContainer
 var _continue: Button
@@ -15,6 +18,13 @@ var _parade: Array = []  # [PokemonAnimView, x base, fase]
 func _ready() -> void:
 	theme = UiStyle.theme()
 	get_tree().paused = false
+	var args := OS.get_cmdline_user_args()
+	if "--map-editor" in args:
+		get_tree().change_scene_to_file.call_deferred(MAP_EDITOR_SCENE)
+		return
+	if "--start-zone" in args:
+		_start_in_zone.call_deferred(args)
+		return
 	_summary = SaveManager.summary()
 	_build_background()
 	_build_menu()
@@ -102,6 +112,10 @@ func _build_menu() -> void:
 	var new_game := UiStyle.button("Nueva partida", 340)
 	new_game.pressed.connect(_on_new_game)
 	_menu.add_child(new_game)
+	if "--debug" in OS.get_cmdline_user_args() or OS.has_feature("editor"):  # como World.debug_enabled()
+		var editor := UiStyle.button("Editor de mapas", 340)
+		editor.pressed.connect(func(): get_tree().change_scene_to_file(MAP_EDITOR_SCENE))
+		_menu.add_child(editor)
 	var quit := UiStyle.button("Salir", 340)
 	quit.pressed.connect(func(): get_tree().quit())
 	_menu.add_child(quit)
@@ -136,6 +150,26 @@ func _summary_panel() -> Control:
 	var when := str(_summary.get("saved_at", "")).replace("T", " ").left(16)
 	box.add_child(UiStyle.label("Tiempo: %s  ·  %s" % [SaveManager.format_time(_summary["play_time"]), when], 13, UiStyle.TEXT_DIM))
 	return panel
+
+
+## "Probar en el juego" del editor de mapas (-- --debug --start-zone <id> --start-cell x,y): arranca con el
+## equipo de la partida guardada (o un inicial) parado en esa celda. Lo que se guarde va a un slot aparte.
+func _start_in_zone(args: PackedStringArray) -> void:
+	var zone_id := args[args.find("--start-zone") + 1] if args.find("--start-zone") + 1 < args.size() else ""
+	var cell := Vector2i.ZERO
+	var i := args.find("--start-cell")
+	if i >= 0 and i + 1 < args.size():
+		var parts := args[i + 1].split(",")
+		if parts.size() == 2:
+			cell = Vector2i(int(parts[0]), int(parts[1]))
+	if not SaveManager.load_game():
+		GameState.new_game(DB.config.starters[0])
+	SaveManager.slot_path = TEST_SLOT
+	var world := DB.config.world
+	for z in world.zones:
+		if z.id == zone_id:
+			GameState.trainer_position = Vector2((z.origin + cell) * world.tile_size) + Vector2(world.tile_size / 2.0, world.tile_size / 2.0)
+	get_tree().change_scene_to_file(WORLD_SCENE)
 
 
 func _on_continue() -> void:

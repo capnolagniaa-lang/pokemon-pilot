@@ -6,6 +6,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-22)
+- **Herramienta — Editor de mapas hecha** (no corre la numeración de etapas): acceso directo "Pokémon Pilot —
+  Editor de mapas" (`-- --map-editor`). Ver la sección "Herramienta — Editor de mapas" más abajo.
 - **Etapa 3 hecha (entorno reactivo)** — ver "Etapa 3" más abajo. **Etapa 2c hecha** (título, guardado,
   equipo y movimientos).
 - **Siguiente: Etapa 4 (IA salvaje con estados + spawns por bioma/hora)** — ver "Próximo paso concreto". El usuario aprobó los kits por ahora ("me gustan los de Charmander y
@@ -37,6 +39,38 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | Pendiente |
 | 7 | Primer gimnasio (arena con transición) | Pendiente |
 | 8 | Pulido (juice, audio, partículas) | Pendiente |
+
+## Herramienta — Editor de mapas (2026-10-22)
+Pedido del usuario en `docs/PROMPT_EDITOR_DE_MAPAS.md`. Es una herramienta, no una etapa. Decisiones (todas las
+recomendadas): **modo aparte del mismo proyecto** (`-- --map-editor` + acceso directo propio), **autotile
+portado** a un script compartido (se probaron los terrains de Godot: ~7% de celdas distintas, cortan los caminos
+en las salidas y no hay esquinas interiores en el 3×3 de FireRed), **marca `hand_edited`** en la zona
+(`--force` la saltea, `--force-all` no), **roles y tags como datos** en `data/world/tile_roles.tres`, y los tilesets
+`viridian_forest`/`pallet_town` **todavía no** (el editor quedó preparado: la paleta sale del TileSet).
+- **Núcleo compartido**: `ZoneBuilder` (TileSet desde los roles, estructura de la zona, autotile, guardar),
+  `ZoneGenerator` (el generador de `build_world.gd`, ahora reutilizable) y `MapRules` (colisión real por celda,
+  celda libre más cercana, validaciones). Verificado: regenerar las 9 zonas y el TileSet con el núcleo nuevo da
+  exactamente lo mismo que antes (celda por celda).
+- **Editor** (`scenes/tools/map_editor.tscn`, `scripts/tools/map_editor/`): lienzo con las capas reales y las
+  vecinas atenuadas; superposiciones (grilla, colisión, tags, sin tags, plaza/salidas, inicio); pinceles con las
+  reglas (autotile, agua y follaje con pasto abajo, árboles con copa/apilado/sombra, borde de árboles, objetos de
+  `scenes/world/objects/`); modo tile crudo con paleta filtrable; pincel 1-3, línea, rectángulo, balde,
+  selección + copiar/pegar, gotero; deshacer/rehacer de todo; panel de tags y colisión por metatile (con backup del
+  TileSet y sugerencias por behavior); zona: nombre, bioma, plaza y salidas arrastrables, inicio del juego,
+  validaciones y "Nueva zona" en un lugar libre (en pasto o generada). Guardar con backup (últimos 5) y aviso de
+  cambios sin guardar.
+- **Probar en el juego (F5)**: proceso aparte (`OS.create_process` con `-- --debug --start-zone <id> --start-cell x,y`).
+  Se eligió proceso aparte porque el juego arranca limpio (autoloads, guardado, streaming) sin arrastrar estado del
+  editor, si el juego se cuelga el editor sigue abierto, y se pueden tener los dos a la vez. Usa el equipo de la
+  partida guardada y guarda en `user://saves/map_editor_test.json` (no pisa la partida real).
+- `World._ready()` **no** reubicaba al entrenador: ahora, si la posición guardada quedó en algo sólido o en el agua,
+  aparece en la celda libre más cercana (`MapRules.nearest_walkable`).
+- `EnvObject.display_name` (nombre en el editor): Roca frágil, Roca pesada, Árbol cortable.
+- Autotest `--autotest-map-editor` (≈45 chequeos: ida y vuelta idéntica, arena/agua/árbol/roca con tags y
+  colisión, deshacer/rehacer, balde, copiar/pegar, validaciones, zona nueva, panel de tile, la UI real manejada
+  como con el mouse, reubicación del entrenador); vitrina `--showcase-map-editor`.
+- Pendiente (si hace falta): sumar los tilesets `viridian_forest` y `pallet_town` como fuentes nuevas del TileSet;
+  esquinas interiores para caminos y lagos (ya anotado en pulido).
 
 ## Etapa 3 — Entorno reactivo (2026-10-22)
 - **El fuego NO interactúa con el entorno** (decisión del usuario, 2026-10-22: no le gustó que queme el pasto).
