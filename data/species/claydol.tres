@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jn6me"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6nedr"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_fl6sf"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_cm2by"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gjjl2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_7xjs4"]
+[ext_resource type="Resource" path="res://data/moves/giro_rapido.tres" id="4_nekea"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_gh6aj"]
+[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="5_qxpdo"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_dsxms"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="6_dwm0j"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="7_iisek"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="8_8xe6j"]
+[ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="9_uwubw"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="10_arte2"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="11_isff8"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="12_ewdhs"]
+[ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="13_gj0ai"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="14_1di18"]
+
+[sub_resource type="Resource" id="Resource_72u7q"]
+script = ExtResource("1_jn6me")
+move = ExtResource("2_fl6sf")
+
+[sub_resource type="Resource" id="Resource_om7cw"]
+script = ExtResource("1_jn6me")
+move = ExtResource("3_cm2by")
+
+[sub_resource type="Resource" id="Resource_3mlu0"]
+script = ExtResource("1_jn6me")
+move = ExtResource("4_nekea")
+
+[sub_resource type="Resource" id="Resource_r7e6k"]
+script = ExtResource("1_jn6me")
+move = ExtResource("5_qxpdo")
+
+[sub_resource type="Resource" id="Resource_i2yxr"]
+script = ExtResource("1_jn6me")
+level = 7
+move = ExtResource("6_dwm0j")
+
+[sub_resource type="Resource" id="Resource_e6ddc"]
+script = ExtResource("1_jn6me")
+level = 11
+move = ExtResource("7_iisek")
+
+[sub_resource type="Resource" id="Resource_cfj5c"]
+script = ExtResource("1_jn6me")
+level = 15
+move = ExtResource("8_8xe6j")
+
+[sub_resource type="Resource" id="Resource_ela6n"]
+script = ExtResource("1_jn6me")
+level = 19
+move = ExtResource("9_uwubw")
+
+[sub_resource type="Resource" id="Resource_57gek"]
+script = ExtResource("1_jn6me")
+level = 25
+move = ExtResource("10_arte2")
+
+[sub_resource type="Resource" id="Resource_022w7"]
+script = ExtResource("1_jn6me")
+level = 31
+move = ExtResource("11_isff8")
+
+[sub_resource type="Resource" id="Resource_ifkwb"]
+script = ExtResource("1_jn6me")
+level = 36
+move = ExtResource("12_ewdhs")
+
+[sub_resource type="Resource" id="Resource_dfux1"]
+script = ExtResource("1_jn6me")
+level = 42
+move = ExtResource("13_gj0ai")
+
+[sub_resource type="Resource" id="Resource_8fa6f"]
+script = ExtResource("1_jn6me")
+level = 55
+move = ExtResource("14_1di18")
+
+[resource]
+script = ExtResource("3_gjjl2")
+id = "claydol"
+display_name = "Claydol"
+dex = 344
+types = Array[ExtResource("4_7xjs4")]([ExtResource("5_gh6aj"), ExtResource("6_dsxms")])
+learnset = Array[ExtResource("1_jn6me")]([SubResource("Resource_72u7q"), SubResource("Resource_om7cw"), SubResource("Resource_3mlu0"), SubResource("Resource_r7e6k"), SubResource("Resource_i2yxr"), SubResource("Resource_e6ddc"), SubResource("Resource_cfj5c"), SubResource("Resource_ela6n"), SubResource("Resource_57gek"), SubResource("Resource_022w7"), SubResource("Resource_ifkwb"), SubResource("Resource_dfux1"), SubResource("Resource_8fa6f")])
+genus = "Pokémon Muñeca Barro"
+pokedex_entry = "Se cree que los Claydol son figuras de barro hechas por humanos primitivos y que un misterioso rayo les hizo cobrar vida. Este Pokémon se desplaza levitando."
+height_m = 1.5
+weight_kg = 108.0
+base_hp = 60
+base_attack = 70
+base_defense = 105
+base_sp_attack = 70
+base_sp_defense = 120
+base_speed = 75
+base_experience = 175
+capture_rate = 90

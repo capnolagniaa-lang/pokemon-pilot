@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mhqy0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_du06x"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_wtsq7"]
+[ext_resource type="Resource" path="res://data/moves/polucion.tres" id="3_54euq"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_tu5yt"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="4_1f3lf"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_752fh"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_0f76p"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="5_takqw"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="6_u1d1g"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="7_2e42n"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="8_7exlk"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_kxlyo"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="10_hns42"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="11_m5pdn"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="12_h136r"]
+[ext_resource type="Resource" path="res://data/moves/onda_ignea.tres" id="13_6i5ga"]
+
+[sub_resource type="Resource" id="Resource_no8eo"]
+script = ExtResource("1_mhqy0")
+move = ExtResource("2_wtsq7")
+
+[sub_resource type="Resource" id="Resource_pqq1f"]
+script = ExtResource("1_mhqy0")
+level = 4
+move = ExtResource("3_54euq")
+
+[sub_resource type="Resource" id="Resource_l0hky"]
+script = ExtResource("1_mhqy0")
+level = 7
+move = ExtResource("4_1f3lf")
+
+[sub_resource type="Resource" id="Resource_dfqgl"]
+script = ExtResource("1_mhqy0")
+level = 14
+move = ExtResource("5_takqw")
+
+[sub_resource type="Resource" id="Resource_7pfp7"]
+script = ExtResource("1_mhqy0")
+level = 17
+move = ExtResource("6_u1d1g")
+
+[sub_resource type="Resource" id="Resource_jjujo"]
+script = ExtResource("1_mhqy0")
+level = 20
+move = ExtResource("7_2e42n")
+
+[sub_resource type="Resource" id="Resource_5dmi5"]
+script = ExtResource("1_mhqy0")
+level = 27
+move = ExtResource("8_7exlk")
+
+[sub_resource type="Resource" id="Resource_rp0kg"]
+script = ExtResource("1_mhqy0")
+level = 30
+move = ExtResource("9_kxlyo")
+
+[sub_resource type="Resource" id="Resource_a1kof"]
+script = ExtResource("1_mhqy0")
+level = 33
+move = ExtResource("10_hns42")
+
+[sub_resource type="Resource" id="Resource_7cbar"]
+script = ExtResource("1_mhqy0")
+level = 40
+move = ExtResource("11_m5pdn")
+
+[sub_resource type="Resource" id="Resource_g1kyu"]
+script = ExtResource("1_mhqy0")
+level = 43
+move = ExtResource("12_h136r")
+
+[sub_resource type="Resource" id="Resource_o2amv"]
+script = ExtResource("1_mhqy0")
+level = 46
+move = ExtResource("13_6i5ga")
+
+[resource]
+script = ExtResource("3_tu5yt")
+id = "torkoal"
+display_name = "Torkoal"
+dex = 324
+types = Array[ExtResource("4_752fh")]([ExtResource("5_0f76p")])
+learnset = Array[ExtResource("1_mhqy0")]([SubResource("Resource_no8eo"), SubResource("Resource_pqq1f"), SubResource("Resource_l0hky"), SubResource("Resource_dfqgl"), SubResource("Resource_7pfp7"), SubResource("Resource_jjujo"), SubResource("Resource_5dmi5"), SubResource("Resource_rp0kg"), SubResource("Resource_a1kof"), SubResource("Resource_7cbar"), SubResource("Resource_g1kyu"), SubResource("Resource_o2amv")])
+genus = "Pokémon Carbón"
+pokedex_entry = "Torkoal va cavando por las montañas en busca de carbón. Cuando lo encuentra, rellena los huecos que tiene dentro del caparazón y lo quema. Si le atacan, este Pokémon echa un humo negro que le permite la retirada."
+height_m = 0.5
+weight_kg = 80.4
+base_hp = 70
+base_attack = 85
+base_defense = 140
+base_sp_attack = 85
+base_sp_defense = 70
+base_speed = 20
+base_experience = 165
+capture_rate = 90

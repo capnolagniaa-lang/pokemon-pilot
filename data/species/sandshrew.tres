@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_y5fym"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_f1vlr"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_h1ruc"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="3_4g13a"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_dqqmv"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="4_lw3rm"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_shc8r"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="5_3gs23"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_15arq"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="6_hrpu0"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="7_d1tyg"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="8_l0tlx"]
+[ext_resource type="Resource" path="res://data/moves/bucle_arena.tres" id="9_a7vry"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="10_ua4kd"]
+
+[sub_resource type="Resource" id="Resource_4mkr7"]
+script = ExtResource("1_y5fym")
+move = ExtResource("2_f1vlr")
+
+[sub_resource type="Resource" id="Resource_a5dux"]
+script = ExtResource("1_y5fym")
+level = 6
+move = ExtResource("3_4g13a")
+
+[sub_resource type="Resource" id="Resource_mqc5m"]
+script = ExtResource("1_y5fym")
+level = 11
+move = ExtResource("4_lw3rm")
+
+[sub_resource type="Resource" id="Resource_vjukc"]
+script = ExtResource("1_y5fym")
+level = 17
+move = ExtResource("5_3gs23")
+
+[sub_resource type="Resource" id="Resource_dy5si"]
+script = ExtResource("1_y5fym")
+level = 23
+move = ExtResource("6_hrpu0")
+
+[sub_resource type="Resource" id="Resource_nvxqs"]
+script = ExtResource("1_y5fym")
+level = 30
+move = ExtResource("7_d1tyg")
+
+[sub_resource type="Resource" id="Resource_p8jr0"]
+script = ExtResource("1_y5fym")
+level = 37
+move = ExtResource("8_l0tlx")
+
+[sub_resource type="Resource" id="Resource_6twvf"]
+script = ExtResource("1_y5fym")
+level = 45
+move = ExtResource("9_a7vry")
+
+[sub_resource type="Resource" id="Resource_2t47j"]
+script = ExtResource("1_y5fym")
+level = 53
+move = ExtResource("10_ua4kd")
+
+[resource]
+script = ExtResource("3_dqqmv")
+id = "sandshrew"
+display_name = "Sandshrew"
+dex = 27
+types = Array[ExtResource("4_shc8r")]([ExtResource("5_15arq")])
+learnset = Array[ExtResource("1_y5fym")]([SubResource("Resource_4mkr7"), SubResource("Resource_a5dux"), SubResource("Resource_mqc5m"), SubResource("Resource_vjukc"), SubResource("Resource_dy5si"), SubResource("Resource_nvxqs"), SubResource("Resource_p8jr0"), SubResource("Resource_6twvf"), SubResource("Resource_2t47j")])
+genus = "Pokémon Ratón"
+pokedex_entry = "Sandshrew es capaz de absorber agua y no perder ni una gota, algo que le permite sobrevivir en el desierto. Este Pokémon se enrosca para defenderse de los enemigos."
+height_m = 0.6
+weight_kg = 12.0
+base_attack = 75
+base_defense = 85
+base_sp_attack = 20
+base_sp_defense = 30
+base_speed = 40
+capture_rate = 255

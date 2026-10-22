@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_7l3ru"]
+[ext_resource type="Resource" path="res://data/moves/carga.tres" id="2_e0ix3"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tkqlk"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_bl1dy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_tmw5d"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="4_fqqqg"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_un3hl"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_4hldd"]
+[ext_resource type="Resource" path="res://data/moves/bomba_sonica.tres" id="5_4vtcj"]
+[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="6_4wxdx"]
+[ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="7_8wp66"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_j3vlr"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="9_6kb3y"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="10_fh275"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_apka1"]
+[ext_resource type="Resource" path="res://data/moves/manto_espejo.tres" id="12_wx23i"]
+
+[sub_resource type="Resource" id="Resource_j02to"]
+script = ExtResource("1_7l3ru")
+move = ExtResource("2_e0ix3")
+
+[sub_resource type="Resource" id="Resource_h02gv"]
+script = ExtResource("1_7l3ru")
+move = ExtResource("3_bl1dy")
+
+[sub_resource type="Resource" id="Resource_d6p0w"]
+script = ExtResource("1_7l3ru")
+level = 8
+move = ExtResource("4_fqqqg")
+
+[sub_resource type="Resource" id="Resource_q3gmb"]
+script = ExtResource("1_7l3ru")
+level = 15
+move = ExtResource("5_4vtcj")
+
+[sub_resource type="Resource" id="Resource_8k7p2"]
+script = ExtResource("1_7l3ru")
+level = 21
+move = ExtResource("6_4wxdx")
+
+[sub_resource type="Resource" id="Resource_g5cpb"]
+script = ExtResource("1_7l3ru")
+level = 27
+move = ExtResource("7_8wp66")
+
+[sub_resource type="Resource" id="Resource_jarfw"]
+script = ExtResource("1_7l3ru")
+level = 32
+move = ExtResource("8_j3vlr")
+
+[sub_resource type="Resource" id="Resource_lelrt"]
+script = ExtResource("1_7l3ru")
+level = 37
+move = ExtResource("9_6kb3y")
+
+[sub_resource type="Resource" id="Resource_1mdaw"]
+script = ExtResource("1_7l3ru")
+level = 42
+move = ExtResource("10_fh275")
+
+[sub_resource type="Resource" id="Resource_egr86"]
+script = ExtResource("1_7l3ru")
+level = 46
+move = ExtResource("11_apka1")
+
+[sub_resource type="Resource" id="Resource_ho2w3"]
+script = ExtResource("1_7l3ru")
+level = 49
+move = ExtResource("12_wx23i")
+
+[resource]
+script = ExtResource("3_tmw5d")
+id = "voltorb"
+display_name = "Voltorb"
+dex = 100
+types = Array[ExtResource("4_un3hl")]([ExtResource("5_4hldd")])
+learnset = Array[ExtResource("1_7l3ru")]([SubResource("Resource_j02to"), SubResource("Resource_h02gv"), SubResource("Resource_d6p0w"), SubResource("Resource_q3gmb"), SubResource("Resource_8k7p2"), SubResource("Resource_g5cpb"), SubResource("Resource_jarfw"), SubResource("Resource_lelrt"), SubResource("Resource_1mdaw"), SubResource("Resource_egr86"), SubResource("Resource_ho2w3")])
+genus = "Pokémon Bola"
+pokedex_entry = "Voltorb fue visto por primera vez en una empresa encargada de comercializar Poké Balls. La conexión que existe entre aquella primera vez que se le vio y el hecho de que se parece mucho a una Poké Ball sigue siendo un misterio."
+height_m = 0.5
+weight_kg = 10.4
+base_hp = 40
+base_attack = 30
+base_sp_attack = 55
+base_sp_defense = 55
+base_speed = 100
+base_experience = 66
+capture_rate = 190

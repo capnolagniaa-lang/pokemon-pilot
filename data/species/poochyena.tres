@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_huh3e"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_facpm"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_gmjq5"]
+[ext_resource type="Resource" path="res://data/moves/aullido.tres" id="3_bulo0"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pxcqu"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="4_g7iwq"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_h05vh"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="5_fcxy4"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="5_mdunu"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="6_7an35"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="7_j8don"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="8_bnd01"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="9_85iwq"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_gp8oe"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="11_y7sq1"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="12_gxsyt"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="13_g3xys"]
+
+[sub_resource type="Resource" id="Resource_er8qo"]
+script = ExtResource("1_huh3e")
+move = ExtResource("2_gmjq5")
+
+[sub_resource type="Resource" id="Resource_swjn1"]
+script = ExtResource("1_huh3e")
+level = 5
+move = ExtResource("3_bulo0")
+
+[sub_resource type="Resource" id="Resource_vteym"]
+script = ExtResource("1_huh3e")
+level = 9
+move = ExtResource("4_g7iwq")
+
+[sub_resource type="Resource" id="Resource_o8bbb"]
+script = ExtResource("1_huh3e")
+level = 13
+move = ExtResource("5_fcxy4")
+
+[sub_resource type="Resource" id="Resource_h5iub"]
+script = ExtResource("1_huh3e")
+level = 17
+move = ExtResource("6_7an35")
+
+[sub_resource type="Resource" id="Resource_w5ex2"]
+script = ExtResource("1_huh3e")
+level = 21
+move = ExtResource("7_j8don")
+
+[sub_resource type="Resource" id="Resource_y08j5"]
+script = ExtResource("1_huh3e")
+level = 25
+move = ExtResource("8_bnd01")
+
+[sub_resource type="Resource" id="Resource_15p58"]
+script = ExtResource("1_huh3e")
+level = 29
+move = ExtResource("9_85iwq")
+
+[sub_resource type="Resource" id="Resource_821la"]
+script = ExtResource("1_huh3e")
+level = 33
+move = ExtResource("10_gp8oe")
+
+[sub_resource type="Resource" id="Resource_l43rd"]
+script = ExtResource("1_huh3e")
+level = 37
+move = ExtResource("11_y7sq1")
+
+[sub_resource type="Resource" id="Resource_8sr0p"]
+script = ExtResource("1_huh3e")
+level = 41
+move = ExtResource("12_gxsyt")
+
+[sub_resource type="Resource" id="Resource_o2gqv"]
+script = ExtResource("1_huh3e")
+level = 45
+move = ExtResource("13_g3xys")
+
+[resource]
+script = ExtResource("3_pxcqu")
+id = "poochyena"
+display_name = "Poochyena"
+dex = 261
+types = Array[ExtResource("4_h05vh")]([ExtResource("5_mdunu")])
+learnset = Array[ExtResource("1_huh3e")]([SubResource("Resource_er8qo"), SubResource("Resource_swjn1"), SubResource("Resource_vteym"), SubResource("Resource_o8bbb"), SubResource("Resource_h5iub"), SubResource("Resource_w5ex2"), SubResource("Resource_y08j5"), SubResource("Resource_15p58"), SubResource("Resource_821la"), SubResource("Resource_l43rd"), SubResource("Resource_8sr0p"), SubResource("Resource_o2gqv")])
+genus = "Pokémon Mordisco"
+pokedex_entry = "La primera reacción que Poochyena tiene al ver algo moverse es darle un mordisco. Este Pokémon persigue a su presa hasta que cae agotada. Aunque, a veces, sale huyendo si su presa le responde con un ataque."
+height_m = 0.5
+weight_kg = 13.6
+base_hp = 35
+base_attack = 55
+base_defense = 35
+base_sp_attack = 30
+base_sp_defense = 30
+base_speed = 35
+base_experience = 56
+capture_rate = 255

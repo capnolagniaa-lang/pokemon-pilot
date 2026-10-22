@@ -1,0 +1,101 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rxtu6"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lnrmw"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_y0k0e"]
+[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="3_2u5ue"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_nr0wt"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="4_7jvk5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sop23"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_2rhf1"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="5_7h705"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_c7x7x"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="6_mhu2i"]
+[ext_resource type="Resource" path="res://data/moves/telepata.tres" id="7_cbuip"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="8_8lmjk"]
+[ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="9_nkuab"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="10_rjj5e"]
+[ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="11_grvtr"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="12_6plt1"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="13_1508a"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="14_27j83"]
+
+[sub_resource type="Resource" id="Resource_tfc4y"]
+script = ExtResource("1_rxtu6")
+move = ExtResource("2_y0k0e")
+
+[sub_resource type="Resource" id="Resource_21tuk"]
+script = ExtResource("1_rxtu6")
+move = ExtResource("3_2u5ue")
+
+[sub_resource type="Resource" id="Resource_v1hkd"]
+script = ExtResource("1_rxtu6")
+move = ExtResource("4_7jvk5")
+
+[sub_resource type="Resource" id="Resource_rfnvk"]
+script = ExtResource("1_rxtu6")
+move = ExtResource("5_7h705")
+
+[sub_resource type="Resource" id="Resource_4v4wi"]
+script = ExtResource("1_rxtu6")
+level = 14
+move = ExtResource("6_mhu2i")
+
+[sub_resource type="Resource" id="Resource_pytnt"]
+script = ExtResource("1_rxtu6")
+level = 19
+move = ExtResource("7_cbuip")
+
+[sub_resource type="Resource" id="Resource_ljotr"]
+script = ExtResource("1_rxtu6")
+level = 20
+move = ExtResource("8_8lmjk")
+
+[sub_resource type="Resource" id="Resource_lsb4n"]
+script = ExtResource("1_rxtu6")
+level = 20
+move = ExtResource("9_nkuab")
+
+[sub_resource type="Resource" id="Resource_8sdqe"]
+script = ExtResource("1_rxtu6")
+level = 20
+move = ExtResource("10_rjj5e")
+
+[sub_resource type="Resource" id="Resource_gg4jq"]
+script = ExtResource("1_rxtu6")
+level = 25
+move = ExtResource("11_grvtr")
+
+[sub_resource type="Resource" id="Resource_oij00"]
+script = ExtResource("1_rxtu6")
+level = 31
+move = ExtResource("12_6plt1")
+
+[sub_resource type="Resource" id="Resource_c3sdb"]
+script = ExtResource("1_rxtu6")
+level = 38
+move = ExtResource("13_1508a")
+
+[sub_resource type="Resource" id="Resource_qk10n"]
+script = ExtResource("1_rxtu6")
+level = 45
+move = ExtResource("14_27j83")
+
+[resource]
+script = ExtResource("3_nr0wt")
+id = "ninjask"
+display_name = "Ninjask"
+dex = 291
+types = Array[ExtResource("4_sop23")]([ExtResource("5_2rhf1"), ExtResource("6_c7x7x")])
+learnset = Array[ExtResource("1_rxtu6")]([SubResource("Resource_tfc4y"), SubResource("Resource_21tuk"), SubResource("Resource_v1hkd"), SubResource("Resource_rfnvk"), SubResource("Resource_4v4wi"), SubResource("Resource_pytnt"), SubResource("Resource_ljotr"), SubResource("Resource_lsb4n"), SubResource("Resource_8sdqe"), SubResource("Resource_gg4jq"), SubResource("Resource_oij00"), SubResource("Resource_c3sdb"), SubResource("Resource_qk10n")])
+genus = "Pokémon Ninja"
+pokedex_entry = "Ninjask se mueve de un lado a otro a tal velocidad que es imposible verlo. Sin embargo, como su zumbido no deja de oírse, se pensó durante mucho tiempo que este Pokémon era invisible."
+height_m = 0.8
+weight_kg = 12.0
+base_hp = 61
+base_attack = 90
+base_defense = 45
+base_speed = 160
+base_experience = 160
+growth_rate = "slow-then-very-fast"
+capture_rate = 120

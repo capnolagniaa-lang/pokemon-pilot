@@ -11,6 +11,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   edificios. Ver la sección "Herramienta — Editor de mapas" más abajo.
 - **Etapa 3 hecha (entorno reactivo)** — ver "Etapa 3" más abajo. **Etapa 2c hecha** (título, guardado,
   equipo y movimientos).
+- **386 Pokémon (Kanto, Johto y Hoenn) cargados con stats, learnsets y sprites + Pokédex** en el menú
+  (2026-10-22, ver "Etapa 2d"). Los spawns NO se tocaron (siguen los 4 de prueba).
 - **Siguiente: Etapa 4 (IA salvaje con estados + spawns por bioma/hora)** — ver "Próximo paso concreto". El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.
 - v2 hecho: **sin energía** (solo recargas), **4 ataques + esquive en Espacio**, Charmander **bruiser** rearmado,
@@ -34,6 +36,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 2 | Combate en tiempo real en el mapa + estados alterados | ✅ Hecha |
 | 2b | Stats oficiales (PokeAPI), curvas de EXP, velocidad por stat, balance de energía, visual de fuego/estados | ✅ Hecha |
 | 2c | Título, guardado, equipo (máx. 6) y movimientos por nivel (learnset + ficha) | ✅ Hecha |
+| 2d | 386 Pokémon (3 regiones) con stats, learnsets y sprites + Pokédex (vistos/luchados) | ✅ Hecha |
 | 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | ✅ Hecha |
 | 4 | IA salvaje con estados + spawns por bioma/hora | ⏭️ Siguiente |
 | 5 | Ciclo día/noche, clima, NPCs con horarios | Pendiente |
@@ -79,6 +82,23 @@ en las salidas y no hay esquinas interiores en el 3×3 de FireRed), **marca `han
   tipo/tag, pestaña Sellos y tipo editable en la pestaña Propiedades (antes "Tile"; la paleta se llama "Paleta"). Las 9 zonas quedaron con los mismos tags y colisión
   (verificado celda por celda). Pendiente: animaciones propias de los tilesets secundarios (fuentes, etc.) y
   esquinas interiores para caminos y lagos (ya anotado en pulido).
+
+## Etapa 2d — 386 Pokémon y Pokédex (2026-10-22)
+Pedido del usuario: "todos los Pokémon de las 3 primeras regiones con sus movimientos y estadísticas" (sin
+tocar spawners) y la Pokédex en el menú.
+- **Datos**: 386 especies (372 nuevas) con stats, tipos, experiencia, curva, captura, nombre, categoría,
+  descripción (español), altura y peso; **learnset oficial completo de FRLG** para las nuevas (las 14 de antes
+  conservan su kit/extras); **337 ataques** (304 nuevos, forma automática). **18 tipos** con la tabla oficial
+  completa (incluye inmunidades: Normal→Fantasma, Eléctrico→Tierra, etc.). Sprites PMD de los 386 (29 MB).
+- **Pokédex** (menú de pausa → Pokédex, `PokedexScreen`): pestañas Kanto/Johto/Hoenn (Tab), grilla con
+  miniaturas. Lo **no visto** sale como **"?????"** con la **silueta oscura** sobre el fondo de rayos de
+  "¿Quién es ese Pokémon?". Lo **visto** muestra nombre, categoría, tipos, altura, peso y descripción; lo
+  **luchado** (●) suma las estadísticas base.
+- **Registro** (`PokedexTracker` en el mundo → `GameState.pokedex_seen/fought`, se guarda en la partida): visto =
+  un salvaje aparece en pantalla (mensaje "Pokédex: X registrado." la primera vez); luchado = entró en combate
+  con tu Pokémon. El equipo cuenta como luchado. Partidas viejas: se arma con el equipo.
+- Autotest `--autotest-pokedex` (14 chequeos: las 386 salen al mundo a Nv. 50 y usan sus 4 movimientos sin
+  errores; registro, guardado y pantalla); vitrina `--showcase-pokedex`.
 
 ## Etapa 3 — Entorno reactivo (2026-10-22)
 - **El fuego NO interactúa con el entorno** (decisión del usuario, 2026-10-22: no le gustó que queme el pasto).
@@ -133,7 +153,8 @@ FRLG), **ranuras libres**, **guardado solo manual**, debug **F9 con `-- --debug`
 - Autotests: `--autotest-save` (17 chequeos), `--autotest-party` (12); vitrina `--showcase-menus`.
 
 ## Decisiones tomadas (no volver a preguntar)
-- Generación: **solo primera generación (Kanto)**, nombres y sprites reales.
+- Generación: **las 3 primeras regiones (Kanto, Johto, Hoenn: 386 Pokémon)**, nombres y sprites reales
+  (antes solo Kanto; lo amplió el usuario el 2026-10-22).
 - Control: **entrenador + Pokémon**. Explorás con el entrenador (Red) y tu Pokémon te sigue.
 - Mundo: **zonas conectadas sin corte** (streaming), región continua; solo el borde exterior tiene árboles.
 - Arte: **pixel art GBA (FireRed, del decomp pret) + efectos modernos**; renderer **Forward+**

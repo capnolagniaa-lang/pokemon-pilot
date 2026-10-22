@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_edxf4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2a4ou"]
+[ext_resource type="Resource" path="res://data/moves/aullido.tres" id="2_ke1fh"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_0kwfj"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_qrskq"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_bjdqk"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_k0lwi"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_nvakv"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="5_tmurc"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="6_6gvne"]
+[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="7_08iew"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="8_cy85d"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="9_tjn12"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="10_epy1o"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="11_olx0m"]
+[ext_resource type="Resource" path="res://data/moves/carga.tres" id="12_f4qgw"]
+
+[sub_resource type="Resource" id="Resource_3k6yl"]
+script = ExtResource("1_edxf4")
+move = ExtResource("2_ke1fh")
+
+[sub_resource type="Resource" id="Resource_acwwp"]
+script = ExtResource("1_edxf4")
+move = ExtResource("3_0kwfj")
+
+[sub_resource type="Resource" id="Resource_u6tem"]
+script = ExtResource("1_edxf4")
+move = ExtResource("4_bjdqk")
+
+[sub_resource type="Resource" id="Resource_4e8ne"]
+script = ExtResource("1_edxf4")
+move = ExtResource("5_tmurc")
+
+[sub_resource type="Resource" id="Resource_g1y8e"]
+script = ExtResource("1_edxf4")
+level = 17
+move = ExtResource("6_6gvne")
+
+[sub_resource type="Resource" id="Resource_rpe36"]
+script = ExtResource("1_edxf4")
+level = 20
+move = ExtResource("7_08iew")
+
+[sub_resource type="Resource" id="Resource_bqkyp"]
+script = ExtResource("1_edxf4")
+level = 25
+move = ExtResource("8_cy85d")
+
+[sub_resource type="Resource" id="Resource_85twn"]
+script = ExtResource("1_edxf4")
+level = 31
+move = ExtResource("9_tjn12")
+
+[sub_resource type="Resource" id="Resource_0q23c"]
+script = ExtResource("1_edxf4")
+level = 39
+move = ExtResource("10_epy1o")
+
+[sub_resource type="Resource" id="Resource_svjil"]
+script = ExtResource("1_edxf4")
+level = 45
+move = ExtResource("11_olx0m")
+
+[sub_resource type="Resource" id="Resource_fxbvt"]
+script = ExtResource("1_edxf4")
+level = 53
+move = ExtResource("12_f4qgw")
+
+[resource]
+script = ExtResource("3_qrskq")
+id = "manectric"
+display_name = "Manectric"
+dex = 310
+types = Array[ExtResource("4_k0lwi")]([ExtResource("5_nvakv")])
+learnset = Array[ExtResource("1_edxf4")]([SubResource("Resource_3k6yl"), SubResource("Resource_acwwp"), SubResource("Resource_u6tem"), SubResource("Resource_4e8ne"), SubResource("Resource_g1y8e"), SubResource("Resource_rpe36"), SubResource("Resource_bqkyp"), SubResource("Resource_85twn"), SubResource("Resource_0q23c"), SubResource("Resource_svjil"), SubResource("Resource_fxbvt")])
+genus = "Pokémon Descarga"
+pokedex_entry = "Manectric está continuamente descargando electricidad por las melenas, y a veces causa incendios en el bosque con las chispas que suelta. Cuando entra en combate, este Pokémon crea nubarrones."
+height_m = 1.5
+weight_kg = 40.2
+base_hp = 70
+base_attack = 75
+base_defense = 60
+base_sp_attack = 105
+base_sp_defense = 60
+base_speed = 105
+base_experience = 166
+growth_rate = "slow"

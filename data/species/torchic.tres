@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_y1m0p"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_enkjx"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_pw4dp"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_6hv2g"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_vytm7"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="4_ebij6"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_luk3p"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="5_7npe7"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_ljq6v"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="6_hmwl7"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="7_oit4x"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="8_earjc"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="9_fn3k7"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_cc8au"]
+[ext_resource type="Resource" path="res://data/moves/espejo.tres" id="11_lkjkj"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="12_xifwy"]
+
+[sub_resource type="Resource" id="Resource_q7te5"]
+script = ExtResource("1_y1m0p")
+move = ExtResource("2_pw4dp")
+
+[sub_resource type="Resource" id="Resource_6eagx"]
+script = ExtResource("1_y1m0p")
+move = ExtResource("3_6hv2g")
+
+[sub_resource type="Resource" id="Resource_v4pbh"]
+script = ExtResource("1_y1m0p")
+level = 7
+move = ExtResource("4_ebij6")
+
+[sub_resource type="Resource" id="Resource_y66g5"]
+script = ExtResource("1_y1m0p")
+level = 10
+move = ExtResource("5_7npe7")
+
+[sub_resource type="Resource" id="Resource_ufxas"]
+script = ExtResource("1_y1m0p")
+level = 16
+move = ExtResource("6_hmwl7")
+
+[sub_resource type="Resource" id="Resource_br4ws"]
+script = ExtResource("1_y1m0p")
+level = 19
+move = ExtResource("7_oit4x")
+
+[sub_resource type="Resource" id="Resource_ej8vp"]
+script = ExtResource("1_y1m0p")
+level = 25
+move = ExtResource("8_earjc")
+
+[sub_resource type="Resource" id="Resource_72xwg"]
+script = ExtResource("1_y1m0p")
+level = 28
+move = ExtResource("9_fn3k7")
+
+[sub_resource type="Resource" id="Resource_kwhb8"]
+script = ExtResource("1_y1m0p")
+level = 34
+move = ExtResource("10_cc8au")
+
+[sub_resource type="Resource" id="Resource_bm76t"]
+script = ExtResource("1_y1m0p")
+level = 37
+move = ExtResource("11_lkjkj")
+
+[sub_resource type="Resource" id="Resource_vxup3"]
+script = ExtResource("1_y1m0p")
+level = 43
+move = ExtResource("12_xifwy")
+
+[resource]
+script = ExtResource("3_vytm7")
+id = "torchic"
+display_name = "Torchic"
+dex = 255
+types = Array[ExtResource("4_luk3p")]([ExtResource("5_ljq6v")])
+learnset = Array[ExtResource("1_y1m0p")]([SubResource("Resource_q7te5"), SubResource("Resource_6eagx"), SubResource("Resource_v4pbh"), SubResource("Resource_y66g5"), SubResource("Resource_ufxas"), SubResource("Resource_br4ws"), SubResource("Resource_ej8vp"), SubResource("Resource_72xwg"), SubResource("Resource_kwhb8"), SubResource("Resource_bm76t"), SubResource("Resource_vxup3")])
+genus = "Pokémon Polluelo"
+pokedex_entry = "Torchic no se separa de su Entrenador. Siempre va tras él con sus pasitos inseguros. Este Pokémon escupe bolas de fuego que pueden alcanzar los 1000 °C y carbonizar al enemigo."
+height_m = 0.4
+weight_kg = 2.5
+base_hp = 45
+base_attack = 60
+base_defense = 40
+base_sp_attack = 70
+base_speed = 45
+base_experience = 62
+growth_rate = "medium-slow"

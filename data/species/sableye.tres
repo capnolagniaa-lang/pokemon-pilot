@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jsl5v"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_lbqrp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_odxxx"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_adnw3"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_dqhoa"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="4_43ju5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_738da"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="5_45qe7"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="5_verby"]
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="6_f6eb1"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="6_pd51e"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="7_6d1rt"]
+[ext_resource type="Resource" path="res://data/moves/sorpresa.tres" id="8_bqb7w"]
+[ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="9_vd3er"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="10_xx4v8"]
+[ext_resource type="Resource" path="res://data/moves/desarme.tres" id="11_xjoh5"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="12_74w4d"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="13_0wxb1"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="14_6et0a"]
+
+[sub_resource type="Resource" id="Resource_y7j3u"]
+script = ExtResource("1_jsl5v")
+move = ExtResource("2_lbqrp")
+
+[sub_resource type="Resource" id="Resource_xqpnh"]
+script = ExtResource("1_jsl5v")
+move = ExtResource("3_adnw3")
+
+[sub_resource type="Resource" id="Resource_y0tv1"]
+script = ExtResource("1_jsl5v")
+level = 5
+move = ExtResource("4_43ju5")
+
+[sub_resource type="Resource" id="Resource_x65jf"]
+script = ExtResource("1_jsl5v")
+level = 9
+move = ExtResource("5_verby")
+
+[sub_resource type="Resource" id="Resource_c0rj1"]
+script = ExtResource("1_jsl5v")
+level = 13
+move = ExtResource("6_pd51e")
+
+[sub_resource type="Resource" id="Resource_pbspu"]
+script = ExtResource("1_jsl5v")
+level = 17
+move = ExtResource("7_6d1rt")
+
+[sub_resource type="Resource" id="Resource_5c7v8"]
+script = ExtResource("1_jsl5v")
+level = 21
+move = ExtResource("8_bqb7w")
+
+[sub_resource type="Resource" id="Resource_ii3n3"]
+script = ExtResource("1_jsl5v")
+level = 25
+move = ExtResource("9_vd3er")
+
+[sub_resource type="Resource" id="Resource_nfy4r"]
+script = ExtResource("1_jsl5v")
+level = 29
+move = ExtResource("10_xx4v8")
+
+[sub_resource type="Resource" id="Resource_ruoar"]
+script = ExtResource("1_jsl5v")
+level = 33
+move = ExtResource("11_xjoh5")
+
+[sub_resource type="Resource" id="Resource_kaa1m"]
+script = ExtResource("1_jsl5v")
+level = 37
+move = ExtResource("12_74w4d")
+
+[sub_resource type="Resource" id="Resource_adp5x"]
+script = ExtResource("1_jsl5v")
+level = 41
+move = ExtResource("13_0wxb1")
+
+[sub_resource type="Resource" id="Resource_sup6t"]
+script = ExtResource("1_jsl5v")
+level = 45
+move = ExtResource("14_6et0a")
+
+[resource]
+script = ExtResource("3_dqhoa")
+id = "sableye"
+display_name = "Sableye"
+dex = 302
+types = Array[ExtResource("4_738da")]([ExtResource("5_45qe7"), ExtResource("6_f6eb1")])
+learnset = Array[ExtResource("1_jsl5v")]([SubResource("Resource_y7j3u"), SubResource("Resource_xqpnh"), SubResource("Resource_y0tv1"), SubResource("Resource_x65jf"), SubResource("Resource_c0rj1"), SubResource("Resource_pbspu"), SubResource("Resource_5c7v8"), SubResource("Resource_ii3n3"), SubResource("Resource_nfy4r"), SubResource("Resource_ruoar"), SubResource("Resource_kaa1m"), SubResource("Resource_adp5x"), SubResource("Resource_sup6t")])
+genus = "Pokémon Oscuridad"
+pokedex_entry = "Los Sableye hacen una vida muy tranquila en cavernas, pero son muy temidos. Se dice que, cuando los ojos les brillan de manera siniestra, están robándole el alma a alguien."
+height_m = 0.5
+weight_kg = 11.0
+base_attack = 75
+base_defense = 75
+base_sp_attack = 65
+base_sp_defense = 65
+base_experience = 133
+growth_rate = "medium-slow"

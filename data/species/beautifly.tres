@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_w3tls"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_1admv"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cxyrm"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cb5ha"]
+[ext_resource type="Resource" path="res://data/moves/tornado.tres" id="3_vacgl"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="4_42a7x"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_f7kbt"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_pv32a"]
+[ext_resource type="Resource" path="res://data/moves/sol_matinal.tres" id="5_we66m"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="6_3ymal"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_5kb2a"]
+[ext_resource type="Resource" path="res://data/moves/remolino.tres" id="7_aadpa"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="8_dswpu"]
+[ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="9_lh7b7"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="10_tsv1g"]
+
+[sub_resource type="Resource" id="Resource_rba06"]
+script = ExtResource("1_w3tls")
+move = ExtResource("2_1admv")
+
+[sub_resource type="Resource" id="Resource_2jxjt"]
+script = ExtResource("1_w3tls")
+level = 13
+move = ExtResource("3_vacgl")
+
+[sub_resource type="Resource" id="Resource_rf67v"]
+script = ExtResource("1_w3tls")
+level = 17
+move = ExtResource("4_42a7x")
+
+[sub_resource type="Resource" id="Resource_awy8c"]
+script = ExtResource("1_w3tls")
+level = 20
+move = ExtResource("5_we66m")
+
+[sub_resource type="Resource" id="Resource_jurbl"]
+script = ExtResource("1_w3tls")
+level = 24
+move = ExtResource("6_3ymal")
+
+[sub_resource type="Resource" id="Resource_tjp4o"]
+script = ExtResource("1_w3tls")
+level = 27
+move = ExtResource("7_aadpa")
+
+[sub_resource type="Resource" id="Resource_cch11"]
+script = ExtResource("1_w3tls")
+level = 31
+move = ExtResource("8_dswpu")
+
+[sub_resource type="Resource" id="Resource_xcl3o"]
+script = ExtResource("1_w3tls")
+level = 34
+move = ExtResource("9_lh7b7")
+
+[sub_resource type="Resource" id="Resource_7sfed"]
+script = ExtResource("1_w3tls")
+level = 38
+move = ExtResource("10_tsv1g")
+
+[resource]
+script = ExtResource("3_cb5ha")
+id = "beautifly"
+display_name = "Beautifly"
+dex = 267
+types = Array[ExtResource("4_f7kbt")]([ExtResource("5_pv32a"), ExtResource("6_5kb2a")])
+learnset = Array[ExtResource("1_w3tls")]([SubResource("Resource_rba06"), SubResource("Resource_2jxjt"), SubResource("Resource_rf67v"), SubResource("Resource_awy8c"), SubResource("Resource_jurbl"), SubResource("Resource_tjp4o"), SubResource("Resource_cch11"), SubResource("Resource_xcl3o"), SubResource("Resource_7sfed")])
+genus = "Pokémon Mariposa"
+pokedex_entry = "La comida favorita de Beautifly es el dulce polen de las flores. Si quieres ver a este Pokémon, deja una maceta con flores al lado de la ventana y verás cómo aparece un ejemplar de Beautifly en busca de polen."
+height_m = 1.0
+weight_kg = 28.4
+base_hp = 60
+base_attack = 70
+base_sp_attack = 100
+base_speed = 65
+base_experience = 178

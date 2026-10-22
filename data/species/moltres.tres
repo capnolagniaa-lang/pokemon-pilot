@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_n5t7s"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_5pkrc"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_c4on4"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="3_34s3j"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_mvj7l"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="4_7nqf4"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ypurr"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_f2nb1"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="5_jjlf0"]
+[ext_resource type="Resource" path="res://data/moves/aguante.tres" id="6_dsk7y"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_u7muo"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="7_hbrbf"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="8_pxv30"]
+[ext_resource type="Resource" path="res://data/moves/onda_ignea.tres" id="9_oixo3"]
+[ext_resource type="Resource" path="res://data/moves/ataque_aereo.tres" id="10_akw8a"]
+
+[sub_resource type="Resource" id="Resource_ud6dq"]
+script = ExtResource("1_n5t7s")
+move = ExtResource("2_5pkrc")
+
+[sub_resource type="Resource" id="Resource_gmj3c"]
+script = ExtResource("1_n5t7s")
+move = ExtResource("3_34s3j")
+
+[sub_resource type="Resource" id="Resource_jb4bs"]
+script = ExtResource("1_n5t7s")
+level = 13
+move = ExtResource("4_7nqf4")
+
+[sub_resource type="Resource" id="Resource_lypx5"]
+script = ExtResource("1_n5t7s")
+level = 25
+move = ExtResource("5_jjlf0")
+
+[sub_resource type="Resource" id="Resource_tujvp"]
+script = ExtResource("1_n5t7s")
+level = 37
+move = ExtResource("6_dsk7y")
+
+[sub_resource type="Resource" id="Resource_qbpwj"]
+script = ExtResource("1_n5t7s")
+level = 49
+move = ExtResource("7_hbrbf")
+
+[sub_resource type="Resource" id="Resource_56rab"]
+script = ExtResource("1_n5t7s")
+level = 61
+move = ExtResource("8_pxv30")
+
+[sub_resource type="Resource" id="Resource_0ub7q"]
+script = ExtResource("1_n5t7s")
+level = 73
+move = ExtResource("9_oixo3")
+
+[sub_resource type="Resource" id="Resource_wnuna"]
+script = ExtResource("1_n5t7s")
+level = 85
+move = ExtResource("10_akw8a")
+
+[resource]
+script = ExtResource("3_mvj7l")
+id = "moltres"
+display_name = "Moltres"
+dex = 146
+types = Array[ExtResource("4_ypurr")]([ExtResource("5_f2nb1"), ExtResource("6_u7muo")])
+learnset = Array[ExtResource("1_n5t7s")]([SubResource("Resource_ud6dq"), SubResource("Resource_gmj3c"), SubResource("Resource_jb4bs"), SubResource("Resource_lypx5"), SubResource("Resource_tujvp"), SubResource("Resource_qbpwj"), SubResource("Resource_56rab"), SubResource("Resource_0ub7q"), SubResource("Resource_wnuna")])
+genus = "Pokémon Llama"
+pokedex_entry = "Moltres es un Pokémon pájaro legendario que tiene la habilidad de controlar el fuego. Dicen que, si resulta herido, se sumerge en el líquido magma de un volcán para arder y curarse."
+height_m = 2.0
+weight_kg = 60.0
+base_hp = 90
+base_attack = 100
+base_defense = 90
+base_sp_attack = 125
+base_sp_defense = 85
+base_speed = 90
+base_experience = 261
+growth_rate = "slow"
+capture_rate = 3

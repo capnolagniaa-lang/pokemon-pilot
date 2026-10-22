@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hnycp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ax5vx"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_ichiq"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_hrwu8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jy2kh"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0bh25"]
+[ext_resource type="Resource" path="res://data/moves/lanzarrocas.tres" id="4_1djnp"]
+[ext_resource type="Resource" path="res://data/moves/bloqueo.tres" id="5_p10ua"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_pborl"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="6_lwso1"]
+[ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="7_6q18d"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="8_k0olg"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_xal6w"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="10_2frlm"]
+[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="11_tjhc0"]
+
+[sub_resource type="Resource" id="Resource_vqq25"]
+script = ExtResource("1_hnycp")
+move = ExtResource("2_ichiq")
+
+[sub_resource type="Resource" id="Resource_dlakl"]
+script = ExtResource("1_hnycp")
+level = 7
+move = ExtResource("3_hrwu8")
+
+[sub_resource type="Resource" id="Resource_jlqq5"]
+script = ExtResource("1_hnycp")
+level = 13
+move = ExtResource("4_1djnp")
+
+[sub_resource type="Resource" id="Resource_2and2"]
+script = ExtResource("1_hnycp")
+level = 16
+move = ExtResource("5_p10ua")
+
+[sub_resource type="Resource" id="Resource_pd4d7"]
+script = ExtResource("1_hnycp")
+level = 22
+move = ExtResource("6_lwso1")
+
+[sub_resource type="Resource" id="Resource_sy7vy"]
+script = ExtResource("1_hnycp")
+level = 28
+move = ExtResource("7_6q18d")
+
+[sub_resource type="Resource" id="Resource_cre7y"]
+script = ExtResource("1_hnycp")
+level = 31
+move = ExtResource("8_k0olg")
+
+[sub_resource type="Resource" id="Resource_dv75f"]
+script = ExtResource("1_hnycp")
+level = 37
+move = ExtResource("9_xal6w")
+
+[sub_resource type="Resource" id="Resource_g310k"]
+script = ExtResource("1_hnycp")
+level = 43
+move = ExtResource("10_2frlm")
+
+[sub_resource type="Resource" id="Resource_gfdgp"]
+script = ExtResource("1_hnycp")
+level = 46
+move = ExtResource("11_tjhc0")
+
+[resource]
+script = ExtResource("3_jy2kh")
+id = "nosepass"
+display_name = "Nosepass"
+dex = 299
+types = Array[ExtResource("4_0bh25")]([ExtResource("5_pborl")])
+learnset = Array[ExtResource("1_hnycp")]([SubResource("Resource_vqq25"), SubResource("Resource_dlakl"), SubResource("Resource_jlqq5"), SubResource("Resource_2and2"), SubResource("Resource_pd4d7"), SubResource("Resource_sy7vy"), SubResource("Resource_cre7y"), SubResource("Resource_dv75f"), SubResource("Resource_g310k"), SubResource("Resource_gfdgp")])
+genus = "Pokémon Brújula"
+pokedex_entry = "Nosepass siempre está con la nariz magnética que tiene orientada hacia el norte. Si se encuentra con otro ejemplar de su especie, no puede mirarle de frente porque sus polos magnéticos se repelen."
+height_m = 1.0
+weight_kg = 97.0
+base_hp = 30
+base_attack = 45
+base_defense = 135
+base_sp_attack = 45
+base_sp_defense = 90
+base_speed = 30
+base_experience = 75
+capture_rate = 255

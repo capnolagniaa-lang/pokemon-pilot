@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_w3go1"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="2_hek5n"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rfldt"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="3_721pe"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_vnhfr"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_a2mxi"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_glyxi"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_0212t"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="5_cbcrp"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_nutwm"]
+[ext_resource type="Resource" path="res://data/moves/desarme.tres" id="6_r16ap"]
+[ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="7_dh0mh"]
+[ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="8_j6ewl"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_ay30l"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_qpchk"]
+[ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="11_ujvdf"]
+
+[sub_resource type="Resource" id="Resource_k0th0"]
+script = ExtResource("1_w3go1")
+move = ExtResource("2_hek5n")
+
+[sub_resource type="Resource" id="Resource_u70ts"]
+script = ExtResource("1_w3go1")
+level = 6
+move = ExtResource("3_721pe")
+
+[sub_resource type="Resource" id="Resource_fmqp7"]
+script = ExtResource("1_w3go1")
+level = 11
+move = ExtResource("4_glyxi")
+
+[sub_resource type="Resource" id="Resource_u4lxc"]
+script = ExtResource("1_w3go1")
+level = 16
+move = ExtResource("5_cbcrp")
+
+[sub_resource type="Resource" id="Resource_svc7t"]
+script = ExtResource("1_w3go1")
+level = 21
+move = ExtResource("6_r16ap")
+
+[sub_resource type="Resource" id="Resource_5ohts"]
+script = ExtResource("1_w3go1")
+level = 26
+move = ExtResource("7_dh0mh")
+
+[sub_resource type="Resource" id="Resource_xxc6f"]
+script = ExtResource("1_w3go1")
+level = 31
+move = ExtResource("8_j6ewl")
+
+[sub_resource type="Resource" id="Resource_ewrv1"]
+script = ExtResource("1_w3go1")
+level = 36
+move = ExtResource("9_ay30l")
+
+[sub_resource type="Resource" id="Resource_hmtky"]
+script = ExtResource("1_w3go1")
+level = 41
+move = ExtResource("10_qpchk")
+
+[sub_resource type="Resource" id="Resource_5kk2h"]
+script = ExtResource("1_w3go1")
+level = 46
+move = ExtResource("11_ujvdf")
+
+[resource]
+script = ExtResource("3_vnhfr")
+id = "farfetchd"
+display_name = "Farfetch’d"
+dex = 83
+types = Array[ExtResource("4_a2mxi")]([ExtResource("5_0212t"), ExtResource("6_nutwm")])
+learnset = Array[ExtResource("1_w3go1")]([SubResource("Resource_k0th0"), SubResource("Resource_u70ts"), SubResource("Resource_fmqp7"), SubResource("Resource_u4lxc"), SubResource("Resource_svc7t"), SubResource("Resource_5ohts"), SubResource("Resource_xxc6f"), SubResource("Resource_ewrv1"), SubResource("Resource_hmtky"), SubResource("Resource_5kk2h")])
+genus = "Pokémon Pato Salvaje"
+pokedex_entry = "Al parecer, entre los puerros que suelen llevar los Farfetch’d, los hay mejores y peores. A estos Pokémon se les ha visto luchar entre ellos por los mejores puerros."
+height_m = 0.8
+weight_kg = 15.0
+base_hp = 52
+base_attack = 90
+base_defense = 55
+base_sp_attack = 58
+base_sp_defense = 62
+base_speed = 60
+base_experience = 132

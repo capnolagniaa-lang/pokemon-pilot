@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_85n31"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3nfkl"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_i4y7f"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_06u3m"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_ymxs2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_r5clt"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="4_vfkqm"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_58wvp"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="5_bael6"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="6_qxvqo"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="6_w1c66"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="7_anl1s"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_v7f6l"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_b0pkl"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_qt2hb"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_jlaw3"]
+
+[sub_resource type="Resource" id="Resource_5asyk"]
+script = ExtResource("1_85n31")
+move = ExtResource("2_i4y7f")
+
+[sub_resource type="Resource" id="Resource_ibxax"]
+script = ExtResource("1_85n31")
+move = ExtResource("3_ymxs2")
+
+[sub_resource type="Resource" id="Resource_sp8re"]
+script = ExtResource("1_85n31")
+level = 7
+move = ExtResource("4_vfkqm")
+
+[sub_resource type="Resource" id="Resource_jfam8"]
+script = ExtResource("1_85n31")
+level = 13
+move = ExtResource("5_bael6")
+
+[sub_resource type="Resource" id="Resource_74cli"]
+script = ExtResource("1_85n31")
+level = 16
+move = ExtResource("6_qxvqo")
+
+[sub_resource type="Resource" id="Resource_0n2t6"]
+script = ExtResource("1_85n31")
+level = 22
+move = ExtResource("7_anl1s")
+
+[sub_resource type="Resource" id="Resource_mgxi7"]
+script = ExtResource("1_85n31")
+level = 28
+move = ExtResource("8_v7f6l")
+
+[sub_resource type="Resource" id="Resource_kywlm"]
+script = ExtResource("1_85n31")
+level = 31
+move = ExtResource("9_b0pkl")
+
+[sub_resource type="Resource" id="Resource_s4f5g"]
+script = ExtResource("1_85n31")
+level = 37
+move = ExtResource("10_qt2hb")
+
+[sub_resource type="Resource" id="Resource_yb74a"]
+script = ExtResource("1_85n31")
+level = 43
+move = ExtResource("11_jlaw3")
+
+[resource]
+script = ExtResource("3_06u3m")
+id = "carvanha"
+display_name = "Carvanha"
+dex = 318
+types = Array[ExtResource("4_r5clt")]([ExtResource("5_58wvp"), ExtResource("6_w1c66")])
+learnset = Array[ExtResource("1_85n31")]([SubResource("Resource_5asyk"), SubResource("Resource_ibxax"), SubResource("Resource_sp8re"), SubResource("Resource_jfam8"), SubResource("Resource_74cli"), SubResource("Resource_0n2t6"), SubResource("Resource_mgxi7"), SubResource("Resource_kywlm"), SubResource("Resource_s4f5g"), SubResource("Resource_yb74a")])
+genus = "Pokémon Feroz"
+pokedex_entry = "Carvanha, gracias a las descomunales fauces de afilados colmillos que tiene, es capaz de hacer trizas un barco. Son muchas las naves que han sufrido el ataque de este Pokémon y han acabado naufragando."
+height_m = 0.8
+weight_kg = 20.8
+base_hp = 45
+base_attack = 90
+base_defense = 20
+base_sp_attack = 65
+base_sp_defense = 20
+base_speed = 65
+base_experience = 61
+growth_rate = "slow"
+capture_rate = 225

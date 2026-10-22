@@ -23,6 +23,14 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	for flag in ["--autotest-pokedex", "--showcase-pokedex"]:
+		if flag in OS.get_cmdline_user_args():
+			set_process(false)
+			var px := PokedexTests.new()
+			px.autotest = self
+			add_child(px)
+			(px.run if flag == "--autotest-pokedex" else px.showcase).call_deferred()
+			return
 	for flag in ["--autotest-env", "--showcase-env"]:
 		if flag in OS.get_cmdline_user_args():
 			set_process(false)

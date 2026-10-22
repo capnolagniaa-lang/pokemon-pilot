@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xi7bd"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6ikyi"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="2_6mhxu"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="3_nejw6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_nhs5k"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="4_ixr46"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ysew7"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="5_lgerr"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_tc5tf"]
+[ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="6_5r41q"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_qqbnt"]
+[ext_resource type="Resource" path="res://data/moves/pico_taladro.tres" id="7_mmvmh"]
+[ext_resource type="Resource" path="res://data/moves/carga.tres" id="8_775tk"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="9_54kcl"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="10_y0olp"]
+
+[sub_resource type="Resource" id="Resource_vqcyi"]
+script = ExtResource("1_xi7bd")
+move = ExtResource("2_6mhxu")
+
+[sub_resource type="Resource" id="Resource_vfpqq"]
+script = ExtResource("1_xi7bd")
+move = ExtResource("3_nejw6")
+
+[sub_resource type="Resource" id="Resource_wik1y"]
+script = ExtResource("1_xi7bd")
+level = 13
+move = ExtResource("4_ixr46")
+
+[sub_resource type="Resource" id="Resource_60dw6"]
+script = ExtResource("1_xi7bd")
+level = 25
+move = ExtResource("5_lgerr")
+
+[sub_resource type="Resource" id="Resource_60pqm"]
+script = ExtResource("1_xi7bd")
+level = 37
+move = ExtResource("6_5r41q")
+
+[sub_resource type="Resource" id="Resource_mig82"]
+script = ExtResource("1_xi7bd")
+level = 49
+move = ExtResource("7_mmvmh")
+
+[sub_resource type="Resource" id="Resource_f650b"]
+script = ExtResource("1_xi7bd")
+level = 61
+move = ExtResource("8_775tk")
+
+[sub_resource type="Resource" id="Resource_ppnav"]
+script = ExtResource("1_xi7bd")
+level = 73
+move = ExtResource("9_54kcl")
+
+[sub_resource type="Resource" id="Resource_gogsr"]
+script = ExtResource("1_xi7bd")
+level = 85
+move = ExtResource("10_y0olp")
+
+[resource]
+script = ExtResource("3_nhs5k")
+id = "zapdos"
+display_name = "Zapdos"
+dex = 145
+types = Array[ExtResource("4_ysew7")]([ExtResource("5_tc5tf"), ExtResource("6_qqbnt")])
+learnset = Array[ExtResource("1_xi7bd")]([SubResource("Resource_vqcyi"), SubResource("Resource_vfpqq"), SubResource("Resource_wik1y"), SubResource("Resource_60dw6"), SubResource("Resource_60pqm"), SubResource("Resource_mig82"), SubResource("Resource_f650b"), SubResource("Resource_ppnav"), SubResource("Resource_gogsr")])
+genus = "Pokémon Eléctrico"
+pokedex_entry = "Zapdos es un Pokémon pájaro legendario que tiene la habilidad de controlar la electricidad. Suele vivir en nubarrones. Este Pokémon gana mucha fuerza si le alcanzan los rayos."
+height_m = 1.6
+weight_kg = 52.6
+base_hp = 90
+base_attack = 90
+base_defense = 85
+base_sp_attack = 125
+base_sp_defense = 90
+base_speed = 100
+base_experience = 261
+growth_rate = "slow"
+capture_rate = 3

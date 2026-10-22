@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5ttex"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_20d2t"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="2_gn052"]
+[ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="3_3x6iu"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xk00v"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_381b5"]
+[ext_resource type="Resource" path="res://data/moves/rencor.tres" id="4_qx2mu"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="5_046t5"]
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="5_wh8qj"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_65i62"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="6_xebi7"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="7_udogg"]
+[ext_resource type="Resource" path="res://data/moves/puno_sombra.tres" id="8_57gvk"]
+[ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="9_4a5jr"]
+[ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="10_vcuaa"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="11_mg565"]
+[ext_resource type="Resource" path="res://data/moves/pesadilla.tres" id="12_m4l42"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="13_au02v"]
+
+[sub_resource type="Resource" id="Resource_yr4e1"]
+script = ExtResource("1_5ttex")
+move = ExtResource("2_gn052")
+
+[sub_resource type="Resource" id="Resource_ajhea"]
+script = ExtResource("1_5ttex")
+move = ExtResource("3_3x6iu")
+
+[sub_resource type="Resource" id="Resource_g7j0t"]
+script = ExtResource("1_5ttex")
+move = ExtResource("4_qx2mu")
+
+[sub_resource type="Resource" id="Resource_llt7p"]
+script = ExtResource("1_5ttex")
+level = 13
+move = ExtResource("5_046t5")
+
+[sub_resource type="Resource" id="Resource_l156h"]
+script = ExtResource("1_5ttex")
+level = 16
+move = ExtResource("6_xebi7")
+
+[sub_resource type="Resource" id="Resource_vkbjd"]
+script = ExtResource("1_5ttex")
+level = 21
+move = ExtResource("7_udogg")
+
+[sub_resource type="Resource" id="Resource_cdfof"]
+script = ExtResource("1_5ttex")
+level = 25
+move = ExtResource("8_57gvk")
+
+[sub_resource type="Resource" id="Resource_akjdh"]
+script = ExtResource("1_5ttex")
+level = 31
+move = ExtResource("9_4a5jr")
+
+[sub_resource type="Resource" id="Resource_pjeu3"]
+script = ExtResource("1_5ttex")
+level = 39
+move = ExtResource("10_vcuaa")
+
+[sub_resource type="Resource" id="Resource_uytge"]
+script = ExtResource("1_5ttex")
+level = 45
+move = ExtResource("11_mg565")
+
+[sub_resource type="Resource" id="Resource_yq8ev"]
+script = ExtResource("1_5ttex")
+level = 53
+move = ExtResource("12_m4l42")
+
+[sub_resource type="Resource" id="Resource_tlm28"]
+script = ExtResource("1_5ttex")
+level = 64
+move = ExtResource("13_au02v")
+
+[resource]
+script = ExtResource("3_xk00v")
+id = "haunter"
+display_name = "Haunter"
+dex = 93
+types = Array[ExtResource("4_381b5")]([ExtResource("5_wh8qj"), ExtResource("6_65i62")])
+learnset = Array[ExtResource("1_5ttex")]([SubResource("Resource_yr4e1"), SubResource("Resource_ajhea"), SubResource("Resource_g7j0t"), SubResource("Resource_llt7p"), SubResource("Resource_l156h"), SubResource("Resource_vkbjd"), SubResource("Resource_cdfof"), SubResource("Resource_akjdh"), SubResource("Resource_pjeu3"), SubResource("Resource_uytge"), SubResource("Resource_yq8ev"), SubResource("Resource_tlm28")])
+genus = "Pokémon Gas"
+pokedex_entry = "Haunter es un Pokémon peligroso. Si se ve alguno flotando en la oscuridad y haciendo señas, conviene no acercarse. Este Pokémon intentará robarle la energía a su presa a base de lametazos."
+height_m = 1.6
+weight_kg = 0.1
+base_hp = 45
+base_defense = 45
+base_sp_attack = 115
+base_sp_defense = 55
+base_speed = 95
+base_experience = 142
+growth_rate = "medium-slow"
+capture_rate = 90

@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_80g3y"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7o0v8"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_asi0o"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="3_g1pbw"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_srhpu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jygs1"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_vr0ya"]
+[ext_resource type="Resource" path="res://data/moves/triataque.tres" id="5_0qh4a"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_s4cqb"]
+[ext_resource type="Resource" path="res://data/moves/magnitud.tres" id="6_n7cvi"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="7_33vdc"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="8_yfvt5"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="9_bf6b4"]
+[ext_resource type="Resource" path="res://data/moves/bucle_arena.tres" id="10_xvdmk"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="11_uv6gt"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="12_0ut4m"]
+[ext_resource type="Resource" path="res://data/moves/fisura.tres" id="13_o31aj"]
+
+[sub_resource type="Resource" id="Resource_lk88g"]
+script = ExtResource("1_80g3y")
+move = ExtResource("2_asi0o")
+
+[sub_resource type="Resource" id="Resource_cxw1j"]
+script = ExtResource("1_80g3y")
+move = ExtResource("3_g1pbw")
+
+[sub_resource type="Resource" id="Resource_qnfhi"]
+script = ExtResource("1_80g3y")
+move = ExtResource("4_vr0ya")
+
+[sub_resource type="Resource" id="Resource_5utn8"]
+script = ExtResource("1_80g3y")
+move = ExtResource("5_0qh4a")
+
+[sub_resource type="Resource" id="Resource_4ak6e"]
+script = ExtResource("1_80g3y")
+level = 9
+move = ExtResource("6_n7cvi")
+
+[sub_resource type="Resource" id="Resource_djid2"]
+script = ExtResource("1_80g3y")
+level = 17
+move = ExtResource("7_33vdc")
+
+[sub_resource type="Resource" id="Resource_ucacn"]
+script = ExtResource("1_80g3y")
+level = 21
+move = ExtResource("8_yfvt5")
+
+[sub_resource type="Resource" id="Resource_ao61c"]
+script = ExtResource("1_80g3y")
+level = 25
+move = ExtResource("9_bf6b4")
+
+[sub_resource type="Resource" id="Resource_ev7mo"]
+script = ExtResource("1_80g3y")
+level = 26
+move = ExtResource("10_xvdmk")
+
+[sub_resource type="Resource" id="Resource_e62fr"]
+script = ExtResource("1_80g3y")
+level = 38
+move = ExtResource("11_uv6gt")
+
+[sub_resource type="Resource" id="Resource_gt7kr"]
+script = ExtResource("1_80g3y")
+level = 51
+move = ExtResource("12_0ut4m")
+
+[sub_resource type="Resource" id="Resource_hrjic"]
+script = ExtResource("1_80g3y")
+level = 64
+move = ExtResource("13_o31aj")
+
+[resource]
+script = ExtResource("3_srhpu")
+id = "dugtrio"
+display_name = "Dugtrio"
+dex = 51
+types = Array[ExtResource("4_jygs1")]([ExtResource("5_s4cqb")])
+learnset = Array[ExtResource("1_80g3y")]([SubResource("Resource_lk88g"), SubResource("Resource_cxw1j"), SubResource("Resource_qnfhi"), SubResource("Resource_5utn8"), SubResource("Resource_4ak6e"), SubResource("Resource_djid2"), SubResource("Resource_ucacn"), SubResource("Resource_ao61c"), SubResource("Resource_ev7mo"), SubResource("Resource_e62fr"), SubResource("Resource_gt7kr"), SubResource("Resource_hrjic")])
+genus = "Pokémon Topo"
+pokedex_entry = "Los Dugtrio son trillizos que se originaron a partir de un solo cuerpo, por eso piensan de la misma forma. A la hora de excavar, trabajan en equipo y sin descanso."
+height_m = 0.7
+weight_kg = 33.3
+base_hp = 35
+base_attack = 100
+base_sp_defense = 70
+base_speed = 120
+base_experience = 149
+capture_rate = 50

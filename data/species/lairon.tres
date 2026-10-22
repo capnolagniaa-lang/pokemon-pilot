@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_dup5u"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_80ehu"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uoqv6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kqt8u"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="3_ubodn"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qafc3"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="4_qtlw7"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_megum"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="5_qiio0"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="6_5cmen"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="6_aa63i"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="7_s3tlp"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="8_oj84s"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_4o83d"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="10_gauto"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="11_nueo4"]
+[ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="12_28301"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_vfldc"]
+
+[sub_resource type="Resource" id="Resource_550wc"]
+script = ExtResource("1_dup5u")
+move = ExtResource("2_80ehu")
+
+[sub_resource type="Resource" id="Resource_xnjlw"]
+script = ExtResource("1_dup5u")
+move = ExtResource("3_ubodn")
+
+[sub_resource type="Resource" id="Resource_72lm8"]
+script = ExtResource("1_dup5u")
+move = ExtResource("4_qtlw7")
+
+[sub_resource type="Resource" id="Resource_un4e2"]
+script = ExtResource("1_dup5u")
+move = ExtResource("5_megum")
+
+[sub_resource type="Resource" id="Resource_44qts"]
+script = ExtResource("1_dup5u")
+level = 13
+move = ExtResource("6_5cmen")
+
+[sub_resource type="Resource" id="Resource_bi78m"]
+script = ExtResource("1_dup5u")
+level = 17
+move = ExtResource("7_s3tlp")
+
+[sub_resource type="Resource" id="Resource_0hrvl"]
+script = ExtResource("1_dup5u")
+level = 21
+move = ExtResource("8_oj84s")
+
+[sub_resource type="Resource" id="Resource_psqrk"]
+script = ExtResource("1_dup5u")
+level = 25
+move = ExtResource("9_4o83d")
+
+[sub_resource type="Resource" id="Resource_k5b6k"]
+script = ExtResource("1_dup5u")
+level = 29
+move = ExtResource("10_gauto")
+
+[sub_resource type="Resource" id="Resource_funyj"]
+script = ExtResource("1_dup5u")
+level = 37
+move = ExtResource("11_nueo4")
+
+[sub_resource type="Resource" id="Resource_q2jgi"]
+script = ExtResource("1_dup5u")
+level = 45
+move = ExtResource("12_28301")
+
+[sub_resource type="Resource" id="Resource_875w6"]
+script = ExtResource("1_dup5u")
+level = 53
+move = ExtResource("13_vfldc")
+
+[resource]
+script = ExtResource("3_kqt8u")
+id = "lairon"
+display_name = "Lairon"
+dex = 305
+types = Array[ExtResource("4_qafc3")]([ExtResource("5_qiio0"), ExtResource("6_aa63i")])
+learnset = Array[ExtResource("1_dup5u")]([SubResource("Resource_550wc"), SubResource("Resource_xnjlw"), SubResource("Resource_72lm8"), SubResource("Resource_un4e2"), SubResource("Resource_44qts"), SubResource("Resource_bi78m"), SubResource("Resource_0hrvl"), SubResource("Resource_psqrk"), SubResource("Resource_k5b6k"), SubResource("Resource_funyj"), SubResource("Resource_q2jgi"), SubResource("Resource_875w6")])
+genus = "Pokémon Coraza Férrea"
+pokedex_entry = "Lairon templa su cuerpo de acero bebiendo agua mineral muy rica en nutrientes hasta que no puede más. Este Pokémon suele crear su nido cerca de manantiales de rica agua."
+height_m = 0.9
+weight_kg = 120.0
+base_hp = 60
+base_attack = 90
+base_defense = 140
+base_speed = 40
+base_experience = 151
+growth_rate = "slow"
+capture_rate = 90

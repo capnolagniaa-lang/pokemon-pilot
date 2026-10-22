@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_n7d4r"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_fmky4"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="2_qmyhf"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_570n4"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_m7fg7"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_2a4qu"]
+[ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="4_o2xx1"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_hrq6p"]
+[ext_resource type="Resource" path="res://data/moves/aguante.tres" id="5_n2em2"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_2u8i5"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="6_m081s"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="7_rk1de"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="8_kymtu"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="9_rdoph"]
+
+[sub_resource type="Resource" id="Resource_4wckt"]
+script = ExtResource("1_n7d4r")
+move = ExtResource("2_qmyhf")
+
+[sub_resource type="Resource" id="Resource_lijgn"]
+script = ExtResource("1_n7d4r")
+move = ExtResource("3_m7fg7")
+
+[sub_resource type="Resource" id="Resource_jq4i4"]
+script = ExtResource("1_n7d4r")
+level = 10
+move = ExtResource("4_o2xx1")
+
+[sub_resource type="Resource" id="Resource_30lhi"]
+script = ExtResource("1_n7d4r")
+level = 19
+move = ExtResource("5_n2em2")
+
+[sub_resource type="Resource" id="Resource_u7w77"]
+script = ExtResource("1_n7d4r")
+level = 28
+move = ExtResource("6_m081s")
+
+[sub_resource type="Resource" id="Resource_ro0n3"]
+script = ExtResource("1_n7d4r")
+level = 37
+move = ExtResource("7_rk1de")
+
+[sub_resource type="Resource" id="Resource_a3dqk"]
+script = ExtResource("1_n7d4r")
+level = 46
+move = ExtResource("8_kymtu")
+
+[sub_resource type="Resource" id="Resource_bmcg4"]
+script = ExtResource("1_n7d4r")
+level = 55
+move = ExtResource("9_rdoph")
+
+[resource]
+script = ExtResource("3_570n4")
+id = "swinub"
+display_name = "Swinub"
+dex = 220
+types = Array[ExtResource("4_2a4qu")]([ExtResource("5_hrq6p"), ExtResource("6_2u8i5")])
+learnset = Array[ExtResource("1_n7d4r")]([SubResource("Resource_4wckt"), SubResource("Resource_lijgn"), SubResource("Resource_jq4i4"), SubResource("Resource_30lhi"), SubResource("Resource_u7w77"), SubResource("Resource_ro0n3"), SubResource("Resource_a3dqk"), SubResource("Resource_bmcg4")])
+genus = "Pokémon Cerdo"
+pokedex_entry = "Swinub busca el alimento frotando el hocico contra el suelo. Su comida preferida es una seta que crece bajo la hierba marchita. A veces, al frotar, descubre fuentes termales."
+height_m = 0.4
+weight_kg = 6.5
+base_defense = 40
+base_sp_attack = 30
+base_sp_defense = 30
+base_experience = 50
+growth_rate = "slow"
+capture_rate = 225

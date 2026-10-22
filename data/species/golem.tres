@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l8kcx"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_8dkos"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bdft8"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="3_4g2lp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_lioup"]
+[ext_resource type="Resource" path="res://data/moves/lanzarrocas.tres" id="4_7ml3m"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qv2c8"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_arb56"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_q6mhg"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_1376t"]
+[ext_resource type="Resource" path="res://data/moves/magnitud.tres" id="6_xma7p"]
+[ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="7_vyk02"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_7k8ub"]
+[ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="9_sysdy"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_jq4lw"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_p0dhv"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_74ili"]
+
+[sub_resource type="Resource" id="Resource_v0xhl"]
+script = ExtResource("1_l8kcx")
+move = ExtResource("2_8dkos")
+
+[sub_resource type="Resource" id="Resource_twyfe"]
+script = ExtResource("1_l8kcx")
+move = ExtResource("3_4g2lp")
+
+[sub_resource type="Resource" id="Resource_s02on"]
+script = ExtResource("1_l8kcx")
+move = ExtResource("4_7ml3m")
+
+[sub_resource type="Resource" id="Resource_petu4"]
+script = ExtResource("1_l8kcx")
+move = ExtResource("5_q6mhg")
+
+[sub_resource type="Resource" id="Resource_201fq"]
+script = ExtResource("1_l8kcx")
+level = 16
+move = ExtResource("6_xma7p")
+
+[sub_resource type="Resource" id="Resource_hpf3d"]
+script = ExtResource("1_l8kcx")
+level = 21
+move = ExtResource("7_vyk02")
+
+[sub_resource type="Resource" id="Resource_f6o5c"]
+script = ExtResource("1_l8kcx")
+level = 29
+move = ExtResource("8_7k8ub")
+
+[sub_resource type="Resource" id="Resource_wyh3g"]
+script = ExtResource("1_l8kcx")
+level = 37
+move = ExtResource("9_sysdy")
+
+[sub_resource type="Resource" id="Resource_ute01"]
+script = ExtResource("1_l8kcx")
+level = 45
+move = ExtResource("10_jq4lw")
+
+[sub_resource type="Resource" id="Resource_fj1d6"]
+script = ExtResource("1_l8kcx")
+level = 53
+move = ExtResource("11_p0dhv")
+
+[sub_resource type="Resource" id="Resource_62075"]
+script = ExtResource("1_l8kcx")
+level = 62
+move = ExtResource("12_74ili")
+
+[resource]
+script = ExtResource("3_lioup")
+id = "golem"
+display_name = "Golem"
+dex = 76
+types = Array[ExtResource("4_qv2c8")]([ExtResource("5_arb56"), ExtResource("6_1376t")])
+learnset = Array[ExtResource("1_l8kcx")]([SubResource("Resource_v0xhl"), SubResource("Resource_twyfe"), SubResource("Resource_s02on"), SubResource("Resource_petu4"), SubResource("Resource_201fq"), SubResource("Resource_hpf3d"), SubResource("Resource_f6o5c"), SubResource("Resource_wyh3g"), SubResource("Resource_ute01"), SubResource("Resource_fj1d6"), SubResource("Resource_62075")])
+genus = "Pokémon Megatón"
+pokedex_entry = "Golem vive en las montañas. Si se produce un gran terremoto, estos Pokémon descienden rodando en masa por las laderas."
+height_m = 1.4
+weight_kg = 300.0
+base_hp = 80
+base_attack = 120
+base_defense = 130
+base_sp_attack = 55
+base_sp_defense = 65
+base_speed = 45
+base_experience = 223
+growth_rate = "medium-slow"

@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_83e3q"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_2qxk5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_q6624"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ny0vp"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_wa4aj"]
+[ext_resource type="Resource" path="res://data/moves/puno_trueno.tres" id="4_1vg6t"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rh748"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="5_qku2p"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_ss3n7"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="6_007yq"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="7_bhacv"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="8_m0as2"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="9_bniyx"]
+
+[sub_resource type="Resource" id="Resource_fkugk"]
+script = ExtResource("1_83e3q")
+move = ExtResource("2_2qxk5")
+
+[sub_resource type="Resource" id="Resource_x3tnk"]
+script = ExtResource("1_83e3q")
+move = ExtResource("3_wa4aj")
+
+[sub_resource type="Resource" id="Resource_qqwyq"]
+script = ExtResource("1_83e3q")
+move = ExtResource("4_1vg6t")
+
+[sub_resource type="Resource" id="Resource_67rlu"]
+script = ExtResource("1_83e3q")
+level = 17
+move = ExtResource("5_qku2p")
+
+[sub_resource type="Resource" id="Resource_22w0x"]
+script = ExtResource("1_83e3q")
+level = 25
+move = ExtResource("6_007yq")
+
+[sub_resource type="Resource" id="Resource_d6tn3"]
+script = ExtResource("1_83e3q")
+level = 36
+move = ExtResource("7_bhacv")
+
+[sub_resource type="Resource" id="Resource_ctxve"]
+script = ExtResource("1_83e3q")
+level = 47
+move = ExtResource("8_m0as2")
+
+[sub_resource type="Resource" id="Resource_cymwa"]
+script = ExtResource("1_83e3q")
+level = 58
+move = ExtResource("9_bniyx")
+
+[resource]
+script = ExtResource("3_ny0vp")
+id = "electabuzz"
+display_name = "Electabuzz"
+dex = 125
+types = Array[ExtResource("4_rh748")]([ExtResource("5_ss3n7")])
+learnset = Array[ExtResource("1_83e3q")]([SubResource("Resource_fkugk"), SubResource("Resource_x3tnk"), SubResource("Resource_qqwyq"), SubResource("Resource_67rlu"), SubResource("Resource_22w0x"), SubResource("Resource_d6tn3"), SubResource("Resource_ctxve"), SubResource("Resource_cymwa")])
+genus = "Pokémon Eléctrico"
+pokedex_entry = "Al desatarse una tormenta, bandadas de estos Pokémon se enfrentan entre sí para ver quién alcanza antes sitios altos en los que suelan caer rayos. Hay ciudades que usan Electabuzz en lugar de pararrayos."
+height_m = 1.1
+weight_kg = 30.0
+base_hp = 65
+base_attack = 83
+base_defense = 57
+base_sp_attack = 95
+base_sp_defense = 85
+base_speed = 105
+base_experience = 172

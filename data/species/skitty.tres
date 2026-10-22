@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xo174"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_gunkc"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ia3ke"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_rtp6r"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_vb7lu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cxat8"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_j2w2b"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="5_80qqs"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_krycb"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="6_krasc"]
+[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="7_r86yn"]
+[ext_resource type="Resource" path="res://data/moves/ayuda.tres" id="8_3ejjv"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="9_gl1sb"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="10_ew7ky"]
+[ext_resource type="Resource" path="res://data/moves/antojo.tres" id="11_vrvmw"]
+[ext_resource type="Resource" path="res://data/moves/cascabel_cura.tres" id="12_fjeb5"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_lqlg4"]
+
+[sub_resource type="Resource" id="Resource_0a8tw"]
+script = ExtResource("1_xo174")
+move = ExtResource("2_gunkc")
+
+[sub_resource type="Resource" id="Resource_u4atu"]
+script = ExtResource("1_xo174")
+move = ExtResource("3_vb7lu")
+
+[sub_resource type="Resource" id="Resource_3ph1b"]
+script = ExtResource("1_xo174")
+level = 3
+move = ExtResource("4_j2w2b")
+
+[sub_resource type="Resource" id="Resource_wjgim"]
+script = ExtResource("1_xo174")
+level = 7
+move = ExtResource("5_80qqs")
+
+[sub_resource type="Resource" id="Resource_pa8ir"]
+script = ExtResource("1_xo174")
+level = 13
+move = ExtResource("6_krasc")
+
+[sub_resource type="Resource" id="Resource_o6f4v"]
+script = ExtResource("1_xo174")
+level = 15
+move = ExtResource("7_r86yn")
+
+[sub_resource type="Resource" id="Resource_2denk"]
+script = ExtResource("1_xo174")
+level = 19
+move = ExtResource("8_3ejjv")
+
+[sub_resource type="Resource" id="Resource_ny2e0"]
+script = ExtResource("1_xo174")
+level = 25
+move = ExtResource("9_gl1sb")
+
+[sub_resource type="Resource" id="Resource_r2vf0"]
+script = ExtResource("1_xo174")
+level = 27
+move = ExtResource("10_ew7ky")
+
+[sub_resource type="Resource" id="Resource_mqpom"]
+script = ExtResource("1_xo174")
+level = 31
+move = ExtResource("11_vrvmw")
+
+[sub_resource type="Resource" id="Resource_7yra4"]
+script = ExtResource("1_xo174")
+level = 37
+move = ExtResource("12_fjeb5")
+
+[sub_resource type="Resource" id="Resource_ld7am"]
+script = ExtResource("1_xo174")
+level = 39
+move = ExtResource("13_lqlg4")
+
+[resource]
+script = ExtResource("3_rtp6r")
+id = "skitty"
+display_name = "Skitty"
+dex = 300
+types = Array[ExtResource("4_cxat8")]([ExtResource("5_krycb")])
+learnset = Array[ExtResource("1_xo174")]([SubResource("Resource_0a8tw"), SubResource("Resource_u4atu"), SubResource("Resource_3ph1b"), SubResource("Resource_wjgim"), SubResource("Resource_pa8ir"), SubResource("Resource_o6f4v"), SubResource("Resource_2denk"), SubResource("Resource_ny2e0"), SubResource("Resource_r2vf0"), SubResource("Resource_mqpom"), SubResource("Resource_7yra4"), SubResource("Resource_ld7am")])
+genus = "Pokémon Gatito"
+pokedex_entry = "A Skitty le encanta mover cosas e ir detrás de ellas. Es de todos sabido que se dedica a ir detrás de su propia cola y que, al final, acaba mareándose."
+height_m = 0.6
+weight_kg = 11.0
+base_attack = 45
+base_defense = 45
+base_sp_attack = 35
+base_sp_defense = 35
+base_experience = 52
+growth_rate = "fast"
+capture_rate = 255

@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ahf6k"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="2_gkuih"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xfkjj"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="3_cyhm8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_h3el8"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_r6kra"]
+[ext_resource type="Resource" path="res://data/moves/cosquillas.tres" id="4_sryea"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="5_tmmih"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_yt7ss"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="6_5qam5"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_f8knj"]
+[ext_resource type="Resource" path="res://data/moves/magnitud.tres" id="7_6uccw"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="8_a0afg"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_mdqsc"]
+[ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="10_2eigm"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="11_24woj"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="12_b4oxh"]
+[ext_resource type="Resource" path="res://data/moves/fisura.tres" id="13_cpveo"]
+
+[sub_resource type="Resource" id="Resource_wb5qu"]
+script = ExtResource("1_ahf6k")
+move = ExtResource("2_gkuih")
+
+[sub_resource type="Resource" id="Resource_p2rju"]
+script = ExtResource("1_ahf6k")
+move = ExtResource("3_cyhm8")
+
+[sub_resource type="Resource" id="Resource_yqmcn"]
+script = ExtResource("1_ahf6k")
+move = ExtResource("4_sryea")
+
+[sub_resource type="Resource" id="Resource_snqbb"]
+script = ExtResource("1_ahf6k")
+move = ExtResource("5_tmmih")
+
+[sub_resource type="Resource" id="Resource_n22fx"]
+script = ExtResource("1_ahf6k")
+level = 11
+move = ExtResource("6_5qam5")
+
+[sub_resource type="Resource" id="Resource_wutse"]
+script = ExtResource("1_ahf6k")
+level = 16
+move = ExtResource("7_6uccw")
+
+[sub_resource type="Resource" id="Resource_kdfxe"]
+script = ExtResource("1_ahf6k")
+level = 21
+move = ExtResource("8_a0afg")
+
+[sub_resource type="Resource" id="Resource_v78c1"]
+script = ExtResource("1_ahf6k")
+level = 26
+move = ExtResource("9_mdqsc")
+
+[sub_resource type="Resource" id="Resource_wnpc5"]
+script = ExtResource("1_ahf6k")
+level = 26
+move = ExtResource("10_2eigm")
+
+[sub_resource type="Resource" id="Resource_d8k5c"]
+script = ExtResource("1_ahf6k")
+level = 36
+move = ExtResource("11_24woj")
+
+[sub_resource type="Resource" id="Resource_taoku"]
+script = ExtResource("1_ahf6k")
+level = 46
+move = ExtResource("12_b4oxh")
+
+[sub_resource type="Resource" id="Resource_3cnyt"]
+script = ExtResource("1_ahf6k")
+level = 56
+move = ExtResource("13_cpveo")
+
+[resource]
+script = ExtResource("3_h3el8")
+id = "whiscash"
+display_name = "Whiscash"
+dex = 340
+types = Array[ExtResource("4_r6kra")]([ExtResource("5_yt7ss"), ExtResource("6_f8knj")])
+learnset = Array[ExtResource("1_ahf6k")]([SubResource("Resource_wb5qu"), SubResource("Resource_p2rju"), SubResource("Resource_yqmcn"), SubResource("Resource_snqbb"), SubResource("Resource_n22fx"), SubResource("Resource_wutse"), SubResource("Resource_kdfxe"), SubResource("Resource_v78c1"), SubResource("Resource_wnpc5"), SubResource("Resource_d8k5c"), SubResource("Resource_taoku"), SubResource("Resource_3cnyt")])
+genus = "Pokémon Bigotudo"
+pokedex_entry = "Whiscash defiende su territorio a toda costa. Es capaz de apoderarse de un estanque entero para sí solo. Si alguien se le acerca, se revolverá y provocará un terremoto devastador."
+height_m = 0.9
+weight_kg = 23.6
+base_hp = 110
+base_attack = 78
+base_defense = 73
+base_sp_attack = 76
+base_sp_defense = 71
+base_speed = 60
+base_experience = 164
+capture_rate = 75

@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hee4c"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ffsal"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="2_lhnao"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0bpmo"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="3_vjojx"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_deu8m"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ia6sl"]
+[ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="5_dpxa6"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_xnbdp"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="6_vsapj"]
+[ext_resource type="Resource" path="res://data/moves/aguante.tres" id="7_7cu1q"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_f2skw"]
+[ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="9_uiofp"]
+[ext_resource type="Resource" path="res://data/moves/puno_certero.tres" id="10_ta6q6"]
+[ext_resource type="Resource" path="res://data/moves/inversion.tres" id="11_8etla"]
+
+[sub_resource type="Resource" id="Resource_jqdow"]
+script = ExtResource("1_hee4c")
+move = ExtResource("2_lhnao")
+
+[sub_resource type="Resource" id="Resource_d8oh6"]
+script = ExtResource("1_hee4c")
+move = ExtResource("3_vjojx")
+
+[sub_resource type="Resource" id="Resource_kcx1d"]
+script = ExtResource("1_hee4c")
+move = ExtResource("4_deu8m")
+
+[sub_resource type="Resource" id="Resource_axhko"]
+script = ExtResource("1_hee4c")
+move = ExtResource("5_dpxa6")
+
+[sub_resource type="Resource" id="Resource_b3gtv"]
+script = ExtResource("1_hee4c")
+level = 19
+move = ExtResource("6_vsapj")
+
+[sub_resource type="Resource" id="Resource_4326j"]
+script = ExtResource("1_hee4c")
+level = 25
+move = ExtResource("7_7cu1q")
+
+[sub_resource type="Resource" id="Resource_mprsh"]
+script = ExtResource("1_hee4c")
+level = 31
+move = ExtResource("8_f2skw")
+
+[sub_resource type="Resource" id="Resource_3lai1"]
+script = ExtResource("1_hee4c")
+level = 37
+move = ExtResource("9_uiofp")
+
+[sub_resource type="Resource" id="Resource_mb2tv"]
+script = ExtResource("1_hee4c")
+level = 43
+move = ExtResource("10_ta6q6")
+
+[sub_resource type="Resource" id="Resource_xwgq5"]
+script = ExtResource("1_hee4c")
+level = 49
+move = ExtResource("11_8etla")
+
+[resource]
+script = ExtResource("3_0bpmo")
+id = "vigoroth"
+display_name = "Vigoroth"
+dex = 288
+types = Array[ExtResource("4_ia6sl")]([ExtResource("5_xnbdp")])
+learnset = Array[ExtResource("1_hee4c")]([SubResource("Resource_jqdow"), SubResource("Resource_d8oh6"), SubResource("Resource_kcx1d"), SubResource("Resource_axhko"), SubResource("Resource_b3gtv"), SubResource("Resource_4326j"), SubResource("Resource_mprsh"), SubResource("Resource_3lai1"), SubResource("Resource_mb2tv"), SubResource("Resource_xwgq5")])
+genus = "Pokémon Mono Feroz"
+pokedex_entry = "Vigoroth está continuamente inquieto, rabiando por salir corriendo sin control. Estar quieto un solo minuto es superior a sus fuerzas. Si no puede estar en continuo movimiento, el nivel de estrés de este Pokémon se dispara."
+height_m = 1.4
+weight_kg = 46.5
+base_hp = 80
+base_attack = 80
+base_defense = 80
+base_sp_attack = 55
+base_sp_defense = 55
+base_speed = 90
+base_experience = 154
+growth_rate = "slow"
+capture_rate = 120

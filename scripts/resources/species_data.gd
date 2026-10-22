@@ -17,6 +17,13 @@ extends Resource
 ## compatibilidad: los 4 del kit (o los sueltos) en los niveles 1, 1, 3 y 5.
 @export var learnset: Array[LearnsetEntry] = []
 
+@export_group("Pokédex")
+## Categoría ("Pokémon Semilla") y descripción en español (PokeAPI). Altura y peso oficiales.
+@export var genus: String = ""
+@export_multiline var pokedex_entry: String = ""
+@export var height_m: float = 0.0
+@export var weight_kg: float = 0.0
+
 @export_group("Stats base oficiales")
 @export var base_hp: int = 50
 @export var base_attack: int = 50

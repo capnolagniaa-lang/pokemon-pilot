@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yhwem"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_5kvwi"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x3ago"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gdfhv"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_jl5ac"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_vku7t"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wp8i6"]
+[ext_resource type="Resource" path="res://data/moves/giro_rapido.tres" id="5_qsnhp"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_y0i41"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="6_cwil0"]
+[ext_resource type="Resource" path="res://data/moves/camuflaje.tres" id="7_5stxh"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="8_xb35w"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="9_ymb02"]
+[ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="10_v55wt"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="11_fvs1a"]
+[ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="12_pxmx7"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="13_k1vy7"]
+
+[sub_resource type="Resource" id="Resource_h7gtf"]
+script = ExtResource("1_yhwem")
+move = ExtResource("2_5kvwi")
+
+[sub_resource type="Resource" id="Resource_do12l"]
+script = ExtResource("1_yhwem")
+move = ExtResource("3_jl5ac")
+
+[sub_resource type="Resource" id="Resource_vcukd"]
+script = ExtResource("1_yhwem")
+level = 6
+move = ExtResource("4_vku7t")
+
+[sub_resource type="Resource" id="Resource_7fnd8"]
+script = ExtResource("1_yhwem")
+level = 10
+move = ExtResource("5_qsnhp")
+
+[sub_resource type="Resource" id="Resource_uiscv"]
+script = ExtResource("1_yhwem")
+level = 15
+move = ExtResource("6_cwil0")
+
+[sub_resource type="Resource" id="Resource_81r1x"]
+script = ExtResource("1_yhwem")
+level = 19
+move = ExtResource("7_5stxh")
+
+[sub_resource type="Resource" id="Resource_fuqxk"]
+script = ExtResource("1_yhwem")
+level = 24
+move = ExtResource("8_xb35w")
+
+[sub_resource type="Resource" id="Resource_klg3j"]
+script = ExtResource("1_yhwem")
+level = 28
+move = ExtResource("9_ymb02")
+
+[sub_resource type="Resource" id="Resource_bs6lu"]
+script = ExtResource("1_yhwem")
+level = 33
+move = ExtResource("10_v55wt")
+
+[sub_resource type="Resource" id="Resource_jichd"]
+script = ExtResource("1_yhwem")
+level = 37
+move = ExtResource("11_fvs1a")
+
+[sub_resource type="Resource" id="Resource_jpi6c"]
+script = ExtResource("1_yhwem")
+level = 42
+move = ExtResource("12_pxmx7")
+
+[sub_resource type="Resource" id="Resource_ehwgl"]
+script = ExtResource("1_yhwem")
+level = 46
+move = ExtResource("13_k1vy7")
+
+[resource]
+script = ExtResource("3_gdfhv")
+id = "staryu"
+display_name = "Staryu"
+dex = 120
+types = Array[ExtResource("4_wp8i6")]([ExtResource("5_y0i41")])
+learnset = Array[ExtResource("1_yhwem")]([SubResource("Resource_h7gtf"), SubResource("Resource_do12l"), SubResource("Resource_vcukd"), SubResource("Resource_7fnd8"), SubResource("Resource_uiscv"), SubResource("Resource_81r1x"), SubResource("Resource_fuqxk"), SubResource("Resource_klg3j"), SubResource("Resource_bs6lu"), SubResource("Resource_jichd"), SubResource("Resource_jpi6c"), SubResource("Resource_ehwgl")])
+genus = "Pokémon Estrella"
+pokedex_entry = "Staryu posee un órgano central, conocido como su núcleo, que brilla con una luz roja. A finales de verano, pueden verse en la playa los núcleos de estos Pokémon brillando como las estrellas del cielo."
+height_m = 0.8
+weight_kg = 34.5
+base_hp = 30
+base_attack = 45
+base_defense = 55
+base_sp_attack = 70
+base_sp_defense = 55
+base_speed = 85
+base_experience = 68
+growth_rate = "slow"
+capture_rate = 225

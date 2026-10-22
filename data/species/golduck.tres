@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_os843"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_frv8d"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="2_uahth"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_lo82k"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_tdrat"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_r6kjs"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ugvcv"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_7jj58"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="5_o6tig"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="6_gy0vx"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="7_73gpv"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="8_obapy"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="9_87tol"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_bohiq"]
+
+[sub_resource type="Resource" id="Resource_i3awm"]
+script = ExtResource("1_os843")
+move = ExtResource("2_uahth")
+
+[sub_resource type="Resource" id="Resource_d7f5y"]
+script = ExtResource("1_os843")
+move = ExtResource("3_lo82k")
+
+[sub_resource type="Resource" id="Resource_lw48e"]
+script = ExtResource("1_os843")
+move = ExtResource("4_r6kjs")
+
+[sub_resource type="Resource" id="Resource_l4du2"]
+script = ExtResource("1_os843")
+move = ExtResource("5_o6tig")
+
+[sub_resource type="Resource" id="Resource_ayvj1"]
+script = ExtResource("1_os843")
+level = 16
+move = ExtResource("6_gy0vx")
+
+[sub_resource type="Resource" id="Resource_l546q"]
+script = ExtResource("1_os843")
+level = 23
+move = ExtResource("7_73gpv")
+
+[sub_resource type="Resource" id="Resource_otavc"]
+script = ExtResource("1_os843")
+level = 31
+move = ExtResource("8_obapy")
+
+[sub_resource type="Resource" id="Resource_5r38f"]
+script = ExtResource("1_os843")
+level = 44
+move = ExtResource("9_87tol")
+
+[sub_resource type="Resource" id="Resource_8lspl"]
+script = ExtResource("1_os843")
+level = 58
+move = ExtResource("10_bohiq")
+
+[resource]
+script = ExtResource("3_tdrat")
+id = "golduck"
+display_name = "Golduck"
+dex = 55
+types = Array[ExtResource("4_ugvcv")]([ExtResource("5_7jj58")])
+learnset = Array[ExtResource("1_os843")]([SubResource("Resource_i3awm"), SubResource("Resource_d7f5y"), SubResource("Resource_lw48e"), SubResource("Resource_l4du2"), SubResource("Resource_ayvj1"), SubResource("Resource_l546q"), SubResource("Resource_otavc"), SubResource("Resource_5r38f"), SubResource("Resource_8lspl")])
+genus = "Pokémon Pato"
+pokedex_entry = "Golduck alcanza una velocidad de vértigo gracias a las aletas palmípedas de las extremidades y a la forma aerodinámica de su cuerpo. Realmente, la velocidad de este Pokémon supera la de cualquier nadador."
+height_m = 1.7
+weight_kg = 76.6
+base_hp = 80
+base_attack = 82
+base_defense = 78
+base_sp_attack = 95
+base_sp_defense = 80
+base_speed = 85
+base_experience = 175
+capture_rate = 75

@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3juo2"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_2befe"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_78luv"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_cyhsh"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fqsad"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_eicyt"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_gslb0"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_m24kl"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="5_or820"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="6_n3exf"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="6_q8cae"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="7_h2s3v"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="8_pibyk"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="9_x7xdd"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_brstk"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_7lxyt"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_gmc2c"]
+
+[sub_resource type="Resource" id="Resource_igout"]
+script = ExtResource("1_3juo2")
+move = ExtResource("2_2befe")
+
+[sub_resource type="Resource" id="Resource_ab6eu"]
+script = ExtResource("1_3juo2")
+move = ExtResource("3_cyhsh")
+
+[sub_resource type="Resource" id="Resource_kny2d"]
+script = ExtResource("1_3juo2")
+level = 8
+move = ExtResource("4_gslb0")
+
+[sub_resource type="Resource" id="Resource_4wva8"]
+script = ExtResource("1_3juo2")
+level = 15
+move = ExtResource("5_or820")
+
+[sub_resource type="Resource" id="Resource_crsia"]
+script = ExtResource("1_3juo2")
+level = 22
+move = ExtResource("6_n3exf")
+
+[sub_resource type="Resource" id="Resource_aajv0"]
+script = ExtResource("1_3juo2")
+level = 29
+move = ExtResource("7_h2s3v")
+
+[sub_resource type="Resource" id="Resource_vbmog"]
+script = ExtResource("1_3juo2")
+level = 36
+move = ExtResource("8_pibyk")
+
+[sub_resource type="Resource" id="Resource_6wkph"]
+script = ExtResource("1_3juo2")
+level = 43
+move = ExtResource("9_x7xdd")
+
+[sub_resource type="Resource" id="Resource_pd0he"]
+script = ExtResource("1_3juo2")
+level = 50
+move = ExtResource("10_brstk")
+
+[sub_resource type="Resource" id="Resource_l4hwn"]
+script = ExtResource("1_3juo2")
+level = 57
+move = ExtResource("11_7lxyt")
+
+[sub_resource type="Resource" id="Resource_in73b"]
+script = ExtResource("1_3juo2")
+level = 64
+move = ExtResource("12_gmc2c")
+
+[resource]
+script = ExtResource("3_fqsad")
+id = "relicanth"
+display_name = "Relicanth"
+dex = 369
+types = Array[ExtResource("4_eicyt")]([ExtResource("5_m24kl"), ExtResource("6_q8cae")])
+learnset = Array[ExtResource("1_3juo2")]([SubResource("Resource_igout"), SubResource("Resource_ab6eu"), SubResource("Resource_kny2d"), SubResource("Resource_4wva8"), SubResource("Resource_crsia"), SubResource("Resource_aajv0"), SubResource("Resource_vbmog"), SubResource("Resource_6wkph"), SubResource("Resource_pd0he"), SubResource("Resource_l4hwn"), SubResource("Resource_in73b")])
+genus = "Pokémon Longevo"
+pokedex_entry = "Relicanth pertenece a una especie de Pokémon que lleva millones de años sin cambiar de forma. Este ancestral Pokémon se alimenta de microorganismos por la boca desdentada que tiene."
+height_m = 1.0
+weight_kg = 23.4
+base_hp = 100
+base_attack = 90
+base_defense = 130
+base_sp_attack = 45
+base_sp_defense = 65
+base_speed = 55
+base_experience = 170
+growth_rate = "slow"
+capture_rate = 25

@@ -43,4 +43,4 @@ func _ready() -> void:
 	var back := UiStyle.button("Volver", 160)
 	back.pressed.connect(func(): closed.emit())
 	box.add_child(back)
-	_first.grab_focus.call_deferred()
+	UiStyle.focus_later(_first)

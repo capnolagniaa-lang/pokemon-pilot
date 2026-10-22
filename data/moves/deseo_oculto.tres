@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="1_qcwtm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lthbd"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_ktjct"]
+
+[resource]
+script = ExtResource("2_lthbd")
+id = "deseo_oculto"
+display_name = "Deseo Oculto"
+element = ExtResource("1_qcwtm")
+category = 1
+power = 140.0
+cooldown = 3.25
+cast_time = 0.45
+knockback = 224.0
+recovery = 0.4
+speed = 280.0
+size = 6.5
+lifetime = 0.85

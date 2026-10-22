@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_licrt"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0shyt"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_p01ud"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_rfdrc"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="3_y13gu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_kb6s5"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="4_ty18r"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_4ml6d"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="5_rqeuq"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="6_33r73"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="6_c6ar0"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="7_64hdh"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="8_4l3xs"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_7eh2u"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="10_3b0kg"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="11_wqu1f"]
+[ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="12_rojh1"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_kbnrk"]
+
+[sub_resource type="Resource" id="Resource_4uqxa"]
+script = ExtResource("1_licrt")
+move = ExtResource("2_p01ud")
+
+[sub_resource type="Resource" id="Resource_rrvl3"]
+script = ExtResource("1_licrt")
+move = ExtResource("3_y13gu")
+
+[sub_resource type="Resource" id="Resource_75v8x"]
+script = ExtResource("1_licrt")
+move = ExtResource("4_ty18r")
+
+[sub_resource type="Resource" id="Resource_b48qc"]
+script = ExtResource("1_licrt")
+move = ExtResource("5_4ml6d")
+
+[sub_resource type="Resource" id="Resource_3dd7d"]
+script = ExtResource("1_licrt")
+level = 13
+move = ExtResource("6_c6ar0")
+
+[sub_resource type="Resource" id="Resource_ps1lt"]
+script = ExtResource("1_licrt")
+level = 17
+move = ExtResource("7_64hdh")
+
+[sub_resource type="Resource" id="Resource_sgt5r"]
+script = ExtResource("1_licrt")
+level = 21
+move = ExtResource("8_4l3xs")
+
+[sub_resource type="Resource" id="Resource_c4djk"]
+script = ExtResource("1_licrt")
+level = 25
+move = ExtResource("9_7eh2u")
+
+[sub_resource type="Resource" id="Resource_wpxib"]
+script = ExtResource("1_licrt")
+level = 29
+move = ExtResource("10_3b0kg")
+
+[sub_resource type="Resource" id="Resource_3y8bb"]
+script = ExtResource("1_licrt")
+level = 37
+move = ExtResource("11_wqu1f")
+
+[sub_resource type="Resource" id="Resource_c3eoh"]
+script = ExtResource("1_licrt")
+level = 50
+move = ExtResource("12_rojh1")
+
+[sub_resource type="Resource" id="Resource_xaocw"]
+script = ExtResource("1_licrt")
+level = 63
+move = ExtResource("13_kbnrk")
+
+[resource]
+script = ExtResource("3_rfdrc")
+id = "aggron"
+display_name = "Aggron"
+dex = 306
+types = Array[ExtResource("4_kb6s5")]([ExtResource("5_rqeuq"), ExtResource("6_33r73")])
+learnset = Array[ExtResource("1_licrt")]([SubResource("Resource_4uqxa"), SubResource("Resource_rrvl3"), SubResource("Resource_75v8x"), SubResource("Resource_b48qc"), SubResource("Resource_3dd7d"), SubResource("Resource_ps1lt"), SubResource("Resource_sgt5r"), SubResource("Resource_c4djk"), SubResource("Resource_wpxib"), SubResource("Resource_3y8bb"), SubResource("Resource_c3eoh"), SubResource("Resource_xaocw")])
+genus = "Pokémon Coraza Férrea"
+pokedex_entry = "Aggron marca una montaña entera como su territorio y acaba con todo lo que pueda ponerlo en peligro. Este Pokémon está continuamente patrullando la zona en defensa de su terreno."
+height_m = 2.1
+weight_kg = 360.0
+base_hp = 70
+base_attack = 110
+base_defense = 180
+base_sp_attack = 60
+base_sp_defense = 60
+base_experience = 239
+growth_rate = "slow"

@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_dhkcl"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6pcv1"]
+[ext_resource type="Resource" path="res://data/moves/venganza.tres" id="2_nuiu7"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_ccawv"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_y5wb6"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_k6v0d"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="4_opp6q"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_78ulh"]
+[ext_resource type="Resource" path="res://data/moves/adaptacion.tres" id="5_alboj"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="6_p3e1d"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="7_5iip4"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="8_66rot"]
+
+[sub_resource type="Resource" id="Resource_jtn52"]
+script = ExtResource("1_dhkcl")
+move = ExtResource("2_nuiu7")
+
+[sub_resource type="Resource" id="Resource_vm7i5"]
+script = ExtResource("1_dhkcl")
+level = 3
+move = ExtResource("3_ccawv")
+
+[sub_resource type="Resource" id="Resource_oovuc"]
+script = ExtResource("1_dhkcl")
+level = 7
+move = ExtResource("4_opp6q")
+
+[sub_resource type="Resource" id="Resource_5natp"]
+script = ExtResource("1_dhkcl")
+level = 13
+move = ExtResource("5_alboj")
+
+[sub_resource type="Resource" id="Resource_kmarb"]
+script = ExtResource("1_dhkcl")
+level = 21
+move = ExtResource("6_p3e1d")
+
+[sub_resource type="Resource" id="Resource_xnvw2"]
+script = ExtResource("1_dhkcl")
+level = 31
+move = ExtResource("7_5iip4")
+
+[sub_resource type="Resource" id="Resource_tk811"]
+script = ExtResource("1_dhkcl")
+level = 43
+move = ExtResource("8_66rot")
+
+[resource]
+script = ExtResource("3_y5wb6")
+id = "seedot"
+display_name = "Seedot"
+dex = 273
+types = Array[ExtResource("4_k6v0d")]([ExtResource("5_78ulh")])
+learnset = Array[ExtResource("1_dhkcl")]([SubResource("Resource_jtn52"), SubResource("Resource_vm7i5"), SubResource("Resource_oovuc"), SubResource("Resource_5natp"), SubResource("Resource_kmarb"), SubResource("Resource_xnvw2"), SubResource("Resource_tk811")])
+genus = "Pokémon Bellota"
+pokedex_entry = "Seedot se queda enganchado a las ramas de los árboles por el extremo que tiene en la cabeza. Mientras está ahí colgado, aprovecha para tomar la humedad del árbol. Cuanta más agua bebe, más lustroso se le ve."
+height_m = 0.5
+weight_kg = 4.0
+base_hp = 40
+base_attack = 40
+base_sp_attack = 30
+base_sp_defense = 30
+base_speed = 30
+base_experience = 44
+growth_rate = "medium-slow"
+capture_rate = 255

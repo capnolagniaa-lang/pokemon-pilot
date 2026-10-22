@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="1_ah427"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0ptbt"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="3_dgnmu"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_k3qur"]
+
+[resource]
+script = ExtResource("2_0ptbt")
+id = "colmillo_veneno"
+display_name = "Colmillo Veneno"
+element = ExtResource("1_ah427")
+kind = 4
+power = 50.0
+cooldown = 1.25
+knockback = 120.0
+recovery = 0.1
+status = ExtResource("3_dgnmu")
+status_chance = 0.5
+melee_range = 13.0
+swing_radius = 12.0
+final_knockback = 150.0

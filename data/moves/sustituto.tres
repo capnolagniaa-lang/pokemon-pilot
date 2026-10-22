@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_5xgco"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5c3x1"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_ffgj1"]
+
+[resource]
+script = ExtResource("2_5c3x1")
+id = "sustituto"
+display_name = "Sustituto"
+element = ExtResource("1_5xgco")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0

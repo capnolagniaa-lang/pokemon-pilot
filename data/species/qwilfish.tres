@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_dbjh8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gmaut"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="2_vhxmm"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_51bmo"]
+[ext_resource type="Resource" path="res://data/moves/puas.tres" id="3_coc44"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_37ivn"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_r5s1p"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_15qxy"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="5_f5u30"]
+[ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="6_c2oup"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_sreg4"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="7_c4pot"]
+[ext_resource type="Resource" path="res://data/moves/pin_misil.tres" id="8_yk3vg"]
+[ext_resource type="Resource" path="res://data/moves/desquite.tres" id="9_7v4xe"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_vfao7"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="11_v8vq5"]
+[ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="12_rbn2q"]
+
+[sub_resource type="Resource" id="Resource_jxx30"]
+script = ExtResource("1_dbjh8")
+move = ExtResource("2_vhxmm")
+
+[sub_resource type="Resource" id="Resource_wds6e"]
+script = ExtResource("1_dbjh8")
+move = ExtResource("3_coc44")
+
+[sub_resource type="Resource" id="Resource_w6uyb"]
+script = ExtResource("1_dbjh8")
+move = ExtResource("4_37ivn")
+
+[sub_resource type="Resource" id="Resource_2ci2j"]
+script = ExtResource("1_dbjh8")
+level = 9
+move = ExtResource("5_f5u30")
+
+[sub_resource type="Resource" id="Resource_tr8nc"]
+script = ExtResource("1_dbjh8")
+level = 9
+move = ExtResource("6_c2oup")
+
+[sub_resource type="Resource" id="Resource_iw3op"]
+script = ExtResource("1_dbjh8")
+level = 13
+move = ExtResource("7_c4pot")
+
+[sub_resource type="Resource" id="Resource_1in76"]
+script = ExtResource("1_dbjh8")
+level = 21
+move = ExtResource("8_yk3vg")
+
+[sub_resource type="Resource" id="Resource_11aec"]
+script = ExtResource("1_dbjh8")
+level = 25
+move = ExtResource("9_7v4xe")
+
+[sub_resource type="Resource" id="Resource_7dyqn"]
+script = ExtResource("1_dbjh8")
+level = 33
+move = ExtResource("10_vfao7")
+
+[sub_resource type="Resource" id="Resource_5evyu"]
+script = ExtResource("1_dbjh8")
+level = 37
+move = ExtResource("11_v8vq5")
+
+[sub_resource type="Resource" id="Resource_mcmk8"]
+script = ExtResource("1_dbjh8")
+level = 45
+move = ExtResource("12_rbn2q")
+
+[resource]
+script = ExtResource("3_51bmo")
+id = "qwilfish"
+display_name = "Qwilfish"
+dex = 211
+types = Array[ExtResource("4_r5s1p")]([ExtResource("5_15qxy"), ExtResource("6_sreg4")])
+learnset = Array[ExtResource("1_dbjh8")]([SubResource("Resource_jxx30"), SubResource("Resource_wds6e"), SubResource("Resource_w6uyb"), SubResource("Resource_2ci2j"), SubResource("Resource_tr8nc"), SubResource("Resource_iw3op"), SubResource("Resource_1in76"), SubResource("Resource_11aec"), SubResource("Resource_7dyqn"), SubResource("Resource_5evyu"), SubResource("Resource_mcmk8")])
+genus = "Pokémon Globo"
+pokedex_entry = "Qwilfish bebe agua y se hincha, y a continuación usa la presión del agua que ha tragado para lanzar púas tóxicas por todo el cuerpo. Para este Pokémon nadar es una especie de desafío."
+height_m = 0.5
+weight_kg = 3.9
+base_hp = 65
+base_attack = 95
+base_defense = 85
+base_sp_attack = 55
+base_sp_defense = 55
+base_speed = 85
+base_experience = 88

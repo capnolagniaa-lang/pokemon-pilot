@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_k4kpt"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8drjy"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_qt04v"]
+
+[resource]
+script = ExtResource("2_8drjy")
+id = "aguante"
+display_name = "Aguante"
+element = ExtResource("1_k4kpt")
+kind = 3
+category = 2
+power = 0.0
+cooldown = 8.0
+knockback = 0.0

@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ryv6o"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_i6483"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="2_qg4mu"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_ary2m"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ghoui"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="4_4fg0k"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ygo36"]
+[ext_resource type="Resource" path="res://data/moves/magnitud.tres" id="5_dfe75"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_qputh"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="6_bwi0d"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="7_8dlir"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="8_ti26d"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_pui24"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_rluyt"]
+[ext_resource type="Resource" path="res://data/moves/fisura.tres" id="11_njvsn"]
+
+[sub_resource type="Resource" id="Resource_yk5h6"]
+script = ExtResource("1_ryv6o")
+move = ExtResource("2_qg4mu")
+
+[sub_resource type="Resource" id="Resource_jvsoo"]
+script = ExtResource("1_ryv6o")
+move = ExtResource("3_ary2m")
+
+[sub_resource type="Resource" id="Resource_yxugq"]
+script = ExtResource("1_ryv6o")
+level = 5
+move = ExtResource("4_4fg0k")
+
+[sub_resource type="Resource" id="Resource_qct7n"]
+script = ExtResource("1_ryv6o")
+level = 9
+move = ExtResource("5_dfe75")
+
+[sub_resource type="Resource" id="Resource_cqg2x"]
+script = ExtResource("1_ryv6o")
+level = 17
+move = ExtResource("6_bwi0d")
+
+[sub_resource type="Resource" id="Resource_t6bjg"]
+script = ExtResource("1_ryv6o")
+level = 21
+move = ExtResource("7_8dlir")
+
+[sub_resource type="Resource" id="Resource_re4jo"]
+script = ExtResource("1_ryv6o")
+level = 25
+move = ExtResource("8_ti26d")
+
+[sub_resource type="Resource" id="Resource_8kn1k"]
+script = ExtResource("1_ryv6o")
+level = 33
+move = ExtResource("9_pui24")
+
+[sub_resource type="Resource" id="Resource_n0coe"]
+script = ExtResource("1_ryv6o")
+level = 41
+move = ExtResource("10_rluyt")
+
+[sub_resource type="Resource" id="Resource_ss5vv"]
+script = ExtResource("1_ryv6o")
+level = 49
+move = ExtResource("11_njvsn")
+
+[resource]
+script = ExtResource("3_ghoui")
+id = "diglett"
+display_name = "Diglett"
+dex = 50
+types = Array[ExtResource("4_ygo36")]([ExtResource("5_qputh")])
+learnset = Array[ExtResource("1_ryv6o")]([SubResource("Resource_yk5h6"), SubResource("Resource_jvsoo"), SubResource("Resource_yxugq"), SubResource("Resource_qct7n"), SubResource("Resource_cqg2x"), SubResource("Resource_t6bjg"), SubResource("Resource_re4jo"), SubResource("Resource_8kn1k"), SubResource("Resource_n0coe"), SubResource("Resource_ss5vv")])
+genus = "Pokémon Topo"
+pokedex_entry = "En la mayoría de las granjas se suelen criar Diglett por la sencilla razón de que, excaven donde excaven, dejan la tierra perfectamente labrada para sembrar. El terreno queda listo para plantar ricas verduras."
+height_m = 0.2
+weight_kg = 0.8
+base_hp = 10
+base_attack = 55
+base_defense = 25
+base_sp_attack = 35
+base_sp_defense = 45
+base_speed = 95
+base_experience = 53
+capture_rate = 255

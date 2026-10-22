@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_imuio"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1oujg"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_tse3t"]
+
+[resource]
+script = ExtResource("2_1oujg")
+id = "psiquico"
+display_name = "Psíquico"
+element = ExtResource("1_imuio")
+category = 1
+power = 90.0
+cooldown = 2.35
+cast_time = 0.15
+knockback = 144.0
+recovery = 0.1
+speed = 280.0
+size = 5.25
+lifetime = 0.85

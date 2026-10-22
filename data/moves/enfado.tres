@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="1_ehcms"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_exk56"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_dii8v"]
+
+[resource]
+script = ExtResource("2_exk56")
+id = "enfado"
+display_name = "Enfado"
+element = ExtResource("1_ehcms")
+kind = 1
+power = 120.0
+cooldown = 2.7
+knockback = 220.0
+recovery = 0.3
+dash_time = 0.28

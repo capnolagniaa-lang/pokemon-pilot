@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yw646"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_6bgik"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7ojvr"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_judmp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ubtqh"]
+[ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="4_cmmsp"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qiwn8"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="5_cef3s"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_ov77l"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="6_8ev84"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="7_shpuf"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="8_eip36"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="9_0spv3"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="10_fo5l8"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_rlnyl"]
+
+[sub_resource type="Resource" id="Resource_jybaw"]
+script = ExtResource("1_yw646")
+move = ExtResource("2_6bgik")
+
+[sub_resource type="Resource" id="Resource_6jfvp"]
+script = ExtResource("1_yw646")
+move = ExtResource("3_judmp")
+
+[sub_resource type="Resource" id="Resource_ubsfg"]
+script = ExtResource("1_yw646")
+level = 8
+move = ExtResource("4_cmmsp")
+
+[sub_resource type="Resource" id="Resource_81uvo"]
+script = ExtResource("1_yw646")
+level = 12
+move = ExtResource("5_cef3s")
+
+[sub_resource type="Resource" id="Resource_om2rv"]
+script = ExtResource("1_yw646")
+level = 15
+move = ExtResource("6_8ev84")
+
+[sub_resource type="Resource" id="Resource_mwxpj"]
+script = ExtResource("1_yw646")
+level = 22
+move = ExtResource("7_shpuf")
+
+[sub_resource type="Resource" id="Resource_50ttg"]
+script = ExtResource("1_yw646")
+level = 29
+move = ExtResource("8_eip36")
+
+[sub_resource type="Resource" id="Resource_44xgk"]
+script = ExtResource("1_yw646")
+level = 36
+move = ExtResource("9_0spv3")
+
+[sub_resource type="Resource" id="Resource_vyrmp"]
+script = ExtResource("1_yw646")
+level = 43
+move = ExtResource("10_fo5l8")
+
+[sub_resource type="Resource" id="Resource_yt6qe"]
+script = ExtResource("1_yw646")
+level = 50
+move = ExtResource("11_rlnyl")
+
+[resource]
+script = ExtResource("3_ubtqh")
+id = "chikorita"
+display_name = "Chikorita"
+dex = 152
+types = Array[ExtResource("4_qiwn8")]([ExtResource("5_ov77l")])
+learnset = Array[ExtResource("1_yw646")]([SubResource("Resource_jybaw"), SubResource("Resource_6jfvp"), SubResource("Resource_ubsfg"), SubResource("Resource_81uvo"), SubResource("Resource_om2rv"), SubResource("Resource_mwxpj"), SubResource("Resource_50ttg"), SubResource("Resource_44xgk"), SubResource("Resource_vyrmp"), SubResource("Resource_yt6qe")])
+genus = "Pokémon Hoja"
+pokedex_entry = "Al luchar, Chikorita agita la hoja que tiene para mantener a raya al rival. Pero, al mismo tiempo, libera una suave fragancia que apacigua el encuentro y crea un ambiente agradable y de amistad."
+height_m = 0.9
+weight_kg = 6.4
+base_hp = 45
+base_attack = 49
+base_defense = 65
+base_sp_attack = 49
+base_sp_defense = 65
+base_speed = 45
+base_experience = 64
+growth_rate = "medium-slow"

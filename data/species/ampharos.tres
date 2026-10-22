@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_c3xnl"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_njoic"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_yskap"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_1wxad"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_5530h"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_25mql"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="4_tprl1"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_fxgtu"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="5_g05iw"]
+[ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="6_28v4l"]
+[ext_resource type="Resource" path="res://data/moves/puno_trueno.tres" id="7_ymdoj"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="8_gyf3c"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="9_atnft"]
+
+[sub_resource type="Resource" id="Resource_25e16"]
+script = ExtResource("1_c3xnl")
+move = ExtResource("2_yskap")
+
+[sub_resource type="Resource" id="Resource_mnenl"]
+script = ExtResource("1_c3xnl")
+move = ExtResource("3_1wxad")
+
+[sub_resource type="Resource" id="Resource_krmqx"]
+script = ExtResource("1_c3xnl")
+move = ExtResource("4_tprl1")
+
+[sub_resource type="Resource" id="Resource_7l8we"]
+script = ExtResource("1_c3xnl")
+move = ExtResource("5_g05iw")
+
+[sub_resource type="Resource" id="Resource_o87c5"]
+script = ExtResource("1_c3xnl")
+level = 27
+move = ExtResource("6_28v4l")
+
+[sub_resource type="Resource" id="Resource_2jtca"]
+script = ExtResource("1_c3xnl")
+level = 30
+move = ExtResource("7_ymdoj")
+
+[sub_resource type="Resource" id="Resource_u1e6m"]
+script = ExtResource("1_c3xnl")
+level = 42
+move = ExtResource("8_gyf3c")
+
+[sub_resource type="Resource" id="Resource_ksih1"]
+script = ExtResource("1_c3xnl")
+level = 57
+move = ExtResource("9_atnft")
+
+[resource]
+script = ExtResource("3_5530h")
+id = "ampharos"
+display_name = "Ampharos"
+dex = 181
+types = Array[ExtResource("4_25mql")]([ExtResource("5_fxgtu")])
+learnset = Array[ExtResource("1_c3xnl")]([SubResource("Resource_25e16"), SubResource("Resource_mnenl"), SubResource("Resource_krmqx"), SubResource("Resource_7l8we"), SubResource("Resource_o87c5"), SubResource("Resource_2jtca"), SubResource("Resource_u1e6m"), SubResource("Resource_ksih1")])
+genus = "Pokémon Luz"
+pokedex_entry = "Ampharos desprende tanta luz que es posible verle hasta desde el espacio. Antes, la gente usaba su luz como sistema de comunicación para enviarse señales."
+height_m = 1.4
+weight_kg = 61.5
+base_hp = 90
+base_attack = 75
+base_defense = 85
+base_sp_attack = 115
+base_sp_defense = 90
+base_speed = 55
+base_experience = 230
+growth_rate = "medium-slow"

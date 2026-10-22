@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mcj55"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5es57"]
+[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="2_lp1dj"]
+[ext_resource type="Resource" path="res://data/moves/refugio.tres" id="3_el5cy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_svend"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_6n8qb"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="4_n5il6"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_a15wi"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="5_lgr4j"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="6_fvcrl"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="6_jgigp"]
+[ext_resource type="Resource" path="res://data/moves/venganza.tres" id="7_5bx7c"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="8_02uxy"]
+
+[sub_resource type="Resource" id="Resource_1lx7g"]
+script = ExtResource("1_mcj55")
+move = ExtResource("2_lp1dj")
+
+[sub_resource type="Resource" id="Resource_7sibi"]
+script = ExtResource("1_mcj55")
+move = ExtResource("3_el5cy")
+
+[sub_resource type="Resource" id="Resource_787qc"]
+script = ExtResource("1_mcj55")
+level = 9
+move = ExtResource("4_n5il6")
+
+[sub_resource type="Resource" id="Resource_alyg0"]
+script = ExtResource("1_mcj55")
+level = 14
+move = ExtResource("5_lgr4j")
+
+[sub_resource type="Resource" id="Resource_klpta"]
+script = ExtResource("1_mcj55")
+level = 23
+move = ExtResource("6_fvcrl")
+
+[sub_resource type="Resource" id="Resource_b3wuf"]
+script = ExtResource("1_mcj55")
+level = 28
+move = ExtResource("7_5bx7c")
+
+[sub_resource type="Resource" id="Resource_n273v"]
+script = ExtResource("1_mcj55")
+level = 37
+move = ExtResource("8_02uxy")
+
+[resource]
+script = ExtResource("3_svend")
+id = "shuckle"
+display_name = "Shuckle"
+dex = 213
+types = Array[ExtResource("4_6n8qb")]([ExtResource("5_a15wi"), ExtResource("6_jgigp")])
+learnset = Array[ExtResource("1_mcj55")]([SubResource("Resource_1lx7g"), SubResource("Resource_7sibi"), SubResource("Resource_787qc"), SubResource("Resource_alyg0"), SubResource("Resource_klpta"), SubResource("Resource_b3wuf"), SubResource("Resource_n273v")])
+genus = "Pokémon Moho"
+pokedex_entry = "Shuckle permanece escondido bajo las rocas en silencio y, cuando se pone a comer las bayas que almacena, se encierra en el caparazón. Las bayas se mezclan con sus fluidos corporales y originan zumo."
+height_m = 0.6
+weight_kg = 20.5
+base_hp = 20
+base_attack = 10
+base_defense = 230
+base_sp_attack = 10
+base_sp_defense = 230
+base_speed = 5
+base_experience = 177
+growth_rate = "medium-slow"
+capture_rate = 190

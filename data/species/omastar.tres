@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jri7o"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_7xgo8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yk0tr"]
+[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="3_elu6b"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_lw27q"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_85c16"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_xxt4h"]
+[ext_resource type="Resource" path="res://data/moves/refugio.tres" id="5_33ri4"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_dbic4"]
+[ext_resource type="Resource" path="res://data/moves/disparo_lodo.tres" id="6_i135t"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="6_o1t2b"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="7_uxnhp"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="8_hte8y"]
+[ext_resource type="Resource" path="res://data/moves/clavo_canon.tres" id="9_0uxll"]
+[ext_resource type="Resource" path="res://data/moves/cosquillas.tres" id="10_07fk7"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="11_2xodf"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_sgmp3"]
+
+[sub_resource type="Resource" id="Resource_ygek1"]
+script = ExtResource("1_jri7o")
+move = ExtResource("2_7xgo8")
+
+[sub_resource type="Resource" id="Resource_hwib1"]
+script = ExtResource("1_jri7o")
+move = ExtResource("3_elu6b")
+
+[sub_resource type="Resource" id="Resource_6w55d"]
+script = ExtResource("1_jri7o")
+move = ExtResource("4_85c16")
+
+[sub_resource type="Resource" id="Resource_3gwix"]
+script = ExtResource("1_jri7o")
+move = ExtResource("5_33ri4")
+
+[sub_resource type="Resource" id="Resource_db6am"]
+script = ExtResource("1_jri7o")
+level = 25
+move = ExtResource("6_i135t")
+
+[sub_resource type="Resource" id="Resource_tke6h"]
+script = ExtResource("1_jri7o")
+level = 31
+move = ExtResource("7_uxnhp")
+
+[sub_resource type="Resource" id="Resource_j5pnp"]
+script = ExtResource("1_jri7o")
+level = 37
+move = ExtResource("8_hte8y")
+
+[sub_resource type="Resource" id="Resource_yefqt"]
+script = ExtResource("1_jri7o")
+level = 40
+move = ExtResource("9_0uxll")
+
+[sub_resource type="Resource" id="Resource_qx8dl"]
+script = ExtResource("1_jri7o")
+level = 46
+move = ExtResource("10_07fk7")
+
+[sub_resource type="Resource" id="Resource_pmcd0"]
+script = ExtResource("1_jri7o")
+level = 55
+move = ExtResource("11_2xodf")
+
+[sub_resource type="Resource" id="Resource_cmcx8"]
+script = ExtResource("1_jri7o")
+level = 65
+move = ExtResource("12_sgmp3")
+
+[resource]
+script = ExtResource("3_lw27q")
+id = "omastar"
+display_name = "Omastar"
+dex = 139
+types = Array[ExtResource("4_xxt4h")]([ExtResource("5_dbic4"), ExtResource("6_o1t2b")])
+learnset = Array[ExtResource("1_jri7o")]([SubResource("Resource_ygek1"), SubResource("Resource_hwib1"), SubResource("Resource_6w55d"), SubResource("Resource_3gwix"), SubResource("Resource_db6am"), SubResource("Resource_tke6h"), SubResource("Resource_j5pnp"), SubResource("Resource_yefqt"), SubResource("Resource_qx8dl"), SubResource("Resource_pmcd0"), SubResource("Resource_cmcx8")])
+genus = "Pokémon Espiral"
+pokedex_entry = "Omastar usa los tentáculos para atrapar a su presa. Se cree que el motivo de su extinción fue el tamaño y el peso que llegó a alcanzar la concha que lleva a cuestas, lo que le entorpeció y ralentizó los movimientos."
+height_m = 1.0
+weight_kg = 35.0
+base_hp = 70
+base_attack = 60
+base_defense = 125
+base_sp_attack = 115
+base_sp_defense = 70
+base_speed = 55
+base_experience = 173

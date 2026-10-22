@@ -10,6 +10,12 @@ var species: SpeciesData:
 var anim_name := "Idle"
 ## Escala del pixel art (entera para que no se deforme).
 var pixel_scale := 3
+## Silueta ("¿Quién es ese Pokémon?"): quieto y todo en un color oscuro, sin sombra.
+var silhouette := false:
+	set(value):
+		silhouette = value
+		queue_redraw()
+var silhouette_color := Color(0.06, 0.07, 0.12)
 var _time := 0.0
 
 
@@ -32,7 +38,7 @@ func _draw() -> void:
 		if tex != null:
 			var s := minf(size.x / tex.get_width(), size.y / tex.get_height())
 			var d := tex.get_size() * floorf(maxf(1.0, s))
-			draw_texture_rect(tex, Rect2((size - d) / 2.0, d), false)
+			draw_texture_rect(tex, Rect2((size - d) / 2.0, d), false, silhouette_color if silhouette else Color.WHITE)
 		return
 	var a: Dictionary = anims[anim_name]
 	var durations: Array = a["durations"]
@@ -47,13 +53,17 @@ func _draw() -> void:
 		if t < acc:
 			frame = i
 			break
+	if silhouette:
+		frame = 0
 	var fw: float = a["w"]
 	var fh: float = a["h"]
 	var dst := Vector2(fw, fh) * pixel_scale
-	# Sombra a los pies
-	# En las hojas PMD los pies quedan ~8 px debajo del centro del frame (igual que CreatureSprite.foot_offset).
-	var center := Vector2(size.x / 2.0, size.y / 2.0 + 8.0 * pixel_scale)
-	draw_set_transform(center, 0.0, Vector2(1.0, 0.35))
-	draw_circle(Vector2.ZERO, 7.0 * pixel_scale, Color(0, 0, 0, 0.3))
-	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-	draw_texture_rect_region(DB.texture(a["file"]), Rect2((size - dst) / 2.0, dst), Rect2(frame * fw, 0, fw, fh))
+	if not silhouette:
+		# Sombra a los pies. En las hojas PMD los pies quedan ~8 px debajo del centro del frame (igual que
+		# CreatureSprite.foot_offset).
+		var center := Vector2(size.x / 2.0, size.y / 2.0 + 8.0 * pixel_scale)
+		draw_set_transform(center, 0.0, Vector2(1.0, 0.35))
+		draw_circle(Vector2.ZERO, 7.0 * pixel_scale, Color(0, 0, 0, 0.3))
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	var mod := silhouette_color if silhouette else Color.WHITE
+	draw_texture_rect_region(DB.texture(a["file"]), Rect2((size - dst) / 2.0, dst), Rect2(frame * fw, 0, fw, fh), mod)

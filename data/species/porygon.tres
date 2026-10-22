@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_f77uk"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1dvld"]
+[ext_resource type="Resource" path="res://data/moves/conversion.tres" id="2_y38l8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_djqj7"]
+[ext_resource type="Resource" path="res://data/moves/conversion_2.tres" id="3_l84t5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_e2fqv"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_nm4un"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_3pqji"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="5_y3eso"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_kdsd8"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="7_l6hu1"]
+[ext_resource type="Resource" path="res://data/moves/afilar.tres" id="8_v680w"]
+[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="9_cm0du"]
+[ext_resource type="Resource" path="res://data/moves/triataque.tres" id="10_lj1e6"]
+[ext_resource type="Resource" path="res://data/moves/reciclaje.tres" id="11_eiqbh"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_35hx6"]
+
+[sub_resource type="Resource" id="Resource_01bhu"]
+script = ExtResource("1_f77uk")
+move = ExtResource("2_y38l8")
+
+[sub_resource type="Resource" id="Resource_lwgfv"]
+script = ExtResource("1_f77uk")
+move = ExtResource("3_l84t5")
+
+[sub_resource type="Resource" id="Resource_3s0gp"]
+script = ExtResource("1_f77uk")
+move = ExtResource("4_nm4un")
+
+[sub_resource type="Resource" id="Resource_7biof"]
+script = ExtResource("1_f77uk")
+level = 9
+move = ExtResource("5_y3eso")
+
+[sub_resource type="Resource" id="Resource_iudmr"]
+script = ExtResource("1_f77uk")
+level = 12
+move = ExtResource("6_kdsd8")
+
+[sub_resource type="Resource" id="Resource_bhye4"]
+script = ExtResource("1_f77uk")
+level = 20
+move = ExtResource("7_l6hu1")
+
+[sub_resource type="Resource" id="Resource_7wsjc"]
+script = ExtResource("1_f77uk")
+level = 24
+move = ExtResource("8_v680w")
+
+[sub_resource type="Resource" id="Resource_rdb5h"]
+script = ExtResource("1_f77uk")
+level = 32
+move = ExtResource("9_cm0du")
+
+[sub_resource type="Resource" id="Resource_wvurm"]
+script = ExtResource("1_f77uk")
+level = 36
+move = ExtResource("10_lj1e6")
+
+[sub_resource type="Resource" id="Resource_ounrt"]
+script = ExtResource("1_f77uk")
+level = 44
+move = ExtResource("11_eiqbh")
+
+[sub_resource type="Resource" id="Resource_iswtt"]
+script = ExtResource("1_f77uk")
+level = 48
+move = ExtResource("12_35hx6")
+
+[resource]
+script = ExtResource("3_djqj7")
+id = "porygon"
+display_name = "Porygon"
+dex = 137
+types = Array[ExtResource("4_e2fqv")]([ExtResource("5_3pqji")])
+learnset = Array[ExtResource("1_f77uk")]([SubResource("Resource_01bhu"), SubResource("Resource_lwgfv"), SubResource("Resource_3s0gp"), SubResource("Resource_7biof"), SubResource("Resource_iudmr"), SubResource("Resource_bhye4"), SubResource("Resource_7wsjc"), SubResource("Resource_rdb5h"), SubResource("Resource_wvurm"), SubResource("Resource_ounrt"), SubResource("Resource_iswtt")])
+genus = "Pokémon Virtual"
+pokedex_entry = "Porygon es capaz de convertirse otra vez en datos informáticos y de entrar en el ciberespacio. Tiene protección anticopia, así que es imposible duplicarlo."
+height_m = 0.8
+weight_kg = 36.5
+base_hp = 65
+base_attack = 60
+base_defense = 70
+base_sp_attack = 85
+base_sp_defense = 75
+base_speed = 40
+base_experience = 79

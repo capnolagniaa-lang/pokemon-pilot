@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6mu4y"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0o4hp"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_j0muh"]
+[ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="3_42d3l"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_t2syp"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="4_7tsk8"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_k5uy8"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="5_poyqf"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_u4xoe"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_j0muh"]
+[ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="6_qfk1e"]
+
+[sub_resource type="Resource" id="Resource_jt1pm"]
+script = ExtResource("1_6mu4y")
+move = ExtResource("2_j0muh")
+
+[sub_resource type="Resource" id="Resource_v0h8j"]
+script = ExtResource("1_6mu4y")
+move = ExtResource("3_42d3l")
+
+[sub_resource type="Resource" id="Resource_aiip4"]
+script = ExtResource("1_6mu4y")
+move = ExtResource("4_7tsk8")
+
+[sub_resource type="Resource" id="Resource_l7fpy"]
+script = ExtResource("1_6mu4y")
+move = ExtResource("5_poyqf")
+
+[sub_resource type="Resource" id="Resource_sf4h2"]
+script = ExtResource("1_6mu4y")
+level = 44
+move = ExtResource("6_qfk1e")
+
+[resource]
+script = ExtResource("3_t2syp")
+id = "vileplume"
+display_name = "Vileplume"
+dex = 45
+types = Array[ExtResource("4_k5uy8")]([ExtResource("5_u4xoe"), ExtResource("6_j0muh")])
+learnset = Array[ExtResource("1_6mu4y")]([SubResource("Resource_jt1pm"), SubResource("Resource_v0h8j"), SubResource("Resource_aiip4"), SubResource("Resource_l7fpy"), SubResource("Resource_sf4h2")])
+genus = "Pokémon Flor"
+pokedex_entry = "El polen que contienen las esporas tóxicas de Vileplume causa unos ataques de alergia muy agudos. Por eso, no es aconsejable acercarse a ninguna flor selvática, por muy bonita que sea."
+height_m = 1.2
+weight_kg = 18.6
+base_hp = 75
+base_attack = 80
+base_defense = 85
+base_sp_attack = 110
+base_sp_defense = 90
+base_experience = 221
+growth_rate = "medium-slow"

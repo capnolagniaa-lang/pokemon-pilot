@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="1_wx0gt"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_u3oat"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="3_0pm6e"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_lgssk"]
+
+[resource]
+script = ExtResource("2_u3oat")
+id = "dragoaliento"
+display_name = "Dragoaliento"
+element = ExtResource("1_wx0gt")
+category = 1
+power = 60.0
+cooldown = 1.8
+knockback = 96.0
+recovery = 0.1
+status = ExtResource("3_0pm6e")
+status_chance = 0.3
+speed = 280.0
+size = 4.5
+lifetime = 0.85

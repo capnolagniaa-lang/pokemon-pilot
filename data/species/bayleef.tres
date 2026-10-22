@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1ive5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ord8d"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_tflcr"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_g8axq"]
+[ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="3_qxd70"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_2slf5"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="4_nauks"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_vk67p"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_ygjnq"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="6_xmemi"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="7_qoj37"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="8_ibl8l"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="9_d3nmq"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="10_2o4j2"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_dxvk4"]
+
+[sub_resource type="Resource" id="Resource_uk7ca"]
+script = ExtResource("1_1ive5")
+move = ExtResource("2_tflcr")
+
+[sub_resource type="Resource" id="Resource_x0t7j"]
+script = ExtResource("1_1ive5")
+move = ExtResource("3_qxd70")
+
+[sub_resource type="Resource" id="Resource_gbxw6"]
+script = ExtResource("1_1ive5")
+move = ExtResource("4_nauks")
+
+[sub_resource type="Resource" id="Resource_x4ex1"]
+script = ExtResource("1_1ive5")
+move = ExtResource("5_ygjnq")
+
+[sub_resource type="Resource" id="Resource_a7b6j"]
+script = ExtResource("1_1ive5")
+level = 15
+move = ExtResource("6_xmemi")
+
+[sub_resource type="Resource" id="Resource_exg3a"]
+script = ExtResource("1_1ive5")
+level = 23
+move = ExtResource("7_qoj37")
+
+[sub_resource type="Resource" id="Resource_ltkov"]
+script = ExtResource("1_1ive5")
+level = 31
+move = ExtResource("8_ibl8l")
+
+[sub_resource type="Resource" id="Resource_15jsl"]
+script = ExtResource("1_1ive5")
+level = 39
+move = ExtResource("9_d3nmq")
+
+[sub_resource type="Resource" id="Resource_7l2hh"]
+script = ExtResource("1_1ive5")
+level = 47
+move = ExtResource("10_2o4j2")
+
+[sub_resource type="Resource" id="Resource_646m6"]
+script = ExtResource("1_1ive5")
+level = 55
+move = ExtResource("11_dxvk4")
+
+[resource]
+script = ExtResource("3_g8axq")
+id = "bayleef"
+display_name = "Bayleef"
+dex = 153
+types = Array[ExtResource("4_2slf5")]([ExtResource("5_vk67p")])
+learnset = Array[ExtResource("1_1ive5")]([SubResource("Resource_uk7ca"), SubResource("Resource_x0t7j"), SubResource("Resource_gbxw6"), SubResource("Resource_x4ex1"), SubResource("Resource_a7b6j"), SubResource("Resource_exg3a"), SubResource("Resource_ltkov"), SubResource("Resource_15jsl"), SubResource("Resource_7l2hh"), SubResource("Resource_646m6")])
+genus = "Pokémon Hoja"
+pokedex_entry = "Bayleef tiene un collar de hojas alrededor del cuello y un brote de un árbol en cada una de ellas. La fragancia que desprenden estos brotes anima a la gente."
+height_m = 1.2
+weight_kg = 15.8
+base_hp = 60
+base_attack = 62
+base_defense = 80
+base_sp_attack = 63
+base_sp_defense = 80
+base_speed = 60
+base_experience = 142
+growth_rate = "medium-slow"

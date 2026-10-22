@@ -23,11 +23,14 @@ Acceso directo sin abrir el editor: un `.lnk` que apunte a `Godot_v4.7.2-stable_
 | Ataque 3 | Q (o 3) |
 | Ataque 4 (el de más recarga) | R (o 4) |
 | Esquivar | Espacio |
-| Menú (Equipo, Guardar, Opciones) | Esc |
+| Menú (Equipo, Pokédex, Guardar, Opciones) | Esc |
 | Menús | Flechas/WASD + Enter/Espacio (o mouse) · Tab cambia de pestaña en la ficha |
 
 El mundo **reacciona a los ataques**: el agua moja el suelo, el hielo congela el agua (puente para cruzar), el
 eléctrico corre por el agua y lo mojado, y las embestidas rompen las rocas frágiles.
+
+La **Pokédex** (Esc → Pokédex) tiene los 386 Pokémon de Kanto, Johto y Hoenn: los que todavía no viste aparecen
+como "?????" con su silueta; los que viste muestran su ficha, y los que enfrentaste, también sus estadísticas.
 
 La partida se **guarda a mano** desde el menú (Esc → Guardar; no se puede en combate) y se retoma con
 **Continuar** en la pantalla de título. En **Equipo** (hasta 6) elegís quién te sigue y en la **ficha** de cada

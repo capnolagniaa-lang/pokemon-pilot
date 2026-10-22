@@ -5,3 +5,4 @@ export/
 .backup/
 # Accesos directos locales (tienen rutas de esta PC)
 *.lnk
+tools/.pokeapi_cache/

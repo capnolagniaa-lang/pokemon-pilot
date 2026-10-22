@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_vfcaf"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_c2chq"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="3_pkmlb"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_b00rx"]
+
+[resource]
+script = ExtResource("2_c2chq")
+id = "llamarada"
+display_name = "Llamarada"
+element = ExtResource("1_vfcaf")
+category = 1
+power = 110.0
+cooldown = 2.7
+cast_time = 0.45
+knockback = 176.0
+recovery = 0.4
+status = ExtResource("3_pkmlb")
+status_chance = 0.1
+speed = 280.0
+size = 5.75
+lifetime = 0.85

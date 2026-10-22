@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_pkyyq"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="2_7b057"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_klc7q"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_acubc"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_rihr0"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_u3jhn"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_vhs1d"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="5_bhoog"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="5_nxq4c"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="6_54cob"]
+[ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="7_c3qg4"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="8_dyc82"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="9_cyb86"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_1f3oo"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_1cxsh"]
+
+[sub_resource type="Resource" id="Resource_33lgv"]
+script = ExtResource("1_pkyyq")
+move = ExtResource("2_7b057")
+
+[sub_resource type="Resource" id="Resource_wamua"]
+script = ExtResource("1_pkyyq")
+move = ExtResource("3_rihr0")
+
+[sub_resource type="Resource" id="Resource_5xix7"]
+script = ExtResource("1_pkyyq")
+level = 4
+move = ExtResource("4_u3jhn")
+
+[sub_resource type="Resource" id="Resource_b6rfs"]
+script = ExtResource("1_pkyyq")
+level = 8
+move = ExtResource("5_nxq4c")
+
+[sub_resource type="Resource" id="Resource_cn0we"]
+script = ExtResource("1_pkyyq")
+level = 13
+move = ExtResource("6_54cob")
+
+[sub_resource type="Resource" id="Resource_uyhgf"]
+script = ExtResource("1_pkyyq")
+level = 19
+move = ExtResource("7_c3qg4")
+
+[sub_resource type="Resource" id="Resource_hp5xg"]
+script = ExtResource("1_pkyyq")
+level = 26
+move = ExtResource("8_dyc82")
+
+[sub_resource type="Resource" id="Resource_x3emo"]
+script = ExtResource("1_pkyyq")
+level = 34
+move = ExtResource("9_cyb86")
+
+[sub_resource type="Resource" id="Resource_rivfl"]
+script = ExtResource("1_pkyyq")
+level = 43
+move = ExtResource("10_1f3oo")
+
+[sub_resource type="Resource" id="Resource_b4fn3"]
+script = ExtResource("1_pkyyq")
+level = 53
+move = ExtResource("11_1cxsh")
+
+[resource]
+script = ExtResource("3_acubc")
+id = "snubbull"
+display_name = "Snubbull"
+dex = 209
+types = Array[ExtResource("4_vhs1d")]([ExtResource("5_bhoog")])
+learnset = Array[ExtResource("1_pkyyq")]([SubResource("Resource_33lgv"), SubResource("Resource_wamua"), SubResource("Resource_5xix7"), SubResource("Resource_b6rfs"), SubResource("Resource_cn0we"), SubResource("Resource_uyhgf"), SubResource("Resource_hp5xg"), SubResource("Resource_x3emo"), SubResource("Resource_rivfl"), SubResource("Resource_b4fn3")])
+genus = "Pokémon Hada"
+pokedex_entry = "Al tener los colmillos por fuera, Snubbull da miedo y espanta a los Pokémon pequeños, que huyen aterrados. Parece que a él le da un poco de pena que salgan huyendo."
+height_m = 0.6
+weight_kg = 7.8
+base_hp = 60
+base_attack = 80
+base_sp_attack = 40
+base_sp_defense = 40
+base_speed = 30
+growth_rate = "fast"
+capture_rate = 190

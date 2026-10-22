@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_7e76v"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_g3vfc"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_js22x"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jwyd8"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="3_rphfk"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_5yybv"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_61x48"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="5_b1mec"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_xhxdk"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="6_hk5vj"]
+[ext_resource type="Resource" path="res://data/moves/rueda_fuego.tres" id="7_y35y3"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="8_4slvy"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_sqokr"]
+
+[sub_resource type="Resource" id="Resource_1qwk5"]
+script = ExtResource("1_7e76v")
+move = ExtResource("2_g3vfc")
+
+[sub_resource type="Resource" id="Resource_ashs3"]
+script = ExtResource("1_7e76v")
+move = ExtResource("3_rphfk")
+
+[sub_resource type="Resource" id="Resource_wkklm"]
+script = ExtResource("1_7e76v")
+move = ExtResource("4_5yybv")
+
+[sub_resource type="Resource" id="Resource_j7tvc"]
+script = ExtResource("1_7e76v")
+level = 12
+move = ExtResource("5_b1mec")
+
+[sub_resource type="Resource" id="Resource_jhdw2"]
+script = ExtResource("1_7e76v")
+level = 21
+move = ExtResource("6_hk5vj")
+
+[sub_resource type="Resource" id="Resource_aviic"]
+script = ExtResource("1_7e76v")
+level = 31
+move = ExtResource("7_y35y3")
+
+[sub_resource type="Resource" id="Resource_u4g2p"]
+script = ExtResource("1_7e76v")
+level = 42
+move = ExtResource("8_4slvy")
+
+[sub_resource type="Resource" id="Resource_wam45"]
+script = ExtResource("1_7e76v")
+level = 54
+move = ExtResource("9_sqokr")
+
+[resource]
+script = ExtResource("3_jwyd8")
+id = "quilava"
+display_name = "Quilava"
+dex = 156
+types = Array[ExtResource("4_61x48")]([ExtResource("5_xhxdk")])
+learnset = Array[ExtResource("1_7e76v")]([SubResource("Resource_1qwk5"), SubResource("Resource_ashs3"), SubResource("Resource_wkklm"), SubResource("Resource_j7tvc"), SubResource("Resource_jhdw2"), SubResource("Resource_aviic"), SubResource("Resource_u4g2p"), SubResource("Resource_wam45")])
+genus = "Pokémon Volcán"
+pokedex_entry = "Quilava mantiene a sus rivales a raya con la intensidad de sus llamas y las ráfagas de aire ígneo que producen. También aprovecha su espectacular agilidad para esquivar ataques a la vez que abrasa al rival con sus llamas."
+height_m = 0.9
+weight_kg = 19.0
+base_hp = 58
+base_attack = 64
+base_defense = 58
+base_sp_attack = 80
+base_sp_defense = 65
+base_speed = 80
+base_experience = 142
+growth_rate = "medium-slow"

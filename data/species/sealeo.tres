@@ -1,0 +1,103 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_0qsvj"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_6oyko"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_j1vmr"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_h5ull"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_ibntl"]
+[ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="4_mxxu5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wjxjj"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_b1phl"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_qe1of"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="6_v1py7"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="6_wbh0l"]
+[ext_resource type="Resource" path="res://data/moves/bola_hielo.tres" id="7_mm36n"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="8_x18np"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="9_827np"]
+[ext_resource type="Resource" path="res://data/moves/granizo.tres" id="10_oc63s"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="11_jpnrc"]
+[ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="12_qgnay"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="13_ysxud"]
+[ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="14_rr0y0"]
+
+[sub_resource type="Resource" id="Resource_q632d"]
+script = ExtResource("1_0qsvj")
+move = ExtResource("2_6oyko")
+
+[sub_resource type="Resource" id="Resource_f5veo"]
+script = ExtResource("1_0qsvj")
+move = ExtResource("3_ibntl")
+
+[sub_resource type="Resource" id="Resource_g7gxf"]
+script = ExtResource("1_0qsvj")
+move = ExtResource("4_mxxu5")
+
+[sub_resource type="Resource" id="Resource_77pia"]
+script = ExtResource("1_0qsvj")
+move = ExtResource("5_qe1of")
+
+[sub_resource type="Resource" id="Resource_8fcdm"]
+script = ExtResource("1_0qsvj")
+level = 7
+move = ExtResource("6_v1py7")
+
+[sub_resource type="Resource" id="Resource_dq6f3"]
+script = ExtResource("1_0qsvj")
+level = 13
+move = ExtResource("7_mm36n")
+
+[sub_resource type="Resource" id="Resource_fb4tj"]
+script = ExtResource("1_0qsvj")
+level = 19
+move = ExtResource("8_x18np")
+
+[sub_resource type="Resource" id="Resource_dt2ww"]
+script = ExtResource("1_0qsvj")
+level = 25
+move = ExtResource("9_827np")
+
+[sub_resource type="Resource" id="Resource_j8ple"]
+script = ExtResource("1_0qsvj")
+level = 31
+move = ExtResource("10_oc63s")
+
+[sub_resource type="Resource" id="Resource_ujbaf"]
+script = ExtResource("1_0qsvj")
+level = 39
+move = ExtResource("11_jpnrc")
+
+[sub_resource type="Resource" id="Resource_vig6p"]
+script = ExtResource("1_0qsvj")
+level = 39
+move = ExtResource("12_qgnay")
+
+[sub_resource type="Resource" id="Resource_fl806"]
+script = ExtResource("1_0qsvj")
+level = 47
+move = ExtResource("13_ysxud")
+
+[sub_resource type="Resource" id="Resource_spqlc"]
+script = ExtResource("1_0qsvj")
+level = 55
+move = ExtResource("14_rr0y0")
+
+[resource]
+script = ExtResource("3_h5ull")
+id = "sealeo"
+display_name = "Sealeo"
+dex = 364
+types = Array[ExtResource("4_wjxjj")]([ExtResource("5_b1phl"), ExtResource("6_wbh0l")])
+learnset = Array[ExtResource("1_0qsvj")]([SubResource("Resource_q632d"), SubResource("Resource_f5veo"), SubResource("Resource_g7gxf"), SubResource("Resource_77pia"), SubResource("Resource_8fcdm"), SubResource("Resource_dq6f3"), SubResource("Resource_fb4tj"), SubResource("Resource_dt2ww"), SubResource("Resource_j8ple"), SubResource("Resource_ujbaf"), SubResource("Resource_vig6p"), SubResource("Resource_fl806"), SubResource("Resource_spqlc")])
+genus = "Pokémon Rodabola"
+pokedex_entry = "Cada vez que Sealeo ve algo nuevo, se lo pone en el morro y empieza a darle vueltas. A veces, para entretenerse, hace lo mismo con un Spheal."
+height_m = 1.1
+weight_kg = 87.6
+base_hp = 90
+base_attack = 60
+base_defense = 70
+base_sp_attack = 75
+base_sp_defense = 70
+base_speed = 45
+base_experience = 144
+growth_rate = "medium-slow"
+capture_rate = 120

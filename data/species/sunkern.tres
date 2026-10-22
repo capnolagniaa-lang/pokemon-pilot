@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_wnolo"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cyvi4"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_ww0oa"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="3_c1dw1"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_nkv1l"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_82wbl"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="4_btaq5"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_jql1b"]
+[ext_resource type="Resource" path="res://data/moves/arraigo.tres" id="5_npqos"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="6_iv4gg"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="7_xo6qq"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="8_uht44"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_lifqb"]
+
+[sub_resource type="Resource" id="Resource_u5jq7"]
+script = ExtResource("1_wnolo")
+move = ExtResource("2_ww0oa")
+
+[sub_resource type="Resource" id="Resource_peqin"]
+script = ExtResource("1_wnolo")
+level = 6
+move = ExtResource("3_c1dw1")
+
+[sub_resource type="Resource" id="Resource_e4pjm"]
+script = ExtResource("1_wnolo")
+level = 13
+move = ExtResource("4_btaq5")
+
+[sub_resource type="Resource" id="Resource_604ny"]
+script = ExtResource("1_wnolo")
+level = 18
+move = ExtResource("5_npqos")
+
+[sub_resource type="Resource" id="Resource_j3tb4"]
+script = ExtResource("1_wnolo")
+level = 25
+move = ExtResource("6_iv4gg")
+
+[sub_resource type="Resource" id="Resource_0jqjx"]
+script = ExtResource("1_wnolo")
+level = 30
+move = ExtResource("7_xo6qq")
+
+[sub_resource type="Resource" id="Resource_ouu56"]
+script = ExtResource("1_wnolo")
+level = 37
+move = ExtResource("8_uht44")
+
+[sub_resource type="Resource" id="Resource_bswac"]
+script = ExtResource("1_wnolo")
+level = 42
+move = ExtResource("9_lifqb")
+
+[resource]
+script = ExtResource("3_nkv1l")
+id = "sunkern"
+display_name = "Sunkern"
+dex = 191
+types = Array[ExtResource("4_82wbl")]([ExtResource("5_jql1b")])
+learnset = Array[ExtResource("1_wnolo")]([SubResource("Resource_u5jq7"), SubResource("Resource_peqin"), SubResource("Resource_e4pjm"), SubResource("Resource_604ny"), SubResource("Resource_j3tb4"), SubResource("Resource_0jqjx"), SubResource("Resource_ouu56"), SubResource("Resource_bswac")])
+genus = "Pokémon Semilla"
+pokedex_entry = "Sunkern intenta moverse lo menos posible para conservar todos los nutrientes que ha guardado en su interior y poder evolucionar. Ni come siquiera; se alimenta solo del rocío de la mañana."
+height_m = 0.3
+weight_kg = 1.8
+base_hp = 30
+base_attack = 30
+base_defense = 30
+base_sp_attack = 30
+base_sp_defense = 30
+base_speed = 30
+base_experience = 36
+growth_rate = "medium-slow"
+capture_rate = 235

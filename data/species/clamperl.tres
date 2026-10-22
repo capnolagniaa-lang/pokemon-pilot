@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_4le33"]
+[ext_resource type="Resource" path="res://data/moves/tenaza.tres" id="2_8ibeo"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tdguo"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_83jtr"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="3_pan4n"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0tpct"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_au3bi"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_8ibeo"]
+[ext_resource type="Resource" path="res://data/moves/torbellino.tres" id="5_dsfuy"]
+
+[sub_resource type="Resource" id="Resource_rwarj"]
+script = ExtResource("1_4le33")
+move = ExtResource("2_8ibeo")
+
+[sub_resource type="Resource" id="Resource_j8uk8"]
+script = ExtResource("1_4le33")
+move = ExtResource("3_pan4n")
+
+[sub_resource type="Resource" id="Resource_r1aa6"]
+script = ExtResource("1_4le33")
+move = ExtResource("4_au3bi")
+
+[sub_resource type="Resource" id="Resource_k161o"]
+script = ExtResource("1_4le33")
+move = ExtResource("5_dsfuy")
+
+[resource]
+script = ExtResource("3_83jtr")
+id = "clamperl"
+display_name = "Clamperl"
+dex = 366
+types = Array[ExtResource("4_0tpct")]([ExtResource("5_8ibeo")])
+learnset = Array[ExtResource("1_4le33")]([SubResource("Resource_rwarj"), SubResource("Resource_j8uk8"), SubResource("Resource_r1aa6"), SubResource("Resource_k161o")])
+genus = "Pokémon Bivalvo"
+pokedex_entry = "La sólida concha que rodea a Clamperl no solo le sirve para protegerse, sino también de cepo para atrapar a su presa. Cuando la concha alcanza su mayor tamaño, presenta muescas y rasguños por todas partes."
+height_m = 0.4
+weight_kg = 52.5
+base_hp = 35
+base_attack = 64
+base_defense = 85
+base_sp_attack = 74
+base_sp_defense = 55
+base_speed = 32
+base_experience = 69
+growth_rate = "slow-then-very-fast"
+capture_rate = 255

@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hou7l"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="2_rbmxy"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ssfs1"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_5icmr"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_n70gu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_351ia"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_ro6q4"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_56xdy"]
+[ext_resource type="Resource" path="res://data/moves/hipercolmillo.tres" id="5_jso7q"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="6_317e0"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="7_bm7ty"]
+[ext_resource type="Resource" path="res://data/moves/superdiente.tres" id="8_ax73t"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="9_u5267"]
+
+[sub_resource type="Resource" id="Resource_4tddi"]
+script = ExtResource("1_hou7l")
+move = ExtResource("2_rbmxy")
+
+[sub_resource type="Resource" id="Resource_v62pd"]
+script = ExtResource("1_hou7l")
+move = ExtResource("3_5icmr")
+
+[sub_resource type="Resource" id="Resource_7topq"]
+script = ExtResource("1_hou7l")
+move = ExtResource("4_ro6q4")
+
+[sub_resource type="Resource" id="Resource_xp7sf"]
+script = ExtResource("1_hou7l")
+level = 13
+move = ExtResource("5_jso7q")
+
+[sub_resource type="Resource" id="Resource_fla37"]
+script = ExtResource("1_hou7l")
+level = 20
+move = ExtResource("6_317e0")
+
+[sub_resource type="Resource" id="Resource_bwasf"]
+script = ExtResource("1_hou7l")
+level = 30
+move = ExtResource("7_bm7ty")
+
+[sub_resource type="Resource" id="Resource_ade0v"]
+script = ExtResource("1_hou7l")
+level = 40
+move = ExtResource("8_ax73t")
+
+[sub_resource type="Resource" id="Resource_eh3m3"]
+script = ExtResource("1_hou7l")
+level = 50
+move = ExtResource("9_u5267")
+
+[resource]
+script = ExtResource("3_n70gu")
+id = "raticate"
+display_name = "Raticate"
+dex = 20
+types = Array[ExtResource("4_351ia")]([ExtResource("5_56xdy")])
+learnset = Array[ExtResource("1_hou7l")]([SubResource("Resource_4tddi"), SubResource("Resource_v62pd"), SubResource("Resource_7topq"), SubResource("Resource_xp7sf"), SubResource("Resource_fla37"), SubResource("Resource_bwasf"), SubResource("Resource_ade0v"), SubResource("Resource_eh3m3")])
+genus = "Pokémon Ratón"
+pokedex_entry = "A Raticate le crecen los incisivos firmes y fuertes. Para mantenerlos afilados roe troncos y rocas, e incluso las paredes de las casas."
+height_m = 0.7
+weight_kg = 18.5
+base_hp = 55
+base_attack = 81
+base_defense = 60
+base_sp_defense = 70
+base_speed = 97
+base_experience = 145
+capture_rate = 127

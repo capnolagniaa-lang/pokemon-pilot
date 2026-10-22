@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_acyfm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gyyoq"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="2_jx8h7"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="3_5epg6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_r2pso"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_475rh"]
+[ext_resource type="Resource" path="res://data/moves/gas_venenoso.tres" id="4_m87d0"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_41dqv"]
+[ext_resource type="Resource" path="res://data/moves/residuos.tres" id="5_xcqvl"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="6_qujjk"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="7_cl8jb"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="8_ows4e"]
+[ext_resource type="Resource" path="res://data/moves/escupir.tres" id="9_s6r2i"]
+[ext_resource type="Resource" path="res://data/moves/reserva.tres" id="10_j1n8j"]
+[ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_f7q2l"]
+[ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="12_mam6k"]
+
+[sub_resource type="Resource" id="Resource_nd43g"]
+script = ExtResource("1_acyfm")
+move = ExtResource("2_jx8h7")
+
+[sub_resource type="Resource" id="Resource_4fhx6"]
+script = ExtResource("1_acyfm")
+level = 6
+move = ExtResource("3_5epg6")
+
+[sub_resource type="Resource" id="Resource_x51su"]
+script = ExtResource("1_acyfm")
+level = 9
+move = ExtResource("4_m87d0")
+
+[sub_resource type="Resource" id="Resource_i548q"]
+script = ExtResource("1_acyfm")
+level = 14
+move = ExtResource("5_xcqvl")
+
+[sub_resource type="Resource" id="Resource_ky0yr"]
+script = ExtResource("1_acyfm")
+level = 17
+move = ExtResource("6_qujjk")
+
+[sub_resource type="Resource" id="Resource_1qwf4"]
+script = ExtResource("1_acyfm")
+level = 23
+move = ExtResource("7_cl8jb")
+
+[sub_resource type="Resource" id="Resource_eg0iw"]
+script = ExtResource("1_acyfm")
+level = 28
+move = ExtResource("8_ows4e")
+
+[sub_resource type="Resource" id="Resource_3aqpl"]
+script = ExtResource("1_acyfm")
+level = 34
+move = ExtResource("9_s6r2i")
+
+[sub_resource type="Resource" id="Resource_fqcwv"]
+script = ExtResource("1_acyfm")
+level = 34
+move = ExtResource("10_j1n8j")
+
+[sub_resource type="Resource" id="Resource_q3lbk"]
+script = ExtResource("1_acyfm")
+level = 34
+move = ExtResource("11_f7q2l")
+
+[sub_resource type="Resource" id="Resource_sfw6e"]
+script = ExtResource("1_acyfm")
+level = 39
+move = ExtResource("12_mam6k")
+
+[resource]
+script = ExtResource("3_r2pso")
+id = "gulpin"
+display_name = "Gulpin"
+dex = 316
+types = Array[ExtResource("4_475rh")]([ExtResource("5_41dqv")])
+learnset = Array[ExtResource("1_acyfm")]([SubResource("Resource_nd43g"), SubResource("Resource_4fhx6"), SubResource("Resource_x51su"), SubResource("Resource_i548q"), SubResource("Resource_ky0yr"), SubResource("Resource_1qwf4"), SubResource("Resource_eg0iw"), SubResource("Resource_3aqpl"), SubResource("Resource_fqcwv"), SubResource("Resource_q3lbk"), SubResource("Resource_sfw6e")])
+genus = "Pokémon Estómago"
+pokedex_entry = "Casi la totalidad del cuerpo de Gulpin está compuesto por el estómago. Por eso, puede tragarse todo lo que tenga su tamaño. En el interior del estómago tiene un fluido capaz de corroerlo todo."
+height_m = 0.4
+weight_kg = 10.3
+base_hp = 70
+base_attack = 43
+base_defense = 53
+base_sp_attack = 43
+base_sp_defense = 53
+base_speed = 40
+growth_rate = "fast-then-very-slow"
+capture_rate = 225

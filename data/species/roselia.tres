@@ -1,0 +1,117 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_uo24x"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_hdvhd"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xr3ru"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_akwhu"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="3_ouki5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_35st1"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="4_f67av"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="5_qllo1"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_rprff"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_drg77"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="6_hpe00"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="7_npx2e"]
+[ext_resource type="Resource" path="res://data/moves/hoja_magica.tres" id="8_uir4v"]
+[ext_resource type="Resource" path="res://data/moves/silbato.tres" id="9_kpff0"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="10_j1eum"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="11_is03n"]
+[ext_resource type="Resource" path="res://data/moves/arraigo.tres" id="12_sup25"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="13_8poi4"]
+[ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="14_8sj2u"]
+[ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="15_5slu0"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="16_ex84v"]
+
+[sub_resource type="Resource" id="Resource_rnr14"]
+script = ExtResource("1_uo24x")
+move = ExtResource("2_hdvhd")
+
+[sub_resource type="Resource" id="Resource_e0fg0"]
+script = ExtResource("1_uo24x")
+level = 5
+move = ExtResource("3_ouki5")
+
+[sub_resource type="Resource" id="Resource_k8ty1"]
+script = ExtResource("1_uo24x")
+level = 9
+move = ExtResource("4_f67av")
+
+[sub_resource type="Resource" id="Resource_4kxh3"]
+script = ExtResource("1_uo24x")
+level = 13
+move = ExtResource("5_qllo1")
+
+[sub_resource type="Resource" id="Resource_j3mgs"]
+script = ExtResource("1_uo24x")
+level = 17
+move = ExtResource("6_hpe00")
+
+[sub_resource type="Resource" id="Resource_swgta"]
+script = ExtResource("1_uo24x")
+level = 21
+move = ExtResource("7_npx2e")
+
+[sub_resource type="Resource" id="Resource_xcf3u"]
+script = ExtResource("1_uo24x")
+level = 25
+move = ExtResource("8_uir4v")
+
+[sub_resource type="Resource" id="Resource_0xe82"]
+script = ExtResource("1_uo24x")
+level = 29
+move = ExtResource("9_kpff0")
+
+[sub_resource type="Resource" id="Resource_ujcbr"]
+script = ExtResource("1_uo24x")
+level = 33
+move = ExtResource("10_j1eum")
+
+[sub_resource type="Resource" id="Resource_ebi1c"]
+script = ExtResource("1_uo24x")
+level = 37
+move = ExtResource("11_is03n")
+
+[sub_resource type="Resource" id="Resource_v0bna"]
+script = ExtResource("1_uo24x")
+level = 41
+move = ExtResource("12_sup25")
+
+[sub_resource type="Resource" id="Resource_1skkk"]
+script = ExtResource("1_uo24x")
+level = 45
+move = ExtResource("13_8poi4")
+
+[sub_resource type="Resource" id="Resource_eo5f8"]
+script = ExtResource("1_uo24x")
+level = 49
+move = ExtResource("14_8sj2u")
+
+[sub_resource type="Resource" id="Resource_q2d02"]
+script = ExtResource("1_uo24x")
+level = 53
+move = ExtResource("15_5slu0")
+
+[sub_resource type="Resource" id="Resource_00br1"]
+script = ExtResource("1_uo24x")
+level = 57
+move = ExtResource("16_ex84v")
+
+[resource]
+script = ExtResource("3_akwhu")
+id = "roselia"
+display_name = "Roselia"
+dex = 315
+types = Array[ExtResource("4_35st1")]([ExtResource("5_rprff"), ExtResource("6_drg77")])
+learnset = Array[ExtResource("1_uo24x")]([SubResource("Resource_rnr14"), SubResource("Resource_e0fg0"), SubResource("Resource_k8ty1"), SubResource("Resource_4kxh3"), SubResource("Resource_j3mgs"), SubResource("Resource_swgta"), SubResource("Resource_xcf3u"), SubResource("Resource_0xe82"), SubResource("Resource_ujcbr"), SubResource("Resource_ebi1c"), SubResource("Resource_v0bna"), SubResource("Resource_1skkk"), SubResource("Resource_eo5f8"), SubResource("Resource_q2d02"), SubResource("Resource_00br1")])
+genus = "Pokémon Espina"
+pokedex_entry = "Roselia lanza finas espinas a todo el que se le acerca con intención de robarle las flores de los brazos. El aroma de este Pokémon resulta relajante a los seres vivos."
+height_m = 0.3
+weight_kg = 2.0
+base_attack = 60
+base_defense = 45
+base_sp_attack = 100
+base_sp_defense = 80
+base_speed = 65
+base_experience = 140
+growth_rate = "medium-slow"
+capture_rate = 150

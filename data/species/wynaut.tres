@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_wur12"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="2_jnyfi"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vhmmj"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_15n1u"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="3_q6sbn"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="4_6ugxe"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_548i5"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_lmqkm"]
+[ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="5_rrxq1"]
+[ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="6_7gdtq"]
+[ext_resource type="Resource" path="res://data/moves/manto_espejo.tres" id="7_5wc6l"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="8_twuwe"]
+
+[sub_resource type="Resource" id="Resource_ccqdx"]
+script = ExtResource("1_wur12")
+move = ExtResource("2_jnyfi")
+
+[sub_resource type="Resource" id="Resource_7ubwe"]
+script = ExtResource("1_wur12")
+move = ExtResource("3_q6sbn")
+
+[sub_resource type="Resource" id="Resource_1i6vf"]
+script = ExtResource("1_wur12")
+move = ExtResource("4_6ugxe")
+
+[sub_resource type="Resource" id="Resource_a45ar"]
+script = ExtResource("1_wur12")
+level = 15
+move = ExtResource("5_rrxq1")
+
+[sub_resource type="Resource" id="Resource_f7665"]
+script = ExtResource("1_wur12")
+level = 15
+move = ExtResource("6_7gdtq")
+
+[sub_resource type="Resource" id="Resource_x6jo5"]
+script = ExtResource("1_wur12")
+level = 15
+move = ExtResource("7_5wc6l")
+
+[sub_resource type="Resource" id="Resource_wb3eb"]
+script = ExtResource("1_wur12")
+level = 15
+move = ExtResource("8_twuwe")
+
+[resource]
+script = ExtResource("3_15n1u")
+id = "wynaut"
+display_name = "Wynaut"
+dex = 360
+types = Array[ExtResource("4_548i5")]([ExtResource("5_lmqkm")])
+learnset = Array[ExtResource("1_wur12")]([SubResource("Resource_ccqdx"), SubResource("Resource_7ubwe"), SubResource("Resource_1i6vf"), SubResource("Resource_a45ar"), SubResource("Resource_f7665"), SubResource("Resource_x6jo5"), SubResource("Resource_wb3eb")])
+genus = "Pokémon Radiante"
+pokedex_entry = "Wynaut está siempre con una gran sonrisa puesta. Para ver si está enfadado, basta con mirarle la cola. Cuando se le molesta, se pone a dar golpetazos en el suelo."
+height_m = 0.6
+weight_kg = 14.0
+base_hp = 95
+base_attack = 23
+base_defense = 48
+base_sp_attack = 23
+base_sp_defense = 48
+base_speed = 23
+base_experience = 52
+capture_rate = 125

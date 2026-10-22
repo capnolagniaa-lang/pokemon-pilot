@@ -1,11 +1,12 @@
 class_name PauseMenu
 extends Control
-## Menú de pausa (Esc en el mundo): Equipo, Guardar, Opciones, Volver al título y Cerrar. Pausa el mundo
+## Menú de pausa (Esc en el mundo): Equipo, Pokédex, Guardar, Opciones, Volver al título y Cerrar. Pausa el mundo
 ## (get_tree().paused) y no se abre durante un combate. Las pantallas (Equipo, ficha, opciones) se apilan
 ## encima; Esc vuelve a la anterior.
 
 const PARTY_SCENE := preload("res://scenes/ui/party_screen.tscn")
 const OPTIONS_SCENE := preload("res://scenes/ui/options_panel.tscn")
+const POKEDEX_SCENE := preload("res://scenes/ui/pokedex_screen.tscn")
 const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 
 ## Pantallas abiertas encima del menú (la última es la que recibe Esc).
@@ -75,7 +76,7 @@ func _build() -> void:
 	box.add_theme_constant_override("separation", 8)
 	_main.add_child(box)
 	box.add_child(UiStyle.label("MENÚ", 20, UiStyle.ACCENT))
-	var entries := [["Equipo", _open_party], ["Guardar", _save], ["Opciones", _open_options],
+	var entries := [["Equipo", _open_party], ["Pokédex", _open_pokedex], ["Guardar", _save], ["Opciones", _open_options],
 		["Volver al título", _to_title], ["Cerrar", close]]
 	for e in entries:
 		var b := UiStyle.button(e[0], 240)
@@ -122,6 +123,10 @@ func _open_party() -> void:
 	var p: Control = PARTY_SCENE.instantiate()
 	p.menu = self
 	push(p)
+
+
+func _open_pokedex() -> void:
+	push(POKEDEX_SCENE.instantiate())
 
 
 func _open_options() -> void:

@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_codyr"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_4oi1f"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mpf0h"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_db4m8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_yxps0"]
+[ext_resource type="Resource" path="res://data/moves/cornada.tres" id="4_b43td"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mrq4h"]
+[ext_resource type="Resource" path="res://data/moves/aguante.tres" id="5_fyka8"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_yfg6i"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="6_7n8tc"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="6_f7nxb"]
+[ext_resource type="Resource" path="res://data/moves/demolicion.tres" id="7_nfkaa"]
+[ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="8_bjw55"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_a4ymb"]
+[ext_resource type="Resource" path="res://data/moves/inversion.tres" id="10_kdngj"]
+[ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_wgqp5"]
+
+[sub_resource type="Resource" id="Resource_vwq5y"]
+script = ExtResource("1_codyr")
+move = ExtResource("2_4oi1f")
+
+[sub_resource type="Resource" id="Resource_x74lv"]
+script = ExtResource("1_codyr")
+move = ExtResource("3_db4m8")
+
+[sub_resource type="Resource" id="Resource_ye5pk"]
+script = ExtResource("1_codyr")
+level = 6
+move = ExtResource("4_b43td")
+
+[sub_resource type="Resource" id="Resource_soho7"]
+script = ExtResource("1_codyr")
+level = 11
+move = ExtResource("5_fyka8")
+
+[sub_resource type="Resource" id="Resource_hrb34"]
+script = ExtResource("1_codyr")
+level = 17
+move = ExtResource("6_7n8tc")
+
+[sub_resource type="Resource" id="Resource_0noxr"]
+script = ExtResource("1_codyr")
+level = 23
+move = ExtResource("7_nfkaa")
+
+[sub_resource type="Resource" id="Resource_i4m0f"]
+script = ExtResource("1_codyr")
+level = 30
+move = ExtResource("8_bjw55")
+
+[sub_resource type="Resource" id="Resource_vkw45"]
+script = ExtResource("1_codyr")
+level = 37
+move = ExtResource("9_a4ymb")
+
+[sub_resource type="Resource" id="Resource_5tesc"]
+script = ExtResource("1_codyr")
+level = 45
+move = ExtResource("10_kdngj")
+
+[sub_resource type="Resource" id="Resource_ygnqx"]
+script = ExtResource("1_codyr")
+level = 53
+move = ExtResource("11_wgqp5")
+
+[resource]
+script = ExtResource("3_yxps0")
+id = "heracross"
+display_name = "Heracross"
+dex = 214
+types = Array[ExtResource("4_mrq4h")]([ExtResource("5_yfg6i"), ExtResource("6_f7nxb")])
+learnset = Array[ExtResource("1_codyr")]([SubResource("Resource_vwq5y"), SubResource("Resource_x74lv"), SubResource("Resource_ye5pk"), SubResource("Resource_soho7"), SubResource("Resource_hrb34"), SubResource("Resource_0noxr"), SubResource("Resource_i4m0f"), SubResource("Resource_vkw45"), SubResource("Resource_5tesc"), SubResource("Resource_ygnqx")])
+genus = "Pokémon Cuerno"
+pokedex_entry = "Heracross carga en línea recta contra el enemigo, se le queda encajado por debajo, lo agarra y lo lanza con ayuda del fuerte cuerno que tiene. Este Pokémon tiene fuerza hasta para echar abajo un árbol descomunal."
+height_m = 1.5
+weight_kg = 54.0
+base_hp = 80
+base_attack = 125
+base_defense = 75
+base_sp_attack = 40
+base_sp_defense = 95
+base_speed = 85
+base_experience = 175
+growth_rate = "slow"

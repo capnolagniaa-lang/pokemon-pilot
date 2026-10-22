@@ -1,0 +1,99 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_e326y"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_465ts"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_y6mfp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gy4kk"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_kdjhp"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_2ffej"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_uk1sf"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="5_642k7"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_iqlrm"]
+[ext_resource type="Resource" path="res://data/moves/torbellino.tres" id="6_pe8gc"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="7_x1dl4"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="8_ocaio"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="9_qa3t1"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_cahsj"]
+[ext_resource type="Resource" path="res://data/moves/salpicar.tres" id="11_kvjdn"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="12_0hghm"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="13_c03d1"]
+
+[sub_resource type="Resource" id="Resource_1ectf"]
+script = ExtResource("1_e326y")
+move = ExtResource("2_465ts")
+
+[sub_resource type="Resource" id="Resource_uflqe"]
+script = ExtResource("1_e326y")
+level = 5
+move = ExtResource("3_kdjhp")
+
+[sub_resource type="Resource" id="Resource_3cpv3"]
+script = ExtResource("1_e326y")
+level = 10
+move = ExtResource("4_uk1sf")
+
+[sub_resource type="Resource" id="Resource_wel78"]
+script = ExtResource("1_e326y")
+level = 14
+move = ExtResource("5_642k7")
+
+[sub_resource type="Resource" id="Resource_kf8t6"]
+script = ExtResource("1_e326y")
+level = 19
+move = ExtResource("6_pe8gc")
+
+[sub_resource type="Resource" id="Resource_5hjkk"]
+script = ExtResource("1_e326y")
+level = 23
+move = ExtResource("7_x1dl4")
+
+[sub_resource type="Resource" id="Resource_iiod5"]
+script = ExtResource("1_e326y")
+level = 28
+move = ExtResource("8_ocaio")
+
+[sub_resource type="Resource" id="Resource_hdtm1"]
+script = ExtResource("1_e326y")
+level = 32
+move = ExtResource("9_qa3t1")
+
+[sub_resource type="Resource" id="Resource_hvfy3"]
+script = ExtResource("1_e326y")
+level = 37
+move = ExtResource("10_cahsj")
+
+[sub_resource type="Resource" id="Resource_15kgb"]
+script = ExtResource("1_e326y")
+level = 41
+move = ExtResource("11_kvjdn")
+
+[sub_resource type="Resource" id="Resource_wfaf1"]
+script = ExtResource("1_e326y")
+level = 46
+move = ExtResource("12_0hghm")
+
+[sub_resource type="Resource" id="Resource_g55m6"]
+script = ExtResource("1_e326y")
+level = 50
+move = ExtResource("13_c03d1")
+
+[resource]
+script = ExtResource("3_gy4kk")
+id = "wailmer"
+display_name = "Wailmer"
+dex = 320
+types = Array[ExtResource("4_2ffej")]([ExtResource("5_iqlrm")])
+learnset = Array[ExtResource("1_e326y")]([SubResource("Resource_1ectf"), SubResource("Resource_uflqe"), SubResource("Resource_3cpv3"), SubResource("Resource_wel78"), SubResource("Resource_kf8t6"), SubResource("Resource_5hjkk"), SubResource("Resource_iiod5"), SubResource("Resource_hdtm1"), SubResource("Resource_hvfy3"), SubResource("Resource_15kgb"), SubResource("Resource_wfaf1"), SubResource("Resource_g55m6")])
+genus = "Pokémon Ballenabola"
+pokedex_entry = "Wailmer tiene los espiráculos encima de la cabeza. A este juguetón Pokémon le encanta asustar a la gente expulsando el agua que acumula a través de estos orificios."
+height_m = 2.0
+weight_kg = 130.0
+base_hp = 130
+base_attack = 70
+base_defense = 35
+base_sp_attack = 70
+base_sp_defense = 35
+base_speed = 60
+base_experience = 80
+growth_rate = "fast-then-very-slow"
+capture_rate = 125

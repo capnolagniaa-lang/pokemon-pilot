@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ccuwx"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_ruy1i"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tprht"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_1joqu"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xa64u"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_365h4"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="4_i2fxt"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_283wf"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_ycetm"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="6_o4f2f"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="7_5kbdb"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_orpax"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_mi4dj"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_4l0fm"]
+
+[sub_resource type="Resource" id="Resource_co45c"]
+script = ExtResource("1_ccuwx")
+move = ExtResource("2_ruy1i")
+
+[sub_resource type="Resource" id="Resource_cnp2m"]
+script = ExtResource("1_ccuwx")
+move = ExtResource("3_1joqu")
+
+[sub_resource type="Resource" id="Resource_y7txa"]
+script = ExtResource("1_ccuwx")
+level = 7
+move = ExtResource("4_i2fxt")
+
+[sub_resource type="Resource" id="Resource_av44t"]
+script = ExtResource("1_ccuwx")
+level = 13
+move = ExtResource("5_ycetm")
+
+[sub_resource type="Resource" id="Resource_hrqsy"]
+script = ExtResource("1_ccuwx")
+level = 20
+move = ExtResource("6_o4f2f")
+
+[sub_resource type="Resource" id="Resource_iwlep"]
+script = ExtResource("1_ccuwx")
+level = 27
+move = ExtResource("7_5kbdb")
+
+[sub_resource type="Resource" id="Resource_5unqm"]
+script = ExtResource("1_ccuwx")
+level = 35
+move = ExtResource("8_orpax")
+
+[sub_resource type="Resource" id="Resource_e3h40"]
+script = ExtResource("1_ccuwx")
+level = 43
+move = ExtResource("9_mi4dj")
+
+[sub_resource type="Resource" id="Resource_42aj1"]
+script = ExtResource("1_ccuwx")
+level = 52
+move = ExtResource("10_4l0fm")
+
+[resource]
+script = ExtResource("3_xa64u")
+id = "totodile"
+display_name = "Totodile"
+dex = 158
+types = Array[ExtResource("4_365h4")]([ExtResource("5_283wf")])
+learnset = Array[ExtResource("1_ccuwx")]([SubResource("Resource_co45c"), SubResource("Resource_cnp2m"), SubResource("Resource_y7txa"), SubResource("Resource_av44t"), SubResource("Resource_hrqsy"), SubResource("Resource_iwlep"), SubResource("Resource_5unqm"), SubResource("Resource_e3h40"), SubResource("Resource_42aj1")])
+genus = "Pokémon Fauces"
+pokedex_entry = "Totodile tiene cuerpo pequeño, pero fuertes mandíbulas. A veces, piensa que solo está dando un mordisquito y hace unas heridas bastante considerables."
+height_m = 0.6
+weight_kg = 9.5
+base_attack = 65
+base_defense = 64
+base_sp_attack = 44
+base_sp_defense = 48
+base_speed = 43
+base_experience = 63
+growth_rate = "medium-slow"

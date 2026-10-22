@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_g6ktl"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_okvci"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_pdykd"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_8egvi"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kilee"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_do3ye"]
+[ext_resource type="Resource" path="res://data/moves/magnitud.tres" id="4_jnisi"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_52bxx"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_tkbgi"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_nsubn"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="6_ywq5j"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="7_xfuca"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="8_waee2"]
+[ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="9_x3k5y"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_kslxd"]
+[ext_resource type="Resource" path="res://data/moves/estallido.tres" id="11_v313n"]
+[ext_resource type="Resource" path="res://data/moves/fisura.tres" id="12_yvmf0"]
+
+[sub_resource type="Resource" id="Resource_m1nbn"]
+script = ExtResource("1_g6ktl")
+move = ExtResource("2_pdykd")
+
+[sub_resource type="Resource" id="Resource_gslw3"]
+script = ExtResource("1_g6ktl")
+move = ExtResource("3_8egvi")
+
+[sub_resource type="Resource" id="Resource_y0fay"]
+script = ExtResource("1_g6ktl")
+move = ExtResource("4_jnisi")
+
+[sub_resource type="Resource" id="Resource_eqbtg"]
+script = ExtResource("1_g6ktl")
+move = ExtResource("5_tkbgi")
+
+[sub_resource type="Resource" id="Resource_lhp8w"]
+script = ExtResource("1_g6ktl")
+level = 25
+move = ExtResource("6_ywq5j")
+
+[sub_resource type="Resource" id="Resource_ytnxd"]
+script = ExtResource("1_g6ktl")
+level = 29
+move = ExtResource("7_xfuca")
+
+[sub_resource type="Resource" id="Resource_5gsi4"]
+script = ExtResource("1_g6ktl")
+level = 31
+move = ExtResource("8_waee2")
+
+[sub_resource type="Resource" id="Resource_knhiw"]
+script = ExtResource("1_g6ktl")
+level = 33
+move = ExtResource("9_x3k5y")
+
+[sub_resource type="Resource" id="Resource_ql1ws"]
+script = ExtResource("1_g6ktl")
+level = 37
+move = ExtResource("10_kslxd")
+
+[sub_resource type="Resource" id="Resource_d3dyl"]
+script = ExtResource("1_g6ktl")
+level = 45
+move = ExtResource("11_v313n")
+
+[sub_resource type="Resource" id="Resource_qru1v"]
+script = ExtResource("1_g6ktl")
+level = 55
+move = ExtResource("12_yvmf0")
+
+[resource]
+script = ExtResource("3_kilee")
+id = "camerupt"
+display_name = "Camerupt"
+dex = 323
+types = Array[ExtResource("4_do3ye")]([ExtResource("5_52bxx"), ExtResource("6_nsubn")])
+learnset = Array[ExtResource("1_g6ktl")]([SubResource("Resource_m1nbn"), SubResource("Resource_gslw3"), SubResource("Resource_y0fay"), SubResource("Resource_eqbtg"), SubResource("Resource_lhp8w"), SubResource("Resource_ytnxd"), SubResource("Resource_5gsi4"), SubResource("Resource_knhiw"), SubResource("Resource_ql1ws"), SubResource("Resource_d3dyl"), SubResource("Resource_qru1v")])
+genus = "Pokémon Erupción"
+pokedex_entry = "Camerupt encierra un volcán en su interior y magma de 10 000 °C le recorre el cuerpo. A veces, las jorobas de la espalda entran en erupción y escupen el abrasivo magma."
+height_m = 1.9
+weight_kg = 220.0
+base_hp = 70
+base_attack = 100
+base_defense = 70
+base_sp_attack = 105
+base_sp_defense = 75
+base_speed = 40
+base_experience = 161
+capture_rate = 150

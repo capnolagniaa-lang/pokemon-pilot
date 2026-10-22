@@ -21,7 +21,8 @@ Hay **dos planes**:
   `https://github.com/capnolagniaa-lang/pokemon-pilot` (rama `main`).
 - **Decisiones de diseño importantes: preguntar antes de elegir** (AskUserQuestion con opción recomendada).
 - El juego tiene que quedar **siempre ejecutable**.
-- Pokémon de **primera generación (Kanto)**, con nombres y sprites reales. Estética: pixel art GBA/DS
+- Pokémon de las **3 primeras regiones (Kanto, Johto y Hoenn: N.º 1-386)**, con nombres y sprites reales
+  (decisión del usuario 2026-10-22; antes era solo Kanto). Estética: pixel art GBA/DS
   + efectos modernos ("next gen"). Renderer Forward+.
 
 ## Cómo correr y probar
@@ -41,6 +42,8 @@ $G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, 
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-menus  # título, equipo, ficha
 $G --headless --path . --quit-after 12000 -- --autotest-env      # entorno reactivo (fuego, agua, hielo, rocas)
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-env    # vitrina del entorno
+$G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
+$G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
@@ -105,11 +108,18 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   Base del sistema de entorno reactivo (Etapa 3).
 
 ## Stats, daño y progresión (oficiales + adaptaciones al tiempo real)
-- **Fuente**: `data/source/official.json`, bajado de PokeAPI con `tools/fetch_official_data.py`
-  (stats base, experiencia base, curva de crecimiento, tasa de captura, tipos; potencia, categoría
-  física/especial, tipo y probabilidad de efecto de los ataques). Se aplica a los `.tres` con
-  `tools/apply_official_data.gd`, que también define la **tabla de tipos oficial** y la recarga/energía.
-  Para sumar especie/ataque: agregarlo en `SPECIES`/`MOVES` del fetcher, correr fetcher + apply.
+- **Fuente**: `data/source/official.json`, bajado de PokeAPI con `tools/fetch_official_data.py` (las 386
+  especies: stats base, experiencia, curva, tasa de captura, tipos, nombre/categoría/descripción en español,
+  altura, peso y learnset por nivel de FRLG; los ~337 ataques que aprenden: potencia, categoría, tipo, objetivo,
+  prioridad, problema de estado). Caché en `tools/.pokeapi_cache` (no se versiona). Se aplica a los `.tres` con
+  `tools/apply_official_data.gd`: **18 tipos y tabla oficial completa** (6ª gen+, incluye Hada), crea las
+  especies/ataques que falten y la recarga. Después `tools/build_learnsets.gd` arma los learnsets.
+  Orden: fetcher → `--import` → apply → `--import` → build_learnsets.
+- **Ataques automáticos** (`auto` en el JSON): su forma en tiempo real sale de `_shape()` en el apply (estado a
+  uno mismo → mejora/escudo/curación; estado al rival → disparo que aplica el problema de estado; daño a todos →
+  área; físico con prioridad o ≥80 → embestida, si no golpe; especial → disparo, con carga si ≥80). Los hechos
+  a mano (`MOVES` del fetcher, kits) no se tocan. Rearmar los automáticos: apply con `-- --regen-auto`.
+  Pendiente: subir/bajar stats, drenar, retroceso (los ataques de ese tipo existen pero sin ese efecto).
 - **Stats** (`CreatureInstance.stat`): fórmula oficial 3ª gen+; IV 31 en todos los stats por ahora
   (**decisión del usuario: "stats máximos para su nivel"**), EV 0, naturaleza neutra.
   - **Plan futuro (Etapa 6)**: IVs al azar al capturar (0-31 por stat), con un perfecto (31 en todo)
@@ -154,8 +164,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   Godot: ver README).
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + extras de la tabla `EXTRAS`, niveles de
   FRLG) y los guarda en las especies. Correrlo después de cambiar un kit o los extras.
-- `tools/download_sprites.ps1`: sprites PMD (PMDCollab/SpriteCollab) de Pokémon por número de Pokédex
-  → `sprites/pokemon/` + `scripts/generated/sprite_data.gd`.
+- `tools/download_sprites.py`: sprites PMD (PMDCollab/SpriteCollab) de los N.º 1-386 (Idle, Walk, Attack,
+  Hurt y retrato) → `sprites/pokemon/` + `scripts/generated/sprite_data.gd`. No vuelve a bajar lo que ya está.
 
 ## Trampas conocidas
 - En shaders `canvas_item`, `COLOR` en `fragment()` ya trae la textura: guardar el color de vértice en un

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_tr5f8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0cipw"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_lao1y"]
+
+[resource]
+script = ExtResource("2_0cipw")
+id = "premonicion"
+display_name = "Premonición"
+element = ExtResource("1_tr5f8")
+category = 1
+power = 120.0
+cooldown = 2.9000000000000004
+cast_time = 0.45
+knockback = 192.0
+recovery = 0.4
+speed = 280.0
+size = 6.0
+lifetime = 0.85

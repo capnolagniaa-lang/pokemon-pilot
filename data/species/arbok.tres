@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jjru0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ahgyy"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_uaix0"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_35mqc"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_nsaba"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ctxtg"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="4_x5wap"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_fnsj0"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="5_w8iv4"]
+[ext_resource type="Resource" path="res://data/moves/deslumbrar.tres" id="6_1kwn8"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="7_0olir"]
+[ext_resource type="Resource" path="res://data/moves/acido.tres" id="8_44esx"]
+[ext_resource type="Resource" path="res://data/moves/escupir.tres" id="9_pek06"]
+[ext_resource type="Resource" path="res://data/moves/reserva.tres" id="10_kchwe"]
+[ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_wxw4g"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_yd8y3"]
+
+[sub_resource type="Resource" id="Resource_1m562"]
+script = ExtResource("1_jjru0")
+move = ExtResource("2_uaix0")
+
+[sub_resource type="Resource" id="Resource_e2yok"]
+script = ExtResource("1_jjru0")
+move = ExtResource("3_nsaba")
+
+[sub_resource type="Resource" id="Resource_brxuf"]
+script = ExtResource("1_jjru0")
+move = ExtResource("4_x5wap")
+
+[sub_resource type="Resource" id="Resource_ubevf"]
+script = ExtResource("1_jjru0")
+move = ExtResource("5_w8iv4")
+
+[sub_resource type="Resource" id="Resource_ry6nw"]
+script = ExtResource("1_jjru0")
+level = 20
+move = ExtResource("6_1kwn8")
+
+[sub_resource type="Resource" id="Resource_0rjw0"]
+script = ExtResource("1_jjru0")
+level = 28
+move = ExtResource("7_0olir")
+
+[sub_resource type="Resource" id="Resource_u66al"]
+script = ExtResource("1_jjru0")
+level = 38
+move = ExtResource("8_44esx")
+
+[sub_resource type="Resource" id="Resource_s5lhc"]
+script = ExtResource("1_jjru0")
+level = 46
+move = ExtResource("9_pek06")
+
+[sub_resource type="Resource" id="Resource_2f3s4"]
+script = ExtResource("1_jjru0")
+level = 46
+move = ExtResource("10_kchwe")
+
+[sub_resource type="Resource" id="Resource_llnfp"]
+script = ExtResource("1_jjru0")
+level = 46
+move = ExtResource("11_wxw4g")
+
+[sub_resource type="Resource" id="Resource_c50xq"]
+script = ExtResource("1_jjru0")
+level = 56
+move = ExtResource("12_yd8y3")
+
+[resource]
+script = ExtResource("3_35mqc")
+id = "arbok"
+display_name = "Arbok"
+dex = 24
+types = Array[ExtResource("4_ctxtg")]([ExtResource("5_fnsj0")])
+learnset = Array[ExtResource("1_jjru0")]([SubResource("Resource_1m562"), SubResource("Resource_e2yok"), SubResource("Resource_brxuf"), SubResource("Resource_ubevf"), SubResource("Resource_ry6nw"), SubResource("Resource_0rjw0"), SubResource("Resource_u66al"), SubResource("Resource_s5lhc"), SubResource("Resource_2f3s4"), SubResource("Resource_llnfp"), SubResource("Resource_c50xq")])
+genus = "Pokémon Cobra"
+pokedex_entry = "Este Pokémon es tremendamente fuerte, puede oprimir cualquier cosa con su cuerpo y hasta es capaz de estrujar un barril de acero. Una vez que Arbok se enrosca a su víctima, no hay forma de escapar de su asfixiante abrazo."
+height_m = 3.5
+weight_kg = 65.0
+base_hp = 60
+base_attack = 95
+base_defense = 69
+base_sp_attack = 65
+base_sp_defense = 79
+base_speed = 80
+base_experience = 157
+capture_rate = 90

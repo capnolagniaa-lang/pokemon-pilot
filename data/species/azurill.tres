@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_guh76"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_ifw40"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ub6v1"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="3_8opl6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_22qft"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_6pyd4"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_w5bjw"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="5_av0mb"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_k8y53"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="6_48rrn"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="6_t3ntt"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="7_nae14"]
+
+[sub_resource type="Resource" id="Resource_o01cs"]
+script = ExtResource("1_guh76")
+move = ExtResource("2_ifw40")
+
+[sub_resource type="Resource" id="Resource_6lpks"]
+script = ExtResource("1_guh76")
+level = 3
+move = ExtResource("3_8opl6")
+
+[sub_resource type="Resource" id="Resource_km2wr"]
+script = ExtResource("1_guh76")
+level = 6
+move = ExtResource("4_6pyd4")
+
+[sub_resource type="Resource" id="Resource_gidvd"]
+script = ExtResource("1_guh76")
+level = 10
+move = ExtResource("5_av0mb")
+
+[sub_resource type="Resource" id="Resource_0u37a"]
+script = ExtResource("1_guh76")
+level = 15
+move = ExtResource("6_48rrn")
+
+[sub_resource type="Resource" id="Resource_w1v00"]
+script = ExtResource("1_guh76")
+level = 21
+move = ExtResource("7_nae14")
+
+[resource]
+script = ExtResource("3_22qft")
+id = "azurill"
+display_name = "Azurill"
+dex = 298
+types = Array[ExtResource("4_w5bjw")]([ExtResource("5_k8y53"), ExtResource("6_t3ntt")])
+learnset = Array[ExtResource("1_guh76")]([SubResource("Resource_o01cs"), SubResource("Resource_6lpks"), SubResource("Resource_km2wr"), SubResource("Resource_gidvd"), SubResource("Resource_0u37a"), SubResource("Resource_w1v00")])
+genus = "Pokémon A Topos"
+pokedex_entry = "Azurill enrolla la cola como si fuera un lazo y la despliega a continuación todo lo que puede. De esta forma, un Azurill llegó a lanzarse a sí mismo hasta 10 m."
+height_m = 0.2
+weight_kg = 2.0
+base_attack = 20
+base_defense = 40
+base_sp_attack = 20
+base_sp_defense = 40
+base_speed = 20
+base_experience = 38
+growth_rate = "fast"
+capture_rate = 150

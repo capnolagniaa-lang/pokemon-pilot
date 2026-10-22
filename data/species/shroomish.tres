@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_i7ph1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2vx3u"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_6eegg"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ialqw"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_tk0tp"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_52xdk"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="4_lbcdj"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_cd41d"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="5_u5vie"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="6_m1nem"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="7_fi72r"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="8_lwwp4"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="9_a75vn"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="10_oew5q"]
+[ext_resource type="Resource" path="res://data/moves/espora.tres" id="11_xrppw"]
+
+[sub_resource type="Resource" id="Resource_f7h41"]
+script = ExtResource("1_i7ph1")
+move = ExtResource("2_6eegg")
+
+[sub_resource type="Resource" id="Resource_g2adb"]
+script = ExtResource("1_i7ph1")
+level = 4
+move = ExtResource("3_tk0tp")
+
+[sub_resource type="Resource" id="Resource_frt3y"]
+script = ExtResource("1_i7ph1")
+level = 7
+move = ExtResource("4_lbcdj")
+
+[sub_resource type="Resource" id="Resource_ply34"]
+script = ExtResource("1_i7ph1")
+level = 10
+move = ExtResource("5_u5vie")
+
+[sub_resource type="Resource" id="Resource_a7lrf"]
+script = ExtResource("1_i7ph1")
+level = 16
+move = ExtResource("6_m1nem")
+
+[sub_resource type="Resource" id="Resource_5qqik"]
+script = ExtResource("1_i7ph1")
+level = 22
+move = ExtResource("7_fi72r")
+
+[sub_resource type="Resource" id="Resource_i60kx"]
+script = ExtResource("1_i7ph1")
+level = 28
+move = ExtResource("8_lwwp4")
+
+[sub_resource type="Resource" id="Resource_4lxrl"]
+script = ExtResource("1_i7ph1")
+level = 36
+move = ExtResource("9_a75vn")
+
+[sub_resource type="Resource" id="Resource_5f3oi"]
+script = ExtResource("1_i7ph1")
+level = 45
+move = ExtResource("10_oew5q")
+
+[sub_resource type="Resource" id="Resource_s8nwb"]
+script = ExtResource("1_i7ph1")
+level = 54
+move = ExtResource("11_xrppw")
+
+[resource]
+script = ExtResource("3_ialqw")
+id = "shroomish"
+display_name = "Shroomish"
+dex = 285
+types = Array[ExtResource("4_52xdk")]([ExtResource("5_cd41d")])
+learnset = Array[ExtResource("1_i7ph1")]([SubResource("Resource_f7h41"), SubResource("Resource_g2adb"), SubResource("Resource_frt3y"), SubResource("Resource_ply34"), SubResource("Resource_a7lrf"), SubResource("Resource_5qqik"), SubResource("Resource_i60kx"), SubResource("Resource_4lxrl"), SubResource("Resource_5f3oi"), SubResource("Resource_s8nwb")])
+genus = "Pokémon Hongo"
+pokedex_entry = "Los Shroomish viven en zonas húmedas en la profunda oscuridad del bosque. Suelen quedarse tranquilamente bajo las hojas caídas. Se alimentan del abono que estas generan al empezar a pudrirse."
+height_m = 0.4
+weight_kg = 4.5
+base_hp = 60
+base_attack = 40
+base_defense = 60
+base_sp_attack = 40
+base_sp_defense = 60
+base_speed = 35
+base_experience = 59
+growth_rate = "fast-then-very-slow"
+capture_rate = 255

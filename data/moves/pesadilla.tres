@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="1_52bqc"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pfgat"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_jax5s"]
+
+[resource]
+script = ExtResource("2_pfgat")
+id = "pesadilla"
+display_name = "Pesadilla"
+element = ExtResource("1_52bqc")
+kind = 2
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+radius = 40.0

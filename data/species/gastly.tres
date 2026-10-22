@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_th1by"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_q0pg1"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="2_tu6k7"]
+[ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="3_dpvxw"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_h0fdo"]
+[ext_resource type="Resource" path="res://data/moves/rencor.tres" id="4_jrquo"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wifl8"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="5_aahk2"]
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="5_ok2dg"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="6_3fpa7"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_lnh3h"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="7_2cl34"]
+[ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="8_r1nbr"]
+[ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="9_yvqe3"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="10_eehaq"]
+[ext_resource type="Resource" path="res://data/moves/pesadilla.tres" id="11_gujrw"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="12_fsam3"]
+
+[sub_resource type="Resource" id="Resource_6lalm"]
+script = ExtResource("1_th1by")
+move = ExtResource("2_tu6k7")
+
+[sub_resource type="Resource" id="Resource_uw8x3"]
+script = ExtResource("1_th1by")
+move = ExtResource("3_dpvxw")
+
+[sub_resource type="Resource" id="Resource_gtmid"]
+script = ExtResource("1_th1by")
+level = 8
+move = ExtResource("4_jrquo")
+
+[sub_resource type="Resource" id="Resource_ytx18"]
+script = ExtResource("1_th1by")
+level = 13
+move = ExtResource("5_aahk2")
+
+[sub_resource type="Resource" id="Resource_opouk"]
+script = ExtResource("1_th1by")
+level = 16
+move = ExtResource("6_3fpa7")
+
+[sub_resource type="Resource" id="Resource_15f8p"]
+script = ExtResource("1_th1by")
+level = 21
+move = ExtResource("7_2cl34")
+
+[sub_resource type="Resource" id="Resource_e5arh"]
+script = ExtResource("1_th1by")
+level = 28
+move = ExtResource("8_r1nbr")
+
+[sub_resource type="Resource" id="Resource_lsl4q"]
+script = ExtResource("1_th1by")
+level = 33
+move = ExtResource("9_yvqe3")
+
+[sub_resource type="Resource" id="Resource_5p4cb"]
+script = ExtResource("1_th1by")
+level = 36
+move = ExtResource("10_eehaq")
+
+[sub_resource type="Resource" id="Resource_38iye"]
+script = ExtResource("1_th1by")
+level = 41
+move = ExtResource("11_gujrw")
+
+[sub_resource type="Resource" id="Resource_6vedf"]
+script = ExtResource("1_th1by")
+level = 48
+move = ExtResource("12_fsam3")
+
+[resource]
+script = ExtResource("3_h0fdo")
+id = "gastly"
+display_name = "Gastly"
+dex = 92
+types = Array[ExtResource("4_wifl8")]([ExtResource("5_ok2dg"), ExtResource("6_lnh3h")])
+learnset = Array[ExtResource("1_th1by")]([SubResource("Resource_6lalm"), SubResource("Resource_uw8x3"), SubResource("Resource_gtmid"), SubResource("Resource_ytx18"), SubResource("Resource_opouk"), SubResource("Resource_15f8p"), SubResource("Resource_e5arh"), SubResource("Resource_lsl4q"), SubResource("Resource_5p4cb"), SubResource("Resource_38iye"), SubResource("Resource_6vedf")])
+genus = "Pokémon Gas"
+pokedex_entry = "Gastly está compuesto en gran medida de materia gaseosa. Cuando hay viento, el aire arrastra parte de esta materia y el Pokémon mengua. Suelen agruparse bajo los aleros de las casas para resguardarse del viento."
+height_m = 1.3
+weight_kg = 0.1
+base_hp = 30
+base_attack = 35
+base_defense = 30
+base_sp_attack = 100
+base_sp_defense = 35
+base_speed = 80
+base_experience = 62
+growth_rate = "medium-slow"
+capture_rate = 190

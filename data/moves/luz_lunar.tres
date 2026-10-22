@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="1_f10b5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_jw0ii"]
+[ext_resource type="Resource" path="res://data/status/sintesis.tres" id="3_k2dyu"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_i7ewd"]
+
+[resource]
+script = ExtResource("2_jw0ii")
+id = "luz_lunar"
+display_name = "Luz Lunar"
+element = ExtResource("1_f10b5")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0
+self_status = ExtResource("3_k2dyu")

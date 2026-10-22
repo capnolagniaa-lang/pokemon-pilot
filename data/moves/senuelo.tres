@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_w34b0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_o7cfu"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_xv1wg"]
+
+[resource]
+script = ExtResource("2_o7cfu")
+id = "senuelo"
+display_name = "Señuelo"
+element = ExtResource("1_w34b0")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0

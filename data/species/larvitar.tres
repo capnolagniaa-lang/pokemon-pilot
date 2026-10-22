@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_c8nf3"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uldsq"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_uqx75"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_os0mc"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_v25uy"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="4_jswl2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_q55br"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="5_1u2ms"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_mc2gt"]
+[ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="6_3irpi"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_h77rg"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="7_yn0iu"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="8_vkeo4"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_vfoia"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_7a4po"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_f24mo"]
+
+[sub_resource type="Resource" id="Resource_364ri"]
+script = ExtResource("1_c8nf3")
+move = ExtResource("2_uqx75")
+
+[sub_resource type="Resource" id="Resource_ebira"]
+script = ExtResource("1_c8nf3")
+move = ExtResource("3_v25uy")
+
+[sub_resource type="Resource" id="Resource_jn2vn"]
+script = ExtResource("1_c8nf3")
+level = 8
+move = ExtResource("4_jswl2")
+
+[sub_resource type="Resource" id="Resource_llw3j"]
+script = ExtResource("1_c8nf3")
+level = 15
+move = ExtResource("5_1u2ms")
+
+[sub_resource type="Resource" id="Resource_sh8y6"]
+script = ExtResource("1_c8nf3")
+level = 22
+move = ExtResource("6_3irpi")
+
+[sub_resource type="Resource" id="Resource_876to"]
+script = ExtResource("1_c8nf3")
+level = 29
+move = ExtResource("7_yn0iu")
+
+[sub_resource type="Resource" id="Resource_5h2ns"]
+script = ExtResource("1_c8nf3")
+level = 36
+move = ExtResource("8_vkeo4")
+
+[sub_resource type="Resource" id="Resource_k006s"]
+script = ExtResource("1_c8nf3")
+level = 43
+move = ExtResource("9_vfoia")
+
+[sub_resource type="Resource" id="Resource_ytx4f"]
+script = ExtResource("1_c8nf3")
+level = 50
+move = ExtResource("10_7a4po")
+
+[sub_resource type="Resource" id="Resource_oj6mj"]
+script = ExtResource("1_c8nf3")
+level = 57
+move = ExtResource("11_f24mo")
+
+[resource]
+script = ExtResource("3_os0mc")
+id = "larvitar"
+display_name = "Larvitar"
+dex = 246
+types = Array[ExtResource("4_q55br")]([ExtResource("5_mc2gt"), ExtResource("6_h77rg")])
+learnset = Array[ExtResource("1_c8nf3")]([SubResource("Resource_364ri"), SubResource("Resource_ebira"), SubResource("Resource_jn2vn"), SubResource("Resource_llw3j"), SubResource("Resource_sh8y6"), SubResource("Resource_876to"), SubResource("Resource_5h2ns"), SubResource("Resource_k006s"), SubResource("Resource_ytx4f"), SubResource("Resource_oj6mj")])
+genus = "Pokémon Piel Roca"
+pokedex_entry = "Larvitar nace bajo tierra a gran profundidad. Para subir a la superficie, este Pokémon debe comer lo que encuentra en su camino para abrirse paso. Y, hasta que no está arriba, no puede verles la cara a sus padres."
+height_m = 0.6
+weight_kg = 72.0
+base_attack = 64
+base_sp_attack = 45
+base_speed = 41
+growth_rate = "slow"

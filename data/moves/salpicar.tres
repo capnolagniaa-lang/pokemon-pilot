@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_7cdhp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_kqpw5"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_aksi6"]
+
+[resource]
+script = ExtResource("2_kqpw5")
+id = "salpicar"
+display_name = "Salpicar"
+element = ExtResource("1_7cdhp")
+kind = 2
+category = 1
+power = 150.0
+cooldown = 6.300000000000001
+cast_time = 0.3
+knockback = 200.0
+recovery = 0.3
+radius = 52.0

@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1wbek"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_6pkh4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rkmqb"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_lowru"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xea1f"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="4_cpqi5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ghbk4"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_deb8x"]
+[ext_resource type="Resource" path="res://data/moves/adaptacion.tres" id="5_gt1ok"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="6_1y0y4"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="6_60gwa"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="7_qcn16"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="8_dnx6e"]
+
+[sub_resource type="Resource" id="Resource_kvdcn"]
+script = ExtResource("1_1wbek")
+move = ExtResource("2_6pkh4")
+
+[sub_resource type="Resource" id="Resource_m8sv2"]
+script = ExtResource("1_1wbek")
+level = 3
+move = ExtResource("3_lowru")
+
+[sub_resource type="Resource" id="Resource_q6mlq"]
+script = ExtResource("1_1wbek")
+level = 7
+move = ExtResource("4_cpqi5")
+
+[sub_resource type="Resource" id="Resource_ar3i4"]
+script = ExtResource("1_1wbek")
+level = 13
+move = ExtResource("5_gt1ok")
+
+[sub_resource type="Resource" id="Resource_tdyfq"]
+script = ExtResource("1_1wbek")
+level = 21
+move = ExtResource("6_60gwa")
+
+[sub_resource type="Resource" id="Resource_wurr0"]
+script = ExtResource("1_1wbek")
+level = 31
+move = ExtResource("7_qcn16")
+
+[sub_resource type="Resource" id="Resource_gfnlv"]
+script = ExtResource("1_1wbek")
+level = 43
+move = ExtResource("8_dnx6e")
+
+[resource]
+script = ExtResource("3_xea1f")
+id = "lotad"
+display_name = "Lotad"
+dex = 270
+types = Array[ExtResource("4_ghbk4")]([ExtResource("5_deb8x"), ExtResource("6_1y0y4")])
+learnset = Array[ExtResource("1_1wbek")]([SubResource("Resource_kvdcn"), SubResource("Resource_m8sv2"), SubResource("Resource_q6mlq"), SubResource("Resource_ar3i4"), SubResource("Resource_tdyfq"), SubResource("Resource_wurr0"), SubResource("Resource_gfnlv")])
+genus = "Pokémon Lenteja Agua"
+pokedex_entry = "Lotad vive en estanques y lagos, donde permanece flotando. Si se le marchita la ancha hoja que tiene en la cabeza, se debilitará. De vez en cuando, se desplaza en busca de agua limpia."
+height_m = 0.5
+weight_kg = 2.6
+base_hp = 40
+base_attack = 30
+base_defense = 30
+base_sp_attack = 40
+base_speed = 30
+base_experience = 44
+growth_rate = "medium-slow"
+capture_rate = 255

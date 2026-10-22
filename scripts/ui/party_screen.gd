@@ -54,7 +54,7 @@ func refresh() -> void:
 		_grid.add_child(card)
 		_cards.append(card)
 	_hint.text = "%d/%d · Enter: acciones · Esc: volver" % [GameState.party.size(), GameState.MAX_PARTY]
-	_cards[clampi(_focus_index, 0, maxi(0, GameState.party.size() - 1))].grab_focus.call_deferred()
+	UiStyle.focus_later(_cards[clampi(_focus_index, 0, maxi(0, GameState.party.size() - 1))])
 
 
 func _card(i: int) -> Button:

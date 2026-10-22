@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="1_fs3ga"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_j4yca"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_sl576"]
+
+[resource]
+script = ExtResource("2_j4yca")
+id = "triple_patada"
+display_name = "Triple Patada"
+element = ExtResource("1_fs3ga")
+kind = 4
+power = 10.0
+cooldown = 0.7000000000000001
+knockback = 120.0
+recovery = 0.1
+melee_range = 13.0
+swing_radius = 12.0
+final_knockback = 150.0

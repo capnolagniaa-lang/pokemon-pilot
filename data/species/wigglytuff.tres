@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_iw7w2"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5336m"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_p8g8c"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_frobw"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="3_xj5hu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_lyvdw"]
+[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="4_sfyxs"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="5_bgitb"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_p8g8c"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="6_xj5hu"]
+
+[sub_resource type="Resource" id="Resource_boqhd"]
+script = ExtResource("1_iw7w2")
+move = ExtResource("2_p8g8c")
+
+[sub_resource type="Resource" id="Resource_k00ji"]
+script = ExtResource("1_iw7w2")
+move = ExtResource("3_xj5hu")
+
+[sub_resource type="Resource" id="Resource_t1ode"]
+script = ExtResource("1_iw7w2")
+move = ExtResource("4_sfyxs")
+
+[sub_resource type="Resource" id="Resource_esjls"]
+script = ExtResource("1_iw7w2")
+move = ExtResource("5_bgitb")
+
+[resource]
+script = ExtResource("3_frobw")
+id = "wigglytuff"
+display_name = "Wigglytuff"
+dex = 40
+types = Array[ExtResource("4_lyvdw")]([ExtResource("5_p8g8c"), ExtResource("6_xj5hu")])
+learnset = Array[ExtResource("1_iw7w2")]([SubResource("Resource_boqhd"), SubResource("Resource_k00ji"), SubResource("Resource_t1ode"), SubResource("Resource_esjls")])
+genus = "Pokémon Globo"
+pokedex_entry = "Wigglytuff tiene unos ojos enormes con forma de platillo, que siempre están cubiertos de lágrimas. Si se le metiera algo en el ojo, enseguida se le saldría solo."
+height_m = 1.0
+weight_kg = 12.0
+base_hp = 140
+base_attack = 70
+base_defense = 45
+base_sp_attack = 85
+base_speed = 45
+base_experience = 196
+growth_rate = "fast"
+capture_rate = 50

@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_khj4e"]
+[ext_resource type="Resource" path="res://data/moves/aguante.tres" id="2_3qq0q"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mv3he"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0vjf0"]
+[ext_resource type="Resource" path="res://data/moves/cornada.tres" id="3_ban38"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="4_jqkmw"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_s63v6"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_1d67i"]
+[ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="5_i8jvx"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="6_hy760"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_lvcy1"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="7_sccfk"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="8_ojink"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="9_o23uf"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_nl00a"]
+
+[sub_resource type="Resource" id="Resource_2dgo7"]
+script = ExtResource("1_khj4e")
+move = ExtResource("2_3qq0q")
+
+[sub_resource type="Resource" id="Resource_oljuk"]
+script = ExtResource("1_khj4e")
+move = ExtResource("3_ban38")
+
+[sub_resource type="Resource" id="Resource_3wikg"]
+script = ExtResource("1_khj4e")
+move = ExtResource("4_jqkmw")
+
+[sub_resource type="Resource" id="Resource_kocc5"]
+script = ExtResource("1_khj4e")
+move = ExtResource("5_i8jvx")
+
+[sub_resource type="Resource" id="Resource_und3v"]
+script = ExtResource("1_khj4e")
+level = 28
+move = ExtResource("6_hy760")
+
+[sub_resource type="Resource" id="Resource_los83"]
+script = ExtResource("1_khj4e")
+level = 33
+move = ExtResource("7_sccfk")
+
+[sub_resource type="Resource" id="Resource_c6o6y"]
+script = ExtResource("1_khj4e")
+level = 42
+move = ExtResource("8_ojink")
+
+[sub_resource type="Resource" id="Resource_hr80t"]
+script = ExtResource("1_khj4e")
+level = 56
+move = ExtResource("9_o23uf")
+
+[sub_resource type="Resource" id="Resource_bn7lw"]
+script = ExtResource("1_khj4e")
+level = 70
+move = ExtResource("10_nl00a")
+
+[resource]
+script = ExtResource("3_0vjf0")
+id = "piloswine"
+display_name = "Piloswine"
+dex = 221
+types = Array[ExtResource("4_s63v6")]([ExtResource("5_1d67i"), ExtResource("6_lvcy1")])
+learnset = Array[ExtResource("1_khj4e")]([SubResource("Resource_2dgo7"), SubResource("Resource_oljuk"), SubResource("Resource_3wikg"), SubResource("Resource_kocc5"), SubResource("Resource_und3v"), SubResource("Resource_los83"), SubResource("Resource_c6o6y"), SubResource("Resource_hr80t"), SubResource("Resource_bn7lw")])
+genus = "Pokémon Puerco"
+pokedex_entry = "Piloswine está cubierto por un pelaje tupido y de largas cerdas que le permite soportar el frío polar. Este Pokémon usa los colmillos para desenterrar los alimentos que hayan podido quedar bajo el hielo."
+height_m = 1.1
+weight_kg = 55.8
+base_hp = 100
+base_attack = 100
+base_defense = 80
+base_sp_attack = 60
+base_sp_defense = 60
+base_experience = 158
+growth_rate = "slow"
+capture_rate = 75

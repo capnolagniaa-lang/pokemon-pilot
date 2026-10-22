@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="1_ihxa1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_twxp3"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_k5o8l"]
+
+[resource]
+script = ExtResource("2_twxp3")
+id = "rencor"
+display_name = "Rencor"
+element = ExtResource("1_ihxa1")
+kind = 2
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+radius = 40.0

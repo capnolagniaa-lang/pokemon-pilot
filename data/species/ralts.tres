@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d6bvb"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_cxhav"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_efk0k"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_d1htw"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="3_wl8r2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mmivx"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="4_q3km2"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_acfr0"]
+[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="5_qn6d1"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="6_5a7by"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="6_r43hr"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="7_yl02a"]
+[ext_resource type="Resource" path="res://data/moves/sellar.tres" id="8_5k7xg"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="9_r052f"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="10_enu5b"]
+[ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="11_prnev"]
+
+[sub_resource type="Resource" id="Resource_xed0g"]
+script = ExtResource("1_d6bvb")
+move = ExtResource("2_cxhav")
+
+[sub_resource type="Resource" id="Resource_2m8oq"]
+script = ExtResource("1_d6bvb")
+level = 6
+move = ExtResource("3_wl8r2")
+
+[sub_resource type="Resource" id="Resource_h3q3f"]
+script = ExtResource("1_d6bvb")
+level = 11
+move = ExtResource("4_q3km2")
+
+[sub_resource type="Resource" id="Resource_wnxg8"]
+script = ExtResource("1_d6bvb")
+level = 16
+move = ExtResource("5_qn6d1")
+
+[sub_resource type="Resource" id="Resource_s24os"]
+script = ExtResource("1_d6bvb")
+level = 21
+move = ExtResource("6_r43hr")
+
+[sub_resource type="Resource" id="Resource_q2xmx"]
+script = ExtResource("1_d6bvb")
+level = 26
+move = ExtResource("7_yl02a")
+
+[sub_resource type="Resource" id="Resource_25aku"]
+script = ExtResource("1_d6bvb")
+level = 31
+move = ExtResource("8_5k7xg")
+
+[sub_resource type="Resource" id="Resource_uy3wq"]
+script = ExtResource("1_d6bvb")
+level = 36
+move = ExtResource("9_r052f")
+
+[sub_resource type="Resource" id="Resource_qnrfo"]
+script = ExtResource("1_d6bvb")
+level = 41
+move = ExtResource("10_enu5b")
+
+[sub_resource type="Resource" id="Resource_h5slg"]
+script = ExtResource("1_d6bvb")
+level = 46
+move = ExtResource("11_prnev")
+
+[resource]
+script = ExtResource("3_d1htw")
+id = "ralts"
+display_name = "Ralts"
+dex = 280
+types = Array[ExtResource("4_mmivx")]([ExtResource("5_acfr0"), ExtResource("6_5a7by")])
+learnset = Array[ExtResource("1_d6bvb")]([SubResource("Resource_xed0g"), SubResource("Resource_2m8oq"), SubResource("Resource_h3q3f"), SubResource("Resource_wnxg8"), SubResource("Resource_s24os"), SubResource("Resource_q2xmx"), SubResource("Resource_25aku"), SubResource("Resource_uy3wq"), SubResource("Resource_qnrfo"), SubResource("Resource_h5slg")])
+genus = "Pokémon Sensible"
+pokedex_entry = "Ralts percibe las sensaciones de la gente por los cuernos que tiene encima y detrás de la cabeza. No es común que este Pokémon aparezca en público, pero cuando lo hace, se acerca si ve buena disposición en la gente."
+height_m = 0.4
+weight_kg = 6.6
+base_hp = 28
+base_attack = 25
+base_defense = 25
+base_sp_attack = 45
+base_sp_defense = 35
+base_speed = 40
+base_experience = 40
+growth_rate = "slow"
+capture_rate = 235

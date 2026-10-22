@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l8bqf"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4jkdn"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_vglpj"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pwyuh"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="3_wri6s"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ckoeb"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_d0k4q"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_3qur0"]
+[ext_resource type="Resource" path="res://data/moves/aullido.tres" id="5_k8b5l"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="6_8y6am"]
+[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="7_jfoxf"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="8_quayf"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="9_6fgy8"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="10_t17o5"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="11_gu12i"]
+[ext_resource type="Resource" path="res://data/moves/carga.tres" id="12_ic3sh"]
+
+[sub_resource type="Resource" id="Resource_moeh4"]
+script = ExtResource("1_l8bqf")
+move = ExtResource("2_vglpj")
+
+[sub_resource type="Resource" id="Resource_85n5m"]
+script = ExtResource("1_l8bqf")
+level = 4
+move = ExtResource("3_wri6s")
+
+[sub_resource type="Resource" id="Resource_vi1eg"]
+script = ExtResource("1_l8bqf")
+level = 9
+move = ExtResource("4_d0k4q")
+
+[sub_resource type="Resource" id="Resource_71d6d"]
+script = ExtResource("1_l8bqf")
+level = 12
+move = ExtResource("5_k8b5l")
+
+[sub_resource type="Resource" id="Resource_cc5yw"]
+script = ExtResource("1_l8bqf")
+level = 17
+move = ExtResource("6_8y6am")
+
+[sub_resource type="Resource" id="Resource_yhcqc"]
+script = ExtResource("1_l8bqf")
+level = 20
+move = ExtResource("7_jfoxf")
+
+[sub_resource type="Resource" id="Resource_oj0vg"]
+script = ExtResource("1_l8bqf")
+level = 25
+move = ExtResource("8_quayf")
+
+[sub_resource type="Resource" id="Resource_anaf8"]
+script = ExtResource("1_l8bqf")
+level = 28
+move = ExtResource("9_6fgy8")
+
+[sub_resource type="Resource" id="Resource_mywco"]
+script = ExtResource("1_l8bqf")
+level = 33
+move = ExtResource("10_t17o5")
+
+[sub_resource type="Resource" id="Resource_ethpf"]
+script = ExtResource("1_l8bqf")
+level = 36
+move = ExtResource("11_gu12i")
+
+[sub_resource type="Resource" id="Resource_brpul"]
+script = ExtResource("1_l8bqf")
+level = 41
+move = ExtResource("12_ic3sh")
+
+[resource]
+script = ExtResource("3_pwyuh")
+id = "electrike"
+display_name = "Electrike"
+dex = 309
+types = Array[ExtResource("4_ckoeb")]([ExtResource("5_3qur0")])
+learnset = Array[ExtResource("1_l8bqf")]([SubResource("Resource_moeh4"), SubResource("Resource_85n5m"), SubResource("Resource_vi1eg"), SubResource("Resource_71d6d"), SubResource("Resource_cc5yw"), SubResource("Resource_yhcqc"), SubResource("Resource_oj0vg"), SubResource("Resource_anaf8"), SubResource("Resource_mywco"), SubResource("Resource_ethpf"), SubResource("Resource_brpul")])
+genus = "Pokémon Calambre"
+pokedex_entry = "Electrike acumula electricidad en el largo pelaje que tiene. Este Pokémon estimula los músculos de las patas mediante descargas eléctricas. Estas explosiones de energía le permiten acelerar de forma increíble."
+height_m = 0.6
+weight_kg = 15.2
+base_hp = 40
+base_attack = 45
+base_defense = 40
+base_sp_attack = 65
+base_sp_defense = 40
+base_speed = 65
+base_experience = 59
+growth_rate = "slow"
+capture_rate = 120

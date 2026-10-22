@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_uihsg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2l868"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_i20pw"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="3_gddjc"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kqtiu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_73ub1"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="4_pbyst"]
+[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="5_dsjt1"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_q7i5h"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="6_4br11"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="6_xyxew"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="7_f80cl"]
+[ext_resource type="Resource" path="res://data/moves/sellar.tres" id="8_l6sqb"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="9_1pn72"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="10_tq3j5"]
+[ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="11_j0uk0"]
+
+[sub_resource type="Resource" id="Resource_foqwt"]
+script = ExtResource("1_uihsg")
+move = ExtResource("2_i20pw")
+
+[sub_resource type="Resource" id="Resource_ahl1j"]
+script = ExtResource("1_uihsg")
+move = ExtResource("3_gddjc")
+
+[sub_resource type="Resource" id="Resource_5mjxr"]
+script = ExtResource("1_uihsg")
+move = ExtResource("4_pbyst")
+
+[sub_resource type="Resource" id="Resource_vquuf"]
+script = ExtResource("1_uihsg")
+move = ExtResource("5_dsjt1")
+
+[sub_resource type="Resource" id="Resource_iwm0l"]
+script = ExtResource("1_uihsg")
+level = 21
+move = ExtResource("6_4br11")
+
+[sub_resource type="Resource" id="Resource_qyeoh"]
+script = ExtResource("1_uihsg")
+level = 26
+move = ExtResource("7_f80cl")
+
+[sub_resource type="Resource" id="Resource_3sljk"]
+script = ExtResource("1_uihsg")
+level = 33
+move = ExtResource("8_l6sqb")
+
+[sub_resource type="Resource" id="Resource_cvaaq"]
+script = ExtResource("1_uihsg")
+level = 42
+move = ExtResource("9_1pn72")
+
+[sub_resource type="Resource" id="Resource_v6t1q"]
+script = ExtResource("1_uihsg")
+level = 51
+move = ExtResource("10_tq3j5")
+
+[sub_resource type="Resource" id="Resource_lyur2"]
+script = ExtResource("1_uihsg")
+level = 60
+move = ExtResource("11_j0uk0")
+
+[resource]
+script = ExtResource("3_kqtiu")
+id = "gardevoir"
+display_name = "Gardevoir"
+dex = 282
+types = Array[ExtResource("4_73ub1")]([ExtResource("5_q7i5h"), ExtResource("6_xyxew")])
+learnset = Array[ExtResource("1_uihsg")]([SubResource("Resource_foqwt"), SubResource("Resource_ahl1j"), SubResource("Resource_5mjxr"), SubResource("Resource_vquuf"), SubResource("Resource_iwm0l"), SubResource("Resource_qyeoh"), SubResource("Resource_3sljk"), SubResource("Resource_cvaaq"), SubResource("Resource_v6t1q"), SubResource("Resource_lyur2")])
+genus = "Pokémon Envolvente"
+pokedex_entry = "Gardevoir es capaz de leer el futuro. Si siente que su Entrenador está en peligro inminente, dicen que libera automáticamente toda su energía psicoquinética."
+height_m = 1.6
+weight_kg = 48.4
+base_hp = 68
+base_attack = 65
+base_defense = 65
+base_sp_attack = 125
+base_sp_defense = 115
+base_speed = 80
+base_experience = 233
+growth_rate = "slow"

@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_n8qiy"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_by2ns"]
+[ext_resource type="Resource" path="res://data/moves/disparo_lodo.tres" id="2_qxm64"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_676bf"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="3_gkwoj"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="4_v77ax"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_woxmm"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="5_nsh16"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_qqgy6"]
+[ext_resource type="Resource" path="res://data/moves/corpulencia.tres" id="6_8qsc8"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="7_o4gxg"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="8_8u5e8"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_xvbsw"]
+[ext_resource type="Resource" path="res://data/moves/fisura.tres" id="10_agrwf"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_taydr"]
+[ext_resource type="Resource" path="res://data/moves/estallido.tres" id="12_tpfbb"]
+
+[sub_resource type="Resource" id="Resource_da1c2"]
+script = ExtResource("1_n8qiy")
+move = ExtResource("2_qxm64")
+
+[sub_resource type="Resource" id="Resource_1l647"]
+script = ExtResource("1_n8qiy")
+level = 5
+move = ExtResource("3_gkwoj")
+
+[sub_resource type="Resource" id="Resource_64bfx"]
+script = ExtResource("1_n8qiy")
+level = 15
+move = ExtResource("4_v77ax")
+
+[sub_resource type="Resource" id="Resource_u7ch7"]
+script = ExtResource("1_n8qiy")
+level = 20
+move = ExtResource("5_nsh16")
+
+[sub_resource type="Resource" id="Resource_o63j4"]
+script = ExtResource("1_n8qiy")
+level = 30
+move = ExtResource("6_8qsc8")
+
+[sub_resource type="Resource" id="Resource_0dpkm"]
+script = ExtResource("1_n8qiy")
+level = 35
+move = ExtResource("7_o4gxg")
+
+[sub_resource type="Resource" id="Resource_qfeus"]
+script = ExtResource("1_n8qiy")
+level = 45
+move = ExtResource("8_8u5e8")
+
+[sub_resource type="Resource" id="Resource_ke4s6"]
+script = ExtResource("1_n8qiy")
+level = 50
+move = ExtResource("9_xvbsw")
+
+[sub_resource type="Resource" id="Resource_t0nq6"]
+script = ExtResource("1_n8qiy")
+level = 60
+move = ExtResource("10_agrwf")
+
+[sub_resource type="Resource" id="Resource_q7tqe"]
+script = ExtResource("1_n8qiy")
+level = 65
+move = ExtResource("11_taydr")
+
+[sub_resource type="Resource" id="Resource_0t26p"]
+script = ExtResource("1_n8qiy")
+level = 75
+move = ExtResource("12_tpfbb")
+
+[resource]
+script = ExtResource("3_676bf")
+id = "groudon"
+display_name = "Groudon"
+dex = 383
+types = Array[ExtResource("4_woxmm")]([ExtResource("5_qqgy6")])
+learnset = Array[ExtResource("1_n8qiy")]([SubResource("Resource_da1c2"), SubResource("Resource_1l647"), SubResource("Resource_64bfx"), SubResource("Resource_u7ch7"), SubResource("Resource_o63j4"), SubResource("Resource_0dpkm"), SubResource("Resource_qfeus"), SubResource("Resource_ke4s6"), SubResource("Resource_t0nq6"), SubResource("Resource_q7tqe"), SubResource("Resource_0t26p")])
+genus = "Pokémon Continente"
+pokedex_entry = "A Groudon siempre se le ha descrito como el Pokémon que expandió los continentes. Varias leyendas cuentan que libró combates contra Kyogre en repetidas ocasiones para tener el control de la energía de la naturaleza."
+height_m = 3.5
+weight_kg = 950.0
+base_hp = 100
+base_attack = 150
+base_defense = 140
+base_sp_attack = 100
+base_sp_defense = 90
+base_speed = 90
+base_experience = 302
+growth_rate = "slow"
+capture_rate = 3

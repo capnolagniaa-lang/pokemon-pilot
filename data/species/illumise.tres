@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_g48fn"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_4bbgr"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_kc5lm"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="3_gggx6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_o5mww"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_bd3ci"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="4_dxh38"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_3ee08"]
+[ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="5_8l8a1"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="6_bucau"]
+[ext_resource type="Resource" path="res://data/moves/deseo.tres" id="7_ig20t"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="8_8cinm"]
+[ext_resource type="Resource" path="res://data/moves/camelo.tres" id="9_idepr"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="10_2yfjq"]
+[ext_resource type="Resource" path="res://data/moves/antojo.tres" id="11_eggxu"]
+
+[sub_resource type="Resource" id="Resource_vox2q"]
+script = ExtResource("1_g48fn")
+move = ExtResource("2_4bbgr")
+
+[sub_resource type="Resource" id="Resource_tuajy"]
+script = ExtResource("1_g48fn")
+level = 5
+move = ExtResource("3_gggx6")
+
+[sub_resource type="Resource" id="Resource_5ypcq"]
+script = ExtResource("1_g48fn")
+level = 9
+move = ExtResource("4_dxh38")
+
+[sub_resource type="Resource" id="Resource_lgbv8"]
+script = ExtResource("1_g48fn")
+level = 13
+move = ExtResource("5_8l8a1")
+
+[sub_resource type="Resource" id="Resource_wl2wr"]
+script = ExtResource("1_g48fn")
+level = 17
+move = ExtResource("6_bucau")
+
+[sub_resource type="Resource" id="Resource_u1trj"]
+script = ExtResource("1_g48fn")
+level = 21
+move = ExtResource("7_ig20t")
+
+[sub_resource type="Resource" id="Resource_lwk5v"]
+script = ExtResource("1_g48fn")
+level = 25
+move = ExtResource("8_8cinm")
+
+[sub_resource type="Resource" id="Resource_kpbwe"]
+script = ExtResource("1_g48fn")
+level = 29
+move = ExtResource("9_idepr")
+
+[sub_resource type="Resource" id="Resource_o28xq"]
+script = ExtResource("1_g48fn")
+level = 33
+move = ExtResource("10_2yfjq")
+
+[sub_resource type="Resource" id="Resource_83ruk"]
+script = ExtResource("1_g48fn")
+level = 37
+move = ExtResource("11_eggxu")
+
+[resource]
+script = ExtResource("3_o5mww")
+id = "illumise"
+display_name = "Illumise"
+dex = 314
+types = Array[ExtResource("4_bd3ci")]([ExtResource("5_3ee08")])
+learnset = Array[ExtResource("1_g48fn")]([SubResource("Resource_vox2q"), SubResource("Resource_tuajy"), SubResource("Resource_5ypcq"), SubResource("Resource_lgbv8"), SubResource("Resource_wl2wr"), SubResource("Resource_u1trj"), SubResource("Resource_lwk5v"), SubResource("Resource_kpbwe"), SubResource("Resource_o28xq"), SubResource("Resource_83ruk")])
+genus = "Pokémon Luciérnaga"
+pokedex_entry = "Illumise atrae mediante su dulce aroma a enjambres de Volbeat. Una vez que los ha agrupado, les guía en el vuelo para que dibujen formas geométricas en el lienzo del oscuro cielo."
+height_m = 0.6
+weight_kg = 17.7
+base_hp = 65
+base_attack = 47
+base_defense = 75
+base_sp_attack = 73
+base_sp_defense = 85
+base_speed = 85
+base_experience = 151
+growth_rate = "fast-then-very-slow"
+capture_rate = 150

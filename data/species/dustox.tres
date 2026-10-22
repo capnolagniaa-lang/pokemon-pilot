@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u6xkw"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8efj0"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_c6yt3"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_5tjct"]
+[ext_resource type="Resource" path="res://data/moves/tornado.tres" id="3_d8rn2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_8iv0a"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="4_qdkqe"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_4ol5y"]
+[ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="5_qga0s"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_7rrnb"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_qdf21"]
+[ext_resource type="Resource" path="res://data/moves/remolino.tres" id="7_kk7dv"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="8_dyt12"]
+[ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="9_k2nfc"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="10_kexk2"]
+
+[sub_resource type="Resource" id="Resource_rv5il"]
+script = ExtResource("1_u6xkw")
+move = ExtResource("2_c6yt3")
+
+[sub_resource type="Resource" id="Resource_12j2h"]
+script = ExtResource("1_u6xkw")
+level = 13
+move = ExtResource("3_d8rn2")
+
+[sub_resource type="Resource" id="Resource_4xgdw"]
+script = ExtResource("1_u6xkw")
+level = 17
+move = ExtResource("4_qdkqe")
+
+[sub_resource type="Resource" id="Resource_aug6d"]
+script = ExtResource("1_u6xkw")
+level = 20
+move = ExtResource("5_qga0s")
+
+[sub_resource type="Resource" id="Resource_6nxsr"]
+script = ExtResource("1_u6xkw")
+level = 24
+move = ExtResource("6_7rrnb")
+
+[sub_resource type="Resource" id="Resource_4kaem"]
+script = ExtResource("1_u6xkw")
+level = 27
+move = ExtResource("7_kk7dv")
+
+[sub_resource type="Resource" id="Resource_pjxl6"]
+script = ExtResource("1_u6xkw")
+level = 31
+move = ExtResource("8_dyt12")
+
+[sub_resource type="Resource" id="Resource_q2gq7"]
+script = ExtResource("1_u6xkw")
+level = 34
+move = ExtResource("9_k2nfc")
+
+[sub_resource type="Resource" id="Resource_3hdx6"]
+script = ExtResource("1_u6xkw")
+level = 38
+move = ExtResource("10_kexk2")
+
+[resource]
+script = ExtResource("3_5tjct")
+id = "dustox"
+display_name = "Dustox"
+dex = 269
+types = Array[ExtResource("4_8iv0a")]([ExtResource("5_4ol5y"), ExtResource("6_qdf21")])
+learnset = Array[ExtResource("1_u6xkw")]([SubResource("Resource_rv5il"), SubResource("Resource_12j2h"), SubResource("Resource_4xgdw"), SubResource("Resource_aug6d"), SubResource("Resource_6nxsr"), SubResource("Resource_4kaem"), SubResource("Resource_pjxl6"), SubResource("Resource_q2gq7"), SubResource("Resource_3hdx6")])
+genus = "Pokémon Polilla Ven."
+pokedex_entry = "Los Dustox se acercan a la luz de forma instintiva. De hecho, se agrupan en enjambres alrededor de las luces de las ciudades y causan estragos en las hojas de los árboles que están a pie de calle para alimentarse."
+height_m = 1.2
+weight_kg = 31.6
+base_hp = 60
+base_defense = 70
+base_sp_defense = 90
+base_speed = 65
+base_experience = 173

@@ -12,30 +12,30 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="7_j21u2"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_tlbdr"]
 
-[sub_resource type="Resource" id="Resource_inumd"]
+[sub_resource type="Resource" id="Resource_nrj5d"]
 script = ExtResource("1_nrj5d")
 move = ExtResource("2_r6x3q")
 
-[sub_resource type="Resource" id="Resource_tlbdr"]
+[sub_resource type="Resource" id="Resource_44mrl"]
 script = ExtResource("1_nrj5d")
 move = ExtResource("3_fjwno")
 
-[sub_resource type="Resource" id="Resource_bo5td"]
+[sub_resource type="Resource" id="Resource_j21u2"]
 script = ExtResource("1_nrj5d")
 level = 3
 move = ExtResource("4_nrj5d")
 
-[sub_resource type="Resource" id="Resource_pecyu"]
+[sub_resource type="Resource" id="Resource_inumd"]
 script = ExtResource("1_nrj5d")
 level = 5
 move = ExtResource("5_44mrl")
 
-[sub_resource type="Resource" id="Resource_iw0q7"]
+[sub_resource type="Resource" id="Resource_tlbdr"]
 script = ExtResource("1_nrj5d")
 level = 31
 move = ExtResource("6_44mrl")
 
-[sub_resource type="Resource" id="Resource_xwkpg"]
+[sub_resource type="Resource" id="Resource_bo5td"]
 script = ExtResource("1_nrj5d")
 level = 43
 move = ExtResource("7_j21u2")
@@ -47,7 +47,11 @@ display_name = "Poliwag"
 dex = 60
 types = Array[ExtResource("7_inumd")]([ExtResource("8_tlbdr")])
 moves = Array[ExtResource("1_g3w7n")]([ExtResource("2_r6x3q"), ExtResource("3_fjwno"), ExtResource("4_nrj5d"), ExtResource("5_44mrl")])
-learnset = Array[ExtResource("1_nrj5d")]([SubResource("Resource_inumd"), SubResource("Resource_tlbdr"), SubResource("Resource_bo5td"), SubResource("Resource_pecyu"), SubResource("Resource_iw0q7"), SubResource("Resource_xwkpg")])
+learnset = Array[ExtResource("1_nrj5d")]([SubResource("Resource_nrj5d"), SubResource("Resource_44mrl"), SubResource("Resource_j21u2"), SubResource("Resource_inumd"), SubResource("Resource_tlbdr"), SubResource("Resource_bo5td")])
+genus = "Pokémon Renacuajo"
+pokedex_entry = "Poliwag tiene una piel muy fina. Tanto que es posible entrever a través de la misma las vísceras en espiral que tiene. La piel, aunque fina, tiene la ventaja de ser flexible y hacer rebotar hasta los colmillos más afilados."
+height_m = 0.6
+weight_kg = 12.4
 base_hp = 40
 base_defense = 40
 base_sp_attack = 40

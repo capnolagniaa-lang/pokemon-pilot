@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6nw65"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_dq7m4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sexlj"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="3_007t3"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_40qoe"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_2l6ex"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_w3rqd"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_rp4hu"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_tfwqx"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_jlydm"]
+[ext_resource type="Resource" path="res://data/moves/venganza.tres" id="6_ok213"]
+[ext_resource type="Resource" path="res://data/moves/disparo_lodo.tres" id="7_so8yo"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="8_5j71q"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="9_00hgg"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_ncrjp"]
+[ext_resource type="Resource" path="res://data/moves/agua_lodosa.tres" id="11_owamj"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="12_1v2gt"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="13_3ea1q"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="14_0vew1"]
+
+[sub_resource type="Resource" id="Resource_5od3w"]
+script = ExtResource("1_6nw65")
+move = ExtResource("2_dq7m4")
+
+[sub_resource type="Resource" id="Resource_m67wv"]
+script = ExtResource("1_6nw65")
+move = ExtResource("3_007t3")
+
+[sub_resource type="Resource" id="Resource_tl7uq"]
+script = ExtResource("1_6nw65")
+move = ExtResource("4_2l6ex")
+
+[sub_resource type="Resource" id="Resource_h8n0w"]
+script = ExtResource("1_6nw65")
+move = ExtResource("5_rp4hu")
+
+[sub_resource type="Resource" id="Resource_ss3qi"]
+script = ExtResource("1_6nw65")
+level = 15
+move = ExtResource("6_ok213")
+
+[sub_resource type="Resource" id="Resource_j7pf3"]
+script = ExtResource("1_6nw65")
+level = 16
+move = ExtResource("7_so8yo")
+
+[sub_resource type="Resource" id="Resource_tf1rn"]
+script = ExtResource("1_6nw65")
+level = 20
+move = ExtResource("8_5j71q")
+
+[sub_resource type="Resource" id="Resource_7p2qx"]
+script = ExtResource("1_6nw65")
+level = 25
+move = ExtResource("9_00hgg")
+
+[sub_resource type="Resource" id="Resource_qcyu5"]
+script = ExtResource("1_6nw65")
+level = 31
+move = ExtResource("10_ncrjp")
+
+[sub_resource type="Resource" id="Resource_wurdk"]
+script = ExtResource("1_6nw65")
+level = 39
+move = ExtResource("11_owamj")
+
+[sub_resource type="Resource" id="Resource_jhcle"]
+script = ExtResource("1_6nw65")
+level = 46
+move = ExtResource("12_1v2gt")
+
+[sub_resource type="Resource" id="Resource_4xeg0"]
+script = ExtResource("1_6nw65")
+level = 52
+move = ExtResource("13_3ea1q")
+
+[sub_resource type="Resource" id="Resource_kt1cp"]
+script = ExtResource("1_6nw65")
+level = 61
+move = ExtResource("14_0vew1")
+
+[resource]
+script = ExtResource("3_40qoe")
+id = "swampert"
+display_name = "Swampert"
+dex = 260
+types = Array[ExtResource("4_w3rqd")]([ExtResource("5_tfwqx"), ExtResource("6_jlydm")])
+learnset = Array[ExtResource("1_6nw65")]([SubResource("Resource_5od3w"), SubResource("Resource_m67wv"), SubResource("Resource_tl7uq"), SubResource("Resource_h8n0w"), SubResource("Resource_ss3qi"), SubResource("Resource_j7pf3"), SubResource("Resource_tf1rn"), SubResource("Resource_7p2qx"), SubResource("Resource_qcyu5"), SubResource("Resource_wurdk"), SubResource("Resource_jhcle"), SubResource("Resource_4xeg0"), SubResource("Resource_kt1cp")])
+genus = "Pokémon Pez Lodo"
+pokedex_entry = "Swampert es muy fuerte. Puede arrastrar una roca que pese más de una tonelada sin ningún problema. Este Pokémon tiene el sentido de la vista muy desarrollado. Es capaz de ver hasta en aguas cenagosas."
+height_m = 1.5
+weight_kg = 81.9
+base_hp = 100
+base_attack = 110
+base_defense = 90
+base_sp_attack = 85
+base_sp_defense = 90
+base_speed = 60
+base_experience = 241
+growth_rate = "medium-slow"

@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_4xuew"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lrtf4"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_vbs4q"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1org5"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="3_t631v"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jiaft"]
+[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="4_lpmoe"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="5_h4kep"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_kj0ex"]
+[ext_resource type="Resource" path="res://data/moves/furia_dragon.tres" id="6_r0u7t"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="7_ryqpn"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="8_44x5e"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="9_n7esk"]
+[ext_resource type="Resource" path="res://data/moves/enfado.tres" id="10_gwfnf"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_o3p2a"]
+
+[sub_resource type="Resource" id="Resource_j1gfm"]
+script = ExtResource("1_4xuew")
+move = ExtResource("2_vbs4q")
+
+[sub_resource type="Resource" id="Resource_d67yb"]
+script = ExtResource("1_4xuew")
+move = ExtResource("3_t631v")
+
+[sub_resource type="Resource" id="Resource_mrsi7"]
+script = ExtResource("1_4xuew")
+move = ExtResource("4_lpmoe")
+
+[sub_resource type="Resource" id="Resource_1aktu"]
+script = ExtResource("1_4xuew")
+move = ExtResource("5_h4kep")
+
+[sub_resource type="Resource" id="Resource_n2dgn"]
+script = ExtResource("1_4xuew")
+level = 22
+move = ExtResource("6_r0u7t")
+
+[sub_resource type="Resource" id="Resource_3ykmg"]
+script = ExtResource("1_4xuew")
+level = 29
+move = ExtResource("7_ryqpn")
+
+[sub_resource type="Resource" id="Resource_vfnuj"]
+script = ExtResource("1_4xuew")
+level = 38
+move = ExtResource("8_44x5e")
+
+[sub_resource type="Resource" id="Resource_xaeck"]
+script = ExtResource("1_4xuew")
+level = 47
+move = ExtResource("9_n7esk")
+
+[sub_resource type="Resource" id="Resource_r417v"]
+script = ExtResource("1_4xuew")
+level = 56
+move = ExtResource("10_gwfnf")
+
+[sub_resource type="Resource" id="Resource_kwsd7"]
+script = ExtResource("1_4xuew")
+level = 65
+move = ExtResource("11_o3p2a")
+
+[resource]
+script = ExtResource("3_1org5")
+id = "dragonair"
+display_name = "Dragonair"
+dex = 148
+types = Array[ExtResource("4_jiaft")]([ExtResource("5_kj0ex")])
+learnset = Array[ExtResource("1_4xuew")]([SubResource("Resource_j1gfm"), SubResource("Resource_d67yb"), SubResource("Resource_mrsi7"), SubResource("Resource_1aktu"), SubResource("Resource_n2dgn"), SubResource("Resource_3ykmg"), SubResource("Resource_vfnuj"), SubResource("Resource_xaeck"), SubResource("Resource_r417v"), SubResource("Resource_kwsd7")])
+genus = "Pokémon Dragón"
+pokedex_entry = "Dragonair acumula grandes cantidades de energía dentro de sí. Dicen que altera el clima de la zona en la que está descargando energía a través de las esferas de cristal que tiene en el cuello y en la cola."
+height_m = 4.0
+weight_kg = 16.5
+base_hp = 61
+base_attack = 84
+base_defense = 65
+base_sp_attack = 70
+base_sp_defense = 70
+base_speed = 70
+base_experience = 147
+growth_rate = "slow"

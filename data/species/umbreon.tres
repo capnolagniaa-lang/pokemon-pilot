@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fqgu0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8hwye"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="2_qamxg"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_5jogs"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_j4vey"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_c561c"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_r86vx"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="5_exsjo"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="5_gae2v"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="6_e6skq"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="7_7u8jv"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_kshum"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="9_n1ha5"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="10_euh1x"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="11_hspq1"]
+[ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="12_nqhnb"]
+
+[sub_resource type="Resource" id="Resource_e6be2"]
+script = ExtResource("1_fqgu0")
+move = ExtResource("2_qamxg")
+
+[sub_resource type="Resource" id="Resource_nemxu"]
+script = ExtResource("1_fqgu0")
+move = ExtResource("3_5jogs")
+
+[sub_resource type="Resource" id="Resource_w1ry2"]
+script = ExtResource("1_fqgu0")
+move = ExtResource("4_r86vx")
+
+[sub_resource type="Resource" id="Resource_78haq"]
+script = ExtResource("1_fqgu0")
+level = 8
+move = ExtResource("5_exsjo")
+
+[sub_resource type="Resource" id="Resource_ml5p1"]
+script = ExtResource("1_fqgu0")
+level = 16
+move = ExtResource("6_e6skq")
+
+[sub_resource type="Resource" id="Resource_nh4yv"]
+script = ExtResource("1_fqgu0")
+level = 23
+move = ExtResource("7_7u8jv")
+
+[sub_resource type="Resource" id="Resource_6uf80"]
+script = ExtResource("1_fqgu0")
+level = 30
+move = ExtResource("8_kshum")
+
+[sub_resource type="Resource" id="Resource_m65gm"]
+script = ExtResource("1_fqgu0")
+level = 36
+move = ExtResource("9_n1ha5")
+
+[sub_resource type="Resource" id="Resource_etvdp"]
+script = ExtResource("1_fqgu0")
+level = 42
+move = ExtResource("10_euh1x")
+
+[sub_resource type="Resource" id="Resource_hwql7"]
+script = ExtResource("1_fqgu0")
+level = 47
+move = ExtResource("11_hspq1")
+
+[sub_resource type="Resource" id="Resource_uiv3p"]
+script = ExtResource("1_fqgu0")
+level = 52
+move = ExtResource("12_nqhnb")
+
+[resource]
+script = ExtResource("3_j4vey")
+id = "umbreon"
+display_name = "Umbreon"
+dex = 197
+types = Array[ExtResource("4_c561c")]([ExtResource("5_gae2v")])
+learnset = Array[ExtResource("1_fqgu0")]([SubResource("Resource_e6be2"), SubResource("Resource_nemxu"), SubResource("Resource_w1ry2"), SubResource("Resource_78haq"), SubResource("Resource_ml5p1"), SubResource("Resource_nh4yv"), SubResource("Resource_6uf80"), SubResource("Resource_m65gm"), SubResource("Resource_etvdp"), SubResource("Resource_hwql7"), SubResource("Resource_uiv3p")])
+genus = "Pokémon Luz Lunar"
+pokedex_entry = "Umbreon evolucionó tras haber estado expuesto a ondas lunares. Suele esconderse en la oscuridad en silencio y esperar a que su presa se mueva. Cuando se lanza al ataque, le brillan los anillos del cuerpo."
+height_m = 1.0
+weight_kg = 27.0
+base_hp = 95
+base_attack = 65
+base_defense = 110
+base_sp_attack = 60
+base_sp_defense = 130
+base_speed = 65
+base_experience = 184

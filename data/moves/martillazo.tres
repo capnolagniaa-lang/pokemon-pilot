@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_lna51"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_a0djg"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_f5h0t"]
+
+[resource]
+script = ExtResource("2_a0djg")
+id = "martillazo"
+display_name = "Martillazo"
+element = ExtResource("1_lna51")
+kind = 1
+power = 100.0
+cooldown = 2.45
+knockback = 220.0
+recovery = 0.3
+dash_time = 0.28

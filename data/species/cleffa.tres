@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_blap0"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="2_3ef8j"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_simlv"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_aaasq"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="3_rxsmj"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="4_0g27w"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_nvksc"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="5_iano6"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="5_s2hg7"]
+[ext_resource type="Resource" path="res://data/moves/beso_dulce.tres" id="6_hulie"]
+[ext_resource type="Resource" path="res://data/moves/hoja_magica.tres" id="7_ald6b"]
+
+[sub_resource type="Resource" id="Resource_g0b7g"]
+script = ExtResource("1_blap0")
+move = ExtResource("2_3ef8j")
+
+[sub_resource type="Resource" id="Resource_3brdc"]
+script = ExtResource("1_blap0")
+move = ExtResource("3_rxsmj")
+
+[sub_resource type="Resource" id="Resource_1gga4"]
+script = ExtResource("1_blap0")
+level = 4
+move = ExtResource("4_0g27w")
+
+[sub_resource type="Resource" id="Resource_518gy"]
+script = ExtResource("1_blap0")
+level = 8
+move = ExtResource("5_s2hg7")
+
+[sub_resource type="Resource" id="Resource_63rnk"]
+script = ExtResource("1_blap0")
+level = 13
+move = ExtResource("6_hulie")
+
+[sub_resource type="Resource" id="Resource_mfl8v"]
+script = ExtResource("1_blap0")
+level = 17
+move = ExtResource("7_ald6b")
+
+[resource]
+script = ExtResource("3_aaasq")
+id = "cleffa"
+display_name = "Cleffa"
+dex = 173
+types = Array[ExtResource("4_nvksc")]([ExtResource("5_iano6")])
+learnset = Array[ExtResource("1_blap0")]([SubResource("Resource_g0b7g"), SubResource("Resource_3brdc"), SubResource("Resource_1gga4"), SubResource("Resource_518gy"), SubResource("Resource_63rnk"), SubResource("Resource_mfl8v")])
+genus = "Pokémon Estrella"
+pokedex_entry = "Cuando hay lluvia de estrellas, a los Cleffa se les puede ver danzando en círculos durante toda la noche. Solo paran cuando rompe el día; entonces, dejan de bailar y calman su sed con el rocío de la mañana."
+height_m = 0.3
+weight_kg = 3.0
+base_attack = 25
+base_defense = 28
+base_sp_attack = 45
+base_sp_defense = 55
+base_speed = 15
+base_experience = 44
+growth_rate = "fast"
+capture_rate = 150

@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u3ok1"]
+[ext_resource type="Resource" path="res://data/moves/tornado.tres" id="2_jwri3"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tefag"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_0gtpa"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_30ewf"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_4n7xb"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="4_rlrp1"]
+[ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="5_im0iy"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_p82c3"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="6_bdutc"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_t4a84"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="7_r88em"]
+[ext_resource type="Resource" path="res://data/moves/remolino.tres" id="8_k8iqh"]
+[ext_resource type="Resource" path="res://data/moves/hoja_magica.tres" id="9_ockpr"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_r1xkv"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_cupky"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="12_rkwvi"]
+
+[sub_resource type="Resource" id="Resource_o3x1p"]
+script = ExtResource("1_u3ok1")
+move = ExtResource("2_jwri3")
+
+[sub_resource type="Resource" id="Resource_0isnd"]
+script = ExtResource("1_u3ok1")
+move = ExtResource("3_0gtpa")
+
+[sub_resource type="Resource" id="Resource_isdd4"]
+script = ExtResource("1_u3ok1")
+level = 7
+move = ExtResource("4_rlrp1")
+
+[sub_resource type="Resource" id="Resource_3g8s5"]
+script = ExtResource("1_u3ok1")
+level = 11
+move = ExtResource("5_im0iy")
+
+[sub_resource type="Resource" id="Resource_hb3q1"]
+script = ExtResource("1_u3ok1")
+level = 17
+move = ExtResource("6_bdutc")
+
+[sub_resource type="Resource" id="Resource_6hx2o"]
+script = ExtResource("1_u3ok1")
+level = 21
+move = ExtResource("7_r88em")
+
+[sub_resource type="Resource" id="Resource_hegu8"]
+script = ExtResource("1_u3ok1")
+level = 27
+move = ExtResource("8_k8iqh")
+
+[sub_resource type="Resource" id="Resource_56gtm"]
+script = ExtResource("1_u3ok1")
+level = 31
+move = ExtResource("9_ockpr")
+
+[sub_resource type="Resource" id="Resource_abhex"]
+script = ExtResource("1_u3ok1")
+level = 37
+move = ExtResource("10_r1xkv")
+
+[sub_resource type="Resource" id="Resource_5tlx7"]
+script = ExtResource("1_u3ok1")
+level = 41
+move = ExtResource("11_cupky")
+
+[sub_resource type="Resource" id="Resource_7ryuk"]
+script = ExtResource("1_u3ok1")
+level = 47
+move = ExtResource("12_rkwvi")
+
+[resource]
+script = ExtResource("3_30ewf")
+id = "tropius"
+display_name = "Tropius"
+dex = 357
+types = Array[ExtResource("4_4n7xb")]([ExtResource("5_p82c3"), ExtResource("6_t4a84")])
+learnset = Array[ExtResource("1_u3ok1")]([SubResource("Resource_o3x1p"), SubResource("Resource_0isnd"), SubResource("Resource_isdd4"), SubResource("Resource_3g8s5"), SubResource("Resource_hb3q1"), SubResource("Resource_6hx2o"), SubResource("Resource_hegu8"), SubResource("Resource_56gtm"), SubResource("Resource_abhex"), SubResource("Resource_5tlx7"), SubResource("Resource_7ryuk")])
+genus = "Pokémon Fruto"
+pokedex_entry = "A los niños les encantan los racimos de fruta que Tropius tiene en el cuello. Este Pokémon siempre come fruta; le encanta. De hecho, ese parece ser el motivo por el que él mismo da fruta."
+height_m = 2.0
+weight_kg = 100.0
+base_hp = 99
+base_attack = 68
+base_defense = 83
+base_sp_attack = 72
+base_sp_defense = 87
+base_speed = 51
+base_experience = 161
+growth_rate = "slow"
+capture_rate = 200

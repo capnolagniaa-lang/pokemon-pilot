@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_vk2ro"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="2_focit"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_w3mic"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_iaxg0"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="3_opjgq"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="4_dv7bi"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_l081b"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_0ws82"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="5_3rxeg"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="6_ktv80"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="6_xm033"]
+[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="7_7027l"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="8_mte20"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="9_vy8bp"]
+[ext_resource type="Resource" path="res://data/moves/mimetico.tres" id="10_qi8ak"]
+[ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="11_s4l7k"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_eieuw"]
+
+[sub_resource type="Resource" id="Resource_dd2yw"]
+script = ExtResource("1_vk2ro")
+move = ExtResource("2_focit")
+
+[sub_resource type="Resource" id="Resource_gt67s"]
+script = ExtResource("1_vk2ro")
+level = 4
+move = ExtResource("3_opjgq")
+
+[sub_resource type="Resource" id="Resource_mx3oj"]
+script = ExtResource("1_vk2ro")
+level = 9
+move = ExtResource("4_dv7bi")
+
+[sub_resource type="Resource" id="Resource_hsatd"]
+script = ExtResource("1_vk2ro")
+level = 14
+move = ExtResource("5_3rxeg")
+
+[sub_resource type="Resource" id="Resource_pheyj"]
+script = ExtResource("1_vk2ro")
+level = 19
+move = ExtResource("6_ktv80")
+
+[sub_resource type="Resource" id="Resource_gghu8"]
+script = ExtResource("1_vk2ro")
+level = 24
+move = ExtResource("7_7027l")
+
+[sub_resource type="Resource" id="Resource_18xqp"]
+script = ExtResource("1_vk2ro")
+level = 29
+move = ExtResource("8_mte20")
+
+[sub_resource type="Resource" id="Resource_lr70y"]
+script = ExtResource("1_vk2ro")
+level = 34
+move = ExtResource("9_vy8bp")
+
+[sub_resource type="Resource" id="Resource_ojr2a"]
+script = ExtResource("1_vk2ro")
+level = 39
+move = ExtResource("10_qi8ak")
+
+[sub_resource type="Resource" id="Resource_snn8g"]
+script = ExtResource("1_vk2ro")
+level = 44
+move = ExtResource("11_s4l7k")
+
+[sub_resource type="Resource" id="Resource_1y13j"]
+script = ExtResource("1_vk2ro")
+level = 49
+move = ExtResource("12_eieuw")
+
+[resource]
+script = ExtResource("3_iaxg0")
+id = "jigglypuff"
+display_name = "Jigglypuff"
+dex = 39
+types = Array[ExtResource("4_l081b")]([ExtResource("5_0ws82"), ExtResource("6_xm033")])
+learnset = Array[ExtResource("1_vk2ro")]([SubResource("Resource_dd2yw"), SubResource("Resource_gt67s"), SubResource("Resource_mx3oj"), SubResource("Resource_hsatd"), SubResource("Resource_pheyj"), SubResource("Resource_gghu8"), SubResource("Resource_18xqp"), SubResource("Resource_lr70y"), SubResource("Resource_ojr2a"), SubResource("Resource_snn8g"), SubResource("Resource_1y13j")])
+genus = "Pokémon Globo"
+pokedex_entry = "Jigglypuff tiene unas cuerdas vocales que ajustan sin problema la longitud de onda de su voz. Este Pokémon usa la habilidad que tiene para cantar con la longitud de onda necesaria para adormecer a su rival."
+height_m = 0.5
+weight_kg = 5.5
+base_hp = 115
+base_attack = 45
+base_defense = 20
+base_sp_attack = 45
+base_sp_defense = 25
+base_speed = 20
+base_experience = 95
+growth_rate = "fast"
+capture_rate = 170

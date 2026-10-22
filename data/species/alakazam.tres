@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_k7ypx"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_k22r4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_m3kkl"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gxd57"]
+[ext_resource type="Resource" path="res://data/moves/kinetico.tres" id="3_hwael"]
+[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="4_gunmr"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rcufv"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="5_lylyv"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_w7dxe"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_5ei68"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="7_onucw"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="8_jpwt8"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="9_1tbbt"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="10_xwbjl"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_jfy3y"]
+[ext_resource type="Resource" path="res://data/moves/truco.tres" id="12_omy1l"]
+
+[sub_resource type="Resource" id="Resource_krpjx"]
+script = ExtResource("1_k7ypx")
+move = ExtResource("2_k22r4")
+
+[sub_resource type="Resource" id="Resource_qaygq"]
+script = ExtResource("1_k7ypx")
+move = ExtResource("3_hwael")
+
+[sub_resource type="Resource" id="Resource_w6mg1"]
+script = ExtResource("1_k7ypx")
+move = ExtResource("4_gunmr")
+
+[sub_resource type="Resource" id="Resource_c7aps"]
+script = ExtResource("1_k7ypx")
+level = 18
+move = ExtResource("5_lylyv")
+
+[sub_resource type="Resource" id="Resource_dsqf1"]
+script = ExtResource("1_k7ypx")
+level = 21
+move = ExtResource("6_5ei68")
+
+[sub_resource type="Resource" id="Resource_g4scg"]
+script = ExtResource("1_k7ypx")
+level = 23
+move = ExtResource("7_onucw")
+
+[sub_resource type="Resource" id="Resource_3jw1s"]
+script = ExtResource("1_k7ypx")
+level = 25
+move = ExtResource("8_jpwt8")
+
+[sub_resource type="Resource" id="Resource_0gf4f"]
+script = ExtResource("1_k7ypx")
+level = 30
+move = ExtResource("9_1tbbt")
+
+[sub_resource type="Resource" id="Resource_ciyhj"]
+script = ExtResource("1_k7ypx")
+level = 33
+move = ExtResource("10_xwbjl")
+
+[sub_resource type="Resource" id="Resource_n0sio"]
+script = ExtResource("1_k7ypx")
+level = 36
+move = ExtResource("11_jfy3y")
+
+[sub_resource type="Resource" id="Resource_301cj"]
+script = ExtResource("1_k7ypx")
+level = 43
+move = ExtResource("12_omy1l")
+
+[resource]
+script = ExtResource("3_gxd57")
+id = "alakazam"
+display_name = "Alakazam"
+dex = 65
+types = Array[ExtResource("4_rcufv")]([ExtResource("5_w7dxe")])
+learnset = Array[ExtResource("1_k7ypx")]([SubResource("Resource_krpjx"), SubResource("Resource_qaygq"), SubResource("Resource_w6mg1"), SubResource("Resource_c7aps"), SubResource("Resource_dsqf1"), SubResource("Resource_g4scg"), SubResource("Resource_3jw1s"), SubResource("Resource_0gf4f"), SubResource("Resource_ciyhj"), SubResource("Resource_n0sio"), SubResource("Resource_301cj")])
+genus = "Pokémon Psi"
+pokedex_entry = "El cerebro de Alakazam nunca deja de crecer y por eso al cuello le cuesta sostener el peso de la cabeza. Este Pokémon usa sus poderes psicoquinéticos para mantener en alto la cabeza."
+height_m = 1.5
+weight_kg = 48.0
+base_hp = 55
+base_defense = 45
+base_sp_attack = 135
+base_sp_defense = 95
+base_speed = 120
+base_experience = 225
+growth_rate = "medium-slow"
+capture_rate = 50

@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_imtsm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bp2m4"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_tw157"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_nies4"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="3_vpdvb"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_8x7ee"]
+[ext_resource type="Resource" path="res://data/moves/barrera.tres" id="4_bd7ag"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_js6gw"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="5_jxnm2"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="6_5et6u"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="7_e0kp1"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="8_ebw5n"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="9_ybxjn"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="10_duqtf"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="11_s10n3"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="12_nuta1"]
+
+[sub_resource type="Resource" id="Resource_3i8qk"]
+script = ExtResource("1_imtsm")
+move = ExtResource("2_tw157")
+
+[sub_resource type="Resource" id="Resource_864o2"]
+script = ExtResource("1_imtsm")
+move = ExtResource("3_vpdvb")
+
+[sub_resource type="Resource" id="Resource_tw2sn"]
+script = ExtResource("1_imtsm")
+level = 11
+move = ExtResource("4_bd7ag")
+
+[sub_resource type="Resource" id="Resource_jhulg"]
+script = ExtResource("1_imtsm")
+level = 22
+move = ExtResource("5_jxnm2")
+
+[sub_resource type="Resource" id="Resource_talfp"]
+script = ExtResource("1_imtsm")
+level = 33
+move = ExtResource("6_5et6u")
+
+[sub_resource type="Resource" id="Resource_p06hc"]
+script = ExtResource("1_imtsm")
+level = 44
+move = ExtResource("7_e0kp1")
+
+[sub_resource type="Resource" id="Resource_uqgdk"]
+script = ExtResource("1_imtsm")
+level = 55
+move = ExtResource("8_ebw5n")
+
+[sub_resource type="Resource" id="Resource_lq1an"]
+script = ExtResource("1_imtsm")
+level = 66
+move = ExtResource("9_ybxjn")
+
+[sub_resource type="Resource" id="Resource_rtjwe"]
+script = ExtResource("1_imtsm")
+level = 77
+move = ExtResource("10_duqtf")
+
+[sub_resource type="Resource" id="Resource_38brm"]
+script = ExtResource("1_imtsm")
+level = 88
+move = ExtResource("11_s10n3")
+
+[sub_resource type="Resource" id="Resource_i5xbw"]
+script = ExtResource("1_imtsm")
+level = 99
+move = ExtResource("12_nuta1")
+
+[resource]
+script = ExtResource("3_nies4")
+id = "mewtwo"
+display_name = "Mewtwo"
+dex = 150
+types = Array[ExtResource("4_8x7ee")]([ExtResource("5_js6gw")])
+learnset = Array[ExtResource("1_imtsm")]([SubResource("Resource_3i8qk"), SubResource("Resource_864o2"), SubResource("Resource_tw2sn"), SubResource("Resource_jhulg"), SubResource("Resource_talfp"), SubResource("Resource_p06hc"), SubResource("Resource_uqgdk"), SubResource("Resource_lq1an"), SubResource("Resource_rtjwe"), SubResource("Resource_38brm"), SubResource("Resource_i5xbw")])
+genus = "Pokémon Genético"
+pokedex_entry = "Mewtwo fue creado por manipulación genética. Pero, a pesar de que el hombre creó su cuerpo, dotar a Mewtwo de un corazón compasivo quedó en el olvido."
+height_m = 2.0
+weight_kg = 122.0
+base_hp = 106
+base_attack = 110
+base_defense = 90
+base_sp_attack = 154
+base_sp_defense = 90
+base_speed = 130
+base_experience = 306
+growth_rate = "slow"
+capture_rate = 3

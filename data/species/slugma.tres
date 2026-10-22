@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fubu0"]
+[ext_resource type="Resource" path="res://data/moves/polucion.tres" id="2_boaji"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x4jxx"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="3_0oq48"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_butc2"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="4_3i4te"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_nip23"]
+[ext_resource type="Resource" path="res://data/moves/lanzarrocas.tres" id="5_82w0s"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_jvmm0"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="6_aliay"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="7_f0e3h"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="8_fs4v2"]
+[ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="9_6fpn8"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_c8ctc"]
+
+[sub_resource type="Resource" id="Resource_05j1m"]
+script = ExtResource("1_fubu0")
+move = ExtResource("2_boaji")
+
+[sub_resource type="Resource" id="Resource_135mx"]
+script = ExtResource("1_fubu0")
+move = ExtResource("3_0oq48")
+
+[sub_resource type="Resource" id="Resource_t67up"]
+script = ExtResource("1_fubu0")
+level = 8
+move = ExtResource("4_3i4te")
+
+[sub_resource type="Resource" id="Resource_k8amk"]
+script = ExtResource("1_fubu0")
+level = 15
+move = ExtResource("5_82w0s")
+
+[sub_resource type="Resource" id="Resource_h1xe5"]
+script = ExtResource("1_fubu0")
+level = 22
+move = ExtResource("6_aliay")
+
+[sub_resource type="Resource" id="Resource_xhd1r"]
+script = ExtResource("1_fubu0")
+level = 29
+move = ExtResource("7_f0e3h")
+
+[sub_resource type="Resource" id="Resource_t414w"]
+script = ExtResource("1_fubu0")
+level = 36
+move = ExtResource("8_fs4v2")
+
+[sub_resource type="Resource" id="Resource_mtxl2"]
+script = ExtResource("1_fubu0")
+level = 43
+move = ExtResource("9_6fpn8")
+
+[sub_resource type="Resource" id="Resource_m2uik"]
+script = ExtResource("1_fubu0")
+level = 50
+move = ExtResource("10_c8ctc")
+
+[resource]
+script = ExtResource("3_butc2")
+id = "slugma"
+display_name = "Slugma"
+dex = 218
+types = Array[ExtResource("4_nip23")]([ExtResource("5_jvmm0")])
+learnset = Array[ExtResource("1_fubu0")]([SubResource("Resource_05j1m"), SubResource("Resource_135mx"), SubResource("Resource_t67up"), SubResource("Resource_k8amk"), SubResource("Resource_h1xe5"), SubResource("Resource_xhd1r"), SubResource("Resource_t414w"), SubResource("Resource_mtxl2"), SubResource("Resource_m2uik")])
+genus = "Pokémon Lava"
+pokedex_entry = "Por el sistema circulatorio de Slugma corre magma líquido. Si este Pokémon se enfriara, el magma perdería el calor y se solidificaría, por lo que se resquebrajaría por completo, perdería algunos trozos y reduciría su tamaño."
+height_m = 0.7
+weight_kg = 35.0
+base_hp = 40
+base_attack = 40
+base_defense = 40
+base_sp_attack = 70
+base_sp_defense = 40
+base_speed = 20
+base_experience = 50
+capture_rate = 190

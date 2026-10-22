@@ -1,0 +1,101 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_m2hxp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_c6u42"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_duwod"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_px85u"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_q2k2y"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_x4y0w"]
+[ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="4_ylqe3"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_0n2uq"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_l0dku"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="6_8fuw5"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="6_si4ed"]
+[ext_resource type="Resource" path="res://data/moves/bola_hielo.tres" id="7_r8jea"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="8_ba8oo"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="9_07c4b"]
+[ext_resource type="Resource" path="res://data/moves/granizo.tres" id="10_thb3t"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="11_co74q"]
+[ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="12_u351p"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="13_hpv6r"]
+[ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="14_lgede"]
+
+[sub_resource type="Resource" id="Resource_si5tp"]
+script = ExtResource("1_m2hxp")
+move = ExtResource("2_duwod")
+
+[sub_resource type="Resource" id="Resource_pe1hb"]
+script = ExtResource("1_m2hxp")
+move = ExtResource("3_px85u")
+
+[sub_resource type="Resource" id="Resource_r73uw"]
+script = ExtResource("1_m2hxp")
+move = ExtResource("4_ylqe3")
+
+[sub_resource type="Resource" id="Resource_nmlmb"]
+script = ExtResource("1_m2hxp")
+move = ExtResource("5_0n2uq")
+
+[sub_resource type="Resource" id="Resource_72afg"]
+script = ExtResource("1_m2hxp")
+level = 7
+move = ExtResource("6_8fuw5")
+
+[sub_resource type="Resource" id="Resource_u1gjd"]
+script = ExtResource("1_m2hxp")
+level = 13
+move = ExtResource("7_r8jea")
+
+[sub_resource type="Resource" id="Resource_nrlyd"]
+script = ExtResource("1_m2hxp")
+level = 19
+move = ExtResource("8_ba8oo")
+
+[sub_resource type="Resource" id="Resource_5iykb"]
+script = ExtResource("1_m2hxp")
+level = 25
+move = ExtResource("9_07c4b")
+
+[sub_resource type="Resource" id="Resource_tlsbx"]
+script = ExtResource("1_m2hxp")
+level = 31
+move = ExtResource("10_thb3t")
+
+[sub_resource type="Resource" id="Resource_mmal0"]
+script = ExtResource("1_m2hxp")
+level = 37
+move = ExtResource("11_co74q")
+
+[sub_resource type="Resource" id="Resource_gmaxl"]
+script = ExtResource("1_m2hxp")
+level = 37
+move = ExtResource("12_u351p")
+
+[sub_resource type="Resource" id="Resource_yehdn"]
+script = ExtResource("1_m2hxp")
+level = 43
+move = ExtResource("13_hpv6r")
+
+[sub_resource type="Resource" id="Resource_6dopt"]
+script = ExtResource("1_m2hxp")
+level = 49
+move = ExtResource("14_lgede")
+
+[resource]
+script = ExtResource("3_q2k2y")
+id = "spheal"
+display_name = "Spheal"
+dex = 363
+types = Array[ExtResource("4_x4y0w")]([ExtResource("5_l0dku"), ExtResource("6_si4ed")])
+learnset = Array[ExtResource("1_m2hxp")]([SubResource("Resource_si5tp"), SubResource("Resource_pe1hb"), SubResource("Resource_r73uw"), SubResource("Resource_nmlmb"), SubResource("Resource_72afg"), SubResource("Resource_u1gjd"), SubResource("Resource_nrlyd"), SubResource("Resource_5iykb"), SubResource("Resource_tlsbx"), SubResource("Resource_mmal0"), SubResource("Resource_gmaxl"), SubResource("Resource_yehdn"), SubResource("Resource_6dopt")])
+genus = "Pokémon Aplauso"
+pokedex_entry = "Spheal se desplaza por el suelo más rápido rodando que caminando. Cuando come con otros de su especie, todos se ponen a aplaudir para expresar su alegría. Por eso, a veces son algo escandalosos."
+height_m = 0.8
+weight_kg = 39.5
+base_hp = 70
+base_attack = 40
+base_sp_attack = 55
+base_speed = 25
+base_experience = 58
+growth_rate = "medium-slow"
+capture_rate = 255

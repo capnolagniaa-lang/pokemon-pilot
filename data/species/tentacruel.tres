@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_16bkx"]
+[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="2_67sdk"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_me726"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_3d03s"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="3_k18q3"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="4_gvg6d"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_um0ge"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_dfqhi"]
+[ext_resource type="Resource" path="res://data/moves/acido.tres" id="5_hqs1o"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="6_du5xj"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_ypaui"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="7_t4mjv"]
+[ext_resource type="Resource" path="res://data/moves/barrera.tres" id="8_pjjcq"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_pan0b"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_rfj8o"]
+
+[sub_resource type="Resource" id="Resource_3idcm"]
+script = ExtResource("1_16bkx")
+move = ExtResource("2_67sdk")
+
+[sub_resource type="Resource" id="Resource_t2d1x"]
+script = ExtResource("1_16bkx")
+move = ExtResource("3_k18q3")
+
+[sub_resource type="Resource" id="Resource_rek4p"]
+script = ExtResource("1_16bkx")
+move = ExtResource("4_gvg6d")
+
+[sub_resource type="Resource" id="Resource_dl3j6"]
+script = ExtResource("1_16bkx")
+level = 19
+move = ExtResource("5_hqs1o")
+
+[sub_resource type="Resource" id="Resource_uxiix"]
+script = ExtResource("1_16bkx")
+level = 25
+move = ExtResource("6_du5xj")
+
+[sub_resource type="Resource" id="Resource_ouo17"]
+script = ExtResource("1_16bkx")
+level = 30
+move = ExtResource("7_t4mjv")
+
+[sub_resource type="Resource" id="Resource_ouar5"]
+script = ExtResource("1_16bkx")
+level = 38
+move = ExtResource("8_pjjcq")
+
+[sub_resource type="Resource" id="Resource_bfqvk"]
+script = ExtResource("1_16bkx")
+level = 47
+move = ExtResource("9_pan0b")
+
+[sub_resource type="Resource" id="Resource_xof46"]
+script = ExtResource("1_16bkx")
+level = 55
+move = ExtResource("10_rfj8o")
+
+[resource]
+script = ExtResource("3_3d03s")
+id = "tentacruel"
+display_name = "Tentacruel"
+dex = 73
+types = Array[ExtResource("4_um0ge")]([ExtResource("5_dfqhi"), ExtResource("6_ypaui")])
+learnset = Array[ExtResource("1_16bkx")]([SubResource("Resource_3idcm"), SubResource("Resource_t2d1x"), SubResource("Resource_rek4p"), SubResource("Resource_dl3j6"), SubResource("Resource_uxiix"), SubResource("Resource_ouo17"), SubResource("Resource_ouar5"), SubResource("Resource_bfqvk"), SubResource("Resource_xof46")])
+genus = "Pokémon Medusa"
+pokedex_entry = "Tentacruel tiene unas enormes esferas rojas en la cabeza, que brillan antes de lanzar una descarga ultrasónica a lo que le rodea. Este estallido crea unas olas tremendas a su alrededor."
+height_m = 1.6
+weight_kg = 55.0
+base_hp = 80
+base_attack = 70
+base_defense = 65
+base_sp_attack = 80
+base_sp_defense = 120
+base_speed = 100
+base_experience = 180
+growth_rate = "slow"
+capture_rate = 60

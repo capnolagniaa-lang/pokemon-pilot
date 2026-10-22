@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_taqgf"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="2_5500e"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pjn8n"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="3_1xcpj"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_2j6xd"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_5yl8p"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_t0r2j"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_3yf8n"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="5_qakiv"]
+[ext_resource type="Resource" path="res://data/moves/beso_dulce.tres" id="6_xjrdk"]
+
+[sub_resource type="Resource" id="Resource_4orsm"]
+script = ExtResource("1_taqgf")
+move = ExtResource("2_5500e")
+
+[sub_resource type="Resource" id="Resource_ahyuc"]
+script = ExtResource("1_taqgf")
+move = ExtResource("3_1xcpj")
+
+[sub_resource type="Resource" id="Resource_jllsv"]
+script = ExtResource("1_taqgf")
+level = 6
+move = ExtResource("4_t0r2j")
+
+[sub_resource type="Resource" id="Resource_yerc5"]
+script = ExtResource("1_taqgf")
+level = 8
+move = ExtResource("5_qakiv")
+
+[sub_resource type="Resource" id="Resource_gpaj8"]
+script = ExtResource("1_taqgf")
+level = 11
+move = ExtResource("6_xjrdk")
+
+[resource]
+script = ExtResource("3_2j6xd")
+id = "pichu"
+display_name = "Pichu"
+dex = 172
+types = Array[ExtResource("4_5yl8p")]([ExtResource("5_3yf8n")])
+learnset = Array[ExtResource("1_taqgf")]([SubResource("Resource_4orsm"), SubResource("Resource_ahyuc"), SubResource("Resource_jllsv"), SubResource("Resource_yerc5"), SubResource("Resource_gpaj8")])
+genus = "Pokémon Ratoncito"
+pokedex_entry = "A Pichu le resulta más fácil cargarse de electricidad en días de nubarrones o cuando sopla un aire muy seco. Es posible oír la electricidad estática que emana de este Pokémon."
+height_m = 0.3
+weight_kg = 2.0
+base_hp = 20
+base_attack = 40
+base_defense = 15
+base_sp_attack = 35
+base_sp_defense = 35
+base_speed = 60
+base_experience = 41
+capture_rate = 190

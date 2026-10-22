@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d61oy"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_w622r"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_yrdo6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kfkqx"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_qjoxq"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="4_f70rf"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fe55y"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_dhiqq"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="5_md580"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="6_fq02q"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_t2y4y"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="7_005gq"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="8_4vfad"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="9_5devk"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="10_80u6o"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_wmaki"]
+
+[sub_resource type="Resource" id="Resource_s6bfv"]
+script = ExtResource("1_d61oy")
+move = ExtResource("2_yrdo6")
+
+[sub_resource type="Resource" id="Resource_5iiek"]
+script = ExtResource("1_d61oy")
+move = ExtResource("3_qjoxq")
+
+[sub_resource type="Resource" id="Resource_dfdtu"]
+script = ExtResource("1_d61oy")
+level = 7
+move = ExtResource("4_f70rf")
+
+[sub_resource type="Resource" id="Resource_ixf3q"]
+script = ExtResource("1_d61oy")
+level = 13
+move = ExtResource("5_md580")
+
+[sub_resource type="Resource" id="Resource_mqnyp"]
+script = ExtResource("1_d61oy")
+level = 19
+move = ExtResource("6_fq02q")
+
+[sub_resource type="Resource" id="Resource_425gc"]
+script = ExtResource("1_d61oy")
+level = 25
+move = ExtResource("7_005gq")
+
+[sub_resource type="Resource" id="Resource_gksb1"]
+script = ExtResource("1_d61oy")
+level = 31
+move = ExtResource("8_4vfad")
+
+[sub_resource type="Resource" id="Resource_7g7hu"]
+script = ExtResource("1_d61oy")
+level = 37
+move = ExtResource("9_5devk")
+
+[sub_resource type="Resource" id="Resource_8vflj"]
+script = ExtResource("1_d61oy")
+level = 43
+move = ExtResource("10_80u6o")
+
+[sub_resource type="Resource" id="Resource_ustsx"]
+script = ExtResource("1_d61oy")
+level = 49
+move = ExtResource("11_wmaki")
+
+[resource]
+script = ExtResource("3_kfkqx")
+id = "girafarig"
+display_name = "Girafarig"
+dex = 203
+types = Array[ExtResource("4_fe55y")]([ExtResource("5_dhiqq"), ExtResource("6_t2y4y")])
+learnset = Array[ExtResource("1_d61oy")]([SubResource("Resource_s6bfv"), SubResource("Resource_5iiek"), SubResource("Resource_dfdtu"), SubResource("Resource_ixf3q"), SubResource("Resource_mqnyp"), SubResource("Resource_425gc"), SubResource("Resource_gksb1"), SubResource("Resource_7g7hu"), SubResource("Resource_8vflj"), SubResource("Resource_ustsx")])
+genus = "Pokémon Gran Cuello"
+pokedex_entry = "Girafarig tiene un cerebro también en la cabeza de la cola que reacciona atacando ante olores y sonidos. Cuando alguien se acerca a este Pokémon por la espalda, puede provocar que la cabeza trasera se abalance y lo muerda."
+height_m = 1.5
+weight_kg = 41.5
+base_hp = 70
+base_attack = 80
+base_defense = 65
+base_sp_attack = 90
+base_sp_defense = 65
+base_speed = 85
+base_experience = 159
+capture_rate = 60

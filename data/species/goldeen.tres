@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mko5e"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="2_5pnpu"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_avcak"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="3_8l3fm"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_eppvy"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="4_7557t"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mgws1"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="5_ayumo"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_v7an6"]
+[ext_resource type="Resource" path="res://data/moves/cornada.tres" id="6_730hc"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="7_gxj21"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="8_2lndn"]
+[ext_resource type="Resource" path="res://data/moves/cascada.tres" id="9_nthx2"]
+[ext_resource type="Resource" path="res://data/moves/perforador.tres" id="10_k3026"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_wcwsi"]
+[ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="12_8sl41"]
+
+[sub_resource type="Resource" id="Resource_nh1yx"]
+script = ExtResource("1_mko5e")
+move = ExtResource("2_5pnpu")
+
+[sub_resource type="Resource" id="Resource_e1b83"]
+script = ExtResource("1_mko5e")
+move = ExtResource("3_8l3fm")
+
+[sub_resource type="Resource" id="Resource_xunk1"]
+script = ExtResource("1_mko5e")
+move = ExtResource("4_7557t")
+
+[sub_resource type="Resource" id="Resource_wrmq3"]
+script = ExtResource("1_mko5e")
+level = 10
+move = ExtResource("5_ayumo")
+
+[sub_resource type="Resource" id="Resource_0wxu5"]
+script = ExtResource("1_mko5e")
+level = 15
+move = ExtResource("6_730hc")
+
+[sub_resource type="Resource" id="Resource_rpfd7"]
+script = ExtResource("1_mko5e")
+level = 24
+move = ExtResource("7_gxj21")
+
+[sub_resource type="Resource" id="Resource_1g172"]
+script = ExtResource("1_mko5e")
+level = 29
+move = ExtResource("8_2lndn")
+
+[sub_resource type="Resource" id="Resource_85aa8"]
+script = ExtResource("1_mko5e")
+level = 38
+move = ExtResource("9_nthx2")
+
+[sub_resource type="Resource" id="Resource_1gt1e"]
+script = ExtResource("1_mko5e")
+level = 43
+move = ExtResource("10_k3026")
+
+[sub_resource type="Resource" id="Resource_oxisi"]
+script = ExtResource("1_mko5e")
+level = 52
+move = ExtResource("11_wcwsi")
+
+[sub_resource type="Resource" id="Resource_em3pm"]
+script = ExtResource("1_mko5e")
+level = 57
+move = ExtResource("12_8sl41")
+
+[resource]
+script = ExtResource("3_eppvy")
+id = "goldeen"
+display_name = "Goldeen"
+dex = 118
+types = Array[ExtResource("4_mgws1")]([ExtResource("5_v7an6")])
+learnset = Array[ExtResource("1_mko5e")]([SubResource("Resource_nh1yx"), SubResource("Resource_e1b83"), SubResource("Resource_xunk1"), SubResource("Resource_wrmq3"), SubResource("Resource_0wxu5"), SubResource("Resource_rpfd7"), SubResource("Resource_1g172"), SubResource("Resource_85aa8"), SubResource("Resource_1gt1e"), SubResource("Resource_oxisi"), SubResource("Resource_em3pm")])
+genus = "Pokémon Pez Color"
+pokedex_entry = "Goldeen es un bello Pokémon que mueve con elegancia las aletas en el agua. Con todo, no hay que bajar la guardia, en cualquier momento puede embestir con el cuerno."
+height_m = 0.6
+weight_kg = 15.0
+base_hp = 45
+base_attack = 67
+base_defense = 60
+base_sp_attack = 35
+base_speed = 63
+base_experience = 64
+capture_rate = 225

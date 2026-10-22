@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_lgkmf"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="2_5vy4t"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_upadt"]
+[ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="3_o7h28"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_vlrp7"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="4_380ef"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_pnovc"]
+[ext_resource type="Resource" path="res://data/moves/cola_veneno.tres" id="5_dxnwh"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_xqhvg"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="6_86tom"]
+[ext_resource type="Resource" path="res://data/moves/deslumbrar.tres" id="7_35uwc"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="8_rms4j"]
+[ext_resource type="Resource" path="res://data/moves/colmillo_veneno.tres" id="9_oqlin"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_sf03i"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="11_ko573"]
+
+[sub_resource type="Resource" id="Resource_68q3a"]
+script = ExtResource("1_lgkmf")
+move = ExtResource("2_5vy4t")
+
+[sub_resource type="Resource" id="Resource_1rm02"]
+script = ExtResource("1_lgkmf")
+level = 7
+move = ExtResource("3_o7h28")
+
+[sub_resource type="Resource" id="Resource_fxnio"]
+script = ExtResource("1_lgkmf")
+level = 10
+move = ExtResource("4_380ef")
+
+[sub_resource type="Resource" id="Resource_2mv74"]
+script = ExtResource("1_lgkmf")
+level = 16
+move = ExtResource("5_dxnwh")
+
+[sub_resource type="Resource" id="Resource_vs58m"]
+script = ExtResource("1_lgkmf")
+level = 19
+move = ExtResource("6_86tom")
+
+[sub_resource type="Resource" id="Resource_ux0fu"]
+script = ExtResource("1_lgkmf")
+level = 25
+move = ExtResource("7_35uwc")
+
+[sub_resource type="Resource" id="Resource_ry4qc"]
+script = ExtResource("1_lgkmf")
+level = 28
+move = ExtResource("8_rms4j")
+
+[sub_resource type="Resource" id="Resource_qgwvt"]
+script = ExtResource("1_lgkmf")
+level = 34
+move = ExtResource("9_oqlin")
+
+[sub_resource type="Resource" id="Resource_w8av1"]
+script = ExtResource("1_lgkmf")
+level = 37
+move = ExtResource("10_sf03i")
+
+[sub_resource type="Resource" id="Resource_u3o6k"]
+script = ExtResource("1_lgkmf")
+level = 43
+move = ExtResource("11_ko573")
+
+[resource]
+script = ExtResource("3_vlrp7")
+id = "seviper"
+display_name = "Seviper"
+dex = 336
+types = Array[ExtResource("4_pnovc")]([ExtResource("5_xqhvg")])
+learnset = Array[ExtResource("1_lgkmf")]([SubResource("Resource_68q3a"), SubResource("Resource_1rm02"), SubResource("Resource_fxnio"), SubResource("Resource_2mv74"), SubResource("Resource_vs58m"), SubResource("Resource_ux0fu"), SubResource("Resource_ry4qc"), SubResource("Resource_qgwvt"), SubResource("Resource_w8av1"), SubResource("Resource_u3o6k")])
+genus = "Pokémon Colmillos"
+pokedex_entry = "Seviper lleva años de gran enemistad con Zangoose. Las cicatrices que tiene por todo el cuerpo dan buena muestra de los encarnizados combates en los que se han enfrentado. Seviper ataca usando su cola con forma de espada."
+height_m = 2.7
+weight_kg = 52.5
+base_hp = 73
+base_attack = 100
+base_defense = 60
+base_sp_attack = 100
+base_sp_defense = 60
+base_speed = 65
+base_experience = 160
+growth_rate = "fast-then-very-slow"
+capture_rate = 90

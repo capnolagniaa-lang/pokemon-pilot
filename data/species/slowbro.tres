@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_gfs18"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cx6g5"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="2_gr66u"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_jleu1"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_uclm4"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_rk7n0"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sqek2"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="5_2owbi"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_3o76f"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="6_0574f"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_gwxyq"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="7_op2ll"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="8_h7alp"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="9_glwia"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_uix7o"]
+[ext_resource type="Resource" path="res://data/moves/refugio.tres" id="11_gadmu"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="12_xrg6g"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="13_svhhd"]
+
+[sub_resource type="Resource" id="Resource_8wn88"]
+script = ExtResource("1_gfs18")
+move = ExtResource("2_gr66u")
+
+[sub_resource type="Resource" id="Resource_hnrnm"]
+script = ExtResource("1_gfs18")
+move = ExtResource("3_jleu1")
+
+[sub_resource type="Resource" id="Resource_aklpn"]
+script = ExtResource("1_gfs18")
+move = ExtResource("4_rk7n0")
+
+[sub_resource type="Resource" id="Resource_cqur5"]
+script = ExtResource("1_gfs18")
+move = ExtResource("5_2owbi")
+
+[sub_resource type="Resource" id="Resource_qpwgv"]
+script = ExtResource("1_gfs18")
+level = 13
+move = ExtResource("6_0574f")
+
+[sub_resource type="Resource" id="Resource_213h1"]
+script = ExtResource("1_gfs18")
+level = 17
+move = ExtResource("7_op2ll")
+
+[sub_resource type="Resource" id="Resource_j86f2"]
+script = ExtResource("1_gfs18")
+level = 24
+move = ExtResource("8_h7alp")
+
+[sub_resource type="Resource" id="Resource_i7j54"]
+script = ExtResource("1_gfs18")
+level = 29
+move = ExtResource("9_glwia")
+
+[sub_resource type="Resource" id="Resource_t0gtt"]
+script = ExtResource("1_gfs18")
+level = 36
+move = ExtResource("10_uix7o")
+
+[sub_resource type="Resource" id="Resource_ouxc4"]
+script = ExtResource("1_gfs18")
+level = 37
+move = ExtResource("11_gadmu")
+
+[sub_resource type="Resource" id="Resource_24v6o"]
+script = ExtResource("1_gfs18")
+level = 44
+move = ExtResource("12_xrg6g")
+
+[sub_resource type="Resource" id="Resource_x72l4"]
+script = ExtResource("1_gfs18")
+level = 55
+move = ExtResource("13_svhhd")
+
+[resource]
+script = ExtResource("3_uclm4")
+id = "slowbro"
+display_name = "Slowbro"
+dex = 80
+types = Array[ExtResource("4_sqek2")]([ExtResource("5_3o76f"), ExtResource("6_gwxyq")])
+learnset = Array[ExtResource("1_gfs18")]([SubResource("Resource_8wn88"), SubResource("Resource_hnrnm"), SubResource("Resource_aklpn"), SubResource("Resource_cqur5"), SubResource("Resource_qpwgv"), SubResource("Resource_213h1"), SubResource("Resource_j86f2"), SubResource("Resource_i7j54"), SubResource("Resource_t0gtt"), SubResource("Resource_ouxc4"), SubResource("Resource_24v6o"), SubResource("Resource_x72l4")])
+genus = "Pokémon Ermitaño"
+pokedex_entry = "Slowbro lleva en la cola un Shellder enganchado, sujeto por los dientes. Como Slowbro no puede usar la cola para pescar, se mete en el agua de mala gana en busca de sus presas."
+height_m = 1.6
+weight_kg = 78.5
+base_hp = 95
+base_attack = 75
+base_defense = 110
+base_sp_attack = 100
+base_sp_defense = 80
+base_speed = 30
+base_experience = 172
+capture_rate = 75

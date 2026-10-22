@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_bedjm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_fgoo1"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_uhsc3"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="3_sits7"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_widxq"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_kntlb"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_uy1cg"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_adxkd"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_q1tq5"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_24epv"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="6_f4bvw"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="7_h1g2f"]
+[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="8_cfffr"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="9_vihbu"]
+[ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="10_bol2e"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="11_br81v"]
+
+[sub_resource type="Resource" id="Resource_ifs78"]
+script = ExtResource("1_bedjm")
+move = ExtResource("2_uhsc3")
+
+[sub_resource type="Resource" id="Resource_l1hx5"]
+script = ExtResource("1_bedjm")
+move = ExtResource("3_sits7")
+
+[sub_resource type="Resource" id="Resource_ryx8i"]
+script = ExtResource("1_bedjm")
+move = ExtResource("4_uy1cg")
+
+[sub_resource type="Resource" id="Resource_wn1ql"]
+script = ExtResource("1_bedjm")
+move = ExtResource("5_adxkd")
+
+[sub_resource type="Resource" id="Resource_6co7h"]
+script = ExtResource("1_bedjm")
+level = 13
+move = ExtResource("6_f4bvw")
+
+[sub_resource type="Resource" id="Resource_nghs2"]
+script = ExtResource("1_bedjm")
+level = 15
+move = ExtResource("7_h1g2f")
+
+[sub_resource type="Resource" id="Resource_kp1ff"]
+script = ExtResource("1_bedjm")
+level = 17
+move = ExtResource("8_cfffr")
+
+[sub_resource type="Resource" id="Resource_oppo0"]
+script = ExtResource("1_bedjm")
+level = 22
+move = ExtResource("9_vihbu")
+
+[sub_resource type="Resource" id="Resource_pyx26"]
+script = ExtResource("1_bedjm")
+level = 29
+move = ExtResource("10_bol2e")
+
+[sub_resource type="Resource" id="Resource_kc3jy"]
+script = ExtResource("1_bedjm")
+level = 36
+move = ExtResource("11_br81v")
+
+[resource]
+script = ExtResource("3_widxq")
+id = "skiploom"
+display_name = "Skiploom"
+dex = 188
+types = Array[ExtResource("4_kntlb")]([ExtResource("5_q1tq5"), ExtResource("6_24epv")])
+learnset = Array[ExtResource("1_bedjm")]([SubResource("Resource_ifs78"), SubResource("Resource_l1hx5"), SubResource("Resource_ryx8i"), SubResource("Resource_wn1ql"), SubResource("Resource_6co7h"), SubResource("Resource_nghs2"), SubResource("Resource_kp1ff"), SubResource("Resource_oppo0"), SubResource("Resource_pyx26"), SubResource("Resource_kc3jy")])
+genus = "Pokémon Algadón"
+pokedex_entry = "Skiploom florece cuando la temperatura llega a 18 °C. La apertura de los pétalos varía según la temperatura que haga. Por este motivo, la gente lo usa a veces a modo de termómetro."
+height_m = 0.6
+weight_kg = 1.0
+base_hp = 55
+base_attack = 45
+base_sp_attack = 45
+base_sp_defense = 65
+base_speed = 80
+base_experience = 119
+growth_rate = "medium-slow"
+capture_rate = 120

@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_eqwcl"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_04coc"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_b5tes"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_6ax0q"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_iutwx"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_embbs"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="4_qirm4"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_5i0uf"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="5_xc8qn"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="6_eddlf"]
+[ext_resource type="Resource" path="res://data/moves/rueda_fuego.tres" id="7_fk34w"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="8_bppxf"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_tdn77"]
+
+[sub_resource type="Resource" id="Resource_0ks0s"]
+script = ExtResource("1_eqwcl")
+move = ExtResource("2_b5tes")
+
+[sub_resource type="Resource" id="Resource_n7seq"]
+script = ExtResource("1_eqwcl")
+move = ExtResource("3_iutwx")
+
+[sub_resource type="Resource" id="Resource_71v2d"]
+script = ExtResource("1_eqwcl")
+level = 6
+move = ExtResource("4_qirm4")
+
+[sub_resource type="Resource" id="Resource_5r2oq"]
+script = ExtResource("1_eqwcl")
+level = 12
+move = ExtResource("5_xc8qn")
+
+[sub_resource type="Resource" id="Resource_6tyge"]
+script = ExtResource("1_eqwcl")
+level = 19
+move = ExtResource("6_eddlf")
+
+[sub_resource type="Resource" id="Resource_o07dx"]
+script = ExtResource("1_eqwcl")
+level = 27
+move = ExtResource("7_fk34w")
+
+[sub_resource type="Resource" id="Resource_amxtb"]
+script = ExtResource("1_eqwcl")
+level = 36
+move = ExtResource("8_bppxf")
+
+[sub_resource type="Resource" id="Resource_bke3x"]
+script = ExtResource("1_eqwcl")
+level = 46
+move = ExtResource("9_tdn77")
+
+[resource]
+script = ExtResource("3_6ax0q")
+id = "cyndaquil"
+display_name = "Cyndaquil"
+dex = 155
+types = Array[ExtResource("4_embbs")]([ExtResource("5_5i0uf")])
+learnset = Array[ExtResource("1_eqwcl")]([SubResource("Resource_0ks0s"), SubResource("Resource_n7seq"), SubResource("Resource_71v2d"), SubResource("Resource_5r2oq"), SubResource("Resource_6tyge"), SubResource("Resource_o07dx"), SubResource("Resource_amxtb"), SubResource("Resource_bke3x")])
+genus = "Pokémon Ratón Fuego"
+pokedex_entry = "Cyndaquil se protege soltando llamas por el lomo. Cuando está enfadado, las llamas son fieras, pero, si está cansado, solo consigue echar algunas chispas que no llegan a cuajar en una completa combustión."
+height_m = 0.5
+weight_kg = 7.9
+base_hp = 39
+base_attack = 52
+base_defense = 43
+base_sp_attack = 60
+base_speed = 65
+base_experience = 62
+growth_rate = "medium-slow"

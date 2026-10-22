@@ -12,30 +12,30 @@
 [ext_resource type="Resource" path="res://data/moves/rueda_fuego.tres" id="7_rd4vk"]
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_m7sye"]
 
-[sub_resource type="Resource" id="Resource_iyuqs"]
+[sub_resource type="Resource" id="Resource_ubeh2"]
 script = ExtResource("1_ubeh2")
 move = ExtResource("2_5foyf")
 
-[sub_resource type="Resource" id="Resource_m7sye"]
+[sub_resource type="Resource" id="Resource_uots2"]
 script = ExtResource("1_ubeh2")
 move = ExtResource("3_45p15")
 
-[sub_resource type="Resource" id="Resource_2tqe5"]
+[sub_resource type="Resource" id="Resource_rd4vk"]
 script = ExtResource("1_ubeh2")
 level = 3
 move = ExtResource("4_ubeh2")
 
-[sub_resource type="Resource" id="Resource_tbwst"]
+[sub_resource type="Resource" id="Resource_iyuqs"]
 script = ExtResource("1_ubeh2")
 level = 5
 move = ExtResource("5_uots2")
 
-[sub_resource type="Resource" id="Resource_ydjuq"]
+[sub_resource type="Resource" id="Resource_m7sye"]
 script = ExtResource("1_ubeh2")
 level = 25
 move = ExtResource("6_uots2")
 
-[sub_resource type="Resource" id="Resource_axr5o"]
+[sub_resource type="Resource" id="Resource_2tqe5"]
 script = ExtResource("1_ubeh2")
 level = 31
 move = ExtResource("7_rd4vk")
@@ -47,7 +47,11 @@ display_name = "Growlithe"
 dex = 58
 types = Array[ExtResource("7_iyuqs")]([ExtResource("8_m7sye")])
 moves = Array[ExtResource("1_80pa4")]([ExtResource("2_5foyf"), ExtResource("3_45p15"), ExtResource("4_ubeh2"), ExtResource("5_uots2")])
-learnset = Array[ExtResource("1_ubeh2")]([SubResource("Resource_iyuqs"), SubResource("Resource_m7sye"), SubResource("Resource_2tqe5"), SubResource("Resource_tbwst"), SubResource("Resource_ydjuq"), SubResource("Resource_axr5o")])
+learnset = Array[ExtResource("1_ubeh2")]([SubResource("Resource_ubeh2"), SubResource("Resource_uots2"), SubResource("Resource_rd4vk"), SubResource("Resource_iyuqs"), SubResource("Resource_m7sye"), SubResource("Resource_2tqe5")])
+genus = "Pokémon Perrito"
+pokedex_entry = "Growlithe tiene un sentido del olfato excepcional y una memoria sensitiva tremenda, nunca olvida una esencia. Este Pokémon saca provecho de este don para identificar las sensaciones que tienen otros seres vivos."
+height_m = 0.7
+weight_kg = 19.0
 base_hp = 55
 base_attack = 70
 base_defense = 45

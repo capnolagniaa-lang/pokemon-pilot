@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_lbrug"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2gt6j"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_ydyw4"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="3_mgl3l"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_uab7i"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_a4sj1"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_nhftr"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_g6tn6"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_h75np"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="6_vx7p3"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="7_66iqh"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_u735w"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_wd8if"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_amh51"]
+
+[sub_resource type="Resource" id="Resource_ap7yc"]
+script = ExtResource("1_lbrug")
+move = ExtResource("2_ydyw4")
+
+[sub_resource type="Resource" id="Resource_v1dsk"]
+script = ExtResource("1_lbrug")
+move = ExtResource("3_mgl3l")
+
+[sub_resource type="Resource" id="Resource_f8rv0"]
+script = ExtResource("1_lbrug")
+move = ExtResource("4_nhftr")
+
+[sub_resource type="Resource" id="Resource_sq5xn"]
+script = ExtResource("1_lbrug")
+move = ExtResource("5_h75np")
+
+[sub_resource type="Resource" id="Resource_di1tf"]
+script = ExtResource("1_lbrug")
+level = 21
+move = ExtResource("6_vx7p3")
+
+[sub_resource type="Resource" id="Resource_8ds8m"]
+script = ExtResource("1_lbrug")
+level = 28
+move = ExtResource("7_66iqh")
+
+[sub_resource type="Resource" id="Resource_t2k4n"]
+script = ExtResource("1_lbrug")
+level = 38
+move = ExtResource("8_u735w")
+
+[sub_resource type="Resource" id="Resource_kg6ww"]
+script = ExtResource("1_lbrug")
+level = 47
+move = ExtResource("9_wd8if")
+
+[sub_resource type="Resource" id="Resource_b20tp"]
+script = ExtResource("1_lbrug")
+level = 58
+move = ExtResource("10_amh51")
+
+[resource]
+script = ExtResource("3_uab7i")
+id = "feraligatr"
+display_name = "Feraligatr"
+dex = 160
+types = Array[ExtResource("4_a4sj1")]([ExtResource("5_g6tn6")])
+learnset = Array[ExtResource("1_lbrug")]([SubResource("Resource_ap7yc"), SubResource("Resource_v1dsk"), SubResource("Resource_f8rv0"), SubResource("Resource_sq5xn"), SubResource("Resource_di1tf"), SubResource("Resource_8ds8m"), SubResource("Resource_t2k4n"), SubResource("Resource_kg6ww"), SubResource("Resource_b20tp")])
+genus = "Pokémon Fauces"
+pokedex_entry = "Feraligatr intimida a sus oponentes abriendo las grandes fauces que tiene. En combate, golpea el suelo bruscamente con las gruesas y fuertes patas traseras que tiene para cargar contra su rival a una velocidad de vértigo."
+height_m = 2.3
+weight_kg = 88.8
+base_hp = 85
+base_attack = 105
+base_defense = 100
+base_sp_attack = 79
+base_sp_defense = 83
+base_speed = 78
+base_experience = 239
+growth_rate = "medium-slow"

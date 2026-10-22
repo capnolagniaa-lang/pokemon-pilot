@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1dvmu"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="2_4ejc1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_h21s5"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_h133i"]
+[ext_resource type="Resource" path="res://data/moves/latigo_cepa.tres" id="3_sb30v"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_7sc0i"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="4_acli6"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_gte5f"]
+[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="5_r28q1"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="6_abh6i"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_yxge3"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="7_rc3d3"]
+[ext_resource type="Resource" path="res://data/moves/acido.tres" id="8_xbbus"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="9_0le07"]
+[ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="10_t48ft"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="11_ujemn"]
+
+[sub_resource type="Resource" id="Resource_jynx0"]
+script = ExtResource("1_1dvmu")
+move = ExtResource("2_4ejc1")
+
+[sub_resource type="Resource" id="Resource_67iv3"]
+script = ExtResource("1_1dvmu")
+move = ExtResource("3_sb30v")
+
+[sub_resource type="Resource" id="Resource_2b23q"]
+script = ExtResource("1_1dvmu")
+move = ExtResource("4_acli6")
+
+[sub_resource type="Resource" id="Resource_q5xjs"]
+script = ExtResource("1_1dvmu")
+level = 15
+move = ExtResource("5_r28q1")
+
+[sub_resource type="Resource" id="Resource_l5max"]
+script = ExtResource("1_1dvmu")
+level = 17
+move = ExtResource("6_abh6i")
+
+[sub_resource type="Resource" id="Resource_ytv23"]
+script = ExtResource("1_1dvmu")
+level = 19
+move = ExtResource("7_rc3d3")
+
+[sub_resource type="Resource" id="Resource_yfaj1"]
+script = ExtResource("1_1dvmu")
+level = 24
+move = ExtResource("8_xbbus")
+
+[sub_resource type="Resource" id="Resource_pg2qw"]
+script = ExtResource("1_1dvmu")
+level = 33
+move = ExtResource("9_0le07")
+
+[sub_resource type="Resource" id="Resource_ran68"]
+script = ExtResource("1_1dvmu")
+level = 42
+move = ExtResource("10_t48ft")
+
+[sub_resource type="Resource" id="Resource_dsmu0"]
+script = ExtResource("1_1dvmu")
+level = 54
+move = ExtResource("11_ujemn")
+
+[resource]
+script = ExtResource("3_h133i")
+id = "weepinbell"
+display_name = "Weepinbell"
+dex = 70
+types = Array[ExtResource("4_7sc0i")]([ExtResource("5_gte5f"), ExtResource("6_yxge3")])
+learnset = Array[ExtResource("1_1dvmu")]([SubResource("Resource_jynx0"), SubResource("Resource_67iv3"), SubResource("Resource_2b23q"), SubResource("Resource_q5xjs"), SubResource("Resource_l5max"), SubResource("Resource_ytv23"), SubResource("Resource_yfaj1"), SubResource("Resource_pg2qw"), SubResource("Resource_ran68"), SubResource("Resource_dsmu0")])
+genus = "Pokémon Matamoscas"
+pokedex_entry = "Weepinbell tiene un gancho a modo de extremidad superior trasera, que usa por la noche para colgarse de una rama y echarse a dormir. Si se mueve mientras duerme, puede acabar en el suelo."
+height_m = 1.0
+weight_kg = 6.4
+base_hp = 65
+base_attack = 90
+base_sp_attack = 85
+base_sp_defense = 45
+base_speed = 55
+base_experience = 137
+growth_rate = "medium-slow"
+capture_rate = 120

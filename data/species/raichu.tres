@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8modj"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="2_mhpdw"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vcntj"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0wkmi"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="3_abn8t"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_53mw5"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="4_f6b18"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="5_kkkvq"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_mhpdw"]
+
+[sub_resource type="Resource" id="Resource_3mbkb"]
+script = ExtResource("1_8modj")
+move = ExtResource("2_mhpdw")
+
+[sub_resource type="Resource" id="Resource_cqjyd"]
+script = ExtResource("1_8modj")
+move = ExtResource("3_abn8t")
+
+[sub_resource type="Resource" id="Resource_kfyfa"]
+script = ExtResource("1_8modj")
+move = ExtResource("4_f6b18")
+
+[sub_resource type="Resource" id="Resource_lvki1"]
+script = ExtResource("1_8modj")
+move = ExtResource("5_kkkvq")
+
+[resource]
+script = ExtResource("3_0wkmi")
+id = "raichu"
+display_name = "Raichu"
+dex = 26
+types = Array[ExtResource("4_53mw5")]([ExtResource("5_mhpdw")])
+learnset = Array[ExtResource("1_8modj")]([SubResource("Resource_3mbkb"), SubResource("Resource_cqjyd"), SubResource("Resource_kfyfa"), SubResource("Resource_lvki1")])
+genus = "Pokémon Ratón"
+pokedex_entry = "Si las bolsas de los mofletes se le cargan demasiado, Raichu planta la cola en el suelo para liberar electricidad. Es común encontrar zonas chamuscadas cerca de la madriguera de este Pokémon."
+height_m = 0.8
+weight_kg = 30.0
+base_hp = 60
+base_attack = 90
+base_defense = 55
+base_sp_attack = 90
+base_sp_defense = 80
+base_speed = 110
+base_experience = 218
+capture_rate = 75

@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8bsr4"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="2_fo1wi"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_me4lx"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_4j0gi"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_85pc2"]
+[ext_resource type="Resource" path="res://data/moves/patada_baja.tres" id="4_b5vi6"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_p3cwt"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_2xgcv"]
+[ext_resource type="Resource" path="res://data/moves/golpe_karate.tres" id="5_xpidc"]
+[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="6_4l2b0"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="7_60u1f"]
+[ext_resource type="Resource" path="res://data/moves/desquite.tres" id="8_0bb0f"]
+[ext_resource type="Resource" path="res://data/moves/llave_vital.tres" id="9_cwtca"]
+[ext_resource type="Resource" path="res://data/moves/sumision.tres" id="10_yy0nf"]
+[ext_resource type="Resource" path="res://data/moves/tajo_cruzado.tres" id="11_yp7rd"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="12_l3nkk"]
+[ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="13_7v3mx"]
+
+[sub_resource type="Resource" id="Resource_cnfyh"]
+script = ExtResource("1_8bsr4")
+move = ExtResource("2_fo1wi")
+
+[sub_resource type="Resource" id="Resource_8l76s"]
+script = ExtResource("1_8bsr4")
+move = ExtResource("3_85pc2")
+
+[sub_resource type="Resource" id="Resource_55q0r"]
+script = ExtResource("1_8bsr4")
+move = ExtResource("4_b5vi6")
+
+[sub_resource type="Resource" id="Resource_io3j6"]
+script = ExtResource("1_8bsr4")
+level = 13
+move = ExtResource("5_xpidc")
+
+[sub_resource type="Resource" id="Resource_x31tg"]
+script = ExtResource("1_8bsr4")
+level = 19
+move = ExtResource("6_4l2b0")
+
+[sub_resource type="Resource" id="Resource_4ujb6"]
+script = ExtResource("1_8bsr4")
+level = 22
+move = ExtResource("7_60u1f")
+
+[sub_resource type="Resource" id="Resource_gkfp4"]
+script = ExtResource("1_8bsr4")
+level = 25
+move = ExtResource("8_0bb0f")
+
+[sub_resource type="Resource" id="Resource_gpgps"]
+script = ExtResource("1_8bsr4")
+level = 33
+move = ExtResource("9_cwtca")
+
+[sub_resource type="Resource" id="Resource_bwvmw"]
+script = ExtResource("1_8bsr4")
+level = 41
+move = ExtResource("10_yy0nf")
+
+[sub_resource type="Resource" id="Resource_w57nk"]
+script = ExtResource("1_8bsr4")
+level = 46
+move = ExtResource("11_yp7rd")
+
+[sub_resource type="Resource" id="Resource_x0oox"]
+script = ExtResource("1_8bsr4")
+level = 51
+move = ExtResource("12_l3nkk")
+
+[sub_resource type="Resource" id="Resource_iui2h"]
+script = ExtResource("1_8bsr4")
+level = 59
+move = ExtResource("13_7v3mx")
+
+[resource]
+script = ExtResource("3_4j0gi")
+id = "machoke"
+display_name = "Machoke"
+dex = 67
+types = Array[ExtResource("4_p3cwt")]([ExtResource("5_2xgcv")])
+learnset = Array[ExtResource("1_8bsr4")]([SubResource("Resource_cnfyh"), SubResource("Resource_8l76s"), SubResource("Resource_55q0r"), SubResource("Resource_io3j6"), SubResource("Resource_x31tg"), SubResource("Resource_4ujb6"), SubResource("Resource_gkfp4"), SubResource("Resource_gpgps"), SubResource("Resource_bwvmw"), SubResource("Resource_w57nk"), SubResource("Resource_x0oox"), SubResource("Resource_iui2h")])
+genus = "Pokémon Superpoder"
+pokedex_entry = "Los entrenados músculos de Machoke son tan fuertes como el acero. Este Pokémon es tan fuerte que puede levantar con un solo dedo a un luchador de sumo."
+height_m = 1.5
+weight_kg = 70.5
+base_hp = 80
+base_attack = 100
+base_defense = 70
+base_sp_defense = 60
+base_speed = 45
+base_experience = 142
+growth_rate = "medium-slow"
+capture_rate = 90

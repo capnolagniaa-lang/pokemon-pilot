@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l1a0w"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_0baln"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4c2qc"]
+[ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="3_dlbhy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kewln"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="4_lhcsa"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mpppq"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_8el1h"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="5_g3m2l"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="6_8s1te"]
+[ext_resource type="Resource" path="res://data/moves/puno_mareo.tres" id="7_rcjqw"]
+[ext_resource type="Resource" path="res://data/moves/danza_caos.tres" id="8_yptd8"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="9_djf3l"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_60kqb"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_n6qv2"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="12_qlixt"]
+
+[sub_resource type="Resource" id="Resource_as8uq"]
+script = ExtResource("1_l1a0w")
+move = ExtResource("2_0baln")
+
+[sub_resource type="Resource" id="Resource_qalbi"]
+script = ExtResource("1_l1a0w")
+level = 5
+move = ExtResource("3_dlbhy")
+
+[sub_resource type="Resource" id="Resource_qegvv"]
+script = ExtResource("1_l1a0w")
+level = 12
+move = ExtResource("4_lhcsa")
+
+[sub_resource type="Resource" id="Resource_fukww"]
+script = ExtResource("1_l1a0w")
+level = 16
+move = ExtResource("5_g3m2l")
+
+[sub_resource type="Resource" id="Resource_e3dj0"]
+script = ExtResource("1_l1a0w")
+level = 23
+move = ExtResource("6_8s1te")
+
+[sub_resource type="Resource" id="Resource_ouadp"]
+script = ExtResource("1_l1a0w")
+level = 27
+move = ExtResource("7_rcjqw")
+
+[sub_resource type="Resource" id="Resource_lt8d4"]
+script = ExtResource("1_l1a0w")
+level = 34
+move = ExtResource("8_yptd8")
+
+[sub_resource type="Resource" id="Resource_nrjad"]
+script = ExtResource("1_l1a0w")
+level = 38
+move = ExtResource("9_djf3l")
+
+[sub_resource type="Resource" id="Resource_lv6d1"]
+script = ExtResource("1_l1a0w")
+level = 45
+move = ExtResource("10_60kqb")
+
+[sub_resource type="Resource" id="Resource_rjep7"]
+script = ExtResource("1_l1a0w")
+level = 49
+move = ExtResource("11_n6qv2")
+
+[sub_resource type="Resource" id="Resource_o8ikg"]
+script = ExtResource("1_l1a0w")
+level = 56
+move = ExtResource("12_qlixt")
+
+[resource]
+script = ExtResource("3_kewln")
+id = "spinda"
+display_name = "Spinda"
+dex = 327
+types = Array[ExtResource("4_mpppq")]([ExtResource("5_8el1h")])
+learnset = Array[ExtResource("1_l1a0w")]([SubResource("Resource_as8uq"), SubResource("Resource_qalbi"), SubResource("Resource_qegvv"), SubResource("Resource_fukww"), SubResource("Resource_e3dj0"), SubResource("Resource_ouadp"), SubResource("Resource_lt8d4"), SubResource("Resource_nrjad"), SubResource("Resource_lv6d1"), SubResource("Resource_rjep7"), SubResource("Resource_o8ikg")])
+genus = "Pokémon Panda Topos"
+pokedex_entry = "Dicen que no hay dos Spinda que tengan los mismos dibujos en el pelaje. Este Pokémon tiene una forma de andar inestable, va tambaleándose. Da la sensación de ir bailando."
+height_m = 1.1
+weight_kg = 5.0
+base_hp = 60
+base_attack = 60
+base_defense = 60
+base_sp_attack = 60
+base_sp_defense = 60
+base_speed = 60
+base_experience = 126
+growth_rate = "fast"
+capture_rate = 255

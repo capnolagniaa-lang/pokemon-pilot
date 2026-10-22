@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cjyki"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_kj0n1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vh3mg"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_4b8eg"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_uyhhy"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_xogvt"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_xpwj7"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_o1igf"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="5_r5ksv"]
+[ext_resource type="Resource" path="res://data/moves/agarre.tres" id="6_3cx6r"]
+[ext_resource type="Resource" path="res://data/moves/disparo_lodo.tres" id="7_1dosh"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="8_ugncf"]
+[ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="9_31386"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="10_j2t5p"]
+[ext_resource type="Resource" path="res://data/moves/martillazo.tres" id="11_hhwr2"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="12_6cgyx"]
+
+[sub_resource type="Resource" id="Resource_s52n0"]
+script = ExtResource("1_cjyki")
+move = ExtResource("2_kj0n1")
+
+[sub_resource type="Resource" id="Resource_4p7fq"]
+script = ExtResource("1_cjyki")
+move = ExtResource("3_uyhhy")
+
+[sub_resource type="Resource" id="Resource_conu4"]
+script = ExtResource("1_cjyki")
+move = ExtResource("4_xogvt")
+
+[sub_resource type="Resource" id="Resource_61yaw"]
+script = ExtResource("1_cjyki")
+move = ExtResource("5_r5ksv")
+
+[sub_resource type="Resource" id="Resource_ssbmu"]
+script = ExtResource("1_cjyki")
+move = ExtResource("6_3cx6r")
+
+[sub_resource type="Resource" id="Resource_lb530"]
+script = ExtResource("1_cjyki")
+level = 23
+move = ExtResource("7_1dosh")
+
+[sub_resource type="Resource" id="Resource_rh02b"]
+script = ExtResource("1_cjyki")
+level = 27
+move = ExtResource("8_ugncf")
+
+[sub_resource type="Resource" id="Resource_5qbpa"]
+script = ExtResource("1_cjyki")
+level = 38
+move = ExtResource("9_31386")
+
+[sub_resource type="Resource" id="Resource_nt2jd"]
+script = ExtResource("1_cjyki")
+level = 42
+move = ExtResource("10_j2t5p")
+
+[sub_resource type="Resource" id="Resource_jieqn"]
+script = ExtResource("1_cjyki")
+level = 57
+move = ExtResource("11_hhwr2")
+
+[sub_resource type="Resource" id="Resource_tb1os"]
+script = ExtResource("1_cjyki")
+level = 65
+move = ExtResource("12_6cgyx")
+
+[resource]
+script = ExtResource("3_4b8eg")
+id = "kingler"
+display_name = "Kingler"
+dex = 99
+types = Array[ExtResource("4_xpwj7")]([ExtResource("5_o1igf")])
+learnset = Array[ExtResource("1_cjyki")]([SubResource("Resource_s52n0"), SubResource("Resource_4p7fq"), SubResource("Resource_conu4"), SubResource("Resource_61yaw"), SubResource("Resource_ssbmu"), SubResource("Resource_lb530"), SubResource("Resource_rh02b"), SubResource("Resource_5qbpa"), SubResource("Resource_nt2jd"), SubResource("Resource_jieqn"), SubResource("Resource_tb1os")])
+genus = "Pokémon Tenaza"
+pokedex_entry = "Kingler tiene una pinza enorme y descomunal que usa agitándola en el aire para comunicarse con otros. Lo malo es que, al pesarle tanto, se cansa enseguida."
+height_m = 1.3
+weight_kg = 60.0
+base_hp = 55
+base_attack = 130
+base_defense = 115
+base_speed = 75
+base_experience = 166
+capture_rate = 60

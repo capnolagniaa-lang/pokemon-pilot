@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_ks4j4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7lif1"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_tjm5u"]
+
+[resource]
+script = ExtResource("2_7lif1")
+id = "gigadrenado"
+display_name = "Gigadrenado"
+element = ExtResource("1_ks4j4")
+category = 1
+power = 75.0
+cooldown = 2.0500000000000003
+knockback = 120.0
+recovery = 0.1
+speed = 280.0
+size = 4.875
+lifetime = 0.85

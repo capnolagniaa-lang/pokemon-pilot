@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_r3h2k"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dw7qo"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_mdhuw"]
+
+[resource]
+script = ExtResource("2_dw7qo")
+id = "bomba_huevo"
+display_name = "Bomba Huevo"
+element = ExtResource("1_r3h2k")
+kind = 1
+power = 100.0
+cooldown = 2.45
+knockback = 220.0
+recovery = 0.3
+dash_time = 0.28

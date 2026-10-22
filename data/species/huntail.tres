@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hu46g"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ulnpw"]
+[ext_resource type="Resource" path="res://data/moves/torbellino.tres" id="2_vv3gs"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="3_f64d8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_wgbo1"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_1vqgr"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="4_g0kbi"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_clio1"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="5_oojui"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="6_0idrw"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="7_7u08j"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="8_q4tk3"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_5t87s"]
+
+[sub_resource type="Resource" id="Resource_le38g"]
+script = ExtResource("1_hu46g")
+move = ExtResource("2_vv3gs")
+
+[sub_resource type="Resource" id="Resource_dglyc"]
+script = ExtResource("1_hu46g")
+level = 8
+move = ExtResource("3_f64d8")
+
+[sub_resource type="Resource" id="Resource_kokxn"]
+script = ExtResource("1_hu46g")
+level = 15
+move = ExtResource("4_g0kbi")
+
+[sub_resource type="Resource" id="Resource_iry2r"]
+script = ExtResource("1_hu46g")
+level = 22
+move = ExtResource("5_oojui")
+
+[sub_resource type="Resource" id="Resource_hx7tc"]
+script = ExtResource("1_hu46g")
+level = 29
+move = ExtResource("6_0idrw")
+
+[sub_resource type="Resource" id="Resource_u181m"]
+script = ExtResource("1_hu46g")
+level = 36
+move = ExtResource("7_7u08j")
+
+[sub_resource type="Resource" id="Resource_mhiq0"]
+script = ExtResource("1_hu46g")
+level = 43
+move = ExtResource("8_q4tk3")
+
+[sub_resource type="Resource" id="Resource_4o2nk"]
+script = ExtResource("1_hu46g")
+level = 50
+move = ExtResource("9_5t87s")
+
+[resource]
+script = ExtResource("3_wgbo1")
+id = "huntail"
+display_name = "Huntail"
+dex = 367
+types = Array[ExtResource("4_1vqgr")]([ExtResource("5_clio1")])
+learnset = Array[ExtResource("1_hu46g")]([SubResource("Resource_le38g"), SubResource("Resource_dglyc"), SubResource("Resource_kokxn"), SubResource("Resource_iry2r"), SubResource("Resource_hx7tc"), SubResource("Resource_u181m"), SubResource("Resource_mhiq0"), SubResource("Resource_4o2nk")])
+genus = "Pokémon Abisal"
+pokedex_entry = "Huntail ha pasado desapercibido durante mucho tiempo por vivir en las profundidades del mar. El sentido de la vista de este Pokémon le permite ver en las oscuras y turbias aguas submarinas."
+height_m = 1.7
+weight_kg = 27.0
+base_hp = 55
+base_attack = 104
+base_defense = 105
+base_sp_attack = 94
+base_sp_defense = 75
+base_speed = 52
+base_experience = 170
+growth_rate = "slow-then-very-fast"
+capture_rate = 60

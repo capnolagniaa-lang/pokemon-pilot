@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="1_ro4m1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_nycys"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_51egr"]
+
+[resource]
+script = ExtResource("2_nycys")
+id = "granizo"
+display_name = "Granizo"
+element = ExtResource("1_ro4m1")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0

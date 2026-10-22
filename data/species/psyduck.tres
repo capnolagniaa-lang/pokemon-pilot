@@ -11,25 +11,25 @@
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_llbsy"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_kvyim"]
 
-[sub_resource type="Resource" id="Resource_gniud"]
+[sub_resource type="Resource" id="Resource_sihyx"]
 script = ExtResource("1_sihyx")
 move = ExtResource("2_gumxw")
 
-[sub_resource type="Resource" id="Resource_wwmc1"]
+[sub_resource type="Resource" id="Resource_t0c8y"]
 script = ExtResource("1_sihyx")
 move = ExtResource("3_sihyx")
 
-[sub_resource type="Resource" id="Resource_llbsy"]
+[sub_resource type="Resource" id="Resource_gniud"]
 script = ExtResource("1_sihyx")
 level = 3
 move = ExtResource("4_t0c8y")
 
-[sub_resource type="Resource" id="Resource_kvyim"]
+[sub_resource type="Resource" id="Resource_wwmc1"]
 script = ExtResource("1_sihyx")
 level = 5
 move = ExtResource("5_gniud")
 
-[sub_resource type="Resource" id="Resource_3h1xc"]
+[sub_resource type="Resource" id="Resource_llbsy"]
 script = ExtResource("1_sihyx")
 level = 50
 move = ExtResource("6_t0c8y")
@@ -41,7 +41,11 @@ display_name = "Psyduck"
 dex = 54
 types = Array[ExtResource("7_llbsy")]([ExtResource("8_kvyim")])
 moves = Array[ExtResource("1_a2e4d")]([ExtResource("2_gumxw"), ExtResource("3_sihyx"), ExtResource("4_t0c8y"), ExtResource("5_gniud")])
-learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_gniud"), SubResource("Resource_wwmc1"), SubResource("Resource_llbsy"), SubResource("Resource_kvyim"), SubResource("Resource_3h1xc")])
+learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_sihyx"), SubResource("Resource_t0c8y"), SubResource("Resource_gniud"), SubResource("Resource_wwmc1"), SubResource("Resource_llbsy")])
+genus = "Pokémon Pato"
+pokedex_entry = "Psyduck tiene un extraño poder, que consiste en generar ondas cerebrales iguales a las que se generan cuando se está dormido. Este descubrimiento levantó una gran polémica entre eruditos."
+height_m = 0.8
+weight_kg = 19.6
 base_attack = 52
 base_defense = 48
 base_sp_attack = 65

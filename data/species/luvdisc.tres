@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_s3foi"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_hgk7k"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xmvyx"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="3_2vdg5"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ick03"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_t5bdt"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wvs3r"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="5_2tsq5"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_7d63q"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="6_45ff8"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="7_jtoxv"]
+[ext_resource type="Resource" path="res://data/moves/beso_dulce.tres" id="8_w3p07"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="9_pb7xu"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="10_rmll1"]
+
+[sub_resource type="Resource" id="Resource_7kmtb"]
+script = ExtResource("1_s3foi")
+move = ExtResource("2_hgk7k")
+
+[sub_resource type="Resource" id="Resource_egpru"]
+script = ExtResource("1_s3foi")
+level = 4
+move = ExtResource("3_2vdg5")
+
+[sub_resource type="Resource" id="Resource_b1aqn"]
+script = ExtResource("1_s3foi")
+level = 12
+move = ExtResource("4_t5bdt")
+
+[sub_resource type="Resource" id="Resource_p7acy"]
+script = ExtResource("1_s3foi")
+level = 16
+move = ExtResource("5_2tsq5")
+
+[sub_resource type="Resource" id="Resource_fcej2"]
+script = ExtResource("1_s3foi")
+level = 24
+move = ExtResource("6_45ff8")
+
+[sub_resource type="Resource" id="Resource_jl4yi"]
+script = ExtResource("1_s3foi")
+level = 28
+move = ExtResource("7_jtoxv")
+
+[sub_resource type="Resource" id="Resource_1uy5f"]
+script = ExtResource("1_s3foi")
+level = 36
+move = ExtResource("8_w3p07")
+
+[sub_resource type="Resource" id="Resource_oar5d"]
+script = ExtResource("1_s3foi")
+level = 40
+move = ExtResource("9_pb7xu")
+
+[sub_resource type="Resource" id="Resource_i05jt"]
+script = ExtResource("1_s3foi")
+level = 48
+move = ExtResource("10_rmll1")
+
+[resource]
+script = ExtResource("3_ick03")
+id = "luvdisc"
+display_name = "Luvdisc"
+dex = 370
+types = Array[ExtResource("4_wvs3r")]([ExtResource("5_7d63q")])
+learnset = Array[ExtResource("1_s3foi")]([SubResource("Resource_7kmtb"), SubResource("Resource_egpru"), SubResource("Resource_b1aqn"), SubResource("Resource_p7acy"), SubResource("Resource_fcej2"), SubResource("Resource_jl4yi"), SubResource("Resource_1uy5f"), SubResource("Resource_oar5d"), SubResource("Resource_i05jt")])
+genus = "Pokémon Cita"
+pokedex_entry = "Luvdisc vive en aguas tropicales poco profundas. Este Pokémon con forma de corazón se ha ganado la reputación que tiene por ir nadando detrás de las parejas de enamorados que veía entre las olas del océano."
+height_m = 0.6
+weight_kg = 8.7
+base_hp = 43
+base_attack = 30
+base_defense = 55
+base_sp_attack = 40
+base_sp_defense = 65
+base_speed = 97
+base_experience = 116
+growth_rate = "fast"
+capture_rate = 225

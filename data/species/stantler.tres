@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ywkjh"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_547w6"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_s3bct"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cbo6v"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_sj5dy"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="4_pjeka"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_xqutk"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="5_3nsi1"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_5n2tc"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="6_64uym"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="7_4rxvg"]
+[ext_resource type="Resource" path="res://data/moves/imitacion.tres" id="8_r2g5b"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_b08i5"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="10_yqjha"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_a5vvo"]
+
+[sub_resource type="Resource" id="Resource_pmf4b"]
+script = ExtResource("1_ywkjh")
+move = ExtResource("2_s3bct")
+
+[sub_resource type="Resource" id="Resource_kyjxj"]
+script = ExtResource("1_ywkjh")
+level = 7
+move = ExtResource("3_sj5dy")
+
+[sub_resource type="Resource" id="Resource_3e2cw"]
+script = ExtResource("1_ywkjh")
+level = 11
+move = ExtResource("4_pjeka")
+
+[sub_resource type="Resource" id="Resource_xb4tb"]
+script = ExtResource("1_ywkjh")
+level = 17
+move = ExtResource("5_3nsi1")
+
+[sub_resource type="Resource" id="Resource_04qss"]
+script = ExtResource("1_ywkjh")
+level = 21
+move = ExtResource("6_64uym")
+
+[sub_resource type="Resource" id="Resource_he1xg"]
+script = ExtResource("1_ywkjh")
+level = 27
+move = ExtResource("7_4rxvg")
+
+[sub_resource type="Resource" id="Resource_2idu6"]
+script = ExtResource("1_ywkjh")
+level = 31
+move = ExtResource("8_r2g5b")
+
+[sub_resource type="Resource" id="Resource_y8t23"]
+script = ExtResource("1_ywkjh")
+level = 37
+move = ExtResource("9_b08i5")
+
+[sub_resource type="Resource" id="Resource_lxgqq"]
+script = ExtResource("1_ywkjh")
+level = 41
+move = ExtResource("10_yqjha")
+
+[sub_resource type="Resource" id="Resource_wkrx3"]
+script = ExtResource("1_ywkjh")
+level = 47
+move = ExtResource("11_a5vvo")
+
+[resource]
+script = ExtResource("3_cbo6v")
+id = "stantler"
+display_name = "Stantler"
+dex = 234
+types = Array[ExtResource("4_xqutk")]([ExtResource("5_5n2tc")])
+learnset = Array[ExtResource("1_ywkjh")]([SubResource("Resource_pmf4b"), SubResource("Resource_kyjxj"), SubResource("Resource_3e2cw"), SubResource("Resource_xb4tb"), SubResource("Resource_04qss"), SubResource("Resource_he1xg"), SubResource("Resource_2idu6"), SubResource("Resource_y8t23"), SubResource("Resource_lxgqq"), SubResource("Resource_wkrx3")])
+genus = "Pokémon Gran Cuerno"
+pokedex_entry = "Hace tiempo, se comerciaba con la magnífica cornamenta de Stantler. Se vendía como obra de arte a alto precio. Los interesados en cornamentas de valor incalculable empezaron a cazarlos y casi provocan su extinción."
+height_m = 1.4
+weight_kg = 71.2
+base_hp = 73
+base_attack = 95
+base_defense = 62
+base_sp_attack = 85
+base_sp_defense = 65
+base_speed = 85
+base_experience = 163
+growth_rate = "slow"

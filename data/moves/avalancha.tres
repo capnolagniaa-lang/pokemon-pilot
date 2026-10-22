@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="1_7xgtn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_jtuq7"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_1ksyf"]
+
+[resource]
+script = ExtResource("2_jtuq7")
+id = "avalancha"
+display_name = "Avalancha"
+element = ExtResource("1_7xgtn")
+kind = 2
+power = 75.0
+cooldown = 4.15
+knockback = 200.0
+recovery = 0.1
+radius = 52.0

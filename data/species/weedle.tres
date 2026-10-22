@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cmdcp"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="2_plwu4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wtp2u"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_plwu4"]
+[ext_resource type="Resource" path="res://data/moves/disparo_demora.tres" id="3_qocq4"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qocq4"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_y0rq7"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_ij8fh"]
+
+[sub_resource type="Resource" id="Resource_y0rq7"]
+script = ExtResource("1_cmdcp")
+move = ExtResource("2_plwu4")
+
+[sub_resource type="Resource" id="Resource_ij8fh"]
+script = ExtResource("1_cmdcp")
+move = ExtResource("3_qocq4")
+
+[resource]
+script = ExtResource("3_plwu4")
+id = "weedle"
+display_name = "Weedle"
+dex = 13
+types = Array[ExtResource("4_qocq4")]([ExtResource("5_y0rq7"), ExtResource("6_ij8fh")])
+learnset = Array[ExtResource("1_cmdcp")]([SubResource("Resource_y0rq7"), SubResource("Resource_ij8fh")])
+genus = "Pokémon Oruga"
+pokedex_entry = "Weedle tiene un finísimo sentido del olfato. Es capaz de distinguir las hojas que le gustan de las que no le gustan olisqueando un poco con la gran nariz que tiene."
+height_m = 0.3
+weight_kg = 3.2
+base_hp = 40
+base_attack = 35
+base_defense = 30
+base_sp_attack = 20
+base_sp_defense = 20
+base_experience = 39
+capture_rate = 255

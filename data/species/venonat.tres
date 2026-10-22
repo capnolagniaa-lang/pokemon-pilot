@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_thctf"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_62l17"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="2_ydwkk"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="3_fyjgo"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_inmbs"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rkfdp"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_v7nxp"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_5xubd"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="5_fskkj"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_1dodj"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="6_dxm7x"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="7_akveq"]
+[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="8_1ahr1"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="9_ip4r1"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="10_fymot"]
+[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="11_u55j3"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="12_jv63r"]
+
+[sub_resource type="Resource" id="Resource_76mfb"]
+script = ExtResource("1_thctf")
+move = ExtResource("2_ydwkk")
+
+[sub_resource type="Resource" id="Resource_xbbs6"]
+script = ExtResource("1_thctf")
+move = ExtResource("3_fyjgo")
+
+[sub_resource type="Resource" id="Resource_hh8tk"]
+script = ExtResource("1_thctf")
+move = ExtResource("4_v7nxp")
+
+[sub_resource type="Resource" id="Resource_e2d0d"]
+script = ExtResource("1_thctf")
+level = 9
+move = ExtResource("5_fskkj")
+
+[sub_resource type="Resource" id="Resource_rxqiy"]
+script = ExtResource("1_thctf")
+level = 17
+move = ExtResource("6_dxm7x")
+
+[sub_resource type="Resource" id="Resource_xbqdp"]
+script = ExtResource("1_thctf")
+level = 20
+move = ExtResource("7_akveq")
+
+[sub_resource type="Resource" id="Resource_uo5i4"]
+script = ExtResource("1_thctf")
+level = 25
+move = ExtResource("8_1ahr1")
+
+[sub_resource type="Resource" id="Resource_nfwg5"]
+script = ExtResource("1_thctf")
+level = 28
+move = ExtResource("9_ip4r1")
+
+[sub_resource type="Resource" id="Resource_vhr7e"]
+script = ExtResource("1_thctf")
+level = 33
+move = ExtResource("10_fymot")
+
+[sub_resource type="Resource" id="Resource_110nh"]
+script = ExtResource("1_thctf")
+level = 36
+move = ExtResource("11_u55j3")
+
+[sub_resource type="Resource" id="Resource_7sf7w"]
+script = ExtResource("1_thctf")
+level = 41
+move = ExtResource("12_jv63r")
+
+[resource]
+script = ExtResource("3_inmbs")
+id = "venonat"
+display_name = "Venonat"
+dex = 48
+types = Array[ExtResource("4_rkfdp")]([ExtResource("5_5xubd"), ExtResource("6_1dodj")])
+learnset = Array[ExtResource("1_thctf")]([SubResource("Resource_76mfb"), SubResource("Resource_xbbs6"), SubResource("Resource_hh8tk"), SubResource("Resource_e2d0d"), SubResource("Resource_rxqiy"), SubResource("Resource_xbqdp"), SubResource("Resource_uo5i4"), SubResource("Resource_nfwg5"), SubResource("Resource_vhr7e"), SubResource("Resource_110nh"), SubResource("Resource_7sf7w")])
+genus = "Pokémon Insecto"
+pokedex_entry = "Dicen que durante su evolución Venonat desarrolló una fina capa de espeso pelo alrededor de todo el cuerpo para protegerse. Tiene unos ojos tan grandes que no hay presa que le pase desapercibida."
+height_m = 1.0
+weight_kg = 30.0
+base_hp = 60
+base_attack = 55
+base_sp_attack = 40
+base_sp_defense = 55
+base_speed = 45
+base_experience = 61
+capture_rate = 190

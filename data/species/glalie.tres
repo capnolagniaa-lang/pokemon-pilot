@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5mfqm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_b7dh5"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_yqmdb"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="3_0it7n"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ell4u"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_se6yd"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_vx4va"]
+[ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="5_oj83e"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_uhlao"]
+[ext_resource type="Resource" path="res://data/moves/viento_hielo.tres" id="6_p75mq"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="7_smv3h"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="8_vmsa4"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_r0r6b"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="10_g4xad"]
+[ext_resource type="Resource" path="res://data/moves/granizo.tres" id="11_ehjlh"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="12_emcn6"]
+[ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="13_56uvw"]
+
+[sub_resource type="Resource" id="Resource_vqvcc"]
+script = ExtResource("1_5mfqm")
+move = ExtResource("2_yqmdb")
+
+[sub_resource type="Resource" id="Resource_h1jsr"]
+script = ExtResource("1_5mfqm")
+move = ExtResource("3_0it7n")
+
+[sub_resource type="Resource" id="Resource_bt5uv"]
+script = ExtResource("1_5mfqm")
+move = ExtResource("4_se6yd")
+
+[sub_resource type="Resource" id="Resource_i5w2a"]
+script = ExtResource("1_5mfqm")
+move = ExtResource("5_oj83e")
+
+[sub_resource type="Resource" id="Resource_7c7yf"]
+script = ExtResource("1_5mfqm")
+level = 16
+move = ExtResource("6_p75mq")
+
+[sub_resource type="Resource" id="Resource_3j486"]
+script = ExtResource("1_5mfqm")
+level = 19
+move = ExtResource("7_smv3h")
+
+[sub_resource type="Resource" id="Resource_wxva7"]
+script = ExtResource("1_5mfqm")
+level = 25
+move = ExtResource("8_vmsa4")
+
+[sub_resource type="Resource" id="Resource_16e8u"]
+script = ExtResource("1_5mfqm")
+level = 28
+move = ExtResource("9_r0r6b")
+
+[sub_resource type="Resource" id="Resource_d4jlh"]
+script = ExtResource("1_5mfqm")
+level = 34
+move = ExtResource("10_g4xad")
+
+[sub_resource type="Resource" id="Resource_0tkok"]
+script = ExtResource("1_5mfqm")
+level = 42
+move = ExtResource("11_ehjlh")
+
+[sub_resource type="Resource" id="Resource_5eb4b"]
+script = ExtResource("1_5mfqm")
+level = 53
+move = ExtResource("12_emcn6")
+
+[sub_resource type="Resource" id="Resource_1mctb"]
+script = ExtResource("1_5mfqm")
+level = 61
+move = ExtResource("13_56uvw")
+
+[resource]
+script = ExtResource("3_ell4u")
+id = "glalie"
+display_name = "Glalie"
+dex = 362
+types = Array[ExtResource("4_vx4va")]([ExtResource("5_uhlao")])
+learnset = Array[ExtResource("1_5mfqm")]([SubResource("Resource_vqvcc"), SubResource("Resource_h1jsr"), SubResource("Resource_bt5uv"), SubResource("Resource_i5w2a"), SubResource("Resource_7c7yf"), SubResource("Resource_3j486"), SubResource("Resource_wxva7"), SubResource("Resource_16e8u"), SubResource("Resource_d4jlh"), SubResource("Resource_0tkok"), SubResource("Resource_5eb4b"), SubResource("Resource_1mctb")])
+genus = "Pokémon Cara"
+pokedex_entry = "Glalie endurece el cuerpo rocoso que tiene con una coraza de hielo. Este Pokémon tiene la habilidad de congelar la humedad del ambiente y formar la figura que se le antoje."
+height_m = 1.5
+weight_kg = 256.5
+base_hp = 80
+base_attack = 80
+base_defense = 80
+base_sp_attack = 80
+base_sp_defense = 80
+base_speed = 80
+base_experience = 168
+capture_rate = 75

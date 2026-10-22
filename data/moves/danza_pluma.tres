@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_4rtwf"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_e2jyh"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_b0wai"]
+
+[resource]
+script = ExtResource("2_e2jyh")
+id = "danza_pluma"
+display_name = "Danza Pluma"
+element = ExtResource("1_4rtwf")
+kind = 2
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+radius = 40.0

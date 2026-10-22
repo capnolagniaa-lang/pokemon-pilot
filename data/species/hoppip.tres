@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_osmj4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7yv7g"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_26wax"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_6kh4y"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="3_lnrit"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_bas0a"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cp1l1"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_48476"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_sjdjp"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_3tbkm"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="6_lu1vq"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="7_5hin5"]
+[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="8_fygf8"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="9_i3v6f"]
+[ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="10_ius75"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="11_s5fad"]
+
+[sub_resource type="Resource" id="Resource_4e0ms"]
+script = ExtResource("1_osmj4")
+move = ExtResource("2_26wax")
+
+[sub_resource type="Resource" id="Resource_p24nc"]
+script = ExtResource("1_osmj4")
+level = 5
+move = ExtResource("3_lnrit")
+
+[sub_resource type="Resource" id="Resource_4qg0y"]
+script = ExtResource("1_osmj4")
+level = 5
+move = ExtResource("4_bas0a")
+
+[sub_resource type="Resource" id="Resource_6b22c"]
+script = ExtResource("1_osmj4")
+level = 10
+move = ExtResource("5_sjdjp")
+
+[sub_resource type="Resource" id="Resource_mo47h"]
+script = ExtResource("1_osmj4")
+level = 13
+move = ExtResource("6_lu1vq")
+
+[sub_resource type="Resource" id="Resource_2imy4"]
+script = ExtResource("1_osmj4")
+level = 15
+move = ExtResource("7_5hin5")
+
+[sub_resource type="Resource" id="Resource_48pxq"]
+script = ExtResource("1_osmj4")
+level = 17
+move = ExtResource("8_fygf8")
+
+[sub_resource type="Resource" id="Resource_rmtmh"]
+script = ExtResource("1_osmj4")
+level = 20
+move = ExtResource("9_i3v6f")
+
+[sub_resource type="Resource" id="Resource_g1uiu"]
+script = ExtResource("1_osmj4")
+level = 25
+move = ExtResource("10_ius75")
+
+[sub_resource type="Resource" id="Resource_geh07"]
+script = ExtResource("1_osmj4")
+level = 30
+move = ExtResource("11_s5fad")
+
+[resource]
+script = ExtResource("3_6kh4y")
+id = "hoppip"
+display_name = "Hoppip"
+dex = 187
+types = Array[ExtResource("4_cp1l1")]([ExtResource("5_48476"), ExtResource("6_3tbkm")])
+learnset = Array[ExtResource("1_osmj4")]([SubResource("Resource_4e0ms"), SubResource("Resource_p24nc"), SubResource("Resource_4qg0y"), SubResource("Resource_6b22c"), SubResource("Resource_mo47h"), SubResource("Resource_2imy4"), SubResource("Resource_48pxq"), SubResource("Resource_rmtmh"), SubResource("Resource_g1uiu"), SubResource("Resource_geh07")])
+genus = "Pokémon Algadón"
+pokedex_entry = "Este Pokémon flota en el aire y se deja llevar. Cuando percibe que el viento va a cambiar a fuerte, Hoppip entrelaza sus hojas con otros Hoppip para hacer resistencia y evitar salir volando por la fuerza de la corriente."
+height_m = 0.4
+weight_kg = 0.5
+base_hp = 35
+base_attack = 35
+base_defense = 40
+base_sp_attack = 35
+base_sp_defense = 55
+base_experience = 50
+growth_rate = "medium-slow"
+capture_rate = 255

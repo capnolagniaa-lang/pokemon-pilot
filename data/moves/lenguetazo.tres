@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="1_qktlp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_qopmm"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="3_5270k"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_iqewm"]
+
+[resource]
+script = ExtResource("2_qopmm")
+id = "lenguetazo"
+display_name = "Lengüetazo"
+element = ExtResource("1_qktlp")
+kind = 4
+power = 30.0
+knockback = 120.0
+recovery = 0.1
+status = ExtResource("3_5270k")
+status_chance = 0.3
+melee_range = 13.0
+swing_radius = 12.0
+final_knockback = 150.0

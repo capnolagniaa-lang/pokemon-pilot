@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_r5xt6"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="2_271qj"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sohxc"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_w4oqm"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xf4ya"]
+[ext_resource type="Resource" path="res://data/moves/puno_cometa.tres" id="4_jxeai"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_x7c78"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="5_lrh4k"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_vknar"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_556g6"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="6_n63j2"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="7_maeni"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="8_5pj3v"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="9_gukdm"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_xgjrd"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_ovkl7"]
+
+[sub_resource type="Resource" id="Resource_aepu2"]
+script = ExtResource("1_r5xt6")
+move = ExtResource("2_271qj")
+
+[sub_resource type="Resource" id="Resource_q8xbo"]
+script = ExtResource("1_r5xt6")
+move = ExtResource("3_w4oqm")
+
+[sub_resource type="Resource" id="Resource_fpjho"]
+script = ExtResource("1_r5xt6")
+level = 15
+move = ExtResource("4_jxeai")
+
+[sub_resource type="Resource" id="Resource_hvjb1"]
+script = ExtResource("1_r5xt6")
+level = 24
+move = ExtResource("5_lrh4k")
+
+[sub_resource type="Resource" id="Resource_nyauk"]
+script = ExtResource("1_r5xt6")
+level = 24
+move = ExtResource("6_n63j2")
+
+[sub_resource type="Resource" id="Resource_ad61b"]
+script = ExtResource("1_r5xt6")
+level = 24
+move = ExtResource("7_maeni")
+
+[sub_resource type="Resource" id="Resource_ne4y0"]
+script = ExtResource("1_r5xt6")
+level = 33
+move = ExtResource("8_5pj3v")
+
+[sub_resource type="Resource" id="Resource_i6xa4"]
+script = ExtResource("1_r5xt6")
+level = 42
+move = ExtResource("9_gukdm")
+
+[sub_resource type="Resource" id="Resource_tygn6"]
+script = ExtResource("1_r5xt6")
+level = 51
+move = ExtResource("10_xgjrd")
+
+[sub_resource type="Resource" id="Resource_gor1a"]
+script = ExtResource("1_r5xt6")
+level = 60
+move = ExtResource("11_ovkl7")
+
+[resource]
+script = ExtResource("3_xf4ya")
+id = "ledian"
+display_name = "Ledian"
+dex = 166
+types = Array[ExtResource("4_x7c78")]([ExtResource("5_vknar"), ExtResource("6_556g6")])
+learnset = Array[ExtResource("1_r5xt6")]([SubResource("Resource_aepu2"), SubResource("Resource_q8xbo"), SubResource("Resource_fpjho"), SubResource("Resource_hvjb1"), SubResource("Resource_nyauk"), SubResource("Resource_ad61b"), SubResource("Resource_ne4y0"), SubResource("Resource_i6xa4"), SubResource("Resource_tygn6"), SubResource("Resource_gor1a")])
+genus = "Pokémon 5 Estrellas"
+pokedex_entry = "Dicen que en zonas en las que el aire está limpio, en las que se ven las estrellas, hay enormes poblaciones de Ledian. La razón es muy sencilla: este Pokémon usa la luz de las estrellas como fuente de energía."
+height_m = 1.4
+weight_kg = 35.6
+base_hp = 55
+base_attack = 35
+base_sp_attack = 55
+base_sp_defense = 110
+base_speed = 85
+base_experience = 137
+growth_rate = "fast"
+capture_rate = 90

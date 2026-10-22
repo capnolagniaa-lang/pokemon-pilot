@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_i7imt"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_oqrpo"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_07cog"]
+
+[resource]
+script = ExtResource("2_oqrpo")
+id = "psicoataque"
+display_name = "Psicoataque"
+element = ExtResource("1_i7imt")
+category = 1
+power = 140.0
+cooldown = 3.25
+cast_time = 0.45
+knockback = 224.0
+recovery = 0.4
+speed = 280.0
+size = 6.5
+lifetime = 0.85

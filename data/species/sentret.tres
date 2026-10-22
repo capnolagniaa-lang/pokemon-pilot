@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hpr8o"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_l0f1w"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vtiaw"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_d2uaq"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="3_gh2mf"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="4_6trpk"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_gb2yi"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_7ipvm"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="5_ig5qf"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="6_74tuc"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="7_hnx72"]
+[ext_resource type="Resource" path="res://data/moves/senuelo.tres" id="8_d5725"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_r030h"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_6jwh0"]
+
+[sub_resource type="Resource" id="Resource_hj0g6"]
+script = ExtResource("1_hpr8o")
+move = ExtResource("2_l0f1w")
+
+[sub_resource type="Resource" id="Resource_fvfrl"]
+script = ExtResource("1_hpr8o")
+level = 4
+move = ExtResource("3_gh2mf")
+
+[sub_resource type="Resource" id="Resource_hg0o4"]
+script = ExtResource("1_hpr8o")
+level = 7
+move = ExtResource("4_6trpk")
+
+[sub_resource type="Resource" id="Resource_bpmus"]
+script = ExtResource("1_hpr8o")
+level = 12
+move = ExtResource("5_ig5qf")
+
+[sub_resource type="Resource" id="Resource_j0m07"]
+script = ExtResource("1_hpr8o")
+level = 17
+move = ExtResource("6_74tuc")
+
+[sub_resource type="Resource" id="Resource_7y7jj"]
+script = ExtResource("1_hpr8o")
+level = 24
+move = ExtResource("7_hnx72")
+
+[sub_resource type="Resource" id="Resource_cnm8p"]
+script = ExtResource("1_hpr8o")
+level = 31
+move = ExtResource("8_d5725")
+
+[sub_resource type="Resource" id="Resource_mq314"]
+script = ExtResource("1_hpr8o")
+level = 40
+move = ExtResource("9_r030h")
+
+[sub_resource type="Resource" id="Resource_4m28o"]
+script = ExtResource("1_hpr8o")
+level = 49
+move = ExtResource("10_6jwh0")
+
+[resource]
+script = ExtResource("3_d2uaq")
+id = "sentret"
+display_name = "Sentret"
+dex = 161
+types = Array[ExtResource("4_gb2yi")]([ExtResource("5_7ipvm")])
+learnset = Array[ExtResource("1_hpr8o")]([SubResource("Resource_hj0g6"), SubResource("Resource_fvfrl"), SubResource("Resource_hg0o4"), SubResource("Resource_bpmus"), SubResource("Resource_j0m07"), SubResource("Resource_7y7jj"), SubResource("Resource_cnm8p"), SubResource("Resource_mq314"), SubResource("Resource_4m28o")])
+genus = "Pokémon Explorador"
+pokedex_entry = "Sentret no duerme a menos que otro haga guardia. El que hace de centinela lo despertará al mínimo signo de peligro. Cuando este Pokémon se separa de su manada, es incapaz de echarse a dormir, presa del miedo."
+height_m = 0.8
+weight_kg = 6.0
+base_hp = 35
+base_attack = 46
+base_defense = 34
+base_sp_attack = 35
+base_sp_defense = 45
+base_speed = 20
+base_experience = 43
+capture_rate = 255

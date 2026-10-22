@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6xfue"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_t00ch"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_xd75r"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="3_fe3rc"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_os6wn"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_a5fas"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="4_dpo6u"]
+[ext_resource type="Resource" path="res://data/moves/alivio.tres" id="5_oormo"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_osdxy"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="6_jgpcf"]
+[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="7_ahrto"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="8_7qhig"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="9_u1717"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_61pyp"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="11_ivjks"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="12_guiik"]
+
+[sub_resource type="Resource" id="Resource_vdavo"]
+script = ExtResource("1_6xfue")
+move = ExtResource("2_xd75r")
+
+[sub_resource type="Resource" id="Resource_ho05v"]
+script = ExtResource("1_6xfue")
+level = 5
+move = ExtResource("3_fe3rc")
+
+[sub_resource type="Resource" id="Resource_f5hf8"]
+script = ExtResource("1_6xfue")
+level = 10
+move = ExtResource("4_dpo6u")
+
+[sub_resource type="Resource" id="Resource_v6jns"]
+script = ExtResource("1_6xfue")
+level = 15
+move = ExtResource("5_oormo")
+
+[sub_resource type="Resource" id="Resource_phb8s"]
+script = ExtResource("1_6xfue")
+level = 20
+move = ExtResource("6_jgpcf")
+
+[sub_resource type="Resource" id="Resource_xiudc"]
+script = ExtResource("1_6xfue")
+level = 25
+move = ExtResource("7_ahrto")
+
+[sub_resource type="Resource" id="Resource_3vm5m"]
+script = ExtResource("1_6xfue")
+level = 30
+move = ExtResource("8_7qhig")
+
+[sub_resource type="Resource" id="Resource_y1vs1"]
+script = ExtResource("1_6xfue")
+level = 35
+move = ExtResource("9_u1717")
+
+[sub_resource type="Resource" id="Resource_0daum"]
+script = ExtResource("1_6xfue")
+level = 40
+move = ExtResource("10_61pyp")
+
+[sub_resource type="Resource" id="Resource_hnkti"]
+script = ExtResource("1_6xfue")
+level = 45
+move = ExtResource("11_ivjks")
+
+[sub_resource type="Resource" id="Resource_jxb5c"]
+script = ExtResource("1_6xfue")
+level = 50
+move = ExtResource("12_guiik")
+
+[resource]
+script = ExtResource("3_os6wn")
+id = "milotic"
+display_name = "Milotic"
+dex = 350
+types = Array[ExtResource("4_a5fas")]([ExtResource("5_osdxy")])
+learnset = Array[ExtResource("1_6xfue")]([SubResource("Resource_vdavo"), SubResource("Resource_ho05v"), SubResource("Resource_f5hf8"), SubResource("Resource_v6jns"), SubResource("Resource_phb8s"), SubResource("Resource_xiudc"), SubResource("Resource_3vm5m"), SubResource("Resource_y1vs1"), SubResource("Resource_0daum"), SubResource("Resource_hnkti"), SubResource("Resource_jxb5c")])
+genus = "Pokémon Tierno"
+pokedex_entry = "De Milotic se dice que es el Pokémon más bello. Tiene la capacidad de calmar sentimientos tales como el miedo y la hostilidad, y apaciguar las relaciones de áspera enemistad."
+height_m = 6.2
+weight_kg = 162.0
+base_hp = 95
+base_attack = 60
+base_defense = 79
+base_sp_attack = 100
+base_sp_defense = 125
+base_speed = 81
+base_experience = 189
+growth_rate = "slow-then-very-fast"
+capture_rate = 60

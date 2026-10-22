@@ -17,30 +17,30 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_36cw7"]
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_yuxux"]
 
-[sub_resource type="Resource" id="Resource_qsd6n"]
+[sub_resource type="Resource" id="Resource_7mh3n"]
 script = ExtResource("2_7mh3n")
 move = ExtResource("3_a0qht")
 
-[sub_resource type="Resource" id="Resource_nchsh"]
+[sub_resource type="Resource" id="Resource_a0qht"]
 script = ExtResource("2_7mh3n")
 move = ExtResource("4_o7dgl")
 
-[sub_resource type="Resource" id="Resource_smhln"]
+[sub_resource type="Resource" id="Resource_o7dgl"]
 script = ExtResource("2_7mh3n")
 level = 3
 move = ExtResource("5_i7knr")
 
-[sub_resource type="Resource" id="Resource_uwv2q"]
+[sub_resource type="Resource" id="Resource_i7knr"]
 script = ExtResource("2_7mh3n")
 level = 5
 move = ExtResource("6_da3uv")
 
-[sub_resource type="Resource" id="Resource_t8j50"]
+[sub_resource type="Resource" id="Resource_da3uv"]
 script = ExtResource("2_7mh3n")
 level = 31
 move = ExtResource("7_4xbfc")
 
-[sub_resource type="Resource" id="Resource_0co0w"]
+[sub_resource type="Resource" id="Resource_4xbfc"]
 script = ExtResource("2_7mh3n")
 level = 37
 move = ExtResource("8_36cw7")
@@ -53,7 +53,11 @@ dex = 4
 types = Array[ExtResource("7_1yptp")]([ExtResource("8_yuxux")])
 moves = Array[ExtResource("1_0vo34")]([ExtResource("2_65dpy"), ExtResource("3_fsuga"), ExtResource("4_tljsa"), ExtResource("5_jtnfp")])
 kit = ExtResource("1_65dpy")
-learnset = Array[ExtResource("2_7mh3n")]([SubResource("Resource_qsd6n"), SubResource("Resource_nchsh"), SubResource("Resource_smhln"), SubResource("Resource_uwv2q"), SubResource("Resource_t8j50"), SubResource("Resource_0co0w")])
+learnset = Array[ExtResource("2_7mh3n")]([SubResource("Resource_7mh3n"), SubResource("Resource_a0qht"), SubResource("Resource_o7dgl"), SubResource("Resource_i7knr"), SubResource("Resource_da3uv"), SubResource("Resource_4xbfc")])
+genus = "Pokémon Lagartija"
+pokedex_entry = "La llama que tiene en la punta de la cola arde según sus sentimientos. Llamea levemente cuando está alegre y arde vigorosamente cuando está enfadado."
+height_m = 0.6
+weight_kg = 8.5
 base_hp = 39
 base_attack = 52
 base_defense = 43

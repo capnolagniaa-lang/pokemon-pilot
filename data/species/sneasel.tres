@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8vydn"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_1cudp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1xedp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fjmki"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_g2vkr"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="4_bvttd"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sapce"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="5_6r3e5"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="5_yqppq"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="6_g3afa"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="6_s45fe"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="7_ih5rq"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="8_phdk6"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_7eufs"]
+[ext_resource type="Resource" path="res://data/moves/viento_hielo.tres" id="10_vvkdq"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="11_7q7uh"]
+[ext_resource type="Resource" path="res://data/moves/paliza.tres" id="12_8vcl6"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="13_82bg6"]
+
+[sub_resource type="Resource" id="Resource_rt6wp"]
+script = ExtResource("1_8vydn")
+move = ExtResource("2_1cudp")
+
+[sub_resource type="Resource" id="Resource_gecmi"]
+script = ExtResource("1_8vydn")
+move = ExtResource("3_g2vkr")
+
+[sub_resource type="Resource" id="Resource_iy3ng"]
+script = ExtResource("1_8vydn")
+move = ExtResource("4_bvttd")
+
+[sub_resource type="Resource" id="Resource_u4yca"]
+script = ExtResource("1_8vydn")
+level = 8
+move = ExtResource("5_yqppq")
+
+[sub_resource type="Resource" id="Resource_np08o"]
+script = ExtResource("1_8vydn")
+level = 15
+move = ExtResource("6_g3afa")
+
+[sub_resource type="Resource" id="Resource_iprtc"]
+script = ExtResource("1_8vydn")
+level = 22
+move = ExtResource("7_ih5rq")
+
+[sub_resource type="Resource" id="Resource_4ivhi"]
+script = ExtResource("1_8vydn")
+level = 29
+move = ExtResource("8_phdk6")
+
+[sub_resource type="Resource" id="Resource_opgr8"]
+script = ExtResource("1_8vydn")
+level = 36
+move = ExtResource("9_7eufs")
+
+[sub_resource type="Resource" id="Resource_1m4jy"]
+script = ExtResource("1_8vydn")
+level = 43
+move = ExtResource("10_vvkdq")
+
+[sub_resource type="Resource" id="Resource_3jscj"]
+script = ExtResource("1_8vydn")
+level = 50
+move = ExtResource("11_7q7uh")
+
+[sub_resource type="Resource" id="Resource_3to8m"]
+script = ExtResource("1_8vydn")
+level = 57
+move = ExtResource("12_8vcl6")
+
+[sub_resource type="Resource" id="Resource_2w54p"]
+script = ExtResource("1_8vydn")
+level = 64
+move = ExtResource("13_82bg6")
+
+[resource]
+script = ExtResource("3_fjmki")
+id = "sneasel"
+display_name = "Sneasel"
+dex = 215
+types = Array[ExtResource("4_sapce")]([ExtResource("5_6r3e5"), ExtResource("6_s45fe")])
+learnset = Array[ExtResource("1_8vydn")]([SubResource("Resource_rt6wp"), SubResource("Resource_gecmi"), SubResource("Resource_iy3ng"), SubResource("Resource_u4yca"), SubResource("Resource_np08o"), SubResource("Resource_iprtc"), SubResource("Resource_4ivhi"), SubResource("Resource_opgr8"), SubResource("Resource_1m4jy"), SubResource("Resource_3jscj"), SubResource("Resource_3to8m"), SubResource("Resource_2w54p")])
+genus = "Pokémon Garra Filo"
+pokedex_entry = "Sneasel trepa por los árboles agarrándose a la corteza con las garras curvas que tiene. Este Pokémon busca nidos desprovistos de vigilancia paterna para robar los huevos y comérselos."
+height_m = 0.9
+weight_kg = 28.0
+base_hp = 55
+base_attack = 95
+base_defense = 55
+base_sp_attack = 35
+base_sp_defense = 75
+base_speed = 115
+base_experience = 86
+growth_rate = "medium-slow"
+capture_rate = 60

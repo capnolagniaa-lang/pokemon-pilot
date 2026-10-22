@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_q6vmd"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rymty"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_w14ed"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="3_a6rrr"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_doajq"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="4_46qy5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qfb0r"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_bbykw"]
+[ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="5_n3pbo"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="6_4obp8"]
+[ext_resource type="Resource" path="res://data/moves/luminicola.tres" id="7_r5xw6"]
+[ext_resource type="Resource" path="res://data/moves/rayo_senal.tres" id="8_nrmh2"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="9_0ijj3"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="10_8yasd"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_78uoo"]
+
+[sub_resource type="Resource" id="Resource_gyfco"]
+script = ExtResource("1_q6vmd")
+move = ExtResource("2_w14ed")
+
+[sub_resource type="Resource" id="Resource_2wlkd"]
+script = ExtResource("1_q6vmd")
+level = 5
+move = ExtResource("3_a6rrr")
+
+[sub_resource type="Resource" id="Resource_gfsnd"]
+script = ExtResource("1_q6vmd")
+level = 9
+move = ExtResource("4_46qy5")
+
+[sub_resource type="Resource" id="Resource_o8jgy"]
+script = ExtResource("1_q6vmd")
+level = 13
+move = ExtResource("5_n3pbo")
+
+[sub_resource type="Resource" id="Resource_mey7j"]
+script = ExtResource("1_q6vmd")
+level = 17
+move = ExtResource("6_4obp8")
+
+[sub_resource type="Resource" id="Resource_c5x7b"]
+script = ExtResource("1_q6vmd")
+level = 21
+move = ExtResource("7_r5xw6")
+
+[sub_resource type="Resource" id="Resource_ilwqg"]
+script = ExtResource("1_q6vmd")
+level = 25
+move = ExtResource("8_nrmh2")
+
+[sub_resource type="Resource" id="Resource_pbrfh"]
+script = ExtResource("1_q6vmd")
+level = 29
+move = ExtResource("9_0ijj3")
+
+[sub_resource type="Resource" id="Resource_enye4"]
+script = ExtResource("1_q6vmd")
+level = 33
+move = ExtResource("10_8yasd")
+
+[sub_resource type="Resource" id="Resource_py83g"]
+script = ExtResource("1_q6vmd")
+level = 37
+move = ExtResource("11_78uoo")
+
+[resource]
+script = ExtResource("3_doajq")
+id = "volbeat"
+display_name = "Volbeat"
+dex = 313
+types = Array[ExtResource("4_qfb0r")]([ExtResource("5_bbykw")])
+learnset = Array[ExtResource("1_q6vmd")]([SubResource("Resource_gyfco"), SubResource("Resource_2wlkd"), SubResource("Resource_gfsnd"), SubResource("Resource_o8jgy"), SubResource("Resource_mey7j"), SubResource("Resource_c5x7b"), SubResource("Resource_ilwqg"), SubResource("Resource_pbrfh"), SubResource("Resource_enye4"), SubResource("Resource_py83g")])
+genus = "Pokémon Luciérnaga"
+pokedex_entry = "Cuando llega la noche, Volbeat emite luz por la cola y regula la intensidad y el destello para comunicarse con el resto. A este Pokémon le atrae el dulce aroma de Illumise."
+height_m = 0.7
+weight_kg = 17.7
+base_hp = 65
+base_attack = 73
+base_defense = 75
+base_sp_attack = 47
+base_sp_defense = 85
+base_speed = 85
+base_experience = 151
+growth_rate = "slow-then-very-fast"
+capture_rate = 150

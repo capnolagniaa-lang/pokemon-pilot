@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qj7rd"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_6u4ol"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vtrxf"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_o5ftt"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_ssukb"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0r7va"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="4_sunhk"]
+[ext_resource type="Resource" path="res://data/moves/lanzarrocas.tres" id="5_rv75y"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_u77j8"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="6_dira0"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_p2ytg"]
+[ext_resource type="Resource" path="res://data/moves/psicoonda.tres" id="7_7088e"]
+[ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="8_oomh5"]
+[ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="9_upkoy"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="10_w6xwr"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_vfu72"]
+
+[sub_resource type="Resource" id="Resource_tl53k"]
+script = ExtResource("1_qj7rd")
+move = ExtResource("2_6u4ol")
+
+[sub_resource type="Resource" id="Resource_0qkfk"]
+script = ExtResource("1_qj7rd")
+move = ExtResource("3_ssukb")
+
+[sub_resource type="Resource" id="Resource_hj70x"]
+script = ExtResource("1_qj7rd")
+level = 7
+move = ExtResource("4_sunhk")
+
+[sub_resource type="Resource" id="Resource_fi7uy"]
+script = ExtResource("1_qj7rd")
+level = 13
+move = ExtResource("5_rv75y")
+
+[sub_resource type="Resource" id="Resource_13fd6"]
+script = ExtResource("1_qj7rd")
+level = 19
+move = ExtResource("6_dira0")
+
+[sub_resource type="Resource" id="Resource_xgwjc"]
+script = ExtResource("1_qj7rd")
+level = 25
+move = ExtResource("7_7088e")
+
+[sub_resource type="Resource" id="Resource_mfkwn"]
+script = ExtResource("1_qj7rd")
+level = 31
+move = ExtResource("8_oomh5")
+
+[sub_resource type="Resource" id="Resource_61nth"]
+script = ExtResource("1_qj7rd")
+level = 37
+move = ExtResource("9_upkoy")
+
+[sub_resource type="Resource" id="Resource_oq5fx"]
+script = ExtResource("1_qj7rd")
+level = 43
+move = ExtResource("10_w6xwr")
+
+[sub_resource type="Resource" id="Resource_u4hr8"]
+script = ExtResource("1_qj7rd")
+level = 49
+move = ExtResource("11_vfu72")
+
+[resource]
+script = ExtResource("3_o5ftt")
+id = "solrock"
+display_name = "Solrock"
+dex = 338
+types = Array[ExtResource("4_0r7va")]([ExtResource("5_u77j8"), ExtResource("6_p2ytg")])
+learnset = Array[ExtResource("1_qj7rd")]([SubResource("Resource_tl53k"), SubResource("Resource_0qkfk"), SubResource("Resource_hj70x"), SubResource("Resource_fi7uy"), SubResource("Resource_13fd6"), SubResource("Resource_xgwjc"), SubResource("Resource_mfkwn"), SubResource("Resource_61nth"), SubResource("Resource_oq5fx"), SubResource("Resource_u4hr8")])
+genus = "Pokémon Meteorito"
+pokedex_entry = "Solrock pertenece a una nueva especie de Pokémon a la que se le atribuye una procedencia extraterrestre. Este Pokémon permanece flotando en el aire y se mueve muy despacio. Al luchar, desprende una luz viva e intensa."
+height_m = 1.2
+weight_kg = 154.0
+base_hp = 90
+base_attack = 95
+base_defense = 85
+base_sp_attack = 55
+base_sp_defense = 65
+base_speed = 70
+base_experience = 161
+growth_rate = "fast"

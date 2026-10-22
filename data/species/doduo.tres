@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6ajrw"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pwo7w"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_s8ee3"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_0xs2p"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_60sjr"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_107mg"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="4_n0jol"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="5_4khqt"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_k73hy"]
+[ext_resource type="Resource" path="res://data/moves/triataque.tres" id="6_v335d"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_yb8jw"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="7_quaoi"]
+[ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="8_eb7sj"]
+[ext_resource type="Resource" path="res://data/moves/pico_taladro.tres" id="9_lv4r1"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_ryioy"]
+
+[sub_resource type="Resource" id="Resource_aeqw6"]
+script = ExtResource("1_6ajrw")
+move = ExtResource("2_s8ee3")
+
+[sub_resource type="Resource" id="Resource_gn6pg"]
+script = ExtResource("1_6ajrw")
+move = ExtResource("3_0xs2p")
+
+[sub_resource type="Resource" id="Resource_3wwjt"]
+script = ExtResource("1_6ajrw")
+level = 9
+move = ExtResource("4_n0jol")
+
+[sub_resource type="Resource" id="Resource_1imqp"]
+script = ExtResource("1_6ajrw")
+level = 13
+move = ExtResource("5_4khqt")
+
+[sub_resource type="Resource" id="Resource_lnp8d"]
+script = ExtResource("1_6ajrw")
+level = 21
+move = ExtResource("6_v335d")
+
+[sub_resource type="Resource" id="Resource_otgyk"]
+script = ExtResource("1_6ajrw")
+level = 25
+move = ExtResource("7_quaoi")
+
+[sub_resource type="Resource" id="Resource_n2qjx"]
+script = ExtResource("1_6ajrw")
+level = 33
+move = ExtResource("8_eb7sj")
+
+[sub_resource type="Resource" id="Resource_tdovp"]
+script = ExtResource("1_6ajrw")
+level = 37
+move = ExtResource("9_lv4r1")
+
+[sub_resource type="Resource" id="Resource_nlgqq"]
+script = ExtResource("1_6ajrw")
+level = 45
+move = ExtResource("10_ryioy")
+
+[resource]
+script = ExtResource("3_60sjr")
+id = "doduo"
+display_name = "Doduo"
+dex = 84
+types = Array[ExtResource("4_107mg")]([ExtResource("5_k73hy"), ExtResource("6_yb8jw")])
+learnset = Array[ExtResource("1_6ajrw")]([SubResource("Resource_aeqw6"), SubResource("Resource_gn6pg"), SubResource("Resource_3wwjt"), SubResource("Resource_1imqp"), SubResource("Resource_lnp8d"), SubResource("Resource_otgyk"), SubResource("Resource_n2qjx"), SubResource("Resource_tdovp"), SubResource("Resource_nlgqq")])
+genus = "Pokémon Ave Gemela"
+pokedex_entry = "Las dos cabezas de Doduo duermen de forma independiente, siempre por turnos. Mientras una duerme, la otra hace de centinela por si aparecen enemigos."
+height_m = 1.4
+weight_kg = 39.2
+base_hp = 35
+base_attack = 85
+base_defense = 45
+base_sp_attack = 35
+base_sp_defense = 35
+base_speed = 75
+base_experience = 62
+capture_rate = 190

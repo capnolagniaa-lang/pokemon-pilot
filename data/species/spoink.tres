@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_kuklg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_20rnw"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_gh5d8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_wsokb"]
+[ext_resource type="Resource" path="res://data/moves/psicoonda.tres" id="3_y7ysd"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="4_iwhur"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_opqae"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="5_o5yrk"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_q721e"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="6_76npf"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="7_q1mw7"]
+[ext_resource type="Resource" path="res://data/moves/capa_magica.tres" id="8_v6ni4"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="9_kahp2"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_5epif"]
+[ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="11_oq6w6"]
+[ext_resource type="Resource" path="res://data/moves/bote.tres" id="12_mdci3"]
+
+[sub_resource type="Resource" id="Resource_l421a"]
+script = ExtResource("1_kuklg")
+move = ExtResource("2_gh5d8")
+
+[sub_resource type="Resource" id="Resource_6umof"]
+script = ExtResource("1_kuklg")
+level = 7
+move = ExtResource("3_y7ysd")
+
+[sub_resource type="Resource" id="Resource_lp54t"]
+script = ExtResource("1_kuklg")
+level = 10
+move = ExtResource("4_iwhur")
+
+[sub_resource type="Resource" id="Resource_0o8dy"]
+script = ExtResource("1_kuklg")
+level = 16
+move = ExtResource("5_o5yrk")
+
+[sub_resource type="Resource" id="Resource_2b1ea"]
+script = ExtResource("1_kuklg")
+level = 19
+move = ExtResource("6_76npf")
+
+[sub_resource type="Resource" id="Resource_2sfc1"]
+script = ExtResource("1_kuklg")
+level = 25
+move = ExtResource("7_q1mw7")
+
+[sub_resource type="Resource" id="Resource_roj4w"]
+script = ExtResource("1_kuklg")
+level = 28
+move = ExtResource("8_v6ni4")
+
+[sub_resource type="Resource" id="Resource_a52ix"]
+script = ExtResource("1_kuklg")
+level = 34
+move = ExtResource("9_kahp2")
+
+[sub_resource type="Resource" id="Resource_xoos5"]
+script = ExtResource("1_kuklg")
+level = 37
+move = ExtResource("10_5epif")
+
+[sub_resource type="Resource" id="Resource_mjf8j"]
+script = ExtResource("1_kuklg")
+level = 37
+move = ExtResource("11_oq6w6")
+
+[sub_resource type="Resource" id="Resource_2qcew"]
+script = ExtResource("1_kuklg")
+level = 43
+move = ExtResource("12_mdci3")
+
+[resource]
+script = ExtResource("3_wsokb")
+id = "spoink"
+display_name = "Spoink"
+dex = 325
+types = Array[ExtResource("4_opqae")]([ExtResource("5_q721e")])
+learnset = Array[ExtResource("1_kuklg")]([SubResource("Resource_l421a"), SubResource("Resource_6umof"), SubResource("Resource_lp54t"), SubResource("Resource_0o8dy"), SubResource("Resource_2b1ea"), SubResource("Resource_2sfc1"), SubResource("Resource_roj4w"), SubResource("Resource_a52ix"), SubResource("Resource_xoos5"), SubResource("Resource_mjf8j"), SubResource("Resource_2qcew")])
+genus = "Pokémon Saltarín"
+pokedex_entry = "Spoink se pasa todo el día saltando sobre la cola. Cada salto hace que le lata el corazón. Por eso, no puede permitirse dejar de saltar. Si lo hiciera, se le pararía."
+height_m = 0.7
+weight_kg = 30.6
+base_hp = 60
+base_attack = 25
+base_defense = 35
+base_sp_attack = 70
+base_sp_defense = 80
+base_speed = 60
+base_experience = 66
+growth_rate = "fast"
+capture_rate = 255

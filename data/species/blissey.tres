@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_tohey"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_5utgv"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xbokf"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="3_2lmuy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_evykd"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ebhl7"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_m5skw"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_gi3j6"]
+[ext_resource type="Resource" path="res://data/moves/alivio.tres" id="5_r1jel"]
+[ext_resource type="Resource" path="res://data/moves/ovocuracion.tres" id="6_7cejy"]
+[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="7_go8hx"]
+[ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="8_st6ax"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="9_31vvm"]
+[ext_resource type="Resource" path="res://data/moves/bomba_huevo.tres" id="10_7qchs"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="11_wdkx8"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="12_yihvy"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_jgtvh"]
+
+[sub_resource type="Resource" id="Resource_74csm"]
+script = ExtResource("1_tohey")
+move = ExtResource("2_5utgv")
+
+[sub_resource type="Resource" id="Resource_vd8u8"]
+script = ExtResource("1_tohey")
+move = ExtResource("3_2lmuy")
+
+[sub_resource type="Resource" id="Resource_f7cim"]
+script = ExtResource("1_tohey")
+level = 4
+move = ExtResource("4_m5skw")
+
+[sub_resource type="Resource" id="Resource_su150"]
+script = ExtResource("1_tohey")
+level = 7
+move = ExtResource("5_r1jel")
+
+[sub_resource type="Resource" id="Resource_hpgrp"]
+script = ExtResource("1_tohey")
+level = 10
+move = ExtResource("6_7cejy")
+
+[sub_resource type="Resource" id="Resource_x8vh7"]
+script = ExtResource("1_tohey")
+level = 13
+move = ExtResource("7_go8hx")
+
+[sub_resource type="Resource" id="Resource_33lfh"]
+script = ExtResource("1_tohey")
+level = 18
+move = ExtResource("8_st6ax")
+
+[sub_resource type="Resource" id="Resource_lkvhf"]
+script = ExtResource("1_tohey")
+level = 23
+move = ExtResource("9_31vvm")
+
+[sub_resource type="Resource" id="Resource_i0vxw"]
+script = ExtResource("1_tohey")
+level = 28
+move = ExtResource("10_7qchs")
+
+[sub_resource type="Resource" id="Resource_yuv46"]
+script = ExtResource("1_tohey")
+level = 33
+move = ExtResource("11_wdkx8")
+
+[sub_resource type="Resource" id="Resource_8xl8y"]
+script = ExtResource("1_tohey")
+level = 40
+move = ExtResource("12_yihvy")
+
+[sub_resource type="Resource" id="Resource_qwk1g"]
+script = ExtResource("1_tohey")
+level = 47
+move = ExtResource("13_jgtvh")
+
+[resource]
+script = ExtResource("3_evykd")
+id = "blissey"
+display_name = "Blissey"
+dex = 242
+types = Array[ExtResource("4_ebhl7")]([ExtResource("5_gi3j6")])
+learnset = Array[ExtResource("1_tohey")]([SubResource("Resource_74csm"), SubResource("Resource_vd8u8"), SubResource("Resource_f7cim"), SubResource("Resource_su150"), SubResource("Resource_hpgrp"), SubResource("Resource_x8vh7"), SubResource("Resource_33lfh"), SubResource("Resource_lkvhf"), SubResource("Resource_i0vxw"), SubResource("Resource_yuv46"), SubResource("Resource_8xl8y"), SubResource("Resource_qwk1g")])
+genus = "Pokémon Felicidad"
+pokedex_entry = "Blissey es capaz de sentir la tristeza a través del sedoso pelaje. Si detecta que alguien está apenado, irá hasta donde esté y compartirá un Huevo Suerte para devolverle la sonrisa."
+height_m = 1.5
+weight_kg = 46.8
+base_hp = 255
+base_attack = 10
+base_defense = 10
+base_sp_attack = 75
+base_sp_defense = 135
+base_speed = 55
+base_experience = 608
+growth_rate = "fast"
+capture_rate = 30

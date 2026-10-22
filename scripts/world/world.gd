@@ -36,6 +36,9 @@ func _ready() -> void:
 	reactions = ReactionSystem.new()
 	reactions.name = "ReactionSystem"
 	add_child(reactions)
+	var dex := PokedexTracker.new()
+	dex.name = "PokedexTracker"
+	add_child(dex)
 	Events.party_changed.connect(_on_party_changed)
 	Events.equipment_changed.connect(_on_equipment_changed)
 	var menu_layer := CanvasLayer.new()

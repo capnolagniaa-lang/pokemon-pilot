@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_l7d4c"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_n28sf"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="3_kdw8c"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_3lsel"]
+
+[resource]
+script = ExtResource("2_n28sf")
+id = "patada_ignea"
+display_name = "Patada Ígnea"
+element = ExtResource("1_l7d4c")
+kind = 1
+power = 85.0
+cooldown = 2.2
+knockback = 220.0
+recovery = 0.3
+status = ExtResource("3_kdw8c")
+status_chance = 0.1
+dash_time = 0.28

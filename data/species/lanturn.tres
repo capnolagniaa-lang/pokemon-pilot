@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ic3sq"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_k7lxh"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wqvif"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="3_61if6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ckvb5"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="4_4575u"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_f2tc8"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_ahhld"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="5_d2cey"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="6_5cqqm"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="6_epyx0"]
+[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="7_s47ua"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_a6xhd"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_7m11w"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_tcntc"]
+[ext_resource type="Resource" path="res://data/moves/carga.tres" id="11_bov6g"]
+
+[sub_resource type="Resource" id="Resource_ye76m"]
+script = ExtResource("1_ic3sq")
+move = ExtResource("2_k7lxh")
+
+[sub_resource type="Resource" id="Resource_11qi8"]
+script = ExtResource("1_ic3sq")
+move = ExtResource("3_61if6")
+
+[sub_resource type="Resource" id="Resource_dcnga"]
+script = ExtResource("1_ic3sq")
+move = ExtResource("4_4575u")
+
+[sub_resource type="Resource" id="Resource_5bmjx"]
+script = ExtResource("1_ic3sq")
+level = 13
+move = ExtResource("5_d2cey")
+
+[sub_resource type="Resource" id="Resource_0pwgq"]
+script = ExtResource("1_ic3sq")
+level = 17
+move = ExtResource("6_5cqqm")
+
+[sub_resource type="Resource" id="Resource_00moc"]
+script = ExtResource("1_ic3sq")
+level = 25
+move = ExtResource("7_s47ua")
+
+[sub_resource type="Resource" id="Resource_ln8m3"]
+script = ExtResource("1_ic3sq")
+level = 32
+move = ExtResource("8_a6xhd")
+
+[sub_resource type="Resource" id="Resource_3u8e3"]
+script = ExtResource("1_ic3sq")
+level = 43
+move = ExtResource("9_7m11w")
+
+[sub_resource type="Resource" id="Resource_vnnyf"]
+script = ExtResource("1_ic3sq")
+level = 50
+move = ExtResource("10_tcntc")
+
+[sub_resource type="Resource" id="Resource_ibolf"]
+script = ExtResource("1_ic3sq")
+level = 61
+move = ExtResource("11_bov6g")
+
+[resource]
+script = ExtResource("3_ckvb5")
+id = "lanturn"
+display_name = "Lanturn"
+dex = 171
+types = Array[ExtResource("4_f2tc8")]([ExtResource("5_ahhld"), ExtResource("6_epyx0")])
+learnset = Array[ExtResource("1_ic3sq")]([SubResource("Resource_ye76m"), SubResource("Resource_11qi8"), SubResource("Resource_dcnga"), SubResource("Resource_5bmjx"), SubResource("Resource_0pwgq"), SubResource("Resource_00moc"), SubResource("Resource_ln8m3"), SubResource("Resource_3u8e3"), SubResource("Resource_vnnyf"), SubResource("Resource_ibolf")])
+genus = "Pokémon Luz"
+pokedex_entry = "A Lanturn lo llaman la Estrella del Fondo del Mar por la antena iluminada que tiene. Este Pokémon produce luz creando una reacción química entre una bacteria y los fluidos corporales de la antena."
+height_m = 1.2
+weight_kg = 22.5
+base_hp = 125
+base_attack = 58
+base_defense = 58
+base_sp_attack = 76
+base_sp_defense = 76
+base_speed = 67
+base_experience = 161
+growth_rate = "slow"
+capture_rate = 75

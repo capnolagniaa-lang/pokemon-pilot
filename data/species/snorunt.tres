@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_k3sn4"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_c8w73"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xsegh"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_884eh"]
+[ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="3_rwxk1"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="4_ag2k0"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mwgyg"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_t0m01"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="5_vvf5c"]
+[ext_resource type="Resource" path="res://data/moves/viento_hielo.tres" id="6_og66i"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="7_ufx68"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="8_qpqnu"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_gqome"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="10_7r3aj"]
+[ext_resource type="Resource" path="res://data/moves/granizo.tres" id="11_kfgni"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="12_lon0l"]
+
+[sub_resource type="Resource" id="Resource_isw2k"]
+script = ExtResource("1_k3sn4")
+move = ExtResource("2_c8w73")
+
+[sub_resource type="Resource" id="Resource_pb1kx"]
+script = ExtResource("1_k3sn4")
+move = ExtResource("3_rwxk1")
+
+[sub_resource type="Resource" id="Resource_dn0nc"]
+script = ExtResource("1_k3sn4")
+level = 7
+move = ExtResource("4_ag2k0")
+
+[sub_resource type="Resource" id="Resource_p3kxi"]
+script = ExtResource("1_k3sn4")
+level = 10
+move = ExtResource("5_vvf5c")
+
+[sub_resource type="Resource" id="Resource_54s6n"]
+script = ExtResource("1_k3sn4")
+level = 16
+move = ExtResource("6_og66i")
+
+[sub_resource type="Resource" id="Resource_l8i1o"]
+script = ExtResource("1_k3sn4")
+level = 19
+move = ExtResource("7_ufx68")
+
+[sub_resource type="Resource" id="Resource_eipp8"]
+script = ExtResource("1_k3sn4")
+level = 25
+move = ExtResource("8_qpqnu")
+
+[sub_resource type="Resource" id="Resource_1scah"]
+script = ExtResource("1_k3sn4")
+level = 28
+move = ExtResource("9_gqome")
+
+[sub_resource type="Resource" id="Resource_226hn"]
+script = ExtResource("1_k3sn4")
+level = 34
+move = ExtResource("10_7r3aj")
+
+[sub_resource type="Resource" id="Resource_ctivd"]
+script = ExtResource("1_k3sn4")
+level = 37
+move = ExtResource("11_kfgni")
+
+[sub_resource type="Resource" id="Resource_py3ul"]
+script = ExtResource("1_k3sn4")
+level = 43
+move = ExtResource("12_lon0l")
+
+[resource]
+script = ExtResource("3_884eh")
+id = "snorunt"
+display_name = "Snorunt"
+dex = 361
+types = Array[ExtResource("4_mwgyg")]([ExtResource("5_t0m01")])
+learnset = Array[ExtResource("1_k3sn4")]([SubResource("Resource_isw2k"), SubResource("Resource_pb1kx"), SubResource("Resource_dn0nc"), SubResource("Resource_p3kxi"), SubResource("Resource_54s6n"), SubResource("Resource_l8i1o"), SubResource("Resource_eipp8"), SubResource("Resource_1scah"), SubResource("Resource_226hn"), SubResource("Resource_ctivd"), SubResource("Resource_py3ul")])
+genus = "Pokémon Gorro Nieve"
+pokedex_entry = "Snorunt vive en zonas de grandes nevadas. En primavera y verano, cuando no nieva, se retira a las cavernas para vivir tranquilamente entre estalactitas y estalagmitas."
+height_m = 0.7
+weight_kg = 16.8
+capture_rate = 190

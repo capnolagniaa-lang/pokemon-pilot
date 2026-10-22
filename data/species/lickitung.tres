@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_i74qp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1n078"]
+[ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="2_tw8xs"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="3_bjlab"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_sv8hw"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_605g8"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="4_nlwco"]
+[ext_resource type="Resource" path="res://data/moves/desarme.tres" id="5_hlphe"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_i7b16"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="6_jdhc4"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="7_3tfh4"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="8_0utif"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="9_n427n"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="10_0qwa6"]
+[ext_resource type="Resource" path="res://data/moves/alivio.tres" id="11_tnkih"]
+
+[sub_resource type="Resource" id="Resource_0fc3c"]
+script = ExtResource("1_i74qp")
+move = ExtResource("2_tw8xs")
+
+[sub_resource type="Resource" id="Resource_perdv"]
+script = ExtResource("1_i74qp")
+level = 7
+move = ExtResource("3_bjlab")
+
+[sub_resource type="Resource" id="Resource_mhror"]
+script = ExtResource("1_i74qp")
+level = 12
+move = ExtResource("4_nlwco")
+
+[sub_resource type="Resource" id="Resource_xsllv"]
+script = ExtResource("1_i74qp")
+level = 18
+move = ExtResource("5_hlphe")
+
+[sub_resource type="Resource" id="Resource_pyw2w"]
+script = ExtResource("1_i74qp")
+level = 23
+move = ExtResource("6_jdhc4")
+
+[sub_resource type="Resource" id="Resource_0wygc"]
+script = ExtResource("1_i74qp")
+level = 29
+move = ExtResource("7_3tfh4")
+
+[sub_resource type="Resource" id="Resource_7g8sa"]
+script = ExtResource("1_i74qp")
+level = 34
+move = ExtResource("8_0utif")
+
+[sub_resource type="Resource" id="Resource_qx0og"]
+script = ExtResource("1_i74qp")
+level = 40
+move = ExtResource("9_n427n")
+
+[sub_resource type="Resource" id="Resource_m21mh"]
+script = ExtResource("1_i74qp")
+level = 45
+move = ExtResource("10_0qwa6")
+
+[sub_resource type="Resource" id="Resource_pd38t"]
+script = ExtResource("1_i74qp")
+level = 51
+move = ExtResource("11_tnkih")
+
+[resource]
+script = ExtResource("3_sv8hw")
+id = "lickitung"
+display_name = "Lickitung"
+dex = 108
+types = Array[ExtResource("4_605g8")]([ExtResource("5_i7b16")])
+learnset = Array[ExtResource("1_i74qp")]([SubResource("Resource_0fc3c"), SubResource("Resource_perdv"), SubResource("Resource_mhror"), SubResource("Resource_xsllv"), SubResource("Resource_pyw2w"), SubResource("Resource_0wygc"), SubResource("Resource_7g8sa"), SubResource("Resource_qx0og"), SubResource("Resource_m21mh"), SubResource("Resource_pd38t")])
+genus = "Pokémon Lametazo"
+pokedex_entry = "Cada vez que Lickitung se encuentra con algo que no conoce, le da un lametazo. Es la forma que tiene de memorizar las cosas, por la textura y el sabor. No soporta los sabores ácidos."
+height_m = 1.2
+weight_kg = 65.5
+base_hp = 90
+base_attack = 55
+base_defense = 75
+base_sp_attack = 60
+base_sp_defense = 75
+base_speed = 30
+base_experience = 77

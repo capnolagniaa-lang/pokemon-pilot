@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_a6qeh"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_shovb"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="2_tf1qy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_m1l82"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="3_vchwb"]
+[ext_resource type="Resource" path="res://data/moves/furia_dragon.tres" id="4_lp2ef"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_t6pyh"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_5ukp6"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="5_8yyh2"]
+[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="6_0ekw6"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_4pfsy"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="7_u8xgf"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="8_tvkv5"]
+[ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="9_mdfld"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_eh8d4"]
+
+[sub_resource type="Resource" id="Resource_4etnr"]
+script = ExtResource("1_a6qeh")
+move = ExtResource("2_tf1qy")
+
+[sub_resource type="Resource" id="Resource_8ti08"]
+script = ExtResource("1_a6qeh")
+level = 20
+move = ExtResource("3_vchwb")
+
+[sub_resource type="Resource" id="Resource_b54xg"]
+script = ExtResource("1_a6qeh")
+level = 25
+move = ExtResource("4_lp2ef")
+
+[sub_resource type="Resource" id="Resource_rt4cn"]
+script = ExtResource("1_a6qeh")
+level = 30
+move = ExtResource("5_8yyh2")
+
+[sub_resource type="Resource" id="Resource_2vrb5"]
+script = ExtResource("1_a6qeh")
+level = 35
+move = ExtResource("6_0ekw6")
+
+[sub_resource type="Resource" id="Resource_ic0ly"]
+script = ExtResource("1_a6qeh")
+level = 40
+move = ExtResource("7_u8xgf")
+
+[sub_resource type="Resource" id="Resource_621ho"]
+script = ExtResource("1_a6qeh")
+level = 45
+move = ExtResource("8_tvkv5")
+
+[sub_resource type="Resource" id="Resource_hks27"]
+script = ExtResource("1_a6qeh")
+level = 50
+move = ExtResource("9_mdfld")
+
+[sub_resource type="Resource" id="Resource_p51mx"]
+script = ExtResource("1_a6qeh")
+level = 55
+move = ExtResource("10_eh8d4")
+
+[resource]
+script = ExtResource("3_m1l82")
+id = "gyarados"
+display_name = "Gyarados"
+dex = 130
+types = Array[ExtResource("4_t6pyh")]([ExtResource("5_5ukp6"), ExtResource("6_4pfsy")])
+learnset = Array[ExtResource("1_a6qeh")]([SubResource("Resource_4etnr"), SubResource("Resource_8ti08"), SubResource("Resource_b54xg"), SubResource("Resource_rt4cn"), SubResource("Resource_2vrb5"), SubResource("Resource_ic0ly"), SubResource("Resource_621ho"), SubResource("Resource_hks27"), SubResource("Resource_p51mx")])
+genus = "Pokémon Atrocidad"
+pokedex_entry = "Cuando Magikarp evoluciona y se convierte en Gyarados, sufre un cambio estructural en las células del cerebro. Dicen que esa transformación es la causa de la naturaleza violenta y salvaje de este Pokémon."
+height_m = 6.5
+weight_kg = 235.0
+base_hp = 95
+base_attack = 125
+base_defense = 79
+base_sp_attack = 60
+base_sp_defense = 100
+base_speed = 81
+base_experience = 189
+growth_rate = "slow"

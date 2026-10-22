@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_wfdij"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_8byn2"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yuyn3"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="3_1asac"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1bu64"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jbwhy"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_oamn3"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_c06bv"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_jw705"]
+[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="6_b8h2k"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="7_lbjjd"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="8_ito1a"]
+[ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="9_0xopb"]
+
+[sub_resource type="Resource" id="Resource_n312p"]
+script = ExtResource("1_wfdij")
+move = ExtResource("2_8byn2")
+
+[sub_resource type="Resource" id="Resource_sxd2m"]
+script = ExtResource("1_wfdij")
+level = 8
+move = ExtResource("3_1asac")
+
+[sub_resource type="Resource" id="Resource_11mrn"]
+script = ExtResource("1_wfdij")
+level = 15
+move = ExtResource("4_oamn3")
+
+[sub_resource type="Resource" id="Resource_u1382"]
+script = ExtResource("1_wfdij")
+level = 22
+move = ExtResource("5_c06bv")
+
+[sub_resource type="Resource" id="Resource_ibq8y"]
+script = ExtResource("1_wfdij")
+level = 29
+move = ExtResource("6_b8h2k")
+
+[sub_resource type="Resource" id="Resource_mwgpi"]
+script = ExtResource("1_wfdij")
+level = 36
+move = ExtResource("7_lbjjd")
+
+[sub_resource type="Resource" id="Resource_7eilq"]
+script = ExtResource("1_wfdij")
+level = 43
+move = ExtResource("8_ito1a")
+
+[sub_resource type="Resource" id="Resource_i6mwf"]
+script = ExtResource("1_wfdij")
+level = 50
+move = ExtResource("9_0xopb")
+
+[resource]
+script = ExtResource("3_1bu64")
+id = "horsea"
+display_name = "Horsea"
+dex = 116
+types = Array[ExtResource("4_jbwhy")]([ExtResource("5_jw705")])
+learnset = Array[ExtResource("1_wfdij")]([SubResource("Resource_n312p"), SubResource("Resource_sxd2m"), SubResource("Resource_11mrn"), SubResource("Resource_u1382"), SubResource("Resource_ibq8y"), SubResource("Resource_mwgpi"), SubResource("Resource_7eilq"), SubResource("Resource_i6mwf")])
+genus = "Pokémon Dragón"
+pokedex_entry = "Horsea come insectos pequeños y el musgo de las rocas. Si las corrientes del océano cobran fuerza, este Pokémon se anclará con la cola a rocas o corales para evitar que las aguas lo arrastren."
+height_m = 0.4
+weight_kg = 8.0
+base_hp = 30
+base_attack = 40
+base_defense = 70
+base_sp_attack = 70
+base_sp_defense = 25
+base_speed = 60
+base_experience = 59
+capture_rate = 225

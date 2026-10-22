@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_iv3dk"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_c5kf3"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_p3g5x"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_x4ocm"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xv2mn"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="4_6uocf"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sm55w"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="5_rsv1j"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_y8x2x"]
+[ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="6_b8a38"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_m3tp3"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="7_k82ck"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="8_hpxk0"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_ure06"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_yboip"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_a5ife"]
+
+[sub_resource type="Resource" id="Resource_clwth"]
+script = ExtResource("1_iv3dk")
+move = ExtResource("2_c5kf3")
+
+[sub_resource type="Resource" id="Resource_d1ke2"]
+script = ExtResource("1_iv3dk")
+move = ExtResource("3_x4ocm")
+
+[sub_resource type="Resource" id="Resource_kv2q2"]
+script = ExtResource("1_iv3dk")
+move = ExtResource("4_6uocf")
+
+[sub_resource type="Resource" id="Resource_1p2il"]
+script = ExtResource("1_iv3dk")
+move = ExtResource("5_rsv1j")
+
+[sub_resource type="Resource" id="Resource_a0jgl"]
+script = ExtResource("1_iv3dk")
+level = 22
+move = ExtResource("6_b8a38")
+
+[sub_resource type="Resource" id="Resource_hqhuh"]
+script = ExtResource("1_iv3dk")
+level = 29
+move = ExtResource("7_k82ck")
+
+[sub_resource type="Resource" id="Resource_71ldp"]
+script = ExtResource("1_iv3dk")
+level = 38
+move = ExtResource("8_hpxk0")
+
+[sub_resource type="Resource" id="Resource_uwoyo"]
+script = ExtResource("1_iv3dk")
+level = 47
+move = ExtResource("9_ure06")
+
+[sub_resource type="Resource" id="Resource_l3f65"]
+script = ExtResource("1_iv3dk")
+level = 56
+move = ExtResource("10_yboip")
+
+[sub_resource type="Resource" id="Resource_jwqow"]
+script = ExtResource("1_iv3dk")
+level = 65
+move = ExtResource("11_a5ife")
+
+[resource]
+script = ExtResource("3_xv2mn")
+id = "pupitar"
+display_name = "Pupitar"
+dex = 247
+types = Array[ExtResource("4_sm55w")]([ExtResource("5_y8x2x"), ExtResource("6_m3tp3")])
+learnset = Array[ExtResource("1_iv3dk")]([SubResource("Resource_clwth"), SubResource("Resource_d1ke2"), SubResource("Resource_kv2q2"), SubResource("Resource_1p2il"), SubResource("Resource_a0jgl"), SubResource("Resource_hqhuh"), SubResource("Resource_71ldp"), SubResource("Resource_uwoyo"), SubResource("Resource_l3f65"), SubResource("Resource_jwqow")])
+genus = "Pokémon Caparazón"
+pokedex_entry = "Pupitar crea un gas en su interior que comprime y expulsa violentamente a modo de autopropulsión. Tiene un cuerpo resistente que se mantiene inalterable hasta cuando se golpea contra duro acero."
+height_m = 1.2
+weight_kg = 152.0
+base_hp = 70
+base_attack = 84
+base_defense = 70
+base_sp_attack = 65
+base_sp_defense = 70
+base_speed = 51
+base_experience = 144
+growth_rate = "slow"

@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cqgle"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_2qt2r"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_84dq4"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_7emoi"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_15iu2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_f0gqb"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="4_oddbe"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="5_oh7vj"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_w483e"]
+[ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="6_0jij8"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="7_viaif"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="8_xwgqo"]
+
+[sub_resource type="Resource" id="Resource_r17dr"]
+script = ExtResource("1_cqgle")
+move = ExtResource("2_2qt2r")
+
+[sub_resource type="Resource" id="Resource_lcymn"]
+script = ExtResource("1_cqgle")
+move = ExtResource("3_15iu2")
+
+[sub_resource type="Resource" id="Resource_084y6"]
+script = ExtResource("1_cqgle")
+level = 9
+move = ExtResource("4_oddbe")
+
+[sub_resource type="Resource" id="Resource_rpb2h"]
+script = ExtResource("1_cqgle")
+level = 16
+move = ExtResource("5_oh7vj")
+
+[sub_resource type="Resource" id="Resource_xj4h0"]
+script = ExtResource("1_cqgle")
+level = 23
+move = ExtResource("6_0jij8")
+
+[sub_resource type="Resource" id="Resource_0qnrx"]
+script = ExtResource("1_cqgle")
+level = 30
+move = ExtResource("7_viaif")
+
+[sub_resource type="Resource" id="Resource_yiwyu"]
+script = ExtResource("1_cqgle")
+level = 37
+move = ExtResource("8_xwgqo")
+
+[resource]
+script = ExtResource("3_7emoi")
+id = "mareep"
+display_name = "Mareep"
+dex = 179
+types = Array[ExtResource("4_f0gqb")]([ExtResource("5_w483e")])
+learnset = Array[ExtResource("1_cqgle")]([SubResource("Resource_r17dr"), SubResource("Resource_lcymn"), SubResource("Resource_084y6"), SubResource("Resource_rpb2h"), SubResource("Resource_xj4h0"), SubResource("Resource_0qnrx"), SubResource("Resource_yiwyu")])
+genus = "Pokémon Lana"
+pokedex_entry = "Mareep tiene un pelaje lanudo suave que produce carga estática por el roce. Cuanto más se carga de electricidad estática, más brilla la bombilla que tiene en el extremo de la cola."
+height_m = 0.6
+weight_kg = 7.8
+base_hp = 55
+base_attack = 40
+base_defense = 40
+base_sp_attack = 65
+base_sp_defense = 45
+base_speed = 35
+base_experience = 56
+growth_rate = "medium-slow"
+capture_rate = 235

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="1_7yhlg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lg8n7"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_yu5s4"]
+
+[resource]
+script = ExtResource("2_lg8n7")
+id = "patada_salto"
+display_name = "Patada Salto"
+element = ExtResource("1_7yhlg")
+kind = 1
+power = 100.0
+cooldown = 2.45
+knockback = 220.0
+recovery = 0.3
+dash_time = 0.28

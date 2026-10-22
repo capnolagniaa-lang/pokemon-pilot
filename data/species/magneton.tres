@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u4hh6"]
+[ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="2_gamkn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wqsip"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_llrse"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="3_nvb4p"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cv15w"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_tevq3"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="5_8btqy"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_yjabx"]
+[ext_resource type="Resource" path="res://data/moves/bomba_sonica.tres" id="6_66yud"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="6_e4mmj"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="7_2rfqe"]
+[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="8_7fysu"]
+[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="9_u54xj"]
+[ext_resource type="Resource" path="res://data/moves/triataque.tres" id="10_nvx3t"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="11_xa3kw"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_5akfe"]
+
+[sub_resource type="Resource" id="Resource_vwr3u"]
+script = ExtResource("1_u4hh6")
+move = ExtResource("2_gamkn")
+
+[sub_resource type="Resource" id="Resource_iprje"]
+script = ExtResource("1_u4hh6")
+move = ExtResource("3_nvb4p")
+
+[sub_resource type="Resource" id="Resource_ceyxx"]
+script = ExtResource("1_u4hh6")
+move = ExtResource("4_tevq3")
+
+[sub_resource type="Resource" id="Resource_45pql"]
+script = ExtResource("1_u4hh6")
+move = ExtResource("5_8btqy")
+
+[sub_resource type="Resource" id="Resource_1ajl6"]
+script = ExtResource("1_u4hh6")
+level = 16
+move = ExtResource("6_66yud")
+
+[sub_resource type="Resource" id="Resource_hk601"]
+script = ExtResource("1_u4hh6")
+level = 21
+move = ExtResource("7_2rfqe")
+
+[sub_resource type="Resource" id="Resource_4exig"]
+script = ExtResource("1_u4hh6")
+level = 26
+move = ExtResource("8_7fysu")
+
+[sub_resource type="Resource" id="Resource_5g3uj"]
+script = ExtResource("1_u4hh6")
+level = 35
+move = ExtResource("9_u54xj")
+
+[sub_resource type="Resource" id="Resource_qg40h"]
+script = ExtResource("1_u4hh6")
+level = 44
+move = ExtResource("10_nvx3t")
+
+[sub_resource type="Resource" id="Resource_s6gee"]
+script = ExtResource("1_u4hh6")
+level = 53
+move = ExtResource("11_xa3kw")
+
+[sub_resource type="Resource" id="Resource_wcu46"]
+script = ExtResource("1_u4hh6")
+level = 62
+move = ExtResource("12_5akfe")
+
+[resource]
+script = ExtResource("3_llrse")
+id = "magneton"
+display_name = "Magneton"
+dex = 82
+types = Array[ExtResource("4_cv15w")]([ExtResource("5_yjabx"), ExtResource("6_e4mmj")])
+learnset = Array[ExtResource("1_u4hh6")]([SubResource("Resource_vwr3u"), SubResource("Resource_iprje"), SubResource("Resource_ceyxx"), SubResource("Resource_45pql"), SubResource("Resource_1ajl6"), SubResource("Resource_hk601"), SubResource("Resource_4exig"), SubResource("Resource_5g3uj"), SubResource("Resource_qg40h"), SubResource("Resource_s6gee"), SubResource("Resource_wcu46")])
+genus = "Pokémon Imán"
+pokedex_entry = "Magneton emite una fuerte energía magnética que causa estragos en los instrumentos mecánicos. Por ello, en las ciudades se avisa con sirenas cuando hay concentraciones de estos Pokémon."
+height_m = 1.0
+weight_kg = 60.0
+base_attack = 60
+base_defense = 95
+base_sp_attack = 120
+base_sp_defense = 70
+base_speed = 70
+base_experience = 163
+capture_rate = 60

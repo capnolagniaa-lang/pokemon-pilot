@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_dkoxn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uev5m"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_32o2m"]
+
+[resource]
+script = ExtResource("2_uev5m")
+id = "pulpocanon"
+display_name = "Pulpocañón"
+element = ExtResource("1_dkoxn")
+category = 1
+power = 65.0
+cooldown = 1.9000000000000001
+knockback = 104.0
+recovery = 0.1
+speed = 280.0
+size = 4.625
+lifetime = 0.85

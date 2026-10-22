@@ -1,0 +1,114 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_gjbfl"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mscod"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_qe16f"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_a48o4"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="3_vopxe"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_4m4n0"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_ww1my"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_46jvp"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="5_ukxax"]
+[ext_resource type="Resource" path="res://data/moves/desquite.tres" id="6_8hxe4"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="6_8pcdj"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="7_5h1mt"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="8_fj4vr"]
+[ext_resource type="Resource" path="res://data/moves/pin_misil.tres" id="9_7jyw3"]
+[ext_resource type="Resource" path="res://data/moves/arraigo.tres" id="10_cw016"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="11_1gnn7"]
+[ext_resource type="Resource" path="res://data/moves/puas.tres" id="12_b56m4"]
+[ext_resource type="Resource" path="res://data/moves/brazo_pincho.tres" id="13_1fc62"]
+[ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="14_1pbt7"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="15_4r7as"]
+[ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="16_vpr83"]
+
+[sub_resource type="Resource" id="Resource_nas04"]
+script = ExtResource("1_gjbfl")
+move = ExtResource("2_qe16f")
+
+[sub_resource type="Resource" id="Resource_6gcbq"]
+script = ExtResource("1_gjbfl")
+move = ExtResource("3_vopxe")
+
+[sub_resource type="Resource" id="Resource_eou4f"]
+script = ExtResource("1_gjbfl")
+move = ExtResource("4_ww1my")
+
+[sub_resource type="Resource" id="Resource_vp1fx"]
+script = ExtResource("1_gjbfl")
+move = ExtResource("5_ukxax")
+
+[sub_resource type="Resource" id="Resource_vbx2t"]
+script = ExtResource("1_gjbfl")
+move = ExtResource("6_8hxe4")
+
+[sub_resource type="Resource" id="Resource_nw62s"]
+script = ExtResource("1_gjbfl")
+level = 13
+move = ExtResource("7_5h1mt")
+
+[sub_resource type="Resource" id="Resource_w1pru"]
+script = ExtResource("1_gjbfl")
+level = 17
+move = ExtResource("8_fj4vr")
+
+[sub_resource type="Resource" id="Resource_h3inn"]
+script = ExtResource("1_gjbfl")
+level = 21
+move = ExtResource("9_7jyw3")
+
+[sub_resource type="Resource" id="Resource_thhrt"]
+script = ExtResource("1_gjbfl")
+level = 25
+move = ExtResource("10_cw016")
+
+[sub_resource type="Resource" id="Resource_jmsmp"]
+script = ExtResource("1_gjbfl")
+level = 29
+move = ExtResource("11_1gnn7")
+
+[sub_resource type="Resource" id="Resource_brv4n"]
+script = ExtResource("1_gjbfl")
+level = 35
+move = ExtResource("12_b56m4")
+
+[sub_resource type="Resource" id="Resource_s5kvh"]
+script = ExtResource("1_gjbfl")
+level = 41
+move = ExtResource("13_1fc62")
+
+[sub_resource type="Resource" id="Resource_28uhm"]
+script = ExtResource("1_gjbfl")
+level = 47
+move = ExtResource("14_1pbt7")
+
+[sub_resource type="Resource" id="Resource_ov3cf"]
+script = ExtResource("1_gjbfl")
+level = 53
+move = ExtResource("15_4r7as")
+
+[sub_resource type="Resource" id="Resource_q58mk"]
+script = ExtResource("1_gjbfl")
+level = 59
+move = ExtResource("16_vpr83")
+
+[resource]
+script = ExtResource("3_a48o4")
+id = "cacturne"
+display_name = "Cacturne"
+dex = 332
+types = Array[ExtResource("4_4m4n0")]([ExtResource("5_46jvp"), ExtResource("6_8pcdj")])
+learnset = Array[ExtResource("1_gjbfl")]([SubResource("Resource_nas04"), SubResource("Resource_6gcbq"), SubResource("Resource_eou4f"), SubResource("Resource_vp1fx"), SubResource("Resource_vbx2t"), SubResource("Resource_nw62s"), SubResource("Resource_w1pru"), SubResource("Resource_h3inn"), SubResource("Resource_thhrt"), SubResource("Resource_jmsmp"), SubResource("Resource_brv4n"), SubResource("Resource_s5kvh"), SubResource("Resource_28uhm"), SubResource("Resource_ov3cf"), SubResource("Resource_q58mk")])
+genus = "Pokémon Espantajo"
+pokedex_entry = "Durante el día, Cacturne permanece inmóvil para no perder nada de humedad bajo el sol de justicia del desierto. Este Pokémon entra en acción por la noche, cuando bajan las temperaturas."
+height_m = 1.3
+weight_kg = 77.4
+base_hp = 70
+base_attack = 115
+base_defense = 60
+base_sp_attack = 115
+base_sp_defense = 60
+base_speed = 55
+base_experience = 166
+growth_rate = "medium-slow"
+capture_rate = 60

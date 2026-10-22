@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="1_xmbph"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_j6y3r"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_j8561"]
+
+[resource]
+script = ExtResource("2_j6y3r")
+id = "ciclon"
+display_name = "Ciclón"
+element = ExtResource("1_xmbph")
+kind = 2
+category = 1
+cooldown = 3.1500000000000004
+knockback = 200.0
+recovery = 0.1
+radius = 52.0

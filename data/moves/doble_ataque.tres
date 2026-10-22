@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="1_ow78b"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6pic5"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="3_6mkd8"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_p2pcs"]
+
+[resource]
+script = ExtResource("2_6pic5")
+id = "doble_ataque"
+display_name = "Doble Ataque"
+element = ExtResource("1_ow78b")
+kind = 4
+power = 25.0
+cooldown = 0.9
+knockback = 120.0
+recovery = 0.1
+status = ExtResource("3_6mkd8")
+status_chance = 0.2
+melee_range = 13.0
+swing_radius = 12.0
+final_knockback = 150.0

@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_22hns"]
+[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="2_0y74s"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_aie0w"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="3_3xoyo"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_8lx3k"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0e7re"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="4_6ikm6"]
+[ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="5_e6ro6"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_tcsi2"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_04n50"]
+[ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="6_labqd"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="7_mx6e0"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="8_3xqqm"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_rq8k5"]
+[ext_resource type="Resource" path="res://data/moves/velocidad_extrema.tres" id="10_5srku"]
+[ext_resource type="Resource" path="res://data/moves/enfado.tres" id="11_jki3x"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="12_1chs4"]
+
+[sub_resource type="Resource" id="Resource_5ftdk"]
+script = ExtResource("1_22hns")
+move = ExtResource("2_0y74s")
+
+[sub_resource type="Resource" id="Resource_haxf6"]
+script = ExtResource("1_22hns")
+level = 5
+move = ExtResource("3_3xoyo")
+
+[sub_resource type="Resource" id="Resource_xriyq"]
+script = ExtResource("1_22hns")
+level = 15
+move = ExtResource("4_6ikm6")
+
+[sub_resource type="Resource" id="Resource_e2pqt"]
+script = ExtResource("1_22hns")
+level = 20
+move = ExtResource("5_e6ro6")
+
+[sub_resource type="Resource" id="Resource_j1wnr"]
+script = ExtResource("1_22hns")
+level = 30
+move = ExtResource("6_labqd")
+
+[sub_resource type="Resource" id="Resource_sweu6"]
+script = ExtResource("1_22hns")
+level = 35
+move = ExtResource("7_mx6e0")
+
+[sub_resource type="Resource" id="Resource_u43pa"]
+script = ExtResource("1_22hns")
+level = 45
+move = ExtResource("8_3xqqm")
+
+[sub_resource type="Resource" id="Resource_a1a4c"]
+script = ExtResource("1_22hns")
+level = 50
+move = ExtResource("9_rq8k5")
+
+[sub_resource type="Resource" id="Resource_w1chd"]
+script = ExtResource("1_22hns")
+level = 60
+move = ExtResource("10_5srku")
+
+[sub_resource type="Resource" id="Resource_tn0fb"]
+script = ExtResource("1_22hns")
+level = 65
+move = ExtResource("11_jki3x")
+
+[sub_resource type="Resource" id="Resource_634b0"]
+script = ExtResource("1_22hns")
+level = 75
+move = ExtResource("12_1chs4")
+
+[resource]
+script = ExtResource("3_8lx3k")
+id = "rayquaza"
+display_name = "Rayquaza"
+dex = 384
+types = Array[ExtResource("4_0e7re")]([ExtResource("5_tcsi2"), ExtResource("6_04n50")])
+learnset = Array[ExtResource("1_22hns")]([SubResource("Resource_5ftdk"), SubResource("Resource_haxf6"), SubResource("Resource_xriyq"), SubResource("Resource_e2pqt"), SubResource("Resource_j1wnr"), SubResource("Resource_sweu6"), SubResource("Resource_u43pa"), SubResource("Resource_a1a4c"), SubResource("Resource_w1chd"), SubResource("Resource_tn0fb"), SubResource("Resource_634b0")])
+genus = "Pokémon Cielo"
+pokedex_entry = "Dicen que Rayquaza ha vivido durante millones de años. Las leyendas cuentan que puso fin al continuo enfrentamiento entre Groudon y Kyogre."
+height_m = 7.0
+weight_kg = 206.5
+base_hp = 105
+base_attack = 150
+base_defense = 90
+base_sp_attack = 150
+base_sp_defense = 90
+base_speed = 95
+base_experience = 306
+growth_rate = "slow"

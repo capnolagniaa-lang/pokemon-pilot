@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_136p7"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ehddq"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_ry7xy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cv6ix"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_o04f8"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="4_0c11b"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_f7ala"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="5_4d38n"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_i2f2d"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="6_fbikn"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_r3aat"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="7_mc2wa"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="8_ytffb"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="9_pspwv"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="10_go0be"]
+
+[sub_resource type="Resource" id="Resource_xu4m8"]
+script = ExtResource("1_136p7")
+move = ExtResource("2_ry7xy")
+
+[sub_resource type="Resource" id="Resource_8t2d5"]
+script = ExtResource("1_136p7")
+move = ExtResource("3_o04f8")
+
+[sub_resource type="Resource" id="Resource_ooc8u"]
+script = ExtResource("1_136p7")
+level = 8
+move = ExtResource("4_0c11b")
+
+[sub_resource type="Resource" id="Resource_8s18t"]
+script = ExtResource("1_136p7")
+level = 15
+move = ExtResource("5_4d38n")
+
+[sub_resource type="Resource" id="Resource_oocm3"]
+script = ExtResource("1_136p7")
+level = 22
+move = ExtResource("6_fbikn")
+
+[sub_resource type="Resource" id="Resource_rfq6o"]
+script = ExtResource("1_136p7")
+level = 29
+move = ExtResource("7_mc2wa")
+
+[sub_resource type="Resource" id="Resource_q6xty"]
+script = ExtResource("1_136p7")
+level = 36
+move = ExtResource("8_ytffb")
+
+[sub_resource type="Resource" id="Resource_w2hsl"]
+script = ExtResource("1_136p7")
+level = 43
+move = ExtResource("9_pspwv")
+
+[sub_resource type="Resource" id="Resource_lt8kf"]
+script = ExtResource("1_136p7")
+level = 50
+move = ExtResource("10_go0be")
+
+[resource]
+script = ExtResource("3_cv6ix")
+id = "mantine"
+display_name = "Mantine"
+dex = 226
+types = Array[ExtResource("4_f7ala")]([ExtResource("5_i2f2d"), ExtResource("6_r3aat")])
+learnset = Array[ExtResource("1_136p7")]([SubResource("Resource_xu4m8"), SubResource("Resource_8t2d5"), SubResource("Resource_ooc8u"), SubResource("Resource_8s18t"), SubResource("Resource_oocm3"), SubResource("Resource_rfq6o"), SubResource("Resource_q6xty"), SubResource("Resource_w2hsl"), SubResource("Resource_lt8kf")])
+genus = "Pokémon Milano"
+pokedex_entry = "En los días que hace sol, es posible ver bancos de Mantine saltando con elegancia por entre las olas del mar. A estos Pokémon no les molestan los Remoraid que se les pegan."
+height_m = 2.1
+weight_kg = 220.0
+base_hp = 85
+base_attack = 40
+base_defense = 70
+base_sp_attack = 80
+base_sp_defense = 140
+base_speed = 70
+base_experience = 170
+growth_rate = "slow"
+capture_rate = 25

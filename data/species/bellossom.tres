@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qgxg1"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_s8ld5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_u2u7a"]
+[ext_resource type="Resource" path="res://data/moves/hoja_magica.tres" id="3_1mtl8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_plrnu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_axnyp"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="4_ree2f"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_5a8j2"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="5_tx5ud"]
+[ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="6_sno7i"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="7_kkb3m"]
+
+[sub_resource type="Resource" id="Resource_6abcv"]
+script = ExtResource("1_qgxg1")
+move = ExtResource("2_s8ld5")
+
+[sub_resource type="Resource" id="Resource_u6xc8"]
+script = ExtResource("1_qgxg1")
+move = ExtResource("3_1mtl8")
+
+[sub_resource type="Resource" id="Resource_7hwp2"]
+script = ExtResource("1_qgxg1")
+move = ExtResource("4_ree2f")
+
+[sub_resource type="Resource" id="Resource_65cc1"]
+script = ExtResource("1_qgxg1")
+move = ExtResource("5_tx5ud")
+
+[sub_resource type="Resource" id="Resource_km875"]
+script = ExtResource("1_qgxg1")
+level = 44
+move = ExtResource("6_sno7i")
+
+[sub_resource type="Resource" id="Resource_qiedq"]
+script = ExtResource("1_qgxg1")
+level = 55
+move = ExtResource("7_kkb3m")
+
+[resource]
+script = ExtResource("3_plrnu")
+id = "bellossom"
+display_name = "Bellossom"
+dex = 182
+types = Array[ExtResource("4_axnyp")]([ExtResource("5_5a8j2")])
+learnset = Array[ExtResource("1_qgxg1")]([SubResource("Resource_6abcv"), SubResource("Resource_u6xc8"), SubResource("Resource_7hwp2"), SubResource("Resource_65cc1"), SubResource("Resource_km875"), SubResource("Resource_qiedq")])
+genus = "Pokémon Flor"
+pokedex_entry = "Cuando Bellossom se expone a gran cantidad de luz solar, le empiezan a girar las hojas que le rodean. La danza de este Pokémon es famosa en las zonas del sur."
+height_m = 0.4
+weight_kg = 5.8
+base_hp = 75
+base_attack = 80
+base_defense = 95
+base_sp_attack = 90
+base_sp_defense = 100
+base_experience = 221
+growth_rate = "medium-slow"

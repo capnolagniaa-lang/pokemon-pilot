@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jm0rt"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4w60q"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="2_hujf5"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="3_gq55q"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kiq8a"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_7fu47"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="4_t6xl5"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_em3qc"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="5_lsfxh"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="6_bul0b"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_yuy5m"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="7_u4doo"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_jh842"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_iodh3"]
+
+[sub_resource type="Resource" id="Resource_k1y3p"]
+script = ExtResource("1_jm0rt")
+move = ExtResource("2_hujf5")
+
+[sub_resource type="Resource" id="Resource_cowg3"]
+script = ExtResource("1_jm0rt")
+level = 8
+move = ExtResource("3_gq55q")
+
+[sub_resource type="Resource" id="Resource_56sfr"]
+script = ExtResource("1_jm0rt")
+level = 15
+move = ExtResource("4_t6xl5")
+
+[sub_resource type="Resource" id="Resource_140mw"]
+script = ExtResource("1_jm0rt")
+level = 22
+move = ExtResource("5_lsfxh")
+
+[sub_resource type="Resource" id="Resource_vbcli"]
+script = ExtResource("1_jm0rt")
+level = 29
+move = ExtResource("6_bul0b")
+
+[sub_resource type="Resource" id="Resource_40lxk"]
+script = ExtResource("1_jm0rt")
+level = 36
+move = ExtResource("7_u4doo")
+
+[sub_resource type="Resource" id="Resource_b2qhd"]
+script = ExtResource("1_jm0rt")
+level = 43
+move = ExtResource("8_jh842")
+
+[sub_resource type="Resource" id="Resource_q1wsu"]
+script = ExtResource("1_jm0rt")
+level = 50
+move = ExtResource("9_iodh3")
+
+[resource]
+script = ExtResource("3_kiq8a")
+id = "aerodactyl"
+display_name = "Aerodactyl"
+dex = 142
+types = Array[ExtResource("4_7fu47")]([ExtResource("5_em3qc"), ExtResource("6_yuy5m")])
+learnset = Array[ExtResource("1_jm0rt")]([SubResource("Resource_k1y3p"), SubResource("Resource_cowg3"), SubResource("Resource_56sfr"), SubResource("Resource_140mw"), SubResource("Resource_vbcli"), SubResource("Resource_40lxk"), SubResource("Resource_b2qhd"), SubResource("Resource_q1wsu")])
+genus = "Pokémon Fósil"
+pokedex_entry = "Los orígenes de Aerodactyl datan de la era de los dinosaurios. Se regeneró a partir de material genético contenido en ámbar. Se supone que fue el amo de los cielos en épocas pasadas."
+height_m = 1.8
+weight_kg = 59.0
+base_hp = 80
+base_attack = 105
+base_defense = 65
+base_sp_attack = 60
+base_sp_defense = 75
+base_speed = 130
+base_experience = 180
+growth_rate = "slow"

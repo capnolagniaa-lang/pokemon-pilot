@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fkyu4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1nxhe"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_q54s4"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="3_26vh8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_tcwnf"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_80y3a"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="4_rfbxq"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_1pinx"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_vd411"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="6_3pf6d"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="6_st6wn"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="7_n05lb"]
+[ext_resource type="Resource" path="res://data/moves/ultrapuno.tres" id="8_3tmmm"]
+[ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="9_noepm"]
+[ext_resource type="Resource" path="res://data/moves/gancho_alto.tres" id="10_gvjib"]
+[ext_resource type="Resource" path="res://data/moves/telepata.tres" id="11_tyw3l"]
+[ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="12_p81ii"]
+
+[sub_resource type="Resource" id="Resource_nr5dh"]
+script = ExtResource("1_fkyu4")
+move = ExtResource("2_q54s4")
+
+[sub_resource type="Resource" id="Resource_vrafb"]
+script = ExtResource("1_fkyu4")
+move = ExtResource("3_26vh8")
+
+[sub_resource type="Resource" id="Resource_5ch3e"]
+script = ExtResource("1_fkyu4")
+move = ExtResource("4_rfbxq")
+
+[sub_resource type="Resource" id="Resource_4hbxb"]
+script = ExtResource("1_fkyu4")
+move = ExtResource("5_vd411")
+
+[sub_resource type="Resource" id="Resource_ahqok"]
+script = ExtResource("1_fkyu4")
+level = 16
+move = ExtResource("6_st6wn")
+
+[sub_resource type="Resource" id="Resource_w2pl8"]
+script = ExtResource("1_fkyu4")
+level = 22
+move = ExtResource("7_n05lb")
+
+[sub_resource type="Resource" id="Resource_end55"]
+script = ExtResource("1_fkyu4")
+level = 23
+move = ExtResource("8_3tmmm")
+
+[sub_resource type="Resource" id="Resource_d6i2s"]
+script = ExtResource("1_fkyu4")
+level = 28
+move = ExtResource("9_noepm")
+
+[sub_resource type="Resource" id="Resource_rypqo"]
+script = ExtResource("1_fkyu4")
+level = 36
+move = ExtResource("10_gvjib")
+
+[sub_resource type="Resource" id="Resource_l3lr6"]
+script = ExtResource("1_fkyu4")
+level = 45
+move = ExtResource("11_tyw3l")
+
+[sub_resource type="Resource" id="Resource_sgue0"]
+script = ExtResource("1_fkyu4")
+level = 54
+move = ExtResource("12_p81ii")
+
+[resource]
+script = ExtResource("3_tcwnf")
+id = "breloom"
+display_name = "Breloom"
+dex = 286
+types = Array[ExtResource("4_80y3a")]([ExtResource("5_1pinx"), ExtResource("6_3pf6d")])
+learnset = Array[ExtResource("1_fkyu4")]([SubResource("Resource_nr5dh"), SubResource("Resource_vrafb"), SubResource("Resource_5ch3e"), SubResource("Resource_4hbxb"), SubResource("Resource_ahqok"), SubResource("Resource_w2pl8"), SubResource("Resource_end55"), SubResource("Resource_d6i2s"), SubResource("Resource_rypqo"), SubResource("Resource_l3lr6"), SubResource("Resource_sgue0")])
+genus = "Pokémon Hongo"
+pokedex_entry = "Breloom se acerca al enemigo realizando un juego de piernas ágil y enérgico. Y, a continuación, le da unos puñetazos con los brazos elásticos que tiene. Las técnicas de lucha que usa dejan en ridículo al boxeador más profesional."
+height_m = 1.2
+weight_kg = 39.2
+base_hp = 60
+base_attack = 130
+base_defense = 80
+base_sp_attack = 60
+base_sp_defense = 60
+base_speed = 70
+base_experience = 161
+growth_rate = "fast-then-very-slow"
+capture_rate = 90

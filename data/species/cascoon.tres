@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yeoyl"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6earm"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_ujtcu"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ujtcu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wqkvk"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_uippl"]
+
+[sub_resource type="Resource" id="Resource_wqkvk"]
+script = ExtResource("1_yeoyl")
+move = ExtResource("2_ujtcu")
+
+[resource]
+script = ExtResource("3_ujtcu")
+id = "cascoon"
+display_name = "Cascoon"
+dex = 268
+types = Array[ExtResource("4_wqkvk")]([ExtResource("5_uippl")])
+learnset = Array[ExtResource("1_yeoyl")]([SubResource("Resource_wqkvk")])
+genus = "Pokémon Capullo"
+pokedex_entry = "Cascoon forma el capullo que lo protege enrollándose por completo en la seda que libera por la boca. Cuando está totalmente recubierto, se prepara para evolucionar en el interior del capullo."
+height_m = 0.7
+weight_kg = 11.5
+base_attack = 35
+base_defense = 55
+base_sp_attack = 25
+base_sp_defense = 25
+base_speed = 15
+base_experience = 72
+capture_rate = 120

@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_48bm5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4tkyy"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_lgkgo"]
+[ext_resource type="Resource" path="res://data/moves/aullido.tres" id="3_kr207"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_s6cud"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_bf07l"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="4_ydwf4"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_fiuie"]
+[ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="5_jvrwp"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="6_3i4ps"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="7_qcufu"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_nq4iv"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="9_pe3bl"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_5k02j"]
+[ext_resource type="Resource" path="res://data/moves/sonambulo.tres" id="11_xhmu5"]
+[ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="12_rdfck"]
+
+[sub_resource type="Resource" id="Resource_2ugyt"]
+script = ExtResource("1_48bm5")
+move = ExtResource("2_lgkgo")
+
+[sub_resource type="Resource" id="Resource_ytt74"]
+script = ExtResource("1_48bm5")
+move = ExtResource("3_kr207")
+
+[sub_resource type="Resource" id="Resource_saetw"]
+script = ExtResource("1_48bm5")
+move = ExtResource("4_ydwf4")
+
+[sub_resource type="Resource" id="Resource_q6cno"]
+script = ExtResource("1_48bm5")
+move = ExtResource("5_jvrwp")
+
+[sub_resource type="Resource" id="Resource_nhle8"]
+script = ExtResource("1_48bm5")
+level = 23
+move = ExtResource("6_3i4ps")
+
+[sub_resource type="Resource" id="Resource_abbb4"]
+script = ExtResource("1_48bm5")
+level = 29
+move = ExtResource("7_qcufu")
+
+[sub_resource type="Resource" id="Resource_0bgpo"]
+script = ExtResource("1_48bm5")
+level = 37
+move = ExtResource("8_nq4iv")
+
+[sub_resource type="Resource" id="Resource_wetaw"]
+script = ExtResource("1_48bm5")
+level = 43
+move = ExtResource("9_pe3bl")
+
+[sub_resource type="Resource" id="Resource_udf5a"]
+script = ExtResource("1_48bm5")
+level = 51
+move = ExtResource("10_5k02j")
+
+[sub_resource type="Resource" id="Resource_exs2d"]
+script = ExtResource("1_48bm5")
+level = 51
+move = ExtResource("11_xhmu5")
+
+[sub_resource type="Resource" id="Resource_kpbio"]
+script = ExtResource("1_48bm5")
+level = 57
+move = ExtResource("12_rdfck")
+
+[resource]
+script = ExtResource("3_s6cud")
+id = "loudred"
+display_name = "Loudred"
+dex = 294
+types = Array[ExtResource("4_bf07l")]([ExtResource("5_fiuie")])
+learnset = Array[ExtResource("1_48bm5")]([SubResource("Resource_2ugyt"), SubResource("Resource_ytt74"), SubResource("Resource_saetw"), SubResource("Resource_q6cno"), SubResource("Resource_nhle8"), SubResource("Resource_abbb4"), SubResource("Resource_0bgpo"), SubResource("Resource_wetaw"), SubResource("Resource_udf5a"), SubResource("Resource_exs2d"), SubResource("Resource_kpbio")])
+genus = "Pokémon Chillón"
+pokedex_entry = "Los bramidos de Loudred pueden echar abajo una casa reforzada con vigas de madera. Este Pokémon usa el vozarrón que tiene para castigar a sus rivales. Las orejas redondas le sirven de altavoces."
+height_m = 1.0
+weight_kg = 40.5
+base_hp = 84
+base_attack = 71
+base_defense = 43
+base_sp_attack = 71
+base_sp_defense = 43
+base_speed = 48
+base_experience = 126
+growth_rate = "medium-slow"
+capture_rate = 120

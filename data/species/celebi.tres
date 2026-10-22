@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_w02df"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_2vrqt"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_eqyti"]
+[ext_resource type="Resource" path="res://data/moves/cascabel_cura.tres" id="3_4ebfa"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_qcir6"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="4_buo8u"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mkiim"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_wsobv"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="5_wv2hw"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="6_cdhuu"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="6_npoas"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="7_iasuk"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="8_jhqgh"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="9_5jhej"]
+[ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="10_sy6fc"]
+
+[sub_resource type="Resource" id="Resource_ypg1d"]
+script = ExtResource("1_w02df")
+move = ExtResource("2_2vrqt")
+
+[sub_resource type="Resource" id="Resource_may5b"]
+script = ExtResource("1_w02df")
+move = ExtResource("3_4ebfa")
+
+[sub_resource type="Resource" id="Resource_pbwja"]
+script = ExtResource("1_w02df")
+move = ExtResource("4_buo8u")
+
+[sub_resource type="Resource" id="Resource_m6avc"]
+script = ExtResource("1_w02df")
+move = ExtResource("5_wv2hw")
+
+[sub_resource type="Resource" id="Resource_32fk4"]
+script = ExtResource("1_w02df")
+level = 10
+move = ExtResource("6_npoas")
+
+[sub_resource type="Resource" id="Resource_xgg4g"]
+script = ExtResource("1_w02df")
+level = 20
+move = ExtResource("7_iasuk")
+
+[sub_resource type="Resource" id="Resource_0ln1m"]
+script = ExtResource("1_w02df")
+level = 30
+move = ExtResource("8_jhqgh")
+
+[sub_resource type="Resource" id="Resource_17r0j"]
+script = ExtResource("1_w02df")
+level = 40
+move = ExtResource("9_5jhej")
+
+[sub_resource type="Resource" id="Resource_wlcyx"]
+script = ExtResource("1_w02df")
+level = 50
+move = ExtResource("10_sy6fc")
+
+[resource]
+script = ExtResource("3_qcir6")
+id = "celebi"
+display_name = "Celebi"
+dex = 251
+types = Array[ExtResource("4_mkiim")]([ExtResource("5_wsobv"), ExtResource("6_cdhuu")])
+learnset = Array[ExtResource("1_w02df")]([SubResource("Resource_ypg1d"), SubResource("Resource_may5b"), SubResource("Resource_pbwja"), SubResource("Resource_m6avc"), SubResource("Resource_32fk4"), SubResource("Resource_xgg4g"), SubResource("Resource_0ln1m"), SubResource("Resource_17r0j"), SubResource("Resource_wlcyx")])
+genus = "Pokémon Viajetiempo"
+pokedex_entry = "Este Pokémon vino del futuro haciendo un viaje en el tiempo. Hay quien piensa que, mientras Celebi siga apareciendo, hay un futuro brillante y esperanzador."
+height_m = 0.6
+weight_kg = 5.0
+base_hp = 100
+base_attack = 100
+base_defense = 100
+base_sp_attack = 100
+base_sp_defense = 100
+base_speed = 100
+base_experience = 270
+growth_rate = "medium-slow"

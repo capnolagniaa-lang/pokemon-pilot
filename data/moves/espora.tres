@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_5qv6k"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ss141"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_7t7wu"]
+[ext_resource type="Resource" path="res://data/status/dormido.tres" id="4_pmw4p"]
+
+[resource]
+script = ExtResource("2_ss141")
+id = "espora"
+display_name = "Espora"
+element = ExtResource("1_5qv6k")
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+statuses_on_hit = Array[ExtResource("3_7t7wu")]([ExtResource("4_pmw4p")])
+speed = 220.0
+size = 4.5
+lifetime = 0.8

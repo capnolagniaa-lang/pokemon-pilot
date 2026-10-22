@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_c25wj"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7e7mx"]
+[ext_resource type="Resource" path="res://data/moves/torbellino.tres" id="2_67ua1"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_elage"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="3_owoxd"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="4_654eb"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mstvf"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="5_0uysd"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_vi5jm"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="6_wrg78"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="7_ov5ea"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="8_w4dp4"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_d75sx"]
+
+[sub_resource type="Resource" id="Resource_rbu58"]
+script = ExtResource("1_c25wj")
+move = ExtResource("2_67ua1")
+
+[sub_resource type="Resource" id="Resource_1a8fq"]
+script = ExtResource("1_c25wj")
+level = 8
+move = ExtResource("3_owoxd")
+
+[sub_resource type="Resource" id="Resource_ish1c"]
+script = ExtResource("1_c25wj")
+level = 15
+move = ExtResource("4_654eb")
+
+[sub_resource type="Resource" id="Resource_8j7tx"]
+script = ExtResource("1_c25wj")
+level = 22
+move = ExtResource("5_0uysd")
+
+[sub_resource type="Resource" id="Resource_e0l50"]
+script = ExtResource("1_c25wj")
+level = 29
+move = ExtResource("6_wrg78")
+
+[sub_resource type="Resource" id="Resource_tmefq"]
+script = ExtResource("1_c25wj")
+level = 36
+move = ExtResource("7_ov5ea")
+
+[sub_resource type="Resource" id="Resource_ba6l6"]
+script = ExtResource("1_c25wj")
+level = 43
+move = ExtResource("8_w4dp4")
+
+[sub_resource type="Resource" id="Resource_n3ab5"]
+script = ExtResource("1_c25wj")
+level = 50
+move = ExtResource("9_d75sx")
+
+[resource]
+script = ExtResource("3_elage")
+id = "gorebyss"
+display_name = "Gorebyss"
+dex = 368
+types = Array[ExtResource("4_mstvf")]([ExtResource("5_vi5jm")])
+learnset = Array[ExtResource("1_c25wj")]([SubResource("Resource_rbu58"), SubResource("Resource_1a8fq"), SubResource("Resource_ish1c"), SubResource("Resource_8j7tx"), SubResource("Resource_e0l50"), SubResource("Resource_tmefq"), SubResource("Resource_ba6l6"), SubResource("Resource_n3ab5")])
+genus = "Pokémon Mar del Sur"
+pokedex_entry = "Gorebyss vive en los mares del sur, en lo más profundo; de ahí que tenga el cuerpo preparado para soportar la presión tan grande que hay en el fondo marino, y que no le hagan daño los ataques comunes."
+height_m = 1.8
+weight_kg = 22.6
+base_hp = 55
+base_attack = 84
+base_defense = 105
+base_sp_attack = 114
+base_sp_defense = 75
+base_speed = 52
+base_experience = 170
+growth_rate = "slow-then-very-fast"
+capture_rate = 60

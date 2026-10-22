@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5fl1j"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_18mgg"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="2_jo0xm"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_waayi"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="3_ydk3s"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="4_itsdi"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_w7iyf"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_qwuvu"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="5_tfsgn"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="6_crxo3"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="7_2netx"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="8_6wivv"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_05sdj"]
+[ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="10_78er0"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_7qcs3"]
+[ext_resource type="Resource" path="res://data/moves/salpicar.tres" id="12_oio5s"]
+
+[sub_resource type="Resource" id="Resource_pbwaf"]
+script = ExtResource("1_5fl1j")
+move = ExtResource("2_jo0xm")
+
+[sub_resource type="Resource" id="Resource_4bfbg"]
+script = ExtResource("1_5fl1j")
+level = 5
+move = ExtResource("3_ydk3s")
+
+[sub_resource type="Resource" id="Resource_ruoqw"]
+script = ExtResource("1_5fl1j")
+level = 15
+move = ExtResource("4_itsdi")
+
+[sub_resource type="Resource" id="Resource_pkelq"]
+script = ExtResource("1_5fl1j")
+level = 20
+move = ExtResource("5_tfsgn")
+
+[sub_resource type="Resource" id="Resource_ooxkr"]
+script = ExtResource("1_5fl1j")
+level = 30
+move = ExtResource("6_crxo3")
+
+[sub_resource type="Resource" id="Resource_ynli7"]
+script = ExtResource("1_5fl1j")
+level = 35
+move = ExtResource("7_2netx")
+
+[sub_resource type="Resource" id="Resource_hghac"]
+script = ExtResource("1_5fl1j")
+level = 45
+move = ExtResource("8_6wivv")
+
+[sub_resource type="Resource" id="Resource_a66ik"]
+script = ExtResource("1_5fl1j")
+level = 50
+move = ExtResource("9_05sdj")
+
+[sub_resource type="Resource" id="Resource_c5pci"]
+script = ExtResource("1_5fl1j")
+level = 60
+move = ExtResource("10_78er0")
+
+[sub_resource type="Resource" id="Resource_oypea"]
+script = ExtResource("1_5fl1j")
+level = 65
+move = ExtResource("11_7qcs3")
+
+[sub_resource type="Resource" id="Resource_d45w3"]
+script = ExtResource("1_5fl1j")
+level = 75
+move = ExtResource("12_oio5s")
+
+[resource]
+script = ExtResource("3_waayi")
+id = "kyogre"
+display_name = "Kyogre"
+dex = 382
+types = Array[ExtResource("4_w7iyf")]([ExtResource("5_qwuvu")])
+learnset = Array[ExtResource("1_5fl1j")]([SubResource("Resource_pbwaf"), SubResource("Resource_4bfbg"), SubResource("Resource_ruoqw"), SubResource("Resource_pkelq"), SubResource("Resource_ooxkr"), SubResource("Resource_ynli7"), SubResource("Resource_hghac"), SubResource("Resource_a66ik"), SubResource("Resource_c5pci"), SubResource("Resource_oypea"), SubResource("Resource_d45w3")])
+genus = "Pokémon Cuenca Mar"
+pokedex_entry = "Kyogre se sirve de la energía de la naturaleza para realizar su Regresión Primigenia y recobrar su apariencia primitiva. Con tal poder, puede desencadenar tempestades para expandir los océanos."
+height_m = 4.5
+weight_kg = 352.0
+base_hp = 100
+base_attack = 100
+base_defense = 90
+base_sp_attack = 150
+base_sp_defense = 140
+base_speed = 90
+base_experience = 302
+growth_rate = "slow"
+capture_rate = 3

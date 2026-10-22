@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_picc5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ycy0r"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_5ryhy"]
+
+[resource]
+script = ExtResource("2_ycy0r")
+id = "sonambulo"
+display_name = "Sonámbulo"
+element = ExtResource("1_picc5")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0

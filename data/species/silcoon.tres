@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_66c7t"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_05t7y"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_fl0e0"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_05t7y"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_x04q4"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_5451h"]
+
+[sub_resource type="Resource" id="Resource_x04q4"]
+script = ExtResource("1_66c7t")
+move = ExtResource("2_05t7y")
+
+[resource]
+script = ExtResource("3_05t7y")
+id = "silcoon"
+display_name = "Silcoon"
+dex = 266
+types = Array[ExtResource("4_x04q4")]([ExtResource("5_5451h")])
+learnset = Array[ExtResource("1_66c7t")]([SubResource("Resource_x04q4")])
+genus = "Pokémon Capullo"
+pokedex_entry = "Silcoon usa la seda que produce para aferrarse a la rama de un árbol y sujetarse bien. Se queda ahí colgado a la espera de su evolución, mientras lo observa todo a través de dos pequeños agujeros en su capullo de seda."
+height_m = 0.6
+weight_kg = 10.0
+base_attack = 35
+base_defense = 55
+base_sp_attack = 25
+base_sp_defense = 25
+base_speed = 15
+base_experience = 72
+capture_rate = 120

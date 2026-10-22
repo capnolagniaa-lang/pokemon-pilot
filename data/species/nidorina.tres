@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xrdab"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_183tm"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_wudtu"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_48x00"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_g6j78"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_ghury"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jiitr"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_jgg5i"]
+[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="5_kj7tx"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="6_j3qj8"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="7_db8i6"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="8_isebw"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="9_kkqn3"]
+[ext_resource type="Resource" path="res://data/moves/camelo.tres" id="10_6ux1v"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_3urld"]
+
+[sub_resource type="Resource" id="Resource_cumji"]
+script = ExtResource("1_xrdab")
+move = ExtResource("2_wudtu")
+
+[sub_resource type="Resource" id="Resource_f6wkt"]
+script = ExtResource("1_xrdab")
+move = ExtResource("3_48x00")
+
+[sub_resource type="Resource" id="Resource_6ald3"]
+script = ExtResource("1_xrdab")
+level = 8
+move = ExtResource("4_ghury")
+
+[sub_resource type="Resource" id="Resource_sbvr5"]
+script = ExtResource("1_xrdab")
+level = 12
+move = ExtResource("5_kj7tx")
+
+[sub_resource type="Resource" id="Resource_u8slw"]
+script = ExtResource("1_xrdab")
+level = 18
+move = ExtResource("6_j3qj8")
+
+[sub_resource type="Resource" id="Resource_fte80"]
+script = ExtResource("1_xrdab")
+level = 22
+move = ExtResource("7_db8i6")
+
+[sub_resource type="Resource" id="Resource_a5qlh"]
+script = ExtResource("1_xrdab")
+level = 26
+move = ExtResource("8_isebw")
+
+[sub_resource type="Resource" id="Resource_07bk2"]
+script = ExtResource("1_xrdab")
+level = 34
+move = ExtResource("9_kkqn3")
+
+[sub_resource type="Resource" id="Resource_7vdmq"]
+script = ExtResource("1_xrdab")
+level = 43
+move = ExtResource("10_6ux1v")
+
+[sub_resource type="Resource" id="Resource_eqgm6"]
+script = ExtResource("1_xrdab")
+level = 53
+move = ExtResource("11_3urld")
+
+[resource]
+script = ExtResource("3_g6j78")
+id = "nidorina"
+display_name = "Nidorina"
+dex = 30
+types = Array[ExtResource("4_jiitr")]([ExtResource("5_jgg5i")])
+learnset = Array[ExtResource("1_xrdab")]([SubResource("Resource_cumji"), SubResource("Resource_f6wkt"), SubResource("Resource_6ald3"), SubResource("Resource_sbvr5"), SubResource("Resource_u8slw"), SubResource("Resource_fte80"), SubResource("Resource_a5qlh"), SubResource("Resource_07bk2"), SubResource("Resource_7vdmq"), SubResource("Resource_eqgm6")])
+genus = "Pokémon Pin Veneno"
+pokedex_entry = "Cuando están en familia o con sus amigos, esconden las púas para evitar accidentes. Según parece, se alteran bastante si se separan del grupo."
+height_m = 0.8
+weight_kg = 20.0
+base_hp = 70
+base_attack = 62
+base_defense = 67
+base_sp_attack = 55
+base_sp_defense = 55
+base_speed = 56
+base_experience = 128
+growth_rate = "medium-slow"
+capture_rate = 120

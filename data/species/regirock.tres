@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_myps1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2n1v5"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="2_iligk"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_7radt"]
+[ext_resource type="Resource" path="res://data/moves/lanzarrocas.tres" id="3_m6j35"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_1bjii"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="4_dd0gs"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_lflvy"]
+[ext_resource type="Resource" path="res://data/moves/fuerza_bruta.tres" id="5_w21f8"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="6_y2jxl"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="7_kml6y"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="8_ttvva"]
+[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="9_o6wqn"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_egpy4"]
+
+[sub_resource type="Resource" id="Resource_y4w87"]
+script = ExtResource("1_myps1")
+move = ExtResource("2_iligk")
+
+[sub_resource type="Resource" id="Resource_kpusg"]
+script = ExtResource("1_myps1")
+level = 9
+move = ExtResource("3_m6j35")
+
+[sub_resource type="Resource" id="Resource_qsn72"]
+script = ExtResource("1_myps1")
+level = 17
+move = ExtResource("4_dd0gs")
+
+[sub_resource type="Resource" id="Resource_quoyk"]
+script = ExtResource("1_myps1")
+level = 25
+move = ExtResource("5_w21f8")
+
+[sub_resource type="Resource" id="Resource_25vjf"]
+script = ExtResource("1_myps1")
+level = 33
+move = ExtResource("6_y2jxl")
+
+[sub_resource type="Resource" id="Resource_eey0n"]
+script = ExtResource("1_myps1")
+level = 41
+move = ExtResource("7_kml6y")
+
+[sub_resource type="Resource" id="Resource_inbit"]
+script = ExtResource("1_myps1")
+level = 49
+move = ExtResource("8_ttvva")
+
+[sub_resource type="Resource" id="Resource_2fu58"]
+script = ExtResource("1_myps1")
+level = 57
+move = ExtResource("9_o6wqn")
+
+[sub_resource type="Resource" id="Resource_5lpr5"]
+script = ExtResource("1_myps1")
+level = 65
+move = ExtResource("10_egpy4")
+
+[resource]
+script = ExtResource("3_7radt")
+id = "regirock"
+display_name = "Regirock"
+dex = 377
+types = Array[ExtResource("4_1bjii")]([ExtResource("5_lflvy")])
+learnset = Array[ExtResource("1_myps1")]([SubResource("Resource_y4w87"), SubResource("Resource_kpusg"), SubResource("Resource_qsn72"), SubResource("Resource_quoyk"), SubResource("Resource_25vjf"), SubResource("Resource_eey0n"), SubResource("Resource_inbit"), SubResource("Resource_2fu58"), SubResource("Resource_5lpr5")])
+genus = "Pokémon Pico Roca"
+pokedex_entry = "A Regirock lo mantuvieron encerrado y aislado hace tiempo. Dicen que, si resulta dañado en combate, se pone él mismo a buscar piedras parecidas a las suyas y se las pone para recomponerse."
+height_m = 1.7
+weight_kg = 230.0
+base_hp = 80
+base_attack = 100
+base_defense = 200
+base_sp_defense = 100
+base_experience = 261
+growth_rate = "slow"
+capture_rate = 3

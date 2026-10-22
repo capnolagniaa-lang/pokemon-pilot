@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_rfi1f"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_o7l48"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_mvtdt"]
+
+[resource]
+script = ExtResource("2_o7l48")
+id = "esporagodon"
+display_name = "Esporagodón"
+element = ExtResource("1_rfi1f")
+kind = 2
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+radius = 40.0

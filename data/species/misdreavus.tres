@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jgvia"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3cj5s"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_udbru"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_bb10n"]
+[ext_resource type="Resource" path="res://data/moves/psicoonda.tres" id="3_empp1"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_j18je"]
+[ext_resource type="Resource" path="res://data/moves/rencor.tres" id="4_mtdjr"]
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="5_j3ala"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="5_yicqr"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="6_qtxr1"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="7_xvxii"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="8_e110l"]
+[ext_resource type="Resource" path="res://data/moves/divide_dolor.tres" id="9_s8yn3"]
+[ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="10_y2x3x"]
+[ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_c1xy7"]
+
+[sub_resource type="Resource" id="Resource_gn0s3"]
+script = ExtResource("1_jgvia")
+move = ExtResource("2_udbru")
+
+[sub_resource type="Resource" id="Resource_841fn"]
+script = ExtResource("1_jgvia")
+move = ExtResource("3_empp1")
+
+[sub_resource type="Resource" id="Resource_xd786"]
+script = ExtResource("1_jgvia")
+level = 6
+move = ExtResource("4_mtdjr")
+
+[sub_resource type="Resource" id="Resource_usmb4"]
+script = ExtResource("1_jgvia")
+level = 11
+move = ExtResource("5_yicqr")
+
+[sub_resource type="Resource" id="Resource_rq1g0"]
+script = ExtResource("1_jgvia")
+level = 17
+move = ExtResource("6_qtxr1")
+
+[sub_resource type="Resource" id="Resource_rhecu"]
+script = ExtResource("1_jgvia")
+level = 23
+move = ExtResource("7_xvxii")
+
+[sub_resource type="Resource" id="Resource_87g6a"]
+script = ExtResource("1_jgvia")
+level = 30
+move = ExtResource("8_e110l")
+
+[sub_resource type="Resource" id="Resource_qs8tb"]
+script = ExtResource("1_jgvia")
+level = 37
+move = ExtResource("9_s8yn3")
+
+[sub_resource type="Resource" id="Resource_e2cbh"]
+script = ExtResource("1_jgvia")
+level = 45
+move = ExtResource("10_y2x3x")
+
+[sub_resource type="Resource" id="Resource_7x17i"]
+script = ExtResource("1_jgvia")
+level = 53
+move = ExtResource("11_c1xy7")
+
+[resource]
+script = ExtResource("3_bb10n")
+id = "misdreavus"
+display_name = "Misdreavus"
+dex = 200
+types = Array[ExtResource("4_j18je")]([ExtResource("5_j3ala")])
+learnset = Array[ExtResource("1_jgvia")]([SubResource("Resource_gn0s3"), SubResource("Resource_841fn"), SubResource("Resource_xd786"), SubResource("Resource_usmb4"), SubResource("Resource_rq1g0"), SubResource("Resource_rhecu"), SubResource("Resource_87g6a"), SubResource("Resource_qs8tb"), SubResource("Resource_e2cbh"), SubResource("Resource_7x17i")])
+genus = "Pokémon Chirrido"
+pokedex_entry = "Misdreavus asusta a la gente con un chillido escalofriante y sollozante. Y, al parecer, usa las esferas rojas para absorber los sentimientos de miedo de los enemigos y usarlos como alimento."
+height_m = 0.7
+weight_kg = 1.0
+base_hp = 60
+base_attack = 60
+base_defense = 60
+base_sp_attack = 85
+base_sp_defense = 85
+base_speed = 85
+base_experience = 87
+growth_rate = "fast"

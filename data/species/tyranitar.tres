@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hlucd"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2rgue"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_eiquy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_2u6ku"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_vlbqy"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="4_sbm0y"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wcsqe"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_nahth"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="5_usjvj"]
+[ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="6_l7mqc"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="6_uw1hm"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="7_kl6tk"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="8_8ainp"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_qjuaq"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_llw5y"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_8a44l"]
+
+[sub_resource type="Resource" id="Resource_ks82r"]
+script = ExtResource("1_hlucd")
+move = ExtResource("2_eiquy")
+
+[sub_resource type="Resource" id="Resource_kogda"]
+script = ExtResource("1_hlucd")
+move = ExtResource("3_vlbqy")
+
+[sub_resource type="Resource" id="Resource_auuxf"]
+script = ExtResource("1_hlucd")
+move = ExtResource("4_sbm0y")
+
+[sub_resource type="Resource" id="Resource_erkny"]
+script = ExtResource("1_hlucd")
+move = ExtResource("5_usjvj")
+
+[sub_resource type="Resource" id="Resource_vrrv2"]
+script = ExtResource("1_hlucd")
+level = 22
+move = ExtResource("6_l7mqc")
+
+[sub_resource type="Resource" id="Resource_yb3tt"]
+script = ExtResource("1_hlucd")
+level = 29
+move = ExtResource("7_kl6tk")
+
+[sub_resource type="Resource" id="Resource_ovgel"]
+script = ExtResource("1_hlucd")
+level = 38
+move = ExtResource("8_8ainp")
+
+[sub_resource type="Resource" id="Resource_ru1yp"]
+script = ExtResource("1_hlucd")
+level = 47
+move = ExtResource("9_qjuaq")
+
+[sub_resource type="Resource" id="Resource_vvnow"]
+script = ExtResource("1_hlucd")
+level = 61
+move = ExtResource("10_llw5y")
+
+[sub_resource type="Resource" id="Resource_df5ww"]
+script = ExtResource("1_hlucd")
+level = 75
+move = ExtResource("11_8a44l")
+
+[resource]
+script = ExtResource("3_2u6ku")
+id = "tyranitar"
+display_name = "Tyranitar"
+dex = 248
+types = Array[ExtResource("4_wcsqe")]([ExtResource("5_nahth"), ExtResource("6_uw1hm")])
+learnset = Array[ExtResource("1_hlucd")]([SubResource("Resource_ks82r"), SubResource("Resource_kogda"), SubResource("Resource_auuxf"), SubResource("Resource_erkny"), SubResource("Resource_vrrv2"), SubResource("Resource_yb3tt"), SubResource("Resource_ovgel"), SubResource("Resource_ru1yp"), SubResource("Resource_vvnow"), SubResource("Resource_df5ww")])
+genus = "Pokémon Coraza"
+pokedex_entry = "Tyranitar tiene una fuerza imponente; es capaz de echar abajo una montaña para hacer su nido. Este Pokémon suele merodear por las zonas de montaña en busca de nuevos rivales contra los que luchar."
+height_m = 2.0
+weight_kg = 202.0
+base_hp = 100
+base_attack = 134
+base_defense = 110
+base_sp_attack = 95
+base_sp_defense = 100
+base_speed = 61
+base_experience = 270
+growth_rate = "slow"

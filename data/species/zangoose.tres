@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_upwpr"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_4fv4v"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4ggn3"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1snj1"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_p6bl7"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="4_0ybkr"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_nnywx"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_miouo"]
+[ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="5_t2l6e"]
+[ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="6_nj8nf"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="7_e5v3u"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="8_svw6i"]
+[ext_resource type="Resource" path="res://data/moves/garra_brutal.tres" id="9_nvj25"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="10_8t501"]
+[ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="11_n1dxb"]
+[ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="12_jxd7m"]
+
+[sub_resource type="Resource" id="Resource_l1yr7"]
+script = ExtResource("1_upwpr")
+move = ExtResource("2_4fv4v")
+
+[sub_resource type="Resource" id="Resource_6c2sy"]
+script = ExtResource("1_upwpr")
+level = 4
+move = ExtResource("3_p6bl7")
+
+[sub_resource type="Resource" id="Resource_wjdkf"]
+script = ExtResource("1_upwpr")
+level = 7
+move = ExtResource("4_0ybkr")
+
+[sub_resource type="Resource" id="Resource_haftu"]
+script = ExtResource("1_upwpr")
+level = 10
+move = ExtResource("5_t2l6e")
+
+[sub_resource type="Resource" id="Resource_brunw"]
+script = ExtResource("1_upwpr")
+level = 13
+move = ExtResource("6_nj8nf")
+
+[sub_resource type="Resource" id="Resource_jrtny"]
+script = ExtResource("1_upwpr")
+level = 19
+move = ExtResource("7_e5v3u")
+
+[sub_resource type="Resource" id="Resource_lb01d"]
+script = ExtResource("1_upwpr")
+level = 25
+move = ExtResource("8_svw6i")
+
+[sub_resource type="Resource" id="Resource_i6ogs"]
+script = ExtResource("1_upwpr")
+level = 31
+move = ExtResource("9_nvj25")
+
+[sub_resource type="Resource" id="Resource_ci15c"]
+script = ExtResource("1_upwpr")
+level = 37
+move = ExtResource("10_8t501")
+
+[sub_resource type="Resource" id="Resource_2fkh1"]
+script = ExtResource("1_upwpr")
+level = 46
+move = ExtResource("11_n1dxb")
+
+[sub_resource type="Resource" id="Resource_13wvx"]
+script = ExtResource("1_upwpr")
+level = 55
+move = ExtResource("12_jxd7m")
+
+[resource]
+script = ExtResource("3_1snj1")
+id = "zangoose"
+display_name = "Zangoose"
+dex = 335
+types = Array[ExtResource("4_nnywx")]([ExtResource("5_miouo")])
+learnset = Array[ExtResource("1_upwpr")]([SubResource("Resource_l1yr7"), SubResource("Resource_6c2sy"), SubResource("Resource_wjdkf"), SubResource("Resource_haftu"), SubResource("Resource_brunw"), SubResource("Resource_jrtny"), SubResource("Resource_lb01d"), SubResource("Resource_i6ogs"), SubResource("Resource_ci15c"), SubResource("Resource_2fkh1"), SubResource("Resource_13wvx")])
+genus = "Pokémon Gato Hurón"
+pokedex_entry = "Los ecos del combate mantenido con su rival más feroz, Seviper, resuenan aún en cada célula de Zangoose. Este Pokémon esquiva los ataques con auténtica destreza."
+height_m = 1.3
+weight_kg = 40.3
+base_hp = 73
+base_attack = 115
+base_defense = 60
+base_sp_attack = 60
+base_sp_defense = 60
+base_speed = 90
+base_experience = 160
+growth_rate = "slow-then-very-fast"
+capture_rate = 90

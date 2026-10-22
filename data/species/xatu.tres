@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_kqu8r"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_ccfur"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_q3ru5"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_0kmkk"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1khot"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_1aa7j"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="4_geh4e"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_73vo3"]
+[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="5_xttq2"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="6_oa5p1"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_pb3ne"]
+[ext_resource type="Resource" path="res://data/moves/deseo.tres" id="7_rmt0d"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_pvpjk"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="9_5ifnf"]
+
+[sub_resource type="Resource" id="Resource_5g4r5"]
+script = ExtResource("1_kqu8r")
+move = ExtResource("2_ccfur")
+
+[sub_resource type="Resource" id="Resource_hphn0"]
+script = ExtResource("1_kqu8r")
+move = ExtResource("3_0kmkk")
+
+[sub_resource type="Resource" id="Resource_uxg4n"]
+script = ExtResource("1_kqu8r")
+level = 10
+move = ExtResource("4_geh4e")
+
+[sub_resource type="Resource" id="Resource_ocpd5"]
+script = ExtResource("1_kqu8r")
+level = 20
+move = ExtResource("5_xttq2")
+
+[sub_resource type="Resource" id="Resource_tbl47"]
+script = ExtResource("1_kqu8r")
+level = 35
+move = ExtResource("6_oa5p1")
+
+[sub_resource type="Resource" id="Resource_78jyu"]
+script = ExtResource("1_kqu8r")
+level = 35
+move = ExtResource("7_rmt0d")
+
+[sub_resource type="Resource" id="Resource_ix4bn"]
+script = ExtResource("1_kqu8r")
+level = 50
+move = ExtResource("8_pvpjk")
+
+[sub_resource type="Resource" id="Resource_85juh"]
+script = ExtResource("1_kqu8r")
+level = 65
+move = ExtResource("9_5ifnf")
+
+[resource]
+script = ExtResource("3_1khot")
+id = "xatu"
+display_name = "Xatu"
+dex = 178
+types = Array[ExtResource("4_1aa7j")]([ExtResource("5_73vo3"), ExtResource("6_pb3ne")])
+learnset = Array[ExtResource("1_kqu8r")]([SubResource("Resource_5g4r5"), SubResource("Resource_hphn0"), SubResource("Resource_uxg4n"), SubResource("Resource_ocpd5"), SubResource("Resource_tbl47"), SubResource("Resource_78jyu"), SubResource("Resource_ix4bn"), SubResource("Resource_85juh")])
+genus = "Pokémon Místico"
+pokedex_entry = "Xatu permanece de pie inmóvil y tranquilo en el mismo sitio durante todo el día. Se cree que no se mueve por temor a lo que ha visto que ocurrirá en el futuro."
+height_m = 1.5
+weight_kg = 15.0
+base_hp = 65
+base_attack = 75
+base_defense = 70
+base_sp_attack = 95
+base_sp_defense = 70
+base_speed = 95
+base_experience = 165
+capture_rate = 75

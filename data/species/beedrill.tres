@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_sakgh"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="2_u0nl5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wwmip"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="3_lpobg"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_rlw70"]
+[ext_resource type="Resource" path="res://data/moves/doble_ataque.tres" id="4_jggh5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_muvb4"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_4mpel"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="5_84tga"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_ep388"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="6_gucsb"]
+[ext_resource type="Resource" path="res://data/moves/pin_misil.tres" id="7_cxdap"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="8_bwuu8"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="9_7suki"]
+
+[sub_resource type="Resource" id="Resource_lwgf1"]
+script = ExtResource("1_sakgh")
+move = ExtResource("2_u0nl5")
+
+[sub_resource type="Resource" id="Resource_q8yw8"]
+script = ExtResource("1_sakgh")
+level = 15
+move = ExtResource("3_lpobg")
+
+[sub_resource type="Resource" id="Resource_bttsa"]
+script = ExtResource("1_sakgh")
+level = 20
+move = ExtResource("4_jggh5")
+
+[sub_resource type="Resource" id="Resource_x2qrd"]
+script = ExtResource("1_sakgh")
+level = 25
+move = ExtResource("5_84tga")
+
+[sub_resource type="Resource" id="Resource_bmgg6"]
+script = ExtResource("1_sakgh")
+level = 30
+move = ExtResource("6_gucsb")
+
+[sub_resource type="Resource" id="Resource_6xbj2"]
+script = ExtResource("1_sakgh")
+level = 35
+move = ExtResource("7_cxdap")
+
+[sub_resource type="Resource" id="Resource_keexe"]
+script = ExtResource("1_sakgh")
+level = 40
+move = ExtResource("8_bwuu8")
+
+[sub_resource type="Resource" id="Resource_dxcnj"]
+script = ExtResource("1_sakgh")
+level = 45
+move = ExtResource("9_7suki")
+
+[resource]
+script = ExtResource("3_rlw70")
+id = "beedrill"
+display_name = "Beedrill"
+dex = 15
+types = Array[ExtResource("4_muvb4")]([ExtResource("5_4mpel"), ExtResource("6_ep388")])
+learnset = Array[ExtResource("1_sakgh")]([SubResource("Resource_lwgf1"), SubResource("Resource_q8yw8"), SubResource("Resource_bttsa"), SubResource("Resource_x2qrd"), SubResource("Resource_bmgg6"), SubResource("Resource_6xbj2"), SubResource("Resource_keexe"), SubResource("Resource_dxcnj")])
+genus = "Pokémon Abeja Veneno"
+pokedex_entry = "Los Beedrill defienden su territorio a toda costa. No es conveniente acercarse a su colmena, por seguridad. Si se les molesta, todo un enjambre atacará ferozmente."
+height_m = 1.0
+weight_kg = 29.5
+base_hp = 65
+base_attack = 90
+base_defense = 40
+base_sp_attack = 45
+base_sp_defense = 80
+base_speed = 75
+base_experience = 178

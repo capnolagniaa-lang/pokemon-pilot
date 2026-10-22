@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5g56r"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3ayi7"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_kr61s"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_3vqos"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_v24at"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_10mka"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cah2j"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_0ulli"]
+[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="5_ss4r4"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="6_tujck"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="7_f1ema"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="8_1acl7"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="9_3t4mg"]
+[ext_resource type="Resource" path="res://data/moves/camelo.tres" id="10_1agcq"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_2sqbn"]
+
+[sub_resource type="Resource" id="Resource_bf7e8"]
+script = ExtResource("1_5g56r")
+move = ExtResource("2_kr61s")
+
+[sub_resource type="Resource" id="Resource_l6q28"]
+script = ExtResource("1_5g56r")
+move = ExtResource("3_3vqos")
+
+[sub_resource type="Resource" id="Resource_h6vwe"]
+script = ExtResource("1_5g56r")
+level = 8
+move = ExtResource("4_10mka")
+
+[sub_resource type="Resource" id="Resource_2whsd"]
+script = ExtResource("1_5g56r")
+level = 12
+move = ExtResource("5_ss4r4")
+
+[sub_resource type="Resource" id="Resource_dgaiy"]
+script = ExtResource("1_5g56r")
+level = 17
+move = ExtResource("6_tujck")
+
+[sub_resource type="Resource" id="Resource_eqssw"]
+script = ExtResource("1_5g56r")
+level = 20
+move = ExtResource("7_f1ema")
+
+[sub_resource type="Resource" id="Resource_ivr5y"]
+script = ExtResource("1_5g56r")
+level = 23
+move = ExtResource("8_1acl7")
+
+[sub_resource type="Resource" id="Resource_1w164"]
+script = ExtResource("1_5g56r")
+level = 30
+move = ExtResource("9_3t4mg")
+
+[sub_resource type="Resource" id="Resource_gexii"]
+script = ExtResource("1_5g56r")
+level = 38
+move = ExtResource("10_1agcq")
+
+[sub_resource type="Resource" id="Resource_8deuo"]
+script = ExtResource("1_5g56r")
+level = 47
+move = ExtResource("11_2sqbn")
+
+[resource]
+script = ExtResource("3_v24at")
+id = "nidoran_f"
+display_name = "Nidoran♀"
+dex = 29
+types = Array[ExtResource("4_cah2j")]([ExtResource("5_0ulli")])
+learnset = Array[ExtResource("1_5g56r")]([SubResource("Resource_bf7e8"), SubResource("Resource_l6q28"), SubResource("Resource_h6vwe"), SubResource("Resource_2whsd"), SubResource("Resource_dgaiy"), SubResource("Resource_eqssw"), SubResource("Resource_ivr5y"), SubResource("Resource_1w164"), SubResource("Resource_gexii"), SubResource("Resource_8deuo")])
+genus = "Pokémon Pin Veneno"
+pokedex_entry = "Nidoran♀ tiene púas que segregan un veneno muy potente. Se piensa que las desarrolló como protección del cuerpo tan pequeño que tiene. Cuando se enfada, libera una horrible sustancia tóxica por el cuerno."
+height_m = 0.4
+weight_kg = 7.0
+base_hp = 55
+base_attack = 47
+base_defense = 52
+base_sp_attack = 40
+base_sp_defense = 40
+base_speed = 41
+base_experience = 55
+growth_rate = "medium-slow"
+capture_rate = 235

@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rqryc"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_a7m7g"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uf8x7"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="3_4os5u"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_j8gyv"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_3u24l"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_8gcjo"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_bkoxq"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_yv7ty"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="6_nsg6x"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="6_runcq"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="7_osj6e"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="8_wxofo"]
+[ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="9_4ihkw"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_tt2yf"]
+[ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="11_loljj"]
+
+[sub_resource type="Resource" id="Resource_tx4l4"]
+script = ExtResource("1_rqryc")
+move = ExtResource("2_a7m7g")
+
+[sub_resource type="Resource" id="Resource_56icb"]
+script = ExtResource("1_rqryc")
+move = ExtResource("3_4os5u")
+
+[sub_resource type="Resource" id="Resource_74om0"]
+script = ExtResource("1_rqryc")
+move = ExtResource("4_8gcjo")
+
+[sub_resource type="Resource" id="Resource_6e32l"]
+script = ExtResource("1_rqryc")
+move = ExtResource("5_yv7ty")
+
+[sub_resource type="Resource" id="Resource_ydmp5"]
+script = ExtResource("1_rqryc")
+level = 25
+move = ExtResource("6_runcq")
+
+[sub_resource type="Resource" id="Resource_tl8pc"]
+script = ExtResource("1_rqryc")
+level = 31
+move = ExtResource("7_osj6e")
+
+[sub_resource type="Resource" id="Resource_5os2x"]
+script = ExtResource("1_rqryc")
+level = 37
+move = ExtResource("8_wxofo")
+
+[sub_resource type="Resource" id="Resource_k7syc"]
+script = ExtResource("1_rqryc")
+level = 46
+move = ExtResource("9_4ihkw")
+
+[sub_resource type="Resource" id="Resource_oaok4"]
+script = ExtResource("1_rqryc")
+level = 55
+move = ExtResource("10_tt2yf")
+
+[sub_resource type="Resource" id="Resource_o4n3s"]
+script = ExtResource("1_rqryc")
+level = 64
+move = ExtResource("11_loljj")
+
+[resource]
+script = ExtResource("3_j8gyv")
+id = "armaldo"
+display_name = "Armaldo"
+dex = 348
+types = Array[ExtResource("4_3u24l")]([ExtResource("5_bkoxq"), ExtResource("6_nsg6x")])
+learnset = Array[ExtResource("1_rqryc")]([SubResource("Resource_tx4l4"), SubResource("Resource_56icb"), SubResource("Resource_74om0"), SubResource("Resource_6e32l"), SubResource("Resource_ydmp5"), SubResource("Resource_tl8pc"), SubResource("Resource_5os2x"), SubResource("Resource_k7syc"), SubResource("Resource_oaok4"), SubResource("Resource_o4n3s")])
+genus = "Pokémon Armadura"
+pokedex_entry = "Armaldo tiene una sólida armadura que repele cualquier ataque. Este Pokémon puede estirar o encoger todo lo que quiera las pinzas que tiene. Con ellas, puede atravesar una plancha de acero."
+height_m = 1.5
+weight_kg = 68.2
+base_hp = 75
+base_attack = 125
+base_defense = 100
+base_sp_attack = 70
+base_sp_defense = 80
+base_speed = 45
+base_experience = 173
+growth_rate = "slow-then-very-fast"

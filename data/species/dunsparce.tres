@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_i5m7v"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="2_ajkg6"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x0xen"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0lg0p"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="3_gw466"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="4_en6iu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fas15"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_3vnjm"]
+[ext_resource type="Resource" path="res://data/moves/deslumbrar.tres" id="5_yq8f2"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="6_3a4c1"]
+[ext_resource type="Resource" path="res://data/moves/rencor.tres" id="7_3emim"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="8_w6cvv"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_4pjln"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_qcp8j"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_54t4s"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="12_w7r7u"]
+
+[sub_resource type="Resource" id="Resource_twr3d"]
+script = ExtResource("1_i5m7v")
+move = ExtResource("2_ajkg6")
+
+[sub_resource type="Resource" id="Resource_csafn"]
+script = ExtResource("1_i5m7v")
+level = 4
+move = ExtResource("3_gw466")
+
+[sub_resource type="Resource" id="Resource_wlh35"]
+script = ExtResource("1_i5m7v")
+level = 11
+move = ExtResource("4_en6iu")
+
+[sub_resource type="Resource" id="Resource_thaqx"]
+script = ExtResource("1_i5m7v")
+level = 14
+move = ExtResource("5_yq8f2")
+
+[sub_resource type="Resource" id="Resource_05c4c"]
+script = ExtResource("1_i5m7v")
+level = 21
+move = ExtResource("6_3a4c1")
+
+[sub_resource type="Resource" id="Resource_u5m38"]
+script = ExtResource("1_i5m7v")
+level = 24
+move = ExtResource("7_3emim")
+
+[sub_resource type="Resource" id="Resource_s0436"]
+script = ExtResource("1_i5m7v")
+level = 31
+move = ExtResource("8_w6cvv")
+
+[sub_resource type="Resource" id="Resource_50tou"]
+script = ExtResource("1_i5m7v")
+level = 34
+move = ExtResource("9_4pjln")
+
+[sub_resource type="Resource" id="Resource_0yjxy"]
+script = ExtResource("1_i5m7v")
+level = 41
+move = ExtResource("10_qcp8j")
+
+[sub_resource type="Resource" id="Resource_ji0nj"]
+script = ExtResource("1_i5m7v")
+level = 44
+move = ExtResource("11_54t4s")
+
+[sub_resource type="Resource" id="Resource_pcju7"]
+script = ExtResource("1_i5m7v")
+level = 51
+move = ExtResource("12_w7r7u")
+
+[resource]
+script = ExtResource("3_0lg0p")
+id = "dunsparce"
+display_name = "Dunsparce"
+dex = 206
+types = Array[ExtResource("4_fas15")]([ExtResource("5_3vnjm")])
+learnset = Array[ExtResource("1_i5m7v")]([SubResource("Resource_twr3d"), SubResource("Resource_csafn"), SubResource("Resource_wlh35"), SubResource("Resource_thaqx"), SubResource("Resource_05c4c"), SubResource("Resource_u5m38"), SubResource("Resource_s0436"), SubResource("Resource_50tou"), SubResource("Resource_0yjxy"), SubResource("Resource_ji0nj"), SubResource("Resource_pcju7")])
+genus = "Pokémon Serpiente Tierra"
+pokedex_entry = "La cola de Dunsparce es un taladro que usa para enterrarse en el suelo de espaldas. De todos es sabido que este Pokémon hace su nido a gran profundidad y con una forma muy compleja."
+height_m = 1.5
+weight_kg = 14.0
+base_hp = 100
+base_attack = 70
+base_defense = 70
+base_sp_attack = 65
+base_sp_defense = 65
+base_speed = 45
+base_experience = 145
+capture_rate = 190

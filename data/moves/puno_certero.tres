@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="1_nq07k"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_eqnvf"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_pj8ms"]
+
+[resource]
+script = ExtResource("2_eqnvf")
+id = "puno_certero"
+display_name = "Puño Certero"
+element = ExtResource("1_nq07k")
+kind = 1
+power = 150.0
+cooldown = 3.1500000000000004
+knockback = 220.0
+recovery = 0.3
+dash_time = 0.28

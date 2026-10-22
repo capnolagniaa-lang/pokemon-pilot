@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rtjwj"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0vsgx"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="2_aob53"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="3_3u6n7"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_16i1a"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qn0pi"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="4_vdkqq"]
+[ext_resource type="Resource" path="res://data/moves/fuerza_bruta.tres" id="5_bo7gg"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="5_tewfn"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="6_ogh56"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="7_p63ci"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="8_ew82d"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="9_dpbgt"]
+[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="10_unlpl"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_21a2v"]
+
+[sub_resource type="Resource" id="Resource_p4rsb"]
+script = ExtResource("1_rtjwj")
+move = ExtResource("2_aob53")
+
+[sub_resource type="Resource" id="Resource_uivy5"]
+script = ExtResource("1_rtjwj")
+level = 9
+move = ExtResource("3_3u6n7")
+
+[sub_resource type="Resource" id="Resource_1ujrc"]
+script = ExtResource("1_rtjwj")
+level = 17
+move = ExtResource("4_vdkqq")
+
+[sub_resource type="Resource" id="Resource_ytgky"]
+script = ExtResource("1_rtjwj")
+level = 25
+move = ExtResource("5_bo7gg")
+
+[sub_resource type="Resource" id="Resource_7maue"]
+script = ExtResource("1_rtjwj")
+level = 33
+move = ExtResource("6_ogh56")
+
+[sub_resource type="Resource" id="Resource_muesv"]
+script = ExtResource("1_rtjwj")
+level = 41
+move = ExtResource("7_p63ci")
+
+[sub_resource type="Resource" id="Resource_gbe55"]
+script = ExtResource("1_rtjwj")
+level = 41
+move = ExtResource("8_ew82d")
+
+[sub_resource type="Resource" id="Resource_1vypy"]
+script = ExtResource("1_rtjwj")
+level = 49
+move = ExtResource("9_dpbgt")
+
+[sub_resource type="Resource" id="Resource_8kxy3"]
+script = ExtResource("1_rtjwj")
+level = 57
+move = ExtResource("10_unlpl")
+
+[sub_resource type="Resource" id="Resource_j8tyi"]
+script = ExtResource("1_rtjwj")
+level = 65
+move = ExtResource("11_21a2v")
+
+[resource]
+script = ExtResource("3_16i1a")
+id = "registeel"
+display_name = "Registeel"
+dex = 379
+types = Array[ExtResource("4_qn0pi")]([ExtResource("5_tewfn")])
+learnset = Array[ExtResource("1_rtjwj")]([SubResource("Resource_p4rsb"), SubResource("Resource_uivy5"), SubResource("Resource_1ujrc"), SubResource("Resource_ytgky"), SubResource("Resource_7maue"), SubResource("Resource_muesv"), SubResource("Resource_gbe55"), SubResource("Resource_1vypy"), SubResource("Resource_8kxy3"), SubResource("Resource_j8tyi")])
+genus = "Pokémon Hierro"
+pokedex_entry = "No hay metal que supere en dureza el cuerpo de Registeel, que tiene aspecto de estar hueco. Nadie sabe de qué se alimenta este Pokémon."
+height_m = 1.9
+weight_kg = 205.0
+base_hp = 80
+base_attack = 75
+base_defense = 150
+base_sp_attack = 75
+base_sp_defense = 150
+base_experience = 261
+growth_rate = "slow"
+capture_rate = 3

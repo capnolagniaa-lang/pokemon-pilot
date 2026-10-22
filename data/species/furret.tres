@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_bj13b"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_k4rwp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_v0sfh"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_nswxe"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_nyutk"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_57d8j"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ks8o1"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_jkx2l"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="5_ov5oi"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="6_ebpf3"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="7_yqwyi"]
+[ext_resource type="Resource" path="res://data/moves/senuelo.tres" id="8_3uky7"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_gbqid"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_mqca4"]
+
+[sub_resource type="Resource" id="Resource_xmptc"]
+script = ExtResource("1_bj13b")
+move = ExtResource("2_k4rwp")
+
+[sub_resource type="Resource" id="Resource_3qalq"]
+script = ExtResource("1_bj13b")
+move = ExtResource("3_nyutk")
+
+[sub_resource type="Resource" id="Resource_5sjeh"]
+script = ExtResource("1_bj13b")
+move = ExtResource("4_57d8j")
+
+[sub_resource type="Resource" id="Resource_0uv23"]
+script = ExtResource("1_bj13b")
+level = 12
+move = ExtResource("5_ov5oi")
+
+[sub_resource type="Resource" id="Resource_ycbs3"]
+script = ExtResource("1_bj13b")
+level = 19
+move = ExtResource("6_ebpf3")
+
+[sub_resource type="Resource" id="Resource_abp2o"]
+script = ExtResource("1_bj13b")
+level = 28
+move = ExtResource("7_yqwyi")
+
+[sub_resource type="Resource" id="Resource_otefn"]
+script = ExtResource("1_bj13b")
+level = 37
+move = ExtResource("8_3uky7")
+
+[sub_resource type="Resource" id="Resource_gh2ps"]
+script = ExtResource("1_bj13b")
+level = 48
+move = ExtResource("9_gbqid")
+
+[sub_resource type="Resource" id="Resource_ww8xq"]
+script = ExtResource("1_bj13b")
+level = 59
+move = ExtResource("10_mqca4")
+
+[resource]
+script = ExtResource("3_nswxe")
+id = "furret"
+display_name = "Furret"
+dex = 162
+types = Array[ExtResource("4_ks8o1")]([ExtResource("5_jkx2l")])
+learnset = Array[ExtResource("1_bj13b")]([SubResource("Resource_xmptc"), SubResource("Resource_3qalq"), SubResource("Resource_5sjeh"), SubResource("Resource_0uv23"), SubResource("Resource_ycbs3"), SubResource("Resource_abp2o"), SubResource("Resource_otefn"), SubResource("Resource_gh2ps"), SubResource("Resource_ww8xq")])
+genus = "Pokémon Alargado"
+pokedex_entry = "Furret es de constitución muy delgada. En combate le resulta útil porque puede escabullirse con habilidad por cualquier huequito y escapar. A pesar de que tiene patas cortas, es ágil y veloz."
+height_m = 1.8
+weight_kg = 32.5
+base_hp = 85
+base_attack = 76
+base_defense = 64
+base_sp_attack = 45
+base_sp_defense = 55
+base_speed = 90
+base_experience = 145
+capture_rate = 90

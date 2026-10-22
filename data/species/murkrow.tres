@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_a8sre"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="2_1jjsh"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_go17j"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1nhsi"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="3_sqncx"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="4_4q6ht"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_pyxcl"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="5_1bpgv"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="5_n8xdv"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_8j5kd"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="6_kn6j0"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="7_lyxm0"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="8_335y3"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="9_mfch0"]
+
+[sub_resource type="Resource" id="Resource_in0vh"]
+script = ExtResource("1_a8sre")
+move = ExtResource("2_1jjsh")
+
+[sub_resource type="Resource" id="Resource_jahtv"]
+script = ExtResource("1_a8sre")
+level = 9
+move = ExtResource("3_sqncx")
+
+[sub_resource type="Resource" id="Resource_23c57"]
+script = ExtResource("1_a8sre")
+level = 14
+move = ExtResource("4_4q6ht")
+
+[sub_resource type="Resource" id="Resource_xo6w1"]
+script = ExtResource("1_a8sre")
+level = 22
+move = ExtResource("5_n8xdv")
+
+[sub_resource type="Resource" id="Resource_dagpn"]
+script = ExtResource("1_a8sre")
+level = 27
+move = ExtResource("6_kn6j0")
+
+[sub_resource type="Resource" id="Resource_u01xu"]
+script = ExtResource("1_a8sre")
+level = 35
+move = ExtResource("7_lyxm0")
+
+[sub_resource type="Resource" id="Resource_pvi7o"]
+script = ExtResource("1_a8sre")
+level = 40
+move = ExtResource("8_335y3")
+
+[sub_resource type="Resource" id="Resource_1n7f7"]
+script = ExtResource("1_a8sre")
+level = 48
+move = ExtResource("9_mfch0")
+
+[resource]
+script = ExtResource("3_1nhsi")
+id = "murkrow"
+display_name = "Murkrow"
+dex = 198
+types = Array[ExtResource("4_pyxcl")]([ExtResource("5_1bpgv"), ExtResource("6_8j5kd")])
+learnset = Array[ExtResource("1_a8sre")]([SubResource("Resource_in0vh"), SubResource("Resource_jahtv"), SubResource("Resource_23c57"), SubResource("Resource_xo6w1"), SubResource("Resource_dagpn"), SubResource("Resource_u01xu"), SubResource("Resource_pvi7o"), SubResource("Resource_1n7f7")])
+genus = "Pokémon Oscuridad"
+pokedex_entry = "Murkrow ha sido temido y repudiado por todos por ser supuestamente fuente de mala suerte. Este Pokémon siente debilidad por todo lo que brilla y resplandece. A las mujeres les roba los anillos."
+height_m = 0.5
+weight_kg = 2.1
+base_hp = 60
+base_attack = 85
+base_defense = 42
+base_sp_attack = 85
+base_sp_defense = 42
+base_speed = 91
+base_experience = 81
+growth_rate = "medium-slow"
+capture_rate = 30

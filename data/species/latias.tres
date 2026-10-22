@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_s7shl"]
+[ext_resource type="Resource" path="res://data/moves/psicoonda.tres" id="2_e6m31"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_o2w1h"]
+[ext_resource type="Resource" path="res://data/moves/deseo.tres" id="3_3bnje"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_48ene"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ahhte"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="4_t726p"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="5_mqpm3"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_scs8q"]
+[ext_resource type="Resource" path="res://data/moves/dragoaliento.tres" id="6_5m7jy"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_tt8mg"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="7_6qa2h"]
+[ext_resource type="Resource" path="res://data/moves/alivio.tres" id="8_5ul8p"]
+[ext_resource type="Resource" path="res://data/moves/bola_neblina.tres" id="9_tjtj7"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="10_om11b"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="11_q4ues"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="12_vdwr3"]
+
+[sub_resource type="Resource" id="Resource_gd1k2"]
+script = ExtResource("1_s7shl")
+move = ExtResource("2_e6m31")
+
+[sub_resource type="Resource" id="Resource_texdn"]
+script = ExtResource("1_s7shl")
+level = 5
+move = ExtResource("3_3bnje")
+
+[sub_resource type="Resource" id="Resource_dpbmx"]
+script = ExtResource("1_s7shl")
+level = 10
+move = ExtResource("4_t726p")
+
+[sub_resource type="Resource" id="Resource_0lucg"]
+script = ExtResource("1_s7shl")
+level = 15
+move = ExtResource("5_mqpm3")
+
+[sub_resource type="Resource" id="Resource_l8wns"]
+script = ExtResource("1_s7shl")
+level = 20
+move = ExtResource("6_5m7jy")
+
+[sub_resource type="Resource" id="Resource_c0jqx"]
+script = ExtResource("1_s7shl")
+level = 25
+move = ExtResource("7_6qa2h")
+
+[sub_resource type="Resource" id="Resource_f6ssq"]
+script = ExtResource("1_s7shl")
+level = 30
+move = ExtResource("8_5ul8p")
+
+[sub_resource type="Resource" id="Resource_205wb"]
+script = ExtResource("1_s7shl")
+level = 35
+move = ExtResource("9_tjtj7")
+
+[sub_resource type="Resource" id="Resource_r6gc6"]
+script = ExtResource("1_s7shl")
+level = 40
+move = ExtResource("10_om11b")
+
+[sub_resource type="Resource" id="Resource_1hn5q"]
+script = ExtResource("1_s7shl")
+level = 45
+move = ExtResource("11_q4ues")
+
+[sub_resource type="Resource" id="Resource_eq845"]
+script = ExtResource("1_s7shl")
+level = 50
+move = ExtResource("12_vdwr3")
+
+[resource]
+script = ExtResource("3_48ene")
+id = "latias"
+display_name = "Latias"
+dex = 380
+types = Array[ExtResource("4_ahhte")]([ExtResource("5_scs8q"), ExtResource("6_tt8mg")])
+learnset = Array[ExtResource("1_s7shl")]([SubResource("Resource_gd1k2"), SubResource("Resource_texdn"), SubResource("Resource_dpbmx"), SubResource("Resource_0lucg"), SubResource("Resource_l8wns"), SubResource("Resource_c0jqx"), SubResource("Resource_f6ssq"), SubResource("Resource_205wb"), SubResource("Resource_r6gc6"), SubResource("Resource_1hn5q"), SubResource("Resource_eq845")])
+genus = "Pokémon Eón"
+pokedex_entry = "Latias es muy sensible a los sentimientos de la gente. Si detecta algún ápice de hostilidad, desplegará las plumas que tiene por todo el cuerpo y se pondrá a chillar para intimidar al enemigo."
+height_m = 1.4
+weight_kg = 40.0
+base_hp = 80
+base_attack = 80
+base_defense = 90
+base_sp_attack = 110
+base_sp_defense = 130
+base_speed = 110
+base_experience = 270
+growth_rate = "slow"
+capture_rate = 3

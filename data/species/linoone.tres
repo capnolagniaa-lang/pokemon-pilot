@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yf32d"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_v2g27"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yclns"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gr0d4"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="3_p5vc2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fombx"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_xcmat"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_0httj"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_que2h"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="6_q1bxb"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="7_1hth6"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="8_q8ghu"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="9_tj6rl"]
+[ext_resource type="Resource" path="res://data/moves/antojo.tres" id="10_layym"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="11_gk3nj"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="12_fs745"]
+[ext_resource type="Resource" path="res://data/moves/tambor.tres" id="13_y2v7n"]
+
+[sub_resource type="Resource" id="Resource_y1awb"]
+script = ExtResource("1_yf32d")
+move = ExtResource("2_v2g27")
+
+[sub_resource type="Resource" id="Resource_t6gmj"]
+script = ExtResource("1_yf32d")
+move = ExtResource("3_p5vc2")
+
+[sub_resource type="Resource" id="Resource_wqygn"]
+script = ExtResource("1_yf32d")
+move = ExtResource("4_xcmat")
+
+[sub_resource type="Resource" id="Resource_7rcts"]
+script = ExtResource("1_yf32d")
+move = ExtResource("5_0httj")
+
+[sub_resource type="Resource" id="Resource_u4yns"]
+script = ExtResource("1_yf32d")
+level = 13
+move = ExtResource("6_q1bxb")
+
+[sub_resource type="Resource" id="Resource_c1r4i"]
+script = ExtResource("1_yf32d")
+level = 17
+move = ExtResource("7_1hth6")
+
+[sub_resource type="Resource" id="Resource_8igw5"]
+script = ExtResource("1_yf32d")
+level = 23
+move = ExtResource("8_q8ghu")
+
+[sub_resource type="Resource" id="Resource_6l33e"]
+script = ExtResource("1_yf32d")
+level = 29
+move = ExtResource("9_tj6rl")
+
+[sub_resource type="Resource" id="Resource_gkph4"]
+script = ExtResource("1_yf32d")
+level = 35
+move = ExtResource("10_layym")
+
+[sub_resource type="Resource" id="Resource_ccibg"]
+script = ExtResource("1_yf32d")
+level = 41
+move = ExtResource("11_gk3nj")
+
+[sub_resource type="Resource" id="Resource_witd8"]
+script = ExtResource("1_yf32d")
+level = 47
+move = ExtResource("12_fs745")
+
+[sub_resource type="Resource" id="Resource_2rp6n"]
+script = ExtResource("1_yf32d")
+level = 53
+move = ExtResource("13_y2v7n")
+
+[resource]
+script = ExtResource("3_gr0d4")
+id = "linoone"
+display_name = "Linoone"
+dex = 264
+types = Array[ExtResource("4_fombx")]([ExtResource("5_que2h")])
+learnset = Array[ExtResource("1_yf32d")]([SubResource("Resource_y1awb"), SubResource("Resource_t6gmj"), SubResource("Resource_wqygn"), SubResource("Resource_7rcts"), SubResource("Resource_u4yns"), SubResource("Resource_c1r4i"), SubResource("Resource_8igw5"), SubResource("Resource_6l33e"), SubResource("Resource_gkph4"), SubResource("Resource_ccibg"), SubResource("Resource_witd8"), SubResource("Resource_2rp6n")])
+genus = "Pokémon Lanzado"
+pokedex_entry = "Linoone siempre corre todo lo rápido que puede y solo en línea recta. Si encuentra un obstáculo en el camino, girará en ángulo recto para esquivarlo. Correr bien por caminos tortuosos es todo un reto para él."
+height_m = 0.5
+weight_kg = 32.5
+base_hp = 78
+base_attack = 70
+base_defense = 61
+base_sp_defense = 61
+base_speed = 100
+base_experience = 147
+capture_rate = 90

@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_lb3wg"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="2_0but1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8xdjp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_r3wim"]
+[ext_resource type="Resource" path="res://data/moves/viento_hielo.tres" id="3_xu01w"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="4_ep5ul"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_es7kv"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_2bvaw"]
+[ext_resource type="Resource" path="res://data/moves/fuerza_bruta.tres" id="5_h2c8r"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="6_41lwn"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="7_7lbu4"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="8_m8e6k"]
+[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="9_yelcy"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_qoy0q"]
+
+[sub_resource type="Resource" id="Resource_uwpte"]
+script = ExtResource("1_lb3wg")
+move = ExtResource("2_0but1")
+
+[sub_resource type="Resource" id="Resource_dgf5i"]
+script = ExtResource("1_lb3wg")
+level = 9
+move = ExtResource("3_xu01w")
+
+[sub_resource type="Resource" id="Resource_1skoj"]
+script = ExtResource("1_lb3wg")
+level = 17
+move = ExtResource("4_ep5ul")
+
+[sub_resource type="Resource" id="Resource_40pup"]
+script = ExtResource("1_lb3wg")
+level = 25
+move = ExtResource("5_h2c8r")
+
+[sub_resource type="Resource" id="Resource_q8jy1"]
+script = ExtResource("1_lb3wg")
+level = 33
+move = ExtResource("6_41lwn")
+
+[sub_resource type="Resource" id="Resource_2cbtv"]
+script = ExtResource("1_lb3wg")
+level = 41
+move = ExtResource("7_7lbu4")
+
+[sub_resource type="Resource" id="Resource_iqsit"]
+script = ExtResource("1_lb3wg")
+level = 49
+move = ExtResource("8_m8e6k")
+
+[sub_resource type="Resource" id="Resource_vygst"]
+script = ExtResource("1_lb3wg")
+level = 57
+move = ExtResource("9_yelcy")
+
+[sub_resource type="Resource" id="Resource_vp3wi"]
+script = ExtResource("1_lb3wg")
+level = 65
+move = ExtResource("10_qoy0q")
+
+[resource]
+script = ExtResource("3_r3wim")
+id = "regice"
+display_name = "Regice"
+dex = 378
+types = Array[ExtResource("4_es7kv")]([ExtResource("5_2bvaw")])
+learnset = Array[ExtResource("1_lb3wg")]([SubResource("Resource_uwpte"), SubResource("Resource_dgf5i"), SubResource("Resource_1skoj"), SubResource("Resource_40pup"), SubResource("Resource_q8jy1"), SubResource("Resource_2cbtv"), SubResource("Resource_iqsit"), SubResource("Resource_vygst"), SubResource("Resource_vp3wi")])
+genus = "Pokémon Iceberg"
+pokedex_entry = "Regice surgió durante la edad de hielo. El cuerpo de este Pokémon está totalmente congelado, ni siquiera el fuego puede derretirlo. Regice libera y regula un aire gélido de -200 °C."
+height_m = 1.8
+weight_kg = 175.0
+base_hp = 80
+base_defense = 100
+base_sp_attack = 100
+base_sp_defense = 200
+base_experience = 261
+growth_rate = "slow"
+capture_rate = 3

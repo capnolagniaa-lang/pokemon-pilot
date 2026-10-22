@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_proas"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_date1"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_5t0tm"]
+
+[resource]
+script = ExtResource("2_date1")
+id = "drenadoras"
+display_name = "Drenadoras"
+element = ExtResource("1_proas")
+kind = 2
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+radius = 40.0

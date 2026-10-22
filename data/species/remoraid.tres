@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6u2tn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_h8tqm"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_tsyky"]
+[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="3_h46v1"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_q5jxm"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_4o3jt"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="4_eg266"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="5_n5kho"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_vwgch"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_y1qrf"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="7_uy3bo"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="8_at2we"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_uhm5y"]
+
+[sub_resource type="Resource" id="Resource_hl1np"]
+script = ExtResource("1_6u2tn")
+move = ExtResource("2_tsyky")
+
+[sub_resource type="Resource" id="Resource_l4fjg"]
+script = ExtResource("1_6u2tn")
+level = 11
+move = ExtResource("3_h46v1")
+
+[sub_resource type="Resource" id="Resource_41vh1"]
+script = ExtResource("1_6u2tn")
+level = 22
+move = ExtResource("4_eg266")
+
+[sub_resource type="Resource" id="Resource_u0j7n"]
+script = ExtResource("1_6u2tn")
+level = 22
+move = ExtResource("5_n5kho")
+
+[sub_resource type="Resource" id="Resource_rlgod"]
+script = ExtResource("1_6u2tn")
+level = 22
+move = ExtResource("6_y1qrf")
+
+[sub_resource type="Resource" id="Resource_7oi3o"]
+script = ExtResource("1_6u2tn")
+level = 33
+move = ExtResource("7_uy3bo")
+
+[sub_resource type="Resource" id="Resource_byi80"]
+script = ExtResource("1_6u2tn")
+level = 44
+move = ExtResource("8_at2we")
+
+[sub_resource type="Resource" id="Resource_ysiht"]
+script = ExtResource("1_6u2tn")
+level = 55
+move = ExtResource("9_uhm5y")
+
+[resource]
+script = ExtResource("3_q5jxm")
+id = "remoraid"
+display_name = "Remoraid"
+dex = 223
+types = Array[ExtResource("4_4o3jt")]([ExtResource("5_vwgch")])
+learnset = Array[ExtResource("1_6u2tn")]([SubResource("Resource_hl1np"), SubResource("Resource_l4fjg"), SubResource("Resource_41vh1"), SubResource("Resource_u0j7n"), SubResource("Resource_rlgod"), SubResource("Resource_7oi3o"), SubResource("Resource_byi80"), SubResource("Resource_ysiht")])
+genus = "Pokémon Reactor"
+pokedex_entry = "Remoraid traga agua y usa los abdominales para lanzarla a gran velocidad contra una presa que esté en el aire. Cuando está a punto de evolucionar, este Pokémon nada en los ríos corriente abajo."
+height_m = 0.6
+weight_kg = 12.0
+base_hp = 35
+base_attack = 65
+base_defense = 35
+base_sp_attack = 65
+base_sp_defense = 35
+base_speed = 65
+capture_rate = 190

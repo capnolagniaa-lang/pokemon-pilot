@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ysq12"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wpg50"]
+[ext_resource type="Resource" path="res://data/moves/giro_rapido.tres" id="2_wrw1h"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_horva"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="3_sww1k"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_co3tm"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="4_d6kob"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_jrldo"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_r6w7s"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="6_nmewo"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_wrw1h"]
+
+[sub_resource type="Resource" id="Resource_7w3gf"]
+script = ExtResource("1_ysq12")
+move = ExtResource("2_wrw1h")
+
+[sub_resource type="Resource" id="Resource_nid7v"]
+script = ExtResource("1_ysq12")
+move = ExtResource("3_sww1k")
+
+[sub_resource type="Resource" id="Resource_c104x"]
+script = ExtResource("1_ysq12")
+move = ExtResource("4_d6kob")
+
+[sub_resource type="Resource" id="Resource_khu48"]
+script = ExtResource("1_ysq12")
+move = ExtResource("5_jrldo")
+
+[sub_resource type="Resource" id="Resource_nv3hh"]
+script = ExtResource("1_ysq12")
+level = 33
+move = ExtResource("6_nmewo")
+
+[resource]
+script = ExtResource("3_horva")
+id = "starmie"
+display_name = "Starmie"
+dex = 121
+types = Array[ExtResource("4_co3tm")]([ExtResource("5_r6w7s"), ExtResource("6_wrw1h")])
+learnset = Array[ExtResource("1_ysq12")]([SubResource("Resource_7w3gf"), SubResource("Resource_nid7v"), SubResource("Resource_c104x"), SubResource("Resource_khu48"), SubResource("Resource_nv3hh")])
+genus = "Pokémon Misterioso"
+pokedex_entry = "La parte central de Starmie, el núcleo brillante, resplandece con siete colores distintos. Debido a su naturaleza luminosa, a este Pokémon se le ha dado el apelativo de la Gema del Mar."
+height_m = 1.1
+weight_kg = 80.0
+base_hp = 60
+base_attack = 75
+base_defense = 85
+base_sp_attack = 100
+base_sp_defense = 85
+base_speed = 115
+base_experience = 182
+growth_rate = "slow"
+capture_rate = 60

@@ -1,0 +1,111 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_wwtog"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_448sv"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_qowri"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="3_5mnvq"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_hkv4a"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="4_7rf12"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rvm3q"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_542x3"]
+[ext_resource type="Resource" path="res://data/moves/tambor.tres" id="5_afahm"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="6_j4ujr"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="7_js6ts"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="8_dah3r"]
+[ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="9_12r2k"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_xfdf7"]
+[ext_resource type="Resource" path="res://data/moves/sonambulo.tres" id="11_oolmk"]
+[ext_resource type="Resource" path="res://data/moves/bloqueo.tres" id="12_lkgjy"]
+[ext_resource type="Resource" path="res://data/moves/antojo.tres" id="13_yob4f"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="14_bmmap"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="15_fi85d"]
+
+[sub_resource type="Resource" id="Resource_b7qo2"]
+script = ExtResource("1_wwtog")
+move = ExtResource("2_qowri")
+
+[sub_resource type="Resource" id="Resource_c70ic"]
+script = ExtResource("1_wwtog")
+level = 5
+move = ExtResource("3_5mnvq")
+
+[sub_resource type="Resource" id="Resource_dqjld"]
+script = ExtResource("1_wwtog")
+level = 9
+move = ExtResource("4_7rf12")
+
+[sub_resource type="Resource" id="Resource_jxkug"]
+script = ExtResource("1_wwtog")
+level = 13
+move = ExtResource("5_afahm")
+
+[sub_resource type="Resource" id="Resource_lnfc8"]
+script = ExtResource("1_wwtog")
+level = 17
+move = ExtResource("6_j4ujr")
+
+[sub_resource type="Resource" id="Resource_8j2he"]
+script = ExtResource("1_wwtog")
+level = 21
+move = ExtResource("7_js6ts")
+
+[sub_resource type="Resource" id="Resource_5llbt"]
+script = ExtResource("1_wwtog")
+level = 25
+move = ExtResource("8_dah3r")
+
+[sub_resource type="Resource" id="Resource_6fwsy"]
+script = ExtResource("1_wwtog")
+level = 29
+move = ExtResource("9_12r2k")
+
+[sub_resource type="Resource" id="Resource_u0tir"]
+script = ExtResource("1_wwtog")
+level = 33
+move = ExtResource("10_xfdf7")
+
+[sub_resource type="Resource" id="Resource_e187q"]
+script = ExtResource("1_wwtog")
+level = 37
+move = ExtResource("11_oolmk")
+
+[sub_resource type="Resource" id="Resource_yadxc"]
+script = ExtResource("1_wwtog")
+level = 41
+move = ExtResource("12_lkgjy")
+
+[sub_resource type="Resource" id="Resource_0cem8"]
+script = ExtResource("1_wwtog")
+level = 45
+move = ExtResource("13_yob4f")
+
+[sub_resource type="Resource" id="Resource_pnhap"]
+script = ExtResource("1_wwtog")
+level = 49
+move = ExtResource("14_bmmap")
+
+[sub_resource type="Resource" id="Resource_pwuo4"]
+script = ExtResource("1_wwtog")
+level = 53
+move = ExtResource("15_fi85d")
+
+[resource]
+script = ExtResource("3_hkv4a")
+id = "snorlax"
+display_name = "Snorlax"
+dex = 143
+types = Array[ExtResource("4_rvm3q")]([ExtResource("5_542x3")])
+learnset = Array[ExtResource("1_wwtog")]([SubResource("Resource_b7qo2"), SubResource("Resource_c70ic"), SubResource("Resource_dqjld"), SubResource("Resource_jxkug"), SubResource("Resource_lnfc8"), SubResource("Resource_8j2he"), SubResource("Resource_5llbt"), SubResource("Resource_6fwsy"), SubResource("Resource_u0tir"), SubResource("Resource_e187q"), SubResource("Resource_yadxc"), SubResource("Resource_0cem8"), SubResource("Resource_pnhap"), SubResource("Resource_pwuo4")])
+genus = "Pokémon Dormir"
+pokedex_entry = "Un día cualquiera en la vida de Snorlax consiste en comer y dormir. Es un Pokémon tan dócil que es fácil ver niños usando la gran panza que tiene como lugar de juegos."
+height_m = 2.1
+weight_kg = 460.0
+base_hp = 160
+base_attack = 110
+base_defense = 65
+base_sp_attack = 65
+base_sp_defense = 110
+base_speed = 30
+base_experience = 189
+growth_rate = "slow"
+capture_rate = 25

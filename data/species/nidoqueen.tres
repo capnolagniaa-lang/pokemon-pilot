@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_w7tg1"]
+[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="2_bou7g"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xkabr"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_8i4bp"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="3_u3cg6"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_40gaq"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_ftps4"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_1k6oc"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_xl4v5"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="6_sb4im"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_w5bvr"]
+[ext_resource type="Resource" path="res://data/moves/fuerza_bruta.tres" id="7_j4xsp"]
+
+[sub_resource type="Resource" id="Resource_vgpdi"]
+script = ExtResource("1_w7tg1")
+move = ExtResource("2_bou7g")
+
+[sub_resource type="Resource" id="Resource_3fml7"]
+script = ExtResource("1_w7tg1")
+move = ExtResource("3_u3cg6")
+
+[sub_resource type="Resource" id="Resource_e84if"]
+script = ExtResource("1_w7tg1")
+move = ExtResource("4_ftps4")
+
+[sub_resource type="Resource" id="Resource_e4l4r"]
+script = ExtResource("1_w7tg1")
+move = ExtResource("5_xl4v5")
+
+[sub_resource type="Resource" id="Resource_xmi2t"]
+script = ExtResource("1_w7tg1")
+level = 22
+move = ExtResource("6_sb4im")
+
+[sub_resource type="Resource" id="Resource_2o0t2"]
+script = ExtResource("1_w7tg1")
+level = 43
+move = ExtResource("7_j4xsp")
+
+[resource]
+script = ExtResource("3_8i4bp")
+id = "nidoqueen"
+display_name = "Nidoqueen"
+dex = 31
+types = Array[ExtResource("4_40gaq")]([ExtResource("5_1k6oc"), ExtResource("6_w5bvr")])
+learnset = Array[ExtResource("1_w7tg1")]([SubResource("Resource_vgpdi"), SubResource("Resource_3fml7"), SubResource("Resource_e84if"), SubResource("Resource_e4l4r"), SubResource("Resource_xmi2t"), SubResource("Resource_2o0t2")])
+genus = "Pokémon Taladro"
+pokedex_entry = "Nidoqueen tiene el cuerpo totalmente recubierto de escamas durísimas. Suele lanzar por los aires a sus rivales de los violentos golpes que les propina. Cuando se trata de defender a sus crías, alcanza su nivel máximo de fuerza."
+height_m = 1.3
+weight_kg = 60.0
+base_hp = 90
+base_attack = 92
+base_defense = 87
+base_sp_attack = 75
+base_sp_defense = 85
+base_speed = 76
+base_experience = 227
+growth_rate = "medium-slow"

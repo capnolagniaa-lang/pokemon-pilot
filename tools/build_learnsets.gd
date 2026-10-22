@@ -4,6 +4,7 @@ extends SceneTree
 ## aprenden en los niveles 1, 1, 3 y 5, así el estilo de pelea está desde el principio; los extras salen
 ## de data/moves en el nivel en que se aprenden en FireRed/LeafGreen (data/source/official.json →
 ## "learnset_frlg"). Los que no están en el learnset de FRLG se marcan con (*) y usan un nivel parecido.
+## Las especies sin kit ni EXTRAS (las 3 regiones) usan el learnset oficial completo de FRLG ("learnset").
 ## Uso: godot --headless --path . --script res://tools/build_learnsets.gd
 
 ## especie -> [[nivel, id en data/moves], ...]
@@ -27,11 +28,15 @@ const BASE_LEVELS := [1, 1, 3, 5]
 
 
 func _init() -> void:
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/source/official.json"))
 	for f in DirAccess.get_files_at("res://data/species"):
 		if not f.ends_with(".tres"):
 			continue
 		var path := "res://data/species/" + f
 		var sp: SpeciesData = load(path)
+		if not EXTRAS.has(sp.id) and sp.kit == null:
+			_official(sp, path, data["species"].get(sp.id, {}).get("learnset", []))
+			continue
 		var entries: Array[LearnsetEntry] = []
 		var base: Array[MoveData] = sp.kit.moves if sp.kit != null else sp.moves
 		var names := []
@@ -49,6 +54,21 @@ func _init() -> void:
 		var err := ResourceSaver.save(sp, path)
 		print("%s: %s %s" % [sp.id, names, "OK" if err == OK else "ERROR %d" % err])
 	quit()
+
+
+## Especies sin kit ni extras a mano (las de las 3 regiones): el learnset oficial completo de FRLG.
+func _official(sp: SpeciesData, path: String, rows: Array) -> void:
+	var entries: Array[LearnsetEntry] = []
+	var seen := {}
+	for row in rows:
+		var m: MoveData = load("res://data/moves/%s.tres" % row[1])
+		if m == null or seen.has(m):
+			continue
+		seen[m] = true
+		entries.append(_entry(int(row[0]), m))
+	sp.learnset = entries
+	if ResourceSaver.save(sp, path) != OK:
+		print("%s: ERROR al guardar" % sp.id)
 
 
 func _entry(level: int, m: MoveData) -> LearnsetEntry:

@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_q0tgi"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="2_822b4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bse8h"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_urh0o"]
+[ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="3_vlgre"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_vh4jj"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wvbbb"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_4kjq8"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="5_e1h88"]
+[ext_resource type="Resource" path="res://data/moves/giro_rapido.tres" id="6_0ap78"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="6_xvavd"]
+[ext_resource type="Resource" path="res://data/moves/venganza.tres" id="7_ajwta"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="8_okohp"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="9_x2psf"]
+[ext_resource type="Resource" path="res://data/moves/puas.tres" id="10_gteet"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_d6l7g"]
+
+[sub_resource type="Resource" id="Resource_keg3m"]
+script = ExtResource("1_q0tgi")
+move = ExtResource("2_822b4")
+
+[sub_resource type="Resource" id="Resource_w64ms"]
+script = ExtResource("1_q0tgi")
+move = ExtResource("3_vlgre")
+
+[sub_resource type="Resource" id="Resource_wyd6b"]
+script = ExtResource("1_q0tgi")
+move = ExtResource("4_vh4jj")
+
+[sub_resource type="Resource" id="Resource_or52s"]
+script = ExtResource("1_q0tgi")
+level = 15
+move = ExtResource("5_e1h88")
+
+[sub_resource type="Resource" id="Resource_0jjk5"]
+script = ExtResource("1_q0tgi")
+level = 22
+move = ExtResource("6_0ap78")
+
+[sub_resource type="Resource" id="Resource_pbbkw"]
+script = ExtResource("1_q0tgi")
+level = 29
+move = ExtResource("7_ajwta")
+
+[sub_resource type="Resource" id="Resource_v4eyt"]
+script = ExtResource("1_q0tgi")
+level = 31
+move = ExtResource("8_okohp")
+
+[sub_resource type="Resource" id="Resource_as65j"]
+script = ExtResource("1_q0tgi")
+level = 39
+move = ExtResource("9_x2psf")
+
+[sub_resource type="Resource" id="Resource_bi1rg"]
+script = ExtResource("1_q0tgi")
+level = 49
+move = ExtResource("10_gteet")
+
+[sub_resource type="Resource" id="Resource_3o6py"]
+script = ExtResource("1_q0tgi")
+level = 59
+move = ExtResource("11_d6l7g")
+
+[resource]
+script = ExtResource("3_urh0o")
+id = "forretress"
+display_name = "Forretress"
+dex = 205
+types = Array[ExtResource("4_wvbbb")]([ExtResource("5_4kjq8"), ExtResource("6_xvavd")])
+learnset = Array[ExtResource("1_q0tgi")]([SubResource("Resource_keg3m"), SubResource("Resource_w64ms"), SubResource("Resource_wyd6b"), SubResource("Resource_or52s"), SubResource("Resource_0jjk5"), SubResource("Resource_pbbkw"), SubResource("Resource_v4eyt"), SubResource("Resource_as65j"), SubResource("Resource_bi1rg"), SubResource("Resource_3o6py")])
+genus = "Pokémon Larva"
+pokedex_entry = "Forretress se esconde dentro de su concha de acero reforzada. Solo la abre cuando va a atrapar a su presa, pero ocurre tan rápido que no da tiempo de ver su interior."
+height_m = 1.2
+weight_kg = 125.8
+base_hp = 75
+base_attack = 90
+base_defense = 140
+base_sp_attack = 60
+base_sp_defense = 60
+base_speed = 40
+base_experience = 163
+capture_rate = 75

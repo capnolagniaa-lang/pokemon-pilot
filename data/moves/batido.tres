@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_382v5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_srpt6"]
+[ext_resource type="Resource" path="res://data/status/sintesis.tres" id="3_erk67"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_l4pw0"]
+
+[resource]
+script = ExtResource("2_srpt6")
+id = "batido"
+display_name = "Batido"
+element = ExtResource("1_382v5")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0
+self_status = ExtResource("3_erk67")

@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_gesop"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cpbh0"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_tnr6e"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_mqisa"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_siho5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_5w6yp"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="4_375kt"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_mp6t4"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_owqck"]
+[ext_resource type="Resource" path="res://data/moves/venganza.tres" id="6_c3l5v"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="7_8w86l"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="8_gd1qq"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_wca40"]
+[ext_resource type="Resource" path="res://data/moves/torbellino.tres" id="10_x0okj"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="11_lka77"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_ubrub"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="13_p5m13"]
+
+[sub_resource type="Resource" id="Resource_jw2c3"]
+script = ExtResource("1_gesop")
+move = ExtResource("2_tnr6e")
+
+[sub_resource type="Resource" id="Resource_o1kjf"]
+script = ExtResource("1_gesop")
+move = ExtResource("3_mqisa")
+
+[sub_resource type="Resource" id="Resource_8rlmk"]
+script = ExtResource("1_gesop")
+level = 6
+move = ExtResource("4_375kt")
+
+[sub_resource type="Resource" id="Resource_62183"]
+script = ExtResource("1_gesop")
+level = 10
+move = ExtResource("5_owqck")
+
+[sub_resource type="Resource" id="Resource_nq0o8"]
+script = ExtResource("1_gesop")
+level = 15
+move = ExtResource("6_c3l5v")
+
+[sub_resource type="Resource" id="Resource_e42bb"]
+script = ExtResource("1_gesop")
+level = 19
+move = ExtResource("7_8w86l")
+
+[sub_resource type="Resource" id="Resource_4bii4"]
+script = ExtResource("1_gesop")
+level = 24
+move = ExtResource("8_gd1qq")
+
+[sub_resource type="Resource" id="Resource_ebxqu"]
+script = ExtResource("1_gesop")
+level = 28
+move = ExtResource("9_wca40")
+
+[sub_resource type="Resource" id="Resource_aciwy"]
+script = ExtResource("1_gesop")
+level = 33
+move = ExtResource("10_x0okj")
+
+[sub_resource type="Resource" id="Resource_j8q6l"]
+script = ExtResource("1_gesop")
+level = 37
+move = ExtResource("11_lka77")
+
+[sub_resource type="Resource" id="Resource_ioufc"]
+script = ExtResource("1_gesop")
+level = 42
+move = ExtResource("12_ubrub")
+
+[sub_resource type="Resource" id="Resource_miiks"]
+script = ExtResource("1_gesop")
+level = 46
+move = ExtResource("13_p5m13")
+
+[resource]
+script = ExtResource("3_siho5")
+id = "mudkip"
+display_name = "Mudkip"
+dex = 258
+types = Array[ExtResource("4_5w6yp")]([ExtResource("5_mp6t4")])
+learnset = Array[ExtResource("1_gesop")]([SubResource("Resource_jw2c3"), SubResource("Resource_o1kjf"), SubResource("Resource_8rlmk"), SubResource("Resource_62183"), SubResource("Resource_nq0o8"), SubResource("Resource_e42bb"), SubResource("Resource_4bii4"), SubResource("Resource_ebxqu"), SubResource("Resource_aciwy"), SubResource("Resource_j8q6l"), SubResource("Resource_ioufc"), SubResource("Resource_miiks")])
+genus = "Pokémon Pez Lodo"
+pokedex_entry = "La aleta que tiene Mudkip en la cabeza actúa de radar y es muy sensible. Puede captar movimientos que se produzcan en el agua y en el aire, y todo lo que ocurra a su alrededor, sin necesidad de abrir los ojos."
+height_m = 0.4
+weight_kg = 7.6
+base_attack = 70
+base_speed = 40
+base_experience = 62
+growth_rate = "medium-slow"

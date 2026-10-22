@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_p6s0g"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ahc8q"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_87dbb"]
+
+[resource]
+script = ExtResource("2_ahc8q")
+id = "hiperrayo"
+display_name = "Hiperrayo"
+element = ExtResource("1_p6s0g")
+category = 1
+power = 150.0
+cooldown = 3.45
+cast_time = 0.45
+knockback = 240.0
+recovery = 0.4
+speed = 280.0
+size = 6.75
+lifetime = 0.85

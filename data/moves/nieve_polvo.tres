@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="1_dwrup"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6efgy"]
+[ext_resource type="Resource" path="res://data/status/congelado.tres" id="3_xhg43"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_qefbk"]
+
+[resource]
+script = ExtResource("2_6efgy")
+id = "nieve_polvo"
+display_name = "Nieve Polvo"
+element = ExtResource("1_dwrup")
+kind = 2
+category = 1
+cooldown = 3.1500000000000004
+knockback = 200.0
+recovery = 0.1
+status = ExtResource("3_xhg43")
+status_chance = 0.1
+radius = 52.0

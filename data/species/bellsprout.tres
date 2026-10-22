@@ -17,30 +17,30 @@
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="8_8mak5"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="9_ins1p"]
 
-[sub_resource type="Resource" id="Resource_ttu45"]
+[sub_resource type="Resource" id="Resource_d0csn"]
 script = ExtResource("2_d0csn")
 move = ExtResource("3_awg2s")
 
-[sub_resource type="Resource" id="Resource_135uc"]
+[sub_resource type="Resource" id="Resource_awg2s"]
 script = ExtResource("2_d0csn")
 move = ExtResource("4_jiovh")
 
-[sub_resource type="Resource" id="Resource_67w3y"]
+[sub_resource type="Resource" id="Resource_jiovh"]
 script = ExtResource("2_d0csn")
 level = 3
 move = ExtResource("5_nb6sv")
 
-[sub_resource type="Resource" id="Resource_dwliy"]
+[sub_resource type="Resource" id="Resource_nb6sv"]
 script = ExtResource("2_d0csn")
 level = 5
 move = ExtResource("6_dk7qy")
 
-[sub_resource type="Resource" id="Resource_ixpg5"]
+[sub_resource type="Resource" id="Resource_dk7qy"]
 script = ExtResource("2_d0csn")
 level = 23
 move = ExtResource("7_b5gc2")
 
-[sub_resource type="Resource" id="Resource_2nvqo"]
+[sub_resource type="Resource" id="Resource_b5gc2"]
 script = ExtResource("2_d0csn")
 level = 37
 move = ExtResource("2_ins1p")
@@ -53,7 +53,11 @@ dex = 69
 types = Array[ExtResource("7_y3vui")]([ExtResource("8_8mak5"), ExtResource("9_ins1p")])
 moves = Array[ExtResource("1_kybx6")]([ExtResource("2_ins1p"), ExtResource("3_xcug5"), ExtResource("4_6n3aa"), ExtResource("5_ax623")])
 kit = ExtResource("1_xcug5")
-learnset = Array[ExtResource("2_d0csn")]([SubResource("Resource_ttu45"), SubResource("Resource_135uc"), SubResource("Resource_67w3y"), SubResource("Resource_dwliy"), SubResource("Resource_ixpg5"), SubResource("Resource_2nvqo")])
+learnset = Array[ExtResource("2_d0csn")]([SubResource("Resource_d0csn"), SubResource("Resource_awg2s"), SubResource("Resource_jiovh"), SubResource("Resource_nb6sv"), SubResource("Resource_dk7qy"), SubResource("Resource_b5gc2")])
+genus = "Pokémon Flor"
+pokedex_entry = "Bellsprout tiene un cuerpo delgado y flexible que le permite inclinarse y balancearse para esquivar los ataques. Este Pokémon escupe por la boca un fluido corrosivo capaz de hacer que se derrita hasta el hierro."
+height_m = 0.7
+weight_kg = 4.0
 base_attack = 75
 base_defense = 35
 base_sp_attack = 70

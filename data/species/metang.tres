@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_7r8cx"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="2_lvp4w"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pvdmu"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_npn52"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="3_sk1kw"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="4_duuex"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_e5hn8"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="5_4rsv5"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="5_q4jmu"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="6_qhc8u"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_tv02d"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="7_es3pj"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="8_5wfu1"]
+[ext_resource type="Resource" path="res://data/moves/puno_meteoro.tres" id="9_cylai"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_csdxx"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_8jqtm"]
+
+[sub_resource type="Resource" id="Resource_pyqtw"]
+script = ExtResource("1_7r8cx")
+move = ExtResource("2_lvp4w")
+
+[sub_resource type="Resource" id="Resource_1gf2i"]
+script = ExtResource("1_7r8cx")
+level = 20
+move = ExtResource("3_sk1kw")
+
+[sub_resource type="Resource" id="Resource_2ob4s"]
+script = ExtResource("1_7r8cx")
+level = 20
+move = ExtResource("4_duuex")
+
+[sub_resource type="Resource" id="Resource_p5gi1"]
+script = ExtResource("1_7r8cx")
+level = 26
+move = ExtResource("5_q4jmu")
+
+[sub_resource type="Resource" id="Resource_33wtd"]
+script = ExtResource("1_7r8cx")
+level = 32
+move = ExtResource("6_qhc8u")
+
+[sub_resource type="Resource" id="Resource_55yrp"]
+script = ExtResource("1_7r8cx")
+level = 38
+move = ExtResource("7_es3pj")
+
+[sub_resource type="Resource" id="Resource_1ubba"]
+script = ExtResource("1_7r8cx")
+level = 44
+move = ExtResource("8_5wfu1")
+
+[sub_resource type="Resource" id="Resource_11lb8"]
+script = ExtResource("1_7r8cx")
+level = 50
+move = ExtResource("9_cylai")
+
+[sub_resource type="Resource" id="Resource_d7q5j"]
+script = ExtResource("1_7r8cx")
+level = 56
+move = ExtResource("10_csdxx")
+
+[sub_resource type="Resource" id="Resource_n6dxb"]
+script = ExtResource("1_7r8cx")
+level = 62
+move = ExtResource("11_8jqtm")
+
+[resource]
+script = ExtResource("3_npn52")
+id = "metang"
+display_name = "Metang"
+dex = 375
+types = Array[ExtResource("4_e5hn8")]([ExtResource("5_4rsv5"), ExtResource("6_tv02d")])
+learnset = Array[ExtResource("1_7r8cx")]([SubResource("Resource_pyqtw"), SubResource("Resource_1gf2i"), SubResource("Resource_2ob4s"), SubResource("Resource_p5gi1"), SubResource("Resource_33wtd"), SubResource("Resource_55yrp"), SubResource("Resource_1ubba"), SubResource("Resource_11lb8"), SubResource("Resource_d7q5j"), SubResource("Resource_n6dxb")])
+genus = "Pokémon Garra Hierro"
+pokedex_entry = "Cuando dos Beldum se fusionan, forman un Metang. Los cerebros de los Beldum se unen mediante un sistema nervioso magnético y generan potente energía psicoquinética."
+height_m = 1.2
+weight_kg = 202.5
+base_hp = 60
+base_attack = 75
+base_defense = 100
+base_sp_attack = 55
+base_sp_defense = 80
+base_experience = 147
+growth_rate = "slow"
+capture_rate = 3

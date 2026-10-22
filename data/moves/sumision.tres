@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="1_jwute"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_txpva"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_diq84"]
+
+[resource]
+script = ExtResource("2_txpva")
+id = "sumision"
+display_name = "Sumisión"
+element = ExtResource("1_jwute")
+kind = 1
+power = 80.0
+cooldown = 2.15
+knockback = 220.0
+recovery = 0.3
+dash_time = 0.28

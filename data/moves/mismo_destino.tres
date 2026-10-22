@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="1_fcb3e"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dvs3u"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_6d83n"]
+
+[resource]
+script = ExtResource("2_dvs3u")
+id = "mismo_destino"
+display_name = "Mismo Destino"
+element = ExtResource("1_fcb3e")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0

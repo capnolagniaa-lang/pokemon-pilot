@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8xd0n"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wfng8"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_yq25o"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_5g3tr"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="3_wisop"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_8y2yl"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_iiqx5"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_ipmra"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_mjgxi"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="6_16nh3"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="6_p0njn"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="7_ya2wp"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="8_bjd17"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="9_04t8r"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_8xjir"]
+
+[sub_resource type="Resource" id="Resource_wllm0"]
+script = ExtResource("1_8xd0n")
+move = ExtResource("2_yq25o")
+
+[sub_resource type="Resource" id="Resource_a74bl"]
+script = ExtResource("1_8xd0n")
+level = 3
+move = ExtResource("3_wisop")
+
+[sub_resource type="Resource" id="Resource_8r76m"]
+script = ExtResource("1_8xd0n")
+level = 6
+move = ExtResource("4_8y2yl")
+
+[sub_resource type="Resource" id="Resource_g8t4w"]
+script = ExtResource("1_8xd0n")
+level = 10
+move = ExtResource("5_ipmra")
+
+[sub_resource type="Resource" id="Resource_ymr3f"]
+script = ExtResource("1_8xd0n")
+level = 15
+move = ExtResource("6_16nh3")
+
+[sub_resource type="Resource" id="Resource_3xurg"]
+script = ExtResource("1_8xd0n")
+level = 21
+move = ExtResource("7_ya2wp")
+
+[sub_resource type="Resource" id="Resource_bldxp"]
+script = ExtResource("1_8xd0n")
+level = 28
+move = ExtResource("8_bjd17")
+
+[sub_resource type="Resource" id="Resource_kyfn8"]
+script = ExtResource("1_8xd0n")
+level = 36
+move = ExtResource("9_04t8r")
+
+[sub_resource type="Resource" id="Resource_5yhe8"]
+script = ExtResource("1_8xd0n")
+level = 45
+move = ExtResource("10_8xjir")
+
+[resource]
+script = ExtResource("3_5g3tr")
+id = "marill"
+display_name = "Marill"
+dex = 183
+types = Array[ExtResource("4_iiqx5")]([ExtResource("5_mjgxi"), ExtResource("6_p0njn")])
+learnset = Array[ExtResource("1_8xd0n")]([SubResource("Resource_wllm0"), SubResource("Resource_a74bl"), SubResource("Resource_8r76m"), SubResource("Resource_g8t4w"), SubResource("Resource_ymr3f"), SubResource("Resource_3xurg"), SubResource("Resource_bldxp"), SubResource("Resource_kyfn8"), SubResource("Resource_5yhe8")])
+genus = "Pokémon Ratón Agua"
+pokedex_entry = "La cola de Marill contiene un aceite que hace las veces de chaleco salvavidas. Si ves una moviéndose en el agua, seguro que debajo hay un Marill medio sumergido buscando plantas acuáticas para comer."
+height_m = 0.4
+weight_kg = 8.5
+base_hp = 70
+base_attack = 20
+base_sp_attack = 20
+base_speed = 40
+base_experience = 88
+growth_rate = "fast"
+capture_rate = 190

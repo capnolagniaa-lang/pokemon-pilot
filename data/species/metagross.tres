@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_vxds6"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_enbr0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tv8yd"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_iyeax"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="3_ruchn"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="4_5kcwq"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cl10h"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="5_cp6rr"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="5_mik6j"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="6_6nb8c"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_nvocd"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="7_3u1uc"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="8_340av"]
+[ext_resource type="Resource" path="res://data/moves/puno_meteoro.tres" id="9_1ysoj"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_gw4ti"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_tqnmy"]
+
+[sub_resource type="Resource" id="Resource_0qhoe"]
+script = ExtResource("1_vxds6")
+move = ExtResource("2_enbr0")
+
+[sub_resource type="Resource" id="Resource_ie8w6"]
+script = ExtResource("1_vxds6")
+move = ExtResource("3_ruchn")
+
+[sub_resource type="Resource" id="Resource_djry8"]
+script = ExtResource("1_vxds6")
+move = ExtResource("4_5kcwq")
+
+[sub_resource type="Resource" id="Resource_xod2r"]
+script = ExtResource("1_vxds6")
+move = ExtResource("5_mik6j")
+
+[sub_resource type="Resource" id="Resource_ef838"]
+script = ExtResource("1_vxds6")
+level = 32
+move = ExtResource("6_6nb8c")
+
+[sub_resource type="Resource" id="Resource_k0usq"]
+script = ExtResource("1_vxds6")
+level = 38
+move = ExtResource("7_3u1uc")
+
+[sub_resource type="Resource" id="Resource_cr6lj"]
+script = ExtResource("1_vxds6")
+level = 44
+move = ExtResource("8_340av")
+
+[sub_resource type="Resource" id="Resource_jg07m"]
+script = ExtResource("1_vxds6")
+level = 55
+move = ExtResource("9_1ysoj")
+
+[sub_resource type="Resource" id="Resource_jokyg"]
+script = ExtResource("1_vxds6")
+level = 66
+move = ExtResource("10_gw4ti")
+
+[sub_resource type="Resource" id="Resource_jb5al"]
+script = ExtResource("1_vxds6")
+level = 77
+move = ExtResource("11_tqnmy")
+
+[resource]
+script = ExtResource("3_iyeax")
+id = "metagross"
+display_name = "Metagross"
+dex = 376
+types = Array[ExtResource("4_cl10h")]([ExtResource("5_cp6rr"), ExtResource("6_nvocd")])
+learnset = Array[ExtResource("1_vxds6")]([SubResource("Resource_0qhoe"), SubResource("Resource_ie8w6"), SubResource("Resource_djry8"), SubResource("Resource_xod2r"), SubResource("Resource_ef838"), SubResource("Resource_k0usq"), SubResource("Resource_cr6lj"), SubResource("Resource_jg07m"), SubResource("Resource_jokyg"), SubResource("Resource_jb5al")])
+genus = "Pokémon Pata Hierro"
+pokedex_entry = "Metagross tiene cuatro cerebros en total que, combinados, son capaces de resolver cálculos complicados más rápido que el mejor ordenador que haya. Metagross puede flotar en el aire si mete las patas hacia adentro."
+height_m = 1.6
+weight_kg = 550.0
+base_hp = 80
+base_attack = 135
+base_defense = 130
+base_sp_attack = 95
+base_sp_defense = 90
+base_speed = 70
+base_experience = 270
+growth_rate = "slow"
+capture_rate = 3

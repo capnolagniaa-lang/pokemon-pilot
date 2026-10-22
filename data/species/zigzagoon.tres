@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_idmf5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3odjm"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_trn6n"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0jo6b"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_2n562"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_1pgjb"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_i7ulk"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_gxoux"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="5_weob0"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="6_4f4kg"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="7_fhpmh"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="8_huq3y"]
+[ext_resource type="Resource" path="res://data/moves/pin_misil.tres" id="9_qqvqn"]
+[ext_resource type="Resource" path="res://data/moves/antojo.tres" id="10_038hb"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_sl8hy"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="12_eeufq"]
+[ext_resource type="Resource" path="res://data/moves/tambor.tres" id="13_yyn4h"]
+
+[sub_resource type="Resource" id="Resource_lrlre"]
+script = ExtResource("1_idmf5")
+move = ExtResource("2_trn6n")
+
+[sub_resource type="Resource" id="Resource_48psi"]
+script = ExtResource("1_idmf5")
+move = ExtResource("3_2n562")
+
+[sub_resource type="Resource" id="Resource_fngux"]
+script = ExtResource("1_idmf5")
+level = 5
+move = ExtResource("4_1pgjb")
+
+[sub_resource type="Resource" id="Resource_44kil"]
+script = ExtResource("1_idmf5")
+level = 9
+move = ExtResource("5_weob0")
+
+[sub_resource type="Resource" id="Resource_qnd1c"]
+script = ExtResource("1_idmf5")
+level = 13
+move = ExtResource("6_4f4kg")
+
+[sub_resource type="Resource" id="Resource_rpu4i"]
+script = ExtResource("1_idmf5")
+level = 17
+move = ExtResource("7_fhpmh")
+
+[sub_resource type="Resource" id="Resource_dcmb7"]
+script = ExtResource("1_idmf5")
+level = 21
+move = ExtResource("8_huq3y")
+
+[sub_resource type="Resource" id="Resource_6dgib"]
+script = ExtResource("1_idmf5")
+level = 25
+move = ExtResource("9_qqvqn")
+
+[sub_resource type="Resource" id="Resource_ybc8f"]
+script = ExtResource("1_idmf5")
+level = 29
+move = ExtResource("10_038hb")
+
+[sub_resource type="Resource" id="Resource_e47mm"]
+script = ExtResource("1_idmf5")
+level = 33
+move = ExtResource("11_sl8hy")
+
+[sub_resource type="Resource" id="Resource_thngp"]
+script = ExtResource("1_idmf5")
+level = 37
+move = ExtResource("12_eeufq")
+
+[sub_resource type="Resource" id="Resource_ce3nh"]
+script = ExtResource("1_idmf5")
+level = 41
+move = ExtResource("13_yyn4h")
+
+[resource]
+script = ExtResource("3_0jo6b")
+id = "zigzagoon"
+display_name = "Zigzagoon"
+dex = 263
+types = Array[ExtResource("4_i7ulk")]([ExtResource("5_gxoux")])
+learnset = Array[ExtResource("1_idmf5")]([SubResource("Resource_lrlre"), SubResource("Resource_48psi"), SubResource("Resource_fngux"), SubResource("Resource_44kil"), SubResource("Resource_qnd1c"), SubResource("Resource_rpu4i"), SubResource("Resource_dcmb7"), SubResource("Resource_6dgib"), SubResource("Resource_ybc8f"), SubResource("Resource_e47mm"), SubResource("Resource_thngp"), SubResource("Resource_ce3nh")])
+genus = "Pokémon Mapachito"
+pokedex_entry = "Zigzagoon está todo el día dando vueltas de aquí para allá. Es un Pokémon muy inquieto. Se interesa por todo lo que se encuentra en su camino."
+height_m = 0.4
+weight_kg = 17.5
+base_hp = 38
+base_attack = 30
+base_defense = 41
+base_sp_attack = 30
+base_sp_defense = 41
+base_speed = 60
+base_experience = 56
+capture_rate = 255

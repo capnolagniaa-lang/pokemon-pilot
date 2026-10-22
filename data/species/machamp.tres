@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cs6iw"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3dgw2"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="2_8kxgc"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cig07"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_u1o4a"]
+[ext_resource type="Resource" path="res://data/moves/patada_baja.tres" id="4_jq2fy"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_vfgdf"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_gajyf"]
+[ext_resource type="Resource" path="res://data/moves/golpe_karate.tres" id="5_gr8o3"]
+[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="6_3wm3s"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="7_hyece"]
+[ext_resource type="Resource" path="res://data/moves/desquite.tres" id="8_1sx30"]
+[ext_resource type="Resource" path="res://data/moves/llave_vital.tres" id="9_0sume"]
+[ext_resource type="Resource" path="res://data/moves/sumision.tres" id="10_lrkp5"]
+[ext_resource type="Resource" path="res://data/moves/tajo_cruzado.tres" id="11_lstyw"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="12_iox03"]
+[ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="13_4va3a"]
+
+[sub_resource type="Resource" id="Resource_f8wxr"]
+script = ExtResource("1_cs6iw")
+move = ExtResource("2_8kxgc")
+
+[sub_resource type="Resource" id="Resource_pjd6i"]
+script = ExtResource("1_cs6iw")
+move = ExtResource("3_u1o4a")
+
+[sub_resource type="Resource" id="Resource_4cvqx"]
+script = ExtResource("1_cs6iw")
+move = ExtResource("4_jq2fy")
+
+[sub_resource type="Resource" id="Resource_10cbf"]
+script = ExtResource("1_cs6iw")
+level = 13
+move = ExtResource("5_gr8o3")
+
+[sub_resource type="Resource" id="Resource_qs1fv"]
+script = ExtResource("1_cs6iw")
+level = 19
+move = ExtResource("6_3wm3s")
+
+[sub_resource type="Resource" id="Resource_l63ow"]
+script = ExtResource("1_cs6iw")
+level = 22
+move = ExtResource("7_hyece")
+
+[sub_resource type="Resource" id="Resource_2ajte"]
+script = ExtResource("1_cs6iw")
+level = 25
+move = ExtResource("8_1sx30")
+
+[sub_resource type="Resource" id="Resource_no02y"]
+script = ExtResource("1_cs6iw")
+level = 33
+move = ExtResource("9_0sume")
+
+[sub_resource type="Resource" id="Resource_dxsio"]
+script = ExtResource("1_cs6iw")
+level = 41
+move = ExtResource("10_lrkp5")
+
+[sub_resource type="Resource" id="Resource_dpp8y"]
+script = ExtResource("1_cs6iw")
+level = 46
+move = ExtResource("11_lstyw")
+
+[sub_resource type="Resource" id="Resource_7i1l8"]
+script = ExtResource("1_cs6iw")
+level = 51
+move = ExtResource("12_iox03")
+
+[sub_resource type="Resource" id="Resource_mvtpt"]
+script = ExtResource("1_cs6iw")
+level = 59
+move = ExtResource("13_4va3a")
+
+[resource]
+script = ExtResource("3_cig07")
+id = "machamp"
+display_name = "Machamp"
+dex = 68
+types = Array[ExtResource("4_vfgdf")]([ExtResource("5_gajyf")])
+learnset = Array[ExtResource("1_cs6iw")]([SubResource("Resource_f8wxr"), SubResource("Resource_pjd6i"), SubResource("Resource_4cvqx"), SubResource("Resource_10cbf"), SubResource("Resource_qs1fv"), SubResource("Resource_l63ow"), SubResource("Resource_2ajte"), SubResource("Resource_no02y"), SubResource("Resource_dxsio"), SubResource("Resource_dpp8y"), SubResource("Resource_7i1l8"), SubResource("Resource_mvtpt")])
+genus = "Pokémon Superpoder"
+pokedex_entry = "Machamp es tan fuerte que puede derribar lo que quiera. Sin embargo, cuando tiene que realizar una tarea que requiere delicadeza y destreza, se le enredan los brazos. Este Pokémon pasa a la acción sin pensar."
+height_m = 1.6
+weight_kg = 130.0
+base_hp = 90
+base_attack = 130
+base_defense = 80
+base_sp_attack = 65
+base_sp_defense = 85
+base_speed = 55
+base_experience = 227
+growth_rate = "medium-slow"

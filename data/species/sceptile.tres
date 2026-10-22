@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d36n8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_htw68"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_ttmhx"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_p7sfp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_rqrys"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_bwlb7"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="4_msdwf"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_jntxj"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="5_knry1"]
+[ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="6_iwwfr"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="7_82v01"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_pgp8m"]
+[ext_resource type="Resource" path="res://data/moves/hoja_aguda.tres" id="9_och86"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_ow6ma"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="11_rhejk"]
+[ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="12_0juk3"]
+[ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="13_au654"]
+
+[sub_resource type="Resource" id="Resource_pj3yt"]
+script = ExtResource("1_d36n8")
+move = ExtResource("2_ttmhx")
+
+[sub_resource type="Resource" id="Resource_tpqes"]
+script = ExtResource("1_d36n8")
+move = ExtResource("3_p7sfp")
+
+[sub_resource type="Resource" id="Resource_5ri03"]
+script = ExtResource("1_d36n8")
+move = ExtResource("4_msdwf")
+
+[sub_resource type="Resource" id="Resource_7b0at"]
+script = ExtResource("1_d36n8")
+move = ExtResource("5_knry1")
+
+[sub_resource type="Resource" id="Resource_btbwd"]
+script = ExtResource("1_d36n8")
+level = 16
+move = ExtResource("6_iwwfr")
+
+[sub_resource type="Resource" id="Resource_eb7ql"]
+script = ExtResource("1_d36n8")
+level = 17
+move = ExtResource("7_82v01")
+
+[sub_resource type="Resource" id="Resource_aouth"]
+script = ExtResource("1_d36n8")
+level = 23
+move = ExtResource("8_pgp8m")
+
+[sub_resource type="Resource" id="Resource_crj76"]
+script = ExtResource("1_d36n8")
+level = 29
+move = ExtResource("9_och86")
+
+[sub_resource type="Resource" id="Resource_ubo66"]
+script = ExtResource("1_d36n8")
+level = 35
+move = ExtResource("10_ow6ma")
+
+[sub_resource type="Resource" id="Resource_8be6q"]
+script = ExtResource("1_d36n8")
+level = 43
+move = ExtResource("11_rhejk")
+
+[sub_resource type="Resource" id="Resource_cyylh"]
+script = ExtResource("1_d36n8")
+level = 51
+move = ExtResource("12_0juk3")
+
+[sub_resource type="Resource" id="Resource_ydv2f"]
+script = ExtResource("1_d36n8")
+level = 59
+move = ExtResource("13_au654")
+
+[resource]
+script = ExtResource("3_rqrys")
+id = "sceptile"
+display_name = "Sceptile"
+dex = 254
+types = Array[ExtResource("4_bwlb7")]([ExtResource("5_jntxj")])
+learnset = Array[ExtResource("1_d36n8")]([SubResource("Resource_pj3yt"), SubResource("Resource_tpqes"), SubResource("Resource_5ri03"), SubResource("Resource_7b0at"), SubResource("Resource_btbwd"), SubResource("Resource_eb7ql"), SubResource("Resource_aouth"), SubResource("Resource_crj76"), SubResource("Resource_ubo66"), SubResource("Resource_8be6q"), SubResource("Resource_cyylh"), SubResource("Resource_ydv2f")])
+genus = "Pokémon Monte"
+pokedex_entry = "Las hojas que le salen a Sceptile del cuerpo tienen unos bordes muy afilados. Este Pokémon es muy ágil, va saltando de rama en rama y se lanza sobre el enemigo por la espalda."
+height_m = 1.7
+weight_kg = 52.2
+base_hp = 70
+base_attack = 85
+base_defense = 65
+base_sp_attack = 105
+base_sp_defense = 85
+base_speed = 120
+base_experience = 239
+growth_rate = "medium-slow"

@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3x2q6"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_mgry5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xhnro"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_3teyy"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_yl6uk"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_4kkc7"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_b0hhk"]
+[ext_resource type="Resource" path="res://data/moves/refugio.tres" id="5_k866g"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_qw570"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="6_qnw6g"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="7_vgk6s"]
+[ext_resource type="Resource" path="res://data/moves/giro_rapido.tres" id="8_72p56"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="9_q22qd"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="10_mmsmw"]
+[ext_resource type="Resource" path="res://data/moves/cabezazo.tres" id="11_tmy7u"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_mk0oc"]
+
+[sub_resource type="Resource" id="Resource_017ds"]
+script = ExtResource("1_3x2q6")
+move = ExtResource("2_mgry5")
+
+[sub_resource type="Resource" id="Resource_whb2c"]
+script = ExtResource("1_3x2q6")
+move = ExtResource("3_yl6uk")
+
+[sub_resource type="Resource" id="Resource_7dq68"]
+script = ExtResource("1_3x2q6")
+move = ExtResource("4_b0hhk")
+
+[sub_resource type="Resource" id="Resource_yh5ga"]
+script = ExtResource("1_3x2q6")
+move = ExtResource("5_k866g")
+
+[sub_resource type="Resource" id="Resource_7asd1"]
+script = ExtResource("1_3x2q6")
+level = 13
+move = ExtResource("6_qnw6g")
+
+[sub_resource type="Resource" id="Resource_x6tag"]
+script = ExtResource("1_3x2q6")
+level = 19
+move = ExtResource("7_vgk6s")
+
+[sub_resource type="Resource" id="Resource_p68x4"]
+script = ExtResource("1_3x2q6")
+level = 25
+move = ExtResource("8_72p56")
+
+[sub_resource type="Resource" id="Resource_85tph"]
+script = ExtResource("1_3x2q6")
+level = 31
+move = ExtResource("9_q22qd")
+
+[sub_resource type="Resource" id="Resource_27k11"]
+script = ExtResource("1_3x2q6")
+level = 42
+move = ExtResource("10_mmsmw")
+
+[sub_resource type="Resource" id="Resource_ewyxm"]
+script = ExtResource("1_3x2q6")
+level = 55
+move = ExtResource("11_tmy7u")
+
+[sub_resource type="Resource" id="Resource_ke3o7"]
+script = ExtResource("1_3x2q6")
+level = 68
+move = ExtResource("12_mk0oc")
+
+[resource]
+script = ExtResource("3_3teyy")
+id = "blastoise"
+display_name = "Blastoise"
+dex = 9
+types = Array[ExtResource("4_4kkc7")]([ExtResource("5_qw570")])
+learnset = Array[ExtResource("1_3x2q6")]([SubResource("Resource_017ds"), SubResource("Resource_whb2c"), SubResource("Resource_7dq68"), SubResource("Resource_yh5ga"), SubResource("Resource_7asd1"), SubResource("Resource_x6tag"), SubResource("Resource_p68x4"), SubResource("Resource_85tph"), SubResource("Resource_27k11"), SubResource("Resource_ewyxm"), SubResource("Resource_ke3o7")])
+genus = "Pokémon Armazón"
+pokedex_entry = "Blastoise lanza chorros de agua con gran precisión por los tubos que le salen del caparazón que tiene en la espalda. Puede disparar chorros de agua con tanta puntería que no fallaría al tirar contra una lata pequeña a 50 m."
+height_m = 1.6
+weight_kg = 85.5
+base_hp = 79
+base_attack = 83
+base_defense = 100
+base_sp_attack = 85
+base_sp_defense = 105
+base_speed = 78
+base_experience = 239
+growth_rate = "medium-slow"

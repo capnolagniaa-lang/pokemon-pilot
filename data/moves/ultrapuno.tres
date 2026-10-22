@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="1_ie7h0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ts2tr"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_b0ttn"]
+
+[resource]
+script = ExtResource("2_ts2tr")
+id = "ultrapuno"
+display_name = "Ultrapuño"
+element = ExtResource("1_ie7h0")
+kind = 1
+cooldown = 1.55
+knockback = 140.0
+recovery = 0.1
+dash_time = 0.2

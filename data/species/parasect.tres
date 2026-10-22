@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_50i45"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cddaa"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="2_gx7rg"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_bjepp"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_lgpf3"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="4_0df41"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_61tf4"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_psnuu"]
+[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="5_wyw52"]
+[ext_resource type="Resource" path="res://data/moves/espora.tres" id="6_hi3c1"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="6_tx5sd"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="7_qm45p"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="8_eklxg"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_y4cts"]
+[ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="10_l2svw"]
+
+[sub_resource type="Resource" id="Resource_ishku"]
+script = ExtResource("1_50i45")
+move = ExtResource("2_gx7rg")
+
+[sub_resource type="Resource" id="Resource_6c71i"]
+script = ExtResource("1_50i45")
+move = ExtResource("3_lgpf3")
+
+[sub_resource type="Resource" id="Resource_qx146"]
+script = ExtResource("1_50i45")
+move = ExtResource("4_0df41")
+
+[sub_resource type="Resource" id="Resource_w0a5x"]
+script = ExtResource("1_50i45")
+level = 19
+move = ExtResource("5_wyw52")
+
+[sub_resource type="Resource" id="Resource_hf3yq"]
+script = ExtResource("1_50i45")
+level = 27
+move = ExtResource("6_hi3c1")
+
+[sub_resource type="Resource" id="Resource_vohn3"]
+script = ExtResource("1_50i45")
+level = 35
+move = ExtResource("7_qm45p")
+
+[sub_resource type="Resource" id="Resource_4x8ou"]
+script = ExtResource("1_50i45")
+level = 43
+move = ExtResource("8_eklxg")
+
+[sub_resource type="Resource" id="Resource_dg5rb"]
+script = ExtResource("1_50i45")
+level = 51
+move = ExtResource("9_y4cts")
+
+[sub_resource type="Resource" id="Resource_3yfuw"]
+script = ExtResource("1_50i45")
+level = 59
+move = ExtResource("10_l2svw")
+
+[resource]
+script = ExtResource("3_bjepp")
+id = "parasect"
+display_name = "Parasect"
+dex = 47
+types = Array[ExtResource("4_61tf4")]([ExtResource("5_psnuu"), ExtResource("6_tx5sd")])
+learnset = Array[ExtResource("1_50i45")]([SubResource("Resource_ishku"), SubResource("Resource_6c71i"), SubResource("Resource_qx146"), SubResource("Resource_w0a5x"), SubResource("Resource_hf3yq"), SubResource("Resource_vohn3"), SubResource("Resource_4x8ou"), SubResource("Resource_dg5rb"), SubResource("Resource_3yfuw")])
+genus = "Pokémon Hongo"
+pokedex_entry = "Parasect es conocido por destruir en plaga grandes árboles, absorbiendo los nutrientes que tienen en la parte baja del tronco y las raíces. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante."
+height_m = 1.0
+weight_kg = 29.5
+base_hp = 60
+base_attack = 95
+base_defense = 80
+base_sp_attack = 60
+base_sp_defense = 80
+base_speed = 30
+base_experience = 142
+capture_rate = 75

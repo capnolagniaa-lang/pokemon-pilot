@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ltwoo"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1lr6w"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_mukkl"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="3_jt2tn"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_mswm8"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0tv70"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_qxtgk"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="5_jhtlv"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_lpbsj"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="6_lgkia"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="6_n81b5"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="7_mx40d"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_jc0bu"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_mrbu5"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="10_ekvgu"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="11_fhkys"]
+[ext_resource type="Resource" path="res://data/moves/cabezazo.tres" id="12_3fn1r"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="13_0e53t"]
+
+[sub_resource type="Resource" id="Resource_8gom3"]
+script = ExtResource("1_ltwoo")
+move = ExtResource("2_mukkl")
+
+[sub_resource type="Resource" id="Resource_e2y7b"]
+script = ExtResource("1_ltwoo")
+move = ExtResource("3_jt2tn")
+
+[sub_resource type="Resource" id="Resource_m41uv"]
+script = ExtResource("1_ltwoo")
+move = ExtResource("4_qxtgk")
+
+[sub_resource type="Resource" id="Resource_l3ayl"]
+script = ExtResource("1_ltwoo")
+move = ExtResource("5_jhtlv")
+
+[sub_resource type="Resource" id="Resource_2dpvs"]
+script = ExtResource("1_ltwoo")
+level = 16
+move = ExtResource("6_n81b5")
+
+[sub_resource type="Resource" id="Resource_0sare"]
+script = ExtResource("1_ltwoo")
+level = 22
+move = ExtResource("7_mx40d")
+
+[sub_resource type="Resource" id="Resource_hc6b0"]
+script = ExtResource("1_ltwoo")
+level = 28
+move = ExtResource("8_jc0bu")
+
+[sub_resource type="Resource" id="Resource_selhg"]
+script = ExtResource("1_ltwoo")
+level = 33
+move = ExtResource("9_mrbu5")
+
+[sub_resource type="Resource" id="Resource_78d2k"]
+script = ExtResource("1_ltwoo")
+level = 38
+move = ExtResource("10_ekvgu")
+
+[sub_resource type="Resource" id="Resource_c77j5"]
+script = ExtResource("1_ltwoo")
+level = 43
+move = ExtResource("11_fhkys")
+
+[sub_resource type="Resource" id="Resource_wxow8"]
+script = ExtResource("1_ltwoo")
+level = 48
+move = ExtResource("12_3fn1r")
+
+[sub_resource type="Resource" id="Resource_0fx2t"]
+script = ExtResource("1_ltwoo")
+level = 53
+move = ExtResource("13_0e53t")
+
+[resource]
+script = ExtResource("3_mswm8")
+id = "sharpedo"
+display_name = "Sharpedo"
+dex = 319
+types = Array[ExtResource("4_0tv70")]([ExtResource("5_lpbsj"), ExtResource("6_lgkia")])
+learnset = Array[ExtResource("1_ltwoo")]([SubResource("Resource_8gom3"), SubResource("Resource_e2y7b"), SubResource("Resource_m41uv"), SubResource("Resource_l3ayl"), SubResource("Resource_2dpvs"), SubResource("Resource_0sare"), SubResource("Resource_hc6b0"), SubResource("Resource_selhg"), SubResource("Resource_78d2k"), SubResource("Resource_c77j5"), SubResource("Resource_wxow8"), SubResource("Resource_0fx2t")])
+genus = "Pokémon Voraz"
+pokedex_entry = "Conocido como el Terror de los Mares, Sharpedo es temido por todos. Si este Pokémon pierde los escalofriantes colmillos que tiene, los recupera en breve. Basta con un Sharpedo para destrozar un buque-cisterna."
+height_m = 1.8
+weight_kg = 88.8
+base_hp = 70
+base_attack = 120
+base_defense = 40
+base_sp_attack = 95
+base_sp_defense = 40
+base_speed = 95
+base_experience = 161
+growth_rate = "slow"
+capture_rate = 60

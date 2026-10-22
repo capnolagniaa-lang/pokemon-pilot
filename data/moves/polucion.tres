@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="1_y1p53"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uphdq"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="3_q6dfv"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_iefnr"]
+
+[resource]
+script = ExtResource("2_uphdq")
+id = "polucion"
+display_name = "Polución"
+element = ExtResource("1_y1p53")
+category = 1
+power = 30.0
+cooldown = 1.25
+knockback = 60.0
+recovery = 0.1
+status = ExtResource("3_q6dfv")
+status_chance = 0.4
+speed = 280.0
+size = 3.75
+lifetime = 0.85

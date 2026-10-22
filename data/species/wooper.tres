@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_sjk6s"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3vkmj"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="2_w68qw"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_c83ul"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="3_hnlb7"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_687yd"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="4_n52ky"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_da2qq"]
+[ext_resource type="Resource" path="res://data/moves/disparo_lodo.tres" id="5_xq5q6"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_waqjo"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="6_wo8qd"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="7_h4hdp"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="8_ku4dd"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="9_116uv"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="10_e2exn"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="11_euwhs"]
+
+[sub_resource type="Resource" id="Resource_eugi6"]
+script = ExtResource("1_sjk6s")
+move = ExtResource("2_w68qw")
+
+[sub_resource type="Resource" id="Resource_o76r3"]
+script = ExtResource("1_sjk6s")
+move = ExtResource("3_hnlb7")
+
+[sub_resource type="Resource" id="Resource_4otkh"]
+script = ExtResource("1_sjk6s")
+level = 11
+move = ExtResource("4_n52ky")
+
+[sub_resource type="Resource" id="Resource_e4x1d"]
+script = ExtResource("1_sjk6s")
+level = 16
+move = ExtResource("5_xq5q6")
+
+[sub_resource type="Resource" id="Resource_kxlap"]
+script = ExtResource("1_sjk6s")
+level = 21
+move = ExtResource("6_wo8qd")
+
+[sub_resource type="Resource" id="Resource_gk54l"]
+script = ExtResource("1_sjk6s")
+level = 31
+move = ExtResource("7_h4hdp")
+
+[sub_resource type="Resource" id="Resource_7ftcr"]
+script = ExtResource("1_sjk6s")
+level = 36
+move = ExtResource("8_ku4dd")
+
+[sub_resource type="Resource" id="Resource_ufrd4"]
+script = ExtResource("1_sjk6s")
+level = 41
+move = ExtResource("9_116uv")
+
+[sub_resource type="Resource" id="Resource_0s6lx"]
+script = ExtResource("1_sjk6s")
+level = 51
+move = ExtResource("10_e2exn")
+
+[sub_resource type="Resource" id="Resource_uc4bc"]
+script = ExtResource("1_sjk6s")
+level = 51
+move = ExtResource("11_euwhs")
+
+[resource]
+script = ExtResource("3_c83ul")
+id = "wooper"
+display_name = "Wooper"
+dex = 194
+types = Array[ExtResource("4_687yd")]([ExtResource("5_da2qq"), ExtResource("6_waqjo")])
+learnset = Array[ExtResource("1_sjk6s")]([SubResource("Resource_eugi6"), SubResource("Resource_o76r3"), SubResource("Resource_4otkh"), SubResource("Resource_e4x1d"), SubResource("Resource_kxlap"), SubResource("Resource_gk54l"), SubResource("Resource_7ftcr"), SubResource("Resource_ufrd4"), SubResource("Resource_0s6lx"), SubResource("Resource_uc4bc")])
+genus = "Pokémon Pez Agua"
+pokedex_entry = "Wooper suele vivir en el agua, pero es posible también verle en tierra en busca de comida. Cuando está en terreno firme, se cubre con una película viscosa tóxica."
+height_m = 0.4
+weight_kg = 8.5
+base_hp = 55
+base_attack = 45
+base_defense = 45
+base_sp_attack = 25
+base_sp_defense = 25
+base_speed = 15
+base_experience = 42
+capture_rate = 255

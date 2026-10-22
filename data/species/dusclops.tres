@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fc4wp"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_iqur5"]
+[ext_resource type="Resource" path="res://data/moves/atadura.tres" id="2_pntun"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="3_1vvpd"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_it3nj"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_daw6u"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sysdn"]
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="5_t7cmg"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="5_vlayv"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="6_jhhv4"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="7_kchvr"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_g1ij5"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="9_os06k"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="10_cjq3r"]
+[ext_resource type="Resource" path="res://data/moves/puno_sombra.tres" id="11_af824"]
+[ext_resource type="Resource" path="res://data/moves/fuego_fatuo.tres" id="12_vevfm"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="13_k42h5"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="14_ml05g"]
+
+[sub_resource type="Resource" id="Resource_yx6vi"]
+script = ExtResource("1_fc4wp")
+move = ExtResource("2_pntun")
+
+[sub_resource type="Resource" id="Resource_vqw2x"]
+script = ExtResource("1_fc4wp")
+move = ExtResource("3_1vvpd")
+
+[sub_resource type="Resource" id="Resource_gnkot"]
+script = ExtResource("1_fc4wp")
+move = ExtResource("4_daw6u")
+
+[sub_resource type="Resource" id="Resource_yd1pp"]
+script = ExtResource("1_fc4wp")
+move = ExtResource("5_vlayv")
+
+[sub_resource type="Resource" id="Resource_u0gku"]
+script = ExtResource("1_fc4wp")
+level = 12
+move = ExtResource("6_jhhv4")
+
+[sub_resource type="Resource" id="Resource_0ibpf"]
+script = ExtResource("1_fc4wp")
+level = 16
+move = ExtResource("7_kchvr")
+
+[sub_resource type="Resource" id="Resource_48f6q"]
+script = ExtResource("1_fc4wp")
+level = 23
+move = ExtResource("8_g1ij5")
+
+[sub_resource type="Resource" id="Resource_na4og"]
+script = ExtResource("1_fc4wp")
+level = 27
+move = ExtResource("9_os06k")
+
+[sub_resource type="Resource" id="Resource_8c1jr"]
+script = ExtResource("1_fc4wp")
+level = 34
+move = ExtResource("10_cjq3r")
+
+[sub_resource type="Resource" id="Resource_ejs3y"]
+script = ExtResource("1_fc4wp")
+level = 37
+move = ExtResource("11_af824")
+
+[sub_resource type="Resource" id="Resource_awq1m"]
+script = ExtResource("1_fc4wp")
+level = 41
+move = ExtResource("12_vevfm")
+
+[sub_resource type="Resource" id="Resource_n7flp"]
+script = ExtResource("1_fc4wp")
+level = 51
+move = ExtResource("13_k42h5")
+
+[sub_resource type="Resource" id="Resource_fi6p4"]
+script = ExtResource("1_fc4wp")
+level = 58
+move = ExtResource("14_ml05g")
+
+[resource]
+script = ExtResource("3_it3nj")
+id = "dusclops"
+display_name = "Dusclops"
+dex = 356
+types = Array[ExtResource("4_sysdn")]([ExtResource("5_t7cmg")])
+learnset = Array[ExtResource("1_fc4wp")]([SubResource("Resource_yx6vi"), SubResource("Resource_vqw2x"), SubResource("Resource_gnkot"), SubResource("Resource_yd1pp"), SubResource("Resource_u0gku"), SubResource("Resource_0ibpf"), SubResource("Resource_48f6q"), SubResource("Resource_na4og"), SubResource("Resource_8c1jr"), SubResource("Resource_ejs3y"), SubResource("Resource_awq1m"), SubResource("Resource_n7flp"), SubResource("Resource_fi6p4")])
+genus = "Pokémon Atrayente"
+pokedex_entry = "Dusclops está completamente hueco por dentro. Dicen que su cuerpo es como un agujero negro. Este Pokémon es capaz de absorber cualquier cosa, pero cosa que absorba, cosa que no dejará salir nunca más."
+height_m = 1.6
+weight_kg = 30.6
+base_hp = 40
+base_attack = 70
+base_defense = 130
+base_sp_attack = 60
+base_sp_defense = 130
+base_speed = 25
+base_experience = 159
+growth_rate = "fast"
+capture_rate = 90

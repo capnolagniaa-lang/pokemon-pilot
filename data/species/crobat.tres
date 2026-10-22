@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qkxm8"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_djs1x"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_y3yhe"]
+[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="3_ion60"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_w11o8"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="4_c34pl"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_gt3pj"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_mueit"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="5_w5pv4"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="6_envdp"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_lefii"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="7_4q32s"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_a68br"]
+[ext_resource type="Resource" path="res://data/moves/aire_afilado.tres" id="9_wtt6o"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="10_p8c2d"]
+[ext_resource type="Resource" path="res://data/moves/colmillo_veneno.tres" id="11_wjj64"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_h6ba4"]
+
+[sub_resource type="Resource" id="Resource_b1jt4"]
+script = ExtResource("1_qkxm8")
+move = ExtResource("2_djs1x")
+
+[sub_resource type="Resource" id="Resource_yc4uf"]
+script = ExtResource("1_qkxm8")
+move = ExtResource("3_ion60")
+
+[sub_resource type="Resource" id="Resource_8b2o2"]
+script = ExtResource("1_qkxm8")
+move = ExtResource("4_c34pl")
+
+[sub_resource type="Resource" id="Resource_nj5hf"]
+script = ExtResource("1_qkxm8")
+move = ExtResource("5_w5pv4")
+
+[sub_resource type="Resource" id="Resource_p3rv5"]
+script = ExtResource("1_qkxm8")
+level = 16
+move = ExtResource("6_envdp")
+
+[sub_resource type="Resource" id="Resource_dxft2"]
+script = ExtResource("1_qkxm8")
+level = 21
+move = ExtResource("7_4q32s")
+
+[sub_resource type="Resource" id="Resource_5ekcl"]
+script = ExtResource("1_qkxm8")
+level = 28
+move = ExtResource("8_a68br")
+
+[sub_resource type="Resource" id="Resource_ce678"]
+script = ExtResource("1_qkxm8")
+level = 35
+move = ExtResource("9_wtt6o")
+
+[sub_resource type="Resource" id="Resource_lie2c"]
+script = ExtResource("1_qkxm8")
+level = 42
+move = ExtResource("10_p8c2d")
+
+[sub_resource type="Resource" id="Resource_d5q0k"]
+script = ExtResource("1_qkxm8")
+level = 49
+move = ExtResource("11_wjj64")
+
+[sub_resource type="Resource" id="Resource_1k35v"]
+script = ExtResource("1_qkxm8")
+level = 56
+move = ExtResource("12_h6ba4")
+
+[resource]
+script = ExtResource("3_w11o8")
+id = "crobat"
+display_name = "Crobat"
+dex = 169
+types = Array[ExtResource("4_gt3pj")]([ExtResource("5_mueit"), ExtResource("6_lefii")])
+learnset = Array[ExtResource("1_qkxm8")]([SubResource("Resource_b1jt4"), SubResource("Resource_yc4uf"), SubResource("Resource_8b2o2"), SubResource("Resource_nj5hf"), SubResource("Resource_p3rv5"), SubResource("Resource_dxft2"), SubResource("Resource_5ekcl"), SubResource("Resource_ce678"), SubResource("Resource_lie2c"), SubResource("Resource_d5q0k"), SubResource("Resource_1k35v")])
+genus = "Pokémon Murciélago"
+pokedex_entry = "Cuando este Pokémon vuela batiendo solo las alas delanteras o traseras, es porque lleva volando bastante tiempo. Cuando se cansa, Crobat alterna las alas."
+height_m = 1.8
+weight_kg = 75.0
+base_hp = 85
+base_attack = 90
+base_defense = 80
+base_sp_attack = 70
+base_sp_defense = 80
+base_speed = 130
+base_experience = 241
+capture_rate = 90

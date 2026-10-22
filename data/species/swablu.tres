@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3we3p"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4fxk5"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_jygqd"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_c8g07"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fkshk"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="4_mxdws"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wxw6c"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_mpxgm"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="5_sx5pm"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_37td5"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="6_ban26"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="7_uarf0"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="8_4211o"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_ll2pa"]
+[ext_resource type="Resource" path="res://data/moves/espejo.tres" id="10_un4yn"]
+[ext_resource type="Resource" path="res://data/moves/alivio.tres" id="11_8tl4l"]
+[ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="12_52yxf"]
+
+[sub_resource type="Resource" id="Resource_o01yy"]
+script = ExtResource("1_3we3p")
+move = ExtResource("2_jygqd")
+
+[sub_resource type="Resource" id="Resource_kbd58"]
+script = ExtResource("1_3we3p")
+move = ExtResource("3_c8g07")
+
+[sub_resource type="Resource" id="Resource_68yt6"]
+script = ExtResource("1_3we3p")
+level = 8
+move = ExtResource("4_mxdws")
+
+[sub_resource type="Resource" id="Resource_xdvty"]
+script = ExtResource("1_3we3p")
+level = 11
+move = ExtResource("5_sx5pm")
+
+[sub_resource type="Resource" id="Resource_ygrc5"]
+script = ExtResource("1_3we3p")
+level = 18
+move = ExtResource("6_ban26")
+
+[sub_resource type="Resource" id="Resource_a4y4t"]
+script = ExtResource("1_3we3p")
+level = 21
+move = ExtResource("7_uarf0")
+
+[sub_resource type="Resource" id="Resource_ue6xo"]
+script = ExtResource("1_3we3p")
+level = 28
+move = ExtResource("8_4211o")
+
+[sub_resource type="Resource" id="Resource_msygd"]
+script = ExtResource("1_3we3p")
+level = 31
+move = ExtResource("9_ll2pa")
+
+[sub_resource type="Resource" id="Resource_b3sm1"]
+script = ExtResource("1_3we3p")
+level = 38
+move = ExtResource("10_un4yn")
+
+[sub_resource type="Resource" id="Resource_xcfjh"]
+script = ExtResource("1_3we3p")
+level = 41
+move = ExtResource("11_8tl4l")
+
+[sub_resource type="Resource" id="Resource_03cj3"]
+script = ExtResource("1_3we3p")
+level = 48
+move = ExtResource("12_52yxf")
+
+[resource]
+script = ExtResource("3_fkshk")
+id = "swablu"
+display_name = "Swablu"
+dex = 333
+types = Array[ExtResource("4_wxw6c")]([ExtResource("5_mpxgm"), ExtResource("6_37td5")])
+learnset = Array[ExtResource("1_3we3p")]([SubResource("Resource_o01yy"), SubResource("Resource_kbd58"), SubResource("Resource_68yt6"), SubResource("Resource_xdvty"), SubResource("Resource_ygrc5"), SubResource("Resource_a4y4t"), SubResource("Resource_ue6xo"), SubResource("Resource_msygd"), SubResource("Resource_b3sm1"), SubResource("Resource_xcfjh"), SubResource("Resource_03cj3")])
+genus = "Pokémon Ave Algodón"
+pokedex_entry = "Swablu tiene unas alas ligeras y esponjosas que parecen nubes de algodón. A este Pokémon no le asusta la gente. De hecho, puede llegar a posarse en la cabeza de alguien y servirle de gorro sedoso."
+height_m = 0.4
+weight_kg = 1.2
+base_hp = 45
+base_attack = 40
+base_defense = 60
+base_sp_attack = 40
+base_sp_defense = 75
+base_experience = 62
+growth_rate = "slow-then-very-fast"
+capture_rate = 255

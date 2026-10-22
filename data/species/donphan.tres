@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_tpxsb"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gslwc"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_x84eu"]
+[ext_resource type="Resource" path="res://data/moves/cornada.tres" id="3_5rmc5"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ljfth"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_131j7"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="4_2578t"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="5_bccuv"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_gsig6"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="6_yfhab"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="7_ln6u4"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_28pcw"]
+[ext_resource type="Resource" path="res://data/moves/giro_rapido.tres" id="9_oa6f7"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_43au4"]
+
+[sub_resource type="Resource" id="Resource_1od8e"]
+script = ExtResource("1_tpxsb")
+move = ExtResource("2_x84eu")
+
+[sub_resource type="Resource" id="Resource_ardbm"]
+script = ExtResource("1_tpxsb")
+move = ExtResource("3_5rmc5")
+
+[sub_resource type="Resource" id="Resource_cui6o"]
+script = ExtResource("1_tpxsb")
+move = ExtResource("4_2578t")
+
+[sub_resource type="Resource" id="Resource_rb1fc"]
+script = ExtResource("1_tpxsb")
+level = 9
+move = ExtResource("5_bccuv")
+
+[sub_resource type="Resource" id="Resource_o0lqg"]
+script = ExtResource("1_tpxsb")
+level = 17
+move = ExtResource("6_yfhab")
+
+[sub_resource type="Resource" id="Resource_ls2e0"]
+script = ExtResource("1_tpxsb")
+level = 25
+move = ExtResource("7_ln6u4")
+
+[sub_resource type="Resource" id="Resource_obyo7"]
+script = ExtResource("1_tpxsb")
+level = 33
+move = ExtResource("8_28pcw")
+
+[sub_resource type="Resource" id="Resource_0fwow"]
+script = ExtResource("1_tpxsb")
+level = 41
+move = ExtResource("9_oa6f7")
+
+[sub_resource type="Resource" id="Resource_isauo"]
+script = ExtResource("1_tpxsb")
+level = 49
+move = ExtResource("10_43au4")
+
+[resource]
+script = ExtResource("3_ljfth")
+id = "donphan"
+display_name = "Donphan"
+dex = 232
+types = Array[ExtResource("4_131j7")]([ExtResource("5_gsig6")])
+learnset = Array[ExtResource("1_tpxsb")]([SubResource("Resource_1od8e"), SubResource("Resource_ardbm"), SubResource("Resource_cui6o"), SubResource("Resource_rb1fc"), SubResource("Resource_o0lqg"), SubResource("Resource_ls2e0"), SubResource("Resource_obyo7"), SubResource("Resource_0fwow"), SubResource("Resource_isauo")])
+genus = "Pokémon Coraza"
+pokedex_entry = "A Donphan le encanta enrollarse como una pelota y cargar contra el enemigo rodando a toda velocidad. Una vez que ha comenzado a rodar, no es fácil pararlo."
+height_m = 1.1
+weight_kg = 120.0
+base_hp = 90
+base_attack = 120
+base_defense = 120
+base_sp_attack = 60
+base_sp_defense = 60
+base_experience = 175
+capture_rate = 60

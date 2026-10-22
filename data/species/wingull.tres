@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_le4pc"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6wwm6"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_y01c1"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_867o0"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="3_vy8e8"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_85dm2"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="4_ptctw"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_0y2wj"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="5_ruktm"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="6_30py7"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_hohtl"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="7_pwigo"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="8_6lsgc"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_syuat"]
+
+[sub_resource type="Resource" id="Resource_r0pac"]
+script = ExtResource("1_le4pc")
+move = ExtResource("2_y01c1")
+
+[sub_resource type="Resource" id="Resource_5vds5"]
+script = ExtResource("1_le4pc")
+move = ExtResource("3_vy8e8")
+
+[sub_resource type="Resource" id="Resource_sf50w"]
+script = ExtResource("1_le4pc")
+level = 7
+move = ExtResource("4_ptctw")
+
+[sub_resource type="Resource" id="Resource_0rigk"]
+script = ExtResource("1_le4pc")
+level = 13
+move = ExtResource("5_ruktm")
+
+[sub_resource type="Resource" id="Resource_ydhig"]
+script = ExtResource("1_le4pc")
+level = 21
+move = ExtResource("6_30py7")
+
+[sub_resource type="Resource" id="Resource_qcp6o"]
+script = ExtResource("1_le4pc")
+level = 31
+move = ExtResource("7_pwigo")
+
+[sub_resource type="Resource" id="Resource_bgq1c"]
+script = ExtResource("1_le4pc")
+level = 43
+move = ExtResource("8_6lsgc")
+
+[sub_resource type="Resource" id="Resource_7jq7i"]
+script = ExtResource("1_le4pc")
+level = 55
+move = ExtResource("9_syuat")
+
+[resource]
+script = ExtResource("3_867o0")
+id = "wingull"
+display_name = "Wingull"
+dex = 278
+types = Array[ExtResource("4_85dm2")]([ExtResource("5_0y2wj"), ExtResource("6_hohtl")])
+learnset = Array[ExtResource("1_le4pc")]([SubResource("Resource_r0pac"), SubResource("Resource_5vds5"), SubResource("Resource_sf50w"), SubResource("Resource_0rigk"), SubResource("Resource_ydhig"), SubResource("Resource_qcp6o"), SubResource("Resource_bgq1c"), SubResource("Resource_7jq7i")])
+genus = "Pokémon Gaviota"
+pokedex_entry = "Wingull tiene la costumbre de llevar a su presa y objetos de valor en el pico, y esconderlos en distintos sitios. Este Pokémon vuela dejándose llevar por las corrientes de aire como si fuera patinando por el cielo."
+height_m = 0.6
+weight_kg = 9.5
+base_hp = 40
+base_attack = 30
+base_defense = 30
+base_sp_attack = 55
+base_sp_defense = 30
+base_speed = 85
+base_experience = 54
+capture_rate = 190

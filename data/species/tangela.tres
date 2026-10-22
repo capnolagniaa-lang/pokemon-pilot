@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_pwk10"]
+[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="2_5srpn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8rcyy"]
+[ext_resource type="Resource" path="res://data/moves/arraigo.tres" id="3_pmsfv"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_su775"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_dnmxb"]
+[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="4_m22as"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="5_avr1c"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_k6us7"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="6_v73jq"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="7_jyfgr"]
+[ext_resource type="Resource" path="res://data/moves/latigo_cepa.tres" id="8_t7d5e"]
+[ext_resource type="Resource" path="res://data/moves/atadura.tres" id="9_auh0l"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="10_gfwbf"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="11_5bojn"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="12_lohep"]
+[ext_resource type="Resource" path="res://data/moves/cosquillas.tres" id="13_3j5ni"]
+
+[sub_resource type="Resource" id="Resource_yt7wa"]
+script = ExtResource("1_pwk10")
+move = ExtResource("2_5srpn")
+
+[sub_resource type="Resource" id="Resource_w7qyi"]
+script = ExtResource("1_pwk10")
+move = ExtResource("3_pmsfv")
+
+[sub_resource type="Resource" id="Resource_fmvvw"]
+script = ExtResource("1_pwk10")
+level = 4
+move = ExtResource("4_m22as")
+
+[sub_resource type="Resource" id="Resource_qgp7x"]
+script = ExtResource("1_pwk10")
+level = 10
+move = ExtResource("5_avr1c")
+
+[sub_resource type="Resource" id="Resource_c7fa7"]
+script = ExtResource("1_pwk10")
+level = 13
+move = ExtResource("6_v73jq")
+
+[sub_resource type="Resource" id="Resource_r7hfr"]
+script = ExtResource("1_pwk10")
+level = 19
+move = ExtResource("7_jyfgr")
+
+[sub_resource type="Resource" id="Resource_r2vvb"]
+script = ExtResource("1_pwk10")
+level = 22
+move = ExtResource("8_t7d5e")
+
+[sub_resource type="Resource" id="Resource_sckkf"]
+script = ExtResource("1_pwk10")
+level = 28
+move = ExtResource("9_auh0l")
+
+[sub_resource type="Resource" id="Resource_euyt2"]
+script = ExtResource("1_pwk10")
+level = 31
+move = ExtResource("10_gfwbf")
+
+[sub_resource type="Resource" id="Resource_v1ofi"]
+script = ExtResource("1_pwk10")
+level = 37
+move = ExtResource("11_5bojn")
+
+[sub_resource type="Resource" id="Resource_inv7j"]
+script = ExtResource("1_pwk10")
+level = 40
+move = ExtResource("12_lohep")
+
+[sub_resource type="Resource" id="Resource_iudvq"]
+script = ExtResource("1_pwk10")
+level = 46
+move = ExtResource("13_3j5ni")
+
+[resource]
+script = ExtResource("3_su775")
+id = "tangela"
+display_name = "Tangela"
+dex = 114
+types = Array[ExtResource("4_dnmxb")]([ExtResource("5_k6us7")])
+learnset = Array[ExtResource("1_pwk10")]([SubResource("Resource_yt7wa"), SubResource("Resource_w7qyi"), SubResource("Resource_fmvvw"), SubResource("Resource_qgp7x"), SubResource("Resource_c7fa7"), SubResource("Resource_r7hfr"), SubResource("Resource_r2vvb"), SubResource("Resource_sckkf"), SubResource("Resource_euyt2"), SubResource("Resource_v1ofi"), SubResource("Resource_inv7j"), SubResource("Resource_iudvq")])
+genus = "Pokémon Enredadera"
+pokedex_entry = "A Tangela se le desprenden los tentáculos con facilidad en cuanto se los agarras. Y no solo no le duele, sino que le resulta muy útil para escapar rápido. Además, al día siguiente le crecen otros."
+height_m = 1.0
+weight_kg = 35.0
+base_hp = 65
+base_attack = 55
+base_defense = 115
+base_sp_attack = 100
+base_sp_defense = 40
+base_speed = 60
+base_experience = 87

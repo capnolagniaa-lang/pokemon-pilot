@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_b8jkc"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="2_jjl1t"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sdti7"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_laawc"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_uhhyg"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_1f46a"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_tfce7"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="5_8gckx"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="5_yanl5"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="6_ok8s6"]
+[ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="7_b7jv1"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="8_gvcc4"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="9_wi1ld"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_on45m"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_krdem"]
+
+[sub_resource type="Resource" id="Resource_0p38r"]
+script = ExtResource("1_b8jkc")
+move = ExtResource("2_jjl1t")
+
+[sub_resource type="Resource" id="Resource_uffr4"]
+script = ExtResource("1_b8jkc")
+move = ExtResource("3_uhhyg")
+
+[sub_resource type="Resource" id="Resource_y7ptq"]
+script = ExtResource("1_b8jkc")
+level = 4
+move = ExtResource("4_1f46a")
+
+[sub_resource type="Resource" id="Resource_lf45b"]
+script = ExtResource("1_b8jkc")
+level = 8
+move = ExtResource("5_yanl5")
+
+[sub_resource type="Resource" id="Resource_nxhos"]
+script = ExtResource("1_b8jkc")
+level = 13
+move = ExtResource("6_ok8s6")
+
+[sub_resource type="Resource" id="Resource_y3fnt"]
+script = ExtResource("1_b8jkc")
+level = 19
+move = ExtResource("7_b7jv1")
+
+[sub_resource type="Resource" id="Resource_lngjw"]
+script = ExtResource("1_b8jkc")
+level = 28
+move = ExtResource("8_gvcc4")
+
+[sub_resource type="Resource" id="Resource_gi0rx"]
+script = ExtResource("1_b8jkc")
+level = 38
+move = ExtResource("9_wi1ld")
+
+[sub_resource type="Resource" id="Resource_gisyv"]
+script = ExtResource("1_b8jkc")
+level = 49
+move = ExtResource("10_on45m")
+
+[sub_resource type="Resource" id="Resource_tu8oc"]
+script = ExtResource("1_b8jkc")
+level = 61
+move = ExtResource("11_krdem")
+
+[resource]
+script = ExtResource("3_laawc")
+id = "granbull"
+display_name = "Granbull"
+dex = 210
+types = Array[ExtResource("4_tfce7")]([ExtResource("5_8gckx")])
+learnset = Array[ExtResource("1_b8jkc")]([SubResource("Resource_0p38r"), SubResource("Resource_uffr4"), SubResource("Resource_y7ptq"), SubResource("Resource_lf45b"), SubResource("Resource_nxhos"), SubResource("Resource_y3fnt"), SubResource("Resource_lngjw"), SubResource("Resource_gi0rx"), SubResource("Resource_gisyv"), SubResource("Resource_tu8oc")])
+genus = "Pokémon Hada"
+pokedex_entry = "Granbull tiene la mandíbula inferior demasiado desarrollada y colmillos enormes y pesados que le obligan a inclinar la cabeza hacia atrás para compensar el peso. Si no se le asusta, no muerde."
+height_m = 1.4
+weight_kg = 48.7
+base_hp = 90
+base_attack = 120
+base_defense = 75
+base_sp_attack = 60
+base_sp_defense = 60
+base_speed = 45
+base_experience = 158
+growth_rate = "fast"
+capture_rate = 75

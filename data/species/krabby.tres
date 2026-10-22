@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_tqpkl"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0aoa2"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_a0qw1"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pfmbd"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_rx08h"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jedtd"]
+[ext_resource type="Resource" path="res://data/moves/agarre.tres" id="4_o6cmn"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_0qmoj"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="5_3x2y4"]
+[ext_resource type="Resource" path="res://data/moves/disparo_lodo.tres" id="6_v2qn0"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="7_ndrkl"]
+[ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="8_afj3a"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="9_bx11v"]
+[ext_resource type="Resource" path="res://data/moves/martillazo.tres" id="10_muuyo"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_d7mpq"]
+
+[sub_resource type="Resource" id="Resource_5yo4p"]
+script = ExtResource("1_tqpkl")
+move = ExtResource("2_a0qw1")
+
+[sub_resource type="Resource" id="Resource_sskme"]
+script = ExtResource("1_tqpkl")
+level = 5
+move = ExtResource("3_rx08h")
+
+[sub_resource type="Resource" id="Resource_bapby"]
+script = ExtResource("1_tqpkl")
+level = 12
+move = ExtResource("4_o6cmn")
+
+[sub_resource type="Resource" id="Resource_hbwwf"]
+script = ExtResource("1_tqpkl")
+level = 16
+move = ExtResource("5_3x2y4")
+
+[sub_resource type="Resource" id="Resource_k886o"]
+script = ExtResource("1_tqpkl")
+level = 23
+move = ExtResource("6_v2qn0")
+
+[sub_resource type="Resource" id="Resource_p32r6"]
+script = ExtResource("1_tqpkl")
+level = 27
+move = ExtResource("7_ndrkl")
+
+[sub_resource type="Resource" id="Resource_k32qx"]
+script = ExtResource("1_tqpkl")
+level = 34
+move = ExtResource("8_afj3a")
+
+[sub_resource type="Resource" id="Resource_ncv4q"]
+script = ExtResource("1_tqpkl")
+level = 38
+move = ExtResource("9_bx11v")
+
+[sub_resource type="Resource" id="Resource_2votl"]
+script = ExtResource("1_tqpkl")
+level = 45
+move = ExtResource("10_muuyo")
+
+[sub_resource type="Resource" id="Resource_i3hr7"]
+script = ExtResource("1_tqpkl")
+level = 49
+move = ExtResource("11_d7mpq")
+
+[resource]
+script = ExtResource("3_pfmbd")
+id = "krabby"
+display_name = "Krabby"
+dex = 98
+types = Array[ExtResource("4_jedtd")]([ExtResource("5_0qmoj")])
+learnset = Array[ExtResource("1_tqpkl")]([SubResource("Resource_5yo4p"), SubResource("Resource_sskme"), SubResource("Resource_bapby"), SubResource("Resource_hbwwf"), SubResource("Resource_k886o"), SubResource("Resource_p32r6"), SubResource("Resource_k32qx"), SubResource("Resource_ncv4q"), SubResource("Resource_2votl"), SubResource("Resource_i3hr7")])
+genus = "Pokémon Cangrejo"
+pokedex_entry = "Krabby vive en la playa, enterrado en agujeros en la arena. Cuando en las playas de arena fina escasea la comida, es común ver a estos Pokémon echando un pulso panza contra panza en defensa de su territorio."
+height_m = 0.4
+weight_kg = 6.5
+base_hp = 30
+base_attack = 105
+base_defense = 90
+base_sp_attack = 25
+base_sp_defense = 25
+base_experience = 65
+capture_rate = 225

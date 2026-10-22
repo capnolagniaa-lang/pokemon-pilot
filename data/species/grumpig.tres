@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qw503"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_b34ik"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="2_sjq4o"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_acycv"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="3_xyc4x"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_65jgh"]
+[ext_resource type="Resource" path="res://data/moves/psicoonda.tres" id="4_lxsj2"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="5_0aasd"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_ywv8p"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="6_dvc85"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="7_dsn5h"]
+[ext_resource type="Resource" path="res://data/moves/capa_magica.tres" id="8_car4s"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="9_onbm4"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_dpmfp"]
+[ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="11_e2m56"]
+[ext_resource type="Resource" path="res://data/moves/bote.tres" id="12_mv5fc"]
+
+[sub_resource type="Resource" id="Resource_tbprx"]
+script = ExtResource("1_qw503")
+move = ExtResource("2_sjq4o")
+
+[sub_resource type="Resource" id="Resource_o6vw2"]
+script = ExtResource("1_qw503")
+move = ExtResource("3_xyc4x")
+
+[sub_resource type="Resource" id="Resource_mv0cl"]
+script = ExtResource("1_qw503")
+move = ExtResource("4_lxsj2")
+
+[sub_resource type="Resource" id="Resource_cgxmq"]
+script = ExtResource("1_qw503")
+move = ExtResource("5_0aasd")
+
+[sub_resource type="Resource" id="Resource_abcdk"]
+script = ExtResource("1_qw503")
+level = 19
+move = ExtResource("6_dvc85")
+
+[sub_resource type="Resource" id="Resource_d1vub"]
+script = ExtResource("1_qw503")
+level = 25
+move = ExtResource("7_dsn5h")
+
+[sub_resource type="Resource" id="Resource_1rheg"]
+script = ExtResource("1_qw503")
+level = 28
+move = ExtResource("8_car4s")
+
+[sub_resource type="Resource" id="Resource_83kse"]
+script = ExtResource("1_qw503")
+level = 37
+move = ExtResource("9_onbm4")
+
+[sub_resource type="Resource" id="Resource_jvp0a"]
+script = ExtResource("1_qw503")
+level = 43
+move = ExtResource("10_dpmfp")
+
+[sub_resource type="Resource" id="Resource_qudj5"]
+script = ExtResource("1_qw503")
+level = 43
+move = ExtResource("11_e2m56")
+
+[sub_resource type="Resource" id="Resource_58vll"]
+script = ExtResource("1_qw503")
+level = 55
+move = ExtResource("12_mv5fc")
+
+[resource]
+script = ExtResource("3_acycv")
+id = "grumpig"
+display_name = "Grumpig"
+dex = 326
+types = Array[ExtResource("4_65jgh")]([ExtResource("5_ywv8p")])
+learnset = Array[ExtResource("1_qw503")]([SubResource("Resource_tbprx"), SubResource("Resource_o6vw2"), SubResource("Resource_mv0cl"), SubResource("Resource_cgxmq"), SubResource("Resource_abcdk"), SubResource("Resource_d1vub"), SubResource("Resource_1rheg"), SubResource("Resource_83kse"), SubResource("Resource_jvp0a"), SubResource("Resource_qudj5"), SubResource("Resource_58vll")])
+genus = "Pokémon Manipulador"
+pokedex_entry = "Grumpig usa las perlas negras que tiene para amplificar las ondas de su poder psíquico y controlar del todo al rival. Cuando usa su poder especial, le cuesta respirar y resopla con pesadez."
+height_m = 0.9
+weight_kg = 71.5
+base_hp = 80
+base_attack = 45
+base_defense = 65
+base_sp_attack = 90
+base_sp_defense = 110
+base_speed = 80
+base_experience = 165
+growth_rate = "fast"
+capture_rate = 60

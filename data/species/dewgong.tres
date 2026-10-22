@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_lri7t"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="2_ejr2n"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yfd7v"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ebpte"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_tunxy"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="4_f2xtg"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_w44w8"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_acq7i"]
+[ext_resource type="Resource" path="res://data/moves/viento_hielo.tres" id="5_xacqn"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="6_e47bi"]
+[ext_resource type="Resource" path="res://data/moves/rayo_senal.tres" id="6_vn5ab"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="7_evugw"]
+[ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="8_1pe05"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_2uwop"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="10_p0pek"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="11_pl1k6"]
+
+[sub_resource type="Resource" id="Resource_7cxbb"]
+script = ExtResource("1_lri7t")
+move = ExtResource("2_ejr2n")
+
+[sub_resource type="Resource" id="Resource_p2wwc"]
+script = ExtResource("1_lri7t")
+move = ExtResource("3_tunxy")
+
+[sub_resource type="Resource" id="Resource_ix15c"]
+script = ExtResource("1_lri7t")
+move = ExtResource("4_f2xtg")
+
+[sub_resource type="Resource" id="Resource_jvfdo"]
+script = ExtResource("1_lri7t")
+move = ExtResource("5_xacqn")
+
+[sub_resource type="Resource" id="Resource_qnev6"]
+script = ExtResource("1_lri7t")
+move = ExtResource("6_vn5ab")
+
+[sub_resource type="Resource" id="Resource_f1x4s"]
+script = ExtResource("1_lri7t")
+level = 29
+move = ExtResource("7_evugw")
+
+[sub_resource type="Resource" id="Resource_ll8tw"]
+script = ExtResource("1_lri7t")
+level = 34
+move = ExtResource("8_1pe05")
+
+[sub_resource type="Resource" id="Resource_hjhau"]
+script = ExtResource("1_lri7t")
+level = 42
+move = ExtResource("9_2uwop")
+
+[sub_resource type="Resource" id="Resource_8bu6y"]
+script = ExtResource("1_lri7t")
+level = 51
+move = ExtResource("10_p0pek")
+
+[sub_resource type="Resource" id="Resource_gx2m3"]
+script = ExtResource("1_lri7t")
+level = 64
+move = ExtResource("11_pl1k6")
+
+[resource]
+script = ExtResource("3_ebpte")
+id = "dewgong"
+display_name = "Dewgong"
+dex = 87
+types = Array[ExtResource("4_w44w8")]([ExtResource("5_acq7i"), ExtResource("6_e47bi")])
+learnset = Array[ExtResource("1_lri7t")]([SubResource("Resource_7cxbb"), SubResource("Resource_p2wwc"), SubResource("Resource_ix15c"), SubResource("Resource_jvfdo"), SubResource("Resource_qnev6"), SubResource("Resource_f1x4s"), SubResource("Resource_ll8tw"), SubResource("Resource_hjhau"), SubResource("Resource_8bu6y"), SubResource("Resource_gx2m3")])
+genus = "Pokémon León Marino"
+pokedex_entry = "A Dewgong le encanta dormitar sobre la frialdad del hielo. Antiguamente, algún que otro marino lo confundió con una sirena al verlo dormido sobre un glaciar."
+height_m = 1.7
+weight_kg = 120.0
+base_hp = 90
+base_attack = 70
+base_defense = 80
+base_sp_attack = 70
+base_sp_defense = 95
+base_speed = 70
+base_experience = 166
+capture_rate = 75

@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1e1uo"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ellfp"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="2_sqf1q"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_6d5rn"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ddchr"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_u5c7a"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_uoblk"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_tmpxx"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="5_uugaq"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="6_0y0uw"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="7_kf8p6"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="8_17yl3"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="9_qmjee"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="10_fls64"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_rdq5c"]
+[ext_resource type="Resource" path="res://data/moves/sol_matinal.tres" id="12_heu25"]
+
+[sub_resource type="Resource" id="Resource_2nged"]
+script = ExtResource("1_1e1uo")
+move = ExtResource("2_sqf1q")
+
+[sub_resource type="Resource" id="Resource_q01dr"]
+script = ExtResource("1_1e1uo")
+move = ExtResource("3_6d5rn")
+
+[sub_resource type="Resource" id="Resource_bwaby"]
+script = ExtResource("1_1e1uo")
+move = ExtResource("4_uoblk")
+
+[sub_resource type="Resource" id="Resource_2ltg7"]
+script = ExtResource("1_1e1uo")
+level = 8
+move = ExtResource("5_uugaq")
+
+[sub_resource type="Resource" id="Resource_gbxxl"]
+script = ExtResource("1_1e1uo")
+level = 16
+move = ExtResource("6_0y0uw")
+
+[sub_resource type="Resource" id="Resource_212cv"]
+script = ExtResource("1_1e1uo")
+level = 23
+move = ExtResource("7_kf8p6")
+
+[sub_resource type="Resource" id="Resource_hinxk"]
+script = ExtResource("1_1e1uo")
+level = 30
+move = ExtResource("8_17yl3")
+
+[sub_resource type="Resource" id="Resource_y4onl"]
+script = ExtResource("1_1e1uo")
+level = 36
+move = ExtResource("9_qmjee")
+
+[sub_resource type="Resource" id="Resource_32h4e"]
+script = ExtResource("1_1e1uo")
+level = 42
+move = ExtResource("10_fls64")
+
+[sub_resource type="Resource" id="Resource_c3yjj"]
+script = ExtResource("1_1e1uo")
+level = 47
+move = ExtResource("11_rdq5c")
+
+[sub_resource type="Resource" id="Resource_8hr7a"]
+script = ExtResource("1_1e1uo")
+level = 52
+move = ExtResource("12_heu25")
+
+[resource]
+script = ExtResource("3_ddchr")
+id = "espeon"
+display_name = "Espeon"
+dex = 196
+types = Array[ExtResource("4_u5c7a")]([ExtResource("5_tmpxx")])
+learnset = Array[ExtResource("1_1e1uo")]([SubResource("Resource_2nged"), SubResource("Resource_q01dr"), SubResource("Resource_bwaby"), SubResource("Resource_2ltg7"), SubResource("Resource_gbxxl"), SubResource("Resource_212cv"), SubResource("Resource_hinxk"), SubResource("Resource_y4onl"), SubResource("Resource_32h4e"), SubResource("Resource_c3yjj"), SubResource("Resource_8hr7a")])
+genus = "Pokémon Sol"
+pokedex_entry = "Espeon es tremendamente leal al Entrenador al que considera digno de ello. Dicen que este Pokémon desarrolló sus poderes adivinatorios para evitar que su Entrenador sufra daño alguno."
+height_m = 0.9
+weight_kg = 26.5
+base_hp = 65
+base_attack = 65
+base_defense = 60
+base_sp_attack = 130
+base_sp_defense = 95
+base_speed = 110
+base_experience = 184

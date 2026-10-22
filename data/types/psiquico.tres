@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ElementType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_fssc5"]
+
+[resource]
+script = ExtResource("1_fssc5")
+id = "psiquico"
+display_name = "Psíquico"
+color = Color(0.95, 0.35, 0.55, 1)
+core_color = Color(1, 0.7, 0.82, 1)
+glow = 1.2

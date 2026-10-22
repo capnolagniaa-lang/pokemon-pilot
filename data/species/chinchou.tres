@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_oki6r"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_axud2"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_m8sp0"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0vhfy"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="3_a32bo"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="4_naak2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_o8trm"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_u4hxk"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="5_up1bb"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="6_gxg7v"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="6_yr5fi"]
+[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="7_xqv0p"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_48yvy"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_6ymjq"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_qblwt"]
+[ext_resource type="Resource" path="res://data/moves/carga.tres" id="11_wgp1p"]
+
+[sub_resource type="Resource" id="Resource_nyx0y"]
+script = ExtResource("1_oki6r")
+move = ExtResource("2_m8sp0")
+
+[sub_resource type="Resource" id="Resource_xckkt"]
+script = ExtResource("1_oki6r")
+move = ExtResource("3_a32bo")
+
+[sub_resource type="Resource" id="Resource_3qjf2"]
+script = ExtResource("1_oki6r")
+level = 5
+move = ExtResource("4_naak2")
+
+[sub_resource type="Resource" id="Resource_n702f"]
+script = ExtResource("1_oki6r")
+level = 13
+move = ExtResource("5_up1bb")
+
+[sub_resource type="Resource" id="Resource_5mydi"]
+script = ExtResource("1_oki6r")
+level = 17
+move = ExtResource("6_yr5fi")
+
+[sub_resource type="Resource" id="Resource_n8571"]
+script = ExtResource("1_oki6r")
+level = 25
+move = ExtResource("7_xqv0p")
+
+[sub_resource type="Resource" id="Resource_0kd7y"]
+script = ExtResource("1_oki6r")
+level = 29
+move = ExtResource("8_48yvy")
+
+[sub_resource type="Resource" id="Resource_dwvrq"]
+script = ExtResource("1_oki6r")
+level = 37
+move = ExtResource("9_6ymjq")
+
+[sub_resource type="Resource" id="Resource_7076v"]
+script = ExtResource("1_oki6r")
+level = 41
+move = ExtResource("10_qblwt")
+
+[sub_resource type="Resource" id="Resource_v4ib3"]
+script = ExtResource("1_oki6r")
+level = 49
+move = ExtResource("11_wgp1p")
+
+[resource]
+script = ExtResource("3_0vhfy")
+id = "chinchou"
+display_name = "Chinchou"
+dex = 170
+types = Array[ExtResource("4_o8trm")]([ExtResource("5_u4hxk"), ExtResource("6_gxg7v")])
+learnset = Array[ExtResource("1_oki6r")]([SubResource("Resource_nyx0y"), SubResource("Resource_xckkt"), SubResource("Resource_3qjf2"), SubResource("Resource_n702f"), SubResource("Resource_5mydi"), SubResource("Resource_n8571"), SubResource("Resource_0kd7y"), SubResource("Resource_dwvrq"), SubResource("Resource_7076v"), SubResource("Resource_v4ib3")])
+genus = "Pokémon Rape"
+pokedex_entry = "Chinchou libera cargas eléctricas positivas y negativas a través de las dos antenas que tiene para que su rival pierda el conocimiento. Asimismo, usa los destellos de electricidad para comunicarse con otros."
+height_m = 0.5
+weight_kg = 12.0
+base_hp = 75
+base_attack = 38
+base_defense = 38
+base_sp_attack = 56
+base_sp_defense = 56
+base_speed = 67
+base_experience = 66
+growth_rate = "slow"
+capture_rate = 190

@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_11rkk"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2lvol"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="2_a0157"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="3_3flop"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_u1i5w"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_camkb"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_nnb5c"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="5_abkrs"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_edy48"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="6_lrasa"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="7_ehcrp"]
+[ext_resource type="Resource" path="res://data/moves/dragoaliento.tres" id="8_6oju6"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="9_2bnrp"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="10_teino"]
+[ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="11_57f4a"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_spxb6"]
+
+[sub_resource type="Resource" id="Resource_hg2yi"]
+script = ExtResource("1_11rkk")
+move = ExtResource("2_a0157")
+
+[sub_resource type="Resource" id="Resource_pc3qh"]
+script = ExtResource("1_11rkk")
+level = 5
+move = ExtResource("3_3flop")
+
+[sub_resource type="Resource" id="Resource_gwtef"]
+script = ExtResource("1_11rkk")
+level = 9
+move = ExtResource("4_nnb5c")
+
+[sub_resource type="Resource" id="Resource_rohi1"]
+script = ExtResource("1_11rkk")
+level = 17
+move = ExtResource("5_abkrs")
+
+[sub_resource type="Resource" id="Resource_an43t"]
+script = ExtResource("1_11rkk")
+level = 21
+move = ExtResource("6_lrasa")
+
+[sub_resource type="Resource" id="Resource_qdtfp"]
+script = ExtResource("1_11rkk")
+level = 25
+move = ExtResource("7_ehcrp")
+
+[sub_resource type="Resource" id="Resource_dql6m"]
+script = ExtResource("1_11rkk")
+level = 33
+move = ExtResource("8_6oju6")
+
+[sub_resource type="Resource" id="Resource_son32"]
+script = ExtResource("1_11rkk")
+level = 37
+move = ExtResource("9_2bnrp")
+
+[sub_resource type="Resource" id="Resource_oomo7"]
+script = ExtResource("1_11rkk")
+level = 41
+move = ExtResource("10_teino")
+
+[sub_resource type="Resource" id="Resource_cuwhy"]
+script = ExtResource("1_11rkk")
+level = 49
+move = ExtResource("11_57f4a")
+
+[sub_resource type="Resource" id="Resource_fhff0"]
+script = ExtResource("1_11rkk")
+level = 53
+move = ExtResource("12_spxb6")
+
+[resource]
+script = ExtResource("3_u1i5w")
+id = "bagon"
+display_name = "Bagon"
+dex = 371
+types = Array[ExtResource("4_camkb")]([ExtResource("5_edy48")])
+learnset = Array[ExtResource("1_11rkk")]([SubResource("Resource_hg2yi"), SubResource("Resource_pc3qh"), SubResource("Resource_gwtef"), SubResource("Resource_rohi1"), SubResource("Resource_an43t"), SubResource("Resource_qdtfp"), SubResource("Resource_dql6m"), SubResource("Resource_son32"), SubResource("Resource_oomo7"), SubResource("Resource_cuwhy"), SubResource("Resource_fhff0")])
+genus = "Pokémon Cabeza Roca"
+pokedex_entry = "Bagon sueña con poder pasar un día volando por el cielo. En vanos intentos por volar, ha llegado a tirarse desde riscos. Como resultado de estas caídas en picado, se le ha puesto la cabeza dura como las piedras."
+height_m = 0.6
+weight_kg = 42.1
+base_hp = 45
+base_attack = 75
+base_defense = 60
+base_sp_attack = 40
+base_sp_defense = 30
+growth_rate = "slow"

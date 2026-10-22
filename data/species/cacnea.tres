@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8bph8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3y7hi"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_gb1ld"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="3_3bath"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_uryg7"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_7kuu7"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="4_ch3bc"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="5_4c53w"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_8sh3s"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="6_p5ycc"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="7_6e4r6"]
+[ext_resource type="Resource" path="res://data/moves/pin_misil.tres" id="8_edq4v"]
+[ext_resource type="Resource" path="res://data/moves/arraigo.tres" id="9_6e6ws"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="10_vsm7y"]
+[ext_resource type="Resource" path="res://data/moves/puas.tres" id="11_3btbf"]
+[ext_resource type="Resource" path="res://data/moves/brazo_pincho.tres" id="12_iinjt"]
+[ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="13_ngmjx"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="14_xwk80"]
+[ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="15_xdlgc"]
+
+[sub_resource type="Resource" id="Resource_xlvbx"]
+script = ExtResource("1_8bph8")
+move = ExtResource("2_gb1ld")
+
+[sub_resource type="Resource" id="Resource_jhaic"]
+script = ExtResource("1_8bph8")
+move = ExtResource("3_3bath")
+
+[sub_resource type="Resource" id="Resource_14x45"]
+script = ExtResource("1_8bph8")
+level = 5
+move = ExtResource("4_ch3bc")
+
+[sub_resource type="Resource" id="Resource_2kbsj"]
+script = ExtResource("1_8bph8")
+level = 9
+move = ExtResource("5_4c53w")
+
+[sub_resource type="Resource" id="Resource_wfsey"]
+script = ExtResource("1_8bph8")
+level = 13
+move = ExtResource("6_p5ycc")
+
+[sub_resource type="Resource" id="Resource_o7owc"]
+script = ExtResource("1_8bph8")
+level = 17
+move = ExtResource("7_6e4r6")
+
+[sub_resource type="Resource" id="Resource_gnx5r"]
+script = ExtResource("1_8bph8")
+level = 21
+move = ExtResource("8_edq4v")
+
+[sub_resource type="Resource" id="Resource_1qgel"]
+script = ExtResource("1_8bph8")
+level = 25
+move = ExtResource("9_6e6ws")
+
+[sub_resource type="Resource" id="Resource_4egjm"]
+script = ExtResource("1_8bph8")
+level = 29
+move = ExtResource("10_vsm7y")
+
+[sub_resource type="Resource" id="Resource_obx3k"]
+script = ExtResource("1_8bph8")
+level = 33
+move = ExtResource("11_3btbf")
+
+[sub_resource type="Resource" id="Resource_mj4y2"]
+script = ExtResource("1_8bph8")
+level = 37
+move = ExtResource("12_iinjt")
+
+[sub_resource type="Resource" id="Resource_jvmpt"]
+script = ExtResource("1_8bph8")
+level = 41
+move = ExtResource("13_ngmjx")
+
+[sub_resource type="Resource" id="Resource_jj0u3"]
+script = ExtResource("1_8bph8")
+level = 45
+move = ExtResource("14_xwk80")
+
+[sub_resource type="Resource" id="Resource_m8wxf"]
+script = ExtResource("1_8bph8")
+level = 49
+move = ExtResource("15_xdlgc")
+
+[resource]
+script = ExtResource("3_uryg7")
+id = "cacnea"
+display_name = "Cacnea"
+dex = 331
+types = Array[ExtResource("4_7kuu7")]([ExtResource("5_8sh3s")])
+learnset = Array[ExtResource("1_8bph8")]([SubResource("Resource_xlvbx"), SubResource("Resource_jhaic"), SubResource("Resource_14x45"), SubResource("Resource_2kbsj"), SubResource("Resource_wfsey"), SubResource("Resource_o7owc"), SubResource("Resource_gnx5r"), SubResource("Resource_1qgel"), SubResource("Resource_4egjm"), SubResource("Resource_obx3k"), SubResource("Resource_mj4y2"), SubResource("Resource_jvmpt"), SubResource("Resource_jj0u3"), SubResource("Resource_m8wxf")])
+genus = "Pokémon Cactus"
+pokedex_entry = "Cacnea habita en desiertos y otras zonas áridas. Para atraer a su presa, libera un fuerte aroma por la flor y, cuando se le acerca, le lanza pinchos por todo el cuerpo para reducirla."
+height_m = 0.4
+weight_kg = 51.3
+base_attack = 85
+base_defense = 40
+base_sp_attack = 85
+base_sp_defense = 40
+base_speed = 35
+base_experience = 67
+growth_rate = "medium-slow"
+capture_rate = 190

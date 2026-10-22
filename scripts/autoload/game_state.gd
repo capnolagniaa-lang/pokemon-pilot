@@ -21,6 +21,10 @@ var play_time := 0.0
 var trainer_position := Vector2.INF
 ## Zona en la que se guardó (para mostrarla en el resumen de la partida).
 var zone_name := ""
+## Pokédex: especies vistas (aparecieron en pantalla) y luchadas (peleaste contra ellas o las tuviste en el
+## equipo). id de especie -> true. Solo las vistas se muestran en la Pokédex; el resto, como silueta.
+var pokedex_seen: Dictionary = {}
+var pokedex_fought: Dictionary = {}
 
 
 func _ready() -> void:
@@ -47,6 +51,9 @@ func new_game(starter: SpeciesData) -> void:
 	play_time = 0.0
 	trainer_position = Vector2.INF
 	zone_name = ""
+	pokedex_seen.clear()
+	pokedex_fought.clear()
+	mark_fought(starter)
 	Events.party_changed.emit()
 	Events.game_started.emit()
 
@@ -77,6 +84,7 @@ func add_to_party(inst: CreatureInstance) -> bool:
 	if inst == null or party.size() >= MAX_PARTY:
 		return false
 	party.append(inst)
+	mark_fought(inst.species)
 	Events.party_changed.emit()
 	return true
 
@@ -103,6 +111,33 @@ func move_in_party(from: int, to: int) -> bool:
 	return true
 
 
+# --- Pokédex -------------------------------------------------------------------------
+
+## Registra una especie como vista. Devuelve true si es la primera vez (emite pokedex_registered).
+func mark_seen(sp: SpeciesData) -> bool:
+	if sp == null or pokedex_seen.has(sp.id):
+		return false
+	pokedex_seen[sp.id] = true
+	Events.pokedex_registered.emit(sp)
+	return true
+
+
+## Registra una especie como luchada (también queda vista).
+func mark_fought(sp: SpeciesData) -> void:
+	if sp == null:
+		return
+	mark_seen(sp)
+	pokedex_fought[sp.id] = true
+
+
+func has_seen(sp: SpeciesData) -> bool:
+	return pokedex_seen.has(sp.id)
+
+
+func has_fought(sp: SpeciesData) -> bool:
+	return pokedex_fought.has(sp.id)
+
+
 # --- Guardado ------------------------------------------------------------------------
 
 func to_dict() -> Dictionary:
@@ -112,7 +147,7 @@ func to_dict() -> Dictionary:
 	return {"party": members, "active_index": active_index, "balls": balls, "practice_mode": practice_mode,
 		"difficulty": difficulty_id(), "play_time": play_time,
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
-		"zone_name": zone_name}
+		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys()}}
 
 
 ## Carga una partida. Devuelve false si no queda ningún Pokémon válido (y no toca el estado actual).
@@ -138,5 +173,18 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	var pos = d.get("trainer_position", null)
 	trainer_position = Vector2(float(pos[0]), float(pos[1])) if pos is Array and pos.size() == 2 else Vector2.INF
 	zone_name = str(d.get("zone_name", ""))
+	pokedex_seen.clear()
+	pokedex_fought.clear()
+	var dex = d.get("pokedex", {})
+	if dex is Dictionary:
+		for key in ["seen", "fought"]:
+			var ids = dex.get(key, [])
+			if ids is Array:
+				for id in ids:
+					if DB.species.has(str(id)):
+						(pokedex_seen if key == "seen" else pokedex_fought)[str(id)] = true
+	for inst in party:  # guardados viejos (sin Pokédex): al menos el equipo
+		pokedex_seen[inst.species.id] = true
+		pokedex_fought[inst.species.id] = true
 	Events.party_changed.emit()
 	return true

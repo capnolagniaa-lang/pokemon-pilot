@@ -119,7 +119,7 @@ func _build_menu() -> void:
 	var quit := UiStyle.button("Salir", 340)
 	quit.pressed.connect(func(): get_tree().quit())
 	_menu.add_child(quit)
-	(_continue if _continue != null else new_game).grab_focus.call_deferred()
+	UiStyle.focus_later((_continue if _continue != null else new_game))
 	var hint := UiStyle.label("Flechas/WASD para elegir · Enter o Espacio para aceptar", 13, Color(1, 1, 1, 0.7))
 	hint.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_48i67"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gr18r"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_to8vs"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_87gey"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="3_s6ho6"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="4_47cnt"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_y2cib"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_xnq7v"]
+[ext_resource type="Resource" path="res://data/moves/hoja_magica.tres" id="5_youao"]
+[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="6_gyasa"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="6_hg1ai"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="7_r21vq"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="8_q10gr"]
+[ext_resource type="Resource" path="res://data/moves/sellar.tres" id="9_7cwcm"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="10_uxycq"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="11_mqq0c"]
+[ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="12_dsb1v"]
+
+[sub_resource type="Resource" id="Resource_oq2xa"]
+script = ExtResource("1_48i67")
+move = ExtResource("2_to8vs")
+
+[sub_resource type="Resource" id="Resource_i54g2"]
+script = ExtResource("1_48i67")
+move = ExtResource("3_s6ho6")
+
+[sub_resource type="Resource" id="Resource_4lrst"]
+script = ExtResource("1_48i67")
+move = ExtResource("4_47cnt")
+
+[sub_resource type="Resource" id="Resource_0e3di"]
+script = ExtResource("1_48i67")
+move = ExtResource("5_youao")
+
+[sub_resource type="Resource" id="Resource_v422y"]
+script = ExtResource("1_48i67")
+move = ExtResource("6_gyasa")
+
+[sub_resource type="Resource" id="Resource_j4rcu"]
+script = ExtResource("1_48i67")
+level = 21
+move = ExtResource("7_r21vq")
+
+[sub_resource type="Resource" id="Resource_bxqk0"]
+script = ExtResource("1_48i67")
+level = 26
+move = ExtResource("8_q10gr")
+
+[sub_resource type="Resource" id="Resource_byuo3"]
+script = ExtResource("1_48i67")
+level = 33
+move = ExtResource("9_7cwcm")
+
+[sub_resource type="Resource" id="Resource_1vbqs"]
+script = ExtResource("1_48i67")
+level = 40
+move = ExtResource("10_uxycq")
+
+[sub_resource type="Resource" id="Resource_560b3"]
+script = ExtResource("1_48i67")
+level = 47
+move = ExtResource("11_mqq0c")
+
+[sub_resource type="Resource" id="Resource_ohc2q"]
+script = ExtResource("1_48i67")
+level = 54
+move = ExtResource("12_dsb1v")
+
+[resource]
+script = ExtResource("3_87gey")
+id = "kirlia"
+display_name = "Kirlia"
+dex = 281
+types = Array[ExtResource("4_y2cib")]([ExtResource("5_xnq7v"), ExtResource("6_hg1ai")])
+learnset = Array[ExtResource("1_48i67")]([SubResource("Resource_oq2xa"), SubResource("Resource_i54g2"), SubResource("Resource_4lrst"), SubResource("Resource_0e3di"), SubResource("Resource_v422y"), SubResource("Resource_j4rcu"), SubResource("Resource_bxqk0"), SubResource("Resource_byuo3"), SubResource("Resource_1vbqs"), SubResource("Resource_560b3"), SubResource("Resource_ohc2q")])
+genus = "Pokémon Sensorio"
+pokedex_entry = "Dicen que, al recibir los sentimientos positivos de su Entrenador, Kirlia crece con gran belleza. Este Pokémon controla poderes psicoquinéticos gracias al desarrollado cerebro que tiene."
+height_m = 0.8
+weight_kg = 20.2
+base_hp = 38
+base_attack = 35
+base_defense = 35
+base_sp_attack = 65
+base_sp_defense = 55
+base_experience = 97
+growth_rate = "slow"
+capture_rate = 120

@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_efbl5"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_adkqn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vgk0j"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_pxdaf"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xukm5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_dc7dm"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="4_e0p4n"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="5_hqfsx"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_wfvgg"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_5dmyo"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="6_xtlc3"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="7_wns2k"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_o0jiw"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="9_5fie6"]
+[ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="10_f2t1a"]
+
+[sub_resource type="Resource" id="Resource_i1vxs"]
+script = ExtResource("1_efbl5")
+move = ExtResource("2_adkqn")
+
+[sub_resource type="Resource" id="Resource_j466m"]
+script = ExtResource("1_efbl5")
+move = ExtResource("3_pxdaf")
+
+[sub_resource type="Resource" id="Resource_pn4ss"]
+script = ExtResource("1_efbl5")
+level = 6
+move = ExtResource("4_e0p4n")
+
+[sub_resource type="Resource" id="Resource_4gdei"]
+script = ExtResource("1_efbl5")
+level = 11
+move = ExtResource("5_hqfsx")
+
+[sub_resource type="Resource" id="Resource_uc2vp"]
+script = ExtResource("1_efbl5")
+level = 16
+move = ExtResource("6_xtlc3")
+
+[sub_resource type="Resource" id="Resource_45ecb"]
+script = ExtResource("1_efbl5")
+level = 22
+move = ExtResource("7_wns2k")
+
+[sub_resource type="Resource" id="Resource_ttw7j"]
+script = ExtResource("1_efbl5")
+level = 28
+move = ExtResource("8_o0jiw")
+
+[sub_resource type="Resource" id="Resource_51wi7"]
+script = ExtResource("1_efbl5")
+level = 34
+move = ExtResource("9_5fie6")
+
+[sub_resource type="Resource" id="Resource_lbyty"]
+script = ExtResource("1_efbl5")
+level = 48
+move = ExtResource("10_f2t1a")
+
+[resource]
+script = ExtResource("3_xukm5")
+id = "hoothoot"
+display_name = "Hoothoot"
+dex = 163
+types = Array[ExtResource("4_dc7dm")]([ExtResource("5_wfvgg"), ExtResource("6_5dmyo")])
+learnset = Array[ExtResource("1_efbl5")]([SubResource("Resource_i1vxs"), SubResource("Resource_j466m"), SubResource("Resource_pn4ss"), SubResource("Resource_4gdei"), SubResource("Resource_uc2vp"), SubResource("Resource_45ecb"), SubResource("Resource_ttw7j"), SubResource("Resource_51wi7"), SubResource("Resource_lbyty")])
+genus = "Pokémon Búho"
+pokedex_entry = "Hoothoot tiene un órgano interno que identifica y percibe la rotación de la tierra. Gracias a este órgano, el Pokémon ulula todos los días a la misma hora."
+height_m = 0.7
+weight_kg = 21.2
+base_hp = 60
+base_attack = 30
+base_defense = 30
+base_sp_attack = 36
+base_sp_defense = 56
+base_experience = 52
+capture_rate = 255

@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_e2qnk"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_6mkw8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_362h3"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ciav6"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="3_ijaac"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="4_i3xxw"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_tm04k"]
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="5_5707o"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="5_ucjtw"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="6_kom37"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="7_l5uen"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="8_b6xas"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="9_uyjxp"]
+[ext_resource type="Resource" path="res://data/moves/fuego_fatuo.tres" id="10_y6pfh"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="11_2lw81"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="12_6cr52"]
+
+[sub_resource type="Resource" id="Resource_hp026"]
+script = ExtResource("1_e2qnk")
+move = ExtResource("2_6mkw8")
+
+[sub_resource type="Resource" id="Resource_vsmy2"]
+script = ExtResource("1_e2qnk")
+move = ExtResource("3_ijaac")
+
+[sub_resource type="Resource" id="Resource_6mo0k"]
+script = ExtResource("1_e2qnk")
+level = 5
+move = ExtResource("4_i3xxw")
+
+[sub_resource type="Resource" id="Resource_cvdn7"]
+script = ExtResource("1_e2qnk")
+level = 12
+move = ExtResource("5_ucjtw")
+
+[sub_resource type="Resource" id="Resource_4vgdi"]
+script = ExtResource("1_e2qnk")
+level = 16
+move = ExtResource("6_kom37")
+
+[sub_resource type="Resource" id="Resource_wul5a"]
+script = ExtResource("1_e2qnk")
+level = 23
+move = ExtResource("7_l5uen")
+
+[sub_resource type="Resource" id="Resource_1ciw4"]
+script = ExtResource("1_e2qnk")
+level = 27
+move = ExtResource("8_b6xas")
+
+[sub_resource type="Resource" id="Resource_4d5i4"]
+script = ExtResource("1_e2qnk")
+level = 34
+move = ExtResource("9_uyjxp")
+
+[sub_resource type="Resource" id="Resource_glfvf"]
+script = ExtResource("1_e2qnk")
+level = 38
+move = ExtResource("10_y6pfh")
+
+[sub_resource type="Resource" id="Resource_ywkhi"]
+script = ExtResource("1_e2qnk")
+level = 45
+move = ExtResource("11_2lw81")
+
+[sub_resource type="Resource" id="Resource_5wtx4"]
+script = ExtResource("1_e2qnk")
+level = 49
+move = ExtResource("12_6cr52")
+
+[resource]
+script = ExtResource("3_ciav6")
+id = "duskull"
+display_name = "Duskull"
+dex = 355
+types = Array[ExtResource("4_tm04k")]([ExtResource("5_5707o")])
+learnset = Array[ExtResource("1_e2qnk")]([SubResource("Resource_hp026"), SubResource("Resource_vsmy2"), SubResource("Resource_6mo0k"), SubResource("Resource_cvdn7"), SubResource("Resource_4vgdi"), SubResource("Resource_wul5a"), SubResource("Resource_1ciw4"), SubResource("Resource_4d5i4"), SubResource("Resource_glfvf"), SubResource("Resource_ywkhi"), SubResource("Resource_5wtx4")])
+genus = "Pokémon Réquiem"
+pokedex_entry = "Duskull puede atravesar los muros, sea cual sea el grosor que tengan. Cuando este Pokémon elige su objetivo, lo persigue hábilmente hasta el amanecer."
+height_m = 0.8
+weight_kg = 15.0
+base_hp = 20
+base_attack = 40
+base_defense = 90
+base_sp_attack = 30
+base_sp_defense = 90
+base_speed = 25
+base_experience = 59
+growth_rate = "fast"
+capture_rate = 190

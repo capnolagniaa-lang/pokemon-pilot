@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u7b8q"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3c7xn"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_fs5vr"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1clic"]
+[ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="3_v3ubs"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_0mwsb"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_hsr2p"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_ghd46"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_ufdk8"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="6_6jl2e"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_n7w06"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="7_28mp6"]
+[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="8_g6ml0"]
+[ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="9_2nfxd"]
+[ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="10_3ojly"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="11_kisob"]
+
+[sub_resource type="Resource" id="Resource_jei6i"]
+script = ExtResource("1_u7b8q")
+move = ExtResource("2_fs5vr")
+
+[sub_resource type="Resource" id="Resource_bikaa"]
+script = ExtResource("1_u7b8q")
+move = ExtResource("3_v3ubs")
+
+[sub_resource type="Resource" id="Resource_uko6l"]
+script = ExtResource("1_u7b8q")
+move = ExtResource("4_0mwsb")
+
+[sub_resource type="Resource" id="Resource_jtmwi"]
+script = ExtResource("1_u7b8q")
+move = ExtResource("5_ufdk8")
+
+[sub_resource type="Resource" id="Resource_5oei8"]
+script = ExtResource("1_u7b8q")
+level = 13
+move = ExtResource("6_6jl2e")
+
+[sub_resource type="Resource" id="Resource_wmska"]
+script = ExtResource("1_u7b8q")
+level = 15
+move = ExtResource("7_28mp6")
+
+[sub_resource type="Resource" id="Resource_x0m1d"]
+script = ExtResource("1_u7b8q")
+level = 17
+move = ExtResource("8_g6ml0")
+
+[sub_resource type="Resource" id="Resource_agoqc"]
+script = ExtResource("1_u7b8q")
+level = 22
+move = ExtResource("9_2nfxd")
+
+[sub_resource type="Resource" id="Resource_m5joa"]
+script = ExtResource("1_u7b8q")
+level = 33
+move = ExtResource("10_3ojly")
+
+[sub_resource type="Resource" id="Resource_f760m"]
+script = ExtResource("1_u7b8q")
+level = 44
+move = ExtResource("11_kisob")
+
+[resource]
+script = ExtResource("3_1clic")
+id = "jumpluff"
+display_name = "Jumpluff"
+dex = 189
+types = Array[ExtResource("4_hsr2p")]([ExtResource("5_ghd46"), ExtResource("6_n7w06")])
+learnset = Array[ExtResource("1_u7b8q")]([SubResource("Resource_jei6i"), SubResource("Resource_bikaa"), SubResource("Resource_uko6l"), SubResource("Resource_jtmwi"), SubResource("Resource_5oei8"), SubResource("Resource_wmska"), SubResource("Resource_x0m1d"), SubResource("Resource_agoqc"), SubResource("Resource_m5joa"), SubResource("Resource_f760m")])
+genus = "Pokémon Algadón"
+pokedex_entry = "Jumpluff se vale de los cálidos vientos del sur para volar a tierras lejanas. Si llega a zonas de aire frío en pleno vuelo, descenderá y tomará tierra."
+height_m = 0.8
+weight_kg = 3.0
+base_hp = 75
+base_attack = 55
+base_defense = 70
+base_sp_attack = 55
+base_sp_defense = 95
+base_speed = 110
+base_experience = 207
+growth_rate = "medium-slow"

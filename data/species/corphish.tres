@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ojdgs"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gppgp"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_pagg4"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_fm43v"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_x8p23"]
+[ext_resource type="Resource" path="res://data/moves/agarre.tres" id="4_4h3g2"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_08hh1"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="5_acwua"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_srrti"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="6_df5o6"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="7_h54ir"]
+[ext_resource type="Resource" path="res://data/moves/desarme.tres" id="8_q8s0j"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="9_ws1gw"]
+[ext_resource type="Resource" path="res://data/moves/martillazo.tres" id="10_cswnr"]
+[ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="11_2prfn"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="12_x4dwk"]
+[ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="13_5b6rj"]
+
+[sub_resource type="Resource" id="Resource_rtsw6"]
+script = ExtResource("1_ojdgs")
+move = ExtResource("2_pagg4")
+
+[sub_resource type="Resource" id="Resource_dkhi2"]
+script = ExtResource("1_ojdgs")
+level = 7
+move = ExtResource("3_fm43v")
+
+[sub_resource type="Resource" id="Resource_ijxay"]
+script = ExtResource("1_ojdgs")
+level = 10
+move = ExtResource("4_4h3g2")
+
+[sub_resource type="Resource" id="Resource_k4n0x"]
+script = ExtResource("1_ojdgs")
+level = 13
+move = ExtResource("5_acwua")
+
+[sub_resource type="Resource" id="Resource_ayfop"]
+script = ExtResource("1_ojdgs")
+level = 19
+move = ExtResource("6_df5o6")
+
+[sub_resource type="Resource" id="Resource_penqt"]
+script = ExtResource("1_ojdgs")
+level = 22
+move = ExtResource("7_h54ir")
+
+[sub_resource type="Resource" id="Resource_fwtas"]
+script = ExtResource("1_ojdgs")
+level = 25
+move = ExtResource("8_q8s0j")
+
+[sub_resource type="Resource" id="Resource_epway"]
+script = ExtResource("1_ojdgs")
+level = 31
+move = ExtResource("9_ws1gw")
+
+[sub_resource type="Resource" id="Resource_tx4ad"]
+script = ExtResource("1_ojdgs")
+level = 34
+move = ExtResource("10_cswnr")
+
+[sub_resource type="Resource" id="Resource_5tj4l"]
+script = ExtResource("1_ojdgs")
+level = 37
+move = ExtResource("11_2prfn")
+
+[sub_resource type="Resource" id="Resource_7vh0k"]
+script = ExtResource("1_ojdgs")
+level = 43
+move = ExtResource("12_x4dwk")
+
+[sub_resource type="Resource" id="Resource_rhsa0"]
+script = ExtResource("1_ojdgs")
+level = 46
+move = ExtResource("13_5b6rj")
+
+[resource]
+script = ExtResource("3_x8p23")
+id = "corphish"
+display_name = "Corphish"
+dex = 341
+types = Array[ExtResource("4_08hh1")]([ExtResource("5_srrti")])
+learnset = Array[ExtResource("1_ojdgs")]([SubResource("Resource_rtsw6"), SubResource("Resource_dkhi2"), SubResource("Resource_ijxay"), SubResource("Resource_k4n0x"), SubResource("Resource_ayfop"), SubResource("Resource_penqt"), SubResource("Resource_fwtas"), SubResource("Resource_epway"), SubResource("Resource_tx4ad"), SubResource("Resource_5tj4l"), SubResource("Resource_7vh0k"), SubResource("Resource_rhsa0")])
+genus = "Pokémon Rufián"
+pokedex_entry = "En un principio, se importaban Corphish como mascota. Pero, al final, se hicieron salvajes. Este Pokémon es muy resistente y ha aumentado su población de forma considerable."
+height_m = 0.6
+weight_kg = 11.5
+base_hp = 43
+base_attack = 80
+base_defense = 65
+base_sp_defense = 35
+base_speed = 35
+base_experience = 62
+growth_rate = "fast-then-very-slow"
+capture_rate = 205

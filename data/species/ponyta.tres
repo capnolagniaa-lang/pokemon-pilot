@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3idsh"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="2_buu1e"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ygnia"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0ngqr"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_37pke"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_iel7x"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_q6vdq"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="5_k6y3g"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_ndcan"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="6_xkjo3"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="7_1nt56"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_wlv8q"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_ipksu"]
+[ext_resource type="Resource" path="res://data/moves/bote.tres" id="10_mrkb2"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="11_ukune"]
+
+[sub_resource type="Resource" id="Resource_2qn2h"]
+script = ExtResource("1_3idsh")
+move = ExtResource("2_buu1e")
+
+[sub_resource type="Resource" id="Resource_3twvp"]
+script = ExtResource("1_3idsh")
+level = 5
+move = ExtResource("3_37pke")
+
+[sub_resource type="Resource" id="Resource_j825u"]
+script = ExtResource("1_3idsh")
+level = 9
+move = ExtResource("4_q6vdq")
+
+[sub_resource type="Resource" id="Resource_eggsl"]
+script = ExtResource("1_3idsh")
+level = 14
+move = ExtResource("5_k6y3g")
+
+[sub_resource type="Resource" id="Resource_tvt6b"]
+script = ExtResource("1_3idsh")
+level = 19
+move = ExtResource("6_xkjo3")
+
+[sub_resource type="Resource" id="Resource_sbsxy"]
+script = ExtResource("1_3idsh")
+level = 25
+move = ExtResource("7_1nt56")
+
+[sub_resource type="Resource" id="Resource_enhdf"]
+script = ExtResource("1_3idsh")
+level = 31
+move = ExtResource("8_wlv8q")
+
+[sub_resource type="Resource" id="Resource_vtr67"]
+script = ExtResource("1_3idsh")
+level = 38
+move = ExtResource("9_ipksu")
+
+[sub_resource type="Resource" id="Resource_b8uib"]
+script = ExtResource("1_3idsh")
+level = 45
+move = ExtResource("10_mrkb2")
+
+[sub_resource type="Resource" id="Resource_38yig"]
+script = ExtResource("1_3idsh")
+level = 53
+move = ExtResource("11_ukune")
+
+[resource]
+script = ExtResource("3_0ngqr")
+id = "ponyta"
+display_name = "Ponyta"
+dex = 77
+types = Array[ExtResource("4_iel7x")]([ExtResource("5_ndcan")])
+learnset = Array[ExtResource("1_3idsh")]([SubResource("Resource_2qn2h"), SubResource("Resource_3twvp"), SubResource("Resource_j825u"), SubResource("Resource_eggsl"), SubResource("Resource_tvt6b"), SubResource("Resource_sbsxy"), SubResource("Resource_enhdf"), SubResource("Resource_vtr67"), SubResource("Resource_b8uib"), SubResource("Resource_38yig")])
+genus = "Pokémon Caballo Fuego"
+pokedex_entry = "Al nacer, Ponyta es muy débil y apenas puede ponerse en pie. Con todo, se va haciendo más fuerte al tropezarse y caerse en su intento por seguir a sus progenitores."
+height_m = 1.0
+weight_kg = 30.0
+base_attack = 85
+base_defense = 55
+base_sp_attack = 65
+base_sp_defense = 65
+base_speed = 90
+base_experience = 82
+capture_rate = 190

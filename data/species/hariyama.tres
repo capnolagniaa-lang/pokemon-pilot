@@ -1,0 +1,101 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_7372f"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tw4l2"]
+[ext_resource type="Resource" path="res://data/moves/empujon.tres" id="2_yxaj3"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_a4lyp"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="3_fo3ia"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_a8pt7"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="4_nae22"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_4r4rs"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_wumnc"]
+[ext_resource type="Resource" path="res://data/moves/llave_vital.tres" id="6_ga623"]
+[ext_resource type="Resource" path="res://data/moves/sorpresa.tres" id="7_gqkdm"]
+[ext_resource type="Resource" path="res://data/moves/remolino.tres" id="8_51p76"]
+[ext_resource type="Resource" path="res://data/moves/desarme.tres" id="9_j2iiq"]
+[ext_resource type="Resource" path="res://data/moves/estimulo.tres" id="10_7rlj0"]
+[ext_resource type="Resource" path="res://data/moves/tambor.tres" id="11_rbuap"]
+[ext_resource type="Resource" path="res://data/moves/aguante.tres" id="12_wop2k"]
+[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="13_ci2o8"]
+[ext_resource type="Resource" path="res://data/moves/inversion.tres" id="14_wiq5d"]
+
+[sub_resource type="Resource" id="Resource_4ximl"]
+script = ExtResource("1_7372f")
+move = ExtResource("2_yxaj3")
+
+[sub_resource type="Resource" id="Resource_23jrr"]
+script = ExtResource("1_7372f")
+move = ExtResource("3_fo3ia")
+
+[sub_resource type="Resource" id="Resource_fns2w"]
+script = ExtResource("1_7372f")
+move = ExtResource("4_nae22")
+
+[sub_resource type="Resource" id="Resource_3mfr5"]
+script = ExtResource("1_7372f")
+move = ExtResource("5_4r4rs")
+
+[sub_resource type="Resource" id="Resource_hkh1t"]
+script = ExtResource("1_7372f")
+level = 13
+move = ExtResource("6_ga623")
+
+[sub_resource type="Resource" id="Resource_cwuv3"]
+script = ExtResource("1_7372f")
+level = 19
+move = ExtResource("7_gqkdm")
+
+[sub_resource type="Resource" id="Resource_qjhd3"]
+script = ExtResource("1_7372f")
+level = 22
+move = ExtResource("8_51p76")
+
+[sub_resource type="Resource" id="Resource_d56iu"]
+script = ExtResource("1_7372f")
+level = 29
+move = ExtResource("9_j2iiq")
+
+[sub_resource type="Resource" id="Resource_wcfe8"]
+script = ExtResource("1_7372f")
+level = 33
+move = ExtResource("10_7rlj0")
+
+[sub_resource type="Resource" id="Resource_gh7bn"]
+script = ExtResource("1_7372f")
+level = 40
+move = ExtResource("11_rbuap")
+
+[sub_resource type="Resource" id="Resource_nvj38"]
+script = ExtResource("1_7372f")
+level = 44
+move = ExtResource("12_wop2k")
+
+[sub_resource type="Resource" id="Resource_rlxka"]
+script = ExtResource("1_7372f")
+level = 51
+move = ExtResource("13_ci2o8")
+
+[sub_resource type="Resource" id="Resource_ljvnw"]
+script = ExtResource("1_7372f")
+level = 55
+move = ExtResource("14_wiq5d")
+
+[resource]
+script = ExtResource("3_a4lyp")
+id = "hariyama"
+display_name = "Hariyama"
+dex = 297
+types = Array[ExtResource("4_a8pt7")]([ExtResource("5_wumnc")])
+learnset = Array[ExtResource("1_7372f")]([SubResource("Resource_4ximl"), SubResource("Resource_23jrr"), SubResource("Resource_fns2w"), SubResource("Resource_3mfr5"), SubResource("Resource_hkh1t"), SubResource("Resource_cwuv3"), SubResource("Resource_qjhd3"), SubResource("Resource_d56iu"), SubResource("Resource_wcfe8"), SubResource("Resource_gh7bn"), SubResource("Resource_nvj38"), SubResource("Resource_rlxka"), SubResource("Resource_ljvnw")])
+genus = "Pokémon Empuje"
+pokedex_entry = "Hariyama practica los empujones que da estirando los brazos allá por donde va. Este Pokémon puede partir por la mitad un poste de teléfono de un enérgico golpe con los brazos estirados y las manos abiertas."
+height_m = 2.3
+weight_kg = 253.8
+base_hp = 144
+base_attack = 120
+base_defense = 60
+base_sp_attack = 40
+base_sp_defense = 60
+base_experience = 166
+growth_rate = "fast-then-very-slow"
+capture_rate = 200

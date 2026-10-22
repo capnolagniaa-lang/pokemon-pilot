@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_61gj2"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mx3uf"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="3_dnk3h"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_iu016"]
+
+[resource]
+script = ExtResource("2_mx3uf")
+id = "onda_ignea"
+display_name = "Onda Ígnea"
+element = ExtResource("1_61gj2")
+kind = 2
+category = 1
+power = 95.0
+cooldown = 4.7
+cast_time = 0.3
+knockback = 200.0
+recovery = 0.3
+status = ExtResource("3_dnk3h")
+status_chance = 0.1
+radius = 52.0

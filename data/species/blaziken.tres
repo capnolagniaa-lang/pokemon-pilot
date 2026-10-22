@@ -1,0 +1,107 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_upkpg"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_j5a3v"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_whvbq"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jcjrk"]
+[ext_resource type="Resource" path="res://data/moves/puno_fuego.tres" id="3_yp1y1"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_df520"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="4_xp8nq"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="5_2kk0f"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_ld0dl"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="6_q0xct"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="6_uvgnb"]
+[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="7_d50qc"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="8_qem6l"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="9_nbq8c"]
+[ext_resource type="Resource" path="res://data/moves/corpulencia.tres" id="10_yisrl"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="11_k80cs"]
+[ext_resource type="Resource" path="res://data/moves/patada_ignea.tres" id="12_r25au"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="13_yl2ss"]
+[ext_resource type="Resource" path="res://data/moves/espejo.tres" id="14_ncc37"]
+[ext_resource type="Resource" path="res://data/moves/gancho_alto.tres" id="15_wud2s"]
+
+[sub_resource type="Resource" id="Resource_v47dq"]
+script = ExtResource("1_upkpg")
+move = ExtResource("2_j5a3v")
+
+[sub_resource type="Resource" id="Resource_uoy54"]
+script = ExtResource("1_upkpg")
+move = ExtResource("3_yp1y1")
+
+[sub_resource type="Resource" id="Resource_ehas4"]
+script = ExtResource("1_upkpg")
+move = ExtResource("4_xp8nq")
+
+[sub_resource type="Resource" id="Resource_vlm4b"]
+script = ExtResource("1_upkpg")
+move = ExtResource("5_2kk0f")
+
+[sub_resource type="Resource" id="Resource_hb2pg"]
+script = ExtResource("1_upkpg")
+move = ExtResource("6_uvgnb")
+
+[sub_resource type="Resource" id="Resource_mxko2"]
+script = ExtResource("1_upkpg")
+level = 16
+move = ExtResource("7_d50qc")
+
+[sub_resource type="Resource" id="Resource_totsx"]
+script = ExtResource("1_upkpg")
+level = 17
+move = ExtResource("8_qem6l")
+
+[sub_resource type="Resource" id="Resource_04rqn"]
+script = ExtResource("1_upkpg")
+level = 21
+move = ExtResource("9_nbq8c")
+
+[sub_resource type="Resource" id="Resource_1kavd"]
+script = ExtResource("1_upkpg")
+level = 28
+move = ExtResource("10_yisrl")
+
+[sub_resource type="Resource" id="Resource_45j8x"]
+script = ExtResource("1_upkpg")
+level = 32
+move = ExtResource("11_k80cs")
+
+[sub_resource type="Resource" id="Resource_fele1"]
+script = ExtResource("1_upkpg")
+level = 36
+move = ExtResource("12_r25au")
+
+[sub_resource type="Resource" id="Resource_am4ds"]
+script = ExtResource("1_upkpg")
+level = 42
+move = ExtResource("13_yl2ss")
+
+[sub_resource type="Resource" id="Resource_hqydf"]
+script = ExtResource("1_upkpg")
+level = 49
+move = ExtResource("14_ncc37")
+
+[sub_resource type="Resource" id="Resource_kqb4s"]
+script = ExtResource("1_upkpg")
+level = 59
+move = ExtResource("15_wud2s")
+
+[resource]
+script = ExtResource("3_jcjrk")
+id = "blaziken"
+display_name = "Blaziken"
+dex = 257
+types = Array[ExtResource("4_df520")]([ExtResource("5_ld0dl"), ExtResource("6_q0xct")])
+learnset = Array[ExtResource("1_upkpg")]([SubResource("Resource_v47dq"), SubResource("Resource_uoy54"), SubResource("Resource_ehas4"), SubResource("Resource_vlm4b"), SubResource("Resource_hb2pg"), SubResource("Resource_mxko2"), SubResource("Resource_totsx"), SubResource("Resource_04rqn"), SubResource("Resource_1kavd"), SubResource("Resource_45j8x"), SubResource("Resource_fele1"), SubResource("Resource_am4ds"), SubResource("Resource_hqydf"), SubResource("Resource_kqb4s")])
+genus = "Pokémon Llameante"
+pokedex_entry = "En combate, Blaziken expulsa vivas llamas por las muñecas y ataca al enemigo con fiereza. Cuanto más fuerte sea el enemigo, más intensas serán las llamas."
+height_m = 1.9
+weight_kg = 52.0
+base_hp = 80
+base_attack = 120
+base_defense = 70
+base_sp_attack = 110
+base_sp_defense = 70
+base_speed = 80
+base_experience = 239
+growth_rate = "medium-slow"

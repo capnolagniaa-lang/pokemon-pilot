@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_v7fup"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_68q37"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_6g103"]
+
+[resource]
+script = ExtResource("2_68q37")
+id = "agilidad"
+display_name = "Agilidad"
+element = ExtResource("1_v7fup")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0

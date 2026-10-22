@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yhum0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_au3pc"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_dsq73"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_7ep48"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_er5m5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_e2u54"]
+[ext_resource type="Resource" path="res://data/moves/giro_rapido.tres" id="4_q2kkh"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="5_c6cn3"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_k3gp0"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_ihfpd"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_xasyh"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="7_bs7vh"]
+[ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="8_rrkua"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="9_mlht0"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="10_f3atu"]
+[ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="11_h7h2q"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="12_htan2"]
+
+[sub_resource type="Resource" id="Resource_mcptr"]
+script = ExtResource("1_yhum0")
+move = ExtResource("2_dsq73")
+
+[sub_resource type="Resource" id="Resource_8rqbn"]
+script = ExtResource("1_yhum0")
+level = 3
+move = ExtResource("3_er5m5")
+
+[sub_resource type="Resource" id="Resource_xd2yt"]
+script = ExtResource("1_yhum0")
+level = 5
+move = ExtResource("4_q2kkh")
+
+[sub_resource type="Resource" id="Resource_3nctd"]
+script = ExtResource("1_yhum0")
+level = 7
+move = ExtResource("5_c6cn3")
+
+[sub_resource type="Resource" id="Resource_ief2t"]
+script = ExtResource("1_yhum0")
+level = 11
+move = ExtResource("6_ihfpd")
+
+[sub_resource type="Resource" id="Resource_8hifp"]
+script = ExtResource("1_yhum0")
+level = 15
+move = ExtResource("7_bs7vh")
+
+[sub_resource type="Resource" id="Resource_p5u2t"]
+script = ExtResource("1_yhum0")
+level = 19
+move = ExtResource("8_rrkua")
+
+[sub_resource type="Resource" id="Resource_fo7ub"]
+script = ExtResource("1_yhum0")
+level = 25
+move = ExtResource("9_mlht0")
+
+[sub_resource type="Resource" id="Resource_expgf"]
+script = ExtResource("1_yhum0")
+level = 31
+move = ExtResource("10_f3atu")
+
+[sub_resource type="Resource" id="Resource_mc0dn"]
+script = ExtResource("1_yhum0")
+level = 37
+move = ExtResource("11_h7h2q")
+
+[sub_resource type="Resource" id="Resource_guriv"]
+script = ExtResource("1_yhum0")
+level = 45
+move = ExtResource("12_htan2")
+
+[resource]
+script = ExtResource("3_7ep48")
+id = "baltoy"
+display_name = "Baltoy"
+dex = 343
+types = Array[ExtResource("4_e2u54")]([ExtResource("5_k3gp0"), ExtResource("6_xasyh")])
+learnset = Array[ExtResource("1_yhum0")]([SubResource("Resource_mcptr"), SubResource("Resource_8rqbn"), SubResource("Resource_xd2yt"), SubResource("Resource_3nctd"), SubResource("Resource_ief2t"), SubResource("Resource_8hifp"), SubResource("Resource_p5u2t"), SubResource("Resource_fo7ub"), SubResource("Resource_expgf"), SubResource("Resource_mc0dn"), SubResource("Resource_guriv")])
+genus = "Pokémon Muñeca Barro"
+pokedex_entry = "Baltoy se mueve girando alrededor de sí mismo sobre la extremidad inferior que tiene. En unas ruinas antiguas, descubrieron pinturas rupestres en las que aparecía este Pokémon conviviendo con personas."
+height_m = 0.5
+weight_kg = 21.5
+base_hp = 40
+base_attack = 40
+base_defense = 55
+base_sp_attack = 40
+base_sp_defense = 70
+base_speed = 55
+capture_rate = 255

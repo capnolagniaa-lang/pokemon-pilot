@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_pt1uo"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dllc1"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_t31uj"]
+
+[resource]
+script = ExtResource("2_dllc1")
+id = "dia_soleado"
+display_name = "Día Soleado"
+element = ExtResource("1_pt1uo")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0

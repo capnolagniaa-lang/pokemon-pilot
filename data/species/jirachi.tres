@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rpvho"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_0xr1a"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_l3fk6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ffkf5"]
+[ext_resource type="Resource" path="res://data/moves/deseo.tres" id="3_gi3bw"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_1exnb"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="4_v5w58"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="5_j0qrv"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="5_tb4ox"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_gdb3n"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="6_sxmg0"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="7_y86b6"]
+[ext_resource type="Resource" path="res://data/moves/alivio.tres" id="8_hhcux"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="9_rmy6p"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="10_ajiqx"]
+[ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="11_16h1r"]
+[ext_resource type="Resource" path="res://data/moves/deseo_oculto.tres" id="12_rsnhl"]
+
+[sub_resource type="Resource" id="Resource_02vo2"]
+script = ExtResource("1_rpvho")
+move = ExtResource("2_0xr1a")
+
+[sub_resource type="Resource" id="Resource_2r5ro"]
+script = ExtResource("1_rpvho")
+move = ExtResource("3_gi3bw")
+
+[sub_resource type="Resource" id="Resource_8yxjv"]
+script = ExtResource("1_rpvho")
+level = 5
+move = ExtResource("4_v5w58")
+
+[sub_resource type="Resource" id="Resource_iiohi"]
+script = ExtResource("1_rpvho")
+level = 10
+move = ExtResource("5_tb4ox")
+
+[sub_resource type="Resource" id="Resource_gyk8m"]
+script = ExtResource("1_rpvho")
+level = 15
+move = ExtResource("6_sxmg0")
+
+[sub_resource type="Resource" id="Resource_6o1tk"]
+script = ExtResource("1_rpvho")
+level = 20
+move = ExtResource("7_y86b6")
+
+[sub_resource type="Resource" id="Resource_xylpd"]
+script = ExtResource("1_rpvho")
+level = 25
+move = ExtResource("8_hhcux")
+
+[sub_resource type="Resource" id="Resource_lna7r"]
+script = ExtResource("1_rpvho")
+level = 35
+move = ExtResource("9_rmy6p")
+
+[sub_resource type="Resource" id="Resource_vwyb1"]
+script = ExtResource("1_rpvho")
+level = 40
+move = ExtResource("10_ajiqx")
+
+[sub_resource type="Resource" id="Resource_yemuf"]
+script = ExtResource("1_rpvho")
+level = 45
+move = ExtResource("11_16h1r")
+
+[sub_resource type="Resource" id="Resource_ourf5"]
+script = ExtResource("1_rpvho")
+level = 50
+move = ExtResource("12_rsnhl")
+
+[resource]
+script = ExtResource("3_ffkf5")
+id = "jirachi"
+display_name = "Jirachi"
+dex = 385
+types = Array[ExtResource("4_1exnb")]([ExtResource("5_j0qrv"), ExtResource("6_gdb3n")])
+learnset = Array[ExtResource("1_rpvho")]([SubResource("Resource_02vo2"), SubResource("Resource_2r5ro"), SubResource("Resource_8yxjv"), SubResource("Resource_iiohi"), SubResource("Resource_gyk8m"), SubResource("Resource_6o1tk"), SubResource("Resource_xylpd"), SubResource("Resource_lna7r"), SubResource("Resource_vwyb1"), SubResource("Resource_yemuf"), SubResource("Resource_ourf5")])
+genus = "Pokémon Deseo"
+pokedex_entry = "Cuenta la leyenda que Jirachi hará realidad cualquier deseo que se le escriba en las notas que lleva en la cabeza cuando las lea tras salir de su letargo. Si este Pokémon siente peligro, luchará sin haber llegado a despertarse."
+height_m = 0.3
+weight_kg = 1.1
+base_hp = 100
+base_attack = 100
+base_defense = 100
+base_sp_attack = 100
+base_sp_defense = 100
+base_speed = 100
+base_experience = 270
+growth_rate = "slow"
+capture_rate = 3

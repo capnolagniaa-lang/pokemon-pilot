@@ -125,6 +125,11 @@ static func hp_color(ratio: float) -> Color:
 	return BAD
 
 
+## Da el foco al terminar el cuadro (si para entonces sigue en pantalla: puede que se haya cambiado de escena).
+static func focus_later(c: Control) -> void:
+	(func(): if is_instance_valid(c) and c.is_inside_tree(): c.grab_focus()).call_deferred()
+
+
 ## Panel a pantalla completa con fondo oscurecido.
 static func dim() -> ColorRect:
 	var r := ColorRect.new()

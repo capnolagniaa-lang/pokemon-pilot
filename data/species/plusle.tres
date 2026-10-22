@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ogcic"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_46qby"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_kmdol"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_o6h71"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="3_vxe0p"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="4_4brcv"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_m58yg"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="5_pie63"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_qor6t"]
+[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="6_qyvkc"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="7_b2dn5"]
+[ext_resource type="Resource" path="res://data/moves/llanto_falso.tres" id="8_64sj0"]
+[ext_resource type="Resource" path="res://data/moves/carga.tres" id="9_gq3gq"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="10_ih3ky"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="11_0h10o"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="12_x5yp3"]
+
+[sub_resource type="Resource" id="Resource_b0odk"]
+script = ExtResource("1_ogcic")
+move = ExtResource("2_46qby")
+
+[sub_resource type="Resource" id="Resource_q77a0"]
+script = ExtResource("1_ogcic")
+level = 4
+move = ExtResource("3_vxe0p")
+
+[sub_resource type="Resource" id="Resource_nsybc"]
+script = ExtResource("1_ogcic")
+level = 10
+move = ExtResource("4_4brcv")
+
+[sub_resource type="Resource" id="Resource_d6bfr"]
+script = ExtResource("1_ogcic")
+level = 13
+move = ExtResource("5_pie63")
+
+[sub_resource type="Resource" id="Resource_b3ujm"]
+script = ExtResource("1_ogcic")
+level = 19
+move = ExtResource("6_qyvkc")
+
+[sub_resource type="Resource" id="Resource_frab0"]
+script = ExtResource("1_ogcic")
+level = 22
+move = ExtResource("7_b2dn5")
+
+[sub_resource type="Resource" id="Resource_4bt8w"]
+script = ExtResource("1_ogcic")
+level = 28
+move = ExtResource("8_64sj0")
+
+[sub_resource type="Resource" id="Resource_xb46q"]
+script = ExtResource("1_ogcic")
+level = 31
+move = ExtResource("9_gq3gq")
+
+[sub_resource type="Resource" id="Resource_kykai"]
+script = ExtResource("1_ogcic")
+level = 37
+move = ExtResource("10_ih3ky")
+
+[sub_resource type="Resource" id="Resource_jnc2c"]
+script = ExtResource("1_ogcic")
+level = 40
+move = ExtResource("11_0h10o")
+
+[sub_resource type="Resource" id="Resource_7dt65"]
+script = ExtResource("1_ogcic")
+level = 47
+move = ExtResource("12_x5yp3")
+
+[resource]
+script = ExtResource("3_o6h71")
+id = "plusle"
+display_name = "Plusle"
+dex = 311
+types = Array[ExtResource("4_m58yg")]([ExtResource("5_qor6t")])
+learnset = Array[ExtResource("1_ogcic")]([SubResource("Resource_b0odk"), SubResource("Resource_q77a0"), SubResource("Resource_nsybc"), SubResource("Resource_d6bfr"), SubResource("Resource_b3ujm"), SubResource("Resource_frab0"), SubResource("Resource_4bt8w"), SubResource("Resource_xb46q"), SubResource("Resource_kykai"), SubResource("Resource_jnc2c"), SubResource("Resource_7dt65")])
+genus = "Pokémon Ánimo"
+pokedex_entry = "Plusle siempre anima a sus compañeros. Cuando algún miembro de su grupo hace un gran esfuerzo en combate, causa un cortocircuito en su interior para mostrar con el chisporroteo su alegría."
+height_m = 0.4
+weight_kg = 4.2
+base_hp = 60
+base_defense = 40
+base_sp_attack = 85
+base_sp_defense = 75
+base_speed = 95
+base_experience = 142
+capture_rate = 200

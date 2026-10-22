@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="1_sjkun"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_o8is2"]
+[ext_resource type="Resource" path="res://data/status/congelado.tres" id="3_05he6"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_22ebq"]
+
+[resource]
+script = ExtResource("2_o8is2")
+id = "puno_hielo"
+display_name = "Puño Hielo"
+element = ExtResource("1_sjkun")
+kind = 4
+power = 75.0
+cooldown = 1.55
+knockback = 120.0
+recovery = 0.1
+status = ExtResource("3_05he6")
+status_chance = 0.1
+melee_range = 13.0
+swing_radius = 12.0
+final_knockback = 150.0

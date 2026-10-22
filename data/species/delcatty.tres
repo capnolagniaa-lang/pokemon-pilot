@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cby7x"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_iwa1r"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="2_mrueq"]
+[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="3_ek2gy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gw17l"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="4_buoqf"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_tuj01"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="5_jfa0u"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_mrueq"]
+
+[sub_resource type="Resource" id="Resource_5v2av"]
+script = ExtResource("1_cby7x")
+move = ExtResource("2_mrueq")
+
+[sub_resource type="Resource" id="Resource_qcjkf"]
+script = ExtResource("1_cby7x")
+move = ExtResource("3_ek2gy")
+
+[sub_resource type="Resource" id="Resource_uvuf6"]
+script = ExtResource("1_cby7x")
+move = ExtResource("4_buoqf")
+
+[sub_resource type="Resource" id="Resource_a5pvs"]
+script = ExtResource("1_cby7x")
+move = ExtResource("5_jfa0u")
+
+[resource]
+script = ExtResource("3_gw17l")
+id = "delcatty"
+display_name = "Delcatty"
+dex = 301
+types = Array[ExtResource("4_tuj01")]([ExtResource("5_mrueq")])
+learnset = Array[ExtResource("1_cby7x")]([SubResource("Resource_5v2av"), SubResource("Resource_qcjkf"), SubResource("Resource_uvuf6"), SubResource("Resource_a5pvs")])
+genus = "Pokémon Cursi"
+pokedex_entry = "Delcatty prefiere llevar una vida independiente y hacer lo que se le antoje. Como este Pokémon come y duerme según vea en cada momento, no se puede decir que tenga unos hábitos regulares en el día a día."
+height_m = 1.1
+weight_kg = 32.6
+base_hp = 70
+base_attack = 65
+base_defense = 65
+base_sp_attack = 55
+base_sp_defense = 55
+base_speed = 90
+base_experience = 140
+growth_rate = "fast"
+capture_rate = 60

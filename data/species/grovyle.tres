@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d1ifr"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_etwc0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ni4da"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_aya4j"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_tkva5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_iqpvm"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="4_t888k"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="5_qncac"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_ywkv1"]
+[ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="6_h6hoh"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="7_k7qx6"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_7qtdq"]
+[ext_resource type="Resource" path="res://data/moves/hoja_aguda.tres" id="9_fhehr"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_ely4y"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="11_6k1o6"]
+[ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="12_87epl"]
+[ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="13_eolvc"]
+
+[sub_resource type="Resource" id="Resource_vyxsx"]
+script = ExtResource("1_d1ifr")
+move = ExtResource("2_etwc0")
+
+[sub_resource type="Resource" id="Resource_s75v6"]
+script = ExtResource("1_d1ifr")
+move = ExtResource("3_tkva5")
+
+[sub_resource type="Resource" id="Resource_nnqri"]
+script = ExtResource("1_d1ifr")
+move = ExtResource("4_t888k")
+
+[sub_resource type="Resource" id="Resource_0orra"]
+script = ExtResource("1_d1ifr")
+move = ExtResource("5_qncac")
+
+[sub_resource type="Resource" id="Resource_aqiun"]
+script = ExtResource("1_d1ifr")
+level = 16
+move = ExtResource("6_h6hoh")
+
+[sub_resource type="Resource" id="Resource_xoc2o"]
+script = ExtResource("1_d1ifr")
+level = 17
+move = ExtResource("7_k7qx6")
+
+[sub_resource type="Resource" id="Resource_d36ux"]
+script = ExtResource("1_d1ifr")
+level = 23
+move = ExtResource("8_7qtdq")
+
+[sub_resource type="Resource" id="Resource_aav54"]
+script = ExtResource("1_d1ifr")
+level = 29
+move = ExtResource("9_fhehr")
+
+[sub_resource type="Resource" id="Resource_c4743"]
+script = ExtResource("1_d1ifr")
+level = 35
+move = ExtResource("10_ely4y")
+
+[sub_resource type="Resource" id="Resource_orhbm"]
+script = ExtResource("1_d1ifr")
+level = 41
+move = ExtResource("11_6k1o6")
+
+[sub_resource type="Resource" id="Resource_5yaut"]
+script = ExtResource("1_d1ifr")
+level = 47
+move = ExtResource("12_87epl")
+
+[sub_resource type="Resource" id="Resource_qqu04"]
+script = ExtResource("1_d1ifr")
+level = 53
+move = ExtResource("13_eolvc")
+
+[resource]
+script = ExtResource("3_aya4j")
+id = "grovyle"
+display_name = "Grovyle"
+dex = 253
+types = Array[ExtResource("4_iqpvm")]([ExtResource("5_ywkv1")])
+learnset = Array[ExtResource("1_d1ifr")]([SubResource("Resource_vyxsx"), SubResource("Resource_s75v6"), SubResource("Resource_nnqri"), SubResource("Resource_0orra"), SubResource("Resource_aqiun"), SubResource("Resource_xoc2o"), SubResource("Resource_d36ux"), SubResource("Resource_aav54"), SubResource("Resource_c4743"), SubResource("Resource_orhbm"), SubResource("Resource_5yaut"), SubResource("Resource_qqu04")])
+genus = "Pokémon Geco Bosque"
+pokedex_entry = "Las hojas que Grovyle tiene por el cuerpo le resultan muy útiles para camuflarse en el bosque y esconderse de los enemigos. A este Pokémon no hay quien lo supere subiendo a los árboles del bosque."
+height_m = 0.9
+weight_kg = 21.6
+base_attack = 65
+base_defense = 45
+base_sp_attack = 85
+base_sp_defense = 65
+base_speed = 95
+base_experience = 142
+growth_rate = "medium-slow"

@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_srbis"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_hqnoo"]
+[ext_resource type="Resource" path="res://data/moves/desarme.tres" id="2_xc66o"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_7n5nb"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="3_mf4fh"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="4_kip23"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_motj0"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="5_1qhpe"]
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="5_uxxtc"]
+[ext_resource type="Resource" path="res://data/moves/rencor.tres" id="6_voonj"]
+[ext_resource type="Resource" path="res://data/moves/fuego_fatuo.tres" id="7_qcrc7"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="8_3k2cf"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="9_w6kfq"]
+[ext_resource type="Resource" path="res://data/moves/robo.tres" id="10_mwcl4"]
+[ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_7hxo8"]
+
+[sub_resource type="Resource" id="Resource_c37ip"]
+script = ExtResource("1_srbis")
+move = ExtResource("2_xc66o")
+
+[sub_resource type="Resource" id="Resource_8ye2k"]
+script = ExtResource("1_srbis")
+level = 8
+move = ExtResource("3_mf4fh")
+
+[sub_resource type="Resource" id="Resource_pwj0c"]
+script = ExtResource("1_srbis")
+level = 13
+move = ExtResource("4_kip23")
+
+[sub_resource type="Resource" id="Resource_2u043"]
+script = ExtResource("1_srbis")
+level = 20
+move = ExtResource("5_1qhpe")
+
+[sub_resource type="Resource" id="Resource_05v2i"]
+script = ExtResource("1_srbis")
+level = 25
+move = ExtResource("6_voonj")
+
+[sub_resource type="Resource" id="Resource_hbpxg"]
+script = ExtResource("1_srbis")
+level = 32
+move = ExtResource("7_qcrc7")
+
+[sub_resource type="Resource" id="Resource_mq3r2"]
+script = ExtResource("1_srbis")
+level = 37
+move = ExtResource("8_3k2cf")
+
+[sub_resource type="Resource" id="Resource_goehv"]
+script = ExtResource("1_srbis")
+level = 44
+move = ExtResource("9_w6kfq")
+
+[sub_resource type="Resource" id="Resource_6gupw"]
+script = ExtResource("1_srbis")
+level = 49
+move = ExtResource("10_mwcl4")
+
+[sub_resource type="Resource" id="Resource_7axd1"]
+script = ExtResource("1_srbis")
+level = 56
+move = ExtResource("11_7hxo8")
+
+[resource]
+script = ExtResource("3_7n5nb")
+id = "shuppet"
+display_name = "Shuppet"
+dex = 353
+types = Array[ExtResource("4_motj0")]([ExtResource("5_uxxtc")])
+learnset = Array[ExtResource("1_srbis")]([SubResource("Resource_c37ip"), SubResource("Resource_8ye2k"), SubResource("Resource_pwj0c"), SubResource("Resource_2u043"), SubResource("Resource_05v2i"), SubResource("Resource_hbpxg"), SubResource("Resource_mq3r2"), SubResource("Resource_goehv"), SubResource("Resource_6gupw"), SubResource("Resource_7axd1")])
+genus = "Pokémon Títere"
+pokedex_entry = "A Shuppet le atraen los sentimientos de celos y rencor. Si alguien desarrolla fuertes sentimientos de venganza, aparecerá una multitud de Shuppet que se quedará bajo los aleros de su casa."
+height_m = 0.6
+weight_kg = 2.3
+base_hp = 44
+base_attack = 75
+base_defense = 35
+base_sp_attack = 63
+base_sp_defense = 33
+base_speed = 45
+base_experience = 59
+growth_rate = "fast"
+capture_rate = 225

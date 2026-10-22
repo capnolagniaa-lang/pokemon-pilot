@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xnn2o"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_d2har"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x8csu"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ksnlm"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_r8k6q"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_dighh"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="4_x47di"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_6y1ao"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="5_w4cxy"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_4qdf0"]
+[ext_resource type="Resource" path="res://data/moves/tornado.tres" id="6_7gebn"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="7_j0yjj"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="8_1sqia"]
+[ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="9_86ck4"]
+[ext_resource type="Resource" path="res://data/moves/remolino.tres" id="10_yvlhv"]
+
+[sub_resource type="Resource" id="Resource_b1ll7"]
+script = ExtResource("1_xnn2o")
+move = ExtResource("2_d2har")
+
+[sub_resource type="Resource" id="Resource_3q0mc"]
+script = ExtResource("1_xnn2o")
+move = ExtResource("3_r8k6q")
+
+[sub_resource type="Resource" id="Resource_e0ibr"]
+script = ExtResource("1_xnn2o")
+move = ExtResource("4_x47di")
+
+[sub_resource type="Resource" id="Resource_7wsme"]
+script = ExtResource("1_xnn2o")
+move = ExtResource("5_w4cxy")
+
+[sub_resource type="Resource" id="Resource_wfofy"]
+script = ExtResource("1_xnn2o")
+level = 26
+move = ExtResource("6_7gebn")
+
+[sub_resource type="Resource" id="Resource_p5dbj"]
+script = ExtResource("1_xnn2o")
+level = 33
+move = ExtResource("7_j0yjj")
+
+[sub_resource type="Resource" id="Resource_dvyl6"]
+script = ExtResource("1_xnn2o")
+level = 40
+move = ExtResource("8_1sqia")
+
+[sub_resource type="Resource" id="Resource_tg5b2"]
+script = ExtResource("1_xnn2o")
+level = 47
+move = ExtResource("9_86ck4")
+
+[sub_resource type="Resource" id="Resource_646ph"]
+script = ExtResource("1_xnn2o")
+level = 53
+move = ExtResource("10_yvlhv")
+
+[resource]
+script = ExtResource("3_ksnlm")
+id = "masquerain"
+display_name = "Masquerain"
+dex = 284
+types = Array[ExtResource("4_dighh")]([ExtResource("5_6y1ao"), ExtResource("6_4qdf0")])
+learnset = Array[ExtResource("1_xnn2o")]([SubResource("Resource_b1ll7"), SubResource("Resource_3q0mc"), SubResource("Resource_e0ibr"), SubResource("Resource_7wsme"), SubResource("Resource_wfofy"), SubResource("Resource_p5dbj"), SubResource("Resource_dvyl6"), SubResource("Resource_tg5b2"), SubResource("Resource_646ph")])
+genus = "Pokémon Globocular"
+pokedex_entry = "Masquerain intimida a sus enemigos con los ojos que tiene dibujados en las antenas. Este Pokémon bate las cuatro alas que tiene para volar libremente en cualquier dirección, hasta de lado y hacia atrás, como un helicóptero."
+height_m = 0.8
+weight_kg = 3.6
+base_hp = 70
+base_attack = 60
+base_defense = 62
+base_sp_attack = 100
+base_sp_defense = 82
+base_speed = 80
+base_experience = 159
+capture_rate = 75

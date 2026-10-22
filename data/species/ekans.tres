@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_v6vv8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_hm0fg"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_jcprn"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_x48pn"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="3_xll5k"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mkxgf"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="4_vtbvh"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="5_egpw0"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_evrkc"]
+[ext_resource type="Resource" path="res://data/moves/deslumbrar.tres" id="6_5iw0l"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="7_kwurq"]
+[ext_resource type="Resource" path="res://data/moves/acido.tres" id="8_rbagd"]
+[ext_resource type="Resource" path="res://data/moves/escupir.tres" id="9_b1i0k"]
+[ext_resource type="Resource" path="res://data/moves/reserva.tres" id="10_1h6pl"]
+[ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_vx5d3"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_38bl2"]
+
+[sub_resource type="Resource" id="Resource_5i7xv"]
+script = ExtResource("1_v6vv8")
+move = ExtResource("2_jcprn")
+
+[sub_resource type="Resource" id="Resource_b7k2v"]
+script = ExtResource("1_v6vv8")
+move = ExtResource("3_xll5k")
+
+[sub_resource type="Resource" id="Resource_2f6i3"]
+script = ExtResource("1_v6vv8")
+level = 8
+move = ExtResource("4_vtbvh")
+
+[sub_resource type="Resource" id="Resource_8lsn7"]
+script = ExtResource("1_v6vv8")
+level = 13
+move = ExtResource("5_egpw0")
+
+[sub_resource type="Resource" id="Resource_e0oix"]
+script = ExtResource("1_v6vv8")
+level = 20
+move = ExtResource("6_5iw0l")
+
+[sub_resource type="Resource" id="Resource_r5jgb"]
+script = ExtResource("1_v6vv8")
+level = 25
+move = ExtResource("7_kwurq")
+
+[sub_resource type="Resource" id="Resource_1f7i1"]
+script = ExtResource("1_v6vv8")
+level = 32
+move = ExtResource("8_rbagd")
+
+[sub_resource type="Resource" id="Resource_3qs2i"]
+script = ExtResource("1_v6vv8")
+level = 37
+move = ExtResource("9_b1i0k")
+
+[sub_resource type="Resource" id="Resource_lepey"]
+script = ExtResource("1_v6vv8")
+level = 37
+move = ExtResource("10_1h6pl")
+
+[sub_resource type="Resource" id="Resource_hr3yx"]
+script = ExtResource("1_v6vv8")
+level = 37
+move = ExtResource("11_vx5d3")
+
+[sub_resource type="Resource" id="Resource_iyqiq"]
+script = ExtResource("1_v6vv8")
+level = 44
+move = ExtResource("12_38bl2")
+
+[resource]
+script = ExtResource("3_x48pn")
+id = "ekans"
+display_name = "Ekans"
+dex = 23
+types = Array[ExtResource("4_mkxgf")]([ExtResource("5_evrkc")])
+learnset = Array[ExtResource("1_v6vv8")]([SubResource("Resource_5i7xv"), SubResource("Resource_b7k2v"), SubResource("Resource_2f6i3"), SubResource("Resource_8lsn7"), SubResource("Resource_e0oix"), SubResource("Resource_r5jgb"), SubResource("Resource_1f7i1"), SubResource("Resource_3qs2i"), SubResource("Resource_lepey"), SubResource("Resource_hr3yx"), SubResource("Resource_iyqiq")])
+genus = "Pokémon Serpiente"
+pokedex_entry = "Ekans se enrosca para descansar. Adoptando esta posición puede responder rápidamente a cualquier amenaza que le aceche desde cualquier lugar, levantando la cabeza con una feroz mirada."
+height_m = 2.0
+weight_kg = 6.9
+base_hp = 35
+base_attack = 60
+base_defense = 44
+base_sp_attack = 40
+base_sp_defense = 54
+base_speed = 55
+base_experience = 58
+capture_rate = 255

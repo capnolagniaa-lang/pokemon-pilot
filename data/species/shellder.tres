@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_aui41"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6n3md"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_uri0c"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fkjla"]
+[ext_resource type="Resource" path="res://data/moves/refugio.tres" id="3_o37bn"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_6yt1b"]
+[ext_resource type="Resource" path="res://data/moves/carambano.tres" id="4_33ctd"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_ckhtj"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="5_u8u12"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="6_jubi6"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="7_lmveg"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="8_qhdjq"]
+[ext_resource type="Resource" path="res://data/moves/tenaza.tres" id="9_8bpos"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="10_aeysi"]
+
+[sub_resource type="Resource" id="Resource_6jmpf"]
+script = ExtResource("1_aui41")
+move = ExtResource("2_uri0c")
+
+[sub_resource type="Resource" id="Resource_in5xc"]
+script = ExtResource("1_aui41")
+move = ExtResource("3_o37bn")
+
+[sub_resource type="Resource" id="Resource_ul4tn"]
+script = ExtResource("1_aui41")
+level = 8
+move = ExtResource("4_33ctd")
+
+[sub_resource type="Resource" id="Resource_5nqg5"]
+script = ExtResource("1_aui41")
+level = 15
+move = ExtResource("5_u8u12")
+
+[sub_resource type="Resource" id="Resource_7jyq5"]
+script = ExtResource("1_aui41")
+level = 22
+move = ExtResource("6_jubi6")
+
+[sub_resource type="Resource" id="Resource_3mijg"]
+script = ExtResource("1_aui41")
+level = 29
+move = ExtResource("7_lmveg")
+
+[sub_resource type="Resource" id="Resource_slxea"]
+script = ExtResource("1_aui41")
+level = 36
+move = ExtResource("8_qhdjq")
+
+[sub_resource type="Resource" id="Resource_e1sg8"]
+script = ExtResource("1_aui41")
+level = 43
+move = ExtResource("9_8bpos")
+
+[sub_resource type="Resource" id="Resource_xatfi"]
+script = ExtResource("1_aui41")
+level = 50
+move = ExtResource("10_aeysi")
+
+[resource]
+script = ExtResource("3_fkjla")
+id = "shellder"
+display_name = "Shellder"
+dex = 90
+types = Array[ExtResource("4_6yt1b")]([ExtResource("5_ckhtj")])
+learnset = Array[ExtResource("1_aui41")]([SubResource("Resource_6jmpf"), SubResource("Resource_in5xc"), SubResource("Resource_ul4tn"), SubResource("Resource_5nqg5"), SubResource("Resource_7jyq5"), SubResource("Resource_3mijg"), SubResource("Resource_slxea"), SubResource("Resource_e1sg8"), SubResource("Resource_xatfi")])
+genus = "Pokémon Bivalvo"
+pokedex_entry = "Por la noche, este Pokémon usa la ancha lengua que tiene para hacer un agujero en el fondo del mar y echarse a dormir. Mientras duerme, Shellder cierra la concha, pero deja la lengua por fuera."
+height_m = 0.3
+weight_kg = 4.0
+base_hp = 30
+base_attack = 65
+base_defense = 100
+base_sp_attack = 45
+base_sp_defense = 25
+base_speed = 40
+base_experience = 61
+growth_rate = "slow"
+capture_rate = 190

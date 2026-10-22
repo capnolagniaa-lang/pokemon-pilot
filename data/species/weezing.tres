@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3wrpp"]
+[ext_resource type="Resource" path="res://data/moves/gas_venenoso.tres" id="2_afw1y"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bn6k7"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_f6l40"]
+[ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="3_iyx00"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_kba7t"]
+[ext_resource type="Resource" path="res://data/moves/polucion.tres" id="4_tvhqf"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_5g7hf"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_sx4x4"]
+[ext_resource type="Resource" path="res://data/moves/residuos.tres" id="6_5adwq"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="7_5xmis"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="8_kgfhk"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="9_0gyyv"]
+[ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="10_42abj"]
+[ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_lx2mg"]
+
+[sub_resource type="Resource" id="Resource_62mw7"]
+script = ExtResource("1_3wrpp")
+move = ExtResource("2_afw1y")
+
+[sub_resource type="Resource" id="Resource_adyk5"]
+script = ExtResource("1_3wrpp")
+move = ExtResource("3_iyx00")
+
+[sub_resource type="Resource" id="Resource_sevr3"]
+script = ExtResource("1_3wrpp")
+move = ExtResource("4_tvhqf")
+
+[sub_resource type="Resource" id="Resource_oopig"]
+script = ExtResource("1_3wrpp")
+move = ExtResource("5_5g7hf")
+
+[sub_resource type="Resource" id="Resource_4rh2s"]
+script = ExtResource("1_3wrpp")
+level = 21
+move = ExtResource("6_5adwq")
+
+[sub_resource type="Resource" id="Resource_xthhu"]
+script = ExtResource("1_3wrpp")
+level = 25
+move = ExtResource("7_5xmis")
+
+[sub_resource type="Resource" id="Resource_r7mc7"]
+script = ExtResource("1_3wrpp")
+level = 33
+move = ExtResource("8_kgfhk")
+
+[sub_resource type="Resource" id="Resource_2k3o1"]
+script = ExtResource("1_3wrpp")
+level = 44
+move = ExtResource("9_0gyyv")
+
+[sub_resource type="Resource" id="Resource_ffxro"]
+script = ExtResource("1_3wrpp")
+level = 51
+move = ExtResource("10_42abj")
+
+[sub_resource type="Resource" id="Resource_c62x2"]
+script = ExtResource("1_3wrpp")
+level = 58
+move = ExtResource("11_lx2mg")
+
+[resource]
+script = ExtResource("3_f6l40")
+id = "weezing"
+display_name = "Weezing"
+dex = 110
+types = Array[ExtResource("4_kba7t")]([ExtResource("5_sx4x4")])
+learnset = Array[ExtResource("1_3wrpp")]([SubResource("Resource_62mw7"), SubResource("Resource_adyk5"), SubResource("Resource_sevr3"), SubResource("Resource_oopig"), SubResource("Resource_4rh2s"), SubResource("Resource_xthhu"), SubResource("Resource_r7mc7"), SubResource("Resource_2k3o1"), SubResource("Resource_ffxro"), SubResource("Resource_c62x2")])
+genus = "Pokémon Gas Venenoso"
+pokedex_entry = "A Weezing le encantan los gases que emanan de los desperdicios que quedan en la cocina. Este Pokémon busca casas sucias y descuidadas para crear su hogar. De noche, cuando los habitantes de la casa duermen, va a por la basura."
+height_m = 1.2
+weight_kg = 9.5
+base_hp = 65
+base_attack = 90
+base_defense = 120
+base_sp_attack = 85
+base_sp_defense = 70
+base_speed = 60
+base_experience = 172
+capture_rate = 60

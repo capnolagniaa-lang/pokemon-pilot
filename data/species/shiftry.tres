@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ecsw5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_fn8qn"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="2_k74pl"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ksvqc"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_putqk"]
+[ext_resource type="Resource" path="res://data/moves/adaptacion.tres" id="4_e7s22"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_r1oxl"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="5_2c40y"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_k74pl"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="6_putqk"]
+
+[sub_resource type="Resource" id="Resource_wqk62"]
+script = ExtResource("1_ecsw5")
+move = ExtResource("2_k74pl")
+
+[sub_resource type="Resource" id="Resource_h68c8"]
+script = ExtResource("1_ecsw5")
+move = ExtResource("3_putqk")
+
+[sub_resource type="Resource" id="Resource_r2y25"]
+script = ExtResource("1_ecsw5")
+move = ExtResource("4_e7s22")
+
+[sub_resource type="Resource" id="Resource_0b6ol"]
+script = ExtResource("1_ecsw5")
+move = ExtResource("5_2c40y")
+
+[resource]
+script = ExtResource("3_ksvqc")
+id = "shiftry"
+display_name = "Shiftry"
+dex = 275
+types = Array[ExtResource("4_r1oxl")]([ExtResource("5_k74pl"), ExtResource("6_putqk")])
+learnset = Array[ExtResource("1_ecsw5")]([SubResource("Resource_wqk62"), SubResource("Resource_h68c8"), SubResource("Resource_r2y25"), SubResource("Resource_0b6ol")])
+genus = "Pokémon Malvado"
+pokedex_entry = "Shiftry es un enigmático Pokémon que vive, dicen, en las copas de los árboles milenarios. Este Pokémon genera fuertes corrientes de aire con los abanicos que lleva en las manos."
+height_m = 1.3
+weight_kg = 59.6
+base_hp = 90
+base_attack = 100
+base_defense = 60
+base_sp_attack = 90
+base_sp_defense = 60
+base_speed = 80
+base_experience = 216
+growth_rate = "medium-slow"

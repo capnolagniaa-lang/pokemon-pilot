@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1kwty"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_jast5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sc5ji"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cd4u6"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="3_u1j2w"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_bp15v"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_lbgww"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_idybf"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="5_o5oyf"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="6_1and3"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_hcydh"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="7_ginyt"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="8_n0ygp"]
+[ext_resource type="Resource" path="res://data/moves/dragoaliento.tres" id="9_ob4x2"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="10_ohdtx"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="11_k75vl"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="12_mx7k7"]
+[ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="13_ubfc1"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="14_hn1ud"]
+
+[sub_resource type="Resource" id="Resource_yd4k6"]
+script = ExtResource("1_1kwty")
+move = ExtResource("2_jast5")
+
+[sub_resource type="Resource" id="Resource_8tdry"]
+script = ExtResource("1_1kwty")
+move = ExtResource("3_u1j2w")
+
+[sub_resource type="Resource" id="Resource_vekbc"]
+script = ExtResource("1_1kwty")
+move = ExtResource("4_bp15v")
+
+[sub_resource type="Resource" id="Resource_355y5"]
+script = ExtResource("1_1kwty")
+move = ExtResource("5_o5oyf")
+
+[sub_resource type="Resource" id="Resource_8wi7l"]
+script = ExtResource("1_1kwty")
+level = 21
+move = ExtResource("6_1and3")
+
+[sub_resource type="Resource" id="Resource_s8y8g"]
+script = ExtResource("1_1kwty")
+level = 25
+move = ExtResource("7_ginyt")
+
+[sub_resource type="Resource" id="Resource_l3lpa"]
+script = ExtResource("1_1kwty")
+level = 30
+move = ExtResource("8_n0ygp")
+
+[sub_resource type="Resource" id="Resource_p54m1"]
+script = ExtResource("1_1kwty")
+level = 38
+move = ExtResource("9_ob4x2")
+
+[sub_resource type="Resource" id="Resource_6paxt"]
+script = ExtResource("1_1kwty")
+level = 47
+move = ExtResource("10_ohdtx")
+
+[sub_resource type="Resource" id="Resource_xgco8"]
+script = ExtResource("1_1kwty")
+level = 50
+move = ExtResource("11_k75vl")
+
+[sub_resource type="Resource" id="Resource_0fryl"]
+script = ExtResource("1_1kwty")
+level = 61
+move = ExtResource("12_mx7k7")
+
+[sub_resource type="Resource" id="Resource_iim2e"]
+script = ExtResource("1_1kwty")
+level = 79
+move = ExtResource("13_ubfc1")
+
+[sub_resource type="Resource" id="Resource_p3dih"]
+script = ExtResource("1_1kwty")
+level = 93
+move = ExtResource("14_hn1ud")
+
+[resource]
+script = ExtResource("3_cd4u6")
+id = "salamence"
+display_name = "Salamence"
+dex = 373
+types = Array[ExtResource("4_lbgww")]([ExtResource("5_idybf"), ExtResource("6_hcydh")])
+learnset = Array[ExtResource("1_1kwty")]([SubResource("Resource_yd4k6"), SubResource("Resource_8tdry"), SubResource("Resource_vekbc"), SubResource("Resource_355y5"), SubResource("Resource_8wi7l"), SubResource("Resource_s8y8g"), SubResource("Resource_l3lpa"), SubResource("Resource_p54m1"), SubResource("Resource_6paxt"), SubResource("Resource_xgco8"), SubResource("Resource_0fryl"), SubResource("Resource_iim2e"), SubResource("Resource_p3dih")])
+genus = "Pokémon Dragón"
+pokedex_entry = "Salamence surgió del profundo deseo de tener alas. Dicen que este fuerte deseo fue lo que causó la repentina mutación de las células y el crecimiento de las alas."
+height_m = 1.5
+weight_kg = 102.6
+base_hp = 95
+base_attack = 135
+base_defense = 80
+base_sp_attack = 110
+base_sp_defense = 80
+base_speed = 100
+base_experience = 270
+growth_rate = "slow"

@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1d3jk"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pyt3h"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_scb7e"]
+[ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="3_1traa"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_c4aca"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_d6m2n"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_f0o5y"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_06th3"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="5_gave0"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="6_s10mn"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="7_rd7wr"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_qcihi"]
+[ext_resource type="Resource" path="res://data/moves/aguante.tres" id="9_5jcws"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_bfakx"]
+
+[sub_resource type="Resource" id="Resource_lek2e"]
+script = ExtResource("1_1d3jk")
+move = ExtResource("2_scb7e")
+
+[sub_resource type="Resource" id="Resource_k8jpt"]
+script = ExtResource("1_1d3jk")
+move = ExtResource("3_1traa")
+
+[sub_resource type="Resource" id="Resource_58uql"]
+script = ExtResource("1_1d3jk")
+move = ExtResource("4_d6m2n")
+
+[sub_resource type="Resource" id="Resource_2ngaf"]
+script = ExtResource("1_1d3jk")
+level = 9
+move = ExtResource("5_gave0")
+
+[sub_resource type="Resource" id="Resource_3xtl5"]
+script = ExtResource("1_1d3jk")
+level = 17
+move = ExtResource("6_s10mn")
+
+[sub_resource type="Resource" id="Resource_4sri1"]
+script = ExtResource("1_1d3jk")
+level = 25
+move = ExtResource("7_rd7wr")
+
+[sub_resource type="Resource" id="Resource_aj5dl"]
+script = ExtResource("1_1d3jk")
+level = 33
+move = ExtResource("8_qcihi")
+
+[sub_resource type="Resource" id="Resource_da478"]
+script = ExtResource("1_1d3jk")
+level = 41
+move = ExtResource("9_5jcws")
+
+[sub_resource type="Resource" id="Resource_2vif3"]
+script = ExtResource("1_1d3jk")
+level = 49
+move = ExtResource("10_bfakx")
+
+[resource]
+script = ExtResource("3_c4aca")
+id = "phanpy"
+display_name = "Phanpy"
+dex = 231
+types = Array[ExtResource("4_f0o5y")]([ExtResource("5_06th3")])
+learnset = Array[ExtResource("1_1d3jk")]([SubResource("Resource_lek2e"), SubResource("Resource_k8jpt"), SubResource("Resource_58uql"), SubResource("Resource_2ngaf"), SubResource("Resource_3xtl5"), SubResource("Resource_4sri1"), SubResource("Resource_aj5dl"), SubResource("Resource_da478"), SubResource("Resource_2vif3")])
+genus = "Pokémon Narizotas"
+pokedex_entry = "Phanpy cava un agujero profundo para hacer su nido en el suelo, en la ribera de los ríos, y marca con la trompa la zona para que el resto vea que ese terreno ya está ocupado."
+height_m = 0.5
+weight_kg = 33.5
+base_hp = 90
+base_attack = 60
+base_defense = 60
+base_sp_attack = 40
+base_sp_defense = 40
+base_speed = 40
+base_experience = 66
+capture_rate = 120

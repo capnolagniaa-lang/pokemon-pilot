@@ -5,47 +5,160 @@
 [resource]
 script = ExtResource("1_kbd4c")
 multipliers = {
+"acero": {
+"acero": 0.5,
+"agua": 0.5,
+"electrico": 0.5,
+"fuego": 0.5,
+"hada": 2.0,
+"hielo": 2.0,
+"roca": 2.0
+},
 "agua": {
 "agua": 0.5,
+"dragon": 0.5,
 "fuego": 2.0,
-"planta": 0.5
-},
-"electrico": {
-"agua": 2.0,
-"electrico": 0.5,
 "planta": 0.5,
-"volador": 2.0
+"roca": 2.0,
+"tierra": 2.0
 },
-"fuego": {
-"agua": 0.5,
+"bicho": {
+"acero": 0.5,
+"fantasma": 0.5,
 "fuego": 0.5,
-"hielo": 2.0,
-"planta": 2.0
-},
-"hielo": {
-"agua": 0.5,
-"fuego": 0.5,
-"hielo": 0.5,
+"hada": 0.5,
+"lucha": 0.5,
 "planta": 2.0,
-"volador": 2.0
-},
-"normal": {},
-"planta": {
-"agua": 2.0,
-"fuego": 0.5,
-"planta": 0.5,
+"psiquico": 2.0,
+"siniestro": 2.0,
 "veneno": 0.5,
 "volador": 0.5
 },
-"siniestro": {
+"dragon": {
+"acero": 0.5,
+"dragon": 2.0,
+"hada": 0.0
+},
+"electrico": {
+"agua": 2.0,
+"dragon": 0.5,
+"electrico": 0.5,
+"planta": 0.5,
+"tierra": 0.0,
+"volador": 2.0
+},
+"fantasma": {
+"fantasma": 2.0,
+"normal": 0.0,
+"psiquico": 2.0,
 "siniestro": 0.5
 },
-"veneno": {
+"fuego": {
+"acero": 2.0,
+"agua": 0.5,
+"bicho": 2.0,
+"dragon": 0.5,
+"fuego": 0.5,
+"hielo": 2.0,
 "planta": 2.0,
+"roca": 0.5
+},
+"hada": {
+"acero": 0.5,
+"dragon": 2.0,
+"fuego": 0.5,
+"lucha": 2.0,
+"siniestro": 2.0,
+"veneno": 0.5
+},
+"hielo": {
+"acero": 0.5,
+"agua": 0.5,
+"dragon": 2.0,
+"fuego": 0.5,
+"hielo": 0.5,
+"planta": 2.0,
+"tierra": 2.0,
+"volador": 2.0
+},
+"lucha": {
+"acero": 2.0,
+"bicho": 0.5,
+"fantasma": 0.0,
+"hada": 0.5,
+"hielo": 2.0,
+"normal": 2.0,
+"psiquico": 0.5,
+"roca": 2.0,
+"siniestro": 2.0,
+"veneno": 0.5,
+"volador": 0.5
+},
+"normal": {
+"acero": 0.5,
+"fantasma": 0.0,
+"roca": 0.5
+},
+"planta": {
+"acero": 0.5,
+"agua": 2.0,
+"bicho": 0.5,
+"dragon": 0.5,
+"fuego": 0.5,
+"planta": 0.5,
+"roca": 2.0,
+"tierra": 2.0,
+"veneno": 0.5,
+"volador": 0.5
+},
+"psiquico": {
+"acero": 0.5,
+"lucha": 2.0,
+"psiquico": 0.5,
+"siniestro": 0.0,
+"veneno": 2.0
+},
+"roca": {
+"acero": 0.5,
+"bicho": 2.0,
+"fuego": 2.0,
+"hielo": 2.0,
+"lucha": 0.5,
+"tierra": 0.5,
+"volador": 2.0
+},
+"siniestro": {
+"fantasma": 2.0,
+"hada": 0.5,
+"lucha": 0.5,
+"psiquico": 2.0,
+"siniestro": 0.5
+},
+"tierra": {
+"acero": 2.0,
+"bicho": 0.5,
+"electrico": 2.0,
+"fuego": 2.0,
+"planta": 0.5,
+"roca": 2.0,
+"veneno": 2.0,
+"volador": 0.0
+},
+"veneno": {
+"acero": 0.0,
+"fantasma": 0.5,
+"hada": 2.0,
+"planta": 2.0,
+"roca": 0.5,
+"tierra": 0.5,
 "veneno": 0.5
 },
 "volador": {
+"acero": 0.5,
+"bicho": 2.0,
 "electrico": 0.5,
-"planta": 2.0
+"lucha": 2.0,
+"planta": 2.0,
+"roca": 0.5
 }
 }

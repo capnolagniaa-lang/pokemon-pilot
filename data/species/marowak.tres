@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1isj0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_elxgk"]
+[ext_resource type="Resource" path="res://data/moves/hueso_palo.tres" id="2_yr27j"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_31p6y"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_52ujn"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="4_oxmar"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qg6wl"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_if0to"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_lenku"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="6_fgxjs"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="7_cjr2a"]
+[ext_resource type="Resource" path="res://data/moves/huesomerang.tres" id="8_uihww"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="9_8vsox"]
+[ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="10_funo7"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="11_vuoy3"]
+[ext_resource type="Resource" path="res://data/moves/ataque_oseo.tres" id="12_3bfnn"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_yvnfw"]
+
+[sub_resource type="Resource" id="Resource_3a3a3"]
+script = ExtResource("1_1isj0")
+move = ExtResource("2_yr27j")
+
+[sub_resource type="Resource" id="Resource_jbhs5"]
+script = ExtResource("1_1isj0")
+move = ExtResource("3_52ujn")
+
+[sub_resource type="Resource" id="Resource_bsj20"]
+script = ExtResource("1_1isj0")
+move = ExtResource("4_oxmar")
+
+[sub_resource type="Resource" id="Resource_rhode"]
+script = ExtResource("1_1isj0")
+move = ExtResource("5_lenku")
+
+[sub_resource type="Resource" id="Resource_b7sor"]
+script = ExtResource("1_1isj0")
+level = 17
+move = ExtResource("6_fgxjs")
+
+[sub_resource type="Resource" id="Resource_m30s6"]
+script = ExtResource("1_1isj0")
+level = 21
+move = ExtResource("7_cjr2a")
+
+[sub_resource type="Resource" id="Resource_wclq0"]
+script = ExtResource("1_1isj0")
+level = 25
+move = ExtResource("8_uihww")
+
+[sub_resource type="Resource" id="Resource_jkavp"]
+script = ExtResource("1_1isj0")
+level = 32
+move = ExtResource("9_8vsox")
+
+[sub_resource type="Resource" id="Resource_q434i"]
+script = ExtResource("1_1isj0")
+level = 39
+move = ExtResource("10_funo7")
+
+[sub_resource type="Resource" id="Resource_s0bxd"]
+script = ExtResource("1_1isj0")
+level = 46
+move = ExtResource("11_vuoy3")
+
+[sub_resource type="Resource" id="Resource_2g3po"]
+script = ExtResource("1_1isj0")
+level = 53
+move = ExtResource("12_3bfnn")
+
+[sub_resource type="Resource" id="Resource_fewq0"]
+script = ExtResource("1_1isj0")
+level = 61
+move = ExtResource("13_yvnfw")
+
+[resource]
+script = ExtResource("3_31p6y")
+id = "marowak"
+display_name = "Marowak"
+dex = 105
+types = Array[ExtResource("4_qg6wl")]([ExtResource("5_if0to")])
+learnset = Array[ExtResource("1_1isj0")]([SubResource("Resource_3a3a3"), SubResource("Resource_jbhs5"), SubResource("Resource_bsj20"), SubResource("Resource_rhode"), SubResource("Resource_b7sor"), SubResource("Resource_m30s6"), SubResource("Resource_wclq0"), SubResource("Resource_jkavp"), SubResource("Resource_q434i"), SubResource("Resource_s0bxd"), SubResource("Resource_2g3po"), SubResource("Resource_fewq0")])
+genus = "Pokémon Apilahueso"
+pokedex_entry = "Marowak es la forma evolucionada de Cubone. Es más fuerte porque ha superado la pena por la pérdida de su madre. El ánimo de este Pokémon, ya curtido y fortalecido, no es muy fácil de alterar."
+height_m = 1.0
+weight_kg = 45.0
+base_hp = 60
+base_attack = 80
+base_defense = 110
+base_sp_defense = 80
+base_speed = 45
+base_experience = 149
+capture_rate = 75

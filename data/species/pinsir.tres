@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hg67w"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_jxfmv"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="2_la61m"]
+[ext_resource type="Resource" path="res://data/moves/agarre.tres" id="3_0bt5x"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_s3k1i"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_31nkt"]
+[ext_resource type="Resource" path="res://data/moves/atadura.tres" id="4_kefg3"]
+[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="5_uu0a7"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_wpx7g"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="6_ubu1h"]
+[ext_resource type="Resource" path="res://data/moves/desquite.tres" id="7_24wke"]
+[ext_resource type="Resource" path="res://data/moves/demolicion.tres" id="8_18yyf"]
+[ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="9_gi0vq"]
+[ext_resource type="Resource" path="res://data/moves/sumision.tres" id="10_glxnq"]
+[ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="11_vyykr"]
+
+[sub_resource type="Resource" id="Resource_axpds"]
+script = ExtResource("1_hg67w")
+move = ExtResource("2_la61m")
+
+[sub_resource type="Resource" id="Resource_8txrk"]
+script = ExtResource("1_hg67w")
+move = ExtResource("3_0bt5x")
+
+[sub_resource type="Resource" id="Resource_ant3v"]
+script = ExtResource("1_hg67w")
+level = 7
+move = ExtResource("4_kefg3")
+
+[sub_resource type="Resource" id="Resource_c520q"]
+script = ExtResource("1_hg67w")
+level = 13
+move = ExtResource("5_uu0a7")
+
+[sub_resource type="Resource" id="Resource_uk03d"]
+script = ExtResource("1_hg67w")
+level = 19
+move = ExtResource("6_ubu1h")
+
+[sub_resource type="Resource" id="Resource_1etow"]
+script = ExtResource("1_hg67w")
+level = 25
+move = ExtResource("7_24wke")
+
+[sub_resource type="Resource" id="Resource_k04sj"]
+script = ExtResource("1_hg67w")
+level = 31
+move = ExtResource("8_18yyf")
+
+[sub_resource type="Resource" id="Resource_xre7l"]
+script = ExtResource("1_hg67w")
+level = 37
+move = ExtResource("9_gi0vq")
+
+[sub_resource type="Resource" id="Resource_c2b3k"]
+script = ExtResource("1_hg67w")
+level = 43
+move = ExtResource("10_glxnq")
+
+[sub_resource type="Resource" id="Resource_0pshg"]
+script = ExtResource("1_hg67w")
+level = 49
+move = ExtResource("11_vyykr")
+
+[resource]
+script = ExtResource("3_s3k1i")
+id = "pinsir"
+display_name = "Pinsir"
+dex = 127
+types = Array[ExtResource("4_31nkt")]([ExtResource("5_wpx7g")])
+learnset = Array[ExtResource("1_hg67w")]([SubResource("Resource_axpds"), SubResource("Resource_8txrk"), SubResource("Resource_ant3v"), SubResource("Resource_c520q"), SubResource("Resource_uk03d"), SubResource("Resource_1etow"), SubResource("Resource_k04sj"), SubResource("Resource_xre7l"), SubResource("Resource_c2b3k"), SubResource("Resource_0pshg")])
+genus = "Pokémon Escarabajo"
+pokedex_entry = "Pinsir es sorprendentemente fuerte. Puede agarrar con los cuernos a un rival que pese el doble que él y levantarlo por los aires. En zonas frías, los movimientos de este Pokémon se vuelven lentos."
+height_m = 1.5
+weight_kg = 55.0
+base_hp = 65
+base_attack = 125
+base_defense = 100
+base_sp_attack = 55
+base_sp_defense = 70
+base_speed = 85
+base_experience = 175
+growth_rate = "slow"

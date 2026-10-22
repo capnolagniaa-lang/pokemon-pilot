@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_260fo"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mou4q"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_8covp"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="4_xbtrk"]
+
+[resource]
+script = ExtResource("2_mou4q")
+id = "fuego_fatuo"
+display_name = "Fuego Fatuo"
+element = ExtResource("1_260fo")
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+statuses_on_hit = Array[ExtResource("3_8covp")]([ExtResource("4_xbtrk")])
+speed = 220.0
+size = 4.5
+lifetime = 0.8

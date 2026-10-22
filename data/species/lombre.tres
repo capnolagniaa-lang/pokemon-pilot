@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mhia6"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_abawg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_o5lin"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_3n28x"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_dxocq"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="4_lwnh1"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ua6cv"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_4resb"]
+[ext_resource type="Resource" path="res://data/moves/adaptacion.tres" id="5_hsss0"]
+[ext_resource type="Resource" path="res://data/moves/sorpresa.tres" id="6_8tuch"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="6_63pcs"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="7_2n41l"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="8_cc0kj"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="9_8oj7t"]
+[ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="10_h14sc"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="11_hh2p4"]
+
+[sub_resource type="Resource" id="Resource_eamaq"]
+script = ExtResource("1_mhia6")
+move = ExtResource("2_abawg")
+
+[sub_resource type="Resource" id="Resource_q3mwn"]
+script = ExtResource("1_mhia6")
+level = 3
+move = ExtResource("3_3n28x")
+
+[sub_resource type="Resource" id="Resource_0t74u"]
+script = ExtResource("1_mhia6")
+level = 7
+move = ExtResource("4_lwnh1")
+
+[sub_resource type="Resource" id="Resource_ue6e4"]
+script = ExtResource("1_mhia6")
+level = 13
+move = ExtResource("5_hsss0")
+
+[sub_resource type="Resource" id="Resource_lixwt"]
+script = ExtResource("1_mhia6")
+level = 19
+move = ExtResource("6_8tuch")
+
+[sub_resource type="Resource" id="Resource_gp8y7"]
+script = ExtResource("1_mhia6")
+level = 25
+move = ExtResource("7_2n41l")
+
+[sub_resource type="Resource" id="Resource_5bjl4"]
+script = ExtResource("1_mhia6")
+level = 31
+move = ExtResource("8_cc0kj")
+
+[sub_resource type="Resource" id="Resource_r4s6f"]
+script = ExtResource("1_mhia6")
+level = 37
+move = ExtResource("9_8oj7t")
+
+[sub_resource type="Resource" id="Resource_n5ty6"]
+script = ExtResource("1_mhia6")
+level = 43
+move = ExtResource("10_h14sc")
+
+[sub_resource type="Resource" id="Resource_k2ihf"]
+script = ExtResource("1_mhia6")
+level = 49
+move = ExtResource("11_hh2p4")
+
+[resource]
+script = ExtResource("3_dxocq")
+id = "lombre"
+display_name = "Lombre"
+dex = 271
+types = Array[ExtResource("4_ua6cv")]([ExtResource("5_4resb"), ExtResource("6_63pcs")])
+learnset = Array[ExtResource("1_mhia6")]([SubResource("Resource_eamaq"), SubResource("Resource_q3mwn"), SubResource("Resource_0t74u"), SubResource("Resource_ue6e4"), SubResource("Resource_lixwt"), SubResource("Resource_gp8y7"), SubResource("Resource_5bjl4"), SubResource("Resource_r4s6f"), SubResource("Resource_n5ty6"), SubResource("Resource_k2ihf")])
+genus = "Pokémon Alegre"
+pokedex_entry = "Lombre es, además de travieso, nocturno; entra en acción de noche. Cuando ve a gente pescando, se pone a tirar del sedal por debajo del agua y se divierte viendo la cara de enfado que se les queda."
+height_m = 1.2
+weight_kg = 32.5
+base_hp = 60
+base_sp_attack = 60
+base_sp_defense = 70
+base_experience = 119
+growth_rate = "medium-slow"
+capture_rate = 120

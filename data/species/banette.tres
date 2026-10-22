@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jcefg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_g7tp2"]
+[ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="2_o7ls0"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_f65qv"]
+[ext_resource type="Resource" path="res://data/moves/desarme.tres" id="3_fxsca"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="4_811n6"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_oocpm"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="5_v40hf"]
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="5_yaa24"]
+[ext_resource type="Resource" path="res://data/moves/rencor.tres" id="6_o4s7w"]
+[ext_resource type="Resource" path="res://data/moves/fuego_fatuo.tres" id="7_gearc"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="8_ml6nt"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="9_ew03f"]
+[ext_resource type="Resource" path="res://data/moves/robo.tres" id="10_wxpeo"]
+[ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_ry6gx"]
+
+[sub_resource type="Resource" id="Resource_1pql6"]
+script = ExtResource("1_jcefg")
+move = ExtResource("2_o7ls0")
+
+[sub_resource type="Resource" id="Resource_agq6e"]
+script = ExtResource("1_jcefg")
+move = ExtResource("3_fxsca")
+
+[sub_resource type="Resource" id="Resource_w10hd"]
+script = ExtResource("1_jcefg")
+move = ExtResource("4_811n6")
+
+[sub_resource type="Resource" id="Resource_2ts3e"]
+script = ExtResource("1_jcefg")
+move = ExtResource("5_v40hf")
+
+[sub_resource type="Resource" id="Resource_fli75"]
+script = ExtResource("1_jcefg")
+level = 25
+move = ExtResource("6_o4s7w")
+
+[sub_resource type="Resource" id="Resource_48rjm"]
+script = ExtResource("1_jcefg")
+level = 32
+move = ExtResource("7_gearc")
+
+[sub_resource type="Resource" id="Resource_oye6h"]
+script = ExtResource("1_jcefg")
+level = 39
+move = ExtResource("8_ml6nt")
+
+[sub_resource type="Resource" id="Resource_fvjyt"]
+script = ExtResource("1_jcefg")
+level = 48
+move = ExtResource("9_ew03f")
+
+[sub_resource type="Resource" id="Resource_rh2sn"]
+script = ExtResource("1_jcefg")
+level = 55
+move = ExtResource("10_wxpeo")
+
+[sub_resource type="Resource" id="Resource_5erhj"]
+script = ExtResource("1_jcefg")
+level = 64
+move = ExtResource("11_ry6gx")
+
+[resource]
+script = ExtResource("3_f65qv")
+id = "banette"
+display_name = "Banette"
+dex = 354
+types = Array[ExtResource("4_oocpm")]([ExtResource("5_yaa24")])
+learnset = Array[ExtResource("1_jcefg")]([SubResource("Resource_1pql6"), SubResource("Resource_agq6e"), SubResource("Resource_w10hd"), SubResource("Resource_2ts3e"), SubResource("Resource_fli75"), SubResource("Resource_48rjm"), SubResource("Resource_oye6h"), SubResource("Resource_fvjyt"), SubResource("Resource_rh2sn"), SubResource("Resource_5erhj")])
+genus = "Pokémon Marioneta"
+pokedex_entry = "Banette genera energía para echar un infalible hechizo clavándose púas a sí mismo. Los orígenes de este Pokémon son algo tristes: era un muñeco de felpa al que tiraron a la basura."
+height_m = 1.1
+weight_kg = 12.5
+base_hp = 64
+base_attack = 115
+base_defense = 65
+base_sp_attack = 83
+base_sp_defense = 63
+base_speed = 65
+base_experience = 159
+growth_rate = "fast"

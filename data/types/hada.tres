@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ElementType" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="1_7a3e2"]
+
+[resource]
+script = ExtResource("1_7a3e2")
+id = "hada"
+display_name = "Hada"
+color = Color(0.92, 0.6, 0.78, 1)
+core_color = Color(1, 0.85, 0.93, 1)
+glow = 1.15

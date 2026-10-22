@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_72icd"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_e7rfg"]
+[ext_resource type="Resource" path="res://data/moves/psicoonda.tres" id="2_pxmpp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_egbs7"]
+[ext_resource type="Resource" path="res://data/moves/legado.tres" id="3_ya1bu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ge0e7"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="4_k53h4"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="5_sf72s"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_t7rms"]
+[ext_resource type="Resource" path="res://data/moves/dragoaliento.tres" id="6_7lfju"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_rtxg5"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="7_jb3xy"]
+[ext_resource type="Resource" path="res://data/moves/alivio.tres" id="8_j4kmt"]
+[ext_resource type="Resource" path="res://data/moves/resplandor.tres" id="9_3uqab"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="10_nnwtx"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="11_st3dd"]
+[ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="12_jwfvj"]
+
+[sub_resource type="Resource" id="Resource_gdo2a"]
+script = ExtResource("1_72icd")
+move = ExtResource("2_pxmpp")
+
+[sub_resource type="Resource" id="Resource_5uypf"]
+script = ExtResource("1_72icd")
+level = 5
+move = ExtResource("3_ya1bu")
+
+[sub_resource type="Resource" id="Resource_qj6kc"]
+script = ExtResource("1_72icd")
+level = 10
+move = ExtResource("4_k53h4")
+
+[sub_resource type="Resource" id="Resource_rrpee"]
+script = ExtResource("1_72icd")
+level = 15
+move = ExtResource("5_sf72s")
+
+[sub_resource type="Resource" id="Resource_e6knb"]
+script = ExtResource("1_72icd")
+level = 20
+move = ExtResource("6_7lfju")
+
+[sub_resource type="Resource" id="Resource_3r2j6"]
+script = ExtResource("1_72icd")
+level = 25
+move = ExtResource("7_jb3xy")
+
+[sub_resource type="Resource" id="Resource_lkjph"]
+script = ExtResource("1_72icd")
+level = 30
+move = ExtResource("8_j4kmt")
+
+[sub_resource type="Resource" id="Resource_uwau0"]
+script = ExtResource("1_72icd")
+level = 35
+move = ExtResource("9_3uqab")
+
+[sub_resource type="Resource" id="Resource_02ky6"]
+script = ExtResource("1_72icd")
+level = 40
+move = ExtResource("10_nnwtx")
+
+[sub_resource type="Resource" id="Resource_oudmh"]
+script = ExtResource("1_72icd")
+level = 45
+move = ExtResource("11_st3dd")
+
+[sub_resource type="Resource" id="Resource_vftp3"]
+script = ExtResource("1_72icd")
+level = 50
+move = ExtResource("12_jwfvj")
+
+[resource]
+script = ExtResource("3_egbs7")
+id = "latios"
+display_name = "Latios"
+dex = 381
+types = Array[ExtResource("4_ge0e7")]([ExtResource("5_t7rms"), ExtResource("6_rtxg5")])
+learnset = Array[ExtResource("1_72icd")]([SubResource("Resource_gdo2a"), SubResource("Resource_5uypf"), SubResource("Resource_qj6kc"), SubResource("Resource_rrpee"), SubResource("Resource_e6knb"), SubResource("Resource_3r2j6"), SubResource("Resource_lkjph"), SubResource("Resource_uwau0"), SubResource("Resource_02ky6"), SubResource("Resource_oudmh"), SubResource("Resource_vftp3")])
+genus = "Pokémon Eón"
+pokedex_entry = "Latios tiene la habilidad de hacer que los demás vean algo que él ha visto o imaginado. Este Pokémon es muy inteligente. Es capaz de entender el lenguaje humano."
+height_m = 2.0
+weight_kg = 60.0
+base_hp = 80
+base_attack = 90
+base_defense = 80
+base_sp_attack = 130
+base_sp_defense = 110
+base_speed = 110
+base_experience = 270
+growth_rate = "slow"
+capture_rate = 3

@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_dlkh5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bf0df"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="2_obaok"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_im7yc"]
+[ext_resource type="Resource" path="res://data/moves/cornada.tres" id="3_m8bt3"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fgesw"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="4_yjtqo"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_kpx6n"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_r1627"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="6_sin2a"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="6_uqeul"]
+[ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="7_bhpoe"]
+[ext_resource type="Resource" path="res://data/moves/perforador.tres" id="8_5srod"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_fokd6"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_id08p"]
+[ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_nxoq4"]
+
+[sub_resource type="Resource" id="Resource_0cijf"]
+script = ExtResource("1_dlkh5")
+move = ExtResource("2_obaok")
+
+[sub_resource type="Resource" id="Resource_2inb7"]
+script = ExtResource("1_dlkh5")
+move = ExtResource("3_m8bt3")
+
+[sub_resource type="Resource" id="Resource_f20l4"]
+script = ExtResource("1_dlkh5")
+move = ExtResource("4_yjtqo")
+
+[sub_resource type="Resource" id="Resource_op1i3"]
+script = ExtResource("1_dlkh5")
+move = ExtResource("5_r1627")
+
+[sub_resource type="Resource" id="Resource_k4hu8"]
+script = ExtResource("1_dlkh5")
+level = 24
+move = ExtResource("6_uqeul")
+
+[sub_resource type="Resource" id="Resource_d8pou"]
+script = ExtResource("1_dlkh5")
+level = 29
+move = ExtResource("7_bhpoe")
+
+[sub_resource type="Resource" id="Resource_pcrmc"]
+script = ExtResource("1_dlkh5")
+level = 38
+move = ExtResource("8_5srod")
+
+[sub_resource type="Resource" id="Resource_7mcdc"]
+script = ExtResource("1_dlkh5")
+level = 46
+move = ExtResource("9_fokd6")
+
+[sub_resource type="Resource" id="Resource_kbf35"]
+script = ExtResource("1_dlkh5")
+level = 58
+move = ExtResource("10_id08p")
+
+[sub_resource type="Resource" id="Resource_vnfy2"]
+script = ExtResource("1_dlkh5")
+level = 66
+move = ExtResource("11_nxoq4")
+
+[resource]
+script = ExtResource("3_im7yc")
+id = "rhydon"
+display_name = "Rhydon"
+dex = 112
+types = Array[ExtResource("4_fgesw")]([ExtResource("5_kpx6n"), ExtResource("6_sin2a")])
+learnset = Array[ExtResource("1_dlkh5")]([SubResource("Resource_0cijf"), SubResource("Resource_2inb7"), SubResource("Resource_f20l4"), SubResource("Resource_op1i3"), SubResource("Resource_k4hu8"), SubResource("Resource_d8pou"), SubResource("Resource_pcrmc"), SubResource("Resource_7mcdc"), SubResource("Resource_kbf35"), SubResource("Resource_vnfy2")])
+genus = "Pokémon Taladro"
+pokedex_entry = "Rhydon tiene un cuerno capaz de horadar hasta un diamante en bruto y con una sacudida de la cola puede derribar un edificio. La piel de este Pokémon es muy fuerte; ni los disparos de un cañón le arañarían."
+height_m = 1.9
+weight_kg = 120.0
+base_hp = 105
+base_attack = 130
+base_defense = 120
+base_sp_attack = 45
+base_sp_defense = 45
+base_speed = 40
+base_experience = 170
+growth_rate = "slow"
+capture_rate = 60

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_3lk82"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_645i0"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_mtcib"]
+
+[resource]
+script = ExtResource("2_645i0")
+id = "poder_oculto"
+display_name = "Poder Oculto"
+element = ExtResource("1_3lk82")
+category = 1
+power = 60.0
+cooldown = 1.8
+knockback = 96.0
+recovery = 0.1
+speed = 280.0
+size = 4.5
+lifetime = 0.85

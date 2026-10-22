@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hlpng"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6bhu3"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="2_18vdl"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_xji3v"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_y6nlh"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_m4e57"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_rtggu"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="5_75d0r"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_d2fgr"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="6_ir48y"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="7_sgcfy"]
+[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="8_463g1"]
+[ext_resource type="Resource" path="res://data/moves/pin_misil.tres" id="9_gag2o"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="10_wc7q3"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_8px4d"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="12_abjmu"]
+
+[sub_resource type="Resource" id="Resource_wt35c"]
+script = ExtResource("1_hlpng")
+move = ExtResource("2_18vdl")
+
+[sub_resource type="Resource" id="Resource_g4d3j"]
+script = ExtResource("1_hlpng")
+move = ExtResource("3_xji3v")
+
+[sub_resource type="Resource" id="Resource_ipv11"]
+script = ExtResource("1_hlpng")
+move = ExtResource("4_rtggu")
+
+[sub_resource type="Resource" id="Resource_3dcvl"]
+script = ExtResource("1_hlpng")
+level = 8
+move = ExtResource("5_75d0r")
+
+[sub_resource type="Resource" id="Resource_rlpsk"]
+script = ExtResource("1_hlpng")
+level = 16
+move = ExtResource("6_ir48y")
+
+[sub_resource type="Resource" id="Resource_e7dsn"]
+script = ExtResource("1_hlpng")
+level = 23
+move = ExtResource("7_sgcfy")
+
+[sub_resource type="Resource" id="Resource_dp04r"]
+script = ExtResource("1_hlpng")
+level = 30
+move = ExtResource("8_463g1")
+
+[sub_resource type="Resource" id="Resource_o03od"]
+script = ExtResource("1_hlpng")
+level = 36
+move = ExtResource("9_gag2o")
+
+[sub_resource type="Resource" id="Resource_qxft4"]
+script = ExtResource("1_hlpng")
+level = 42
+move = ExtResource("10_wc7q3")
+
+[sub_resource type="Resource" id="Resource_pn65f"]
+script = ExtResource("1_hlpng")
+level = 47
+move = ExtResource("11_8px4d")
+
+[sub_resource type="Resource" id="Resource_csa0x"]
+script = ExtResource("1_hlpng")
+level = 52
+move = ExtResource("12_abjmu")
+
+[resource]
+script = ExtResource("3_y6nlh")
+id = "jolteon"
+display_name = "Jolteon"
+dex = 135
+types = Array[ExtResource("4_m4e57")]([ExtResource("5_d2fgr")])
+learnset = Array[ExtResource("1_hlpng")]([SubResource("Resource_wt35c"), SubResource("Resource_g4d3j"), SubResource("Resource_ipv11"), SubResource("Resource_3dcvl"), SubResource("Resource_rlpsk"), SubResource("Resource_e7dsn"), SubResource("Resource_dp04r"), SubResource("Resource_o03od"), SubResource("Resource_qxft4"), SubResource("Resource_pn65f"), SubResource("Resource_csa0x")])
+genus = "Pokémon Relámpago"
+pokedex_entry = "Las células de Jolteon generan un nivel bajo de electricidad, cuya intensidad aumenta con la electricidad estática que acumula en un pelaje formado por agujas cargadas de electricidad. Esta característica le permite lanzar rayos."
+height_m = 0.8
+weight_kg = 24.5
+base_hp = 65
+base_attack = 65
+base_defense = 60
+base_sp_attack = 110
+base_sp_defense = 95
+base_speed = 130
+base_experience = 184

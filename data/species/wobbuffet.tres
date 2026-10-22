@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_o86xy"]
+[ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="2_hnl5l"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yyoki"]
+[ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="3_2k8wp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_j6jfy"]
+[ext_resource type="Resource" path="res://data/moves/manto_espejo.tres" id="4_k71fr"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sscgo"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_hnl5l"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="5_p8e0k"]
+
+[sub_resource type="Resource" id="Resource_gn7wi"]
+script = ExtResource("1_o86xy")
+move = ExtResource("2_hnl5l")
+
+[sub_resource type="Resource" id="Resource_snkw3"]
+script = ExtResource("1_o86xy")
+move = ExtResource("3_2k8wp")
+
+[sub_resource type="Resource" id="Resource_skkwo"]
+script = ExtResource("1_o86xy")
+move = ExtResource("4_k71fr")
+
+[sub_resource type="Resource" id="Resource_oqxbl"]
+script = ExtResource("1_o86xy")
+move = ExtResource("5_p8e0k")
+
+[resource]
+script = ExtResource("3_j6jfy")
+id = "wobbuffet"
+display_name = "Wobbuffet"
+dex = 202
+types = Array[ExtResource("4_sscgo")]([ExtResource("5_hnl5l")])
+learnset = Array[ExtResource("1_o86xy")]([SubResource("Resource_gn7wi"), SubResource("Resource_snkw3"), SubResource("Resource_skkwo"), SubResource("Resource_oqxbl")])
+genus = "Pokémon Paciente"
+pokedex_entry = "Si dos o más Wobbuffet se encuentran, se volverán competitivos e intentarán superarse en resistencia. Pero también puede que intenten aguantar sin comer; algo que los Entrenadores deben tener muy en cuenta."
+height_m = 1.3
+weight_kg = 28.5
+base_hp = 190
+base_attack = 33
+base_defense = 58
+base_sp_attack = 33
+base_sp_defense = 58
+base_speed = 33
+base_experience = 142

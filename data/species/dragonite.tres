@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u7h3d"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_8wx4b"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cww6y"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="3_cto1j"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_rjueh"]
+[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="4_du44j"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rheb0"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_e10x1"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="5_ikfqp"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_q483x"]
+[ext_resource type="Resource" path="res://data/moves/furia_dragon.tres" id="6_wjy7r"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="7_4dj1m"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="8_k3rxi"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="9_arvyj"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="10_d7rbj"]
+[ext_resource type="Resource" path="res://data/moves/enfado.tres" id="11_pt7ap"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="12_lwh8v"]
+
+[sub_resource type="Resource" id="Resource_l3keh"]
+script = ExtResource("1_u7h3d")
+move = ExtResource("2_8wx4b")
+
+[sub_resource type="Resource" id="Resource_lpv4f"]
+script = ExtResource("1_u7h3d")
+move = ExtResource("3_cto1j")
+
+[sub_resource type="Resource" id="Resource_sedd7"]
+script = ExtResource("1_u7h3d")
+move = ExtResource("4_du44j")
+
+[sub_resource type="Resource" id="Resource_wniys"]
+script = ExtResource("1_u7h3d")
+move = ExtResource("5_ikfqp")
+
+[sub_resource type="Resource" id="Resource_ejmrp"]
+script = ExtResource("1_u7h3d")
+level = 22
+move = ExtResource("6_wjy7r")
+
+[sub_resource type="Resource" id="Resource_fl3cg"]
+script = ExtResource("1_u7h3d")
+level = 29
+move = ExtResource("7_4dj1m")
+
+[sub_resource type="Resource" id="Resource_gtdp5"]
+script = ExtResource("1_u7h3d")
+level = 38
+move = ExtResource("8_k3rxi")
+
+[sub_resource type="Resource" id="Resource_s7a5n"]
+script = ExtResource("1_u7h3d")
+level = 47
+move = ExtResource("9_arvyj")
+
+[sub_resource type="Resource" id="Resource_njfol"]
+script = ExtResource("1_u7h3d")
+level = 55
+move = ExtResource("10_d7rbj")
+
+[sub_resource type="Resource" id="Resource_t4a5v"]
+script = ExtResource("1_u7h3d")
+level = 61
+move = ExtResource("11_pt7ap")
+
+[sub_resource type="Resource" id="Resource_du5x5"]
+script = ExtResource("1_u7h3d")
+level = 75
+move = ExtResource("12_lwh8v")
+
+[resource]
+script = ExtResource("3_rjueh")
+id = "dragonite"
+display_name = "Dragonite"
+dex = 149
+types = Array[ExtResource("4_rheb0")]([ExtResource("5_e10x1"), ExtResource("6_q483x")])
+learnset = Array[ExtResource("1_u7h3d")]([SubResource("Resource_l3keh"), SubResource("Resource_lpv4f"), SubResource("Resource_sedd7"), SubResource("Resource_wniys"), SubResource("Resource_ejmrp"), SubResource("Resource_fl3cg"), SubResource("Resource_gtdp5"), SubResource("Resource_s7a5n"), SubResource("Resource_njfol"), SubResource("Resource_t4a5v"), SubResource("Resource_du5x5")])
+genus = "Pokémon Dragón"
+pokedex_entry = "Dragonite es capaz de dar la vuelta al mundo en solo 16 horas. Es un Pokémon de buen corazón que guía hasta tierra a los barcos que se encuentran perdidos en plena tormenta y a punto de zozobrar."
+height_m = 2.2
+weight_kg = 210.0
+base_hp = 91
+base_attack = 134
+base_defense = 95
+base_sp_attack = 100
+base_sp_defense = 100
+base_speed = 80
+base_experience = 270
+growth_rate = "slow"

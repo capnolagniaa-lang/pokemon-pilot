@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="1_ki22r"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sd4fp"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_m0y80"]
+
+[resource]
+script = ExtResource("2_sd4fp")
+id = "impresionar"
+display_name = "Impresionar"
+element = ExtResource("1_ki22r")
+kind = 4
+power = 30.0
+knockback = 120.0
+recovery = 0.1
+melee_range = 13.0
+swing_radius = 12.0
+final_knockback = 150.0

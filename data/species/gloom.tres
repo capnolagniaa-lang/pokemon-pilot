@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_p1qxb"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3m1qn"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_m8xxx"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="3_4rh1f"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_r06p3"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_d3vm1"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="4_no4fe"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_i16wu"]
+[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="5_rg68a"]
+[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="6_52nxn"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_o5040"]
+[ext_resource type="Resource" path="res://data/moves/acido.tres" id="7_ojmq8"]
+[ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="8_2088a"]
+[ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="9_1vsqv"]
+
+[sub_resource type="Resource" id="Resource_hd5dn"]
+script = ExtResource("1_p1qxb")
+move = ExtResource("2_m8xxx")
+
+[sub_resource type="Resource" id="Resource_6gq0j"]
+script = ExtResource("1_p1qxb")
+move = ExtResource("3_4rh1f")
+
+[sub_resource type="Resource" id="Resource_npp41"]
+script = ExtResource("1_p1qxb")
+move = ExtResource("4_no4fe")
+
+[sub_resource type="Resource" id="Resource_adgkw"]
+script = ExtResource("1_p1qxb")
+level = 16
+move = ExtResource("5_rg68a")
+
+[sub_resource type="Resource" id="Resource_qjwub"]
+script = ExtResource("1_p1qxb")
+level = 18
+move = ExtResource("6_52nxn")
+
+[sub_resource type="Resource" id="Resource_u6a6b"]
+script = ExtResource("1_p1qxb")
+level = 24
+move = ExtResource("7_ojmq8")
+
+[sub_resource type="Resource" id="Resource_qmtwv"]
+script = ExtResource("1_p1qxb")
+level = 35
+move = ExtResource("8_2088a")
+
+[sub_resource type="Resource" id="Resource_i5wef"]
+script = ExtResource("1_p1qxb")
+level = 44
+move = ExtResource("9_1vsqv")
+
+[resource]
+script = ExtResource("3_r06p3")
+id = "gloom"
+display_name = "Gloom"
+dex = 44
+types = Array[ExtResource("4_d3vm1")]([ExtResource("5_i16wu"), ExtResource("6_o5040")])
+learnset = Array[ExtResource("1_p1qxb")]([SubResource("Resource_hd5dn"), SubResource("Resource_6gq0j"), SubResource("Resource_npp41"), SubResource("Resource_adgkw"), SubResource("Resource_qjwub"), SubResource("Resource_u6a6b"), SubResource("Resource_qmtwv"), SubResource("Resource_i5wef")])
+genus = "Pokémon Hierbajo"
+pokedex_entry = "Gloom libera un fétido olor por el pistilo de la flor. Cuando está en peligro, el hedor se intensifica. Si este Pokémon está tranquilo y no se siente amenazado, no libera el desagradable olor."
+height_m = 0.8
+weight_kg = 8.6
+base_hp = 60
+base_attack = 65
+base_defense = 70
+base_sp_attack = 85
+base_sp_defense = 75
+base_speed = 40
+base_experience = 138
+growth_rate = "medium-slow"
+capture_rate = 120

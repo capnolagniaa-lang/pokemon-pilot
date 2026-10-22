@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_nrg86"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_emwr5"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_wo2oc"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="3_oouum"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ppcrc"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="4_f8ku0"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_y1foi"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="5_jmk6u"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_xij50"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="6_abcfh"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_utvv5"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="7_v2ejr"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="8_s1jwk"]
+[ext_resource type="Resource" path="res://data/moves/reserva.tres" id="9_j8isr"]
+[ext_resource type="Resource" path="res://data/moves/tragar.tres" id="10_7trxi"]
+[ext_resource type="Resource" path="res://data/moves/escupir.tres" id="11_pyr4h"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_xyy54"]
+
+[sub_resource type="Resource" id="Resource_vq5ll"]
+script = ExtResource("1_nrg86")
+move = ExtResource("2_wo2oc")
+
+[sub_resource type="Resource" id="Resource_ywjhj"]
+script = ExtResource("1_nrg86")
+move = ExtResource("3_oouum")
+
+[sub_resource type="Resource" id="Resource_f4war"]
+script = ExtResource("1_nrg86")
+move = ExtResource("4_f8ku0")
+
+[sub_resource type="Resource" id="Resource_pdrv7"]
+script = ExtResource("1_nrg86")
+move = ExtResource("5_jmk6u")
+
+[sub_resource type="Resource" id="Resource_lpurw"]
+script = ExtResource("1_nrg86")
+level = 7
+move = ExtResource("6_abcfh")
+
+[sub_resource type="Resource" id="Resource_2s724"]
+script = ExtResource("1_nrg86")
+level = 21
+move = ExtResource("7_v2ejr")
+
+[sub_resource type="Resource" id="Resource_bdufq"]
+script = ExtResource("1_nrg86")
+level = 25
+move = ExtResource("8_s1jwk")
+
+[sub_resource type="Resource" id="Resource_lui1t"]
+script = ExtResource("1_nrg86")
+level = 33
+move = ExtResource("9_j8isr")
+
+[sub_resource type="Resource" id="Resource_p8q5o"]
+script = ExtResource("1_nrg86")
+level = 33
+move = ExtResource("10_7trxi")
+
+[sub_resource type="Resource" id="Resource_qa3kg"]
+script = ExtResource("1_nrg86")
+level = 47
+move = ExtResource("11_pyr4h")
+
+[sub_resource type="Resource" id="Resource_q7qb4"]
+script = ExtResource("1_nrg86")
+level = 61
+move = ExtResource("12_xyy54")
+
+[resource]
+script = ExtResource("3_ppcrc")
+id = "pelipper"
+display_name = "Pelipper"
+dex = 279
+types = Array[ExtResource("4_y1foi")]([ExtResource("5_xij50"), ExtResource("6_utvv5")])
+learnset = Array[ExtResource("1_nrg86")]([SubResource("Resource_vq5ll"), SubResource("Resource_ywjhj"), SubResource("Resource_f4war"), SubResource("Resource_pdrv7"), SubResource("Resource_lpurw"), SubResource("Resource_2s724"), SubResource("Resource_bdufq"), SubResource("Resource_lui1t"), SubResource("Resource_p8q5o"), SubResource("Resource_qa3kg"), SubResource("Resource_q7qb4")])
+genus = "Pokémon Ave Agua"
+pokedex_entry = "Pelipper vuela transportando pequeños huevos y Pokémon dentro del descomunal pico que tiene. Este Pokémon construye su nido en escarpados acantilados frente al mar."
+height_m = 1.2
+weight_kg = 28.0
+base_hp = 60
+base_defense = 100
+base_sp_attack = 95
+base_sp_defense = 70
+base_speed = 65
+base_experience = 154

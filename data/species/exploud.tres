@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ckr0k"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4k3g0"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_lqq7f"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pwbn5"]
+[ext_resource type="Resource" path="res://data/moves/aullido.tres" id="3_wn2aq"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_un4u7"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="4_vlbws"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_mntg4"]
+[ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="5_qhre4"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="6_chdf7"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="7_6kajm"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_ox607"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_ald0u"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="10_4wmub"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="11_rm6bl"]
+[ext_resource type="Resource" path="res://data/moves/sonambulo.tres" id="12_gnygp"]
+[ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="13_d7la3"]
+
+[sub_resource type="Resource" id="Resource_ln153"]
+script = ExtResource("1_ckr0k")
+move = ExtResource("2_lqq7f")
+
+[sub_resource type="Resource" id="Resource_83ug1"]
+script = ExtResource("1_ckr0k")
+move = ExtResource("3_wn2aq")
+
+[sub_resource type="Resource" id="Resource_3ycy3"]
+script = ExtResource("1_ckr0k")
+move = ExtResource("4_vlbws")
+
+[sub_resource type="Resource" id="Resource_lkvp6"]
+script = ExtResource("1_ckr0k")
+move = ExtResource("5_qhre4")
+
+[sub_resource type="Resource" id="Resource_ek46w"]
+script = ExtResource("1_ckr0k")
+level = 23
+move = ExtResource("6_chdf7")
+
+[sub_resource type="Resource" id="Resource_qvqm3"]
+script = ExtResource("1_ckr0k")
+level = 29
+move = ExtResource("7_6kajm")
+
+[sub_resource type="Resource" id="Resource_luvi3"]
+script = ExtResource("1_ckr0k")
+level = 37
+move = ExtResource("8_ox607")
+
+[sub_resource type="Resource" id="Resource_ktf1n"]
+script = ExtResource("1_ckr0k")
+level = 40
+move = ExtResource("9_ald0u")
+
+[sub_resource type="Resource" id="Resource_1evv8"]
+script = ExtResource("1_ckr0k")
+level = 45
+move = ExtResource("10_4wmub")
+
+[sub_resource type="Resource" id="Resource_r046r"]
+script = ExtResource("1_ckr0k")
+level = 55
+move = ExtResource("11_rm6bl")
+
+[sub_resource type="Resource" id="Resource_q4tpg"]
+script = ExtResource("1_ckr0k")
+level = 55
+move = ExtResource("12_gnygp")
+
+[sub_resource type="Resource" id="Resource_wf3ey"]
+script = ExtResource("1_ckr0k")
+level = 63
+move = ExtResource("13_d7la3")
+
+[resource]
+script = ExtResource("3_pwbn5")
+id = "exploud"
+display_name = "Exploud"
+dex = 295
+types = Array[ExtResource("4_un4u7")]([ExtResource("5_mntg4")])
+learnset = Array[ExtResource("1_ckr0k")]([SubResource("Resource_ln153"), SubResource("Resource_83ug1"), SubResource("Resource_3ycy3"), SubResource("Resource_lkvp6"), SubResource("Resource_ek46w"), SubResource("Resource_qvqm3"), SubResource("Resource_luvi3"), SubResource("Resource_ktf1n"), SubResource("Resource_1evv8"), SubResource("Resource_r046r"), SubResource("Resource_q4tpg"), SubResource("Resource_wf3ey")])
+genus = "Pokémon Escandaloso"
+pokedex_entry = "Exploud provoca terremotos con el temblor que causa al levantar la voz. Cuando inhala aire por los tubos, hay que prestar atención, ya que está a punto de soltar un buen bramido."
+height_m = 1.5
+weight_kg = 84.0
+base_hp = 104
+base_attack = 91
+base_defense = 63
+base_sp_attack = 91
+base_sp_defense = 73
+base_speed = 68
+base_experience = 221
+growth_rate = "medium-slow"

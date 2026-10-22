@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_ko8x5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7w04f"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_njtf0"]
+
+[resource]
+script = ExtResource("2_7w04f")
+id = "relevo"
+display_name = "Relevo"
+element = ExtResource("1_ko8x5")
+kind = 9
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0

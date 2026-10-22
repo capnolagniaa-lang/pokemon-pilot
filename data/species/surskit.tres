@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_gu2w4"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_erwdq"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sgxfy"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_8c3f8"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_psxwc"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_6lpke"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="4_mqrrp"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="5_4egt3"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_tjf7l"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="6_22drs"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="6_gd1db"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="7_qb6n1"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="8_xavw5"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="9_5s8na"]
+
+[sub_resource type="Resource" id="Resource_asf3q"]
+script = ExtResource("1_gu2w4")
+move = ExtResource("2_erwdq")
+
+[sub_resource type="Resource" id="Resource_26fm4"]
+script = ExtResource("1_gu2w4")
+level = 7
+move = ExtResource("3_psxwc")
+
+[sub_resource type="Resource" id="Resource_43cs0"]
+script = ExtResource("1_gu2w4")
+level = 13
+move = ExtResource("4_mqrrp")
+
+[sub_resource type="Resource" id="Resource_qy8do"]
+script = ExtResource("1_gu2w4")
+level = 19
+move = ExtResource("5_4egt3")
+
+[sub_resource type="Resource" id="Resource_kv1tw"]
+script = ExtResource("1_gu2w4")
+level = 25
+move = ExtResource("6_22drs")
+
+[sub_resource type="Resource" id="Resource_qy3pp"]
+script = ExtResource("1_gu2w4")
+level = 31
+move = ExtResource("7_qb6n1")
+
+[sub_resource type="Resource" id="Resource_y8pbv"]
+script = ExtResource("1_gu2w4")
+level = 37
+move = ExtResource("8_xavw5")
+
+[sub_resource type="Resource" id="Resource_ouccl"]
+script = ExtResource("1_gu2w4")
+level = 37
+move = ExtResource("9_5s8na")
+
+[resource]
+script = ExtResource("3_8c3f8")
+id = "surskit"
+display_name = "Surskit"
+dex = 283
+types = Array[ExtResource("4_6lpke")]([ExtResource("5_tjf7l"), ExtResource("6_gd1db")])
+learnset = Array[ExtResource("1_gu2w4")]([SubResource("Resource_asf3q"), SubResource("Resource_26fm4"), SubResource("Resource_43cs0"), SubResource("Resource_qy8do"), SubResource("Resource_kv1tw"), SubResource("Resource_qy3pp"), SubResource("Resource_y8pbv"), SubResource("Resource_ouccl")])
+genus = "Pokémon Zapatero"
+pokedex_entry = "Surskit segrega un aceite por la punta de las patas que le permite caminar sobre el agua como si fuera patinando. Este Pokémon se alimenta de microorganismos en charcas y lagos."
+height_m = 0.5
+weight_kg = 1.7
+base_hp = 40
+base_attack = 30
+base_defense = 32
+base_sp_defense = 52
+base_speed = 65
+base_experience = 54
+capture_rate = 200

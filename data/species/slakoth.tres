@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_vepw3"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_q4bxb"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vc7ug"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cigyo"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="3_mwia0"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_57f6k"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="4_lutxu"]
+[ext_resource type="Resource" path="res://data/moves/relajo.tres" id="5_gkh0g"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_m0r8e"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="6_rprt1"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="7_pxwfu"]
+[ext_resource type="Resource" path="res://data/moves/antojo.tres" id="8_kxe6m"]
+[ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="9_ldmbw"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="10_34tn2"]
+
+[sub_resource type="Resource" id="Resource_22m5j"]
+script = ExtResource("1_vepw3")
+move = ExtResource("2_q4bxb")
+
+[sub_resource type="Resource" id="Resource_4t2qm"]
+script = ExtResource("1_vepw3")
+move = ExtResource("3_mwia0")
+
+[sub_resource type="Resource" id="Resource_df076"]
+script = ExtResource("1_vepw3")
+level = 7
+move = ExtResource("4_lutxu")
+
+[sub_resource type="Resource" id="Resource_0go6m"]
+script = ExtResource("1_vepw3")
+level = 13
+move = ExtResource("5_gkh0g")
+
+[sub_resource type="Resource" id="Resource_rnk1b"]
+script = ExtResource("1_vepw3")
+level = 19
+move = ExtResource("6_rprt1")
+
+[sub_resource type="Resource" id="Resource_i1imq"]
+script = ExtResource("1_vepw3")
+level = 25
+move = ExtResource("7_pxwfu")
+
+[sub_resource type="Resource" id="Resource_l0lp2"]
+script = ExtResource("1_vepw3")
+level = 31
+move = ExtResource("8_kxe6m")
+
+[sub_resource type="Resource" id="Resource_jrkn7"]
+script = ExtResource("1_vepw3")
+level = 37
+move = ExtResource("9_ldmbw")
+
+[sub_resource type="Resource" id="Resource_cn7uk"]
+script = ExtResource("1_vepw3")
+level = 43
+move = ExtResource("10_34tn2")
+
+[resource]
+script = ExtResource("3_cigyo")
+id = "slakoth"
+display_name = "Slakoth"
+dex = 287
+types = Array[ExtResource("4_57f6k")]([ExtResource("5_m0r8e")])
+learnset = Array[ExtResource("1_vepw3")]([SubResource("Resource_22m5j"), SubResource("Resource_4t2qm"), SubResource("Resource_df076"), SubResource("Resource_0go6m"), SubResource("Resource_rnk1b"), SubResource("Resource_i1imq"), SubResource("Resource_l0lp2"), SubResource("Resource_jrkn7"), SubResource("Resource_cn7uk")])
+genus = "Pokémon Gandul"
+pokedex_entry = "Slakoth se pasa más de veinte horas al día tumbado. Como se mueve tan poco, necesita muy poca comida. De hecho, la única toma que hace al día la componen tan solo tres hojas."
+height_m = 0.8
+weight_kg = 24.0
+base_hp = 60
+base_attack = 60
+base_defense = 60
+base_sp_attack = 35
+base_sp_defense = 35
+base_speed = 30
+base_experience = 56
+growth_rate = "slow"
+capture_rate = 255

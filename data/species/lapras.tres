@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_g58ah"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3hq0q"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_xcwcm"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_4yglw"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="3_axx62"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0wu2i"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_tlu51"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="5_08ipb"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_eua13"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="6_016fl"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="6_87l13"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="7_ppi2n"]
+[ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="8_l0v6t"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="9_x5ib6"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="10_2sopg"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="11_f2ve1"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_i1rac"]
+[ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="13_4j0hv"]
+
+[sub_resource type="Resource" id="Resource_e3gui"]
+script = ExtResource("1_g58ah")
+move = ExtResource("2_xcwcm")
+
+[sub_resource type="Resource" id="Resource_d7lbu"]
+script = ExtResource("1_g58ah")
+move = ExtResource("3_axx62")
+
+[sub_resource type="Resource" id="Resource_6lc0x"]
+script = ExtResource("1_g58ah")
+move = ExtResource("4_tlu51")
+
+[sub_resource type="Resource" id="Resource_fwtoa"]
+script = ExtResource("1_g58ah")
+level = 7
+move = ExtResource("5_08ipb")
+
+[sub_resource type="Resource" id="Resource_vst0h"]
+script = ExtResource("1_g58ah")
+level = 13
+move = ExtResource("6_016fl")
+
+[sub_resource type="Resource" id="Resource_jegkn"]
+script = ExtResource("1_g58ah")
+level = 19
+move = ExtResource("7_ppi2n")
+
+[sub_resource type="Resource" id="Resource_0ag4h"]
+script = ExtResource("1_g58ah")
+level = 25
+move = ExtResource("8_l0v6t")
+
+[sub_resource type="Resource" id="Resource_w0fuj"]
+script = ExtResource("1_g58ah")
+level = 31
+move = ExtResource("9_x5ib6")
+
+[sub_resource type="Resource" id="Resource_q4xg3"]
+script = ExtResource("1_g58ah")
+level = 37
+move = ExtResource("10_2sopg")
+
+[sub_resource type="Resource" id="Resource_4usic"]
+script = ExtResource("1_g58ah")
+level = 43
+move = ExtResource("11_f2ve1")
+
+[sub_resource type="Resource" id="Resource_i8lag"]
+script = ExtResource("1_g58ah")
+level = 49
+move = ExtResource("12_i1rac")
+
+[sub_resource type="Resource" id="Resource_ggq28"]
+script = ExtResource("1_g58ah")
+level = 55
+move = ExtResource("13_4j0hv")
+
+[resource]
+script = ExtResource("3_4yglw")
+id = "lapras"
+display_name = "Lapras"
+dex = 131
+types = Array[ExtResource("4_0wu2i")]([ExtResource("5_eua13"), ExtResource("6_87l13")])
+learnset = Array[ExtResource("1_g58ah")]([SubResource("Resource_e3gui"), SubResource("Resource_d7lbu"), SubResource("Resource_6lc0x"), SubResource("Resource_fwtoa"), SubResource("Resource_vst0h"), SubResource("Resource_jegkn"), SubResource("Resource_0ag4h"), SubResource("Resource_w0fuj"), SubResource("Resource_q4xg3"), SubResource("Resource_4usic"), SubResource("Resource_i8lag"), SubResource("Resource_ggq28")])
+genus = "Pokémon Transporte"
+pokedex_entry = "Por culpa de la gente, Lapras está casi en extinción. Dicen que, al anochecer, se pone a cantar quejicoso mientras busca a los miembros de su especie que puedan quedar."
+height_m = 2.5
+weight_kg = 220.0
+base_hp = 130
+base_attack = 85
+base_defense = 80
+base_sp_attack = 85
+base_sp_defense = 95
+base_speed = 60
+base_experience = 187
+growth_rate = "slow"

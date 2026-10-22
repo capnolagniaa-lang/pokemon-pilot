@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d7rej"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_t44nl"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vnkfo"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_aggho"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_lmumk"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_6fpnp"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="4_hguci"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="5_it1cp"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_ovcgu"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="6_m8a73"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_vngqs"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="7_lrtd0"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="8_jiosa"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="9_vo2p0"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_5ikxa"]
+
+[sub_resource type="Resource" id="Resource_5mh0x"]
+script = ExtResource("1_d7rej")
+move = ExtResource("2_t44nl")
+
+[sub_resource type="Resource" id="Resource_itgc8"]
+script = ExtResource("1_d7rej")
+move = ExtResource("3_lmumk")
+
+[sub_resource type="Resource" id="Resource_ju6nk"]
+script = ExtResource("1_d7rej")
+level = 4
+move = ExtResource("4_hguci")
+
+[sub_resource type="Resource" id="Resource_ho2l5"]
+script = ExtResource("1_d7rej")
+level = 8
+move = ExtResource("5_it1cp")
+
+[sub_resource type="Resource" id="Resource_8t5jt"]
+script = ExtResource("1_d7rej")
+level = 13
+move = ExtResource("6_m8a73")
+
+[sub_resource type="Resource" id="Resource_wm4se"]
+script = ExtResource("1_d7rej")
+level = 19
+move = ExtResource("7_lrtd0")
+
+[sub_resource type="Resource" id="Resource_v3udr"]
+script = ExtResource("1_d7rej")
+level = 26
+move = ExtResource("8_jiosa")
+
+[sub_resource type="Resource" id="Resource_ja3ca"]
+script = ExtResource("1_d7rej")
+level = 34
+move = ExtResource("9_vo2p0")
+
+[sub_resource type="Resource" id="Resource_xebjk"]
+script = ExtResource("1_d7rej")
+level = 43
+move = ExtResource("10_5ikxa")
+
+[resource]
+script = ExtResource("3_aggho")
+id = "taillow"
+display_name = "Taillow"
+dex = 276
+types = Array[ExtResource("4_6fpnp")]([ExtResource("5_ovcgu"), ExtResource("6_vngqs")])
+learnset = Array[ExtResource("1_d7rej")]([SubResource("Resource_5mh0x"), SubResource("Resource_itgc8"), SubResource("Resource_ju6nk"), SubResource("Resource_ho2l5"), SubResource("Resource_8t5jt"), SubResource("Resource_wm4se"), SubResource("Resource_v3udr"), SubResource("Resource_ja3ca"), SubResource("Resource_xebjk")])
+genus = "Pokémon Pequebuche"
+pokedex_entry = "Taillow se mantiene firme ante sus rivales, sean lo fuertes que sean. Este valiente Pokémon seguirá mostrándose desafiante, aunque pierda en combate. Además, si se enfada, se pondrá a gritar con energía."
+height_m = 0.3
+weight_kg = 2.3
+base_hp = 40
+base_attack = 55
+base_defense = 30
+base_sp_attack = 30
+base_sp_defense = 30
+base_speed = 85
+base_experience = 54
+growth_rate = "medium-slow"
+capture_rate = 200

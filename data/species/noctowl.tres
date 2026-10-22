@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fjmek"]
+[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="2_stvv5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xp5fv"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_8cv4o"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_w1mld"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="4_8gpq1"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_gwnfu"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_amtvr"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_ochl2"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="6_08da0"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_x1cv1"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="7_s00ct"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_w4ftw"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="9_ywa3q"]
+[ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="10_q6tep"]
+
+[sub_resource type="Resource" id="Resource_f1126"]
+script = ExtResource("1_fjmek")
+move = ExtResource("2_stvv5")
+
+[sub_resource type="Resource" id="Resource_mergt"]
+script = ExtResource("1_fjmek")
+move = ExtResource("3_8cv4o")
+
+[sub_resource type="Resource" id="Resource_36stn"]
+script = ExtResource("1_fjmek")
+move = ExtResource("4_8gpq1")
+
+[sub_resource type="Resource" id="Resource_p808l"]
+script = ExtResource("1_fjmek")
+move = ExtResource("5_amtvr")
+
+[sub_resource type="Resource" id="Resource_6f6et"]
+script = ExtResource("1_fjmek")
+level = 16
+move = ExtResource("6_08da0")
+
+[sub_resource type="Resource" id="Resource_s2hqh"]
+script = ExtResource("1_fjmek")
+level = 25
+move = ExtResource("7_s00ct")
+
+[sub_resource type="Resource" id="Resource_lrpsh"]
+script = ExtResource("1_fjmek")
+level = 33
+move = ExtResource("8_w4ftw")
+
+[sub_resource type="Resource" id="Resource_8ajm7"]
+script = ExtResource("1_fjmek")
+level = 41
+move = ExtResource("9_ywa3q")
+
+[sub_resource type="Resource" id="Resource_ivhmm"]
+script = ExtResource("1_fjmek")
+level = 57
+move = ExtResource("10_q6tep")
+
+[resource]
+script = ExtResource("3_w1mld")
+id = "noctowl"
+display_name = "Noctowl"
+dex = 164
+types = Array[ExtResource("4_gwnfu")]([ExtResource("5_ochl2"), ExtResource("6_x1cv1")])
+learnset = Array[ExtResource("1_fjmek")]([SubResource("Resource_f1126"), SubResource("Resource_mergt"), SubResource("Resource_36stn"), SubResource("Resource_p808l"), SubResource("Resource_6f6et"), SubResource("Resource_s2hqh"), SubResource("Resource_lrpsh"), SubResource("Resource_8ajm7"), SubResource("Resource_ivhmm")])
+genus = "Pokémon Búho"
+pokedex_entry = "Noctowl no falla a la hora de cazar a su presa en la oscuridad. El éxito se lo debe a una vista privilegiada, que le permite ver donde apenas hay luz, y a las ligeras y flexibles alas que tiene, que no hacen ruido alguno al volar."
+height_m = 1.6
+weight_kg = 40.8
+base_hp = 100
+base_sp_attack = 86
+base_sp_defense = 96
+base_speed = 70
+base_experience = 158
+capture_rate = 90

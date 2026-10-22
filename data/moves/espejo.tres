@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_afdkg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gn2b2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_dv4ni"]
+
+[resource]
+script = ExtResource("2_gn2b2")
+id = "espejo"
+display_name = "Espejo"
+element = ExtResource("1_afdkg")
+kind = 2
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+radius = 40.0

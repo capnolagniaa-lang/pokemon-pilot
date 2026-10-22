@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_34wqb"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_qeomp"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_yfksf"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_akjqd"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cabeza.tres" id="3_yfc0t"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_akvvp"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fk2tp"]
+[ext_resource type="Resource" path="res://data/moves/furia.tres" id="5_3phta"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_qql7s"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="6_jj4e2"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="7_e0d3v"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="8_6ah67"]
+[ext_resource type="Resource" path="res://data/moves/dragoaliento.tres" id="9_etrnb"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="10_d46sq"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_4mdi4"]
+[ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="12_f65io"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_lufgp"]
+
+[sub_resource type="Resource" id="Resource_e1nou"]
+script = ExtResource("1_34wqb")
+move = ExtResource("2_yfksf")
+
+[sub_resource type="Resource" id="Resource_64356"]
+script = ExtResource("1_34wqb")
+move = ExtResource("3_yfc0t")
+
+[sub_resource type="Resource" id="Resource_vykqp"]
+script = ExtResource("1_34wqb")
+move = ExtResource("4_akvvp")
+
+[sub_resource type="Resource" id="Resource_g5w8m"]
+script = ExtResource("1_34wqb")
+move = ExtResource("5_3phta")
+
+[sub_resource type="Resource" id="Resource_o8vi0"]
+script = ExtResource("1_34wqb")
+level = 21
+move = ExtResource("6_jj4e2")
+
+[sub_resource type="Resource" id="Resource_cy2ii"]
+script = ExtResource("1_34wqb")
+level = 25
+move = ExtResource("7_e0d3v")
+
+[sub_resource type="Resource" id="Resource_4hqtl"]
+script = ExtResource("1_34wqb")
+level = 30
+move = ExtResource("8_6ah67")
+
+[sub_resource type="Resource" id="Resource_31axl"]
+script = ExtResource("1_34wqb")
+level = 38
+move = ExtResource("9_etrnb")
+
+[sub_resource type="Resource" id="Resource_d7268"]
+script = ExtResource("1_34wqb")
+level = 47
+move = ExtResource("10_d46sq")
+
+[sub_resource type="Resource" id="Resource_mutqq"]
+script = ExtResource("1_34wqb")
+level = 56
+move = ExtResource("11_4mdi4")
+
+[sub_resource type="Resource" id="Resource_aw6oe"]
+script = ExtResource("1_34wqb")
+level = 69
+move = ExtResource("12_f65io")
+
+[sub_resource type="Resource" id="Resource_i2hba"]
+script = ExtResource("1_34wqb")
+level = 78
+move = ExtResource("13_lufgp")
+
+[resource]
+script = ExtResource("3_akjqd")
+id = "shelgon"
+display_name = "Shelgon"
+dex = 372
+types = Array[ExtResource("4_fk2tp")]([ExtResource("5_qql7s")])
+learnset = Array[ExtResource("1_34wqb")]([SubResource("Resource_e1nou"), SubResource("Resource_64356"), SubResource("Resource_vykqp"), SubResource("Resource_g5w8m"), SubResource("Resource_o8vi0"), SubResource("Resource_cy2ii"), SubResource("Resource_4hqtl"), SubResource("Resource_31axl"), SubResource("Resource_d7268"), SubResource("Resource_mutqq"), SubResource("Resource_aw6oe"), SubResource("Resource_i2hba")])
+genus = "Pokémon Resistencia"
+pokedex_entry = "Dentro de la capa acorazada de Shelgon, las células están en pleno proceso de creación de un cuerpo nuevo. El peso de la coraza le hace tener unos movimientos lentos."
+height_m = 1.1
+weight_kg = 110.5
+base_hp = 65
+base_attack = 95
+base_defense = 100
+base_sp_attack = 60
+base_experience = 147
+growth_rate = "slow"

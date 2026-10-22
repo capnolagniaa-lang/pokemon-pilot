@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_n2ilm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5frmj"]
+[ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="2_e1t57"]
+[ext_resource type="Resource" path="res://data/moves/beso_amoroso.tres" id="3_g4i83"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ryeaa"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="4_7c0lc"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rbybc"]
+[ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="5_7bxqi"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_v65my"]
+[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="6_6hsa0"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_b5tjo"]
+[ext_resource type="Resource" path="res://data/moves/puno_hielo.tres" id="7_sjgil"]
+[ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="8_jbyb8"]
+[ext_resource type="Resource" path="res://data/moves/llanto_falso.tres" id="9_3m1r5"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_ux8rc"]
+[ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="11_gxuqo"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="12_5qxl1"]
+
+[sub_resource type="Resource" id="Resource_krfr0"]
+script = ExtResource("1_n2ilm")
+move = ExtResource("2_e1t57")
+
+[sub_resource type="Resource" id="Resource_xb75b"]
+script = ExtResource("1_n2ilm")
+move = ExtResource("3_g4i83")
+
+[sub_resource type="Resource" id="Resource_tew0i"]
+script = ExtResource("1_n2ilm")
+move = ExtResource("4_7c0lc")
+
+[sub_resource type="Resource" id="Resource_lh3qa"]
+script = ExtResource("1_n2ilm")
+move = ExtResource("5_7bxqi")
+
+[sub_resource type="Resource" id="Resource_bl108"]
+script = ExtResource("1_n2ilm")
+level = 21
+move = ExtResource("6_6hsa0")
+
+[sub_resource type="Resource" id="Resource_05kph"]
+script = ExtResource("1_n2ilm")
+level = 25
+move = ExtResource("7_sjgil")
+
+[sub_resource type="Resource" id="Resource_dajxr"]
+script = ExtResource("1_n2ilm")
+level = 35
+move = ExtResource("8_jbyb8")
+
+[sub_resource type="Resource" id="Resource_6muu5"]
+script = ExtResource("1_n2ilm")
+level = 41
+move = ExtResource("9_3m1r5")
+
+[sub_resource type="Resource" id="Resource_k4sbh"]
+script = ExtResource("1_n2ilm")
+level = 51
+move = ExtResource("10_ux8rc")
+
+[sub_resource type="Resource" id="Resource_xpy3w"]
+script = ExtResource("1_n2ilm")
+level = 57
+move = ExtResource("11_gxuqo")
+
+[sub_resource type="Resource" id="Resource_8o3yl"]
+script = ExtResource("1_n2ilm")
+level = 67
+move = ExtResource("12_5qxl1")
+
+[resource]
+script = ExtResource("3_ryeaa")
+id = "jynx"
+display_name = "Jynx"
+dex = 124
+types = Array[ExtResource("4_rbybc")]([ExtResource("5_v65my"), ExtResource("6_b5tjo")])
+learnset = Array[ExtResource("1_n2ilm")]([SubResource("Resource_krfr0"), SubResource("Resource_xb75b"), SubResource("Resource_tew0i"), SubResource("Resource_lh3qa"), SubResource("Resource_bl108"), SubResource("Resource_05kph"), SubResource("Resource_dajxr"), SubResource("Resource_6muu5"), SubResource("Resource_k4sbh"), SubResource("Resource_xpy3w"), SubResource("Resource_8o3yl")])
+genus = "Pokémon Forma Humana"
+pokedex_entry = "Jynx camina con ritmo, balanceándose y moviendo las caderas como si estuviera bailando. Realiza unos movimientos tan vistosos y atractivos que no hay quien pueda resistirse a mover las caderas."
+height_m = 1.4
+weight_kg = 40.6
+base_hp = 65
+base_defense = 35
+base_sp_attack = 115
+base_sp_defense = 95
+base_speed = 95
+base_experience = 159

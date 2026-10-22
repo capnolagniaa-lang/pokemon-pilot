@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_knc4l"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_bix6o"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dh3sa"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_layuk"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_v7vct"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="4_4ye6k"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sp6je"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="5_83r01"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_ppplw"]
+[ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="6_v1is8"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="6_wuon2"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="7_xnigt"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="8_fqaia"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_3fe8g"]
+[ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="10_qbjly"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="11_yay7m"]
+[ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="12_55nfx"]
+
+[sub_resource type="Resource" id="Resource_xg87l"]
+script = ExtResource("1_knc4l")
+move = ExtResource("2_bix6o")
+
+[sub_resource type="Resource" id="Resource_mmwks"]
+script = ExtResource("1_knc4l")
+move = ExtResource("3_layuk")
+
+[sub_resource type="Resource" id="Resource_vyi7b"]
+script = ExtResource("1_knc4l")
+level = 6
+move = ExtResource("4_4ye6k")
+
+[sub_resource type="Resource" id="Resource_53y7g"]
+script = ExtResource("1_knc4l")
+level = 11
+move = ExtResource("5_83r01")
+
+[sub_resource type="Resource" id="Resource_1tbij"]
+script = ExtResource("1_knc4l")
+level = 16
+move = ExtResource("6_v1is8")
+
+[sub_resource type="Resource" id="Resource_lwcuo"]
+script = ExtResource("1_knc4l")
+level = 21
+move = ExtResource("7_xnigt")
+
+[sub_resource type="Resource" id="Resource_lr12t"]
+script = ExtResource("1_knc4l")
+level = 26
+move = ExtResource("8_fqaia")
+
+[sub_resource type="Resource" id="Resource_lf2rl"]
+script = ExtResource("1_knc4l")
+level = 31
+move = ExtResource("9_3fe8g")
+
+[sub_resource type="Resource" id="Resource_iikso"]
+script = ExtResource("1_knc4l")
+level = 36
+move = ExtResource("10_qbjly")
+
+[sub_resource type="Resource" id="Resource_go57d"]
+script = ExtResource("1_knc4l")
+level = 41
+move = ExtResource("11_yay7m")
+
+[sub_resource type="Resource" id="Resource_ei4tu"]
+script = ExtResource("1_knc4l")
+level = 46
+move = ExtResource("12_55nfx")
+
+[resource]
+script = ExtResource("3_v7vct")
+id = "scizor"
+display_name = "Scizor"
+dex = 212
+types = Array[ExtResource("4_sp6je")]([ExtResource("5_ppplw"), ExtResource("6_wuon2")])
+learnset = Array[ExtResource("1_knc4l")]([SubResource("Resource_xg87l"), SubResource("Resource_mmwks"), SubResource("Resource_vyi7b"), SubResource("Resource_53y7g"), SubResource("Resource_1tbij"), SubResource("Resource_lwcuo"), SubResource("Resource_lr12t"), SubResource("Resource_lf2rl"), SubResource("Resource_iikso"), SubResource("Resource_go57d"), SubResource("Resource_ei4tu")])
+genus = "Pokémon Tenaza"
+pokedex_entry = "Scizor tiene un cuerpo duro como el acero que no es fácil de alterar con ningún ataque común. Este Pokémon bate las alas para regular la temperatura corporal."
+height_m = 1.8
+weight_kg = 118.0
+base_hp = 70
+base_attack = 130
+base_defense = 100
+base_sp_attack = 55
+base_sp_defense = 80
+base_speed = 65
+base_experience = 175
+capture_rate = 25

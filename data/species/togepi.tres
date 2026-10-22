@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_pl0th"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_heejh"]
+[ext_resource type="Resource" path="res://data/moves/encanto.tres" id="2_wjcsa"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_5j8pa"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_8e7gu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_vvv4i"]
+[ext_resource type="Resource" path="res://data/moves/metronomo.tres" id="4_wxo28"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="5_3s1pa"]
+[ext_resource type="Resource" path="res://data/moves/beso_dulce.tres" id="5_lufaj"]
+[ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="6_tw153"]
+[ext_resource type="Resource" path="res://data/moves/otra_vez.tres" id="7_dkqu4"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="8_yjjsx"]
+[ext_resource type="Resource" path="res://data/moves/senuelo.tres" id="9_fsjka"]
+[ext_resource type="Resource" path="res://data/moves/deseo.tres" id="10_3kr5a"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="11_gto6u"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_6pwxw"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="13_rvy2h"]
+
+[sub_resource type="Resource" id="Resource_iqjys"]
+script = ExtResource("1_pl0th")
+move = ExtResource("2_wjcsa")
+
+[sub_resource type="Resource" id="Resource_hu8rj"]
+script = ExtResource("1_pl0th")
+move = ExtResource("3_8e7gu")
+
+[sub_resource type="Resource" id="Resource_1furp"]
+script = ExtResource("1_pl0th")
+level = 4
+move = ExtResource("4_wxo28")
+
+[sub_resource type="Resource" id="Resource_thswd"]
+script = ExtResource("1_pl0th")
+level = 9
+move = ExtResource("5_lufaj")
+
+[sub_resource type="Resource" id="Resource_gxxda"]
+script = ExtResource("1_pl0th")
+level = 13
+move = ExtResource("6_tw153")
+
+[sub_resource type="Resource" id="Resource_v8acc"]
+script = ExtResource("1_pl0th")
+level = 17
+move = ExtResource("7_dkqu4")
+
+[sub_resource type="Resource" id="Resource_qp65x"]
+script = ExtResource("1_pl0th")
+level = 21
+move = ExtResource("8_yjjsx")
+
+[sub_resource type="Resource" id="Resource_g25gk"]
+script = ExtResource("1_pl0th")
+level = 25
+move = ExtResource("9_fsjka")
+
+[sub_resource type="Resource" id="Resource_a2bou"]
+script = ExtResource("1_pl0th")
+level = 29
+move = ExtResource("10_3kr5a")
+
+[sub_resource type="Resource" id="Resource_lp5oo"]
+script = ExtResource("1_pl0th")
+level = 33
+move = ExtResource("11_gto6u")
+
+[sub_resource type="Resource" id="Resource_bho4u"]
+script = ExtResource("1_pl0th")
+level = 37
+move = ExtResource("12_6pwxw")
+
+[sub_resource type="Resource" id="Resource_r4uda"]
+script = ExtResource("1_pl0th")
+level = 41
+move = ExtResource("13_rvy2h")
+
+[resource]
+script = ExtResource("3_5j8pa")
+id = "togepi"
+display_name = "Togepi"
+dex = 175
+types = Array[ExtResource("4_vvv4i")]([ExtResource("5_3s1pa")])
+learnset = Array[ExtResource("1_pl0th")]([SubResource("Resource_iqjys"), SubResource("Resource_hu8rj"), SubResource("Resource_1furp"), SubResource("Resource_thswd"), SubResource("Resource_gxxda"), SubResource("Resource_v8acc"), SubResource("Resource_qp65x"), SubResource("Resource_g25gk"), SubResource("Resource_a2bou"), SubResource("Resource_lp5oo"), SubResource("Resource_bho4u"), SubResource("Resource_r4uda")])
+genus = "Pokémon Bolaclavos"
+pokedex_entry = "Togepi usa los sentimientos positivos de compasión y alegría que desprenden las personas y los Pokémon. Este Pokémon almacena sentimientos de felicidad en su interior y después los comparte con otros."
+height_m = 0.3
+weight_kg = 1.5
+base_hp = 35
+base_attack = 20
+base_defense = 65
+base_sp_attack = 40
+base_sp_defense = 65
+base_speed = 20
+base_experience = 49
+growth_rate = "fast"
+capture_rate = 190

@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_h8yxm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8tm7b"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_jrayx"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_de650"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_iocxv"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_efing"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="4_iedfm"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="5_ap2js"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_tsoaj"]
+[ext_resource type="Resource" path="res://data/moves/batido.tres" id="6_rmh1d"]
+[ext_resource type="Resource" path="res://data/moves/venganza.tres" id="7_ynv3i"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_a4fm1"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="9_ialnb"]
+[ext_resource type="Resource" path="res://data/moves/cascabel_cura.tres" id="10_jnyx7"]
+
+[sub_resource type="Resource" id="Resource_xlgee"]
+script = ExtResource("1_h8yxm")
+move = ExtResource("2_jrayx")
+
+[sub_resource type="Resource" id="Resource_tymkp"]
+script = ExtResource("1_h8yxm")
+level = 4
+move = ExtResource("3_iocxv")
+
+[sub_resource type="Resource" id="Resource_f47xs"]
+script = ExtResource("1_h8yxm")
+level = 8
+move = ExtResource("4_iedfm")
+
+[sub_resource type="Resource" id="Resource_xdsah"]
+script = ExtResource("1_h8yxm")
+level = 13
+move = ExtResource("5_ap2js")
+
+[sub_resource type="Resource" id="Resource_gvvkj"]
+script = ExtResource("1_h8yxm")
+level = 19
+move = ExtResource("6_rmh1d")
+
+[sub_resource type="Resource" id="Resource_upv67"]
+script = ExtResource("1_h8yxm")
+level = 26
+move = ExtResource("7_ynv3i")
+
+[sub_resource type="Resource" id="Resource_tu43q"]
+script = ExtResource("1_h8yxm")
+level = 34
+move = ExtResource("8_a4fm1")
+
+[sub_resource type="Resource" id="Resource_47cpm"]
+script = ExtResource("1_h8yxm")
+level = 43
+move = ExtResource("9_ialnb")
+
+[sub_resource type="Resource" id="Resource_y78ma"]
+script = ExtResource("1_h8yxm")
+level = 53
+move = ExtResource("10_jnyx7")
+
+[resource]
+script = ExtResource("3_de650")
+id = "miltank"
+display_name = "Miltank"
+dex = 241
+types = Array[ExtResource("4_efing")]([ExtResource("5_tsoaj")])
+learnset = Array[ExtResource("1_h8yxm")]([SubResource("Resource_xlgee"), SubResource("Resource_tymkp"), SubResource("Resource_f47xs"), SubResource("Resource_xdsah"), SubResource("Resource_gvvkj"), SubResource("Resource_upv67"), SubResource("Resource_tu43q"), SubResource("Resource_47cpm"), SubResource("Resource_y78ma")])
+genus = "Pokémon Lechera"
+pokedex_entry = "Miltank da al día 20 l de una leche dulce que es la delicia de pequeños y mayores. Aquellos que no pueden tomarla, se decantan por los yogures."
+height_m = 1.2
+weight_kg = 75.5
+base_hp = 95
+base_attack = 80
+base_defense = 105
+base_sp_attack = 40
+base_sp_defense = 70
+base_speed = 100
+base_experience = 172
+growth_rate = "slow"

@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cfwdq"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_b7iky"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_v7wql"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_7cwtk"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_mvyh3"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="4_54okq"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_tnban"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_60odb"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_vo6j4"]
+[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="6_0mgy6"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="6_8lx6b"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="7_hoch6"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="8_1f8yx"]
+[ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="9_ejl6d"]
+
+[sub_resource type="Resource" id="Resource_1mfg2"]
+script = ExtResource("1_cfwdq")
+move = ExtResource("2_v7wql")
+
+[sub_resource type="Resource" id="Resource_featm"]
+script = ExtResource("1_cfwdq")
+move = ExtResource("3_7cwtk")
+
+[sub_resource type="Resource" id="Resource_h8scm"]
+script = ExtResource("1_cfwdq")
+move = ExtResource("4_54okq")
+
+[sub_resource type="Resource" id="Resource_0l6mb"]
+script = ExtResource("1_cfwdq")
+move = ExtResource("5_60odb")
+
+[sub_resource type="Resource" id="Resource_l2kje"]
+script = ExtResource("1_cfwdq")
+level = 29
+move = ExtResource("6_0mgy6")
+
+[sub_resource type="Resource" id="Resource_neinb"]
+script = ExtResource("1_cfwdq")
+level = 40
+move = ExtResource("7_hoch6")
+
+[sub_resource type="Resource" id="Resource_8sv5c"]
+script = ExtResource("1_cfwdq")
+level = 51
+move = ExtResource("8_1f8yx")
+
+[sub_resource type="Resource" id="Resource_ju182"]
+script = ExtResource("1_cfwdq")
+level = 62
+move = ExtResource("9_ejl6d")
+
+[resource]
+script = ExtResource("3_mvyh3")
+id = "kingdra"
+display_name = "Kingdra"
+dex = 230
+types = Array[ExtResource("4_tnban")]([ExtResource("5_vo6j4"), ExtResource("6_8lx6b")])
+learnset = Array[ExtResource("1_cfwdq")]([SubResource("Resource_1mfg2"), SubResource("Resource_featm"), SubResource("Resource_h8scm"), SubResource("Resource_0l6mb"), SubResource("Resource_l2kje"), SubResource("Resource_neinb"), SubResource("Resource_8sv5c"), SubResource("Resource_ju182")])
+genus = "Pokémon Dragón"
+pokedex_entry = "Kingdra vive en lo más profundo del océano, donde no habita ninguna otra especie. Siempre se ha pensado que su bostezo causaba las corrientes en remolino que se dan en el océano."
+height_m = 1.8
+weight_kg = 152.0
+base_hp = 75
+base_attack = 95
+base_defense = 95
+base_sp_attack = 95
+base_sp_defense = 95
+base_speed = 85
+base_experience = 243

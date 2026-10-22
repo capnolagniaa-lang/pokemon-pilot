@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l41dt"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1arqo"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_1jmp4"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_a11tv"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_dy0bf"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0tsb5"]
+[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="4_2b5ni"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_fq0fe"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="5_vps8w"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_abeus"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="6_iwk5c"]
+[ext_resource type="Resource" path="res://data/moves/telepata.tres" id="7_wqb6o"]
+[ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="8_7ce4v"]
+[ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="9_p4n1i"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="10_74s5l"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="11_efwev"]
+
+[sub_resource type="Resource" id="Resource_iftn8"]
+script = ExtResource("1_l41dt")
+move = ExtResource("2_1jmp4")
+
+[sub_resource type="Resource" id="Resource_lwwxq"]
+script = ExtResource("1_l41dt")
+move = ExtResource("3_a11tv")
+
+[sub_resource type="Resource" id="Resource_xrtlf"]
+script = ExtResource("1_l41dt")
+level = 5
+move = ExtResource("4_2b5ni")
+
+[sub_resource type="Resource" id="Resource_ujtpf"]
+script = ExtResource("1_l41dt")
+level = 9
+move = ExtResource("5_vps8w")
+
+[sub_resource type="Resource" id="Resource_akrxo"]
+script = ExtResource("1_l41dt")
+level = 14
+move = ExtResource("6_iwk5c")
+
+[sub_resource type="Resource" id="Resource_jdwnc"]
+script = ExtResource("1_l41dt")
+level = 19
+move = ExtResource("7_wqb6o")
+
+[sub_resource type="Resource" id="Resource_sigxl"]
+script = ExtResource("1_l41dt")
+level = 25
+move = ExtResource("8_7ce4v")
+
+[sub_resource type="Resource" id="Resource_frnqh"]
+script = ExtResource("1_l41dt")
+level = 31
+move = ExtResource("9_p4n1i")
+
+[sub_resource type="Resource" id="Resource_j2g21"]
+script = ExtResource("1_l41dt")
+level = 38
+move = ExtResource("10_74s5l")
+
+[sub_resource type="Resource" id="Resource_be3v5"]
+script = ExtResource("1_l41dt")
+level = 45
+move = ExtResource("11_efwev")
+
+[resource]
+script = ExtResource("3_dy0bf")
+id = "nincada"
+display_name = "Nincada"
+dex = 290
+types = Array[ExtResource("4_0tsb5")]([ExtResource("5_fq0fe"), ExtResource("6_abeus")])
+learnset = Array[ExtResource("1_l41dt")]([SubResource("Resource_iftn8"), SubResource("Resource_lwwxq"), SubResource("Resource_xrtlf"), SubResource("Resource_ujtpf"), SubResource("Resource_akrxo"), SubResource("Resource_jdwnc"), SubResource("Resource_sigxl"), SubResource("Resource_frnqh"), SubResource("Resource_j2g21"), SubResource("Resource_be3v5")])
+genus = "Pokémon Aprendiz"
+pokedex_entry = "Nincada vive bajo tierra en la más absoluta oscuridad durante años. Este Pokémon absorbe nutrientes de las raíces de los árboles y permanece inmóvil a la espera de su evolución."
+height_m = 0.5
+weight_kg = 5.5
+base_hp = 31
+base_attack = 45
+base_defense = 90
+base_sp_attack = 30
+base_sp_defense = 30
+base_speed = 40
+base_experience = 53
+growth_rate = "slow-then-very-fast"
+capture_rate = 255

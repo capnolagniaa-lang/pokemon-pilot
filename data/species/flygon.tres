@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1wo88"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_f2kgy"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_vogb1"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_al0h3"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="3_gyfr4"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_66p23"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="4_kwca5"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_k1ry6"]
+[ext_resource type="Resource" path="res://data/moves/bucle_arena.tres" id="5_o5m15"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="6_4tqmv"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="6_41n0t"]
+[ext_resource type="Resource" path="res://data/moves/dragoaliento.tres" id="7_j4r4l"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_ehato"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="9_ue74w"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_xli0j"]
+
+[sub_resource type="Resource" id="Resource_4y3w2"]
+script = ExtResource("1_1wo88")
+move = ExtResource("2_vogb1")
+
+[sub_resource type="Resource" id="Resource_kbpds"]
+script = ExtResource("1_1wo88")
+move = ExtResource("3_gyfr4")
+
+[sub_resource type="Resource" id="Resource_02txm"]
+script = ExtResource("1_1wo88")
+move = ExtResource("4_kwca5")
+
+[sub_resource type="Resource" id="Resource_msouk"]
+script = ExtResource("1_1wo88")
+move = ExtResource("5_o5m15")
+
+[sub_resource type="Resource" id="Resource_8n67s"]
+script = ExtResource("1_1wo88")
+level = 33
+move = ExtResource("6_41n0t")
+
+[sub_resource type="Resource" id="Resource_86nje"]
+script = ExtResource("1_1wo88")
+level = 35
+move = ExtResource("7_j4r4l")
+
+[sub_resource type="Resource" id="Resource_der86"]
+script = ExtResource("1_1wo88")
+level = 41
+move = ExtResource("8_ehato")
+
+[sub_resource type="Resource" id="Resource_u0vq6"]
+script = ExtResource("1_1wo88")
+level = 53
+move = ExtResource("9_ue74w")
+
+[sub_resource type="Resource" id="Resource_lbexo"]
+script = ExtResource("1_1wo88")
+level = 65
+move = ExtResource("10_xli0j")
+
+[resource]
+script = ExtResource("3_al0h3")
+id = "flygon"
+display_name = "Flygon"
+dex = 330
+types = Array[ExtResource("4_66p23")]([ExtResource("5_k1ry6"), ExtResource("6_4tqmv")])
+learnset = Array[ExtResource("1_1wo88")]([SubResource("Resource_4y3w2"), SubResource("Resource_kbpds"), SubResource("Resource_02txm"), SubResource("Resource_msouk"), SubResource("Resource_8n67s"), SubResource("Resource_86nje"), SubResource("Resource_der86"), SubResource("Resource_u0vq6"), SubResource("Resource_lbexo")])
+genus = "Pokémon Místico"
+pokedex_entry = "A Flygon se le conoce como el Espíritu del Desierto. Al volar, como levanta una nube de arena al batir las alas, está siempre envuelto en una tormenta de arena."
+height_m = 2.0
+weight_kg = 82.0
+base_hp = 80
+base_attack = 100
+base_defense = 80
+base_sp_attack = 80
+base_sp_defense = 80
+base_speed = 100
+base_experience = 234
+growth_rate = "medium-slow"

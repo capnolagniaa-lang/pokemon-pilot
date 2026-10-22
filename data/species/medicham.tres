@@ -1,0 +1,111 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yqyy4"]
+[ext_resource type="Resource" path="res://data/moves/venganza.tres" id="2_glmow"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ji3w5"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_m6qku"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="3_xf3vd"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fyxik"]
+[ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="4_rxuse"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_86jsn"]
+[ext_resource type="Resource" path="res://data/moves/puno_fuego.tres" id="5_gjeva"]
+[ext_resource type="Resource" path="res://data/moves/puno_hielo.tres" id="6_ndkq6"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_x2ji4"]
+[ext_resource type="Resource" path="res://data/moves/meditacion.tres" id="7_tnck7"]
+[ext_resource type="Resource" path="res://data/moves/puno_trueno.tres" id="8_mf42m"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="9_u0261"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_ai7he"]
+[ext_resource type="Resource" path="res://data/moves/telepata.tres" id="11_g7fo5"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="12_vrqq1"]
+[ext_resource type="Resource" path="res://data/moves/patada_salto_alta.tres" id="13_jhheu"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="14_np8i5"]
+[ext_resource type="Resource" path="res://data/moves/inversion.tres" id="15_jbjec"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="16_7r6b1"]
+
+[sub_resource type="Resource" id="Resource_417cg"]
+script = ExtResource("1_yqyy4")
+move = ExtResource("2_glmow")
+
+[sub_resource type="Resource" id="Resource_isyg1"]
+script = ExtResource("1_yqyy4")
+move = ExtResource("3_xf3vd")
+
+[sub_resource type="Resource" id="Resource_p2mqd"]
+script = ExtResource("1_yqyy4")
+move = ExtResource("4_rxuse")
+
+[sub_resource type="Resource" id="Resource_0qlpp"]
+script = ExtResource("1_yqyy4")
+move = ExtResource("5_gjeva")
+
+[sub_resource type="Resource" id="Resource_16g1t"]
+script = ExtResource("1_yqyy4")
+move = ExtResource("6_ndkq6")
+
+[sub_resource type="Resource" id="Resource_8i5pp"]
+script = ExtResource("1_yqyy4")
+move = ExtResource("7_tnck7")
+
+[sub_resource type="Resource" id="Resource_ylkxn"]
+script = ExtResource("1_yqyy4")
+move = ExtResource("8_mf42m")
+
+[sub_resource type="Resource" id="Resource_andle"]
+script = ExtResource("1_yqyy4")
+level = 17
+move = ExtResource("9_u0261")
+
+[sub_resource type="Resource" id="Resource_as41c"]
+script = ExtResource("1_yqyy4")
+level = 20
+move = ExtResource("10_ai7he")
+
+[sub_resource type="Resource" id="Resource_mcrb6"]
+script = ExtResource("1_yqyy4")
+level = 25
+move = ExtResource("11_g7fo5")
+
+[sub_resource type="Resource" id="Resource_ronp3"]
+script = ExtResource("1_yqyy4")
+level = 28
+move = ExtResource("12_vrqq1")
+
+[sub_resource type="Resource" id="Resource_1rd25"]
+script = ExtResource("1_yqyy4")
+level = 33
+move = ExtResource("13_jhheu")
+
+[sub_resource type="Resource" id="Resource_v35vl"]
+script = ExtResource("1_yqyy4")
+level = 36
+move = ExtResource("14_np8i5")
+
+[sub_resource type="Resource" id="Resource_570jm"]
+script = ExtResource("1_yqyy4")
+level = 47
+move = ExtResource("15_jbjec")
+
+[sub_resource type="Resource" id="Resource_nux4h"]
+script = ExtResource("1_yqyy4")
+level = 56
+move = ExtResource("16_7r6b1")
+
+[resource]
+script = ExtResource("3_m6qku")
+id = "medicham"
+display_name = "Medicham"
+dex = 308
+types = Array[ExtResource("4_fyxik")]([ExtResource("5_86jsn"), ExtResource("6_x2ji4")])
+learnset = Array[ExtResource("1_yqyy4")]([SubResource("Resource_417cg"), SubResource("Resource_isyg1"), SubResource("Resource_p2mqd"), SubResource("Resource_0qlpp"), SubResource("Resource_16g1t"), SubResource("Resource_8i5pp"), SubResource("Resource_ylkxn"), SubResource("Resource_andle"), SubResource("Resource_as41c"), SubResource("Resource_mcrb6"), SubResource("Resource_ronp3"), SubResource("Resource_1rd25"), SubResource("Resource_v35vl"), SubResource("Resource_570jm"), SubResource("Resource_nux4h")])
+genus = "Pokémon Meditador"
+pokedex_entry = "Dicen que, a través de la meditación, Medicham aumenta su energía interior y agudiza su sexto sentido. Este Pokémon suele pasar desapercibido mimetizándose con el campo y las montañas."
+height_m = 1.3
+weight_kg = 31.5
+base_hp = 60
+base_attack = 60
+base_defense = 75
+base_sp_attack = 60
+base_sp_defense = 75
+base_speed = 80
+base_experience = 144
+capture_rate = 90

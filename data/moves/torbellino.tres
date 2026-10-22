@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_1llfs"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_jwxni"]
+[ext_resource type="Resource" path="res://data/status/enraizado.tres" id="3_tmqff"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_okjb4"]
+
+[resource]
+script = ExtResource("2_jwxni")
+id = "torbellino"
+display_name = "Torbellino"
+element = ExtResource("1_1llfs")
+category = 1
+power = 35.0
+cooldown = 1.35
+knockback = 60.0
+recovery = 0.1
+status = ExtResource("3_tmqff")
+status_chance = 1.0
+speed = 280.0
+size = 3.875
+lifetime = 0.85

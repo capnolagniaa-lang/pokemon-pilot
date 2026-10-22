@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_shbc2"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_6m1h5"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xr843"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1cha5"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_hxfji"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="4_6ydbu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_a0h1h"]
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="5_6pob2"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="5_yo6hf"]
+[ext_resource type="Resource" path="res://data/moves/viento_cortante.tres" id="6_72tpx"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="7_o3skw"]
+[ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="8_ooctu"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="9_lpk4u"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_fh6v6"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="11_0d64v"]
+[ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="12_xlx25"]
+
+[sub_resource type="Resource" id="Resource_vpuro"]
+script = ExtResource("1_shbc2")
+move = ExtResource("2_6m1h5")
+
+[sub_resource type="Resource" id="Resource_sl8xa"]
+script = ExtResource("1_shbc2")
+level = 5
+move = ExtResource("3_hxfji")
+
+[sub_resource type="Resource" id="Resource_kqqxb"]
+script = ExtResource("1_shbc2")
+level = 9
+move = ExtResource("4_6ydbu")
+
+[sub_resource type="Resource" id="Resource_pxbt4"]
+script = ExtResource("1_shbc2")
+level = 13
+move = ExtResource("5_yo6hf")
+
+[sub_resource type="Resource" id="Resource_48lo8"]
+script = ExtResource("1_shbc2")
+level = 17
+move = ExtResource("6_72tpx")
+
+[sub_resource type="Resource" id="Resource_in1ie"]
+script = ExtResource("1_shbc2")
+level = 21
+move = ExtResource("7_o3skw")
+
+[sub_resource type="Resource" id="Resource_i8hif"]
+script = ExtResource("1_shbc2")
+level = 26
+move = ExtResource("8_ooctu")
+
+[sub_resource type="Resource" id="Resource_royu2"]
+script = ExtResource("1_shbc2")
+level = 31
+move = ExtResource("9_lpk4u")
+
+[sub_resource type="Resource" id="Resource_3g6xu"]
+script = ExtResource("1_shbc2")
+level = 36
+move = ExtResource("10_fh6v6")
+
+[sub_resource type="Resource" id="Resource_d18w1"]
+script = ExtResource("1_shbc2")
+level = 41
+move = ExtResource("11_0d64v")
+
+[sub_resource type="Resource" id="Resource_pppvn"]
+script = ExtResource("1_shbc2")
+level = 46
+move = ExtResource("12_xlx25")
+
+[resource]
+script = ExtResource("3_1cha5")
+id = "absol"
+display_name = "Absol"
+dex = 359
+types = Array[ExtResource("4_a0h1h")]([ExtResource("5_6pob2")])
+learnset = Array[ExtResource("1_shbc2")]([SubResource("Resource_vpuro"), SubResource("Resource_sl8xa"), SubResource("Resource_kqqxb"), SubResource("Resource_pxbt4"), SubResource("Resource_48lo8"), SubResource("Resource_in1ie"), SubResource("Resource_i8hif"), SubResource("Resource_royu2"), SubResource("Resource_3g6xu"), SubResource("Resource_d18w1"), SubResource("Resource_pppvn")])
+genus = "Pokémon Catástrofe"
+pokedex_entry = "Cada vez que Absol aparece ante la gente, ocurre una catástrofe natural como un terremoto o un maremoto. Por esta razón se le conoce como el Pokémon de las catástrofes."
+height_m = 1.2
+weight_kg = 47.0
+base_hp = 65
+base_attack = 130
+base_defense = 60
+base_sp_attack = 75
+base_sp_defense = 60
+base_speed = 75
+base_experience = 163
+growth_rate = "medium-slow"
+capture_rate = 30

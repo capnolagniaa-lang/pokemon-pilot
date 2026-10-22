@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_y4sg4"]
+[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_6ie03"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_64jx7"]
+[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="3_0a30s"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_285h0"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_h0cys"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_othot"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_at81q"]
+[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="5_blf2y"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="6_umsxr"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="7_beea0"]
+[ext_resource type="Resource" path="res://data/moves/tambor.tres" id="8_em6ef"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_ng27l"]
+
+[sub_resource type="Resource" id="Resource_ofsjn"]
+script = ExtResource("1_y4sg4")
+move = ExtResource("2_6ie03")
+
+[sub_resource type="Resource" id="Resource_uktav"]
+script = ExtResource("1_y4sg4")
+move = ExtResource("3_0a30s")
+
+[sub_resource type="Resource" id="Resource_sw3qy"]
+script = ExtResource("1_y4sg4")
+move = ExtResource("4_h0cys")
+
+[sub_resource type="Resource" id="Resource_f3j6j"]
+script = ExtResource("1_y4sg4")
+level = 19
+move = ExtResource("5_blf2y")
+
+[sub_resource type="Resource" id="Resource_dfjm5"]
+script = ExtResource("1_y4sg4")
+level = 27
+move = ExtResource("6_umsxr")
+
+[sub_resource type="Resource" id="Resource_17ds2"]
+script = ExtResource("1_y4sg4")
+level = 35
+move = ExtResource("7_beea0")
+
+[sub_resource type="Resource" id="Resource_u40f4"]
+script = ExtResource("1_y4sg4")
+level = 43
+move = ExtResource("8_em6ef")
+
+[sub_resource type="Resource" id="Resource_6h2m8"]
+script = ExtResource("1_y4sg4")
+level = 51
+move = ExtResource("9_ng27l")
+
+[resource]
+script = ExtResource("3_285h0")
+id = "poliwhirl"
+display_name = "Poliwhirl"
+dex = 61
+types = Array[ExtResource("4_othot")]([ExtResource("5_at81q")])
+learnset = Array[ExtResource("1_y4sg4")]([SubResource("Resource_ofsjn"), SubResource("Resource_uktav"), SubResource("Resource_sw3qy"), SubResource("Resource_f3j6j"), SubResource("Resource_dfjm5"), SubResource("Resource_17ds2"), SubResource("Resource_u40f4"), SubResource("Resource_6h2m8")])
+genus = "Pokémon Renacuajo"
+pokedex_entry = "La piel de Poliwhirl está siempre húmeda y lubricada con un fluido viscoso. Gracias a esta película resbaladiza, puede escapar de las garras del enemigo, resbalándosele de las zarpas en pleno combate."
+height_m = 1.0
+weight_kg = 20.0
+base_hp = 65
+base_attack = 65
+base_defense = 65
+base_speed = 90
+base_experience = 135
+growth_rate = "medium-slow"
+capture_rate = 120

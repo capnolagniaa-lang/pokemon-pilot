@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_v22vy"]
+[ext_resource type="Resource" path="res://data/moves/desquite.tres" id="2_aidsr"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_toikw"]
+[ext_resource type="Resource" path="res://data/moves/patada_giro.tres" id="3_2ivto"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_hfv2e"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cnu0g"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="4_vmlw2"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="5_e71on"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_whtbx"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="6_36dox"]
+[ext_resource type="Resource" path="res://data/moves/triple_patada.tres" id="7_dq54g"]
+[ext_resource type="Resource" path="res://data/moves/giro_rapido.tres" id="8_bmt73"]
+[ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="9_6j8ip"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_tacyq"]
+[ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="11_l4mxq"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="12_7y7cn"]
+
+[sub_resource type="Resource" id="Resource_ybcd6"]
+script = ExtResource("1_v22vy")
+move = ExtResource("2_aidsr")
+
+[sub_resource type="Resource" id="Resource_i0815"]
+script = ExtResource("1_v22vy")
+move = ExtResource("3_2ivto")
+
+[sub_resource type="Resource" id="Resource_3efc7"]
+script = ExtResource("1_v22vy")
+level = 7
+move = ExtResource("4_vmlw2")
+
+[sub_resource type="Resource" id="Resource_k5tku"]
+script = ExtResource("1_v22vy")
+level = 13
+move = ExtResource("5_e71on")
+
+[sub_resource type="Resource" id="Resource_on8pm"]
+script = ExtResource("1_v22vy")
+level = 19
+move = ExtResource("6_36dox")
+
+[sub_resource type="Resource" id="Resource_f00xr"]
+script = ExtResource("1_v22vy")
+level = 20
+move = ExtResource("7_dq54g")
+
+[sub_resource type="Resource" id="Resource_yuotc"]
+script = ExtResource("1_v22vy")
+level = 25
+move = ExtResource("8_bmt73")
+
+[sub_resource type="Resource" id="Resource_yq2cc"]
+script = ExtResource("1_v22vy")
+level = 31
+move = ExtResource("9_6j8ip")
+
+[sub_resource type="Resource" id="Resource_tvx62"]
+script = ExtResource("1_v22vy")
+level = 37
+move = ExtResource("10_tacyq")
+
+[sub_resource type="Resource" id="Resource_l6n5w"]
+script = ExtResource("1_v22vy")
+level = 43
+move = ExtResource("11_l4mxq")
+
+[sub_resource type="Resource" id="Resource_ywrg3"]
+script = ExtResource("1_v22vy")
+level = 49
+move = ExtResource("12_7y7cn")
+
+[resource]
+script = ExtResource("3_hfv2e")
+id = "hitmontop"
+display_name = "Hitmontop"
+dex = 237
+types = Array[ExtResource("4_cnu0g")]([ExtResource("5_whtbx")])
+learnset = Array[ExtResource("1_v22vy")]([SubResource("Resource_ybcd6"), SubResource("Resource_i0815"), SubResource("Resource_3efc7"), SubResource("Resource_k5tku"), SubResource("Resource_on8pm"), SubResource("Resource_f00xr"), SubResource("Resource_yuotc"), SubResource("Resource_yq2cc"), SubResource("Resource_tvx62"), SubResource("Resource_l6n5w"), SubResource("Resource_ywrg3")])
+genus = "Pokémon Boca Abajo"
+pokedex_entry = "Hitmontop hace el pino con la cabeza y se pone a girar rápido al tiempo que reparte patadas. Esta es una técnica ofensiva y defensiva a la vez. Este Pokémon se desplaza más rápido girando sobre sí que caminando."
+height_m = 1.4
+weight_kg = 48.0
+base_attack = 95
+base_defense = 95
+base_sp_attack = 35
+base_sp_defense = 110
+base_speed = 70
+base_experience = 159

@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_b70tb"]
+[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="2_5vsto"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xdjqj"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_dsch4"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="3_wuv8b"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="4_qk2a3"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_xbo6p"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_s1pay"]
+[ext_resource type="Resource" path="res://data/moves/disparo_demora.tres" id="5_ublsq"]
+[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="6_4mrr5"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_l4htn"]
+[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="7_rcups"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="8_xxyt4"]
+[ext_resource type="Resource" path="res://data/moves/telarana.tres" id="9_qha1m"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_86pj7"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_fvlvu"]
+
+[sub_resource type="Resource" id="Resource_1mcwk"]
+script = ExtResource("1_b70tb")
+move = ExtResource("2_5vsto")
+
+[sub_resource type="Resource" id="Resource_iv8xi"]
+script = ExtResource("1_b70tb")
+move = ExtResource("3_wuv8b")
+
+[sub_resource type="Resource" id="Resource_20l0u"]
+script = ExtResource("1_b70tb")
+move = ExtResource("4_qk2a3")
+
+[sub_resource type="Resource" id="Resource_v3rim"]
+script = ExtResource("1_b70tb")
+move = ExtResource("5_ublsq")
+
+[sub_resource type="Resource" id="Resource_hyhiq"]
+script = ExtResource("1_b70tb")
+level = 17
+move = ExtResource("6_4mrr5")
+
+[sub_resource type="Resource" id="Resource_xoa8r"]
+script = ExtResource("1_b70tb")
+level = 25
+move = ExtResource("7_rcups")
+
+[sub_resource type="Resource" id="Resource_uuymc"]
+script = ExtResource("1_b70tb")
+level = 34
+move = ExtResource("8_xxyt4")
+
+[sub_resource type="Resource" id="Resource_5yejt"]
+script = ExtResource("1_b70tb")
+level = 43
+move = ExtResource("9_qha1m")
+
+[sub_resource type="Resource" id="Resource_y3m5y"]
+script = ExtResource("1_b70tb")
+level = 53
+move = ExtResource("10_86pj7")
+
+[sub_resource type="Resource" id="Resource_fqre4"]
+script = ExtResource("1_b70tb")
+level = 63
+move = ExtResource("11_fvlvu")
+
+[resource]
+script = ExtResource("3_dsch4")
+id = "ariados"
+display_name = "Ariados"
+dex = 168
+types = Array[ExtResource("4_xbo6p")]([ExtResource("5_s1pay"), ExtResource("6_l4htn")])
+learnset = Array[ExtResource("1_b70tb")]([SubResource("Resource_1mcwk"), SubResource("Resource_iv8xi"), SubResource("Resource_20l0u"), SubResource("Resource_v3rim"), SubResource("Resource_hyhiq"), SubResource("Resource_xoa8r"), SubResource("Resource_uuymc"), SubResource("Resource_5yejt"), SubResource("Resource_y3m5y"), SubResource("Resource_fqre4")])
+genus = "Pokémon Pata Larga"
+pokedex_entry = "Ariados tiene unas patas con forma de garfio que le permiten correr por techos y superficies verticales. Este Pokémon oprime al rival con una tela de araña fina y resistente."
+height_m = 1.1
+weight_kg = 33.5
+base_hp = 70
+base_attack = 90
+base_defense = 70
+base_sp_attack = 60
+base_sp_defense = 70
+base_speed = 40
+base_experience = 140
+growth_rate = "fast"
+capture_rate = 90

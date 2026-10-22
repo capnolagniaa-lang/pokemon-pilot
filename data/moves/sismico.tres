@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="1_8sgj2"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5auy2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_0d38p"]
+
+[resource]
+script = ExtResource("2_5auy2")
+id = "sismico"
+display_name = "Sísmico"
+element = ExtResource("1_8sgj2")
+kind = 4
+power = 60.0
+cooldown = 1.35
+knockback = 120.0
+recovery = 0.1
+melee_range = 13.0
+swing_radius = 12.0
+final_knockback = 150.0

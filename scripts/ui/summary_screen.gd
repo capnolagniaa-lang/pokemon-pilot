@@ -42,7 +42,7 @@ func _ready() -> void:
 	_moves_tab.add_theme_constant_override("separation", 10)
 	_tabs.add_child(_moves_tab)
 	_build_moves()
-	_tabs.get_tab_bar().grab_focus.call_deferred()
+	UiStyle.focus_later(_tabs.get_tab_bar())
 
 
 func _left_column() -> Control:
@@ -322,7 +322,7 @@ func _equip(slot: int, m: MoveData) -> void:
 		Events.equipment_changed.emit(_inst)
 	_build_moves()
 	_hint.text = msg
-	_slot_buttons[slot].grab_focus.call_deferred()
+	UiStyle.focus_later(_slot_buttons[slot])
 
 
 func _update_hint() -> void:

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fpb4i"]
+[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="2_ojtw7"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_so6mq"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ojtw7"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_g0ol0"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_tqonb"]
+
+[sub_resource type="Resource" id="Resource_g0ol0"]
+script = ExtResource("1_fpb4i")
+move = ExtResource("2_ojtw7")
+
+[resource]
+script = ExtResource("3_ojtw7")
+id = "abra"
+display_name = "Abra"
+dex = 63
+types = Array[ExtResource("4_g0ol0")]([ExtResource("5_tqonb")])
+learnset = Array[ExtResource("1_fpb4i")]([SubResource("Resource_g0ol0")])
+genus = "Pokémon Psi"
+pokedex_entry = "Abra duerme 18 horas al día, pero puede detectar a cualquier enemigo que se le acerque mientras duerme. En una situación así, usa Teletransporte para protegerse."
+height_m = 0.9
+weight_kg = 19.5
+base_hp = 25
+base_attack = 20
+base_defense = 15
+base_sp_attack = 105
+base_sp_defense = 55
+base_speed = 90
+base_experience = 62
+growth_rate = "medium-slow"
+capture_rate = 200

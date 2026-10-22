@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="1_mqqtn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4wu8f"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_5b0r0"]
+
+[resource]
+script = ExtResource("2_4wu8f")
+id = "garra_dragon"
+display_name = "Garra Dragón"
+element = ExtResource("1_mqqtn")
+kind = 1
+power = 80.0
+cooldown = 2.15
+knockback = 220.0
+recovery = 0.3
+dash_time = 0.28

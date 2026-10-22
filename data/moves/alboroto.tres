@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_wpueh"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_u5f7r"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_xuava"]
+
+[resource]
+script = ExtResource("2_u5f7r")
+id = "alboroto"
+display_name = "Alboroto"
+element = ExtResource("1_wpueh")
+category = 1
+power = 90.0
+cooldown = 2.35
+cast_time = 0.15
+knockback = 144.0
+recovery = 0.1
+speed = 280.0
+size = 5.25
+lifetime = 0.85

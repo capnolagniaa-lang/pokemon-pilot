@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_305yw"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0d7kh"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_fyhdu"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fyhdu"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_e01a2"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_mgiti"]
+
+[sub_resource type="Resource" id="Resource_e01a2"]
+script = ExtResource("1_305yw")
+move = ExtResource("2_fyhdu")
+
+[resource]
+script = ExtResource("3_fyhdu")
+id = "tyrogue"
+display_name = "Tyrogue"
+dex = 236
+types = Array[ExtResource("4_e01a2")]([ExtResource("5_mgiti")])
+learnset = Array[ExtResource("1_305yw")]([SubResource("Resource_e01a2")])
+genus = "Pokémon Peleón"
+pokedex_entry = "Tyrogue se pone demasiado nervioso si no lo sacan a entrenarse cada día. Su Entrenador debe establecer y mantener ciertos métodos de entrenamiento durante la cría."
+height_m = 0.7
+weight_kg = 21.0
+base_hp = 35
+base_attack = 35
+base_defense = 35
+base_sp_attack = 35
+base_sp_defense = 35
+base_speed = 35
+base_experience = 42
+capture_rate = 75

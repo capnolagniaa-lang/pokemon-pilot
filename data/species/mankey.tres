@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_i25ok"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_4o0ie"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_11mv4"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_24m2f"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_e8gxr"]
+[ext_resource type="Resource" path="res://data/moves/patada_baja.tres" id="4_4x5ip"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_5f68j"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_sukgg"]
+[ext_resource type="Resource" path="res://data/moves/golpe_karate.tres" id="5_vsbx5"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="6_qihjv"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="7_51283"]
+[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="8_bskf6"]
+[ext_resource type="Resource" path="res://data/moves/tajo_cruzado.tres" id="9_xfh4l"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_64t8k"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="11_70uqf"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="12_hm4mp"]
+
+[sub_resource type="Resource" id="Resource_4n3y5"]
+script = ExtResource("1_i25ok")
+move = ExtResource("2_4o0ie")
+
+[sub_resource type="Resource" id="Resource_nyony"]
+script = ExtResource("1_i25ok")
+move = ExtResource("3_24m2f")
+
+[sub_resource type="Resource" id="Resource_rdgb1"]
+script = ExtResource("1_i25ok")
+level = 6
+move = ExtResource("4_4x5ip")
+
+[sub_resource type="Resource" id="Resource_fi43s"]
+script = ExtResource("1_i25ok")
+level = 11
+move = ExtResource("5_vsbx5")
+
+[sub_resource type="Resource" id="Resource_x8uev"]
+script = ExtResource("1_i25ok")
+level = 16
+move = ExtResource("6_qihjv")
+
+[sub_resource type="Resource" id="Resource_pl4j3"]
+script = ExtResource("1_i25ok")
+level = 21
+move = ExtResource("7_51283")
+
+[sub_resource type="Resource" id="Resource_yf6io"]
+script = ExtResource("1_i25ok")
+level = 26
+move = ExtResource("8_bskf6")
+
+[sub_resource type="Resource" id="Resource_yb1xn"]
+script = ExtResource("1_i25ok")
+level = 31
+move = ExtResource("9_xfh4l")
+
+[sub_resource type="Resource" id="Resource_0i5q4"]
+script = ExtResource("1_i25ok")
+level = 36
+move = ExtResource("10_64t8k")
+
+[sub_resource type="Resource" id="Resource_y0x5f"]
+script = ExtResource("1_i25ok")
+level = 41
+move = ExtResource("11_70uqf")
+
+[sub_resource type="Resource" id="Resource_1k17s"]
+script = ExtResource("1_i25ok")
+level = 46
+move = ExtResource("12_hm4mp")
+
+[resource]
+script = ExtResource("3_e8gxr")
+id = "mankey"
+display_name = "Mankey"
+dex = 56
+types = Array[ExtResource("4_5f68j")]([ExtResource("5_sukgg")])
+learnset = Array[ExtResource("1_i25ok")]([SubResource("Resource_4n3y5"), SubResource("Resource_nyony"), SubResource("Resource_rdgb1"), SubResource("Resource_fi43s"), SubResource("Resource_x8uev"), SubResource("Resource_pl4j3"), SubResource("Resource_yf6io"), SubResource("Resource_yb1xn"), SubResource("Resource_0i5q4"), SubResource("Resource_y0x5f"), SubResource("Resource_1k17s")])
+genus = "Pokémon Mono Cerdo"
+pokedex_entry = "Cuando Mankey empieza a temblar y a respirar con más intensidad, seguro que va a enfadarse. Aunque prever su enfado no sirve de nada porque alcanza un estado de rabia tan rápido que no hay escapatoria."
+height_m = 0.5
+weight_kg = 28.0
+base_hp = 40
+base_attack = 80
+base_defense = 35
+base_sp_attack = 35
+base_sp_defense = 45
+base_speed = 70
+base_experience = 61
+capture_rate = 190

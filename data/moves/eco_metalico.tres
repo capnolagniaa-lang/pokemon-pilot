@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="1_42mi2"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_q0wqq"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_vwy72"]
+
+[resource]
+script = ExtResource("2_q0wqq")
+id = "eco_metalico"
+display_name = "Eco Metálico"
+element = ExtResource("1_42mi2")
+kind = 2
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+radius = 40.0

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_6rww4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_knetg"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_sca66"]
+
+[resource]
+script = ExtResource("2_knetg")
+id = "aire_afilado"
+display_name = "Aire Afilado"
+element = ExtResource("1_6rww4")
+kind = 2
+category = 1
+power = 60.0
+cooldown = 3.7
+knockback = 200.0
+recovery = 0.1
+radius = 52.0

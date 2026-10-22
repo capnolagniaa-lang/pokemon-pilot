@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jsbx5"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_6n6b0"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_skgo1"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fv41s"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="3_syn7t"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_61jvd"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="4_vqat1"]
+[ext_resource type="Resource" path="res://data/moves/bucle_arena.tres" id="5_ktto4"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_p2wrm"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="6_bpudd"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="7_gmp3n"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="8_ulxb8"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_g5xmc"]
+
+[sub_resource type="Resource" id="Resource_76tiv"]
+script = ExtResource("1_jsbx5")
+move = ExtResource("2_6n6b0")
+
+[sub_resource type="Resource" id="Resource_3ejwu"]
+script = ExtResource("1_jsbx5")
+level = 9
+move = ExtResource("3_syn7t")
+
+[sub_resource type="Resource" id="Resource_onope"]
+script = ExtResource("1_jsbx5")
+level = 17
+move = ExtResource("4_vqat1")
+
+[sub_resource type="Resource" id="Resource_0id34"]
+script = ExtResource("1_jsbx5")
+level = 25
+move = ExtResource("5_ktto4")
+
+[sub_resource type="Resource" id="Resource_pexwj"]
+script = ExtResource("1_jsbx5")
+level = 33
+move = ExtResource("6_bpudd")
+
+[sub_resource type="Resource" id="Resource_wx1gt"]
+script = ExtResource("1_jsbx5")
+level = 41
+move = ExtResource("7_gmp3n")
+
+[sub_resource type="Resource" id="Resource_awaad"]
+script = ExtResource("1_jsbx5")
+level = 49
+move = ExtResource("8_ulxb8")
+
+[sub_resource type="Resource" id="Resource_usgb2"]
+script = ExtResource("1_jsbx5")
+level = 57
+move = ExtResource("9_g5xmc")
+
+[resource]
+script = ExtResource("3_fv41s")
+id = "trapinch"
+display_name = "Trapinch"
+dex = 328
+types = Array[ExtResource("4_61jvd")]([ExtResource("5_p2wrm")])
+learnset = Array[ExtResource("1_jsbx5")]([SubResource("Resource_76tiv"), SubResource("Resource_3ejwu"), SubResource("Resource_onope"), SubResource("Resource_0id34"), SubResource("Resource_pexwj"), SubResource("Resource_wx1gt"), SubResource("Resource_awaad"), SubResource("Resource_usgb2")])
+genus = "Pokémon Hormiga León"
+pokedex_entry = "El nido de Trapinch está situado bajo la arena, en una zona cóncava. Este Pokémon espera con paciencia a que su presa caiga en la misma. Con las fauces que tiene puede destruir hasta piedras."
+height_m = 0.7
+weight_kg = 15.0
+base_hp = 45
+base_attack = 100
+base_defense = 45
+base_sp_attack = 45
+base_sp_defense = 45
+base_speed = 10
+base_experience = 58
+growth_rate = "medium-slow"
+capture_rate = 255

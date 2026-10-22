@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_oojqh"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_aa03q"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rb7j3"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_eymdc"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_lqns6"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_dk3e4"]
+[ext_resource type="Resource" path="res://data/moves/onda_ignea.tres" id="4_r4qae"]
+[ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="5_k0tiy"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_xolsu"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_52m7d"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="6_bwhci"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="7_on532"]
+[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="8_5nsqo"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_65kk2"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="10_je66w"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="11_ns5bu"]
+[ext_resource type="Resource" path="res://data/moves/furia_dragon.tres" id="12_nd6to"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="13_ryhri"]
+
+[sub_resource type="Resource" id="Resource_6slac"]
+script = ExtResource("1_oojqh")
+move = ExtResource("2_aa03q")
+
+[sub_resource type="Resource" id="Resource_p5iox"]
+script = ExtResource("1_oojqh")
+move = ExtResource("3_eymdc")
+
+[sub_resource type="Resource" id="Resource_fiegg"]
+script = ExtResource("1_oojqh")
+move = ExtResource("4_r4qae")
+
+[sub_resource type="Resource" id="Resource_i5lb3"]
+script = ExtResource("1_oojqh")
+move = ExtResource("5_k0tiy")
+
+[sub_resource type="Resource" id="Resource_a2yqr"]
+script = ExtResource("1_oojqh")
+move = ExtResource("6_bwhci")
+
+[sub_resource type="Resource" id="Resource_2r12t"]
+script = ExtResource("1_oojqh")
+level = 20
+move = ExtResource("7_on532")
+
+[sub_resource type="Resource" id="Resource_2lwn0"]
+script = ExtResource("1_oojqh")
+level = 27
+move = ExtResource("8_5nsqo")
+
+[sub_resource type="Resource" id="Resource_whpx1"]
+script = ExtResource("1_oojqh")
+level = 34
+move = ExtResource("9_65kk2")
+
+[sub_resource type="Resource" id="Resource_n8lh2"]
+script = ExtResource("1_oojqh")
+level = 36
+move = ExtResource("10_je66w")
+
+[sub_resource type="Resource" id="Resource_fv635"]
+script = ExtResource("1_oojqh")
+level = 44
+move = ExtResource("11_ns5bu")
+
+[sub_resource type="Resource" id="Resource_574wv"]
+script = ExtResource("1_oojqh")
+level = 54
+move = ExtResource("12_nd6to")
+
+[sub_resource type="Resource" id="Resource_uwqkj"]
+script = ExtResource("1_oojqh")
+level = 64
+move = ExtResource("13_ryhri")
+
+[resource]
+script = ExtResource("3_lqns6")
+id = "charizard"
+display_name = "Charizard"
+dex = 6
+types = Array[ExtResource("4_dk3e4")]([ExtResource("5_xolsu"), ExtResource("6_52m7d")])
+learnset = Array[ExtResource("1_oojqh")]([SubResource("Resource_6slac"), SubResource("Resource_p5iox"), SubResource("Resource_fiegg"), SubResource("Resource_i5lb3"), SubResource("Resource_a2yqr"), SubResource("Resource_2r12t"), SubResource("Resource_2lwn0"), SubResource("Resource_whpx1"), SubResource("Resource_n8lh2"), SubResource("Resource_fv635"), SubResource("Resource_574wv"), SubResource("Resource_uwqkj")])
+genus = "Pokémon Llama"
+pokedex_entry = "Charizard se dedica a volar por los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, si su rival es más débil que él, no usará este ataque."
+height_m = 1.7
+weight_kg = 90.5
+base_hp = 78
+base_attack = 84
+base_defense = 78
+base_sp_attack = 109
+base_sp_defense = 85
+base_speed = 100
+base_experience = 240
+growth_rate = "medium-slow"

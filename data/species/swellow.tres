@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mfdyi"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="2_0b6wh"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ht60v"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_at21i"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_qe15g"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="4_7ejhl"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qd7yo"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="5_8k5nc"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_jsk38"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="6_mbnj6"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_plmv4"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="7_l0pe4"]
+[ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="8_a5o3b"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="9_sc8ck"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_vcaju"]
+
+[sub_resource type="Resource" id="Resource_28gra"]
+script = ExtResource("1_mfdyi")
+move = ExtResource("2_0b6wh")
+
+[sub_resource type="Resource" id="Resource_uqr3e"]
+script = ExtResource("1_mfdyi")
+move = ExtResource("3_at21i")
+
+[sub_resource type="Resource" id="Resource_17bc2"]
+script = ExtResource("1_mfdyi")
+move = ExtResource("4_7ejhl")
+
+[sub_resource type="Resource" id="Resource_yfm1s"]
+script = ExtResource("1_mfdyi")
+move = ExtResource("5_8k5nc")
+
+[sub_resource type="Resource" id="Resource_30dpf"]
+script = ExtResource("1_mfdyi")
+level = 13
+move = ExtResource("6_mbnj6")
+
+[sub_resource type="Resource" id="Resource_fmgfy"]
+script = ExtResource("1_mfdyi")
+level = 19
+move = ExtResource("7_l0pe4")
+
+[sub_resource type="Resource" id="Resource_aggq2"]
+script = ExtResource("1_mfdyi")
+level = 28
+move = ExtResource("8_a5o3b")
+
+[sub_resource type="Resource" id="Resource_5xx5j"]
+script = ExtResource("1_mfdyi")
+level = 38
+move = ExtResource("9_sc8ck")
+
+[sub_resource type="Resource" id="Resource_4cn1u"]
+script = ExtResource("1_mfdyi")
+level = 49
+move = ExtResource("10_vcaju")
+
+[resource]
+script = ExtResource("3_qe15g")
+id = "swellow"
+display_name = "Swellow"
+dex = 277
+types = Array[ExtResource("4_qd7yo")]([ExtResource("5_jsk38"), ExtResource("6_plmv4")])
+learnset = Array[ExtResource("1_mfdyi")]([SubResource("Resource_28gra"), SubResource("Resource_uqr3e"), SubResource("Resource_17bc2"), SubResource("Resource_yfm1s"), SubResource("Resource_30dpf"), SubResource("Resource_fmgfy"), SubResource("Resource_aggq2"), SubResource("Resource_5xx5j"), SubResource("Resource_4cn1u")])
+genus = "Pokémon Buche"
+pokedex_entry = "Swellow vuela muy alto dibujando elegantes arcos en el cielo. Este Pokémon se sumerge en el agua con rapidez y eficacia en cuanto detecta una presa. Con las garras, atrapa a la desdichada víctima y no la deja huir."
+height_m = 0.7
+weight_kg = 19.8
+base_hp = 60
+base_attack = 85
+base_defense = 60
+base_sp_attack = 75
+base_speed = 125
+base_experience = 159
+growth_rate = "medium-slow"

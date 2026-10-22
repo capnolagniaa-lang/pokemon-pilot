@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3jtkr"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_avijl"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_jgj65"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="3_dbixs"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jw1is"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_7ihh5"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="4_g6qcw"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_35g28"]
+[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="5_yxjls"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="6_byqqk"]
+[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="6_u3uq2"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="7_r2mwt"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="8_jeu0d"]
+[ext_resource type="Resource" path="res://data/moves/corpulencia.tres" id="9_5r2b8"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="10_vog52"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="11_5kx45"]
+[ext_resource type="Resource" path="res://data/moves/espejo.tres" id="12_xaci6"]
+[ext_resource type="Resource" path="res://data/moves/gancho_alto.tres" id="13_y3xvn"]
+
+[sub_resource type="Resource" id="Resource_eeqek"]
+script = ExtResource("1_3jtkr")
+move = ExtResource("2_jgj65")
+
+[sub_resource type="Resource" id="Resource_8etto"]
+script = ExtResource("1_3jtkr")
+move = ExtResource("3_dbixs")
+
+[sub_resource type="Resource" id="Resource_64i1y"]
+script = ExtResource("1_3jtkr")
+move = ExtResource("4_g6qcw")
+
+[sub_resource type="Resource" id="Resource_yfqns"]
+script = ExtResource("1_3jtkr")
+move = ExtResource("5_yxjls")
+
+[sub_resource type="Resource" id="Resource_28wux"]
+script = ExtResource("1_3jtkr")
+level = 16
+move = ExtResource("6_u3uq2")
+
+[sub_resource type="Resource" id="Resource_6mgwc"]
+script = ExtResource("1_3jtkr")
+level = 17
+move = ExtResource("7_r2mwt")
+
+[sub_resource type="Resource" id="Resource_wlvq8"]
+script = ExtResource("1_3jtkr")
+level = 21
+move = ExtResource("8_jeu0d")
+
+[sub_resource type="Resource" id="Resource_arvov"]
+script = ExtResource("1_3jtkr")
+level = 28
+move = ExtResource("9_5r2b8")
+
+[sub_resource type="Resource" id="Resource_4ta0n"]
+script = ExtResource("1_3jtkr")
+level = 32
+move = ExtResource("10_vog52")
+
+[sub_resource type="Resource" id="Resource_14qv1"]
+script = ExtResource("1_3jtkr")
+level = 39
+move = ExtResource("11_5kx45")
+
+[sub_resource type="Resource" id="Resource_ua61c"]
+script = ExtResource("1_3jtkr")
+level = 43
+move = ExtResource("12_xaci6")
+
+[sub_resource type="Resource" id="Resource_ocanv"]
+script = ExtResource("1_3jtkr")
+level = 50
+move = ExtResource("13_y3xvn")
+
+[resource]
+script = ExtResource("3_jw1is")
+id = "combusken"
+display_name = "Combusken"
+dex = 256
+types = Array[ExtResource("4_7ihh5")]([ExtResource("5_35g28"), ExtResource("6_byqqk")])
+learnset = Array[ExtResource("1_3jtkr")]([SubResource("Resource_eeqek"), SubResource("Resource_8etto"), SubResource("Resource_64i1y"), SubResource("Resource_yfqns"), SubResource("Resource_28wux"), SubResource("Resource_6mgwc"), SubResource("Resource_wlvq8"), SubResource("Resource_arvov"), SubResource("Resource_4ta0n"), SubResource("Resource_14qv1"), SubResource("Resource_ua61c"), SubResource("Resource_ocanv")])
+genus = "Pokémon Ave Corral"
+pokedex_entry = "Combusken fortalece las piernas corriendo por llanos y montañas. Este Pokémon tiene en las extremidades inferiores tanto fuerza como velocidad. Puede dar hasta diez patadas por segundo."
+height_m = 0.9
+weight_kg = 19.5
+base_hp = 60
+base_attack = 85
+base_defense = 60
+base_sp_attack = 85
+base_sp_defense = 60
+base_speed = 55
+base_experience = 142
+growth_rate = "medium-slow"

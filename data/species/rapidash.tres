@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_du3gi"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_5ueat"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gvpj6"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_4qn7g"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_lkwqi"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_htbbe"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="4_n1t6r"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_hv4de"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_ukm10"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="6_7vllj"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="7_c5m3f"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_j52dr"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_ilnki"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="10_dty6v"]
+[ext_resource type="Resource" path="res://data/moves/bote.tres" id="11_7ssnv"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="12_4sv82"]
+
+[sub_resource type="Resource" id="Resource_0ii2e"]
+script = ExtResource("1_du3gi")
+move = ExtResource("2_5ueat")
+
+[sub_resource type="Resource" id="Resource_nmwy0"]
+script = ExtResource("1_du3gi")
+move = ExtResource("3_4qn7g")
+
+[sub_resource type="Resource" id="Resource_nkohm"]
+script = ExtResource("1_du3gi")
+move = ExtResource("4_n1t6r")
+
+[sub_resource type="Resource" id="Resource_q2kl2"]
+script = ExtResource("1_du3gi")
+move = ExtResource("5_hv4de")
+
+[sub_resource type="Resource" id="Resource_hpf5r"]
+script = ExtResource("1_du3gi")
+level = 19
+move = ExtResource("6_7vllj")
+
+[sub_resource type="Resource" id="Resource_dnu4f"]
+script = ExtResource("1_du3gi")
+level = 25
+move = ExtResource("7_c5m3f")
+
+[sub_resource type="Resource" id="Resource_ek0t6"]
+script = ExtResource("1_du3gi")
+level = 31
+move = ExtResource("8_j52dr")
+
+[sub_resource type="Resource" id="Resource_4ijde"]
+script = ExtResource("1_du3gi")
+level = 38
+move = ExtResource("9_ilnki")
+
+[sub_resource type="Resource" id="Resource_wnc8p"]
+script = ExtResource("1_du3gi")
+level = 40
+move = ExtResource("10_dty6v")
+
+[sub_resource type="Resource" id="Resource_4dwwo"]
+script = ExtResource("1_du3gi")
+level = 50
+move = ExtResource("11_7ssnv")
+
+[sub_resource type="Resource" id="Resource_ck0n7"]
+script = ExtResource("1_du3gi")
+level = 63
+move = ExtResource("12_4sv82")
+
+[resource]
+script = ExtResource("3_lkwqi")
+id = "rapidash"
+display_name = "Rapidash"
+dex = 78
+types = Array[ExtResource("4_htbbe")]([ExtResource("5_ukm10")])
+learnset = Array[ExtResource("1_du3gi")]([SubResource("Resource_0ii2e"), SubResource("Resource_nmwy0"), SubResource("Resource_nkohm"), SubResource("Resource_q2kl2"), SubResource("Resource_hpf5r"), SubResource("Resource_dnu4f"), SubResource("Resource_ek0t6"), SubResource("Resource_4ijde"), SubResource("Resource_wnc8p"), SubResource("Resource_4dwwo"), SubResource("Resource_ck0n7")])
+genus = "Pokémon Caballo Fuego"
+pokedex_entry = "A Rapidash se le suele ver trotando sin rumbo fijo por los campos y llanos. Cuando tiene que ir a algún sitio en concreto, se le aviva el fuego de las melenas y emprende el galope llameante llegando a los 240 km/h."
+height_m = 1.7
+weight_kg = 95.0
+base_hp = 65
+base_attack = 100
+base_defense = 70
+base_sp_attack = 80
+base_sp_defense = 80
+base_speed = 105
+base_experience = 175
+capture_rate = 60

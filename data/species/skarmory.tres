@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ednxg"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_vxei2"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xyto4"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_8rwkg"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_ktsxk"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="4_4dpci"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_hyeq6"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="5_fj0tv"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="5_y26uw"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="6_43qk0"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="6_oe1u8"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="7_f7blm"]
+[ext_resource type="Resource" path="res://data/moves/aire_afilado.tres" id="8_vovth"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="9_l5vx8"]
+[ext_resource type="Resource" path="res://data/moves/puas.tres" id="10_eq2dx"]
+[ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="11_he4xm"]
+
+[sub_resource type="Resource" id="Resource_qm0ga"]
+script = ExtResource("1_ednxg")
+move = ExtResource("2_vxei2")
+
+[sub_resource type="Resource" id="Resource_4offu"]
+script = ExtResource("1_ednxg")
+move = ExtResource("3_ktsxk")
+
+[sub_resource type="Resource" id="Resource_1diaf"]
+script = ExtResource("1_ednxg")
+level = 10
+move = ExtResource("4_4dpci")
+
+[sub_resource type="Resource" id="Resource_dh7x8"]
+script = ExtResource("1_ednxg")
+level = 13
+move = ExtResource("5_fj0tv")
+
+[sub_resource type="Resource" id="Resource_c87d5"]
+script = ExtResource("1_ednxg")
+level = 16
+move = ExtResource("6_oe1u8")
+
+[sub_resource type="Resource" id="Resource_e3vgb"]
+script = ExtResource("1_ednxg")
+level = 26
+move = ExtResource("7_f7blm")
+
+[sub_resource type="Resource" id="Resource_dn1vg"]
+script = ExtResource("1_ednxg")
+level = 29
+move = ExtResource("8_vovth")
+
+[sub_resource type="Resource" id="Resource_w3eca"]
+script = ExtResource("1_ednxg")
+level = 32
+move = ExtResource("9_l5vx8")
+
+[sub_resource type="Resource" id="Resource_1b5nt"]
+script = ExtResource("1_ednxg")
+level = 42
+move = ExtResource("10_eq2dx")
+
+[sub_resource type="Resource" id="Resource_0rg4d"]
+script = ExtResource("1_ednxg")
+level = 45
+move = ExtResource("11_he4xm")
+
+[resource]
+script = ExtResource("3_8rwkg")
+id = "skarmory"
+display_name = "Skarmory"
+dex = 227
+types = Array[ExtResource("4_hyeq6")]([ExtResource("5_y26uw"), ExtResource("6_43qk0")])
+learnset = Array[ExtResource("1_ednxg")]([SubResource("Resource_qm0ga"), SubResource("Resource_4offu"), SubResource("Resource_1diaf"), SubResource("Resource_dh7x8"), SubResource("Resource_c87d5"), SubResource("Resource_e3vgb"), SubResource("Resource_dn1vg"), SubResource("Resource_w3eca"), SubResource("Resource_1b5nt"), SubResource("Resource_0rg4d")])
+genus = "Pokémon Coraza Ave"
+pokedex_entry = "Skarmory está totalmente encerrado en el interior de una fuerte coraza protectora. En vuelo, puede llegar a alcanzar los 300 km/h y usa las afiladas alas que tiene para azotar al rival."
+height_m = 1.7
+weight_kg = 50.5
+base_hp = 65
+base_attack = 80
+base_defense = 140
+base_sp_attack = 40
+base_sp_defense = 70
+base_speed = 70
+base_experience = 163
+growth_rate = "slow"
+capture_rate = 25

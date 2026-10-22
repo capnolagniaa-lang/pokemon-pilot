@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qpgwr"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2viiw"]
+[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_fyloh"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_622ud"]
+[ext_resource type="Resource" path="res://data/moves/kinetico.tres" id="3_slu1k"]
+[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="4_a21o5"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mkiey"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_5spt7"]
+[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="5_t08a2"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_pthrk"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="7_s2f1o"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="8_sliiq"]
+[ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="9_p6gd0"]
+[ext_resource type="Resource" path="res://data/moves/imitacion.tres" id="10_54bce"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_45g8w"]
+[ext_resource type="Resource" path="res://data/moves/truco.tres" id="12_72s13"]
+
+[sub_resource type="Resource" id="Resource_da14g"]
+script = ExtResource("1_qpgwr")
+move = ExtResource("2_fyloh")
+
+[sub_resource type="Resource" id="Resource_5akc4"]
+script = ExtResource("1_qpgwr")
+move = ExtResource("3_slu1k")
+
+[sub_resource type="Resource" id="Resource_ybsgq"]
+script = ExtResource("1_qpgwr")
+move = ExtResource("4_a21o5")
+
+[sub_resource type="Resource" id="Resource_60a6f"]
+script = ExtResource("1_qpgwr")
+level = 18
+move = ExtResource("5_t08a2")
+
+[sub_resource type="Resource" id="Resource_k262d"]
+script = ExtResource("1_qpgwr")
+level = 21
+move = ExtResource("6_pthrk")
+
+[sub_resource type="Resource" id="Resource_px3sa"]
+script = ExtResource("1_qpgwr")
+level = 23
+move = ExtResource("7_s2f1o")
+
+[sub_resource type="Resource" id="Resource_q050k"]
+script = ExtResource("1_qpgwr")
+level = 25
+move = ExtResource("8_sliiq")
+
+[sub_resource type="Resource" id="Resource_54yni"]
+script = ExtResource("1_qpgwr")
+level = 30
+move = ExtResource("9_p6gd0")
+
+[sub_resource type="Resource" id="Resource_3bdcu"]
+script = ExtResource("1_qpgwr")
+level = 33
+move = ExtResource("10_54bce")
+
+[sub_resource type="Resource" id="Resource_lj1au"]
+script = ExtResource("1_qpgwr")
+level = 36
+move = ExtResource("11_45g8w")
+
+[sub_resource type="Resource" id="Resource_2sg5h"]
+script = ExtResource("1_qpgwr")
+level = 43
+move = ExtResource("12_72s13")
+
+[resource]
+script = ExtResource("3_622ud")
+id = "kadabra"
+display_name = "Kadabra"
+dex = 64
+types = Array[ExtResource("4_mkiey")]([ExtResource("5_5spt7")])
+learnset = Array[ExtResource("1_qpgwr")]([SubResource("Resource_da14g"), SubResource("Resource_5akc4"), SubResource("Resource_ybsgq"), SubResource("Resource_60a6f"), SubResource("Resource_k262d"), SubResource("Resource_px3sa"), SubResource("Resource_q050k"), SubResource("Resource_54yni"), SubResource("Resource_3bdcu"), SubResource("Resource_lj1au"), SubResource("Resource_2sg5h")])
+genus = "Pokémon Psi"
+pokedex_entry = "Kadabra emite unas ondas alfa muy particulares que provocan dolores de cabeza a los demás. Solo aquellos que tengan gran poder mental podrán optar a ser Entrenador de este Pokémon."
+height_m = 1.3
+weight_kg = 56.5
+base_hp = 40
+base_attack = 35
+base_defense = 30
+base_sp_attack = 120
+base_sp_defense = 70
+base_speed = 105
+base_experience = 140
+growth_rate = "medium-slow"
+capture_rate = 100

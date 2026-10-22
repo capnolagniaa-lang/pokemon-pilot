@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_kx7cx"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_clv76"]
+[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="2_h8ea6"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_n4r16"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_r1d70"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_jneqc"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_yk26b"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="5_2fkin"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_d3lbn"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="6_1bcbv"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="7_h08cn"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="8_heixp"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="9_yty3b"]
+[ext_resource type="Resource" path="res://data/moves/niebla.tres" id="10_57nfb"]
+[ext_resource type="Resource" path="res://data/moves/armadura_acida.tres" id="11_bceog"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_mmi3m"]
+
+[sub_resource type="Resource" id="Resource_jgejw"]
+script = ExtResource("1_kx7cx")
+move = ExtResource("2_h8ea6")
+
+[sub_resource type="Resource" id="Resource_qfj1l"]
+script = ExtResource("1_kx7cx")
+move = ExtResource("3_n4r16")
+
+[sub_resource type="Resource" id="Resource_echx2"]
+script = ExtResource("1_kx7cx")
+move = ExtResource("4_jneqc")
+
+[sub_resource type="Resource" id="Resource_x4yf4"]
+script = ExtResource("1_kx7cx")
+level = 8
+move = ExtResource("5_2fkin")
+
+[sub_resource type="Resource" id="Resource_vxhfw"]
+script = ExtResource("1_kx7cx")
+level = 16
+move = ExtResource("6_1bcbv")
+
+[sub_resource type="Resource" id="Resource_ycjiq"]
+script = ExtResource("1_kx7cx")
+level = 23
+move = ExtResource("7_h08cn")
+
+[sub_resource type="Resource" id="Resource_22nbx"]
+script = ExtResource("1_kx7cx")
+level = 30
+move = ExtResource("8_heixp")
+
+[sub_resource type="Resource" id="Resource_q2ugn"]
+script = ExtResource("1_kx7cx")
+level = 36
+move = ExtResource("9_yty3b")
+
+[sub_resource type="Resource" id="Resource_cc5yx"]
+script = ExtResource("1_kx7cx")
+level = 42
+move = ExtResource("10_57nfb")
+
+[sub_resource type="Resource" id="Resource_eeqkr"]
+script = ExtResource("1_kx7cx")
+level = 47
+move = ExtResource("11_bceog")
+
+[sub_resource type="Resource" id="Resource_4xgos"]
+script = ExtResource("1_kx7cx")
+level = 52
+move = ExtResource("12_mmi3m")
+
+[resource]
+script = ExtResource("3_r1d70")
+id = "vaporeon"
+display_name = "Vaporeon"
+dex = 134
+types = Array[ExtResource("4_yk26b")]([ExtResource("5_d3lbn")])
+learnset = Array[ExtResource("1_kx7cx")]([SubResource("Resource_jgejw"), SubResource("Resource_qfj1l"), SubResource("Resource_echx2"), SubResource("Resource_x4yf4"), SubResource("Resource_vxhfw"), SubResource("Resource_ycjiq"), SubResource("Resource_22nbx"), SubResource("Resource_q2ugn"), SubResource("Resource_cc5yx"), SubResource("Resource_eeqkr"), SubResource("Resource_4xgos")])
+genus = "Pokémon Burbuja"
+pokedex_entry = "Vaporeon sufrió una mutación repentina y desarrolló aletas y branquias que le permiten vivir bajo el agua. Asimismo, este Pokémon tiene la habilidad de controlar las aguas."
+height_m = 1.0
+weight_kg = 29.0
+base_hp = 130
+base_attack = 65
+base_defense = 60
+base_sp_attack = 110
+base_sp_defense = 95
+base_speed = 65
+base_experience = 184

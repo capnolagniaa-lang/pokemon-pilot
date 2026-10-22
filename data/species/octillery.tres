@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ch5e8"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_7h4p6"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_k8r16"]
+[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="3_38hs3"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_n8sqy"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sl7t7"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="4_ymiex"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_qi5pe"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="5_trah3"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_qnrem"]
+[ext_resource type="Resource" path="res://data/moves/pulpocanon.tres" id="7_qo1al"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="8_rasv4"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="9_hv5uk"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_t2li6"]
+
+[sub_resource type="Resource" id="Resource_sp3nk"]
+script = ExtResource("1_ch5e8")
+move = ExtResource("2_7h4p6")
+
+[sub_resource type="Resource" id="Resource_mq1yj"]
+script = ExtResource("1_ch5e8")
+level = 11
+move = ExtResource("3_38hs3")
+
+[sub_resource type="Resource" id="Resource_3ysiw"]
+script = ExtResource("1_ch5e8")
+level = 22
+move = ExtResource("4_ymiex")
+
+[sub_resource type="Resource" id="Resource_jaewf"]
+script = ExtResource("1_ch5e8")
+level = 22
+move = ExtResource("5_trah3")
+
+[sub_resource type="Resource" id="Resource_ggv45"]
+script = ExtResource("1_ch5e8")
+level = 22
+move = ExtResource("6_qnrem")
+
+[sub_resource type="Resource" id="Resource_svf3x"]
+script = ExtResource("1_ch5e8")
+level = 25
+move = ExtResource("7_qo1al")
+
+[sub_resource type="Resource" id="Resource_bgrsj"]
+script = ExtResource("1_ch5e8")
+level = 38
+move = ExtResource("8_rasv4")
+
+[sub_resource type="Resource" id="Resource_3vmy4"]
+script = ExtResource("1_ch5e8")
+level = 54
+move = ExtResource("9_hv5uk")
+
+[sub_resource type="Resource" id="Resource_c82ps"]
+script = ExtResource("1_ch5e8")
+level = 70
+move = ExtResource("10_t2li6")
+
+[resource]
+script = ExtResource("3_n8sqy")
+id = "octillery"
+display_name = "Octillery"
+dex = 224
+types = Array[ExtResource("4_sl7t7")]([ExtResource("5_qi5pe")])
+learnset = Array[ExtResource("1_ch5e8")]([SubResource("Resource_sp3nk"), SubResource("Resource_mq1yj"), SubResource("Resource_3ysiw"), SubResource("Resource_jaewf"), SubResource("Resource_ggv45"), SubResource("Resource_svf3x"), SubResource("Resource_bgrsj"), SubResource("Resource_3vmy4"), SubResource("Resource_c82ps")])
+genus = "Pokémon Reactor"
+pokedex_entry = "Octillery se apodera de su enemigo con los tentáculos y lo deja inmovilizado antes de propinarle el golpe final. Si el enemigo resulta ser demasiado fuerte, Octillery expulsará tinta para escapar."
+height_m = 0.9
+weight_kg = 28.5
+base_hp = 75
+base_attack = 105
+base_defense = 75
+base_sp_attack = 105
+base_sp_defense = 75
+base_speed = 45
+base_experience = 168
+capture_rate = 75

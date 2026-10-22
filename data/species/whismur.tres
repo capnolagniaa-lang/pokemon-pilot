@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qftpt"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="2_chwh8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mp6gs"]
+[ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="3_jkxui"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_n7pvm"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_4y7uu"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="4_w1a4a"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_g7gab"]
+[ext_resource type="Resource" path="res://data/moves/aullido.tres" id="5_kmy0p"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="6_8lp1s"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="7_87s5i"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_3m8qa"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="9_kbxcy"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_6x0iq"]
+[ext_resource type="Resource" path="res://data/moves/sonambulo.tres" id="11_7ojit"]
+[ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="12_3sgwj"]
+
+[sub_resource type="Resource" id="Resource_438pv"]
+script = ExtResource("1_qftpt")
+move = ExtResource("2_chwh8")
+
+[sub_resource type="Resource" id="Resource_hgwdu"]
+script = ExtResource("1_qftpt")
+level = 5
+move = ExtResource("3_jkxui")
+
+[sub_resource type="Resource" id="Resource_a1p8h"]
+script = ExtResource("1_qftpt")
+level = 11
+move = ExtResource("4_w1a4a")
+
+[sub_resource type="Resource" id="Resource_3l555"]
+script = ExtResource("1_qftpt")
+level = 15
+move = ExtResource("5_kmy0p")
+
+[sub_resource type="Resource" id="Resource_cdpta"]
+script = ExtResource("1_qftpt")
+level = 21
+move = ExtResource("6_8lp1s")
+
+[sub_resource type="Resource" id="Resource_kkwic"]
+script = ExtResource("1_qftpt")
+level = 25
+move = ExtResource("7_87s5i")
+
+[sub_resource type="Resource" id="Resource_coe3g"]
+script = ExtResource("1_qftpt")
+level = 31
+move = ExtResource("8_3m8qa")
+
+[sub_resource type="Resource" id="Resource_hvxqr"]
+script = ExtResource("1_qftpt")
+level = 35
+move = ExtResource("9_kbxcy")
+
+[sub_resource type="Resource" id="Resource_l3nnk"]
+script = ExtResource("1_qftpt")
+level = 41
+move = ExtResource("10_6x0iq")
+
+[sub_resource type="Resource" id="Resource_6msb5"]
+script = ExtResource("1_qftpt")
+level = 41
+move = ExtResource("11_7ojit")
+
+[sub_resource type="Resource" id="Resource_k3wf0"]
+script = ExtResource("1_qftpt")
+level = 45
+move = ExtResource("12_3sgwj")
+
+[resource]
+script = ExtResource("3_n7pvm")
+id = "whismur"
+display_name = "Whismur"
+dex = 293
+types = Array[ExtResource("4_4y7uu")]([ExtResource("5_g7gab")])
+learnset = Array[ExtResource("1_qftpt")]([SubResource("Resource_438pv"), SubResource("Resource_hgwdu"), SubResource("Resource_a1p8h"), SubResource("Resource_3l555"), SubResource("Resource_cdpta"), SubResource("Resource_kkwic"), SubResource("Resource_coe3g"), SubResource("Resource_hvxqr"), SubResource("Resource_l3nnk"), SubResource("Resource_6msb5"), SubResource("Resource_k3wf0")])
+genus = "Pokémon Susurro"
+pokedex_entry = "Normalmente, Whismur tiene una voz tenue, casi inaudible, aunque se preste atención. No obstante, si este Pokémon siente que el peligro acecha, puede ponerse a chillar con un volumen ensordecedor."
+height_m = 0.6
+weight_kg = 16.3
+base_hp = 64
+base_attack = 51
+base_defense = 23
+base_sp_attack = 51
+base_sp_defense = 23
+base_speed = 28
+base_experience = 48
+growth_rate = "medium-slow"
+capture_rate = 190

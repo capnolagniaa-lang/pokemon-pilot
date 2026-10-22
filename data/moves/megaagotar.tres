@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_00rid"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4c1fk"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_jmyqd"]
+
+[resource]
+script = ExtResource("2_4c1fk")
+id = "megaagotar"
+display_name = "Megaagotar"
+element = ExtResource("1_00rid")
+category = 1
+cooldown = 1.4500000000000002
+knockback = 64.0
+recovery = 0.1
+speed = 280.0
+lifetime = 0.85

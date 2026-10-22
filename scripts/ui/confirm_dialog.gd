@@ -43,7 +43,7 @@ func _build(text: String, options: Array) -> void:
 		b.pressed.connect(_choose.bind(i))
 		row.add_child(b)
 		_buttons.append(b)
-	_buttons[0].grab_focus.call_deferred()
+	UiStyle.focus_later(_buttons[0])
 
 
 func _unhandled_input(event: InputEvent) -> void:

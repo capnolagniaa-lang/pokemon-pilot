@@ -1,0 +1,86 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5amg4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_p3fbv"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_q45d6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0jfsd"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_cri0q"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_iod2h"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="4_xcqsg"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="5_2ovl8"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_8bio8"]
+[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="6_10y2o"]
+[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="7_g05qf"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="8_lqwtw"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="9_psyi8"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="10_kt6vl"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_uby5r"]
+
+[sub_resource type="Resource" id="Resource_eoflu"]
+script = ExtResource("1_5amg4")
+move = ExtResource("2_q45d6")
+
+[sub_resource type="Resource" id="Resource_vh0n0"]
+script = ExtResource("1_5amg4")
+move = ExtResource("3_cri0q")
+
+[sub_resource type="Resource" id="Resource_ubvh8"]
+script = ExtResource("1_5amg4")
+level = 11
+move = ExtResource("4_xcqsg")
+
+[sub_resource type="Resource" id="Resource_rb733"]
+script = ExtResource("1_5amg4")
+level = 21
+move = ExtResource("5_2ovl8")
+
+[sub_resource type="Resource" id="Resource_rikfa"]
+script = ExtResource("1_5amg4")
+level = 31
+move = ExtResource("6_10y2o")
+
+[sub_resource type="Resource" id="Resource_6dj8u"]
+script = ExtResource("1_5amg4")
+level = 41
+move = ExtResource("7_g05qf")
+
+[sub_resource type="Resource" id="Resource_2mrk2"]
+script = ExtResource("1_5amg4")
+level = 51
+move = ExtResource("8_lqwtw")
+
+[sub_resource type="Resource" id="Resource_g0j2v"]
+script = ExtResource("1_5amg4")
+level = 61
+move = ExtResource("9_psyi8")
+
+[sub_resource type="Resource" id="Resource_guc80"]
+script = ExtResource("1_5amg4")
+level = 71
+move = ExtResource("10_kt6vl")
+
+[sub_resource type="Resource" id="Resource_7g1nj"]
+script = ExtResource("1_5amg4")
+level = 81
+move = ExtResource("11_uby5r")
+
+[resource]
+script = ExtResource("3_0jfsd")
+id = "entei"
+display_name = "Entei"
+dex = 244
+types = Array[ExtResource("4_iod2h")]([ExtResource("5_8bio8")])
+learnset = Array[ExtResource("1_5amg4")]([SubResource("Resource_eoflu"), SubResource("Resource_vh0n0"), SubResource("Resource_ubvh8"), SubResource("Resource_rb733"), SubResource("Resource_rikfa"), SubResource("Resource_6dj8u"), SubResource("Resource_2mrk2"), SubResource("Resource_g0j2v"), SubResource("Resource_guc80"), SubResource("Resource_7g1nj")])
+genus = "Pokémon Volcán"
+pokedex_entry = "Entei contiene el fulgor del magma en su interior. Se cree que este Pokémon nació de la erupción de un volcán. Escupe numerosas ráfagas de fuego que devoran y reducen a cenizas todo lo que tocan."
+height_m = 2.1
+weight_kg = 198.0
+base_hp = 115
+base_attack = 115
+base_defense = 85
+base_sp_attack = 90
+base_sp_defense = 75
+base_speed = 100
+base_experience = 261
+growth_rate = "slow"
+capture_rate = 3

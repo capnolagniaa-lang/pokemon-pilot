@@ -107,6 +107,30 @@ func anims_of(sp: SpeciesData) -> Dictionary:
 	return SpriteData.ANIMS.get(sp.dex, {})
 
 
+## Primer cuadro de la animación Idle mirando hacia abajo (miniaturas de la Pokédex). Si no hay, el retrato.
+func idle_frame_of(sp: SpeciesData) -> Texture2D:
+	var key := "idle_frame_%d" % sp.dex
+	if _textures.has(key):
+		return _textures[key]
+	var a := anims_of(sp)
+	var tex: Texture2D = portrait_of(sp)
+	if a.has("Idle"):
+		var at := AtlasTexture.new()
+		at.atlas = texture(a["Idle"]["file"])
+		at.region = Rect2(0, 0, a["Idle"]["w"], a["Idle"]["h"])
+		tex = at
+	_textures[key] = tex
+	return tex
+
+
+## Especies ordenadas por número de Pokédex.
+func species_by_dex() -> Array[SpeciesData]:
+	var out: Array[SpeciesData] = []
+	out.assign(species.values())
+	out.sort_custom(func(a, b): return a.dex < b.dex)
+	return out
+
+
 func portrait_of(sp: SpeciesData) -> Texture2D:
 	var a := anims_of(sp)
 	return texture(a["portrait"]) if a.has("portrait") else null

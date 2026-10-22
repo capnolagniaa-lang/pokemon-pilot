@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_47mdg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_03oue"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_sw5f2"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_4aisw"]
+[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="3_rqhmh"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_e6c73"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="4_l7k4g"]
+[ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_4ri7b"]
+[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="5_ss24x"]
+[ext_resource type="Resource" path="res://data/moves/furia_dragon.tres" id="6_k2xcx"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="7_gqkwd"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="8_fk22a"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="9_eyrys"]
+[ext_resource type="Resource" path="res://data/moves/enfado.tres" id="10_8h7am"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_j7y4r"]
+
+[sub_resource type="Resource" id="Resource_0jl23"]
+script = ExtResource("1_47mdg")
+move = ExtResource("2_sw5f2")
+
+[sub_resource type="Resource" id="Resource_yoybc"]
+script = ExtResource("1_47mdg")
+move = ExtResource("3_rqhmh")
+
+[sub_resource type="Resource" id="Resource_m7lo5"]
+script = ExtResource("1_47mdg")
+level = 8
+move = ExtResource("4_l7k4g")
+
+[sub_resource type="Resource" id="Resource_0stpu"]
+script = ExtResource("1_47mdg")
+level = 15
+move = ExtResource("5_ss24x")
+
+[sub_resource type="Resource" id="Resource_b37wj"]
+script = ExtResource("1_47mdg")
+level = 22
+move = ExtResource("6_k2xcx")
+
+[sub_resource type="Resource" id="Resource_mdwlv"]
+script = ExtResource("1_47mdg")
+level = 29
+move = ExtResource("7_gqkwd")
+
+[sub_resource type="Resource" id="Resource_pj8d3"]
+script = ExtResource("1_47mdg")
+level = 36
+move = ExtResource("8_fk22a")
+
+[sub_resource type="Resource" id="Resource_ie7uj"]
+script = ExtResource("1_47mdg")
+level = 43
+move = ExtResource("9_eyrys")
+
+[sub_resource type="Resource" id="Resource_vu137"]
+script = ExtResource("1_47mdg")
+level = 50
+move = ExtResource("10_8h7am")
+
+[sub_resource type="Resource" id="Resource_je4ii"]
+script = ExtResource("1_47mdg")
+level = 57
+move = ExtResource("11_j7y4r")
+
+[resource]
+script = ExtResource("3_4aisw")
+id = "dratini"
+display_name = "Dratini"
+dex = 147
+types = Array[ExtResource("4_e6c73")]([ExtResource("5_4ri7b")])
+learnset = Array[ExtResource("1_47mdg")]([SubResource("Resource_0jl23"), SubResource("Resource_yoybc"), SubResource("Resource_m7lo5"), SubResource("Resource_0stpu"), SubResource("Resource_b37wj"), SubResource("Resource_mdwlv"), SubResource("Resource_pj8d3"), SubResource("Resource_ie7uj"), SubResource("Resource_vu137"), SubResource("Resource_je4ii")])
+genus = "Pokémon Dragón"
+pokedex_entry = "Dratini muda y se despoja de la vieja piel continuamente. Es algo que necesita hacer porque la energía que tiene en su interior no para de alcanzar niveles incontrolables."
+height_m = 1.8
+weight_kg = 3.3
+base_hp = 41
+base_attack = 64
+base_defense = 45
+growth_rate = "slow"

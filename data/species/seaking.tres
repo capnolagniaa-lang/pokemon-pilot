@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_4w7sn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1lhah"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="2_11wu3"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="3_58jfp"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_esy32"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_hed7u"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_l3f3k"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="5_2d0pt"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_d15be"]
+[ext_resource type="Resource" path="res://data/moves/cornada.tres" id="6_ybmcs"]
+[ext_resource type="Resource" path="res://data/moves/azote.tres" id="7_cvt6p"]
+[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="8_27cos"]
+[ext_resource type="Resource" path="res://data/moves/cascada.tres" id="9_cbnpm"]
+[ext_resource type="Resource" path="res://data/moves/perforador.tres" id="10_4f1bs"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_cavtv"]
+[ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="12_55po3"]
+
+[sub_resource type="Resource" id="Resource_kpcsm"]
+script = ExtResource("1_4w7sn")
+move = ExtResource("2_11wu3")
+
+[sub_resource type="Resource" id="Resource_1ucym"]
+script = ExtResource("1_4w7sn")
+move = ExtResource("3_58jfp")
+
+[sub_resource type="Resource" id="Resource_m5iv8"]
+script = ExtResource("1_4w7sn")
+move = ExtResource("4_l3f3k")
+
+[sub_resource type="Resource" id="Resource_2grmo"]
+script = ExtResource("1_4w7sn")
+move = ExtResource("5_2d0pt")
+
+[sub_resource type="Resource" id="Resource_2es5o"]
+script = ExtResource("1_4w7sn")
+level = 15
+move = ExtResource("6_ybmcs")
+
+[sub_resource type="Resource" id="Resource_eixty"]
+script = ExtResource("1_4w7sn")
+level = 24
+move = ExtResource("7_cvt6p")
+
+[sub_resource type="Resource" id="Resource_n0num"]
+script = ExtResource("1_4w7sn")
+level = 29
+move = ExtResource("8_27cos")
+
+[sub_resource type="Resource" id="Resource_caias"]
+script = ExtResource("1_4w7sn")
+level = 41
+move = ExtResource("9_cbnpm")
+
+[sub_resource type="Resource" id="Resource_d0c70"]
+script = ExtResource("1_4w7sn")
+level = 49
+move = ExtResource("10_4f1bs")
+
+[sub_resource type="Resource" id="Resource_jpagl"]
+script = ExtResource("1_4w7sn")
+level = 61
+move = ExtResource("11_cavtv")
+
+[sub_resource type="Resource" id="Resource_kcgng"]
+script = ExtResource("1_4w7sn")
+level = 69
+move = ExtResource("12_55po3")
+
+[resource]
+script = ExtResource("3_esy32")
+id = "seaking"
+display_name = "Seaking"
+dex = 119
+types = Array[ExtResource("4_hed7u")]([ExtResource("5_d15be")])
+learnset = Array[ExtResource("1_4w7sn")]([SubResource("Resource_kpcsm"), SubResource("Resource_1ucym"), SubResource("Resource_m5iv8"), SubResource("Resource_2grmo"), SubResource("Resource_2es5o"), SubResource("Resource_eixty"), SubResource("Resource_n0num"), SubResource("Resource_caias"), SubResource("Resource_d0c70"), SubResource("Resource_jpagl"), SubResource("Resource_kcgng")])
+genus = "Pokémon Pez Color"
+pokedex_entry = "En otoño, se ven ejemplares de Seaking macho danzando en las riberas de los ríos para cortejar a las hembras. En esta época, la coloración de este Pokémon alcanza sus niveles máximos de belleza."
+height_m = 1.3
+weight_kg = 39.0
+base_hp = 80
+base_attack = 92
+base_defense = 65
+base_sp_attack = 65
+base_sp_defense = 80
+base_speed = 68
+base_experience = 158
+capture_rate = 60

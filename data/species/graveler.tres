@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qknf3"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_8xjcc"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_jwktc"]
+[ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="3_hfwnl"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ujdmg"]
+[ext_resource type="Resource" path="res://data/moves/lanzarrocas.tres" id="4_iwmfs"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_vpi0r"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_acxy6"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_plcxb"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_1ccwl"]
+[ext_resource type="Resource" path="res://data/moves/magnitud.tres" id="6_5xqdq"]
+[ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="7_x7t82"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_o8pvx"]
+[ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="9_b6r8n"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_4xylu"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_oikpn"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_s6e1i"]
+
+[sub_resource type="Resource" id="Resource_dh0e7"]
+script = ExtResource("1_qknf3")
+move = ExtResource("2_8xjcc")
+
+[sub_resource type="Resource" id="Resource_l1jlv"]
+script = ExtResource("1_qknf3")
+move = ExtResource("3_hfwnl")
+
+[sub_resource type="Resource" id="Resource_a14rn"]
+script = ExtResource("1_qknf3")
+move = ExtResource("4_iwmfs")
+
+[sub_resource type="Resource" id="Resource_m8ri2"]
+script = ExtResource("1_qknf3")
+move = ExtResource("5_plcxb")
+
+[sub_resource type="Resource" id="Resource_xpst4"]
+script = ExtResource("1_qknf3")
+level = 16
+move = ExtResource("6_5xqdq")
+
+[sub_resource type="Resource" id="Resource_kcbf3"]
+script = ExtResource("1_qknf3")
+level = 21
+move = ExtResource("7_x7t82")
+
+[sub_resource type="Resource" id="Resource_nsksw"]
+script = ExtResource("1_qknf3")
+level = 29
+move = ExtResource("8_o8pvx")
+
+[sub_resource type="Resource" id="Resource_7hlja"]
+script = ExtResource("1_qknf3")
+level = 37
+move = ExtResource("9_b6r8n")
+
+[sub_resource type="Resource" id="Resource_poxur"]
+script = ExtResource("1_qknf3")
+level = 45
+move = ExtResource("10_4xylu")
+
+[sub_resource type="Resource" id="Resource_4hxya"]
+script = ExtResource("1_qknf3")
+level = 53
+move = ExtResource("11_oikpn")
+
+[sub_resource type="Resource" id="Resource_e32ku"]
+script = ExtResource("1_qknf3")
+level = 62
+move = ExtResource("12_s6e1i")
+
+[resource]
+script = ExtResource("3_ujdmg")
+id = "graveler"
+display_name = "Graveler"
+dex = 75
+types = Array[ExtResource("4_vpi0r")]([ExtResource("5_acxy6"), ExtResource("6_1ccwl")])
+learnset = Array[ExtResource("1_qknf3")]([SubResource("Resource_dh0e7"), SubResource("Resource_l1jlv"), SubResource("Resource_a14rn"), SubResource("Resource_m8ri2"), SubResource("Resource_xpst4"), SubResource("Resource_kcbf3"), SubResource("Resource_nsksw"), SubResource("Resource_7hlja"), SubResource("Resource_poxur"), SubResource("Resource_4hxya"), SubResource("Resource_e32ku")])
+genus = "Pokémon Roca"
+pokedex_entry = "Graveler crece alimentándose a base de piedras. Y, según parece, las prefiere cubiertas de musgo. Cada día se abre camino comiéndose una tonelada de rocas."
+height_m = 1.0
+weight_kg = 105.0
+base_hp = 55
+base_attack = 95
+base_defense = 115
+base_sp_attack = 45
+base_sp_defense = 45
+base_speed = 35
+base_experience = 137
+growth_rate = "medium-slow"
+capture_rate = 120

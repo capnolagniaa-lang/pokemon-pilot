@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="1_wytt6"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ran31"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_x5kep"]
+
+[resource]
+script = ExtResource("2_ran31")
+id = "disparo_lodo"
+display_name = "Disparo Lodo"
+element = ExtResource("1_wytt6")
+category = 1
+power = 55.0
+cooldown = 1.7000000000000002
+knockback = 88.0
+recovery = 0.1
+speed = 280.0
+size = 4.375
+lifetime = 0.85

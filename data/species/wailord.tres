@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hl4he"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7v5pa"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_b8o1x"]
+[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="3_7a4ir"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ys170"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_aps7p"]
+[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="4_u30qo"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_3w5kx"]
+[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_yecqc"]
+[ext_resource type="Resource" path="res://data/moves/torbellino.tres" id="6_agllq"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="7_rh72p"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="8_wgwmp"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="9_d6oam"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_5m2qj"]
+[ext_resource type="Resource" path="res://data/moves/salpicar.tres" id="11_31rap"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="12_pyp27"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="13_lv6aa"]
+
+[sub_resource type="Resource" id="Resource_7c3x3"]
+script = ExtResource("1_hl4he")
+move = ExtResource("2_b8o1x")
+
+[sub_resource type="Resource" id="Resource_lk2ie"]
+script = ExtResource("1_hl4he")
+move = ExtResource("3_7a4ir")
+
+[sub_resource type="Resource" id="Resource_xhg43"]
+script = ExtResource("1_hl4he")
+move = ExtResource("4_u30qo")
+
+[sub_resource type="Resource" id="Resource_76h5h"]
+script = ExtResource("1_hl4he")
+move = ExtResource("5_yecqc")
+
+[sub_resource type="Resource" id="Resource_ccadp"]
+script = ExtResource("1_hl4he")
+level = 19
+move = ExtResource("6_agllq")
+
+[sub_resource type="Resource" id="Resource_qx8dy"]
+script = ExtResource("1_hl4he")
+level = 23
+move = ExtResource("7_rh72p")
+
+[sub_resource type="Resource" id="Resource_elj1e"]
+script = ExtResource("1_hl4he")
+level = 28
+move = ExtResource("8_wgwmp")
+
+[sub_resource type="Resource" id="Resource_0co1d"]
+script = ExtResource("1_hl4he")
+level = 32
+move = ExtResource("9_d6oam")
+
+[sub_resource type="Resource" id="Resource_l4ar3"]
+script = ExtResource("1_hl4he")
+level = 37
+move = ExtResource("10_5m2qj")
+
+[sub_resource type="Resource" id="Resource_6j8d3"]
+script = ExtResource("1_hl4he")
+level = 44
+move = ExtResource("11_31rap")
+
+[sub_resource type="Resource" id="Resource_n5i3k"]
+script = ExtResource("1_hl4he")
+level = 52
+move = ExtResource("12_pyp27")
+
+[sub_resource type="Resource" id="Resource_y1g25"]
+script = ExtResource("1_hl4he")
+level = 59
+move = ExtResource("13_lv6aa")
+
+[resource]
+script = ExtResource("3_ys170")
+id = "wailord"
+display_name = "Wailord"
+dex = 321
+types = Array[ExtResource("4_aps7p")]([ExtResource("5_3w5kx")])
+learnset = Array[ExtResource("1_hl4he")]([SubResource("Resource_7c3x3"), SubResource("Resource_lk2ie"), SubResource("Resource_xhg43"), SubResource("Resource_76h5h"), SubResource("Resource_ccadp"), SubResource("Resource_qx8dy"), SubResource("Resource_elj1e"), SubResource("Resource_0co1d"), SubResource("Resource_l4ar3"), SubResource("Resource_6j8d3"), SubResource("Resource_n5i3k"), SubResource("Resource_y1g25")])
+genus = "Pokémon Ballenaflot"
+pokedex_entry = "Wailord es el mayor Pokémon registrado hasta la fecha. Este coloso va nadando lánguidamente por el ancho mar con la boca abierta para que penetre la mayor cantidad posible de alimento."
+height_m = 14.5
+weight_kg = 398.0
+base_hp = 170
+base_attack = 90
+base_defense = 45
+base_sp_attack = 90
+base_sp_defense = 45
+base_speed = 60
+base_experience = 175
+growth_rate = "fast-then-very-slow"
+capture_rate = 60

@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_nafas"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_qol5j"]
+[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="2_v6sj1"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="3_dfq30"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_uwe5e"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cyf1a"]
+[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="4_lhi0f"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="5_851v0"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_cu437"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_5v38f"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="6_bp2if"]
+[ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="7_diu8g"]
+
+[sub_resource type="Resource" id="Resource_rw1ox"]
+script = ExtResource("1_nafas")
+move = ExtResource("2_v6sj1")
+
+[sub_resource type="Resource" id="Resource_1lnhl"]
+script = ExtResource("1_nafas")
+move = ExtResource("3_dfq30")
+
+[sub_resource type="Resource" id="Resource_gexb5"]
+script = ExtResource("1_nafas")
+move = ExtResource("4_lhi0f")
+
+[sub_resource type="Resource" id="Resource_k2maf"]
+script = ExtResource("1_nafas")
+move = ExtResource("5_851v0")
+
+[sub_resource type="Resource" id="Resource_tlo4q"]
+script = ExtResource("1_nafas")
+level = 22
+move = ExtResource("6_bp2if")
+
+[sub_resource type="Resource" id="Resource_61iiw"]
+script = ExtResource("1_nafas")
+level = 43
+move = ExtResource("7_diu8g")
+
+[resource]
+script = ExtResource("3_uwe5e")
+id = "nidoking"
+display_name = "Nidoking"
+dex = 34
+types = Array[ExtResource("4_cyf1a")]([ExtResource("5_cu437"), ExtResource("6_5v38f")])
+learnset = Array[ExtResource("1_nafas")]([SubResource("Resource_rw1ox"), SubResource("Resource_1lnhl"), SubResource("Resource_gexb5"), SubResource("Resource_k2maf"), SubResource("Resource_tlo4q"), SubResource("Resource_61iiw")])
+genus = "Pokémon Taladro"
+pokedex_entry = "La gruesa cola de Nidoking encierra una fuerza realmente destructora. Con una vez que la agite, es capaz de tumbar una torre metálica de transmisión. Una vez que este Pokémon se desboca, no hay quien lo pare."
+height_m = 1.4
+weight_kg = 62.0
+base_hp = 81
+base_attack = 102
+base_defense = 77
+base_sp_attack = 85
+base_sp_defense = 75
+base_speed = 85
+base_experience = 227
+growth_rate = "medium-slow"

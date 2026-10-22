@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_b88ar"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cf6d2"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="2_u5eno"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ehkgx"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="3_we54i"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_3ll0i"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="4_li8w5"]
+[ext_resource type="Resource" path="res://data/moves/refugio.tres" id="5_ehdwd"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="5_xcyi0"]
+[ext_resource type="Resource" path="res://data/moves/puas.tres" id="6_155fv"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="6_0820v"]
+[ext_resource type="Resource" path="res://data/moves/clavo_canon.tres" id="7_00j2b"]
+
+[sub_resource type="Resource" id="Resource_8o5fs"]
+script = ExtResource("1_b88ar")
+move = ExtResource("2_u5eno")
+
+[sub_resource type="Resource" id="Resource_livfq"]
+script = ExtResource("1_b88ar")
+move = ExtResource("3_we54i")
+
+[sub_resource type="Resource" id="Resource_wel43"]
+script = ExtResource("1_b88ar")
+move = ExtResource("4_li8w5")
+
+[sub_resource type="Resource" id="Resource_hds4g"]
+script = ExtResource("1_b88ar")
+move = ExtResource("5_ehdwd")
+
+[sub_resource type="Resource" id="Resource_x2w07"]
+script = ExtResource("1_b88ar")
+level = 36
+move = ExtResource("6_155fv")
+
+[sub_resource type="Resource" id="Resource_seyjv"]
+script = ExtResource("1_b88ar")
+level = 43
+move = ExtResource("7_00j2b")
+
+[resource]
+script = ExtResource("3_ehkgx")
+id = "cloyster"
+display_name = "Cloyster"
+dex = 91
+types = Array[ExtResource("4_3ll0i")]([ExtResource("5_xcyi0"), ExtResource("6_0820v")])
+learnset = Array[ExtResource("1_b88ar")]([SubResource("Resource_8o5fs"), SubResource("Resource_livfq"), SubResource("Resource_wel43"), SubResource("Resource_hds4g"), SubResource("Resource_x2w07"), SubResource("Resource_seyjv")])
+genus = "Pokémon Bivalvo"
+pokedex_entry = "Cloyster es capaz de nadar por el mar. Su técnica consiste en tragar agua y expulsarla por el conducto que tiene en la parte trasera. Este mismo sistema es el que usa para lanzar los pinchos que tiene alrededor de la concha."
+height_m = 1.5
+weight_kg = 132.5
+base_attack = 95
+base_defense = 180
+base_sp_attack = 85
+base_sp_defense = 45
+base_speed = 70
+base_experience = 184
+growth_rate = "slow"
+capture_rate = 60

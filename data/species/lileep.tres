@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_0dcn2"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_f2b6o"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_l2pvs"]
+[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="3_51ap4"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_qlpgc"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_pb7lr"]
+[ext_resource type="Resource" path="res://data/moves/acido.tres" id="4_wbq7q"]
+[ext_resource type="Resource" path="res://data/moves/arraigo.tres" id="5_6l2lp"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="5_7w8hj"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="6_5j65k"]
+[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="6_p8sdr"]
+[ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="7_bj61t"]
+[ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="8_vuaf8"]
+[ext_resource type="Resource" path="res://data/moves/escupir.tres" id="9_mnugh"]
+[ext_resource type="Resource" path="res://data/moves/reserva.tres" id="10_e1wnq"]
+[ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_5wlso"]
+
+[sub_resource type="Resource" id="Resource_m77ce"]
+script = ExtResource("1_0dcn2")
+move = ExtResource("2_l2pvs")
+
+[sub_resource type="Resource" id="Resource_s5wl6"]
+script = ExtResource("1_0dcn2")
+level = 8
+move = ExtResource("3_51ap4")
+
+[sub_resource type="Resource" id="Resource_mn6nu"]
+script = ExtResource("1_0dcn2")
+level = 15
+move = ExtResource("4_wbq7q")
+
+[sub_resource type="Resource" id="Resource_mtelo"]
+script = ExtResource("1_0dcn2")
+level = 22
+move = ExtResource("5_6l2lp")
+
+[sub_resource type="Resource" id="Resource_6cy6w"]
+script = ExtResource("1_0dcn2")
+level = 29
+move = ExtResource("6_p8sdr")
+
+[sub_resource type="Resource" id="Resource_mfe1n"]
+script = ExtResource("1_0dcn2")
+level = 36
+move = ExtResource("7_bj61t")
+
+[sub_resource type="Resource" id="Resource_c3gxo"]
+script = ExtResource("1_0dcn2")
+level = 43
+move = ExtResource("8_vuaf8")
+
+[sub_resource type="Resource" id="Resource_nwni3"]
+script = ExtResource("1_0dcn2")
+level = 50
+move = ExtResource("9_mnugh")
+
+[sub_resource type="Resource" id="Resource_aispv"]
+script = ExtResource("1_0dcn2")
+level = 50
+move = ExtResource("10_e1wnq")
+
+[sub_resource type="Resource" id="Resource_dyv7i"]
+script = ExtResource("1_0dcn2")
+level = 50
+move = ExtResource("11_5wlso")
+
+[resource]
+script = ExtResource("3_qlpgc")
+id = "lileep"
+display_name = "Lileep"
+dex = 345
+types = Array[ExtResource("4_pb7lr")]([ExtResource("5_7w8hj"), ExtResource("6_5j65k")])
+learnset = Array[ExtResource("1_0dcn2")]([SubResource("Resource_m77ce"), SubResource("Resource_s5wl6"), SubResource("Resource_mn6nu"), SubResource("Resource_mtelo"), SubResource("Resource_6cy6w"), SubResource("Resource_mfe1n"), SubResource("Resource_c3gxo"), SubResource("Resource_nwni3"), SubResource("Resource_aispv"), SubResource("Resource_dyv7i")])
+genus = "Pokémon Lirio de Mar"
+pokedex_entry = "Los Lileep se extinguieron hace unos cien millones de años aproximadamente. Este Pokémon se ancla a una roca en el fondo del mar y atrapa a las presas que se le acercan con los tentáculos que tiene en forma de pétalos de flor."
+height_m = 1.0
+weight_kg = 23.8
+base_hp = 66
+base_attack = 41
+base_defense = 77
+base_sp_attack = 61
+base_sp_defense = 87
+base_speed = 23
+base_experience = 71
+growth_rate = "slow-then-very-fast"

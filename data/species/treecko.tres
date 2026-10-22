@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_887tn"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0yku1"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_yo4e3"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="3_b2wdc"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_rqvub"]
+[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="4_41yd1"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mkst7"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="5_icphi"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="5_nj5nw"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="6_8npju"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="7_llyug"]
+[ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="8_jg4un"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_tw8dn"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="10_fci2h"]
+[ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="11_drcyb"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="12_6h3q8"]
+
+[sub_resource type="Resource" id="Resource_kpxgy"]
+script = ExtResource("1_887tn")
+move = ExtResource("2_yo4e3")
+
+[sub_resource type="Resource" id="Resource_1ejxw"]
+script = ExtResource("1_887tn")
+move = ExtResource("3_b2wdc")
+
+[sub_resource type="Resource" id="Resource_4myp6"]
+script = ExtResource("1_887tn")
+level = 6
+move = ExtResource("4_41yd1")
+
+[sub_resource type="Resource" id="Resource_vb5j6"]
+script = ExtResource("1_887tn")
+level = 11
+move = ExtResource("5_nj5nw")
+
+[sub_resource type="Resource" id="Resource_uq0oj"]
+script = ExtResource("1_887tn")
+level = 16
+move = ExtResource("6_8npju")
+
+[sub_resource type="Resource" id="Resource_h2b4h"]
+script = ExtResource("1_887tn")
+level = 21
+move = ExtResource("7_llyug")
+
+[sub_resource type="Resource" id="Resource_wfryr"]
+script = ExtResource("1_887tn")
+level = 26
+move = ExtResource("8_jg4un")
+
+[sub_resource type="Resource" id="Resource_3twwo"]
+script = ExtResource("1_887tn")
+level = 31
+move = ExtResource("9_tw8dn")
+
+[sub_resource type="Resource" id="Resource_y0sas"]
+script = ExtResource("1_887tn")
+level = 36
+move = ExtResource("10_fci2h")
+
+[sub_resource type="Resource" id="Resource_206b3"]
+script = ExtResource("1_887tn")
+level = 41
+move = ExtResource("11_drcyb")
+
+[sub_resource type="Resource" id="Resource_rf476"]
+script = ExtResource("1_887tn")
+level = 46
+move = ExtResource("12_6h3q8")
+
+[resource]
+script = ExtResource("3_rqvub")
+id = "treecko"
+display_name = "Treecko"
+dex = 252
+types = Array[ExtResource("4_mkst7")]([ExtResource("5_icphi")])
+learnset = Array[ExtResource("1_887tn")]([SubResource("Resource_kpxgy"), SubResource("Resource_1ejxw"), SubResource("Resource_4myp6"), SubResource("Resource_vb5j6"), SubResource("Resource_uq0oj"), SubResource("Resource_h2b4h"), SubResource("Resource_wfryr"), SubResource("Resource_3twwo"), SubResource("Resource_y0sas"), SubResource("Resource_206b3"), SubResource("Resource_rf476")])
+genus = "Pokémon Geco Bosque"
+pokedex_entry = "Treecko tiene unos ganchos pequeños en las plantas de los pies con los que puede escalar superficies verticales. Este Pokémon ataca dando un golpetazo con la cola."
+height_m = 0.5
+weight_kg = 5.0
+base_hp = 40
+base_attack = 45
+base_defense = 35
+base_sp_attack = 65
+base_sp_defense = 55
+base_speed = 70
+base_experience = 62
+growth_rate = "medium-slow"

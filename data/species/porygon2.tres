@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rhhlm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_fn0d0"]
+[ext_resource type="Resource" path="res://data/moves/conversion.tres" id="2_n5134"]
+[ext_resource type="Resource" path="res://data/moves/conversion_2.tres" id="3_1qckg"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_syikb"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_2n0o3"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_58gi4"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="5_nbf0c"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="5_v3c0d"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_u7a2a"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="7_v6myh"]
+[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="8_t2vmt"]
+[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="9_sctsc"]
+[ext_resource type="Resource" path="res://data/moves/triataque.tres" id="10_jxmlp"]
+[ext_resource type="Resource" path="res://data/moves/reciclaje.tres" id="11_lfak2"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_7t6ng"]
+
+[sub_resource type="Resource" id="Resource_l0yfg"]
+script = ExtResource("1_rhhlm")
+move = ExtResource("2_n5134")
+
+[sub_resource type="Resource" id="Resource_5jj2h"]
+script = ExtResource("1_rhhlm")
+move = ExtResource("3_1qckg")
+
+[sub_resource type="Resource" id="Resource_rohqs"]
+script = ExtResource("1_rhhlm")
+move = ExtResource("4_58gi4")
+
+[sub_resource type="Resource" id="Resource_3q05k"]
+script = ExtResource("1_rhhlm")
+level = 9
+move = ExtResource("5_nbf0c")
+
+[sub_resource type="Resource" id="Resource_4rvtr"]
+script = ExtResource("1_rhhlm")
+level = 12
+move = ExtResource("6_u7a2a")
+
+[sub_resource type="Resource" id="Resource_3v1jr"]
+script = ExtResource("1_rhhlm")
+level = 20
+move = ExtResource("7_v6myh")
+
+[sub_resource type="Resource" id="Resource_ywycm"]
+script = ExtResource("1_rhhlm")
+level = 24
+move = ExtResource("8_t2vmt")
+
+[sub_resource type="Resource" id="Resource_j6i7c"]
+script = ExtResource("1_rhhlm")
+level = 32
+move = ExtResource("9_sctsc")
+
+[sub_resource type="Resource" id="Resource_nuqw7"]
+script = ExtResource("1_rhhlm")
+level = 36
+move = ExtResource("10_jxmlp")
+
+[sub_resource type="Resource" id="Resource_liiia"]
+script = ExtResource("1_rhhlm")
+level = 44
+move = ExtResource("11_lfak2")
+
+[sub_resource type="Resource" id="Resource_4b58q"]
+script = ExtResource("1_rhhlm")
+level = 48
+move = ExtResource("12_7t6ng")
+
+[resource]
+script = ExtResource("3_syikb")
+id = "porygon2"
+display_name = "Porygon2"
+dex = 233
+types = Array[ExtResource("4_2n0o3")]([ExtResource("5_v3c0d")])
+learnset = Array[ExtResource("1_rhhlm")]([SubResource("Resource_l0yfg"), SubResource("Resource_5jj2h"), SubResource("Resource_rohqs"), SubResource("Resource_3q05k"), SubResource("Resource_4rvtr"), SubResource("Resource_3v1jr"), SubResource("Resource_ywycm"), SubResource("Resource_j6i7c"), SubResource("Resource_nuqw7"), SubResource("Resource_liiia"), SubResource("Resource_4b58q")])
+genus = "Pokémon Virtual"
+pokedex_entry = "Porygon2 fue creado por el hombre gracias a los avances de la ciencia. Esta obra humana ha sido provista de inteligencia artificial que le permite aprender gestos y sensaciones nuevas por su cuenta."
+height_m = 0.6
+weight_kg = 32.5
+base_hp = 85
+base_attack = 80
+base_defense = 90
+base_sp_attack = 105
+base_sp_defense = 95
+base_speed = 60
+base_experience = 180

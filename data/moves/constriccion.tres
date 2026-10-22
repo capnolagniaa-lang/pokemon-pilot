@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_4qa6x"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6hbt2"]
+[ext_resource type="Resource" path="res://data/status/enraizado.tres" id="3_23cpa"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_q5imd"]
+
+[resource]
+script = ExtResource("2_6hbt2")
+id = "constriccion"
+display_name = "Constricción"
+element = ExtResource("1_4qa6x")
+kind = 4
+power = 15.0
+cooldown = 0.8
+knockback = 120.0
+recovery = 0.1
+status = ExtResource("3_23cpa")
+status_chance = 1.0
+melee_range = 13.0
+swing_radius = 12.0
+final_knockback = 150.0

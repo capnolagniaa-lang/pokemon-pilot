@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xwjny"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7q6dj"]
+[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_fcq3u"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_1fidb"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_t262y"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_nja3u"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="4_td5wk"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_5bknk"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_vf4ic"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="6_lj212"]
+[ext_resource type="Resource" path="res://data/moves/rueda_fuego.tres" id="7_htm15"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="8_own8g"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_4y5v5"]
+
+[sub_resource type="Resource" id="Resource_pa65w"]
+script = ExtResource("1_xwjny")
+move = ExtResource("2_fcq3u")
+
+[sub_resource type="Resource" id="Resource_jqav6"]
+script = ExtResource("1_xwjny")
+move = ExtResource("3_1fidb")
+
+[sub_resource type="Resource" id="Resource_wc8en"]
+script = ExtResource("1_xwjny")
+move = ExtResource("4_td5wk")
+
+[sub_resource type="Resource" id="Resource_53u4c"]
+script = ExtResource("1_xwjny")
+move = ExtResource("5_5bknk")
+
+[sub_resource type="Resource" id="Resource_f17wb"]
+script = ExtResource("1_xwjny")
+level = 21
+move = ExtResource("6_lj212")
+
+[sub_resource type="Resource" id="Resource_gd7m0"]
+script = ExtResource("1_xwjny")
+level = 31
+move = ExtResource("7_htm15")
+
+[sub_resource type="Resource" id="Resource_nxc82"]
+script = ExtResource("1_xwjny")
+level = 45
+move = ExtResource("8_own8g")
+
+[sub_resource type="Resource" id="Resource_6yig8"]
+script = ExtResource("1_xwjny")
+level = 60
+move = ExtResource("9_4y5v5")
+
+[resource]
+script = ExtResource("3_t262y")
+id = "typhlosion"
+display_name = "Typhlosion"
+dex = 157
+types = Array[ExtResource("4_nja3u")]([ExtResource("5_vf4ic")])
+learnset = Array[ExtResource("1_xwjny")]([SubResource("Resource_pa65w"), SubResource("Resource_jqav6"), SubResource("Resource_wc8en"), SubResource("Resource_53u4c"), SubResource("Resource_f17wb"), SubResource("Resource_gd7m0"), SubResource("Resource_nxc82"), SubResource("Resource_6yig8")])
+genus = "Pokémon Volcán"
+pokedex_entry = "Typhlosion se oculta tras un trémulo haz de calor que crea mediante sus intensas y sofocantes llamaradas. Este Pokémon causa explosiones de fuego que reducen todo a cenizas."
+height_m = 1.7
+weight_kg = 79.5
+base_hp = 78
+base_attack = 84
+base_defense = 78
+base_sp_attack = 109
+base_sp_defense = 85
+base_speed = 100
+base_experience = 240
+growth_rate = "medium-slow"

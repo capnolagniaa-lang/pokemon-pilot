@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rh1sg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_a8fxp"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="2_j52r7"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_agub3"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fhxsw"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_1jw5p"]
+[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="4_jm7vh"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_l8vkb"]
+[ext_resource type="Resource" path="res://data/moves/empujon.tres" id="5_vrynt"]
+[ext_resource type="Resource" path="res://data/moves/llave_vital.tres" id="6_qdxya"]
+[ext_resource type="Resource" path="res://data/moves/sorpresa.tres" id="7_rg20q"]
+[ext_resource type="Resource" path="res://data/moves/remolino.tres" id="8_0i4os"]
+[ext_resource type="Resource" path="res://data/moves/desarme.tres" id="9_n0e6j"]
+[ext_resource type="Resource" path="res://data/moves/estimulo.tres" id="10_gcgxn"]
+[ext_resource type="Resource" path="res://data/moves/tambor.tres" id="11_mvbri"]
+[ext_resource type="Resource" path="res://data/moves/aguante.tres" id="12_blj7p"]
+[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="13_0x1ip"]
+[ext_resource type="Resource" path="res://data/moves/inversion.tres" id="14_h8axu"]
+
+[sub_resource type="Resource" id="Resource_stb1j"]
+script = ExtResource("1_rh1sg")
+move = ExtResource("2_j52r7")
+
+[sub_resource type="Resource" id="Resource_rwfvl"]
+script = ExtResource("1_rh1sg")
+move = ExtResource("3_agub3")
+
+[sub_resource type="Resource" id="Resource_3ndew"]
+script = ExtResource("1_rh1sg")
+level = 4
+move = ExtResource("4_jm7vh")
+
+[sub_resource type="Resource" id="Resource_fgsgp"]
+script = ExtResource("1_rh1sg")
+level = 10
+move = ExtResource("5_vrynt")
+
+[sub_resource type="Resource" id="Resource_jw8bm"]
+script = ExtResource("1_rh1sg")
+level = 13
+move = ExtResource("6_qdxya")
+
+[sub_resource type="Resource" id="Resource_f621q"]
+script = ExtResource("1_rh1sg")
+level = 19
+move = ExtResource("7_rg20q")
+
+[sub_resource type="Resource" id="Resource_olai3"]
+script = ExtResource("1_rh1sg")
+level = 22
+move = ExtResource("8_0i4os")
+
+[sub_resource type="Resource" id="Resource_wemlw"]
+script = ExtResource("1_rh1sg")
+level = 28
+move = ExtResource("9_n0e6j")
+
+[sub_resource type="Resource" id="Resource_7s4o0"]
+script = ExtResource("1_rh1sg")
+level = 31
+move = ExtResource("10_gcgxn")
+
+[sub_resource type="Resource" id="Resource_umunn"]
+script = ExtResource("1_rh1sg")
+level = 37
+move = ExtResource("11_mvbri")
+
+[sub_resource type="Resource" id="Resource_2ieet"]
+script = ExtResource("1_rh1sg")
+level = 40
+move = ExtResource("12_blj7p")
+
+[sub_resource type="Resource" id="Resource_etwae"]
+script = ExtResource("1_rh1sg")
+level = 46
+move = ExtResource("13_0x1ip")
+
+[sub_resource type="Resource" id="Resource_fady8"]
+script = ExtResource("1_rh1sg")
+level = 49
+move = ExtResource("14_h8axu")
+
+[resource]
+script = ExtResource("3_fhxsw")
+id = "makuhita"
+display_name = "Makuhita"
+dex = 296
+types = Array[ExtResource("4_1jw5p")]([ExtResource("5_l8vkb")])
+learnset = Array[ExtResource("1_rh1sg")]([SubResource("Resource_stb1j"), SubResource("Resource_rwfvl"), SubResource("Resource_3ndew"), SubResource("Resource_fgsgp"), SubResource("Resource_jw8bm"), SubResource("Resource_f621q"), SubResource("Resource_olai3"), SubResource("Resource_wemlw"), SubResource("Resource_7s4o0"), SubResource("Resource_umunn"), SubResource("Resource_2ieet"), SubResource("Resource_etwae"), SubResource("Resource_fady8")])
+genus = "Pokémon Valiente"
+pokedex_entry = "Makuhita es tenaz. Da igual las veces que le venzan; volverá a ponerse en pie y a atacar. De hecho, cada vez que se recupera, acumula más energía para poder evolucionar."
+height_m = 1.0
+weight_kg = 86.4
+base_hp = 72
+base_attack = 60
+base_defense = 30
+base_sp_attack = 20
+base_sp_defense = 30
+base_speed = 25
+base_experience = 47
+growth_rate = "fast-then-very-slow"
+capture_rate = 180

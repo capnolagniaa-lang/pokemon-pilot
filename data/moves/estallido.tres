@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_170e4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_33ydl"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_qliuo"]
+
+[resource]
+script = ExtResource("2_33ydl")
+id = "estallido"
+display_name = "Estallido"
+element = ExtResource("1_170e4")
+kind = 2
+category = 1
+power = 150.0
+cooldown = 6.300000000000001
+cast_time = 0.3
+knockback = 200.0
+recovery = 0.3
+radius = 52.0

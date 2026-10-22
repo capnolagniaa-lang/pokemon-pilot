@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="1_3xinh"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ea0hy"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_y87po"]
+
+[resource]
+script = ExtResource("2_ea0hy")
+id = "puno_meteoro"
+display_name = "Puño Meteoro"
+element = ExtResource("1_3xinh")
+kind = 1
+power = 90.0
+cooldown = 2.3000000000000003
+knockback = 220.0
+recovery = 0.3
+dash_time = 0.28

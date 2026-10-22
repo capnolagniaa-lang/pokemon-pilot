@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_iy4ny"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0f8ur"]
+[ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_65kt7"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_8bvxk"]
+[ext_resource type="Resource" path="res://data/moves/llanto_falso.tres" id="3_iuiun"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="4_qh4rp"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_uog2y"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="5_enfbj"]
+[ext_resource type="Resource" path="res://data/types/acero.tres" id="5_o23so"]
+[ext_resource type="Resource" path="res://data/moves/agarre.tres" id="6_vaa20"]
+[ext_resource type="Resource" path="res://data/types/hada.tres" id="6_xk65v"]
+[ext_resource type="Resource" path="res://data/moves/finta.tres" id="7_dhlxn"]
+[ext_resource type="Resource" path="res://data/moves/relevo.tres" id="8_2dueo"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_4cqj6"]
+[ext_resource type="Resource" path="res://data/moves/defensa_ferrea.tres" id="10_bomcv"]
+[ext_resource type="Resource" path="res://data/moves/escupir.tres" id="11_cm1mi"]
+[ext_resource type="Resource" path="res://data/moves/reserva.tres" id="12_wlox1"]
+[ext_resource type="Resource" path="res://data/moves/tragar.tres" id="13_mif5u"]
+
+[sub_resource type="Resource" id="Resource_rsg1v"]
+script = ExtResource("1_iy4ny")
+move = ExtResource("2_65kt7")
+
+[sub_resource type="Resource" id="Resource_ctx6k"]
+script = ExtResource("1_iy4ny")
+level = 6
+move = ExtResource("3_iuiun")
+
+[sub_resource type="Resource" id="Resource_vusrh"]
+script = ExtResource("1_iy4ny")
+level = 11
+move = ExtResource("4_qh4rp")
+
+[sub_resource type="Resource" id="Resource_a6uer"]
+script = ExtResource("1_iy4ny")
+level = 16
+move = ExtResource("5_enfbj")
+
+[sub_resource type="Resource" id="Resource_deyi4"]
+script = ExtResource("1_iy4ny")
+level = 21
+move = ExtResource("6_vaa20")
+
+[sub_resource type="Resource" id="Resource_i3kin"]
+script = ExtResource("1_iy4ny")
+level = 26
+move = ExtResource("7_dhlxn")
+
+[sub_resource type="Resource" id="Resource_yl8px"]
+script = ExtResource("1_iy4ny")
+level = 31
+move = ExtResource("8_2dueo")
+
+[sub_resource type="Resource" id="Resource_6qqey"]
+script = ExtResource("1_iy4ny")
+level = 36
+move = ExtResource("9_4cqj6")
+
+[sub_resource type="Resource" id="Resource_j7q5i"]
+script = ExtResource("1_iy4ny")
+level = 41
+move = ExtResource("10_bomcv")
+
+[sub_resource type="Resource" id="Resource_mjain"]
+script = ExtResource("1_iy4ny")
+level = 46
+move = ExtResource("11_cm1mi")
+
+[sub_resource type="Resource" id="Resource_i4ll8"]
+script = ExtResource("1_iy4ny")
+level = 46
+move = ExtResource("12_wlox1")
+
+[sub_resource type="Resource" id="Resource_myvbx"]
+script = ExtResource("1_iy4ny")
+level = 46
+move = ExtResource("13_mif5u")
+
+[resource]
+script = ExtResource("3_8bvxk")
+id = "mawile"
+display_name = "Mawile"
+dex = 303
+types = Array[ExtResource("4_uog2y")]([ExtResource("5_o23so"), ExtResource("6_xk65v")])
+learnset = Array[ExtResource("1_iy4ny")]([SubResource("Resource_rsg1v"), SubResource("Resource_ctx6k"), SubResource("Resource_vusrh"), SubResource("Resource_a6uer"), SubResource("Resource_deyi4"), SubResource("Resource_i3kin"), SubResource("Resource_yl8px"), SubResource("Resource_6qqey"), SubResource("Resource_j7q5i"), SubResource("Resource_mjain"), SubResource("Resource_i4ll8"), SubResource("Resource_myvbx")])
+genus = "Pokémon Tramposo"
+pokedex_entry = "Las descomunales fauces de acero de Mawile son la evolución de unos cuernos que tuvo en su día. Con su expresión dócil puede engañar al enemigo y hacer que baje la guardia para sorprenderle con las fauces."
+height_m = 0.6
+weight_kg = 11.5
+base_attack = 85
+base_defense = 85
+base_sp_attack = 55
+base_sp_defense = 55
+base_experience = 133
+growth_rate = "fast"

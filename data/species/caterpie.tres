@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="SpeciesData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mbi7l"]
+[ext_resource type="Resource" path="res://data/moves/disparo_demora.tres" id="2_2tn1v"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ehjt8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_2tn1v"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_ml7ct"]
+[ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ml7ct"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_mb5d7"]
+
+[sub_resource type="Resource" id="Resource_mb5d7"]
+script = ExtResource("1_mbi7l")
+move = ExtResource("2_2tn1v")
+
+[sub_resource type="Resource" id="Resource_sf7wa"]
+script = ExtResource("1_mbi7l")
+move = ExtResource("3_ml7ct")
+
+[resource]
+script = ExtResource("3_2tn1v")
+id = "caterpie"
+display_name = "Caterpie"
+dex = 10
+types = Array[ExtResource("4_ml7ct")]([ExtResource("5_mb5d7")])
+learnset = Array[ExtResource("1_mbi7l")]([SubResource("Resource_mb5d7"), SubResource("Resource_sf7wa")])
+genus = "Pokémon Gusano"
+pokedex_entry = "Caterpie tiene un apetito voraz. Es capaz de devorar hojas que superen su tamaño en un abrir y cerrar de ojos. Atención a la antena que tiene: libera un hedor realmente fuerte."
+height_m = 0.3
+weight_kg = 2.9
+base_hp = 45
+base_attack = 30
+base_defense = 35
+base_sp_attack = 20
+base_sp_defense = 20
+base_speed = 45
+base_experience = 39
+capture_rate = 255
