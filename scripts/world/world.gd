@@ -14,6 +14,8 @@ const PauseMenuScene := preload("res://scenes/ui/pause_menu.tscn")
 var companion: Creature
 ## Menú de pausa (Esc): equipo, guardar, opciones.
 var pause_menu: PauseMenu
+## Entorno reactivo (fuego, agua, hielo, eléctrico sobre las celdas).
+var reactions: ReactionSystem
 
 
 func _ready() -> void:
@@ -29,6 +31,10 @@ func _ready() -> void:
 	streamer.load_around_now(spawn)
 	# Las zonas se cargan alrededor de lo que mira la cámara (el entrenador o tu Pokémon en combate).
 	streamer.target = camera
+	trainer.add_to_group("trainer")
+	reactions = ReactionSystem.new()
+	reactions.name = "ReactionSystem"
+	add_child(reactions)
 	Events.party_changed.connect(_on_party_changed)
 	Events.equipment_changed.connect(_on_equipment_changed)
 	var menu_layer := CanvasLayer.new()
@@ -74,15 +80,10 @@ func _on_equipment_changed(inst: CreatureInstance) -> void:
 		respawn_companion()
 
 
-## Tags de la celda del mundo en una posición global (vacío si la zona no está cargada).
+## Tags de la celda del mundo en una posición global, con el estado del entorno reactivo aplicado (el pasto
+## alto quemado deja de serlo). Vacío si la zona no está cargada.
 func tags_at(global_pos: Vector2) -> PackedStringArray:
-	var entry := streamer.world_data.zone_at(global_pos)
-	if entry == null:
-		return PackedStringArray()
-	var zone := streamer.zone_node(entry.id)
-	if zone == null:
-		return PackedStringArray()
-	return zone.get_tags(zone.cell_at(global_pos))
+	return reactions.tags_at(global_pos) if reactions != null else PackedStringArray()
 
 
 func _on_party_changed() -> void:

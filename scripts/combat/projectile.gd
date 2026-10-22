@@ -10,6 +10,9 @@ var life := 1.0
 var radius := 4.0
 var color := Color.WHITE
 var core := Color.WHITE
+## Cada cuántos píxeles de vuelo toca el suelo para el entorno reactivo.
+const PATH_STEP := 14.0
+var _path_left := 6.0
 ## Ya lo desvió el viento (no se vuelve a desviar).
 var deflected := false
 var _time := 0.0
@@ -49,6 +52,11 @@ func _physics_process(delta: float) -> void:
 		return
 	_time += delta
 	global_position += velocity * delta
+	# Entorno reactivo: también afecta las celdas por las que pasa (las brasas prenden el pasto alto).
+	_path_left -= velocity.length() * delta
+	if _path_left <= 0.0:
+		_path_left = PATH_STEP
+		Events.element_impact.emit(hit.move.element, global_position + Vector2(0, 8), 2.0)
 	if hit.move.deflects_projectiles:
 		Projectile.deflect_around(get_parent(), hit.team, global_position, radius + 4.0)
 	if _time >= life:

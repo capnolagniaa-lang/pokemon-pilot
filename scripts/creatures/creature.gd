@@ -227,7 +227,8 @@ func release_move(msg: Dictionary) -> void:
 			if m.invulnerable_time > 0.0:
 				health.invulnerable_time = maxf(health.invulnerable_time, m.invulnerable_time)
 			machine.transition_to("dash", {"dir": aim, "time": m.dash_time, "attack": m.dash_hits,
-				"recovery": recovery, "trail": m if m.trail_power > 0.0 else null})
+				"recovery": recovery, "trail": m if m.trail_power > 0.0 else null,
+				"power": m.power * m.power_mult if m.dash_hits else 0.0})
 			return
 		MoveData.Kind.LUNGE:
 			# Se lanza hacia el punto apuntado; si conecta, el estado "lunge" encadena el 2º golpe.

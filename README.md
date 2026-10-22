@@ -26,6 +26,10 @@ Acceso directo sin abrir el editor: un `.lnk` que apunte a `Godot_v4.7.2-stable_
 | Menú (Equipo, Guardar, Opciones) | Esc |
 | Menús | Flechas/WASD + Enter/Espacio (o mouse) · Tab cambia de pestaña en la ficha |
 
+El mundo **reacciona a los ataques**: el fuego prende el pasto alto, las flores y los árboles (y se contagia),
+el agua lo apaga y moja el suelo, el hielo congela el agua (puente para cruzar), el eléctrico corre por el agua y
+lo mojado, y las embestidas rompen las rocas frágiles.
+
 La partida se **guarda a mano** desde el menú (Esc → Guardar; no se puede en combate) y se retoma con
 **Continuar** en la pantalla de título. En **Equipo** (hasta 6) elegís quién te sigue y en la **ficha** de cada
 Pokémon ves sus stats y equipás sus 4 movimientos entre los que ya aprendió (aprende más al subir de nivel).

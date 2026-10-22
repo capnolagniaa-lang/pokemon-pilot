@@ -6,8 +6,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-22)
-- **Etapa 2c hecha (título, guardado, equipo y movimientos)** — ver la sección "Etapa 2c" más abajo.
-- **Siguiente: Etapa 3 (entorno reactivo).** El usuario aprobó los kits por ahora ("me gustan los de Charmander y
+- **Etapa 3 hecha (entorno reactivo)** — ver "Etapa 3" más abajo. **Etapa 2c hecha** (título, guardado,
+  equipo y movimientos).
+- **Siguiente: Etapa 4 (IA salvaje con estados + spawns por bioma/hora)** — ver "Próximo paso concreto". El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.
 - v2 hecho: **sin energía** (solo recargas), **4 ataques + esquive en Espacio**, Charmander **bruiser** rearmado,
   Bellsprout/Bulbasaur **control**, y por ahora **todo el mapa** solo hace aparecer **Pidgey, Bellsprout,
@@ -30,12 +31,32 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 2 | Combate en tiempo real en el mapa + estados alterados | ✅ Hecha |
 | 2b | Stats oficiales (PokeAPI), curvas de EXP, velocidad por stat, balance de energía, visual de fuego/estados | ✅ Hecha |
 | 2c | Título, guardado, equipo (máx. 6) y movimientos por nivel (learnset + ficha) | ✅ Hecha |
-| 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | ⏭️ Siguiente |
-| 4 | IA salvaje con estados + spawns por bioma/hora | Pendiente |
+| 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | ✅ Hecha |
+| 4 | IA salvaje con estados + spawns por bioma/hora | ⏭️ Siguiente |
 | 5 | Ciclo día/noche, clima, NPCs con horarios | Pendiente |
 | 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | Pendiente |
 | 7 | Primer gimnasio (arena con transición) | Pendiente |
 | 8 | Pulido (juice, audio, partículas) | Pendiente |
+
+## Etapa 3 — Entorno reactivo (2026-10-22)
+- **Estado por celda** (`EnvironmentGrid`, uno por zona, lo crea `ReactionSystem` al primer uso y se va con la
+  zona): `data/environment/states/*.tres` (`EnvCellState`): **ardiendo** (4,5 s, se contagia a las vecinas 30%/s,
+  quema a quien esté encima, después queda **quemado**), **quemado** (45 s, deja de ser inflamable/pasto alto),
+  **mojado** (15 s, Empapa), **congelado** (10 s; sobre el agua saca el tile de agua = **puente de hielo**, no se
+  derrite con alguien encima), **electrificado** (1,2 s, Paraliza; al terminar vuelve al estado anterior).
+  Visual: llamas (partículas rojizas y luces suaves cada 3 celdas), hollín, charcos, hielo y chispas.
+- **Reglas** (`data/environment/reactions/*.tres`, `ReactionRule`, por prioridad): agua apaga el fuego (vapor) ·
+  fuego seca lo mojado (vapor) · fuego derrite el hielo · hielo congela agua y suelo mojado · eléctrico corre por
+  el agua y lo mojado (propagación instantánea, hasta 80 celdas) · fuego prende lo inflamable (pasto alto,
+  flores, árboles) · agua moja el suelo.
+- `ReactionSystem` (en el mundo) escucha `Events.element_impact`. Los **proyectiles también tocan las celdas por
+  las que pasan** (cada 14 px): las brasas prenden el pasto alto y el agua moja su camino.
+- **Objetos**: lo inflamable (árbol cortable) se quema y desaparece; la **roca frágil** se rompe con una
+  embestida (`Events.env_object_struck` desde los estados dash/lunge; `EnvObject.break_power` = 30 de potencia):
+  Embestida Ígnea, Ataque Rápido, Arañazo... abren el rincón de Ruta 1.
+- `World.tags_at()` ya devuelve los tags con el estado aplicado (el pasto alto quemado deja de serlo).
+- Autotest `--autotest-env` (22 chequeos con el mapa real); vitrina `--showcase-env`.
+- Pendiente: crecido (planta), viento que aviva el fuego, reflejar proyectiles, que la IA salvaje evite el fuego.
 
 ## Etapa 2c — Título, guardado, equipo y movimientos (2026-10-22)
 Pedido del usuario en `docs/PROMPT_MENU_GUARDADO_EQUIPO.md`. Decisiones (todas las recomendadas):
@@ -133,18 +154,13 @@ Seel/Oddish), `--autotest-input` (simula teclas reales y verifica el spawner), `
 EXP contra valores oficiales), `--showcase` (vitrina visual de los 3 estados, para renderizar). Correr siempre con
 `--quit-after 60000` como límite por si algo se cuelga.
 
-## Próximo paso concreto (Etapa 3: entorno reactivo)
-1. `EnvironmentGrid` por zona: estado dinámico por celda (ardiendo, quemado, mojado, congelado, crecido)
-   encima de los tags del TileSet; overlays visuales (llamas animadas con luz, charcos, hielo).
-2. `ReactionRule` (.tres en `data/reactions/`): elemento × condición (tags/estado) → efectos (cambiar estado,
-   propagar a vecinos con probabilidad/demora, dañar o aplicar estado a criaturas encima, emitir otro elemento).
-   `ReactionSystem` escucha `Events.element_impact`; las cadenas salen de los efectos que emiten elementos.
-3. Reglas iniciales: fuego quema pasto/pasto alto/árboles/arbusto cortable y se propaga; agua apaga y moja;
-   eléctrico se propaga por agua y suelo mojado (paraliza a quien esté encima); fuego sobre mojado → vapor.
-4. Hielo (ya hay ataques): congela agua → camino transitable temporal (puente de hielo en Bosque Verde).
-5. Roca frágil: se rompe con golpes fuertes (embestidas) → abre el rincón de Ruta 1.
-6. Las criaturas paradas sobre celdas en llamas se queman.
-7. Autotest del entorno: prender pasto y verificar propagación y apagado; romper la roca frágil.
+## Próximo paso concreto (Etapa 4: IA salvaje con estados + spawns por bioma/hora)
+1. Que la IA use cada kit con criterio: defensivas (Arraigo, Síntesis, Foco Energía) en el momento justo, guardar
+   la de más recarga, aprovechar la mecánica de firma (Vulpix busca quemados, Rattata remata presas, Pidgey sube
+   al aire cuando lo encaran). Hoy elige al azar dentro del alcance.
+2. Que la IA lea el entorno: no pararse en el fuego, salir del agua electrificada.
+3. Comportamientos por especie (tímido/agresivo/territorial) y huida con poca vida.
+4. Spawns por bioma y hora (volver a `WildSpawner.use_test_pool = false` cuando termine la prueba del combate).
 
 ## Pendientes de pulido (anotados)
 - Esquinas interiores donde se cruzan caminos (quedan cuadradas).

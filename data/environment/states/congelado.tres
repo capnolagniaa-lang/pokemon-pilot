@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnvCellState" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/env_cell_state.gd" id="1_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "congelado"
+display_name = "Congelado"
+duration = 10.0
+removes_tags = PackedStringArray("inflamable")
+adds_tags = PackedStringArray("hielo")
+walkable_water = true
+look = 3
+color = Color(0.75, 0.92, 1, 1)

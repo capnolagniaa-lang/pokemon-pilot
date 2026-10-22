@@ -14,6 +14,8 @@ var species: Dictionary = {}  # id -> SpeciesData
 var statuses: Dictionary = {}  # id -> StatusEffect
 var interactions: Dictionary = {}  # nombre de archivo -> StatusInteraction
 var difficulties: Dictionary = {}  # id -> AiDifficulty (facil, normal, dificil)
+var env_states: Dictionary = {}  # id -> EnvCellState (entorno reactivo: ardiendo, mojado...)
+var reactions: Dictionary = {}  # id -> ReactionRule
 var type_chart: TypeChart
 var config: GameConfig
 
@@ -27,6 +29,8 @@ func _ready() -> void:
 	statuses = _load_dir("res://data/status", "StatusEffect")
 	interactions = _load_dir("res://data/status/interactions", "StatusInteraction")
 	difficulties = _load_dir("res://data/config/difficulty", "AiDifficulty")
+	env_states = _load_dir("res://data/environment/states", "EnvCellState")
+	reactions = _load_dir("res://data/environment/reactions", "ReactionRule")
 	type_chart = load("res://data/types/type_chart.tres")
 	config = load("res://data/config/game_config.tres")
 	_index_moves()

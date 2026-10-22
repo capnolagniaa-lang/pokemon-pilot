@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnvCellState" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/env_cell_state.gd" id="1_x"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="2_x"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "ardiendo"
+display_name = "Ardiendo"
+duration = 4.5
+next_state = "quemado"
+spread_element = ExtResource("2_x")
+spread_chance = 0.3
+creature_status = ExtResource("3_x")
+look = 0
+color = Color(1, 0.4, 0.15, 1)

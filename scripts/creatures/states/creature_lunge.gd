@@ -48,6 +48,10 @@ func physics_update(delta: float) -> void:
 		var d: Vector2 = actor.global_position - before
 		_left -= d.length()
 		actor.moved.emit(d.length())
+		for i in actor.get_slide_collision_count():
+			var obj = actor.get_slide_collision(i).get_collider()
+			if obj is EnvObject:
+				Events.env_object_struck.emit(obj, _move.power * _move.power_mult)
 		if _phase == Phase.DASH and (_left <= 0.0 or actor.get_slide_collision_count() > 0):
 			_finish()
 		return

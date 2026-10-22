@@ -23,6 +23,14 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	for flag in ["--autotest-env", "--showcase-env"]:
+		if flag in OS.get_cmdline_user_args():
+			set_process(false)
+			var env := EnvTests.new()
+			env.autotest = self
+			add_child(env)
+			(env.run if flag == "--autotest-env" else env.showcase).call_deferred()
+			return
 	var meta_flags := {"--autotest-save": "save_test", "--autotest-party": "party_test", "--showcase-menus": "showcase_menus"}
 	for flag in meta_flags:
 		if flag in OS.get_cmdline_user_args():
@@ -567,6 +575,7 @@ func _kit_test() -> void:
 	me.use_slot(1, Vector2.DOWN)
 	await get_tree().create_timer(0.35).timeout
 	r["Clic der. Látigo Cepa: agarra (enraíza) y atrae"] = grab.statuses.has_status("enraizado") and me.global_position.distance_to(grab.global_position) < g0 - 10.0
+	grab.queue_free()  # si sigue peleando, su Tornado puede cortar la carga del Somnífero
 
 	me.use_slot(2, Vector2.RIGHT)
 	await get_tree().physics_frame

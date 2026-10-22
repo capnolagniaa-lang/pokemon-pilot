@@ -11,6 +11,8 @@ var _recovery := 0.0
 var _trail: MoveData
 var _trail_hit: HitInfo
 var _since_patch := 0.0
+## Potencia de la embestida (0 = esquive): la usa el entorno para romper rocas frágiles.
+var _power := 0.0
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -19,6 +21,7 @@ func enter(msg: Dictionary = {}) -> void:
 	_attack = msg["attack"]
 	_recovery = msg.get("recovery", 0.0)
 	_trail = msg.get("trail")
+	_power = msg.get("power", 0.0)
 	_since_patch = TRAIL_SPACING
 	if _trail != null:
 		# Golpe de la estela: misma habilidad, con su potencia y estado de estela.
@@ -54,6 +57,11 @@ func physics_update(delta: float) -> void:
 			var patch := HazardPatch.new()
 			actor.get_parent().add_child(patch)
 			patch.lay(_trail_hit, actor.global_position, _trail.trail_duration)
+	if _power > 0.0:
+		for i in actor.get_slide_collision_count():
+			var obj = actor.get_slide_collision(i).get_collider()
+			if obj is EnvObject:
+				Events.env_object_struck.emit(obj, _power)  # roca frágil: se rompe con la embestida
 	if _time <= 0.0 or actor.get_slide_collision_count() > 0:
 		if _recovery > 0.0:
 			transition("recovery", {"time": _recovery})

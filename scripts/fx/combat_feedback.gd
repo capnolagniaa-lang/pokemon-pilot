@@ -17,6 +17,7 @@ func _ready() -> void:
 	Events.signature_triggered.connect(func(c, text, col): _float_text(c.global_position + Vector2(-12, -48), text, col, 11))
 	Events.creature_fainted.connect(_on_fainted)
 	Events.hitstop.connect(_hitstop)
+	Events.env_reaction.connect(func(at, text): _float_text(at + Vector2(-14, -26), text, Color(0.95, 0.95, 1.0), 10))
 
 
 func _process(_delta: float) -> void:
