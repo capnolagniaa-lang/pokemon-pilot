@@ -38,6 +38,9 @@ Al empezar elegís la **dificultad de la IA** (Fácil, Normal o Difícil) y si q
 Si un salvaje te ve, el combate empieza solo y pasás a controlar a tu Pokémon. Sin energía: cada ataque tiene su recarga. Cada Pokémon con kit tiene un **estilo de pelea**: Charmander es **bruiser** (Ascuas en abanico, Arañazo que se lanza y encadena 2 golpes, Giro Fuego que atrapa, Embestida Ígnea; y su **Calor** lo lleva a Mar Llamas), Bellsprout y Bulbasaur son **control** (esporas que ralentizan y envenenan, Látigo Cepa que agarra, defensiva y Somnífero). Diseño: [docs/PLAN_IDENTIDAD_COMBATE.md](docs/PLAN_IDENTIDAD_COMBATE.md).
 
 ## Editor de mapas
+**Instructivo completo: [docs/INSTRUCTIVO_EDITOR_DE_MAPAS.md](docs/INSTRUCTIVO_EDITOR_DE_MAPAS.md).** En la carpeta del proyecto
+hay un ícono **Editor de mapas** para abrirlo (es un acceso directo local, no se sube a git).
+
 Herramienta para armar las zonas pintando sobre un lienzo con los gráficos del juego. Se abre con el acceso
 directo **Pokémon Pilot — Editor de mapas** (`--path "<proyecto>" -- --map-editor`), o desde el título con
 `-- --debug` (botón "Editor de mapas"). No hace falta abrir el editor de Godot: guarda directo en `res://`

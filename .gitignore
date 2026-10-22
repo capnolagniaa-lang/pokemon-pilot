@@ -3,3 +3,5 @@
 export/
 # Backups del editor de mapas (zonas y TileSet)
 .backup/
+# Accesos directos locales (tienen rutas de esta PC)
+*.lnk
