@@ -128,7 +128,7 @@ func showcase_menus() -> void:
 	summary._tabs.current_tab = 1
 	await get_tree().create_timer(1.0).timeout
 	summary._rows[4].grab_focus()
-	summary._on_row(summary._inst.species.learnset_entries()[4].move, false)
+	summary._on_row(summary._inst.species.learnset_entries()[4].move, false, summary._rows[4])
 	await get_tree().create_timer(1.5).timeout
 	SaveManager.delete_save()
 	SaveManager.slot_path = SaveManager.SLOT

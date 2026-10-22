@@ -16,6 +16,8 @@ var _detail: VBoxContainer
 var _hint: Label
 var _pending_move: MoveData
 var _pending_slot := -1
+## Botón marcado como elegido (movimiento o ranura) mientras se completa el equipar.
+var _marked: Button
 
 
 func _ready() -> void:
@@ -144,7 +146,10 @@ func _build_moves() -> void:
 		if m != null:
 			b.add_theme_stylebox_override("normal", UiStyle.box(UiStyle.BG_SOFT, Color(m.element.color, 0.8), 2))
 		b.pressed.connect(_on_slot.bind(i))
-		b.focus_entered.connect(func(): _show_detail(_inst.equipped_moves[i] if i < _inst.equipped_moves.size() else null, 0))
+		b.focus_entered.connect(func():
+			# Con un movimiento elegido, el detalle sigue mostrando ese (no el de la ranura que se recorre).
+			if _pending_move == null:
+				_show_detail(_inst.equipped_moves[i] if i < _inst.equipped_moves.size() else null, 0))
 		slots.add_child(b)
 		_slot_buttons.append(b)
 	var mid := HBoxContainer.new()
@@ -189,8 +194,10 @@ func _row(e: LearnsetEntry) -> Button:
 		b.add_theme_color_override("font_focus_color", Color(1, 1, 1, 0.55))
 	else:
 		b.add_theme_color_override("font_color", m.element.color.lightened(0.45))
-	b.pressed.connect(_on_row.bind(m, locked))
-	b.focus_entered.connect(_show_detail.bind(m, e.level))
+	b.pressed.connect(_on_row.bind(m, locked, b))
+	b.focus_entered.connect(func():
+		if _pending_move == null:
+			_show_detail(m, e.level))
 	_rows.append(b)
 	return b
 
@@ -265,6 +272,7 @@ func _on_slot(i: int) -> void:
 		_equip(i, _pending_move)
 		return
 	_pending_slot = i
+	_mark(_slot_buttons[i])
 	_update_hint()
 	for r in _rows:
 		if not r.disabled:
@@ -272,16 +280,35 @@ func _on_slot(i: int) -> void:
 			break
 
 
-func _on_row(m: MoveData, locked: bool) -> void:
+func _on_row(m: MoveData, locked: bool, row: Button) -> void:
 	if locked:
 		_hint.text = "Todavía no lo aprendió."
 		return
 	if _pending_slot >= 0:
 		_equip(_pending_slot, m)
 		return
+	# Queda seleccionado (marcado y con su detalle a la vista) hasta elegir la ranura o cancelar.
 	_pending_move = m
+	_mark(row)
+	_show_detail(m, 0)
 	_update_hint()
 	_slot_buttons[0].grab_focus()
+
+
+## Marca el botón elegido (movimiento o ranura) mientras se completa la elección.
+func _mark(b: Button) -> void:
+	_unmark()
+	_marked = b
+	var style := UiStyle.box(Color(0.24, 0.2, 0.08, 0.98), UiStyle.ACCENT, 2)
+	for state in ["normal", "hover", "focus"]:
+		b.add_theme_stylebox_override(state, style)
+
+
+func _unmark() -> void:
+	if is_instance_valid(_marked):
+		for state in ["normal", "hover", "focus"]:
+			_marked.remove_theme_stylebox_override(state)
+	_marked = null
 
 
 func _equip(slot: int, m: MoveData) -> void:
@@ -329,6 +356,7 @@ func back() -> bool:
 	if _pending_move != null or _pending_slot >= 0:
 		_pending_move = null
 		_pending_slot = -1
+		_unmark()
 		_update_hint()
 		return false
 	return true

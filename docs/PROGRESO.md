@@ -39,24 +39,25 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 8 | Pulido (juice, audio, partículas) | Pendiente |
 
 ## Etapa 3 — Entorno reactivo (2026-10-22)
+- **El fuego NO interactúa con el entorno** (decisión del usuario, 2026-10-22: no le gustó que queme el pasto).
+  Lo único que va a prender en el futuro son las **esporas que deje en el piso un ataque Espora** de los tipo
+  planta (todavía no existe; ni Polvo Veneno ni Somnífero), que **arderán unos 3 s** quemando a quien esté adentro.
+  Se sacaron los estados ardiendo/quemado, las reglas de fuego (prender, vapor, derretir, apagar) y la quema del
+  árbol cortable. El código de llamas de `EnvironmentGrid` (`Look.FIRE`) quedó disponible para eso.
 - **Estado por celda** (`EnvironmentGrid`, uno por zona, lo crea `ReactionSystem` al primer uso y se va con la
-  zona): `data/environment/states/*.tres` (`EnvCellState`): **ardiendo** (4,5 s, se contagia a las vecinas 30%/s,
-  quema a quien esté encima, después queda **quemado**), **quemado** (45 s, deja de ser inflamable/pasto alto),
-  **mojado** (15 s, Empapa), **congelado** (10 s; sobre el agua saca el tile de agua = **puente de hielo**, no se
-  derrite con alguien encima), **electrificado** (1,2 s, Paraliza; al terminar vuelve al estado anterior).
-  Visual: llamas (partículas rojizas y luces suaves cada 3 celdas), hollín, charcos, hielo y chispas.
-- **Reglas** (`data/environment/reactions/*.tres`, `ReactionRule`, por prioridad): agua apaga el fuego (vapor) ·
-  fuego seca lo mojado (vapor) · fuego derrite el hielo · hielo congela agua y suelo mojado · eléctrico corre por
-  el agua y lo mojado (propagación instantánea, hasta 80 celdas) · fuego prende lo inflamable (pasto alto,
-  flores, árboles) · agua moja el suelo.
+  zona): `data/environment/states/*.tres` (`EnvCellState`): **mojado** (15 s, Empapa), **congelado** (10 s; sobre
+  el agua saca el tile de agua = **puente de hielo**, no se derrite con alguien encima), **electrificado** (1,2 s,
+  Paraliza; al terminar vuelve al estado anterior). Visual: charcos, hielo y chispas.
+- **Reglas** (`data/environment/reactions/*.tres`, `ReactionRule`, por prioridad): hielo congela agua y suelo
+  mojado · eléctrico corre por el agua y lo mojado (propagación instantánea, hasta 80 celdas) · agua moja el suelo.
 - `ReactionSystem` (en el mundo) escucha `Events.element_impact`. Los **proyectiles también tocan las celdas por
-  las que pasan** (cada 14 px): las brasas prenden el pasto alto y el agua moja su camino.
-- **Objetos**: lo inflamable (árbol cortable) se quema y desaparece; la **roca frágil** se rompe con una
-  embestida (`Events.env_object_struck` desde los estados dash/lunge; `EnvObject.break_power` = 30 de potencia):
-  Embestida Ígnea, Ataque Rápido, Arañazo... abren el rincón de Ruta 1.
-- `World.tags_at()` ya devuelve los tags con el estado aplicado (el pasto alto quemado deja de serlo).
-- Autotest `--autotest-env` (22 chequeos con el mapa real); vitrina `--showcase-env`.
-- Pendiente: crecido (planta), viento que aviva el fuego, reflejar proyectiles, que la IA salvaje evite el fuego.
+  las que pasan** (cada 14 px): el agua moja su camino.
+- **Roca frágil**: se rompe con una embestida (`Events.env_object_struck` desde los estados dash/lunge;
+  `EnvObject.break_power` = 30 de potencia): Embestida Ígnea, Ataque Rápido, Arañazo... abren el rincón de Ruta 1.
+- `World.tags_at()` devuelve los tags con el estado aplicado.
+- Autotest `--autotest-env` (16 chequeos con el mapa real, incluido que el fuego no haga nada); vitrina
+  `--showcase-env` (puente de hielo y descarga en el lago).
+- Pendiente: ataque Espora + esporas que arden, crecido (planta), que la IA salvaje evite lo electrificado.
 
 ## Etapa 2c — Título, guardado, equipo y movimientos (2026-10-22)
 Pedido del usuario en `docs/PROMPT_MENU_GUARDADO_EQUIPO.md`. Decisiones (todas las recomendadas):

@@ -17,28 +17,18 @@ func run() -> void:
 	var agua: ElementType = DB.types["agua"]
 	var hielo: ElementType = DB.types["hielo"]
 	var electrico: ElementType = DB.types["electrico"]
-	r["Datos: 5 estados y reglas cargadas"] = DB.env_states.size() == 5 and DB.reactions.size() >= 8
+	r["Datos: 3 estados y 5 reglas cargadas"] = DB.env_states.size() == 3 and DB.reactions.size() == 5
 
-	# --- Fuego en el pasto alto: prende, se contagia y queda quemado ---
+	# --- El fuego no interactúa con el entorno ---
 	var zone: Zone = await _go_to("ruta1")
-	var grass := _find(zone, func(c): return zone.get_tags(c).has("pasto_alto") and _count_around(zone, c, "pasto_alto") >= 3)
+	var grass := _find(zone, func(c): return zone.get_tags(c).has("pasto_alto"))
 	var g := rs.grid_at(_center(zone, grass))
-	rs.apply_element(fuego, _center(zone, grass), 2.0)
-	r["Fuego prende el pasto alto"] = g.state_at(grass) != null and g.state_at(grass).id == "ardiendo"
-	await get_tree().create_timer(3.5).timeout
-	r["El fuego se contagia a las vecinas"] = _cells_with(g, ["ardiendo", "quemado"]) >= 3
-	await get_tree().create_timer(6.0).timeout
-	r["Se apaga solo y queda quemado (ya no es pasto alto)"] = g.state_at(grass) != null and g.state_at(grass).id == "quemado" \
-		and not world.tags_at(_center(zone, grass)).has("pasto_alto")
-	r["Lo quemado no vuelve a prender"] = _try(g, grass, fuego) == "quemado"
+	r["El fuego no prende el pasto alto"] = _try(g, grass, fuego) == ""
 
-	# --- Agua apaga, moja; vapor; eléctrico sobre mojado ---
-	var grass2 := _find(zone, func(c): return zone.get_tags(c).has("pasto_alto") and g.state_at(c) == null)
-	rs.apply_element_cell(g, grass2, fuego)
-	r["Agua apaga el fuego"] = _try(g, grass2, agua) == "quemado"
-	var dirt := _find(zone, func(c): return zone.get_tags(c).has("suelo") and not zone.get_tags(c).has("inflamable") and g.state_at(c) == null \
-		and not zone.get_tags(c).has("solido"))
+	# --- Agua moja; eléctrico sobre mojado ---
+	var dirt := _find(zone, func(c): return zone.get_tags(c).has("suelo") and g.state_at(c) == null 		and not zone.get_tags(c).has("solido"))
 	r["Agua moja el suelo"] = _try(g, dirt, agua) == "mojado"
+	r["El fuego no seca lo mojado"] = _try(g, dirt, fuego) == "mojado"
 	var dummy: Creature = autotest._dummy(world, "rattata", _center(zone, dirt))
 	await get_tree().create_timer(0.7).timeout
 	r["Criatura sobre lo mojado: Empapada"] = dummy.statuses.has_status("empapado")
@@ -52,14 +42,6 @@ func run() -> void:
 	r["Criatura sobre lo electrificado: se paraliza"] = stunned
 	await get_tree().create_timer(1.0).timeout
 	r["Después vuelve a estar mojado"] = g.state_at(dirt) != null and g.state_at(dirt).id == "mojado"
-	r["Fuego sobre lo mojado: vapor (se seca)"] = _try(g, dirt, fuego) == ""
-	dummy.global_position = _center(zone, grass2 + Vector2i(40, 40))
-	var grass3 := _find(zone, func(c): return zone.get_tags(c).has("pasto_alto") and g.state_at(c) == null)
-	dummy.global_position = _center(zone, grass3)
-	dummy.statuses.clear()
-	rs.apply_element_cell(g, grass3, fuego)
-	await get_tree().create_timer(0.7).timeout
-	r["Criatura sobre el fuego: se quema"] = dummy.statuses.has_status("quemado")
 	dummy.queue_free()
 
 	# --- Objetos: roca frágil y árbol cortable ---
@@ -88,25 +70,17 @@ func run() -> void:
 		await get_tree().create_timer(0.5).timeout
 		r["Roca frágil: aguanta un golpe débil y se rompe con una embestida"] = survives and not is_instance_valid(rock)
 		world.combat.end_battle()
-	var tree := EnvObject.new()
-	tree.tags = PackedStringArray(["solido", "inflamable", "cortable"])
-	var spr := Sprite2D.new()
-	spr.name = "Sprite"
-	tree.add_child(spr)
-	world.entities.add_child(tree)
-	tree.global_position = world.trainer.global_position + Vector2(60, 0)
-	rs.apply_element(fuego, tree.global_position, 6.0)
-	await get_tree().create_timer(3.0).timeout
-	r["Árbol cortable: el fuego lo quema"] = not is_instance_valid(tree)
 
-	# --- Agua: hielo hace puente; eléctrico corre por el agua; fuego derrite ---
+	# --- Agua: hielo hace puente; eléctrico corre por el agua ---
 	zone = await _go_to("lago")
 	g = rs.grid_at(_center(zone, Vector2i(1, 1)))
 	var water := _find(zone, func(c): return zone.get_tags(c).has("congelable") and _count_around(zone, c, "agua") >= 4)
 	r["Hay agua en el Lago"] = water != Vector2i(-999, -999)
 	r["Hielo congela el agua"] = _try(g, water, hielo) == "congelado"
 	r["Puente de hielo: sin colisión de agua"] = zone.water.get_cell_source_id(water) == -1
-	r["Fuego derrite el hielo y vuelve el agua"] = _try(g, water, fuego) == "" and zone.water.get_cell_source_id(water) >= 0
+	r["El fuego no derrite el hielo"] = _try(g, water, fuego) == "congelado"
+	g.set_state(water, null)
+	r["Al terminar el hielo vuelve el agua"] = zone.water.get_cell_source_id(water) >= 0
 	rs.apply_element_cell(g, water, electrico)
 	r["Eléctrico corre por el agua"] = _cells_with(g, ["electrificado"]) >= 5
 	await get_tree().create_timer(1.6).timeout
@@ -119,28 +93,12 @@ func run() -> void:
 	get_tree().quit(0 if ok else 1)
 
 
-## Vitrina (--write-movie ... -- --showcase-env): Charmander prende el pasto alto con Ascuas, después en el
-## lago se congela el agua y se electrifica.
+## Vitrina (--write-movie ... -- --showcase-env): en el lago se congela el agua (puente) y se electrifica.
 func showcase() -> void:
 	world = await autotest._setup_kit_world("charmander")
-	rs = world.reactions
-	var zone: Zone = await _go_to("ruta1")
-	# El borde izquierdo de la mancha de pasto alto más cercana al centro de la zona.
-	var mid := zone.cell_at(world.trainer.global_position)
-	var best := Vector2i(-999, -999)
-	for c in zone.ground.get_used_cells():
-		if zone.get_tags(c).has("pasto_alto") and not zone.get_tags(c + Vector2i.LEFT).has("pasto_alto") \
-				and _count_around(zone, c, "pasto_alto") >= 3 and (best.x == -999 or Vector2(c - mid).length() < Vector2(best - mid).length()):
-			best = c
-	var me: Creature = world.companion
-	me.global_position = _center(zone, best) + Vector2(-40, 0)
-	world.trainer.global_position = me.global_position + Vector2(-24, 6)
-	world.camera.target = me
-	world.camera.snap()
-	await get_tree().create_timer(0.4).timeout
-	me.use_slot(0, Vector2.RIGHT)
-	await get_tree().create_timer(5.0).timeout
 	world.combat.end_battle()
+	rs = world.reactions
+	var zone: Zone
 	zone = await _go_to("lago")
 	var water := _find(zone, func(c): return zone.get_tags(c).has("congelable") and _count_around(zone, c, "agua") >= 4)
 	world.trainer.global_position = _center(zone, water) + Vector2(0, 40)

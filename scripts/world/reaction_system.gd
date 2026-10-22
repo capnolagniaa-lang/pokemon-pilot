@@ -1,11 +1,12 @@
 class_name ReactionSystem
 extends Node
 ## Entorno reactivo (Etapa 3). Escucha los impactos de elementos en el mundo (Events.element_impact) y les
-## aplica las reglas de data/environment/reactions a las celdas alcanzadas: el fuego prende el pasto alto,
-## las flores y los árboles (y se contagia), el agua apaga y moja, el hielo congela el agua (puente), el
-## eléctrico corre por el agua y el suelo mojado, el fuego sobre lo mojado hace vapor. También:
-##  · las criaturas paradas encima reciben el estado de la celda (Quemado, Empapado, Paralizado);
-##  · los objetos inflamables (árbol cortable) se queman y las rocas frágiles se rompen con embestidas.
+## aplica las reglas de data/environment/reactions a las celdas alcanzadas: el agua moja el suelo, el hielo
+## congela el agua (puente) y lo mojado, el eléctrico corre por el agua y el suelo mojado. El fuego no
+## interactúa con el entorno (decisión del usuario; más adelante solo prenderá las esporas de un ataque
+## Espora). También:
+##  · las criaturas paradas encima reciben el estado de la celda (Empapado, Paralizado);
+##  · las rocas frágiles se rompen con embestidas.
 ## Cada zona tiene su EnvironmentGrid (se crea al primer uso y se va con la zona).
 
 const CREATURE_TICK := 0.5
@@ -75,7 +76,6 @@ func apply_element(element: ElementType, pos: Vector2, radius: float) -> void:
 			var cell := center + Vector2i(dx, dy)
 			if cell == center or g.cell_center(cell).distance_to(pos) <= radius + CELL_REACH:
 				apply_element_cell(g, cell, element)
-	_affect_objects(element, pos, radius + CELL_REACH)
 
 
 ## Aplica un elemento a una celda: la primera regla (por prioridad) que coincide cambia su estado.
@@ -153,14 +153,6 @@ func _feedback(rule: ReactionRule, at: Vector2) -> void:
 
 
 # --- Objetos del entorno ---------------------------------------------------------------------
-
-func _affect_objects(element: ElementType, pos: Vector2, radius: float) -> void:
-	for obj in get_tree().get_nodes_in_group("env_objects"):
-		if obj.global_position.distance_to(pos) > radius + 8.0:
-			continue
-		if element.id == "fuego" and obj.has_tag("inflamable"):
-			obj.burn_away()
-
 
 ## Una embestida chocó contra un objeto: las rocas frágiles se rompen con golpes fuertes.
 func _on_object_struck(obj: Node, power: float) -> void:
