@@ -1,0 +1,157 @@
+extends Control
+## Pantalla de título (escena principal): Continuar (si hay guardado, con su resumen), Nueva partida
+## (confirma antes de pisar un guardado) y Salir. Fondo con cielo en degradé, colinas y Pokémon animados.
+
+const STARTER_SCENE := "res://scenes/ui/starter_select.tscn"
+const WORLD_SCENE := "res://scenes/world/world.tscn"
+
+var _menu: VBoxContainer
+var _continue: Button
+var _summary: Dictionary
+var _time := 0.0
+var _parade: Array = []  # [PokemonAnimView, x base, fase]
+
+
+func _ready() -> void:
+	theme = UiStyle.theme()
+	get_tree().paused = false
+	_summary = SaveManager.summary()
+	_build_background()
+	_build_menu()
+
+
+func _process(delta: float) -> void:
+	_time += delta
+	for p in _parade:
+		var v: PokemonAnimView = p[0]
+		v.position.y = p[2] + sin(_time * 1.7 + p[1]) * 3.0
+	queue_redraw()
+
+
+func _draw() -> void:
+	# Cielo en degradé de atardecer, sol y colinas en capas (pixel art simple, colores de FireRed).
+	var h := size.y
+	var bands := 24
+	for i in bands:
+		var k := i / float(bands - 1)
+		var c := Color(0.16, 0.22, 0.42).lerp(Color(0.98, 0.62, 0.42), k * k)
+		draw_rect(Rect2(0, h * 0.62 * i / bands, size.x, h * 0.62 / bands + 1), c)
+	draw_circle(Vector2(size.x * 0.78, h * 0.5), 70.0, Color(1.3, 0.85, 0.5, 0.9))
+	draw_circle(Vector2(size.x * 0.78, h * 0.5), 96.0, Color(1.0, 0.7, 0.4, 0.15))
+	for layer in 3:
+		var base := h * (0.55 + layer * 0.08)
+		var col: Color = [Color(0.24, 0.42, 0.36), Color(0.2, 0.5, 0.32), Color(0.25, 0.62, 0.3)][layer]
+		var pts := PackedVector2Array([Vector2(0, h)])
+		for x in range(0, int(size.x) + 40, 40):
+			pts.append(Vector2(x, base + sin(x * 0.006 + layer * 1.7 + _time * 0.05) * (26.0 - layer * 6.0)))
+		pts.append(Vector2(size.x, h))
+		draw_colored_polygon(pts, col)
+	draw_rect(Rect2(0, h * 0.8, size.x, h * 0.2), Color(0.32, 0.68, 0.33))
+	# Brillitos que suben
+	for i in 26:
+		var x := fmod(i * 97.0 + _time * (8.0 + i % 5), size.x)
+		var y := h - fmod(i * 53.0 + _time * (14.0 + i % 7), h)
+		draw_circle(Vector2(x, y), 1.5, Color(1.2, 1.1, 0.8, 0.35))
+
+
+func _build_background() -> void:
+	# Desfile: el equipo guardado o los iniciales, con su animación Idle.
+	var species: Array = _summary.get("species", [])
+	if species.is_empty():
+		species = DB.config.starters
+	var n := species.size()
+	for i in n:
+		var v := PokemonAnimView.new()
+		v.species = species[i]
+		v.pixel_scale = 3
+		v.size = Vector2(150, 150)
+		var x := 640.0 + (i - (n - 1) / 2.0) * 150.0 - 75.0
+		v.position = Vector2(x, 500)
+		add_child(v)
+		_parade.append([v, float(i), 500.0])
+
+
+func _build_menu() -> void:
+	var title := UiStyle.label("Pokémon Pilot", 64, Color(1.0, 0.88, 0.35))
+	title.add_theme_color_override("font_outline_color", Color(0.12, 0.2, 0.55))
+	title.add_theme_constant_override("outline_size", 14)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	title.position = Vector2(-300, 48)
+	title.size = Vector2(600, 80)
+	add_child(title)
+	var sub := UiStyle.label("Kanto en tiempo real", 20, Color(1, 1, 1, 0.85))
+	sub.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.6))
+	sub.add_theme_constant_override("outline_size", 6)
+	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	sub.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	sub.position = Vector2(-300, 128)
+	sub.size = Vector2(600, 30)
+	add_child(sub)
+
+	_menu = VBoxContainer.new()
+	_menu.add_theme_constant_override("separation", 10)
+	_menu.position = Vector2(640 - 170, 200)
+	_menu.custom_minimum_size = Vector2(340, 0)
+	add_child(_menu)
+	if not _summary.is_empty():
+		_continue = UiStyle.button("Continuar", 340)
+		_continue.pressed.connect(_on_continue)
+		_menu.add_child(_continue)
+		_menu.add_child(_summary_panel())
+	var new_game := UiStyle.button("Nueva partida", 340)
+	new_game.pressed.connect(_on_new_game)
+	_menu.add_child(new_game)
+	var quit := UiStyle.button("Salir", 340)
+	quit.pressed.connect(func(): get_tree().quit())
+	_menu.add_child(quit)
+	(_continue if _continue != null else new_game).grab_focus.call_deferred()
+	var hint := UiStyle.label("Flechas/WASD para elegir · Enter o Espacio para aceptar", 13, Color(1, 1, 1, 0.7))
+	hint.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.position = Vector2(-300, -30)
+	hint.size = Vector2(600, 20)
+	add_child(hint)
+
+
+## Resumen del guardado: retratos del equipo, nivel del líder, zona, tiempo jugado y fecha.
+func _summary_panel() -> Control:
+	var panel := PanelContainer.new()
+	var box := VBoxContainer.new()
+	panel.add_child(box)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 4)
+	for sp: SpeciesData in _summary["species"]:
+		var pic := TextureRect.new()
+		pic.texture = DB.portrait_of(sp)
+		pic.custom_minimum_size = Vector2(44, 44)
+		pic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		pic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		pic.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		row.add_child(pic)
+	box.add_child(row)
+	var leader: SpeciesData = _summary["species"][0]
+	var zone: String = _summary.get("zone", "")
+	box.add_child(UiStyle.label("%s Nv. %d%s" % [leader.display_name, _summary["leader_level"], ("  ·  " + zone) if zone != "" else ""], 14))
+	var when := str(_summary.get("saved_at", "")).replace("T", " ").left(16)
+	box.add_child(UiStyle.label("Tiempo: %s  ·  %s" % [SaveManager.format_time(_summary["play_time"]), when], 13, UiStyle.TEXT_DIM))
+	return panel
+
+
+func _on_continue() -> void:
+	if SaveManager.load_game():
+		get_tree().change_scene_to_file(WORLD_SCENE)
+	else:
+		ConfirmDialog.ask(self, "No se pudo cargar la partida (el archivo está dañado).", ["Aceptar"])
+
+
+func _on_new_game() -> void:
+	if not SaveManager.has_save():
+		get_tree().change_scene_to_file(STARTER_SCENE)
+		return
+	var d := ConfirmDialog.ask(self, "Ya hay una partida guardada. Si empezás otra y guardás, se va a reemplazar. ¿Empezar igual?", ["Empezar", "Cancelar"])
+	d.chosen.connect(func(i: int):
+		if i == 0:
+			get_tree().change_scene_to_file(STARTER_SCENE)
+		else:
+			_menu.get_child(0).grab_focus())

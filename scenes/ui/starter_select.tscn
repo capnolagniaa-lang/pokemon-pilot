@@ -41,7 +41,7 @@ horizontal_alignment = 1
 [node name="Subtitle" type="Label" parent="Center/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.65)
-text = "Clic en una tarjeta o presioná 1, 2 o 3"
+text = "Clic en una tarjeta o presioná 1, 2 o 3 · Esc vuelve al título"
 horizontal_alignment = 1
 
 [node name="Cards" type="HBoxContainer" parent="Center/VBox"]

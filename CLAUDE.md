@@ -36,6 +36,9 @@ $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP con
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
 $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charmander, Bellsprout, Pidgey, Rattata, Vulpix
 $G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
+$G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carga, learnset, archivos rotos
+$G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, activo, menú, ficha
+$G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-menus  # título, equipo, ficha
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
@@ -51,7 +54,12 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Data-driven**: especies, ataques, tipos y tabla de efectividad son Resources `.tres` en `data/`.
   `DB` (autoload) carga todo lo que haya en esas carpetas. Clases en `scripts/resources/`.
 - **Autoloads**: `Events` (bus de señales; los sistemas no se llaman entre sí), `DB`, `GameState`,
-  `Controls` (input por código, teclas físicas), `Autotest`.
+  `Controls` (input por código, teclas físicas), `SaveManager` (guardado JSON en `user://saves/slot_1.json`),
+  `Autotest`. Escena principal: `scenes/ui/title_screen.tscn` → `starter_select` → `world`.
+- **Meta-juego (Etapa 2c)**: menús con nodos `Control` y el estilo de `UiStyle` (`scripts/ui/`), menú de pausa
+  en su propia CanvasLayer (pausa el árbol). `GameState` no conoce archivos: `to_dict`/`from_dict`.
+  Movimientos: `SpeciesData.learnset` (de `tools/build_learnsets.gd`) → `CreatureInstance.equipped_moves` →
+  `MoveUser.setup(instance)`. La mecánica de firma sigue saliendo del kit de la especie.
 - **Máquina de estados** genérica `StateMachine` + `State` (`scripts/core/`); los estados son nodos hijos
   con script (`scripts/characters/states`, `scripts/creatures/states`).
 - **Una escena por responsabilidad** (`scenes/`). Entidades usan origen en los pies (y-sort).
@@ -107,6 +115,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - `tools/build_world.gd`: arma el TileSet y **genera las zonas** a partir de `REGION` y `BIOMES`.
   `-- --force` pisa las zonas (perdés lo pintado a mano en el editor). Para agrandar el mundo:
   sumar filas a `REGION`.
+- `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + extras de la tabla `EXTRAS`, niveles de
+  FRLG) y los guarda en las especies. Correrlo después de cambiar un kit o los extras.
 - `tools/download_sprites.ps1`: sprites PMD (PMDCollab/SpriteCollab) de Pokémon por número de Pokédex
   → `sprites/pokemon/` + `scripts/generated/sprite_data.gd`.
 

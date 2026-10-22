@@ -2,13 +2,48 @@
 
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_0vo34"]
 [ext_resource type="Resource" path="res://data/kits/charmander/kit.tres" id="1_65dpy"]
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="2_7mh3n"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_65dpy"]
+[ext_resource type="Resource" path="res://data/kits/charmander/ascuas_abanico.tres" id="3_a0qht"]
 [ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_fsuga"]
+[ext_resource type="Resource" path="res://data/kits/charmander/aranazo_embestida.tres" id="4_o7dgl"]
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="4_tljsa"]
+[ext_resource type="Resource" path="res://data/kits/charmander/giro_fuego_trampa.tres" id="5_i7knr"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_jtnfp"]
+[ext_resource type="Resource" path="res://data/kits/charmander/embestida_ignea.tres" id="6_da3uv"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_ivo62"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_1yptp"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="7_4xbfc"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_36cw7"]
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_yuxux"]
+
+[sub_resource type="Resource" id="Resource_qsd6n"]
+script = ExtResource("2_7mh3n")
+move = ExtResource("3_a0qht")
+
+[sub_resource type="Resource" id="Resource_nchsh"]
+script = ExtResource("2_7mh3n")
+move = ExtResource("4_o7dgl")
+
+[sub_resource type="Resource" id="Resource_smhln"]
+script = ExtResource("2_7mh3n")
+level = 3
+move = ExtResource("5_i7knr")
+
+[sub_resource type="Resource" id="Resource_uwv2q"]
+script = ExtResource("2_7mh3n")
+level = 5
+move = ExtResource("6_da3uv")
+
+[sub_resource type="Resource" id="Resource_t8j50"]
+script = ExtResource("2_7mh3n")
+level = 31
+move = ExtResource("7_4xbfc")
+
+[sub_resource type="Resource" id="Resource_0co0w"]
+script = ExtResource("2_7mh3n")
+level = 37
+move = ExtResource("8_36cw7")
 
 [resource]
 script = ExtResource("6_ivo62")
@@ -18,6 +53,7 @@ dex = 4
 types = Array[ExtResource("7_1yptp")]([ExtResource("8_yuxux")])
 moves = Array[ExtResource("1_0vo34")]([ExtResource("2_65dpy"), ExtResource("3_fsuga"), ExtResource("4_tljsa"), ExtResource("5_jtnfp")])
 kit = ExtResource("1_65dpy")
+learnset = Array[ExtResource("2_7mh3n")]([SubResource("Resource_qsd6n"), SubResource("Resource_nchsh"), SubResource("Resource_smhln"), SubResource("Resource_uwv2q"), SubResource("Resource_t8j50"), SubResource("Resource_0co0w")])
 base_hp = 39
 base_attack = 52
 base_defense = 43

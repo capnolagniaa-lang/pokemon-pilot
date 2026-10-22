@@ -36,8 +36,12 @@ const CHART := {
 # Ataques cuyo efecto secundario oficial es un estado que tenemos: id -> estado.
 # Giro Fuego es una adaptación: en los juegos atrapa; acá puede quemar (30%).
 const STATUS_EFFECTS := {"ascuas": "quemado", "lanzallamas": "quemado", "impactrueno": "paralizado",
-	"trueno": "paralizado", "ventisca": "congelado", "giro_fuego": "quemado"}
-const ADAPTED_CHANCE := {"giro_fuego": 30}
+	"trueno": "paralizado", "ventisca": "congelado", "giro_fuego": "quemado", "rayo": "paralizado",
+	"rayo_hielo": "congelado", "rueda_fuego": "quemado", "golpe_cuerpo": "paralizado", "acido": "envenenado",
+	"viento_hielo": "ralentizado"}
+# Adaptaciones: Giro Fuego atrapa en los juegos; Ácido baja la Def. Esp. (acá envenena 30%);
+# Viento Hielo baja la Velocidad (acá ralentiza siempre).
+const ADAPTED_CHANCE := {"giro_fuego": 30, "acido": 30, "viento_hielo": 100}
 
 
 func _init() -> void:

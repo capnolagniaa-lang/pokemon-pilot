@@ -19,6 +19,13 @@ const HP_SCALE := 3.0
 @export var evs: Dictionary = {}
 ## Vida actual (en la escala del juego, ver HP_SCALE).
 @export var hp: float = -1.0
+## Los 4 movimientos equipados (Clic izq., Clic der., Q, R); puede haber huecos (null).
+@export var equipped_moves: Array[MoveData] = []
+## Para más adelante (Etapa 6): apodo y naturaleza. Vacíos por ahora.
+@export var nickname: String = ""
+@export var nature: String = ""
+
+const SLOT_COUNT := 4
 
 
 static func create(p_species: SpeciesData, p_level: int) -> CreatureInstance:
@@ -30,6 +37,131 @@ static func create(p_species: SpeciesData, p_level: int) -> CreatureInstance:
 		c.ivs[s] = MAX_IV
 		c.evs[s] = 0
 	c.hp = c.max_hp()
+	c.equipped_moves = c.default_equipment()
+	return c
+
+
+func display_name() -> String:
+	return nickname if nickname != "" else species.display_name
+
+
+# --- Movimientos -------------------------------------------------------------------
+
+## Movimientos ya aprendidos (nivel del learnset ≤ nivel actual), en orden de aprendizaje.
+func learned_moves() -> Array[MoveData]:
+	var out: Array[MoveData] = []
+	for e in species.learnset_entries():
+		if e.level <= level and not out.has(e.move):
+			out.append(e.move)
+	return out
+
+
+func can_equip(m: MoveData) -> bool:
+	return m != null and learned_moves().has(m)
+
+
+## Equipa un movimiento en una ranura. No se repite (si ya estaba en otra ranura, se intercambian) y no
+## se puede dejar al Pokémon sin movimientos (vaciar la única ranura ocupada).
+func equip(slot: int, m: MoveData) -> bool:
+	if slot < 0 or slot >= SLOT_COUNT:
+		return false
+	_pad_slots()
+	if m == null:
+		if equipped_moves[slot] != null and equipped_moves.filter(func(x): return x != null).size() <= 1:
+			return false
+		equipped_moves[slot] = null
+		return true
+	if not can_equip(m):
+		return false
+	var other := equipped_moves.find(m)
+	if other >= 0:
+		equipped_moves[other] = equipped_moves[slot]
+	equipped_moves[slot] = m
+	return true
+
+
+## Lo que equipa por defecto: los primeros 4 aprendidos (los del kit, en su orden, van primero).
+func default_equipment() -> Array[MoveData]:
+	var out: Array[MoveData] = []
+	for m in learned_moves():
+		if out.size() < SLOT_COUNT:
+			out.append(m)
+	while out.size() < SLOT_COUNT:
+		out.append(null)
+	return out
+
+
+func _pad_slots() -> void:
+	while equipped_moves.size() < SLOT_COUNT:
+		equipped_moves.append(null)
+	if equipped_moves.size() > SLOT_COUNT:
+		equipped_moves.resize(SLOT_COUNT)
+
+
+## Movimientos del learnset con nivel en (desde, hasta]: los que aprendió al subir de nivel.
+func moves_learned_between(from_level: int, to_level: int) -> Array[MoveData]:
+	var out: Array[MoveData] = []
+	for e in species.learnset_entries():
+		if e.level > from_level and e.level <= to_level and not out.has(e.move):
+			out.append(e.move)
+	return out
+
+
+## Al aprender un movimiento: si hay una ranura vacía se equipa solo; si no, queda disponible en la ficha.
+func auto_equip(m: MoveData) -> bool:
+	_pad_slots()
+	if equipped_moves.has(m):
+		return true
+	var free := equipped_moves.find(null)
+	if free < 0:
+		return false
+	equipped_moves[free] = m
+	return true
+
+
+# --- Guardado (JSON con ids, ver SaveManager) -----------------------------------------
+
+func to_dict() -> Dictionary:
+	_pad_slots()
+	var eq := []
+	for m in equipped_moves:
+		eq.append(DB.move_key(m) if m != null else "")
+	return {"species_id": species.id, "level": level, "experience": experience, "ivs": ivs.duplicate(),
+		"evs": evs.duplicate(), "hp": hp, "equipped_moves": eq, "nickname": nickname, "nature": nature}
+
+
+## Arma una criatura desde un diccionario guardado. Devuelve null si la especie ya no existe; los
+## movimientos que falten (o que ya no pueda equipar) se sacan de lo equipado. Avisos en `warnings`.
+static func from_dict(d: Dictionary, warnings: Array = []) -> CreatureInstance:
+	var sp: SpeciesData = DB.species.get(str(d.get("species_id", "")))
+	if sp == null:
+		warnings.append("Especie desconocida: %s" % d.get("species_id", "?"))
+		return null
+	var c := CreatureInstance.create(sp, int(d.get("level", 1)))
+	c.experience = maxi(int(d.get("experience", 0)), exp_for_level(sp.growth_rate, c.level))
+	var ivs_in = d.get("ivs", {})
+	var evs_in = d.get("evs", {})
+	for s in STATS:
+		c.ivs[s] = clampi(int(ivs_in.get(s, MAX_IV)) if ivs_in is Dictionary else MAX_IV, 0, MAX_IV)
+		c.evs[s] = clampi(int(evs_in.get(s, 0)) if evs_in is Dictionary else 0, 0, 252)
+	c.hp = clampf(float(d.get("hp", c.max_hp())), 0.0, c.max_hp())
+	c.nickname = str(d.get("nickname", ""))
+	c.nature = str(d.get("nature", ""))
+	var saved = d.get("equipped_moves", null)
+	if saved is Array:
+		var eq: Array[MoveData] = []
+		for key in saved:
+			var m: MoveData = null
+			if str(key) != "":
+				m = DB.move_by_id(str(key))
+				if m == null or not c.can_equip(m) or eq.has(m):
+					warnings.append("Movimiento no disponible para %s: %s" % [sp.display_name, key])
+					m = null
+			eq.append(m)
+		c.equipped_moves = eq
+		c._pad_slots()
+		if c.equipped_moves.all(func(x): return x == null):
+			c.equipped_moves = c.default_equipment()
 	return c
 
 

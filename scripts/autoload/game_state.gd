@@ -1,5 +1,9 @@
 extends Node
-## Estado de la partida en curso (equipo, objetos). No conoce escenas ni nodos.
+## Estado de la partida en curso (equipo, objetos, opciones). No conoce escenas ni archivos: el guardado lo
+## hace SaveManager con to_dict() / from_dict().
+
+## Máximo de Pokémon en el equipo (más adelante, lo que no entre irá a una caja).
+const MAX_PARTY := 6
 
 var party: Array[CreatureInstance] = []
 var active_index := 0
@@ -10,6 +14,13 @@ var wilds_enabled := true
 var practice_mode := true
 ## Dificultad de la IA salvaje (se elige al iniciar). Por defecto Normal.
 var difficulty: AiDifficulty
+## Segundos jugados (los suma el mundo mientras corre).
+var play_time := 0.0
+## Dónde aparece el entrenador al cargar una partida (INF = el punto de inicio de la región). La escribe
+## SaveManager al guardar (posición del entrenador) y la consume World al arrancar.
+var trainer_position := Vector2.INF
+## Zona en la que se guardó (para mostrarla en el resumen de la partida).
+var zone_name := ""
 
 
 func _ready() -> void:
@@ -21,14 +32,111 @@ func set_difficulty(id: String) -> void:
 		difficulty = DB.difficulties[id]
 
 
+func difficulty_id() -> String:
+	for id in DB.difficulties:
+		if DB.difficulties[id] == difficulty:
+			return id
+	return "normal"
+
+
 func new_game(starter: SpeciesData) -> void:
 	party.clear()
 	party.append(CreatureInstance.create(starter, DB.config.starting_level))
 	active_index = 0
 	balls = DB.config.starting_balls
+	play_time = 0.0
+	trainer_position = Vector2.INF
+	zone_name = ""
 	Events.party_changed.emit()
 	Events.game_started.emit()
 
 
 func active() -> CreatureInstance:
 	return party[active_index] if active_index < party.size() else null
+
+
+## Le da experiencia a un Pokémon del equipo. Si sube de nivel y aprende movimientos, los equipa en una
+## ranura libre (si hay; si no, quedan en la ficha) y emite move_learned. Devuelve el texto para el mensaje
+## (" — ¡X subió a Nv. N! ¡Aprendió Y!") o "" si no subió.
+func grant_exp(inst: CreatureInstance, amount: int) -> String:
+	var before := inst.level
+	if inst.add_exp(amount) == 0:
+		return ""
+	var text := " — ¡%s subió a Nv. %d!" % [inst.display_name(), inst.level]
+	for m in inst.moves_learned_between(before, inst.level):
+		var equipped := inst.auto_equip(m)
+		text += " ¡Aprendió %s!" % m.display_name
+		Events.move_learned.emit(inst, m)
+		if equipped:
+			Events.equipment_changed.emit(inst)
+	return text
+
+
+## Suma un Pokémon al equipo. Devuelve false si ya hay MAX_PARTY (lo usará la captura de la Etapa 6).
+func add_to_party(inst: CreatureInstance) -> bool:
+	if inst == null or party.size() >= MAX_PARTY:
+		return false
+	party.append(inst)
+	Events.party_changed.emit()
+	return true
+
+
+## Cambia el Pokémon activo (el que te sigue). No se puede elegir uno debilitado.
+func set_active(index: int) -> bool:
+	if index < 0 or index >= party.size() or party[index].hp <= 0.0:
+		return false
+	active_index = index
+	Events.party_changed.emit()
+	return true
+
+
+## Mueve un Pokémon del equipo de lugar (el activo sigue siendo el mismo Pokémon).
+func move_in_party(from: int, to: int) -> bool:
+	if from < 0 or from >= party.size() or to < 0 or to >= party.size() or from == to:
+		return false
+	var current := active()
+	var inst := party[from]
+	party.remove_at(from)
+	party.insert(to, inst)
+	active_index = party.find(current)
+	Events.party_changed.emit()
+	return true
+
+
+# --- Guardado ------------------------------------------------------------------------
+
+func to_dict() -> Dictionary:
+	var members := []
+	for inst in party:
+		members.append(inst.to_dict())
+	return {"party": members, "active_index": active_index, "balls": balls, "practice_mode": practice_mode,
+		"difficulty": difficulty_id(), "play_time": play_time,
+		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
+		"zone_name": zone_name}
+
+
+## Carga una partida. Devuelve false si no queda ningún Pokémon válido (y no toca el estado actual).
+## Los avisos (especies o movimientos que ya no existen) quedan en `warnings`.
+func from_dict(d: Dictionary, warnings: Array = []) -> bool:
+	var members: Array[CreatureInstance] = []
+	var raw = d.get("party", [])
+	if raw is Array:
+		for m in raw:
+			if m is Dictionary and members.size() < MAX_PARTY:
+				var inst := CreatureInstance.from_dict(m, warnings)
+				if inst != null:
+					members.append(inst)
+	if members.is_empty():
+		warnings.append("La partida no tiene ningún Pokémon válido.")
+		return false
+	party = members
+	active_index = clampi(int(d.get("active_index", 0)), 0, party.size() - 1)
+	balls = int(d.get("balls", DB.config.starting_balls))
+	practice_mode = bool(d.get("practice_mode", true))
+	set_difficulty(str(d.get("difficulty", "normal")))
+	play_time = maxf(0.0, float(d.get("play_time", 0.0)))
+	var pos = d.get("trainer_position", null)
+	trainer_position = Vector2(float(pos[0]), float(pos[1])) if pos is Array and pos.size() == 2 else Vector2.INF
+	zone_name = str(d.get("zone_name", ""))
+	Events.party_changed.emit()
+	return true

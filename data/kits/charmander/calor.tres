@@ -7,6 +7,7 @@
 script = ExtResource("2_m2glx")
 id = "calor"
 display_name = "Calor"
+description = "Sube al pegar y al recibir daño. Desde 50 sus ataques queman; en 100 entra en Mar Llamas (más daño y áreas, regenera) y después queda Sobrecalentado."
 color = Color(1, 0.42, 0.15, 1)
 gains = {
 "damage_received": 5.0,

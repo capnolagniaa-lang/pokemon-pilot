@@ -1,13 +1,44 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_bk64l"]
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fjdas"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_ywyvp"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_5ulau"]
 [ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_fjdas"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_vhb54"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_mvwui"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="6_vhb54"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_12vpq"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="7_mvwui"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_61kdy"]
+
+[sub_resource type="Resource" id="Resource_12vpq"]
+script = ExtResource("1_fjdas")
+move = ExtResource("2_ywyvp")
+
+[sub_resource type="Resource" id="Resource_61kdy"]
+script = ExtResource("1_fjdas")
+move = ExtResource("3_5ulau")
+
+[sub_resource type="Resource" id="Resource_gy4rv"]
+script = ExtResource("1_fjdas")
+level = 3
+move = ExtResource("4_fjdas")
+
+[sub_resource type="Resource" id="Resource_jv0xw"]
+script = ExtResource("1_fjdas")
+level = 5
+move = ExtResource("5_vhb54")
+
+[sub_resource type="Resource" id="Resource_kweak"]
+script = ExtResource("1_fjdas")
+level = 18
+move = ExtResource("6_vhb54")
+
+[sub_resource type="Resource" id="Resource_trgx0"]
+script = ExtResource("1_fjdas")
+level = 47
+move = ExtResource("7_mvwui")
 
 [resource]
 script = ExtResource("6_mvwui")
@@ -16,6 +47,7 @@ display_name = "Squirtle"
 dex = 7
 types = Array[ExtResource("7_12vpq")]([ExtResource("8_61kdy")])
 moves = Array[ExtResource("1_bk64l")]([ExtResource("2_ywyvp"), ExtResource("3_5ulau"), ExtResource("4_fjdas"), ExtResource("5_vhb54")])
+learnset = Array[ExtResource("1_fjdas")]([SubResource("Resource_12vpq"), SubResource("Resource_61kdy"), SubResource("Resource_gy4rv"), SubResource("Resource_jv0xw"), SubResource("Resource_kweak"), SubResource("Resource_trgx0")])
 base_hp = 44
 base_attack = 48
 base_defense = 65

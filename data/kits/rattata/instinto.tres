@@ -7,6 +7,7 @@
 script = ExtResource("2_sd")
 id = "instinto"
 display_name = "Instinto"
+description = "Marca presas (poca vida o con estado): les pega más y puede hacer críticos. Rematar recarga Ataque Rápido."
 color = Color(0.95, 0.3, 0.28, 1)
 max_value = 0.0
 decay_out_of_combat = 0.0

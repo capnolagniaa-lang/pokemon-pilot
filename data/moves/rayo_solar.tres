@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ms"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_hv7eq"]
+
+[resource]
+script = ExtResource("2_ms")
+id = "rayo_solar"
+display_name = "Rayo Solar"
+element = ExtResource("1_el")
+category = 1
+power = 120.0
+cooldown = 2.9000000000000004
+cast_time = 1.1
+knockback = 220.0
+recovery = 0.5
+speed = 330.0
+size = 8.0
+lifetime = 0.8

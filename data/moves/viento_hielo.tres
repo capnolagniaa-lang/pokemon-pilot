@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ms"]
+[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="3_6swap"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_cdhdx"]
+
+[resource]
+script = ExtResource("2_ms")
+id = "viento_hielo"
+display_name = "Viento Hielo"
+element = ExtResource("1_el")
+category = 1
+power = 55.0
+cooldown = 1.7000000000000002
+knockback = 60.0
+recovery = 0.1
+status = ExtResource("3_6swap")
+status_chance = 1.0
+speed = 230.0
+size = 3.5
+lifetime = 0.6
+projectile_count = 3
+spread_deg = 30.0

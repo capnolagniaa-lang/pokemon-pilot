@@ -17,8 +17,11 @@ var _combo_step: Array[int] = []
 var _combo_timer: Array[float] = []
 
 
-func setup(species: SpeciesData) -> void:
-	var source: Array[MoveData] = species.kit.moves if species.kit != null else species.moves
+## Las ranuras salen de los movimientos equipados de la criatura (CreatureInstance.equipped_moves).
+func setup(instance: CreatureInstance) -> void:
+	if instance.equipped_moves.is_empty():
+		instance.equipped_moves = instance.default_equipment()
+	var source: Array[MoveData] = instance.equipped_moves
 	slots.clear()
 	for i in SLOT_COUNT:
 		slots.append(source[i] if i < source.size() else null)

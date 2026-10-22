@@ -62,7 +62,7 @@ func _ready() -> void:
 	sprite.species = instance.species
 	health.instance = instance
 	health.heal_mult_source = statuses
-	moves.setup(instance.species)
+	moves.setup(instance)
 	var kit := instance.species.kit
 	if kit != null and kit.signature != null and kit.signature.mechanic_script != null:
 		signature = kit.signature.mechanic_script.new()

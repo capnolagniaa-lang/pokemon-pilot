@@ -5,7 +5,11 @@ extends Node
 const SpriteData = preload("res://scripts/generated/sprite_data.gd")
 
 var types: Dictionary = {}    # id -> ElementType
-var moves: Dictionary = {}    # id -> MoveData
+var moves: Dictionary = {}    # id -> MoveData (solo data/moves)
+## Todos los movimientos, incluidos los de los kits: clave -> MoveData. La clave es el nombre de archivo
+## en data/moves ("ascuas") y "<pokémon>/<archivo>" en los kits ("bulbasaur/latigo_cepa"), porque varios
+## kits comparten ids. Es lo que se guarda en las partidas (move_key / move_by_id).
+var all_moves: Dictionary = {}
 var species: Dictionary = {}  # id -> SpeciesData
 var statuses: Dictionary = {}  # id -> StatusEffect
 var interactions: Dictionary = {}  # nombre de archivo -> StatusInteraction
@@ -25,6 +29,49 @@ func _ready() -> void:
 	difficulties = _load_dir("res://data/config/difficulty", "AiDifficulty")
 	type_chart = load("res://data/types/type_chart.tres")
 	config = load("res://data/config/game_config.tres")
+	_index_moves()
+
+
+func _index_moves() -> void:
+	all_moves.clear()
+	for f in DirAccess.get_files_at("res://data/moves"):
+		_index_move("res://data/moves/" + f.trim_suffix(".remap"), "")
+	for dir in DirAccess.get_directories_at("res://data/kits"):
+		for f in DirAccess.get_files_at("res://data/kits/" + dir):
+			_index_move("res://data/kits/%s/%s" % [dir, f.trim_suffix(".remap")], dir + "/")
+	# Por si algún learnset usa un movimiento guardado en otro lado.
+	for sp: SpeciesData in species.values():
+		for e in sp.learnset_entries():
+			if not all_moves.values().has(e.move):
+				all_moves[move_key(e.move)] = e.move
+
+
+func _index_move(path: String, prefix: String) -> void:
+	if not path.ends_with(".tres"):
+		return
+	var res = load(path)
+	if res is MoveData:  # en las carpetas de kits también están kit.tres y las firmas
+		all_moves[prefix + path.get_file().get_basename()] = res
+
+
+## Clave estable de un movimiento para guardar partidas.
+func move_key(m: MoveData) -> String:
+	var p := m.resource_path
+	if p.begins_with("res://data/moves/"):
+		return p.get_file().get_basename()
+	if p.begins_with("res://data/kits/"):
+		return p.trim_prefix("res://data/kits/").get_basename()
+	return m.id
+
+
+## Busca cualquier movimiento por su clave (o, si no la encuentra, por su id).
+func move_by_id(key: String) -> MoveData:
+	if all_moves.has(key):
+		return all_moves[key]
+	for m: MoveData in all_moves.values():
+		if m.id == key:
+			return m
+	return null
 
 
 func _load_dir(path: String, class_hint: String) -> Dictionary:

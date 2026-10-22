@@ -7,6 +7,7 @@
 script = ExtResource("2_sd")
 id = "rescoldo"
 display_name = "Rescoldo"
+description = "Sus golpes contra enemigos quemados pegan más y renuevan la quemadura."
 color = Color(1, 0.45, 0.2, 1)
 max_value = 0.0
 decay_out_of_combat = 0.0

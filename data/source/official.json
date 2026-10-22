@@ -17,7 +17,53 @@
    },
    "base_experience": 64,
    "growth_rate": "medium-slow",
-   "capture_rate": 45
+   "capture_rate": 45,
+   "learnset_frlg": [
+    [
+     1,
+     "tackle"
+    ],
+    [
+     4,
+     "growl"
+    ],
+    [
+     7,
+     "leech-seed"
+    ],
+    [
+     10,
+     "vine-whip"
+    ],
+    [
+     15,
+     "poison-powder"
+    ],
+    [
+     15,
+     "sleep-powder"
+    ],
+    [
+     20,
+     "razor-leaf"
+    ],
+    [
+     25,
+     "sweet-scent"
+    ],
+    [
+     32,
+     "growth"
+    ],
+    [
+     39,
+     "synthesis"
+    ],
+    [
+     46,
+     "solar-beam"
+    ]
+   ]
   },
   "charmander": {
    "dex": 4,
@@ -34,7 +80,49 @@
    },
    "base_experience": 62,
    "growth_rate": "medium-slow",
-   "capture_rate": 45
+   "capture_rate": 45,
+   "learnset_frlg": [
+    [
+     1,
+     "growl"
+    ],
+    [
+     1,
+     "scratch"
+    ],
+    [
+     7,
+     "ember"
+    ],
+    [
+     13,
+     "metal-claw"
+    ],
+    [
+     19,
+     "smokescreen"
+    ],
+    [
+     25,
+     "scary-face"
+    ],
+    [
+     31,
+     "flamethrower"
+    ],
+    [
+     37,
+     "slash"
+    ],
+    [
+     43,
+     "dragon-rage"
+    ],
+    [
+     49,
+     "fire-spin"
+    ]
+   ]
   },
   "squirtle": {
    "dex": 7,
@@ -51,7 +139,53 @@
    },
    "base_experience": 63,
    "growth_rate": "medium-slow",
-   "capture_rate": 45
+   "capture_rate": 45,
+   "learnset_frlg": [
+    [
+     1,
+     "tackle"
+    ],
+    [
+     4,
+     "tail-whip"
+    ],
+    [
+     7,
+     "bubble"
+    ],
+    [
+     10,
+     "withdraw"
+    ],
+    [
+     13,
+     "water-gun"
+    ],
+    [
+     18,
+     "bite"
+    ],
+    [
+     23,
+     "rapid-spin"
+    ],
+    [
+     28,
+     "protect"
+    ],
+    [
+     33,
+     "rain-dance"
+    ],
+    [
+     40,
+     "skull-bash"
+    ],
+    [
+     47,
+     "hydro-pump"
+    ]
+   ]
   },
   "pidgey": {
    "dex": 16,
@@ -69,7 +203,45 @@
    },
    "base_experience": 50,
    "growth_rate": "medium-slow",
-   "capture_rate": 255
+   "capture_rate": 255,
+   "learnset_frlg": [
+    [
+     1,
+     "tackle"
+    ],
+    [
+     5,
+     "sand-attack"
+    ],
+    [
+     9,
+     "gust"
+    ],
+    [
+     13,
+     "quick-attack"
+    ],
+    [
+     19,
+     "whirlwind"
+    ],
+    [
+     25,
+     "wing-attack"
+    ],
+    [
+     31,
+     "feather-dance"
+    ],
+    [
+     39,
+     "agility"
+    ],
+    [
+     47,
+     "mirror-move"
+    ]
+   ]
   },
   "rattata": {
    "dex": 19,
@@ -86,7 +258,41 @@
    },
    "base_experience": 51,
    "growth_rate": "medium",
-   "capture_rate": 255
+   "capture_rate": 255,
+   "learnset_frlg": [
+    [
+     1,
+     "tackle"
+    ],
+    [
+     1,
+     "tail-whip"
+    ],
+    [
+     7,
+     "quick-attack"
+    ],
+    [
+     13,
+     "hyper-fang"
+    ],
+    [
+     20,
+     "focus-energy"
+    ],
+    [
+     27,
+     "pursuit"
+    ],
+    [
+     34,
+     "super-fang"
+    ],
+    [
+     41,
+     "endeavor"
+    ]
+   ]
   },
   "pikachu": {
    "dex": 25,
@@ -103,7 +309,53 @@
    },
    "base_experience": 112,
    "growth_rate": "medium",
-   "capture_rate": 190
+   "capture_rate": 190,
+   "learnset_frlg": [
+    [
+     1,
+     "growl"
+    ],
+    [
+     1,
+     "thunder-shock"
+    ],
+    [
+     6,
+     "tail-whip"
+    ],
+    [
+     8,
+     "thunder-wave"
+    ],
+    [
+     11,
+     "quick-attack"
+    ],
+    [
+     15,
+     "double-team"
+    ],
+    [
+     20,
+     "slam"
+    ],
+    [
+     26,
+     "thunderbolt"
+    ],
+    [
+     33,
+     "agility"
+    ],
+    [
+     41,
+     "thunder"
+    ],
+    [
+     50,
+     "light-screen"
+    ]
+   ]
   },
   "vulpix": {
    "dex": 37,
@@ -120,7 +372,53 @@
    },
    "base_experience": 60,
    "growth_rate": "medium",
-   "capture_rate": 190
+   "capture_rate": 190,
+   "learnset_frlg": [
+    [
+     1,
+     "ember"
+    ],
+    [
+     5,
+     "tail-whip"
+    ],
+    [
+     9,
+     "roar"
+    ],
+    [
+     13,
+     "quick-attack"
+    ],
+    [
+     17,
+     "will-o-wisp"
+    ],
+    [
+     21,
+     "confuse-ray"
+    ],
+    [
+     25,
+     "imprison"
+    ],
+    [
+     29,
+     "flamethrower"
+    ],
+    [
+     33,
+     "safeguard"
+    ],
+    [
+     37,
+     "grudge"
+    ],
+    [
+     41,
+     "fire-spin"
+    ]
+   ]
   },
   "oddish": {
    "dex": 43,
@@ -138,7 +436,41 @@
    },
    "base_experience": 64,
    "growth_rate": "medium-slow",
-   "capture_rate": 255
+   "capture_rate": 255,
+   "learnset_frlg": [
+    [
+     1,
+     "absorb"
+    ],
+    [
+     7,
+     "sweet-scent"
+    ],
+    [
+     14,
+     "poison-powder"
+    ],
+    [
+     16,
+     "stun-spore"
+    ],
+    [
+     18,
+     "sleep-powder"
+    ],
+    [
+     23,
+     "acid"
+    ],
+    [
+     32,
+     "moonlight"
+    ],
+    [
+     39,
+     "petal-dance"
+    ]
+   ]
   },
   "psyduck": {
    "dex": 54,
@@ -155,7 +487,45 @@
    },
    "base_experience": 64,
    "growth_rate": "medium",
-   "capture_rate": 190
+   "capture_rate": 190,
+   "learnset_frlg": [
+    [
+     1,
+     "scratch"
+    ],
+    [
+     1,
+     "water-sport"
+    ],
+    [
+     5,
+     "tail-whip"
+    ],
+    [
+     10,
+     "disable"
+    ],
+    [
+     16,
+     "confusion"
+    ],
+    [
+     23,
+     "screech"
+    ],
+    [
+     31,
+     "psych-up"
+    ],
+    [
+     40,
+     "fury-swipes"
+    ],
+    [
+     50,
+     "hydro-pump"
+    ]
+   ]
   },
   "growlithe": {
    "dex": 58,
@@ -172,7 +542,49 @@
    },
    "base_experience": 70,
    "growth_rate": "slow",
-   "capture_rate": 190
+   "capture_rate": 190,
+   "learnset_frlg": [
+    [
+     1,
+     "bite"
+    ],
+    [
+     1,
+     "roar"
+    ],
+    [
+     7,
+     "ember"
+    ],
+    [
+     13,
+     "leer"
+    ],
+    [
+     19,
+     "odor-sleuth"
+    ],
+    [
+     25,
+     "take-down"
+    ],
+    [
+     31,
+     "flame-wheel"
+    ],
+    [
+     37,
+     "helping-hand"
+    ],
+    [
+     43,
+     "agility"
+    ],
+    [
+     49,
+     "flamethrower"
+    ]
+   ]
   },
   "poliwag": {
    "dex": 60,
@@ -189,7 +601,41 @@
    },
    "base_experience": 60,
    "growth_rate": "medium-slow",
-   "capture_rate": 255
+   "capture_rate": 255,
+   "learnset_frlg": [
+    [
+     1,
+     "bubble"
+    ],
+    [
+     7,
+     "hypnosis"
+    ],
+    [
+     13,
+     "water-gun"
+    ],
+    [
+     19,
+     "double-slap"
+    ],
+    [
+     25,
+     "rain-dance"
+    ],
+    [
+     31,
+     "body-slam"
+    ],
+    [
+     37,
+     "belly-drum"
+    ],
+    [
+     43,
+     "hydro-pump"
+    ]
+   ]
   },
   "bellsprout": {
    "dex": 69,
@@ -207,7 +653,49 @@
    },
    "base_experience": 60,
    "growth_rate": "medium-slow",
-   "capture_rate": 255
+   "capture_rate": 255,
+   "learnset_frlg": [
+    [
+     1,
+     "vine-whip"
+    ],
+    [
+     6,
+     "growth"
+    ],
+    [
+     11,
+     "wrap"
+    ],
+    [
+     15,
+     "sleep-powder"
+    ],
+    [
+     17,
+     "poison-powder"
+    ],
+    [
+     19,
+     "stun-spore"
+    ],
+    [
+     23,
+     "acid"
+    ],
+    [
+     30,
+     "sweet-scent"
+    ],
+    [
+     37,
+     "razor-leaf"
+    ],
+    [
+     45,
+     "slam"
+    ]
+   ]
   },
   "seel": {
    "dex": 86,
@@ -224,7 +712,41 @@
    },
    "base_experience": 65,
    "growth_rate": "medium",
-   "capture_rate": 190
+   "capture_rate": 190,
+   "learnset_frlg": [
+    [
+     1,
+     "headbutt"
+    ],
+    [
+     9,
+     "growl"
+    ],
+    [
+     17,
+     "icy-wind"
+    ],
+    [
+     21,
+     "aurora-beam"
+    ],
+    [
+     29,
+     "rest"
+    ],
+    [
+     37,
+     "take-down"
+    ],
+    [
+     41,
+     "ice-beam"
+    ],
+    [
+     49,
+     "safeguard"
+    ]
+   ]
   },
   "eevee": {
    "dex": 133,
@@ -241,7 +763,45 @@
    },
    "base_experience": 65,
    "growth_rate": "medium",
-   "capture_rate": 45
+   "capture_rate": 45,
+   "learnset_frlg": [
+    [
+     1,
+     "helping-hand"
+    ],
+    [
+     1,
+     "tackle"
+    ],
+    [
+     1,
+     "tail-whip"
+    ],
+    [
+     8,
+     "sand-attack"
+    ],
+    [
+     16,
+     "growl"
+    ],
+    [
+     23,
+     "quick-attack"
+    ],
+    [
+     30,
+     "bite"
+    ],
+    [
+     36,
+     "baton-pass"
+    ],
+    [
+     42,
+     "take-down"
+    ]
+   ]
   }
  },
  "moves": {
@@ -412,6 +972,102 @@
    "category": "special",
    "accuracy": 70,
    "effect_chance": 10
+  },
+  "cuchillada": {
+   "name_en": "slash",
+   "type": "normal",
+   "power": 70,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "ataque_ala": {
+   "name_en": "wing-attack",
+   "type": "flying",
+   "power": 60,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "persecucion": {
+   "name_en": "pursuit",
+   "type": "dark",
+   "power": 40,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "rayo_solar": {
+   "name_en": "solar-beam",
+   "type": "grass",
+   "power": 120,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 0
+  },
+  "acido": {
+   "name_en": "acid",
+   "type": "poison",
+   "power": 40,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "rueda_fuego": {
+   "name_en": "flame-wheel",
+   "type": "fire",
+   "power": 60,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "rayo": {
+   "name_en": "thunderbolt",
+   "type": "electric",
+   "power": 90,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "hidrobomba": {
+   "name_en": "hydro-pump",
+   "type": "water",
+   "power": 110,
+   "category": "special",
+   "accuracy": 80,
+   "effect_chance": 0
+  },
+  "derribo": {
+   "name_en": "take-down",
+   "type": "normal",
+   "power": 90,
+   "category": "physical",
+   "accuracy": 85,
+   "effect_chance": 0
+  },
+  "golpe_cuerpo": {
+   "name_en": "body-slam",
+   "type": "normal",
+   "power": 85,
+   "category": "physical",
+   "accuracy": 100,
+   "effect_chance": 30
+  },
+  "rayo_hielo": {
+   "name_en": "ice-beam",
+   "type": "ice",
+   "power": 90,
+   "category": "special",
+   "accuracy": 100,
+   "effect_chance": 10
+  },
+  "viento_hielo": {
+   "name_en": "icy-wind",
+   "type": "ice",
+   "power": 55,
+   "category": "special",
+   "accuracy": 95,
+   "effect_chance": 100
   }
  }
 }

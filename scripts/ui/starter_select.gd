@@ -81,6 +81,9 @@ func _card(sp: SpeciesData, index: int) -> Control:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		get_tree().change_scene_to_file("res://scenes/ui/title_screen.tscn")
+		return
 	for i in DB.config.starters.size():
 		if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_1 + i:
 			_choose(DB.config.starters[i])

@@ -1,13 +1,38 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_a2e4d"]
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_sihyx"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_gumxw"]
 [ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_sihyx"]
 [ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_t0c8y"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_gniud"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="6_t0c8y"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_wwmc1"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_llbsy"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_kvyim"]
+
+[sub_resource type="Resource" id="Resource_gniud"]
+script = ExtResource("1_sihyx")
+move = ExtResource("2_gumxw")
+
+[sub_resource type="Resource" id="Resource_wwmc1"]
+script = ExtResource("1_sihyx")
+move = ExtResource("3_sihyx")
+
+[sub_resource type="Resource" id="Resource_llbsy"]
+script = ExtResource("1_sihyx")
+level = 3
+move = ExtResource("4_t0c8y")
+
+[sub_resource type="Resource" id="Resource_kvyim"]
+script = ExtResource("1_sihyx")
+level = 5
+move = ExtResource("5_gniud")
+
+[sub_resource type="Resource" id="Resource_3h1xc"]
+script = ExtResource("1_sihyx")
+level = 50
+move = ExtResource("6_t0c8y")
 
 [resource]
 script = ExtResource("6_wwmc1")
@@ -16,6 +41,7 @@ display_name = "Psyduck"
 dex = 54
 types = Array[ExtResource("7_llbsy")]([ExtResource("8_kvyim")])
 moves = Array[ExtResource("1_a2e4d")]([ExtResource("2_gumxw"), ExtResource("3_sihyx"), ExtResource("4_t0c8y"), ExtResource("5_gniud")])
+learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_gniud"), SubResource("Resource_wwmc1"), SubResource("Resource_llbsy"), SubResource("Resource_kvyim"), SubResource("Resource_3h1xc")])
 base_attack = 52
 base_defense = 48
 base_sp_attack = 65

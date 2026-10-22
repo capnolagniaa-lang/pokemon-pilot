@@ -13,6 +13,9 @@ extends Resource
 @export var moves: Array[MoveData] = []
 ## Kit del plan de identidad (estilo + mecánica de firma + 4 ataques). Si está, manda sobre `moves`.
 @export var kit: Kit
+## Movimientos que aprende por nivel (los arma tools/build_learnsets.gd). Si está vacío se usa uno de
+## compatibilidad: los 4 del kit (o los sueltos) en los niveles 1, 1, 3 y 5.
+@export var learnset: Array[LearnsetEntry] = []
 
 @export_group("Stats base oficiales")
 @export var base_hp: int = 50
@@ -37,3 +40,27 @@ func primary_type() -> ElementType:
 
 func base_stat(stat: String) -> int:
 	return get("base_" + stat)
+
+
+## Niveles en los que se aprenden los 4 movimientos base (kit o sueltos) cuando no hay learnset.
+const BASE_LEVELS := [1, 1, 3, 5]
+
+
+## Learnset ordenado por nivel (el propio o el de compatibilidad).
+func learnset_entries() -> Array[LearnsetEntry]:
+	var out: Array[LearnsetEntry] = []
+	if learnset.is_empty():
+		var base: Array[MoveData] = kit.moves if kit != null else moves
+		for i in base.size():
+			if base[i] != null:
+				var e := LearnsetEntry.new()
+				e.level = BASE_LEVELS[mini(i, BASE_LEVELS.size() - 1)]
+				e.move = base[i]
+				out.append(e)
+	else:
+		# Orden estable por nivel (los del mismo nivel quedan en el orden en que están cargados).
+		var idx := range(learnset.size()).filter(func(i): return learnset[i] != null and learnset[i].move != null)
+		idx.sort_custom(func(a, b): return learnset[a].level < learnset[b].level or (learnset[a].level == learnset[b].level and a < b))
+		for i in idx:
+			out.append(learnset[i])
+	return out

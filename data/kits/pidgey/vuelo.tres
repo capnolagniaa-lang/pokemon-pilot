@@ -7,6 +7,7 @@
 script = ExtResource("2_sd")
 id = "vuelo"
 display_name = "Aliento"
+description = "Esquivar con Aliento lo eleva: en el aire no le pegan golpes cuerpo a cuerpo. El primer ataque desde el aire es un Picado (más daño) y aterriza."
 color = Color(0.7, 0.82, 1, 1)
 max_value = 100.0
 decay_out_of_combat = 0.0

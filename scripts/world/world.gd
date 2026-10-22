@@ -2,6 +2,7 @@ extends Node2D
 ## Escena del mundo abierto: arma al entrenador y su Pokémon y conecta streaming, cámara y combate.
 
 const CreatureScene := preload("res://scenes/creatures/creature.tscn")
+const PauseMenuScene := preload("res://scenes/ui/pause_menu.tscn")
 
 @onready var streamer: ZoneStreamer = $ZoneStreamer
 @onready var entities: Node2D = $YSort/Entities
@@ -11,12 +12,16 @@ const CreatureScene := preload("res://scenes/creatures/creature.tscn")
 @onready var spawner: WildSpawner = $WildSpawner
 
 var companion: Creature
+## Menú de pausa (Esc): equipo, guardar, opciones.
+var pause_menu: PauseMenu
 
 
 func _ready() -> void:
 	var world := DB.config.world
 	streamer.world_data = world
 	var spawn := Vector2(world.spawn_cell * world.tile_size) + Vector2(world.tile_size / 2.0, world.tile_size / 2.0)
+	if GameState.trainer_position != Vector2.INF and world.zone_at(GameState.trainer_position) != null:
+		spawn = GameState.trainer_position  # partida cargada: aparece donde guardó
 	trainer.global_position = spawn
 	trainer.trail = [spawn]
 	camera.target = trainer
@@ -25,7 +30,48 @@ func _ready() -> void:
 	# Las zonas se cargan alrededor de lo que mira la cámara (el entrenador o tu Pokémon en combate).
 	streamer.target = camera
 	Events.party_changed.connect(_on_party_changed)
+	Events.equipment_changed.connect(_on_equipment_changed)
+	var menu_layer := CanvasLayer.new()
+	menu_layer.layer = 10  # encima del HUD
+	menu_layer.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(menu_layer)
+	pause_menu = PauseMenuScene.instantiate()
+	menu_layer.add_child(pause_menu)
 	respawn_companion()
+
+
+func _process(delta: float) -> void:
+	GameState.play_time += delta
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_add_pokemon") and debug_enabled():
+		debug_add_pokemon()
+
+
+## Herramientas de debug: solo con `-- --debug` o corriendo desde el editor.
+static func debug_enabled() -> bool:
+	return "--debug" in OS.get_cmdline_user_args() or OS.has_feature("editor")
+
+
+## Debug (F9): suma al equipo un Pokémon al azar al nivel del líder. Hasta que exista la captura (Etapa 6).
+func debug_add_pokemon() -> bool:
+	var leader := GameState.active()
+	var sp: SpeciesData = DB.species.values().pick_random()
+	var ok := GameState.add_to_party(CreatureInstance.create(sp, leader.level if leader != null else 5))
+	Events.message_requested.emit(("Debug: %s se sumó al equipo." % sp.display_name) if ok else "El equipo ya tiene 6 Pokémon.")
+	return ok
+
+
+## Zona en la que está el entrenador (para el guardado).
+func trainer_zone() -> ZoneEntry:
+	return streamer.world_data.zone_at(trainer.global_position)
+
+
+func _on_equipment_changed(inst: CreatureInstance) -> void:
+	# Movimientos nuevos: si es el que te sigue y no está peleando, lo sacamos de nuevo para aplicarlos.
+	if is_instance_valid(companion) and companion.instance == inst and not combat.in_battle:
+		respawn_companion()
 
 
 ## Tags de la celda del mundo en una posición global (vacío si la zona no está cargada).

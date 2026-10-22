@@ -1,13 +1,44 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_g3w7n"]
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_nrj5d"]
 [ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_r6x3q"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_fjwno"]
 [ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_nrj5d"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_44mrl"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="6_44mrl"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_j21u2"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_inumd"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="7_j21u2"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_tlbdr"]
+
+[sub_resource type="Resource" id="Resource_inumd"]
+script = ExtResource("1_nrj5d")
+move = ExtResource("2_r6x3q")
+
+[sub_resource type="Resource" id="Resource_tlbdr"]
+script = ExtResource("1_nrj5d")
+move = ExtResource("3_fjwno")
+
+[sub_resource type="Resource" id="Resource_bo5td"]
+script = ExtResource("1_nrj5d")
+level = 3
+move = ExtResource("4_nrj5d")
+
+[sub_resource type="Resource" id="Resource_pecyu"]
+script = ExtResource("1_nrj5d")
+level = 5
+move = ExtResource("5_44mrl")
+
+[sub_resource type="Resource" id="Resource_iw0q7"]
+script = ExtResource("1_nrj5d")
+level = 31
+move = ExtResource("6_44mrl")
+
+[sub_resource type="Resource" id="Resource_xwkpg"]
+script = ExtResource("1_nrj5d")
+level = 43
+move = ExtResource("7_j21u2")
 
 [resource]
 script = ExtResource("6_j21u2")
@@ -16,6 +47,7 @@ display_name = "Poliwag"
 dex = 60
 types = Array[ExtResource("7_inumd")]([ExtResource("8_tlbdr")])
 moves = Array[ExtResource("1_g3w7n")]([ExtResource("2_r6x3q"), ExtResource("3_fjwno"), ExtResource("4_nrj5d"), ExtResource("5_44mrl")])
+learnset = Array[ExtResource("1_nrj5d")]([SubResource("Resource_inumd"), SubResource("Resource_tlbdr"), SubResource("Resource_bo5td"), SubResource("Resource_pecyu"), SubResource("Resource_iw0q7"), SubResource("Resource_xwkpg")])
 base_hp = 40
 base_defense = 40
 base_sp_attack = 40

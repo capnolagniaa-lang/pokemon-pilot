@@ -11,6 +11,12 @@ signal zone_unloaded(zone: ZoneEntry)
 # Partida
 signal game_started()
 signal party_changed()
+signal game_saved()
+signal game_loaded()
+## Un Pokémon del equipo aprendió un movimiento al subir de nivel.
+signal move_learned(creature: CreatureInstance, move: MoveData)
+## Cambiaron los movimientos equipados de un Pokémon (ficha): el mundo re-saca al activo.
+signal equipment_changed(creature: CreatureInstance)
 
 # Combate
 ## Un salvaje detectó a un objetivo (normalmente tu Pokémon o el entrenador).

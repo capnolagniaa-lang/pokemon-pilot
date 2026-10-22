@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ms"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_867f1"]
+
+[resource]
+script = ExtResource("2_ms")
+id = "ataque_ala"
+display_name = "Ataque Ala"
+element = ExtResource("1_el")
+kind = 1
+power = 60.0
+cooldown = 1.85
+recovery = 0.1

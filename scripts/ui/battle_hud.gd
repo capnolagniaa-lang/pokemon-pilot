@@ -15,6 +15,7 @@ var _world: Node
 
 func _ready() -> void:
 	font = ThemeDB.fallback_font
+	process_mode = Node.PROCESS_MODE_ALWAYS  # los mensajes ("Partida guardada") se ven con el menú abierto
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	Events.message_requested.connect(func(t: String): _message = t; _message_time = 3.5)
@@ -43,7 +44,7 @@ func _draw() -> void:
 		var mode := "IA: %s%s" % [GameState.difficulty.display_name, "  ·  Modo práctica" if GameState.practice_mode else ""]
 		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
 	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · F volver" if in_battle \
-		else "WASD mover · Shift correr · F sacar a tu Pokémon a pelear"
+		else "WASD mover · Shift correr · F sacar a tu Pokémon a pelear · Esc menú"
 	draw_string(font, Vector2(0, size.y - 14), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
 
 

@@ -23,6 +23,15 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	var meta_flags := {"--autotest-save": "save_test", "--autotest-party": "party_test", "--showcase-menus": "showcase_menus"}
+	for flag in meta_flags:
+		if flag in OS.get_cmdline_user_args():
+			set_process(false)
+			var meta := MetaTests.new()
+			meta.autotest = self
+			add_child(meta)
+			meta.call_deferred(meta_flags[flag])
+			return
 	if "--autotest-modes" in OS.get_cmdline_user_args():
 		set_process(false)
 		_modes_test.call_deferred()

@@ -6,6 +6,8 @@ extends Resource
 
 @export var id: String = ""
 @export var display_name: String = ""
+## Explicación corta para la ficha del Pokémon.
+@export_multiline var description: String = ""
 @export var color: Color = Color.WHITE
 ## 0 = mecánica sin recurso (la interfaz no dibuja barra, solo el estado).
 @export var max_value: float = 100.0

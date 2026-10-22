@@ -17,7 +17,13 @@ const KEYS := {
 	"capture": [KEY_E],
 	"switch": [KEY_TAB],
 	"battle_toggle": [KEY_F],
+	"pause": [KEY_ESCAPE],
+	## Solo con `-- --debug` (o desde el editor): suma un Pokémon al azar al equipo.
+	"debug_add_pokemon": [KEY_F9],
 }
+
+## Los menús también se manejan con WASD (además de las flechas que ya trae Godot).
+const UI_EXTRA := {"ui_up": KEY_W, "ui_down": KEY_S, "ui_left": KEY_A, "ui_right": KEY_D}
 
 const MOUSE := {
 	"attack_1": MOUSE_BUTTON_LEFT,
@@ -38,6 +44,10 @@ func _ready() -> void:
 			var ev := InputEventKey.new()
 			ev.physical_keycode = k
 			InputMap.action_add_event(action, ev)
+	for action in UI_EXTRA:
+		var ui := InputEventKey.new()
+		ui.physical_keycode = UI_EXTRA[action]
+		InputMap.action_add_event(action, ui)
 	for action in MOUSE:
 		var ev := InputEventMouseButton.new()
 		ev.button_index = MOUSE[action]

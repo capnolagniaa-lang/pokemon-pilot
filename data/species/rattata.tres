@@ -2,13 +2,48 @@
 
 [ext_resource type="Resource" path="res://data/kits/rattata/kit.tres" id="0_kit"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_hnrfa"]
+[ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="2_bbbhk"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_e0xm5"]
+[ext_resource type="Resource" path="res://data/kits/rattata/mordisco.tres" id="3_pxxwp"]
 [ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_v8ixh"]
 [ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="4_knuu5"]
+[ext_resource type="Resource" path="res://data/kits/rattata/ataque_rapido.tres" id="4_ta41o"]
+[ext_resource type="Resource" path="res://data/kits/rattata/foco_energia.tres" id="5_hecx1"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_q7u3j"]
+[ext_resource type="Resource" path="res://data/kits/rattata/hipercolmillo.tres" id="6_3lt72"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_3pgja"]
+[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="7_k36m8"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_qu5il"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="8_cuhiu"]
+[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_e4fv4"]
+
+[sub_resource type="Resource" id="Resource_fekcx"]
+script = ExtResource("2_bbbhk")
+move = ExtResource("3_pxxwp")
+
+[sub_resource type="Resource" id="Resource_mey80"]
+script = ExtResource("2_bbbhk")
+move = ExtResource("4_ta41o")
+
+[sub_resource type="Resource" id="Resource_xbua4"]
+script = ExtResource("2_bbbhk")
+level = 3
+move = ExtResource("5_hecx1")
+
+[sub_resource type="Resource" id="Resource_55cmk"]
+script = ExtResource("2_bbbhk")
+level = 5
+move = ExtResource("6_3lt72")
+
+[sub_resource type="Resource" id="Resource_o8lfb"]
+script = ExtResource("2_bbbhk")
+level = 27
+move = ExtResource("7_k36m8")
+
+[sub_resource type="Resource" id="Resource_8oymb"]
+script = ExtResource("2_bbbhk")
+level = 41
+move = ExtResource("8_e4fv4")
 
 [resource]
 script = ExtResource("6_3pgja")
@@ -18,6 +53,7 @@ dex = 19
 types = Array[ExtResource("7_qu5il")]([ExtResource("8_cuhiu")])
 moves = Array[ExtResource("1_hnrfa")]([ExtResource("2_e0xm5"), ExtResource("3_v8ixh"), ExtResource("4_knuu5"), ExtResource("5_q7u3j")])
 kit = ExtResource("0_kit")
+learnset = Array[ExtResource("2_bbbhk")]([SubResource("Resource_fekcx"), SubResource("Resource_mey80"), SubResource("Resource_xbua4"), SubResource("Resource_55cmk"), SubResource("Resource_o8lfb"), SubResource("Resource_8oymb")])
 base_hp = 30
 base_attack = 56
 base_defense = 35

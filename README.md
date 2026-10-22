@@ -23,7 +23,12 @@ Acceso directo sin abrir el editor: un `.lnk` que apunte a `Godot_v4.7.2-stable_
 | Ataque 3 | Q (o 3) |
 | Ataque 4 (el de más recarga) | R (o 4) |
 | Esquivar | Espacio |
-| Cambiar de Pokémon | Tab |
+| Menú (Equipo, Guardar, Opciones) | Esc |
+| Menús | Flechas/WASD + Enter/Espacio (o mouse) · Tab cambia de pestaña en la ficha |
+
+La partida se **guarda a mano** desde el menú (Esc → Guardar; no se puede en combate) y se retoma con
+**Continuar** en la pantalla de título. En **Equipo** (hasta 6) elegís quién te sigue y en la **ficha** de cada
+Pokémon ves sus stats y equipás sus 4 movimientos entre los que ya aprendió (aprende más al subir de nivel).
 
 Al empezar elegís la **dificultad de la IA** (Fácil, Normal o Difícil) y si querés el **modo práctica** (tu Pokémon vuelve al instante con la vida al máximo si se debilita).
 

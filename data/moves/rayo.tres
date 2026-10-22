@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ms"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="3_m0kct"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_rvoqg"]
+
+[resource]
+script = ExtResource("2_ms")
+id = "rayo"
+display_name = "Rayo"
+element = ExtResource("1_el")
+category = 1
+power = 90.0
+cooldown = 2.35
+cast_time = 0.15
+knockback = 120.0
+recovery = 0.2
+status = ExtResource("3_m0kct")
+status_chance = 0.1
+speed = 380.0
+size = 4.5
+lifetime = 0.75

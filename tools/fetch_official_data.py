@@ -24,6 +24,10 @@ MOVES = {
     "danza_petalo": "petal-dance", "placaje": "tackle", "aranazo": "scratch", "ataque_rapido": "quick-attack",
     "mordisco": "bite", "rapidez": "swift", "tornado": "gust", "vozarron": "hyper-voice", "proteccion": "protect",
     "impactrueno": "thunder-shock", "trueno": "thunder", "rayo_aurora": "aurora-beam", "ventisca": "blizzard",
+    # Extras de los learnsets (Etapa 2c)
+    "cuchillada": "slash", "ataque_ala": "wing-attack", "persecucion": "pursuit", "rayo_solar": "solar-beam",
+    "acido": "acid", "rueda_fuego": "flame-wheel", "rayo": "thunderbolt", "hidrobomba": "hydro-pump",
+    "derribo": "take-down", "golpe_cuerpo": "body-slam", "rayo_hielo": "ice-beam", "viento_hielo": "icy-wind",
 }
 STAT_NAMES = {"hp": "hp", "attack": "attack", "defense": "defense", "special-attack": "sp_attack",
               "special-defense": "sp_defense", "speed": "speed"}
@@ -50,6 +54,11 @@ def main():
             "base_experience": p["base_experience"],
             "growth_rate": s["growth_rate"]["name"],
             "capture_rate": s["capture_rate"],
+            # Referencia para los learnsets (tools/build_learnsets.gd): [nivel, ataque en PokeAPI] de FRLG.
+            "learnset_frlg": sorted(
+                [d["level_learned_at"], m["move"]["name"]]
+                for m in p["moves"] for d in m["version_group_details"]
+                if d["version_group"]["name"] == "firered-leafgreen" and d["move_learn_method"]["name"] == "level-up"),
         }
         print("especie", gid, out["species"][gid]["base_stats"])
     for gid, api_id in MOVES.items():
