@@ -12,7 +12,7 @@ const WORLD_PATH := "res://data/world/kanto.tres"
 const ZONES_DIR := "res://scenes/world/zones"
 const OBJECTS_DIR := "res://scenes/world/objects"
 
-# Fuentes del TileSet
+# Fuentes del TileSet (las del tileset general; cada tileset suma 3: abajo, animado, arriba)
 const SRC_BELOW := 0
 const SRC_ANIM := 1
 const SRC_ABOVE := 2
@@ -24,18 +24,80 @@ const WATER := 1
 const FOLIAGE := 2
 const OVERHEAD := 3
 
-static var _manifest: Dictionary
-## anim row -> metatile (inversa de manifest.anim)
+## Id global de un metatile: base de su tileset + índice local. El "general" (exteriores) va de 0 a 639; el
+## resto de los tilesets de FireRed, de a 1000 según manifest.json → order (que es estable: solo se agregan).
+const SET_STRIDE := 1000
+## Fuentes del TileSet por tileset: general 0/1/2; el k-ésimo de `order`, 3+3k (abajo), 4+3k (animado), 5+3k (arriba).
+
+static var _all: Dictionary
+## nombre del tileset -> {fila animada -> metatile local}
 static var _anim_rows: Dictionary
 
 
-## Datos del tileset "general" de FireRed (art/pret/tiles/manifest.json).
+## Manifest completo de art/pret/tiles/manifest.json (lo genera tools/pret_import.py).
+static func manifest_all() -> Dictionary:
+	if _all.is_empty():
+		_all = JSON.parse_string(FileAccess.get_file_as_string(TILES_DIR + "/manifest.json"))
+		for name in set_names():
+			var rows := {}
+			for key in _all[name]["anim"]:
+				rows[int(_all[name]["anim"][key]["row"])] = int(key)
+			_anim_rows[name] = rows
+	return _all
+
+
+## Datos del tileset "general" de FireRed.
 static func manifest() -> Dictionary:
-	if _manifest.is_empty():
-		_manifest = JSON.parse_string(FileAccess.get_file_as_string(TILES_DIR + "/manifest.json"))["general"]
-		for key in _manifest["anim"]:
-			_anim_rows[int(_manifest["anim"][key]["row"])] = int(key)
-	return _manifest
+	return manifest_all()["general"]
+
+
+## Tilesets importados: "general" y después los de `order`.
+static func set_names() -> PackedStringArray:
+	var out := PackedStringArray(["general"])
+	out.append_array(PackedStringArray(manifest_all().get("order", [])))
+	return out
+
+
+static func set_info(set_name: String) -> Dictionary:
+	return manifest_all()[set_name]
+
+
+## Tileset al que pertenece un id global.
+static func set_of(metatile: int) -> String:
+	var k := metatile / SET_STRIDE
+	if k == 0:
+		return "general"
+	var order: Array = manifest_all()["order"]
+	return order[k - 1] if k - 1 < order.size() else ""
+
+
+static func local_of(metatile: int) -> int:
+	return metatile % SET_STRIDE
+
+
+static func base_of(set_name: String) -> int:
+	return int(set_info(set_name).get("base", 0))
+
+
+## [abajo, animado, arriba] del tileset en el TileSet.
+static func sources_of(set_name: String) -> Array:
+	return set_info(set_name).get("sources", [SRC_BELOW, SRC_ANIM, SRC_ABOVE])
+
+
+## ¿Existe el metatile y tiene algo dibujado?
+static func exists(metatile: int) -> bool:
+	if metatile < 0:
+		return false
+	var s := set_of(metatile)
+	if s == "":
+		return false
+	var info := set_info(s)
+	var l := local_of(metatile)
+	return l < int(info["count"]) and not bool(info.get("empty", [])[l] if info.has("empty") else false)
+
+
+static func behavior_of(metatile: int) -> int:
+	return int(set_info(set_of(metatile))["behavior"][local_of(metatile)])
 
 
 static func load_roles() -> TileRoleSet:
@@ -44,9 +106,9 @@ static func load_roles() -> TileRoleSet:
 
 # --- TileSet -----------------------------------------------------------------
 
-## TileSet nuevo a partir de los atlas de FireRed; tags y colisión salen de los roles (+ ajustes).
+## TileSet nuevo a partir de los atlas de FireRed (todos los tilesets importados); tags y colisión salen de
+## los roles (+ ajustes y catálogo).
 static func build_tileset(roles: TileRoleSet) -> TileSet:
-	var m := manifest()
 	var ts := TileSet.new()
 	ts.tile_size = Vector2i(T, T)
 	ts.add_physics_layer()
@@ -58,33 +120,43 @@ static func build_tileset(roles: TileRoleSet) -> TileSet:
 	ts.add_custom_data_layer()
 	ts.set_custom_data_layer_name(0, "tags")
 	ts.set_custom_data_layer_type(0, TYPE_PACKED_STRING_ARRAY)
-
-	var count := int(m["count"])
-	var below := _atlas(TILES_DIR + "/general_below.png")
-	ts.add_source(below, SRC_BELOW)
-	for i in count:
-		below.create_tile(Vector2i(i % 16, i / 16))
-
-	var anim := _atlas(TILES_DIR + "/general_anim.png")
-	ts.add_source(anim, SRC_ANIM)
-	for key in m["anim"]:
-		var a: Dictionary = m["anim"][key]
-		var c := Vector2i(0, int(a["row"]))
-		anim.create_tile(c)
-		anim.set_tile_animation_columns(c, int(a["frames"]))
-		anim.set_tile_animation_frames_count(c, int(a["frames"]))
-		for f in int(a["frames"]):
-			anim.set_tile_animation_frame_duration(c, f, float(a["duration"]))
-
-	var above := _atlas(TILES_DIR + "/general_above.png")
-	ts.add_source(above, SRC_ABOVE)
-	for i in count:
-		if m["above_used"][i]:
-			above.create_tile(Vector2i(i % 16, i / 16))
-
-	for i in count:
-		apply_tile_props(ts, roles, i)
+	for set_name in set_names():
+		_add_set(ts, set_name)
+	for set_name in set_names():
+		var base := base_of(set_name)
+		for i in int(set_info(set_name)["count"]):
+			if exists(base + i) or set_name == "general":
+				apply_tile_props(ts, roles, base + i)
 	return ts
+
+
+static func _add_set(ts: TileSet, set_name: String) -> void:
+	var m := set_info(set_name)
+	var src: Array = sources_of(set_name)
+	var count := int(m["count"])
+	var general := set_name == "general"  # el general tiene todos sus tiles (compatibilidad con las zonas viejas)
+	var below := _atlas("%s/%s_below.png" % [TILES_DIR, set_name])
+	ts.add_source(below, src[0])
+	for i in count:
+		if general or not m["empty"][i]:
+			below.create_tile(Vector2i(i % 16, i / 16))
+	if not m["anim"].is_empty():
+		var anim := _atlas("%s/%s_anim.png" % [TILES_DIR, set_name])
+		ts.add_source(anim, src[1])
+		for key in m["anim"]:
+			var a: Dictionary = m["anim"][key]
+			var c := Vector2i(0, int(a["row"]))
+			anim.create_tile(c)
+			anim.set_tile_animation_columns(c, int(a["frames"]))
+			anim.set_tile_animation_frames_count(c, int(a["frames"]))
+			for f in int(a["frames"]):
+				anim.set_tile_animation_frame_duration(c, f, float(a["duration"]))
+	if m["above_used"].has(true):
+		var above := _atlas("%s/%s_above.png" % [TILES_DIR, set_name])
+		ts.add_source(above, src[2])
+		for i in count:
+			if m["above_used"][i]:
+				above.create_tile(Vector2i(i % 16, i / 16))
 
 
 static func _atlas(path: String) -> TileSetAtlasSource:
@@ -110,14 +182,19 @@ static func apply_tile_props(ts: TileSet, roles: TileRoleSet, metatile: int) -> 
 
 static func _tile_datas(ts: TileSet, metatile: int) -> Array[TileData]:
 	var out: Array[TileData] = []
-	var below: TileSetAtlasSource = ts.get_source(SRC_BELOW)
-	var c := Vector2i(metatile % 16, metatile / 16)
-	if below.has_tile(c):
-		out.append(below.get_tile_data(c, 0))
-	var key := str(metatile)
-	if manifest()["anim"].has(key):
-		var ac := Vector2i(0, int(manifest()["anim"][key]["row"]))
-		var anim: TileSetAtlasSource = ts.get_source(SRC_ANIM)
+	var s := set_of(metatile)
+	if s == "":
+		return out
+	var src: Array = sources_of(s)
+	var l := local_of(metatile)
+	if ts.has_source(src[0]):
+		var below: TileSetAtlasSource = ts.get_source(src[0])
+		if below.has_tile(Vector2i(l % 16, l / 16)):
+			out.append(below.get_tile_data(Vector2i(l % 16, l / 16), 0))
+	var key := str(l)
+	if set_info(s)["anim"].has(key) and ts.has_source(src[1]):
+		var ac := Vector2i(0, int(set_info(s)["anim"][key]["row"]))
+		var anim: TileSetAtlasSource = ts.get_source(src[1])
 		if anim.has_tile(ac):
 			out.append(anim.get_tile_data(ac, 0))
 	return out
@@ -127,29 +204,53 @@ static func _tile_datas(ts: TileSet, metatile: int) -> Array[TileData]:
 
 ## Dónde está un metatile en el TileSet: [fuente, coordenadas]. Prefiere la versión animada.
 static func below_ref(metatile: int) -> Array:
-	var key := str(metatile)
-	if manifest()["anim"].has(key):
-		return [SRC_ANIM, Vector2i(0, int(manifest()["anim"][key]["row"]))]
-	return [SRC_BELOW, Vector2i(metatile % 16, metatile / 16)]
+	var s := set_of(metatile)
+	var src: Array = sources_of(s)
+	var l := local_of(metatile)
+	var key := str(l)
+	if set_info(s)["anim"].has(key):
+		return [src[1], Vector2i(0, int(set_info(s)["anim"][key]["row"]))]
+	return [src[0], Vector2i(l % 16, l / 16)]
+
+
+## Dónde está la parte de arriba (Overhead) de un metatile: [fuente, coordenadas].
+static func above_ref(metatile: int) -> Array:
+	var l := local_of(metatile)
+	return [sources_of(set_of(metatile))[2], Vector2i(l % 16, l / 16)]
 
 
 ## ¿El metatile tiene parte superior (va también en Overhead)?
 static func has_above(metatile: int) -> bool:
-	return metatile >= 0 and metatile < int(manifest()["count"]) and bool(manifest()["above_used"][metatile])
+	if metatile < 0 or set_of(metatile) == "":
+		return false
+	var info := set_info(set_of(metatile))
+	var l := local_of(metatile)
+	return l < int(info["count"]) and bool(info["above_used"][l])
 
 
 static func is_animated(metatile: int) -> bool:
-	return manifest()["anim"].has(str(metatile))
+	return metatile >= 0 and set_info(set_of(metatile))["anim"].has(str(local_of(metatile)))
 
 
-## Metatile de FireRed de un tile del TileSet (-1 si no hay).
+## ¿La fuente es la de las partes de arriba (Overhead) de algún tileset?
+static func is_above_source(source: int) -> bool:
+	return source >= 0 and source % 3 == SRC_ABOVE
+
+
+## Metatile de FireRed (id global) de un tile del TileSet (-1 si no hay).
 static func metatile_of(source: int, coords: Vector2i) -> int:
 	if source < 0:
 		return -1
-	if source == SRC_ANIM:
-		manifest()
-		return _anim_rows.get(coords.y, -1)
-	return coords.y * 16 + coords.x
+	var k := source / 3  # 0 = general, k = k-ésimo de order
+	var names := set_names()
+	if k >= names.size():
+		return -1
+	var s := names[k]
+	if source % 3 == SRC_ANIM:
+		manifest_all()
+		var l: int = _anim_rows[s].get(coords.y, -1)
+		return base_of(s) + l if l >= 0 else -1
+	return base_of(s) + coords.y * 16 + coords.x
 
 
 static func metatile_at(layer: TileMapLayer, cell: Vector2i) -> int:
@@ -159,6 +260,12 @@ static func metatile_at(layer: TileMapLayer, cell: Vector2i) -> int:
 ## Pone un metatile (parte de abajo) en una capa.
 static func set_metatile(layer: TileMapLayer, cell: Vector2i, metatile: int) -> void:
 	var ref := below_ref(metatile)
+	layer.set_cell(cell, ref[0], ref[1])
+
+
+## Pone la parte de arriba de un metatile en Overhead.
+static func set_above(layer: TileMapLayer, cell: Vector2i, metatile: int) -> void:
+	var ref := above_ref(metatile)
 	layer.set_cell(cell, ref[0], ref[1])
 
 

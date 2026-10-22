@@ -121,6 +121,7 @@ func _go_to(id: String) -> Zone:
 			entry = z
 	var rect: Rect2 = entry.world_rect(world.streamer.world_data.tile_size)
 	world.trainer.global_position = rect.get_center()
+	world.camera.snap()  # el streaming sigue a la cámara: si queda lejos, puede descargar la zona recién cargada
 	world.streamer.load_around_now(rect.get_center())
 	await get_tree().physics_frame
 	return world.streamer.zone_node(id)

@@ -98,6 +98,50 @@ func run() -> void:
 	doc.do_undo()
 	r["Deshacer el pegado"] = not doc.has_tree(paste_at)
 
+	# --- Gráficos de FireRed: catálogo, tiles de otros tilesets y sellos de edificios ---
+	var cat := roles.catalog
+	var counts := {}
+	for id in cat.categories:
+		counts[cat.categories[id]] = counts.get(cat.categories[id], 0) + 1
+	r["Catálogo: más de 60 tilesets de FireRed y sellos de edificios"] = ZoneBuilder.set_names().size() >= 60 and cat.stamps.size() >= 40
+	r["Catálogo: hay edificios, terreno, agua, escaleras, rocas y árboles"] = ["edificios", "terreno", "agua", "escaleras", "rocas", "arboles"].all(
+		func(k: String) -> bool: return counts.get(k, 0) > 0)
+	r["TileSet: tiene las fuentes de todos los tilesets"] = Array(ZoneBuilder.set_names()).all(func(n: String) -> bool:
+		return doc.tileset.has_source(ZoneBuilder.sources_of(n)[0]))
+	var house := -1
+	for id in cat.categories:
+		if cat.categories[id] == "edificios" and ZoneBuilder.set_of(id) == "pallet_town" and roles.physics_for(id) == 0:
+			house = id
+			break
+	var hc := _free_rect(doc, Vector2i(1, 1)).position
+	var href := ZoneBuilder.below_ref(house)
+	doc.paint_raw([hc], MapDocument.GROUND, href[0], href[1])
+	doc.commit("Tile de Pueblo Paleta")
+	var smallest: Dictionary = cat.stamps[0]
+	for st in cat.stamps:
+		if st["size"].x * st["size"].y < smallest["size"].x * smallest["size"].y:
+			smallest = st
+	var sat := _free_rect(doc, smallest["size"]).position
+	doc.place_stamp(smallest, sat)
+	doc.commit("Sello")
+	r["Guarda la zona con un tile de otro tileset y un sello"] = doc.save(TMP + "/ruta1_fr.tscn") == OK
+	var fr := _instance(TMP + "/ruta1_fr.tscn")
+	r["Tile de Pueblo Paleta: vuelve igual, sólido y con tag edificio"] = ZoneBuilder.metatile_at(fr.ground, hc) == house 		and MapRules.cell_physics(fr, hc) == MapRules.SOLID and fr.get_tags(hc).has("edificio")
+	var stamp_ok := true
+	var cells: PackedInt32Array = smallest["cells"]
+	for i in cells.size():
+		var c: Vector2i = sat + Vector2i(i % smallest["size"].x, i / smallest["size"].x)
+		if cells[i] < 0:
+			continue
+		stamp_ok = stamp_ok and ZoneBuilder.metatile_at(fr.ground, c) == cells[i] 			and (not ZoneBuilder.has_above(cells[i]) or fr.get_node("Overhead").get_cell_source_id(c) >= 0)
+	r["Sello: todas las piezas en Ground con su parte de arriba"] = stamp_ok
+	r["Sello: el edificio tiene colisión"] = range(cells.size()).any(func(i: int) -> bool:
+		return cells[i] >= 0 and MapRules.cell_physics(fr, sat + Vector2i(i % smallest["size"].x, i / smallest["size"].x)) == MapRules.SOLID)
+	doc.do_undo()
+	doc.do_undo()
+	r["Deshacer el sello y el tile"] = ZoneBuilder.metatile_at(doc.layer(MapDocument.GROUND), hc) != house 		and roles.role_of(doc.metatile(MapDocument.GROUND, sat + Vector2i(smallest["size"].x / 2, smallest["size"].y - 1))) == doc.base_role()
+	fr.queue_free()
+
 	# --- 4) Validaciones ---
 	var side: String = doc.entry.exits.keys()[0]
 	r["Validación: la zona editada no tiene salidas bloqueadas"] = not _has_issue(doc.validate(), "bloqueada")
@@ -135,15 +179,15 @@ func run() -> void:
 	r["kanto.tres en disco sin cambios"] = (load(ZoneBuilder.WORLD_PATH) as WorldData).zones.size() == zones_on_disk
 
 	# --- 6) Panel de tile: tags y colisión de un metatile sin tags (sobre copias, sin guardar) ---
-	var roles2: TileRoleSet = roles.duplicate(true)
-	roles2.overrides = {}
-	var ts2: TileSet = doc.tileset.duplicate(true)
+	# Sobre el TileSet cargado (sin guardarlo) y después se restaura: duplicar uno de 15.000 tiles es lento.
+	var roles2 := TileRoleSet.new()
+	roles2.roles = roles.roles
 	var free_m := 2
 	roles2.set_override(free_m, PackedStringArray(["cerca", "solido"]), 0)
-	ZoneBuilder.apply_tile_props(ts2, roles2, free_m)
-	var td := (ts2.get_source(ZoneBuilder.SRC_BELOW) as TileSetAtlasSource).get_tile_data(Vector2i(free_m, 0), 0)
-	r["Panel de tile: tags y colisión sólida aplicados al TileSet"] = td.get_custom_data("tags") == PackedStringArray(["cerca", "solido"]) \
-		and td.get_collision_polygons_count(0) == 1
+	ZoneBuilder.apply_tile_props(doc.tileset, roles2, free_m)
+	var td := (doc.tileset.get_source(ZoneBuilder.SRC_BELOW) as TileSetAtlasSource).get_tile_data(Vector2i(free_m, 0), 0)
+	r["Panel de tile: tags y colisión sólida aplicados al TileSet"] = td.get_custom_data("tags") == PackedStringArray(["cerca", "solido"]) 		and td.get_collision_polygons_count(0) == 1
+	ZoneBuilder.apply_tile_props(doc.tileset, roles, free_m)
 	r["Sugerencia por behavior: pasto alto (0x02)"] = roles.behavior_hints.get(2, {}).get("tags", PackedStringArray()).has("pasto_alto")
 
 	doc.dispose()
@@ -226,6 +270,19 @@ func _ui_smoke(r: Dictionary) -> void:
 	ed.set_tool(ed.Tool.SPAWN)
 	ed._press(hub, false)
 	r["UI: elegir inicio del juego"] = d.world.spawn_cell == d.entry.origin + hub
+	r["UI: la paleta muestra los edificios de FireRed"] = _palette_count(ed, "", "edificios") > 100
+	r["UI: la paleta filtra por tileset (rocas de Cuevas)"] = _palette_count(ed, "cave", "rocas") > 0
+	r["UI: la pestaña Sellos lista los edificios"] = ed._stamps._list.item_count == roles.catalog.stamps.size()
+	var st0: Dictionary = roles.catalog.stamps[0]
+	var at := _free_rect(d, st0["size"]).position
+	ed._stamps.stamp_selected.emit(st0)
+	ed.set_tool(ed.Tool.PENCIL)
+	ed._press(at, false)
+	ed._release(at)
+	var first := 0
+	while (st0["cells"] as PackedInt32Array)[first] < 0:
+		first += 1
+	r["UI: un clic pega el sello"] = d.metatile(MapDocument.GROUND, at + Vector2i(first % st0["size"].x, first / st0["size"].x)) == st0["cells"][first]
 	r["UI: la zona en disco no cambió"] = not ZoneBuilder.is_hand_edited(d.entry.scene_path)
 
 
@@ -262,9 +319,12 @@ func showcase() -> void:
 	ed._update_hover()
 	await _frames(20)
 	ed._toggle_view(1)
+	ed._tabs.current_tab = ed.TAB_STAMPS
+	await _frames(20)
 	ed._tabs.current_tab = ed.TAB_TILES
-	ed._palette._filter.select(1)
-	ed._palette.refresh()
+	ed._palette.set_filters("", "edificios")
+	await _frames(20)
+	ed._palette.set_filters("cave", "rocas")
 	await _frames(20)
 	ed._tabs.current_tab = ed.TAB_TILE
 	ed._props.show_metatile(213)
@@ -273,6 +333,11 @@ func showcase() -> void:
 	ed.validate()
 	await _frames(20)
 	get_tree().quit()
+
+
+func _palette_count(ed: Node, set_name: String, category: String) -> int:
+	ed._palette.set_filters(set_name, category)
+	return ed._palette._list.item_count
 
 
 func _frames(n: int) -> void:

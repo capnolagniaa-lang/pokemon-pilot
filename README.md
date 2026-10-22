@@ -52,9 +52,15 @@ directo **Pokémon Pilot — Editor de mapas** (`--path "<proyecto>" -- --map-ed
   copa en Overhead, copa "apilada" si hay otro árbol justo arriba y sombra (`tree_cells`); borde de árboles;
   **objetos** (todo lo de `scenes/world/objects/`); borrar todo (deja pasto) o la capa activa. Los pinceles salen
   de `data/world/tile_roles.tres`.
-- **Tiles** (modo crudo): los 640 metatiles agrupados por tags, con filtros (con/sin tags, con colisión,
-  animados, parte de arriba). Se pinta en la capa activa; si el tile tiene parte de arriba, esa parte se pone sola en Overhead.
-- **Tile**: tags y colisión (ninguna / sólida / agua) de un metatile, con sugerencias según el *behavior* de
+- **Sellos**: 70 edificios enteros sacados de los mapas reales de FireRed (casas de cada pueblo, Centro
+  Pokémon, Tienda, edificios de las ciudades...), sin repetidos y filtrables por lugar. Un clic pega el edificio
+  con su parte de arriba y su colisión.
+- **Tiles** (modo crudo): **todos los gráficos de FireRed** (62 tilesets: exteriores, pueblos, ciudades,
+  cuevas, islas e interiores), organizados por **tipo** (terreno, pasto alto, arena, agua, hielo, árboles,
+  rocas, edificios, puertas, escaleras, salientes, carteles, cercas, muebles, paredes y suelo de interior...),
+  con filtros por grupo (exteriores/interiores), tileset, tipo y tag. Se pinta en la capa activa; si el tile
+  tiene parte de arriba, esa parte se pone sola en Overhead.
+- **Tile**: tipo, tags y colisión (ninguna / sólida / agua) de un metatile, con sugerencias según el *behavior* de
   FireRed. Guarda en `tile_roles.tres` y en el TileSet (con backup en `art/tiles/.backup/`). Cambia en **todas** las zonas.
 - **Zona**: nombre, bioma, plaza (hub) y salidas (se arrastran sobre el mapa), inicio del juego, validaciones
   (salidas transitables y que empalmen con la vecina, camino de la plaza a cada salida, inicio libre, pasto alto
@@ -82,6 +88,15 @@ directo **Pokémon Pilot — Editor de mapas** (`--path "<proyecto>" -- --map-ed
 El editor de Godot también sirve: lo pintado con la herramienta usa el mismo TileSet, así que se puede seguir
 retocando una zona con el pintor de `TileMapLayer` de Godot (y al revés). Pero ese pintor no conoce nuestras
 reglas (agua con pasto abajo, árboles con copa y sombra, objetos, salidas), por eso existe esta herramienta.
+
+**De dónde salen los gráficos y los tipos**: `tools/pret_import.py` lee el decomp
+[pret/pokefirered](https://github.com/pret/pokefirered) (copiado en `art_src/pret`: tilesets, layouts de los 365
+mapas y constantes) y arma los atlas, el `manifest.json` y `catalog.json`. El **tipo** de cada metatile sale de su
+*behavior* (agua, escaleras, puertas, salientes, carteles, muebles...) y, para el resto, de los mapas reales: la
+**colisión** es la que el metatile tiene casi siempre en FireRed (en GBA la colisión está en el mapa, no en el
+tile), lo sólido pegado a una puerta es **edificio** y lo demás se separa en árboles / rocas por color. Es
+automático y puede equivocarse: se corrige en el panel Tile (queda en `tile_roles.tres`, no se pierde al reimportar).
+Las animaciones propias de los tilesets secundarios (fuentes, luces) todavía no se importan: se ven quietas.
 
 **Por qué el autotile no usa los terrains de Godot**: se probaron terrains (modo esquinas y lados) con los 3×3 de
 FireRed y daban otra pieza en ~7% de las celdas: tratan lo de afuera de la zona como vacío (cierran los caminos
@@ -131,7 +146,8 @@ Cada tile del TileSet (`art/tiles/world_tileset.tres`) tiene un *custom data* `t
 
 ## Herramientas
 ```
-python -I tools/pret_import.py art_src/pret art/pret                     # convierte los gráficos de FireRed
+python -I tools/pret_import.py art_src/pret art/pret                     # convierte todos los tilesets de FireRed
+godot --headless --path . --script res://tools/build_world.gd -- --tileset    # catálogo + TileSet (después del import)
 godot --headless --path . --script res://tools/build_world.gd -- --force      # regenera TileSet y zonas (salvo las editadas a mano)
 godot --headless --path . --script res://tools/build_world.gd -- --force-all  # regenera todo (pisa lo editado a mano)
 godot --path . -- --map-editor                                            # editor de mapas

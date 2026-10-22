@@ -323,9 +323,9 @@ func _sync_overhead(c: Vector2i) -> void:
 	for li in [FOLIAGE, WATER, GROUND]:
 		var m := metatile(li, c)
 		if m >= 0 and ZoneBuilder.has_above(m):
-			var coords := Vector2i(m % 16, m / 16)
-			if get_raw(OVERHEAD, c) != [ZoneBuilder.SRC_ABOVE, coords, 0]:
-				set_raw(OVERHEAD, c, ZoneBuilder.SRC_ABOVE, coords)
+			var ref := ZoneBuilder.above_ref(m)
+			if get_raw(OVERHEAD, c) != [ref[0], ref[1], 0]:
+				set_raw(OVERHEAD, c, ref[0], ref[1])
 			return
 	clear(OVERHEAD, c)
 
@@ -432,13 +432,37 @@ func place_object(cell: Vector2i, scene_path: String) -> void:
 func paint_raw(cells: Array, li: int, source: int, coords: Vector2i) -> void:
 	for c: Vector2i in cells:
 		set_raw(li, c, source, coords)
-		if li == OVERHEAD or source == ZoneBuilder.SRC_ABOVE:
+		if li == OVERHEAD or ZoneBuilder.is_above_source(source):
 			continue
 		var m := ZoneBuilder.metatile_of(source, coords)
 		if ZoneBuilder.has_above(m):
-			set_raw(OVERHEAD, c, ZoneBuilder.SRC_ABOVE, Vector2i(m % 16, m / 16))
+			var ref := ZoneBuilder.above_ref(m)
+			set_raw(OVERHEAD, c, ref[0], ref[1])
 		elif li == GROUND:
 			clear(OVERHEAD, c)
+
+
+## Sello de varias celdas (edificio de FireRed): pone cada pieza en Ground con su parte de arriba en
+## Overhead; saca árboles, agua, follaje y objetos debajo. Las celdas -1 del sello no se tocan.
+func place_stamp(stamp: Dictionary, at: Vector2i) -> void:
+	var size: Vector2i = stamp["size"]
+	var cells: PackedInt32Array = stamp["cells"]
+	var touched: Array[Vector2i] = []
+	for i in cells.size():
+		var m := cells[i]
+		var c := at + Vector2i(i % size.x, i / size.x)
+		if m < 0 or not inside(c) or not ZoneBuilder.exists(m):
+			continue
+		var t := tree_origin_at(c)
+		if t != NO_TREE:
+			remove_tree(t)
+		clear(WATER, c)
+		clear(FOLIAGE, c)
+		set_object(c, "")
+		set_metatile(GROUND, c, m)
+		_sync_overhead(c)
+		touched.append(c)
+	refresh_autotile(touched)
 
 
 # --- Balde y copiar/pegar ----------------------------------------------------------

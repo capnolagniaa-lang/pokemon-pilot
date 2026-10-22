@@ -7,6 +7,8 @@ extends SceneTree
 ##  --force      regenera el TileSet y las zonas, salvo las editadas con el editor de mapas (hand_edited),
 ##               que conservan también su entrada (hub, salidas) en kanto.tres.
 ##  --force-all  regenera todo, incluidas las zonas editadas a mano (se pierde lo pintado).
+##  --tileset    solo rearma el catálogo (data/world/tile_catalog.tres, desde art/pret/tiles/catalog.json) y el
+##               TileSet con todos los tilesets importados; no toca zonas. Correrlo después de tools/pret_import.py.
 ## Zonas agregadas con el editor (que no están en REGION) se conservan siempre.
 
 const ZONE_SIZE := Vector2i(48, 32)
@@ -25,6 +27,8 @@ const REGION := [
 	["arboleda", "Arboleda", 2, 2, "arboleda"],
 ]
 
+const CATALOG_PATH := "res://data/world/tile_catalog.tres"
+
 var force := false
 var force_all := false
 var rng := RandomNumberGenerator.new()
@@ -36,6 +40,13 @@ func _init() -> void:
 	for d in ["res://data/world", ZoneBuilder.ZONES_DIR, "res://art/tiles"]:
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(d))
 	var roles := ZoneBuilder.load_roles()
+	if "--tileset" in OS.get_cmdline_user_args() or roles.catalog == null:
+		_catalog(roles)
+		if "--tileset" in OS.get_cmdline_user_args():
+			ResourceSaver.save(ZoneBuilder.build_tileset(roles), ZoneBuilder.TILESET_PATH)
+			print("Catálogo y TileSet rearmados: %d tilesets, %d sellos." % [ZoneBuilder.set_names().size(), roles.catalog.stamps.size()])
+			quit()
+			return
 	var tileset := _tileset(roles)
 	var generator := ZoneGenerator.new(roles, tileset)
 
@@ -78,6 +89,13 @@ func _init() -> void:
 		print("Zonas editadas a mano que no se regeneraron (usá --force-all para pisarlas): ", skipped)
 	print("Mundo construido: %d zonas." % zones.size())
 	quit()
+
+
+## Catálogo de metatiles (categorías, tags/colisión sugeridos, sellos) desde el JSON del importador.
+func _catalog(roles: TileRoleSet) -> void:
+	ResourceSaver.save(TileCatalog.from_json(), CATALOG_PATH)
+	roles.catalog = load(CATALOG_PATH)
+	ResourceSaver.save(roles, ZoneBuilder.ROLES_PATH)
 
 
 func _tileset(roles: TileRoleSet) -> TileSet:

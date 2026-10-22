@@ -16,9 +16,10 @@ const LAYER_LABELS := ["1 Suelo (Ground)", "2 Agua (Water)", "3 Follaje (Foliage
 const HELP := ["B pincel · L línea · R rectángulo (F relleno/borde) · G balde · M selección · I o Alt+clic gotero · H plaza y salidas · [ ] tamaño · 1-5 capa activa · Clic der. borra",
 	"Ctrl+Z/Y deshacer/rehacer · Ctrl+C/V copiar/pegar · Supr borra la selección · Ctrl+S guardar · F5 probar en el juego · Rueda zoom · Clic medio o Espacio+arrastrar mueve · F2 grilla · F3 colisión · F4 sin tags"]
 const TAB_BRUSHES := 0
-const TAB_TILES := 1
-const TAB_TILE := 2
-const TAB_ZONE := 3
+const TAB_STAMPS := 1
+const TAB_TILES := 2
+const TAB_TILE := 3
+const TAB_ZONE := 4
 
 var world: WorldData
 var roles: TileRoleSet
@@ -55,6 +56,7 @@ var _tag_menu: PopupMenu
 var _tabs: TabContainer
 var _brushes: MapBrushPanel
 var _palette: MapTilePalette
+var _stamps: MapStampPanel
 var _props: MapTileProps
 var _zone_panel: MapZonePanel
 var _status: Label
@@ -466,6 +468,8 @@ func set_brush(b: Dictionary) -> void:
 	_brushes.mark(b.get("key", ""))
 	if b.get("kind") != "raw":
 		_palette.deselect()
+	if b.get("kind") != "stamp":
+		_stamps.deselect()
 	if tool in [Tool.PICK, Tool.SELECT, Tool.MARKERS, Tool.SPAWN]:
 		set_tool(Tool.PENCIL)
 	_update_status()
@@ -509,6 +513,10 @@ func _press(cell: Vector2i, erase: bool) -> void:
 		return
 	_anchor = cell
 	_last_cell = cell
+	if not erase and brush.get("kind") == "stamp" and tool in [Tool.PENCIL, Tool.LINE, Tool.RECT, Tool.FILL]:
+		doc.place_stamp(brush["stamp"], cell)
+		doc.commit("Sello: " + str(brush["stamp"]["name"]))
+		return
 	match tool:
 		Tool.MARKERS:
 			var m := cursor.marker_at(cell)
@@ -750,7 +758,10 @@ func _update_hover() -> void:
 	cursor.hover_inside = doc.inside(hover)
 	if pasting:
 		cursor.paste_rect = Rect2i(hover, clipboard["size"])
-	if _stroke == 0 and tool in [Tool.PENCIL] and doc.inside(hover):
+	if _stroke == 0 and brush.get("kind") == "stamp" and tool in [Tool.PENCIL, Tool.LINE, Tool.RECT, Tool.FILL]:
+		cursor.preview = _stamp_footprint(brush["stamp"], hover)
+		cursor.preview_color = Color(0.5, 0.85, 1.0, 0.3)
+	elif _stroke == 0 and tool in [Tool.PENCIL] and doc.inside(hover):
 		if _is_tree_brush():
 			cursor.preview = [hover, hover + Vector2i(1, 0), hover + Vector2i(0, 1), hover + Vector2i(1, 1)]
 		else:
@@ -762,12 +773,23 @@ func _update_hover() -> void:
 	_update_status()
 
 
+static func _stamp_footprint(st: Dictionary, at: Vector2i) -> Array[Vector2i]:
+	var out: Array[Vector2i] = []
+	var size: Vector2i = st["size"]
+	var cells: PackedInt32Array = st["cells"]
+	for i in cells.size():
+		if cells[i] >= 0:
+			out.append(at + Vector2i(i % size.x, i / size.x))
+	return out
+
+
 func _brush_name() -> String:
 	match brush.get("kind", ""):
 		"role": return (brush["role"] as TileRole).display_name
 		"object": return MapIcons.object_name(brush["path"])
 		"erase": return "Borrar todo" if brush["layer"] == -1 else "Borrar capa activa"
 		"raw": return "Tile %d" % brush.get("metatile", -1)
+		"stamp": return "Sello %s (%s)" % [brush["stamp"]["name"], brush["stamp"]["place"]]
 	return "—"
 
 
@@ -955,6 +977,14 @@ func _build_ui() -> void:
 	_brushes.tree_border.connect(func(side: String):
 		doc.tree_border(side)
 		doc.commit("Borde de árboles"))
+	_stamps = MapStampPanel.new()
+	_stamps.name = "Sellos"
+	_tabs.add_child(_stamps)
+	_stamps.setup(roles.catalog)
+	_stamps.stamp_selected.connect(func(st: Dictionary):
+		set_brush({"kind": "stamp", "key": "stamp", "stamp": st})
+		if tool not in [Tool.PENCIL, Tool.LINE, Tool.RECT, Tool.FILL]:
+			set_tool(Tool.PENCIL))
 	_palette = MapTilePalette.new()
 	_palette.name = "Tiles"
 	_tabs.add_child(_palette)

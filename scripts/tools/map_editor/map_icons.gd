@@ -11,10 +11,27 @@ static func metatile(m: int, above: bool = false) -> Texture2D:
 	if _cache.has(key):
 		return _cache[key]
 	var t := AtlasTexture.new()
-	t.atlas = load(ZoneBuilder.TILES_DIR + ("/general_above.png" if above else "/general_below.png"))
-	t.region = Rect2((m % 16) * 16, (m / 16) * 16, 16, 16)
+	var l := ZoneBuilder.local_of(m)
+	t.atlas = load("%s/%s_%s.png" % [ZoneBuilder.TILES_DIR, ZoneBuilder.set_of(m), "above" if above else "below"])
+	t.region = Rect2((l % 16) * 16, (l / 16) * 16, 16, 16)
 	_cache[key] = t
 	return t
+
+
+## Ícono del metatile completo: la parte de abajo con la de arriba encima (así se ven los techos).
+static func metatile_full(m: int) -> Texture2D:
+	if not ZoneBuilder.has_above(m):
+		return metatile(m)
+	var key := "full:%d" % m
+	if _cache.has(key):
+		return _cache[key]
+	var l := ZoneBuilder.local_of(m)
+	var src := Rect2i((l % 16) * 16, (l / 16) * 16, 16, 16)
+	var img := _rgba(_sheet(ZoneBuilder.set_of(m), "below").get_region(src))
+	img.blend_rect(_rgba(_sheet(ZoneBuilder.set_of(m), "above").get_region(src)), Rect2i(0, 0, 16, 16), Vector2i.ZERO)
+	var tex := ImageTexture.create_from_image(img)
+	_cache[key] = tex
+	return tex
 
 
 ## Ícono de un rol (para un árbol, el 2x2 con su copa).
@@ -46,6 +63,36 @@ static func _rgba(img: Image) -> Image:
 	if img.get_format() != Image.FORMAT_RGBA8:
 		img.convert(Image.FORMAT_RGBA8)
 	return img
+
+
+## Imagen de un sello (edificio): sus metatiles con la parte de arriba, 16 px por celda.
+static func stamp(st: Dictionary) -> Texture2D:
+	var key := "stamp:%d" % hash(st["cells"])
+	if _cache.has(key):
+		return _cache[key]
+	var size: Vector2i = st["size"]
+	var cells: PackedInt32Array = st["cells"]
+	var img := Image.create(size.x * 16, size.y * 16, false, Image.FORMAT_RGBA8)
+	for i in cells.size():
+		var m := cells[i]
+		if m < 0 or not ZoneBuilder.exists(m):
+			continue
+		var at := Vector2i(i % size.x, i / size.x) * 16
+		var l := ZoneBuilder.local_of(m)
+		var src := Rect2i((l % 16) * 16, (l / 16) * 16, 16, 16)
+		img.blend_rect(_rgba(_sheet(ZoneBuilder.set_of(m), "below").get_region(src)), Rect2i(0, 0, 16, 16), at)
+		if ZoneBuilder.has_above(m):
+			img.blend_rect(_rgba(_sheet(ZoneBuilder.set_of(m), "above").get_region(src)), Rect2i(0, 0, 16, 16), at)
+	var tex := ImageTexture.create_from_image(img)
+	_cache[key] = tex
+	return tex
+
+
+static func _sheet(set_name: String, kind: String) -> Image:
+	var key := "img:%s:%s" % [set_name, kind]
+	if not _cache.has(key):
+		_cache[key] = (load("%s/%s_%s.png" % [ZoneBuilder.TILES_DIR, set_name, kind]) as Texture2D).get_image()
+	return _cache[key]
 
 
 ## Ícono de un objeto del entorno: primer cuadro de su Sprite.

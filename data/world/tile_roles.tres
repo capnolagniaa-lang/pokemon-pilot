@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="TileRoleSet" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/tile_role.gd" id="1_86yaw"]
+[ext_resource type="Resource" path="res://data/world/tile_catalog.tres" id="1_trh8o"]
 [ext_resource type="Script" path="res://scripts/resources/tile_role_set.gd" id="2_trh8o"]
 
 [sub_resource type="Resource" id="Resource_e5un0"]
@@ -165,3 +166,4 @@ behavior_hints = {
 "tags": PackedStringArray("saliente", "solido")
 }
 }
+catalog = ExtResource("1_trh8o")

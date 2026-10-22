@@ -48,6 +48,7 @@ $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de to
 $G --headless --path . --quit-after 20000 -- --autotest-map-editor  # editor de mapas (ida y vuelta, pinceles, UI...)
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-map-editor  # capturas del editor
 $G --path . -- --map-editor                                        # editor de mapas (herramienta)
+python -I tools/pret_import.py art_src/pret art/pret && $G --headless --path . --import && $G --headless --path . --quit-after 20000 --script res://tools/build_world.gd -- --tileset  # reimportar FireRed
 $G --path . -- --debug --start-zone ruta1 --start-cell 20,12        # juego directo en una zona (lo usa F5 del editor)
 ```
 El usuario lanza el juego con el acceso directo **"Pokémon Pilot"** del escritorio
@@ -127,9 +128,17 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   - Tipos de ataques secundarios no implementados (retroceso, bajar stats) se omiten por ahora.
 
 ## Pipeline de contenido
-- `tools/pret_import.py` (Python sin dependencias): convierte gráficos de `art_src/pret` (decomp
-  pret/pokefirered) en atlas `art/pret/tiles/*_below|above|anim.png` + `manifest.json`, y sprites
-  (Red, rocas, arbusto). Ojo: los metatiles se identifican por número (ver tabla en `tools/build_world.gd`).
+- `tools/pret_import.py` (Python sin dependencias): convierte **todos los tilesets** de `art_src/pret` (decomp
+  pret/pokefirered: tilesets, `data/layouts` con los 365 mapas, `headers.h`) en atlas
+  `art/pret/tiles/<tileset>_below|above|anim.png` + `manifest.json` (con `order`, `base`, `sources`, `group`
+  exterior/interior) + `catalog.json` (tipo, tags y colisión por metatile sacados de behaviors y mapas reales;
+  sellos de edificios). Después: `build_world.gd -- --tileset` (pasa el catálogo a `data/world/tile_catalog.tres`
+  y rearma el TileSet). Los 6 tilesets que no usa ningún mapa (dummy/garitas) no se importan.
+- **Ids de metatile globales**: general 0-639 (sin cambios); cada otro tileset `base` = 1000·(k+1) según
+  `manifest.json → order`, que es **estable** (solo se agregan al final: las zonas guardan fuentes del TileSet
+  por número). Fuentes del TileSet: general 0/1/2, el k-ésimo 3+3k (abajo), 4+3k (animado), 5+3k (arriba).
+  Todo pasa por `ZoneBuilder` (`set_of`, `local_of`, `below_ref`, `above_ref`, `metatile_of`...).
+  Tags/colisión: ajuste manual (`TileRoleSet.overrides`) > rol > catálogo.
 - **Roles de tile** (`data/world/tile_roles.tres`, `TileRoleSet` de `TileRole`): pasto, arena, agua, árbol...
   con sus metatiles, capa, lo que va abajo, autotile 3×3, tags y colisión, + `overrides` por metatile (los
   escribe el panel "Tile" del editor) y `behavior_hints` (sugerencias por behavior de FireRed). **Es la fuente

@@ -174,7 +174,7 @@ func _to_scene(e: ZoneEntry, map: ZoneMap) -> Node2D:
 				target = ground
 			ZoneBuilder.set_metatile(target, c, below_id)
 			if ZoneBuilder.has_above(below_id):
-				overhead.set_cell(c, ZoneBuilder.SRC_ABOVE, Vector2i(below_id % 16, below_id / 16))
+				ZoneBuilder.set_above(overhead, c, below_id)
 
 	for obj in map.objects:
 		ZoneBuilder.add_object(root, OBJECT_SCENES[obj[0]], obj[1])

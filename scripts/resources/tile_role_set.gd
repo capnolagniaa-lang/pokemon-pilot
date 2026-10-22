@@ -12,6 +12,9 @@ extends Resource
 @export var overrides: Dictionary = {}
 ## Sugerencias a partir del "behavior" de FireRed (manifest.json): behavior (int) -> {"name", "tags", "physics"}.
 @export var behavior_hints: Dictionary = {}
+## Catálogo de todos los metatiles importados (categoría, tags y colisión sacados de los mapas de FireRed).
+## Es el último recurso: ajuste manual > rol > catálogo.
+@export var catalog: TileCatalog
 
 var _by_metatile: Dictionary = {}
 
@@ -40,22 +43,42 @@ func role_of(metatile: int) -> TileRole:
 
 
 func tags_for(metatile: int) -> PackedStringArray:
-	if overrides.has(metatile):
-		return PackedStringArray(overrides[metatile].get("tags", PackedStringArray()))
+	if overrides.has(metatile) and overrides[metatile].has("tags"):
+		return PackedStringArray(overrides[metatile]["tags"])
 	var r := role_of(metatile)
-	return r.tags if r != null else PackedStringArray()
+	if r != null:
+		return r.tags
+	if catalog != null and catalog.tags.has(metatile):
+		return catalog.tags[metatile]
+	return PackedStringArray()
 
 
 ## -1 sin colisión, 0 sólido (capa "mundo"), 1 agua.
 func physics_for(metatile: int) -> int:
-	if overrides.has(metatile):
-		return int(overrides[metatile].get("physics", -1))
+	if overrides.has(metatile) and overrides[metatile].has("physics"):
+		return int(overrides[metatile]["physics"])
 	var r := role_of(metatile)
-	return r.physics if r != null else -1
+	if r != null:
+		return r.physics
+	if catalog != null:
+		return int(catalog.physics.get(metatile, -1))
+	return -1
 
 
-func set_override(metatile: int, tags: PackedStringArray, physics: int) -> void:
-	overrides[metatile] = {"tags": tags, "physics": physics}
+## Categoría por tipo (edificios, agua, rocas...): ajuste manual > catálogo.
+func category_for(metatile: int) -> String:
+	if overrides.has(metatile) and overrides[metatile].has("category"):
+		return overrides[metatile]["category"]
+	return catalog.category_of(metatile) if catalog != null else ""
+
+
+func set_override(metatile: int, tags: PackedStringArray, physics: int, category: String = "") -> void:
+	var o: Dictionary = overrides.get(metatile, {})
+	o["tags"] = tags
+	o["physics"] = physics
+	if category != "":
+		o["category"] = category
+	overrides[metatile] = o
 
 
 ## Todos los tags conocidos (roles + ajustes), ordenados.
@@ -67,6 +90,10 @@ func known_tags() -> PackedStringArray:
 	for m in overrides:
 		for t in overrides[m].get("tags", []):
 			seen[t] = true
+	if catalog != null:
+		for m in catalog.tags:
+			for t in catalog.tags[m]:
+				seen[t] = true
 	for b in behavior_hints:
 		for t in behavior_hints[b].get("tags", []):
 			seen[t] = true

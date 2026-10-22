@@ -7,7 +7,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 
 ## 📍 Dónde estamos (actualizado 2026-10-22)
 - **Herramienta — Editor de mapas hecha** (no corre la numeración de etapas): acceso directo "Pokémon Pilot —
-  Editor de mapas" (`-- --map-editor`). Ver la sección "Herramienta — Editor de mapas" más abajo.
+  Editor de mapas" (`-- --map-editor`). Ya tiene **todos los gráficos de FireRed** organizados por tipo y sellos de
+  edificios. Ver la sección "Herramienta — Editor de mapas" más abajo.
 - **Etapa 3 hecha (entorno reactivo)** — ver "Etapa 3" más abajo. **Etapa 2c hecha** (título, guardado,
   equipo y movimientos).
 - **Siguiente: Etapa 4 (IA salvaje con estados + spawns por bioma/hora)** — ver "Próximo paso concreto". El usuario aprobó los kits por ahora ("me gustan los de Charmander y
@@ -69,7 +70,14 @@ en las salidas y no hay esquinas interiores en el 3×3 de FireRed), **marca `han
 - Autotest `--autotest-map-editor` (≈45 chequeos: ida y vuelta idéntica, arena/agua/árbol/roca con tags y
   colisión, deshacer/rehacer, balde, copiar/pegar, validaciones, zona nueva, panel de tile, la UI real manejada
   como con el mouse, reubicación del entrenador); vitrina `--showcase-map-editor`.
-- Pendiente (si hace falta): sumar los tilesets `viridian_forest` y `pallet_town` como fuentes nuevas del TileSet;
+- **Todos los gráficos de FireRed en el editor (2026-10-22)**: se bajó del decomp pret/pokefirered (clon parcial
+  de git) todo lo de tilesets + los 365 mapas. Decisiones (las recomendadas): **los 68 tilesets, interiores
+  aparte** (se importan 62; los 6 sin mapas no), **tipos automáticos + editables**, **sellos de edificios** sacados
+  de los mapas y **colisión desde los mapas reales**. Quedó: ~10.000 metatiles con tipo (terreno, pasto, arena,
+  agua, hielo, árboles, rocas, edificios, puertas, escaleras, salientes, carteles, cercas, suelos especiales,
+  suelo/paredes/muebles de interior, sin usar), 70 sellos de edificios, paleta con filtros por grupo/tileset/
+  tipo/tag, pestaña Sellos y tipo editable en el panel Tile. Las 9 zonas quedaron con los mismos tags y colisión
+  (verificado celda por celda). Pendiente: animaciones propias de los tilesets secundarios (fuentes, etc.) y
   esquinas interiores para caminos y lagos (ya anotado en pulido).
 
 ## Etapa 3 — Entorno reactivo (2026-10-22)
@@ -200,6 +208,6 @@ EXP contra valores oficiales), `--showcase` (vitrina visual de los 3 estados, pa
 ## Pendientes de pulido (anotados)
 - Esquinas interiores donde se cruzan caminos (quedan cuadradas).
 - Lagos solo rectangulares (faltan esquinas interiores de agua).
-- Bosques podrían ser más densos/variados (usar tileset viridian_forest ya exportado).
+- Bosques podrían ser más densos/variados (el tileset de Bosque Verde ya está en la paleta del editor).
 - Reflejos de personajes en el agua; sombras de árboles más elaboradas.
 - Verificar visualmente el pasto alto tapando las piernas.

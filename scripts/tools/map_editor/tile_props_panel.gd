@@ -18,6 +18,8 @@ var _info: Label
 var _tags: LineEdit
 var _chips: HFlowContainer
 var _physics: OptionButton
+var _category: OptionButton
+var _cat_keys: PackedStringArray = []
 var _hint: Button
 var _apply: Button
 var _box: VBoxContainer
@@ -52,6 +54,15 @@ func setup(p_roles: TileRoleSet, p_tileset: TileSet) -> void:
 	_box.add_child(_tags)
 	_chips = HFlowContainer.new()
 	_box.add_child(_chips)
+	_box.add_child(UiStyle.label("Tipo (para la paleta)", 13, UiStyle.TEXT_DIM))
+	_category = OptionButton.new()
+	_category.focus_mode = Control.FOCUS_NONE
+	_category.fit_to_longest_item = false
+	if roles.catalog != null:
+		for k in roles.catalog.category_order:
+			_category.add_item(roles.catalog.category_name(k))
+			_cat_keys.append(k)
+	_box.add_child(_category)
 	_box.add_child(UiStyle.label("Colisión (cuadrado de 16x16)", 13, UiStyle.TEXT_DIM))
 	_physics = OptionButton.new()
 	_physics.focus_mode = Control.FOCUS_NONE
@@ -85,6 +96,7 @@ func _tex_rect() -> TextureRect:
 func _set_enabled(on: bool) -> void:
 	_tags.editable = on
 	_physics.disabled = not on
+	_category.disabled = not on
 	_apply.disabled = not on
 	_hint.visible = false
 
@@ -94,13 +106,14 @@ func show_metatile(m: int) -> void:
 	_set_enabled(m >= 0)
 	if m < 0:
 		return
-	var man := ZoneBuilder.manifest()
 	_icon.texture = MapIcons.metatile(m)
 	_icon_above.texture = MapIcons.metatile(m, true) if ZoneBuilder.has_above(m) else null
-	_title.text = "Metatile %d" % m
-	var behavior: int = man["behavior"][m]
+	var set_name := ZoneBuilder.set_of(m)
+	_title.text = "Metatile %d" % ZoneBuilder.local_of(m)
+	var behavior := ZoneBuilder.behavior_of(m)
 	var role := roles.role_of(m)
-	var info := ["Rol: " + (role.display_name if role != null else "—"),
+	var info := ["Tileset: " + str(ZoneBuilder.set_info(set_name).get("display", set_name)),
+		"Rol: " + (role.display_name if role != null else "—"),
 		"Behavior FireRed: 0x%02X" % behavior]
 	if ZoneBuilder.is_animated(m):
 		info.append("Animado")
@@ -111,6 +124,7 @@ func show_metatile(m: int) -> void:
 	_info.text = "\n".join(info)
 	_tags.text = ", ".join(roles.tags_for(m))
 	_physics.select(roles.physics_for(m) + 1)
+	_category.select(maxi(0, _cat_keys.find(roles.category_for(m))))
 	var h: Dictionary = roles.behavior_hints.get(behavior, {})
 	_hint.visible = not h.is_empty()
 	if not h.is_empty():
@@ -149,7 +163,7 @@ func _current_tags() -> PackedStringArray:
 
 
 func _use_hint() -> void:
-	var h: Dictionary = roles.behavior_hints.get(int(ZoneBuilder.manifest()["behavior"][metatile]), {})
+	var h: Dictionary = roles.behavior_hints.get(ZoneBuilder.behavior_of(metatile), {})
 	if h.is_empty():
 		return
 	_tags.text = ", ".join(h["tags"])
@@ -159,21 +173,22 @@ func _use_hint() -> void:
 
 func _confirm() -> void:
 	var d := ConfirmDialog.ask(get_tree().current_scene.get_node("UI/Root"),
-		"¿Aplicar tags y colisión al metatile %d? Cambia en TODAS las zonas (se hace backup del TileSet)." % metatile,
+		"¿Aplicar tipo, tags y colisión a este metatile? Cambia en TODAS las zonas (se hace backup del TileSet).",
 		["Aplicar", "Cancelar"])
 	d.chosen.connect(func(i: int):
 		if i == 0:
-			var err := apply_props(roles, tileset, metatile, _current_tags(), _physics.selected - 1)
+			var cat: String = _cat_keys[_category.selected] if _category.selected >= 0 and not _cat_keys.is_empty() else ""
+			var err := apply_props(roles, tileset, metatile, _current_tags(), _physics.selected - 1, cat)
 			if err == OK:
 				applied.emit(metatile)
 				show_metatile(metatile))
 
 
-## Guarda los tags y la colisión de un metatile: ajuste en tile_roles.tres + TileSet (con backup).
-static func apply_props(p_roles: TileRoleSet, p_tileset: TileSet, m: int, tags: PackedStringArray, physics: int) -> Error:
+## Guarda tipo, tags y colisión de un metatile: ajuste en tile_roles.tres + TileSet (con backup).
+static func apply_props(p_roles: TileRoleSet, p_tileset: TileSet, m: int, tags: PackedStringArray, physics: int, category: String = "") -> Error:
 	if FileAccess.file_exists(ZoneBuilder.TILESET_PATH):
 		MapDocument.backup_file(ZoneBuilder.TILESET_PATH)
-	p_roles.set_override(m, tags, physics)
+	p_roles.set_override(m, tags, physics, category)
 	ZoneBuilder.apply_tile_props(p_tileset, p_roles, m)
 	var err := ResourceSaver.save(p_tileset, ZoneBuilder.TILESET_PATH)
 	if err == OK:
