@@ -65,13 +65,14 @@ static func _rgba(img: Image) -> Image:
 	return img
 
 
-## Imagen de un sello (edificio): sus metatiles con la parte de arriba, 16 px por celda.
-static func stamp(st: Dictionary) -> Texture2D:
-	var key := "stamp:%d" % hash(st["cells"])
+## Imagen de un sello (edificio o pieza): sus metatiles con la parte de arriba, 16 px por celda.
+static func stamp(st: Dictionary, variant: int = 0) -> Texture2D:
+	var v: Dictionary = st["variants"][clampi(variant, 0, st["variants"].size() - 1)] if st.has("variants") else st
+	var cells: PackedInt32Array = v["cells"]
+	var key := "stamp:%d" % hash(cells)
 	if _cache.has(key):
 		return _cache[key]
 	var size: Vector2i = st["size"]
-	var cells: PackedInt32Array = st["cells"]
 	var img := Image.create(size.x * 16, size.y * 16, false, Image.FORMAT_RGBA8)
 	for i in cells.size():
 		var m := cells[i]

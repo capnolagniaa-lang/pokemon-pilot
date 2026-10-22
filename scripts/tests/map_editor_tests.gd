@@ -104,7 +104,7 @@ func run() -> void:
 	for id in cat.categories:
 		counts[cat.categories[id]] = counts.get(cat.categories[id], 0) + 1
 	r["Catálogo: más de 60 tilesets de FireRed y sellos de edificios"] = ZoneBuilder.set_names().size() >= 60 and cat.stamps.size() >= 40
-	r["Catálogo: hay edificios, terreno, agua, escaleras, rocas y árboles"] = ["edificios", "terreno", "agua", "escaleras", "rocas", "arboles"].all(
+	r["Catálogo: hay edificios, suelos, agua, escaleras, rocas y árboles (tipos de la referencia)"] = ["edificios", "suelos", "agua", "escaleras", "rocas", "arboles"].all(
 		func(k: String) -> bool: return counts.get(k, 0) > 0)
 	r["TileSet: tiene las fuentes de todos los tilesets"] = Array(ZoneBuilder.set_names()).all(func(n: String) -> bool:
 		return doc.tileset.has_source(ZoneBuilder.sources_of(n)[0]))
@@ -117,8 +117,9 @@ func run() -> void:
 	var href := ZoneBuilder.below_ref(house)
 	doc.paint_raw([hc], MapDocument.GROUND, href[0], href[1])
 	doc.commit("Tile de Pueblo Paleta")
-	var smallest: Dictionary = cat.stamps[0]
-	for st in cat.stamps:
+	var buildings := cat.stamps.filter(func(st: Dictionary) -> bool: return st["group"] != "Piezas del mundo")
+	var smallest: Dictionary = buildings[0]
+	for st in buildings:
 		if st["size"].x * st["size"].y < smallest["size"].x * smallest["size"].y:
 			smallest = st
 	var sat := _free_rect(doc, smallest["size"]).position
@@ -128,7 +129,7 @@ func run() -> void:
 	var fr := _instance(TMP + "/ruta1_fr.tscn")
 	r["Tile de Pueblo Paleta: vuelve igual, sólido y con tag edificio"] = ZoneBuilder.metatile_at(fr.ground, hc) == house 		and MapRules.cell_physics(fr, hc) == MapRules.SOLID and fr.get_tags(hc).has("edificio")
 	var stamp_ok := true
-	var cells: PackedInt32Array = smallest["cells"]
+	var cells: PackedInt32Array = smallest["variants"][0]["cells"]
 	for i in cells.size():
 		var c: Vector2i = sat + Vector2i(i % smallest["size"].x, i / smallest["size"].x)
 		if cells[i] < 0:
@@ -275,14 +276,15 @@ func _ui_smoke(r: Dictionary) -> void:
 	r["UI: la pestaña Sellos lista los edificios"] = ed._stamps._list.item_count == roles.catalog.stamps.size()
 	var st0: Dictionary = roles.catalog.stamps[0]
 	var at := _free_rect(d, st0["size"]).position
-	ed._stamps.stamp_selected.emit(st0)
+	ed._stamps.stamp_selected.emit(st0, 0)
 	ed.set_tool(ed.Tool.PENCIL)
 	ed._press(at, false)
 	ed._release(at)
 	var first := 0
-	while (st0["cells"] as PackedInt32Array)[first] < 0:
+	var st0_cells: PackedInt32Array = st0["variants"][0]["cells"]
+	while st0_cells[first] < 0:
 		first += 1
-	r["UI: un clic pega el sello"] = d.metatile(MapDocument.GROUND, at + Vector2i(first % st0["size"].x, first / st0["size"].x)) == st0["cells"][first]
+	r["UI: un clic pega el sello"] = d.metatile(MapDocument.GROUND, at + Vector2i(first % st0["size"].x, first / st0["size"].x)) == st0_cells[first]
 	r["UI: la zona en disco no cambió"] = not ZoneBuilder.is_hand_edited(d.entry.scene_path)
 
 
@@ -325,6 +327,19 @@ func showcase() -> void:
 	ed._palette.set_filters("", "edificios")
 	await _frames(20)
 	ed._palette.set_filters("cave", "rocas")
+	await _frames(20)
+	ed._palette.set_filters("", "arboles")
+	ed._palette._as_sheet.button_pressed = true
+	await _frames(20)
+	ed._palette._as_sheet.button_pressed = false
+	ed._tabs.current_tab = ed.TAB_STAMPS
+	ed._stamps._group.select(1)
+	ed._stamps._fill_places()
+	ed._stamps.refresh()
+	for i in ed._stamps._list.item_count:
+		if (ed._stamps._list.get_item_metadata(i)["variants"] as Array).size() > 1:
+			ed._stamps._list.select(i)
+			ed._stamps._on_selected(i)
 	await _frames(20)
 	ed._tabs.current_tab = ed.TAB_TILE
 	ed._props.show_metatile(213)

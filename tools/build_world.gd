@@ -93,8 +93,10 @@ func _init() -> void:
 
 ## Catálogo de metatiles (categorías, tags/colisión sugeridos, sellos) desde el JSON del importador.
 func _catalog(roles: TileRoleSet) -> void:
-	ResourceSaver.save(TileCatalog.from_json(), CATALOG_PATH)
-	roles.catalog = load(CATALOG_PATH)
+	var catalog := TileCatalog.from_json()
+	ResourceSaver.save(catalog, CATALOG_PATH)
+	catalog.take_over_path(CATALOG_PATH)  # el recién armado, no el viejo de la caché
+	roles.catalog = catalog
 	ResourceSaver.save(roles, ZoneBuilder.ROLES_PATH)
 
 

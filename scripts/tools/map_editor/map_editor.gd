@@ -514,7 +514,7 @@ func _press(cell: Vector2i, erase: bool) -> void:
 	_anchor = cell
 	_last_cell = cell
 	if not erase and brush.get("kind") == "stamp" and tool in [Tool.PENCIL, Tool.LINE, Tool.RECT, Tool.FILL]:
-		doc.place_stamp(brush["stamp"], cell)
+		doc.place_stamp(brush["stamp"], cell, brush.get("variant", 0))
 		doc.commit("Sello: " + str(brush["stamp"]["name"]))
 		return
 	match tool:
@@ -759,7 +759,7 @@ func _update_hover() -> void:
 	if pasting:
 		cursor.paste_rect = Rect2i(hover, clipboard["size"])
 	if _stroke == 0 and brush.get("kind") == "stamp" and tool in [Tool.PENCIL, Tool.LINE, Tool.RECT, Tool.FILL]:
-		cursor.preview = _stamp_footprint(brush["stamp"], hover)
+		cursor.preview = _stamp_footprint(brush["stamp"], hover, brush.get("variant", 0))
 		cursor.preview_color = Color(0.5, 0.85, 1.0, 0.3)
 	elif _stroke == 0 and tool in [Tool.PENCIL] and doc.inside(hover):
 		if _is_tree_brush():
@@ -773,10 +773,10 @@ func _update_hover() -> void:
 	_update_status()
 
 
-static func _stamp_footprint(st: Dictionary, at: Vector2i) -> Array[Vector2i]:
+static func _stamp_footprint(st: Dictionary, at: Vector2i, variant: int = 0) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
 	var size: Vector2i = st["size"]
-	var cells: PackedInt32Array = st["cells"]
+	var cells: PackedInt32Array = st["variants"][clampi(variant, 0, st["variants"].size() - 1)]["cells"]
 	for i in cells.size():
 		if cells[i] >= 0:
 			out.append(at + Vector2i(i % size.x, i / size.x))
@@ -986,8 +986,8 @@ func _build_ui() -> void:
 	_stamps.name = "Sellos"
 	_tabs.add_child(_stamps)
 	_stamps.setup(roles.catalog)
-	_stamps.stamp_selected.connect(func(st: Dictionary):
-		set_brush({"kind": "stamp", "key": "stamp", "stamp": st})
+	_stamps.stamp_selected.connect(func(st: Dictionary, variant: int):
+		set_brush({"kind": "stamp", "key": "stamp", "stamp": st, "variant": variant})
 		if tool not in [Tool.PENCIL, Tool.LINE, Tool.RECT, Tool.FILL]:
 			set_tool(Tool.PENCIL))
 	_palette = MapTilePalette.new()

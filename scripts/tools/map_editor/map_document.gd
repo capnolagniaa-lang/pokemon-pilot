@@ -331,14 +331,15 @@ func _sync_overhead(c: Vector2i) -> void:
 
 
 ## Recalcula bordes y esquinas (autotile 3x3) de las celdas y sus vecinas.
-func refresh_autotile(cells: Array) -> void:
+## `keep`: celdas que no se tocan (las de un sello: van tal cual el mapa real, aunque sean de arena o agua).
+func refresh_autotile(cells: Array, keep: Dictionary = {}) -> void:
 	var todo := {}
 	for c: Vector2i in cells:
 		for dy in range(-1, 2):
 			for dx in range(-1, 2):
 				todo[c + Vector2i(dx, dy)] = true
 	for c: Vector2i in todo:
-		if not inside(c):
+		if not inside(c) or keep.has(c):
 			continue
 		for li in [GROUND, WATER, FOLIAGE]:
 			var r := role_in(li, c)
@@ -442,11 +443,14 @@ func paint_raw(cells: Array, li: int, source: int, coords: Vector2i) -> void:
 			clear(OVERHEAD, c)
 
 
-## Sello de varias celdas (edificio de FireRed): pone cada pieza en Ground con su parte de arriba en
-## Overhead; saca árboles, agua, follaje y objetos debajo. Las celdas -1 del sello no se tocan.
-func place_stamp(stamp: Dictionary, at: Vector2i) -> void:
+## Sello de varias celdas (edificio o pieza del mundo de FireRed): pone cada pieza en Ground con su parte de
+## arriba en Overhead y la colisión que esa celda tiene en el mapa real (tile alternativo si hace falta); saca
+## árboles, agua, follaje y objetos debajo. Las celdas -1 (afuera de la silueta) no se tocan.
+func place_stamp(stamp: Dictionary, at: Vector2i, variant: int = 0) -> void:
 	var size: Vector2i = stamp["size"]
-	var cells: PackedInt32Array = stamp["cells"]
+	var v: Dictionary = stamp["variants"][clampi(variant, 0, stamp["variants"].size() - 1)] if stamp.has("variants") else stamp
+	var cells: PackedInt32Array = v["cells"]
+	var solid: PackedInt32Array = v.get("solid", PackedInt32Array())
 	var touched: Array[Vector2i] = []
 	for i in cells.size():
 		var m := cells[i]
@@ -459,10 +463,15 @@ func place_stamp(stamp: Dictionary, at: Vector2i) -> void:
 		clear(WATER, c)
 		clear(FOLIAGE, c)
 		set_object(c, "")
-		set_metatile(GROUND, c, m)
+		var ref := ZoneBuilder.below_ref(m)
+		var alt := ZoneBuilder.collision_alt(tileset, roles, m, solid[i] == 1) if i < solid.size() else 0
+		set_raw(GROUND, c, ref[0], ref[1], alt)
 		_sync_overhead(c)
 		touched.append(c)
-	refresh_autotile(touched)
+	var keep := {}
+	for c in touched:
+		keep[c] = true
+	refresh_autotile(touched, keep)
 
 
 # --- Balde y copiar/pegar ----------------------------------------------------------

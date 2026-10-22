@@ -127,7 +127,44 @@ static func build_tileset(roles: TileRoleSet) -> TileSet:
 		for i in int(set_info(set_name)["count"]):
 			if exists(base + i) or set_name == "general":
 				apply_tile_props(ts, roles, base + i)
+	if roles.catalog != null:
+		var alts := roles.catalog.collision_alternatives(roles)
+		for m in alts:
+			for want_solid in alts[m]:
+				_add_collision_alt(ts, roles, m, want_solid)
 	return ts
+
+
+## Tiles alternativos con otra colisión (lo usan los sellos: en FireRed la colisión es por celda del mapa, y
+## a veces el mismo metatile es sólido en un lugar y caminable en otro). Alternativa 1 = sólido, 2 = caminable.
+const ALT_SOLID := 1
+const ALT_WALKABLE := 2
+
+
+static func _add_collision_alt(ts: TileSet, roles: TileRoleSet, metatile: int, solid: bool) -> void:
+	var alt := ALT_SOLID if solid else ALT_WALKABLE
+	var h := T / 2.0
+	for ref in _base_refs(ts, metatile):
+		var src: TileSetAtlasSource = ts.get_source(ref[0])
+		if not src.has_alternative_tile(ref[1], alt):
+			src.create_alternative_tile(ref[1], alt)
+		var td := src.get_tile_data(ref[1], alt)
+		td.set_custom_data("tags", roles.tags_for(metatile))
+		for layer in 2:
+			td.set_collision_polygons_count(layer, 0)
+		if solid:
+			td.add_collision_polygon(0)
+			td.set_collision_polygon_points(0, 0, PackedVector2Array([Vector2(-h, -h), Vector2(h, -h), Vector2(h, h), Vector2(-h, h)]))
+
+
+## Alternativa de colisión para pegar un metatile con la colisión de su celda en el mapa real (0 = la del tile).
+static func collision_alt(ts: TileSet, roles: TileRoleSet, metatile: int, solid: bool) -> int:
+	if (roles.physics_for(metatile) == 0) == solid:
+		return 0
+	var alt := ALT_SOLID if solid else ALT_WALKABLE
+	var ref := below_ref(metatile)
+	var src := ts.get_source(ref[0]) as TileSetAtlasSource
+	return alt if src != null and src.has_alternative_tile(ref[1], alt) else 0
 
 
 static func _add_set(ts: TileSet, set_name: String) -> void:
@@ -178,25 +215,35 @@ static func apply_tile_props(ts: TileSet, roles: TileRoleSet, metatile: int) -> 
 		if physics >= 0:
 			td.add_collision_polygon(physics)
 			td.set_collision_polygon_points(physics, 0, PackedVector2Array([Vector2(-h, -h), Vector2(h, -h), Vector2(h, h), Vector2(-h, h)]))
+	for ref in _base_refs(ts, metatile):  # las alternativas de colisión conservan la suya, pero toman los tags
+		var src: TileSetAtlasSource = ts.get_source(ref[0])
+		for alt in [ALT_SOLID, ALT_WALKABLE]:
+			if src.has_alternative_tile(ref[1], alt):
+				src.get_tile_data(ref[1], alt).set_custom_data("tags", tags)
 
 
 static func _tile_datas(ts: TileSet, metatile: int) -> Array[TileData]:
 	var out: Array[TileData] = []
+	for ref in _base_refs(ts, metatile):
+		out.append((ts.get_source(ref[0]) as TileSetAtlasSource).get_tile_data(ref[1], 0))
+	return out
+
+
+## [fuente, coordenadas] de los tiles de un metatile en el TileSet (normal y animado).
+static func _base_refs(ts: TileSet, metatile: int) -> Array:
+	var out := []
 	var s := set_of(metatile)
 	if s == "":
 		return out
 	var src: Array = sources_of(s)
 	var l := local_of(metatile)
-	if ts.has_source(src[0]):
-		var below: TileSetAtlasSource = ts.get_source(src[0])
-		if below.has_tile(Vector2i(l % 16, l / 16)):
-			out.append(below.get_tile_data(Vector2i(l % 16, l / 16), 0))
+	if ts.has_source(src[0]) and (ts.get_source(src[0]) as TileSetAtlasSource).has_tile(Vector2i(l % 16, l / 16)):
+		out.append([src[0], Vector2i(l % 16, l / 16)])
 	var key := str(l)
 	if set_info(s)["anim"].has(key) and ts.has_source(src[1]):
 		var ac := Vector2i(0, int(set_info(s)["anim"][key]["row"]))
-		var anim: TileSetAtlasSource = ts.get_source(src[1])
-		if anim.has_tile(ac):
-			out.append(anim.get_tile_data(ac, 0))
+		if (ts.get_source(src[1]) as TileSetAtlasSource).has_tile(ac):
+			out.append([src[1], ac])
 	return out
 
 

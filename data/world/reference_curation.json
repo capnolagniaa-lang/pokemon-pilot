@@ -1,0 +1,782 @@
+{
+ "_info": "Curado a mano para tools/match_reference.py. 'categories': tipos de la paleta, en orden. 'sections': rectángulos (en celdas de la grilla) de la hoja del mundo (frlg_tiles_mundo.png) con su nombre y tipo, en el orden de la hoja. 'world_stamps': secciones cuyas piezas de varias celdas van como sellos. 'stamps': nombre y grupo de cada sello de edificio (id = <mapa>_<x>_<y> del origen en el mapa real).",
+ "categories": [
+  [
+   "suelos",
+   "Pasto y suelos"
+  ],
+  [
+   "caminos",
+   "Caminos de arena y tierra"
+  ],
+  [
+   "agua",
+   "Agua, orillas y cascadas"
+  ],
+  [
+   "arboles",
+   "Árboles y arbustos"
+  ],
+  [
+   "flores",
+   "Flores y plantas"
+  ],
+  [
+   "salientes",
+   "Salientes"
+  ],
+  [
+   "cercas",
+   "Cercas y vallas"
+  ],
+  [
+   "rocas",
+   "Rocas y montañas"
+  ],
+  [
+   "carteles",
+   "Carteles y buzones"
+  ],
+  [
+   "escaleras",
+   "Escaleras, puentes y muelles"
+  ],
+  [
+   "cuevas",
+   "Entradas de cuevas"
+  ],
+  [
+   "adornos",
+   "Adornos urbanos"
+  ],
+  [
+   "edificios",
+   "Edificios"
+  ]
+ ],
+ "sections": [
+  {
+   "name": "Arena y sus bordes",
+   "category": "caminos",
+   "rect": [
+    0,
+    0,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Pasto",
+   "category": "suelos",
+   "rect": [
+    0,
+    3,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Tierra y sus bordes",
+   "category": "caminos",
+   "rect": [
+    0,
+    6,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Pradera clara",
+   "category": "suelos",
+   "rect": [
+    0,
+    9,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Suelo de piedra clara",
+   "category": "suelos",
+   "rect": [
+    0,
+    12,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Baldosas",
+   "category": "suelos",
+   "rect": [
+    0,
+    15,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Tablones y madera",
+   "category": "suelos",
+   "rect": [
+    0,
+    18,
+    5,
+    6
+   ]
+  },
+  {
+   "name": "Caminos de piedra",
+   "category": "caminos",
+   "rect": [
+    0,
+    24,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Arena con orilla",
+   "category": "agua",
+   "rect": [
+    0,
+    27,
+    5,
+    3
+   ]
+  },
+  {
+   "name": "Rejillas y vías",
+   "category": "suelos",
+   "rect": [
+    0,
+    30,
+    5,
+    2
+   ]
+  },
+  {
+   "name": "Plantas y flores",
+   "category": "flores",
+   "rect": [
+    6,
+    0,
+    3,
+    3
+   ]
+  },
+  {
+   "name": "Salientes",
+   "category": "salientes",
+   "rect": [
+    6,
+    4,
+    3,
+    6
+   ]
+  },
+  {
+   "name": "Cercas, vallas y bolardos",
+   "category": "cercas",
+   "rect": [
+    6,
+    11,
+    3,
+    10
+   ]
+  },
+  {
+   "name": "Setos",
+   "category": "arboles",
+   "rect": [
+    6,
+    21,
+    3,
+    3
+   ]
+  },
+  {
+   "name": "Barandas",
+   "category": "cercas",
+   "rect": [
+    6,
+    25,
+    3,
+    3
+   ]
+  },
+  {
+   "name": "Muelle chico",
+   "category": "escaleras",
+   "rect": [
+    6,
+    29,
+    3,
+    3
+   ]
+  },
+  {
+   "name": "Estanque",
+   "category": "agua",
+   "rect": [
+    10,
+    0,
+    3,
+    3
+   ]
+  },
+  {
+   "name": "Agua y orillas",
+   "category": "agua",
+   "rect": [
+    10,
+    4,
+    3,
+    6
+   ]
+  },
+  {
+   "name": "Agua profunda, remolinos y cascada",
+   "category": "agua",
+   "rect": [
+    10,
+    11,
+    3,
+    9
+   ]
+  },
+  {
+   "name": "Puente de madera",
+   "category": "escaleras",
+   "rect": [
+    9,
+    21,
+    5,
+    4
+   ]
+  },
+  {
+   "name": "Muelles",
+   "category": "escaleras",
+   "rect": [
+    10,
+    26,
+    6,
+    4
+   ]
+  },
+  {
+   "name": "Árboles grandes",
+   "category": "arboles",
+   "rect": [
+    14,
+    0,
+    4,
+    16
+   ]
+  },
+  {
+   "name": "Pinos",
+   "category": "arboles",
+   "rect": [
+    14,
+    17,
+    4,
+    3
+   ]
+  },
+  {
+   "name": "Laguna",
+   "category": "agua",
+   "rect": [
+    15,
+    21,
+    3,
+    3
+   ]
+  },
+  {
+   "name": "Adornos urbanos",
+   "category": "adornos",
+   "rect": [
+    19,
+    0,
+    9,
+    8
+   ]
+  },
+  {
+   "name": "Escalinata y portón",
+   "category": "escaleras",
+   "rect": [
+    19,
+    8,
+    6,
+    6
+   ]
+  },
+  {
+   "name": "Montañas y acantilados",
+   "category": "rocas",
+   "rect": [
+    19,
+    15,
+    8,
+    7
+   ]
+  },
+  {
+   "name": "Cuevas y suelo volcánico",
+   "category": "cuevas",
+   "rect": [
+    19,
+    23,
+    8,
+    6
+   ]
+  },
+  {
+   "name": "Montaña rocosa y desierto",
+   "category": "rocas",
+   "rect": [
+    19,
+    30,
+    8,
+    10
+   ]
+  },
+  {
+   "name": "Carteles, árboles redondos y estanque",
+   "category": "arboles",
+   "rect": [
+    0,
+    33,
+    6,
+    8
+   ]
+  },
+  {
+   "name": "Bosque y cerros",
+   "category": "arboles",
+   "rect": [
+    7,
+    33,
+    11,
+    6
+   ]
+  },
+  {
+   "name": "Rocas, hielo y cuevas",
+   "category": "rocas",
+   "rect": [
+    0,
+    42,
+    8,
+    5
+   ]
+  }
+ ],
+ "world_stamps": [
+  "Árboles grandes",
+  "Pinos",
+  "Adornos urbanos",
+  "Escalinata y portón",
+  "Puente de madera",
+  "Muelles",
+  "Muelle chico",
+  "Carteles, árboles redondos y estanque",
+  "Bosque y cerros",
+  "Montañas y acantilados",
+  "Cuevas y suelo volcánico",
+  "Montaña rocosa y desierto",
+  "Rocas, hielo y cuevas",
+  "Setos",
+  "Estanque",
+  "Laguna"
+ ],
+ "stamps": {
+  "ViridianCity_24_22": {
+   "name": "Centro Pokémon",
+   "group": "Centros y tiendas",
+   "place": "Kanto"
+  },
+  "Route10_15_72": {
+   "name": "Torre Pokémon",
+   "group": "Edificios especiales",
+   "place": "Pueblo Lavanda"
+  },
+  "Route2_16_41": {
+   "name": "Garita",
+   "group": "Puertas y entradas"
+  },
+  "OneIsland_11_0": {
+   "name": "Centro de Red Pokémon",
+   "group": "Edificios especiales"
+  },
+  "SaffronCity_Connection_19_9": {
+   "name": "Silph S.A.",
+   "group": "Edificios especiales"
+  },
+  "ViridianCity_34_16": {
+   "name": "Tienda Pokémon",
+   "group": "Centros y tiendas",
+   "place": "Kanto"
+  },
+  "SaffronCity_Connection_11_3": {
+   "name": "Casa de Azafrán 1",
+   "group": "Casas"
+  },
+  "Route7_15_7": {
+   "name": "Garita ancha",
+   "group": "Puertas y entradas"
+  },
+  "ViridianCity_24_8": {
+   "name": "Casa de Ciudad Verde 1",
+   "group": "Casas"
+  },
+  "ViridianCity_24_15": {
+   "name": "Casa de Ciudad Verde 2",
+   "group": "Casas"
+  },
+  "SaffronCity_Connection_9_18": {
+   "name": "Edificio de Azafrán",
+   "group": "Casas"
+  },
+  "Route2_2_46": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "Route2_5_50": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "TwoIsland_8_9": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "Route21_South_5_49": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "Route5_21_21": {
+   "name": "Guardería Pokémon",
+   "group": "Edificios especiales",
+   "place": "Ruta 5"
+  },
+  "OneIsland_18_6": {
+   "name": "Casa de las Islas Sete",
+   "group": "Casas",
+   "place": "Islas Sete",
+   "variant": "Isla Prima"
+  },
+  "PalletTown_5_3": {
+   "name": "Casa de Pueblo Paleta",
+   "group": "Casas"
+  },
+  "PewterCity_32_8": {
+   "name": "Casa de Ciudad Plateada",
+   "group": "Casas"
+  },
+  "TwoIsland_37_6": {
+   "name": "Edificio de Isla Secunda",
+   "group": "Edificios especiales"
+  },
+  "CeruleanCity_15_8": {
+   "name": "Casa de Ciudad Celeste 1",
+   "group": "Casas"
+  },
+  "VermilionCity_18_14": {
+   "name": "Casa de Ciudad Carmín 1",
+   "group": "Casas"
+  },
+  "Route5_30_28": {
+   "name": "Garita chica",
+   "group": "Puertas y entradas"
+  },
+  "PewterCity_12_0": {
+   "name": "Museo de Ciencias",
+   "group": "Edificios especiales"
+  },
+  "FourIsland_11_10": {
+   "name": "Casa de Isla Cuarta",
+   "group": "Casas"
+  },
+  "CeladonCity_36_25": {
+   "name": "Casa de Ciudad Azulona 1",
+   "group": "Casas"
+  },
+  "CeruleanCity_8_8": {
+   "name": "Casa grande de Ciudad Celeste",
+   "group": "Casas"
+  },
+  "Route16_20_3": {
+   "name": "Garita grande",
+   "group": "Puertas y entradas"
+  },
+  "FuchsiaCity_13_28": {
+   "name": "Casa de Ciudad Fucsia 1",
+   "group": "Casas"
+  },
+  "PalletTown_13_9": {
+   "name": "Laboratorio del Prof. Oak",
+   "group": "Edificios especiales"
+  },
+  "LavenderTown_8_8": {
+   "name": "Casa de Pueblo Lavanda",
+   "group": "Casas"
+  },
+  "CeladonCity_9_5": {
+   "name": "Centro Comercial de Azulona",
+   "group": "Edificios especiales"
+  },
+  "FuchsiaCity_37_28": {
+   "name": "Casa de Ciudad Fucsia 2",
+   "group": "Casas"
+  },
+  "SafariZone_East_39_11": {
+   "name": "Casa de descanso de la Zona Safari",
+   "group": "Edificios especiales"
+  },
+  "CeruleanCity_38_7": {
+   "name": "Casa de Ciudad Celeste 2",
+   "group": "Casas"
+  },
+  "FuchsiaCity_26_12": {
+   "name": "Casa de Ciudad Fucsia 3",
+   "group": "Casas"
+  },
+  "Route22_4_-7": {
+   "name": "Entrada de la Liga Pokémon",
+   "group": "Edificios especiales",
+   "place": "Ruta 22"
+  },
+  "CeruleanCity_31_25": {
+   "name": "Casa de Ciudad Celeste 3",
+   "group": "Casas"
+  },
+  "SafariZone_Center_22_30": {
+   "name": "Edificio central de la Zona Safari",
+   "group": "Edificios especiales"
+  },
+  "ViridianCity_32_6": {
+   "name": "Gimnasio de Ciudad Verde",
+   "group": "Gimnasios"
+  },
+  "CeruleanCity_12_23": {
+   "name": "Gimnasio de Ciudad Celeste",
+   "group": "Gimnasios"
+  },
+  "CeladonCity_44_17": {
+   "name": "Casa de Ciudad Azulona 2",
+   "group": "Casas"
+  },
+  "VermilionCity_11_14": {
+   "name": "Club de Fans de Pokémon",
+   "group": "Edificios especiales"
+  },
+  "CeladonCity_18_4": {
+   "name": "Mansión Azulona",
+   "group": "Edificios especiales"
+  },
+  "CeladonCity_4_4": {
+   "name": "Edificio de Azulona 1",
+   "group": "Casas"
+  },
+  "VermilionCity_8_3": {
+   "name": "Casa de Ciudad Carmín 2",
+   "group": "Casas"
+  },
+  "VermilionCity_18_3": {
+   "name": "Casa de Ciudad Carmín 3",
+   "group": "Casas"
+  },
+  "SevenIsland_TrainerTower_54_0": {
+   "name": "Torre Entrenador",
+   "group": "Edificios especiales"
+  },
+  "VermilionCity_25_3": {
+   "name": "Casa de Ciudad Carmín 4",
+   "group": "Casas"
+  },
+  "Route25_49_1": {
+   "name": "Cabaña de Bill",
+   "group": "Edificios especiales",
+   "place": "Ruta 25"
+  },
+  "CinnabarIsland_5_0": {
+   "name": "Mansión Pokémon",
+   "group": "Edificios especiales"
+  },
+  "CeladonCity_27_4": {
+   "name": "Edificio de Azulona 2",
+   "group": "Casas"
+  },
+  "SaffronCity_Connection_40_1": {
+   "name": "Casa de Azafrán 2",
+   "group": "Casas"
+  },
+  "CeladonCity_20_29": {
+   "name": "Edificio de Azulona 3",
+   "group": "Casas"
+  },
+  "CeladonCity_24_16": {
+   "name": "Edificio de Azulona de techo azul",
+   "group": "Edificios especiales"
+  },
+  "SaffronCity_Connection_7_3": {
+   "name": "Casa de Azafrán 3",
+   "group": "Casas"
+  },
+  "CinnabarIsland_5_6": {
+   "name": "Laboratorio Pokémon de Canela",
+   "group": "Edificios especiales"
+  },
+  "CeladonCity_31_17": {
+   "name": "Edificio de Azulona con arco",
+   "group": "Edificios especiales"
+  },
+  "CeladonCity_7_26": {
+   "name": "Gimnasio de Ciudad Azulona",
+   "group": "Gimnasios"
+  },
+  "SaffronCity_Connection_31_27": {
+   "name": "Casa de Azafrán 4",
+   "group": "Casas"
+  },
+  "Route2_14_20": {
+   "name": "Casa de Ruta 2",
+   "group": "Casas"
+  },
+  "CeladonCity_24_21": {
+   "name": "Estanque",
+   "group": "Piezas del mundo"
+  },
+  "VermilionCity_22_34": {
+   "name": "Toldo",
+   "group": "Piezas del mundo"
+  },
+  "VermilionCity_25_32": {
+   "name": "Estatua",
+   "group": "Piezas del mundo"
+  },
+  "SafariZone_Center_3_20": {
+   "name": "Árboles grandes en hilera",
+   "group": "Piezas del mundo"
+  },
+  "Route23_5_128": {
+   "name": "Portón con pilares",
+   "group": "Piezas del mundo"
+  },
+  "TwoIsland_27_1": {
+   "name": "Puesto del mercado",
+   "group": "Piezas del mundo"
+  },
+  "IndigoPlateau_Exterior_7_12": {
+   "name": "Estatuas y bolardos",
+   "group": "Piezas del mundo"
+  },
+  "IndigoPlateau_Exterior_9_16": {
+   "name": "Escalinata de la Meseta Añil",
+   "group": "Piezas del mundo"
+  },
+  "SafariZone_Center_9_3": {
+   "name": "Árbol grande",
+   "group": "Piezas del mundo"
+  },
+  "SafariZone_North_19_7": {
+   "name": "Árbol grande ancho",
+   "group": "Piezas del mundo"
+  },
+  "Route23_9_0": {
+   "name": "Portón con pilares (bajo)",
+   "group": "Piezas del mundo"
+  },
+  "SixIsland_RuinValley_26_27": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "ViridianCity_12_23": {
+   "name": "Pino",
+   "group": "Piezas del mundo"
+  },
+  "ViridianCity_26_0": {
+   "name": "Pinos en hilera",
+   "group": "Piezas del mundo"
+  },
+  "SevenIsland_SevaultCanyon_18_54": {
+   "name": "Peñasco",
+   "group": "Piezas del mundo"
+  },
+  "Route24_9_17": {
+   "name": "Puente de madera",
+   "group": "Piezas del mundo"
+  },
+  "FourIsland_12_6": {
+   "name": "Laguna chica",
+   "group": "Piezas del mundo"
+  },
+  "Route12_13_103": {
+   "name": "Muelle",
+   "group": "Piezas del mundo"
+  },
+  "DiglettsCave_B1F_2_6": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "VermilionCity_35_25": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "CeruleanCave_1F_31_0": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "CeruleanCave_B1F_13_0": {
+   "name": "Plataforma de cueva con escalones",
+   "group": "Piezas del mundo"
+  },
+  "MtMoon_1F_4_21": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "CeruleanCave_B1F_29_11": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "VictoryRoad_3F_2_9": {
+   "name": "Meseta de roca con escalera",
+   "group": "Piezas del mundo"
+  },
+  "VictoryRoad_3F_25_4": {
+   "name": "Meseta de roca",
+   "group": "Piezas del mundo"
+  },
+  "RockTunnel_1F_16_7": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "RockTunnel_1F_24_3": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "RockTunnel_1F_21_22": {
+   "skip": true,
+   "why": "fragmento suelto, no es una pieza entera"
+  },
+  "ThreeIsland_2_28": {
+   "variant": "Isla Tera"
+  },
+  "Route12_13_27": {
+   "name": "Muelle (punta)",
+   "group": "Piezas del mundo"
+  }
+ },
+ "groups": [
+  "Casas",
+  "Centros y tiendas",
+  "Gimnasios",
+  "Edificios especiales",
+  "Puertas y entradas",
+  "Piezas del mundo"
+ ]
+}

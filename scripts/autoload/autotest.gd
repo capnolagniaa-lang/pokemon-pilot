@@ -39,6 +39,15 @@ func _ready() -> void:
 			add_child(env)
 			(env.run if flag == "--autotest-env" else env.showcase).call_deferred()
 			return
+	for flag in ["--autotest-stamps", "--showcase-stamps", "--showcase-stamp-sheets"]:
+		if flag in OS.get_cmdline_user_args():
+			set_process(false)
+			var stt := StampTests.new()
+			stt.autotest = self
+			add_child(stt)
+			var fn: Callable = {"--autotest-stamps": stt.run, "--showcase-stamps": stt.showcase, "--showcase-stamp-sheets": stt.contact_sheets}[flag]
+			fn.call_deferred()
+			return
 	for flag in ["--autotest-map-editor", "--showcase-map-editor"]:
 		if flag in OS.get_cmdline_user_args():
 			set_process(false)

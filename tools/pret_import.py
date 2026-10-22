@@ -504,6 +504,7 @@ def main():
         print("Sin mapas que los usen (no se importan):", skipped)
 
     catalog = analyze(root, layouts, headers, manifest, colors)
+    apply_curated(catalog)
     for pic, pal, out in SPRITES:
         w, h = export_sprite(root, pic, pal, os.path.join(out_dir, out))
         print(out, w, "x", h)
@@ -638,6 +639,56 @@ def analyze(root, layouts, headers, manifest, colors):
     print("Sellos de edificios:", len(out_stamps))
     return {"categories": categories, "tags": tags, "physics": physics, "stamps": out_stamps,
             "category_order": [c[0] for c in CATEGORIES], "category_names": dict(CATEGORIES)}
+
+
+# --- Datos curados (tools/match_reference.py) -------------------------------------------
+
+PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def apply_curated(catalog):
+    """Si existen los datos curados con las hojas de referencia (data/world/stamps.json y palette_layout.json,
+    de tools/match_reference.py), los sellos y los tipos de la paleta salen de ahí y no de las heurísticas:
+    - tipo de un metatile = el de su sección en la hoja del mundo; las piezas de los edificios, "edificios";
+      lo que no está en la referencia queda en "Otros · <tipo heurístico>".
+    - Los tags y la colisión NO cambian (siguen saliendo de los mapas reales): así ninguna zona cambia.
+    """
+    stamps_path = os.path.join(PROJECT, "data", "world", "stamps.json")
+    layout_path = os.path.join(PROJECT, "data", "world", "palette_layout.json")
+    if not (os.path.exists(stamps_path) and os.path.exists(layout_path)):
+        return
+    stamps = json.load(open(stamps_path, encoding="utf8"))["stamps"]
+    layout = json.load(open(layout_path, encoding="utf8"))
+    names = dict(CATEGORIES)
+    cats = {}
+    for sec in layout["sections"]:
+        x, y, w, h = sec["rect"]
+        for cx, cy, g in layout["cells"]:
+            if x <= cx < x + w and y <= cy < y + h:
+                cats.setdefault(str(g), sec["category"])
+    for st in stamps:
+        for v in st["variants"]:
+            for g in v["cells"]:
+                if g >= 0 and st["group"] != "Piezas del mundo":
+                    cats.setdefault(str(g), "edificios")
+    old = catalog["categories"]
+    used_other = set()
+    for g, c in old.items():
+        if g in cats:
+            old[g] = cats[g]
+        else:
+            old[g] = "otros_" + c
+            used_other.add(c)
+    order = [k for k, _ in layout["categories"]] + ["otros_" + k for k, _ in CATEGORIES if k in used_other]
+    catalog["category_order"] = order
+    catalog["category_names"] = dict(layout["categories"])
+    catalog["category_names"].update({"otros_" + k: "Otros · " + names[k] for k in used_other})
+    catalog["stamps"] = stamps
+    catalog["palette_sheet"] = {"size": layout["size"], "cells": layout["cells"], "sections": layout["sections"]}
+    cur_path = os.path.join(PROJECT, "data", "world", "reference_curation.json")
+    if os.path.exists(cur_path):
+        catalog["stamp_groups"] = json.load(open(cur_path, encoding="utf8")).get("groups", [])
+    print("Datos curados: %d sellos, %d tiles con tipo de la referencia" % (len(stamps), len(cats)))
 
 
 def _greenish(rgb):

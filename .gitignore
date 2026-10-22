@@ -6,3 +6,5 @@ export/
 # Accesos directos locales (tienen rutas de esta PC)
 *.lnk
 tools/.pokeapi_cache/
+# Hojas de referencia de terceros (The Spriters Resource): solo se usan para generar datos curados
+art_src/referencia/

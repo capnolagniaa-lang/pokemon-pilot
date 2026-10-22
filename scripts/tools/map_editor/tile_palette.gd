@@ -18,6 +18,13 @@ var _category: OptionButton
 var _tag: OptionButton
 var _list: ItemList
 var _count: Label
+var _as_sheet: CheckButton
+var _sheet_scroll: ScrollContainer
+var _sheet: MapSheetView
+## Filtros vigentes (los usan la lista y la vista "como en la hoja").
+var _f: Dictionary = {}
+## id -> posición en la hoja de referencia (para ordenar como en la hoja).
+var _sheet_pos: Dictionary = {}
 var _set_names: PackedStringArray = []
 var _cat_keys: PackedStringArray = []
 
@@ -25,6 +32,15 @@ var _cat_keys: PackedStringArray = []
 func setup(p_roles: TileRoleSet) -> void:
 	roles = p_roles
 	add_theme_constant_override("separation", 4)
+	_as_sheet = CheckButton.new()
+	_as_sheet.text = "Como en la hoja de FireRed"
+	_as_sheet.focus_mode = Control.FOCUS_NONE
+	_as_sheet.tooltip_text = "Los tiles en la misma disposición que la hoja de tiles del mundo (secciones marcadas)"
+	_as_sheet.toggled.connect(func(on: bool):
+		_list.visible = not on
+		_sheet_scroll.visible = on
+		refresh())
+	add_child(_as_sheet)
 	_group = _option()
 	for g in GROUPS:
 		_group.add_item(g[1])
@@ -36,6 +52,7 @@ func setup(p_roles: TileRoleSet) -> void:
 	_tag = _option()
 	_tag.item_selected.connect(func(_i): refresh())
 	_count = UiStyle.label("", 12, UiStyle.TEXT_DIM)
+	_count.clip_text = true  # que un texto largo no ensanche el panel
 	add_child(_count)
 	_list = ItemList.new()
 	_list.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -47,6 +64,24 @@ func setup(p_roles: TileRoleSet) -> void:
 	_list.focus_mode = Control.FOCUS_NONE
 	_list.item_selected.connect(_on_selected)
 	add_child(_list)
+	_sheet_scroll = ScrollContainer.new()
+	_sheet_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_sheet_scroll.visible = false
+	_sheet = MapSheetView.new()
+	_sheet.tooltip_text = " "  # para que pida _get_tooltip
+	_sheet.setup(roles.catalog, roles)
+	_sheet.filter = _passes
+	_sheet.tile_clicked.connect(func(m: int):
+		var ref := ZoneBuilder.below_ref(m)
+		tile_selected.emit(ref[0], ref[1], m))
+	_sheet_scroll.add_child(_sheet)
+	add_child(_sheet_scroll)
+	_as_sheet.disabled = roles.catalog == null or roles.catalog.sheet_cells.is_empty()
+	if roles.catalog != null:
+		for i in roles.catalog.sheet_cells.size():
+			var m := roles.catalog.sheet_cells[i]
+			if m >= 0 and not _sheet_pos.has(m):
+				_sheet_pos[m] = i
 	_fill_categories()
 	_fill_sets()
 	_fill_tags()
@@ -120,14 +155,47 @@ func set_filters(set_name: String, category: String) -> void:
 	refresh()
 
 
+## ¿El metatile pasa los filtros elegidos (grupo, tileset, tipo, tag)?
+func _passes(id: int) -> bool:
+	if _f.is_empty() or not ZoneBuilder.exists(id):
+		return false
+	var n := ZoneBuilder.set_of(id)
+	var info := ZoneBuilder.set_info(n)
+	if (_f["set"] != "" and n != _f["set"]) or (_f["group"] != "" and info.get("group", "exterior") != _f["group"]):
+		return false
+	var cat: String = _f["cat"]
+	var tags := roles.tags_for(id)
+	var keep := true
+	match cat:
+		"":
+			keep = true
+		"extra:0":
+			keep = roles.physics_for(id) >= 0
+		"extra:1":
+			keep = tags.is_empty()
+		"extra:2":
+			keep = ZoneBuilder.is_animated(id)
+		"extra:3":
+			keep = ZoneBuilder.has_above(id)
+		_:
+			keep = roles.category_for(id) == cat
+	return keep and (_f["tag"] == "" or tags.has(_f["tag"]))
+
+
 ## Rearma la lista (después de editar tags, colisión o categoría de un tile).
 func refresh() -> void:
 	_fill_tags()
 	_list.clear()
-	var group: String = GROUPS[maxi(0, _group.selected)][0]
-	var only_set: String = _set_names[_set.selected] if _set.selected >= 0 else ""
 	var cat: String = _cat_keys[_category.selected] if _category.selected >= 0 else ""
-	var tag := _tag.get_item_text(_tag.selected) if _tag.selected > 0 else ""
+	_f = {"group": GROUPS[maxi(0, _group.selected)][0], "set": _set_names[_set.selected] if _set.selected >= 0 else "",
+		"cat": cat, "tag": _tag.get_item_text(_tag.selected) if _tag.selected > 0 else ""}
+	if _as_sheet.button_pressed:
+		# En la vista de la hoja el tileset no filtra (la hoja mezcla tilesets): solo atenúa por tipo y tag.
+		_f["set"] = ""
+		_f["group"] = ""
+		_sheet.queue_redraw()
+		_count.text = "Hoja del mundo · %d secciones · lo filtrado se ve oscuro" % roles.catalog.sheet_sections.size()
+		return
 	var above_mode := cat == "extra:3"
 	var order := {}
 	if roles.catalog != null:
@@ -136,42 +204,23 @@ func refresh() -> void:
 	var entries := []
 	for n in ZoneBuilder.set_names():
 		var info := ZoneBuilder.set_info(n)
-		if (only_set != "" and n != only_set) or (group != "" and info.get("group", "exterior") != group):
+		if (_f["set"] != "" and n != _f["set"]) or (_f["group"] != "" and info.get("group", "exterior") != _f["group"]):
 			continue
 		var base := ZoneBuilder.base_of(n)
 		for l in int(info["count"]):
 			var id := base + l
-			if not ZoneBuilder.exists(id) or (above_mode and not info["above_used"][l]):
-				continue
-			var c := roles.category_for(id)
-			var tags := roles.tags_for(id)
-			var keep := true
-			match cat:
-				"", "extra:3":
-					keep = true
-				"extra:0":
-					keep = roles.physics_for(id) >= 0
-				"extra:1":
-					keep = tags.is_empty()
-				"extra:2":
-					keep = ZoneBuilder.is_animated(id)
-				_:
-					keep = c == cat
-			if not keep:
-				continue
-			if tag != "" and not tags.has(tag):
-				continue
-			entries.append([order.get(c, 99), id])
+			if _passes(id):
+				# Por tipo y, dentro del tipo, en el orden de la hoja de referencia (lo que no está, después).
+				entries.append([order.get(roles.category_for(id), 99), _sheet_pos.get(id, 100000 + id), id])
 	entries.sort()
 	var shown := mini(entries.size(), MAX_ITEMS)
 	for i in shown:
-		var id: int = entries[i][1]
+		var id: int = entries[i][2]
 		var idx := _list.add_icon_item(MapIcons.metatile(id, true) if above_mode else MapIcons.metatile_full(id))
 		var ref: Array = ZoneBuilder.above_ref(id) if above_mode else ZoneBuilder.below_ref(id)
 		_list.set_item_metadata(idx, [ref[0], ref[1], id])
 		_list.set_item_tooltip(idx, tooltip(roles, id, above_mode))
-	_count.text = "%d tiles · ordenados por tipo" % entries.size() if shown == entries.size() \
-		else "Mostrando %d de %d: elegí un tileset o un tipo" % [shown, entries.size()]
+	_count.text = "%d tiles · por tipo, en el orden de la hoja" % entries.size() if shown == entries.size() 		else "Mostrando %d de %d: elegí un tileset o un tipo" % [shown, entries.size()]
 
 
 static func tooltip(p_roles: TileRoleSet, id: int, above: bool = false) -> String:

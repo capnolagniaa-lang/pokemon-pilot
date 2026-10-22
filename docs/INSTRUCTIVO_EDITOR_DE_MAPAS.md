@@ -73,27 +73,41 @@ Pinceles que **ya saben las reglas del juego**: no tenés que pensar en capas.
 - **Borrar**: *Todo (deja pasto)* limpia la celda entera (tiles, árbol y objeto). *Solo capa activa* borra
   únicamente la capa elegida arriba.
 
-### Sellos (edificios enteros)
-Unos 70 edificios sacados de los mapas reales de FireRed: casas de cada pueblo, Centro Pokémon, Tienda,
-edificios de las ciudades... El desplegable filtra por lugar.
+### Sellos (edificios y piezas enteras)
+78 sellos sacados de los **mapas reales de FireRed**, armados con las hojas de referencia de The Spriters Resource
+(edificios y tiles del mundo de FireRed/LeafGreen). Cada sello es el rectángulo completo, sin agujeros: techo,
+chimenea, aleros, paredes, ventanas, puerta, cartel y base.
 
-1. Elegí un sello de la lista.
-2. Hacé clic en el mapa: esa celda va a ser **la esquina de arriba a la izquierda** del edificio. Antes de hacer
-   clic, la sombra celeste te muestra dónde va a quedar.
+- **Grupo** (primer desplegable): Casas, Centros y tiendas, Gimnasios, Edificios especiales (Laboratorio de Oak,
+  Silph S.A., Museo, Torre Pokémon, Centro Comercial, Torre Entrenador, Mansión Pokémon...), Puertas y entradas
+  (garitas) y Piezas del mundo (árboles grandes, pinos, estatua, toldo, escalinata y estatuas de la Meseta Añil,
+  portones, puente de madera, muelles, laguna, mesetas de roca...).
+- **Lugar** (segundo desplegable): de qué pueblo o ruta sale cada uno (Pueblo Paleta, Ciudad Azulona, Isla Prima...).
+- **Variante** (aparece solo si el sello la tiene): el mismo edificio con otro color de techo. Por ejemplo, la
+  casa de las Islas Sete en su versión de Isla Prima o de Isla Tera.
 
-Pega el edificio con su techo y su colisión, y saca lo que hubiera debajo (árboles, agua, objetos).
+1. Elegí un sello (y su variante, si tiene).
+2. Hacé clic en el mapa: esa celda va a ser **la esquina de arriba a la izquierda**. Antes de hacer clic, la sombra
+   celeste te muestra dónde va a quedar.
+
+Pega cada celda tal cual está en FireRed: su tile, su techo (en la capa de Copas) y **su colisión** (paredes y
+techos sólidos, frente de la puerta caminable). Saca lo que hubiera debajo (árboles, agua, objetos). En FireRed
+la celda de la puerta en sí es sólida (el cambio de mapa salta al intentar entrar): queda marcada como puerta para
+cuando haya interiores. Pasando el mouse sobre un sello ves su tamaño, de qué mapa sale y cuántas puertas tiene.
 
 ### Paleta (todos los gráficos sueltos)
-Todos los gráficos de FireRed, de a uno, para casos que los pinceles no cubren: cercas, carteles, escaleras,
-techos, rocas de cueva, muebles...
+Todos los gráficos de FireRed, de a uno, para casos que los pinceles y los sellos no cubren.
 
-- **Filtros**, de arriba hacia abajo:
-  1. **Grupo**: Exteriores, Interiores o Todos.
-  2. **Tileset**: de dónde sale (General, Pueblo Paleta, Cuevas, Ciudad Azulona...).
-  3. **Tipo**: terreno, pasto alto, arena, agua, hielo, árboles, rocas, edificios, puertas, escaleras, salientes,
-     carteles, cercas, suelos especiales, interiores... Hay además filtros extra: con colisión, sin tags, animados
-     y parte de arriba.
-  4. **Tag**: por ejemplo `solido` o `agua`.
+- **Tipos**, en el mismo orden que la hoja de tiles del mundo: Pasto y suelos, Caminos de arena y tierra, Agua,
+  orillas y cascadas, Árboles y arbustos, Flores y plantas, Salientes, Cercas y vallas, Rocas y montañas, Carteles
+  y buzones, Escaleras, puentes y muelles, Entradas de cuevas, Adornos urbanos y Edificios. Lo que no está en la
+  hoja de referencia queda en **"Otros · …"** (Otros · Paredes, Otros · Muebles, Otros · Sin usar en FireRed...),
+  y se puede separar por tileset.
+- **Filtros**, de arriba hacia abajo: grupo (Exteriores, Interiores o Todos), tileset (General, Pueblo Paleta,
+  Cuevas...), tipo y tag. Los filtros extra del tipo: con colisión, sin tags, animados y parte de arriba.
+- **Como en la hoja de FireRed** (el interruptor de arriba): muestra los tiles **en la misma disposición que la
+  hoja de tiles del mundo**, con sus secciones marcadas. Pasando el mouse ves la sección y los datos del tile; un
+  clic lo elige. Los filtros de tipo y tag no mueven nada: oscurecen lo que no coincide.
 - Pasando el mouse sobre un gráfico ves su número, tileset, tipo, tags y colisión.
 - Se pinta **en la capa activa** (fila 2, "Capa activa"). Si el gráfico tiene parte de arriba (un techo, la
   copa de un árbol), esa parte se pone sola en la capa de Copas.
@@ -216,8 +230,10 @@ cargarla el entrenador aparece en la celda libre más cercana.
 - **Un camino**: Pinceles → Arena (o Tierra) → Rectángulo (R) → arrastrar. Los bordes salen solos.
 - **Un lago**: Pinceles → Agua → Rectángulo relleno. Para achicarlo, clic derecho sobre el borde.
 - **Una zona de salvajes**: Pinceles → Pasto alto → Pincel tamaño 3 → pintar. Comprobalo con Ver → Resaltar tag → `pasto_alto`.
-- **Un pueblo**: Sellos → elegí el lugar (por ejemplo Pueblo Paleta) → clic para cada casa. Completá con caminos de
-  arena y con cercas o carteles desde Paleta → Tipo "Cercas y obstáculos" o "Carteles".
+- **Un pueblo**: Sellos → grupo Casas (o Centros y tiendas) → lugar, por ejemplo Pueblo Paleta → clic para cada
+  casa. Completá con caminos de arena y con cercas o carteles desde Paleta → Tipo "Cercas y vallas" o "Carteles y
+  buzones" (o prendé "Como en la hoja de FireRed" y buscalos en su sección).
+- **Un árbol grande, una estatua o un puente**: Sellos → grupo Piezas del mundo.
 - **Un bosque**: Pinceles → Árbol → Rectángulo relleno (pone árboles cada 2 celdas). Los bordes de la zona, con Borde ↑ ↓ ← →.
 - **Copiar un pedazo de otra zona**: Selección (M) → Ctrl+C → cambiás de zona → Ctrl+V → clic.
 - **Un gráfico que no tiene colisión y debería**: Gotero (Alt+clic) sobre él → pestaña Propiedades → Colisión "Sólida" →
@@ -229,8 +245,12 @@ cargarla el entrenador aparece en la celda libre más cercana.
 
 - **Lo que editás está protegido**: las zonas guardadas con el editor quedan marcadas. Si alguien regenera el
   mundo con `tools/build_world.gd -- --force`, esas zonas no se pisan (solo con `--force-all`).
-- Los **tipos** de la paleta (edificio, roca, árbol...) se calcularon automáticamente con los mapas de FireRed y a
-  veces se equivocan. Corregilos en la pestaña Propiedades: lo que corregís no se pierde aunque se vuelvan a importar los gráficos.
+- Los **tipos** de la paleta salen de la hoja de referencia (la sección donde está cada tile); lo que no está en
+  la hoja tiene un tipo automático ("Otros · …") que puede equivocarse. Corregilos en la pestaña Propiedades: lo
+  que corregís no se pierde aunque se vuelvan a importar los gráficos.
+- Algunas piezas de las hojas de referencia **no existen en FireRed** (por ejemplo, la Tienda con el cartel "SHOP"
+  en vez de "MART", un edificio gris grande, unos árboles redondos): esas no tienen sello. Cuando la hoja y el
+  juego difieren en algo chico, el sello usa la versión del mapa real.
 - Las animaciones propias de algunos tilesets (fuentes, luces) todavía se ven quietas. El agua y las flores sí se mueven.
 - También se puede seguir retocando una zona en el editor de Godot: usa el mismo TileSet, pero ese editor no
   conoce estas reglas (bordes automáticos, árboles con sombra, etc.).

@@ -58,14 +58,15 @@ directo **Pokémon Pilot — Editor de mapas** (`--path "<proyecto>" -- --map-ed
   copa en Overhead, copa "apilada" si hay otro árbol justo arriba y sombra (`tree_cells`); borde de árboles;
   **objetos** (todo lo de `scenes/world/objects/`); borrar todo (deja pasto) o la capa activa. Los pinceles salen
   de `data/world/tile_roles.tres`.
-- **Sellos**: 70 edificios enteros sacados de los mapas reales de FireRed (casas de cada pueblo, Centro
-  Pokémon, Tienda, edificios de las ciudades...), sin repetidos y filtrables por lugar. Un clic pega el edificio
-  con su parte de arriba y su colisión.
+- **Sellos**: 78 edificios y piezas enteras (casas, Centro y Tienda, gimnasios, edificios especiales, garitas,
+  árboles grandes, estatuas, escalinatas, puentes...) sacados de los mapas reales de FireRed con las hojas de
+  referencia de The Spriters Resource (`tools/match_reference.py`). Por grupo y lugar, con variantes de color.
+  Un clic pega el sello con su parte de arriba y la colisión de cada celda del mapa real.
 - **Paleta** (modo crudo): **todos los gráficos de FireRed** (62 tilesets: exteriores, pueblos, ciudades,
-  cuevas, islas e interiores), organizados por **tipo** (terreno, pasto alto, arena, agua, hielo, árboles,
-  rocas, edificios, puertas, escaleras, salientes, carteles, cercas, muebles, paredes y suelo de interior...),
-  con filtros por grupo (exteriores/interiores), tileset, tipo y tag. Se pinta en la capa activa; si el tile
-  tiene parte de arriba, esa parte se pone sola en Overhead.
+  cuevas, islas e interiores), con los tipos y el orden de la hoja de tiles del mundo de FireRed (pasto y suelos,
+  caminos, agua, árboles, flores, salientes, cercas, rocas, carteles, escaleras y puentes, cuevas, adornos
+  urbanos, edificios) y "Otros" para lo demás; filtros por grupo, tileset, tipo y tag, y una vista **"Como en la
+  hoja"**. Se pinta en la capa activa; si el tile tiene parte de arriba, esa parte se pone sola en Overhead.
 - **Propiedades**: tipo, tags y colisión (ninguna / sólida / agua) de un metatile, con sugerencias según el *behavior* de
   FireRed. Guarda en `tile_roles.tres` y en el TileSet (con backup en `art/tiles/.backup/`). Cambia en **todas** las zonas.
 - **Zona**: nombre, bioma, plaza (hub) y salidas (se arrastran sobre el mapa), inicio del juego, validaciones

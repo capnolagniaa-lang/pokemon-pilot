@@ -49,6 +49,10 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
 $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
 $G --headless --path . --quit-after 20000 -- --autotest-map-editor  # editor de mapas (ida y vuelta, pinceles, UI...)
+$G --headless --path . --quit-after 20000 -- --autotest-stamps      # sellos: sin agujeros, colisión, puertas, deshacer
+python -I -B tools/match_reference.py . --check                    # sellos vs. mapas reales y referencia
+$G --path . --quit-after 3000 -- --showcase-stamp-sheets <carpeta>  # hojas de contacto de sellos y paleta (PNG)
+$G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-stamps  # todos los sellos pegados
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-map-editor  # capturas del editor
 $G --path . -- --map-editor                                        # editor de mapas (herramienta)
 python -I tools/pret_import.py art_src/pret art/pret && $G --headless --path . --import && $G --headless --path . --quit-after 20000 --script res://tools/build_world.gd -- --tileset  # reimportar FireRed
@@ -144,6 +148,18 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   exterior/interior) + `catalog.json` (tipo, tags y colisión por metatile sacados de behaviors y mapas reales;
   sellos de edificios). Después: `build_world.gd -- --tileset` (pasa el catálogo a `data/world/tile_catalog.tres`
   y rearma el TileSet). Los 6 tilesets que no usa ningún mapa (dummy/garitas) no se importan.
+- **Sellos y paleta curados** (`tools/match_reference.py`, Python sin dependencias): cruza las hojas de referencia
+  `art_src/referencia/frlg_edificios.png` y `frlg_tiles_mundo.png` (The Spriters Resource; **no se suben a git**,
+  las baja el usuario) con los metatiles renderizados (comparando en 5 bits por canal, todos los cuadros de las
+  animaciones) y los mapas reales. Ubica cada pieza en un mapa (tolerante a retoques chicos y a techos que siguen
+  más allá del borde del mapa) y genera `data/world/stamps.json` (sellos con origen layout + rectángulo, celdas,
+  colisión por celda, puertas y variantes de color) y `data/world/palette_layout.json` (secciones y grilla de la
+  hoja del mundo). Nombres, grupos, secciones y descartes: `data/world/reference_curation.json` (a mano).
+  `pret_import.py` usa esos datos cuando existen (si no, vuelve a las heurísticas); los **tags y la colisión de
+  los tiles no cambian** (siguen saliendo de los mapas). Orden para regenerar: `match_reference.py` →
+  `pret_import.py` → `build_world.gd -- --tileset`. Verificar con `python -I -B tools/match_reference.py . --check`.
+  Las celdas de un sello con otra colisión que la de su tile usan **tiles alternativos** del TileSet
+  (`ZoneBuilder.ALT_SOLID` / `ALT_WALKABLE`).
 - **Ids de metatile globales**: general 0-639 (sin cambios); cada otro tileset `base` = 1000·(k+1) según
   `manifest.json → order`, que es **estable** (solo se agregan al final: las zonas guardan fuentes del TileSet
   por número). Fuentes del TileSet: general 0/1/2, el k-ésimo 3+3k (abajo), 4+3k (animado), 5+3k (arriba).
@@ -178,5 +194,6 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   escala chica (el usuario se quejó de que el fuego se veía amarillo). El color del fuego va en
   `ElementType.color`/`core_color` (rojizo/naranja, no blanco).
 - El hitstop se mide con reloj real: al grabar con `--write-movie` se desactiva (si no, la vitrina va en cámara lenta).
+- Correr Python sobre `tools/` con `-B` (`python -I -B ...`): hay `.pyc` versionados en `tools/__pycache__`.
 - Correr Godot headless siempre con `--quit-after`: si un script no compila, el autotest no carga y queda colgado.
 - PowerShell 5: archivos .ps1 sin BOM se leen como ANSI → evitar caracteres no ASCII en scripts .ps1.

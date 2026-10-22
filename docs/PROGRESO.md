@@ -7,8 +7,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 
 ## 📍 Dónde estamos (actualizado 2026-10-22)
 - **Herramienta — Editor de mapas hecha** (no corre la numeración de etapas): acceso directo "Pokémon Pilot —
-  Editor de mapas" (`-- --map-editor`). Ya tiene **todos los gráficos de FireRed** organizados por tipo y sellos de
-  edificios. Ver la sección "Herramienta — Editor de mapas" más abajo.
+  Editor de mapas" (`-- --map-editor`). Ya tiene **todos los gráficos de FireRed**, la paleta organizada como la
+  hoja de tiles del mundo de FireRed y 78 sellos sacados de los mapas reales. Ver "Herramienta — Editor de mapas".
 - **Etapa 3 hecha (entorno reactivo)** — ver "Etapa 3" más abajo. **Etapa 2c hecha** (título, guardado,
   equipo y movimientos).
 - **386 Pokémon (Kanto, Johto y Hoenn) cargados con stats, learnsets y sprites + Pokédex** en el menú
@@ -99,6 +99,24 @@ tocar spawners) y la Pokédex en el menú.
   con tu Pokémon. El equipo cuenta como luchado. Partidas viejas: se arma con el equipo.
 - Autotest `--autotest-pokedex` (14 chequeos: las 386 salen al mundo a Nv. 50 y usan sus 4 movimientos sin
   errores; registro, guardado y pantalla); vitrina `--showcase-pokedex`.
+
+### Sellos y paleta rehechos con las hojas de referencia (2026-10-22)
+Pedido en `docs/PROMPT_REORGANIZAR_TILES_Y_SELLOS.md`. Decisiones (las recomendadas): lo que no está en ningún
+mapa de FireRed queda **afuera y listado**; ante diferencias chicas manda **el mapa real**; variantes de color =
+**un sello con selector**; los 70 sellos viejos **reemplazados**.
+- Hojas de The Spriters Resource (las bajó el usuario: el sitio rechaza descargas automáticas) en
+  `art_src/referencia/` (en `.gitignore`). Son una grilla de 16 px con 1 px transparente y fondo transparente.
+- `tools/match_reference.py`: coincide el 85% de las celdas de edificios y el 85% de las del mundo (colores en 5
+  bits; la hoja tiene retoques chicos). **78 sellos**: 57 edificios (29 casas, Centro y Tienda, 3 gimnasios, 19
+  especiales, 4 garitas; 1 con variante) + 21 piezas del mundo. Cada uno coincide celda por celda (metatile y
+  colisión) con su mapa real (`--check`). Sin ubicar en mapas (afuera): 7 piezas de edificios (un gimnasio de techo
+  rojo, un edificio gris grande de 11×18, un edificio con banderas de 13×4, uno de 9×7 y 3 tramos de fachada) y el
+  bloque de árboles redondos + estanque de la hoja del mundo, más celdas sueltas.
+- Paleta: tipos y orden de la hoja del mundo (32 secciones, 13 tipos) + "Otros · …"; vista **"Como en la hoja"**.
+- Tags y colisión de los tiles **sin cambios**; las 10 zonas (incluidas las que está editando el usuario) iguales
+  celda por celda (17.911 celdas).
+- Autotest nuevo `--autotest-stamps` (11 chequeos) y `match_reference.py --check`; vitrinas `--showcase-stamps` y
+  `--showcase-stamp-sheets`.
 
 ## Etapa 3 — Entorno reactivo (2026-10-22)
 - **El fuego NO interactúa con el entorno** (decisión del usuario, 2026-10-22: no le gustó que queme el pasto).
