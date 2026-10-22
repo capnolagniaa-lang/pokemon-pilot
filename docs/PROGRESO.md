@@ -55,7 +55,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Roca frágil**: se rompe con una embestida (`Events.env_object_struck` desde los estados dash/lunge;
   `EnvObject.break_power` = 30 de potencia): Embestida Ígnea, Ataque Rápido, Arañazo... abren el rincón de Ruta 1.
 - `World.tags_at()` devuelve los tags con el estado aplicado.
-- Autotest `--autotest-env` (16 chequeos con el mapa real, incluido que el fuego no haga nada); vitrina
+- Autotest `--autotest-env` (17 chequeos con el mapa real, incluido que el fuego no haga nada); vitrina
   `--showcase-env` (puente de hielo y descarga en el lago).
 - Pendiente: ataque Espora + esporas que arden, crecido (planta), que la IA salvaje evite lo electrificado.
 
