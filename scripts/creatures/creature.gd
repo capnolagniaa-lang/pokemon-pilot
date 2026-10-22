@@ -305,20 +305,26 @@ func take_status_damage(amount: float) -> void:
 
 
 func _on_hit(hit: HitInfo) -> void:
-	if health.is_invulnerable():
+	if health.is_invulnerable() or (signature != null and signature.ignores_hit(hit)):
 		return
+	var attacker: Creature = hit.attacker if is_instance_valid(hit.attacker) else null
 	var interactions := DB.interactions_for(hit.move.element, statuses)
 	var mult := 1.0
 	for it in interactions:
 		mult *= it.damage_mult
-	var dealt := health.apply_damage(Damage.resolve(hit, instance) * mult)
+	if attacker and attacker.signature != null and hit.move.power > 0.0:
+		mult *= attacker.signature.damage_mult_against(hit, self)
+	var amount := Damage.resolve(hit, instance) * mult
+	if hit.move.execute_below > 0.0 and health.ratio() <= hit.move.execute_below and hit.effectiveness > 0.0:
+		amount = INF  # ejecución: lo remata aunque le quede vida
+		Events.signature_triggered.emit(self, "¡Remate!", Color(1.5, 0.35, 0.3))
+	var dealt := health.apply_damage(amount)
 	if dealt > 0.0:
 		statuses.on_damaged()
 		sprite.flash()
 		sprite.play_once("Hurt", 0.25)
 	if hit.knockback != 0.0:
 		knockback = (global_position - hit.origin).normalized() * hit.knockback * statuses.knockback_mult()
-	var attacker: Creature = hit.attacker if is_instance_valid(hit.attacker) else null
 	damage_received.emit(dealt, hit)
 	if attacker:
 		attacker.hit_dealt.emit(self, hit, dealt)

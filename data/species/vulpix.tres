@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/vulpix/kit.tres" id="0_kit"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_8s5hk"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_i73rs"]
 [ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_rkvq6"]
@@ -16,6 +17,7 @@ display_name = "Vulpix"
 dex = 37
 types = Array[ExtResource("7_fy6n3")]([ExtResource("8_6ul6a")])
 moves = Array[ExtResource("1_8s5hk")]([ExtResource("2_i73rs"), ExtResource("3_rkvq6"), ExtResource("4_xls4m"), ExtResource("5_laq3w")])
+kit = ExtResource("0_kit")
 base_hp = 38
 base_attack = 41
 base_defense = 40

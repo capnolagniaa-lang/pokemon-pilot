@@ -85,6 +85,11 @@ func _draw_signature(c: Creature) -> void:
 	var label := sig.state_label()
 	if label != "":
 		col = Color(col.r * 1.5, col.g * 1.5, col.b * 1.5)  # brilla cuando está activa
+	if sig.data.max_value <= 0.0:
+		# Mecánica sin recurso (Instinto, Rescoldo): solo el estado.
+		var lx := r.position.x + 22 + font.get_string_size(sig.data.display_name.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x
+		draw_string(font, Vector2(lx, r.position.y + 18), label if label != "" else "—", HORIZONTAL_ALIGNMENT_LEFT, r.end.x - lx - 8, 12, col if label != "" else Color(1, 1, 1, 0.4))
+		return
 	_bar(bar, sig.ratio(), col)
 	for th in sig.data.thresholds:
 		var x := bar.position.x + bar.size.x * th / sig.data.max_value

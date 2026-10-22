@@ -76,6 +76,8 @@ func _on_fainted(c: Creature) -> void:
 
 
 func _hitstop(duration: float) -> void:
+	if Engine.get_write_movie_path() != "":
+		return  # grabando frames (--write-movie): con el reloj real congelaría casi toda la vitrina
 	if _hitstop_until == 0:
 		_base_time_scale = Engine.time_scale
 	_hitstop_until = maxi(_hitstop_until, Time.get_ticks_msec() + int(duration * 1000.0))

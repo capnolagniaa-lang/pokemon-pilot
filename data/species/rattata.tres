@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/rattata/kit.tres" id="0_kit"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_hnrfa"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_e0xm5"]
 [ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_v8ixh"]
@@ -16,6 +17,7 @@ display_name = "Rattata"
 dex = 19
 types = Array[ExtResource("7_qu5il")]([ExtResource("8_cuhiu")])
 moves = Array[ExtResource("1_hnrfa")]([ExtResource("2_e0xm5"), ExtResource("3_v8ixh"), ExtResource("4_knuu5"), ExtResource("5_q7u3j")])
+kit = ExtResource("0_kit")
 base_hp = 30
 base_attack = 56
 base_defense = 35

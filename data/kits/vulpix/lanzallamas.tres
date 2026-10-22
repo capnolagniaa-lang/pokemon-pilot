@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ms"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_ss"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="4_st"]
+
+[resource]
+script = ExtResource("2_ms")
+id = "vulpix_lanzallamas"
+display_name = "Lanzallamas"
+element = ExtResource("1_el")
+kind = 6
+category = 1
+power = 90.0
+power_mult = 0.17
+cooldown = 9.0
+cast_time = 0.2
+knockback = 40.0
+recovery = 0.3
+status_chance = 0.12
+channel_time = 1.0
+cone_angle_deg = 35.0
+cone_length = 64.0
+tick_interval = 0.15
+status = ExtResource("4_st")

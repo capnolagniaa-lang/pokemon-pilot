@@ -105,6 +105,17 @@ func modify_hit(_hit: HitInfo) -> void:
 	pass
 
 
+## Multiplicador de daño de un golpe de esta criatura contra un objetivo concreto (se evalúa al impactar,
+## ej. el Instinto de Rattata contra presas). Puede tener efectos (consumir un crítico guardado).
+func damage_mult_against(_hit: HitInfo, _target: Creature) -> float:
+	return 1.0
+
+
+## Si esta criatura ignora un golpe (ej. Pidgey en el aire no recibe golpes cuerpo a cuerpo).
+func ignores_hit(_hit: HitInfo) -> bool:
+	return false
+
+
 ## Multiplicador de velocidad de movimiento.
 func speed_mult() -> float:
 	return 1.0

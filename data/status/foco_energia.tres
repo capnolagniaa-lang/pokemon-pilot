@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_se"]
+
+[resource]
+script = ExtResource("2_se")
+id = "foco_energia"
+display_name = "Foco Energía"
+color = Color(1, 0.6, 0.25, 1)
+duration = 6.0
+element = ExtResource("1_el")
+fx_amount = 5
+fx_gravity = -20.0
+fx_size = 1.2
+tint_strength = 0.3

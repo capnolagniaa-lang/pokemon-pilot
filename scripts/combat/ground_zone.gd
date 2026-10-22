@@ -75,9 +75,11 @@ func _physics_process(delta: float) -> void:
 		if dwell_status != null and dwell_time > 0.0 and _inside[c] >= dwell_time:
 			c.statuses.apply(dwell_status)
 			_inside[c] = -INF  # ya lo durmió: no repetir mientras siga adentro
-		if do_tick and (hit.move.power > 0.0 or not hit.move.statuses_on_hit.is_empty()):
+		if do_tick and (hit.move.power > 0.0 or hit.move.knockback != 0.0 or not hit.move.statuses_on_hit.is_empty()):
 			hit.origin = global_position
 			c.hurtbox.receive(hit)
+	if hit.move.deflects_projectiles and not _expiring:
+		Projectile.deflect_around(get_parent(), hit.team, global_position, radius)
 	if _time >= duration:
 		queue_free()
 	if _time >= duration - 0.4:
@@ -91,6 +93,12 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, radius, Color(color.r, color.g, color.b, 0.3 * fade))
 	draw_circle(Vector2.ZERO, radius * 0.6, Color(color.r, color.g, color.b, 0.18 * fade))
 	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 40, Color(color.r * 1.3, color.g * 1.3, color.b * 1.3, 0.85 * fade), 1.5)
+	if hit.move.knockback > 0.0:
+		# Remolino: arcos que giran (viento que empuja hacia afuera).
+		for k in 3:
+			var a := _time * 5.0 + k * TAU / 3.0
+			for ring in [0.45, 0.8]:
+				draw_arc(Vector2.ZERO, radius * ring, a + ring, a + ring + 1.4, 12, Color(1.3, 1.35, 1.5, 0.55 * fade), 1.5)
 	if dwell_time > 0.0:
 		# Nube telegrafiada: muestra cuánto le falta a cada uno para dormirse.
 		for c in _inside:

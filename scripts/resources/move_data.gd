@@ -35,6 +35,12 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 ## Estados que aplica siempre (ej: las esporas ralentizan y envenenan).
 @export var statuses_on_hit: Array[StatusEffect] = []
 
+@export_group("Efectos especiales")
+## Ejecución (Hipercolmillo): si el objetivo tiene esta fracción de vida o menos, lo debilita. 0 = no.
+@export_range(0.0, 1.0) var execute_below: float = 0.0
+## Viento (Tornado, Remolino): los proyectiles enemigos que toca salen desviados.
+@export var deflects_projectiles: bool = false
+
 @export_group("Recurso de firma")
 ## Cuánto recurso de la mecánica de firma consume (-1 = todo lo que haya).
 @export var resource_cost: float = 0.0

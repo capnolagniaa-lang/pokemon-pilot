@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ms"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_ss"]
+
+[resource]
+script = ExtResource("2_ms")
+id = "remolino"
+display_name = "Remolino"
+element = ExtResource("1_el")
+kind = 5
+category = 2
+power = 0.0
+cooldown = 9.0
+cast_time = 0.2
+knockback = 170.0
+deflects_projectiles = true
+zone_radius = 34.0
+zone_duration = 3.5
+placement_range = 100.0
+zone_traps = false
+zone_tick = 0.2
+zone_max_count = 1

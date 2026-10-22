@@ -5,7 +5,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-10-21)
+## 📍 Dónde estamos (actualizado 2026-10-22)
 - **Foco actual: plan de identidad de combate (v2).** La Etapa 3 (entorno reactivo) está **en espera** hasta que
   el usuario esté conforme con los estilos de pelea.
 - v2 hecho: **sin energía** (solo recargas), **4 ataques + esquive en Espacio**, Charmander **bruiser** rearmado,
@@ -13,8 +13,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Rattata y Vulpix** (`WildSpawner.use_test_pool`; apagarlo devuelve los spawns por bioma).
 - Pantalla de inicio con **Modo práctica** (por defecto on) y **Dificultad de la IA** (Fácil / Normal por
   defecto / Difícil = la IA original). Detalle en el plan de identidad.
-- **Siguiente:** que el usuario pruebe y opine; después kits de **Pidgey, Rattata y Vulpix** (los otros de
-  Ruta 1), luego **Squirtle** (tanque/parry) y **Pikachu** (cargas). Propuestas en `PLAN_IDENTIDAD_COMBATE.md`.
+- **Kits de Pidgey (hostigador, Vuelo), Rattata (asesino, Instinto) y Vulpix (desgaste, Rescoldo)** hechos
+  (2026-10-22): los 4 de la zona de prueba tienen estilo propio. Detalle en el plan de identidad.
+- **Siguiente:** que el usuario pruebe los 5 estilos y opine; después **Squirtle** (tanque/parry) y **Pikachu**
+  (cargas). Propuestas en `PLAN_IDENTIDAD_COMBATE.md`.
 - Lo de la sección "Combate (Etapa 2)" más abajo que hable de energía o de ataques 1-4 genéricos quedó
   superado por la v2 (ver el plan de identidad).
 

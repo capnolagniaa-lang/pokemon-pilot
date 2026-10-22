@@ -16,6 +16,8 @@ var species: SpeciesData:
 var charge := -1.0
 var charge_color := Color.WHITE
 var afterimages := false
+## Altura sobre el suelo en píxeles (Pidgey volando): el cuerpo sube, la sombra queda en el piso.
+var lift := 0.0
 
 var _anims: Dictionary = {}
 var _anim := "Idle"
@@ -117,18 +119,19 @@ func _update_ghosts(delta: float) -> void:
 
 func _draw() -> void:
 	var c := get_parent()
-	draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, 0.45))
-	draw_circle(Vector2.ZERO, 7.0, Color(0, 0, 0, 0.25))
-	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, 0.45) * (1.0 - minf(lift, 20.0) * 0.015))
+	draw_circle(Vector2.ZERO, 7.0, Color(0, 0, 0, 0.25 if lift <= 0.0 else 0.32))
+	var up := Vector2(0, -lift)
+	draw_set_transform(up, 0.0, Vector2.ONE)
 
 	var cur := _current()
 	if cur.is_empty():
 		draw_circle(Vector2(0, -6), 6.0, Color.MAGENTA)
 		return
 	for g in _ghosts:
-		draw_set_transform(g[0] - global_position, 0.0, Vector2.ONE)
+		draw_set_transform(g[0] - global_position + up, 0.0, Vector2.ONE)
 		draw_texture_rect_region(cur[0], g[2], g[1], Color(0.7, 0.85, 1.6, g[3]))
-	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	draw_set_transform(up, 0.0, Vector2.ONE)
 
 	var tint := Color.WHITE
 	if c is Creature and c.statuses != null and not c.statuses.active.is_empty():

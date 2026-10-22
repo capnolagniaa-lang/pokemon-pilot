@@ -7,6 +7,7 @@ extends Resource
 @export var id: String = ""
 @export var display_name: String = ""
 @export var color: Color = Color.WHITE
+## 0 = mecánica sin recurso (la interfaz no dibuja barra, solo el estado).
 @export var max_value: float = 100.0
 ## Evento de combate -> cuánto suma. Eventos: hit_dealt, damage_received, moved (por píxel),
 ## dodged, killed, status_inflicted, blocked.

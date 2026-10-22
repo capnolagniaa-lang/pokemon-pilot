@@ -10,6 +10,8 @@ var life := 1.0
 var radius := 4.0
 var color := Color.WHITE
 var core := Color.WHITE
+## Ya lo desvió el viento (no se vuelve a desviar).
+var deflected := false
 var _time := 0.0
 var _dead := false
 
@@ -47,9 +49,25 @@ func _physics_process(delta: float) -> void:
 		return
 	_time += delta
 	global_position += velocity * delta
+	if hit.move.deflects_projectiles:
+		Projectile.deflect_around(get_parent(), hit.team, global_position, radius + 4.0)
 	if _time >= life:
 		_impact()
 	queue_redraw()
+
+
+## Viento (Tornado, Remolino): los proyectiles del otro equipo dentro del radio salen despedidos hacia
+## afuera del centro (siguen siendo del otro equipo, así que ya no lastiman a nadie del lado del viento).
+static func deflect_around(parent: Node, team: int, center: Vector2, p_radius: float) -> void:
+	for p in parent.get_children():
+		if p is Projectile and not p._dead and p.hit != null and p.hit.team != team and not p.deflected \
+				and p.global_position.distance_to(center) <= p_radius + p.radius:
+			var away: Vector2 = p.global_position - center
+			if away.length() < 0.5:
+				away = -p.velocity
+			p.velocity = away.normalized() * p.velocity.length()
+			p.deflected = true
+			Fx.burst(parent, p.global_position, Color(0.85, 0.9, 1.2), 6, 40.0)
 
 
 func _impact() -> void:

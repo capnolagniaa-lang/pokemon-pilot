@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ms"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_ss"]
+
+[resource]
+script = ExtResource("2_ms")
+id = "pidgey_tornado"
+display_name = "Tornado"
+element = ExtResource("1_el")
+category = 1
+power = 40.0
+cooldown = 1.2
+knockback = 190.0
+recovery = 0.08
+speed = 210.0
+size = 7.0
+lifetime = 0.6
+deflects_projectiles = true

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/instinct_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "instinto"
+display_name = "Instinto"
+color = Color(0.95, 0.3, 0.28, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_mech")
+params = {"prey_hp": 0.4, "prey_damage_mult": 1.3, "prey_crit_chance": 0.25, "crit_mult": 1.5, "reset_slot": 1}

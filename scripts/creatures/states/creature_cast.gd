@@ -25,7 +25,7 @@ func enter(msg: Dictionary = {}) -> void:
 		MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL:
 			var w := _move.size * 2.0 + 4.0 if _move.kind == MoveData.Kind.PROJECTILE else _move.cone_length * 0.5
 			actor.telegraph.show_line(_aim, _move.reach(), w, _move.element.color)
-		MoveData.Kind.DASH:
+		MoveData.Kind.DASH, MoveData.Kind.MELEE, MoveData.Kind.LUNGE:
 			actor.telegraph.show_line(_aim, _move.reach(), 14.0, _move.element.color)
 
 

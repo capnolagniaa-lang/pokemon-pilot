@@ -569,11 +569,122 @@ func _kit_test() -> void:
 	await get_tree().create_timer(2.2).timeout
 	r["R Somnífero: duerme a quien se queda adentro"] = sleeper.statuses.has_status("dormido")
 
+	await _kit_test_pidgey(r, hits)
+	await _kit_test_rattata(r, hits)
+	await _kit_test_vulpix(r, hits)
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[kit] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-kit] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+
+## Pidgey (hostigador): Tornado desvía proyectiles, Ataque Arena desorienta, Vuelo, Picado, Remolino.
+func _kit_test_pidgey(r: Dictionary, hits: Dictionary) -> void:
+	var world: Node = await _setup_kit_world("pidgey")
+	var me: Creature = world.companion
+	var sig: SignatureMechanic = me.signature
+	r["Pidgey: hostigador con 4 ataques + Vuelo"] = me.instance.species.kit.archetype == "hostigador" and me.moves.moves.size() == 4 and sig.data.id == "vuelo"
+	var foe := _dummy(world, "vulpix", me.global_position + Vector2(90, 0))
+	await get_tree().physics_frame
+	# Proyectil enemigo que viene hacia Pidgey: el Tornado lo desvía.
+	var incoming := Projectile.new()
+	world.entities.add_child(incoming)
+	incoming.launch(HitInfo.from(foe, foe.moves.slots[0]), foe.global_position + Vector2(-12, -8), Vector2.LEFT)
+	me.use_slot(0, Vector2.RIGHT)
+	await get_tree().create_timer(0.3).timeout
+	r["Clic izq. Tornado: desvía proyectiles"] = not is_instance_valid(incoming) or incoming.deflected
+	await get_tree().create_timer(0.3).timeout
+
+	foe.global_position = me.global_position + Vector2(40, 0)
+	await get_tree().physics_frame
+	me.use_slot(1, Vector2.RIGHT)
+	await get_tree().create_timer(0.3).timeout
+	r["Clic der. Ataque Arena: desorienta"] = foe.statuses.has_status("desorientado")
+
+	var brute := _dummy(world, "rattata", me.global_position + Vector2(0, 60))
+	var melee := HitInfo.from(brute, brute.moves.slots[0])
+	r["Vuelo: en el suelo recibe cuerpo a cuerpo"] = not sig.ignores_hit(melee)
+	me.dodge(Vector2.DOWN)
+	await get_tree().physics_frame
+	r["Espacio con Aliento: se eleva (inmune a cuerpo a cuerpo, no a proyectiles)"] = sig.is_airborne() \
+		and sig.ignores_hit(melee) and not sig.ignores_hit(HitInfo.from(foe, foe.moves.slots[0])) and sig.value < 100.0
+	r["Picado: atacar desde el aire pega más y aterriza"] = HitInfo.from(me, me.moves.slots[0]).damage_mult > 1.3
+	await get_tree().create_timer(0.25).timeout  # termina el esquive (en el aire sigue)
+	me.use_slot(2, Vector2.RIGHT)
+	await get_tree().physics_frame
+	r["Picado: atacar desde el aire pega más y aterriza"] = r["Picado: atacar desde el aire pega más y aterriza"] and not sig.is_airborne()
+	await get_tree().create_timer(0.4).timeout
+
+	var pushed := _dummy(world, "bulbasaur", me.global_position + Vector2(-60, 0), false)
+	await get_tree().physics_frame
+	me.use_slot(3, Vector2.LEFT, pushed.global_position + Vector2(6, 0))
+	await get_tree().create_timer(1.0).timeout
+	var zones: Array = world.entities.get_children().filter(func(n): return n is GroundZone)
+	r["R Remolino: zona de viento que echa a los enemigos"] = not zones.is_empty() \
+		and pushed.global_position.distance_to(zones[0].global_position) > zones[0].radius * 0.8
+
+
+## Rattata (asesino): Mordisco ×3, Instinto contra presas, Foco Energía, Hipercolmillo ejecuta, rematar reinicia.
+func _kit_test_rattata(r: Dictionary, hits: Dictionary) -> void:
+	var world: Node = await _setup_kit_world("rattata")
+	var me: Creature = world.companion
+	var sig: SignatureMechanic = me.signature
+	r["Rattata: asesino con 4 ataques + Instinto"] = me.instance.species.kit.archetype == "asesino" and me.moves.moves.size() == 4 and sig.data.id == "instinto"
+	var prey := _dummy(world, "bulbasaur", me.global_position + Vector2(20, 0))
+	await get_tree().physics_frame
+	var h0: int = hits.get(prey, 0)
+	for k in 3:
+		me.use_slot(0, Vector2.RIGHT)
+		await get_tree().create_timer(0.2).timeout
+	r["Clic izq. Mordisco: combo rápido de 3"] = hits.get(prey, 0) - h0 == 3
+	prey.statuses.clear()
+	prey.instance.hp = prey.health.max_hp()
+	var bite := HitInfo.from(me, me.moves.slots[0])
+	r["Instinto: sin presa no hay bonus"] = sig.damage_mult_against(bite, prey) == 1.0
+	prey.instance.hp = prey.health.max_hp() * 0.3
+	r["Instinto: +daño contra presa (<40% de vida)"] = sig.damage_mult_against(bite, prey) >= 1.3
+	prey.instance.hp = prey.health.max_hp()
+	me.use_slot(2, Vector2.RIGHT)
+	await get_tree().physics_frame
+	var focus := me.statuses.has_status("foco_energia")
+	r["Q Foco Energía: guarda un crítico seguro"] = focus and sig.damage_mult_against(bite, prey) >= 1.5 and not me.statuses.has_status("foco_energia")
+
+	me.moves.consume(1)  # Ataque Rápido en recarga
+	prey.instance.hp = prey.health.max_hp() * 0.2
+	prey.global_position = me.global_position + Vector2(18, 0)
+	await get_tree().physics_frame
+	me.use_slot(3, Vector2.RIGHT)
+	await get_tree().create_timer(0.5).timeout
+	r["R Hipercolmillo: ejecuta bajo el 25%"] = prey.is_down()
+	r["Rematar reinicia Ataque Rápido"] = me.moves.can_use(1)
+
+
+## Vulpix (desgaste): Fuego Fatuo quema seguro, Rescoldo castiga quemados, Rayo Confuso, Lanzallamas.
+func _kit_test_vulpix(r: Dictionary, hits: Dictionary) -> void:
+	var world: Node = await _setup_kit_world("vulpix")
+	var me: Creature = world.companion
+	var sig: SignatureMechanic = me.signature
+	r["Vulpix: desgaste con 4 ataques + Rescoldo"] = me.instance.species.kit.archetype == "desgaste" and me.moves.moves.size() == 4 and sig.data.id == "rescoldo"
+	var foe := _dummy(world, "rattata", me.global_position + Vector2(60, 0))
+	await get_tree().physics_frame
+	var ember := HitInfo.from(me, me.moves.slots[0])
+	r["Rescoldo: sin quemar, sin bonus"] = sig.damage_mult_against(ember, foe) == 1.0
+	me.use_slot(1, Vector2.RIGHT)
+	await get_tree().create_timer(0.9).timeout
+	r["Clic der. Fuego Fatuo: quema seguro"] = foe.statuses.has_status("quemado")
+	r["Rescoldo: +daño contra quemados"] = sig.damage_mult_against(ember, foe) > 1.3 and sig.state_label() != ""
+	me.use_slot(2, Vector2.RIGHT)
+	await get_tree().create_timer(0.5).timeout
+	r["Q Rayo Confuso: desorienta"] = foe.statuses.has_status("desorientado")
+	foe.global_position = me.global_position + Vector2(40, 0)
+	var h0: int = hits.get(foe, 0)
+	me.use_slot(3, Vector2.RIGHT)
+	await get_tree().create_timer(0.5).timeout
+	var channeling := me.machine.current_name() == "channel"
+	await get_tree().create_timer(0.8).timeout
+	r["R Lanzallamas: canaliza un cono que golpea varias veces"] = channeling and hits.get(foe, 0) - h0 >= 3
 
 
 func _count(parent: Node, cls) -> int:
@@ -607,6 +718,47 @@ func _showcase_kit() -> void:
 	await get_tree().create_timer(0.8).timeout
 	me.use_slot(2, Vector2.RIGHT)
 	await get_tree().create_timer(1.2).timeout
+	# Pidgey: Tornado, Ataque Arena, vuelo (esquive) + Picado, Remolino
+	world = await _setup_kit_world("pidgey")
+	me = world.companion
+	t1 = _dummy(world, "rattata", me.global_position + Vector2(60, 0), false)
+	await get_tree().physics_frame
+	me.use_slot(0, Vector2.RIGHT)
+	await get_tree().create_timer(0.6).timeout
+	me.use_slot(1, (t1.global_position - me.global_position).normalized())
+	await get_tree().create_timer(0.5).timeout
+	me.dodge(Vector2.UP)
+	await get_tree().create_timer(0.5).timeout
+	me.use_slot(2, (t1.global_position - me.global_position).normalized())
+	await get_tree().create_timer(0.6).timeout
+	me.use_slot(3, Vector2.RIGHT, t1.global_position)
+	await get_tree().create_timer(1.4).timeout
+	# Rattata: presa marcada, Mordisco, Foco Energía, Hipercolmillo
+	world = await _setup_kit_world("rattata")
+	me = world.companion
+	t1 = _dummy(world, "pidgey", me.global_position + Vector2(22, 0))
+	t1.instance.hp = t1.health.max_hp() * 0.35
+	await get_tree().create_timer(0.4).timeout
+	for k in 3:
+		me.use_slot(0, Vector2.RIGHT)
+		await get_tree().create_timer(0.2).timeout
+	me.use_slot(2, Vector2.RIGHT)
+	await get_tree().create_timer(0.5).timeout
+	me.use_slot(3, Vector2.RIGHT)
+	await get_tree().create_timer(0.9).timeout
+	# Vulpix: Fuego Fatuo, Ascuas, Rayo Confuso, Lanzallamas
+	world = await _setup_kit_world("vulpix")
+	me = world.companion
+	t1 = _dummy(world, "bellsprout", me.global_position + Vector2(55, 0))
+	await get_tree().physics_frame
+	me.use_slot(1, Vector2.RIGHT)
+	await get_tree().create_timer(0.8).timeout
+	me.use_slot(0, Vector2.RIGHT)
+	await get_tree().create_timer(0.4).timeout
+	me.use_slot(2, Vector2.RIGHT)
+	await get_tree().create_timer(0.5).timeout
+	me.use_slot(3, Vector2.RIGHT)
+	await get_tree().create_timer(1.6).timeout
 	get_tree().quit()
 
 # --- Modo práctica y dificultad (godot --path . -- --autotest-modes) -------------------------

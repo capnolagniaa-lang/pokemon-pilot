@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/pidgey/kit.tres" id="0_kit"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_8pjly"]
 [ext_resource type="Resource" path="res://data/moves/tornado.tres" id="2_p5iqk"]
 [ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="3_muvct"]
@@ -17,6 +18,7 @@ display_name = "Pidgey"
 dex = 16
 types = Array[ExtResource("7_e0dml")]([ExtResource("8_m7bew"), ExtResource("9_p5iqk")])
 moves = Array[ExtResource("1_8pjly")]([ExtResource("2_p5iqk"), ExtResource("3_muvct"), ExtResource("4_naq0o"), ExtResource("5_p3w12")])
+kit = ExtResource("0_kit")
 base_hp = 40
 base_attack = 45
 base_defense = 40

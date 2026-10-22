@@ -34,9 +34,9 @@ $G --headless --path . --quit-after 30000 -- --autotest-combat   # 3 peleas mane
 $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas reales + spawner
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
-$G --headless --path . --quit-after 5000 -- --autotest-kit       # kits: Charmander (bruiser) + Bellsprout (control)
+$G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charmander, Bellsprout, Pidgey, Rattata, Vulpix
 $G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
-$G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit   # vitrina de kits
+$G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
 $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
@@ -120,5 +120,6 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - Las `PointLight2D` se suman sobre el suelo claro y lo saturan a amarillo: mantener energía ≤ 0,35 y
   escala chica (el usuario se quejó de que el fuego se veía amarillo). El color del fuego va en
   `ElementType.color`/`core_color` (rojizo/naranja, no blanco).
+- El hitstop se mide con reloj real: al grabar con `--write-movie` se desactiva (si no, la vitrina va en cámara lenta).
 - Correr Godot headless siempre con `--quit-after`: si un script no compila, el autotest no carga y queda colgado.
 - PowerShell 5: archivos .ps1 sin BOM se leen como ANSI → evitar caracteres no ASCII en scripts .ps1.

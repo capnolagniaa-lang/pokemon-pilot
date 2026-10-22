@@ -39,9 +39,27 @@ el documento original de abajo (que queda como referencia de ideas: estados, sin
 | Charmander | **Bruiser** | Ascuas: abanico de 3 brasas, rango medio (1,4 s) | Arañazo: se lanza al punto apuntado (≤64 px); si conecta, 2 golpes (el 2º empuja) (1,1 s) | Giro Fuego: anillo que atrapa (7 s) | Embestida Ígnea: dash que golpea con leve empuje (90), invulnerable, deja estela de fuego (6 s) | **Calor** → Mar Llamas (el usuario lo aprobó) |
 | Bellsprout | **Control** | Polvo Veneno: parche de esporas (máx. 3, 6 s) que ralentiza y suma veneno (1,3 s) | Látigo Cepa: agarra al primero que alcanza (72 px), lo enraíza y lo atrae (4 s) | Arraigo: se enraíza 3 s, recibe la mitad, se cura 3%/s, no lo empujan (10 s) | Somnífero: nube telegrafiada; quien se queda 1,5 s adentro se duerme (12 s) | (ninguna aún) |
 | Bulbasaur | **Control** | Polvo Veneno | Látigo Cepa | Síntesis: se cura 5%/s 3 s, recibe ×0,75, más lento (12 s) | Somnífero | (ninguna aún) |
+| Pidgey | **Hostigador** | Tornado: ráfaga que empuja (190) y **desvía proyectiles** enemigos (1,2 s) | Ataque Arena: 5 granos en abanico que **desorientan** (5 s) | Ataque Rápido: embestida (2,6 s) | Remolino: zona de viento 3,5 s que **echa a los enemigos** y desvía proyectiles (9 s) | **Vuelo** (barra de Aliento) |
+| Rattata | **Asesino** | Mordisco: combo de 3 mordidas rápidas, 35% Herido (1 s) | Ataque Rápido: embestida de entrada (4 s) | Foco Energía: guarda un **crítico seguro** (×1,5) para el próximo golpe (9 s) | Hipercolmillo: mordida telegrafiada (0,22 s) que **ejecuta bajo el 25%** de vida (10 s) | **Instinto** |
+| Vulpix | **Desgaste** | Ascuas: una brasa rápida, 20% quema (0,9 s) | Fuego Fatuo: llama lenta que **quema seguro** (5 s) | Rayo Confuso: **desorienta** (7 s) | Lanzallamas: cono canalizado 1 s (9 s) | **Rescoldo** |
 
-Los demás (Pidgey, Rattata, Vulpix, Squirtle, Pikachu, etc.) **todavía usan sus 4 ataques sueltos** de
-`SpeciesData.moves` (mapeados a las 4 teclas) hasta tener kit.
+Mecánicas de firma nuevas (`scripts/combat/signatures/`, números en `data/kits/<pokémon>/*.tres` → `params`):
+- **Vuelo** (Pidgey, `flight_mechanic.gd`): Aliento 0-100. **Esquivar con ≥30 de Aliento lo eleva** (hasta 1,6 s,
+  gasta 40/s): en el aire es **inmune a cuerpo a cuerpo, embestidas y látigos** (no a proyectiles ni zonas). El
+  primer ataque desde el aire es un **Picado** (×1,4 daño) y aterriza. En el suelo recupera 30/s. Se ve elevado
+  (la sombra queda en el piso: `CreatureSprite.lift`). Decisión de Claude (el plan decía "mecánica posible"):
+  usa el esquive para no ocupar una 5ª tecla.
+- **Instinto** (Rattata, `instinct_mechanic.gd`): **presa** = enemigo con <40% de vida o con cualquier estado
+  (se marca con una mira roja). Contra presas ×1,3 daño y 25% de crítico (×1,5). Foco Energía = crítico seguro.
+  **Rematar reinicia Ataque Rápido.** Sin barra: muestra "PRESA" / "CRÍTICO LISTO".
+- **Rescoldo** (Vulpix, `embers_mechanic.gd`): golpes contra **quemados** ×1,35 y **renuevan la quemadura**.
+  Sin barra: muestra cuántos enemigos cercanos están quemados.
+- Ganchos genéricos nuevos en `SignatureMechanic`: `damage_mult_against(hit, objetivo)` (se evalúa al impactar)
+  e `ignores_hit(hit)`. En `MoveData`: `execute_below` (ejecución) y `deflects_projectiles` (viento). Firma con
+  `max_value = 0` = sin barra en la interfaz.
+
+Los demás (Squirtle, Pikachu, etc.) **todavía usan sus 4 ataques sueltos** de `SpeciesData.moves` (mapeados a
+las 4 teclas) hasta tener kit.
 
 ## Propuestas en discusión (a confirmar con el usuario antes de implementar)
 - **Squirtle — Tanque** (bloqueo, empujes, resistencia): Clic izq. Placaje pesado (empuja fuerte) · Clic der.
@@ -54,20 +72,12 @@ Los demás (Pidgey, Rattata, Vulpix, Squirtle, Pikachu, etc.) **todavía usan su
   Rápido (dash que atraviesa; con cargas se puede reusar una vez) · Q Onda Trueno (onda corta que llena mucho la
   barra de parálisis) · R Rayo/Trueno (consume todas las cargas: rayos en área, daño por carga). **Descarga**:
   golpear con 5 cargas paraliza y rebota a un enemigo cercano.
-- **Pidgey — Hostigador** (golpea y se va): Tornado empuja y desvía proyectiles · Ataque Arena desorienta ·
-  Ataque Rápido · Remolino (zona de viento que separa). Mecánica posible: **Vuelo** (elevarse = inmune a golpes
-  cuerpo a cuerpo, gasta aliento).
-- **Rattata — Asesino** (remata): Mordisco rápido · Ataque Rápido de entrada · Foco Energía (próximo golpe
-  crítico) · Hipercolmillo (ejecuta bajo un umbral). Mecánica **Instinto**: +daño contra enemigos con <40% de
-  vida o con estado; rematar reinicia Ataque Rápido.
-- **Vulpix — Desgaste de quemaduras** (variante de fuego distinta de Charmander): Ascuas · Fuego Fatuo
-  (proyectil lento que quema seguro) · Rayo Confuso (desorienta) · Giro Fuego o Lanzallamas. Mecánica posible:
-  más daño contra quemados.
+- (Pidgey, Rattata y Vulpix: **implementados**, ver arriba.)
 
 ## Próximo paso sugerido
 1. Que el usuario pruebe Charmander y Bellsprout en Ruta 1 y dé su opinión (sensación, recargas, rangos).
-2. Confirmar/ajustar las propuestas de arriba y hacer los kits de los otros 3 de Ruta 1 (**Pidgey, Rattata,
-   Vulpix**), así todo lo que aparece en la zona de prueba tiene estilo propio.
+2. ✅ Kits de **Pidgey, Rattata y Vulpix** hechos (2026-10-22): todo lo que aparece en la zona de prueba tiene
+   estilo propio. Falta que el usuario los pruebe (sensación del Vuelo, umbral de presa, ejecución).
 3. Después Squirtle (tanque/parry) y Pikachu (cargas), que necesitan mecánicas nuevas (bloqueo mantenido, cargas).
 4. Pendientes técnicos: mecánica de firma para el estilo control (ej. Siembra/Punta del documento original);
    la IA salvaje todavía elige ataques al azar dentro del alcance (falta que use las defensivas con criterio).
@@ -449,8 +459,9 @@ interface HabilidadDef {
 | I-5 | Bulbasaur (semillas en el suelo, Somnífero telegrafiado, Rayo Solar) | Pendiente |
 | I-6 | Bellsprout (hitbox con zona de punta, Ritmo) | Pendiente |
 | I-7 | Oddish (stacks de esporas en el enemigo, florecer, enterrarse) | Pendiente |
-| I-8 | Rattata (Instinto por umbral de vida, Foco Energía, ejecución) | Pendiente |
-| I-9 | Pidgey (estado aéreo, Aliento, viento que desvía proyectiles) | Pendiente |
+| I-8 | Rattata (Instinto por umbral de vida, Foco Energía, ejecución) | ✅ Hecho |
+| I-8b | Vulpix (desgaste de quemaduras, Rescoldo) — no estaba en el documento original | ✅ Hecho |
+| I-9 | Pidgey (estado aéreo, Aliento, viento que desvía proyectiles) | ✅ Hecho (v2: Vuelo con el esquive) |
 
 ## Decisiones del usuario (2026-10-21, no volver a preguntar)
 - **Orden:** el plan de identidad va **ahora, antes de la Etapa 3** (entorno reactivo). Después la Etapa 3
@@ -496,7 +507,8 @@ interface HabilidadDef {
 - Estados nuevos: `ralentizado` (×0,6 velocidad), `arraigado` (Arraigo), `sintesis` (Síntesis); campos nuevos
   en `StatusEffect`: `damage_taken_mult`, `heal_per_second`, `knockback_mult`.
 - Golpes de daño 0 (esporas) ya no hacen destello ni empuje: solo aplican estados.
-- Autotests: `--autotest-kit` (Charmander bruiser + Bellsprout control, 19 chequeos), vitrina `--showcase-kit`.
+- Autotests: `--autotest-kit` (Charmander, Bellsprout, Pidgey, Rattata y Vulpix: 38 chequeos), vitrina
+  `--showcase-kit` (los 5 kits; grabar con `--quit-after 2400`).
 
 ## Cómo quedó implementado (I-2: kit + Charmander) — HISTÓRICO, reemplazado por v2
 - **Datos** (todo editable en el inspector): `Kit` (`scripts/resources/kit.gd`): arquetipo, rango preferido
