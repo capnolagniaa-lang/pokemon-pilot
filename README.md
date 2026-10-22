@@ -58,12 +58,12 @@ directo **Pokémon Pilot — Editor de mapas** (`--path "<proyecto>" -- --map-ed
 - **Sellos**: 70 edificios enteros sacados de los mapas reales de FireRed (casas de cada pueblo, Centro
   Pokémon, Tienda, edificios de las ciudades...), sin repetidos y filtrables por lugar. Un clic pega el edificio
   con su parte de arriba y su colisión.
-- **Tiles** (modo crudo): **todos los gráficos de FireRed** (62 tilesets: exteriores, pueblos, ciudades,
+- **Paleta** (modo crudo): **todos los gráficos de FireRed** (62 tilesets: exteriores, pueblos, ciudades,
   cuevas, islas e interiores), organizados por **tipo** (terreno, pasto alto, arena, agua, hielo, árboles,
   rocas, edificios, puertas, escaleras, salientes, carteles, cercas, muebles, paredes y suelo de interior...),
   con filtros por grupo (exteriores/interiores), tileset, tipo y tag. Se pinta en la capa activa; si el tile
   tiene parte de arriba, esa parte se pone sola en Overhead.
-- **Tile**: tipo, tags y colisión (ninguna / sólida / agua) de un metatile, con sugerencias según el *behavior* de
+- **Propiedades**: tipo, tags y colisión (ninguna / sólida / agua) de un metatile, con sugerencias según el *behavior* de
   FireRed. Guarda en `tile_roles.tres` y en el TileSet (con backup en `art/tiles/.backup/`). Cambia en **todas** las zonas.
 - **Zona**: nombre, bioma, plaza (hub) y salidas (se arrastran sobre el mapa), inicio del juego, validaciones
   (salidas transitables y que empalmen con la vecina, camino de la plaza a cada salida, inicio libre, pasto alto
@@ -98,7 +98,7 @@ mapas y constantes) y arma los atlas, el `manifest.json` y `catalog.json`. El **
 *behavior* (agua, escaleras, puertas, salientes, carteles, muebles...) y, para el resto, de los mapas reales: la
 **colisión** es la que el metatile tiene casi siempre en FireRed (en GBA la colisión está en el mapa, no en el
 tile), lo sólido pegado a una puerta es **edificio** y lo demás se separa en árboles / rocas por color. Es
-automático y puede equivocarse: se corrige en el panel Tile (queda en `tile_roles.tres`, no se pierde al reimportar).
+automático y puede equivocarse: se corrige en la pestaña Propiedades (queda en `tile_roles.tres`, no se pierde al reimportar).
 Las animaciones propias de los tilesets secundarios (fuentes, luces) todavía no se importan: se ven quietas.
 
 **Por qué el autotile no usa los terrains de Godot**: se probaron terrains (modo esquinas y lados) con los 3×3 de

@@ -32,8 +32,8 @@ Abre la zona donde empieza el juego (Ruta 1). Para cambiar de zona usá el despl
 │                 LIENZO (la zona que estás editando)           │              │
 │        las zonas vecinas se ven atenuadas alrededor          │  Pinceles    │
 │                                                              │  Sellos      │
-│                                                              │  Tiles       │
-│                                                              │  Tile        │
+│                                                              │  Paleta      │
+│                                                              │  Propiedades │
 │                                                              │  Zona        │
 ├──────────────────────────────────────────────────────────────┴──────────────┤
 │ Estado: celda bajo el mouse, qué hay, tags, herramienta, pincel, capa       │
@@ -83,7 +83,7 @@ edificios de las ciudades... El desplegable filtra por lugar.
 
 Pega el edificio con su techo y su colisión, y saca lo que hubiera debajo (árboles, agua, objetos).
 
-### Tiles (la paleta: todos los gráficos sueltos)
+### Paleta (todos los gráficos sueltos)
 Todos los gráficos de FireRed, de a uno, para casos que los pinceles no cubren: cercas, carteles, escaleras,
 techos, rocas de cueva, muebles...
 
@@ -99,7 +99,7 @@ techos, rocas de cueva, muebles...
   copa de un árbol), esa parte se pone sola en la capa de Copas.
 - Con muchos resultados muestra los primeros 1500: elegí un tileset o un tipo para ver el resto.
 
-### Tile (la ficha de un gráfico)
+### Propiedades (la ficha de un gráfico)
 Muestra el gráfico elegido en la paleta, o el que tomaste con el gotero, y deja cambiar:
 
 - **Tags** (escritos separados por coma, o tocando los botones de tags conocidos).
@@ -129,7 +129,7 @@ hace una copia de seguridad del TileSet en `art/tiles/.backup/`.
 | Rectángulo | R | Clic, arrastrás y soltás. **Relleno** (o tecla F) elige entre relleno y solo el borde |
 | Balde | G | Rellena toda la mancha igual que la celda donde hacés clic (por ejemplo, toda una zona de arena). No pone árboles |
 | Selección | M | Marca un rectángulo para copiar (Ctrl+C) o borrar (Supr) |
-| Gotero | I o **Alt+clic** | Toma el pincel de la celda: árbol, arena, objeto... En la pestaña Tiles toma el gráfico crudo |
+| Gotero | I o **Alt+clic** | Toma el pincel de la celda: árbol, arena, objeto... En la pestaña Paleta toma el gráfico crudo |
 | Plaza y salidas | H | Arrastrar los marcadores H y ▲▼◀▶ |
 
 - **Clic derecho = borrar** con cualquier herramienta: borra todo lo de la celda. Si estás pintando un gráfico de
@@ -139,7 +139,7 @@ hace una copia de seguridad del TileSet en `art/tiles/.backup/`.
 - **Esc** cancela lo que estés haciendo (pegar, seleccionar, mover marcadores).
 
 ### Capa activa (1 a 5)
-Solo importa para la paleta Tiles, el borrado por capa y el balde:
+Solo importa para la pestaña Paleta, el borrado por capa y el balde:
 
 | Tecla | Capa | Qué va ahí |
 |---|---|---|
@@ -217,10 +217,10 @@ cargarla el entrenador aparece en la celda libre más cercana.
 - **Un lago**: Pinceles → Agua → Rectángulo relleno. Para achicarlo, clic derecho sobre el borde.
 - **Una zona de salvajes**: Pinceles → Pasto alto → Pincel tamaño 3 → pintar. Comprobalo con Ver → Resaltar tag → `pasto_alto`.
 - **Un pueblo**: Sellos → elegí el lugar (por ejemplo Pueblo Paleta) → clic para cada casa. Completá con caminos de
-  arena y con cercas o carteles desde Tiles → Tipo "Cercas y obstáculos" o "Carteles".
+  arena y con cercas o carteles desde Paleta → Tipo "Cercas y obstáculos" o "Carteles".
 - **Un bosque**: Pinceles → Árbol → Rectángulo relleno (pone árboles cada 2 celdas). Los bordes de la zona, con Borde ↑ ↓ ← →.
 - **Copiar un pedazo de otra zona**: Selección (M) → Ctrl+C → cambiás de zona → Ctrl+V → clic.
-- **Un gráfico que no tiene colisión y debería**: Gotero (Alt+clic) sobre él → pestaña Tile → Colisión "Sólida" →
+- **Un gráfico que no tiene colisión y debería**: Gotero (Alt+clic) sobre él → pestaña Propiedades → Colisión "Sólida" →
   Aplicar. Con F3 lo ves en rojo.
 
 ---
@@ -230,7 +230,7 @@ cargarla el entrenador aparece en la celda libre más cercana.
 - **Lo que editás está protegido**: las zonas guardadas con el editor quedan marcadas. Si alguien regenera el
   mundo con `tools/build_world.gd -- --force`, esas zonas no se pisan (solo con `--force-all`).
 - Los **tipos** de la paleta (edificio, roca, árbol...) se calcularon automáticamente con los mapas de FireRed y a
-  veces se equivocan. Corregilos en la pestaña Tile: lo que corregís no se pierde aunque se vuelvan a importar los gráficos.
+  veces se equivocan. Corregilos en la pestaña Propiedades: lo que corregís no se pierde aunque se vuelvan a importar los gráficos.
 - Las animaciones propias de algunos tilesets (fuentes, luces) todavía se ven quietas. El agua y las flores sí se mueven.
 - También se puede seguir retocando una zona en el editor de Godot: usa el mismo TileSet, pero ese editor no
   conoce estas reglas (bordes automáticos, árboles con sombra, etc.).
@@ -240,6 +240,6 @@ cargarla el entrenador aparece en la celda libre más cercana.
 - **Me equivoqué**: Ctrl+Z, tantas veces como haga falta.
 - **Guardé algo que no quería**: en `scenes/world/zones/.backup/` están las últimas 5 versiones de cada zona
   (`<zona>_<fecha>.tscn`). Copiá la que quieras sobre `scenes/world/zones/<zona>.tscn`.
-- **Rompí un gráfico en la pestaña Tile**: hay copias del TileSet en `art/tiles/.backup/`.
+- **Rompí un gráfico en la pestaña Propiedades**: hay copias del TileSet en `art/tiles/.backup/`.
 - **El ícono no abre nada**: si moviste la carpeta del proyecto o la de Godot, hay que volver a crear el ícono y
   el acceso directo (pedíselo a Claude).

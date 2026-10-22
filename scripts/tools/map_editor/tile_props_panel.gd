@@ -1,6 +1,6 @@
 class_name MapTileProps
 extends ScrollContainer
-## Pestaña "Tile": ver y editar los tags y la colisión de un metatile del TileSet. Guarda el ajuste en
+## Pestaña "Propiedades": ver y editar los tags y la colisión de un metatile del TileSet. Guarda el ajuste en
 ## data/world/tile_roles.tres (así build_world --force no lo pierde) y en art/tiles/world_tileset.tres
 ## (con backup). Afecta a todas las zonas.
 

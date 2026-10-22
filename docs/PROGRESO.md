@@ -76,7 +76,7 @@ en las salidas y no hay esquinas interiores en el 3×3 de FireRed), **marca `han
   de los mapas y **colisión desde los mapas reales**. Quedó: ~10.000 metatiles con tipo (terreno, pasto, arena,
   agua, hielo, árboles, rocas, edificios, puertas, escaleras, salientes, carteles, cercas, suelos especiales,
   suelo/paredes/muebles de interior, sin usar), 70 sellos de edificios, paleta con filtros por grupo/tileset/
-  tipo/tag, pestaña Sellos y tipo editable en el panel Tile. Las 9 zonas quedaron con los mismos tags y colisión
+  tipo/tag, pestaña Sellos y tipo editable en la pestaña Propiedades (antes "Tile"; la paleta se llama "Paleta"). Las 9 zonas quedaron con los mismos tags y colisión
   (verificado celda por celda). Pendiente: animaciones propias de los tilesets secundarios (fuentes, etc.) y
   esquinas interiores para caminos y lagos (ya anotado en pulido).
 

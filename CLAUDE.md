@@ -141,7 +141,7 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   Tags/colisión: ajuste manual (`TileRoleSet.overrides`) > rol > catálogo.
 - **Roles de tile** (`data/world/tile_roles.tres`, `TileRoleSet` de `TileRole`): pasto, arena, agua, árbol...
   con sus metatiles, capa, lo que va abajo, autotile 3×3, tags y colisión, + `overrides` por metatile (los
-  escribe el panel "Tile" del editor) y `behavior_hints` (sugerencias por behavior de FireRed). **Es la fuente
+  escribe la pestaña "Propiedades" del editor) y `behavior_hints` (sugerencias por behavior de FireRed). **Es la fuente
   de los tags y la colisión del TileSet**: tocar tags acá (o con el editor), no a mano en `world_tileset.tres`.
 - `tools/build_world.gd`: arma el TileSet (desde los roles) y **genera las zonas** a partir de `REGION` y
   `ZoneGenerator.BIOMES` (`scripts/world/zone_generator.gd`). Sin flags no pisa nada.

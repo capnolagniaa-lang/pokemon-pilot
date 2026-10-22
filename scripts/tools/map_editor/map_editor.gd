@@ -628,7 +628,7 @@ func apply_brush(cells: Array, erase: bool) -> void:
 				return
 			doc.paint_raw(cells, active_layer, brush["source"], brush["coords"])
 		_:
-			toast("Elegí un pincel en la pestaña Pinceles o un tile en Tiles.", true)
+			toast("Elegí un pincel en la pestaña Pinceles o un gráfico en Paleta.", true)
 
 
 func _fill_layer() -> int:
@@ -968,6 +968,11 @@ func _build_ui() -> void:
 	_tabs.offset_top = TOP_H
 	_tabs.offset_bottom = -BOTTOM_H
 	_tabs.focus_mode = Control.FOCUS_NONE
+	# Pestañas más compactas que en el juego: tienen que entrar las 5 en el panel.
+	_tabs.add_theme_font_size_override("font_size", 14)
+	_tabs.add_theme_stylebox_override("tab_selected", UiStyle.box(Color(0.2, 0.17, 0.08, 0.98), UiStyle.ACCENT, 2, 5))
+	_tabs.add_theme_stylebox_override("tab_unselected", UiStyle.box(UiStyle.BG_SOFT, UiStyle.BORDER, 1, 5))
+	_tabs.add_theme_stylebox_override("tab_hovered", UiStyle.box(UiStyle.BG_SOFT, Color(UiStyle.ACCENT, 0.6), 1, 5))
 	root.add_child(_tabs)
 	_brushes = MapBrushPanel.new()
 	_brushes.name = "Pinceles"
@@ -986,14 +991,14 @@ func _build_ui() -> void:
 		if tool not in [Tool.PENCIL, Tool.LINE, Tool.RECT, Tool.FILL]:
 			set_tool(Tool.PENCIL))
 	_palette = MapTilePalette.new()
-	_palette.name = "Tiles"
+	_palette.name = "Paleta"
 	_tabs.add_child(_palette)
 	_palette.setup(roles)
 	_palette.tile_selected.connect(func(src: int, coords: Vector2i, m: int):
 		set_brush({"kind": "raw", "key": "raw", "source": src, "coords": coords, "metatile": m})
 		_props.show_metatile(m))
 	_props = MapTileProps.new()
-	_props.name = "Tile"
+	_props.name = "Propiedades"
 	_tabs.add_child(_props)
 	_props.setup(roles, tileset)
 	_props.applied.connect(func(m: int):

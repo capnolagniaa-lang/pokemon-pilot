@@ -1,6 +1,6 @@
 class_name MapTilePalette
 extends VBoxContainer
-## Pestaña "Tiles" (modo tile crudo): todos los metatiles de FireRed importados, organizados por tipo
+## Pestaña "Paleta" (modo tile crudo): todos los metatiles de FireRed importados, organizados por tipo
 ## (edificios, terreno, agua, escaleras, rocas...; categorías de data/world/tile_catalog.tres), con filtros por
 ## grupo (exteriores / interiores), tileset y tags. Pasando el mouse se ve el metatile, su tileset y sus tags.
 
