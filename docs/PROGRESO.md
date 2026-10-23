@@ -66,7 +66,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **H-3 hecha** (2026-10-23): el rival te frena en la Ruta 22 (Pidgey 9 + su inicial 9).
 - **Capítulo 1 completo (H-4/H-5)** (2026-10-23): objetos fijos del camino, el chico de Plateada que te lleva al
   gimnasio, Brock da la Medalla Roca y la **MT39** (las MT enseñan movimientos de verdad), **Tarjeta de entrenador**
-  con las medallas (Esc → Tarjeta). De Pueblo Paleta a la Medalla Roca se juega entero. **Próximo:** H-6 (bot que
+  con las medallas (Esc → Tarjeta). De Pueblo Paleta a la Medalla Roca se juega entero.
+- **Plan del Torneo de Plateada** (2026-10-23, idea del usuario): `docs/PLAN_TORNEO.md` (dinero, edificio, copas de 3/6
+  Pokémon con tope de nivel para inscribirse, 6 Pociones del torneo, arena épica con agua y rocas, y los entrenadores
+  con memoria como Brock que aprenden de vos). Sin implementar: el usuario está probando el capítulo 1. **Próximo:** H-6 (bot que
   juega el capítulo + revisión) o seguir con E-2 / la Ruta 3 y el Monte Moon, a decidir con el usuario.
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
