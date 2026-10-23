@@ -1,64 +1,41 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/spearow/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_4dso7"]
-[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_kmiai"]
+[ext_resource type="Resource" path="res://data/moves/ataque_aereo.tres" id="2_l8bgp"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vbj0q"]
+[ext_resource type="Resource" path="res://data/kits/spearow/picotazo_spearow.tres" id="3_f41v1"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_r0ncs"]
-[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_yixqo"]
+[ext_resource type="Resource" path="res://data/kits/spearow/grunido_spearow.tres" id="4_k7yuj"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_l8bgp"]
-[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_s23f6"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_2lr62"]
-[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="5_2qedx"]
+[ext_resource type="Resource" path="res://data/kits/spearow/ataque_furia_spearow.tres" id="5_kmiai"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_dyus3"]
-[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="6_rhgp4"]
-[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="7_4gu4c"]
-[ext_resource type="Resource" path="res://data/moves/espejo.tres" id="8_5ofyk"]
-[ext_resource type="Resource" path="res://data/moves/pico_taladro.tres" id="9_num18"]
-[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_2auch"]
+[ext_resource type="Resource" path="res://data/kits/spearow/persecucion_spearow.tres" id="6_yixqo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_yixqo"]
-
-[sub_resource type="Resource" id="Resource_yixqo"]
-script = ExtResource("1_4dso7")
-move = ExtResource("2_kmiai")
 
 [sub_resource type="Resource" id="Resource_s23f6"]
 script = ExtResource("1_4dso7")
-move = ExtResource("3_yixqo")
+move = ExtResource("3_f41v1")
 
 [sub_resource type="Resource" id="Resource_2qedx"]
 script = ExtResource("1_4dso7")
-level = 7
-move = ExtResource("4_s23f6")
+move = ExtResource("4_k7yuj")
 
 [sub_resource type="Resource" id="Resource_rhgp4"]
 script = ExtResource("1_4dso7")
-level = 13
-move = ExtResource("5_2qedx")
+level = 3
+move = ExtResource("5_kmiai")
 
 [sub_resource type="Resource" id="Resource_4gu4c"]
 script = ExtResource("1_4dso7")
-level = 19
-move = ExtResource("6_rhgp4")
+level = 5
+move = ExtResource("6_yixqo")
 
 [sub_resource type="Resource" id="Resource_5ofyk"]
 script = ExtResource("1_4dso7")
 level = 25
-move = ExtResource("7_4gu4c")
-
-[sub_resource type="Resource" id="Resource_num18"]
-script = ExtResource("1_4dso7")
-level = 31
-move = ExtResource("8_5ofyk")
-
-[sub_resource type="Resource" id="Resource_2auch"]
-script = ExtResource("1_4dso7")
-level = 37
-move = ExtResource("9_num18")
-
-[sub_resource type="Resource" id="Resource_r024i"]
-script = ExtResource("1_4dso7")
-level = 43
-move = ExtResource("10_2auch")
+move = ExtResource("2_l8bgp")
 
 [resource]
 script = ExtResource("3_r0ncs")
@@ -66,7 +43,8 @@ id = "spearow"
 display_name = "Spearow"
 dex = 21
 types = Array[ExtResource("4_l8bgp")]([ExtResource("5_2lr62"), ExtResource("6_dyus3")])
-learnset = Array[ExtResource("1_4dso7")]([SubResource("Resource_yixqo"), SubResource("Resource_s23f6"), SubResource("Resource_2qedx"), SubResource("Resource_rhgp4"), SubResource("Resource_4gu4c"), SubResource("Resource_5ofyk"), SubResource("Resource_num18"), SubResource("Resource_2auch"), SubResource("Resource_r024i")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_4dso7")]([SubResource("Resource_s23f6"), SubResource("Resource_2qedx"), SubResource("Resource_rhgp4"), SubResource("Resource_4gu4c"), SubResource("Resource_5ofyk")])
 temperament = ExtResource("13_yixqo")
 genus = "Pokémon Pajarito"
 pokedex_entry = "Spearow pía con tanta fuerza que se le puede oír a 1 km de distancia. Si al agudo chillido le sigue una especie de eco, estaremos oyendo la respuesta de otros Spearow que contestan ante el aviso de peligro."

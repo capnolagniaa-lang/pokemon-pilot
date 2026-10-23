@@ -19,7 +19,7 @@ func run() -> void:
 		var sp: SpeciesData = DB.species[id]
 		r["%s: kit %s con 4 ataques" % [sp.display_name, SPECIES[id]]] = sp.kit != null and sp.kit.archetype == SPECIES[id] \
 			and sp.kit.moves.size() == 4
-	r["16 especies con kit"] = DB.species.values().filter(func(s): return s.kit != null).size() == 16
+	r["Al menos 16 especies con kit"] = DB.species.values().filter(func(s): return s.kit != null).size() >= 16
 
 	# Cada kit usa sus 4 ataques contra un muñeco sin errores.
 	var used := {}

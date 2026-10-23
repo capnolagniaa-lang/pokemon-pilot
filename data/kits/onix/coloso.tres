@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/colossus_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "coloso"
+display_name = "Coloso"
+description = "Jefe. Enorme: no lo empujan ni lo tambalean y recibe 25% menos de daño físico. Aplasta lo atrapado: +30% contra lo ralentizado. A mitad de vida ruge (empuja y deja Expuesto) y entra en Furia de Roca hasta el final."
+color = Color(0.75, 0.65, 0.55, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"physical_mult": 0.75, "stagger_bonus": 1.3, "knockback_mult": 0.0, "scale": 1.4, "phase_at": 0.5, "phase_status": "furia_roca", "roar_move": "res://data/kits/onix/rugido_onix.tres"}

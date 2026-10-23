@@ -94,6 +94,10 @@ func _ready() -> void:
 		signature = kit.signature.mechanic_script.new()
 		add_child(signature)
 		signature.setup(self, kit.signature)
+		var s := signature.body_scale()
+		if s != 1.0:  # jefes (Onix): más grandes, también la hurtbox
+			sprite.scale = Vector2(s, s)
+			hurtbox.scale = Vector2(s, s)
 	hurtbox.set_team(team)
 	collision_layer = BODY_LAYER_ALLY if team == Team.ALLY else BODY_LAYER_WILD
 	dash_hitbox.monitoring = false
@@ -274,9 +278,11 @@ func release_move(msg: Dictionary) -> void:
 		MoveData.Kind.ZONE:
 			var at := zone_point(m, msg.get("point", Vector2.INF), aim)
 			if m.zone_strike:
-				var sk := SkyStrike.new()
-				get_parent().add_child(sk)
-				sk.strike(hit, at)
+				for k in maxi(1, m.strike_count):
+					var sk := SkyStrike.new()
+					get_parent().add_child(sk)
+					var off := Vector2.ZERO if k == 0 else Vector2.from_angle(randf() * TAU) * randf_range(0.5, 1.0) * m.strike_spread
+					sk.strike(hit, at + off, k * 0.15, self if m.strike_burrow else null)
 			elif m.zone_traps:
 				var z := ZoneTrap.new()
 				get_parent().add_child(z)
@@ -397,8 +403,9 @@ func _on_hit(hit: HitInfo) -> void:
 		statuses.on_damaged()
 		sprite.flash()
 		sprite.play_once("Hurt", 0.25)
+	var push := statuses.knockback_mult() * (signature.knockback_taken_mult() if signature != null else 1.0)
 	if hit.knockback != 0.0:
-		knockback = (global_position - hit.origin).normalized() * hit.knockback * statuses.knockback_mult()
+		knockback = (global_position - hit.origin).normalized() * hit.knockback * push
 	damage_received.emit(dealt, hit)
 	if attacker:
 		if hit.move.drain > 0.0 and dealt > 0.0:
@@ -427,7 +434,7 @@ func _on_hit(hit: HitInfo) -> void:
 				attacker.status_inflicted.emit(self, pair[0])
 	for it in interactions:
 		_apply_interaction(it)
-	if (hit.knockback >= STAGGER_KNOCKBACK or state in ["cast", "channel"]) and machine.current_name() != "stunned":
+	if (hit.knockback * push >= STAGGER_KNOCKBACK or state in ["cast", "channel"]) and machine.current_name() != "stunned":
 		stun(0.25)
 	if team == Team.WILD and not is_instance_valid(target) and attacker:
 		# Si le pegan, pelea (también el tímido que huía tranquilo o el curioso que miraba).

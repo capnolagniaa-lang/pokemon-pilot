@@ -20,6 +20,8 @@ var _timers: Dictionary = {}
 var _tables: Dictionary = {}
 ## zone_id -> {lugar: [celdas]}
 var _cells: Dictionary = {}
+## zone_id -> celdas donde puede aparecer algo (para max_alive)
+var _spawn_cells: Dictionary = {}
 var _rng := RandomNumberGenerator.new()
 
 @onready var world: Node = get_parent()
@@ -45,14 +47,18 @@ func _process(delta: float) -> void:
 				_spawn_in(id)
 
 
+## Salvajes vivos a la vez: en zonas grandes más (EncounterTable.alive_for, según las celdas donde pueden aparecer).
 func max_alive(zone_id: String) -> int:
 	var t: EncounterTable = _tables.get(zone_id)
-	return 3 if GameState.wild_test_pool or t == null else t.max_alive
+	return 3 if GameState.wild_test_pool or t == null else t.alive_for(_spawn_cells.get(zone_id, 0))
 
 
+## Cada cuánto aparece otro: más seguido cuantos más tiene que reponer (así una zona grande se llena igual de rápido).
 func respawn_time(zone_id: String) -> float:
 	var t: EncounterTable = _tables.get(zone_id)
-	return 25.0 if GameState.wild_test_pool or t == null else t.respawn_time
+	if GameState.wild_test_pool or t == null:
+		return 25.0
+	return t.respawn_time * t.max_alive / float(maxi(1, max_alive(zone_id)))
 
 
 func _on_zone_loaded(zone: ZoneEntry, _node: Node) -> void:
@@ -60,6 +66,7 @@ func _on_zone_loaded(zone: ZoneEntry, _node: Node) -> void:
 	_timers[zone.id] = 0.0
 	_tables[zone.id] = EncounterTable.for_zone(zone)
 	_cells.erase(zone.id)
+	_spawn_cells[zone.id] = _count_spawn_cells(zone.id, _node)
 	if GameState.wilds_enabled:
 		for i in max_alive(zone.id):
 			_spawn_in(zone.id)
@@ -72,6 +79,18 @@ func _on_zone_unloaded(zone: ZoneEntry) -> void:
 	_alive.erase(zone.id)
 	_tables.erase(zone.id)
 	_cells.erase(zone.id)
+	_spawn_cells.erase(zone.id)
+
+
+func _count_spawn_cells(zone_id: String, zone: Node) -> int:
+	var t: EncounterTable = _tables.get(zone_id)
+	if t == null or not zone is Zone:
+		return 0
+	var n := 0
+	var by := cells_for(zone_id, zone, t.wheres())
+	for w in t.wheres():
+		n += by[w].size()
+	return n
 
 
 ## Celdas de la zona con cada lugar ("dónde") de su tabla.

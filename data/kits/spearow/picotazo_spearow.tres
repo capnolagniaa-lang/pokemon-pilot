@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "picotazo_spearow"
+display_name = "Picotazo"
+element = ExtResource("3_x")
+kind = 4
+category = 0
+power = 35.0
+cooldown = 0.8
+combo_steps = 3
+combo_window = 0.55
+combo_step_cooldown = 0.2
+knockback = 40.0
+final_knockback = 170.0
+melee_range = 13.0
+swing_radius = 10.0

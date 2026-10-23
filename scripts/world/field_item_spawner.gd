@@ -1,13 +1,17 @@
 class_name FieldItemSpawner
 extends Node
 ## Objetos tirados en el mapa y botín de los salvajes (docs/PLAN_CAPTURA_MOCHILA.md):
-##  · cada zona tiene `PER_ZONE` lugares fijos (elegidos al azar pero siempre los mismos para esa zona, en celdas
-##    caminables sin agua) con un objeto de data/items/loot/campo.tres. Al recogerlo se anota en
+##  · solo las rutas (zonas al aire libre que no son ciudad ni interior: rutas y Bosque Verde) tienen objetos:
+##    entre `PER_ROUTE_MIN` y `PER_ROUTE_MAX` lugares fijos (elegidos al azar pero siempre los mismos para esa
+##    zona, en celdas caminables sin agua) con un objeto de data/items/loot/campo.tres. Al recogerlo se anota en
 ##    GameState.field_picked y vuelve a aparecer después de `RESPAWN_TIME` segundos de juego;
 ##  · un salvaje debilitado suelta, con la probabilidad de data/items/loot/salvajes.tres, un objeto que dura
 ##    `DROP_LIFETIME` segundos en el suelo.
 
-const PER_ZONE := 3
+const PER_ROUTE_MIN := 3
+const PER_ROUTE_MAX := 4
+## Biomas sin objetos tirados (además de los interiores).
+const NO_ITEMS_BIOMES := ["ciudad"]
 const RESPAWN_TIME := 900.0
 const DROP_LIFETIME := 60.0
 
@@ -37,12 +41,15 @@ func _entry(id: String) -> ZoneEntry:
 func _populate(entry: ZoneEntry, zone: Node) -> void:
 	if entry == null or not is_instance_valid(zone) or field_table == null or not is_inside_tree():
 		return
+	if not has_items(entry):
+		return
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(entry.id + ":objetos")
+	var count := rng.randi_range(PER_ROUTE_MIN, PER_ROUTE_MAX)
 	var cells: Array[Vector2i] = zone.ground.get_used_cells()
 	var placed := 0
 	var tries := 0
-	while placed < PER_ZONE and tries < 200 and not cells.is_empty():
+	while placed < count and tries < 200 and not cells.is_empty():
 		tries += 1
 		var cell: Vector2i = cells[rng.randi_range(0, cells.size() - 1)]
 		var item := field_table.pick(rng)  # se elige siempre, así el lugar y el objeto no cambian
@@ -60,6 +67,11 @@ func _populate(entry: ZoneEntry, zone: Node) -> void:
 		f.position = zone.to_global(zone.ground.map_to_local(cell))
 		world.entities.add_child(f)
 		zone.tree_exiting.connect(f.queue_free)
+
+
+## Si en la zona aparecen objetos tirados (solo en las rutas).
+static func has_items(entry: ZoneEntry) -> bool:
+	return not entry.interior and not entry.biome in NO_ITEMS_BIOMES
 
 
 func _exists(key: String) -> bool:

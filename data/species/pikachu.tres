@@ -17,25 +17,25 @@
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="8_maw5u"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="10_fc0l2"]
 
-[sub_resource type="Resource" id="Resource_pljsd"]
+[sub_resource type="Resource" id="Resource_scqad"]
 script = ExtResource("1_fee7b")
 move = ExtResource("3_scqad")
 
-[sub_resource type="Resource" id="Resource_xrwbh"]
+[sub_resource type="Resource" id="Resource_xky6c"]
 script = ExtResource("1_fee7b")
 move = ExtResource("4_xky6c")
 
-[sub_resource type="Resource" id="Resource_w3axo"]
+[sub_resource type="Resource" id="Resource_ywgt7"]
 script = ExtResource("1_fee7b")
 level = 3
 move = ExtResource("5_ywgt7")
 
-[sub_resource type="Resource" id="Resource_v2s5t"]
+[sub_resource type="Resource" id="Resource_or6kf"]
 script = ExtResource("1_fee7b")
 level = 5
 move = ExtResource("6_or6kf")
 
-[sub_resource type="Resource" id="Resource_33gp0"]
+[sub_resource type="Resource" id="Resource_pljsd"]
 script = ExtResource("1_fee7b")
 level = 33
 move = ExtResource("7_gsu1e")
@@ -48,7 +48,7 @@ dex = 25
 types = Array[ExtResource("7_xqbbk")]([ExtResource("8_maw5u")])
 moves = Array[ExtResource("1_i6vw7")]([ExtResource("2_qs2rp"), ExtResource("3_0snj4"), ExtResource("4_fee7b"), ExtResource("5_fc0l2")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_fee7b")]([SubResource("Resource_pljsd"), SubResource("Resource_xrwbh"), SubResource("Resource_w3axo"), SubResource("Resource_v2s5t"), SubResource("Resource_33gp0")])
+learnset = Array[ExtResource("1_fee7b")]([SubResource("Resource_scqad"), SubResource("Resource_xky6c"), SubResource("Resource_ywgt7"), SubResource("Resource_or6kf"), SubResource("Resource_pljsd")])
 temperament = ExtResource("10_fc0l2")
 genus = "Pokémon Ratón"
 pokedex_entry = "Cada vez que un Pikachu se encuentra con algo nuevo, le lanza una descarga eléctrica. Cuando se ve alguna baya chamuscada, es muy probable que sea obra de un Pikachu, ya que a veces no controlan la intensidad de la descarga."

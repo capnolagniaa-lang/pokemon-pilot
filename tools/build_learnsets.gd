@@ -26,6 +26,11 @@ const EXTRAS := {
 	# v3 (2026-10-23): kits nuevos de Paras y Geodude, extras de su learnset de FRLG.
 	"paras": [[31, "cuchillada"], [43, "gigadrenado"]],
 	"geodude": [[16, "magnitud"], [36, "terremoto"]],
+	# v4 (2026-10-23): kits de Kanto hasta Ciudad Plateada. Caterpie/Weedle/Metapod/Kakuna no aprenden más.
+	"spearow": [[25, "ataque_aereo"], [31, "ataque_furia"]],
+	"mankey": [[16, "golpes_furia"], [26, "golpe_karate"]],
+	"sandshrew": [[17, "cuchillada"], [30, "rapidez"]],
+	"onix": [[23, "furia"], [40, "excavar"]],
 }
 const BASE_LEVELS := [1, 1, 3, 5]
 

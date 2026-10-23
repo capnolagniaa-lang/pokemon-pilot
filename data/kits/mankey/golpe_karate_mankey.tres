@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "golpe_karate_mankey"
+display_name = "Golpe Kárate"
+element = ExtResource("3_x")
+kind = 7
+category = 0
+power = 50.0
+cooldown = 5.0
+knockback = 60.0
+lunge_range = 70.0
+lunge_speed = 420.0
+followup_delay = 0.18
+followup_power_mult = 1.2
+followup_knockback = 260.0
+recovery = 0.15

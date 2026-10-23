@@ -116,6 +116,16 @@ func damage_taken_mult(_hit: HitInfo) -> float:
 	return 1.0
 
 
+## Multiplicador del empuje que recibe (0 = no lo mueven ni lo tambalean, como a Onix).
+func knockback_taken_mult() -> float:
+	return 1.0
+
+
+## Escala del cuerpo (sprite y hurtbox): los jefes son más grandes.
+func body_scale() -> float:
+	return 1.0
+
+
 ## Multiplicador de la recarga del esquive (ej. Poliwag sobre lo mojado esquiva más seguido).
 func dodge_cooldown_mult() -> float:
 	return 1.0

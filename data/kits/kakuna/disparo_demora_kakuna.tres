@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="4_x"]
+[ext_resource type="Resource" path="res://data/status/seda.tres" id="5_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "disparo_demora_kakuna"
+display_name = "Disparo Demora"
+element = ExtResource("3_x")
+kind = 0
+category = 2
+power = 0.0
+cooldown = 2.5
+knockback = 0.0
+speed = 230.0
+size = 5.0
+lifetime = 0.9
+recovery = 0.1
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x"), ExtResource("5_x")])

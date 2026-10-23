@@ -20,12 +20,15 @@
 4. **Áreas pintadas** (`EncounterArea`, se pintan en el editor de mapas): un grupo de celdas con ajustes que
    **pisan** la fila de la misma especie y "dónde", o **suman** filas nuevas (ej. "en el claro del bosque aparece
    Pikachu con más frecuencia").
-5. El nivel sale al azar entre `min_level` y `max_level` de la fila. No aparece a menos de 120 px del
+5. **Cuántos a la vez**: `max_alive` es el mínimo; en zonas grandes se suma uno cada `cells_per_wild` (150) celdas
+   donde pueden aparecer, hasta `max_alive_cap` (16), y reponen más rápido (`respawn_time` × mínimo / cantidad).
+   Ruta 1 (~1100 celdas de pasto alto) ≈ 10 a la vez; Bosque Verde (~5600) = 16.
+6. El nivel sale al azar entre `min_level` y `max_level` de la fila. No aparece a menos de 120 px del
    entrenador (para que no salga encima tuyo).
-6. Los que aparecen en el agua **nadan** (`Creature.swims`: no chocan con el agua).
-7. Cada salvaje nace con **IVs al azar** (0-31 por stat; `CreatureInstance.roll_ivs`): lo que atrapás conserva
+7. Los que aparecen en el agua **nadan** (`Creature.swims`: no chocan con el agua).
+8. Cada salvaje nace con **IVs al azar** (0-31 por stat; `CreatureInstance.roll_ivs`): lo que atrapás conserva
    los suyos. Su **temperamento** sale de la especie (ver 3).
-8. Al descargar la zona, los salvajes que no están peleando se van.
+9. Al descargar la zona, los salvajes que no están peleando se van.
 
 **Opción "Salvajes de prueba"** (Esc → Opciones, se guarda en la partida): ignora las tablas y pone solo Pidgey,
 Bellsprout, Rattata y Vulpix en el pasto alto de todo el mapa, al nivel de tu Pokémon (−2 a +1), 3 por zona.
@@ -99,12 +102,13 @@ Cambiar cualquier temperamento de una especie: `OVERRIDES` en `tools/assign_temp
 Un kit (`data/kits/<especie>/kit.tres`, ver `docs/PLAN_IDENTIDAD_COMBATE.md`) define el **estilo** (arquetipo),
 el **rango preferido** (lo usa la IA), la **mecánica de firma** opcional y los **4 ataques** hechos a mano.
 
-**Con kit hoy (16)**: Charmander (bruiser, Calor) · Bulbasaur (control) · Bellsprout (control) · Pidgey (hostigador,
+**Con kit hoy (24)**: los 8 de Kanto hasta Plateada desde el 2026-10-23 (v4: Caterpie, Weedle, Metapod, Kakuna,
+Spearow, Mankey, Sandshrew y Onix como jefe; ver el plan de identidad, "v4") +  Charmander (bruiser, Calor) · Bulbasaur (control) · Bellsprout (control) · Pidgey (hostigador,
 Vuelo) · Rattata (asesino, Instinto) · Vulpix (desgaste, Rescoldo) y, **en prueba desde el 2026-10-23**, Squirtle
 (tanque, Presión/parry) · Pikachu (velocista, Estática) · Oddish (desgaste, Esporas) · Paras (control, esporas
 inflamables) · Psyduck (caótico, Jaqueca) · Poliwag (velocista, Deslizamiento) · Growlithe (perseguidor, Rastreo)
 · Eevee (adaptativo, Adaptación) · Seel (tanque, Escarcha) · Geodude (tanque, Impulso). Detalle de cada uno:
-`docs/PLAN_IDENTIDAD_COMBATE.md`, sección "v3". El resto (370) pelea con sus movimientos oficiales de forma
+`docs/PLAN_IDENTIDAD_COMBATE.md`, sección "v3". El resto (362) pelea con sus movimientos oficiales de forma
 automática.
 
 ### Llegar a ~16 kits para el modo historia (aprobado por el usuario e implementado el 2026-10-23)

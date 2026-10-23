@@ -18,30 +18,30 @@
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_61kdy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_vhb54"]
 
-[sub_resource type="Resource" id="Resource_oatuh"]
+[sub_resource type="Resource" id="Resource_jv0xw"]
 script = ExtResource("1_fjdas")
 move = ExtResource("3_jv0xw")
 
-[sub_resource type="Resource" id="Resource_r6xf1"]
+[sub_resource type="Resource" id="Resource_kweak"]
 script = ExtResource("1_fjdas")
 move = ExtResource("4_kweak")
 
-[sub_resource type="Resource" id="Resource_0440o"]
+[sub_resource type="Resource" id="Resource_trgx0"]
 script = ExtResource("1_fjdas")
 level = 3
 move = ExtResource("5_trgx0")
 
-[sub_resource type="Resource" id="Resource_jv6oc"]
+[sub_resource type="Resource" id="Resource_bq8ku"]
 script = ExtResource("1_fjdas")
 level = 5
 move = ExtResource("6_bq8ku")
 
-[sub_resource type="Resource" id="Resource_ra8fg"]
+[sub_resource type="Resource" id="Resource_oatuh"]
 script = ExtResource("1_fjdas")
 level = 18
 move = ExtResource("6_vhb54")
 
-[sub_resource type="Resource" id="Resource_771u7"]
+[sub_resource type="Resource" id="Resource_r6xf1"]
 script = ExtResource("1_fjdas")
 level = 47
 move = ExtResource("7_mvwui")
@@ -54,7 +54,7 @@ dex = 7
 types = Array[ExtResource("7_12vpq")]([ExtResource("8_61kdy")])
 moves = Array[ExtResource("1_bk64l")]([ExtResource("2_ywyvp"), ExtResource("3_5ulau"), ExtResource("4_fjdas"), ExtResource("5_vhb54")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_fjdas")]([SubResource("Resource_oatuh"), SubResource("Resource_r6xf1"), SubResource("Resource_0440o"), SubResource("Resource_jv6oc"), SubResource("Resource_ra8fg"), SubResource("Resource_771u7")])
+learnset = Array[ExtResource("1_fjdas")]([SubResource("Resource_jv0xw"), SubResource("Resource_kweak"), SubResource("Resource_trgx0"), SubResource("Resource_bq8ku"), SubResource("Resource_oatuh"), SubResource("Resource_r6xf1")])
 temperament = ExtResource("10_vhb54")
 genus = "Pokémon Tortuguita"
 pokedex_entry = "El caparazón de Squirtle no le sirve de protección únicamente. Su forma redondeada y las hendiduras que tiene le ayudan a deslizarse en el agua y le permiten nadar a gran velocidad."

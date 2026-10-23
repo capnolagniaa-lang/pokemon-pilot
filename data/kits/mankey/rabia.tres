@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/rage_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "rabia"
+display_name = "Rabia"
+description = "Sube al recibir golpes (y un poco al pegar). Llena, Mankey se enfurece 5 s: pega 30% más y corre más rápido."
+color = Color(1.0, 0.35, 0.2, 1)
+max_value = 100.0
+gains = {"damage_received": 20.0, "hit_dealt": 5.0}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"self_status": "enfurecido"}

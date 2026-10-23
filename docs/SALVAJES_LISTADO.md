@@ -25,8 +25,8 @@ Tabla: `data/world/encounters/ruta22.tres` (propia de la zona) · máx. 3 vivos 
 | Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
 |---|---|---|---|---|---|---|
 | Rattata | Pasto alto | 45 | 45% | 2-5 | **kit: asesino** | Agresivo |
-| Mankey | Pasto alto | 45 | 45% | 2-5 | sin kit | Agresivo |
-| Spearow | Pasto alto | 10 | 10% | 3-5 | sin kit | Agresivo |
+| Mankey | Pasto alto | 45 | 45% | 2-5 | **kit: bruiser** | Agresivo |
+| Spearow | Pasto alto | 10 | 10% | 3-5 | **kit: asesino** | Agresivo |
 
 ### Ruta 2 (`ruta2`, bioma `pradera`)
 Tabla: `data/world/encounters/ruta2.tres` (propia de la zona) · máx. 3 vivos · reaparecen cada 25 s
@@ -35,8 +35,8 @@ Tabla: `data/world/encounters/ruta2.tres` (propia de la zona) · máx. 3 vivos �
 |---|---|---|---|---|---|---|
 | Rattata | Pasto alto | 45 | 45% | 2-5 | **kit: asesino** | Agresivo |
 | Pidgey | Pasto alto | 45 | 45% | 2-5 | **kit: hostigador** | Tímido |
-| Caterpie | Pasto alto | 5 | 5% | 4-5 | sin kit | Tímido |
-| Weedle | Pasto alto | 5 | 5% | 4-5 | sin kit | Tímido |
+| Caterpie | Pasto alto | 5 | 5% | 4-5 | **kit: control** | Tímido |
+| Weedle | Pasto alto | 5 | 5% | 4-5 | **kit: asesino** | Tímido |
 
 ### Ciudad Plateada (`ciudad_plateada`, bioma `ciudad`)
 Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
@@ -46,10 +46,10 @@ Tabla: `data/world/encounters/bosque_verde.tres` (propia de la zona) · máx. 3 
 
 | Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
 |---|---|---|---|---|---|---|
-| Caterpie | Pasto alto | 40 | 40% | 3-5 | sin kit | Tímido |
-| Weedle | Pasto alto | 40 | 40% | 3-5 | sin kit | Tímido |
-| Kakuna | Pasto alto | 10 | 10% | 4-6 | sin kit | Territorial |
-| Metapod | Pasto alto | 5 | 5% | 5-5 | sin kit | Tímido |
+| Caterpie | Pasto alto | 40 | 40% | 3-5 | **kit: control** | Tímido |
+| Weedle | Pasto alto | 40 | 40% | 3-5 | **kit: asesino** | Tímido |
+| Kakuna | Pasto alto | 10 | 10% | 4-6 | **kit: tanque** | Territorial |
+| Metapod | Pasto alto | 5 | 5% | 5-5 | **kit: tanque** | Tímido |
 | Pikachu | Pasto alto | 5 | 5% | 3-5 | **kit: velocista** | Curioso |
 
 ### Tu casa (`casa_jugador`, bioma `interior`)
@@ -123,25 +123,29 @@ En todo el mapa, en el pasto alto, al nivel de tu Pokémon (−2 a +1): Pidgey, 
 Movimientos "con los que aparece" = los 4 primeros que aprendió a ese nivel, en el orden del learnset (para los
 que tienen kit, son los 4 del kit). Cambiarlos: ver `docs/SALVAJES_Y_MOVIMIENTOS.md`.
 
-### N.º 010 Caterpie — sin kit
+### N.º 010 Caterpie — **kit: control**
 - Tipos: Bicho · Temperamento: Tímido · Aparece en: Ruta 2, Bosque Verde (Nv. 3-5)
-- Aparece (Nv. 3) con: Disparo Demora (Área), Placaje (Embestida)
-- Learnset: Nv.1 Disparo Demora, Nv.1 Placaje
+- Kit: `data/kits/caterpie/kit.tres` · estilo **control** · rango preferido 80 px · mecánica de firma: Seda
+- Aparece (Nv. 3) con: Placaje (Golpe), Disparo Demora (Disparo), Telaraña (Zona)
+- Learnset: Nv.1 Placaje, Nv.1 Disparo Demora, Nv.3 Telaraña, Nv.5 Fortaleza
 
-### N.º 011 Metapod — sin kit
+### N.º 011 Metapod — **kit: tanque**
 - Tipos: Bicho · Temperamento: Tímido · Aparece en: Bosque Verde (Nv. 5-5)
-- Aparece (Nv. 5) con: Fortaleza (Mejora propia)
-- Learnset: Nv.1 Fortaleza
+- Kit: `data/kits/metapod/kit.tres` · estilo **tanque** · rango preferido 30 px · mecánica de firma: Capullo
+- Aparece (Nv. 5) con: Placaje (Golpe), Disparo Demora (Disparo), Fortaleza (Mejora propia), Derribo (Embestida)
+- Learnset: Nv.1 Placaje, Nv.1 Disparo Demora, Nv.3 Fortaleza, Nv.5 Derribo
 
-### N.º 013 Weedle — sin kit
+### N.º 013 Weedle — **kit: asesino**
 - Tipos: Bicho / Veneno · Temperamento: Tímido · Aparece en: Ruta 2, Bosque Verde (Nv. 3-5)
-- Aparece (Nv. 3) con: Picotazo Veneno (Golpe), Disparo Demora (Área)
-- Learnset: Nv.1 Picotazo Veneno, Nv.1 Disparo Demora
+- Kit: `data/kits/weedle/kit.tres` · estilo **asesino** · rango preferido 60 px · mecánica de firma: Aguijón Venenoso
+- Aparece (Nv. 3) con: Picotazo Veneno (Disparo), Disparo Demora (Disparo), Doble Ataque (Embestida+combo)
+- Learnset: Nv.1 Picotazo Veneno, Nv.1 Disparo Demora, Nv.3 Doble Ataque, Nv.5 Pin Misil
 
-### N.º 014 Kakuna — sin kit
+### N.º 014 Kakuna — **kit: tanque**
 - Tipos: Bicho / Veneno · Temperamento: Territorial · Aparece en: Bosque Verde (Nv. 4-6)
-- Aparece (Nv. 4) con: Fortaleza (Mejora propia)
-- Learnset: Nv.1 Fortaleza
+- Kit: `data/kits/kakuna/kit.tres` · estilo **tanque** · rango preferido 30 px · mecánica de firma: Capullo Venenoso
+- Aparece (Nv. 4) con: Picotazo Veneno (Disparo), Disparo Demora (Disparo), Fortaleza (Mejora propia)
+- Learnset: Nv.1 Picotazo Veneno, Nv.1 Disparo Demora, Nv.3 Fortaleza, Nv.5 Derribo
 
 ### N.º 016 Pidgey — **kit: hostigador**
 - Tipos: Normal / Volador · Temperamento: Tímido · Aparece en: Ruta 1, Ruta 2, "Salvajes de prueba" (Nv. 2-5)
@@ -155,10 +159,11 @@ que tienen kit, son los 4 del kit). Cambiarlos: ver `docs/SALVAJES_Y_MOVIMIENTOS
 - Aparece (Nv. 2) con: Mordisco (Golpe), Ataque Rápido (Embestida)
 - Learnset: Nv.1 Mordisco, Nv.1 Ataque Rápido, Nv.3 Foco Energía, Nv.5 Hipercolmillo, Nv.27 Persecución, Nv.41 Derribo
 
-### N.º 021 Spearow — sin kit
+### N.º 021 Spearow — **kit: asesino**
 - Tipos: Normal / Volador · Temperamento: Agresivo · Aparece en: Ruta 22 (Nv. 3-5)
-- Aparece (Nv. 3) con: Gruñido (Área), Picotazo (Golpe)
-- Learnset: Nv.1 Gruñido, Nv.1 Picotazo, Nv.7 Malicioso, Nv.13 Ataque Furia, Nv.19 Persecución, Nv.25 Golpe Aéreo, Nv.31 Espejo, Nv.37 Pico Taladro, Nv.43 Agilidad
+- Kit: `data/kits/spearow/kit.tres` · estilo **asesino** · rango preferido 30 px · mecánica de firma: Furia
+- Aparece (Nv. 3) con: Picotazo (Golpe), Gruñido (Área), Ataque Furia (Golpe)
+- Learnset: Nv.1 Picotazo, Nv.1 Gruñido, Nv.3 Ataque Furia, Nv.5 Persecución, Nv.25 Ataque Aéreo
 
 ### N.º 025 Pikachu — **kit: velocista**
 - Tipos: Eléctrico · Temperamento: Curioso · Aparece en: Bosque Verde (Nv. 3-5)
@@ -172,10 +177,11 @@ que tienen kit, son los 4 del kit). Cambiarlos: ver `docs/SALVAJES_Y_MOVIMIENTOS
 - Aparece (Nv. 5) con: Ascuas (Disparo), Fuego Fatuo (Disparo), Rayo Confuso (Disparo), Lanzallamas (Canalizado)
 - Learnset: Nv.1 Ascuas, Nv.1 Fuego Fatuo, Nv.3 Rayo Confuso, Nv.5 Lanzallamas, Nv.13 Ataque Rápido, Nv.41 Giro Fuego
 
-### N.º 056 Mankey — sin kit
+### N.º 056 Mankey — **kit: bruiser**
 - Tipos: Lucha · Temperamento: Agresivo · Aparece en: Ruta 22 (Nv. 2-5)
-- Aparece (Nv. 2) con: Malicioso (Área), Arañazo (Embestida)
-- Learnset: Nv.1 Malicioso, Nv.1 Arañazo, Nv.6 Patada Baja, Nv.11 Golpe Kárate, Nv.16 Golpes Furia, Nv.21 Foco Energía, Nv.26 Sísmico, Nv.31 Tajo Cruzado, Nv.36 Fanfarronear, Nv.41 Chirrido, Nv.46 Saña
+- Kit: `data/kits/mankey/kit.tres` · estilo **bruiser** · rango preferido 30 px · mecánica de firma: Rabia
+- Aparece (Nv. 2) con: Arañazo (Golpe), Malicioso (Área)
+- Learnset: Nv.1 Arañazo, Nv.1 Malicioso, Nv.3 Patada Baja, Nv.5 Golpe Kárate, Nv.16 Golpes Furia
 
 ### N.º 069 Bellsprout — **kit: control**
 - Tipos: Planta / Veneno · Temperamento: Territorial · Aparece en: "Salvajes de prueba" (Nv. 5-5)

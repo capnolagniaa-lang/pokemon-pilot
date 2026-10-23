@@ -112,6 +112,31 @@ golpeado), `MoveData.zone_flammable` (esporas que arden), ganchos `SignatureMech
 
 - (Pidgey, Rattata y Vulpix: **implementados**, ver arriba.)
 
+## v4 — kits de Kanto hasta Ciudad Plateada (✅ implementados, en prueba, 2026-10-23)
+Pedido del usuario: kits para lo que aparece en los mapas de FireRed (Pueblo Paleta → Ciudad Plateada) según sus
+movimientos, y **Onix como JEFE** (el de Brock: "bastante poderoso, con mucho sentido, referencia el anime, buenas
+animaciones, que se sienta como un BOSS"). Ya son **24 Pokémon con kit**.
+- Datos generados por `tools/build_kits_v4.py` (reusa el formato del v3; **correrlo de nuevo pisa los ajustes**).
+  También engancha el kit en la especie. Después `tools/build_learnsets.gd` (extras de Spearow, Mankey,
+  Sandshrew y Onix en `EXTRAS`). Estados nuevos: seda, fortaleza, intimidado, expuesto, enfurecido, furia_roca.
+- Autotest `--autotest-kits-v4` (35 chequeos); vitrina del jefe `--showcase-onix`.
+
+| Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Mecánica de firma |
+|---|---|---|---|---|---|---|
+| Caterpie | Control | Placaje | Disparo Demora (ralentiza + seda) | Telaraña (parche que ralentiza + seda) | Fortaleza (recibe ×0,6 3 s) | **Seda**: 3 de seda → el rival queda enredado (enraizado) |
+| Weedle | Asesino | Picotazo Veneno (rápido, 30% veneno) | Disparo Demora | Doble Ataque (se lanza y pega 2 veces) | Pin Misil (abanico de 5) | **Aguijón Venenoso**: +10% de daño por stack de veneno del rival (hasta +50%) |
+| Metapod | Tanque | Placaje | Disparo Demora | Fortaleza | Derribo (embestida fuerte) | **Capullo**: quieto se endurece (hasta la mitad de daño); moverse lo ablanda |
+| Kakuna | Tanque | Picotazo Veneno | Disparo Demora | Fortaleza | Derribo | **Capullo Venenoso**: como Metapod y, endurecido, envenena al que le pega cuerpo a cuerpo (50%) |
+| Spearow | Asesino | Picotazo (combo 3) | Gruñido (Intimidado: −20% daño físico) | Ataque Furia (combo de 5 rápido) | Persecución (se lanza lejos, 2 golpes) | **Furia**: golpes seguidos al mismo rival +10% cada uno (hasta 5); se pierde a los 2 s o al cambiar de rival |
+| Mankey | Bruiser | Arañazo (combo 3) | Malicioso (Expuesto: recibe +25%) | Patada Baja (ralentiza) | Golpe Kárate (se lanza, 2º golpe fuerte) | **Rabia**: recibir golpes la llena; llena → Enfurecido 5 s (+30% daño, +15% velocidad) |
+| Sandshrew | Control | Arañazo (combo 2) | Ataque Arena (cono que desorienta) | Picotazo Veneno | Rizo Defensa | **Velo Arena**: al esquivar deja una nube de arena que desorienta (cada 4 s) |
+| **Onix (jefe)** | Tanque | **Atadura**: látigo largo que atrapa, tira hacia él y ralentiza | **Lanzarrocas**: 3 rocas en abanico | **Excavar**: se mete bajo tierra (invisible e invulnerable, el suelo se agrieta donde va a salir) y a 1 s sale debajo del rival con un golpe en área que empuja fuerte y hace temblar la pantalla | **Tumba Rocas**: 3 piedras caen del cielo alrededor del punto (ralentizan) | **Coloso**: cuerpo ×1,4, no lo empujan ni lo tambalean, recibe −25% de daño físico, +30% contra lo ralentizado; **a mitad de vida ruge** (onda que empuja y deja Expuesto, temblor fuerte) y entra en **Furia de Roca** (+25% daño, +20% velocidad) hasta el final |
+
+Piezas nuevas del motor (genéricas): `MoveData.strike_count`/`strike_spread` (varios golpes desde el cielo) y
+`strike_burrow` (Excavar: el usuario se esconde y sale donde cae); ganchos `SignatureMechanic.knockback_taken_mult`
+(empuje y tambaleo) y `body_scale` (jefes más grandes, sprite y hurtbox). La Pokédex muestra el estilo, la firma y
+los 4 ataques del kit apenas viste al Pokémon.
+
 ## Próximo paso sugerido
 1. Que el usuario pruebe Charmander y Bellsprout en Ruta 1 y dé su opinión (sensación, recargas, rangos).
 2. ✅ Kits de **Pidgey, Rattata y Vulpix** hechos (2026-10-22): todo lo que aparece en la zona de prueba tiene

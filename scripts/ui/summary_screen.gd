@@ -228,6 +228,8 @@ func _show_detail(m: MoveData, level: int) -> void:
 ## Líneas con los datos de un movimiento (potencia, recarga, carga, estados, recurso de firma...).
 static func describe(m: MoveData) -> Array[String]:
 	var out: Array[String] = []
+	if m.zone_strike:
+		out.append("Sale bajo tierra donde apuntás" if m.strike_burrow else ("Cae del cielo donde apuntás" + (" (×%d)" % m.strike_count if m.strike_count > 1 else "")))
 	if m.power > 0.0:
 		var p := roundi(m.power * m.power_mult)
 		if m.kind == MoveData.Kind.PROJECTILE and m.projectile_count > 1:
@@ -260,6 +262,10 @@ static func describe(m: MoveData) -> Array[String]:
 		out.append("Estados: " + ", ".join(st))
 	if m.execute_below > 0.0:
 		out.append("Remata si el objetivo tiene menos del %d%% de vida" % roundi(m.execute_below * 100.0))
+	if m.drain > 0.0:
+		out.append("Se cura el %d%% del daño" % roundi(m.drain * 100.0))
+	if m.cooldown_lock > 0.0:
+		out.append("Alarga %.1f s las recargas del rival" % m.cooldown_lock)
 	if m.deflects_projectiles:
 		out.append("Desvía proyectiles enemigos")
 	if m.resource_cost != 0.0 or m.resource_scaling > 0.0:

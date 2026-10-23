@@ -15,30 +15,30 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_ibnrr"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_bq7t1"]
 
-[sub_resource type="Resource" id="Resource_bq7t1"]
+[sub_resource type="Resource" id="Resource_vd2vk"]
 script = ExtResource("1_ncs6c")
 move = ExtResource("3_vd2vk")
 
-[sub_resource type="Resource" id="Resource_050d7"]
+[sub_resource type="Resource" id="Resource_p402d"]
 script = ExtResource("1_ncs6c")
 move = ExtResource("4_p402d")
 
-[sub_resource type="Resource" id="Resource_f6go3"]
+[sub_resource type="Resource" id="Resource_katab"]
 script = ExtResource("1_ncs6c")
 level = 3
 move = ExtResource("5_katab")
 
-[sub_resource type="Resource" id="Resource_dtxrv"]
+[sub_resource type="Resource" id="Resource_p3edi"]
 script = ExtResource("1_ncs6c")
 level = 5
 move = ExtResource("6_p3edi")
 
-[sub_resource type="Resource" id="Resource_j8xru"]
+[sub_resource type="Resource" id="Resource_bq7t1"]
 script = ExtResource("1_ncs6c")
 level = 16
 move = ExtResource("6_dtxrv")
 
-[sub_resource type="Resource" id="Resource_6ae24"]
+[sub_resource type="Resource" id="Resource_050d7"]
 script = ExtResource("1_ncs6c")
 level = 36
 move = ExtResource("10_ibnrr")
@@ -50,7 +50,7 @@ display_name = "Geodude"
 dex = 74
 types = Array[ExtResource("4_sacqb")]([ExtResource("5_hp5nt"), ExtResource("6_17vej")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_ncs6c")]([SubResource("Resource_bq7t1"), SubResource("Resource_050d7"), SubResource("Resource_f6go3"), SubResource("Resource_dtxrv"), SubResource("Resource_j8xru"), SubResource("Resource_6ae24")])
+learnset = Array[ExtResource("1_ncs6c")]([SubResource("Resource_vd2vk"), SubResource("Resource_p402d"), SubResource("Resource_katab"), SubResource("Resource_p3edi"), SubResource("Resource_bq7t1"), SubResource("Resource_050d7")])
 temperament = ExtResource("15_bq7t1")
 genus = "Pokémon Roca"
 pokedex_entry = "Cuanto más larga es la vida de Geodude, mayor es el desgaste y la erosión que sufre, y más redondeada la forma que va adquiriendo. Sin embargo, el corazón permanece siempre duro, rocoso y tosco."

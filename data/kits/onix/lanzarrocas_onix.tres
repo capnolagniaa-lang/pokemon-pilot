@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "lanzarrocas_onix"
+display_name = "Lanzarrocas"
+element = ExtResource("3_x")
+kind = 0
+category = 0
+power = 50.0
+cooldown = 1.8
+knockback = 170.0
+speed = 250.0
+size = 6.0
+lifetime = 0.9
+projectile_count = 3
+spread_deg = 24.0
+recovery = 0.15

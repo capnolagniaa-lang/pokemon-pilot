@@ -2,11 +2,14 @@ extends Control
 ## Pokédex (menú de pausa): las 386 especies de Kanto, Johto y Hoenn, por región. Solo se ven las que ya
 ## viste o contra las que peleaste (GameState.pokedex_seen); las demás aparecen como "?????" con la silueta
 ## oscura estilo "¿Quién es ese Pokémon?". Tab cambia de región; flechas/WASD recorren la grilla.
+## Visto: datos de la Pokédex + su estilo de pelea (kit: arquetipo, mecánica de firma y sus 4 ataques).
+## Luchado: además las estadísticas base.
 
 signal closed
 
 const REGIONS := [["Kanto", 1, 151], ["Johto", 152, 251], ["Hoenn", 252, 386]]
 const COLUMNS := 6
+const Summary := preload("res://scripts/ui/summary_screen.gd")
 
 var _region := 0
 var _region_buttons: Array[Button] = []
@@ -63,9 +66,14 @@ func _ready() -> void:
 	var panel := PanelContainer.new()
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	body.add_child(panel)
+	var detail_scroll := ScrollContainer.new()
+	detail_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	detail_scroll.custom_minimum_size = Vector2(580, 600)
+	panel.add_child(detail_scroll)
 	_detail = VBoxContainer.new()
 	_detail.add_theme_constant_override("separation", 8)
-	panel.add_child(_detail)
+	_detail.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	detail_scroll.add_child(_detail)
 	_stage = WhoStage.new()
 	_stage.custom_minimum_size = Vector2(560, 230)
 	_stage.clip_contents = true  # los rayos no se salen del recuadro
@@ -188,6 +196,7 @@ func _show_detail(sp: SpeciesData) -> void:
 	entry.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	entry.custom_minimum_size.x = 540
 	_detail.add_child(entry)
+	_add_kit(sp)
 	if not GameState.has_fought(sp):
 		_detail.add_child(UiStyle.label("Peleá contra él para conocer sus estadísticas.", 14, UiStyle.TEXT_DIM))
 		return
@@ -205,6 +214,38 @@ func _show_detail(sp: SpeciesData) -> void:
 		b.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		grid.add_child(b)
 	_detail.add_child(grid)
+
+
+## Estilo de pelea (se ve apenas lo viste): arquetipo, mecánica de firma y los 4 ataques del kit.
+func _add_kit(sp: SpeciesData) -> void:
+	var kit := sp.kit
+	if kit == null:
+		_detail.add_child(UiStyle.label("Estilo de pelea: sin kit propio (pelea con sus movimientos de siempre).", 14, UiStyle.TEXT_DIM))
+		return
+	var arch: String = UiStyle.ARCHETYPES.get(kit.archetype, kit.archetype)
+	_detail.add_child(_wrapped("Estilo de pelea: %s — %s" % [arch, UiStyle.ARCHETYPE_INFO.get(kit.archetype, "")], 15, UiStyle.ACCENT))
+	if kit.signature != null:
+		_detail.add_child(UiStyle.label("Mecánica de firma: " + kit.signature.display_name, 15, kit.signature.color.lightened(0.2)))
+		_detail.add_child(_wrapped(kit.signature.description, 13, UiStyle.TEXT_DIM))
+	for i in kit.moves.size():
+		var m: MoveData = kit.moves[i]
+		if m == null:
+			continue
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 8)
+		row.add_child(UiStyle.label(Controls.SLOT_KEYS[i] if i < Controls.SLOT_KEYS.size() else "", 14, UiStyle.ACCENT))
+		if m.element != null:
+			row.add_child(UiStyle.type_chip(m.element))
+		row.add_child(UiStyle.label(m.display_name, 15))
+		_detail.add_child(row)
+		_detail.add_child(_wrapped(" · ".join(Summary.describe(m)), 13, UiStyle.TEXT_DIM))
+
+
+func _wrapped(text: String, size: int, color: Color = UiStyle.TEXT) -> Label:
+	var l := UiStyle.label(text, size, color)
+	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	l.custom_minimum_size.x = 540
+	return l
 
 
 func _unhandled_input(event: InputEvent) -> void:

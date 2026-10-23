@@ -30,6 +30,13 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-kits-v4" in OS.get_cmdline_user_args() or "--showcase-onix" in OS.get_cmdline_user_args():
+		set_process(false)
+		var k4 := KitsV4Tests.new()
+		k4.autotest = self
+		add_child(k4)
+		(k4.showcase_onix if "--showcase-onix" in OS.get_cmdline_user_args() else k4.run).call_deferred()
+		return
 	if "--autotest-kits-v3" in OS.get_cmdline_user_args():
 		set_process(false)
 		var kv := KitsV3Tests.new()

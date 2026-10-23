@@ -34,7 +34,18 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Eevee, Seel, Geodude): ya son **16 Pokémon con kit**. Detalle en el plan de identidad ("v3"); el usuario los va
   a ir ajustando mientras los prueba. Autotest `--autotest-kits-v3`. Primer ajuste: Rayo de Pikachu cae del cielo
   en área; Burbuja de Poliwag encierra sin mojar.
-- **Spawns**: se respetan los de FireRed (cada zona nueva tiene la tabla real de su lugar).
+- **Spawns**: se respetan los de FireRed (cada zona nueva tiene la tabla real de su lugar, coinciden con la guía de
+  Rojo Fuego/Verde Hoja). **Más salvajes en mapas grandes** (2026-10-23): `EncounterTable.cells_per_wild` (uno
+  más cada 150 celdas donde pueden aparecer, tope `max_alive_cap` 16) y reponen más rápido; ej. Ruta 1 ≈ 10,
+  Bosque Verde 16. **Objetos tirados solo en las rutas** (3-4 al azar por ruta y Bosque Verde; nada en ciudades ni
+  interiores); el botín de salvajes sigue igual.
+- **v4: kits de Kanto hasta Ciudad Plateada** (2026-10-23): Caterpie, Weedle, Metapod, Kakuna, Spearow, Mankey,
+  Sandshrew y **Onix como jefe** (el de Brock). 24 Pokémon con kit. La **Pokédex** muestra el estilo de pelea, la
+  mecánica de firma y los 4 ataques del kit de lo que ya viste. Detalle en el plan de identidad ("v4").
+- **Plan de historia hasta la Medalla Roca** (2026-10-23): `docs/PLAN_HISTORIA.md` (la de FireRed, fases H-0 a
+  H-6; necesita E-1, el combate contra entrenadores). Decisiones tomadas: inicial en el laboratorio, E contextual
+  para hablar, entrenadores de historia fijos, perder = último Centro. **Próximo paso: H-0** (banderas, diálogos,
+  NPC que hablan, disparadores y bloqueos) y después E-1.
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
   borraron (pedido del usuario). Pinceles nuevos: piso de ciudad, empedrado y piso de cueva.

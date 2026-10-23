@@ -13,8 +13,12 @@ const WHERE := {"pasto_alto": "Pasto alto", "agua": "Agua", "arena": "Arena", "s
 @export var entries: Array[EncounterEntry] = []
 ## Áreas pintadas en la zona con ajustes de probabilidad (ver EncounterArea).
 @export var areas: Array[EncounterArea] = []
-## Salvajes vivos a la vez en la zona.
+## Salvajes vivos a la vez en la zona (mínimo: en zonas grandes se suman más, ver cells_per_wild).
 @export var max_alive: int = 3
+## Un salvaje más cada tantas celdas donde pueden aparecer (pasto alto, agua...). 0 = siempre max_alive.
+@export var cells_per_wild: int = 150
+## Tope de salvajes vivos a la vez, por grande que sea la zona.
+@export var max_alive_cap: int = 16
 ## Segundos para que aparezca otro cuando hay menos de max_alive.
 @export var respawn_time: float = 25.0
 
@@ -42,8 +46,17 @@ func copy() -> EncounterTable:
 	for a in areas:
 		t.areas.append(a.copy())
 	t.max_alive = max_alive
+	t.cells_per_wild = cells_per_wild
+	t.max_alive_cap = max_alive_cap
 	t.respawn_time = respawn_time
 	return t
+
+
+## Cuántos salvajes vivos a la vez para una zona con `cells` celdas donde pueden aparecer.
+func alive_for(cells: int) -> int:
+	if cells_per_wild <= 0:
+		return max_alive
+	return clampi(max_alive + cells / cells_per_wild, max_alive, maxi(max_alive, max_alive_cap))
 
 
 ## Índice del área que contiene la celda (-1 si ninguna).

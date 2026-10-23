@@ -117,6 +117,11 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 ## Golpe desde el cielo (Rayo): en vez de quedarse, marca el círculo y a los `strike_delay` s cae una sola vez.
 @export var zone_strike: bool = false
 @export var strike_delay: float = 0.3
+## Varios golpes desde el cielo (Tumba Rocas): el primero donde apuntás, los demás al azar a `strike_spread` px.
+@export var strike_count: int = 1
+@export var strike_spread: float = 30.0
+## Excavar: el que lo usa se mete bajo tierra (invisible e invulnerable) y sale donde cae el golpe.
+@export var strike_burrow: bool = false
 
 @export_group("Látigo (WHIP)")
 @export var whip_length: float = 70.0

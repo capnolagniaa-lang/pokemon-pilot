@@ -17,25 +17,25 @@
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_m7sye"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_uots2"]
 
-[sub_resource type="Resource" id="Resource_8f1i2"]
+[sub_resource type="Resource" id="Resource_2tqe5"]
 script = ExtResource("1_ubeh2")
 move = ExtResource("3_2tqe5")
 
-[sub_resource type="Resource" id="Resource_duj32"]
+[sub_resource type="Resource" id="Resource_tbwst"]
 script = ExtResource("1_ubeh2")
 move = ExtResource("4_tbwst")
 
-[sub_resource type="Resource" id="Resource_pdc4n"]
+[sub_resource type="Resource" id="Resource_ydjuq"]
 script = ExtResource("1_ubeh2")
 level = 3
 move = ExtResource("5_ydjuq")
 
-[sub_resource type="Resource" id="Resource_eicdi"]
+[sub_resource type="Resource" id="Resource_axr5o"]
 script = ExtResource("1_ubeh2")
 level = 5
 move = ExtResource("6_axr5o")
 
-[sub_resource type="Resource" id="Resource_i0heh"]
+[sub_resource type="Resource" id="Resource_8f1i2"]
 script = ExtResource("1_ubeh2")
 level = 25
 move = ExtResource("6_uots2")
@@ -48,7 +48,7 @@ dex = 58
 types = Array[ExtResource("7_iyuqs")]([ExtResource("8_m7sye")])
 moves = Array[ExtResource("1_80pa4")]([ExtResource("2_5foyf"), ExtResource("3_45p15"), ExtResource("4_ubeh2"), ExtResource("5_uots2")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_ubeh2")]([SubResource("Resource_8f1i2"), SubResource("Resource_duj32"), SubResource("Resource_pdc4n"), SubResource("Resource_eicdi"), SubResource("Resource_i0heh")])
+learnset = Array[ExtResource("1_ubeh2")]([SubResource("Resource_2tqe5"), SubResource("Resource_tbwst"), SubResource("Resource_ydjuq"), SubResource("Resource_axr5o"), SubResource("Resource_8f1i2")])
 temperament = ExtResource("10_uots2")
 genus = "Pokémon Perrito"
 pokedex_entry = "Growlithe tiene un sentido del olfato excepcional y una memoria sensitiva tremenda, nunca olvida una esencia. Este Pokémon saca provecho de este don para identificar las sensaciones que tienen otros seres vivos."
