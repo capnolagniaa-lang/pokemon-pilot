@@ -51,6 +51,13 @@ var field_picked: Dictionary = {}
 var box: Array[CreatureInstance] = []
 ## Historia (docs/PLAN_HISTORIA.md): banderas puestas (nombre -> true). Se guardan con la partida.
 var story_flags: Dictionary = {}
+## Torneo en curso (docs/PLAN_TORNEO.md, T-2): {} si no hay. Lo maneja Tournament; si guardás en medio del
+## torneo se abandona (no se guarda).
+var tournament: Dictionary = {}
+## Dinero (docs/PLAN_TORNEO.md, T-0): premios de entrenadores y del torneo, entradas. Se guarda.
+var money := 0
+const STARTING_MONEY := 3000
+
 ## Dónde te curaron por última vez (enfermera, mamá): si perdés contra un entrenador volvés ahí. INF = el inicio.
 var last_heal_position := Vector2.INF
 
@@ -91,6 +98,8 @@ func new_game(starter: SpeciesData) -> void:
 	field_picked.clear()
 	story_flags.clear()
 	last_heal_position = Vector2.INF
+	money = STARTING_MONEY
+	tournament = {}
 	Events.party_changed.emit()
 	Events.game_started.emit()
 
@@ -147,6 +156,20 @@ func new_story() -> void:
 		if z.id == STORY_START_ZONE:
 			trainer_position = Vector2((z.origin + STORY_START_CELL) * DB.config.world.tile_size) + Vector2.ONE * DB.config.world.tile_size / 2.0
 	Events.party_changed.emit()
+
+
+## Suma (o resta, con negativo) dinero. No baja de 0. Avisa con Events.money_changed.
+func add_money(amount: int) -> void:
+	money = maxi(0, money + amount)
+	Events.money_changed.emit(money)
+
+
+## Paga si alcanza. Devuelve si pudo.
+func spend_money(amount: int) -> bool:
+	if amount > money:
+		return false
+	add_money(-amount)
+	return true
 
 
 ## Prende o apaga los entrenadores vivos (el mundo los saca o los guarda al momento).
@@ -369,15 +392,18 @@ func has_fought(sp: SpeciesData) -> bool:
 
 func to_dict() -> Dictionary:
 	var members := []
-	for inst in party:
+	# En medio del torneo se guarda el equipo y la mochila de antes (el torneo no se guarda: se abandona).
+	var real_party: Array = tournament.get("party_before", party)
+	for inst in real_party:
 		members.append(inst.to_dict())
-	return {"party": members, "active_index": active_index, "bag": bag.duplicate(), "selected_ball": selected_ball,
+	return {"party": members, "active_index": active_index if tournament.is_empty() else 0,
+		"bag": tournament.get("bag_before", bag).duplicate(), "selected_ball": selected_ball,
 		"quick_item": quick_item, "practice_mode": practice_mode,
 		"wild_test_pool": wild_test_pool, "difficulty": difficulty_id(), "play_time": play_time,
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
-		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(),
+		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money,
 		"last_heal_position": [last_heal_position.x, last_heal_position.y] if last_heal_position != Vector2.INF else null}
 
 
@@ -462,6 +488,7 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 		pokedex_seen[inst.species.id] = true
 		pokedex_fought[inst.species.id] = true
 		pokedex_caught[inst.species.id] = true
+	money = maxi(0, int(d.get("money", STARTING_MONEY)))
 	var heal_pos = d.get("last_heal_position", null)
 	last_heal_position = Vector2(float(heal_pos[0]), float(heal_pos[1])) if heal_pos is Array and heal_pos.size() == 2 else Vector2.INF
 	story_flags.clear()

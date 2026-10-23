@@ -16,6 +16,16 @@ var tileset: TileSet
 var rng := RandomNumberGenerator.new()
 
 
+## Zonas hechas a mano que no salen de FireRed: se conservan siempre de kanto.tres (con su escena), aunque no se
+## use --keep-others. El Torneo de Ciudad Plateada (docs/PLAN_TORNEO.md).
+const EXTRA_ZONES := ["ciudad_plateada_torneo"]
+## Puertas de FireRed que llevan a otro lado: zona -> {celda: {to, cell}}. La puerta del anexo del museo de
+## Plateada (en FireRed, la entrada de atrás del museo) es la del Torneo.
+const WARP_OVERRIDES := {
+	"ciudad_plateada": {Vector2i(39, 4): {"to": "ciudad_plateada_torneo", "cell": Vector2i(7, 8)}},
+}
+
+
 func _init() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(DATA))
 	roles = ZoneBuilder.load_roles()
@@ -43,6 +53,8 @@ func _init() -> void:
 		e.biome = _biome(z)
 		for w: Dictionary in z["warps"]:
 			e.warps[Vector2i(int(w["cell"][0]), int(w["cell"][1]))] = {"to": w["to"], "cell": Vector2i(int(w["to_cell"][0]), int(w["to_cell"][1]))}
+		for cell in WARP_OVERRIDES.get(e.id, {}):
+			e.warps[cell] = WARP_OVERRIDES[e.id][cell].duplicate()
 		var root := _build(z)
 		e.hub = _hub(root, e)
 		_backup(e.scene_path)
@@ -67,7 +79,7 @@ func _init() -> void:
 	for z in old.zones:
 		if ids.has(z.id):
 			continue
-		if keep_others:
+		if keep_others or z.id in EXTRA_ZONES:
 			world.zones.append(z)
 			continue
 		for p in [z.scene_path, EncounterTable.zone_path(z.id)]:

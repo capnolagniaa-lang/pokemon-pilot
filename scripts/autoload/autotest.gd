@@ -30,6 +30,13 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-tournament" in OS.get_cmdline_user_args() or "--showcase-tournament" in OS.get_cmdline_user_args():
+		set_process(false)
+		var tt := TournamentTests.new()
+		tt.autotest = self
+		add_child(tt)
+		(tt.showcase if "--showcase-tournament" in OS.get_cmdline_user_args() else tt.run).call_deferred()
+		return
 	if "--autotest-story-h1" in OS.get_cmdline_user_args():
 		set_process(false)
 		var h1 := StoryH1Tests.new()

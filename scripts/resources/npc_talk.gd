@@ -31,6 +31,8 @@ extends Resource
 ## Lo que se dice después de los efectos (ej. el rival: "¡Entonces yo me quedo con Charmander!").
 @export var after_speaker: String = ""
 @export_multiline var after_lines: PackedStringArray = []
+## Acción especial al terminar las líneas (StoryDirector.register_action), ej. "torneo": la recepción del torneo.
+@export var action: String = ""
 ## Al terminar te lleva a esta zona y celda (fundido), ej. Oak te lleva al laboratorio.
 @export var warp_zone: String = ""
 @export var warp_cell: Vector2i = Vector2i.ZERO

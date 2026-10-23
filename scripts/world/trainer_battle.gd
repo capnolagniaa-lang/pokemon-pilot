@@ -98,7 +98,10 @@ func start(opts: Dictionary) -> String:
 	await _fade_to(0.0)
 	var title: String = opts.get("title", "")
 	var who := ("%s %s" % [title, foe_name]).strip_edges()
-	if arena_data.epic:
+	if opts.has("banner"):  # el torneo: "CUARTOS DE FINAL" y el rival
+		Events.camera_shake.emit(6.0 if arena_data.epic else 3.0)
+		await _show_banner(str(opts["banner"]), "%s  —  ¡%s!" % [arena_data.display_name, who], 2.2)
+	elif arena_data.epic:
 		Events.camera_shake.emit(6.0)
 		await _show_banner(arena_data.display_name.to_upper(), "¡%s te desafía!" % who, 2.2)
 	else:

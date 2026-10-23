@@ -29,5 +29,7 @@ extends Resource
 ## Al ganarle: banderas que se ponen (ej. "medalla_roca") y lo que se anuncia ("¡Recibiste la Medalla Roca!").
 @export var reward_flags: PackedStringArray = []
 @export var reward_text: String = ""
+## Dinero que te da al ganarle (0 = automático: nivel más alto de su equipo × 20; los líderes, × 60).
+@export var prize: int = 0
 ## Objetos que te da al ganarle (id de data/items -> cantidad), ej. Brock: la MT39.
 @export var reward_items: Dictionary = {}

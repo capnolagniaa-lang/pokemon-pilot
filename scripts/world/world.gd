@@ -24,6 +24,8 @@ var items: PlayerItems
 var warps: WarpSystem
 ## Historia: personas que hablan, disparadores, diálogos (docs/PLAN_HISTORIA.md).
 var story: StoryDirector
+## Torneo de Ciudad Plateada (docs/PLAN_TORNEO.md).
+var tournament: Tournament
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
 var arena: TrainerBattle
 
@@ -64,6 +66,9 @@ func _ready() -> void:
 	story = StoryDirector.new()
 	story.name = "StoryDirector"
 	add_child(story)
+	tournament = Tournament.new()
+	tournament.name = "Tournament"
+	add_child(tournament)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
 	var loot := FieldItemSpawner.new()
 	loot.name = "FieldItemSpawner"

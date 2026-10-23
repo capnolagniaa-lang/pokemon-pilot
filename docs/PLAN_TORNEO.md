@@ -5,7 +5,32 @@
 > perdés la entrada. Solo se pueden usar 6 Pociones, que vienen con la entrada. La arena tiene que ser **épica**
 > (agua, rocas, etc.). Los **entrenadores con memoria (como Brock) participan con su equipo y aprenden de vos**.
 > El **tope de nivel es para tu entrada, pero jugás con tu propio equipo** (no se nivela a nadie).
-> **Todavía no se implementó nada**: este documento es el plan. Lo marcado "(a confirmar)" se decide con el usuario.
+> **Estado (2026-10-23): T-0 a T-3 hechas** (dinero, edificio, torneo, estadio). Falta **T-4** (rivales que aprenden:
+> depende de E-2 a E-4). Decisiones: el usuario dijo "mandale" → se tomaron las recomendadas de la sección 5.
+
+## Cómo quedó (T-0 a T-3)
+- **T-0 Dinero**: `GameState.money` (empieza en $3000, se guarda), `add_money`/`spend_money`, `Events.money_changed`.
+  Ganarle a un entrenador da premio (`TrainerData.prize`; 0 = automático: nivel más alto de su equipo × 20, × 60 los
+  líderes: Brock da $840). Se ve en la Mochila y en la Tarjeta. Perder no cuesta plata (por ahora).
+- **T-1 Edificio**: la puerta del **anexo rosa del museo** de Plateada (39,4) lleva al **Torneo de Ciudad Plateada**
+  (zona `ciudad_plateada_torneo`, interior estilo vestíbulo, en `kanto.tres`). Adentro: la recepcionista y gente que
+  te cuenta las reglas.
+- **T-2 Torneo** (`Tournament`, nodo del mundo, `world.tournament`; acción "torneo" de la recepcionista):
+  - 6 copas (`TournamentCup`, `data/tournament/`): Nv. 15 / Nv. 30 / Libre, de 3 y de 6 Pokémon (entrada $500-$5000,
+    premio $3000-$35000).
+  - Se inscriben **los primeros 3 o 6 de tu equipo con nivel ≤ tope** (cambiás el orden en Esc → Equipo). Peleás con
+    ellos tal cual.
+  - Pagás, tu equipo y tu Mochila quedan guardados; adentro solo los inscriptos (curados al empezar) y **6 Pociones**.
+    **No se cura entre rondas.** Si guardás en medio, se guarda tu equipo y Mochila de antes (el torneo se abandona).
+  - Cuadro de 8, eliminación directa (cuartos, semi, final; las otras peleas se definen por fuerza + suerte). Cartel
+    de cada ronda y locutor. Ganar la final: el premio y la bandera `campeon_<copa>`. Perder: afuera, sin devolución.
+  - Rivales: **Brock** (desde que tenés la Medalla Roca; en el modo libre, siempre) con su equipo de roca que crece
+    con la copa (Graveler desde Nv. 25, más Pokémon en la de 6), **Azul** (desde la Ruta 22) con su inicial, y
+    entrenadores generados (clases y sprites de FireRed, Pokémon con kit).
+- **T-3 Estadio** (`arena_torneo`, `tools/build_arenas.gd`): cancha de tierra, **dos lagunas** a los costados (agua de
+  verdad: moja, frena, los de agua nadan), **pasto alto** en las esquinas (se prende fuego), rocas de cobertura y rocas
+  que se rompen; **tribunas con público** que salta, **confeti**, braseros, rayos de luz y el emblema de una Poké Ball.
+- Autotest `--autotest-tournament` (15 chequeos); vitrina `--showcase-tournament`.
 
 ## 1. Cómo se juega
 1. **Edificio del Torneo** en Ciudad Plateada: recepcionista + cartel con las copas.

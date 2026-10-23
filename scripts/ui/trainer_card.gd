@@ -33,6 +33,7 @@ func _ready() -> void:
 	box.add_child(UiStyle.label("TARJETA DE ENTRENADOR", 26, UiStyle.ACCENT))
 	var secs := int(GameState.play_time)
 	box.add_child(UiStyle.label("Tiempo de juego: %d:%02d" % [secs / 3600, (secs / 60) % 60], 18))
+	box.add_child(UiStyle.label("Dinero: $%d" % GameState.money, 18, UiStyle.ACCENT))
 	if GameState.has_pokedex():
 		box.add_child(UiStyle.label("Pokédex: %d vistos · %d atrapados" % [GameState.pokedex_seen.size(),
 			GameState.pokedex_caught.size()], 18))

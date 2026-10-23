@@ -423,6 +423,21 @@ TRIGGERS["chico_ruta3"] = dict(zone="ciudad_plateada", rect=(72, 35, 2, 5), once
     warp=("ciudad_plateada", (29, 32))))
 
 
+# --- Torneo de Ciudad Plateada (docs/PLAN_TORNEO.md) -------------------------------------------------------------
+TALKS[("ciudad_plateada_torneo", "Recepcionista")] = dict(name="Recepcionista", talks=[
+    dict(lines=["¡Bienvenido al Torneo de Ciudad Plateada!",
+                "Ocho entrenadores, eliminación directa: cuartos, semifinal y final en el estadio."], action="torneo")])
+TALKS[("ciudad_plateada_torneo", "Fanatico")] = dict(name="Fanático", talks=[dict(lines=[
+    "Para anotarte, tus Pokémon no pueden pasar el nivel de la copa... ¡pero peleás con tu equipo de siempre!",
+    "Y no te curan entre ronda y ronda. Las Pociones valen oro."])])
+TALKS[("ciudad_plateada_torneo", "Chusma")] = dict(name="Pibe", talks=[dict(lines=[
+    "Dicen que Brock a veces se anota en el torneo...",
+    "¡Y que cada vez trae más Pokémon de roca!"])])
+EXTRA_NPCS[("ciudad_plateada_torneo", "Recepcionista")] = ((7, 2), "cable_club_receptionist")
+EXTRA_NPCS[("ciudad_plateada_torneo", "Fanatico")] = ((12, 5), "gentleman")
+EXTRA_NPCS[("ciudad_plateada_torneo", "Chusma")] = ((3, 6), "youngster")
+
+
 class Ext:
     """ext_resource que necesita un .tres (scripts y recursos), con ids estables."""
 
@@ -472,6 +487,8 @@ def talk_body(sid, t, ext):
     if t.get("after_lines"):
         body.append("after_speaker = " + gd_str(t.get("after_speaker", "")))
         body.append("after_lines = " + psa(t["after_lines"]))
+    if t.get("action"):
+        body.append("action = " + gd_str(t["action"]))
     if t.get("warp"):
         body.append("warp_zone = " + gd_str(t["warp"][0]))
         body.append("warp_cell = Vector2i(%d, %d)" % tuple(t["warp"][1]))

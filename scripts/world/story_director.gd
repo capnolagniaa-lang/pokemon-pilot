@@ -17,6 +17,8 @@ var dialog: DialogBox
 ## id -> StoryNPC en el mundo.
 var npcs: Dictionary = {}
 var busy := false
+## Acciones especiales de las conversaciones (NpcTalk.action): nombre -> Callable que se espera (await).
+var actions: Dictionary = {}
 var _last_cell := Vector2i(-99999, -99999)
 var _last_zone := ""
 
@@ -118,6 +120,11 @@ func run_talk(talk: NpcTalk, default_speaker: String = "") -> void:
 			hud.visible = true
 		await fight(DB.npcs[talk.battle_npc], null, talk.battle_no_blackout)
 		t.locked = true
+	if talk.action != "" and actions.has(talk.action):
+		if hud != null:
+			hud.visible = true
+		await actions[talk.action].call()
+		t.locked = true
 	var after := PackedStringArray()
 	if talk.give_pokemon != null:
 		var lvl := talk.give_level if talk.give_level > 0 else DB.config.starting_level
@@ -154,6 +161,11 @@ func run_talk(talk: NpcTalk, default_speaker: String = "") -> void:
 		hud.visible = true
 	t.locked = false
 	busy = false
+
+
+## Registra una acción especial para NpcTalk.action (la usan otros sistemas, ej. el Torneo).
+func register_action(action_name: String, callable: Callable) -> void:
+	actions[action_name] = callable
 
 
 ## Te lleva (con fundido) a una celda de una zona: carga la zona, mueve al entrenador y a su Pokémon.
@@ -299,6 +311,10 @@ func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) 
 		for f in td.reward_flags:
 			GameState.set_flag(f)
 		var got := PackedStringArray([td.reward_text]) if td.reward_text != "" else PackedStringArray()
+		var cash := prize_of(td, team)
+		if cash > 0:
+			GameState.add_money(cash)
+			got.append("¡Ganaste $%d!" % cash)
 		for id in td.reward_items:
 			if DB.items.has(id):
 				GameState.add_item(id, int(td.reward_items[id]))
@@ -338,6 +354,16 @@ func challenge_living(npc: TrainerNPC) -> void:
 		st.wins += 1
 		await _say(td.display_name, _lines(td, "gana", "¡Te gané!"))
 	busy = false
+
+
+## Premio en dinero de un entrenador (TrainerData.prize o automático según el nivel de su equipo).
+static func prize_of(td: TrainerData, team: Array[CreatureInstance]) -> int:
+	if td.prize > 0:
+		return td.prize
+	var top := 0
+	for inst in team:
+		top = maxi(top, inst.level)
+	return top * (60 if td.leader else 20)
 
 
 ## Frase de un entrenador ("|" separa globos).

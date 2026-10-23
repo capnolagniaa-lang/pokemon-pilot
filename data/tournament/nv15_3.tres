@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TournamentCup" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/tournament_cup.gd" id="1_c"]
+
+[resource]
+script = ExtResource("1_c")
+id = "nv15_3"
+display_name = "Copa Nv. 15 (3 Pokémon)"
+team_size = 3
+level_cap = 15
+entry_fee = 500
+prize = 3000
+order = 0

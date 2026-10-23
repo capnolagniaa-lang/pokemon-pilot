@@ -66,5 +66,7 @@ signal story_flag_changed(flag: String, on: bool)
 ## Empieza / termina una conversación (la caja de diálogo está abierta).
 signal dialog_started
 signal dialog_finished
+## Cambió el dinero (docs/PLAN_TORNEO.md).
+signal money_changed(money: int)
 
 @warning_ignore_restore("unused_signal")

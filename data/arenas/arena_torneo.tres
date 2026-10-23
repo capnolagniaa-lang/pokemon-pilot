@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="1_y7g22"]
+
+[resource]
+script = ExtResource("1_y7g22")
+id = "arena_torneo"
+display_name = "Estadio del Torneo de Plateada"
+scene_path = "res://scenes/world/arenas/arena_torneo.tscn"
+foe_trainer_cell = Vector2i(23, 5)
+player_cell = Vector2i(23, 30)
+foe_mon_cell = Vector2i(23, 11)
+player_mon_cell = Vector2i(23, 23)
+field = Rect2i(8, 8, 30, 18)
+line_color = Color(1, 1, 1, 0.4)
+particles = "confeti"
+particle_color = Color(1, 1, 1, 0.8)
+braziers = true
+epic = true
+crowd = true

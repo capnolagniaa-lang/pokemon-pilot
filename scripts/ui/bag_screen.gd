@@ -36,6 +36,10 @@ func _ready() -> void:
 		b.pressed.connect(_show_pocket.bind(i))
 		head.add_child(b)
 		_pocket_buttons.append(b)
+	var spacer := Control.new()
+	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	head.add_child(spacer)
+	head.add_child(UiStyle.label("$%d" % GameState.money, 22, UiStyle.ACCENT))  # dinero (docs/PLAN_TORNEO.md)
 	var body := HBoxContainer.new()
 	body.add_theme_constant_override("separation", 16)
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL

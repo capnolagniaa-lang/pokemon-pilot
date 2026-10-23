@@ -42,8 +42,44 @@ func _draw() -> void:
 	for cell in [data.foe_mon_cell, data.player_mon_cell]:
 		draw_arc(Vector2(cell * T) + Vector2(T / 2.0, T / 2.0), 10.0, 0.0, TAU, 24, Color(c.r, c.g, c.b, c.a * 0.8), 1.5)
 	if data.epic:
-		_draw_emblem(center, rad * 0.9)
+		if data.element_id == "":
+			_draw_pokeball(center, rad * 0.8)
+		else:
+			_draw_emblem(center, rad * 0.9)
 		_draw_rays()
+	if data.crowd:
+		_draw_crowd()
+
+
+## Emblema del estadio (sin tipo): una Poké Ball pintada en el centro de la cancha.
+func _draw_pokeball(center: Vector2, size: float) -> void:
+	draw_circle(center, size, Color(0.9, 0.2, 0.2, 0.1))
+	draw_arc(center, size, 0.0, TAU, 48, Color(1, 1, 1, 0.45), 2.0)
+	draw_line(center - Vector2(size, 0), center + Vector2(size, 0), Color(1, 1, 1, 0.45), 2.0)
+	draw_circle(center, size * 0.25, Color(1, 1, 1, 0.3))
+	draw_arc(center, size * 0.25, 0.0, TAU, 24, Color(1, 1, 1, 0.5), 2.0)
+
+
+## Público en las tribunas: filas de cabecitas de colores sobre la pared de arriba y la de abajo, que saltan
+## cuando hay pelea (más rápido cuanto más tiempo pasa).
+func _draw_crowd() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 11
+	var cols := [Color(0.95, 0.35, 0.3), Color(0.35, 0.6, 0.95), Color(0.95, 0.85, 0.35), Color(0.45, 0.85, 0.45),
+		Color(0.85, 0.5, 0.9), Color(0.95, 0.6, 0.3), Color(0.9, 0.9, 0.9)]
+	var left := 2.0 * T
+	var right := _rect.end.x + (_rect.position.x - left)
+	for band in [[0.6 * T, 2.6 * T], [_rect.end.y + 5.2 * T, _rect.end.y + 6.6 * T]]:
+		var y: float = band[0]
+		while y < band[1]:
+			var x := left + rng.randf() * 6.0
+			while x < right:
+				var hop := maxf(0.0, sin(_time * 7.0 + x * 0.3 + y)) * 2.5
+				var c: Color = cols[rng.randi() % cols.size()]
+				draw_circle(Vector2(x, y - hop), 3.2, c.darkened(0.15))
+				draw_circle(Vector2(x, y - hop - 4.0), 2.4, Color(0.98, 0.85, 0.7))
+				x += 9.0 + rng.randf() * 3.0
+			y += 9.0
 
 
 ## Emblema del tipo del gimnasio en el centro de la cancha (roca: la Medalla Roca, un octógono de piedra).
@@ -83,7 +119,12 @@ func _add_particles() -> void:
 	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
 	p.position = _rect.get_center()
 	p.emission_rect_extents = _rect.size / 2.0 + Vector2(40, 40)
-	p.direction = Vector2(1, 0.3) if data.particles == "hojas" else Vector2(0.4, -1)
+	p.direction = Vector2(1, 0.3) if data.particles == "hojas" else (Vector2(0, 1) if data.particles == "confeti" else Vector2(0.4, -1))
+	if data.particles == "confeti":  # papelitos de colores que caen girando
+		p.amount = 70
+		p.hue_variation_min = -1.0
+		p.hue_variation_max = 1.0
+		p.color = Color(1.0, 0.4, 0.4)
 	p.spread = 40.0
 	p.gravity = Vector2(0, 6) if data.particles == "hojas" else Vector2(0, -2)
 	p.initial_velocity_min = 4.0
@@ -93,7 +134,7 @@ func _add_particles() -> void:
 	p.scale_amount_min = 1.0
 	p.scale_amount_max = 2.6 if data.particles == "polvo" else 3.0
 	var ramp := Gradient.new()
-	var c := data.particle_color
+	var c := data.particle_color if data.particles != "confeti" else Color(1, 1, 1, 0.85)
 	ramp.set_color(0, Color(c.r, c.g, c.b, 0.0))
 	ramp.add_point(0.25, c)
 	ramp.add_point(0.75, c)

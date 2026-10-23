@@ -19,7 +19,7 @@ extends Resource
 ## Tipo que ambienta la arena (los gimnasios: el de su líder). Vacío = arena común.
 @export var element_id: String = ""
 @export var line_color: Color = Color(1, 1, 1, 0.35)
-## Partículas que flotan: vacío (nada), "polvo", "hojas", "chispas", "burbujas".
+## Partículas que flotan: vacío (nada), "polvo", "hojas", "confeti".
 @export var particles: String = ""
 @export var particle_color: Color = Color(1, 1, 1, 0.5)
 ## Braseros con fuego en las esquinas de la cancha.
@@ -28,3 +28,5 @@ extends Resource
 @export var ambient: Color = Color(1, 1, 1, 1)
 ## Arena de gimnasio: cartel de entrada épico, temblor y presentación del líder.
 @export var epic: bool = false
+## Estadio: tribunas con público sobre la pared de arriba y a los costados (el torneo).
+@export var crowd: bool = false

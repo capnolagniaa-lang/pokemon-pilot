@@ -42,6 +42,8 @@ $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
 $G --headless --path . --quit-after 150000 -- --autotest-story-h1  # historia H-1 a H-5 (de tu cuarto a la Medalla Roca)
+$G --headless --path . --quit-after 300000 -- --autotest-tournament  # torneo de Plateada (dinero, copas, rondas, premio)
+$G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-tournament  # el estadio del torneo
 $G --headless --path . --quit-after 100000 -- --autotest-arena  # combates contra entrenadores en arena (E-1): Brock, Cazabichos
 $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena  # Brock y Onix en el gimnasio épico
 $G --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd  # rearma las arenas (pisa las escenas)
@@ -145,6 +147,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   una arena aparte (`ArenaData` en `data/arenas/`, escena = zona de tiles en `scenes/world/arenas/`, ambientación
   `ArenaDecor`), 1 contra 1 con cambios, `CombatDirector.arena_lock`, `Creature.owner_name` (no se atrapa).
   Entrenadores de la historia = `NpcData.trainer` (TrainerData) + `sight`; perder → `GameState.last_heal_position`.
+- **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
+  recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; durante el torneo
+  `GameState.tournament` guarda el equipo y la mochila de antes (los usa `to_dict`).
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.

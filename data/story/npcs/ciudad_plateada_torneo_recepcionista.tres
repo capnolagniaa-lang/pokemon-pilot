@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Bienvenido al Torneo de Ciudad Plateada!", "Ocho entrenadores, eliminación directa: cuartos, semifinal y final en el estadio.")
+action = "torneo"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_plateada_torneo_recepcionista"
+display_name = "Recepcionista"
+zone_id = "ciudad_plateada_torneo"
+cell = Vector2i(7, 2)
+gfx = "cable_club_receptionist"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

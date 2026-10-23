@@ -69,7 +69,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   con las medallas (Esc → Tarjeta). De Pueblo Paleta a la Medalla Roca se juega entero.
 - **Plan del Torneo de Plateada** (2026-10-23, idea del usuario): `docs/PLAN_TORNEO.md` (dinero, edificio, copas de 3/6
   Pokémon con tope de nivel para inscribirse, 6 Pociones del torneo, arena épica con agua y rocas, y los entrenadores
-  con memoria como Brock que aprenden de vos). Sin implementar: el usuario está probando el capítulo 1. **Próximo:** H-6 (bot que
+  con memoria como Brock que aprenden de vos).
+- **Torneo T-0 a T-3 hecho** (2026-10-23): **dinero** (empezás con $3000, premios por entrenadores), **Edificio del
+  Torneo** en Plateada (la puerta del anexo del museo), copas de 3/6 Pokémon (Nv. 15, 30, Libre) con 6 Pociones y sin
+  curar entre rondas, Brock y Azul en el cuadro, y el **estadio épico** con lagunas, pasto, rocas, público y confeti.
+  Falta T-4 (que aprendan de vos: E-2 a E-4). **Próximo:** H-6 (bot que
   juega el capítulo + revisión) o seguir con E-2 / la Ruta 3 y el Monte Moon, a decidir con el usuario.
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
