@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusInteraction" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_f"]
+[ext_resource type="Resource" path="res://data/status/empapado.tres" id="2_e"]
+[ext_resource type="Script" path="res://scripts/resources/status_interaction.gd" id="3_s"]
+
+[resource]
+script = ExtResource("3_s")
+description = "Fuego contra Empapado: pega un 30% menos y lo seca."
+label = "¡Vapor!"
+element = ExtResource("1_f")
+requires = ExtResource("2_e")
+consume = true
+damage_mult = 0.7

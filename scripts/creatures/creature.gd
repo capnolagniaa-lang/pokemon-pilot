@@ -396,7 +396,8 @@ func _on_hit(hit: HitInfo) -> void:
 			attacker.killed.emit(self)
 		return
 	var state := machine.current_name()
-	var to_apply := [[hit.move.status, hit.move.status_chance], [hit.extra_status, hit.extra_status_chance]]
+	var to_apply := [[hit.move.status, hit.move.status_chance], [hit.extra_status, hit.extra_status_chance],
+		[DB.statuses.get(hit.move.element.hit_status_id), hit.move.element.hit_status_chance]]  # el agua empapa al pegar
 	for s in hit.move.statuses_on_hit:
 		to_apply.append([s, 1.0])
 	for pair in to_apply:

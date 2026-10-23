@@ -9,3 +9,5 @@ display_name = "Agua"
 color = Color(0.25, 0.55, 0.95, 1)
 core_color = Color(0.75, 0.9, 1, 1)
 glow = 1.1
+hit_status_id = "empapado"
+hit_status_chance = 1.0

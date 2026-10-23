@@ -61,17 +61,39 @@ Mecánicas de firma nuevas (`scripts/combat/signatures/`, números en `data/kits
 Los demás (Squirtle, Pikachu, etc.) **todavía usan sus 4 ataques sueltos** de `SpeciesData.moves` (mapeados a
 las 4 teclas) hasta tener kit.
 
-## Propuestas en discusión (a confirmar con el usuario antes de implementar)
-- **Squirtle — Tanque** (bloqueo, empujes, resistencia): Clic izq. Placaje pesado (empuja fuerte) · Clic der.
-  Pistola Agua (chorro que empuja y Empapa) · Q **Refugio** (mantener: bloquea 70% del daño frontal; si se
-  activa justo antes del golpe = **parry**: anula y aturde breve al atacante) · R Giro Rápido (rueda en el
-  caparazón: no lo empujan, limpia estados, choca y desplaza). Mecánica **Presión**: el daño bloqueado carga una
-  barra que potencia el siguiente ataque. Opcional: charcos que Empapan.
-- **Pikachu — Velocista de cargas**: mecánica **Estática**: moverse y esquivar generan cargas (máx. 5); quieto
-  las pierde. Clic izq. Impactrueno (rápido; con cargas pega más; contra Empapado aturde) · Clic der. Ataque
-  Rápido (dash que atraviesa; con cargas se puede reusar una vez) · Q Onda Trueno (onda corta que llena mucho la
-  barra de parálisis) · R Rayo/Trueno (consume todas las cargas: rayos en área, daño por carga). **Descarga**:
-  golpear con 5 cargas paraliza y rebota a un enemigo cercano.
+## Rework de Empapado (2026-10-23, pedido del usuario)
+Antes "dejaba inútil" al mojado: los disparos de agua mojaban todo el camino (charcos de 15 s), pararse en un
+charco volvía a empapar cada medio segundo y la IA trataba lo mojado como peligroso y se pasaba la pelea
+escapando. Ahora:
+- **Moja al impactar**: todo ataque de tipo Agua empapa al que golpea (`ElementType.hit_status_id`, data-driven).
+- **Empapado**: 4 s, −10% velocidad (se puede mover y pelear normal). Combos: Eléctrico → cortocircuito (×1,5 y
+  aturde 0,9 s, lo consume) · Planta → alarga el Enraizado · **Fuego → pega un 30% menos y lo seca ("¡Vapor!")**.
+  El agua sigue apagando el Quemado.
+- Los disparos ya **no afectan las celdas por las que pasan**, solo donde impactan. Los **charcos** (suelo
+  mojado) no empapan ni asustan a la IA: sirven para que corra la electricidad y para congelarlos.
+
+## v3 — 10 kits nuevos (en prueba, 2026-10-23)
+Pedido del usuario: llegar a ~16 kits para el modo historia ("los vamos a ir trabajando a medida que testee").
+Lista aprobada en `docs/SALVAJES_Y_MOVIMIENTOS.md` (sección 4). Diseño inicial (números a ajustar probando):
+
+| Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Mecánica de firma |
+|---|---|---|---|---|---|---|
+| Squirtle | Tanque | Placaje (combo 2, el 2º empuja fuerte) | Pistola Agua (empapa) | **Refugio**: se mete en el caparazón 1,5 s (recibe ×0,3, no lo empujan, no se mueve); si le pegan en los primeros 0,3 s = **parry** (anula y aturde al atacante) | Giro Rápido: rueda, limpia sus estados | **Presión**: el daño bloqueado y los parry cargan una barra; el próximo golpe la gasta y pega más |
+| Pikachu | Velocista | Impactrueno (rápido) | Ataque Rápido | Onda Trueno (onda que suma parálisis) | Rayo (gasta las cargas: hasta ×2) | **Estática**: moverse y esquivar cargan (5 cargas); quieto las pierde; con 5, el próximo golpe es una **Descarga** que paraliza |
+| Oddish | Desgaste | Absorber (cura la mitad del daño) | Polvo Veneno (parche) | Paralizador (parche de parálisis) | **Florecer**: hace florecer las esporas de los enemigos cercanos | **Esporas**: cada golpe deja una espora (máx. 5); al florecer: 1+ envenena, 3+ paraliza, 5 duerme, y Oddish se cura un poco por cada una |
+| Paras | Control | Arañazo (combo 2) | Paralizador (parche) | Chupavidas (cura la mitad del daño) | **Espora**: nube que duerme si te quedás adentro | **Esporas inflamables** (idea del usuario): el fuego que toca un parche o nube de esporas la prende 3 s y quema a todos los que estén adentro |
+| Psyduck | Caótico | Pistola Agua | Arañazo (combo 3 rápido) | Confusión (puede desorientar) | **Anulación**: si pega, el rival tarda 3 s más en recargar todo | **Jaqueca**: sube al recibir daño y con el tiempo en combate; al llenarse, estalla una Confusión en área que desorienta |
+| Poliwag | Velocista acuático | Burbuja (3 burbujas) | Pistola Agua | Danza Lluvia: moja el piso alrededor y empapa | **Hipnosis**: proyectil lento y telegrafiado que duerme | **Deslizamiento**: sobre agua o suelo mojado se mueve ×1,4 y esquiva el doble de seguido |
+| Growlithe | Perseguidor | Mordisco (combo 2) | Ascuas | Rugido: empuja muy fuerte y desorienta | Rueda Fuego (embestida que quema) | **Rastreo**: sus golpes marcan al rival 6 s; contra el marcado corre ×1,25 y pega ×1,25 |
+| Eevee | Adaptativo | Placaje (combo 2) | Ataque Arena (desorienta) | Ataque Rápido | Derribo (embestida fuerte) | **Adaptación**: al recibir un golpe de un tipo, 8 s recibe ×0,7 de ese tipo |
+| Seel | Tanque helado | Golpe Cabeza (empuja y tambalea) | Viento Hielo (3 ráfagas que ralentizan) | Rayo Aurora | **Descanso**: duerme 2 s y se cura | **Escarcha**: sus ataques de hielo dejan escarcha (máx. 3); con 3, el rival se congela |
+| Geodude | Tanque de roca | Placaje (pesado) | **Rodar**: embestida que encadena | Lanzarrocas | Rizo Defensa: recibe la mitad 4 s | **Impulso**: cada Rodar dentro de 3 s del anterior pega +50% (hasta ×2); con Rizo Defensa activo, Rodar pega el doble |
+
+Piezas nuevas del motor (genéricas, sin `if especie`): `MoveData.drain` (cura una fracción del daño),
+`MoveData.cleanse_self` (limpia los estados propios al usarlo), `MoveData.cooldown_lock` (alarga las recargas del
+golpeado), `MoveData.zone_flammable` (esporas que arden), ganchos `SignatureMechanic.damage_taken_mult` y
+`dodge_cooldown_mult`, y estados nuevos (refugio, esporas, rastreado, escarcha, rizo, descansando).
+
 - (Pidgey, Rattata y Vulpix: **implementados**, ver arriba.)
 
 ## Próximo paso sugerido

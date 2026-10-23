@@ -27,6 +27,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   `docs/SALVAJES_LISTADO.md` (generado por `tools/build_wild_docs.gd`: qué aparece en cada zona y con qué
   movimientos). Arreglado: el territorial (Bellsprout) cortaba el combate a cada rato. **Propuesta a confirmar:
   llegar a ~16 kits** para el modo historia (lista en `SALVAJES_Y_MOVIMIENTOS.md`, sección 4).
+- **Rework de Empapado** (2026-10-23): los ataques de agua empapan al pegar (no por el camino), Empapado dura 4 s
+  y solo resta 10% de velocidad, los charcos no empapan ni asustan a la IA, y el fuego contra un empapado pega
+  30% menos y lo seca. Detalle en el plan de identidad ("Rework de Empapado").
+- **v3: 10 kits nuevos en prueba** (Squirtle, Pikachu, Oddish, Paras, Psyduck, Poliwag, Growlithe, Eevee, Seel,
+  Geodude): diseño en el plan de identidad ("v3"); el usuario los va a ir ajustando mientras los prueba.
 - **Siguiente: E-1** (combate contra entrenador: desafío, equipos de hasta 3, cambio de Pokémon con Tab, fin y
   EXP). Después, spawns por hora (Etapa 4b/5). El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.

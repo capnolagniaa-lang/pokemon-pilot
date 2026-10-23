@@ -31,7 +31,7 @@ func run() -> void:
 	r["El fuego no seca lo mojado"] = _try(g, dirt, fuego) == "mojado"
 	var dummy: Creature = autotest._dummy(world, "rattata", _center(zone, dirt))
 	await get_tree().create_timer(0.7).timeout
-	r["Criatura sobre lo mojado: Empapada"] = dummy.statuses.has_status("empapado")
+	r["Pararse en un charco ya no empapa (solo moja el golpe)"] = not dummy.statuses.has_status("empapado")
 	r["Eléctrico sobre lo mojado: electrifica"] = _try(g, dirt, electrico) == "electrificado"
 	var stunned := false
 	for k in 12:
@@ -43,6 +43,32 @@ func run() -> void:
 	await get_tree().create_timer(1.0).timeout
 	r["Después vuelve a estar mojado"] = g.state_at(dirt) != null and g.state_at(dirt).id == "mojado"
 	dummy.queue_free()
+
+	# --- Rework de Empapado (2026-10-23): moja al pegar, no por el camino ---
+	var squirtle: Creature = autotest._dummy(world, "squirtle", world.trainer.global_position + Vector2(-140, 60))
+	squirtle.team = Creature.Team.ALLY
+	var target: Creature = autotest._dummy(world, "rattata", squirtle.global_position + Vector2(70, 0))
+	await get_tree().physics_frame
+	var wet_before := _cells_with(g, ["mojado"])
+	var water_move: MoveData = DB.moves["pistola_agua"]
+	var p := Projectile.new()
+	world.entities.add_child(p)
+	p.launch(HitInfo.from(squirtle, water_move), squirtle.global_position + Vector2(8, -8), Vector2.RIGHT)
+	await get_tree().create_timer(0.6).timeout
+	r["Un ataque de agua empapa al que golpea"] = target.statuses.has_status("empapado")
+	var path_dry := true  # el camino (lejos del impacto, que sí moja alrededor) queda seco
+	for dx in [12.0, 24.0, 36.0]:
+		var st := g.state_at(g.zone.cell_at(squirtle.global_position + Vector2(dx, 0)))
+		path_dry = path_dry and (st == null or st.id != "mojado")
+	r["El disparo no moja el piso por el camino"] = path_dry and wet_before >= 0
+	var fire_hit := HitInfo.from(squirtle, DB.moves["ascuas"])
+	var hp0: float = target.instance.hp
+	target.hurtbox.receive(fire_hit)
+	r["Fuego contra Empapado: lo seca (¡Vapor!)"] = not target.statuses.has_status("empapado") and target.instance.hp < hp0
+	r["Empapado dura 4 s y solo ralentiza un 10%"] = is_equal_approx(DB.statuses["empapado"].duration, 4.0) \
+		and is_equal_approx(DB.statuses["empapado"].speed_mult, 0.9) and DB.statuses["empapado"].can_move
+	squirtle.queue_free()
+	target.queue_free()
 
 	# --- Objetos: roca frágil y árbol cortable ---
 	var rocks: Array = get_tree().get_nodes_in_group("env_objects").filter(func(o): return o.has_tag("fragil"))

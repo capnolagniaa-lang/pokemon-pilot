@@ -103,12 +103,12 @@ func run() -> void:
 	await get_tree().physics_frame
 	var g: EnvironmentGrid = world.reactions.grid_at(wet.global_position)
 	var cell: Vector2i = g.zone.cell_at(wet.global_position)
-	g.set_state(cell, DB.env_states["mojado"])
+	g.set_state(cell, DB.env_states["electrificado"])
 	var left_cell := false
 	for k in 10:
 		await get_tree().create_timer(0.15).timeout
 		left_cell = left_cell or g.zone.cell_at(wet.global_position) != cell
-	r["Sale de una celda peligrosa (mojada)"] = left_cell
+	r["Sale de una celda peligrosa (electrificada)"] = left_cell
 	_clear(wet)
 
 	# --- Una pelea de verdad (bot) con cada temperamento: el combate no se corta mientras pelean ---
