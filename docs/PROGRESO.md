@@ -22,6 +22,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Captura, Mochila y Caja hechas** (2026-10-23, pedido del usuario antes de E-1; `docs/PLAN_CAPTURA_MOCHILA.md`):
   E lanza la Pokébola (fórmula oficial de 3ª gen), IVs al azar en los salvajes, Caja con el equipo lleno, Mochila
   con bolsillos y objetos oficiales, C usa el objeto rápido en combate, objetos en el mapa y botín de salvajes.
+- **Documentación de salvajes, movimientos y kits** (2026-10-23): `docs/SALVAJES_Y_MOVIMIENTOS.md` (cómo
+  funcionan el spawner, los movimientos, los temperamentos y los kits, y cómo modificarlos) y
+  `docs/SALVAJES_LISTADO.md` (generado por `tools/build_wild_docs.gd`: qué aparece en cada zona y con qué
+  movimientos). Arreglado: el territorial (Bellsprout) cortaba el combate a cada rato. **Propuesta a confirmar:
+  llegar a ~16 kits** para el modo historia (lista en `SALVAJES_Y_MOVIMIENTOS.md`, sección 4).
 - **Siguiente: E-1** (combate contra entrenador: desafío, equipos de hasta 3, cambio de Pokémon con Tab, fin y
   EXP). Después, spawns por hora (Etapa 4b/5). El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.

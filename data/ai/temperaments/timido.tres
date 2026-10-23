@@ -13,6 +13,6 @@ territory_radius = 70.0
 approach_distance = 55.0
 nervous_distance = 26.0
 nervous_attack_chance = 0.4
-flee_below = 0.5
+flee_below = 0.3
 spook_chance = 0.5
 notice_emote = "gota"

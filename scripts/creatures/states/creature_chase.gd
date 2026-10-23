@@ -5,8 +5,11 @@ extends State
 
 func physics_update(_delta: float) -> void:
 	var t: Creature = actor.target
-	if not is_instance_valid(t) or t.is_down() or _gives_up(t):
+	if not is_instance_valid(t) or t.is_down():
 		transition("wander")
+		return
+	if _gives_up(t):
+		actor.give_up_fight()
 		return
 	var diff: Vector2 = t.global_position - actor.global_position
 	# Apertura: si tiene un ataque de acercamiento y ya te tiene a tiro, abre con ese (patrón reconocible).
@@ -22,14 +25,16 @@ func physics_update(_delta: float) -> void:
 	actor.move(diff.normalized(), actor.speed())
 
 
-## Correa: el agresivo persigue lejos; el territorial suelta apenas salís de su zona.
+## Correa: el agresivo persigue lejos; el territorial suelta apenas salís de su zona. Pero mientras están
+## peleando de verdad (Creature.engaged) no suelta por salir de la zona y la correa se estira.
 func _gives_up(t: Creature) -> bool:
 	var temp: Temperament = actor.temperament
-	if temp == null:
-		return actor.global_position.distance_to(actor.home) > 360.0
-	if actor.global_position.distance_to(actor.home) > temp.leash:
+	var leash: float = temp.leash if temp != null else 360.0
+	if actor.engaged():
+		return actor.global_position.distance_to(actor.home) > leash * 1.6
+	if actor.global_position.distance_to(actor.home) > leash:
 		return true
-	return temp.on_notice == Temperament.OnNotice.TERRITORY \
+	return temp != null and temp.on_notice == Temperament.OnNotice.TERRITORY \
 		and t.global_position.distance_to(actor.home) > temp.territory_radius * 1.8
 
 

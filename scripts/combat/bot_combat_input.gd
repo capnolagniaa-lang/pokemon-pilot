@@ -4,6 +4,9 @@ extends CombatInput
 ## al azar y esquiva de vez en cuando.
 
 var world: Node
+## Distancia a la que pelea (el bot de siempre, cerca; con 110 pelea de lejos y se mueve, como un jugador que
+## kitea con proyectiles).
+var keep_distance := 40.0
 var _choice := -1
 var _choice_time := 0.0
 var _strafe := 1.0
@@ -29,9 +32,9 @@ func move_dir(actor: Creature) -> Vector2:
 	var d := to.length()
 	if randf() < 0.01:
 		_strafe = -_strafe
-	if d > 60.0:
+	if d > keep_distance * 1.5:
 		return to.normalized()
-	if d < 22.0:
+	if d < keep_distance * 0.55:
 		return -to.normalized()
 	return to.normalized().orthogonal() * _strafe
 

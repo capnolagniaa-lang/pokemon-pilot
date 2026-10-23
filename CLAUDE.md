@@ -120,7 +120,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   (`Creature.body`: alcance, apuntar, esquivar, peligros; la dificultad actúa solo acá) + **mente**. Salvajes =
   `Creature.temperament` (`Temperament`, `data/ai/temperaments/`; `SpeciesData.temperament` lo asigna
   `tools/assign_temperaments.gd`) leído por los estados wander/watch/chase/attack/flee; sin memoria, patrón fijo.
-  Entrenadores (pendiente): órdenes + memoria, mismo cuerpo.
+  Entrenadores (pendiente): órdenes + memoria, mismo cuerpo. Mientras hay golpes (`Creature.engaged`, 5 s) un
+  salvaje no suelta la pelea por territorio; al soltarla queda tranquilo 6 s (`calm_until`).
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.
@@ -208,6 +209,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   FRLG) y los guarda en las especies. Correrlo después de cambiar un kit o los extras.
 - `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +
   `sprites/items/`. El efecto de cada objeto está en su tabla `ITEMS`.
+- `tools/build_wild_docs.gd`: genera `docs/SALVAJES_LISTADO.md` (qué aparece en cada zona, kit, temperamento y
+  movimientos de cada especie). Correrlo después de tocar tablas de encuentros, kits o learnsets. Cómo funciona
+  todo eso y cómo modificarlo: `docs/SALVAJES_Y_MOVIMIENTOS.md`.
 - `tools/download_sprites.py`: sprites PMD (PMDCollab/SpriteCollab) de los N.º 1-386 (Idle, Walk, Attack,
   Hurt y retrato) → `sprites/pokemon/` + `scripts/generated/sprite_data.gd`. No vuelve a bajar lo que ya está.
 

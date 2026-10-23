@@ -57,6 +57,14 @@ var temperament: Temperament
 var spook_left := 0.0
 ## Salvaje: ya hizo su apertura en esta pelea (se reinicia al volver a deambular).
 var fight_opened := false
+## Último intercambio de golpes (reloj de la criatura): mientras pelea de verdad no suelta la pelea por salir de
+## su territorio (si no, el combate se cortaba y volvía a empezar a cada rato).
+var last_exchange := -100.0
+## Hasta cuándo no vuelve a notar a nadie (después de soltar una pelea), salvo que le peguen.
+var calm_until := 0.0
+
+const ENGAGED_TIME := 5.0
+const CALM_AFTER_GIVING_UP := 6.0
 ## "Cuerpo" de la IA (ejecución compartida por salvajes y entrenadores; ver CombatBody).
 var body: CombatBody:
 	get:
@@ -111,6 +119,21 @@ func set_captured(inside: bool) -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED if inside else Node.PROCESS_MODE_INHERIT
 	hurtbox.set_deferred("monitorable", not inside)
 	collision_layer = 0 if inside else (BODY_LAYER_ALLY if team == Team.ALLY else BODY_LAYER_WILD)
+
+
+func now() -> float:
+	return _clock
+
+
+## Si está peleando de verdad (hubo golpes en los últimos ENGAGED_TIME segundos).
+func engaged() -> bool:
+	return _clock - last_exchange < ENGAGED_TIME
+
+
+## Suelta la pelea (salvaje): vuelve a su lugar y no nota a nadie por un rato.
+func give_up_fight() -> void:
+	calm_until = _clock + CALM_AFTER_GIVING_UP
+	machine.transition_to("wander")
 
 
 ## Aviso sobre la cabeza ("!" te vio, "?" curiosidad, gota de miedo...).
@@ -344,6 +367,9 @@ func _on_hit(hit: HitInfo) -> void:
 	if health.is_invulnerable() or (signature != null and signature.ignores_hit(hit)):
 		return
 	var attacker: Creature = hit.attacker if is_instance_valid(hit.attacker) else null
+	if attacker != null:
+		last_exchange = _clock
+		attacker.last_exchange = attacker.now()
 	var interactions := DB.interactions_for(hit.move.element, statuses)
 	var mult := 1.0
 	for it in interactions:

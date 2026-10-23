@@ -44,6 +44,8 @@ func physics_update(delta: float) -> void:
 
 ## Si nota a alguien, reacciona según el temperamento. Devuelve true si cambió de estado.
 func _react() -> bool:
+	if actor.now() < actor.calm_until:
+		return false  # acaba de soltar una pelea: un rato tranquilo (si le pegan, igual pelea)
 	var temp: Temperament = actor.temperament
 	var seen := _spot_target(temp.detect_radius if aggro_radius < 0.0 else aggro_radius)
 	if seen == null:

@@ -35,10 +35,30 @@ func run() -> void:
 	_move_party(guard.global_position + Vector2(-30, 0))
 	await get_tree().create_timer(1.2).timeout
 	r["Territorial: si entrás a su zona, pelea"] = guard.target == me
+	guard.last_exchange = -100.0  # salís sin haber peleado (si ya hubo golpes, no te suelta: ver más abajo)
 	_move_party(guard.home + Vector2(-260, 0))
 	await get_tree().create_timer(2.5).timeout
 	r["Territorial: si salís de su zona, te deja ir"] = guard.target == null
+	_move_party(guard.home + Vector2(-30, 0))
+	await get_tree().create_timer(1.0).timeout
+	r["Territorial: después de soltarte no te vuelve a agarrar enseguida"] = guard.target == null
 	_clear(guard)
+	await get_tree().create_timer(2.0).timeout
+
+	# Peleando (hubo golpes) no suelta aunque tu Pokémon salga de su zona: antes cortaba el combate a cada rato.
+	var fighter := _spawn("bellsprout", "territorial", me.global_position + Vector2(50, 0))
+	await get_tree().physics_frame
+	fighter.hurtbox.receive(HitInfo.from(me, me.moves.slots[0]))
+	await get_tree().create_timer(0.3).timeout
+	_move_party(fighter.home + Vector2(-150, 0))
+	var held := true
+	for k in 12:
+		await get_tree().create_timer(0.15).timeout
+		held = held and fighter.target == me and world.combat.in_battle
+		if k % 4 == 0:
+			fighter.hurtbox.receive(HitInfo.from(me, me.moves.slots[0]))  # siguen peleando
+	r["Territorial peleando: no suelta aunque salgas de su zona (no corta el combate)"] = held
+	_clear(fighter)
 	await get_tree().create_timer(2.0).timeout
 
 	# --- Tímido: huye sin pelear; si le pegás, pelea ---
@@ -84,9 +104,19 @@ func run() -> void:
 	var g: EnvironmentGrid = world.reactions.grid_at(wet.global_position)
 	var cell: Vector2i = g.zone.cell_at(wet.global_position)
 	g.set_state(cell, DB.env_states["mojado"])
-	await get_tree().create_timer(0.8).timeout
-	r["Sale de una celda peligrosa (mojada)"] = g.zone.cell_at(wet.global_position) != cell
+	var left_cell := false
+	for k in 10:
+		await get_tree().create_timer(0.15).timeout
+		left_cell = left_cell or g.zone.cell_at(wet.global_position) != cell
+	r["Sale de una celda peligrosa (mojada)"] = left_cell
 	_clear(wet)
+
+	# --- Una pelea de verdad (bot) con cada temperamento: el combate no se corta mientras pelean ---
+	for temper in ["territorial", "curioso", "timido", "agresivo"]:
+		for dist in [40.0, 110.0]:
+			var cuts := await _real_fight("bellsprout", temper, dist)
+			r["Pelea real con un %s a %d px: no se corta" % [temper, dist]] = cuts == 0
+			print("[wild-ai] pelea con ", temper, " a ", dist, ": cortes=", cuts)
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:
@@ -107,6 +137,42 @@ func showcase() -> void:
 	_spawn("bellsprout", "territorial", me.global_position + Vector2(-60, -80))
 	await get_tree().create_timer(5.0).timeout
 	get_tree().quit()
+
+
+## Pelea manejada por el bot (como --autotest-combat) contra un salvaje con su temperamento. Cuenta cuántas veces
+## el combate terminó mientras el salvaje seguía en pie y sin haber huido con poca vida (un "corte").
+func _real_fight(species_id: String, temper: String, keep: float) -> int:
+	world.combat.end_battle()
+	var me: Creature = world.companion
+	me.instance.hp = me.instance.max_hp()
+	var bot := BotCombatInput.new(world)
+	bot.keep_distance = keep
+	world.combat.input_source = bot
+	var wild := _spawn(species_id, temper, me.global_position + Vector2(40, 0))
+	wild.instance.level = me.instance.level
+	wild.instance.hp = wild.instance.max_hp()
+	var cuts := 0
+	var on_end := func():
+		if is_instance_valid(wild) and not wild.health.is_dead() and wild.health.ratio() > wild.temperament.flee_below:
+			cuts += 1
+	Events.battle_ended.connect(on_end)
+	# Si no lo nota solo (tímido/curioso), le pegamos para empezar.
+	await get_tree().create_timer(0.3).timeout
+	if not world.combat.in_battle:
+		wild.hurtbox.receive(HitInfo.from(me, me.moves.slots[0]))
+	var t := 0.0
+	while t < 14.0 and is_instance_valid(wild) and not wild.health.is_dead():
+		await get_tree().process_frame
+		t += get_process_delta_time()
+		if not world.combat.in_battle and is_instance_valid(wild) and wild.target == null:
+			if cuts > 0:
+				break  # se cortó (ya contado)
+			wild.hurtbox.receive(HitInfo.from(me, me.moves.slots[0]))  # huyó: lo volvemos a buscar
+	Events.battle_ended.disconnect(on_end)
+	world.combat.input_source = CombatInput.new()
+	_clear(wild)
+	await get_tree().create_timer(0.5).timeout
+	return cuts
 
 
 func _spawn(species_id: String, temper: String, pos: Vector2) -> Creature:

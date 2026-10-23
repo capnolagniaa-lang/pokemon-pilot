@@ -37,9 +37,9 @@ func physics_update(delta: float) -> void:
 		actor.emote("gota", 1.0)
 		transition("flee")
 		return
-	if temp != null and temp.on_notice == Temperament.OnNotice.TERRITORY \
+	if temp != null and temp.on_notice == Temperament.OnNotice.TERRITORY and not actor.engaged() \
 			and t.global_position.distance_to(actor.home) > temp.territory_radius * 1.8:
-		transition("wander")  # saliste de su territorio: te deja ir
+		actor.give_up_fight()  # saliste de su territorio sin pelear: te deja ir
 		return
 	actor.facing = dir
 	if actor.body.try_dodge():
