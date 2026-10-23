@@ -196,6 +196,12 @@ func _make_fx(s: StatusEffect) -> CPUParticles2D:
 	p.z_index = 2
 	p.emitting = s.fx_amount > 0
 	creature.add_child(p)
+	if s.fx_bubble:
+		var b := BubbleFx.new()
+		b.color = s.color
+		b.position = Vector2(0, 0)
+		b.z_index = 1
+		p.add_child(b)
 	if s.fx_light:
 		var light := PointLight2D.new()
 		light.texture = preload("res://art/fx/soft_shadow.tres")

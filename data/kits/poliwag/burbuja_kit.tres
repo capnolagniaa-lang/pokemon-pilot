@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="3_x"]
-[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="4_x"]
+[ext_resource type="Resource" path="res://data/status/burbuja.tres" id="4_x"]
 
 [resource]
 script = ExtResource("1_x")
@@ -13,13 +13,12 @@ element = ExtResource("3_x")
 kind = 0
 category = 1
 power = 40.0
-power_mult = 0.45
-cooldown = 1.1
-knockback = 60.0
-speed = 200.0
-size = 3.5
-lifetime = 0.8
-projectile_count = 3
-spread_deg = 26.0
-status = ExtResource("4_x")
-status_chance = 0.1
+power_mult = 0.35
+cooldown = 3.0
+knockback = 0.0
+recovery = 0.1
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])
+skip_element_status = true
+speed = 170.0
+size = 6.0
+lifetime = 0.9

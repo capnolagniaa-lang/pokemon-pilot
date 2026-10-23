@@ -102,6 +102,18 @@ func _pikachu(r: Dictionary) -> void:
 	sig.set_value(60.0)
 	await get_tree().create_timer(0.5).timeout
 	r["Pikachu: quieto pierde las cargas"] = sig.value < 60.0
+	# Rayo: cae del cielo en un círculo chico donde apuntás, con aviso antes.
+	var foe := _dummy("rattata", Vector2(80, 0))
+	var far := _dummy("rattata", Vector2(80, 60))
+	await get_tree().physics_frame
+	var hp0: float = foe.instance.hp
+	var hp_far: float = far.instance.hp
+	me.moves.reset_cooldown(3)
+	me.use_slot(3, Vector2.RIGHT, foe.global_position)
+	await get_tree().create_timer(0.3).timeout
+	r["Pikachu: el Rayo avisa antes de caer"] = foe.instance.hp == hp0 and world.entities.get_children().any(func(n): return n is SkyStrike)
+	await get_tree().create_timer(0.5).timeout
+	r["Pikachu: el Rayo pega en el área y no fuera"] = foe.instance.hp < hp0 and far.instance.hp == hp_far
 
 
 func _oddish(r: Dictionary) -> void:
@@ -152,11 +164,22 @@ func _poliwag(r: Dictionary) -> void:
 	var dry := me.speed()
 	me.use_slot(2, Vector2.RIGHT)
 	await get_tree().create_timer(0.4).timeout
-	r["Poliwag: Danza Lluvia moja el piso alrededor"] = world.reactions.state_at(me.global_position + Vector2(16, 0)) != null
+	# Alrededor (no en una sola celda: el mapa puede tener un árbol al lado, que no se moja).
+	var wet: Array = [Vector2.ZERO, Vector2(16, 0), Vector2(-16, 0), Vector2(0, 16), Vector2(0, -16)] 		.filter(func(o): return world.reactions.state_at(me.global_position + o) != null)
+	r["Poliwag: Danza Lluvia moja el piso alrededor"] = not wet.is_empty()
+	if not wet.is_empty():
+		me.global_position += wet[0]  # pararse en una celda mojada
 	await get_tree().create_timer(0.3).timeout
 	r["Poliwag: sobre lo mojado se mueve más rápido"] = me.speed() > dry * 1.2
 	me.dodge(Vector2.UP)
 	r["Poliwag: sobre lo mojado esquiva más seguido"] = me.moves.dodge_cooldown < MoveUser.DODGE_COOLDOWN * 0.8
+	var foe := _dummy("rattata", Vector2(30, 0))
+	await get_tree().physics_frame
+	var hp0: float = foe.instance.hp
+	foe.hurtbox.receive(HitInfo.from(me, me.moves.slots[0]))
+	r["Poliwag: Burbuja encierra, no moja y saca poco"] = foe.statuses.has_status("burbuja") and not foe.statuses.has_status("empapado") 		and not foe.statuses.can_act() and hp0 - foe.instance.hp < foe.instance.max_hp() * 0.15
+	await get_tree().create_timer(1.1).timeout
+	r["Poliwag: la burbuja dura poco"] = not foe.statuses.has_status("burbuja")
 
 
 func _growlithe_eevee(r: Dictionary) -> void:

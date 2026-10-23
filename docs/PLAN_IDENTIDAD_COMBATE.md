@@ -84,18 +84,22 @@ los números son iniciales y se van a ajustar a medida que el usuario los pruebe
   (Psyduck), slide (Poliwag), track (Growlithe), adapt (Eevee), frost (Seel), momentum (Geodude). Paras no tiene
   firma: su identidad son las esporas inflamables (`GroundZone.ignite`).
 - Learnsets: los 4 del kit en Nv. 1/1/3/5 + extras (`EXTRAS` de `tools/build_learnsets.gd`).
-- Autotest `--autotest-kits-v3` (33 chequeos: cada kit usa sus 4 ataques y su mecánica funciona).
+- Autotest `--autotest-kits-v3` (37 chequeos: cada kit usa sus 4 ataques y su mecánica funciona).
+- **Ajustes tras la primera prueba del usuario (2026-10-23)**: Rayo de Pikachu = golpe desde el cielo en área
+  (`MoveData.zone_strike` + `strike_delay`, nodo `SkyStrike`); Burbuja de Poliwag = poco daño, sin empapar
+  (`MoveData.skip_element_status`) y encierra en una burbuja (`data/status/burbuja.tres`, `StatusEffect.fx_bubble`).
+  Growlithe, Pidgey, Bellsprout y Charmander: bien por ahora.
 
 Diseño (números iniciales):
 
 | Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Mecánica de firma |
 |---|---|---|---|---|---|---|
 | Squirtle | Tanque | Placaje (combo 2, el 2º empuja fuerte) | Pistola Agua (empapa) | **Refugio**: se mete en el caparazón 1,5 s (recibe ×0,3, no lo empujan, no se mueve); si le pegan en los primeros 0,3 s = **parry** (anula y aturde al atacante) | Giro Rápido: rueda, limpia sus estados | **Presión**: el daño bloqueado y los parry cargan una barra; el próximo golpe la gasta y pega más |
-| Pikachu | Velocista | Impactrueno (rápido) | Ataque Rápido | Onda Trueno (onda que suma parálisis) | Rayo (gasta las cargas: hasta ×2) | **Estática**: moverse y esquivar cargan (5 cargas); quieto las pierde; con 5, el próximo golpe es una **Descarga** que paraliza |
+| Pikachu | Velocista | Impactrueno (rápido) | Ataque Rápido | Onda Trueno (onda que suma parálisis) | Rayo: **cae del cielo** en un círculo chico donde apuntás (radio 30, como Giro Fuego), con aviso de 0,35 s; gasta las cargas (hasta ×2) | **Estática**: moverse y esquivar cargan (5 cargas); quieto las pierde; con 5, el próximo golpe es una **Descarga** que paraliza |
 | Oddish | Desgaste | Absorber (cura la mitad del daño) | Polvo Veneno (parche) | Paralizador (parche de parálisis) | **Florecer**: hace florecer las esporas de los enemigos cercanos | **Esporas**: cada golpe deja una espora (máx. 5); al florecer: 1+ envenena, 3+ paraliza, 5 duerme, y Oddish se cura un poco por cada una |
 | Paras | Control | Arañazo (combo 2) | Paralizador (parche) | Chupavidas (cura la mitad del daño) | **Espora**: nube que duerme si te quedás adentro | **Esporas inflamables** (idea del usuario): el fuego que toca un parche o nube de esporas la prende 3 s y quema a todos los que estén adentro |
 | Psyduck | Caótico | Pistola Agua | Arañazo (combo 3 rápido) | Confusión (puede desorientar) | **Anulación**: si pega, el rival tarda 3 s más en recargar todo | **Jaqueca**: sube al recibir daño y con el tiempo en combate; al llenarse, estalla una Confusión en área que desorienta |
-| Poliwag | Velocista acuático | Burbuja (3 burbujas) | Pistola Agua | Danza Lluvia: moja el piso alrededor y empapa | **Hipnosis**: proyectil lento y telegrafiado que duerme | **Deslizamiento**: sobre agua o suelo mojado se mueve ×1,4 y esquiva el doble de seguido |
+| Poliwag | Velocista acuático | Burbuja: una burbuja lenta que **saca poco, no empapa y encierra 0,9 s** al rival (estado "En burbuja", control) | Pistola Agua | Danza Lluvia: moja el piso alrededor y empapa | **Hipnosis**: proyectil lento y telegrafiado que duerme | **Deslizamiento**: sobre agua o suelo mojado se mueve ×1,4 y esquiva el doble de seguido |
 | Growlithe | Perseguidor | Mordisco (combo 2) | Ascuas | Rugido: empuja muy fuerte y desorienta | Rueda Fuego (embestida que quema) | **Rastreo**: sus golpes marcan al rival 6 s; contra el marcado corre ×1,25 y pega ×1,25 |
 | Eevee | Adaptativo | Placaje (combo 2) | Ataque Arena (desorienta) | Ataque Rápido | Derribo (embestida fuerte) | **Adaptación**: al recibir un golpe de un tipo, 8 s recibe ×0,7 de ese tipo |
 | Seel | Tanque helado | Golpe Cabeza (empuja y tambalea) | Viento Hielo (3 ráfagas que ralentizan) | Rayo Aurora | **Descanso**: duerme 2 s y se cura | **Escarcha**: sus ataques de hielo dejan escarcha (máx. 3); con 3, el rival se congela |

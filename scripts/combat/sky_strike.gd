@@ -1,0 +1,78 @@
+class_name SkyStrike
+extends Node2D
+## Golpe desde el cielo (Rayo de Pikachu, MoveData.zone_strike): marca un círculo en el suelo, y a los
+## `strike_delay` segundos cae el rayo y golpea una sola vez a los enemigos que siguen adentro.
+
+const BOLT_TIME := 0.28
+const BOLT_HEIGHT := 150.0
+const LIGHT_TEX := preload("res://art/fx/soft_shadow.tres")
+
+var hit: HitInfo
+var radius := 30.0
+var delay := 0.3
+var color := Color.WHITE
+var _time := 0.0
+var _struck := false
+var _bolt: PackedVector2Array = []
+
+
+func strike(p_hit: HitInfo, center: Vector2) -> void:
+	hit = p_hit
+	var m := p_hit.move
+	global_position = center
+	radius = m.zone_radius * p_hit.area_mult
+	delay = m.strike_delay
+	color = m.element.color
+	z_index = -5
+
+
+func _physics_process(delta: float) -> void:
+	_time += delta
+	if not _struck and _time >= delay:
+		_struck = true
+		_fall()
+	if _time >= delay + BOLT_TIME:
+		queue_free()
+	queue_redraw()
+
+
+func _fall() -> void:
+	for c in get_tree().get_nodes_in_group("creatures"):
+		if c.team == hit.team or c.is_down() or c.global_position.distance_to(global_position) > radius:
+			continue
+		hit.origin = global_position
+		c.hurtbox.receive(hit)
+	# Rayo quebrado del cielo al centro.
+	var y := -BOLT_HEIGHT
+	_bolt.append(Vector2(randf_range(-6, 6), y))
+	while y < -10.0:
+		y += randf_range(14.0, 24.0)
+		_bolt.append(Vector2(randf_range(-9, 9), minf(y, 0.0)))
+	_bolt.append(Vector2.ZERO)
+	var light := PointLight2D.new()
+	light.texture = LIGHT_TEX
+	light.color = color
+	light.energy = 0.35
+	light.texture_scale = radius / 32.0
+	add_child(light)
+	light.create_tween().tween_property(light, "energy", 0.0, BOLT_TIME)
+	Events.element_impact.emit(hit.move.element, global_position, radius)
+	Events.camera_shake.emit(3.0)
+	Fx.burst(get_parent(), global_position, hit.move.element.hdr(color), 18, radius * 2.0)
+
+
+func _draw() -> void:
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, 0.75))
+	if not _struck:
+		# Aviso: el círculo se va llenando hasta que cae el rayo.
+		var k := clampf(_time / maxf(delay, 0.01), 0.0, 1.0)
+		draw_circle(Vector2.ZERO, radius, Color(color.r, color.g, color.b, 0.12 + 0.12 * k))
+		draw_circle(Vector2.ZERO, radius * k, Color(color.r, color.g, color.b, 0.25))
+		draw_arc(Vector2.ZERO, radius, 0.0, TAU, 40, Color(color.r * 1.3, color.g * 1.3, color.b * 1.3, 0.9), 1.5)
+		return
+	var fade := clampf(1.0 - (_time - delay) / BOLT_TIME, 0.0, 1.0)
+	draw_circle(Vector2.ZERO, radius, Color(color.r * 1.4, color.g * 1.4, color.b * 1.4, 0.45 * fade))
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	if _bolt.size() > 1:
+		draw_polyline(_bolt, Color(color.r * 1.5, color.g * 1.5, color.b * 1.2, 0.6 * fade), 5.0)
+		draw_polyline(_bolt, Color(1.6, 1.6, 1.4, fade), 2.0)

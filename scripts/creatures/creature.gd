@@ -273,7 +273,11 @@ func release_move(msg: Dictionary) -> void:
 			s.swing(hit, global_position + Vector2(0, -8) + aim * m.melee_range, m.swing_radius * hit.area_mult, aim)
 		MoveData.Kind.ZONE:
 			var at := zone_point(m, msg.get("point", Vector2.INF), aim)
-			if m.zone_traps:
+			if m.zone_strike:
+				var sk := SkyStrike.new()
+				get_parent().add_child(sk)
+				sk.strike(hit, at)
+			elif m.zone_traps:
 				var z := ZoneTrap.new()
 				get_parent().add_child(z)
 				z.place(hit, at)
@@ -412,7 +416,8 @@ func _on_hit(hit: HitInfo) -> void:
 		return
 	var state := machine.current_name()
 	var to_apply := [[hit.move.status, hit.move.status_chance], [hit.extra_status, hit.extra_status_chance],
-		[DB.statuses.get(hit.move.element.hit_status_id), hit.move.element.hit_status_chance]]  # el agua empapa al pegar
+		[DB.statuses.get(hit.move.element.hit_status_id),
+			0.0 if hit.move.skip_element_status else hit.move.element.hit_status_chance]]  # el agua empapa al pegar
 	for s in hit.move.statuses_on_hit:
 		to_apply.append([s, 1.0])
 	for pair in to_apply:

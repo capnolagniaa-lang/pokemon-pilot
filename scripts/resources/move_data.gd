@@ -48,6 +48,8 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export var cooldown_lock: float = 0.0
 ## Esporas inflamables (Paras): si un ataque de fuego toca este parche o nube, arde 3 s y quema a quien esté adentro.
 @export var zone_flammable: bool = false
+## No aplica el estado de su elemento al pegar (Burbuja no empapa aunque sea de agua).
+@export var skip_element_status: bool = false
 
 @export_group("Recurso de firma")
 ## Cuánto recurso de la mecánica de firma consume (-1 = todo lo que haya).
@@ -112,6 +114,9 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 ## Nube: si un enemigo se queda adentro este tiempo seguido, recibe `dwell_status` (Somnífero duerme).
 @export var dwell_time: float = 0.0
 @export var dwell_status: StatusEffect
+## Golpe desde el cielo (Rayo): en vez de quedarse, marca el círculo y a los `strike_delay` s cae una sola vez.
+@export var zone_strike: bool = false
+@export var strike_delay: float = 0.3
 
 @export_group("Látigo (WHIP)")
 @export var whip_length: float = 70.0

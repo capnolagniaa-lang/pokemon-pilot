@@ -57,3 +57,5 @@ extends Resource
 @export var fx_light: bool = false
 ## Cuánto se tiñe el sprite con el color del estado (0..1).
 @export var tint_strength: float = 0.45
+## Dibuja una burbuja alrededor de la criatura (Encerrado en burbuja).
+@export var fx_bubble: bool = false

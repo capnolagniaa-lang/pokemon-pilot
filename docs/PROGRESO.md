@@ -32,7 +32,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   30% menos y lo seca. Detalle en el plan de identidad ("Rework de Empapado").
 - **v3: 10 kits nuevos implementados, en prueba** (Squirtle, Pikachu, Oddish, Paras, Psyduck, Poliwag, Growlithe,
   Eevee, Seel, Geodude): ya son **16 Pokémon con kit**. Detalle en el plan de identidad ("v3"); el usuario los va
-  a ir ajustando mientras los prueba. Autotest `--autotest-kits-v3`.
+  a ir ajustando mientras los prueba. Autotest `--autotest-kits-v3`. Primer ajuste: Rayo de Pikachu cae del cielo
+  en área; Burbuja de Poliwag encierra sin mojar.
+- **Spawns**: se respetan los de FireRed. Otro agente está editando los mapas (hasta Ciudad Plateada): no tocar
+  zonas ni tablas de encuentros desde las sesiones de combate.
 - **Siguiente: E-1** (combate contra entrenador: desafío, equipos de hasta 3, cambio de Pokémon con Tab, fin y
   EXP). Después, spawns por hora (Etapa 4b/5). El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.

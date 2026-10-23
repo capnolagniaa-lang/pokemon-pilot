@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="1_el"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_se"]
+
+[resource]
+script = ExtResource("2_se")
+id = "burbuja"
+display_name = "En burbuja"
+color = Color(0.6, 0.85, 1, 1)
+duration = 0.9
+speed_mult = 0.0
+can_act = false
+element = ExtResource("1_el")
+is_cc = true
+knockback_mult = 0.0
+fx_amount = 3
+fx_gravity = -6.0
+fx_size = 1.0
+tint_strength = 0.25
+fx_bubble = true
