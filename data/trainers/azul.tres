@@ -18,27 +18,27 @@ misread_chance = 0.25
 
 [sub_resource type="Resource" id="Resource_wuxhm"]
 script = ExtResource("2_yobfj")
-cell = Vector2i(27, 11)
+cell = Vector2i(53, 32)
 
 [sub_resource type="Resource" id="Resource_xgebv"]
 script = ExtResource("2_yobfj")
 start_hour = 12
 end_hour = 14
-cell = Vector2i(15, 10)
+cell = Vector2i(41, 31)
 activity = "descansar"
 
 [sub_resource type="Resource" id="Resource_o0iyf"]
 script = ExtResource("2_yobfj")
 start_hour = 14
 end_hour = 19
-cell = Vector2i(22, 20)
+cell = Vector2i(48, 41)
 activity = "buscar_rival"
 
 [sub_resource type="Resource" id="Resource_nq0nd"]
 script = ExtResource("2_yobfj")
 start_hour = 19
 end_hour = 8
-cell = Vector2i(15, 10)
+cell = Vector2i(41, 31)
 activity = "descansar"
 
 [sub_resource type="Resource" id="Resource_olvhr"]

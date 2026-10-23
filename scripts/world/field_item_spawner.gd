@@ -35,7 +35,7 @@ func _entry(id: String) -> ZoneEntry:
 
 ## Pone los objetos de una zona (los que no se recogieron hace poco).
 func _populate(entry: ZoneEntry, zone: Node) -> void:
-	if entry == null or not is_instance_valid(zone) or field_table == null:
+	if entry == null or not is_instance_valid(zone) or field_table == null or not is_inside_tree():
 		return
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(entry.id + ":objetos")

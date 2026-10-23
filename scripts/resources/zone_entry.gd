@@ -12,6 +12,11 @@ extends Resource
 @export var hub: Vector2i = Vector2i.ZERO
 ## Salidas hacia zonas vecinas: lado ("up", "down", "left", "right") -> celda local donde empieza el camino.
 @export var exits: Dictionary = {}
+## Puertas: celda local -> {"to": id de la zona destino, "cell": celda local de llegada (Vector2i)}. Una puerta
+## sólida (la de una casa) se usa caminando contra ella; una transitable (alfombra, escalera), pisándola.
+@export var warps: Dictionary = {}
+## Interior (casa, Centro, gimnasio...): sin salvajes ni clima.
+@export var interior := false
 
 
 func world_rect(tile_size: int) -> Rect2:

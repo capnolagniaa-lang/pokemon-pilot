@@ -821,6 +821,12 @@ func _update_status() -> void:
 		parts.append(r.display_name if r != null else "tile %d" % doc.metatile(0, hover))
 		if obj != null:
 			parts.append(MapIcons.object_name(obj.scene_file_path))
+		if doc.entry.warps.has(hover):
+			var to: String = doc.entry.warps[hover]["to"]
+			for z in doc.world.zones:
+				if z.id == to:
+					to = z.display_name
+			parts.append("Puerta → " + to)
 		parts.append("tags: " + (", ".join(tags) if not tags.is_empty() else "—"))
 		if _tabs.current_tab == TAB_WILD or brush.get("kind") == "area":
 			var ch := doc.chances_at(hover)

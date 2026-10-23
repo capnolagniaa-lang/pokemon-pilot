@@ -31,10 +31,16 @@ func run() -> void:
 	r["Ida y vuelta: tiles por capa, objetos y tree_cells idénticos"] = _same(orig, rt)
 	r["Ida y vuelta: hasta los bytes de cada capa son iguales"] = ZoneBuilder.LAYERS.all(func(ln: String) -> bool:
 		return (orig.get_node(ln) as TileMapLayer).tile_map_data == (rt.get_node(ln) as TileMapLayer).tile_map_data)
-	r["Ida y vuelta: la guardada queda marcada hand_edited"] = rt.hand_edited and ZoneBuilder.is_hand_edited(TMP + "/ruta1_rt.tscn") \
-		and not ZoneBuilder.is_hand_edited(entry.scene_path)
+	r["Ida y vuelta: la guardada queda marcada hand_edited"] = rt.hand_edited and ZoneBuilder.is_hand_edited(TMP + "/ruta1_rt.tscn")
 
 	# --- 2) Pinceles con reglas ---
+	# Sobre una zona generada de pradera (en user://): las de FireRed tienen el pasto de su tileset y no son
+	# lugares "libres" para las pruebas de pinceles.
+	doc.dispose()
+	entry = _fixture(doc.tileset)
+	doc = MapDocument.open(world, entry, roles)
+	add_child(doc.zone)
+	var fixture := _instance(entry.scene_path)
 	var sand_rect := _free_rect(doc, Vector2i(5, 4))
 	var sand := roles.get_role("sand")
 	doc.paint_role(_cells(sand_rect), sand)
@@ -79,7 +85,7 @@ func run() -> void:
 	# --- 3) Deshacer y rehacer ---
 	for i in 5:
 		doc.do_undo()
-	r["Deshacer todo: vuelve a la zona original"] = _same(orig, doc.zone)
+	r["Deshacer todo: vuelve a la zona original"] = _same(fixture, doc.zone)
 	for i in 5:
 		doc.do_redo()
 	r["Rehacer todo: vuelve a la zona editada"] = _same(ed, doc.zone)
@@ -144,6 +150,13 @@ func run() -> void:
 	fr.queue_free()
 
 	# --- 4) Validaciones ---
+	# Las zonas de FireRed empalman sin salidas marcadas: si no tiene, se marca una arriba, donde el camino llega al borde.
+	if doc.entry.exits.is_empty():
+		for x in doc.entry.size.x - 1:
+			var sq: Array[Vector2i] = [Vector2i(x, 0), Vector2i(x + 1, 0), Vector2i(x, 1), Vector2i(x + 1, 1)]
+			if sq.all(func(c: Vector2i) -> bool: return MapRules.is_walkable(doc.zone, c)):
+				doc.set_exit("up", Vector2i(x, 0))
+				break
 	var side: String = doc.entry.exits.keys()[0]
 	r["Validación: la zona editada no tiene salidas bloqueadas"] = not _has_issue(doc.validate(), "bloqueada")
 	doc.place_object(doc.entry.exits[side], BOULDER)
@@ -192,7 +205,7 @@ func run() -> void:
 	r["Sugerencia por behavior: pasto alto (0x02)"] = roles.behavior_hints.get(2, {}).get("tags", PackedStringArray()).has("pasto_alto")
 
 	doc.dispose()
-	for n in [orig, rt, ed]:
+	for n in [orig, rt, ed, fixture]:
 		n.queue_free()
 	for f in DirAccess.get_files_at(TMP):
 		DirAccess.remove_absolute(TMP + "/" + f)
@@ -211,8 +224,10 @@ func _ui_smoke(r: Dictionary) -> void:
 	get_tree().change_scene_to_file("res://scenes/tools/map_editor.tscn")
 	await _frames(4)
 	var ed: Node = get_tree().current_scene
+	r["UI: abre el editor con una zona"] = ed.doc != null and ed.doc.zone.is_inside_tree()
+	ed.open_zone(_fixture(ed.doc.tileset, ed.world))
+	await _frames(2)
 	var d: MapDocument = ed.doc
-	r["UI: abre el editor con una zona"] = d != null and d.zone.is_inside_tree()
 	var sand := roles.get_role("sand")
 	var rect := _free_rect(d, Vector2i(4, 3))
 	ed.set_brush(ed._brushes.brush("role:sand"))
@@ -298,7 +313,12 @@ func _relocation(r: Dictionary) -> void:
 		if z.id == "ruta1":
 			e = z
 	var zone_scene: Zone = _instance(e.scene_path)
-	var tree_cell: Vector2i = zone_scene.tree_cells[0] + Vector2i(0, 1)  # tronco
+	var tree_cell := Vector2i(-1, -1)  # algo sólido (un árbol) con lugar libre cerca
+	for y in range(4, e.size.y - 4):
+		for x in range(4, e.size.x - 4):
+			var c := Vector2i(x, y)
+			if tree_cell.x < 0 and not MapRules.is_walkable(zone_scene, c) and MapRules.is_walkable(zone_scene, c + Vector2i.DOWN * 2):
+				tree_cell = c
 	zone_scene.queue_free()
 	GameState.trainer_position = Vector2((e.origin + tree_cell) * w.tile_size) + Vector2(8, 8)
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
@@ -383,6 +403,26 @@ func _palette_count(ed: Node, set_name: String, category: String) -> int:
 func _frames(n: int) -> void:
 	for i in n:
 		await get_tree().process_frame
+
+
+## Zona de prueba generada (pradera de 48×32 con plaza y dos salidas), guardada en user://; la agrega al `world`
+## que se le pase (por defecto, la copia de la prueba).
+func _fixture(tileset: TileSet, w: WorldData = null) -> ZoneEntry:
+	var e := ZoneEntry.new()
+	e.id = "test_pradera"
+	e.display_name = "Pradera de prueba"
+	e.biome = "pradera"
+	e.origin = Vector2i(-20000, -20000)
+	e.size = Vector2i(48, 32)
+	e.hub = Vector2i(22, 14)
+	e.exits = {"up": Vector2i(30, 0), "down": Vector2i(36, 30)}
+	e.scene_path = TMP + "/fixture.tscn"
+	DirAccess.make_dir_recursive_absolute(TMP)
+	var root := ZoneGenerator.new(roles, tileset).generate(e)
+	ZoneBuilder.save_zone(root, e.scene_path)
+	root.free()
+	(w if w != null else world).zones.append(e)
+	return e
 
 
 func _entry(id: String) -> ZoneEntry:

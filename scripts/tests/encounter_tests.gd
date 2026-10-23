@@ -91,13 +91,20 @@ func run() -> void:
 		area_ok = area_ok and (roll[0].id == "pikachu") == in_area
 	r["Spawner: el área pintada cambia lo que aparece ahí (y solo ahí)"] = area_ok and saw.has("pikachu") and saw.has("pidgey")
 	# Agua
+	# (en la Ruta 22, que tiene laguna)
 	var t3 := EncounterTable.new()
 	t3.entries.append(_row("psyduck", 100, "agua"))
-	sp._tables["ruta1"] = t3
-	var wroll := sp.roll("ruta1")
-	var water_ok := not wroll.is_empty() and zone.get_tags(wroll[2]).has("agua")
+	var lake: ZoneEntry = null
+	for z in world_data.zones:
+		if z.id == "ruta22":
+			lake = z
+	world.streamer.load_around_now(lake.world_rect(world_data.tile_size).get_center())
+	var wzone: Zone = world.streamer.zone_node("ruta22")
+	sp._tables["ruta22"] = t3
+	var wroll := sp.roll("ruta22")
+	var water_ok := not wroll.is_empty() and wzone.get_tags(wroll[2]).has("agua")
 	if water_ok:
-		var c: Creature = sp.spawn(wroll[0], wroll[1], zone.to_global(zone.ground.map_to_local(wroll[2])))
+		var c: Creature = sp.spawn(wroll[0], wroll[1], wzone.to_global(wzone.ground.map_to_local(wroll[2])))
 		c.swims = true
 		water_ok = c.collision_mask & 2 == 0
 		c.queue_free()

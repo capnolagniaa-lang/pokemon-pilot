@@ -30,7 +30,7 @@ Godot está en `C:\Users\Gusti\Documents\claude\tools\godot\` (fuera del repo).
 ```
 G=C:/Users/Gusti/Documents/claude/tools/godot/Godot_v4.7.2-stable_win64_console.exe
 $G --headless --path . --import                        # tras crear/cambiar assets o class_name
-$G --headless --path . --quit-after 60000 -- --autotest          # recorre las 9 zonas ("-> OK"/"-> FALLO")
+$G --headless --path . --quit-after 60000 -- --autotest          # camina de Pueblo Paleta a Ciudad Plateada, con puertas ("-> OK"/"-> FALLO")
 $G --headless --path . --quit-after 30000 -- --autotest-combat   # 3 peleas manejadas por un bot
 $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas reales + spawner
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
@@ -89,8 +89,13 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Una escena por responsabilidad** (`scenes/`). Entidades usan origen en los pies (y-sort).
 - **Capas de colisión**: 1 mundo · 2 agua · 3 jugador · 4 criatura aliada · 5 criatura salvaje ·
   6 hurtbox aliada · 7 hurtbox salvaje · 8 entorno. Hitboxes/hurtboxes con Area2D (desde Etapa 2).
-- **Mundo**: región de zonas (`data/world/kanto.tres`, `ZoneEntry` con origen, plaza `hub` y `exits`).
+- **Mundo**: región de zonas (`data/world/kanto.tres`, `ZoneEntry` con origen, plaza `hub`, `exits`, `warps` e
+  `interior`). Son los **mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada**, agrandados (ver "Pipeline").
   `ZoneStreamer` carga/descarga zonas en segundo plano (sin pantallas de carga). `World.tags_at(pos)`.
+  Los interiores (casas, Centros, gimnasios, garitas) y el Bosque Verde están lejos, debajo del mundo, y se llega
+  por **puertas**: `WarpSystem` (nodo del mundo; puerta sólida = caminar contra ella, transitable = pisarla;
+  fundido, aparece al lado de la puerta de destino; `Events.warped`). Interior = sin salvajes ni sombras de nubes.
+  `TourPlanner` (tests) arma caminos por celdas cruzando zonas y puertas.
 - **Zonas** (`scenes/world/zones/*.tscn`): capas `Ground` (z-10), `Water` (shader agua), `Foliage`
   (shader viento), `TreeShadows`, `Overhead` (z 20, copas que tapan), `Objects` (EnvObject con tags).
   La estructura la arma **un solo lugar**: `ZoneBuilder.new_zone_root` (`scripts/world/zone_builder.gd`), que usan
@@ -197,7 +202,19 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   con sus metatiles, capa, lo que va abajo, autotile 3×3, tags y colisión, + `overrides` por metatile (los
   escribe la pestaña "Propiedades" del editor) y `behavior_hints` (sugerencias por behavior de FireRed). **Es la fuente
   de los tags y la colisión del TileSet**: tocar tags acá (o con el editor), no a mano en `world_tileset.tres`.
-- `tools/build_world.gd`: arma el TileSet (desde los roles) y **genera las zonas** a partir de `REGION` y
+- **Región de FireRed** (`tools/import_frlg_maps.py` → `data/world/frlg_maps.json` → `tools/import_frlg_maps.gd`):
+  mapas de art_src/pret (`data/layouts` + `data/maps/<mapa>/map.json` con conexiones y puertas, bajados de
+  pret/pokefirered). Agranda ×1,75 con **costuras** de 2 celdas que cruzan el mapa doblándose: solo se aceptan si
+  cada empalme nuevo existe en algún mapa real (pares de metatiles vecinos), y nunca se copian edificios, carteles ni
+  puertas (categorías del catálogo); si hace falta, mete suelo de relleno del mapa. Ubica los mapas según las
+  conexiones de FireRed alineando los caminos, y rellena los costados continuando el borde (o con el bloque de borde
+  del mapa). El .gd rearma el TileSet (colisión por celda: `ZoneBuilder.imported_collision_alts`), guarda las zonas
+  `hand_edited` (agua en Water y pasto alto en Foliage, como los pinceles; árboles cortables de FireRed como
+  EnvObject), la región, las tablas de salvajes de FireRed sin las filas de agua (son de Surf) y **borra las zonas viejas** (backup en `.backup/`;
+  `-- --keep-others` las conserva). Orden: `.py` → `--import` → `.gd`. **Pisa las zonas importadas**: después de
+  editarlas con el editor de mapas no volver a correrlo.
+- `tools/build_world.gd`: arma el TileSet (desde los roles) y **genera las zonas** a partir de `REGION` (vacía desde la
+  región de FireRed) y
   `ZoneGenerator.BIOMES` (`scripts/world/zone_generator.gd`). Sin flags no pisa nada.
   `-- --force` regenera TileSet y zonas **salvo las marcadas `hand_edited`** (editadas con el editor de mapas),
   que conservan también su entrada en `kanto.tres` (hub, salidas, nombre); `-- --force-all` pisa todo.

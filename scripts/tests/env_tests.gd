@@ -72,7 +72,12 @@ func run() -> void:
 
 	# --- Objetos: roca frágil y árbol cortable ---
 	var rocks: Array = get_tree().get_nodes_in_group("env_objects").filter(func(o): return o.has_tag("fragil"))
-	r["Ruta 1 tiene rocas frágiles"] = rocks.size() >= 1
+	if rocks.is_empty():
+		# Los mapas de FireRed hasta Ciudad Plateada no tienen rocas rompibles: se pone una en un lugar despejado.
+		var open_cell := _find(zone, func(c): return _clear_around(zone, c, 2))
+		rocks.append(ZoneBuilder.add_object(zone, "res://scenes/world/objects/rock_smash_rock.tscn", open_cell))
+		await get_tree().physics_frame
+	r["Hay una roca frágil"] = rocks.size() >= 1 and is_instance_valid(rocks[0]) and rocks[0].has_tag("fragil")
 	if not rocks.is_empty():
 		var rock: EnvObject = rocks[0]
 		Events.env_object_struck.emit(rock, 10.0)
@@ -98,10 +103,10 @@ func run() -> void:
 		world.combat.end_battle()
 
 	# --- Agua: hielo hace puente; eléctrico corre por el agua ---
-	zone = await _go_to("lago")
+	zone = await _go_to("ruta22")
 	g = rs.grid_at(_center(zone, Vector2i(1, 1)))
 	var water := _find(zone, func(c): return zone.get_tags(c).has("congelable") and _count_around(zone, c, "agua") >= 4)
-	r["Hay agua en el Lago"] = water != Vector2i(-999, -999)
+	r["Hay agua en la Ruta 22"] = water != Vector2i(-999, -999)
 	r["Hielo congela el agua"] = _try(g, water, hielo) == "congelado"
 	r["Puente de hielo: sin colisión de agua"] = zone.water.get_cell_source_id(water) == -1
 	r["El fuego no derrite el hielo"] = _try(g, water, fuego) == "congelado"
@@ -125,7 +130,7 @@ func showcase() -> void:
 	world.combat.end_battle()
 	rs = world.reactions
 	var zone: Zone
-	zone = await _go_to("lago")
+	zone = await _go_to("ruta22")
 	var water := _find(zone, func(c): return zone.get_tags(c).has("congelable") and _count_around(zone, c, "agua") >= 4)
 	world.trainer.global_position = _center(zone, water) + Vector2(0, 40)
 	world.camera.snap()
@@ -147,10 +152,21 @@ func _go_to(id: String) -> Zone:
 			entry = z
 	var rect: Rect2 = entry.world_rect(world.streamer.world_data.tile_size)
 	world.trainer.global_position = rect.get_center()
+	if is_instance_valid(world.companion):
+		world.companion.global_position = rect.get_center()  # la cámara puede seguirlo a él (en combate)
 	world.camera.snap()  # el streaming sigue a la cámara: si queda lejos, puede descargar la zona recién cargada
 	world.streamer.load_around_now(rect.get_center())
 	await get_tree().physics_frame
 	return world.streamer.zone_node(id)
+
+
+## ¿Todas las celdas a `radius` o menos de `c` son transitables?
+func _clear_around(zone: Zone, c: Vector2i, radius: int) -> bool:
+	for dy in range(-radius, radius + 1):
+		for dx in range(-radius, radius + 1):
+			if not MapRules.is_walkable(zone, c + Vector2i(dx, dy)):
+				return false
+	return true
 
 
 func _center(zone: Zone, cell: Vector2i) -> Vector2:

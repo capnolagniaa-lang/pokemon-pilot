@@ -4,7 +4,11 @@ Juego tipo Pokémon en Godot 4.7: mundo abierto 2D top-down con combate en tiemp
 
 Estado y próximos pasos: [docs/PROGRESO.md](docs/PROGRESO.md). Guía técnica: [CLAUDE.md](CLAUDE.md).
 
-La región tiene 9 zonas (3×3, 144×96 celdas) que se cargan sin cortes: Bosque Profundo, Bosque Verde, Lago Celeste, Pradera Florida, Ruta 1 (inicio), Colinas Rocosas, Humedal, Pradera Sur y Arboleda.
+La región son los **mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (Pueblo Paleta, Ruta 1, Ciudad Verde,
+Ruta 22, Ruta 2, Bosque Verde y Ciudad Plateada), agrandados ×1,75 para el combate en tiempo real y cargados sin cortes,
+con **puertas** a sus 21 interiores reales (tu casa, el Laboratorio de Oak, Centros y Tiendas, gimnasios, la Escuela, el
+Museo y las garitas del Bosque Verde). Se arman con `tools/import_frlg_maps.py` + `tools/import_frlg_maps.gd` (ver
+CLAUDE.md, "Pipeline de contenido").
 
 ## Cómo jugar
 Bajá [Godot 4.7](https://godotengine.org/download) (versión estándar), importá esta carpeta (`project.godot`) y apretá **F5**.
@@ -61,10 +65,10 @@ directo **Pokémon Pilot — Editor de mapas** (`--path "<proyecto>" -- --map-ed
   zonas vecinas atenuados para empalmar caminos y agua. Menú **Capas** (visibilidad, "solo capa activa") y
   **Ver** (grilla, colisión sólida en rojo / agua en azul, celdas sin tags, resaltar un tag, plaza y salidas,
   inicio del juego, vecinas).
-- **Pinceles** (con las reglas del juego): pasto, pradera clara, arena, tierra y agua con **autotile** de bordes
+- **Pinceles** (con las reglas del juego): pasto, pradera clara, arena, tierra, **piso de ciudad**, **empedrado** y agua con **autotile** de bordes
   y esquinas; pasto alto y flores en Foliage con pasto abajo; agua en Water con pasto abajo; **árbol 2×2** con
   copa en Overhead, copa "apilada" si hay otro árbol justo arriba y sombra (`tree_cells`); borde de árboles;
-  **objetos** (todo lo de `scenes/world/objects/`); borrar todo (deja pasto) o la capa activa. Los pinceles salen
+  **objetos** (todo lo de `scenes/world/objects/`); **piso de cueva**; **puertas** a la vista (recuadro celeste); borrar todo (deja pasto) o la capa activa. Los pinceles salen
   de `data/world/tile_roles.tres`.
 - **Sellos**: 78 edificios y piezas enteras (casas, Centro y Tienda, gimnasios, edificios especiales, garitas,
   árboles grandes, estatuas, escalinatas, puentes...) sacados de los mapas reales de FireRed con las hojas de
@@ -169,7 +173,7 @@ godot --headless --path . --script res://tools/build_world.gd -- --tileset    # 
 godot --headless --path . --script res://tools/build_world.gd -- --force      # regenera TileSet y zonas (salvo las editadas a mano)
 godot --headless --path . --script res://tools/build_world.gd -- --force-all  # regenera todo (pisa lo editado a mano)
 godot --path . -- --map-editor                                            # editor de mapas
-godot --headless --path . -- --autotest                                   # recorre las 9 zonas
+godot --headless --path . -- --autotest                                   # camina de Pueblo Paleta a Ciudad Plateada (puertas incluidas)
 godot --path . --write-movie mapa.png --fixed-fps 30 -- --overview      # imagen de toda la región
 ```
 

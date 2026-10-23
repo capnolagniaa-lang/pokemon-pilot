@@ -5,102 +5,115 @@
 
 ## Zonas
 
-### Bosque Profundo (`bosque_profundo`, bioma `bosque_denso`)
-Tabla: `data/world/encounters/biomas/bosque_denso.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
-
-| Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
-|---|---|---|---|---|---|---|
-| Bellsprout | Pasto alto | 33 | 33% | 5-8 | **kit: control** | Territorial |
-| Oddish | Pasto alto | 33 | 33% | 5-8 | **kit: desgaste** | Tímido |
-| Pikachu | Pasto alto | 33 | 33% | 5-8 | **kit: velocista** | Curioso |
-
-### Bosque Verde (`bosque`, bioma `bosque`)
-Tabla: `data/world/encounters/biomas/bosque.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
-
-| Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
-|---|---|---|---|---|---|---|
-| Oddish | Pasto alto | 25 | 25% | 4-7 | **kit: desgaste** | Tímido |
-| Bellsprout | Pasto alto | 25 | 25% | 4-7 | **kit: control** | Territorial |
-| Pikachu | Pasto alto | 25 | 25% | 4-7 | **kit: velocista** | Curioso |
-| Pidgey | Pasto alto | 25 | 25% | 4-7 | **kit: hostigador** | Tímido |
-
-### Lago Celeste (`lago`, bioma `lago`)
-Tabla: `data/world/encounters/biomas/lago.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
-
-| Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
-|---|---|---|---|---|---|---|
-| Psyduck | Agua | 25 | 33% | 5-8 | **kit: caotico** | Curioso |
-| Poliwag | Agua | 25 | 33% | 5-8 | **kit: velocista** | Tímido |
-| Seel | Agua | 25 | 33% | 5-8 | **kit: tanque** | Curioso |
-| Pidgey | Pasto alto | 25 | 100% | 5-8 | **kit: hostigador** | Tímido |
-
-### Pradera Florida (`pradera_florida`, bioma `pradera_florida`)
-Tabla: `data/world/encounters/biomas/pradera_florida.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
-
-| Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
-|---|---|---|---|---|---|---|
-| Oddish | Pasto alto | 25 | 25% | 3-6 | **kit: desgaste** | Tímido |
-| Bellsprout | Pasto alto | 25 | 25% | 3-6 | **kit: control** | Territorial |
-| Pidgey | Pasto alto | 25 | 25% | 3-6 | **kit: hostigador** | Tímido |
-| Vulpix | Pasto alto | 25 | 25% | 3-6 | **kit: desgaste** | Curioso |
+### Pueblo Paleta (`pueblo_paleta`, bioma `ciudad`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
 
 ### Ruta 1 (`ruta1`, bioma `pradera`)
 Tabla: `data/world/encounters/ruta1.tres` (propia de la zona) · máx. 3 vivos · reaparecen cada 25 s
 
 | Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
 |---|---|---|---|---|---|---|
-| Pidgey | Pasto alto | 35 | 35% | 2-5 | **kit: hostigador** | Tímido |
-| Rattata | Pasto alto | 35 | 35% | 2-5 | **kit: asesino** | Agresivo |
-| Bellsprout | Pasto alto | 15 | 15% | 2-5 | **kit: control** | Territorial |
-| Vulpix | Pasto alto | 15 | 15% | 2-5 | **kit: desgaste** | Curioso |
+| Pidgey | Pasto alto | 50 | 50% | 2-5 | **kit: hostigador** | Tímido |
+| Rattata | Pasto alto | 50 | 50% | 2-4 | **kit: asesino** | Agresivo |
 
-### Colinas Rocosas (`colinas`, bioma `rocoso`)
-Tabla: `data/world/encounters/biomas/rocoso.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
+### Ciudad Verde (`ciudad_verde`, bioma `ciudad`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
 
-| Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
-|---|---|---|---|---|---|---|
-| Growlithe | Pasto alto | 33 | 33% | 6-9 | **kit: perseguidor** | Territorial |
-| Vulpix | Pasto alto | 33 | 33% | 6-9 | **kit: desgaste** | Curioso |
-| Rattata | Pasto alto | 33 | 33% | 6-9 | **kit: asesino** | Agresivo |
-
-### Humedal (`humedal`, bioma `humedal`)
-Tabla: `data/world/encounters/biomas/humedal.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
+### Ruta 22 (`ruta22`, bioma `pradera`)
+Tabla: `data/world/encounters/ruta22.tres` (propia de la zona) · máx. 3 vivos · reaparecen cada 25 s
 
 | Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
 |---|---|---|---|---|---|---|
-| Poliwag | Agua | 33 | 50% | 4-7 | **kit: velocista** | Tímido |
-| Psyduck | Agua | 33 | 50% | 4-7 | **kit: caotico** | Curioso |
-| Oddish | Pasto alto | 33 | 100% | 4-7 | **kit: desgaste** | Tímido |
+| Rattata | Pasto alto | 45 | 45% | 2-5 | **kit: asesino** | Agresivo |
+| Mankey | Pasto alto | 45 | 45% | 2-5 | sin kit | Agresivo |
+| Spearow | Pasto alto | 10 | 10% | 3-5 | sin kit | Agresivo |
 
-### Pradera Sur (`pradera_sur`, bioma `pradera`)
-Tabla: `data/world/encounters/biomas/pradera.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
-
-| Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
-|---|---|---|---|---|---|---|
-| Rattata | Pasto alto | 25 | 25% | 2-5 | **kit: asesino** | Agresivo |
-| Pidgey | Pasto alto | 25 | 25% | 2-5 | **kit: hostigador** | Tímido |
-| Oddish | Pasto alto | 25 | 25% | 2-5 | **kit: desgaste** | Tímido |
-| Eevee | Pasto alto | 25 | 25% | 2-5 | **kit: adaptativo** | Curioso |
-
-### Arboleda (`arboleda`, bioma `arboleda`)
-Tabla: `data/world/encounters/biomas/arboleda.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
+### Ruta 2 (`ruta2`, bioma `pradera`)
+Tabla: `data/world/encounters/ruta2.tres` (propia de la zona) · máx. 3 vivos · reaparecen cada 25 s
 
 | Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
 |---|---|---|---|---|---|---|
-| Pikachu | Pasto alto | 25 | 25% | 4-7 | **kit: velocista** | Curioso |
-| Eevee | Pasto alto | 25 | 25% | 4-7 | **kit: adaptativo** | Curioso |
-| Pidgey | Pasto alto | 25 | 25% | 4-7 | **kit: hostigador** | Tímido |
-| Growlithe | Pasto alto | 25 | 25% | 4-7 | **kit: perseguidor** | Territorial |
+| Rattata | Pasto alto | 45 | 45% | 2-5 | **kit: asesino** | Agresivo |
+| Pidgey | Pasto alto | 45 | 45% | 2-5 | **kit: hostigador** | Tímido |
+| Caterpie | Pasto alto | 5 | 5% | 4-5 | sin kit | Tímido |
+| Weedle | Pasto alto | 5 | 5% | 4-5 | sin kit | Tímido |
 
-### Zona nueva (`zona_nueva`, bioma `pradera`)
-Tabla: `data/world/encounters/biomas/pradera.tres` (la de su bioma) · máx. 3 vivos · reaparecen cada 25 s
+### Ciudad Plateada (`ciudad_plateada`, bioma `ciudad`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Bosque Verde (`bosque_verde`, bioma `bosque`)
+Tabla: `data/world/encounters/bosque_verde.tres` (propia de la zona) · máx. 3 vivos · reaparecen cada 25 s
 
 | Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |
 |---|---|---|---|---|---|---|
-| Rattata | Pasto alto | 25 | 25% | 2-5 | **kit: asesino** | Agresivo |
-| Pidgey | Pasto alto | 25 | 25% | 2-5 | **kit: hostigador** | Tímido |
-| Oddish | Pasto alto | 25 | 25% | 2-5 | **kit: desgaste** | Tímido |
-| Eevee | Pasto alto | 25 | 25% | 2-5 | **kit: adaptativo** | Curioso |
+| Caterpie | Pasto alto | 40 | 40% | 3-5 | sin kit | Tímido |
+| Weedle | Pasto alto | 40 | 40% | 3-5 | sin kit | Tímido |
+| Kakuna | Pasto alto | 10 | 10% | 4-6 | sin kit | Territorial |
+| Metapod | Pasto alto | 5 | 5% | 5-5 | sin kit | Tímido |
+| Pikachu | Pasto alto | 5 | 5% | 3-5 | **kit: velocista** | Curioso |
+
+### Tu casa (`casa_jugador`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Tu casa (planta alta) (`casa_jugador_2p`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Casa de tu rival (`casa_rival`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Laboratorio del Prof. Oak (`laboratorio_oak`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Centro Pokémon de Ciudad Verde (`ciudad_verde_centro`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Tienda de Ciudad Verde (`ciudad_verde_tienda`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Gimnasio de Ciudad Verde (`ciudad_verde_gimnasio`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Escuela de Entrenadores (`ciudad_verde_escuela`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Casa de Ciudad Verde (`ciudad_verde_casa`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Garita de la Ruta 22 (`ruta22_garita`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Entrada sur del Bosque Verde (`ruta2_garita_sur`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Entrada norte del Bosque Verde (`ruta2_garita_norte`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Casa de la Ruta 2 (`ruta2_casa`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Edificio de la Ruta 2 (`ruta2_edificio`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Museo de Ciencias (`museo`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Museo de Ciencias (planta alta) (`museo_2p`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Gimnasio de Ciudad Plateada (`ciudad_plateada_gimnasio`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Tienda de Ciudad Plateada (`ciudad_plateada_tienda`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Casa de Ciudad Plateada (`ciudad_plateada_casa1`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Casa de Ciudad Plateada (`ciudad_plateada_casa2`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
+
+### Centro Pokémon de Ciudad Plateada (`ciudad_plateada_centro`, bioma `interior`)
+Sin tabla de encuentros: no aparece nada (salvo con "Salvajes de prueba").
 
 ### Opción "Salvajes de prueba" (Esc → Opciones)
 En todo el mapa, en el pasto alto, al nivel de tu Pokémon (−2 a +1): Pidgey, Bellsprout, Rattata, Vulpix.
@@ -110,69 +123,63 @@ En todo el mapa, en el pasto alto, al nivel de tu Pokémon (−2 a +1): Pidgey, 
 Movimientos "con los que aparece" = los 4 primeros que aprendió a ese nivel, en el orden del learnset (para los
 que tienen kit, son los 4 del kit). Cambiarlos: ver `docs/SALVAJES_Y_MOVIMIENTOS.md`.
 
+### N.º 010 Caterpie — sin kit
+- Tipos: Bicho · Temperamento: Tímido · Aparece en: Ruta 2, Bosque Verde (Nv. 3-5)
+- Aparece (Nv. 3) con: Disparo Demora (Área), Placaje (Embestida)
+- Learnset: Nv.1 Disparo Demora, Nv.1 Placaje
+
+### N.º 011 Metapod — sin kit
+- Tipos: Bicho · Temperamento: Tímido · Aparece en: Bosque Verde (Nv. 5-5)
+- Aparece (Nv. 5) con: Fortaleza (Mejora propia)
+- Learnset: Nv.1 Fortaleza
+
+### N.º 013 Weedle — sin kit
+- Tipos: Bicho / Veneno · Temperamento: Tímido · Aparece en: Ruta 2, Bosque Verde (Nv. 3-5)
+- Aparece (Nv. 3) con: Picotazo Veneno (Golpe), Disparo Demora (Área)
+- Learnset: Nv.1 Picotazo Veneno, Nv.1 Disparo Demora
+
+### N.º 014 Kakuna — sin kit
+- Tipos: Bicho / Veneno · Temperamento: Territorial · Aparece en: Bosque Verde (Nv. 4-6)
+- Aparece (Nv. 4) con: Fortaleza (Mejora propia)
+- Learnset: Nv.1 Fortaleza
+
 ### N.º 016 Pidgey — **kit: hostigador**
-- Tipos: Normal / Volador · Temperamento: Tímido · Aparece en: Bosque Verde, Lago Celeste, Pradera Florida, Ruta 1, Pradera Sur, Arboleda, Zona nueva, "Salvajes de prueba" (Nv. 2-8)
+- Tipos: Normal / Volador · Temperamento: Tímido · Aparece en: Ruta 1, Ruta 2, "Salvajes de prueba" (Nv. 2-5)
 - Kit: `data/kits/pidgey/kit.tres` · estilo **hostigador** · rango preferido 70 px · mecánica de firma: Aliento
 - Aparece (Nv. 2) con: Tornado (Disparo), Ataque Arena (Disparo)
 - Learnset: Nv.1 Tornado, Nv.1 Ataque Arena, Nv.3 Ataque Rápido, Nv.5 Remolino, Nv.25 Ataque Ala, Nv.31 Rapidez
 
 ### N.º 019 Rattata — **kit: asesino**
-- Tipos: Normal · Temperamento: Agresivo · Aparece en: Ruta 1, Colinas Rocosas, Pradera Sur, Zona nueva, "Salvajes de prueba" (Nv. 2-9)
+- Tipos: Normal · Temperamento: Agresivo · Aparece en: Ruta 1, Ruta 22, Ruta 2, "Salvajes de prueba" (Nv. 2-5)
 - Kit: `data/kits/rattata/kit.tres` · estilo **asesino** · rango preferido 20 px · mecánica de firma: Instinto
 - Aparece (Nv. 2) con: Mordisco (Golpe), Ataque Rápido (Embestida)
 - Learnset: Nv.1 Mordisco, Nv.1 Ataque Rápido, Nv.3 Foco Energía, Nv.5 Hipercolmillo, Nv.27 Persecución, Nv.41 Derribo
 
+### N.º 021 Spearow — sin kit
+- Tipos: Normal / Volador · Temperamento: Agresivo · Aparece en: Ruta 22 (Nv. 3-5)
+- Aparece (Nv. 3) con: Gruñido (Área), Picotazo (Golpe)
+- Learnset: Nv.1 Gruñido, Nv.1 Picotazo, Nv.7 Malicioso, Nv.13 Ataque Furia, Nv.19 Persecución, Nv.25 Golpe Aéreo, Nv.31 Espejo, Nv.37 Pico Taladro, Nv.43 Agilidad
+
 ### N.º 025 Pikachu — **kit: velocista**
-- Tipos: Eléctrico · Temperamento: Curioso · Aparece en: Bosque Profundo, Bosque Verde, Arboleda (Nv. 4-8)
+- Tipos: Eléctrico · Temperamento: Curioso · Aparece en: Bosque Verde (Nv. 3-5)
 - Kit: `data/kits/pikachu/kit.tres` · estilo **velocista** · rango preferido 70 px · mecánica de firma: Estática
-- Aparece (Nv. 4) con: Impactrueno (Disparo), Ataque Rápido (Embestida), Onda Trueno (Área)
+- Aparece (Nv. 3) con: Impactrueno (Disparo), Ataque Rápido (Embestida), Onda Trueno (Área)
 - Learnset: Nv.1 Impactrueno, Nv.1 Ataque Rápido, Nv.3 Onda Trueno, Nv.5 Rayo, Nv.33 Rapidez
 
 ### N.º 037 Vulpix — **kit: desgaste**
-- Tipos: Fuego · Temperamento: Curioso · Aparece en: Pradera Florida, Ruta 1, Colinas Rocosas, "Salvajes de prueba" (Nv. 2-9)
+- Tipos: Fuego · Temperamento: Curioso · Aparece en: "Salvajes de prueba" (Nv. 5-5)
 - Kit: `data/kits/vulpix/kit.tres` · estilo **desgaste** · rango preferido 85 px · mecánica de firma: Rescoldo
-- Aparece (Nv. 2) con: Ascuas (Disparo), Fuego Fatuo (Disparo)
+- Aparece (Nv. 5) con: Ascuas (Disparo), Fuego Fatuo (Disparo), Rayo Confuso (Disparo), Lanzallamas (Canalizado)
 - Learnset: Nv.1 Ascuas, Nv.1 Fuego Fatuo, Nv.3 Rayo Confuso, Nv.5 Lanzallamas, Nv.13 Ataque Rápido, Nv.41 Giro Fuego
 
-### N.º 043 Oddish — **kit: desgaste**
-- Tipos: Planta / Veneno · Temperamento: Tímido · Aparece en: Bosque Profundo, Bosque Verde, Pradera Florida, Humedal, Pradera Sur, Zona nueva (Nv. 2-8)
-- Kit: `data/kits/oddish/kit.tres` · estilo **desgaste** · rango preferido 75 px · mecánica de firma: Esporas
-- Aparece (Nv. 2) con: Absorber (Disparo), Polvo Veneno (Zona)
-- Learnset: Nv.1 Absorber, Nv.1 Polvo Veneno, Nv.3 Paralizador, Nv.5 Florecer, Nv.23 Ácido, Nv.36 Rayo Solar
-
-### N.º 054 Psyduck — **kit: caotico**
-- Tipos: Agua · Temperamento: Curioso · Aparece en: Lago Celeste, Humedal (Nv. 4-8)
-- Kit: `data/kits/psyduck/kit.tres` · estilo **caotico** · rango preferido 65 px · mecánica de firma: Jaqueca
-- Aparece (Nv. 4) con: Pistola Agua (Disparo), Arañazo (Golpe), Confusión (Disparo)
-- Learnset: Nv.1 Pistola Agua, Nv.1 Arañazo, Nv.3 Confusión, Nv.5 Anulación, Nv.50 Hidrobomba
-
-### N.º 058 Growlithe — **kit: perseguidor**
-- Tipos: Fuego · Temperamento: Territorial · Aparece en: Colinas Rocosas, Arboleda (Nv. 4-9)
-- Kit: `data/kits/growlithe/kit.tres` · estilo **perseguidor** · rango preferido 40 px · mecánica de firma: Rastreo
-- Aparece (Nv. 4) con: Mordisco (Golpe), Ascuas (Disparo), Rugido (Área)
-- Learnset: Nv.1 Mordisco, Nv.1 Ascuas, Nv.3 Rugido, Nv.5 Rueda Fuego, Nv.25 Derribo
-
-### N.º 060 Poliwag — **kit: velocista**
-- Tipos: Agua · Temperamento: Tímido · Aparece en: Lago Celeste, Humedal (Nv. 4-8)
-- Kit: `data/kits/poliwag/kit.tres` · estilo **velocista** · rango preferido 70 px · mecánica de firma: Deslizamiento
-- Aparece (Nv. 4) con: Burbuja (Disparo), Pistola Agua (Disparo), Danza Lluvia (Área)
-- Learnset: Nv.1 Burbuja, Nv.1 Pistola Agua, Nv.3 Danza Lluvia, Nv.5 Hipnosis, Nv.31 Golpe Cuerpo, Nv.43 Hidrobomba
+### N.º 056 Mankey — sin kit
+- Tipos: Lucha · Temperamento: Agresivo · Aparece en: Ruta 22 (Nv. 2-5)
+- Aparece (Nv. 2) con: Malicioso (Área), Arañazo (Embestida)
+- Learnset: Nv.1 Malicioso, Nv.1 Arañazo, Nv.6 Patada Baja, Nv.11 Golpe Kárate, Nv.16 Golpes Furia, Nv.21 Foco Energía, Nv.26 Sísmico, Nv.31 Tajo Cruzado, Nv.36 Fanfarronear, Nv.41 Chirrido, Nv.46 Saña
 
 ### N.º 069 Bellsprout — **kit: control**
-- Tipos: Planta / Veneno · Temperamento: Territorial · Aparece en: Bosque Profundo, Bosque Verde, Pradera Florida, Ruta 1, "Salvajes de prueba" (Nv. 2-8)
+- Tipos: Planta / Veneno · Temperamento: Territorial · Aparece en: "Salvajes de prueba" (Nv. 5-5)
 - Kit: `data/kits/bellsprout/kit.tres` · estilo **control** · rango preferido 60 px · mecánica de firma: ninguna
-- Aparece (Nv. 2) con: Polvo Veneno (Zona), Látigo Cepa (Látigo)
+- Aparece (Nv. 5) con: Polvo Veneno (Zona), Látigo Cepa (Látigo), Arraigo (Mejora propia), Somnífero (Zona)
 - Learnset: Nv.1 Polvo Veneno, Nv.1 Látigo Cepa, Nv.3 Arraigo, Nv.5 Somnífero, Nv.23 Ácido, Nv.37 Hoja Afilada
-
-### N.º 086 Seel — **kit: tanque**
-- Tipos: Agua · Temperamento: Curioso · Aparece en: Lago Celeste (Nv. 5-8)
-- Kit: `data/kits/seel/kit.tres` · estilo **tanque** · rango preferido 55 px · mecánica de firma: Escarcha
-- Aparece (Nv. 5) con: Golpe Cabeza (Golpe), Viento Hielo (Disparo), Rayo Aurora (Disparo), Descanso (Mejora propia)
-- Learnset: Nv.1 Golpe Cabeza, Nv.1 Viento Hielo, Nv.3 Rayo Aurora, Nv.5 Descanso, Nv.41 Rayo Hielo
-
-### N.º 133 Eevee — **kit: adaptativo**
-- Tipos: Normal · Temperamento: Curioso · Aparece en: Pradera Sur, Arboleda, Zona nueva (Nv. 2-7)
-- Kit: `data/kits/eevee/kit.tres` · estilo **adaptativo** · rango preferido 45 px · mecánica de firma: Adaptación
-- Aparece (Nv. 2) con: Placaje (Golpe), Ataque Arena (Disparo)
-- Learnset: Nv.1 Placaje, Nv.1 Ataque Arena, Nv.3 Ataque Rápido, Nv.5 Derribo, Nv.30 Mordisco
 

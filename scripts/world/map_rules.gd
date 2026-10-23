@@ -141,6 +141,16 @@ static func validate(zone: Node, entry: ZoneEntry, world: WorldData) -> Array[Di
 			out.append({"level": "warn", "msg": "No hay camino transitable entre la plaza y la salida %s." % _side_name(side), "cell": ex})
 	if not is_walkable(zone, entry.hub, objects):
 		out.append({"level": "warn", "msg": "La plaza (hub) está bloqueada.", "cell": entry.hub})
+	# Puertas: que lleven a una zona que existe y que se pueda llegar a usarlas.
+	var ids := {}
+	for z in world.zones:
+		ids[z.id] = true
+	for c: Vector2i in entry.warps:
+		var to: String = entry.warps[c].get("to", "")
+		if not ids.has(to):
+			out.append({"level": "error", "msg": "La puerta lleva a una zona que no existe (\"%s\")." % to, "cell": c})
+		elif not is_walkable(zone, c, objects) and not _reachable_side(zone, entry, c, objects):
+			out.append({"level": "warn", "msg": "No se puede llegar a la puerta: está rodeada de cosas sólidas.", "cell": c})
 	# Inicio del juego
 	var spawn_local := world.spawn_cell - entry.origin
 	if _inside(entry, spawn_local) and not is_walkable(zone, spawn_local, objects):
@@ -156,7 +166,7 @@ static func validate(zone: Node, entry: ZoneEntry, world: WorldData) -> Array[Di
 			elif not tall and layer_name != "Overhead":
 				var td := layer.get_cell_tile_data(c)
 				tall = td != null and (td.get_custom_data("tags") as PackedStringArray).has("pasto_alto")
-	if not tall:
+	if not tall and not entry.interior:
 		out.append({"level": "warn", "msg": "La zona no tiene pasto alto: no van a aparecer salvajes.", "cell": Vector2i(-1, -1)})
 	if outside > 0:
 		out.append({"level": "warn", "msg": "Hay %d tiles fuera del tamaño de la zona." % outside, "cell": Vector2i(-1, -1)})
@@ -164,6 +174,14 @@ static func validate(zone: Node, entry: ZoneEntry, world: WorldData) -> Array[Di
 		if not _inside(entry, c):
 			out.append({"level": "warn", "msg": "Hay un objeto fuera de la zona.", "cell": c})
 	return out
+
+
+## ¿Alguna vecina de la celda es transitable?
+static func _reachable_side(zone: Node, entry: ZoneEntry, c: Vector2i, objects: Dictionary) -> bool:
+	for d in [Vector2i.DOWN, Vector2i.UP, Vector2i.LEFT, Vector2i.RIGHT]:
+		if _inside(entry, c + d) and is_walkable(zone, c + d, objects):
+			return true
+	return false
 
 
 static func _side_name(side: String) -> String:

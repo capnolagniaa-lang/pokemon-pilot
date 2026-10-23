@@ -20,6 +20,8 @@ var reactions: ReactionSystem
 var trainers: TrainerDirector
 ## Mochila en el mundo: E lanza la Pokébola, C usa el objeto rápido.
 var items: PlayerItems
+## Puertas entre zonas (casas, Centros, garitas...).
+var warps: WarpSystem
 
 
 func _ready() -> void:
@@ -49,6 +51,10 @@ func _ready() -> void:
 	items = PlayerItems.new()
 	items.name = "PlayerItems"
 	add_child(items)
+	warps = WarpSystem.new()
+	warps.name = "WarpSystem"
+	add_child(warps)
+	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
 	var loot := FieldItemSpawner.new()
 	loot.name = "FieldItemSpawner"
 	add_child(loot)

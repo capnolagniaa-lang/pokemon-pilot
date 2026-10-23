@@ -21,20 +21,20 @@ misread_chance = 0.1
 script = ExtResource("2_053ck")
 start_hour = 9
 end_hour = 13
-cell = Vector2i(16, 17)
+cell = Vector2i(42, 38)
 
 [sub_resource type="Resource" id="Resource_vje13"]
 script = ExtResource("2_053ck")
 start_hour = 15
 end_hour = 18
-zone_id = "bosque"
-cell = Vector2i(26, 12)
+zone_id = "bosque_verde"
+cell = Vector2i(47, 60)
 
 [sub_resource type="Resource" id="Resource_457y4"]
 script = ExtResource("2_053ck")
 start_hour = 18
 end_hour = 9
-cell = Vector2i(16, 17)
+cell = Vector2i(42, 38)
 activity = "descansar"
 
 [sub_resource type="Resource" id="Resource_g1h57"]

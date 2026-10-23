@@ -63,8 +63,11 @@ Abre la zona donde empieza el juego (Ruta 1). Para cambiar de zona usá el despl
 ### Pinceles (lo más común)
 Pinceles que **ya saben las reglas del juego**: no tenés que pensar en capas.
 
-- **Terreno**: Pasto, Pradera clara, Pasto alto, Flores, Arena, Tierra, Agua/laguna.
-  - Arena, tierra, pradera clara y agua arman **solos los bordes y las esquinas**, tanto al pintar como al borrar.
+- **Terreno**: Pasto, Pradera clara, Pasto alto, Flores, Arena, Tierra, Agua/laguna, **Piso de ciudad** (el piso
+  claro de Ciudad Verde), **Empedrado** (el de Ciudad Plateada) y **Piso de cueva**.
+  - Arena, tierra, pradera clara, piso de ciudad, empedrado y agua arman **solos los bordes y las esquinas**, tanto
+    al pintar como al borrar. Para una plaza: Piso de ciudad → Rectángulo relleno.
+  - El piso de cueva es un tile suelto: las paredes de roca se ponen con la Paleta (tileset Cueva).
   - Pasto alto y flores se ponen con pasto abajo. **En el pasto alto aparecen los Pokémon salvajes.**
   - El agua lleva pasto abajo y tiene colisión de agua (se puede congelar con hielo en el juego).
 - **Árboles**: árbol de 2×2, con su copa que tapa al personaje y su sombra. Si ponés uno justo debajo de otro,
@@ -162,6 +165,15 @@ apenas cambiás algo, se crea la propia de la zona.
 Todo se deshace con Ctrl+Z y se guarda con la zona (Ctrl+S), en `data/world/encounters/<zona>.tres`.
 **Probar ▶ (F5)** te deja ver enseguida lo que aparece. En el juego, **Opciones → "Salvajes de prueba"** vuelve a
 la fase de prueba del combate (solo Pidgey, Bellsprout, Rattata y Vulpix en todo el mapa).
+
+### Puertas
+Las zonas que vienen de FireRed traen sus **puertas**: las de las casas, Centros, Tiendas y gimnasios, las alfombras
+de salida de los interiores, las escaleras y las entradas de las garitas. En el mapa se ven con un **recuadro
+celeste**, y al pasar el mouse la barra de abajo dice a dónde llevan ("Puerta → Laboratorio del Prof. Oak").
+- En el juego, una puerta sólida (la de una casa) se usa **caminando contra ella**; una alfombra o una escalera,
+  **pisándola**. Se aparece en la celda libre de al lado de la puerta de destino.
+- Las validaciones avisan si una puerta lleva a una zona que no existe o si quedó tapada.
+- Por ahora las puertas no se editan desde el editor: salen de los mapas de FireRed (`kanto.tres`, `warps` de cada zona).
 
 ---
 
@@ -262,6 +274,7 @@ cargarla el entrenador aparece en la celda libre más cercana.
 ## 10. Recetas rápidas
 
 - **Un camino**: Pinceles → Arena (o Tierra) → Rectángulo (R) → arrastrar. Los bordes salen solos.
+- **Las calles de un pueblo**: Pinceles → Piso de ciudad (o Empedrado) → Rectángulo relleno. Los bordes con el pasto salen solos.
 - **Un lago**: Pinceles → Agua → Rectángulo relleno. Para achicarlo, clic derecho sobre el borde.
 - **Una zona de salvajes**: Pinceles → Pasto alto → Pincel tamaño 3 → pintar. Comprobalo con Ver → Resaltar tag → `pasto_alto`.
 - **Un pueblo**: Sellos → grupo Casas (o Centros y tiendas) → lugar, por ejemplo Pueblo Paleta → clic para cada

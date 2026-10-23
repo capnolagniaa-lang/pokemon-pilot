@@ -9,6 +9,7 @@ const SOLID_COLOR := Color(1.0, 0.1, 0.1, 0.45)
 const WATER_COLOR := Color(0.2, 0.45, 1.0, 0.42)
 const TAG_COLOR := Color(1.0, 0.85, 0.2, 0.45)
 const UNTAGGED_COLOR := Color(1.0, 0.2, 0.9, 0.35)
+const WARP_COLOR := Color(0.25, 0.95, 1.0, 0.9)
 
 var doc: MapDocument
 var show_grid := true
@@ -54,6 +55,11 @@ func _draw() -> void:
 						draw_rect(r.grow(-5), UNTAGGED_COLOR)
 	if show_wild:
 		_draw_wild()
+	# Puertas (a casas, Centros, garitas...): siempre a la vista.
+	for c: Vector2i in doc.entry.warps:
+		var r := Rect2(Vector2(c * T), Vector2(T, T))
+		draw_rect(r.grow(-1), Color(WARP_COLOR, 0.25))
+		draw_rect(r.grow(-1), WARP_COLOR, false, 1.5)
 	if show_grid:
 		var line := Color(0, 0, 0, 0.18)
 		for x in doc.entry.size.x + 1:

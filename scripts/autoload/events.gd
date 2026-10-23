@@ -7,6 +7,8 @@ extends Node
 signal zone_entered(zone: ZoneEntry)
 signal zone_loaded(zone: ZoneEntry, node: Node)
 signal zone_unloaded(zone: ZoneEntry)
+## El entrenador usó una puerta (de una zona a otra: casa, Centro, garita...).
+signal warped(from: ZoneEntry, to: ZoneEntry)
 
 # Partida
 signal game_started()

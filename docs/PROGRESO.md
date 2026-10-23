@@ -34,8 +34,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Eevee, Seel, Geodude): ya son **16 Pokémon con kit**. Detalle en el plan de identidad ("v3"); el usuario los va
   a ir ajustando mientras los prueba. Autotest `--autotest-kits-v3`. Primer ajuste: Rayo de Pikachu cae del cielo
   en área; Burbuja de Poliwag encierra sin mojar.
-- **Spawns**: se respetan los de FireRed. Otro agente está editando los mapas (hasta Ciudad Plateada): no tocar
-  zonas ni tablas de encuentros desde las sesiones de combate.
+- **Spawns**: se respetan los de FireRed (cada zona nueva tiene la tabla real de su lugar).
+- **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
+  7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
+  borraron (pedido del usuario). Pinceles nuevos: piso de ciudad, empedrado y piso de cueva.
 - **Siguiente: E-1** (combate contra entrenador: desafío, equipos de hasta 3, cambio de Pokémon con Tab, fin y
   EXP). Después, spawns por hora (Etapa 4b/5). El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.
@@ -68,6 +70,34 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | 🟡 Captura, Mochila, Caja e IVs al azar hechos (2026-10-23); faltan naturalezas, EVs, evoluciones, Centros |
 | 7 | Primer gimnasio (arena con transición) | Pendiente |
 | 8 | Pulido (juice, audio, partículas) | Pendiente |
+
+## Región de FireRed: de Pueblo Paleta a Ciudad Plateada (2026-10-23)
+Pedido del usuario: renombrar Ruta 1 a Pueblo Paleta, pinceles de piso de ciudad y de cueva, borrar las zonas que
+había y reproducir hasta Ciudad Plateada (guía de Rojo Fuego). Durante el trabajo pidió: **adaptarlo a nuestra
+escala** ("un poco más grande") y **usar el Pueblo Paleta original agrandado** en vez del que había dibujado.
+Decidido con su "hacé tu mejor intento": mapas reales, puertas + interiores (el Bosque Verde se entra por sus garitas
+como en FireRed) y salvajes de FireRed.
+- `tools/import_frlg_maps.py`: los mapas de pret (más `data/maps/*/map.json` y `border.bin` bajados de
+  pret/pokefirered) → `data/world/frlg_maps.json`. Agranda con **costuras** (ver CLAUDE.md, "Región de FireRed"):
+  crecen pasto, caminos, agua, acantilados y arboledas; casas, carteles y puertas quedan como en FireRed.
+  Los mapas se ubican por sus conexiones alineando los caminos; la columna Paleta–Ruta 1–Verde–Ruta 2–Plateada
+  tiene un mismo ancho (los costados se rellenan con el borde de árboles), la Ruta 22 sale al oeste de Ciudad Verde.
+- `tools/import_frlg_maps.gd`: zonas `hand_edited` (se siguen editando con el editor), región nueva, TileSet con la
+  colisión por celda de los mapas y tablas de salvajes reales (Ruta 1: Pidgey/Rattata; Ruta 2, Ruta 22, Bosque
+  Verde) **sin las filas de agua** (en FireRed son de Surf, de nivel 5-40, y nadarían al lado del inicio), y los
+  árboles cortables de FireRed como objetos del entorno (Ciudad Verde, Ruta 2, Ciudad Plateada). El agua va en la
+  capa Water y el pasto alto en Foliage, como con los pinceles. Borró las 9 zonas generadas y `zona_nueva` (backup en
+  `scenes/world/zones/.backup/`).
+- **Puertas** (`WarpSystem`, `ZoneEntry.warps`): casas, Laboratorio de Oak, Centros, Tiendas, gimnasios, Escuela,
+  Museo (2 pisos), garitas de la Ruta 2 y de la Ruta 22 (la de la Ruta 22 todavía no lleva a la Calle Victoria).
+  En el editor se ven con recuadro celeste y la barra dice a dónde llevan; validación de puertas.
+- Pinceles nuevos (`tile_roles.tres`): **Piso de ciudad** (autotile, Ciudad Verde), **Empedrado** (autotile,
+  Ciudad Plateada) y **Piso de cueva** (tile suelto).
+- Entrenadores vivos: sus rutinas pasaron a Ruta 1, Ruta 22, Ruta 2 y Bosque Verde (celda transitable más cercana).
+- `--autotest` reescrito: camina de Pueblo Paleta a Ciudad Plateada entrando al Laboratorio de Oak, pasando por la
+  Ruta 22 y cruzando el Bosque Verde por sus garitas (`TourPlanner`).
+- Pendiente: NPC, carteles y objetos (Pokébolas) de los mapas de FireRed (no se importan), editar puertas desde el editor,
+  Calle Victoria / Ruta 3 en adelante.
 
 ## Herramienta — Editor de mapas (2026-10-22)
 Pedido del usuario en `docs/PROMPT_EDITOR_DE_MAPAS.md`. Es una herramienta, no una etapa. Decisiones (todas las

@@ -132,7 +132,35 @@ static func build_tileset(roles: TileRoleSet) -> TileSet:
 		for m in alts:
 			for want_solid in alts[m]:
 				_add_collision_alt(ts, roles, m, want_solid)
+	var imported := imported_collision_alts(roles)
+	for m in imported:
+		for want_solid in imported[m]:
+			_add_collision_alt(ts, roles, m, want_solid)
 	return ts
+
+
+const IMPORTED_MAPS := "res://data/world/frlg_maps.json"
+
+
+## Metatile -> {sólido?: true} que los mapas importados de FireRed (tools/import_frlg_maps.py) necesitan con otra
+## colisión que la de su tile (en FireRed la colisión es por celda).
+static func imported_collision_alts(roles: TileRoleSet) -> Dictionary:
+	var out := {}
+	if not FileAccess.file_exists(IMPORTED_MAPS):
+		return out
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(IMPORTED_MAPS))
+	for z: Dictionary in data["zones"]:
+		var cells: Array = z["cells"]
+		var col: Array = z["col"]
+		for i in cells.size():
+			var m := int(cells[i])
+			if m < 0 or not exists(m):
+				continue
+			var phys := roles.physics_for(m)
+			var solid := int(col[i]) != 0
+			if phys != MapRules.WATER and (phys == MapRules.SOLID) != solid:
+				out.get_or_add(m, {})[solid] = true
+	return out
 
 
 ## Tiles alternativos con otra colisión (lo usan los sellos: en FireRed la colisión es por celda del mapa, y

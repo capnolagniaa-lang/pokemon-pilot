@@ -1,16 +1,23 @@
 extends Node
 ## Prueba automática (solo con: godot --path . -- --autotest).
-## Elige inicial y recorre la región por los caminos (plaza -> salida -> zona vecina -> plaza ...),
-## verificando que las zonas estén conectadas, que se carguen y que el Pokémon siga al entrenador.
+## Elige inicial y camina de Pueblo Paleta a Ciudad Plateada (el camino más corto por las celdas transitables,
+## TourPlanner), entrando al Laboratorio de Oak y cruzando el Bosque Verde por sus garitas: verifica que las zonas
+## estén conectadas, que las puertas funcionen, que se carguen y que el Pokémon siga al entrenador.
 
-## Recorrido: zonas a visitar en orden (cada una vecina de la anterior).
-const TOUR := ["ruta1", "bosque", "lago", "colinas", "arboleda", "pradera_sur", "humedal", "pradera_florida", "ruta1"]
+## Recorrido: ["entrar", zona destino, desde zona] usa una puerta; ["ir", zona] camina hasta su plaza.
+const TOUR := [["entrar", "laboratorio_oak", "pueblo_paleta"], ["entrar", "pueblo_paleta", "laboratorio_oak"],
+	["ir", "ruta22"], ["entrar", "ruta2_garita_sur", "ruta2"], ["entrar", "bosque_verde", "ruta2_garita_sur"],
+	["entrar", "ruta2_garita_norte", "bosque_verde"], ["entrar", "ruta2", "ruta2_garita_norte"], ["ir", "ciudad_plateada"]]
+## Zonas por las que tiene que pasar.
+const TOUR_ZONES := ["pueblo_paleta", "laboratorio_oak", "ruta1", "ciudad_verde", "ruta22", "ruta2", "ruta2_garita_sur",
+	"bosque_verde", "ruta2_garita_norte", "ciudad_plateada"]
 const STUCK_TIME := 3.0
 const ARRIVE := 4.0
 
 var enabled := false
 var _zones_seen: Array[String] = []
-var _waypoints: Array[Vector2] = []
+## [posición, zona a la que se llega al usar la puerta ("" = caminar hasta la posición)]
+var _waypoints: Array = []
 var _max_follow_gap := 0.0
 var _stuck := 0.0
 var _last_pos := Vector2.ZERO
@@ -182,40 +189,39 @@ func _overview() -> void:
 func _build_waypoints() -> void:
 	var world := DB.config.world
 	var ts := world.tile_size
-	var zones := {}
-	for z in world.zones:
-		zones[z.id] = z
-	for i in TOUR.size() - 1:
-		var a: ZoneEntry = zones[TOUR[i]]
-		var b: ZoneEntry = zones[TOUR[i + 1]]
-		var side := _side(a, b)
-		var exit_a: Vector2i = a.exits[side]
-		var exit_b: Vector2i = b.exits[_opposite(side)]
-		_waypoints.append(a.path_point(a.hub, ts))
-		_waypoints.append(a.path_point(_corner(a, exit_a, side), ts))
-		_waypoints.append(a.path_point(exit_a, ts))
-		_waypoints.append(b.path_point(exit_b, ts))
-		_waypoints.append(b.path_point(_corner(b, exit_b, _opposite(side)), ts))
-	var last: ZoneEntry = zones[TOUR[-1]]
-	_waypoints.append(last.path_point(last.hub, ts))
-
-
-func _side(a: ZoneEntry, b: ZoneEntry) -> String:
-	var d := b.origin - a.origin
-	if d.x > 0:
-		return "right"
-	if d.x < 0:
-		return "left"
-	return "down" if d.y > 0 else "up"
-
-
-func _opposite(side: String) -> String:
-	return {"up": "down", "down": "up", "left": "right", "right": "left"}[side]
-
-
-## Esquina del camino en L entre la salida y la plaza (ver ZoneMap.carve en tools/build_world.gd).
-func _corner(z: ZoneEntry, exit: Vector2i, side: String) -> Vector2i:
-	return Vector2i(exit.x, z.hub.y) if side in ["up", "down"] else Vector2i(z.hub.x, exit.y)
+	var plan := TourPlanner.new(world)
+	var at := world.spawn_cell
+	var center := func(c: Vector2i) -> Vector2: return Vector2(c * ts) + Vector2.ONE * ts / 2.0
+	for leg in TOUR:
+		var goal: Vector2i
+		var warp := Vector2i(-1, -1)
+		if leg[0] == "ir":
+			var z := plan.entry(leg[1])
+			goal = z.origin + z.hub
+		else:
+			var best: Array[Vector2i] = []
+			for w in plan.warps_to(leg[2], leg[1]):
+				var p := plan.path(at, plan.approach(w))
+				if not p.is_empty() and (best.is_empty() or p.size() < best.size()):
+					best = p
+					warp = w
+			if warp.x < 0:
+				push_error("[autotest] sin camino a la puerta de %s en %s" % [leg[1], leg[2]])
+				_waypoints.append([center.call(at), "?" + leg[1]])
+				return
+			goal = plan.approach(warp)
+		var p := plan.path(at, goal)
+		if p.is_empty():
+			push_error("[autotest] sin camino hasta %s" % str(leg))
+			_waypoints.append([center.call(at), "?" + str(leg[1])])
+			return
+		for c in TourPlanner.corners(p):
+			_waypoints.append([center.call(c), ""])
+		if warp.x >= 0:
+			_waypoints.append([center.call(warp), leg[1]])
+			at = plan.arrival(warp)
+		else:
+			at = goal
 
 
 func _process(delta: float) -> void:
@@ -229,15 +235,41 @@ func _process(delta: float) -> void:
 	if _waypoints.is_empty():
 		_finish(world, trainer, "")
 		return
-	var target := _waypoints[0]
-	var diff := target - trainer.global_position
-	if diff.length() < ARRIVE:
+	var target: Vector2 = _waypoints[0][0]
+	var through: String = _waypoints[0][1]
+	var here: ZoneEntry = world.streamer.world_data.zone_at(trainer.global_position)
+	if through.begins_with("?"):
+		_finish(world, trainer, "no hay camino hasta " + through.substr(1))
+		return
+	# Si ya se pasó por la próxima puerta (una sólida se usa antes de llegar al centro de la celda de al lado), se
+	# saltean los puntos que quedaban de este lado.
+	for k in _waypoints.size():
+		var next: String = _waypoints[k][1]
+		if next == "":
+			continue
+		if k > 0 and here != null and here.id == next:
+			_waypoints = _waypoints.slice(k)
+			return
+		break
+	if (through == "" and (target - trainer.global_position).length() < ARRIVE) or (through != "" and here != null and here.id == through):
 		_waypoints.pop_front()
 		_stuck = 0.0
+		if OS.has_environment("AUTOTEST_VERBOSE"):
+			print("  llegó a ", target, " ", through, " quedan ", _waypoints.size())
 		return
+	var diff := target - trainer.global_position
+	# Primero se centra en el eje cruzado (caminando, para no pasarse): los caminos rozan paredes y la caja de los
+	# pies (10 px) se traba si va corrida.
+	var centering := false
+	if absf(diff.y) > absf(diff.x) and absf(diff.x) > 2.0:
+		diff = Vector2(diff.x, 0)
+		centering = true
+	elif absf(diff.x) > absf(diff.y) and absf(diff.y) > 2.0:
+		diff = Vector2(0, diff.y)
+		centering = true
 	trainer.autopilot = diff.normalized()
-	trainer.autopilot_run = true
-	_stuck = _stuck + delta if trainer.global_position.distance_to(_last_pos) < 0.5 else 0.0
+	trainer.autopilot_run = not centering
+	_stuck = _stuck + delta if trainer.global_position.distance_to(_last_pos) < 0.5 and not world.warps.busy else 0.0
 	_last_pos = trainer.global_position
 	if _stuck > STUCK_TIME:
 		_finish(world, trainer, "trabado yendo a %s" % target)
@@ -246,7 +278,7 @@ func _process(delta: float) -> void:
 func _finish(world: Node, trainer: Trainer, error: String) -> void:
 	_done = true
 	trainer.autopilot = Vector2.ZERO
-	var expected := TOUR.duplicate()
+	var expected := TOUR_ZONES.duplicate()
 	var missing := expected.filter(func(id): return not _zones_seen.has(id))
 	var ok := error == "" and missing.is_empty() and _max_follow_gap < 170.0
 	print("[autotest] zonas=", _zones_seen.size(), " faltan=", missing, " pos=", trainer.global_position.round(),
@@ -864,6 +896,7 @@ func _modes_test() -> void:
 	await get_tree().physics_frame
 	var h := HitInfo.from(wild, wild.moves.slots[0])
 	r["El daño salvaje usa la dificultad"] = absf(h.damage_mult - easy.damage_mult) < 0.001
+	wild.queue_free()  # que no le pegue al Pokémon que vuelve (la vida tiene que estar al máximo)
 	var inst: CreatureInstance = me.instance
 	me.health.apply_damage(inst.max_hp() * 2.0)
 	await get_tree().create_timer(1.3).timeout
@@ -893,7 +926,7 @@ func _modes_test() -> void:
 	for n in world.entities.get_children():
 		if n is Creature and n.team == Creature.Team.WILD:
 			seen[n.instance.species.id] = true
-	print("[modos] especies salvajes en las 9 zonas: ", seen.keys())
+	print("[modos] especies salvajes en todas las zonas: ", seen.keys())
 	r["Solo Pidgey, Bellsprout, Rattata y Vulpix en todo el mapa"] = not seen.is_empty() and seen.keys().all(func(id): return id in WildSpawner.TEST_POOL)
 	GameState.wild_test_pool = false
 

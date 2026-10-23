@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_upqy7"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_dhkuo"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_i14i3"]
+
+[sub_resource type="Resource" id="Resource_inqq6"]
+script = ExtResource("2_dhkuo")
+species_id = "caterpie"
+weight = 40
+min_level = 3
+
+[sub_resource type="Resource" id="Resource_kg73e"]
+script = ExtResource("2_dhkuo")
+species_id = "weedle"
+weight = 40
+min_level = 3
+
+[sub_resource type="Resource" id="Resource_614hi"]
+script = ExtResource("2_dhkuo")
+species_id = "kakuna"
+min_level = 4
+max_level = 6
+
+[sub_resource type="Resource" id="Resource_p0tmw"]
+script = ExtResource("2_dhkuo")
+species_id = "metapod"
+weight = 5
+min_level = 5
+
+[sub_resource type="Resource" id="Resource_a0f7o"]
+script = ExtResource("2_dhkuo")
+species_id = "pikachu"
+weight = 5
+min_level = 3
+
+[resource]
+script = ExtResource("3_i14i3")
+entries = Array[ExtResource("2_dhkuo")]([SubResource("Resource_inqq6"), SubResource("Resource_kg73e"), SubResource("Resource_614hi"), SubResource("Resource_p0tmw"), SubResource("Resource_a0f7o")])

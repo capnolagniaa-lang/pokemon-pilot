@@ -17,7 +17,7 @@ const TRAINERS := [
 		"personality": {"encounters_to_learn": 3, "max_intelligence": 3, "pride": 0.4, "aggression": 0.3,
 			"curiosity": 0.3, "misread_chance": 0.1},
 		"team": [["bellsprout", 8], ["pidgey", 8]],
-		"routine": [[9, 13, "ruta1", Vector2i(-6, 3), "entrenar"], [15, 18, "bosque", Vector2i(0, 0), "entrenar"],
+		"routine": [[9, 13, "ruta1", Vector2i(-6, 3), "entrenar"], [15, 18, "bosque_verde", Vector2i(0, 0), "entrenar"],
 			[18, 9, "ruta1", Vector2i(-6, 3), "descansar"]],
 		"lines": {"saludo": "Hola. Te estuve observando.", "desafio": "Probemos una idea que tengo.",
 			"gana": "Tal como lo planeé.", "pierde": "Interesante... lo voy a anotar."}},
@@ -25,8 +25,8 @@ const TRAINERS := [
 		"personality": {"encounters_to_learn": 2, "max_intelligence": 2, "pride": 0.15, "aggression": 0.5,
 			"curiosity": 0.85, "misread_chance": 0.2},
 		"team": [["vulpix", 8]],
-		"routine": [[7, 12, "ruta1", Vector2i(9, 4), "explorar"], [12, 17, "pradera_florida", Vector2i(0, 0), "explorar"],
-			[17, 21, "lago", Vector2i(0, 2), "explorar"], [21, 7, "ruta1", Vector2i(9, 4), "descansar"]],
+		"routine": [[7, 12, "ruta1", Vector2i(9, 4), "explorar"], [12, 17, "ruta22", Vector2i(0, 0), "explorar"],
+			[17, 21, "ruta2", Vector2i(0, 2), "explorar"], [21, 7, "ruta1", Vector2i(9, 4), "descansar"]],
 		"lines": {"saludo": "¡Hola! ¿Viste algún Pokémon raro por acá?", "desafio": "¡Mirá lo que encontré! ¿Peleamos?",
 			"gana": "¡Mi equipo nuevo funciona!", "pierde": "Uh... mañana pruebo con otro."}},
 ]
@@ -58,11 +58,14 @@ func _init() -> void:
 			b.start_hour = row[0]
 			b.end_hour = row[1]
 			b.zone_id = row[2]
-			var hub := Vector2i.ZERO
+			b.cell = row[3]
 			for z in world.zones:
 				if z.id == row[2]:
-					hub = z.hub
-			b.cell = hub + row[3]
+					# la celda transitable más cercana (las zonas son mapas reales: al lado de la plaza puede haber
+					# un edificio o un árbol)
+					var node: Node = load(z.scene_path).instantiate()
+					b.cell = MapRules.nearest_walkable(node, z, z.hub + row[3])
+					node.free()
 			b.activity = row[4]
 			routine.append(b)
 		data.routine = routine

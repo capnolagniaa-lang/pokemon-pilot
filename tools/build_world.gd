@@ -12,20 +12,12 @@ extends SceneTree
 ## Zonas agregadas con el editor (que no están en REGION) se conservan siempre.
 
 const ZONE_SIZE := Vector2i(48, 32)
-const START_ZONE := "ruta1"
+const START_ZONE := "pueblo_paleta"
 
-# Región: [id, nombre, columna, fila, bioma]. Las zonas vecinas quedan conectadas.
-const REGION := [
-	["bosque_profundo", "Bosque Profundo", 0, 0, "bosque_denso"],
-	["bosque", "Bosque Verde", 1, 0, "bosque"],
-	["lago", "Lago Celeste", 2, 0, "lago"],
-	["pradera_florida", "Pradera Florida", 0, 1, "pradera_florida"],
-	["ruta1", "Ruta 1", 1, 1, "pradera"],
-	["colinas", "Colinas Rocosas", 2, 1, "rocoso"],
-	["humedal", "Humedal", 0, 2, "humedal"],
-	["pradera_sur", "Pradera Sur", 1, 2, "pradera"],
-	["arboleda", "Arboleda", 2, 2, "arboleda"],
-]
+# Región generada: [id, nombre, columna, fila, bioma]. Las zonas vecinas quedan conectadas. Vacía desde que el mundo
+# son los mapas reales de FireRed (tools/import_frlg_maps.py + .gd): las zonas que no están acá se conservan siempre.
+# Para volver a generar zonas de prueba, sumar filas, por ejemplo ["pradera", "Pradera", 5, 0, "pradera"].
+const REGION := []
 
 const CATALOG_PATH := "res://data/world/tile_catalog.tres"
 

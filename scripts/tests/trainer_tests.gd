@@ -48,7 +48,7 @@ func run() -> void:
 		and GameState.trainer_state(DB.trainers["azul"]).losses == 2
 
 	# Al alejarse (se descarga Ruta 1) desaparecen; al volver, reaparecen con su estado.
-	var far := _zone_center("bosque_profundo")
+	var far := _zone_center("ciudad_plateada")
 	world.trainer.global_position = far
 	world.camera.global_position = far
 	await get_tree().create_timer(2.5).timeout
