@@ -19,8 +19,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_cooldown = maxf(0.0, _cooldown - delta)
+	var story: StoryDirector = world.get("story")
+	if story != null and (story.busy or story.dialog.active):
+		return  # en una conversación, E y C no hacen nada más
 	if Input.is_action_just_pressed("capture"):
-		throw_ball(world.get_global_mouse_position())
+		# E contextual (docs/PLAN_HISTORIA.md): si hay alguien al lado, habla; si no, lanza la Pokébola.
+		if story == null or not story.try_interact():
+			throw_ball(world.get_global_mouse_position())
 	if Input.is_action_just_pressed("quick_item"):
 		use_quick_item()
 

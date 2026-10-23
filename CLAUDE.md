@@ -39,6 +39,8 @@ $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charman
 $G --headless --path . --quit-after 60000 -- --autotest-kits-v3  # los 10 kits nuevos (v3): ataques + mecánicas
 $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bichos, Spearow, Mankey, Sandshrew, Onix jefe)
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
+$G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
+$G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
 $G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
 $G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carga, learnset, archivos rotos
 $G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, activo, menú, ficha
@@ -130,6 +132,11 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `tools/assign_temperaments.gd`) leído por los estados wander/watch/chase/attack/flee; sin memoria, patrón fijo.
   Entrenadores (pendiente): órdenes + memoria, mismo cuerpo. Mientras hay golpes (`Creature.engaged`, 5 s) un
   salvaje no suelta la pelea por territorio; al soltarla queda tranquilo 6 s (`calm_until`).
+- **Historia** (`docs/PLAN_HISTORIA.md`, fases H): `GameState.story_flags` (banderas, se guardan); `NpcData`/`NpcTalk`/
+  `StoryTrigger` en `data/story/` (`DB.npcs`, `DB.story_triggers`); `StoryDirector` (nodo del mundo: saca las personas,
+  disparadores, conversaciones con `DialogBox`, efectos). **E contextual**: `PlayerItems` llama a
+  `StoryDirector.try_interact()` antes de lanzar la bola. Personas: `tools/build_story_npcs.py` (desde los NPC de
+  `frlg_maps.json` + sprites de `tools/fetch_npc_sprites.py`). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.
@@ -229,6 +236,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   ajustes hechos a mano** en esos .tres: retocar en el inspector y no volver a correrlo.
 - `tools/build_kits_v4.py`: igual para los kits v4 (Kanto hasta Plateada, Onix jefe); además engancha el kit en la
   especie. Mismo aviso: correrlo de nuevo pisa los ajustes a mano.
+- `tools/fetch_npc_sprites.py`: baja de pret/pokefirered los sprites de las personas de los mapas importados (y las de
+  la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
+  (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + extras de la tabla `EXTRAS`, niveles de
   FRLG) y los guarda en las especies. Correrlo después de cambiar un kit o los extras.
 - `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +

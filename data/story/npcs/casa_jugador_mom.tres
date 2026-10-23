@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Hola! Te veo cansado. Sentate un ratito.", "Tus Pokémon también se merecen un descanso.", "...¡Listo! Ahora sí, a seguir con tu aventura. ¡Cuidate!")
+heal = true
+
+[resource]
+script = ExtResource("1_n")
+id = "casa_jugador_mom"
+display_name = "Mamá"
+zone_id = "casa_jugador"
+cell = Vector2i(8, 4)
+gfx = "mom"
+facing = Vector2i(-1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

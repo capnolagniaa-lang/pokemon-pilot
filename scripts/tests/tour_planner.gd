@@ -19,6 +19,9 @@ func _init(p_world: WorldData) -> void:
 		for y in z.size.y:
 			for x in z.size.x:
 				bits[y * z.size.x + x] = 1 if MapRules.is_walkable(node, Vector2i(x, y), objects) else 0
+		for npc: NpcData in DB.npcs.values():  # las personas de la historia también ocupan su celda
+			if npc.zone_id == z.id and npc.visible_now() and Rect2i(Vector2i.ZERO, z.size).has_point(npc.cell):
+				bits[npc.cell.y * z.size.x + npc.cell.x] = 0
 		_walk[z.id] = bits
 		node.free()
 

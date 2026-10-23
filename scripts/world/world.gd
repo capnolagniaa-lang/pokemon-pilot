@@ -22,6 +22,8 @@ var trainers: TrainerDirector
 var items: PlayerItems
 ## Puertas entre zonas (casas, Centros, garitas...).
 var warps: WarpSystem
+## Historia: personas que hablan, disparadores, diálogos (docs/PLAN_HISTORIA.md).
+var story: StoryDirector
 
 
 func _ready() -> void:
@@ -54,6 +56,9 @@ func _ready() -> void:
 	warps = WarpSystem.new()
 	warps.name = "WarpSystem"
 	add_child(warps)
+	story = StoryDirector.new()
+	story.name = "StoryDirector"
+	add_child(story)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
 	var loot := FieldItemSpawner.new()
 	loot.name = "FieldItemSpawner"

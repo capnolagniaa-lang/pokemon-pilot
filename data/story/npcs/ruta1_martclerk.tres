@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("muestra_pocion")
+lines = PackedStringArray("¡Hola! Trabajo en la Tienda Pokémon de Ciudad Verde.", "Estoy repartiendo muestras gratis. ¡Tomá, llevate una!")
+set_flags = PackedStringArray("muestra_pocion")
+give_items = {"pocion": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Pasate por la Tienda de Ciudad Verde cuando quieras. ¡Tenemos de todo!")
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta1_martclerk"
+display_name = "Empleado de la Tienda"
+zone_id = "ruta1"
+cell = Vector2i(44, 48)
+gfx = "clerk"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

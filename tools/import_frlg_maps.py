@@ -460,11 +460,16 @@ def main():
                     z["warps"].append(dict(wp, cell=[x + dx, y + dy]))
         z["template"] = TEMPLATES.get(n, "")
         z["objects"] = []
-        for o in maps[n].get("object_events", []):
+        z["npcs"] = []  # personas de FireRed (la historia las usa: data/story/, docs/PLAN_HISTORIA.md)
+        for i, o in enumerate(maps[n].get("object_events", [])):
             scene = OBJECTS.get(o.get("graphics_id"))
-            c = find_cell(g, o["x"], o["y"]) if scene else None
-            if c:
+            c = find_cell(g, o["x"], o["y"])
+            if c and scene:
                 z["objects"].append({"cell": [c[0] + dx, c[1] + dy], "scene": scene})
+            elif c:
+                z["npcs"].append({"cell": [c[0] + dx, c[1] + dy], "gfx": o.get("graphics_id", ""), "index": i + 1,
+                                  "script": o.get("script", ""), "movement": o.get("movement_type", ""),
+                                  "flag": o.get("flag", "0")})
     sz = by_map[SPAWN[0]]
     sp = new_cell(SPAWN[0], SPAWN[1], SPAWN[2])
     out = {"_info": "Generado por tools/import_frlg_maps.py (no editar a mano).", "scale": SCALE,

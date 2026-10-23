@@ -1,0 +1,37 @@
+class_name NpcData
+extends Resource
+## Una persona del mundo que habla (docs/PLAN_HISTORIA.md, H-0). Datos en data/story/npcs/<id>.tres (los arma
+## tools/build_story_npcs.py desde los NPC reales de FireRed). StoryDirector la saca cuando su zona está cargada.
+
+@export var id: String = ""
+@export var display_name: String = ""
+@export var zone_id: String = ""
+## Celda local de la zona (la de FireRed ya pasada a la escala del juego).
+@export var cell: Vector2i = Vector2i.ZERO
+## Sprite: art/pret/characters/<gfx>.png (hoja de FireRed: 0 abajo, 1 arriba, 2 costado).
+@export var gfx: String = ""
+@export var facing: Vector2i = Vector2i.DOWN
+## Mira para los costados de vez en cuando.
+@export var look_around: bool = false
+## Solo aparece si están todas estas banderas / desaparece si está alguna de estas (bloqueos que se abren).
+@export var show_if: PackedStringArray = []
+@export var hide_if: PackedStringArray = []
+## Conversaciones posibles: se usa la primera que se cumple.
+@export var talks: Array[NpcTalk] = []
+
+
+func visible_now() -> bool:
+	for f in show_if:
+		if not GameState.has_flag(f):
+			return false
+	for f in hide_if:
+		if GameState.has_flag(f):
+			return false
+	return true
+
+
+func talk_now() -> NpcTalk:
+	for t in talks:
+		if t != null and t.applies():
+			return t
+	return null

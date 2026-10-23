@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Brock, el líder del gimnasio, usa Pokémon de tipo roca.", "¡Son durísimos! Su Onix es enorme.")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_plateada_lass"
+display_name = "Chica"
+zone_id = "ciudad_plateada"
+cell = Vector2i(12, 27)
+gfx = "lass"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

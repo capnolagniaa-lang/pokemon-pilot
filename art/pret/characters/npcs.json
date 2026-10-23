@@ -1,0 +1,230 @@
+{
+ "balding_man": {
+  "png": "res://art/pret/characters/balding_man.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "black_belt": {
+  "png": "res://art/pret/characters/black_belt.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "blue": {
+  "png": "res://art/pret/characters/blue.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "boy": {
+  "png": "res://art/pret/characters/boy.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "brock": {
+  "png": "res://art/pret/characters/brock.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
+ "bug_catcher": {
+  "png": "res://art/pret/characters/bug_catcher.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "cable_club_receptionist": {
+  "png": "res://art/pret/characters/cable_club_receptionist.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
+ "camper": {
+  "png": "res://art/pret/characters/camper.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "clerk": {
+  "png": "res://art/pret/characters/clerk.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "cooltrainer_f": {
+  "png": "res://art/pret/characters/cooltrainer_f.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "cooltrainer_m": {
+  "png": "res://art/pret/characters/cooltrainer_m.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "daisy": {
+  "png": "res://art/pret/characters/daisy.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "fat_man": {
+  "png": "res://art/pret/characters/fat_man.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "gentleman": {
+  "png": "res://art/pret/characters/gentleman.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "giovanni": {
+  "png": "res://art/pret/characters/giovanni.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "gym_guy": {
+  "png": "res://art/pret/characters/gym_guy.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "jigglypuff": {
+  "png": "res://art/pret/characters/jigglypuff.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "lass": {
+  "png": "res://art/pret/characters/lass.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "little_boy": {
+  "png": "res://art/pret/characters/little_boy.png",
+  "w": 16,
+  "h": 16,
+  "frames": 9
+ },
+ "little_girl": {
+  "png": "res://art/pret/characters/little_girl.png",
+  "w": 16,
+  "h": 16,
+  "frames": 10
+ },
+ "man": {
+  "png": "res://art/pret/characters/man.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "mom": {
+  "png": "res://art/pret/characters/mom.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
+ "nidoran_m": {
+  "png": "res://art/pret/characters/nidoran_m.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "nurse": {
+  "png": "res://art/pret/characters/nurse.png",
+  "w": 16,
+  "h": 32,
+  "frames": 4
+ },
+ "old_man_1": {
+  "png": "res://art/pret/characters/old_man_1.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "old_man_2": {
+  "png": "res://art/pret/characters/old_man_2.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "old_man_lying_down": {
+  "png": "res://art/pret/characters/old_man_lying_down.png",
+  "w": 32,
+  "h": 32,
+  "frames": 1
+ },
+ "policeman": {
+  "png": "res://art/pret/characters/policeman.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "prof_oak": {
+  "png": "res://art/pret/characters/prof_oak.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "rocker": {
+  "png": "res://art/pret/characters/rocker.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "scientist": {
+  "png": "res://art/pret/characters/scientist.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "spearow": {
+  "png": "res://art/pret/characters/spearow.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "woman_1": {
+  "png": "res://art/pret/characters/woman_1.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "woman_2": {
+  "png": "res://art/pret/characters/woman_2.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "woman_3": {
+  "png": "res://art/pret/characters/woman_3.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "worker_f": {
+  "png": "res://art/pret/characters/worker_f.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "worker_m": {
+  "png": "res://art/pret/characters/worker_m.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "youngster": {
+  "png": "res://art/pret/characters/youngster.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ }
+}

@@ -48,6 +48,40 @@ Textos propios en español rioplatense (contando lo mismo; no se copian los diá
 
 Orden recomendado: H-0 → E-1 → H-1 → H-2 → H-3 → H-4 → H-5 → H-6.
 
+### Avance
+| Fase | Estado |
+|---|---|
+| H-0 | ✅ 2026-10-23 (ver abajo) |
+| E-1 | ⏭️ Siguiente (combate contra entrenadores, `docs/PLAN_ENTRENADORES.md`) |
+
+**H-0 (cómo quedó):**
+- **Banderas**: `GameState.story_flags` (`has_flag` / `set_flag`, avisa `Events.story_flag_changed`), se guardan con
+  la partida. `GameState.heal_party()`.
+- **Datos** (`scripts/resources/`): `NpcData` (persona: zona, celda, sprite, mirada, `show_if`/`hide_if` para
+  bloqueos que se abren con una bandera, `talks`), `NpcTalk` (condiciones `requires`/`forbids`, líneas, y al
+  terminar `set_flags`, `give_items`, `heal`), `StoryTrigger` (pisar un rectángulo de celdas abre una
+  conversación; `once`, `push_back` para bloquear con aviso). En `data/story/npcs/` y `data/story/triggers/`; `DB.npcs`
+  y `DB.story_triggers`.
+- **Personas reales de FireRed**: `tools/import_frlg_maps.py` ahora exporta los NPC de cada mapa (`npcs` en
+  `data/world/frlg_maps.json`, celda ya agrandada). `tools/fetch_npc_sprites.py` baja de pret sus sprites con su
+  paleta → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py` arma **67 personas** con
+  diálogos propios en rioplatense (vecinos, ayudantes de Oak, empleados, guías de gimnasio, museo...). Los
+  entrenadores, Oak, el rival, el viejo del tutorial, Brock, etc. llegan en sus fases.
+- **Mundo**: `StoryDirector` (nodo del mundo) saca/guarda las personas según su zona y banderas, revisa los
+  disparadores, abre las conversaciones (traba al entrenador, oculta el HUD) y aplica los efectos. `StoryNPC`
+  (`scenes/characters/story_npc.tscn`): sprite de FireRed, bloquea el paso, te mira, nombre al acercarte.
+  `DialogBox`: globo abajo con nombre y texto que se escribe; E/Espacio/Enter/clic avanza.
+- **E contextual**: `PlayerItems` pregunta primero a `StoryDirector.try_interact()` (hasta 36 px, alcanza por arriba
+  de un mostrador); si no hay nadie, lanza la Pokébola.
+- **Curar**: las enfermeras de los Centros (Verde y Plateada) y mamá curan al equipo (vida y estados).
+- El empleado de la Tienda en Ruta 1 regala una Poción una sola vez (bandera `muestra_pocion`).
+- Autotest `--autotest-story` (19 chequeos, incluye el cambio de Pokémon); vitrina `--showcase-story`.
+
+**Cambio de Pokémon con 1-6** (pedido del usuario durante H-0): las teclas 1-6 sacan al Pokémon de ese lugar del
+equipo (en el orden del equipo), también en combate: el nuevo sale donde estaba el anterior, sigue la pelea y los
+rivales lo atacan a él. 1,5 s de recarga entre cambios; no se puede sacar a uno debilitado
+(`CombatDirector.switch_to`). Los números ya no disparan ataques (siguen Clic, Clic der., Q y R).
+
 ## 4. Decisiones del usuario (2026-10-23, no volver a preguntar)
 1. **Inicial en el laboratorio** como en FRLG (Oak te frena en el pasto, elegís una de las 3 Pokébolas de la mesa;
    la pantalla actual de elección queda solo para el modo práctica).

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Los carteles te dicen dónde estás y adónde va cada camino.", "Si te perdés, ¡leé los carteles!")
+
+[resource]
+script = ExtResource("1_n")
+id = "pueblo_paleta_signlady"
+display_name = "Vecina"
+zone_id = "pueblo_paleta"
+cell = Vector2i(39, 10)
+gfx = "woman_1"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

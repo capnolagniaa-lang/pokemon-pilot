@@ -19,6 +19,8 @@ var reactions: Dictionary = {}  # id -> ReactionRule
 var temperaments: Dictionary = {}  # id -> Temperament (agresivo, territorial, timido, curioso)
 var trainers: Dictionary = {}  # id -> TrainerData (entrenadores vivos, data/trainers)
 var items: Dictionary = {}  # id -> ItemData (mochila, data/items)
+var npcs: Dictionary = {}  # id -> NpcData (historia, data/story/npcs)
+var story_triggers: Dictionary = {}  # id -> StoryTrigger (historia, data/story/triggers)
 var type_chart: TypeChart
 var config: GameConfig
 
@@ -37,6 +39,8 @@ func _ready() -> void:
 	temperaments = _load_dir("res://data/ai/temperaments", "Temperament")
 	trainers = _load_dir("res://data/trainers", "TrainerData")
 	items = _load_dir("res://data/items", "ItemData")
+	npcs = _load_dir("res://data/story/npcs", "NpcData")
+	story_triggers = _load_dir("res://data/story/triggers", "StoryTrigger")
 	type_chart = load("res://data/types/type_chart.tres")
 	config = load("res://data/config/game_config.tres")
 	_index_moves()

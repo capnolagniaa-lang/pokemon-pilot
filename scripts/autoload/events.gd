@@ -60,4 +60,11 @@ signal hitstop(duration: float)
 # Interfaz
 signal message_requested(text: String)
 
+# Historia (docs/PLAN_HISTORIA.md)
+## Se puso o se sacó una bandera de la historia.
+signal story_flag_changed(flag: String, on: bool)
+## Empieza / termina una conversación (la caja de diálogo está abierta).
+signal dialog_started
+signal dialog_finished
+
 @warning_ignore_restore("unused_signal")

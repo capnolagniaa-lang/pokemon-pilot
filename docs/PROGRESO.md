@@ -44,8 +44,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   mecánica de firma y los 4 ataques del kit de lo que ya viste. Detalle en el plan de identidad ("v4").
 - **Plan de historia hasta la Medalla Roca** (2026-10-23): `docs/PLAN_HISTORIA.md` (la de FireRed, fases H-0 a
   H-6; necesita E-1, el combate contra entrenadores). Decisiones tomadas: inicial en el laboratorio, E contextual
-  para hablar, entrenadores de historia fijos, perder = último Centro. **Próximo paso: H-0** (banderas, diálogos,
-  NPC que hablan, disparadores y bloqueos) y después E-1.
+  para hablar, entrenadores de historia fijos, perder = último Centro.
+- **H-0 hecha** (2026-10-23): banderas de historia (se guardan), caja de diálogo, **67 personas reales de FireRed
+  que hablan** (sprites de pret, diálogos propios), E contextual (habla o lanza la bola), disparadores y bloqueos
+  por bandera, enfermeras y mamá curan. **Teclas 1-6 cambian de Pokémon** (también en combate). Detalle en
+  `docs/PLAN_HISTORIA.md` ("Avance"). **Próximo paso: E-1** (combate contra entrenadores) y después H-1.
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
   borraron (pedido del usuario). Pinceles nuevos: piso de ciudad, empedrado y piso de cueva.

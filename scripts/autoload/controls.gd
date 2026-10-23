@@ -1,7 +1,7 @@
 extends Node
 ## Registra las acciones de input (teclas físicas, así funciona con cualquier distribución).
 ## Combate: Clic izq. = ataque 1 · Clic der. = ataque 2 · Q = ataque 3 · R = ataque 4 (el de más recarga) ·
-## Espacio = esquive. Los números 1-4 también disparan los ataques 1-4.
+## Espacio = esquive. Los números 1-6 cambian al Pokémon de ese lugar del equipo (también en combate).
 
 const KEYS := {
 	"move_up": [KEY_W, KEY_UP],
@@ -9,10 +9,17 @@ const KEYS := {
 	"move_left": [KEY_A, KEY_LEFT],
 	"move_right": [KEY_D, KEY_RIGHT],
 	"run": [KEY_SHIFT],
-	"attack_1": [KEY_1],
-	"attack_2": [KEY_2],
-	"attack_3": [KEY_Q, KEY_3],
-	"attack_4": [KEY_R, KEY_4],
+	"attack_1": [],
+	"attack_2": [],
+	"attack_3": [KEY_Q],
+	"attack_4": [KEY_R],
+	## Cambiar al Pokémon del lugar 1-6 del equipo (pedido del usuario, 2026-10-23).
+	"switch_1": [KEY_1],
+	"switch_2": [KEY_2],
+	"switch_3": [KEY_3],
+	"switch_4": [KEY_4],
+	"switch_5": [KEY_5],
+	"switch_6": [KEY_6],
 	"dodge": [KEY_SPACE],
 	"capture": [KEY_E],  # lanzar la Pokébola elegida (docs/PLAN_CAPTURA_MOCHILA.md)
 	"quick_item": [KEY_C],  # usar el objeto de la ranura rápida

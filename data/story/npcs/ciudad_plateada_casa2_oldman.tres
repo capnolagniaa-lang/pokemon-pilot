@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Los Pokémon que evolucionan se vuelven más fuertes.", "Pero a veces también cambia su forma de pelear.")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_plateada_casa2_oldman"
+display_name = "Abuelo"
+zone_id = "ciudad_plateada_casa2"
+cell = Vector2i(3, 3)
+gfx = "old_man_1"
+facing = Vector2i(1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

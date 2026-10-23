@@ -49,6 +49,8 @@ var pokedex_caught: Dictionary = {}
 var field_picked: Dictionary = {}
 ## Caja (como el PC): lo que atrapás con el equipo lleno. Sin límite por ahora.
 var box: Array[CreatureInstance] = []
+## Historia (docs/PLAN_HISTORIA.md): banderas puestas (nombre -> true). Se guardan con la partida.
+var story_flags: Dictionary = {}
 
 
 func _ready() -> void:
@@ -85,8 +87,33 @@ func new_game(starter: SpeciesData) -> void:
 	mark_fought(starter)
 	pokedex_caught[starter.id] = true
 	field_picked.clear()
+	story_flags.clear()
 	Events.party_changed.emit()
 	Events.game_started.emit()
+
+
+# --- Historia -------------------------------------------------------------------------
+
+func has_flag(flag: String) -> bool:
+	return story_flags.has(flag)
+
+
+func set_flag(flag: String, on: bool = true) -> void:
+	if on == story_flags.has(flag):
+		return
+	if on:
+		story_flags[flag] = true
+	else:
+		story_flags.erase(flag)
+	Events.story_flag_changed.emit(flag, on)
+
+
+## Cura a todo el equipo (Centro Pokémon, mamá): vida llena. Los estados del Pokémon que está afuera los limpia
+## quien llama (viven en el nodo).
+func heal_party() -> void:
+	for inst in party:
+		inst.hp = inst.max_hp()
+	Events.party_changed.emit()
 
 
 ## Prende o apaga los entrenadores vivos (el mundo los saca o los guarda al momento).
@@ -310,7 +337,7 @@ func to_dict() -> Dictionary:
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
-		"living_trainers": living_trainers, "trainers": _trainers_dict()}
+		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys()}
 
 
 func _box_list() -> Array:
@@ -392,6 +419,11 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 		pokedex_seen[inst.species.id] = true
 		pokedex_fought[inst.species.id] = true
 		pokedex_caught[inst.species.id] = true
+	story_flags.clear()
+	var flags = d.get("story_flags", [])
+	if flags is Array:
+		for f in flags:
+			story_flags[str(f)] = true
 	field_picked.clear()
 	var picked = d.get("field_picked", {})
 	if picked is Dictionary:

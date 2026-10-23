@@ -28,7 +28,16 @@ func _ready() -> void:
 	Events.creature_fainted.connect(_on_creature_fainted)
 
 
+## Recarga entre cambios de Pokémon (1-6), para que no sea gratis esquivar un golpe cambiando.
+const SWITCH_COOLDOWN := 1.5
+var _switch_cd := 0.0
+
+
 func _process(delta: float) -> void:
+	_switch_cd = maxf(0.0, _switch_cd - delta)
+	for i in GameState.MAX_PARTY:
+		if Input.is_action_just_pressed("switch_%d" % (i + 1)):
+			switch_to(i)
 	if Input.is_action_just_pressed("battle_toggle"):
 		if in_battle:
 			end_battle()
@@ -134,6 +143,43 @@ func _regen(delta: float) -> void:
 	var c: Creature = world.companion
 	if is_instance_valid(c) and c.is_down() and c.instance.hp >= c.instance.max_hp() * revive_ratio:
 		world.respawn_companion()
+
+
+## Cambia al Pokémon del lugar `index` del equipo (teclas 1-6). En combate el nuevo sale donde estaba el
+## anterior, sigue la pelea y los rivales lo pasan a atacar a él. Devuelve si cambió.
+func switch_to(index: int) -> bool:
+	if index >= GameState.party.size() or index == GameState.active_index or _switch_cd > 0.0:
+		return false
+	var story = world.get("story")
+	if story != null and (story.busy or story.dialog.active):
+		return false
+	var inst: CreatureInstance = GameState.party[index]
+	if inst.hp <= 0.0:
+		Events.message_requested.emit("%s está debilitado." % inst.display_name())
+		return false
+	var old: Creature = world.companion
+	var was_fighting := in_battle and _usable(old)
+	var at: Vector2 = old.global_position if is_instance_valid(old) else Vector2.INF
+	var old_name: String = old.instance.display_name() if is_instance_valid(old) else ""
+	if not GameState.set_active(index):
+		return false
+	_switch_cd = SWITCH_COOLDOWN
+	var c: Creature = world.companion
+	if not is_instance_valid(c):
+		return true
+	if at != Vector2.INF:
+		c.global_position = at
+	if was_fighting:
+		c.player_controlled = true
+		c.input_source = input_source
+		c.machine.transition_to.call_deferred("controlled")
+		world.camera.target = c
+		for e in enemies:
+			if is_instance_valid(e) and not e.health.is_dead():
+				e.target = c
+	Fx.burst(c.get_parent(), c.global_position, Color(1.0, 0.4, 0.35), 14, 50.0)
+	Events.message_requested.emit(("¡Volvé, %s! " % old_name if old_name != "" else "") + "¡Adelante, %s!" % inst.display_name())
+	return true
 
 
 func _usable(c: Creature) -> bool:

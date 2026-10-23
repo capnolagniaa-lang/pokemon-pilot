@@ -47,8 +47,8 @@ func _draw() -> void:
 		var mode := "IA: %s%s%s" % [GameState.difficulty.display_name, "  ·  Modo práctica" if GameState.practice_mode else "",
 			"  ·  Entrenadores vivos" if GameState.living_trainers else ""]
 		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
-	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · E bola · C objeto · F volver" if in_battle \
-		else "WASD mover · Shift correr · F sacar a tu Pokémon · E lanzar bola · C objeto · Esc menú"
+	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · 1-6 cambiar · E bola · C objeto · F volver" if in_battle \
+		else "WASD mover · Shift correr · F sacar a tu Pokémon · 1-6 cambiar · E hablar / lanzar bola · C objeto · Esc menú"
 	draw_string(font, Vector2(0, size.y - 14), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
 
 

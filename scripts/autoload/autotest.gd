@@ -30,6 +30,13 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-story" in OS.get_cmdline_user_args() or "--showcase-story" in OS.get_cmdline_user_args():
+		set_process(false)
+		var st := StoryTests.new()
+		st.autotest = self
+		add_child(st)
+		(st.showcase if "--showcase-story" in OS.get_cmdline_user_args() else st.run).call_deferred()
+		return
 	if "--autotest-kits-v4" in OS.get_cmdline_user_args() or "--showcase-onix" in OS.get_cmdline_user_args():
 		set_process(false)
 		var k4 := KitsV4Tests.new()

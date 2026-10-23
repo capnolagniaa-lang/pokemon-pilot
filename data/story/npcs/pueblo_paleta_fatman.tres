@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("La tecnología está increíble: ahora los Pokémon viajan en la PC.", "¡Podés guardar los que no te entran en el equipo y sacarlos en cualquier Centro!")
+
+[resource]
+script = ExtResource("1_n")
+id = "pueblo_paleta_fatman"
+display_name = "Vecino"
+zone_id = "pueblo_paleta"
+cell = Vector2i(55, 31)
+gfx = "fat_man"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
