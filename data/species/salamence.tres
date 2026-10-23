@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="12_mx7k7"]
 [ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="13_ubfc1"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="14_hn1ud"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="17_u1j2w"]
 
 [sub_resource type="Resource" id="Resource_yd4k6"]
 script = ExtResource("1_1kwty")
@@ -88,6 +89,7 @@ display_name = "Salamence"
 dex = 373
 types = Array[ExtResource("4_lbgww")]([ExtResource("5_idybf"), ExtResource("6_hcydh")])
 learnset = Array[ExtResource("1_1kwty")]([SubResource("Resource_yd4k6"), SubResource("Resource_8tdry"), SubResource("Resource_vekbc"), SubResource("Resource_355y5"), SubResource("Resource_8wi7l"), SubResource("Resource_s8y8g"), SubResource("Resource_l3lpa"), SubResource("Resource_p54m1"), SubResource("Resource_6paxt"), SubResource("Resource_xgco8"), SubResource("Resource_0fryl"), SubResource("Resource_iim2e"), SubResource("Resource_p3dih")])
+temperament = ExtResource("17_u1j2w")
 genus = "Pokémon Dragón"
 pokedex_entry = "Salamence surgió del profundo deseo de tener alas. Dicen que este fuerte deseo fue lo que causó la repentina mutación de las células y el crecimiento de las alas."
 height_m = 1.5

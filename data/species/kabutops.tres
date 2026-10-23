@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="11_h5ugm"]
 [ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="12_x3k2w"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="13_fwsae"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_focjs"]
 
 [sub_resource type="Resource" id="Resource_xeudj"]
 script = ExtResource("1_sxgyn")
@@ -81,6 +82,7 @@ display_name = "Kabutops"
 dex = 141
 types = Array[ExtResource("4_qe8t2")]([ExtResource("5_6rkw4"), ExtResource("6_gk0cw")])
 learnset = Array[ExtResource("1_sxgyn")]([SubResource("Resource_xeudj"), SubResource("Resource_syjv5"), SubResource("Resource_ljdvg"), SubResource("Resource_vibji"), SubResource("Resource_i4ahh"), SubResource("Resource_8d5tw"), SubResource("Resource_rc21k"), SubResource("Resource_6aw6k"), SubResource("Resource_s4uu0"), SubResource("Resource_cnyvq"), SubResource("Resource_2qjeu"), SubResource("Resource_54p3v")])
+temperament = ExtResource("16_focjs")
 genus = "Pokémon Armazón"
 pokedex_entry = "Hace mucho tiempo, Kabutops buceaba para atrapar a sus presas. Parece ser que en algún momento cambió de hábitat y se adaptó a vivir en tierra firme. La transformación que se aprecia en las patas y branquias así lo confirma."
 height_m = 1.3

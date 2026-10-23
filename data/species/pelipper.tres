@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="10_7trxi"]
 [ext_resource type="Resource" path="res://data/moves/escupir.tres" id="11_pyr4h"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_xyy54"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_oouum"]
 
 [sub_resource type="Resource" id="Resource_vq5ll"]
 script = ExtResource("1_nrg86")
@@ -76,6 +77,7 @@ display_name = "Pelipper"
 dex = 279
 types = Array[ExtResource("4_y1foi")]([ExtResource("5_xij50"), ExtResource("6_utvv5")])
 learnset = Array[ExtResource("1_nrg86")]([SubResource("Resource_vq5ll"), SubResource("Resource_ywjhj"), SubResource("Resource_f4war"), SubResource("Resource_pdrv7"), SubResource("Resource_lpurw"), SubResource("Resource_2s724"), SubResource("Resource_bdufq"), SubResource("Resource_lui1t"), SubResource("Resource_p8q5o"), SubResource("Resource_qa3kg"), SubResource("Resource_q7qb4")])
+temperament = ExtResource("15_oouum")
 genus = "Pokémon Ave Agua"
 pokedex_entry = "Pelipper vuela transportando pequeños huevos y Pokémon dentro del descomunal pico que tiene. Este Pokémon construye su nido en escarpados acantilados frente al mar."
 height_m = 1.2

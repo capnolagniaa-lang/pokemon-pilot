@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="9_l1vd8"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="10_lqp1s"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_dptd6"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_r3ajr"]
 
 [sub_resource type="Resource" id="Resource_ey6p0"]
 script = ExtResource("1_4nvrs")
@@ -72,6 +73,7 @@ display_name = "Lunatone"
 dex = 337
 types = Array[ExtResource("4_f6xc0")]([ExtResource("5_veu0m"), ExtResource("6_pcxib")])
 learnset = Array[ExtResource("1_4nvrs")]([SubResource("Resource_ey6p0"), SubResource("Resource_j65yl"), SubResource("Resource_dbsqn"), SubResource("Resource_i6s3l"), SubResource("Resource_hyu6k"), SubResource("Resource_ue512"), SubResource("Resource_1dqn4"), SubResource("Resource_x6ind"), SubResource("Resource_rn6hw"), SubResource("Resource_8puay")])
+temperament = ExtResource("14_r3ajr")
 genus = "Pokémon Meteorito"
 pokedex_entry = "Lunatone fue descubierto en el lugar de impacto de un meteorito. Por eso, hay quien especula con la idea de que procede del espacio. Con todo, hasta el día de hoy nadie ha podido probar esta teoría."
 height_m = 1.0

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/mofa.tres" id="11_unbwn"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="12_y1po6"]
 [ext_resource type="Resource" path="res://data/moves/ladron.tres" id="13_u1c1s"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_rmp2f"]
 
 [sub_resource type="Resource" id="Resource_2k71i"]
 script = ExtResource("1_l77gt")
@@ -81,6 +82,7 @@ display_name = "Mightyena"
 dex = 262
 types = Array[ExtResource("4_k37yg")]([ExtResource("5_h8lcu")])
 learnset = Array[ExtResource("1_l77gt")]([SubResource("Resource_2k71i"), SubResource("Resource_e8xey"), SubResource("Resource_talv0"), SubResource("Resource_tuhpx"), SubResource("Resource_ue01f"), SubResource("Resource_5hgtc"), SubResource("Resource_f6u2r"), SubResource("Resource_x34iu"), SubResource("Resource_xsm14"), SubResource("Resource_5hg74"), SubResource("Resource_n7t1e"), SubResource("Resource_3v8xa")])
+temperament = ExtResource("16_rmp2f")
 genus = "Pokémon Mordisco"
 pokedex_entry = "Es muy fácil prever cuándo va a atacar Mightyena; se pone a gruñir con fuerza y se estira. Este Pokémon da unos mordiscos tremendos con los afilados colmillos que tiene."
 height_m = 1.0

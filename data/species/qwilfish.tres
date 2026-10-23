@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_vfao7"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="11_v8vq5"]
 [ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="12_rbn2q"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_coc44"]
 
 [sub_resource type="Resource" id="Resource_jxx30"]
 script = ExtResource("1_dbjh8")
@@ -77,6 +78,7 @@ display_name = "Qwilfish"
 dex = 211
 types = Array[ExtResource("4_r5s1p")]([ExtResource("5_15qxy"), ExtResource("6_sreg4")])
 learnset = Array[ExtResource("1_dbjh8")]([SubResource("Resource_jxx30"), SubResource("Resource_wds6e"), SubResource("Resource_w6uyb"), SubResource("Resource_2ci2j"), SubResource("Resource_tr8nc"), SubResource("Resource_iw3op"), SubResource("Resource_1in76"), SubResource("Resource_11aec"), SubResource("Resource_7dyqn"), SubResource("Resource_5evyu"), SubResource("Resource_mcmk8")])
+temperament = ExtResource("15_coc44")
 genus = "Pokémon Globo"
 pokedex_entry = "Qwilfish bebe agua y se hincha, y a continuación usa la presión del agua que ha tragado para lanzar púas tóxicas por todo el cuerpo. Para este Pokémon nadar es una especie de desafío."
 height_m = 0.5

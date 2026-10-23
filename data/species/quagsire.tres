@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="9_2dgi0"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="10_cmx5o"]
 [ext_resource type="Resource" path="res://data/moves/neblina.tres" id="11_g7yls"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_co2c1"]
 
 [sub_resource type="Resource" id="Resource_xxfty"]
 script = ExtResource("1_xbcyj")
@@ -72,6 +73,7 @@ display_name = "Quagsire"
 dex = 195
 types = Array[ExtResource("4_jhv1k")]([ExtResource("5_pa08x"), ExtResource("6_eir1q")])
 learnset = Array[ExtResource("1_xbcyj")]([SubResource("Resource_xxfty"), SubResource("Resource_tuubo"), SubResource("Resource_58b77"), SubResource("Resource_bsih7"), SubResource("Resource_u6iil"), SubResource("Resource_pfwgf"), SubResource("Resource_f1uyf"), SubResource("Resource_bmctg"), SubResource("Resource_cjm22"), SubResource("Resource_dqnnf")])
+temperament = ExtResource("14_co2c1")
 genus = "Pokémon Pez Agua"
 pokedex_entry = "Quagsire caza dejando las fauces abiertas en el agua y esperando a que su presa entre sin darse cuenta. Como se queda quieto, el Pokémon no pasa mucha hambre."
 height_m = 1.4

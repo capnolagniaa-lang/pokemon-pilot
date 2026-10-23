@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/types/roca.tres" id="6_jgigp"]
 [ext_resource type="Resource" path="res://data/moves/venganza.tres" id="7_5bx7c"]
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="8_02uxy"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="11_el5cy"]
 
 [sub_resource type="Resource" id="Resource_1lx7g"]
 script = ExtResource("1_mcj55")
@@ -54,6 +55,7 @@ display_name = "Shuckle"
 dex = 213
 types = Array[ExtResource("4_6n8qb")]([ExtResource("5_a15wi"), ExtResource("6_jgigp")])
 learnset = Array[ExtResource("1_mcj55")]([SubResource("Resource_1lx7g"), SubResource("Resource_7sibi"), SubResource("Resource_787qc"), SubResource("Resource_alyg0"), SubResource("Resource_klpta"), SubResource("Resource_b3wuf"), SubResource("Resource_n273v")])
+temperament = ExtResource("11_el5cy")
 genus = "Pokémon Moho"
 pokedex_entry = "Shuckle permanece escondido bajo las rocas en silencio y, cuando se pone a comer las bayas que almacena, se encierra en el caparazón. Las bayas se mezclan con sus fluidos corporales y originan zumo."
 height_m = 0.6

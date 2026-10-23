@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="8_dyt12"]
 [ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="9_k2nfc"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="10_kexk2"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_d8rn2"]
 
 [sub_resource type="Resource" id="Resource_rv5il"]
 script = ExtResource("1_u6xkw")
@@ -67,6 +68,7 @@ display_name = "Dustox"
 dex = 269
 types = Array[ExtResource("4_8iv0a")]([ExtResource("5_4ol5y"), ExtResource("6_qdf21")])
 learnset = Array[ExtResource("1_u6xkw")]([SubResource("Resource_rv5il"), SubResource("Resource_12j2h"), SubResource("Resource_4xgdw"), SubResource("Resource_aug6d"), SubResource("Resource_6nxsr"), SubResource("Resource_4kaem"), SubResource("Resource_pjxl6"), SubResource("Resource_q2gq7"), SubResource("Resource_3hdx6")])
+temperament = ExtResource("13_d8rn2")
 genus = "Pokémon Polilla Ven."
 pokedex_entry = "Los Dustox se acercan a la luz de forma instintiva. De hecho, se agrupan en enjambres alrededor de las luces de las ciudades y causan estragos en las hojas de los árboles que están a pie de calle para alimentarse."
 height_m = 1.2

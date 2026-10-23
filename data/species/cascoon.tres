@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ujtcu"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wqkvk"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_uippl"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="5_ujtcu"]
 
 [sub_resource type="Resource" id="Resource_wqkvk"]
 script = ExtResource("1_yeoyl")
@@ -18,6 +19,7 @@ display_name = "Cascoon"
 dex = 268
 types = Array[ExtResource("4_wqkvk")]([ExtResource("5_uippl")])
 learnset = Array[ExtResource("1_yeoyl")]([SubResource("Resource_wqkvk")])
+temperament = ExtResource("5_ujtcu")
 genus = "Pokémon Capullo"
 pokedex_entry = "Cascoon forma el capullo que lo protege enrollándose por completo en la seda que libera por la boca. Cuando está totalmente recubierto, se prepara para evolucionar en el interior del capullo."
 height_m = 0.7

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="9_n6bpr"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_g7n54"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_fhxpe"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_72ijm"]
 
 [sub_resource type="Resource" id="Resource_u5eu6"]
 script = ExtResource("1_olfn2")
@@ -73,6 +74,7 @@ display_name = "Ledyba"
 dex = 165
 types = Array[ExtResource("4_jsjfb")]([ExtResource("5_36osr"), ExtResource("6_qg5iv")])
 learnset = Array[ExtResource("1_olfn2")]([SubResource("Resource_u5eu6"), SubResource("Resource_gxyv6"), SubResource("Resource_24y8e"), SubResource("Resource_qwudc"), SubResource("Resource_2wlud"), SubResource("Resource_31gt3"), SubResource("Resource_dxrbe"), SubResource("Resource_iuv8o"), SubResource("Resource_xs3me"), SubResource("Resource_x2xdh")])
+temperament = ExtResource("14_72ijm")
 genus = "Pokémon 5 Estrellas"
 pokedex_entry = "Ledyba segrega un fluido aromático por los seis puntos de unión que tiene entre las patas y el cuerpo. A través de este fluido se comunica con otros y les informa acerca de sus sentimientos variando la esencia."
 height_m = 1.0

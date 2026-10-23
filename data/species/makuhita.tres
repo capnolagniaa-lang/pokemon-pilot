@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/aguante.tres" id="12_blj7p"]
 [ext_resource type="Resource" path="res://data/moves/sismico.tres" id="13_0x1ip"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="14_h8axu"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="17_agub3"]
 
 [sub_resource type="Resource" id="Resource_stb1j"]
 script = ExtResource("1_rh1sg")
@@ -89,6 +90,7 @@ display_name = "Makuhita"
 dex = 296
 types = Array[ExtResource("4_1jw5p")]([ExtResource("5_l8vkb")])
 learnset = Array[ExtResource("1_rh1sg")]([SubResource("Resource_stb1j"), SubResource("Resource_rwfvl"), SubResource("Resource_3ndew"), SubResource("Resource_fgsgp"), SubResource("Resource_jw8bm"), SubResource("Resource_f621q"), SubResource("Resource_olai3"), SubResource("Resource_wemlw"), SubResource("Resource_7s4o0"), SubResource("Resource_umunn"), SubResource("Resource_2ieet"), SubResource("Resource_etwae"), SubResource("Resource_fady8")])
+temperament = ExtResource("17_agub3")
 genus = "Pokémon Valiente"
 pokedex_entry = "Makuhita es tenaz. Da igual las veces que le venzan; volverá a ponerse en pie y a atacar. De hecho, cada vez que se recupera, acumula más energía para poder evolucionar."
 height_m = 1.0

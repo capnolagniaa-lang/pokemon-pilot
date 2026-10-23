@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="10_eehaq"]
 [ext_resource type="Resource" path="res://data/moves/pesadilla.tres" id="11_gujrw"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="12_fsam3"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_dpvxw"]
 
 [sub_resource type="Resource" id="Resource_6lalm"]
 script = ExtResource("1_th1by")
@@ -78,6 +79,7 @@ display_name = "Gastly"
 dex = 92
 types = Array[ExtResource("4_wifl8")]([ExtResource("5_ok2dg"), ExtResource("6_lnh3h")])
 learnset = Array[ExtResource("1_th1by")]([SubResource("Resource_6lalm"), SubResource("Resource_uw8x3"), SubResource("Resource_gtmid"), SubResource("Resource_ytx18"), SubResource("Resource_opouk"), SubResource("Resource_15f8p"), SubResource("Resource_e5arh"), SubResource("Resource_lsl4q"), SubResource("Resource_5p4cb"), SubResource("Resource_38iye"), SubResource("Resource_6vedf")])
+temperament = ExtResource("15_dpvxw")
 genus = "Pokémon Gas"
 pokedex_entry = "Gastly está compuesto en gran medida de materia gaseosa. Cuando hay viento, el aire arrastra parte de esta materia y el Pokémon mengua. Suelen agruparse bajo los aleros de las casas para resguardarse del viento."
 height_m = 1.3

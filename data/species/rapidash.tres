@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="10_dty6v"]
 [ext_resource type="Resource" path="res://data/moves/bote.tres" id="11_7ssnv"]
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="12_4sv82"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_4qn7g"]
 
 [sub_resource type="Resource" id="Resource_0ii2e"]
 script = ExtResource("1_du3gi")
@@ -75,6 +76,7 @@ display_name = "Rapidash"
 dex = 78
 types = Array[ExtResource("4_htbbe")]([ExtResource("5_ukm10")])
 learnset = Array[ExtResource("1_du3gi")]([SubResource("Resource_0ii2e"), SubResource("Resource_nmwy0"), SubResource("Resource_nkohm"), SubResource("Resource_q2kl2"), SubResource("Resource_hpf5r"), SubResource("Resource_dnu4f"), SubResource("Resource_ek0t6"), SubResource("Resource_4ijde"), SubResource("Resource_wnc8p"), SubResource("Resource_4dwwo"), SubResource("Resource_ck0n7")])
+temperament = ExtResource("15_4qn7g")
 genus = "Pokémon Caballo Fuego"
 pokedex_entry = "A Rapidash se le suele ver trotando sin rumbo fijo por los campos y llanos. Cuando tiene que ir a algún sitio en concreto, se le aviva el fuego de las melenas y emprende el galope llameante llegando a los 240 km/h."
 height_m = 1.7

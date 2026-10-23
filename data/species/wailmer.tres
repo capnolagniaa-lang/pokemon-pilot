@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/salpicar.tres" id="11_kvjdn"]
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="12_0hghm"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="13_c03d1"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_kdjhp"]
 
 [sub_resource type="Resource" id="Resource_1ectf"]
 script = ExtResource("1_e326y")
@@ -84,6 +85,7 @@ display_name = "Wailmer"
 dex = 320
 types = Array[ExtResource("4_2ffej")]([ExtResource("5_iqlrm")])
 learnset = Array[ExtResource("1_e326y")]([SubResource("Resource_1ectf"), SubResource("Resource_uflqe"), SubResource("Resource_3cpv3"), SubResource("Resource_wel78"), SubResource("Resource_kf8t6"), SubResource("Resource_5hjkk"), SubResource("Resource_iiod5"), SubResource("Resource_hdtm1"), SubResource("Resource_hvfy3"), SubResource("Resource_15kgb"), SubResource("Resource_wfaf1"), SubResource("Resource_g55m6")])
+temperament = ExtResource("16_kdjhp")
 genus = "Pokémon Ballenabola"
 pokedex_entry = "Wailmer tiene los espiráculos encima de la cabeza. A este juguetón Pokémon le encanta asustar a la gente expulsando el agua que acumula a través de estos orificios."
 height_m = 2.0

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="11_wdkx8"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="12_yihvy"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_jgtvh"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_2lmuy"]
 
 [sub_resource type="Resource" id="Resource_74csm"]
 script = ExtResource("1_tohey")
@@ -83,6 +84,7 @@ display_name = "Blissey"
 dex = 242
 types = Array[ExtResource("4_ebhl7")]([ExtResource("5_gi3j6")])
 learnset = Array[ExtResource("1_tohey")]([SubResource("Resource_74csm"), SubResource("Resource_vd8u8"), SubResource("Resource_f7cim"), SubResource("Resource_su150"), SubResource("Resource_hpgrp"), SubResource("Resource_x8vh7"), SubResource("Resource_33lfh"), SubResource("Resource_lkvhf"), SubResource("Resource_i0vxw"), SubResource("Resource_yuv46"), SubResource("Resource_8xl8y"), SubResource("Resource_qwk1g")])
+temperament = ExtResource("16_2lmuy")
 genus = "Pokémon Felicidad"
 pokedex_entry = "Blissey es capaz de sentir la tristeza a través del sedoso pelaje. Si detecta que alguien está apenado, irá hasta donde esté y compartirá un Huevo Suerte para devolverle la sonrisa."
 height_m = 1.5

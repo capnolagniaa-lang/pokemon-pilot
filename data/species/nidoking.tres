@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_5v38f"]
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="6_bp2if"]
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="7_diu8g"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_dfq30"]
 
 [sub_resource type="Resource" id="Resource_rw1ox"]
 script = ExtResource("1_nafas")
@@ -46,6 +47,7 @@ display_name = "Nidoking"
 dex = 34
 types = Array[ExtResource("4_cyf1a")]([ExtResource("5_cu437"), ExtResource("6_5v38f")])
 learnset = Array[ExtResource("1_nafas")]([SubResource("Resource_rw1ox"), SubResource("Resource_1lnhl"), SubResource("Resource_gexb5"), SubResource("Resource_k2maf"), SubResource("Resource_tlo4q"), SubResource("Resource_61iiw")])
+temperament = ExtResource("10_dfq30")
 genus = "Pokémon Taladro"
 pokedex_entry = "La gruesa cola de Nidoking encierra una fuerza realmente destructora. Con una vez que la agite, es capaz de tumbar una torre metálica de transmisión. Una vez que este Pokémon se desboca, no hay quien lo pare."
 height_m = 1.4

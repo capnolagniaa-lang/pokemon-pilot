@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="9_psyi8"]
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="10_kt6vl"]
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_uby5r"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_cri0q"]
 
 [sub_resource type="Resource" id="Resource_eoflu"]
 script = ExtResource("1_5amg4")
@@ -71,6 +72,7 @@ display_name = "Entei"
 dex = 244
 types = Array[ExtResource("4_iod2h")]([ExtResource("5_8bio8")])
 learnset = Array[ExtResource("1_5amg4")]([SubResource("Resource_eoflu"), SubResource("Resource_vh0n0"), SubResource("Resource_ubvh8"), SubResource("Resource_rb733"), SubResource("Resource_rikfa"), SubResource("Resource_6dj8u"), SubResource("Resource_2mrk2"), SubResource("Resource_g0j2v"), SubResource("Resource_guc80"), SubResource("Resource_7g1nj")])
+temperament = ExtResource("14_cri0q")
 genus = "Pokémon Volcán"
 pokedex_entry = "Entei contiene el fulgor del magma en su interior. Se cree que este Pokémon nació de la erupción de un volcán. Escupe numerosas ráfagas de fuego que devoran y reducen a cenizas todo lo que tocan."
 height_m = 2.1

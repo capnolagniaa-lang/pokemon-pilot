@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="9_p4n1i"]
 [ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="10_74s5l"]
 [ext_resource type="Resource" path="res://data/moves/excavar.tres" id="11_efwev"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_a11tv"]
 
 [sub_resource type="Resource" id="Resource_iftn8"]
 script = ExtResource("1_l41dt")
@@ -72,6 +73,7 @@ display_name = "Nincada"
 dex = 290
 types = Array[ExtResource("4_0tsb5")]([ExtResource("5_fq0fe"), ExtResource("6_abeus")])
 learnset = Array[ExtResource("1_l41dt")]([SubResource("Resource_iftn8"), SubResource("Resource_lwwxq"), SubResource("Resource_xrtlf"), SubResource("Resource_ujtpf"), SubResource("Resource_akrxo"), SubResource("Resource_jdwnc"), SubResource("Resource_sigxl"), SubResource("Resource_frnqh"), SubResource("Resource_j2g21"), SubResource("Resource_be3v5")])
+temperament = ExtResource("14_a11tv")
 genus = "Pokémon Aprendiz"
 pokedex_entry = "Nincada vive bajo tierra en la más absoluta oscuridad durante años. Este Pokémon absorbe nutrientes de las raíces de los árboles y permanece inmóvil a la espera de su evolución."
 height_m = 0.5

@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_rse0b"]
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="9_p0frf"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_d2g8h"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_y1hps"]
 
 [sub_resource type="Resource" id="Resource_42pxa"]
 script = ExtResource("1_2lc0y")
@@ -64,6 +65,7 @@ display_name = "Vibrava"
 dex = 329
 types = Array[ExtResource("4_dxr0i")]([ExtResource("5_usa5c"), ExtResource("6_rkhej")])
 learnset = Array[ExtResource("1_2lc0y")]([SubResource("Resource_42pxa"), SubResource("Resource_etl1s"), SubResource("Resource_siyay"), SubResource("Resource_ohe6u"), SubResource("Resource_pojs0"), SubResource("Resource_5ea7s"), SubResource("Resource_nuyg4"), SubResource("Resource_sth36"), SubResource("Resource_qx443")])
+temperament = ExtResource("13_y1hps")
 genus = "Pokémon Vibrante"
 pokedex_entry = "Para debilitar a su víctima, Vibrava genera ondas ultrasónicas haciendo vibrar con fuerza las alas. Las ondas que crea son tan fuertes que pueden dar dolor de cabeza a la gente."
 height_m = 1.1

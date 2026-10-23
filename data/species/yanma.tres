@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="10_i6mq3"]
 [ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="11_tofwe"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="12_5xjd7"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_od7qg"]
 
 [sub_resource type="Resource" id="Resource_6qxis"]
 script = ExtResource("1_qrsxf")
@@ -78,6 +79,7 @@ display_name = "Yanma"
 dex = 193
 types = Array[ExtResource("4_ftgf2")]([ExtResource("5_abh55"), ExtResource("6_y1y6y")])
 learnset = Array[ExtResource("1_qrsxf")]([SubResource("Resource_6qxis"), SubResource("Resource_ye3am"), SubResource("Resource_ubi7k"), SubResource("Resource_4mjcf"), SubResource("Resource_omo57"), SubResource("Resource_oxiid"), SubResource("Resource_h7jpj"), SubResource("Resource_o2xa3"), SubResource("Resource_li4kc"), SubResource("Resource_406s5"), SubResource("Resource_aw161")])
+temperament = ExtResource("15_od7qg")
 genus = "Pokémon Ala Clara"
 pokedex_entry = "Yanma tiene un ángulo de visión de 360° sin mover los ojos. Es un gran volador, experto en hacer repentinas paradas y cambios de dirección en el aire. Aprovecha la habilidad que tiene de volar para lanzarse sobre su presa."
 height_m = 1.2

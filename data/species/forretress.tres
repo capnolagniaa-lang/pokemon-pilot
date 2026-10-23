@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="9_x2psf"]
 [ext_resource type="Resource" path="res://data/moves/puas.tres" id="10_gteet"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_d6l7g"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_vlgre"]
 
 [sub_resource type="Resource" id="Resource_keg3m"]
 script = ExtResource("1_q0tgi")
@@ -71,6 +72,7 @@ display_name = "Forretress"
 dex = 205
 types = Array[ExtResource("4_wvbbb")]([ExtResource("5_4kjq8"), ExtResource("6_xvavd")])
 learnset = Array[ExtResource("1_q0tgi")]([SubResource("Resource_keg3m"), SubResource("Resource_w64ms"), SubResource("Resource_wyd6b"), SubResource("Resource_or52s"), SubResource("Resource_0jjk5"), SubResource("Resource_pbbkw"), SubResource("Resource_v4eyt"), SubResource("Resource_as65j"), SubResource("Resource_bi1rg"), SubResource("Resource_3o6py")])
+temperament = ExtResource("14_vlgre")
 genus = "Pokémon Larva"
 pokedex_entry = "Forretress se esconde dentro de su concha de acero reforzada. Solo la abre cuando va a atrapar a su presa, pero ocurre tan rápido que no da tiempo de ver su interior."
 height_m = 1.2

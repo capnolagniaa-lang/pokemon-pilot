@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Temperament" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/temperament.gd" id="1_t"]
+
+[resource]
+script = ExtResource("1_t")
+id = "agresivo"
+display_name = "Agresivo"
+on_notice = 0
+detect_radius = 110.0
+leash = 360.0
+territory_radius = 70.0
+approach_distance = 55.0
+nervous_distance = 26.0
+nervous_attack_chance = 0.4
+flee_below = 0.15
+spook_chance = 0.0
+notice_emote = "!"

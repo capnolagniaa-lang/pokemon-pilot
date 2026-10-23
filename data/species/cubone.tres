@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="11_xqch6"]
 [ext_resource type="Resource" path="res://data/moves/ataque_oseo.tres" id="12_uquub"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_xcqm3"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="16_b7ksd"]
 
 [sub_resource type="Resource" id="Resource_3gw74"]
 script = ExtResource("1_d31e6")
@@ -84,6 +85,7 @@ display_name = "Cubone"
 dex = 104
 types = Array[ExtResource("4_8qypp")]([ExtResource("5_nnfx3")])
 learnset = Array[ExtResource("1_d31e6")]([SubResource("Resource_3gw74"), SubResource("Resource_datnu"), SubResource("Resource_h0lou"), SubResource("Resource_1g6b8"), SubResource("Resource_wdl6q"), SubResource("Resource_p2u5n"), SubResource("Resource_jl5mi"), SubResource("Resource_oll66"), SubResource("Resource_i4uj3"), SubResource("Resource_lw0io"), SubResource("Resource_0tok6"), SubResource("Resource_m4vmk")])
+temperament = ExtResource("16_b7ksd")
 genus = "Pokémon Solitario"
 pokedex_entry = "A Cubone le ahoga la pena porque no volverá a ver jamás a su madre. La luna le recuerda a veces a ella, y se pone a llorar. Los churretes que tiene en el cráneo que lleva puesto son debidos a las lágrimas que derrama."
 height_m = 0.4

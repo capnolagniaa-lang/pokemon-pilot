@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/tajo_cruzado.tres" id="11_65773"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="12_qbdef"]
 [ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="13_yipn8"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_maag8"]
 
 [sub_resource type="Resource" id="Resource_ftdfo"]
 script = ExtResource("1_x5lof")
@@ -83,6 +84,7 @@ display_name = "Machop"
 dex = 66
 types = Array[ExtResource("4_14chi")]([ExtResource("5_8q8f4")])
 learnset = Array[ExtResource("1_x5lof")]([SubResource("Resource_ftdfo"), SubResource("Resource_vmh7j"), SubResource("Resource_31ih4"), SubResource("Resource_ohgyc"), SubResource("Resource_qcbbt"), SubResource("Resource_qxs70"), SubResource("Resource_nwklw"), SubResource("Resource_a18th"), SubResource("Resource_5rm10"), SubResource("Resource_qgmij"), SubResource("Resource_dgdkl"), SubResource("Resource_3f60w")])
+temperament = ExtResource("16_maag8")
 genus = "Pokémon Superpoder"
 pokedex_entry = "Gracias a su portentosa musculatura, Machop no se agota por mucho esfuerzo que haga. Este Pokémon es tan fuerte que puede derrotar a cien personas adultas de una sola vez."
 height_m = 0.8

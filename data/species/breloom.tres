@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/gancho_alto.tres" id="10_gvjib"]
 [ext_resource type="Resource" path="res://data/moves/telepata.tres" id="11_tyw3l"]
 [ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="12_p81ii"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_26vh8"]
 
 [sub_resource type="Resource" id="Resource_nr5dh"]
 script = ExtResource("1_fkyu4")
@@ -76,6 +77,7 @@ display_name = "Breloom"
 dex = 286
 types = Array[ExtResource("4_80y3a")]([ExtResource("5_1pinx"), ExtResource("6_3pf6d")])
 learnset = Array[ExtResource("1_fkyu4")]([SubResource("Resource_nr5dh"), SubResource("Resource_vrafb"), SubResource("Resource_5ch3e"), SubResource("Resource_4hbxb"), SubResource("Resource_ahqok"), SubResource("Resource_w2pl8"), SubResource("Resource_end55"), SubResource("Resource_d6i2s"), SubResource("Resource_rypqo"), SubResource("Resource_l3lr6"), SubResource("Resource_sgue0")])
+temperament = ExtResource("15_26vh8")
 genus = "Pokémon Hongo"
 pokedex_entry = "Breloom se acerca al enemigo realizando un juego de piernas ágil y enérgico. Y, a continuación, le da unos puñetazos con los brazos elásticos que tiene. Las técnicas de lucha que usa dejan en ridículo al boxeador más profesional."
 height_m = 1.2

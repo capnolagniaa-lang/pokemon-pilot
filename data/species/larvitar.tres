@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_vfoia"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_7a4po"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_f24mo"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_v25uy"]
 
 [sub_resource type="Resource" id="Resource_364ri"]
 script = ExtResource("1_c8nf3")
@@ -72,6 +73,7 @@ display_name = "Larvitar"
 dex = 246
 types = Array[ExtResource("4_q55br")]([ExtResource("5_mc2gt"), ExtResource("6_h77rg")])
 learnset = Array[ExtResource("1_c8nf3")]([SubResource("Resource_364ri"), SubResource("Resource_ebira"), SubResource("Resource_jn2vn"), SubResource("Resource_llw3j"), SubResource("Resource_sh8y6"), SubResource("Resource_876to"), SubResource("Resource_5h2ns"), SubResource("Resource_k006s"), SubResource("Resource_ytx4f"), SubResource("Resource_oj6mj")])
+temperament = ExtResource("14_v25uy")
 genus = "Pokémon Piel Roca"
 pokedex_entry = "Larvitar nace bajo tierra a gran profundidad. Para subir a la superficie, este Pokémon debe comer lo que encuentra en su camino para abrirse paso. Y, hasta que no está arriba, no puede verles la cara a sus padres."
 height_m = 0.6

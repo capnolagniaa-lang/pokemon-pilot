@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="9_d3nmq"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="10_2o4j2"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_dxvk4"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_qxd70"]
 
 [sub_resource type="Resource" id="Resource_uk7ca"]
 script = ExtResource("1_1ive5")
@@ -69,6 +70,7 @@ display_name = "Bayleef"
 dex = 153
 types = Array[ExtResource("4_2slf5")]([ExtResource("5_vk67p")])
 learnset = Array[ExtResource("1_1ive5")]([SubResource("Resource_uk7ca"), SubResource("Resource_x0t7j"), SubResource("Resource_gbxw6"), SubResource("Resource_x4ex1"), SubResource("Resource_a7b6j"), SubResource("Resource_exg3a"), SubResource("Resource_ltkov"), SubResource("Resource_15jsl"), SubResource("Resource_7l2hh"), SubResource("Resource_646m6")])
+temperament = ExtResource("14_qxd70")
 genus = "Pokémon Hoja"
 pokedex_entry = "Bayleef tiene un collar de hojas alrededor del cuello y un brote de un árbol en cada una de ellas. La fragancia que desprenden estos brotes anima a la gente."
 height_m = 1.2

@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_wwmc1"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_llbsy"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_kvyim"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="9_t0c8y"]
 
 [sub_resource type="Resource" id="Resource_sihyx"]
 script = ExtResource("1_sihyx")
@@ -42,6 +43,7 @@ dex = 54
 types = Array[ExtResource("7_llbsy")]([ExtResource("8_kvyim")])
 moves = Array[ExtResource("1_a2e4d")]([ExtResource("2_gumxw"), ExtResource("3_sihyx"), ExtResource("4_t0c8y"), ExtResource("5_gniud")])
 learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_sihyx"), SubResource("Resource_t0c8y"), SubResource("Resource_gniud"), SubResource("Resource_wwmc1"), SubResource("Resource_llbsy")])
+temperament = ExtResource("9_t0c8y")
 genus = "Pokémon Pato"
 pokedex_entry = "Psyduck tiene un extraño poder, que consiste en generar ondas cerebrales iguales a las que se generan cuando se está dormido. Este descubrimiento levantó una gran polémica entre eruditos."
 height_m = 0.8

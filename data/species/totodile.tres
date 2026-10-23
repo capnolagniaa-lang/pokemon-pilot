@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_orpax"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_mi4dj"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_4l0fm"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_1joqu"]
 
 [sub_resource type="Resource" id="Resource_co45c"]
 script = ExtResource("1_ccuwx")
@@ -65,6 +66,7 @@ display_name = "Totodile"
 dex = 158
 types = Array[ExtResource("4_365h4")]([ExtResource("5_283wf")])
 learnset = Array[ExtResource("1_ccuwx")]([SubResource("Resource_co45c"), SubResource("Resource_cnp2m"), SubResource("Resource_y7txa"), SubResource("Resource_av44t"), SubResource("Resource_hrqsy"), SubResource("Resource_iwlep"), SubResource("Resource_5unqm"), SubResource("Resource_e3h40"), SubResource("Resource_42aj1")])
+temperament = ExtResource("13_1joqu")
 genus = "Pokémon Fauces"
 pokedex_entry = "Totodile tiene cuerpo pequeño, pero fuertes mandíbulas. A veces, piensa que solo está dando un mordisquito y hace unas heridas bastante considerables."
 height_m = 0.6

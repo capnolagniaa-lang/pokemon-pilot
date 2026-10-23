@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="10_xwbjl"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_jfy3y"]
 [ext_resource type="Resource" path="res://data/moves/truco.tres" id="12_omy1l"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_hwael"]
 
 [sub_resource type="Resource" id="Resource_krpjx"]
 script = ExtResource("1_k7ypx")
@@ -76,6 +77,7 @@ display_name = "Alakazam"
 dex = 65
 types = Array[ExtResource("4_rcufv")]([ExtResource("5_w7dxe")])
 learnset = Array[ExtResource("1_k7ypx")]([SubResource("Resource_krpjx"), SubResource("Resource_qaygq"), SubResource("Resource_w6mg1"), SubResource("Resource_c7aps"), SubResource("Resource_dsqf1"), SubResource("Resource_g4scg"), SubResource("Resource_3jw1s"), SubResource("Resource_0gf4f"), SubResource("Resource_ciyhj"), SubResource("Resource_n0sio"), SubResource("Resource_301cj")])
+temperament = ExtResource("15_hwael")
 genus = "Pokémon Psi"
 pokedex_entry = "El cerebro de Alakazam nunca deja de crecer y por eso al cuello le cuesta sostener el peso de la cabeza. Este Pokémon usa sus poderes psicoquinéticos para mantener en alto la cabeza."
 height_m = 1.5

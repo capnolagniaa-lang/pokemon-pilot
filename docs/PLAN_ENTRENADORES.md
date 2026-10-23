@@ -1,7 +1,8 @@
 # Plan: Entrenadores vivos (memoria de combate, rutinas y equipos que evolucionan)
 
 > Plan **separado** del de etapas (`PROGRESO.md`) y del de identidad de combate (`PLAN_IDENTIDAD_COMBATE.md`).
-> Propuesto el 2026-10-22 a partir de una idea del usuario. **Estado: a confirmar** (ver "Decisiones" al final).
+> Propuesto el 2026-10-22 a partir de una idea del usuario. **Estado**: la IA de salvajes vs. entrenadores ya está
+> definida (sección 1b); las decisiones de la sección 8 siguen a confirmar.
 > Todo el sistema se prende y apaga con el interruptor **"Entrenadores vivos (en prueba)"**, como el modo práctica.
 
 ---
@@ -43,6 +44,25 @@ Lo que mantendría de la propuesta, y lo que cambiaría:
 - **Sobre la pregunta de la relación (respeto, rivalidad, miedo, amistad)**: sí, pero en chico. Un solo eje
   (rivalidad ↔ respeto) calculado de los resultados alcanza para cambiar saludos y si te busca o te evita.
   Diálogos ramificados, más adelante.
+
+## 1b. IA de salvajes vs. IA de entrenadores (definido con el usuario el 2026-10-23)
+
+Son **dos IAs distintas** sobre una **capa compartida**:
+
+- **Cuerpo (compartido)** — `CombatBody`: *cómo* se ejecuta: moverse, apuntar, usar bien cada forma de ataque
+  (alcance, punto para zonas y embestidas), esquivar, recargas. **La dificultad (Fácil/Normal/Difícil) actúa
+  solo acá** (puntería, reflejos, cuánto esquiva), para salvajes y entrenadores por igual.
+- **Mente de salvaje = instinto, sin memoria.** Temperamento por especie (datos, `Temperament`):
+  **agresivo** (te ataca apenas te ve), **territorial** (solo si entrás a su zona; te persigue poco), **tímido**
+  (huye; pelea si lo acorralás o le pegás), **curioso** (se acerca a mirarte). Patrón reconocible: abre siempre
+  igual (si estás lejos, con su ataque de acercamiento) y rota sus ataques en orden, sin azar: **el que aprende
+  es el jugador**. Reacciona al momento: huye con poca vida, se espanta con un golpe fuerte, sale de lo
+  electrificado. Avisos visibles (¡!, ?, gota). **En grupo** (si atacás a uno vienen los demás): más adelante.
+- **Mente de entrenador = órdenes + memoria** (este plan, fases E): decide con perillas que ajusta su memoria;
+  **grita la orden** ("¡Látigo Cepa!") un instante antes de que su Pokémon la ejecute (personalidad,
+  telegrafiado y adaptación visible). La memoria no depende de la dificultad, solo de su personalidad.
+- **Orden**: primero cuerpo + salvajes (etapa W), después E-0 en adelante.
+- ✅ **Etapa W hecha (2026-10-23)** = Etapa 4a de `PROGRESO.md`: `CombatBody` + temperamentos. Falta "en grupo".
 
 ## 2. El interruptor "Entrenadores vivos (en prueba)"
 

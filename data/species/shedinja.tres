@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="9_5hh67"]
 [ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="10_yuurf"]
 [ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_a8cma"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_sg5lj"]
 
 [sub_resource type="Resource" id="Resource_g85ce"]
 script = ExtResource("1_ihjld")
@@ -72,6 +73,7 @@ display_name = "Shedinja"
 dex = 292
 types = Array[ExtResource("4_8cgi6")]([ExtResource("5_crt03"), ExtResource("6_e8ay0")])
 learnset = Array[ExtResource("1_ihjld")]([SubResource("Resource_g85ce"), SubResource("Resource_uhjn3"), SubResource("Resource_4l25g"), SubResource("Resource_hsn6x"), SubResource("Resource_h3jqm"), SubResource("Resource_alwy7"), SubResource("Resource_q3kl3"), SubResource("Resource_85nae"), SubResource("Resource_x81uj"), SubResource("Resource_e82dd")])
+temperament = ExtResource("14_sg5lj")
 genus = "Pokémon Muda"
 pokedex_entry = "Shedinja tiene un cuerpo robusto que no mueve en absoluto. De hecho, parece una especie de caparazón hueco. Se cree que, si alguien se atreviera a mirarle por la espalda lo que tiene en su interior, Shedinja le robaría el alma."
 height_m = 0.8

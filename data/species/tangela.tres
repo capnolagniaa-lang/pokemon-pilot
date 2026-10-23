@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="11_5bojn"]
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="12_lohep"]
 [ext_resource type="Resource" path="res://data/moves/cosquillas.tres" id="13_3j5ni"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_pmsfv"]
 
 [sub_resource type="Resource" id="Resource_yt7wa"]
 script = ExtResource("1_pwk10")
@@ -83,6 +84,7 @@ display_name = "Tangela"
 dex = 114
 types = Array[ExtResource("4_dnmxb")]([ExtResource("5_k6us7")])
 learnset = Array[ExtResource("1_pwk10")]([SubResource("Resource_yt7wa"), SubResource("Resource_w7qyi"), SubResource("Resource_fmvvw"), SubResource("Resource_qgp7x"), SubResource("Resource_c7fa7"), SubResource("Resource_r7hfr"), SubResource("Resource_r2vvb"), SubResource("Resource_sckkf"), SubResource("Resource_euyt2"), SubResource("Resource_v1ofi"), SubResource("Resource_inv7j"), SubResource("Resource_iudvq")])
+temperament = ExtResource("16_pmsfv")
 genus = "Pokémon Enredadera"
 pokedex_entry = "A Tangela se le desprenden los tentáculos con facilidad en cuanto se los agarras. Y no solo no le duele, sino que le resulta muy útil para escapar rápido. Además, al día siguiente le crecen otros."
 height_m = 1.0

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="11_m5pdn"]
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="12_h136r"]
 [ext_resource type="Resource" path="res://data/moves/onda_ignea.tres" id="13_6i5ga"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_54euq"]
 
 [sub_resource type="Resource" id="Resource_no8eo"]
 script = ExtResource("1_mhqy0")
@@ -84,6 +85,7 @@ display_name = "Torkoal"
 dex = 324
 types = Array[ExtResource("4_752fh")]([ExtResource("5_0f76p")])
 learnset = Array[ExtResource("1_mhqy0")]([SubResource("Resource_no8eo"), SubResource("Resource_pqq1f"), SubResource("Resource_l0hky"), SubResource("Resource_dfqgl"), SubResource("Resource_7pfp7"), SubResource("Resource_jjujo"), SubResource("Resource_5dmi5"), SubResource("Resource_rp0kg"), SubResource("Resource_a1kof"), SubResource("Resource_7cbar"), SubResource("Resource_g1kyu"), SubResource("Resource_o2amv")])
+temperament = ExtResource("16_54euq")
 genus = "Pokémon Carbón"
 pokedex_entry = "Torkoal va cavando por las montañas en busca de carbón. Cuando lo encuentra, rellena los huecos que tiene dentro del caparazón y lo quema. Si le atacan, este Pokémon echa un humo negro que le permite la retirada."
 height_m = 0.5

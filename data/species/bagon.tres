@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="10_teino"]
 [ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="11_57f4a"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_spxb6"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_3flop"]
 
 [sub_resource type="Resource" id="Resource_hg2yi"]
 script = ExtResource("1_11rkk")
@@ -78,6 +79,7 @@ display_name = "Bagon"
 dex = 371
 types = Array[ExtResource("4_camkb")]([ExtResource("5_edy48")])
 learnset = Array[ExtResource("1_11rkk")]([SubResource("Resource_hg2yi"), SubResource("Resource_pc3qh"), SubResource("Resource_gwtef"), SubResource("Resource_rohi1"), SubResource("Resource_an43t"), SubResource("Resource_qdtfp"), SubResource("Resource_dql6m"), SubResource("Resource_son32"), SubResource("Resource_oomo7"), SubResource("Resource_cuwhy"), SubResource("Resource_fhff0")])
+temperament = ExtResource("15_3flop")
 genus = "Pokémon Cabeza Roca"
 pokedex_entry = "Bagon sueña con poder pasar un día volando por el cielo. En vanos intentos por volar, ha llegado a tirarse desde riscos. Como resultado de estas caídas en picado, se le ha puesto la cabeza dura como las piedras."
 height_m = 0.6

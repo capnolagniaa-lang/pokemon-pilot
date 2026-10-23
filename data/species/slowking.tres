@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_rmy7y"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_q4im5"]
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="12_2f0te"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_v8y7j"]
 
 [sub_resource type="Resource" id="Resource_xj6ab"]
 script = ExtResource("1_nkvl2")
@@ -77,6 +78,7 @@ display_name = "Slowking"
 dex = 199
 types = Array[ExtResource("4_gg1mv")]([ExtResource("5_pxl5k"), ExtResource("6_vfj1r")])
 learnset = Array[ExtResource("1_nkvl2")]([SubResource("Resource_xj6ab"), SubResource("Resource_qjs68"), SubResource("Resource_1ytwd"), SubResource("Resource_tcxpw"), SubResource("Resource_gh31r"), SubResource("Resource_awf48"), SubResource("Resource_pfrg5"), SubResource("Resource_l4b6u"), SubResource("Resource_f3s72"), SubResource("Resource_xh4gh"), SubResource("Resource_wdxkl")])
+temperament = ExtResource("15_v8y7j")
 genus = "Pokémon Regio"
 pokedex_entry = "Slowking dedica cada día tiempo a investigar, en un intento por resolver los misterios del mundo. Aunque, según parece, a este Pokémon se le olvida todo lo que ha aprendido si se separa del Shellder que lleva en la cabeza."
 height_m = 2.0

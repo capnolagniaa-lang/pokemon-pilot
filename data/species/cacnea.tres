@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="13_ngmjx"]
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="14_xwk80"]
 [ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="15_xdlgc"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="18_3bath"]
 
 [sub_resource type="Resource" id="Resource_xlvbx"]
 script = ExtResource("1_8bph8")
@@ -95,6 +96,7 @@ display_name = "Cacnea"
 dex = 331
 types = Array[ExtResource("4_7kuu7")]([ExtResource("5_8sh3s")])
 learnset = Array[ExtResource("1_8bph8")]([SubResource("Resource_xlvbx"), SubResource("Resource_jhaic"), SubResource("Resource_14x45"), SubResource("Resource_2kbsj"), SubResource("Resource_wfsey"), SubResource("Resource_o7owc"), SubResource("Resource_gnx5r"), SubResource("Resource_1qgel"), SubResource("Resource_4egjm"), SubResource("Resource_obx3k"), SubResource("Resource_mj4y2"), SubResource("Resource_jvmpt"), SubResource("Resource_jj0u3"), SubResource("Resource_m8wxf")])
+temperament = ExtResource("18_3bath")
 genus = "Pokémon Cactus"
 pokedex_entry = "Cacnea habita en desiertos y otras zonas áridas. Para atraer a su presa, libera un fuerte aroma por la flor y, cuando se le acerca, le lanza pinchos por todo el cuerpo para reducirla."
 height_m = 0.4

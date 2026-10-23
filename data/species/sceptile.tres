@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="11_rhejk"]
 [ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="12_0juk3"]
 [ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="13_au654"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_p7sfp"]
 
 [sub_resource type="Resource" id="Resource_pj3yt"]
 script = ExtResource("1_d36n8")
@@ -81,6 +82,7 @@ display_name = "Sceptile"
 dex = 254
 types = Array[ExtResource("4_bwlb7")]([ExtResource("5_jntxj")])
 learnset = Array[ExtResource("1_d36n8")]([SubResource("Resource_pj3yt"), SubResource("Resource_tpqes"), SubResource("Resource_5ri03"), SubResource("Resource_7b0at"), SubResource("Resource_btbwd"), SubResource("Resource_eb7ql"), SubResource("Resource_aouth"), SubResource("Resource_crj76"), SubResource("Resource_ubo66"), SubResource("Resource_8be6q"), SubResource("Resource_cyylh"), SubResource("Resource_ydv2f")])
+temperament = ExtResource("16_p7sfp")
 genus = "Pokémon Monte"
 pokedex_entry = "Las hojas que le salen a Sceptile del cuerpo tienen unos bordes muy afilados. Este Pokémon es muy ágil, va saltando de rama en rama y se lanza sobre el enemigo por la espalda."
 height_m = 1.7

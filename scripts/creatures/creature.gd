@@ -50,6 +50,19 @@ var knockback := Vector2.ZERO
 var cc_resist_left := 0.0
 ## Mecánica de firma (si la especie tiene kit con una).
 var signature: SignatureMechanic
+## Salvaje: temperamento (qué hace al verte, hasta dónde persigue, cuándo huye). Sale de la especie; se puede
+## pisar después de crearla (los autotests fuerzan "agresivo").
+var temperament: Temperament
+## Salvaje: segundos que le quedan espantado por un golpe fuerte (retrocede sin atacar).
+var spook_left := 0.0
+## Salvaje: ya hizo su apertura en esta pelea (se reinicia al volver a deambular).
+var fight_opened := false
+## "Cuerpo" de la IA (ejecución compartida por salvajes y entrenadores; ver CombatBody).
+var body: CombatBody:
+	get:
+		if body == null:
+			body = CombatBody.new(self)
+		return body
 
 var _clock := 0.0
 
@@ -81,12 +94,21 @@ func _ready() -> void:
 	add_to_group("creatures")
 	if team == Team.WILD:
 		home = global_position
+		if temperament == null:
+			temperament = instance.species.temperament if instance.species.temperament != null else DB.temperaments.get("territorial")
 		machine.initial_state = machine.get_node("Wander")
 
 
 func _physics_process(delta: float) -> void:
 	_clock += delta
 	cc_resist_left = maxf(0.0, cc_resist_left - delta)
+	spook_left = maxf(0.0, spook_left - delta)
+
+
+## Aviso sobre la cabeza ("!" te vio, "?" curiosidad, gota de miedo...).
+func emote(text: String, time: float = 1.2) -> void:
+	sprite.emote = text
+	sprite.emote_left = time
 
 
 ## Estado al que vuelve después de atacar, esquivar o recuperarse de un golpe.
@@ -353,10 +375,15 @@ func _on_hit(hit: HitInfo) -> void:
 	if (hit.knockback >= STAGGER_KNOCKBACK or state in ["cast", "channel"]) and machine.current_name() != "stunned":
 		stun(0.25)
 	if team == Team.WILD and not is_instance_valid(target) and attacker:
+		# Si le pegan, pelea (también el tímido que huía tranquilo o el curioso que miraba).
 		target = attacker
 		Events.wild_aggro.emit(self, attacker)
-		if state == "wander":
+		emote("!")
+		if state in ["wander", "watch", "flee"]:
 			machine.transition_to("chase")
+	elif team == Team.WILD and temperament != null and hit.knockback >= STAGGER_KNOCKBACK and randf() < temperament.spook_chance:
+		spook_left = 0.8  # se espanta: retrocede un momento
+		emote("gota", 0.8)
 
 
 func _apply_interaction(it: StatusInteraction) -> void:

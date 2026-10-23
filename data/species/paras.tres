@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="8_scsdy"]
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_f6htp"]
 [ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="10_2y2q1"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_s6mcd"]
 
 [sub_resource type="Resource" id="Resource_b7j8a"]
 script = ExtResource("1_n0vu1")
@@ -67,6 +68,7 @@ display_name = "Paras"
 dex = 46
 types = Array[ExtResource("4_cfikb")]([ExtResource("5_2orq6"), ExtResource("6_tatkk")])
 learnset = Array[ExtResource("1_n0vu1")]([SubResource("Resource_b7j8a"), SubResource("Resource_v4hpa"), SubResource("Resource_cartu"), SubResource("Resource_8okci"), SubResource("Resource_o5j5j"), SubResource("Resource_wihs2"), SubResource("Resource_sesyj"), SubResource("Resource_8y1s2"), SubResource("Resource_2fb7i")])
+temperament = ExtResource("13_s6mcd")
 genus = "Pokémon Hongo"
 pokedex_entry = "Paras lleva dos setas parásitas a cuestas llamadas tochukaso. Estas crecen alimentándose de los nutrientes de este Pokémon de tipo Bicho y Planta que les sirve de huésped. Las setas se usan como elixir de vida."
 height_m = 0.3

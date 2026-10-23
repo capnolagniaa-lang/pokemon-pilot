@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/beso_dulce.tres" id="8_w3p07"]
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="9_pb7xu"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="10_rmll1"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_2vdg5"]
 
 [sub_resource type="Resource" id="Resource_7kmtb"]
 script = ExtResource("1_s3foi")
@@ -66,6 +67,7 @@ display_name = "Luvdisc"
 dex = 370
 types = Array[ExtResource("4_wvs3r")]([ExtResource("5_7d63q")])
 learnset = Array[ExtResource("1_s3foi")]([SubResource("Resource_7kmtb"), SubResource("Resource_egpru"), SubResource("Resource_b1aqn"), SubResource("Resource_p7acy"), SubResource("Resource_fcej2"), SubResource("Resource_jl4yi"), SubResource("Resource_1uy5f"), SubResource("Resource_oar5d"), SubResource("Resource_i05jt")])
+temperament = ExtResource("13_2vdg5")
 genus = "Pokémon Cita"
 pokedex_entry = "Luvdisc vive en aguas tropicales poco profundas. Este Pokémon con forma de corazón se ha ganado la reputación que tiene por ir nadando detrás de las parejas de enamorados que veía entre las olas del océano."
 height_m = 0.6

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_ure06"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_yboip"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_a5ife"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_x4ocm"]
 
 [sub_resource type="Resource" id="Resource_clwth"]
 script = ExtResource("1_iv3dk")
@@ -70,6 +71,7 @@ display_name = "Pupitar"
 dex = 247
 types = Array[ExtResource("4_sm55w")]([ExtResource("5_y8x2x"), ExtResource("6_m3tp3")])
 learnset = Array[ExtResource("1_iv3dk")]([SubResource("Resource_clwth"), SubResource("Resource_d1ke2"), SubResource("Resource_kv2q2"), SubResource("Resource_1p2il"), SubResource("Resource_a0jgl"), SubResource("Resource_hqhuh"), SubResource("Resource_71ldp"), SubResource("Resource_uwoyo"), SubResource("Resource_l3f65"), SubResource("Resource_jwqow")])
+temperament = ExtResource("14_x4ocm")
 genus = "Pokémon Caparazón"
 pokedex_entry = "Pupitar crea un gas en su interior que comprime y expulsa violentamente a modo de autopropulsión. Tiene un cuerpo resistente que se mantiene inalterable hasta cuando se golpea contra duro acero."
 height_m = 1.2

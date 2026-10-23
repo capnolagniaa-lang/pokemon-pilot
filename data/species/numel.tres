@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="9_htay4"]
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="10_oiwr5"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_lkcne"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_k4nbv"]
 
 [sub_resource type="Resource" id="Resource_ep4fx"]
 script = ExtResource("1_ki5ru")
@@ -72,6 +73,7 @@ display_name = "Numel"
 dex = 322
 types = Array[ExtResource("4_ohi0y")]([ExtResource("5_m2b4y"), ExtResource("6_rfvmp")])
 learnset = Array[ExtResource("1_ki5ru")]([SubResource("Resource_ep4fx"), SubResource("Resource_qhv6w"), SubResource("Resource_vgoiq"), SubResource("Resource_lvoxe"), SubResource("Resource_onvbn"), SubResource("Resource_kf6xv"), SubResource("Resource_7aemt"), SubResource("Resource_eyaun"), SubResource("Resource_sdu8o"), SubResource("Resource_fi7ur")])
+temperament = ExtResource("14_k4nbv")
 genus = "Pokémon Torpe"
 pokedex_entry = "Numel tarda en percibir las cosas, no se entera ni cuando lo golpean, pero se da cuenta enseguida de si tiene hambre. El cuerpo de este Pokémon es un caldero de magma hirviendo."
 height_m = 0.7

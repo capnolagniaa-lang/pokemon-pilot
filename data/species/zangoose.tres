@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/mofa.tres" id="10_8t501"]
 [ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="11_n1dxb"]
 [ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="12_jxd7m"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_p6bl7"]
 
 [sub_resource type="Resource" id="Resource_l1yr7"]
 script = ExtResource("1_upwpr")
@@ -78,6 +79,7 @@ display_name = "Zangoose"
 dex = 335
 types = Array[ExtResource("4_nnywx")]([ExtResource("5_miouo")])
 learnset = Array[ExtResource("1_upwpr")]([SubResource("Resource_l1yr7"), SubResource("Resource_6c2sy"), SubResource("Resource_wjdkf"), SubResource("Resource_haftu"), SubResource("Resource_brunw"), SubResource("Resource_jrtny"), SubResource("Resource_lb01d"), SubResource("Resource_i6ogs"), SubResource("Resource_ci15c"), SubResource("Resource_2fkh1"), SubResource("Resource_13wvx")])
+temperament = ExtResource("15_p6bl7")
 genus = "Pokémon Gato Hurón"
 pokedex_entry = "Los ecos del combate mantenido con su rival más feroz, Seviper, resuenan aún en cada célula de Zangoose. Este Pokémon esquiva los ataques con auténtica destreza."
 height_m = 1.3

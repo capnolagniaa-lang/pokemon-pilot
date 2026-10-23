@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="9_h5nya"]
 [ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="10_3re3s"]
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_rshuj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_q7dvj"]
 
 [sub_resource type="Resource" id="Resource_dbn4b"]
 script = ExtResource("1_spqvf")
@@ -69,6 +70,7 @@ display_name = "Slaking"
 dex = 289
 types = Array[ExtResource("4_hpxmr")]([ExtResource("5_j5n6s")])
 learnset = Array[ExtResource("1_spqvf")]([SubResource("Resource_dbn4b"), SubResource("Resource_whnta"), SubResource("Resource_3u0x5"), SubResource("Resource_pqkhi"), SubResource("Resource_o6yoo"), SubResource("Resource_7kpp4"), SubResource("Resource_rq3do"), SubResource("Resource_c8tjo"), SubResource("Resource_4uq75"), SubResource("Resource_om5ec")])
+temperament = ExtResource("14_q7dvj")
 genus = "Pokémon Holgazán"
 pokedex_entry = "Slaking se pasa todo el día tumbado vagueando. Se come la hierba que tiene a su alcance y, una vez que ha acabado con ella, se va de mala gana a otro sitio."
 height_m = 2.0

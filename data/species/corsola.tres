@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="9_5urh6"]
 [ext_resource type="Resource" path="res://data/moves/manto_espejo.tres" id="10_0w5ro"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="11_uve33"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_lsdtf"]
 
 [sub_resource type="Resource" id="Resource_vbrla"]
 script = ExtResource("1_ho2hp")
@@ -73,6 +74,7 @@ display_name = "Corsola"
 dex = 222
 types = Array[ExtResource("4_s5i6n")]([ExtResource("5_er38u"), ExtResource("6_lr2l8")])
 learnset = Array[ExtResource("1_ho2hp")]([SubResource("Resource_vbrla"), SubResource("Resource_1bk5w"), SubResource("Resource_06kdj"), SubResource("Resource_1olq2"), SubResource("Resource_l2q33"), SubResource("Resource_8o0f5"), SubResource("Resource_dagg3"), SubResource("Resource_gqc4u"), SubResource("Resource_qv6dt"), SubResource("Resource_df2cr")])
+temperament = ExtResource("14_lsdtf")
 genus = "Pokémon Coral"
 pokedex_entry = "Las ramas de Corsola brillan con belleza hasta en siete colores cuando les da el sol. Si se le rompe alguna, el Pokémon la regenera en tan solo una noche."
 height_m = 0.6

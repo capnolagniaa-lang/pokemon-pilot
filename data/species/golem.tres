@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_jq4lw"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_p0dhv"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_74ili"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_4g2lp"]
 
 [sub_resource type="Resource" id="Resource_v0xhl"]
 script = ExtResource("1_l8kcx")
@@ -76,6 +77,7 @@ display_name = "Golem"
 dex = 76
 types = Array[ExtResource("4_qv2c8")]([ExtResource("5_arb56"), ExtResource("6_1376t")])
 learnset = Array[ExtResource("1_l8kcx")]([SubResource("Resource_v0xhl"), SubResource("Resource_twyfe"), SubResource("Resource_s02on"), SubResource("Resource_petu4"), SubResource("Resource_201fq"), SubResource("Resource_hpf3d"), SubResource("Resource_f6o5c"), SubResource("Resource_wyh3g"), SubResource("Resource_ute01"), SubResource("Resource_fj1d6"), SubResource("Resource_62075")])
+temperament = ExtResource("15_4g2lp")
 genus = "Pokémon Megatón"
 pokedex_entry = "Golem vive en las montañas. Si se produce un gran terremoto, estos Pokémon descienden rodando en masa por las laderas."
 height_m = 1.4

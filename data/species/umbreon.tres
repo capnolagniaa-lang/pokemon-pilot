@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="10_euh1x"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="11_hspq1"]
 [ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="12_nqhnb"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_5jogs"]
 
 [sub_resource type="Resource" id="Resource_e6be2"]
 script = ExtResource("1_fqgu0")
@@ -76,6 +77,7 @@ display_name = "Umbreon"
 dex = 197
 types = Array[ExtResource("4_c561c")]([ExtResource("5_gae2v")])
 learnset = Array[ExtResource("1_fqgu0")]([SubResource("Resource_e6be2"), SubResource("Resource_nemxu"), SubResource("Resource_w1ry2"), SubResource("Resource_78haq"), SubResource("Resource_ml5p1"), SubResource("Resource_nh4yv"), SubResource("Resource_6uf80"), SubResource("Resource_m65gm"), SubResource("Resource_etvdp"), SubResource("Resource_hwql7"), SubResource("Resource_uiv3p")])
+temperament = ExtResource("15_5jogs")
 genus = "Pokémon Luz Lunar"
 pokedex_entry = "Umbreon evolucionó tras haber estado expuesto a ondas lunares. Suele esconderse en la oscuridad en silencio y esperar a que su presa se mueva. Cuando se lanza al ataque, le brillan los anillos del cuerpo."
 height_m = 1.0

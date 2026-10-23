@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="7_l0e1i"]
 [ext_resource type="Resource" path="res://data/moves/rayo.tres" id="8_hpsm0"]
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="9_ertg0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_1fxc1"]
 
 [sub_resource type="Resource" id="Resource_q3e32"]
 script = ExtResource("1_t1l67")
@@ -59,6 +60,7 @@ display_name = "Elekid"
 dex = 239
 types = Array[ExtResource("4_1dxj8")]([ExtResource("5_2jx61")])
 learnset = Array[ExtResource("1_t1l67")]([SubResource("Resource_q3e32"), SubResource("Resource_rl7ej"), SubResource("Resource_yb6lf"), SubResource("Resource_i1ert"), SubResource("Resource_qpdad"), SubResource("Resource_nn0js"), SubResource("Resource_crruw"), SubResource("Resource_1akkh")])
+temperament = ExtResource("12_1fxc1")
 genus = "Pokémon Eléctrico"
 pokedex_entry = "Elekid acumula electricidad. Si entra en contacto con algo de metal y descarga accidentalmente toda la electricidad almacenada, empieza a agitar los brazos en círculo para volver a cargarse."
 height_m = 0.6

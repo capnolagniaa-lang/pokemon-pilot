@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/alivio.tres" id="12_hse7a"]
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="13_ubxkf"]
 [ext_resource type="Resource" path="res://data/moves/ataque_aereo.tres" id="14_jwekw"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="17_ei10r"]
 
 [sub_resource type="Resource" id="Resource_ndd4g"]
 script = ExtResource("1_pt1i6")
@@ -88,6 +89,7 @@ display_name = "Altaria"
 dex = 334
 types = Array[ExtResource("4_28jpj")]([ExtResource("5_u3i51"), ExtResource("6_d8n6a")])
 learnset = Array[ExtResource("1_pt1i6")]([SubResource("Resource_ndd4g"), SubResource("Resource_8enox"), SubResource("Resource_25dly"), SubResource("Resource_7g833"), SubResource("Resource_xvs3m"), SubResource("Resource_wg2ff"), SubResource("Resource_r153f"), SubResource("Resource_j6y66"), SubResource("Resource_xmwy5"), SubResource("Resource_dv8jm"), SubResource("Resource_l4g4t"), SubResource("Resource_8wdkr"), SubResource("Resource_tt4lk")])
+temperament = ExtResource("17_ei10r")
 genus = "Pokémon Cantor"
 pokedex_entry = "Altaria baila y revolotea por el cielo entre ondeantes nubes que parecen de algodón. Al entonar melodías con su voz cristalina, este Pokémon deja a sus oyentes embobados y admirados."
 height_m = 1.1

@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="8_kqm1y"]
 [ext_resource type="Resource" path="res://data/moves/puas.tres" id="9_5dnsq"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_aar31"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_c66f2"]
 
 [sub_resource type="Resource" id="Resource_01se8"]
 script = ExtResource("1_2lht7")
@@ -65,6 +66,7 @@ display_name = "Pineco"
 dex = 204
 types = Array[ExtResource("4_vg0v6")]([ExtResource("5_s3loh")])
 learnset = Array[ExtResource("1_2lht7")]([SubResource("Resource_01se8"), SubResource("Resource_vw1au"), SubResource("Resource_rslvi"), SubResource("Resource_srgmo"), SubResource("Resource_53t50"), SubResource("Resource_xu0q7"), SubResource("Resource_fxsvr"), SubResource("Resource_p52k1"), SubResource("Resource_7ldxy")])
+temperament = ExtResource("13_c66f2")
 genus = "Pokémon Larva"
 pokedex_entry = "Pineco permanece colgado de la rama de un árbol esperando pacientemente a su presa. Si alguien sacude el árbol en el que está mientras come y le molesta, se tira al suelo y explota sin dar ningún tipo de aviso."
 height_m = 0.6

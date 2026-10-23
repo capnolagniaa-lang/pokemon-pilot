@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_twsnc"]
 [ext_resource type="Resource" path="res://data/moves/telepata.tres" id="6_6ymst"]
 [ext_resource type="Resource" path="res://data/types/lucha.tres" id="6_h1n3s"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="9_rdk4n"]
 
 [sub_resource type="Resource" id="Resource_lj7gw"]
 script = ExtResource("1_3pqqn")
@@ -40,6 +41,7 @@ display_name = "Poliwrath"
 dex = 62
 types = Array[ExtResource("4_emeqx")]([ExtResource("5_f2rnv"), ExtResource("6_h1n3s")])
 learnset = Array[ExtResource("1_3pqqn")]([SubResource("Resource_lj7gw"), SubResource("Resource_f44w5"), SubResource("Resource_coids"), SubResource("Resource_ybtg8"), SubResource("Resource_swuyp")])
+temperament = ExtResource("9_rdk4n")
 genus = "Pokémon Renacuajo"
 pokedex_entry = "Poliwrath tiene unos músculos fornidos y muy desarrollados, por lo que nunca se agota. Es tan fuerte e incansable que cruzar el océano a nado no le supone ningún esfuerzo."
 height_m = 1.3

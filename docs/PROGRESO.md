@@ -5,7 +5,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-10-22)
+## 📍 Dónde estamos (actualizado 2026-10-23)
 - **Herramienta — Editor de mapas hecha** (no corre la numeración de etapas): acceso directo "Pokémon Pilot —
   Editor de mapas" (`-- --map-editor`). Ya tiene **todos los gráficos de FireRed**, la paleta organizada como la
   hoja de tiles del mundo de FireRed y 78 sellos sacados de los mapas reales. Ver "Herramienta — Editor de mapas".
@@ -13,7 +13,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   equipo y movimientos).
 - **386 Pokémon (Kanto, Johto y Hoenn) cargados con stats, learnsets y sprites + Pokédex** en el menú
   (2026-10-22, ver "Etapa 2d"). Los spawns NO se tocaron (siguen los 4 de prueba).
-- **Siguiente: Etapa 4 (IA salvaje con estados + spawns por bioma/hora)** — ver "Próximo paso concreto". El usuario aprobó los kits por ahora ("me gustan los de Charmander y
+- **Etapa 4a hecha (IA de los salvajes)**: cuerpo compartido + temperamentos (agresivo, territorial, tímido,
+  curioso) — ver "Etapa 4a". Definido con el usuario: **la IA de salvajes y la de entrenadores son distintas**
+  (salvajes = instinto sin memoria; entrenadores = órdenes + memoria) — ver `PLAN_ENTRENADORES.md`, sección 1b.
+- **Siguiente: plan de entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E-0 en adelante; el usuario
+  todavía tiene que confirmar las decisiones de la sección 8). Después, spawns por hora (Etapa 4b/5). El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.
 - v2 hecho: **sin energía** (solo recargas), **4 ataques + esquive en Espacio**, Charmander **bruiser** rearmado,
   Bellsprout/Bulbasaur **control**, y por ahora **todo el mapa** solo hace aparecer **Pidgey, Bellsprout,
@@ -38,6 +42,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 2c | Título, guardado, equipo (máx. 6) y movimientos por nivel (learnset + ficha) | ✅ Hecha |
 | 2d | 386 Pokémon (3 regiones) con stats, learnsets y sprites + Pokédex (vistos/luchados) | ✅ Hecha |
 | 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | ✅ Hecha |
+| 4a | IA de los salvajes: cuerpo compartido + temperamentos (sin memoria) | ✅ Hecha |
 | 4 | IA salvaje con estados + spawns por bioma/hora | ⏭️ Siguiente |
 | 5 | Ciclo día/noche, clima, NPCs con horarios | Pendiente |
 | 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | Pendiente |
@@ -131,6 +136,25 @@ mapa de FireRed queda **afuera y listado**; ante diferencias chicas manda **el m
   celda por celda (17.911 celdas).
 - Autotest nuevo `--autotest-stamps` (11 chequeos) y `match_reference.py --check`; vitrinas `--showcase-stamps` y
   `--showcase-stamp-sheets`.
+
+## Etapa 4a — IA de los salvajes (2026-10-23)
+Decisión del usuario: la IA de los salvajes y la de los entrenadores son **distintas** sobre una capa común.
+- **Cuerpo compartido** (`CombatBody`, `scripts/creatures/ai/`): si un ataque llega, adónde apuntarlo (dirección
+  y punto), esquivar proyectiles, salir de celdas peligrosas (electrificadas, mojadas). **La dificultad actúa
+  solo acá** (puntería, frecuencia de ataque y de esquive). Lo usarán también los entrenadores.
+- **Temperamentos** (`Temperament`, `data/ai/temperaments/*.tres`; `SpeciesData.temperament`, asignado a las 386
+  por `tools/assign_temperaments.gd` con heurística por stats + ajustes a mano):
+  **agresivo** (te ataca apenas te ve, persigue lejos) · **territorial** (te mira con "...", ataca solo si entrás a
+  su zona y te suelta si salís) · **tímido** (huye sin pelear; si lo acorralás o le pegás, pelea; huye antes con
+  poca vida) · **curioso** (se acerca a mirarte a ~55 px; si te le venís encima ataca o huye). Reparto: ~177
+  territoriales, ~83 agresivos, ~78 tímidos, ~48 curiosos. "En grupo": reservado (`calls_group`) para más adelante.
+- **Patrón reconocible** (sin azar): abre siempre con su ataque de acercamiento si está lejos (Rattata entra con
+  Ataque Rápido) y después rota sus ataques en orden. Golpes fuertes pueden espantarlo (retrocede un momento).
+- **Avisos** sobre la cabeza (`Creature.emote`): "!" te vio/pelea, "?" curiosidad, gota = miedo, "..." te ignora.
+- Estados: `wander` (reacciona según temperamento), `watch` (nuevo, curioso), `chase` (correa por temperamento,
+  apertura), `attack` (rotación + cuerpo), `flee` (tranquila o en combate; acorralado → pelea).
+- El autotest de combate fuerza "agresivo" en el salvaje (Oddish ahora es tímido y huiría).
+- Autotest `--autotest-wild-ai` (12 chequeos); vitrina `--showcase-wild-ai`.
 
 ## Etapa 3 — Entorno reactivo (2026-10-22)
 - **El fuego NO interactúa con el entorno** (decisión del usuario, 2026-10-22: no le gustó que queme el pasto).
@@ -250,13 +274,13 @@ Seel/Oddish), `--autotest-input` (simula teclas reales y verifica el spawner), `
 EXP contra valores oficiales), `--showcase` (vitrina visual de los 3 estados, para renderizar). Correr siempre con
 `--quit-after 60000` como límite por si algo se cuelga.
 
-## Próximo paso concreto (Etapa 4: IA salvaje con estados + spawns por bioma/hora)
-1. Que la IA use cada kit con criterio: defensivas (Arraigo, Síntesis, Foco Energía) en el momento justo, guardar
-   la de más recarga, aprovechar la mecánica de firma (Vulpix busca quemados, Rattata remata presas, Pidgey sube
-   al aire cuando lo encaran). Hoy elige al azar dentro del alcance.
-2. Que la IA lea el entorno: no pararse en el fuego, salir del agua electrificada.
-3. Comportamientos por especie (tímido/agresivo/territorial) y huida con poca vida.
-4. Spawns por hora (las tablas por zona y bioma ya están: se arman en el editor de mapas, pestaña Salvajes).
+## Próximo paso concreto
+1. **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`): confirmar las decisiones de la sección 8 y arrancar por
+   E-0 (interruptor + datos) y E-1 (combate contra entrenador con cambio de Pokémon). La "mente" del entrenador
+   (órdenes gritadas + perillas + memoria) usa el mismo `CombatBody` que los salvajes.
+2. Salvajes, pendiente: "en grupo" (si atacás a uno vienen los demás), aprovechar la mecánica de firma
+   (Pidgey sube al aire, Vulpix busca quemados).
+3. Spawns por hora (las tablas por zona y bioma ya están: se arman en el editor de mapas, pestaña Salvajes).
 
 ## Pendientes de pulido (anotados)
 - Esquinas interiores donde se cruzan caminos (quedan cuadradas).

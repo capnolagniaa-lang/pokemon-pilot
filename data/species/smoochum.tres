@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="10_jid1m"]
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="11_oq5u8"]
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="12_bholj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_adup5"]
 
 [sub_resource type="Resource" id="Resource_fync5"]
 script = ExtResource("1_xywnu")
@@ -78,6 +79,7 @@ display_name = "Smoochum"
 dex = 238
 types = Array[ExtResource("4_05rky")]([ExtResource("5_330dc"), ExtResource("6_ueuc2")])
 learnset = Array[ExtResource("1_xywnu")]([SubResource("Resource_fync5"), SubResource("Resource_rdxca"), SubResource("Resource_n5db8"), SubResource("Resource_jdsqh"), SubResource("Resource_ohk1l"), SubResource("Resource_ejjlq"), SubResource("Resource_fa50o"), SubResource("Resource_qa5j3"), SubResource("Resource_50fji"), SubResource("Resource_qm5o4"), SubResource("Resource_r1yiu")])
+temperament = ExtResource("15_adup5")
 genus = "Pokémon Beso"
 pokedex_entry = "Smoochum va corriendo por todos lados, pero se cae también con frecuencia. Y, en cuanto tiene ocasión, se mira en algún sitio para ver si se ha manchado la cara."
 height_m = 0.4

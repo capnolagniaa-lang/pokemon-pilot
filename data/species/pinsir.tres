@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="9_gi0vq"]
 [ext_resource type="Resource" path="res://data/moves/sumision.tres" id="10_glxnq"]
 [ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="11_vyykr"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_0bt5x"]
 
 [sub_resource type="Resource" id="Resource_axpds"]
 script = ExtResource("1_hg67w")
@@ -71,6 +72,7 @@ display_name = "Pinsir"
 dex = 127
 types = Array[ExtResource("4_31nkt")]([ExtResource("5_wpx7g")])
 learnset = Array[ExtResource("1_hg67w")]([SubResource("Resource_axpds"), SubResource("Resource_8txrk"), SubResource("Resource_ant3v"), SubResource("Resource_c520q"), SubResource("Resource_uk03d"), SubResource("Resource_1etow"), SubResource("Resource_k04sj"), SubResource("Resource_xre7l"), SubResource("Resource_c2b3k"), SubResource("Resource_0pshg")])
+temperament = ExtResource("14_0bt5x")
 genus = "Pokémon Escarabajo"
 pokedex_entry = "Pinsir es sorprendentemente fuerte. Puede agarrar con los cuernos a un rival que pese el doble que él y levantarlo por los aires. En zonas frías, los movimientos de este Pokémon se vuelven lentos."
 height_m = 1.5

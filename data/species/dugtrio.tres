@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="11_uv6gt"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="12_0ut4m"]
 [ext_resource type="Resource" path="res://data/moves/fisura.tres" id="13_o31aj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_g1pbw"]
 
 [sub_resource type="Resource" id="Resource_lk88g"]
 script = ExtResource("1_80g3y")
@@ -81,6 +82,7 @@ display_name = "Dugtrio"
 dex = 51
 types = Array[ExtResource("4_jygs1")]([ExtResource("5_s4cqb")])
 learnset = Array[ExtResource("1_80g3y")]([SubResource("Resource_lk88g"), SubResource("Resource_cxw1j"), SubResource("Resource_qnfhi"), SubResource("Resource_5utn8"), SubResource("Resource_4ak6e"), SubResource("Resource_djid2"), SubResource("Resource_ucacn"), SubResource("Resource_ao61c"), SubResource("Resource_ev7mo"), SubResource("Resource_e62fr"), SubResource("Resource_gt7kr"), SubResource("Resource_hrjic")])
+temperament = ExtResource("16_g1pbw")
 genus = "Pokémon Topo"
 pokedex_entry = "Los Dugtrio son trillizos que se originaron a partir de un solo cuerpo, por eso piensan de la misma forma. A la hora de excavar, trabajan en equipo y sin descanso."
 height_m = 0.7

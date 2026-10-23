@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/rueda_fuego.tres" id="7_y35y3"]
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="8_4slvy"]
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_sqokr"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_rphfk"]
 
 [sub_resource type="Resource" id="Resource_1qwk5"]
 script = ExtResource("1_7e76v")
@@ -58,6 +59,7 @@ display_name = "Quilava"
 dex = 156
 types = Array[ExtResource("4_61x48")]([ExtResource("5_xhxdk")])
 learnset = Array[ExtResource("1_7e76v")]([SubResource("Resource_1qwk5"), SubResource("Resource_ashs3"), SubResource("Resource_wkklm"), SubResource("Resource_j7tvc"), SubResource("Resource_jhdw2"), SubResource("Resource_aviic"), SubResource("Resource_u4g2p"), SubResource("Resource_wam45")])
+temperament = ExtResource("12_rphfk")
 genus = "Pokémon Volcán"
 pokedex_entry = "Quilava mantiene a sus rivales a raya con la intensidad de sus llamas y las ráfagas de aire ígneo que producen. También aprovecha su espectacular agilidad para esquivar ataques a la vez que abrasa al rival con sus llamas."
 height_m = 0.9

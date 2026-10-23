@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="9_q6yg4"]
 [ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="10_re00g"]
 [ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_lw2np"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_mprpo"]
 
 [sub_resource type="Resource" id="Resource_kyesw"]
 script = ExtResource("1_mr7lk")
@@ -71,6 +72,7 @@ display_name = "Koffing"
 dex = 109
 types = Array[ExtResource("4_dsy4v")]([ExtResource("5_wetmq")])
 learnset = Array[ExtResource("1_mr7lk")]([SubResource("Resource_kyesw"), SubResource("Resource_4084n"), SubResource("Resource_ohouf"), SubResource("Resource_pks2q"), SubResource("Resource_7a3s1"), SubResource("Resource_m3adu"), SubResource("Resource_p31d2"), SubResource("Resource_rl4sf"), SubResource("Resource_0pfbw"), SubResource("Resource_7ed05")])
+temperament = ExtResource("14_mprpo")
 genus = "Pokémon Gas Venenoso"
 pokedex_entry = "Si Koffing se pone nervioso, aumenta el nivel de toxicidad de los gases que tiene y los expulsa por todo el cuerpo. También suele hincharse mucho hasta llegar a explotar."
 height_m = 0.6

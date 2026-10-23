@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/salpicar.tres" id="11_31rap"]
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="12_pyp27"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="13_lv6aa"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_7a4ir"]
 
 [sub_resource type="Resource" id="Resource_7c3x3"]
 script = ExtResource("1_hl4he")
@@ -81,6 +82,7 @@ display_name = "Wailord"
 dex = 321
 types = Array[ExtResource("4_aps7p")]([ExtResource("5_3w5kx")])
 learnset = Array[ExtResource("1_hl4he")]([SubResource("Resource_7c3x3"), SubResource("Resource_lk2ie"), SubResource("Resource_xhg43"), SubResource("Resource_76h5h"), SubResource("Resource_ccadp"), SubResource("Resource_qx8dy"), SubResource("Resource_elj1e"), SubResource("Resource_0co1d"), SubResource("Resource_l4ar3"), SubResource("Resource_6j8d3"), SubResource("Resource_n5i3k"), SubResource("Resource_y1g25")])
+temperament = ExtResource("16_7a4ir")
 genus = "Pokémon Ballenaflot"
 pokedex_entry = "Wailord es el mayor Pokémon registrado hasta la fecha. Este coloso va nadando lánguidamente por el ancho mar con la boca abierta para que penetre la mayor cantidad posible de alimento."
 height_m = 14.5

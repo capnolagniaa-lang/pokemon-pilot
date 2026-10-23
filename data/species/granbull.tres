@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="9_wi1ld"]
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_on45m"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_krdem"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_uhhyg"]
 
 [sub_resource type="Resource" id="Resource_0p38r"]
 script = ExtResource("1_b8jkc")
@@ -71,6 +72,7 @@ display_name = "Granbull"
 dex = 210
 types = Array[ExtResource("4_tfce7")]([ExtResource("5_8gckx")])
 learnset = Array[ExtResource("1_b8jkc")]([SubResource("Resource_0p38r"), SubResource("Resource_uffr4"), SubResource("Resource_y7ptq"), SubResource("Resource_lf45b"), SubResource("Resource_nxhos"), SubResource("Resource_y3fnt"), SubResource("Resource_lngjw"), SubResource("Resource_gi0rx"), SubResource("Resource_gisyv"), SubResource("Resource_tu8oc")])
+temperament = ExtResource("14_uhhyg")
 genus = "Pokémon Hada"
 pokedex_entry = "Granbull tiene la mandíbula inferior demasiado desarrollada y colmillos enormes y pesados que le obligan a inclinar la cabeza hacia atrás para compensar el peso. Si no se le asusta, no muerde."
 height_m = 1.4

@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_ipksu"]
 [ext_resource type="Resource" path="res://data/moves/bote.tres" id="10_mrkb2"]
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="11_ukune"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_37pke"]
 
 [sub_resource type="Resource" id="Resource_2qn2h"]
 script = ExtResource("1_3idsh")
@@ -72,6 +73,7 @@ display_name = "Ponyta"
 dex = 77
 types = Array[ExtResource("4_iel7x")]([ExtResource("5_ndcan")])
 learnset = Array[ExtResource("1_3idsh")]([SubResource("Resource_2qn2h"), SubResource("Resource_3twvp"), SubResource("Resource_j825u"), SubResource("Resource_eggsl"), SubResource("Resource_tvt6b"), SubResource("Resource_sbsxy"), SubResource("Resource_enhdf"), SubResource("Resource_vtr67"), SubResource("Resource_b8uib"), SubResource("Resource_38yig")])
+temperament = ExtResource("14_37pke")
 genus = "Pokémon Caballo Fuego"
 pokedex_entry = "Al nacer, Ponyta es muy débil y apenas puede ponerse en pie. Con todo, se va haciendo más fuerte al tropezarse y caerse en su intento por seguir a sus progenitores."
 height_m = 1.0

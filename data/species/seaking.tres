@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/perforador.tres" id="10_4f1bs"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_cavtv"]
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="12_55po3"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_58jfp"]
 
 [sub_resource type="Resource" id="Resource_kpcsm"]
 script = ExtResource("1_4w7sn")
@@ -75,6 +76,7 @@ display_name = "Seaking"
 dex = 119
 types = Array[ExtResource("4_hed7u")]([ExtResource("5_d15be")])
 learnset = Array[ExtResource("1_4w7sn")]([SubResource("Resource_kpcsm"), SubResource("Resource_1ucym"), SubResource("Resource_m5iv8"), SubResource("Resource_2grmo"), SubResource("Resource_2es5o"), SubResource("Resource_eixty"), SubResource("Resource_n0num"), SubResource("Resource_caias"), SubResource("Resource_d0c70"), SubResource("Resource_jpagl"), SubResource("Resource_kcgng")])
+temperament = ExtResource("15_58jfp")
 genus = "Pokémon Pez Color"
 pokedex_entry = "En otoño, se ven ejemplares de Seaking macho danzando en las riberas de los ríos para cortejar a las hembras. En esta época, la coloración de este Pokémon alcanza sus niveles máximos de belleza."
 height_m = 1.3

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_cc8au"]
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="11_lkjkj"]
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="12_xifwy"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_6hv2g"]
 
 [sub_resource type="Resource" id="Resource_q7te5"]
 script = ExtResource("1_y1m0p")
@@ -77,6 +78,7 @@ display_name = "Torchic"
 dex = 255
 types = Array[ExtResource("4_luk3p")]([ExtResource("5_ljq6v")])
 learnset = Array[ExtResource("1_y1m0p")]([SubResource("Resource_q7te5"), SubResource("Resource_6eagx"), SubResource("Resource_v4pbh"), SubResource("Resource_y66g5"), SubResource("Resource_ufxas"), SubResource("Resource_br4ws"), SubResource("Resource_ej8vp"), SubResource("Resource_72xwg"), SubResource("Resource_kwhb8"), SubResource("Resource_bm76t"), SubResource("Resource_vxup3")])
+temperament = ExtResource("15_6hv2g")
 genus = "Pokémon Polluelo"
 pokedex_entry = "Torchic no se separa de su Entrenador. Siempre va tras él con sus pasitos inseguros. Este Pokémon escupe bolas de fuego que pueden alcanzar los 1000 °C y carbonizar al enemigo."
 height_m = 0.4

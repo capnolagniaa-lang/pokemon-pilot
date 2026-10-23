@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_w4ftw"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="9_ywa3q"]
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="10_q6tep"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_8cv4o"]
 
 [sub_resource type="Resource" id="Resource_f1126"]
 script = ExtResource("1_fjmek")
@@ -64,6 +65,7 @@ display_name = "Noctowl"
 dex = 164
 types = Array[ExtResource("4_gwnfu")]([ExtResource("5_ochl2"), ExtResource("6_x1cv1")])
 learnset = Array[ExtResource("1_fjmek")]([SubResource("Resource_f1126"), SubResource("Resource_mergt"), SubResource("Resource_36stn"), SubResource("Resource_p808l"), SubResource("Resource_6f6et"), SubResource("Resource_s2hqh"), SubResource("Resource_lrpsh"), SubResource("Resource_8ajm7"), SubResource("Resource_ivhmm")])
+temperament = ExtResource("13_8cv4o")
 genus = "Pokémon Búho"
 pokedex_entry = "Noctowl no falla a la hora de cazar a su presa en la oscuridad. El éxito se lo debe a una vista privilegiada, que le permite ver donde apenas hay luz, y a las ligeras y flexibles alas que tiene, que no hacen ruido alguno al volar."
 height_m = 1.6

@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="12_m7828"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="13_m1asb"]
 [ext_resource type="Resource" path="res://data/moves/puno_meteoro.tres" id="14_xegqh"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="17_0k0ot"]
 
 [sub_resource type="Resource" id="Resource_05u3v"]
 script = ExtResource("1_r3qm6")
@@ -89,6 +90,7 @@ display_name = "Clefairy"
 dex = 35
 types = Array[ExtResource("4_a5ywf")]([ExtResource("5_qqsvh")])
 learnset = Array[ExtResource("1_r3qm6")]([SubResource("Resource_05u3v"), SubResource("Resource_qt8rt"), SubResource("Resource_tvvgh"), SubResource("Resource_0mc34"), SubResource("Resource_jsjjs"), SubResource("Resource_dy2fv"), SubResource("Resource_ucg5h"), SubResource("Resource_n5md8"), SubResource("Resource_lohrg"), SubResource("Resource_wmdgw"), SubResource("Resource_j7ppe"), SubResource("Resource_y50ob"), SubResource("Resource_ieb05")])
+temperament = ExtResource("17_0k0ot")
 genus = "Pokémon Hada"
 pokedex_entry = "Siempre que hay luna llena, salen en grupo para jugar. Al amanecer, los Clefairy, agotados, regresan a sus refugios de montaña para dormir acurrucados unos con otros."
 height_m = 0.6

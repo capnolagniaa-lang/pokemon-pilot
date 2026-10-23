@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="7_uy3bo"]
 [ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="8_at2we"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_uhm5y"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_h46v1"]
 
 [sub_resource type="Resource" id="Resource_hl1np"]
 script = ExtResource("1_6u2tn")
@@ -60,6 +61,7 @@ display_name = "Remoraid"
 dex = 223
 types = Array[ExtResource("4_4o3jt")]([ExtResource("5_vwgch")])
 learnset = Array[ExtResource("1_6u2tn")]([SubResource("Resource_hl1np"), SubResource("Resource_l4fjg"), SubResource("Resource_41vh1"), SubResource("Resource_u0j7n"), SubResource("Resource_rlgod"), SubResource("Resource_7oi3o"), SubResource("Resource_byi80"), SubResource("Resource_ysiht")])
+temperament = ExtResource("12_h46v1")
 genus = "Pokémon Reactor"
 pokedex_entry = "Remoraid traga agua y usa los abdominales para lanzarla a gran velocidad contra una presa que esté en el aire. Cuando está a punto de evolucionar, este Pokémon nada en los ríos corriente abajo."
 height_m = 0.6

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="10_ajiqx"]
 [ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="11_16h1r"]
 [ext_resource type="Resource" path="res://data/moves/deseo_oculto.tres" id="12_rsnhl"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_gi3bw"]
 
 [sub_resource type="Resource" id="Resource_02vo2"]
 script = ExtResource("1_rpvho")
@@ -78,6 +79,7 @@ display_name = "Jirachi"
 dex = 385
 types = Array[ExtResource("4_1exnb")]([ExtResource("5_j0qrv"), ExtResource("6_gdb3n")])
 learnset = Array[ExtResource("1_rpvho")]([SubResource("Resource_02vo2"), SubResource("Resource_2r5ro"), SubResource("Resource_8yxjv"), SubResource("Resource_iiohi"), SubResource("Resource_gyk8m"), SubResource("Resource_6o1tk"), SubResource("Resource_xylpd"), SubResource("Resource_lna7r"), SubResource("Resource_vwyb1"), SubResource("Resource_yemuf"), SubResource("Resource_ourf5")])
+temperament = ExtResource("15_gi3bw")
 genus = "Pokémon Deseo"
 pokedex_entry = "Cuenta la leyenda que Jirachi hará realidad cualquier deseo que se le escriba en las notas que lleva en la cabeza cuando las lea tras salir de su letargo. Si este Pokémon siente peligro, luchará sin haber llegado a despertarse."
 height_m = 0.3

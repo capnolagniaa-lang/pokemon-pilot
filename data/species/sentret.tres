@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/senuelo.tres" id="8_d5725"]
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_r030h"]
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_6jwh0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_gh2mf"]
 
 [sub_resource type="Resource" id="Resource_hj0g6"]
 script = ExtResource("1_hpr8o")
@@ -66,6 +67,7 @@ display_name = "Sentret"
 dex = 161
 types = Array[ExtResource("4_gb2yi")]([ExtResource("5_7ipvm")])
 learnset = Array[ExtResource("1_hpr8o")]([SubResource("Resource_hj0g6"), SubResource("Resource_fvfrl"), SubResource("Resource_hg0o4"), SubResource("Resource_bpmus"), SubResource("Resource_j0m07"), SubResource("Resource_7y7jj"), SubResource("Resource_cnm8p"), SubResource("Resource_mq314"), SubResource("Resource_4m28o")])
+temperament = ExtResource("13_gh2mf")
 genus = "Pokémon Explorador"
 pokedex_entry = "Sentret no duerme a menos que otro haga guardia. El que hace de centinela lo despertará al mínimo signo de peligro. Cuando este Pokémon se separa de su manada, es incapaz de echarse a dormir, presa del miedo."
 height_m = 0.8

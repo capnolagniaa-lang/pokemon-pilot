@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_fokd6"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_id08p"]
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_nxoq4"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_m8bt3"]
 
 [sub_resource type="Resource" id="Resource_0cijf"]
 script = ExtResource("1_dlkh5")
@@ -70,6 +71,7 @@ display_name = "Rhydon"
 dex = 112
 types = Array[ExtResource("4_fgesw")]([ExtResource("5_kpx6n"), ExtResource("6_sin2a")])
 learnset = Array[ExtResource("1_dlkh5")]([SubResource("Resource_0cijf"), SubResource("Resource_2inb7"), SubResource("Resource_f20l4"), SubResource("Resource_op1i3"), SubResource("Resource_k4hu8"), SubResource("Resource_d8pou"), SubResource("Resource_pcrmc"), SubResource("Resource_7mcdc"), SubResource("Resource_kbf35"), SubResource("Resource_vnfy2")])
+temperament = ExtResource("14_m8bt3")
 genus = "Pokémon Taladro"
 pokedex_entry = "Rhydon tiene un cuerno capaz de horadar hasta un diamante en bruto y con una sacudida de la cola puede derribar un edificio. La piel de este Pokémon es muy fuerte; ni los disparos de un cañón le arañarían."
 height_m = 1.9

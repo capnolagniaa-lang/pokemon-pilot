@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="12_74w4d"]
 [ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="13_0wxb1"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="14_6et0a"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_adnw3"]
 
 [sub_resource type="Resource" id="Resource_y7j3u"]
 script = ExtResource("1_jsl5v")
@@ -90,6 +91,7 @@ display_name = "Sableye"
 dex = 302
 types = Array[ExtResource("4_738da")]([ExtResource("5_45qe7"), ExtResource("6_f6eb1")])
 learnset = Array[ExtResource("1_jsl5v")]([SubResource("Resource_y7j3u"), SubResource("Resource_xqpnh"), SubResource("Resource_y0tv1"), SubResource("Resource_x65jf"), SubResource("Resource_c0rj1"), SubResource("Resource_pbspu"), SubResource("Resource_5c7v8"), SubResource("Resource_ii3n3"), SubResource("Resource_nfy4r"), SubResource("Resource_ruoar"), SubResource("Resource_kaa1m"), SubResource("Resource_adp5x"), SubResource("Resource_sup6t")])
+temperament = ExtResource("17_adnw3")
 genus = "Pokémon Oscuridad"
 pokedex_entry = "Los Sableye hacen una vida muy tranquila en cavernas, pero son muy temidos. Se dice que, cuando los ojos les brillan de manera siniestra, están robándole el alma a alguien."
 height_m = 0.5

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="9_5devk"]
 [ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="10_80u6o"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_wmaki"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_qjoxq"]
 
 [sub_resource type="Resource" id="Resource_s6bfv"]
 script = ExtResource("1_d61oy")
@@ -72,6 +73,7 @@ display_name = "Girafarig"
 dex = 203
 types = Array[ExtResource("4_fe55y")]([ExtResource("5_dhiqq"), ExtResource("6_t2y4y")])
 learnset = Array[ExtResource("1_d61oy")]([SubResource("Resource_s6bfv"), SubResource("Resource_5iiek"), SubResource("Resource_dfdtu"), SubResource("Resource_ixf3q"), SubResource("Resource_mqnyp"), SubResource("Resource_425gc"), SubResource("Resource_gksb1"), SubResource("Resource_7g7hu"), SubResource("Resource_8vflj"), SubResource("Resource_ustsx")])
+temperament = ExtResource("14_qjoxq")
 genus = "Pokémon Gran Cuello"
 pokedex_entry = "Girafarig tiene un cerebro también en la cabeza de la cola que reacciona atacando ante olores y sonidos. Cuando alguien se acerca a este Pokémon por la espalda, puede provocar que la cabeza trasera se abalance y lo muerda."
 height_m = 1.5

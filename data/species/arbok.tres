@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/reserva.tres" id="10_kchwe"]
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_wxw4g"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_yd8y3"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_nsaba"]
 
 [sub_resource type="Resource" id="Resource_1m562"]
 script = ExtResource("1_jjru0")
@@ -75,6 +76,7 @@ display_name = "Arbok"
 dex = 24
 types = Array[ExtResource("4_ctxtg")]([ExtResource("5_fnsj0")])
 learnset = Array[ExtResource("1_jjru0")]([SubResource("Resource_1m562"), SubResource("Resource_e2yok"), SubResource("Resource_brxuf"), SubResource("Resource_ubevf"), SubResource("Resource_ry6nw"), SubResource("Resource_0rjw0"), SubResource("Resource_u66al"), SubResource("Resource_s5lhc"), SubResource("Resource_2f3s4"), SubResource("Resource_llnfp"), SubResource("Resource_c50xq")])
+temperament = ExtResource("15_nsaba")
 genus = "Pokémon Cobra"
 pokedex_entry = "Este Pokémon es tremendamente fuerte, puede oprimir cualquier cosa con su cuerpo y hasta es capaz de estrujar un barril de acero. Una vez que Arbok se enrosca a su víctima, no hay forma de escapar de su asfixiante abrazo."
 height_m = 3.5

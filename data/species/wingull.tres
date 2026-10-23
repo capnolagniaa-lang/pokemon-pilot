@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="7_pwigo"]
 [ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="8_6lsgc"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_syuat"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_vy8e8"]
 
 [sub_resource type="Resource" id="Resource_r0pac"]
 script = ExtResource("1_le4pc")
@@ -60,6 +61,7 @@ display_name = "Wingull"
 dex = 278
 types = Array[ExtResource("4_85dm2")]([ExtResource("5_0y2wj"), ExtResource("6_hohtl")])
 learnset = Array[ExtResource("1_le4pc")]([SubResource("Resource_r0pac"), SubResource("Resource_5vds5"), SubResource("Resource_sf50w"), SubResource("Resource_0rigk"), SubResource("Resource_ydhig"), SubResource("Resource_qcp6o"), SubResource("Resource_bgq1c"), SubResource("Resource_7jq7i")])
+temperament = ExtResource("12_vy8e8")
 genus = "Pokémon Gaviota"
 pokedex_entry = "Wingull tiene la costumbre de llevar a su presa y objetos de valor en el pico, y esconderlos en distintos sitios. Este Pokémon vuela dejándose llevar por las corrientes de aire como si fuera patinando por el cielo."
 height_m = 0.6

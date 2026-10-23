@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_kbr4c"]
 [ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="7_17m7n"]
 [ext_resource type="Resource" path="res://data/moves/latigo_cepa.tres" id="8_sdve0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="11_b5nq2"]
 
 [sub_resource type="Resource" id="Resource_phwet"]
 script = ExtResource("1_3mgp7")
@@ -49,6 +50,7 @@ display_name = "Victreebel"
 dex = 71
 types = Array[ExtResource("4_xcecf")]([ExtResource("5_7cs50"), ExtResource("6_kbr4c")])
 learnset = Array[ExtResource("1_3mgp7")]([SubResource("Resource_phwet"), SubResource("Resource_fkh27"), SubResource("Resource_8fjf0"), SubResource("Resource_3rpin"), SubResource("Resource_tbfnb"), SubResource("Resource_orsqf"), SubResource("Resource_ua26p")])
+temperament = ExtResource("11_b5nq2")
 genus = "Pokémon Matamoscas"
 pokedex_entry = "Victreebel tiene una enredadera que le sale de la cabeza y que agita a modo de señuelo para atraer a sus presas y así engullirlas por sorpresa cuando estas se aproximan incautas."
 height_m = 1.7

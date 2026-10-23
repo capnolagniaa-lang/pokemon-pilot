@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/pin_misil.tres" id="7_cxdap"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="8_bwuu8"]
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="9_7suki"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_lpobg"]
 
 [sub_resource type="Resource" id="Resource_lwgf1"]
 script = ExtResource("1_sakgh")
@@ -61,6 +62,7 @@ display_name = "Beedrill"
 dex = 15
 types = Array[ExtResource("4_muvb4")]([ExtResource("5_4mpel"), ExtResource("6_ep388")])
 learnset = Array[ExtResource("1_sakgh")]([SubResource("Resource_lwgf1"), SubResource("Resource_q8yw8"), SubResource("Resource_bttsa"), SubResource("Resource_x2qrd"), SubResource("Resource_bmgg6"), SubResource("Resource_6xbj2"), SubResource("Resource_keexe"), SubResource("Resource_dxcnj")])
+temperament = ExtResource("12_lpobg")
 genus = "Pokémon Abeja Veneno"
 pokedex_entry = "Los Beedrill defienden su territorio a toda costa. No es conveniente acercarse a su colmena, por seguridad. Si se les molesta, todo un enjambre atacará ferozmente."
 height_m = 1.0

@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/aguante.tres" id="9_s0ds0"]
 [ext_resource type="Resource" path="res://data/moves/puno_mareo.tres" id="10_x2ntc"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="11_sruut"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_5bh0o"]
 
 [sub_resource type="Resource" id="Resource_aft81"]
 script = ExtResource("1_g0cvf")
@@ -71,6 +72,7 @@ display_name = "Kangaskhan"
 dex = 115
 types = Array[ExtResource("4_s0g1a")]([ExtResource("5_8su3g")])
 learnset = Array[ExtResource("1_g0cvf")]([SubResource("Resource_aft81"), SubResource("Resource_tjd7u"), SubResource("Resource_vj4yi"), SubResource("Resource_pjys6"), SubResource("Resource_5o4fu"), SubResource("Resource_aw702"), SubResource("Resource_ti0mg"), SubResource("Resource_oog0y"), SubResource("Resource_1wlyu"), SubResource("Resource_2te60")])
+temperament = ExtResource("14_5bh0o")
 genus = "Pokémon Maternal"
 pokedex_entry = "No es recomendable molestar ni intentar atrapar a crías de Kangaskhan mientras estén jugando, ya que seguro que su madre anda cerca y reaccionará con enfado y violencia."
 height_m = 2.2

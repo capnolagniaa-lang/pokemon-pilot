@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/fuego_sagrado.tres" id="9_a7ir0"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="10_s30h7"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="11_anceh"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_1ymji"]
 
 [sub_resource type="Resource" id="Resource_2mtfl"]
 script = ExtResource("1_dx7vc")
@@ -73,6 +74,7 @@ display_name = "Ho-Oh"
 dex = 250
 types = Array[ExtResource("4_rb12e")]([ExtResource("5_k3oes"), ExtResource("6_djeil")])
 learnset = Array[ExtResource("1_dx7vc")]([SubResource("Resource_2mtfl"), SubResource("Resource_mrwdy"), SubResource("Resource_5fwhh"), SubResource("Resource_yfi0u"), SubResource("Resource_rc73k"), SubResource("Resource_ljtar"), SubResource("Resource_fyug2"), SubResource("Resource_0d6xt"), SubResource("Resource_8fp0y"), SubResource("Resource_5eo1j")])
+temperament = ExtResource("14_1ymji")
 genus = "Pokémon Arcoíris"
 pokedex_entry = "El plumaje de Ho-Oh contiene siete colores que pueden apreciarse según el ángulo desde el que les dé la luz. Dicen que sus plumas dan felicidad a quienes las llevan y, también, que este Pokémon vive a los pies del arco iris."
 height_m = 3.8

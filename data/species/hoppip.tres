@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="9_i3v6f"]
 [ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="10_ius75"]
 [ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="11_s5fad"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_lnrit"]
 
 [sub_resource type="Resource" id="Resource_4e0ms"]
 script = ExtResource("1_osmj4")
@@ -73,6 +74,7 @@ display_name = "Hoppip"
 dex = 187
 types = Array[ExtResource("4_cp1l1")]([ExtResource("5_48476"), ExtResource("6_3tbkm")])
 learnset = Array[ExtResource("1_osmj4")]([SubResource("Resource_4e0ms"), SubResource("Resource_p24nc"), SubResource("Resource_4qg0y"), SubResource("Resource_6b22c"), SubResource("Resource_mo47h"), SubResource("Resource_2imy4"), SubResource("Resource_48pxq"), SubResource("Resource_rmtmh"), SubResource("Resource_g1uiu"), SubResource("Resource_geh07")])
+temperament = ExtResource("14_lnrit")
 genus = "Pokémon Algadón"
 pokedex_entry = "Este Pokémon flota en el aire y se deja llevar. Cuando percibe que el viento va a cambiar a fuerte, Hoppip entrelaza sus hojas con otros Hoppip para hacer resistencia y evitar salir volando por la fuerza de la corriente."
 height_m = 0.4

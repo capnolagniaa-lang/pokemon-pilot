@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_ux8rc"]
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="11_gxuqo"]
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="12_5qxl1"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_g4i83"]
 
 [sub_resource type="Resource" id="Resource_krfr0"]
 script = ExtResource("1_n2ilm")
@@ -76,6 +77,7 @@ display_name = "Jynx"
 dex = 124
 types = Array[ExtResource("4_rbybc")]([ExtResource("5_v65my"), ExtResource("6_b5tjo")])
 learnset = Array[ExtResource("1_n2ilm")]([SubResource("Resource_krfr0"), SubResource("Resource_xb75b"), SubResource("Resource_tew0i"), SubResource("Resource_lh3qa"), SubResource("Resource_bl108"), SubResource("Resource_05kph"), SubResource("Resource_dajxr"), SubResource("Resource_6muu5"), SubResource("Resource_k4sbh"), SubResource("Resource_xpy3w"), SubResource("Resource_8o3yl")])
+temperament = ExtResource("15_g4i83")
 genus = "Pokémon Forma Humana"
 pokedex_entry = "Jynx camina con ritmo, balanceándose y moviendo las caderas como si estuviera bailando. Realiza unos movimientos tan vistosos y atractivos que no hay quien pueda resistirse a mover las caderas."
 height_m = 1.4

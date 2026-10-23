@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_r6w7s"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="6_nmewo"]
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_wrw1h"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="9_sww1k"]
 
 [sub_resource type="Resource" id="Resource_7w3gf"]
 script = ExtResource("1_ysq12")
@@ -40,6 +41,7 @@ display_name = "Starmie"
 dex = 121
 types = Array[ExtResource("4_co3tm")]([ExtResource("5_r6w7s"), ExtResource("6_wrw1h")])
 learnset = Array[ExtResource("1_ysq12")]([SubResource("Resource_7w3gf"), SubResource("Resource_nid7v"), SubResource("Resource_c104x"), SubResource("Resource_khu48"), SubResource("Resource_nv3hh")])
+temperament = ExtResource("9_sww1k")
 genus = "Pokémon Misterioso"
 pokedex_entry = "La parte central de Starmie, el núcleo brillante, resplandece con siete colores distintos. Debido a su naturaleza luminosa, a este Pokémon se le ha dado el apelativo de la Gema del Mar."
 height_m = 1.1

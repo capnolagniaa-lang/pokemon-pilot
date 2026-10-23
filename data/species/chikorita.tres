@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="9_0spv3"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="10_fo5l8"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_rlnyl"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_judmp"]
 
 [sub_resource type="Resource" id="Resource_jybaw"]
 script = ExtResource("1_yw646")
@@ -71,6 +72,7 @@ display_name = "Chikorita"
 dex = 152
 types = Array[ExtResource("4_qiwn8")]([ExtResource("5_ov77l")])
 learnset = Array[ExtResource("1_yw646")]([SubResource("Resource_jybaw"), SubResource("Resource_6jfvp"), SubResource("Resource_ubsfg"), SubResource("Resource_81uvo"), SubResource("Resource_om2rv"), SubResource("Resource_mwxpj"), SubResource("Resource_50ttg"), SubResource("Resource_44xgk"), SubResource("Resource_vyrmp"), SubResource("Resource_yt6qe")])
+temperament = ExtResource("14_judmp")
 genus = "Pokémon Hoja"
 pokedex_entry = "Al luchar, Chikorita agita la hoja que tiene para mantener a raya al rival. Pero, al mismo tiempo, libera una suave fragancia que apacigua el encuentro y crea un ambiente agradable y de amistad."
 height_m = 0.9

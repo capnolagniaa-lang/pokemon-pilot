@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="8_eb7sj"]
 [ext_resource type="Resource" path="res://data/moves/pico_taladro.tres" id="9_lv4r1"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_ryioy"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_0xs2p"]
 
 [sub_resource type="Resource" id="Resource_aeqw6"]
 script = ExtResource("1_6ajrw")
@@ -66,6 +67,7 @@ display_name = "Doduo"
 dex = 84
 types = Array[ExtResource("4_107mg")]([ExtResource("5_k73hy"), ExtResource("6_yb8jw")])
 learnset = Array[ExtResource("1_6ajrw")]([SubResource("Resource_aeqw6"), SubResource("Resource_gn6pg"), SubResource("Resource_3wwjt"), SubResource("Resource_1imqp"), SubResource("Resource_lnp8d"), SubResource("Resource_otgyk"), SubResource("Resource_n2qjx"), SubResource("Resource_tdovp"), SubResource("Resource_nlgqq")])
+temperament = ExtResource("13_0xs2p")
 genus = "Pokémon Ave Gemela"
 pokedex_entry = "Las dos cabezas de Doduo duermen de forma independiente, siempre por turnos. Mientras una duerme, la otra hace de centinela por si aparecen enemigos."
 height_m = 1.4

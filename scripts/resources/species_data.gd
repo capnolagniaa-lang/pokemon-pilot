@@ -17,6 +17,10 @@ extends Resource
 ## compatibilidad: los 4 del kit (o los sueltos) en los niveles 1, 1, 3 y 5.
 @export var learnset: Array[LearnsetEntry] = []
 
+## Temperamento de los salvajes de esta especie (agresivo, territorial, tímido, curioso). Lo asigna
+## tools/assign_temperaments.gd (heurística + ajustes a mano); si falta, se usa territorial.
+@export var temperament: Temperament
+
 @export_group("Pokédex")
 ## Categoría ("Pokémon Semilla") y descripción en español (PokeAPI). Altura y peso oficiales.
 @export var genus: String = ""

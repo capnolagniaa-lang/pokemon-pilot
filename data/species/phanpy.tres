@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_qcihi"]
 [ext_resource type="Resource" path="res://data/moves/aguante.tres" id="9_5jcws"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_bfakx"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_1traa"]
 
 [sub_resource type="Resource" id="Resource_lek2e"]
 script = ExtResource("1_1d3jk")
@@ -64,6 +65,7 @@ display_name = "Phanpy"
 dex = 231
 types = Array[ExtResource("4_f0o5y")]([ExtResource("5_06th3")])
 learnset = Array[ExtResource("1_1d3jk")]([SubResource("Resource_lek2e"), SubResource("Resource_k8jpt"), SubResource("Resource_58uql"), SubResource("Resource_2ngaf"), SubResource("Resource_3xtl5"), SubResource("Resource_4sri1"), SubResource("Resource_aj5dl"), SubResource("Resource_da478"), SubResource("Resource_2vif3")])
+temperament = ExtResource("13_1traa")
 genus = "Pokémon Narizotas"
 pokedex_entry = "Phanpy cava un agujero profundo para hacer su nido en el suelo, en la ribera de los ríos, y marca con la trompa la zona para que el resto vea que ese terreno ya está ocupado."
 height_m = 0.5

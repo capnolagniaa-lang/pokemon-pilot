@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/senuelo.tres" id="8_3uky7"]
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_gbqid"]
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_mqca4"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_nyutk"]
 
 [sub_resource type="Resource" id="Resource_xmptc"]
 script = ExtResource("1_bj13b")
@@ -64,6 +65,7 @@ display_name = "Furret"
 dex = 162
 types = Array[ExtResource("4_ks8o1")]([ExtResource("5_jkx2l")])
 learnset = Array[ExtResource("1_bj13b")]([SubResource("Resource_xmptc"), SubResource("Resource_3qalq"), SubResource("Resource_5sjeh"), SubResource("Resource_0uv23"), SubResource("Resource_ycbs3"), SubResource("Resource_abp2o"), SubResource("Resource_otefn"), SubResource("Resource_gh2ps"), SubResource("Resource_ww8xq")])
+temperament = ExtResource("13_nyutk")
 genus = "Pokémon Alargado"
 pokedex_entry = "Furret es de constitución muy delgada. En combate le resulta útil porque puede escabullirse con habilidad por cualquier huequito y escapar. A pesar de que tiene patas cortas, es ágil y veloz."
 height_m = 1.8

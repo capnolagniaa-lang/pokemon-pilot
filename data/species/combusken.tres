@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="11_5kx45"]
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="12_xaci6"]
 [ext_resource type="Resource" path="res://data/moves/gancho_alto.tres" id="13_y3xvn"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_dbixs"]
 
 [sub_resource type="Resource" id="Resource_eeqek"]
 script = ExtResource("1_3jtkr")
@@ -82,6 +83,7 @@ display_name = "Combusken"
 dex = 256
 types = Array[ExtResource("4_7ihh5")]([ExtResource("5_35g28"), ExtResource("6_byqqk")])
 learnset = Array[ExtResource("1_3jtkr")]([SubResource("Resource_eeqek"), SubResource("Resource_8etto"), SubResource("Resource_64i1y"), SubResource("Resource_yfqns"), SubResource("Resource_28wux"), SubResource("Resource_6mgwc"), SubResource("Resource_wlvq8"), SubResource("Resource_arvov"), SubResource("Resource_4ta0n"), SubResource("Resource_14qv1"), SubResource("Resource_ua61c"), SubResource("Resource_ocanv")])
+temperament = ExtResource("16_dbixs")
 genus = "Pokémon Ave Corral"
 pokedex_entry = "Combusken fortalece las piernas corriendo por llanos y montañas. Este Pokémon tiene en las extremidades inferiores tanto fuerza como velocidad. Puede dar hasta diez patadas por segundo."
 height_m = 0.9

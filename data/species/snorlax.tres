@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/antojo.tres" id="13_yob4f"]
 [ext_resource type="Resource" path="res://data/moves/rodar.tres" id="14_bmmap"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="15_fi85d"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="18_5mnvq"]
 
 [sub_resource type="Resource" id="Resource_b7qo2"]
 script = ExtResource("1_wwtog")
@@ -96,6 +97,7 @@ display_name = "Snorlax"
 dex = 143
 types = Array[ExtResource("4_rvm3q")]([ExtResource("5_542x3")])
 learnset = Array[ExtResource("1_wwtog")]([SubResource("Resource_b7qo2"), SubResource("Resource_c70ic"), SubResource("Resource_dqjld"), SubResource("Resource_jxkug"), SubResource("Resource_lnfc8"), SubResource("Resource_8j2he"), SubResource("Resource_5llbt"), SubResource("Resource_6fwsy"), SubResource("Resource_u0tir"), SubResource("Resource_e187q"), SubResource("Resource_yadxc"), SubResource("Resource_0cem8"), SubResource("Resource_pnhap"), SubResource("Resource_pwuo4")])
+temperament = ExtResource("18_5mnvq")
 genus = "Pokémon Dormir"
 pokedex_entry = "Un día cualquiera en la vida de Snorlax consiste en comer y dormir. Es un Pokémon tan dócil que es fácil ver niños usando la gran panza que tiene como lugar de juegos."
 height_m = 2.1

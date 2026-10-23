@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/tajo_cruzado.tres" id="11_lstyw"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="12_iox03"]
 [ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="13_4va3a"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_u1o4a"]
 
 [sub_resource type="Resource" id="Resource_f8wxr"]
 script = ExtResource("1_cs6iw")
@@ -82,6 +83,7 @@ display_name = "Machamp"
 dex = 68
 types = Array[ExtResource("4_vfgdf")]([ExtResource("5_gajyf")])
 learnset = Array[ExtResource("1_cs6iw")]([SubResource("Resource_f8wxr"), SubResource("Resource_pjd6i"), SubResource("Resource_4cvqx"), SubResource("Resource_10cbf"), SubResource("Resource_qs1fv"), SubResource("Resource_l63ow"), SubResource("Resource_2ajte"), SubResource("Resource_no02y"), SubResource("Resource_dxsio"), SubResource("Resource_dpp8y"), SubResource("Resource_7i1l8"), SubResource("Resource_mvtpt")])
+temperament = ExtResource("16_u1o4a")
 genus = "Pokémon Superpoder"
 pokedex_entry = "Machamp es tan fuerte que puede derribar lo que quiera. Sin embargo, cuando tiene que realizar una tarea que requiere delicadeza y destreza, se le enredan los brazos. Este Pokémon pasa a la acción sin pensar."
 height_m = 1.6

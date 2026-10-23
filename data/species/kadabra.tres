@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/imitacion.tres" id="10_54bce"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_45g8w"]
 [ext_resource type="Resource" path="res://data/moves/truco.tres" id="12_72s13"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_slu1k"]
 
 [sub_resource type="Resource" id="Resource_da14g"]
 script = ExtResource("1_qpgwr")
@@ -76,6 +77,7 @@ display_name = "Kadabra"
 dex = 64
 types = Array[ExtResource("4_mkiey")]([ExtResource("5_5spt7")])
 learnset = Array[ExtResource("1_qpgwr")]([SubResource("Resource_da14g"), SubResource("Resource_5akc4"), SubResource("Resource_ybsgq"), SubResource("Resource_60a6f"), SubResource("Resource_k262d"), SubResource("Resource_px3sa"), SubResource("Resource_q050k"), SubResource("Resource_54yni"), SubResource("Resource_3bdcu"), SubResource("Resource_lj1au"), SubResource("Resource_2sg5h")])
+temperament = ExtResource("15_slu1k")
 genus = "Pokémon Psi"
 pokedex_entry = "Kadabra emite unas ondas alfa muy particulares que provocan dolores de cabeza a los demás. Solo aquellos que tengan gran poder mental podrán optar a ser Entrenador de este Pokémon."
 height_m = 1.3

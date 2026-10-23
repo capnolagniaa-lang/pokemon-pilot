@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_s34q6"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_frv5u"]
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="12_ejc7m"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_600os"]
 
 [sub_resource type="Resource" id="Resource_s72f6"]
 script = ExtResource("1_4slof")
@@ -77,6 +78,7 @@ display_name = "Slowpoke"
 dex = 79
 types = Array[ExtResource("4_dclml")]([ExtResource("5_w8mec"), ExtResource("6_fql34")])
 learnset = Array[ExtResource("1_4slof")]([SubResource("Resource_s72f6"), SubResource("Resource_162gd"), SubResource("Resource_0tvtp"), SubResource("Resource_h47da"), SubResource("Resource_etj64"), SubResource("Resource_mp2wk"), SubResource("Resource_y022q"), SubResource("Resource_qp57b"), SubResource("Resource_fk67l"), SubResource("Resource_s2xdy"), SubResource("Resource_8j8v5")])
+temperament = ExtResource("15_600os")
 genus = "Pokémon Atontado"
 pokedex_entry = "Slowpoke usa la cola para atrapar a sus presas metiéndola bajo el agua en las riberas de los ríos. Con todo, es olvidadizo, se le puede pasar lo que estaba haciendo y quedarse días enteros holgazaneando en la orilla."
 height_m = 1.2

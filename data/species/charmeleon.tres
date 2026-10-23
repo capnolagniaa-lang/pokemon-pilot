@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_1fke2"]
 [ext_resource type="Resource" path="res://data/moves/furia_dragon.tres" id="10_n82xw"]
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="11_58k73"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_k46cf"]
 
 [sub_resource type="Resource" id="Resource_p7upj"]
 script = ExtResource("1_ah8rh")
@@ -70,6 +71,7 @@ display_name = "Charmeleon"
 dex = 5
 types = Array[ExtResource("4_i6kif")]([ExtResource("5_uda8v")])
 learnset = Array[ExtResource("1_ah8rh")]([SubResource("Resource_p7upj"), SubResource("Resource_shyy1"), SubResource("Resource_tkcgp"), SubResource("Resource_kd7jq"), SubResource("Resource_dfc3o"), SubResource("Resource_td7q1"), SubResource("Resource_r4umk"), SubResource("Resource_md2ao"), SubResource("Resource_j226s"), SubResource("Resource_08q2m")])
+temperament = ExtResource("14_k46cf")
 genus = "Pokémon Llama"
 pokedex_entry = "Charmeleon no tiene reparo en acabar con su rival usando las afiladas garras que tiene. Si su enemigo es fuerte, se vuelve agresivo, y la llama que tiene en el extremo de la cola empieza a arder con mayor intensidad tornándose azulada."
 height_m = 1.1

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="11_vuoy3"]
 [ext_resource type="Resource" path="res://data/moves/ataque_oseo.tres" id="12_3bfnn"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_yvnfw"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_52ujn"]
 
 [sub_resource type="Resource" id="Resource_3a3a3"]
 script = ExtResource("1_1isj0")
@@ -81,6 +82,7 @@ display_name = "Marowak"
 dex = 105
 types = Array[ExtResource("4_qg6wl")]([ExtResource("5_if0to")])
 learnset = Array[ExtResource("1_1isj0")]([SubResource("Resource_3a3a3"), SubResource("Resource_jbhs5"), SubResource("Resource_bsj20"), SubResource("Resource_rhode"), SubResource("Resource_b7sor"), SubResource("Resource_m30s6"), SubResource("Resource_wclq0"), SubResource("Resource_jkavp"), SubResource("Resource_q434i"), SubResource("Resource_s0bxd"), SubResource("Resource_2g3po"), SubResource("Resource_fewq0")])
+temperament = ExtResource("16_52ujn")
 genus = "Pokémon Apilahueso"
 pokedex_entry = "Marowak es la forma evolucionada de Cubone. Es más fuerte porque ha superado la pena por la pérdida de su madre. El ánimo de este Pokémon, ya curtido y fortalecido, no es muy fácil de alterar."
 height_m = 1.0

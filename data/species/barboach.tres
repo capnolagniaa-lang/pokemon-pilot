@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_78y5n"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="11_7l8cn"]
 [ext_resource type="Resource" path="res://data/moves/fisura.tres" id="12_0gf08"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_5cx4e"]
 
 [sub_resource type="Resource" id="Resource_di35f"]
 script = ExtResource("1_sndbc")
@@ -79,6 +80,7 @@ display_name = "Barboach"
 dex = 339
 types = Array[ExtResource("4_yxx5e")]([ExtResource("5_yj6m0"), ExtResource("6_p4j6g")])
 learnset = Array[ExtResource("1_sndbc")]([SubResource("Resource_di35f"), SubResource("Resource_tvnce"), SubResource("Resource_qndsf"), SubResource("Resource_euusq"), SubResource("Resource_sshug"), SubResource("Resource_hr3l6"), SubResource("Resource_g0kbf"), SubResource("Resource_rl2wt"), SubResource("Resource_nxwsk"), SubResource("Resource_belxw"), SubResource("Resource_blb5j")])
+temperament = ExtResource("15_5cx4e")
 genus = "Pokémon Bigotudo"
 pokedex_entry = "Barboach tiene unos bigotes sensibles que le sirven de infalible radar. Este Pokémon se sumerge en lodo y solo deja los bigotes por fuera de la superficie, al acecho, mientras espera a que llegue su presa."
 height_m = 0.4

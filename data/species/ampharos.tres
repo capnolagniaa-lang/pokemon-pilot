@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/puno_trueno.tres" id="7_ymdoj"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="8_gyf3c"]
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="9_atnft"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_1wxad"]
 
 [sub_resource type="Resource" id="Resource_25e16"]
 script = ExtResource("1_c3xnl")
@@ -57,6 +58,7 @@ display_name = "Ampharos"
 dex = 181
 types = Array[ExtResource("4_25mql")]([ExtResource("5_fxgtu")])
 learnset = Array[ExtResource("1_c3xnl")]([SubResource("Resource_25e16"), SubResource("Resource_mnenl"), SubResource("Resource_krmqx"), SubResource("Resource_7l8we"), SubResource("Resource_o87c5"), SubResource("Resource_2jtca"), SubResource("Resource_u1e6m"), SubResource("Resource_ksih1")])
+temperament = ExtResource("12_1wxad")
 genus = "Pokémon Luz"
 pokedex_entry = "Ampharos desprende tanta luz que es posible verle hasta desde el espacio. Antes, la gente usaba su luz como sistema de comunicación para enviarse señales."
 height_m = 1.4

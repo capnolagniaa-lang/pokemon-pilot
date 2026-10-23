@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_xal6w"]
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="10_2frlm"]
 [ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="11_tjhc0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_hrwu8"]
 
 [sub_resource type="Resource" id="Resource_vqq25"]
 script = ExtResource("1_hnycp")
@@ -72,6 +73,7 @@ display_name = "Nosepass"
 dex = 299
 types = Array[ExtResource("4_0bh25")]([ExtResource("5_pborl")])
 learnset = Array[ExtResource("1_hnycp")]([SubResource("Resource_vqq25"), SubResource("Resource_dlakl"), SubResource("Resource_jlqq5"), SubResource("Resource_2and2"), SubResource("Resource_pd4d7"), SubResource("Resource_sy7vy"), SubResource("Resource_cre7y"), SubResource("Resource_dv75f"), SubResource("Resource_g310k"), SubResource("Resource_gfdgp")])
+temperament = ExtResource("14_hrwu8")
 genus = "Pokémon Brújula"
 pokedex_entry = "Nosepass siempre está con la nariz magnética que tiene orientada hacia el norte. Si se encuentra con otro ejemplar de su especie, no puede mirarle de frente porque sus polos magnéticos se repelen."
 height_m = 1.0

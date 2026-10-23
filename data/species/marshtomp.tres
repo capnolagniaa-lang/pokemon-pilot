@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="12_oy6v4"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="13_yvxrj"]
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="14_t1u17"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_48xsx"]
 
 [sub_resource type="Resource" id="Resource_56rqg"]
 script = ExtResource("1_0wnka")
@@ -88,6 +89,7 @@ display_name = "Marshtomp"
 dex = 259
 types = Array[ExtResource("4_60m3d")]([ExtResource("5_86i0n"), ExtResource("6_helvy")])
 learnset = Array[ExtResource("1_0wnka")]([SubResource("Resource_56rqg"), SubResource("Resource_f422j"), SubResource("Resource_q5jqd"), SubResource("Resource_ycpd1"), SubResource("Resource_v12um"), SubResource("Resource_kxwt2"), SubResource("Resource_nyvxa"), SubResource("Resource_qxmj1"), SubResource("Resource_g457d"), SubResource("Resource_kleij"), SubResource("Resource_vlxib"), SubResource("Resource_2agvb"), SubResource("Resource_p4k73")])
+temperament = ExtResource("17_48xsx")
 genus = "Pokémon Pez Lodo"
 pokedex_entry = "El cuerpo de Marshtomp está cubierto por una fina película pegajosa gracias a la cual puede vivir en tierra. Cuando la marea está baja, a este Pokémon le encanta jugar en el fango."
 height_m = 0.7

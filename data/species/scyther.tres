@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="10_51c4y"]
 [ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="11_qgasg"]
 [ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="12_ayj1e"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_2wps2"]
 
 [sub_resource type="Resource" id="Resource_l56as"]
 script = ExtResource("1_xhtbu")
@@ -78,6 +79,7 @@ display_name = "Scyther"
 dex = 123
 types = Array[ExtResource("4_d5fm2")]([ExtResource("5_qdvv0"), ExtResource("6_abd5b")])
 learnset = Array[ExtResource("1_xhtbu")]([SubResource("Resource_l56as"), SubResource("Resource_dhidr"), SubResource("Resource_t1ad2"), SubResource("Resource_urr5o"), SubResource("Resource_e645l"), SubResource("Resource_1oks1"), SubResource("Resource_3ixyn"), SubResource("Resource_c4gx4"), SubResource("Resource_raf7t"), SubResource("Resource_1w82n"), SubResource("Resource_tdfxy")])
+temperament = ExtResource("15_2wps2")
 genus = "Pokémon Mantis"
 pokedex_entry = "Es espectacular ver lo rápido que es Scyther. Su increíble velocidad refuerza el efecto del par de guadañas que tiene en los brazos, que ya son de por sí contundentes; rebanan gruesos troncos de un tajo."
 height_m = 1.5

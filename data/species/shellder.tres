@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="8_qhdjq"]
 [ext_resource type="Resource" path="res://data/moves/tenaza.tres" id="9_8bpos"]
 [ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="10_aeysi"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_o37bn"]
 
 [sub_resource type="Resource" id="Resource_6jmpf"]
 script = ExtResource("1_aui41")
@@ -65,6 +66,7 @@ display_name = "Shellder"
 dex = 90
 types = Array[ExtResource("4_6yt1b")]([ExtResource("5_ckhtj")])
 learnset = Array[ExtResource("1_aui41")]([SubResource("Resource_6jmpf"), SubResource("Resource_in5xc"), SubResource("Resource_ul4tn"), SubResource("Resource_5nqg5"), SubResource("Resource_7jyq5"), SubResource("Resource_3mijg"), SubResource("Resource_slxea"), SubResource("Resource_e1sg8"), SubResource("Resource_xatfi")])
+temperament = ExtResource("13_o37bn")
 genus = "Pokémon Bivalvo"
 pokedex_entry = "Por la noche, este Pokémon usa la ancha lengua que tiene para hacer un agujero en el fondo del mar y echarse a dormir. Mientras duerme, Shellder cierra la concha, pero deja la lengua por fuera."
 height_m = 0.3

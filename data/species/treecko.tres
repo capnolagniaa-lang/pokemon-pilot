@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="10_fci2h"]
 [ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="11_drcyb"]
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="12_6h3q8"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_b2wdc"]
 
 [sub_resource type="Resource" id="Resource_kpxgy"]
 script = ExtResource("1_887tn")
@@ -77,6 +78,7 @@ display_name = "Treecko"
 dex = 252
 types = Array[ExtResource("4_mkst7")]([ExtResource("5_icphi")])
 learnset = Array[ExtResource("1_887tn")]([SubResource("Resource_kpxgy"), SubResource("Resource_1ejxw"), SubResource("Resource_4myp6"), SubResource("Resource_vb5j6"), SubResource("Resource_uq0oj"), SubResource("Resource_h2b4h"), SubResource("Resource_wfryr"), SubResource("Resource_3twwo"), SubResource("Resource_y0sas"), SubResource("Resource_206b3"), SubResource("Resource_rf476")])
+temperament = ExtResource("15_b2wdc")
 genus = "Pokémon Geco Bosque"
 pokedex_entry = "Treecko tiene unos ganchos pequeños en las plantas de los pies con los que puede escalar superficies verticales. Este Pokémon ataca dando un golpetazo con la cola."
 height_m = 0.5

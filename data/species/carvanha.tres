@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_b0pkl"]
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_qt2hb"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_jlaw3"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_ymxs2"]
 
 [sub_resource type="Resource" id="Resource_5asyk"]
 script = ExtResource("1_85n31")
@@ -72,6 +73,7 @@ display_name = "Carvanha"
 dex = 318
 types = Array[ExtResource("4_r5clt")]([ExtResource("5_58wvp"), ExtResource("6_w1c66")])
 learnset = Array[ExtResource("1_85n31")]([SubResource("Resource_5asyk"), SubResource("Resource_ibxax"), SubResource("Resource_sp8re"), SubResource("Resource_jfam8"), SubResource("Resource_74cli"), SubResource("Resource_0n2t6"), SubResource("Resource_mgxi7"), SubResource("Resource_kywlm"), SubResource("Resource_s4f5g"), SubResource("Resource_yb74a")])
+temperament = ExtResource("14_ymxs2")
 genus = "Pokémon Feroz"
 pokedex_entry = "Carvanha, gracias a las descomunales fauces de afilados colmillos que tiene, es capaz de hacer trizas un barco. Son muchas las naves que han sufrido el ataque de este Pokémon y han acabado naufragando."
 height_m = 0.8

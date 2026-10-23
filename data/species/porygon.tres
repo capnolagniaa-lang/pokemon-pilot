@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/triataque.tres" id="10_lj1e6"]
 [ext_resource type="Resource" path="res://data/moves/reciclaje.tres" id="11_eiqbh"]
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_35hx6"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_l84t5"]
 
 [sub_resource type="Resource" id="Resource_01bhu"]
 script = ExtResource("1_f77uk")
@@ -76,6 +77,7 @@ display_name = "Porygon"
 dex = 137
 types = Array[ExtResource("4_e2fqv")]([ExtResource("5_3pqji")])
 learnset = Array[ExtResource("1_f77uk")]([SubResource("Resource_01bhu"), SubResource("Resource_lwgfv"), SubResource("Resource_3s0gp"), SubResource("Resource_7biof"), SubResource("Resource_iudmr"), SubResource("Resource_bhye4"), SubResource("Resource_7wsjc"), SubResource("Resource_rdb5h"), SubResource("Resource_wvurm"), SubResource("Resource_ounrt"), SubResource("Resource_iswtt")])
+temperament = ExtResource("15_l84t5")
 genus = "Pokémon Virtual"
 pokedex_entry = "Porygon es capaz de convertirse otra vez en datos informáticos y de entrar en el ciberespacio. Tiene protección anticopia, así que es imposible duplicarlo."
 height_m = 0.8

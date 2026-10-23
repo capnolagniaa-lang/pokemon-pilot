@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_getvn"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="6_qq6hd"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="7_iim7n"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_4ylja"]
 
 [sub_resource type="Resource" id="Resource_ardjm"]
 script = ExtResource("1_v5nd7")
@@ -48,6 +49,7 @@ display_name = "Mew"
 dex = 151
 types = Array[ExtResource("4_um5ub")]([ExtResource("5_getvn")])
 learnset = Array[ExtResource("1_v5nd7")]([SubResource("Resource_ardjm"), SubResource("Resource_tnj73"), SubResource("Resource_ihbmh"), SubResource("Resource_radtr"), SubResource("Resource_upxb1"), SubResource("Resource_kfcfd")])
+temperament = ExtResource("10_4ylja")
 genus = "Pokémon Nueva Especie"
 pokedex_entry = "Dicen que Mew posee el mapa genético de todos los Pokémon. Puede hacerse invisible cuando quiere, así que pasa desapercibido cada vez que se le acerca alguien."
 height_m = 0.4

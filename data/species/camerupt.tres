@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_kslxd"]
 [ext_resource type="Resource" path="res://data/moves/estallido.tres" id="11_v313n"]
 [ext_resource type="Resource" path="res://data/moves/fisura.tres" id="12_yvmf0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_8egvi"]
 
 [sub_resource type="Resource" id="Resource_m1nbn"]
 script = ExtResource("1_g6ktl")
@@ -76,6 +77,7 @@ display_name = "Camerupt"
 dex = 323
 types = Array[ExtResource("4_do3ye")]([ExtResource("5_52bxx"), ExtResource("6_nsubn")])
 learnset = Array[ExtResource("1_g6ktl")]([SubResource("Resource_m1nbn"), SubResource("Resource_gslw3"), SubResource("Resource_y0fay"), SubResource("Resource_eqbtg"), SubResource("Resource_lhp8w"), SubResource("Resource_ytnxd"), SubResource("Resource_5gsi4"), SubResource("Resource_knhiw"), SubResource("Resource_ql1ws"), SubResource("Resource_d3dyl"), SubResource("Resource_qru1v")])
+temperament = ExtResource("15_8egvi")
 genus = "Pokémon Erupción"
 pokedex_entry = "Camerupt encierra un volcán en su interior y magma de 10 000 °C le recorre el cuerpo. A veces, las jorobas de la espalda entran en erupción y escupen el abrasivo magma."
 height_m = 1.9

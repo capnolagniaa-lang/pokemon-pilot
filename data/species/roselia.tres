@@ -21,6 +21,7 @@
 [ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="14_8sj2u"]
 [ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="15_5slu0"]
 [ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="16_ex84v"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="19_ouki5"]
 
 [sub_resource type="Resource" id="Resource_rnr14"]
 script = ExtResource("1_uo24x")
@@ -103,6 +104,7 @@ display_name = "Roselia"
 dex = 315
 types = Array[ExtResource("4_35st1")]([ExtResource("5_rprff"), ExtResource("6_drg77")])
 learnset = Array[ExtResource("1_uo24x")]([SubResource("Resource_rnr14"), SubResource("Resource_e0fg0"), SubResource("Resource_k8ty1"), SubResource("Resource_4kxh3"), SubResource("Resource_j3mgs"), SubResource("Resource_swgta"), SubResource("Resource_xcf3u"), SubResource("Resource_0xe82"), SubResource("Resource_ujcbr"), SubResource("Resource_ebi1c"), SubResource("Resource_v0bna"), SubResource("Resource_1skkk"), SubResource("Resource_eo5f8"), SubResource("Resource_q2d02"), SubResource("Resource_00br1")])
+temperament = ExtResource("19_ouki5")
 genus = "Pokémon Espina"
 pokedex_entry = "Roselia lanza finas espinas a todo el que se le acerca con intención de robarle las flores de los brazos. El aroma de este Pokémon resulta relajante a los seres vivos."
 height_m = 0.3

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_brstk"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_7lxyt"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_gmc2c"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_cyhsh"]
 
 [sub_resource type="Resource" id="Resource_igout"]
 script = ExtResource("1_3juo2")
@@ -78,6 +79,7 @@ display_name = "Relicanth"
 dex = 369
 types = Array[ExtResource("4_eicyt")]([ExtResource("5_m24kl"), ExtResource("6_q8cae")])
 learnset = Array[ExtResource("1_3juo2")]([SubResource("Resource_igout"), SubResource("Resource_ab6eu"), SubResource("Resource_kny2d"), SubResource("Resource_4wva8"), SubResource("Resource_crsia"), SubResource("Resource_aajv0"), SubResource("Resource_vbmog"), SubResource("Resource_6wkph"), SubResource("Resource_pd0he"), SubResource("Resource_l4hwn"), SubResource("Resource_in73b")])
+temperament = ExtResource("15_cyhsh")
 genus = "Pokémon Longevo"
 pokedex_entry = "Relicanth pertenece a una especie de Pokémon que lleva millones de años sin cambiar de forma. Este ancestral Pokémon se alimenta de microorganismos por la boca desdentada que tiene."
 height_m = 1.0

@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="6_52w0f"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="7_1y6hl"]
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="8_wjn51"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="11_ycaup"]
 
 [sub_resource type="Resource" id="Resource_gglc6"]
 script = ExtResource("1_wok7x")
@@ -52,6 +53,7 @@ display_name = "Flaaffy"
 dex = 180
 types = Array[ExtResource("4_0lcgy")]([ExtResource("5_heltp")])
 learnset = Array[ExtResource("1_wok7x")]([SubResource("Resource_gglc6"), SubResource("Resource_a0tta"), SubResource("Resource_1iy7k"), SubResource("Resource_j5qm8"), SubResource("Resource_lqvlf"), SubResource("Resource_mh7pj"), SubResource("Resource_k6k8y")])
+temperament = ExtResource("11_ycaup")
 genus = "Pokémon Lana"
 pokedex_entry = "La calidad de la lana de Flaaffy varía para poder generar mucha electricidad estática con muy poca cantidad de lana. Las zonas suaves de la piel en las que no tiene pelaje están protegidas contra la electricidad."
 height_m = 0.8

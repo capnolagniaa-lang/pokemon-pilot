@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/reserva.tres" id="11_twki2"]
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="12_aie5i"]
 [ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="13_bdbfw"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_pie60"]
 
 [sub_resource type="Resource" id="Resource_tywjs"]
 script = ExtResource("1_ijagu")
@@ -81,6 +82,7 @@ display_name = "Swalot"
 dex = 317
 types = Array[ExtResource("4_6lmix")]([ExtResource("5_u8o4r")])
 learnset = Array[ExtResource("1_ijagu")]([SubResource("Resource_tywjs"), SubResource("Resource_ttpy1"), SubResource("Resource_bmqp8"), SubResource("Resource_qc1ay"), SubResource("Resource_ndqd4"), SubResource("Resource_qfybc"), SubResource("Resource_ta3k3"), SubResource("Resource_5gx6g"), SubResource("Resource_j6o3u"), SubResource("Resource_bjjil"), SubResource("Resource_c52pn"), SubResource("Resource_87mmf")])
+temperament = ExtResource("16_pie60")
 genus = "Pokémon Bolsa Veneno"
 pokedex_entry = "Cuando Swalot detecta una presa, echa por los poros, y a borbotones, un fluido tóxico espantoso con el que rocía a su víctima. Una vez que la debilita, se la traga entera gracias a la gigantesca boca que tiene."
 height_m = 1.7

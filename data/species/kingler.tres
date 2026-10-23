@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="10_j2t5p"]
 [ext_resource type="Resource" path="res://data/moves/martillazo.tres" id="11_hhwr2"]
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="12_6cgyx"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_uyhhy"]
 
 [sub_resource type="Resource" id="Resource_s52n0"]
 script = ExtResource("1_cjyki")
@@ -74,6 +75,7 @@ display_name = "Kingler"
 dex = 99
 types = Array[ExtResource("4_xpwj7")]([ExtResource("5_o1igf")])
 learnset = Array[ExtResource("1_cjyki")]([SubResource("Resource_s52n0"), SubResource("Resource_4p7fq"), SubResource("Resource_conu4"), SubResource("Resource_61yaw"), SubResource("Resource_ssbmu"), SubResource("Resource_lb530"), SubResource("Resource_rh02b"), SubResource("Resource_5qbpa"), SubResource("Resource_nt2jd"), SubResource("Resource_jieqn"), SubResource("Resource_tb1os")])
+temperament = ExtResource("15_uyhhy")
 genus = "Pokémon Tenaza"
 pokedex_entry = "Kingler tiene una pinza enorme y descomunal que usa agitándola en el aire para comunicarse con otros. Lo malo es que, al pesarle tanto, se cansa enseguida."
 height_m = 1.3

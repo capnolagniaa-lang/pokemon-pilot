@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/finta.tres" id="8_0l3xn"]
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="9_kbujv"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_683i4"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_xdxhj"]
 
 [sub_resource type="Resource" id="Resource_lfgkw"]
 script = ExtResource("1_jfv3g")
@@ -65,6 +66,7 @@ display_name = "Sudowoodo"
 dex = 185
 types = Array[ExtResource("4_g384b")]([ExtResource("5_3hnts")])
 learnset = Array[ExtResource("1_jfv3g")]([SubResource("Resource_lfgkw"), SubResource("Resource_beqw2"), SubResource("Resource_stc5h"), SubResource("Resource_rgyl6"), SubResource("Resource_gnd66"), SubResource("Resource_ovwew"), SubResource("Resource_wgc0c"), SubResource("Resource_mh3tg"), SubResource("Resource_4yyqb")])
+temperament = ExtResource("13_xdxhj")
 genus = "Pokémon Imitación"
 pokedex_entry = "Sudowoodo se camufla adoptando la imagen de un árbol para que no le ataque ningún enemigo. El problema viene en invierno, ya que las extremidades superiores tienen color verde y es fácil identificarle."
 height_m = 1.2

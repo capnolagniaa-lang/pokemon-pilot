@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="11_rm6bl"]
 [ext_resource type="Resource" path="res://data/moves/sonambulo.tres" id="12_gnygp"]
 [ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="13_d7la3"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_wn2aq"]
 
 [sub_resource type="Resource" id="Resource_ln153"]
 script = ExtResource("1_ckr0k")
@@ -81,6 +82,7 @@ display_name = "Exploud"
 dex = 295
 types = Array[ExtResource("4_un4u7")]([ExtResource("5_mntg4")])
 learnset = Array[ExtResource("1_ckr0k")]([SubResource("Resource_ln153"), SubResource("Resource_83ug1"), SubResource("Resource_3ycy3"), SubResource("Resource_lkvp6"), SubResource("Resource_ek46w"), SubResource("Resource_qvqm3"), SubResource("Resource_luvi3"), SubResource("Resource_ktf1n"), SubResource("Resource_1evv8"), SubResource("Resource_r046r"), SubResource("Resource_q4tpg"), SubResource("Resource_wf3ey")])
+temperament = ExtResource("16_wn2aq")
 genus = "Pokémon Escandaloso"
 pokedex_entry = "Exploud provoca terremotos con el temblor que causa al levantar la voz. Cuando inhala aire por los tubos, hay que prestar atención, ya que está a punto de soltar un buen bramido."
 height_m = 1.5

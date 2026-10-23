@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="9_de4dl"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="10_hiaqd"]
 [ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="11_x52w0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_jqvcn"]
 
 [sub_resource type="Resource" id="Resource_n1cfk"]
 script = ExtResource("1_fji23")
@@ -73,6 +74,7 @@ display_name = "Butterfree"
 dex = 12
 types = Array[ExtResource("4_lltuc")]([ExtResource("5_xxhmh"), ExtResource("6_n8di2")])
 learnset = Array[ExtResource("1_fji23")]([SubResource("Resource_n1cfk"), SubResource("Resource_76dtm"), SubResource("Resource_k5xlc"), SubResource("Resource_j0utl"), SubResource("Resource_c5t65"), SubResource("Resource_3akn5"), SubResource("Resource_i56k7"), SubResource("Resource_r5owg"), SubResource("Resource_3v0tm"), SubResource("Resource_x04hy")])
+temperament = ExtResource("14_jqvcn")
 genus = "Pokémon Mariposa"
 pokedex_entry = "Butterfree tiene una habilidad especial para encontrar delicioso polen en las flores. Puede localizar, extraer y transportar polen de flores que estén floreciendo a 10 km de distancia de su nido."
 height_m = 1.1

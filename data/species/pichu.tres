@@ -10,6 +10,7 @@
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_3yf8n"]
 [ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="5_qakiv"]
 [ext_resource type="Resource" path="res://data/moves/beso_dulce.tres" id="6_xjrdk"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="9_1xcpj"]
 
 [sub_resource type="Resource" id="Resource_4orsm"]
 script = ExtResource("1_taqgf")
@@ -41,6 +42,7 @@ display_name = "Pichu"
 dex = 172
 types = Array[ExtResource("4_5yl8p")]([ExtResource("5_3yf8n")])
 learnset = Array[ExtResource("1_taqgf")]([SubResource("Resource_4orsm"), SubResource("Resource_ahyuc"), SubResource("Resource_jllsv"), SubResource("Resource_yerc5"), SubResource("Resource_gpaj8")])
+temperament = ExtResource("9_1xcpj")
 genus = "Pokémon Ratoncito"
 pokedex_entry = "A Pichu le resulta más fácil cargarse de electricidad en días de nubarrones o cuando sopla un aire muy seco. Es posible oír la electricidad estática que emana de este Pokémon."
 height_m = 0.3

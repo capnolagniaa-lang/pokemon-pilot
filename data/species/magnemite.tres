@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="10_ej8qi"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="11_c1dna"]
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_51wio"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_oxqxu"]
 
 [sub_resource type="Resource" id="Resource_coakj"]
 script = ExtResource("1_l51ae")
@@ -78,6 +79,7 @@ display_name = "Magnemite"
 dex = 81
 types = Array[ExtResource("4_05sr6")]([ExtResource("5_uktkj"), ExtResource("6_jpx5f")])
 learnset = Array[ExtResource("1_l51ae")]([SubResource("Resource_coakj"), SubResource("Resource_xwi8k"), SubResource("Resource_lw2pg"), SubResource("Resource_b5264"), SubResource("Resource_ta4tg"), SubResource("Resource_3mok7"), SubResource("Resource_dxxqm"), SubResource("Resource_mrkd5"), SubResource("Resource_q0swm"), SubResource("Resource_d6udp"), SubResource("Resource_c5na6")])
+temperament = ExtResource("15_oxqxu")
 genus = "Pokémon Imán"
 pokedex_entry = "Magnemite se engancha a las líneas de tensión para nutrirse de electricidad. Cuando se producen apagones en las casas, es aconsejable revisar el automático y comprobar que no hay Pokémon de este tipo colgados de la caja de fusibles."
 height_m = 0.3

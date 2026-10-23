@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/puno_meteoro.tres" id="9_1ysoj"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_gw4ti"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_tqnmy"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ruchn"]
 
 [sub_resource type="Resource" id="Resource_0qhoe"]
 script = ExtResource("1_vxds6")
@@ -70,6 +71,7 @@ display_name = "Metagross"
 dex = 376
 types = Array[ExtResource("4_cl10h")]([ExtResource("5_cp6rr"), ExtResource("6_nvocd")])
 learnset = Array[ExtResource("1_vxds6")]([SubResource("Resource_0qhoe"), SubResource("Resource_ie8w6"), SubResource("Resource_djry8"), SubResource("Resource_xod2r"), SubResource("Resource_ef838"), SubResource("Resource_k0usq"), SubResource("Resource_cr6lj"), SubResource("Resource_jg07m"), SubResource("Resource_jokyg"), SubResource("Resource_jb5al")])
+temperament = ExtResource("14_ruchn")
 genus = "Pokémon Pata Hierro"
 pokedex_entry = "Metagross tiene cuatro cerebros en total que, combinados, son capaces de resolver cálculos complicados más rápido que el mejor ordenador que haya. Metagross puede flotar en el aire si mete las patas hacia adentro."
 height_m = 1.6

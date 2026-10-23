@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/deseo.tres" id="7_nfrqm"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_lfv8d"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="9_b3rjc"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_j5w5s"]
 
 [sub_resource type="Resource" id="Resource_w4dd6"]
 script = ExtResource("1_2tp06")
@@ -60,6 +61,7 @@ display_name = "Natu"
 dex = 177
 types = Array[ExtResource("4_dkr0k")]([ExtResource("5_g60yt"), ExtResource("6_lnnlq")])
 learnset = Array[ExtResource("1_2tp06")]([SubResource("Resource_w4dd6"), SubResource("Resource_q6tiy"), SubResource("Resource_1ddlr"), SubResource("Resource_w58ai"), SubResource("Resource_ocoid"), SubResource("Resource_i3hrj"), SubResource("Resource_5rmg5"), SubResource("Resource_7rpp0")])
+temperament = ExtResource("12_j5w5s")
 genus = "Pokémon Pajarito"
 pokedex_entry = "Natu no puede volar porque las alas no le han crecido lo suficiente. Si alguien cruza la mirada con él, se la devolverá fijamente, aunque, si hace el mínimo movimiento, huirá dando saltitos para ponerse a salvo."
 height_m = 0.2

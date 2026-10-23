@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="12_ewdhs"]
 [ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="13_gj0ai"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="14_1di18"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_cm2by"]
 
 [sub_resource type="Resource" id="Resource_72u7q"]
 script = ExtResource("1_jn6me")
@@ -88,6 +89,7 @@ display_name = "Claydol"
 dex = 344
 types = Array[ExtResource("4_7xjs4")]([ExtResource("5_gh6aj"), ExtResource("6_dsxms")])
 learnset = Array[ExtResource("1_jn6me")]([SubResource("Resource_72u7q"), SubResource("Resource_om7cw"), SubResource("Resource_3mlu0"), SubResource("Resource_r7e6k"), SubResource("Resource_i2yxr"), SubResource("Resource_e6ddc"), SubResource("Resource_cfj5c"), SubResource("Resource_ela6n"), SubResource("Resource_57gek"), SubResource("Resource_022w7"), SubResource("Resource_ifkwb"), SubResource("Resource_dfux1"), SubResource("Resource_8fa6f")])
+temperament = ExtResource("17_cm2by")
 genus = "Pokémon Muñeca Barro"
 pokedex_entry = "Se cree que los Claydol son figuras de barro hechas por humanos primitivos y que un misterioso rayo les hizo cobrar vida. Este Pokémon se desplaza levitando."
 height_m = 1.5

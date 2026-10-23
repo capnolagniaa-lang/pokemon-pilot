@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_sscgo"]
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_hnl5l"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="5_p8e0k"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="8_2k8wp"]
 
 [sub_resource type="Resource" id="Resource_gn7wi"]
 script = ExtResource("1_o86xy")
@@ -33,6 +34,7 @@ display_name = "Wobbuffet"
 dex = 202
 types = Array[ExtResource("4_sscgo")]([ExtResource("5_hnl5l")])
 learnset = Array[ExtResource("1_o86xy")]([SubResource("Resource_gn7wi"), SubResource("Resource_snkw3"), SubResource("Resource_skkwo"), SubResource("Resource_oqxbl")])
+temperament = ExtResource("8_2k8wp")
 genus = "Pokémon Paciente"
 pokedex_entry = "Si dos o más Wobbuffet se encuentran, se volverán competitivos e intentarán superarse en resistencia. Pero también puede que intenten aguantar sin comer; algo que los Entrenadores deben tener muy en cuenta."
 height_m = 1.3

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_ay30l"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_qpchk"]
 [ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="11_ujvdf"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_721pe"]
 
 [sub_resource type="Resource" id="Resource_k0th0"]
 script = ExtResource("1_w3go1")
@@ -73,6 +74,7 @@ display_name = "Farfetch’d"
 dex = 83
 types = Array[ExtResource("4_a2mxi")]([ExtResource("5_0212t"), ExtResource("6_nutwm")])
 learnset = Array[ExtResource("1_w3go1")]([SubResource("Resource_k0th0"), SubResource("Resource_u70ts"), SubResource("Resource_fmqp7"), SubResource("Resource_u4lxc"), SubResource("Resource_svc7t"), SubResource("Resource_5ohts"), SubResource("Resource_xxc6f"), SubResource("Resource_ewrv1"), SubResource("Resource_hmtky"), SubResource("Resource_5kk2h")])
+temperament = ExtResource("14_721pe")
 genus = "Pokémon Pato Salvaje"
 pokedex_entry = "Al parecer, entre los puerros que suelen llevar los Farfetch’d, los hay mejores y peores. A estos Pokémon se les ha visto luchar entre ellos por los mejores puerros."
 height_m = 0.8

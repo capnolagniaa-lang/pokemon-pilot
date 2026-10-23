@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="10_uf4dv"]
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="11_neoij"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="12_4iedq"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_da76x"]
 
 [sub_resource type="Resource" id="Resource_3em6u"]
 script = ExtResource("1_hu27v")
@@ -77,6 +78,7 @@ display_name = "Drowzee"
 dex = 96
 types = Array[ExtResource("4_qbhxv")]([ExtResource("5_mara1")])
 learnset = Array[ExtResource("1_hu27v")]([SubResource("Resource_3em6u"), SubResource("Resource_1mhw8"), SubResource("Resource_rd13b"), SubResource("Resource_1g6ho"), SubResource("Resource_sjtkh"), SubResource("Resource_jl64a"), SubResource("Resource_ud67f"), SubResource("Resource_levhs"), SubResource("Resource_y06w5"), SubResource("Resource_jynsb"), SubResource("Resource_0cytu")])
+temperament = ExtResource("15_da76x")
 genus = "Pokémon Hipnosis"
 pokedex_entry = "Si a alguien le pica la nariz mientras duerme, seguro que es porque tiene a uno de estos Pokémon cerca de la almohada intentando sacarle los sueños por la nariz para comérselos."
 height_m = 1.0

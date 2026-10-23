@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="8_pxv30"]
 [ext_resource type="Resource" path="res://data/moves/onda_ignea.tres" id="9_oixo3"]
 [ext_resource type="Resource" path="res://data/moves/ataque_aereo.tres" id="10_akw8a"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_34s3j"]
 
 [sub_resource type="Resource" id="Resource_ud6dq"]
 script = ExtResource("1_n5t7s")
@@ -66,6 +67,7 @@ display_name = "Moltres"
 dex = 146
 types = Array[ExtResource("4_ypurr")]([ExtResource("5_f2nb1"), ExtResource("6_u7muo")])
 learnset = Array[ExtResource("1_n5t7s")]([SubResource("Resource_ud6dq"), SubResource("Resource_gmj3c"), SubResource("Resource_jb4bs"), SubResource("Resource_lypx5"), SubResource("Resource_tujvp"), SubResource("Resource_qbpwj"), SubResource("Resource_56rab"), SubResource("Resource_0ub7q"), SubResource("Resource_wnuna")])
+temperament = ExtResource("13_34s3j")
 genus = "Pokémon Llama"
 pokedex_entry = "Moltres es un Pokémon pájaro legendario que tiene la habilidad de controlar el fuego. Dicen que, si resulta herido, se sumerge en el líquido magma de un volcán para arder y curarse."
 height_m = 2.0

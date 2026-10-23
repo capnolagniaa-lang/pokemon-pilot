@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/divide_dolor.tres" id="9_s8yn3"]
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="10_y2x3x"]
 [ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_c1xy7"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_empp1"]
 
 [sub_resource type="Resource" id="Resource_gn0s3"]
 script = ExtResource("1_jgvia")
@@ -71,6 +72,7 @@ display_name = "Misdreavus"
 dex = 200
 types = Array[ExtResource("4_j18je")]([ExtResource("5_j3ala")])
 learnset = Array[ExtResource("1_jgvia")]([SubResource("Resource_gn0s3"), SubResource("Resource_841fn"), SubResource("Resource_xd786"), SubResource("Resource_usmb4"), SubResource("Resource_rq1g0"), SubResource("Resource_rhecu"), SubResource("Resource_87g6a"), SubResource("Resource_qs8tb"), SubResource("Resource_e2cbh"), SubResource("Resource_7x17i")])
+temperament = ExtResource("14_empp1")
 genus = "Pokémon Chirrido"
 pokedex_entry = "Misdreavus asusta a la gente con un chillido escalofriante y sollozante. Y, al parecer, usa las esferas rojas para absorber los sentimientos de miedo de los enemigos y usarlos como alimento."
 height_m = 0.7

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="10_68vmh"]
 [ext_resource type="Resource" path="res://data/moves/colmillo_veneno.tres" id="11_kw0ma"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_supsf"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_utrva"]
 
 [sub_resource type="Resource" id="Resource_cf680"]
 script = ExtResource("1_ltaki")
@@ -76,6 +77,7 @@ display_name = "Golbat"
 dex = 42
 types = Array[ExtResource("4_ll58t")]([ExtResource("5_u1t2j"), ExtResource("6_88vbf")])
 learnset = Array[ExtResource("1_ltaki")]([SubResource("Resource_cf680"), SubResource("Resource_vg7q8"), SubResource("Resource_lkcc1"), SubResource("Resource_wtxpj"), SubResource("Resource_nk4uy"), SubResource("Resource_8q1ie"), SubResource("Resource_01ugw"), SubResource("Resource_227g7"), SubResource("Resource_q1x24"), SubResource("Resource_dne13"), SubResource("Resource_qxe01")])
+temperament = ExtResource("15_utrva")
 genus = "Pokémon Murciélago"
 pokedex_entry = "A Golbat le encanta chuparles la sangre a los seres vivos. Este Pokémon es más activo en la oscuridad de la noche. Es al caer la noche cuando sale a revolotear y a buscar sangre fresca."
 height_m = 1.6

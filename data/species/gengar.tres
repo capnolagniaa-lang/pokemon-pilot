@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="11_kjj72"]
 [ext_resource type="Resource" path="res://data/moves/pesadilla.tres" id="12_p41xp"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="13_vp23u"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_6dtjf"]
 
 [sub_resource type="Resource" id="Resource_ph4jc"]
 script = ExtResource("1_nicgh")
@@ -83,6 +84,7 @@ display_name = "Gengar"
 dex = 94
 types = Array[ExtResource("4_ehkfx")]([ExtResource("5_h27yf"), ExtResource("6_lb3r2")])
 learnset = Array[ExtResource("1_nicgh")]([SubResource("Resource_ph4jc"), SubResource("Resource_qqpmp"), SubResource("Resource_5db00"), SubResource("Resource_i1k08"), SubResource("Resource_ge8nd"), SubResource("Resource_h5o7c"), SubResource("Resource_n11ox"), SubResource("Resource_yighj"), SubResource("Resource_n6pma"), SubResource("Resource_hh620"), SubResource("Resource_3tibd"), SubResource("Resource_jouh8")])
+temperament = ExtResource("16_6dtjf")
 genus = "Pokémon Sombra"
 pokedex_entry = "Si alguien ve que su sombra le adelanta de repente en una noche oscura, es muy probable que lo que esté viendo no sea su sombra, sino a un Gengar haciéndose pasar por la misma."
 height_m = 1.5

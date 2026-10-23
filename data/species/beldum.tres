@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pu5e2"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_mnwxk"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jkw7p"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="5_mnwxk"]
 [ext_resource type="Resource" path="res://data/types/acero.tres" id="5_xe1rs"]
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_h74n1"]
 
@@ -19,6 +20,7 @@ display_name = "Beldum"
 dex = 374
 types = Array[ExtResource("4_jkw7p")]([ExtResource("5_xe1rs"), ExtResource("6_h74n1")])
 learnset = Array[ExtResource("1_ciyes")]([SubResource("Resource_jkw7p")])
+temperament = ExtResource("5_mnwxk")
 genus = "Pokémon Bola Hierro"
 pokedex_entry = "En lugar de sangre, Beldum tiene una poderosa fuerza magnética corriéndole por las venas. Este Pokémon se comunica enviando controlados impulsos magnéticos."
 height_m = 0.6

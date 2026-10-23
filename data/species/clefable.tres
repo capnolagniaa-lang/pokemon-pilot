@@ -9,6 +9,7 @@
 [ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="4_v8n4x"]
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="5_6pnjj"]
 [ext_resource type="Resource" path="res://data/moves/canto.tres" id="5_xh61h"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="8_sdlnm"]
 
 [sub_resource type="Resource" id="Resource_qhpeu"]
 script = ExtResource("1_xvqjx")
@@ -33,6 +34,7 @@ display_name = "Clefable"
 dex = 36
 types = Array[ExtResource("4_00ndu")]([ExtResource("5_6pnjj")])
 learnset = Array[ExtResource("1_xvqjx")]([SubResource("Resource_qhpeu"), SubResource("Resource_mqip7"), SubResource("Resource_1ck0g"), SubResource("Resource_2qf3r")])
+temperament = ExtResource("8_sdlnm")
 genus = "Pokémon Hada"
 pokedex_entry = "Clefable se mueve dando saltitos como si fuera haciendo uso de las alas. Estos pequeños brincos le permiten caminar por el agua. De todos es sabido que le encanta darse paseos por los lagos en tranquilas noches de luna llena."
 height_m = 1.3

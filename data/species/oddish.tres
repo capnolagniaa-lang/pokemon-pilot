@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="7_utxk4"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="8_utxk4"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="9_i4gho"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="10_cyrj2"]
 
 [sub_resource type="Resource" id="Resource_q7ka7"]
 script = ExtResource("1_q7ka7")
@@ -49,6 +50,7 @@ dex = 43
 types = Array[ExtResource("7_eqil7")]([ExtResource("8_utxk4"), ExtResource("9_i4gho")])
 moves = Array[ExtResource("1_68w5j")]([ExtResource("2_i4gho"), ExtResource("3_woh8u"), ExtResource("4_fd8ac"), ExtResource("5_q7ka7")])
 learnset = Array[ExtResource("1_q7ka7")]([SubResource("Resource_q7ka7"), SubResource("Resource_cyrj2"), SubResource("Resource_eqil7"), SubResource("Resource_utxk4"), SubResource("Resource_ir3ox"), SubResource("Resource_rnq1m")])
+temperament = ExtResource("10_cyrj2")
 genus = "Pokémon Hierbajo"
 pokedex_entry = "Durante el día, Oddish se entierra en el suelo para absorber nutrientes valiéndose de todo el cuerpo. Cuanto más fértil sea el suelo, mayor brillo tendrá en las hojas."
 height_m = 0.5

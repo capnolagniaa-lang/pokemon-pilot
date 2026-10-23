@@ -9,6 +9,7 @@
 [ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="4_f6b18"]
 [ext_resource type="Resource" path="res://data/moves/rayo.tres" id="5_kkkvq"]
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_mhpdw"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="8_abn8t"]
 
 [sub_resource type="Resource" id="Resource_3mbkb"]
 script = ExtResource("1_8modj")
@@ -33,6 +34,7 @@ display_name = "Raichu"
 dex = 26
 types = Array[ExtResource("4_53mw5")]([ExtResource("5_mhpdw")])
 learnset = Array[ExtResource("1_8modj")]([SubResource("Resource_3mbkb"), SubResource("Resource_cqjyd"), SubResource("Resource_kfyfa"), SubResource("Resource_lvki1")])
+temperament = ExtResource("8_abn8t")
 genus = "Pokémon Ratón"
 pokedex_entry = "Si las bolsas de los mofletes se le cargan demasiado, Raichu planta la cola en el suelo para liberar electricidad. Es común encontrar zonas chamuscadas cerca de la madriguera de este Pokémon."
 height_m = 0.8

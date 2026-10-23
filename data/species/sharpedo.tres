@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="11_fhkys"]
 [ext_resource type="Resource" path="res://data/moves/cabezazo.tres" id="12_3fn1r"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="13_0e53t"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_jt2tn"]
 
 [sub_resource type="Resource" id="Resource_8gom3"]
 script = ExtResource("1_ltwoo")
@@ -82,6 +83,7 @@ display_name = "Sharpedo"
 dex = 319
 types = Array[ExtResource("4_0tv70")]([ExtResource("5_lpbsj"), ExtResource("6_lgkia")])
 learnset = Array[ExtResource("1_ltwoo")]([SubResource("Resource_8gom3"), SubResource("Resource_e2y7b"), SubResource("Resource_m41uv"), SubResource("Resource_l3ayl"), SubResource("Resource_2dpvs"), SubResource("Resource_0sare"), SubResource("Resource_hc6b0"), SubResource("Resource_selhg"), SubResource("Resource_78d2k"), SubResource("Resource_c77j5"), SubResource("Resource_wxow8"), SubResource("Resource_0fx2t")])
+temperament = ExtResource("16_jt2tn")
 genus = "Pokémon Voraz"
 pokedex_entry = "Conocido como el Terror de los Mares, Sharpedo es temido por todos. Si este Pokémon pierde los escalofriantes colmillos que tiene, los recupera en breve. Basta con un Sharpedo para destrozar un buque-cisterna."
 height_m = 1.8

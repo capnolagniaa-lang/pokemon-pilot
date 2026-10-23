@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="10_68g6e"]
 [ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="11_bby47"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="12_nnd81"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_dk4t0"]
 
 [sub_resource type="Resource" id="Resource_1rc2y"]
 script = ExtResource("1_8cy13")
@@ -76,6 +77,7 @@ display_name = "Venusaur"
 dex = 3
 types = Array[ExtResource("4_lhktv")]([ExtResource("5_kycrs"), ExtResource("6_2gckv")])
 learnset = Array[ExtResource("1_8cy13")]([SubResource("Resource_1rc2y"), SubResource("Resource_3hodj"), SubResource("Resource_iwj8v"), SubResource("Resource_pugv1"), SubResource("Resource_dhhpl"), SubResource("Resource_xt82d"), SubResource("Resource_hqfsv"), SubResource("Resource_t726n"), SubResource("Resource_ksbrm"), SubResource("Resource_q3372"), SubResource("Resource_vfwnc")])
+temperament = ExtResource("15_dk4t0")
 genus = "Pokémon Semilla"
 pokedex_entry = "Venusaur tiene una flor enorme en el lomo que, según parece, adquiere unos colores muy vivos si está bien nutrido y le da mucho el sol. El aroma delicado de la flor tiene un efecto relajante en el ánimo de las personas."
 height_m = 2.0

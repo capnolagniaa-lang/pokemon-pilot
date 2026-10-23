@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/cosquillas.tres" id="9_stqud"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="10_8xwbo"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="11_tsjdr"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_d30wd"]
 
 [sub_resource type="Resource" id="Resource_4dm75"]
 script = ExtResource("1_lthqn")
@@ -72,6 +73,7 @@ display_name = "Omanyte"
 dex = 138
 types = Array[ExtResource("4_76bbv")]([ExtResource("5_fe5vw"), ExtResource("6_af3gs")])
 learnset = Array[ExtResource("1_lthqn")]([SubResource("Resource_4dm75"), SubResource("Resource_1p7sj"), SubResource("Resource_1rfji"), SubResource("Resource_lm6c0"), SubResource("Resource_hn6mt"), SubResource("Resource_3ply6"), SubResource("Resource_8hags"), SubResource("Resource_bxqhc"), SubResource("Resource_epwy3"), SubResource("Resource_rfmi1")])
+temperament = ExtResource("14_d30wd")
 genus = "Pokémon Espiral"
 pokedex_entry = "Omanyte es uno de esos Pokémon ancestrales que se extinguieron hace muchísimo tiempo y que la gente ha recuperado a partir de fósiles. Si un enemigo le ataca, se esconderá dentro de la dura concha que tiene."
 height_m = 0.4

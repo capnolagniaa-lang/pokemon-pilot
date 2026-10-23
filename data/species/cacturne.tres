@@ -21,6 +21,7 @@
 [ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="14_1pbt7"]
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="15_4r7as"]
 [ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="16_vpr83"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="19_vopxe"]
 
 [sub_resource type="Resource" id="Resource_nas04"]
 script = ExtResource("1_gjbfl")
@@ -99,6 +100,7 @@ display_name = "Cacturne"
 dex = 332
 types = Array[ExtResource("4_4m4n0")]([ExtResource("5_46jvp"), ExtResource("6_8pcdj")])
 learnset = Array[ExtResource("1_gjbfl")]([SubResource("Resource_nas04"), SubResource("Resource_6gcbq"), SubResource("Resource_eou4f"), SubResource("Resource_vp1fx"), SubResource("Resource_vbx2t"), SubResource("Resource_nw62s"), SubResource("Resource_w1pru"), SubResource("Resource_h3inn"), SubResource("Resource_thhrt"), SubResource("Resource_jmsmp"), SubResource("Resource_brv4n"), SubResource("Resource_s5kvh"), SubResource("Resource_28uhm"), SubResource("Resource_ov3cf"), SubResource("Resource_q58mk")])
+temperament = ExtResource("19_vopxe")
 genus = "Pokémon Espantajo"
 pokedex_entry = "Durante el día, Cacturne permanece inmóvil para no perder nada de humedad bajo el sol de justicia del desierto. Este Pokémon entra en acción por la noche, cuando bajan las temperaturas."
 height_m = 1.3

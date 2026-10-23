@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="10_fymot"]
 [ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="11_u55j3"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="12_jv63r"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_fyjgo"]
 
 [sub_resource type="Resource" id="Resource_76mfb"]
 script = ExtResource("1_thctf")
@@ -77,6 +78,7 @@ display_name = "Venonat"
 dex = 48
 types = Array[ExtResource("4_rkfdp")]([ExtResource("5_5xubd"), ExtResource("6_1dodj")])
 learnset = Array[ExtResource("1_thctf")]([SubResource("Resource_76mfb"), SubResource("Resource_xbbs6"), SubResource("Resource_hh8tk"), SubResource("Resource_e2d0d"), SubResource("Resource_rxqiy"), SubResource("Resource_xbqdp"), SubResource("Resource_uo5i4"), SubResource("Resource_nfwg5"), SubResource("Resource_vhr7e"), SubResource("Resource_110nh"), SubResource("Resource_7sf7w")])
+temperament = ExtResource("15_fyjgo")
 genus = "Pokémon Insecto"
 pokedex_entry = "Dicen que durante su evolución Venonat desarrolló una fina capa de espeso pelo alrededor de todo el cuerpo para protegerse. Tiene unos ojos tan grandes que no hay presa que le pase desapercibida."
 height_m = 1.0

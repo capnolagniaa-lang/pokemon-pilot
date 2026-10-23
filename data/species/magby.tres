@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="8_mxpcj"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="9_lt2jx"]
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="10_bnf6x"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_yxjyk"]
 
 [sub_resource type="Resource" id="Resource_dv2yv"]
 script = ExtResource("1_5higt")
@@ -66,6 +67,7 @@ display_name = "Magby"
 dex = 240
 types = Array[ExtResource("4_j5ha0")]([ExtResource("5_7tu7u")])
 learnset = Array[ExtResource("1_5higt")]([SubResource("Resource_dv2yv"), SubResource("Resource_r3wv3"), SubResource("Resource_4bbtg"), SubResource("Resource_0wo28"), SubResource("Resource_q2bpj"), SubResource("Resource_0cqm2"), SubResource("Resource_rp3yn"), SubResource("Resource_1f2pg"), SubResource("Resource_5g0iw")])
+temperament = ExtResource("13_yxjyk")
 genus = "Pokémon Ascuas"
 pokedex_entry = "El estado de salud de Magby se puede determinar observando el fuego que emana al respirar. Si las llamas que echa por la boca son amarillas, está bien. Pero, si además de las llamas sale humo negro, está cansado."
 height_m = 0.7

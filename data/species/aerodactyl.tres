@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="7_u4doo"]
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_jh842"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_iodh3"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_gq55q"]
 
 [sub_resource type="Resource" id="Resource_k1y3p"]
 script = ExtResource("1_jm0rt")
@@ -61,6 +62,7 @@ display_name = "Aerodactyl"
 dex = 142
 types = Array[ExtResource("4_7fu47")]([ExtResource("5_em3qc"), ExtResource("6_yuy5m")])
 learnset = Array[ExtResource("1_jm0rt")]([SubResource("Resource_k1y3p"), SubResource("Resource_cowg3"), SubResource("Resource_56sfr"), SubResource("Resource_140mw"), SubResource("Resource_vbcli"), SubResource("Resource_40lxk"), SubResource("Resource_b2qhd"), SubResource("Resource_q1wsu")])
+temperament = ExtResource("12_gq55q")
 genus = "Pokémon Fósil"
 pokedex_entry = "Los orígenes de Aerodactyl datan de la era de los dinosaurios. Se regeneró a partir de material genético contenido en ámbar. Se supone que fue el amo de los cielos en épocas pasadas."
 height_m = 1.8

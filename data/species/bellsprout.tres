@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_y3vui"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="8_8mak5"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="9_ins1p"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_awg2s"]
 
 [sub_resource type="Resource" id="Resource_d0csn"]
 script = ExtResource("2_d0csn")
@@ -54,6 +55,7 @@ types = Array[ExtResource("7_y3vui")]([ExtResource("8_8mak5"), ExtResource("9_in
 moves = Array[ExtResource("1_kybx6")]([ExtResource("2_ins1p"), ExtResource("3_xcug5"), ExtResource("4_6n3aa"), ExtResource("5_ax623")])
 kit = ExtResource("1_xcug5")
 learnset = Array[ExtResource("2_d0csn")]([SubResource("Resource_d0csn"), SubResource("Resource_awg2s"), SubResource("Resource_jiovh"), SubResource("Resource_nb6sv"), SubResource("Resource_dk7qy"), SubResource("Resource_b5gc2")])
+temperament = ExtResource("14_awg2s")
 genus = "Pokémon Flor"
 pokedex_entry = "Bellsprout tiene un cuerpo delgado y flexible que le permite inclinarse y balancearse para esquivar los ataques. Este Pokémon escupe por la boca un fluido corrosivo capaz de hacer que se derrita hasta el hierro."
 height_m = 0.7

@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="5_tx5ud"]
 [ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="6_sno7i"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="7_kkb3m"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_1mtl8"]
 
 [sub_resource type="Resource" id="Resource_6abcv"]
 script = ExtResource("1_qgxg1")
@@ -45,6 +46,7 @@ display_name = "Bellossom"
 dex = 182
 types = Array[ExtResource("4_axnyp")]([ExtResource("5_5a8j2")])
 learnset = Array[ExtResource("1_qgxg1")]([SubResource("Resource_6abcv"), SubResource("Resource_u6xc8"), SubResource("Resource_7hwp2"), SubResource("Resource_65cc1"), SubResource("Resource_km875"), SubResource("Resource_qiedq")])
+temperament = ExtResource("10_1mtl8")
 genus = "Pokémon Flor"
 pokedex_entry = "Cuando Bellossom se expone a gran cantidad de luz solar, le empiezan a girar las hojas que le rodean. La danza de este Pokémon es famosa en las zonas del sur."
 height_m = 0.4

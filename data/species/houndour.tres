@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/finta.tres" id="9_wyuxv"]
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="10_cp0d2"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_dvhax"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_wb1s4"]
 
 [sub_resource type="Resource" id="Resource_xlrhc"]
 script = ExtResource("1_35bxd")
@@ -72,6 +73,7 @@ display_name = "Houndour"
 dex = 228
 types = Array[ExtResource("4_cq65b")]([ExtResource("5_qmixd"), ExtResource("6_aonmr")])
 learnset = Array[ExtResource("1_35bxd")]([SubResource("Resource_xlrhc"), SubResource("Resource_jl2tx"), SubResource("Resource_mcpvu"), SubResource("Resource_tet7f"), SubResource("Resource_e7xw5"), SubResource("Resource_hyt2g"), SubResource("Resource_jeaeh"), SubResource("Resource_g57sg"), SubResource("Resource_i6nrm"), SubResource("Resource_pc7el")])
+temperament = ExtResource("14_wb1s4")
 genus = "Pokémon Siniestro"
 pokedex_entry = "Houndour sale a cazar con el resto de la manada con total coordinación. Estos Pokémon se comunican unos con otros usando una serie de aullidos para acorralar a su presa. El compañerismo que existe entre ellos es incomparable."
 height_m = 0.6

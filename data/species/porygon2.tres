@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/triataque.tres" id="10_jxmlp"]
 [ext_resource type="Resource" path="res://data/moves/reciclaje.tres" id="11_lfak2"]
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_7t6ng"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_1qckg"]
 
 [sub_resource type="Resource" id="Resource_l0yfg"]
 script = ExtResource("1_rhhlm")
@@ -76,6 +77,7 @@ display_name = "Porygon2"
 dex = 233
 types = Array[ExtResource("4_2n0o3")]([ExtResource("5_v3c0d")])
 learnset = Array[ExtResource("1_rhhlm")]([SubResource("Resource_l0yfg"), SubResource("Resource_5jj2h"), SubResource("Resource_rohqs"), SubResource("Resource_3q05k"), SubResource("Resource_4rvtr"), SubResource("Resource_3v1jr"), SubResource("Resource_ywycm"), SubResource("Resource_j6i7c"), SubResource("Resource_nuqw7"), SubResource("Resource_liiia"), SubResource("Resource_4b58q")])
+temperament = ExtResource("15_1qckg")
 genus = "Pokémon Virtual"
 pokedex_entry = "Porygon2 fue creado por el hombre gracias a los avances de la ciencia. Esta obra humana ha sido provista de inteligencia artificial que le permite aprender gestos y sensaciones nuevas por su cuenta."
 height_m = 0.6

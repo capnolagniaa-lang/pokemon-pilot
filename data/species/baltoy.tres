@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="10_f3atu"]
 [ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="11_h7h2q"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="12_htan2"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_er5m5"]
 
 [sub_resource type="Resource" id="Resource_mcptr"]
 script = ExtResource("1_yhum0")
@@ -79,6 +80,7 @@ display_name = "Baltoy"
 dex = 343
 types = Array[ExtResource("4_e2u54")]([ExtResource("5_k3gp0"), ExtResource("6_xasyh")])
 learnset = Array[ExtResource("1_yhum0")]([SubResource("Resource_mcptr"), SubResource("Resource_8rqbn"), SubResource("Resource_xd2yt"), SubResource("Resource_3nctd"), SubResource("Resource_ief2t"), SubResource("Resource_8hifp"), SubResource("Resource_p5u2t"), SubResource("Resource_fo7ub"), SubResource("Resource_expgf"), SubResource("Resource_mc0dn"), SubResource("Resource_guriv")])
+temperament = ExtResource("15_er5m5")
 genus = "Pokémon Muñeca Barro"
 pokedex_entry = "Baltoy se mueve girando alrededor de sí mismo sobre la extremidad inferior que tiene. En unas ruinas antiguas, descubrieron pinturas rupestres en las que aparecía este Pokémon conviviendo con personas."
 height_m = 0.5

@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="8_5ofyk"]
 [ext_resource type="Resource" path="res://data/moves/pico_taladro.tres" id="9_num18"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_2auch"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_yixqo"]
 
 [sub_resource type="Resource" id="Resource_r024i"]
 script = ExtResource("1_4dso7")
@@ -66,6 +67,7 @@ display_name = "Spearow"
 dex = 21
 types = Array[ExtResource("4_l8bgp")]([ExtResource("5_2lr62"), ExtResource("6_dyus3")])
 learnset = Array[ExtResource("1_4dso7")]([SubResource("Resource_r024i"), SubResource("Resource_wnrnw"), SubResource("Resource_j5b32"), SubResource("Resource_p68p0"), SubResource("Resource_tc6ro"), SubResource("Resource_nilan"), SubResource("Resource_j1dww"), SubResource("Resource_21bkg"), SubResource("Resource_qswam")])
+temperament = ExtResource("13_yixqo")
 genus = "Pokémon Pajarito"
 pokedex_entry = "Spearow pía con tanta fuerza que se le puede oír a 1 km de distancia. Si al agudo chillido le sigue una especie de eco, estaremos oyendo la respuesta de otros Spearow que contestan ante el aviso de peligro."
 height_m = 0.3

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="9_1pn72"]
 [ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="10_tq3j5"]
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="11_j0uk0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_gddjc"]
 
 [sub_resource type="Resource" id="Resource_foqwt"]
 script = ExtResource("1_uihsg")
@@ -70,6 +71,7 @@ display_name = "Gardevoir"
 dex = 282
 types = Array[ExtResource("4_73ub1")]([ExtResource("5_q7i5h"), ExtResource("6_xyxew")])
 learnset = Array[ExtResource("1_uihsg")]([SubResource("Resource_foqwt"), SubResource("Resource_ahl1j"), SubResource("Resource_5mjxr"), SubResource("Resource_vquuf"), SubResource("Resource_iwm0l"), SubResource("Resource_qyeoh"), SubResource("Resource_3sljk"), SubResource("Resource_cvaaq"), SubResource("Resource_v6t1q"), SubResource("Resource_lyur2")])
+temperament = ExtResource("14_gddjc")
 genus = "Pokémon Envolvente"
 pokedex_entry = "Gardevoir es capaz de leer el futuro. Si siente que su Entrenador está en peligro inminente, dicen que libera automáticamente toda su energía psicoquinética."
 height_m = 1.6

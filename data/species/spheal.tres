@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="12_u351p"]
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="13_hpv6r"]
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="14_lgede"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="17_px85u"]
 
 [sub_resource type="Resource" id="Resource_si5tp"]
 script = ExtResource("1_m2hxp")
@@ -88,6 +89,7 @@ display_name = "Spheal"
 dex = 363
 types = Array[ExtResource("4_x4y0w")]([ExtResource("5_l0dku"), ExtResource("6_si4ed")])
 learnset = Array[ExtResource("1_m2hxp")]([SubResource("Resource_si5tp"), SubResource("Resource_pe1hb"), SubResource("Resource_r73uw"), SubResource("Resource_nmlmb"), SubResource("Resource_72afg"), SubResource("Resource_u1gjd"), SubResource("Resource_nrlyd"), SubResource("Resource_5iykb"), SubResource("Resource_tlsbx"), SubResource("Resource_mmal0"), SubResource("Resource_gmaxl"), SubResource("Resource_yehdn"), SubResource("Resource_6dopt")])
+temperament = ExtResource("17_px85u")
 genus = "Pokémon Aplauso"
 pokedex_entry = "Spheal se desplaza por el suelo más rápido rodando que caminando. Cuando come con otros de su especie, todos se ponen a aplaudir para expresar su alegría. Por eso, a veces son algo escandalosos."
 height_m = 0.8

@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="11_4drrt"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="12_t1ktv"]
 [ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="13_hjgti"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_tuyjm"]
 
 [sub_resource type="Resource" id="Resource_r0j6a"]
 script = ExtResource("1_g5pmt")
@@ -82,6 +83,7 @@ display_name = "Crawdaunt"
 dex = 342
 types = Array[ExtResource("4_36rr1")]([ExtResource("5_lv5n6"), ExtResource("6_jv42n")])
 learnset = Array[ExtResource("1_g5pmt")]([SubResource("Resource_r0j6a"), SubResource("Resource_b0np2"), SubResource("Resource_slm2h"), SubResource("Resource_udom8"), SubResource("Resource_71u84"), SubResource("Resource_n1uq6"), SubResource("Resource_fh1ii"), SubResource("Resource_kpvuw"), SubResource("Resource_c5ifh"), SubResource("Resource_j72bp"), SubResource("Resource_uf54u"), SubResource("Resource_xbexi")])
+temperament = ExtResource("16_tuyjm")
 genus = "Pokémon Granuja"
 pokedex_entry = "Crawdaunt es de una naturaleza extremadamente violenta que le lleva a desafiar a otros seres vivos. Hay formas de vida que se niegan a vivir en los estanques donde habitan estos Pokémon, y los dejan medio vacíos."
 height_m = 1.1

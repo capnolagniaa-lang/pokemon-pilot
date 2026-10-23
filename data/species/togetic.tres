@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="12_isc2j"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_v7e15"]
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="14_wbx52"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_o2u8a"]
 
 [sub_resource type="Resource" id="Resource_s1qij"]
 script = ExtResource("1_bxbj5")
@@ -87,6 +88,7 @@ display_name = "Togetic"
 dex = 176
 types = Array[ExtResource("4_gplch")]([ExtResource("5_0htf7"), ExtResource("6_6v1j3")])
 learnset = Array[ExtResource("1_bxbj5")]([SubResource("Resource_s1qij"), SubResource("Resource_ikymb"), SubResource("Resource_vprkm"), SubResource("Resource_wohcw"), SubResource("Resource_vcpvx"), SubResource("Resource_dnplp"), SubResource("Resource_yib7w"), SubResource("Resource_yudsa"), SubResource("Resource_as5df"), SubResource("Resource_yevn6"), SubResource("Resource_ltgri"), SubResource("Resource_gjk2n"), SubResource("Resource_dbhx4")])
+temperament = ExtResource("17_o2u8a")
 genus = "Pokémon Felicidad"
 pokedex_entry = "Dicen que Togetic es un Pokémon que trae buena suerte y que, si detecta a alguien que es puro de corazón, sale para compartir su alegría con él."
 height_m = 0.6

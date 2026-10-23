@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_pmynf"]
 [ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="10_tlssm"]
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="11_o02mt"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_h03rt"]
 
 [sub_resource type="Resource" id="Resource_v7gto"]
 script = ExtResource("1_pl4d3")
@@ -71,6 +72,7 @@ display_name = "Teddiursa"
 dex = 216
 types = Array[ExtResource("4_lkby5")]([ExtResource("5_mjqjn")])
 learnset = Array[ExtResource("1_pl4d3")]([SubResource("Resource_v7gto"), SubResource("Resource_4qqq6"), SubResource("Resource_irt52"), SubResource("Resource_6ajw0"), SubResource("Resource_21e8s"), SubResource("Resource_x3nbb"), SubResource("Resource_0kmss"), SubResource("Resource_a1gqt"), SubResource("Resource_u227c"), SubResource("Resource_t86su")])
+temperament = ExtResource("14_h03rt")
 genus = "Pokémon Osito"
 pokedex_entry = "A Teddiursa le encanta chuparse las palmas impregnadas de dulce miel. Este Pokémon fabrica su propia miel mezclando frutos y el polen que recoge Beedrill."
 height_m = 0.6

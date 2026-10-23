@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="9_d2veu"]
 [ext_resource type="Resource" path="res://data/moves/camelo.tres" id="10_gjbmn"]
 [ext_resource type="Resource" path="res://data/moves/perforador.tres" id="11_0xyv7"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_qsuo1"]
 
 [sub_resource type="Resource" id="Resource_74yfr"]
 script = ExtResource("1_crub6")
@@ -71,6 +72,7 @@ display_name = "Nidoran♂"
 dex = 32
 types = Array[ExtResource("4_j8kl4")]([ExtResource("5_x858s")])
 learnset = Array[ExtResource("1_crub6")]([SubResource("Resource_74yfr"), SubResource("Resource_ipfad"), SubResource("Resource_l14bw"), SubResource("Resource_a8s7v"), SubResource("Resource_f8r52"), SubResource("Resource_6kl3h"), SubResource("Resource_01th0"), SubResource("Resource_cerhp"), SubResource("Resource_dnlnh"), SubResource("Resource_ya0ox")])
+temperament = ExtResource("14_qsuo1")
 genus = "Pokémon Pin Veneno"
 pokedex_entry = "Nidoran♂ ha desarrollado músculos para mover las orejas y orientarlas en cualquier dirección. De este modo, es capaz de captar hasta el sonido más leve."
 height_m = 0.5

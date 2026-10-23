@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_sl8hy"]
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="12_eeufq"]
 [ext_resource type="Resource" path="res://data/moves/tambor.tres" id="13_yyn4h"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="16_2n562"]
 
 [sub_resource type="Resource" id="Resource_lrlre"]
 script = ExtResource("1_idmf5")
@@ -83,6 +84,7 @@ display_name = "Zigzagoon"
 dex = 263
 types = Array[ExtResource("4_i7ulk")]([ExtResource("5_gxoux")])
 learnset = Array[ExtResource("1_idmf5")]([SubResource("Resource_lrlre"), SubResource("Resource_48psi"), SubResource("Resource_fngux"), SubResource("Resource_44kil"), SubResource("Resource_qnd1c"), SubResource("Resource_rpu4i"), SubResource("Resource_dcmb7"), SubResource("Resource_6dgib"), SubResource("Resource_ybc8f"), SubResource("Resource_e47mm"), SubResource("Resource_thngp"), SubResource("Resource_ce3nh")])
+temperament = ExtResource("16_2n562")
 genus = "Pokémon Mapachito"
 pokedex_entry = "Zigzagoon está todo el día dando vueltas de aquí para allá. Es un Pokémon muy inquieto. Se interesa por todo lo que se encuentra en su camino."
 height_m = 0.4

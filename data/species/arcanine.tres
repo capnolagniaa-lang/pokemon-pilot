@@ -10,6 +10,7 @@
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_bg30b"]
 [ext_resource type="Resource" path="res://data/moves/rugido.tres" id="5_rjr3u"]
 [ext_resource type="Resource" path="res://data/moves/velocidad_extrema.tres" id="6_oeud2"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="9_1t4ex"]
 
 [sub_resource type="Resource" id="Resource_sauin"]
 script = ExtResource("1_xlbcp")
@@ -39,6 +40,7 @@ display_name = "Arcanine"
 dex = 59
 types = Array[ExtResource("4_ck5er")]([ExtResource("5_bg30b")])
 learnset = Array[ExtResource("1_xlbcp")]([SubResource("Resource_sauin"), SubResource("Resource_0vhgh"), SubResource("Resource_riwwi"), SubResource("Resource_x7027"), SubResource("Resource_ijejk")])
+temperament = ExtResource("9_1t4ex")
 genus = "Pokémon Leyenda"
 pokedex_entry = "Arcanine es conocido por lo veloz que es. Dicen que es capaz de correr 10 000 km en 24 horas. El fuego que arde con vigor en el interior de este Pokémon constituye su fuente de energía."
 height_m = 1.9

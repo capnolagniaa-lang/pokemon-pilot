@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="8_dswpu"]
 [ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="9_lh7b7"]
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="10_tsv1g"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_vacgl"]
 
 [sub_resource type="Resource" id="Resource_rba06"]
 script = ExtResource("1_w3tls")
@@ -67,6 +68,7 @@ display_name = "Beautifly"
 dex = 267
 types = Array[ExtResource("4_f7kbt")]([ExtResource("5_pv32a"), ExtResource("6_5kb2a")])
 learnset = Array[ExtResource("1_w3tls")]([SubResource("Resource_rba06"), SubResource("Resource_2jxjt"), SubResource("Resource_rf67v"), SubResource("Resource_awy8c"), SubResource("Resource_jurbl"), SubResource("Resource_tjp4o"), SubResource("Resource_cch11"), SubResource("Resource_xcl3o"), SubResource("Resource_7sfed")])
+temperament = ExtResource("13_vacgl")
 genus = "Pokémon Mariposa"
 pokedex_entry = "La comida favorita de Beautifly es el dulce polen de las flores. Si quieres ver a este Pokémon, deja una maceta con flores al lado de la ventana y verás cómo aparece un ejemplar de Beautifly en busca de polen."
 height_m = 1.0

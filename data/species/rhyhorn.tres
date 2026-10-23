@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_nrwn2"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_717mn"]
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_wfksy"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_j6o4s"]
 
 [sub_resource type="Resource" id="Resource_8qktv"]
 script = ExtResource("1_a3kke")
@@ -72,6 +73,7 @@ display_name = "Rhyhorn"
 dex = 111
 types = Array[ExtResource("4_aax8w")]([ExtResource("5_fdhtm"), ExtResource("6_vx4gs")])
 learnset = Array[ExtResource("1_a3kke")]([SubResource("Resource_8qktv"), SubResource("Resource_7cnc6"), SubResource("Resource_ncabk"), SubResource("Resource_cw7w4"), SubResource("Resource_67bhg"), SubResource("Resource_2umw3"), SubResource("Resource_tsgm3"), SubResource("Resource_dg33t"), SubResource("Resource_o3q8q"), SubResource("Resource_0mh0t")])
+temperament = ExtResource("14_j6o4s")
 genus = "Pokémon Clavos"
 pokedex_entry = "Rhyhorn corre en línea recta arrasando todo lo que encuentra en su camino. Aun estrellándose de cabeza contra un bloque de acero, no se vería afectado; a lo sumo, notaría algo de dolor al día siguiente."
 height_m = 1.0

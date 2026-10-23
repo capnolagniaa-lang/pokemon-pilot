@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_64t8k"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="11_70uqf"]
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="12_hm4mp"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_24m2f"]
 
 [sub_resource type="Resource" id="Resource_4n3y5"]
 script = ExtResource("1_i25ok")
@@ -77,6 +78,7 @@ display_name = "Mankey"
 dex = 56
 types = Array[ExtResource("4_5f68j")]([ExtResource("5_sukgg")])
 learnset = Array[ExtResource("1_i25ok")]([SubResource("Resource_4n3y5"), SubResource("Resource_nyony"), SubResource("Resource_rdgb1"), SubResource("Resource_fi43s"), SubResource("Resource_x8uev"), SubResource("Resource_pl4j3"), SubResource("Resource_yf6io"), SubResource("Resource_yb1xn"), SubResource("Resource_0i5q4"), SubResource("Resource_y0x5f"), SubResource("Resource_1k17s")])
+temperament = ExtResource("15_24m2f")
 genus = "Pokémon Mono Cerdo"
 pokedex_entry = "Cuando Mankey empieza a temblar y a respirar con más intensidad, seguro que va a enfadarse. Aunque prever su enfado no sirve de nada porque alcanza un estado de rabia tan rápido que no hay escapatoria."
 height_m = 0.5

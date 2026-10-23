@@ -23,6 +23,14 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	for flag in ["--autotest-wild-ai", "--showcase-wild-ai"]:
+		if flag in OS.get_cmdline_user_args():
+			set_process(false)
+			var wai := WildAiTests.new()
+			wai.autotest = self
+			add_child(wai)
+			(wai.run if flag == "--autotest-wild-ai" else wai.showcase).call_deferred()
+			return
 	for flag in ["--autotest-pokedex", "--showcase-pokedex"]:
 		if flag in OS.get_cmdline_user_args():
 			set_process(false)
@@ -256,6 +264,7 @@ func _combat_test() -> void:
 		world.combat.input_source = BotCombatInput.new(world)
 		await get_tree().create_timer(0.5).timeout
 		var wild: Creature = world.spawner.spawn(DB.species[fight[1]], fight[2], world.trainer.global_position + Vector2(56, 0))
+		wild.temperament = DB.temperaments["agresivo"]  # que pelee aunque su especie sea tímida
 		var t := 0.0
 		while t < 60.0 and stats["battle_ended"] == 0:
 			await get_tree().process_frame

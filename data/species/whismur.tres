@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_6x0iq"]
 [ext_resource type="Resource" path="res://data/moves/sonambulo.tres" id="11_7ojit"]
 [ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="12_3sgwj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_jkxui"]
 
 [sub_resource type="Resource" id="Resource_438pv"]
 script = ExtResource("1_qftpt")
@@ -78,6 +79,7 @@ display_name = "Whismur"
 dex = 293
 types = Array[ExtResource("4_4y7uu")]([ExtResource("5_g7gab")])
 learnset = Array[ExtResource("1_qftpt")]([SubResource("Resource_438pv"), SubResource("Resource_hgwdu"), SubResource("Resource_a1p8h"), SubResource("Resource_3l555"), SubResource("Resource_cdpta"), SubResource("Resource_kkwic"), SubResource("Resource_coe3g"), SubResource("Resource_hvxqr"), SubResource("Resource_l3nnk"), SubResource("Resource_6msb5"), SubResource("Resource_k3wf0")])
+temperament = ExtResource("15_jkxui")
 genus = "Pokémon Susurro"
 pokedex_entry = "Normalmente, Whismur tiene una voz tenue, casi inaudible, aunque se preste atención. No obstante, si este Pokémon siente que el peligro acecha, puede ponerse a chillar con un volumen ensordecedor."
 height_m = 0.6

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="9_gukdm"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_xgjrd"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_ovkl7"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_w4oqm"]
 
 [sub_resource type="Resource" id="Resource_aepu2"]
 script = ExtResource("1_r5xt6")
@@ -72,6 +73,7 @@ display_name = "Ledian"
 dex = 166
 types = Array[ExtResource("4_x7c78")]([ExtResource("5_vknar"), ExtResource("6_556g6")])
 learnset = Array[ExtResource("1_r5xt6")]([SubResource("Resource_aepu2"), SubResource("Resource_q8xbo"), SubResource("Resource_fpjho"), SubResource("Resource_hvjb1"), SubResource("Resource_nyauk"), SubResource("Resource_ad61b"), SubResource("Resource_ne4y0"), SubResource("Resource_i6xa4"), SubResource("Resource_tygn6"), SubResource("Resource_gor1a")])
+temperament = ExtResource("14_w4oqm")
 genus = "Pokémon 5 Estrellas"
 pokedex_entry = "Dicen que en zonas en las que el aire está limpio, en las que se ven las estrellas, hay enormes poblaciones de Ledian. La razón es muy sencilla: este Pokémon usa la luz de las estrellas como fuente de energía."
 height_m = 1.4

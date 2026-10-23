@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/tajo_cruzado.tres" id="11_yp7rd"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="12_l3nkk"]
 [ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="13_7v3mx"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_85pc2"]
 
 [sub_resource type="Resource" id="Resource_cnfyh"]
 script = ExtResource("1_8bsr4")
@@ -82,6 +83,7 @@ display_name = "Machoke"
 dex = 67
 types = Array[ExtResource("4_p3cwt")]([ExtResource("5_2xgcv")])
 learnset = Array[ExtResource("1_8bsr4")]([SubResource("Resource_cnfyh"), SubResource("Resource_8l76s"), SubResource("Resource_55q0r"), SubResource("Resource_io3j6"), SubResource("Resource_x31tg"), SubResource("Resource_4ujb6"), SubResource("Resource_gkfp4"), SubResource("Resource_gpgps"), SubResource("Resource_bwvmw"), SubResource("Resource_w57nk"), SubResource("Resource_x0oox"), SubResource("Resource_iui2h")])
+temperament = ExtResource("16_85pc2")
 genus = "Pokémon Superpoder"
 pokedex_entry = "Los entrenados músculos de Machoke son tan fuertes como el acero. Este Pokémon es tan fuerte que puede levantar con un solo dedo a un luchador de sumo."
 height_m = 1.5

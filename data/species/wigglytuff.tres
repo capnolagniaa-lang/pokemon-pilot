@@ -10,6 +10,7 @@
 [ext_resource type="Resource" path="res://data/moves/canto.tres" id="5_bgitb"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_p8g8c"]
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="6_xj5hu"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="8_xj5hu"]
 
 [sub_resource type="Resource" id="Resource_boqhd"]
 script = ExtResource("1_iw7w2")
@@ -34,6 +35,7 @@ display_name = "Wigglytuff"
 dex = 40
 types = Array[ExtResource("4_lyvdw")]([ExtResource("5_p8g8c"), ExtResource("6_xj5hu")])
 learnset = Array[ExtResource("1_iw7w2")]([SubResource("Resource_boqhd"), SubResource("Resource_k00ji"), SubResource("Resource_t1ode"), SubResource("Resource_esjls")])
+temperament = ExtResource("8_xj5hu")
 genus = "Pokémon Globo"
 pokedex_entry = "Wigglytuff tiene unos ojos enormes con forma de platillo, que siempre están cubiertos de lágrimas. Si se le metiera algo en el ojo, enseguida se le saldría solo."
 height_m = 1.0

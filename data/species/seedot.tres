@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="6_p3e1d"]
 [ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="7_5iip4"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="8_66rot"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="11_ccawv"]
 
 [sub_resource type="Resource" id="Resource_jtn52"]
 script = ExtResource("1_dhkcl")
@@ -54,6 +55,7 @@ display_name = "Seedot"
 dex = 273
 types = Array[ExtResource("4_k6v0d")]([ExtResource("5_78ulh")])
 learnset = Array[ExtResource("1_dhkcl")]([SubResource("Resource_jtn52"), SubResource("Resource_vm7i5"), SubResource("Resource_oovuc"), SubResource("Resource_5natp"), SubResource("Resource_kmarb"), SubResource("Resource_xnvw2"), SubResource("Resource_tk811")])
+temperament = ExtResource("11_ccawv")
 genus = "Pokémon Bellota"
 pokedex_entry = "Seedot se queda enganchado a las ramas de los árboles por el extremo que tiene en la cabeza. Mientras está ahí colgado, aprovecha para tomar la humedad del árbol. Cuanta más agua bebe, más lustroso se le ve."
 height_m = 0.5

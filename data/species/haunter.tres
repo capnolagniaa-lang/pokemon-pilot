@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="11_mg565"]
 [ext_resource type="Resource" path="res://data/moves/pesadilla.tres" id="12_m4l42"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="13_au02v"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_3x6iu"]
 
 [sub_resource type="Resource" id="Resource_yr4e1"]
 script = ExtResource("1_5ttex")
@@ -83,6 +84,7 @@ display_name = "Haunter"
 dex = 93
 types = Array[ExtResource("4_381b5")]([ExtResource("5_wh8qj"), ExtResource("6_65i62")])
 learnset = Array[ExtResource("1_5ttex")]([SubResource("Resource_yr4e1"), SubResource("Resource_ajhea"), SubResource("Resource_g7j0t"), SubResource("Resource_llt7p"), SubResource("Resource_l156h"), SubResource("Resource_vkbjd"), SubResource("Resource_cdfof"), SubResource("Resource_akjdh"), SubResource("Resource_pjeu3"), SubResource("Resource_uytge"), SubResource("Resource_yq8ev"), SubResource("Resource_tlm28")])
+temperament = ExtResource("16_3x6iu")
 genus = "Pokémon Gas"
 pokedex_entry = "Haunter es un Pokémon peligroso. Si se ve alguno flotando en la oscuridad y haciendo señas, conviene no acercarse. Este Pokémon intentará robarle la energía a su presa a base de lametazos."
 height_m = 1.6

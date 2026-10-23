@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_0pg1o"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_pe6pj"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_0qt3v"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_5g4kw"]
 
 [sub_resource type="Resource" id="Resource_f7xw8"]
 script = ExtResource("1_wuutp")
@@ -64,6 +65,7 @@ display_name = "Croconaw"
 dex = 159
 types = Array[ExtResource("4_vgqeb")]([ExtResource("5_naaer")])
 learnset = Array[ExtResource("1_wuutp")]([SubResource("Resource_f7xw8"), SubResource("Resource_2858u"), SubResource("Resource_7w1jk"), SubResource("Resource_umpvj"), SubResource("Resource_rtldp"), SubResource("Resource_rp4rk"), SubResource("Resource_lwd0n"), SubResource("Resource_cta1n"), SubResource("Resource_qk5iv")])
+temperament = ExtResource("13_5g4kw")
 genus = "Pokémon Fauces"
 pokedex_entry = "Una vez que Croconaw le ha clavado los colmillos a su presa, es imposible que escape porque los tiene hacia adentro como si fueran anzuelos. Cuando Croconaw hinca los dientes, no hay escapatoria."
 height_m = 1.1

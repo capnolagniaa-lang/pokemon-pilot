@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_12vpq"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="7_mvwui"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_61kdy"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_vhb54"]
 
 [sub_resource type="Resource" id="Resource_fjdas"]
 script = ExtResource("1_fjdas")
@@ -48,6 +49,7 @@ dex = 7
 types = Array[ExtResource("7_12vpq")]([ExtResource("8_61kdy")])
 moves = Array[ExtResource("1_bk64l")]([ExtResource("2_ywyvp"), ExtResource("3_5ulau"), ExtResource("4_fjdas"), ExtResource("5_vhb54")])
 learnset = Array[ExtResource("1_fjdas")]([SubResource("Resource_fjdas"), SubResource("Resource_vhb54"), SubResource("Resource_mvwui"), SubResource("Resource_12vpq"), SubResource("Resource_61kdy"), SubResource("Resource_gy4rv")])
+temperament = ExtResource("10_vhb54")
 genus = "Pokémon Tortuguita"
 pokedex_entry = "El caparazón de Squirtle no le sirve de protección únicamente. Su forma redondeada y las hendiduras que tiene le ayudan a deslizarse en el agua y le permiten nadar a gran velocidad."
 height_m = 0.5

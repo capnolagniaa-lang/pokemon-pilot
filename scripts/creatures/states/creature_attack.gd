@@ -1,22 +1,23 @@
 extends State
-## Salvaje peleando: mantiene distancia, rodea, elige ataques según el alcance y esquiva proyectiles.
+## Salvaje peleando (mente de salvaje: instinto, sin memoria). Mantiene su distancia, rodea, y ataca con un
+## **patrón reconocible**: abre siempre igual (si está lejos, con su ataque de acercamiento) y después rota sus
+## ataques en orden, sin azar, así el jugador aprende a leerlo. La ejecución (apuntar, esquivar, puntería según
+## la dificultad) la hace el cuerpo compartido (CombatBody). Huye con poca vida según su temperamento, se
+## espanta con golpes fuertes y sale de las celdas peligrosas.
 
+## Si no tiene temperamento (no debería pasar), huye con menos de esto.
 @export var flee_below := 0.25
 
 var _think := 0.0
 var _attack_timer := 0.6
 var _strafe := 1.0
 var _mode := "strafe"
-var _checked: Dictionary = {}
-
-
-## Dificultad elegida al iniciar (Fácil / Normal / Difícil).
-func _diff() -> AiDifficulty:
-	return GameState.difficulty if GameState.difficulty != null else AiDifficulty.new()
+## Próxima ranura de la rotación.
+var _next := 0
 
 
 func enter(_msg: Dictionary = {}) -> void:
-	_attack_timer = randf_range(0.3, 0.8) * _diff().attack_interval_mult
+	_attack_timer = randf_range(0.3, 0.8) * CombatBody.difficulty().attack_interval_mult
 
 
 func physics_update(delta: float) -> void:
@@ -30,16 +31,31 @@ func physics_update(delta: float) -> void:
 	if dist > 260.0:
 		transition("chase")
 		return
-	if actor.health.ratio() < flee_below and randf() < 0.5 * delta:
+	var temp: Temperament = actor.temperament
+	var flee_at: float = temp.flee_below if temp != null else flee_below
+	if actor.health.ratio() < flee_at and randf() < 0.5 * delta:
+		actor.emote("gota", 1.0)
 		transition("flee")
 		return
+	if temp != null and temp.on_notice == Temperament.OnNotice.TERRITORY \
+			and t.global_position.distance_to(actor.home) > temp.territory_radius * 1.8:
+		transition("wander")  # saliste de su territorio: te deja ir
+		return
 	actor.facing = dir
-	if _try_dodge():
+	if actor.body.try_dodge():
+		return
+	var escape: Vector2 = actor.body.hazard_escape()
+	if escape != Vector2.ZERO:
+		actor.move(escape, actor.speed())
+		return
+	if actor.spook_left > 0.0:
+		actor.move(-dir, actor.speed() * 0.9)  # espantado: retrocede sin atacar
+		actor.facing = dir
 		return
 
 	_think -= delta
 	if _think <= 0.0:
-		_think = randf_range(0.4, 0.9) * _diff().think_interval_mult
+		_think = randf_range(0.4, 0.9) * CombatBody.difficulty().think_interval_mult
 		var ideal := _ideal_range()
 		if dist > ideal * 1.3:
 			_mode = "approach"
@@ -52,8 +68,8 @@ func physics_update(delta: float) -> void:
 
 	_attack_timer -= delta
 	if _attack_timer <= 0.0:
-		_attack_timer = randf_range(0.6, 1.4) * _diff().attack_interval_mult
-		if _choose_attack(dist, dir):
+		_attack_timer = randf_range(0.6, 1.4) * CombatBody.difficulty().attack_interval_mult
+		if _choose_attack(dist):
 			return
 
 	var move := Vector2.ZERO
@@ -78,45 +94,17 @@ func _ideal_range() -> float:
 	return r
 
 
-## Elige uno de los 4 ataques según el alcance (las recargas ya regulan cuánto usa cada uno).
-## Las mejoras propias (Arraigo, Síntesis) las usa cuando está herido.
-func _choose_attack(dist: float, dir: Vector2) -> bool:
-	var order := range(MoveUser.SLOT_COUNT)
-	order.shuffle()
-	for slot in order:
-		var m: MoveData = actor.moves.slots[slot]
-		if m == null or not actor.moves.can_use(slot):
-			continue
-		var ok := false
-		match m.kind:
-			MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF:
-				ok = actor.health.ratio() < 0.6 and randf() < 0.3
-			MoveData.Kind.DASH:
-				ok = m.dash_hits and dist < m.reach()
-			_:
-				ok = dist < m.reach()
-		if ok:
-			var err := deg_to_rad(_diff().aim_error_deg)
-			var target_point: Vector2 = Vector2.INF
-			if is_instance_valid(actor.target):
-				# Mismo error de puntería para las zonas y el Arañazo (apuntan a un punto).
-				var off: Vector2 = actor.target.global_position - actor.global_position
-				target_point = actor.global_position + off.rotated(randf_range(-err, err)) * randf_range(1.0 - err, 1.0 + err)
-			return actor.use_slot(slot, dir.rotated(randf_range(-err, err)), target_point)
-	return false
-
-
-## Esquiva proyectiles enemigos que vienen hacia él (decide una vez por proyectil).
-func _try_dodge() -> bool:
-	if not actor.moves.can_dodge():
-		return false
-	for p in actor.get_parent().get_children():
-		if not p is Projectile or p.hit == null or p.hit.team == actor.team or _checked.has(p):
-			continue
-		var rel: Vector2 = actor.global_position - p.global_position
-		if rel.length() < 70.0 and p.velocity.dot(rel) > 0.0:
-			_checked[p] = true
-			if randf() < 0.3:
-				var perp: Vector2 = p.velocity.orthogonal().normalized()
-				return actor.dodge(perp if randf() < 0.5 else -perp)
+## Patrón fijo: la primera vez, si está lejos, abre con su ataque de acercamiento; después recorre las
+## ranuras en orden (0, 1, 2, 3...) usando la primera que le sirva a esta distancia.
+func _choose_attack(dist: float) -> bool:
+	if not actor.fight_opened:
+		actor.fight_opened = true
+		var opener: int = actor.body.gap_closer(dist)
+		if opener >= 0 and dist > 40.0 and actor.body.use(opener):
+			return true
+	for k in MoveUser.SLOT_COUNT:
+		var slot := (_next + k) % MoveUser.SLOT_COUNT
+		if actor.body.fits(slot, dist):
+			_next = (slot + 1) % MoveUser.SLOT_COUNT
+			return actor.body.use(slot)
 	return false

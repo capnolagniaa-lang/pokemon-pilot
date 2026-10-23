@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_fh6v6"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="11_0d64v"]
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="12_xlx25"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_hxfji"]
 
 [sub_resource type="Resource" id="Resource_vpuro"]
 script = ExtResource("1_shbc2")
@@ -78,6 +79,7 @@ display_name = "Absol"
 dex = 359
 types = Array[ExtResource("4_a0h1h")]([ExtResource("5_6pob2")])
 learnset = Array[ExtResource("1_shbc2")]([SubResource("Resource_vpuro"), SubResource("Resource_sl8xa"), SubResource("Resource_kqqxb"), SubResource("Resource_pxbt4"), SubResource("Resource_48lo8"), SubResource("Resource_in1ie"), SubResource("Resource_i8hif"), SubResource("Resource_royu2"), SubResource("Resource_3g6xu"), SubResource("Resource_d18w1"), SubResource("Resource_pppvn")])
+temperament = ExtResource("15_hxfji")
 genus = "Pokémon Catástrofe"
 pokedex_entry = "Cada vez que Absol aparece ante la gente, ocurre una catástrofe natural como un terremoto o un maremoto. Por esta razón se le conoce como el Pokémon de las catástrofes."
 height_m = 1.2

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="11_fvs1a"]
 [ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="12_pxmx7"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="13_k1vy7"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_jl5ac"]
 
 [sub_resource type="Resource" id="Resource_h7gtf"]
 script = ExtResource("1_yhwem")
@@ -83,6 +84,7 @@ display_name = "Staryu"
 dex = 120
 types = Array[ExtResource("4_wp8i6")]([ExtResource("5_y0i41")])
 learnset = Array[ExtResource("1_yhwem")]([SubResource("Resource_h7gtf"), SubResource("Resource_do12l"), SubResource("Resource_vcukd"), SubResource("Resource_7fnd8"), SubResource("Resource_uiscv"), SubResource("Resource_81r1x"), SubResource("Resource_fuqxk"), SubResource("Resource_klg3j"), SubResource("Resource_bs6lu"), SubResource("Resource_jichd"), SubResource("Resource_jpi6c"), SubResource("Resource_ehwgl")])
+temperament = ExtResource("16_jl5ac")
 genus = "Pokémon Estrella"
 pokedex_entry = "Staryu posee un órgano central, conocido como su núcleo, que brilla con una luz roja. A finales de verano, pueden verse en la playa los núcleos de estos Pokémon brillando como las estrellas del cielo."
 height_m = 0.8

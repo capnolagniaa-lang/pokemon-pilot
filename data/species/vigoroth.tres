@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="9_uiofp"]
 [ext_resource type="Resource" path="res://data/moves/puno_certero.tres" id="10_ta6q6"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="11_8etla"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_vjojx"]
 
 [sub_resource type="Resource" id="Resource_jqdow"]
 script = ExtResource("1_hee4c")
@@ -69,6 +70,7 @@ display_name = "Vigoroth"
 dex = 288
 types = Array[ExtResource("4_ia6sl")]([ExtResource("5_xnbdp")])
 learnset = Array[ExtResource("1_hee4c")]([SubResource("Resource_jqdow"), SubResource("Resource_d8oh6"), SubResource("Resource_kcx1d"), SubResource("Resource_axhko"), SubResource("Resource_b3gtv"), SubResource("Resource_4326j"), SubResource("Resource_mprsh"), SubResource("Resource_3lai1"), SubResource("Resource_mb2tv"), SubResource("Resource_xwgq5")])
+temperament = ExtResource("14_vjojx")
 genus = "Pokémon Mono Feroz"
 pokedex_entry = "Vigoroth está continuamente inquieto, rabiando por salir corriendo sin control. Estar quieto un solo minuto es superior a sus fuerzas. Si no puede estar en continuo movimiento, el nivel de estrés de este Pokémon se dispara."
 height_m = 1.4

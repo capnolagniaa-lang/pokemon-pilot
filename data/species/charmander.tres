@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="7_4xbfc"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_36cw7"]
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_yuxux"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_a0qht"]
 
 [sub_resource type="Resource" id="Resource_7mh3n"]
 script = ExtResource("2_7mh3n")
@@ -54,6 +55,7 @@ types = Array[ExtResource("7_1yptp")]([ExtResource("8_yuxux")])
 moves = Array[ExtResource("1_0vo34")]([ExtResource("2_65dpy"), ExtResource("3_fsuga"), ExtResource("4_tljsa"), ExtResource("5_jtnfp")])
 kit = ExtResource("1_65dpy")
 learnset = Array[ExtResource("2_7mh3n")]([SubResource("Resource_7mh3n"), SubResource("Resource_a0qht"), SubResource("Resource_o7dgl"), SubResource("Resource_i7knr"), SubResource("Resource_da3uv"), SubResource("Resource_4xbfc")])
+temperament = ExtResource("15_a0qht")
 genus = "Pokémon Lagartija"
 pokedex_entry = "La llama que tiene en la punta de la cola arde según sus sentimientos. Llamea levemente cuando está alegre y arde vigorosamente cuando está enfadado."
 height_m = 0.6

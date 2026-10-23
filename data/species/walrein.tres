@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="12_vyc81"]
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="13_fm0gw"]
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="14_adsw0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_6vf2g"]
 
 [sub_resource type="Resource" id="Resource_paddh"]
 script = ExtResource("1_dr2q5")
@@ -88,6 +89,7 @@ display_name = "Walrein"
 dex = 365
 types = Array[ExtResource("4_wgsku")]([ExtResource("5_vg64m"), ExtResource("6_6xi1o")])
 learnset = Array[ExtResource("1_dr2q5")]([SubResource("Resource_paddh"), SubResource("Resource_ue01v"), SubResource("Resource_x55o5"), SubResource("Resource_uywom"), SubResource("Resource_w3ee4"), SubResource("Resource_n748n"), SubResource("Resource_pmcjk"), SubResource("Resource_uqvdx"), SubResource("Resource_xqlto"), SubResource("Resource_sx1dx"), SubResource("Resource_ny5u3"), SubResource("Resource_uoorv"), SubResource("Resource_gkqd6")])
+temperament = ExtResource("17_6vf2g")
 genus = "Pokémon Rompehielo"
 pokedex_entry = "Walrein tiene unos exagerados colmillos con los que puede hacer añicos bloques de hielo de hasta 10 toneladas de una sola dentellada. La gruesa capa de grasa que lo recubre le protege de temperaturas inferiores a 0 °C."
 height_m = 1.4

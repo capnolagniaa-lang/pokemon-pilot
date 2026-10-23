@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kmyxv"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_7srrb"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_gyffu"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="5_kmyxv"]
 
 [sub_resource type="Resource" id="Resource_7srrb"]
 script = ExtResource("1_ss7fd")
@@ -18,6 +19,7 @@ display_name = "Smeargle"
 dex = 235
 types = Array[ExtResource("4_7srrb")]([ExtResource("5_gyffu")])
 learnset = Array[ExtResource("1_ss7fd")]([SubResource("Resource_7srrb")])
+temperament = ExtResource("5_kmyxv")
 genus = "Pokémon Pintor"
 pokedex_entry = "Smeargle marca los límites de su territorio liberando un fluido corporal por el extremo de la cola. En la actualidad se han encontrado más de 5000 tipos de marcas distintas dejadas por este Pokémon."
 height_m = 1.2

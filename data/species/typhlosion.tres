@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/rueda_fuego.tres" id="7_htm15"]
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="8_own8g"]
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_4y5v5"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_1fidb"]
 
 [sub_resource type="Resource" id="Resource_pa65w"]
 script = ExtResource("1_xwjny")
@@ -57,6 +58,7 @@ display_name = "Typhlosion"
 dex = 157
 types = Array[ExtResource("4_nja3u")]([ExtResource("5_vf4ic")])
 learnset = Array[ExtResource("1_xwjny")]([SubResource("Resource_pa65w"), SubResource("Resource_jqav6"), SubResource("Resource_wc8en"), SubResource("Resource_53u4c"), SubResource("Resource_f17wb"), SubResource("Resource_gd7m0"), SubResource("Resource_nxc82"), SubResource("Resource_6yig8")])
+temperament = ExtResource("12_1fidb")
 genus = "Pokémon Volcán"
 pokedex_entry = "Typhlosion se oculta tras un trémulo haz de calor que crea mediante sus intensas y sofocantes llamaradas. Este Pokémon causa explosiones de fuego que reducen todo a cenizas."
 height_m = 1.7

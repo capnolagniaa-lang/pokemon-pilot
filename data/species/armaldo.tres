@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="9_4ihkw"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_tt2yf"]
 [ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="11_loljj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_4os5u"]
 
 [sub_resource type="Resource" id="Resource_tx4l4"]
 script = ExtResource("1_rqryc")
@@ -70,6 +71,7 @@ display_name = "Armaldo"
 dex = 348
 types = Array[ExtResource("4_3u24l")]([ExtResource("5_bkoxq"), ExtResource("6_nsg6x")])
 learnset = Array[ExtResource("1_rqryc")]([SubResource("Resource_tx4l4"), SubResource("Resource_56icb"), SubResource("Resource_74om0"), SubResource("Resource_6e32l"), SubResource("Resource_ydmp5"), SubResource("Resource_tl8pc"), SubResource("Resource_5os2x"), SubResource("Resource_k7syc"), SubResource("Resource_oaok4"), SubResource("Resource_o4n3s")])
+temperament = ExtResource("14_4os5u")
 genus = "Pokémon Armadura"
 pokedex_entry = "Armaldo tiene una sólida armadura que repele cualquier ataque. Este Pokémon puede estirar o encoger todo lo que quiera las pinzas que tiene. Con ellas, puede atravesar una plancha de acero."
 height_m = 1.5

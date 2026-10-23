@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_4mdi4"]
 [ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="12_f65io"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_lufgp"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_yfc0t"]
 
 [sub_resource type="Resource" id="Resource_e1nou"]
 script = ExtResource("1_34wqb")
@@ -81,6 +82,7 @@ display_name = "Shelgon"
 dex = 372
 types = Array[ExtResource("4_fk2tp")]([ExtResource("5_qql7s")])
 learnset = Array[ExtResource("1_34wqb")]([SubResource("Resource_e1nou"), SubResource("Resource_64356"), SubResource("Resource_vykqp"), SubResource("Resource_g5w8m"), SubResource("Resource_o8vi0"), SubResource("Resource_cy2ii"), SubResource("Resource_4hqtl"), SubResource("Resource_31axl"), SubResource("Resource_d7268"), SubResource("Resource_mutqq"), SubResource("Resource_aw6oe"), SubResource("Resource_i2hba")])
+temperament = ExtResource("16_yfc0t")
 genus = "Pokémon Resistencia"
 pokedex_entry = "Dentro de la capa acorazada de Shelgon, las células están en pleno proceso de creación de un cuerpo nuevo. El peso de la coraza le hace tener unos movimientos lentos."
 height_m = 1.1

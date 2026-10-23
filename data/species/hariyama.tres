@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/aguante.tres" id="12_wop2k"]
 [ext_resource type="Resource" path="res://data/moves/sismico.tres" id="13_ci2o8"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="14_wiq5d"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="17_fo3ia"]
 
 [sub_resource type="Resource" id="Resource_4ximl"]
 script = ExtResource("1_7372f")
@@ -87,6 +88,7 @@ display_name = "Hariyama"
 dex = 297
 types = Array[ExtResource("4_a8pt7")]([ExtResource("5_wumnc")])
 learnset = Array[ExtResource("1_7372f")]([SubResource("Resource_4ximl"), SubResource("Resource_23jrr"), SubResource("Resource_fns2w"), SubResource("Resource_3mfr5"), SubResource("Resource_hkh1t"), SubResource("Resource_cwuv3"), SubResource("Resource_qjhd3"), SubResource("Resource_d56iu"), SubResource("Resource_wcfe8"), SubResource("Resource_gh7bn"), SubResource("Resource_nvj38"), SubResource("Resource_rlxka"), SubResource("Resource_ljvnw")])
+temperament = ExtResource("17_fo3ia")
 genus = "Pokémon Empuje"
 pokedex_entry = "Hariyama practica los empujones que da estirando los brazos allá por donde va. Este Pokémon puede partir por la mitad un poste de teléfono de un enérgico golpe con los brazos estirados y las manos abiertas."
 height_m = 2.3

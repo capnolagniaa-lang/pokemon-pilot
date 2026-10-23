@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_2uwop"]
 [ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="10_p0pek"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="11_pl1k6"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_tunxy"]
 
 [sub_resource type="Resource" id="Resource_7cxbb"]
 script = ExtResource("1_lri7t")
@@ -69,6 +70,7 @@ display_name = "Dewgong"
 dex = 87
 types = Array[ExtResource("4_w44w8")]([ExtResource("5_acq7i"), ExtResource("6_e47bi")])
 learnset = Array[ExtResource("1_lri7t")]([SubResource("Resource_7cxbb"), SubResource("Resource_p2wwc"), SubResource("Resource_ix15c"), SubResource("Resource_jvfdo"), SubResource("Resource_qnev6"), SubResource("Resource_f1x4s"), SubResource("Resource_ll8tw"), SubResource("Resource_hjhau"), SubResource("Resource_8bu6y"), SubResource("Resource_gx2m3")])
+temperament = ExtResource("14_tunxy")
 genus = "Pokémon León Marino"
 pokedex_entry = "A Dewgong le encanta dormitar sobre la frialdad del hielo. Antiguamente, algún que otro marino lo confundió con una sirena al verlo dormido sobre un glaciar."
 height_m = 1.7

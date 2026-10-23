@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_b08i5"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="10_yqjha"]
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_a5vvo"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_sj5dy"]
 
 [sub_resource type="Resource" id="Resource_pmf4b"]
 script = ExtResource("1_ywkjh")
@@ -72,6 +73,7 @@ display_name = "Stantler"
 dex = 234
 types = Array[ExtResource("4_xqutk")]([ExtResource("5_5n2tc")])
 learnset = Array[ExtResource("1_ywkjh")]([SubResource("Resource_pmf4b"), SubResource("Resource_kyjxj"), SubResource("Resource_3e2cw"), SubResource("Resource_xb4tb"), SubResource("Resource_04qss"), SubResource("Resource_he1xg"), SubResource("Resource_2idu6"), SubResource("Resource_y8t23"), SubResource("Resource_lxgqq"), SubResource("Resource_wkrx3")])
+temperament = ExtResource("14_sj5dy")
 genus = "Pokémon Gran Cuerno"
 pokedex_entry = "Hace tiempo, se comerciaba con la magnífica cornamenta de Stantler. Se vendía como obra de arte a alto precio. Los interesados en cornamentas de valor incalculable empezaron a cazarlos y casi provocan su extinción."
 height_m = 1.4

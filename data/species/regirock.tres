@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="8_ttvva"]
 [ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="9_o6wqn"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_egpy4"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_m6j35"]
 
 [sub_resource type="Resource" id="Resource_y4w87"]
 script = ExtResource("1_myps1")
@@ -66,6 +67,7 @@ display_name = "Regirock"
 dex = 377
 types = Array[ExtResource("4_1bjii")]([ExtResource("5_lflvy")])
 learnset = Array[ExtResource("1_myps1")]([SubResource("Resource_y4w87"), SubResource("Resource_kpusg"), SubResource("Resource_qsn72"), SubResource("Resource_quoyk"), SubResource("Resource_25vjf"), SubResource("Resource_eey0n"), SubResource("Resource_inbit"), SubResource("Resource_2fu58"), SubResource("Resource_5lpr5")])
+temperament = ExtResource("13_m6j35")
 genus = "Pokémon Pico Roca"
 pokedex_entry = "A Regirock lo mantuvieron encerrado y aislado hace tiempo. Dicen que, si resulta dañado en combate, se pone él mismo a buscar piedras parecidas a las suyas y se las pone para recomponerse."
 height_m = 1.7

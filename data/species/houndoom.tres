@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/finta.tres" id="9_vi5wt"]
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="10_tfd65"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_dt0s6"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_44cjq"]
 
 [sub_resource type="Resource" id="Resource_0i41c"]
 script = ExtResource("1_ttxlj")
@@ -71,6 +72,7 @@ display_name = "Houndoom"
 dex = 229
 types = Array[ExtResource("4_omnbv")]([ExtResource("5_jecw0"), ExtResource("6_1awvn")])
 learnset = Array[ExtResource("1_ttxlj")]([SubResource("Resource_0i41c"), SubResource("Resource_d6tde"), SubResource("Resource_lvxak"), SubResource("Resource_8c4rg"), SubResource("Resource_0gppv"), SubResource("Resource_tacc5"), SubResource("Resource_7qci8"), SubResource("Resource_ex7b0"), SubResource("Resource_fo5l3"), SubResource("Resource_50s4l")])
+temperament = ExtResource("14_44cjq")
 genus = "Pokémon Siniestro"
 pokedex_entry = "En la manada de Houndoom, el que tiene los cuernos más arqueados hacia atrás tiene un mayor papel de liderazgo. Estos Pokémon suelen elegir al jefe en duelo."
 height_m = 1.4

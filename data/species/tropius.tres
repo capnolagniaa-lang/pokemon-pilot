@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_r1xkv"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_cupky"]
 [ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="12_rkwvi"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_0gtpa"]
 
 [sub_resource type="Resource" id="Resource_o3x1p"]
 script = ExtResource("1_u3ok1")
@@ -78,6 +79,7 @@ display_name = "Tropius"
 dex = 357
 types = Array[ExtResource("4_4n7xb")]([ExtResource("5_p82c3"), ExtResource("6_t4a84")])
 learnset = Array[ExtResource("1_u3ok1")]([SubResource("Resource_o3x1p"), SubResource("Resource_0isnd"), SubResource("Resource_isdd4"), SubResource("Resource_3g8s5"), SubResource("Resource_hb3q1"), SubResource("Resource_6hx2o"), SubResource("Resource_hegu8"), SubResource("Resource_56gtm"), SubResource("Resource_abhex"), SubResource("Resource_5tlx7"), SubResource("Resource_7ryuk")])
+temperament = ExtResource("15_0gtpa")
 genus = "Pokémon Fruto"
 pokedex_entry = "A los niños les encantan los racimos de fruta que Tropius tiene en el cuello. Este Pokémon siempre come fruta; le encanta. De hecho, ese parece ser el motivo por el que él mismo da fruta."
 height_m = 2.0

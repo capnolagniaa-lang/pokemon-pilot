@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="11_sw8ja"]
 [ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="12_kujy0"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_oqu3h"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_fjoqn"]
 
 [sub_resource type="Resource" id="Resource_naujn"]
 script = ExtResource("1_obfkb")
@@ -85,6 +86,7 @@ display_name = "Aron"
 dex = 304
 types = Array[ExtResource("4_12e7a")]([ExtResource("5_mx0up"), ExtResource("6_5bsum")])
 learnset = Array[ExtResource("1_obfkb")]([SubResource("Resource_naujn"), SubResource("Resource_a33kj"), SubResource("Resource_p3d81"), SubResource("Resource_xcgs2"), SubResource("Resource_yk48d"), SubResource("Resource_4mcr1"), SubResource("Resource_5o5vm"), SubResource("Resource_3xbul"), SubResource("Resource_0c848"), SubResource("Resource_jmj3p"), SubResource("Resource_xj3wp"), SubResource("Resource_ha8v2")])
+temperament = ExtResource("16_fjoqn")
 genus = "Pokémon Coraza Férrea"
 pokedex_entry = "Este Pokémon tiene el cuerpo de acero. Para mantenerlo, se alimenta del hierro que saca de las montañas. A veces, causa verdaderos problemas, pues se come puentes y vías de tren."
 height_m = 0.4

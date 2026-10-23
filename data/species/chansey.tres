@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="11_gavni"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="12_5sd6y"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_ygcvj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_gn8rm"]
 
 [sub_resource type="Resource" id="Resource_xr8yp"]
 script = ExtResource("1_5k2ei")
@@ -83,6 +84,7 @@ display_name = "Chansey"
 dex = 113
 types = Array[ExtResource("4_idjla")]([ExtResource("5_7n3sc")])
 learnset = Array[ExtResource("1_5k2ei")]([SubResource("Resource_xr8yp"), SubResource("Resource_m2we5"), SubResource("Resource_8frqo"), SubResource("Resource_ikty6"), SubResource("Resource_lnn2j"), SubResource("Resource_b6ih8"), SubResource("Resource_n5vk6"), SubResource("Resource_3xpwn"), SubResource("Resource_020t6"), SubResource("Resource_6h6ct"), SubResource("Resource_5mxuv"), SubResource("Resource_xc27h")])
+temperament = ExtResource("16_gn8rm")
 genus = "Pokémon Huevo"
 pokedex_entry = "Chansey pone a diario huevos con un valor nutritivo altísimo. Están tan ricos que hasta quien no tenga hambre se los comerá en un abrir y cerrar de ojos."
 height_m = 1.1

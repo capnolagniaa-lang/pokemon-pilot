@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="11_gto6u"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_6pwxw"]
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="13_rvy2h"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="16_8e7gu"]
 
 [sub_resource type="Resource" id="Resource_iqjys"]
 script = ExtResource("1_pl0th")
@@ -83,6 +84,7 @@ display_name = "Togepi"
 dex = 175
 types = Array[ExtResource("4_vvv4i")]([ExtResource("5_3s1pa")])
 learnset = Array[ExtResource("1_pl0th")]([SubResource("Resource_iqjys"), SubResource("Resource_hu8rj"), SubResource("Resource_1furp"), SubResource("Resource_thswd"), SubResource("Resource_gxxda"), SubResource("Resource_v8acc"), SubResource("Resource_qp65x"), SubResource("Resource_g25gk"), SubResource("Resource_a2bou"), SubResource("Resource_lp5oo"), SubResource("Resource_bho4u"), SubResource("Resource_r4uda")])
+temperament = ExtResource("16_8e7gu")
 genus = "Pokémon Bolaclavos"
 pokedex_entry = "Togepi usa los sentimientos positivos de compasión y alegría que desprenden las personas y los Pokémon. Este Pokémon almacena sentimientos de felicidad en su interior y después los comparte con otros."
 height_m = 0.3

@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qocq4"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_y0rq7"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_ij8fh"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="6_qocq4"]
 
 [sub_resource type="Resource" id="Resource_y0rq7"]
 script = ExtResource("1_cmdcp")
@@ -24,6 +25,7 @@ display_name = "Weedle"
 dex = 13
 types = Array[ExtResource("4_qocq4")]([ExtResource("5_y0rq7"), ExtResource("6_ij8fh")])
 learnset = Array[ExtResource("1_cmdcp")]([SubResource("Resource_y0rq7"), SubResource("Resource_ij8fh")])
+temperament = ExtResource("6_qocq4")
 genus = "Pokémon Oruga"
 pokedex_entry = "Weedle tiene un finísimo sentido del olfato. Es capaz de distinguir las hojas que le gustan de las que no le gustan olisqueando un poco con la gran nariz que tiene."
 height_m = 0.3

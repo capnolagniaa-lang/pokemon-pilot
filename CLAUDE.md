@@ -42,6 +42,8 @@ $G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, 
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-menus  # título, equipo, ficha
 $G --headless --path . --quit-after 12000 -- --autotest-env      # entorno reactivo (fuego, agua, hielo, rocas)
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-env    # vitrina del entorno
+$G --headless --path . --quit-after 30000 -- --autotest-wild-ai  # IA salvaje: temperamentos, apertura, huida, peligros
+$G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-wild-ai  # un salvaje de cada temperamento
 $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
@@ -109,6 +111,11 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   editor de mapas (pestaña Salvajes). `GameState.wild_test_pool` (Opciones → "Salvajes de prueba", se guarda en la
   partida) vuelve a los 4 de prueba del combate. Plantillas de FireRed: `tools/build_encounter_templates.py` →
   `encounters/plantillas_frlg.json`. `EncounterEntry.time` (día/noche) queda reservado para la Etapa 5.
+- **IA de criaturas** (Etapa 4a; ver `docs/PLAN_ENTRENADORES.md` 1b): **cuerpo** compartido `CombatBody`
+  (`Creature.body`: alcance, apuntar, esquivar, peligros; la dificultad actúa solo acá) + **mente**. Salvajes =
+  `Creature.temperament` (`Temperament`, `data/ai/temperaments/`; `SpeciesData.temperament` lo asigna
+  `tools/assign_temperaments.gd`) leído por los estados wander/watch/chase/attack/flee; sin memoria, patrón fijo.
+  Entrenadores (pendiente): órdenes + memoria, mismo cuerpo.
 - **Stats y progresión = reglas oficiales** (ver sección abajo). Nunca inventar stats: salen de PokeAPI.
 - **Entorno reactivo (Etapa 3)**: `ReactionSystem` (nodo del mundo) escucha `Events.element_impact` y aplica
   `ReactionRule` (`data/environment/reactions/`) a las celdas; el estado vive en un `EnvironmentGrid` por zona

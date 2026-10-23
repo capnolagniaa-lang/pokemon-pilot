@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="7_pld7g"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_1lprn"]
 [ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="9_ij1lb"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_y4a5n"]
 
 [sub_resource type="Resource" id="Resource_ayl5a"]
 script = ExtResource("1_ofcdc")
@@ -61,6 +62,7 @@ display_name = "Gligar"
 dex = 207
 types = Array[ExtResource("4_huhtc")]([ExtResource("5_4s7ec"), ExtResource("6_uq5tj")])
 learnset = Array[ExtResource("1_ofcdc")]([SubResource("Resource_ayl5a"), SubResource("Resource_q4uws"), SubResource("Resource_2ejtv"), SubResource("Resource_gqupj"), SubResource("Resource_abjk7"), SubResource("Resource_w5y8h"), SubResource("Resource_u68vo"), SubResource("Resource_qaake")])
+temperament = ExtResource("12_y4a5n")
 genus = "Pokémon Escorpiala"
 pokedex_entry = "Gligar planea por el aire sin hacer ningún ruido, como si fuera patinando. Este Pokémon se agarra a la cara de su rival con las patas traseras, con forma de garra, y las pinzas de las delanteras y le inyecta veneno por el aguijón."
 height_m = 1.1

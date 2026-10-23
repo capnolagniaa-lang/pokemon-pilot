@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="9_dpbgt"]
 [ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="10_unlpl"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_21a2v"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_3u6n7"]
 
 [sub_resource type="Resource" id="Resource_p4rsb"]
 script = ExtResource("1_rtjwj")
@@ -72,6 +73,7 @@ display_name = "Registeel"
 dex = 379
 types = Array[ExtResource("4_qn0pi")]([ExtResource("5_tewfn")])
 learnset = Array[ExtResource("1_rtjwj")]([SubResource("Resource_p4rsb"), SubResource("Resource_uivy5"), SubResource("Resource_1ujrc"), SubResource("Resource_ytgky"), SubResource("Resource_7maue"), SubResource("Resource_muesv"), SubResource("Resource_gbe55"), SubResource("Resource_1vypy"), SubResource("Resource_8kxy3"), SubResource("Resource_j8tyi")])
+temperament = ExtResource("14_3u6n7")
 genus = "Pokémon Hierro"
 pokedex_entry = "No hay metal que supere en dureza el cuerpo de Registeel, que tiene aspecto de estar hueco. Nadie sabe de qué se alimenta este Pokémon."
 height_m = 1.9

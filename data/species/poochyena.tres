@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/mofa.tres" id="11_y7sq1"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="12_gxsyt"]
 [ext_resource type="Resource" path="res://data/moves/ladron.tres" id="13_g3xys"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_bulo0"]
 
 [sub_resource type="Resource" id="Resource_er8qo"]
 script = ExtResource("1_huh3e")
@@ -84,6 +85,7 @@ display_name = "Poochyena"
 dex = 261
 types = Array[ExtResource("4_h05vh")]([ExtResource("5_mdunu")])
 learnset = Array[ExtResource("1_huh3e")]([SubResource("Resource_er8qo"), SubResource("Resource_swjn1"), SubResource("Resource_vteym"), SubResource("Resource_o8bbb"), SubResource("Resource_h5iub"), SubResource("Resource_w5ex2"), SubResource("Resource_y08j5"), SubResource("Resource_15p58"), SubResource("Resource_821la"), SubResource("Resource_l43rd"), SubResource("Resource_8sr0p"), SubResource("Resource_o2gqv")])
+temperament = ExtResource("16_bulo0")
 genus = "Pokémon Mordisco"
 pokedex_entry = "La primera reacción que Poochyena tiene al ver algo moverse es darle un mordisco. Este Pokémon persigue a su presa hasta que cae agotada. Aunque, a veces, sale huyendo si su presa le responde con un ataque."
 height_m = 0.5

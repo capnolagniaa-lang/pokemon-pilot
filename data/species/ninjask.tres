@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="12_6plt1"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="13_1508a"]
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="14_27j83"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="17_2u5ue"]
 
 [sub_resource type="Resource" id="Resource_tfc4y"]
 script = ExtResource("1_rxtu6")
@@ -88,6 +89,7 @@ display_name = "Ninjask"
 dex = 291
 types = Array[ExtResource("4_sop23")]([ExtResource("5_2rhf1"), ExtResource("6_c7x7x")])
 learnset = Array[ExtResource("1_rxtu6")]([SubResource("Resource_tfc4y"), SubResource("Resource_21tuk"), SubResource("Resource_v1hkd"), SubResource("Resource_rfnvk"), SubResource("Resource_4v4wi"), SubResource("Resource_pytnt"), SubResource("Resource_ljotr"), SubResource("Resource_lsb4n"), SubResource("Resource_8sdqe"), SubResource("Resource_gg4jq"), SubResource("Resource_oij00"), SubResource("Resource_c3sdb"), SubResource("Resource_qk10n")])
+temperament = ExtResource("17_2u5ue")
 genus = "Pokémon Ninja"
 pokedex_entry = "Ninjask se mueve de un lado a otro a tal velocidad que es imposible verlo. Sin embargo, como su zumbido no deja de oírse, se pensó durante mucho tiempo que este Pokémon era invisible."
 height_m = 0.8

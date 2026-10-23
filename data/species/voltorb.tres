@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="10_fh275"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_apka1"]
 [ext_resource type="Resource" path="res://data/moves/manto_espejo.tres" id="12_wx23i"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_bl1dy"]
 
 [sub_resource type="Resource" id="Resource_j02to"]
 script = ExtResource("1_7l3ru")
@@ -77,6 +78,7 @@ display_name = "Voltorb"
 dex = 100
 types = Array[ExtResource("4_un3hl")]([ExtResource("5_4hldd")])
 learnset = Array[ExtResource("1_7l3ru")]([SubResource("Resource_j02to"), SubResource("Resource_h02gv"), SubResource("Resource_d6p0w"), SubResource("Resource_q3gmb"), SubResource("Resource_8k7p2"), SubResource("Resource_g5cpb"), SubResource("Resource_jarfw"), SubResource("Resource_lelrt"), SubResource("Resource_1mdaw"), SubResource("Resource_egr86"), SubResource("Resource_ho2w3")])
+temperament = ExtResource("15_bl1dy")
 genus = "Pokémon Bola"
 pokedex_entry = "Voltorb fue visto por primera vez en una empresa encargada de comercializar Poké Balls. La conexión que existe entre aquella primera vez que se le vio y el hecho de que se parece mucho a una Poké Ball sigue siendo un misterio."
 height_m = 0.5

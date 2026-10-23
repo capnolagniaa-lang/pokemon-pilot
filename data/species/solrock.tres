@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="9_upkoy"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="10_w6xwr"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_vfu72"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ssukb"]
 
 [sub_resource type="Resource" id="Resource_tl53k"]
 script = ExtResource("1_qj7rd")
@@ -72,6 +73,7 @@ display_name = "Solrock"
 dex = 338
 types = Array[ExtResource("4_0r7va")]([ExtResource("5_u77j8"), ExtResource("6_p2ytg")])
 learnset = Array[ExtResource("1_qj7rd")]([SubResource("Resource_tl53k"), SubResource("Resource_0qkfk"), SubResource("Resource_hj70x"), SubResource("Resource_fi7uy"), SubResource("Resource_13fd6"), SubResource("Resource_xgwjc"), SubResource("Resource_mfkwn"), SubResource("Resource_61nth"), SubResource("Resource_oq5fx"), SubResource("Resource_u4hr8")])
+temperament = ExtResource("14_ssukb")
 genus = "Pokémon Meteorito"
 pokedex_entry = "Solrock pertenece a una nueva especie de Pokémon a la que se le atribuye una procedencia extraterrestre. Este Pokémon permanece flotando en el aire y se mueve muy despacio. Al luchar, desprende una luz viva e intensa."
 height_m = 1.2

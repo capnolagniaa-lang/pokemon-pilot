@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="9_n427n"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="10_0qwa6"]
 [ext_resource type="Resource" path="res://data/moves/alivio.tres" id="11_tnkih"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_bjlab"]
 
 [sub_resource type="Resource" id="Resource_0fc3c"]
 script = ExtResource("1_i74qp")
@@ -72,6 +73,7 @@ display_name = "Lickitung"
 dex = 108
 types = Array[ExtResource("4_605g8")]([ExtResource("5_i7b16")])
 learnset = Array[ExtResource("1_i74qp")]([SubResource("Resource_0fc3c"), SubResource("Resource_perdv"), SubResource("Resource_mhror"), SubResource("Resource_xsllv"), SubResource("Resource_pyw2w"), SubResource("Resource_0wygc"), SubResource("Resource_7g8sa"), SubResource("Resource_qx0og"), SubResource("Resource_m21mh"), SubResource("Resource_pd38t")])
+temperament = ExtResource("14_bjlab")
 genus = "Pokémon Lametazo"
 pokedex_entry = "Cada vez que Lickitung se encuentra con algo que no conoce, le da un lametazo. Es la forma que tiene de memorizar las cosas, por la textura y el sabor. No soporta los sabores ácidos."
 height_m = 1.2

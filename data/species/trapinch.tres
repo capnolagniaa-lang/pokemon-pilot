@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/excavar.tres" id="7_gmp3n"]
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="8_ulxb8"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_g5xmc"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_syn7t"]
 
 [sub_resource type="Resource" id="Resource_76tiv"]
 script = ExtResource("1_jsbx5")
@@ -60,6 +61,7 @@ display_name = "Trapinch"
 dex = 328
 types = Array[ExtResource("4_61jvd")]([ExtResource("5_p2wrm")])
 learnset = Array[ExtResource("1_jsbx5")]([SubResource("Resource_76tiv"), SubResource("Resource_3ejwu"), SubResource("Resource_onope"), SubResource("Resource_0id34"), SubResource("Resource_pexwj"), SubResource("Resource_wx1gt"), SubResource("Resource_awaad"), SubResource("Resource_usgb2")])
+temperament = ExtResource("12_syn7t")
 genus = "Pokémon Hormiga León"
 pokedex_entry = "El nido de Trapinch está situado bajo la arena, en una zona cóncava. Este Pokémon espera con paciencia a que su presa caiga en la misma. Con las fauces que tiene puede destruir hasta piedras."
 height_m = 0.7

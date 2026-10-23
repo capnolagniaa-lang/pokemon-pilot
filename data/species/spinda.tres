@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_60kqb"]
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_n6qv2"]
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="12_qlixt"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_dlbhy"]
 
 [sub_resource type="Resource" id="Resource_as8uq"]
 script = ExtResource("1_l1a0w")
@@ -78,6 +79,7 @@ display_name = "Spinda"
 dex = 327
 types = Array[ExtResource("4_mpppq")]([ExtResource("5_8el1h")])
 learnset = Array[ExtResource("1_l1a0w")]([SubResource("Resource_as8uq"), SubResource("Resource_qalbi"), SubResource("Resource_qegvv"), SubResource("Resource_fukww"), SubResource("Resource_e3dj0"), SubResource("Resource_ouadp"), SubResource("Resource_lt8d4"), SubResource("Resource_nrjad"), SubResource("Resource_lv6d1"), SubResource("Resource_rjep7"), SubResource("Resource_o8ikg")])
+temperament = ExtResource("15_dlbhy")
 genus = "Pokémon Panda Topos"
 pokedex_entry = "Dicen que no hay dos Spinda que tengan los mismos dibujos en el pelaje. Este Pokémon tiene una forma de andar inestable, va tambaleándose. Da la sensación de ir bailando."
 height_m = 1.1

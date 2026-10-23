@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/danza_pluma.tres" id="8_5tho5"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_q2ojw"]
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="10_yfsf5"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_b0qkw"]
 
 [sub_resource type="Resource" id="Resource_ukv3c"]
 script = ExtResource("1_ua3np")
@@ -65,6 +66,7 @@ display_name = "Pidgeotto"
 dex = 17
 types = Array[ExtResource("4_lpwvb")]([ExtResource("5_g4keq"), ExtResource("6_fuve5")])
 learnset = Array[ExtResource("1_ua3np")]([SubResource("Resource_ukv3c"), SubResource("Resource_weigu"), SubResource("Resource_ldl2i"), SubResource("Resource_yw42u"), SubResource("Resource_d126s"), SubResource("Resource_pxs35"), SubResource("Resource_40y6y"), SubResource("Resource_khhgh"), SubResource("Resource_ep0ym")])
+temperament = ExtResource("13_b0qkw")
 genus = "Pokémon Pájaro"
 pokedex_entry = "Pidgeotto se apodera de una zona muy vasta como su territorio y la sobrevuela para controlarla. Si alguien invade su espacio vital, no tendrá ningún reparo en castigarlo con sus afiladas garras."
 height_m = 1.1

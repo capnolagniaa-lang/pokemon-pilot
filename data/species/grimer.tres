@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/armadura_acida.tres" id="9_j42uk"]
 [ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="10_fce0w"]
 [ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_dnab5"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_2cshn"]
 
 [sub_resource type="Resource" id="Resource_bkx25"]
 script = ExtResource("1_6usfh")
@@ -71,6 +72,7 @@ display_name = "Grimer"
 dex = 88
 types = Array[ExtResource("4_rlhim")]([ExtResource("5_toppp")])
 learnset = Array[ExtResource("1_6usfh")]([SubResource("Resource_bkx25"), SubResource("Resource_ho47a"), SubResource("Resource_hw6k7"), SubResource("Resource_hbrcy"), SubResource("Resource_xaqaw"), SubResource("Resource_ray6a"), SubResource("Resource_6l7d4"), SubResource("Resource_vpij7"), SubResource("Resource_i01pw"), SubResource("Resource_vmboc")])
+temperament = ExtResource("14_2cshn")
 genus = "Pokémon Lodo"
 pokedex_entry = "El elástico cuerpo de lodo de Grimer le permite colarse por cualquier orificio, sea del tamaño que sea. Este Pokémon entra en los bajantes de las cloacas para beberse el agua sucia."
 height_m = 0.9

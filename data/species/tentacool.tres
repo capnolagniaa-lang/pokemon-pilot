@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/barrera.tres" id="8_jself"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_yekoe"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_ioths"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_v56k7"]
 
 [sub_resource type="Resource" id="Resource_dv8ij"]
 script = ExtResource("1_j2cjp")
@@ -67,6 +68,7 @@ display_name = "Tentacool"
 dex = 72
 types = Array[ExtResource("4_5vsut")]([ExtResource("5_6pkhc"), ExtResource("6_hebsy")])
 learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_dv8ij"), SubResource("Resource_6sav3"), SubResource("Resource_jwiur"), SubResource("Resource_roddf"), SubResource("Resource_2kxjg"), SubResource("Resource_8s5sv"), SubResource("Resource_d3lvh"), SubResource("Resource_2q4nl"), SubResource("Resource_nak4t")])
+temperament = ExtResource("13_v56k7")
 genus = "Pokémon Medusa"
 pokedex_entry = "Tentacool está compuesto en su mayor parte por agua. Si se le saca del mar, se secará y se quedará acartonado. Si este Pokémon se deshidrata, hay que echarlo inmediatamente de vuelta al mar."
 height_m = 0.9

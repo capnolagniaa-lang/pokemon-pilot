@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="8_jhqgh"]
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="9_5jhej"]
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="10_sy6fc"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_4ebfa"]
 
 [sub_resource type="Resource" id="Resource_ypg1d"]
 script = ExtResource("1_w02df")
@@ -64,6 +65,7 @@ display_name = "Celebi"
 dex = 251
 types = Array[ExtResource("4_mkiim")]([ExtResource("5_wsobv"), ExtResource("6_cdhuu")])
 learnset = Array[ExtResource("1_w02df")]([SubResource("Resource_ypg1d"), SubResource("Resource_may5b"), SubResource("Resource_pbwja"), SubResource("Resource_m6avc"), SubResource("Resource_32fk4"), SubResource("Resource_xgg4g"), SubResource("Resource_0ln1m"), SubResource("Resource_17r0j"), SubResource("Resource_wlcyx")])
+temperament = ExtResource("13_4ebfa")
 genus = "Pokémon Viajetiempo"
 pokedex_entry = "Este Pokémon vino del futuro haciendo un viaje en el tiempo. Hay quien piensa que, mientras Celebi siga apareciendo, hay un futuro brillante y esperanzador."
 height_m = 0.6

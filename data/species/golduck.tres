@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="8_obapy"]
 [ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="9_87tol"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_bohiq"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_lo82k"]
 
 [sub_resource type="Resource" id="Resource_i3awm"]
 script = ExtResource("1_os843")
@@ -63,6 +64,7 @@ display_name = "Golduck"
 dex = 55
 types = Array[ExtResource("4_ugvcv")]([ExtResource("5_7jj58")])
 learnset = Array[ExtResource("1_os843")]([SubResource("Resource_i3awm"), SubResource("Resource_d7f5y"), SubResource("Resource_lw48e"), SubResource("Resource_l4du2"), SubResource("Resource_ayvj1"), SubResource("Resource_l546q"), SubResource("Resource_otavc"), SubResource("Resource_5r38f"), SubResource("Resource_8lspl")])
+temperament = ExtResource("13_lo82k")
 genus = "Pokémon Pato"
 pokedex_entry = "Golduck alcanza una velocidad de vértigo gracias a las aletas palmípedas de las extremidades y a la forma aerodinámica de su cuerpo. Realmente, la velocidad de este Pokémon supera la de cualquier nadador."
 height_m = 1.7

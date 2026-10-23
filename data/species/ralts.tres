@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="9_r052f"]
 [ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="10_enu5b"]
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="11_prnev"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_wl8r2"]
 
 [sub_resource type="Resource" id="Resource_xed0g"]
 script = ExtResource("1_d6bvb")
@@ -73,6 +74,7 @@ display_name = "Ralts"
 dex = 280
 types = Array[ExtResource("4_mmivx")]([ExtResource("5_acfr0"), ExtResource("6_5a7by")])
 learnset = Array[ExtResource("1_d6bvb")]([SubResource("Resource_xed0g"), SubResource("Resource_2m8oq"), SubResource("Resource_h3q3f"), SubResource("Resource_wnxg8"), SubResource("Resource_s24os"), SubResource("Resource_q2xmx"), SubResource("Resource_25aku"), SubResource("Resource_uy3wq"), SubResource("Resource_qnrfo"), SubResource("Resource_h5slg")])
+temperament = ExtResource("14_wl8r2")
 genus = "Pokémon Sensible"
 pokedex_entry = "Ralts percibe las sensaciones de la gente por los cuernos que tiene encima y detrás de la cabeza. No es común que este Pokémon aparezca en público, pero cuando lo hace, se acerca si ve buena disposición en la gente."
 height_m = 0.4

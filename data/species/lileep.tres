@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/escupir.tres" id="9_mnugh"]
 [ext_resource type="Resource" path="res://data/moves/reserva.tres" id="10_e1wnq"]
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_5wlso"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_51ap4"]
 
 [sub_resource type="Resource" id="Resource_m77ce"]
 script = ExtResource("1_0dcn2")
@@ -73,6 +74,7 @@ display_name = "Lileep"
 dex = 345
 types = Array[ExtResource("4_pb7lr")]([ExtResource("5_7w8hj"), ExtResource("6_5j65k")])
 learnset = Array[ExtResource("1_0dcn2")]([SubResource("Resource_m77ce"), SubResource("Resource_s5wl6"), SubResource("Resource_mn6nu"), SubResource("Resource_mtelo"), SubResource("Resource_6cy6w"), SubResource("Resource_mfe1n"), SubResource("Resource_c3gxo"), SubResource("Resource_nwni3"), SubResource("Resource_aispv"), SubResource("Resource_dyv7i")])
+temperament = ExtResource("14_51ap4")
 genus = "Pokémon Lirio de Mar"
 pokedex_entry = "Los Lileep se extinguieron hace unos cien millones de años aproximadamente. Este Pokémon se ancla a una roca en el fondo del mar y atrapa a las presas que se le acercan con los tentáculos que tiene en forma de pétalos de flor."
 height_m = 1.0

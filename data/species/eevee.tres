@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="7_4dooq"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_aol1m"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="8_2a5gm"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="10_qqvwa"]
 
 [sub_resource type="Resource" id="Resource_qesf0"]
 script = ExtResource("1_qesf0")
@@ -48,6 +49,7 @@ dex = 133
 types = Array[ExtResource("7_aol1m")]([ExtResource("8_2a5gm")])
 moves = Array[ExtResource("1_lmnbl")]([ExtResource("2_ugdki"), ExtResource("3_d1y6a"), ExtResource("4_qesf0"), ExtResource("5_qqvwa")])
 learnset = Array[ExtResource("1_qesf0")]([SubResource("Resource_qesf0"), SubResource("Resource_qqvwa"), SubResource("Resource_4dooq"), SubResource("Resource_aol1m"), SubResource("Resource_2a5gm"), SubResource("Resource_kkcvo")])
+temperament = ExtResource("10_qqvwa")
 genus = "Pokémon Evolución"
 pokedex_entry = "La configuración genética de Eevee le permite mutar y adaptarse enseguida a cualquier medio en el que viva. La evolución de este Pokémon suele ser posible gracias a las radiaciones emitidas por varias piedras."
 height_m = 0.3

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="11_r5wds"]
 [ext_resource type="Resource" path="res://data/moves/psicoataque.tres" id="12_m4rpy"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="13_1ehe4"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_gh7ai"]
 
 [sub_resource type="Resource" id="Resource_aekjq"]
 script = ExtResource("1_ltfal")
@@ -83,6 +84,7 @@ display_name = "Deoxys"
 dex = 386
 types = Array[ExtResource("4_yrgcn")]([ExtResource("5_317mk")])
 learnset = Array[ExtResource("1_ltfal")]([SubResource("Resource_aekjq"), SubResource("Resource_n7vs7"), SubResource("Resource_6xa12"), SubResource("Resource_wjx7e"), SubResource("Resource_h6ud0"), SubResource("Resource_5aitp"), SubResource("Resource_ke6n8"), SubResource("Resource_7h7os"), SubResource("Resource_apfpl"), SubResource("Resource_5e8bt"), SubResource("Resource_558ba"), SubResource("Resource_3v72t")])
+temperament = ExtResource("16_gh7ai")
 genus = "Pokémon ADN"
 pokedex_entry = "Tras estar expuesto a un rayo láser, el ADN de un virus espacial sufrió una mutación y dio origen a Deoxys. Según parece, el órgano cristalino que este Pokémon tiene en el torso es el cerebro."
 height_m = 1.7

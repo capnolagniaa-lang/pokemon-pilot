@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="9_n7esk"]
 [ext_resource type="Resource" path="res://data/moves/enfado.tres" id="10_gwfnf"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_o3p2a"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_t631v"]
 
 [sub_resource type="Resource" id="Resource_j1gfm"]
 script = ExtResource("1_4xuew")
@@ -69,6 +70,7 @@ display_name = "Dragonair"
 dex = 148
 types = Array[ExtResource("4_jiaft")]([ExtResource("5_kj0ex")])
 learnset = Array[ExtResource("1_4xuew")]([SubResource("Resource_j1gfm"), SubResource("Resource_d67yb"), SubResource("Resource_mrsi7"), SubResource("Resource_1aktu"), SubResource("Resource_n2dgn"), SubResource("Resource_3ykmg"), SubResource("Resource_vfnuj"), SubResource("Resource_xaeck"), SubResource("Resource_r417v"), SubResource("Resource_kwsd7")])
+temperament = ExtResource("14_t631v")
 genus = "Pokémon Dragón"
 pokedex_entry = "Dragonair acumula grandes cantidades de energía dentro de sí. Dicen que altera el clima de la zona en la que está descargando energía a través de las esferas de cristal que tiene en el cuello y en la cola."
 height_m = 4.0

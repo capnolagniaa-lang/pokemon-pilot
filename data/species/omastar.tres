@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/cosquillas.tres" id="10_07fk7"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="11_2xodf"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_sgmp3"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_elu6b"]
 
 [sub_resource type="Resource" id="Resource_ygek1"]
 script = ExtResource("1_jri7o")
@@ -76,6 +77,7 @@ display_name = "Omastar"
 dex = 139
 types = Array[ExtResource("4_xxt4h")]([ExtResource("5_dbic4"), ExtResource("6_o1t2b")])
 learnset = Array[ExtResource("1_jri7o")]([SubResource("Resource_ygek1"), SubResource("Resource_hwib1"), SubResource("Resource_6w55d"), SubResource("Resource_3gwix"), SubResource("Resource_db6am"), SubResource("Resource_tke6h"), SubResource("Resource_j5pnp"), SubResource("Resource_yefqt"), SubResource("Resource_qx8dl"), SubResource("Resource_pmcd0"), SubResource("Resource_cmcx8")])
+temperament = ExtResource("15_elu6b")
 genus = "Pokémon Espiral"
 pokedex_entry = "Omastar usa los tentáculos para atrapar a su presa. Se cree que el motivo de su extinción fue el tamaño y el peso que llegó a alcanzar la concha que lleva a cuestas, lo que le entorpeció y ralentizó los movimientos."
 height_m = 1.0

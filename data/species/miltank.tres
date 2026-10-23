@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_a4fm1"]
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="9_ialnb"]
 [ext_resource type="Resource" path="res://data/moves/cascabel_cura.tres" id="10_jnyx7"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_iocxv"]
 
 [sub_resource type="Resource" id="Resource_xlgee"]
 script = ExtResource("1_h8yxm")
@@ -66,6 +67,7 @@ display_name = "Miltank"
 dex = 241
 types = Array[ExtResource("4_efing")]([ExtResource("5_tsoaj")])
 learnset = Array[ExtResource("1_h8yxm")]([SubResource("Resource_xlgee"), SubResource("Resource_tymkp"), SubResource("Resource_f47xs"), SubResource("Resource_xdsah"), SubResource("Resource_gvvkj"), SubResource("Resource_upv67"), SubResource("Resource_tu43q"), SubResource("Resource_47cpm"), SubResource("Resource_y78ma")])
+temperament = ExtResource("13_iocxv")
 genus = "Pokémon Lechera"
 pokedex_entry = "Miltank da al día 20 l de una leche dulce que es la delicia de pequeños y mayores. Aquellos que no pueden tomarla, se decantan por los yogures."
 height_m = 1.2

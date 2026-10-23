@@ -21,6 +21,7 @@
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="14_np8i5"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="15_jbjec"]
 [ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="16_7r6b1"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="19_xf3vd"]
 
 [sub_resource type="Resource" id="Resource_417cg"]
 script = ExtResource("1_yqyy4")
@@ -97,6 +98,7 @@ display_name = "Medicham"
 dex = 308
 types = Array[ExtResource("4_fyxik")]([ExtResource("5_86jsn"), ExtResource("6_x2ji4")])
 learnset = Array[ExtResource("1_yqyy4")]([SubResource("Resource_417cg"), SubResource("Resource_isyg1"), SubResource("Resource_p2mqd"), SubResource("Resource_0qlpp"), SubResource("Resource_16g1t"), SubResource("Resource_8i5pp"), SubResource("Resource_ylkxn"), SubResource("Resource_andle"), SubResource("Resource_as41c"), SubResource("Resource_mcrb6"), SubResource("Resource_ronp3"), SubResource("Resource_1rd25"), SubResource("Resource_v35vl"), SubResource("Resource_570jm"), SubResource("Resource_nux4h")])
+temperament = ExtResource("19_xf3vd")
 genus = "Pokémon Meditador"
 pokedex_entry = "Dicen que, a través de la meditación, Medicham aumenta su energía interior y agudiza su sexto sentido. Este Pokémon suele pasar desapercibido mimetizándose con el campo y las montañas."
 height_m = 1.3

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="10_ajsj3"]
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="11_my7nj"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="12_7j4by"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_e4kpg"]
 
 [sub_resource type="Resource" id="Resource_krf02"]
 script = ExtResource("1_is4u7")
@@ -78,6 +79,7 @@ display_name = "Minun"
 dex = 312
 types = Array[ExtResource("4_digck")]([ExtResource("5_80r3m")])
 learnset = Array[ExtResource("1_is4u7")]([SubResource("Resource_krf02"), SubResource("Resource_2v8aw"), SubResource("Resource_ub6w0"), SubResource("Resource_undmq"), SubResource("Resource_o5nx3"), SubResource("Resource_ghdna"), SubResource("Resource_46dl0"), SubResource("Resource_v5gtd"), SubResource("Resource_e6da2"), SubResource("Resource_h7tfk"), SubResource("Resource_mi6qx")])
+temperament = ExtResource("15_e4kpg")
 genus = "Pokémon Ánimo"
 pokedex_entry = "Minun se preocupa más por alentar a sus compañeros de equipo que por su propia seguridad. Para animar a los miembros de su grupo, crea un cortocircuito en su interior y libera un chisporroteo espectacular."
 height_m = 0.4

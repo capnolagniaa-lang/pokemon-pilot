@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="7_ov5ea"]
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="8_w4dp4"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_d75sx"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_owoxd"]
 
 [sub_resource type="Resource" id="Resource_rbu58"]
 script = ExtResource("1_c25wj")
@@ -60,6 +61,7 @@ display_name = "Gorebyss"
 dex = 368
 types = Array[ExtResource("4_mstvf")]([ExtResource("5_vi5jm")])
 learnset = Array[ExtResource("1_c25wj")]([SubResource("Resource_rbu58"), SubResource("Resource_1a8fq"), SubResource("Resource_ish1c"), SubResource("Resource_8j7tx"), SubResource("Resource_e0l50"), SubResource("Resource_tmefq"), SubResource("Resource_ba6l6"), SubResource("Resource_n3ab5")])
+temperament = ExtResource("12_owoxd")
 genus = "Pokémon Mar del Sur"
 pokedex_entry = "Gorebyss vive en los mares del sur, en lo más profundo; de ahí que tenga el cuerpo preparado para soportar la presión tan grande que hay en el fondo marino, y que no le hagan daño los ataques comunes."
 height_m = 1.8

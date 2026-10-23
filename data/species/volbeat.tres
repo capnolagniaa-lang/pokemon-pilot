@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="9_0ijj3"]
 [ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="10_8yasd"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_78uoo"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_a6rrr"]
 
 [sub_resource type="Resource" id="Resource_gyfco"]
 script = ExtResource("1_q6vmd")
@@ -72,6 +73,7 @@ display_name = "Volbeat"
 dex = 313
 types = Array[ExtResource("4_qfb0r")]([ExtResource("5_bbykw")])
 learnset = Array[ExtResource("1_q6vmd")]([SubResource("Resource_gyfco"), SubResource("Resource_2wlkd"), SubResource("Resource_gfsnd"), SubResource("Resource_o8jgy"), SubResource("Resource_mey7j"), SubResource("Resource_c5x7b"), SubResource("Resource_ilwqg"), SubResource("Resource_pbrfh"), SubResource("Resource_enye4"), SubResource("Resource_py83g")])
+temperament = ExtResource("14_a6rrr")
 genus = "Pokémon Luciérnaga"
 pokedex_entry = "Cuando llega la noche, Volbeat emite luz por la cola y regula la intensidad y el destello para comunicarse con el resto. A este Pokémon le atrae el dulce aroma de Illumise."
 height_m = 0.7

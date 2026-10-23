@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="12_lgxnj"]
 [ext_resource type="Resource" path="res://data/moves/sustituto.tres" id="13_r4f1v"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="14_ky3sj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_ybx5r"]
 
 [sub_resource type="Resource" id="Resource_tw0sl"]
 script = ExtResource("1_82ox2")
@@ -86,6 +87,7 @@ display_name = "Kecleon"
 dex = 352
 types = Array[ExtResource("4_mslfn")]([ExtResource("5_qqop5")])
 learnset = Array[ExtResource("1_82ox2")]([SubResource("Resource_tw0sl"), SubResource("Resource_mw7xs"), SubResource("Resource_pw7cq"), SubResource("Resource_bvp7p"), SubResource("Resource_nuqql"), SubResource("Resource_osgk6"), SubResource("Resource_1ap0l"), SubResource("Resource_8kojb"), SubResource("Resource_2dx6b"), SubResource("Resource_m53ww"), SubResource("Resource_p7twr"), SubResource("Resource_chrbb"), SubResource("Resource_avon2")])
+temperament = ExtResource("17_ybx5r")
 genus = "Pokémon Camaleónico"
 pokedex_entry = "Kecleon puede alterar la pigmentación de la piel para mezclarse con su entorno. Lo único que no es capaz de cambiar es el trazado en zigzag que tiene en la panza."
 height_m = 1.0

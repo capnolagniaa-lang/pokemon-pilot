@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="9_0uiuh"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_ca5er"]
 [ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="11_o5grq"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_rju8e"]
 
 [sub_resource type="Resource" id="Resource_8x3pw"]
 script = ExtResource("1_fejwl")
@@ -73,6 +74,7 @@ display_name = "Anorith"
 dex = 347
 types = Array[ExtResource("4_oldai")]([ExtResource("5_eh2fx"), ExtResource("6_xqa5k")])
 learnset = Array[ExtResource("1_fejwl")]([SubResource("Resource_8x3pw"), SubResource("Resource_wotcm"), SubResource("Resource_ch6ou"), SubResource("Resource_fwnqn"), SubResource("Resource_n5k84"), SubResource("Resource_klou8"), SubResource("Resource_xx34e"), SubResource("Resource_w8t4d"), SubResource("Resource_uqdb4"), SubResource("Resource_271x8")])
+temperament = ExtResource("14_rju8e")
 genus = "Pokémon Camarón"
 pokedex_entry = "Anorith se regeneró a partir de un fósil prehistórico. Este Pokémon primitivo vivía en mares cálidos. Gracias a sus enormes pinzas puede agarrar a su presa con firmeza."
 height_m = 0.7

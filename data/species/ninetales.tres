@@ -10,6 +10,7 @@
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_t7av7"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="5_xq8bj"]
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="6_48gfj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="9_ki2wt"]
 
 [sub_resource type="Resource" id="Resource_c4ols"]
 script = ExtResource("1_8kd4n")
@@ -39,6 +40,7 @@ display_name = "Ninetales"
 dex = 38
 types = Array[ExtResource("4_o7frg")]([ExtResource("5_t7av7")])
 learnset = Array[ExtResource("1_8kd4n")]([SubResource("Resource_c4ols"), SubResource("Resource_34mlu"), SubResource("Resource_u7kq8"), SubResource("Resource_b8k8s"), SubResource("Resource_x3i8b")])
+temperament = ExtResource("9_ki2wt")
 genus = "Pokémon Zorro"
 pokedex_entry = "Ninetales emite una siniestra luz a través de los brillantes ojos rojos que tiene, para conseguir controlar del todo la mente de su rival. Dicen que este Pokémon llega a vivir mil años."
 height_m = 1.1

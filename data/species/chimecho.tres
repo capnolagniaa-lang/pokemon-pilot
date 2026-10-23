@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/cascabel_cura.tres" id="11_mosxo"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="12_f3ymn"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="13_bowmj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_g2qjl"]
 
 [sub_resource type="Resource" id="Resource_oqr51"]
 script = ExtResource("1_k7t70")
@@ -84,6 +85,7 @@ display_name = "Chimecho"
 dex = 358
 types = Array[ExtResource("4_25opy")]([ExtResource("5_pxpbg")])
 learnset = Array[ExtResource("1_k7t70")]([SubResource("Resource_oqr51"), SubResource("Resource_grgfm"), SubResource("Resource_gvmag"), SubResource("Resource_f37wq"), SubResource("Resource_u21tq"), SubResource("Resource_d565t"), SubResource("Resource_5tjo1"), SubResource("Resource_4fsg3"), SubResource("Resource_050dg"), SubResource("Resource_xpaqw"), SubResource("Resource_l4q0s"), SubResource("Resource_jc4yp")])
+temperament = ExtResource("16_g2qjl")
 genus = "Pokémon Sonido Aire"
 pokedex_entry = "Chimecho hace que sus gritos resuenen con eco en su interior. Cuando se enfada, los chillidos se convierten en ondas ultrasónicas capaces de derribar a los enemigos voladores."
 height_m = 0.6

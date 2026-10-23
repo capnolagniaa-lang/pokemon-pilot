@@ -10,6 +10,7 @@
 [ext_resource type="Resource" path="res://data/moves/destructor.tres" id="5_2c40y"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="5_k74pl"]
 [ext_resource type="Resource" path="res://data/types/siniestro.tres" id="6_putqk"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="8_putqk"]
 
 [sub_resource type="Resource" id="Resource_wqk62"]
 script = ExtResource("1_ecsw5")
@@ -34,6 +35,7 @@ display_name = "Shiftry"
 dex = 275
 types = Array[ExtResource("4_r1oxl")]([ExtResource("5_k74pl"), ExtResource("6_putqk")])
 learnset = Array[ExtResource("1_ecsw5")]([SubResource("Resource_wqk62"), SubResource("Resource_h68c8"), SubResource("Resource_r2y25"), SubResource("Resource_0b6ol")])
+temperament = ExtResource("8_putqk")
 genus = "Pokémon Malvado"
 pokedex_entry = "Shiftry es un enigmático Pokémon que vive, dicen, en las copas de los árboles milenarios. Este Pokémon genera fuertes corrientes de aire con los abanicos que lleva en las manos."
 height_m = 1.3

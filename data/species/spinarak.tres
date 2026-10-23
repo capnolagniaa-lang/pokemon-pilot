@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/telarana.tres" id="9_t8137"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_igmfu"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_saw63"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_cge63"]
 
 [sub_resource type="Resource" id="Resource_2dd62"]
 script = ExtResource("1_u5np1")
@@ -72,6 +73,7 @@ display_name = "Spinarak"
 dex = 167
 types = Array[ExtResource("4_3x10t")]([ExtResource("5_scdhi"), ExtResource("6_t60d0")])
 learnset = Array[ExtResource("1_u5np1")]([SubResource("Resource_2dd62"), SubResource("Resource_8li17"), SubResource("Resource_tcdeb"), SubResource("Resource_3nccr"), SubResource("Resource_8la3g"), SubResource("Resource_oubdf"), SubResource("Resource_f2phj"), SubResource("Resource_w5cuv"), SubResource("Resource_fhgs3"), SubResource("Resource_065do")])
+temperament = ExtResource("14_cge63")
 genus = "Pokémon Escupesoga"
 pokedex_entry = "La tela que teje Spinarak puede considerarse como su segundo sistema nervioso. Dicen que puede adivinar qué tipo de presa ha caído en su red con solo observar las leves vibraciones de los hilos de la tela."
 height_m = 0.5

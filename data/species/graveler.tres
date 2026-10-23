@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_4xylu"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_oikpn"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_s6e1i"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_hfwnl"]
 
 [sub_resource type="Resource" id="Resource_dh0e7"]
 script = ExtResource("1_qknf3")
@@ -76,6 +77,7 @@ display_name = "Graveler"
 dex = 75
 types = Array[ExtResource("4_vpi0r")]([ExtResource("5_acxy6"), ExtResource("6_1ccwl")])
 learnset = Array[ExtResource("1_qknf3")]([SubResource("Resource_dh0e7"), SubResource("Resource_l1jlv"), SubResource("Resource_a14rn"), SubResource("Resource_m8ri2"), SubResource("Resource_xpst4"), SubResource("Resource_kcbf3"), SubResource("Resource_nsksw"), SubResource("Resource_7hlja"), SubResource("Resource_poxur"), SubResource("Resource_4hxya"), SubResource("Resource_e32ku")])
+temperament = ExtResource("15_hfwnl")
 genus = "Pokémon Roca"
 pokedex_entry = "Graveler crece alimentándose a base de piedras. Y, según parece, las prefiere cubiertas de musgo. Cada día se abre camino comiéndose una tonelada de rocas."
 height_m = 1.0

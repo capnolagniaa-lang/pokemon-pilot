@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/telarana.tres" id="9_qha1m"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_86pj7"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_fvlvu"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_wuv8b"]
 
 [sub_resource type="Resource" id="Resource_1mcwk"]
 script = ExtResource("1_b70tb")
@@ -70,6 +71,7 @@ display_name = "Ariados"
 dex = 168
 types = Array[ExtResource("4_xbo6p")]([ExtResource("5_s1pay"), ExtResource("6_l4htn")])
 learnset = Array[ExtResource("1_b70tb")]([SubResource("Resource_1mcwk"), SubResource("Resource_iv8xi"), SubResource("Resource_20l0u"), SubResource("Resource_v3rim"), SubResource("Resource_hyhiq"), SubResource("Resource_xoa8r"), SubResource("Resource_uuymc"), SubResource("Resource_5yejt"), SubResource("Resource_y3m5y"), SubResource("Resource_fqre4")])
+temperament = ExtResource("14_wuv8b")
 genus = "Pokémon Pata Larga"
 pokedex_entry = "Ariados tiene unas patas con forma de garfio que le permiten correr por techos y superficies verticales. Este Pokémon oprime al rival con una tela de araña fina y resistente."
 height_m = 1.1

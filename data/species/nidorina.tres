@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="9_kkqn3"]
 [ext_resource type="Resource" path="res://data/moves/camelo.tres" id="10_6ux1v"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_3urld"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_48x00"]
 
 [sub_resource type="Resource" id="Resource_cumji"]
 script = ExtResource("1_xrdab")
@@ -71,6 +72,7 @@ display_name = "Nidorina"
 dex = 30
 types = Array[ExtResource("4_jiitr")]([ExtResource("5_jgg5i")])
 learnset = Array[ExtResource("1_xrdab")]([SubResource("Resource_cumji"), SubResource("Resource_f6wkt"), SubResource("Resource_6ald3"), SubResource("Resource_sbvr5"), SubResource("Resource_u8slw"), SubResource("Resource_fte80"), SubResource("Resource_a5qlh"), SubResource("Resource_07bk2"), SubResource("Resource_7vdmq"), SubResource("Resource_eqgm6")])
+temperament = ExtResource("14_48x00")
 genus = "Pokémon Pin Veneno"
 pokedex_entry = "Cuando están en familia o con sus amigos, esconden las púas para evitar accidentes. Según parece, se alteran bastante si se separan del grupo."
 height_m = 0.8

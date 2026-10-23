@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="8_l0tlx"]
 [ext_resource type="Resource" path="res://data/moves/bucle_arena.tres" id="9_a7vry"]
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="10_ua4kd"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_4g13a"]
 
 [sub_resource type="Resource" id="Resource_4mkr7"]
 script = ExtResource("1_y5fym")
@@ -66,6 +67,7 @@ display_name = "Sandshrew"
 dex = 27
 types = Array[ExtResource("4_shc8r")]([ExtResource("5_15arq")])
 learnset = Array[ExtResource("1_y5fym")]([SubResource("Resource_4mkr7"), SubResource("Resource_a5dux"), SubResource("Resource_mqc5m"), SubResource("Resource_vjukc"), SubResource("Resource_dy5si"), SubResource("Resource_nvxqs"), SubResource("Resource_p8jr0"), SubResource("Resource_6twvf"), SubResource("Resource_2t47j")])
+temperament = ExtResource("13_4g13a")
 genus = "Pokémon Ratón"
 pokedex_entry = "Sandshrew es capaz de absorber agua y no perder ni una gota, algo que le permite sobrevivir en el desierto. Este Pokémon se enrosca para defenderse de los enemigos."
 height_m = 0.6

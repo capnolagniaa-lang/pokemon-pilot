@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="9_116uv"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="10_e2exn"]
 [ext_resource type="Resource" path="res://data/moves/neblina.tres" id="11_euwhs"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_hnlb7"]
 
 [sub_resource type="Resource" id="Resource_eugi6"]
 script = ExtResource("1_sjk6s")
@@ -72,6 +73,7 @@ display_name = "Wooper"
 dex = 194
 types = Array[ExtResource("4_687yd")]([ExtResource("5_da2qq"), ExtResource("6_waqjo")])
 learnset = Array[ExtResource("1_sjk6s")]([SubResource("Resource_eugi6"), SubResource("Resource_o76r3"), SubResource("Resource_4otkh"), SubResource("Resource_e4x1d"), SubResource("Resource_kxlap"), SubResource("Resource_gk54l"), SubResource("Resource_7ftcr"), SubResource("Resource_ufrd4"), SubResource("Resource_0s6lx"), SubResource("Resource_uc4bc")])
+temperament = ExtResource("14_hnlb7")
 genus = "Pokémon Pez Agua"
 pokedex_entry = "Wooper suele vivir en el agua, pero es posible también verle en tierra en busca de comida. Cuando está en terreno firme, se cubre con una película viscosa tóxica."
 height_m = 0.4

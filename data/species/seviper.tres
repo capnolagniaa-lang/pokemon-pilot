@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/colmillo_veneno.tres" id="9_oqlin"]
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_sf03i"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="11_ko573"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_o7h28"]
 
 [sub_resource type="Resource" id="Resource_68q3a"]
 script = ExtResource("1_lgkmf")
@@ -72,6 +73,7 @@ display_name = "Seviper"
 dex = 336
 types = Array[ExtResource("4_pnovc")]([ExtResource("5_xqhvg")])
 learnset = Array[ExtResource("1_lgkmf")]([SubResource("Resource_68q3a"), SubResource("Resource_1rm02"), SubResource("Resource_fxnio"), SubResource("Resource_2mv74"), SubResource("Resource_vs58m"), SubResource("Resource_ux0fu"), SubResource("Resource_ry4qc"), SubResource("Resource_qgwvt"), SubResource("Resource_w8av1"), SubResource("Resource_u3o6k")])
+temperament = ExtResource("14_o7h28")
 genus = "Pokémon Colmillos"
 pokedex_entry = "Seviper lleva años de gran enemistad con Zangoose. Las cicatrices que tiene por todo el cuerpo dan buena muestra de los encarnizados combates en los que se han enfrentado. Seviper ataca usando su cola con forma de espada."
 height_m = 2.7

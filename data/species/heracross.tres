@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_a4ymb"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="10_kdngj"]
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_wgqp5"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_db4m8"]
 
 [sub_resource type="Resource" id="Resource_vwq5y"]
 script = ExtResource("1_codyr")
@@ -72,6 +73,7 @@ display_name = "Heracross"
 dex = 214
 types = Array[ExtResource("4_mrq4h")]([ExtResource("5_yfg6i"), ExtResource("6_f7nxb")])
 learnset = Array[ExtResource("1_codyr")]([SubResource("Resource_vwq5y"), SubResource("Resource_x74lv"), SubResource("Resource_ye5pk"), SubResource("Resource_soho7"), SubResource("Resource_hrb34"), SubResource("Resource_0noxr"), SubResource("Resource_i4m0f"), SubResource("Resource_vkw45"), SubResource("Resource_5tesc"), SubResource("Resource_ygnqx")])
+temperament = ExtResource("14_db4m8")
 genus = "Pokémon Cuerno"
 pokedex_entry = "Heracross carga en línea recta contra el enemigo, se le queda encajado por debajo, lo agarra y lo lanza con ayuda del fuerte cuerno que tiene. Este Pokémon tiene fuerza hasta para echar abajo un árbol descomunal."
 height_m = 1.5

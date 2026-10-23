@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="9_jo7jj"]
 [ext_resource type="Resource" path="res://data/moves/camelo.tres" id="10_mhc0e"]
 [ext_resource type="Resource" path="res://data/moves/perforador.tres" id="11_cx0db"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_xlca8"]
 
 [sub_resource type="Resource" id="Resource_oge12"]
 script = ExtResource("1_pbkpd")
@@ -71,6 +72,7 @@ display_name = "Nidorino"
 dex = 33
 types = Array[ExtResource("4_dw5yg")]([ExtResource("5_4n3en")])
 learnset = Array[ExtResource("1_pbkpd")]([SubResource("Resource_oge12"), SubResource("Resource_latf7"), SubResource("Resource_lqtp6"), SubResource("Resource_tk7cg"), SubResource("Resource_ge2sh"), SubResource("Resource_4qebg"), SubResource("Resource_nn6hb"), SubResource("Resource_tkahf"), SubResource("Resource_11tr0"), SubResource("Resource_mitor")])
+temperament = ExtResource("14_xlca8")
 genus = "Pokémon Pin Veneno"
 pokedex_entry = "Nidorino tiene un cuerno de dureza superior a la del diamante. Si siente una presencia hostil, se le erizan las púas del lomo enseguida y carga contra el enemigo con todas sus fuerzas."
 height_m = 0.9

@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_ibnrr"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_xtatb"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_ict8l"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_bq7t1"]
 
 [sub_resource type="Resource" id="Resource_gwrt4"]
 script = ExtResource("1_ncs6c")
@@ -78,6 +79,7 @@ display_name = "Geodude"
 dex = 74
 types = Array[ExtResource("4_sacqb")]([ExtResource("5_hp5nt"), ExtResource("6_17vej")])
 learnset = Array[ExtResource("1_ncs6c")]([SubResource("Resource_gwrt4"), SubResource("Resource_v3kyy"), SubResource("Resource_2blb4"), SubResource("Resource_jbks5"), SubResource("Resource_xgh7k"), SubResource("Resource_g0c44"), SubResource("Resource_3mkvj"), SubResource("Resource_perdh"), SubResource("Resource_d0sai"), SubResource("Resource_nss4v"), SubResource("Resource_kbc03")])
+temperament = ExtResource("15_bq7t1")
 genus = "Pokémon Roca"
 pokedex_entry = "Cuanto más larga es la vida de Geodude, mayor es el desgaste y la erosión que sufre, y más redondeada la forma que va adquiriendo. Sin embargo, el corazón permanece siempre duro, rocoso y tosco."
 height_m = 0.4

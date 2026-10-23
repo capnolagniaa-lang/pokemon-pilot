@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="11_w5t07"]
 [ext_resource type="Resource" path="res://data/moves/bucle_arena.tres" id="12_ec3h6"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_omufe"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_q53ba"]
 
 [sub_resource type="Resource" id="Resource_prtpj"]
 script = ExtResource("1_ywjwf")
@@ -84,6 +85,7 @@ display_name = "Onix"
 dex = 95
 types = Array[ExtResource("4_d1vix")]([ExtResource("5_xcmc8"), ExtResource("6_l4wvc")])
 learnset = Array[ExtResource("1_ywjwf")]([SubResource("Resource_prtpj"), SubResource("Resource_v82ek"), SubResource("Resource_1ygpd"), SubResource("Resource_o5dmi"), SubResource("Resource_jkb6j"), SubResource("Resource_un8xn"), SubResource("Resource_53imy"), SubResource("Resource_44s0r"), SubResource("Resource_rgfpa"), SubResource("Resource_rok3p"), SubResource("Resource_qpj5q"), SubResource("Resource_gui3b")])
+temperament = ExtResource("16_q53ba")
 genus = "Pokémon Serpiente Roca"
 pokedex_entry = "Onix tiene un imán en el cerebro, que actúa como una brújula para no perder la orientación cuando está cavando túneles. A medida que crece, se le redondea y suaviza el cuerpo."
 height_m = 8.8

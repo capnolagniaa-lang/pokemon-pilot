@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_ehato"]
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="9_ue74w"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_xli0j"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_gyfr4"]
 
 [sub_resource type="Resource" id="Resource_4y3w2"]
 script = ExtResource("1_1wo88")
@@ -64,6 +65,7 @@ display_name = "Flygon"
 dex = 330
 types = Array[ExtResource("4_66p23")]([ExtResource("5_k1ry6"), ExtResource("6_4tqmv")])
 learnset = Array[ExtResource("1_1wo88")]([SubResource("Resource_4y3w2"), SubResource("Resource_kbpds"), SubResource("Resource_02txm"), SubResource("Resource_msouk"), SubResource("Resource_8n67s"), SubResource("Resource_86nje"), SubResource("Resource_der86"), SubResource("Resource_u0vq6"), SubResource("Resource_lbexo")])
+temperament = ExtResource("13_gyfr4")
 genus = "Pokémon Místico"
 pokedex_entry = "A Flygon se le conoce como el Espíritu del Desierto. Al volar, como levanta una nube de arena al batir las alas, está siempre envuelto en una tormenta de arena."
 height_m = 2.0

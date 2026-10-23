@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="9_0le07"]
 [ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="10_t48ft"]
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="11_ujemn"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_sb30v"]
 
 [sub_resource type="Resource" id="Resource_jynx0"]
 script = ExtResource("1_1dvmu")
@@ -71,6 +72,7 @@ display_name = "Weepinbell"
 dex = 70
 types = Array[ExtResource("4_7sc0i")]([ExtResource("5_gte5f"), ExtResource("6_yxge3")])
 learnset = Array[ExtResource("1_1dvmu")]([SubResource("Resource_jynx0"), SubResource("Resource_67iv3"), SubResource("Resource_2b23q"), SubResource("Resource_q5xjs"), SubResource("Resource_l5max"), SubResource("Resource_ytv23"), SubResource("Resource_yfaj1"), SubResource("Resource_pg2qw"), SubResource("Resource_ran68"), SubResource("Resource_dsmu0")])
+temperament = ExtResource("14_sb30v")
 genus = "Pokémon Matamoscas"
 pokedex_entry = "Weepinbell tiene un gancho a modo de extremidad superior trasera, que usa por la noche para colgarse de una rama y echarse a dormir. Si se mueve mientras duerme, puede acabar en el suelo."
 height_m = 1.0

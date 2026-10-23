@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_dpmfp"]
 [ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="11_e2m56"]
 [ext_resource type="Resource" path="res://data/moves/bote.tres" id="12_mv5fc"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_xyc4x"]
 
 [sub_resource type="Resource" id="Resource_tbprx"]
 script = ExtResource("1_qw503")
@@ -75,6 +76,7 @@ display_name = "Grumpig"
 dex = 326
 types = Array[ExtResource("4_65jgh")]([ExtResource("5_ywv8p")])
 learnset = Array[ExtResource("1_qw503")]([SubResource("Resource_tbprx"), SubResource("Resource_o6vw2"), SubResource("Resource_mv0cl"), SubResource("Resource_cgxmq"), SubResource("Resource_abcdk"), SubResource("Resource_d1vub"), SubResource("Resource_1rheg"), SubResource("Resource_83kse"), SubResource("Resource_jvp0a"), SubResource("Resource_qudj5"), SubResource("Resource_58vll")])
+temperament = ExtResource("15_xyc4x")
 genus = "Pokémon Manipulador"
 pokedex_entry = "Grumpig usa las perlas negras que tiene para amplificar las ondas de su poder psíquico y controlar del todo al rival. Cuando usa su poder especial, le cuesta respirar y resopla con pesadez."
 height_m = 0.9

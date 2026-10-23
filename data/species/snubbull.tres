@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="9_cyb86"]
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_1f3oo"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_1cxsh"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_rihr0"]
 
 [sub_resource type="Resource" id="Resource_33lgv"]
 script = ExtResource("1_pkyyq")
@@ -71,6 +72,7 @@ display_name = "Snubbull"
 dex = 209
 types = Array[ExtResource("4_vhs1d")]([ExtResource("5_bhoog")])
 learnset = Array[ExtResource("1_pkyyq")]([SubResource("Resource_33lgv"), SubResource("Resource_wamua"), SubResource("Resource_5xix7"), SubResource("Resource_b6rfs"), SubResource("Resource_cn0we"), SubResource("Resource_uyhgf"), SubResource("Resource_hp5xg"), SubResource("Resource_x3emo"), SubResource("Resource_rivfl"), SubResource("Resource_b4fn3")])
+temperament = ExtResource("14_rihr0")
 genus = "Pokémon Hada"
 pokedex_entry = "Al tener los colmillos por fuera, Snubbull da miedo y espanta a los Pokémon pequeños, que huyen aterrados. Parece que a él le da un poco de pena que salgan huyendo."
 height_m = 0.6

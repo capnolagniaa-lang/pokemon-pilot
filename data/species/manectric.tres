@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="10_epy1o"]
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="11_olx0m"]
 [ext_resource type="Resource" path="res://data/moves/carga.tres" id="12_f4qgw"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_0kwfj"]
 
 [sub_resource type="Resource" id="Resource_3k6yl"]
 script = ExtResource("1_edxf4")
@@ -75,6 +76,7 @@ display_name = "Manectric"
 dex = 310
 types = Array[ExtResource("4_k0lwi")]([ExtResource("5_nvakv")])
 learnset = Array[ExtResource("1_edxf4")]([SubResource("Resource_3k6yl"), SubResource("Resource_acwwp"), SubResource("Resource_u6tem"), SubResource("Resource_4e8ne"), SubResource("Resource_g1y8e"), SubResource("Resource_rpe36"), SubResource("Resource_bqkyp"), SubResource("Resource_85twn"), SubResource("Resource_0q23c"), SubResource("Resource_svjil"), SubResource("Resource_fxbvt")])
+temperament = ExtResource("15_0kwfj")
 genus = "Pokémon Descarga"
 pokedex_entry = "Manectric está continuamente descargando electricidad por las melenas, y a veces causa incendios en el bosque con las chispas que suelta. Cuando entra en combate, este Pokémon crea nubarrones."
 height_m = 1.5

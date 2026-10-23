@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/aguante.tres" id="12_8dqi1"]
 [ext_resource type="Resource" path="res://data/moves/megapatada.tres" id="13_ct7ly"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="14_t47xt"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_yctpg"]
 
 [sub_resource type="Resource" id="Resource_36ypj"]
 script = ExtResource("1_sx67l")
@@ -89,6 +90,7 @@ display_name = "Hitmonlee"
 dex = 106
 types = Array[ExtResource("4_pirfd")]([ExtResource("5_ogsvy")])
 learnset = Array[ExtResource("1_sx67l")]([SubResource("Resource_36ypj"), SubResource("Resource_dglvr"), SubResource("Resource_8528e"), SubResource("Resource_q1ivv"), SubResource("Resource_k420t"), SubResource("Resource_t2daf"), SubResource("Resource_024go"), SubResource("Resource_adkpo"), SubResource("Resource_q7bxx"), SubResource("Resource_gqgxg"), SubResource("Resource_r256a"), SubResource("Resource_wgcf7"), SubResource("Resource_bkayv")])
+temperament = ExtResource("17_yctpg")
 genus = "Pokémon Patada"
 pokedex_entry = "Hitmonlee tiene la facilidad de encoger y estirar las patas. Con extremidades tan flexibles, propina unas patadas demoledoras. Tras la lucha, se masajea las piernas y relaja los músculos para descansar."
 height_m = 1.5

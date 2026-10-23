@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_o0jiw"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="9_5fie6"]
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="10_f2t1a"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_pxdaf"]
 
 [sub_resource type="Resource" id="Resource_i1vxs"]
 script = ExtResource("1_efbl5")
@@ -66,6 +67,7 @@ display_name = "Hoothoot"
 dex = 163
 types = Array[ExtResource("4_dc7dm")]([ExtResource("5_wfvgg"), ExtResource("6_5dmyo")])
 learnset = Array[ExtResource("1_efbl5")]([SubResource("Resource_i1vxs"), SubResource("Resource_j466m"), SubResource("Resource_pn4ss"), SubResource("Resource_4gdei"), SubResource("Resource_uc2vp"), SubResource("Resource_45ecb"), SubResource("Resource_ttw7j"), SubResource("Resource_51wi7"), SubResource("Resource_lbyty")])
+temperament = ExtResource("13_pxdaf")
 genus = "Pokémon Búho"
 pokedex_entry = "Hoothoot tiene un órgano interno que identifica y percibe la rotación de la tierra. Gracias a este órgano, el Pokémon ulula todos los días a la misma hora."
 height_m = 0.7

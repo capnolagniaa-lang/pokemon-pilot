@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_y16q3"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cs8sw"]
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_fdwi6"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="5_y16q3"]
 
 [sub_resource type="Resource" id="Resource_cs8sw"]
 script = ExtResource("1_crymv")
@@ -18,6 +19,7 @@ display_name = "Unown"
 dex = 201
 types = Array[ExtResource("4_cs8sw")]([ExtResource("5_fdwi6")])
 learnset = Array[ExtResource("1_crymv")]([SubResource("Resource_cs8sw")])
+temperament = ExtResource("5_y16q3")
 genus = "Pokémon Símbolo"
 pokedex_entry = "Estos Pokémon tienen forma de caracteres antiguos. No se sabe qué surgió primero, si la vieja escritura o los distintos Unown. Esta cuestión sigue siendo objeto de estudio, pero aún no se ha averiguado nada."
 height_m = 0.5

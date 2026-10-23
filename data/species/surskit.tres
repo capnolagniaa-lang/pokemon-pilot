@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="7_qb6n1"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="8_xavw5"]
 [ext_resource type="Resource" path="res://data/moves/neblina.tres" id="9_5s8na"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_psxwc"]
 
 [sub_resource type="Resource" id="Resource_asf3q"]
 script = ExtResource("1_gu2w4")
@@ -61,6 +62,7 @@ display_name = "Surskit"
 dex = 283
 types = Array[ExtResource("4_6lpke")]([ExtResource("5_tjf7l"), ExtResource("6_gd1db")])
 learnset = Array[ExtResource("1_gu2w4")]([SubResource("Resource_asf3q"), SubResource("Resource_26fm4"), SubResource("Resource_43cs0"), SubResource("Resource_qy8do"), SubResource("Resource_kv1tw"), SubResource("Resource_qy3pp"), SubResource("Resource_y8pbv"), SubResource("Resource_ouccl")])
+temperament = ExtResource("12_psxwc")
 genus = "Pokémon Zapatero"
 pokedex_entry = "Surskit segrega un aceite por la punta de las patas que le permite caminar sobre el agua como si fuera patinando. Este Pokémon se alimenta de microorganismos en charcas y lagos."
 height_m = 0.5

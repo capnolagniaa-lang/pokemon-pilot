@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="8_eklxg"]
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_y4cts"]
 [ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="10_l2svw"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_lgpf3"]
 
 [sub_resource type="Resource" id="Resource_ishku"]
 script = ExtResource("1_50i45")
@@ -65,6 +66,7 @@ display_name = "Parasect"
 dex = 47
 types = Array[ExtResource("4_61tf4")]([ExtResource("5_psnuu"), ExtResource("6_tx5sd")])
 learnset = Array[ExtResource("1_50i45")]([SubResource("Resource_ishku"), SubResource("Resource_6c71i"), SubResource("Resource_qx146"), SubResource("Resource_w0a5x"), SubResource("Resource_hf3yq"), SubResource("Resource_vohn3"), SubResource("Resource_4x8ou"), SubResource("Resource_dg5rb"), SubResource("Resource_3yfuw")])
+temperament = ExtResource("13_lgpf3")
 genus = "Pokémon Hongo"
 pokedex_entry = "Parasect es conocido por destruir en plaga grandes árboles, absorbiendo los nutrientes que tienen en la parte baja del tronco y las raíces. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante."
 height_m = 1.0

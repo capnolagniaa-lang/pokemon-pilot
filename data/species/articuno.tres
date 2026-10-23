@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="8_fuite"]
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="9_ejtu0"]
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="10_pgm0s"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_w5heq"]
 
 [sub_resource type="Resource" id="Resource_67li4"]
 script = ExtResource("1_kj1iq")
@@ -66,6 +67,7 @@ display_name = "Articuno"
 dex = 144
 types = Array[ExtResource("4_dkwpk")]([ExtResource("5_dcr3q"), ExtResource("6_uqr0q")])
 learnset = Array[ExtResource("1_kj1iq")]([SubResource("Resource_67li4"), SubResource("Resource_2k553"), SubResource("Resource_mn6oh"), SubResource("Resource_g75yu"), SubResource("Resource_rhy7s"), SubResource("Resource_2f34d"), SubResource("Resource_1sorl"), SubResource("Resource_4ymfs"), SubResource("Resource_nhwoi")])
+temperament = ExtResource("13_w5heq")
 genus = "Pokémon Congelar"
 pokedex_entry = "Articuno es un Pokémon pájaro legendario que puede controlar el hielo. El batir de sus alas congela el aire. Dicen que consigue hacer que nieve cuando vuela."
 height_m = 1.7

@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="9_v6ngt"]
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="10_eji5i"]
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_f33r7"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_4w5ju"]
 
 [sub_resource type="Resource" id="Resource_m4l0m"]
 script = ExtResource("1_y3m52")
@@ -71,6 +72,7 @@ display_name = "Raikou"
 dex = 243
 types = Array[ExtResource("4_k2oft")]([ExtResource("5_fxesk")])
 learnset = Array[ExtResource("1_y3m52")]([SubResource("Resource_m4l0m"), SubResource("Resource_uur3i"), SubResource("Resource_fyrbx"), SubResource("Resource_42082"), SubResource("Resource_nieij"), SubResource("Resource_kqgt0"), SubResource("Resource_og51g"), SubResource("Resource_hta5o"), SubResource("Resource_ps6qa"), SubResource("Resource_kflku")])
+temperament = ExtResource("14_4w5ju")
 genus = "Pokémon Trueno"
 pokedex_entry = "Raikou tiene la velocidad del rayo. Los rugidos de este Pokémon emiten ondas de choque que se esparcen vibrando por el aire y sacuden el suelo como si fueran auténticas descargas de rayo."
 height_m = 1.9

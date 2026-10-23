@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="11_ipb18"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="12_lifpd"]
 [ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="13_hv0am"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_wfs4k"]
 
 [sub_resource type="Resource" id="Resource_8su4c"]
 script = ExtResource("1_6v4q0")
@@ -85,6 +86,7 @@ display_name = "Meditite"
 dex = 307
 types = Array[ExtResource("4_hxrni")]([ExtResource("5_amxxq"), ExtResource("6_rnlc6")])
 learnset = Array[ExtResource("1_6v4q0")]([SubResource("Resource_8su4c"), SubResource("Resource_p0cli"), SubResource("Resource_d4fow"), SubResource("Resource_6h42v"), SubResource("Resource_5lw3a"), SubResource("Resource_f5o58"), SubResource("Resource_bfonh"), SubResource("Resource_j47rb"), SubResource("Resource_6guq3"), SubResource("Resource_yjyfk"), SubResource("Resource_jai3c"), SubResource("Resource_11b01")])
+temperament = ExtResource("16_wfs4k")
 genus = "Pokémon Meditador"
 pokedex_entry = "Meditite lleva a cabo un entrenamiento mental exhaustivo en lo más profundo de las montañas. Aunque, cuando medita, pierde toda la concentración y se descentra. Por eso, no deja nunca de entrenarse."
 height_m = 0.6

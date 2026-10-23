@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/danza_pluma.tres" id="8_ynvck"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_erad3"]
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="10_rnieh"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_0xix5"]
 
 [sub_resource type="Resource" id="Resource_n63eo"]
 script = ExtResource("1_5quqg")
@@ -64,6 +65,7 @@ display_name = "Pidgeot"
 dex = 18
 types = Array[ExtResource("4_67lwx")]([ExtResource("5_872m1"), ExtResource("6_ppfa3")])
 learnset = Array[ExtResource("1_5quqg")]([SubResource("Resource_n63eo"), SubResource("Resource_q6r26"), SubResource("Resource_0qkdh"), SubResource("Resource_ngfwv"), SubResource("Resource_gpug5"), SubResource("Resource_jgtsr"), SubResource("Resource_oloja"), SubResource("Resource_w6wn8"), SubResource("Resource_uq6ce")])
+temperament = ExtResource("13_0xix5")
 genus = "Pokémon Pájaro"
 pokedex_entry = "El plumaje de este Pokémon es bonito e hipnótico. Muchos Entrenadores se quedan embobados ante la belleza impactante de las plumas que tiene en la cabeza; lo que les lleva a elegir a Pidgeot como su Pokémon."
 height_m = 1.5

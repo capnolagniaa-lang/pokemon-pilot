@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="11_6k1o6"]
 [ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="12_87epl"]
 [ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="13_eolvc"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_tkva5"]
 
 [sub_resource type="Resource" id="Resource_vyxsx"]
 script = ExtResource("1_d1ifr")
@@ -81,6 +82,7 @@ display_name = "Grovyle"
 dex = 253
 types = Array[ExtResource("4_iqpvm")]([ExtResource("5_ywkv1")])
 learnset = Array[ExtResource("1_d1ifr")]([SubResource("Resource_vyxsx"), SubResource("Resource_s75v6"), SubResource("Resource_nnqri"), SubResource("Resource_0orra"), SubResource("Resource_aqiun"), SubResource("Resource_xoc2o"), SubResource("Resource_d36ux"), SubResource("Resource_aav54"), SubResource("Resource_c4743"), SubResource("Resource_orhbm"), SubResource("Resource_5yaut"), SubResource("Resource_qqu04")])
+temperament = ExtResource("16_tkva5")
 genus = "Pokémon Geco Bosque"
 pokedex_entry = "Las hojas que Grovyle tiene por el cuerpo le resultan muy útiles para camuflarse en el bosque y esconderse de los enemigos. A este Pokémon no hay quien lo supere subiendo a los árboles del bosque."
 height_m = 0.9

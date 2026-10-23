@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="9_ew03f"]
 [ext_resource type="Resource" path="res://data/moves/robo.tres" id="10_wxpeo"]
 [ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_ry6gx"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_fxsca"]
 
 [sub_resource type="Resource" id="Resource_1pql6"]
 script = ExtResource("1_jcefg")
@@ -69,6 +70,7 @@ display_name = "Banette"
 dex = 354
 types = Array[ExtResource("4_oocpm")]([ExtResource("5_yaa24")])
 learnset = Array[ExtResource("1_jcefg")]([SubResource("Resource_1pql6"), SubResource("Resource_agq6e"), SubResource("Resource_w10hd"), SubResource("Resource_2ts3e"), SubResource("Resource_fli75"), SubResource("Resource_48rjm"), SubResource("Resource_oye6h"), SubResource("Resource_fvjyt"), SubResource("Resource_rh2sn"), SubResource("Resource_5erhj")])
+temperament = ExtResource("14_fxsca")
 genus = "Pokémon Marioneta"
 pokedex_entry = "Banette genera energía para echar un infalible hechizo clavándose púas a sí mismo. Los orígenes de este Pokémon son algo tristes: era un muñeco de felpa al que tiraron a la basura."
 height_m = 1.1

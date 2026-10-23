@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="10_57nfb"]
 [ext_resource type="Resource" path="res://data/moves/armadura_acida.tres" id="11_bceog"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_mmi3m"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_n4r16"]
 
 [sub_resource type="Resource" id="Resource_jgejw"]
 script = ExtResource("1_kx7cx")
@@ -76,6 +77,7 @@ display_name = "Vaporeon"
 dex = 134
 types = Array[ExtResource("4_yk26b")]([ExtResource("5_d3lbn")])
 learnset = Array[ExtResource("1_kx7cx")]([SubResource("Resource_jgejw"), SubResource("Resource_qfj1l"), SubResource("Resource_echx2"), SubResource("Resource_x4yf4"), SubResource("Resource_vxhfw"), SubResource("Resource_ycjiq"), SubResource("Resource_22nbx"), SubResource("Resource_q2ugn"), SubResource("Resource_cc5yx"), SubResource("Resource_eeqkr"), SubResource("Resource_4xgos")])
+temperament = ExtResource("15_n4r16")
 genus = "Pokémon Burbuja"
 pokedex_entry = "Vaporeon sufrió una mutación repentina y desarrolló aletas y branquias que le permiten vivir bajo el agua. Asimismo, este Pokémon tiene la habilidad de controlar las aguas."
 height_m = 1.0

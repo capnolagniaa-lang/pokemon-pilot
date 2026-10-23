@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="10_uxycq"]
 [ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="11_mqq0c"]
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="12_dsb1v"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_s6ho6"]
 
 [sub_resource type="Resource" id="Resource_oq2xa"]
 script = ExtResource("1_48i67")
@@ -75,6 +76,7 @@ display_name = "Kirlia"
 dex = 281
 types = Array[ExtResource("4_y2cib")]([ExtResource("5_xnq7v"), ExtResource("6_hg1ai")])
 learnset = Array[ExtResource("1_48i67")]([SubResource("Resource_oq2xa"), SubResource("Resource_i54g2"), SubResource("Resource_4lrst"), SubResource("Resource_0e3di"), SubResource("Resource_v422y"), SubResource("Resource_j4rcu"), SubResource("Resource_bxqk0"), SubResource("Resource_byuo3"), SubResource("Resource_1vbqs"), SubResource("Resource_560b3"), SubResource("Resource_ohc2q")])
+temperament = ExtResource("15_s6ho6")
 genus = "Pokémon Sensorio"
 pokedex_entry = "Dicen que, al recibir los sentimientos positivos de su Entrenador, Kirlia crece con gran belleza. Este Pokémon controla poderes psicoquinéticos gracias al desarrollado cerebro que tiene."
 height_m = 0.8

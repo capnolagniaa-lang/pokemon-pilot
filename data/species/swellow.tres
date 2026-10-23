@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="8_a5o3b"]
 [ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="9_sc8ck"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_vcaju"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_at21i"]
 
 [sub_resource type="Resource" id="Resource_28gra"]
 script = ExtResource("1_mfdyi")
@@ -64,6 +65,7 @@ display_name = "Swellow"
 dex = 277
 types = Array[ExtResource("4_qd7yo")]([ExtResource("5_jsk38"), ExtResource("6_plmv4")])
 learnset = Array[ExtResource("1_mfdyi")]([SubResource("Resource_28gra"), SubResource("Resource_uqr3e"), SubResource("Resource_17bc2"), SubResource("Resource_yfm1s"), SubResource("Resource_30dpf"), SubResource("Resource_fmgfy"), SubResource("Resource_aggq2"), SubResource("Resource_5xx5j"), SubResource("Resource_4cn1u")])
+temperament = ExtResource("13_at21i")
 genus = "Pokémon Buche"
 pokedex_entry = "Swellow vuela muy alto dibujando elegantes arcos en el cielo. Este Pokémon se sumerge en el agua con rapidez y eficacia en cuanto detecta una presa. Con las garras, atrapa a la desdichada víctima y no la deja huir."
 height_m = 0.7

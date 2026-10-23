@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="11_f2ve1"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_i1rac"]
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="13_4j0hv"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_axx62"]
 
 [sub_resource type="Resource" id="Resource_e3gui"]
 script = ExtResource("1_g58ah")
@@ -83,6 +84,7 @@ display_name = "Lapras"
 dex = 131
 types = Array[ExtResource("4_0wu2i")]([ExtResource("5_eua13"), ExtResource("6_87l13")])
 learnset = Array[ExtResource("1_g58ah")]([SubResource("Resource_e3gui"), SubResource("Resource_d7lbu"), SubResource("Resource_6lc0x"), SubResource("Resource_fwtoa"), SubResource("Resource_vst0h"), SubResource("Resource_jegkn"), SubResource("Resource_0ag4h"), SubResource("Resource_w0fuj"), SubResource("Resource_q4xg3"), SubResource("Resource_4usic"), SubResource("Resource_i8lag"), SubResource("Resource_ggq28")])
+temperament = ExtResource("16_axx62")
 genus = "Pokémon Transporte"
 pokedex_entry = "Por culpa de la gente, Lapras está casi en extinción. Dicen que, al anochecer, se pone a cantar quejicoso mientras busca a los miembros de su especie que puedan quedar."
 height_m = 2.5

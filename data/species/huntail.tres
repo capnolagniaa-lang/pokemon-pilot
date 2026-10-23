@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="7_7u08j"]
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="8_q4tk3"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_5t87s"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_f64d8"]
 
 [sub_resource type="Resource" id="Resource_le38g"]
 script = ExtResource("1_hu46g")
@@ -60,6 +61,7 @@ display_name = "Huntail"
 dex = 367
 types = Array[ExtResource("4_1vqgr")]([ExtResource("5_clio1")])
 learnset = Array[ExtResource("1_hu46g")]([SubResource("Resource_le38g"), SubResource("Resource_dglyc"), SubResource("Resource_kokxn"), SubResource("Resource_iry2r"), SubResource("Resource_hx7tc"), SubResource("Resource_u181m"), SubResource("Resource_mhiq0"), SubResource("Resource_4o2nk")])
+temperament = ExtResource("12_f64d8")
 genus = "Pokémon Abisal"
 pokedex_entry = "Huntail ha pasado desapercibido durante mucho tiempo por vivir en las profundidades del mar. El sentido de la vista de este Pokémon le permite ver en las oscuras y turbias aguas submarinas."
 height_m = 1.7

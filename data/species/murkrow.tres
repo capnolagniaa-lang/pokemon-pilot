@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/finta.tres" id="7_lyxm0"]
 [ext_resource type="Resource" path="res://data/moves/mofa.tres" id="8_335y3"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="9_mfch0"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_sqncx"]
 
 [sub_resource type="Resource" id="Resource_in0vh"]
 script = ExtResource("1_a8sre")
@@ -61,6 +62,7 @@ display_name = "Murkrow"
 dex = 198
 types = Array[ExtResource("4_pyxcl")]([ExtResource("5_1bpgv"), ExtResource("6_8j5kd")])
 learnset = Array[ExtResource("1_a8sre")]([SubResource("Resource_in0vh"), SubResource("Resource_jahtv"), SubResource("Resource_23c57"), SubResource("Resource_xo6w1"), SubResource("Resource_dagpn"), SubResource("Resource_u01xu"), SubResource("Resource_pvi7o"), SubResource("Resource_1n7f7")])
+temperament = ExtResource("12_sqncx")
 genus = "Pokémon Oscuridad"
 pokedex_entry = "Murkrow ha sido temido y repudiado por todos por ser supuestamente fuente de mala suerte. Este Pokémon siente debilidad por todo lo que brilla y resplandece. A las mujeres les roba los anillos."
 height_m = 0.5

@@ -19,6 +19,7 @@
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="12_1v2gt"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="13_3ea1q"]
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="14_0vew1"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_007t3"]
 
 [sub_resource type="Resource" id="Resource_5od3w"]
 script = ExtResource("1_6nw65")
@@ -88,6 +89,7 @@ display_name = "Swampert"
 dex = 260
 types = Array[ExtResource("4_w3rqd")]([ExtResource("5_tfwqx"), ExtResource("6_jlydm")])
 learnset = Array[ExtResource("1_6nw65")]([SubResource("Resource_5od3w"), SubResource("Resource_m67wv"), SubResource("Resource_tl7uq"), SubResource("Resource_h8n0w"), SubResource("Resource_ss3qi"), SubResource("Resource_j7pf3"), SubResource("Resource_tf1rn"), SubResource("Resource_7p2qx"), SubResource("Resource_qcyu5"), SubResource("Resource_wurdk"), SubResource("Resource_jhcle"), SubResource("Resource_4xeg0"), SubResource("Resource_kt1cp")])
+temperament = ExtResource("17_007t3")
 genus = "Pokémon Pez Lodo"
 pokedex_entry = "Swampert es muy fuerte. Puede arrastrar una roca que pese más de una tonelada sin ningún problema. Este Pokémon tiene el sentido de la vista muy desarrollado. Es capaz de ver hasta en aguas cenagosas."
 height_m = 1.5

@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="6_48rrn"]
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="6_t3ntt"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="7_nae14"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="10_8opl6"]
 
 [sub_resource type="Resource" id="Resource_o01cs"]
 script = ExtResource("1_guh76")
@@ -49,6 +50,7 @@ display_name = "Azurill"
 dex = 298
 types = Array[ExtResource("4_w5bjw")]([ExtResource("5_k8y53"), ExtResource("6_t3ntt")])
 learnset = Array[ExtResource("1_guh76")]([SubResource("Resource_o01cs"), SubResource("Resource_6lpks"), SubResource("Resource_km2wr"), SubResource("Resource_gidvd"), SubResource("Resource_0u37a"), SubResource("Resource_w1v00")])
+temperament = ExtResource("10_8opl6")
 genus = "Pokémon A Topos"
 pokedex_entry = "Azurill enrolla la cola como si fuera un lazo y la despliega a continuación todo lo que puede. De esta forma, un Azurill llegó a lanzarse a sí mismo hasta 10 m."
 height_m = 0.2

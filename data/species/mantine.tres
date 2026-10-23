@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="8_ytffb"]
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="9_pspwv"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="10_go0be"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_o04f8"]
 
 [sub_resource type="Resource" id="Resource_xu4m8"]
 script = ExtResource("1_136p7")
@@ -66,6 +67,7 @@ display_name = "Mantine"
 dex = 226
 types = Array[ExtResource("4_f7ala")]([ExtResource("5_i2f2d"), ExtResource("6_r3aat")])
 learnset = Array[ExtResource("1_136p7")]([SubResource("Resource_xu4m8"), SubResource("Resource_8t2d5"), SubResource("Resource_ooc8u"), SubResource("Resource_8s18t"), SubResource("Resource_oocm3"), SubResource("Resource_rfq6o"), SubResource("Resource_q6xty"), SubResource("Resource_w2hsl"), SubResource("Resource_lt8kf")])
+temperament = ExtResource("13_o04f8")
 genus = "Pokémon Milano"
 pokedex_entry = "En los días que hace sol, es posible ver bancos de Mantine saltando con elegancia por entre las olas del mar. A estos Pokémon no les molestan los Remoraid que se les pegan."
 height_m = 2.1

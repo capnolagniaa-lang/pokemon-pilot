@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="9_eyrys"]
 [ext_resource type="Resource" path="res://data/moves/enfado.tres" id="10_8h7am"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_j7y4r"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_rqhmh"]
 
 [sub_resource type="Resource" id="Resource_0jl23"]
 script = ExtResource("1_47mdg")
@@ -71,6 +72,7 @@ display_name = "Dratini"
 dex = 147
 types = Array[ExtResource("4_e6c73")]([ExtResource("5_4ri7b")])
 learnset = Array[ExtResource("1_47mdg")]([SubResource("Resource_0jl23"), SubResource("Resource_yoybc"), SubResource("Resource_m7lo5"), SubResource("Resource_0stpu"), SubResource("Resource_b37wj"), SubResource("Resource_mdwlv"), SubResource("Resource_pj8d3"), SubResource("Resource_ie7uj"), SubResource("Resource_vu137"), SubResource("Resource_je4ii")])
+temperament = ExtResource("14_rqhmh")
 genus = "Pokémon Dragón"
 pokedex_entry = "Dratini muda y se despoja de la vieja piel continuamente. Es algo que necesita hacer porque la energía que tiene en su interior no para de alcanzar niveles incontrolables."
 height_m = 1.8

@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="5_u4xoe"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_j0muh"]
 [ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="6_qfk1e"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="9_42d3l"]
 
 [sub_resource type="Resource" id="Resource_jt1pm"]
 script = ExtResource("1_6mu4y")
@@ -40,6 +41,7 @@ display_name = "Vileplume"
 dex = 45
 types = Array[ExtResource("4_k5uy8")]([ExtResource("5_u4xoe"), ExtResource("6_j0muh")])
 learnset = Array[ExtResource("1_6mu4y")]([SubResource("Resource_jt1pm"), SubResource("Resource_v0h8j"), SubResource("Resource_aiip4"), SubResource("Resource_l7fpy"), SubResource("Resource_sf4h2")])
+temperament = ExtResource("9_42d3l")
 genus = "Pokémon Flor"
 pokedex_entry = "El polen que contienen las esporas tóxicas de Vileplume causa unos ataques de alergia muy agudos. Por eso, no es aconsejable acercarse a ninguna flor selvática, por muy bonita que sea."
 height_m = 1.2

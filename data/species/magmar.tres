@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="8_daqmn"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="9_hmp8x"]
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="10_g15a4"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_nf13y"]
 
 [sub_resource type="Resource" id="Resource_3a15p"]
 script = ExtResource("1_t7plh")
@@ -63,6 +64,7 @@ display_name = "Magmar"
 dex = 126
 types = Array[ExtResource("4_btq3x")]([ExtResource("5_wiwxl")])
 learnset = Array[ExtResource("1_t7plh")]([SubResource("Resource_3a15p"), SubResource("Resource_cinqe"), SubResource("Resource_driqi"), SubResource("Resource_71wjo"), SubResource("Resource_wcojw"), SubResource("Resource_iy2r6"), SubResource("Resource_lt5ux"), SubResource("Resource_8qup5"), SubResource("Resource_q5jck")])
+temperament = ExtResource("13_nf13y")
 genus = "Pokémon Escupefuego"
 pokedex_entry = "Al luchar, Magmar expulsa violentas llamas por todo el cuerpo para intimidar a su rival. Estos estallidos de fuego crean ondas de calor que abrasan la hierba y los árboles que haya en las proximidades."
 height_m = 1.3

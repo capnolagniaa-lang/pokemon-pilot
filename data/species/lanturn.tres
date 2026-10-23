@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_7m11w"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_tcntc"]
 [ext_resource type="Resource" path="res://data/moves/carga.tres" id="11_bov6g"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_61if6"]
 
 [sub_resource type="Resource" id="Resource_ye76m"]
 script = ExtResource("1_ic3sq")
@@ -71,6 +72,7 @@ display_name = "Lanturn"
 dex = 171
 types = Array[ExtResource("4_f2tc8")]([ExtResource("5_ahhld"), ExtResource("6_epyx0")])
 learnset = Array[ExtResource("1_ic3sq")]([SubResource("Resource_ye76m"), SubResource("Resource_11qi8"), SubResource("Resource_dcnga"), SubResource("Resource_5bmjx"), SubResource("Resource_0pwgq"), SubResource("Resource_00moc"), SubResource("Resource_ln8m3"), SubResource("Resource_3u8e3"), SubResource("Resource_vnnyf"), SubResource("Resource_ibolf")])
+temperament = ExtResource("14_61if6")
 genus = "Pokémon Luz"
 pokedex_entry = "A Lanturn lo llaman la Estrella del Fondo del Mar por la antena iluminada que tiene. Este Pokémon produce luz creando una reacción química entre una bacteria y los fluidos corporales de la antena."
 height_m = 1.2

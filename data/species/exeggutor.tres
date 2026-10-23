@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="5_v5sfd"]
 [ext_resource type="Resource" path="res://data/moves/bomba_huevo.tres" id="6_ldtvd"]
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_ujbnh"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="9_errn0"]
 
 [sub_resource type="Resource" id="Resource_dgskn"]
 script = ExtResource("1_0wdih")
@@ -41,6 +42,7 @@ display_name = "Exeggutor"
 dex = 103
 types = Array[ExtResource("4_whfia")]([ExtResource("5_v5sfd"), ExtResource("6_ujbnh")])
 learnset = Array[ExtResource("1_0wdih")]([SubResource("Resource_dgskn"), SubResource("Resource_bdh6e"), SubResource("Resource_hybkm"), SubResource("Resource_qpdb0"), SubResource("Resource_2pkv0")])
+temperament = ExtResource("9_errn0")
 genus = "Pokémon Coco"
 pokedex_entry = "Exeggutor es originario del trópico. Cuando se expone a un sol intenso, le empiezan a crecer las cabezas. Hay quien dice que, cuando las cabezas caen al suelo, se unen para formar un Exeggcute."
 height_m = 2.0

@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="7_iisl5"]
 [ext_resource type="Resource" path="res://data/moves/pico_taladro.tres" id="8_cav0c"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_sya0f"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_5jww4"]
 
 [sub_resource type="Resource" id="Resource_doi27"]
 script = ExtResource("1_w0g6s")
@@ -58,6 +59,7 @@ display_name = "Fearow"
 dex = 22
 types = Array[ExtResource("4_mekuc")]([ExtResource("5_ryn2s"), ExtResource("6_5d84f")])
 learnset = Array[ExtResource("1_w0g6s")]([SubResource("Resource_doi27"), SubResource("Resource_gt2pv"), SubResource("Resource_a2mqh"), SubResource("Resource_mu4f2"), SubResource("Resource_tm76s"), SubResource("Resource_f6rpj"), SubResource("Resource_55ufj"), SubResource("Resource_23332")])
+temperament = ExtResource("12_5jww4")
 genus = "Pokémon Pico"
 pokedex_entry = "A Fearow se le reconoce por tener un pescuezo y un pico largos que le permiten cazar en tierra y agua. Tiene una gran habilidad moviendo el fino pico para atrapar a sus presas."
 height_m = 1.2

@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="9_il5q0"]
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="10_f7j47"]
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="11_0hqry"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_1pfcu"]
 
 [sub_resource type="Resource" id="Resource_g6uqy"]
 script = ExtResource("1_afplf")
@@ -71,6 +72,7 @@ display_name = "Tauros"
 dex = 128
 types = Array[ExtResource("4_1bv51")]([ExtResource("5_cbvwe")])
 learnset = Array[ExtResource("1_afplf")]([SubResource("Resource_g6uqy"), SubResource("Resource_du1x3"), SubResource("Resource_8aig4"), SubResource("Resource_bc1vb"), SubResource("Resource_7eiyj"), SubResource("Resource_cfx87"), SubResource("Resource_4fpag"), SubResource("Resource_h664e"), SubResource("Resource_ilv0g"), SubResource("Resource_y8ies")])
+temperament = ExtResource("14_1pfcu")
 genus = "Pokémon Toro Bravo"
 pokedex_entry = "Este Pokémon no está contento a menos que esté continuamente de aquí para allá. Si no hay rival que luche contra Tauros, se estampa contra árboles grandes para calmarse y los embiste para echarlos abajo."
 height_m = 1.4

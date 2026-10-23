@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="8_1sqia"]
 [ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="9_86ck4"]
 [ext_resource type="Resource" path="res://data/moves/remolino.tres" id="10_yvlhv"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_r8k6q"]
 
 [sub_resource type="Resource" id="Resource_b1ll7"]
 script = ExtResource("1_xnn2o")
@@ -64,6 +65,7 @@ display_name = "Masquerain"
 dex = 284
 types = Array[ExtResource("4_dighh")]([ExtResource("5_6y1ao"), ExtResource("6_4qdf0")])
 learnset = Array[ExtResource("1_xnn2o")]([SubResource("Resource_b1ll7"), SubResource("Resource_3q0mc"), SubResource("Resource_e0ibr"), SubResource("Resource_7wsme"), SubResource("Resource_wfofy"), SubResource("Resource_p5dbj"), SubResource("Resource_dvyl6"), SubResource("Resource_tg5b2"), SubResource("Resource_646ph")])
+temperament = ExtResource("13_r8k6q")
 genus = "Pokémon Globocular"
 pokedex_entry = "Masquerain intimida a sus enemigos con los ojos que tiene dibujados en las antenas. Este Pokémon bate las cuatro alas que tiene para volar libremente en cualquier dirección, hasta de lado y hacia atrás, como un helicóptero."
 height_m = 0.8

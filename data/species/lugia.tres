@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/aerochorro.tres" id="9_pqydi"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="10_drj6g"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="11_5hlru"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_jp2xa"]
 
 [sub_resource type="Resource" id="Resource_oxhbw"]
 script = ExtResource("1_3pjta")
@@ -73,6 +74,7 @@ display_name = "Lugia"
 dex = 249
 types = Array[ExtResource("4_mi8yd")]([ExtResource("5_20hyn"), ExtResource("6_nnu3r")])
 learnset = Array[ExtResource("1_3pjta")]([SubResource("Resource_oxhbw"), SubResource("Resource_ty6mf"), SubResource("Resource_456f4"), SubResource("Resource_mf655"), SubResource("Resource_bknb1"), SubResource("Resource_fegbr"), SubResource("Resource_aei5u"), SubResource("Resource_wdh4u"), SubResource("Resource_odscs"), SubResource("Resource_fgluy")])
+temperament = ExtResource("14_jp2xa")
 genus = "Pokémon Buceo"
 pokedex_entry = "La fuerza que tiene Lugia en las alas es devastadora; con nada que las bata es capaz de derribar edificios enteros. Por eso mismo, prefiere vivir donde no haya nadie, en lo más profundo del mar."
 height_m = 5.2

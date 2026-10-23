@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="9_mi3ju"]
 [ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="10_n71in"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_mxxif"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_f7tdo"]
 
 [sub_resource type="Resource" id="Resource_1ysrh"]
 script = ExtResource("1_3vd4y")
@@ -71,6 +72,7 @@ display_name = "Exeggcute"
 dex = 102
 types = Array[ExtResource("4_jhitn")]([ExtResource("5_32nix"), ExtResource("6_bsa32")])
 learnset = Array[ExtResource("1_3vd4y")]([SubResource("Resource_1ysrh"), SubResource("Resource_64b3f"), SubResource("Resource_jnwxu"), SubResource("Resource_4gm4d"), SubResource("Resource_7abof"), SubResource("Resource_bq60h"), SubResource("Resource_ncofy"), SubResource("Resource_8ifre"), SubResource("Resource_xwmbb"), SubResource("Resource_ppoqg")])
+temperament = ExtResource("14_f7tdo")
 genus = "Pokémon Huevo"
 pokedex_entry = "Este Pokémon está compuesto de seis huevos que forman una tupida piña que va girando. Cuando se empiezan a resquebrajar las cáscaras, no hay duda de que Exeggcute está a punto de evolucionar."
 height_m = 0.4

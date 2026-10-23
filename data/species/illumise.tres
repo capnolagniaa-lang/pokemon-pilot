@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/camelo.tres" id="9_idepr"]
 [ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="10_2yfjq"]
 [ext_resource type="Resource" path="res://data/moves/antojo.tres" id="11_eggxu"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_gggx6"]
 
 [sub_resource type="Resource" id="Resource_vox2q"]
 script = ExtResource("1_g48fn")
@@ -72,6 +73,7 @@ display_name = "Illumise"
 dex = 314
 types = Array[ExtResource("4_bd3ci")]([ExtResource("5_3ee08")])
 learnset = Array[ExtResource("1_g48fn")]([SubResource("Resource_vox2q"), SubResource("Resource_tuajy"), SubResource("Resource_5ypcq"), SubResource("Resource_lgbv8"), SubResource("Resource_wl2wr"), SubResource("Resource_u1trj"), SubResource("Resource_lwk5v"), SubResource("Resource_kpbwe"), SubResource("Resource_o28xq"), SubResource("Resource_83ruk")])
+temperament = ExtResource("14_gggx6")
 genus = "Pokémon Luciérnaga"
 pokedex_entry = "Illumise atrae mediante su dulce aroma a enjambres de Volbeat. Una vez que los ha agrupado, les guía en el vuelo para que dibujen formas geométricas en el lienzo del oscuro cielo."
 height_m = 0.6

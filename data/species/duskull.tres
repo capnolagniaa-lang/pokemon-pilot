@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/fuego_fatuo.tres" id="10_y6pfh"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="11_2lw81"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="12_6cr52"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_ijaac"]
 
 [sub_resource type="Resource" id="Resource_hp026"]
 script = ExtResource("1_e2qnk")
@@ -77,6 +78,7 @@ display_name = "Duskull"
 dex = 355
 types = Array[ExtResource("4_tm04k")]([ExtResource("5_5707o")])
 learnset = Array[ExtResource("1_e2qnk")]([SubResource("Resource_hp026"), SubResource("Resource_vsmy2"), SubResource("Resource_6mo0k"), SubResource("Resource_cvdn7"), SubResource("Resource_4vgdi"), SubResource("Resource_wul5a"), SubResource("Resource_1ciw4"), SubResource("Resource_4d5i4"), SubResource("Resource_glfvf"), SubResource("Resource_ywkhi"), SubResource("Resource_5wtx4")])
+temperament = ExtResource("15_ijaac")
 genus = "Pokémon Réquiem"
 pokedex_entry = "Duskull puede atravesar los muros, sea cual sea el grosor que tengan. Cuando este Pokémon elige su objetivo, lo persigue hábilmente hasta el amanecer."
 height_m = 0.8

@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="8_m8e6k"]
 [ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="9_yelcy"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_qoy0q"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_xu01w"]
 
 [sub_resource type="Resource" id="Resource_uwpte"]
 script = ExtResource("1_lb3wg")
@@ -66,6 +67,7 @@ display_name = "Regice"
 dex = 378
 types = Array[ExtResource("4_es7kv")]([ExtResource("5_2bvaw")])
 learnset = Array[ExtResource("1_lb3wg")]([SubResource("Resource_uwpte"), SubResource("Resource_dgf5i"), SubResource("Resource_1skoj"), SubResource("Resource_40pup"), SubResource("Resource_q8jy1"), SubResource("Resource_2cbtv"), SubResource("Resource_iqsit"), SubResource("Resource_vygst"), SubResource("Resource_vp3wi")])
+temperament = ExtResource("13_xu01w")
 genus = "Pokémon Iceberg"
 pokedex_entry = "Regice surgió durante la edad de hielo. El cuerpo de este Pokémon está totalmente congelado, ni siquiera el fuego puede derretirlo. Regice libera y regula un aire gélido de -200 °C."
 height_m = 1.8

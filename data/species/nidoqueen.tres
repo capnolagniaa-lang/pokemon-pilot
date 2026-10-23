@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="6_sb4im"]
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_w5bvr"]
 [ext_resource type="Resource" path="res://data/moves/fuerza_bruta.tres" id="7_j4xsp"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_u3cg6"]
 
 [sub_resource type="Resource" id="Resource_vgpdi"]
 script = ExtResource("1_w7tg1")
@@ -46,6 +47,7 @@ display_name = "Nidoqueen"
 dex = 31
 types = Array[ExtResource("4_40gaq")]([ExtResource("5_1k6oc"), ExtResource("6_w5bvr")])
 learnset = Array[ExtResource("1_w7tg1")]([SubResource("Resource_vgpdi"), SubResource("Resource_3fml7"), SubResource("Resource_e84if"), SubResource("Resource_e4l4r"), SubResource("Resource_xmi2t"), SubResource("Resource_2o0t2")])
+temperament = ExtResource("10_u3cg6")
 genus = "Pokémon Taladro"
 pokedex_entry = "Nidoqueen tiene el cuerpo totalmente recubierto de escamas durísimas. Suele lanzar por los aires a sus rivales de los violentos golpes que les propina. Cuando se trata de defender a sus crías, alcanza su nivel máximo de fuerza."
 height_m = 1.3

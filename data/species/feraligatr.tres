@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="8_u735w"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_wd8if"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_amh51"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_mgl3l"]
 
 [sub_resource type="Resource" id="Resource_ap7yc"]
 script = ExtResource("1_lbrug")
@@ -63,6 +64,7 @@ display_name = "Feraligatr"
 dex = 160
 types = Array[ExtResource("4_a4sj1")]([ExtResource("5_g6tn6")])
 learnset = Array[ExtResource("1_lbrug")]([SubResource("Resource_ap7yc"), SubResource("Resource_v1dsk"), SubResource("Resource_f8rv0"), SubResource("Resource_sq5xn"), SubResource("Resource_di1tf"), SubResource("Resource_8ds8m"), SubResource("Resource_t2k4n"), SubResource("Resource_kg6ww"), SubResource("Resource_b20tp")])
+temperament = ExtResource("13_mgl3l")
 genus = "Pokémon Fauces"
 pokedex_entry = "Feraligatr intimida a sus oponentes abriendo las grandes fauces que tiene. En combate, golpea el suelo bruscamente con las gruesas y fuertes patas traseras que tiene para cargar contra su rival a una velocidad de vértigo."
 height_m = 2.3

@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_lxcvp"]
 [ext_resource type="Resource" path="res://data/moves/ronquido.tres" id="10_abs1w"]
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="11_6w7kf"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_4j7t4"]
 
 [sub_resource type="Resource" id="Resource_r3d4i"]
 script = ExtResource("1_2evy7")
@@ -69,6 +70,7 @@ display_name = "Ursaring"
 dex = 217
 types = Array[ExtResource("4_yjo1a")]([ExtResource("5_ei2ue")])
 learnset = Array[ExtResource("1_2evy7")]([SubResource("Resource_r3d4i"), SubResource("Resource_d8y1t"), SubResource("Resource_npojh"), SubResource("Resource_hlsis"), SubResource("Resource_0wv17"), SubResource("Resource_guuv3"), SubResource("Resource_qmeiv"), SubResource("Resource_hjp7r"), SubResource("Resource_4rwij"), SubResource("Resource_sfrum")])
+temperament = ExtResource("14_4j7t4")
 genus = "Pokémon Hibernante"
 pokedex_entry = "En los bosques habitados por Ursaring, dicen que abundan los arroyos y árboles gigantes en los que guardan su alimento. Este Pokémon se dedica todos los días a pasear por el bosque para buscar comida y guardarla."
 height_m = 1.8

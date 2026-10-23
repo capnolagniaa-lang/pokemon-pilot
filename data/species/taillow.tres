@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="8_jiosa"]
 [ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="9_vo2p0"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_5ikxa"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_lmumk"]
 
 [sub_resource type="Resource" id="Resource_5mh0x"]
 script = ExtResource("1_d7rej")
@@ -66,6 +67,7 @@ display_name = "Taillow"
 dex = 276
 types = Array[ExtResource("4_6fpnp")]([ExtResource("5_ovcgu"), ExtResource("6_vngqs")])
 learnset = Array[ExtResource("1_d7rej")]([SubResource("Resource_5mh0x"), SubResource("Resource_itgc8"), SubResource("Resource_ju6nk"), SubResource("Resource_ho2l5"), SubResource("Resource_8t5jt"), SubResource("Resource_wm4se"), SubResource("Resource_v3udr"), SubResource("Resource_ja3ca"), SubResource("Resource_xebjk")])
+temperament = ExtResource("13_lmumk")
 genus = "Pokémon Pequebuche"
 pokedex_entry = "Taillow se mantiene firme ante sus rivales, sean lo fuertes que sean. Este valiente Pokémon seguirá mostrándose desafiante, aunque pierda en combate. Además, si se enfada, se pondrá a gritar con energía."
 height_m = 0.3

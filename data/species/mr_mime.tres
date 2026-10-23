@@ -22,6 +22,7 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="15_rpobs"]
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="16_1thqr"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="17_uf6bs"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="20_r53yd"]
 
 [sub_resource type="Resource" id="Resource_tq78l"]
 script = ExtResource("1_3oq8d")
@@ -109,6 +110,7 @@ display_name = "Mr. Mime"
 dex = 122
 types = Array[ExtResource("4_8745b")]([ExtResource("5_xx76p"), ExtResource("6_a4qh6")])
 learnset = Array[ExtResource("1_3oq8d")]([SubResource("Resource_tq78l"), SubResource("Resource_7wc8q"), SubResource("Resource_wmtjr"), SubResource("Resource_sr1de"), SubResource("Resource_g7ghr"), SubResource("Resource_linod"), SubResource("Resource_etwx8"), SubResource("Resource_3ykag"), SubResource("Resource_1mc3o"), SubResource("Resource_t3xcq"), SubResource("Resource_dceut"), SubResource("Resource_kn0kf"), SubResource("Resource_xkwmc"), SubResource("Resource_nar05"), SubResource("Resource_h02nw"), SubResource("Resource_l687h")])
+temperament = ExtResource("20_r53yd")
 genus = "Pokémon Barrera"
 pokedex_entry = "Mr. Mime es un experto en pantomima. Con sus gestos y movimientos es capaz de convencer a sus espectadores de que algo existe, cuando en realidad no es así. Pero, cuando el público se lo cree, las ilusiones se hacen realidad."
 height_m = 1.3

@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="10_5k02j"]
 [ext_resource type="Resource" path="res://data/moves/sonambulo.tres" id="11_xhmu5"]
 [ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="12_rdfck"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_kr207"]
 
 [sub_resource type="Resource" id="Resource_2ugyt"]
 script = ExtResource("1_48bm5")
@@ -75,6 +76,7 @@ display_name = "Loudred"
 dex = 294
 types = Array[ExtResource("4_bf07l")]([ExtResource("5_fiuie")])
 learnset = Array[ExtResource("1_48bm5")]([SubResource("Resource_2ugyt"), SubResource("Resource_ytt74"), SubResource("Resource_saetw"), SubResource("Resource_q6cno"), SubResource("Resource_nhle8"), SubResource("Resource_abbb4"), SubResource("Resource_0bgpo"), SubResource("Resource_wetaw"), SubResource("Resource_udf5a"), SubResource("Resource_exs2d"), SubResource("Resource_kpbio")])
+temperament = ExtResource("15_kr207")
 genus = "Pokémon Chillón"
 pokedex_entry = "Los bramidos de Loudred pueden echar abajo una casa reforzada con vigas de madera. Este Pokémon usa el vozarrón que tiene para castigar a sus rivales. Las orejas redondas le sirven de altavoces."
 height_m = 1.0

@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/fuego_fatuo.tres" id="12_vevfm"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="13_k42h5"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="14_ml05g"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_1vvpd"]
 
 [sub_resource type="Resource" id="Resource_yx6vi"]
 script = ExtResource("1_fc4wp")
@@ -87,6 +88,7 @@ display_name = "Dusclops"
 dex = 356
 types = Array[ExtResource("4_sysdn")]([ExtResource("5_t7cmg")])
 learnset = Array[ExtResource("1_fc4wp")]([SubResource("Resource_yx6vi"), SubResource("Resource_vqw2x"), SubResource("Resource_gnkot"), SubResource("Resource_yd1pp"), SubResource("Resource_u0gku"), SubResource("Resource_0ibpf"), SubResource("Resource_48f6q"), SubResource("Resource_na4og"), SubResource("Resource_8c1jr"), SubResource("Resource_ejs3y"), SubResource("Resource_awq1m"), SubResource("Resource_n7flp"), SubResource("Resource_fi6p4")])
+temperament = ExtResource("17_1vvpd")
 genus = "Pokémon Atrayente"
 pokedex_entry = "Dusclops está completamente hueco por dentro. Dicen que su cuerpo es como un agujero negro. Este Pokémon es capaz de absorber cualquier cosa, pero cosa que absorba, cosa que no dejará salir nunca más."
 height_m = 1.6

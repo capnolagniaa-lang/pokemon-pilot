@@ -18,6 +18,9 @@ var charge_color := Color.WHITE
 var afterimages := false
 ## Altura sobre el suelo en píxeles (Pidgey volando): el cuerpo sube, la sombra queda en el piso.
 var lift := 0.0
+## Aviso sobre la cabeza ("!", "?", "gota" = miedo) y cuánto le queda (Creature.emote).
+var emote := ""
+var emote_left := 0.0
 
 var _anims: Dictionary = {}
 var _anim := "Idle"
@@ -33,6 +36,7 @@ func _process(delta: float) -> void:
 	_time += delta
 	_forced_left = maxf(0.0, _forced_left - delta)
 	_flash = maxf(0.0, _flash - delta)
+	emote_left = maxf(0.0, emote_left - delta)
 	var parent := get_parent() as CharacterBody2D
 	var want := "Idle"
 	if _forced_left > 0.0:
@@ -149,7 +153,25 @@ func _draw() -> void:
 		_draw_combat_ui(c, cur[2])
 
 
+## Globo de aviso sobre la cabeza (aparece con un saltito y se desvanece al final).
+func _draw_emote(dst: Rect2) -> void:
+	var a := clampf(emote_left / 0.25, 0.0, 1.0)
+	var pop := 1.0 + 0.4 * maxf(0.0, emote_left - 0.9)
+	var p := Vector2(9, dst.position.y - 2)
+	draw_circle(p, 6.0 * pop, Color(1, 1, 1, 0.92 * a))
+	draw_arc(p, 6.0 * pop, 0.0, TAU, 16, Color(0.1, 0.1, 0.15, 0.8 * a), 1.0)
+	if emote == "gota":
+		var col := Color(0.35, 0.65, 1.2, a)
+		draw_circle(p + Vector2(0, 1.5), 2.5, col)
+		draw_colored_polygon(PackedVector2Array([p + Vector2(-2.3, 0.8), p + Vector2(2.3, 0.8), p + Vector2(0, -4)]), col)
+		return
+	var col := Color(0.9, 0.15, 0.1, a) if emote.begins_with("!") else Color(0.15, 0.35, 0.9, a)
+	draw_string(ThemeDB.fallback_font, p + Vector2(-6, 4), emote, HORIZONTAL_ALIGNMENT_CENTER, 12, 11, col)
+
+
 func _draw_combat_ui(c: Creature, dst: Rect2) -> void:
+	if emote_left > 0.0 and emote != "":
+		_draw_emote(dst)
 	var st: StatusEffects = c.statuses
 	if st.has_status("enraizado"):
 		# Raíces que salen del suelo alrededor de los pies.

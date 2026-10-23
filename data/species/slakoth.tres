@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/antojo.tres" id="8_kxe6m"]
 [ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="9_ldmbw"]
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="10_34tn2"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_mwia0"]
 
 [sub_resource type="Resource" id="Resource_22m5j"]
 script = ExtResource("1_vepw3")
@@ -65,6 +66,7 @@ display_name = "Slakoth"
 dex = 287
 types = Array[ExtResource("4_57f6k")]([ExtResource("5_m0r8e")])
 learnset = Array[ExtResource("1_vepw3")]([SubResource("Resource_22m5j"), SubResource("Resource_4t2qm"), SubResource("Resource_df076"), SubResource("Resource_0go6m"), SubResource("Resource_rnk1b"), SubResource("Resource_i1imq"), SubResource("Resource_l0lp2"), SubResource("Resource_jrkn7"), SubResource("Resource_cn7uk")])
+temperament = ExtResource("13_mwia0")
 genus = "Pokémon Gandul"
 pokedex_entry = "Slakoth se pasa más de veinte horas al día tumbado. Como se mueve tan poco, necesita muy poca comida. De hecho, la única toma que hace al día la componen tan solo tres hojas."
 height_m = 0.8

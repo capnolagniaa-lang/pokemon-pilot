@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/fisura.tres" id="10_agrwf"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_taydr"]
 [ext_resource type="Resource" path="res://data/moves/estallido.tres" id="12_tpfbb"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_gkwoj"]
 
 [sub_resource type="Resource" id="Resource_da1c2"]
 script = ExtResource("1_n8qiy")
@@ -78,6 +79,7 @@ display_name = "Groudon"
 dex = 383
 types = Array[ExtResource("4_woxmm")]([ExtResource("5_qqgy6")])
 learnset = Array[ExtResource("1_n8qiy")]([SubResource("Resource_da1c2"), SubResource("Resource_1l647"), SubResource("Resource_64bfx"), SubResource("Resource_u7ch7"), SubResource("Resource_o63j4"), SubResource("Resource_0dpkm"), SubResource("Resource_qfeus"), SubResource("Resource_ke4s6"), SubResource("Resource_t0nq6"), SubResource("Resource_q7tqe"), SubResource("Resource_0t26p")])
+temperament = ExtResource("15_gkwoj")
 genus = "Pokémon Continente"
 pokedex_entry = "A Groudon siempre se le ha descrito como el Pokémon que expandió los continentes. Varias leyendas cuentan que libró combates contra Kyogre en repetidas ocasiones para tener el control de la energía de la naturaleza."
 height_m = 3.5

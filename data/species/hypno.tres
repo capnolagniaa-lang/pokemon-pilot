@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="11_o6u0w"]
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="12_tilpd"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="13_roq6h"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_ncetx"]
 
 [sub_resource type="Resource" id="Resource_omesc"]
 script = ExtResource("1_eijhw")
@@ -80,6 +81,7 @@ display_name = "Hypno"
 dex = 97
 types = Array[ExtResource("4_t8yxt")]([ExtResource("5_0e3hx")])
 learnset = Array[ExtResource("1_eijhw")]([SubResource("Resource_omesc"), SubResource("Resource_l8eou"), SubResource("Resource_vu7yf"), SubResource("Resource_uwscn"), SubResource("Resource_xri1j"), SubResource("Resource_2onud"), SubResource("Resource_b2rbp"), SubResource("Resource_xlgy5"), SubResource("Resource_stedq"), SubResource("Resource_5lebb"), SubResource("Resource_wewmx"), SubResource("Resource_1mage")])
+temperament = ExtResource("16_ncetx")
 genus = "Pokémon Hipnosis"
 pokedex_entry = "Hypno lleva un péndulo en la mano. El balanceo y el brillo que tiene sumen al rival en un estado de hipnosis profundo. Mientras busca a su presa, saca brillo al péndulo."
 height_m = 1.6

@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="8_fs4v2"]
 [ext_resource type="Resource" path="res://data/moves/avalancha.tres" id="9_6fpn8"]
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_c8ctc"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_0oq48"]
 
 [sub_resource type="Resource" id="Resource_05j1m"]
 script = ExtResource("1_fubu0")
@@ -65,6 +66,7 @@ display_name = "Slugma"
 dex = 218
 types = Array[ExtResource("4_nip23")]([ExtResource("5_jvmm0")])
 learnset = Array[ExtResource("1_fubu0")]([SubResource("Resource_05j1m"), SubResource("Resource_135mx"), SubResource("Resource_t67up"), SubResource("Resource_k8amk"), SubResource("Resource_h1xe5"), SubResource("Resource_xhd1r"), SubResource("Resource_t414w"), SubResource("Resource_mtxl2"), SubResource("Resource_m2uik")])
+temperament = ExtResource("13_0oq48")
 genus = "Pokémon Lava"
 pokedex_entry = "Por el sistema circulatorio de Slugma corre magma líquido. Si este Pokémon se enfriara, el magma perdería el calor y se solidificaría, por lo que se resquebrajaría por completo, perdería algunos trozos y reduciría su tamaño."
 height_m = 0.7

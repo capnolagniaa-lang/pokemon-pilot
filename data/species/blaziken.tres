@@ -20,6 +20,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="13_yl2ss"]
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="14_ncc37"]
 [ext_resource type="Resource" path="res://data/moves/gancho_alto.tres" id="15_wud2s"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="18_yp1y1"]
 
 [sub_resource type="Resource" id="Resource_v47dq"]
 script = ExtResource("1_upkpg")
@@ -93,6 +94,7 @@ display_name = "Blaziken"
 dex = 257
 types = Array[ExtResource("4_df520")]([ExtResource("5_ld0dl"), ExtResource("6_q0xct")])
 learnset = Array[ExtResource("1_upkpg")]([SubResource("Resource_v47dq"), SubResource("Resource_uoy54"), SubResource("Resource_ehas4"), SubResource("Resource_vlm4b"), SubResource("Resource_hb2pg"), SubResource("Resource_mxko2"), SubResource("Resource_totsx"), SubResource("Resource_04rqn"), SubResource("Resource_1kavd"), SubResource("Resource_45j8x"), SubResource("Resource_fele1"), SubResource("Resource_am4ds"), SubResource("Resource_hqydf"), SubResource("Resource_kqb4s")])
+temperament = ExtResource("18_yp1y1")
 genus = "Pokémon Llameante"
 pokedex_entry = "En combate, Blaziken expulsa vivas llamas por las muñecas y ataca al enemigo con fiereza. Cuanto más fuerte sea el enemigo, más intensas serán las llamas."
 height_m = 1.9

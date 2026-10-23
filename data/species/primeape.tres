@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="11_c8yfk"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="12_1a74f"]
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="13_3fca2"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_ql84h"]
 
 [sub_resource type="Resource" id="Resource_v1ky7"]
 script = ExtResource("1_2jmjo")
@@ -81,6 +82,7 @@ display_name = "Primeape"
 dex = 57
 types = Array[ExtResource("4_jousr")]([ExtResource("5_kl4rg")])
 learnset = Array[ExtResource("1_2jmjo")]([SubResource("Resource_v1ky7"), SubResource("Resource_s02m6"), SubResource("Resource_3jjaf"), SubResource("Resource_dpgrf"), SubResource("Resource_bp06d"), SubResource("Resource_2npgi"), SubResource("Resource_yqdgi"), SubResource("Resource_18f07"), SubResource("Resource_w856q"), SubResource("Resource_x3art"), SubResource("Resource_nph4f"), SubResource("Resource_e8pj8")])
+temperament = ExtResource("16_ql84h")
 genus = "Pokémon Mono Cerdo"
 pokedex_entry = "Cuando Primeape se enfada, se le acelera el ritmo cardíaco y se le fortalecen los músculos. Con todo, pierde en inteligencia."
 height_m = 1.0

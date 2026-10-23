@@ -14,6 +14,7 @@
 [ext_resource type="Resource" path="res://data/moves/deseo.tres" id="7_rmt0d"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_pvpjk"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="9_5ifnf"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_0kmkk"]
 
 [sub_resource type="Resource" id="Resource_5g4r5"]
 script = ExtResource("1_kqu8r")
@@ -60,6 +61,7 @@ display_name = "Xatu"
 dex = 178
 types = Array[ExtResource("4_1aa7j")]([ExtResource("5_73vo3"), ExtResource("6_pb3ne")])
 learnset = Array[ExtResource("1_kqu8r")]([SubResource("Resource_5g4r5"), SubResource("Resource_hphn0"), SubResource("Resource_uxg4n"), SubResource("Resource_ocpd5"), SubResource("Resource_tbl47"), SubResource("Resource_78jyu"), SubResource("Resource_ix4bn"), SubResource("Resource_85juh")])
+temperament = ExtResource("12_0kmkk")
 genus = "Pokémon Místico"
 pokedex_entry = "Xatu permanece de pie inmóvil y tranquilo en el mismo sitio durante todo el día. Se cree que no se mueve por temor a lo que ha visto que ocurrirá en el futuro."
 height_m = 1.5

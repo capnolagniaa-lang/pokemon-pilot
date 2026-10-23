@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_hqc87"]
 [ext_resource type="Resource" path="res://data/moves/sorpresa.tres" id="10_eipgl"]
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="11_eb7xv"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_mkon5"]
 
 [sub_resource type="Resource" id="Resource_crrxa"]
 script = ExtResource("1_6vnnq")
@@ -71,6 +72,7 @@ display_name = "Meowth"
 dex = 52
 types = Array[ExtResource("4_a614n")]([ExtResource("5_1u3a2")])
 learnset = Array[ExtResource("1_6vnnq")]([SubResource("Resource_crrxa"), SubResource("Resource_uoyxe"), SubResource("Resource_dw6fm"), SubResource("Resource_dw4hv"), SubResource("Resource_u1vl4"), SubResource("Resource_be54b"), SubResource("Resource_1eo77"), SubResource("Resource_w1e65"), SubResource("Resource_fopxr"), SubResource("Resource_r0fj8")])
+temperament = ExtResource("14_mkon5")
 genus = "Pokémon Gato Araña"
 pokedex_entry = "Meowth retrae las afiladas uñas de sus zarpas para caminar a hurtadillas, dando sigilosos pasos para pasar inadvertido. No se sabe muy bien por qué, pero este Pokémon adora las monedas brillantes que resplandecen con la luz."
 height_m = 0.4

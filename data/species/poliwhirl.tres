@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="7_beea0"]
 [ext_resource type="Resource" path="res://data/moves/tambor.tres" id="8_em6ef"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_ng27l"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_0a30s"]
 
 [sub_resource type="Resource" id="Resource_ofsjn"]
 script = ExtResource("1_y4sg4")
@@ -58,6 +59,7 @@ display_name = "Poliwhirl"
 dex = 61
 types = Array[ExtResource("4_othot")]([ExtResource("5_at81q")])
 learnset = Array[ExtResource("1_y4sg4")]([SubResource("Resource_ofsjn"), SubResource("Resource_uktav"), SubResource("Resource_sw3qy"), SubResource("Resource_f3j6j"), SubResource("Resource_dfjm5"), SubResource("Resource_17ds2"), SubResource("Resource_u40f4"), SubResource("Resource_6h2m8")])
+temperament = ExtResource("12_0a30s")
 genus = "Pokémon Renacuajo"
 pokedex_entry = "La piel de Poliwhirl está siempre húmeda y lubricada con un fluido viscoso. Gracias a esta película resbaladiza, puede escapar de las garras del enemigo, resbalándosele de las zarpas en pleno combate."
 height_m = 1.0

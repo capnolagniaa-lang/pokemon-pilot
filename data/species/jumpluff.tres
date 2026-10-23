@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="9_2nfxd"]
 [ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="10_3ojly"]
 [ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="11_kisob"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_v3ubs"]
 
 [sub_resource type="Resource" id="Resource_jei6i"]
 script = ExtResource("1_u7b8q")
@@ -70,6 +71,7 @@ display_name = "Jumpluff"
 dex = 189
 types = Array[ExtResource("4_hsr2p")]([ExtResource("5_ghd46"), ExtResource("6_n7w06")])
 learnset = Array[ExtResource("1_u7b8q")]([SubResource("Resource_jei6i"), SubResource("Resource_bikaa"), SubResource("Resource_uko6l"), SubResource("Resource_jtmwi"), SubResource("Resource_5oei8"), SubResource("Resource_wmska"), SubResource("Resource_x0m1d"), SubResource("Resource_agoqc"), SubResource("Resource_m5joa"), SubResource("Resource_f760m")])
+temperament = ExtResource("14_v3ubs")
 genus = "Pokémon Algadón"
 pokedex_entry = "Jumpluff se vale de los cálidos vientos del sur para volar a tierras lejanas. Si llega a zonas de aire frío en pleno vuelo, descenderá y tomará tierra."
 height_m = 0.8

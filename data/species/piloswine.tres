@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/neblina.tres" id="8_ojink"]
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="9_o23uf"]
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_nl00a"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_ban38"]
 
 [sub_resource type="Resource" id="Resource_2dgo7"]
 script = ExtResource("1_khj4e")
@@ -64,6 +65,7 @@ display_name = "Piloswine"
 dex = 221
 types = Array[ExtResource("4_s63v6")]([ExtResource("5_1d67i"), ExtResource("6_lvcy1")])
 learnset = Array[ExtResource("1_khj4e")]([SubResource("Resource_2dgo7"), SubResource("Resource_oljuk"), SubResource("Resource_3wikg"), SubResource("Resource_kocc5"), SubResource("Resource_und3v"), SubResource("Resource_los83"), SubResource("Resource_c6o6y"), SubResource("Resource_hr80t"), SubResource("Resource_bn7lw")])
+temperament = ExtResource("13_ban38")
 genus = "Pokémon Puerco"
 pokedex_entry = "Piloswine está cubierto por un pelaje tupido y de largas cerdas que le permite soportar el frío polar. Este Pokémon usa los colmillos para desenterrar los alimentos que hayan podido quedar bajo el hielo."
 height_m = 1.1

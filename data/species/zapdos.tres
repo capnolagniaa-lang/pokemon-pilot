@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/carga.tres" id="8_775tk"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="9_54kcl"]
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="10_y0olp"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_nejw6"]
 
 [sub_resource type="Resource" id="Resource_vqcyi"]
 script = ExtResource("1_xi7bd")
@@ -66,6 +67,7 @@ display_name = "Zapdos"
 dex = 145
 types = Array[ExtResource("4_ysew7")]([ExtResource("5_tc5tf"), ExtResource("6_qqbnt")])
 learnset = Array[ExtResource("1_xi7bd")]([SubResource("Resource_vqcyi"), SubResource("Resource_vfpqq"), SubResource("Resource_wik1y"), SubResource("Resource_60dw6"), SubResource("Resource_60pqm"), SubResource("Resource_mig82"), SubResource("Resource_f650b"), SubResource("Resource_ppnav"), SubResource("Resource_gogsr")])
+temperament = ExtResource("13_nejw6")
 genus = "Pokémon Eléctrico"
 pokedex_entry = "Zapdos es un Pokémon pájaro legendario que tiene la habilidad de controlar la electricidad. Suele vivir en nubarrones. Este Pokémon gana mucha fuerza si le alcanzan los rayos."
 height_m = 1.6

@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://data/moves/esporagodon.tres" id="6_0jij8"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="7_viaif"]
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="8_xwgqo"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="11_15iu2"]
 
 [sub_resource type="Resource" id="Resource_r17dr"]
 script = ExtResource("1_cqgle")
@@ -53,6 +54,7 @@ display_name = "Mareep"
 dex = 179
 types = Array[ExtResource("4_f0gqb")]([ExtResource("5_w483e")])
 learnset = Array[ExtResource("1_cqgle")]([SubResource("Resource_r17dr"), SubResource("Resource_lcymn"), SubResource("Resource_084y6"), SubResource("Resource_rpb2h"), SubResource("Resource_xj4h0"), SubResource("Resource_0qnrx"), SubResource("Resource_yiwyu")])
+temperament = ExtResource("11_15iu2")
 genus = "Pokémon Lana"
 pokedex_entry = "Mareep tiene un pelaje lanudo suave que produce carga estática por el roce. Cuanto más se carga de electricidad estática, más brilla la bombilla que tiene en el extremo de la cola."
 height_m = 0.6

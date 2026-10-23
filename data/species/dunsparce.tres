@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="10_qcp8j"]
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_54t4s"]
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="12_w7r7u"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_gw466"]
 
 [sub_resource type="Resource" id="Resource_twr3d"]
 script = ExtResource("1_i5m7v")
@@ -78,6 +79,7 @@ display_name = "Dunsparce"
 dex = 206
 types = Array[ExtResource("4_fas15")]([ExtResource("5_3vnjm")])
 learnset = Array[ExtResource("1_i5m7v")]([SubResource("Resource_twr3d"), SubResource("Resource_csafn"), SubResource("Resource_wlh35"), SubResource("Resource_thaqx"), SubResource("Resource_05c4c"), SubResource("Resource_u5m38"), SubResource("Resource_s0436"), SubResource("Resource_50tou"), SubResource("Resource_0yjxy"), SubResource("Resource_ji0nj"), SubResource("Resource_pcju7")])
+temperament = ExtResource("15_gw466")
 genus = "Pokémon Serpiente Tierra"
 pokedex_entry = "La cola de Dunsparce es un taladro que usa para enterrarse en el suelo de espaldas. De todos es sabido que este Pokémon hace su nido a gran profundidad y con una forma muy compleja."
 height_m = 1.5

@@ -18,6 +18,7 @@
 [ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="11_n0grl"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="12_f5tg2"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_2ihsj"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_gxx1l"]
 
 [sub_resource type="Resource" id="Resource_wref8"]
 script = ExtResource("1_dw04t")
@@ -84,6 +85,7 @@ display_name = "Steelix"
 dex = 208
 types = Array[ExtResource("4_aa8us")]([ExtResource("5_8eqyf"), ExtResource("6_ym101")])
 learnset = Array[ExtResource("1_dw04t")]([SubResource("Resource_wref8"), SubResource("Resource_5vi8t"), SubResource("Resource_kcjfj"), SubResource("Resource_qe431"), SubResource("Resource_me0ww"), SubResource("Resource_heqvi"), SubResource("Resource_f4vl3"), SubResource("Resource_tax0n"), SubResource("Resource_vt0lo"), SubResource("Resource_nmxrc"), SubResource("Resource_fp1u0"), SubResource("Resource_e88w8")])
+temperament = ExtResource("16_gxx1l")
 genus = "Pokémon Serpiente Férrea"
 pokedex_entry = "Steelix vive a mayor profundidad aún que Onix. Se le conoce por su tendencia a excavar hacia el interior del planeta. Hay datos que muestran que este Pokémon ha llegado a alcanzar 1 km de profundidad."
 height_m = 9.2

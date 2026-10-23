@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_2i8dt"]
 [ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="7_88q5k"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_5aa2p"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="10_vfjnl"]
 
 [sub_resource type="Resource" id="Resource_epuj5"]
 script = ExtResource("1_epuj5")
@@ -48,6 +49,7 @@ dex = 86
 types = Array[ExtResource("7_2i8dt")]([ExtResource("8_5aa2p")])
 moves = Array[ExtResource("1_rfi0n")]([ExtResource("2_7o4bw"), ExtResource("3_xyfw3"), ExtResource("4_epuj5"), ExtResource("5_vfjnl")])
 learnset = Array[ExtResource("1_epuj5")]([SubResource("Resource_epuj5"), SubResource("Resource_vfjnl"), SubResource("Resource_88q5k"), SubResource("Resource_2i8dt"), SubResource("Resource_5aa2p"), SubResource("Resource_kft5j")])
+temperament = ExtResource("10_vfjnl")
 genus = "Pokémon León Marino"
 pokedex_entry = "Seel busca a sus presas en aguas heladas, bajo las capas de hielo. Cuando necesita respirar, abre un agujerito en el hielo con la afilada protuberancia que tiene encima de la cabeza."
 height_m = 1.1

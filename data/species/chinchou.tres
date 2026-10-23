@@ -16,6 +16,7 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_6ymjq"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_qblwt"]
 [ext_resource type="Resource" path="res://data/moves/carga.tres" id="11_wgp1p"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_a32bo"]
 
 [sub_resource type="Resource" id="Resource_nyx0y"]
 script = ExtResource("1_oki6r")
@@ -72,6 +73,7 @@ display_name = "Chinchou"
 dex = 170
 types = Array[ExtResource("4_o8trm")]([ExtResource("5_u4hxk"), ExtResource("6_gxg7v")])
 learnset = Array[ExtResource("1_oki6r")]([SubResource("Resource_nyx0y"), SubResource("Resource_xckkt"), SubResource("Resource_3qjf2"), SubResource("Resource_n702f"), SubResource("Resource_5mydi"), SubResource("Resource_n8571"), SubResource("Resource_0kd7y"), SubResource("Resource_dwvrq"), SubResource("Resource_7076v"), SubResource("Resource_v4ib3")])
+temperament = ExtResource("14_a32bo")
 genus = "Pokémon Rape"
 pokedex_entry = "Chinchou libera cargas eléctricas positivas y negativas a través de las dos antenas que tiene para que su rival pierda el conocimiento. Asimismo, usa los destellos de electricidad para comunicarse con otros."
 height_m = 0.5

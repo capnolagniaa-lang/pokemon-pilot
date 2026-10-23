@@ -13,6 +13,7 @@
 [ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="7_xo6qq"]
 [ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="8_uht44"]
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_lifqb"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_c1dw1"]
 
 [sub_resource type="Resource" id="Resource_u5jq7"]
 script = ExtResource("1_wnolo")
@@ -60,6 +61,7 @@ display_name = "Sunkern"
 dex = 191
 types = Array[ExtResource("4_82wbl")]([ExtResource("5_jql1b")])
 learnset = Array[ExtResource("1_wnolo")]([SubResource("Resource_u5jq7"), SubResource("Resource_peqin"), SubResource("Resource_e4pjm"), SubResource("Resource_604ny"), SubResource("Resource_j3tb4"), SubResource("Resource_0jqjx"), SubResource("Resource_ouu56"), SubResource("Resource_bswac")])
+temperament = ExtResource("12_c1dw1")
 genus = "Pokémon Semilla"
 pokedex_entry = "Sunkern intenta moverse lo menos posible para conservar todos los nutrientes que ha guardado en su interior y poder evolucionar. Ni come siquiera; se alimenta solo del rocío de la mañana."
 height_m = 0.3

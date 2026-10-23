@@ -15,6 +15,7 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="8_bai1b"]
 [ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="9_xlx1u"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_pt4yb"]
+[ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_ay3w8"]
 
 [sub_resource type="Resource" id="Resource_e7dow"]
 script = ExtResource("1_tjiwu")
@@ -64,6 +65,7 @@ display_name = "Azumarill"
 dex = 184
 types = Array[ExtResource("4_x4ady")]([ExtResource("5_g5xsf"), ExtResource("6_8c4bx")])
 learnset = Array[ExtResource("1_tjiwu")]([SubResource("Resource_e7dow"), SubResource("Resource_wamhw"), SubResource("Resource_682ob"), SubResource("Resource_x2jct"), SubResource("Resource_elpkc"), SubResource("Resource_e3qyp"), SubResource("Resource_fekd0"), SubResource("Resource_l0njc"), SubResource("Resource_h1x7c")])
+temperament = ExtResource("13_ay3w8")
 genus = "Pokémon Conejo Agua"
 pokedex_entry = "Azumarill puede hacer burbujas de aire si ve a algún Pokémon que esté a punto de ahogarse. Estas burbujas de aire son básicas para que los Pokémon puedan seguir respirando."
 height_m = 0.8
