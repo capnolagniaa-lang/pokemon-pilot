@@ -55,7 +55,8 @@ Orden recomendado: H-0 → E-1 → H-1 → H-2 → H-3 → H-4 → H-5 → H-6.
 | E-1 | ✅ 2026-10-23 (combate en arena, `docs/PLAN_ENTRENADORES.md`) |
 | H-4 / H-5 (entrenadores) | ✅ adelantado con E-1: los 5 Cazabichos del bosque, el Campista Liam y **Brock** (Geodude 12 + Onix 14 jefe, arena de gimnasio épica, Medalla Roca = bandera `medalla_roca`). Falta el resto de esas fases (objetos fijos del bosque, museo, chico de la Ruta 3, MT39, tarjeta). |
 | H-1 | ✅ 2026-10-23: partida de historia en tu cuarto sin Pokémon (`GameState.new_story`, botón "Empezar la historia"; las tarjetas = modo libre), mamá te manda al laboratorio, disparador "Oak te frena" (salida norte de Pueblo Paleta → te lleva al laboratorio), Oak/rival/3 Poké Balls en el laboratorio (Sí/No con `DialogBox.ask`; el rival se lleva el ventajoso con `rival_<especie>`), Oak no te deja irte sin Pokémon, el rival te desafía al salir (`battle_no_blackout`: si perdés seguís ahí curado). Autotest `--autotest-story-h1` (17 chequeos). |
-| H-2 | ⏭️ Siguiente (Paquete de Oak, Pokédex, Dalia, viejo de Ciudad Verde) |
+| H-2 | ✅ 2026-10-23: Correo-Oak (objeto clave `paquete_oak`) en la Tienda de Ciudad Verde → Oak te da la Pokédex (`tiene_pokedex`; en la historia sin ella no se registra nada ni está en el menú: `GameState.has_pokedex`) y 5 Poké Balls; Dalia te da el Mapa (`mapa`); el viejo dormido (`old_man_lying_down`) + disparador tapan la salida norte hasta `paquete_entregado`; despierto (`EXTRA_NPCS`) te enseña a atrapar (`tutorial_captura`). `NpcTalk.take_items`. Autotest: `--autotest-story-h1` (también cubre H-2, 26 chequeos). |
+| H-3 | ⏭️ Siguiente (rival en la Ruta 22) |
 
 **H-0 (cómo quedó):**
 - **Banderas**: `GameState.story_flags` (`has_flag` / `set_flag`, avisa `Events.story_flag_changed`), se guardan con

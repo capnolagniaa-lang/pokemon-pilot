@@ -315,6 +315,64 @@ TRIGGERS = {
 }
 
 
+# --- H-2: el Correo de Oak, la Pokédex, Dalia y el viejo de Ciudad Verde --------------------------------------
+# Banderas: tiene_paquete, paquete_entregado, tiene_pokedex (habilita la Pokédex), tiene_mapa, tutorial_captura.
+_clerk_default = TALKS[("ciudad_verde_tienda", "Clerk")]["talks"]
+TALKS[("ciudad_verde_tienda", "Clerk")] = dict(name="Vendedor", talks=[
+    dict(requires=["historia", "tiene_inicial"], forbids=["tiene_paquete"], give={"paquete_oak": 1},
+         set_flags=["tiene_paquete"], lines=[
+            "¡Eh! Vos venís de Pueblo Paleta, ¿no?",
+            "Llegó un correo para el Profesor Oak. ¿Se lo podés llevar? ¡Gracias!"]),
+    dict(requires=["tiene_paquete"], forbids=["paquete_entregado"], lines=[
+        "¿Ya le llevaste el correo al Profesor Oak? Está en Pueblo Paleta, al sur."]),
+] + _clerk_default)
+_oak = TALKS[("laboratorio_oak", "ProfOak")]["talks"]
+TALKS[("laboratorio_oak", "ProfOak")]["talks"] = _oak[:2] + [
+    dict(requires=["tiene_paquete"], forbids=["paquete_entregado"], take={"paquete_oak": 1}, give={"poke_ball": 5},
+         set_flags=["paquete_entregado", "tiene_pokedex"], lines=[
+            "¡Ah, mi correo! Muchas gracias.",
+            "Te tengo un regalo: ¡la Pokédex! Registra cada Pokémon que ves y con el que peleás.",
+            "Y llevate estas Poké Balls. Debilitá al Pokémon y lanzala con E.",
+            "Completar la Pokédex es mi sueño de toda la vida. ¿Me ayudás?"],
+         after_lines=["¡Recibiste la Pokédex! (Esc → Pokédex)"]),
+    dict(requires=["paquete_entregado"], lines=[
+        "¿Cómo va esa Pokédex? Cada Pokémon nuevo que veas queda registrado.",
+        "Al norte de Ciudad Verde está el Bosque Verde. ¡Hay muchos Pokémon bicho!"]),
+    dict(lines=["¿Pasaste por Ciudad Verde? Está al norte, cruzando la Ruta 1."]),
+]
+_daisy = TALKS[("casa_rival", "Daisy")]["talks"]
+TALKS[("casa_rival", "Daisy")]["talks"] = [
+    dict(requires=["paquete_entregado"], forbids=["tiene_mapa"], give={"mapa": 1}, set_flags=["tiene_mapa"], lines=[
+        "¿Así que el abuelo te dio una Pokédex? ¡Qué emoción!",
+        "Tomá, un mapa de la región. Te va a servir para no perderte."]),
+] + _daisy
+_granddaughter = TALKS[("ciudad_verde", "Woman")]["talks"]
+TALKS[("ciudad_verde", "Woman")]["talks"] = [
+    dict(requires=["historia"], forbids=["paquete_entregado"], lines=[
+        "¡Perdón! Mi abuelo no tomó su café y se tiró en el medio del camino.",
+        "No deja pasar a nadie hasta que se le pase... Volvé en un rato."]),
+] + _granddaughter
+# El viejo dormido tapa la salida al norte (Ruta 2) hasta que le entregás el correo a Oak.
+TALKS[("ciudad_verde", "TutorialOldMan")] = dict(name="Señor", gfx="old_man_lying_down", cell=(49, 5),
+    show_if=["historia"], hide_if=["paquete_entregado"], talks=[dict(lines=[
+        "Zzz... ¡Por acá no pasa nadie! Zzz...",
+        "(Un señor está tirado en el medio del camino.)"])])
+# Ya despierto, te enseña a atrapar Pokémon.
+TALKS[("ciudad_verde", "OldManAwake")] = dict(name="Abuelo", show_if=["paquete_entregado"], talks=[
+    dict(forbids=["tutorial_captura"], set_flags=["tutorial_captura"], lines=[
+        "¡Ah, ya tomé mi café! Ahora sí estoy despierto. Perdón por lo de recién.",
+        "¿Sabés atrapar Pokémon? Te explico.",
+        "Primero peleá con el salvaje y bajale la vida, pero sin dejarlo fuera de combate.",
+        "Después apretá E: la Poké Ball sale hacia donde apuntás con el mouse.",
+        "Cuanta menos vida le quede, más fácil entra. ¡Y si está dormido o paralizado, mejor todavía!"]),
+    dict(lines=["¡Que tengas suerte atrapando Pokémon!"]),
+])
+EXTRA_NPCS = {("ciudad_verde", "OldManAwake"): ((47, 7), "old_man_1")}
+TRIGGERS["viejo_bloquea"] = dict(zone="ciudad_verde", rect=(44, 6, 13, 2), once=False, push_back=True, talk=dict(
+    requires=["historia"], forbids=["paquete_entregado"], lines=[
+        "(Un señor está tirado en el medio del camino. No se puede pasar.)"]))
+
+
 class Ext:
     """ext_resource que necesita un .tres (scripts y recursos), con ids estables."""
 
@@ -349,6 +407,8 @@ def talk_body(sid, t, ext):
     body.append("lines = " + psa(t.get("lines", [])))
     if t.get("give"):
         body.append("give_items = {%s}" % ", ".join("%s: %d" % (gd_str(k), v) for k, v in t["give"].items()))
+    if t.get("take"):
+        body.append("take_items = {%s}" % ", ".join("%s: %d" % (gd_str(k), v) for k, v in t["take"].items()))
     if t.get("heal"):
         body.append("heal = true")
     if t.get("confirm"):
@@ -424,7 +484,7 @@ def npc_tres(npc_id, zone, n, spec):
         "\n\n".join(subs), "",
         "[resource]", 'script = ExtResource("1_n")', "id = " + gd_str(npc_id),
         "display_name = " + gd_str(spec["name"]), "zone_id = " + gd_str(zone),
-        "cell = Vector2i(%d, %d)" % tuple(n["cell"]), "gfx = " + gd_str(gfx),
+        "cell = Vector2i(%d, %d)" % tuple(spec.get("cell", n["cell"])), "gfx = " + gd_str(gfx),
         "facing = Vector2i(%d, %d)" % face, "look_around = " + ("true" if look else "false"),
         'talks = Array[ExtResource("2_t")]([%s])' % ", ".join(ids)] + extra + [""])
 
@@ -466,6 +526,13 @@ def main():
             with open(os.path.join(out, npc_id + ".tres"), "w", encoding="utf-8", newline="\n") as f:
                 f.write(npc_tres(npc_id, z["id"], n, spec))
             made.add((z["id"], script))
+    # Personas que no están en los mapas de FireRed (ej. el viejo de Ciudad Verde ya despierto).
+    for (zone, script), (cell, gfx) in EXTRA_NPCS.items():
+        n = {"cell": list(cell), "gfx": "OBJ_EVENT_GFX_" + gfx.upper(), "movement": "MOVEMENT_TYPE_FACE_DOWN"}
+        npc_id = "%s_%s" % (zone, script.lower())
+        with open(os.path.join(out, npc_id + ".tres"), "w", encoding="utf-8", newline="\n") as f:
+            f.write(npc_tres(npc_id, zone, n, TALKS[(zone, script)]))
+        made.add((zone, script))
     for key in list(TALKS) + list(TRAINERS):
         if key not in made:
             print("no está en el mapa:", key)

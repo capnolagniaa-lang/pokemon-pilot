@@ -1,7 +1,8 @@
 class_name StoryH1Tests
 extends Node
-## Autotest de la historia H-1 (docs/PLAN_HISTORIA.md): partida de historia en tu cuarto sin Pokémon, Oak te frena
-## en el pasto, el inicial en la mesa del laboratorio (Sí/No), el rival elige el ventajoso y te desafía al salir.
+## Autotest de la historia H-1 y H-2 (docs/PLAN_HISTORIA.md): partida de historia en tu cuarto sin Pokémon, Oak te
+## frena en el pasto, el inicial en la mesa del laboratorio (Sí/No), el rival elige el ventajoso y te desafía al
+## salir; después el Correo de Oak, la Pokédex, Dalia y el viejo que tapa el camino al norte de Ciudad Verde.
 ##   godot --headless --path . --quit-after 100000 -- --autotest-story-h1
 
 var autotest: Node
@@ -96,6 +97,36 @@ func run() -> void:
 	await _until(func(): return not world.arena.active and not world.story.busy, 15.0)
 	r["Perder con el rival: seguís en el laboratorio y te curan"] = _zone_id() == "laboratorio_oak" and world.arena.result == "lose" \
 		and GameState.party[0].hp == GameState.party[0].max_hp() and GameState.has_flag("rival_lab_peleado")
+
+	# --- H-2: el Correo de Oak, la Pokédex, Dalia y el viejo de Ciudad Verde ---
+	r["Sin Pokédex todavía (la da Oak)"] = not GameState.has_pokedex() and not GameState.mark_seen(DB.species["pidgey"])
+	await _go("ciudad_verde", Vector2i(50, 9))
+	await _step_to("ciudad_verde", Vector2i(50, 7))
+	await _until(func(): return world.story.busy, 3.0)
+	await _until(func(): return not world.story.busy, 5.0)
+	r["El viejo dormido no te deja ir al norte"] = _cell().y > 7 and is_instance_valid(world.story.npcs.get("ciudad_verde_tutorialoldman"))
+	await _go("ciudad_verde_tienda", DB.npcs["ciudad_verde_tienda_clerk"].cell + Vector2i(1, 0))
+	_talk_to("ciudad_verde_tienda_clerk")
+	await _idle()
+	r["En la Tienda te dan el Correo-Oak"] = GameState.item_count("paquete_oak") == 1 and GameState.has_flag("tiene_paquete")
+	var balls := GameState.item_count("poke_ball")
+	await _go("laboratorio_oak", Vector2i(6, 5))
+	_talk_to("laboratorio_oak_profoak")
+	await _idle()
+	r["Oak recibe el correo y te da la Pokédex y 5 Poké Balls"] = GameState.item_count("paquete_oak") == 0 		and GameState.has_pokedex() and GameState.item_count("poke_ball") == balls + 5
+	r["Con la Pokédex, tu equipo queda registrado"] = GameState.has_caught(GameState.party[0].species) and GameState.has_seen(GameState.party[0].species)
+	await _go("casa_rival", DB.npcs["casa_rival_daisy"].cell + Vector2i(0, 1))
+	_talk_to("casa_rival_daisy")
+	await _idle()
+	r["Dalia te da el Mapa"] = GameState.item_count("mapa") == 1
+	await _go("ciudad_verde", Vector2i(50, 9))
+	r["El viejo ya no tapa el camino (está despierto al costado)"] = not is_instance_valid(world.story.npcs.get("ciudad_verde_tutorialoldman")) 		and is_instance_valid(world.story.npcs.get("ciudad_verde_oldmanawake"))
+	await _step_to("ciudad_verde", Vector2i(50, 6))
+	await get_tree().create_timer(0.5).timeout
+	r["Ahora se puede pasar al norte"] = not world.story.busy and _cell() == Vector2i(50, 6)
+	_talk_to("ciudad_verde_oldmanawake")
+	await _idle()
+	r["El abuelo te enseña a atrapar"] = GameState.has_flag("tutorial_captura")
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:

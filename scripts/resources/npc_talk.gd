@@ -14,6 +14,8 @@ extends Resource
 ## Al terminar: banderas que se ponen, objetos que se dan (id de data/items -> cantidad), curar el equipo.
 @export var set_flags: PackedStringArray = []
 @export var give_items: Dictionary = {}
+## Objetos que te saca (ej. el Correo-Oak al entregárselo). id de data/items -> cantidad.
+@export var take_items: Dictionary = {}
 @export var heal: bool = false
 
 @export_group("Efectos de historia (H-1)")

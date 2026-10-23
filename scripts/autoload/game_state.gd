@@ -101,11 +101,21 @@ func has_flag(flag: String) -> bool:
 	return story_flags.has(flag)
 
 
+## En la historia la Pokédex te la da Oak al entregarle su correo (H-2); en el modo libre está desde el principio.
+## Sin Pokédex no se registra nada ni aparece en el menú.
+func has_pokedex() -> bool:
+	return not story_flags.has("historia") or story_flags.has("tiene_pokedex")
+
+
 func set_flag(flag: String, on: bool = true) -> void:
 	if on == story_flags.has(flag):
 		return
 	if on:
 		story_flags[flag] = true
+		if flag == "tiene_pokedex":  # recién te la dieron: registra a tu equipo
+			for inst in party:
+				mark_fought(inst.species)
+				pokedex_caught[inst.species.id] = true
 	else:
 		story_flags.erase(flag)
 	Events.story_flag_changed.emit(flag, on)
@@ -279,7 +289,7 @@ func use_item_on(id: String, inst: CreatureInstance, statuses: StatusEffects = n
 
 ## Registra una especie como vista. Devuelve true si es la primera vez (emite pokedex_registered).
 func mark_seen(sp: SpeciesData) -> bool:
-	if sp == null or pokedex_seen.has(sp.id):
+	if sp == null or pokedex_seen.has(sp.id) or not has_pokedex():
 		return false
 	pokedex_seen[sp.id] = true
 	Events.pokedex_registered.emit(sp)
@@ -288,7 +298,7 @@ func mark_seen(sp: SpeciesData) -> bool:
 
 ## Registra una especie como luchada (también queda vista).
 func mark_fought(sp: SpeciesData) -> void:
-	if sp == null:
+	if sp == null or not has_pokedex():
 		return
 	mark_seen(sp)
 	pokedex_fought[sp.id] = true

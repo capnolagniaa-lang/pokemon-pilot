@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("tutorial_captura")
+set_flags = PackedStringArray("tutorial_captura")
+lines = PackedStringArray("¡Ah, ya tomé mi café! Ahora sí estoy despierto. Perdón por lo de recién.", "¿Sabés atrapar Pokémon? Te explico.", "Primero peleá con el salvaje y bajale la vida, pero sin dejarlo fuera de combate.", "Después apretá E: la Poké Ball sale hacia donde apuntás con el mouse.", "Cuanta menos vida le quede, más fácil entra. ¡Y si está dormido o paralizado, mejor todavía!")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Que tengas suerte atrapando Pokémon!")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_verde_oldmanawake"
+display_name = "Abuelo"
+zone_id = "ciudad_verde"
+cell = Vector2i(47, 7)
+gfx = "old_man_1"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])
+show_if = PackedStringArray("paquete_entregado")

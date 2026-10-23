@@ -59,7 +59,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   = 0,5 sobre la fórmula oficial (se cambia en el inspector de `data/config/game_config.tres`).
 - **H-1 hecha** (2026-10-23): la historia empieza en tu cuarto sin Pokémon ("Empezar la historia"), Oak te frena
   y te lleva al laboratorio, inicial en la mesa (Sí/No), el rival elige el ventajoso y te desafía. Guía:
-  `docs/HISTORIA.md`. **Próximo paso: H-2** (Paquete de Oak).
+  `docs/HISTORIA.md`.
+- **H-2 hecha** (2026-10-23): el Correo de Oak (Tienda de Ciudad Verde → Oak), la Pokédex de regalo (en la historia
+  recién ahí aparece), 5 Poké Balls, Dalia y el Mapa, y el viejo que tapa la salida al norte hasta entregar el
+  correo (después te enseña a atrapar). **Próximo paso: H-3** (rival en la Ruta 22).
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
   borraron (pedido del usuario). Pinceles nuevos: piso de ciudad, empedrado y piso de cueva.

@@ -134,6 +134,9 @@ func run_talk(talk: NpcTalk, default_speaker: String = "") -> void:
 	if talk.heal:
 		heal_party()
 		after.append("¡Tu equipo se recuperó por completo!")
+	for id in talk.take_items:
+		if GameState.remove_item(id, int(talk.take_items[id])) and DB.items.has(id):
+			after.append("Entregaste %s." % DB.items[id].display_name)
 	for id in talk.give_items:
 		var n := int(talk.give_items[id])
 		if DB.items.has(id) and n > 0:
@@ -172,7 +175,8 @@ func teleport(zone_id: String, cell: Vector2i) -> void:
 		world.companion.global_position = pos + Vector2(0, -12)
 	world.camera.snap()
 	refresh()
-	_last_cell = Vector2i(-99999, -99999)
+	_last_cell = cell  # llegaste acá: si el primer paso dispara un bloqueo, te devuelve a esta celda
+	_last_zone = zone_id
 	await get_tree().process_frame
 	await world.arena.fade_to(0.0)
 

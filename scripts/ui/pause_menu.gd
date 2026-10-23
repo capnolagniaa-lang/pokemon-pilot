@@ -80,6 +80,8 @@ func _build() -> void:
 	box.add_child(UiStyle.label("MENÚ", 20, UiStyle.ACCENT))
 	var entries := [["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box], ["Pokédex", _open_pokedex], ["Guardar", _save], ["Opciones", _open_options],
 		["Volver al título", _to_title], ["Cerrar", close]]
+	if not GameState.has_pokedex():
+		entries = entries.filter(func(e): return e[0] != "Pokédex")  # en la historia, hasta que Oak te la da
 	for e in entries:
 		var b := UiStyle.button(e[0], 240)
 		b.pressed.connect(e[1])

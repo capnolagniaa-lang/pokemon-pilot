@@ -5,6 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
+requires = PackedStringArray("historia")
+forbids = PackedStringArray("paquete_entregado")
+lines = PackedStringArray("¡Perdón! Mi abuelo no tomó su café y se tiró en el medio del camino.", "No deja pasar a nadie hasta que se le pase... Volvé en un rato.")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
 lines = PackedStringArray("Más al norte está el Bosque Verde.", "Es fácil perderse ahí adentro. ¡Llevá Antídotos!")
 
 [resource]
@@ -16,4 +22,4 @@ cell = Vector2i(48, 24)
 gfx = "woman_3"
 facing = Vector2i(0, -1)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Zzz... ¡Por acá no pasa nadie! Zzz...", "(Un señor está tirado en el medio del camino.)")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_verde_tutorialoldman"
+display_name = "Señor"
+zone_id = "ciudad_verde"
+cell = Vector2i(49, 5)
+gfx = "old_man_lying_down"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+show_if = PackedStringArray("historia")
+hide_if = PackedStringArray("paquete_entregado")

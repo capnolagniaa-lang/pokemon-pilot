@@ -5,6 +5,20 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
+requires = PackedStringArray("historia", "tiene_inicial")
+forbids = PackedStringArray("tiene_paquete")
+set_flags = PackedStringArray("tiene_paquete")
+lines = PackedStringArray("¡Eh! Vos venís de Pueblo Paleta, ¿no?", "Llegó un correo para el Profesor Oak. ¿Se lo podés llevar? ¡Gracias!")
+give_items = {"paquete_oak": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+requires = PackedStringArray("tiene_paquete")
+forbids = PackedStringArray("paquete_entregado")
+lines = PackedStringArray("¿Ya le llevaste el correo al Profesor Oak? Está en Pueblo Paleta, al sur.")
+
+[sub_resource type="Resource" id="Talk_2"]
+script = ExtResource("2_t")
 lines = PackedStringArray("¡Bienvenido a la Tienda Pokémon!", "Estamos acomodando el depósito. Volvé en un rato.")
 
 [resource]
@@ -16,4 +30,4 @@ cell = Vector2i(2, 3)
 gfx = "clerk"
 facing = Vector2i(1, 0)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1"), SubResource("Talk_2")])

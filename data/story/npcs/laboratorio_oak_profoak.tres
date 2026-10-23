@@ -15,7 +15,23 @@ lines = PackedStringArray("¡Ese Pokémon ya es tuyo! Cuidalo mucho.")
 
 [sub_resource type="Resource" id="Talk_2"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El mundo está lleno de Pokémon. ¡Salí a conocerlos!")
+requires = PackedStringArray("tiene_paquete")
+forbids = PackedStringArray("paquete_entregado")
+set_flags = PackedStringArray("paquete_entregado", "tiene_pokedex")
+lines = PackedStringArray("¡Ah, mi correo! Muchas gracias.", "Te tengo un regalo: ¡la Pokédex! Registra cada Pokémon que ves y con el que peleás.", "Y llevate estas Poké Balls. Debilitá al Pokémon y lanzala con E.", "Completar la Pokédex es mi sueño de toda la vida. ¿Me ayudás?")
+give_items = {"poke_ball": 5}
+take_items = {"paquete_oak": 1}
+after_speaker = ""
+after_lines = PackedStringArray("¡Recibiste la Pokédex! (Esc → Pokédex)")
+
+[sub_resource type="Resource" id="Talk_3"]
+script = ExtResource("2_t")
+requires = PackedStringArray("paquete_entregado")
+lines = PackedStringArray("¿Cómo va esa Pokédex? Cada Pokémon nuevo que veas queda registrado.", "Al norte de Ciudad Verde está el Bosque Verde. ¡Hay muchos Pokémon bicho!")
+
+[sub_resource type="Resource" id="Talk_4"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¿Pasaste por Ciudad Verde? Está al norte, cruzando la Ruta 1.")
 
 [resource]
 script = ExtResource("1_n")
@@ -26,5 +42,5 @@ cell = Vector2i(6, 3)
 gfx = "prof_oak"
 facing = Vector2i(0, 1)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1"), SubResource("Talk_2")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1"), SubResource("Talk_2"), SubResource("Talk_3"), SubResource("Talk_4")])
 show_if = PackedStringArray("oak_te_freno")

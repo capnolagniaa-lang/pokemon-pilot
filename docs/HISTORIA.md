@@ -6,7 +6,9 @@
 ## En una línea
 Está hecha **la base** (personas que hablan, curar, entrenadores que te desafían y pelean en arenas, Brock y la
 Medalla Roca) y **el comienzo de la historia (H-1)**: arrancás en tu cuarto sin Pokémon, **Oak te frena** al querer
-ir al pasto, elegís tu inicial en el laboratorio y el rival te desafía. Falta desde el **Paquete de Oak** (H-2).
+ir al pasto, elegís tu inicial en el laboratorio y el rival te desafía; y **el Correo de Oak (H-2)**: la Tienda de
+Ciudad Verde te lo da, Oak te da la Pokédex y Poké Balls, Dalia el Mapa, y el viejo que tapaba el norte se despierta y te
+enseña a atrapar. Falta desde la **Ruta 22** (H-3).
 
 **Cómo empezar la historia**: Título → Nueva partida → botón **"Empezar la historia"** (arriba de las tarjetas). Las
 tarjetas de los iniciales son el **modo libre** (arrancás ya con ese Pokémon, sin la intro).
@@ -33,6 +35,10 @@ tarjetas de los iniciales son el **modo libre** (arrancás ya con ese Pokémon, 
 | **Oak te frena** al querer salir de Pueblo Paleta hacia el pasto | ✅ H-1 | Caminá hacia el norte del pueblo: Oak te habla y te lleva al laboratorio. Sin Pokémon no te deja irte. |
 | **Inicial en la mesa del laboratorio** | ✅ H-1 | E frente a una Poké Ball: te cuenta el Pokémon y su estilo y pregunta "¿Lo querés?" (Sí/No, con flechas). El rival se lleva el que le gana al tuyo. |
 | **1ª pelea contra el rival** | ✅ H-1 | Al querer salir del laboratorio te desafía (arena de pinos). Si perdés, la historia sigue ahí mismo con el equipo curado (como en FireRed). |
+| **Correo de Oak** | ✅ H-2 | Con tu inicial, entrá a la Tienda de Ciudad Verde: el vendedor te da el **Correo-Oak** (Mochila → Objetos clave). Llevalo al laboratorio. |
+| **Pokédex** | ✅ H-2 | En la historia **no la tenés hasta que Oak te la da** al entregarle el correo (antes no aparece en el menú ni registra nada). Oak también te da 5 Poké Balls. |
+| **Viejo que tapa el camino al norte de Ciudad Verde** | ✅ H-2 | Está tirado en la salida hacia la Ruta 2 y no te deja pasar hasta que entregás el correo. Después está despierto al costado y te explica cómo atrapar. Su nieta te cuenta qué le pasa. |
+| **Dalia y el Mapa** | ✅ H-2 | Después de entregar el correo, andá a la casa del rival (Pueblo Paleta): Dalia te da el Mapa (objeto clave). |
 | **Personas que hablan** (67 de FireRed, en sus lugares reales, con sus sprites) | ✅ | Acercate a alguien y apretá **E**. Ej.: los vecinos de Pueblo Paleta, la gente del Centro Pokémon, el museo. |
 | **Enfermeras y mamá curan** | ✅ | Centro Pokémon de Ciudad Verde o de Plateada (E frente a la enfermera, por arriba del mostrador) o mamá en tu casa. Ese lugar queda como "donde volvés si perdés". |
 | **Regalo del empleado de la Tienda** (Ruta 1) | ✅ | E al empleado: te da una Poción una sola vez. |
@@ -47,8 +53,6 @@ tarjetas de los iniciales son el **modo libre** (arrancás ya con ese Pokémon, 
 | Qué | Fase | Nota |
 |---|---|---|
 | **Rival en la Ruta 22** (2ª pelea) | H-3 | |
-| **Paquete de Oak**, Pokédex de regalo, Dalia y el Mapa | H-2 | Hoy la Pokédex está desde el principio. |
-| **Viejo de Ciudad Verde** (tapa el camino y te enseña a atrapar) | H-2 | El sistema de bloqueos ya existe (H-0); falta ponerlo. |
 | Objetos fijos del Bosque Verde | H-4 | Hoy hay 3-4 objetos al azar por ruta. |
 | Chico que bloquea la Ruta 3, MT39, tarjeta de entrenador con medallas | H-5 | |
 | Un bot que juegue el capítulo entero (prueba) | H-6 | |

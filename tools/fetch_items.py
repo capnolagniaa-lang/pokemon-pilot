@@ -31,6 +31,13 @@ ITEMS = {
     "antihielo": ("ice-heal", "items", 14, {"cures": ["congelado"]}),
     "cura_total": ("full-heal", "items", 15, {"cures": [ALL_BAD]}),
     "revivir": ("revive", "items", 20, {"revive_ratio": 0.5, "use_time": 1.0}),
+    # Objetos clave de la historia (docs/PLAN_HISTORIA.md, H-2): no se usan, los mira la historia.
+    "paquete_oak": ("oaks-parcel", "key", 1, {}),
+    "mapa": ("town-map", "key", 2, {}),
+}
+# Descripción propia cuando PokeAPI no tiene una en español.
+DESCRIPTIONS = {
+    "paquete_oak": "Un correo para el Profesor Oak. Te lo dio el vendedor de la Tienda Pokémon de Ciudad Verde.",
 }
 
 
@@ -72,7 +79,7 @@ def main():
             with urllib.request.urlopen(req, timeout=40) as r, open(icon, "wb") as f:
                 f.write(r.read())
         name = es(it["names"]) or api
-        desc = flavor(it).replace('"', '\\"')
+        desc = (flavor(it) or DESCRIPTIONS.get(gid, "")).replace('"', '\\"')
         lines = ['[gd_resource type="Resource" script_class="ItemData" format=3]', "",
                  '[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]',
                  '[ext_resource type="Texture2D" path="res://sprites/items/%s.png" id="2_i"]' % api, "",
