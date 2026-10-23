@@ -18,56 +18,56 @@
 [ext_resource type="Resource" path="res://data/moves/estallido.tres" id="12_tpfbb"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_gkwoj"]
 
-[sub_resource type="Resource" id="Resource_da1c2"]
+[sub_resource type="Resource" id="Resource_gkwoj"]
 script = ExtResource("1_n8qiy")
 move = ExtResource("2_qxm64")
 
-[sub_resource type="Resource" id="Resource_1l647"]
+[sub_resource type="Resource" id="Resource_v77ax"]
 script = ExtResource("1_n8qiy")
 level = 5
 move = ExtResource("3_gkwoj")
 
-[sub_resource type="Resource" id="Resource_64bfx"]
+[sub_resource type="Resource" id="Resource_nsh16"]
 script = ExtResource("1_n8qiy")
 level = 15
 move = ExtResource("4_v77ax")
 
-[sub_resource type="Resource" id="Resource_u7ch7"]
+[sub_resource type="Resource" id="Resource_8qsc8"]
 script = ExtResource("1_n8qiy")
 level = 20
 move = ExtResource("5_nsh16")
 
-[sub_resource type="Resource" id="Resource_o63j4"]
+[sub_resource type="Resource" id="Resource_o4gxg"]
 script = ExtResource("1_n8qiy")
 level = 30
 move = ExtResource("6_8qsc8")
 
-[sub_resource type="Resource" id="Resource_0dpkm"]
+[sub_resource type="Resource" id="Resource_8u5e8"]
 script = ExtResource("1_n8qiy")
 level = 35
 move = ExtResource("7_o4gxg")
 
-[sub_resource type="Resource" id="Resource_qfeus"]
+[sub_resource type="Resource" id="Resource_xvbsw"]
 script = ExtResource("1_n8qiy")
 level = 45
 move = ExtResource("8_8u5e8")
 
-[sub_resource type="Resource" id="Resource_ke4s6"]
+[sub_resource type="Resource" id="Resource_agrwf"]
 script = ExtResource("1_n8qiy")
 level = 50
 move = ExtResource("9_xvbsw")
 
-[sub_resource type="Resource" id="Resource_t0nq6"]
+[sub_resource type="Resource" id="Resource_taydr"]
 script = ExtResource("1_n8qiy")
 level = 60
 move = ExtResource("10_agrwf")
 
-[sub_resource type="Resource" id="Resource_q7tqe"]
+[sub_resource type="Resource" id="Resource_tpfbb"]
 script = ExtResource("1_n8qiy")
 level = 65
 move = ExtResource("11_taydr")
 
-[sub_resource type="Resource" id="Resource_0t26p"]
+[sub_resource type="Resource" id="Resource_da1c2"]
 script = ExtResource("1_n8qiy")
 level = 75
 move = ExtResource("12_tpfbb")
@@ -78,7 +78,7 @@ id = "groudon"
 display_name = "Groudon"
 dex = 383
 types = Array[ExtResource("4_woxmm")]([ExtResource("5_qqgy6")])
-learnset = Array[ExtResource("1_n8qiy")]([SubResource("Resource_da1c2"), SubResource("Resource_1l647"), SubResource("Resource_64bfx"), SubResource("Resource_u7ch7"), SubResource("Resource_o63j4"), SubResource("Resource_0dpkm"), SubResource("Resource_qfeus"), SubResource("Resource_ke4s6"), SubResource("Resource_t0nq6"), SubResource("Resource_q7tqe"), SubResource("Resource_0t26p")])
+learnset = Array[ExtResource("1_n8qiy")]([SubResource("Resource_gkwoj"), SubResource("Resource_v77ax"), SubResource("Resource_nsh16"), SubResource("Resource_8qsc8"), SubResource("Resource_o4gxg"), SubResource("Resource_8u5e8"), SubResource("Resource_xvbsw"), SubResource("Resource_agrwf"), SubResource("Resource_taydr"), SubResource("Resource_tpfbb"), SubResource("Resource_da1c2")])
 temperament = ExtResource("15_gkwoj")
 genus = "Pokémon Continente"
 pokedex_entry = "A Groudon siempre se le ha descrito como el Pokémon que expandió los continentes. Varias leyendas cuentan que libró combates contra Kyogre en repetidas ocasiones para tener el control de la energía de la naturaleza."

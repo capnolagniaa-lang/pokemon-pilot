@@ -20,63 +20,63 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="14_ml05g"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_1vvpd"]
 
-[sub_resource type="Resource" id="Resource_yx6vi"]
+[sub_resource type="Resource" id="Resource_1vvpd"]
 script = ExtResource("1_fc4wp")
 move = ExtResource("2_pntun")
 
-[sub_resource type="Resource" id="Resource_vqw2x"]
+[sub_resource type="Resource" id="Resource_daw6u"]
 script = ExtResource("1_fc4wp")
 move = ExtResource("3_1vvpd")
 
-[sub_resource type="Resource" id="Resource_gnkot"]
+[sub_resource type="Resource" id="Resource_vlayv"]
 script = ExtResource("1_fc4wp")
 move = ExtResource("4_daw6u")
 
-[sub_resource type="Resource" id="Resource_yd1pp"]
+[sub_resource type="Resource" id="Resource_jhhv4"]
 script = ExtResource("1_fc4wp")
 move = ExtResource("5_vlayv")
 
-[sub_resource type="Resource" id="Resource_u0gku"]
+[sub_resource type="Resource" id="Resource_kchvr"]
 script = ExtResource("1_fc4wp")
 level = 12
 move = ExtResource("6_jhhv4")
 
-[sub_resource type="Resource" id="Resource_0ibpf"]
+[sub_resource type="Resource" id="Resource_g1ij5"]
 script = ExtResource("1_fc4wp")
 level = 16
 move = ExtResource("7_kchvr")
 
-[sub_resource type="Resource" id="Resource_48f6q"]
+[sub_resource type="Resource" id="Resource_os06k"]
 script = ExtResource("1_fc4wp")
 level = 23
 move = ExtResource("8_g1ij5")
 
-[sub_resource type="Resource" id="Resource_na4og"]
+[sub_resource type="Resource" id="Resource_cjq3r"]
 script = ExtResource("1_fc4wp")
 level = 27
 move = ExtResource("9_os06k")
 
-[sub_resource type="Resource" id="Resource_8c1jr"]
+[sub_resource type="Resource" id="Resource_af824"]
 script = ExtResource("1_fc4wp")
 level = 34
 move = ExtResource("10_cjq3r")
 
-[sub_resource type="Resource" id="Resource_ejs3y"]
+[sub_resource type="Resource" id="Resource_vevfm"]
 script = ExtResource("1_fc4wp")
 level = 37
 move = ExtResource("11_af824")
 
-[sub_resource type="Resource" id="Resource_awq1m"]
+[sub_resource type="Resource" id="Resource_k42h5"]
 script = ExtResource("1_fc4wp")
 level = 41
 move = ExtResource("12_vevfm")
 
-[sub_resource type="Resource" id="Resource_n7flp"]
+[sub_resource type="Resource" id="Resource_ml05g"]
 script = ExtResource("1_fc4wp")
 level = 51
 move = ExtResource("13_k42h5")
 
-[sub_resource type="Resource" id="Resource_fi6p4"]
+[sub_resource type="Resource" id="Resource_yx6vi"]
 script = ExtResource("1_fc4wp")
 level = 58
 move = ExtResource("14_ml05g")
@@ -87,7 +87,7 @@ id = "dusclops"
 display_name = "Dusclops"
 dex = 356
 types = Array[ExtResource("4_sysdn")]([ExtResource("5_t7cmg")])
-learnset = Array[ExtResource("1_fc4wp")]([SubResource("Resource_yx6vi"), SubResource("Resource_vqw2x"), SubResource("Resource_gnkot"), SubResource("Resource_yd1pp"), SubResource("Resource_u0gku"), SubResource("Resource_0ibpf"), SubResource("Resource_48f6q"), SubResource("Resource_na4og"), SubResource("Resource_8c1jr"), SubResource("Resource_ejs3y"), SubResource("Resource_awq1m"), SubResource("Resource_n7flp"), SubResource("Resource_fi6p4")])
+learnset = Array[ExtResource("1_fc4wp")]([SubResource("Resource_1vvpd"), SubResource("Resource_daw6u"), SubResource("Resource_vlayv"), SubResource("Resource_jhhv4"), SubResource("Resource_kchvr"), SubResource("Resource_g1ij5"), SubResource("Resource_os06k"), SubResource("Resource_cjq3r"), SubResource("Resource_af824"), SubResource("Resource_vevfm"), SubResource("Resource_k42h5"), SubResource("Resource_ml05g"), SubResource("Resource_yx6vi")])
 temperament = ExtResource("17_1vvpd")
 genus = "Pokémon Atrayente"
 pokedex_entry = "Dusclops está completamente hueco por dentro. Dicen que su cuerpo es como un agujero negro. Este Pokémon es capaz de absorber cualquier cosa, pero cosa que absorba, cosa que no dejará salir nunca más."

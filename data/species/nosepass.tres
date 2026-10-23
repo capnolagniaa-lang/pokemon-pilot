@@ -17,51 +17,51 @@
 [ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="11_tjhc0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_hrwu8"]
 
-[sub_resource type="Resource" id="Resource_vqq25"]
+[sub_resource type="Resource" id="Resource_hrwu8"]
 script = ExtResource("1_hnycp")
 move = ExtResource("2_ichiq")
 
-[sub_resource type="Resource" id="Resource_dlakl"]
+[sub_resource type="Resource" id="Resource_1djnp"]
 script = ExtResource("1_hnycp")
 level = 7
 move = ExtResource("3_hrwu8")
 
-[sub_resource type="Resource" id="Resource_jlqq5"]
+[sub_resource type="Resource" id="Resource_p10ua"]
 script = ExtResource("1_hnycp")
 level = 13
 move = ExtResource("4_1djnp")
 
-[sub_resource type="Resource" id="Resource_2and2"]
+[sub_resource type="Resource" id="Resource_lwso1"]
 script = ExtResource("1_hnycp")
 level = 16
 move = ExtResource("5_p10ua")
 
-[sub_resource type="Resource" id="Resource_pd4d7"]
+[sub_resource type="Resource" id="Resource_6q18d"]
 script = ExtResource("1_hnycp")
 level = 22
 move = ExtResource("6_lwso1")
 
-[sub_resource type="Resource" id="Resource_sy7vy"]
+[sub_resource type="Resource" id="Resource_k0olg"]
 script = ExtResource("1_hnycp")
 level = 28
 move = ExtResource("7_6q18d")
 
-[sub_resource type="Resource" id="Resource_cre7y"]
+[sub_resource type="Resource" id="Resource_xal6w"]
 script = ExtResource("1_hnycp")
 level = 31
 move = ExtResource("8_k0olg")
 
-[sub_resource type="Resource" id="Resource_dv75f"]
+[sub_resource type="Resource" id="Resource_2frlm"]
 script = ExtResource("1_hnycp")
 level = 37
 move = ExtResource("9_xal6w")
 
-[sub_resource type="Resource" id="Resource_g310k"]
+[sub_resource type="Resource" id="Resource_tjhc0"]
 script = ExtResource("1_hnycp")
 level = 43
 move = ExtResource("10_2frlm")
 
-[sub_resource type="Resource" id="Resource_gfdgp"]
+[sub_resource type="Resource" id="Resource_vqq25"]
 script = ExtResource("1_hnycp")
 level = 46
 move = ExtResource("11_tjhc0")
@@ -72,7 +72,7 @@ id = "nosepass"
 display_name = "Nosepass"
 dex = 299
 types = Array[ExtResource("4_0bh25")]([ExtResource("5_pborl")])
-learnset = Array[ExtResource("1_hnycp")]([SubResource("Resource_vqq25"), SubResource("Resource_dlakl"), SubResource("Resource_jlqq5"), SubResource("Resource_2and2"), SubResource("Resource_pd4d7"), SubResource("Resource_sy7vy"), SubResource("Resource_cre7y"), SubResource("Resource_dv75f"), SubResource("Resource_g310k"), SubResource("Resource_gfdgp")])
+learnset = Array[ExtResource("1_hnycp")]([SubResource("Resource_hrwu8"), SubResource("Resource_1djnp"), SubResource("Resource_p10ua"), SubResource("Resource_lwso1"), SubResource("Resource_6q18d"), SubResource("Resource_k0olg"), SubResource("Resource_xal6w"), SubResource("Resource_2frlm"), SubResource("Resource_tjhc0"), SubResource("Resource_vqq25")])
 temperament = ExtResource("14_hrwu8")
 genus = "Pokémon Brújula"
 pokedex_entry = "Nosepass siempre está con la nariz magnética que tiene orientada hacia el norte. Si se encuentra con otro ejemplar de su especie, no puede mirarle de frente porque sus polos magnéticos se repelen."

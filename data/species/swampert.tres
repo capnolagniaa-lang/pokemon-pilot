@@ -21,63 +21,63 @@
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="14_0vew1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_007t3"]
 
-[sub_resource type="Resource" id="Resource_5od3w"]
+[sub_resource type="Resource" id="Resource_007t3"]
 script = ExtResource("1_6nw65")
 move = ExtResource("2_dq7m4")
 
-[sub_resource type="Resource" id="Resource_m67wv"]
+[sub_resource type="Resource" id="Resource_2l6ex"]
 script = ExtResource("1_6nw65")
 move = ExtResource("3_007t3")
 
-[sub_resource type="Resource" id="Resource_tl7uq"]
+[sub_resource type="Resource" id="Resource_rp4hu"]
 script = ExtResource("1_6nw65")
 move = ExtResource("4_2l6ex")
 
-[sub_resource type="Resource" id="Resource_h8n0w"]
+[sub_resource type="Resource" id="Resource_ok213"]
 script = ExtResource("1_6nw65")
 move = ExtResource("5_rp4hu")
 
-[sub_resource type="Resource" id="Resource_ss3qi"]
+[sub_resource type="Resource" id="Resource_so8yo"]
 script = ExtResource("1_6nw65")
 level = 15
 move = ExtResource("6_ok213")
 
-[sub_resource type="Resource" id="Resource_j7pf3"]
+[sub_resource type="Resource" id="Resource_5j71q"]
 script = ExtResource("1_6nw65")
 level = 16
 move = ExtResource("7_so8yo")
 
-[sub_resource type="Resource" id="Resource_tf1rn"]
+[sub_resource type="Resource" id="Resource_00hgg"]
 script = ExtResource("1_6nw65")
 level = 20
 move = ExtResource("8_5j71q")
 
-[sub_resource type="Resource" id="Resource_7p2qx"]
+[sub_resource type="Resource" id="Resource_ncrjp"]
 script = ExtResource("1_6nw65")
 level = 25
 move = ExtResource("9_00hgg")
 
-[sub_resource type="Resource" id="Resource_qcyu5"]
+[sub_resource type="Resource" id="Resource_owamj"]
 script = ExtResource("1_6nw65")
 level = 31
 move = ExtResource("10_ncrjp")
 
-[sub_resource type="Resource" id="Resource_wurdk"]
+[sub_resource type="Resource" id="Resource_1v2gt"]
 script = ExtResource("1_6nw65")
 level = 39
 move = ExtResource("11_owamj")
 
-[sub_resource type="Resource" id="Resource_jhcle"]
+[sub_resource type="Resource" id="Resource_3ea1q"]
 script = ExtResource("1_6nw65")
 level = 46
 move = ExtResource("12_1v2gt")
 
-[sub_resource type="Resource" id="Resource_4xeg0"]
+[sub_resource type="Resource" id="Resource_0vew1"]
 script = ExtResource("1_6nw65")
 level = 52
 move = ExtResource("13_3ea1q")
 
-[sub_resource type="Resource" id="Resource_kt1cp"]
+[sub_resource type="Resource" id="Resource_5od3w"]
 script = ExtResource("1_6nw65")
 level = 61
 move = ExtResource("14_0vew1")
@@ -88,7 +88,7 @@ id = "swampert"
 display_name = "Swampert"
 dex = 260
 types = Array[ExtResource("4_w3rqd")]([ExtResource("5_tfwqx"), ExtResource("6_jlydm")])
-learnset = Array[ExtResource("1_6nw65")]([SubResource("Resource_5od3w"), SubResource("Resource_m67wv"), SubResource("Resource_tl7uq"), SubResource("Resource_h8n0w"), SubResource("Resource_ss3qi"), SubResource("Resource_j7pf3"), SubResource("Resource_tf1rn"), SubResource("Resource_7p2qx"), SubResource("Resource_qcyu5"), SubResource("Resource_wurdk"), SubResource("Resource_jhcle"), SubResource("Resource_4xeg0"), SubResource("Resource_kt1cp")])
+learnset = Array[ExtResource("1_6nw65")]([SubResource("Resource_007t3"), SubResource("Resource_2l6ex"), SubResource("Resource_rp4hu"), SubResource("Resource_ok213"), SubResource("Resource_so8yo"), SubResource("Resource_5j71q"), SubResource("Resource_00hgg"), SubResource("Resource_ncrjp"), SubResource("Resource_owamj"), SubResource("Resource_1v2gt"), SubResource("Resource_3ea1q"), SubResource("Resource_0vew1"), SubResource("Resource_5od3w")])
 temperament = ExtResource("17_007t3")
 genus = "Pokémon Pez Lodo"
 pokedex_entry = "Swampert es muy fuerte. Puede arrastrar una roca que pese más de una tonelada sin ningún problema. Este Pokémon tiene el sentido de la vista muy desarrollado. Es capaz de ver hasta en aguas cenagosas."

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "esporas"
+display_name = "Esporas"
+color = Color(0.8, 0.55, 1.0, 1)
+duration = 8.0
+element = ExtResource("1_x")
+max_stacks = 5
+tint_strength = 0.2
+fx_amount = 3

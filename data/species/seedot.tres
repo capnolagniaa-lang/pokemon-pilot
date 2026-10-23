@@ -14,36 +14,36 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="8_66rot"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="11_ccawv"]
 
-[sub_resource type="Resource" id="Resource_jtn52"]
+[sub_resource type="Resource" id="Resource_ccawv"]
 script = ExtResource("1_dhkcl")
 move = ExtResource("2_nuiu7")
 
-[sub_resource type="Resource" id="Resource_vm7i5"]
+[sub_resource type="Resource" id="Resource_opp6q"]
 script = ExtResource("1_dhkcl")
 level = 3
 move = ExtResource("3_ccawv")
 
-[sub_resource type="Resource" id="Resource_oovuc"]
+[sub_resource type="Resource" id="Resource_alboj"]
 script = ExtResource("1_dhkcl")
 level = 7
 move = ExtResource("4_opp6q")
 
-[sub_resource type="Resource" id="Resource_5natp"]
+[sub_resource type="Resource" id="Resource_p3e1d"]
 script = ExtResource("1_dhkcl")
 level = 13
 move = ExtResource("5_alboj")
 
-[sub_resource type="Resource" id="Resource_kmarb"]
+[sub_resource type="Resource" id="Resource_5iip4"]
 script = ExtResource("1_dhkcl")
 level = 21
 move = ExtResource("6_p3e1d")
 
-[sub_resource type="Resource" id="Resource_xnvw2"]
+[sub_resource type="Resource" id="Resource_66rot"]
 script = ExtResource("1_dhkcl")
 level = 31
 move = ExtResource("7_5iip4")
 
-[sub_resource type="Resource" id="Resource_tk811"]
+[sub_resource type="Resource" id="Resource_jtn52"]
 script = ExtResource("1_dhkcl")
 level = 43
 move = ExtResource("8_66rot")
@@ -54,7 +54,7 @@ id = "seedot"
 display_name = "Seedot"
 dex = 273
 types = Array[ExtResource("4_k6v0d")]([ExtResource("5_78ulh")])
-learnset = Array[ExtResource("1_dhkcl")]([SubResource("Resource_jtn52"), SubResource("Resource_vm7i5"), SubResource("Resource_oovuc"), SubResource("Resource_5natp"), SubResource("Resource_kmarb"), SubResource("Resource_xnvw2"), SubResource("Resource_tk811")])
+learnset = Array[ExtResource("1_dhkcl")]([SubResource("Resource_ccawv"), SubResource("Resource_opp6q"), SubResource("Resource_alboj"), SubResource("Resource_p3e1d"), SubResource("Resource_5iip4"), SubResource("Resource_66rot"), SubResource("Resource_jtn52")])
 temperament = ExtResource("11_ccawv")
 genus = "Pokémon Bellota"
 pokedex_entry = "Seedot se queda enganchado a las ramas de los árboles por el extremo que tiene en la cabeza. Mientras está ahí colgado, aprovecha para tomar la humedad del árbol. Cuanta más agua bebe, más lustroso se le ve."

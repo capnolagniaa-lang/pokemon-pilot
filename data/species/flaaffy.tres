@@ -14,34 +14,34 @@
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="8_wjn51"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="11_ycaup"]
 
-[sub_resource type="Resource" id="Resource_gglc6"]
+[sub_resource type="Resource" id="Resource_ycaup"]
 script = ExtResource("1_wok7x")
 move = ExtResource("2_p5hc2")
 
-[sub_resource type="Resource" id="Resource_a0tta"]
+[sub_resource type="Resource" id="Resource_1pynx"]
 script = ExtResource("1_wok7x")
 move = ExtResource("3_ycaup")
 
-[sub_resource type="Resource" id="Resource_1iy7k"]
+[sub_resource type="Resource" id="Resource_koamw"]
 script = ExtResource("1_wok7x")
 move = ExtResource("4_1pynx")
 
-[sub_resource type="Resource" id="Resource_j5qm8"]
+[sub_resource type="Resource" id="Resource_52w0f"]
 script = ExtResource("1_wok7x")
 level = 18
 move = ExtResource("5_koamw")
 
-[sub_resource type="Resource" id="Resource_lqvlf"]
+[sub_resource type="Resource" id="Resource_1y6hl"]
 script = ExtResource("1_wok7x")
 level = 27
 move = ExtResource("6_52w0f")
 
-[sub_resource type="Resource" id="Resource_mh7pj"]
+[sub_resource type="Resource" id="Resource_wjn51"]
 script = ExtResource("1_wok7x")
 level = 36
 move = ExtResource("7_1y6hl")
 
-[sub_resource type="Resource" id="Resource_k6k8y"]
+[sub_resource type="Resource" id="Resource_gglc6"]
 script = ExtResource("1_wok7x")
 level = 45
 move = ExtResource("8_wjn51")
@@ -52,7 +52,7 @@ id = "flaaffy"
 display_name = "Flaaffy"
 dex = 180
 types = Array[ExtResource("4_0lcgy")]([ExtResource("5_heltp")])
-learnset = Array[ExtResource("1_wok7x")]([SubResource("Resource_gglc6"), SubResource("Resource_a0tta"), SubResource("Resource_1iy7k"), SubResource("Resource_j5qm8"), SubResource("Resource_lqvlf"), SubResource("Resource_mh7pj"), SubResource("Resource_k6k8y")])
+learnset = Array[ExtResource("1_wok7x")]([SubResource("Resource_ycaup"), SubResource("Resource_1pynx"), SubResource("Resource_koamw"), SubResource("Resource_52w0f"), SubResource("Resource_1y6hl"), SubResource("Resource_wjn51"), SubResource("Resource_gglc6")])
 temperament = ExtResource("11_ycaup")
 genus = "Pokémon Lana"
 pokedex_entry = "La calidad de la lana de Flaaffy varía para poder generar mucha electricidad estática con muy poca cantidad de lana. Las zonas suaves de la piel en las que no tiene pelaje están protegidas contra la electricidad."

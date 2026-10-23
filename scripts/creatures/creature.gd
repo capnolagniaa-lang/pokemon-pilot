@@ -244,6 +244,10 @@ func release_move(msg: Dictionary) -> void:
 	if m.resource_scaling > 0.0 and signature != null:
 		hit.damage_mult *= 1.0 + m.resource_scaling * msg.get("spent", 0.0) / signature.data.max_value
 	move_released.emit(m)
+	if m.cleanse_self:  # Giro Rápido: se saca de encima los problemas de estado
+		for sid in statuses.active.keys():
+			if ItemData.BAD_STATUSES.has(sid):
+				statuses.cure(statuses.active[sid]["status"])
 	var recovery := m.recovery
 	match m.kind:
 		MoveData.Kind.PROJECTILE:
@@ -341,6 +345,8 @@ func dodge(dir: Vector2) -> bool:
 	if not can_act() or not statuses.can_move() or not moves.consume_dodge():
 		return false
 	health.invulnerable_time = DODGE_TIME + 0.12
+	if signature != null:
+		moves.dodge_cooldown *= signature.dodge_cooldown_mult()
 	machine.transition_to("dash", {"dir": dir if dir.length() > 0.1 else facing, "time": DODGE_TIME, "attack": false})
 	dodged.emit()
 	return true
@@ -376,6 +382,8 @@ func _on_hit(hit: HitInfo) -> void:
 		mult *= it.damage_mult
 	if attacker and attacker.signature != null and hit.move.power > 0.0:
 		mult *= attacker.signature.damage_mult_against(hit, self)
+	if signature != null:
+		mult *= signature.damage_taken_mult(hit)
 	var amount := Damage.resolve(hit, instance) * mult
 	if hit.move.execute_below > 0.0 and health.ratio() <= hit.move.execute_below and hit.effectiveness > 0.0:
 		amount = INF  # ejecución: lo remata aunque le quede vida
@@ -389,7 +397,14 @@ func _on_hit(hit: HitInfo) -> void:
 		knockback = (global_position - hit.origin).normalized() * hit.knockback * statuses.knockback_mult()
 	damage_received.emit(dealt, hit)
 	if attacker:
+		if hit.move.drain > 0.0 and dealt > 0.0:
+			attacker.health.heal(dealt * hit.move.drain)  # Absorber, Chupavidas
 		attacker.hit_dealt.emit(self, hit, dealt)
+	if hit.move.cooldown_lock > 0.0:
+		for i in moves.cooldowns.size():  # Anulación: tarda más en recargar todo
+			moves.cooldowns[i] += hit.move.cooldown_lock
+			moves.cooldown_total[i] = maxf(moves.cooldown_total[i], moves.cooldowns[i])
+		Events.signature_triggered.emit(self, "¡Anulado!", Color(0.9, 0.5, 0.9))
 	Events.creature_damaged.emit(self, dealt, hit)
 	if health.is_dead():
 		if attacker:

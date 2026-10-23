@@ -15,38 +15,38 @@
 [ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="9_tbjl2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_0sp2d"]
 
-[sub_resource type="Resource" id="Resource_158kc"]
+[sub_resource type="Resource" id="Resource_0sp2d"]
 script = ExtResource("1_1emld")
 move = ExtResource("2_40cj3")
 
-[sub_resource type="Resource" id="Resource_sie0v"]
+[sub_resource type="Resource" id="Resource_gntwc"]
 script = ExtResource("1_1emld")
 move = ExtResource("3_0sp2d")
 
-[sub_resource type="Resource" id="Resource_vpvxu"]
+[sub_resource type="Resource" id="Resource_q7mjv"]
 script = ExtResource("1_1emld")
 move = ExtResource("4_gntwc")
 
-[sub_resource type="Resource" id="Resource_prmmt"]
+[sub_resource type="Resource" id="Resource_7m7e8"]
 script = ExtResource("1_1emld")
 move = ExtResource("5_q7mjv")
 
-[sub_resource type="Resource" id="Resource_c16ho"]
+[sub_resource type="Resource" id="Resource_dac6p"]
 script = ExtResource("1_1emld")
 level = 29
 move = ExtResource("6_7m7e8")
 
-[sub_resource type="Resource" id="Resource_ncbcq"]
+[sub_resource type="Resource" id="Resource_r3kp2"]
 script = ExtResource("1_1emld")
 level = 40
 move = ExtResource("7_dac6p")
 
-[sub_resource type="Resource" id="Resource_x6qat"]
+[sub_resource type="Resource" id="Resource_tbjl2"]
 script = ExtResource("1_1emld")
 level = 51
 move = ExtResource("8_r3kp2")
 
-[sub_resource type="Resource" id="Resource_qhhun"]
+[sub_resource type="Resource" id="Resource_158kc"]
 script = ExtResource("1_1emld")
 level = 62
 move = ExtResource("9_tbjl2")
@@ -57,7 +57,7 @@ id = "seadra"
 display_name = "Seadra"
 dex = 117
 types = Array[ExtResource("4_cybae")]([ExtResource("5_pjpvd")])
-learnset = Array[ExtResource("1_1emld")]([SubResource("Resource_158kc"), SubResource("Resource_sie0v"), SubResource("Resource_vpvxu"), SubResource("Resource_prmmt"), SubResource("Resource_c16ho"), SubResource("Resource_ncbcq"), SubResource("Resource_x6qat"), SubResource("Resource_qhhun")])
+learnset = Array[ExtResource("1_1emld")]([SubResource("Resource_0sp2d"), SubResource("Resource_gntwc"), SubResource("Resource_q7mjv"), SubResource("Resource_7m7e8"), SubResource("Resource_dac6p"), SubResource("Resource_r3kp2"), SubResource("Resource_tbjl2"), SubResource("Resource_158kc")])
 temperament = ExtResource("12_0sp2d")
 genus = "Pokémon Dragón"
 pokedex_entry = "Seadra se echa a dormir tras abrirse un hueco entre las ramas de los corales. Los pescadores de coral suelen pincharse con las púas venenosas de estos Pokémon si no los ven."

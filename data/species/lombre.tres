@@ -18,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="11_hh2p4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_3n28x"]
 
-[sub_resource type="Resource" id="Resource_eamaq"]
+[sub_resource type="Resource" id="Resource_3n28x"]
 script = ExtResource("1_mhia6")
 move = ExtResource("2_abawg")
 
-[sub_resource type="Resource" id="Resource_q3mwn"]
+[sub_resource type="Resource" id="Resource_lwnh1"]
 script = ExtResource("1_mhia6")
 level = 3
 move = ExtResource("3_3n28x")
 
-[sub_resource type="Resource" id="Resource_0t74u"]
+[sub_resource type="Resource" id="Resource_hsss0"]
 script = ExtResource("1_mhia6")
 level = 7
 move = ExtResource("4_lwnh1")
 
-[sub_resource type="Resource" id="Resource_ue6e4"]
+[sub_resource type="Resource" id="Resource_8tuch"]
 script = ExtResource("1_mhia6")
 level = 13
 move = ExtResource("5_hsss0")
 
-[sub_resource type="Resource" id="Resource_lixwt"]
+[sub_resource type="Resource" id="Resource_2n41l"]
 script = ExtResource("1_mhia6")
 level = 19
 move = ExtResource("6_8tuch")
 
-[sub_resource type="Resource" id="Resource_gp8y7"]
+[sub_resource type="Resource" id="Resource_cc0kj"]
 script = ExtResource("1_mhia6")
 level = 25
 move = ExtResource("7_2n41l")
 
-[sub_resource type="Resource" id="Resource_5bjl4"]
+[sub_resource type="Resource" id="Resource_8oj7t"]
 script = ExtResource("1_mhia6")
 level = 31
 move = ExtResource("8_cc0kj")
 
-[sub_resource type="Resource" id="Resource_r4s6f"]
+[sub_resource type="Resource" id="Resource_h14sc"]
 script = ExtResource("1_mhia6")
 level = 37
 move = ExtResource("9_8oj7t")
 
-[sub_resource type="Resource" id="Resource_n5ty6"]
+[sub_resource type="Resource" id="Resource_hh2p4"]
 script = ExtResource("1_mhia6")
 level = 43
 move = ExtResource("10_h14sc")
 
-[sub_resource type="Resource" id="Resource_k2ihf"]
+[sub_resource type="Resource" id="Resource_eamaq"]
 script = ExtResource("1_mhia6")
 level = 49
 move = ExtResource("11_hh2p4")
@@ -73,7 +73,7 @@ id = "lombre"
 display_name = "Lombre"
 dex = 271
 types = Array[ExtResource("4_ua6cv")]([ExtResource("5_4resb"), ExtResource("6_63pcs")])
-learnset = Array[ExtResource("1_mhia6")]([SubResource("Resource_eamaq"), SubResource("Resource_q3mwn"), SubResource("Resource_0t74u"), SubResource("Resource_ue6e4"), SubResource("Resource_lixwt"), SubResource("Resource_gp8y7"), SubResource("Resource_5bjl4"), SubResource("Resource_r4s6f"), SubResource("Resource_n5ty6"), SubResource("Resource_k2ihf")])
+learnset = Array[ExtResource("1_mhia6")]([SubResource("Resource_3n28x"), SubResource("Resource_lwnh1"), SubResource("Resource_hsss0"), SubResource("Resource_8tuch"), SubResource("Resource_2n41l"), SubResource("Resource_cc0kj"), SubResource("Resource_8oj7t"), SubResource("Resource_h14sc"), SubResource("Resource_hh2p4"), SubResource("Resource_eamaq")])
 temperament = ExtResource("14_3n28x")
 genus = "Pokémon Alegre"
 pokedex_entry = "Lombre es, además de travieso, nocturno; entra en acción de noche. Cuando ve a gente pescando, se pone a tirar del sedal por debajo del agua y se divierte viendo la cara de enfado que se les queda."

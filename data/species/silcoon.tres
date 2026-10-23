@@ -8,7 +8,7 @@
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="5_05t7y"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_5451h"]
 
-[sub_resource type="Resource" id="Resource_x04q4"]
+[sub_resource type="Resource" id="Resource_05t7y"]
 script = ExtResource("1_66c7t")
 move = ExtResource("2_05t7y")
 
@@ -18,7 +18,7 @@ id = "silcoon"
 display_name = "Silcoon"
 dex = 266
 types = Array[ExtResource("4_x04q4")]([ExtResource("5_5451h")])
-learnset = Array[ExtResource("1_66c7t")]([SubResource("Resource_x04q4")])
+learnset = Array[ExtResource("1_66c7t")]([SubResource("Resource_05t7y")])
 temperament = ExtResource("5_05t7y")
 genus = "Pokémon Capullo"
 pokedex_entry = "Silcoon usa la seda que produce para aferrarse a la rama de un árbol y sujetarse bien. Se queda ahí colgado a la espera de su evolución, mientras lo observa todo a través de dos pequeños agujeros en su capullo de seda."

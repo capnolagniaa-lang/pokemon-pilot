@@ -12,19 +12,19 @@
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="6_xj5hu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="8_xj5hu"]
 
-[sub_resource type="Resource" id="Resource_boqhd"]
+[sub_resource type="Resource" id="Resource_xj5hu"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("2_p8g8c")
 
-[sub_resource type="Resource" id="Resource_k00ji"]
+[sub_resource type="Resource" id="Resource_sfyxs"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("3_xj5hu")
 
-[sub_resource type="Resource" id="Resource_t1ode"]
+[sub_resource type="Resource" id="Resource_bgitb"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("4_sfyxs")
 
-[sub_resource type="Resource" id="Resource_esjls"]
+[sub_resource type="Resource" id="Resource_boqhd"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("5_bgitb")
 
@@ -34,7 +34,7 @@ id = "wigglytuff"
 display_name = "Wigglytuff"
 dex = 40
 types = Array[ExtResource("4_lyvdw")]([ExtResource("5_p8g8c"), ExtResource("6_xj5hu")])
-learnset = Array[ExtResource("1_iw7w2")]([SubResource("Resource_boqhd"), SubResource("Resource_k00ji"), SubResource("Resource_t1ode"), SubResource("Resource_esjls")])
+learnset = Array[ExtResource("1_iw7w2")]([SubResource("Resource_xj5hu"), SubResource("Resource_sfyxs"), SubResource("Resource_bgitb"), SubResource("Resource_boqhd")])
 temperament = ExtResource("8_xj5hu")
 genus = "Pokémon Globo"
 pokedex_entry = "Wigglytuff tiene unos ojos enormes con forma de platillo, que siempre están cubiertos de lágrimas. Si se le metiera algo en el ojo, enseguida se le saldría solo."

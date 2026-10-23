@@ -19,58 +19,58 @@
 [ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="13_au654"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_p7sfp"]
 
-[sub_resource type="Resource" id="Resource_pj3yt"]
+[sub_resource type="Resource" id="Resource_p7sfp"]
 script = ExtResource("1_d36n8")
 move = ExtResource("2_ttmhx")
 
-[sub_resource type="Resource" id="Resource_tpqes"]
+[sub_resource type="Resource" id="Resource_msdwf"]
 script = ExtResource("1_d36n8")
 move = ExtResource("3_p7sfp")
 
-[sub_resource type="Resource" id="Resource_5ri03"]
+[sub_resource type="Resource" id="Resource_knry1"]
 script = ExtResource("1_d36n8")
 move = ExtResource("4_msdwf")
 
-[sub_resource type="Resource" id="Resource_7b0at"]
+[sub_resource type="Resource" id="Resource_iwwfr"]
 script = ExtResource("1_d36n8")
 move = ExtResource("5_knry1")
 
-[sub_resource type="Resource" id="Resource_btbwd"]
+[sub_resource type="Resource" id="Resource_82v01"]
 script = ExtResource("1_d36n8")
 level = 16
 move = ExtResource("6_iwwfr")
 
-[sub_resource type="Resource" id="Resource_eb7ql"]
+[sub_resource type="Resource" id="Resource_pgp8m"]
 script = ExtResource("1_d36n8")
 level = 17
 move = ExtResource("7_82v01")
 
-[sub_resource type="Resource" id="Resource_aouth"]
+[sub_resource type="Resource" id="Resource_och86"]
 script = ExtResource("1_d36n8")
 level = 23
 move = ExtResource("8_pgp8m")
 
-[sub_resource type="Resource" id="Resource_crj76"]
+[sub_resource type="Resource" id="Resource_ow6ma"]
 script = ExtResource("1_d36n8")
 level = 29
 move = ExtResource("9_och86")
 
-[sub_resource type="Resource" id="Resource_ubo66"]
+[sub_resource type="Resource" id="Resource_rhejk"]
 script = ExtResource("1_d36n8")
 level = 35
 move = ExtResource("10_ow6ma")
 
-[sub_resource type="Resource" id="Resource_8be6q"]
+[sub_resource type="Resource" id="Resource_0juk3"]
 script = ExtResource("1_d36n8")
 level = 43
 move = ExtResource("11_rhejk")
 
-[sub_resource type="Resource" id="Resource_cyylh"]
+[sub_resource type="Resource" id="Resource_au654"]
 script = ExtResource("1_d36n8")
 level = 51
 move = ExtResource("12_0juk3")
 
-[sub_resource type="Resource" id="Resource_ydv2f"]
+[sub_resource type="Resource" id="Resource_pj3yt"]
 script = ExtResource("1_d36n8")
 level = 59
 move = ExtResource("13_au654")
@@ -81,7 +81,7 @@ id = "sceptile"
 display_name = "Sceptile"
 dex = 254
 types = Array[ExtResource("4_bwlb7")]([ExtResource("5_jntxj")])
-learnset = Array[ExtResource("1_d36n8")]([SubResource("Resource_pj3yt"), SubResource("Resource_tpqes"), SubResource("Resource_5ri03"), SubResource("Resource_7b0at"), SubResource("Resource_btbwd"), SubResource("Resource_eb7ql"), SubResource("Resource_aouth"), SubResource("Resource_crj76"), SubResource("Resource_ubo66"), SubResource("Resource_8be6q"), SubResource("Resource_cyylh"), SubResource("Resource_ydv2f")])
+learnset = Array[ExtResource("1_d36n8")]([SubResource("Resource_p7sfp"), SubResource("Resource_msdwf"), SubResource("Resource_knry1"), SubResource("Resource_iwwfr"), SubResource("Resource_82v01"), SubResource("Resource_pgp8m"), SubResource("Resource_och86"), SubResource("Resource_ow6ma"), SubResource("Resource_rhejk"), SubResource("Resource_0juk3"), SubResource("Resource_au654"), SubResource("Resource_pj3yt")])
 temperament = ExtResource("16_p7sfp")
 genus = "Pokémon Monte"
 pokedex_entry = "Las hojas que le salen a Sceptile del cuerpo tienen unos bordes muy afilados. Este Pokémon es muy ágil, va saltando de rama en rama y se lanza sobre el enemigo por la espalda."

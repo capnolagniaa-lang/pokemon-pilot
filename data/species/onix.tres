@@ -20,60 +20,60 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_omufe"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_q53ba"]
 
-[sub_resource type="Resource" id="Resource_prtpj"]
+[sub_resource type="Resource" id="Resource_q53ba"]
 script = ExtResource("1_ywjwf")
 move = ExtResource("2_mvmm4")
 
-[sub_resource type="Resource" id="Resource_v82ek"]
+[sub_resource type="Resource" id="Resource_cntw5"]
 script = ExtResource("1_ywjwf")
 move = ExtResource("3_q53ba")
 
-[sub_resource type="Resource" id="Resource_1ygpd"]
+[sub_resource type="Resource" id="Resource_x3xxb"]
 script = ExtResource("1_ywjwf")
 level = 8
 move = ExtResource("4_cntw5")
 
-[sub_resource type="Resource" id="Resource_o5dmi"]
+[sub_resource type="Resource" id="Resource_bdkcm"]
 script = ExtResource("1_ywjwf")
 level = 12
 move = ExtResource("5_x3xxb")
 
-[sub_resource type="Resource" id="Resource_jkb6j"]
+[sub_resource type="Resource" id="Resource_fikpi"]
 script = ExtResource("1_ywjwf")
 level = 19
 move = ExtResource("6_bdkcm")
 
-[sub_resource type="Resource" id="Resource_un8xn"]
+[sub_resource type="Resource" id="Resource_rvvt8"]
 script = ExtResource("1_ywjwf")
 level = 23
 move = ExtResource("7_fikpi")
 
-[sub_resource type="Resource" id="Resource_53imy"]
+[sub_resource type="Resource" id="Resource_tfk74"]
 script = ExtResource("1_ywjwf")
 level = 30
 move = ExtResource("8_rvvt8")
 
-[sub_resource type="Resource" id="Resource_44s0r"]
+[sub_resource type="Resource" id="Resource_crueh"]
 script = ExtResource("1_ywjwf")
 level = 34
 move = ExtResource("9_tfk74")
 
-[sub_resource type="Resource" id="Resource_rgfpa"]
+[sub_resource type="Resource" id="Resource_w5t07"]
 script = ExtResource("1_ywjwf")
 level = 41
 move = ExtResource("10_crueh")
 
-[sub_resource type="Resource" id="Resource_rok3p"]
+[sub_resource type="Resource" id="Resource_ec3h6"]
 script = ExtResource("1_ywjwf")
 level = 45
 move = ExtResource("11_w5t07")
 
-[sub_resource type="Resource" id="Resource_qpj5q"]
+[sub_resource type="Resource" id="Resource_omufe"]
 script = ExtResource("1_ywjwf")
 level = 52
 move = ExtResource("12_ec3h6")
 
-[sub_resource type="Resource" id="Resource_gui3b"]
+[sub_resource type="Resource" id="Resource_prtpj"]
 script = ExtResource("1_ywjwf")
 level = 56
 move = ExtResource("13_omufe")
@@ -84,7 +84,7 @@ id = "onix"
 display_name = "Onix"
 dex = 95
 types = Array[ExtResource("4_d1vix")]([ExtResource("5_xcmc8"), ExtResource("6_l4wvc")])
-learnset = Array[ExtResource("1_ywjwf")]([SubResource("Resource_prtpj"), SubResource("Resource_v82ek"), SubResource("Resource_1ygpd"), SubResource("Resource_o5dmi"), SubResource("Resource_jkb6j"), SubResource("Resource_un8xn"), SubResource("Resource_53imy"), SubResource("Resource_44s0r"), SubResource("Resource_rgfpa"), SubResource("Resource_rok3p"), SubResource("Resource_qpj5q"), SubResource("Resource_gui3b")])
+learnset = Array[ExtResource("1_ywjwf")]([SubResource("Resource_q53ba"), SubResource("Resource_cntw5"), SubResource("Resource_x3xxb"), SubResource("Resource_bdkcm"), SubResource("Resource_fikpi"), SubResource("Resource_rvvt8"), SubResource("Resource_tfk74"), SubResource("Resource_crueh"), SubResource("Resource_w5t07"), SubResource("Resource_ec3h6"), SubResource("Resource_omufe"), SubResource("Resource_prtpj")])
 temperament = ExtResource("16_q53ba")
 genus = "Pokémon Serpiente Roca"
 pokedex_entry = "Onix tiene un imán en el cerebro, que actúa como una brújula para no perder la orientación cuando está cavando túneles. A medida que crece, se le redondea y suaviza el cuerpo."

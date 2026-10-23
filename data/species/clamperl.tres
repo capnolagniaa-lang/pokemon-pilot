@@ -11,19 +11,19 @@
 [ext_resource type="Resource" path="res://data/moves/torbellino.tres" id="5_dsfuy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="8_pan4n"]
 
-[sub_resource type="Resource" id="Resource_rwarj"]
+[sub_resource type="Resource" id="Resource_pan4n"]
 script = ExtResource("1_4le33")
 move = ExtResource("2_8ibeo")
 
-[sub_resource type="Resource" id="Resource_j8uk8"]
+[sub_resource type="Resource" id="Resource_au3bi"]
 script = ExtResource("1_4le33")
 move = ExtResource("3_pan4n")
 
-[sub_resource type="Resource" id="Resource_r1aa6"]
+[sub_resource type="Resource" id="Resource_dsfuy"]
 script = ExtResource("1_4le33")
 move = ExtResource("4_au3bi")
 
-[sub_resource type="Resource" id="Resource_k161o"]
+[sub_resource type="Resource" id="Resource_rwarj"]
 script = ExtResource("1_4le33")
 move = ExtResource("5_dsfuy")
 
@@ -33,7 +33,7 @@ id = "clamperl"
 display_name = "Clamperl"
 dex = 366
 types = Array[ExtResource("4_0tpct")]([ExtResource("5_8ibeo")])
-learnset = Array[ExtResource("1_4le33")]([SubResource("Resource_rwarj"), SubResource("Resource_j8uk8"), SubResource("Resource_r1aa6"), SubResource("Resource_k161o")])
+learnset = Array[ExtResource("1_4le33")]([SubResource("Resource_pan4n"), SubResource("Resource_au3bi"), SubResource("Resource_dsfuy"), SubResource("Resource_rwarj")])
 temperament = ExtResource("8_pan4n")
 genus = "Pokémon Bivalvo"
 pokedex_entry = "La sólida concha que rodea a Clamperl no solo le sirve para protegerse, sino también de cepo para atrapar a su presa. Cuando la concha alcanza su mayor tamaño, presenta muescas y rasguños por todas partes."

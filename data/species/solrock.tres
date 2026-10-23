@@ -18,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_vfu72"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ssukb"]
 
-[sub_resource type="Resource" id="Resource_tl53k"]
+[sub_resource type="Resource" id="Resource_ssukb"]
 script = ExtResource("1_qj7rd")
 move = ExtResource("2_6u4ol")
 
-[sub_resource type="Resource" id="Resource_0qkfk"]
+[sub_resource type="Resource" id="Resource_sunhk"]
 script = ExtResource("1_qj7rd")
 move = ExtResource("3_ssukb")
 
-[sub_resource type="Resource" id="Resource_hj70x"]
+[sub_resource type="Resource" id="Resource_rv75y"]
 script = ExtResource("1_qj7rd")
 level = 7
 move = ExtResource("4_sunhk")
 
-[sub_resource type="Resource" id="Resource_fi7uy"]
+[sub_resource type="Resource" id="Resource_dira0"]
 script = ExtResource("1_qj7rd")
 level = 13
 move = ExtResource("5_rv75y")
 
-[sub_resource type="Resource" id="Resource_13fd6"]
+[sub_resource type="Resource" id="Resource_7088e"]
 script = ExtResource("1_qj7rd")
 level = 19
 move = ExtResource("6_dira0")
 
-[sub_resource type="Resource" id="Resource_xgwjc"]
+[sub_resource type="Resource" id="Resource_oomh5"]
 script = ExtResource("1_qj7rd")
 level = 25
 move = ExtResource("7_7088e")
 
-[sub_resource type="Resource" id="Resource_mfkwn"]
+[sub_resource type="Resource" id="Resource_upkoy"]
 script = ExtResource("1_qj7rd")
 level = 31
 move = ExtResource("8_oomh5")
 
-[sub_resource type="Resource" id="Resource_61nth"]
+[sub_resource type="Resource" id="Resource_w6xwr"]
 script = ExtResource("1_qj7rd")
 level = 37
 move = ExtResource("9_upkoy")
 
-[sub_resource type="Resource" id="Resource_oq5fx"]
+[sub_resource type="Resource" id="Resource_vfu72"]
 script = ExtResource("1_qj7rd")
 level = 43
 move = ExtResource("10_w6xwr")
 
-[sub_resource type="Resource" id="Resource_u4hr8"]
+[sub_resource type="Resource" id="Resource_tl53k"]
 script = ExtResource("1_qj7rd")
 level = 49
 move = ExtResource("11_vfu72")
@@ -72,7 +72,7 @@ id = "solrock"
 display_name = "Solrock"
 dex = 338
 types = Array[ExtResource("4_0r7va")]([ExtResource("5_u77j8"), ExtResource("6_p2ytg")])
-learnset = Array[ExtResource("1_qj7rd")]([SubResource("Resource_tl53k"), SubResource("Resource_0qkfk"), SubResource("Resource_hj70x"), SubResource("Resource_fi7uy"), SubResource("Resource_13fd6"), SubResource("Resource_xgwjc"), SubResource("Resource_mfkwn"), SubResource("Resource_61nth"), SubResource("Resource_oq5fx"), SubResource("Resource_u4hr8")])
+learnset = Array[ExtResource("1_qj7rd")]([SubResource("Resource_ssukb"), SubResource("Resource_sunhk"), SubResource("Resource_rv75y"), SubResource("Resource_dira0"), SubResource("Resource_7088e"), SubResource("Resource_oomh5"), SubResource("Resource_upkoy"), SubResource("Resource_w6xwr"), SubResource("Resource_vfu72"), SubResource("Resource_tl53k")])
 temperament = ExtResource("14_ssukb")
 genus = "Pokémon Meteorito"
 pokedex_entry = "Solrock pertenece a una nueva especie de Pokémon a la que se le atribuye una procedencia extraterrestre. Este Pokémon permanece flotando en el aire y se mueve muy despacio. Al luchar, desprende una luz viva e intensa."

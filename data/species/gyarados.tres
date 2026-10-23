@@ -17,46 +17,46 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_eh8d4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_vchwb"]
 
-[sub_resource type="Resource" id="Resource_4etnr"]
+[sub_resource type="Resource" id="Resource_vchwb"]
 script = ExtResource("1_a6qeh")
 move = ExtResource("2_tf1qy")
 
-[sub_resource type="Resource" id="Resource_8ti08"]
+[sub_resource type="Resource" id="Resource_lp2ef"]
 script = ExtResource("1_a6qeh")
 level = 20
 move = ExtResource("3_vchwb")
 
-[sub_resource type="Resource" id="Resource_b54xg"]
+[sub_resource type="Resource" id="Resource_8yyh2"]
 script = ExtResource("1_a6qeh")
 level = 25
 move = ExtResource("4_lp2ef")
 
-[sub_resource type="Resource" id="Resource_rt4cn"]
+[sub_resource type="Resource" id="Resource_0ekw6"]
 script = ExtResource("1_a6qeh")
 level = 30
 move = ExtResource("5_8yyh2")
 
-[sub_resource type="Resource" id="Resource_2vrb5"]
+[sub_resource type="Resource" id="Resource_u8xgf"]
 script = ExtResource("1_a6qeh")
 level = 35
 move = ExtResource("6_0ekw6")
 
-[sub_resource type="Resource" id="Resource_ic0ly"]
+[sub_resource type="Resource" id="Resource_tvkv5"]
 script = ExtResource("1_a6qeh")
 level = 40
 move = ExtResource("7_u8xgf")
 
-[sub_resource type="Resource" id="Resource_621ho"]
+[sub_resource type="Resource" id="Resource_mdfld"]
 script = ExtResource("1_a6qeh")
 level = 45
 move = ExtResource("8_tvkv5")
 
-[sub_resource type="Resource" id="Resource_hks27"]
+[sub_resource type="Resource" id="Resource_eh8d4"]
 script = ExtResource("1_a6qeh")
 level = 50
 move = ExtResource("9_mdfld")
 
-[sub_resource type="Resource" id="Resource_p51mx"]
+[sub_resource type="Resource" id="Resource_4etnr"]
 script = ExtResource("1_a6qeh")
 level = 55
 move = ExtResource("10_eh8d4")
@@ -67,7 +67,7 @@ id = "gyarados"
 display_name = "Gyarados"
 dex = 130
 types = Array[ExtResource("4_t6pyh")]([ExtResource("5_5ukp6"), ExtResource("6_4pfsy")])
-learnset = Array[ExtResource("1_a6qeh")]([SubResource("Resource_4etnr"), SubResource("Resource_8ti08"), SubResource("Resource_b54xg"), SubResource("Resource_rt4cn"), SubResource("Resource_2vrb5"), SubResource("Resource_ic0ly"), SubResource("Resource_621ho"), SubResource("Resource_hks27"), SubResource("Resource_p51mx")])
+learnset = Array[ExtResource("1_a6qeh")]([SubResource("Resource_vchwb"), SubResource("Resource_lp2ef"), SubResource("Resource_8yyh2"), SubResource("Resource_0ekw6"), SubResource("Resource_u8xgf"), SubResource("Resource_tvkv5"), SubResource("Resource_mdfld"), SubResource("Resource_eh8d4"), SubResource("Resource_4etnr")])
 temperament = ExtResource("13_vchwb")
 genus = "Pokémon Atrocidad"
 pokedex_entry = "Cuando Magikarp evoluciona y se convierte en Gyarados, sufre un cambio estructural en las células del cerebro. Dicen que esa transformación es la causa de la naturaleza violenta y salvaje de este Pokémon."

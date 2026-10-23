@@ -20,57 +20,57 @@
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="13_fwsae"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_focjs"]
 
-[sub_resource type="Resource" id="Resource_xeudj"]
+[sub_resource type="Resource" id="Resource_focjs"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("2_w4b4r")
 
-[sub_resource type="Resource" id="Resource_syjv5"]
+[sub_resource type="Resource" id="Resource_l4eg1"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("3_focjs")
 
-[sub_resource type="Resource" id="Resource_ljdvg"]
+[sub_resource type="Resource" id="Resource_o5430"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("4_l4eg1")
 
-[sub_resource type="Resource" id="Resource_vibji"]
+[sub_resource type="Resource" id="Resource_0wfno"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("5_o5430")
 
-[sub_resource type="Resource" id="Resource_i4ahh"]
+[sub_resource type="Resource" id="Resource_1au25"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("6_0wfno")
 
-[sub_resource type="Resource" id="Resource_8d5tw"]
+[sub_resource type="Resource" id="Resource_g345r"]
 script = ExtResource("1_sxgyn")
 level = 25
 move = ExtResource("7_1au25")
 
-[sub_resource type="Resource" id="Resource_rc21k"]
+[sub_resource type="Resource" id="Resource_evdss"]
 script = ExtResource("1_sxgyn")
 level = 31
 move = ExtResource("8_g345r")
 
-[sub_resource type="Resource" id="Resource_6aw6k"]
+[sub_resource type="Resource" id="Resource_hlqc8"]
 script = ExtResource("1_sxgyn")
 level = 37
 move = ExtResource("9_evdss")
 
-[sub_resource type="Resource" id="Resource_s4uu0"]
+[sub_resource type="Resource" id="Resource_h5ugm"]
 script = ExtResource("1_sxgyn")
 level = 40
 move = ExtResource("10_hlqc8")
 
-[sub_resource type="Resource" id="Resource_cnyvq"]
+[sub_resource type="Resource" id="Resource_x3k2w"]
 script = ExtResource("1_sxgyn")
 level = 46
 move = ExtResource("11_h5ugm")
 
-[sub_resource type="Resource" id="Resource_2qjeu"]
+[sub_resource type="Resource" id="Resource_fwsae"]
 script = ExtResource("1_sxgyn")
 level = 55
 move = ExtResource("12_x3k2w")
 
-[sub_resource type="Resource" id="Resource_54p3v"]
+[sub_resource type="Resource" id="Resource_xeudj"]
 script = ExtResource("1_sxgyn")
 level = 65
 move = ExtResource("13_fwsae")
@@ -81,7 +81,7 @@ id = "kabutops"
 display_name = "Kabutops"
 dex = 141
 types = Array[ExtResource("4_qe8t2")]([ExtResource("5_6rkw4"), ExtResource("6_gk0cw")])
-learnset = Array[ExtResource("1_sxgyn")]([SubResource("Resource_xeudj"), SubResource("Resource_syjv5"), SubResource("Resource_ljdvg"), SubResource("Resource_vibji"), SubResource("Resource_i4ahh"), SubResource("Resource_8d5tw"), SubResource("Resource_rc21k"), SubResource("Resource_6aw6k"), SubResource("Resource_s4uu0"), SubResource("Resource_cnyvq"), SubResource("Resource_2qjeu"), SubResource("Resource_54p3v")])
+learnset = Array[ExtResource("1_sxgyn")]([SubResource("Resource_focjs"), SubResource("Resource_l4eg1"), SubResource("Resource_o5430"), SubResource("Resource_0wfno"), SubResource("Resource_1au25"), SubResource("Resource_g345r"), SubResource("Resource_evdss"), SubResource("Resource_hlqc8"), SubResource("Resource_h5ugm"), SubResource("Resource_x3k2w"), SubResource("Resource_fwsae"), SubResource("Resource_xeudj")])
 temperament = ExtResource("16_focjs")
 genus = "Pokémon Armazón"
 pokedex_entry = "Hace mucho tiempo, Kabutops buceaba para atrapar a sus presas. Parece ser que en algún momento cambió de hábitat y se adaptó a vivir en tierra firme. La transformación que se aprecia en las patas y branquias así lo confirma."

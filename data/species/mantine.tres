@@ -17,45 +17,45 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="10_go0be"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_o04f8"]
 
-[sub_resource type="Resource" id="Resource_xu4m8"]
+[sub_resource type="Resource" id="Resource_o04f8"]
 script = ExtResource("1_136p7")
 move = ExtResource("2_ry7xy")
 
-[sub_resource type="Resource" id="Resource_8t2d5"]
+[sub_resource type="Resource" id="Resource_0c11b"]
 script = ExtResource("1_136p7")
 move = ExtResource("3_o04f8")
 
-[sub_resource type="Resource" id="Resource_ooc8u"]
+[sub_resource type="Resource" id="Resource_4d38n"]
 script = ExtResource("1_136p7")
 level = 8
 move = ExtResource("4_0c11b")
 
-[sub_resource type="Resource" id="Resource_8s18t"]
+[sub_resource type="Resource" id="Resource_fbikn"]
 script = ExtResource("1_136p7")
 level = 15
 move = ExtResource("5_4d38n")
 
-[sub_resource type="Resource" id="Resource_oocm3"]
+[sub_resource type="Resource" id="Resource_mc2wa"]
 script = ExtResource("1_136p7")
 level = 22
 move = ExtResource("6_fbikn")
 
-[sub_resource type="Resource" id="Resource_rfq6o"]
+[sub_resource type="Resource" id="Resource_ytffb"]
 script = ExtResource("1_136p7")
 level = 29
 move = ExtResource("7_mc2wa")
 
-[sub_resource type="Resource" id="Resource_q6xty"]
+[sub_resource type="Resource" id="Resource_pspwv"]
 script = ExtResource("1_136p7")
 level = 36
 move = ExtResource("8_ytffb")
 
-[sub_resource type="Resource" id="Resource_w2hsl"]
+[sub_resource type="Resource" id="Resource_go0be"]
 script = ExtResource("1_136p7")
 level = 43
 move = ExtResource("9_pspwv")
 
-[sub_resource type="Resource" id="Resource_lt8kf"]
+[sub_resource type="Resource" id="Resource_xu4m8"]
 script = ExtResource("1_136p7")
 level = 50
 move = ExtResource("10_go0be")
@@ -66,7 +66,7 @@ id = "mantine"
 display_name = "Mantine"
 dex = 226
 types = Array[ExtResource("4_f7ala")]([ExtResource("5_i2f2d"), ExtResource("6_r3aat")])
-learnset = Array[ExtResource("1_136p7")]([SubResource("Resource_xu4m8"), SubResource("Resource_8t2d5"), SubResource("Resource_ooc8u"), SubResource("Resource_8s18t"), SubResource("Resource_oocm3"), SubResource("Resource_rfq6o"), SubResource("Resource_q6xty"), SubResource("Resource_w2hsl"), SubResource("Resource_lt8kf")])
+learnset = Array[ExtResource("1_136p7")]([SubResource("Resource_o04f8"), SubResource("Resource_0c11b"), SubResource("Resource_4d38n"), SubResource("Resource_fbikn"), SubResource("Resource_mc2wa"), SubResource("Resource_ytffb"), SubResource("Resource_pspwv"), SubResource("Resource_go0be"), SubResource("Resource_xu4m8")])
 temperament = ExtResource("13_o04f8")
 genus = "Pokémon Milano"
 pokedex_entry = "En los días que hace sol, es posible ver bancos de Mantine saltando con elegancia por entre las olas del mar. A estos Pokémon no les molestan los Remoraid que se les pegan."

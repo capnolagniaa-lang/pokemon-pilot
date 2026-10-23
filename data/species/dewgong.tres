@@ -18,47 +18,47 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="11_pl1k6"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_tunxy"]
 
-[sub_resource type="Resource" id="Resource_7cxbb"]
+[sub_resource type="Resource" id="Resource_tunxy"]
 script = ExtResource("1_lri7t")
 move = ExtResource("2_ejr2n")
 
-[sub_resource type="Resource" id="Resource_p2wwc"]
+[sub_resource type="Resource" id="Resource_f2xtg"]
 script = ExtResource("1_lri7t")
 move = ExtResource("3_tunxy")
 
-[sub_resource type="Resource" id="Resource_ix15c"]
+[sub_resource type="Resource" id="Resource_xacqn"]
 script = ExtResource("1_lri7t")
 move = ExtResource("4_f2xtg")
 
-[sub_resource type="Resource" id="Resource_jvfdo"]
+[sub_resource type="Resource" id="Resource_vn5ab"]
 script = ExtResource("1_lri7t")
 move = ExtResource("5_xacqn")
 
-[sub_resource type="Resource" id="Resource_qnev6"]
+[sub_resource type="Resource" id="Resource_evugw"]
 script = ExtResource("1_lri7t")
 move = ExtResource("6_vn5ab")
 
-[sub_resource type="Resource" id="Resource_f1x4s"]
+[sub_resource type="Resource" id="Resource_1pe05"]
 script = ExtResource("1_lri7t")
 level = 29
 move = ExtResource("7_evugw")
 
-[sub_resource type="Resource" id="Resource_ll8tw"]
+[sub_resource type="Resource" id="Resource_2uwop"]
 script = ExtResource("1_lri7t")
 level = 34
 move = ExtResource("8_1pe05")
 
-[sub_resource type="Resource" id="Resource_hjhau"]
+[sub_resource type="Resource" id="Resource_p0pek"]
 script = ExtResource("1_lri7t")
 level = 42
 move = ExtResource("9_2uwop")
 
-[sub_resource type="Resource" id="Resource_8bu6y"]
+[sub_resource type="Resource" id="Resource_pl1k6"]
 script = ExtResource("1_lri7t")
 level = 51
 move = ExtResource("10_p0pek")
 
-[sub_resource type="Resource" id="Resource_gx2m3"]
+[sub_resource type="Resource" id="Resource_7cxbb"]
 script = ExtResource("1_lri7t")
 level = 64
 move = ExtResource("11_pl1k6")
@@ -69,7 +69,7 @@ id = "dewgong"
 display_name = "Dewgong"
 dex = 87
 types = Array[ExtResource("4_w44w8")]([ExtResource("5_acq7i"), ExtResource("6_e47bi")])
-learnset = Array[ExtResource("1_lri7t")]([SubResource("Resource_7cxbb"), SubResource("Resource_p2wwc"), SubResource("Resource_ix15c"), SubResource("Resource_jvfdo"), SubResource("Resource_qnev6"), SubResource("Resource_f1x4s"), SubResource("Resource_ll8tw"), SubResource("Resource_hjhau"), SubResource("Resource_8bu6y"), SubResource("Resource_gx2m3")])
+learnset = Array[ExtResource("1_lri7t")]([SubResource("Resource_tunxy"), SubResource("Resource_f2xtg"), SubResource("Resource_xacqn"), SubResource("Resource_vn5ab"), SubResource("Resource_evugw"), SubResource("Resource_1pe05"), SubResource("Resource_2uwop"), SubResource("Resource_p0pek"), SubResource("Resource_pl1k6"), SubResource("Resource_7cxbb")])
 temperament = ExtResource("14_tunxy")
 genus = "Pokémon León Marino"
 pokedex_entry = "A Dewgong le encanta dormitar sobre la frialdad del hielo. Antiguamente, algún que otro marino lo confundió con una sirena al verlo dormido sobre un glaciar."

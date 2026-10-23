@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/frost_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "escarcha"
+display_name = "Escarcha"
+description = "Sus ataques de hielo dejan escarcha en el rival (hasta 3). Con 3, se congela."
+color = Color(0.7, 0.92, 1.0, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"stacks_to_freeze": 3}

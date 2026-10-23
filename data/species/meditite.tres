@@ -20,61 +20,61 @@
 [ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="13_hv0am"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_wfs4k"]
 
-[sub_resource type="Resource" id="Resource_8su4c"]
+[sub_resource type="Resource" id="Resource_wfs4k"]
 script = ExtResource("1_6v4q0")
 move = ExtResource("2_ms55b")
 
-[sub_resource type="Resource" id="Resource_p0cli"]
+[sub_resource type="Resource" id="Resource_ti4yx"]
 script = ExtResource("1_6v4q0")
 level = 4
 move = ExtResource("3_wfs4k")
 
-[sub_resource type="Resource" id="Resource_d4fow"]
+[sub_resource type="Resource" id="Resource_t3kkp"]
 script = ExtResource("1_6v4q0")
 level = 9
 move = ExtResource("4_ti4yx")
 
-[sub_resource type="Resource" id="Resource_6h42v"]
+[sub_resource type="Resource" id="Resource_s3btv"]
 script = ExtResource("1_6v4q0")
 level = 12
 move = ExtResource("5_t3kkp")
 
-[sub_resource type="Resource" id="Resource_5lw3a"]
+[sub_resource type="Resource" id="Resource_6y140"]
 script = ExtResource("1_6v4q0")
 level = 17
 move = ExtResource("6_s3btv")
 
-[sub_resource type="Resource" id="Resource_f5o58"]
+[sub_resource type="Resource" id="Resource_gniai"]
 script = ExtResource("1_6v4q0")
 level = 20
 move = ExtResource("7_6y140")
 
-[sub_resource type="Resource" id="Resource_bfonh"]
+[sub_resource type="Resource" id="Resource_i6fqu"]
 script = ExtResource("1_6v4q0")
 level = 25
 move = ExtResource("8_gniai")
 
-[sub_resource type="Resource" id="Resource_j47rb"]
+[sub_resource type="Resource" id="Resource_5ekkb"]
 script = ExtResource("1_6v4q0")
 level = 28
 move = ExtResource("9_i6fqu")
 
-[sub_resource type="Resource" id="Resource_6guq3"]
+[sub_resource type="Resource" id="Resource_ipb18"]
 script = ExtResource("1_6v4q0")
 level = 33
 move = ExtResource("10_5ekkb")
 
-[sub_resource type="Resource" id="Resource_yjyfk"]
+[sub_resource type="Resource" id="Resource_lifpd"]
 script = ExtResource("1_6v4q0")
 level = 36
 move = ExtResource("11_ipb18")
 
-[sub_resource type="Resource" id="Resource_jai3c"]
+[sub_resource type="Resource" id="Resource_hv0am"]
 script = ExtResource("1_6v4q0")
 level = 41
 move = ExtResource("12_lifpd")
 
-[sub_resource type="Resource" id="Resource_11b01"]
+[sub_resource type="Resource" id="Resource_8su4c"]
 script = ExtResource("1_6v4q0")
 level = 44
 move = ExtResource("13_hv0am")
@@ -85,7 +85,7 @@ id = "meditite"
 display_name = "Meditite"
 dex = 307
 types = Array[ExtResource("4_hxrni")]([ExtResource("5_amxxq"), ExtResource("6_rnlc6")])
-learnset = Array[ExtResource("1_6v4q0")]([SubResource("Resource_8su4c"), SubResource("Resource_p0cli"), SubResource("Resource_d4fow"), SubResource("Resource_6h42v"), SubResource("Resource_5lw3a"), SubResource("Resource_f5o58"), SubResource("Resource_bfonh"), SubResource("Resource_j47rb"), SubResource("Resource_6guq3"), SubResource("Resource_yjyfk"), SubResource("Resource_jai3c"), SubResource("Resource_11b01")])
+learnset = Array[ExtResource("1_6v4q0")]([SubResource("Resource_wfs4k"), SubResource("Resource_ti4yx"), SubResource("Resource_t3kkp"), SubResource("Resource_s3btv"), SubResource("Resource_6y140"), SubResource("Resource_gniai"), SubResource("Resource_i6fqu"), SubResource("Resource_5ekkb"), SubResource("Resource_ipb18"), SubResource("Resource_lifpd"), SubResource("Resource_hv0am"), SubResource("Resource_8su4c")])
 temperament = ExtResource("16_wfs4k")
 genus = "Pokémon Meditador"
 pokedex_entry = "Meditite lleva a cabo un entrenamiento mental exhaustivo en lo más profundo de las montañas. Aunque, cuando medita, pierde toda la concentración y se descentra. Por eso, no deja nunca de entrenarse."

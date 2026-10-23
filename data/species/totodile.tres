@@ -16,45 +16,45 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_4l0fm"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_1joqu"]
 
-[sub_resource type="Resource" id="Resource_co45c"]
+[sub_resource type="Resource" id="Resource_1joqu"]
 script = ExtResource("1_ccuwx")
 move = ExtResource("2_ruy1i")
 
-[sub_resource type="Resource" id="Resource_cnp2m"]
+[sub_resource type="Resource" id="Resource_i2fxt"]
 script = ExtResource("1_ccuwx")
 move = ExtResource("3_1joqu")
 
-[sub_resource type="Resource" id="Resource_y7txa"]
+[sub_resource type="Resource" id="Resource_ycetm"]
 script = ExtResource("1_ccuwx")
 level = 7
 move = ExtResource("4_i2fxt")
 
-[sub_resource type="Resource" id="Resource_av44t"]
+[sub_resource type="Resource" id="Resource_o4f2f"]
 script = ExtResource("1_ccuwx")
 level = 13
 move = ExtResource("5_ycetm")
 
-[sub_resource type="Resource" id="Resource_hrqsy"]
+[sub_resource type="Resource" id="Resource_5kbdb"]
 script = ExtResource("1_ccuwx")
 level = 20
 move = ExtResource("6_o4f2f")
 
-[sub_resource type="Resource" id="Resource_iwlep"]
+[sub_resource type="Resource" id="Resource_orpax"]
 script = ExtResource("1_ccuwx")
 level = 27
 move = ExtResource("7_5kbdb")
 
-[sub_resource type="Resource" id="Resource_5unqm"]
+[sub_resource type="Resource" id="Resource_mi4dj"]
 script = ExtResource("1_ccuwx")
 level = 35
 move = ExtResource("8_orpax")
 
-[sub_resource type="Resource" id="Resource_e3h40"]
+[sub_resource type="Resource" id="Resource_4l0fm"]
 script = ExtResource("1_ccuwx")
 level = 43
 move = ExtResource("9_mi4dj")
 
-[sub_resource type="Resource" id="Resource_42aj1"]
+[sub_resource type="Resource" id="Resource_co45c"]
 script = ExtResource("1_ccuwx")
 level = 52
 move = ExtResource("10_4l0fm")
@@ -65,7 +65,7 @@ id = "totodile"
 display_name = "Totodile"
 dex = 158
 types = Array[ExtResource("4_365h4")]([ExtResource("5_283wf")])
-learnset = Array[ExtResource("1_ccuwx")]([SubResource("Resource_co45c"), SubResource("Resource_cnp2m"), SubResource("Resource_y7txa"), SubResource("Resource_av44t"), SubResource("Resource_hrqsy"), SubResource("Resource_iwlep"), SubResource("Resource_5unqm"), SubResource("Resource_e3h40"), SubResource("Resource_42aj1")])
+learnset = Array[ExtResource("1_ccuwx")]([SubResource("Resource_1joqu"), SubResource("Resource_i2fxt"), SubResource("Resource_ycetm"), SubResource("Resource_o4f2f"), SubResource("Resource_5kbdb"), SubResource("Resource_orpax"), SubResource("Resource_mi4dj"), SubResource("Resource_4l0fm"), SubResource("Resource_co45c")])
 temperament = ExtResource("13_1joqu")
 genus = "Pokémon Fauces"
 pokedex_entry = "Totodile tiene cuerpo pequeño, pero fuertes mandíbulas. A veces, piensa que solo está dando un mordisquito y hace unas heridas bastante considerables."

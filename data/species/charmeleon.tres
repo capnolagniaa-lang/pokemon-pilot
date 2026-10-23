@@ -17,49 +17,49 @@
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="11_58k73"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_k46cf"]
 
-[sub_resource type="Resource" id="Resource_p7upj"]
+[sub_resource type="Resource" id="Resource_k46cf"]
 script = ExtResource("1_ah8rh")
 move = ExtResource("2_ld2q8")
 
-[sub_resource type="Resource" id="Resource_shyy1"]
+[sub_resource type="Resource" id="Resource_hixbg"]
 script = ExtResource("1_ah8rh")
 move = ExtResource("3_k46cf")
 
-[sub_resource type="Resource" id="Resource_tkcgp"]
+[sub_resource type="Resource" id="Resource_eorxy"]
 script = ExtResource("1_ah8rh")
 move = ExtResource("4_hixbg")
 
-[sub_resource type="Resource" id="Resource_kd7jq"]
+[sub_resource type="Resource" id="Resource_5p8ix"]
 script = ExtResource("1_ah8rh")
 level = 13
 move = ExtResource("5_eorxy")
 
-[sub_resource type="Resource" id="Resource_dfc3o"]
+[sub_resource type="Resource" id="Resource_1auc4"]
 script = ExtResource("1_ah8rh")
 level = 20
 move = ExtResource("6_5p8ix")
 
-[sub_resource type="Resource" id="Resource_td7q1"]
+[sub_resource type="Resource" id="Resource_p6sya"]
 script = ExtResource("1_ah8rh")
 level = 27
 move = ExtResource("7_1auc4")
 
-[sub_resource type="Resource" id="Resource_r4umk"]
+[sub_resource type="Resource" id="Resource_1fke2"]
 script = ExtResource("1_ah8rh")
 level = 34
 move = ExtResource("8_p6sya")
 
-[sub_resource type="Resource" id="Resource_md2ao"]
+[sub_resource type="Resource" id="Resource_n82xw"]
 script = ExtResource("1_ah8rh")
 level = 41
 move = ExtResource("9_1fke2")
 
-[sub_resource type="Resource" id="Resource_j226s"]
+[sub_resource type="Resource" id="Resource_58k73"]
 script = ExtResource("1_ah8rh")
 level = 48
 move = ExtResource("10_n82xw")
 
-[sub_resource type="Resource" id="Resource_08q2m"]
+[sub_resource type="Resource" id="Resource_p7upj"]
 script = ExtResource("1_ah8rh")
 level = 55
 move = ExtResource("11_58k73")
@@ -70,7 +70,7 @@ id = "charmeleon"
 display_name = "Charmeleon"
 dex = 5
 types = Array[ExtResource("4_i6kif")]([ExtResource("5_uda8v")])
-learnset = Array[ExtResource("1_ah8rh")]([SubResource("Resource_p7upj"), SubResource("Resource_shyy1"), SubResource("Resource_tkcgp"), SubResource("Resource_kd7jq"), SubResource("Resource_dfc3o"), SubResource("Resource_td7q1"), SubResource("Resource_r4umk"), SubResource("Resource_md2ao"), SubResource("Resource_j226s"), SubResource("Resource_08q2m")])
+learnset = Array[ExtResource("1_ah8rh")]([SubResource("Resource_k46cf"), SubResource("Resource_hixbg"), SubResource("Resource_eorxy"), SubResource("Resource_5p8ix"), SubResource("Resource_1auc4"), SubResource("Resource_p6sya"), SubResource("Resource_1fke2"), SubResource("Resource_n82xw"), SubResource("Resource_58k73"), SubResource("Resource_p7upj")])
 temperament = ExtResource("14_k46cf")
 genus = "Pokémon Llama"
 pokedex_entry = "Charmeleon no tiene reparo en acabar con su rival usando las afiladas garras que tiene. Si su enemigo es fuerte, se vuelve agresivo, y la llama que tiene en el extremo de la cola empieza a arder con mayor intensidad tornándose azulada."

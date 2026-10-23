@@ -18,48 +18,48 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_tqnmy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ruchn"]
 
-[sub_resource type="Resource" id="Resource_0qhoe"]
+[sub_resource type="Resource" id="Resource_ruchn"]
 script = ExtResource("1_vxds6")
 move = ExtResource("2_enbr0")
 
-[sub_resource type="Resource" id="Resource_ie8w6"]
+[sub_resource type="Resource" id="Resource_5kcwq"]
 script = ExtResource("1_vxds6")
 move = ExtResource("3_ruchn")
 
-[sub_resource type="Resource" id="Resource_djry8"]
+[sub_resource type="Resource" id="Resource_mik6j"]
 script = ExtResource("1_vxds6")
 move = ExtResource("4_5kcwq")
 
-[sub_resource type="Resource" id="Resource_xod2r"]
+[sub_resource type="Resource" id="Resource_6nb8c"]
 script = ExtResource("1_vxds6")
 move = ExtResource("5_mik6j")
 
-[sub_resource type="Resource" id="Resource_ef838"]
+[sub_resource type="Resource" id="Resource_3u1uc"]
 script = ExtResource("1_vxds6")
 level = 32
 move = ExtResource("6_6nb8c")
 
-[sub_resource type="Resource" id="Resource_k0usq"]
+[sub_resource type="Resource" id="Resource_340av"]
 script = ExtResource("1_vxds6")
 level = 38
 move = ExtResource("7_3u1uc")
 
-[sub_resource type="Resource" id="Resource_cr6lj"]
+[sub_resource type="Resource" id="Resource_1ysoj"]
 script = ExtResource("1_vxds6")
 level = 44
 move = ExtResource("8_340av")
 
-[sub_resource type="Resource" id="Resource_jg07m"]
+[sub_resource type="Resource" id="Resource_gw4ti"]
 script = ExtResource("1_vxds6")
 level = 55
 move = ExtResource("9_1ysoj")
 
-[sub_resource type="Resource" id="Resource_jokyg"]
+[sub_resource type="Resource" id="Resource_tqnmy"]
 script = ExtResource("1_vxds6")
 level = 66
 move = ExtResource("10_gw4ti")
 
-[sub_resource type="Resource" id="Resource_jb5al"]
+[sub_resource type="Resource" id="Resource_0qhoe"]
 script = ExtResource("1_vxds6")
 level = 77
 move = ExtResource("11_tqnmy")
@@ -70,7 +70,7 @@ id = "metagross"
 display_name = "Metagross"
 dex = 376
 types = Array[ExtResource("4_cl10h")]([ExtResource("5_cp6rr"), ExtResource("6_nvocd")])
-learnset = Array[ExtResource("1_vxds6")]([SubResource("Resource_0qhoe"), SubResource("Resource_ie8w6"), SubResource("Resource_djry8"), SubResource("Resource_xod2r"), SubResource("Resource_ef838"), SubResource("Resource_k0usq"), SubResource("Resource_cr6lj"), SubResource("Resource_jg07m"), SubResource("Resource_jokyg"), SubResource("Resource_jb5al")])
+learnset = Array[ExtResource("1_vxds6")]([SubResource("Resource_ruchn"), SubResource("Resource_5kcwq"), SubResource("Resource_mik6j"), SubResource("Resource_6nb8c"), SubResource("Resource_3u1uc"), SubResource("Resource_340av"), SubResource("Resource_1ysoj"), SubResource("Resource_gw4ti"), SubResource("Resource_tqnmy"), SubResource("Resource_0qhoe")])
 temperament = ExtResource("14_ruchn")
 genus = "Pokémon Pata Hierro"
 pokedex_entry = "Metagross tiene cuatro cerebros en total que, combinados, son capaces de resolver cálculos complicados más rápido que el mejor ordenador que haya. Metagross puede flotar en el aire si mete las patas hacia adentro."

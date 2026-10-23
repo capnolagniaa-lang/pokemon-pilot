@@ -20,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/fisura.tres" id="13_cpveo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_cyhm8"]
 
-[sub_resource type="Resource" id="Resource_wb5qu"]
+[sub_resource type="Resource" id="Resource_cyhm8"]
 script = ExtResource("1_ahf6k")
 move = ExtResource("2_gkuih")
 
-[sub_resource type="Resource" id="Resource_p2rju"]
+[sub_resource type="Resource" id="Resource_sryea"]
 script = ExtResource("1_ahf6k")
 move = ExtResource("3_cyhm8")
 
-[sub_resource type="Resource" id="Resource_yqmcn"]
+[sub_resource type="Resource" id="Resource_tmmih"]
 script = ExtResource("1_ahf6k")
 move = ExtResource("4_sryea")
 
-[sub_resource type="Resource" id="Resource_snqbb"]
+[sub_resource type="Resource" id="Resource_5qam5"]
 script = ExtResource("1_ahf6k")
 move = ExtResource("5_tmmih")
 
-[sub_resource type="Resource" id="Resource_n22fx"]
+[sub_resource type="Resource" id="Resource_6uccw"]
 script = ExtResource("1_ahf6k")
 level = 11
 move = ExtResource("6_5qam5")
 
-[sub_resource type="Resource" id="Resource_wutse"]
+[sub_resource type="Resource" id="Resource_a0afg"]
 script = ExtResource("1_ahf6k")
 level = 16
 move = ExtResource("7_6uccw")
 
-[sub_resource type="Resource" id="Resource_kdfxe"]
+[sub_resource type="Resource" id="Resource_mdqsc"]
 script = ExtResource("1_ahf6k")
 level = 21
 move = ExtResource("8_a0afg")
 
-[sub_resource type="Resource" id="Resource_v78c1"]
+[sub_resource type="Resource" id="Resource_2eigm"]
 script = ExtResource("1_ahf6k")
 level = 26
 move = ExtResource("9_mdqsc")
 
-[sub_resource type="Resource" id="Resource_wnpc5"]
+[sub_resource type="Resource" id="Resource_24woj"]
 script = ExtResource("1_ahf6k")
 level = 26
 move = ExtResource("10_2eigm")
 
-[sub_resource type="Resource" id="Resource_d8k5c"]
+[sub_resource type="Resource" id="Resource_b4oxh"]
 script = ExtResource("1_ahf6k")
 level = 36
 move = ExtResource("11_24woj")
 
-[sub_resource type="Resource" id="Resource_taoku"]
+[sub_resource type="Resource" id="Resource_cpveo"]
 script = ExtResource("1_ahf6k")
 level = 46
 move = ExtResource("12_b4oxh")
 
-[sub_resource type="Resource" id="Resource_3cnyt"]
+[sub_resource type="Resource" id="Resource_wb5qu"]
 script = ExtResource("1_ahf6k")
 level = 56
 move = ExtResource("13_cpveo")
@@ -82,7 +82,7 @@ id = "whiscash"
 display_name = "Whiscash"
 dex = 340
 types = Array[ExtResource("4_r6kra")]([ExtResource("5_yt7ss"), ExtResource("6_f8knj")])
-learnset = Array[ExtResource("1_ahf6k")]([SubResource("Resource_wb5qu"), SubResource("Resource_p2rju"), SubResource("Resource_yqmcn"), SubResource("Resource_snqbb"), SubResource("Resource_n22fx"), SubResource("Resource_wutse"), SubResource("Resource_kdfxe"), SubResource("Resource_v78c1"), SubResource("Resource_wnpc5"), SubResource("Resource_d8k5c"), SubResource("Resource_taoku"), SubResource("Resource_3cnyt")])
+learnset = Array[ExtResource("1_ahf6k")]([SubResource("Resource_cyhm8"), SubResource("Resource_sryea"), SubResource("Resource_tmmih"), SubResource("Resource_5qam5"), SubResource("Resource_6uccw"), SubResource("Resource_a0afg"), SubResource("Resource_mdqsc"), SubResource("Resource_2eigm"), SubResource("Resource_24woj"), SubResource("Resource_b4oxh"), SubResource("Resource_cpveo"), SubResource("Resource_wb5qu")])
 temperament = ExtResource("16_cyhm8")
 genus = "Pokémon Bigotudo"
 pokedex_entry = "Whiscash defiende su territorio a toda costa. Es capaz de apoderarse de un estanque entero para sí solo. Si alguien se le acerca, se revolverá y provocará un terremoto devastador."

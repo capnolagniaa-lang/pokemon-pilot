@@ -16,38 +16,38 @@
 [ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="9_ejl6d"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_7cwtk"]
 
-[sub_resource type="Resource" id="Resource_1mfg2"]
+[sub_resource type="Resource" id="Resource_7cwtk"]
 script = ExtResource("1_cfwdq")
 move = ExtResource("2_v7wql")
 
-[sub_resource type="Resource" id="Resource_featm"]
+[sub_resource type="Resource" id="Resource_54okq"]
 script = ExtResource("1_cfwdq")
 move = ExtResource("3_7cwtk")
 
-[sub_resource type="Resource" id="Resource_h8scm"]
+[sub_resource type="Resource" id="Resource_60odb"]
 script = ExtResource("1_cfwdq")
 move = ExtResource("4_54okq")
 
-[sub_resource type="Resource" id="Resource_0l6mb"]
+[sub_resource type="Resource" id="Resource_0mgy6"]
 script = ExtResource("1_cfwdq")
 move = ExtResource("5_60odb")
 
-[sub_resource type="Resource" id="Resource_l2kje"]
+[sub_resource type="Resource" id="Resource_hoch6"]
 script = ExtResource("1_cfwdq")
 level = 29
 move = ExtResource("6_0mgy6")
 
-[sub_resource type="Resource" id="Resource_neinb"]
+[sub_resource type="Resource" id="Resource_1f8yx"]
 script = ExtResource("1_cfwdq")
 level = 40
 move = ExtResource("7_hoch6")
 
-[sub_resource type="Resource" id="Resource_8sv5c"]
+[sub_resource type="Resource" id="Resource_ejl6d"]
 script = ExtResource("1_cfwdq")
 level = 51
 move = ExtResource("8_1f8yx")
 
-[sub_resource type="Resource" id="Resource_ju182"]
+[sub_resource type="Resource" id="Resource_1mfg2"]
 script = ExtResource("1_cfwdq")
 level = 62
 move = ExtResource("9_ejl6d")
@@ -58,7 +58,7 @@ id = "kingdra"
 display_name = "Kingdra"
 dex = 230
 types = Array[ExtResource("4_tnban")]([ExtResource("5_vo6j4"), ExtResource("6_8lx6b")])
-learnset = Array[ExtResource("1_cfwdq")]([SubResource("Resource_1mfg2"), SubResource("Resource_featm"), SubResource("Resource_h8scm"), SubResource("Resource_0l6mb"), SubResource("Resource_l2kje"), SubResource("Resource_neinb"), SubResource("Resource_8sv5c"), SubResource("Resource_ju182")])
+learnset = Array[ExtResource("1_cfwdq")]([SubResource("Resource_7cwtk"), SubResource("Resource_54okq"), SubResource("Resource_60odb"), SubResource("Resource_0mgy6"), SubResource("Resource_hoch6"), SubResource("Resource_1f8yx"), SubResource("Resource_ejl6d"), SubResource("Resource_1mfg2")])
 temperament = ExtResource("12_7cwtk")
 genus = "Pokémon Dragón"
 pokedex_entry = "Kingdra vive en lo más profundo del océano, donde no habita ninguna otra especie. Siempre se ha pensado que su bostezo causaba las corrientes en remolino que se dan en el océano."

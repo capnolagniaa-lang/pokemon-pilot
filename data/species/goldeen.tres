@@ -18,54 +18,54 @@
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="12_8sl41"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_8l3fm"]
 
-[sub_resource type="Resource" id="Resource_nh1yx"]
+[sub_resource type="Resource" id="Resource_8l3fm"]
 script = ExtResource("1_mko5e")
 move = ExtResource("2_5pnpu")
 
-[sub_resource type="Resource" id="Resource_e1b83"]
+[sub_resource type="Resource" id="Resource_7557t"]
 script = ExtResource("1_mko5e")
 move = ExtResource("3_8l3fm")
 
-[sub_resource type="Resource" id="Resource_xunk1"]
+[sub_resource type="Resource" id="Resource_ayumo"]
 script = ExtResource("1_mko5e")
 move = ExtResource("4_7557t")
 
-[sub_resource type="Resource" id="Resource_wrmq3"]
+[sub_resource type="Resource" id="Resource_730hc"]
 script = ExtResource("1_mko5e")
 level = 10
 move = ExtResource("5_ayumo")
 
-[sub_resource type="Resource" id="Resource_0wxu5"]
+[sub_resource type="Resource" id="Resource_gxj21"]
 script = ExtResource("1_mko5e")
 level = 15
 move = ExtResource("6_730hc")
 
-[sub_resource type="Resource" id="Resource_rpfd7"]
+[sub_resource type="Resource" id="Resource_2lndn"]
 script = ExtResource("1_mko5e")
 level = 24
 move = ExtResource("7_gxj21")
 
-[sub_resource type="Resource" id="Resource_1g172"]
+[sub_resource type="Resource" id="Resource_nthx2"]
 script = ExtResource("1_mko5e")
 level = 29
 move = ExtResource("8_2lndn")
 
-[sub_resource type="Resource" id="Resource_85aa8"]
+[sub_resource type="Resource" id="Resource_k3026"]
 script = ExtResource("1_mko5e")
 level = 38
 move = ExtResource("9_nthx2")
 
-[sub_resource type="Resource" id="Resource_1gt1e"]
+[sub_resource type="Resource" id="Resource_wcwsi"]
 script = ExtResource("1_mko5e")
 level = 43
 move = ExtResource("10_k3026")
 
-[sub_resource type="Resource" id="Resource_oxisi"]
+[sub_resource type="Resource" id="Resource_8sl41"]
 script = ExtResource("1_mko5e")
 level = 52
 move = ExtResource("11_wcwsi")
 
-[sub_resource type="Resource" id="Resource_em3pm"]
+[sub_resource type="Resource" id="Resource_nh1yx"]
 script = ExtResource("1_mko5e")
 level = 57
 move = ExtResource("12_8sl41")
@@ -76,7 +76,7 @@ id = "goldeen"
 display_name = "Goldeen"
 dex = 118
 types = Array[ExtResource("4_mgws1")]([ExtResource("5_v7an6")])
-learnset = Array[ExtResource("1_mko5e")]([SubResource("Resource_nh1yx"), SubResource("Resource_e1b83"), SubResource("Resource_xunk1"), SubResource("Resource_wrmq3"), SubResource("Resource_0wxu5"), SubResource("Resource_rpfd7"), SubResource("Resource_1g172"), SubResource("Resource_85aa8"), SubResource("Resource_1gt1e"), SubResource("Resource_oxisi"), SubResource("Resource_em3pm")])
+learnset = Array[ExtResource("1_mko5e")]([SubResource("Resource_8l3fm"), SubResource("Resource_7557t"), SubResource("Resource_ayumo"), SubResource("Resource_730hc"), SubResource("Resource_gxj21"), SubResource("Resource_2lndn"), SubResource("Resource_nthx2"), SubResource("Resource_k3026"), SubResource("Resource_wcwsi"), SubResource("Resource_8sl41"), SubResource("Resource_nh1yx")])
 temperament = ExtResource("15_8l3fm")
 genus = "Pokémon Pez Color"
 pokedex_entry = "Goldeen es un bello Pokémon que mueve con elegancia las aletas en el agua. Con todo, no hay que bajar la guardia, en cualquier momento puede embestir con el cuerno."

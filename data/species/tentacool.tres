@@ -17,46 +17,46 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_ioths"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_v56k7"]
 
-[sub_resource type="Resource" id="Resource_dv8ij"]
+[sub_resource type="Resource" id="Resource_v56k7"]
 script = ExtResource("1_j2cjp")
 move = ExtResource("2_gq3h3")
 
-[sub_resource type="Resource" id="Resource_6sav3"]
+[sub_resource type="Resource" id="Resource_m1p8o"]
 script = ExtResource("1_j2cjp")
 level = 6
 move = ExtResource("3_v56k7")
 
-[sub_resource type="Resource" id="Resource_jwiur"]
+[sub_resource type="Resource" id="Resource_2vwjt"]
 script = ExtResource("1_j2cjp")
 level = 12
 move = ExtResource("4_m1p8o")
 
-[sub_resource type="Resource" id="Resource_roddf"]
+[sub_resource type="Resource" id="Resource_8qu4y"]
 script = ExtResource("1_j2cjp")
 level = 19
 move = ExtResource("5_2vwjt")
 
-[sub_resource type="Resource" id="Resource_2kxjg"]
+[sub_resource type="Resource" id="Resource_yf5fu"]
 script = ExtResource("1_j2cjp")
 level = 25
 move = ExtResource("6_8qu4y")
 
-[sub_resource type="Resource" id="Resource_8s5sv"]
+[sub_resource type="Resource" id="Resource_jself"]
 script = ExtResource("1_j2cjp")
 level = 30
 move = ExtResource("7_yf5fu")
 
-[sub_resource type="Resource" id="Resource_d3lvh"]
+[sub_resource type="Resource" id="Resource_yekoe"]
 script = ExtResource("1_j2cjp")
 level = 36
 move = ExtResource("8_jself")
 
-[sub_resource type="Resource" id="Resource_2q4nl"]
+[sub_resource type="Resource" id="Resource_ioths"]
 script = ExtResource("1_j2cjp")
 level = 43
 move = ExtResource("9_yekoe")
 
-[sub_resource type="Resource" id="Resource_nak4t"]
+[sub_resource type="Resource" id="Resource_dv8ij"]
 script = ExtResource("1_j2cjp")
 level = 49
 move = ExtResource("10_ioths")
@@ -67,7 +67,7 @@ id = "tentacool"
 display_name = "Tentacool"
 dex = 72
 types = Array[ExtResource("4_5vsut")]([ExtResource("5_6pkhc"), ExtResource("6_hebsy")])
-learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_dv8ij"), SubResource("Resource_6sav3"), SubResource("Resource_jwiur"), SubResource("Resource_roddf"), SubResource("Resource_2kxjg"), SubResource("Resource_8s5sv"), SubResource("Resource_d3lvh"), SubResource("Resource_2q4nl"), SubResource("Resource_nak4t")])
+learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_v56k7"), SubResource("Resource_m1p8o"), SubResource("Resource_2vwjt"), SubResource("Resource_8qu4y"), SubResource("Resource_yf5fu"), SubResource("Resource_jself"), SubResource("Resource_yekoe"), SubResource("Resource_ioths"), SubResource("Resource_dv8ij")])
 temperament = ExtResource("13_v56k7")
 genus = "Pokémon Medusa"
 pokedex_entry = "Tentacool está compuesto en su mayor parte por agua. Si se le saca del mar, se secará y se quedará acartonado. Si este Pokémon se deshidrata, hay que echarlo inmediatamente de vuelta al mar."

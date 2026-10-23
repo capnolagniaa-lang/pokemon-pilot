@@ -16,40 +16,40 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_syuat"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_vy8e8"]
 
-[sub_resource type="Resource" id="Resource_r0pac"]
+[sub_resource type="Resource" id="Resource_vy8e8"]
 script = ExtResource("1_le4pc")
 move = ExtResource("2_y01c1")
 
-[sub_resource type="Resource" id="Resource_5vds5"]
+[sub_resource type="Resource" id="Resource_ptctw"]
 script = ExtResource("1_le4pc")
 move = ExtResource("3_vy8e8")
 
-[sub_resource type="Resource" id="Resource_sf50w"]
+[sub_resource type="Resource" id="Resource_ruktm"]
 script = ExtResource("1_le4pc")
 level = 7
 move = ExtResource("4_ptctw")
 
-[sub_resource type="Resource" id="Resource_0rigk"]
+[sub_resource type="Resource" id="Resource_30py7"]
 script = ExtResource("1_le4pc")
 level = 13
 move = ExtResource("5_ruktm")
 
-[sub_resource type="Resource" id="Resource_ydhig"]
+[sub_resource type="Resource" id="Resource_pwigo"]
 script = ExtResource("1_le4pc")
 level = 21
 move = ExtResource("6_30py7")
 
-[sub_resource type="Resource" id="Resource_qcp6o"]
+[sub_resource type="Resource" id="Resource_6lsgc"]
 script = ExtResource("1_le4pc")
 level = 31
 move = ExtResource("7_pwigo")
 
-[sub_resource type="Resource" id="Resource_bgq1c"]
+[sub_resource type="Resource" id="Resource_syuat"]
 script = ExtResource("1_le4pc")
 level = 43
 move = ExtResource("8_6lsgc")
 
-[sub_resource type="Resource" id="Resource_7jq7i"]
+[sub_resource type="Resource" id="Resource_r0pac"]
 script = ExtResource("1_le4pc")
 level = 55
 move = ExtResource("9_syuat")
@@ -60,7 +60,7 @@ id = "wingull"
 display_name = "Wingull"
 dex = 278
 types = Array[ExtResource("4_85dm2")]([ExtResource("5_0y2wj"), ExtResource("6_hohtl")])
-learnset = Array[ExtResource("1_le4pc")]([SubResource("Resource_r0pac"), SubResource("Resource_5vds5"), SubResource("Resource_sf50w"), SubResource("Resource_0rigk"), SubResource("Resource_ydhig"), SubResource("Resource_qcp6o"), SubResource("Resource_bgq1c"), SubResource("Resource_7jq7i")])
+learnset = Array[ExtResource("1_le4pc")]([SubResource("Resource_vy8e8"), SubResource("Resource_ptctw"), SubResource("Resource_ruktm"), SubResource("Resource_30py7"), SubResource("Resource_pwigo"), SubResource("Resource_6lsgc"), SubResource("Resource_syuat"), SubResource("Resource_r0pac")])
 temperament = ExtResource("12_vy8e8")
 genus = "Pokémon Gaviota"
 pokedex_entry = "Wingull tiene la costumbre de llevar a su presa y objetos de valor en el pico, y esconderlos en distintos sitios. Este Pokémon vuela dejándose llevar por las corrientes de aire como si fuera patinando por el cielo."

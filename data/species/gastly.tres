@@ -19,55 +19,55 @@
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="12_fsam3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_dpvxw"]
 
-[sub_resource type="Resource" id="Resource_6lalm"]
+[sub_resource type="Resource" id="Resource_dpvxw"]
 script = ExtResource("1_th1by")
 move = ExtResource("2_tu6k7")
 
-[sub_resource type="Resource" id="Resource_uw8x3"]
+[sub_resource type="Resource" id="Resource_jrquo"]
 script = ExtResource("1_th1by")
 move = ExtResource("3_dpvxw")
 
-[sub_resource type="Resource" id="Resource_gtmid"]
+[sub_resource type="Resource" id="Resource_aahk2"]
 script = ExtResource("1_th1by")
 level = 8
 move = ExtResource("4_jrquo")
 
-[sub_resource type="Resource" id="Resource_ytx18"]
+[sub_resource type="Resource" id="Resource_3fpa7"]
 script = ExtResource("1_th1by")
 level = 13
 move = ExtResource("5_aahk2")
 
-[sub_resource type="Resource" id="Resource_opouk"]
+[sub_resource type="Resource" id="Resource_2cl34"]
 script = ExtResource("1_th1by")
 level = 16
 move = ExtResource("6_3fpa7")
 
-[sub_resource type="Resource" id="Resource_15f8p"]
+[sub_resource type="Resource" id="Resource_r1nbr"]
 script = ExtResource("1_th1by")
 level = 21
 move = ExtResource("7_2cl34")
 
-[sub_resource type="Resource" id="Resource_e5arh"]
+[sub_resource type="Resource" id="Resource_yvqe3"]
 script = ExtResource("1_th1by")
 level = 28
 move = ExtResource("8_r1nbr")
 
-[sub_resource type="Resource" id="Resource_lsl4q"]
+[sub_resource type="Resource" id="Resource_eehaq"]
 script = ExtResource("1_th1by")
 level = 33
 move = ExtResource("9_yvqe3")
 
-[sub_resource type="Resource" id="Resource_5p4cb"]
+[sub_resource type="Resource" id="Resource_gujrw"]
 script = ExtResource("1_th1by")
 level = 36
 move = ExtResource("10_eehaq")
 
-[sub_resource type="Resource" id="Resource_38iye"]
+[sub_resource type="Resource" id="Resource_fsam3"]
 script = ExtResource("1_th1by")
 level = 41
 move = ExtResource("11_gujrw")
 
-[sub_resource type="Resource" id="Resource_6vedf"]
+[sub_resource type="Resource" id="Resource_6lalm"]
 script = ExtResource("1_th1by")
 level = 48
 move = ExtResource("12_fsam3")
@@ -78,7 +78,7 @@ id = "gastly"
 display_name = "Gastly"
 dex = 92
 types = Array[ExtResource("4_wifl8")]([ExtResource("5_ok2dg"), ExtResource("6_lnh3h")])
-learnset = Array[ExtResource("1_th1by")]([SubResource("Resource_6lalm"), SubResource("Resource_uw8x3"), SubResource("Resource_gtmid"), SubResource("Resource_ytx18"), SubResource("Resource_opouk"), SubResource("Resource_15f8p"), SubResource("Resource_e5arh"), SubResource("Resource_lsl4q"), SubResource("Resource_5p4cb"), SubResource("Resource_38iye"), SubResource("Resource_6vedf")])
+learnset = Array[ExtResource("1_th1by")]([SubResource("Resource_dpvxw"), SubResource("Resource_jrquo"), SubResource("Resource_aahk2"), SubResource("Resource_3fpa7"), SubResource("Resource_2cl34"), SubResource("Resource_r1nbr"), SubResource("Resource_yvqe3"), SubResource("Resource_eehaq"), SubResource("Resource_gujrw"), SubResource("Resource_fsam3"), SubResource("Resource_6lalm")])
 temperament = ExtResource("15_dpvxw")
 genus = "Pokémon Gas"
 pokedex_entry = "Gastly está compuesto en gran medida de materia gaseosa. Cuando hay viento, el aire arrastra parte de esta materia y el Pokémon mengua. Suelen agruparse bajo los aleros de las casas para resguardarse del viento."

@@ -17,44 +17,44 @@
 [ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="10_l2svw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_lgpf3"]
 
-[sub_resource type="Resource" id="Resource_ishku"]
+[sub_resource type="Resource" id="Resource_lgpf3"]
 script = ExtResource("1_50i45")
 move = ExtResource("2_gx7rg")
 
-[sub_resource type="Resource" id="Resource_6c71i"]
+[sub_resource type="Resource" id="Resource_0df41"]
 script = ExtResource("1_50i45")
 move = ExtResource("3_lgpf3")
 
-[sub_resource type="Resource" id="Resource_qx146"]
+[sub_resource type="Resource" id="Resource_wyw52"]
 script = ExtResource("1_50i45")
 move = ExtResource("4_0df41")
 
-[sub_resource type="Resource" id="Resource_w0a5x"]
+[sub_resource type="Resource" id="Resource_hi3c1"]
 script = ExtResource("1_50i45")
 level = 19
 move = ExtResource("5_wyw52")
 
-[sub_resource type="Resource" id="Resource_hf3yq"]
+[sub_resource type="Resource" id="Resource_qm45p"]
 script = ExtResource("1_50i45")
 level = 27
 move = ExtResource("6_hi3c1")
 
-[sub_resource type="Resource" id="Resource_vohn3"]
+[sub_resource type="Resource" id="Resource_eklxg"]
 script = ExtResource("1_50i45")
 level = 35
 move = ExtResource("7_qm45p")
 
-[sub_resource type="Resource" id="Resource_4x8ou"]
+[sub_resource type="Resource" id="Resource_y4cts"]
 script = ExtResource("1_50i45")
 level = 43
 move = ExtResource("8_eklxg")
 
-[sub_resource type="Resource" id="Resource_dg5rb"]
+[sub_resource type="Resource" id="Resource_l2svw"]
 script = ExtResource("1_50i45")
 level = 51
 move = ExtResource("9_y4cts")
 
-[sub_resource type="Resource" id="Resource_3yfuw"]
+[sub_resource type="Resource" id="Resource_ishku"]
 script = ExtResource("1_50i45")
 level = 59
 move = ExtResource("10_l2svw")
@@ -65,7 +65,7 @@ id = "parasect"
 display_name = "Parasect"
 dex = 47
 types = Array[ExtResource("4_61tf4")]([ExtResource("5_psnuu"), ExtResource("6_tx5sd")])
-learnset = Array[ExtResource("1_50i45")]([SubResource("Resource_ishku"), SubResource("Resource_6c71i"), SubResource("Resource_qx146"), SubResource("Resource_w0a5x"), SubResource("Resource_hf3yq"), SubResource("Resource_vohn3"), SubResource("Resource_4x8ou"), SubResource("Resource_dg5rb"), SubResource("Resource_3yfuw")])
+learnset = Array[ExtResource("1_50i45")]([SubResource("Resource_lgpf3"), SubResource("Resource_0df41"), SubResource("Resource_wyw52"), SubResource("Resource_hi3c1"), SubResource("Resource_qm45p"), SubResource("Resource_eklxg"), SubResource("Resource_y4cts"), SubResource("Resource_l2svw"), SubResource("Resource_ishku")])
 temperament = ExtResource("13_lgpf3")
 genus = "Pokémon Hongo"
 pokedex_entry = "Parasect es conocido por destruir en plaga grandes árboles, absorbiendo los nutrientes que tienen en la parte baja del tronco y las raíces. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante."

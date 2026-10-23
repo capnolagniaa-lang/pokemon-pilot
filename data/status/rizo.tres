@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "rizo"
+display_name = "Rizo Defensa"
+color = Color(0.75, 0.65, 0.45, 1)
+duration = 4.0
+element = ExtResource("1_x")
+damage_taken_mult = 0.5
+tint_strength = 0.25
+fx_amount = 3

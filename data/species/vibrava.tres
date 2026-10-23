@@ -17,43 +17,43 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_d2g8h"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_y1hps"]
 
-[sub_resource type="Resource" id="Resource_42pxa"]
+[sub_resource type="Resource" id="Resource_y1hps"]
 script = ExtResource("1_2lc0y")
 move = ExtResource("2_a458p")
 
-[sub_resource type="Resource" id="Resource_etl1s"]
+[sub_resource type="Resource" id="Resource_kxyk8"]
 script = ExtResource("1_2lc0y")
 move = ExtResource("3_y1hps")
 
-[sub_resource type="Resource" id="Resource_siyay"]
+[sub_resource type="Resource" id="Resource_fcihx"]
 script = ExtResource("1_2lc0y")
 move = ExtResource("4_kxyk8")
 
-[sub_resource type="Resource" id="Resource_ohe6u"]
+[sub_resource type="Resource" id="Resource_3oo8h"]
 script = ExtResource("1_2lc0y")
 move = ExtResource("5_fcihx")
 
-[sub_resource type="Resource" id="Resource_pojs0"]
+[sub_resource type="Resource" id="Resource_td0kh"]
 script = ExtResource("1_2lc0y")
 level = 33
 move = ExtResource("6_3oo8h")
 
-[sub_resource type="Resource" id="Resource_5ea7s"]
+[sub_resource type="Resource" id="Resource_rse0b"]
 script = ExtResource("1_2lc0y")
 level = 35
 move = ExtResource("7_td0kh")
 
-[sub_resource type="Resource" id="Resource_nuyg4"]
+[sub_resource type="Resource" id="Resource_p0frf"]
 script = ExtResource("1_2lc0y")
 level = 41
 move = ExtResource("8_rse0b")
 
-[sub_resource type="Resource" id="Resource_sth36"]
+[sub_resource type="Resource" id="Resource_d2g8h"]
 script = ExtResource("1_2lc0y")
 level = 49
 move = ExtResource("9_p0frf")
 
-[sub_resource type="Resource" id="Resource_qx443"]
+[sub_resource type="Resource" id="Resource_42pxa"]
 script = ExtResource("1_2lc0y")
 level = 57
 move = ExtResource("10_d2g8h")
@@ -64,7 +64,7 @@ id = "vibrava"
 display_name = "Vibrava"
 dex = 329
 types = Array[ExtResource("4_dxr0i")]([ExtResource("5_usa5c"), ExtResource("6_rkhej")])
-learnset = Array[ExtResource("1_2lc0y")]([SubResource("Resource_42pxa"), SubResource("Resource_etl1s"), SubResource("Resource_siyay"), SubResource("Resource_ohe6u"), SubResource("Resource_pojs0"), SubResource("Resource_5ea7s"), SubResource("Resource_nuyg4"), SubResource("Resource_sth36"), SubResource("Resource_qx443")])
+learnset = Array[ExtResource("1_2lc0y")]([SubResource("Resource_y1hps"), SubResource("Resource_kxyk8"), SubResource("Resource_fcihx"), SubResource("Resource_3oo8h"), SubResource("Resource_td0kh"), SubResource("Resource_rse0b"), SubResource("Resource_p0frf"), SubResource("Resource_d2g8h"), SubResource("Resource_42pxa")])
 temperament = ExtResource("13_y1hps")
 genus = "Pokémon Vibrante"
 pokedex_entry = "Para debilitar a su víctima, Vibrava genera ondas ultrasónicas haciendo vibrar con fuerza las alas. Las ondas que crea son tan fuertes que pueden dar dolor de cabeza a la gente."

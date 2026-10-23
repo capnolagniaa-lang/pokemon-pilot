@@ -18,48 +18,48 @@
 [ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="11_loljj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_4os5u"]
 
-[sub_resource type="Resource" id="Resource_tx4l4"]
+[sub_resource type="Resource" id="Resource_4os5u"]
 script = ExtResource("1_rqryc")
 move = ExtResource("2_a7m7g")
 
-[sub_resource type="Resource" id="Resource_56icb"]
+[sub_resource type="Resource" id="Resource_8gcjo"]
 script = ExtResource("1_rqryc")
 move = ExtResource("3_4os5u")
 
-[sub_resource type="Resource" id="Resource_74om0"]
+[sub_resource type="Resource" id="Resource_yv7ty"]
 script = ExtResource("1_rqryc")
 move = ExtResource("4_8gcjo")
 
-[sub_resource type="Resource" id="Resource_6e32l"]
+[sub_resource type="Resource" id="Resource_runcq"]
 script = ExtResource("1_rqryc")
 move = ExtResource("5_yv7ty")
 
-[sub_resource type="Resource" id="Resource_ydmp5"]
+[sub_resource type="Resource" id="Resource_osj6e"]
 script = ExtResource("1_rqryc")
 level = 25
 move = ExtResource("6_runcq")
 
-[sub_resource type="Resource" id="Resource_tl8pc"]
+[sub_resource type="Resource" id="Resource_wxofo"]
 script = ExtResource("1_rqryc")
 level = 31
 move = ExtResource("7_osj6e")
 
-[sub_resource type="Resource" id="Resource_5os2x"]
+[sub_resource type="Resource" id="Resource_4ihkw"]
 script = ExtResource("1_rqryc")
 level = 37
 move = ExtResource("8_wxofo")
 
-[sub_resource type="Resource" id="Resource_k7syc"]
+[sub_resource type="Resource" id="Resource_tt2yf"]
 script = ExtResource("1_rqryc")
 level = 46
 move = ExtResource("9_4ihkw")
 
-[sub_resource type="Resource" id="Resource_oaok4"]
+[sub_resource type="Resource" id="Resource_loljj"]
 script = ExtResource("1_rqryc")
 level = 55
 move = ExtResource("10_tt2yf")
 
-[sub_resource type="Resource" id="Resource_o4n3s"]
+[sub_resource type="Resource" id="Resource_tx4l4"]
 script = ExtResource("1_rqryc")
 level = 64
 move = ExtResource("11_loljj")
@@ -70,7 +70,7 @@ id = "armaldo"
 display_name = "Armaldo"
 dex = 348
 types = Array[ExtResource("4_3u24l")]([ExtResource("5_bkoxq"), ExtResource("6_nsg6x")])
-learnset = Array[ExtResource("1_rqryc")]([SubResource("Resource_tx4l4"), SubResource("Resource_56icb"), SubResource("Resource_74om0"), SubResource("Resource_6e32l"), SubResource("Resource_ydmp5"), SubResource("Resource_tl8pc"), SubResource("Resource_5os2x"), SubResource("Resource_k7syc"), SubResource("Resource_oaok4"), SubResource("Resource_o4n3s")])
+learnset = Array[ExtResource("1_rqryc")]([SubResource("Resource_4os5u"), SubResource("Resource_8gcjo"), SubResource("Resource_yv7ty"), SubResource("Resource_runcq"), SubResource("Resource_osj6e"), SubResource("Resource_wxofo"), SubResource("Resource_4ihkw"), SubResource("Resource_tt2yf"), SubResource("Resource_loljj"), SubResource("Resource_tx4l4")])
 temperament = ExtResource("14_4os5u")
 genus = "Pokémon Armadura"
 pokedex_entry = "Armaldo tiene una sólida armadura que repele cualquier ataque. Este Pokémon puede estirar o encoger todo lo que quiera las pinzas que tiene. Con ellas, puede atravesar una plancha de acero."

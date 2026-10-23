@@ -18,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_lkcne"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_k4nbv"]
 
-[sub_resource type="Resource" id="Resource_ep4fx"]
+[sub_resource type="Resource" id="Resource_k4nbv"]
 script = ExtResource("1_ki5ru")
 move = ExtResource("2_bnuc2")
 
-[sub_resource type="Resource" id="Resource_qhv6w"]
+[sub_resource type="Resource" id="Resource_de5di"]
 script = ExtResource("1_ki5ru")
 move = ExtResource("3_k4nbv")
 
-[sub_resource type="Resource" id="Resource_vgoiq"]
+[sub_resource type="Resource" id="Resource_k66n7"]
 script = ExtResource("1_ki5ru")
 level = 11
 move = ExtResource("4_de5di")
 
-[sub_resource type="Resource" id="Resource_lvoxe"]
+[sub_resource type="Resource" id="Resource_ph5ry"]
 script = ExtResource("1_ki5ru")
 level = 19
 move = ExtResource("5_k66n7")
 
-[sub_resource type="Resource" id="Resource_onvbn"]
+[sub_resource type="Resource" id="Resource_cyohs"]
 script = ExtResource("1_ki5ru")
 level = 25
 move = ExtResource("6_ph5ry")
 
-[sub_resource type="Resource" id="Resource_kf6xv"]
+[sub_resource type="Resource" id="Resource_hrx6n"]
 script = ExtResource("1_ki5ru")
 level = 29
 move = ExtResource("7_cyohs")
 
-[sub_resource type="Resource" id="Resource_7aemt"]
+[sub_resource type="Resource" id="Resource_htay4"]
 script = ExtResource("1_ki5ru")
 level = 31
 move = ExtResource("8_hrx6n")
 
-[sub_resource type="Resource" id="Resource_eyaun"]
+[sub_resource type="Resource" id="Resource_oiwr5"]
 script = ExtResource("1_ki5ru")
 level = 35
 move = ExtResource("9_htay4")
 
-[sub_resource type="Resource" id="Resource_sdu8o"]
+[sub_resource type="Resource" id="Resource_lkcne"]
 script = ExtResource("1_ki5ru")
 level = 41
 move = ExtResource("10_oiwr5")
 
-[sub_resource type="Resource" id="Resource_fi7ur"]
+[sub_resource type="Resource" id="Resource_ep4fx"]
 script = ExtResource("1_ki5ru")
 level = 49
 move = ExtResource("11_lkcne")
@@ -72,7 +72,7 @@ id = "numel"
 display_name = "Numel"
 dex = 322
 types = Array[ExtResource("4_ohi0y")]([ExtResource("5_m2b4y"), ExtResource("6_rfvmp")])
-learnset = Array[ExtResource("1_ki5ru")]([SubResource("Resource_ep4fx"), SubResource("Resource_qhv6w"), SubResource("Resource_vgoiq"), SubResource("Resource_lvoxe"), SubResource("Resource_onvbn"), SubResource("Resource_kf6xv"), SubResource("Resource_7aemt"), SubResource("Resource_eyaun"), SubResource("Resource_sdu8o"), SubResource("Resource_fi7ur")])
+learnset = Array[ExtResource("1_ki5ru")]([SubResource("Resource_k4nbv"), SubResource("Resource_de5di"), SubResource("Resource_k66n7"), SubResource("Resource_ph5ry"), SubResource("Resource_cyohs"), SubResource("Resource_hrx6n"), SubResource("Resource_htay4"), SubResource("Resource_oiwr5"), SubResource("Resource_lkcne"), SubResource("Resource_ep4fx")])
 temperament = ExtResource("14_k4nbv")
 genus = "Pokémon Torpe"
 pokedex_entry = "Numel tarda en percibir las cosas, no se entera ni cuando lo golpean, pero se da cuenta enseguida de si tiene hambre. El cuerpo de este Pokémon es un caldero de magma hirviendo."

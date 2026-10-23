@@ -18,55 +18,55 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="12_xifwy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_6hv2g"]
 
-[sub_resource type="Resource" id="Resource_q7te5"]
+[sub_resource type="Resource" id="Resource_6hv2g"]
 script = ExtResource("1_y1m0p")
 move = ExtResource("2_pw4dp")
 
-[sub_resource type="Resource" id="Resource_6eagx"]
+[sub_resource type="Resource" id="Resource_ebij6"]
 script = ExtResource("1_y1m0p")
 move = ExtResource("3_6hv2g")
 
-[sub_resource type="Resource" id="Resource_v4pbh"]
+[sub_resource type="Resource" id="Resource_7npe7"]
 script = ExtResource("1_y1m0p")
 level = 7
 move = ExtResource("4_ebij6")
 
-[sub_resource type="Resource" id="Resource_y66g5"]
+[sub_resource type="Resource" id="Resource_hmwl7"]
 script = ExtResource("1_y1m0p")
 level = 10
 move = ExtResource("5_7npe7")
 
-[sub_resource type="Resource" id="Resource_ufxas"]
+[sub_resource type="Resource" id="Resource_oit4x"]
 script = ExtResource("1_y1m0p")
 level = 16
 move = ExtResource("6_hmwl7")
 
-[sub_resource type="Resource" id="Resource_br4ws"]
+[sub_resource type="Resource" id="Resource_earjc"]
 script = ExtResource("1_y1m0p")
 level = 19
 move = ExtResource("7_oit4x")
 
-[sub_resource type="Resource" id="Resource_ej8vp"]
+[sub_resource type="Resource" id="Resource_fn3k7"]
 script = ExtResource("1_y1m0p")
 level = 25
 move = ExtResource("8_earjc")
 
-[sub_resource type="Resource" id="Resource_72xwg"]
+[sub_resource type="Resource" id="Resource_cc8au"]
 script = ExtResource("1_y1m0p")
 level = 28
 move = ExtResource("9_fn3k7")
 
-[sub_resource type="Resource" id="Resource_kwhb8"]
+[sub_resource type="Resource" id="Resource_lkjkj"]
 script = ExtResource("1_y1m0p")
 level = 34
 move = ExtResource("10_cc8au")
 
-[sub_resource type="Resource" id="Resource_bm76t"]
+[sub_resource type="Resource" id="Resource_xifwy"]
 script = ExtResource("1_y1m0p")
 level = 37
 move = ExtResource("11_lkjkj")
 
-[sub_resource type="Resource" id="Resource_vxup3"]
+[sub_resource type="Resource" id="Resource_q7te5"]
 script = ExtResource("1_y1m0p")
 level = 43
 move = ExtResource("12_xifwy")
@@ -77,7 +77,7 @@ id = "torchic"
 display_name = "Torchic"
 dex = 255
 types = Array[ExtResource("4_luk3p")]([ExtResource("5_ljq6v")])
-learnset = Array[ExtResource("1_y1m0p")]([SubResource("Resource_q7te5"), SubResource("Resource_6eagx"), SubResource("Resource_v4pbh"), SubResource("Resource_y66g5"), SubResource("Resource_ufxas"), SubResource("Resource_br4ws"), SubResource("Resource_ej8vp"), SubResource("Resource_72xwg"), SubResource("Resource_kwhb8"), SubResource("Resource_bm76t"), SubResource("Resource_vxup3")])
+learnset = Array[ExtResource("1_y1m0p")]([SubResource("Resource_6hv2g"), SubResource("Resource_ebij6"), SubResource("Resource_7npe7"), SubResource("Resource_hmwl7"), SubResource("Resource_oit4x"), SubResource("Resource_earjc"), SubResource("Resource_fn3k7"), SubResource("Resource_cc8au"), SubResource("Resource_lkjkj"), SubResource("Resource_xifwy"), SubResource("Resource_q7te5")])
 temperament = ExtResource("15_6hv2g")
 genus = "Pokémon Polluelo"
 pokedex_entry = "Torchic no se separa de su Entrenador. Siempre va tras él con sus pasitos inseguros. Este Pokémon escupe bolas de fuego que pueden alcanzar los 1000 °C y carbonizar al enemigo."

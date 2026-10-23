@@ -18,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_f24mo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_v25uy"]
 
-[sub_resource type="Resource" id="Resource_364ri"]
+[sub_resource type="Resource" id="Resource_v25uy"]
 script = ExtResource("1_c8nf3")
 move = ExtResource("2_uqx75")
 
-[sub_resource type="Resource" id="Resource_ebira"]
+[sub_resource type="Resource" id="Resource_jswl2"]
 script = ExtResource("1_c8nf3")
 move = ExtResource("3_v25uy")
 
-[sub_resource type="Resource" id="Resource_jn2vn"]
+[sub_resource type="Resource" id="Resource_1u2ms"]
 script = ExtResource("1_c8nf3")
 level = 8
 move = ExtResource("4_jswl2")
 
-[sub_resource type="Resource" id="Resource_llw3j"]
+[sub_resource type="Resource" id="Resource_3irpi"]
 script = ExtResource("1_c8nf3")
 level = 15
 move = ExtResource("5_1u2ms")
 
-[sub_resource type="Resource" id="Resource_sh8y6"]
+[sub_resource type="Resource" id="Resource_yn0iu"]
 script = ExtResource("1_c8nf3")
 level = 22
 move = ExtResource("6_3irpi")
 
-[sub_resource type="Resource" id="Resource_876to"]
+[sub_resource type="Resource" id="Resource_vkeo4"]
 script = ExtResource("1_c8nf3")
 level = 29
 move = ExtResource("7_yn0iu")
 
-[sub_resource type="Resource" id="Resource_5h2ns"]
+[sub_resource type="Resource" id="Resource_vfoia"]
 script = ExtResource("1_c8nf3")
 level = 36
 move = ExtResource("8_vkeo4")
 
-[sub_resource type="Resource" id="Resource_k006s"]
+[sub_resource type="Resource" id="Resource_7a4po"]
 script = ExtResource("1_c8nf3")
 level = 43
 move = ExtResource("9_vfoia")
 
-[sub_resource type="Resource" id="Resource_ytx4f"]
+[sub_resource type="Resource" id="Resource_f24mo"]
 script = ExtResource("1_c8nf3")
 level = 50
 move = ExtResource("10_7a4po")
 
-[sub_resource type="Resource" id="Resource_oj6mj"]
+[sub_resource type="Resource" id="Resource_364ri"]
 script = ExtResource("1_c8nf3")
 level = 57
 move = ExtResource("11_f24mo")
@@ -72,7 +72,7 @@ id = "larvitar"
 display_name = "Larvitar"
 dex = 246
 types = Array[ExtResource("4_q55br")]([ExtResource("5_mc2gt"), ExtResource("6_h77rg")])
-learnset = Array[ExtResource("1_c8nf3")]([SubResource("Resource_364ri"), SubResource("Resource_ebira"), SubResource("Resource_jn2vn"), SubResource("Resource_llw3j"), SubResource("Resource_sh8y6"), SubResource("Resource_876to"), SubResource("Resource_5h2ns"), SubResource("Resource_k006s"), SubResource("Resource_ytx4f"), SubResource("Resource_oj6mj")])
+learnset = Array[ExtResource("1_c8nf3")]([SubResource("Resource_v25uy"), SubResource("Resource_jswl2"), SubResource("Resource_1u2ms"), SubResource("Resource_3irpi"), SubResource("Resource_yn0iu"), SubResource("Resource_vkeo4"), SubResource("Resource_vfoia"), SubResource("Resource_7a4po"), SubResource("Resource_f24mo"), SubResource("Resource_364ri")])
 temperament = ExtResource("14_v25uy")
 genus = "Pokémon Piel Roca"
 pokedex_entry = "Larvitar nace bajo tierra a gran profundidad. Para subir a la superficie, este Pokémon debe comer lo que encuentra en su camino para abrirse paso. Y, hasta que no está arriba, no puede verles la cara a sus padres."

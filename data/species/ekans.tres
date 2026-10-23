@@ -18,55 +18,55 @@
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_38bl2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_xll5k"]
 
-[sub_resource type="Resource" id="Resource_5i7xv"]
+[sub_resource type="Resource" id="Resource_xll5k"]
 script = ExtResource("1_v6vv8")
 move = ExtResource("2_jcprn")
 
-[sub_resource type="Resource" id="Resource_b7k2v"]
+[sub_resource type="Resource" id="Resource_vtbvh"]
 script = ExtResource("1_v6vv8")
 move = ExtResource("3_xll5k")
 
-[sub_resource type="Resource" id="Resource_2f6i3"]
+[sub_resource type="Resource" id="Resource_egpw0"]
 script = ExtResource("1_v6vv8")
 level = 8
 move = ExtResource("4_vtbvh")
 
-[sub_resource type="Resource" id="Resource_8lsn7"]
+[sub_resource type="Resource" id="Resource_5iw0l"]
 script = ExtResource("1_v6vv8")
 level = 13
 move = ExtResource("5_egpw0")
 
-[sub_resource type="Resource" id="Resource_e0oix"]
+[sub_resource type="Resource" id="Resource_kwurq"]
 script = ExtResource("1_v6vv8")
 level = 20
 move = ExtResource("6_5iw0l")
 
-[sub_resource type="Resource" id="Resource_r5jgb"]
+[sub_resource type="Resource" id="Resource_rbagd"]
 script = ExtResource("1_v6vv8")
 level = 25
 move = ExtResource("7_kwurq")
 
-[sub_resource type="Resource" id="Resource_1f7i1"]
+[sub_resource type="Resource" id="Resource_b1i0k"]
 script = ExtResource("1_v6vv8")
 level = 32
 move = ExtResource("8_rbagd")
 
-[sub_resource type="Resource" id="Resource_3qs2i"]
+[sub_resource type="Resource" id="Resource_1h6pl"]
 script = ExtResource("1_v6vv8")
 level = 37
 move = ExtResource("9_b1i0k")
 
-[sub_resource type="Resource" id="Resource_lepey"]
+[sub_resource type="Resource" id="Resource_vx5d3"]
 script = ExtResource("1_v6vv8")
 level = 37
 move = ExtResource("10_1h6pl")
 
-[sub_resource type="Resource" id="Resource_hr3yx"]
+[sub_resource type="Resource" id="Resource_38bl2"]
 script = ExtResource("1_v6vv8")
 level = 37
 move = ExtResource("11_vx5d3")
 
-[sub_resource type="Resource" id="Resource_iyqiq"]
+[sub_resource type="Resource" id="Resource_5i7xv"]
 script = ExtResource("1_v6vv8")
 level = 44
 move = ExtResource("12_38bl2")
@@ -77,7 +77,7 @@ id = "ekans"
 display_name = "Ekans"
 dex = 23
 types = Array[ExtResource("4_mkxgf")]([ExtResource("5_evrkc")])
-learnset = Array[ExtResource("1_v6vv8")]([SubResource("Resource_5i7xv"), SubResource("Resource_b7k2v"), SubResource("Resource_2f6i3"), SubResource("Resource_8lsn7"), SubResource("Resource_e0oix"), SubResource("Resource_r5jgb"), SubResource("Resource_1f7i1"), SubResource("Resource_3qs2i"), SubResource("Resource_lepey"), SubResource("Resource_hr3yx"), SubResource("Resource_iyqiq")])
+learnset = Array[ExtResource("1_v6vv8")]([SubResource("Resource_xll5k"), SubResource("Resource_vtbvh"), SubResource("Resource_egpw0"), SubResource("Resource_5iw0l"), SubResource("Resource_kwurq"), SubResource("Resource_rbagd"), SubResource("Resource_b1i0k"), SubResource("Resource_1h6pl"), SubResource("Resource_vx5d3"), SubResource("Resource_38bl2"), SubResource("Resource_5i7xv")])
 temperament = ExtResource("15_xll5k")
 genus = "Pokémon Serpiente"
 pokedex_entry = "Ekans se enrosca para descansar. Adoptando esta posición puede responder rápidamente a cualquier amenaza que le aceche desde cualquier lugar, levantando la cabeza con una feroz mirada."

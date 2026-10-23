@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/esporas.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "absorber_kit"
+display_name = "Absorber"
+element = ExtResource("3_x")
+kind = 0
+category = 1
+power = 20.0
+cooldown = 0.9
+knockback = 50.0
+speed = 260.0
+size = 4.0
+lifetime = 0.8
+drain = 0.5
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

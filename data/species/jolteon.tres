@@ -18,54 +18,54 @@
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="12_abjmu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_xji3v"]
 
-[sub_resource type="Resource" id="Resource_wt35c"]
+[sub_resource type="Resource" id="Resource_xji3v"]
 script = ExtResource("1_hlpng")
 move = ExtResource("2_18vdl")
 
-[sub_resource type="Resource" id="Resource_g4d3j"]
+[sub_resource type="Resource" id="Resource_rtggu"]
 script = ExtResource("1_hlpng")
 move = ExtResource("3_xji3v")
 
-[sub_resource type="Resource" id="Resource_ipv11"]
+[sub_resource type="Resource" id="Resource_75d0r"]
 script = ExtResource("1_hlpng")
 move = ExtResource("4_rtggu")
 
-[sub_resource type="Resource" id="Resource_3dcvl"]
+[sub_resource type="Resource" id="Resource_ir48y"]
 script = ExtResource("1_hlpng")
 level = 8
 move = ExtResource("5_75d0r")
 
-[sub_resource type="Resource" id="Resource_rlpsk"]
+[sub_resource type="Resource" id="Resource_sgcfy"]
 script = ExtResource("1_hlpng")
 level = 16
 move = ExtResource("6_ir48y")
 
-[sub_resource type="Resource" id="Resource_e7dsn"]
+[sub_resource type="Resource" id="Resource_463g1"]
 script = ExtResource("1_hlpng")
 level = 23
 move = ExtResource("7_sgcfy")
 
-[sub_resource type="Resource" id="Resource_dp04r"]
+[sub_resource type="Resource" id="Resource_gag2o"]
 script = ExtResource("1_hlpng")
 level = 30
 move = ExtResource("8_463g1")
 
-[sub_resource type="Resource" id="Resource_o03od"]
+[sub_resource type="Resource" id="Resource_wc7q3"]
 script = ExtResource("1_hlpng")
 level = 36
 move = ExtResource("9_gag2o")
 
-[sub_resource type="Resource" id="Resource_qxft4"]
+[sub_resource type="Resource" id="Resource_8px4d"]
 script = ExtResource("1_hlpng")
 level = 42
 move = ExtResource("10_wc7q3")
 
-[sub_resource type="Resource" id="Resource_pn65f"]
+[sub_resource type="Resource" id="Resource_abjmu"]
 script = ExtResource("1_hlpng")
 level = 47
 move = ExtResource("11_8px4d")
 
-[sub_resource type="Resource" id="Resource_csa0x"]
+[sub_resource type="Resource" id="Resource_wt35c"]
 script = ExtResource("1_hlpng")
 level = 52
 move = ExtResource("12_abjmu")
@@ -76,7 +76,7 @@ id = "jolteon"
 display_name = "Jolteon"
 dex = 135
 types = Array[ExtResource("4_m4e57")]([ExtResource("5_d2fgr")])
-learnset = Array[ExtResource("1_hlpng")]([SubResource("Resource_wt35c"), SubResource("Resource_g4d3j"), SubResource("Resource_ipv11"), SubResource("Resource_3dcvl"), SubResource("Resource_rlpsk"), SubResource("Resource_e7dsn"), SubResource("Resource_dp04r"), SubResource("Resource_o03od"), SubResource("Resource_qxft4"), SubResource("Resource_pn65f"), SubResource("Resource_csa0x")])
+learnset = Array[ExtResource("1_hlpng")]([SubResource("Resource_xji3v"), SubResource("Resource_rtggu"), SubResource("Resource_75d0r"), SubResource("Resource_ir48y"), SubResource("Resource_sgcfy"), SubResource("Resource_463g1"), SubResource("Resource_gag2o"), SubResource("Resource_wc7q3"), SubResource("Resource_8px4d"), SubResource("Resource_abjmu"), SubResource("Resource_wt35c")])
 temperament = ExtResource("15_xji3v")
 genus = "Pokémon Relámpago"
 pokedex_entry = "Las células de Jolteon generan un nivel bajo de electricidad, cuya intensidad aumenta con la electricidad estática que acumula en un pelaje formado por agujas cargadas de electricidad. Esta característica le permite lanzar rayos."

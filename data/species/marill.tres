@@ -17,46 +17,46 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_8xjir"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_wisop"]
 
-[sub_resource type="Resource" id="Resource_wllm0"]
+[sub_resource type="Resource" id="Resource_wisop"]
 script = ExtResource("1_8xd0n")
 move = ExtResource("2_yq25o")
 
-[sub_resource type="Resource" id="Resource_a74bl"]
+[sub_resource type="Resource" id="Resource_8y2yl"]
 script = ExtResource("1_8xd0n")
 level = 3
 move = ExtResource("3_wisop")
 
-[sub_resource type="Resource" id="Resource_8r76m"]
+[sub_resource type="Resource" id="Resource_ipmra"]
 script = ExtResource("1_8xd0n")
 level = 6
 move = ExtResource("4_8y2yl")
 
-[sub_resource type="Resource" id="Resource_g8t4w"]
+[sub_resource type="Resource" id="Resource_16nh3"]
 script = ExtResource("1_8xd0n")
 level = 10
 move = ExtResource("5_ipmra")
 
-[sub_resource type="Resource" id="Resource_ymr3f"]
+[sub_resource type="Resource" id="Resource_ya2wp"]
 script = ExtResource("1_8xd0n")
 level = 15
 move = ExtResource("6_16nh3")
 
-[sub_resource type="Resource" id="Resource_3xurg"]
+[sub_resource type="Resource" id="Resource_bjd17"]
 script = ExtResource("1_8xd0n")
 level = 21
 move = ExtResource("7_ya2wp")
 
-[sub_resource type="Resource" id="Resource_bldxp"]
+[sub_resource type="Resource" id="Resource_04t8r"]
 script = ExtResource("1_8xd0n")
 level = 28
 move = ExtResource("8_bjd17")
 
-[sub_resource type="Resource" id="Resource_kyfn8"]
+[sub_resource type="Resource" id="Resource_8xjir"]
 script = ExtResource("1_8xd0n")
 level = 36
 move = ExtResource("9_04t8r")
 
-[sub_resource type="Resource" id="Resource_5yhe8"]
+[sub_resource type="Resource" id="Resource_wllm0"]
 script = ExtResource("1_8xd0n")
 level = 45
 move = ExtResource("10_8xjir")
@@ -67,7 +67,7 @@ id = "marill"
 display_name = "Marill"
 dex = 183
 types = Array[ExtResource("4_iiqx5")]([ExtResource("5_mjgxi"), ExtResource("6_p0njn")])
-learnset = Array[ExtResource("1_8xd0n")]([SubResource("Resource_wllm0"), SubResource("Resource_a74bl"), SubResource("Resource_8r76m"), SubResource("Resource_g8t4w"), SubResource("Resource_ymr3f"), SubResource("Resource_3xurg"), SubResource("Resource_bldxp"), SubResource("Resource_kyfn8"), SubResource("Resource_5yhe8")])
+learnset = Array[ExtResource("1_8xd0n")]([SubResource("Resource_wisop"), SubResource("Resource_8y2yl"), SubResource("Resource_ipmra"), SubResource("Resource_16nh3"), SubResource("Resource_ya2wp"), SubResource("Resource_bjd17"), SubResource("Resource_04t8r"), SubResource("Resource_8xjir"), SubResource("Resource_wllm0")])
 temperament = ExtResource("13_wisop")
 genus = "Pokémon Ratón Agua"
 pokedex_entry = "La cola de Marill contiene un aceite que hace las veces de chaleco salvavidas. Si ves una moviéndose en el agua, seguro que debajo hay un Marill medio sumergido buscando plantas acuáticas para comer."

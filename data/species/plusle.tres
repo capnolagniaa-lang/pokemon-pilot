@@ -18,56 +18,56 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="12_x5yp3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_vxe0p"]
 
-[sub_resource type="Resource" id="Resource_b0odk"]
+[sub_resource type="Resource" id="Resource_vxe0p"]
 script = ExtResource("1_ogcic")
 move = ExtResource("2_46qby")
 
-[sub_resource type="Resource" id="Resource_q77a0"]
+[sub_resource type="Resource" id="Resource_4brcv"]
 script = ExtResource("1_ogcic")
 level = 4
 move = ExtResource("3_vxe0p")
 
-[sub_resource type="Resource" id="Resource_nsybc"]
+[sub_resource type="Resource" id="Resource_pie63"]
 script = ExtResource("1_ogcic")
 level = 10
 move = ExtResource("4_4brcv")
 
-[sub_resource type="Resource" id="Resource_d6bfr"]
+[sub_resource type="Resource" id="Resource_qyvkc"]
 script = ExtResource("1_ogcic")
 level = 13
 move = ExtResource("5_pie63")
 
-[sub_resource type="Resource" id="Resource_b3ujm"]
+[sub_resource type="Resource" id="Resource_b2dn5"]
 script = ExtResource("1_ogcic")
 level = 19
 move = ExtResource("6_qyvkc")
 
-[sub_resource type="Resource" id="Resource_frab0"]
+[sub_resource type="Resource" id="Resource_64sj0"]
 script = ExtResource("1_ogcic")
 level = 22
 move = ExtResource("7_b2dn5")
 
-[sub_resource type="Resource" id="Resource_4bt8w"]
+[sub_resource type="Resource" id="Resource_gq3gq"]
 script = ExtResource("1_ogcic")
 level = 28
 move = ExtResource("8_64sj0")
 
-[sub_resource type="Resource" id="Resource_xb46q"]
+[sub_resource type="Resource" id="Resource_ih3ky"]
 script = ExtResource("1_ogcic")
 level = 31
 move = ExtResource("9_gq3gq")
 
-[sub_resource type="Resource" id="Resource_kykai"]
+[sub_resource type="Resource" id="Resource_0h10o"]
 script = ExtResource("1_ogcic")
 level = 37
 move = ExtResource("10_ih3ky")
 
-[sub_resource type="Resource" id="Resource_jnc2c"]
+[sub_resource type="Resource" id="Resource_x5yp3"]
 script = ExtResource("1_ogcic")
 level = 40
 move = ExtResource("11_0h10o")
 
-[sub_resource type="Resource" id="Resource_7dt65"]
+[sub_resource type="Resource" id="Resource_b0odk"]
 script = ExtResource("1_ogcic")
 level = 47
 move = ExtResource("12_x5yp3")
@@ -78,7 +78,7 @@ id = "plusle"
 display_name = "Plusle"
 dex = 311
 types = Array[ExtResource("4_m58yg")]([ExtResource("5_qor6t")])
-learnset = Array[ExtResource("1_ogcic")]([SubResource("Resource_b0odk"), SubResource("Resource_q77a0"), SubResource("Resource_nsybc"), SubResource("Resource_d6bfr"), SubResource("Resource_b3ujm"), SubResource("Resource_frab0"), SubResource("Resource_4bt8w"), SubResource("Resource_xb46q"), SubResource("Resource_kykai"), SubResource("Resource_jnc2c"), SubResource("Resource_7dt65")])
+learnset = Array[ExtResource("1_ogcic")]([SubResource("Resource_vxe0p"), SubResource("Resource_4brcv"), SubResource("Resource_pie63"), SubResource("Resource_qyvkc"), SubResource("Resource_b2dn5"), SubResource("Resource_64sj0"), SubResource("Resource_gq3gq"), SubResource("Resource_ih3ky"), SubResource("Resource_0h10o"), SubResource("Resource_x5yp3"), SubResource("Resource_b0odk")])
 temperament = ExtResource("15_vxe0p")
 genus = "Pokémon Ánimo"
 pokedex_entry = "Plusle siempre anima a sus compañeros. Cuando algún miembro de su grupo hace un gran esfuerzo en combate, causa un cortocircuito en su interior para mostrar con el chisporroteo su alegría."

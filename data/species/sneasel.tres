@@ -20,59 +20,59 @@
 [ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="13_82bg6"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_g2vkr"]
 
-[sub_resource type="Resource" id="Resource_rt6wp"]
+[sub_resource type="Resource" id="Resource_g2vkr"]
 script = ExtResource("1_8vydn")
 move = ExtResource("2_1cudp")
 
-[sub_resource type="Resource" id="Resource_gecmi"]
+[sub_resource type="Resource" id="Resource_bvttd"]
 script = ExtResource("1_8vydn")
 move = ExtResource("3_g2vkr")
 
-[sub_resource type="Resource" id="Resource_iy3ng"]
+[sub_resource type="Resource" id="Resource_yqppq"]
 script = ExtResource("1_8vydn")
 move = ExtResource("4_bvttd")
 
-[sub_resource type="Resource" id="Resource_u4yca"]
+[sub_resource type="Resource" id="Resource_g3afa"]
 script = ExtResource("1_8vydn")
 level = 8
 move = ExtResource("5_yqppq")
 
-[sub_resource type="Resource" id="Resource_np08o"]
+[sub_resource type="Resource" id="Resource_ih5rq"]
 script = ExtResource("1_8vydn")
 level = 15
 move = ExtResource("6_g3afa")
 
-[sub_resource type="Resource" id="Resource_iprtc"]
+[sub_resource type="Resource" id="Resource_phdk6"]
 script = ExtResource("1_8vydn")
 level = 22
 move = ExtResource("7_ih5rq")
 
-[sub_resource type="Resource" id="Resource_4ivhi"]
+[sub_resource type="Resource" id="Resource_7eufs"]
 script = ExtResource("1_8vydn")
 level = 29
 move = ExtResource("8_phdk6")
 
-[sub_resource type="Resource" id="Resource_opgr8"]
+[sub_resource type="Resource" id="Resource_vvkdq"]
 script = ExtResource("1_8vydn")
 level = 36
 move = ExtResource("9_7eufs")
 
-[sub_resource type="Resource" id="Resource_1m4jy"]
+[sub_resource type="Resource" id="Resource_7q7uh"]
 script = ExtResource("1_8vydn")
 level = 43
 move = ExtResource("10_vvkdq")
 
-[sub_resource type="Resource" id="Resource_3jscj"]
+[sub_resource type="Resource" id="Resource_8vcl6"]
 script = ExtResource("1_8vydn")
 level = 50
 move = ExtResource("11_7q7uh")
 
-[sub_resource type="Resource" id="Resource_3to8m"]
+[sub_resource type="Resource" id="Resource_82bg6"]
 script = ExtResource("1_8vydn")
 level = 57
 move = ExtResource("12_8vcl6")
 
-[sub_resource type="Resource" id="Resource_2w54p"]
+[sub_resource type="Resource" id="Resource_rt6wp"]
 script = ExtResource("1_8vydn")
 level = 64
 move = ExtResource("13_82bg6")
@@ -83,7 +83,7 @@ id = "sneasel"
 display_name = "Sneasel"
 dex = 215
 types = Array[ExtResource("4_sapce")]([ExtResource("5_6r3e5"), ExtResource("6_s45fe")])
-learnset = Array[ExtResource("1_8vydn")]([SubResource("Resource_rt6wp"), SubResource("Resource_gecmi"), SubResource("Resource_iy3ng"), SubResource("Resource_u4yca"), SubResource("Resource_np08o"), SubResource("Resource_iprtc"), SubResource("Resource_4ivhi"), SubResource("Resource_opgr8"), SubResource("Resource_1m4jy"), SubResource("Resource_3jscj"), SubResource("Resource_3to8m"), SubResource("Resource_2w54p")])
+learnset = Array[ExtResource("1_8vydn")]([SubResource("Resource_g2vkr"), SubResource("Resource_bvttd"), SubResource("Resource_yqppq"), SubResource("Resource_g3afa"), SubResource("Resource_ih5rq"), SubResource("Resource_phdk6"), SubResource("Resource_7eufs"), SubResource("Resource_vvkdq"), SubResource("Resource_7q7uh"), SubResource("Resource_8vcl6"), SubResource("Resource_82bg6"), SubResource("Resource_rt6wp")])
 temperament = ExtResource("16_g2vkr")
 genus = "Pokémon Garra Filo"
 pokedex_entry = "Sneasel trepa por los árboles agarrándose a la corteza con las garras curvas que tiene. Este Pokémon busca nidos desprovistos de vigilancia paterna para robar los huevos y comérselos."

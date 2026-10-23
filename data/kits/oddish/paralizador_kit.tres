@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="4_x"]
+[ext_resource type="Resource" path="res://data/status/esporas.tres" id="5_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "paralizador_kit"
+display_name = "Paralizador"
+element = ExtResource("3_x")
+kind = 5
+category = 2
+power = 0.0
+cooldown = 5.0
+knockback = 0.0
+zone_radius = 20.0
+zone_duration = 4.0
+placement_range = 95.0
+zone_traps = false
+zone_tick = 0.6
+zone_max_count = 2
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x"), ExtResource("5_x")])

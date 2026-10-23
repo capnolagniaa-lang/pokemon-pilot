@@ -19,56 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/encanto.tres" id="12_vdwr3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_3bnje"]
 
-[sub_resource type="Resource" id="Resource_gd1k2"]
+[sub_resource type="Resource" id="Resource_3bnje"]
 script = ExtResource("1_s7shl")
 move = ExtResource("2_e6m31")
 
-[sub_resource type="Resource" id="Resource_texdn"]
+[sub_resource type="Resource" id="Resource_t726p"]
 script = ExtResource("1_s7shl")
 level = 5
 move = ExtResource("3_3bnje")
 
-[sub_resource type="Resource" id="Resource_dpbmx"]
+[sub_resource type="Resource" id="Resource_mqpm3"]
 script = ExtResource("1_s7shl")
 level = 10
 move = ExtResource("4_t726p")
 
-[sub_resource type="Resource" id="Resource_0lucg"]
+[sub_resource type="Resource" id="Resource_5m7jy"]
 script = ExtResource("1_s7shl")
 level = 15
 move = ExtResource("5_mqpm3")
 
-[sub_resource type="Resource" id="Resource_l8wns"]
+[sub_resource type="Resource" id="Resource_6qa2h"]
 script = ExtResource("1_s7shl")
 level = 20
 move = ExtResource("6_5m7jy")
 
-[sub_resource type="Resource" id="Resource_c0jqx"]
+[sub_resource type="Resource" id="Resource_5ul8p"]
 script = ExtResource("1_s7shl")
 level = 25
 move = ExtResource("7_6qa2h")
 
-[sub_resource type="Resource" id="Resource_f6ssq"]
+[sub_resource type="Resource" id="Resource_tjtj7"]
 script = ExtResource("1_s7shl")
 level = 30
 move = ExtResource("8_5ul8p")
 
-[sub_resource type="Resource" id="Resource_205wb"]
+[sub_resource type="Resource" id="Resource_om11b"]
 script = ExtResource("1_s7shl")
 level = 35
 move = ExtResource("9_tjtj7")
 
-[sub_resource type="Resource" id="Resource_r6gc6"]
+[sub_resource type="Resource" id="Resource_q4ues"]
 script = ExtResource("1_s7shl")
 level = 40
 move = ExtResource("10_om11b")
 
-[sub_resource type="Resource" id="Resource_1hn5q"]
+[sub_resource type="Resource" id="Resource_vdwr3"]
 script = ExtResource("1_s7shl")
 level = 45
 move = ExtResource("11_q4ues")
 
-[sub_resource type="Resource" id="Resource_eq845"]
+[sub_resource type="Resource" id="Resource_gd1k2"]
 script = ExtResource("1_s7shl")
 level = 50
 move = ExtResource("12_vdwr3")
@@ -79,7 +79,7 @@ id = "latias"
 display_name = "Latias"
 dex = 380
 types = Array[ExtResource("4_ahhte")]([ExtResource("5_scs8q"), ExtResource("6_tt8mg")])
-learnset = Array[ExtResource("1_s7shl")]([SubResource("Resource_gd1k2"), SubResource("Resource_texdn"), SubResource("Resource_dpbmx"), SubResource("Resource_0lucg"), SubResource("Resource_l8wns"), SubResource("Resource_c0jqx"), SubResource("Resource_f6ssq"), SubResource("Resource_205wb"), SubResource("Resource_r6gc6"), SubResource("Resource_1hn5q"), SubResource("Resource_eq845")])
+learnset = Array[ExtResource("1_s7shl")]([SubResource("Resource_3bnje"), SubResource("Resource_t726p"), SubResource("Resource_mqpm3"), SubResource("Resource_5m7jy"), SubResource("Resource_6qa2h"), SubResource("Resource_5ul8p"), SubResource("Resource_tjtj7"), SubResource("Resource_om11b"), SubResource("Resource_q4ues"), SubResource("Resource_vdwr3"), SubResource("Resource_gd1k2")])
 temperament = ExtResource("15_3bnje")
 genus = "Pokémon Eón"
 pokedex_entry = "Latias es muy sensible a los sentimientos de la gente. Si detecta algún ápice de hostilidad, desplegará las plumas que tiene por todo el cuerpo y se pondrá a chillar para intimidar al enemigo."

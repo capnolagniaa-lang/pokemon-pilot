@@ -16,43 +16,43 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_bohiq"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_lo82k"]
 
-[sub_resource type="Resource" id="Resource_i3awm"]
+[sub_resource type="Resource" id="Resource_lo82k"]
 script = ExtResource("1_os843")
 move = ExtResource("2_uahth")
 
-[sub_resource type="Resource" id="Resource_d7f5y"]
+[sub_resource type="Resource" id="Resource_r6kjs"]
 script = ExtResource("1_os843")
 move = ExtResource("3_lo82k")
 
-[sub_resource type="Resource" id="Resource_lw48e"]
+[sub_resource type="Resource" id="Resource_o6tig"]
 script = ExtResource("1_os843")
 move = ExtResource("4_r6kjs")
 
-[sub_resource type="Resource" id="Resource_l4du2"]
+[sub_resource type="Resource" id="Resource_gy0vx"]
 script = ExtResource("1_os843")
 move = ExtResource("5_o6tig")
 
-[sub_resource type="Resource" id="Resource_ayvj1"]
+[sub_resource type="Resource" id="Resource_73gpv"]
 script = ExtResource("1_os843")
 level = 16
 move = ExtResource("6_gy0vx")
 
-[sub_resource type="Resource" id="Resource_l546q"]
+[sub_resource type="Resource" id="Resource_obapy"]
 script = ExtResource("1_os843")
 level = 23
 move = ExtResource("7_73gpv")
 
-[sub_resource type="Resource" id="Resource_otavc"]
+[sub_resource type="Resource" id="Resource_87tol"]
 script = ExtResource("1_os843")
 level = 31
 move = ExtResource("8_obapy")
 
-[sub_resource type="Resource" id="Resource_5r38f"]
+[sub_resource type="Resource" id="Resource_bohiq"]
 script = ExtResource("1_os843")
 level = 44
 move = ExtResource("9_87tol")
 
-[sub_resource type="Resource" id="Resource_8lspl"]
+[sub_resource type="Resource" id="Resource_i3awm"]
 script = ExtResource("1_os843")
 level = 58
 move = ExtResource("10_bohiq")
@@ -63,7 +63,7 @@ id = "golduck"
 display_name = "Golduck"
 dex = 55
 types = Array[ExtResource("4_ugvcv")]([ExtResource("5_7jj58")])
-learnset = Array[ExtResource("1_os843")]([SubResource("Resource_i3awm"), SubResource("Resource_d7f5y"), SubResource("Resource_lw48e"), SubResource("Resource_l4du2"), SubResource("Resource_ayvj1"), SubResource("Resource_l546q"), SubResource("Resource_otavc"), SubResource("Resource_5r38f"), SubResource("Resource_8lspl")])
+learnset = Array[ExtResource("1_os843")]([SubResource("Resource_lo82k"), SubResource("Resource_r6kjs"), SubResource("Resource_o6tig"), SubResource("Resource_gy0vx"), SubResource("Resource_73gpv"), SubResource("Resource_obapy"), SubResource("Resource_87tol"), SubResource("Resource_bohiq"), SubResource("Resource_i3awm")])
 temperament = ExtResource("13_lo82k")
 genus = "Pokémon Pato"
 pokedex_entry = "Golduck alcanza una velocidad de vértigo gracias a las aletas palmípedas de las extremidades y a la forma aerodinámica de su cuerpo. Realmente, la velocidad de este Pokémon supera la de cualquier nadador."

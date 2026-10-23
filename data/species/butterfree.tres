@@ -18,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="11_x52w0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_jqvcn"]
 
-[sub_resource type="Resource" id="Resource_n1cfk"]
+[sub_resource type="Resource" id="Resource_jqvcn"]
 script = ExtResource("1_fji23")
 move = ExtResource("2_grndo")
 
-[sub_resource type="Resource" id="Resource_76dtm"]
+[sub_resource type="Resource" id="Resource_rgjnn"]
 script = ExtResource("1_fji23")
 level = 13
 move = ExtResource("3_jqvcn")
 
-[sub_resource type="Resource" id="Resource_k5xlc"]
+[sub_resource type="Resource" id="Resource_kruum"]
 script = ExtResource("1_fji23")
 level = 14
 move = ExtResource("4_rgjnn")
 
-[sub_resource type="Resource" id="Resource_j0utl"]
+[sub_resource type="Resource" id="Resource_4d7gq"]
 script = ExtResource("1_fji23")
 level = 15
 move = ExtResource("5_kruum")
 
-[sub_resource type="Resource" id="Resource_c5t65"]
+[sub_resource type="Resource" id="Resource_lo4i6"]
 script = ExtResource("1_fji23")
 level = 18
 move = ExtResource("6_4d7gq")
 
-[sub_resource type="Resource" id="Resource_3akn5"]
+[sub_resource type="Resource" id="Resource_75xna"]
 script = ExtResource("1_fji23")
 level = 23
 move = ExtResource("7_lo4i6")
 
-[sub_resource type="Resource" id="Resource_i56k7"]
+[sub_resource type="Resource" id="Resource_de4dl"]
 script = ExtResource("1_fji23")
 level = 28
 move = ExtResource("8_75xna")
 
-[sub_resource type="Resource" id="Resource_r5owg"]
+[sub_resource type="Resource" id="Resource_hiaqd"]
 script = ExtResource("1_fji23")
 level = 34
 move = ExtResource("9_de4dl")
 
-[sub_resource type="Resource" id="Resource_3v0tm"]
+[sub_resource type="Resource" id="Resource_x52w0"]
 script = ExtResource("1_fji23")
 level = 40
 move = ExtResource("10_hiaqd")
 
-[sub_resource type="Resource" id="Resource_x04hy"]
+[sub_resource type="Resource" id="Resource_n1cfk"]
 script = ExtResource("1_fji23")
 level = 47
 move = ExtResource("11_x52w0")
@@ -73,7 +73,7 @@ id = "butterfree"
 display_name = "Butterfree"
 dex = 12
 types = Array[ExtResource("4_lltuc")]([ExtResource("5_xxhmh"), ExtResource("6_n8di2")])
-learnset = Array[ExtResource("1_fji23")]([SubResource("Resource_n1cfk"), SubResource("Resource_76dtm"), SubResource("Resource_k5xlc"), SubResource("Resource_j0utl"), SubResource("Resource_c5t65"), SubResource("Resource_3akn5"), SubResource("Resource_i56k7"), SubResource("Resource_r5owg"), SubResource("Resource_3v0tm"), SubResource("Resource_x04hy")])
+learnset = Array[ExtResource("1_fji23")]([SubResource("Resource_jqvcn"), SubResource("Resource_rgjnn"), SubResource("Resource_kruum"), SubResource("Resource_4d7gq"), SubResource("Resource_lo4i6"), SubResource("Resource_75xna"), SubResource("Resource_de4dl"), SubResource("Resource_hiaqd"), SubResource("Resource_x52w0"), SubResource("Resource_n1cfk")])
 temperament = ExtResource("14_jqvcn")
 genus = "Pokémon Mariposa"
 pokedex_entry = "Butterfree tiene una habilidad especial para encontrar delicioso polen en las flores. Puede localizar, extraer y transportar polen de flores que estén floreciendo a 10 km de distancia de su nido."

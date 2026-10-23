@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/headache_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "jaqueca"
+display_name = "Jaqueca"
+description = "Sube al recibir daño y de a poco mientras pelea. Al llenarse estalla una Confusión en área que desorienta."
+color = Color(0.95, 0.4, 0.6, 1)
+max_value = 100.0
+gains = {"damage_received": 15.0}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"combat_gain": 3.0, "burst_move": "res://data/kits/psyduck/jaqueca_estallido.tres"}

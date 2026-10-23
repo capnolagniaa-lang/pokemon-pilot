@@ -21,62 +21,62 @@
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="14_wbx52"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_o2u8a"]
 
-[sub_resource type="Resource" id="Resource_s1qij"]
+[sub_resource type="Resource" id="Resource_o2u8a"]
 script = ExtResource("1_bxbj5")
 move = ExtResource("2_30yg0")
 
-[sub_resource type="Resource" id="Resource_ikymb"]
+[sub_resource type="Resource" id="Resource_g1t6h"]
 script = ExtResource("1_bxbj5")
 move = ExtResource("3_o2u8a")
 
-[sub_resource type="Resource" id="Resource_vprkm"]
+[sub_resource type="Resource" id="Resource_yk1pk"]
 script = ExtResource("1_bxbj5")
 move = ExtResource("4_g1t6h")
 
-[sub_resource type="Resource" id="Resource_wohcw"]
+[sub_resource type="Resource" id="Resource_wtk6t"]
 script = ExtResource("1_bxbj5")
 move = ExtResource("5_yk1pk")
 
-[sub_resource type="Resource" id="Resource_vcpvx"]
+[sub_resource type="Resource" id="Resource_v82k2"]
 script = ExtResource("1_bxbj5")
 move = ExtResource("6_wtk6t")
 
-[sub_resource type="Resource" id="Resource_dnplp"]
+[sub_resource type="Resource" id="Resource_rgjk8"]
 script = ExtResource("1_bxbj5")
 level = 13
 move = ExtResource("7_v82k2")
 
-[sub_resource type="Resource" id="Resource_yib7w"]
+[sub_resource type="Resource" id="Resource_06n4v"]
 script = ExtResource("1_bxbj5")
 level = 17
 move = ExtResource("8_rgjk8")
 
-[sub_resource type="Resource" id="Resource_yudsa"]
+[sub_resource type="Resource" id="Resource_cutnc"]
 script = ExtResource("1_bxbj5")
 level = 21
 move = ExtResource("9_06n4v")
 
-[sub_resource type="Resource" id="Resource_as5df"]
+[sub_resource type="Resource" id="Resource_aa602"]
 script = ExtResource("1_bxbj5")
 level = 25
 move = ExtResource("10_cutnc")
 
-[sub_resource type="Resource" id="Resource_yevn6"]
+[sub_resource type="Resource" id="Resource_isc2j"]
 script = ExtResource("1_bxbj5")
 level = 29
 move = ExtResource("11_aa602")
 
-[sub_resource type="Resource" id="Resource_ltgri"]
+[sub_resource type="Resource" id="Resource_v7e15"]
 script = ExtResource("1_bxbj5")
 level = 33
 move = ExtResource("12_isc2j")
 
-[sub_resource type="Resource" id="Resource_gjk2n"]
+[sub_resource type="Resource" id="Resource_wbx52"]
 script = ExtResource("1_bxbj5")
 level = 37
 move = ExtResource("13_v7e15")
 
-[sub_resource type="Resource" id="Resource_dbhx4"]
+[sub_resource type="Resource" id="Resource_s1qij"]
 script = ExtResource("1_bxbj5")
 level = 41
 move = ExtResource("14_wbx52")
@@ -87,7 +87,7 @@ id = "togetic"
 display_name = "Togetic"
 dex = 176
 types = Array[ExtResource("4_gplch")]([ExtResource("5_0htf7"), ExtResource("6_6v1j3")])
-learnset = Array[ExtResource("1_bxbj5")]([SubResource("Resource_s1qij"), SubResource("Resource_ikymb"), SubResource("Resource_vprkm"), SubResource("Resource_wohcw"), SubResource("Resource_vcpvx"), SubResource("Resource_dnplp"), SubResource("Resource_yib7w"), SubResource("Resource_yudsa"), SubResource("Resource_as5df"), SubResource("Resource_yevn6"), SubResource("Resource_ltgri"), SubResource("Resource_gjk2n"), SubResource("Resource_dbhx4")])
+learnset = Array[ExtResource("1_bxbj5")]([SubResource("Resource_o2u8a"), SubResource("Resource_g1t6h"), SubResource("Resource_yk1pk"), SubResource("Resource_wtk6t"), SubResource("Resource_v82k2"), SubResource("Resource_rgjk8"), SubResource("Resource_06n4v"), SubResource("Resource_cutnc"), SubResource("Resource_aa602"), SubResource("Resource_isc2j"), SubResource("Resource_v7e15"), SubResource("Resource_wbx52"), SubResource("Resource_s1qij")])
 temperament = ExtResource("17_o2u8a")
 genus = "Pokémon Felicidad"
 pokedex_entry = "Dicen que Togetic es un Pokémon que trae buena suerte y que, si detecta a alguien que es puro de corazón, sale para compartir su alegría con él."

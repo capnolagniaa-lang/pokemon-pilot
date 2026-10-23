@@ -19,61 +19,61 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="13_bowmj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_g2qjl"]
 
-[sub_resource type="Resource" id="Resource_oqr51"]
+[sub_resource type="Resource" id="Resource_g2qjl"]
 script = ExtResource("1_k7t70")
 move = ExtResource("2_xy4me")
 
-[sub_resource type="Resource" id="Resource_grgfm"]
+[sub_resource type="Resource" id="Resource_jknpk"]
 script = ExtResource("1_k7t70")
 level = 6
 move = ExtResource("3_g2qjl")
 
-[sub_resource type="Resource" id="Resource_gvmag"]
+[sub_resource type="Resource" id="Resource_jslbc"]
 script = ExtResource("1_k7t70")
 level = 9
 move = ExtResource("4_jknpk")
 
-[sub_resource type="Resource" id="Resource_f37wq"]
+[sub_resource type="Resource" id="Resource_4yjeu"]
 script = ExtResource("1_k7t70")
 level = 14
 move = ExtResource("5_jslbc")
 
-[sub_resource type="Resource" id="Resource_u21tq"]
+[sub_resource type="Resource" id="Resource_k5wco"]
 script = ExtResource("1_k7t70")
 level = 17
 move = ExtResource("6_4yjeu")
 
-[sub_resource type="Resource" id="Resource_d565t"]
+[sub_resource type="Resource" id="Resource_4igsk"]
 script = ExtResource("1_k7t70")
 level = 22
 move = ExtResource("7_k5wco")
 
-[sub_resource type="Resource" id="Resource_5tjo1"]
+[sub_resource type="Resource" id="Resource_8h0yq"]
 script = ExtResource("1_k7t70")
 level = 25
 move = ExtResource("8_4igsk")
 
-[sub_resource type="Resource" id="Resource_4fsg3"]
+[sub_resource type="Resource" id="Resource_0glb3"]
 script = ExtResource("1_k7t70")
 level = 30
 move = ExtResource("9_8h0yq")
 
-[sub_resource type="Resource" id="Resource_050dg"]
+[sub_resource type="Resource" id="Resource_mosxo"]
 script = ExtResource("1_k7t70")
 level = 33
 move = ExtResource("10_0glb3")
 
-[sub_resource type="Resource" id="Resource_xpaqw"]
+[sub_resource type="Resource" id="Resource_f3ymn"]
 script = ExtResource("1_k7t70")
 level = 38
 move = ExtResource("11_mosxo")
 
-[sub_resource type="Resource" id="Resource_l4q0s"]
+[sub_resource type="Resource" id="Resource_bowmj"]
 script = ExtResource("1_k7t70")
 level = 41
 move = ExtResource("12_f3ymn")
 
-[sub_resource type="Resource" id="Resource_jc4yp"]
+[sub_resource type="Resource" id="Resource_oqr51"]
 script = ExtResource("1_k7t70")
 level = 46
 move = ExtResource("13_bowmj")
@@ -84,7 +84,7 @@ id = "chimecho"
 display_name = "Chimecho"
 dex = 358
 types = Array[ExtResource("4_25opy")]([ExtResource("5_pxpbg")])
-learnset = Array[ExtResource("1_k7t70")]([SubResource("Resource_oqr51"), SubResource("Resource_grgfm"), SubResource("Resource_gvmag"), SubResource("Resource_f37wq"), SubResource("Resource_u21tq"), SubResource("Resource_d565t"), SubResource("Resource_5tjo1"), SubResource("Resource_4fsg3"), SubResource("Resource_050dg"), SubResource("Resource_xpaqw"), SubResource("Resource_l4q0s"), SubResource("Resource_jc4yp")])
+learnset = Array[ExtResource("1_k7t70")]([SubResource("Resource_g2qjl"), SubResource("Resource_jknpk"), SubResource("Resource_jslbc"), SubResource("Resource_4yjeu"), SubResource("Resource_k5wco"), SubResource("Resource_4igsk"), SubResource("Resource_8h0yq"), SubResource("Resource_0glb3"), SubResource("Resource_mosxo"), SubResource("Resource_f3ymn"), SubResource("Resource_bowmj"), SubResource("Resource_oqr51")])
 temperament = ExtResource("16_g2qjl")
 genus = "Pokémon Sonido Aire"
 pokedex_entry = "Chimecho hace que sus gritos resuenen con eco en su interior. Cuando se enfada, los chillidos se convierten en ondas ultrasónicas capaces de derribar a los enemigos voladores."

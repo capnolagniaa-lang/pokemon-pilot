@@ -17,51 +17,51 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_78uoo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_a6rrr"]
 
-[sub_resource type="Resource" id="Resource_gyfco"]
+[sub_resource type="Resource" id="Resource_a6rrr"]
 script = ExtResource("1_q6vmd")
 move = ExtResource("2_w14ed")
 
-[sub_resource type="Resource" id="Resource_2wlkd"]
+[sub_resource type="Resource" id="Resource_46qy5"]
 script = ExtResource("1_q6vmd")
 level = 5
 move = ExtResource("3_a6rrr")
 
-[sub_resource type="Resource" id="Resource_gfsnd"]
+[sub_resource type="Resource" id="Resource_n3pbo"]
 script = ExtResource("1_q6vmd")
 level = 9
 move = ExtResource("4_46qy5")
 
-[sub_resource type="Resource" id="Resource_o8jgy"]
+[sub_resource type="Resource" id="Resource_4obp8"]
 script = ExtResource("1_q6vmd")
 level = 13
 move = ExtResource("5_n3pbo")
 
-[sub_resource type="Resource" id="Resource_mey7j"]
+[sub_resource type="Resource" id="Resource_r5xw6"]
 script = ExtResource("1_q6vmd")
 level = 17
 move = ExtResource("6_4obp8")
 
-[sub_resource type="Resource" id="Resource_c5x7b"]
+[sub_resource type="Resource" id="Resource_nrmh2"]
 script = ExtResource("1_q6vmd")
 level = 21
 move = ExtResource("7_r5xw6")
 
-[sub_resource type="Resource" id="Resource_ilwqg"]
+[sub_resource type="Resource" id="Resource_0ijj3"]
 script = ExtResource("1_q6vmd")
 level = 25
 move = ExtResource("8_nrmh2")
 
-[sub_resource type="Resource" id="Resource_pbrfh"]
+[sub_resource type="Resource" id="Resource_8yasd"]
 script = ExtResource("1_q6vmd")
 level = 29
 move = ExtResource("9_0ijj3")
 
-[sub_resource type="Resource" id="Resource_enye4"]
+[sub_resource type="Resource" id="Resource_78uoo"]
 script = ExtResource("1_q6vmd")
 level = 33
 move = ExtResource("10_8yasd")
 
-[sub_resource type="Resource" id="Resource_py83g"]
+[sub_resource type="Resource" id="Resource_gyfco"]
 script = ExtResource("1_q6vmd")
 level = 37
 move = ExtResource("11_78uoo")
@@ -72,7 +72,7 @@ id = "volbeat"
 display_name = "Volbeat"
 dex = 313
 types = Array[ExtResource("4_qfb0r")]([ExtResource("5_bbykw")])
-learnset = Array[ExtResource("1_q6vmd")]([SubResource("Resource_gyfco"), SubResource("Resource_2wlkd"), SubResource("Resource_gfsnd"), SubResource("Resource_o8jgy"), SubResource("Resource_mey7j"), SubResource("Resource_c5x7b"), SubResource("Resource_ilwqg"), SubResource("Resource_pbrfh"), SubResource("Resource_enye4"), SubResource("Resource_py83g")])
+learnset = Array[ExtResource("1_q6vmd")]([SubResource("Resource_a6rrr"), SubResource("Resource_46qy5"), SubResource("Resource_n3pbo"), SubResource("Resource_4obp8"), SubResource("Resource_r5xw6"), SubResource("Resource_nrmh2"), SubResource("Resource_0ijj3"), SubResource("Resource_8yasd"), SubResource("Resource_78uoo"), SubResource("Resource_gyfco")])
 temperament = ExtResource("14_a6rrr")
 genus = "Pokémon Luciérnaga"
 pokedex_entry = "Cuando llega la noche, Volbeat emite luz por la cola y regula la intensidad y el destello para comunicarse con el resto. A este Pokémon le atrae el dulce aroma de Illumise."

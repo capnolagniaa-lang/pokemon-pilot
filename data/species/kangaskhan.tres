@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="11_sruut"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_5bh0o"]
 
-[sub_resource type="Resource" id="Resource_aft81"]
+[sub_resource type="Resource" id="Resource_5bh0o"]
 script = ExtResource("1_g0cvf")
 move = ExtResource("2_5eb1c")
 
-[sub_resource type="Resource" id="Resource_tjd7u"]
+[sub_resource type="Resource" id="Resource_on8h4"]
 script = ExtResource("1_g0cvf")
 move = ExtResource("3_5bh0o")
 
-[sub_resource type="Resource" id="Resource_vj4yi"]
+[sub_resource type="Resource" id="Resource_1ljuf"]
 script = ExtResource("1_g0cvf")
 level = 7
 move = ExtResource("4_on8h4")
 
-[sub_resource type="Resource" id="Resource_pjys6"]
+[sub_resource type="Resource" id="Resource_2bajd"]
 script = ExtResource("1_g0cvf")
 level = 13
 move = ExtResource("5_1ljuf")
 
-[sub_resource type="Resource" id="Resource_5o4fu"]
+[sub_resource type="Resource" id="Resource_gie7c"]
 script = ExtResource("1_g0cvf")
 level = 19
 move = ExtResource("6_2bajd")
 
-[sub_resource type="Resource" id="Resource_aw702"]
+[sub_resource type="Resource" id="Resource_ij854"]
 script = ExtResource("1_g0cvf")
 level = 25
 move = ExtResource("7_gie7c")
 
-[sub_resource type="Resource" id="Resource_ti0mg"]
+[sub_resource type="Resource" id="Resource_s0ds0"]
 script = ExtResource("1_g0cvf")
 level = 31
 move = ExtResource("8_ij854")
 
-[sub_resource type="Resource" id="Resource_oog0y"]
+[sub_resource type="Resource" id="Resource_x2ntc"]
 script = ExtResource("1_g0cvf")
 level = 37
 move = ExtResource("9_s0ds0")
 
-[sub_resource type="Resource" id="Resource_1wlyu"]
+[sub_resource type="Resource" id="Resource_sruut"]
 script = ExtResource("1_g0cvf")
 level = 43
 move = ExtResource("10_x2ntc")
 
-[sub_resource type="Resource" id="Resource_2te60"]
+[sub_resource type="Resource" id="Resource_aft81"]
 script = ExtResource("1_g0cvf")
 level = 49
 move = ExtResource("11_sruut")
@@ -71,7 +71,7 @@ id = "kangaskhan"
 display_name = "Kangaskhan"
 dex = 115
 types = Array[ExtResource("4_s0g1a")]([ExtResource("5_8su3g")])
-learnset = Array[ExtResource("1_g0cvf")]([SubResource("Resource_aft81"), SubResource("Resource_tjd7u"), SubResource("Resource_vj4yi"), SubResource("Resource_pjys6"), SubResource("Resource_5o4fu"), SubResource("Resource_aw702"), SubResource("Resource_ti0mg"), SubResource("Resource_oog0y"), SubResource("Resource_1wlyu"), SubResource("Resource_2te60")])
+learnset = Array[ExtResource("1_g0cvf")]([SubResource("Resource_5bh0o"), SubResource("Resource_on8h4"), SubResource("Resource_1ljuf"), SubResource("Resource_2bajd"), SubResource("Resource_gie7c"), SubResource("Resource_ij854"), SubResource("Resource_s0ds0"), SubResource("Resource_x2ntc"), SubResource("Resource_sruut"), SubResource("Resource_aft81")])
 temperament = ExtResource("14_5bh0o")
 genus = "Pokémon Maternal"
 pokedex_entry = "No es recomendable molestar ni intentar atrapar a crías de Kangaskhan mientras estén jugando, ya que seguro que su madre anda cerca y reaccionará con enfado y violencia."

@@ -17,43 +17,43 @@
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="10_rnieh"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_0xix5"]
 
-[sub_resource type="Resource" id="Resource_n63eo"]
+[sub_resource type="Resource" id="Resource_0xix5"]
 script = ExtResource("1_5quqg")
 move = ExtResource("2_8fghk")
 
-[sub_resource type="Resource" id="Resource_q6r26"]
+[sub_resource type="Resource" id="Resource_svr50"]
 script = ExtResource("1_5quqg")
 move = ExtResource("3_0xix5")
 
-[sub_resource type="Resource" id="Resource_0qkdh"]
+[sub_resource type="Resource" id="Resource_dbqsk"]
 script = ExtResource("1_5quqg")
 move = ExtResource("4_svr50")
 
-[sub_resource type="Resource" id="Resource_ngfwv"]
+[sub_resource type="Resource" id="Resource_k2u20"]
 script = ExtResource("1_5quqg")
 move = ExtResource("5_dbqsk")
 
-[sub_resource type="Resource" id="Resource_gpug5"]
+[sub_resource type="Resource" id="Resource_3evlr"]
 script = ExtResource("1_5quqg")
 level = 20
 move = ExtResource("6_k2u20")
 
-[sub_resource type="Resource" id="Resource_jgtsr"]
+[sub_resource type="Resource" id="Resource_ynvck"]
 script = ExtResource("1_5quqg")
 level = 27
 move = ExtResource("7_3evlr")
 
-[sub_resource type="Resource" id="Resource_oloja"]
+[sub_resource type="Resource" id="Resource_erad3"]
 script = ExtResource("1_5quqg")
 level = 34
 move = ExtResource("8_ynvck")
 
-[sub_resource type="Resource" id="Resource_w6wn8"]
+[sub_resource type="Resource" id="Resource_rnieh"]
 script = ExtResource("1_5quqg")
 level = 48
 move = ExtResource("9_erad3")
 
-[sub_resource type="Resource" id="Resource_uq6ce"]
+[sub_resource type="Resource" id="Resource_n63eo"]
 script = ExtResource("1_5quqg")
 level = 62
 move = ExtResource("10_rnieh")
@@ -64,7 +64,7 @@ id = "pidgeot"
 display_name = "Pidgeot"
 dex = 18
 types = Array[ExtResource("4_67lwx")]([ExtResource("5_872m1"), ExtResource("6_ppfa3")])
-learnset = Array[ExtResource("1_5quqg")]([SubResource("Resource_n63eo"), SubResource("Resource_q6r26"), SubResource("Resource_0qkdh"), SubResource("Resource_ngfwv"), SubResource("Resource_gpug5"), SubResource("Resource_jgtsr"), SubResource("Resource_oloja"), SubResource("Resource_w6wn8"), SubResource("Resource_uq6ce")])
+learnset = Array[ExtResource("1_5quqg")]([SubResource("Resource_0xix5"), SubResource("Resource_svr50"), SubResource("Resource_dbqsk"), SubResource("Resource_k2u20"), SubResource("Resource_3evlr"), SubResource("Resource_ynvck"), SubResource("Resource_erad3"), SubResource("Resource_rnieh"), SubResource("Resource_n63eo")])
 temperament = ExtResource("13_0xix5")
 genus = "Pokémon Pájaro"
 pokedex_entry = "El plumaje de este Pokémon es bonito e hipnótico. Muchos Entrenadores se quedan embobados ante la belleza impactante de las plumas que tiene en la cabeza; lo que les lleva a elegir a Pidgeot como su Pokémon."

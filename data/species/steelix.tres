@@ -20,60 +20,60 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_2ihsj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_gxx1l"]
 
-[sub_resource type="Resource" id="Resource_wref8"]
+[sub_resource type="Resource" id="Resource_gxx1l"]
 script = ExtResource("1_dw04t")
 move = ExtResource("2_8ammr")
 
-[sub_resource type="Resource" id="Resource_5vi8t"]
+[sub_resource type="Resource" id="Resource_i2vff"]
 script = ExtResource("1_dw04t")
 move = ExtResource("3_gxx1l")
 
-[sub_resource type="Resource" id="Resource_kcjfj"]
+[sub_resource type="Resource" id="Resource_qkmq0"]
 script = ExtResource("1_dw04t")
 level = 8
 move = ExtResource("4_i2vff")
 
-[sub_resource type="Resource" id="Resource_qe431"]
+[sub_resource type="Resource" id="Resource_aqna6"]
 script = ExtResource("1_dw04t")
 level = 12
 move = ExtResource("5_qkmq0")
 
-[sub_resource type="Resource" id="Resource_me0ww"]
+[sub_resource type="Resource" id="Resource_fd208"]
 script = ExtResource("1_dw04t")
 level = 19
 move = ExtResource("6_aqna6")
 
-[sub_resource type="Resource" id="Resource_heqvi"]
+[sub_resource type="Resource" id="Resource_bn5d0"]
 script = ExtResource("1_dw04t")
 level = 23
 move = ExtResource("7_fd208")
 
-[sub_resource type="Resource" id="Resource_f4vl3"]
+[sub_resource type="Resource" id="Resource_5nhtx"]
 script = ExtResource("1_dw04t")
 level = 30
 move = ExtResource("8_bn5d0")
 
-[sub_resource type="Resource" id="Resource_tax0n"]
+[sub_resource type="Resource" id="Resource_inccm"]
 script = ExtResource("1_dw04t")
 level = 34
 move = ExtResource("9_5nhtx")
 
-[sub_resource type="Resource" id="Resource_vt0lo"]
+[sub_resource type="Resource" id="Resource_n0grl"]
 script = ExtResource("1_dw04t")
 level = 41
 move = ExtResource("10_inccm")
 
-[sub_resource type="Resource" id="Resource_nmxrc"]
+[sub_resource type="Resource" id="Resource_f5tg2"]
 script = ExtResource("1_dw04t")
 level = 45
 move = ExtResource("11_n0grl")
 
-[sub_resource type="Resource" id="Resource_fp1u0"]
+[sub_resource type="Resource" id="Resource_2ihsj"]
 script = ExtResource("1_dw04t")
 level = 52
 move = ExtResource("12_f5tg2")
 
-[sub_resource type="Resource" id="Resource_e88w8"]
+[sub_resource type="Resource" id="Resource_wref8"]
 script = ExtResource("1_dw04t")
 level = 56
 move = ExtResource("13_2ihsj")
@@ -84,7 +84,7 @@ id = "steelix"
 display_name = "Steelix"
 dex = 208
 types = Array[ExtResource("4_aa8us")]([ExtResource("5_8eqyf"), ExtResource("6_ym101")])
-learnset = Array[ExtResource("1_dw04t")]([SubResource("Resource_wref8"), SubResource("Resource_5vi8t"), SubResource("Resource_kcjfj"), SubResource("Resource_qe431"), SubResource("Resource_me0ww"), SubResource("Resource_heqvi"), SubResource("Resource_f4vl3"), SubResource("Resource_tax0n"), SubResource("Resource_vt0lo"), SubResource("Resource_nmxrc"), SubResource("Resource_fp1u0"), SubResource("Resource_e88w8")])
+learnset = Array[ExtResource("1_dw04t")]([SubResource("Resource_gxx1l"), SubResource("Resource_i2vff"), SubResource("Resource_qkmq0"), SubResource("Resource_aqna6"), SubResource("Resource_fd208"), SubResource("Resource_bn5d0"), SubResource("Resource_5nhtx"), SubResource("Resource_inccm"), SubResource("Resource_n0grl"), SubResource("Resource_f5tg2"), SubResource("Resource_2ihsj"), SubResource("Resource_wref8")])
 temperament = ExtResource("16_gxx1l")
 genus = "Pokémon Serpiente Férrea"
 pokedex_entry = "Steelix vive a mayor profundidad aún que Onix. Se le conoce por su tendencia a excavar hacia el interior del planeta. Hay datos que muestran que este Pokémon ha llegado a alcanzar 1 km de profundidad."

@@ -16,45 +16,45 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_683i4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_xdxhj"]
 
-[sub_resource type="Resource" id="Resource_lfgkw"]
+[sub_resource type="Resource" id="Resource_xdxhj"]
 script = ExtResource("1_jfv3g")
 move = ExtResource("2_xnra6")
 
-[sub_resource type="Resource" id="Resource_beqw2"]
+[sub_resource type="Resource" id="Resource_lcwga"]
 script = ExtResource("1_jfv3g")
 move = ExtResource("3_xdxhj")
 
-[sub_resource type="Resource" id="Resource_stc5h"]
+[sub_resource type="Resource" id="Resource_tqx68"]
 script = ExtResource("1_jfv3g")
 level = 9
 move = ExtResource("4_lcwga")
 
-[sub_resource type="Resource" id="Resource_rgyl6"]
+[sub_resource type="Resource" id="Resource_ugo3q"]
 script = ExtResource("1_jfv3g")
 level = 17
 move = ExtResource("5_tqx68")
 
-[sub_resource type="Resource" id="Resource_gnd66"]
+[sub_resource type="Resource" id="Resource_70rsi"]
 script = ExtResource("1_jfv3g")
 level = 25
 move = ExtResource("6_ugo3q")
 
-[sub_resource type="Resource" id="Resource_ovwew"]
+[sub_resource type="Resource" id="Resource_0l3xn"]
 script = ExtResource("1_jfv3g")
 level = 33
 move = ExtResource("7_70rsi")
 
-[sub_resource type="Resource" id="Resource_wgc0c"]
+[sub_resource type="Resource" id="Resource_kbujv"]
 script = ExtResource("1_jfv3g")
 level = 41
 move = ExtResource("8_0l3xn")
 
-[sub_resource type="Resource" id="Resource_mh3tg"]
+[sub_resource type="Resource" id="Resource_683i4"]
 script = ExtResource("1_jfv3g")
 level = 49
 move = ExtResource("9_kbujv")
 
-[sub_resource type="Resource" id="Resource_4yyqb"]
+[sub_resource type="Resource" id="Resource_lfgkw"]
 script = ExtResource("1_jfv3g")
 level = 57
 move = ExtResource("10_683i4")
@@ -65,7 +65,7 @@ id = "sudowoodo"
 display_name = "Sudowoodo"
 dex = 185
 types = Array[ExtResource("4_g384b")]([ExtResource("5_3hnts")])
-learnset = Array[ExtResource("1_jfv3g")]([SubResource("Resource_lfgkw"), SubResource("Resource_beqw2"), SubResource("Resource_stc5h"), SubResource("Resource_rgyl6"), SubResource("Resource_gnd66"), SubResource("Resource_ovwew"), SubResource("Resource_wgc0c"), SubResource("Resource_mh3tg"), SubResource("Resource_4yyqb")])
+learnset = Array[ExtResource("1_jfv3g")]([SubResource("Resource_xdxhj"), SubResource("Resource_lcwga"), SubResource("Resource_tqx68"), SubResource("Resource_ugo3q"), SubResource("Resource_70rsi"), SubResource("Resource_0l3xn"), SubResource("Resource_kbujv"), SubResource("Resource_683i4"), SubResource("Resource_lfgkw")])
 temperament = ExtResource("13_xdxhj")
 genus = "Pokémon Imitación"
 pokedex_entry = "Sudowoodo se camufla adoptando la imagen de un árbol para que no le ataque ningún enemigo. El problema viene en invierno, ya que las extremidades superiores tienen color verde y es fácil identificarle."

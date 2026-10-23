@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_lw2np"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_mprpo"]
 
-[sub_resource type="Resource" id="Resource_kyesw"]
+[sub_resource type="Resource" id="Resource_mprpo"]
 script = ExtResource("1_mr7lk")
 move = ExtResource("2_8kvh2")
 
-[sub_resource type="Resource" id="Resource_4084n"]
+[sub_resource type="Resource" id="Resource_dobkh"]
 script = ExtResource("1_mr7lk")
 move = ExtResource("3_mprpo")
 
-[sub_resource type="Resource" id="Resource_ohouf"]
+[sub_resource type="Resource" id="Resource_778m8"]
 script = ExtResource("1_mr7lk")
 level = 9
 move = ExtResource("4_dobkh")
 
-[sub_resource type="Resource" id="Resource_pks2q"]
+[sub_resource type="Resource" id="Resource_r0ccd"]
 script = ExtResource("1_mr7lk")
 level = 17
 move = ExtResource("5_778m8")
 
-[sub_resource type="Resource" id="Resource_7a3s1"]
+[sub_resource type="Resource" id="Resource_lcxuf"]
 script = ExtResource("1_mr7lk")
 level = 21
 move = ExtResource("6_r0ccd")
 
-[sub_resource type="Resource" id="Resource_m3adu"]
+[sub_resource type="Resource" id="Resource_kpf83"]
 script = ExtResource("1_mr7lk")
 level = 25
 move = ExtResource("7_lcxuf")
 
-[sub_resource type="Resource" id="Resource_p31d2"]
+[sub_resource type="Resource" id="Resource_q6yg4"]
 script = ExtResource("1_mr7lk")
 level = 33
 move = ExtResource("8_kpf83")
 
-[sub_resource type="Resource" id="Resource_rl4sf"]
+[sub_resource type="Resource" id="Resource_re00g"]
 script = ExtResource("1_mr7lk")
 level = 41
 move = ExtResource("9_q6yg4")
 
-[sub_resource type="Resource" id="Resource_0pfbw"]
+[sub_resource type="Resource" id="Resource_lw2np"]
 script = ExtResource("1_mr7lk")
 level = 45
 move = ExtResource("10_re00g")
 
-[sub_resource type="Resource" id="Resource_7ed05"]
+[sub_resource type="Resource" id="Resource_kyesw"]
 script = ExtResource("1_mr7lk")
 level = 49
 move = ExtResource("11_lw2np")
@@ -71,7 +71,7 @@ id = "koffing"
 display_name = "Koffing"
 dex = 109
 types = Array[ExtResource("4_dsy4v")]([ExtResource("5_wetmq")])
-learnset = Array[ExtResource("1_mr7lk")]([SubResource("Resource_kyesw"), SubResource("Resource_4084n"), SubResource("Resource_ohouf"), SubResource("Resource_pks2q"), SubResource("Resource_7a3s1"), SubResource("Resource_m3adu"), SubResource("Resource_p31d2"), SubResource("Resource_rl4sf"), SubResource("Resource_0pfbw"), SubResource("Resource_7ed05")])
+learnset = Array[ExtResource("1_mr7lk")]([SubResource("Resource_mprpo"), SubResource("Resource_dobkh"), SubResource("Resource_778m8"), SubResource("Resource_r0ccd"), SubResource("Resource_lcxuf"), SubResource("Resource_kpf83"), SubResource("Resource_q6yg4"), SubResource("Resource_re00g"), SubResource("Resource_lw2np"), SubResource("Resource_kyesw")])
 temperament = ExtResource("14_mprpo")
 genus = "Pokémon Gas Venenoso"
 pokedex_entry = "Si Koffing se pone nervioso, aumenta el nivel de toxicidad de los gases que tiene y los expulsa por todo el cuerpo. También suele hincharse mucho hasta llegar a explotar."

@@ -15,41 +15,41 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_g5xmc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_syn7t"]
 
-[sub_resource type="Resource" id="Resource_76tiv"]
+[sub_resource type="Resource" id="Resource_syn7t"]
 script = ExtResource("1_jsbx5")
 move = ExtResource("2_6n6b0")
 
-[sub_resource type="Resource" id="Resource_3ejwu"]
+[sub_resource type="Resource" id="Resource_vqat1"]
 script = ExtResource("1_jsbx5")
 level = 9
 move = ExtResource("3_syn7t")
 
-[sub_resource type="Resource" id="Resource_onope"]
+[sub_resource type="Resource" id="Resource_ktto4"]
 script = ExtResource("1_jsbx5")
 level = 17
 move = ExtResource("4_vqat1")
 
-[sub_resource type="Resource" id="Resource_0id34"]
+[sub_resource type="Resource" id="Resource_bpudd"]
 script = ExtResource("1_jsbx5")
 level = 25
 move = ExtResource("5_ktto4")
 
-[sub_resource type="Resource" id="Resource_pexwj"]
+[sub_resource type="Resource" id="Resource_gmp3n"]
 script = ExtResource("1_jsbx5")
 level = 33
 move = ExtResource("6_bpudd")
 
-[sub_resource type="Resource" id="Resource_wx1gt"]
+[sub_resource type="Resource" id="Resource_ulxb8"]
 script = ExtResource("1_jsbx5")
 level = 41
 move = ExtResource("7_gmp3n")
 
-[sub_resource type="Resource" id="Resource_awaad"]
+[sub_resource type="Resource" id="Resource_g5xmc"]
 script = ExtResource("1_jsbx5")
 level = 49
 move = ExtResource("8_ulxb8")
 
-[sub_resource type="Resource" id="Resource_usgb2"]
+[sub_resource type="Resource" id="Resource_76tiv"]
 script = ExtResource("1_jsbx5")
 level = 57
 move = ExtResource("9_g5xmc")
@@ -60,7 +60,7 @@ id = "trapinch"
 display_name = "Trapinch"
 dex = 328
 types = Array[ExtResource("4_61jvd")]([ExtResource("5_p2wrm")])
-learnset = Array[ExtResource("1_jsbx5")]([SubResource("Resource_76tiv"), SubResource("Resource_3ejwu"), SubResource("Resource_onope"), SubResource("Resource_0id34"), SubResource("Resource_pexwj"), SubResource("Resource_wx1gt"), SubResource("Resource_awaad"), SubResource("Resource_usgb2")])
+learnset = Array[ExtResource("1_jsbx5")]([SubResource("Resource_syn7t"), SubResource("Resource_vqat1"), SubResource("Resource_ktto4"), SubResource("Resource_bpudd"), SubResource("Resource_gmp3n"), SubResource("Resource_ulxb8"), SubResource("Resource_g5xmc"), SubResource("Resource_76tiv")])
 temperament = ExtResource("12_syn7t")
 genus = "Pokémon Hormiga León"
 pokedex_entry = "El nido de Trapinch está situado bajo la arena, en una zona cóncava. Este Pokémon espera con paciencia a que su presa caiga en la misma. Con las fauces que tiene puede destruir hasta piedras."

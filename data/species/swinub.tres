@@ -16,40 +16,40 @@
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="9_rdoph"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_m7fg7"]
 
-[sub_resource type="Resource" id="Resource_4wckt"]
+[sub_resource type="Resource" id="Resource_m7fg7"]
 script = ExtResource("1_n7d4r")
 move = ExtResource("2_qmyhf")
 
-[sub_resource type="Resource" id="Resource_lijgn"]
+[sub_resource type="Resource" id="Resource_o2xx1"]
 script = ExtResource("1_n7d4r")
 move = ExtResource("3_m7fg7")
 
-[sub_resource type="Resource" id="Resource_jq4i4"]
+[sub_resource type="Resource" id="Resource_n2em2"]
 script = ExtResource("1_n7d4r")
 level = 10
 move = ExtResource("4_o2xx1")
 
-[sub_resource type="Resource" id="Resource_30lhi"]
+[sub_resource type="Resource" id="Resource_m081s"]
 script = ExtResource("1_n7d4r")
 level = 19
 move = ExtResource("5_n2em2")
 
-[sub_resource type="Resource" id="Resource_u7w77"]
+[sub_resource type="Resource" id="Resource_rk1de"]
 script = ExtResource("1_n7d4r")
 level = 28
 move = ExtResource("6_m081s")
 
-[sub_resource type="Resource" id="Resource_ro0n3"]
+[sub_resource type="Resource" id="Resource_kymtu"]
 script = ExtResource("1_n7d4r")
 level = 37
 move = ExtResource("7_rk1de")
 
-[sub_resource type="Resource" id="Resource_a3dqk"]
+[sub_resource type="Resource" id="Resource_rdoph"]
 script = ExtResource("1_n7d4r")
 level = 46
 move = ExtResource("8_kymtu")
 
-[sub_resource type="Resource" id="Resource_bmcg4"]
+[sub_resource type="Resource" id="Resource_4wckt"]
 script = ExtResource("1_n7d4r")
 level = 55
 move = ExtResource("9_rdoph")
@@ -60,7 +60,7 @@ id = "swinub"
 display_name = "Swinub"
 dex = 220
 types = Array[ExtResource("4_2a4qu")]([ExtResource("5_hrq6p"), ExtResource("6_2u8i5")])
-learnset = Array[ExtResource("1_n7d4r")]([SubResource("Resource_4wckt"), SubResource("Resource_lijgn"), SubResource("Resource_jq4i4"), SubResource("Resource_30lhi"), SubResource("Resource_u7w77"), SubResource("Resource_ro0n3"), SubResource("Resource_a3dqk"), SubResource("Resource_bmcg4")])
+learnset = Array[ExtResource("1_n7d4r")]([SubResource("Resource_m7fg7"), SubResource("Resource_o2xx1"), SubResource("Resource_n2em2"), SubResource("Resource_m081s"), SubResource("Resource_rk1de"), SubResource("Resource_kymtu"), SubResource("Resource_rdoph"), SubResource("Resource_4wckt")])
 temperament = ExtResource("12_m7fg7")
 genus = "Pokémon Cerdo"
 pokedex_entry = "Swinub busca el alimento frotando el hocico contra el suelo. Su comida preferida es una seta que crece bajo la hierba marchita. A veces, al frotar, descubre fuentes termales."

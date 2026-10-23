@@ -16,6 +16,11 @@ var _tick_left := 0.0
 var _inside: Dictionary = {}  # criatura -> segundos seguidos adentro
 var _expiring := false
 var _spores: CPUParticles2D
+## Esporas inflamables prendidas fuego (ver ignite).
+var burning := false
+
+const BURN_TIME := 3.0
+const BURN_POWER := 30.0
 
 
 func place(p_hit: HitInfo, center: Vector2) -> void:
@@ -49,6 +54,60 @@ func place(p_hit: HitInfo, center: Vector2) -> void:
 	_spores.z_index = 4
 	add_child(_spores)
 	Events.element_impact.emit(m.element, center, radius)
+	if m.zone_flammable:
+		Events.element_impact.connect(_on_element_impact)
+
+
+## Esporas inflamables (MoveData.zone_flammable, Paras): un impacto de fuego que las toca las prende.
+func _on_element_impact(element: ElementType, pos: Vector2, r: float) -> void:
+	if burning or _expiring or element == null or element.id != "fuego" or pos.distance_to(global_position) > radius + r:
+		return
+	ignite()
+
+
+## Las esporas arden BURN_TIME s: queman (daño de fuego + Quemado) a **todos** los que estén adentro, de cualquier
+## equipo (el fuego no distingue), y la nube deja de dormir.
+func ignite() -> void:
+	burning = true
+	var fire: MoveData = hit.move.duplicate()
+	fire.element = load("res://data/types/fuego.tres")
+	fire.category = MoveData.Category.SPECIAL
+	fire.power = BURN_POWER
+	fire.knockback = 0.0
+	fire.status = DB.statuses.get("quemado")
+	fire.status_chance = 1.0
+	var empty: Array[StatusEffect] = []
+	fire.statuses_on_hit = empty
+	var attacker = hit.attacker if is_instance_valid(hit.attacker) else null
+	var team := hit.team
+	hit = HitInfo.from(attacker, fire) if attacker != null else hit
+	hit.team = team
+	dwell_status = null
+	tick = 0.5
+	_tick_left = 0.0
+	duration = _time + BURN_TIME
+	color = Color(1.0, 0.4, 0.12)
+	_spores.emitting = false
+	var flames := CPUParticles2D.new()
+	flames.amount = 18
+	flames.lifetime = 0.5
+	flames.texture = StatusEffects._flame_texture()
+	flames.emission_shape = CPUParticles2D.EMISSION_SHAPE_SPHERE
+	flames.emission_sphere_radius = radius * 0.8
+	flames.direction = Vector2.UP
+	flames.gravity = Vector2(0, -50)
+	flames.initial_velocity_min = 4.0
+	flames.initial_velocity_max = 14.0
+	flames.scale_amount_min = 1.3
+	flames.scale_amount_max = 2.4
+	var ramp := Gradient.new()
+	ramp.set_color(0, Color(0.8, 0.28, 0.08, 0.9))
+	ramp.add_point(0.45, Color(0.7, 0.14, 0.04, 0.8))
+	ramp.set_color(1, Color(0.25, 0.05, 0.02, 0.0))
+	flames.color_ramp = ramp
+	flames.z_index = 4
+	add_child(flames)
+	Events.env_reaction.emit(global_position, "¡Las esporas arden!")
 
 
 ## Se va antes de tiempo (ej. al pasarse del máximo de zonas de ese ataque).
@@ -66,7 +125,7 @@ func _physics_process(delta: float) -> void:
 	if do_tick:
 		_tick_left = tick
 	for c in get_tree().get_nodes_in_group("creatures"):
-		if c.team == hit.team or c.is_down():
+		if (c.team == hit.team and not burning) or c.is_down():
 			continue
 		if c.global_position.distance_to(global_position) > radius:
 			_inside.erase(c)

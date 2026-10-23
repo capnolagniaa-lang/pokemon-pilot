@@ -17,7 +17,8 @@ const KIND := {MoveData.Kind.PROJECTILE: "Disparo", MoveData.Kind.DASH: "Embesti
 	MoveData.Kind.LUNGE: "Embestida", MoveData.Kind.WHIP: "Látigo", MoveData.Kind.SELF_BUFF: "Mejora"}
 const CATEGORY := {MoveData.Category.PHYSICAL: "Físico", MoveData.Category.SPECIAL: "Especial", MoveData.Category.STATUS: "Estado"}
 const ARCHETYPES := {"bruiser": "Bruiser", "tanque": "Tanque", "control": "Control", "velocista": "Velocista",
-	"hostigador": "Hostigador", "desgaste": "Desgaste", "espaciador": "Espaciador", "asesino": "Asesino"}
+	"hostigador": "Hostigador", "desgaste": "Desgaste", "espaciador": "Espaciador", "asesino": "Asesino",
+	"caotico": "Caótico", "perseguidor": "Perseguidor", "adaptativo": "Adaptativo"}
 const ARCHETYPE_INFO := {
 	"bruiser": "Entra, aguanta y gana peleas largas. Rango corto-medio.",
 	"tanque": "Absorbe, bloquea y castiga errores.",
@@ -27,6 +28,9 @@ const ARCHETYPE_INFO := {
 	"desgaste": "Gana acumulando estados de a poco.",
 	"espaciador": "Premia la distancia exacta.",
 	"asesino": "Remata y explota errores. Muy frágil.",
+	"caotico": "Impredecible: cuanto más le pegan, más peligroso se pone.",
+	"perseguidor": "Marca a su presa y no la suelta.",
+	"adaptativo": "Se acostumbra a lo que le pegan y lo aguanta mejor.",
 }
 const STAT_NAMES := {"hp": "PS", "attack": "Ataque", "defense": "Defensa", "sp_attack": "At. Esp.",
 	"sp_defense": "Def. Esp.", "speed": "Velocidad"}

@@ -20,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="13_hjgti"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_tuyjm"]
 
-[sub_resource type="Resource" id="Resource_r0j6a"]
+[sub_resource type="Resource" id="Resource_tuyjm"]
 script = ExtResource("1_g5pmt")
 move = ExtResource("2_10bux")
 
-[sub_resource type="Resource" id="Resource_b0np2"]
+[sub_resource type="Resource" id="Resource_8lda1"]
 script = ExtResource("1_g5pmt")
 move = ExtResource("3_tuyjm")
 
-[sub_resource type="Resource" id="Resource_slm2h"]
+[sub_resource type="Resource" id="Resource_78iak"]
 script = ExtResource("1_g5pmt")
 move = ExtResource("4_8lda1")
 
-[sub_resource type="Resource" id="Resource_udom8"]
+[sub_resource type="Resource" id="Resource_hndhw"]
 script = ExtResource("1_g5pmt")
 move = ExtResource("5_78iak")
 
-[sub_resource type="Resource" id="Resource_71u84"]
+[sub_resource type="Resource" id="Resource_r87hv"]
 script = ExtResource("1_g5pmt")
 level = 19
 move = ExtResource("6_hndhw")
 
-[sub_resource type="Resource" id="Resource_n1uq6"]
+[sub_resource type="Resource" id="Resource_rigdx"]
 script = ExtResource("1_g5pmt")
 level = 22
 move = ExtResource("7_r87hv")
 
-[sub_resource type="Resource" id="Resource_fh1ii"]
+[sub_resource type="Resource" id="Resource_rhm0r"]
 script = ExtResource("1_g5pmt")
 level = 25
 move = ExtResource("8_rigdx")
 
-[sub_resource type="Resource" id="Resource_kpvuw"]
+[sub_resource type="Resource" id="Resource_rpuqo"]
 script = ExtResource("1_g5pmt")
 level = 33
 move = ExtResource("9_rhm0r")
 
-[sub_resource type="Resource" id="Resource_c5ifh"]
+[sub_resource type="Resource" id="Resource_4drrt"]
 script = ExtResource("1_g5pmt")
 level = 38
 move = ExtResource("10_rpuqo")
 
-[sub_resource type="Resource" id="Resource_j72bp"]
+[sub_resource type="Resource" id="Resource_t1ktv"]
 script = ExtResource("1_g5pmt")
 level = 43
 move = ExtResource("11_4drrt")
 
-[sub_resource type="Resource" id="Resource_uf54u"]
+[sub_resource type="Resource" id="Resource_hjgti"]
 script = ExtResource("1_g5pmt")
 level = 51
 move = ExtResource("12_t1ktv")
 
-[sub_resource type="Resource" id="Resource_xbexi"]
+[sub_resource type="Resource" id="Resource_r0j6a"]
 script = ExtResource("1_g5pmt")
 level = 56
 move = ExtResource("13_hjgti")
@@ -82,7 +82,7 @@ id = "crawdaunt"
 display_name = "Crawdaunt"
 dex = 342
 types = Array[ExtResource("4_36rr1")]([ExtResource("5_lv5n6"), ExtResource("6_jv42n")])
-learnset = Array[ExtResource("1_g5pmt")]([SubResource("Resource_r0j6a"), SubResource("Resource_b0np2"), SubResource("Resource_slm2h"), SubResource("Resource_udom8"), SubResource("Resource_71u84"), SubResource("Resource_n1uq6"), SubResource("Resource_fh1ii"), SubResource("Resource_kpvuw"), SubResource("Resource_c5ifh"), SubResource("Resource_j72bp"), SubResource("Resource_uf54u"), SubResource("Resource_xbexi")])
+learnset = Array[ExtResource("1_g5pmt")]([SubResource("Resource_tuyjm"), SubResource("Resource_8lda1"), SubResource("Resource_78iak"), SubResource("Resource_hndhw"), SubResource("Resource_r87hv"), SubResource("Resource_rigdx"), SubResource("Resource_rhm0r"), SubResource("Resource_rpuqo"), SubResource("Resource_4drrt"), SubResource("Resource_t1ktv"), SubResource("Resource_hjgti"), SubResource("Resource_r0j6a")])
 temperament = ExtResource("16_tuyjm")
 genus = "Pokémon Granuja"
 pokedex_entry = "Crawdaunt es de una naturaleza extremadamente violenta que le lleva a desafiar a otros seres vivos. Hay formas de vida que se niegan a vivir en los estanques donde habitan estos Pokémon, y los dejan medio vacíos."

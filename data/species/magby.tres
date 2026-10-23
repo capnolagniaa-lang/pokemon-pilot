@@ -16,46 +16,46 @@
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="10_bnf6x"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_yxjyk"]
 
-[sub_resource type="Resource" id="Resource_dv2yv"]
+[sub_resource type="Resource" id="Resource_yxjyk"]
 script = ExtResource("1_5higt")
 move = ExtResource("2_qavnc")
 
-[sub_resource type="Resource" id="Resource_r3wv3"]
+[sub_resource type="Resource" id="Resource_xbk3y"]
 script = ExtResource("1_5higt")
 level = 7
 move = ExtResource("3_yxjyk")
 
-[sub_resource type="Resource" id="Resource_4bbtg"]
+[sub_resource type="Resource" id="Resource_fsumi"]
 script = ExtResource("1_5higt")
 level = 13
 move = ExtResource("4_xbk3y")
 
-[sub_resource type="Resource" id="Resource_0wo28"]
+[sub_resource type="Resource" id="Resource_7s0q4"]
 script = ExtResource("1_5higt")
 level = 19
 move = ExtResource("5_fsumi")
 
-[sub_resource type="Resource" id="Resource_q2bpj"]
+[sub_resource type="Resource" id="Resource_52fxt"]
 script = ExtResource("1_5higt")
 level = 25
 move = ExtResource("6_7s0q4")
 
-[sub_resource type="Resource" id="Resource_0cqm2"]
+[sub_resource type="Resource" id="Resource_mxpcj"]
 script = ExtResource("1_5higt")
 level = 31
 move = ExtResource("7_52fxt")
 
-[sub_resource type="Resource" id="Resource_rp3yn"]
+[sub_resource type="Resource" id="Resource_lt2jx"]
 script = ExtResource("1_5higt")
 level = 37
 move = ExtResource("8_mxpcj")
 
-[sub_resource type="Resource" id="Resource_1f2pg"]
+[sub_resource type="Resource" id="Resource_bnf6x"]
 script = ExtResource("1_5higt")
 level = 43
 move = ExtResource("9_lt2jx")
 
-[sub_resource type="Resource" id="Resource_5g0iw"]
+[sub_resource type="Resource" id="Resource_dv2yv"]
 script = ExtResource("1_5higt")
 level = 49
 move = ExtResource("10_bnf6x")
@@ -66,7 +66,7 @@ id = "magby"
 display_name = "Magby"
 dex = 240
 types = Array[ExtResource("4_j5ha0")]([ExtResource("5_7tu7u")])
-learnset = Array[ExtResource("1_5higt")]([SubResource("Resource_dv2yv"), SubResource("Resource_r3wv3"), SubResource("Resource_4bbtg"), SubResource("Resource_0wo28"), SubResource("Resource_q2bpj"), SubResource("Resource_0cqm2"), SubResource("Resource_rp3yn"), SubResource("Resource_1f2pg"), SubResource("Resource_5g0iw")])
+learnset = Array[ExtResource("1_5higt")]([SubResource("Resource_yxjyk"), SubResource("Resource_xbk3y"), SubResource("Resource_fsumi"), SubResource("Resource_7s0q4"), SubResource("Resource_52fxt"), SubResource("Resource_mxpcj"), SubResource("Resource_lt2jx"), SubResource("Resource_bnf6x"), SubResource("Resource_dv2yv")])
 temperament = ExtResource("13_yxjyk")
 genus = "Pokémon Ascuas"
 pokedex_entry = "El estado de salud de Magby se puede determinar observando el fuego que emana al respirar. Si las llamas que echa por la boca son amarillas, está bien. Pero, si además de las llamas sale humo negro, está cansado."

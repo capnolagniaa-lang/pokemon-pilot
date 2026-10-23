@@ -16,46 +16,46 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_qoy0q"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_xu01w"]
 
-[sub_resource type="Resource" id="Resource_uwpte"]
+[sub_resource type="Resource" id="Resource_xu01w"]
 script = ExtResource("1_lb3wg")
 move = ExtResource("2_0but1")
 
-[sub_resource type="Resource" id="Resource_dgf5i"]
+[sub_resource type="Resource" id="Resource_ep5ul"]
 script = ExtResource("1_lb3wg")
 level = 9
 move = ExtResource("3_xu01w")
 
-[sub_resource type="Resource" id="Resource_1skoj"]
+[sub_resource type="Resource" id="Resource_h2c8r"]
 script = ExtResource("1_lb3wg")
 level = 17
 move = ExtResource("4_ep5ul")
 
-[sub_resource type="Resource" id="Resource_40pup"]
+[sub_resource type="Resource" id="Resource_41lwn"]
 script = ExtResource("1_lb3wg")
 level = 25
 move = ExtResource("5_h2c8r")
 
-[sub_resource type="Resource" id="Resource_q8jy1"]
+[sub_resource type="Resource" id="Resource_7lbu4"]
 script = ExtResource("1_lb3wg")
 level = 33
 move = ExtResource("6_41lwn")
 
-[sub_resource type="Resource" id="Resource_2cbtv"]
+[sub_resource type="Resource" id="Resource_m8e6k"]
 script = ExtResource("1_lb3wg")
 level = 41
 move = ExtResource("7_7lbu4")
 
-[sub_resource type="Resource" id="Resource_iqsit"]
+[sub_resource type="Resource" id="Resource_yelcy"]
 script = ExtResource("1_lb3wg")
 level = 49
 move = ExtResource("8_m8e6k")
 
-[sub_resource type="Resource" id="Resource_vygst"]
+[sub_resource type="Resource" id="Resource_qoy0q"]
 script = ExtResource("1_lb3wg")
 level = 57
 move = ExtResource("9_yelcy")
 
-[sub_resource type="Resource" id="Resource_vp3wi"]
+[sub_resource type="Resource" id="Resource_uwpte"]
 script = ExtResource("1_lb3wg")
 level = 65
 move = ExtResource("10_qoy0q")
@@ -66,7 +66,7 @@ id = "regice"
 display_name = "Regice"
 dex = 378
 types = Array[ExtResource("4_es7kv")]([ExtResource("5_2bvaw")])
-learnset = Array[ExtResource("1_lb3wg")]([SubResource("Resource_uwpte"), SubResource("Resource_dgf5i"), SubResource("Resource_1skoj"), SubResource("Resource_40pup"), SubResource("Resource_q8jy1"), SubResource("Resource_2cbtv"), SubResource("Resource_iqsit"), SubResource("Resource_vygst"), SubResource("Resource_vp3wi")])
+learnset = Array[ExtResource("1_lb3wg")]([SubResource("Resource_xu01w"), SubResource("Resource_ep5ul"), SubResource("Resource_h2c8r"), SubResource("Resource_41lwn"), SubResource("Resource_7lbu4"), SubResource("Resource_m8e6k"), SubResource("Resource_yelcy"), SubResource("Resource_qoy0q"), SubResource("Resource_uwpte")])
 temperament = ExtResource("13_xu01w")
 genus = "Pokémon Iceberg"
 pokedex_entry = "Regice surgió durante la edad de hielo. El cuerpo de este Pokémon está totalmente congelado, ni siquiera el fuego puede derretirlo. Regice libera y regula un aire gélido de -200 °C."

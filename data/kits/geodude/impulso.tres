@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/momentum_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "impulso"
+display_name = "Impulso"
+description = "Cada Rodar dentro de 3 s del anterior pega +50% (hasta ×2). Con Rizo Defensa activo, Rodar pega el doble."
+color = Color(0.75, 0.65, 0.45, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+thresholds = Array[float]([50.0, 100.0])
+mechanic_script = ExtResource("1_mech")
+params = {"roll_move": "rodar_kit", "chain_time": 3.0, "step_bonus": 0.5, "max_chain": 2, "max_mult": 2.0, "curl_mult": 2.0}

@@ -18,49 +18,49 @@
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="11_ujemn"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_sb30v"]
 
-[sub_resource type="Resource" id="Resource_jynx0"]
+[sub_resource type="Resource" id="Resource_sb30v"]
 script = ExtResource("1_1dvmu")
 move = ExtResource("2_4ejc1")
 
-[sub_resource type="Resource" id="Resource_67iv3"]
+[sub_resource type="Resource" id="Resource_acli6"]
 script = ExtResource("1_1dvmu")
 move = ExtResource("3_sb30v")
 
-[sub_resource type="Resource" id="Resource_2b23q"]
+[sub_resource type="Resource" id="Resource_r28q1"]
 script = ExtResource("1_1dvmu")
 move = ExtResource("4_acli6")
 
-[sub_resource type="Resource" id="Resource_q5xjs"]
+[sub_resource type="Resource" id="Resource_abh6i"]
 script = ExtResource("1_1dvmu")
 level = 15
 move = ExtResource("5_r28q1")
 
-[sub_resource type="Resource" id="Resource_l5max"]
+[sub_resource type="Resource" id="Resource_rc3d3"]
 script = ExtResource("1_1dvmu")
 level = 17
 move = ExtResource("6_abh6i")
 
-[sub_resource type="Resource" id="Resource_ytv23"]
+[sub_resource type="Resource" id="Resource_xbbus"]
 script = ExtResource("1_1dvmu")
 level = 19
 move = ExtResource("7_rc3d3")
 
-[sub_resource type="Resource" id="Resource_yfaj1"]
+[sub_resource type="Resource" id="Resource_0le07"]
 script = ExtResource("1_1dvmu")
 level = 24
 move = ExtResource("8_xbbus")
 
-[sub_resource type="Resource" id="Resource_pg2qw"]
+[sub_resource type="Resource" id="Resource_t48ft"]
 script = ExtResource("1_1dvmu")
 level = 33
 move = ExtResource("9_0le07")
 
-[sub_resource type="Resource" id="Resource_ran68"]
+[sub_resource type="Resource" id="Resource_ujemn"]
 script = ExtResource("1_1dvmu")
 level = 42
 move = ExtResource("10_t48ft")
 
-[sub_resource type="Resource" id="Resource_dsmu0"]
+[sub_resource type="Resource" id="Resource_jynx0"]
 script = ExtResource("1_1dvmu")
 level = 54
 move = ExtResource("11_ujemn")
@@ -71,7 +71,7 @@ id = "weepinbell"
 display_name = "Weepinbell"
 dex = 70
 types = Array[ExtResource("4_7sc0i")]([ExtResource("5_gte5f"), ExtResource("6_yxge3")])
-learnset = Array[ExtResource("1_1dvmu")]([SubResource("Resource_jynx0"), SubResource("Resource_67iv3"), SubResource("Resource_2b23q"), SubResource("Resource_q5xjs"), SubResource("Resource_l5max"), SubResource("Resource_ytv23"), SubResource("Resource_yfaj1"), SubResource("Resource_pg2qw"), SubResource("Resource_ran68"), SubResource("Resource_dsmu0")])
+learnset = Array[ExtResource("1_1dvmu")]([SubResource("Resource_sb30v"), SubResource("Resource_acli6"), SubResource("Resource_r28q1"), SubResource("Resource_abh6i"), SubResource("Resource_rc3d3"), SubResource("Resource_xbbus"), SubResource("Resource_0le07"), SubResource("Resource_t48ft"), SubResource("Resource_ujemn"), SubResource("Resource_jynx0")])
 temperament = ExtResource("14_sb30v")
 genus = "Pokémon Matamoscas"
 pokedex_entry = "Weepinbell tiene un gancho a modo de extremidad superior trasera, que usa por la noche para colgarse de una rama y echarse a dormir. Si se mueve mientras duerme, puede acabar en el suelo."

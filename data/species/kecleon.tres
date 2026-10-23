@@ -20,62 +20,62 @@
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="14_ky3sj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_ybx5r"]
 
-[sub_resource type="Resource" id="Resource_tw0sl"]
+[sub_resource type="Resource" id="Resource_ybx5r"]
 script = ExtResource("1_82ox2")
 move = ExtResource("2_xnuyn")
 
-[sub_resource type="Resource" id="Resource_mw7xs"]
+[sub_resource type="Resource" id="Resource_5bv6u"]
 script = ExtResource("1_82ox2")
 move = ExtResource("3_ybx5r")
 
-[sub_resource type="Resource" id="Resource_pw7cq"]
+[sub_resource type="Resource" id="Resource_70kr6"]
 script = ExtResource("1_82ox2")
 move = ExtResource("4_5bv6u")
 
-[sub_resource type="Resource" id="Resource_bvp7p"]
+[sub_resource type="Resource" id="Resource_2aopx"]
 script = ExtResource("1_82ox2")
 move = ExtResource("5_70kr6")
 
-[sub_resource type="Resource" id="Resource_nuqql"]
+[sub_resource type="Resource" id="Resource_eb5db"]
 script = ExtResource("1_82ox2")
 move = ExtResource("6_2aopx")
 
-[sub_resource type="Resource" id="Resource_osgk6"]
+[sub_resource type="Resource" id="Resource_872sb"]
 script = ExtResource("1_82ox2")
 level = 4
 move = ExtResource("7_eb5db")
 
-[sub_resource type="Resource" id="Resource_1ap0l"]
+[sub_resource type="Resource" id="Resource_4pxjs"]
 script = ExtResource("1_82ox2")
 level = 7
 move = ExtResource("8_872sb")
 
-[sub_resource type="Resource" id="Resource_8kojb"]
+[sub_resource type="Resource" id="Resource_8wqp5"]
 script = ExtResource("1_82ox2")
 level = 12
 move = ExtResource("9_4pxjs")
 
-[sub_resource type="Resource" id="Resource_2dx6b"]
+[sub_resource type="Resource" id="Resource_83y6a"]
 script = ExtResource("1_82ox2")
 level = 17
 move = ExtResource("10_8wqp5")
 
-[sub_resource type="Resource" id="Resource_m53ww"]
+[sub_resource type="Resource" id="Resource_lgxnj"]
 script = ExtResource("1_82ox2")
 level = 24
 move = ExtResource("11_83y6a")
 
-[sub_resource type="Resource" id="Resource_p7twr"]
+[sub_resource type="Resource" id="Resource_r4f1v"]
 script = ExtResource("1_82ox2")
 level = 31
 move = ExtResource("12_lgxnj")
 
-[sub_resource type="Resource" id="Resource_chrbb"]
+[sub_resource type="Resource" id="Resource_ky3sj"]
 script = ExtResource("1_82ox2")
 level = 40
 move = ExtResource("13_r4f1v")
 
-[sub_resource type="Resource" id="Resource_avon2"]
+[sub_resource type="Resource" id="Resource_tw0sl"]
 script = ExtResource("1_82ox2")
 level = 49
 move = ExtResource("14_ky3sj")
@@ -86,7 +86,7 @@ id = "kecleon"
 display_name = "Kecleon"
 dex = 352
 types = Array[ExtResource("4_mslfn")]([ExtResource("5_qqop5")])
-learnset = Array[ExtResource("1_82ox2")]([SubResource("Resource_tw0sl"), SubResource("Resource_mw7xs"), SubResource("Resource_pw7cq"), SubResource("Resource_bvp7p"), SubResource("Resource_nuqql"), SubResource("Resource_osgk6"), SubResource("Resource_1ap0l"), SubResource("Resource_8kojb"), SubResource("Resource_2dx6b"), SubResource("Resource_m53ww"), SubResource("Resource_p7twr"), SubResource("Resource_chrbb"), SubResource("Resource_avon2")])
+learnset = Array[ExtResource("1_82ox2")]([SubResource("Resource_ybx5r"), SubResource("Resource_5bv6u"), SubResource("Resource_70kr6"), SubResource("Resource_2aopx"), SubResource("Resource_eb5db"), SubResource("Resource_872sb"), SubResource("Resource_4pxjs"), SubResource("Resource_8wqp5"), SubResource("Resource_83y6a"), SubResource("Resource_lgxnj"), SubResource("Resource_r4f1v"), SubResource("Resource_ky3sj"), SubResource("Resource_tw0sl")])
 temperament = ExtResource("17_ybx5r")
 genus = "Pokémon Camaleónico"
 pokedex_entry = "Kecleon puede alterar la pigmentación de la piel para mezclarse con su entorno. Lo único que no es capaz de cambiar es el trazado en zigzag que tiene en la panza."

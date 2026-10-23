@@ -19,53 +19,53 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_xyy54"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_oouum"]
 
-[sub_resource type="Resource" id="Resource_vq5ll"]
+[sub_resource type="Resource" id="Resource_oouum"]
 script = ExtResource("1_nrg86")
 move = ExtResource("2_wo2oc")
 
-[sub_resource type="Resource" id="Resource_ywjhj"]
+[sub_resource type="Resource" id="Resource_f8ku0"]
 script = ExtResource("1_nrg86")
 move = ExtResource("3_oouum")
 
-[sub_resource type="Resource" id="Resource_f4war"]
+[sub_resource type="Resource" id="Resource_jmk6u"]
 script = ExtResource("1_nrg86")
 move = ExtResource("4_f8ku0")
 
-[sub_resource type="Resource" id="Resource_pdrv7"]
+[sub_resource type="Resource" id="Resource_abcfh"]
 script = ExtResource("1_nrg86")
 move = ExtResource("5_jmk6u")
 
-[sub_resource type="Resource" id="Resource_lpurw"]
+[sub_resource type="Resource" id="Resource_v2ejr"]
 script = ExtResource("1_nrg86")
 level = 7
 move = ExtResource("6_abcfh")
 
-[sub_resource type="Resource" id="Resource_2s724"]
+[sub_resource type="Resource" id="Resource_s1jwk"]
 script = ExtResource("1_nrg86")
 level = 21
 move = ExtResource("7_v2ejr")
 
-[sub_resource type="Resource" id="Resource_bdufq"]
+[sub_resource type="Resource" id="Resource_j8isr"]
 script = ExtResource("1_nrg86")
 level = 25
 move = ExtResource("8_s1jwk")
 
-[sub_resource type="Resource" id="Resource_lui1t"]
+[sub_resource type="Resource" id="Resource_7trxi"]
 script = ExtResource("1_nrg86")
 level = 33
 move = ExtResource("9_j8isr")
 
-[sub_resource type="Resource" id="Resource_p8q5o"]
+[sub_resource type="Resource" id="Resource_pyr4h"]
 script = ExtResource("1_nrg86")
 level = 33
 move = ExtResource("10_7trxi")
 
-[sub_resource type="Resource" id="Resource_qa3kg"]
+[sub_resource type="Resource" id="Resource_xyy54"]
 script = ExtResource("1_nrg86")
 level = 47
 move = ExtResource("11_pyr4h")
 
-[sub_resource type="Resource" id="Resource_q7qb4"]
+[sub_resource type="Resource" id="Resource_vq5ll"]
 script = ExtResource("1_nrg86")
 level = 61
 move = ExtResource("12_xyy54")
@@ -76,7 +76,7 @@ id = "pelipper"
 display_name = "Pelipper"
 dex = 279
 types = Array[ExtResource("4_y1foi")]([ExtResource("5_xij50"), ExtResource("6_utvv5")])
-learnset = Array[ExtResource("1_nrg86")]([SubResource("Resource_vq5ll"), SubResource("Resource_ywjhj"), SubResource("Resource_f4war"), SubResource("Resource_pdrv7"), SubResource("Resource_lpurw"), SubResource("Resource_2s724"), SubResource("Resource_bdufq"), SubResource("Resource_lui1t"), SubResource("Resource_p8q5o"), SubResource("Resource_qa3kg"), SubResource("Resource_q7qb4")])
+learnset = Array[ExtResource("1_nrg86")]([SubResource("Resource_oouum"), SubResource("Resource_f8ku0"), SubResource("Resource_jmk6u"), SubResource("Resource_abcfh"), SubResource("Resource_v2ejr"), SubResource("Resource_s1jwk"), SubResource("Resource_j8isr"), SubResource("Resource_7trxi"), SubResource("Resource_pyr4h"), SubResource("Resource_xyy54"), SubResource("Resource_vq5ll")])
 temperament = ExtResource("15_oouum")
 genus = "Pokémon Ave Agua"
 pokedex_entry = "Pelipper vuela transportando pequeños huevos y Pokémon dentro del descomunal pico que tiene. Este Pokémon construye su nido en escarpados acantilados frente al mar."

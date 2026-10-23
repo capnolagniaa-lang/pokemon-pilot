@@ -21,70 +21,70 @@
 [ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="15_xdlgc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="18_3bath"]
 
-[sub_resource type="Resource" id="Resource_xlvbx"]
+[sub_resource type="Resource" id="Resource_3bath"]
 script = ExtResource("1_8bph8")
 move = ExtResource("2_gb1ld")
 
-[sub_resource type="Resource" id="Resource_jhaic"]
+[sub_resource type="Resource" id="Resource_ch3bc"]
 script = ExtResource("1_8bph8")
 move = ExtResource("3_3bath")
 
-[sub_resource type="Resource" id="Resource_14x45"]
+[sub_resource type="Resource" id="Resource_4c53w"]
 script = ExtResource("1_8bph8")
 level = 5
 move = ExtResource("4_ch3bc")
 
-[sub_resource type="Resource" id="Resource_2kbsj"]
+[sub_resource type="Resource" id="Resource_p5ycc"]
 script = ExtResource("1_8bph8")
 level = 9
 move = ExtResource("5_4c53w")
 
-[sub_resource type="Resource" id="Resource_wfsey"]
+[sub_resource type="Resource" id="Resource_6e4r6"]
 script = ExtResource("1_8bph8")
 level = 13
 move = ExtResource("6_p5ycc")
 
-[sub_resource type="Resource" id="Resource_o7owc"]
+[sub_resource type="Resource" id="Resource_edq4v"]
 script = ExtResource("1_8bph8")
 level = 17
 move = ExtResource("7_6e4r6")
 
-[sub_resource type="Resource" id="Resource_gnx5r"]
+[sub_resource type="Resource" id="Resource_6e6ws"]
 script = ExtResource("1_8bph8")
 level = 21
 move = ExtResource("8_edq4v")
 
-[sub_resource type="Resource" id="Resource_1qgel"]
+[sub_resource type="Resource" id="Resource_vsm7y"]
 script = ExtResource("1_8bph8")
 level = 25
 move = ExtResource("9_6e6ws")
 
-[sub_resource type="Resource" id="Resource_4egjm"]
+[sub_resource type="Resource" id="Resource_3btbf"]
 script = ExtResource("1_8bph8")
 level = 29
 move = ExtResource("10_vsm7y")
 
-[sub_resource type="Resource" id="Resource_obx3k"]
+[sub_resource type="Resource" id="Resource_iinjt"]
 script = ExtResource("1_8bph8")
 level = 33
 move = ExtResource("11_3btbf")
 
-[sub_resource type="Resource" id="Resource_mj4y2"]
+[sub_resource type="Resource" id="Resource_ngmjx"]
 script = ExtResource("1_8bph8")
 level = 37
 move = ExtResource("12_iinjt")
 
-[sub_resource type="Resource" id="Resource_jvmpt"]
+[sub_resource type="Resource" id="Resource_xwk80"]
 script = ExtResource("1_8bph8")
 level = 41
 move = ExtResource("13_ngmjx")
 
-[sub_resource type="Resource" id="Resource_jj0u3"]
+[sub_resource type="Resource" id="Resource_xdlgc"]
 script = ExtResource("1_8bph8")
 level = 45
 move = ExtResource("14_xwk80")
 
-[sub_resource type="Resource" id="Resource_m8wxf"]
+[sub_resource type="Resource" id="Resource_xlvbx"]
 script = ExtResource("1_8bph8")
 level = 49
 move = ExtResource("15_xdlgc")
@@ -95,7 +95,7 @@ id = "cacnea"
 display_name = "Cacnea"
 dex = 331
 types = Array[ExtResource("4_7kuu7")]([ExtResource("5_8sh3s")])
-learnset = Array[ExtResource("1_8bph8")]([SubResource("Resource_xlvbx"), SubResource("Resource_jhaic"), SubResource("Resource_14x45"), SubResource("Resource_2kbsj"), SubResource("Resource_wfsey"), SubResource("Resource_o7owc"), SubResource("Resource_gnx5r"), SubResource("Resource_1qgel"), SubResource("Resource_4egjm"), SubResource("Resource_obx3k"), SubResource("Resource_mj4y2"), SubResource("Resource_jvmpt"), SubResource("Resource_jj0u3"), SubResource("Resource_m8wxf")])
+learnset = Array[ExtResource("1_8bph8")]([SubResource("Resource_3bath"), SubResource("Resource_ch3bc"), SubResource("Resource_4c53w"), SubResource("Resource_p5ycc"), SubResource("Resource_6e4r6"), SubResource("Resource_edq4v"), SubResource("Resource_6e6ws"), SubResource("Resource_vsm7y"), SubResource("Resource_3btbf"), SubResource("Resource_iinjt"), SubResource("Resource_ngmjx"), SubResource("Resource_xwk80"), SubResource("Resource_xdlgc"), SubResource("Resource_xlvbx")])
 temperament = ExtResource("18_3bath")
 genus = "Pokémon Cactus"
 pokedex_entry = "Cacnea habita en desiertos y otras zonas áridas. Para atraer a su presa, libera un fuerte aroma por la flor y, cuando se le acerca, le lanza pinchos por todo el cuerpo para reducirla."

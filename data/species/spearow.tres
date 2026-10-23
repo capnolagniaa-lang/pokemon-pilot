@@ -17,45 +17,45 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_2auch"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_yixqo"]
 
-[sub_resource type="Resource" id="Resource_r024i"]
+[sub_resource type="Resource" id="Resource_yixqo"]
 script = ExtResource("1_4dso7")
 move = ExtResource("2_kmiai")
 
-[sub_resource type="Resource" id="Resource_wnrnw"]
+[sub_resource type="Resource" id="Resource_s23f6"]
 script = ExtResource("1_4dso7")
 move = ExtResource("3_yixqo")
 
-[sub_resource type="Resource" id="Resource_j5b32"]
+[sub_resource type="Resource" id="Resource_2qedx"]
 script = ExtResource("1_4dso7")
 level = 7
 move = ExtResource("4_s23f6")
 
-[sub_resource type="Resource" id="Resource_p68p0"]
+[sub_resource type="Resource" id="Resource_rhgp4"]
 script = ExtResource("1_4dso7")
 level = 13
 move = ExtResource("5_2qedx")
 
-[sub_resource type="Resource" id="Resource_tc6ro"]
+[sub_resource type="Resource" id="Resource_4gu4c"]
 script = ExtResource("1_4dso7")
 level = 19
 move = ExtResource("6_rhgp4")
 
-[sub_resource type="Resource" id="Resource_nilan"]
+[sub_resource type="Resource" id="Resource_5ofyk"]
 script = ExtResource("1_4dso7")
 level = 25
 move = ExtResource("7_4gu4c")
 
-[sub_resource type="Resource" id="Resource_j1dww"]
+[sub_resource type="Resource" id="Resource_num18"]
 script = ExtResource("1_4dso7")
 level = 31
 move = ExtResource("8_5ofyk")
 
-[sub_resource type="Resource" id="Resource_21bkg"]
+[sub_resource type="Resource" id="Resource_2auch"]
 script = ExtResource("1_4dso7")
 level = 37
 move = ExtResource("9_num18")
 
-[sub_resource type="Resource" id="Resource_qswam"]
+[sub_resource type="Resource" id="Resource_r024i"]
 script = ExtResource("1_4dso7")
 level = 43
 move = ExtResource("10_2auch")
@@ -66,7 +66,7 @@ id = "spearow"
 display_name = "Spearow"
 dex = 21
 types = Array[ExtResource("4_l8bgp")]([ExtResource("5_2lr62"), ExtResource("6_dyus3")])
-learnset = Array[ExtResource("1_4dso7")]([SubResource("Resource_r024i"), SubResource("Resource_wnrnw"), SubResource("Resource_j5b32"), SubResource("Resource_p68p0"), SubResource("Resource_tc6ro"), SubResource("Resource_nilan"), SubResource("Resource_j1dww"), SubResource("Resource_21bkg"), SubResource("Resource_qswam")])
+learnset = Array[ExtResource("1_4dso7")]([SubResource("Resource_yixqo"), SubResource("Resource_s23f6"), SubResource("Resource_2qedx"), SubResource("Resource_rhgp4"), SubResource("Resource_4gu4c"), SubResource("Resource_5ofyk"), SubResource("Resource_num18"), SubResource("Resource_2auch"), SubResource("Resource_r024i")])
 temperament = ExtResource("13_yixqo")
 genus = "Pokémon Pajarito"
 pokedex_entry = "Spearow pía con tanta fuerza que se le puede oír a 1 km de distancia. Si al agudo chillido le sigue una especie de eco, estaremos oyendo la respuesta de otros Spearow que contestan ante el aviso de peligro."

@@ -16,46 +16,46 @@
 [ext_resource type="Resource" path="res://data/moves/cascabel_cura.tres" id="10_jnyx7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_iocxv"]
 
-[sub_resource type="Resource" id="Resource_xlgee"]
+[sub_resource type="Resource" id="Resource_iocxv"]
 script = ExtResource("1_h8yxm")
 move = ExtResource("2_jrayx")
 
-[sub_resource type="Resource" id="Resource_tymkp"]
+[sub_resource type="Resource" id="Resource_iedfm"]
 script = ExtResource("1_h8yxm")
 level = 4
 move = ExtResource("3_iocxv")
 
-[sub_resource type="Resource" id="Resource_f47xs"]
+[sub_resource type="Resource" id="Resource_ap2js"]
 script = ExtResource("1_h8yxm")
 level = 8
 move = ExtResource("4_iedfm")
 
-[sub_resource type="Resource" id="Resource_xdsah"]
+[sub_resource type="Resource" id="Resource_rmh1d"]
 script = ExtResource("1_h8yxm")
 level = 13
 move = ExtResource("5_ap2js")
 
-[sub_resource type="Resource" id="Resource_gvvkj"]
+[sub_resource type="Resource" id="Resource_ynv3i"]
 script = ExtResource("1_h8yxm")
 level = 19
 move = ExtResource("6_rmh1d")
 
-[sub_resource type="Resource" id="Resource_upv67"]
+[sub_resource type="Resource" id="Resource_a4fm1"]
 script = ExtResource("1_h8yxm")
 level = 26
 move = ExtResource("7_ynv3i")
 
-[sub_resource type="Resource" id="Resource_tu43q"]
+[sub_resource type="Resource" id="Resource_ialnb"]
 script = ExtResource("1_h8yxm")
 level = 34
 move = ExtResource("8_a4fm1")
 
-[sub_resource type="Resource" id="Resource_47cpm"]
+[sub_resource type="Resource" id="Resource_jnyx7"]
 script = ExtResource("1_h8yxm")
 level = 43
 move = ExtResource("9_ialnb")
 
-[sub_resource type="Resource" id="Resource_y78ma"]
+[sub_resource type="Resource" id="Resource_xlgee"]
 script = ExtResource("1_h8yxm")
 level = 53
 move = ExtResource("10_jnyx7")
@@ -66,7 +66,7 @@ id = "miltank"
 display_name = "Miltank"
 dex = 241
 types = Array[ExtResource("4_efing")]([ExtResource("5_tsoaj")])
-learnset = Array[ExtResource("1_h8yxm")]([SubResource("Resource_xlgee"), SubResource("Resource_tymkp"), SubResource("Resource_f47xs"), SubResource("Resource_xdsah"), SubResource("Resource_gvvkj"), SubResource("Resource_upv67"), SubResource("Resource_tu43q"), SubResource("Resource_47cpm"), SubResource("Resource_y78ma")])
+learnset = Array[ExtResource("1_h8yxm")]([SubResource("Resource_iocxv"), SubResource("Resource_iedfm"), SubResource("Resource_ap2js"), SubResource("Resource_rmh1d"), SubResource("Resource_ynv3i"), SubResource("Resource_a4fm1"), SubResource("Resource_ialnb"), SubResource("Resource_jnyx7"), SubResource("Resource_xlgee")])
 temperament = ExtResource("13_iocxv")
 genus = "Pokémon Lechera"
 pokedex_entry = "Miltank da al día 20 l de una leche dulce que es la delicia de pequeños y mayores. Aquellos que no pueden tomarla, se decantan por los yogures."

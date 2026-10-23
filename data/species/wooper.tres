@@ -18,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/neblina.tres" id="11_euwhs"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_hnlb7"]
 
-[sub_resource type="Resource" id="Resource_eugi6"]
+[sub_resource type="Resource" id="Resource_hnlb7"]
 script = ExtResource("1_sjk6s")
 move = ExtResource("2_w68qw")
 
-[sub_resource type="Resource" id="Resource_o76r3"]
+[sub_resource type="Resource" id="Resource_n52ky"]
 script = ExtResource("1_sjk6s")
 move = ExtResource("3_hnlb7")
 
-[sub_resource type="Resource" id="Resource_4otkh"]
+[sub_resource type="Resource" id="Resource_xq5q6"]
 script = ExtResource("1_sjk6s")
 level = 11
 move = ExtResource("4_n52ky")
 
-[sub_resource type="Resource" id="Resource_e4x1d"]
+[sub_resource type="Resource" id="Resource_wo8qd"]
 script = ExtResource("1_sjk6s")
 level = 16
 move = ExtResource("5_xq5q6")
 
-[sub_resource type="Resource" id="Resource_kxlap"]
+[sub_resource type="Resource" id="Resource_h4hdp"]
 script = ExtResource("1_sjk6s")
 level = 21
 move = ExtResource("6_wo8qd")
 
-[sub_resource type="Resource" id="Resource_gk54l"]
+[sub_resource type="Resource" id="Resource_ku4dd"]
 script = ExtResource("1_sjk6s")
 level = 31
 move = ExtResource("7_h4hdp")
 
-[sub_resource type="Resource" id="Resource_7ftcr"]
+[sub_resource type="Resource" id="Resource_116uv"]
 script = ExtResource("1_sjk6s")
 level = 36
 move = ExtResource("8_ku4dd")
 
-[sub_resource type="Resource" id="Resource_ufrd4"]
+[sub_resource type="Resource" id="Resource_e2exn"]
 script = ExtResource("1_sjk6s")
 level = 41
 move = ExtResource("9_116uv")
 
-[sub_resource type="Resource" id="Resource_0s6lx"]
+[sub_resource type="Resource" id="Resource_euwhs"]
 script = ExtResource("1_sjk6s")
 level = 51
 move = ExtResource("10_e2exn")
 
-[sub_resource type="Resource" id="Resource_uc4bc"]
+[sub_resource type="Resource" id="Resource_eugi6"]
 script = ExtResource("1_sjk6s")
 level = 51
 move = ExtResource("11_euwhs")
@@ -72,7 +72,7 @@ id = "wooper"
 display_name = "Wooper"
 dex = 194
 types = Array[ExtResource("4_687yd")]([ExtResource("5_da2qq"), ExtResource("6_waqjo")])
-learnset = Array[ExtResource("1_sjk6s")]([SubResource("Resource_eugi6"), SubResource("Resource_o76r3"), SubResource("Resource_4otkh"), SubResource("Resource_e4x1d"), SubResource("Resource_kxlap"), SubResource("Resource_gk54l"), SubResource("Resource_7ftcr"), SubResource("Resource_ufrd4"), SubResource("Resource_0s6lx"), SubResource("Resource_uc4bc")])
+learnset = Array[ExtResource("1_sjk6s")]([SubResource("Resource_hnlb7"), SubResource("Resource_n52ky"), SubResource("Resource_xq5q6"), SubResource("Resource_wo8qd"), SubResource("Resource_h4hdp"), SubResource("Resource_ku4dd"), SubResource("Resource_116uv"), SubResource("Resource_e2exn"), SubResource("Resource_euwhs"), SubResource("Resource_eugi6")])
 temperament = ExtResource("14_hnlb7")
 genus = "Pokémon Pez Agua"
 pokedex_entry = "Wooper suele vivir en el agua, pero es posible también verle en tierra en busca de comida. Cuando está en terreno firme, se cubre con una película viscosa tóxica."

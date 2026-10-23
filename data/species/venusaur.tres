@@ -19,53 +19,53 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="12_nnd81"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_dk4t0"]
 
-[sub_resource type="Resource" id="Resource_1rc2y"]
+[sub_resource type="Resource" id="Resource_dk4t0"]
 script = ExtResource("1_8cy13")
 move = ExtResource("2_b7dh0")
 
-[sub_resource type="Resource" id="Resource_3hodj"]
+[sub_resource type="Resource" id="Resource_23u41"]
 script = ExtResource("1_8cy13")
 move = ExtResource("3_dk4t0")
 
-[sub_resource type="Resource" id="Resource_iwj8v"]
+[sub_resource type="Resource" id="Resource_3rift"]
 script = ExtResource("1_8cy13")
 move = ExtResource("4_23u41")
 
-[sub_resource type="Resource" id="Resource_pugv1"]
+[sub_resource type="Resource" id="Resource_wrop4"]
 script = ExtResource("1_8cy13")
 move = ExtResource("5_3rift")
 
-[sub_resource type="Resource" id="Resource_dhhpl"]
+[sub_resource type="Resource" id="Resource_nkq08"]
 script = ExtResource("1_8cy13")
 level = 15
 move = ExtResource("6_wrop4")
 
-[sub_resource type="Resource" id="Resource_xt82d"]
+[sub_resource type="Resource" id="Resource_nlrtv"]
 script = ExtResource("1_8cy13")
 level = 15
 move = ExtResource("7_nkq08")
 
-[sub_resource type="Resource" id="Resource_hqfsv"]
+[sub_resource type="Resource" id="Resource_mykmo"]
 script = ExtResource("1_8cy13")
 level = 22
 move = ExtResource("8_nlrtv")
 
-[sub_resource type="Resource" id="Resource_t726n"]
+[sub_resource type="Resource" id="Resource_68g6e"]
 script = ExtResource("1_8cy13")
 level = 29
 move = ExtResource("9_mykmo")
 
-[sub_resource type="Resource" id="Resource_ksbrm"]
+[sub_resource type="Resource" id="Resource_bby47"]
 script = ExtResource("1_8cy13")
 level = 41
 move = ExtResource("10_68g6e")
 
-[sub_resource type="Resource" id="Resource_q3372"]
+[sub_resource type="Resource" id="Resource_nnd81"]
 script = ExtResource("1_8cy13")
 level = 53
 move = ExtResource("11_bby47")
 
-[sub_resource type="Resource" id="Resource_vfwnc"]
+[sub_resource type="Resource" id="Resource_1rc2y"]
 script = ExtResource("1_8cy13")
 level = 65
 move = ExtResource("12_nnd81")
@@ -76,7 +76,7 @@ id = "venusaur"
 display_name = "Venusaur"
 dex = 3
 types = Array[ExtResource("4_lhktv")]([ExtResource("5_kycrs"), ExtResource("6_2gckv")])
-learnset = Array[ExtResource("1_8cy13")]([SubResource("Resource_1rc2y"), SubResource("Resource_3hodj"), SubResource("Resource_iwj8v"), SubResource("Resource_pugv1"), SubResource("Resource_dhhpl"), SubResource("Resource_xt82d"), SubResource("Resource_hqfsv"), SubResource("Resource_t726n"), SubResource("Resource_ksbrm"), SubResource("Resource_q3372"), SubResource("Resource_vfwnc")])
+learnset = Array[ExtResource("1_8cy13")]([SubResource("Resource_dk4t0"), SubResource("Resource_23u41"), SubResource("Resource_3rift"), SubResource("Resource_wrop4"), SubResource("Resource_nkq08"), SubResource("Resource_nlrtv"), SubResource("Resource_mykmo"), SubResource("Resource_68g6e"), SubResource("Resource_bby47"), SubResource("Resource_nnd81"), SubResource("Resource_1rc2y")])
 temperament = ExtResource("15_dk4t0")
 genus = "Pokémon Semilla"
 pokedex_entry = "Venusaur tiene una flor enorme en el lomo que, según parece, adquiere unos colores muy vivos si está bien nutrido y le da mucho el sol. El aroma delicado de la flor tiene un efecto relajante en el ánimo de las personas."

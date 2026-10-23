@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="11_0hqry"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_1pfcu"]
 
-[sub_resource type="Resource" id="Resource_g6uqy"]
+[sub_resource type="Resource" id="Resource_1pfcu"]
 script = ExtResource("1_afplf")
 move = ExtResource("2_w4k1h")
 
-[sub_resource type="Resource" id="Resource_du1x3"]
+[sub_resource type="Resource" id="Resource_oojct"]
 script = ExtResource("1_afplf")
 move = ExtResource("3_1pfcu")
 
-[sub_resource type="Resource" id="Resource_8aig4"]
+[sub_resource type="Resource" id="Resource_fjt7s"]
 script = ExtResource("1_afplf")
 level = 4
 move = ExtResource("4_oojct")
 
-[sub_resource type="Resource" id="Resource_bc1vb"]
+[sub_resource type="Resource" id="Resource_r8ex1"]
 script = ExtResource("1_afplf")
 level = 8
 move = ExtResource("5_fjt7s")
 
-[sub_resource type="Resource" id="Resource_7eiyj"]
+[sub_resource type="Resource" id="Resource_6q3uv"]
 script = ExtResource("1_afplf")
 level = 13
 move = ExtResource("6_r8ex1")
 
-[sub_resource type="Resource" id="Resource_cfx87"]
+[sub_resource type="Resource" id="Resource_t315u"]
 script = ExtResource("1_afplf")
 level = 19
 move = ExtResource("7_6q3uv")
 
-[sub_resource type="Resource" id="Resource_4fpag"]
+[sub_resource type="Resource" id="Resource_il5q0"]
 script = ExtResource("1_afplf")
 level = 26
 move = ExtResource("8_t315u")
 
-[sub_resource type="Resource" id="Resource_h664e"]
+[sub_resource type="Resource" id="Resource_f7j47"]
 script = ExtResource("1_afplf")
 level = 34
 move = ExtResource("9_il5q0")
 
-[sub_resource type="Resource" id="Resource_ilv0g"]
+[sub_resource type="Resource" id="Resource_0hqry"]
 script = ExtResource("1_afplf")
 level = 43
 move = ExtResource("10_f7j47")
 
-[sub_resource type="Resource" id="Resource_y8ies"]
+[sub_resource type="Resource" id="Resource_g6uqy"]
 script = ExtResource("1_afplf")
 level = 53
 move = ExtResource("11_0hqry")
@@ -71,7 +71,7 @@ id = "tauros"
 display_name = "Tauros"
 dex = 128
 types = Array[ExtResource("4_1bv51")]([ExtResource("5_cbvwe")])
-learnset = Array[ExtResource("1_afplf")]([SubResource("Resource_g6uqy"), SubResource("Resource_du1x3"), SubResource("Resource_8aig4"), SubResource("Resource_bc1vb"), SubResource("Resource_7eiyj"), SubResource("Resource_cfx87"), SubResource("Resource_4fpag"), SubResource("Resource_h664e"), SubResource("Resource_ilv0g"), SubResource("Resource_y8ies")])
+learnset = Array[ExtResource("1_afplf")]([SubResource("Resource_1pfcu"), SubResource("Resource_oojct"), SubResource("Resource_fjt7s"), SubResource("Resource_r8ex1"), SubResource("Resource_6q3uv"), SubResource("Resource_t315u"), SubResource("Resource_il5q0"), SubResource("Resource_f7j47"), SubResource("Resource_0hqry"), SubResource("Resource_g6uqy")])
 temperament = ExtResource("14_1pfcu")
 genus = "Pokémon Toro Bravo"
 pokedex_entry = "Este Pokémon no está contento a menos que esté continuamente de aquí para allá. Si no hay rival que luche contra Tauros, se estampa contra árboles grandes para calmarse y los embiste para echarlos abajo."

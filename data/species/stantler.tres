@@ -17,51 +17,51 @@
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_a5vvo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_sj5dy"]
 
-[sub_resource type="Resource" id="Resource_pmf4b"]
+[sub_resource type="Resource" id="Resource_sj5dy"]
 script = ExtResource("1_ywkjh")
 move = ExtResource("2_s3bct")
 
-[sub_resource type="Resource" id="Resource_kyjxj"]
+[sub_resource type="Resource" id="Resource_pjeka"]
 script = ExtResource("1_ywkjh")
 level = 7
 move = ExtResource("3_sj5dy")
 
-[sub_resource type="Resource" id="Resource_3e2cw"]
+[sub_resource type="Resource" id="Resource_3nsi1"]
 script = ExtResource("1_ywkjh")
 level = 11
 move = ExtResource("4_pjeka")
 
-[sub_resource type="Resource" id="Resource_xb4tb"]
+[sub_resource type="Resource" id="Resource_64uym"]
 script = ExtResource("1_ywkjh")
 level = 17
 move = ExtResource("5_3nsi1")
 
-[sub_resource type="Resource" id="Resource_04qss"]
+[sub_resource type="Resource" id="Resource_4rxvg"]
 script = ExtResource("1_ywkjh")
 level = 21
 move = ExtResource("6_64uym")
 
-[sub_resource type="Resource" id="Resource_he1xg"]
+[sub_resource type="Resource" id="Resource_r2g5b"]
 script = ExtResource("1_ywkjh")
 level = 27
 move = ExtResource("7_4rxvg")
 
-[sub_resource type="Resource" id="Resource_2idu6"]
+[sub_resource type="Resource" id="Resource_b08i5"]
 script = ExtResource("1_ywkjh")
 level = 31
 move = ExtResource("8_r2g5b")
 
-[sub_resource type="Resource" id="Resource_y8t23"]
+[sub_resource type="Resource" id="Resource_yqjha"]
 script = ExtResource("1_ywkjh")
 level = 37
 move = ExtResource("9_b08i5")
 
-[sub_resource type="Resource" id="Resource_lxgqq"]
+[sub_resource type="Resource" id="Resource_a5vvo"]
 script = ExtResource("1_ywkjh")
 level = 41
 move = ExtResource("10_yqjha")
 
-[sub_resource type="Resource" id="Resource_wkrx3"]
+[sub_resource type="Resource" id="Resource_pmf4b"]
 script = ExtResource("1_ywkjh")
 level = 47
 move = ExtResource("11_a5vvo")
@@ -72,7 +72,7 @@ id = "stantler"
 display_name = "Stantler"
 dex = 234
 types = Array[ExtResource("4_xqutk")]([ExtResource("5_5n2tc")])
-learnset = Array[ExtResource("1_ywkjh")]([SubResource("Resource_pmf4b"), SubResource("Resource_kyjxj"), SubResource("Resource_3e2cw"), SubResource("Resource_xb4tb"), SubResource("Resource_04qss"), SubResource("Resource_he1xg"), SubResource("Resource_2idu6"), SubResource("Resource_y8t23"), SubResource("Resource_lxgqq"), SubResource("Resource_wkrx3")])
+learnset = Array[ExtResource("1_ywkjh")]([SubResource("Resource_sj5dy"), SubResource("Resource_pjeka"), SubResource("Resource_3nsi1"), SubResource("Resource_64uym"), SubResource("Resource_4rxvg"), SubResource("Resource_r2g5b"), SubResource("Resource_b08i5"), SubResource("Resource_yqjha"), SubResource("Resource_a5vvo"), SubResource("Resource_pmf4b")])
 temperament = ExtResource("14_sj5dy")
 genus = "Pokémon Gran Cuerno"
 pokedex_entry = "Hace tiempo, se comerciaba con la magnífica cornamenta de Stantler. Se vendía como obra de arte a alto precio. Los interesados en cornamentas de valor incalculable empezaron a cazarlos y casi provocan su extinción."

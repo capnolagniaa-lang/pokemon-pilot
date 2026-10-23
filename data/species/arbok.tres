@@ -18,53 +18,53 @@
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_yd8y3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_nsaba"]
 
-[sub_resource type="Resource" id="Resource_1m562"]
+[sub_resource type="Resource" id="Resource_nsaba"]
 script = ExtResource("1_jjru0")
 move = ExtResource("2_uaix0")
 
-[sub_resource type="Resource" id="Resource_e2yok"]
+[sub_resource type="Resource" id="Resource_x5wap"]
 script = ExtResource("1_jjru0")
 move = ExtResource("3_nsaba")
 
-[sub_resource type="Resource" id="Resource_brxuf"]
+[sub_resource type="Resource" id="Resource_w8iv4"]
 script = ExtResource("1_jjru0")
 move = ExtResource("4_x5wap")
 
-[sub_resource type="Resource" id="Resource_ubevf"]
+[sub_resource type="Resource" id="Resource_1kwn8"]
 script = ExtResource("1_jjru0")
 move = ExtResource("5_w8iv4")
 
-[sub_resource type="Resource" id="Resource_ry6nw"]
+[sub_resource type="Resource" id="Resource_0olir"]
 script = ExtResource("1_jjru0")
 level = 20
 move = ExtResource("6_1kwn8")
 
-[sub_resource type="Resource" id="Resource_0rjw0"]
+[sub_resource type="Resource" id="Resource_44esx"]
 script = ExtResource("1_jjru0")
 level = 28
 move = ExtResource("7_0olir")
 
-[sub_resource type="Resource" id="Resource_u66al"]
+[sub_resource type="Resource" id="Resource_pek06"]
 script = ExtResource("1_jjru0")
 level = 38
 move = ExtResource("8_44esx")
 
-[sub_resource type="Resource" id="Resource_s5lhc"]
+[sub_resource type="Resource" id="Resource_kchwe"]
 script = ExtResource("1_jjru0")
 level = 46
 move = ExtResource("9_pek06")
 
-[sub_resource type="Resource" id="Resource_2f3s4"]
+[sub_resource type="Resource" id="Resource_wxw4g"]
 script = ExtResource("1_jjru0")
 level = 46
 move = ExtResource("10_kchwe")
 
-[sub_resource type="Resource" id="Resource_llnfp"]
+[sub_resource type="Resource" id="Resource_yd8y3"]
 script = ExtResource("1_jjru0")
 level = 46
 move = ExtResource("11_wxw4g")
 
-[sub_resource type="Resource" id="Resource_c50xq"]
+[sub_resource type="Resource" id="Resource_1m562"]
 script = ExtResource("1_jjru0")
 level = 56
 move = ExtResource("12_yd8y3")
@@ -75,7 +75,7 @@ id = "arbok"
 display_name = "Arbok"
 dex = 24
 types = Array[ExtResource("4_ctxtg")]([ExtResource("5_fnsj0")])
-learnset = Array[ExtResource("1_jjru0")]([SubResource("Resource_1m562"), SubResource("Resource_e2yok"), SubResource("Resource_brxuf"), SubResource("Resource_ubevf"), SubResource("Resource_ry6nw"), SubResource("Resource_0rjw0"), SubResource("Resource_u66al"), SubResource("Resource_s5lhc"), SubResource("Resource_2f3s4"), SubResource("Resource_llnfp"), SubResource("Resource_c50xq")])
+learnset = Array[ExtResource("1_jjru0")]([SubResource("Resource_nsaba"), SubResource("Resource_x5wap"), SubResource("Resource_w8iv4"), SubResource("Resource_1kwn8"), SubResource("Resource_0olir"), SubResource("Resource_44esx"), SubResource("Resource_pek06"), SubResource("Resource_kchwe"), SubResource("Resource_wxw4g"), SubResource("Resource_yd8y3"), SubResource("Resource_1m562")])
 temperament = ExtResource("15_nsaba")
 genus = "Pokémon Cobra"
 pokedex_entry = "Este Pokémon es tremendamente fuerte, puede oprimir cualquier cosa con su cuerpo y hasta es capaz de estrujar un barril de acero. Una vez que Arbok se enrosca a su víctima, no hay forma de escapar de su asfixiante abrazo."

@@ -17,49 +17,49 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="11_215b5"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_02dst"]
 
-[sub_resource type="Resource" id="Resource_r2g1o"]
+[sub_resource type="Resource" id="Resource_02dst"]
 script = ExtResource("1_12awl")
 move = ExtResource("2_i8yyp")
 
-[sub_resource type="Resource" id="Resource_60j2h"]
+[sub_resource type="Resource" id="Resource_gomve"]
 script = ExtResource("1_12awl")
 move = ExtResource("3_02dst")
 
-[sub_resource type="Resource" id="Resource_ixaun"]
+[sub_resource type="Resource" id="Resource_g0836"]
 script = ExtResource("1_12awl")
 move = ExtResource("4_gomve")
 
-[sub_resource type="Resource" id="Resource_iwahf"]
+[sub_resource type="Resource" id="Resource_hflun"]
 script = ExtResource("1_12awl")
 level = 18
 move = ExtResource("5_g0836")
 
-[sub_resource type="Resource" id="Resource_guupt"]
+[sub_resource type="Resource" id="Resource_mcxln"]
 script = ExtResource("1_12awl")
 level = 25
 move = ExtResource("6_hflun")
 
-[sub_resource type="Resource" id="Resource_n6gut"]
+[sub_resource type="Resource" id="Resource_wbqc3"]
 script = ExtResource("1_12awl")
 level = 34
 move = ExtResource("7_mcxln")
 
-[sub_resource type="Resource" id="Resource_sujqc"]
+[sub_resource type="Resource" id="Resource_axdgv"]
 script = ExtResource("1_12awl")
 level = 42
 move = ExtResource("8_wbqc3")
 
-[sub_resource type="Resource" id="Resource_ay3d7"]
+[sub_resource type="Resource" id="Resource_s0pyd"]
 script = ExtResource("1_12awl")
 level = 49
 move = ExtResource("9_axdgv")
 
-[sub_resource type="Resource" id="Resource_85k3m"]
+[sub_resource type="Resource" id="Resource_215b5"]
 script = ExtResource("1_12awl")
 level = 55
 move = ExtResource("10_s0pyd")
 
-[sub_resource type="Resource" id="Resource_xtod5"]
+[sub_resource type="Resource" id="Resource_r2g1o"]
 script = ExtResource("1_12awl")
 level = 61
 move = ExtResource("11_215b5")
@@ -70,7 +70,7 @@ id = "persian"
 display_name = "Persian"
 dex = 53
 types = Array[ExtResource("4_k1mhc")]([ExtResource("5_yjw3x")])
-learnset = Array[ExtResource("1_12awl")]([SubResource("Resource_r2g1o"), SubResource("Resource_60j2h"), SubResource("Resource_ixaun"), SubResource("Resource_iwahf"), SubResource("Resource_guupt"), SubResource("Resource_n6gut"), SubResource("Resource_sujqc"), SubResource("Resource_ay3d7"), SubResource("Resource_85k3m"), SubResource("Resource_xtod5")])
+learnset = Array[ExtResource("1_12awl")]([SubResource("Resource_02dst"), SubResource("Resource_gomve"), SubResource("Resource_g0836"), SubResource("Resource_hflun"), SubResource("Resource_mcxln"), SubResource("Resource_wbqc3"), SubResource("Resource_axdgv"), SubResource("Resource_s0pyd"), SubResource("Resource_215b5"), SubResource("Resource_r2g1o")])
 temperament = ExtResource("14_02dst")
 genus = "Pokémon Gato Fino"
 pokedex_entry = "Persian tiene seis llamativos bigotes que le dan un aspecto feroz. Además, le sirven para detectar el movimiento del aire, delator de la presencia cercana de algún Pokémon. Si se le agarra por los bigotes, se vuelve dócil."

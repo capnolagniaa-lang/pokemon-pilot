@@ -19,58 +19,58 @@
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="13_3fca2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_ql84h"]
 
-[sub_resource type="Resource" id="Resource_v1ky7"]
+[sub_resource type="Resource" id="Resource_ql84h"]
 script = ExtResource("1_2jmjo")
 move = ExtResource("2_dv8su")
 
-[sub_resource type="Resource" id="Resource_s02m6"]
+[sub_resource type="Resource" id="Resource_jyrv2"]
 script = ExtResource("1_2jmjo")
 move = ExtResource("3_ql84h")
 
-[sub_resource type="Resource" id="Resource_3jjaf"]
+[sub_resource type="Resource" id="Resource_uyrbj"]
 script = ExtResource("1_2jmjo")
 move = ExtResource("4_jyrv2")
 
-[sub_resource type="Resource" id="Resource_dpgrf"]
+[sub_resource type="Resource" id="Resource_qp8ve"]
 script = ExtResource("1_2jmjo")
 move = ExtResource("5_uyrbj")
 
-[sub_resource type="Resource" id="Resource_bp06d"]
+[sub_resource type="Resource" id="Resource_ndlqn"]
 script = ExtResource("1_2jmjo")
 level = 11
 move = ExtResource("6_qp8ve")
 
-[sub_resource type="Resource" id="Resource_2npgi"]
+[sub_resource type="Resource" id="Resource_6s80e"]
 script = ExtResource("1_2jmjo")
 level = 16
 move = ExtResource("7_ndlqn")
 
-[sub_resource type="Resource" id="Resource_yqdgi"]
+[sub_resource type="Resource" id="Resource_n6y8n"]
 script = ExtResource("1_2jmjo")
 level = 21
 move = ExtResource("8_6s80e")
 
-[sub_resource type="Resource" id="Resource_18f07"]
+[sub_resource type="Resource" id="Resource_1l1wa"]
 script = ExtResource("1_2jmjo")
 level = 26
 move = ExtResource("9_n6y8n")
 
-[sub_resource type="Resource" id="Resource_w856q"]
+[sub_resource type="Resource" id="Resource_c8yfk"]
 script = ExtResource("1_2jmjo")
 level = 35
 move = ExtResource("10_1l1wa")
 
-[sub_resource type="Resource" id="Resource_x3art"]
+[sub_resource type="Resource" id="Resource_1a74f"]
 script = ExtResource("1_2jmjo")
 level = 44
 move = ExtResource("11_c8yfk")
 
-[sub_resource type="Resource" id="Resource_nph4f"]
+[sub_resource type="Resource" id="Resource_3fca2"]
 script = ExtResource("1_2jmjo")
 level = 53
 move = ExtResource("12_1a74f")
 
-[sub_resource type="Resource" id="Resource_e8pj8"]
+[sub_resource type="Resource" id="Resource_v1ky7"]
 script = ExtResource("1_2jmjo")
 level = 62
 move = ExtResource("13_3fca2")
@@ -81,7 +81,7 @@ id = "primeape"
 display_name = "Primeape"
 dex = 57
 types = Array[ExtResource("4_jousr")]([ExtResource("5_kl4rg")])
-learnset = Array[ExtResource("1_2jmjo")]([SubResource("Resource_v1ky7"), SubResource("Resource_s02m6"), SubResource("Resource_3jjaf"), SubResource("Resource_dpgrf"), SubResource("Resource_bp06d"), SubResource("Resource_2npgi"), SubResource("Resource_yqdgi"), SubResource("Resource_18f07"), SubResource("Resource_w856q"), SubResource("Resource_x3art"), SubResource("Resource_nph4f"), SubResource("Resource_e8pj8")])
+learnset = Array[ExtResource("1_2jmjo")]([SubResource("Resource_ql84h"), SubResource("Resource_jyrv2"), SubResource("Resource_uyrbj"), SubResource("Resource_qp8ve"), SubResource("Resource_ndlqn"), SubResource("Resource_6s80e"), SubResource("Resource_n6y8n"), SubResource("Resource_1l1wa"), SubResource("Resource_c8yfk"), SubResource("Resource_1a74f"), SubResource("Resource_3fca2"), SubResource("Resource_v1ky7")])
 temperament = ExtResource("16_ql84h")
 genus = "Pokémon Mono Cerdo"
 pokedex_entry = "Cuando Primeape se enfada, se le acelera el ritmo cardíaco y se le fortalecen los músculos. Con todo, pierde en inteligencia."

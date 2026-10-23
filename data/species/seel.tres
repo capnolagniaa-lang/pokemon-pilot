@@ -1,42 +1,41 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/seel/kit.tres" id="0_kitv3"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_epuj5"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_rfi0n"]
 [ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="2_7o4bw"]
+[ext_resource type="Resource" path="res://data/kits/seel/golpe_cabeza_kit.tres" id="3_kft5j"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_xyfw3"]
+[ext_resource type="Resource" path="res://data/kits/seel/viento_hielo_kit.tres" id="4_e0u66"]
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="4_epuj5"]
+[ext_resource type="Resource" path="res://data/kits/seel/rayo_aurora_kit.tres" id="5_smj0p"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_vfjnl"]
+[ext_resource type="Resource" path="res://data/kits/seel/descanso_kit.tres" id="6_4a5px"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_88q5k"]
-[ext_resource type="Resource" path="res://data/moves/viento_hielo.tres" id="6_vfjnl"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_2i8dt"]
 [ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="7_88q5k"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_5aa2p"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="10_vfjnl"]
 
-[sub_resource type="Resource" id="Resource_epuj5"]
+[sub_resource type="Resource" id="Resource_c2ikb"]
 script = ExtResource("1_epuj5")
-move = ExtResource("2_7o4bw")
+move = ExtResource("3_kft5j")
 
-[sub_resource type="Resource" id="Resource_vfjnl"]
+[sub_resource type="Resource" id="Resource_vbs6k"]
 script = ExtResource("1_epuj5")
-move = ExtResource("3_xyfw3")
+move = ExtResource("4_e0u66")
 
-[sub_resource type="Resource" id="Resource_88q5k"]
+[sub_resource type="Resource" id="Resource_hejff"]
 script = ExtResource("1_epuj5")
 level = 3
-move = ExtResource("4_epuj5")
+move = ExtResource("5_smj0p")
 
-[sub_resource type="Resource" id="Resource_2i8dt"]
+[sub_resource type="Resource" id="Resource_s6m8g"]
 script = ExtResource("1_epuj5")
 level = 5
-move = ExtResource("5_vfjnl")
+move = ExtResource("6_4a5px")
 
-[sub_resource type="Resource" id="Resource_5aa2p"]
-script = ExtResource("1_epuj5")
-level = 17
-move = ExtResource("6_vfjnl")
-
-[sub_resource type="Resource" id="Resource_kft5j"]
+[sub_resource type="Resource" id="Resource_bvbwx"]
 script = ExtResource("1_epuj5")
 level = 41
 move = ExtResource("7_88q5k")
@@ -48,7 +47,8 @@ display_name = "Seel"
 dex = 86
 types = Array[ExtResource("7_2i8dt")]([ExtResource("8_5aa2p")])
 moves = Array[ExtResource("1_rfi0n")]([ExtResource("2_7o4bw"), ExtResource("3_xyfw3"), ExtResource("4_epuj5"), ExtResource("5_vfjnl")])
-learnset = Array[ExtResource("1_epuj5")]([SubResource("Resource_epuj5"), SubResource("Resource_vfjnl"), SubResource("Resource_88q5k"), SubResource("Resource_2i8dt"), SubResource("Resource_5aa2p"), SubResource("Resource_kft5j")])
+kit = ExtResource("0_kitv3")
+learnset = Array[ExtResource("1_epuj5")]([SubResource("Resource_c2ikb"), SubResource("Resource_vbs6k"), SubResource("Resource_hejff"), SubResource("Resource_s6m8g"), SubResource("Resource_bvbwx")])
 temperament = ExtResource("10_vfjnl")
 genus = "Pokémon León Marino"
 pokedex_entry = "Seel busca a sus presas en aguas heladas, bajo las capas de hielo. Cuando necesita respirar, abre un agujerito en el hielo con la afilada protuberancia que tiene encima de la cabeza."

@@ -18,30 +18,30 @@
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="9_yyf8n"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_he3qp"]
 
-[sub_resource type="Resource" id="Resource_8qn83"]
+[sub_resource type="Resource" id="Resource_he3qp"]
 script = ExtResource("2_8qn83")
 move = ExtResource("3_he3qp")
 
-[sub_resource type="Resource" id="Resource_he3qp"]
+[sub_resource type="Resource" id="Resource_lfy4r"]
 script = ExtResource("2_8qn83")
 move = ExtResource("4_lfy4r")
 
-[sub_resource type="Resource" id="Resource_lfy4r"]
+[sub_resource type="Resource" id="Resource_wt67y"]
 script = ExtResource("2_8qn83")
 level = 3
 move = ExtResource("5_wt67y")
 
-[sub_resource type="Resource" id="Resource_wt67y"]
+[sub_resource type="Resource" id="Resource_7hmwt"]
 script = ExtResource("2_8qn83")
 level = 5
 move = ExtResource("6_7hmwt")
 
-[sub_resource type="Resource" id="Resource_7hmwt"]
+[sub_resource type="Resource" id="Resource_ecqyg"]
 script = ExtResource("2_8qn83")
 level = 20
 move = ExtResource("2_yyf8n")
 
-[sub_resource type="Resource" id="Resource_ecqyg"]
+[sub_resource type="Resource" id="Resource_uuxo1"]
 script = ExtResource("2_8qn83")
 level = 46
 move = ExtResource("8_ecqyg")
@@ -54,7 +54,7 @@ dex = 1
 types = Array[ExtResource("7_eo1rb")]([ExtResource("8_xegt2"), ExtResource("9_yyf8n")])
 moves = Array[ExtResource("1_jgs44")]([ExtResource("2_yyf8n"), ExtResource("3_jvu2p"), ExtResource("4_1luoi"), ExtResource("5_ibq27")])
 kit = ExtResource("1_jvu2p")
-learnset = Array[ExtResource("2_8qn83")]([SubResource("Resource_8qn83"), SubResource("Resource_he3qp"), SubResource("Resource_lfy4r"), SubResource("Resource_wt67y"), SubResource("Resource_7hmwt"), SubResource("Resource_ecqyg")])
+learnset = Array[ExtResource("2_8qn83")]([SubResource("Resource_he3qp"), SubResource("Resource_lfy4r"), SubResource("Resource_wt67y"), SubResource("Resource_7hmwt"), SubResource("Resource_ecqyg"), SubResource("Resource_uuxo1")])
 temperament = ExtResource("14_he3qp")
 genus = "Pokémon Semilla"
 pokedex_entry = "A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol."

@@ -17,43 +17,43 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_g6wqx"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_lw3v8"]
 
-[sub_resource type="Resource" id="Resource_4td62"]
+[sub_resource type="Resource" id="Resource_lw3v8"]
 script = ExtResource("1_om3l7")
 move = ExtResource("2_rh0vy")
 
-[sub_resource type="Resource" id="Resource_a2n8q"]
+[sub_resource type="Resource" id="Resource_sn1xa"]
 script = ExtResource("1_om3l7")
 move = ExtResource("3_lw3v8")
 
-[sub_resource type="Resource" id="Resource_7cens"]
+[sub_resource type="Resource" id="Resource_kbwdf"]
 script = ExtResource("1_om3l7")
 move = ExtResource("4_sn1xa")
 
-[sub_resource type="Resource" id="Resource_j0yve"]
+[sub_resource type="Resource" id="Resource_eenos"]
 script = ExtResource("1_om3l7")
 move = ExtResource("5_kbwdf")
 
-[sub_resource type="Resource" id="Resource_yt74y"]
+[sub_resource type="Resource" id="Resource_h0cls"]
 script = ExtResource("1_om3l7")
 level = 21
 move = ExtResource("6_eenos")
 
-[sub_resource type="Resource" id="Resource_0244h"]
+[sub_resource type="Resource" id="Resource_v7ob5"]
 script = ExtResource("1_om3l7")
 level = 25
 move = ExtResource("7_h0cls")
 
-[sub_resource type="Resource" id="Resource_gbyap"]
+[sub_resource type="Resource" id="Resource_onera"]
 script = ExtResource("1_om3l7")
 level = 38
 move = ExtResource("8_v7ob5")
 
-[sub_resource type="Resource" id="Resource_3qpd2"]
+[sub_resource type="Resource" id="Resource_g6wqx"]
 script = ExtResource("1_om3l7")
 level = 47
 move = ExtResource("9_onera")
 
-[sub_resource type="Resource" id="Resource_n5fgr"]
+[sub_resource type="Resource" id="Resource_4td62"]
 script = ExtResource("1_om3l7")
 level = 60
 move = ExtResource("10_g6wqx")
@@ -64,7 +64,7 @@ id = "dodrio"
 display_name = "Dodrio"
 dex = 85
 types = Array[ExtResource("4_gwcca")]([ExtResource("5_e3kb7"), ExtResource("6_tmuby")])
-learnset = Array[ExtResource("1_om3l7")]([SubResource("Resource_4td62"), SubResource("Resource_a2n8q"), SubResource("Resource_7cens"), SubResource("Resource_j0yve"), SubResource("Resource_yt74y"), SubResource("Resource_0244h"), SubResource("Resource_gbyap"), SubResource("Resource_3qpd2"), SubResource("Resource_n5fgr")])
+learnset = Array[ExtResource("1_om3l7")]([SubResource("Resource_lw3v8"), SubResource("Resource_sn1xa"), SubResource("Resource_kbwdf"), SubResource("Resource_eenos"), SubResource("Resource_h0cls"), SubResource("Resource_v7ob5"), SubResource("Resource_onera"), SubResource("Resource_g6wqx"), SubResource("Resource_4td62")])
 temperament = ExtResource("13_lw3v8")
 genus = "Pokémon Ave Triple"
 pokedex_entry = "Según parece, las cabezas no son las únicas partes del cuerpo que tiene triplicadas. Dodrio también tiene tres corazones y tres pares de pulmones. Con esta constitución, puede correr largas distancias sin cansarse."

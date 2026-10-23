@@ -15,39 +15,39 @@
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="9_u5267"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_5icmr"]
 
-[sub_resource type="Resource" id="Resource_4tddi"]
+[sub_resource type="Resource" id="Resource_5icmr"]
 script = ExtResource("1_hou7l")
 move = ExtResource("2_rbmxy")
 
-[sub_resource type="Resource" id="Resource_v62pd"]
+[sub_resource type="Resource" id="Resource_ro6q4"]
 script = ExtResource("1_hou7l")
 move = ExtResource("3_5icmr")
 
-[sub_resource type="Resource" id="Resource_7topq"]
+[sub_resource type="Resource" id="Resource_jso7q"]
 script = ExtResource("1_hou7l")
 move = ExtResource("4_ro6q4")
 
-[sub_resource type="Resource" id="Resource_xp7sf"]
+[sub_resource type="Resource" id="Resource_317e0"]
 script = ExtResource("1_hou7l")
 level = 13
 move = ExtResource("5_jso7q")
 
-[sub_resource type="Resource" id="Resource_fla37"]
+[sub_resource type="Resource" id="Resource_bm7ty"]
 script = ExtResource("1_hou7l")
 level = 20
 move = ExtResource("6_317e0")
 
-[sub_resource type="Resource" id="Resource_bwasf"]
+[sub_resource type="Resource" id="Resource_ax73t"]
 script = ExtResource("1_hou7l")
 level = 30
 move = ExtResource("7_bm7ty")
 
-[sub_resource type="Resource" id="Resource_ade0v"]
+[sub_resource type="Resource" id="Resource_u5267"]
 script = ExtResource("1_hou7l")
 level = 40
 move = ExtResource("8_ax73t")
 
-[sub_resource type="Resource" id="Resource_eh3m3"]
+[sub_resource type="Resource" id="Resource_4tddi"]
 script = ExtResource("1_hou7l")
 level = 50
 move = ExtResource("9_u5267")
@@ -58,7 +58,7 @@ id = "raticate"
 display_name = "Raticate"
 dex = 20
 types = Array[ExtResource("4_351ia")]([ExtResource("5_56xdy")])
-learnset = Array[ExtResource("1_hou7l")]([SubResource("Resource_4tddi"), SubResource("Resource_v62pd"), SubResource("Resource_7topq"), SubResource("Resource_xp7sf"), SubResource("Resource_fla37"), SubResource("Resource_bwasf"), SubResource("Resource_ade0v"), SubResource("Resource_eh3m3")])
+learnset = Array[ExtResource("1_hou7l")]([SubResource("Resource_5icmr"), SubResource("Resource_ro6q4"), SubResource("Resource_jso7q"), SubResource("Resource_317e0"), SubResource("Resource_bm7ty"), SubResource("Resource_ax73t"), SubResource("Resource_u5267"), SubResource("Resource_4tddi")])
 temperament = ExtResource("12_5icmr")
 genus = "Pokémon Ratón"
 pokedex_entry = "A Raticate le crecen los incisivos firmes y fuertes. Para mantenerlos afilados roe troncos y rocas, e incluso las paredes de las casas."

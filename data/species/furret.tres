@@ -16,44 +16,44 @@
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_mqca4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_nyutk"]
 
-[sub_resource type="Resource" id="Resource_xmptc"]
+[sub_resource type="Resource" id="Resource_nyutk"]
 script = ExtResource("1_bj13b")
 move = ExtResource("2_k4rwp")
 
-[sub_resource type="Resource" id="Resource_3qalq"]
+[sub_resource type="Resource" id="Resource_57d8j"]
 script = ExtResource("1_bj13b")
 move = ExtResource("3_nyutk")
 
-[sub_resource type="Resource" id="Resource_5sjeh"]
+[sub_resource type="Resource" id="Resource_ov5oi"]
 script = ExtResource("1_bj13b")
 move = ExtResource("4_57d8j")
 
-[sub_resource type="Resource" id="Resource_0uv23"]
+[sub_resource type="Resource" id="Resource_ebpf3"]
 script = ExtResource("1_bj13b")
 level = 12
 move = ExtResource("5_ov5oi")
 
-[sub_resource type="Resource" id="Resource_ycbs3"]
+[sub_resource type="Resource" id="Resource_yqwyi"]
 script = ExtResource("1_bj13b")
 level = 19
 move = ExtResource("6_ebpf3")
 
-[sub_resource type="Resource" id="Resource_abp2o"]
+[sub_resource type="Resource" id="Resource_3uky7"]
 script = ExtResource("1_bj13b")
 level = 28
 move = ExtResource("7_yqwyi")
 
-[sub_resource type="Resource" id="Resource_otefn"]
+[sub_resource type="Resource" id="Resource_gbqid"]
 script = ExtResource("1_bj13b")
 level = 37
 move = ExtResource("8_3uky7")
 
-[sub_resource type="Resource" id="Resource_gh2ps"]
+[sub_resource type="Resource" id="Resource_mqca4"]
 script = ExtResource("1_bj13b")
 level = 48
 move = ExtResource("9_gbqid")
 
-[sub_resource type="Resource" id="Resource_ww8xq"]
+[sub_resource type="Resource" id="Resource_xmptc"]
 script = ExtResource("1_bj13b")
 level = 59
 move = ExtResource("10_mqca4")
@@ -64,7 +64,7 @@ id = "furret"
 display_name = "Furret"
 dex = 162
 types = Array[ExtResource("4_ks8o1")]([ExtResource("5_jkx2l")])
-learnset = Array[ExtResource("1_bj13b")]([SubResource("Resource_xmptc"), SubResource("Resource_3qalq"), SubResource("Resource_5sjeh"), SubResource("Resource_0uv23"), SubResource("Resource_ycbs3"), SubResource("Resource_abp2o"), SubResource("Resource_otefn"), SubResource("Resource_gh2ps"), SubResource("Resource_ww8xq")])
+learnset = Array[ExtResource("1_bj13b")]([SubResource("Resource_nyutk"), SubResource("Resource_57d8j"), SubResource("Resource_ov5oi"), SubResource("Resource_ebpf3"), SubResource("Resource_yqwyi"), SubResource("Resource_3uky7"), SubResource("Resource_gbqid"), SubResource("Resource_mqca4"), SubResource("Resource_xmptc")])
 temperament = ExtResource("13_nyutk")
 genus = "Pokémon Alargado"
 pokedex_entry = "Furret es de constitución muy delgada. En combate le resulta útil porque puede escabullirse con habilidad por cualquier huequito y escapar. A pesar de que tiene patas cortas, es ágil y veloz."

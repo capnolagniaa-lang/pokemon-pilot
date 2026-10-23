@@ -17,43 +17,43 @@
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_vujkd"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_hq3u4"]
 
-[sub_resource type="Resource" id="Resource_l2tsi"]
+[sub_resource type="Resource" id="Resource_hq3u4"]
 script = ExtResource("1_fhv12")
 move = ExtResource("2_amr38")
 
-[sub_resource type="Resource" id="Resource_lv44b"]
+[sub_resource type="Resource" id="Resource_h1lib"]
 script = ExtResource("1_fhv12")
 move = ExtResource("3_hq3u4")
 
-[sub_resource type="Resource" id="Resource_bfw3m"]
+[sub_resource type="Resource" id="Resource_6yv21"]
 script = ExtResource("1_fhv12")
 move = ExtResource("4_h1lib")
 
-[sub_resource type="Resource" id="Resource_lk60b"]
+[sub_resource type="Resource" id="Resource_2vbud"]
 script = ExtResource("1_fhv12")
 move = ExtResource("5_6yv21")
 
-[sub_resource type="Resource" id="Resource_ri5bg"]
+[sub_resource type="Resource" id="Resource_4014i"]
 script = ExtResource("1_fhv12")
 level = 22
 move = ExtResource("6_2vbud")
 
-[sub_resource type="Resource" id="Resource_ll84n"]
+[sub_resource type="Resource" id="Resource_71kj4"]
 script = ExtResource("1_fhv12")
 level = 29
 move = ExtResource("7_4014i")
 
-[sub_resource type="Resource" id="Resource_7o7ph"]
+[sub_resource type="Resource" id="Resource_flydx"]
 script = ExtResource("1_fhv12")
 level = 36
 move = ExtResource("8_71kj4")
 
-[sub_resource type="Resource" id="Resource_louts"]
+[sub_resource type="Resource" id="Resource_vujkd"]
 script = ExtResource("1_fhv12")
 level = 48
 move = ExtResource("9_flydx")
 
-[sub_resource type="Resource" id="Resource_wbvtq"]
+[sub_resource type="Resource" id="Resource_l2tsi"]
 script = ExtResource("1_fhv12")
 level = 60
 move = ExtResource("10_vujkd")
@@ -64,7 +64,7 @@ id = "magcargo"
 display_name = "Magcargo"
 dex = 219
 types = Array[ExtResource("4_w8nfe")]([ExtResource("5_fumgd"), ExtResource("6_vqjtf")])
-learnset = Array[ExtResource("1_fhv12")]([SubResource("Resource_l2tsi"), SubResource("Resource_lv44b"), SubResource("Resource_bfw3m"), SubResource("Resource_lk60b"), SubResource("Resource_ri5bg"), SubResource("Resource_ll84n"), SubResource("Resource_7o7ph"), SubResource("Resource_louts"), SubResource("Resource_wbvtq")])
+learnset = Array[ExtResource("1_fhv12")]([SubResource("Resource_hq3u4"), SubResource("Resource_h1lib"), SubResource("Resource_6yv21"), SubResource("Resource_2vbud"), SubResource("Resource_4014i"), SubResource("Resource_71kj4"), SubResource("Resource_flydx"), SubResource("Resource_vujkd"), SubResource("Resource_l2tsi")])
 temperament = ExtResource("13_hq3u4")
 genus = "Pokémon Lava"
 pokedex_entry = "La coraza de Magcargo es en realidad su propia piel que quedó endurecida al enfriarse. Está muy resquebrajada y es muy frágil; se desharía solo con tocarla. Este Pokémon debe sumergirse en magma para recuperar su forma."

@@ -23,6 +23,9 @@ const EXTRAS := {
 	"bellsprout": [[23, "acido"], [37, "hoja_afilada"]],
 	"seel": [[17, "viento_hielo"], [41, "rayo_hielo"]],
 	"eevee": [[30, "mordisco"], [42, "derribo"]],
+	# v3 (2026-10-23): kits nuevos de Paras y Geodude, extras de su learnset de FRLG.
+	"paras": [[31, "cuchillada"], [43, "gigadrenado"]],
+	"geodude": [[16, "magnitud"], [36, "terremoto"]],
 }
 const BASE_LEVELS := [1, 1, 3, 5]
 

@@ -23,6 +23,13 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-kits-v3" in OS.get_cmdline_user_args():
+		set_process(false)
+		var kv := KitsV3Tests.new()
+		kv.autotest = self
+		add_child(kv)
+		kv.run.call_deferred()
+		return
 	var capture_flags := {"--autotest-capture": "run_capture", "--autotest-bag": "run_bag", "--showcase-capture": "showcase"}
 	for flag in capture_flags:
 		if flag in OS.get_cmdline_user_args():

@@ -17,43 +17,43 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_vcaju"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_at21i"]
 
-[sub_resource type="Resource" id="Resource_28gra"]
+[sub_resource type="Resource" id="Resource_at21i"]
 script = ExtResource("1_mfdyi")
 move = ExtResource("2_0b6wh")
 
-[sub_resource type="Resource" id="Resource_uqr3e"]
+[sub_resource type="Resource" id="Resource_7ejhl"]
 script = ExtResource("1_mfdyi")
 move = ExtResource("3_at21i")
 
-[sub_resource type="Resource" id="Resource_17bc2"]
+[sub_resource type="Resource" id="Resource_8k5nc"]
 script = ExtResource("1_mfdyi")
 move = ExtResource("4_7ejhl")
 
-[sub_resource type="Resource" id="Resource_yfm1s"]
+[sub_resource type="Resource" id="Resource_mbnj6"]
 script = ExtResource("1_mfdyi")
 move = ExtResource("5_8k5nc")
 
-[sub_resource type="Resource" id="Resource_30dpf"]
+[sub_resource type="Resource" id="Resource_l0pe4"]
 script = ExtResource("1_mfdyi")
 level = 13
 move = ExtResource("6_mbnj6")
 
-[sub_resource type="Resource" id="Resource_fmgfy"]
+[sub_resource type="Resource" id="Resource_a5o3b"]
 script = ExtResource("1_mfdyi")
 level = 19
 move = ExtResource("7_l0pe4")
 
-[sub_resource type="Resource" id="Resource_aggq2"]
+[sub_resource type="Resource" id="Resource_sc8ck"]
 script = ExtResource("1_mfdyi")
 level = 28
 move = ExtResource("8_a5o3b")
 
-[sub_resource type="Resource" id="Resource_5xx5j"]
+[sub_resource type="Resource" id="Resource_vcaju"]
 script = ExtResource("1_mfdyi")
 level = 38
 move = ExtResource("9_sc8ck")
 
-[sub_resource type="Resource" id="Resource_4cn1u"]
+[sub_resource type="Resource" id="Resource_28gra"]
 script = ExtResource("1_mfdyi")
 level = 49
 move = ExtResource("10_vcaju")
@@ -64,7 +64,7 @@ id = "swellow"
 display_name = "Swellow"
 dex = 277
 types = Array[ExtResource("4_qd7yo")]([ExtResource("5_jsk38"), ExtResource("6_plmv4")])
-learnset = Array[ExtResource("1_mfdyi")]([SubResource("Resource_28gra"), SubResource("Resource_uqr3e"), SubResource("Resource_17bc2"), SubResource("Resource_yfm1s"), SubResource("Resource_30dpf"), SubResource("Resource_fmgfy"), SubResource("Resource_aggq2"), SubResource("Resource_5xx5j"), SubResource("Resource_4cn1u")])
+learnset = Array[ExtResource("1_mfdyi")]([SubResource("Resource_at21i"), SubResource("Resource_7ejhl"), SubResource("Resource_8k5nc"), SubResource("Resource_mbnj6"), SubResource("Resource_l0pe4"), SubResource("Resource_a5o3b"), SubResource("Resource_sc8ck"), SubResource("Resource_vcaju"), SubResource("Resource_28gra")])
 temperament = ExtResource("13_at21i")
 genus = "Pokémon Buche"
 pokedex_entry = "Swellow vuela muy alto dibujando elegantes arcos en el cielo. Este Pokémon se sumerge en el agua con rapidez y eficacia en cuanto detecta una presa. Con las garras, atrapa a la desdichada víctima y no la deja huir."

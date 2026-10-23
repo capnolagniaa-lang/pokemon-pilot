@@ -19,58 +19,58 @@
 [ext_resource type="Resource" path="res://data/moves/tambor.tres" id="13_y2v7n"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_p5vc2"]
 
-[sub_resource type="Resource" id="Resource_y1awb"]
+[sub_resource type="Resource" id="Resource_p5vc2"]
 script = ExtResource("1_yf32d")
 move = ExtResource("2_v2g27")
 
-[sub_resource type="Resource" id="Resource_t6gmj"]
+[sub_resource type="Resource" id="Resource_xcmat"]
 script = ExtResource("1_yf32d")
 move = ExtResource("3_p5vc2")
 
-[sub_resource type="Resource" id="Resource_wqygn"]
+[sub_resource type="Resource" id="Resource_0httj"]
 script = ExtResource("1_yf32d")
 move = ExtResource("4_xcmat")
 
-[sub_resource type="Resource" id="Resource_7rcts"]
+[sub_resource type="Resource" id="Resource_q1bxb"]
 script = ExtResource("1_yf32d")
 move = ExtResource("5_0httj")
 
-[sub_resource type="Resource" id="Resource_u4yns"]
+[sub_resource type="Resource" id="Resource_1hth6"]
 script = ExtResource("1_yf32d")
 level = 13
 move = ExtResource("6_q1bxb")
 
-[sub_resource type="Resource" id="Resource_c1r4i"]
+[sub_resource type="Resource" id="Resource_q8ghu"]
 script = ExtResource("1_yf32d")
 level = 17
 move = ExtResource("7_1hth6")
 
-[sub_resource type="Resource" id="Resource_8igw5"]
+[sub_resource type="Resource" id="Resource_tj6rl"]
 script = ExtResource("1_yf32d")
 level = 23
 move = ExtResource("8_q8ghu")
 
-[sub_resource type="Resource" id="Resource_6l33e"]
+[sub_resource type="Resource" id="Resource_layym"]
 script = ExtResource("1_yf32d")
 level = 29
 move = ExtResource("9_tj6rl")
 
-[sub_resource type="Resource" id="Resource_gkph4"]
+[sub_resource type="Resource" id="Resource_gk3nj"]
 script = ExtResource("1_yf32d")
 level = 35
 move = ExtResource("10_layym")
 
-[sub_resource type="Resource" id="Resource_ccibg"]
+[sub_resource type="Resource" id="Resource_fs745"]
 script = ExtResource("1_yf32d")
 level = 41
 move = ExtResource("11_gk3nj")
 
-[sub_resource type="Resource" id="Resource_witd8"]
+[sub_resource type="Resource" id="Resource_y2v7n"]
 script = ExtResource("1_yf32d")
 level = 47
 move = ExtResource("12_fs745")
 
-[sub_resource type="Resource" id="Resource_2rp6n"]
+[sub_resource type="Resource" id="Resource_y1awb"]
 script = ExtResource("1_yf32d")
 level = 53
 move = ExtResource("13_y2v7n")
@@ -81,7 +81,7 @@ id = "linoone"
 display_name = "Linoone"
 dex = 264
 types = Array[ExtResource("4_fombx")]([ExtResource("5_que2h")])
-learnset = Array[ExtResource("1_yf32d")]([SubResource("Resource_y1awb"), SubResource("Resource_t6gmj"), SubResource("Resource_wqygn"), SubResource("Resource_7rcts"), SubResource("Resource_u4yns"), SubResource("Resource_c1r4i"), SubResource("Resource_8igw5"), SubResource("Resource_6l33e"), SubResource("Resource_gkph4"), SubResource("Resource_ccibg"), SubResource("Resource_witd8"), SubResource("Resource_2rp6n")])
+learnset = Array[ExtResource("1_yf32d")]([SubResource("Resource_p5vc2"), SubResource("Resource_xcmat"), SubResource("Resource_0httj"), SubResource("Resource_q1bxb"), SubResource("Resource_1hth6"), SubResource("Resource_q8ghu"), SubResource("Resource_tj6rl"), SubResource("Resource_layym"), SubResource("Resource_gk3nj"), SubResource("Resource_fs745"), SubResource("Resource_y2v7n"), SubResource("Resource_y1awb")])
 temperament = ExtResource("16_p5vc2")
 genus = "Pokémon Lanzado"
 pokedex_entry = "Linoone siempre corre todo lo rápido que puede y solo en línea recta. Si encuentra un obstáculo en el camino, girará en ángulo recto para esquivarlo. Correr bien por caminos tortuosos es todo un reto para él."

@@ -19,61 +19,61 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="13_c03d1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_kdjhp"]
 
-[sub_resource type="Resource" id="Resource_1ectf"]
+[sub_resource type="Resource" id="Resource_kdjhp"]
 script = ExtResource("1_e326y")
 move = ExtResource("2_465ts")
 
-[sub_resource type="Resource" id="Resource_uflqe"]
+[sub_resource type="Resource" id="Resource_uk1sf"]
 script = ExtResource("1_e326y")
 level = 5
 move = ExtResource("3_kdjhp")
 
-[sub_resource type="Resource" id="Resource_3cpv3"]
+[sub_resource type="Resource" id="Resource_642k7"]
 script = ExtResource("1_e326y")
 level = 10
 move = ExtResource("4_uk1sf")
 
-[sub_resource type="Resource" id="Resource_wel78"]
+[sub_resource type="Resource" id="Resource_pe8gc"]
 script = ExtResource("1_e326y")
 level = 14
 move = ExtResource("5_642k7")
 
-[sub_resource type="Resource" id="Resource_kf8t6"]
+[sub_resource type="Resource" id="Resource_x1dl4"]
 script = ExtResource("1_e326y")
 level = 19
 move = ExtResource("6_pe8gc")
 
-[sub_resource type="Resource" id="Resource_5hjkk"]
+[sub_resource type="Resource" id="Resource_ocaio"]
 script = ExtResource("1_e326y")
 level = 23
 move = ExtResource("7_x1dl4")
 
-[sub_resource type="Resource" id="Resource_iiod5"]
+[sub_resource type="Resource" id="Resource_qa3t1"]
 script = ExtResource("1_e326y")
 level = 28
 move = ExtResource("8_ocaio")
 
-[sub_resource type="Resource" id="Resource_hdtm1"]
+[sub_resource type="Resource" id="Resource_cahsj"]
 script = ExtResource("1_e326y")
 level = 32
 move = ExtResource("9_qa3t1")
 
-[sub_resource type="Resource" id="Resource_hvfy3"]
+[sub_resource type="Resource" id="Resource_kvjdn"]
 script = ExtResource("1_e326y")
 level = 37
 move = ExtResource("10_cahsj")
 
-[sub_resource type="Resource" id="Resource_15kgb"]
+[sub_resource type="Resource" id="Resource_0hghm"]
 script = ExtResource("1_e326y")
 level = 41
 move = ExtResource("11_kvjdn")
 
-[sub_resource type="Resource" id="Resource_wfaf1"]
+[sub_resource type="Resource" id="Resource_c03d1"]
 script = ExtResource("1_e326y")
 level = 46
 move = ExtResource("12_0hghm")
 
-[sub_resource type="Resource" id="Resource_g55m6"]
+[sub_resource type="Resource" id="Resource_1ectf"]
 script = ExtResource("1_e326y")
 level = 50
 move = ExtResource("13_c03d1")
@@ -84,7 +84,7 @@ id = "wailmer"
 display_name = "Wailmer"
 dex = 320
 types = Array[ExtResource("4_2ffej")]([ExtResource("5_iqlrm")])
-learnset = Array[ExtResource("1_e326y")]([SubResource("Resource_1ectf"), SubResource("Resource_uflqe"), SubResource("Resource_3cpv3"), SubResource("Resource_wel78"), SubResource("Resource_kf8t6"), SubResource("Resource_5hjkk"), SubResource("Resource_iiod5"), SubResource("Resource_hdtm1"), SubResource("Resource_hvfy3"), SubResource("Resource_15kgb"), SubResource("Resource_wfaf1"), SubResource("Resource_g55m6")])
+learnset = Array[ExtResource("1_e326y")]([SubResource("Resource_kdjhp"), SubResource("Resource_uk1sf"), SubResource("Resource_642k7"), SubResource("Resource_pe8gc"), SubResource("Resource_x1dl4"), SubResource("Resource_ocaio"), SubResource("Resource_qa3t1"), SubResource("Resource_cahsj"), SubResource("Resource_kvjdn"), SubResource("Resource_0hghm"), SubResource("Resource_c03d1"), SubResource("Resource_1ectf")])
 temperament = ExtResource("16_kdjhp")
 genus = "Pokémon Ballenabola"
 pokedex_entry = "Wailmer tiene los espiráculos encima de la cabeza. A este juguetón Pokémon le encanta asustar a la gente expulsando el agua que acumula a través de estos orificios."

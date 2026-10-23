@@ -16,46 +16,46 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_t2li6"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_38hs3"]
 
-[sub_resource type="Resource" id="Resource_sp3nk"]
+[sub_resource type="Resource" id="Resource_38hs3"]
 script = ExtResource("1_ch5e8")
 move = ExtResource("2_7h4p6")
 
-[sub_resource type="Resource" id="Resource_mq1yj"]
+[sub_resource type="Resource" id="Resource_ymiex"]
 script = ExtResource("1_ch5e8")
 level = 11
 move = ExtResource("3_38hs3")
 
-[sub_resource type="Resource" id="Resource_3ysiw"]
+[sub_resource type="Resource" id="Resource_trah3"]
 script = ExtResource("1_ch5e8")
 level = 22
 move = ExtResource("4_ymiex")
 
-[sub_resource type="Resource" id="Resource_jaewf"]
+[sub_resource type="Resource" id="Resource_qnrem"]
 script = ExtResource("1_ch5e8")
 level = 22
 move = ExtResource("5_trah3")
 
-[sub_resource type="Resource" id="Resource_ggv45"]
+[sub_resource type="Resource" id="Resource_qo1al"]
 script = ExtResource("1_ch5e8")
 level = 22
 move = ExtResource("6_qnrem")
 
-[sub_resource type="Resource" id="Resource_svf3x"]
+[sub_resource type="Resource" id="Resource_rasv4"]
 script = ExtResource("1_ch5e8")
 level = 25
 move = ExtResource("7_qo1al")
 
-[sub_resource type="Resource" id="Resource_bgrsj"]
+[sub_resource type="Resource" id="Resource_hv5uk"]
 script = ExtResource("1_ch5e8")
 level = 38
 move = ExtResource("8_rasv4")
 
-[sub_resource type="Resource" id="Resource_3vmy4"]
+[sub_resource type="Resource" id="Resource_t2li6"]
 script = ExtResource("1_ch5e8")
 level = 54
 move = ExtResource("9_hv5uk")
 
-[sub_resource type="Resource" id="Resource_c82ps"]
+[sub_resource type="Resource" id="Resource_sp3nk"]
 script = ExtResource("1_ch5e8")
 level = 70
 move = ExtResource("10_t2li6")
@@ -66,7 +66,7 @@ id = "octillery"
 display_name = "Octillery"
 dex = 224
 types = Array[ExtResource("4_sl7t7")]([ExtResource("5_qi5pe")])
-learnset = Array[ExtResource("1_ch5e8")]([SubResource("Resource_sp3nk"), SubResource("Resource_mq1yj"), SubResource("Resource_3ysiw"), SubResource("Resource_jaewf"), SubResource("Resource_ggv45"), SubResource("Resource_svf3x"), SubResource("Resource_bgrsj"), SubResource("Resource_3vmy4"), SubResource("Resource_c82ps")])
+learnset = Array[ExtResource("1_ch5e8")]([SubResource("Resource_38hs3"), SubResource("Resource_ymiex"), SubResource("Resource_trah3"), SubResource("Resource_qnrem"), SubResource("Resource_qo1al"), SubResource("Resource_rasv4"), SubResource("Resource_hv5uk"), SubResource("Resource_t2li6"), SubResource("Resource_sp3nk")])
 temperament = ExtResource("13_38hs3")
 genus = "Pokémon Reactor"
 pokedex_entry = "Octillery se apodera de su enemigo con los tentáculos y lo deja inmovilizado antes de propinarle el golpe final. Si el enemigo resulta ser demasiado fuerte, Octillery expulsará tinta para escapar."

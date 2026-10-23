@@ -21,63 +21,63 @@
 [ext_resource type="Resource" path="res://data/moves/ataque_aereo.tres" id="14_jwekw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="17_ei10r"]
 
-[sub_resource type="Resource" id="Resource_ndd4g"]
+[sub_resource type="Resource" id="Resource_ei10r"]
 script = ExtResource("1_pt1i6")
 move = ExtResource("2_uevm4")
 
-[sub_resource type="Resource" id="Resource_8enox"]
+[sub_resource type="Resource" id="Resource_8xioi"]
 script = ExtResource("1_pt1i6")
 move = ExtResource("3_ei10r")
 
-[sub_resource type="Resource" id="Resource_25dly"]
+[sub_resource type="Resource" id="Resource_e2rl0"]
 script = ExtResource("1_pt1i6")
 move = ExtResource("4_8xioi")
 
-[sub_resource type="Resource" id="Resource_7g833"]
+[sub_resource type="Resource" id="Resource_uyxs0"]
 script = ExtResource("1_pt1i6")
 move = ExtResource("5_e2rl0")
 
-[sub_resource type="Resource" id="Resource_xvs3m"]
+[sub_resource type="Resource" id="Resource_gb7t4"]
 script = ExtResource("1_pt1i6")
 level = 18
 move = ExtResource("6_uyxs0")
 
-[sub_resource type="Resource" id="Resource_wg2ff"]
+[sub_resource type="Resource" id="Resource_vpqp2"]
 script = ExtResource("1_pt1i6")
 level = 21
 move = ExtResource("7_gb7t4")
 
-[sub_resource type="Resource" id="Resource_r153f"]
+[sub_resource type="Resource" id="Resource_og7tg"]
 script = ExtResource("1_pt1i6")
 level = 28
 move = ExtResource("8_vpqp2")
 
-[sub_resource type="Resource" id="Resource_j6y66"]
+[sub_resource type="Resource" id="Resource_uq2jp"]
 script = ExtResource("1_pt1i6")
 level = 31
 move = ExtResource("9_og7tg")
 
-[sub_resource type="Resource" id="Resource_xmwy5"]
+[sub_resource type="Resource" id="Resource_mo7a7"]
 script = ExtResource("1_pt1i6")
 level = 35
 move = ExtResource("10_uq2jp")
 
-[sub_resource type="Resource" id="Resource_dv8jm"]
+[sub_resource type="Resource" id="Resource_hse7a"]
 script = ExtResource("1_pt1i6")
 level = 40
 move = ExtResource("11_mo7a7")
 
-[sub_resource type="Resource" id="Resource_l4g4t"]
+[sub_resource type="Resource" id="Resource_ubxkf"]
 script = ExtResource("1_pt1i6")
 level = 45
 move = ExtResource("12_hse7a")
 
-[sub_resource type="Resource" id="Resource_8wdkr"]
+[sub_resource type="Resource" id="Resource_jwekw"]
 script = ExtResource("1_pt1i6")
 level = 54
 move = ExtResource("13_ubxkf")
 
-[sub_resource type="Resource" id="Resource_tt4lk"]
+[sub_resource type="Resource" id="Resource_ndd4g"]
 script = ExtResource("1_pt1i6")
 level = 59
 move = ExtResource("14_jwekw")
@@ -88,7 +88,7 @@ id = "altaria"
 display_name = "Altaria"
 dex = 334
 types = Array[ExtResource("4_28jpj")]([ExtResource("5_u3i51"), ExtResource("6_d8n6a")])
-learnset = Array[ExtResource("1_pt1i6")]([SubResource("Resource_ndd4g"), SubResource("Resource_8enox"), SubResource("Resource_25dly"), SubResource("Resource_7g833"), SubResource("Resource_xvs3m"), SubResource("Resource_wg2ff"), SubResource("Resource_r153f"), SubResource("Resource_j6y66"), SubResource("Resource_xmwy5"), SubResource("Resource_dv8jm"), SubResource("Resource_l4g4t"), SubResource("Resource_8wdkr"), SubResource("Resource_tt4lk")])
+learnset = Array[ExtResource("1_pt1i6")]([SubResource("Resource_ei10r"), SubResource("Resource_8xioi"), SubResource("Resource_e2rl0"), SubResource("Resource_uyxs0"), SubResource("Resource_gb7t4"), SubResource("Resource_vpqp2"), SubResource("Resource_og7tg"), SubResource("Resource_uq2jp"), SubResource("Resource_mo7a7"), SubResource("Resource_hse7a"), SubResource("Resource_ubxkf"), SubResource("Resource_jwekw"), SubResource("Resource_ndd4g")])
 temperament = ExtResource("17_ei10r")
 genus = "Pokémon Cantor"
 pokedex_entry = "Altaria baila y revolotea por el cielo entre ondeantes nubes que parecen de algodón. Al entonar melodías con su voz cristalina, este Pokémon deja a sus oyentes embobados y admirados."

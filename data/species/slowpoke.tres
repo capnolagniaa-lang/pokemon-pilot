@@ -19,54 +19,54 @@
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="12_ejc7m"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_600os"]
 
-[sub_resource type="Resource" id="Resource_s72f6"]
+[sub_resource type="Resource" id="Resource_600os"]
 script = ExtResource("1_4slof")
 move = ExtResource("2_gd8j8")
 
-[sub_resource type="Resource" id="Resource_162gd"]
+[sub_resource type="Resource" id="Resource_s6cyy"]
 script = ExtResource("1_4slof")
 move = ExtResource("3_600os")
 
-[sub_resource type="Resource" id="Resource_0tvtp"]
+[sub_resource type="Resource" id="Resource_kuhb1"]
 script = ExtResource("1_4slof")
 move = ExtResource("4_s6cyy")
 
-[sub_resource type="Resource" id="Resource_h47da"]
+[sub_resource type="Resource" id="Resource_jcbax"]
 script = ExtResource("1_4slof")
 level = 6
 move = ExtResource("5_kuhb1")
 
-[sub_resource type="Resource" id="Resource_etj64"]
+[sub_resource type="Resource" id="Resource_44mkk"]
 script = ExtResource("1_4slof")
 level = 13
 move = ExtResource("6_jcbax")
 
-[sub_resource type="Resource" id="Resource_mp2wk"]
+[sub_resource type="Resource" id="Resource_gidby"]
 script = ExtResource("1_4slof")
 level = 17
 move = ExtResource("7_44mkk")
 
-[sub_resource type="Resource" id="Resource_y022q"]
+[sub_resource type="Resource" id="Resource_5y8cc"]
 script = ExtResource("1_4slof")
 level = 24
 move = ExtResource("8_gidby")
 
-[sub_resource type="Resource" id="Resource_qp57b"]
+[sub_resource type="Resource" id="Resource_s34q6"]
 script = ExtResource("1_4slof")
 level = 29
 move = ExtResource("9_5y8cc")
 
-[sub_resource type="Resource" id="Resource_fk67l"]
+[sub_resource type="Resource" id="Resource_frv5u"]
 script = ExtResource("1_4slof")
 level = 36
 move = ExtResource("10_s34q6")
 
-[sub_resource type="Resource" id="Resource_s2xdy"]
+[sub_resource type="Resource" id="Resource_ejc7m"]
 script = ExtResource("1_4slof")
 level = 40
 move = ExtResource("11_frv5u")
 
-[sub_resource type="Resource" id="Resource_8j8v5"]
+[sub_resource type="Resource" id="Resource_s72f6"]
 script = ExtResource("1_4slof")
 level = 47
 move = ExtResource("12_ejc7m")
@@ -77,7 +77,7 @@ id = "slowpoke"
 display_name = "Slowpoke"
 dex = 79
 types = Array[ExtResource("4_dclml")]([ExtResource("5_w8mec"), ExtResource("6_fql34")])
-learnset = Array[ExtResource("1_4slof")]([SubResource("Resource_s72f6"), SubResource("Resource_162gd"), SubResource("Resource_0tvtp"), SubResource("Resource_h47da"), SubResource("Resource_etj64"), SubResource("Resource_mp2wk"), SubResource("Resource_y022q"), SubResource("Resource_qp57b"), SubResource("Resource_fk67l"), SubResource("Resource_s2xdy"), SubResource("Resource_8j8v5")])
+learnset = Array[ExtResource("1_4slof")]([SubResource("Resource_600os"), SubResource("Resource_s6cyy"), SubResource("Resource_kuhb1"), SubResource("Resource_jcbax"), SubResource("Resource_44mkk"), SubResource("Resource_gidby"), SubResource("Resource_5y8cc"), SubResource("Resource_s34q6"), SubResource("Resource_frv5u"), SubResource("Resource_ejc7m"), SubResource("Resource_s72f6")])
 temperament = ExtResource("15_600os")
 genus = "Pokémon Atontado"
 pokedex_entry = "Slowpoke usa la cola para atrapar a sus presas metiéndola bajo el agua en las riberas de los ríos. Con todo, es olvidadizo, se le puede pasar lo que estaba haciendo y quedarse días enteros holgazaneando en la orilla."

@@ -17,43 +17,43 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="10_xli0j"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_gyfr4"]
 
-[sub_resource type="Resource" id="Resource_4y3w2"]
+[sub_resource type="Resource" id="Resource_gyfr4"]
 script = ExtResource("1_1wo88")
 move = ExtResource("2_vogb1")
 
-[sub_resource type="Resource" id="Resource_kbpds"]
+[sub_resource type="Resource" id="Resource_kwca5"]
 script = ExtResource("1_1wo88")
 move = ExtResource("3_gyfr4")
 
-[sub_resource type="Resource" id="Resource_02txm"]
+[sub_resource type="Resource" id="Resource_o5m15"]
 script = ExtResource("1_1wo88")
 move = ExtResource("4_kwca5")
 
-[sub_resource type="Resource" id="Resource_msouk"]
+[sub_resource type="Resource" id="Resource_41n0t"]
 script = ExtResource("1_1wo88")
 move = ExtResource("5_o5m15")
 
-[sub_resource type="Resource" id="Resource_8n67s"]
+[sub_resource type="Resource" id="Resource_j4r4l"]
 script = ExtResource("1_1wo88")
 level = 33
 move = ExtResource("6_41n0t")
 
-[sub_resource type="Resource" id="Resource_86nje"]
+[sub_resource type="Resource" id="Resource_ehato"]
 script = ExtResource("1_1wo88")
 level = 35
 move = ExtResource("7_j4r4l")
 
-[sub_resource type="Resource" id="Resource_der86"]
+[sub_resource type="Resource" id="Resource_ue74w"]
 script = ExtResource("1_1wo88")
 level = 41
 move = ExtResource("8_ehato")
 
-[sub_resource type="Resource" id="Resource_u0vq6"]
+[sub_resource type="Resource" id="Resource_xli0j"]
 script = ExtResource("1_1wo88")
 level = 53
 move = ExtResource("9_ue74w")
 
-[sub_resource type="Resource" id="Resource_lbexo"]
+[sub_resource type="Resource" id="Resource_4y3w2"]
 script = ExtResource("1_1wo88")
 level = 65
 move = ExtResource("10_xli0j")
@@ -64,7 +64,7 @@ id = "flygon"
 display_name = "Flygon"
 dex = 330
 types = Array[ExtResource("4_66p23")]([ExtResource("5_k1ry6"), ExtResource("6_4tqmv")])
-learnset = Array[ExtResource("1_1wo88")]([SubResource("Resource_4y3w2"), SubResource("Resource_kbpds"), SubResource("Resource_02txm"), SubResource("Resource_msouk"), SubResource("Resource_8n67s"), SubResource("Resource_86nje"), SubResource("Resource_der86"), SubResource("Resource_u0vq6"), SubResource("Resource_lbexo")])
+learnset = Array[ExtResource("1_1wo88")]([SubResource("Resource_gyfr4"), SubResource("Resource_kwca5"), SubResource("Resource_o5m15"), SubResource("Resource_41n0t"), SubResource("Resource_j4r4l"), SubResource("Resource_ehato"), SubResource("Resource_ue74w"), SubResource("Resource_xli0j"), SubResource("Resource_4y3w2")])
 temperament = ExtResource("13_gyfr4")
 genus = "Pokémon Místico"
 pokedex_entry = "A Flygon se le conoce como el Espíritu del Desierto. Al volar, como levanta una nube de arena al batir las alas, está siempre envuelto en una tormenta de arena."

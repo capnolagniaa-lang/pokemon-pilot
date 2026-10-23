@@ -19,53 +19,53 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_sgmp3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_elu6b"]
 
-[sub_resource type="Resource" id="Resource_ygek1"]
+[sub_resource type="Resource" id="Resource_elu6b"]
 script = ExtResource("1_jri7o")
 move = ExtResource("2_7xgo8")
 
-[sub_resource type="Resource" id="Resource_hwib1"]
+[sub_resource type="Resource" id="Resource_85c16"]
 script = ExtResource("1_jri7o")
 move = ExtResource("3_elu6b")
 
-[sub_resource type="Resource" id="Resource_6w55d"]
+[sub_resource type="Resource" id="Resource_33ri4"]
 script = ExtResource("1_jri7o")
 move = ExtResource("4_85c16")
 
-[sub_resource type="Resource" id="Resource_3gwix"]
+[sub_resource type="Resource" id="Resource_i135t"]
 script = ExtResource("1_jri7o")
 move = ExtResource("5_33ri4")
 
-[sub_resource type="Resource" id="Resource_db6am"]
+[sub_resource type="Resource" id="Resource_uxnhp"]
 script = ExtResource("1_jri7o")
 level = 25
 move = ExtResource("6_i135t")
 
-[sub_resource type="Resource" id="Resource_tke6h"]
+[sub_resource type="Resource" id="Resource_hte8y"]
 script = ExtResource("1_jri7o")
 level = 31
 move = ExtResource("7_uxnhp")
 
-[sub_resource type="Resource" id="Resource_j5pnp"]
+[sub_resource type="Resource" id="Resource_0uxll"]
 script = ExtResource("1_jri7o")
 level = 37
 move = ExtResource("8_hte8y")
 
-[sub_resource type="Resource" id="Resource_yefqt"]
+[sub_resource type="Resource" id="Resource_07fk7"]
 script = ExtResource("1_jri7o")
 level = 40
 move = ExtResource("9_0uxll")
 
-[sub_resource type="Resource" id="Resource_qx8dl"]
+[sub_resource type="Resource" id="Resource_2xodf"]
 script = ExtResource("1_jri7o")
 level = 46
 move = ExtResource("10_07fk7")
 
-[sub_resource type="Resource" id="Resource_pmcd0"]
+[sub_resource type="Resource" id="Resource_sgmp3"]
 script = ExtResource("1_jri7o")
 level = 55
 move = ExtResource("11_2xodf")
 
-[sub_resource type="Resource" id="Resource_cmcx8"]
+[sub_resource type="Resource" id="Resource_ygek1"]
 script = ExtResource("1_jri7o")
 level = 65
 move = ExtResource("12_sgmp3")
@@ -76,7 +76,7 @@ id = "omastar"
 display_name = "Omastar"
 dex = 139
 types = Array[ExtResource("4_xxt4h")]([ExtResource("5_dbic4"), ExtResource("6_o1t2b")])
-learnset = Array[ExtResource("1_jri7o")]([SubResource("Resource_ygek1"), SubResource("Resource_hwib1"), SubResource("Resource_6w55d"), SubResource("Resource_3gwix"), SubResource("Resource_db6am"), SubResource("Resource_tke6h"), SubResource("Resource_j5pnp"), SubResource("Resource_yefqt"), SubResource("Resource_qx8dl"), SubResource("Resource_pmcd0"), SubResource("Resource_cmcx8")])
+learnset = Array[ExtResource("1_jri7o")]([SubResource("Resource_elu6b"), SubResource("Resource_85c16"), SubResource("Resource_33ri4"), SubResource("Resource_i135t"), SubResource("Resource_uxnhp"), SubResource("Resource_hte8y"), SubResource("Resource_0uxll"), SubResource("Resource_07fk7"), SubResource("Resource_2xodf"), SubResource("Resource_sgmp3"), SubResource("Resource_ygek1")])
 temperament = ExtResource("15_elu6b")
 genus = "Pokémon Espiral"
 pokedex_entry = "Omastar usa los tentáculos para atrapar a su presa. Se cree que el motivo de su extinción fue el tamaño y el peso que llegó a alcanzar la concha que lleva a cuestas, lo que le entorpeció y ralentizó los movimientos."

@@ -20,61 +20,61 @@
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="13_mif5u"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_iuiun"]
 
-[sub_resource type="Resource" id="Resource_rsg1v"]
+[sub_resource type="Resource" id="Resource_iuiun"]
 script = ExtResource("1_iy4ny")
 move = ExtResource("2_65kt7")
 
-[sub_resource type="Resource" id="Resource_ctx6k"]
+[sub_resource type="Resource" id="Resource_qh4rp"]
 script = ExtResource("1_iy4ny")
 level = 6
 move = ExtResource("3_iuiun")
 
-[sub_resource type="Resource" id="Resource_vusrh"]
+[sub_resource type="Resource" id="Resource_enfbj"]
 script = ExtResource("1_iy4ny")
 level = 11
 move = ExtResource("4_qh4rp")
 
-[sub_resource type="Resource" id="Resource_a6uer"]
+[sub_resource type="Resource" id="Resource_vaa20"]
 script = ExtResource("1_iy4ny")
 level = 16
 move = ExtResource("5_enfbj")
 
-[sub_resource type="Resource" id="Resource_deyi4"]
+[sub_resource type="Resource" id="Resource_dhlxn"]
 script = ExtResource("1_iy4ny")
 level = 21
 move = ExtResource("6_vaa20")
 
-[sub_resource type="Resource" id="Resource_i3kin"]
+[sub_resource type="Resource" id="Resource_2dueo"]
 script = ExtResource("1_iy4ny")
 level = 26
 move = ExtResource("7_dhlxn")
 
-[sub_resource type="Resource" id="Resource_yl8px"]
+[sub_resource type="Resource" id="Resource_4cqj6"]
 script = ExtResource("1_iy4ny")
 level = 31
 move = ExtResource("8_2dueo")
 
-[sub_resource type="Resource" id="Resource_6qqey"]
+[sub_resource type="Resource" id="Resource_bomcv"]
 script = ExtResource("1_iy4ny")
 level = 36
 move = ExtResource("9_4cqj6")
 
-[sub_resource type="Resource" id="Resource_j7q5i"]
+[sub_resource type="Resource" id="Resource_cm1mi"]
 script = ExtResource("1_iy4ny")
 level = 41
 move = ExtResource("10_bomcv")
 
-[sub_resource type="Resource" id="Resource_mjain"]
+[sub_resource type="Resource" id="Resource_wlox1"]
 script = ExtResource("1_iy4ny")
 level = 46
 move = ExtResource("11_cm1mi")
 
-[sub_resource type="Resource" id="Resource_i4ll8"]
+[sub_resource type="Resource" id="Resource_mif5u"]
 script = ExtResource("1_iy4ny")
 level = 46
 move = ExtResource("12_wlox1")
 
-[sub_resource type="Resource" id="Resource_myvbx"]
+[sub_resource type="Resource" id="Resource_rsg1v"]
 script = ExtResource("1_iy4ny")
 level = 46
 move = ExtResource("13_mif5u")
@@ -85,7 +85,7 @@ id = "mawile"
 display_name = "Mawile"
 dex = 303
 types = Array[ExtResource("4_uog2y")]([ExtResource("5_o23so"), ExtResource("6_xk65v")])
-learnset = Array[ExtResource("1_iy4ny")]([SubResource("Resource_rsg1v"), SubResource("Resource_ctx6k"), SubResource("Resource_vusrh"), SubResource("Resource_a6uer"), SubResource("Resource_deyi4"), SubResource("Resource_i3kin"), SubResource("Resource_yl8px"), SubResource("Resource_6qqey"), SubResource("Resource_j7q5i"), SubResource("Resource_mjain"), SubResource("Resource_i4ll8"), SubResource("Resource_myvbx")])
+learnset = Array[ExtResource("1_iy4ny")]([SubResource("Resource_iuiun"), SubResource("Resource_qh4rp"), SubResource("Resource_enfbj"), SubResource("Resource_vaa20"), SubResource("Resource_dhlxn"), SubResource("Resource_2dueo"), SubResource("Resource_4cqj6"), SubResource("Resource_bomcv"), SubResource("Resource_cm1mi"), SubResource("Resource_wlox1"), SubResource("Resource_mif5u"), SubResource("Resource_rsg1v")])
 temperament = ExtResource("16_iuiun")
 genus = "Pokémon Tramposo"
 pokedex_entry = "Las descomunales fauces de acero de Mawile son la evolución de unos cuernos que tuvo en su día. Con su expresión dócil puede engañar al enemigo y hacer que baje la guardia para sorprenderle con las fauces."

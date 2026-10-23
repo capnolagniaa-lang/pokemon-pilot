@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_c1xy7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_empp1"]
 
-[sub_resource type="Resource" id="Resource_gn0s3"]
+[sub_resource type="Resource" id="Resource_empp1"]
 script = ExtResource("1_jgvia")
 move = ExtResource("2_udbru")
 
-[sub_resource type="Resource" id="Resource_841fn"]
+[sub_resource type="Resource" id="Resource_mtdjr"]
 script = ExtResource("1_jgvia")
 move = ExtResource("3_empp1")
 
-[sub_resource type="Resource" id="Resource_xd786"]
+[sub_resource type="Resource" id="Resource_yicqr"]
 script = ExtResource("1_jgvia")
 level = 6
 move = ExtResource("4_mtdjr")
 
-[sub_resource type="Resource" id="Resource_usmb4"]
+[sub_resource type="Resource" id="Resource_qtxr1"]
 script = ExtResource("1_jgvia")
 level = 11
 move = ExtResource("5_yicqr")
 
-[sub_resource type="Resource" id="Resource_rq1g0"]
+[sub_resource type="Resource" id="Resource_xvxii"]
 script = ExtResource("1_jgvia")
 level = 17
 move = ExtResource("6_qtxr1")
 
-[sub_resource type="Resource" id="Resource_rhecu"]
+[sub_resource type="Resource" id="Resource_e110l"]
 script = ExtResource("1_jgvia")
 level = 23
 move = ExtResource("7_xvxii")
 
-[sub_resource type="Resource" id="Resource_87g6a"]
+[sub_resource type="Resource" id="Resource_s8yn3"]
 script = ExtResource("1_jgvia")
 level = 30
 move = ExtResource("8_e110l")
 
-[sub_resource type="Resource" id="Resource_qs8tb"]
+[sub_resource type="Resource" id="Resource_y2x3x"]
 script = ExtResource("1_jgvia")
 level = 37
 move = ExtResource("9_s8yn3")
 
-[sub_resource type="Resource" id="Resource_e2cbh"]
+[sub_resource type="Resource" id="Resource_c1xy7"]
 script = ExtResource("1_jgvia")
 level = 45
 move = ExtResource("10_y2x3x")
 
-[sub_resource type="Resource" id="Resource_7x17i"]
+[sub_resource type="Resource" id="Resource_gn0s3"]
 script = ExtResource("1_jgvia")
 level = 53
 move = ExtResource("11_c1xy7")
@@ -71,7 +71,7 @@ id = "misdreavus"
 display_name = "Misdreavus"
 dex = 200
 types = Array[ExtResource("4_j18je")]([ExtResource("5_j3ala")])
-learnset = Array[ExtResource("1_jgvia")]([SubResource("Resource_gn0s3"), SubResource("Resource_841fn"), SubResource("Resource_xd786"), SubResource("Resource_usmb4"), SubResource("Resource_rq1g0"), SubResource("Resource_rhecu"), SubResource("Resource_87g6a"), SubResource("Resource_qs8tb"), SubResource("Resource_e2cbh"), SubResource("Resource_7x17i")])
+learnset = Array[ExtResource("1_jgvia")]([SubResource("Resource_empp1"), SubResource("Resource_mtdjr"), SubResource("Resource_yicqr"), SubResource("Resource_qtxr1"), SubResource("Resource_xvxii"), SubResource("Resource_e110l"), SubResource("Resource_s8yn3"), SubResource("Resource_y2x3x"), SubResource("Resource_c1xy7"), SubResource("Resource_gn0s3")])
 temperament = ExtResource("14_empp1")
 genus = "Pokémon Chirrido"
 pokedex_entry = "Misdreavus asusta a la gente con un chillido escalofriante y sollozante. Y, al parecer, usa las esferas rojas para absorber los sentimientos de miedo de los enemigos y usarlos como alimento."

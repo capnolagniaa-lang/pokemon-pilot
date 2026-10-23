@@ -18,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="11_ujvdf"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_721pe"]
 
-[sub_resource type="Resource" id="Resource_k0th0"]
+[sub_resource type="Resource" id="Resource_721pe"]
 script = ExtResource("1_w3go1")
 move = ExtResource("2_hek5n")
 
-[sub_resource type="Resource" id="Resource_u70ts"]
+[sub_resource type="Resource" id="Resource_glyxi"]
 script = ExtResource("1_w3go1")
 level = 6
 move = ExtResource("3_721pe")
 
-[sub_resource type="Resource" id="Resource_fmqp7"]
+[sub_resource type="Resource" id="Resource_cbcrp"]
 script = ExtResource("1_w3go1")
 level = 11
 move = ExtResource("4_glyxi")
 
-[sub_resource type="Resource" id="Resource_u4lxc"]
+[sub_resource type="Resource" id="Resource_r16ap"]
 script = ExtResource("1_w3go1")
 level = 16
 move = ExtResource("5_cbcrp")
 
-[sub_resource type="Resource" id="Resource_svc7t"]
+[sub_resource type="Resource" id="Resource_dh0mh"]
 script = ExtResource("1_w3go1")
 level = 21
 move = ExtResource("6_r16ap")
 
-[sub_resource type="Resource" id="Resource_5ohts"]
+[sub_resource type="Resource" id="Resource_j6ewl"]
 script = ExtResource("1_w3go1")
 level = 26
 move = ExtResource("7_dh0mh")
 
-[sub_resource type="Resource" id="Resource_xxc6f"]
+[sub_resource type="Resource" id="Resource_ay30l"]
 script = ExtResource("1_w3go1")
 level = 31
 move = ExtResource("8_j6ewl")
 
-[sub_resource type="Resource" id="Resource_ewrv1"]
+[sub_resource type="Resource" id="Resource_qpchk"]
 script = ExtResource("1_w3go1")
 level = 36
 move = ExtResource("9_ay30l")
 
-[sub_resource type="Resource" id="Resource_hmtky"]
+[sub_resource type="Resource" id="Resource_ujvdf"]
 script = ExtResource("1_w3go1")
 level = 41
 move = ExtResource("10_qpchk")
 
-[sub_resource type="Resource" id="Resource_5kk2h"]
+[sub_resource type="Resource" id="Resource_k0th0"]
 script = ExtResource("1_w3go1")
 level = 46
 move = ExtResource("11_ujvdf")
@@ -73,7 +73,7 @@ id = "farfetchd"
 display_name = "Farfetch’d"
 dex = 83
 types = Array[ExtResource("4_a2mxi")]([ExtResource("5_0212t"), ExtResource("6_nutwm")])
-learnset = Array[ExtResource("1_w3go1")]([SubResource("Resource_k0th0"), SubResource("Resource_u70ts"), SubResource("Resource_fmqp7"), SubResource("Resource_u4lxc"), SubResource("Resource_svc7t"), SubResource("Resource_5ohts"), SubResource("Resource_xxc6f"), SubResource("Resource_ewrv1"), SubResource("Resource_hmtky"), SubResource("Resource_5kk2h")])
+learnset = Array[ExtResource("1_w3go1")]([SubResource("Resource_721pe"), SubResource("Resource_glyxi"), SubResource("Resource_cbcrp"), SubResource("Resource_r16ap"), SubResource("Resource_dh0mh"), SubResource("Resource_j6ewl"), SubResource("Resource_ay30l"), SubResource("Resource_qpchk"), SubResource("Resource_ujvdf"), SubResource("Resource_k0th0")])
 temperament = ExtResource("14_721pe")
 genus = "Pokémon Pato Salvaje"
 pokedex_entry = "Al parecer, entre los puerros que suelen llevar los Farfetch’d, los hay mejores y peores. A estos Pokémon se les ha visto luchar entre ellos por los mejores puerros."

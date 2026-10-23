@@ -16,44 +16,44 @@
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="10_s78so"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_xcyk4"]
 
-[sub_resource type="Resource" id="Resource_f2sxf"]
+[sub_resource type="Resource" id="Resource_xcyk4"]
 script = ExtResource("1_v2i5d")
 move = ExtResource("2_aurcx")
 
-[sub_resource type="Resource" id="Resource_wtd8x"]
+[sub_resource type="Resource" id="Resource_q2ht3"]
 script = ExtResource("1_v2i5d")
 move = ExtResource("3_xcyk4")
 
-[sub_resource type="Resource" id="Resource_hlelb"]
+[sub_resource type="Resource" id="Resource_6aw5p"]
 script = ExtResource("1_v2i5d")
 move = ExtResource("4_q2ht3")
 
-[sub_resource type="Resource" id="Resource_24hys"]
+[sub_resource type="Resource" id="Resource_p4rc8"]
 script = ExtResource("1_v2i5d")
 level = 17
 move = ExtResource("5_6aw5p")
 
-[sub_resource type="Resource" id="Resource_aimne"]
+[sub_resource type="Resource" id="Resource_ygpvt"]
 script = ExtResource("1_v2i5d")
 level = 24
 move = ExtResource("6_p4rc8")
 
-[sub_resource type="Resource" id="Resource_neq4c"]
+[sub_resource type="Resource" id="Resource_8nesc"]
 script = ExtResource("1_v2i5d")
 level = 33
 move = ExtResource("7_ygpvt")
 
-[sub_resource type="Resource" id="Resource_grggr"]
+[sub_resource type="Resource" id="Resource_bj10l"]
 script = ExtResource("1_v2i5d")
 level = 42
 move = ExtResource("8_8nesc")
 
-[sub_resource type="Resource" id="Resource_pe33f"]
+[sub_resource type="Resource" id="Resource_s78so"]
 script = ExtResource("1_v2i5d")
 level = 52
 move = ExtResource("9_bj10l")
 
-[sub_resource type="Resource" id="Resource_ftbtp"]
+[sub_resource type="Resource" id="Resource_f2sxf"]
 script = ExtResource("1_v2i5d")
 level = 62
 move = ExtResource("10_s78so")
@@ -64,7 +64,7 @@ id = "sandslash"
 display_name = "Sandslash"
 dex = 28
 types = Array[ExtResource("4_8o4k0")]([ExtResource("5_bfdjk")])
-learnset = Array[ExtResource("1_v2i5d")]([SubResource("Resource_f2sxf"), SubResource("Resource_wtd8x"), SubResource("Resource_hlelb"), SubResource("Resource_24hys"), SubResource("Resource_aimne"), SubResource("Resource_neq4c"), SubResource("Resource_grggr"), SubResource("Resource_pe33f"), SubResource("Resource_ftbtp")])
+learnset = Array[ExtResource("1_v2i5d")]([SubResource("Resource_xcyk4"), SubResource("Resource_q2ht3"), SubResource("Resource_6aw5p"), SubResource("Resource_p4rc8"), SubResource("Resource_ygpvt"), SubResource("Resource_8nesc"), SubResource("Resource_bj10l"), SubResource("Resource_s78so"), SubResource("Resource_f2sxf")])
 temperament = ExtResource("13_xcyk4")
 genus = "Pokémon Ratón"
 pokedex_entry = "Sandslash está recubierto de duras púas que son partes endurecidas de la piel. Suele mudarlas una vez al año; debajo de las viejas púas crecen unas nuevas que las sustituyen."

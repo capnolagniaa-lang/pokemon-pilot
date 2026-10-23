@@ -18,53 +18,53 @@
 [ext_resource type="Resource" path="res://data/moves/bote.tres" id="12_mv5fc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_xyc4x"]
 
-[sub_resource type="Resource" id="Resource_tbprx"]
+[sub_resource type="Resource" id="Resource_xyc4x"]
 script = ExtResource("1_qw503")
 move = ExtResource("2_sjq4o")
 
-[sub_resource type="Resource" id="Resource_o6vw2"]
+[sub_resource type="Resource" id="Resource_lxsj2"]
 script = ExtResource("1_qw503")
 move = ExtResource("3_xyc4x")
 
-[sub_resource type="Resource" id="Resource_mv0cl"]
+[sub_resource type="Resource" id="Resource_0aasd"]
 script = ExtResource("1_qw503")
 move = ExtResource("4_lxsj2")
 
-[sub_resource type="Resource" id="Resource_cgxmq"]
+[sub_resource type="Resource" id="Resource_dvc85"]
 script = ExtResource("1_qw503")
 move = ExtResource("5_0aasd")
 
-[sub_resource type="Resource" id="Resource_abcdk"]
+[sub_resource type="Resource" id="Resource_dsn5h"]
 script = ExtResource("1_qw503")
 level = 19
 move = ExtResource("6_dvc85")
 
-[sub_resource type="Resource" id="Resource_d1vub"]
+[sub_resource type="Resource" id="Resource_car4s"]
 script = ExtResource("1_qw503")
 level = 25
 move = ExtResource("7_dsn5h")
 
-[sub_resource type="Resource" id="Resource_1rheg"]
+[sub_resource type="Resource" id="Resource_onbm4"]
 script = ExtResource("1_qw503")
 level = 28
 move = ExtResource("8_car4s")
 
-[sub_resource type="Resource" id="Resource_83kse"]
+[sub_resource type="Resource" id="Resource_dpmfp"]
 script = ExtResource("1_qw503")
 level = 37
 move = ExtResource("9_onbm4")
 
-[sub_resource type="Resource" id="Resource_jvp0a"]
+[sub_resource type="Resource" id="Resource_e2m56"]
 script = ExtResource("1_qw503")
 level = 43
 move = ExtResource("10_dpmfp")
 
-[sub_resource type="Resource" id="Resource_qudj5"]
+[sub_resource type="Resource" id="Resource_mv5fc"]
 script = ExtResource("1_qw503")
 level = 43
 move = ExtResource("11_e2m56")
 
-[sub_resource type="Resource" id="Resource_58vll"]
+[sub_resource type="Resource" id="Resource_tbprx"]
 script = ExtResource("1_qw503")
 level = 55
 move = ExtResource("12_mv5fc")
@@ -75,7 +75,7 @@ id = "grumpig"
 display_name = "Grumpig"
 dex = 326
 types = Array[ExtResource("4_65jgh")]([ExtResource("5_ywv8p")])
-learnset = Array[ExtResource("1_qw503")]([SubResource("Resource_tbprx"), SubResource("Resource_o6vw2"), SubResource("Resource_mv0cl"), SubResource("Resource_cgxmq"), SubResource("Resource_abcdk"), SubResource("Resource_d1vub"), SubResource("Resource_1rheg"), SubResource("Resource_83kse"), SubResource("Resource_jvp0a"), SubResource("Resource_qudj5"), SubResource("Resource_58vll")])
+learnset = Array[ExtResource("1_qw503")]([SubResource("Resource_xyc4x"), SubResource("Resource_lxsj2"), SubResource("Resource_0aasd"), SubResource("Resource_dvc85"), SubResource("Resource_dsn5h"), SubResource("Resource_car4s"), SubResource("Resource_onbm4"), SubResource("Resource_dpmfp"), SubResource("Resource_e2m56"), SubResource("Resource_mv5fc"), SubResource("Resource_tbprx")])
 temperament = ExtResource("15_xyc4x")
 genus = "Pokémon Manipulador"
 pokedex_entry = "Grumpig usa las perlas negras que tiene para amplificar las ondas de su poder psíquico y controlar del todo al rival. Cuando usa su poder especial, le cuesta respirar y resopla con pesadez."

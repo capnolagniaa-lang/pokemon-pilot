@@ -15,31 +15,31 @@
 [ext_resource type="Resource" path="res://data/moves/latigo_cepa.tres" id="8_sdve0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="11_b5nq2"]
 
-[sub_resource type="Resource" id="Resource_phwet"]
+[sub_resource type="Resource" id="Resource_b5nq2"]
 script = ExtResource("1_3mgp7")
 move = ExtResource("2_4tlmj")
 
-[sub_resource type="Resource" id="Resource_fkh27"]
+[sub_resource type="Resource" id="Resource_oca8i"]
 script = ExtResource("1_3mgp7")
 move = ExtResource("3_b5nq2")
 
-[sub_resource type="Resource" id="Resource_8fjf0"]
+[sub_resource type="Resource" id="Resource_aumbm"]
 script = ExtResource("1_3mgp7")
 move = ExtResource("4_oca8i")
 
-[sub_resource type="Resource" id="Resource_3rpin"]
+[sub_resource type="Resource" id="Resource_bnwnd"]
 script = ExtResource("1_3mgp7")
 move = ExtResource("5_aumbm")
 
-[sub_resource type="Resource" id="Resource_tbfnb"]
+[sub_resource type="Resource" id="Resource_17m7n"]
 script = ExtResource("1_3mgp7")
 move = ExtResource("6_bnwnd")
 
-[sub_resource type="Resource" id="Resource_orsqf"]
+[sub_resource type="Resource" id="Resource_sdve0"]
 script = ExtResource("1_3mgp7")
 move = ExtResource("7_17m7n")
 
-[sub_resource type="Resource" id="Resource_ua26p"]
+[sub_resource type="Resource" id="Resource_phwet"]
 script = ExtResource("1_3mgp7")
 move = ExtResource("8_sdve0")
 
@@ -49,7 +49,7 @@ id = "victreebel"
 display_name = "Victreebel"
 dex = 71
 types = Array[ExtResource("4_xcecf")]([ExtResource("5_7cs50"), ExtResource("6_kbr4c")])
-learnset = Array[ExtResource("1_3mgp7")]([SubResource("Resource_phwet"), SubResource("Resource_fkh27"), SubResource("Resource_8fjf0"), SubResource("Resource_3rpin"), SubResource("Resource_tbfnb"), SubResource("Resource_orsqf"), SubResource("Resource_ua26p")])
+learnset = Array[ExtResource("1_3mgp7")]([SubResource("Resource_b5nq2"), SubResource("Resource_oca8i"), SubResource("Resource_aumbm"), SubResource("Resource_bnwnd"), SubResource("Resource_17m7n"), SubResource("Resource_sdve0"), SubResource("Resource_phwet")])
 temperament = ExtResource("11_b5nq2")
 genus = "Pokémon Matamoscas"
 pokedex_entry = "Victreebel tiene una enredadera que le sale de la cabeza y que agita a modo de señuelo para atraer a sus presas y así engullirlas por sorpresa cuando estas se aproximan incautas."

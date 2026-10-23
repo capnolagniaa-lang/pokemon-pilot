@@ -16,43 +16,43 @@
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="10_g15a4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_nf13y"]
 
-[sub_resource type="Resource" id="Resource_3a15p"]
+[sub_resource type="Resource" id="Resource_nf13y"]
 script = ExtResource("1_t7plh")
 move = ExtResource("2_3cfib")
 
-[sub_resource type="Resource" id="Resource_cinqe"]
+[sub_resource type="Resource" id="Resource_6gk5f"]
 script = ExtResource("1_t7plh")
 move = ExtResource("3_nf13y")
 
-[sub_resource type="Resource" id="Resource_driqi"]
+[sub_resource type="Resource" id="Resource_iqxlj"]
 script = ExtResource("1_t7plh")
 move = ExtResource("4_6gk5f")
 
-[sub_resource type="Resource" id="Resource_71wjo"]
+[sub_resource type="Resource" id="Resource_e4wpa"]
 script = ExtResource("1_t7plh")
 move = ExtResource("5_iqxlj")
 
-[sub_resource type="Resource" id="Resource_wcojw"]
+[sub_resource type="Resource" id="Resource_7av5t"]
 script = ExtResource("1_t7plh")
 level = 25
 move = ExtResource("6_e4wpa")
 
-[sub_resource type="Resource" id="Resource_iy2r6"]
+[sub_resource type="Resource" id="Resource_daqmn"]
 script = ExtResource("1_t7plh")
 level = 33
 move = ExtResource("7_7av5t")
 
-[sub_resource type="Resource" id="Resource_lt5ux"]
+[sub_resource type="Resource" id="Resource_hmp8x"]
 script = ExtResource("1_t7plh")
 level = 41
 move = ExtResource("8_daqmn")
 
-[sub_resource type="Resource" id="Resource_8qup5"]
+[sub_resource type="Resource" id="Resource_g15a4"]
 script = ExtResource("1_t7plh")
 level = 49
 move = ExtResource("9_hmp8x")
 
-[sub_resource type="Resource" id="Resource_q5jck"]
+[sub_resource type="Resource" id="Resource_3a15p"]
 script = ExtResource("1_t7plh")
 level = 57
 move = ExtResource("10_g15a4")
@@ -63,7 +63,7 @@ id = "magmar"
 display_name = "Magmar"
 dex = 126
 types = Array[ExtResource("4_btq3x")]([ExtResource("5_wiwxl")])
-learnset = Array[ExtResource("1_t7plh")]([SubResource("Resource_3a15p"), SubResource("Resource_cinqe"), SubResource("Resource_driqi"), SubResource("Resource_71wjo"), SubResource("Resource_wcojw"), SubResource("Resource_iy2r6"), SubResource("Resource_lt5ux"), SubResource("Resource_8qup5"), SubResource("Resource_q5jck")])
+learnset = Array[ExtResource("1_t7plh")]([SubResource("Resource_nf13y"), SubResource("Resource_6gk5f"), SubResource("Resource_iqxlj"), SubResource("Resource_e4wpa"), SubResource("Resource_7av5t"), SubResource("Resource_daqmn"), SubResource("Resource_hmp8x"), SubResource("Resource_g15a4"), SubResource("Resource_3a15p")])
 temperament = ExtResource("13_nf13y")
 genus = "Pokémon Escupefuego"
 pokedex_entry = "Al luchar, Magmar expulsa violentas llamas por todo el cuerpo para intimidar a su rival. Estos estallidos de fuego crean ondas de calor que abrasan la hierba y los árboles que haya en las proximidades."

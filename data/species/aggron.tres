@@ -20,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_kbnrk"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_y13gu"]
 
-[sub_resource type="Resource" id="Resource_4uqxa"]
+[sub_resource type="Resource" id="Resource_y13gu"]
 script = ExtResource("1_licrt")
 move = ExtResource("2_p01ud")
 
-[sub_resource type="Resource" id="Resource_rrvl3"]
+[sub_resource type="Resource" id="Resource_ty18r"]
 script = ExtResource("1_licrt")
 move = ExtResource("3_y13gu")
 
-[sub_resource type="Resource" id="Resource_75v8x"]
+[sub_resource type="Resource" id="Resource_4ml6d"]
 script = ExtResource("1_licrt")
 move = ExtResource("4_ty18r")
 
-[sub_resource type="Resource" id="Resource_b48qc"]
+[sub_resource type="Resource" id="Resource_c6ar0"]
 script = ExtResource("1_licrt")
 move = ExtResource("5_4ml6d")
 
-[sub_resource type="Resource" id="Resource_3dd7d"]
+[sub_resource type="Resource" id="Resource_64hdh"]
 script = ExtResource("1_licrt")
 level = 13
 move = ExtResource("6_c6ar0")
 
-[sub_resource type="Resource" id="Resource_ps1lt"]
+[sub_resource type="Resource" id="Resource_4l3xs"]
 script = ExtResource("1_licrt")
 level = 17
 move = ExtResource("7_64hdh")
 
-[sub_resource type="Resource" id="Resource_sgt5r"]
+[sub_resource type="Resource" id="Resource_7eh2u"]
 script = ExtResource("1_licrt")
 level = 21
 move = ExtResource("8_4l3xs")
 
-[sub_resource type="Resource" id="Resource_c4djk"]
+[sub_resource type="Resource" id="Resource_3b0kg"]
 script = ExtResource("1_licrt")
 level = 25
 move = ExtResource("9_7eh2u")
 
-[sub_resource type="Resource" id="Resource_wpxib"]
+[sub_resource type="Resource" id="Resource_wqu1f"]
 script = ExtResource("1_licrt")
 level = 29
 move = ExtResource("10_3b0kg")
 
-[sub_resource type="Resource" id="Resource_3y8bb"]
+[sub_resource type="Resource" id="Resource_rojh1"]
 script = ExtResource("1_licrt")
 level = 37
 move = ExtResource("11_wqu1f")
 
-[sub_resource type="Resource" id="Resource_c3eoh"]
+[sub_resource type="Resource" id="Resource_kbnrk"]
 script = ExtResource("1_licrt")
 level = 50
 move = ExtResource("12_rojh1")
 
-[sub_resource type="Resource" id="Resource_xaocw"]
+[sub_resource type="Resource" id="Resource_4uqxa"]
 script = ExtResource("1_licrt")
 level = 63
 move = ExtResource("13_kbnrk")
@@ -82,7 +82,7 @@ id = "aggron"
 display_name = "Aggron"
 dex = 306
 types = Array[ExtResource("4_kb6s5")]([ExtResource("5_rqeuq"), ExtResource("6_33r73")])
-learnset = Array[ExtResource("1_licrt")]([SubResource("Resource_4uqxa"), SubResource("Resource_rrvl3"), SubResource("Resource_75v8x"), SubResource("Resource_b48qc"), SubResource("Resource_3dd7d"), SubResource("Resource_ps1lt"), SubResource("Resource_sgt5r"), SubResource("Resource_c4djk"), SubResource("Resource_wpxib"), SubResource("Resource_3y8bb"), SubResource("Resource_c3eoh"), SubResource("Resource_xaocw")])
+learnset = Array[ExtResource("1_licrt")]([SubResource("Resource_y13gu"), SubResource("Resource_ty18r"), SubResource("Resource_4ml6d"), SubResource("Resource_c6ar0"), SubResource("Resource_64hdh"), SubResource("Resource_4l3xs"), SubResource("Resource_7eh2u"), SubResource("Resource_3b0kg"), SubResource("Resource_wqu1f"), SubResource("Resource_rojh1"), SubResource("Resource_kbnrk"), SubResource("Resource_4uqxa")])
 temperament = ExtResource("16_y13gu")
 genus = "Pokémon Coraza Férrea"
 pokedex_entry = "Aggron marca una montaña entera como su territorio y acaba con todo lo que pueda ponerlo en peligro. Este Pokémon está continuamente patrullando la zona en defensa de su terreno."

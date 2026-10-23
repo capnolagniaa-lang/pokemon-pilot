@@ -39,6 +39,7 @@ el documento original de abajo (que queda como referencia de ideas: estados, sin
 | Charmander | **Bruiser** | Ascuas: abanico de 3 brasas, rango medio (1,4 s) | Arañazo: se lanza al punto apuntado (≤64 px); si conecta, 2 golpes (el 2º empuja) (1,1 s) | Giro Fuego: anillo que atrapa (7 s) | Embestida Ígnea: dash que golpea con leve empuje (90), invulnerable, deja estela de fuego (6 s) | **Calor** → Mar Llamas (el usuario lo aprobó) |
 | Bellsprout | **Control** | Polvo Veneno: parche de esporas (máx. 3, 6 s) que ralentiza y suma veneno (1,3 s) | Látigo Cepa: agarra al primero que alcanza (72 px), lo enraíza y lo atrae (4 s) | Arraigo: se enraíza 3 s, recibe la mitad, se cura 3%/s, no lo empujan (10 s) | Somnífero: nube telegrafiada; quien se queda 1,5 s adentro se duerme (12 s) | (ninguna aún) |
 | Bulbasaur | **Control** | Polvo Veneno | Látigo Cepa | Síntesis: se cura 5%/s 3 s, recibe ×0,75, más lento (12 s) | Somnífero | (ninguna aún) |
+| Squirtle · Pikachu · Oddish · Paras · Psyduck · Poliwag · Growlithe · Eevee · Seel · Geodude | ver "v3" abajo | | | | | (en prueba) |
 | Pidgey | **Hostigador** | Tornado: ráfaga que empuja (190) y **desvía proyectiles** enemigos (1,2 s) | Ataque Arena: 5 granos en abanico que **desorientan** (5 s) | Ataque Rápido: embestida (2,6 s) | Remolino: zona de viento 3,5 s que **echa a los enemigos** y desvía proyectiles (9 s) | **Vuelo** (barra de Aliento) |
 | Rattata | **Asesino** | Mordisco: combo de 3 mordidas rápidas, 35% Herido (1 s) | Ataque Rápido: embestida de entrada (4 s) | Foco Energía: guarda un **crítico seguro** (×1,5) para el próximo golpe (9 s) | Hipercolmillo: mordida telegrafiada (0,22 s) que **ejecuta bajo el 25%** de vida (10 s) | **Instinto** |
 | Vulpix | **Desgaste** | Ascuas: una brasa rápida, 20% quema (0,9 s) | Fuego Fatuo: llama lenta que **quema seguro** (5 s) | Rayo Confuso: **desorienta** (7 s) | Lanzallamas: cono canalizado 1 s (9 s) | **Rescoldo** |
@@ -72,9 +73,20 @@ escapando. Ahora:
 - Los disparos ya **no afectan las celdas por las que pasan**, solo donde impactan. Los **charcos** (suelo
   mojado) no empapan ni asustan a la IA: sirven para que corra la electricidad y para congelarlos.
 
-## v3 — 10 kits nuevos (en prueba, 2026-10-23)
+## v3 — 10 kits nuevos (✅ implementados, en prueba, 2026-10-23)
 Pedido del usuario: llegar a ~16 kits para el modo historia ("los vamos a ir trabajando a medida que testee").
-Lista aprobada en `docs/SALVAJES_Y_MOVIMIENTOS.md` (sección 4). Diseño inicial (números a ajustar probando):
+Lista aprobada en `docs/SALVAJES_Y_MOVIMIENTOS.md` (sección 4). **Ya están en el juego** (16 especies con kit);
+los números son iniciales y se van a ajustar a medida que el usuario los pruebe.
+- Datos: `data/kits/<especie>/` (4 ataques + firma + `kit.tres`), estados nuevos en `data/status/` (refugio,
+  esporas, rastreado, escarcha, rizo, descansando). Los generó `tools/build_kits_v3.py` (**correrlo de nuevo los
+  pisa**: una vez que se retoquen en el inspector, no volver a correrlo).
+- Mecánicas: `scripts/combat/signatures/` → shell (Squirtle), static (Pikachu), spores (Oddish), headache
+  (Psyduck), slide (Poliwag), track (Growlithe), adapt (Eevee), frost (Seel), momentum (Geodude). Paras no tiene
+  firma: su identidad son las esporas inflamables (`GroundZone.ignite`).
+- Learnsets: los 4 del kit en Nv. 1/1/3/5 + extras (`EXTRAS` de `tools/build_learnsets.gd`).
+- Autotest `--autotest-kits-v3` (33 chequeos: cada kit usa sus 4 ataques y su mecánica funciona).
+
+Diseño (números iniciales):
 
 | Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Mecánica de firma |
 |---|---|---|---|---|---|---|

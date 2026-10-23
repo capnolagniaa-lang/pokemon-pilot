@@ -9,7 +9,7 @@
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="5_su8gq"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_haq7u"]
 
-[sub_resource type="Resource" id="Resource_qoi3x"]
+[sub_resource type="Resource" id="Resource_su8gq"]
 script = ExtResource("1_j3xmr")
 move = ExtResource("2_su8gq")
 
@@ -19,7 +19,7 @@ id = "kakuna"
 display_name = "Kakuna"
 dex = 14
 types = Array[ExtResource("4_qoi3x")]([ExtResource("5_es0uj"), ExtResource("6_haq7u")])
-learnset = Array[ExtResource("1_j3xmr")]([SubResource("Resource_qoi3x")])
+learnset = Array[ExtResource("1_j3xmr")]([SubResource("Resource_su8gq")])
 temperament = ExtResource("5_su8gq")
 genus = "Pokémon Capullo"
 pokedex_entry = "Kakuna permanece prácticamente inmóvil al encaramarse a los árboles, aunque la actividad interna de su organismo tiene un ritmo frenético, pues se prepara para su evolución. Prueba de esto es la alta temperatura de su caparazón."

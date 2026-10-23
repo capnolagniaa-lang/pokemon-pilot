@@ -17,48 +17,48 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_dxvk4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_qxd70"]
 
-[sub_resource type="Resource" id="Resource_uk7ca"]
+[sub_resource type="Resource" id="Resource_qxd70"]
 script = ExtResource("1_1ive5")
 move = ExtResource("2_tflcr")
 
-[sub_resource type="Resource" id="Resource_x0t7j"]
+[sub_resource type="Resource" id="Resource_nauks"]
 script = ExtResource("1_1ive5")
 move = ExtResource("3_qxd70")
 
-[sub_resource type="Resource" id="Resource_gbxw6"]
+[sub_resource type="Resource" id="Resource_ygjnq"]
 script = ExtResource("1_1ive5")
 move = ExtResource("4_nauks")
 
-[sub_resource type="Resource" id="Resource_x4ex1"]
+[sub_resource type="Resource" id="Resource_xmemi"]
 script = ExtResource("1_1ive5")
 move = ExtResource("5_ygjnq")
 
-[sub_resource type="Resource" id="Resource_a7b6j"]
+[sub_resource type="Resource" id="Resource_qoj37"]
 script = ExtResource("1_1ive5")
 level = 15
 move = ExtResource("6_xmemi")
 
-[sub_resource type="Resource" id="Resource_exg3a"]
+[sub_resource type="Resource" id="Resource_ibl8l"]
 script = ExtResource("1_1ive5")
 level = 23
 move = ExtResource("7_qoj37")
 
-[sub_resource type="Resource" id="Resource_ltkov"]
+[sub_resource type="Resource" id="Resource_d3nmq"]
 script = ExtResource("1_1ive5")
 level = 31
 move = ExtResource("8_ibl8l")
 
-[sub_resource type="Resource" id="Resource_15jsl"]
+[sub_resource type="Resource" id="Resource_2o4j2"]
 script = ExtResource("1_1ive5")
 level = 39
 move = ExtResource("9_d3nmq")
 
-[sub_resource type="Resource" id="Resource_7l2hh"]
+[sub_resource type="Resource" id="Resource_dxvk4"]
 script = ExtResource("1_1ive5")
 level = 47
 move = ExtResource("10_2o4j2")
 
-[sub_resource type="Resource" id="Resource_646m6"]
+[sub_resource type="Resource" id="Resource_uk7ca"]
 script = ExtResource("1_1ive5")
 level = 55
 move = ExtResource("11_dxvk4")
@@ -69,7 +69,7 @@ id = "bayleef"
 display_name = "Bayleef"
 dex = 153
 types = Array[ExtResource("4_2slf5")]([ExtResource("5_vk67p")])
-learnset = Array[ExtResource("1_1ive5")]([SubResource("Resource_uk7ca"), SubResource("Resource_x0t7j"), SubResource("Resource_gbxw6"), SubResource("Resource_x4ex1"), SubResource("Resource_a7b6j"), SubResource("Resource_exg3a"), SubResource("Resource_ltkov"), SubResource("Resource_15jsl"), SubResource("Resource_7l2hh"), SubResource("Resource_646m6")])
+learnset = Array[ExtResource("1_1ive5")]([SubResource("Resource_qxd70"), SubResource("Resource_nauks"), SubResource("Resource_ygjnq"), SubResource("Resource_xmemi"), SubResource("Resource_qoj37"), SubResource("Resource_ibl8l"), SubResource("Resource_d3nmq"), SubResource("Resource_2o4j2"), SubResource("Resource_dxvk4"), SubResource("Resource_uk7ca")])
 temperament = ExtResource("14_qxd70")
 genus = "Pokémon Hoja"
 pokedex_entry = "Bayleef tiene un collar de hojas alrededor del cuello y un brote de un árbol en cada una de ellas. La fragancia que desprenden estos brotes anima a la gente."

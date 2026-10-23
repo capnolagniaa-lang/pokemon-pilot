@@ -19,55 +19,55 @@
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="12_bholj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_adup5"]
 
-[sub_resource type="Resource" id="Resource_fync5"]
+[sub_resource type="Resource" id="Resource_adup5"]
 script = ExtResource("1_xywnu")
 move = ExtResource("2_imhad")
 
-[sub_resource type="Resource" id="Resource_rdxca"]
+[sub_resource type="Resource" id="Resource_n8dks"]
 script = ExtResource("1_xywnu")
 move = ExtResource("3_adup5")
 
-[sub_resource type="Resource" id="Resource_n5db8"]
+[sub_resource type="Resource" id="Resource_681pj"]
 script = ExtResource("1_xywnu")
 level = 9
 move = ExtResource("4_n8dks")
 
-[sub_resource type="Resource" id="Resource_jdsqh"]
+[sub_resource type="Resource" id="Resource_u2h1s"]
 script = ExtResource("1_xywnu")
 level = 13
 move = ExtResource("5_681pj")
 
-[sub_resource type="Resource" id="Resource_ohk1l"]
+[sub_resource type="Resource" id="Resource_7myr3"]
 script = ExtResource("1_xywnu")
 level = 21
 move = ExtResource("6_u2h1s")
 
-[sub_resource type="Resource" id="Resource_ejjlq"]
+[sub_resource type="Resource" id="Resource_g6j0n"]
 script = ExtResource("1_xywnu")
 level = 25
 move = ExtResource("7_7myr3")
 
-[sub_resource type="Resource" id="Resource_fa50o"]
+[sub_resource type="Resource" id="Resource_j2qi1"]
 script = ExtResource("1_xywnu")
 level = 33
 move = ExtResource("8_g6j0n")
 
-[sub_resource type="Resource" id="Resource_qa5j3"]
+[sub_resource type="Resource" id="Resource_jid1m"]
 script = ExtResource("1_xywnu")
 level = 37
 move = ExtResource("9_j2qi1")
 
-[sub_resource type="Resource" id="Resource_50fji"]
+[sub_resource type="Resource" id="Resource_oq5u8"]
 script = ExtResource("1_xywnu")
 level = 45
 move = ExtResource("10_jid1m")
 
-[sub_resource type="Resource" id="Resource_qm5o4"]
+[sub_resource type="Resource" id="Resource_bholj"]
 script = ExtResource("1_xywnu")
 level = 49
 move = ExtResource("11_oq5u8")
 
-[sub_resource type="Resource" id="Resource_r1yiu"]
+[sub_resource type="Resource" id="Resource_fync5"]
 script = ExtResource("1_xywnu")
 level = 57
 move = ExtResource("12_bholj")
@@ -78,7 +78,7 @@ id = "smoochum"
 display_name = "Smoochum"
 dex = 238
 types = Array[ExtResource("4_05rky")]([ExtResource("5_330dc"), ExtResource("6_ueuc2")])
-learnset = Array[ExtResource("1_xywnu")]([SubResource("Resource_fync5"), SubResource("Resource_rdxca"), SubResource("Resource_n5db8"), SubResource("Resource_jdsqh"), SubResource("Resource_ohk1l"), SubResource("Resource_ejjlq"), SubResource("Resource_fa50o"), SubResource("Resource_qa5j3"), SubResource("Resource_50fji"), SubResource("Resource_qm5o4"), SubResource("Resource_r1yiu")])
+learnset = Array[ExtResource("1_xywnu")]([SubResource("Resource_adup5"), SubResource("Resource_n8dks"), SubResource("Resource_681pj"), SubResource("Resource_u2h1s"), SubResource("Resource_7myr3"), SubResource("Resource_g6j0n"), SubResource("Resource_j2qi1"), SubResource("Resource_jid1m"), SubResource("Resource_oq5u8"), SubResource("Resource_bholj"), SubResource("Resource_fync5")])
 temperament = ExtResource("15_adup5")
 genus = "Pokémon Beso"
 pokedex_entry = "Smoochum va corriendo por todos lados, pero se cae también con frecuencia. Y, en cuanto tiene ocasión, se mira en algún sitio para ver si se ha manchado la cara."

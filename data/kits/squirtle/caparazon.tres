@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/shell_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "caparazon"
+display_name = "Presión"
+description = "Con Refugio recibe menos y no lo empujan; si le pegan justo al meterse en el caparazón es un parry (anula el golpe y aturde). Lo bloqueado carga la Presión, que el próximo golpe gasta para pegar más."
+color = Color(0.35, 0.65, 1.0, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"parry_window": 0.3, "parry_stun": 0.6, "parry_gain": 40.0, "block_gain": 300.0, "max_bonus": 1.0}

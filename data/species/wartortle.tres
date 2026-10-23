@@ -18,54 +18,54 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_4jx55"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_7xy2u"]
 
-[sub_resource type="Resource" id="Resource_71rek"]
+[sub_resource type="Resource" id="Resource_7xy2u"]
 script = ExtResource("1_6ph8y")
 move = ExtResource("2_yhdh2")
 
-[sub_resource type="Resource" id="Resource_63n57"]
+[sub_resource type="Resource" id="Resource_son2g"]
 script = ExtResource("1_6ph8y")
 move = ExtResource("3_7xy2u")
 
-[sub_resource type="Resource" id="Resource_acr7k"]
+[sub_resource type="Resource" id="Resource_qlaee"]
 script = ExtResource("1_6ph8y")
 move = ExtResource("4_son2g")
 
-[sub_resource type="Resource" id="Resource_rj35r"]
+[sub_resource type="Resource" id="Resource_xlb68"]
 script = ExtResource("1_6ph8y")
 level = 10
 move = ExtResource("5_qlaee")
 
-[sub_resource type="Resource" id="Resource_8o2km"]
+[sub_resource type="Resource" id="Resource_g0ero"]
 script = ExtResource("1_6ph8y")
 level = 13
 move = ExtResource("6_xlb68")
 
-[sub_resource type="Resource" id="Resource_70le7"]
+[sub_resource type="Resource" id="Resource_n8w4x"]
 script = ExtResource("1_6ph8y")
 level = 19
 move = ExtResource("7_g0ero")
 
-[sub_resource type="Resource" id="Resource_44hnj"]
+[sub_resource type="Resource" id="Resource_vl5us"]
 script = ExtResource("1_6ph8y")
 level = 25
 move = ExtResource("8_n8w4x")
 
-[sub_resource type="Resource" id="Resource_jibek"]
+[sub_resource type="Resource" id="Resource_0b1rn"]
 script = ExtResource("1_6ph8y")
 level = 31
 move = ExtResource("9_vl5us")
 
-[sub_resource type="Resource" id="Resource_c0u06"]
+[sub_resource type="Resource" id="Resource_8xias"]
 script = ExtResource("1_6ph8y")
 level = 37
 move = ExtResource("10_0b1rn")
 
-[sub_resource type="Resource" id="Resource_ksiah"]
+[sub_resource type="Resource" id="Resource_4jx55"]
 script = ExtResource("1_6ph8y")
 level = 45
 move = ExtResource("11_8xias")
 
-[sub_resource type="Resource" id="Resource_kx7i2"]
+[sub_resource type="Resource" id="Resource_71rek"]
 script = ExtResource("1_6ph8y")
 level = 53
 move = ExtResource("12_4jx55")
@@ -76,7 +76,7 @@ id = "wartortle"
 display_name = "Wartortle"
 dex = 8
 types = Array[ExtResource("4_18vi7")]([ExtResource("5_kbtav")])
-learnset = Array[ExtResource("1_6ph8y")]([SubResource("Resource_71rek"), SubResource("Resource_63n57"), SubResource("Resource_acr7k"), SubResource("Resource_rj35r"), SubResource("Resource_8o2km"), SubResource("Resource_70le7"), SubResource("Resource_44hnj"), SubResource("Resource_jibek"), SubResource("Resource_c0u06"), SubResource("Resource_ksiah"), SubResource("Resource_kx7i2")])
+learnset = Array[ExtResource("1_6ph8y")]([SubResource("Resource_7xy2u"), SubResource("Resource_son2g"), SubResource("Resource_qlaee"), SubResource("Resource_xlb68"), SubResource("Resource_g0ero"), SubResource("Resource_n8w4x"), SubResource("Resource_vl5us"), SubResource("Resource_0b1rn"), SubResource("Resource_8xias"), SubResource("Resource_4jx55"), SubResource("Resource_71rek")])
 temperament = ExtResource("15_7xy2u")
 genus = "Pokémon Tortuga"
 pokedex_entry = "Tiene una cola larga y cubierta de un pelo abundante y grueso que se torna más oscuro a medida que crece. Los arañazos que tiene en el caparazón dan fe de lo buen guerrero que es."

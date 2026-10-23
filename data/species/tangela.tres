@@ -19,60 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/cosquillas.tres" id="13_3j5ni"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_pmsfv"]
 
-[sub_resource type="Resource" id="Resource_yt7wa"]
+[sub_resource type="Resource" id="Resource_pmsfv"]
 script = ExtResource("1_pwk10")
 move = ExtResource("2_5srpn")
 
-[sub_resource type="Resource" id="Resource_w7qyi"]
+[sub_resource type="Resource" id="Resource_m22as"]
 script = ExtResource("1_pwk10")
 move = ExtResource("3_pmsfv")
 
-[sub_resource type="Resource" id="Resource_fmvvw"]
+[sub_resource type="Resource" id="Resource_avr1c"]
 script = ExtResource("1_pwk10")
 level = 4
 move = ExtResource("4_m22as")
 
-[sub_resource type="Resource" id="Resource_qgp7x"]
+[sub_resource type="Resource" id="Resource_v73jq"]
 script = ExtResource("1_pwk10")
 level = 10
 move = ExtResource("5_avr1c")
 
-[sub_resource type="Resource" id="Resource_c7fa7"]
+[sub_resource type="Resource" id="Resource_jyfgr"]
 script = ExtResource("1_pwk10")
 level = 13
 move = ExtResource("6_v73jq")
 
-[sub_resource type="Resource" id="Resource_r7hfr"]
+[sub_resource type="Resource" id="Resource_t7d5e"]
 script = ExtResource("1_pwk10")
 level = 19
 move = ExtResource("7_jyfgr")
 
-[sub_resource type="Resource" id="Resource_r2vvb"]
+[sub_resource type="Resource" id="Resource_auh0l"]
 script = ExtResource("1_pwk10")
 level = 22
 move = ExtResource("8_t7d5e")
 
-[sub_resource type="Resource" id="Resource_sckkf"]
+[sub_resource type="Resource" id="Resource_gfwbf"]
 script = ExtResource("1_pwk10")
 level = 28
 move = ExtResource("9_auh0l")
 
-[sub_resource type="Resource" id="Resource_euyt2"]
+[sub_resource type="Resource" id="Resource_5bojn"]
 script = ExtResource("1_pwk10")
 level = 31
 move = ExtResource("10_gfwbf")
 
-[sub_resource type="Resource" id="Resource_v1ofi"]
+[sub_resource type="Resource" id="Resource_lohep"]
 script = ExtResource("1_pwk10")
 level = 37
 move = ExtResource("11_5bojn")
 
-[sub_resource type="Resource" id="Resource_inv7j"]
+[sub_resource type="Resource" id="Resource_3j5ni"]
 script = ExtResource("1_pwk10")
 level = 40
 move = ExtResource("12_lohep")
 
-[sub_resource type="Resource" id="Resource_iudvq"]
+[sub_resource type="Resource" id="Resource_yt7wa"]
 script = ExtResource("1_pwk10")
 level = 46
 move = ExtResource("13_3j5ni")
@@ -83,7 +83,7 @@ id = "tangela"
 display_name = "Tangela"
 dex = 114
 types = Array[ExtResource("4_dnmxb")]([ExtResource("5_k6us7")])
-learnset = Array[ExtResource("1_pwk10")]([SubResource("Resource_yt7wa"), SubResource("Resource_w7qyi"), SubResource("Resource_fmvvw"), SubResource("Resource_qgp7x"), SubResource("Resource_c7fa7"), SubResource("Resource_r7hfr"), SubResource("Resource_r2vvb"), SubResource("Resource_sckkf"), SubResource("Resource_euyt2"), SubResource("Resource_v1ofi"), SubResource("Resource_inv7j"), SubResource("Resource_iudvq")])
+learnset = Array[ExtResource("1_pwk10")]([SubResource("Resource_pmsfv"), SubResource("Resource_m22as"), SubResource("Resource_avr1c"), SubResource("Resource_v73jq"), SubResource("Resource_jyfgr"), SubResource("Resource_t7d5e"), SubResource("Resource_auh0l"), SubResource("Resource_gfwbf"), SubResource("Resource_5bojn"), SubResource("Resource_lohep"), SubResource("Resource_3j5ni"), SubResource("Resource_yt7wa")])
 temperament = ExtResource("16_pmsfv")
 genus = "Pokémon Enredadera"
 pokedex_entry = "A Tangela se le desprenden los tentáculos con facilidad en cuanto se los agarras. Y no solo no le duele, sino que le resulta muy útil para escapar rápido. Además, al día siguiente le crecen otros."

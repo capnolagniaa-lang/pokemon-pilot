@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_6mw1g"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_s0xws"]
 
-[sub_resource type="Resource" id="Resource_gxb2y"]
+[sub_resource type="Resource" id="Resource_s0xws"]
 script = ExtResource("1_8snea")
 move = ExtResource("2_jlyb0")
 
-[sub_resource type="Resource" id="Resource_6wn06"]
+[sub_resource type="Resource" id="Resource_33sqi"]
 script = ExtResource("1_8snea")
 move = ExtResource("3_s0xws")
 
-[sub_resource type="Resource" id="Resource_6eud1"]
+[sub_resource type="Resource" id="Resource_tcfpl"]
 script = ExtResource("1_8snea")
 level = 6
 move = ExtResource("4_33sqi")
 
-[sub_resource type="Resource" id="Resource_fnsyi"]
+[sub_resource type="Resource" id="Resource_osnxg"]
 script = ExtResource("1_8snea")
 level = 13
 move = ExtResource("5_tcfpl")
 
-[sub_resource type="Resource" id="Resource_0cg60"]
+[sub_resource type="Resource" id="Resource_602oq"]
 script = ExtResource("1_8snea")
 level = 18
 move = ExtResource("6_osnxg")
 
-[sub_resource type="Resource" id="Resource_bjjw7"]
+[sub_resource type="Resource" id="Resource_pm28j"]
 script = ExtResource("1_8snea")
 level = 25
 move = ExtResource("7_602oq")
 
-[sub_resource type="Resource" id="Resource_lq0vc"]
+[sub_resource type="Resource" id="Resource_0mf44"]
 script = ExtResource("1_8snea")
 level = 31
 move = ExtResource("8_pm28j")
 
-[sub_resource type="Resource" id="Resource_nwpk0"]
+[sub_resource type="Resource" id="Resource_22iob"]
 script = ExtResource("1_8snea")
 level = 38
 move = ExtResource("9_0mf44")
 
-[sub_resource type="Resource" id="Resource_ehafd"]
+[sub_resource type="Resource" id="Resource_6mw1g"]
 script = ExtResource("1_8snea")
 level = 43
 move = ExtResource("10_22iob")
 
-[sub_resource type="Resource" id="Resource_rlijj"]
+[sub_resource type="Resource" id="Resource_gxb2y"]
 script = ExtResource("1_8snea")
 level = 50
 move = ExtResource("11_6mw1g")
@@ -71,7 +71,7 @@ id = "aipom"
 display_name = "Aipom"
 dex = 190
 types = Array[ExtResource("4_t1utw")]([ExtResource("5_rj66o")])
-learnset = Array[ExtResource("1_8snea")]([SubResource("Resource_gxb2y"), SubResource("Resource_6wn06"), SubResource("Resource_6eud1"), SubResource("Resource_fnsyi"), SubResource("Resource_0cg60"), SubResource("Resource_bjjw7"), SubResource("Resource_lq0vc"), SubResource("Resource_nwpk0"), SubResource("Resource_ehafd"), SubResource("Resource_rlijj")])
+learnset = Array[ExtResource("1_8snea")]([SubResource("Resource_s0xws"), SubResource("Resource_33sqi"), SubResource("Resource_tcfpl"), SubResource("Resource_osnxg"), SubResource("Resource_602oq"), SubResource("Resource_pm28j"), SubResource("Resource_0mf44"), SubResource("Resource_22iob"), SubResource("Resource_6mw1g"), SubResource("Resource_gxb2y")])
 temperament = ExtResource("14_s0xws")
 genus = "Pokémon Cola Larga"
 pokedex_entry = "La cola de Aipom termina en una especie de mano a la que, con un poco de cabeza, se le puede dar muy buen uso. Pero hay un problema: como se ha acostumbrado a usarla mucho, las de verdad se le han vuelto algo torponas."

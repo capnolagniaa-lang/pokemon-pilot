@@ -16,45 +16,45 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_aar31"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_c66f2"]
 
-[sub_resource type="Resource" id="Resource_01se8"]
+[sub_resource type="Resource" id="Resource_c66f2"]
 script = ExtResource("1_2lht7")
 move = ExtResource("2_2bt2u")
 
-[sub_resource type="Resource" id="Resource_vw1au"]
+[sub_resource type="Resource" id="Resource_f2mpq"]
 script = ExtResource("1_2lht7")
 move = ExtResource("3_c66f2")
 
-[sub_resource type="Resource" id="Resource_rslvi"]
+[sub_resource type="Resource" id="Resource_nja0q"]
 script = ExtResource("1_2lht7")
 level = 8
 move = ExtResource("4_f2mpq")
 
-[sub_resource type="Resource" id="Resource_srgmo"]
+[sub_resource type="Resource" id="Resource_sp54a"]
 script = ExtResource("1_2lht7")
 level = 15
 move = ExtResource("5_nja0q")
 
-[sub_resource type="Resource" id="Resource_53t50"]
+[sub_resource type="Resource" id="Resource_ixwkn"]
 script = ExtResource("1_2lht7")
 level = 22
 move = ExtResource("6_sp54a")
 
-[sub_resource type="Resource" id="Resource_xu0q7"]
+[sub_resource type="Resource" id="Resource_kqm1y"]
 script = ExtResource("1_2lht7")
 level = 29
 move = ExtResource("7_ixwkn")
 
-[sub_resource type="Resource" id="Resource_fxsvr"]
+[sub_resource type="Resource" id="Resource_5dnsq"]
 script = ExtResource("1_2lht7")
 level = 36
 move = ExtResource("8_kqm1y")
 
-[sub_resource type="Resource" id="Resource_p52k1"]
+[sub_resource type="Resource" id="Resource_aar31"]
 script = ExtResource("1_2lht7")
 level = 43
 move = ExtResource("9_5dnsq")
 
-[sub_resource type="Resource" id="Resource_7ldxy"]
+[sub_resource type="Resource" id="Resource_01se8"]
 script = ExtResource("1_2lht7")
 level = 50
 move = ExtResource("10_aar31")
@@ -65,7 +65,7 @@ id = "pineco"
 display_name = "Pineco"
 dex = 204
 types = Array[ExtResource("4_vg0v6")]([ExtResource("5_s3loh")])
-learnset = Array[ExtResource("1_2lht7")]([SubResource("Resource_01se8"), SubResource("Resource_vw1au"), SubResource("Resource_rslvi"), SubResource("Resource_srgmo"), SubResource("Resource_53t50"), SubResource("Resource_xu0q7"), SubResource("Resource_fxsvr"), SubResource("Resource_p52k1"), SubResource("Resource_7ldxy")])
+learnset = Array[ExtResource("1_2lht7")]([SubResource("Resource_c66f2"), SubResource("Resource_f2mpq"), SubResource("Resource_nja0q"), SubResource("Resource_sp54a"), SubResource("Resource_ixwkn"), SubResource("Resource_kqm1y"), SubResource("Resource_5dnsq"), SubResource("Resource_aar31"), SubResource("Resource_01se8")])
 temperament = ExtResource("13_c66f2")
 genus = "Pokémon Larva"
 pokedex_entry = "Pineco permanece colgado de la rama de un árbol esperando pacientemente a su presa. Si alguien sacude el árbol en el que está mientras come y le molesta, se tira al suelo y explota sin dar ningún tipo de aviso."

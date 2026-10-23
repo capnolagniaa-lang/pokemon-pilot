@@ -13,24 +13,24 @@
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_ujbnh"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="9_errn0"]
 
-[sub_resource type="Resource" id="Resource_dgskn"]
+[sub_resource type="Resource" id="Resource_errn0"]
 script = ExtResource("1_0wdih")
 move = ExtResource("2_ujbnh")
 
-[sub_resource type="Resource" id="Resource_bdh6e"]
+[sub_resource type="Resource" id="Resource_jp6iy"]
 script = ExtResource("1_0wdih")
 move = ExtResource("3_errn0")
 
-[sub_resource type="Resource" id="Resource_hybkm"]
+[sub_resource type="Resource" id="Resource_qmncp"]
 script = ExtResource("1_0wdih")
 move = ExtResource("4_jp6iy")
 
-[sub_resource type="Resource" id="Resource_qpdb0"]
+[sub_resource type="Resource" id="Resource_ldtvd"]
 script = ExtResource("1_0wdih")
 level = 19
 move = ExtResource("5_qmncp")
 
-[sub_resource type="Resource" id="Resource_2pkv0"]
+[sub_resource type="Resource" id="Resource_dgskn"]
 script = ExtResource("1_0wdih")
 level = 31
 move = ExtResource("6_ldtvd")
@@ -41,7 +41,7 @@ id = "exeggutor"
 display_name = "Exeggutor"
 dex = 103
 types = Array[ExtResource("4_whfia")]([ExtResource("5_v5sfd"), ExtResource("6_ujbnh")])
-learnset = Array[ExtResource("1_0wdih")]([SubResource("Resource_dgskn"), SubResource("Resource_bdh6e"), SubResource("Resource_hybkm"), SubResource("Resource_qpdb0"), SubResource("Resource_2pkv0")])
+learnset = Array[ExtResource("1_0wdih")]([SubResource("Resource_errn0"), SubResource("Resource_jp6iy"), SubResource("Resource_qmncp"), SubResource("Resource_ldtvd"), SubResource("Resource_dgskn")])
 temperament = ExtResource("9_errn0")
 genus = "Pokémon Coco"
 pokedex_entry = "Exeggutor es originario del trópico. Cuando se expone a un sol intenso, le empiezan a crecer las cabezas. Hay quien dice que, cuando las cabezas caen al suelo, se unen para formar un Exeggcute."

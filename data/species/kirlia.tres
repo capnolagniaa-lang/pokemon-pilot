@@ -19,52 +19,52 @@
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="12_dsb1v"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_s6ho6"]
 
-[sub_resource type="Resource" id="Resource_oq2xa"]
+[sub_resource type="Resource" id="Resource_s6ho6"]
 script = ExtResource("1_48i67")
 move = ExtResource("2_to8vs")
 
-[sub_resource type="Resource" id="Resource_i54g2"]
+[sub_resource type="Resource" id="Resource_47cnt"]
 script = ExtResource("1_48i67")
 move = ExtResource("3_s6ho6")
 
-[sub_resource type="Resource" id="Resource_4lrst"]
+[sub_resource type="Resource" id="Resource_youao"]
 script = ExtResource("1_48i67")
 move = ExtResource("4_47cnt")
 
-[sub_resource type="Resource" id="Resource_0e3di"]
+[sub_resource type="Resource" id="Resource_gyasa"]
 script = ExtResource("1_48i67")
 move = ExtResource("5_youao")
 
-[sub_resource type="Resource" id="Resource_v422y"]
+[sub_resource type="Resource" id="Resource_r21vq"]
 script = ExtResource("1_48i67")
 move = ExtResource("6_gyasa")
 
-[sub_resource type="Resource" id="Resource_j4rcu"]
+[sub_resource type="Resource" id="Resource_q10gr"]
 script = ExtResource("1_48i67")
 level = 21
 move = ExtResource("7_r21vq")
 
-[sub_resource type="Resource" id="Resource_bxqk0"]
+[sub_resource type="Resource" id="Resource_7cwcm"]
 script = ExtResource("1_48i67")
 level = 26
 move = ExtResource("8_q10gr")
 
-[sub_resource type="Resource" id="Resource_byuo3"]
+[sub_resource type="Resource" id="Resource_uxycq"]
 script = ExtResource("1_48i67")
 level = 33
 move = ExtResource("9_7cwcm")
 
-[sub_resource type="Resource" id="Resource_1vbqs"]
+[sub_resource type="Resource" id="Resource_mqq0c"]
 script = ExtResource("1_48i67")
 level = 40
 move = ExtResource("10_uxycq")
 
-[sub_resource type="Resource" id="Resource_560b3"]
+[sub_resource type="Resource" id="Resource_dsb1v"]
 script = ExtResource("1_48i67")
 level = 47
 move = ExtResource("11_mqq0c")
 
-[sub_resource type="Resource" id="Resource_ohc2q"]
+[sub_resource type="Resource" id="Resource_oq2xa"]
 script = ExtResource("1_48i67")
 level = 54
 move = ExtResource("12_dsb1v")
@@ -75,7 +75,7 @@ id = "kirlia"
 display_name = "Kirlia"
 dex = 281
 types = Array[ExtResource("4_y2cib")]([ExtResource("5_xnq7v"), ExtResource("6_hg1ai")])
-learnset = Array[ExtResource("1_48i67")]([SubResource("Resource_oq2xa"), SubResource("Resource_i54g2"), SubResource("Resource_4lrst"), SubResource("Resource_0e3di"), SubResource("Resource_v422y"), SubResource("Resource_j4rcu"), SubResource("Resource_bxqk0"), SubResource("Resource_byuo3"), SubResource("Resource_1vbqs"), SubResource("Resource_560b3"), SubResource("Resource_ohc2q")])
+learnset = Array[ExtResource("1_48i67")]([SubResource("Resource_s6ho6"), SubResource("Resource_47cnt"), SubResource("Resource_youao"), SubResource("Resource_gyasa"), SubResource("Resource_r21vq"), SubResource("Resource_q10gr"), SubResource("Resource_7cwcm"), SubResource("Resource_uxycq"), SubResource("Resource_mqq0c"), SubResource("Resource_dsb1v"), SubResource("Resource_oq2xa")])
 temperament = ExtResource("15_s6ho6")
 genus = "Pokémon Sensorio"
 pokedex_entry = "Dicen que, al recibir los sentimientos positivos de su Entrenador, Kirlia crece con gran belleza. Este Pokémon controla poderes psicoquinéticos gracias al desarrollado cerebro que tiene."

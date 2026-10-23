@@ -15,39 +15,39 @@
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="9_bniyx"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_wa4aj"]
 
-[sub_resource type="Resource" id="Resource_fkugk"]
+[sub_resource type="Resource" id="Resource_wa4aj"]
 script = ExtResource("1_83e3q")
 move = ExtResource("2_2qxk5")
 
-[sub_resource type="Resource" id="Resource_x3tnk"]
+[sub_resource type="Resource" id="Resource_1vg6t"]
 script = ExtResource("1_83e3q")
 move = ExtResource("3_wa4aj")
 
-[sub_resource type="Resource" id="Resource_qqwyq"]
+[sub_resource type="Resource" id="Resource_qku2p"]
 script = ExtResource("1_83e3q")
 move = ExtResource("4_1vg6t")
 
-[sub_resource type="Resource" id="Resource_67rlu"]
+[sub_resource type="Resource" id="Resource_007yq"]
 script = ExtResource("1_83e3q")
 level = 17
 move = ExtResource("5_qku2p")
 
-[sub_resource type="Resource" id="Resource_22w0x"]
+[sub_resource type="Resource" id="Resource_bhacv"]
 script = ExtResource("1_83e3q")
 level = 25
 move = ExtResource("6_007yq")
 
-[sub_resource type="Resource" id="Resource_d6tn3"]
+[sub_resource type="Resource" id="Resource_m0as2"]
 script = ExtResource("1_83e3q")
 level = 36
 move = ExtResource("7_bhacv")
 
-[sub_resource type="Resource" id="Resource_ctxve"]
+[sub_resource type="Resource" id="Resource_bniyx"]
 script = ExtResource("1_83e3q")
 level = 47
 move = ExtResource("8_m0as2")
 
-[sub_resource type="Resource" id="Resource_cymwa"]
+[sub_resource type="Resource" id="Resource_fkugk"]
 script = ExtResource("1_83e3q")
 level = 58
 move = ExtResource("9_bniyx")
@@ -58,7 +58,7 @@ id = "electabuzz"
 display_name = "Electabuzz"
 dex = 125
 types = Array[ExtResource("4_rh748")]([ExtResource("5_ss3n7")])
-learnset = Array[ExtResource("1_83e3q")]([SubResource("Resource_fkugk"), SubResource("Resource_x3tnk"), SubResource("Resource_qqwyq"), SubResource("Resource_67rlu"), SubResource("Resource_22w0x"), SubResource("Resource_d6tn3"), SubResource("Resource_ctxve"), SubResource("Resource_cymwa")])
+learnset = Array[ExtResource("1_83e3q")]([SubResource("Resource_wa4aj"), SubResource("Resource_1vg6t"), SubResource("Resource_qku2p"), SubResource("Resource_007yq"), SubResource("Resource_bhacv"), SubResource("Resource_m0as2"), SubResource("Resource_bniyx"), SubResource("Resource_fkugk")])
 temperament = ExtResource("12_wa4aj")
 genus = "Pokémon Eléctrico"
 pokedex_entry = "Al desatarse una tormenta, bandadas de estos Pokémon se enfrentan entre sí para ver quién alcanza antes sitios altos en los que suelan caer rayos. Hay ciudades que usan Electabuzz en lugar de pararrayos."

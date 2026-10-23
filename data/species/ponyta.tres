@@ -17,51 +17,51 @@
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="11_ukune"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_37pke"]
 
-[sub_resource type="Resource" id="Resource_2qn2h"]
+[sub_resource type="Resource" id="Resource_37pke"]
 script = ExtResource("1_3idsh")
 move = ExtResource("2_buu1e")
 
-[sub_resource type="Resource" id="Resource_3twvp"]
+[sub_resource type="Resource" id="Resource_q6vdq"]
 script = ExtResource("1_3idsh")
 level = 5
 move = ExtResource("3_37pke")
 
-[sub_resource type="Resource" id="Resource_j825u"]
+[sub_resource type="Resource" id="Resource_k6y3g"]
 script = ExtResource("1_3idsh")
 level = 9
 move = ExtResource("4_q6vdq")
 
-[sub_resource type="Resource" id="Resource_eggsl"]
+[sub_resource type="Resource" id="Resource_xkjo3"]
 script = ExtResource("1_3idsh")
 level = 14
 move = ExtResource("5_k6y3g")
 
-[sub_resource type="Resource" id="Resource_tvt6b"]
+[sub_resource type="Resource" id="Resource_1nt56"]
 script = ExtResource("1_3idsh")
 level = 19
 move = ExtResource("6_xkjo3")
 
-[sub_resource type="Resource" id="Resource_sbsxy"]
+[sub_resource type="Resource" id="Resource_wlv8q"]
 script = ExtResource("1_3idsh")
 level = 25
 move = ExtResource("7_1nt56")
 
-[sub_resource type="Resource" id="Resource_enhdf"]
+[sub_resource type="Resource" id="Resource_ipksu"]
 script = ExtResource("1_3idsh")
 level = 31
 move = ExtResource("8_wlv8q")
 
-[sub_resource type="Resource" id="Resource_vtr67"]
+[sub_resource type="Resource" id="Resource_mrkb2"]
 script = ExtResource("1_3idsh")
 level = 38
 move = ExtResource("9_ipksu")
 
-[sub_resource type="Resource" id="Resource_b8uib"]
+[sub_resource type="Resource" id="Resource_ukune"]
 script = ExtResource("1_3idsh")
 level = 45
 move = ExtResource("10_mrkb2")
 
-[sub_resource type="Resource" id="Resource_38yig"]
+[sub_resource type="Resource" id="Resource_2qn2h"]
 script = ExtResource("1_3idsh")
 level = 53
 move = ExtResource("11_ukune")
@@ -72,7 +72,7 @@ id = "ponyta"
 display_name = "Ponyta"
 dex = 77
 types = Array[ExtResource("4_iel7x")]([ExtResource("5_ndcan")])
-learnset = Array[ExtResource("1_3idsh")]([SubResource("Resource_2qn2h"), SubResource("Resource_3twvp"), SubResource("Resource_j825u"), SubResource("Resource_eggsl"), SubResource("Resource_tvt6b"), SubResource("Resource_sbsxy"), SubResource("Resource_enhdf"), SubResource("Resource_vtr67"), SubResource("Resource_b8uib"), SubResource("Resource_38yig")])
+learnset = Array[ExtResource("1_3idsh")]([SubResource("Resource_37pke"), SubResource("Resource_q6vdq"), SubResource("Resource_k6y3g"), SubResource("Resource_xkjo3"), SubResource("Resource_1nt56"), SubResource("Resource_wlv8q"), SubResource("Resource_ipksu"), SubResource("Resource_mrkb2"), SubResource("Resource_ukune"), SubResource("Resource_2qn2h")])
 temperament = ExtResource("14_37pke")
 genus = "Pokémon Caballo Fuego"
 pokedex_entry = "Al nacer, Ponyta es muy débil y apenas puede ponerse en pie. Con todo, se va haciendo más fuerte al tropezarse y caerse en su intento por seguir a sus progenitores."

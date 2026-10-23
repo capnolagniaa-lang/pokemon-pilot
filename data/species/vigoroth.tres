@@ -17,48 +17,48 @@
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="11_8etla"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_vjojx"]
 
-[sub_resource type="Resource" id="Resource_jqdow"]
+[sub_resource type="Resource" id="Resource_vjojx"]
 script = ExtResource("1_hee4c")
 move = ExtResource("2_lhnao")
 
-[sub_resource type="Resource" id="Resource_d8oh6"]
+[sub_resource type="Resource" id="Resource_deu8m"]
 script = ExtResource("1_hee4c")
 move = ExtResource("3_vjojx")
 
-[sub_resource type="Resource" id="Resource_kcx1d"]
+[sub_resource type="Resource" id="Resource_dpxa6"]
 script = ExtResource("1_hee4c")
 move = ExtResource("4_deu8m")
 
-[sub_resource type="Resource" id="Resource_axhko"]
+[sub_resource type="Resource" id="Resource_vsapj"]
 script = ExtResource("1_hee4c")
 move = ExtResource("5_dpxa6")
 
-[sub_resource type="Resource" id="Resource_b3gtv"]
+[sub_resource type="Resource" id="Resource_7cu1q"]
 script = ExtResource("1_hee4c")
 level = 19
 move = ExtResource("6_vsapj")
 
-[sub_resource type="Resource" id="Resource_4326j"]
+[sub_resource type="Resource" id="Resource_f2skw"]
 script = ExtResource("1_hee4c")
 level = 25
 move = ExtResource("7_7cu1q")
 
-[sub_resource type="Resource" id="Resource_mprsh"]
+[sub_resource type="Resource" id="Resource_uiofp"]
 script = ExtResource("1_hee4c")
 level = 31
 move = ExtResource("8_f2skw")
 
-[sub_resource type="Resource" id="Resource_3lai1"]
+[sub_resource type="Resource" id="Resource_ta6q6"]
 script = ExtResource("1_hee4c")
 level = 37
 move = ExtResource("9_uiofp")
 
-[sub_resource type="Resource" id="Resource_mb2tv"]
+[sub_resource type="Resource" id="Resource_8etla"]
 script = ExtResource("1_hee4c")
 level = 43
 move = ExtResource("10_ta6q6")
 
-[sub_resource type="Resource" id="Resource_xwgq5"]
+[sub_resource type="Resource" id="Resource_jqdow"]
 script = ExtResource("1_hee4c")
 level = 49
 move = ExtResource("11_8etla")
@@ -69,7 +69,7 @@ id = "vigoroth"
 display_name = "Vigoroth"
 dex = 288
 types = Array[ExtResource("4_ia6sl")]([ExtResource("5_xnbdp")])
-learnset = Array[ExtResource("1_hee4c")]([SubResource("Resource_jqdow"), SubResource("Resource_d8oh6"), SubResource("Resource_kcx1d"), SubResource("Resource_axhko"), SubResource("Resource_b3gtv"), SubResource("Resource_4326j"), SubResource("Resource_mprsh"), SubResource("Resource_3lai1"), SubResource("Resource_mb2tv"), SubResource("Resource_xwgq5")])
+learnset = Array[ExtResource("1_hee4c")]([SubResource("Resource_vjojx"), SubResource("Resource_deu8m"), SubResource("Resource_dpxa6"), SubResource("Resource_vsapj"), SubResource("Resource_7cu1q"), SubResource("Resource_f2skw"), SubResource("Resource_uiofp"), SubResource("Resource_ta6q6"), SubResource("Resource_8etla"), SubResource("Resource_jqdow")])
 temperament = ExtResource("14_vjojx")
 genus = "Pokémon Mono Feroz"
 pokedex_entry = "Vigoroth está continuamente inquieto, rabiando por salir corriendo sin control. Estar quieto un solo minuto es superior a sus fuerzas. Si no puede estar en continuo movimiento, el nivel de estrés de este Pokémon se dispara."

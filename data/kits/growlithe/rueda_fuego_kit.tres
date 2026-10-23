@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="4_x"]
+[ext_resource type="Resource" path="res://data/status/rastreado.tres" id="5_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "rueda_fuego_kit"
+display_name = "Rueda Fuego"
+element = ExtResource("3_x")
+kind = 1
+category = 0
+power = 60.0
+cooldown = 6.0
+knockback = 170.0
+dash_time = 0.3
+invulnerable_time = 0.12
+recovery = 0.2
+status = ExtResource("4_x")
+status_chance = 0.3
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("5_x")])

@@ -16,30 +16,30 @@
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_6ul6a"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_6ul6a"]
 
-[sub_resource type="Resource" id="Resource_fy6n3"]
+[sub_resource type="Resource" id="Resource_6ul6a"]
 script = ExtResource("2_fy6n3")
 move = ExtResource("3_6ul6a")
 
-[sub_resource type="Resource" id="Resource_6ul6a"]
+[sub_resource type="Resource" id="Resource_nalry"]
 script = ExtResource("2_fy6n3")
 move = ExtResource("4_nalry")
 
-[sub_resource type="Resource" id="Resource_nalry"]
+[sub_resource type="Resource" id="Resource_polnf"]
 script = ExtResource("2_fy6n3")
 level = 3
 move = ExtResource("5_polnf")
 
-[sub_resource type="Resource" id="Resource_polnf"]
+[sub_resource type="Resource" id="Resource_02x1k"]
 script = ExtResource("2_fy6n3")
 level = 5
 move = ExtResource("6_02x1k")
 
-[sub_resource type="Resource" id="Resource_02x1k"]
+[sub_resource type="Resource" id="Resource_15p25"]
 script = ExtResource("2_fy6n3")
 level = 13
 move = ExtResource("3_rkvq6")
 
-[sub_resource type="Resource" id="Resource_15p25"]
+[sub_resource type="Resource" id="Resource_idw3y"]
 script = ExtResource("2_fy6n3")
 level = 41
 move = ExtResource("4_xls4m")
@@ -52,7 +52,7 @@ dex = 37
 types = Array[ExtResource("7_fy6n3")]([ExtResource("8_6ul6a")])
 moves = Array[ExtResource("1_8s5hk")]([ExtResource("2_i73rs"), ExtResource("3_rkvq6"), ExtResource("4_xls4m"), ExtResource("5_laq3w")])
 kit = ExtResource("0_kit")
-learnset = Array[ExtResource("2_fy6n3")]([SubResource("Resource_fy6n3"), SubResource("Resource_6ul6a"), SubResource("Resource_nalry"), SubResource("Resource_polnf"), SubResource("Resource_02x1k"), SubResource("Resource_15p25")])
+learnset = Array[ExtResource("2_fy6n3")]([SubResource("Resource_6ul6a"), SubResource("Resource_nalry"), SubResource("Resource_polnf"), SubResource("Resource_02x1k"), SubResource("Resource_15p25"), SubResource("Resource_idw3y")])
 temperament = ExtResource("13_6ul6a")
 genus = "Pokémon Zorro"
 pokedex_entry = "Al nacer, Vulpix tiene una cola blanca que se divide en seis si recibe cariño por parte de su Entrenador. Las seis colas se le rizan de forma majestuosa."

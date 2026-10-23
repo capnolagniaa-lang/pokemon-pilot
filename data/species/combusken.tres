@@ -20,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/gancho_alto.tres" id="13_y3xvn"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_dbixs"]
 
-[sub_resource type="Resource" id="Resource_eeqek"]
+[sub_resource type="Resource" id="Resource_dbixs"]
 script = ExtResource("1_3jtkr")
 move = ExtResource("2_jgj65")
 
-[sub_resource type="Resource" id="Resource_8etto"]
+[sub_resource type="Resource" id="Resource_g6qcw"]
 script = ExtResource("1_3jtkr")
 move = ExtResource("3_dbixs")
 
-[sub_resource type="Resource" id="Resource_64i1y"]
+[sub_resource type="Resource" id="Resource_yxjls"]
 script = ExtResource("1_3jtkr")
 move = ExtResource("4_g6qcw")
 
-[sub_resource type="Resource" id="Resource_yfqns"]
+[sub_resource type="Resource" id="Resource_u3uq2"]
 script = ExtResource("1_3jtkr")
 move = ExtResource("5_yxjls")
 
-[sub_resource type="Resource" id="Resource_28wux"]
+[sub_resource type="Resource" id="Resource_r2mwt"]
 script = ExtResource("1_3jtkr")
 level = 16
 move = ExtResource("6_u3uq2")
 
-[sub_resource type="Resource" id="Resource_6mgwc"]
+[sub_resource type="Resource" id="Resource_jeu0d"]
 script = ExtResource("1_3jtkr")
 level = 17
 move = ExtResource("7_r2mwt")
 
-[sub_resource type="Resource" id="Resource_wlvq8"]
+[sub_resource type="Resource" id="Resource_5r2b8"]
 script = ExtResource("1_3jtkr")
 level = 21
 move = ExtResource("8_jeu0d")
 
-[sub_resource type="Resource" id="Resource_arvov"]
+[sub_resource type="Resource" id="Resource_vog52"]
 script = ExtResource("1_3jtkr")
 level = 28
 move = ExtResource("9_5r2b8")
 
-[sub_resource type="Resource" id="Resource_4ta0n"]
+[sub_resource type="Resource" id="Resource_5kx45"]
 script = ExtResource("1_3jtkr")
 level = 32
 move = ExtResource("10_vog52")
 
-[sub_resource type="Resource" id="Resource_14qv1"]
+[sub_resource type="Resource" id="Resource_xaci6"]
 script = ExtResource("1_3jtkr")
 level = 39
 move = ExtResource("11_5kx45")
 
-[sub_resource type="Resource" id="Resource_ua61c"]
+[sub_resource type="Resource" id="Resource_y3xvn"]
 script = ExtResource("1_3jtkr")
 level = 43
 move = ExtResource("12_xaci6")
 
-[sub_resource type="Resource" id="Resource_ocanv"]
+[sub_resource type="Resource" id="Resource_eeqek"]
 script = ExtResource("1_3jtkr")
 level = 50
 move = ExtResource("13_y3xvn")
@@ -82,7 +82,7 @@ id = "combusken"
 display_name = "Combusken"
 dex = 256
 types = Array[ExtResource("4_7ihh5")]([ExtResource("5_35g28"), ExtResource("6_byqqk")])
-learnset = Array[ExtResource("1_3jtkr")]([SubResource("Resource_eeqek"), SubResource("Resource_8etto"), SubResource("Resource_64i1y"), SubResource("Resource_yfqns"), SubResource("Resource_28wux"), SubResource("Resource_6mgwc"), SubResource("Resource_wlvq8"), SubResource("Resource_arvov"), SubResource("Resource_4ta0n"), SubResource("Resource_14qv1"), SubResource("Resource_ua61c"), SubResource("Resource_ocanv")])
+learnset = Array[ExtResource("1_3jtkr")]([SubResource("Resource_dbixs"), SubResource("Resource_g6qcw"), SubResource("Resource_yxjls"), SubResource("Resource_u3uq2"), SubResource("Resource_r2mwt"), SubResource("Resource_jeu0d"), SubResource("Resource_5r2b8"), SubResource("Resource_vog52"), SubResource("Resource_5kx45"), SubResource("Resource_xaci6"), SubResource("Resource_y3xvn"), SubResource("Resource_eeqek")])
 temperament = ExtResource("16_dbixs")
 genus = "Pokémon Ave Corral"
 pokedex_entry = "Combusken fortalece las piernas corriendo por llanos y montañas. Este Pokémon tiene en las extremidades inferiores tanto fuerza como velocidad. Puede dar hasta diez patadas por segundo."

@@ -8,7 +8,7 @@
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_1ike3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="5_1qgrv"]
 
-[sub_resource type="Resource" id="Resource_23myf"]
+[sub_resource type="Resource" id="Resource_1qgrv"]
 script = ExtResource("1_6xoyk")
 move = ExtResource("2_1qgrv")
 
@@ -18,7 +18,7 @@ id = "metapod"
 display_name = "Metapod"
 dex = 11
 types = Array[ExtResource("4_23myf")]([ExtResource("5_1ike3")])
-learnset = Array[ExtResource("1_6xoyk")]([SubResource("Resource_23myf")])
+learnset = Array[ExtResource("1_6xoyk")]([SubResource("Resource_1qgrv")])
 temperament = ExtResource("5_1qgrv")
 genus = "Pokémon Capullo"
 pokedex_entry = "La capa que recubre el cuerpo de este Pokémon es tan dura como una plancha de hierro. Metapod apenas se mueve. Permanece inmóvil para que las vísceras evolucionen dentro de la coraza que le rodea."

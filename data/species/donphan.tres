@@ -16,44 +16,44 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_43au4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_5rmc5"]
 
-[sub_resource type="Resource" id="Resource_1od8e"]
+[sub_resource type="Resource" id="Resource_5rmc5"]
 script = ExtResource("1_tpxsb")
 move = ExtResource("2_x84eu")
 
-[sub_resource type="Resource" id="Resource_ardbm"]
+[sub_resource type="Resource" id="Resource_2578t"]
 script = ExtResource("1_tpxsb")
 move = ExtResource("3_5rmc5")
 
-[sub_resource type="Resource" id="Resource_cui6o"]
+[sub_resource type="Resource" id="Resource_bccuv"]
 script = ExtResource("1_tpxsb")
 move = ExtResource("4_2578t")
 
-[sub_resource type="Resource" id="Resource_rb1fc"]
+[sub_resource type="Resource" id="Resource_yfhab"]
 script = ExtResource("1_tpxsb")
 level = 9
 move = ExtResource("5_bccuv")
 
-[sub_resource type="Resource" id="Resource_o0lqg"]
+[sub_resource type="Resource" id="Resource_ln6u4"]
 script = ExtResource("1_tpxsb")
 level = 17
 move = ExtResource("6_yfhab")
 
-[sub_resource type="Resource" id="Resource_ls2e0"]
+[sub_resource type="Resource" id="Resource_28pcw"]
 script = ExtResource("1_tpxsb")
 level = 25
 move = ExtResource("7_ln6u4")
 
-[sub_resource type="Resource" id="Resource_obyo7"]
+[sub_resource type="Resource" id="Resource_oa6f7"]
 script = ExtResource("1_tpxsb")
 level = 33
 move = ExtResource("8_28pcw")
 
-[sub_resource type="Resource" id="Resource_0fwow"]
+[sub_resource type="Resource" id="Resource_43au4"]
 script = ExtResource("1_tpxsb")
 level = 41
 move = ExtResource("9_oa6f7")
 
-[sub_resource type="Resource" id="Resource_isauo"]
+[sub_resource type="Resource" id="Resource_1od8e"]
 script = ExtResource("1_tpxsb")
 level = 49
 move = ExtResource("10_43au4")
@@ -64,7 +64,7 @@ id = "donphan"
 display_name = "Donphan"
 dex = 232
 types = Array[ExtResource("4_131j7")]([ExtResource("5_gsig6")])
-learnset = Array[ExtResource("1_tpxsb")]([SubResource("Resource_1od8e"), SubResource("Resource_ardbm"), SubResource("Resource_cui6o"), SubResource("Resource_rb1fc"), SubResource("Resource_o0lqg"), SubResource("Resource_ls2e0"), SubResource("Resource_obyo7"), SubResource("Resource_0fwow"), SubResource("Resource_isauo")])
+learnset = Array[ExtResource("1_tpxsb")]([SubResource("Resource_5rmc5"), SubResource("Resource_2578t"), SubResource("Resource_bccuv"), SubResource("Resource_yfhab"), SubResource("Resource_ln6u4"), SubResource("Resource_28pcw"), SubResource("Resource_oa6f7"), SubResource("Resource_43au4"), SubResource("Resource_1od8e")])
 temperament = ExtResource("13_5rmc5")
 genus = "Pokémon Coraza"
 pokedex_entry = "A Donphan le encanta enrollarse como una pelota y cargar contra el enemigo rodando a toda velocidad. Una vez que ha comenzado a rodar, no es fácil pararlo."

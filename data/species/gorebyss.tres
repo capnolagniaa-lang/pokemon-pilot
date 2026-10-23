@@ -15,41 +15,41 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_d75sx"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_owoxd"]
 
-[sub_resource type="Resource" id="Resource_rbu58"]
+[sub_resource type="Resource" id="Resource_owoxd"]
 script = ExtResource("1_c25wj")
 move = ExtResource("2_67ua1")
 
-[sub_resource type="Resource" id="Resource_1a8fq"]
+[sub_resource type="Resource" id="Resource_654eb"]
 script = ExtResource("1_c25wj")
 level = 8
 move = ExtResource("3_owoxd")
 
-[sub_resource type="Resource" id="Resource_ish1c"]
+[sub_resource type="Resource" id="Resource_0uysd"]
 script = ExtResource("1_c25wj")
 level = 15
 move = ExtResource("4_654eb")
 
-[sub_resource type="Resource" id="Resource_8j7tx"]
+[sub_resource type="Resource" id="Resource_wrg78"]
 script = ExtResource("1_c25wj")
 level = 22
 move = ExtResource("5_0uysd")
 
-[sub_resource type="Resource" id="Resource_e0l50"]
+[sub_resource type="Resource" id="Resource_ov5ea"]
 script = ExtResource("1_c25wj")
 level = 29
 move = ExtResource("6_wrg78")
 
-[sub_resource type="Resource" id="Resource_tmefq"]
+[sub_resource type="Resource" id="Resource_w4dp4"]
 script = ExtResource("1_c25wj")
 level = 36
 move = ExtResource("7_ov5ea")
 
-[sub_resource type="Resource" id="Resource_ba6l6"]
+[sub_resource type="Resource" id="Resource_d75sx"]
 script = ExtResource("1_c25wj")
 level = 43
 move = ExtResource("8_w4dp4")
 
-[sub_resource type="Resource" id="Resource_n3ab5"]
+[sub_resource type="Resource" id="Resource_rbu58"]
 script = ExtResource("1_c25wj")
 level = 50
 move = ExtResource("9_d75sx")
@@ -60,7 +60,7 @@ id = "gorebyss"
 display_name = "Gorebyss"
 dex = 368
 types = Array[ExtResource("4_mstvf")]([ExtResource("5_vi5jm")])
-learnset = Array[ExtResource("1_c25wj")]([SubResource("Resource_rbu58"), SubResource("Resource_1a8fq"), SubResource("Resource_ish1c"), SubResource("Resource_8j7tx"), SubResource("Resource_e0l50"), SubResource("Resource_tmefq"), SubResource("Resource_ba6l6"), SubResource("Resource_n3ab5")])
+learnset = Array[ExtResource("1_c25wj")]([SubResource("Resource_owoxd"), SubResource("Resource_654eb"), SubResource("Resource_0uysd"), SubResource("Resource_wrg78"), SubResource("Resource_ov5ea"), SubResource("Resource_w4dp4"), SubResource("Resource_d75sx"), SubResource("Resource_rbu58")])
 temperament = ExtResource("12_owoxd")
 genus = "Pokémon Mar del Sur"
 pokedex_entry = "Gorebyss vive en los mares del sur, en lo más profundo; de ahí que tenga el cuerpo preparado para soportar la presión tan grande que hay en el fondo marino, y que no le hagan daño los ataques comunes."

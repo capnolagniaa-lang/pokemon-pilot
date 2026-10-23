@@ -99,11 +99,15 @@ Cambiar cualquier temperamento de una especie: `OVERRIDES` en `tools/assign_temp
 Un kit (`data/kits/<especie>/kit.tres`, ver `docs/PLAN_IDENTIDAD_COMBATE.md`) define el **estilo** (arquetipo),
 el **rango preferido** (lo usa la IA), la **mecánica de firma** opcional y los **4 ataques** hechos a mano.
 
-**Con kit hoy (6)**: Charmander (bruiser, Calor) · Bulbasaur (control) · Bellsprout (control) · Pidgey (hostigador,
-Vuelo) · Rattata (asesino, Instinto) · Vulpix (desgaste, Rescoldo). El resto (380) pelea con sus movimientos
-oficiales de forma automática.
+**Con kit hoy (16)**: Charmander (bruiser, Calor) · Bulbasaur (control) · Bellsprout (control) · Pidgey (hostigador,
+Vuelo) · Rattata (asesino, Instinto) · Vulpix (desgaste, Rescoldo) y, **en prueba desde el 2026-10-23**, Squirtle
+(tanque, Presión/parry) · Pikachu (velocista, Estática) · Oddish (desgaste, Esporas) · Paras (control, esporas
+inflamables) · Psyduck (caótico, Jaqueca) · Poliwag (velocista, Deslizamiento) · Growlithe (perseguidor, Rastreo)
+· Eevee (adaptativo, Adaptación) · Seel (tanque, Escarcha) · Geodude (tanque, Impulso). Detalle de cada uno:
+`docs/PLAN_IDENTIDAD_COMBATE.md`, sección "v3". El resto (370) pelea con sus movimientos oficiales de forma
+automática.
 
-### Propuesta: llegar a ~16 kits para el modo historia (a confirmar con el usuario)
+### Llegar a ~16 kits para el modo historia (aprobado por el usuario e implementado el 2026-10-23)
 Criterio: los que **ya aparecen en el mapa** sin kit (así todo lo que te cruzás tiene estilo propio) + dos para
 la historia temprana. Cada uno con un arquetipo que no pise a los otros.
 

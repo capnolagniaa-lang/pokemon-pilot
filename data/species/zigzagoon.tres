@@ -19,60 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/tambor.tres" id="13_yyn4h"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="16_2n562"]
 
-[sub_resource type="Resource" id="Resource_lrlre"]
+[sub_resource type="Resource" id="Resource_2n562"]
 script = ExtResource("1_idmf5")
 move = ExtResource("2_trn6n")
 
-[sub_resource type="Resource" id="Resource_48psi"]
+[sub_resource type="Resource" id="Resource_1pgjb"]
 script = ExtResource("1_idmf5")
 move = ExtResource("3_2n562")
 
-[sub_resource type="Resource" id="Resource_fngux"]
+[sub_resource type="Resource" id="Resource_weob0"]
 script = ExtResource("1_idmf5")
 level = 5
 move = ExtResource("4_1pgjb")
 
-[sub_resource type="Resource" id="Resource_44kil"]
+[sub_resource type="Resource" id="Resource_4f4kg"]
 script = ExtResource("1_idmf5")
 level = 9
 move = ExtResource("5_weob0")
 
-[sub_resource type="Resource" id="Resource_qnd1c"]
+[sub_resource type="Resource" id="Resource_fhpmh"]
 script = ExtResource("1_idmf5")
 level = 13
 move = ExtResource("6_4f4kg")
 
-[sub_resource type="Resource" id="Resource_rpu4i"]
+[sub_resource type="Resource" id="Resource_huq3y"]
 script = ExtResource("1_idmf5")
 level = 17
 move = ExtResource("7_fhpmh")
 
-[sub_resource type="Resource" id="Resource_dcmb7"]
+[sub_resource type="Resource" id="Resource_qqvqn"]
 script = ExtResource("1_idmf5")
 level = 21
 move = ExtResource("8_huq3y")
 
-[sub_resource type="Resource" id="Resource_6dgib"]
+[sub_resource type="Resource" id="Resource_038hb"]
 script = ExtResource("1_idmf5")
 level = 25
 move = ExtResource("9_qqvqn")
 
-[sub_resource type="Resource" id="Resource_ybc8f"]
+[sub_resource type="Resource" id="Resource_sl8hy"]
 script = ExtResource("1_idmf5")
 level = 29
 move = ExtResource("10_038hb")
 
-[sub_resource type="Resource" id="Resource_e47mm"]
+[sub_resource type="Resource" id="Resource_eeufq"]
 script = ExtResource("1_idmf5")
 level = 33
 move = ExtResource("11_sl8hy")
 
-[sub_resource type="Resource" id="Resource_thngp"]
+[sub_resource type="Resource" id="Resource_yyn4h"]
 script = ExtResource("1_idmf5")
 level = 37
 move = ExtResource("12_eeufq")
 
-[sub_resource type="Resource" id="Resource_ce3nh"]
+[sub_resource type="Resource" id="Resource_lrlre"]
 script = ExtResource("1_idmf5")
 level = 41
 move = ExtResource("13_yyn4h")
@@ -83,7 +83,7 @@ id = "zigzagoon"
 display_name = "Zigzagoon"
 dex = 263
 types = Array[ExtResource("4_i7ulk")]([ExtResource("5_gxoux")])
-learnset = Array[ExtResource("1_idmf5")]([SubResource("Resource_lrlre"), SubResource("Resource_48psi"), SubResource("Resource_fngux"), SubResource("Resource_44kil"), SubResource("Resource_qnd1c"), SubResource("Resource_rpu4i"), SubResource("Resource_dcmb7"), SubResource("Resource_6dgib"), SubResource("Resource_ybc8f"), SubResource("Resource_e47mm"), SubResource("Resource_thngp"), SubResource("Resource_ce3nh")])
+learnset = Array[ExtResource("1_idmf5")]([SubResource("Resource_2n562"), SubResource("Resource_1pgjb"), SubResource("Resource_weob0"), SubResource("Resource_4f4kg"), SubResource("Resource_fhpmh"), SubResource("Resource_huq3y"), SubResource("Resource_qqvqn"), SubResource("Resource_038hb"), SubResource("Resource_sl8hy"), SubResource("Resource_eeufq"), SubResource("Resource_yyn4h"), SubResource("Resource_lrlre")])
 temperament = ExtResource("16_2n562")
 genus = "Pokémon Mapachito"
 pokedex_entry = "Zigzagoon está todo el día dando vueltas de aquí para allá. Es un Pokémon muy inquieto. Se interesa por todo lo que se encuentra en su camino."

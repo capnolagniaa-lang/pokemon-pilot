@@ -18,53 +18,53 @@
 [ext_resource type="Resource" path="res://data/moves/carga.tres" id="12_f4qgw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_0kwfj"]
 
-[sub_resource type="Resource" id="Resource_3k6yl"]
+[sub_resource type="Resource" id="Resource_0kwfj"]
 script = ExtResource("1_edxf4")
 move = ExtResource("2_ke1fh")
 
-[sub_resource type="Resource" id="Resource_acwwp"]
+[sub_resource type="Resource" id="Resource_bjdqk"]
 script = ExtResource("1_edxf4")
 move = ExtResource("3_0kwfj")
 
-[sub_resource type="Resource" id="Resource_u6tem"]
+[sub_resource type="Resource" id="Resource_tmurc"]
 script = ExtResource("1_edxf4")
 move = ExtResource("4_bjdqk")
 
-[sub_resource type="Resource" id="Resource_4e8ne"]
+[sub_resource type="Resource" id="Resource_6gvne"]
 script = ExtResource("1_edxf4")
 move = ExtResource("5_tmurc")
 
-[sub_resource type="Resource" id="Resource_g1y8e"]
+[sub_resource type="Resource" id="Resource_08iew"]
 script = ExtResource("1_edxf4")
 level = 17
 move = ExtResource("6_6gvne")
 
-[sub_resource type="Resource" id="Resource_rpe36"]
+[sub_resource type="Resource" id="Resource_cy85d"]
 script = ExtResource("1_edxf4")
 level = 20
 move = ExtResource("7_08iew")
 
-[sub_resource type="Resource" id="Resource_bqkyp"]
+[sub_resource type="Resource" id="Resource_tjn12"]
 script = ExtResource("1_edxf4")
 level = 25
 move = ExtResource("8_cy85d")
 
-[sub_resource type="Resource" id="Resource_85twn"]
+[sub_resource type="Resource" id="Resource_epy1o"]
 script = ExtResource("1_edxf4")
 level = 31
 move = ExtResource("9_tjn12")
 
-[sub_resource type="Resource" id="Resource_0q23c"]
+[sub_resource type="Resource" id="Resource_olx0m"]
 script = ExtResource("1_edxf4")
 level = 39
 move = ExtResource("10_epy1o")
 
-[sub_resource type="Resource" id="Resource_svjil"]
+[sub_resource type="Resource" id="Resource_f4qgw"]
 script = ExtResource("1_edxf4")
 level = 45
 move = ExtResource("11_olx0m")
 
-[sub_resource type="Resource" id="Resource_fxbvt"]
+[sub_resource type="Resource" id="Resource_3k6yl"]
 script = ExtResource("1_edxf4")
 level = 53
 move = ExtResource("12_f4qgw")
@@ -75,7 +75,7 @@ id = "manectric"
 display_name = "Manectric"
 dex = 310
 types = Array[ExtResource("4_k0lwi")]([ExtResource("5_nvakv")])
-learnset = Array[ExtResource("1_edxf4")]([SubResource("Resource_3k6yl"), SubResource("Resource_acwwp"), SubResource("Resource_u6tem"), SubResource("Resource_4e8ne"), SubResource("Resource_g1y8e"), SubResource("Resource_rpe36"), SubResource("Resource_bqkyp"), SubResource("Resource_85twn"), SubResource("Resource_0q23c"), SubResource("Resource_svjil"), SubResource("Resource_fxbvt")])
+learnset = Array[ExtResource("1_edxf4")]([SubResource("Resource_0kwfj"), SubResource("Resource_bjdqk"), SubResource("Resource_tmurc"), SubResource("Resource_6gvne"), SubResource("Resource_08iew"), SubResource("Resource_cy85d"), SubResource("Resource_tjn12"), SubResource("Resource_epy1o"), SubResource("Resource_olx0m"), SubResource("Resource_f4qgw"), SubResource("Resource_3k6yl")])
 temperament = ExtResource("15_0kwfj")
 genus = "Pokémon Descarga"
 pokedex_entry = "Manectric está continuamente descargando electricidad por las melenas, y a veces causa incendios en el bosque con las chispas que suelta. Cuando entra en combate, este Pokémon crea nubarrones."

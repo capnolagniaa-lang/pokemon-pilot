@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/spores_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "esporas"
+display_name = "Esporas"
+description = "Sus ataques dejan esporas en el rival (hasta 5). Florecer las hace florecer: 1+ envenena, 3+ paraliza, 5 duerme, y Oddish se cura por cada una."
+color = Color(0.8, 0.55, 1.0, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"bloom_move": "florecer", "radius": 150.0, "heal_per_spore": 0.03}

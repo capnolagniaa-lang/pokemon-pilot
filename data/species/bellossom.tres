@@ -13,28 +13,28 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="7_kkb3m"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_1mtl8"]
 
-[sub_resource type="Resource" id="Resource_6abcv"]
+[sub_resource type="Resource" id="Resource_1mtl8"]
 script = ExtResource("1_qgxg1")
 move = ExtResource("2_s8ld5")
 
-[sub_resource type="Resource" id="Resource_u6xc8"]
+[sub_resource type="Resource" id="Resource_ree2f"]
 script = ExtResource("1_qgxg1")
 move = ExtResource("3_1mtl8")
 
-[sub_resource type="Resource" id="Resource_7hwp2"]
+[sub_resource type="Resource" id="Resource_tx5ud"]
 script = ExtResource("1_qgxg1")
 move = ExtResource("4_ree2f")
 
-[sub_resource type="Resource" id="Resource_65cc1"]
+[sub_resource type="Resource" id="Resource_sno7i"]
 script = ExtResource("1_qgxg1")
 move = ExtResource("5_tx5ud")
 
-[sub_resource type="Resource" id="Resource_km875"]
+[sub_resource type="Resource" id="Resource_kkb3m"]
 script = ExtResource("1_qgxg1")
 level = 44
 move = ExtResource("6_sno7i")
 
-[sub_resource type="Resource" id="Resource_qiedq"]
+[sub_resource type="Resource" id="Resource_6abcv"]
 script = ExtResource("1_qgxg1")
 level = 55
 move = ExtResource("7_kkb3m")
@@ -45,7 +45,7 @@ id = "bellossom"
 display_name = "Bellossom"
 dex = 182
 types = Array[ExtResource("4_axnyp")]([ExtResource("5_5a8j2")])
-learnset = Array[ExtResource("1_qgxg1")]([SubResource("Resource_6abcv"), SubResource("Resource_u6xc8"), SubResource("Resource_7hwp2"), SubResource("Resource_65cc1"), SubResource("Resource_km875"), SubResource("Resource_qiedq")])
+learnset = Array[ExtResource("1_qgxg1")]([SubResource("Resource_1mtl8"), SubResource("Resource_ree2f"), SubResource("Resource_tx5ud"), SubResource("Resource_sno7i"), SubResource("Resource_kkb3m"), SubResource("Resource_6abcv")])
 temperament = ExtResource("10_1mtl8")
 genus = "Pokémon Flor"
 pokedex_entry = "Cuando Bellossom se expone a gran cantidad de luz solar, le empiezan a girar las hojas que le rodean. La danza de este Pokémon es famosa en las zonas del sur."

@@ -18,53 +18,53 @@
 [ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="12_rdfck"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_kr207"]
 
-[sub_resource type="Resource" id="Resource_2ugyt"]
+[sub_resource type="Resource" id="Resource_kr207"]
 script = ExtResource("1_48bm5")
 move = ExtResource("2_lgkgo")
 
-[sub_resource type="Resource" id="Resource_ytt74"]
+[sub_resource type="Resource" id="Resource_ydwf4"]
 script = ExtResource("1_48bm5")
 move = ExtResource("3_kr207")
 
-[sub_resource type="Resource" id="Resource_saetw"]
+[sub_resource type="Resource" id="Resource_jvrwp"]
 script = ExtResource("1_48bm5")
 move = ExtResource("4_ydwf4")
 
-[sub_resource type="Resource" id="Resource_q6cno"]
+[sub_resource type="Resource" id="Resource_3i4ps"]
 script = ExtResource("1_48bm5")
 move = ExtResource("5_jvrwp")
 
-[sub_resource type="Resource" id="Resource_nhle8"]
+[sub_resource type="Resource" id="Resource_qcufu"]
 script = ExtResource("1_48bm5")
 level = 23
 move = ExtResource("6_3i4ps")
 
-[sub_resource type="Resource" id="Resource_abbb4"]
+[sub_resource type="Resource" id="Resource_nq4iv"]
 script = ExtResource("1_48bm5")
 level = 29
 move = ExtResource("7_qcufu")
 
-[sub_resource type="Resource" id="Resource_0bgpo"]
+[sub_resource type="Resource" id="Resource_pe3bl"]
 script = ExtResource("1_48bm5")
 level = 37
 move = ExtResource("8_nq4iv")
 
-[sub_resource type="Resource" id="Resource_wetaw"]
+[sub_resource type="Resource" id="Resource_5k02j"]
 script = ExtResource("1_48bm5")
 level = 43
 move = ExtResource("9_pe3bl")
 
-[sub_resource type="Resource" id="Resource_udf5a"]
+[sub_resource type="Resource" id="Resource_xhmu5"]
 script = ExtResource("1_48bm5")
 level = 51
 move = ExtResource("10_5k02j")
 
-[sub_resource type="Resource" id="Resource_exs2d"]
+[sub_resource type="Resource" id="Resource_rdfck"]
 script = ExtResource("1_48bm5")
 level = 51
 move = ExtResource("11_xhmu5")
 
-[sub_resource type="Resource" id="Resource_kpbio"]
+[sub_resource type="Resource" id="Resource_2ugyt"]
 script = ExtResource("1_48bm5")
 level = 57
 move = ExtResource("12_rdfck")
@@ -75,7 +75,7 @@ id = "loudred"
 display_name = "Loudred"
 dex = 294
 types = Array[ExtResource("4_bf07l")]([ExtResource("5_fiuie")])
-learnset = Array[ExtResource("1_48bm5")]([SubResource("Resource_2ugyt"), SubResource("Resource_ytt74"), SubResource("Resource_saetw"), SubResource("Resource_q6cno"), SubResource("Resource_nhle8"), SubResource("Resource_abbb4"), SubResource("Resource_0bgpo"), SubResource("Resource_wetaw"), SubResource("Resource_udf5a"), SubResource("Resource_exs2d"), SubResource("Resource_kpbio")])
+learnset = Array[ExtResource("1_48bm5")]([SubResource("Resource_kr207"), SubResource("Resource_ydwf4"), SubResource("Resource_jvrwp"), SubResource("Resource_3i4ps"), SubResource("Resource_qcufu"), SubResource("Resource_nq4iv"), SubResource("Resource_pe3bl"), SubResource("Resource_5k02j"), SubResource("Resource_xhmu5"), SubResource("Resource_rdfck"), SubResource("Resource_2ugyt")])
 temperament = ExtResource("15_kr207")
 genus = "Pokémon Chillón"
 pokedex_entry = "Los bramidos de Loudred pueden echar abajo una casa reforzada con vigas de madera. Este Pokémon usa el vozarrón que tiene para castigar a sus rivales. Las orejas redondas le sirven de altavoces."

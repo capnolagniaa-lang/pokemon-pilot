@@ -17,48 +17,48 @@
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_rshuj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_q7dvj"]
 
-[sub_resource type="Resource" id="Resource_dbn4b"]
+[sub_resource type="Resource" id="Resource_q7dvj"]
 script = ExtResource("1_spqvf")
 move = ExtResource("2_cit46")
 
-[sub_resource type="Resource" id="Resource_whnta"]
+[sub_resource type="Resource" id="Resource_uo3ka"]
 script = ExtResource("1_spqvf")
 move = ExtResource("3_q7dvj")
 
-[sub_resource type="Resource" id="Resource_3u0x5"]
+[sub_resource type="Resource" id="Resource_uldyj"]
 script = ExtResource("1_spqvf")
 move = ExtResource("4_uo3ka")
 
-[sub_resource type="Resource" id="Resource_pqkhi"]
+[sub_resource type="Resource" id="Resource_gdpl7"]
 script = ExtResource("1_spqvf")
 move = ExtResource("5_uldyj")
 
-[sub_resource type="Resource" id="Resource_o6yoo"]
+[sub_resource type="Resource" id="Resource_bjptd"]
 script = ExtResource("1_spqvf")
 level = 19
 move = ExtResource("6_gdpl7")
 
-[sub_resource type="Resource" id="Resource_7kpp4"]
+[sub_resource type="Resource" id="Resource_su26c"]
 script = ExtResource("1_spqvf")
 level = 25
 move = ExtResource("7_bjptd")
 
-[sub_resource type="Resource" id="Resource_rq3do"]
+[sub_resource type="Resource" id="Resource_h5nya"]
 script = ExtResource("1_spqvf")
 level = 31
 move = ExtResource("8_su26c")
 
-[sub_resource type="Resource" id="Resource_c8tjo"]
+[sub_resource type="Resource" id="Resource_3re3s"]
 script = ExtResource("1_spqvf")
 level = 36
 move = ExtResource("9_h5nya")
 
-[sub_resource type="Resource" id="Resource_4uq75"]
+[sub_resource type="Resource" id="Resource_rshuj"]
 script = ExtResource("1_spqvf")
 level = 37
 move = ExtResource("10_3re3s")
 
-[sub_resource type="Resource" id="Resource_om5ec"]
+[sub_resource type="Resource" id="Resource_dbn4b"]
 script = ExtResource("1_spqvf")
 level = 43
 move = ExtResource("11_rshuj")
@@ -69,7 +69,7 @@ id = "slaking"
 display_name = "Slaking"
 dex = 289
 types = Array[ExtResource("4_hpxmr")]([ExtResource("5_j5n6s")])
-learnset = Array[ExtResource("1_spqvf")]([SubResource("Resource_dbn4b"), SubResource("Resource_whnta"), SubResource("Resource_3u0x5"), SubResource("Resource_pqkhi"), SubResource("Resource_o6yoo"), SubResource("Resource_7kpp4"), SubResource("Resource_rq3do"), SubResource("Resource_c8tjo"), SubResource("Resource_4uq75"), SubResource("Resource_om5ec")])
+learnset = Array[ExtResource("1_spqvf")]([SubResource("Resource_q7dvj"), SubResource("Resource_uo3ka"), SubResource("Resource_uldyj"), SubResource("Resource_gdpl7"), SubResource("Resource_bjptd"), SubResource("Resource_su26c"), SubResource("Resource_h5nya"), SubResource("Resource_3re3s"), SubResource("Resource_rshuj"), SubResource("Resource_dbn4b")])
 temperament = ExtResource("14_q7dvj")
 genus = "Pokémon Holgazán"
 pokedex_entry = "Slaking se pasa todo el día tumbado vagueando. Se come la hierba que tiene a su alcance y, una vez que ha acabado con ella, se va de mala gana a otro sitio."

@@ -21,63 +21,63 @@
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="14_adsw0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_6vf2g"]
 
-[sub_resource type="Resource" id="Resource_paddh"]
+[sub_resource type="Resource" id="Resource_6vf2g"]
 script = ExtResource("1_dr2q5")
 move = ExtResource("2_rytin")
 
-[sub_resource type="Resource" id="Resource_ue01v"]
+[sub_resource type="Resource" id="Resource_oravc"]
 script = ExtResource("1_dr2q5")
 move = ExtResource("3_6vf2g")
 
-[sub_resource type="Resource" id="Resource_x55o5"]
+[sub_resource type="Resource" id="Resource_tnl3w"]
 script = ExtResource("1_dr2q5")
 move = ExtResource("4_oravc")
 
-[sub_resource type="Resource" id="Resource_uywom"]
+[sub_resource type="Resource" id="Resource_p5tpm"]
 script = ExtResource("1_dr2q5")
 move = ExtResource("5_tnl3w")
 
-[sub_resource type="Resource" id="Resource_w3ee4"]
+[sub_resource type="Resource" id="Resource_tvhio"]
 script = ExtResource("1_dr2q5")
 level = 7
 move = ExtResource("6_p5tpm")
 
-[sub_resource type="Resource" id="Resource_n748n"]
+[sub_resource type="Resource" id="Resource_8v8l1"]
 script = ExtResource("1_dr2q5")
 level = 13
 move = ExtResource("7_tvhio")
 
-[sub_resource type="Resource" id="Resource_pmcjk"]
+[sub_resource type="Resource" id="Resource_7fvjf"]
 script = ExtResource("1_dr2q5")
 level = 19
 move = ExtResource("8_8v8l1")
 
-[sub_resource type="Resource" id="Resource_uqvdx"]
+[sub_resource type="Resource" id="Resource_ocvfe"]
 script = ExtResource("1_dr2q5")
 level = 25
 move = ExtResource("9_7fvjf")
 
-[sub_resource type="Resource" id="Resource_xqlto"]
+[sub_resource type="Resource" id="Resource_4bf7i"]
 script = ExtResource("1_dr2q5")
 level = 31
 move = ExtResource("10_ocvfe")
 
-[sub_resource type="Resource" id="Resource_sx1dx"]
+[sub_resource type="Resource" id="Resource_vyc81"]
 script = ExtResource("1_dr2q5")
 level = 39
 move = ExtResource("11_4bf7i")
 
-[sub_resource type="Resource" id="Resource_ny5u3"]
+[sub_resource type="Resource" id="Resource_fm0gw"]
 script = ExtResource("1_dr2q5")
 level = 39
 move = ExtResource("12_vyc81")
 
-[sub_resource type="Resource" id="Resource_uoorv"]
+[sub_resource type="Resource" id="Resource_adsw0"]
 script = ExtResource("1_dr2q5")
 level = 50
 move = ExtResource("13_fm0gw")
 
-[sub_resource type="Resource" id="Resource_gkqd6"]
+[sub_resource type="Resource" id="Resource_paddh"]
 script = ExtResource("1_dr2q5")
 level = 61
 move = ExtResource("14_adsw0")
@@ -88,7 +88,7 @@ id = "walrein"
 display_name = "Walrein"
 dex = 365
 types = Array[ExtResource("4_wgsku")]([ExtResource("5_vg64m"), ExtResource("6_6xi1o")])
-learnset = Array[ExtResource("1_dr2q5")]([SubResource("Resource_paddh"), SubResource("Resource_ue01v"), SubResource("Resource_x55o5"), SubResource("Resource_uywom"), SubResource("Resource_w3ee4"), SubResource("Resource_n748n"), SubResource("Resource_pmcjk"), SubResource("Resource_uqvdx"), SubResource("Resource_xqlto"), SubResource("Resource_sx1dx"), SubResource("Resource_ny5u3"), SubResource("Resource_uoorv"), SubResource("Resource_gkqd6")])
+learnset = Array[ExtResource("1_dr2q5")]([SubResource("Resource_6vf2g"), SubResource("Resource_oravc"), SubResource("Resource_tnl3w"), SubResource("Resource_p5tpm"), SubResource("Resource_tvhio"), SubResource("Resource_8v8l1"), SubResource("Resource_7fvjf"), SubResource("Resource_ocvfe"), SubResource("Resource_4bf7i"), SubResource("Resource_vyc81"), SubResource("Resource_fm0gw"), SubResource("Resource_adsw0"), SubResource("Resource_paddh")])
 temperament = ExtResource("17_6vf2g")
 genus = "Pokémon Rompehielo"
 pokedex_entry = "Walrein tiene unos exagerados colmillos con los que puede hacer añicos bloques de hielo de hasta 10 toneladas de una sola dentellada. La gruesa capa de grasa que lo recubre le protege de temperaturas inferiores a 0 °C."

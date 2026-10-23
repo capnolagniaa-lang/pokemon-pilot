@@ -17,48 +17,48 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_o3p2a"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_t631v"]
 
-[sub_resource type="Resource" id="Resource_j1gfm"]
+[sub_resource type="Resource" id="Resource_t631v"]
 script = ExtResource("1_4xuew")
 move = ExtResource("2_vbs4q")
 
-[sub_resource type="Resource" id="Resource_d67yb"]
+[sub_resource type="Resource" id="Resource_lpmoe"]
 script = ExtResource("1_4xuew")
 move = ExtResource("3_t631v")
 
-[sub_resource type="Resource" id="Resource_mrsi7"]
+[sub_resource type="Resource" id="Resource_h4kep"]
 script = ExtResource("1_4xuew")
 move = ExtResource("4_lpmoe")
 
-[sub_resource type="Resource" id="Resource_1aktu"]
+[sub_resource type="Resource" id="Resource_r0u7t"]
 script = ExtResource("1_4xuew")
 move = ExtResource("5_h4kep")
 
-[sub_resource type="Resource" id="Resource_n2dgn"]
+[sub_resource type="Resource" id="Resource_ryqpn"]
 script = ExtResource("1_4xuew")
 level = 22
 move = ExtResource("6_r0u7t")
 
-[sub_resource type="Resource" id="Resource_3ykmg"]
+[sub_resource type="Resource" id="Resource_44x5e"]
 script = ExtResource("1_4xuew")
 level = 29
 move = ExtResource("7_ryqpn")
 
-[sub_resource type="Resource" id="Resource_vfnuj"]
+[sub_resource type="Resource" id="Resource_n7esk"]
 script = ExtResource("1_4xuew")
 level = 38
 move = ExtResource("8_44x5e")
 
-[sub_resource type="Resource" id="Resource_xaeck"]
+[sub_resource type="Resource" id="Resource_gwfnf"]
 script = ExtResource("1_4xuew")
 level = 47
 move = ExtResource("9_n7esk")
 
-[sub_resource type="Resource" id="Resource_r417v"]
+[sub_resource type="Resource" id="Resource_o3p2a"]
 script = ExtResource("1_4xuew")
 level = 56
 move = ExtResource("10_gwfnf")
 
-[sub_resource type="Resource" id="Resource_kwsd7"]
+[sub_resource type="Resource" id="Resource_j1gfm"]
 script = ExtResource("1_4xuew")
 level = 65
 move = ExtResource("11_o3p2a")
@@ -69,7 +69,7 @@ id = "dragonair"
 display_name = "Dragonair"
 dex = 148
 types = Array[ExtResource("4_jiaft")]([ExtResource("5_kj0ex")])
-learnset = Array[ExtResource("1_4xuew")]([SubResource("Resource_j1gfm"), SubResource("Resource_d67yb"), SubResource("Resource_mrsi7"), SubResource("Resource_1aktu"), SubResource("Resource_n2dgn"), SubResource("Resource_3ykmg"), SubResource("Resource_vfnuj"), SubResource("Resource_xaeck"), SubResource("Resource_r417v"), SubResource("Resource_kwsd7")])
+learnset = Array[ExtResource("1_4xuew")]([SubResource("Resource_t631v"), SubResource("Resource_lpmoe"), SubResource("Resource_h4kep"), SubResource("Resource_r0u7t"), SubResource("Resource_ryqpn"), SubResource("Resource_44x5e"), SubResource("Resource_n7esk"), SubResource("Resource_gwfnf"), SubResource("Resource_o3p2a"), SubResource("Resource_j1gfm")])
 temperament = ExtResource("14_t631v")
 genus = "Pokémon Dragón"
 pokedex_entry = "Dragonair acumula grandes cantidades de energía dentro de sí. Dicen que altera el clima de la zona en la que está descargando energía a través de las esferas de cristal que tiene en el cuello y en la cola."

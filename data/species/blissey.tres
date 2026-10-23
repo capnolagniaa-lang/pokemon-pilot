@@ -19,60 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_jgtvh"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_2lmuy"]
 
-[sub_resource type="Resource" id="Resource_74csm"]
+[sub_resource type="Resource" id="Resource_2lmuy"]
 script = ExtResource("1_tohey")
 move = ExtResource("2_5utgv")
 
-[sub_resource type="Resource" id="Resource_vd8u8"]
+[sub_resource type="Resource" id="Resource_m5skw"]
 script = ExtResource("1_tohey")
 move = ExtResource("3_2lmuy")
 
-[sub_resource type="Resource" id="Resource_f7cim"]
+[sub_resource type="Resource" id="Resource_r1jel"]
 script = ExtResource("1_tohey")
 level = 4
 move = ExtResource("4_m5skw")
 
-[sub_resource type="Resource" id="Resource_su150"]
+[sub_resource type="Resource" id="Resource_7cejy"]
 script = ExtResource("1_tohey")
 level = 7
 move = ExtResource("5_r1jel")
 
-[sub_resource type="Resource" id="Resource_hpgrp"]
+[sub_resource type="Resource" id="Resource_go8hx"]
 script = ExtResource("1_tohey")
 level = 10
 move = ExtResource("6_7cejy")
 
-[sub_resource type="Resource" id="Resource_x8vh7"]
+[sub_resource type="Resource" id="Resource_st6ax"]
 script = ExtResource("1_tohey")
 level = 13
 move = ExtResource("7_go8hx")
 
-[sub_resource type="Resource" id="Resource_33lfh"]
+[sub_resource type="Resource" id="Resource_31vvm"]
 script = ExtResource("1_tohey")
 level = 18
 move = ExtResource("8_st6ax")
 
-[sub_resource type="Resource" id="Resource_lkvhf"]
+[sub_resource type="Resource" id="Resource_7qchs"]
 script = ExtResource("1_tohey")
 level = 23
 move = ExtResource("9_31vvm")
 
-[sub_resource type="Resource" id="Resource_i0vxw"]
+[sub_resource type="Resource" id="Resource_wdkx8"]
 script = ExtResource("1_tohey")
 level = 28
 move = ExtResource("10_7qchs")
 
-[sub_resource type="Resource" id="Resource_yuv46"]
+[sub_resource type="Resource" id="Resource_yihvy"]
 script = ExtResource("1_tohey")
 level = 33
 move = ExtResource("11_wdkx8")
 
-[sub_resource type="Resource" id="Resource_8xl8y"]
+[sub_resource type="Resource" id="Resource_jgtvh"]
 script = ExtResource("1_tohey")
 level = 40
 move = ExtResource("12_yihvy")
 
-[sub_resource type="Resource" id="Resource_qwk1g"]
+[sub_resource type="Resource" id="Resource_74csm"]
 script = ExtResource("1_tohey")
 level = 47
 move = ExtResource("13_jgtvh")
@@ -83,7 +83,7 @@ id = "blissey"
 display_name = "Blissey"
 dex = 242
 types = Array[ExtResource("4_ebhl7")]([ExtResource("5_gi3j6")])
-learnset = Array[ExtResource("1_tohey")]([SubResource("Resource_74csm"), SubResource("Resource_vd8u8"), SubResource("Resource_f7cim"), SubResource("Resource_su150"), SubResource("Resource_hpgrp"), SubResource("Resource_x8vh7"), SubResource("Resource_33lfh"), SubResource("Resource_lkvhf"), SubResource("Resource_i0vxw"), SubResource("Resource_yuv46"), SubResource("Resource_8xl8y"), SubResource("Resource_qwk1g")])
+learnset = Array[ExtResource("1_tohey")]([SubResource("Resource_2lmuy"), SubResource("Resource_m5skw"), SubResource("Resource_r1jel"), SubResource("Resource_7cejy"), SubResource("Resource_go8hx"), SubResource("Resource_st6ax"), SubResource("Resource_31vvm"), SubResource("Resource_7qchs"), SubResource("Resource_wdkx8"), SubResource("Resource_yihvy"), SubResource("Resource_jgtvh"), SubResource("Resource_74csm")])
 temperament = ExtResource("16_2lmuy")
 genus = "Pokémon Felicidad"
 pokedex_entry = "Blissey es capaz de sentir la tristeza a través del sedoso pelaje. Si detecta que alguien está apenado, irá hasta donde esté y compartirá un Huevo Suerte para devolverle la sonrisa."

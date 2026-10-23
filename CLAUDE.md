@@ -36,6 +36,7 @@ $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
 $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charmander, Bellsprout, Pidgey, Rattata, Vulpix
+$G --headless --path . --quit-after 60000 -- --autotest-kits-v3  # los 10 kits nuevos (v3): ataques + mecánicas
 $G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
 $G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carga, learnset, archivos rotos
 $G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, activo, menú, ficha
@@ -205,6 +206,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Editor de mapas**: guarda zonas en `scenes/world/zones/<id>.tscn` (backup en `.backup/`, últimos 5) y el
   TileSet con backup en `art/tiles/.backup/`. El autotile es `ZoneBuilder.autotile_piece` (no terrains de
   Godot: ver README).
+- `tools/build_kits_v3.py`: generó los 10 kits v3 (ataques, firmas, estados nuevos). **Correrlo de nuevo pisa los
+  ajustes hechos a mano** en esos .tres: retocar en el inspector y no volver a correrlo.
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + extras de la tabla `EXTRAS`, niveles de
   FRLG) y los guarda en las especies. Correrlo después de cambiar un kit o los extras.
 - `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +

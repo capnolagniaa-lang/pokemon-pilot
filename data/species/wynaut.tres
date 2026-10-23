@@ -14,34 +14,34 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="8_twuwe"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="11_q6sbn"]
 
-[sub_resource type="Resource" id="Resource_ccqdx"]
+[sub_resource type="Resource" id="Resource_q6sbn"]
 script = ExtResource("1_wur12")
 move = ExtResource("2_jnyfi")
 
-[sub_resource type="Resource" id="Resource_7ubwe"]
+[sub_resource type="Resource" id="Resource_6ugxe"]
 script = ExtResource("1_wur12")
 move = ExtResource("3_q6sbn")
 
-[sub_resource type="Resource" id="Resource_1i6vf"]
+[sub_resource type="Resource" id="Resource_rrxq1"]
 script = ExtResource("1_wur12")
 move = ExtResource("4_6ugxe")
 
-[sub_resource type="Resource" id="Resource_a45ar"]
+[sub_resource type="Resource" id="Resource_7gdtq"]
 script = ExtResource("1_wur12")
 level = 15
 move = ExtResource("5_rrxq1")
 
-[sub_resource type="Resource" id="Resource_f7665"]
+[sub_resource type="Resource" id="Resource_5wc6l"]
 script = ExtResource("1_wur12")
 level = 15
 move = ExtResource("6_7gdtq")
 
-[sub_resource type="Resource" id="Resource_x6jo5"]
+[sub_resource type="Resource" id="Resource_twuwe"]
 script = ExtResource("1_wur12")
 level = 15
 move = ExtResource("7_5wc6l")
 
-[sub_resource type="Resource" id="Resource_wb3eb"]
+[sub_resource type="Resource" id="Resource_ccqdx"]
 script = ExtResource("1_wur12")
 level = 15
 move = ExtResource("8_twuwe")
@@ -52,7 +52,7 @@ id = "wynaut"
 display_name = "Wynaut"
 dex = 360
 types = Array[ExtResource("4_548i5")]([ExtResource("5_lmqkm")])
-learnset = Array[ExtResource("1_wur12")]([SubResource("Resource_ccqdx"), SubResource("Resource_7ubwe"), SubResource("Resource_1i6vf"), SubResource("Resource_a45ar"), SubResource("Resource_f7665"), SubResource("Resource_x6jo5"), SubResource("Resource_wb3eb")])
+learnset = Array[ExtResource("1_wur12")]([SubResource("Resource_q6sbn"), SubResource("Resource_6ugxe"), SubResource("Resource_rrxq1"), SubResource("Resource_7gdtq"), SubResource("Resource_5wc6l"), SubResource("Resource_twuwe"), SubResource("Resource_ccqdx")])
 temperament = ExtResource("11_q6sbn")
 genus = "Pokémon Radiante"
 pokedex_entry = "Wynaut está siempre con una gran sonrisa puesta. Para ver si está enfadado, basta con mirarle la cola. Cuando se le molesta, se pone a dar golpetazos en el suelo."

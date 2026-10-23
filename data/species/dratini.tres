@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_j7y4r"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_rqhmh"]
 
-[sub_resource type="Resource" id="Resource_0jl23"]
+[sub_resource type="Resource" id="Resource_rqhmh"]
 script = ExtResource("1_47mdg")
 move = ExtResource("2_sw5f2")
 
-[sub_resource type="Resource" id="Resource_yoybc"]
+[sub_resource type="Resource" id="Resource_l7k4g"]
 script = ExtResource("1_47mdg")
 move = ExtResource("3_rqhmh")
 
-[sub_resource type="Resource" id="Resource_m7lo5"]
+[sub_resource type="Resource" id="Resource_ss24x"]
 script = ExtResource("1_47mdg")
 level = 8
 move = ExtResource("4_l7k4g")
 
-[sub_resource type="Resource" id="Resource_0stpu"]
+[sub_resource type="Resource" id="Resource_k2xcx"]
 script = ExtResource("1_47mdg")
 level = 15
 move = ExtResource("5_ss24x")
 
-[sub_resource type="Resource" id="Resource_b37wj"]
+[sub_resource type="Resource" id="Resource_gqkwd"]
 script = ExtResource("1_47mdg")
 level = 22
 move = ExtResource("6_k2xcx")
 
-[sub_resource type="Resource" id="Resource_mdwlv"]
+[sub_resource type="Resource" id="Resource_fk22a"]
 script = ExtResource("1_47mdg")
 level = 29
 move = ExtResource("7_gqkwd")
 
-[sub_resource type="Resource" id="Resource_pj8d3"]
+[sub_resource type="Resource" id="Resource_eyrys"]
 script = ExtResource("1_47mdg")
 level = 36
 move = ExtResource("8_fk22a")
 
-[sub_resource type="Resource" id="Resource_ie7uj"]
+[sub_resource type="Resource" id="Resource_8h7am"]
 script = ExtResource("1_47mdg")
 level = 43
 move = ExtResource("9_eyrys")
 
-[sub_resource type="Resource" id="Resource_vu137"]
+[sub_resource type="Resource" id="Resource_j7y4r"]
 script = ExtResource("1_47mdg")
 level = 50
 move = ExtResource("10_8h7am")
 
-[sub_resource type="Resource" id="Resource_je4ii"]
+[sub_resource type="Resource" id="Resource_0jl23"]
 script = ExtResource("1_47mdg")
 level = 57
 move = ExtResource("11_j7y4r")
@@ -71,7 +71,7 @@ id = "dratini"
 display_name = "Dratini"
 dex = 147
 types = Array[ExtResource("4_e6c73")]([ExtResource("5_4ri7b")])
-learnset = Array[ExtResource("1_47mdg")]([SubResource("Resource_0jl23"), SubResource("Resource_yoybc"), SubResource("Resource_m7lo5"), SubResource("Resource_0stpu"), SubResource("Resource_b37wj"), SubResource("Resource_mdwlv"), SubResource("Resource_pj8d3"), SubResource("Resource_ie7uj"), SubResource("Resource_vu137"), SubResource("Resource_je4ii")])
+learnset = Array[ExtResource("1_47mdg")]([SubResource("Resource_rqhmh"), SubResource("Resource_l7k4g"), SubResource("Resource_ss24x"), SubResource("Resource_k2xcx"), SubResource("Resource_gqkwd"), SubResource("Resource_fk22a"), SubResource("Resource_eyrys"), SubResource("Resource_8h7am"), SubResource("Resource_j7y4r"), SubResource("Resource_0jl23")])
 temperament = ExtResource("14_rqhmh")
 genus = "Pokémon Dragón"
 pokedex_entry = "Dratini muda y se despoja de la vieja piel continuamente. Es algo que necesita hacer porque la energía que tiene en su interior no para de alcanzar niveles incontrolables."

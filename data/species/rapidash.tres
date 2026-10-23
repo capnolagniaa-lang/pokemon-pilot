@@ -18,53 +18,53 @@
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="12_4sv82"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_4qn7g"]
 
-[sub_resource type="Resource" id="Resource_0ii2e"]
+[sub_resource type="Resource" id="Resource_4qn7g"]
 script = ExtResource("1_du3gi")
 move = ExtResource("2_5ueat")
 
-[sub_resource type="Resource" id="Resource_nmwy0"]
+[sub_resource type="Resource" id="Resource_n1t6r"]
 script = ExtResource("1_du3gi")
 move = ExtResource("3_4qn7g")
 
-[sub_resource type="Resource" id="Resource_nkohm"]
+[sub_resource type="Resource" id="Resource_hv4de"]
 script = ExtResource("1_du3gi")
 move = ExtResource("4_n1t6r")
 
-[sub_resource type="Resource" id="Resource_q2kl2"]
+[sub_resource type="Resource" id="Resource_7vllj"]
 script = ExtResource("1_du3gi")
 move = ExtResource("5_hv4de")
 
-[sub_resource type="Resource" id="Resource_hpf5r"]
+[sub_resource type="Resource" id="Resource_c5m3f"]
 script = ExtResource("1_du3gi")
 level = 19
 move = ExtResource("6_7vllj")
 
-[sub_resource type="Resource" id="Resource_dnu4f"]
+[sub_resource type="Resource" id="Resource_j52dr"]
 script = ExtResource("1_du3gi")
 level = 25
 move = ExtResource("7_c5m3f")
 
-[sub_resource type="Resource" id="Resource_ek0t6"]
+[sub_resource type="Resource" id="Resource_ilnki"]
 script = ExtResource("1_du3gi")
 level = 31
 move = ExtResource("8_j52dr")
 
-[sub_resource type="Resource" id="Resource_4ijde"]
+[sub_resource type="Resource" id="Resource_dty6v"]
 script = ExtResource("1_du3gi")
 level = 38
 move = ExtResource("9_ilnki")
 
-[sub_resource type="Resource" id="Resource_wnc8p"]
+[sub_resource type="Resource" id="Resource_7ssnv"]
 script = ExtResource("1_du3gi")
 level = 40
 move = ExtResource("10_dty6v")
 
-[sub_resource type="Resource" id="Resource_4dwwo"]
+[sub_resource type="Resource" id="Resource_4sv82"]
 script = ExtResource("1_du3gi")
 level = 50
 move = ExtResource("11_7ssnv")
 
-[sub_resource type="Resource" id="Resource_ck0n7"]
+[sub_resource type="Resource" id="Resource_0ii2e"]
 script = ExtResource("1_du3gi")
 level = 63
 move = ExtResource("12_4sv82")
@@ -75,7 +75,7 @@ id = "rapidash"
 display_name = "Rapidash"
 dex = 78
 types = Array[ExtResource("4_htbbe")]([ExtResource("5_ukm10")])
-learnset = Array[ExtResource("1_du3gi")]([SubResource("Resource_0ii2e"), SubResource("Resource_nmwy0"), SubResource("Resource_nkohm"), SubResource("Resource_q2kl2"), SubResource("Resource_hpf5r"), SubResource("Resource_dnu4f"), SubResource("Resource_ek0t6"), SubResource("Resource_4ijde"), SubResource("Resource_wnc8p"), SubResource("Resource_4dwwo"), SubResource("Resource_ck0n7")])
+learnset = Array[ExtResource("1_du3gi")]([SubResource("Resource_4qn7g"), SubResource("Resource_n1t6r"), SubResource("Resource_hv4de"), SubResource("Resource_7vllj"), SubResource("Resource_c5m3f"), SubResource("Resource_j52dr"), SubResource("Resource_ilnki"), SubResource("Resource_dty6v"), SubResource("Resource_7ssnv"), SubResource("Resource_4sv82"), SubResource("Resource_0ii2e")])
 temperament = ExtResource("15_4qn7g")
 genus = "Pokémon Caballo Fuego"
 pokedex_entry = "A Rapidash se le suele ver trotando sin rumbo fijo por los campos y llanos. Cuando tiene que ir a algún sitio en concreto, se le aviva el fuego de las melenas y emprende el galope llameante llegando a los 240 km/h."

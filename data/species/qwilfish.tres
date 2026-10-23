@@ -19,54 +19,54 @@
 [ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="12_rbn2q"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_coc44"]
 
-[sub_resource type="Resource" id="Resource_jxx30"]
+[sub_resource type="Resource" id="Resource_coc44"]
 script = ExtResource("1_dbjh8")
 move = ExtResource("2_vhxmm")
 
-[sub_resource type="Resource" id="Resource_wds6e"]
+[sub_resource type="Resource" id="Resource_37ivn"]
 script = ExtResource("1_dbjh8")
 move = ExtResource("3_coc44")
 
-[sub_resource type="Resource" id="Resource_w6uyb"]
+[sub_resource type="Resource" id="Resource_f5u30"]
 script = ExtResource("1_dbjh8")
 move = ExtResource("4_37ivn")
 
-[sub_resource type="Resource" id="Resource_2ci2j"]
+[sub_resource type="Resource" id="Resource_c2oup"]
 script = ExtResource("1_dbjh8")
 level = 9
 move = ExtResource("5_f5u30")
 
-[sub_resource type="Resource" id="Resource_tr8nc"]
+[sub_resource type="Resource" id="Resource_c4pot"]
 script = ExtResource("1_dbjh8")
 level = 9
 move = ExtResource("6_c2oup")
 
-[sub_resource type="Resource" id="Resource_iw3op"]
+[sub_resource type="Resource" id="Resource_yk3vg"]
 script = ExtResource("1_dbjh8")
 level = 13
 move = ExtResource("7_c4pot")
 
-[sub_resource type="Resource" id="Resource_1in76"]
+[sub_resource type="Resource" id="Resource_7v4xe"]
 script = ExtResource("1_dbjh8")
 level = 21
 move = ExtResource("8_yk3vg")
 
-[sub_resource type="Resource" id="Resource_11aec"]
+[sub_resource type="Resource" id="Resource_vfao7"]
 script = ExtResource("1_dbjh8")
 level = 25
 move = ExtResource("9_7v4xe")
 
-[sub_resource type="Resource" id="Resource_7dyqn"]
+[sub_resource type="Resource" id="Resource_v8vq5"]
 script = ExtResource("1_dbjh8")
 level = 33
 move = ExtResource("10_vfao7")
 
-[sub_resource type="Resource" id="Resource_5evyu"]
+[sub_resource type="Resource" id="Resource_rbn2q"]
 script = ExtResource("1_dbjh8")
 level = 37
 move = ExtResource("11_v8vq5")
 
-[sub_resource type="Resource" id="Resource_mcmk8"]
+[sub_resource type="Resource" id="Resource_jxx30"]
 script = ExtResource("1_dbjh8")
 level = 45
 move = ExtResource("12_rbn2q")
@@ -77,7 +77,7 @@ id = "qwilfish"
 display_name = "Qwilfish"
 dex = 211
 types = Array[ExtResource("4_r5s1p")]([ExtResource("5_15qxy"), ExtResource("6_sreg4")])
-learnset = Array[ExtResource("1_dbjh8")]([SubResource("Resource_jxx30"), SubResource("Resource_wds6e"), SubResource("Resource_w6uyb"), SubResource("Resource_2ci2j"), SubResource("Resource_tr8nc"), SubResource("Resource_iw3op"), SubResource("Resource_1in76"), SubResource("Resource_11aec"), SubResource("Resource_7dyqn"), SubResource("Resource_5evyu"), SubResource("Resource_mcmk8")])
+learnset = Array[ExtResource("1_dbjh8")]([SubResource("Resource_coc44"), SubResource("Resource_37ivn"), SubResource("Resource_f5u30"), SubResource("Resource_c2oup"), SubResource("Resource_c4pot"), SubResource("Resource_yk3vg"), SubResource("Resource_7v4xe"), SubResource("Resource_vfao7"), SubResource("Resource_v8vq5"), SubResource("Resource_rbn2q"), SubResource("Resource_jxx30")])
 temperament = ExtResource("15_coc44")
 genus = "Pokémon Globo"
 pokedex_entry = "Qwilfish bebe agua y se hincha, y a continuación usa la presión del agua que ha tragado para lanzar púas tóxicas por todo el cuerpo. Para este Pokémon nadar es una especie de desafío."

@@ -40,6 +40,14 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export_range(0.0, 1.0) var execute_below: float = 0.0
 ## Viento (Tornado, Remolino): los proyectiles enemigos que toca salen desviados.
 @export var deflects_projectiles: bool = false
+## Drenar (Absorber, Chupavidas): el atacante se cura esta fracción del daño que hace.
+@export_range(0.0, 1.0) var drain: float = 0.0
+## Limpiarse (Giro Rápido): al usarlo se cura de los problemas de estado propios.
+@export var cleanse_self: bool = false
+## Anulación: el golpeado tarda estos segundos más en recargar todos sus ataques.
+@export var cooldown_lock: float = 0.0
+## Esporas inflamables (Paras): si un ataque de fuego toca este parche o nube, arde 3 s y quema a quien esté adentro.
+@export var zone_flammable: bool = false
 
 @export_group("Recurso de firma")
 ## Cuánto recurso de la mecánica de firma consume (-1 = todo lo que haya).

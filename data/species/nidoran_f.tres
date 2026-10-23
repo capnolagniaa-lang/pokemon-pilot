@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_2sqbn"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_3vqos"]
 
-[sub_resource type="Resource" id="Resource_bf7e8"]
+[sub_resource type="Resource" id="Resource_3vqos"]
 script = ExtResource("1_5g56r")
 move = ExtResource("2_kr61s")
 
-[sub_resource type="Resource" id="Resource_l6q28"]
+[sub_resource type="Resource" id="Resource_10mka"]
 script = ExtResource("1_5g56r")
 move = ExtResource("3_3vqos")
 
-[sub_resource type="Resource" id="Resource_h6vwe"]
+[sub_resource type="Resource" id="Resource_ss4r4"]
 script = ExtResource("1_5g56r")
 level = 8
 move = ExtResource("4_10mka")
 
-[sub_resource type="Resource" id="Resource_2whsd"]
+[sub_resource type="Resource" id="Resource_tujck"]
 script = ExtResource("1_5g56r")
 level = 12
 move = ExtResource("5_ss4r4")
 
-[sub_resource type="Resource" id="Resource_dgaiy"]
+[sub_resource type="Resource" id="Resource_f1ema"]
 script = ExtResource("1_5g56r")
 level = 17
 move = ExtResource("6_tujck")
 
-[sub_resource type="Resource" id="Resource_eqssw"]
+[sub_resource type="Resource" id="Resource_1acl7"]
 script = ExtResource("1_5g56r")
 level = 20
 move = ExtResource("7_f1ema")
 
-[sub_resource type="Resource" id="Resource_ivr5y"]
+[sub_resource type="Resource" id="Resource_3t4mg"]
 script = ExtResource("1_5g56r")
 level = 23
 move = ExtResource("8_1acl7")
 
-[sub_resource type="Resource" id="Resource_1w164"]
+[sub_resource type="Resource" id="Resource_1agcq"]
 script = ExtResource("1_5g56r")
 level = 30
 move = ExtResource("9_3t4mg")
 
-[sub_resource type="Resource" id="Resource_gexii"]
+[sub_resource type="Resource" id="Resource_2sqbn"]
 script = ExtResource("1_5g56r")
 level = 38
 move = ExtResource("10_1agcq")
 
-[sub_resource type="Resource" id="Resource_8deuo"]
+[sub_resource type="Resource" id="Resource_bf7e8"]
 script = ExtResource("1_5g56r")
 level = 47
 move = ExtResource("11_2sqbn")
@@ -71,7 +71,7 @@ id = "nidoran_f"
 display_name = "Nidoran♀"
 dex = 29
 types = Array[ExtResource("4_cah2j")]([ExtResource("5_0ulli")])
-learnset = Array[ExtResource("1_5g56r")]([SubResource("Resource_bf7e8"), SubResource("Resource_l6q28"), SubResource("Resource_h6vwe"), SubResource("Resource_2whsd"), SubResource("Resource_dgaiy"), SubResource("Resource_eqssw"), SubResource("Resource_ivr5y"), SubResource("Resource_1w164"), SubResource("Resource_gexii"), SubResource("Resource_8deuo")])
+learnset = Array[ExtResource("1_5g56r")]([SubResource("Resource_3vqos"), SubResource("Resource_10mka"), SubResource("Resource_ss4r4"), SubResource("Resource_tujck"), SubResource("Resource_f1ema"), SubResource("Resource_1acl7"), SubResource("Resource_3t4mg"), SubResource("Resource_1agcq"), SubResource("Resource_2sqbn"), SubResource("Resource_bf7e8")])
 temperament = ExtResource("14_3vqos")
 genus = "Pokémon Pin Veneno"
 pokedex_entry = "Nidoran♀ tiene púas que segregan un veneno muy potente. Se piensa que las desarrolló como protección del cuerpo tan pequeño que tiene. Cuando se enfada, libera una horrible sustancia tóxica por el cuerno."

@@ -18,54 +18,54 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="12_66acx"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_61sn3"]
 
-[sub_resource type="Resource" id="Resource_digvf"]
+[sub_resource type="Resource" id="Resource_61sn3"]
 script = ExtResource("1_d8d1d")
 move = ExtResource("2_ppmht")
 
-[sub_resource type="Resource" id="Resource_wl8ru"]
+[sub_resource type="Resource" id="Resource_5dj51"]
 script = ExtResource("1_d8d1d")
 move = ExtResource("3_61sn3")
 
-[sub_resource type="Resource" id="Resource_iicnx"]
+[sub_resource type="Resource" id="Resource_clrll"]
 script = ExtResource("1_d8d1d")
 move = ExtResource("4_5dj51")
 
-[sub_resource type="Resource" id="Resource_br5yh"]
+[sub_resource type="Resource" id="Resource_x1rkr"]
 script = ExtResource("1_d8d1d")
 level = 8
 move = ExtResource("5_clrll")
 
-[sub_resource type="Resource" id="Resource_qcvmb"]
+[sub_resource type="Resource" id="Resource_jhy7p"]
 script = ExtResource("1_d8d1d")
 level = 16
 move = ExtResource("6_x1rkr")
 
-[sub_resource type="Resource" id="Resource_uv1iu"]
+[sub_resource type="Resource" id="Resource_8s8om"]
 script = ExtResource("1_d8d1d")
 level = 23
 move = ExtResource("7_jhy7p")
 
-[sub_resource type="Resource" id="Resource_ed27d"]
+[sub_resource type="Resource" id="Resource_28tbq"]
 script = ExtResource("1_d8d1d")
 level = 30
 move = ExtResource("8_8s8om")
 
-[sub_resource type="Resource" id="Resource_tpiwi"]
+[sub_resource type="Resource" id="Resource_l84vh"]
 script = ExtResource("1_d8d1d")
 level = 36
 move = ExtResource("9_28tbq")
 
-[sub_resource type="Resource" id="Resource_hymn7"]
+[sub_resource type="Resource" id="Resource_iqis7"]
 script = ExtResource("1_d8d1d")
 level = 42
 move = ExtResource("10_l84vh")
 
-[sub_resource type="Resource" id="Resource_6xxi4"]
+[sub_resource type="Resource" id="Resource_66acx"]
 script = ExtResource("1_d8d1d")
 level = 47
 move = ExtResource("11_iqis7")
 
-[sub_resource type="Resource" id="Resource_kd612"]
+[sub_resource type="Resource" id="Resource_digvf"]
 script = ExtResource("1_d8d1d")
 level = 52
 move = ExtResource("12_66acx")
@@ -76,7 +76,7 @@ id = "flareon"
 display_name = "Flareon"
 dex = 136
 types = Array[ExtResource("4_bqvf2")]([ExtResource("5_18pwc")])
-learnset = Array[ExtResource("1_d8d1d")]([SubResource("Resource_digvf"), SubResource("Resource_wl8ru"), SubResource("Resource_iicnx"), SubResource("Resource_br5yh"), SubResource("Resource_qcvmb"), SubResource("Resource_uv1iu"), SubResource("Resource_ed27d"), SubResource("Resource_tpiwi"), SubResource("Resource_hymn7"), SubResource("Resource_6xxi4"), SubResource("Resource_kd612")])
+learnset = Array[ExtResource("1_d8d1d")]([SubResource("Resource_61sn3"), SubResource("Resource_5dj51"), SubResource("Resource_clrll"), SubResource("Resource_x1rkr"), SubResource("Resource_jhy7p"), SubResource("Resource_8s8om"), SubResource("Resource_28tbq"), SubResource("Resource_l84vh"), SubResource("Resource_iqis7"), SubResource("Resource_66acx"), SubResource("Resource_digvf")])
 temperament = ExtResource("15_61sn3")
 genus = "Pokémon Llama"
 pokedex_entry = "La suavidad del pelaje de Flareon tiene una función clara: libera calor para que el Pokémon no se asfixie. La temperatura corporal de este Pokémon puede alcanzar los 900 °C."

@@ -18,49 +18,49 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_mxxif"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_f7tdo"]
 
-[sub_resource type="Resource" id="Resource_1ysrh"]
+[sub_resource type="Resource" id="Resource_f7tdo"]
 script = ExtResource("1_3vd4y")
 move = ExtResource("2_cey4i")
 
-[sub_resource type="Resource" id="Resource_64b3f"]
+[sub_resource type="Resource" id="Resource_kvfg7"]
 script = ExtResource("1_3vd4y")
 move = ExtResource("3_f7tdo")
 
-[sub_resource type="Resource" id="Resource_jnwxu"]
+[sub_resource type="Resource" id="Resource_nj7sf"]
 script = ExtResource("1_3vd4y")
 move = ExtResource("4_kvfg7")
 
-[sub_resource type="Resource" id="Resource_4gm4d"]
+[sub_resource type="Resource" id="Resource_4kqbc"]
 script = ExtResource("1_3vd4y")
 level = 7
 move = ExtResource("5_nj7sf")
 
-[sub_resource type="Resource" id="Resource_7abof"]
+[sub_resource type="Resource" id="Resource_cctxq"]
 script = ExtResource("1_3vd4y")
 level = 13
 move = ExtResource("6_4kqbc")
 
-[sub_resource type="Resource" id="Resource_bq60h"]
+[sub_resource type="Resource" id="Resource_anui3"]
 script = ExtResource("1_3vd4y")
 level = 19
 move = ExtResource("7_cctxq")
 
-[sub_resource type="Resource" id="Resource_ncofy"]
+[sub_resource type="Resource" id="Resource_mi3ju"]
 script = ExtResource("1_3vd4y")
 level = 25
 move = ExtResource("8_anui3")
 
-[sub_resource type="Resource" id="Resource_8ifre"]
+[sub_resource type="Resource" id="Resource_n71in"]
 script = ExtResource("1_3vd4y")
 level = 31
 move = ExtResource("9_mi3ju")
 
-[sub_resource type="Resource" id="Resource_xwmbb"]
+[sub_resource type="Resource" id="Resource_mxxif"]
 script = ExtResource("1_3vd4y")
 level = 37
 move = ExtResource("10_n71in")
 
-[sub_resource type="Resource" id="Resource_ppoqg"]
+[sub_resource type="Resource" id="Resource_1ysrh"]
 script = ExtResource("1_3vd4y")
 level = 43
 move = ExtResource("11_mxxif")
@@ -71,7 +71,7 @@ id = "exeggcute"
 display_name = "Exeggcute"
 dex = 102
 types = Array[ExtResource("4_jhitn")]([ExtResource("5_32nix"), ExtResource("6_bsa32")])
-learnset = Array[ExtResource("1_3vd4y")]([SubResource("Resource_1ysrh"), SubResource("Resource_64b3f"), SubResource("Resource_jnwxu"), SubResource("Resource_4gm4d"), SubResource("Resource_7abof"), SubResource("Resource_bq60h"), SubResource("Resource_ncofy"), SubResource("Resource_8ifre"), SubResource("Resource_xwmbb"), SubResource("Resource_ppoqg")])
+learnset = Array[ExtResource("1_3vd4y")]([SubResource("Resource_f7tdo"), SubResource("Resource_kvfg7"), SubResource("Resource_nj7sf"), SubResource("Resource_4kqbc"), SubResource("Resource_cctxq"), SubResource("Resource_anui3"), SubResource("Resource_mi3ju"), SubResource("Resource_n71in"), SubResource("Resource_mxxif"), SubResource("Resource_1ysrh")])
 temperament = ExtResource("14_f7tdo")
 genus = "Pokémon Huevo"
 pokedex_entry = "Este Pokémon está compuesto de seis huevos que forman una tupida piña que va girando. Cuando se empiezan a resquebrajar las cáscaras, no hay duda de que Exeggcute está a punto de evolucionar."

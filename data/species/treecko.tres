@@ -18,55 +18,55 @@
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="12_6h3q8"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_b2wdc"]
 
-[sub_resource type="Resource" id="Resource_kpxgy"]
+[sub_resource type="Resource" id="Resource_b2wdc"]
 script = ExtResource("1_887tn")
 move = ExtResource("2_yo4e3")
 
-[sub_resource type="Resource" id="Resource_1ejxw"]
+[sub_resource type="Resource" id="Resource_41yd1"]
 script = ExtResource("1_887tn")
 move = ExtResource("3_b2wdc")
 
-[sub_resource type="Resource" id="Resource_4myp6"]
+[sub_resource type="Resource" id="Resource_nj5nw"]
 script = ExtResource("1_887tn")
 level = 6
 move = ExtResource("4_41yd1")
 
-[sub_resource type="Resource" id="Resource_vb5j6"]
+[sub_resource type="Resource" id="Resource_8npju"]
 script = ExtResource("1_887tn")
 level = 11
 move = ExtResource("5_nj5nw")
 
-[sub_resource type="Resource" id="Resource_uq0oj"]
+[sub_resource type="Resource" id="Resource_llyug"]
 script = ExtResource("1_887tn")
 level = 16
 move = ExtResource("6_8npju")
 
-[sub_resource type="Resource" id="Resource_h2b4h"]
+[sub_resource type="Resource" id="Resource_jg4un"]
 script = ExtResource("1_887tn")
 level = 21
 move = ExtResource("7_llyug")
 
-[sub_resource type="Resource" id="Resource_wfryr"]
+[sub_resource type="Resource" id="Resource_tw8dn"]
 script = ExtResource("1_887tn")
 level = 26
 move = ExtResource("8_jg4un")
 
-[sub_resource type="Resource" id="Resource_3twwo"]
+[sub_resource type="Resource" id="Resource_fci2h"]
 script = ExtResource("1_887tn")
 level = 31
 move = ExtResource("9_tw8dn")
 
-[sub_resource type="Resource" id="Resource_y0sas"]
+[sub_resource type="Resource" id="Resource_drcyb"]
 script = ExtResource("1_887tn")
 level = 36
 move = ExtResource("10_fci2h")
 
-[sub_resource type="Resource" id="Resource_206b3"]
+[sub_resource type="Resource" id="Resource_6h3q8"]
 script = ExtResource("1_887tn")
 level = 41
 move = ExtResource("11_drcyb")
 
-[sub_resource type="Resource" id="Resource_rf476"]
+[sub_resource type="Resource" id="Resource_kpxgy"]
 script = ExtResource("1_887tn")
 level = 46
 move = ExtResource("12_6h3q8")
@@ -77,7 +77,7 @@ id = "treecko"
 display_name = "Treecko"
 dex = 252
 types = Array[ExtResource("4_mkst7")]([ExtResource("5_icphi")])
-learnset = Array[ExtResource("1_887tn")]([SubResource("Resource_kpxgy"), SubResource("Resource_1ejxw"), SubResource("Resource_4myp6"), SubResource("Resource_vb5j6"), SubResource("Resource_uq0oj"), SubResource("Resource_h2b4h"), SubResource("Resource_wfryr"), SubResource("Resource_3twwo"), SubResource("Resource_y0sas"), SubResource("Resource_206b3"), SubResource("Resource_rf476")])
+learnset = Array[ExtResource("1_887tn")]([SubResource("Resource_b2wdc"), SubResource("Resource_41yd1"), SubResource("Resource_nj5nw"), SubResource("Resource_8npju"), SubResource("Resource_llyug"), SubResource("Resource_jg4un"), SubResource("Resource_tw8dn"), SubResource("Resource_fci2h"), SubResource("Resource_drcyb"), SubResource("Resource_6h3q8"), SubResource("Resource_kpxgy")])
 temperament = ExtResource("15_b2wdc")
 genus = "Pokémon Geco Bosque"
 pokedex_entry = "Treecko tiene unos ganchos pequeños en las plantas de los pies con los que puede escalar superficies verticales. Este Pokémon ataca dando un golpetazo con la cola."

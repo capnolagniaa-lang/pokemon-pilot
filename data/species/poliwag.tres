@@ -1,11 +1,16 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/poliwag/kit.tres" id="0_kitv3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_g3w7n"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_nrj5d"]
 [ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_r6x3q"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_fjwno"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/burbuja_kit.tres" id="3_pecyu"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/pistola_agua_poliwag.tres" id="4_iw0q7"]
 [ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_nrj5d"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_44mrl"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/danza_lluvia_kit.tres" id="5_xwkpg"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/hipnosis_kit.tres" id="6_5uedk"]
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="6_44mrl"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_j21u2"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_inumd"]
@@ -13,30 +18,30 @@
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_tlbdr"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="10_44mrl"]
 
-[sub_resource type="Resource" id="Resource_nrj5d"]
+[sub_resource type="Resource" id="Resource_hrocr"]
 script = ExtResource("1_nrj5d")
-move = ExtResource("2_r6x3q")
+move = ExtResource("3_pecyu")
 
-[sub_resource type="Resource" id="Resource_44mrl"]
+[sub_resource type="Resource" id="Resource_8mr1v"]
 script = ExtResource("1_nrj5d")
-move = ExtResource("3_fjwno")
+move = ExtResource("4_iw0q7")
 
-[sub_resource type="Resource" id="Resource_j21u2"]
+[sub_resource type="Resource" id="Resource_quevk"]
 script = ExtResource("1_nrj5d")
 level = 3
-move = ExtResource("4_nrj5d")
+move = ExtResource("5_xwkpg")
 
-[sub_resource type="Resource" id="Resource_inumd"]
+[sub_resource type="Resource" id="Resource_vrk6c"]
 script = ExtResource("1_nrj5d")
 level = 5
-move = ExtResource("5_44mrl")
+move = ExtResource("6_5uedk")
 
-[sub_resource type="Resource" id="Resource_tlbdr"]
+[sub_resource type="Resource" id="Resource_2m48x"]
 script = ExtResource("1_nrj5d")
 level = 31
 move = ExtResource("6_44mrl")
 
-[sub_resource type="Resource" id="Resource_bo5td"]
+[sub_resource type="Resource" id="Resource_cyn7y"]
 script = ExtResource("1_nrj5d")
 level = 43
 move = ExtResource("7_j21u2")
@@ -48,7 +53,8 @@ display_name = "Poliwag"
 dex = 60
 types = Array[ExtResource("7_inumd")]([ExtResource("8_tlbdr")])
 moves = Array[ExtResource("1_g3w7n")]([ExtResource("2_r6x3q"), ExtResource("3_fjwno"), ExtResource("4_nrj5d"), ExtResource("5_44mrl")])
-learnset = Array[ExtResource("1_nrj5d")]([SubResource("Resource_nrj5d"), SubResource("Resource_44mrl"), SubResource("Resource_j21u2"), SubResource("Resource_inumd"), SubResource("Resource_tlbdr"), SubResource("Resource_bo5td")])
+kit = ExtResource("0_kitv3")
+learnset = Array[ExtResource("1_nrj5d")]([SubResource("Resource_hrocr"), SubResource("Resource_8mr1v"), SubResource("Resource_quevk"), SubResource("Resource_vrk6c"), SubResource("Resource_2m48x"), SubResource("Resource_cyn7y")])
 temperament = ExtResource("10_44mrl")
 genus = "Pokémon Renacuajo"
 pokedex_entry = "Poliwag tiene una piel muy fina. Tanto que es posible entrever a través de la misma las vísceras en espiral que tiene. La piel, aunque fina, tiene la ventaja de ser flexible y hacer rebotar hasta los colmillos más afilados."

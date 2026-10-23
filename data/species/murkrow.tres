@@ -16,41 +16,41 @@
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="9_mfch0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_sqncx"]
 
-[sub_resource type="Resource" id="Resource_in0vh"]
+[sub_resource type="Resource" id="Resource_sqncx"]
 script = ExtResource("1_a8sre")
 move = ExtResource("2_1jjsh")
 
-[sub_resource type="Resource" id="Resource_jahtv"]
+[sub_resource type="Resource" id="Resource_4q6ht"]
 script = ExtResource("1_a8sre")
 level = 9
 move = ExtResource("3_sqncx")
 
-[sub_resource type="Resource" id="Resource_23c57"]
+[sub_resource type="Resource" id="Resource_n8xdv"]
 script = ExtResource("1_a8sre")
 level = 14
 move = ExtResource("4_4q6ht")
 
-[sub_resource type="Resource" id="Resource_xo6w1"]
+[sub_resource type="Resource" id="Resource_kn6j0"]
 script = ExtResource("1_a8sre")
 level = 22
 move = ExtResource("5_n8xdv")
 
-[sub_resource type="Resource" id="Resource_dagpn"]
+[sub_resource type="Resource" id="Resource_lyxm0"]
 script = ExtResource("1_a8sre")
 level = 27
 move = ExtResource("6_kn6j0")
 
-[sub_resource type="Resource" id="Resource_u01xu"]
+[sub_resource type="Resource" id="Resource_335y3"]
 script = ExtResource("1_a8sre")
 level = 35
 move = ExtResource("7_lyxm0")
 
-[sub_resource type="Resource" id="Resource_pvi7o"]
+[sub_resource type="Resource" id="Resource_mfch0"]
 script = ExtResource("1_a8sre")
 level = 40
 move = ExtResource("8_335y3")
 
-[sub_resource type="Resource" id="Resource_1n7f7"]
+[sub_resource type="Resource" id="Resource_in0vh"]
 script = ExtResource("1_a8sre")
 level = 48
 move = ExtResource("9_mfch0")
@@ -61,7 +61,7 @@ id = "murkrow"
 display_name = "Murkrow"
 dex = 198
 types = Array[ExtResource("4_pyxcl")]([ExtResource("5_1bpgv"), ExtResource("6_8j5kd")])
-learnset = Array[ExtResource("1_a8sre")]([SubResource("Resource_in0vh"), SubResource("Resource_jahtv"), SubResource("Resource_23c57"), SubResource("Resource_xo6w1"), SubResource("Resource_dagpn"), SubResource("Resource_u01xu"), SubResource("Resource_pvi7o"), SubResource("Resource_1n7f7")])
+learnset = Array[ExtResource("1_a8sre")]([SubResource("Resource_sqncx"), SubResource("Resource_4q6ht"), SubResource("Resource_n8xdv"), SubResource("Resource_kn6j0"), SubResource("Resource_lyxm0"), SubResource("Resource_335y3"), SubResource("Resource_mfch0"), SubResource("Resource_in0vh")])
 temperament = ExtResource("12_sqncx")
 genus = "Pokémon Oscuridad"
 pokedex_entry = "Murkrow ha sido temido y repudiado por todos por ser supuestamente fuente de mala suerte. Este Pokémon siente debilidad por todo lo que brilla y resplandece. A las mujeres les roba los anillos."

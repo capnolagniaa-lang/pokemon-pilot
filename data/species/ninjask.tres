@@ -21,63 +21,63 @@
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="14_27j83"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="17_2u5ue"]
 
-[sub_resource type="Resource" id="Resource_tfc4y"]
+[sub_resource type="Resource" id="Resource_2u5ue"]
 script = ExtResource("1_rxtu6")
 move = ExtResource("2_y0k0e")
 
-[sub_resource type="Resource" id="Resource_21tuk"]
+[sub_resource type="Resource" id="Resource_7jvk5"]
 script = ExtResource("1_rxtu6")
 move = ExtResource("3_2u5ue")
 
-[sub_resource type="Resource" id="Resource_v1hkd"]
+[sub_resource type="Resource" id="Resource_7h705"]
 script = ExtResource("1_rxtu6")
 move = ExtResource("4_7jvk5")
 
-[sub_resource type="Resource" id="Resource_rfnvk"]
+[sub_resource type="Resource" id="Resource_mhu2i"]
 script = ExtResource("1_rxtu6")
 move = ExtResource("5_7h705")
 
-[sub_resource type="Resource" id="Resource_4v4wi"]
+[sub_resource type="Resource" id="Resource_cbuip"]
 script = ExtResource("1_rxtu6")
 level = 14
 move = ExtResource("6_mhu2i")
 
-[sub_resource type="Resource" id="Resource_pytnt"]
+[sub_resource type="Resource" id="Resource_8lmjk"]
 script = ExtResource("1_rxtu6")
 level = 19
 move = ExtResource("7_cbuip")
 
-[sub_resource type="Resource" id="Resource_ljotr"]
+[sub_resource type="Resource" id="Resource_nkuab"]
 script = ExtResource("1_rxtu6")
 level = 20
 move = ExtResource("8_8lmjk")
 
-[sub_resource type="Resource" id="Resource_lsb4n"]
+[sub_resource type="Resource" id="Resource_rjj5e"]
 script = ExtResource("1_rxtu6")
 level = 20
 move = ExtResource("9_nkuab")
 
-[sub_resource type="Resource" id="Resource_8sdqe"]
+[sub_resource type="Resource" id="Resource_grvtr"]
 script = ExtResource("1_rxtu6")
 level = 20
 move = ExtResource("10_rjj5e")
 
-[sub_resource type="Resource" id="Resource_gg4jq"]
+[sub_resource type="Resource" id="Resource_6plt1"]
 script = ExtResource("1_rxtu6")
 level = 25
 move = ExtResource("11_grvtr")
 
-[sub_resource type="Resource" id="Resource_oij00"]
+[sub_resource type="Resource" id="Resource_1508a"]
 script = ExtResource("1_rxtu6")
 level = 31
 move = ExtResource("12_6plt1")
 
-[sub_resource type="Resource" id="Resource_c3sdb"]
+[sub_resource type="Resource" id="Resource_27j83"]
 script = ExtResource("1_rxtu6")
 level = 38
 move = ExtResource("13_1508a")
 
-[sub_resource type="Resource" id="Resource_qk10n"]
+[sub_resource type="Resource" id="Resource_tfc4y"]
 script = ExtResource("1_rxtu6")
 level = 45
 move = ExtResource("14_27j83")
@@ -88,7 +88,7 @@ id = "ninjask"
 display_name = "Ninjask"
 dex = 291
 types = Array[ExtResource("4_sop23")]([ExtResource("5_2rhf1"), ExtResource("6_c7x7x")])
-learnset = Array[ExtResource("1_rxtu6")]([SubResource("Resource_tfc4y"), SubResource("Resource_21tuk"), SubResource("Resource_v1hkd"), SubResource("Resource_rfnvk"), SubResource("Resource_4v4wi"), SubResource("Resource_pytnt"), SubResource("Resource_ljotr"), SubResource("Resource_lsb4n"), SubResource("Resource_8sdqe"), SubResource("Resource_gg4jq"), SubResource("Resource_oij00"), SubResource("Resource_c3sdb"), SubResource("Resource_qk10n")])
+learnset = Array[ExtResource("1_rxtu6")]([SubResource("Resource_2u5ue"), SubResource("Resource_7jvk5"), SubResource("Resource_7h705"), SubResource("Resource_mhu2i"), SubResource("Resource_cbuip"), SubResource("Resource_8lmjk"), SubResource("Resource_nkuab"), SubResource("Resource_rjj5e"), SubResource("Resource_grvtr"), SubResource("Resource_6plt1"), SubResource("Resource_1508a"), SubResource("Resource_27j83"), SubResource("Resource_tfc4y")])
 temperament = ExtResource("17_2u5ue")
 genus = "Pokémon Ninja"
 pokedex_entry = "Ninjask se mueve de un lado a otro a tal velocidad que es imposible verlo. Sin embargo, como su zumbido no deja de oírse, se pensó durante mucho tiempo que este Pokémon era invisible."

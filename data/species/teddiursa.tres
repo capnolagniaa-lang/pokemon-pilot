@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="11_o02mt"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_h03rt"]
 
-[sub_resource type="Resource" id="Resource_v7gto"]
+[sub_resource type="Resource" id="Resource_h03rt"]
 script = ExtResource("1_pl4d3")
 move = ExtResource("2_kcuen")
 
-[sub_resource type="Resource" id="Resource_4qqq6"]
+[sub_resource type="Resource" id="Resource_cn5w4"]
 script = ExtResource("1_pl4d3")
 move = ExtResource("3_h03rt")
 
-[sub_resource type="Resource" id="Resource_irt52"]
+[sub_resource type="Resource" id="Resource_0con6"]
 script = ExtResource("1_pl4d3")
 level = 7
 move = ExtResource("4_cn5w4")
 
-[sub_resource type="Resource" id="Resource_6ajw0"]
+[sub_resource type="Resource" id="Resource_acpvb"]
 script = ExtResource("1_pl4d3")
 level = 13
 move = ExtResource("5_0con6")
 
-[sub_resource type="Resource" id="Resource_21e8s"]
+[sub_resource type="Resource" id="Resource_wmag1"]
 script = ExtResource("1_pl4d3")
 level = 19
 move = ExtResource("6_acpvb")
 
-[sub_resource type="Resource" id="Resource_x3nbb"]
+[sub_resource type="Resource" id="Resource_3xanm"]
 script = ExtResource("1_pl4d3")
 level = 25
 move = ExtResource("7_wmag1")
 
-[sub_resource type="Resource" id="Resource_0kmss"]
+[sub_resource type="Resource" id="Resource_pmynf"]
 script = ExtResource("1_pl4d3")
 level = 31
 move = ExtResource("8_3xanm")
 
-[sub_resource type="Resource" id="Resource_a1gqt"]
+[sub_resource type="Resource" id="Resource_tlssm"]
 script = ExtResource("1_pl4d3")
 level = 37
 move = ExtResource("9_pmynf")
 
-[sub_resource type="Resource" id="Resource_u227c"]
+[sub_resource type="Resource" id="Resource_o02mt"]
 script = ExtResource("1_pl4d3")
 level = 43
 move = ExtResource("10_tlssm")
 
-[sub_resource type="Resource" id="Resource_t86su"]
+[sub_resource type="Resource" id="Resource_v7gto"]
 script = ExtResource("1_pl4d3")
 level = 49
 move = ExtResource("11_o02mt")
@@ -71,7 +71,7 @@ id = "teddiursa"
 display_name = "Teddiursa"
 dex = 216
 types = Array[ExtResource("4_lkby5")]([ExtResource("5_mjqjn")])
-learnset = Array[ExtResource("1_pl4d3")]([SubResource("Resource_v7gto"), SubResource("Resource_4qqq6"), SubResource("Resource_irt52"), SubResource("Resource_6ajw0"), SubResource("Resource_21e8s"), SubResource("Resource_x3nbb"), SubResource("Resource_0kmss"), SubResource("Resource_a1gqt"), SubResource("Resource_u227c"), SubResource("Resource_t86su")])
+learnset = Array[ExtResource("1_pl4d3")]([SubResource("Resource_h03rt"), SubResource("Resource_cn5w4"), SubResource("Resource_0con6"), SubResource("Resource_acpvb"), SubResource("Resource_wmag1"), SubResource("Resource_3xanm"), SubResource("Resource_pmynf"), SubResource("Resource_tlssm"), SubResource("Resource_o02mt"), SubResource("Resource_v7gto")])
 temperament = ExtResource("14_h03rt")
 genus = "Pokémon Osito"
 pokedex_entry = "A Teddiursa le encanta chuparse las palmas impregnadas de dulce miel. Este Pokémon fabrica su propia miel mezclando frutos y el polen que recoge Beedrill."

@@ -17,48 +17,48 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_jfhwf"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_yi8v2"]
 
-[sub_resource type="Resource" id="Resource_2afmm"]
+[sub_resource type="Resource" id="Resource_yi8v2"]
 script = ExtResource("1_lmvo8")
 move = ExtResource("2_3puqe")
 
-[sub_resource type="Resource" id="Resource_dxm0h"]
+[sub_resource type="Resource" id="Resource_raadf"]
 script = ExtResource("1_lmvo8")
 move = ExtResource("3_yi8v2")
 
-[sub_resource type="Resource" id="Resource_jbmqn"]
+[sub_resource type="Resource" id="Resource_oquys"]
 script = ExtResource("1_lmvo8")
 move = ExtResource("4_raadf")
 
-[sub_resource type="Resource" id="Resource_gdydn"]
+[sub_resource type="Resource" id="Resource_4lxeq"]
 script = ExtResource("1_lmvo8")
 move = ExtResource("5_oquys")
 
-[sub_resource type="Resource" id="Resource_k8wco"]
+[sub_resource type="Resource" id="Resource_kppwq"]
 script = ExtResource("1_lmvo8")
 level = 15
 move = ExtResource("6_4lxeq")
 
-[sub_resource type="Resource" id="Resource_5i5mp"]
+[sub_resource type="Resource" id="Resource_xte1m"]
 script = ExtResource("1_lmvo8")
 level = 23
 move = ExtResource("7_kppwq")
 
-[sub_resource type="Resource" id="Resource_6t5k8"]
+[sub_resource type="Resource" id="Resource_qsucd"]
 script = ExtResource("1_lmvo8")
 level = 31
 move = ExtResource("8_xte1m")
 
-[sub_resource type="Resource" id="Resource_20ktk"]
+[sub_resource type="Resource" id="Resource_40ft8"]
 script = ExtResource("1_lmvo8")
 level = 41
 move = ExtResource("9_qsucd")
 
-[sub_resource type="Resource" id="Resource_1l61l"]
+[sub_resource type="Resource" id="Resource_jfhwf"]
 script = ExtResource("1_lmvo8")
 level = 51
 move = ExtResource("10_40ft8")
 
-[sub_resource type="Resource" id="Resource_i8hbe"]
+[sub_resource type="Resource" id="Resource_2afmm"]
 script = ExtResource("1_lmvo8")
 level = 61
 move = ExtResource("11_jfhwf")
@@ -69,7 +69,7 @@ id = "meganium"
 display_name = "Meganium"
 dex = 154
 types = Array[ExtResource("4_bhck0")]([ExtResource("5_cad4h")])
-learnset = Array[ExtResource("1_lmvo8")]([SubResource("Resource_2afmm"), SubResource("Resource_dxm0h"), SubResource("Resource_jbmqn"), SubResource("Resource_gdydn"), SubResource("Resource_k8wco"), SubResource("Resource_5i5mp"), SubResource("Resource_6t5k8"), SubResource("Resource_20ktk"), SubResource("Resource_1l61l"), SubResource("Resource_i8hbe")])
+learnset = Array[ExtResource("1_lmvo8")]([SubResource("Resource_yi8v2"), SubResource("Resource_raadf"), SubResource("Resource_oquys"), SubResource("Resource_4lxeq"), SubResource("Resource_kppwq"), SubResource("Resource_xte1m"), SubResource("Resource_qsucd"), SubResource("Resource_40ft8"), SubResource("Resource_jfhwf"), SubResource("Resource_2afmm")])
 temperament = ExtResource("14_yi8v2")
 genus = "Pokémon Hierba"
 pokedex_entry = "La fragancia de la flor de Meganium aplaca y suaviza los ánimos. Al luchar, este Pokémon libera mayor cantidad de esencia para disminuir el ánimo de combate de su oponente."

@@ -15,41 +15,41 @@
 [ext_resource type="Resource" path="res://data/moves/meteorobola.tres" id="9_17ri1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_lbvfy"]
 
-[sub_resource type="Resource" id="Resource_y7uh5"]
+[sub_resource type="Resource" id="Resource_lbvfy"]
 script = ExtResource("1_3w8rh")
 move = ExtResource("2_enjak")
 
-[sub_resource type="Resource" id="Resource_70fcx"]
+[sub_resource type="Resource" id="Resource_bg06m"]
 script = ExtResource("1_3w8rh")
 level = 10
 move = ExtResource("3_lbvfy")
 
-[sub_resource type="Resource" id="Resource_c7jbt"]
+[sub_resource type="Resource" id="Resource_rv6cf"]
 script = ExtResource("1_3w8rh")
 level = 10
 move = ExtResource("4_bg06m")
 
-[sub_resource type="Resource" id="Resource_euorm"]
+[sub_resource type="Resource" id="Resource_sucl8"]
 script = ExtResource("1_3w8rh")
 level = 10
 move = ExtResource("5_rv6cf")
 
-[sub_resource type="Resource" id="Resource_x7gvs"]
+[sub_resource type="Resource" id="Resource_f10ac"]
 script = ExtResource("1_3w8rh")
 level = 20
 move = ExtResource("6_sucl8")
 
-[sub_resource type="Resource" id="Resource_yivv7"]
+[sub_resource type="Resource" id="Resource_lwroa"]
 script = ExtResource("1_3w8rh")
 level = 20
 move = ExtResource("7_f10ac")
 
-[sub_resource type="Resource" id="Resource_j1onm"]
+[sub_resource type="Resource" id="Resource_17ri1"]
 script = ExtResource("1_3w8rh")
 level = 20
 move = ExtResource("8_lwroa")
 
-[sub_resource type="Resource" id="Resource_i40kb"]
+[sub_resource type="Resource" id="Resource_y7uh5"]
 script = ExtResource("1_3w8rh")
 level = 30
 move = ExtResource("9_17ri1")
@@ -60,7 +60,7 @@ id = "castform"
 display_name = "Castform"
 dex = 351
 types = Array[ExtResource("4_hi4e7")]([ExtResource("5_0m7su")])
-learnset = Array[ExtResource("1_3w8rh")]([SubResource("Resource_y7uh5"), SubResource("Resource_70fcx"), SubResource("Resource_c7jbt"), SubResource("Resource_euorm"), SubResource("Resource_x7gvs"), SubResource("Resource_yivv7"), SubResource("Resource_j1onm"), SubResource("Resource_i40kb")])
+learnset = Array[ExtResource("1_3w8rh")]([SubResource("Resource_lbvfy"), SubResource("Resource_bg06m"), SubResource("Resource_rv6cf"), SubResource("Resource_sucl8"), SubResource("Resource_f10ac"), SubResource("Resource_lwroa"), SubResource("Resource_17ri1"), SubResource("Resource_y7uh5")])
 temperament = ExtResource("12_lbvfy")
 genus = "Pokémon Clima"
 pokedex_entry = "La forma de Castform cambia con las variaciones del tiempo. Este Pokémon consiguió aprender a usar el gran poder de la naturaleza para proteger el pequeño cuerpo que tiene."

@@ -12,23 +12,23 @@
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="6_48gfj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="9_ki2wt"]
 
-[sub_resource type="Resource" id="Resource_c4ols"]
+[sub_resource type="Resource" id="Resource_ki2wt"]
 script = ExtResource("1_8kd4n")
 move = ExtResource("2_35bra")
 
-[sub_resource type="Resource" id="Resource_34mlu"]
+[sub_resource type="Resource" id="Resource_5jb43"]
 script = ExtResource("1_8kd4n")
 move = ExtResource("3_ki2wt")
 
-[sub_resource type="Resource" id="Resource_u7kq8"]
+[sub_resource type="Resource" id="Resource_xq8bj"]
 script = ExtResource("1_8kd4n")
 move = ExtResource("4_5jb43")
 
-[sub_resource type="Resource" id="Resource_b8k8s"]
+[sub_resource type="Resource" id="Resource_48gfj"]
 script = ExtResource("1_8kd4n")
 move = ExtResource("5_xq8bj")
 
-[sub_resource type="Resource" id="Resource_x3i8b"]
+[sub_resource type="Resource" id="Resource_c4ols"]
 script = ExtResource("1_8kd4n")
 level = 45
 move = ExtResource("6_48gfj")
@@ -39,7 +39,7 @@ id = "ninetales"
 display_name = "Ninetales"
 dex = 38
 types = Array[ExtResource("4_o7frg")]([ExtResource("5_t7av7")])
-learnset = Array[ExtResource("1_8kd4n")]([SubResource("Resource_c4ols"), SubResource("Resource_34mlu"), SubResource("Resource_u7kq8"), SubResource("Resource_b8k8s"), SubResource("Resource_x3i8b")])
+learnset = Array[ExtResource("1_8kd4n")]([SubResource("Resource_ki2wt"), SubResource("Resource_5jb43"), SubResource("Resource_xq8bj"), SubResource("Resource_48gfj"), SubResource("Resource_c4ols")])
 temperament = ExtResource("9_ki2wt")
 genus = "Pokémon Zorro"
 pokedex_entry = "Ninetales emite una siniestra luz a través de los brillantes ojos rojos que tiene, para conseguir controlar del todo la mente de su rival. Dicen que este Pokémon llega a vivir mil años."

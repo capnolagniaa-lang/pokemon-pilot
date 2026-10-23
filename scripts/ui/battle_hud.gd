@@ -5,7 +5,8 @@ const KIND := {MoveData.Kind.PROJECTILE: "Disparo", MoveData.Kind.DASH: "Embesti
 	MoveData.Kind.SHIELD: "Defensa", MoveData.Kind.MELEE: "Golpe", MoveData.Kind.ZONE: "Zona", MoveData.Kind.CHANNEL: "Canalizado",
 	MoveData.Kind.LUNGE: "Embestida", MoveData.Kind.WHIP: "Látigo", MoveData.Kind.SELF_BUFF: "Defensa"}
 const ARCHETYPES := {"bruiser": "Bruiser", "tanque": "Tanque", "control": "Control", "velocista": "Velocista",
-	"hostigador": "Hostigador", "desgaste": "Desgaste", "espaciador": "Espaciador", "asesino": "Asesino"}
+	"hostigador": "Hostigador", "desgaste": "Desgaste", "espaciador": "Espaciador", "asesino": "Asesino",
+	"caotico": "Caótico", "perseguidor": "Perseguidor", "adaptativo": "Adaptativo"}
 
 var font: Font
 var _message := ""

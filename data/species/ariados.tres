@@ -18,48 +18,48 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_fvlvu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_wuv8b"]
 
-[sub_resource type="Resource" id="Resource_1mcwk"]
+[sub_resource type="Resource" id="Resource_wuv8b"]
 script = ExtResource("1_b70tb")
 move = ExtResource("2_5vsto")
 
-[sub_resource type="Resource" id="Resource_iv8xi"]
+[sub_resource type="Resource" id="Resource_qk2a3"]
 script = ExtResource("1_b70tb")
 move = ExtResource("3_wuv8b")
 
-[sub_resource type="Resource" id="Resource_20l0u"]
+[sub_resource type="Resource" id="Resource_ublsq"]
 script = ExtResource("1_b70tb")
 move = ExtResource("4_qk2a3")
 
-[sub_resource type="Resource" id="Resource_v3rim"]
+[sub_resource type="Resource" id="Resource_4mrr5"]
 script = ExtResource("1_b70tb")
 move = ExtResource("5_ublsq")
 
-[sub_resource type="Resource" id="Resource_hyhiq"]
+[sub_resource type="Resource" id="Resource_rcups"]
 script = ExtResource("1_b70tb")
 level = 17
 move = ExtResource("6_4mrr5")
 
-[sub_resource type="Resource" id="Resource_xoa8r"]
+[sub_resource type="Resource" id="Resource_xxyt4"]
 script = ExtResource("1_b70tb")
 level = 25
 move = ExtResource("7_rcups")
 
-[sub_resource type="Resource" id="Resource_uuymc"]
+[sub_resource type="Resource" id="Resource_qha1m"]
 script = ExtResource("1_b70tb")
 level = 34
 move = ExtResource("8_xxyt4")
 
-[sub_resource type="Resource" id="Resource_5yejt"]
+[sub_resource type="Resource" id="Resource_86pj7"]
 script = ExtResource("1_b70tb")
 level = 43
 move = ExtResource("9_qha1m")
 
-[sub_resource type="Resource" id="Resource_y3m5y"]
+[sub_resource type="Resource" id="Resource_fvlvu"]
 script = ExtResource("1_b70tb")
 level = 53
 move = ExtResource("10_86pj7")
 
-[sub_resource type="Resource" id="Resource_fqre4"]
+[sub_resource type="Resource" id="Resource_1mcwk"]
 script = ExtResource("1_b70tb")
 level = 63
 move = ExtResource("11_fvlvu")
@@ -70,7 +70,7 @@ id = "ariados"
 display_name = "Ariados"
 dex = 168
 types = Array[ExtResource("4_xbo6p")]([ExtResource("5_s1pay"), ExtResource("6_l4htn")])
-learnset = Array[ExtResource("1_b70tb")]([SubResource("Resource_1mcwk"), SubResource("Resource_iv8xi"), SubResource("Resource_20l0u"), SubResource("Resource_v3rim"), SubResource("Resource_hyhiq"), SubResource("Resource_xoa8r"), SubResource("Resource_uuymc"), SubResource("Resource_5yejt"), SubResource("Resource_y3m5y"), SubResource("Resource_fqre4")])
+learnset = Array[ExtResource("1_b70tb")]([SubResource("Resource_wuv8b"), SubResource("Resource_qk2a3"), SubResource("Resource_ublsq"), SubResource("Resource_4mrr5"), SubResource("Resource_rcups"), SubResource("Resource_xxyt4"), SubResource("Resource_qha1m"), SubResource("Resource_86pj7"), SubResource("Resource_fvlvu"), SubResource("Resource_1mcwk")])
 temperament = ExtResource("14_wuv8b")
 genus = "Pokémon Pata Larga"
 pokedex_entry = "Ariados tiene unas patas con forma de garfio que le permiten correr por techos y superficies verticales. Este Pokémon oprime al rival con una tela de araña fina y resistente."

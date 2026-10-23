@@ -18,56 +18,56 @@
 [ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="12_mam6k"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_5epg6"]
 
-[sub_resource type="Resource" id="Resource_nd43g"]
+[sub_resource type="Resource" id="Resource_5epg6"]
 script = ExtResource("1_acyfm")
 move = ExtResource("2_jx8h7")
 
-[sub_resource type="Resource" id="Resource_4fhx6"]
+[sub_resource type="Resource" id="Resource_m87d0"]
 script = ExtResource("1_acyfm")
 level = 6
 move = ExtResource("3_5epg6")
 
-[sub_resource type="Resource" id="Resource_x51su"]
+[sub_resource type="Resource" id="Resource_xcqvl"]
 script = ExtResource("1_acyfm")
 level = 9
 move = ExtResource("4_m87d0")
 
-[sub_resource type="Resource" id="Resource_i548q"]
+[sub_resource type="Resource" id="Resource_qujjk"]
 script = ExtResource("1_acyfm")
 level = 14
 move = ExtResource("5_xcqvl")
 
-[sub_resource type="Resource" id="Resource_ky0yr"]
+[sub_resource type="Resource" id="Resource_cl8jb"]
 script = ExtResource("1_acyfm")
 level = 17
 move = ExtResource("6_qujjk")
 
-[sub_resource type="Resource" id="Resource_1qwf4"]
+[sub_resource type="Resource" id="Resource_ows4e"]
 script = ExtResource("1_acyfm")
 level = 23
 move = ExtResource("7_cl8jb")
 
-[sub_resource type="Resource" id="Resource_eg0iw"]
+[sub_resource type="Resource" id="Resource_s6r2i"]
 script = ExtResource("1_acyfm")
 level = 28
 move = ExtResource("8_ows4e")
 
-[sub_resource type="Resource" id="Resource_3aqpl"]
+[sub_resource type="Resource" id="Resource_j1n8j"]
 script = ExtResource("1_acyfm")
 level = 34
 move = ExtResource("9_s6r2i")
 
-[sub_resource type="Resource" id="Resource_fqcwv"]
+[sub_resource type="Resource" id="Resource_f7q2l"]
 script = ExtResource("1_acyfm")
 level = 34
 move = ExtResource("10_j1n8j")
 
-[sub_resource type="Resource" id="Resource_q3lbk"]
+[sub_resource type="Resource" id="Resource_mam6k"]
 script = ExtResource("1_acyfm")
 level = 34
 move = ExtResource("11_f7q2l")
 
-[sub_resource type="Resource" id="Resource_sfw6e"]
+[sub_resource type="Resource" id="Resource_nd43g"]
 script = ExtResource("1_acyfm")
 level = 39
 move = ExtResource("12_mam6k")
@@ -78,7 +78,7 @@ id = "gulpin"
 display_name = "Gulpin"
 dex = 316
 types = Array[ExtResource("4_475rh")]([ExtResource("5_41dqv")])
-learnset = Array[ExtResource("1_acyfm")]([SubResource("Resource_nd43g"), SubResource("Resource_4fhx6"), SubResource("Resource_x51su"), SubResource("Resource_i548q"), SubResource("Resource_ky0yr"), SubResource("Resource_1qwf4"), SubResource("Resource_eg0iw"), SubResource("Resource_3aqpl"), SubResource("Resource_fqcwv"), SubResource("Resource_q3lbk"), SubResource("Resource_sfw6e")])
+learnset = Array[ExtResource("1_acyfm")]([SubResource("Resource_5epg6"), SubResource("Resource_m87d0"), SubResource("Resource_xcqvl"), SubResource("Resource_qujjk"), SubResource("Resource_cl8jb"), SubResource("Resource_ows4e"), SubResource("Resource_s6r2i"), SubResource("Resource_j1n8j"), SubResource("Resource_f7q2l"), SubResource("Resource_mam6k"), SubResource("Resource_nd43g")])
 temperament = ExtResource("15_5epg6")
 genus = "Pokémon Estómago"
 pokedex_entry = "Casi la totalidad del cuerpo de Gulpin está compuesto por el estómago. Por eso, puede tragarse todo lo que tenga su tamaño. En el interior del estómago tiene un fluido capaz de corroerlo todo."

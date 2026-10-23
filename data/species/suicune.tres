@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_ielky"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_5o4bi"]
 
-[sub_resource type="Resource" id="Resource_yls5a"]
+[sub_resource type="Resource" id="Resource_5o4bi"]
 script = ExtResource("1_b1v8c")
 move = ExtResource("2_bhh3g")
 
-[sub_resource type="Resource" id="Resource_gcrta"]
+[sub_resource type="Resource" id="Resource_n1rbp"]
 script = ExtResource("1_b1v8c")
 move = ExtResource("3_5o4bi")
 
-[sub_resource type="Resource" id="Resource_3j8x8"]
+[sub_resource type="Resource" id="Resource_86qq6"]
 script = ExtResource("1_b1v8c")
 level = 11
 move = ExtResource("4_n1rbp")
 
-[sub_resource type="Resource" id="Resource_m7hxq"]
+[sub_resource type="Resource" id="Resource_dqaad"]
 script = ExtResource("1_b1v8c")
 level = 21
 move = ExtResource("5_86qq6")
 
-[sub_resource type="Resource" id="Resource_yygki"]
+[sub_resource type="Resource" id="Resource_2kixy"]
 script = ExtResource("1_b1v8c")
 level = 31
 move = ExtResource("6_dqaad")
 
-[sub_resource type="Resource" id="Resource_0u5yc"]
+[sub_resource type="Resource" id="Resource_ihhyt"]
 script = ExtResource("1_b1v8c")
 level = 41
 move = ExtResource("7_2kixy")
 
-[sub_resource type="Resource" id="Resource_3hbmf"]
+[sub_resource type="Resource" id="Resource_22qio"]
 script = ExtResource("1_b1v8c")
 level = 51
 move = ExtResource("8_ihhyt")
 
-[sub_resource type="Resource" id="Resource_p3iw2"]
+[sub_resource type="Resource" id="Resource_bef1k"]
 script = ExtResource("1_b1v8c")
 level = 61
 move = ExtResource("9_22qio")
 
-[sub_resource type="Resource" id="Resource_q8enr"]
+[sub_resource type="Resource" id="Resource_ielky"]
 script = ExtResource("1_b1v8c")
 level = 71
 move = ExtResource("10_bef1k")
 
-[sub_resource type="Resource" id="Resource_hqjye"]
+[sub_resource type="Resource" id="Resource_yls5a"]
 script = ExtResource("1_b1v8c")
 level = 81
 move = ExtResource("11_ielky")
@@ -71,7 +71,7 @@ id = "suicune"
 display_name = "Suicune"
 dex = 245
 types = Array[ExtResource("4_doie2")]([ExtResource("5_g3mk5")])
-learnset = Array[ExtResource("1_b1v8c")]([SubResource("Resource_yls5a"), SubResource("Resource_gcrta"), SubResource("Resource_3j8x8"), SubResource("Resource_m7hxq"), SubResource("Resource_yygki"), SubResource("Resource_0u5yc"), SubResource("Resource_3hbmf"), SubResource("Resource_p3iw2"), SubResource("Resource_q8enr"), SubResource("Resource_hqjye")])
+learnset = Array[ExtResource("1_b1v8c")]([SubResource("Resource_5o4bi"), SubResource("Resource_n1rbp"), SubResource("Resource_86qq6"), SubResource("Resource_dqaad"), SubResource("Resource_2kixy"), SubResource("Resource_ihhyt"), SubResource("Resource_22qio"), SubResource("Resource_bef1k"), SubResource("Resource_ielky"), SubResource("Resource_yls5a")])
 temperament = ExtResource("14_5o4bi")
 genus = "Pokémon Aurora"
 pokedex_entry = "Suicune emana la pureza de los manantiales. Suele corretear por el campo con gran elegancia. Este Pokémon tiene el poder de purificar el agua contaminada."

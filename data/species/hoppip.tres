@@ -18,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="11_s5fad"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_lnrit"]
 
-[sub_resource type="Resource" id="Resource_4e0ms"]
+[sub_resource type="Resource" id="Resource_lnrit"]
 script = ExtResource("1_osmj4")
 move = ExtResource("2_26wax")
 
-[sub_resource type="Resource" id="Resource_p24nc"]
+[sub_resource type="Resource" id="Resource_bas0a"]
 script = ExtResource("1_osmj4")
 level = 5
 move = ExtResource("3_lnrit")
 
-[sub_resource type="Resource" id="Resource_4qg0y"]
+[sub_resource type="Resource" id="Resource_sjdjp"]
 script = ExtResource("1_osmj4")
 level = 5
 move = ExtResource("4_bas0a")
 
-[sub_resource type="Resource" id="Resource_6b22c"]
+[sub_resource type="Resource" id="Resource_lu1vq"]
 script = ExtResource("1_osmj4")
 level = 10
 move = ExtResource("5_sjdjp")
 
-[sub_resource type="Resource" id="Resource_mo47h"]
+[sub_resource type="Resource" id="Resource_5hin5"]
 script = ExtResource("1_osmj4")
 level = 13
 move = ExtResource("6_lu1vq")
 
-[sub_resource type="Resource" id="Resource_2imy4"]
+[sub_resource type="Resource" id="Resource_fygf8"]
 script = ExtResource("1_osmj4")
 level = 15
 move = ExtResource("7_5hin5")
 
-[sub_resource type="Resource" id="Resource_48pxq"]
+[sub_resource type="Resource" id="Resource_i3v6f"]
 script = ExtResource("1_osmj4")
 level = 17
 move = ExtResource("8_fygf8")
 
-[sub_resource type="Resource" id="Resource_rmtmh"]
+[sub_resource type="Resource" id="Resource_ius75"]
 script = ExtResource("1_osmj4")
 level = 20
 move = ExtResource("9_i3v6f")
 
-[sub_resource type="Resource" id="Resource_g1uiu"]
+[sub_resource type="Resource" id="Resource_s5fad"]
 script = ExtResource("1_osmj4")
 level = 25
 move = ExtResource("10_ius75")
 
-[sub_resource type="Resource" id="Resource_geh07"]
+[sub_resource type="Resource" id="Resource_4e0ms"]
 script = ExtResource("1_osmj4")
 level = 30
 move = ExtResource("11_s5fad")
@@ -73,7 +73,7 @@ id = "hoppip"
 display_name = "Hoppip"
 dex = 187
 types = Array[ExtResource("4_cp1l1")]([ExtResource("5_48476"), ExtResource("6_3tbkm")])
-learnset = Array[ExtResource("1_osmj4")]([SubResource("Resource_4e0ms"), SubResource("Resource_p24nc"), SubResource("Resource_4qg0y"), SubResource("Resource_6b22c"), SubResource("Resource_mo47h"), SubResource("Resource_2imy4"), SubResource("Resource_48pxq"), SubResource("Resource_rmtmh"), SubResource("Resource_g1uiu"), SubResource("Resource_geh07")])
+learnset = Array[ExtResource("1_osmj4")]([SubResource("Resource_lnrit"), SubResource("Resource_bas0a"), SubResource("Resource_sjdjp"), SubResource("Resource_lu1vq"), SubResource("Resource_5hin5"), SubResource("Resource_fygf8"), SubResource("Resource_i3v6f"), SubResource("Resource_ius75"), SubResource("Resource_s5fad"), SubResource("Resource_4e0ms")])
 temperament = ExtResource("14_lnrit")
 genus = "Pokémon Algadón"
 pokedex_entry = "Este Pokémon flota en el aire y se deja llevar. Cuando percibe que el viento va a cambiar a fuerte, Hoppip entrelaza sus hojas con otros Hoppip para hacer resistencia y evitar salir volando por la fuerza de la corriente."

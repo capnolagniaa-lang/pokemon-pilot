@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/perforador.tres" id="11_cx0db"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_xlca8"]
 
-[sub_resource type="Resource" id="Resource_oge12"]
+[sub_resource type="Resource" id="Resource_xlca8"]
 script = ExtResource("1_pbkpd")
 move = ExtResource("2_o2wq8")
 
-[sub_resource type="Resource" id="Resource_latf7"]
+[sub_resource type="Resource" id="Resource_yr0ud"]
 script = ExtResource("1_pbkpd")
 move = ExtResource("3_xlca8")
 
-[sub_resource type="Resource" id="Resource_lqtp6"]
+[sub_resource type="Resource" id="Resource_4lvo8"]
 script = ExtResource("1_pbkpd")
 level = 8
 move = ExtResource("4_yr0ud")
 
-[sub_resource type="Resource" id="Resource_tk7cg"]
+[sub_resource type="Resource" id="Resource_46xqi"]
 script = ExtResource("1_pbkpd")
 level = 12
 move = ExtResource("5_4lvo8")
 
-[sub_resource type="Resource" id="Resource_ge2sh"]
+[sub_resource type="Resource" id="Resource_cwvgf"]
 script = ExtResource("1_pbkpd")
 level = 18
 move = ExtResource("6_46xqi")
 
-[sub_resource type="Resource" id="Resource_4qebg"]
+[sub_resource type="Resource" id="Resource_1s2d5"]
 script = ExtResource("1_pbkpd")
 level = 22
 move = ExtResource("7_cwvgf")
 
-[sub_resource type="Resource" id="Resource_nn6hb"]
+[sub_resource type="Resource" id="Resource_jo7jj"]
 script = ExtResource("1_pbkpd")
 level = 26
 move = ExtResource("8_1s2d5")
 
-[sub_resource type="Resource" id="Resource_tkahf"]
+[sub_resource type="Resource" id="Resource_mhc0e"]
 script = ExtResource("1_pbkpd")
 level = 34
 move = ExtResource("9_jo7jj")
 
-[sub_resource type="Resource" id="Resource_11tr0"]
+[sub_resource type="Resource" id="Resource_cx0db"]
 script = ExtResource("1_pbkpd")
 level = 43
 move = ExtResource("10_mhc0e")
 
-[sub_resource type="Resource" id="Resource_mitor"]
+[sub_resource type="Resource" id="Resource_oge12"]
 script = ExtResource("1_pbkpd")
 level = 53
 move = ExtResource("11_cx0db")
@@ -71,7 +71,7 @@ id = "nidorino"
 display_name = "Nidorino"
 dex = 33
 types = Array[ExtResource("4_dw5yg")]([ExtResource("5_4n3en")])
-learnset = Array[ExtResource("1_pbkpd")]([SubResource("Resource_oge12"), SubResource("Resource_latf7"), SubResource("Resource_lqtp6"), SubResource("Resource_tk7cg"), SubResource("Resource_ge2sh"), SubResource("Resource_4qebg"), SubResource("Resource_nn6hb"), SubResource("Resource_tkahf"), SubResource("Resource_11tr0"), SubResource("Resource_mitor")])
+learnset = Array[ExtResource("1_pbkpd")]([SubResource("Resource_xlca8"), SubResource("Resource_yr0ud"), SubResource("Resource_4lvo8"), SubResource("Resource_46xqi"), SubResource("Resource_cwvgf"), SubResource("Resource_1s2d5"), SubResource("Resource_jo7jj"), SubResource("Resource_mhc0e"), SubResource("Resource_cx0db"), SubResource("Resource_oge12")])
 temperament = ExtResource("14_xlca8")
 genus = "Pokémon Pin Veneno"
 pokedex_entry = "Nidorino tiene un cuerno de dureza superior a la del diamante. Si siente una presencia hostil, se le erizan las púas del lomo enseguida y carga contra el enemigo con todas sus fuerzas."

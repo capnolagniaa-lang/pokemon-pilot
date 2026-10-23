@@ -1,36 +1,41 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/psyduck/kit.tres" id="0_kitv3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_a2e4d"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_sihyx"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_gumxw"]
+[ext_resource type="Resource" path="res://data/kits/psyduck/pistola_agua_psyduck.tres" id="3_3h1xc"]
 [ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_sihyx"]
+[ext_resource type="Resource" path="res://data/kits/psyduck/aranazo_psyduck.tres" id="4_i6lai"]
 [ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_t0c8y"]
+[ext_resource type="Resource" path="res://data/kits/psyduck/confusion_kit.tres" id="5_bsjxf"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_gniud"]
+[ext_resource type="Resource" path="res://data/kits/psyduck/anulacion_kit.tres" id="6_5x4vy"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="6_t0c8y"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_wwmc1"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_llbsy"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_kvyim"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="9_t0c8y"]
 
-[sub_resource type="Resource" id="Resource_sihyx"]
+[sub_resource type="Resource" id="Resource_c724n"]
 script = ExtResource("1_sihyx")
-move = ExtResource("2_gumxw")
+move = ExtResource("3_3h1xc")
 
-[sub_resource type="Resource" id="Resource_t0c8y"]
+[sub_resource type="Resource" id="Resource_4wmmo"]
 script = ExtResource("1_sihyx")
-move = ExtResource("3_sihyx")
+move = ExtResource("4_i6lai")
 
-[sub_resource type="Resource" id="Resource_gniud"]
+[sub_resource type="Resource" id="Resource_jx6qk"]
 script = ExtResource("1_sihyx")
 level = 3
-move = ExtResource("4_t0c8y")
+move = ExtResource("5_bsjxf")
 
-[sub_resource type="Resource" id="Resource_wwmc1"]
+[sub_resource type="Resource" id="Resource_lw2pu"]
 script = ExtResource("1_sihyx")
 level = 5
-move = ExtResource("5_gniud")
+move = ExtResource("6_5x4vy")
 
-[sub_resource type="Resource" id="Resource_llbsy"]
+[sub_resource type="Resource" id="Resource_j8hod"]
 script = ExtResource("1_sihyx")
 level = 50
 move = ExtResource("6_t0c8y")
@@ -42,7 +47,8 @@ display_name = "Psyduck"
 dex = 54
 types = Array[ExtResource("7_llbsy")]([ExtResource("8_kvyim")])
 moves = Array[ExtResource("1_a2e4d")]([ExtResource("2_gumxw"), ExtResource("3_sihyx"), ExtResource("4_t0c8y"), ExtResource("5_gniud")])
-learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_sihyx"), SubResource("Resource_t0c8y"), SubResource("Resource_gniud"), SubResource("Resource_wwmc1"), SubResource("Resource_llbsy")])
+kit = ExtResource("0_kitv3")
+learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_c724n"), SubResource("Resource_4wmmo"), SubResource("Resource_jx6qk"), SubResource("Resource_lw2pu"), SubResource("Resource_j8hod")])
 temperament = ExtResource("9_t0c8y")
 genus = "Pokémon Pato"
 pokedex_entry = "Psyduck tiene un extraño poder, que consiste en generar ondas cerebrales iguales a las que se generan cuando se está dormido. Este descubrimiento levantó una gran polémica entre eruditos."

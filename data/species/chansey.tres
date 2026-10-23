@@ -19,60 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_ygcvj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_gn8rm"]
 
-[sub_resource type="Resource" id="Resource_xr8yp"]
+[sub_resource type="Resource" id="Resource_gn8rm"]
 script = ExtResource("1_5k2ei")
 move = ExtResource("2_mbcfh")
 
-[sub_resource type="Resource" id="Resource_m2we5"]
+[sub_resource type="Resource" id="Resource_swu5h"]
 script = ExtResource("1_5k2ei")
 move = ExtResource("3_gn8rm")
 
-[sub_resource type="Resource" id="Resource_8frqo"]
+[sub_resource type="Resource" id="Resource_i4bvm"]
 script = ExtResource("1_5k2ei")
 level = 5
 move = ExtResource("4_swu5h")
 
-[sub_resource type="Resource" id="Resource_ikty6"]
+[sub_resource type="Resource" id="Resource_4gr4e"]
 script = ExtResource("1_5k2ei")
 level = 9
 move = ExtResource("5_i4bvm")
 
-[sub_resource type="Resource" id="Resource_lnn2j"]
+[sub_resource type="Resource" id="Resource_l04y5"]
 script = ExtResource("1_5k2ei")
 level = 13
 move = ExtResource("6_4gr4e")
 
-[sub_resource type="Resource" id="Resource_b6ih8"]
+[sub_resource type="Resource" id="Resource_m4k5j"]
 script = ExtResource("1_5k2ei")
 level = 17
 move = ExtResource("7_l04y5")
 
-[sub_resource type="Resource" id="Resource_n5vk6"]
+[sub_resource type="Resource" id="Resource_8ynsf"]
 script = ExtResource("1_5k2ei")
 level = 23
 move = ExtResource("8_m4k5j")
 
-[sub_resource type="Resource" id="Resource_3xpwn"]
+[sub_resource type="Resource" id="Resource_4iate"]
 script = ExtResource("1_5k2ei")
 level = 29
 move = ExtResource("9_8ynsf")
 
-[sub_resource type="Resource" id="Resource_020t6"]
+[sub_resource type="Resource" id="Resource_gavni"]
 script = ExtResource("1_5k2ei")
 level = 35
 move = ExtResource("10_4iate")
 
-[sub_resource type="Resource" id="Resource_6h6ct"]
+[sub_resource type="Resource" id="Resource_5sd6y"]
 script = ExtResource("1_5k2ei")
 level = 41
 move = ExtResource("11_gavni")
 
-[sub_resource type="Resource" id="Resource_5mxuv"]
+[sub_resource type="Resource" id="Resource_ygcvj"]
 script = ExtResource("1_5k2ei")
 level = 49
 move = ExtResource("12_5sd6y")
 
-[sub_resource type="Resource" id="Resource_xc27h"]
+[sub_resource type="Resource" id="Resource_xr8yp"]
 script = ExtResource("1_5k2ei")
 level = 57
 move = ExtResource("13_ygcvj")
@@ -83,7 +83,7 @@ id = "chansey"
 display_name = "Chansey"
 dex = 113
 types = Array[ExtResource("4_idjla")]([ExtResource("5_7n3sc")])
-learnset = Array[ExtResource("1_5k2ei")]([SubResource("Resource_xr8yp"), SubResource("Resource_m2we5"), SubResource("Resource_8frqo"), SubResource("Resource_ikty6"), SubResource("Resource_lnn2j"), SubResource("Resource_b6ih8"), SubResource("Resource_n5vk6"), SubResource("Resource_3xpwn"), SubResource("Resource_020t6"), SubResource("Resource_6h6ct"), SubResource("Resource_5mxuv"), SubResource("Resource_xc27h")])
+learnset = Array[ExtResource("1_5k2ei")]([SubResource("Resource_gn8rm"), SubResource("Resource_swu5h"), SubResource("Resource_i4bvm"), SubResource("Resource_4gr4e"), SubResource("Resource_l04y5"), SubResource("Resource_m4k5j"), SubResource("Resource_8ynsf"), SubResource("Resource_4iate"), SubResource("Resource_gavni"), SubResource("Resource_5sd6y"), SubResource("Resource_ygcvj"), SubResource("Resource_xr8yp")])
 temperament = ExtResource("16_gn8rm")
 genus = "Pokémon Huevo"
 pokedex_entry = "Chansey pone a diario huevos con un valor nutritivo altísimo. Están tan ricos que hasta quien no tenga hambre se los comerá en un abrir y cerrar de ojos."

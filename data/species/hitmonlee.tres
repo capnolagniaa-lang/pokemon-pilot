@@ -20,65 +20,65 @@
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="14_t47xt"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_yctpg"]
 
-[sub_resource type="Resource" id="Resource_36ypj"]
+[sub_resource type="Resource" id="Resource_yctpg"]
 script = ExtResource("1_sx67l")
 move = ExtResource("2_2bamy")
 
-[sub_resource type="Resource" id="Resource_dglvr"]
+[sub_resource type="Resource" id="Resource_bh0hl"]
 script = ExtResource("1_sx67l")
 move = ExtResource("3_yctpg")
 
-[sub_resource type="Resource" id="Resource_8528e"]
+[sub_resource type="Resource" id="Resource_cmw3u"]
 script = ExtResource("1_sx67l")
 level = 6
 move = ExtResource("4_bh0hl")
 
-[sub_resource type="Resource" id="Resource_q1ivv"]
+[sub_resource type="Resource" id="Resource_wjtxr"]
 script = ExtResource("1_sx67l")
 level = 11
 move = ExtResource("5_cmw3u")
 
-[sub_resource type="Resource" id="Resource_k420t"]
+[sub_resource type="Resource" id="Resource_eiix2"]
 script = ExtResource("1_sx67l")
 level = 16
 move = ExtResource("6_wjtxr")
 
-[sub_resource type="Resource" id="Resource_t2daf"]
+[sub_resource type="Resource" id="Resource_ks006"]
 script = ExtResource("1_sx67l")
 level = 20
 move = ExtResource("7_eiix2")
 
-[sub_resource type="Resource" id="Resource_024go"]
+[sub_resource type="Resource" id="Resource_uu4mo"]
 script = ExtResource("1_sx67l")
 level = 21
 move = ExtResource("8_ks006")
 
-[sub_resource type="Resource" id="Resource_adkpo"]
+[sub_resource type="Resource" id="Resource_7bpyw"]
 script = ExtResource("1_sx67l")
 level = 26
 move = ExtResource("9_uu4mo")
 
-[sub_resource type="Resource" id="Resource_q7bxx"]
+[sub_resource type="Resource" id="Resource_t4lsq"]
 script = ExtResource("1_sx67l")
 level = 31
 move = ExtResource("10_7bpyw")
 
-[sub_resource type="Resource" id="Resource_gqgxg"]
+[sub_resource type="Resource" id="Resource_8dqi1"]
 script = ExtResource("1_sx67l")
 level = 36
 move = ExtResource("11_t4lsq")
 
-[sub_resource type="Resource" id="Resource_r256a"]
+[sub_resource type="Resource" id="Resource_ct7ly"]
 script = ExtResource("1_sx67l")
 level = 41
 move = ExtResource("12_8dqi1")
 
-[sub_resource type="Resource" id="Resource_wgcf7"]
+[sub_resource type="Resource" id="Resource_t47xt"]
 script = ExtResource("1_sx67l")
 level = 46
 move = ExtResource("13_ct7ly")
 
-[sub_resource type="Resource" id="Resource_bkayv"]
+[sub_resource type="Resource" id="Resource_36ypj"]
 script = ExtResource("1_sx67l")
 level = 51
 move = ExtResource("14_t47xt")
@@ -89,7 +89,7 @@ id = "hitmonlee"
 display_name = "Hitmonlee"
 dex = 106
 types = Array[ExtResource("4_pirfd")]([ExtResource("5_ogsvy")])
-learnset = Array[ExtResource("1_sx67l")]([SubResource("Resource_36ypj"), SubResource("Resource_dglvr"), SubResource("Resource_8528e"), SubResource("Resource_q1ivv"), SubResource("Resource_k420t"), SubResource("Resource_t2daf"), SubResource("Resource_024go"), SubResource("Resource_adkpo"), SubResource("Resource_q7bxx"), SubResource("Resource_gqgxg"), SubResource("Resource_r256a"), SubResource("Resource_wgcf7"), SubResource("Resource_bkayv")])
+learnset = Array[ExtResource("1_sx67l")]([SubResource("Resource_yctpg"), SubResource("Resource_bh0hl"), SubResource("Resource_cmw3u"), SubResource("Resource_wjtxr"), SubResource("Resource_eiix2"), SubResource("Resource_ks006"), SubResource("Resource_uu4mo"), SubResource("Resource_7bpyw"), SubResource("Resource_t4lsq"), SubResource("Resource_8dqi1"), SubResource("Resource_ct7ly"), SubResource("Resource_t47xt"), SubResource("Resource_36ypj")])
 temperament = ExtResource("17_yctpg")
 genus = "Pokémon Patada"
 pokedex_entry = "Hitmonlee tiene la facilidad de encoger y estirar las patas. Con extremidades tan flexibles, propina unas patadas demoledoras. Tras la lucha, se masajea las piernas y relaja los músculos para descansar."

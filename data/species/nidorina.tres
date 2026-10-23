@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_3urld"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_48x00"]
 
-[sub_resource type="Resource" id="Resource_cumji"]
+[sub_resource type="Resource" id="Resource_48x00"]
 script = ExtResource("1_xrdab")
 move = ExtResource("2_wudtu")
 
-[sub_resource type="Resource" id="Resource_f6wkt"]
+[sub_resource type="Resource" id="Resource_ghury"]
 script = ExtResource("1_xrdab")
 move = ExtResource("3_48x00")
 
-[sub_resource type="Resource" id="Resource_6ald3"]
+[sub_resource type="Resource" id="Resource_kj7tx"]
 script = ExtResource("1_xrdab")
 level = 8
 move = ExtResource("4_ghury")
 
-[sub_resource type="Resource" id="Resource_sbvr5"]
+[sub_resource type="Resource" id="Resource_j3qj8"]
 script = ExtResource("1_xrdab")
 level = 12
 move = ExtResource("5_kj7tx")
 
-[sub_resource type="Resource" id="Resource_u8slw"]
+[sub_resource type="Resource" id="Resource_db8i6"]
 script = ExtResource("1_xrdab")
 level = 18
 move = ExtResource("6_j3qj8")
 
-[sub_resource type="Resource" id="Resource_fte80"]
+[sub_resource type="Resource" id="Resource_isebw"]
 script = ExtResource("1_xrdab")
 level = 22
 move = ExtResource("7_db8i6")
 
-[sub_resource type="Resource" id="Resource_a5qlh"]
+[sub_resource type="Resource" id="Resource_kkqn3"]
 script = ExtResource("1_xrdab")
 level = 26
 move = ExtResource("8_isebw")
 
-[sub_resource type="Resource" id="Resource_07bk2"]
+[sub_resource type="Resource" id="Resource_6ux1v"]
 script = ExtResource("1_xrdab")
 level = 34
 move = ExtResource("9_kkqn3")
 
-[sub_resource type="Resource" id="Resource_7vdmq"]
+[sub_resource type="Resource" id="Resource_3urld"]
 script = ExtResource("1_xrdab")
 level = 43
 move = ExtResource("10_6ux1v")
 
-[sub_resource type="Resource" id="Resource_eqgm6"]
+[sub_resource type="Resource" id="Resource_cumji"]
 script = ExtResource("1_xrdab")
 level = 53
 move = ExtResource("11_3urld")
@@ -71,7 +71,7 @@ id = "nidorina"
 display_name = "Nidorina"
 dex = 30
 types = Array[ExtResource("4_jiitr")]([ExtResource("5_jgg5i")])
-learnset = Array[ExtResource("1_xrdab")]([SubResource("Resource_cumji"), SubResource("Resource_f6wkt"), SubResource("Resource_6ald3"), SubResource("Resource_sbvr5"), SubResource("Resource_u8slw"), SubResource("Resource_fte80"), SubResource("Resource_a5qlh"), SubResource("Resource_07bk2"), SubResource("Resource_7vdmq"), SubResource("Resource_eqgm6")])
+learnset = Array[ExtResource("1_xrdab")]([SubResource("Resource_48x00"), SubResource("Resource_ghury"), SubResource("Resource_kj7tx"), SubResource("Resource_j3qj8"), SubResource("Resource_db8i6"), SubResource("Resource_isebw"), SubResource("Resource_kkqn3"), SubResource("Resource_6ux1v"), SubResource("Resource_3urld"), SubResource("Resource_cumji")])
 temperament = ExtResource("14_48x00")
 genus = "Pokémon Pin Veneno"
 pokedex_entry = "Cuando están en familia o con sus amigos, esconden las púas para evitar accidentes. Según parece, se alteran bastante si se separan del grupo."

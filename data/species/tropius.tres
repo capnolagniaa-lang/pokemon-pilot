@@ -19,55 +19,55 @@
 [ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="12_rkwvi"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_0gtpa"]
 
-[sub_resource type="Resource" id="Resource_o3x1p"]
+[sub_resource type="Resource" id="Resource_0gtpa"]
 script = ExtResource("1_u3ok1")
 move = ExtResource("2_jwri3")
 
-[sub_resource type="Resource" id="Resource_0isnd"]
+[sub_resource type="Resource" id="Resource_rlrp1"]
 script = ExtResource("1_u3ok1")
 move = ExtResource("3_0gtpa")
 
-[sub_resource type="Resource" id="Resource_isdd4"]
+[sub_resource type="Resource" id="Resource_im0iy"]
 script = ExtResource("1_u3ok1")
 level = 7
 move = ExtResource("4_rlrp1")
 
-[sub_resource type="Resource" id="Resource_3g8s5"]
+[sub_resource type="Resource" id="Resource_bdutc"]
 script = ExtResource("1_u3ok1")
 level = 11
 move = ExtResource("5_im0iy")
 
-[sub_resource type="Resource" id="Resource_hb3q1"]
+[sub_resource type="Resource" id="Resource_r88em"]
 script = ExtResource("1_u3ok1")
 level = 17
 move = ExtResource("6_bdutc")
 
-[sub_resource type="Resource" id="Resource_6hx2o"]
+[sub_resource type="Resource" id="Resource_k8iqh"]
 script = ExtResource("1_u3ok1")
 level = 21
 move = ExtResource("7_r88em")
 
-[sub_resource type="Resource" id="Resource_hegu8"]
+[sub_resource type="Resource" id="Resource_ockpr"]
 script = ExtResource("1_u3ok1")
 level = 27
 move = ExtResource("8_k8iqh")
 
-[sub_resource type="Resource" id="Resource_56gtm"]
+[sub_resource type="Resource" id="Resource_r1xkv"]
 script = ExtResource("1_u3ok1")
 level = 31
 move = ExtResource("9_ockpr")
 
-[sub_resource type="Resource" id="Resource_abhex"]
+[sub_resource type="Resource" id="Resource_cupky"]
 script = ExtResource("1_u3ok1")
 level = 37
 move = ExtResource("10_r1xkv")
 
-[sub_resource type="Resource" id="Resource_5tlx7"]
+[sub_resource type="Resource" id="Resource_rkwvi"]
 script = ExtResource("1_u3ok1")
 level = 41
 move = ExtResource("11_cupky")
 
-[sub_resource type="Resource" id="Resource_7ryuk"]
+[sub_resource type="Resource" id="Resource_o3x1p"]
 script = ExtResource("1_u3ok1")
 level = 47
 move = ExtResource("12_rkwvi")
@@ -78,7 +78,7 @@ id = "tropius"
 display_name = "Tropius"
 dex = 357
 types = Array[ExtResource("4_4n7xb")]([ExtResource("5_p82c3"), ExtResource("6_t4a84")])
-learnset = Array[ExtResource("1_u3ok1")]([SubResource("Resource_o3x1p"), SubResource("Resource_0isnd"), SubResource("Resource_isdd4"), SubResource("Resource_3g8s5"), SubResource("Resource_hb3q1"), SubResource("Resource_6hx2o"), SubResource("Resource_hegu8"), SubResource("Resource_56gtm"), SubResource("Resource_abhex"), SubResource("Resource_5tlx7"), SubResource("Resource_7ryuk")])
+learnset = Array[ExtResource("1_u3ok1")]([SubResource("Resource_0gtpa"), SubResource("Resource_rlrp1"), SubResource("Resource_im0iy"), SubResource("Resource_bdutc"), SubResource("Resource_r88em"), SubResource("Resource_k8iqh"), SubResource("Resource_ockpr"), SubResource("Resource_r1xkv"), SubResource("Resource_cupky"), SubResource("Resource_rkwvi"), SubResource("Resource_o3x1p")])
 temperament = ExtResource("15_0gtpa")
 genus = "Pokémon Fruto"
 pokedex_entry = "A los niños les encantan los racimos de fruta que Tropius tiene en el cuello. Este Pokémon siempre come fruta; le encanta. De hecho, ese parece ser el motivo por el que él mismo da fruta."

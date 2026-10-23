@@ -18,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="11_prnev"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_wl8r2"]
 
-[sub_resource type="Resource" id="Resource_xed0g"]
+[sub_resource type="Resource" id="Resource_wl8r2"]
 script = ExtResource("1_d6bvb")
 move = ExtResource("2_cxhav")
 
-[sub_resource type="Resource" id="Resource_2m8oq"]
+[sub_resource type="Resource" id="Resource_q3km2"]
 script = ExtResource("1_d6bvb")
 level = 6
 move = ExtResource("3_wl8r2")
 
-[sub_resource type="Resource" id="Resource_h3q3f"]
+[sub_resource type="Resource" id="Resource_qn6d1"]
 script = ExtResource("1_d6bvb")
 level = 11
 move = ExtResource("4_q3km2")
 
-[sub_resource type="Resource" id="Resource_wnxg8"]
+[sub_resource type="Resource" id="Resource_r43hr"]
 script = ExtResource("1_d6bvb")
 level = 16
 move = ExtResource("5_qn6d1")
 
-[sub_resource type="Resource" id="Resource_s24os"]
+[sub_resource type="Resource" id="Resource_yl02a"]
 script = ExtResource("1_d6bvb")
 level = 21
 move = ExtResource("6_r43hr")
 
-[sub_resource type="Resource" id="Resource_q2xmx"]
+[sub_resource type="Resource" id="Resource_5k7xg"]
 script = ExtResource("1_d6bvb")
 level = 26
 move = ExtResource("7_yl02a")
 
-[sub_resource type="Resource" id="Resource_25aku"]
+[sub_resource type="Resource" id="Resource_r052f"]
 script = ExtResource("1_d6bvb")
 level = 31
 move = ExtResource("8_5k7xg")
 
-[sub_resource type="Resource" id="Resource_uy3wq"]
+[sub_resource type="Resource" id="Resource_enu5b"]
 script = ExtResource("1_d6bvb")
 level = 36
 move = ExtResource("9_r052f")
 
-[sub_resource type="Resource" id="Resource_qnrfo"]
+[sub_resource type="Resource" id="Resource_prnev"]
 script = ExtResource("1_d6bvb")
 level = 41
 move = ExtResource("10_enu5b")
 
-[sub_resource type="Resource" id="Resource_h5slg"]
+[sub_resource type="Resource" id="Resource_xed0g"]
 script = ExtResource("1_d6bvb")
 level = 46
 move = ExtResource("11_prnev")
@@ -73,7 +73,7 @@ id = "ralts"
 display_name = "Ralts"
 dex = 280
 types = Array[ExtResource("4_mmivx")]([ExtResource("5_acfr0"), ExtResource("6_5a7by")])
-learnset = Array[ExtResource("1_d6bvb")]([SubResource("Resource_xed0g"), SubResource("Resource_2m8oq"), SubResource("Resource_h3q3f"), SubResource("Resource_wnxg8"), SubResource("Resource_s24os"), SubResource("Resource_q2xmx"), SubResource("Resource_25aku"), SubResource("Resource_uy3wq"), SubResource("Resource_qnrfo"), SubResource("Resource_h5slg")])
+learnset = Array[ExtResource("1_d6bvb")]([SubResource("Resource_wl8r2"), SubResource("Resource_q3km2"), SubResource("Resource_qn6d1"), SubResource("Resource_r43hr"), SubResource("Resource_yl02a"), SubResource("Resource_5k7xg"), SubResource("Resource_r052f"), SubResource("Resource_enu5b"), SubResource("Resource_prnev"), SubResource("Resource_xed0g")])
 temperament = ExtResource("14_wl8r2")
 genus = "Pokémon Sensible"
 pokedex_entry = "Ralts percibe las sensaciones de la gente por los cuernos que tiene encima y detrás de la cabeza. No es común que este Pokémon aparezca en público, pero cuando lo hace, se acerca si ve buena disposición en la gente."

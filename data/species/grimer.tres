@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_dnab5"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_2cshn"]
 
-[sub_resource type="Resource" id="Resource_bkx25"]
+[sub_resource type="Resource" id="Resource_2cshn"]
 script = ExtResource("1_6usfh")
 move = ExtResource("2_6jnwg")
 
-[sub_resource type="Resource" id="Resource_ho47a"]
+[sub_resource type="Resource" id="Resource_48jvc"]
 script = ExtResource("1_6usfh")
 move = ExtResource("3_2cshn")
 
-[sub_resource type="Resource" id="Resource_hw6k7"]
+[sub_resource type="Resource" id="Resource_cykb4"]
 script = ExtResource("1_6usfh")
 level = 4
 move = ExtResource("4_48jvc")
 
-[sub_resource type="Resource" id="Resource_hbrcy"]
+[sub_resource type="Resource" id="Resource_45lut"]
 script = ExtResource("1_6usfh")
 level = 8
 move = ExtResource("5_cykb4")
 
-[sub_resource type="Resource" id="Resource_xaqaw"]
+[sub_resource type="Resource" id="Resource_umjdq"]
 script = ExtResource("1_6usfh")
 level = 13
 move = ExtResource("6_45lut")
 
-[sub_resource type="Resource" id="Resource_ray6a"]
+[sub_resource type="Resource" id="Resource_gxbak"]
 script = ExtResource("1_6usfh")
 level = 19
 move = ExtResource("7_umjdq")
 
-[sub_resource type="Resource" id="Resource_6l7d4"]
+[sub_resource type="Resource" id="Resource_j42uk"]
 script = ExtResource("1_6usfh")
 level = 26
 move = ExtResource("8_gxbak")
 
-[sub_resource type="Resource" id="Resource_vpij7"]
+[sub_resource type="Resource" id="Resource_fce0w"]
 script = ExtResource("1_6usfh")
 level = 34
 move = ExtResource("9_j42uk")
 
-[sub_resource type="Resource" id="Resource_i01pw"]
+[sub_resource type="Resource" id="Resource_dnab5"]
 script = ExtResource("1_6usfh")
 level = 43
 move = ExtResource("10_fce0w")
 
-[sub_resource type="Resource" id="Resource_vmboc"]
+[sub_resource type="Resource" id="Resource_bkx25"]
 script = ExtResource("1_6usfh")
 level = 53
 move = ExtResource("11_dnab5")
@@ -71,7 +71,7 @@ id = "grimer"
 display_name = "Grimer"
 dex = 88
 types = Array[ExtResource("4_rlhim")]([ExtResource("5_toppp")])
-learnset = Array[ExtResource("1_6usfh")]([SubResource("Resource_bkx25"), SubResource("Resource_ho47a"), SubResource("Resource_hw6k7"), SubResource("Resource_hbrcy"), SubResource("Resource_xaqaw"), SubResource("Resource_ray6a"), SubResource("Resource_6l7d4"), SubResource("Resource_vpij7"), SubResource("Resource_i01pw"), SubResource("Resource_vmboc")])
+learnset = Array[ExtResource("1_6usfh")]([SubResource("Resource_2cshn"), SubResource("Resource_48jvc"), SubResource("Resource_cykb4"), SubResource("Resource_45lut"), SubResource("Resource_umjdq"), SubResource("Resource_gxbak"), SubResource("Resource_j42uk"), SubResource("Resource_fce0w"), SubResource("Resource_dnab5"), SubResource("Resource_bkx25")])
 temperament = ExtResource("14_2cshn")
 genus = "Pokémon Lodo"
 pokedex_entry = "El elástico cuerpo de lodo de Grimer le permite colarse por cualquier orificio, sea del tamaño que sea. Este Pokémon entra en los bajantes de las cloacas para beberse el agua sucia."

@@ -15,40 +15,40 @@
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="9_ertg0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_1fxc1"]
 
-[sub_resource type="Resource" id="Resource_q3e32"]
+[sub_resource type="Resource" id="Resource_1fxc1"]
 script = ExtResource("1_t1l67")
 move = ExtResource("2_jg7hl")
 
-[sub_resource type="Resource" id="Resource_rl7ej"]
+[sub_resource type="Resource" id="Resource_rprog"]
 script = ExtResource("1_t1l67")
 move = ExtResource("3_1fxc1")
 
-[sub_resource type="Resource" id="Resource_yb6lf"]
+[sub_resource type="Resource" id="Resource_ivoky"]
 script = ExtResource("1_t1l67")
 level = 9
 move = ExtResource("4_rprog")
 
-[sub_resource type="Resource" id="Resource_i1ert"]
+[sub_resource type="Resource" id="Resource_ahn8a"]
 script = ExtResource("1_t1l67")
 level = 17
 move = ExtResource("5_ivoky")
 
-[sub_resource type="Resource" id="Resource_qpdad"]
+[sub_resource type="Resource" id="Resource_l0e1i"]
 script = ExtResource("1_t1l67")
 level = 25
 move = ExtResource("6_ahn8a")
 
-[sub_resource type="Resource" id="Resource_nn0js"]
+[sub_resource type="Resource" id="Resource_hpsm0"]
 script = ExtResource("1_t1l67")
 level = 33
 move = ExtResource("7_l0e1i")
 
-[sub_resource type="Resource" id="Resource_crruw"]
+[sub_resource type="Resource" id="Resource_ertg0"]
 script = ExtResource("1_t1l67")
 level = 41
 move = ExtResource("8_hpsm0")
 
-[sub_resource type="Resource" id="Resource_1akkh"]
+[sub_resource type="Resource" id="Resource_q3e32"]
 script = ExtResource("1_t1l67")
 level = 49
 move = ExtResource("9_ertg0")
@@ -59,7 +59,7 @@ id = "elekid"
 display_name = "Elekid"
 dex = 239
 types = Array[ExtResource("4_1dxj8")]([ExtResource("5_2jx61")])
-learnset = Array[ExtResource("1_t1l67")]([SubResource("Resource_q3e32"), SubResource("Resource_rl7ej"), SubResource("Resource_yb6lf"), SubResource("Resource_i1ert"), SubResource("Resource_qpdad"), SubResource("Resource_nn0js"), SubResource("Resource_crruw"), SubResource("Resource_1akkh")])
+learnset = Array[ExtResource("1_t1l67")]([SubResource("Resource_1fxc1"), SubResource("Resource_rprog"), SubResource("Resource_ivoky"), SubResource("Resource_ahn8a"), SubResource("Resource_l0e1i"), SubResource("Resource_hpsm0"), SubResource("Resource_ertg0"), SubResource("Resource_q3e32")])
 temperament = ExtResource("12_1fxc1")
 genus = "Pokémon Eléctrico"
 pokedex_entry = "Elekid acumula electricidad. Si entra en contacto con algo de metal y descarga accidentalmente toda la electricidad almacenada, empieza a agitar los brazos en círculo para volver a cargarse."

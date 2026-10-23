@@ -15,36 +15,36 @@
 [ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="8_dnx6e"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="11_lowru"]
 
-[sub_resource type="Resource" id="Resource_kvdcn"]
+[sub_resource type="Resource" id="Resource_lowru"]
 script = ExtResource("1_1wbek")
 move = ExtResource("2_6pkh4")
 
-[sub_resource type="Resource" id="Resource_m8sv2"]
+[sub_resource type="Resource" id="Resource_cpqi5"]
 script = ExtResource("1_1wbek")
 level = 3
 move = ExtResource("3_lowru")
 
-[sub_resource type="Resource" id="Resource_q6mlq"]
+[sub_resource type="Resource" id="Resource_gt1ok"]
 script = ExtResource("1_1wbek")
 level = 7
 move = ExtResource("4_cpqi5")
 
-[sub_resource type="Resource" id="Resource_ar3i4"]
+[sub_resource type="Resource" id="Resource_60gwa"]
 script = ExtResource("1_1wbek")
 level = 13
 move = ExtResource("5_gt1ok")
 
-[sub_resource type="Resource" id="Resource_tdyfq"]
+[sub_resource type="Resource" id="Resource_qcn16"]
 script = ExtResource("1_1wbek")
 level = 21
 move = ExtResource("6_60gwa")
 
-[sub_resource type="Resource" id="Resource_wurr0"]
+[sub_resource type="Resource" id="Resource_dnx6e"]
 script = ExtResource("1_1wbek")
 level = 31
 move = ExtResource("7_qcn16")
 
-[sub_resource type="Resource" id="Resource_gfnlv"]
+[sub_resource type="Resource" id="Resource_kvdcn"]
 script = ExtResource("1_1wbek")
 level = 43
 move = ExtResource("8_dnx6e")
@@ -55,7 +55,7 @@ id = "lotad"
 display_name = "Lotad"
 dex = 270
 types = Array[ExtResource("4_ghbk4")]([ExtResource("5_deb8x"), ExtResource("6_1y0y4")])
-learnset = Array[ExtResource("1_1wbek")]([SubResource("Resource_kvdcn"), SubResource("Resource_m8sv2"), SubResource("Resource_q6mlq"), SubResource("Resource_ar3i4"), SubResource("Resource_tdyfq"), SubResource("Resource_wurr0"), SubResource("Resource_gfnlv")])
+learnset = Array[ExtResource("1_1wbek")]([SubResource("Resource_lowru"), SubResource("Resource_cpqi5"), SubResource("Resource_gt1ok"), SubResource("Resource_60gwa"), SubResource("Resource_qcn16"), SubResource("Resource_dnx6e"), SubResource("Resource_kvdcn")])
 temperament = ExtResource("11_lowru")
 genus = "Pokémon Lenteja Agua"
 pokedex_entry = "Lotad vive en estanques y lagos, donde permanece flotando. Si se le marchita la ancha hoja que tiene en la cabeza, se debilitará. De vez en cuando, se desplaza en busca de agua limpia."

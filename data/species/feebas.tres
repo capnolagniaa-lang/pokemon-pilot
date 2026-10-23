@@ -10,16 +10,16 @@
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_eyu4x"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="7_eyu4x"]
 
-[sub_resource type="Resource" id="Resource_wo24p"]
+[sub_resource type="Resource" id="Resource_eyu4x"]
 script = ExtResource("1_1g0rg")
 move = ExtResource("2_4wk4n")
 
-[sub_resource type="Resource" id="Resource_xuk4l"]
+[sub_resource type="Resource" id="Resource_l354l"]
 script = ExtResource("1_1g0rg")
 level = 15
 move = ExtResource("3_eyu4x")
 
-[sub_resource type="Resource" id="Resource_73eox"]
+[sub_resource type="Resource" id="Resource_wo24p"]
 script = ExtResource("1_1g0rg")
 level = 30
 move = ExtResource("4_l354l")
@@ -30,7 +30,7 @@ id = "feebas"
 display_name = "Feebas"
 dex = 349
 types = Array[ExtResource("4_4wk4n")]([ExtResource("5_eyu4x")])
-learnset = Array[ExtResource("1_1g0rg")]([SubResource("Resource_wo24p"), SubResource("Resource_xuk4l"), SubResource("Resource_73eox")])
+learnset = Array[ExtResource("1_1g0rg")]([SubResource("Resource_eyu4x"), SubResource("Resource_l354l"), SubResource("Resource_wo24p")])
 temperament = ExtResource("7_eyu4x")
 genus = "Pokémon Pez"
 pokedex_entry = "Feebas tiene las aletas melladas y rasgadas desde que nace. Debido a este aspecto poco imponente, son pocos los que lo tienen en cuenta. Este Pokémon puede vivir tanto en agua salada como dulce."

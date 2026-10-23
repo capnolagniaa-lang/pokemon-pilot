@@ -18,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="11_anceh"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_1ymji"]
 
-[sub_resource type="Resource" id="Resource_2mtfl"]
+[sub_resource type="Resource" id="Resource_1ymji"]
 script = ExtResource("1_dx7vc")
 move = ExtResource("2_sm6rp")
 
-[sub_resource type="Resource" id="Resource_mrwdy"]
+[sub_resource type="Resource" id="Resource_r5vel"]
 script = ExtResource("1_dx7vc")
 level = 11
 move = ExtResource("3_1ymji")
 
-[sub_resource type="Resource" id="Resource_5fwhh"]
+[sub_resource type="Resource" id="Resource_l7pqd"]
 script = ExtResource("1_dx7vc")
 level = 22
 move = ExtResource("4_r5vel")
 
-[sub_resource type="Resource" id="Resource_yfi0u"]
+[sub_resource type="Resource" id="Resource_w5vrf"]
 script = ExtResource("1_dx7vc")
 level = 33
 move = ExtResource("5_l7pqd")
 
-[sub_resource type="Resource" id="Resource_rc73k"]
+[sub_resource type="Resource" id="Resource_tvu6h"]
 script = ExtResource("1_dx7vc")
 level = 44
 move = ExtResource("6_w5vrf")
 
-[sub_resource type="Resource" id="Resource_ljtar"]
+[sub_resource type="Resource" id="Resource_mxuoh"]
 script = ExtResource("1_dx7vc")
 level = 55
 move = ExtResource("7_tvu6h")
 
-[sub_resource type="Resource" id="Resource_fyug2"]
+[sub_resource type="Resource" id="Resource_a7ir0"]
 script = ExtResource("1_dx7vc")
 level = 66
 move = ExtResource("8_mxuoh")
 
-[sub_resource type="Resource" id="Resource_0d6xt"]
+[sub_resource type="Resource" id="Resource_s30h7"]
 script = ExtResource("1_dx7vc")
 level = 77
 move = ExtResource("9_a7ir0")
 
-[sub_resource type="Resource" id="Resource_8fp0y"]
+[sub_resource type="Resource" id="Resource_anceh"]
 script = ExtResource("1_dx7vc")
 level = 88
 move = ExtResource("10_s30h7")
 
-[sub_resource type="Resource" id="Resource_5eo1j"]
+[sub_resource type="Resource" id="Resource_2mtfl"]
 script = ExtResource("1_dx7vc")
 level = 99
 move = ExtResource("11_anceh")
@@ -73,7 +73,7 @@ id = "ho_oh"
 display_name = "Ho-Oh"
 dex = 250
 types = Array[ExtResource("4_rb12e")]([ExtResource("5_k3oes"), ExtResource("6_djeil")])
-learnset = Array[ExtResource("1_dx7vc")]([SubResource("Resource_2mtfl"), SubResource("Resource_mrwdy"), SubResource("Resource_5fwhh"), SubResource("Resource_yfi0u"), SubResource("Resource_rc73k"), SubResource("Resource_ljtar"), SubResource("Resource_fyug2"), SubResource("Resource_0d6xt"), SubResource("Resource_8fp0y"), SubResource("Resource_5eo1j")])
+learnset = Array[ExtResource("1_dx7vc")]([SubResource("Resource_1ymji"), SubResource("Resource_r5vel"), SubResource("Resource_l7pqd"), SubResource("Resource_w5vrf"), SubResource("Resource_tvu6h"), SubResource("Resource_mxuoh"), SubResource("Resource_a7ir0"), SubResource("Resource_s30h7"), SubResource("Resource_anceh"), SubResource("Resource_2mtfl")])
 temperament = ExtResource("14_1ymji")
 genus = "Pokémon Arcoíris"
 pokedex_entry = "El plumaje de Ho-Oh contiene siete colores que pueden apreciarse según el ángulo desde el que les dé la luz. Dicen que sus plumas dan felicidad a quienes las llevan y, también, que este Pokémon vive a los pies del arco iris."

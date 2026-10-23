@@ -111,6 +111,16 @@ func damage_mult_against(_hit: HitInfo, _target: Creature) -> float:
 	return 1.0
 
 
+## Multiplicador del daño que recibe esta criatura de un golpe (ej. la Adaptación de Eevee).
+func damage_taken_mult(_hit: HitInfo) -> float:
+	return 1.0
+
+
+## Multiplicador de la recarga del esquive (ej. Poliwag sobre lo mojado esquiva más seguido).
+func dodge_cooldown_mult() -> float:
+	return 1.0
+
+
 ## Si esta criatura ignora un golpe (ej. Pidgey en el aire no recibe golpes cuerpo a cuerpo).
 func ignores_hit(_hit: HitInfo) -> bool:
 	return false

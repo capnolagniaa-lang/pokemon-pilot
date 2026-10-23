@@ -17,43 +17,43 @@
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_nl00a"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_ban38"]
 
-[sub_resource type="Resource" id="Resource_2dgo7"]
+[sub_resource type="Resource" id="Resource_ban38"]
 script = ExtResource("1_khj4e")
 move = ExtResource("2_3qq0q")
 
-[sub_resource type="Resource" id="Resource_oljuk"]
+[sub_resource type="Resource" id="Resource_jqkmw"]
 script = ExtResource("1_khj4e")
 move = ExtResource("3_ban38")
 
-[sub_resource type="Resource" id="Resource_3wikg"]
+[sub_resource type="Resource" id="Resource_i8jvx"]
 script = ExtResource("1_khj4e")
 move = ExtResource("4_jqkmw")
 
-[sub_resource type="Resource" id="Resource_kocc5"]
+[sub_resource type="Resource" id="Resource_hy760"]
 script = ExtResource("1_khj4e")
 move = ExtResource("5_i8jvx")
 
-[sub_resource type="Resource" id="Resource_und3v"]
+[sub_resource type="Resource" id="Resource_sccfk"]
 script = ExtResource("1_khj4e")
 level = 28
 move = ExtResource("6_hy760")
 
-[sub_resource type="Resource" id="Resource_los83"]
+[sub_resource type="Resource" id="Resource_ojink"]
 script = ExtResource("1_khj4e")
 level = 33
 move = ExtResource("7_sccfk")
 
-[sub_resource type="Resource" id="Resource_c6o6y"]
+[sub_resource type="Resource" id="Resource_o23uf"]
 script = ExtResource("1_khj4e")
 level = 42
 move = ExtResource("8_ojink")
 
-[sub_resource type="Resource" id="Resource_hr80t"]
+[sub_resource type="Resource" id="Resource_nl00a"]
 script = ExtResource("1_khj4e")
 level = 56
 move = ExtResource("9_o23uf")
 
-[sub_resource type="Resource" id="Resource_bn7lw"]
+[sub_resource type="Resource" id="Resource_2dgo7"]
 script = ExtResource("1_khj4e")
 level = 70
 move = ExtResource("10_nl00a")
@@ -64,7 +64,7 @@ id = "piloswine"
 display_name = "Piloswine"
 dex = 221
 types = Array[ExtResource("4_s63v6")]([ExtResource("5_1d67i"), ExtResource("6_lvcy1")])
-learnset = Array[ExtResource("1_khj4e")]([SubResource("Resource_2dgo7"), SubResource("Resource_oljuk"), SubResource("Resource_3wikg"), SubResource("Resource_kocc5"), SubResource("Resource_und3v"), SubResource("Resource_los83"), SubResource("Resource_c6o6y"), SubResource("Resource_hr80t"), SubResource("Resource_bn7lw")])
+learnset = Array[ExtResource("1_khj4e")]([SubResource("Resource_ban38"), SubResource("Resource_jqkmw"), SubResource("Resource_i8jvx"), SubResource("Resource_hy760"), SubResource("Resource_sccfk"), SubResource("Resource_ojink"), SubResource("Resource_o23uf"), SubResource("Resource_nl00a"), SubResource("Resource_2dgo7")])
 temperament = ExtResource("13_ban38")
 genus = "Pokémon Puerco"
 pokedex_entry = "Piloswine está cubierto por un pelaje tupido y de largas cerdas que le permite soportar el frío polar. Este Pokémon usa los colmillos para desenterrar los alimentos que hayan podido quedar bajo el hielo."

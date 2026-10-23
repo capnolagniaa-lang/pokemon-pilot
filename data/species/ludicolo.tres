@@ -12,19 +12,19 @@
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="6_nn5w2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="8_nn5w2"]
 
-[sub_resource type="Resource" id="Resource_7eqs5"]
+[sub_resource type="Resource" id="Resource_nn5w2"]
 script = ExtResource("1_orisg")
 move = ExtResource("2_wxkei")
 
-[sub_resource type="Resource" id="Resource_hsu57"]
+[sub_resource type="Resource" id="Resource_uqp20"]
 script = ExtResource("1_orisg")
 move = ExtResource("3_nn5w2")
 
-[sub_resource type="Resource" id="Resource_yhoyr"]
+[sub_resource type="Resource" id="Resource_jogaq"]
 script = ExtResource("1_orisg")
 move = ExtResource("4_uqp20")
 
-[sub_resource type="Resource" id="Resource_3803w"]
+[sub_resource type="Resource" id="Resource_7eqs5"]
 script = ExtResource("1_orisg")
 move = ExtResource("5_jogaq")
 
@@ -34,7 +34,7 @@ id = "ludicolo"
 display_name = "Ludicolo"
 dex = 272
 types = Array[ExtResource("4_1df27")]([ExtResource("5_wxkei"), ExtResource("6_nn5w2")])
-learnset = Array[ExtResource("1_orisg")]([SubResource("Resource_7eqs5"), SubResource("Resource_hsu57"), SubResource("Resource_yhoyr"), SubResource("Resource_3803w")])
+learnset = Array[ExtResource("1_orisg")]([SubResource("Resource_nn5w2"), SubResource("Resource_uqp20"), SubResource("Resource_jogaq"), SubResource("Resource_7eqs5")])
 temperament = ExtResource("8_nn5w2")
 genus = "Pokémon Optimista"
 pokedex_entry = "Ludicolo empieza a bailar en cuanto oye música alegre y de fiesta. Dicen que este Pokémon aparece cuando oye cantar a los niños que van de excursión para hacer senderismo."

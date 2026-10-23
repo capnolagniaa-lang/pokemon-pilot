@@ -19,53 +19,53 @@
 [ext_resource type="Resource" path="res://data/moves/fisura.tres" id="12_yvmf0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_8egvi"]
 
-[sub_resource type="Resource" id="Resource_m1nbn"]
+[sub_resource type="Resource" id="Resource_8egvi"]
 script = ExtResource("1_g6ktl")
 move = ExtResource("2_pdykd")
 
-[sub_resource type="Resource" id="Resource_gslw3"]
+[sub_resource type="Resource" id="Resource_jnisi"]
 script = ExtResource("1_g6ktl")
 move = ExtResource("3_8egvi")
 
-[sub_resource type="Resource" id="Resource_y0fay"]
+[sub_resource type="Resource" id="Resource_tkbgi"]
 script = ExtResource("1_g6ktl")
 move = ExtResource("4_jnisi")
 
-[sub_resource type="Resource" id="Resource_eqbtg"]
+[sub_resource type="Resource" id="Resource_ywq5j"]
 script = ExtResource("1_g6ktl")
 move = ExtResource("5_tkbgi")
 
-[sub_resource type="Resource" id="Resource_lhp8w"]
+[sub_resource type="Resource" id="Resource_xfuca"]
 script = ExtResource("1_g6ktl")
 level = 25
 move = ExtResource("6_ywq5j")
 
-[sub_resource type="Resource" id="Resource_ytnxd"]
+[sub_resource type="Resource" id="Resource_waee2"]
 script = ExtResource("1_g6ktl")
 level = 29
 move = ExtResource("7_xfuca")
 
-[sub_resource type="Resource" id="Resource_5gsi4"]
+[sub_resource type="Resource" id="Resource_x3k5y"]
 script = ExtResource("1_g6ktl")
 level = 31
 move = ExtResource("8_waee2")
 
-[sub_resource type="Resource" id="Resource_knhiw"]
+[sub_resource type="Resource" id="Resource_kslxd"]
 script = ExtResource("1_g6ktl")
 level = 33
 move = ExtResource("9_x3k5y")
 
-[sub_resource type="Resource" id="Resource_ql1ws"]
+[sub_resource type="Resource" id="Resource_v313n"]
 script = ExtResource("1_g6ktl")
 level = 37
 move = ExtResource("10_kslxd")
 
-[sub_resource type="Resource" id="Resource_d3dyl"]
+[sub_resource type="Resource" id="Resource_yvmf0"]
 script = ExtResource("1_g6ktl")
 level = 45
 move = ExtResource("11_v313n")
 
-[sub_resource type="Resource" id="Resource_qru1v"]
+[sub_resource type="Resource" id="Resource_m1nbn"]
 script = ExtResource("1_g6ktl")
 level = 55
 move = ExtResource("12_yvmf0")
@@ -76,7 +76,7 @@ id = "camerupt"
 display_name = "Camerupt"
 dex = 323
 types = Array[ExtResource("4_do3ye")]([ExtResource("5_52bxx"), ExtResource("6_nsubn")])
-learnset = Array[ExtResource("1_g6ktl")]([SubResource("Resource_m1nbn"), SubResource("Resource_gslw3"), SubResource("Resource_y0fay"), SubResource("Resource_eqbtg"), SubResource("Resource_lhp8w"), SubResource("Resource_ytnxd"), SubResource("Resource_5gsi4"), SubResource("Resource_knhiw"), SubResource("Resource_ql1ws"), SubResource("Resource_d3dyl"), SubResource("Resource_qru1v")])
+learnset = Array[ExtResource("1_g6ktl")]([SubResource("Resource_8egvi"), SubResource("Resource_jnisi"), SubResource("Resource_tkbgi"), SubResource("Resource_ywq5j"), SubResource("Resource_xfuca"), SubResource("Resource_waee2"), SubResource("Resource_x3k5y"), SubResource("Resource_kslxd"), SubResource("Resource_v313n"), SubResource("Resource_yvmf0"), SubResource("Resource_m1nbn")])
 temperament = ExtResource("15_8egvi")
 genus = "Pokémon Erupción"
 pokedex_entry = "Camerupt encierra un volcán en su interior y magma de 10 000 °C le recorre el cuerpo. A veces, las jorobas de la espalda entran en erupción y escupen el abrasivo magma."

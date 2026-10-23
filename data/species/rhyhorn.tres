@@ -18,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_wfksy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_j6o4s"]
 
-[sub_resource type="Resource" id="Resource_8qktv"]
+[sub_resource type="Resource" id="Resource_j6o4s"]
 script = ExtResource("1_a3kke")
 move = ExtResource("2_sxvaj")
 
-[sub_resource type="Resource" id="Resource_7cnc6"]
+[sub_resource type="Resource" id="Resource_w7vl3"]
 script = ExtResource("1_a3kke")
 move = ExtResource("3_j6o4s")
 
-[sub_resource type="Resource" id="Resource_ncabk"]
+[sub_resource type="Resource" id="Resource_yr8py"]
 script = ExtResource("1_a3kke")
 level = 10
 move = ExtResource("4_w7vl3")
 
-[sub_resource type="Resource" id="Resource_cw7w4"]
+[sub_resource type="Resource" id="Resource_wrkna"]
 script = ExtResource("1_a3kke")
 level = 15
 move = ExtResource("5_yr8py")
 
-[sub_resource type="Resource" id="Resource_67bhg"]
+[sub_resource type="Resource" id="Resource_bofvh"]
 script = ExtResource("1_a3kke")
 level = 24
 move = ExtResource("6_wrkna")
 
-[sub_resource type="Resource" id="Resource_2umw3"]
+[sub_resource type="Resource" id="Resource_k7djp"]
 script = ExtResource("1_a3kke")
 level = 29
 move = ExtResource("7_bofvh")
 
-[sub_resource type="Resource" id="Resource_tsgm3"]
+[sub_resource type="Resource" id="Resource_nrwn2"]
 script = ExtResource("1_a3kke")
 level = 38
 move = ExtResource("8_k7djp")
 
-[sub_resource type="Resource" id="Resource_dg33t"]
+[sub_resource type="Resource" id="Resource_717mn"]
 script = ExtResource("1_a3kke")
 level = 43
 move = ExtResource("9_nrwn2")
 
-[sub_resource type="Resource" id="Resource_o3q8q"]
+[sub_resource type="Resource" id="Resource_wfksy"]
 script = ExtResource("1_a3kke")
 level = 52
 move = ExtResource("10_717mn")
 
-[sub_resource type="Resource" id="Resource_0mh0t"]
+[sub_resource type="Resource" id="Resource_8qktv"]
 script = ExtResource("1_a3kke")
 level = 57
 move = ExtResource("11_wfksy")
@@ -72,7 +72,7 @@ id = "rhyhorn"
 display_name = "Rhyhorn"
 dex = 111
 types = Array[ExtResource("4_aax8w")]([ExtResource("5_fdhtm"), ExtResource("6_vx4gs")])
-learnset = Array[ExtResource("1_a3kke")]([SubResource("Resource_8qktv"), SubResource("Resource_7cnc6"), SubResource("Resource_ncabk"), SubResource("Resource_cw7w4"), SubResource("Resource_67bhg"), SubResource("Resource_2umw3"), SubResource("Resource_tsgm3"), SubResource("Resource_dg33t"), SubResource("Resource_o3q8q"), SubResource("Resource_0mh0t")])
+learnset = Array[ExtResource("1_a3kke")]([SubResource("Resource_j6o4s"), SubResource("Resource_w7vl3"), SubResource("Resource_yr8py"), SubResource("Resource_wrkna"), SubResource("Resource_bofvh"), SubResource("Resource_k7djp"), SubResource("Resource_nrwn2"), SubResource("Resource_717mn"), SubResource("Resource_wfksy"), SubResource("Resource_8qktv")])
 temperament = ExtResource("14_j6o4s")
 genus = "Pokémon Clavos"
 pokedex_entry = "Rhyhorn corre en línea recta arrasando todo lo que encuentra en su camino. Aun estrellándose de cabeza contra un bloque de acero, no se vería afectado; a lo sumo, notaría algo de dolor al día siguiente."

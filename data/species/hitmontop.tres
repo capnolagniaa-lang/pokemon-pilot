@@ -18,55 +18,55 @@
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="12_7y7cn"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_2ivto"]
 
-[sub_resource type="Resource" id="Resource_ybcd6"]
+[sub_resource type="Resource" id="Resource_2ivto"]
 script = ExtResource("1_v22vy")
 move = ExtResource("2_aidsr")
 
-[sub_resource type="Resource" id="Resource_i0815"]
+[sub_resource type="Resource" id="Resource_vmlw2"]
 script = ExtResource("1_v22vy")
 move = ExtResource("3_2ivto")
 
-[sub_resource type="Resource" id="Resource_3efc7"]
+[sub_resource type="Resource" id="Resource_e71on"]
 script = ExtResource("1_v22vy")
 level = 7
 move = ExtResource("4_vmlw2")
 
-[sub_resource type="Resource" id="Resource_k5tku"]
+[sub_resource type="Resource" id="Resource_36dox"]
 script = ExtResource("1_v22vy")
 level = 13
 move = ExtResource("5_e71on")
 
-[sub_resource type="Resource" id="Resource_on8pm"]
+[sub_resource type="Resource" id="Resource_dq54g"]
 script = ExtResource("1_v22vy")
 level = 19
 move = ExtResource("6_36dox")
 
-[sub_resource type="Resource" id="Resource_f00xr"]
+[sub_resource type="Resource" id="Resource_bmt73"]
 script = ExtResource("1_v22vy")
 level = 20
 move = ExtResource("7_dq54g")
 
-[sub_resource type="Resource" id="Resource_yuotc"]
+[sub_resource type="Resource" id="Resource_6j8ip"]
 script = ExtResource("1_v22vy")
 level = 25
 move = ExtResource("8_bmt73")
 
-[sub_resource type="Resource" id="Resource_yq2cc"]
+[sub_resource type="Resource" id="Resource_tacyq"]
 script = ExtResource("1_v22vy")
 level = 31
 move = ExtResource("9_6j8ip")
 
-[sub_resource type="Resource" id="Resource_tvx62"]
+[sub_resource type="Resource" id="Resource_l4mxq"]
 script = ExtResource("1_v22vy")
 level = 37
 move = ExtResource("10_tacyq")
 
-[sub_resource type="Resource" id="Resource_l6n5w"]
+[sub_resource type="Resource" id="Resource_7y7cn"]
 script = ExtResource("1_v22vy")
 level = 43
 move = ExtResource("11_l4mxq")
 
-[sub_resource type="Resource" id="Resource_ywrg3"]
+[sub_resource type="Resource" id="Resource_ybcd6"]
 script = ExtResource("1_v22vy")
 level = 49
 move = ExtResource("12_7y7cn")
@@ -77,7 +77,7 @@ id = "hitmontop"
 display_name = "Hitmontop"
 dex = 237
 types = Array[ExtResource("4_cnu0g")]([ExtResource("5_whtbx")])
-learnset = Array[ExtResource("1_v22vy")]([SubResource("Resource_ybcd6"), SubResource("Resource_i0815"), SubResource("Resource_3efc7"), SubResource("Resource_k5tku"), SubResource("Resource_on8pm"), SubResource("Resource_f00xr"), SubResource("Resource_yuotc"), SubResource("Resource_yq2cc"), SubResource("Resource_tvx62"), SubResource("Resource_l6n5w"), SubResource("Resource_ywrg3")])
+learnset = Array[ExtResource("1_v22vy")]([SubResource("Resource_2ivto"), SubResource("Resource_vmlw2"), SubResource("Resource_e71on"), SubResource("Resource_36dox"), SubResource("Resource_dq54g"), SubResource("Resource_bmt73"), SubResource("Resource_6j8ip"), SubResource("Resource_tacyq"), SubResource("Resource_l4mxq"), SubResource("Resource_7y7cn"), SubResource("Resource_ybcd6")])
 temperament = ExtResource("15_2ivto")
 genus = "Pokémon Boca Abajo"
 pokedex_entry = "Hitmontop hace el pino con la cabeza y se pone a girar rápido al tiempo que reparte patadas. Esta es una técnica ofensiva y defensiva a la vez. Este Pokémon se desplaza más rápido girando sobre sí que caminando."

@@ -19,58 +19,58 @@
 [ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="13_bdbfw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_pie60"]
 
-[sub_resource type="Resource" id="Resource_tywjs"]
+[sub_resource type="Resource" id="Resource_pie60"]
 script = ExtResource("1_ijagu")
 move = ExtResource("2_1j6x1")
 
-[sub_resource type="Resource" id="Resource_ttpy1"]
+[sub_resource type="Resource" id="Resource_p5o11"]
 script = ExtResource("1_ijagu")
 move = ExtResource("3_pie60")
 
-[sub_resource type="Resource" id="Resource_bmqp8"]
+[sub_resource type="Resource" id="Resource_jj42m"]
 script = ExtResource("1_ijagu")
 move = ExtResource("4_p5o11")
 
-[sub_resource type="Resource" id="Resource_qc1ay"]
+[sub_resource type="Resource" id="Resource_ge8i5"]
 script = ExtResource("1_ijagu")
 move = ExtResource("5_jj42m")
 
-[sub_resource type="Resource" id="Resource_ndqd4"]
+[sub_resource type="Resource" id="Resource_lh0lb"]
 script = ExtResource("1_ijagu")
 level = 17
 move = ExtResource("6_ge8i5")
 
-[sub_resource type="Resource" id="Resource_qfybc"]
+[sub_resource type="Resource" id="Resource_38s4e"]
 script = ExtResource("1_ijagu")
 level = 23
 move = ExtResource("7_lh0lb")
 
-[sub_resource type="Resource" id="Resource_ta3k3"]
+[sub_resource type="Resource" id="Resource_5vxk3"]
 script = ExtResource("1_ijagu")
 level = 26
 move = ExtResource("8_38s4e")
 
-[sub_resource type="Resource" id="Resource_5gx6g"]
+[sub_resource type="Resource" id="Resource_s5syy"]
 script = ExtResource("1_ijagu")
 level = 31
 move = ExtResource("9_5vxk3")
 
-[sub_resource type="Resource" id="Resource_j6o3u"]
+[sub_resource type="Resource" id="Resource_twki2"]
 script = ExtResource("1_ijagu")
 level = 40
 move = ExtResource("10_s5syy")
 
-[sub_resource type="Resource" id="Resource_bjjil"]
+[sub_resource type="Resource" id="Resource_aie5i"]
 script = ExtResource("1_ijagu")
 level = 40
 move = ExtResource("11_twki2")
 
-[sub_resource type="Resource" id="Resource_c52pn"]
+[sub_resource type="Resource" id="Resource_bdbfw"]
 script = ExtResource("1_ijagu")
 level = 40
 move = ExtResource("12_aie5i")
 
-[sub_resource type="Resource" id="Resource_87mmf"]
+[sub_resource type="Resource" id="Resource_tywjs"]
 script = ExtResource("1_ijagu")
 level = 48
 move = ExtResource("13_bdbfw")
@@ -81,7 +81,7 @@ id = "swalot"
 display_name = "Swalot"
 dex = 317
 types = Array[ExtResource("4_6lmix")]([ExtResource("5_u8o4r")])
-learnset = Array[ExtResource("1_ijagu")]([SubResource("Resource_tywjs"), SubResource("Resource_ttpy1"), SubResource("Resource_bmqp8"), SubResource("Resource_qc1ay"), SubResource("Resource_ndqd4"), SubResource("Resource_qfybc"), SubResource("Resource_ta3k3"), SubResource("Resource_5gx6g"), SubResource("Resource_j6o3u"), SubResource("Resource_bjjil"), SubResource("Resource_c52pn"), SubResource("Resource_87mmf")])
+learnset = Array[ExtResource("1_ijagu")]([SubResource("Resource_pie60"), SubResource("Resource_p5o11"), SubResource("Resource_jj42m"), SubResource("Resource_ge8i5"), SubResource("Resource_lh0lb"), SubResource("Resource_38s4e"), SubResource("Resource_5vxk3"), SubResource("Resource_s5syy"), SubResource("Resource_twki2"), SubResource("Resource_aie5i"), SubResource("Resource_bdbfw"), SubResource("Resource_tywjs")])
 temperament = ExtResource("16_pie60")
 genus = "Pokémon Bolsa Veneno"
 pokedex_entry = "Cuando Swalot detecta una presa, echa por los poros, y a borbotones, un fluido tóxico espantoso con el que rocía a su víctima. Una vez que la debilita, se la traga entera gracias a la gigantesca boca que tiene."

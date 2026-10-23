@@ -9,11 +9,11 @@
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_mb5d7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="6_ml7ct"]
 
-[sub_resource type="Resource" id="Resource_mb5d7"]
+[sub_resource type="Resource" id="Resource_ml7ct"]
 script = ExtResource("1_mbi7l")
 move = ExtResource("2_2tn1v")
 
-[sub_resource type="Resource" id="Resource_sf7wa"]
+[sub_resource type="Resource" id="Resource_mb5d7"]
 script = ExtResource("1_mbi7l")
 move = ExtResource("3_ml7ct")
 
@@ -23,7 +23,7 @@ id = "caterpie"
 display_name = "Caterpie"
 dex = 10
 types = Array[ExtResource("4_ml7ct")]([ExtResource("5_mb5d7")])
-learnset = Array[ExtResource("1_mbi7l")]([SubResource("Resource_mb5d7"), SubResource("Resource_sf7wa")])
+learnset = Array[ExtResource("1_mbi7l")]([SubResource("Resource_ml7ct"), SubResource("Resource_mb5d7")])
 temperament = ExtResource("6_ml7ct")
 genus = "Pokémon Gusano"
 pokedex_entry = "Caterpie tiene un apetito voraz. Es capaz de devorar hojas que superen su tamaño en un abrir y cerrar de ojos. Atención a la antena que tiene: libera un hedor realmente fuerte."

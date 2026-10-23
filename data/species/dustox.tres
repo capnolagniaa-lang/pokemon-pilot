@@ -17,46 +17,46 @@
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="10_kexk2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_d8rn2"]
 
-[sub_resource type="Resource" id="Resource_rv5il"]
+[sub_resource type="Resource" id="Resource_d8rn2"]
 script = ExtResource("1_u6xkw")
 move = ExtResource("2_c6yt3")
 
-[sub_resource type="Resource" id="Resource_12j2h"]
+[sub_resource type="Resource" id="Resource_qdkqe"]
 script = ExtResource("1_u6xkw")
 level = 13
 move = ExtResource("3_d8rn2")
 
-[sub_resource type="Resource" id="Resource_4xgdw"]
+[sub_resource type="Resource" id="Resource_qga0s"]
 script = ExtResource("1_u6xkw")
 level = 17
 move = ExtResource("4_qdkqe")
 
-[sub_resource type="Resource" id="Resource_aug6d"]
+[sub_resource type="Resource" id="Resource_7rrnb"]
 script = ExtResource("1_u6xkw")
 level = 20
 move = ExtResource("5_qga0s")
 
-[sub_resource type="Resource" id="Resource_6nxsr"]
+[sub_resource type="Resource" id="Resource_kk7dv"]
 script = ExtResource("1_u6xkw")
 level = 24
 move = ExtResource("6_7rrnb")
 
-[sub_resource type="Resource" id="Resource_4kaem"]
+[sub_resource type="Resource" id="Resource_dyt12"]
 script = ExtResource("1_u6xkw")
 level = 27
 move = ExtResource("7_kk7dv")
 
-[sub_resource type="Resource" id="Resource_pjxl6"]
+[sub_resource type="Resource" id="Resource_k2nfc"]
 script = ExtResource("1_u6xkw")
 level = 31
 move = ExtResource("8_dyt12")
 
-[sub_resource type="Resource" id="Resource_q2gq7"]
+[sub_resource type="Resource" id="Resource_kexk2"]
 script = ExtResource("1_u6xkw")
 level = 34
 move = ExtResource("9_k2nfc")
 
-[sub_resource type="Resource" id="Resource_3hdx6"]
+[sub_resource type="Resource" id="Resource_rv5il"]
 script = ExtResource("1_u6xkw")
 level = 38
 move = ExtResource("10_kexk2")
@@ -67,7 +67,7 @@ id = "dustox"
 display_name = "Dustox"
 dex = 269
 types = Array[ExtResource("4_8iv0a")]([ExtResource("5_4ol5y"), ExtResource("6_qdf21")])
-learnset = Array[ExtResource("1_u6xkw")]([SubResource("Resource_rv5il"), SubResource("Resource_12j2h"), SubResource("Resource_4xgdw"), SubResource("Resource_aug6d"), SubResource("Resource_6nxsr"), SubResource("Resource_4kaem"), SubResource("Resource_pjxl6"), SubResource("Resource_q2gq7"), SubResource("Resource_3hdx6")])
+learnset = Array[ExtResource("1_u6xkw")]([SubResource("Resource_d8rn2"), SubResource("Resource_qdkqe"), SubResource("Resource_qga0s"), SubResource("Resource_7rrnb"), SubResource("Resource_kk7dv"), SubResource("Resource_dyt12"), SubResource("Resource_k2nfc"), SubResource("Resource_kexk2"), SubResource("Resource_rv5il")])
 temperament = ExtResource("13_d8rn2")
 genus = "Pokémon Polilla Ven."
 pokedex_entry = "Los Dustox se acercan a la luz de forma instintiva. De hecho, se agrupan en enjambres alrededor de las luces de las ciudades y causan estragos en las hojas de los árboles que están a pie de calle para alimentarse."

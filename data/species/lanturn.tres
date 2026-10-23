@@ -18,49 +18,49 @@
 [ext_resource type="Resource" path="res://data/moves/carga.tres" id="11_bov6g"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_61if6"]
 
-[sub_resource type="Resource" id="Resource_ye76m"]
+[sub_resource type="Resource" id="Resource_61if6"]
 script = ExtResource("1_ic3sq")
 move = ExtResource("2_k7lxh")
 
-[sub_resource type="Resource" id="Resource_11qi8"]
+[sub_resource type="Resource" id="Resource_4575u"]
 script = ExtResource("1_ic3sq")
 move = ExtResource("3_61if6")
 
-[sub_resource type="Resource" id="Resource_dcnga"]
+[sub_resource type="Resource" id="Resource_d2cey"]
 script = ExtResource("1_ic3sq")
 move = ExtResource("4_4575u")
 
-[sub_resource type="Resource" id="Resource_5bmjx"]
+[sub_resource type="Resource" id="Resource_5cqqm"]
 script = ExtResource("1_ic3sq")
 level = 13
 move = ExtResource("5_d2cey")
 
-[sub_resource type="Resource" id="Resource_0pwgq"]
+[sub_resource type="Resource" id="Resource_s47ua"]
 script = ExtResource("1_ic3sq")
 level = 17
 move = ExtResource("6_5cqqm")
 
-[sub_resource type="Resource" id="Resource_00moc"]
+[sub_resource type="Resource" id="Resource_a6xhd"]
 script = ExtResource("1_ic3sq")
 level = 25
 move = ExtResource("7_s47ua")
 
-[sub_resource type="Resource" id="Resource_ln8m3"]
+[sub_resource type="Resource" id="Resource_7m11w"]
 script = ExtResource("1_ic3sq")
 level = 32
 move = ExtResource("8_a6xhd")
 
-[sub_resource type="Resource" id="Resource_3u8e3"]
+[sub_resource type="Resource" id="Resource_tcntc"]
 script = ExtResource("1_ic3sq")
 level = 43
 move = ExtResource("9_7m11w")
 
-[sub_resource type="Resource" id="Resource_vnnyf"]
+[sub_resource type="Resource" id="Resource_bov6g"]
 script = ExtResource("1_ic3sq")
 level = 50
 move = ExtResource("10_tcntc")
 
-[sub_resource type="Resource" id="Resource_ibolf"]
+[sub_resource type="Resource" id="Resource_ye76m"]
 script = ExtResource("1_ic3sq")
 level = 61
 move = ExtResource("11_bov6g")
@@ -71,7 +71,7 @@ id = "lanturn"
 display_name = "Lanturn"
 dex = 171
 types = Array[ExtResource("4_f2tc8")]([ExtResource("5_ahhld"), ExtResource("6_epyx0")])
-learnset = Array[ExtResource("1_ic3sq")]([SubResource("Resource_ye76m"), SubResource("Resource_11qi8"), SubResource("Resource_dcnga"), SubResource("Resource_5bmjx"), SubResource("Resource_0pwgq"), SubResource("Resource_00moc"), SubResource("Resource_ln8m3"), SubResource("Resource_3u8e3"), SubResource("Resource_vnnyf"), SubResource("Resource_ibolf")])
+learnset = Array[ExtResource("1_ic3sq")]([SubResource("Resource_61if6"), SubResource("Resource_4575u"), SubResource("Resource_d2cey"), SubResource("Resource_5cqqm"), SubResource("Resource_s47ua"), SubResource("Resource_a6xhd"), SubResource("Resource_7m11w"), SubResource("Resource_tcntc"), SubResource("Resource_bov6g"), SubResource("Resource_ye76m")])
 temperament = ExtResource("14_61if6")
 genus = "Pokémon Luz"
 pokedex_entry = "A Lanturn lo llaman la Estrella del Fondo del Mar por la antena iluminada que tiene. Este Pokémon produce luz creando una reacción química entre una bacteria y los fluidos corporales de la antena."

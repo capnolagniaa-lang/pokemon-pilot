@@ -18,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_dptd6"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_r3ajr"]
 
-[sub_resource type="Resource" id="Resource_ey6p0"]
+[sub_resource type="Resource" id="Resource_r3ajr"]
 script = ExtResource("1_4nvrs")
 move = ExtResource("2_f044g")
 
-[sub_resource type="Resource" id="Resource_j65yl"]
+[sub_resource type="Resource" id="Resource_wsiau"]
 script = ExtResource("1_4nvrs")
 move = ExtResource("3_r3ajr")
 
-[sub_resource type="Resource" id="Resource_dbsqn"]
+[sub_resource type="Resource" id="Resource_itxho"]
 script = ExtResource("1_4nvrs")
 level = 7
 move = ExtResource("4_wsiau")
 
-[sub_resource type="Resource" id="Resource_i6s3l"]
+[sub_resource type="Resource" id="Resource_qhb15"]
 script = ExtResource("1_4nvrs")
 level = 13
 move = ExtResource("5_itxho")
 
-[sub_resource type="Resource" id="Resource_hyu6k"]
+[sub_resource type="Resource" id="Resource_evus4"]
 script = ExtResource("1_4nvrs")
 level = 19
 move = ExtResource("6_qhb15")
 
-[sub_resource type="Resource" id="Resource_ue512"]
+[sub_resource type="Resource" id="Resource_gljl3"]
 script = ExtResource("1_4nvrs")
 level = 25
 move = ExtResource("7_evus4")
 
-[sub_resource type="Resource" id="Resource_1dqn4"]
+[sub_resource type="Resource" id="Resource_l1vd8"]
 script = ExtResource("1_4nvrs")
 level = 31
 move = ExtResource("8_gljl3")
 
-[sub_resource type="Resource" id="Resource_x6ind"]
+[sub_resource type="Resource" id="Resource_lqp1s"]
 script = ExtResource("1_4nvrs")
 level = 37
 move = ExtResource("9_l1vd8")
 
-[sub_resource type="Resource" id="Resource_rn6hw"]
+[sub_resource type="Resource" id="Resource_dptd6"]
 script = ExtResource("1_4nvrs")
 level = 43
 move = ExtResource("10_lqp1s")
 
-[sub_resource type="Resource" id="Resource_8puay"]
+[sub_resource type="Resource" id="Resource_ey6p0"]
 script = ExtResource("1_4nvrs")
 level = 49
 move = ExtResource("11_dptd6")
@@ -72,7 +72,7 @@ id = "lunatone"
 display_name = "Lunatone"
 dex = 337
 types = Array[ExtResource("4_f6xc0")]([ExtResource("5_veu0m"), ExtResource("6_pcxib")])
-learnset = Array[ExtResource("1_4nvrs")]([SubResource("Resource_ey6p0"), SubResource("Resource_j65yl"), SubResource("Resource_dbsqn"), SubResource("Resource_i6s3l"), SubResource("Resource_hyu6k"), SubResource("Resource_ue512"), SubResource("Resource_1dqn4"), SubResource("Resource_x6ind"), SubResource("Resource_rn6hw"), SubResource("Resource_8puay")])
+learnset = Array[ExtResource("1_4nvrs")]([SubResource("Resource_r3ajr"), SubResource("Resource_wsiau"), SubResource("Resource_itxho"), SubResource("Resource_qhb15"), SubResource("Resource_evus4"), SubResource("Resource_gljl3"), SubResource("Resource_l1vd8"), SubResource("Resource_lqp1s"), SubResource("Resource_dptd6"), SubResource("Resource_ey6p0")])
 temperament = ExtResource("14_r3ajr")
 genus = "Pokémon Meteorito"
 pokedex_entry = "Lunatone fue descubierto en el lugar de impacto de un meteorito. Por eso, hay quien especula con la idea de que procede del espacio. Con todo, hasta el día de hoy nadie ha podido probar esta teoría."

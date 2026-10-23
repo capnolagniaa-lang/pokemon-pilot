@@ -18,56 +18,56 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="12_7j4by"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_e4kpg"]
 
-[sub_resource type="Resource" id="Resource_krf02"]
+[sub_resource type="Resource" id="Resource_e4kpg"]
 script = ExtResource("1_is4u7")
 move = ExtResource("2_6mbdm")
 
-[sub_resource type="Resource" id="Resource_2v8aw"]
+[sub_resource type="Resource" id="Resource_hb1xn"]
 script = ExtResource("1_is4u7")
 level = 4
 move = ExtResource("3_e4kpg")
 
-[sub_resource type="Resource" id="Resource_ub6w0"]
+[sub_resource type="Resource" id="Resource_4oy68"]
 script = ExtResource("1_is4u7")
 level = 10
 move = ExtResource("4_hb1xn")
 
-[sub_resource type="Resource" id="Resource_undmq"]
+[sub_resource type="Resource" id="Resource_kfeuk"]
 script = ExtResource("1_is4u7")
 level = 13
 move = ExtResource("5_4oy68")
 
-[sub_resource type="Resource" id="Resource_o5nx3"]
+[sub_resource type="Resource" id="Resource_0w4dd"]
 script = ExtResource("1_is4u7")
 level = 19
 move = ExtResource("6_kfeuk")
 
-[sub_resource type="Resource" id="Resource_ghdna"]
+[sub_resource type="Resource" id="Resource_hq72t"]
 script = ExtResource("1_is4u7")
 level = 22
 move = ExtResource("7_0w4dd")
 
-[sub_resource type="Resource" id="Resource_46dl0"]
+[sub_resource type="Resource" id="Resource_k3lwn"]
 script = ExtResource("1_is4u7")
 level = 28
 move = ExtResource("8_hq72t")
 
-[sub_resource type="Resource" id="Resource_v5gtd"]
+[sub_resource type="Resource" id="Resource_ajsj3"]
 script = ExtResource("1_is4u7")
 level = 31
 move = ExtResource("9_k3lwn")
 
-[sub_resource type="Resource" id="Resource_e6da2"]
+[sub_resource type="Resource" id="Resource_my7nj"]
 script = ExtResource("1_is4u7")
 level = 37
 move = ExtResource("10_ajsj3")
 
-[sub_resource type="Resource" id="Resource_h7tfk"]
+[sub_resource type="Resource" id="Resource_7j4by"]
 script = ExtResource("1_is4u7")
 level = 40
 move = ExtResource("11_my7nj")
 
-[sub_resource type="Resource" id="Resource_mi6qx"]
+[sub_resource type="Resource" id="Resource_krf02"]
 script = ExtResource("1_is4u7")
 level = 47
 move = ExtResource("12_7j4by")
@@ -78,7 +78,7 @@ id = "minun"
 display_name = "Minun"
 dex = 312
 types = Array[ExtResource("4_digck")]([ExtResource("5_80r3m")])
-learnset = Array[ExtResource("1_is4u7")]([SubResource("Resource_krf02"), SubResource("Resource_2v8aw"), SubResource("Resource_ub6w0"), SubResource("Resource_undmq"), SubResource("Resource_o5nx3"), SubResource("Resource_ghdna"), SubResource("Resource_46dl0"), SubResource("Resource_v5gtd"), SubResource("Resource_e6da2"), SubResource("Resource_h7tfk"), SubResource("Resource_mi6qx")])
+learnset = Array[ExtResource("1_is4u7")]([SubResource("Resource_e4kpg"), SubResource("Resource_hb1xn"), SubResource("Resource_4oy68"), SubResource("Resource_kfeuk"), SubResource("Resource_0w4dd"), SubResource("Resource_hq72t"), SubResource("Resource_k3lwn"), SubResource("Resource_ajsj3"), SubResource("Resource_my7nj"), SubResource("Resource_7j4by"), SubResource("Resource_krf02")])
 temperament = ExtResource("15_e4kpg")
 genus = "Pokémon Ánimo"
 pokedex_entry = "Minun se preocupa más por alentar a sus compañeros de equipo que por su propia seguridad. Para animar a los miembros de su grupo, crea un cortocircuito en su interior y libera un chisporroteo espectacular."

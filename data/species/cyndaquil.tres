@@ -15,40 +15,40 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_tdn77"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_iutwx"]
 
-[sub_resource type="Resource" id="Resource_0ks0s"]
+[sub_resource type="Resource" id="Resource_iutwx"]
 script = ExtResource("1_eqwcl")
 move = ExtResource("2_b5tes")
 
-[sub_resource type="Resource" id="Resource_n7seq"]
+[sub_resource type="Resource" id="Resource_qirm4"]
 script = ExtResource("1_eqwcl")
 move = ExtResource("3_iutwx")
 
-[sub_resource type="Resource" id="Resource_71v2d"]
+[sub_resource type="Resource" id="Resource_xc8qn"]
 script = ExtResource("1_eqwcl")
 level = 6
 move = ExtResource("4_qirm4")
 
-[sub_resource type="Resource" id="Resource_5r2oq"]
+[sub_resource type="Resource" id="Resource_eddlf"]
 script = ExtResource("1_eqwcl")
 level = 12
 move = ExtResource("5_xc8qn")
 
-[sub_resource type="Resource" id="Resource_6tyge"]
+[sub_resource type="Resource" id="Resource_fk34w"]
 script = ExtResource("1_eqwcl")
 level = 19
 move = ExtResource("6_eddlf")
 
-[sub_resource type="Resource" id="Resource_o07dx"]
+[sub_resource type="Resource" id="Resource_bppxf"]
 script = ExtResource("1_eqwcl")
 level = 27
 move = ExtResource("7_fk34w")
 
-[sub_resource type="Resource" id="Resource_amxtb"]
+[sub_resource type="Resource" id="Resource_tdn77"]
 script = ExtResource("1_eqwcl")
 level = 36
 move = ExtResource("8_bppxf")
 
-[sub_resource type="Resource" id="Resource_bke3x"]
+[sub_resource type="Resource" id="Resource_0ks0s"]
 script = ExtResource("1_eqwcl")
 level = 46
 move = ExtResource("9_tdn77")
@@ -59,7 +59,7 @@ id = "cyndaquil"
 display_name = "Cyndaquil"
 dex = 155
 types = Array[ExtResource("4_embbs")]([ExtResource("5_5i0uf")])
-learnset = Array[ExtResource("1_eqwcl")]([SubResource("Resource_0ks0s"), SubResource("Resource_n7seq"), SubResource("Resource_71v2d"), SubResource("Resource_5r2oq"), SubResource("Resource_6tyge"), SubResource("Resource_o07dx"), SubResource("Resource_amxtb"), SubResource("Resource_bke3x")])
+learnset = Array[ExtResource("1_eqwcl")]([SubResource("Resource_iutwx"), SubResource("Resource_qirm4"), SubResource("Resource_xc8qn"), SubResource("Resource_eddlf"), SubResource("Resource_fk34w"), SubResource("Resource_bppxf"), SubResource("Resource_tdn77"), SubResource("Resource_0ks0s")])
 temperament = ExtResource("12_iutwx")
 genus = "Pokémon Ratón Fuego"
 pokedex_entry = "Cyndaquil se protege soltando llamas por el lomo. Cuando está enfadado, las llamas son fieras, pero, si está cansado, solo consigue echar algunas chispas que no llegan a cuajar en una completa combustión."

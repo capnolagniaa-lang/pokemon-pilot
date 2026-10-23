@@ -17,45 +17,45 @@
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="10_y0olp"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_nejw6"]
 
-[sub_resource type="Resource" id="Resource_vqcyi"]
+[sub_resource type="Resource" id="Resource_nejw6"]
 script = ExtResource("1_xi7bd")
 move = ExtResource("2_6mhxu")
 
-[sub_resource type="Resource" id="Resource_vfpqq"]
+[sub_resource type="Resource" id="Resource_ixr46"]
 script = ExtResource("1_xi7bd")
 move = ExtResource("3_nejw6")
 
-[sub_resource type="Resource" id="Resource_wik1y"]
+[sub_resource type="Resource" id="Resource_lgerr"]
 script = ExtResource("1_xi7bd")
 level = 13
 move = ExtResource("4_ixr46")
 
-[sub_resource type="Resource" id="Resource_60dw6"]
+[sub_resource type="Resource" id="Resource_5r41q"]
 script = ExtResource("1_xi7bd")
 level = 25
 move = ExtResource("5_lgerr")
 
-[sub_resource type="Resource" id="Resource_60pqm"]
+[sub_resource type="Resource" id="Resource_mmvmh"]
 script = ExtResource("1_xi7bd")
 level = 37
 move = ExtResource("6_5r41q")
 
-[sub_resource type="Resource" id="Resource_mig82"]
+[sub_resource type="Resource" id="Resource_775tk"]
 script = ExtResource("1_xi7bd")
 level = 49
 move = ExtResource("7_mmvmh")
 
-[sub_resource type="Resource" id="Resource_f650b"]
+[sub_resource type="Resource" id="Resource_54kcl"]
 script = ExtResource("1_xi7bd")
 level = 61
 move = ExtResource("8_775tk")
 
-[sub_resource type="Resource" id="Resource_ppnav"]
+[sub_resource type="Resource" id="Resource_y0olp"]
 script = ExtResource("1_xi7bd")
 level = 73
 move = ExtResource("9_54kcl")
 
-[sub_resource type="Resource" id="Resource_gogsr"]
+[sub_resource type="Resource" id="Resource_vqcyi"]
 script = ExtResource("1_xi7bd")
 level = 85
 move = ExtResource("10_y0olp")
@@ -66,7 +66,7 @@ id = "zapdos"
 display_name = "Zapdos"
 dex = 145
 types = Array[ExtResource("4_ysew7")]([ExtResource("5_tc5tf"), ExtResource("6_qqbnt")])
-learnset = Array[ExtResource("1_xi7bd")]([SubResource("Resource_vqcyi"), SubResource("Resource_vfpqq"), SubResource("Resource_wik1y"), SubResource("Resource_60dw6"), SubResource("Resource_60pqm"), SubResource("Resource_mig82"), SubResource("Resource_f650b"), SubResource("Resource_ppnav"), SubResource("Resource_gogsr")])
+learnset = Array[ExtResource("1_xi7bd")]([SubResource("Resource_nejw6"), SubResource("Resource_ixr46"), SubResource("Resource_lgerr"), SubResource("Resource_5r41q"), SubResource("Resource_mmvmh"), SubResource("Resource_775tk"), SubResource("Resource_54kcl"), SubResource("Resource_y0olp"), SubResource("Resource_vqcyi")])
 temperament = ExtResource("13_nejw6")
 genus = "Pokémon Eléctrico"
 pokedex_entry = "Zapdos es un Pokémon pájaro legendario que tiene la habilidad de controlar la electricidad. Suele vivir en nubarrones. Este Pokémon gana mucha fuerza si le alcanzan los rayos."

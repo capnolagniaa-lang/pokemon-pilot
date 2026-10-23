@@ -18,53 +18,53 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_mk0oc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_yl6uk"]
 
-[sub_resource type="Resource" id="Resource_017ds"]
+[sub_resource type="Resource" id="Resource_yl6uk"]
 script = ExtResource("1_3x2q6")
 move = ExtResource("2_mgry5")
 
-[sub_resource type="Resource" id="Resource_whb2c"]
+[sub_resource type="Resource" id="Resource_b0hhk"]
 script = ExtResource("1_3x2q6")
 move = ExtResource("3_yl6uk")
 
-[sub_resource type="Resource" id="Resource_7dq68"]
+[sub_resource type="Resource" id="Resource_k866g"]
 script = ExtResource("1_3x2q6")
 move = ExtResource("4_b0hhk")
 
-[sub_resource type="Resource" id="Resource_yh5ga"]
+[sub_resource type="Resource" id="Resource_qnw6g"]
 script = ExtResource("1_3x2q6")
 move = ExtResource("5_k866g")
 
-[sub_resource type="Resource" id="Resource_7asd1"]
+[sub_resource type="Resource" id="Resource_vgk6s"]
 script = ExtResource("1_3x2q6")
 level = 13
 move = ExtResource("6_qnw6g")
 
-[sub_resource type="Resource" id="Resource_x6tag"]
+[sub_resource type="Resource" id="Resource_72p56"]
 script = ExtResource("1_3x2q6")
 level = 19
 move = ExtResource("7_vgk6s")
 
-[sub_resource type="Resource" id="Resource_p68x4"]
+[sub_resource type="Resource" id="Resource_q22qd"]
 script = ExtResource("1_3x2q6")
 level = 25
 move = ExtResource("8_72p56")
 
-[sub_resource type="Resource" id="Resource_85tph"]
+[sub_resource type="Resource" id="Resource_mmsmw"]
 script = ExtResource("1_3x2q6")
 level = 31
 move = ExtResource("9_q22qd")
 
-[sub_resource type="Resource" id="Resource_27k11"]
+[sub_resource type="Resource" id="Resource_tmy7u"]
 script = ExtResource("1_3x2q6")
 level = 42
 move = ExtResource("10_mmsmw")
 
-[sub_resource type="Resource" id="Resource_ewyxm"]
+[sub_resource type="Resource" id="Resource_mk0oc"]
 script = ExtResource("1_3x2q6")
 level = 55
 move = ExtResource("11_tmy7u")
 
-[sub_resource type="Resource" id="Resource_ke3o7"]
+[sub_resource type="Resource" id="Resource_017ds"]
 script = ExtResource("1_3x2q6")
 level = 68
 move = ExtResource("12_mk0oc")
@@ -75,7 +75,7 @@ id = "blastoise"
 display_name = "Blastoise"
 dex = 9
 types = Array[ExtResource("4_4kkc7")]([ExtResource("5_qw570")])
-learnset = Array[ExtResource("1_3x2q6")]([SubResource("Resource_017ds"), SubResource("Resource_whb2c"), SubResource("Resource_7dq68"), SubResource("Resource_yh5ga"), SubResource("Resource_7asd1"), SubResource("Resource_x6tag"), SubResource("Resource_p68x4"), SubResource("Resource_85tph"), SubResource("Resource_27k11"), SubResource("Resource_ewyxm"), SubResource("Resource_ke3o7")])
+learnset = Array[ExtResource("1_3x2q6")]([SubResource("Resource_yl6uk"), SubResource("Resource_b0hhk"), SubResource("Resource_k866g"), SubResource("Resource_qnw6g"), SubResource("Resource_vgk6s"), SubResource("Resource_72p56"), SubResource("Resource_q22qd"), SubResource("Resource_mmsmw"), SubResource("Resource_tmy7u"), SubResource("Resource_mk0oc"), SubResource("Resource_017ds")])
 temperament = ExtResource("15_yl6uk")
 genus = "Pokémon Armazón"
 pokedex_entry = "Blastoise lanza chorros de agua con gran precisión por los tubos que le salen del caparazón que tiene en la espalda. Puede disparar chorros de agua con tanta puntería que no fallaría al tirar contra una lata pequeña a 50 m."

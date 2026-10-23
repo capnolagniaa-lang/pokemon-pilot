@@ -19,55 +19,55 @@
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="12_52yxf"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_c8g07"]
 
-[sub_resource type="Resource" id="Resource_o01yy"]
+[sub_resource type="Resource" id="Resource_c8g07"]
 script = ExtResource("1_3we3p")
 move = ExtResource("2_jygqd")
 
-[sub_resource type="Resource" id="Resource_kbd58"]
+[sub_resource type="Resource" id="Resource_mxdws"]
 script = ExtResource("1_3we3p")
 move = ExtResource("3_c8g07")
 
-[sub_resource type="Resource" id="Resource_68yt6"]
+[sub_resource type="Resource" id="Resource_sx5pm"]
 script = ExtResource("1_3we3p")
 level = 8
 move = ExtResource("4_mxdws")
 
-[sub_resource type="Resource" id="Resource_xdvty"]
+[sub_resource type="Resource" id="Resource_ban26"]
 script = ExtResource("1_3we3p")
 level = 11
 move = ExtResource("5_sx5pm")
 
-[sub_resource type="Resource" id="Resource_ygrc5"]
+[sub_resource type="Resource" id="Resource_uarf0"]
 script = ExtResource("1_3we3p")
 level = 18
 move = ExtResource("6_ban26")
 
-[sub_resource type="Resource" id="Resource_a4y4t"]
+[sub_resource type="Resource" id="Resource_4211o"]
 script = ExtResource("1_3we3p")
 level = 21
 move = ExtResource("7_uarf0")
 
-[sub_resource type="Resource" id="Resource_ue6xo"]
+[sub_resource type="Resource" id="Resource_ll2pa"]
 script = ExtResource("1_3we3p")
 level = 28
 move = ExtResource("8_4211o")
 
-[sub_resource type="Resource" id="Resource_msygd"]
+[sub_resource type="Resource" id="Resource_un4yn"]
 script = ExtResource("1_3we3p")
 level = 31
 move = ExtResource("9_ll2pa")
 
-[sub_resource type="Resource" id="Resource_b3sm1"]
+[sub_resource type="Resource" id="Resource_8tl4l"]
 script = ExtResource("1_3we3p")
 level = 38
 move = ExtResource("10_un4yn")
 
-[sub_resource type="Resource" id="Resource_xcfjh"]
+[sub_resource type="Resource" id="Resource_52yxf"]
 script = ExtResource("1_3we3p")
 level = 41
 move = ExtResource("11_8tl4l")
 
-[sub_resource type="Resource" id="Resource_03cj3"]
+[sub_resource type="Resource" id="Resource_o01yy"]
 script = ExtResource("1_3we3p")
 level = 48
 move = ExtResource("12_52yxf")
@@ -78,7 +78,7 @@ id = "swablu"
 display_name = "Swablu"
 dex = 333
 types = Array[ExtResource("4_wxw6c")]([ExtResource("5_mpxgm"), ExtResource("6_37td5")])
-learnset = Array[ExtResource("1_3we3p")]([SubResource("Resource_o01yy"), SubResource("Resource_kbd58"), SubResource("Resource_68yt6"), SubResource("Resource_xdvty"), SubResource("Resource_ygrc5"), SubResource("Resource_a4y4t"), SubResource("Resource_ue6xo"), SubResource("Resource_msygd"), SubResource("Resource_b3sm1"), SubResource("Resource_xcfjh"), SubResource("Resource_03cj3")])
+learnset = Array[ExtResource("1_3we3p")]([SubResource("Resource_c8g07"), SubResource("Resource_mxdws"), SubResource("Resource_sx5pm"), SubResource("Resource_ban26"), SubResource("Resource_uarf0"), SubResource("Resource_4211o"), SubResource("Resource_ll2pa"), SubResource("Resource_un4yn"), SubResource("Resource_8tl4l"), SubResource("Resource_52yxf"), SubResource("Resource_o01yy")])
 temperament = ExtResource("15_c8g07")
 genus = "Pokémon Ave Algodón"
 pokedex_entry = "Swablu tiene unas alas ligeras y esponjosas que parecen nubes de algodón. A este Pokémon no le asusta la gente. De hecho, puede llegar a posarse en la cabeza de alguien y servirle de gorro sedoso."

@@ -14,31 +14,31 @@
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="7_nae14"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="10_8opl6"]
 
-[sub_resource type="Resource" id="Resource_o01cs"]
+[sub_resource type="Resource" id="Resource_8opl6"]
 script = ExtResource("1_guh76")
 move = ExtResource("2_ifw40")
 
-[sub_resource type="Resource" id="Resource_6lpks"]
+[sub_resource type="Resource" id="Resource_6pyd4"]
 script = ExtResource("1_guh76")
 level = 3
 move = ExtResource("3_8opl6")
 
-[sub_resource type="Resource" id="Resource_km2wr"]
+[sub_resource type="Resource" id="Resource_av0mb"]
 script = ExtResource("1_guh76")
 level = 6
 move = ExtResource("4_6pyd4")
 
-[sub_resource type="Resource" id="Resource_gidvd"]
+[sub_resource type="Resource" id="Resource_48rrn"]
 script = ExtResource("1_guh76")
 level = 10
 move = ExtResource("5_av0mb")
 
-[sub_resource type="Resource" id="Resource_0u37a"]
+[sub_resource type="Resource" id="Resource_nae14"]
 script = ExtResource("1_guh76")
 level = 15
 move = ExtResource("6_48rrn")
 
-[sub_resource type="Resource" id="Resource_w1v00"]
+[sub_resource type="Resource" id="Resource_o01cs"]
 script = ExtResource("1_guh76")
 level = 21
 move = ExtResource("7_nae14")
@@ -49,7 +49,7 @@ id = "azurill"
 display_name = "Azurill"
 dex = 298
 types = Array[ExtResource("4_w5bjw")]([ExtResource("5_k8y53"), ExtResource("6_t3ntt")])
-learnset = Array[ExtResource("1_guh76")]([SubResource("Resource_o01cs"), SubResource("Resource_6lpks"), SubResource("Resource_km2wr"), SubResource("Resource_gidvd"), SubResource("Resource_0u37a"), SubResource("Resource_w1v00")])
+learnset = Array[ExtResource("1_guh76")]([SubResource("Resource_8opl6"), SubResource("Resource_6pyd4"), SubResource("Resource_av0mb"), SubResource("Resource_48rrn"), SubResource("Resource_nae14"), SubResource("Resource_o01cs")])
 temperament = ExtResource("10_8opl6")
 genus = "Pokémon A Topos"
 pokedex_entry = "Azurill enrolla la cola como si fuera un lazo y la despliega a continuación todo lo que puede. De esta forma, un Azurill llegó a lanzarse a sí mismo hasta 10 m."

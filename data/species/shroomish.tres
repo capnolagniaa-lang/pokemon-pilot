@@ -17,51 +17,51 @@
 [ext_resource type="Resource" path="res://data/moves/espora.tres" id="11_xrppw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_tk0tp"]
 
-[sub_resource type="Resource" id="Resource_f7h41"]
+[sub_resource type="Resource" id="Resource_tk0tp"]
 script = ExtResource("1_i7ph1")
 move = ExtResource("2_6eegg")
 
-[sub_resource type="Resource" id="Resource_g2adb"]
+[sub_resource type="Resource" id="Resource_lbcdj"]
 script = ExtResource("1_i7ph1")
 level = 4
 move = ExtResource("3_tk0tp")
 
-[sub_resource type="Resource" id="Resource_frt3y"]
+[sub_resource type="Resource" id="Resource_u5vie"]
 script = ExtResource("1_i7ph1")
 level = 7
 move = ExtResource("4_lbcdj")
 
-[sub_resource type="Resource" id="Resource_ply34"]
+[sub_resource type="Resource" id="Resource_m1nem"]
 script = ExtResource("1_i7ph1")
 level = 10
 move = ExtResource("5_u5vie")
 
-[sub_resource type="Resource" id="Resource_a7lrf"]
+[sub_resource type="Resource" id="Resource_fi72r"]
 script = ExtResource("1_i7ph1")
 level = 16
 move = ExtResource("6_m1nem")
 
-[sub_resource type="Resource" id="Resource_5qqik"]
+[sub_resource type="Resource" id="Resource_lwwp4"]
 script = ExtResource("1_i7ph1")
 level = 22
 move = ExtResource("7_fi72r")
 
-[sub_resource type="Resource" id="Resource_i60kx"]
+[sub_resource type="Resource" id="Resource_a75vn"]
 script = ExtResource("1_i7ph1")
 level = 28
 move = ExtResource("8_lwwp4")
 
-[sub_resource type="Resource" id="Resource_4lxrl"]
+[sub_resource type="Resource" id="Resource_oew5q"]
 script = ExtResource("1_i7ph1")
 level = 36
 move = ExtResource("9_a75vn")
 
-[sub_resource type="Resource" id="Resource_5f3oi"]
+[sub_resource type="Resource" id="Resource_xrppw"]
 script = ExtResource("1_i7ph1")
 level = 45
 move = ExtResource("10_oew5q")
 
-[sub_resource type="Resource" id="Resource_s8nwb"]
+[sub_resource type="Resource" id="Resource_f7h41"]
 script = ExtResource("1_i7ph1")
 level = 54
 move = ExtResource("11_xrppw")
@@ -72,7 +72,7 @@ id = "shroomish"
 display_name = "Shroomish"
 dex = 285
 types = Array[ExtResource("4_52xdk")]([ExtResource("5_cd41d")])
-learnset = Array[ExtResource("1_i7ph1")]([SubResource("Resource_f7h41"), SubResource("Resource_g2adb"), SubResource("Resource_frt3y"), SubResource("Resource_ply34"), SubResource("Resource_a7lrf"), SubResource("Resource_5qqik"), SubResource("Resource_i60kx"), SubResource("Resource_4lxrl"), SubResource("Resource_5f3oi"), SubResource("Resource_s8nwb")])
+learnset = Array[ExtResource("1_i7ph1")]([SubResource("Resource_tk0tp"), SubResource("Resource_lbcdj"), SubResource("Resource_u5vie"), SubResource("Resource_m1nem"), SubResource("Resource_fi72r"), SubResource("Resource_lwwp4"), SubResource("Resource_a75vn"), SubResource("Resource_oew5q"), SubResource("Resource_xrppw"), SubResource("Resource_f7h41")])
 temperament = ExtResource("14_tk0tp")
 genus = "Pokémon Hongo"
 pokedex_entry = "Los Shroomish viven en zonas húmedas en la profunda oscuridad del bosque. Suelen quedarse tranquilamente bajo las hojas caídas. Se alimentan del abono que estas generan al empezar a pudrirse."

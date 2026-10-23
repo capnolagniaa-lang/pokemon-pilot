@@ -19,54 +19,54 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="12_1cjrm"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_u4w4p"]
 
-[sub_resource type="Resource" id="Resource_2m6rg"]
+[sub_resource type="Resource" id="Resource_u4w4p"]
 script = ExtResource("1_iqyv7")
 move = ExtResource("2_jr48n")
 
-[sub_resource type="Resource" id="Resource_c0e4s"]
+[sub_resource type="Resource" id="Resource_uwmdi"]
 script = ExtResource("1_iqyv7")
 move = ExtResource("3_u4w4p")
 
-[sub_resource type="Resource" id="Resource_t6wvn"]
+[sub_resource type="Resource" id="Resource_o1jc5"]
 script = ExtResource("1_iqyv7")
 move = ExtResource("4_uwmdi")
 
-[sub_resource type="Resource" id="Resource_loyri"]
+[sub_resource type="Resource" id="Resource_6ay4d"]
 script = ExtResource("1_iqyv7")
 level = 10
 move = ExtResource("5_o1jc5")
 
-[sub_resource type="Resource" id="Resource_r4ydc"]
+[sub_resource type="Resource" id="Resource_bdmwi"]
 script = ExtResource("1_iqyv7")
 level = 15
 move = ExtResource("6_6ay4d")
 
-[sub_resource type="Resource" id="Resource_r13cp"]
+[sub_resource type="Resource" id="Resource_oq2j1"]
 script = ExtResource("1_iqyv7")
 level = 15
 move = ExtResource("7_bdmwi")
 
-[sub_resource type="Resource" id="Resource_o75rf"]
+[sub_resource type="Resource" id="Resource_7cguk"]
 script = ExtResource("1_iqyv7")
 level = 22
 move = ExtResource("8_oq2j1")
 
-[sub_resource type="Resource" id="Resource_un14v"]
+[sub_resource type="Resource" id="Resource_ci6ef"]
 script = ExtResource("1_iqyv7")
 level = 29
 move = ExtResource("9_7cguk")
 
-[sub_resource type="Resource" id="Resource_yo4p2"]
+[sub_resource type="Resource" id="Resource_lrasi"]
 script = ExtResource("1_iqyv7")
 level = 38
 move = ExtResource("10_ci6ef")
 
-[sub_resource type="Resource" id="Resource_6pon2"]
+[sub_resource type="Resource" id="Resource_1cjrm"]
 script = ExtResource("1_iqyv7")
 level = 47
 move = ExtResource("11_lrasi")
 
-[sub_resource type="Resource" id="Resource_pu0qn"]
+[sub_resource type="Resource" id="Resource_2m6rg"]
 script = ExtResource("1_iqyv7")
 level = 56
 move = ExtResource("12_1cjrm")
@@ -77,7 +77,7 @@ id = "ivysaur"
 display_name = "Ivysaur"
 dex = 2
 types = Array[ExtResource("4_pqtve")]([ExtResource("5_u0mtq"), ExtResource("6_rdsvu")])
-learnset = Array[ExtResource("1_iqyv7")]([SubResource("Resource_2m6rg"), SubResource("Resource_c0e4s"), SubResource("Resource_t6wvn"), SubResource("Resource_loyri"), SubResource("Resource_r4ydc"), SubResource("Resource_r13cp"), SubResource("Resource_o75rf"), SubResource("Resource_un14v"), SubResource("Resource_yo4p2"), SubResource("Resource_6pon2"), SubResource("Resource_pu0qn")])
+learnset = Array[ExtResource("1_iqyv7")]([SubResource("Resource_u4w4p"), SubResource("Resource_uwmdi"), SubResource("Resource_o1jc5"), SubResource("Resource_6ay4d"), SubResource("Resource_bdmwi"), SubResource("Resource_oq2j1"), SubResource("Resource_7cguk"), SubResource("Resource_ci6ef"), SubResource("Resource_lrasi"), SubResource("Resource_1cjrm"), SubResource("Resource_2m6rg")])
 temperament = ExtResource("15_u4w4p")
 genus = "Pokémon Semilla"
 pokedex_entry = "Este Pokémon lleva un bulbo en el lomo y, para poder con su peso, tiene unas patas y un tronco gruesos y fuertes. Si empieza a pasar más tiempo al sol, será porque el bulbo está a punto de hacerse una flor grande."

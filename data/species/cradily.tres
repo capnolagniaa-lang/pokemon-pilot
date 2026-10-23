@@ -18,48 +18,48 @@
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_p6erl"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ty8uh"]
 
-[sub_resource type="Resource" id="Resource_ku0ky"]
+[sub_resource type="Resource" id="Resource_ty8uh"]
 script = ExtResource("1_mfk6n")
 move = ExtResource("2_phrb3")
 
-[sub_resource type="Resource" id="Resource_0esyl"]
+[sub_resource type="Resource" id="Resource_715ps"]
 script = ExtResource("1_mfk6n")
 move = ExtResource("3_ty8uh")
 
-[sub_resource type="Resource" id="Resource_5gfpi"]
+[sub_resource type="Resource" id="Resource_vrsta"]
 script = ExtResource("1_mfk6n")
 move = ExtResource("4_715ps")
 
-[sub_resource type="Resource" id="Resource_pncu4"]
+[sub_resource type="Resource" id="Resource_1nv1h"]
 script = ExtResource("1_mfk6n")
 move = ExtResource("5_vrsta")
 
-[sub_resource type="Resource" id="Resource_ambt2"]
+[sub_resource type="Resource" id="Resource_b68p5"]
 script = ExtResource("1_mfk6n")
 level = 29
 move = ExtResource("6_1nv1h")
 
-[sub_resource type="Resource" id="Resource_8xn72"]
+[sub_resource type="Resource" id="Resource_bbfxl"]
 script = ExtResource("1_mfk6n")
 level = 36
 move = ExtResource("7_b68p5")
 
-[sub_resource type="Resource" id="Resource_q77n3"]
+[sub_resource type="Resource" id="Resource_xjs3r"]
 script = ExtResource("1_mfk6n")
 level = 48
 move = ExtResource("8_bbfxl")
 
-[sub_resource type="Resource" id="Resource_0jx13"]
+[sub_resource type="Resource" id="Resource_h4rif"]
 script = ExtResource("1_mfk6n")
 level = 60
 move = ExtResource("9_xjs3r")
 
-[sub_resource type="Resource" id="Resource_quk1t"]
+[sub_resource type="Resource" id="Resource_p6erl"]
 script = ExtResource("1_mfk6n")
 level = 60
 move = ExtResource("10_h4rif")
 
-[sub_resource type="Resource" id="Resource_numso"]
+[sub_resource type="Resource" id="Resource_ku0ky"]
 script = ExtResource("1_mfk6n")
 level = 60
 move = ExtResource("11_p6erl")
@@ -70,7 +70,7 @@ id = "cradily"
 display_name = "Cradily"
 dex = 346
 types = Array[ExtResource("4_sw2w3")]([ExtResource("5_55ww5"), ExtResource("6_8box6")])
-learnset = Array[ExtResource("1_mfk6n")]([SubResource("Resource_ku0ky"), SubResource("Resource_0esyl"), SubResource("Resource_5gfpi"), SubResource("Resource_pncu4"), SubResource("Resource_ambt2"), SubResource("Resource_8xn72"), SubResource("Resource_q77n3"), SubResource("Resource_0jx13"), SubResource("Resource_quk1t"), SubResource("Resource_numso")])
+learnset = Array[ExtResource("1_mfk6n")]([SubResource("Resource_ty8uh"), SubResource("Resource_715ps"), SubResource("Resource_vrsta"), SubResource("Resource_1nv1h"), SubResource("Resource_b68p5"), SubResource("Resource_bbfxl"), SubResource("Resource_xjs3r"), SubResource("Resource_h4rif"), SubResource("Resource_p6erl"), SubResource("Resource_ku0ky")])
 temperament = ExtResource("14_ty8uh")
 genus = "Pokémon Percebe"
 pokedex_entry = "Cradily va por el fondo oceánico sin rumbo fijo en busca de comida. El cuello de este Pokémon se parece al tronco de un árbol. Cuando quiere atrapar a su presa desprevenida, lo estira y usa los ocho tentáculos que tiene."

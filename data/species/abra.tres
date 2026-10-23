@@ -8,7 +8,7 @@
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="5_ojtw7"]
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_tqonb"]
 
-[sub_resource type="Resource" id="Resource_g0ol0"]
+[sub_resource type="Resource" id="Resource_ojtw7"]
 script = ExtResource("1_fpb4i")
 move = ExtResource("2_ojtw7")
 
@@ -18,7 +18,7 @@ id = "abra"
 display_name = "Abra"
 dex = 63
 types = Array[ExtResource("4_g0ol0")]([ExtResource("5_tqonb")])
-learnset = Array[ExtResource("1_fpb4i")]([SubResource("Resource_g0ol0")])
+learnset = Array[ExtResource("1_fpb4i")]([SubResource("Resource_ojtw7")])
 temperament = ExtResource("5_ojtw7")
 genus = "Pokémon Psi"
 pokedex_entry = "Abra duerme 18 horas al día, pero puede detectar a cualquier enemigo que se le acerque mientras duerme. En una situación así, usa Teletransporte para protegerse."

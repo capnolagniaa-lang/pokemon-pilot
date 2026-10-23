@@ -19,56 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_eieuw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_opjgq"]
 
-[sub_resource type="Resource" id="Resource_dd2yw"]
+[sub_resource type="Resource" id="Resource_opjgq"]
 script = ExtResource("1_vk2ro")
 move = ExtResource("2_focit")
 
-[sub_resource type="Resource" id="Resource_gt67s"]
+[sub_resource type="Resource" id="Resource_dv7bi"]
 script = ExtResource("1_vk2ro")
 level = 4
 move = ExtResource("3_opjgq")
 
-[sub_resource type="Resource" id="Resource_mx3oj"]
+[sub_resource type="Resource" id="Resource_3rxeg"]
 script = ExtResource("1_vk2ro")
 level = 9
 move = ExtResource("4_dv7bi")
 
-[sub_resource type="Resource" id="Resource_hsatd"]
+[sub_resource type="Resource" id="Resource_ktv80"]
 script = ExtResource("1_vk2ro")
 level = 14
 move = ExtResource("5_3rxeg")
 
-[sub_resource type="Resource" id="Resource_pheyj"]
+[sub_resource type="Resource" id="Resource_7027l"]
 script = ExtResource("1_vk2ro")
 level = 19
 move = ExtResource("6_ktv80")
 
-[sub_resource type="Resource" id="Resource_gghu8"]
+[sub_resource type="Resource" id="Resource_mte20"]
 script = ExtResource("1_vk2ro")
 level = 24
 move = ExtResource("7_7027l")
 
-[sub_resource type="Resource" id="Resource_18xqp"]
+[sub_resource type="Resource" id="Resource_vy8bp"]
 script = ExtResource("1_vk2ro")
 level = 29
 move = ExtResource("8_mte20")
 
-[sub_resource type="Resource" id="Resource_lr70y"]
+[sub_resource type="Resource" id="Resource_qi8ak"]
 script = ExtResource("1_vk2ro")
 level = 34
 move = ExtResource("9_vy8bp")
 
-[sub_resource type="Resource" id="Resource_ojr2a"]
+[sub_resource type="Resource" id="Resource_s4l7k"]
 script = ExtResource("1_vk2ro")
 level = 39
 move = ExtResource("10_qi8ak")
 
-[sub_resource type="Resource" id="Resource_snn8g"]
+[sub_resource type="Resource" id="Resource_eieuw"]
 script = ExtResource("1_vk2ro")
 level = 44
 move = ExtResource("11_s4l7k")
 
-[sub_resource type="Resource" id="Resource_1y13j"]
+[sub_resource type="Resource" id="Resource_dd2yw"]
 script = ExtResource("1_vk2ro")
 level = 49
 move = ExtResource("12_eieuw")
@@ -79,7 +79,7 @@ id = "jigglypuff"
 display_name = "Jigglypuff"
 dex = 39
 types = Array[ExtResource("4_l081b")]([ExtResource("5_0ws82"), ExtResource("6_xm033")])
-learnset = Array[ExtResource("1_vk2ro")]([SubResource("Resource_dd2yw"), SubResource("Resource_gt67s"), SubResource("Resource_mx3oj"), SubResource("Resource_hsatd"), SubResource("Resource_pheyj"), SubResource("Resource_gghu8"), SubResource("Resource_18xqp"), SubResource("Resource_lr70y"), SubResource("Resource_ojr2a"), SubResource("Resource_snn8g"), SubResource("Resource_1y13j")])
+learnset = Array[ExtResource("1_vk2ro")]([SubResource("Resource_opjgq"), SubResource("Resource_dv7bi"), SubResource("Resource_3rxeg"), SubResource("Resource_ktv80"), SubResource("Resource_7027l"), SubResource("Resource_mte20"), SubResource("Resource_vy8bp"), SubResource("Resource_qi8ak"), SubResource("Resource_s4l7k"), SubResource("Resource_eieuw"), SubResource("Resource_dd2yw")])
 temperament = ExtResource("15_opjgq")
 genus = "Pokémon Globo"
 pokedex_entry = "Jigglypuff tiene unas cuerdas vocales que ajustan sin problema la longitud de onda de su voz. Este Pokémon usa la habilidad que tiene para cantar con la longitud de onda necesaria para adormecer a su rival."

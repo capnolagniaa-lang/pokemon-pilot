@@ -18,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_8jqtm"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_sk1kw"]
 
-[sub_resource type="Resource" id="Resource_pyqtw"]
+[sub_resource type="Resource" id="Resource_sk1kw"]
 script = ExtResource("1_7r8cx")
 move = ExtResource("2_lvp4w")
 
-[sub_resource type="Resource" id="Resource_1gf2i"]
+[sub_resource type="Resource" id="Resource_duuex"]
 script = ExtResource("1_7r8cx")
 level = 20
 move = ExtResource("3_sk1kw")
 
-[sub_resource type="Resource" id="Resource_2ob4s"]
+[sub_resource type="Resource" id="Resource_q4jmu"]
 script = ExtResource("1_7r8cx")
 level = 20
 move = ExtResource("4_duuex")
 
-[sub_resource type="Resource" id="Resource_p5gi1"]
+[sub_resource type="Resource" id="Resource_qhc8u"]
 script = ExtResource("1_7r8cx")
 level = 26
 move = ExtResource("5_q4jmu")
 
-[sub_resource type="Resource" id="Resource_33wtd"]
+[sub_resource type="Resource" id="Resource_es3pj"]
 script = ExtResource("1_7r8cx")
 level = 32
 move = ExtResource("6_qhc8u")
 
-[sub_resource type="Resource" id="Resource_55yrp"]
+[sub_resource type="Resource" id="Resource_5wfu1"]
 script = ExtResource("1_7r8cx")
 level = 38
 move = ExtResource("7_es3pj")
 
-[sub_resource type="Resource" id="Resource_1ubba"]
+[sub_resource type="Resource" id="Resource_cylai"]
 script = ExtResource("1_7r8cx")
 level = 44
 move = ExtResource("8_5wfu1")
 
-[sub_resource type="Resource" id="Resource_11lb8"]
+[sub_resource type="Resource" id="Resource_csdxx"]
 script = ExtResource("1_7r8cx")
 level = 50
 move = ExtResource("9_cylai")
 
-[sub_resource type="Resource" id="Resource_d7q5j"]
+[sub_resource type="Resource" id="Resource_8jqtm"]
 script = ExtResource("1_7r8cx")
 level = 56
 move = ExtResource("10_csdxx")
 
-[sub_resource type="Resource" id="Resource_n6dxb"]
+[sub_resource type="Resource" id="Resource_pyqtw"]
 script = ExtResource("1_7r8cx")
 level = 62
 move = ExtResource("11_8jqtm")
@@ -73,7 +73,7 @@ id = "metang"
 display_name = "Metang"
 dex = 375
 types = Array[ExtResource("4_e5hn8")]([ExtResource("5_4rsv5"), ExtResource("6_tv02d")])
-learnset = Array[ExtResource("1_7r8cx")]([SubResource("Resource_pyqtw"), SubResource("Resource_1gf2i"), SubResource("Resource_2ob4s"), SubResource("Resource_p5gi1"), SubResource("Resource_33wtd"), SubResource("Resource_55yrp"), SubResource("Resource_1ubba"), SubResource("Resource_11lb8"), SubResource("Resource_d7q5j"), SubResource("Resource_n6dxb")])
+learnset = Array[ExtResource("1_7r8cx")]([SubResource("Resource_sk1kw"), SubResource("Resource_duuex"), SubResource("Resource_q4jmu"), SubResource("Resource_qhc8u"), SubResource("Resource_es3pj"), SubResource("Resource_5wfu1"), SubResource("Resource_cylai"), SubResource("Resource_csdxx"), SubResource("Resource_8jqtm"), SubResource("Resource_pyqtw")])
 temperament = ExtResource("14_sk1kw")
 genus = "Pokémon Garra Hierro"
 pokedex_entry = "Cuando dos Beldum se fusionan, forman un Metang. Los cerebros de los Beldum se unen mediante un sistema nervioso magnético y generan potente energía psicoquinética."

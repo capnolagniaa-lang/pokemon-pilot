@@ -18,54 +18,54 @@
 [ext_resource type="Resource" path="res://data/moves/truco.tres" id="12_72s13"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_slu1k"]
 
-[sub_resource type="Resource" id="Resource_da14g"]
+[sub_resource type="Resource" id="Resource_slu1k"]
 script = ExtResource("1_qpgwr")
 move = ExtResource("2_fyloh")
 
-[sub_resource type="Resource" id="Resource_5akc4"]
+[sub_resource type="Resource" id="Resource_a21o5"]
 script = ExtResource("1_qpgwr")
 move = ExtResource("3_slu1k")
 
-[sub_resource type="Resource" id="Resource_ybsgq"]
+[sub_resource type="Resource" id="Resource_t08a2"]
 script = ExtResource("1_qpgwr")
 move = ExtResource("4_a21o5")
 
-[sub_resource type="Resource" id="Resource_60a6f"]
+[sub_resource type="Resource" id="Resource_pthrk"]
 script = ExtResource("1_qpgwr")
 level = 18
 move = ExtResource("5_t08a2")
 
-[sub_resource type="Resource" id="Resource_k262d"]
+[sub_resource type="Resource" id="Resource_s2f1o"]
 script = ExtResource("1_qpgwr")
 level = 21
 move = ExtResource("6_pthrk")
 
-[sub_resource type="Resource" id="Resource_px3sa"]
+[sub_resource type="Resource" id="Resource_sliiq"]
 script = ExtResource("1_qpgwr")
 level = 23
 move = ExtResource("7_s2f1o")
 
-[sub_resource type="Resource" id="Resource_q050k"]
+[sub_resource type="Resource" id="Resource_p6gd0"]
 script = ExtResource("1_qpgwr")
 level = 25
 move = ExtResource("8_sliiq")
 
-[sub_resource type="Resource" id="Resource_54yni"]
+[sub_resource type="Resource" id="Resource_54bce"]
 script = ExtResource("1_qpgwr")
 level = 30
 move = ExtResource("9_p6gd0")
 
-[sub_resource type="Resource" id="Resource_3bdcu"]
+[sub_resource type="Resource" id="Resource_45g8w"]
 script = ExtResource("1_qpgwr")
 level = 33
 move = ExtResource("10_54bce")
 
-[sub_resource type="Resource" id="Resource_lj1au"]
+[sub_resource type="Resource" id="Resource_72s13"]
 script = ExtResource("1_qpgwr")
 level = 36
 move = ExtResource("11_45g8w")
 
-[sub_resource type="Resource" id="Resource_2sg5h"]
+[sub_resource type="Resource" id="Resource_da14g"]
 script = ExtResource("1_qpgwr")
 level = 43
 move = ExtResource("12_72s13")
@@ -76,7 +76,7 @@ id = "kadabra"
 display_name = "Kadabra"
 dex = 64
 types = Array[ExtResource("4_mkiey")]([ExtResource("5_5spt7")])
-learnset = Array[ExtResource("1_qpgwr")]([SubResource("Resource_da14g"), SubResource("Resource_5akc4"), SubResource("Resource_ybsgq"), SubResource("Resource_60a6f"), SubResource("Resource_k262d"), SubResource("Resource_px3sa"), SubResource("Resource_q050k"), SubResource("Resource_54yni"), SubResource("Resource_3bdcu"), SubResource("Resource_lj1au"), SubResource("Resource_2sg5h")])
+learnset = Array[ExtResource("1_qpgwr")]([SubResource("Resource_slu1k"), SubResource("Resource_a21o5"), SubResource("Resource_t08a2"), SubResource("Resource_pthrk"), SubResource("Resource_s2f1o"), SubResource("Resource_sliiq"), SubResource("Resource_p6gd0"), SubResource("Resource_54bce"), SubResource("Resource_45g8w"), SubResource("Resource_72s13"), SubResource("Resource_da14g")])
 temperament = ExtResource("15_slu1k")
 genus = "Pokémon Psi"
 pokedex_entry = "Kadabra emite unas ondas alfa muy particulares que provocan dolores de cabeza a los demás. Solo aquellos que tengan gran poder mental podrán optar a ser Entrenador de este Pokémon."

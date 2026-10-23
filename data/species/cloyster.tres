@@ -14,28 +14,28 @@
 [ext_resource type="Resource" path="res://data/moves/clavo_canon.tres" id="7_00j2b"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_we54i"]
 
-[sub_resource type="Resource" id="Resource_8o5fs"]
+[sub_resource type="Resource" id="Resource_we54i"]
 script = ExtResource("1_b88ar")
 move = ExtResource("2_u5eno")
 
-[sub_resource type="Resource" id="Resource_livfq"]
+[sub_resource type="Resource" id="Resource_li8w5"]
 script = ExtResource("1_b88ar")
 move = ExtResource("3_we54i")
 
-[sub_resource type="Resource" id="Resource_wel43"]
+[sub_resource type="Resource" id="Resource_ehdwd"]
 script = ExtResource("1_b88ar")
 move = ExtResource("4_li8w5")
 
-[sub_resource type="Resource" id="Resource_hds4g"]
+[sub_resource type="Resource" id="Resource_155fv"]
 script = ExtResource("1_b88ar")
 move = ExtResource("5_ehdwd")
 
-[sub_resource type="Resource" id="Resource_x2w07"]
+[sub_resource type="Resource" id="Resource_00j2b"]
 script = ExtResource("1_b88ar")
 level = 36
 move = ExtResource("6_155fv")
 
-[sub_resource type="Resource" id="Resource_seyjv"]
+[sub_resource type="Resource" id="Resource_8o5fs"]
 script = ExtResource("1_b88ar")
 level = 43
 move = ExtResource("7_00j2b")
@@ -46,7 +46,7 @@ id = "cloyster"
 display_name = "Cloyster"
 dex = 91
 types = Array[ExtResource("4_3ll0i")]([ExtResource("5_xcyi0"), ExtResource("6_0820v")])
-learnset = Array[ExtResource("1_b88ar")]([SubResource("Resource_8o5fs"), SubResource("Resource_livfq"), SubResource("Resource_wel43"), SubResource("Resource_hds4g"), SubResource("Resource_x2w07"), SubResource("Resource_seyjv")])
+learnset = Array[ExtResource("1_b88ar")]([SubResource("Resource_we54i"), SubResource("Resource_li8w5"), SubResource("Resource_ehdwd"), SubResource("Resource_155fv"), SubResource("Resource_00j2b"), SubResource("Resource_8o5fs")])
 temperament = ExtResource("10_we54i")
 genus = "Pokémon Bivalvo"
 pokedex_entry = "Cloyster es capaz de nadar por el mar. Su técnica consiste en tragar agua y expulsarla por el conducto que tiene en la parte trasera. Este mismo sistema es el que usa para lanzar los pinchos que tiene alrededor de la concha."

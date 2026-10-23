@@ -8,7 +8,7 @@
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="5_fyhdu"]
 [ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_mgiti"]
 
-[sub_resource type="Resource" id="Resource_e01a2"]
+[sub_resource type="Resource" id="Resource_fyhdu"]
 script = ExtResource("1_305yw")
 move = ExtResource("2_fyhdu")
 
@@ -18,7 +18,7 @@ id = "tyrogue"
 display_name = "Tyrogue"
 dex = 236
 types = Array[ExtResource("4_e01a2")]([ExtResource("5_mgiti")])
-learnset = Array[ExtResource("1_305yw")]([SubResource("Resource_e01a2")])
+learnset = Array[ExtResource("1_305yw")]([SubResource("Resource_fyhdu")])
 temperament = ExtResource("5_fyhdu")
 genus = "Pokémon Peleón"
 pokedex_entry = "Tyrogue se pone demasiado nervioso si no lo sacan a entrenarse cada día. Su Entrenador debe establecer y mantener ciertos métodos de entrenamiento durante la cría."

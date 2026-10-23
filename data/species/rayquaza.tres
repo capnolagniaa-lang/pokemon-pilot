@@ -19,56 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="12_1chs4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_3xoyo"]
 
-[sub_resource type="Resource" id="Resource_5ftdk"]
+[sub_resource type="Resource" id="Resource_3xoyo"]
 script = ExtResource("1_22hns")
 move = ExtResource("2_0y74s")
 
-[sub_resource type="Resource" id="Resource_haxf6"]
+[sub_resource type="Resource" id="Resource_6ikm6"]
 script = ExtResource("1_22hns")
 level = 5
 move = ExtResource("3_3xoyo")
 
-[sub_resource type="Resource" id="Resource_xriyq"]
+[sub_resource type="Resource" id="Resource_e6ro6"]
 script = ExtResource("1_22hns")
 level = 15
 move = ExtResource("4_6ikm6")
 
-[sub_resource type="Resource" id="Resource_e2pqt"]
+[sub_resource type="Resource" id="Resource_labqd"]
 script = ExtResource("1_22hns")
 level = 20
 move = ExtResource("5_e6ro6")
 
-[sub_resource type="Resource" id="Resource_j1wnr"]
+[sub_resource type="Resource" id="Resource_mx6e0"]
 script = ExtResource("1_22hns")
 level = 30
 move = ExtResource("6_labqd")
 
-[sub_resource type="Resource" id="Resource_sweu6"]
+[sub_resource type="Resource" id="Resource_3xqqm"]
 script = ExtResource("1_22hns")
 level = 35
 move = ExtResource("7_mx6e0")
 
-[sub_resource type="Resource" id="Resource_u43pa"]
+[sub_resource type="Resource" id="Resource_rq8k5"]
 script = ExtResource("1_22hns")
 level = 45
 move = ExtResource("8_3xqqm")
 
-[sub_resource type="Resource" id="Resource_a1a4c"]
+[sub_resource type="Resource" id="Resource_5srku"]
 script = ExtResource("1_22hns")
 level = 50
 move = ExtResource("9_rq8k5")
 
-[sub_resource type="Resource" id="Resource_w1chd"]
+[sub_resource type="Resource" id="Resource_jki3x"]
 script = ExtResource("1_22hns")
 level = 60
 move = ExtResource("10_5srku")
 
-[sub_resource type="Resource" id="Resource_tn0fb"]
+[sub_resource type="Resource" id="Resource_1chs4"]
 script = ExtResource("1_22hns")
 level = 65
 move = ExtResource("11_jki3x")
 
-[sub_resource type="Resource" id="Resource_634b0"]
+[sub_resource type="Resource" id="Resource_5ftdk"]
 script = ExtResource("1_22hns")
 level = 75
 move = ExtResource("12_1chs4")
@@ -79,7 +79,7 @@ id = "rayquaza"
 display_name = "Rayquaza"
 dex = 384
 types = Array[ExtResource("4_0e7re")]([ExtResource("5_tcsi2"), ExtResource("6_04n50")])
-learnset = Array[ExtResource("1_22hns")]([SubResource("Resource_5ftdk"), SubResource("Resource_haxf6"), SubResource("Resource_xriyq"), SubResource("Resource_e2pqt"), SubResource("Resource_j1wnr"), SubResource("Resource_sweu6"), SubResource("Resource_u43pa"), SubResource("Resource_a1a4c"), SubResource("Resource_w1chd"), SubResource("Resource_tn0fb"), SubResource("Resource_634b0")])
+learnset = Array[ExtResource("1_22hns")]([SubResource("Resource_3xoyo"), SubResource("Resource_6ikm6"), SubResource("Resource_e6ro6"), SubResource("Resource_labqd"), SubResource("Resource_mx6e0"), SubResource("Resource_3xqqm"), SubResource("Resource_rq8k5"), SubResource("Resource_5srku"), SubResource("Resource_jki3x"), SubResource("Resource_1chs4"), SubResource("Resource_5ftdk")])
 temperament = ExtResource("15_3xoyo")
 genus = "Pokémon Cielo"
 pokedex_entry = "Dicen que Rayquaza ha vivido durante millones de años. Las leyendas cuentan que puso fin al continuo enfrentamiento entre Groudon y Kyogre."

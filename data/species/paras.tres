@@ -1,65 +1,47 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/paras/kit.tres" id="0_kitv3"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_n0vu1"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_arlvc"]
-[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_seqq5"]
-[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="3_s6mcd"]
+[ext_resource type="Resource" path="res://data/kits/paras/aranazo_kit.tres" id="3_5jyhx"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_wdw4i"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_cfikb"]
-[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="4_ixc5w"]
+[ext_resource type="Resource" path="res://data/kits/paras/paralizador_paras.tres" id="4_seqq5"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_2orq6"]
-[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="5_638na"]
-[ext_resource type="Resource" path="res://data/moves/espora.tres" id="6_03ku6"]
+[ext_resource type="Resource" path="res://data/kits/paras/chupavidas_kit.tres" id="5_s6mcd"]
+[ext_resource type="Resource" path="res://data/kits/paras/espora_kit.tres" id="6_ixc5w"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="6_tatkk"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="7_rx0bp"]
-[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="8_scsdy"]
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_f6htp"]
-[ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="10_2y2q1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_s6mcd"]
 
-[sub_resource type="Resource" id="Resource_b7j8a"]
+[sub_resource type="Resource" id="Resource_638na"]
 script = ExtResource("1_n0vu1")
-move = ExtResource("2_seqq5")
+move = ExtResource("3_5jyhx")
 
-[sub_resource type="Resource" id="Resource_v4hpa"]
+[sub_resource type="Resource" id="Resource_03ku6"]
 script = ExtResource("1_n0vu1")
-level = 7
-move = ExtResource("3_s6mcd")
+move = ExtResource("4_seqq5")
 
-[sub_resource type="Resource" id="Resource_cartu"]
+[sub_resource type="Resource" id="Resource_rx0bp"]
 script = ExtResource("1_n0vu1")
-level = 13
-move = ExtResource("4_ixc5w")
+level = 3
+move = ExtResource("5_s6mcd")
 
-[sub_resource type="Resource" id="Resource_8okci"]
+[sub_resource type="Resource" id="Resource_scsdy"]
 script = ExtResource("1_n0vu1")
-level = 19
-move = ExtResource("5_638na")
+level = 5
+move = ExtResource("6_ixc5w")
 
-[sub_resource type="Resource" id="Resource_o5j5j"]
-script = ExtResource("1_n0vu1")
-level = 25
-move = ExtResource("6_03ku6")
-
-[sub_resource type="Resource" id="Resource_wihs2"]
+[sub_resource type="Resource" id="Resource_f6htp"]
 script = ExtResource("1_n0vu1")
 level = 31
 move = ExtResource("7_rx0bp")
 
-[sub_resource type="Resource" id="Resource_sesyj"]
-script = ExtResource("1_n0vu1")
-level = 37
-move = ExtResource("8_scsdy")
-
-[sub_resource type="Resource" id="Resource_8y1s2"]
+[sub_resource type="Resource" id="Resource_2y2q1"]
 script = ExtResource("1_n0vu1")
 level = 43
 move = ExtResource("9_f6htp")
-
-[sub_resource type="Resource" id="Resource_2fb7i"]
-script = ExtResource("1_n0vu1")
-level = 49
-move = ExtResource("10_2y2q1")
 
 [resource]
 script = ExtResource("3_wdw4i")
@@ -67,7 +49,8 @@ id = "paras"
 display_name = "Paras"
 dex = 46
 types = Array[ExtResource("4_cfikb")]([ExtResource("5_2orq6"), ExtResource("6_tatkk")])
-learnset = Array[ExtResource("1_n0vu1")]([SubResource("Resource_b7j8a"), SubResource("Resource_v4hpa"), SubResource("Resource_cartu"), SubResource("Resource_8okci"), SubResource("Resource_o5j5j"), SubResource("Resource_wihs2"), SubResource("Resource_sesyj"), SubResource("Resource_8y1s2"), SubResource("Resource_2fb7i")])
+kit = ExtResource("0_kitv3")
+learnset = Array[ExtResource("1_n0vu1")]([SubResource("Resource_638na"), SubResource("Resource_03ku6"), SubResource("Resource_rx0bp"), SubResource("Resource_scsdy"), SubResource("Resource_f6htp"), SubResource("Resource_2y2q1")])
 temperament = ExtResource("13_s6mcd")
 genus = "Pokémon Hongo"
 pokedex_entry = "Paras lleva dos setas parásitas a cuestas llamadas tochukaso. Estas crecen alimentándose de los nutrientes de este Pokémon de tipo Bicho y Planta que les sirve de huésped. Las setas se usan como elixir de vida."

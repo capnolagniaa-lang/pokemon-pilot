@@ -16,46 +16,46 @@
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="10_6jwh0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_gh2mf"]
 
-[sub_resource type="Resource" id="Resource_hj0g6"]
+[sub_resource type="Resource" id="Resource_gh2mf"]
 script = ExtResource("1_hpr8o")
 move = ExtResource("2_l0f1w")
 
-[sub_resource type="Resource" id="Resource_fvfrl"]
+[sub_resource type="Resource" id="Resource_6trpk"]
 script = ExtResource("1_hpr8o")
 level = 4
 move = ExtResource("3_gh2mf")
 
-[sub_resource type="Resource" id="Resource_hg0o4"]
+[sub_resource type="Resource" id="Resource_ig5qf"]
 script = ExtResource("1_hpr8o")
 level = 7
 move = ExtResource("4_6trpk")
 
-[sub_resource type="Resource" id="Resource_bpmus"]
+[sub_resource type="Resource" id="Resource_74tuc"]
 script = ExtResource("1_hpr8o")
 level = 12
 move = ExtResource("5_ig5qf")
 
-[sub_resource type="Resource" id="Resource_j0m07"]
+[sub_resource type="Resource" id="Resource_hnx72"]
 script = ExtResource("1_hpr8o")
 level = 17
 move = ExtResource("6_74tuc")
 
-[sub_resource type="Resource" id="Resource_7y7jj"]
+[sub_resource type="Resource" id="Resource_d5725"]
 script = ExtResource("1_hpr8o")
 level = 24
 move = ExtResource("7_hnx72")
 
-[sub_resource type="Resource" id="Resource_cnm8p"]
+[sub_resource type="Resource" id="Resource_r030h"]
 script = ExtResource("1_hpr8o")
 level = 31
 move = ExtResource("8_d5725")
 
-[sub_resource type="Resource" id="Resource_mq314"]
+[sub_resource type="Resource" id="Resource_6jwh0"]
 script = ExtResource("1_hpr8o")
 level = 40
 move = ExtResource("9_r030h")
 
-[sub_resource type="Resource" id="Resource_4m28o"]
+[sub_resource type="Resource" id="Resource_hj0g6"]
 script = ExtResource("1_hpr8o")
 level = 49
 move = ExtResource("10_6jwh0")
@@ -66,7 +66,7 @@ id = "sentret"
 display_name = "Sentret"
 dex = 161
 types = Array[ExtResource("4_gb2yi")]([ExtResource("5_7ipvm")])
-learnset = Array[ExtResource("1_hpr8o")]([SubResource("Resource_hj0g6"), SubResource("Resource_fvfrl"), SubResource("Resource_hg0o4"), SubResource("Resource_bpmus"), SubResource("Resource_j0m07"), SubResource("Resource_7y7jj"), SubResource("Resource_cnm8p"), SubResource("Resource_mq314"), SubResource("Resource_4m28o")])
+learnset = Array[ExtResource("1_hpr8o")]([SubResource("Resource_gh2mf"), SubResource("Resource_6trpk"), SubResource("Resource_ig5qf"), SubResource("Resource_74tuc"), SubResource("Resource_hnx72"), SubResource("Resource_d5725"), SubResource("Resource_r030h"), SubResource("Resource_6jwh0"), SubResource("Resource_hj0g6")])
 temperament = ExtResource("13_gh2mf")
 genus = "Pokémon Explorador"
 pokedex_entry = "Sentret no duerme a menos que otro haga guardia. El que hace de centinela lo despertará al mínimo signo de peligro. Cuando este Pokémon se separa de su manada, es incapaz de echarse a dormir, presa del miedo."

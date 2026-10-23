@@ -17,50 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_uby5r"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_cri0q"]
 
-[sub_resource type="Resource" id="Resource_eoflu"]
+[sub_resource type="Resource" id="Resource_cri0q"]
 script = ExtResource("1_5amg4")
 move = ExtResource("2_q45d6")
 
-[sub_resource type="Resource" id="Resource_vh0n0"]
+[sub_resource type="Resource" id="Resource_xcqsg"]
 script = ExtResource("1_5amg4")
 move = ExtResource("3_cri0q")
 
-[sub_resource type="Resource" id="Resource_ubvh8"]
+[sub_resource type="Resource" id="Resource_2ovl8"]
 script = ExtResource("1_5amg4")
 level = 11
 move = ExtResource("4_xcqsg")
 
-[sub_resource type="Resource" id="Resource_rb733"]
+[sub_resource type="Resource" id="Resource_10y2o"]
 script = ExtResource("1_5amg4")
 level = 21
 move = ExtResource("5_2ovl8")
 
-[sub_resource type="Resource" id="Resource_rikfa"]
+[sub_resource type="Resource" id="Resource_g05qf"]
 script = ExtResource("1_5amg4")
 level = 31
 move = ExtResource("6_10y2o")
 
-[sub_resource type="Resource" id="Resource_6dj8u"]
+[sub_resource type="Resource" id="Resource_lqwtw"]
 script = ExtResource("1_5amg4")
 level = 41
 move = ExtResource("7_g05qf")
 
-[sub_resource type="Resource" id="Resource_2mrk2"]
+[sub_resource type="Resource" id="Resource_psyi8"]
 script = ExtResource("1_5amg4")
 level = 51
 move = ExtResource("8_lqwtw")
 
-[sub_resource type="Resource" id="Resource_g0j2v"]
+[sub_resource type="Resource" id="Resource_kt6vl"]
 script = ExtResource("1_5amg4")
 level = 61
 move = ExtResource("9_psyi8")
 
-[sub_resource type="Resource" id="Resource_guc80"]
+[sub_resource type="Resource" id="Resource_uby5r"]
 script = ExtResource("1_5amg4")
 level = 71
 move = ExtResource("10_kt6vl")
 
-[sub_resource type="Resource" id="Resource_7g1nj"]
+[sub_resource type="Resource" id="Resource_eoflu"]
 script = ExtResource("1_5amg4")
 level = 81
 move = ExtResource("11_uby5r")
@@ -71,7 +71,7 @@ id = "entei"
 display_name = "Entei"
 dex = 244
 types = Array[ExtResource("4_iod2h")]([ExtResource("5_8bio8")])
-learnset = Array[ExtResource("1_5amg4")]([SubResource("Resource_eoflu"), SubResource("Resource_vh0n0"), SubResource("Resource_ubvh8"), SubResource("Resource_rb733"), SubResource("Resource_rikfa"), SubResource("Resource_6dj8u"), SubResource("Resource_2mrk2"), SubResource("Resource_g0j2v"), SubResource("Resource_guc80"), SubResource("Resource_7g1nj")])
+learnset = Array[ExtResource("1_5amg4")]([SubResource("Resource_cri0q"), SubResource("Resource_xcqsg"), SubResource("Resource_2ovl8"), SubResource("Resource_10y2o"), SubResource("Resource_g05qf"), SubResource("Resource_lqwtw"), SubResource("Resource_psyi8"), SubResource("Resource_kt6vl"), SubResource("Resource_uby5r"), SubResource("Resource_eoflu")])
 temperament = ExtResource("14_cri0q")
 genus = "Pokémon Volcán"
 pokedex_entry = "Entei contiene el fulgor del magma en su interior. Se cree que este Pokémon nació de la erupción de un volcán. Escupe numerosas ráfagas de fuego que devoran y reducen a cenizas todo lo que tocan."

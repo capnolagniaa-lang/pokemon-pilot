@@ -18,56 +18,56 @@
 [ext_resource type="Resource" path="res://data/moves/bote.tres" id="12_mdci3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_y7ysd"]
 
-[sub_resource type="Resource" id="Resource_l421a"]
+[sub_resource type="Resource" id="Resource_y7ysd"]
 script = ExtResource("1_kuklg")
 move = ExtResource("2_gh5d8")
 
-[sub_resource type="Resource" id="Resource_6umof"]
+[sub_resource type="Resource" id="Resource_iwhur"]
 script = ExtResource("1_kuklg")
 level = 7
 move = ExtResource("3_y7ysd")
 
-[sub_resource type="Resource" id="Resource_lp54t"]
+[sub_resource type="Resource" id="Resource_o5yrk"]
 script = ExtResource("1_kuklg")
 level = 10
 move = ExtResource("4_iwhur")
 
-[sub_resource type="Resource" id="Resource_0o8dy"]
+[sub_resource type="Resource" id="Resource_76npf"]
 script = ExtResource("1_kuklg")
 level = 16
 move = ExtResource("5_o5yrk")
 
-[sub_resource type="Resource" id="Resource_2b1ea"]
+[sub_resource type="Resource" id="Resource_q1mw7"]
 script = ExtResource("1_kuklg")
 level = 19
 move = ExtResource("6_76npf")
 
-[sub_resource type="Resource" id="Resource_2sfc1"]
+[sub_resource type="Resource" id="Resource_v6ni4"]
 script = ExtResource("1_kuklg")
 level = 25
 move = ExtResource("7_q1mw7")
 
-[sub_resource type="Resource" id="Resource_roj4w"]
+[sub_resource type="Resource" id="Resource_kahp2"]
 script = ExtResource("1_kuklg")
 level = 28
 move = ExtResource("8_v6ni4")
 
-[sub_resource type="Resource" id="Resource_a52ix"]
+[sub_resource type="Resource" id="Resource_5epif"]
 script = ExtResource("1_kuklg")
 level = 34
 move = ExtResource("9_kahp2")
 
-[sub_resource type="Resource" id="Resource_xoos5"]
+[sub_resource type="Resource" id="Resource_oq6w6"]
 script = ExtResource("1_kuklg")
 level = 37
 move = ExtResource("10_5epif")
 
-[sub_resource type="Resource" id="Resource_mjf8j"]
+[sub_resource type="Resource" id="Resource_mdci3"]
 script = ExtResource("1_kuklg")
 level = 37
 move = ExtResource("11_oq6w6")
 
-[sub_resource type="Resource" id="Resource_2qcew"]
+[sub_resource type="Resource" id="Resource_l421a"]
 script = ExtResource("1_kuklg")
 level = 43
 move = ExtResource("12_mdci3")
@@ -78,7 +78,7 @@ id = "spoink"
 display_name = "Spoink"
 dex = 325
 types = Array[ExtResource("4_opqae")]([ExtResource("5_q721e")])
-learnset = Array[ExtResource("1_kuklg")]([SubResource("Resource_l421a"), SubResource("Resource_6umof"), SubResource("Resource_lp54t"), SubResource("Resource_0o8dy"), SubResource("Resource_2b1ea"), SubResource("Resource_2sfc1"), SubResource("Resource_roj4w"), SubResource("Resource_a52ix"), SubResource("Resource_xoos5"), SubResource("Resource_mjf8j"), SubResource("Resource_2qcew")])
+learnset = Array[ExtResource("1_kuklg")]([SubResource("Resource_y7ysd"), SubResource("Resource_iwhur"), SubResource("Resource_o5yrk"), SubResource("Resource_76npf"), SubResource("Resource_q1mw7"), SubResource("Resource_v6ni4"), SubResource("Resource_kahp2"), SubResource("Resource_5epif"), SubResource("Resource_oq6w6"), SubResource("Resource_mdci3"), SubResource("Resource_l421a")])
 temperament = ExtResource("15_y7ysd")
 genus = "Pokémon Saltarín"
 pokedex_entry = "Spoink se pasa todo el día saltando sobre la cola. Cada salto hace que le lata el corazón. Por eso, no puede permitirse dejar de saltar. Si lo hiciera, se le pararía."

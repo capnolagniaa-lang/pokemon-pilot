@@ -1,11 +1,16 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/squirtle/kit.tres" id="0_kitv3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_bk64l"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fjdas"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_ywyvp"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_5ulau"]
+[ext_resource type="Resource" path="res://data/kits/squirtle/placaje_kit.tres" id="3_jv0xw"]
 [ext_resource type="Resource" path="res://data/moves/surf.tres" id="4_fjdas"]
+[ext_resource type="Resource" path="res://data/kits/squirtle/pistola_agua_kit.tres" id="4_kweak"]
+[ext_resource type="Resource" path="res://data/kits/squirtle/refugio_kit.tres" id="5_trgx0"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="5_vhb54"]
+[ext_resource type="Resource" path="res://data/kits/squirtle/giro_rapido_kit.tres" id="6_bq8ku"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_mvwui"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="6_vhb54"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_12vpq"]
@@ -13,30 +18,30 @@
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_61kdy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_vhb54"]
 
-[sub_resource type="Resource" id="Resource_fjdas"]
+[sub_resource type="Resource" id="Resource_oatuh"]
 script = ExtResource("1_fjdas")
-move = ExtResource("2_ywyvp")
+move = ExtResource("3_jv0xw")
 
-[sub_resource type="Resource" id="Resource_vhb54"]
+[sub_resource type="Resource" id="Resource_r6xf1"]
 script = ExtResource("1_fjdas")
-move = ExtResource("3_5ulau")
+move = ExtResource("4_kweak")
 
-[sub_resource type="Resource" id="Resource_mvwui"]
+[sub_resource type="Resource" id="Resource_0440o"]
 script = ExtResource("1_fjdas")
 level = 3
-move = ExtResource("4_fjdas")
+move = ExtResource("5_trgx0")
 
-[sub_resource type="Resource" id="Resource_12vpq"]
+[sub_resource type="Resource" id="Resource_jv6oc"]
 script = ExtResource("1_fjdas")
 level = 5
-move = ExtResource("5_vhb54")
+move = ExtResource("6_bq8ku")
 
-[sub_resource type="Resource" id="Resource_61kdy"]
+[sub_resource type="Resource" id="Resource_ra8fg"]
 script = ExtResource("1_fjdas")
 level = 18
 move = ExtResource("6_vhb54")
 
-[sub_resource type="Resource" id="Resource_gy4rv"]
+[sub_resource type="Resource" id="Resource_771u7"]
 script = ExtResource("1_fjdas")
 level = 47
 move = ExtResource("7_mvwui")
@@ -48,7 +53,8 @@ display_name = "Squirtle"
 dex = 7
 types = Array[ExtResource("7_12vpq")]([ExtResource("8_61kdy")])
 moves = Array[ExtResource("1_bk64l")]([ExtResource("2_ywyvp"), ExtResource("3_5ulau"), ExtResource("4_fjdas"), ExtResource("5_vhb54")])
-learnset = Array[ExtResource("1_fjdas")]([SubResource("Resource_fjdas"), SubResource("Resource_vhb54"), SubResource("Resource_mvwui"), SubResource("Resource_12vpq"), SubResource("Resource_61kdy"), SubResource("Resource_gy4rv")])
+kit = ExtResource("0_kitv3")
+learnset = Array[ExtResource("1_fjdas")]([SubResource("Resource_oatuh"), SubResource("Resource_r6xf1"), SubResource("Resource_0440o"), SubResource("Resource_jv6oc"), SubResource("Resource_ra8fg"), SubResource("Resource_771u7")])
 temperament = ExtResource("10_vhb54")
 genus = "Pokémon Tortuguita"
 pokedex_entry = "El caparazón de Squirtle no le sirve de protección únicamente. Su forma redondeada y las hendiduras que tiene le ayudan a deslizarse en el agua y le permiten nadar a gran velocidad."

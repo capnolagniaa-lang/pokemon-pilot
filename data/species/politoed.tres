@@ -12,23 +12,23 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="6_ptj80"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="9_8ubrf"]
 
-[sub_resource type="Resource" id="Resource_ebfh1"]
+[sub_resource type="Resource" id="Resource_8ubrf"]
 script = ExtResource("1_hpxdu")
 move = ExtResource("2_71ou5")
 
-[sub_resource type="Resource" id="Resource_baso7"]
+[sub_resource type="Resource" id="Resource_yug3n"]
 script = ExtResource("1_hpxdu")
 move = ExtResource("3_8ubrf")
 
-[sub_resource type="Resource" id="Resource_q2gs6"]
+[sub_resource type="Resource" id="Resource_gj4ul"]
 script = ExtResource("1_hpxdu")
 move = ExtResource("4_yug3n")
 
-[sub_resource type="Resource" id="Resource_g0iy2"]
+[sub_resource type="Resource" id="Resource_ptj80"]
 script = ExtResource("1_hpxdu")
 move = ExtResource("5_gj4ul")
 
-[sub_resource type="Resource" id="Resource_dl6gi"]
+[sub_resource type="Resource" id="Resource_ebfh1"]
 script = ExtResource("1_hpxdu")
 level = 51
 move = ExtResource("6_ptj80")
@@ -39,7 +39,7 @@ id = "politoed"
 display_name = "Politoed"
 dex = 186
 types = Array[ExtResource("4_l5c5b")]([ExtResource("5_d75sk")])
-learnset = Array[ExtResource("1_hpxdu")]([SubResource("Resource_ebfh1"), SubResource("Resource_baso7"), SubResource("Resource_q2gs6"), SubResource("Resource_g0iy2"), SubResource("Resource_dl6gi")])
+learnset = Array[ExtResource("1_hpxdu")]([SubResource("Resource_8ubrf"), SubResource("Resource_yug3n"), SubResource("Resource_gj4ul"), SubResource("Resource_ptj80"), SubResource("Resource_ebfh1")])
 temperament = ExtResource("9_8ubrf")
 genus = "Pokémon Rana"
 pokedex_entry = "El mechón rizado de Politoed confirma su condición de rey. Dicen que cuanto más le crece y más se le riza, mayor es el respeto que recibe de sus súbditos."
