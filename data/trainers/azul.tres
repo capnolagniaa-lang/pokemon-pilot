@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="TrainerData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/personality_data.gd" id="1_ji6nf"]
+[ext_resource type="Script" path="res://scripts/resources/routine_block.gd" id="2_yobfj"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_bajda"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="4_hxhc2"]
+[ext_resource type="Texture2D" path="res://art/pret/characters/blue.png" id="5_i58gu"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="6_36buf"]
+[ext_resource type="Resource" path="res://data/species/charmander.tres" id="7_s8vg7"]
+[ext_resource type="Resource" path="res://data/species/rattata.tres" id="8_dndlu"]
+
+[sub_resource type="Resource" id="Resource_ycgvl"]
+script = ExtResource("1_ji6nf")
+pride = 0.85
+aggression = 0.85
+curiosity = 0.15
+misread_chance = 0.25
+
+[sub_resource type="Resource" id="Resource_wuxhm"]
+script = ExtResource("2_yobfj")
+cell = Vector2i(27, 11)
+
+[sub_resource type="Resource" id="Resource_xgebv"]
+script = ExtResource("2_yobfj")
+start_hour = 12
+end_hour = 14
+cell = Vector2i(15, 10)
+activity = "descansar"
+
+[sub_resource type="Resource" id="Resource_o0iyf"]
+script = ExtResource("2_yobfj")
+start_hour = 14
+end_hour = 19
+cell = Vector2i(22, 20)
+activity = "buscar_rival"
+
+[sub_resource type="Resource" id="Resource_nq0nd"]
+script = ExtResource("2_yobfj")
+start_hour = 19
+end_hour = 8
+cell = Vector2i(15, 10)
+activity = "descansar"
+
+[sub_resource type="Resource" id="Resource_olvhr"]
+script = ExtResource("6_36buf")
+species = ExtResource("7_s8vg7")
+
+[sub_resource type="Resource" id="Resource_8f52k"]
+script = ExtResource("6_36buf")
+species = ExtResource("8_dndlu")
+level = 7
+
+[resource]
+script = ExtResource("3_bajda")
+id = "azul"
+display_name = "Azul"
+title = "Rival"
+sprite = ExtResource("5_i58gu")
+personality = SubResource("Resource_ycgvl")
+starting_team = Array[ExtResource("6_36buf")]([SubResource("Resource_olvhr"), SubResource("Resource_8f52k")])
+routine = Array[ExtResource("2_yobfj")]([SubResource("Resource_wuxhm"), SubResource("Resource_xgebv"), SubResource("Resource_o0iyf"), SubResource("Resource_nq0nd")])
+lines = {
+"desafio": "¡Vamos, a ver quién es mejor!",
+"gana": "¡Ja! Te falta entrenar.",
+"pierde": "¡Tuviste suerte! La próxima no te escapás.",
+"saludo": "¡Eh! ¿Vos de nuevo?"
+}

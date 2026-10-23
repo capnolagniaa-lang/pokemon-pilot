@@ -325,6 +325,10 @@ def export_sprite(root, pic, pal_name, out_path):
 
 SPRITES = [
     ("people/red_normal.png", "player.pal", "characters/red.png"),
+    # Entrenadores vivos (docs/PLAN_ENTRENADORES.md): Rival, Estratega y Explorador.
+    ("people/blue.png", "npc_green.pal", "characters/blue.png"),
+    ("people/cooltrainer_f.png", "npc_blue.pal", "characters/cooltrainer_f.png"),
+    ("people/camper.png", "npc_green.pal", "characters/camper.png"),
     ("misc/rock_smash_rock.png", "npc_white.pal", "objects/rock_smash_rock.png"),
     ("misc/strength_boulder.png", "npc_white.pal", "objects/strength_boulder.png"),
     ("misc/cut_tree.png", "npc_green.pal", "objects/cut_tree.png"),

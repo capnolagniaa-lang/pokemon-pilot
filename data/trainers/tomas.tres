@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="TrainerData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/personality_data.gd" id="1_es6jq"]
+[ext_resource type="Script" path="res://scripts/resources/routine_block.gd" id="2_3ddtf"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_idis8"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="4_b560f"]
+[ext_resource type="Texture2D" path="res://art/pret/characters/camper.png" id="5_u2sts"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="6_ewlp4"]
+[ext_resource type="Resource" path="res://data/species/vulpix.tres" id="7_dg0b0"]
+
+[sub_resource type="Resource" id="Resource_xo2um"]
+script = ExtResource("1_es6jq")
+pride = 0.15
+curiosity = 0.85
+
+[sub_resource type="Resource" id="Resource_3r64d"]
+script = ExtResource("2_3ddtf")
+start_hour = 7
+cell = Vector2i(31, 18)
+activity = "explorar"
+
+[sub_resource type="Resource" id="Resource_e2ncv"]
+script = ExtResource("2_3ddtf")
+start_hour = 12
+end_hour = 17
+zone_id = "pradera_florida"
+cell = Vector2i(20, 14)
+activity = "explorar"
+
+[sub_resource type="Resource" id="Resource_4qljs"]
+script = ExtResource("2_3ddtf")
+start_hour = 17
+end_hour = 21
+zone_id = "lago"
+cell = Vector2i(28, 16)
+activity = "explorar"
+
+[sub_resource type="Resource" id="Resource_xanof"]
+script = ExtResource("2_3ddtf")
+start_hour = 21
+end_hour = 7
+cell = Vector2i(31, 18)
+activity = "descansar"
+
+[sub_resource type="Resource" id="Resource_g1orw"]
+script = ExtResource("6_ewlp4")
+species = ExtResource("7_dg0b0")
+
+[resource]
+script = ExtResource("3_idis8")
+id = "tomas"
+display_name = "Tomás"
+title = "Explorador"
+sprite = ExtResource("5_u2sts")
+personality = SubResource("Resource_xo2um")
+starting_team = Array[ExtResource("6_ewlp4")]([SubResource("Resource_g1orw")])
+routine = Array[ExtResource("2_3ddtf")]([SubResource("Resource_3r64d"), SubResource("Resource_e2ncv"), SubResource("Resource_4qljs"), SubResource("Resource_xanof")])
+lines = {
+"desafio": "¡Mirá lo que encontré! ¿Peleamos?",
+"gana": "¡Mi equipo nuevo funciona!",
+"pierde": "Uh... mañana pruebo con otro.",
+"saludo": "¡Hola! ¿Viste algún Pokémon raro por acá?"
+}

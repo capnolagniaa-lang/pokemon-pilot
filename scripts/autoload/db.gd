@@ -17,6 +17,7 @@ var difficulties: Dictionary = {}  # id -> AiDifficulty (facil, normal, dificil)
 var env_states: Dictionary = {}  # id -> EnvCellState (entorno reactivo: ardiendo, mojado...)
 var reactions: Dictionary = {}  # id -> ReactionRule
 var temperaments: Dictionary = {}  # id -> Temperament (agresivo, territorial, timido, curioso)
+var trainers: Dictionary = {}  # id -> TrainerData (entrenadores vivos, data/trainers)
 var type_chart: TypeChart
 var config: GameConfig
 
@@ -33,6 +34,7 @@ func _ready() -> void:
 	env_states = _load_dir("res://data/environment/states", "EnvCellState")
 	reactions = _load_dir("res://data/environment/reactions", "ReactionRule")
 	temperaments = _load_dir("res://data/ai/temperaments", "Temperament")
+	trainers = _load_dir("res://data/trainers", "TrainerData")
 	type_chart = load("res://data/types/type_chart.tres")
 	config = load("res://data/config/game_config.tres")
 	_index_moves()

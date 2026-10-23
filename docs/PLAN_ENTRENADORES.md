@@ -1,8 +1,8 @@
 # Plan: Entrenadores vivos (memoria de combate, rutinas y equipos que evolucionan)
 
 > Plan **separado** del de etapas (`PROGRESO.md`) y del de identidad de combate (`PLAN_IDENTIDAD_COMBATE.md`).
-> Propuesto el 2026-10-22 a partir de una idea del usuario. **Estado**: la IA de salvajes vs. entrenadores ya está
-> definida (sección 1b); las decisiones de la sección 8 siguen a confirmar.
+> Propuesto el 2026-10-22 a partir de una idea del usuario. **Estado**: decisiones confirmadas por el usuario el
+> 2026-10-23 (las recomendadas de la sección 8; IA en la sección 1b). **E-0 hecha** (ver "Avance").
 > Todo el sistema se prende y apaga con el interruptor **"Entrenadores vivos (en prueba)"**, como el modo práctica.
 
 ---
@@ -168,6 +168,31 @@ agarraste desprevenido.
 Orden sugerido respecto del plan de etapas: **E-0 a E-4 reemplazan la parte de IA de la Etapa 4** (después la
 Etapa 4 queda en spawns por bioma/hora). **E-5** adelanta el reloj de la Etapa 5 (sin lo visual). **E-6** usa
 una captura simulada; cuando exista la captura real (Etapa 6) la comparten.
+
+## 6b. Avance
+
+| Fase | Estado | Notas |
+|---|---|---|
+| W (cuerpo + salvajes) | ✅ 2026-10-23 | `CombatBody` + temperamentos (Etapa 4a de PROGRESO) |
+| E-0 | ✅ 2026-10-23 | Ver abajo |
+| E-1 | ⏭️ Siguiente | Combate contra entrenador (desafío, equipos, cambio con Tab, fin, EXP) |
+
+**E-0 (cómo quedó):**
+- Interruptor `GameState.living_trainers` (apagado por defecto; `set_living_trainers` emite
+  `Events.living_trainers_changed`): casilla en la elección de inicial y en Esc → Opciones, aviso en el HUD, se
+  guarda con la partida.
+- Datos (`scripts/resources/`): `TrainerData` (nombre, título, sprite, personalidad, equipo inicial, pool, rutina,
+  frases), `PersonalityData`, `TrainerMon`, `RoutineBlock`. Los 3 del prototipo en `data/trainers/*.tres`, armados
+  por `tools/build_trainers.gd` (correrlo los pisa; se pueden ajustar en el inspector).
+- **Azul (Rival)**: Charmander 8 + Rattata 7, orgullo 0,85, agresión 0,85. **Valeria (Estratega)**: Bellsprout 8 +
+  Pidgey 8, inteligencia 3, malinterpreta 10%. **Tomás (Explorador)**: Vulpix 8, curiosidad 0,85. Rutinas
+  cargadas para E-5 (en E-0 aparecen en el lugar de su primer bloque, en Ruta 1, cerca de la plaza).
+- `TrainerState` (equipo actual, victorias/derrotas, memoria, rivalidad) en `GameState.trainers`, guardado como
+  diccionario con ids. `TrainerDirector` (nodo del mundo) saca o guarda los `TrainerNPC` según el interruptor y si
+  su zona está cargada; el estado sobrevive a que el NPC desaparezca.
+- `TrainerNPC` (`scenes/characters/trainer_npc.tscn`): sprite de FireRed (Blue, Cooltrainer, Camper; bajados del
+  decomp y exportados con `pret_import.py`), bloquea el paso, te mira y muestra su nombre cuando te acercás.
+- Autotest `--autotest-trainers` (10 chequeos); vitrina `--showcase-trainers`.
 
 ## 7. Cómo probarlo (prendido el interruptor)
 

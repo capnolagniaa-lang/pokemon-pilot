@@ -16,8 +16,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Etapa 4a hecha (IA de los salvajes)**: cuerpo compartido + temperamentos (agresivo, territorial, tímido,
   curioso) — ver "Etapa 4a". Definido con el usuario: **la IA de salvajes y la de entrenadores son distintas**
   (salvajes = instinto sin memoria; entrenadores = órdenes + memoria) — ver `PLAN_ENTRENADORES.md`, sección 1b.
-- **Siguiente: plan de entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E-0 en adelante; el usuario
-  todavía tiene que confirmar las decisiones de la sección 8). Después, spawns por hora (Etapa 4b/5). El usuario aprobó los kits por ahora ("me gustan los de Charmander y
+- **Entrenadores vivos — E-0 hecha** (2026-10-23; decisiones del plan confirmadas): interruptor "Entrenadores
+  vivos (en prueba)" (inicio y Opciones, apagado por defecto), datos de los 3 entrenadores (Azul, Valeria, Tomás)
+  y sus NPC en Ruta 1. Detalle en `docs/PLAN_ENTRENADORES.md` ("Avance").
+- **Siguiente: E-1** (combate contra entrenador: desafío, equipos de hasta 3, cambio de Pokémon con Tab, fin y
+  EXP). Después, spawns por hora (Etapa 4b/5). El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.
 - v2 hecho: **sin energía** (solo recargas), **4 ataques + esquive en Espacio**, Charmander **bruiser** rearmado,
   Bellsprout/Bulbasaur **control**, y por ahora **todo el mapa** solo hace aparecer **Pidgey, Bellsprout,
@@ -275,8 +278,8 @@ EXP contra valores oficiales), `--showcase` (vitrina visual de los 3 estados, pa
 `--quit-after 60000` como límite por si algo se cuelga.
 
 ## Próximo paso concreto
-1. **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`): confirmar las decisiones de la sección 8 y arrancar por
-   E-0 (interruptor + datos) y E-1 (combate contra entrenador con cambio de Pokémon). La "mente" del entrenador
+1. **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`): E-0 hecha; seguir con E-1 (combate contra entrenador
+   con cambio de Pokémon). La "mente" del entrenador
    (órdenes gritadas + perillas + memoria) usa el mismo `CombatBody` que los salvajes.
 2. Salvajes, pendiente: "en grupo" (si atacás a uno vienen los demás), aprovechar la mecánica de firma
    (Pidgey sube al aire, Vulpix busca quemados).

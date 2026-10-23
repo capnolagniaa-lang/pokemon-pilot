@@ -16,6 +16,8 @@ var companion: Creature
 var pause_menu: PauseMenu
 ## Entorno reactivo (fuego, agua, hielo, eléctrico sobre las celdas).
 var reactions: ReactionSystem
+## Entrenadores vivos (aparecen solo con el interruptor prendido).
+var trainers: TrainerDirector
 
 
 func _ready() -> void:
@@ -39,6 +41,9 @@ func _ready() -> void:
 	var dex := PokedexTracker.new()
 	dex.name = "PokedexTracker"
 	add_child(dex)
+	trainers = TrainerDirector.new()
+	trainers.name = "TrainerDirector"
+	add_child(trainers)
 	Events.party_changed.connect(_on_party_changed)
 	Events.equipment_changed.connect(_on_equipment_changed)
 	var menu_layer := CanvasLayer.new()

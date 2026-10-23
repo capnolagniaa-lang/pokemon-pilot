@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="TrainerData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/personality_data.gd" id="1_rui0p"]
+[ext_resource type="Script" path="res://scripts/resources/routine_block.gd" id="2_053ck"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_fhoa6"]
+[ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="4_yve1c"]
+[ext_resource type="Texture2D" path="res://art/pret/characters/cooltrainer_f.png" id="5_xrcr8"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="6_4gigv"]
+[ext_resource type="Resource" path="res://data/species/bellsprout.tres" id="7_kk4ge"]
+[ext_resource type="Resource" path="res://data/species/pidgey.tres" id="8_ejr3b"]
+
+[sub_resource type="Resource" id="Resource_m7c7h"]
+script = ExtResource("1_rui0p")
+encounters_to_learn = 3
+max_intelligence = 3
+pride = 0.4
+aggression = 0.3
+misread_chance = 0.1
+
+[sub_resource type="Resource" id="Resource_sxs0p"]
+script = ExtResource("2_053ck")
+start_hour = 9
+end_hour = 13
+cell = Vector2i(16, 17)
+
+[sub_resource type="Resource" id="Resource_vje13"]
+script = ExtResource("2_053ck")
+start_hour = 15
+end_hour = 18
+zone_id = "bosque"
+cell = Vector2i(26, 12)
+
+[sub_resource type="Resource" id="Resource_457y4"]
+script = ExtResource("2_053ck")
+start_hour = 18
+end_hour = 9
+cell = Vector2i(16, 17)
+activity = "descansar"
+
+[sub_resource type="Resource" id="Resource_g1h57"]
+script = ExtResource("6_4gigv")
+species = ExtResource("7_kk4ge")
+
+[sub_resource type="Resource" id="Resource_jt35t"]
+script = ExtResource("6_4gigv")
+species = ExtResource("8_ejr3b")
+
+[resource]
+script = ExtResource("3_fhoa6")
+id = "valeria"
+display_name = "Valeria"
+title = "Estratega"
+sprite = ExtResource("5_xrcr8")
+personality = SubResource("Resource_m7c7h")
+starting_team = Array[ExtResource("6_4gigv")]([SubResource("Resource_g1h57"), SubResource("Resource_jt35t")])
+routine = Array[ExtResource("2_053ck")]([SubResource("Resource_sxs0p"), SubResource("Resource_vje13"), SubResource("Resource_457y4")])
+lines = {
+"desafio": "Probemos una idea que tengo.",
+"gana": "Tal como lo planeé.",
+"pierde": "Interesante... lo voy a anotar.",
+"saludo": "Hola. Te estuve observando."
+}

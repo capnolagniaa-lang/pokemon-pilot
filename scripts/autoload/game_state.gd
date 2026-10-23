@@ -15,6 +15,11 @@ var practice_mode := true
 ## Salvajes de prueba (Opciones): en todo el mapa aparecen solo Pidgey, Bellsprout, Rattata y Vulpix, como en la
 ## fase de prueba del combate. Apagado: mandan las tablas de encuentros de cada zona (editor de mapas).
 var wild_test_pool := false
+## Entrenadores vivos (en prueba; docs/PLAN_ENTRENADORES.md): se elige al iniciar o en Opciones y se guarda.
+## Apagado: no aparecen entrenadores ni se registra memoria (el juego queda como antes). Usar set_living_trainers.
+var living_trainers := false
+## Estado de cada entrenador vivo (equipo actual, récord, memoria): id -> TrainerState. Se crea al primer uso.
+var trainers: Dictionary = {}
 ## Dificultad de la IA salvaje (se elige al iniciar). Por defecto Normal.
 var difficulty: AiDifficulty
 ## Segundos jugados (los suma el mundo mientras corre).
@@ -56,9 +61,25 @@ func new_game(starter: SpeciesData) -> void:
 	zone_name = ""
 	pokedex_seen.clear()
 	pokedex_fought.clear()
+	trainers.clear()
 	mark_fought(starter)
 	Events.party_changed.emit()
 	Events.game_started.emit()
+
+
+## Prende o apaga los entrenadores vivos (el mundo los saca o los guarda al momento).
+func set_living_trainers(on: bool) -> void:
+	if on == living_trainers:
+		return
+	living_trainers = on
+	Events.living_trainers_changed.emit(on)
+
+
+## Estado de un entrenador vivo (lo crea con su equipo inicial la primera vez).
+func trainer_state(data: TrainerData) -> TrainerState:
+	if not trainers.has(data.id):
+		trainers[data.id] = TrainerState.create(data)
+	return trainers[data.id]
 
 
 func active() -> CreatureInstance:
@@ -150,7 +171,15 @@ func to_dict() -> Dictionary:
 	return {"party": members, "active_index": active_index, "balls": balls, "practice_mode": practice_mode,
 		"wild_test_pool": wild_test_pool, "difficulty": difficulty_id(), "play_time": play_time,
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
-		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys()}}
+		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys()},
+		"living_trainers": living_trainers, "trainers": _trainers_dict()}
+
+
+func _trainers_dict() -> Dictionary:
+	var out := {}
+	for id in trainers:
+		out[id] = trainers[id].to_dict()
+	return out
 
 
 ## Carga una partida. Devuelve false si no queda ningún Pokémon válido (y no toca el estado actual).
@@ -172,6 +201,13 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	balls = int(d.get("balls", DB.config.starting_balls))
 	practice_mode = bool(d.get("practice_mode", true))
 	wild_test_pool = bool(d.get("wild_test_pool", false))
+	living_trainers = bool(d.get("living_trainers", false))
+	trainers.clear()
+	var saved_trainers = d.get("trainers", {})
+	if saved_trainers is Dictionary:
+		for id in saved_trainers:
+			if DB.trainers.has(id) and saved_trainers[id] is Dictionary:
+				trainers[id] = TrainerState.from_dict(DB.trainers[id], saved_trainers[id])
 	set_difficulty(str(d.get("difficulty", "normal")))
 	play_time = maxf(0.0, float(d.get("play_time", 0.0)))
 	var pos = d.get("trainer_position", null)

@@ -46,6 +46,12 @@ func _ready() -> void:
 	test_pool.button_pressed = GameState.wild_test_pool
 	test_pool.toggled.connect(func(on: bool): GameState.wild_test_pool = on)
 	box.add_child(test_pool)
+	var living := CheckBox.new()
+	living.text = "Entrenadores vivos (en prueba)"
+	living.tooltip_text = "Aparecen entrenadores con memoria y rutina (docs/PLAN_ENTRENADORES.md). Apagado: el juego queda como antes."
+	living.button_pressed = GameState.living_trainers
+	living.toggled.connect(GameState.set_living_trainers)
+	box.add_child(living)
 	var back := UiStyle.button("Volver", 160)
 	back.pressed.connect(func(): closed.emit())
 	box.add_child(back)

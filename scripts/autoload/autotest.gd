@@ -23,6 +23,14 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	for flag in ["--autotest-trainers", "--showcase-trainers"]:
+		if flag in OS.get_cmdline_user_args():
+			set_process(false)
+			var tt := TrainerTests.new()
+			tt.autotest = self
+			add_child(tt)
+			(tt.run if flag == "--autotest-trainers" else tt.showcase).call_deferred()
+			return
 	for flag in ["--autotest-wild-ai", "--showcase-wild-ai"]:
 		if flag in OS.get_cmdline_user_args():
 			set_process(false)
