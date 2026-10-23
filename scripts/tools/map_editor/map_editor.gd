@@ -20,6 +20,7 @@ const TAB_STAMPS := 1
 const TAB_TILES := 2
 const TAB_TILE := 3
 const TAB_ZONE := 4
+const TAB_WILD := 5
 
 var world: WorldData
 var roles: TileRoleSet
@@ -59,6 +60,7 @@ var _palette: MapTilePalette
 var _stamps: MapStampPanel
 var _props: MapTileProps
 var _zone_panel: MapZonePanel
+var _wild: MapEncounterPanel
 var _status: Label
 var _toast: Label
 var _toast_left := 0.0
@@ -128,6 +130,8 @@ func _set_doc(d: MapDocument) -> void:
 	_build_neighbors()
 	_apply_layer_visibility()
 	_zone_panel.bind(doc)
+	_wild.bind(doc)
+	overlay.show_wild = _tabs.current_tab == TAB_WILD
 	_zone_panel.show_issues(doc.validate())
 	_refresh_zone_list()
 	_fit_camera()
@@ -531,6 +535,12 @@ func _press(cell: Vector2i, erase: bool) -> void:
 		Tool.PICK:
 			pick(cell)
 		Tool.FILL:
+			if brush.get("kind") == "area":
+				# Balde de áreas: toda la mancha (por ejemplo un parche de pasto alto) entra al área.
+				var li := MapDocument.FOLIAGE if doc.layer(MapDocument.FOLIAGE).get_cell_source_id(cell) >= 0 else MapDocument.GROUND
+				doc.paint_area(doc.flood(cell, li), brush["area"], not erase)
+				doc.commit("Balde de área")
+				return
 			if erase:
 				doc.erase(doc.flood(cell, _fill_layer()), -1)
 			elif _is_tree_brush():
@@ -611,6 +621,9 @@ func _paint_at(cell: Vector2i, erase: bool, first: bool) -> void:
 
 ## Aplica el pincel actual a las celdas (el clic derecho borra: todo lo de la celda, o la capa activa con un tile crudo).
 func apply_brush(cells: Array, erase: bool) -> void:
+	if brush.get("kind") == "area":
+		doc.paint_area(cells, brush["area"], not erase)  # clic derecho: saca las celdas del área
+		return
 	if erase:
 		doc.erase(cells, active_layer if brush.get("kind") == "raw" else -1)
 		return
@@ -790,6 +803,9 @@ func _brush_name() -> String:
 		"erase": return "Borrar todo" if brush["layer"] == -1 else "Borrar capa activa"
 		"raw": return "Tile %d" % brush.get("metatile", -1)
 		"stamp": return "Sello %s (%s)" % [brush["stamp"]["name"], brush["stamp"]["place"]]
+		"area":
+			var t := doc.effective_encounters() if doc != null else null
+			return "Área \"%s\"" % t.areas[brush["area"]].name if t != null and brush["area"] < t.areas.size() else "Área"
 	return "—"
 
 
@@ -806,6 +822,16 @@ func _update_status() -> void:
 		if obj != null:
 			parts.append(MapIcons.object_name(obj.scene_file_path))
 		parts.append("tags: " + (", ".join(tags) if not tags.is_empty() else "—"))
+		if _tabs.current_tab == TAB_WILD or brush.get("kind") == "area":
+			var ch := doc.chances_at(hover)
+			var t := doc.effective_encounters()
+			var ai := t.area_at(hover) if t != null else -1
+			var bits := []
+			var keys := ch.keys()
+			keys.sort_custom(func(a, b): return ch[a] > ch[b])
+			for k in keys:
+				bits.append("%s %d%%" % [DB.species[k].display_name if DB.species.has(k) else k, roundi(ch[k] * 100.0)])
+			parts.append(("Área \"%s\": " % t.areas[ai].name if ai >= 0 else "Salvajes acá: ") + (", ".join(bits) if not bits.is_empty() else "ninguno"))
 	parts.append("Herramienta: " + _tool_name())
 	parts.append("Pincel: %s ×%d" % [_brush_name(), brush_size])
 	parts.append("Capa: " + LAYER_LABELS[active_layer].substr(2))
@@ -969,10 +995,10 @@ func _build_ui() -> void:
 	_tabs.offset_bottom = -BOTTOM_H
 	_tabs.focus_mode = Control.FOCUS_NONE
 	# Pestañas más compactas que en el juego: tienen que entrar las 5 en el panel.
-	_tabs.add_theme_font_size_override("font_size", 14)
-	_tabs.add_theme_stylebox_override("tab_selected", UiStyle.box(Color(0.2, 0.17, 0.08, 0.98), UiStyle.ACCENT, 2, 5))
-	_tabs.add_theme_stylebox_override("tab_unselected", UiStyle.box(UiStyle.BG_SOFT, UiStyle.BORDER, 1, 5))
-	_tabs.add_theme_stylebox_override("tab_hovered", UiStyle.box(UiStyle.BG_SOFT, Color(UiStyle.ACCENT, 0.6), 1, 5))
+	_tabs.add_theme_font_size_override("font_size", 12)
+	_tabs.add_theme_stylebox_override("tab_selected", UiStyle.box(Color(0.2, 0.17, 0.08, 0.98), UiStyle.ACCENT, 2, 3))
+	_tabs.add_theme_stylebox_override("tab_unselected", UiStyle.box(UiStyle.BG_SOFT, UiStyle.BORDER, 1, 3))
+	_tabs.add_theme_stylebox_override("tab_hovered", UiStyle.box(UiStyle.BG_SOFT, Color(UiStyle.ACCENT, 0.6), 1, 3))
 	root.add_child(_tabs)
 	_brushes = MapBrushPanel.new()
 	_brushes.name = "Pinceles"
@@ -1014,6 +1040,19 @@ func _build_ui() -> void:
 	_zone_panel.validate_requested.connect(validate)
 	_zone_panel.new_zone_requested.connect(_new_zone)
 	_zone_panel.issue_clicked.connect(func(c: Vector2i): _center_on(Vector2(c * T)))
+	_wild = MapEncounterPanel.new()
+	_wild.name = "Salvajes"
+	_tabs.add_child(_wild)
+	_wild.setup()
+	_wild.paint_area_requested.connect(func(i: int):
+		set_brush({"kind": "area", "key": "area", "area": i})
+		if tool not in [Tool.PENCIL, Tool.RECT, Tool.FILL, Tool.LINE]:
+			set_tool(Tool.PENCIL)
+		toast("Pintá el área en el mapa (clic derecho saca celdas). El balde toma toda una mancha de pasto."))
+	_tabs.tab_changed.connect(func(t: int):
+		overlay.show_wild = t == TAB_WILD or brush.get("kind") == "area"
+		overlay.queue_redraw()
+		_update_status())
 
 	# Barra de abajo: estado + ayuda de atajos
 	var bottom := PanelContainer.new()

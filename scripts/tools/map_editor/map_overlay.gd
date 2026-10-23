@@ -17,6 +17,8 @@ var show_untagged := false
 var show_neighbors := true
 ## Tag resaltado ("" = ninguno).
 var tag := ""
+## Pestaña Salvajes: celdas donde pueden aparecer (verde) y áreas pintadas (su color).
+var show_wild := false
 
 
 func _draw() -> void:
@@ -50,6 +52,8 @@ func _draw() -> void:
 						draw_rect(r.grow(-2), TAG_COLOR)
 					if show_untagged and tags.is_empty():
 						draw_rect(r.grow(-5), UNTAGGED_COLOR)
+	if show_wild:
+		_draw_wild()
 	if show_grid:
 		var line := Color(0, 0, 0, 0.18)
 		for x in doc.entry.size.x + 1:
@@ -65,3 +69,21 @@ func _tags(c: Vector2i, objects: Dictionary) -> PackedStringArray:
 	if objects.has(c) and objects[c] is EnvObject:
 		tags.append_array((objects[c] as EnvObject).tags)
 	return tags
+
+
+func _draw_wild() -> void:
+	var t := doc.effective_encounters()
+	if t == null:
+		return
+	var wheres := t.wheres()
+	for y in doc.entry.size.y:
+		for x in doc.entry.size.x:
+			var c := Vector2i(x, y)
+			var tags := doc.zone.get_tags(c)
+			if Array(wheres).any(func(w: String) -> bool: return tags.has(w)):
+				draw_rect(Rect2(Vector2(c * T) + Vector2(6, 6), Vector2(4, 4)), Color(0.75, 1.0, 0.2, 0.9))
+	for a in t.areas:
+		for c in a.cells:
+			var r := Rect2(Vector2(c * T), Vector2(T, T))
+			draw_rect(r, Color(a.color, 0.38))
+			draw_rect(r.grow(-0.5), Color(a.color, 0.8), false, 1.0)

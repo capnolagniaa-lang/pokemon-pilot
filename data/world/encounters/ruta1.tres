@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_rgmy6"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_u6dn8"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_pwwex"]
+
+[sub_resource type="Resource" id="Resource_rgmy6"]
+script = ExtResource("2_u6dn8")
+species_id = "pidgey"
+weight = 35
+
+[sub_resource type="Resource" id="Resource_u6dn8"]
+script = ExtResource("2_u6dn8")
+species_id = "rattata"
+weight = 35
+
+[sub_resource type="Resource" id="Resource_pwwex"]
+script = ExtResource("2_u6dn8")
+species_id = "bellsprout"
+weight = 15
+
+[sub_resource type="Resource" id="Resource_mg0j0"]
+script = ExtResource("2_u6dn8")
+species_id = "vulpix"
+weight = 15
+
+[resource]
+script = ExtResource("3_pwwex")
+entries = Array[ExtResource("2_u6dn8")]([SubResource("Resource_rgmy6"), SubResource("Resource_u6dn8"), SubResource("Resource_pwwex"), SubResource("Resource_mg0j0")])

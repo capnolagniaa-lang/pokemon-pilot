@@ -100,6 +100,20 @@ tocar spawners) y la Pokédex en el menú.
 - Autotest `--autotest-pokedex` (14 chequeos: las 386 salen al mundo a Nv. 50 y usan sus 4 movimientos sin
   errores; registro, guardado y pantalla); vitrina `--showcase-pokedex`.
 
+### Salvajes por zona en el editor (2026-10-22)
+Decisiones (las recomendadas): **niveles fijos por fila** (como FireRed), **modo de prueba como interruptor
+apagado** (Opciones → "Salvajes de prueba"), **por zona y por terreno** + (pedido del usuario a mitad de camino)
+**áreas pintadas** que ajustan el % de algunos Pokémon, y **plantillas reales de FireRed**.
+- `EncounterTable`/`EncounterEntry`/`EncounterArea`; tablas en `data/world/encounters/` (una por bioma con las
+  especies del spawner viejo, y Ruta 1 con los 4 de prueba al 35/35/15/15, Nv. 2-5). `WildSpawner` reescrito:
+  celda primero, fila de esa celda después (así cada área usa sus %), salvajes de agua que nadan.
+- Editor: pestaña **Salvajes** (tabla, buscador de los 386, Copiar de FireRed con 132 lugares, densidad y
+  reaparición, áreas pintadas con pincel/rectángulo/balde, % real del área y de la celda bajo el mouse),
+  validaciones nuevas y deshacer de todo.
+- `--autotest-encounters` (20 chequeos). Se arregló un bug del spawner (elegía celdas de lugares que la tabla no
+  usaba) y se estabilizó `--autotest-input` (el spawner reponía un salvaje en medio de la prueba de teclas).
+- Pendiente (Etapa 4/5): que la IA salvaje use su kit con criterio y los encuentros por hora (`time`).
+
 ### Sellos y paleta rehechos con las hojas de referencia (2026-10-22)
 Pedido en `docs/PROMPT_REORGANIZAR_TILES_Y_SELLOS.md`. Decisiones (las recomendadas): lo que no está en ningún
 mapa de FireRed queda **afuera y listado**; ante diferencias chicas manda **el mapa real**; variantes de color =
@@ -242,7 +256,7 @@ EXP contra valores oficiales), `--showcase` (vitrina visual de los 3 estados, pa
    al aire cuando lo encaran). Hoy elige al azar dentro del alcance.
 2. Que la IA lea el entorno: no pararse en el fuego, salir del agua electrificada.
 3. Comportamientos por especie (tímido/agresivo/territorial) y huida con poca vida.
-4. Spawns por bioma y hora (volver a `WildSpawner.use_test_pool = false` cuando termine la prueba del combate).
+4. Spawns por hora (las tablas por zona y bioma ya están: se arman en el editor de mapas, pestaña Salvajes).
 
 ## Pendientes de pulido (anotados)
 - Esquinas interiores donde se cruzan caminos (quedan cuadradas).

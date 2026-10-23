@@ -344,6 +344,31 @@ func showcase() -> void:
 	ed._tabs.current_tab = ed.TAB_TILE
 	ed._props.show_metatile(213)
 	await _frames(20)
+	# Salvajes: un área pintada sobre un parche de pasto alto, con Pikachu al 40% (sin guardar nada).
+	ed.doc.encounters_path = "user://showcase_encounters.tres"
+	ed.doc.load_encounters()
+	var patch := Vector2i(-1, -1)
+	for c in ed.doc.layer(MapDocument.FOLIAGE).get_used_cells():
+		if ed.doc.zone.get_tags(c).has("pasto_alto"):
+			patch = c
+			break
+	var adj := EncounterEntry.new()
+	adj.species_id = "pikachu"
+	adj.weight = 40
+	ed.doc.edit_encounters(func(tt: EncounterTable):
+		var a := EncounterArea.new()
+		a.name = "Rincón de Pikachu"
+		a.adjustments.append(adj)
+		tt.areas.append(a), "Área")
+	ed.doc.paint_area(ed.doc.flood(patch, MapDocument.FOLIAGE), 0, true)
+	ed.doc.commit("Pintar área")
+	ed._tabs.current_tab = ed.TAB_WILD
+	ed._wild.select_area(0)
+	ed.hover = patch
+	ed._update_status()
+	await _frames(20)
+	ed._wild.scroll_vertical = 100000
+	await _frames(15)
 	ed._tabs.current_tab = ed.TAB_ZONE
 	ed.validate()
 	await _frames(20)

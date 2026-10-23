@@ -40,6 +40,12 @@ func _ready() -> void:
 	practice.button_pressed = GameState.practice_mode
 	practice.toggled.connect(func(on: bool): GameState.practice_mode = on)
 	box.add_child(practice)
+	var test_pool := CheckBox.new()
+	test_pool.text = "Salvajes de prueba (solo Pidgey, Bellsprout, Rattata y Vulpix)"
+	test_pool.tooltip_text = "Apagado: en cada zona aparecen los Pokémon de su tabla (se arman en el editor de mapas)."
+	test_pool.button_pressed = GameState.wild_test_pool
+	test_pool.toggled.connect(func(on: bool): GameState.wild_test_pool = on)
+	box.add_child(test_pool)
 	var back := UiStyle.button("Volver", 160)
 	back.pressed.connect(func(): closed.emit())
 	box.add_child(back)

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_4jwv2"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_foqdq"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_650kl"]
+
+[sub_resource type="Resource" id="Resource_sopb1"]
+script = ExtResource("2_foqdq")
+species_id = "bellsprout"
+weight = 33
+min_level = 5
+max_level = 8
+
+[sub_resource type="Resource" id="Resource_cfdke"]
+script = ExtResource("2_foqdq")
+species_id = "oddish"
+weight = 33
+min_level = 5
+max_level = 8
+
+[sub_resource type="Resource" id="Resource_udd16"]
+script = ExtResource("2_foqdq")
+species_id = "pikachu"
+weight = 33
+min_level = 5
+max_level = 8
+
+[resource]
+script = ExtResource("3_650kl")
+entries = Array[ExtResource("2_foqdq")]([SubResource("Resource_sopb1"), SubResource("Resource_cfdke"), SubResource("Resource_udd16")])

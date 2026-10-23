@@ -12,6 +12,9 @@ var balls := 0
 var wilds_enabled := true
 ## Modo práctica (se elige al iniciar): si tu Pokémon se debilita, vuelve al instante con la vida al máximo.
 var practice_mode := true
+## Salvajes de prueba (Opciones): en todo el mapa aparecen solo Pidgey, Bellsprout, Rattata y Vulpix, como en la
+## fase de prueba del combate. Apagado: mandan las tablas de encuentros de cada zona (editor de mapas).
+var wild_test_pool := false
 ## Dificultad de la IA salvaje (se elige al iniciar). Por defecto Normal.
 var difficulty: AiDifficulty
 ## Segundos jugados (los suma el mundo mientras corre).
@@ -145,7 +148,7 @@ func to_dict() -> Dictionary:
 	for inst in party:
 		members.append(inst.to_dict())
 	return {"party": members, "active_index": active_index, "balls": balls, "practice_mode": practice_mode,
-		"difficulty": difficulty_id(), "play_time": play_time,
+		"wild_test_pool": wild_test_pool, "difficulty": difficulty_id(), "play_time": play_time,
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys()}}
 
@@ -168,6 +171,7 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	active_index = clampi(int(d.get("active_index", 0)), 0, party.size() - 1)
 	balls = int(d.get("balls", DB.config.starting_balls))
 	practice_mode = bool(d.get("practice_mode", true))
+	wild_test_pool = bool(d.get("wild_test_pool", false))
 	set_difficulty(str(d.get("difficulty", "normal")))
 	play_time = maxf(0.0, float(d.get("play_time", 0.0)))
 	var pos = d.get("trainer_position", null)

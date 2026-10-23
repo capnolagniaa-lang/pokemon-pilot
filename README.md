@@ -69,6 +69,9 @@ directo **Pokémon Pilot — Editor de mapas** (`--path "<proyecto>" -- --map-ed
   hoja"**. Se pinta en la capa activa; si el tile tiene parte de arriba, esa parte se pone sola en Overhead.
 - **Propiedades**: tipo, tags y colisión (ninguna / sólida / agua) de un metatile, con sugerencias según el *behavior* de
   FireRed. Guarda en `tile_roles.tres` y en el TileSet (con backup en `art/tiles/.backup/`). Cambia en **todas** las zonas.
+- **Salvajes**: qué Pokémon aparecen en la zona (especie, %, niveles y dónde: pasto alto, agua...), copiando si
+  querés la tabla real de cualquier lugar de FireRed, y **áreas pintadas** en el mapa donde el % de algunos Pokémon
+  cambia. Pasando el mouse se ve qué puede salir en cada celda. Se guarda en `data/world/encounters/`.
 - **Zona**: nombre, bioma, plaza (hub) y salidas (se arrastran sobre el mapa), inicio del juego, validaciones
   (salidas transitables y que empalmen con la vecina, camino de la plaza a cada salida, inicio libre, pasto alto
   para los salvajes, tiles fuera de la zona) y **Nueva zona** (en un lugar libre de la región, en pasto o generada

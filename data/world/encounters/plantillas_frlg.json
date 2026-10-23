@@ -1,0 +1,4920 @@
+{
+ "_info": "Generado por tools/build_encounter_templates.py desde pret/pokefirered (FireRed).",
+ "templates": [
+  {
+   "id": "six_island_pattern_bush",
+   "name": "Arbusto Raro",
+   "rows": [
+    {
+     "species": "spinarak",
+     "weight": 30,
+     "min_level": 9,
+     "max_level": 14,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "kakuna",
+     "weight": 20,
+     "min_level": 9,
+     "max_level": 9,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "heracross",
+     "weight": 20,
+     "min_level": 15,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "caterpie",
+     "weight": 10,
+     "min_level": 6,
+     "max_level": 6,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weedle",
+     "weight": 10,
+     "min_level": 6,
+     "max_level": 6,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "metapod",
+     "weight": 5,
+     "min_level": 9,
+     "max_level": 9,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ledyba",
+     "weight": 5,
+     "min_level": 9,
+     "max_level": 14,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "three_island_berry_forest",
+   "name": "Bosque Baya",
+   "rows": [
+    {
+     "species": "pidgeotto",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gloom",
+     "weight": 20,
+     "min_level": 35,
+     "max_level": 35,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 10,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "oddish",
+     "weight": 10,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venonat",
+     "weight": 10,
+     "min_level": 34,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "drowzee",
+     "weight": 10,
+     "min_level": 34,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "exeggcute",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 35,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venomoth",
+     "weight": 5,
+     "min_level": 37,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "hypno",
+     "weight": 5,
+     "min_level": 37,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "golduck",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "viridian_forest",
+   "name": "Bosque Verde",
+   "rows": [
+    {
+     "species": "caterpie",
+     "weight": 40,
+     "min_level": 3,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weedle",
+     "weight": 40,
+     "min_level": 3,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "kakuna",
+     "weight": 10,
+     "min_level": 4,
+     "max_level": 6,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "metapod",
+     "weight": 5,
+     "min_level": 5,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pikachu",
+     "weight": 5,
+     "min_level": 3,
+     "max_level": 5,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "two_island_cape_brink",
+   "name": "Cabo Extremo",
+   "rows": [
+    {
+     "species": "oddish",
+     "weight": 30,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 20,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gloom",
+     "weight": 15,
+     "min_level": 36,
+     "max_level": 38,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 10,
+     "min_level": 36,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golduck",
+     "weight": 5,
+     "min_level": 37,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 37,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "golduck",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "victory_road_1f",
+   "name": "Calle Victoria · 1.er piso",
+   "rows": [
+    {
+     "species": "onix",
+     "weight": 30,
+     "min_level": 40,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 20,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 20,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 10,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "arbok",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "marowak",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machoke",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 46,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "victory_road_2f",
+   "name": "Calle Victoria · 2.º piso",
+   "rows": [
+    {
+     "species": "machop",
+     "weight": 20,
+     "min_level": 34,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 20,
+     "min_level": 34,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "onix",
+     "weight": 20,
+     "min_level": 45,
+     "max_level": 48,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "primeape",
+     "weight": 10,
+     "min_level": 42,
+     "max_level": 42,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 10,
+     "min_level": 34,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "arbok",
+     "weight": 5,
+     "min_level": 46,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 5,
+     "min_level": 46,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "marowak",
+     "weight": 5,
+     "min_level": 46,
+     "max_level": 48,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machoke",
+     "weight": 5,
+     "min_level": 46,
+     "max_level": 48,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "victory_road_3f",
+   "name": "Calle Victoria · 3.er piso",
+   "rows": [
+    {
+     "species": "onix",
+     "weight": 30,
+     "min_level": 40,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 20,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 20,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 10,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "arbok",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "marowak",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machoke",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 46,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "one_island_kindle_road",
+   "name": "Camino Ascuas",
+   "rows": [
+    {
+     "species": "ponyta",
+     "weight": 30,
+     "min_level": 31,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 25,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 10,
+     "min_level": 36,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 10,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 34,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rapidash",
+     "weight": 5,
+     "min_level": 37,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 37,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_sevault_canyon",
+   "name": "Cañón Sevault",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 20,
+     "min_level": 46,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "phanpy",
+     "weight": 20,
+     "min_level": 15,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "cubone",
+     "weight": 10,
+     "min_level": 46,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 10,
+     "min_level": 50,
+     "max_level": 50,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "marowak",
+     "weight": 10,
+     "min_level": 52,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 43,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "onix",
+     "weight": 5,
+     "min_level": 54,
+     "max_level": 54,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "skarmory",
+     "weight": 5,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "larvitar",
+     "weight": 5,
+     "min_level": 15,
+     "max_level": 20,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 49,
+     "max_level": 52,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_sevault_canyon_entrance",
+   "name": "Cañón Sevault · entrada",
+   "rows": [
+    {
+     "species": "sentret",
+     "weight": 30,
+     "min_level": 10,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 20,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "phanpy",
+     "weight": 15,
+     "min_level": 10,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 15,
+     "min_level": 48,
+     "max_level": 50,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 47,
+     "max_level": 50,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "power_plant",
+   "name": "Central Eléctrica",
+   "rows": [
+    {
+     "species": "voltorb",
+     "weight": 30,
+     "min_level": 22,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "magnemite",
+     "weight": 30,
+     "min_level": 22,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pikachu",
+     "weight": 25,
+     "min_level": 22,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "magneton",
+     "weight": 10,
+     "min_level": 31,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "electabuzz",
+     "weight": 5,
+     "min_level": 32,
+     "max_level": 35,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "celadon_city",
+   "name": "Ciudad Azulona",
+   "rows": [
+    {
+     "species": "psyduck",
+     "weight": 99,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "koffing",
+     "weight": 1,
+     "min_level": 30,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "vermilion_city",
+   "name": "Ciudad Carmín",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "cerulean_city",
+   "name": "Ciudad Celeste",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "fuchsia_city",
+   "name": "Ciudad Fucsia",
+   "rows": [
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "viridian_city",
+   "name": "Ciudad Verde",
+   "rows": [
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "cerulean_cave_1f",
+   "name": "Cueva Celeste · 1.er piso",
+   "rows": [
+    {
+     "species": "parasect",
+     "weight": 25,
+     "min_level": 49,
+     "max_level": 58,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "magneton",
+     "weight": 20,
+     "min_level": 49,
+     "max_level": 49,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 14,
+     "min_level": 46,
+     "max_level": 55,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "primeape",
+     "weight": 11,
+     "min_level": 52,
+     "max_level": 61,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ditto",
+     "weight": 11,
+     "min_level": 52,
+     "max_level": 61,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machoke",
+     "weight": 10,
+     "min_level": 46,
+     "max_level": 46,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "electrode",
+     "weight": 5,
+     "min_level": 58,
+     "max_level": 58,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "wobbuffet",
+     "weight": 4,
+     "min_level": 55,
+     "max_level": 55,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 65,
+     "min_level": 30,
+     "max_level": 50,
+     "where": "agua"
+    },
+    {
+     "species": "golduck",
+     "weight": 35,
+     "min_level": 40,
+     "max_level": 55,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "cerulean_cave_2f",
+   "name": "Cueva Celeste · 2.º piso",
+   "rows": [
+    {
+     "species": "golbat",
+     "weight": 25,
+     "min_level": 49,
+     "max_level": 58,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machoke",
+     "weight": 20,
+     "min_level": 49,
+     "max_level": 49,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "parasect",
+     "weight": 14,
+     "min_level": 52,
+     "max_level": 61,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "kadabra",
+     "weight": 11,
+     "min_level": 55,
+     "max_level": 64,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ditto",
+     "weight": 11,
+     "min_level": 55,
+     "max_level": 64,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "magneton",
+     "weight": 10,
+     "min_level": 52,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "wobbuffet",
+     "weight": 5,
+     "min_level": 58,
+     "max_level": 58,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "electrode",
+     "weight": 4,
+     "min_level": 61,
+     "max_level": 61,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "cerulean_cave_b1f",
+   "name": "Cueva Celeste · Subsuelo 1",
+   "rows": [
+    {
+     "species": "kadabra",
+     "weight": 25,
+     "min_level": 58,
+     "max_level": 67,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ditto",
+     "weight": 25,
+     "min_level": 58,
+     "max_level": 67,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "parasect",
+     "weight": 14,
+     "min_level": 55,
+     "max_level": 64,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 11,
+     "min_level": 52,
+     "max_level": 61,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "magneton",
+     "weight": 10,
+     "min_level": 55,
+     "max_level": 55,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machoke",
+     "weight": 10,
+     "min_level": 52,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "electrode",
+     "weight": 4,
+     "min_level": 64,
+     "max_level": 64,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "wobbuffet",
+     "weight": 1,
+     "min_level": 61,
+     "max_level": 61,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 65,
+     "min_level": 40,
+     "max_level": 60,
+     "where": "agua"
+    },
+    {
+     "species": "golduck",
+     "weight": 35,
+     "min_level": 50,
+     "max_level": 65,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "digletts_cave_b1f",
+   "name": "Cueva Diglett · Subsuelo 1",
+   "rows": [
+    {
+     "species": "diglett",
+     "weight": 95,
+     "min_level": 15,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "dugtrio",
+     "weight": 5,
+     "min_level": 29,
+     "max_level": 31,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "four_island_icefall_cave_1f",
+   "name": "Cueva Helada · 1.er piso",
+   "rows": [
+    {
+     "species": "swinub",
+     "weight": 50,
+     "min_level": 23,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 25,
+     "min_level": 45,
+     "max_level": 48,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "seel",
+     "weight": 10,
+     "min_level": 45,
+     "max_level": 45,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 10,
+     "min_level": 40,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "delibird",
+     "weight": 5,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "four_island_icefall_cave_b1f",
+   "name": "Cueva Helada · Subsuelo 1",
+   "rows": [
+    {
+     "species": "swinub",
+     "weight": 50,
+     "min_level": 23,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 25,
+     "min_level": 45,
+     "max_level": 48,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "seel",
+     "weight": 10,
+     "min_level": 45,
+     "max_level": 45,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 10,
+     "min_level": 40,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "delibird",
+     "weight": 5,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "four_island_icefall_cave_entrance",
+   "name": "Cueva Helada · entrada",
+   "rows": [
+    {
+     "species": "seel",
+     "weight": 40,
+     "min_level": 43,
+     "max_level": 47,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 25,
+     "min_level": 45,
+     "max_level": 48,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "dewgong",
+     "weight": 20,
+     "min_level": 49,
+     "max_level": 53,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 10,
+     "min_level": 40,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "seel",
+     "weight": 60,
+     "min_level": 5,
+     "max_level": 35,
+     "where": "agua"
+    },
+    {
+     "species": "psyduck",
+     "weight": 30,
+     "min_level": 5,
+     "max_level": 35,
+     "where": "agua"
+    },
+    {
+     "species": "dewgong",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "wooper",
+     "weight": 5,
+     "min_level": 5,
+     "max_level": 15,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "four_island_icefall_cave_back",
+   "name": "Cueva Helada · fondo",
+   "rows": [
+    {
+     "species": "seel",
+     "weight": 40,
+     "min_level": 43,
+     "max_level": 47,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 25,
+     "min_level": 45,
+     "max_level": 48,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "dewgong",
+     "weight": 20,
+     "min_level": 49,
+     "max_level": 53,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 10,
+     "min_level": 40,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 45,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 4,
+     "min_level": 35,
+     "max_level": 45,
+     "where": "agua"
+    },
+    {
+     "species": "lapras",
+     "weight": 1,
+     "min_level": 30,
+     "max_level": 45,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 1",
+   "rows": [
+    {
+     "species": "zubat",
+     "weight": 100,
+     "min_level": 6,
+     "max_level": 16,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 2",
+   "rows": [
+    {
+     "species": "mareep",
+     "weight": 100,
+     "min_level": 3,
+     "max_level": 13,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 3",
+   "rows": [
+    {
+     "species": "pineco",
+     "weight": 100,
+     "min_level": 19,
+     "max_level": 29,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 4",
+   "rows": [
+    {
+     "species": "houndour",
+     "weight": 100,
+     "min_level": 12,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 5",
+   "rows": [
+    {
+     "species": "teddiursa",
+     "weight": 100,
+     "min_level": 18,
+     "max_level": 28,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 6",
+   "rows": [
+    {
+     "species": "aipom",
+     "weight": 100,
+     "min_level": 18,
+     "max_level": 28,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 7",
+   "rows": [
+    {
+     "species": "shuckle",
+     "weight": 100,
+     "min_level": 18,
+     "max_level": 28,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 8",
+   "rows": [
+    {
+     "species": "stantler",
+     "weight": 100,
+     "min_level": 18,
+     "max_level": 28,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_altering_cave",
+   "name": "Cueva Mutante 9",
+   "rows": [
+    {
+     "species": "smeargle",
+     "weight": 100,
+     "min_level": 18,
+     "max_level": 28,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room1",
+   "name": "Cueva Perdida · sala 1",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room10",
+   "name": "Cueva Perdida · sala 10",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room11",
+   "name": "Cueva Perdida · sala 11",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 20,
+     "min_level": 40,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 20,
+     "min_level": 15,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 10,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room12",
+   "name": "Cueva Perdida · sala 12",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 20,
+     "min_level": 40,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 20,
+     "min_level": 15,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 10,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room13",
+   "name": "Cueva Perdida · sala 13",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 20,
+     "min_level": 40,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 20,
+     "min_level": 15,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 10,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room14",
+   "name": "Cueva Perdida · sala 14",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 20,
+     "min_level": 40,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 20,
+     "min_level": 15,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 10,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room2",
+   "name": "Cueva Perdida · sala 2",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room3",
+   "name": "Cueva Perdida · sala 3",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room4",
+   "name": "Cueva Perdida · sala 4",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room5",
+   "name": "Cueva Perdida · sala 5",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room6",
+   "name": "Cueva Perdida · sala 6",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room7",
+   "name": "Cueva Perdida · sala 7",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room8",
+   "name": "Cueva Perdida · sala 8",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_lost_cave_room9",
+   "name": "Cueva Perdida · sala 9",
+   "rows": [
+    {
+     "species": "haunter",
+     "weight": 30,
+     "min_level": 44,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gastly",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 37,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 20,
+     "min_level": 41,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "murkrow",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "cinnabar_island",
+   "name": "Isla Canela",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "four_island",
+   "name": "Isla Cuarta",
+   "rows": [
+    {
+     "species": "wooper",
+     "weight": 70,
+     "min_level": 5,
+     "max_level": 25,
+     "where": "agua"
+    },
+    {
+     "species": "psyduck",
+     "weight": 30,
+     "min_level": 5,
+     "max_level": 35,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "six_island_outcast_island",
+   "name": "Isla Paria",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "one_island",
+   "name": "Isla Prima",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "five_island",
+   "name": "Isla Quinta",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 65,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "hoppip",
+     "weight": 30,
+     "min_level": 5,
+     "max_level": 15,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "seafoam_islands_1f",
+   "name": "Islas Espuma · 1.er piso",
+   "rows": [
+    {
+     "species": "psyduck",
+     "weight": 55,
+     "min_level": 26,
+     "max_level": 33,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 34,
+     "min_level": 22,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 11,
+     "min_level": 26,
+     "max_level": 30,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seafoam_islands_b1f",
+   "name": "Islas Espuma · Subsuelo 1",
+   "rows": [
+    {
+     "species": "psyduck",
+     "weight": 40,
+     "min_level": 29,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 34,
+     "min_level": 22,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 11,
+     "min_level": 26,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "seel",
+     "weight": 10,
+     "min_level": 28,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golduck",
+     "weight": 5,
+     "min_level": 33,
+     "max_level": 35,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seafoam_islands_b2f",
+   "name": "Islas Espuma · Subsuelo 2",
+   "rows": [
+    {
+     "species": "psyduck",
+     "weight": 40,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "seel",
+     "weight": 20,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 20,
+     "min_level": 22,
+     "max_level": 24,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 10,
+     "min_level": 26,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golduck",
+     "weight": 10,
+     "min_level": 32,
+     "max_level": 34,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seafoam_islands_b3f",
+   "name": "Islas Espuma · Subsuelo 3",
+   "rows": [
+    {
+     "species": "seel",
+     "weight": 40,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 20,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golduck",
+     "weight": 15,
+     "min_level": 32,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 10,
+     "min_level": 24,
+     "max_level": 24,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 10,
+     "min_level": 26,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "dewgong",
+     "weight": 5,
+     "min_level": 32,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "seel",
+     "weight": 60,
+     "min_level": 25,
+     "max_level": 35,
+     "where": "agua"
+    },
+    {
+     "species": "horsea",
+     "weight": 30,
+     "min_level": 25,
+     "max_level": 30,
+     "where": "agua"
+    },
+    {
+     "species": "dewgong",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "psyduck",
+     "weight": 4,
+     "min_level": 30,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "golduck",
+     "weight": 1,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "seafoam_islands_b4f",
+   "name": "Islas Espuma · Subsuelo 4",
+   "rows": [
+    {
+     "species": "seel",
+     "weight": 50,
+     "min_level": 30,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golduck",
+     "weight": 15,
+     "min_level": 32,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "golbat",
+     "weight": 15,
+     "min_level": 26,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 10,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "dewgong",
+     "weight": 10,
+     "min_level": 34,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "seel",
+     "weight": 60,
+     "min_level": 25,
+     "max_level": 35,
+     "where": "agua"
+    },
+    {
+     "species": "horsea",
+     "weight": 30,
+     "min_level": 25,
+     "max_level": 30,
+     "where": "agua"
+    },
+    {
+     "species": "dewgong",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "psyduck",
+     "weight": 4,
+     "min_level": 30,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "golduck",
+     "weight": 1,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "five_island_water_labyrinth",
+   "name": "Laberinto Acuático",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 65,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "hoppip",
+     "weight": 30,
+     "min_level": 5,
+     "max_level": 15,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_mansion_1f",
+   "name": "Mansión Pokémon · 1.er piso",
+   "rows": [
+    {
+     "species": "koffing",
+     "weight": 30,
+     "min_level": 28,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "raticate",
+     "weight": 30,
+     "min_level": 32,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "growlithe",
+     "weight": 15,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 15,
+     "min_level": 26,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "grimer",
+     "weight": 5,
+     "min_level": 28,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weezing",
+     "weight": 5,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_mansion_2f",
+   "name": "Mansión Pokémon · 2.º piso",
+   "rows": [
+    {
+     "species": "koffing",
+     "weight": 30,
+     "min_level": 28,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "raticate",
+     "weight": 30,
+     "min_level": 32,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "growlithe",
+     "weight": 15,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 15,
+     "min_level": 26,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "grimer",
+     "weight": 5,
+     "min_level": 28,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weezing",
+     "weight": 5,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_mansion_3f",
+   "name": "Mansión Pokémon · 3.er piso",
+   "rows": [
+    {
+     "species": "koffing",
+     "weight": 30,
+     "min_level": 28,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "raticate",
+     "weight": 30,
+     "min_level": 32,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "growlithe",
+     "weight": 15,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 15,
+     "min_level": 26,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "grimer",
+     "weight": 5,
+     "min_level": 28,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weezing",
+     "weight": 5,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_mansion_b1f",
+   "name": "Mansión Pokémon · Subsuelo 1",
+   "rows": [
+    {
+     "species": "koffing",
+     "weight": 30,
+     "min_level": 28,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "raticate",
+     "weight": 30,
+     "min_level": 34,
+     "max_level": 38,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "growlithe",
+     "weight": 15,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ditto",
+     "weight": 10,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "grimer",
+     "weight": 5,
+     "min_level": 28,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weezing",
+     "weight": 5,
+     "min_level": 34,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 5,
+     "min_level": 26,
+     "max_level": 26,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_exterior",
+   "name": "Monte Ascuas · exterior",
+   "rows": [
+    {
+     "species": "ponyta",
+     "weight": 35,
+     "min_level": 30,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 25,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 15,
+     "min_level": 30,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 10,
+     "min_level": 35,
+     "max_level": 35,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 10,
+     "min_level": 33,
+     "max_level": 33,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rapidash",
+     "weight": 5,
+     "min_level": 39,
+     "max_level": 42,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_summit_path_1f",
+   "name": "Monte Ascuas · sendero de la cumbre 1.er piso",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 50,
+     "min_level": 29,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 50,
+     "min_level": 31,
+     "max_level": 39,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_summit_path_2f",
+   "name": "Monte Ascuas · sendero de la cumbre 2.º piso",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 40,
+     "min_level": 30,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 40,
+     "min_level": 32,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machoke",
+     "weight": 20,
+     "min_level": 38,
+     "max_level": 40,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_summit_path_3f",
+   "name": "Monte Ascuas · sendero de la cumbre 3.er piso",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 50,
+     "min_level": 29,
+     "max_level": 37,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 50,
+     "min_level": 31,
+     "max_level": 39,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_ruby_path_1f",
+   "name": "Monte Ascuas · sendero rubí 1.er piso",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 50,
+     "min_level": 32,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 40,
+     "min_level": 34,
+     "max_level": 38,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machoke",
+     "weight": 10,
+     "min_level": 40,
+     "max_level": 42,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_ruby_path_b1f",
+   "name": "Monte Ascuas · sendero rubí Subsuelo 1",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 70,
+     "min_level": 34,
+     "max_level": 42,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "slugma",
+     "weight": 30,
+     "min_level": 24,
+     "max_level": 30,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_ruby_path_b1f_stairs",
+   "name": "Monte Ascuas · sendero rubí Subsuelo 1 escaleras",
+   "rows": [
+    {
+     "species": "slugma",
+     "weight": 60,
+     "min_level": 22,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 40,
+     "min_level": 40,
+     "max_level": 44,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_ruby_path_b2f",
+   "name": "Monte Ascuas · sendero rubí Subsuelo 2",
+   "rows": [
+    {
+     "species": "slugma",
+     "weight": 60,
+     "min_level": 22,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 40,
+     "min_level": 40,
+     "max_level": 44,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_ruby_path_b2f_stairs",
+   "name": "Monte Ascuas · sendero rubí Subsuelo 2 escaleras",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 70,
+     "min_level": 34,
+     "max_level": 42,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "slugma",
+     "weight": 30,
+     "min_level": 24,
+     "max_level": 30,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_ember_ruby_path_b3f",
+   "name": "Monte Ascuas · sendero rubí Subsuelo 3",
+   "rows": [
+    {
+     "species": "slugma",
+     "weight": 100,
+     "min_level": 18,
+     "max_level": 36,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_moon_1f",
+   "name": "Monte Moon · 1.er piso",
+   "rows": [
+    {
+     "species": "zubat",
+     "weight": 69,
+     "min_level": 7,
+     "max_level": 10,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 25,
+     "min_level": 7,
+     "max_level": 9,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "paras",
+     "weight": 5,
+     "min_level": 8,
+     "max_level": 8,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "clefairy",
+     "weight": 1,
+     "min_level": 8,
+     "max_level": 8,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_moon_b1f",
+   "name": "Monte Moon · Subsuelo 1",
+   "rows": [
+    {
+     "species": "paras",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 10,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "mt_moon_b2f",
+   "name": "Monte Moon · Subsuelo 2",
+   "rows": [
+    {
+     "species": "zubat",
+     "weight": 49,
+     "min_level": 8,
+     "max_level": 11,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "geodude",
+     "weight": 30,
+     "min_level": 9,
+     "max_level": 10,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "paras",
+     "weight": 15,
+     "min_level": 10,
+     "max_level": 12,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "clefairy",
+     "weight": 6,
+     "min_level": 10,
+     "max_level": 12,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_memorial_pillar",
+   "name": "Pilar Memorial",
+   "rows": [
+    {
+     "species": "hoppip",
+     "weight": 100,
+     "min_level": 6,
+     "max_level": 16,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 65,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "hoppip",
+     "weight": 30,
+     "min_level": 5,
+     "max_level": 15,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "one_island_treasure_beach",
+   "name": "Playa Tesoro",
+   "rows": [
+    {
+     "species": "spearow",
+     "weight": 30,
+     "min_level": 31,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tangela",
+     "weight": 30,
+     "min_level": 33,
+     "max_level": 35,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 20,
+     "min_level": 36,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 37,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "five_island_meadow",
+   "name": "Pradera Quinta",
+   "rows": [
+    {
+     "species": "sentret",
+     "weight": 30,
+     "min_level": 10,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 20,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgeotto",
+     "weight": 15,
+     "min_level": 48,
+     "max_level": 50,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "hoppip",
+     "weight": 15,
+     "min_level": 10,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 47,
+     "max_level": 50,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 65,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "hoppip",
+     "weight": 30,
+     "min_level": 5,
+     "max_level": 15,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "pallet_town",
+   "name": "Pueblo Paleta",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "three_island_bond_bridge",
+   "name": "Puente Unión",
+   "rows": [
+    {
+     "species": "pidgey",
+     "weight": 30,
+     "min_level": 29,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "oddish",
+     "weight": 20,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgeotto",
+     "weight": 15,
+     "min_level": 34,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gloom",
+     "weight": 10,
+     "min_level": 36,
+     "max_level": 36,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venonat",
+     "weight": 5,
+     "min_level": 34,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 37,
+     "max_level": 40,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "three_island_port",
+   "name": "Puerto Tera",
+   "rows": [
+    {
+     "species": "dunsparce",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 35,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "five_island_resort_gorgeous",
+   "name": "Resort Deluxe",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 65,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "hoppip",
+     "weight": 30,
+     "min_level": 5,
+     "max_level": 15,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_tanoby_ruins",
+   "name": "Ruinas Tanoby",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_tanoby_ruins_dilford_chamber",
+   "name": "Ruinas Tanoby · dilford cámara",
+   "rows": [
+    {
+     "species": "unown",
+     "weight": 100,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_tanoby_ruins_liptoo_chamber",
+   "name": "Ruinas Tanoby · liptoo cámara",
+   "rows": [
+    {
+     "species": "unown",
+     "weight": 100,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_tanoby_ruins_monean_chamber",
+   "name": "Ruinas Tanoby · monean cámara",
+   "rows": [
+    {
+     "species": "unown",
+     "weight": 100,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_tanoby_ruins_rixy_chamber",
+   "name": "Ruinas Tanoby · rixy cámara",
+   "rows": [
+    {
+     "species": "unown",
+     "weight": 100,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_tanoby_ruins_scufib_chamber",
+   "name": "Ruinas Tanoby · scufib cámara",
+   "rows": [
+    {
+     "species": "unown",
+     "weight": 100,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_tanoby_ruins_viapois_chamber",
+   "name": "Ruinas Tanoby · viapois cámara",
+   "rows": [
+    {
+     "species": "unown",
+     "weight": 100,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_tanoby_ruins_weepth_chamber",
+   "name": "Ruinas Tanoby · weepth cámara",
+   "rows": [
+    {
+     "species": "unown",
+     "weight": 100,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route1",
+   "name": "Ruta 1",
+   "rows": [
+    {
+     "species": "pidgey",
+     "weight": 50,
+     "min_level": 2,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 50,
+     "min_level": 2,
+     "max_level": 4,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route2",
+   "name": "Ruta 2",
+   "rows": [
+    {
+     "species": "rattata",
+     "weight": 45,
+     "min_level": 2,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 45,
+     "min_level": 2,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "caterpie",
+     "weight": 5,
+     "min_level": 4,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weedle",
+     "weight": 5,
+     "min_level": 4,
+     "max_level": 5,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route3",
+   "name": "Ruta 3",
+   "rows": [
+    {
+     "species": "spearow",
+     "weight": 35,
+     "min_level": 6,
+     "max_level": 8,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 30,
+     "min_level": 6,
+     "max_level": 7,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidoran_m",
+     "weight": 14,
+     "min_level": 6,
+     "max_level": 7,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "mankey",
+     "weight": 10,
+     "min_level": 7,
+     "max_level": 7,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "jigglypuff",
+     "weight": 10,
+     "min_level": 3,
+     "max_level": 7,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidoran_f",
+     "weight": 1,
+     "min_level": 6,
+     "max_level": 6,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route4",
+   "name": "Ruta 4",
+   "rows": [
+    {
+     "species": "spearow",
+     "weight": 35,
+     "min_level": 8,
+     "max_level": 12,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 35,
+     "min_level": 8,
+     "max_level": 12,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ekans",
+     "weight": 25,
+     "min_level": 6,
+     "max_level": 12,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "mankey",
+     "weight": 5,
+     "min_level": 10,
+     "max_level": 12,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route5",
+   "name": "Ruta 5",
+   "rows": [
+    {
+     "species": "pidgey",
+     "weight": 40,
+     "min_level": 13,
+     "max_level": 16,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 35,
+     "min_level": 10,
+     "max_level": 16,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "oddish",
+     "weight": 25,
+     "min_level": 13,
+     "max_level": 16,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route6",
+   "name": "Ruta 6",
+   "rows": [
+    {
+     "species": "pidgey",
+     "weight": 40,
+     "min_level": 13,
+     "max_level": 16,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 35,
+     "min_level": 10,
+     "max_level": 16,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "oddish",
+     "weight": 25,
+     "min_level": 13,
+     "max_level": 16,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route7",
+   "name": "Ruta 7",
+   "rows": [
+    {
+     "species": "meowth",
+     "weight": 40,
+     "min_level": 17,
+     "max_level": 20,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 30,
+     "min_level": 19,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "oddish",
+     "weight": 20,
+     "min_level": 19,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "growlithe",
+     "weight": 10,
+     "min_level": 18,
+     "max_level": 20,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route8",
+   "name": "Ruta 8",
+   "rows": [
+    {
+     "species": "pidgey",
+     "weight": 30,
+     "min_level": 18,
+     "max_level": 20,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 30,
+     "min_level": 18,
+     "max_level": 20,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "growlithe",
+     "weight": 20,
+     "min_level": 15,
+     "max_level": 18,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ekans",
+     "weight": 20,
+     "min_level": 17,
+     "max_level": 19,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route9",
+   "name": "Ruta 9",
+   "rows": [
+    {
+     "species": "rattata",
+     "weight": 40,
+     "min_level": 14,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 35,
+     "min_level": 13,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ekans",
+     "weight": 25,
+     "min_level": 11,
+     "max_level": 17,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route10",
+   "name": "Ruta 10",
+   "rows": [
+    {
+     "species": "voltorb",
+     "weight": 40,
+     "min_level": 14,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 35,
+     "min_level": 13,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ekans",
+     "weight": 25,
+     "min_level": 11,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route11",
+   "name": "Ruta 11",
+   "rows": [
+    {
+     "species": "ekans",
+     "weight": 40,
+     "min_level": 12,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 35,
+     "min_level": 13,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "drowzee",
+     "weight": 25,
+     "min_level": 11,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route12",
+   "name": "Ruta 12",
+   "rows": [
+    {
+     "species": "oddish",
+     "weight": 35,
+     "min_level": 22,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venonat",
+     "weight": 30,
+     "min_level": 24,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 30,
+     "min_level": 23,
+     "max_level": 27,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gloom",
+     "weight": 5,
+     "min_level": 28,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route13",
+   "name": "Ruta 13",
+   "rows": [
+    {
+     "species": "oddish",
+     "weight": 35,
+     "min_level": 22,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venonat",
+     "weight": 30,
+     "min_level": 24,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 20,
+     "min_level": 25,
+     "max_level": 27,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ditto",
+     "weight": 5,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgeotto",
+     "weight": 5,
+     "min_level": 29,
+     "max_level": 29,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gloom",
+     "weight": 5,
+     "min_level": 28,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route14",
+   "name": "Ruta 14",
+   "rows": [
+    {
+     "species": "oddish",
+     "weight": 35,
+     "min_level": 22,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venonat",
+     "weight": 30,
+     "min_level": 24,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ditto",
+     "weight": 15,
+     "min_level": 23,
+     "max_level": 23,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 10,
+     "min_level": 27,
+     "max_level": 27,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gloom",
+     "weight": 5,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgeotto",
+     "weight": 5,
+     "min_level": 29,
+     "max_level": 29,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route15",
+   "name": "Ruta 15",
+   "rows": [
+    {
+     "species": "oddish",
+     "weight": 35,
+     "min_level": 22,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venonat",
+     "weight": 30,
+     "min_level": 24,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 20,
+     "min_level": 25,
+     "max_level": 27,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ditto",
+     "weight": 5,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgeotto",
+     "weight": 5,
+     "min_level": 29,
+     "max_level": 29,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gloom",
+     "weight": 5,
+     "min_level": 28,
+     "max_level": 30,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route16",
+   "name": "Ruta 16",
+   "rows": [
+    {
+     "species": "doduo",
+     "weight": 35,
+     "min_level": 18,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 30,
+     "min_level": 20,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 30,
+     "min_level": 18,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "raticate",
+     "weight": 5,
+     "min_level": 23,
+     "max_level": 25,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route17",
+   "name": "Ruta 17",
+   "rows": [
+    {
+     "species": "doduo",
+     "weight": 35,
+     "min_level": 24,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 30,
+     "min_level": 20,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "raticate",
+     "weight": 25,
+     "min_level": 25,
+     "max_level": 29,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 5,
+     "min_level": 25,
+     "max_level": 27,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route18",
+   "name": "Ruta 18",
+   "rows": [
+    {
+     "species": "doduo",
+     "weight": 35,
+     "min_level": 24,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 30,
+     "min_level": 20,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "raticate",
+     "weight": 15,
+     "min_level": 25,
+     "max_level": 29,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 15,
+     "min_level": 25,
+     "max_level": 29,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "rattata",
+     "weight": 5,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "route19",
+   "name": "Ruta 19",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route20",
+   "name": "Ruta 20",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route21_north",
+   "name": "Ruta 21 norte",
+   "rows": [
+    {
+     "species": "tangela",
+     "weight": 100,
+     "min_level": 17,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route21_south",
+   "name": "Ruta 21 sur",
+   "rows": [
+    {
+     "species": "tangela",
+     "weight": 100,
+     "min_level": 17,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route22",
+   "name": "Ruta 22",
+   "rows": [
+    {
+     "species": "rattata",
+     "weight": 45,
+     "min_level": 2,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "mankey",
+     "weight": 45,
+     "min_level": 2,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 10,
+     "min_level": 3,
+     "max_level": 5,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route23",
+   "name": "Ruta 23",
+   "rows": [
+    {
+     "species": "mankey",
+     "weight": 30,
+     "min_level": 32,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 25,
+     "min_level": 40,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "ekans",
+     "weight": 20,
+     "min_level": 32,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 15,
+     "min_level": 32,
+     "max_level": 34,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "primeape",
+     "weight": 5,
+     "min_level": 42,
+     "max_level": 42,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "arbok",
+     "weight": 5,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route24",
+   "name": "Ruta 24",
+   "rows": [
+    {
+     "species": "oddish",
+     "weight": 25,
+     "min_level": 12,
+     "max_level": 14,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weedle",
+     "weight": 20,
+     "min_level": 7,
+     "max_level": 7,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "caterpie",
+     "weight": 20,
+     "min_level": 7,
+     "max_level": 7,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 15,
+     "min_level": 11,
+     "max_level": 13,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "abra",
+     "weight": 15,
+     "min_level": 8,
+     "max_level": 12,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "kakuna",
+     "weight": 4,
+     "min_level": 8,
+     "max_level": 8,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "metapod",
+     "weight": 1,
+     "min_level": 8,
+     "max_level": 8,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "route25",
+   "name": "Ruta 25",
+   "rows": [
+    {
+     "species": "oddish",
+     "weight": 25,
+     "min_level": 12,
+     "max_level": 14,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "weedle",
+     "weight": 20,
+     "min_level": 8,
+     "max_level": 8,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "caterpie",
+     "weight": 20,
+     "min_level": 8,
+     "max_level": 8,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "pidgey",
+     "weight": 15,
+     "min_level": 11,
+     "max_level": 13,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "abra",
+     "weight": 15,
+     "min_level": 9,
+     "max_level": 13,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "kakuna",
+     "weight": 4,
+     "min_level": 9,
+     "max_level": 9,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "metapod",
+     "weight": 1,
+     "min_level": 9,
+     "max_level": 9,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "ssanne_exterior",
+   "name": "S.S. Anne (exterior)",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "six_island_water_path",
+   "name": "Senda Acuática",
+   "rows": [
+    {
+     "species": "sentret",
+     "weight": 30,
+     "min_level": 10,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 20,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 15,
+     "min_level": 48,
+     "max_level": 50,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "oddish",
+     "weight": 10,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "gloom",
+     "weight": 5,
+     "min_level": 48,
+     "max_level": 48,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 47,
+     "max_level": 50,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "six_island_green_path",
+   "name": "Sendero Verde",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "seven_island_trainer_tower",
+   "name": "Torre Entrenador",
+   "rows": [
+    {
+     "species": "tentacool",
+     "weight": 95,
+     "min_level": 5,
+     "max_level": 40,
+     "where": "agua"
+    },
+    {
+     "species": "tentacruel",
+     "weight": 5,
+     "min_level": 35,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_tower_3f",
+   "name": "Torre Pokémon · 3.er piso",
+   "rows": [
+    {
+     "species": "gastly",
+     "weight": 90,
+     "min_level": 13,
+     "max_level": 19,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "cubone",
+     "weight": 9,
+     "min_level": 15,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "haunter",
+     "weight": 1,
+     "min_level": 20,
+     "max_level": 20,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_tower_4f",
+   "name": "Torre Pokémon · 4.º piso",
+   "rows": [
+    {
+     "species": "gastly",
+     "weight": 86,
+     "min_level": 13,
+     "max_level": 19,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "cubone",
+     "weight": 9,
+     "min_level": 15,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "haunter",
+     "weight": 5,
+     "min_level": 20,
+     "max_level": 20,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_tower_5f",
+   "name": "Torre Pokémon · 5.º piso",
+   "rows": [
+    {
+     "species": "gastly",
+     "weight": 86,
+     "min_level": 13,
+     "max_level": 19,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "cubone",
+     "weight": 9,
+     "min_level": 15,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "haunter",
+     "weight": 5,
+     "min_level": 20,
+     "max_level": 20,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_tower_6f",
+   "name": "Torre Pokémon · 6.º piso",
+   "rows": [
+    {
+     "species": "gastly",
+     "weight": 85,
+     "min_level": 14,
+     "max_level": 19,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "cubone",
+     "weight": 9,
+     "min_level": 17,
+     "max_level": 19,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "haunter",
+     "weight": 6,
+     "min_level": 21,
+     "max_level": 23,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "pokemon_tower_7f",
+   "name": "Torre Pokémon · 7.º piso",
+   "rows": [
+    {
+     "species": "gastly",
+     "weight": 75,
+     "min_level": 15,
+     "max_level": 19,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "haunter",
+     "weight": 15,
+     "min_level": 23,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "cubone",
+     "weight": 10,
+     "min_level": 17,
+     "max_level": 19,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "rock_tunnel_1f",
+   "name": "Túnel Roca · 1.er piso",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 35,
+     "min_level": 15,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 30,
+     "min_level": 15,
+     "max_level": 16,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "mankey",
+     "weight": 15,
+     "min_level": 16,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 15,
+     "min_level": 16,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "onix",
+     "weight": 5,
+     "min_level": 13,
+     "max_level": 15,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "rock_tunnel_b1f",
+   "name": "Túnel Roca · Subsuelo 1",
+   "rows": [
+    {
+     "species": "geodude",
+     "weight": 35,
+     "min_level": 15,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "zubat",
+     "weight": 30,
+     "min_level": 15,
+     "max_level": 16,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "mankey",
+     "weight": 15,
+     "min_level": 16,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "machop",
+     "weight": 10,
+     "min_level": 17,
+     "max_level": 17,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "onix",
+     "weight": 10,
+     "min_level": 13,
+     "max_level": 17,
+     "where": "pasto_alto"
+    }
+   ]
+  },
+  {
+   "id": "six_island_ruin_valley",
+   "name": "Valle Ruinas",
+   "rows": [
+    {
+     "species": "natu",
+     "weight": 25,
+     "min_level": 15,
+     "max_level": 20,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "spearow",
+     "weight": 20,
+     "min_level": 44,
+     "max_level": 44,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "yanma",
+     "weight": 10,
+     "min_level": 18,
+     "max_level": 18,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "wooper",
+     "weight": 10,
+     "min_level": 15,
+     "max_level": 15,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "fearow",
+     "weight": 10,
+     "min_level": 49,
+     "max_level": 49,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "meowth",
+     "weight": 10,
+     "min_level": 43,
+     "max_level": 43,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "wobbuffet",
+     "weight": 5,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 5,
+     "min_level": 41,
+     "max_level": 41,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "persian",
+     "weight": 5,
+     "min_level": 49,
+     "max_level": 52,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "wooper",
+     "weight": 100,
+     "min_level": 5,
+     "max_level": 25,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "safari_zone_center",
+   "name": "Zona Safari · centro",
+   "rows": [
+    {
+     "species": "rhyhorn",
+     "weight": 20,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidoran_m",
+     "weight": 20,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "exeggcute",
+     "weight": 20,
+     "min_level": 24,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venonat",
+     "weight": 15,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidorino",
+     "weight": 10,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidorina",
+     "weight": 5,
+     "min_level": 31,
+     "max_level": 31,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "parasect",
+     "weight": 5,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "scyther",
+     "weight": 4,
+     "min_level": 23,
+     "max_level": 23,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "chansey",
+     "weight": 1,
+     "min_level": 23,
+     "max_level": 23,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "safari_zone_east",
+   "name": "Zona Safari · este",
+   "rows": [
+    {
+     "species": "nidoran_m",
+     "weight": 20,
+     "min_level": 24,
+     "max_level": 24,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "doduo",
+     "weight": 20,
+     "min_level": 26,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "exeggcute",
+     "weight": 20,
+     "min_level": 23,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "paras",
+     "weight": 15,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidorino",
+     "weight": 10,
+     "min_level": 33,
+     "max_level": 33,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidoran_f",
+     "weight": 5,
+     "min_level": 24,
+     "max_level": 24,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "parasect",
+     "weight": 5,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "kangaskhan",
+     "weight": 4,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "scyther",
+     "weight": 1,
+     "min_level": 28,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "safari_zone_north",
+   "name": "Zona Safari · norte",
+   "rows": [
+    {
+     "species": "rhyhorn",
+     "weight": 20,
+     "min_level": 26,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidoran_m",
+     "weight": 20,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "exeggcute",
+     "weight": 20,
+     "min_level": 25,
+     "max_level": 27,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "paras",
+     "weight": 15,
+     "min_level": 23,
+     "max_level": 23,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidorino",
+     "weight": 10,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidorina",
+     "weight": 5,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venomoth",
+     "weight": 5,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "chansey",
+     "weight": 4,
+     "min_level": 26,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tauros",
+     "weight": 1,
+     "min_level": 28,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  },
+  {
+   "id": "safari_zone_west",
+   "name": "Zona Safari · oeste",
+   "rows": [
+    {
+     "species": "doduo",
+     "weight": 20,
+     "min_level": 26,
+     "max_level": 26,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidoran_m",
+     "weight": 20,
+     "min_level": 22,
+     "max_level": 22,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "exeggcute",
+     "weight": 20,
+     "min_level": 25,
+     "max_level": 27,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venonat",
+     "weight": 15,
+     "min_level": 23,
+     "max_level": 23,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidorino",
+     "weight": 10,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "nidoran_f",
+     "weight": 5,
+     "min_level": 30,
+     "max_level": 30,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "venomoth",
+     "weight": 5,
+     "min_level": 32,
+     "max_level": 32,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "tauros",
+     "weight": 4,
+     "min_level": 25,
+     "max_level": 25,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "kangaskhan",
+     "weight": 1,
+     "min_level": 28,
+     "max_level": 28,
+     "where": "pasto_alto"
+    },
+    {
+     "species": "psyduck",
+     "weight": 100,
+     "min_level": 20,
+     "max_level": 40,
+     "where": "agua"
+    }
+   ]
+  }
+ ]
+}

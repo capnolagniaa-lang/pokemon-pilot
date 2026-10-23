@@ -7,6 +7,8 @@ extends RefCounted
 
 signal changed
 signal region_changed
+## La tabla de encuentros (o sus áreas) cambió: el panel de salvajes se rearma.
+signal encounters_changed
 
 const GROUND := ZoneBuilder.GROUND
 const WATER := ZoneBuilder.WATER
@@ -31,6 +33,13 @@ var _saved_version := 0
 var _rec_tiles: Dictionary = {}    # Vector3i(capa, x, y) -> [fuente, coords, alt] de antes
 var _rec_objects: Dictionary = {}  # celda -> escena de antes ("" = ninguna)
 var _rec_trees = null              # tree_cells de antes (o null si no cambió)
+## Tabla de encuentros propia de la zona que se está editando (null = la zona usa la de su bioma).
+var encounters: EncounterTable
+## La del bioma (para mostrar y copiar cuando la zona no tiene propia).
+var biome_encounters: EncounterTable
+## Dónde se guarda la tabla propia ("" = data/world/encounters/<zona>.tres).
+var encounters_path := ""
+var _rec_enc = null                # [tabla de antes o null] si la tabla cambió en la operación en curso
 
 
 ## Copia editable de la región (se descarta recargándola del disco).
@@ -70,6 +79,7 @@ static func _make(p_world: WorldData, p_entry: ZoneEntry, p_roles: TileRoleSet, 
 	d.zone = node
 	d.tileset = (node.get_node("Ground") as TileMapLayer).tile_set
 	d.rng.randomize()
+	d.load_encounters()
 	d._saved_version = d.undo.get_version()
 	return d
 
@@ -206,8 +216,19 @@ func _touch_trees() -> void:
 
 ## Cierra la operación en curso como un paso de deshacer. Devuelve false si no cambió nada.
 func commit(action_name: String) -> bool:
-	if _rec_tiles.is_empty() and _rec_objects.is_empty() and _rec_trees == null:
+	if _rec_tiles.is_empty() and _rec_objects.is_empty() and _rec_trees == null and _rec_enc == null:
 		return false
+	if _rec_enc != null:
+		undo.create_action(action_name)
+		undo.add_do_method(_set_encounters.bind(encounters.copy() if encounters != null else null))
+		undo.add_undo_method(_set_encounters.bind(_rec_enc[0]))
+		_rec_enc = null
+		if _rec_tiles.is_empty() and _rec_objects.is_empty() and _rec_trees == null:
+			undo.commit_action(false)
+			encounters_changed.emit()
+			changed.emit()
+			return true
+		undo.commit_action(false)
 	var after_t := {}
 	for k: Vector3i in _rec_tiles:
 		after_t[k] = get_raw(k.x, Vector2i(k.y, k.z))
@@ -615,7 +636,108 @@ func _region_touched() -> void:
 
 
 func validate() -> Array[Dictionary]:
-	return MapRules.validate(zone, entry, world)
+	var out := MapRules.validate(zone, entry, world)
+	out.append_array(validate_encounters())
+	return out
+
+
+# --- Pokémon salvajes (tabla de encuentros y áreas pintadas) ------------------------------
+
+func load_encounters() -> void:
+	var own := encounters_path if encounters_path != "" else EncounterTable.zone_path(entry.id)
+	encounters = (ResourceLoader.load(own, "", ResourceLoader.CACHE_MODE_REPLACE) as EncounterTable).copy() \
+		if ResourceLoader.exists(own) else null
+	var bp := EncounterTable.biome_path(entry.biome)
+	biome_encounters = ResourceLoader.load(bp, "", ResourceLoader.CACHE_MODE_REPLACE) if ResourceLoader.exists(bp) else null
+
+
+## La que vale para la zona: la propia o la del bioma.
+func effective_encounters() -> EncounterTable:
+	return encounters if encounters != null else biome_encounters
+
+
+## Cambia la tabla (como un paso de deshacer). Si la zona no tenía propia, arranca de una copia de la del bioma.
+func edit_encounters(fn: Callable, action_name: String) -> void:
+	_touch_encounters()
+	if encounters == null:
+		encounters = biome_encounters.copy() if biome_encounters != null else EncounterTable.new()
+	fn.call(encounters)
+	commit(action_name)
+
+
+## Vuelve a usar la tabla del bioma (al guardar se borra la propia).
+func use_biome_encounters() -> void:
+	if encounters == null:
+		return
+	_touch_encounters()
+	encounters = null
+	commit("Usar la tabla del bioma")
+
+
+func _touch_encounters() -> void:
+	if _rec_enc == null:
+		_rec_enc = [encounters.copy() if encounters != null else null]
+
+
+func _set_encounters(t) -> void:
+	encounters = t.copy() if t != null else null
+	encounters_changed.emit()
+	changed.emit()
+
+
+## Pinta (add) o borra celdas de un área. Una celda está a lo sumo en un área. No hace commit (lo hace el trazo).
+func paint_area(cells: Array, area: int, add: bool) -> void:
+	_touch_encounters()
+	if encounters == null:
+		encounters = biome_encounters.copy() if biome_encounters != null else EncounterTable.new()
+	if add and (area < 0 or area >= encounters.areas.size()):
+		return
+	for c: Vector2i in cells:
+		if not inside(c):
+			continue
+		for a in encounters.areas:
+			a.cells.erase(c)
+		if add:
+			encounters.areas[area].cells.append(c)
+
+
+## Qué puede aparecer en una celda (con los ajustes de su área): {especie: probabilidad 0-1}.
+func chances_at(cell: Vector2i) -> Dictionary:
+	var t := effective_encounters()
+	return t.chances_at(cell, zone.get_tags(cell)) if t != null else {}
+
+
+func validate_encounters() -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	var t := effective_encounters()
+	var nowhere := Vector2i(-1, -1)
+	if t == null or (t.entries.is_empty() and t.areas.is_empty()):
+		out.append({"level": "warn", "msg": "No hay Pokémon salvajes definidos para esta zona.", "cell": nowhere})
+		return out
+	var present := {}
+	for layer_name in ["Ground", "Water", "Foliage"]:
+		var l: TileMapLayer = zone.get_node(layer_name)
+		for c in l.get_used_cells():
+			for tag in zone.get_tags(c):
+				present[tag] = true
+	var rows: Array[EncounterEntry] = t.entries.duplicate()
+	for a in t.areas:
+		rows.append_array(a.adjustments)
+	for e in rows:
+		var sp_name: String = DB.species[e.species_id].display_name if DB.species.has(e.species_id) else e.species_id
+		if not DB.species.has(e.species_id):
+			out.append({"level": "warn", "msg": "La especie \"%s\" no existe en el juego." % e.species_id, "cell": nowhere})
+		elif not present.has(e.where):
+			out.append({"level": "warn", "msg": "%s aparece en %s, pero la zona no tiene: no va a salir." % [sp_name,
+				EncounterTable.WHERE.get(e.where, e.where).to_lower()], "cell": nowhere})
+		if e.min_level > e.max_level:
+			out.append({"level": "warn", "msg": "%s: el nivel mínimo es mayor que el máximo." % sp_name, "cell": nowhere})
+	for a in t.areas:
+		if a.cells.is_empty():
+			out.append({"level": "warn", "msg": "El área \"%s\" no tiene celdas pintadas." % a.name, "cell": nowhere})
+		elif not a.cells.any(func(c: Vector2i) -> bool: return not t.chances_at(c, zone.get_tags(c)).is_empty()):
+			out.append({"level": "warn", "msg": "En el área \"%s\" no puede aparecer nada (no hay pasto alto ni el lugar de sus Pokémon)." % a.name, "cell": a.cells[0]})
+	return out
 
 
 # --- Guardar ---------------------------------------------------------------------------
@@ -652,6 +774,9 @@ func save(path: String = "", save_region: bool = true) -> Error:
 		return err
 	if path == entry.scene_path:
 		ResourceLoader.load(path, "", ResourceLoader.CACHE_MODE_REPLACE)  # que el juego (mismo proceso) cargue la nueva
+	err = _save_encounters()
+	if err != OK:
+		return err
 	if save_region and region_dirty:
 		err = ResourceSaver.save(world, ZoneBuilder.WORLD_PATH)
 		if err != OK:
@@ -660,6 +785,22 @@ func save(path: String = "", save_region: bool = true) -> Error:
 	_saved_version = undo.get_version()
 	changed.emit()
 	return OK
+
+
+## Tabla propia de la zona: se guarda (copia de seguridad antes) o, si volvió a la del bioma, se borra.
+func _save_encounters() -> Error:
+	var p := encounters_path if encounters_path != "" else EncounterTable.zone_path(entry.id)
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(p.get_base_dir()))
+	if FileAccess.file_exists(p):
+		backup_file(p)
+	if encounters == null:
+		if FileAccess.file_exists(p):
+			DirAccess.remove_absolute(ProjectSettings.globalize_path(p))
+		return OK
+	var err := ResourceSaver.save(encounters.copy(), p)
+	if err == OK:
+		ResourceLoader.load(p, "", ResourceLoader.CACHE_MODE_REPLACE)
+	return err
 
 
 ## Copia un archivo a <carpeta>/.backup/<nombre>_<fecha>.<ext> y se queda con los últimos BACKUPS_KEPT.

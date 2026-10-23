@@ -35,6 +35,7 @@ Abre la zona donde empieza el juego (Ruta 1). Para cambiar de zona usá el despl
 │                                                              │  Paleta      │
 │                                                              │  Propiedades │
 │                                                              │  Zona        │
+│                                                              │  Salvajes    │
 ├──────────────────────────────────────────────────────────────┴──────────────┤
 │ Estado: celda bajo el mouse, qué hay, tags, herramienta, pincel, capa       │
 │ Ayuda: atajos de teclado                                                     │
@@ -132,6 +133,36 @@ hace una copia de seguridad del TileSet en `art/tiles/.backup/`.
 - **Validar zona**: lista de problemas. Hacé clic en uno y el mapa va hasta esa celda.
 - **Nueva zona…** (ver el punto 8).
 
+### Salvajes (qué Pokémon aparecen y dónde)
+Cada zona tiene su **tabla de encuentros**. Si no tiene una propia, usa la de su bioma (pradera, bosque, lago...);
+apenas cambiás algo, se crea la propia de la zona.
+
+- **Copiar de FireRed…**: carga la tabla real de cualquier ruta, cueva o isla de FireRed (132 lugares), con sus
+  Pokémon, % y niveles, y después la editás.
+- **Cada fila** es un Pokémon: el botón con su nombre abre el buscador (los 386, por nombre o número),
+  **% de aparición**, **niveles** mínimo y máximo, y **dónde** aparece (pasto alto, agua, arena, tierra, flores o
+  cualquier suelo). La ✕ lo saca. "Agregar Pokémon" suma uno.
+  - Los % son **pesos** frente a los otros del mismo lugar: no hace falta que sumen 100 (abajo se ve la suma).
+  - Los que aparecen en el agua **nadan**.
+- **Vivos a la vez** y **Reaparece (s)**: cuántos salvajes hay como máximo en la zona y cada cuánto aparece otro.
+- **Volver a la tabla del bioma**: borra la tabla propia de la zona (al guardar).
+- Con esta pestaña abierta, en el mapa se ven **puntitos verdes** donde puede aparecer un salvaje, y la barra de
+  abajo dice **qué puede salir en la celda del mouse, con su %**.
+
+**Áreas pintadas: cambiar el % de un Pokémon en un lugar del mapa**
+1. **Nueva área** (o "Pintar" en una que ya exista): el pincel pasa a pintar esa área, con su color.
+2. Pintá en el mapa con **pincel, línea, rectángulo o balde**. El balde toma toda una mancha, por ejemplo un parche
+   de pasto alto. El **clic derecho saca celdas** del área. Una celda está a lo sumo en un área.
+3. En **Ajustes del área**, agregá el Pokémon y poné su %. Adentro del área ese % **pisa** el de la tabla de la
+   zona (si el Pokémon ya estaba) o **lo suma** solo para ahí (por ejemplo "Pikachu 40%" en un rincón del bosque).
+   Con **0%**, ese Pokémon **no sale** en el área.
+4. Debajo dice **cómo queda el área en % reales** (por ejemplo, 40 frente a cuatro de 25 termina en 29%), y lo mismo
+   ves pasando el mouse por el mapa.
+
+Todo se deshace con Ctrl+Z y se guarda con la zona (Ctrl+S), en `data/world/encounters/<zona>.tres`.
+**Probar ▶ (F5)** te deja ver enseguida lo que aparece. En el juego, **Opciones → "Salvajes de prueba"** vuelve a
+la fase de prueba del combate (solo Pidgey, Bellsprout, Rattata y Vulpix en todo el mapa).
+
 ---
 
 ## 5. Herramientas (fila 2)
@@ -220,6 +251,9 @@ cargarla el entrenador aparece en la celda libre más cercana.
 - Que haya un camino caminable desde la plaza hasta cada salida.
 - Que el inicio del juego no caiga en algo sólido o en el agua.
 - Que haya pasto alto (si no, avisa que no van a aparecer salvajes).
+- Salvajes: que la zona tenga Pokémon definidos, que cada uno tenga su lugar en la zona (un Pokémon de agua en una
+  zona sin agua no sale), que el nivel mínimo no supere al máximo, y que cada área pintada tenga celdas donde algo
+  pueda aparecer.
 - Que no haya tiles ni objetos afuera del tamaño de la zona.
 - Errores que bloquean el guardado: id vacío o repetido, zonas encimadas.
 
@@ -234,6 +268,9 @@ cargarla el entrenador aparece en la celda libre más cercana.
   casa. Completá con caminos de arena y con cercas o carteles desde Paleta → Tipo "Cercas y vallas" o "Carteles y
   buzones" (o prendé "Como en la hoja de FireRed" y buscalos en su sección).
 - **Un árbol grande, una estatua o un puente**: Sellos → grupo Piezas del mundo.
+- **Los Pokémon de una ruta como en FireRed**: Salvajes → Copiar de FireRed → Ruta 1 (o la que quieras).
+- **Un rincón con un Pokémon raro**: Salvajes → Nueva área → balde sobre un parche de pasto alto → Agregar ajuste →
+  el Pokémon y su %.
 - **Un bosque**: Pinceles → Árbol → Rectángulo relleno (pone árboles cada 2 celdas). Los bordes de la zona, con Borde ↑ ↓ ← →.
 - **Copiar un pedazo de otra zona**: Selección (M) → Ctrl+C → cambiás de zona → Ctrl+V → clic.
 - **Un gráfico que no tiene colisión y debería**: Gotero (Alt+clic) sobre él → pestaña Propiedades → Colisión "Sólida" →

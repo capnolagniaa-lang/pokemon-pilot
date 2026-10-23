@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_65v86"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_k3xxp"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_smj13"]
+
+[sub_resource type="Resource" id="Resource_nxmm3"]
+script = ExtResource("2_k3xxp")
+species_id = "oddish"
+weight = 25
+min_level = 4
+max_level = 7
+
+[sub_resource type="Resource" id="Resource_v1nwh"]
+script = ExtResource("2_k3xxp")
+species_id = "bellsprout"
+weight = 25
+min_level = 4
+max_level = 7
+
+[sub_resource type="Resource" id="Resource_8xj1g"]
+script = ExtResource("2_k3xxp")
+species_id = "pikachu"
+weight = 25
+min_level = 4
+max_level = 7
+
+[sub_resource type="Resource" id="Resource_2gy6b"]
+script = ExtResource("2_k3xxp")
+species_id = "pidgey"
+weight = 25
+min_level = 4
+max_level = 7
+
+[resource]
+script = ExtResource("3_smj13")
+entries = Array[ExtResource("2_k3xxp")]([SubResource("Resource_nxmm3"), SubResource("Resource_v1nwh"), SubResource("Resource_8xj1g"), SubResource("Resource_2gy6b")])

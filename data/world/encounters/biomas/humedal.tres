@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_6wp42"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_gk5le"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_ufa55"]
+
+[sub_resource type="Resource" id="Resource_orx2l"]
+script = ExtResource("2_gk5le")
+species_id = "poliwag"
+weight = 33
+min_level = 4
+max_level = 7
+where = "agua"
+
+[sub_resource type="Resource" id="Resource_bf1br"]
+script = ExtResource("2_gk5le")
+species_id = "psyduck"
+weight = 33
+min_level = 4
+max_level = 7
+where = "agua"
+
+[sub_resource type="Resource" id="Resource_nqhd7"]
+script = ExtResource("2_gk5le")
+species_id = "oddish"
+weight = 33
+min_level = 4
+max_level = 7
+
+[resource]
+script = ExtResource("3_ufa55")
+entries = Array[ExtResource("2_gk5le")]([SubResource("Resource_orx2l"), SubResource("Resource_bf1br"), SubResource("Resource_nqhd7")])

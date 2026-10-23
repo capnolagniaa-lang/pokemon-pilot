@@ -39,6 +39,13 @@ func _ready() -> void:
 			add_child(env)
 			(env.run if flag == "--autotest-env" else env.showcase).call_deferred()
 			return
+	if "--autotest-encounters" in OS.get_cmdline_user_args():
+		set_process(false)
+		var enc := EncounterTests.new()
+		enc.autotest = self
+		add_child(enc)
+		enc.run.call_deferred()
+		return
 	for flag in ["--autotest-stamps", "--showcase-stamps", "--showcase-stamp-sheets"]:
 		if flag in OS.get_cmdline_user_args():
 			set_process(false)
@@ -280,6 +287,7 @@ func _input_test() -> void:
 	var wilds: Array = world.entities.get_children().filter(func(n): return n is Creature and n.team == Creature.Team.WILD)
 	results["hay salvajes en el pasto"] = wilds.size() > 0
 	print("[salvajes] ", wilds.map(func(w): return "%s Nv.%d" % [w.instance.species.display_name, w.instance.level]))
+	GameState.wilds_enabled = false  # que no aparezcan otros (el spawner repone enseguida) durante la prueba de teclas
 	for w in wilds:
 		w.queue_free()  # que no interfieran con la prueba de teclas
 	await _tap("battle_toggle")
@@ -837,8 +845,9 @@ func _modes_test() -> void:
 	await get_tree().create_timer(1.3).timeout
 	r["Sin práctica: queda debilitado (se recupera de a poco)"] = inst.hp < inst.max_hp() * 0.3
 
-	# Spawns: con todas las zonas cargadas, solo aparecen las 4 especies de prueba.
+	# Spawns con "Salvajes de prueba" prendido: con todas las zonas cargadas, solo aparecen las 4 especies.
 	GameState.wilds_enabled = true
+	GameState.wild_test_pool = true
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -853,6 +862,7 @@ func _modes_test() -> void:
 			seen[n.instance.species.id] = true
 	print("[modos] especies salvajes en las 9 zonas: ", seen.keys())
 	r["Solo Pidgey, Bellsprout, Rattata y Vulpix en todo el mapa"] = not seen.is_empty() and seen.keys().all(func(id): return id in WildSpawner.TEST_POOL)
+	GameState.wild_test_pool = false
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:

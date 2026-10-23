@@ -50,6 +50,7 @@ $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza f
 $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
 $G --headless --path . --quit-after 20000 -- --autotest-map-editor  # editor de mapas (ida y vuelta, pinceles, UI...)
 $G --headless --path . --quit-after 20000 -- --autotest-stamps      # sellos: sin agujeros, colisión, puertas, deshacer
+$G --headless --path . --quit-after 20000 -- --autotest-encounters  # salvajes: tablas, %, áreas pintadas, agua, editor
 python -I -B tools/match_reference.py . --check                    # sellos vs. mapas reales y referencia
 $G --path . --quit-after 3000 -- --showcase-stamp-sheets <carpeta>  # hojas de contacto de sellos y paleta (PNG)
 $G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-stamps  # todos los sellos pegados
@@ -100,9 +101,14 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `Controls.SLOT_ACTIONS` (Clic izq., Clic der., Q, R) + `dodge` (Espacio, igual para todos). La criatura usa
   `use_slot(slot 0-3, aim, point)` y `dodge(dir)`. Las mecánicas de firma son subclases de `SignatureMechanic`
   (`scripts/combat/signatures/`) conectadas a las señales de la criatura; **nunca** agregar
-  `if especie == ...` en el código central. Spawns: por ahora todo el mapa usa `WildSpawner.TEST_POOL`
-  (Pidgey, Bellsprout, Rattata, Vulpix) mientras se prueba el combate; `use_test_pool = false` vuelve a los
-  spawns por zona/bioma.
+  `if especie == ...` en el código central.
+- **Salvajes** (`WildSpawner`): cada zona usa su `EncounterTable` (`data/world/encounters/<zona>.tres`, o la de su
+  bioma en `encounters/biomas/<bioma>.tres`): filas `EncounterEntry` (especie, peso %, niveles, `where` = tag de
+  celda) y `EncounterArea` (celdas pintadas cuyos ajustes pisan o suman filas). El spawner elige primero la celda y
+  después la fila de esa celda (`EncounterTable.pick_at`); en el agua nadan (`Creature.swims`). Se editan en el
+  editor de mapas (pestaña Salvajes). `GameState.wild_test_pool` (Opciones → "Salvajes de prueba", se guarda en la
+  partida) vuelve a los 4 de prueba del combate. Plantillas de FireRed: `tools/build_encounter_templates.py` →
+  `encounters/plantillas_frlg.json`. `EncounterEntry.time` (día/noche) queda reservado para la Etapa 5.
 - **Stats y progresión = reglas oficiales** (ver sección abajo). Nunca inventar stats: salen de PokeAPI.
 - **Entorno reactivo (Etapa 3)**: `ReactionSystem` (nodo del mundo) escucha `Events.element_impact` y aplica
   `ReactionRule` (`data/environment/reactions/`) a las celdas; el estado vive en un `EnvironmentGrid` por zona

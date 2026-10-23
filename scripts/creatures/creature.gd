@@ -35,6 +35,11 @@ var leader: Trainer
 var target: Creature
 ## Salvaje: punto alrededor del que deambula.
 var home := Vector2.ZERO
+## Salvaje de agua (apareció en el agua): no choca con la capa de agua, así puede nadar.
+var swims := false:
+	set(v):
+		swims = v
+		collision_mask = (collision_mask & ~2) if v else (collision_mask | 2)
 ## Tu Pokémon mientras lo controlás en combate.
 var player_controlled := false
 ## De dónde salen las órdenes cuando player_controlled (teclado/mouse, o un bot en el autotest).
