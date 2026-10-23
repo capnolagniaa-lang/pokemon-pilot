@@ -95,6 +95,12 @@
   "h": 32,
   "frames": 9
  },
+ "item_ball": {
+  "png": "res://art/pret/characters/item_ball.png",
+  "w": 16,
+  "h": 16,
+  "frames": 1
+ },
  "jigglypuff": {
   "png": "res://art/pret/characters/jigglypuff.png",
   "w": 16,

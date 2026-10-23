@@ -37,6 +37,8 @@ var _retreat_checked := {}  # instancia -> ya pensó en retirarla
 var _waiting := false
 ## La pelea empezó (ya salieron los dos Pokémon): recién ahí se vigila quién cae.
 var _fighting := false
+## Perder no te manda al último Centro (la 1ª pelea contra el rival): la historia sigue ahí con el equipo curado.
+var _no_blackout := false
 var _fade: ColorRect
 var _banner: Label
 var _sub: Label
@@ -79,6 +81,7 @@ func start(opts: Dictionary) -> String:
 	_fighting = false
 	result = ""
 	foe_name = opts.get("name", "Entrenador")
+	_no_blackout = opts.get("no_blackout", false)
 	leader = opts.get("leader", false)
 	foe_team.assign(opts.get("team", []))
 	_retreat_checked.clear()
@@ -116,7 +119,7 @@ func start(opts: Dictionary) -> String:
 	_leave_arena()
 	await get_tree().process_frame
 	await _fade_to(0.0)
-	if result == "lose":
+	if result == "lose" and not _no_blackout:
 		await world.story.dialog.say("", PackedStringArray(["Volviste corriendo a curar a tus Pokémon..."]))
 	t.locked = false
 	active = false
@@ -160,7 +163,7 @@ func _leave_arena() -> void:
 	var back := _return_pos
 	if result == "lose":
 		GameState.heal_party()
-		if GameState.last_heal_position != Vector2.INF:
+		if GameState.last_heal_position != Vector2.INF and not _no_blackout:
 			back = GameState.last_heal_position
 	world.streamer.load_around_now(back)
 	t.global_position = back
@@ -310,6 +313,11 @@ func _end(r: String) -> void:
 
 
 # --- Presentación --------------------------------------------------------------------------------------------
+
+## Fundido a negro (también lo usa StoryDirector.teleport).
+func fade_to(a: float) -> void:
+	await _fade_to(a)
+
 
 func _fade_to(a: float) -> void:
 	var tw := create_tween()

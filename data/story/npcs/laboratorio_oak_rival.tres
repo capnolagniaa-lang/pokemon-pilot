@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/charmander.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/squirtle.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/bulbasaur.tres" id="r_5"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_6"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("tiene_inicial")
+lines = PackedStringArray("¡Abuelo! ¡Me aburro de esperar!", "¿Eh? ¿Vos también vas a elegir? Dale, elegí primero. Yo soy re generoso.")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Mi Pokémon es mucho mejor que el tuyo. Ya vas a ver.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 5
+requires_flag = "rival_charmander"
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 5
+requires_flag = "rival_squirtle"
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 5
+requires_flag = "rival_bulbasaur"
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_6")
+id = "azul"
+display_name = "Azul"
+title = "Rival"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
+lines = {"desafio": "¡Esperá! ¡Veamos qué tan buenos son nuestros Pokémon!", "pierde": "¿¡Qué!? ¡Elegí mal mi Pokémon!", "gana": "¡Ja! ¡Gané! Sabía que el mío era mejor.", "despues": "La próxima no te salvás."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "laboratorio_oak_rival"
+display_name = "Azul"
+zone_id = "laboratorio_oak"
+cell = Vector2i(5, 4)
+gfx = "blue"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])
+trainer = SubResource("Trainer")
+sight = 0
+challenge_on_talk = false
+show_if = PackedStringArray("oak_te_freno")
+hide_if = PackedStringArray("rival_lab_peleado")

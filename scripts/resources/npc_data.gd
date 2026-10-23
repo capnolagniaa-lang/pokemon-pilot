@@ -24,6 +24,8 @@ extends Resource
 @export var trainer: TrainerData
 ## Cuántas celdas ve hacia donde mira (0 = no desafía al verte, solo si le hablás).
 @export var sight: int = 4
+## Si hablarle te desafía (el rival del laboratorio no: pelea por un disparador de la historia).
+@export var challenge_on_talk: bool = true
 
 
 ## Bandera que queda puesta cuando le ganás.

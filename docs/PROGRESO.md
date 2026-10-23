@@ -54,8 +54,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **E-1 hecha: combates contra entrenadores en ARENA** (2026-10-23, pedido del usuario): fundido a una arena aparte
   (claro de pinos para los de ruta; **gimnasio de roca épico** para Brock), 1 contra 1 con cambios, el rival te ve
   y te desafía, perder te devuelve al último lugar donde te curaron. Ya pelean los 5 Cazabichos del Bosque Verde,
-  el Campista Liam y **Brock** (Medalla Roca). Detalle en `docs/PLAN_ENTRENADORES.md` ("E-1"). **Próximo paso:
-  H-1** (Pueblo Paleta y el laboratorio: Oak te frena, inicial en la mesa, 1ª pelea con el rival).
+  el Campista Liam y **Brock** (Medalla Roca). Detalle en `docs/PLAN_ENTRENADORES.md` ("E-1").
+- **EXP a la mitad** (2026-10-23, pedido del usuario: "se sube de nivel muy rápido"): `GameConfig.exp_multiplier`
+  = 0,5 sobre la fórmula oficial (se cambia en el inspector de `data/config/game_config.tres`).
+- **H-1 hecha** (2026-10-23): la historia empieza en tu cuarto sin Pokémon ("Empezar la historia"), Oak te frena
+  y te lleva al laboratorio, inicial en la mesa (Sí/No), el rival elige el ventajoso y te desafía. Guía:
+  `docs/HISTORIA.md`. **Próximo paso: H-2** (Paquete de Oak).
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
   borraron (pedido del usuario). Pinceles nuevos: piso de ciudad, empedrado y piso de cueva.

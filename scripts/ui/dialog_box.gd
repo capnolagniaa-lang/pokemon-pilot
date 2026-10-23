@@ -16,6 +16,11 @@ var _arrow: Label
 var _shown := 0.0
 var _armed := false  # la tecla que abrió el diálogo no lo avanza
 var _mouse_was := false
+## Pregunta con opciones abierta (ask).
+var _choosing := false
+var _choice := 0
+var _options: PackedStringArray = []
+var _choice_box: VBoxContainer
 
 
 func _ready() -> void:
@@ -62,6 +67,52 @@ func say(speaker: String, lines: PackedStringArray) -> void:
 	Events.dialog_finished.emit()
 
 
+## Pregunta con opciones (Sí / No...). Flechas o W/S eligen; E, Espacio, Enter o clic confirma. Devuelve el
+## índice elegido. Mientras está abierta la caja sigue mostrando la pregunta.
+func ask(speaker: String, question: String, options: PackedStringArray) -> int:
+	active = true
+	visible = true
+	Events.dialog_started.emit()
+	_speaker.text = speaker
+	_speaker.visible = speaker != ""
+	_text.text = question
+	_text.visible_characters = -1
+	_arrow.visible = false
+	_choice = 0
+	_options = options
+	_choice_box = VBoxContainer.new()
+	var panel := PanelContainer.new()
+	panel.add_theme_stylebox_override("panel", UiStyle.box(UiStyle.BG, UiStyle.ACCENT.darkened(0.3), 2, 12))
+	panel.position = Vector2(960, 548 - 30 - 34 * options.size())
+	panel.add_child(_choice_box)
+	add_child(panel)
+	_refresh_choices()
+	_armed = false
+	_choosing = true
+	await _advance
+	_choosing = false
+	panel.queue_free()
+	visible = false
+	active = false
+	Events.dialog_finished.emit()
+	return _choice
+
+
+func _refresh_choices() -> void:
+	for c in _choice_box.get_children():
+		c.queue_free()
+	for i in _options.size():
+		_choice_box.add_child(UiStyle.label(("▶ " if i == _choice else "   ") + _options[i], 19,
+			UiStyle.ACCENT if i == _choice else UiStyle.TEXT))
+
+
+## Elige una opción de la pregunta abierta (también lo usa el autotest).
+func choose(i: int) -> void:
+	if _choosing:
+		_choice = clampi(i, 0, _options.size() - 1)
+		_advance.emit()
+
+
 func is_typing() -> bool:
 	return _text.visible_characters >= 0 and _text.visible_characters < _text.text.length()
 
@@ -69,6 +120,10 @@ func is_typing() -> bool:
 func _process(delta: float) -> void:
 	if not active:
 		return
+	if _choosing:
+		if Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_up"):
+			_choice = (_choice + (1 if Input.is_action_just_pressed("ui_down") else -1) + _options.size()) % _options.size()
+			_refresh_choices()
 	if is_typing():
 		_shown += CHARS_PER_SECOND * delta
 		_text.visible_characters = mini(int(_shown), _text.text.length())

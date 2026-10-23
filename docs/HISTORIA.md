@@ -4,9 +4,12 @@
 > en [`PLAN_HISTORIA.md`](PLAN_HISTORIA.md). Este documento dice **qué se puede jugar hoy** y **qué todavía no**.
 
 ## En una línea
-Hoy está hecha **la base** de la historia (personas que hablan, curar, entrenadores que te desafían y pelean en
-arenas, Brock y la Medalla Roca), pero **todavía no hay ningún evento de la trama**: **no aparece el Profesor Oak**, no
-se elige el inicial en el laboratorio, no está el rival ni el Paquete de Oak. Eso es la fase **H-1** en adelante.
+Está hecha **la base** (personas que hablan, curar, entrenadores que te desafían y pelean en arenas, Brock y la
+Medalla Roca) y **el comienzo de la historia (H-1)**: arrancás en tu cuarto sin Pokémon, **Oak te frena** al querer
+ir al pasto, elegís tu inicial en el laboratorio y el rival te desafía. Falta desde el **Paquete de Oak** (H-2).
+
+**Cómo empezar la historia**: Título → Nueva partida → botón **"Empezar la historia"** (arriba de las tarjetas). Las
+tarjetas de los iniciales son el **modo libre** (arrancás ya con ese Pokémon, sin la intro).
 
 ## La historia que se va a contar (FireRed, de Pueblo Paleta a la Medalla Roca)
 1. **Tu casa**: despertás; abajo está mamá.
@@ -26,6 +29,10 @@ se elige el inicial en el laboratorio, no está el rival ni el Paquete de Oak. E
 
 | Qué | Estado | Cómo probarlo |
 |---|---|---|
+| **Partida de historia: tu cuarto, sin Pokémon** | ✅ H-1 | "Empezar la historia". Mamá (abajo) te manda al laboratorio. |
+| **Oak te frena** al querer salir de Pueblo Paleta hacia el pasto | ✅ H-1 | Caminá hacia el norte del pueblo: Oak te habla y te lleva al laboratorio. Sin Pokémon no te deja irte. |
+| **Inicial en la mesa del laboratorio** | ✅ H-1 | E frente a una Poké Ball: te cuenta el Pokémon y su estilo y pregunta "¿Lo querés?" (Sí/No, con flechas). El rival se lleva el que le gana al tuyo. |
+| **1ª pelea contra el rival** | ✅ H-1 | Al querer salir del laboratorio te desafía (arena de pinos). Si perdés, la historia sigue ahí mismo con el equipo curado (como en FireRed). |
 | **Personas que hablan** (67 de FireRed, en sus lugares reales, con sus sprites) | ✅ | Acercate a alguien y apretá **E**. Ej.: los vecinos de Pueblo Paleta, la gente del Centro Pokémon, el museo. |
 | **Enfermeras y mamá curan** | ✅ | Centro Pokémon de Ciudad Verde o de Plateada (E frente a la enfermera, por arriba del mostrador) o mamá en tu casa. Ese lugar queda como "donde volvés si perdés". |
 | **Regalo del empleado de la Tienda** (Ruta 1) | ✅ | E al empleado: te da una Poción una sola vez. |
@@ -39,9 +46,7 @@ se elige el inicial en el laboratorio, no está el rival ni el Paquete de Oak. E
 
 | Qué | Fase | Nota |
 |---|---|---|
-| **Profesor Oak** (te frena en el pasto, el laboratorio) | **H-1** (la siguiente) | Hoy el inicial se sigue eligiendo en la pantalla del principio. |
-| **Elegir el inicial en el laboratorio** | H-1 | Decisión tomada: en la mesa del laboratorio, como en FireRed. |
-| **Rival (Azul)**: 1ª pelea en el laboratorio y 2ª en la Ruta 22 | H-1 / H-3 | El sistema de pelea ya existe (E-1). |
+| **Rival en la Ruta 22** (2ª pelea) | H-3 | |
 | **Paquete de Oak**, Pokédex de regalo, Dalia y el Mapa | H-2 | Hoy la Pokédex está desde el principio. |
 | **Viejo de Ciudad Verde** (tapa el camino y te enseña a atrapar) | H-2 | El sistema de bloqueos ya existe (H-0); falta ponerlo. |
 | Objetos fijos del Bosque Verde | H-4 | Hoy hay 3-4 objetos al azar por ruta. |
@@ -54,8 +59,11 @@ se elige el inicial en el laboratorio, no está el rival ni el Paquete de Oak. E
   `medalla_roca`...). Se guardan con la partida.
 - **Personas** (`data/story/npcs/*.tres`): quién, dónde, qué dice (con condiciones por bandera) y si es entrenador.
   Las arma `tools/build_story_npcs.py` desde los NPC reales de FireRed; los textos son propios, en rioplatense.
-- **Disparadores** (`data/story/triggers/*.tres`): pisar un lugar abre una conversación (ej. Oak frenándote).
-  Todavía no hay ninguno puesto (llegan con H-1).
+- **Disparadores** (`data/story/triggers/*.tres`): pisar un lugar abre una conversación (Oak frenándote, Oak que
+  no te deja irte sin Pokémon, el rival al salir del laboratorio).
+- **Conversaciones con efectos** (`NpcTalk`): preguntar Sí/No, darte un Pokémon, pelear contra un entrenador (con o
+  sin volver al Centro si perdés), llevarte a otro lugar, decir algo después. El equipo del rival depende de lo
+  que elegiste (`TrainerMon.requires_flag`).
 - **Bloqueos**: una persona con `hide_if` desaparece cuando se pone su bandera (ej. el viejo de Ciudad Verde).
 - **Combates**: `TrainerBattle` lleva a la arena (`data/arenas/`); ver `PLAN_ENTRENADORES.md`, "E-1".
-- Pruebas: `--autotest-story` (H-0) y `--autotest-arena` (E-1).
+- Pruebas: `--autotest-story` (H-0), `--autotest-arena` (E-1) y `--autotest-story-h1` (H-1).

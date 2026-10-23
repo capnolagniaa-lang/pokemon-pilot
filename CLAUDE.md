@@ -41,6 +41,7 @@ $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bich
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
+$G --headless --path . --quit-after 100000 -- --autotest-story-h1  # historia H-1 (cuarto, Oak, laboratorio, rival)
 $G --headless --path . --quit-after 100000 -- --autotest-arena  # combates contra entrenadores en arena (E-1): Brock, Cazabichos
 $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena  # Brock y Onix en el gimnasio épico
 $G --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd  # rearma las arenas (pisa las escenas)
@@ -178,7 +179,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   - **Plan futuro (Etapa 6)**: IVs al azar al capturar (0-31 por stat), con un perfecto (31 en todo)
     **muy difícil de conseguir**; después naturalezas y EVs. El código ya guarda `ivs`/`evs` por criatura.
 - **Experiencia**: curvas oficiales (`exp_for_level`: fast, medium, medium-slow, slow, errática,
-  fluctuante); EXP ganada = experiencia base × nivel del derrotado / 7 (fórmula 1ª-4ª gen).
+  fluctuante); EXP ganada = experiencia base × nivel del derrotado / 7 (fórmula 1ª-4ª gen) ×
+  `GameConfig.exp_multiplier` (**0,5**: decisión del usuario 2026-10-23, se subía de nivel muy rápido).
 - **Daño** (`Damage.resolve`): fórmula oficial con STAB 1.5, efectividad, variación 0.85-1, físico vs
   especial. Los **estados siguen el plan de identidad** (no los oficiales): Quemado −15% daño físico,
   Paralizado por acumulación, etc. (ver `docs/PLAN_IDENTIDAD_COMBATE.md`). No tocarlos desde

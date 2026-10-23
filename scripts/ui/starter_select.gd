@@ -10,7 +10,25 @@ func _ready() -> void:
 	var starters := DB.config.starters
 	for i in starters.size():
 		cards.add_child(_card(starters[i], i))
+	_build_story_button()
 	_build_options()
+
+
+## Historia (docs/PLAN_HISTORIA.md): arrancás en tu cuarto sin Pokémon y elegís el inicial en el laboratorio de
+## Oak. Las tarjetas de abajo son el modo libre (arrancás ya con ese Pokémon).
+func _build_story_button() -> void:
+	var b := UiStyle.button("▶  Empezar la historia (elegís tu inicial en el laboratorio de Oak)", 640)
+	b.pressed.connect(func():
+		GameState.new_story()
+		get_tree().change_scene_to_file(WORLD_SCENE))
+	var free := UiStyle.label("o modo libre: empezá ya con uno de estos", 15, UiStyle.TEXT_DIM)
+	free.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var vbox: VBoxContainer = $Center/VBox
+	vbox.add_child(b)
+	vbox.move_child(b, cards.get_index())
+	vbox.add_child(free)
+	vbox.move_child(free, cards.get_index())
+	UiStyle.focus_later(b)
 
 
 ## Opciones de la partida: dificultad de la IA y modo práctica.

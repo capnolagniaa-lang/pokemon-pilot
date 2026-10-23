@@ -119,6 +119,26 @@ func heal_party() -> void:
 	Events.party_changed.emit()
 
 
+## Partida nueva de HISTORIA (docs/PLAN_HISTORIA.md, H-1): sin Pokémon, en tu cuarto. El inicial se elige en el
+## laboratorio de Oak. (new_game(starter) es el modo libre: arranca con el inicial elegido en la pantalla.)
+const STORY_START_ZONE := "casa_jugador_2p"
+const STORY_START_CELL := Vector2i(6, 6)
+
+
+func new_story() -> void:
+	new_game(DB.config.starters[0])
+	party.clear()
+	active_index = 0
+	pokedex_seen.clear()
+	pokedex_fought.clear()
+	pokedex_caught.clear()
+	set_flag("historia")
+	for z in DB.config.world.zones:
+		if z.id == STORY_START_ZONE:
+			trainer_position = Vector2((z.origin + STORY_START_CELL) * DB.config.world.tile_size) + Vector2.ONE * DB.config.world.tile_size / 2.0
+	Events.party_changed.emit()
+
+
 ## Prende o apaga los entrenadores vivos (el mundo los saca o los guarda al momento).
 func set_living_trainers(on: bool) -> void:
 	if on == living_trainers:
@@ -369,11 +389,13 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 				var inst := CreatureInstance.from_dict(m, warnings)
 				if inst != null:
 					members.append(inst)
-	if members.is_empty():
+	var flags_raw = d.get("story_flags", [])
+	var story_without_mon: bool = flags_raw is Array and flags_raw.has("historia") and not flags_raw.has("tiene_inicial")
+	if members.is_empty() and not story_without_mon:  # en la historia, antes del laboratorio no tenés Pokémon
 		warnings.append("La partida no tiene ningún Pokémon válido.")
 		return false
 	party = members
-	active_index = clampi(int(d.get("active_index", 0)), 0, party.size() - 1)
+	active_index = clampi(int(d.get("active_index", 0)), 0, maxi(0, party.size() - 1))
 	bag.clear()
 	var saved_bag = d.get("bag", null)
 	if saved_bag is Dictionary:

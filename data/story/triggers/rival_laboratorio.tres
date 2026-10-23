@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("tiene_inicial")
+forbids = PackedStringArray("rival_lab_peleado")
+set_flags = PackedStringArray("rival_lab_peleado")
+speaker = "Azul"
+lines = PackedStringArray("¡Eh, esperá!")
+heal = true
+battle_npc = "laboratorio_oak_rival"
+battle_no_blackout = true
+after_speaker = "Azul"
+after_lines = PackedStringArray("¡Me voy a entrenar a mis Pokémon! ¡Chau, abuelo!")
+
+[resource]
+script = ExtResource("1_g")
+id = "rival_laboratorio"
+zone_id = "laboratorio_oak"
+rect = Rect2i(3, 9, 7, 2)
+talk = SubResource("Talk")
+once = true
+push_back = false

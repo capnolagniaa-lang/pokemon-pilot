@@ -230,8 +230,10 @@ func exp_progress() -> float:
 
 
 ## Experiencia oficial por derrotar a un salvaje (fórmula de la 1ª-4ª gen).
+## EXP por debilitarlo: fórmula oficial de 1ª-4ª gen (base × nivel / 7) × GameConfig.exp_multiplier.
 static func exp_yield(defeated: CreatureInstance) -> int:
-	return maxi(1, int(defeated.species.base_experience * defeated.level / 7.0))
+	var mult: float = DB.config.exp_multiplier if DB.config != null else 1.0
+	return maxi(1, int(defeated.species.base_experience * defeated.level / 7.0 * mult))
 
 
 ## Suma experiencia y devuelve cuántos niveles subió. Al subir, la vida sube lo mismo que la máxima.

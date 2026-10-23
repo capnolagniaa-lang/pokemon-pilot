@@ -30,6 +30,13 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-story-h1" in OS.get_cmdline_user_args():
+		set_process(false)
+		var h1 := StoryH1Tests.new()
+		h1.autotest = self
+		add_child(h1)
+		h1.run.call_deferred()
+		return
 	if "--autotest-arena" in OS.get_cmdline_user_args() or "--showcase-arena" in OS.get_cmdline_user_args():
 		set_process(false)
 		var at := ArenaTests.new()

@@ -19,7 +19,7 @@ HEADERS = ["src/data/object_events/object_event_graphics_info.h",
            "src/data/object_events/object_event_pic_tables.h",
            "src/data/object_events/object_event_graphics.h"]
 # Objetos que no son personas (los hace el juego de otra forma).
-SKIP = {"OBJ_EVENT_GFX_ITEM_BALL", "OBJ_EVENT_GFX_CUT_TREE", "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
+SKIP = {"OBJ_EVENT_GFX_CUT_TREE", "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
         "OBJ_EVENT_GFX_PUSHABLE_BOULDER", "OBJ_EVENT_GFX_POKEDEX", "OBJ_EVENT_GFX_TOWN_MAP", "OBJ_EVENT_GFX_FOSSIL",
         "OBJ_EVENT_GFX_OLD_AMBER", "OBJ_EVENT_GFX_CLIPBOARD", "OBJ_EVENT_GFX_METEORITE"}
 # Siempre (aunque no estén en los mapas importados): personajes de la historia.

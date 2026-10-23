@@ -76,7 +76,7 @@ func try_interact() -> bool:
 		return false
 	var npc := npc_in_reach()
 	if npc != null:
-		if npc.data.is_undefeated_trainer():
+		if npc.data.is_undefeated_trainer() and npc.data.challenge_on_talk and _has_fighter():
 			challenge(npc)
 		else:
 			talk_to(npc)
@@ -105,8 +105,32 @@ func run_talk(talk: NpcTalk, default_speaker: String = "") -> void:
 	var hud: CanvasItem = world.get_node_or_null("UI/HUD")
 	if hud != null:
 		hud.visible = false  # la caja de diálogo va abajo, donde está el HUD
-	await dialog.say(talk.speaker if talk.speaker != "" else default_speaker, talk.lines)
+	var speaker := talk.speaker if talk.speaker != "" else default_speaker
+	await dialog.say(speaker, talk.lines)
+	if talk.confirm != "" and await dialog.ask(speaker, talk.confirm, PackedStringArray(["Sí", "No"])) != 0:
+		if hud != null:
+			hud.visible = true
+		t.locked = false
+		busy = false
+		return  # dijo que no: no pasa nada
+	if talk.battle_npc != "" and DB.npcs.has(talk.battle_npc):
+		if hud != null:
+			hud.visible = true
+		await fight(DB.npcs[talk.battle_npc], null, talk.battle_no_blackout)
+		t.locked = true
 	var after := PackedStringArray()
+	if talk.give_pokemon != null:
+		var lvl := talk.give_level if talk.give_level > 0 else DB.config.starting_level
+		var inst := CreatureInstance.create(talk.give_pokemon, lvl)
+		if GameState.party.is_empty():
+			GameState.party.append(inst)
+			GameState.active_index = 0
+			GameState.mark_fought(inst.species)
+			GameState.pokedex_caught[inst.species.id] = true
+			Events.party_changed.emit()
+		else:
+			GameState.add_to_party(inst)
+		after.append("¡Recibiste a %s!" % inst.display_name())
 	if talk.heal:
 		heal_party()
 		after.append("¡Tu equipo se recuperó por completo!")
@@ -119,10 +143,38 @@ func run_talk(talk: NpcTalk, default_speaker: String = "") -> void:
 		GameState.set_flag(f)
 	if not after.is_empty():
 		await dialog.say("", after)
+	if not talk.after_lines.is_empty():
+		await dialog.say(talk.after_speaker, talk.after_lines)
+	if talk.warp_zone != "":
+		await teleport(talk.warp_zone, talk.warp_cell)
 	if hud != null:
 		hud.visible = true
 	t.locked = false
 	busy = false
+
+
+## Te lleva (con fundido) a una celda de una zona: carga la zona, mueve al entrenador y a su Pokémon.
+func teleport(zone_id: String, cell: Vector2i) -> void:
+	var data: WorldData = world.streamer.world_data
+	var entry: ZoneEntry = null
+	for z in data.zones:
+		if z.id == zone_id:
+			entry = z
+	if entry == null:
+		return
+	await world.arena.fade_to(1.0)
+	var pos := Vector2((entry.origin + cell) * data.tile_size) + Vector2.ONE * data.tile_size / 2.0
+	world.streamer.load_around_now(pos)
+	var t: Trainer = world.trainer
+	t.global_position = pos
+	t.trail = [pos]
+	if is_instance_valid(world.companion):
+		world.companion.global_position = pos + Vector2(0, -12)
+	world.camera.snap()
+	refresh()
+	_last_cell = Vector2i(-99999, -99999)
+	await get_tree().process_frame
+	await world.arena.fade_to(0.0)
 
 
 ## Cura al equipo: vida llena y sin estados el que está afuera. Si perdés contra un entrenador, volvés acá.
@@ -173,10 +225,15 @@ func _fire(trig: StoryTrigger, zone: Zone, prev: Vector2i) -> void:
 
 # --- Entrenadores (E-1) -----------------------------------------------------------------------------------
 
+## Tenés al menos un Pokémon en condiciones de pelear (sin Pokémon nadie te desafía).
+func _has_fighter() -> bool:
+	return GameState.party.any(func(i): return i.hp > 0.0)
+
+
 ## Un entrenador sin vencer de esta zona que te ve: mirando hacia vos, a `sight` celdas o menos, en línea recta y
 ## sin nada sólido en el medio.
 func _trainer_seeing(zone_id: String, zone: Zone, cell: Vector2i) -> StoryNPC:
-	if world.arena.active or world.trainer.locked:
+	if world.arena.active or world.trainer.locked or not _has_fighter():
 		return null
 	for npc: StoryNPC in npcs.values():
 		if not is_instance_valid(npc) or npc.data.zone_id != zone_id or npc.data.sight <= 0 				or not npc.data.is_undefeated_trainer():
@@ -216,11 +273,22 @@ func challenge(npc: StoryNPC, spotted: bool = false) -> void:
 	npc.look_at_point(t.global_position)
 	var speaker := ("%s %s" % [td.title, td.display_name]).strip_edges()
 	await _say(speaker, _lines(td, "desafio", "¡Peleá conmigo!"))
+	await fight(data, npc.sprite.texture)
+	busy = false
+
+
+## Pelea contra el entrenador de una persona (su equipo, con los Pokémon que piden bandera filtrados). Si ganás:
+## vencido_<id> y sus premios. Devuelve "win" o "lose".
+func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) -> String:
+	var td := data.trainer
 	var team: Array[CreatureInstance] = []
 	for m in td.starting_team:
-		team.append(CreatureInstance.create(m.species, m.level))
+		if m.requires_flag == "" or GameState.has_flag(m.requires_flag):
+			team.append(CreatureInstance.create(m.species, m.level))
+	if texture == null and ResourceLoader.exists("res://art/pret/characters/%s.png" % data.gfx):
+		texture = load("res://art/pret/characters/%s.png" % data.gfx)
 	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": team,
-		"arena_id": td.arena_id, "texture": npc.sprite.texture, "leader": td.leader,
+		"arena_id": td.arena_id, "texture": texture, "leader": td.leader, "no_blackout": no_blackout,
 		"defeat_lines": _lines(td, "pierde", "¡Me ganaste!")})
 	if r == "win":
 		GameState.set_flag(data.defeated_flag())  # (el NPC ya no existe: la zona se recargó al volver)
@@ -228,7 +296,9 @@ func challenge(npc: StoryNPC, spotted: bool = false) -> void:
 			GameState.set_flag(f)
 		if td.reward_text != "":
 			await _say("", PackedStringArray([td.reward_text]))
-	busy = false
+	elif no_blackout and td.lines.has("gana"):
+		await _say(td.display_name, _lines(td, "gana", "¡Te gané!"))
+	return r
 
 
 ## Un entrenador vivo (docs/PLAN_ENTRENADORES.md) al alcance para hablarle (o null).

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("historia")
+forbids = PackedStringArray("tiene_inicial")
+set_flags = PackedStringArray("oak_te_freno")
+speaker = "Prof. Oak"
+lines = PackedStringArray("¡Esperá! ¡No sigas!", "En el pasto alto hay Pokémon salvajes. ¡Es peligroso salir sin un Pokémon propio!", "Vení conmigo al laboratorio.")
+warp_zone = "laboratorio_oak"
+warp_cell = Vector2i(6, 6)
+
+[resource]
+script = ExtResource("1_g")
+id = "oak_te_frena"
+zone_id = "pueblo_paleta"
+rect = Rect2i(54, 0, 6, 3)
+talk = SubResource("Talk")
+once = false
+push_back = false

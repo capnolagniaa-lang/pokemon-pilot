@@ -16,6 +16,23 @@ extends Resource
 @export var give_items: Dictionary = {}
 @export var heal: bool = false
 
+@export_group("Efectos de historia (H-1)")
+## Pregunta Sí/No después de las líneas: si contesta que no, no pasa nada más (ej. "¿Querés a Bulbasaur?").
+@export var confirm: String = ""
+## Te da este Pokémon (tu inicial) al nivel `give_level` (0 = el de GameConfig.starting_level).
+@export var give_pokemon: SpeciesData
+@export var give_level: int = 0
+## Pelea contra el entrenador de esta persona (id de NpcData). `battle_no_blackout`: si perdés, la historia sigue
+## ahí mismo con el equipo curado (como la 1ª pelea contra el rival).
+@export var battle_npc: String = ""
+@export var battle_no_blackout: bool = false
+## Lo que se dice después de los efectos (ej. el rival: "¡Entonces yo me quedo con Charmander!").
+@export var after_speaker: String = ""
+@export_multiline var after_lines: PackedStringArray = []
+## Al terminar te lleva a esta zona y celda (fundido), ej. Oak te lleva al laboratorio.
+@export var warp_zone: String = ""
+@export var warp_cell: Vector2i = Vector2i.ZERO
+
 
 func applies() -> bool:
 	for f in requires:

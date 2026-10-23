@@ -233,21 +233,158 @@ def gd_str(s):
 def psa(items):
     return "PackedStringArray(%s)" % ", ".join(gd_str(x) for x in items)
 
+# --- H-1: Pueblo Paleta y el laboratorio (docs/PLAN_HISTORIA.md) ---------------------------------------------
+# Banderas: historia (partida de historia), oak_te_freno, tiene_inicial, inicial_<especie>, rival_<especie>
+# (la Poké Ball que se llevó el rival), rival_lab_peleado.
+OAK = "Prof. Oak"
+RIVAL = "Azul"
+COUNTER = {"bulbasaur": "charmander", "charmander": "squirtle", "squirtle": "bulbasaur"}
+STARTER_TEXT = {
+    "bulbasaur": ["¡Es Bulbasaur, el Pokémon tipo planta!",
+                  "Su estilo es el control: domina la cancha con látigos, polvos y esporas."],
+    "charmander": ["¡Es Charmander, el Pokémon tipo fuego!",
+                   "Su estilo es el de un bruiser: entra, aguanta y se calienta cuanto más pelea."],
+    "squirtle": ["¡Es Squirtle, el Pokémon tipo agua!",
+                 "Su estilo es el de un tanque: se mete en el caparazón y castiga los errores."],
+}
+
+
+def starter_ball(sp):
+    other = COUNTER[sp]
+    return dict(name="Poké Ball", gfx="item_ball", show_if=["oak_te_freno"],
+                hide_if=["inicial_" + sp, "rival_" + sp], talks=[
+        dict(requires=["tiene_inicial"], lines=["Mejor no. Ya tenés a tu compañero."]),
+        dict(lines=STARTER_TEXT[sp], confirm="¿Querés a %s?" % sp.capitalize(), give_pokemon=sp,
+             set_flags=["tiene_inicial", "inicial_" + sp, "rival_" + other],
+             after_speaker=RIVAL, after_lines=["¡Entonces yo me quedo con este!",
+                                               "(Azul agarró la Poké Ball de %s.)" % other.capitalize()]),
+    ])
+
+
+TALKS.update({
+    ("casa_jugador", "Mom"): dict(name="Mamá", talks=[
+        dict(forbids=["tiene_inicial"], requires=["historia"], lines=[
+            "¡Buen día! Hoy es un gran día, ¿no?",
+            "El Profesor Oak, el vecino, te andaba buscando. ¡Pasá por su laboratorio!"]),
+        TALKS[("casa_jugador", "Mom")]["talks"][-1],
+    ]),
+    ("laboratorio_oak", "ProfOak"): dict(name=OAK, show_if=["oak_te_freno"], talks=[
+        dict(forbids=["tiene_inicial"], lines=[
+            "Ahí en la mesa hay tres Poké Balls. Adentro de cada una hay un Pokémon.",
+            "Elegí el que más te guste. ¡Va a ser tu primer compañero!"]),
+        dict(forbids=["rival_lab_peleado"], lines=["¡Ese Pokémon ya es tuyo! Cuidalo mucho."]),
+        dict(lines=["El mundo está lleno de Pokémon. ¡Salí a conocerlos!"]),
+    ]),
+    ("laboratorio_oak", "BulbasaurBall"): starter_ball("bulbasaur"),
+    ("laboratorio_oak", "SquirtleBall"): starter_ball("squirtle"),
+    ("laboratorio_oak", "CharmanderBall"): starter_ball("charmander"),
+    ("laboratorio_oak", "Rival"): dict(name=RIVAL, show_if=["oak_te_freno"], hide_if=["rival_lab_peleado"], talks=[
+        dict(forbids=["tiene_inicial"], lines=[
+            "¡Abuelo! ¡Me aburro de esperar!",
+            "¿Eh? ¿Vos también vas a elegir? Dale, elegí primero. Yo soy re generoso."]),
+        dict(lines=["Mi Pokémon es mucho mejor que el tuyo. Ya vas a ver."]),
+    ]),
+})
+
+TRAINERS.update({
+    ("laboratorio_oak", "Rival"): dict(name=RIVAL, title="Rival", sight=0, talk_challenge=False, team=[
+        ("charmander", 5, "rival_charmander"), ("squirtle", 5, "rival_squirtle"), ("bulbasaur", 5, "rival_bulbasaur")],
+        lines={"desafio": "¡Esperá! ¡Veamos qué tan buenos son nuestros Pokémon!",
+               "pierde": "¿¡Qué!? ¡Elegí mal mi Pokémon!",
+               "gana": "¡Ja! ¡Gané! Sabía que el mío era mejor.",
+               "despues": "La próxima no te salvás."}),
+})
+
+TRIGGERS = {
+    # Al querer salir de Pueblo Paleta hacia el pasto alto de la Ruta 1 sin Pokémon, Oak te frena.
+    "oak_te_frena": dict(zone="pueblo_paleta", rect=(54, 0, 6, 3), once=False, talk=dict(
+        requires=["historia"], forbids=["tiene_inicial"], speaker=OAK, lines=[
+            "¡Esperá! ¡No sigas!",
+            "En el pasto alto hay Pokémon salvajes. ¡Es peligroso salir sin un Pokémon propio!",
+            "Vení conmigo al laboratorio."],
+        set_flags=["oak_te_freno"], warp=("laboratorio_oak", (6, 6)))),
+    # Sin Pokémon no te deja irte del laboratorio.
+    "oak_llevate_uno": dict(zone="laboratorio_oak", rect=(4, 11, 5, 2), once=False, push_back=True, talk=dict(
+        requires=["oak_te_freno"], forbids=["tiene_inicial"], speaker=OAK, lines=[
+            "¡Eh! ¡Antes de irte elegí uno de los Pokémon de la mesa!"])),
+    # Con tu inicial, el rival te desafía cuando querés salir (1ª pelea; si perdés, la historia sigue).
+    "rival_laboratorio": dict(zone="laboratorio_oak", rect=(3, 9, 7, 2), talk=dict(
+        requires=["tiene_inicial"], forbids=["rival_lab_peleado"], speaker=RIVAL, lines=["¡Eh, esperá!"],
+        battle_npc="laboratorio_oak_rival", no_blackout=True, heal=True, set_flags=["rival_lab_peleado"],
+        after_speaker=RIVAL, after_lines=["¡Me voy a entrenar a mis Pokémon! ¡Chau, abuelo!"])),
+}
+
+
+class Ext:
+    """ext_resource que necesita un .tres (scripts y recursos), con ids estables."""
+
+    def __init__(self, scripts):
+        self.items = list(scripts)  # [(tipo, path, id)]
+
+    def ref(self, path, kind="Resource"):
+        for t, p, i in self.items:
+            if p == path:
+                return i
+        i = "r_%d" % len(self.items)
+        self.items.append((kind, path, i))
+        return i
+
+    def lines(self):
+        return ['[ext_resource type="%s" path="%s" id="%s"]' % it for it in self.items]
+
+
+def species_ref(ext, sp):
+    return 'ExtResource("%s")' % ext.ref("res://data/species/%s.tres" % sp)
+
+
+def talk_body(sid, t, ext):
+    """Cuerpo de un NpcTalk (conversación) como sub-recurso."""
+    body = ['[sub_resource type="Resource" id="%s"]' % sid, 'script = ExtResource("%s")' % ext.ref(
+        "res://scripts/resources/npc_talk.gd", "Script")]
+    for key in ("requires", "forbids", "set_flags"):
+        if t.get(key):
+            body.append("%s = %s" % (key, psa(t[key])))
+    if t.get("speaker"):
+        body.append("speaker = " + gd_str(t["speaker"]))
+    body.append("lines = " + psa(t.get("lines", [])))
+    if t.get("give"):
+        body.append("give_items = {%s}" % ", ".join("%s: %d" % (gd_str(k), v) for k, v in t["give"].items()))
+    if t.get("heal"):
+        body.append("heal = true")
+    if t.get("confirm"):
+        body.append("confirm = " + gd_str(t["confirm"]))
+    if t.get("give_pokemon"):
+        body.append("give_pokemon = " + species_ref(ext, t["give_pokemon"]))
+    if t.get("battle_npc"):
+        body.append("battle_npc = " + gd_str(t["battle_npc"]))
+    if t.get("no_blackout"):
+        body.append("battle_no_blackout = true")
+    if t.get("after_lines"):
+        body.append("after_speaker = " + gd_str(t.get("after_speaker", "")))
+        body.append("after_lines = " + psa(t["after_lines"]))
+    if t.get("warp"):
+        body.append("warp_zone = " + gd_str(t["warp"][0]))
+        body.append("warp_cell = Vector2i(%d, %d)" % tuple(t["warp"][1]))
+    return "\n".join(body)
+
 
 def trainer_subs(spec, ext):
-    """Sub-recursos de un TrainerData (con sus TrainerMon). `ext` junta los ext_resource de especies."""
+    """Sub-recursos de un TrainerData (con sus TrainerMon). Un Pokémon del equipo puede pedir una bandera:
+    (especie, nivel, bandera)."""
     subs, mons = [], []
-    for i, (sp, lvl) in enumerate(spec["team"]):
-        key = "res://data/species/%s.tres" % sp
-        if key not in ext:
-            ext[key] = "sp_%d" % len(ext)
-        subs.append('[sub_resource type="Resource" id="Mon_%d"]\nscript = ExtResource("4_m")\nspecies = ExtResource("%s")\nlevel = %d'
-                    % (i, ext[key], lvl))
+    mon_script = ext.ref("res://scripts/resources/trainer_mon.gd", "Script")
+    for i, m in enumerate(spec["team"]):
+        body = ['[sub_resource type="Resource" id="Mon_%d"]' % i, 'script = ExtResource("%s")' % mon_script,
+                "species = " + species_ref(ext, m[0]), "level = %d" % m[1]]
+        if len(m) > 2:
+            body.append("requires_flag = " + gd_str(m[2]))
+        subs.append("\n".join(body))
         mons.append('SubResource("Mon_%d")' % i)
     lines = ", ".join("%s: %s" % (gd_str(k), gd_str(v)) for k, v in spec["lines"].items())
-    body = ['[sub_resource type="Resource" id="Trainer"]', 'script = ExtResource("3_d")',
+    body = ['[sub_resource type="Resource" id="Trainer"]',
+            'script = ExtResource("%s")' % ext.ref("res://scripts/resources/trainer_data.gd", "Script"),
             "id = " + gd_str(spec["name"].lower()), "display_name = " + gd_str(spec["name"]), "title = " + gd_str(spec["title"]),
-            'starting_team = Array[ExtResource("4_m")]([%s])' % ", ".join(mons), "lines = {%s}" % lines,
+            'starting_team = Array[ExtResource("%s")]([%s])' % (mon_script, ", ".join(mons)), "lines = {%s}" % lines,
             "arena_id = " + gd_str(spec.get("arena", "arena_campo"))]
     if spec.get("leader"):
         body.append("leader = true")
@@ -260,44 +397,29 @@ def trainer_subs(spec, ext):
 
 
 def npc_tres(npc_id, zone, n, spec):
-    gfx = n["gfx"][len("OBJ_EVENT_GFX_"):].lower()
+    gfx = spec.get("gfx") or n["gfx"][len("OBJ_EVENT_GFX_"):].lower()
     move = n["movement"].replace("MOVEMENT_TYPE_", "")
     face = (0, 1)
     for k, v in FACING.items():
         if move.startswith("FACE_" + k):
             face = v
     look = move.startswith("LOOK_AROUND") or move.startswith("WANDER")
+    ext = Ext([("Script", "res://scripts/resources/npc_data.gd", "1_n"),
+               ("Script", "res://scripts/resources/npc_talk.gd", "2_t")])
     subs, ids = [], []
     for i, t in enumerate(spec["talks"]):
-        sid = "Talk_%d" % i
-        ids.append('SubResource("%s")' % sid)
-        body = ['[sub_resource type="Resource" id="%s"]' % sid, 'script = ExtResource("2_t")']
-        if t.get("requires"):
-            body.append("requires = " + psa(t["requires"]))
-        if t.get("forbids"):
-            body.append("forbids = " + psa(t["forbids"]))
-        if t.get("speaker"):
-            body.append("speaker = " + gd_str(t["speaker"]))
-        body.append("lines = " + psa(t["lines"]))
-        if t.get("set_flags"):
-            body.append("set_flags = " + psa(t["set_flags"]))
-        if t.get("give"):
-            body.append("give_items = {%s}" % ", ".join("%s: %d" % (gd_str(k), v) for k, v in t["give"].items()))
-        if t.get("heal"):
-            body.append("heal = true")
-        subs.append("\n".join(body))
-    ext = {}
+        ids.append('SubResource("Talk_%d")' % i)
+        subs.append(talk_body("Talk_%d" % i, t, ext))
     extra = []
     if spec.get("trainer"):
         subs += trainer_subs(spec["trainer"], ext)
         extra = ['trainer = SubResource("Trainer")', "sight = %d" % spec["trainer"].get("sight", 4)]
-    head = ['[gd_resource type="Resource" script_class="NpcData" format=3]', "",
-            '[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]',
-            '[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]']
-    if spec.get("trainer"):
-        head += ['[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]',
-                 '[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]']
-        head += ['[ext_resource type="Resource" path="%s" id="%s"]' % (k, v) for k, v in ext.items()]
+        if spec["trainer"].get("talk_challenge") is False:
+            extra.append("challenge_on_talk = false")
+    for key in ("show_if", "hide_if"):
+        if spec.get(key):
+            extra.append("%s = %s" % (key, psa(spec[key])))
+    head = ['[gd_resource type="Resource" script_class="NpcData" format=3]', ""] + ext.lines()
     return "\n".join(head + ["",
         "\n\n".join(subs), "",
         "[resource]", 'script = ExtResource("1_n")', "id = " + gd_str(npc_id),
@@ -305,6 +427,18 @@ def npc_tres(npc_id, zone, n, spec):
         "cell = Vector2i(%d, %d)" % tuple(n["cell"]), "gfx = " + gd_str(gfx),
         "facing = Vector2i(%d, %d)" % face, "look_around = " + ("true" if look else "false"),
         'talks = Array[ExtResource("2_t")]([%s])' % ", ".join(ids)] + extra + [""])
+
+
+def trigger_tres(tid, spec):
+    ext = Ext([("Script", "res://scripts/resources/story_trigger.gd", "1_g"),
+               ("Script", "res://scripts/resources/npc_talk.gd", "2_t")])
+    body = talk_body("Talk", spec["talk"], ext)
+    r = spec["rect"]
+    return "\n".join(['[gd_resource type="Resource" script_class="StoryTrigger" format=3]', ""] + ext.lines() + [
+        "", body, "", "[resource]", 'script = ExtResource("1_g")', "id = " + gd_str(tid),
+        "zone_id = " + gd_str(spec["zone"]), "rect = Rect2i(%d, %d, %d, %d)" % tuple(r), 'talk = SubResource("Talk")',
+        "once = " + ("true" if spec.get("once", True) else "false"),
+        "push_back = " + ("true" if spec.get("push_back") else "false"), ""])
 
 
 def main():
@@ -320,10 +454,11 @@ def main():
             spec = TALKS.get((z["id"], script))
             t = TRAINERS.get((z["id"], script))
             if t is not None:
-                spec = dict(name=t["name"], trainer=t, talks=[dict(lines=[t["lines"]["despues"]])])
+                spec = dict(spec or {}, name=t["name"], trainer=t)
+                spec.setdefault("talks", [dict(lines=[t["lines"]["despues"]])])
             if spec is None:
                 continue
-            gfx = n["gfx"][len("OBJ_EVENT_GFX_"):].lower()
+            gfx = spec.get("gfx") or n["gfx"][len("OBJ_EVENT_GFX_"):].lower()
             if gfx not in sprites:
                 print("sin sprite:", z["id"], script, gfx)
                 continue
@@ -335,6 +470,12 @@ def main():
         if key not in made:
             print("no está en el mapa:", key)
     print("personas:", len(made))
+    tout = os.path.join(root, "data", "story", "triggers")
+    os.makedirs(tout, exist_ok=True)
+    for tid, spec in TRIGGERS.items():
+        with open(os.path.join(tout, tid + ".tres"), "w", encoding="utf-8", newline="\n") as f:
+            f.write(trigger_tres(tid, spec))
+    print("disparadores:", len(TRIGGERS))
 
 
 if __name__ == "__main__":

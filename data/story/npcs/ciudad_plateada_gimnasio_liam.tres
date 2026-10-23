@@ -2,31 +2,31 @@
 
 [ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
 [ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
-[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]
-[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]
-[ext_resource type="Resource" path="res://data/species/geodude.tres" id="sp_0"]
-[ext_resource type="Resource" path="res://data/species/sandshrew.tres" id="sp_1"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/geodude.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/sandshrew.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
 lines = PackedStringArray("Si querés ganarle a Brock, usá agua o planta.")
 
 [sub_resource type="Resource" id="Mon_0"]
-script = ExtResource("4_m")
-species = ExtResource("sp_0")
+script = ExtResource("r_2")
+species = ExtResource("r_3")
 level = 10
 
 [sub_resource type="Resource" id="Mon_1"]
-script = ExtResource("4_m")
-species = ExtResource("sp_1")
+script = ExtResource("r_2")
+species = ExtResource("r_4")
 level = 11
 
 [sub_resource type="Resource" id="Trainer"]
-script = ExtResource("3_d")
+script = ExtResource("r_5")
 id = "liam"
 display_name = "Liam"
 title = "Campista"
-starting_team = Array[ExtResource("4_m")]([SubResource("Mon_0"), SubResource("Mon_1")])
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
 lines = {"desafio": "¡Alto ahí! Para llegar a Brock primero tenés que pasar por mí.", "pierde": "¡Qué bestia! Pero Brock es otra cosa, eh.", "despues": "Si querés ganarle a Brock, usá agua o planta."}
 arena_id = "arena_gimnasio_roca"
 

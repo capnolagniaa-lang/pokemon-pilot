@@ -2,31 +2,31 @@
 
 [ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
 [ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
-[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]
-[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]
-[ext_resource type="Resource" path="res://data/species/weedle.tres" id="sp_0"]
-[ext_resource type="Resource" path="res://data/species/caterpie.tres" id="sp_1"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/weedle.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/caterpie.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
 lines = PackedStringArray("Los Caterpie crecen rápido. ¡La próxima te gano!")
 
 [sub_resource type="Resource" id="Mon_0"]
-script = ExtResource("4_m")
-species = ExtResource("sp_0")
+script = ExtResource("r_2")
+species = ExtResource("r_3")
 level = 6
 
 [sub_resource type="Resource" id="Mon_1"]
-script = ExtResource("4_m")
-species = ExtResource("sp_1")
+script = ExtResource("r_2")
+species = ExtResource("r_4")
 level = 6
 
 [sub_resource type="Resource" id="Trainer"]
-script = ExtResource("3_d")
+script = ExtResource("r_5")
 id = "ricardo"
 display_name = "Ricardo"
 title = "Cazabichos"
-starting_team = Array[ExtResource("4_m")]([SubResource("Mon_0"), SubResource("Mon_1")])
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
 lines = {"desafio": "¡Ey! ¿Entraste al bosque? ¡Mis bichos te van a dar la bienvenida!", "pierde": "¡Nooo! Mis bichitos...", "despues": "Los Caterpie crecen rápido. ¡La próxima te gano!"}
 arena_id = "arena_campo"
 

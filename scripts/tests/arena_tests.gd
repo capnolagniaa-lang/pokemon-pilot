@@ -14,7 +14,7 @@ func run() -> void:
 	r["Hay arenas (campo y gimnasio de roca)"] = ResourceLoader.exists("res://data/arenas/arena_campo.tres") \
 		and ResourceLoader.exists("res://data/arenas/arena_gimnasio_roca.tres")
 	var trainers := DB.npcs.values().filter(func(n): return n.trainer != null)
-	r["Entrenadores de la historia cargados (%d)" % trainers.size()] = trainers.size() == 7
+	r["Entrenadores de la historia cargados (%d)" % trainers.size()] = trainers.size() >= 8
 	r["Brock: Geodude 12 + Onix 14 en el gimnasio de roca"] = _team_of("ciudad_plateada_gimnasio_brock") == "geodude12 onix14" \
 		and DB.npcs["ciudad_plateada_gimnasio_brock"].trainer.arena_id == "arena_gimnasio_roca"
 
