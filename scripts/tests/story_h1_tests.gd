@@ -128,6 +128,23 @@ func run() -> void:
 	await _idle()
 	r["El abuelo te enseña a atrapar"] = GameState.has_flag("tutorial_captura")
 
+	# --- H-3: el rival en la Ruta 22 ---
+	GameState.party[0].level = 25
+	GameState.party[0].hp = GameState.party[0].max_hp()
+	await _go("ruta22", Vector2i(53, 31))
+	r["El rival te espera en la Ruta 22"] = is_instance_valid(world.story.npcs.get("ruta22_0x0"))
+	await _step_to("ruta22", Vector2i(50, 31))
+	await _until(func(): return world.arena.active and world.arena._fighting, 12.0)
+	r["Al cruzar la Ruta 22 el rival te desafía"] = world.arena.active and world.arena.foe_name == "Azul"
+	r["Primero saca a Pidgey Nv. 9"] = is_instance_valid(world.arena.foe) and world.arena.foe.instance.species.id == "pidgey" 		and world.arena.foe.instance.level == 9
+	_ko(world.arena.foe)
+	await _until(func(): return is_instance_valid(world.arena.foe) and world.arena.foe.instance.species.id != "pidgey", 6.0)
+	r["Después su inicial (Bulbasaur Nv. 9, el que le gana a tu Squirtle)"] = is_instance_valid(world.arena.foe) 		and world.arena.foe.instance.species.id == "bulbasaur" and world.arena.foe.instance.level == 9
+	_ko(world.arena.foe)
+	await _until(func(): return not world.arena.active and not world.story.busy, 15.0)
+	await get_tree().process_frame
+	r["Ganarle: el rival se va a Plateada"] = GameState.has_flag("rival_ruta22_peleado") 		and not is_instance_valid(world.story.npcs.get("ruta22_0x0")) and _zone_id() == "ruta22"
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[historia-h1] %s %s" % ["OK   " if r[key] else "FALLO", key])

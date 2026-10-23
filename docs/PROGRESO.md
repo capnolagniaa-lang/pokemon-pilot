@@ -62,7 +62,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   `docs/HISTORIA.md`.
 - **H-2 hecha** (2026-10-23): el Correo de Oak (Tienda de Ciudad Verde → Oak), la Pokédex de regalo (en la historia
   recién ahí aparece), 5 Poké Balls, Dalia y el Mapa, y el viejo que tapa la salida al norte hasta entregar el
-  correo (después te enseña a atrapar). **Próximo paso: H-3** (rival en la Ruta 22).
+  correo (después te enseña a atrapar).
+- **H-3 hecha** (2026-10-23): el rival te frena en la Ruta 22 (Pidgey 9 + su inicial 9). **Próximo paso: el resto de
+  H-4/H-5** (objetos fijos del bosque, museo, chico de la Ruta 3, MT39, tarjeta con medallas).
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
   borraron (pedido del usuario). Pinceles nuevos: piso de ciudad, empedrado y piso de cueva.

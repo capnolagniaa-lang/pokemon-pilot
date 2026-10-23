@@ -373,6 +373,25 @@ TRIGGERS["viejo_bloquea"] = dict(zone="ciudad_verde", rect=(44, 6, 13, 2), once=
         "(Un señor está tirado en el medio del camino. No se puede pasar.)"]))
 
 
+# --- H-3: el rival en la Ruta 22 (2ª pelea) ----------------------------------------------------------------------
+# Aparece después de que Oak te da la Pokédex. Te frena al cruzar la Ruta 22 (cualquiera de los dos caminos, x = 50).
+# Si perdés, volvés al último Centro y te vuelve a desafiar; si ganás, se va a Ciudad Plateada.
+TALKS[("ruta22", "0x0")] = dict(name=RIVAL, show_if=["paquete_entregado"], hide_if=["rival_ruta22_peleado"], talks=[
+    dict(lines=["¡Eh! ¿Vos también vas para la Liga? ¡Ni lo sueñes!"])])
+TRAINERS[("ruta22", "0x0")] = dict(name=RIVAL, title="Rival", sight=0, talk_challenge=False,
+    reward_flags=["rival_ruta22_peleado"], team=[
+        ("pidgey", 9), ("charmander", 9, "rival_charmander"), ("squirtle", 9, "rival_squirtle"), ("bulbasaur", 9, "rival_bulbasaur")],
+    lines={"desafio": "¡Eh, vos! ¿Vas a la Liga Pokémon? ¡Sin medallas no te dejan ni entrar!|"
+                      "Yo estuve atrapando Pokémon. ¡Mirá cómo quedó mi equipo!",
+           "pierde": "¿¡Perdí de nuevo!? ...Bueno, igual sin medallas no sirve de nada ir a la Liga.|"
+                     "Me voy a Ciudad Plateada a ganarle a Brock. ¡Nos vemos!",
+           "gana": "¡Ja! ¿Viste? Mi equipo es mucho mejor.",
+           "despues": "¡Nos vemos en Ciudad Plateada!"})
+TRIGGERS["rival_ruta22"] = dict(zone="ruta22", rect=(50, 28, 1, 33), once=False, talk=dict(
+    requires=["paquete_entregado", "tiene_inicial"], forbids=["rival_ruta22_peleado"], speaker=RIVAL,
+    lines=["¡Eh, esperá!"], battle_npc="ruta22_0x0"))
+
+
 class Ext:
     """ext_resource que necesita un .tres (scripts y recursos), con ids estables."""
 
