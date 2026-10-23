@@ -75,10 +75,17 @@ func try_interact() -> bool:
 	if world.combat.in_battle or world.warps.busy:
 		return false
 	var npc := npc_in_reach()
-	if npc == null:
-		return false
-	talk_to(npc)
-	return true
+	if npc != null:
+		if npc.data.is_undefeated_trainer():
+			challenge(npc)
+		else:
+			talk_to(npc)
+		return true
+	var living := _living_trainer_in_reach()
+	if living != null:
+		challenge_living(living)
+		return true
+	return false
 
 
 func talk_to(npc: StoryNPC) -> void:
@@ -118,9 +125,10 @@ func run_talk(talk: NpcTalk, default_speaker: String = "") -> void:
 	busy = false
 
 
-## Cura al equipo: vida llena y sin estados el que está afuera.
+## Cura al equipo: vida llena y sin estados el que está afuera. Si perdés contra un entrenador, volvés acá.
 func heal_party() -> void:
 	GameState.heal_party()
+	GameState.last_heal_position = world.trainer.global_position
 	var c: Creature = world.companion
 	if is_instance_valid(c):
 		c.statuses.clear()
@@ -138,6 +146,10 @@ func _physics_process(_delta: float) -> void:
 	if zone == null:
 		return
 	var cell := zone.cell_at(t.global_position)
+	var spotter := _trainer_seeing(entry.id, zone, cell)
+	if spotter != null:
+		challenge(spotter, true)
+		return
 	if cell == _last_cell and entry.id == _last_zone:
 		return
 	var prev := _last_cell if entry.id == _last_zone else Vector2i(-99999, -99999)
@@ -157,3 +169,107 @@ func _fire(trig: StoryTrigger, zone: Zone, prev: Vector2i) -> void:
 		var t: Trainer = world.trainer
 		t.global_position = zone.to_global(zone.ground.map_to_local(prev))
 		_last_cell = prev
+
+
+# --- Entrenadores (E-1) -----------------------------------------------------------------------------------
+
+## Un entrenador sin vencer de esta zona que te ve: mirando hacia vos, a `sight` celdas o menos, en línea recta y
+## sin nada sólido en el medio.
+func _trainer_seeing(zone_id: String, zone: Zone, cell: Vector2i) -> StoryNPC:
+	if world.arena.active or world.trainer.locked:
+		return null
+	for npc: StoryNPC in npcs.values():
+		if not is_instance_valid(npc) or npc.data.zone_id != zone_id or npc.data.sight <= 0 				or not npc.data.is_undefeated_trainer():
+			continue
+		var from := zone.cell_at(npc.global_position)
+		var d := cell - from
+		var f: Vector2i = npc.data.facing
+		var along := d.x * f.x + d.y * f.y
+		var across := d.x * f.y + d.y * f.x
+		if across != 0 or along <= 0 or along > npc.data.sight:
+			continue
+		var clear := true
+		for k in range(1, along):
+			if not MapRules.is_walkable(zone, from + f * k):
+				clear = false
+				break
+		if clear:
+			return npc
+	return null
+
+
+## Un entrenador de la historia te desafía: "¡!", se acerca, dice su frase y van a la arena. Si le ganás queda la
+## bandera vencido_<id> (y sus premios); si perdés, te va a volver a desafiar.
+func challenge(npc: StoryNPC, spotted: bool = false) -> void:
+	if busy or world.arena.active:
+		return
+	busy = true
+	var t: Trainer = world.trainer
+	t.locked = true
+	t.autopilot = Vector2.ZERO
+	var data := npc.data
+	var td := data.trainer
+	if spotted:
+		npc.show_emote("!")
+		await get_tree().create_timer(0.6).timeout
+		await npc.walk_to(t.global_position)
+	npc.look_at_point(t.global_position)
+	var speaker := ("%s %s" % [td.title, td.display_name]).strip_edges()
+	await _say(speaker, _lines(td, "desafio", "¡Peleá conmigo!"))
+	var team: Array[CreatureInstance] = []
+	for m in td.starting_team:
+		team.append(CreatureInstance.create(m.species, m.level))
+	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": team,
+		"arena_id": td.arena_id, "texture": npc.sprite.texture, "leader": td.leader,
+		"defeat_lines": _lines(td, "pierde", "¡Me ganaste!")})
+	if r == "win":
+		GameState.set_flag(data.defeated_flag())  # (el NPC ya no existe: la zona se recargó al volver)
+		for f in td.reward_flags:
+			GameState.set_flag(f)
+		if td.reward_text != "":
+			await _say("", PackedStringArray([td.reward_text]))
+	busy = false
+
+
+## Un entrenador vivo (docs/PLAN_ENTRENADORES.md) al alcance para hablarle (o null).
+func _living_trainer_in_reach() -> TrainerNPC:
+	for n in get_tree().get_nodes_in_group("trainer_npcs"):
+		if n.global_position.distance_to(world.trainer.global_position) < TALK_RADIUS:
+			return n
+	return null
+
+
+## Pelea contra un entrenador vivo con su equipo actual; queda anotado en su TrainerState (victorias/derrotas).
+func challenge_living(npc: TrainerNPC) -> void:
+	if busy or world.arena.active:
+		return
+	busy = true
+	world.trainer.locked = true
+	var td := npc.data
+	var st := npc.state()
+	await _say(td.display_name, _lines(td, "saludo", "¡Hola!") + _lines(td, "desafio", "¡Peleemos!"))
+	for inst in st.team:
+		inst.hp = inst.max_hp()  # entre peleas descansa
+	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": st.team,
+		"arena_id": td.arena_id, "texture": td.sprite, "leader": td.leader,
+		"defeat_lines": _lines(td, "pierde", "¡Me ganaste!")})
+	if r == "win":
+		st.losses += 1
+	else:
+		st.wins += 1
+		await _say(td.display_name, _lines(td, "gana", "¡Te gané!"))
+	busy = false
+
+
+## Frase de un entrenador ("|" separa globos).
+func _lines(td: TrainerData, key: String, fallback: String) -> PackedStringArray:
+	return str(td.lines.get(key, fallback)).split("|")
+
+
+func _say(speaker: String, lines: PackedStringArray) -> void:
+	var hud: CanvasItem = world.get_node_or_null("UI/HUD")
+	if hud != null:
+		hud.visible = false
+	await dialog.say(speaker, lines)
+	if hud != null:
+		hud.visible = true

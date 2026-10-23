@@ -17,5 +17,15 @@ extends Resource
 @export var species_pool: Array[SpeciesData] = []
 ## Rutina diaria (fase E-5). En E-0 aparece en el lugar del primer bloque.
 @export var routine: Array[RoutineBlock] = []
-## Frases (fase E-1/E-4): saludo, desafío, al ganar, al perder.
+## Frases (fase E-1/E-4): "saludo", "desafio", "gana" (te ganó), "pierde" (le ganaste) y, los de la historia,
+## "despues" (lo que dice cuando ya le ganaste).
 @export var lines: Dictionary = {}
+
+@export_group("Combate en arena (E-1)")
+## Arena donde se pelea (data/arenas/<id>.tres). Los gimnasios tienen la suya.
+@export var arena_id: String = "arena_campo"
+## Líder de gimnasio: presentación de jefe.
+@export var leader: bool = false
+## Al ganarle: banderas que se ponen (ej. "medalla_roca") y lo que se anuncia ("¡Recibiste la Medalla Roca!").
+@export var reward_flags: PackedStringArray = []
+@export var reward_text: String = ""

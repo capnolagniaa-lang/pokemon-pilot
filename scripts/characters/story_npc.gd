@@ -55,6 +55,30 @@ func _process(delta: float) -> void:
 			_apply_facing()
 
 
+## "¡!" sobre la cabeza (un entrenador que te vio).
+func show_emote(text: String = "!") -> void:
+	var l := UiStyle.label(text, 16, Color(1, 0.95, 0.4))
+	l.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
+	l.add_theme_constant_override("outline_size", 5)
+	l.position = Vector2(-4, -50)
+	add_child(l)
+	l.scale = Vector2(0.2, 0.2)
+	var tw := l.create_tween()
+	tw.tween_property(l, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_interval(0.7)
+	tw.tween_callback(l.queue_free)
+
+
+## Camina hasta quedar al lado de `p` (a `stop` px) y vuelve cuando llegó.
+func walk_to(p: Vector2, stop: float = 18.0) -> void:
+	look_at_point(p)
+	var d := p - global_position
+	var dest := global_position + d - d.normalized() * stop if d.length() > stop else global_position
+	var tw := create_tween()
+	tw.tween_property(self, "global_position", dest, global_position.distance_to(dest) / 70.0)
+	await tw.finished
+
+
 func look_at_point(p: Vector2) -> void:
 	var d := p - global_position
 	var f := Vector2i(int(signf(d.x)), 0) if absf(d.x) > absf(d.y) else Vector2i(0, int(signf(d.y)))

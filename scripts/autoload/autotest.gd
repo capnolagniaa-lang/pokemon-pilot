@@ -30,6 +30,13 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-arena" in OS.get_cmdline_user_args() or "--showcase-arena" in OS.get_cmdline_user_args():
+		set_process(false)
+		var at := ArenaTests.new()
+		at.autotest = self
+		add_child(at)
+		(at.showcase if "--showcase-arena" in OS.get_cmdline_user_args() else at.run).call_deferred()
+		return
 	if "--autotest-story" in OS.get_cmdline_user_args() or "--showcase-story" in OS.get_cmdline_user_args():
 		set_process(false)
 		var st := StoryTests.new()
@@ -169,6 +176,9 @@ func _ready() -> void:
 func _start() -> void:
 	GameState.new_game(DB.config.starters[1])
 	GameState.wilds_enabled = false
+	for npc: NpcData in DB.npcs.values():  # el recorrido no pelea: los entrenadores ya están vencidos
+		if npc.trainer != null:
+			GameState.set_flag(npc.defeated_flag())
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	_build_waypoints()
 

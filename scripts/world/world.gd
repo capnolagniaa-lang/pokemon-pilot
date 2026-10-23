@@ -24,6 +24,8 @@ var items: PlayerItems
 var warps: WarpSystem
 ## Historia: personas que hablan, disparadores, diálogos (docs/PLAN_HISTORIA.md).
 var story: StoryDirector
+## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
+var arena: TrainerBattle
 
 
 func _ready() -> void:
@@ -56,6 +58,9 @@ func _ready() -> void:
 	warps = WarpSystem.new()
 	warps.name = "WarpSystem"
 	add_child(warps)
+	arena = TrainerBattle.new()
+	arena.name = "TrainerBattle"
+	add_child(arena)
 	story = StoryDirector.new()
 	story.name = "StoryDirector"
 	add_child(story)

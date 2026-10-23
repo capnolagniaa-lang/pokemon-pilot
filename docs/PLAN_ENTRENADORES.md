@@ -175,7 +175,31 @@ una captura simulada; cuando exista la captura real (Etapa 6) la comparten.
 |---|---|---|
 | W (cuerpo + salvajes) | ✅ 2026-10-23 | `CombatBody` + temperamentos (Etapa 4a de PROGRESO) |
 | E-0 | ✅ 2026-10-23 | Ver abajo |
-| E-1 | ⏭️ Siguiente | Combate contra entrenador (desafío, equipos, cambio con Tab, fin, EXP) |
+| E-1 | ✅ 2026-10-23 | Combate contra entrenador en ARENA (ver abajo) |
+| E-2 | ⏭️ Siguiente | TacticalAI con perillas |
+
+**E-1 (cómo quedó; decisiones del usuario 2026-10-23):**
+- **Arena aparte**: los combates contra entrenadores son en una arena grande (más chica que una zona), con fundido
+  a negro; al terminar volvés exactamente adonde estabas. Las arenas son **zonas de tiles de FireRed** (se pueden
+  retocar con el editor) + **ambientación** (`ArenaDecor`): líneas de la cancha con círculo central como en el
+  anime, emblema del tipo, braseros con fuego y luz, rayos de luz y partículas. Datos `ArenaData`
+  (`data/arenas/`), escenas en `scenes/world/arenas/`, armadas por `tools/build_arenas.gd`:
+  - `arena_campo`: claro rodeado de pinos (Ruta 22) para los de ruta y bosque, con hojas que vuelan.
+  - `arena_gimnasio_roca` (**épica**, Brock): el gimnasio de Plateada agrandado (40×30): paredes, tierra, rocas de
+    cobertura en simetría, rocas que se rompen, la plataforma de piedra del líder arriba, pasarela de tablones
+    abajo; emblema de la Medalla Roca, 4 braseros, polvo de roca, rayos de luz, cartel de entrada y temblor.
+- **1 contra 1 con cambios**: un Pokémon de cada lado; cuando uno cae sale el siguiente (el tuyo, el primero sano;
+  también cambiás con 1-6). El entrenador a veces retira al suyo muy golpeado (35% si tiene otro sano). No se
+  pueden atrapar sus Pokémon. EXP por cada uno que debilitás. El Pokémon del entrenador usa el temperamento
+  `entrenador` (no huye, no suelta) y el HUD dice "Onix de Brock".
+- **Perder** = te quedás sin Pokémon: volvés al último lugar donde te curaron (enfermera o mamá,
+  `GameState.last_heal_position`) con el equipo curado.
+- Código: `TrainerBattle` (nodo del mundo, `world.arena`; `await start({...})` → "win"/"lose"),
+  `CombatDirector.arena_lock` (la pelea no termina sola ni hay revivir de práctica) y `take_control`.
+- **Quién desafía**: los entrenadores de la historia (`NpcData.trainer` + `sight`: te ven en línea recta → "¡!",
+  se acercan, dicen su frase y van a la arena; también si les hablás) y los entrenadores vivos (hablándoles con E;
+  queda en su récord).
+- Autotest `--autotest-arena` (19 chequeos); vitrina `--showcase-arena` (Brock con Onix jefe).
 
 **E-0 (cómo quedó):**
 - Interruptor `GameState.living_trainers` (apagado por defecto; `set_living_trainers` emite

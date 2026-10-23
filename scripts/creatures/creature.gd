@@ -53,6 +53,8 @@ var signature: SignatureMechanic
 ## Salvaje: temperamento (qué hace al verte, hasta dónde persigue, cuándo huye). Sale de la especie; se puede
 ## pisar después de crearla (los autotests fuerzan "agresivo").
 var temperament: Temperament
+## Nombre del entrenador dueño ("" = salvaje). No se puede atrapar y el HUD dice "X de <dueño>".
+var owner_name := ""
 ## Salvaje: segundos que le quedan espantado por un golpe fuerte (retrocede sin atacar).
 var spook_left := 0.0
 ## Salvaje: ya hizo su apertura en esta pelea (se reinicia al volver a deambular).

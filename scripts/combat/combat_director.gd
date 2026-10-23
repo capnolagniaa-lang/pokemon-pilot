@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	for i in GameState.MAX_PARTY:
 		if Input.is_action_just_pressed("switch_%d" % (i + 1)):
 			switch_to(i)
-	if Input.is_action_just_pressed("battle_toggle"):
+	if Input.is_action_just_pressed("battle_toggle") and not arena_lock:
 		if in_battle:
 			end_battle()
 		else:
@@ -49,6 +49,11 @@ func _process(delta: float) -> void:
 		_regen(delta)
 
 
+## Pelea contra un entrenador en su arena (TrainerBattle): la pelea no termina sola (ni con F) aunque tu Pokémon
+## caiga o no haya rivales cerca, y no hay revivir de práctica; la cierra TrainerBattle.
+var arena_lock := false
+
+
 func start_battle() -> void:
 	var c: Creature = world.companion
 	if in_battle or not _usable(c):
@@ -56,16 +61,21 @@ func start_battle() -> void:
 	in_battle = true
 	_calm = 0.0
 	_had_enemies = false
+	take_control(c)
+	Events.battle_started.emit()
+
+
+## Tu Pokémon pasa a obedecerte (al empezar la pelea, o el que sale en la arena cuando cae el anterior).
+func take_control(c: Creature) -> void:
 	c.player_controlled = true
 	c.input_source = input_source
 	c.machine.transition_to("controlled")
 	world.trainer.locked = true
 	world.camera.target = c
-	Events.battle_started.emit()
 
 
-func end_battle() -> void:
-	if not in_battle:
+func end_battle(force: bool = false) -> void:
+	if not in_battle or (arena_lock and not force):
 		return
 	in_battle = false
 	var c: Creature = world.companion
@@ -99,12 +109,13 @@ func _on_creature_fainted(c: Creature) -> void:
 	if c == world.companion:
 		Events.message_requested.emit("¡%s se debilitó!" % c.instance.species.display_name)
 		end_battle()
-		if GameState.practice_mode:
+		if GameState.practice_mode and not arena_lock:
 			get_tree().create_timer(0.8).timeout.connect(_practice_revive.bind(c.instance))
 	elif enemies.has(c):
 		enemies.erase(c)
 		var gained := CreatureInstance.exp_yield(c.instance)
-		var text := "¡%s salvaje se debilitó! +%d EXP" % [c.instance.species.display_name, gained]
+		var who := "de " + c.owner_name if c.owner_name != "" else "salvaje"
+		var text := "¡%s %s se debilitó! +%d EXP" % [c.instance.species.display_name, who, gained]
 		var mine: CreatureInstance = GameState.active()
 		if mine != null:
 			text += GameState.grant_exp(mine, gained)
@@ -158,7 +169,7 @@ func switch_to(index: int) -> bool:
 		Events.message_requested.emit("%s está debilitado." % inst.display_name())
 		return false
 	var old: Creature = world.companion
-	var was_fighting := in_battle and _usable(old)
+	var was_fighting := in_battle and (_usable(old) or arena_lock)
 	var at: Vector2 = old.global_position if is_instance_valid(old) else Vector2.INF
 	var old_name: String = old.instance.display_name() if is_instance_valid(old) else ""
 	if not GameState.set_active(index):

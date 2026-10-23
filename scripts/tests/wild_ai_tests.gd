@@ -12,8 +12,9 @@ func run() -> void:
 	world = await autotest._setup_kit_world("charmander")
 	world.combat.end_battle()
 	await get_tree().physics_frame
-	r["4 temperamentos cargados y asignados a las 386"] = DB.temperaments.size() == 4 \
-		and DB.species.values().all(func(sp): return sp.temperament != null)
+	# 4 de salvajes + "entrenador" (el de los Pokémon de un entrenador en la arena, E-1; no se asigna a especies).
+	r["4 temperamentos de salvajes asignados a las 386"] = DB.temperaments.keys().filter(func(k): return k != "entrenador").size() == 4 \
+		and DB.species.values().all(func(sp): return sp.temperament != null and sp.temperament.id != "entrenador")
 	var me: Creature = world.companion
 
 	# --- Agresivo: te ataca apenas te ve, y abre con su ataque de acercamiento ---

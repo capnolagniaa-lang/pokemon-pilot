@@ -25,7 +25,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("capture"):
 		# E contextual (docs/PLAN_HISTORIA.md): si hay alguien al lado, habla; si no, lanza la Pokébola.
 		if story == null or not story.try_interact():
-			throw_ball(world.get_global_mouse_position())
+			if world.get("arena") != null and world.arena.active:
+				Events.message_requested.emit("¡No se puede atrapar al Pokémon de otro entrenador!")
+			else:
+				throw_ball(world.get_global_mouse_position())
 	if Input.is_action_just_pressed("quick_item"):
 		use_quick_item()
 

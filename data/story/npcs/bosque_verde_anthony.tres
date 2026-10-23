@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]
+[ext_resource type="Resource" path="res://data/species/caterpie.tres" id="sp_0"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Algún día mis Caterpie van a ser Butterfree.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("4_m")
+species = ExtResource("sp_0")
+level = 7
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("4_m")
+species = ExtResource("sp_0")
+level = 8
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("3_d")
+id = "antonio"
+display_name = "Antonio"
+title = "Cazabichos"
+starting_team = Array[ExtResource("4_m")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¡Mirá cuántos Caterpie atrapé! ¡A ver si les ganás!", "pierde": "Tendría que haber atrapado un Pikachu...", "despues": "Algún día mis Caterpie van a ser Butterfree."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "bosque_verde_anthony"
+display_name = "Antonio"
+zone_id = "bosque_verde"
+cell = Vector2i(77, 10)
+gfx = "bug_catcher"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 4

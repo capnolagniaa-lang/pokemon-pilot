@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]
+[ext_resource type="Resource" path="res://data/species/geodude.tres" id="sp_0"]
+[ext_resource type="Resource" path="res://data/species/onix.tres" id="sp_1"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Hay muchos entrenadores fuertes en Kanto. ¡Seguí entrenando!")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("4_m")
+species = ExtResource("sp_0")
+level = 12
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("4_m")
+species = ExtResource("sp_1")
+level = 14
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("3_d")
+id = "brock"
+display_name = "Brock"
+title = "Líder"
+starting_team = Array[ExtResource("4_m")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "Soy Brock, el líder del Gimnasio de Ciudad Plateada.|Mis Pokémon de roca son duros como la piedra... y mi Onix no conoce la derrota.|¡Mostrame lo que tenés!", "pierde": "Te subestimé... ¡Ganaste limpio!|Tomá, la Medalla Roca. Es la prueba de que me venciste.", "despues": "Hay muchos entrenadores fuertes en Kanto. ¡Seguí entrenando!"}
+arena_id = "arena_gimnasio_roca"
+leader = true
+reward_flags = PackedStringArray("medalla_roca")
+reward_text = "¡Recibiste la MEDALLA ROCA de Brock!"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_plateada_gimnasio_brock"
+display_name = "Brock"
+zone_id = "ciudad_plateada_gimnasio"
+cell = Vector2i(6, 5)
+gfx = "brock"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 0

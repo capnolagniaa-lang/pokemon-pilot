@@ -171,7 +171,7 @@ func _draw_enemy() -> void:
 	if tex:
 		draw_texture_rect(tex, Rect2(r.position + Vector2(8, 8), Vector2(48, 48)), false)
 	var x := r.position.x + 66
-	draw_string(font, Vector2(x, r.position.y + 24), "%s salvaje  Nv. %d" % [e.instance.species.display_name, e.instance.level], HORIZONTAL_ALIGNMENT_LEFT, -1, 16)
+	draw_string(font, Vector2(x, r.position.y + 24), "%s %s  Nv. %d" % [e.instance.species.display_name, "de " + e.owner_name if e.owner_name != "" else "salvaje", e.instance.level], HORIZONTAL_ALIGNMENT_LEFT, -1, 16)
 	var ratio := e.health.ratio()
 	_bar(Rect2(x, r.position.y + 34, 300, 10), ratio, _hp_color(ratio))
 	if not e.statuses.active.is_empty():

@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]
+[ext_resource type="Resource" path="res://data/species/geodude.tres" id="sp_0"]
+[ext_resource type="Resource" path="res://data/species/sandshrew.tres" id="sp_1"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Si querés ganarle a Brock, usá agua o planta.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("4_m")
+species = ExtResource("sp_0")
+level = 10
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("4_m")
+species = ExtResource("sp_1")
+level = 11
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("3_d")
+id = "liam"
+display_name = "Liam"
+title = "Campista"
+starting_team = Array[ExtResource("4_m")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¡Alto ahí! Para llegar a Brock primero tenés que pasar por mí.", "pierde": "¡Qué bestia! Pero Brock es otra cosa, eh.", "despues": "Si querés ganarle a Brock, usá agua o planta."}
+arena_id = "arena_gimnasio_roca"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_plateada_gimnasio_liam"
+display_name = "Liam"
+zone_id = "ciudad_plateada_gimnasio"
+cell = Vector2i(3, 8)
+gfx = "camper"
+facing = Vector2i(1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 3

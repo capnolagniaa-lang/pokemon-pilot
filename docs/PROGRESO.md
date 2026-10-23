@@ -42,13 +42,20 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **v4: kits de Kanto hasta Ciudad Plateada** (2026-10-23): Caterpie, Weedle, Metapod, Kakuna, Spearow, Mankey,
   Sandshrew y **Onix como jefe** (el de Brock). 24 Pokémon con kit. La **Pokédex** muestra el estilo de pelea, la
   mecánica de firma y los 4 ataques del kit de lo que ya viste. Detalle en el plan de identidad ("v4").
+- **Qué hay hoy de la historia y qué falta (guía para jugar)**: `docs/HISTORIA.md`. Importante: **todavía no hay
+  eventos de trama** (Oak, laboratorio, rival, paquete = H-1/H-2).
 - **Plan de historia hasta la Medalla Roca** (2026-10-23): `docs/PLAN_HISTORIA.md` (la de FireRed, fases H-0 a
   H-6; necesita E-1, el combate contra entrenadores). Decisiones tomadas: inicial en el laboratorio, E contextual
   para hablar, entrenadores de historia fijos, perder = último Centro.
 - **H-0 hecha** (2026-10-23): banderas de historia (se guardan), caja de diálogo, **67 personas reales de FireRed
   que hablan** (sprites de pret, diálogos propios), E contextual (habla o lanza la bola), disparadores y bloqueos
   por bandera, enfermeras y mamá curan. **Teclas 1-6 cambian de Pokémon** (también en combate). Detalle en
-  `docs/PLAN_HISTORIA.md` ("Avance"). **Próximo paso: E-1** (combate contra entrenadores) y después H-1.
+  `docs/PLAN_HISTORIA.md` ("Avance").
+- **E-1 hecha: combates contra entrenadores en ARENA** (2026-10-23, pedido del usuario): fundido a una arena aparte
+  (claro de pinos para los de ruta; **gimnasio de roca épico** para Brock), 1 contra 1 con cambios, el rival te ve
+  y te desafía, perder te devuelve al último lugar donde te curaron. Ya pelean los 5 Cazabichos del Bosque Verde,
+  el Campista Liam y **Brock** (Medalla Roca). Detalle en `docs/PLAN_ENTRENADORES.md` ("E-1"). **Próximo paso:
+  H-1** (Pueblo Paleta y el laboratorio: Oak te frena, inicial en la mesa, 1ª pelea con el rival).
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
   borraron (pedido del usuario). Pinceles nuevos: piso de ciudad, empedrado y piso de cueva.

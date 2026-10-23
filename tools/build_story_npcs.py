@@ -187,12 +187,76 @@ TALKS = {
 }
 
 
+# Entrenadores de la historia (E-1): equipos de FireRed (pret: src/data/trainer_parties.h). Frases propias; "|"
+# separa globos. arena: data/arenas/<id>.tres. sight: celdas que ven (0 = solo si le hablás).
+BUG = "Cazabichos"
+TRAINERS = {
+    ("bosque_verde", "Rick"): dict(name="Ricardo", title=BUG, team=[("weedle", 6), ("caterpie", 6)], lines={
+        "desafio": "¡Ey! ¿Entraste al bosque? ¡Mis bichos te van a dar la bienvenida!",
+        "pierde": "¡Nooo! Mis bichitos...",
+        "despues": "Los Caterpie crecen rápido. ¡La próxima te gano!"}),
+    ("bosque_verde", "Doug"): dict(name="Diego", title=BUG, team=[("weedle", 7), ("kakuna", 7), ("weedle", 7)], lines={
+        "desafio": "¡Shh! Estoy cazando bichos... ¡pero vos servís para practicar!",
+        "pierde": "¡Uf! Sos bueno, eh.",
+        "despues": "Los Kakuna no se mueven, pero son durísimos."}),
+    ("bosque_verde", "Sammy"): dict(name="Samuel", title=BUG, team=[("weedle", 9)], lines={
+        "desafio": "¡Mi Weedle es el más fuerte de todo el bosque!",
+        "pierde": "¡¿Cómo?! ¡Perdí con mi mejor Weedle!",
+        "despues": "Cuidado con el veneno de los Weedle: pica fuerte."}),
+    ("bosque_verde", "Anthony"): dict(name="Antonio", title=BUG, team=[("caterpie", 7), ("caterpie", 8)], lines={
+        "desafio": "¡Mirá cuántos Caterpie atrapé! ¡A ver si les ganás!",
+        "pierde": "Tendría que haber atrapado un Pikachu...",
+        "despues": "Algún día mis Caterpie van a ser Butterfree."}),
+    ("bosque_verde", "Charlie"): dict(name="Carlos", title=BUG, team=[("metapod", 7), ("caterpie", 7), ("metapod", 7)], lines={
+        "desafio": "¡Mis Metapod no se mueven, pero no los vas a poder romper!",
+        "pierde": "Bueno... se rompieron.",
+        "despues": "Un Metapod endurecido aguanta casi todo. Casi."}),
+    ("ciudad_plateada_gimnasio", "Liam"): dict(name="Liam", title="Campista", team=[("geodude", 10), ("sandshrew", 11)],
+        arena="arena_gimnasio_roca", sight=3, lines={
+        "desafio": "¡Alto ahí! Para llegar a Brock primero tenés que pasar por mí.",
+        "pierde": "¡Qué bestia! Pero Brock es otra cosa, eh.",
+        "despues": "Si querés ganarle a Brock, usá agua o planta."}),
+    ("ciudad_plateada_gimnasio", "Brock"): dict(name="Brock", title="Líder", team=[("geodude", 12), ("onix", 14)],
+        arena="arena_gimnasio_roca", sight=0, leader=True, reward_flags=["medalla_roca"],
+        reward="¡Recibiste la MEDALLA ROCA de Brock!", lines={
+        "desafio": "Soy Brock, el líder del Gimnasio de Ciudad Plateada.|Mis Pokémon de roca son duros como la piedra... "
+                   "y mi Onix no conoce la derrota.|¡Mostrame lo que tenés!",
+        "pierde": "Te subestimé... ¡Ganaste limpio!|Tomá, la Medalla Roca. Es la prueba de que me venciste.",
+        "despues": "Hay muchos entrenadores fuertes en Kanto. ¡Seguí entrenando!"}),
+}
+
+
 def gd_str(s):
     return '"%s"' % s.replace("\\", "\\\\").replace('"', '\\"')
 
 
 def psa(items):
     return "PackedStringArray(%s)" % ", ".join(gd_str(x) for x in items)
+
+
+def trainer_subs(spec, ext):
+    """Sub-recursos de un TrainerData (con sus TrainerMon). `ext` junta los ext_resource de especies."""
+    subs, mons = [], []
+    for i, (sp, lvl) in enumerate(spec["team"]):
+        key = "res://data/species/%s.tres" % sp
+        if key not in ext:
+            ext[key] = "sp_%d" % len(ext)
+        subs.append('[sub_resource type="Resource" id="Mon_%d"]\nscript = ExtResource("4_m")\nspecies = ExtResource("%s")\nlevel = %d'
+                    % (i, ext[key], lvl))
+        mons.append('SubResource("Mon_%d")' % i)
+    lines = ", ".join("%s: %s" % (gd_str(k), gd_str(v)) for k, v in spec["lines"].items())
+    body = ['[sub_resource type="Resource" id="Trainer"]', 'script = ExtResource("3_d")',
+            "id = " + gd_str(spec["name"].lower()), "display_name = " + gd_str(spec["name"]), "title = " + gd_str(spec["title"]),
+            'starting_team = Array[ExtResource("4_m")]([%s])' % ", ".join(mons), "lines = {%s}" % lines,
+            "arena_id = " + gd_str(spec.get("arena", "arena_campo"))]
+    if spec.get("leader"):
+        body.append("leader = true")
+    if spec.get("reward_flags"):
+        body.append("reward_flags = " + psa(spec["reward_flags"]))
+    if spec.get("reward"):
+        body.append("reward_text = " + gd_str(spec["reward"]))
+    subs.append("\n".join(body))
+    return subs
 
 
 def npc_tres(npc_id, zone, n, spec):
@@ -222,16 +286,25 @@ def npc_tres(npc_id, zone, n, spec):
         if t.get("heal"):
             body.append("heal = true")
         subs.append("\n".join(body))
-    return "\n".join([
-        '[gd_resource type="Resource" script_class="NpcData" format=3]', "",
-        '[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]',
-        '[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]', "",
+    ext = {}
+    extra = []
+    if spec.get("trainer"):
+        subs += trainer_subs(spec["trainer"], ext)
+        extra = ['trainer = SubResource("Trainer")', "sight = %d" % spec["trainer"].get("sight", 4)]
+    head = ['[gd_resource type="Resource" script_class="NpcData" format=3]', "",
+            '[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]',
+            '[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]']
+    if spec.get("trainer"):
+        head += ['[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]',
+                 '[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]']
+        head += ['[ext_resource type="Resource" path="%s" id="%s"]' % (k, v) for k, v in ext.items()]
+    return "\n".join(head + ["",
         "\n\n".join(subs), "",
         "[resource]", 'script = ExtResource("1_n")', "id = " + gd_str(npc_id),
         "display_name = " + gd_str(spec["name"]), "zone_id = " + gd_str(zone),
         "cell = Vector2i(%d, %d)" % tuple(n["cell"]), "gfx = " + gd_str(gfx),
         "facing = Vector2i(%d, %d)" % face, "look_around = " + ("true" if look else "false"),
-        'talks = Array[ExtResource("2_t")]([%s])' % ", ".join(ids), ""])
+        'talks = Array[ExtResource("2_t")]([%s])' % ", ".join(ids)] + extra + [""])
 
 
 def main():
@@ -245,6 +318,9 @@ def main():
         for n in z.get("npcs", []):
             script = n["script"].split("EventScript_")[-1]
             spec = TALKS.get((z["id"], script))
+            t = TRAINERS.get((z["id"], script))
+            if t is not None:
+                spec = dict(name=t["name"], trainer=t, talks=[dict(lines=[t["lines"]["despues"]])])
             if spec is None:
                 continue
             gfx = n["gfx"][len("OBJ_EVENT_GFX_"):].lower()
@@ -255,7 +331,7 @@ def main():
             with open(os.path.join(out, npc_id + ".tres"), "w", encoding="utf-8", newline="\n") as f:
                 f.write(npc_tres(npc_id, z["id"], n, spec))
             made.add((z["id"], script))
-    for key in TALKS:
+    for key in list(TALKS) + list(TRAINERS):
         if key not in made:
             print("no está en el mapa:", key)
     print("personas:", len(made))

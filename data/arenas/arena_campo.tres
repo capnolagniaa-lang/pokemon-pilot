@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="1_mtyio"]
+
+[resource]
+script = ExtResource("1_mtyio")
+id = "arena_campo"
+display_name = "Claro de combate"
+scene_path = "res://scenes/world/arenas/arena_campo.tscn"
+foe_trainer_cell = Vector2i(18, 5)
+player_cell = Vector2i(18, 20)
+foe_mon_cell = Vector2i(18, 9)
+player_mon_cell = Vector2i(18, 16)
+field = Rect2i(5, 5, 26, 16)
+line_color = Color(1, 1, 1, 0.28)
+particles = "hojas"
+particle_color = Color(0.55, 0.85, 0.4, 0.7)

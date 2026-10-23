@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]
+[ext_resource type="Resource" path="res://data/species/weedle.tres" id="sp_0"]
+[ext_resource type="Resource" path="res://data/species/kakuna.tres" id="sp_1"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Los Kakuna no se mueven, pero son durísimos.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("4_m")
+species = ExtResource("sp_0")
+level = 7
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("4_m")
+species = ExtResource("sp_1")
+level = 7
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("4_m")
+species = ExtResource("sp_0")
+level = 7
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("3_d")
+id = "diego"
+display_name = "Diego"
+title = "Cazabichos"
+starting_team = Array[ExtResource("4_m")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
+lines = {"desafio": "¡Shh! Estoy cazando bichos... ¡pero vos servís para practicar!", "pierde": "¡Uf! Sos bueno, eh.", "despues": "Los Kakuna no se mueven, pero son durísimos."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "bosque_verde_doug"
+display_name = "Diego"
+zone_id = "bosque_verde"
+cell = Vector2i(83, 51)
+gfx = "bug_catcher"
+facing = Vector2i(-1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 4

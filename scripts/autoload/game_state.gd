@@ -51,6 +51,8 @@ var field_picked: Dictionary = {}
 var box: Array[CreatureInstance] = []
 ## Historia (docs/PLAN_HISTORIA.md): banderas puestas (nombre -> true). Se guardan con la partida.
 var story_flags: Dictionary = {}
+## Dónde te curaron por última vez (enfermera, mamá): si perdés contra un entrenador volvés ahí. INF = el inicio.
+var last_heal_position := Vector2.INF
 
 
 func _ready() -> void:
@@ -88,6 +90,7 @@ func new_game(starter: SpeciesData) -> void:
 	pokedex_caught[starter.id] = true
 	field_picked.clear()
 	story_flags.clear()
+	last_heal_position = Vector2.INF
 	Events.party_changed.emit()
 	Events.game_started.emit()
 
@@ -337,7 +340,8 @@ func to_dict() -> Dictionary:
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
-		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys()}
+		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(),
+		"last_heal_position": [last_heal_position.x, last_heal_position.y] if last_heal_position != Vector2.INF else null}
 
 
 func _box_list() -> Array:
@@ -419,6 +423,8 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 		pokedex_seen[inst.species.id] = true
 		pokedex_fought[inst.species.id] = true
 		pokedex_caught[inst.species.id] = true
+	var heal_pos = d.get("last_heal_position", null)
+	last_heal_position = Vector2(float(heal_pos[0]), float(heal_pos[1])) if heal_pos is Array and heal_pos.size() == 2 else Vector2.INF
 	story_flags.clear()
 	var flags = d.get("story_flags", [])
 	if flags is Array:

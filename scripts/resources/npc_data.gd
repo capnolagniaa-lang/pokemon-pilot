@@ -19,6 +19,21 @@ extends Resource
 ## Conversaciones posibles: se usa la primera que se cumple.
 @export var talks: Array[NpcTalk] = []
 
+@export_group("Entrenador (E-1)")
+## Si es entrenador: su equipo, frases y arena. Te desafía si te ve (o si le hablás) hasta que le ganes.
+@export var trainer: TrainerData
+## Cuántas celdas ve hacia donde mira (0 = no desafía al verte, solo si le hablás).
+@export var sight: int = 4
+
+
+## Bandera que queda puesta cuando le ganás.
+func defeated_flag() -> String:
+	return "vencido_" + id
+
+
+func is_undefeated_trainer() -> bool:
+	return trainer != null and not GameState.has_flag(defeated_flag())
+
 
 func visible_now() -> bool:
 	for f in show_if:

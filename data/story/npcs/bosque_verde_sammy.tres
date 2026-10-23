@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="3_d"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="4_m"]
+[ext_resource type="Resource" path="res://data/species/weedle.tres" id="sp_0"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Cuidado con el veneno de los Weedle: pica fuerte.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("4_m")
+species = ExtResource("sp_0")
+level = 9
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("3_d")
+id = "samuel"
+display_name = "Samuel"
+title = "Cazabichos"
+starting_team = Array[ExtResource("4_m")]([SubResource("Mon_0")])
+lines = {"desafio": "¡Mi Weedle es el más fuerte de todo el bosque!", "pierde": "¡¿Cómo?! ¡Perdí con mi mejor Weedle!", "despues": "Cuidado con el veneno de los Weedle: pica fuerte."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "bosque_verde_sammy"
+display_name = "Samuel"
+zone_id = "bosque_verde"
+cell = Vector2i(7, 40)
+gfx = "bug_catcher"
+facing = Vector2i(-1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 4

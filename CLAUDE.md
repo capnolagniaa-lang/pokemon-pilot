@@ -41,6 +41,9 @@ $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bich
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
+$G --headless --path . --quit-after 100000 -- --autotest-arena  # combates contra entrenadores en arena (E-1): Brock, Cazabichos
+$G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena  # Brock y Onix en el gimnasio épico
+$G --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd  # rearma las arenas (pisa las escenas)
 $G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
 $G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carga, learnset, archivos rotos
 $G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, activo, menú, ficha
@@ -137,6 +140,10 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   disparadores, conversaciones con `DialogBox`, efectos). **E contextual**: `PlayerItems` llama a
   `StoryDirector.try_interact()` antes de lanzar la bola. Personas: `tools/build_story_npcs.py` (desde los NPC de
   `frlg_maps.json` + sprites de `tools/fetch_npc_sprites.py`). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
+- **Combate contra entrenadores en arena** (E-1, `docs/PLAN_ENTRENADORES.md`): `TrainerBattle` (`world.arena`): fundido a
+  una arena aparte (`ArenaData` en `data/arenas/`, escena = zona de tiles en `scenes/world/arenas/`, ambientación
+  `ArenaDecor`), 1 contra 1 con cambios, `CombatDirector.arena_lock`, `Creature.owner_name` (no se atrapa).
+  Entrenadores de la historia = `NpcData.trainer` (TrainerData) + `sight`; perder → `GameState.last_heal_position`.
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.
