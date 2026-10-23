@@ -28,6 +28,10 @@ enum Pocket { ITEMS, BALLS, KEY }
 ## Revivir: vuelve con esta fracción de la vida (0 = no revive).
 @export_range(0.0, 1.0) var revive_ratio: float = 0.0
 
+@export_group("Máquina técnica")
+## MT: enseña este movimiento al Pokémon sobre el que se usa (se gasta, como en la 3ª gen).
+@export var teaches_move: MoveData
+
 @export_group("Uso")
 ## Se puede usar en combate con la ranura rápida (C).
 @export var usable_in_battle: bool = true
@@ -52,6 +56,8 @@ func cures_status(id: String) -> bool:
 func can_use_on(inst: CreatureInstance, active_statuses: Array = []) -> bool:
 	if is_ball():
 		return false
+	if teaches_move != null:
+		return not inst.learned_moves().has(teaches_move)
 	if inst.hp <= 0.0:
 		return revive_ratio > 0.0
 	if revive_ratio > 0.0:

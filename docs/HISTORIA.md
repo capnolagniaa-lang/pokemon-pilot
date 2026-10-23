@@ -8,8 +8,9 @@ Está hecha **la base** (personas que hablan, curar, entrenadores que te desafí
 Medalla Roca) y **el comienzo de la historia (H-1)**: arrancás en tu cuarto sin Pokémon, **Oak te frena** al querer
 ir al pasto, elegís tu inicial en el laboratorio y el rival te desafía; y **el Correo de Oak (H-2)**: la Tienda de
 Ciudad Verde te lo da, Oak te da la Pokédex y Poké Balls, Dalia el Mapa, y el viejo que tapaba el norte se despierta y te
-enseña a atrapar; y **el rival en la Ruta 22 (H-3)**. Falta el resto del camino a Plateada (objetos fijos del bosque,
-museo, chico de la Ruta 3, MT39, mostrar la medalla).
+enseña a atrapar; **el rival en la Ruta 22 (H-3)**; y **el cierre del capítulo (H-4/H-5)**: objetos fijos del
+camino, el chico de Plateada que te lleva al gimnasio, Brock te da la Medalla Roca y la **MT39 Tumba Rocas**, y la
+**tarjeta de entrenador** con las medallas. **El capítulo de Pueblo Paleta a la Medalla Roca está completo.**
 
 **Cómo empezar la historia**: Título → Nueva partida → botón **"Empezar la historia"** (arriba de las tarjetas). Las
 tarjetas de los iniciales son el **modo libre** (arrancás ya con ese Pokémon, sin la intro).
@@ -41,12 +42,16 @@ tarjetas de los iniciales son el **modo libre** (arrancás ya con ese Pokémon, 
 | **Viejo que tapa el camino al norte de Ciudad Verde** | ✅ H-2 | Está tirado en la salida hacia la Ruta 2 y no te deja pasar hasta que entregás el correo. Después está despierto al costado y te explica cómo atrapar. Su nieta te cuenta qué le pasa. |
 | **Dalia y el Mapa** | ✅ H-2 | Después de entregar el correo, andá a la casa del rival (Pueblo Paleta): Dalia te da el Mapa (objeto clave). |
 | **2ª pelea contra el rival (Ruta 22)** | ✅ H-3 | Después de recibir la Pokédex, cruzá la Ruta 22 (al oeste de Ciudad Verde): Azul te frena y pelea con Pidgey Nv. 9 + su inicial Nv. 9. Si perdés volvés al último Centro y te vuelve a desafiar; si ganás se va a Plateada. |
+| **Objetos fijos del camino** | ✅ H-4 | Poké Balls tiradas en sus lugares de FireRed: 4 en el Bosque Verde, un Antiparalizador en la Ruta 2 y una Poción en Ciudad Verde. E para agarrarlos (una sola vez). |
+| **Chico de Plateada (Ruta 3)** | ✅ H-5 | Si querés salir por el este de Plateada sin la Medalla Roca, te frena y te lleva hasta la puerta del gimnasio. Con la medalla te deja pasar (la Ruta 3 todavía no existe). |
+| **MT39 Tumba Rocas** | ✅ H-5 | Brock te la da al ganarle. Mochila → Objetos → usala sobre un Pokémon: aprende Tumba Rocas (se gasta, como en FireRed) y lo podés equipar en la ficha. |
+| **Tarjeta de entrenador** | ✅ H-5 | Esc → **Tarjeta**: tiempo de juego, Pokédex y las 8 medallas (las que ganaste a color, las demás como siluetas). |
 | **Personas que hablan** (67 de FireRed, en sus lugares reales, con sus sprites) | ✅ | Acercate a alguien y apretá **E**. Ej.: los vecinos de Pueblo Paleta, la gente del Centro Pokémon, el museo. |
 | **Enfermeras y mamá curan** | ✅ | Centro Pokémon de Ciudad Verde o de Plateada (E frente a la enfermera, por arriba del mostrador) o mamá en tu casa. Ese lugar queda como "donde volvés si perdés". |
 | **Regalo del empleado de la Tienda** (Ruta 1) | ✅ | E al empleado: te da una Poción una sola vez. |
 | **Entrenadores que te desafían** (te ven, "¡!", se acercan) | ✅ | Bosque Verde: los 5 Cazabichos. Si pasás por delante de donde miran, te desafían solos. |
 | **Combates en arena** (1 contra 1 con cambios) | ✅ | Al desafiarte, fundido y aparecés en una arena. Cambiás con **1-6**. Al terminar volvés donde estabas. |
-| **Gimnasio de Plateada: Liam y Brock** | ✅ | Entrá al gimnasio: Liam te ve; a Brock le hablás con E. Arena de roca épica, Onix jefe. Ganarle da la **Medalla Roca** (por ahora es una marca interna: todavía no se muestra en ninguna pantalla). |
+| **Gimnasio de Plateada: Liam y Brock** | ✅ | Entrá al gimnasio: Liam te ve; a Brock le hablás con E. Arena de roca épica, Onix jefe. Ganarle da la **Medalla Roca** (se ve en la Tarjeta) y la **MT39**. |
 | **Perder** | ✅ | Si te quedás sin Pokémon, volvés al último lugar donde te curaron con el equipo curado. |
 | **Banderas guardadas** | ✅ | Todo lo de arriba (a quién le ganaste, la medalla, la Poción) se guarda con la partida. |
 
@@ -54,10 +59,7 @@ tarjetas de los iniciales son el **modo libre** (arrancás ya con ese Pokémon, 
 
 | Qué | Fase | Nota |
 |---|---|---|
-| Objetos fijos del Bosque Verde | H-4 | Hoy hay 3-4 objetos al azar por ruta. |
-| Chico que bloquea la Ruta 3, MT39, tarjeta de entrenador con medallas | H-5 | |
 | Un bot que juegue el capítulo entero (prueba) | H-6 | |
-| Mostrar la Medalla Roca en pantalla | H-5 | Hoy es solo una marca interna (`medalla_roca`). |
 
 ## Cómo está armada (para el equipo)
 - **Banderas** (`GameState.story_flags`): la historia avanza poniendo banderas (`muestra_pocion`, `vencido_<id>`,

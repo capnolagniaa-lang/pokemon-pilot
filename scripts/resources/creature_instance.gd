@@ -21,6 +21,8 @@ const HP_SCALE := 3.0
 @export var hp: float = -1.0
 ## Los 4 movimientos equipados (Clic izq., Clic der., Q, R); puede haber huecos (null).
 @export var equipped_moves: Array[MoveData] = []
+## Movimientos enseñados con MT (se suman a los del learnset y se guardan con la partida).
+@export var taught_moves: Array[MoveData] = []
 ## Para más adelante (Etapa 6): apodo y naturaleza. Vacíos por ahora.
 @export var nickname: String = ""
 @export var nature: String = ""
@@ -60,6 +62,9 @@ func learned_moves() -> Array[MoveData]:
 	for e in species.learnset_entries():
 		if e.level <= level and not out.has(e.move):
 			out.append(e.move)
+	for m in taught_moves:
+		if m != null and not out.has(m):
+			out.append(m)
 	return out
 
 
@@ -134,7 +139,8 @@ func to_dict() -> Dictionary:
 	for m in equipped_moves:
 		eq.append(DB.move_key(m) if m != null else "")
 	return {"species_id": species.id, "level": level, "experience": experience, "ivs": ivs.duplicate(),
-		"evs": evs.duplicate(), "hp": hp, "equipped_moves": eq, "nickname": nickname, "nature": nature}
+		"evs": evs.duplicate(), "hp": hp, "equipped_moves": eq, "nickname": nickname, "nature": nature,
+		"taught_moves": taught_moves.filter(func(m): return m != null).map(func(m): return DB.move_key(m))}
 
 
 ## Arma una criatura desde un diccionario guardado. Devuelve null si la especie ya no existe; los
@@ -154,6 +160,12 @@ static func from_dict(d: Dictionary, warnings: Array = []) -> CreatureInstance:
 	c.hp = clampf(float(d.get("hp", c.max_hp())), 0.0, c.max_hp())
 	c.nickname = str(d.get("nickname", ""))
 	c.nature = str(d.get("nature", ""))
+	var taught = d.get("taught_moves", [])
+	if taught is Array:
+		for key in taught:
+			var tm: MoveData = DB.move_by_id(str(key))
+			if tm != null and not c.taught_moves.has(tm):
+				c.taught_moves.append(tm)
 	var saved = d.get("equipped_moves", null)
 	if saved is Array:
 		var eq: Array[MoveData] = []

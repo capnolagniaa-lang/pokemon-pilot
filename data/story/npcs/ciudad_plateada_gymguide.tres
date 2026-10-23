@@ -5,7 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
+forbids = PackedStringArray("medalla_roca")
 lines = PackedStringArray("¡Ey! ¿Sos entrenador?", "Brock te está esperando en el gimnasio. ¡Andá a desafiarlo!")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Le ganaste a Brock! ¡Sos un crack!", "La Ruta 3 sigue por acá... pero todavía está en obras. ¡Pronto!")
 
 [resource]
 script = ExtResource("1_n")
@@ -16,4 +21,4 @@ cell = Vector2i(76, 36)
 gfx = "boy"
 facing = Vector2i(0, 1)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

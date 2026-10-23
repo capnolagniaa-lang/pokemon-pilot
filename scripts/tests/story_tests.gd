@@ -12,8 +12,8 @@ func run() -> void:
 	var r := {}
 	r["Hay personas de la historia cargadas (%d)" % DB.npcs.size()] = DB.npcs.size() >= 50
 	var bad := DB.npcs.values().filter(func(n): return not ResourceLoader.exists("res://art/pret/characters/%s.png" % n.gfx) \
-		or n.talks.is_empty() or n.talks[0].lines.is_empty())
-	r["Todas tienen sprite y algo para decir"] = bad.is_empty()
+		or n.talks.is_empty() or (n.talks[0].lines.is_empty() and n.talks[0].give_items.is_empty()))
+	r["Todas tienen sprite y algo para decir (o dar, los objetos tirados)"] = bad.is_empty()
 
 	world = await autotest._setup_kit_world("charmander")
 	world.combat.end_battle()

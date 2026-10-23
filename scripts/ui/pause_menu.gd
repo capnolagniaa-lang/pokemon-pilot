@@ -78,7 +78,7 @@ func _build() -> void:
 	box.add_theme_constant_override("separation", 8)
 	_main.add_child(box)
 	box.add_child(UiStyle.label("MENÚ", 20, UiStyle.ACCENT))
-	var entries := [["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box], ["Pokédex", _open_pokedex], ["Guardar", _save], ["Opciones", _open_options],
+	var entries := [["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box], ["Pokédex", _open_pokedex], ["Tarjeta", _open_card], ["Guardar", _save], ["Opciones", _open_options],
 		["Volver al título", _to_title], ["Cerrar", close]]
 	if not GameState.has_pokedex():
 		entries = entries.filter(func(e): return e[0] != "Pokédex")  # en la historia, hasta que Oak te la da
@@ -135,6 +135,10 @@ func _open_bag() -> void:
 
 func _open_box() -> void:
 	push(BOX_SCENE.instantiate())
+
+
+func _open_card() -> void:
+	push(TrainerCard.new())
 
 
 func _open_pokedex() -> void:

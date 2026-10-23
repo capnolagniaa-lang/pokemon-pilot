@@ -221,7 +221,7 @@ func _fire(trig: StoryTrigger, zone: Zone, prev: Vector2i) -> void:
 	if trig.once:
 		GameState.set_flag(trig.flag())
 	await run_talk(trig.talk)
-	if trig.push_back and prev != Vector2i(-99999, -99999):
+	if trig.push_back and trig.talk.warp_zone == "" and prev != Vector2i(-99999, -99999):
 		var t: Trainer = world.trainer
 		t.global_position = zone.to_global(zone.ground.map_to_local(prev))
 		_last_cell = prev
@@ -298,8 +298,13 @@ func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) 
 		GameState.set_flag(data.defeated_flag())  # (el NPC ya no existe: la zona se recargó al volver)
 		for f in td.reward_flags:
 			GameState.set_flag(f)
-		if td.reward_text != "":
-			await _say("", PackedStringArray([td.reward_text]))
+		var got := PackedStringArray([td.reward_text]) if td.reward_text != "" else PackedStringArray()
+		for id in td.reward_items:
+			if DB.items.has(id):
+				GameState.add_item(id, int(td.reward_items[id]))
+				got.append("Recibiste %s." % DB.items[id].display_name)
+		if not got.is_empty():
+			await _say("", got)
 	elif no_blackout and td.lines.has("gana"):
 		await _say(td.display_name, _lines(td, "gana", "¡Te gané!"))
 	return r

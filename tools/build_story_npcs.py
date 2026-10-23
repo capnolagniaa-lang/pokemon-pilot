@@ -218,10 +218,11 @@ TRAINERS = {
         "despues": "Si querés ganarle a Brock, usá agua o planta."}),
     ("ciudad_plateada_gimnasio", "Brock"): dict(name="Brock", title="Líder", team=[("geodude", 12), ("onix", 14)],
         arena="arena_gimnasio_roca", sight=0, leader=True, reward_flags=["medalla_roca"],
-        reward="¡Recibiste la MEDALLA ROCA de Brock!", lines={
+        reward="¡Recibiste la MEDALLA ROCA de Brock!", reward_items={"mt39": 1}, lines={
         "desafio": "Soy Brock, el líder del Gimnasio de Ciudad Plateada.|Mis Pokémon de roca son duros como la piedra... "
                    "y mi Onix no conoce la derrota.|¡Mostrame lo que tenés!",
-        "pierde": "Te subestimé... ¡Ganaste limpio!|Tomá, la Medalla Roca. Es la prueba de que me venciste.",
+        "pierde": "Te subestimé... ¡Ganaste limpio!|Tomá, la Medalla Roca. Es la prueba de que me venciste.|"
+                  "Y llevate esta MT: Tumba Rocas. Tirás rocas que frenan al rival. ¡Usala bien!",
         "despues": "Hay muchos entrenadores fuertes en Kanto. ¡Seguí entrenando!"}),
 }
 
@@ -392,6 +393,36 @@ TRIGGERS["rival_ruta22"] = dict(zone="ruta22", rect=(50, 28, 1, 33), once=False,
     lines=["¡Eh, esperá!"], battle_npc="ruta22_0x0"))
 
 
+# --- H-4 / H-5: objetos fijos del camino y el chico que tapa la Ruta 3 ------------------------------------------
+# Objetos tirados en sus lugares de FireRed: se agarran con E una sola vez (bandera objeto_<id>). (El Éter de la
+# Ruta 2 no está porque todavía no hay PP.)
+ITEM_BALLS = {
+    ("ciudad_verde", "ItemPotion"): "pocion",
+    ("bosque_verde", "ItemPokeBall"): "poke_ball",
+    ("bosque_verde", "ItemAntidote"): "antidoto",
+    ("bosque_verde", "ItemPotion"): "pocion",
+    ("bosque_verde", "ItemPotion2"): "pocion",
+    ("ruta2", "ItemParalyzeHeal"): "antiparalizador",
+}
+for (_zone, _script), _item in ITEM_BALLS.items():
+    _flag = "objeto_%s_%s" % (_zone, _script.lower())
+    TALKS[(_zone, _script)] = dict(name="Objeto", gfx="item_ball", hide_if=[_flag], talks=[
+        dict(give={_item: 1}, set_flags=[_flag], lines=[])])
+# El chico de Plateada no te deja ir a la Ruta 3 sin la Medalla Roca y te lleva al gimnasio (como en FireRed).
+TALKS[("ciudad_plateada", "GymGuide")] = dict(name="Chico", talks=[
+    dict(forbids=["medalla_roca"], lines=[
+        "¡Ey! ¿Sos entrenador?",
+        "Brock te está esperando en el gimnasio. ¡Andá a desafiarlo!"]),
+    dict(lines=["¡Le ganaste a Brock! ¡Sos un crack!",
+                "La Ruta 3 sigue por acá... pero todavía está en obras. ¡Pronto!"]),
+])
+TRIGGERS["chico_ruta3"] = dict(zone="ciudad_plateada", rect=(72, 35, 2, 5), once=False, push_back=True, talk=dict(
+    requires=["historia"], forbids=["medalla_roca"], speaker="Chico", lines=[
+        "¡Eh, esperá! ¿Vas para la Ruta 3?",
+        "Primero tenés que ganarle a Brock, el líder del gimnasio. ¡Vení que te llevo!"],
+    warp=("ciudad_plateada", (29, 32))))
+
+
 class Ext:
     """ext_resource que necesita un .tres (scripts y recursos), con ids estables."""
 
@@ -471,6 +502,8 @@ def trainer_subs(spec, ext):
         body.append("reward_flags = " + psa(spec["reward_flags"]))
     if spec.get("reward"):
         body.append("reward_text = " + gd_str(spec["reward"]))
+    if spec.get("reward_items"):
+        body.append("reward_items = {%s}" % ", ".join("%s: %d" % (gd_str(k), v) for k, v in spec["reward_items"].items()))
     subs.append("\n".join(body))
     return subs
 

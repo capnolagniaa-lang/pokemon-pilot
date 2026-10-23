@@ -63,8 +63,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **H-2 hecha** (2026-10-23): el Correo de Oak (Tienda de Ciudad Verde → Oak), la Pokédex de regalo (en la historia
   recién ahí aparece), 5 Poké Balls, Dalia y el Mapa, y el viejo que tapa la salida al norte hasta entregar el
   correo (después te enseña a atrapar).
-- **H-3 hecha** (2026-10-23): el rival te frena en la Ruta 22 (Pidgey 9 + su inicial 9). **Próximo paso: el resto de
-  H-4/H-5** (objetos fijos del bosque, museo, chico de la Ruta 3, MT39, tarjeta con medallas).
+- **H-3 hecha** (2026-10-23): el rival te frena en la Ruta 22 (Pidgey 9 + su inicial 9).
+- **Capítulo 1 completo (H-4/H-5)** (2026-10-23): objetos fijos del camino, el chico de Plateada que te lleva al
+  gimnasio, Brock da la Medalla Roca y la **MT39** (las MT enseñan movimientos de verdad), **Tarjeta de entrenador**
+  con las medallas (Esc → Tarjeta). De Pueblo Paleta a la Medalla Roca se juega entero. **Próximo:** H-6 (bot que
+  juega el capítulo + revisión) o seguir con E-2 / la Ruta 3 y el Monte Moon, a decidir con el usuario.
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se
   borraron (pedido del usuario). Pinceles nuevos: piso de ciudad, empedrado y piso de cueva.

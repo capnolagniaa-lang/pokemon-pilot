@@ -264,7 +264,14 @@ func use_item_on(id: String, inst: CreatureInstance, statuses: StatusEffects = n
 	if not it.can_use_on(inst, active_ids):
 		return ""
 	var parts: Array[String] = []
-	if it.revive_ratio > 0.0:
+	if it.teaches_move != null:
+		inst.taught_moves.append(it.teaches_move)
+		var equipped := inst.auto_equip(it.teaches_move)
+		parts.append("aprendió %s%s" % [it.teaches_move.display_name, "" if equipped else " (equipalo desde la ficha)"])
+		Events.move_learned.emit(inst, it.teaches_move)
+		if equipped:
+			Events.equipment_changed.emit(inst)
+	elif it.revive_ratio > 0.0:
 		inst.hp = inst.max_hp() * it.revive_ratio
 		parts.append("revivió")
 	elif it.heal_full or it.heal_hp > 0.0:

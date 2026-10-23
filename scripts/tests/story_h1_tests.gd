@@ -145,6 +145,39 @@ func run() -> void:
 	await get_tree().process_frame
 	r["Ganarle: el rival se va a Plateada"] = GameState.has_flag("rival_ruta22_peleado") 		and not is_instance_valid(world.story.npcs.get("ruta22_0x0")) and _zone_id() == "ruta22"
 
+	# --- H-4 / H-5: objetos fijos, el chico de Plateada, Brock y la MT39, la tarjeta ---
+	var balls2 := GameState.item_count("poke_ball")
+	await _go("bosque_verde", DB.npcs["bosque_verde_itempokeball"].cell + Vector2i(0, 1))
+	_talk_to("bosque_verde_itempokeball")
+	await _idle()
+	r["Los objetos del bosque se agarran una vez"] = GameState.item_count("poke_ball") == balls2 + 1 		and not is_instance_valid(world.story.npcs.get("bosque_verde_itempokeball"))
+	await _go("ciudad_plateada", Vector2i(69, 37))
+	await _step_to("ciudad_plateada", Vector2i(72, 37))
+	await _until(func(): return world.story.busy, 3.0)
+	await _until(func(): return not world.story.busy, 8.0)
+	r["Sin medalla, el chico te frena y te lleva al gimnasio"] = _zone_id() == "ciudad_plateada" and _cell() == Vector2i(29, 32)
+	for inst in GameState.party:
+		inst.hp = inst.max_hp()
+	await _go("ciudad_plateada_gimnasio", DB.npcs["ciudad_plateada_gimnasio_brock"].cell + Vector2i(0, 2))
+	world.story.try_interact()
+	await _until(func(): return world.arena.active and world.arena._fighting, 12.0)
+	for k in 2:
+		_ko(world.arena.foe)
+		await _until(func(): return not world.arena.active or (is_instance_valid(world.arena.foe) and not world.arena.foe.is_down()), 6.0)
+	await _until(func(): return not world.arena.active and not world.story.busy, 15.0)
+	r["Brock te da la Medalla Roca y la MT39"] = GameState.has_flag("medalla_roca") and GameState.item_count("mt39") == 1
+	var mon: CreatureInstance = GameState.party[0]
+	var msg := GameState.use_item_on("mt39", mon)
+	r["La MT39 enseña Tumba Rocas (y se gasta)"] = msg != "" and mon.learned_moves().has(DB.moves["tumba_rocas"]) 		and GameState.item_count("mt39") == 0
+	var again := GameState.from_dict(GameState.to_dict())
+	r["Lo aprendido por MT se guarda"] = again and GameState.party[0].learned_moves().has(DB.moves["tumba_rocas"])
+	var card := TrainerCard.new()
+	add_child(card)
+	await get_tree().process_frame
+	r["La tarjeta muestra la Medalla Roca (1 / 8)"] = card.find_children("*", "Label", true, false).any(
+		func(l): return l.text == "Medallas: 1 / 8")
+	card.queue_free()
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[historia-h1] %s %s" % ["OK   " if r[key] else "FALLO", key])

@@ -41,7 +41,7 @@ $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bich
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
-$G --headless --path . --quit-after 100000 -- --autotest-story-h1  # historia H-1 (cuarto, Oak, laboratorio, rival)
+$G --headless --path . --quit-after 150000 -- --autotest-story-h1  # historia H-1 a H-5 (de tu cuarto a la Medalla Roca)
 $G --headless --path . --quit-after 100000 -- --autotest-arena  # combates contra entrenadores en arena (E-1): Brock, Cazabichos
 $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena  # Brock y Onix en el gimnasio épico
 $G --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd  # rearma las arenas (pisa las escenas)

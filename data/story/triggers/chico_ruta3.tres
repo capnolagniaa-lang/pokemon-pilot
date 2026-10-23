@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("historia")
+forbids = PackedStringArray("medalla_roca")
+speaker = "Chico"
+lines = PackedStringArray("¡Eh, esperá! ¿Vas para la Ruta 3?", "Primero tenés que ganarle a Brock, el líder del gimnasio. ¡Vení que te llevo!")
+warp_zone = "ciudad_plateada"
+warp_cell = Vector2i(29, 32)
+
+[resource]
+script = ExtResource("1_g")
+id = "chico_ruta3"
+zone_id = "ciudad_plateada"
+rect = Rect2i(72, 35, 2, 5)
+talk = SubResource("Talk")
+once = false
+push_back = true
