@@ -19,6 +19,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Entrenadores vivos — E-0 hecha** (2026-10-23; decisiones del plan confirmadas): interruptor "Entrenadores
   vivos (en prueba)" (inicio y Opciones, apagado por defecto), datos de los 3 entrenadores (Azul, Valeria, Tomás)
   y sus NPC en Ruta 1. Detalle en `docs/PLAN_ENTRENADORES.md` ("Avance").
+- **Captura, Mochila y Caja hechas** (2026-10-23, pedido del usuario antes de E-1; `docs/PLAN_CAPTURA_MOCHILA.md`):
+  E lanza la Pokébola (fórmula oficial de 3ª gen), IVs al azar en los salvajes, Caja con el equipo lleno, Mochila
+  con bolsillos y objetos oficiales, C usa el objeto rápido en combate, objetos en el mapa y botín de salvajes.
 - **Siguiente: E-1** (combate contra entrenador: desafío, equipos de hasta 3, cambio de Pokémon con Tab, fin y
   EXP). Después, spawns por hora (Etapa 4b/5). El usuario aprobó los kits por ahora ("me gustan los de Charmander y
   Bulbasaur"); más adelante se harán **tests de balance** de los kits.
@@ -48,7 +51,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 4a | IA de los salvajes: cuerpo compartido + temperamentos (sin memoria) | ✅ Hecha |
 | 4 | IA salvaje con estados + spawns por bioma/hora | ⏭️ Siguiente |
 | 5 | Ciclo día/noche, clima, NPCs con horarios | Pendiente |
-| 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | Pendiente |
+| 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | 🟡 Captura, Mochila, Caja e IVs al azar hechos (2026-10-23); faltan naturalezas, EVs, evoluciones, Centros |
 | 7 | Primer gimnasio (arena con transición) | Pendiente |
 | 8 | Pulido (juice, audio, partículas) | Pendiente |
 

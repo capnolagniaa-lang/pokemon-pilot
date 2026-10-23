@@ -41,6 +41,13 @@ static func create(p_species: SpeciesData, p_level: int) -> CreatureInstance:
 	return c
 
 
+## IVs al azar 0-31 por stat (salvajes). Uno perfecto (31 en todo) sale 1 en ~10⁹. La vida queda al máximo.
+func roll_ivs() -> void:
+	for s in STATS:
+		ivs[s] = randi_range(0, MAX_IV)
+	hp = max_hp()
+
+
 func display_name() -> String:
 	return nickname if nickname != "" else species.display_name
 

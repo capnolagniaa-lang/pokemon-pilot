@@ -105,6 +105,14 @@ func _physics_process(delta: float) -> void:
 	spook_left = maxf(0.0, spook_left - delta)
 
 
+## Adentro de una Pokébola (mientras tiembla): invisible, quieto y sin recibir golpes.
+func set_captured(inside: bool) -> void:
+	visible = not inside
+	process_mode = Node.PROCESS_MODE_DISABLED if inside else Node.PROCESS_MODE_INHERIT
+	hurtbox.set_deferred("monitorable", not inside)
+	collision_layer = 0 if inside else (BODY_LAYER_ALLY if team == Team.ALLY else BODY_LAYER_WILD)
+
+
 ## Aviso sobre la cabeza ("!" te vio, "?" curiosidad, gota de miedo...).
 func emote(text: String, time: float = 1.2) -> void:
 	sprite.emote = text

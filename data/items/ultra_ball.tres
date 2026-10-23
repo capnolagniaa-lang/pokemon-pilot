@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/ultra-ball.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "ultra_ball"
+display_name = "Ultra Ball"
+description = "Poké Ball de rendimiento superior. Tiene un índice de éxito mayor al de la Super Ball."
+icon = ExtResource("2_i")
+pocket = 1
+sort_order = 3
+catch_mult = 2.0

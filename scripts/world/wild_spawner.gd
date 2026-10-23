@@ -143,6 +143,7 @@ func _spawn_in(zone_id: String) -> void:
 func spawn(sp: SpeciesData, level: int, pos: Vector2) -> Creature:
 	var c: Creature = CreatureScene.instantiate()
 	c.instance = CreatureInstance.create(sp, level)
+	c.instance.roll_ivs()  # IVs al azar (Etapa 6): lo que atrapás conserva los suyos
 	c.team = Creature.Team.WILD
 	c.position = pos
 	world.entities.add_child(c)

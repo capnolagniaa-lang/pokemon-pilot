@@ -39,14 +39,39 @@ func _draw() -> void:
 	if in_battle and is_instance_valid(c):
 		_draw_moves(c)
 		_draw_enemy()
+	if not GameState.party.is_empty():
+		_draw_items()
 	_draw_message()
 	if GameState.difficulty != null:
 		var mode := "IA: %s%s%s" % [GameState.difficulty.display_name, "  ·  Modo práctica" if GameState.practice_mode else "",
 			"  ·  Entrenadores vivos" if GameState.living_trainers else ""]
 		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
-	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · F volver" if in_battle \
-		else "WASD mover · Shift correr · F sacar a tu Pokémon a pelear · Esc menú"
+	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · E bola · C objeto · F volver" if in_battle \
+		else "WASD mover · Shift correr · F sacar a tu Pokémon · E lanzar bola · C objeto · Esc menú"
 	draw_string(font, Vector2(0, size.y - 14), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
+
+
+## Mochila rápida: la bola que lanza E y el objeto que usa C, con cuántos quedan.
+func _draw_items() -> void:
+	var r := Rect2(size.x - 266, size.y - 104, 250, 70)
+	_panel(r)
+	var ball: ItemData = _world.items.ball_to_throw() if _world.items != null else null
+	var quick: ItemData = DB.items.get(GameState.quick_item)
+	var rows := [["E", ball, "Sin Pokéballs"], ["C", quick, "Sin objeto rápido"]]
+	for i in rows.size():
+		var y := r.position.y + 8 + i * 30
+		var it: ItemData = rows[i][1]
+		draw_string(font, Vector2(r.position.x + 10, y + 18), rows[i][0], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.75))
+		if it == null:
+			draw_string(font, Vector2(r.position.x + 56, y + 18), rows[i][2], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.45))
+			continue
+		if it.icon != null:
+			draw_texture_rect(it.icon, Rect2(r.position.x + 26, y, 26, 26), false)
+		var n := GameState.item_count(it.id)
+		draw_string(font, Vector2(r.position.x + 56, y + 18), it.display_name, HORIZONTAL_ALIGNMENT_LEFT, 150, 14,
+			Color(1, 1, 1) if n > 0 else Color(1, 1, 1, 0.4))
+		draw_string(font, Vector2(r.position.x + 56, y + 18), "×%d" % n, HORIZONTAL_ALIGNMENT_RIGHT, r.size.x - 66, 14,
+			Color(1.0, 0.85, 0.3) if n > 0 else Color(1, 0.4, 0.4))
 
 
 func _draw_party(c: Creature, in_battle: bool) -> void:

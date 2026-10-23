@@ -14,7 +14,8 @@ const KEYS := {
 	"attack_3": [KEY_Q, KEY_3],
 	"attack_4": [KEY_R, KEY_4],
 	"dodge": [KEY_SPACE],
-	"capture": [KEY_E],
+	"capture": [KEY_E],  # lanzar la Pokébola elegida (docs/PLAN_CAPTURA_MOCHILA.md)
+	"quick_item": [KEY_C],  # usar el objeto de la ranura rápida
 	"switch": [KEY_TAB],
 	"battle_toggle": [KEY_F],
 	"pause": [KEY_ESCAPE],

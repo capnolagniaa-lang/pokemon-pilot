@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/revive.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "revivir"
+display_name = "Revivir"
+description = "Medicina que revive a un Pokémon debilitado y le devuelve la mitad de sus PS."
+icon = ExtResource("2_i")
+pocket = 0
+sort_order = 20
+revive_ratio = 0.5
+use_time = 1.0

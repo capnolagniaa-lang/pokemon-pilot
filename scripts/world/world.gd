@@ -18,6 +18,8 @@ var pause_menu: PauseMenu
 var reactions: ReactionSystem
 ## Entrenadores vivos (aparecen solo con el interruptor prendido).
 var trainers: TrainerDirector
+## Mochila en el mundo: E lanza la Pokébola, C usa el objeto rápido.
+var items: PlayerItems
 
 
 func _ready() -> void:
@@ -44,6 +46,12 @@ func _ready() -> void:
 	trainers = TrainerDirector.new()
 	trainers.name = "TrainerDirector"
 	add_child(trainers)
+	items = PlayerItems.new()
+	items.name = "PlayerItems"
+	add_child(items)
+	var loot := FieldItemSpawner.new()
+	loot.name = "FieldItemSpawner"
+	add_child(loot)
 	Events.party_changed.connect(_on_party_changed)
 	Events.equipment_changed.connect(_on_equipment_changed)
 	var menu_layer := CanvasLayer.new()

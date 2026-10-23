@@ -43,8 +43,8 @@ func _ready() -> void:
 	var spacer := Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	head.add_child(spacer)
-	head.add_child(UiStyle.label("Vistos %d · Luchados %d · Total %d" % [GameState.pokedex_seen.size(),
-		GameState.pokedex_fought.size(), _species.size()], 15, UiStyle.TEXT))
+	head.add_child(UiStyle.label("Vistos %d · Luchados %d · Atrapados %d · Total %d" % [GameState.pokedex_seen.size(),
+		GameState.pokedex_fought.size(), GameState.pokedex_caught.size(), _species.size()], 15, UiStyle.TEXT))
 
 	var body := HBoxContainer.new()
 	body.add_theme_constant_override("separation", 16)
@@ -140,7 +140,16 @@ func _cell(sp: SpeciesData) -> Button:
 	num.size = Vector2(60, 16)
 	num.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	b.add_child(num)
-	if GameState.has_fought(sp):
+	if GameState.has_caught(sp):
+		var ball := TextureRect.new()  # atrapado: una Pokéball en la esquina
+		ball.texture = DB.items["poke_ball"].icon if DB.items.has("poke_ball") else null
+		ball.position = Vector2(2, 0)
+		ball.size = Vector2(20, 20)
+		ball.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		ball.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		ball.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		b.add_child(ball)
+	elif GameState.has_fought(sp):
 		var mark := UiStyle.label("●", 10, UiStyle.ACCENT)  # luchado
 		mark.position = Vector2(6, 2)
 		mark.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -182,7 +191,7 @@ func _show_detail(sp: SpeciesData) -> void:
 	if not GameState.has_fought(sp):
 		_detail.add_child(UiStyle.label("Peleá contra él para conocer sus estadísticas.", 14, UiStyle.TEXT_DIM))
 		return
-	_detail.add_child(UiStyle.label("Luchado ● · Estadísticas base", 14, UiStyle.ACCENT))
+	_detail.add_child(UiStyle.label("%s · Estadísticas base" % ("Atrapado" if GameState.has_caught(sp) else "Luchado ●"), 14, UiStyle.ACCENT))
 	var grid := GridContainer.new()
 	grid.columns = 3
 	grid.add_theme_constant_override("h_separation", 12)

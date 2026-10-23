@@ -23,11 +23,19 @@ Acceso directo sin abrir el editor: un `.lnk` que apunte a `Godot_v4.7.2-stable_
 | Ataque 3 | Q (o 3) |
 | Ataque 4 (el de más recarga) | R (o 4) |
 | Esquivar | Espacio |
-| Menú (Equipo, Pokédex, Guardar, Opciones) | Esc |
+| Lanzar la Pokébola elegida (hacia el mouse) | E |
+| Usar el objeto rápido (ej. Poción) | C |
+| Menú (Equipo, Mochila, Caja, Pokédex, Guardar, Opciones) | Esc |
 | Menús | Flechas/WASD + Enter/Espacio (o mouse) · Tab cambia de pestaña en la ficha |
 
 El mundo **reacciona a los ataques**: el agua moja el suelo, el hielo congela el agua (puente para cruzar), el
 eléctrico corre por el agua y lo mojado, y las embestidas rompen las rocas frágiles.
+
+Para **atrapar**, apuntá con el mouse y apretá **E**: la bola vuela en arco y, si le pega a un salvaje, tiembla y
+lo atrapa o se escapa (más fácil con poca vida o con estados como dormido o paralizado; la Super Ball y la Ultra
+Ball ayudan). Con el equipo lleno, lo atrapado va a la **Caja**. En la **Mochila** (Esc → Mochila) elegís qué bola
+lanza E y qué objeto usa **C** (en combate tu Pokémon queda expuesto un instante). Hay objetos tirados en el mapa
+(una Pokéball que brilla) y a veces los salvajes sueltan algo.
 
 La **Pokédex** (Esc → Pokédex) tiene los 386 Pokémon de Kanto, Johto y Hoenn: los que todavía no viste aparecen
 como "?????" con su silueta; los que viste muestran su ficha, y los que enfrentaste, también sus estadísticas.

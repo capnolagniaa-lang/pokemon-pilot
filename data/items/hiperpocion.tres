@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/hyper-potion.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "hiperpocion"
+display_name = "Hiperpoción"
+description = "Medicina en espray que cura heridas y restaura 120 PS de un Pokémon."
+icon = ExtResource("2_i")
+pocket = 0
+sort_order = 3
+heal_hp = 200.0
+use_time = 0.8

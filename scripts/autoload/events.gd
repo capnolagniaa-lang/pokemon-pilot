@@ -15,6 +15,14 @@ signal game_saved()
 signal game_loaded()
 ## Un Pokémon del equipo aprendió un movimiento al subir de nivel.
 signal move_learned(creature: CreatureInstance, move: MoveData)
+## Atrapaste un Pokémon ("equipo" o "caja").
+signal pokemon_caught(creature: CreatureInstance, where: String)
+## Cambió la Caja.
+signal box_changed()
+## Cambió la mochila (se sumó, gastó o recogió un objeto).
+signal bag_changed()
+## Se usó un objeto sobre un Pokémon.
+signal item_used(item: ItemData, creature: CreatureInstance)
 ## Se prendieron o apagaron los entrenadores vivos (Opciones).
 signal living_trainers_changed(on: bool)
 ## Una especie se registró por primera vez en la Pokédex (la viste).

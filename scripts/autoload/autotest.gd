@@ -23,6 +23,15 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	var capture_flags := {"--autotest-capture": "run_capture", "--autotest-bag": "run_bag", "--showcase-capture": "showcase"}
+	for flag in capture_flags:
+		if flag in OS.get_cmdline_user_args():
+			set_process(false)
+			var ct := CaptureTests.new()
+			ct.autotest = self
+			add_child(ct)
+			ct.call_deferred(capture_flags[flag])
+			return
 	for flag in ["--autotest-trainers", "--showcase-trainers"]:
 		if flag in OS.get_cmdline_user_args():
 			set_process(false)

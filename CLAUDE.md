@@ -46,6 +46,9 @@ $G --headless --path . --quit-after 30000 -- --autotest-wild-ai  # IA salvaje: t
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-wild-ai  # un salvaje de cada temperamento
 $G --headless --path . --quit-after 20000 -- --autotest-trainers  # entrenadores vivos (E-0: interruptor, NPC, guardado)
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-trainers  # los 3 en Ruta 1
+$G --headless --path . --quit-after 30000 -- --autotest-capture   # captura (fórmula, lanzar, escapar, Caja, guardado)
+$G --headless --path . --quit-after 30000 -- --autotest-bag       # mochila (curas, ranura rápida, objetos del mapa, botín)
+$G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-capture  # lanzar bola, Mochila, Caja
 $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
@@ -121,6 +124,11 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.
+- **Captura, Mochila y Caja** (`docs/PLAN_CAPTURA_MOCHILA.md`): `ItemData` en `data/items/` (de
+  `tools/fetch_items.py`); `GameState.bag`/`selected_ball`/`quick_item`/`box`/`field_picked`; `PlayerItems` (nodo del
+  mundo: E lanza `BallThrow`, C usa el objeto rápido); `Capture` (fórmula oficial 3ª gen); `FieldItemSpawner` +
+  `FieldItem` (objetos del mapa y botín, tablas `LootTable` en `data/items/loot/`). Pantallas `BagScreen` y
+  `BoxScreen` en el menú de pausa.
 - **Stats y progresión = reglas oficiales** (ver sección abajo). Nunca inventar stats: salen de PokeAPI.
 - **Entorno reactivo (Etapa 3)**: `ReactionSystem` (nodo del mundo) escucha `Events.element_impact` y aplica
   `ReactionRule` (`data/environment/reactions/`) a las celdas; el estado vive en un `EnvironmentGrid` por zona
@@ -198,6 +206,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   Godot: ver README).
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + extras de la tabla `EXTRAS`, niveles de
   FRLG) y los guarda en las especies. Correrlo después de cambiar un kit o los extras.
+- `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +
+  `sprites/items/`. El efecto de cada objeto está en su tabla `ITEMS`.
 - `tools/download_sprites.py`: sprites PMD (PMDCollab/SpriteCollab) de los N.º 1-386 (Idle, Walk, Attack,
   Hurt y retrato) → `sprites/pokemon/` + `scripts/generated/sprite_data.gd`. No vuelve a bajar lo que ya está.
 

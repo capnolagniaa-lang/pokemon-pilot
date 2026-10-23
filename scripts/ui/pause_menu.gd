@@ -7,6 +7,8 @@ extends Control
 const PARTY_SCENE := preload("res://scenes/ui/party_screen.tscn")
 const OPTIONS_SCENE := preload("res://scenes/ui/options_panel.tscn")
 const POKEDEX_SCENE := preload("res://scenes/ui/pokedex_screen.tscn")
+const BAG_SCENE := preload("res://scenes/ui/bag_screen.tscn")
+const BOX_SCENE := preload("res://scenes/ui/box_screen.tscn")
 const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 
 ## Pantallas abiertas encima del menú (la última es la que recibe Esc).
@@ -76,7 +78,7 @@ func _build() -> void:
 	box.add_theme_constant_override("separation", 8)
 	_main.add_child(box)
 	box.add_child(UiStyle.label("MENÚ", 20, UiStyle.ACCENT))
-	var entries := [["Equipo", _open_party], ["Pokédex", _open_pokedex], ["Guardar", _save], ["Opciones", _open_options],
+	var entries := [["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box], ["Pokédex", _open_pokedex], ["Guardar", _save], ["Opciones", _open_options],
 		["Volver al título", _to_title], ["Cerrar", close]]
 	for e in entries:
 		var b := UiStyle.button(e[0], 240)
@@ -123,6 +125,14 @@ func _open_party() -> void:
 	var p: Control = PARTY_SCENE.instantiate()
 	p.menu = self
 	push(p)
+
+
+func _open_bag() -> void:
+	push(BAG_SCENE.instantiate())
+
+
+func _open_box() -> void:
+	push(BOX_SCENE.instantiate())
 
 
 func _open_pokedex() -> void:

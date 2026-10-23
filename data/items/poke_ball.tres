@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/poke-ball.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "poke_ball"
+display_name = "Poké Ball"
+description = "Dispositivo con diseño capsular que atrapa Pokémon salvajes. Se lanza como una bola contra el blanco."
+icon = ExtResource("2_i")
+pocket = 1
+sort_order = 1
+catch_mult = 1.0
