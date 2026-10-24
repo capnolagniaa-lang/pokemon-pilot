@@ -54,10 +54,21 @@ func run() -> void:
 	var c2 := me.register_hit(foe, embers)
 	r["Arañazo y enseguida Ascuas = combo Garra Ardiente"] = c1["name"] == "" and c2["name"] == "Garra Ardiente" \
 		and c2["mult"] >= 1.4 and c2["status"] != null and c2["status"].id == "quemado"
-	var c3 := me.register_hit(foe, embers)
+	var c3 := me.register_hit(foe, HitInfo.from(me, me.moves.slots[0]))
 	r["La cadena de golpes suma daño (×3 = +10%)"] = c3["chain"] == 3 and absf(c3["mult"] - 1.10) < 0.001
+	# Un ataque de varios golpes (el mismo HitInfo: abanico de brasas, ticks de zona) cuenta una sola vez.
+	var fan := HitInfo.from(me, me.moves.slots[0])
+	var f1 := me.register_hit(foe, fan)
+	var f2 := me.register_hit(foe, fan)
+	var f3 := me.register_hit(foe, fan)
+	r["Los demás golpes del mismo ataque no suman cadena ni combo ni estado"] = f1["chain"] == 4 and f2["chain"] == 4 		and f3["chain"] == 4 and f2["mult"] == 1.0 and f2["status"] == null and f2["name"] == ""
+	# Pasos de un golpe con combo (Arañazo de 3 golpes del mismo uso) tampoco.
+	var claw := HitInfo.from(me, me.moves.slots[1])
+	var s1 := me.register_hit(foe, claw)
+	var s2 := me.register_hit(foe, HitInfo.from(me, me.moves.slots[1]))
+	r["Los pasos seguidos de un mismo ataque cuentan como uno"] = me.moves.slots[1].kind != MoveData.Kind.LUNGE 		or (s2["chain"] == s1["chain"] and s2["mult"] == 1.0)
 	await get_tree().create_timer(Creature.CHAIN_WINDOW + 0.2).timeout
-	r["Si pasa mucho tiempo la cadena se corta"] = me.register_hit(foe, embers)["chain"] == 1
+	r["Si pasa mucho tiempo la cadena se corta"] = me.register_hit(foe, HitInfo.from(me, me.moves.slots[0]))["chain"] == 1
 
 	# --- Estilos de movimiento ---
 	foe.velocity = Vector2.ZERO

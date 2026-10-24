@@ -162,6 +162,10 @@ entrenadores); `GameConfig.arena_rules_everywhere = true` lo lleva al mundo abie
   `FightStyle.can_jump`: Charmander, Squirtle, Bulbasaur, Pikachu, Rattata, Vulpix, Growlithe, Eevee, Mankey,
   Sandshrew, Psyduck, Poliwag, Paras, Oddish y Bellsprout. No saltan los bichos sin patas, Geodude, Onix ni Seel
   (Pidgey y Spearow vuelan por arriba). `Creature.crater_jump_target` / `_jump_to`.
+- **Ataques de varios golpes cuentan una vez** (pedido del usuario: "se desbalancea mucho"): para la cadena y los
+  combos solo vale el **primer golpe** de cada ataque; los demás (abanico de proyectiles, ticks de zonas y canalizados,
+  varias piedras, pasos seguidos de un golpe con combo, el 2º golpe de una embestida) no suman cadena, no arman combo
+  ni aplican el estado del combo (`Creature.is_same_attack`).
 - **Tope de cráteres** (pedido del usuario): cada ataque de cada Pokémon deja como mucho `MoveData.crater_max` cráteres
   vivos (Excavar 2, Tumba Rocas 3, Lanzarrocas 4, Terremoto/Magnitud 1; al dejar uno más se borra el más viejo) y la
   cancha tiene un tope total de 40 celdas (`ReactionSystem.CRATER_CELLS_MAX`). `Events.ground_impact` lleva la fuente.

@@ -59,6 +59,8 @@ var _chain := 0
 var _chain_target: Node = null
 var _chain_time := -100.0
 var _last_move_id := ""
+## El último golpe que conectó (el mismo HitInfo = el mismo ataque: abanico, zona, canalizado, varias piedras).
+var _last_hit_ref: HitInfo
 var _world_ref: Node
 ## Salvaje: temperamento (qué hace al verte, hasta dónde persigue, cuándo huye). Sale de la especie; se puede
 ## pisar después de crearla (los autotests fuerzan "agresivo").
@@ -272,8 +274,12 @@ func _jump_to(landing: Vector2) -> void:
 
 ## Registra un golpe que conectó contra `target` y devuelve su bonus: cadena de golpes seguidos (+5% c/u, hasta
 ## +25%) y combo con nombre del estilo (`first` y enseguida `second`). {mult, knockback, status, name, chain}
+## Un ataque de varios golpes cuenta UNA vez (pedido del usuario 2026-10-24: si no, se desbalancea): solo su primer
+## golpe suma a la cadena, puede armar un combo y aplica el estado del combo; los demás no suman nada.
 func register_hit(target: Node, hit: HitInfo) -> Dictionary:
 	var t := now()
+	if is_same_attack(target, hit, t):
+		return {"mult": 1.0, "knockback": 1.0, "status": null, "name": "", "chain": _chain}
 	if target == _chain_target and t - _chain_time <= CHAIN_WINDOW:
 		_chain += 1
 	else:
@@ -291,7 +297,26 @@ func register_hit(target: Node, hit: HitInfo) -> Dictionary:
 	_chain_target = target
 	_chain_time = t
 	_last_move_id = hit.move.id
+	_last_hit_ref = hit
 	return out
+
+
+## Si este golpe es otro golpe del mismo ataque que el anterior contra ese rival: el mismo HitInfo (abanico de
+## proyectiles, ticks de una zona o un canalizado, varias piedras del cielo) o el mismo ataque enseguida si es un
+## golpe con combo de varios pasos o una embestida con 2º golpe.
+func is_same_attack(target: Node, hit: HitInfo, t: float) -> bool:
+	if target != _chain_target:
+		return false
+	if hit == _last_hit_ref:
+		return true
+	var m := hit.move
+	if m.id != _last_move_id:
+		return false
+	if m.kind == MoveData.Kind.MELEE and m.combo_steps > 1:
+		return t - _chain_time <= m.combo_window
+	if m.kind == MoveData.Kind.LUNGE:
+		return t - _chain_time <= m.followup_delay + 0.4
+	return false
 
 
 ## Ataque (físico) o At. Esp. (especial) según la categoría; la quemadura baja solo el físico.
