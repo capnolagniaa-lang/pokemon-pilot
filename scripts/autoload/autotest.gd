@@ -933,6 +933,9 @@ func _showcase_kit() -> void:
 
 func _modes_test() -> void:
 	var r := {}
+	GameState.wilds_enabled = false  # como lo deja "Probar el torneo"
+	GameState.new_game(DB.config.starters[0])
+	r["Una partida nueva vuelve a tener salvajes (después de probar el torneo)"] = GameState.wilds_enabled
 	r["Por defecto: dificultad Normal"] = GameState.difficulty != null and GameState.difficulty.id == "normal"
 	r["Hay 3 dificultades (Fácil, Normal, Difícil)"] = DB.difficulties.has("facil") and DB.difficulties.has("normal") and DB.difficulties.has("dificil")
 	var hard: AiDifficulty = DB.difficulties["dificil"]

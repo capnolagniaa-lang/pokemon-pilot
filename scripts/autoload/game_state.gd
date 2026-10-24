@@ -103,6 +103,7 @@ func new_game(starter: SpeciesData) -> void:
 	money = STARTING_MONEY
 	tournament = {}
 	test_tournament = {}
+	wilds_enabled = true  # "Probar el torneo" los apaga: una partida nueva los vuelve a tener
 	Events.party_changed.emit()
 	Events.game_started.emit()
 
@@ -427,6 +428,8 @@ func _trainers_dict() -> Dictionary:
 ## Carga una partida. Devuelve false si no queda ningún Pokémon válido (y no toca el estado actual).
 ## Los avisos (especies o movimientos que ya no existen) quedan en `warnings`.
 func from_dict(d: Dictionary, warnings: Array = []) -> bool:
+	wilds_enabled = true  # idem al cargar una partida (después de "Probar el torneo")
+	test_tournament = {}
 	var members: Array[CreatureInstance] = []
 	var raw = d.get("party", [])
 	if raw is Array:
