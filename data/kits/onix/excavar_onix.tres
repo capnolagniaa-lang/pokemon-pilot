@@ -22,3 +22,4 @@ strike_delay = 1.0
 strike_burrow = true
 recovery = 0.3
 crater_radius = 34.0
+crater_max = 2

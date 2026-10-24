@@ -33,7 +33,7 @@ func trigger(p_hit: HitInfo, at: Vector2) -> void:
 		add_child(_light)
 	Events.element_impact.emit(m.element, at, radius)
 	if m.crater_radius > 0.0:
-		Events.ground_impact.emit(at, m.crater_radius)
+		Events.ground_impact.emit(at, m.crater_radius, HitInfo.source_key(p_hit), m.crater_max)
 	Fx.burst(get_parent(), at, color, 20, radius * 2.0)
 
 

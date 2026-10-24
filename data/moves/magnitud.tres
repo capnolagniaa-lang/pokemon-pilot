@@ -16,3 +16,4 @@ knockback = 200.0
 recovery = 0.1
 radius = 52.0
 crater_radius = 30.0
+crater_max = 1

@@ -18,3 +18,4 @@ speed = 220.0
 size = 6.0
 lifetime = 0.85
 crater_radius = 8.0
+crater_max = 4

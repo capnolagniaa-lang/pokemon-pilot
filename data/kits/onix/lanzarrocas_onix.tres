@@ -21,3 +21,4 @@ projectile_count = 3
 spread_deg = 24.0
 recovery = 0.15
 crater_radius = 8.0
+crater_max = 4

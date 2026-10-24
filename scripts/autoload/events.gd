@@ -67,7 +67,9 @@ signal story_flag_changed(flag: String, on: bool)
 signal dialog_started
 signal dialog_finished
 ## Un golpe fuerte contra el suelo (MoveData.crater_radius): el terreno se deforma (cráter).
-signal ground_impact(position: Vector2, radius: float)
+## `source` = quién y con qué ("<id del Pokémon>:<id del ataque>") y `max_count` = cuántos cráteres de esa fuente
+## pueden quedar a la vez (MoveData.crater_max): al pasarse se borra el más viejo.
+signal ground_impact(position: Vector2, radius: float, source: String, max_count: int)
 ## Combo con nombre o cadena de golpes (para el feedback): quién lo hizo, nombre ("" = solo la cadena) y largo.
 signal combo_landed(attacker: Node, combo_name: String, chain: int)
 ## Cambió el dinero (docs/PLAN_TORNEO.md).

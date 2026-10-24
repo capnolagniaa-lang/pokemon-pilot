@@ -80,9 +80,15 @@ func _grid_of(zone: Zone) -> EnvironmentGrid:
 	return g
 
 
+## Cráteres vivos, del más viejo al más nuevo: [{source, grid, cells}]. Tope por fuente (MoveData.crater_max) y tope
+## total de celdas (CRATER_CELLS_MAX), así nunca se llena la cancha.
+var _craters: Array = []
+const CRATER_CELLS_MAX := 40
+
+
 ## Golpe fuerte contra el suelo: deja un cráter (estado "crater") en las celdas de suelo dentro del radio. Por ahora
 ## solo con reglas de arena (docs/PLAN_IDENTIDAD_COMBATE.md "Combate de arena").
-func _on_ground_impact(pos: Vector2, radius: float) -> void:
+func _on_ground_impact(pos: Vector2, radius: float, source: String = "", max_count: int = 3) -> void:
 	if not arena_rules_at(pos):
 		return
 	var g := grid_at(pos)
@@ -91,6 +97,7 @@ func _on_ground_impact(pos: Vector2, radius: float) -> void:
 		return
 	var center := g.zone.cell_at(pos)
 	var r := int(ceil(radius / EnvironmentGrid.TILE))
+	var made: Array[Vector2i] = []
 	for dy in range(-r, r + 1):
 		for dx in range(-r, r + 1):
 			var cell := center + Vector2i(dx, dy)
@@ -100,7 +107,38 @@ func _on_ground_impact(pos: Vector2, radius: float) -> void:
 			if tags.has("agua") or not MapRules.is_walkable(g.zone, cell):
 				continue
 			g.set_state(cell, crater)
+			made.append(cell)
+	if not made.is_empty():
+		_craters.append({"source": source, "grid": g, "cells": made})
+		_trim_craters(source, max_count)
 	Fx.burst(world.entities, pos, Color(0.55, 0.45, 0.35), int(clampf(radius, 8.0, 30.0)), radius * 2.5)
+
+
+## Borra los cráteres más viejos: los de esta fuente que pasen su tope y, después, los que pasen el tope total de
+## celdas. (Los que ya se taparon solos por tiempo no cuentan.)
+func _trim_craters(source: String, max_count: int) -> void:
+	_craters = _craters.filter(func(c): return is_instance_valid(c["grid"]) and c["cells"].any(
+		func(cell): return c["grid"].state_at(cell) != null and c["grid"].state_at(cell).id == "crater"))
+	var mine := _craters.filter(func(c): return c["source"] == source)
+	while mine.size() > maxi(1, max_count):
+		_erase_crater(mine.pop_front())
+	var total := 0
+	for c in _craters:
+		total += c["cells"].size()
+	while total > CRATER_CELLS_MAX and _craters.size() > 1:
+		var old: Dictionary = _craters[0]
+		total -= old["cells"].size()
+		_erase_crater(old)
+
+
+func _erase_crater(c: Dictionary) -> void:
+	_craters.erase(c)
+	if not is_instance_valid(c["grid"]):
+		return
+	for cell in c["cells"]:
+		var st: EnvCellState = c["grid"].state_at(cell)
+		if st != null and st.id == "crater":
+			c["grid"].set_state(cell, null)
 
 
 ## Estado de la celda en una posición del mundo (o null).

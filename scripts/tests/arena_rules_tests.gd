@@ -39,7 +39,7 @@ func run() -> void:
 
 	# --- Cráteres: un golpe fuerte contra el suelo deja un pozo que frena ---
 	var normal_speed := me.speed()
-	Events.ground_impact.emit(me.global_position, 24.0)
+	Events.ground_impact.emit(me.global_position, 24.0, "prueba", 3)
 	await get_tree().physics_frame
 	var st: EnvCellState = world.reactions.state_at(me.global_position)
 	r["Un golpe contra el suelo deja un cráter"] = st != null and st.id == "crater"
@@ -81,7 +81,7 @@ func run() -> void:
 		grid.set_state(cell, null)
 	r["Sin cráter adelante el esquive es el de siempre"] = me.crater_jump_target(Vector2.LEFT) == Vector2.INF
 	var start := me.global_position
-	Events.ground_impact.emit(start + Vector2(44, 0), 22.0)
+	Events.ground_impact.emit(start + Vector2(44, 0), 22.0, "prueba_salto", 3)
 	await get_tree().physics_frame
 	var land := me.crater_jump_target(Vector2.RIGHT)
 	r["Hay un salto hasta la otra punta del cráter"] = land != Vector2.INF and land.x > start.x + 60.0 		and not world.tags_at(land).has("crater")
@@ -91,6 +91,24 @@ func run() -> void:
 	var mid_lift: float = me.sprite.lift
 	await get_tree().create_timer(0.6).timeout
 	r["Charmander salta el cráter por el aire (Espacio, hacia donde apunta)"] = jumped and mid_lift > 2.0 		and me.global_position.x > start.x + 55.0 and not world.tags_at(me.global_position).has("crater")
+
+	# --- Tope de cráteres: por ataque y por cancha ---
+	var g2: EnvironmentGrid = world.reactions.grid_at(me.global_position)
+	for cell in g2.cells.keys():
+		g2.set_state(cell, null)
+	var base := me.global_position + Vector2(-60, 60)
+	for k in 5:  # el mismo ataque 5 veces, tope 2
+		Events.ground_impact.emit(base + Vector2(k * 40, 0), 8.0, "tope", 2)
+	var alive := 0
+	for k in 5:
+		var st2: EnvCellState = world.reactions.state_at(base + Vector2(k * 40, 0))
+		if st2 != null and st2.id == "crater":
+			alive += 1
+	r["Cada ataque deja como mucho su tope de cráteres (se borra el más viejo)"] = alive == 2 		and world.reactions.state_at(base + Vector2(160, 0)) != null
+	for k in 30:  # muchos ataques distintos: la cancha nunca se llena
+		Events.ground_impact.emit(base + Vector2((k % 6) * 32, -(k / 6) * 32), 24.0, "otro_%d" % k, 3)
+	var cells := g2.cells.values().filter(func(e): return e["state"].id == "crater").size()
+	r["La cancha tiene un tope total de cráteres (%d celdas)" % cells] = cells <= ReactionSystem.CRATER_CELLS_MAX
 
 	foe.health.apply_damage(99999.0)
 	await _until(func(): return not world.arena.active, 15.0)

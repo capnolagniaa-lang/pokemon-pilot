@@ -162,6 +162,11 @@ entrenadores); `GameConfig.arena_rules_everywhere = true` lo lleva al mundo abie
   `FightStyle.can_jump`: Charmander, Squirtle, Bulbasaur, Pikachu, Rattata, Vulpix, Growlithe, Eevee, Mankey,
   Sandshrew, Psyduck, Poliwag, Paras, Oddish y Bellsprout. No saltan los bichos sin patas, Geodude, Onix ni Seel
   (Pidgey y Spearow vuelan por arriba). `Creature.crater_jump_target` / `_jump_to`.
+- **Tope de cráteres** (pedido del usuario): cada ataque de cada Pokémon deja como mucho `MoveData.crater_max` cráteres
+  vivos (Excavar 2, Tumba Rocas 3, Lanzarrocas 4, Terremoto/Magnitud 1; al dejar uno más se borra el más viejo) y la
+  cancha tiene un tope total de 40 celdas (`ReactionSystem.CRATER_CELLS_MAX`). `Events.ground_impact` lleva la fuente.
+- **Combos v2**: propuesta en `docs/PROPUESTA_COMBOS.md` (2-3 por Pokémon con roles, efectos distintos, combos de 3
+  golpes, descubrirlos, que los use la IA), a decidir con el usuario.
 - **Sprite del cráter**: pedido al agente de mapas (un sprite de pozo estilo FireRed, con piezas para cráteres
   grandes); hoy se dibuja a mano en `EnvironmentGrid._draw_ground` (rama CRATER).
 - Autotest `--autotest-arena-rules` (18 chequeos); vitrina `--showcase-arena-rules` (Geodude contra el Onix de Brock).

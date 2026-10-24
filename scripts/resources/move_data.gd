@@ -51,6 +51,9 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 ## Deja un cráter en el suelo donde impacta, de este radio en px (0 = no). Excavar, Tumba Rocas, Lanzarrocas,
 ## Terremoto... Por ahora solo en las arenas (docs/PLAN_IDENTIDAD_COMBATE.md "Combate de arena").
 @export var crater_radius: float = 0.0
+## Cuántos cráteres de este ataque (de cada Pokémon) pueden quedar a la vez: al dejar uno más se borra el más viejo.
+## Así no llenan la cancha (pedido del usuario 2026-10-24).
+@export var crater_max: int = 3
 ## No aplica el estado de su elemento al pegar (Burbuja no empapa aunque sea de agua).
 @export var skip_element_status: bool = false
 

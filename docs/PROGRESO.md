@@ -87,8 +87,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   combos (cadena de golpes + un combo con nombre por Pokémon), cráteres que deja el terreno golpeado y superficies que
   frenan. Por ahora solo en las arenas (torneo, gimnasio, entrenadores); después se ajusta para el mundo abierto
   (`GameConfig.arena_rules_everywhere`). Detalle en el plan de identidad ("Combate de arena"). Además: los que
-  tienen patas **saltan los cráteres** con el esquive hacia donde apuntás; el sprite del cráter lo busca el agente de
-  mapas.
+  tienen patas **saltan los cráteres** con el esquive hacia donde apuntás; sprite del cráter (agente de mapas);
+  **tope de cráteres** por ataque y por cancha. **Propuesta de combos v2** en `docs/PROPUESTA_COMBOS.md` (a decidir).
 - Pedido del usuario pasado al agente de mapas: los saltos/salientes de las colinas se tienen que poder **bajar
   pero no subir** (como en FireRed). Lo hace el agente de mapas. **Próximo:** H-6 (bot que
   juega el capítulo + revisión) o seguir con E-2 / la Ruta 3 y el Monte Moon, a decidir con el usuario.

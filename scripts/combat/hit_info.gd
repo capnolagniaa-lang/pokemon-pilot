@@ -39,3 +39,9 @@ static func from(user: Node, p_move: MoveData) -> HitInfo:
 	if user.signature != null:
 		user.signature.modify_hit(h)
 	return h
+
+
+## Clave de "quién y con qué" de un golpe (para los cráteres de cada ataque): "<id del Pokémon>:<id del ataque>".
+static func source_key(h: HitInfo) -> String:
+	var who: int = h.attacker.get_instance_id() if is_instance_valid(h.attacker) else 0
+	return "%d:%s" % [who, h.move.id if h.move != null else ""]
