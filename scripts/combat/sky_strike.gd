@@ -77,6 +77,8 @@ func _fall() -> void:
 	add_child(light)
 	light.create_tween().tween_property(light, "energy", 0.0, BOLT_TIME)
 	Events.element_impact.emit(hit.move.element, global_position, radius)
+	if hit.move.crater_radius > 0.0:
+		Events.ground_impact.emit(global_position, hit.move.crater_radius)
 	Events.camera_shake.emit(6.0 if burrower != null else 3.0)
 	Fx.burst(get_parent(), global_position, hit.move.element.hdr(color), 18, radius * 2.0)
 	if burrower != null or not _is_bolt():

@@ -26,26 +26,81 @@ func _ready() -> void:
 	rules.sort_custom(func(a, b): return a.priority > b.priority)
 	Events.element_impact.connect(_on_element_impact)
 	Events.env_object_struck.connect(_on_object_struck)
+	Events.ground_impact.connect(_on_ground_impact)
 
 
 func state_by_id(id: String) -> EnvCellState:
 	return states.get(id) if id != "" else null
 
 
+## Zonas que no son del mundo pero tienen entorno (las arenas de TrainerBattle): zona -> rectángulo global.
+var extra_zones: Dictionary = {}
+
+
+func register_zone(zone: Zone) -> void:
+	var used := zone.ground.get_used_rect()
+	extra_zones[zone] = Rect2(zone.global_position + Vector2(used.position * EnvironmentGrid.TILE), Vector2(used.size * EnvironmentGrid.TILE))
+
+
+func unregister_zone(zone: Zone) -> void:
+	extra_zones.erase(zone)
+
+
+## Si en esta posición rigen las reglas de arena (cráteres, superficies): en una arena, o en todos lados si
+## GameConfig.arena_rules_everywhere.
+func arena_rules_at(global_pos: Vector2) -> bool:
+	if DB.config.arena_rules_everywhere:
+		return true
+	for z in extra_zones:
+		if is_instance_valid(z) and extra_zones[z].has_point(global_pos):
+			return true
+	return false
+
+
 ## Grilla de la zona que contiene una posición (null si la zona no está cargada).
 func grid_at(global_pos: Vector2) -> EnvironmentGrid:
+	for z in extra_zones:
+		if is_instance_valid(z) and extra_zones[z].has_point(global_pos):
+			return _grid_of(z)
 	var entry: ZoneEntry = world.streamer.world_data.zone_at(global_pos)
 	if entry == null:
 		return null
 	var zone: Zone = world.streamer.zone_node(entry.id)
 	if zone == null:
 		return null
+	return _grid_of(zone)
+
+
+func _grid_of(zone: Zone) -> EnvironmentGrid:
 	var g: EnvironmentGrid = zone.get_node_or_null("EnvironmentGrid")
 	if g == null:
 		g = EnvironmentGrid.new()
 		g.setup(zone, self)
 		zone.add_child(g)
 	return g
+
+
+## Golpe fuerte contra el suelo: deja un cráter (estado "crater") en las celdas de suelo dentro del radio. Por ahora
+## solo con reglas de arena (docs/PLAN_IDENTIDAD_COMBATE.md "Combate de arena").
+func _on_ground_impact(pos: Vector2, radius: float) -> void:
+	if not arena_rules_at(pos):
+		return
+	var g := grid_at(pos)
+	var crater := state_by_id("crater")
+	if g == null or crater == null:
+		return
+	var center := g.zone.cell_at(pos)
+	var r := int(ceil(radius / EnvironmentGrid.TILE))
+	for dy in range(-r, r + 1):
+		for dx in range(-r, r + 1):
+			var cell := center + Vector2i(dx, dy)
+			if g.cell_center(cell).distance_to(pos) > radius + 4.0:
+				continue
+			var tags := g.zone.get_tags(cell)
+			if tags.has("agua") or not MapRules.is_walkable(g.zone, cell):
+				continue
+			g.set_state(cell, crater)
+	Fx.burst(world.entities, pos, Color(0.55, 0.45, 0.35), int(clampf(radius, 8.0, 30.0)), radius * 2.5)
 
 
 ## Estado de la celda en una posición del mundo (o null).

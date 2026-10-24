@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnvCellState" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/env_cell_state.gd" id="1_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "crater"
+display_name = "Cráter"
+duration = 25.0
+adds_tags = PackedStringArray("crater")
+look = 5
+color = Color(0.3, 0.24, 0.18, 1)

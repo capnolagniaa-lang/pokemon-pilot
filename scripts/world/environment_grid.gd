@@ -187,6 +187,15 @@ func _draw_ground() -> void:
 				_ground.draw_rect(r, Color(1.0, 1.1, 1.25, 0.6 * k), false, 1.0)
 				_ground.draw_line(r.position + Vector2(3, 4), r.position + Vector2(8, 4), Color(1.4, 1.5, 1.6, 0.9 * k), 1.0)
 				_ground.draw_line(r.position + Vector2(10, 10), r.position + Vector2(13, 7), Color(1.2, 1.3, 1.5, 0.7 * k), 1.0)
+			EnvCellState.Look.CRATER:
+				# Pozo redondo: borde de tierra removida, fondo oscuro y piedritas (las celdas vecinas se funden en un
+				# cráter). Se desvanece al final.
+				var c0 := r.get_center() + Vector2(seed * 0.2 - 1.7, seed * 0.15 - 1.2)
+				_ground.draw_circle(c0, 10.5, Color(0.42, 0.33, 0.24, 0.45 * k))
+				_ground.draw_circle(c0 + Vector2(0, 1), 7.5, Color(0.2, 0.15, 0.1, 0.62 * k))
+				_ground.draw_arc(c0, 9.0, PI * 1.1, PI * 1.9, 10, Color(0.62, 0.52, 0.4, 0.55 * k), 1.5)
+				_ground.draw_circle(c0 + Vector2(6, -6 + seed * 0.3), 1.6, Color(0.55, 0.47, 0.38, 0.8 * k))
+				_ground.draw_circle(c0 + Vector2(-7, 4), 1.2, Color(0.55, 0.47, 0.38, 0.7 * k))
 			EnvCellState.Look.SPARK:
 				_ground.draw_rect(r, Color(1.0, 0.9, 0.3, 0.18))
 				var a := r.position + Vector2(2, 8 + sin(_time * 30.0 + seed) * 4.0)

@@ -15,3 +15,4 @@ cooldown = 2.15
 knockback = 220.0
 recovery = 0.3
 dash_time = 0.28
+crater_radius = 30.0

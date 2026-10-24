@@ -3,7 +3,7 @@ extends Resource
 ## Estado dinámico de una celda del mundo (Etapa 3, entorno reactivo): ardiendo, quemado, mojado,
 ## congelado, electrificado. Va encima de los tags del TileSet. Datos en data/environment/states/*.tres.
 
-enum Look { FIRE, SCORCH, WET, ICE, SPARK }
+enum Look { FIRE, SCORCH, WET, ICE, SPARK, CRATER }
 
 @export var id: String = ""
 @export var display_name: String = ""

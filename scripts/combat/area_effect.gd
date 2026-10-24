@@ -32,6 +32,8 @@ func trigger(p_hit: HitInfo, at: Vector2) -> void:
 		_light.texture_scale = radius / 32.0
 		add_child(_light)
 	Events.element_impact.emit(m.element, at, radius)
+	if m.crater_radius > 0.0:
+		Events.ground_impact.emit(at, m.crater_radius)
 	Fx.burst(get_parent(), at, color, 20, radius * 2.0)
 
 

@@ -17,3 +17,4 @@ knockback = 140.0
 speed = 220.0
 size = 6.0
 lifetime = 0.85
+crater_radius = 8.0

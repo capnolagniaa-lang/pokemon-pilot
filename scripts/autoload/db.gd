@@ -21,6 +21,7 @@ var trainers: Dictionary = {}  # id -> TrainerData (entrenadores vivos, data/tra
 var items: Dictionary = {}  # id -> ItemData (mochila, data/items)
 var npcs: Dictionary = {}  # id -> NpcData (historia, data/story/npcs)
 var story_triggers: Dictionary = {}  # id -> StoryTrigger (historia, data/story/triggers)
+var fight_styles: Dictionary = {}  # especie -> FightStyle (combate de arena, data/estilos)
 var type_chart: TypeChart
 var config: GameConfig
 
@@ -41,6 +42,8 @@ func _ready() -> void:
 	items = _load_dir("res://data/items", "ItemData")
 	npcs = _load_dir("res://data/story/npcs", "NpcData")
 	story_triggers = _load_dir("res://data/story/triggers", "StoryTrigger")
+	for st: FightStyle in _load_dir("res://data/estilos", "FightStyle").values():
+		fight_styles[st.species_id] = st
 	type_chart = load("res://data/types/type_chart.tres")
 	config = load("res://data/config/game_config.tres")
 	_index_moves()

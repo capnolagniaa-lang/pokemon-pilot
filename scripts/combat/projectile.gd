@@ -75,6 +75,8 @@ func _impact() -> void:
 		return
 	_dead = true
 	Events.element_impact.emit(hit.move.element, global_position, radius * 2.0)
+	if hit.move.crater_radius > 0.0:
+		Events.ground_impact.emit(global_position, hit.move.crater_radius)
 	Fx.burst(get_parent(), global_position, color, 10, 60.0)
 	queue_free()
 

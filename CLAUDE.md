@@ -42,6 +42,8 @@ $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
 $G --headless --path . --quit-after 150000 -- --autotest-story-h1  # historia H-1 a H-5 (de tu cuarto a la Medalla Roca)
+$G --headless --path . --quit-after 100000 -- --autotest-arena-rules  # combate de arena: estilos, combos, cráteres, superficies
+$G --path . --quit-after 650 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena-rules  # Geodude vs Onix (cráteres)
 $G --headless --path . --quit-after 60000 -- --autotest-slots      # varias partidas con nombre, sin curación sola, desmayo total, modo de prueba del torneo
 $G --headless --path . --quit-after 300000 -- --autotest-tournament  # torneo de Plateada (dinero, copas, rondas, premio)
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-tournament  # el estadio del torneo
@@ -152,6 +154,10 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   una arena aparte (`ArenaData` en `data/arenas/`, escena = zona de tiles en `scenes/world/arenas/`, ambientación
   `ArenaDecor`), 1 contra 1 con cambios, `CombatDirector.arena_lock`, `Creature.owner_name` (no se atrapa).
   Entrenadores de la historia = `NpcData.trainer` (TrainerData) + `sight`; perder → `GameState.last_heal_position`.
+- **Combate de arena** (estilo Pokkén, `docs/PLAN_IDENTIDAD_COMBATE.md`): `FightStyle` por especie en `data/estilos/`
+  (`tools/build_fight_styles.py`: estilo de movimiento + `ComboData`); `Creature.arena_rules()` (en arenas registradas en
+  el `ReactionSystem`, o en todos lados con `GameConfig.arena_rules_everywhere`); `MoveData.crater_radius` →
+  `Events.ground_impact` → estado de celda "crater".
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
   recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; durante el torneo
   `GameState.tournament` guarda el equipo y la mochila de antes (los usa `to_dict`).

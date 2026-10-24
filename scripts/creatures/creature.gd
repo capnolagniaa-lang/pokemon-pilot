@@ -50,6 +50,16 @@ var knockback := Vector2.ZERO
 var cc_resist_left := 0.0
 ## Mecánica de firma (si la especie tiene kit con una).
 var signature: SignatureMechanic
+## Estilo de combate de arena (movimiento y combos): data/estilos/<especie>.tres. Rige con las reglas de arena.
+var fight_style: FightStyle
+## Velocidad propia (sin empuje): los pesados la acercan de a poco a la que piden (inercia).
+var _move_vel := Vector2.ZERO
+## Cadena de golpes y último ataque que conectó (para los combos): a quién, con qué y cuándo.
+var _chain := 0
+var _chain_target: Node = null
+var _chain_time := -100.0
+var _last_move_id := ""
+var _world_ref: Node
 ## Salvaje: temperamento (qué hace al verte, hasta dónde persigue, cuándo huye). Sale de la especie; se puede
 ## pisar después de crearla (los autotests fuerzan "agresivo").
 var temperament: Temperament
@@ -88,6 +98,7 @@ var _clock := 0.0
 
 func _ready() -> void:
 	sprite.species = instance.species
+	fight_style = DB.fight_styles.get(instance.species.id)
 	health.instance = instance
 	health.heal_mult_source = statuses
 	moves.setup(instance)
@@ -174,7 +185,67 @@ func speed() -> float:
 	var m := statuses.speed_mult()
 	if signature != null:
 		m *= signature.speed_mult()
+	if arena_rules():
+		m *= surface_mult()
 	return move_speed_for(instance.stat("speed")) * m
+
+
+# --- Combate de arena (docs/PLAN_IDENTIDAD_COMBATE.md "Combate de arena") ----------------------------------
+
+## Constantes de las reglas de arena.
+const CHAIN_WINDOW := 1.3  # segundos entre golpes para seguir la cadena
+const CHAIN_STEP := 0.05  # +5% de daño por golpe encadenado
+const CHAIN_MAX := 5  # hasta +25%
+const HEAVY_ACCEL := 420.0  # px/s² de los pesados (inercia)
+const HEAVY_KNOCKBACK := 0.6  # los pesados reciben este empuje
+const AGILE_DODGE := 0.75  # los ágiles esquivan más seguido
+## Cuánto frena cada superficie (tags de la celda, con el estado del entorno: cráter, mojado...).
+const SURFACES := {"crater": 0.65, "pasto_alto": 0.85, "arena": 0.85, "mojado": 0.92}
+
+
+## Si rigen las reglas de arena acá (en una arena, o en todos lados con GameConfig.arena_rules_everywhere).
+func arena_rules() -> bool:
+	if _world_ref == null or not is_instance_valid(_world_ref):
+		_world_ref = get_tree().get_first_node_in_group("world") if is_inside_tree() else null
+	return _world_ref != null and _world_ref.get("reactions") != null and _world_ref.reactions.arena_rules_at(global_position)
+
+
+func move_style() -> String:
+	return fight_style.move_style if fight_style != null else "normal"
+
+
+## Multiplicador de velocidad por la superficie que pisa (los voladores no lo sienten).
+func surface_mult() -> float:
+	if move_style() == "volador" or swims or _world_ref == null:
+		return 1.0
+	var m := 1.0
+	for tag in _world_ref.tags_at(global_position):
+		m = minf(m, SURFACES.get(tag, 1.0))
+	return m
+
+
+## Registra un golpe que conectó contra `target` y devuelve su bonus: cadena de golpes seguidos (+5% c/u, hasta
+## +25%) y combo con nombre del estilo (`first` y enseguida `second`). {mult, knockback, status, name, chain}
+func register_hit(target: Node, hit: HitInfo) -> Dictionary:
+	var t := now()
+	if target == _chain_target and t - _chain_time <= CHAIN_WINDOW:
+		_chain += 1
+	else:
+		_chain = 1
+	var out := {"mult": 1.0 + CHAIN_STEP * mini(_chain - 1, CHAIN_MAX), "knockback": 1.0, "status": null, "name": "",
+		"chain": _chain}
+	if fight_style != null and target == _chain_target:
+		for c in fight_style.combos:
+			if c.second == hit.move.id and c.first == _last_move_id and c.first != c.second and t - _chain_time <= c.window:
+				out["mult"] *= c.damage_mult
+				out["knockback"] = c.knockback_mult
+				out["status"] = c.status
+				out["name"] = c.display_name
+				break
+	_chain_target = target
+	_chain_time = t
+	_last_move_id = hit.move.id
+	return out
 
 
 ## Ataque (físico) o At. Esp. (especial) según la categoría; la quemadura baja solo el físico.
@@ -191,7 +262,12 @@ func move(dir: Vector2, spd: float) -> void:
 	if jitter > 0.0 and dir != Vector2.ZERO:
 		dir = dir.rotated(sin(_clock * 3.1 + get_instance_id()) * jitter * 0.6)  # desorientado
 	var before := global_position
-	velocity = dir * spd + knockback
+	var want := dir * spd
+	if move_style() == "pesado" and arena_rules():
+		_move_vel = _move_vel.move_toward(want, HEAVY_ACCEL * get_physics_process_delta_time())  # inercia
+	else:
+		_move_vel = want
+	velocity = _move_vel + knockback
 	move_and_slide()
 	knockback = knockback.move_toward(Vector2.ZERO, 900.0 * get_physics_process_delta_time())
 	if dir.length() > 0.1:
@@ -359,6 +435,8 @@ func dodge(dir: Vector2) -> bool:
 	health.invulnerable_time = DODGE_TIME + 0.12
 	if signature != null:
 		moves.dodge_cooldown *= signature.dodge_cooldown_mult()
+	if move_style() == "agil" and arena_rules():
+		moves.dodge_cooldown *= AGILE_DODGE
 	machine.transition_to("dash", {"dir": dir if dir.length() > 0.1 else facing, "time": DODGE_TIME, "attack": false})
 	dodged.emit()
 	return true
@@ -396,6 +474,16 @@ func _on_hit(hit: HitInfo) -> void:
 		mult *= attacker.signature.damage_mult_against(hit, self)
 	if signature != null:
 		mult *= signature.damage_taken_mult(hit)
+	var combo := {}
+	if attacker != null and hit.move.power > 0.0 and attacker.arena_rules():
+		combo = attacker.register_hit(self, hit)  # cadena de golpes y combos con nombre
+		mult *= combo["mult"]
+		if combo["name"] != "":
+			Events.signature_triggered.emit(attacker, "¡%s!" % combo["name"], Color(1.0, 0.85, 0.3))
+			Events.camera_shake.emit(3.0)
+		elif combo["chain"] >= 3:
+			Events.signature_triggered.emit(attacker, "COMBO ×%d" % combo["chain"], Color(1.0, 0.95, 0.75))
+		Events.combo_landed.emit(attacker, combo["name"], combo["chain"])
 	var amount := Damage.resolve(hit, instance) * mult
 	if hit.move.execute_below > 0.0 and health.ratio() <= hit.move.execute_below and hit.effectiveness > 0.0:
 		amount = INF  # ejecución: lo remata aunque le quede vida
@@ -406,6 +494,9 @@ func _on_hit(hit: HitInfo) -> void:
 		sprite.flash()
 		sprite.play_once("Hurt", 0.25)
 	var push := statuses.knockback_mult() * (signature.knockback_taken_mult() if signature != null else 1.0)
+	if move_style() == "pesado" and arena_rules():
+		push *= HEAVY_KNOCKBACK
+	push *= combo.get("knockback", 1.0)
 	if hit.knockback != 0.0:
 		knockback = (global_position - hit.origin).normalized() * hit.knockback * push
 	damage_received.emit(dealt, hit)
@@ -429,6 +520,8 @@ func _on_hit(hit: HitInfo) -> void:
 			0.0 if hit.move.skip_element_status else hit.move.element.hit_status_chance]]  # el agua empapa al pegar
 	for s in hit.move.statuses_on_hit:
 		to_apply.append([s, 1.0])
+	if combo.get("status") != null:
+		to_apply.append([combo["status"], 1.0])  # el estado del combo con nombre
 	for pair in to_apply:
 		if pair[0] != null and randf() < pair[1]:
 			statuses.apply(pair[0])

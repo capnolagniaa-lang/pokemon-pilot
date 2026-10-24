@@ -30,6 +30,13 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-arena-rules" in OS.get_cmdline_user_args() or "--showcase-arena-rules" in OS.get_cmdline_user_args():
+		set_process(false)
+		var ar := ArenaRulesTests.new()
+		ar.autotest = self
+		add_child(ar)
+		(ar.showcase if "--showcase-arena-rules" in OS.get_cmdline_user_args() else ar.run).call_deferred()
+		return
 	if "--autotest-slots" in OS.get_cmdline_user_args():
 		set_process(false)
 		var sl := SlotsTests.new()

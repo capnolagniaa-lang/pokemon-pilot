@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FightStyle" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/fight_style.gd" id="1_s"]
+[ext_resource type="Script" path="res://scripts/resources/combo_data.gd" id="2_c"]
+
+[sub_resource type="Resource" id="Combo_0"]
+script = ExtResource("2_c")
+display_name = "Caza"
+first = "grunido_spearow"
+second = "persecucion_spearow"
+damage_mult = 1.5
+knockback_mult = 1.2
+
+[resource]
+script = ExtResource("1_s")
+species_id = "spearow"
+move_style = "volador"
+combos = Array[ExtResource("2_c")]([SubResource("Combo_0")])

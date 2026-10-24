@@ -17,7 +17,8 @@ func run() -> void:
 	var agua: ElementType = DB.types["agua"]
 	var hielo: ElementType = DB.types["hielo"]
 	var electrico: ElementType = DB.types["electrico"]
-	r["Datos: 3 estados y 5 reglas cargadas"] = DB.env_states.size() == 3 and DB.reactions.size() == 5
+	# 3 de las reacciones + "crater" (el terreno golpeado en las arenas, docs/PLAN_IDENTIDAD_COMBATE.md).
+	r["Datos: 4 estados y 5 reglas cargadas"] = DB.env_states.size() == 4 and DB.env_states.has("crater") and DB.reactions.size() == 5
 
 	# --- El fuego no interactúa con el entorno ---
 	var zone: Zone = await _go_to("ruta1")

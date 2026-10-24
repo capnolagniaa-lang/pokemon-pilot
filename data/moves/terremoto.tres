@@ -16,3 +16,4 @@ cast_time = 0.3
 knockback = 200.0
 recovery = 0.3
 radius = 52.0
+crater_radius = 40.0

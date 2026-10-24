@@ -138,6 +138,7 @@ func _enter_arena(texture: Texture2D) -> void:
 	decor = ArenaDecor.new()
 	arena.add_child(decor)
 	decor.setup(arena_data)
+	world.reactions.register_zone(arena)  # entorno reactivo y reglas de arena (cráteres, superficies)
 	world.trainer.global_position = cell_pos(arena_data.player_cell)
 	if texture != null:
 		foe_figure = Sprite2D.new()
@@ -160,6 +161,7 @@ func _leave_arena() -> void:
 	if is_instance_valid(foe_figure):
 		foe_figure.queue_free()
 	if is_instance_valid(arena):
+		world.reactions.unregister_zone(arena)
 		arena.queue_free()
 	arena = null
 	var t: Trainer = world.trainer

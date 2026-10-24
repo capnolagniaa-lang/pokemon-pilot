@@ -137,6 +137,27 @@ Piezas nuevas del motor (genéricas): `MoveData.strike_count`/`strike_spread` (v
 (empuje y tambaleo) y `body_scale` (jefes más grandes, sprite y hurtbox). La Pokédex muestra el estilo, la firma y
 los 4 ataques del kit apenas viste al Pokémon.
 
+## Combate de arena (2026-10-24, inspirado en Pokémon Arena 2D / Pokkén; ✅ implementado)
+Pedido del usuario tras ver Pokémon Arena 2D: terreno que se deforma, superficies, combos y estilo de movimiento por
+Pokémon (sin peleas de varios a la vez). **Por ahora rige solo en las peleas de arena** (torneo, gimnasio,
+entrenadores); `GameConfig.arena_rules_everywhere = true` lo lleva al mundo abierto cuando se ajuste.
+- **Estilos de movimiento** (`FightStyle.move_style`, `data/estilos/<especie>.tres` de `tools/build_fight_styles.py`):
+  **ágil** (arranca y frena al instante, esquiva 25% más seguido: Pikachu, Poliwag, Rattata, Weedle, Eevee, Growlithe,
+  Mankey) · **pesado** (inercia: acelera y frena de a poco, recibe 40% menos empuje: Geodude, Onix, Metapod, Kakuna,
+  Seel) · **volador** (el terreno no lo frena: Pidgey, Spearow) · **normal** (el resto).
+- **Combos**: cadena de golpes seguidos al mismo rival (+5% por golpe, hasta +25%; "COMBO ×N" desde el 3º) y **un
+  combo con nombre por Pokémon** (`ComboData`: si conectás `first` y antes de 1,6 s `second`, pega más, empuja más y
+  aplica un estado). Ej.: Charmander Arañazo → Ascuas = **Garra Ardiente** (×1,4 y quema); Pikachu Ataque Rápido →
+  Impactrueno = **Descarga Relámpago** (paraliza); Onix Atadura → Tumba Rocas = **Sepultura**; Mankey Patada Baja →
+  Golpe Kárate = **Golpe Bajo y Alto**. Lista completa en `tools/build_fight_styles.py`.
+- **Terreno que se deforma**: `MoveData.crater_radius` (Excavar 34, Tumba Rocas 16, Lanzarrocas 8, Terremoto 40,
+  Magnitud 30) → `Events.ground_impact` → estado de celda **cráter** (`data/environment/states/crater.tres`, 25 s) que
+  se dibuja como pozo y **frena** (×0,65). Las arenas se registran en el `ReactionSystem` (`register_zone`), así el
+  entorno reactivo también funciona adentro (agua de las lagunas, pasto que se prende).
+- **Superficies** (`Creature.SURFACES`): cráter ×0,65, pasto alto ×0,85, arena ×0,85, mojado ×0,92 (los voladores y
+  los que nadan no lo sienten).
+- Autotest `--autotest-arena-rules` (14 chequeos); vitrina `--showcase-arena-rules` (Geodude contra el Onix de Brock).
+
 ## Próximo paso sugerido
 1. Que el usuario pruebe Charmander y Bellsprout en Ruta 1 y dé su opinión (sensación, recargas, rangos).
 2. ✅ Kits de **Pidgey, Rattata y Vulpix** hechos (2026-10-22): todo lo que aparece en la zona de prueba tiene

@@ -25,3 +25,4 @@ strike_count = 3
 strike_spread = 40.0
 recovery = 0.3
 statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])
+crater_radius = 16.0

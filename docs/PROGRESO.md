@@ -83,6 +83,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Modo de prueba del torneo** (pedido del usuario): título → "Probar el torneo": elegís hasta 6 Pokémon con kit, el
   nivel y la copa, y se juega el Torneo de Plateada directo; no se guarda nada (`GameState.test_tournament`); al
   terminar, repetir o volver al título.
+- **Combate de arena** (2026-10-24, inspirado en Pokémon Arena 2D): estilos de movimiento (ágil/pesado/volador),
+  combos (cadena de golpes + un combo con nombre por Pokémon), cráteres que deja el terreno golpeado y superficies que
+  frenan. Por ahora solo en las arenas (torneo, gimnasio, entrenadores); después se ajusta para el mundo abierto
+  (`GameConfig.arena_rules_everywhere`). Detalle en el plan de identidad ("Combate de arena").
 - Pedido del usuario pasado al agente de mapas: los saltos/salientes de las colinas se tienen que poder **bajar
   pero no subir** (como en FireRed). Lo hace el agente de mapas. **Próximo:** H-6 (bot que
   juega el capítulo + revisión) o seguir con E-2 / la Ruta 3 y el Monte Moon, a decidir con el usuario.

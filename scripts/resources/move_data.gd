@@ -48,6 +48,9 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export var cooldown_lock: float = 0.0
 ## Esporas inflamables (Paras): si un ataque de fuego toca este parche o nube, arde 3 s y quema a quien esté adentro.
 @export var zone_flammable: bool = false
+## Deja un cráter en el suelo donde impacta, de este radio en px (0 = no). Excavar, Tumba Rocas, Lanzarrocas,
+## Terremoto... Por ahora solo en las arenas (docs/PLAN_IDENTIDAD_COMBATE.md "Combate de arena").
+@export var crater_radius: float = 0.0
 ## No aplica el estado de su elemento al pegar (Burbuja no empapa aunque sea de agua).
 @export var skip_element_status: bool = false
 

@@ -66,6 +66,10 @@ signal story_flag_changed(flag: String, on: bool)
 ## Empieza / termina una conversación (la caja de diálogo está abierta).
 signal dialog_started
 signal dialog_finished
+## Un golpe fuerte contra el suelo (MoveData.crater_radius): el terreno se deforma (cráter).
+signal ground_impact(position: Vector2, radius: float)
+## Combo con nombre o cadena de golpes (para el feedback): quién lo hizo, nombre ("" = solo la cadena) y largo.
+signal combo_landed(attacker: Node, combo_name: String, chain: int)
 ## Cambió el dinero (docs/PLAN_TORNEO.md).
 signal money_changed(money: int)
 
