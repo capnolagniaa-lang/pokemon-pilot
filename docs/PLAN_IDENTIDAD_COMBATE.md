@@ -156,8 +156,9 @@ entrenadores); `GameConfig.arena_rules_everywhere = true` lo lleva al mundo abie
   entorno reactivo también funciona adentro (agua de las lagunas, pasto que se prende).
 - **Superficies** (`Creature.SURFACES`): cráter ×0,65, pasto alto ×0,85, arena ×0,85, mojado ×0,92 (los voladores y
   los que nadan no lo sienten).
-- **Salto de cráter** (pedido del usuario): con el esquive (Espacio), si hay un cráter justo adelante en la dirección
-  en que **apuntás**, los que tienen patas **saltan por el aire hasta la otra punta** (cruzan todos los cráteres
+- **Salto de cráter** (pedido del usuario): con el esquive (Espacio), si hay un cráter justo adelante (hasta 32 px) en
+  la dirección en que **apuntás** o, si ahí no hay, hacia donde **caminás** (WASD; arreglo 2026-10-24: con el mouse
+  en el rival no saltaba), los que tienen patas **saltan por el aire hasta la otra punta** (cruzan todos los cráteres
   seguidos, hasta 160 px; invulnerables; si del otro lado hay roca, pared o agua, es un esquive común).
   `FightStyle.can_jump`: Charmander, Squirtle, Bulbasaur, Pikachu, Rattata, Vulpix, Growlithe, Eevee, Mankey,
   Sandshrew, Psyduck, Poliwag, Paras, Oddish y Bellsprout. No saltan los bichos sin patas, Geodude, Onix ni Seel

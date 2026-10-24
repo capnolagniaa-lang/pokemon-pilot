@@ -103,6 +103,20 @@ func run() -> void:
 	await get_tree().create_timer(0.6).timeout
 	r["Charmander salta el cráter por el aire (Espacio, hacia donde apunta)"] = jumped and mid_lift > 2.0 		and me.global_position.x > start.x + 55.0 and not world.tags_at(me.global_position).has("crater")
 
+	# Como se juega: caminando con WASD hacia el pozo (a ~30 px) y el mouse apuntando a otro lado.
+	await get_tree().create_timer(0.4).timeout
+	for cell in grid.cells.keys():
+		grid.set_state(cell, null)
+	me.moves.dodge_cooldown = 0.0
+	start = me.global_position
+	Events.ground_impact.emit(start + Vector2(52, 0), 20.0, "prueba_salto_wasd", 3)
+	await get_tree().physics_frame
+	jumped = me.dodge(Vector2.RIGHT, Vector2.UP * 50.0)
+	await get_tree().create_timer(0.1).timeout
+	mid_lift = me.sprite.lift
+	await get_tree().create_timer(0.6).timeout
+	r["Salta (por el aire) yendo con WASD hacia el pozo, con el mouse a otro lado y el cráter a ~30 px"] = jumped and mid_lift > 2.0 and me.global_position.x > start.x + 60.0 and not world.tags_at(me.global_position).has("crater")
+
 	# --- Tope de cráteres: por ataque y por cancha ---
 	var g2: EnvironmentGrid = world.reactions.grid_at(me.global_position)
 	for cell in g2.cells.keys():

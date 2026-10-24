@@ -229,7 +229,7 @@ func surface_mult() -> float:
 ## Salto de cráter: máximo de px que se puede cruzar y paso con que se revisa el camino.
 const JUMP_MAX := 160.0
 const JUMP_STEP := 6.0
-const JUMP_LOOK := 22.0  # el cráter tiene que estar a esta distancia (o menos) adelante
+const JUMP_LOOK := 32.0  # el cráter tiene que estar a esta distancia (o menos) adelante
 
 
 ## Dónde aterrizaría un salto de cráter hacia `dir` (Vector2.INF si no corresponde: no salta, no hay cráter
@@ -505,8 +505,10 @@ func _track_zone(m: MoveData, zone: Node) -> void:
 func dodge(dir: Vector2, aim: Vector2 = Vector2.ZERO) -> bool:
 	if not can_act() or not statuses.can_move():
 		return false
-	var jump_dir := aim.normalized() if aim.length() > 4.0 else dir.normalized()
-	var landing := crater_jump_target(jump_dir)
+	# Salto de cráter: hacia donde apunta el mouse y, si ahí no hay pozo, hacia donde camina (WASD).
+	var landing := crater_jump_target(aim.normalized()) if aim.length() > 4.0 else Vector2.INF
+	if landing == Vector2.INF and dir.length() > 0.1:
+		landing = crater_jump_target(dir.normalized())
 	if landing != Vector2.INF and moves.consume_dodge():
 		_jump_to(landing)
 		return true
