@@ -159,6 +159,13 @@ como en FireRed) y salvajes de FireRed.
 - Entrenadores vivos: sus rutinas pasaron a Ruta 1, Ruta 22, Ruta 2 y Bosque Verde (celda transitable más cercana).
 - `--autotest` reescrito: camina de Pueblo Paleta a Ciudad Plateada entrando al Laboratorio de Oak, pasando por la
   Ruta 22 y cruzando el Bosque Verde por sus garitas (`TourPlanner`).
+- **Límites de las zonas** (pedido del usuario: "en algunos mapas, rutas e interiores no hay límites"): los interiores
+  de FireRed tienen piso hasta el borde y algunos caminos llevaban a mapas que no están (Ruta 3, Calle Victoria);
+  `ZoneBounds` pone paredes invisibles en todo borde que da al vacío. Se sacó el árbol cortable de Plateada que tapaba
+  la entrada del Torneo (`SKIP_OBJECTS` en el importador). `--autotest-bounds`: recorre todo lo alcanzable desde el
+  inicio (con puertas), verifica las paredes caminando contra el vacío en 21 zonas, que se llegue a Centros, Tiendas,
+  gimnasios, Museo y Torneo, y que sin el Bosque Verde no se llegue a Plateada. (La casa de la Ruta 2 sigue detrás de
+  árboles cortables, como en FireRed.)
 - **Salientes de un solo sentido** (pedido del usuario: "las colinas que tienen colisión puedo bajarlas pero no
   subirlas"): `LedgeJumper` salta el saliente caminando contra él en su dirección (behavior MB_JUMP_* de FireRed;
   hasta Plateada todos son hacia abajo) y el Pokémon salta detrás; desde abajo siguen siendo pared.

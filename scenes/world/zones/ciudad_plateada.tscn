@@ -6,7 +6,6 @@
 [ext_resource type="Material" path="res://shaders/materials/foliage_wind.tres" id="4_utfrp"]
 [ext_resource type="Script" path="res://scripts/world/tree_shadows.gd" id="5_2l84b"]
 [ext_resource type="Material" path="res://shaders/materials/canopy_wind.tres" id="6_4j8dk"]
-[ext_resource type="PackedScene" path="res://scenes/world/objects/cut_tree.tscn" id="7_t2fog"]
 
 [node name="CiudadPlateada" type="Node2D" unique_id=1561551093]
 y_sort_enabled = true
@@ -42,8 +41,3 @@ tile_set = ExtResource("2_m4w1t")
 
 [node name="Objects" type="Node2D" parent="." unique_id=2039434910]
 y_sort_enabled = true
-
-[node name="CutTree" type="StaticBody2D" parent="Objects" unique_id=1129867251 instance=ExtResource("7_t2fog")]
-position = Vector2(872, 96)
-collision_layer = 129
-collision_mask = 0

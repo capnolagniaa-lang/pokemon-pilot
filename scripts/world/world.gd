@@ -75,6 +75,12 @@ func _ready() -> void:
 	tournament.name = "Tournament"
 	add_child(tournament)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
+	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).
+	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ZoneBounds.attach(node, z, streamer.world_data))
+	for id in streamer.loaded:
+		for z in streamer.world_data.zones:
+			if z.id == id:
+				ZoneBounds.attach(streamer.loaded[id], z, streamer.world_data)
 	var loot := FieldItemSpawner.new()
 	loot.name = "FieldItemSpawner"
 	add_child(loot)

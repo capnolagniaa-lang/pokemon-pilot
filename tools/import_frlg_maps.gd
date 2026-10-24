@@ -21,6 +21,9 @@ var rng := RandomNumberGenerator.new()
 const EXTRA_ZONES := ["ciudad_plateada_torneo"]
 ## Puertas de FireRed que llevan a otro lado: zona -> {celda: {to, cell}}. La puerta del anexo del museo de
 ## Plateada (en FireRed, la entrada de atrás del museo) es la del Torneo.
+## Objetos de FireRed que no se ponen: zona -> celdas. El árbol cortable de Plateada tapa el camino a la entrada de
+## atrás del museo, que acá es el Torneo (sin Corte no se llegaría).
+const SKIP_OBJECTS := {"ciudad_plateada": [Vector2i(54, 5)]}
 const WARP_OVERRIDES := {
 	"ciudad_plateada": {Vector2i(39, 4): {"to": "ciudad_plateada_torneo", "cell": Vector2i(7, 8)}},
 }
@@ -153,7 +156,9 @@ func _build(z: Dictionary) -> Node2D:
 		if ZoneBuilder.has_above(m):
 			ZoneBuilder.set_above(overhead, c, m)
 	for o: Dictionary in z.get("objects", []):
-		ZoneBuilder.add_object(root, o["scene"], Vector2i(int(o["cell"][0]), int(o["cell"][1])))
+		var oc := Vector2i(int(o["cell"][0]), int(o["cell"][1]))
+		if oc not in SKIP_OBJECTS.get(z["id"], []):
+			ZoneBuilder.add_object(root, o["scene"], oc)
 	return root
 
 

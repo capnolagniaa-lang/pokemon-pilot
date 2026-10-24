@@ -127,6 +127,13 @@ func _ready() -> void:
 			add_child(env)
 			(env.run if flag == "--autotest-env" else env.showcase).call_deferred()
 			return
+	if "--autotest-bounds" in OS.get_cmdline_user_args():
+		set_process(false)
+		var bt := BoundsTests.new()
+		bt.autotest = self
+		add_child(bt)
+		bt.run.call_deferred()
+		return
 	if "--autotest-ledges" in OS.get_cmdline_user_args():
 		set_process(false)
 		var lt := LedgeTests.new()
