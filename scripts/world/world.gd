@@ -118,9 +118,9 @@ func _safe_spawn(pos: Vector2) -> Vector2:
 	return zone.to_global(zone.ground.map_to_local(free))
 
 
-## Herramientas de debug: solo con `-- --debug` o corriendo desde el editor.
+## Herramientas de debug: solo con `-- --debug` o corriendo desde el editor (no en la versión portable, feature "portable").
 static func debug_enabled() -> bool:
-	return "--debug" in OS.get_cmdline_user_args() or OS.has_feature("editor")
+	return "--debug" in OS.get_cmdline_user_args() or (OS.has_feature("editor") and not OS.has_feature("portable"))
 
 
 ## Debug (F9): suma al equipo un Pokémon al azar al nivel del líder. Hasta que exista la captura (Etapa 6).

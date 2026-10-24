@@ -85,6 +85,9 @@ $G --path . -- --debug --start-zone ruta1 --start-cell 20,12        # juego dire
 ```
 El usuario lanza el juego con el acceso directo **"Pokémon Pilot"** del escritorio
 (`Godot_v4.7.2-stable_win64.exe --path <proyecto>`, ícono `icon.ico` generado por `tools/make_icon.py`).
+**Versión portable para los amigos**: `python -I -B tools/build_portable.py . <Godot_v4.7.2-stable_win64.exe>` (el de
+ventana) → `export/PokemonPilot-<fecha>.zip` (`export/` no se sube). En esa versión `OS.has_feature("portable")`:
+sin editor de mapas ni F9 (`World.debug_enabled`).
 El **editor de mapas** tiene su acceso directo **"Pokémon Pilot — Editor de mapas"** (mismos argumentos +
 `-- --map-editor`, ícono `Pokemon.ico`). Si se mueve la carpeta del proyecto o de Godot, hay que recrear los dos.
 

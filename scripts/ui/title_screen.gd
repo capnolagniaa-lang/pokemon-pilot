@@ -118,7 +118,7 @@ func _build_menu() -> void:
 	var test := UiStyle.button("Probar el torneo (prueba)", 340)
 	test.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/tournament_test.tscn"))
 	_menu.add_child(test)
-	if "--debug" in OS.get_cmdline_user_args() or OS.has_feature("editor"):  # como World.debug_enabled()
+	if "--debug" in OS.get_cmdline_user_args() or (OS.has_feature("editor") and not OS.has_feature("portable")):  # como World.debug_enabled()
 		var editor := UiStyle.button("Editor de mapas", 340)
 		editor.pressed.connect(func(): get_tree().change_scene_to_file(MAP_EDITOR_SCENE))
 		_menu.add_child(editor)
