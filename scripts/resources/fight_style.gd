@@ -9,4 +9,7 @@ extends Resource
 ## (acelera y frena de a poco) y lo empujan menos · "volador": el terreno no lo frena (cráteres, pasto, arena).
 @export var species_id: String = ""
 @export var move_style: String = "normal"
+## Salta los cráteres con el esquive (Espacio): cruza hasta la otra punta en la dirección en que apuntás.
+## Los que no tienen patas (bichos, Geodude, Onix, Seel) no; los voladores ya pasan por arriba.
+@export var can_jump: bool = false
 @export var combos: Array[ComboData] = []

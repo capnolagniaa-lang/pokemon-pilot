@@ -72,6 +72,26 @@ func run() -> void:
 	r["Pikachu es ágil y Pidgey volador"] = pika.move_style() == "agil" and DB.fight_styles["pidgey"].move_style == "volador"
 	pika.free()
 
+	# --- Salto de cráter con el esquive (Charmander sí, Onix no) ---
+	await get_tree().create_timer(0.5).timeout
+	me = world.companion
+	me.moves.dodge_cooldown = 0.0
+	var grid: EnvironmentGrid = world.reactions.grid_at(me.global_position)
+	for cell in grid.cells.keys():  # sin los cráteres de antes
+		grid.set_state(cell, null)
+	r["Sin cráter adelante el esquive es el de siempre"] = me.crater_jump_target(Vector2.LEFT) == Vector2.INF
+	var start := me.global_position
+	Events.ground_impact.emit(start + Vector2(44, 0), 22.0)
+	await get_tree().physics_frame
+	var land := me.crater_jump_target(Vector2.RIGHT)
+	r["Hay un salto hasta la otra punta del cráter"] = land != Vector2.INF and land.x > start.x + 60.0 		and not world.tags_at(land).has("crater")
+	r["Onix (pesado, sin patas) no salta cráteres"] = foe.crater_jump_target(Vector2.LEFT) == Vector2.INF
+	var jumped := me.dodge(Vector2.ZERO, Vector2.RIGHT * 50.0)
+	await get_tree().create_timer(0.1).timeout
+	var mid_lift: float = me.sprite.lift
+	await get_tree().create_timer(0.6).timeout
+	r["Charmander salta el cráter por el aire (Espacio, hacia donde apunta)"] = jumped and mid_lift > 2.0 		and me.global_position.x > start.x + 55.0 and not world.tags_at(me.global_position).has("crater")
+
 	foe.health.apply_damage(99999.0)
 	await _until(func(): return not world.arena.active, 15.0)
 	r["Al salir de la arena dejan de regir"] = not world.companion.arena_rules()

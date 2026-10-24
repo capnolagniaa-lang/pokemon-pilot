@@ -38,6 +38,11 @@ STYLES = {
 }
 
 
+# Saltan los cráteres con el esquive (pedido del usuario 2026-10-24: "como Charmander, Pikachu, Squirtle").
+JUMPERS = {"charmander", "squirtle", "bulbasaur", "pikachu", "rattata", "vulpix", "growlithe", "eevee", "mankey",
+           "sandshrew", "psyduck", "poliwag", "paras", "oddish", "bellsprout"}
+
+
 def main():
     root = sys.argv[1]
     out = os.path.join(root, "data", "estilos")
@@ -60,7 +65,7 @@ def main():
             ids.append('SubResource("Combo_%d")' % i)
         text = "\n".join(['[gd_resource type="Resource" script_class="FightStyle" format=3]', ""] + ext + [""]
                          + ["\n\n".join(subs), "", "[resource]", 'script = ExtResource("1_s")', 'species_id = "%s"' % sp,
-                            'move_style = "%s"' % style, 'combos = Array[ExtResource("2_c")]([%s])' % ", ".join(ids), ""])
+                            'move_style = "%s"' % style, "can_jump = %s" % ("true" if sp in JUMPERS else "false"), 'combos = Array[ExtResource("2_c")]([%s])' % ", ".join(ids), ""])
         with open(os.path.join(out, sp + ".tres"), "w", encoding="utf-8", newline="\n") as f:
             f.write(text)
     print("estilos:", len(STYLES))

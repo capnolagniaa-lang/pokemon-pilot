@@ -15,7 +15,7 @@ func physics_update(_delta: float) -> void:
 	actor.move(dir, actor.speed())
 	if aim.length() > 4.0:
 		actor.facing = aim.normalized()
-	if input.wants_dodge() and actor.dodge(dir if dir.length() > 0.1 else aim):
+	if input.wants_dodge() and actor.dodge(dir if dir.length() > 0.1 else aim, aim):
 		return
 	for slot in ORDER:
 		if input.wants_slot(slot) and actor.use_slot(slot, aim, input.aim_point(actor)):

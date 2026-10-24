@@ -156,7 +156,15 @@ entrenadores); `GameConfig.arena_rules_everywhere = true` lo lleva al mundo abie
   entorno reactivo también funciona adentro (agua de las lagunas, pasto que se prende).
 - **Superficies** (`Creature.SURFACES`): cráter ×0,65, pasto alto ×0,85, arena ×0,85, mojado ×0,92 (los voladores y
   los que nadan no lo sienten).
-- Autotest `--autotest-arena-rules` (14 chequeos); vitrina `--showcase-arena-rules` (Geodude contra el Onix de Brock).
+- **Salto de cráter** (pedido del usuario): con el esquive (Espacio), si hay un cráter justo adelante en la dirección
+  en que **apuntás**, los que tienen patas **saltan por el aire hasta la otra punta** (cruzan todos los cráteres
+  seguidos, hasta 160 px; invulnerables; si del otro lado hay roca, pared o agua, es un esquive común).
+  `FightStyle.can_jump`: Charmander, Squirtle, Bulbasaur, Pikachu, Rattata, Vulpix, Growlithe, Eevee, Mankey,
+  Sandshrew, Psyduck, Poliwag, Paras, Oddish y Bellsprout. No saltan los bichos sin patas, Geodude, Onix ni Seel
+  (Pidgey y Spearow vuelan por arriba). `Creature.crater_jump_target` / `_jump_to`.
+- **Sprite del cráter**: pedido al agente de mapas (un sprite de pozo estilo FireRed, con piezas para cráteres
+  grandes); hoy se dibuja a mano en `EnvironmentGrid._draw_ground` (rama CRATER).
+- Autotest `--autotest-arena-rules` (18 chequeos); vitrina `--showcase-arena-rules` (Geodude contra el Onix de Brock).
 
 ## Próximo paso sugerido
 1. Que el usuario pruebe Charmander y Bellsprout en Ruta 1 y dé su opinión (sensación, recargas, rangos).

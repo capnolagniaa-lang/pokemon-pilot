@@ -224,6 +224,52 @@ func surface_mult() -> float:
 	return m
 
 
+## Salto de cráter: máximo de px que se puede cruzar y paso con que se revisa el camino.
+const JUMP_MAX := 160.0
+const JUMP_STEP := 6.0
+const JUMP_LOOK := 22.0  # el cráter tiene que estar a esta distancia (o menos) adelante
+
+
+## Dónde aterrizaría un salto de cráter hacia `dir` (Vector2.INF si no corresponde: no salta, no hay cráter
+## adelante o la otra punta no es transitable).
+func crater_jump_target(dir: Vector2) -> Vector2:
+	if dir == Vector2.ZERO or fight_style == null or not fight_style.can_jump or not arena_rules():
+		return Vector2.INF
+	var found := false
+	var d := JUMP_STEP
+	while d <= JUMP_MAX:
+		var p := global_position + dir * d
+		var crater: bool = _world_ref.tags_at(p).has("crater")
+		if not found:
+			if crater:
+				found = true
+			elif d >= JUMP_LOOK:
+				return Vector2.INF  # no hay cráter justo adelante: esquive común
+		elif not crater:
+			var g: EnvironmentGrid = _world_ref.reactions.grid_at(p)
+			if g == null or not MapRules.is_walkable(g.zone, g.zone.cell_at(p)) or g.zone.get_tags(g.zone.cell_at(p)).has("agua"):
+				return Vector2.INF  # del otro lado hay una roca, pared o agua
+			return p + dir * JUMP_STEP  # un pasito más allá del borde
+		d += JUMP_STEP
+	return Vector2.INF
+
+
+## Salta por el aire hasta `landing` (invulnerable, como un esquive largo, con el sprite en arco).
+func _jump_to(landing: Vector2) -> void:
+	var dir := (landing - global_position).normalized()
+	var dist := global_position.distance_to(landing)
+	var time := maxf(dist / DASH_SPEED, DODGE_TIME) * 1.6  # más lento que el esquive: se ve el arco
+	health.invulnerable_time = time + 0.12
+	if signature != null:
+		moves.dodge_cooldown *= signature.dodge_cooldown_mult()
+	machine.transition_to("dash", {"dir": dir, "time": time, "attack": false, "speed": dist / time})
+	var tw := create_tween()
+	tw.tween_property(sprite, "lift", clampf(dist * 0.18, 10.0, 26.0), time * 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tw.tween_property(sprite, "lift", 0.0, time * 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	Events.signature_triggered.emit(self, "¡Salto!", Color(0.9, 0.95, 1.0))
+	dodged.emit()
+
+
 ## Registra un golpe que conectó contra `target` y devuelve su bonus: cadena de golpes seguidos (+5% c/u, hasta
 ## +25%) y combo con nombre del estilo (`first` y enseguida `second`). {mult, knockback, status, name, chain}
 func register_hit(target: Node, hit: HitInfo) -> Dictionary:
@@ -429,8 +475,17 @@ func _track_zone(m: MoveData, zone: Node) -> void:
 
 
 ## Esquive (Espacio): igual para todos. Breve invulnerabilidad.
-func dodge(dir: Vector2) -> bool:
-	if not can_act() or not statuses.can_move() or not moves.consume_dodge():
+## Esquive (Espacio). Con reglas de arena, si el estilo puede saltar y hay un cráter adelante (hacia `aim`, donde
+## apuntás; si no, hacia `dir`), salta: cruza todos los cráteres seguidos hasta la otra punta, por el aire.
+func dodge(dir: Vector2, aim: Vector2 = Vector2.ZERO) -> bool:
+	if not can_act() or not statuses.can_move():
+		return false
+	var jump_dir := aim.normalized() if aim.length() > 4.0 else dir.normalized()
+	var landing := crater_jump_target(jump_dir)
+	if landing != Vector2.INF and moves.consume_dodge():
+		_jump_to(landing)
+		return true
+	if not moves.consume_dodge():
 		return false
 	health.invulnerable_time = DODGE_TIME + 0.12
 	if signature != null:

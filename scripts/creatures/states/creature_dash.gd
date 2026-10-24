@@ -13,6 +13,8 @@ var _trail_hit: HitInfo
 var _since_patch := 0.0
 ## Potencia de la embestida (0 = esquive): la usa el entorno para romper rocas frágiles.
 var _power := 0.0
+## Velocidad propia (el salto de cráter va más lento que el esquive para que se vea el arco).
+var _speed := Creature.DASH_SPEED
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -22,6 +24,7 @@ func enter(msg: Dictionary = {}) -> void:
 	_recovery = msg.get("recovery", 0.0)
 	_trail = msg.get("trail")
 	_power = msg.get("power", 0.0)
+	_speed = msg.get("speed", Creature.DASH_SPEED)
 	_since_patch = TRAIL_SPACING
 	if _trail != null:
 		# Golpe de la estela: misma habilidad, con su potencia y estado de estela.
@@ -46,7 +49,7 @@ func physics_update(delta: float) -> void:
 	_time -= delta
 	actor.knockback = Vector2.ZERO
 	var before: Vector2 = actor.global_position
-	actor.velocity = _dir * Creature.DASH_SPEED
+	actor.velocity = _dir * _speed
 	actor.move_and_slide()
 	var dist: float = actor.global_position.distance_to(before)
 	actor.moved.emit(dist)

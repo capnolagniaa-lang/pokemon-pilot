@@ -25,4 +25,5 @@ knockback_mult = 1.3
 script = ExtResource("1_s")
 species_id = "onix"
 move_style = "pesado"
+can_jump = false
 combos = Array[ExtResource("2_c")]([SubResource("Combo_0"), SubResource("Combo_1")])

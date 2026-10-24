@@ -17,4 +17,5 @@ status = ExtResource("st_0")
 script = ExtResource("1_s")
 species_id = "growlithe"
 move_style = "agil"
+can_jump = true
 combos = Array[ExtResource("2_c")]([SubResource("Combo_0")])

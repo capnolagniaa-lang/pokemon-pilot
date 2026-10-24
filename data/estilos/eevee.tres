@@ -23,4 +23,5 @@ knockback_mult = 1.3
 script = ExtResource("1_s")
 species_id = "eevee"
 move_style = "agil"
+can_jump = true
 combos = Array[ExtResource("2_c")]([SubResource("Combo_0"), SubResource("Combo_1")])

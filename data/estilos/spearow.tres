@@ -15,4 +15,5 @@ knockback_mult = 1.2
 script = ExtResource("1_s")
 species_id = "spearow"
 move_style = "volador"
+can_jump = false
 combos = Array[ExtResource("2_c")]([SubResource("Combo_0")])
