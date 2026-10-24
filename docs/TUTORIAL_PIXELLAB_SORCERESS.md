@@ -41,6 +41,8 @@ Antes de generar, tené en cuenta el estilo del juego:
 ### Prompts que funcionan para efectos
 
 Escribilos en inglés (los modelos entienden mejor). Estructura: *qué es + forma + colores + estilo*.
+Para proyectiles y cortes agregá **"pointing right" / "moving to the right"**: el juego gira la hoja hacia
+donde va el ataque suponiendo que está dibujada mirando a la derecha.
 
 - **Llamarada**: `fire burst flame explosion, red orange and dark red, small yellow core, retro pixel art, GBA style, crisp pixels, transparent background`
 - **Rayo / Impactrueno**: `lightning bolt strike from above, electric yellow with white core and dark outline, jagged, GBA pokemon style pixel art`
@@ -173,41 +175,64 @@ El juego lee las animaciones con el formato de SpriteCollab:
 
 ### b) Efecto de ataque
 
-Hoy los efectos de los ataques **se dibujan por código** (círculos, partículas y luces con los colores del
-tipo): `scripts/combat/projectile.gd` (`_draw` y `_trail`), `area_effect.gd`, `melee_swing.gd`,
-`channel_cone.gd`, `whip_lash.gd`, y los genéricos en `scripts/fx/fx.gd`. **Todavía no hay un lugar para
-hojas de efectos**: el primer efecto con sprite necesita ese enganche (una tarea chica). La forma prevista,
-respetando la arquitectura data-driven:
+Los ataques sin efecto propio se siguen dibujando por código (círculos, partículas y luces con los colores del
+tipo). Si le das una hoja, el juego la usa en vez de eso (el halo y la luz quedan debajo, así sigue brillando):
 
-1. Guardá la hoja en `sprites/fx/<nombre>.png` (ej. `sprites/fx/llamarada_48.png`, 1 fila de cuadros).
-   Godot la importa sola al abrir el editor (o con `--import`). En el import dejá el filtro en *Nearest* (el
-   proyecto ya usa filtro nearest por defecto para el pixel art).
-2. En Godot creá un recurso **SpriteFrames** (`data/fx/<nombre>.tres`): Add frames from sprite sheet → elegí la
-   hoja, poné las columnas/filas, velocidad (FPS) y sin loop si es una explosión/impacto.
-3. Enganche en código (a hacer): un campo `@export var vfx: SpriteFrames` en `MoveData` (por ataque) o en
-   `ElementType` (por tipo); `Projectile`/`AreaEffect`/`MeleeSwing` crean un `AnimatedSprite2D` hijo con esas
-   frames, rotado según la dirección (`velocity.angle()`), y siguen dibujando el halo y la luz de ahora debajo
-   (así conserva el glow). Para impactos, un efecto al pegar: escuchar `Events.creature_damaged` en
-   `scripts/fx/combat_feedback.gd` y poner el `AnimatedSprite2D` en la posición del golpe, que se borre al
-   terminar (`animation_finished`).
-4. Asignale el `.tres` al ataque en el inspector (`data/moves/<ataque>.tres`) y probalo con la vitrina de kits:
+| Dónde aparece | Qué lo dibuja |
+|---|---|
+| Cuerpo del proyectil (Ascuas, Impactrueno, Pistola Agua...), en bucle mientras vuela | `scripts/combat/projectile.gd` |
+| Onda de un ataque de área, escalada a su radio, una vez | `scripts/combat/area_effect.gd` |
+| Corte de un golpe cuerpo a cuerpo, una vez | `scripts/combat/melee_swing.gd` |
+| **Impacto** sobre el Pokémon golpeado, una vez | `scripts/fx/combat_feedback.gd` |
 
-   ```bash
-   C:/Users/Gusti/Documents/claude/tools/godot/Godot_v4.7.2-stable_win64.exe --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit
-   ```
+Todo pasa por `DB.vfx_for` (`scripts/autoload/db.gd`) y lo dibuja `VfxSprite` (`scripts/fx/vfx_sprite.gd`).
+Los conos (Lanzallamas canalizado) y los látigos todavía no usan hojas.
 
-Pedile a Claude "enganchá los efectos con sprite (vfx) a los ataques" cuando tengas la primera hoja lista.
+**Cómo tiene que ser la hoja**: PNG, **una sola fila** de cuadros **cuadrados** (el alto de la imagen = el
+ancho de cada cuadro; ej. 8 cuadros de 32 px = 256×32), fondo transparente, **dibujada apuntando a la
+derecha** (el juego la gira hacia donde va el ataque). Va a 15 cuadros por segundo. Es justo lo que da Sorceress
+en modo VFX; si sale en varias filas, pasala a una fila en Aseprite (Export Sprite Sheet → *Horizontal Strip*).
+
+**Forma rápida (sin abrir Godot)**: soltá la hoja con este nombre y listo:
+
+| Archivo | Para qué |
+|---|---|
+| `sprites/fx/moves/<id del ataque>.png` | cuerpo de ese ataque (ej. `sprites/fx/moves/ascuas.png`) |
+| `sprites/fx/moves/<id del ataque>_impacto.png` | impacto de ese ataque |
+| `sprites/fx/types/<id del tipo>.png` | cuerpo de **todos** los ataques de ese tipo que no tengan el suyo (ej. `fuego.png`) |
+| `sprites/fx/types/<id del tipo>_impacto.png` | impacto de todos los ataques de ese tipo |
+
+El id del ataque es el nombre del archivo en `data/moves/` (sin `.tres`), y el del tipo, el de `data/types/`.
+Con una hoja de impacto por tipo (18 hojas) ya todos los golpes del juego tienen efecto. Después corré el import
+(o abrí el editor de Godot) para que se importe; sin importar también anda probando local, pero la versión
+portable necesita el import.
+
+**Forma con más control (otra velocidad, sin bucle, varios tamaños)**: en Godot creá un **SpriteFrames**
+(`data/fx/<nombre>.tres`; Add frames from sprite sheet, animación `default`, FPS a gusto) y asignalo en el
+inspector al campo **Vfx** o **Impact Vfx** del ataque (`data/moves/<id>.tres`, grupo "Efecto con sprite") o
+del tipo (`data/types/<id>.tres`). El orden que usa el juego: SpriteFrames del ataque → hoja del ataque →
+SpriteFrames del tipo → hoja del tipo → dibujado por código.
+
+**Probarlo**: la vitrina de kits muestra a Charmander tirando Ascuas, Giro Fuego y demás:
+
+```bash
+C:/Users/Gusti/Documents/claude/tools/godot/Godot_v4.7.2-stable_win64.exe --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit
+```
+
+o jugalo directo. El test automático del enganche es `--autotest-vfx`.
 
 ---
 
 ## 7. Resumen rápido
 
-1. **Efecto** → Sorceress Quick Sprites, VFX, 32-48 px, prompt con los colores del tipo, exportar 1× PNG.
+1. **Efecto** → Sorceress Quick Sprites, VFX, 32-48 px, prompt con los colores del tipo ("pointing right"),
+   exportar 1× PNG.
 2. **Animación de Pokémon** → PixelLab: cuadro sur del `Idle-Anim.png` como referencia → 8 direcciones →
    Animate with text → retocar en Aseprite con la paleta del original.
 3. **Exportar** por filas (8 para Pokémon, 1 para efectos), sin padding.
 4. **Pokémon**: PNG + `AnimData.xml` en `sprites/pokemon/<N.º>/` → `download_sprites.py` → `--import`.
-   **Efecto**: `sprites/fx/` + `SpriteFrames` en `data/fx/` (el enganche a los ataques está por hacer).
+   **Efecto**: una fila de cuadros cuadrados apuntando a la derecha → `sprites/fx/moves/<ataque>.png` o
+   `sprites/fx/types/<tipo>.png` (`_impacto` para el golpe) → `--import`.
 
 ## Fuentes
 

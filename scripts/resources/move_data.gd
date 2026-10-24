@@ -144,6 +144,13 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export var tick_interval: float = 0.15
 
 
+@export_group("Efecto con sprite (VFX)")
+## Animación del cuerpo del ataque (proyectil, onda de área, corte), dibujada apuntando a la derecha. Si está
+## vacía: hoja sprites/fx/moves/<id>.png, después la del tipo; sin ninguna se dibuja por código (DB.vfx_for).
+@export var vfx: SpriteFrames
+## Animación al pegarle a alguien (o sprites/fx/moves/<id>_impacto.png, después la del tipo).
+@export var impact_vfx: SpriteFrames
+
 ## Alcance aproximado (para la IA).
 func reach() -> float:
 	match kind:

@@ -14,6 +14,10 @@ extends Resource
 ## Va como id y no como recurso porque el estado apunta a su elemento (sería una referencia circular).
 @export var hit_status_id: String = ""
 @export_range(0.0, 1.0) var hit_status_chance: float = 1.0
+## Efectos con sprite de todos los ataques de este tipo que no traigan el suyo (o las hojas
+## sprites/fx/types/<id>.png y <id>_impacto.png). Ver MoveData.vfx.
+@export var vfx: SpriteFrames
+@export var impact_vfx: SpriteFrames
 
 
 func hdr(c: Color, factor: float = 1.0) -> Color:

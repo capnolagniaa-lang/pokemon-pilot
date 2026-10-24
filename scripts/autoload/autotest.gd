@@ -72,6 +72,13 @@ func _ready() -> void:
 		add_child(st)
 		(st.showcase if "--showcase-story" in OS.get_cmdline_user_args() else st.run).call_deferred()
 		return
+	if "--autotest-vfx" in OS.get_cmdline_user_args():
+		set_process(false)
+		var vx := VfxTests.new()
+		vx.autotest = self
+		add_child(vx)
+		vx.run.call_deferred()
+		return
 	if "--autotest-anims" in OS.get_cmdline_user_args():
 		set_process(false)
 		var an := AnimTests.new()

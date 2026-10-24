@@ -8,6 +8,8 @@ var radius := 11.0
 var direction := Vector2.RIGHT
 var color := Color.WHITE
 var _time := 0.0
+## Corte con sprite (DB.vfx_for): no se dibujan los arcos.
+var _has_vfx := false
 
 
 func swing(p_hit: HitInfo, center: Vector2, p_radius: float, dir: Vector2) -> void:
@@ -23,6 +25,10 @@ func swing(p_hit: HitInfo, center: Vector2, p_radius: float, dir: Vector2) -> vo
 	col.shape = shape
 	add_child(col)
 	z_index = 3
+	var frames := DB.vfx_for(p_hit.move)
+	if frames != null:
+		_has_vfx = true
+		VfxSprite.burst(get_parent(), frames, center, direction.angle())
 
 
 func _physics_process(delta: float) -> void:
@@ -35,6 +41,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _draw() -> void:
+	if _has_vfx:
+		return
 	var k := clampf(_time / LIFETIME, 0.0, 1.0)
 	var a := direction.angle()
 	draw_arc(-direction * radius * 0.4, radius, a - 1.1, a + 1.1, 12, Color(color, 1.0 - k), 2.0)

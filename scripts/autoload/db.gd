@@ -26,6 +26,10 @@ var type_chart: TypeChart
 var config: GameConfig
 
 var _textures: Dictionary = {}
+## Hojas de efectos ya armadas (DB.vfx_sheet; también guarda las que no existen).
+var _vfx: Dictionary = {}
+## Cuadros por segundo de las hojas de efectos sin SpriteFrames propio.
+const VFX_FPS := 15.0
 
 
 func _ready() -> void:
@@ -118,6 +122,44 @@ func interactions_for(element: ElementType, statuses_node: StatusEffects) -> Arr
 ## Animaciones de sprite (PMD) de una especie: {"Idle": {...}, "Walk": {...}, "portrait": path}.
 func anims_of(sp: SpeciesData) -> Dictionary:
 	return SpriteData.ANIMS.get(sp.dex, {})
+
+
+## Efecto con sprite de un ataque (impact = el del golpe al pegar), o null = se dibuja por código.
+## Orden: el SpriteFrames del ataque > su hoja sprites/fx/moves/<id>[_impacto].png > el del tipo > la hoja
+## sprites/fx/types/<id>[_impacto].png. Las hojas son una fila de cuadros cuadrados (alto = ancho del cuadro).
+func vfx_for(m: MoveData, impact: bool = false) -> SpriteFrames:
+	var suffix := "_impacto" if impact else ""
+	var own: SpriteFrames = m.impact_vfx if impact else m.vfx
+	if own == null:
+		own = vfx_sheet("res://sprites/fx/moves/%s%s.png" % [m.id, suffix])
+	if own == null and m.element != null:
+		own = m.element.impact_vfx if impact else m.element.vfx
+		if own == null:
+			own = vfx_sheet("res://sprites/fx/types/%s%s.png" % [m.element.id, suffix])
+	return own
+
+
+## SpriteFrames armado de una hoja de efecto (una fila de cuadros cuadrados, VFX_FPS), o null si no existe.
+func vfx_sheet(path: String) -> SpriteFrames:
+	var key := "vfx:" + path
+	if _vfx.has(key):
+		return _vfx[key]
+	var frames: SpriteFrames = null
+	var tex: Texture2D = null
+	if ResourceLoader.exists(path) or FileAccess.file_exists(path):  # sin importar todavía también anda
+		tex = texture(path)
+	if tex != null and tex.get_height() > 0:
+		var h := tex.get_height()
+		frames = SpriteFrames.new()
+		frames.set_animation_speed("default", VFX_FPS)
+		frames.set_animation_loop("default", true)
+		for i in maxi(1, tex.get_width() / h):
+			var at := AtlasTexture.new()
+			at.atlas = tex
+			at.region = Rect2(i * h, 0, h, h)
+			frames.add_frame("default", at)
+	_vfx[key] = frames
+	return frames
 
 
 ## Primer cuadro de la animación Idle mirando hacia abajo (miniaturas de la Pokédex). Si no hay, el retrato.

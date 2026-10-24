@@ -14,6 +14,8 @@ var core := Color.WHITE
 var deflected := false
 var _time := 0.0
 var _dead := false
+## Cuerpo con sprite (DB.vfx_for); sin él se dibuja con círculos.
+var _vfx: VfxSprite
 
 
 func launch(p_hit: HitInfo, from: Vector2, dir: Vector2) -> void:
@@ -40,6 +42,9 @@ func launch(p_hit: HitInfo, from: Vector2, dir: Vector2) -> void:
 		light.texture_scale = 0.75
 		add_child(light)
 	add_child(_trail())
+	var frames := DB.vfx_for(m)
+	if frames != null:
+		_vfx = VfxSprite.attach(self, frames, velocity.angle())
 	hit_landed.connect(func(_h): _impact())
 	body_entered.connect(func(_b): _impact())
 
@@ -49,6 +54,8 @@ func _physics_process(delta: float) -> void:
 		return
 	_time += delta
 	global_position += velocity * delta
+	if _vfx != null:
+		_vfx.rotation = velocity.angle()  # sigue la dirección aunque lo desvíe el viento
 	if hit.move.deflects_projectiles:
 		Projectile.deflect_around(get_parent(), hit.team, global_position, radius + 4.0)
 	if _time >= life:
@@ -85,6 +92,8 @@ func _draw() -> void:
 	var pulse := 1.0 + 0.15 * sin(_time * 30.0)
 	var base := hit.move.element.color if hit != null else color
 	draw_circle(Vector2.ZERO, radius * 1.8 * pulse, Color(base, 0.22))
+	if _vfx != null:
+		return  # el halo queda debajo del sprite (el glow lo sigue haciendo brillar)
 	draw_circle(Vector2.ZERO, radius * pulse, color)
 	draw_circle(Vector2.ZERO, radius * 0.5, core)
 

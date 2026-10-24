@@ -66,6 +66,7 @@ $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
 $G --headless --path . --quit-after 30000 -- --autotest-anims    # animaciones de combate (Shoot, Charge, Strike, Hop, Faint, Sleep...)
+$G --headless --path . --quit-after 20000 -- --autotest-vfx      # efectos de ataque con sprite (hojas, prioridad, proyectil/área/golpe/impacto)
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
@@ -286,6 +287,11 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   carga → Charge, golpes → Strike/Swing/Double según potencia y paso del combo, embestida → LeapForth, esquive →
   Hop/Rotate/Tumble según el estilo de movimiento, debilitado → Faint/HitGround/LostBalance, dormido → Sleep; si la
   especie no la tiene, cae a Attack). Efectos y animaciones con IA: `docs/TUTORIAL_PIXELLAB_SORCERESS.md`.
+- **Efectos de ataque con sprite** (opcionales; sin ellos se dibujan por código): `MoveData.vfx`/`impact_vfx` y
+  `ElementType.vfx`/`impact_vfx` (SpriteFrames), o hojas `sprites/fx/moves/<id>[_impacto].png` y
+  `sprites/fx/types/<id>[_impacto].png` (una fila de cuadros cuadrados, apuntando a la derecha, 15 fps).
+  `DB.vfx_for` elige (ataque > tipo); `VfxSprite` los dibuja en `Projectile`, `AreaEffect`, `MeleeSwing` y el
+  impacto en `combat_feedback.gd`. Conos y látigos todavía no.
 
 ## Trampas conocidas
 - En shaders `canvas_item`, `COLOR` en `fragment()` ya trae la textura: guardar el color de vértice en un

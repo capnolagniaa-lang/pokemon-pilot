@@ -49,6 +49,9 @@ func _on_damaged(c: Creature, amount: float, hit: HitInfo) -> void:
 		return
 	var el := hit.move.element
 	Fx.burst(c.get_parent(), c.global_position + Vector2(0, -8), el.hdr(el.color), 8, 70.0)
+	var impact := DB.vfx_for(hit.move, true)
+	if impact != null:  # efecto de impacto con sprite (llamarada, chispa...)
+		VfxSprite.burst(c.get_parent(), impact, c.global_position + Vector2(0, -8))
 	var strong := eff > 1.0 or hit.move.knockback >= Creature.STAGGER_KNOCKBACK
 	Events.hitstop.emit(HITSTOP_STRONG if strong else HITSTOP_NORMAL)
 	Events.camera_shake.emit((4.0 if c.team == Creature.Team.ALLY else 2.0) + (2.0 if strong else 0.0))

@@ -9,6 +9,8 @@ var radius := 48.0
 var color := Color.WHITE
 var _time := 0.0
 var _light: PointLight2D
+## Onda con sprite (DB.vfx_for): no se dibujan los aros.
+var _has_vfx := false
 
 
 func trigger(p_hit: HitInfo, at: Vector2) -> void:
@@ -35,6 +37,10 @@ func trigger(p_hit: HitInfo, at: Vector2) -> void:
 	if m.crater_radius > 0.0:
 		Events.ground_impact.emit(at, m.crater_radius, HitInfo.source_key(p_hit), m.crater_max)
 	Fx.burst(get_parent(), at, color, 20, radius * 2.0)
+	var frames := DB.vfx_for(m)
+	if frames != null:
+		_has_vfx = true
+		VfxSprite.burst(get_parent(), frames, at, 0.0, radius * 2.0)
 
 
 func _physics_process(delta: float) -> void:
@@ -53,5 +59,7 @@ func _draw() -> void:
 	var k := clampf(_time / DURATION, 0.0, 1.0)
 	var r := radius * (0.25 + 0.75 * sqrt(k))
 	draw_circle(Vector2.ZERO, r, Color(color.r * 0.6, color.g * 0.6, color.b * 0.6, 0.16 * (1.0 - k)))
+	if _has_vfx:
+		return
 	draw_arc(Vector2.ZERO, r, 0.0, TAU, 48, Color(color, 1.0 - k), 3.0)
 	draw_arc(Vector2.ZERO, r * 0.7, 0.0, TAU, 40, Color(color, 0.5 * (1.0 - k)), 1.5)

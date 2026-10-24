@@ -11,8 +11,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   especie). La criatura las usa según la forma del ataque (`CreatureSprite.CHAINS`/`chain_for_move`): disparo y
   cono → Shoot, carga → Charge, golpes → Strike/Swing/Double, embestida → LeapForth, esquive → Hop/Rotate/Tumble,
   debilitado → Faint (se queda caído), dormido → Sleep; sin la animación cae a Attack. Test `--autotest-anims`.
-  Tutorial para efectos y animaciones con IA: `docs/TUTORIAL_PIXELLAB_SORCERESS.md` (los efectos con sprite
-  todavía no tienen enganche en código: hoy se dibujan por código).
+  Tutorial para efectos y animaciones con IA: `docs/TUTORIAL_PIXELLAB_SORCERESS.md`.
+- **Efectos de ataque con sprite (2026-10-24)**: enganche listo, falta el arte. Una hoja en
+  `sprites/fx/moves/<ataque>.png` o `sprites/fx/types/<tipo>.png` (`_impacto` para el golpe), o un SpriteFrames en
+  el campo `vfx`/`impact_vfx` del ataque o del tipo, reemplaza el dibujo por código del proyectil, el área, el corte
+  y el impacto (`DB.vfx_for`, `VfxSprite`). Test `--autotest-vfx`. Pendiente: conos y látigos.
 - **Versión portable para amigos (2026-10-24)**: `python -I -B tools/build_portable.py . <Godot_v4.7.2-stable_win64.exe>`
   arma `export/PokemonPilot-<fecha>.zip` (~115 MB: el Godot renombrado + `PokemonPilot.pck` + `LEEME.txt`). No usa
   plantillas de exportación. Preset "Windows Desktop" en `export_presets.cfg` con la feature `portable`, que apaga
