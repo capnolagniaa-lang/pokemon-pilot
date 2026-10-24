@@ -1,5 +1,5 @@
 """Descarga los sprites PMD (PMDCollab/SpriteCollab) de los Pokémon por número de Pokédex y genera
-scripts/generated/sprite_data.gd. Reemplaza a download_sprites.ps1.
+scripts/generated/sprite_data.gd. Reemplaza a download_sprites.ps1. Animaciones: ver ANIMS.
 
 Uso: python -I tools/download_sprites.py <carpeta del proyecto> [hasta_dex=386]
 No vuelve a bajar lo que ya está. Si a una especie le falta una animación o el retrato, se saltea (el juego
@@ -13,7 +13,11 @@ import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 
 BASE = "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master"
-ANIMS = ["Idle", "Walk", "Attack", "Hurt"]
+## Básicas (todas las especies las tienen) + las de combate que usa CreatureSprite si la especie las trae
+## (disparo, carga, golpes, embestida, esquive, debilitado, dormido). Las que falten se saltean.
+ANIMS = ["Idle", "Walk", "Attack", "Hurt",
+         "Shoot", "Charge", "QuickStrike", "Strike", "Kick", "Swing", "Double", "Hop", "Rotate", "Tumble", "LeapForth",
+         "Faint", "HitGround", "LostBalance", "Sleep"]
 
 
 def fetch(url):

@@ -17,6 +17,7 @@ func enter(msg: Dictionary = {}) -> void:
 	_time = 0.0
 	actor.sprite.charge_color = _move.element.color
 	actor.sprite.charge = 0.0
+	actor.sprite.play_charge(_move.cast_time)
 	match _move.kind:
 		MoveData.Kind.AREA:
 			actor.telegraph.show_circle(_move.radius, _move.element.color)
@@ -31,6 +32,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 func exit() -> void:
 	actor.sprite.charge = -1.0
+	actor.sprite.stop_forced("Charge")
 	actor.telegraph.clear()
 
 

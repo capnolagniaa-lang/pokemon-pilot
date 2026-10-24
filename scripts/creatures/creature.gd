@@ -392,7 +392,7 @@ func release_move(msg: Dictionary) -> void:
 	var m: MoveData = msg["move"]
 	var aim: Vector2 = msg.get("aim", facing)
 	var step: int = msg.get("step", 0)
-	sprite.play_once("Attack", 0.35)
+	sprite.play_move(m, step)  # Shoot, Strike, Swing, LeapForth... según la forma (cae a Attack)
 	var hit := HitInfo.from(self, m)
 	if m.resource_scaling > 0.0 and signature != null:
 		hit.damage_mult *= 1.0 + m.resource_scaling * msg.get("spent", 0.0) / signature.data.max_value

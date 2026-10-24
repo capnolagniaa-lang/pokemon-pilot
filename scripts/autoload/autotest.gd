@@ -72,6 +72,13 @@ func _ready() -> void:
 		add_child(st)
 		(st.showcase if "--showcase-story" in OS.get_cmdline_user_args() else st.run).call_deferred()
 		return
+	if "--autotest-anims" in OS.get_cmdline_user_args():
+		set_process(false)
+		var an := AnimTests.new()
+		an.autotest = self
+		add_child(an)
+		an.run.call_deferred()
+		return
 	if "--autotest-kits-v4" in OS.get_cmdline_user_args() or "--showcase-onix" in OS.get_cmdline_user_args():
 		set_process(false)
 		var k4 := KitsV4Tests.new()

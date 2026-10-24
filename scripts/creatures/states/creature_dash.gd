@@ -38,6 +38,8 @@ func enter(msg: Dictionary = {}) -> void:
 	actor.facing = _dir
 	actor.dash_hitbox.monitoring = _attack
 	actor.sprite.afterimages = true
+	if not _attack:
+		actor.sprite.play_dodge(actor.move_style(), _time)  # Hop / Rotate / Tumble
 
 
 func exit() -> void:

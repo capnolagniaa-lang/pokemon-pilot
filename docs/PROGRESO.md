@@ -6,6 +6,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Animaciones de combate de SpriteCollab (2026-10-24)**: `download_sprites.py` baja además Shoot, Charge, Strike,
+  Swing, Double, Hop, Rotate, Tumble, LeapForth, Faint, HitGround, LostBalance, Sleep... (las que tenga cada
+  especie). La criatura las usa según la forma del ataque (`CreatureSprite.CHAINS`/`chain_for_move`): disparo y
+  cono → Shoot, carga → Charge, golpes → Strike/Swing/Double, embestida → LeapForth, esquive → Hop/Rotate/Tumble,
+  debilitado → Faint (se queda caído), dormido → Sleep; sin la animación cae a Attack. Test `--autotest-anims`.
+  Tutorial para efectos y animaciones con IA: `docs/TUTORIAL_PIXELLAB_SORCERESS.md` (los efectos con sprite
+  todavía no tienen enganche en código: hoy se dibujan por código).
 - **Herramienta — Editor de mapas hecha** (no corre la numeración de etapas): acceso directo "Pokémon Pilot —
   Editor de mapas" (`-- --map-editor`). Ya tiene **todos los gráficos de FireRed**, la paleta organizada como la
   hoja de tiles del mundo de FireRed y 78 sellos sacados de los mapas reales. Ver "Herramienta — Editor de mapas".

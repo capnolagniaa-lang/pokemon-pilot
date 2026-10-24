@@ -7,6 +7,24 @@ extends Node2D
 ## Las hojas PMD centran el cuerpo en el frame; subimos el dibujo para que los pies queden en el origen.
 @export var foot_offset := 8.0
 
+## Animaciones de combate por acción, en orden de preferencia (tools/download_sprites.py baja las que la
+## especie tenga en SpriteCollab). Si no tiene ninguna de la lista, se usa Attack (o nada, en el esquive y la carga).
+const CHAINS := {
+	"shoot": ["Shoot", "Attack"],
+	"charge": ["Charge"],
+	"strike": ["QuickStrike", "Strike", "Kick", "Attack"],
+	"swing": ["Swing", "Strike", "QuickStrike", "Attack"],
+	"double": ["Double", "Swing", "Strike", "Attack"],
+	"leap": ["LeapForth", "Attack"],
+	"buff": ["Charge", "Attack"],
+	"faint": ["Faint", "HitGround", "LostBalance", "Hurt"],
+	"dodge": ["Hop", "Rotate", "Tumble"],
+	"dodge_agil": ["Tumble", "Hop", "Rotate"],
+	"dodge_volador": ["Rotate", "Hop", "Tumble"],
+}
+## Las que se repiten mientras duran (las demás se quedan en el último cuadro).
+const LOOPED := ["Idle", "Walk", "Sleep", "Charge"]
+
 var species: SpeciesData:
 	set(value):
 		species = value
@@ -27,13 +45,15 @@ var _anim := "Idle"
 var _time := 0.0
 var _forced := ""
 var _forced_left := 0.0
+## Velocidad de reproducción de la animación forzada (>1 = comprimida para entrar en su tiempo).
+var _rate := 1.0
 var _flash := 0.0
 var _ghosts: Array = []  # [posición global, frame src, rect, alpha]
 var _ghost_timer := 0.0
 
 
 func _process(delta: float) -> void:
-	_time += delta
+	_time += delta * (_rate if _forced_left > 0.0 else 1.0)
 	_forced_left = maxf(0.0, _forced_left - delta)
 	_flash = maxf(0.0, _flash - delta)
 	emote_left = maxf(0.0, emote_left - delta)
@@ -43,6 +63,8 @@ func _process(delta: float) -> void:
 		want = _forced
 	elif parent != null and parent.velocity.length() > 5.0:
 		want = "Walk"
+	elif parent is Creature and parent.statuses != null and parent.statuses.has_status("dormido"):
+		want = "Sleep"
 	if want != _anim and _anims.has(want):
 		_anim = want
 		_time = 0.0
@@ -54,10 +76,86 @@ func _process(delta: float) -> void:
 func play_once(anim_name: String, max_time: float = 0.5) -> void:
 	if not _anims.has(anim_name):
 		return
+	_force(anim_name, minf(_total(anim_name) / 60.0, max_time), 1.0)
+
+
+## Animación que está mostrando ahora (la usan los tests).
+func current_anim() -> String:
+	return _anim
+
+
+## Primera animación de la cadena (CHAINS) que tiene la especie, o "" si ninguna.
+func pick(chain: String) -> String:
+	for a in CHAINS.get(chain, []):
+		if _anims.has(a):
+			return a
+	return ""
+
+
+## Cadena de animación de un ataque según su forma (MoveData.kind) y el paso del combo.
+static func chain_for_move(m: MoveData, step: int = 0) -> String:
+	match m.kind:
+		MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL, MoveData.Kind.ZONE:
+			return "shoot"
+		MoveData.Kind.DASH, MoveData.Kind.LUNGE:
+			return "leap"
+		MoveData.Kind.WHIP:
+			return "swing"
+		MoveData.Kind.MELEE:
+			if m.combo_steps > 1:
+				return "strike" if step == 0 else ("double" if step == m.combo_steps - 1 else "swing")
+			return "swing" if m.power >= 80.0 else "strike"
+		MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF:
+			return "buff"
+		MoveData.Kind.AREA:
+			return "strike" if m.category == MoveData.Category.PHYSICAL else "shoot"
+	return "strike"
+
+
+## Animación al lanzar un ataque: entera, comprimida para que entre en max_time.
+func play_move(m: MoveData, step: int = 0, max_time: float = 0.35) -> void:
+	play_chain(chain_for_move(m, step), max_time)
+
+
+## Reproduce la primera animación disponible de la cadena, comprimida para que entre en max_time.
+## hold = se queda en el último cuadro todo ese tiempo (debilitado) en vez de acortarse.
+func play_chain(chain: String, max_time: float, hold: bool = false) -> void:
+	var a := pick(chain)
+	if a == "":
+		return
+	var length := _total(a) / 60.0
+	_force(a, max_time if hold else minf(length, max_time), maxf(1.0, length / max_time))
+
+
+## Esquive (Espacio): saltito, giro o voltereta según el estilo de movimiento.
+func play_dodge(style: String, time: float) -> void:
+	play_chain("dodge_" + style if CHAINS.has("dodge_" + style) else "dodge", time)
+
+
+## Carga de un ataque: repite Charge mientras dura (si la especie la tiene).
+func play_charge(time: float) -> void:
+	var a := pick("charge")
+	if a != "":
+		_force(a, time, 1.0)
+
+
+## Debilitado: cae y se queda en el último cuadro.
+func play_faint(time: float) -> void:
+	play_chain("faint", time, true)
+
+
+func _force(anim_name: String, time: float, rate: float) -> void:
 	_forced = anim_name
-	_forced_left = minf(_total(anim_name) / 60.0, max_time)
+	_forced_left = time
+	_rate = rate
 	_anim = anim_name
 	_time = 0.0
+
+
+## Corta una animación forzada (la carga, si se interrumpe).
+func stop_forced(anim_name: String) -> void:
+	if _forced == anim_name:
+		_forced_left = 0.0
 
 
 func flash() -> void:
@@ -99,7 +197,7 @@ func _current() -> Array:
 	var fh: float = anim["h"]
 	var facing: Vector2 = get_parent().get("facing") if get_parent() != null else Vector2.DOWN
 	var frozen := _status_frozen()
-	var frame := 0 if frozen else _frame(anim["durations"], _anim == "Idle" or _anim == "Walk")
+	var frame := 0 if frozen else _frame(anim["durations"], LOOPED.has(_anim))
 	return [DB.texture(anim["file"]), Rect2(frame * fw, _row(facing) * fh, fw, fh), Rect2(-fw / 2.0, -fh / 2.0 - foot_offset, fw, fh)]
 
 

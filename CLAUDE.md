@@ -65,6 +65,7 @@ $G --headless --path . --quit-after 30000 -- --autotest-bag       # mochila (cur
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-capture  # lanzar bola, Mochila, Caja
 $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
+$G --headless --path . --quit-after 30000 -- --autotest-anims    # animaciones de combate (Shoot, Charge, Strike, Hop, Faint, Sleep...)
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
@@ -274,8 +275,14 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - `tools/build_wild_docs.gd`: genera `docs/SALVAJES_LISTADO.md` (qué aparece en cada zona, kit, temperamento y
   movimientos de cada especie). Correrlo después de tocar tablas de encuentros, kits o learnsets. Cómo funciona
   todo eso y cómo modificarlo: `docs/SALVAJES_Y_MOVIMIENTOS.md`.
-- `tools/download_sprites.py`: sprites PMD (PMDCollab/SpriteCollab) de los N.º 1-386 (Idle, Walk, Attack,
-  Hurt y retrato) → `sprites/pokemon/` + `scripts/generated/sprite_data.gd`. No vuelve a bajar lo que ya está.
+- `tools/download_sprites.py`: sprites PMD (PMDCollab/SpriteCollab) de los N.º 1-386 (Idle, Walk, Attack, Hurt,
+  retrato y las de combate que tenga cada especie: Shoot, Charge, QuickStrike, Strike, Kick, Swing, Double, Hop,
+  Rotate, Tumble, LeapForth, Faint, HitGround, LostBalance, Sleep; lista `ANIMS`) → `sprites/pokemon/` +
+  `scripts/generated/sprite_data.gd`. No vuelve a bajar lo que ya está (tampoco el `AnimData.xml`: se pueden
+  agregar animaciones hechas a mano). Qué animación usa cada acción: `CreatureSprite.CHAINS` (disparo → Shoot,
+  carga → Charge, golpes → Strike/Swing/Double según potencia y paso del combo, embestida → LeapForth, esquive →
+  Hop/Rotate/Tumble según el estilo de movimiento, debilitado → Faint/HitGround/LostBalance, dormido → Sleep; si la
+  especie no la tiene, cae a Attack). Efectos y animaciones con IA: `docs/TUTORIAL_PIXELLAB_SORCERESS.md`.
 
 ## Trampas conocidas
 - En shaders `canvas_item`, `COLOR` en `fragment()` ya trae la textura: guardar el color de vértice en un

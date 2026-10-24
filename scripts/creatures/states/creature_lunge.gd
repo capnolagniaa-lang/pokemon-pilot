@@ -64,7 +64,7 @@ func physics_update(delta: float) -> void:
 		var s := MeleeSwing.new()
 		actor.get_parent().add_child(s)
 		s.swing(hit, actor.global_position + Vector2(0, -8) + _dir * _move.melee_range, _move.swing_radius * hit.area_mult, _dir)
-		actor.sprite.play_once("Attack", 0.3)
+		actor.sprite.play_chain("swing", 0.3)
 		_finish()
 
 
