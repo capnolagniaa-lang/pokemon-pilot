@@ -67,6 +67,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies 
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
 $G --headless --path . --quit-after 30000 -- --autotest-anims    # animaciones de combate (Shoot, Charge, Strike, Hop, Faint, Sleep...)
 $G --headless --path . --quit-after 20000 -- --autotest-vfx      # efectos de ataque con sprite (hojas, prioridad, proyectil/área/golpe/impacto)
+$G --path . --quit-after 500 --write-movie out/f.png --fixed-fps 30 -- --showcase-vfx  # el impacto de cada tipo y los proyectiles con hoja, de cerca
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
@@ -290,8 +291,11 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Efectos de ataque con sprite** (opcionales; sin ellos se dibujan por código): `MoveData.vfx`/`impact_vfx` y
   `ElementType.vfx`/`impact_vfx` (SpriteFrames), o hojas `sprites/fx/moves/<id>[_impacto].png` y
   `sprites/fx/types/<id>[_impacto].png` (una fila de cuadros cuadrados, apuntando a la derecha, 15 fps).
-  `DB.vfx_for` elige (ataque > tipo); `VfxSprite` los dibuja en `Projectile`, `AreaEffect`, `MeleeSwing` y el
-  impacto en `combat_feedback.gd`. Conos y látigos todavía no.
+  `DB.vfx_for` elige (ataque > hoja del ataque oficial del mismo nombre, para las variantes de los kits > tipo);
+  `VfxSprite` los dibuja en `Projectile`, `AreaEffect`, `MeleeSwing` y el impacto en `combat_feedback.gd`. Conos y
+  látigos todavía no. **Hojas actuales = hechas por código** con `python -I -B tools/make_vfx.py .` (impacto de los
+  18 tipos + cuerpo de Ascuas, Impactrueno, Pistola Agua, Burbuja, Hoja Afilada; `--sheet <png>` = hoja de contacto).
+  Correrlo de nuevo pisa esas hojas: si se reemplaza una por arte de PixelLab/Sorceress, sacarla de su tabla.
 
 ## Trampas conocidas
 - En shaders `canvas_item`, `COLOR` en `fragment()` ya trae la textura: guardar el color de vértice en un

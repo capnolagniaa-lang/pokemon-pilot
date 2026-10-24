@@ -125,18 +125,33 @@ func anims_of(sp: SpeciesData) -> Dictionary:
 
 
 ## Efecto con sprite de un ataque (impact = el del golpe al pegar), o null = se dibuja por código.
-## Orden: el SpriteFrames del ataque > su hoja sprites/fx/moves/<id>[_impacto].png > el del tipo > la hoja
+## Orden: el SpriteFrames del ataque > su hoja sprites/fx/moves/<id>[_impacto].png > la hoja del ataque oficial
+## con el mismo nombre (las variantes de los kits, ej. ascuas_abanico → ascuas.png) > el del tipo > la hoja
 ## sprites/fx/types/<id>[_impacto].png. Las hojas son una fila de cuadros cuadrados (alto = ancho del cuadro).
 func vfx_for(m: MoveData, impact: bool = false) -> SpriteFrames:
 	var suffix := "_impacto" if impact else ""
 	var own: SpriteFrames = m.impact_vfx if impact else m.vfx
 	if own == null:
 		own = vfx_sheet("res://sprites/fx/moves/%s%s.png" % [m.id, suffix])
+	if own == null:
+		var official := _official_move_id(m.display_name)
+		if official != "" and official != m.id:
+			own = vfx_sheet("res://sprites/fx/moves/%s%s.png" % [official, suffix])
 	if own == null and m.element != null:
 		own = m.element.impact_vfx if impact else m.element.vfx
 		if own == null:
 			own = vfx_sheet("res://sprites/fx/types/%s%s.png" % [m.element.id, suffix])
 	return own
+
+
+## Id del ataque de data/moves con ese nombre ("" si no hay): las variantes de los kits usan su hoja.
+func _official_move_id(display_name: String) -> String:
+	if not _vfx.has("names"):
+		var names := {}
+		for id in moves:
+			names[moves[id].display_name] = id
+		_vfx["names"] = names
+	return _vfx["names"].get(display_name, "")
 
 
 ## SpriteFrames armado de una hoja de efecto (una fila de cuadros cuadrados, VFX_FPS), o null si no existe.

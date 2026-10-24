@@ -2,6 +2,8 @@ class_name VfxTests
 extends Node
 ## Autotest de los efectos de ataque con sprite (MoveData/ElementType.vfx, hojas en sprites/fx/, VfxSprite):
 ##   godot --headless --path . --quit-after 20000 -- --autotest-vfx
+## Vitrina (cámara de cerca: el impacto de cada tipo y los proyectiles con hoja de tools/make_vfx.py):
+##   godot --path . --quit-after 500 --write-movie out/f.png --fixed-fps 30 -- --showcase-vfx
 ## Hojas de prueba hechas acá (no hay arte de efectos todavía): que se corten bien, el orden de prioridad, y que
 ## proyectil, área, golpe e impacto las muestren (rotadas hacia donde va el ataque) y se borren solas.
 
@@ -24,8 +26,14 @@ func run() -> void:
 	for m: MoveData in me.moves.slots:
 		if m.kind == MoveData.Kind.PROJECTILE:
 			base = m
-	r["Sin hoja ni SpriteFrames: %s no tiene efecto con sprite" % base.display_name] = DB.vfx_for(base) == null \
-		and DB.vfx_for(base, true) == null
+	var bare := base.duplicate() as MoveData  # ataque y tipo sin hojas: se dibuja por código
+	bare.id = "sin_hoja"
+	bare.display_name = "Sin hoja"
+	bare.element = base.element.duplicate()
+	bare.element.id = "sin_tipo"
+	r["Sin hoja ni SpriteFrames: no tiene efecto con sprite"] = DB.vfx_for(bare) == null and DB.vfx_for(bare, true) == null
+	r["Hojas de tools/make_vfx.py: Ascuas y el impacto de Fuego"] = DB.vfx_for(DB.moves["ascuas"]) != null and DB.vfx_for(DB.moves["ascuas"], true) != null and DB.vfx_for(DB.moves["ascuas"], true).get_frame_count("default") == 7
+	r["%s (%s, del kit) usa la hoja de ascuas.png" % [base.display_name, base.id]] = DB.vfx_for(base) == DB.vfx_for(DB.moves["ascuas"])
 
 	var body := DB.vfx_sheet("user://vfx_prueba.png")
 	var hit_fx := _frames(3)
@@ -48,7 +56,7 @@ func run() -> void:
 		and spr[0].is_playing()
 	var plain := Projectile.new()
 	parent.add_child(plain)
-	plain.launch(HitInfo.from(me, base), me.global_position + Vector2(0, -40), Vector2.UP)
+	plain.launch(HitInfo.from(me, bare), me.global_position + Vector2(0, -40), Vector2.UP)
 	r["Proyectil sin hoja: igual que antes (sin sprite)"] = _vfx_in(plain).is_empty()
 
 	var before := _vfx_in(parent).size()
@@ -81,6 +89,37 @@ func run() -> void:
 		print("[vfx] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-vfx] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+
+func showcase() -> void:
+	var world: Node = await autotest._setup_kit_world("charmander")
+	var me: Creature = world.companion
+	var dummy: Creature = autotest._dummy(world, "snorlax", me.global_position + Vector2(56, 0))
+	var cam: CameraRig = world.camera
+	cam.target = null
+	cam.global_position = (me.global_position + dummy.global_position) / 2.0
+	cam.zoom = Vector2(4, 4)
+	await get_tree().physics_frame
+	var base: MoveData = me.moves.slots[0]
+	for tid in DB.types:
+		var m := base.duplicate() as MoveData
+		m.element = DB.types[tid]
+		m.power = 1.0
+		dummy.hurtbox.receive(HitInfo.from(me, m))
+		dummy.health.heal(9999.0)
+		dummy.statuses.clear()  # que el quemado no lo tiña de naranja para el siguiente
+		print("[showcase-vfx] impacto ", tid)
+		await get_tree().create_timer(0.5).timeout
+	for id in ["ascuas", "impactrueno", "pistola_agua", "burbuja", "hoja_afilada"]:
+		if not DB.moves.has(id):
+			continue
+		var p := Projectile.new()
+		me.get_parent().add_child(p)
+		p.launch(HitInfo.from(me, DB.moves[id]), me.global_position + Vector2(0, -8), Vector2.RIGHT)
+		dummy.health.heal(9999.0)
+		print("[showcase-vfx] proyectil ", id)
+		await get_tree().create_timer(0.7).timeout
+	get_tree().quit()
 
 
 func _frames(n: int) -> SpriteFrames:

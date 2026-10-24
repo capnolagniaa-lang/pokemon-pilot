@@ -203,6 +203,13 @@ en modo VFX; si sale en varias filas, pasala a una fila en Aseprite (Export Spri
 | `sprites/fx/types/<id del tipo>_impacto.png` | impacto de todos los ataques de ese tipo |
 
 El id del ataque es el nombre del archivo en `data/moves/` (sin `.tres`), y el del tipo, el de `data/types/`.
+Los ataques de los kits (`data/kits/`) tienen otro id (`ascuas_abanico`), pero si no tienen hoja propia usan la
+del ataque oficial con el mismo nombre: `ascuas.png` sirve para la Ascuas de Charmander, Vulpix y Growlithe.
+
+**Ya hay hojas hechas por código** (`tools/make_vfx.py`: el impacto de los 18 tipos y el cuerpo de Ascuas,
+Impactrueno, Pistola Agua, Burbuja y Hoja Afilada). Son de relleno: para reemplazar una, pisá el PNG con el tuyo
+y sacala de la tabla `ESTILOS`/`BODIES` del script (si no, la próxima vez que se corra la vuelve a pisar). Para
+verlas todas de cerca: `--showcase-vfx` (ver CLAUDE.md).
 Con una hoja de impacto por tipo (18 hojas) ya todos los golpes del juego tienen efecto. Después corré el import
 (o abrí el editor de Godot) para que se importe; sin importar también anda probando local, pero la versión
 portable necesita el import.
