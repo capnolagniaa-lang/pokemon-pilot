@@ -6,6 +6,9 @@ extends Node2D
 
 const TILE := 16
 const LIGHT_TEX := preload("res://art/fx/soft_shadow.tres")
+## Pozo estilo FireRed (tools/make_crater_sprite.py): 4 discos de 28×28 (contorno, labio, pared, fondo).
+const CRATER_TEX := preload("res://art/fx/crater.png")
+const CRATER_DISC := 28
 
 ## celda -> {"state": EnvCellState, "left": float, "prev": EnvCellState, "fx": Node2D}
 var cells: Dictionary = {}
@@ -166,7 +169,31 @@ func _clear_fx(cell: Vector2i) -> void:
 		get_tree().create_timer(0.6).timeout.connect(fx.queue_free)
 
 
+## Cráteres: cada capa del pozo (contorno, labio, pared, fondo) en todas sus celdas antes de la siguiente, también
+## entre celdas vecinas y en el medio de cada bloque de 2×2: así varias celdas se funden en un solo cráter de
+## cualquier forma, y una sola es un pozo redondo. `fade`: celda -> opacidad (se desvanece al terminar).
+func _draw_craters(fade: Dictionary) -> void:
+	var points := {}  # posición en medias celdas -> opacidad
+	for c: Vector2i in fade:
+		var k: float = fade[c]
+		points[c * 2] = k
+		for d in [Vector2i.RIGHT, Vector2i.DOWN]:
+			if fade.has(c + d):
+				points[c * 2 + d] = minf(k, fade[c + d])
+		if fade.has(c + Vector2i.RIGHT) and fade.has(c + Vector2i.DOWN) and fade.has(c + Vector2i.ONE):
+			points[c * 2 + Vector2i.ONE] = minf(k, fade[c + Vector2i.ONE])
+	var order: Array = points.keys()
+	order.sort_custom(func(a: Vector2i, b: Vector2i) -> bool: return a.y < b.y)
+	var half := Vector2.ONE * CRATER_DISC / 2.0
+	for layer in 4:
+		var src := Rect2(layer * CRATER_DISC, 0, CRATER_DISC, CRATER_DISC)
+		for p: Vector2i in order:
+			var center := _ground.to_local(cell_center(Vector2i.ZERO)) + Vector2(p) * TILE / 2.0
+			_ground.draw_texture_rect_region(CRATER_TEX, Rect2(center - half, half * 2.0), src, Color(1, 1, 1, points[p]))
+
+
 func _draw_ground() -> void:
+	var craters := {}
 	for cell in cells:
 		var st: EnvCellState = cells[cell]["state"]
 		var r := Rect2(_ground.to_local(cell_center(cell)) - Vector2(TILE, TILE) / 2.0, Vector2(TILE, TILE))
@@ -188,17 +215,12 @@ func _draw_ground() -> void:
 				_ground.draw_line(r.position + Vector2(3, 4), r.position + Vector2(8, 4), Color(1.4, 1.5, 1.6, 0.9 * k), 1.0)
 				_ground.draw_line(r.position + Vector2(10, 10), r.position + Vector2(13, 7), Color(1.2, 1.3, 1.5, 0.7 * k), 1.0)
 			EnvCellState.Look.CRATER:
-				# Pozo redondo: borde de tierra removida, fondo oscuro y piedritas (las celdas vecinas se funden en un
-				# cráter). Se desvanece al final.
-				var c0 := r.get_center() + Vector2(seed * 0.2 - 1.7, seed * 0.15 - 1.2)
-				_ground.draw_circle(c0, 10.5, Color(0.42, 0.33, 0.24, 0.45 * k))
-				_ground.draw_circle(c0 + Vector2(0, 1), 7.5, Color(0.2, 0.15, 0.1, 0.62 * k))
-				_ground.draw_arc(c0, 9.0, PI * 1.1, PI * 1.9, 10, Color(0.62, 0.52, 0.4, 0.55 * k), 1.5)
-				_ground.draw_circle(c0 + Vector2(6, -6 + seed * 0.3), 1.6, Color(0.55, 0.47, 0.38, 0.8 * k))
-				_ground.draw_circle(c0 + Vector2(-7, 4), 1.2, Color(0.55, 0.47, 0.38, 0.7 * k))
+				craters[cell] = k  # se dibujan juntos al final (_draw_craters)
 			EnvCellState.Look.SPARK:
 				_ground.draw_rect(r, Color(1.0, 0.9, 0.3, 0.18))
 				var a := r.position + Vector2(2, 8 + sin(_time * 30.0 + seed) * 4.0)
 				var b := r.get_center() + Vector2(0, cos(_time * 27.0 + seed) * 5.0)
 				var c := r.end - Vector2(2, 8 + sin(_time * 33.0 + seed) * 4.0)
 				_ground.draw_polyline(PackedVector2Array([a, b, c]), Color(1.6, 1.5, 0.6, 0.9), 1.0)
+	if not craters.is_empty():
+		_draw_craters(craters)
