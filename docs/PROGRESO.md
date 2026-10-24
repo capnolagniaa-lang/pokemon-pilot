@@ -136,6 +136,10 @@ como en FireRed) y salvajes de FireRed.
 - Entrenadores vivos: sus rutinas pasaron a Ruta 1, Ruta 22, Ruta 2 y Bosque Verde (celda transitable más cercana).
 - `--autotest` reescrito: camina de Pueblo Paleta a Ciudad Plateada entrando al Laboratorio de Oak, pasando por la
   Ruta 22 y cruzando el Bosque Verde por sus garitas (`TourPlanner`).
+- **Salientes de un solo sentido** (pedido del usuario: "las colinas que tienen colisión puedo bajarlas pero no
+  subirlas"): `LedgeJumper` salta el saliente caminando contra él en su dirección (behavior MB_JUMP_* de FireRed;
+  hasta Plateada todos son hacia abajo) y el Pokémon salta detrás; desde abajo siguen siendo pared.
+  `--autotest-ledges`.
 - Pendiente: NPC, carteles y objetos (Pokébolas) de los mapas de FireRed (no se importan), editar puertas desde el editor,
   Calle Victoria / Ruta 3 en adelante.
 

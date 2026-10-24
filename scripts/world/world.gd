@@ -22,6 +22,8 @@ var trainers: TrainerDirector
 var items: PlayerItems
 ## Puertas entre zonas (casas, Centros, garitas...).
 var warps: WarpSystem
+## Saltos de los salientes (se bajan, no se suben).
+var ledges: LedgeJumper
 ## Historia: personas que hablan, disparadores, diálogos (docs/PLAN_HISTORIA.md).
 var story: StoryDirector
 ## Torneo de Ciudad Plateada (docs/PLAN_TORNEO.md).
@@ -60,6 +62,9 @@ func _ready() -> void:
 	warps = WarpSystem.new()
 	warps.name = "WarpSystem"
 	add_child(warps)
+	ledges = LedgeJumper.new()
+	ledges.name = "LedgeJumper"
+	add_child(ledges)
 	arena = TrainerBattle.new()
 	arena.name = "TrainerBattle"
 	add_child(arena)

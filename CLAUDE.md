@@ -69,6 +69,7 @@ $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de to
 $G --headless --path . --quit-after 20000 -- --autotest-map-editor  # editor de mapas (ida y vuelta, pinceles, UI...)
 $G --headless --path . --quit-after 20000 -- --autotest-stamps      # sellos: sin agujeros, colisión, puertas, deshacer
 $G --headless --path . --quit-after 20000 -- --autotest-encounters  # salvajes: tablas, %, áreas pintadas, agua, editor
+$G --headless --path . --quit-after 6000 -- --autotest-ledges       # salientes: se bajan saltando, no se suben
 python -I -B tools/match_reference.py . --check                    # sellos vs. mapas reales y referencia
 $G --path . --quit-after 3000 -- --showcase-stamp-sheets <carpeta>  # hojas de contacto de sellos y paleta (PNG)
 $G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-stamps  # todos los sellos pegados
@@ -106,6 +107,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   por **puertas**: `WarpSystem` (nodo del mundo; puerta sólida = caminar contra ella, transitable = pisarla;
   fundido, aparece al lado de la puerta de destino; `Events.warped`). Interior = sin salvajes ni sombras de nubes.
   `TourPlanner` (tests) arma caminos por celdas cruzando zonas y puertas.
+  Salientes (behaviors MB_JUMP_* de FireRed): sólidos, pero `LedgeJumper` (nodo del mundo) los salta caminando
+  contra ellos en su dirección; desde el otro lado no se suben. El Pokémon que sigue salta detrás.
 - **Zonas** (`scenes/world/zones/*.tscn`): capas `Ground` (z-10), `Water` (shader agua), `Foliage`
   (shader viento), `TreeShadows`, `Overhead` (z 20, copas que tapan), `Objects` (EnvObject con tags).
   La estructura la arma **un solo lugar**: `ZoneBuilder.new_zone_root` (`scripts/world/zone_builder.gd`), que usan

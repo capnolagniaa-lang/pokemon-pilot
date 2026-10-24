@@ -113,6 +113,13 @@ func _ready() -> void:
 			add_child(env)
 			(env.run if flag == "--autotest-env" else env.showcase).call_deferred()
 			return
+	if "--autotest-ledges" in OS.get_cmdline_user_args():
+		set_process(false)
+		var lt := LedgeTests.new()
+		lt.autotest = self
+		add_child(lt)
+		lt.run.call_deferred()
+		return
 	if "--autotest-encounters" in OS.get_cmdline_user_args():
 		set_process(false)
 		var enc := EncounterTests.new()
