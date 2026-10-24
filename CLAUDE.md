@@ -42,6 +42,7 @@ $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
 $G --headless --path . --quit-after 150000 -- --autotest-story-h1  # historia H-1 a H-5 (de tu cuarto a la Medalla Roca)
+$G --headless --path . --quit-after 60000 -- --autotest-slots      # varias partidas con nombre, sin curación sola, desmayo total, modo de prueba del torneo
 $G --headless --path . --quit-after 300000 -- --autotest-tournament  # torneo de Plateada (dinero, copas, rondas, premio)
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-tournament  # el estadio del torneo
 $G --headless --path . --quit-after 100000 -- --autotest-arena  # combates contra entrenadores en arena (E-1): Brock, Cazabichos
@@ -89,7 +90,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Data-driven**: especies, ataques, tipos y tabla de efectividad son Resources `.tres` en `data/`.
   `DB` (autoload) carga todo lo que haya en esas carpetas. Clases en `scripts/resources/`.
 - **Autoloads**: `Events` (bus de señales; los sistemas no se llaman entre sí), `DB`, `GameState`,
-  `Controls` (input por código, teclas físicas), `SaveManager` (guardado JSON en `user://saves/slot_1.json`),
+  `Controls` (input por código, teclas físicas), `SaveManager` (**varias partidas con nombre**: una por archivo
+  `user://saves/<nombre>.json`; `slot_path` = la actual),
   `Autotest`. Escena principal: `scenes/ui/title_screen.tscn` → `starter_select` → `world`.
 - **Meta-juego (Etapa 2c)**: menús con nodos `Control` y el estilo de `UiStyle` (`scripts/ui/`), menú de pausa
   en su propia CanvasLayer (pausa el árbol). `GameState` no conoce archivos: `to_dict`/`from_dict`.

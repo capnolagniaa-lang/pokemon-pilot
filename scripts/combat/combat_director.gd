@@ -6,10 +6,11 @@ extends Node
 ## Si no hay enemigos a esta distancia del Pokémon durante calm_time, termina el combate.
 @export var engage_distance := 240.0
 @export var calm_time := 1.5
-## Regeneración fuera de combate (fracción de vida por segundo) hasta la Etapa 6 (Centros Pokémon).
-@export var regen_per_second := 0.02
-## Tu Pokémon debilitado vuelve a salir cuando recupera esta fracción de vida.
-@export var revive_ratio := 0.3
+## Los Pokémon NO se curan solos (decisión del usuario 2026-10-23): solo en el Centro Pokémon, con mamá o con
+## objetos. Si tu Pokémon cae fuera de una arena sale el siguiente sano; sin ninguno, desmayo total (vuelve al último
+## lugar donde te curaron). El modo práctica sigue reviviendo al instante.
+## Espera entre que cae tu Pokémon y sale el siguiente.
+const NEXT_MON_DELAY := 1.2
 
 var in_battle := false
 var enemies: Array[Creature] = []
@@ -111,6 +112,8 @@ func _on_creature_fainted(c: Creature) -> void:
 		end_battle()
 		if GameState.practice_mode and not arena_lock:
 			get_tree().create_timer(0.8).timeout.connect(_practice_revive.bind(c.instance))
+		elif not arena_lock:
+			get_tree().create_timer(NEXT_MON_DELAY).timeout.connect(_after_faint)
 	elif enemies.has(c):
 		enemies.erase(c)
 		var gained := CreatureInstance.exp_yield(c.instance)
@@ -148,12 +151,24 @@ func _practice_revive(inst: CreatureInstance) -> void:
 	Events.message_requested.emit("Modo práctica: %s vuelve con la vida al máximo." % inst.species.display_name)
 
 
-func _regen(delta: float) -> void:
-	for inst in GameState.party:
-		inst.hp = minf(inst.max_hp(), inst.hp + inst.max_hp() * regen_per_second * delta)
+## Fuera de combate no hay curación sola: solo si tu Pokémon debilitado volvió a tener vida (Revivir) sale de nuevo.
+func _regen(_delta: float) -> void:
 	var c: Creature = world.companion
-	if is_instance_valid(c) and c.is_down() and c.instance.hp >= c.instance.max_hp() * revive_ratio:
+	if is_instance_valid(c) and c.is_down() and c.instance.hp > 0.0:
 		world.respawn_companion()
+
+
+## Cayó tu Pokémon (fuera de una arena): sale el siguiente sano del equipo; si no queda ninguno, desmayo total.
+func _after_faint() -> void:
+	if arena_lock or (is_instance_valid(world.companion) and not world.companion.is_down()):
+		return
+	for i in GameState.party.size():
+		if GameState.party[i].hp > 0.0:
+			GameState.set_active(i)
+			Events.message_requested.emit("¡Adelante, %s!" % GameState.party[i].display_name())
+			return
+	if world.get("story") != null:
+		world.story.blackout()
 
 
 ## Cambia al Pokémon del lugar `index` del equipo (teclas 1-6). En combate el nuevo sale donde estaba el

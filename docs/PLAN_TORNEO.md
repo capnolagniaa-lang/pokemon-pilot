@@ -31,6 +31,9 @@
   verdad: moja, frena, los de agua nadan), **pasto alto** en las esquinas (se prende fuego), rocas de cobertura y rocas
   que se rompen; **tribunas con público** que salta, **confeti**, braseros, rayos de luz y el emblema de una Poké Ball.
 - Autotest `--autotest-tournament` (15 chequeos); vitrina `--showcase-tournament`.
+- **Modo de prueba** (desde el título, "Probar el torneo"; `scripts/ui/tournament_test_setup.gd`): elegís hasta 6
+  Pokémon (los que tienen kit), el nivel y la copa; aparecés en el vestíbulo y se juega la copa sin entrada. Brock y
+  Azul siempre están en el cuadro. **No se guarda nada**. Al terminar: "Jugar otra vez" o "Volver al título".
 
 ## 1. Cómo se juega
 1. **Edificio del Torneo** en Ciudad Plateada: recepcionista + cartel con las copas.

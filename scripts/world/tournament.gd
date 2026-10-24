@@ -41,6 +41,29 @@ func _ready() -> void:
 			cups.append(c)
 	cups.sort_custom(func(a, b): return a.order < b.order)
 	world.story.register_action("torneo", desk)
+	if not GameState.test_tournament.is_empty():
+		_test_mode.call_deferred()
+
+
+## Modo de prueba del torneo (desde el título, sin guardar): juega la copa elegida con el equipo armado, y al terminar
+## ofrece repetir o volver al título.
+func _test_mode() -> void:
+	await get_tree().create_timer(0.6).timeout
+	var cup: TournamentCup = null
+	for c in cups:
+		if c.id == GameState.test_tournament.get("cup", ""):
+			cup = c
+	if cup == null:
+		return
+	while true:
+		for inst in GameState.party:
+			inst.hp = inst.max_hp()
+		await play(cup, eligible(cup))
+		var again: int = await world.story.dialog.ask("Modo de prueba", "¿Otra vez?", PackedStringArray(["Jugar otra vez", "Volver al título"]))
+		if again != 0:
+			GameState.test_tournament = {}
+			get_tree().change_scene_to_file("res://scenes/ui/title_screen.tscn")
+			return
 
 
 ## Los Pokémon que se inscribirían en una copa: los primeros `team_size` del equipo con nivel <= tope.

@@ -30,6 +30,13 @@ func _ready() -> void:
 		_overview.call_deferred()
 		set_process(false)
 		return
+	if "--autotest-slots" in OS.get_cmdline_user_args():
+		set_process(false)
+		var sl := SlotsTests.new()
+		sl.autotest = self
+		add_child(sl)
+		sl.run.call_deferred()
+		return
 	if "--autotest-tournament" in OS.get_cmdline_user_args() or "--showcase-tournament" in OS.get_cmdline_user_args():
 		set_process(false)
 		var tt := TournamentTests.new()

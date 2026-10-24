@@ -1,6 +1,6 @@
 extends Control
-## Pantalla de título (escena principal): Continuar (si hay guardado, con su resumen), Nueva partida
-## (confirma antes de pisar un guardado) y Salir. Fondo con cielo en degradé, colinas y Pokémon animados.
+## Pantalla de título (escena principal): Continuar (lista de partidas guardadas: cargar o borrar), Nueva
+## partida (pide el nombre de la partida; avisa si ya hay una con ese nombre) y Salir. Fondo con cielo en degradé, colinas y Pokémon animados.
 
 const STARTER_SCENE := "res://scenes/ui/starter_select.tscn"
 const WORLD_SCENE := "res://scenes/world/world.tscn"
@@ -11,6 +11,8 @@ const TEST_SLOT := "user://saves/map_editor_test.json"
 var _menu: VBoxContainer
 var _continue: Button
 var _summary: Dictionary
+var _saves: Array[Dictionary] = []
+var _overlay: Control
 var _time := 0.0
 var _parade: Array = []  # [PokemonAnimView, x base, fase]
 
@@ -25,7 +27,8 @@ func _ready() -> void:
 	if "--start-zone" in args:
 		_start_in_zone.call_deferred(args)
 		return
-	_summary = SaveManager.summary()
+	_saves = SaveManager.list_saves()
+	_summary = _saves[0] if not _saves.is_empty() else {}
 	_build_background()
 	_build_menu()
 
@@ -104,14 +107,17 @@ func _build_menu() -> void:
 	_menu.position = Vector2(640 - 170, 200)
 	_menu.custom_minimum_size = Vector2(340, 0)
 	add_child(_menu)
-	if not _summary.is_empty():
-		_continue = UiStyle.button("Continuar", 340)
-		_continue.pressed.connect(_on_continue)
+	if not _saves.is_empty():
+		_continue = UiStyle.button("Continuar" if _saves.size() == 1 else "Continuar (%d partidas)" % _saves.size(), 340)
+		_continue.pressed.connect(_show_saves)
 		_menu.add_child(_continue)
-		_menu.add_child(_summary_panel())
+		_menu.add_child(_summary_panel(_summary))
 	var new_game := UiStyle.button("Nueva partida", 340)
 	new_game.pressed.connect(_on_new_game)
 	_menu.add_child(new_game)
+	var test := UiStyle.button("Probar el torneo (prueba)", 340)
+	test.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/tournament_test.tscn"))
+	_menu.add_child(test)
 	if "--debug" in OS.get_cmdline_user_args() or OS.has_feature("editor"):  # como World.debug_enabled()
 		var editor := UiStyle.button("Editor de mapas", 340)
 		editor.pressed.connect(func(): get_tree().change_scene_to_file(MAP_EDITOR_SCENE))
@@ -128,14 +134,15 @@ func _build_menu() -> void:
 	add_child(hint)
 
 
-## Resumen del guardado: retratos del equipo, nivel del líder, zona, tiempo jugado y fecha.
-func _summary_panel() -> Control:
+## Resumen de una partida: nombre, retratos del equipo, nivel del líder, zona, tiempo jugado y fecha.
+func _summary_panel(s: Dictionary) -> Control:
 	var panel := PanelContainer.new()
 	var box := VBoxContainer.new()
 	panel.add_child(box)
+	box.add_child(UiStyle.label(str(s.get("name", "Partida")), 16, UiStyle.ACCENT))
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 4)
-	for sp: SpeciesData in _summary["species"]:
+	for sp: SpeciesData in s["species"]:
 		var pic := TextureRect.new()
 		pic.texture = DB.portrait_of(sp)
 		pic.custom_minimum_size = Vector2(44, 44)
@@ -144,12 +151,136 @@ func _summary_panel() -> Control:
 		pic.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		row.add_child(pic)
 	box.add_child(row)
-	var leader: SpeciesData = _summary["species"][0]
-	var zone: String = _summary.get("zone", "")
-	box.add_child(UiStyle.label("%s Nv. %d%s" % [leader.display_name, _summary["leader_level"], ("  ·  " + zone) if zone != "" else ""], 14))
-	var when := str(_summary.get("saved_at", "")).replace("T", " ").left(16)
-	box.add_child(UiStyle.label("Tiempo: %s  ·  %s" % [SaveManager.format_time(_summary["play_time"]), when], 13, UiStyle.TEXT_DIM))
+	var zone: String = s.get("zone", "")
+	if s["species"].is_empty():
+		box.add_child(UiStyle.label("Todavía sin Pokémon%s" % (("  ·  " + zone) if zone != "" else ""), 14))
+	else:
+		var leader: SpeciesData = s["species"][0]
+		box.add_child(UiStyle.label("%s Nv. %d%s" % [leader.display_name, s["leader_level"], ("  ·  " + zone) if zone != "" else ""], 14))
+	var when := str(s.get("saved_at", "")).replace("T", " ").left(16)
+	box.add_child(UiStyle.label("Tiempo: %s  ·  %s" % [SaveManager.format_time(s["play_time"]), when], 13, UiStyle.TEXT_DIM))
 	return panel
+
+
+# --- Partidas guardadas -----------------------------------------------------------------------------------
+
+## Lista de partidas: Cargar o Borrar cada una.
+func _show_saves() -> void:
+	_close_overlay()
+	_overlay = _overlay_panel("PARTIDAS GUARDADAS")
+	var list: VBoxContainer = _overlay.get_meta("box")
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(620, 380)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	var rows := VBoxContainer.new()
+	rows.add_theme_constant_override("separation", 8)
+	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(rows)
+	list.add_child(scroll)
+	var first: Button = null
+	for s in _saves:
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 8)
+		var p := _summary_panel(s)
+		p.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(p)
+		var actions := VBoxContainer.new()
+		var load_b := UiStyle.button("Cargar", 110)
+		load_b.pressed.connect(_load.bind(s["path"]))
+		actions.add_child(load_b)
+		var del_b := UiStyle.button("Borrar", 110)
+		del_b.pressed.connect(_ask_delete.bind(s))
+		actions.add_child(del_b)
+		row.add_child(actions)
+		rows.add_child(row)
+		if first == null:
+			first = load_b
+	var back := UiStyle.button("Volver", 200)
+	back.pressed.connect(_close_overlay)
+	list.add_child(back)
+	UiStyle.focus_later(first if first != null else back)
+
+
+func _load(path: String) -> void:
+	if SaveManager.load_from(path):
+		get_tree().change_scene_to_file(WORLD_SCENE)
+	else:
+		ConfirmDialog.ask(self, "No se pudo cargar la partida (el archivo está dañado).", ["Aceptar"])
+
+
+func _ask_delete(s: Dictionary) -> void:
+	var d := ConfirmDialog.ask(self, "¿Borrar la partida \"%s\"? No se puede deshacer." % s["name"], ["Borrar", "Cancelar"])
+	d.chosen.connect(func(i: int):
+		if i == 0:
+			DirAccess.remove_absolute(s["path"])
+			get_tree().reload_current_scene())
+
+
+## Nombre de la partida nueva.
+func _ask_name() -> void:
+	_close_overlay()
+	_overlay = _overlay_panel("NUEVA PARTIDA")
+	var box: VBoxContainer = _overlay.get_meta("box")
+	box.add_child(UiStyle.label("Nombre de la partida:", 18))
+	var edit := LineEdit.new()
+	edit.text = "Partida %d" % (_saves.size() + 1)
+	edit.max_length = 24
+	edit.custom_minimum_size = Vector2(420, 44)
+	edit.add_theme_font_size_override("font_size", 20)
+	box.add_child(edit)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 10)
+	var ok := UiStyle.button("Empezar", 200)
+	var cancel := UiStyle.button("Volver", 200)
+	row.add_child(ok)
+	row.add_child(cancel)
+	box.add_child(row)
+	ok.pressed.connect(func(): _start_named(edit.text))
+	edit.text_submitted.connect(func(t: String): _start_named(t))
+	cancel.pressed.connect(_close_overlay)
+	edit.grab_focus.call_deferred()
+	edit.select_all.call_deferred()
+
+
+func _start_named(save_name: String) -> void:
+	save_name = save_name.strip_edges()
+	if save_name == "":
+		return
+	if FileAccess.file_exists(SaveManager.path_for_name(save_name)):
+		var d := ConfirmDialog.ask(self, "Ya hay una partida \"%s\". Si empezás otra con ese nombre y guardás, se reemplaza. ¿Empezar igual?" % save_name,
+			["Empezar", "Cancelar"])
+		d.chosen.connect(func(i: int):
+			if i == 0:
+				SaveManager.use_name(save_name)
+				get_tree().change_scene_to_file(STARTER_SCENE))
+		return
+	SaveManager.use_name(save_name)
+	get_tree().change_scene_to_file(STARTER_SCENE)
+
+
+func _overlay_panel(title: String) -> Control:
+	var root := Control.new()
+	root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	root.add_child(UiStyle.dim())
+	var panel := PanelContainer.new()
+	panel.add_theme_stylebox_override("panel", UiStyle.box(UiStyle.BG, UiStyle.ACCENT.darkened(0.3), 2, 18))
+	panel.position = Vector2(300, 90)
+	panel.custom_minimum_size = Vector2(680, 0)
+	root.add_child(panel)
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override("separation", 12)
+	panel.add_child(box)
+	box.add_child(UiStyle.label(title, 24, UiStyle.ACCENT))
+	root.set_meta("box", box)
+	add_child(root)
+	return root
+
+
+func _close_overlay() -> void:
+	if is_instance_valid(_overlay):
+		_overlay.queue_free()
+	_overlay = null
+	UiStyle.focus_later(_menu.get_child(0))
 
 
 ## "Probar en el juego" del editor de mapas (-- --debug --start-zone <id> --start-cell x,y): arranca con el
@@ -172,20 +303,5 @@ func _start_in_zone(args: PackedStringArray) -> void:
 	get_tree().change_scene_to_file(WORLD_SCENE)
 
 
-func _on_continue() -> void:
-	if SaveManager.load_game():
-		get_tree().change_scene_to_file(WORLD_SCENE)
-	else:
-		ConfirmDialog.ask(self, "No se pudo cargar la partida (el archivo está dañado).", ["Aceptar"])
-
-
 func _on_new_game() -> void:
-	if not SaveManager.has_save():
-		get_tree().change_scene_to_file(STARTER_SCENE)
-		return
-	var d := ConfirmDialog.ask(self, "Ya hay una partida guardada. Si empezás otra y guardás, se va a reemplazar. ¿Empezar igual?", ["Empezar", "Cancelar"])
-	d.chosen.connect(func(i: int):
-		if i == 0:
-			get_tree().change_scene_to_file(STARTER_SCENE)
-		else:
-			_menu.get_child(0).grab_focus())
+	_ask_name()

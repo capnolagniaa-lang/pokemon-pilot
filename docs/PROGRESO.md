@@ -73,7 +73,18 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Torneo T-0 a T-3 hecho** (2026-10-23): **dinero** (empezás con $3000, premios por entrenadores), **Edificio del
   Torneo** en Plateada (la puerta del anexo del museo), copas de 3/6 Pokémon (Nv. 15, 30, Libre) con 6 Pociones y sin
   curar entre rondas, Brock y Azul en el cuadro, y el **estadio épico** con lagunas, pasto, rocas, público y confeti.
-  Falta T-4 (que aprendan de vos: E-2 a E-4). **Próximo:** H-6 (bot que
+  Falta T-4 (que aprendan de vos: E-2 a E-4).
+- **Varias partidas con nombre** (2026-10-23, pedido del usuario): Nueva partida pide el nombre; cada partida es
+  `user://saves/<nombre>.json` (con su "save_name"); Continuar muestra la lista (cargar / borrar). En la historia se
+  puede guardar antes de tener Pokémon. `SaveManager.list_saves` / `use_name` / `load_from` / `path_for_name`.
+- **Los Pokémon ya no se curan solos** (pedido del usuario): solo Centro Pokémon, mamá u objetos. Si cae tu Pokémon
+  fuera de una arena sale el siguiente sano; sin ninguno, **desmayo total** (`StoryDirector.blackout`: volvés al
+  último lugar donde te curaron, curados). El modo práctica sigue reviviendo al instante (opción aparte).
+- **Modo de prueba del torneo** (pedido del usuario): título → "Probar el torneo": elegís hasta 6 Pokémon con kit, el
+  nivel y la copa, y se juega el Torneo de Plateada directo; no se guarda nada (`GameState.test_tournament`); al
+  terminar, repetir o volver al título.
+- Pedido del usuario pasado al agente de mapas: los saltos/salientes de las colinas se tienen que poder **bajar
+  pero no subir** (como en FireRed). Lo hace el agente de mapas. **Próximo:** H-6 (bot que
   juega el capítulo + revisión) o seguir con E-2 / la Ruta 3 y el Monte Moon, a decidir con el usuario.
 - **Mundo = mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada** (2026-10-23, ver "Región de FireRed"):
   7 exteriores agrandados ×1,75 + 21 interiores con **puertas**; las 9 zonas generadas y la Ruta 1 vieja se

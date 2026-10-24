@@ -51,6 +51,8 @@ var field_picked: Dictionary = {}
 var box: Array[CreatureInstance] = []
 ## Historia (docs/PLAN_HISTORIA.md): banderas puestas (nombre -> true). Se guardan con la partida.
 var story_flags: Dictionary = {}
+## Modo de prueba del torneo (desde el título): {"cup": id}. No se guarda nada mientras está (SaveManager).
+var test_tournament: Dictionary = {}
 ## Torneo en curso (docs/PLAN_TORNEO.md, T-2): {} si no hay. Lo maneja Tournament; si guardás en medio del
 ## torneo se abandona (no se guarda).
 var tournament: Dictionary = {}
@@ -100,6 +102,7 @@ func new_game(starter: SpeciesData) -> void:
 	last_heal_position = Vector2.INF
 	money = STARTING_MONEY
 	tournament = {}
+	test_tournament = {}
 	Events.party_changed.emit()
 	Events.game_started.emit()
 

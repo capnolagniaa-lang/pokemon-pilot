@@ -163,6 +163,35 @@ func run_talk(talk: NpcTalk, default_speaker: String = "") -> void:
 	busy = false
 
 
+## Desmayo total (sin ningún Pokémon en pie fuera de una arena): fundido, el equipo curado y volvés al último
+## lugar donde te curaron (o al inicio), como en FireRed.
+func blackout() -> void:
+	if busy or world.arena.active:
+		return
+	busy = true
+	var t: Trainer = world.trainer
+	t.locked = true
+	await world.arena.fade_to(1.0)
+	GameState.heal_party()
+	var back: Vector2 = GameState.last_heal_position
+	if back == Vector2.INF:
+		var data: WorldData = world.streamer.world_data
+		back = Vector2(data.spawn_cell * data.tile_size) + Vector2.ONE * data.tile_size / 2.0
+	world.streamer.load_around_now(back)
+	t.global_position = back
+	t.trail = [back]
+	world.camera.target = t
+	world.camera.snap()
+	world.respawn_companion()
+	refresh()
+	await get_tree().process_frame
+	await world.arena.fade_to(0.0)
+	await dialog.say("", PackedStringArray(["No te quedó ningún Pokémon en condiciones...",
+		"Volviste corriendo a curarlos."]))
+	t.locked = false
+	busy = false
+
+
 ## Registra una acción especial para NpcTalk.action (la usan otros sistemas, ej. el Torneo).
 func register_action(action_name: String, callable: Callable) -> void:
 	actions[action_name] = callable
