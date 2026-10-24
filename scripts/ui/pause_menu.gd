@@ -1,6 +1,7 @@
 class_name PauseMenu
 extends Control
-## Menú de pausa (Esc en el mundo): Equipo, Pokédex, Guardar, Opciones, Volver al título y Cerrar. Pausa el mundo
+## Menú de pausa (Esc en el mundo): Guía, Equipo, Mochila, Caja, Pokédex, Tarjeta, Guardar, Opciones, Volver al
+## título y Cerrar. Pausa el mundo
 ## (get_tree().paused) y no se abre durante un combate. Las pantallas (Equipo, ficha, opciones) se apilan
 ## encima; Esc vuelve a la anterior.
 
@@ -15,6 +16,9 @@ const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 var _stack: Array[Control] = []
 var _main: Control
 var _first: Button
+## El botón de la Pokédex: se muestra recién cuando la tenés (en la historia, cuando Oak te la da). Se revisa cada
+## vez que se abre el menú (antes se armaba una vez y no aparecía hasta volver a cargar la partida).
+var _dex_button: Button
 var _status: Label
 
 
@@ -39,8 +43,10 @@ func try_open() -> bool:
 	if world != null and world.combat.in_battle:
 		Events.message_requested.emit("No podés abrir el menú durante un combate.")
 		return false
-	if GameState.party.is_empty():
-		return false
+	if GameState.party.is_empty() and not GameState.has_flag("historia"):
+		return false  # (en la historia sí: antes del laboratorio también se puede guardar y mirar la Guía)
+	if _dex_button != null:
+		_dex_button.visible = GameState.has_pokedex()
 	visible = true
 	_status.text = ""
 	get_tree().paused = true
@@ -78,14 +84,16 @@ func _build() -> void:
 	box.add_theme_constant_override("separation", 8)
 	_main.add_child(box)
 	box.add_child(UiStyle.label("MENÚ", 20, UiStyle.ACCENT))
-	var entries := [["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box], ["Pokédex", _open_pokedex], ["Tarjeta", _open_card], ["Guardar", _save], ["Opciones", _open_options],
+	var entries := [["Guía", _open_guide], ["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box],
+		["Pokédex", _open_pokedex], ["Tarjeta", _open_card], ["Guardar", _save], ["Opciones", _open_options],
 		["Volver al título", _to_title], ["Cerrar", close]]
-	if not GameState.has_pokedex():
-		entries = entries.filter(func(e): return e[0] != "Pokédex")  # en la historia, hasta que Oak te la da
 	for e in entries:
 		var b := UiStyle.button(e[0], 240)
 		b.pressed.connect(e[1])
 		box.add_child(b)
+		if e[0] == "Pokédex":
+			_dex_button = b
+			b.visible = GameState.has_pokedex()  # en la historia, hasta que Oak te la da
 		if _first == null:
 			_first = b
 	_status = UiStyle.label("", 13, UiStyle.TEXT_DIM)
@@ -124,6 +132,9 @@ func _pop() -> void:
 
 
 func _open_party() -> void:
+	if GameState.party.is_empty():
+		_status.text = "Todavía no tenés Pokémon."
+		return
 	var p: Control = PARTY_SCENE.instantiate()
 	p.menu = self
 	push(p)
@@ -135,6 +146,10 @@ func _open_bag() -> void:
 
 func _open_box() -> void:
 	push(BOX_SCENE.instantiate())
+
+
+func _open_guide() -> void:
+	push(load("res://scripts/ui/guide_screen.gd").new())
 
 
 func _open_card() -> void:

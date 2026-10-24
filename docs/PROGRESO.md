@@ -89,6 +89,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   (`GameConfig.arena_rules_everywhere`). Detalle en el plan de identidad ("Combate de arena"). Además: los que
   tienen patas **saltan los cráteres** con el esquive hacia donde apuntás; sprite del cráter (agente de mapas);
   **tope de cráteres** por ataque y por cancha. **Propuesta de combos v2** en `docs/PROPUESTA_COMBOS.md` (a decidir).
+- **Guía de la historia** (2026-10-24, pedido del usuario): Esc → Guía dice en qué paso estás y qué hacer
+  (`StoryGuide`: pasos por bandera + lo opcional). Arreglo: el botón de la **Pokédex** no aparecía hasta volver a
+  cargar la partida (el menú se armaba una vez); ahora se revisa al abrir. En la historia el menú se abre aunque
+  todavía no tengas Pokémon (para guardar y ver la Guía).
+- Pedido del usuario pasado al agente de mapas: **límites de las zonas** (se podía salir a partes sin dibujar o
+  saltearse zonas). Lo hace el agente de mapas.
 - Pedido del usuario pasado al agente de mapas: los saltos/salientes de las colinas se tienen que poder **bajar
   pero no subir** (como en FireRed). Lo hace el agente de mapas. **Próximo:** H-6 (bot que
   juega el capítulo + revisión) o seguir con E-2 / la Ruta 3 y el Monte Moon, a decidir con el usuario.

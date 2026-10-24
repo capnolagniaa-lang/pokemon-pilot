@@ -24,6 +24,9 @@ func run() -> void:
 	var zone: ZoneEntry = world.streamer.world_data.zone_at(world.trainer.global_position)
 	r["La historia arranca en tu cuarto"] = zone != null and zone.id == "casa_jugador_2p"
 	r["Sin Pokémon al empezar"] = GameState.party.is_empty() and not is_instance_valid(world.companion)
+	r["La Guía arranca en el primer paso (salir hacia la Ruta 1)"] = StoryGuide.current().get("index", -1) == 0
+	r["Sin Pokémon igual se abre el menú (Guía, guardar) pero sin Pokédex"] = world.pause_menu.try_open() 		and not world.pause_menu._dex_button.visible
+	world.pause_menu.close()
 	var saved := GameState.to_dict()
 	r["Se puede guardar y cargar sin Pokémon (antes del laboratorio)"] = GameState.from_dict(saved) and GameState.party.is_empty()
 
@@ -114,6 +117,9 @@ func run() -> void:
 	_talk_to("laboratorio_oak_profoak")
 	await _idle()
 	r["Oak recibe el correo y te da la Pokédex y 5 Poké Balls"] = GameState.item_count("paquete_oak") == 0 		and GameState.has_pokedex() and GameState.item_count("poke_ball") == balls + 5
+	r["El menú muestra la Pokédex apenas te la dan (sin recargar)"] = world.pause_menu.try_open() and world.pause_menu._dex_button.visible
+	world.pause_menu.close()
+	r["La Guía te manda a Plateada por la Medalla Roca"] = StoryGuide.current().get("title", "") == "La Medalla Roca" 		and StoryGuide.optional_left().size() >= 2
 	r["Con la Pokédex, tu equipo queda registrado"] = GameState.has_caught(GameState.party[0].species) and GameState.has_seen(GameState.party[0].species)
 	await _go("casa_rival", DB.npcs["casa_rival_daisy"].cell + Vector2i(0, 1))
 	_talk_to("casa_rival_daisy")
@@ -171,6 +177,7 @@ func run() -> void:
 	r["La MT39 enseña Tumba Rocas (y se gasta)"] = msg != "" and mon.learned_moves().has(DB.moves["tumba_rocas"]) 		and GameState.item_count("mt39") == 0
 	var again := GameState.from_dict(GameState.to_dict())
 	r["Lo aprendido por MT se guarda"] = again and GameState.party[0].learned_moves().has(DB.moves["tumba_rocas"])
+	r["Con la medalla, la Guía dice capítulo completo"] = StoryGuide.current().get("index", -1) == StoryGuide.STEPS.size()
 	var card := TrainerCard.new()
 	add_child(card)
 	await get_tree().process_frame

@@ -48,6 +48,7 @@ tarjetas de los iniciales son el **modo libre** (arrancás ya con ese Pokémon, 
 | **Tarjeta de entrenador** | ✅ H-5 | Esc → **Tarjeta**: tiempo de juego, Pokédex y las 8 medallas (las que ganaste a color, las demás como siluetas). |
 | **Torneo de Ciudad Plateada** | ✅ (extra) | Entrá por la puerta del anexo rosa del museo. La recepcionista te anota en una copa (3 o 6 Pokémon, Nv. 15/30/Libre). Brock se anota cuando ya tenés su medalla. Ver `PLAN_TORNEO.md`. |
 | **Dinero** | ✅ | Empezás con $3000. Ganarle a un entrenador da premio. Se ve en la Mochila y en la Tarjeta. |
+| **Guía** | ✅ | **Esc → Guía**: en qué paso de la historia estás, qué hacer para seguir y lo opcional que te queda (Dalia, la Ruta 22, los Cazabichos, el Torneo). Pasos en `scripts/world/story_guide.gd`. |
 | **Personas que hablan** (67 de FireRed, en sus lugares reales, con sus sprites) | ✅ | Acercate a alguien y apretá **E**. Ej.: los vecinos de Pueblo Paleta, la gente del Centro Pokémon, el museo. |
 | **Enfermeras y mamá curan** | ✅ | Centro Pokémon de Ciudad Verde o de Plateada (E frente a la enfermera, por arriba del mostrador) o mamá en tu casa. Ese lugar queda como "donde volvés si perdés". |
 | **Regalo del empleado de la Tienda** (Ruta 1) | ✅ | E al empleado: te da una Poción una sola vez. |
