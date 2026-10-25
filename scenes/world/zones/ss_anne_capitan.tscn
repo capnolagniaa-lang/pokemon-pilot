@@ -1,0 +1,41 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_xi58s"]
+[ext_resource type="TileSet" path="res://art/tiles/world_tileset.tres" id="2_c6vfa"]
+[ext_resource type="Material" path="res://shaders/materials/water.tres" id="3_uhe53"]
+[ext_resource type="Material" path="res://shaders/materials/foliage_wind.tres" id="4_hs0qy"]
+[ext_resource type="Script" path="res://scripts/world/tree_shadows.gd" id="5_kxtbb"]
+[ext_resource type="Material" path="res://shaders/materials/canopy_wind.tres" id="6_xnhsh"]
+
+[node name="SsAnneCapitan" type="Node2D" unique_id=360864971]
+y_sort_enabled = true
+script = ExtResource("1_xi58s")
+zone_id = "ss_anne_capitan"
+hand_edited = true
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=1850469312]
+z_index = -10
+tile_map_data = PackedByteArray("AAAAAAAAnwAGAAAAAAABAAAAnwAMAAAAAAACAAAAnwAMAAAAAAADAAAAnwAMAAAAAAAEAAAAnwAMAAAAAAAFAAAAnwAMAAAAAAAGAAAAnwAMAAAAAAAHAAAAnwAMAAAAAAAIAAAAnwAHAAAAAAAAAAEAnwAOAAAAAAABAAEAnwALAAcAAAACAAEAnwAEAAgAAAADAAEAnwALAAcAAAAEAAEAnwALAAcAAAAFAAEAnwADAAcAAAAGAAEAnwAEAAcAAAAHAAEAnwAKAAcAAAAIAAEAnwAPAAAAAAAAAAIAnwAOAAAAAAABAAIAnwAMAAcAAAACAAIAnwAMAAgAAAADAAIAnwAMAAcAAAAEAAIAnwAMAAcAAAAFAAIAnwAMAAcAAAAGAAIAnwAMAAcAAAAHAAIAnwACAAgAAAAIAAIAnwAPAAAAAAAAAAMAnwAOAAAAAAABAAMAnwAFAAgAAAACAAMAnwAGAAgAAAADAAMAnwAHAAgAAAAEAAMAnwAIAAEAAAAFAAMAnwAJAAAAAAAGAAMAnwAIAAEAAAAHAAMAnwAIAAEAAAAIAAMAnwAPAAAAAAAAAAQAnwAOAAAAAAABAAQAnwANAAgAAAACAAQAnwAOAAgAAAADAAQAnwAPAAgAAAAEAAQAnwAIAAEAAAAFAAQAnwAIAAEAAAAGAAQAnwAIAAEAAAAHAAQAnwAIAAEAAAAIAAQAnwAPAAAAAAAAAAUAnwAOAAAAAAABAAUAnwAEAAIAAAACAAUAnwAIAAEAAAADAAUAnwAIAAEAAAAEAAUAnwAIAAEAAAAFAAUAnwAIAAEAAAAGAAUAnwAIAAEAAAAHAAUAnwAIAAEAAAAIAAUAnwAPAAAAAAAAAAYAnwAOAAAAAAABAAYAnwAFAAcAAAACAAYAnwAGAAcAAQADAAYAnwAHAAcAAAAEAAYAnwAIAAEAAAAFAAYAnwAIAAEAAAAGAAYAnwAIAAEAAAAHAAYAnwADAAgAAAAIAAYAnwAPAAAAAAAAAAcAnwAOAAAAAAABAAcAnwALAAIAAAACAAcAnwAMAAIAAAADAAcAnwAEABEAAAAEAAcAnwAIAAEAAAAFAAcAnwAIAAEAAAAGAAcAnwAIAAEAAAAHAAcAnwADAAgAAAAIAAcAnwAPAAAAAAAAAAgAnwAOAAAAAAABAAgAnwADAAMAAAACAAgAnwAEAAMAAAADAAgAnwAMAAMAAAAEAAgAnwAIAAEAAAAFAAgAnwAIAAEAAAAGAAgAnwAIAAEAAAAHAAgAnwAIAAEAAAAIAAgAnwAPAAAAAAAAAAkAnwAOAAMAAQABAAkAnwAEAAAAAAACAAkAnwAEAAAAAAADAAkAnwAEAAAAAAAEAAkAnwAEAAAAAAAFAAkAnwAEAAAAAAAGAAkAnwAEAAAAAAAHAAkAnwAEAAAAAAAIAAkAnwAGAAMAAAA=")
+tile_set = ExtResource("2_c6vfa")
+
+[node name="Water" type="TileMapLayer" parent="." unique_id=370535610]
+z_index = -9
+material = ExtResource("3_uhe53")
+tile_set = ExtResource("2_c6vfa")
+
+[node name="Foliage" type="TileMapLayer" parent="." unique_id=687084807]
+z_index = -8
+material = ExtResource("4_hs0qy")
+tile_set = ExtResource("2_c6vfa")
+
+[node name="TreeShadows" type="Node2D" parent="." unique_id=402649972]
+z_index = -7
+script = ExtResource("5_kxtbb")
+
+[node name="Overhead" type="TileMapLayer" parent="." unique_id=2066172108]
+z_index = 20
+material = ExtResource("6_xnhsh")
+tile_set = ExtResource("2_c6vfa")
+
+[node name="Objects" type="Node2D" parent="." unique_id=529933423]
+y_sort_enabled = true

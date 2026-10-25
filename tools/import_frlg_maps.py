@@ -39,13 +39,26 @@ EXTERIORS = {  # mapa de FireRed -> (id de zona, nombre)
     "CeruleanCity": ("ciudad_celeste", "Ciudad Celeste"),
     "Route24": ("ruta24", "Ruta 24 (Puente Pepita)"),
     "Route25": ("ruta25", "Ruta 25"),
+    # Capítulo 3 (de Celeste a Carmín): Azafrán no se arma (está cerrada en esa parte de la historia), pero se ubica
+    # para que la Ruta 6 y Carmín queden donde van; se pasa por la Vía Subterránea.
+    "Route5": ("ruta5", "Ruta 5"),
+    "SaffronCity": ("ciudad_azafran", "Ciudad Azafrán"),
+    "Route6": ("ruta6", "Ruta 6"),
+    "VermilionCity": ("ciudad_carmin", "Ciudad Carmín"),
 }
+# Mapas del capítulo 2 (se agrandaron sin proteger las celdas de objetos; se dejan así para que no cambien).
+CHAPTER2_MAPS = {"Route3", "Route4", "CeruleanCity", "Route24", "Route25", "MtMoon_1F", "MtMoon_B1F", "MtMoon_B2F"}
+# Mapas que solo sirven para ubicar a sus vecinos: no se arman como zona (queda un hueco con paredes).
+PHANTOMS = {"SaffronCity"}
+# Conexiones de FireRed a versiones especiales de un mapa -> el mapa.
+CONNECTION_ALIASES = {"MAP_SAFFRON_CITY_CONNECTION": "SaffronCity"}
 # Exteriores del capítulo 1: el corrimiento del mundo se calcula solo con ellos (así las zonas viejas no se mueven).
 FIRST_EXTERIORS = ["PalletTown", "Route1", "ViridianCity", "Route22", "Route2", "PewterCity"]
 # Mapas que salen de costado de la columna principal y empalman con su borde (no con el del mapa sin relleno):
 # raíz de la rama -> (lado, mapas de la rama).
 BRANCHES = {"Route22": ("left", ["Route22"]),
-            "Route3": ("right", ["Route3", "Route4", "CeruleanCity", "Route24", "Route25"])}
+            "Route3": ("right", ["Route3", "Route4", "CeruleanCity", "Route24", "Route25", "Route5", "SaffronCity",
+                                 "Route6", "VermilionCity"])}
 MAIN_COLUMN = ["PewterCity", "Route2", "ViridianCity", "Route1", "PalletTown"]  # apilados de norte a sur
 STRETCHED = {"ViridianForest": ("bosque_verde", "Bosque Verde")}
 INTERIORS = {
@@ -90,11 +103,40 @@ INTERIORS_2 = {
     "CeruleanCity_House5": ("ciudad_celeste_casa5", "Casa de Ciudad Celeste"),
     "Route25_SeaCottage": ("casa_bill", "Casa de Bill"),
 }
+INTERIORS_3 = {
+    "Route5_PokemonDayCare": ("ruta5_guarderia", "Guardería Pokémon"),
+    "Route5_SouthEntrance": ("ruta5_garita", "Garita de la Ruta 5"),
+    "UndergroundPath_NorthEntrance": ("via_subterranea_norte", "Vía Subterránea (entrada norte)"),
+    "UndergroundPath_NorthSouthTunnel": ("via_subterranea", "Vía Subterránea"),
+    "UndergroundPath_SouthEntrance": ("via_subterranea_sur", "Vía Subterránea (entrada sur)"),
+    "Route6_NorthEntrance": ("ruta6_garita", "Garita de la Ruta 6"),
+    "VermilionCity_PokemonCenter_1F": ("ciudad_carmin_centro", "Centro Pokémon de Ciudad Carmín"),
+    "VermilionCity_Mart": ("ciudad_carmin_tienda", "Tienda de Ciudad Carmín"),
+    "VermilionCity_PokemonFanClub": ("club_fans", "Club de Fans de Pokémon"),
+    "VermilionCity_Gym": ("ciudad_carmin_gimnasio", "Gimnasio de Ciudad Carmín"),
+    "VermilionCity_House1": ("ciudad_carmin_casa1", "Casa de Ciudad Carmín"),
+    "VermilionCity_House2": ("ciudad_carmin_casa2", "Casa de Ciudad Carmín"),
+    "VermilionCity_House3": ("ciudad_carmin_casa3", "Casa de Ciudad Carmín"),
+    "SSAnne_Exterior": ("ss_anne_muelle", "Muelle del S.S. Anne"),
+    "SSAnne_1F_Corridor": ("ss_anne_1p", "S.S. Anne (planta 1)"),
+    "SSAnne_2F_Corridor": ("ss_anne_2p", "S.S. Anne (planta 2)"),
+    "SSAnne_3F_Corridor": ("ss_anne_3p", "S.S. Anne (planta 3)"),
+    "SSAnne_B1F_Corridor": ("ss_anne_s1", "S.S. Anne (sótano)"),
+    "SSAnne_Deck": ("ss_anne_cubierta", "Cubierta del S.S. Anne"),
+    "SSAnne_Kitchen": ("ss_anne_cocina", "Cocina del S.S. Anne"),
+    "SSAnne_CaptainsOffice": ("ss_anne_capitan", "Camarote del capitán"),
+}
+for _f, _n in (("1F", 7), ("2F", 6), ("B1F", 5)):
+    for _i in range(1, _n + 1):
+        _pre = {"1F": "ss_anne_1p", "2F": "ss_anne_2p", "B1F": "ss_anne_s1"}[_f]
+        _name = {"1F": "planta 1", "2F": "planta 2", "B1F": "sótano"}[_f]
+        INTERIORS_3["SSAnne_%s_Room%d" % (_f, _i)] = ("%s_camarote%d" % (_pre, _i), "Camarote del S.S. Anne (%s)" % _name)
 # Plantilla de salvajes de FireRed (encounters/plantillas_frlg.json); las zonas sin plantilla no tienen salvajes.
 TEMPLATES = {"PalletTown": "pallet_town", "Route1": "route1", "ViridianCity": "viridian_city", "Route22": "route22",
              "Route2": "route2", "PewterCity": "pewter_city", "ViridianForest": "viridian_forest",
              "Route3": "route3", "Route4": "route4", "CeruleanCity": "cerulean_city", "Route24": "route24",
-             "Route25": "route25", "MtMoon_1F": "mt_moon_1f", "MtMoon_B1F": "mt_moon_b1f", "MtMoon_B2F": "mt_moon_b2f"}
+             "Route25": "route25", "MtMoon_1F": "mt_moon_1f", "MtMoon_B1F": "mt_moon_b1f", "MtMoon_B2F": "mt_moon_b2f",
+             "Route5": "route5", "Route6": "route6", "VermilionCity": "vermilion_city"}
 # Objetos de FireRed que son objetos del entorno del juego (scenes/world/objects/); NPC, carteles y objetos no.
 OBJECTS = {"OBJ_EVENT_GFX_CUT_TREE": "res://scenes/world/objects/cut_tree.tscn",
            "OBJ_EVENT_GFX_ROCK_SMASH_ROCK": "res://scenes/world/objects/rock_smash_rock.tscn",
@@ -195,7 +237,7 @@ def fillers(grid, vp, hp, n=3):
     return [g for g, _ in sorted(count.items(), key=lambda kv: -kv[1])[:n]]
 
 
-def insert_seam(grid, vp, hp, target, fill_ids, keep_cells=frozenset()):
+def insert_seam(grid, vp, hp, target, fill_ids, keep_cells=frozenset(), no_seam=frozenset()):
     """Inserta una costura horizontal de SEAM filas (agrega filas). Devuelve la grilla nueva o None si no hay
     ninguna válida. Programación dinámica columna por columna; el estado es (s, relleno): el bloque nuevo ocupa
     las filas [s, s+SEAM) y es una copia de las SEAM filas de arriba o suelo de relleno del mapa."""
@@ -215,6 +257,8 @@ def insert_seam(grid, vp, hp, target, fill_ids, keep_cells=frozenset()):
         v = []
         for s in range(1, h):
             above, below = grid[s - 1][x], grid[s][x]
+            if (above[2], above[3]) in no_seam or (below[2], below[3]) in no_seam:
+                continue  # ni copia ni relleno pegado a un paso que tapa un objeto
             opts = []
             if s >= p:
                 opts.append((tuple(grid[s - p + i][x][:4] + (True,) for i in range(p)), 0.0))
@@ -263,7 +307,7 @@ def insert_seam(grid, vp, hp, target, fill_ids, keep_cells=frozenset()):
     return [[new(x, seam[x], y) for x in range(w)] for y in range(h + p)]
 
 
-def stretch(grid, vp, hp, scale, label="", keep_cells=frozenset()):
+def stretch(grid, vp, hp, scale, label="", keep_cells=frozenset(), no_seam=frozenset()):
     """Agranda la grilla en los dos ejes con costuras hasta `scale` (o hasta donde se pueda)."""
     fill_ids = fillers(grid, vp, hp)
     for axis in (1, 0):  # 1 = filas (alto), 0 = columnas (ancho)
@@ -274,7 +318,7 @@ def stretch(grid, vp, hp, scale, label="", keep_cells=frozenset()):
         while len(g) + SEAM <= goal:
             target = ((k * 0.618034) % 1.0) * len(g)
             k += 1
-            n = insert_seam(g, v, hh, target, fill_ids, keep_cells)
+            n = insert_seam(g, v, hh, target, fill_ids, keep_cells, no_seam)
             if n is None:
                 print("  %s: sin más costuras en %s (%d de %d)" % (label, "alto" if axis else "ancho", len(g), goal))
                 break
@@ -328,6 +372,20 @@ def opening(lay_a, lay_b, side, offset, prefer_middle=False):
     if vertical:
         return (i, ya), (i - offset, yb)
     return (xa, i), (xb, i - offset)
+
+
+def blocked_passage(lay, ox, oy):
+    """Celda de un objeto que tapa un paso (árbol cortable, roca) y las celdas libres en línea con ella (su fila y su
+    columna, hasta la primera pared): si las costuras no las copian, el paso no se ensancha y el objeto lo sigue
+    tapando."""
+    w, h = lay["w"], lay["h"]
+    out = {(ox, oy)}
+    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+        x, y = ox + dx, oy + dy
+        while 0 <= x < w and 0 <= y < h and not lay["cells"][y * w + x][1]:
+            out.add((x, y))
+            x, y = x + dx, y + dy
+    return out
 
 
 def pad(cells, rect, inner, name, lay, hp, vp):
@@ -397,9 +455,10 @@ def main():
     catalog = json.load(open(os.path.join(root, "art", "pret", "tiles", "catalog.json"), encoding="utf8"))
     NO_COPY.update(int(k) for k, v in catalog["categories"].items() if v in KEEP)
     maps = {}
-    for name in list(EXTERIORS) + list(STRETCHED) + list(INTERIORS) + list(CAVES) + list(INTERIORS_2):
+    for name in list(EXTERIORS) + list(STRETCHED) + list(INTERIORS) + list(CAVES) + list(INTERIORS_2) + list(INTERIORS_3):
         maps[name] = json.load(open(os.path.join(pret, "data", "maps", name, "map.json"), encoding="utf8"))
     by_const = {const_of(n): n for n in maps}
+    by_const.update(CONNECTION_ALIASES)
     lay_of = {n: layouts[maps[n]["layout"]] for n in maps}
 
     # --- Exteriores: cada uno agrandado y ubicado según sus conexiones, alineando los caminos ---
@@ -408,7 +467,11 @@ def main():
         # En los mapas nuevos tampoco se copian las celdas de puerta/escalera (en el capítulo 1 sí se copiaron:
         # se deja así para que esas zonas no cambien).
         keep = frozenset() if n in FIRST_EXTERIORS or n in STRETCHED else             frozenset((w["x"], w["y"]) for w in maps[n].get("warp_events", []))
-        grids[n] = stretch(grid_of(lay_of[n]), vp, hp, SCALE, n, keep)
+        no_seam = frozenset() if n in FIRST_EXTERIORS or n in STRETCHED or n in CHAPTER2_MAPS else             frozenset(c for o in maps[n].get("object_events", []) if o.get("graphics_id") in OBJECTS
+                      for c in blocked_passage(lay_of[n], o["x"], o["y"]))
+        # (ni la celda de un árbol cortable o una roca: si no, el pasillo que tapa queda más ancho y se lo esquiva;
+        # desde el capítulo 3, para que lo ya importado no cambie)
+        grids[n] = stretch(grid_of(lay_of[n]), vp, hp, SCALE, n, keep, no_seam)
     pos = {"PalletTown": (0, 0)}
     todo = ["PalletTown"]
     while todo:
@@ -469,6 +532,8 @@ def main():
     sy = min(rects[n][1] for n in FIRST_EXTERIORS)
     zones = []
     for n in EXTERIORS:
+        if n in PHANTOMS:
+            continue
         x0, y0, x1, y1 = rects[n]
         zones.append(_zone(n, EXTERIORS[n], [x0 - sx, y0 - sy, x1 - sx, y1 - sy],
                            {(x - sx, y - sy): c for (x, y), c in cells.items() if c[5] == n}, "exterior"))
@@ -481,7 +546,8 @@ def main():
 
     # --- Bosque Verde (agrandado) e interiores (1:1), en filas debajo del mundo ---
     ix, iy, row_h = 0, bottom + INTERIOR_GAP, 0
-    offworld = list(STRETCHED.items()) + list(INTERIORS.items()) + list(CAVES.items()) + list(INTERIORS_2.items())
+    offworld = list(STRETCHED.items()) + list(INTERIORS.items()) + list(CAVES.items()) + list(INTERIORS_2.items()) \
+        + list(INTERIORS_3.items())
     for n, info in offworld:
         g = grids[n] if n in grids else grid_of(lay_of[n])
         w, h = len(g[0]), len(g)

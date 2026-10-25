@@ -9,12 +9,17 @@ var _by_id := {}
 var _ledges := {}  # celda del mundo -> dirección del salto (salientes de FireRed)
 
 
-func _init(p_world: WorldData) -> void:
+## `cut`: los árboles cortables (EnvObject "cortable") cuentan como transitables (como si tuvieras Corte).
+func _init(p_world: WorldData, cut: bool = false) -> void:
 	world = p_world
 	for z in world.zones:
 		_by_id[z.id] = z
 		var node: Node = load(z.scene_path).instantiate()
 		var objects := MapRules.objects_by_cell(node)
+		if cut:
+			for c in objects.keys():
+				if (objects[c] as EnvObject).has_tag("cortable"):
+					objects.erase(c)
 		var bits := PackedByteArray()
 		bits.resize(z.size.x * z.size.y)
 		for y in z.size.y:

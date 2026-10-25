@@ -9,11 +9,11 @@ extends Node
 const TOUR := [["entrar", "laboratorio_oak", "pueblo_paleta"], ["entrar", "pueblo_paleta", "laboratorio_oak"],
 	["ir", "ruta22"], ["entrar", "ruta2_garita_sur", "ruta2"], ["entrar", "bosque_verde", "ruta2_garita_sur"],
 	["entrar", "ruta2_garita_norte", "bosque_verde"], ["entrar", "ruta2", "ruta2_garita_norte"], ["ir", "ciudad_plateada"],
-	["camino", "ciudad_celeste_gimnasio"]]
+	["camino", "ciudad_celeste_gimnasio"], ["camino", "ss_anne_capitan"]]
 ## Zonas por las que tiene que pasar.
 const TOUR_ZONES := ["pueblo_paleta", "laboratorio_oak", "ruta1", "ciudad_verde", "ruta22", "ruta2", "ruta2_garita_sur",
 	"bosque_verde", "ruta2_garita_norte", "ciudad_plateada", "ruta3", "ruta4", "mt_moon", "mt_moon_s1", "ciudad_celeste",
-	"ciudad_celeste_gimnasio"]
+	"ciudad_celeste_gimnasio", "ruta5", "via_subterranea", "ruta6", "ciudad_carmin", "ss_anne_muelle", "ss_anne_capitan"]
 const STUCK_TIME := 3.0
 const ARRIVE := 4.0
 

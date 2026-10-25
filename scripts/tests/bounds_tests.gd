@@ -55,8 +55,10 @@ func run() -> void:
 	r["Se llega a Ciudad Plateada"] = by_zone.has("ciudad_plateada")
 	var key_places := ["laboratorio_oak", "ciudad_verde_centro", "ciudad_verde_tienda", "ciudad_verde_gimnasio",
 		"ciudad_plateada_centro", "ciudad_plateada_tienda", "ciudad_plateada_gimnasio", "ciudad_plateada_torneo", "museo",
-		"ruta4_centro", "mt_moon_s2", "ciudad_celeste_centro", "ciudad_celeste_tienda", "ciudad_celeste_gimnasio", "casa_bill"]
-	r["Se llega a los Centros, Tiendas, gimnasios, Museo, Torneo, Mt. Moon y la Casa de Bill"] = key_places.all(func(id: String) -> bool: return by_zone.has(id))
+		"ruta4_centro", "mt_moon_s2", "ciudad_celeste_centro", "ciudad_celeste_tienda", "ciudad_celeste_gimnasio", "casa_bill",
+		"ruta5_guarderia", "via_subterranea", "ruta6", "ciudad_carmin_centro", "ciudad_carmin_tienda", "club_fans",
+		"ss_anne_capitan", "ss_anne_cubierta"]
+	r["Se llega a los Centros, Tiendas, gimnasios, Museo, Torneo, Mt. Moon, Casa de Bill, Vía Subterránea y S.S. Anne"] = key_places.all(func(id: String) -> bool: return by_zone.has(id))
 	var no_forest := _reach(plan, world, true, ["bosque_verde"])
 	var skip := false
 	for c: Vector2i in no_forest:
@@ -69,6 +71,13 @@ func run() -> void:
 		var z := world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE)
 		skip_moon = skip_moon or (z != null and z.id == "ciudad_celeste")
 	r["Sin cruzar el Mt. Moon no se llega a Ciudad Celeste"] = not skip_moon
+	# Gimnasio de Carmín: detrás de un árbol cortable, como en FireRed (Corte te lo dan en el S.S. Anne).
+	r["Sin Corte no se llega al Gimnasio de Carmín"] = not by_zone.has("ciudad_carmin_gimnasio")
+	var with_cut := _reach(TourPlanner.new(world, true), world, true)
+	var cut_zones := {}
+	for c: Vector2i in with_cut:
+		cut_zones[world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE).id] = true
+	r["Con Corte se llega al Gimnasio de Carmín"] = cut_zones.has("ciudad_carmin_gimnasio")
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[limites] %s %s" % ["OK   " if r[key] else "FALLO", key])

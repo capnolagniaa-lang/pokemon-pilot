@@ -1,0 +1,42 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_lx2ur"]
+[ext_resource type="TileSet" path="res://art/tiles/world_tileset.tres" id="2_ba7hu"]
+[ext_resource type="Material" path="res://shaders/materials/water.tres" id="3_vj8qg"]
+[ext_resource type="Material" path="res://shaders/materials/foliage_wind.tres" id="4_xeb5s"]
+[ext_resource type="Script" path="res://scripts/world/tree_shadows.gd" id="5_p3jkj"]
+[ext_resource type="Material" path="res://shaders/materials/canopy_wind.tres" id="6_oneww"]
+
+[node name="SsAnneS1Camarote2" type="Node2D" unique_id=581253540]
+y_sort_enabled = true
+script = ExtResource("1_lx2ur")
+zone_id = "ss_anne_s1_camarote2"
+hand_edited = true
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=1099686124]
+z_index = -10
+tile_map_data = PackedByteArray("AAAAAAAAnwAMAAAAAAABAAAAnwAMAAAAAAACAAAAnwAMAAAAAAADAAAAnwAMAAAAAAAEAAAAnwAMAAAAAAAFAAAAnwAMAAAAAAAAAAEAnwACAAEAAAABAAEAnwALAAsAAAACAAEAnwACAAEAAAADAAEAnwACAAEAAAAEAAEAnwALAAsAAAAFAAEAnwACAAEAAAAAAAIAnwACAAwAAAABAAIAnwADAAwAAAACAAIAnwAEAAwAAAADAAIAnwAIAAgAAAAEAAIAnwAJAAgAAAAFAAIAnwAKAAgAAAAAAAMAnwAKAAwAAAABAAMAnwALAAwAAAACAAMAnwAMAAwAAAADAAMAnwAAAAkAAAAEAAMAnwABAAkAAAAFAAMAnwACAAkAAAAAAAQAnwAHAAoAAAABAAQAnwAMAAsAAAACAAQAnwAEAAoAAAADAAQAnwAEAAoAAAAEAAQAnwAEAAoAAAAFAAQAnwAEAAoAAAAAAAUAnwAHAAoAAAABAAUAnwAEAAoAAAACAAUAnwAEAAoAAAADAAUAnwAEAAoAAAAEAAUAnwAEAAoAAAAFAAUAnwAEAAoAAAAAAAYAnwALAAgAAAABAAYAnwAEAAoAAAACAAYAnwAEAAoAAAADAAYAnwAEAAoAAAAEAAYAnwAEAAoAAAAFAAYAnwAEAAoAAAAAAAcAnwADAAkAAAABAAcAnwAEAAoAAAACAAcAnwAEAAoAAAADAAcAnwANAAsAAAAEAAcAnwAOAAsAAAAFAAcAnwAPAAsAAAAAAAgAnwAIAAAAAAABAAgAnwAIAAAAAAACAAgAnwAIAAAAAAADAAgAnwAKAAQAAAAEAAgAnwALAAQAAAAFAAgAnwAMAAQAAAA=")
+tile_set = ExtResource("2_ba7hu")
+
+[node name="Water" type="TileMapLayer" parent="." unique_id=1962808676]
+z_index = -9
+material = ExtResource("3_vj8qg")
+tile_set = ExtResource("2_ba7hu")
+
+[node name="Foliage" type="TileMapLayer" parent="." unique_id=395326689]
+z_index = -8
+material = ExtResource("4_xeb5s")
+tile_set = ExtResource("2_ba7hu")
+
+[node name="TreeShadows" type="Node2D" parent="." unique_id=38103978]
+z_index = -7
+script = ExtResource("5_p3jkj")
+
+[node name="Overhead" type="TileMapLayer" parent="." unique_id=13410234]
+z_index = 20
+material = ExtResource("6_oneww")
+tile_map_data = PackedByteArray("AAAAAAYAoQALAAgAAAA=")
+tile_set = ExtResource("2_ba7hu")
+
+[node name="Objects" type="Node2D" parent="." unique_id=71398802]
+y_sort_enabled = true

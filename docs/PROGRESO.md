@@ -208,6 +208,13 @@ como en FireRed) y salvajes de FireRed.
 - Entrenadores vivos: sus rutinas pasaron a Ruta 1, Ruta 22, Ruta 2 y Bosque Verde (celda transitable más cercana).
 - `--autotest` reescrito: camina de Pueblo Paleta a Ciudad Plateada entrando al Laboratorio de Oak, pasando por la
   Ruta 22 y cruzando el Bosque Verde por sus garitas (`TourPlanner`).
+- **Mapas del capítulo 3** (2026-10-25, pedido del usuario: "hasta el gimnasio de Ciudad Carmín respetando la
+  guía"): Ruta 5 (guardería, garita), Vía Subterránea (entradas en las Rutas 5 y 6), Ruta 6 (garita), Ciudad Carmín +
+  Centro, Tienda, Club de Fans, casas y Gimnasio, y el S.S. Anne entero (muelle, plantas 1 a 3, sótano, cubierta,
+  cocina, 18 camarotes y el del capitán). Azafrán no se arma: se ubica para que la Ruta 6 y Carmín queden donde van
+  y queda un hueco con paredes (en la guía está cerrada; se pasa por la Vía Subterránea). El Gimnasio de Carmín queda
+  detrás del árbol cortable: hace falta Corte (lo hace la sesión de historia). `--autotest` llega al camarote del
+  capitán; `--autotest-bounds` verifica que sin Corte no se llega al gimnasio y con Corte sí.
 - **Mapas del capítulo 2** (2026-10-24, parte M de `docs/PLAN_CAPITULO_2.md`): Ruta 3, Ruta 4 + su Centro,
   Mt. Moon (3 pisos, agrandados como el Bosque Verde), Ciudad Celeste + Centro, Tienda, Gimnasio, tienda de bicis,
   casas y casa robada, Ruta 24 (Puente Pepita), Ruta 25 y la Casa de Bill, con sus puertas, personas (para la
