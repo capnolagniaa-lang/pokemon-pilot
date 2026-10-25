@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_knuxv"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_r31ug"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_yycyh"]
+
+[sub_resource type="Resource" id="Resource_po4is"]
+script = ExtResource("2_r31ug")
+species_id = "oddish"
+weight = 25
+min_level = 12
+max_level = 14
+
+[sub_resource type="Resource" id="Resource_3el4p"]
+script = ExtResource("2_r31ug")
+species_id = "weedle"
+weight = 20
+min_level = 8
+max_level = 8
+
+[sub_resource type="Resource" id="Resource_okoy4"]
+script = ExtResource("2_r31ug")
+species_id = "caterpie"
+weight = 20
+min_level = 8
+max_level = 8
+
+[sub_resource type="Resource" id="Resource_u3fj5"]
+script = ExtResource("2_r31ug")
+species_id = "pidgey"
+weight = 15
+min_level = 11
+max_level = 13
+
+[sub_resource type="Resource" id="Resource_b4c6t"]
+script = ExtResource("2_r31ug")
+species_id = "abra"
+weight = 15
+min_level = 9
+max_level = 13
+
+[sub_resource type="Resource" id="Resource_ntbq3"]
+script = ExtResource("2_r31ug")
+species_id = "kakuna"
+weight = 4
+min_level = 9
+max_level = 9
+
+[sub_resource type="Resource" id="Resource_fqm7j"]
+script = ExtResource("2_r31ug")
+species_id = "metapod"
+weight = 1
+min_level = 9
+max_level = 9
+
+[resource]
+script = ExtResource("3_yycyh")
+entries = Array[ExtResource("2_r31ug")]([SubResource("Resource_po4is"), SubResource("Resource_3el4p"), SubResource("Resource_okoy4"), SubResource("Resource_u3fj5"), SubResource("Resource_b4c6t"), SubResource("Resource_ntbq3"), SubResource("Resource_fqm7j")])

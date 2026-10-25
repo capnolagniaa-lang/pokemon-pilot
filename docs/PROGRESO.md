@@ -191,6 +191,15 @@ como en FireRed) y salvajes de FireRed.
 - Entrenadores vivos: sus rutinas pasaron a Ruta 1, Ruta 22, Ruta 2 y Bosque Verde (celda transitable más cercana).
 - `--autotest` reescrito: camina de Pueblo Paleta a Ciudad Plateada entrando al Laboratorio de Oak, pasando por la
   Ruta 22 y cruzando el Bosque Verde por sus garitas (`TourPlanner`).
+- **Mapas del capítulo 2** (2026-10-24, parte M de `docs/PLAN_CAPITULO_2.md`): Ruta 3, Ruta 4 + su Centro,
+  Mt. Moon (3 pisos, agrandados como el Bosque Verde), Ciudad Celeste + Centro, Tienda, Gimnasio, tienda de bicis,
+  casas y casa robada, Ruta 24 (Puente Pepita), Ruta 25 y la Casa de Bill, con sus puertas, personas (para la
+  historia) y salvajes de FireRed (en las cuevas, en cualquier suelo). Importados con `import_frlg_maps.gd --
+  --only-new`: las 28 zonas anteriores quedaron idénticas. En los mapas nuevos no se copian escaleras ni puertas al
+  agrandar, y cuando un borde tiene varios caminos se alinea el del medio. Dos salientes seguidos se saltan juntos;
+  una puerta sólida se usa empujándola 0,12 s (no se entra sin querer al pasar rozando). `--autotest` ahora camina
+  hasta el Gimnasio de Celeste (Mt. Moon incluido) y `--autotest-bounds` verifica que no haya atajos (Bosque Verde ni
+  Mt. Moon) y que se llegue a todo.
 - **Límites de las zonas** (pedido del usuario: "en algunos mapas, rutas e interiores no hay límites"): los interiores
   de FireRed tienen piso hasta el borde y algunos caminos llevaban a mapas que no están (Ruta 3, Calle Victoria);
   `ZoneBounds` pone paredes invisibles en todo borde que da al vacío. Se sacó el árbol cortable de Plateada que tapaba

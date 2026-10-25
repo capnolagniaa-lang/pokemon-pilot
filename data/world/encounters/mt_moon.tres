@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_jcyxr"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_4l82g"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_jwpkr"]
+
+[sub_resource type="Resource" id="Resource_i4o38"]
+script = ExtResource("2_4l82g")
+species_id = "zubat"
+weight = 69
+min_level = 7
+max_level = 10
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_2x4hs"]
+script = ExtResource("2_4l82g")
+species_id = "geodude"
+weight = 25
+min_level = 7
+max_level = 9
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_bkexq"]
+script = ExtResource("2_4l82g")
+species_id = "paras"
+weight = 5
+min_level = 8
+max_level = 8
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_1uio5"]
+script = ExtResource("2_4l82g")
+species_id = "clefairy"
+weight = 1
+min_level = 8
+max_level = 8
+where = "suelo"
+
+[resource]
+script = ExtResource("3_jwpkr")
+entries = Array[ExtResource("2_4l82g")]([SubResource("Resource_i4o38"), SubResource("Resource_2x4hs"), SubResource("Resource_bkexq"), SubResource("Resource_1uio5")])

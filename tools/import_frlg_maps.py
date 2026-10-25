@@ -33,7 +33,19 @@ EXTERIORS = {  # mapa de FireRed -> (id de zona, nombre)
     "Route22": ("ruta22", "Ruta 22"),
     "Route2": ("ruta2", "Ruta 2"),
     "PewterCity": ("ciudad_plateada", "Ciudad Plateada"),
+    # Capítulo 2 (docs/PLAN_CAPITULO_2.md): de Plateada a Celeste. Se agregan al final para no mover nada de lo anterior.
+    "Route3": ("ruta3", "Ruta 3"),
+    "Route4": ("ruta4", "Ruta 4"),
+    "CeruleanCity": ("ciudad_celeste", "Ciudad Celeste"),
+    "Route24": ("ruta24", "Ruta 24 (Puente Pepita)"),
+    "Route25": ("ruta25", "Ruta 25"),
 }
+# Exteriores del capítulo 1: el corrimiento del mundo se calcula solo con ellos (así las zonas viejas no se mueven).
+FIRST_EXTERIORS = ["PalletTown", "Route1", "ViridianCity", "Route22", "Route2", "PewterCity"]
+# Mapas que salen de costado de la columna principal y empalman con su borde (no con el del mapa sin relleno):
+# raíz de la rama -> (lado, mapas de la rama).
+BRANCHES = {"Route22": ("left", ["Route22"]),
+            "Route3": ("right", ["Route3", "Route4", "CeruleanCity", "Route24", "Route25"])}
 MAIN_COLUMN = ["PewterCity", "Route2", "ViridianCity", "Route1", "PalletTown"]  # apilados de norte a sur
 STRETCHED = {"ViridianForest": ("bosque_verde", "Bosque Verde")}
 INTERIORS = {
@@ -59,9 +71,30 @@ INTERIORS = {
     "PewterCity_House2": ("ciudad_plateada_casa2", "Casa de Ciudad Plateada"),
     "PewterCity_PokemonCenter_1F": ("ciudad_plateada_centro", "Centro Pokémon de Ciudad Plateada"),
 }
+# Cuevas (agrandadas como el Bosque Verde; lejos del mundo, después de los interiores del capítulo 1).
+CAVES = {
+    "MtMoon_1F": ("mt_moon", "Mt. Moon"),
+    "MtMoon_B1F": ("mt_moon_s1", "Mt. Moon (sótano 1)"),
+    "MtMoon_B2F": ("mt_moon_s2", "Mt. Moon (sótano 2)"),
+}
+INTERIORS_2 = {
+    "Route4_PokemonCenter_1F": ("ruta4_centro", "Centro Pokémon de la Ruta 4"),
+    "CeruleanCity_PokemonCenter_1F": ("ciudad_celeste_centro", "Centro Pokémon de Ciudad Celeste"),
+    "CeruleanCity_Mart": ("ciudad_celeste_tienda", "Tienda de Ciudad Celeste"),
+    "CeruleanCity_Gym": ("ciudad_celeste_gimnasio", "Gimnasio de Ciudad Celeste"),
+    "CeruleanCity_BikeShop": ("ciudad_celeste_bicis", "Tienda de bicicletas"),
+    "CeruleanCity_House1": ("ciudad_celeste_casa1", "Casa de Ciudad Celeste"),
+    "CeruleanCity_House2": ("ciudad_celeste_casa_robada", "Casa robada"),
+    "CeruleanCity_House3": ("ciudad_celeste_casa3", "Casa de Ciudad Celeste"),
+    "CeruleanCity_House4": ("ciudad_celeste_casa4", "Casa de Ciudad Celeste"),
+    "CeruleanCity_House5": ("ciudad_celeste_casa5", "Casa de Ciudad Celeste"),
+    "Route25_SeaCottage": ("casa_bill", "Casa de Bill"),
+}
 # Plantilla de salvajes de FireRed (encounters/plantillas_frlg.json); las zonas sin plantilla no tienen salvajes.
 TEMPLATES = {"PalletTown": "pallet_town", "Route1": "route1", "ViridianCity": "viridian_city", "Route22": "route22",
-             "Route2": "route2", "PewterCity": "pewter_city", "ViridianForest": "viridian_forest"}
+             "Route2": "route2", "PewterCity": "pewter_city", "ViridianForest": "viridian_forest",
+             "Route3": "route3", "Route4": "route4", "CeruleanCity": "cerulean_city", "Route24": "route24",
+             "Route25": "route25", "MtMoon_1F": "mt_moon_1f", "MtMoon_B1F": "mt_moon_b1f", "MtMoon_B2F": "mt_moon_b2f"}
 # Objetos de FireRed que son objetos del entorno del juego (scenes/world/objects/); NPC, carteles y objetos no.
 OBJECTS = {"OBJ_EVENT_GFX_CUT_TREE": "res://scenes/world/objects/cut_tree.tscn",
            "OBJ_EVENT_GFX_ROCK_SMASH_ROCK": "res://scenes/world/objects/rock_smash_rock.tscn",
@@ -162,7 +195,7 @@ def fillers(grid, vp, hp, n=3):
     return [g for g, _ in sorted(count.items(), key=lambda kv: -kv[1])[:n]]
 
 
-def insert_seam(grid, vp, hp, target, fill_ids):
+def insert_seam(grid, vp, hp, target, fill_ids, keep_cells=frozenset()):
     """Inserta una costura horizontal de SEAM filas (agrega filas). Devuelve la grilla nueva o None si no hay
     ninguna válida. Programación dinámica columna por columna; el estado es (s, relleno): el bloque nuevo ocupa
     las filas [s, s+SEAM) y es una copia de las SEAM filas de arriba o suelo de relleno del mapa."""
@@ -188,7 +221,7 @@ def insert_seam(grid, vp, hp, target, fill_ids):
             for g in fill_ids:
                 opts.append((tuple((g, 0, -1, -1, True) for _ in range(p)), 0.35))
             for fill, extra in opts:
-                if extra == 0 and any(c[0] in NO_COPY for c in fill):
+                if extra == 0 and any(c[0] in NO_COPY or (c[2], c[3]) in keep_cells for c in fill):
                     continue
                 seq = [above] + list(fill) + [below]
                 if any(c[0] < 0 for c in seq) or any((seq[i][0], seq[i + 1][0]) not in vp for i in range(len(seq) - 1)):
@@ -230,7 +263,7 @@ def insert_seam(grid, vp, hp, target, fill_ids):
     return [[new(x, seam[x], y) for x in range(w)] for y in range(h + p)]
 
 
-def stretch(grid, vp, hp, scale, label=""):
+def stretch(grid, vp, hp, scale, label="", keep_cells=frozenset()):
     """Agranda la grilla en los dos ejes con costuras hasta `scale` (o hasta donde se pueda)."""
     fill_ids = fillers(grid, vp, hp)
     for axis in (1, 0):  # 1 = filas (alto), 0 = columnas (ancho)
@@ -241,7 +274,7 @@ def stretch(grid, vp, hp, scale, label=""):
         while len(g) + SEAM <= goal:
             target = ((k * 0.618034) % 1.0) * len(g)
             k += 1
-            n = insert_seam(g, v, hh, target, fill_ids)
+            n = insert_seam(g, v, hh, target, fill_ids, keep_cells)
             if n is None:
                 print("  %s: sin más costuras en %s (%d de %d)" % (label, "alto" if axis else "ancho", len(g), goal))
                 break
@@ -259,35 +292,42 @@ def find_cell(grid, ox, oy):
     return None
 
 
-def opening(lay_a, lay_b, side, offset):
-    """Celda del borde de A (original) en el medio del camino que lo une con B, y su par en B."""
-    best = []
-    run = []
-    if side in ("up", "down"):
+def opening(lay_a, lay_b, side, offset, prefer_middle=False):
+    """Celda del borde de A (original) en el medio del camino que lo une con B, y su par en B.
+    Si hay varios caminos en el borde: el más largo (el primero), o con `prefer_middle` el más cercano al centro del
+    borde (cuando los dos mapas no crecen igual solo uno queda alineado: mejor el del medio, que suele ser el camino
+    principal). Las uniones del capítulo 1 usan la regla vieja para no moverse."""
+    vertical = side in ("up", "down")
+    if vertical:
         ya, yb = (0, lay_b["h"] - 1) if side == "up" else (lay_a["h"] - 1, 0)
-        for x in range(lay_a["w"]):
-            xb = x - offset
-            ok = 0 <= xb < lay_b["w"] and not lay_a["cells"][ya * lay_a["w"] + x][1] \
-                and not lay_b["cells"][yb * lay_b["w"] + xb][1]
-            run = run + [x] if ok else []
-            if len(run) > len(best):
-                best = run
-        if not best:
-            return None
-        x = best[len(best) // 2]
-        return (x, ya), (x - offset, yb)
-    xa, xb = (0, lay_b["w"] - 1) if side == "left" else (lay_a["w"] - 1, 0)
-    for y in range(lay_a["h"]):
-        yb = y - offset
-        ok = 0 <= yb < lay_b["h"] and not lay_a["cells"][y * lay_a["w"] + xa][1] \
-            and not lay_b["cells"][yb * lay_b["w"] + xb][1]
-        run = run + [y] if ok else []
-        if len(run) > len(best):
-            best = run
-    if not best:
+        n, nb = lay_a["w"], lay_b["w"]
+    else:
+        xa, xb = (0, lay_b["w"] - 1) if side == "left" else (lay_a["w"] - 1, 0)
+        n, nb = lay_a["h"], lay_b["h"]
+    runs, run = [], []
+    for i in range(n):
+        j = i - offset
+        if vertical:
+            ok = 0 <= j < nb and not lay_a["cells"][ya * lay_a["w"] + i][1] and not lay_b["cells"][yb * lay_b["w"] + j][1]
+        else:
+            ok = 0 <= j < nb and not lay_a["cells"][i * lay_a["w"] + xa][1] and not lay_b["cells"][j * lay_b["w"] + xb][1]
+        if ok:
+            run.append(i)
+        elif run:
+            runs.append(run)
+            run = []
+    if run:
+        runs.append(run)
+    if not runs:
         return None
-    y = best[len(best) // 2]
-    return (xa, y), (xb, y - offset)
+    if prefer_middle:
+        best = min(runs, key=lambda r: abs((r[0] + r[-1]) / 2 - (n - 1) / 2))
+    else:
+        best = max(runs, key=len)  # (max devuelve el primero de los más largos, como antes)
+    i = best[len(best) // 2]
+    if vertical:
+        return (i, ya), (i - offset, yb)
+    return (xa, i), (xb, i - offset)
 
 
 def pad(cells, rect, inner, name, lay, hp, vp):
@@ -357,15 +397,18 @@ def main():
     catalog = json.load(open(os.path.join(root, "art", "pret", "tiles", "catalog.json"), encoding="utf8"))
     NO_COPY.update(int(k) for k, v in catalog["categories"].items() if v in KEEP)
     maps = {}
-    for name in list(EXTERIORS) + list(STRETCHED) + list(INTERIORS):
+    for name in list(EXTERIORS) + list(STRETCHED) + list(INTERIORS) + list(CAVES) + list(INTERIORS_2):
         maps[name] = json.load(open(os.path.join(pret, "data", "maps", name, "map.json"), encoding="utf8"))
     by_const = {const_of(n): n for n in maps}
     lay_of = {n: layouts[maps[n]["layout"]] for n in maps}
 
     # --- Exteriores: cada uno agrandado y ubicado según sus conexiones, alineando los caminos ---
     grids = {}
-    for n in list(EXTERIORS) + list(STRETCHED):
-        grids[n] = stretch(grid_of(lay_of[n]), vp, hp, SCALE, n)
+    for n in list(EXTERIORS) + list(STRETCHED) + list(CAVES):
+        # En los mapas nuevos tampoco se copian las celdas de puerta/escalera (en el capítulo 1 sí se copiaron:
+        # se deja así para que esas zonas no cambien).
+        keep = frozenset() if n in FIRST_EXTERIORS or n in STRETCHED else             frozenset((w["x"], w["y"]) for w in maps[n].get("warp_events", []))
+        grids[n] = stretch(grid_of(lay_of[n]), vp, hp, SCALE, n, keep)
     pos = {"PalletTown": (0, 0)}
     todo = ["PalletTown"]
     while todo:
@@ -375,7 +418,7 @@ def main():
             if b not in EXTERIORS or b in pos:
                 continue
             side, off = c["direction"], int(c["offset"])
-            op = opening(lay_of[a], lay_of[b], side, off)
+            op = opening(lay_of[a], lay_of[b], side, off, prefer_middle=b not in FIRST_EXTERIORS)
             ga, gb = grids[a], grids[b]
             ax, ay = pos[a]
             if op is None:
@@ -392,7 +435,13 @@ def main():
     # Columna principal: todos con el mismo ancho; la Ruta 22 termina donde empieza la columna.
     mx0 = min(pos[n][0] for n in MAIN_COLUMN)
     mx1 = max(pos[n][0] + len(grids[n][0]) for n in MAIN_COLUMN)
-    pos["Route22"] = (mx0 - len(grids["Route22"][0]), pos["Route22"][1])
+    for root_map, (side, members) in BRANCHES.items():
+        if side == "left":
+            dx = mx0 - (pos[root_map][0] + len(grids[root_map][0]))
+        else:
+            dx = mx1 - pos[root_map][0]
+        for n in members:
+            pos[n] = (pos[n][0] + dx, pos[n][1])
     cells, rects, inner = {}, {}, {}
     for n in EXTERIORS:
         x0, y0 = pos[n]
@@ -408,9 +457,16 @@ def main():
     rects["Route22"] = [r22[0], min(r22[1], v[1]), mx0, max(r22[3], v[3])]
     for n in EXTERIORS:
         pad(cells, rects[n], inner[n], n, lay_of[n], hp, vp)
-    # Corrimiento: que el mundo empiece en (0, 0).
-    sx = min(r[0] for r in rects.values())
-    sy = min(r[1] for r in rects.values())
+    # Zonas encimadas (no debería pasar: avisa para revisar la ubicación).
+    names = list(rects)
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            ra, rb = rects[a], rects[b]
+            if ra[0] < rb[2] and rb[0] < ra[2] and ra[1] < rb[3] and rb[1] < ra[3]:
+                print("  OJO: %s y %s se enciman" % (a, b))
+    # Corrimiento: que el mundo del capítulo 1 empiece en (0, 0) (lo nuevo puede quedar en coordenadas negativas).
+    sx = min(rects[n][0] for n in FIRST_EXTERIORS)
+    sy = min(rects[n][1] for n in FIRST_EXTERIORS)
     zones = []
     for n in EXTERIORS:
         x0, y0, x1, y1 = rects[n]
@@ -421,17 +477,19 @@ def main():
         n = z["map"]
         x0, y0 = pos[n]
         local[n] = (grids[n], x0 - sx - z["origin"][0], y0 - sy - z["origin"][1])
-    bottom = max(z["origin"][1] + z["size"][1] for z in zones)
+    bottom = max(z["origin"][1] + z["size"][1] for z in zones if z["map"] in FIRST_EXTERIORS)
 
     # --- Bosque Verde (agrandado) e interiores (1:1), en filas debajo del mundo ---
     ix, iy, row_h = 0, bottom + INTERIOR_GAP, 0
-    for n, info in list(STRETCHED.items()) + list(INTERIORS.items()):
+    offworld = list(STRETCHED.items()) + list(INTERIORS.items()) + list(CAVES.items()) + list(INTERIORS_2.items())
+    for n, info in offworld:
         g = grids[n] if n in grids else grid_of(lay_of[n])
         w, h = len(g[0]), len(g)
         if ix and ix + w > INTERIOR_ROW:
             ix, iy, row_h = 0, iy + row_h + INTERIOR_GAP, 0
         c = {(ix + x, iy + y): cell + (n,) for y, row in enumerate(g) for x, cell in enumerate(row)}
-        zones.append(_zone(n, info, [ix, iy, ix + w, iy + h], c, "exterior" if n in STRETCHED else "interior"))
+        kind = "exterior" if n in STRETCHED else ("cave" if n in CAVES else "interior")
+        zones.append(_zone(n, info, [ix, iy, ix + w, iy + h], c, kind))
         local[n] = (g, 0, 0)
         ix += w + INTERIOR_GAP
         row_h = max(row_h, h)

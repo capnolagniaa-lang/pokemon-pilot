@@ -10,6 +10,8 @@ const DIRS := {0x38: Vector2i.RIGHT, 0x39: Vector2i.LEFT, 0x3A: Vector2i.UP, 0x3
 const PUSH := 6.0
 const HOP_TIME := 0.3
 const HOP_HEIGHT := 9.0
+## Cuántos salientes seguidos (en la misma dirección) se saltan de una vez.
+const MAX_CHAIN := 3
 
 var world: Node
 var busy := false
@@ -40,15 +42,21 @@ func _physics_process(_delta: float) -> void:
 	var rect := Rect2(zone.to_global(Vector2(ledge * data.tile_size)), Vector2.ONE * data.tile_size)
 	if WarpSystem._dist_to_rect(t.global_position, rect) >= PUSH:
 		return
-	var landing := zone.to_global(zone.ground.map_to_local(ledge + d))
+	# Al agrandar los mapas a veces quedan dos salientes seguidos: se saltan juntos.
+	var land_cell := ledge + d
+	for i in MAX_CHAIN:
+		if direction_at(zone, land_cell) != d:
+			break
+		land_cell += d
+	var landing := zone.to_global(zone.ground.map_to_local(land_cell))
 	if not _walkable_at(landing):
 		return
 	_jump(t, landing, d)
 
 
 ## Dirección del salto del saliente de la celda (Vector2i.ZERO si no es un saliente).
-static func direction_at(zone: Zone, cell: Vector2i) -> Vector2i:
-	var m := ZoneBuilder.metatile_at(zone.ground, cell)
+static func direction_at(zone: Node, cell: Vector2i) -> Vector2i:
+	var m := ZoneBuilder.metatile_at(zone.get_node("Ground"), cell)  # (también fuera del árbol, sin @onready)
 	if m < 0 or not ZoneBuilder.exists(m):
 		return Vector2i.ZERO
 	return DIRS.get(ZoneBuilder.behavior_of(m), Vector2i.ZERO)
@@ -69,8 +77,9 @@ func _jump(t: Trainer, landing: Vector2, d: Vector2i) -> void:
 	t.collision_mask = 0  # pasa por encima del saliente
 	var sprite_y := t.sprite.offset.y
 	var tw := create_tween().set_parallel()
-	tw.tween_property(t, "global_position", landing, HOP_TIME)
-	tw.tween_method(func(k: float): t.sprite.offset.y = sprite_y - sin(k * PI) * HOP_HEIGHT, 0.0, 1.0, HOP_TIME)
+	var time := HOP_TIME * clampf(start.distance_to(landing) / 32.0, 1.0, 2.0)
+	tw.tween_property(t, "global_position", landing, time)
+	tw.tween_method(func(k: float): t.sprite.offset.y = sprite_y - sin(k * PI) * HOP_HEIGHT, 0.0, 1.0, time)
 	await tw.finished
 	t.sprite.offset.y = sprite_y
 	t.collision_mask = mask

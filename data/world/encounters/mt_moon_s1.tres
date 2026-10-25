@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_7ciqh"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_cf3is"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_710uq"]
+
+[sub_resource type="Resource" id="Resource_cbk83"]
+script = ExtResource("2_cf3is")
+species_id = "paras"
+weight = 100
+min_level = 5
+max_level = 10
+where = "suelo"
+
+[resource]
+script = ExtResource("3_710uq")
+entries = Array[ExtResource("2_cf3is")]([SubResource("Resource_cbk83")])

@@ -115,7 +115,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Capas de colisión**: 1 mundo · 2 agua · 3 jugador · 4 criatura aliada · 5 criatura salvaje ·
   6 hurtbox aliada · 7 hurtbox salvaje · 8 entorno. Hitboxes/hurtboxes con Area2D (desde Etapa 2).
 - **Mundo**: región de zonas (`data/world/kanto.tres`, `ZoneEntry` con origen, plaza `hub`, `exits`, `warps` e
-  `interior`). Son los **mapas reales de FireRed de Pueblo Paleta a Ciudad Plateada**, agrandados (ver "Pipeline").
+  `interior`). Son los **mapas reales de FireRed de Pueblo Paleta a Ciudad Celeste** (capítulo 2: Ruta 3, Ruta 4,
+  Mt. Moon, Celeste, Rutas 24 y 25 y la Casa de Bill), agrandados (ver "Pipeline").
   `ZoneStreamer` carga/descarga zonas en segundo plano (sin pantallas de carga). `World.tags_at(pos)`.
   Los interiores (casas, Centros, gimnasios, garitas) y el Bosque Verde están lejos, debajo del mundo, y se llega
   por **puertas**: `WarpSystem` (nodo del mundo; puerta sólida = caminar contra ella, transitable = pisarla;
@@ -264,7 +265,11 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   del mapa). El .gd rearma el TileSet (colisión por celda: `ZoneBuilder.imported_collision_alts`), guarda las zonas
   `hand_edited` (agua en Water y pasto alto en Foliage, como los pinceles; árboles cortables de FireRed como
   EnvObject), la región, las tablas de salvajes de FireRed sin las filas de agua (son de Surf) y **borra las zonas viejas** (backup en `.backup/`;
-  `-- --keep-others` las conserva). Orden: `.py` → `--import` → `.gd`. **Pisa las zonas importadas**: después de
+  `-- --keep-others` las conserva). Orden: `.py` → `--import` → `.gd`. **Para sumar mapas** (como el capítulo
+  2): agregarlos al final de las tablas del `.py` (`EXTERIORS`, `CAVES`, `INTERIORS_2`; así lo viejo no se mueve: el
+  corrimiento sale solo de `FIRST_EXTERIORS` y los interiores nuevos van después) y correr el `.gd` con
+  `-- --only-new` (solo arma las zonas que no están en kanto.tres; las que ya existen quedan tal cual). Verificar que
+  las zonas viejas del JSON no cambiaron. Cuevas: `kind` "cave" (interior, salvajes en cualquier suelo). **Pisa las zonas importadas**: después de
   editarlas con el editor de mapas no volver a correrlo.
 - `tools/build_world.gd`: arma el TileSet (desde los roles) y **genera las zonas** a partir de `REGION` (vacía desde la
   región de FireRed) y

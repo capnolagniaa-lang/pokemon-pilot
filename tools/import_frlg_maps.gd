@@ -1,7 +1,9 @@
 extends SceneTree
 ## Convierte data/world/frlg_maps.json (de tools/import_frlg_maps.py: los mapas reales de FireRed de Pueblo Paleta
 ## a Ciudad Plateada, agrandados) en zonas del juego, y arma la región con ellas (data/world/kanto.tres).
-## Uso: godot --headless --path . --script res://tools/import_frlg_maps.gd [-- --keep-others]
+## Uso: godot --headless --path . --script res://tools/import_frlg_maps.gd [-- --keep-others] [--only-new]
+##  - --only-new: solo arma las zonas que todavía no están en kanto.tres (las que ya existen quedan tal cual: escena,
+##    entrada y tabla de salvajes, aunque se hayan editado a mano). Así se suman mapas sin pisar lo anterior.
 ##  - Rearma el TileSet (con las colisiones por celda que piden los mapas) y guarda cada zona en
 ##    scenes/world/zones/<id>.tscn, marcada hand_edited (build_world no la pisa; se sigue editando con el editor).
 ##  - La región queda solo con las zonas importadas: las demás zonas y sus tablas de salvajes se borran (con
@@ -40,19 +42,26 @@ func _init() -> void:
 		templates[t["id"]] = t
 
 	var old: WorldData = load(ZoneBuilder.WORLD_PATH)
+	var only_new := "--only-new" in OS.get_cmdline_user_args()
+	var old_by_id := {}
+	for z in old.zones:
+		old_by_id[z.id] = z
 	var world := WorldData.new()
 	world.tile_size = ZoneBuilder.T
 	var ids := {}
 	for z: Dictionary in data["zones"]:
 		ids[z["id"]] = true
 	for z: Dictionary in data["zones"]:
+		if only_new and old_by_id.has(z["id"]):
+			world.zones.append(old_by_id[z["id"]])
+			continue
 		var e := ZoneEntry.new()
 		e.id = z["id"]
 		e.display_name = z["name"]
 		e.scene_path = "%s/%s.tscn" % [ZoneBuilder.ZONES_DIR, e.id]
 		e.origin = Vector2i(int(z["origin"][0]), int(z["origin"][1]))
 		e.size = Vector2i(int(z["size"][0]), int(z["size"][1]))
-		e.interior = z["kind"] == "interior"
+		e.interior = z["kind"] in ["interior", "cave"]  # sin sombras de nubes
 		e.biome = _biome(z)
 		for w: Dictionary in z["warps"]:
 			e.warps[Vector2i(int(w["cell"][0]), int(w["cell"][1]))] = {"to": w["to"], "cell": Vector2i(int(w["to_cell"][0]), int(w["to_cell"][1]))}
@@ -70,15 +79,19 @@ func _init() -> void:
 		if table != null:
 			# Sin las filas de agua: en FireRed hacen falta Surf (y son de nivel alto, al lado del inicio).
 			table.entries.assign(table.entries.filter(func(r: EncounterEntry) -> bool: return r.where != "agua"))
+			if z["kind"] == "cave":  # en las cuevas de FireRed aparecen en cualquier lugar del suelo
+				for r in table.entries:
+					if r.where == "pasto_alto":
+						r.where = "suelo"
 		_backup(tpath)
 		if table != null and not table.entries.is_empty():
 			ResourceSaver.save(table, tpath)
 		elif FileAccess.file_exists(tpath):
 			DirAccess.remove_absolute(ProjectSettings.globalize_path(tpath))
 		print("%-26s %s  puertas: %d" % [e.id, e.size, e.warps.size()])
-	world.spawn_cell = Vector2i(int(data["spawn"][0]), int(data["spawn"][1]))
+	world.spawn_cell = old.spawn_cell if only_new else Vector2i(int(data["spawn"][0]), int(data["spawn"][1]))
 
-	var keep_others := "--keep-others" in OS.get_cmdline_user_args()
+	var keep_others := only_new or "--keep-others" in OS.get_cmdline_user_args()
 	for z in old.zones:
 		if ids.has(z.id):
 			continue
@@ -110,6 +123,8 @@ func _backup(path: String) -> void:
 func _biome(z: Dictionary) -> String:
 	if z["kind"] == "interior":
 		return "interior"
+	if z["kind"] == "cave":
+		return "cueva"
 	var id: String = z["id"]
 	if id.begins_with("ruta"):
 		return "pradera"

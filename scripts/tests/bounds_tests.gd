@@ -41,16 +41,34 @@ func run() -> void:
 		by_zone[world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE).id] = true
 	var missing := world.zones.filter(func(z: ZoneEntry) -> bool: return not by_zone.has(z.id)).map(func(z: ZoneEntry) -> String: return z.id)
 	print("[limites] zonas a las que no se llega: ", missing)
+	if OS.has_environment("BOUNDS_DEBUG"):
+		var e4 := plan.entry(OS.get_environment("BOUNDS_DEBUG"))
+		var rows := []
+		for y in e4.size.y:
+			var line := ""
+			for x in e4.size.x:
+				var c := e4.origin + Vector2i(x, y)
+				line += "o" if with_warps.has(c) else ("." if plan.walkable(c) else ("W" if plan.is_warp(c) else ("v" if plan._ledges.has(c) else "#")))
+			rows.append(line)
+		print("
+".join(rows))
 	r["Se llega a Ciudad Plateada"] = by_zone.has("ciudad_plateada")
 	var key_places := ["laboratorio_oak", "ciudad_verde_centro", "ciudad_verde_tienda", "ciudad_verde_gimnasio",
-		"ciudad_plateada_centro", "ciudad_plateada_tienda", "ciudad_plateada_gimnasio", "ciudad_plateada_torneo", "museo"]
-	r["Se llega a los Centros, Tiendas, gimnasios, Museo y Torneo"] = key_places.all(func(id: String) -> bool: return by_zone.has(id))
+		"ciudad_plateada_centro", "ciudad_plateada_tienda", "ciudad_plateada_gimnasio", "ciudad_plateada_torneo", "museo",
+		"ruta4_centro", "mt_moon_s2", "ciudad_celeste_centro", "ciudad_celeste_tienda", "ciudad_celeste_gimnasio", "casa_bill"]
+	r["Se llega a los Centros, Tiendas, gimnasios, Museo, Torneo, Mt. Moon y la Casa de Bill"] = key_places.all(func(id: String) -> bool: return by_zone.has(id))
 	var no_forest := _reach(plan, world, true, ["bosque_verde"])
 	var skip := false
 	for c: Vector2i in no_forest:
 		var z := world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE)
 		skip = skip or (z != null and z.id == "ciudad_plateada")
 	r["Sin cruzar el Bosque Verde no se llega a Ciudad Plateada"] = not skip
+	var no_moon := _reach(plan, world, true, ["mt_moon", "mt_moon_s1", "mt_moon_s2"])
+	var skip_moon := false
+	for c: Vector2i in no_moon:
+		var z := world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE)
+		skip_moon = skip_moon or (z != null and z.id == "ciudad_celeste")
+	r["Sin cruzar el Mt. Moon no se llega a Ciudad Celeste"] = not skip_moon
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[limites] %s %s" % ["OK   " if r[key] else "FALLO", key])
@@ -107,6 +125,10 @@ func _reach(plan: TourPlanner, world: WorldData, warps: bool, avoid: Array = [])
 				next.append(n)
 			elif warps and plan.is_warp(n):  # puerta sólida: se usa caminando contra ella
 				next.append(plan.arrival(n))
+			else:
+				var j := plan.jump(c, d)  # saliente: se baja saltando
+				if j.x != -99999:
+					next.append(j)
 		for n in next:
 			if seen.has(n):
 				continue

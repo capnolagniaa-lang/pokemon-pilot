@@ -6,6 +6,7 @@ extends RefCounted
 var world: WorldData
 var _walk := {}   # id de zona -> PackedByteArray (1 = transitable), en celdas locales
 var _by_id := {}
+var _ledges := {}  # celda del mundo -> dirección del salto (salientes de FireRed)
 
 
 func _init(p_world: WorldData) -> void:
@@ -23,6 +24,10 @@ func _init(p_world: WorldData) -> void:
 			if npc.zone_id == z.id and npc.visible_now() and Rect2i(Vector2i.ZERO, z.size).has_point(npc.cell):
 				bits[npc.cell.y * z.size.x + npc.cell.x] = 0
 		_walk[z.id] = bits
+		for c in (node.get_node("Ground") as TileMapLayer).get_used_cells():
+			var d := LedgeJumper.direction_at(node, c)
+			if d != Vector2i.ZERO:
+				_ledges[z.origin + c] = d
 		node.free()
 
 
@@ -42,6 +47,19 @@ func walkable(cell: Vector2i) -> bool:
 func is_warp(cell: Vector2i) -> bool:
 	var z := world.zone_at(Vector2(cell * world.tile_size) + Vector2.ONE)
 	return z != null and z.warps.has(cell - z.origin)
+
+
+## Si desde `c` caminando hacia `d` se salta un saliente: la celda donde se cae (si no, Vector2i(-99999, -99999)).
+func jump(c: Vector2i, d: Vector2i) -> Vector2i:
+	var n := c + d
+	if _ledges.get(n, Vector2i.ZERO) != d:
+		return Vector2i(-99999, -99999)
+	var land := n + d
+	for i in LedgeJumper.MAX_CHAIN:  # salientes seguidos se saltan juntos (como LedgeJumper)
+		if _ledges.get(land, Vector2i.ZERO) != d:
+			break
+		land += d
+	return land if walkable(land) else Vector2i(-99999, -99999)
 
 
 ## Camino de celdas del mundo de `from` a `to` (sin pisar puertas salvo `to`); vacío si no hay.
@@ -68,6 +86,58 @@ func path(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
 	var out: Array[Vector2i] = [to]
 	while out[0] != from:
 		out.push_front(prev[out[0]])
+	return out
+
+
+## Recorrido completo de `from` hasta la plaza de la zona `zone_id`, usando puertas y salientes si hace falta:
+## [[celda, zona a la que se llega ("" = caminar hasta la celda)], ...] (vacío si no hay). Tras una puerta sigue
+## desde la celda de llegada.
+func route(from: Vector2i, zone_id: String) -> Array:
+	var goal: Vector2i = _by_id[zone_id].origin + _by_id[zone_id].hub
+	var prev := {from: [from, ""]}  # celda -> [anterior, puerta usada ("" = caminando o saltando)]
+	var queue: Array[Vector2i] = [from]
+	var i := 0
+	var dirs: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]
+	while i < queue.size() and not prev.has(goal):
+		var c := queue[i]
+		i += 1
+		for d in dirs:
+			var n := c + d
+			var to := n
+			var via := ""
+			if is_warp(n):
+				to = arrival(n)
+				via = str(n.x) + "," + str(n.y)
+			elif not walkable(n):
+				to = jump(c, d)
+				if to.x == -99999:
+					continue
+			if prev.has(to):
+				continue
+			prev[to] = [c, via]
+			queue.append(to)
+	if not prev.has(goal):
+		return []
+	var cells: Array = []  # de atrás para adelante
+	var c := goal
+	while c != from:
+		cells.push_front([c, prev[c][1]])
+		c = prev[c][0]
+	var out: Array = []
+	var walk: Array[Vector2i] = [from]
+	for step in cells:
+		if step[1] == "":
+			walk.append(step[0])
+			continue
+		for k in corners(walk):
+			out.append([k, ""])
+		var w: PackedStringArray = (step[1] as String).split(",")
+		var door := Vector2i(int(w[0]), int(w[1]))
+		var dest := world.zone_at(Vector2(step[0] * world.tile_size) + Vector2.ONE)
+		out.append([door, dest.id])
+		walk = [step[0]]
+	for k in corners(walk):
+		out.append([k, ""])
 	return out
 
 

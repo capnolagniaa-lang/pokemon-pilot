@@ -4,13 +4,16 @@ extends Node
 ## TourPlanner), entrando al Laboratorio de Oak y cruzando el Bosque Verde por sus garitas: verifica que las zonas
 ## estén conectadas, que las puertas funcionen, que se carguen y que el Pokémon siga al entrenador.
 
-## Recorrido: ["entrar", zona destino, desde zona] usa una puerta; ["ir", zona] camina hasta su plaza.
+## Recorrido: ["entrar", zona destino, desde zona] usa una puerta; ["ir", zona] camina hasta su plaza; ["camino", zona]
+## busca solo el recorrido hasta la plaza de esa zona (puertas, cuevas y salientes incluidos).
 const TOUR := [["entrar", "laboratorio_oak", "pueblo_paleta"], ["entrar", "pueblo_paleta", "laboratorio_oak"],
 	["ir", "ruta22"], ["entrar", "ruta2_garita_sur", "ruta2"], ["entrar", "bosque_verde", "ruta2_garita_sur"],
-	["entrar", "ruta2_garita_norte", "bosque_verde"], ["entrar", "ruta2", "ruta2_garita_norte"], ["ir", "ciudad_plateada"]]
+	["entrar", "ruta2_garita_norte", "bosque_verde"], ["entrar", "ruta2", "ruta2_garita_norte"], ["ir", "ciudad_plateada"],
+	["camino", "ciudad_celeste_gimnasio"]]
 ## Zonas por las que tiene que pasar.
 const TOUR_ZONES := ["pueblo_paleta", "laboratorio_oak", "ruta1", "ciudad_verde", "ruta22", "ruta2", "ruta2_garita_sur",
-	"bosque_verde", "ruta2_garita_norte", "ciudad_plateada"]
+	"bosque_verde", "ruta2_garita_norte", "ciudad_plateada", "ruta3", "ruta4", "mt_moon", "mt_moon_s1", "ciudad_celeste",
+	"ciudad_celeste_gimnasio"]
 const STUCK_TIME := 3.0
 const ARRIVE := 4.0
 
@@ -287,6 +290,17 @@ func _build_waypoints() -> void:
 	var at := world.spawn_cell
 	var center := func(c: Vector2i) -> Vector2: return Vector2(c * ts) + Vector2.ONE * ts / 2.0
 	for leg in TOUR:
+		if leg[0] == "camino":  # recorrido automático: puertas, cuevas y salientes incluidos
+			var steps := plan.route(at, leg[1])
+			if steps.is_empty():
+				push_error("[autotest] sin camino hasta %s" % leg[1])
+				_waypoints.append([center.call(at), "?" + leg[1]])
+				return
+			for st in steps:
+				_waypoints.append([center.call(st[0]), st[1]])
+			var z := plan.entry(leg[1])
+			at = z.origin + z.hub
+			continue
 		var goal: Vector2i
 		var warp := Vector2i(-1, -1)
 		if leg[0] == "ir":

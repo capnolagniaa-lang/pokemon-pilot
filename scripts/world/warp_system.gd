@@ -6,8 +6,10 @@ extends Node
 ## libre de al lado de la puerta de destino y la cámara salta. Durante un combate no se usan.
 
 const FADE := 0.16
-## Qué tan cerca (px) de una puerta sólida hay que estar caminando contra ella.
+## Qué tan cerca (px) de una puerta sólida hay que estar caminando contra ella, y cuánto tiempo (s): así no se
+## entra sin querer al pasar rozando una puerta.
 const PUSH := 7.0
+const PUSH_TIME := 0.12
 ## Orden en que se busca dónde aparecer al lado de la puerta de destino (abajo primero: se sale de una casa
 ## hacia abajo; en una alfombra de salida, abajo es la pared y se aparece arriba).
 const ARRIVAL_DIRS: Array[Vector2i] = [Vector2i.DOWN, Vector2i.UP, Vector2i.RIGHT, Vector2i.LEFT]
@@ -18,6 +20,8 @@ var busy := false
 ## se vuelve a usar enseguida si se aparece o se arranca la partida encima de una).
 var _on_warp := true
 var _cooldown := 0.3
+var _push_cell := Vector2i(-99999, -99999)
+var _push_time := 0.0
 var _fade: ColorRect
 
 
@@ -48,6 +52,7 @@ func _physics_process(delta: float) -> void:
 		return
 	var cell := zone.cell_at(t.global_position)
 	var hit = null
+	var pushing := false
 	var on_warp := entry.warps.has(cell)
 	if on_warp and not _on_warp:
 		hit = cell
@@ -57,8 +62,14 @@ func _physics_process(delta: float) -> void:
 		if entry.warps.has(n) and not MapRules.is_walkable(zone, n):
 			var rect := Rect2(zone.to_global(Vector2(n * data.tile_size)), Vector2.ONE * data.tile_size)
 			if _dist_to_rect(t.global_position, rect) < PUSH:
-				hit = n
+				_push_time = _push_time + delta if _push_cell == n else 0.0
+				_push_cell = n
+				if _push_time >= PUSH_TIME:
+					hit = n
+				pushing = true
 	_on_warp = on_warp
+	if not pushing:
+		_push_cell = Vector2i(-99999, -99999)
 	if hit != null:
 		use(entry, hit)
 
