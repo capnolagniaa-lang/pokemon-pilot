@@ -37,3 +37,4 @@ min_level = 3
 [resource]
 script = ExtResource("3_i14i3")
 entries = Array[ExtResource("2_dhkuo")]([SubResource("Resource_inqq6"), SubResource("Resource_kg73e"), SubResource("Resource_614hi"), SubResource("Resource_p0tmw"), SubResource("Resource_a0f7o")])
+max_alive_cap = 40

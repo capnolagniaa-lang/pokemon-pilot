@@ -42,7 +42,7 @@ $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
 $G --headless --path . --quit-after 150000 -- --autotest-story-h1  # historia H-1 a H-5 (de tu cuarto a la Medalla Roca)
-$G --headless --path . --quit-after 100000 -- --autotest-arena-rules  # combate de arena: estilos, combos, cráteres, superficies
+$G --headless --path . --quit-after 100000 -- --autotest-arena-rules  # combate de arena: estilos, combos (apagados), cráteres, salto, superficies
 $G --path . --quit-after 650 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena-rules  # Geodude vs Onix (cráteres)
 $G --headless --path . --quit-after 60000 -- --autotest-slots      # varias partidas con nombre, sin curación sola, desmayo total, modo de prueba del torneo
 $G --headless --path . --quit-after 300000 -- --autotest-tournament  # torneo de Plateada (dinero, copas, rondas, premio)
@@ -62,6 +62,8 @@ $G --headless --path . --quit-after 20000 -- --autotest-trainers  # entrenadores
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-trainers  # los 3 en Ruta 1
 $G --headless --path . --quit-after 30000 -- --autotest-capture   # captura (fórmula, lanzar, escapar, Caja, guardado)
 $G --headless --path . --quit-after 30000 -- --autotest-bag       # mochila (curas, ranura rápida, objetos del mapa, botín)
+$G --headless --path . --quit-after 20000 -- --autotest-mart      # mercado: Tiendas, precios, comprar/vender, vendedores
+$G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-mart  # pantalla de compra y de venta
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-capture  # lanzar bola, Mochila, Caja
 $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
@@ -164,12 +166,19 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `ArenaDecor`), 1 contra 1 con cambios, `CombatDirector.arena_lock`, `Creature.owner_name` (no se atrapa).
   Entrenadores de la historia = `NpcData.trainer` (TrainerData) + `sight`; perder → `GameState.last_heal_position`.
 - **Combate de arena** (estilo Pokkén, `docs/PLAN_IDENTIDAD_COMBATE.md`): `FightStyle` por especie en `data/estilos/`
-  (`tools/build_fight_styles.py`: estilo de movimiento + `ComboData`); `Creature.arena_rules()` (en arenas registradas en
+  (`tools/build_fight_styles.py`: estilo de movimiento + `ComboData`; **combos apagados** por decisión del usuario:
+  `GameConfig.combos_enabled`); `Creature.arena_rules()` (en arenas registradas en
   el `ReactionSystem`, o en todos lados con `GameConfig.arena_rules_everywhere`); `MoveData.crater_radius` →
   `Events.ground_impact` → estado de celda "crater".
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
   recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; durante el torneo
   `GameState.tournament` guarda el equipo y la mochila de antes (los usa `to_dict`).
+- **Mercado** (Tiendas Pokémon): `ShopData` en `data/shops/<ciudad>.tres` (lo que vende cada una, lista oficial de
+  FireRed con los objetos que hay); `Mart` (`world.mart`) registra la acción `tienda_<id>` en el `StoryDirector` (la usa
+  la conversación del vendedor, `NpcTalk.action`, en `tools/build_story_npcs.py`) y abre `ShopScreen` (comprar / vender,
+  su propia CanvasLayer 11). Precio oficial `ItemData.price` (tabla `PRICES` de `tools/fetch_items.py`: PokeAPI ya no
+  los trae); se vende a la mitad (`sell_price`; objetos clave y Master Ball no). Ciudad Verde vende recién después de
+  entregar el Correo de Oak (en modo libre, siempre).
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.
@@ -208,7 +217,7 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `GameConfig.exp_multiplier` (**0,5**: decisión del usuario 2026-10-23, se subía de nivel muy rápido).
 - **Daño** (`Damage.resolve`): fórmula oficial con STAB 1.5, efectividad, variación 0.85-1, físico vs
   especial. Los **estados siguen el plan de identidad** (no los oficiales): Quemado −15% daño físico,
-  Paralizado por acumulación, etc. (ver `docs/PLAN_IDENTIDAD_COMBATE.md`). No tocarlos desde
+  Paralizado con tirones al azar, etc. (ver `docs/PLAN_IDENTIDAD_COMBATE.md`). No tocarlos desde
   `apply_official_data.gd`.
 - **Adaptaciones al tiempo real** (documentarlas si se cambian):
   - `CreatureInstance.HP_SCALE = 3`: la vida se triplica para que un combate dure varios golpes.

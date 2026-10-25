@@ -11,5 +11,6 @@ description = "Medicina que revive a un Pokémon debilitado y le devuelve la mit
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 20
+price = 1500
 revive_ratio = 0.5
 use_time = 1.0

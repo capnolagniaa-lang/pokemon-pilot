@@ -11,4 +11,5 @@ description = "Medicina en espray que libera a un Pokémon de las garras del sue
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 12
+price = 250
 cures = PackedStringArray("dormido")

@@ -11,4 +11,5 @@ description = "Medicina en espray que cura todos los problemas de estado de un P
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 15
+price = 600
 cures = PackedStringArray("all")

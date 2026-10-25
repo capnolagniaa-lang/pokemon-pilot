@@ -11,4 +11,5 @@ description = "Medicina en espray que cura las quemaduras a un Pokémon."
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 13
+price = 250
 cures = PackedStringArray("quemado")

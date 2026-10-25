@@ -13,6 +13,9 @@ enum Pocket { ITEMS, BALLS, KEY }
 @export var pocket: Pocket = Pocket.ITEMS
 ## Orden dentro del bolsillo (como en los juegos).
 @export var sort_order: int = 0
+## Precio oficial en la Tienda Pokémon (PokeAPI `cost`, de tools/fetch_items.py). 0 = no se compra ni se vende
+## (objetos clave). Se vende a la mitad (sell_price).
+@export var price: int = 0
 
 @export_group("Pokéball")
 ## Multiplicador de captura (Poké Ball 1, Super Ball 1,5, Ultra Ball 2). >= 255 = atrapa siempre (Master Ball).
@@ -68,3 +71,8 @@ func can_use_on(inst: CreatureInstance, active_statuses: Array = []) -> bool:
 		if cures_status(s):
 			return true
 	return false
+
+
+## Lo que te pagan en la Tienda (la mitad, como en los juegos). 0 = no se vende.
+func sell_price() -> int:
+	return price / 2 if pocket != Pocket.KEY else 0

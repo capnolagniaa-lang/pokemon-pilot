@@ -72,6 +72,13 @@ func _ready() -> void:
 		add_child(st)
 		(st.showcase if "--showcase-story" in OS.get_cmdline_user_args() else st.run).call_deferred()
 		return
+	if "--autotest-mart" in OS.get_cmdline_user_args() or "--showcase-mart" in OS.get_cmdline_user_args():
+		set_process(false)
+		var mt := MartTests.new()
+		mt.autotest = self
+		add_child(mt)
+		(mt.showcase if "--showcase-mart" in OS.get_cmdline_user_args() else mt.run).call_deferred()
+		return
 	if "--autotest-vfx" in OS.get_cmdline_user_args() or "--showcase-vfx" in OS.get_cmdline_user_args():
 		set_process(false)
 		var vx := VfxTests.new()
@@ -561,12 +568,17 @@ func _identity_test() -> void:
 	r["Envenenado acumula hasta 5 stacks"] = a.statuses.stacks("envenenado") == 5
 
 	var b: Creature = spawn.call("squirtle", Vector2(-60, -40))
-	b.statuses.apply(st.call("paralizado"))
-	b.statuses.apply(st.call("paralizado"))
-	var before_full := b.machine.current_name() != "stunned"
-	b.statuses.apply(st.call("paralizado"))
-	r["Paralizado: la barra llena aturde"] = before_full and b.machine.current_name() == "stunned" and not b.statuses.has_status("paralizado")
-	await get_tree().create_timer(1.1).timeout
+	var para: StatusEffect = st.call("paralizado").duplicate()
+	para.jolt_chance = 1.0  # que el tirón salga seguro
+	b.statuses.apply(para)
+	r["Paralizado: de un golpe, 6 s a mitad de velocidad"] = b.statuses.has_status("paralizado") and absf(b.statuses.speed_mult() - 0.5) < 0.01 and b.machine.current_name() != "stunned"
+	await get_tree().create_timer(0.75).timeout
+	r["Paralizado: tirón (queda totalmente quieto)"] = b.machine.current_name() == "stunned" and b.statuses.has_status("paralizado")
+	await get_tree().create_timer(0.7).timeout
+	r["Paralizado: después del tirón se vuelve a mover"] = b.machine.current_name() != "stunned" and b.statuses.has_status("paralizado")
+	b.statuses.clear()
+	b.stun(0.3, true)
+	await get_tree().create_timer(0.5).timeout
 	r["Resistencia a control al terminar"] = b.cc_resist_left > 0.0
 	b.stun(1.0, true)
 	await get_tree().create_timer(0.45).timeout
@@ -576,9 +588,18 @@ func _identity_test() -> void:
 	c.statuses.apply(st.call("dormido"))
 	await get_tree().physics_frame
 	var asleep := c.machine.current_name() == "stunned"
-	c.take_status_damage(1.0)
+	c.statuses.apply(st.call("envenenado"))
+	var hp0 := c.health.hp()
+	await get_tree().create_timer(1.2).timeout
+	r["El veneno no despierta al dormido"] = asleep and c.health.hp() < hp0 and c.statuses.has_status("dormido") and c.machine.current_name() == "stunned"
+	c.statuses.clear()
+	c.statuses.apply(st.call("dormido"))
+	await get_tree().physics_frame
+	c.hurtbox.receive(HitInfo.from(b, b.moves.slots[0]))
 	await get_tree().create_timer(0.35).timeout
-	r["Dormido despierta al recibir daño"] = asleep and not c.statuses.has_status("dormido") and c.machine.current_name() != "stunned"
+	r["Dormido despierta al recibir un golpe"] = not c.statuses.has_status("dormido") and c.machine.current_name() != "stunned"
+	var somn: Array = DB.all_moves.values().filter(func(m): return m.id == "somnifero" and m.dwell_status != null)
+	r["Somnífero duerme a los 0,6 s adentro de la nube"] = not somn.is_empty() and somn.all(func(m): return is_equal_approx(m.dwell_time, 0.6))
 
 	var d: Creature = spawn.call("rattata", Vector2(90, 20))
 	d.statuses.apply(st.call("enraizado"))
@@ -716,6 +737,18 @@ func _kit_test() -> void:
 	await get_tree().create_timer(0.3).timeout
 	r["R Embestida Ígnea: golpea, invulnerable y deja estela"] = inv and hits.get(dummy, 0) > h2 and _count(world.entities, HazardPatch) >= 2
 	r["R tiene la recarga más larga"] = me.moves.cooldown_total[3] >= 5.0
+	# La estela pega como UN fuego aunque el rival pise varios parches (antes cada parche pegaba por su cuenta).
+	await get_tree().create_timer(2.6).timeout
+	var trail_hit := HitInfo.from(me, me.moves.slots[3])
+	var shared := {}
+	var h3: int = hits.get(dummy, 0)
+	for k in 3:
+		var patch := HazardPatch.new()
+		world.entities.add_child(patch)
+		patch.lay(trail_hit, dummy.global_position + Vector2(k * 4 - 4, 0), 1.1, shared)
+	await get_tree().create_timer(1.2).timeout
+	var trail_hits: int = hits.get(dummy, 0) - h3
+	r["R estela: 3 parches encimados pegan como uno (%d golpes en 1,1 s)" % trail_hits] = trail_hits >= 1 and trail_hits <= 3
 
 	await get_tree().create_timer(0.3).timeout
 	r["Espacio: esquive (invulnerable)"] = me.dodge(Vector2.DOWN) and me.health.invulnerable_time > 0.0

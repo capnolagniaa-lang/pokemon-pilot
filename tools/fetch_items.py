@@ -1,4 +1,4 @@
-"""Baja de PokeAPI los objetos de la mochila (nombre y descripción en español, ícono) y genera
+"""Baja de PokeAPI los objetos de la mochila (nombre y descripción en español, ícono, precio) y genera
 data/items/<id>.tres (ItemData) + sprites/items/<api>.png. El efecto en el juego está en ITEMS (a mano).
 
 Uso: python -I -B tools/fetch_items.py <carpeta del proyecto>
@@ -34,6 +34,14 @@ ITEMS = {
     # Objetos clave de la historia (docs/PLAN_HISTORIA.md, H-2): no se usan, los mira la historia.
     "paquete_oak": ("oaks-parcel", "key", 1, {}),
     "mapa": ("town-map", "key", 2, {}),
+}
+# Precio en la Tienda Pokémon (FireRed/LeafGreen, 3ª gen). PokeAPI ya no los trae (`prices` viene vacío).
+# Sin precio (Master Ball, objetos clave) = no se compra ni se vende.
+PRICES = {
+    "poke_ball": 200, "super_ball": 600, "ultra_ball": 1200,
+    "pocion": 300, "superpocion": 700, "hiperpocion": 1200, "pocion_maxima": 2500,
+    "antidoto": 100, "antiparalizador": 200, "despertar": 250, "antiquemar": 250, "antihielo": 250,
+    "cura_total": 600, "revivir": 1500,
 }
 # Descripción propia cuando PokeAPI no tiene una en español.
 DESCRIPTIONS = {
@@ -86,6 +94,8 @@ def main():
                  "[resource]", 'script = ExtResource("1_s")', 'id = "%s"' % gid, 'display_name = "%s"' % name,
                  'description = "%s"' % desc, 'icon = ExtResource("2_i")', "pocket = %d" % POCKET[pocket],
                  "sort_order = %d" % order]
+        if gid in PRICES:
+            lines.append("price = %d" % PRICES[gid])  # precio oficial de la Tienda (se vende a la mitad)
         for k, v in effect.items():
             lines.append("%s = %s" % (k, tres_value(v)))
         with open(os.path.join(root, "data", "items", gid + ".tres"), "w", encoding="utf-8", newline="\n") as f:

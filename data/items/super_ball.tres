@@ -11,4 +11,5 @@ description = "Poké Ball de alto rendimiento. Tiene un índice de éxito superi
 icon = ExtResource("2_i")
 pocket = 1
 sort_order = 2
+price = 600
 catch_mult = 1.5

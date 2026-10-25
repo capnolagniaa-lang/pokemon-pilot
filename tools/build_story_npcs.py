@@ -151,7 +151,7 @@ TALKS = {
     ("ciudad_plateada_centro", "Woman"): dict(name="Señora", talks=[dict(lines=[
         "Viajar con tus Pokémon es lo mejor que hay."])]),
     ("ciudad_plateada_tienda", "Clerk"): dict(name="Vendedor", talks=[dict(lines=[
-        "¡Bienvenido! Estamos acomodando la mercadería. Volvé en un rato."])]),
+        "¡Bienvenido a la Tienda Pokémon!"], action="tienda_ciudad_plateada")]),
     ("ciudad_plateada_tienda", "Youngster"): dict(name="Pibe", talks=[dict(lines=[
         "Comprá Antídotos antes de cruzar el bosque. ¡Los Weedle envenenan!"])]),
     ("ciudad_plateada_tienda", "Boy"): dict(name="Chico", talks=[dict(lines=[
@@ -326,6 +326,9 @@ TALKS[("ciudad_verde_tienda", "Clerk")] = dict(name="Vendedor", talks=[
             "Llegó un correo para el Profesor Oak. ¿Se lo podés llevar? ¡Gracias!"]),
     dict(requires=["tiene_paquete"], forbids=["paquete_entregado"], lines=[
         "¿Ya le llevaste el correo al Profesor Oak? Está en Pueblo Paleta, al sur."]),
+    # El mercado (scripts/world/mart.gd): vende después de entregar el correo, como en FireRed; sin historia, siempre.
+    dict(requires=["paquete_entregado"], lines=["¡Bienvenido a la Tienda Pokémon!"], action="tienda_ciudad_verde"),
+    dict(forbids=["historia"], lines=["¡Bienvenido a la Tienda Pokémon!"], action="tienda_ciudad_verde"),
 ] + _clerk_default)
 _oak = TALKS[("laboratorio_oak", "ProfOak")]["talks"]
 TALKS[("laboratorio_oak", "ProfOak")]["talks"] = _oak[:2] + [

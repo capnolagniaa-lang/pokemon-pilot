@@ -11,4 +11,5 @@ description = "Medicina en espray que cura heridas y restaura 60 PS de un Pokém
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 2
+price = 700
 heal_hp = 50.0

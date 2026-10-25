@@ -17,7 +17,8 @@
    rápido, y usar cualquier otro objeto, desde **Esc → Mochila** (fuera de combate).
 4. **Cómo se consiguen objetos** (sin tiendas ni dinero todavía): **mochila inicial**, **objetos tirados en el
    mapa** (un brillo que se recoge al pasar; vuelven a aparecer después de un rato) y **botín** de salvajes
-   debilitados (a veces sueltan algo). Tiendas y dinero en otra etapa.
+   debilitados (a veces sueltan algo). Tiendas y dinero en otra etapa (**hecho 2026-10-24**: el mercado, ver CLAUDE.md
+   "Mercado").
 5. **IVs al azar** (ya decidido para la Etapa 6): los salvajes aparecen con IVs al azar 0-31 por stat (lo que
    atrapás conserva los suyos); uno perfecto (31 en todo) es rarísimo. Los iniciales siguen con IV 31.
 

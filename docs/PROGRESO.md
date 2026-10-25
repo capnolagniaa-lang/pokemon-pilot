@@ -6,6 +6,16 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Más salvajes en el Bosque Verde (2026-10-24, pedido del usuario)**: tenía 5600 celdas de pasto y el tope general de
+  16 salvajes vivos (1 cada 350 celdas; la Ruta 1, 1 cada 110). `max_alive_cap = 40` en su tabla de encuentros
+  (solo ese campo; se ajusta también en el editor de mapas, pestaña Salvajes).
+- **Mercado hecho (2026-10-24, pedido del usuario)**: los vendedores de las Tiendas de Ciudad Verde y Plateada venden
+  (lista oficial de FireRed, precios oficiales) y compran a la mitad. Ciudad Verde, después de entregar el Correo de
+  Oak (modo libre: siempre). `Mart` + `ShopScreen` + `data/shops/`. Test `--autotest-mart`, vitrina `--showcase-mart`.
+- **Ajustes de combate (2026-10-24, pedido del usuario)**: combos apagados (`GameConfig.combos_enabled`), Paralizado
+  con tirones al azar (6 s, mitad de velocidad), Escarcha de Seel congela con 5, Somnífero duerme a los 0,6 s, el
+  veneno no despierta, la estela de la Embestida Ígnea pega como un solo fuego y el salto de cráter también sale
+  hacia donde caminás. Detalle en `PLAN_IDENTIDAD_COMBATE.md` ("Ajustes de estados y ataques").
 - **Animaciones de combate de SpriteCollab (2026-10-24)**: `download_sprites.py` baja además Shoot, Charge, Strike,
   Swing, Double, Hop, Rotate, Tumble, LeapForth, Faint, HitGround, LostBalance, Sleep... (las que tenga cada
   especie). La criatura las usa según la forma del ataque (`CreatureSprite.CHAINS`/`chain_for_move`): disparo y

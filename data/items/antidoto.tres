@@ -11,4 +11,5 @@ description = "Medicina en espray que contrarresta los efectos del veneno en un 
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 10
+price = 100
 cures = PackedStringArray("envenenado")

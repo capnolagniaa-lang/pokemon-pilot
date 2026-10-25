@@ -11,4 +11,5 @@ description = "Medicina en espray que cura a un Pokémon paralizado."
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 11
+price = 200
 cures = PackedStringArray("paralizado")

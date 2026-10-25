@@ -11,5 +11,6 @@ description = "Medicina en espray que cura heridas y restaura todos los PS de un
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 4
+price = 2500
 heal_full = true
 use_time = 0.9

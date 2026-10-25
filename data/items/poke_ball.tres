@@ -11,4 +11,5 @@ description = "Dispositivo con diseño capsular que atrapa Pokémon salvajes. Se
 icon = ExtResource("2_i")
 pocket = 1
 sort_order = 1
+price = 200
 catch_mult = 1.0
