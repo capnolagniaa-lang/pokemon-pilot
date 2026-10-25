@@ -29,6 +29,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **Capítulo 2, parte K (2026-10-24)**: kits de Staryu y **Starmie jefa de Misty** (`tools/build_kits_v5.py`, firma
+  Núcleo `core_mechanic.gd`: gira y desvía proyectiles, +daño a lo Empapado, se regenera; a mitad de vida el núcleo
+  brilla) + `FightStyle` de 33 Pokémon del capítulo 2. Test `--autotest-kits-v5`. Ver `PLAN_IDENTIDAD_COMBATE.md` "v5".
 - **Versión portable para amigos (2026-10-24)**: `python -I -B tools/build_portable.py . <Godot_v4.7.2-stable_win64.exe>`
   arma `export/PokemonPilot-<fecha>.zip` (~115 MB: el Godot renombrado + `PokemonPilot.pck` + `LEEME.txt`). No usa
   plantillas de exportación. Preset "Windows Desktop" en `export_presets.cfg` con la feature `portable`, que apaga

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/core_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "nucleo_starmie"
+display_name = "Núcleo Prisma"
+description = "Jefa. Grande y casi no la empujan. Girando desvía los proyectiles; le pega 25% más a lo Empapado; la barra llena regenera 8% de la vida. A mitad de vida el núcleo brilla: una onda empuja y moja a todos y queda más fuerte y rápida hasta el final."
+color = Color(0.95, 0.45, 0.8, 1)
+max_value = 100.0
+gains = {"hit_dealt": 8.0, "damage_received": 6.0}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"spin_move": "giro_rapido", "deflect_radius": 24.0, "wet_bonus": 1.25, "core_heal": 0.08, "phase_at": 0.5, "phase_status": "nucleo_brillante", "scale": 1.3, "knockback_mult": 0.35, "pulse_move": "res://data/kits/starmie/pulso_nucleo.tres"}

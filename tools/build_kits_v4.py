@@ -199,40 +199,46 @@ def hook_species(root, species):
     write(path, s)
 
 
+def write_kit(root, species, spec):
+    """Escribe la firma y el kit.tres de una especie (los ataques ya están en data/kits/<especie>/)."""
+    arch, rng, sig, moves = spec[0], spec[1], spec[2], spec[3]
+    folder = os.path.join(root, "data", "kits", species)
+    ext = ['[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_md"]',
+           '[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="2_kit"]']
+    for i, m in enumerate(moves):
+        ext.append('[ext_resource type="Resource" path="res://data/kits/%s/%s.tres" id="%d_mv"]' % (species, m["id"], i + 4))
+    gains = ", ".join('"%s": %s' % (k, val(float(v))) for k, v in sig["gains"].items())
+    params = ", ".join('"%s": %s' % (k, ('"%s"' % v) if isinstance(v, str) else val(v)) for k, v in sig["params"].items())
+    thr = "thresholds = Array[float]([%s])\n" % ", ".join(val(float(t)) for t in sig["thresholds"]) if "thresholds" in sig else ""
+    write(os.path.join(folder, sig["id"] + ".tres"),
+          '[gd_resource type="Resource" script_class="SignatureData" format=3]\n\n'
+          '[ext_resource type="Script" path="res://scripts/combat/signatures/%s" id="1_mech"]\n'
+          '[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]\n\n[resource]\n'
+          'script = ExtResource("2_sd")\nid = "%s"\ndisplay_name = "%s"\ndescription = "%s"\ncolor = %s\n'
+          "max_value = %s\ngains = {%s}\ndecay_out_of_combat = 6.0\n%smechanic_script = ExtResource(\"1_mech\")\n"
+          "params = {%s}\n" % (sig["script"], sig["id"], sig["name"], sig["desc"], color(sig["color"]),
+                               val(float(sig["max"])), gains, thr, params))
+    ext.append('[ext_resource type="Resource" path="res://data/kits/%s/%s.tres" id="3_sig"]' % (species, sig["id"]))
+    arr = ", ".join('ExtResource("%d_mv")' % (i + 4) for i in range(len(moves)))
+    write(os.path.join(folder, "kit.tres"), '[gd_resource type="Resource" script_class="Kit" format=3]\n\n'
+          + "\n".join(ext) + '\n\n[resource]\nscript = ExtResource("2_kit")\narchetype = "%s"\npreferred_range = %s\n'
+          % (arch, val(float(rng))) + 'signature = ExtResource("3_sig")\n'
+          + 'moves = Array[ExtResource("1_md")]([%s])\n' % arr)
+
+
 def main():
     root = sys.argv[1]
     for sid, p in STATUSES.items():
         write_status(root, sid, p)
     for species, spec in KITS.items():
-        arch, rng, sig, moves = spec[0], spec[1], spec[2], spec[3]
         extra = spec[4] if len(spec) > 4 else []
         folder = os.path.join(root, "data", "kits", species)
         os.makedirs(folder, exist_ok=True)
-        for m in moves + extra:
+        for m in spec[3] + extra:
             write(os.path.join(folder, m["id"] + ".tres"), re.sub(r"strike_count = (\d+)\.0", r"strike_count = \1", move_tres(m)))
-        ext = ['[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_md"]',
-               '[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="2_kit"]']
-        for i, m in enumerate(moves):
-            ext.append('[ext_resource type="Resource" path="res://data/kits/%s/%s.tres" id="%d_mv"]' % (species, m["id"], i + 4))
-        gains = ", ".join('"%s": %s' % (k, val(float(v))) for k, v in sig["gains"].items())
-        params = ", ".join('"%s": %s' % (k, ('"%s"' % v) if isinstance(v, str) else val(v)) for k, v in sig["params"].items())
-        thr = "thresholds = Array[float]([%s])\n" % ", ".join(val(float(t)) for t in sig["thresholds"]) if "thresholds" in sig else ""
-        write(os.path.join(folder, sig["id"] + ".tres"),
-              '[gd_resource type="Resource" script_class="SignatureData" format=3]\n\n'
-              '[ext_resource type="Script" path="res://scripts/combat/signatures/%s" id="1_mech"]\n'
-              '[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]\n\n[resource]\n'
-              'script = ExtResource("2_sd")\nid = "%s"\ndisplay_name = "%s"\ndescription = "%s"\ncolor = %s\n'
-              "max_value = %s\ngains = {%s}\ndecay_out_of_combat = 6.0\n%smechanic_script = ExtResource(\"1_mech\")\n"
-              "params = {%s}\n" % (sig["script"], sig["id"], sig["name"], sig["desc"], color(sig["color"]),
-                                   val(float(sig["max"])), gains, thr, params))
-        ext.append('[ext_resource type="Resource" path="res://data/kits/%s/%s.tres" id="3_sig"]' % (species, sig["id"]))
-        arr = ", ".join('ExtResource("%d_mv")' % (i + 4) for i in range(len(moves)))
-        write(os.path.join(folder, "kit.tres"), '[gd_resource type="Resource" script_class="Kit" format=3]\n\n'
-              + "\n".join(ext) + '\n\n[resource]\nscript = ExtResource("2_kit")\narchetype = "%s"\npreferred_range = %s\n'
-              % (arch, val(float(rng))) + 'signature = ExtResource("3_sig")\n'
-              + 'moves = Array[ExtResource("1_md")]([%s])\n' % arr)
+        write_kit(root, species, spec)
         hook_species(root, species)
-        print(species, "->", [m["name"] for m in moves])
+        print(species, "->", [m["name"] for m in spec[3]])
 
 
 if __name__ == "__main__":

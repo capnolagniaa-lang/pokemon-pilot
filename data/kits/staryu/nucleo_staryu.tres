@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/core_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "nucleo_staryu"
+display_name = "Núcleo"
+description = "Girando (Giro Rápido) desvía los proyectiles. Le pega 20% más a lo Empapado. La barra sube al pegar y al recibir: llena, el núcleo regenera 10% de la vida."
+color = Color(0.95, 0.75, 0.35, 1)
+max_value = 100.0
+gains = {"hit_dealt": 12.0, "damage_received": 8.0}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"spin_move": "giro_rapido", "deflect_radius": 18.0, "wet_bonus": 1.2, "core_heal": 0.1}

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/desorientado.tres" id="4_x"]
+[ext_resource type="Resource" path="res://data/status/empapado.tres" id="5_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "hidropulso_starmie"
+display_name = "Hidropulso"
+element = ExtResource("3_x")
+kind = 0
+category = 1
+power = 60.0
+cooldown = 1.4
+knockback = 120.0
+speed = 300.0
+size = 6.0
+lifetime = 0.8
+recovery = 0.1
+status = ExtResource("4_x")
+status_chance = 0.2
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("5_x")])

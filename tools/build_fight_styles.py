@@ -35,12 +35,50 @@ STYLES = {
     "sandshrew": ("normal", [("Garra en la Tormenta", "ataque_arena_sandshrew", "aranazo_sandshrew", 1.4, 1.0, "")]),
     "onix": ("pesado", [("Sepultura", "atadura_onix", "tumba_rocas_onix", 1.5, 1.0, "ralentizado"),
                         ("Derrumbe", "atadura_onix", "excavar_onix", 1.4, 1.3, "")]),
+    # Capítulo 2 (docs/PLAN_CAPITULO_2.md, parte K): sin combos con nombre (los combos están apagados,
+    # GameConfig.combos_enabled); el estilo de movimiento y el salto valen igual.
+    "staryu": ("agil", []),
+    "starmie": ("agil", []),
+    "nidoran_f": ("normal", []),
+    "nidoran_m": ("agil", []),
+    "nidorina": ("normal", []),
+    "nidorino": ("agil", []),
+    "jigglypuff": ("normal", []),
+    "clefairy": ("normal", []),
+    "zubat": ("volador", []),
+    "ekans": ("normal", []),
+    "abra": ("agil", []),
+    "kadabra": ("agil", []),
+    "magnemite": ("volador", []),
+    "voltorb": ("agil", []),
+    "grimer": ("pesado", []),
+    "koffing": ("volador", []),
+    "horsea": ("normal", []),
+    "shellder": ("pesado", []),
+    "goldeen": ("normal", []),
+    "magikarp": ("normal", []),
+    "slowpoke": ("pesado", []),
+    "krabby": ("normal", []),
+    "venonat": ("normal", []),
+    "meowth": ("agil", []),
+    "pidgeotto": ("volador", []),
+    "raticate": ("agil", []),
+    "butterfree": ("volador", []),
+    "beedrill": ("volador", []),
+    "ivysaur": ("normal", []),
+    "charmeleon": ("normal", []),
+    "wartortle": ("normal", []),
+    "omanyte": ("pesado", []),
+    "kabuto": ("pesado", []),
 }
 
 
 # Saltan los cráteres con el esquive (pedido del usuario 2026-10-24: "como Charmander, Pikachu, Squirtle").
 JUMPERS = {"charmander", "squirtle", "bulbasaur", "pikachu", "rattata", "vulpix", "growlithe", "eevee", "mankey",
-           "sandshrew", "psyduck", "poliwag", "paras", "oddish", "bellsprout"}
+           "sandshrew", "psyduck", "poliwag", "paras", "oddish", "bellsprout",
+           # capítulo 2
+           "nidoran_f", "nidoran_m", "nidorina", "nidorino", "jigglypuff", "clefairy", "meowth", "venonat", "raticate",
+           "ivysaur", "charmeleon", "wartortle", "krabby", "abra", "kadabra"}
 
 
 def main():

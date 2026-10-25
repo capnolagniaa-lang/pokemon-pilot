@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FightStyle" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/fight_style.gd" id="1_s"]
+[ext_resource type="Script" path="res://scripts/resources/combo_data.gd" id="2_c"]
+
+
+
+[resource]
+script = ExtResource("1_s")
+species_id = "staryu"
+move_style = "agil"
+can_jump = false
+combos = Array[ExtResource("2_c")]([])

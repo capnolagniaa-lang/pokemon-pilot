@@ -15,6 +15,8 @@ func run() -> void:
 	r["Cada Pokémon con kit tiene su estilo de arena (%d)" % DB.fight_styles.size()] = kits.all(func(s): return DB.fight_styles.has(s.id))
 	var bad := []
 	for st: FightStyle in DB.fight_styles.values():
+		if st.combos.is_empty():
+			continue  # estilos sin combos (capítulo 2): pueden ser de Pokémon sin kit
 		var ids: Array = DB.species[st.species_id].kit.moves.map(func(m): return m.id)
 		for c in st.combos:
 			if not (c.first in ids and c.second in ids):

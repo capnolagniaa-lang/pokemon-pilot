@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/empapado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "pistola_agua_staryu"
+display_name = "Pistola Agua"
+element = ExtResource("3_x")
+kind = 0
+category = 1
+power = 40.0
+cooldown = 1.0
+knockback = 60.0
+speed = 330.0
+size = 4.0
+lifetime = 0.6
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

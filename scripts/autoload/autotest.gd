@@ -93,6 +93,13 @@ func _ready() -> void:
 		add_child(an)
 		an.run.call_deferred()
 		return
+	if "--autotest-kits-v5" in OS.get_cmdline_user_args():
+		set_process(false)
+		var k5 := KitsV5Tests.new()
+		k5.autotest = self
+		add_child(k5)
+		k5.run.call_deferred()
+		return
 	if "--autotest-kits-v4" in OS.get_cmdline_user_args() or "--showcase-onix" in OS.get_cmdline_user_args():
 		set_process(false)
 		var k4 := KitsV4Tests.new()

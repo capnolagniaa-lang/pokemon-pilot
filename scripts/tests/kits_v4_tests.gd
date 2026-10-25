@@ -22,7 +22,7 @@ func run() -> void:
 			and sp.kit.archetype == SPECIES[id] and sp.kit.moves.size() == 4 and sp.kit.signature != null
 		r["%s: aprende el kit (Nv. 1/1/3/5)" % sp.display_name] = sp.learnset.size() >= 4 \
 			and sp.learnset[0].move == sp.kit.moves[0] and sp.learnset[3].level == 5
-	r["24 especies con kit"] = DB.species.values().filter(func(s): return s.kit != null).size() == 24
+	r["24 especies con kit (o más)"] = DB.species.values().filter(func(s): return s.kit != null).size() >= 24
 
 	var used := {}
 	for id in SPECIES:

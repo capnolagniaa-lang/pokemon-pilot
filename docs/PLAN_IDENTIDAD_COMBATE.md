@@ -147,6 +147,24 @@ Piezas nuevas del motor (genéricas): `MoveData.strike_count`/`strike_spread` (v
 (empuje y tambaleo) y `body_scale` (jefes más grandes, sprite y hurtbox). La Pokédex muestra el estilo, la firma y
 los 4 ataques del kit apenas viste al Pokémon.
 
+## v5 — capítulo 2: Staryu y Starmie jefa (✅ implementados, en prueba, 2026-10-24)
+Pedido del usuario: "sigan implementando hasta el Gimnasio de Ciudad Celeste" (`docs/PLAN_CAPITULO_2.md`, parte K).
+**Starmie es la jefa de Misty** (Staryu 18 + Starmie 21), como Onix con Brock. Ya son **26 Pokémon con kit**.
+- `tools/build_kits_v5.py` (mismo formato y aviso que el v4; reusa `write_kit`/`hook_species` del v4). Estados
+  nuevos: `nucleo_brillante` (+20% daño y velocidad) y `recuperando` (cura 8%/s 2,5 s, va a mitad de velocidad).
+- Firma `core_mechanic.gd` (**Núcleo**), genérica por parámetros: girando con el ataque `spin_move` desvía proyectiles
+  (`Projectile.deflect_around`), +X% contra lo Empapado, barra (sube al pegar y al recibir) llena → cura y vuelve
+  a 0; con `phase_at` > 0 es jefa (escala, empuje reducido, pulso + estado de fase a mitad de vida).
+- Autotest `--autotest-kits-v5` (18 chequeos).
+- Los demás Pokémon nuevos del capítulo (Nidoran, Zubat, Clefairy, Ekans, Abra, Magnemite...) **no tienen kit todavía**:
+  usan los ataques automáticos de su learnset. Sí tienen `FightStyle` (estilo de movimiento y salto; sin combos
+  porque los combos están apagados).
+
+| Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Mecánica de firma |
+|---|---|---|---|---|---|---|
+| Staryu | Velocista | Placaje (combo 2) | Pistola Agua (Empapado) | Giro Rápido (embestida girando: desvía proyectiles) | Fortaleza | **Núcleo**: +20% a lo Empapado; barra llena → cura 10% |
+| **Starmie (jefa)** | Control | **Hidropulso**: disparo grande, Empapado y 20% desorienta | **Rapidez**: abanico de 5 estrellas | **Giro Rápido**: embestida fuerte que desvía proyectiles | **Recuperación**: se cura 20% en 2,5 s (va lenta) | **Núcleo Prisma**: cuerpo ×1,3, empuje ×0,35, +25% a lo Empapado, barra llena cura 8%; **a mitad de vida el núcleo brilla**: onda que empuja, moja y deja Expuesto, y queda con Núcleo Brillante hasta el final |
+
 ## Combate de arena (2026-10-24, inspirado en Pokémon Arena 2D / Pokkén; ✅ implementado)
 Pedido del usuario tras ver Pokémon Arena 2D: terreno que se deforma, superficies, combos y estilo de movimiento por
 Pokémon (sin peleas de varios a la vez). **Por ahora rige solo en las peleas de arena** (torneo, gimnasio,
