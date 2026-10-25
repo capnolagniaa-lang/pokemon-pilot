@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡El Team Rocket me hizo un agujero en la pared y se llevó mi MT de Excavar!")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_celeste_casa_robada_hiker"
+display_name = "Dueño"
+zone_id = "ciudad_celeste_casa_robada"
+cell = Vector2i(1, 2)
+gfx = "hiker"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

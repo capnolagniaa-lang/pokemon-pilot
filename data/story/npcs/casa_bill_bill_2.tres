@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+set_flags = PackedStringArray("bill_ayudado")
+lines = PackedStringArray("¡Ey! ¡No soy un Pokémon! ¡Soy Bill, el maniático de los Pokémon!", "Un experimento me salió mal y quedé mezclado con un Clefairy.", "¿Me hacés un favor? Metete en la máquina... ¡no, yo me meto! Vos activá el Separador en la PC.")
+confirm = "¿Activás el Separador Celular de la PC?"
+after_speaker = ""
+after_lines = PackedStringArray("(Activaste el Separador Celular. ¡La máquina hace un ruido raro!)")
+
+[resource]
+script = ExtResource("1_n")
+id = "casa_bill_bill_2"
+display_name = "Clefairy"
+zone_id = "casa_bill"
+cell = Vector2i(10, 6)
+gfx = "clefairy"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+hide_if = PackedStringArray("bill_ayudado")

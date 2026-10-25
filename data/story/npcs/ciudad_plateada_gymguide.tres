@@ -10,7 +10,7 @@ lines = PackedStringArray("¡Ey! ¿Sos entrenador?", "Brock te está esperando e
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Le ganaste a Brock! ¡Sos un crack!", "La Ruta 3 sigue por acá... pero todavía está en obras. ¡Pronto!")
+lines = PackedStringArray("¡Le ganaste a Brock! ¡Sos un crack!", "La Ruta 3 sigue por acá, hacia el Mt. Moon. ¡Del otro lado está Ciudad Celeste!")
 
 [resource]
 script = ExtResource("1_n")

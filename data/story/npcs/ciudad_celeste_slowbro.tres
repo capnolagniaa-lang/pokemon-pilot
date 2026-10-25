@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Slowbro: ...", "(Está mirando la nada. No le importa nada.)")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_celeste_slowbro"
+display_name = "Slowbro"
+zone_id = "ciudad_celeste"
+cell = Vector2i(54, 53)
+gfx = "slowbro"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

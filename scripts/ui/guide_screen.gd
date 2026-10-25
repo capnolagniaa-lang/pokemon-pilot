@@ -22,7 +22,7 @@ func _ready() -> void:
 		box.add_child(_wrapped("Estás en el modo libre: no hay historia. Explorá, atrapá Pokémon y probá los combates.", 18))
 	else:
 		var done: int = step["index"]
-		box.add_child(UiStyle.label("Capítulo 1: de Pueblo Paleta a la Medalla Roca  ·  paso %d de %d" % [mini(done + 1, step["total"]), step["total"]], 15, UiStyle.TEXT_DIM))
+		box.add_child(UiStyle.label("%s  ·  paso %d de %d" % [StoryGuide.chapter_name(done), mini(done + 1, step["total"]), step["total"]], 15, UiStyle.TEXT_DIM))
 		box.add_child(UiStyle.bar(float(done) / step["total"], UiStyle.ACCENT, Vector2(756, 8)))
 		box.add_child(UiStyle.label(step["title"], 22))
 		box.add_child(_wrapped(step["text"], 18))

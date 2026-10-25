@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/staryu.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/starmie.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Con la Medalla Cascada tus Pokémon te hacen más caso. ¡Seguí así!")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 18
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 21
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_5")
+id = "misty"
+display_name = "Misty"
+title = "Líder"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¡Hola! Soy Misty, la líder del Gimnasio de Ciudad Celeste.|Mi política es atacar con Pokémon de tipo agua. ¿Te animás a meterte a la pileta?", "pierde": "¡Uf! Sos muy bueno... ¡Está bien, te ganaste la Medalla Cascada!", "gana": "¡Te hundiste! Volvé cuando sepas nadar.", "despues": "Con la Medalla Cascada tus Pokémon te hacen más caso. ¡Seguí así!"}
+arena_id = "arena_gimnasio_agua"
+leader = true
+reward_flags = PackedStringArray("medalla_cascada")
+reward_text = "¡Recibiste la MEDALLA CASCADA de Misty!"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_celeste_gimnasio_misty"
+display_name = "Misty"
+zone_id = "ciudad_celeste_gimnasio"
+cell = Vector2i(8, 6)
+gfx = "misty"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 0

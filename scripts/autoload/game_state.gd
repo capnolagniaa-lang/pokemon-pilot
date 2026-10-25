@@ -298,6 +298,13 @@ func use_item_on(id: String, inst: CreatureInstance, statuses: StatusEffects = n
 		Events.move_learned.emit(inst, it.teaches_move)
 		if equipped:
 			Events.equipment_changed.emit(inst)
+	elif it.level_up > 0:
+		var learned := PackedStringArray()
+		for k in it.level_up:
+			var text := grant_exp(inst, inst.exp_to_next())  # " — ¡X subió a Nv. N! ¡Aprendió Y!"
+			if text.find("¡Aprendió") >= 0:
+				learned.append(text.substr(text.find("¡Aprendió")))
+		parts.append("subió a Nv. %d%s" % [inst.level, (" " + " ".join(learned)) if not learned.is_empty() else ""])
 	elif it.revive_ratio > 0.0:
 		inst.hp = inst.max_hp() * it.revive_ratio
 		parts.append("revivió")

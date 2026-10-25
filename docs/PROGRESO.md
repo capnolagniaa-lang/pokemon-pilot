@@ -6,6 +6,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Capítulo 2 de la historia (2026-10-24, pedido del usuario: "hasta el gimnasio de Ciudad Celeste")**: plan y reparto en
+  `docs/PLAN_CAPITULO_2.md` (mapas: sesión de mapas; estilos y kit de Starmie: sesión de kits; historia: esta). Hecho
+  en la historia: 45 entrenadores con los equipos de FireRed (Ruta 3, Mt. Moon, Rocket, Puente Pepita, Ruta 25, gimnasio),
+  Miguel y el fósil a elección, el rival en Celeste (Pidgeotto/Abra/Rattata/inicial), el Rocket del puente (Pepita),
+  Bill-Clefairy (Ticket del barco), Magikarp de $500 en el Centro de la Ruta 4, Tienda de Celeste, **arena de agua de
+  Misty** (piletas reales), Medalla Cascada, Caramelo Raro que sube de nivel, la Guía del capítulo 2. Test
+  `--autotest-story-h2` (21 chequeos), vitrina `--showcase-misty`.
 - **Más salvajes en el Bosque Verde (2026-10-24, pedido del usuario)**: tenía 5600 celdas de pasto y el tope general de
   16 salvajes vivos (1 cada 350 celdas; la Ruta 1, 1 cada 110). `max_alive_cap = 40` en su tabla de encuentros
   (solo ese campo; se ajusta también en el editor de mapas, pestaña Salvajes).

@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/weedle.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/kakuna.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/caterpie.tres" id="r_5"]
+[ext_resource type="Resource" path="res://data/species/metapod.tres" id="r_6"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_7"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Algún día van a evolucionar todos.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 9
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 9
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 9
+
+[sub_resource type="Resource" id="Mon_3"]
+script = ExtResource("r_2")
+species = ExtResource("r_6")
+level = 9
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_7")
+id = "gregorio"
+display_name = "Gregorio"
+title = "Cazabichos"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3")])
+lines = {"desafio": "¡Tengo cuatro bichos! ¡A ver si aguantás!", "pierde": "¡Cuatro y ninguno sirvió!", "despues": "Algún día van a evolucionar todos."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta3_greg"
+display_name = "Gregorio"
+zone_id = "ruta3"
+cell = Vector2i(45, 4)
+gfx = "bug_catcher"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 4

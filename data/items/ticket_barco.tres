@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/ss-ticket.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "ticket_barco"
+display_name = "Ticket Barco"
+description = "Es el billete válido para embarcar en el Ferry S.S. Aqua. Tiene dibujado un barco."
+icon = ExtResource("2_i")
+pocket = 2
+sort_order = 5

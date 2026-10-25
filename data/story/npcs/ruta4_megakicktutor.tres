@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Megapatada! El que patea primero, patea dos veces.")
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta4_megakicktutor"
+display_name = "Luchador"
+zone_id = "ruta4"
+cell = Vector2i(90, 3)
+gfx = "black_belt"
+facing = Vector2i(-1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

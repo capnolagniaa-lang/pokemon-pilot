@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/pidgeotto.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/abra.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/rattata.tres" id="r_5"]
+[ext_resource type="Resource" path="res://data/species/squirtle.tres" id="r_6"]
+[ext_resource type="Resource" path="res://data/species/bulbasaur.tres" id="r_7"]
+[ext_resource type="Resource" path="res://data/species/charmander.tres" id="r_8"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_9"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¿Ya fuiste al gimnasio? Yo ya tengo la medalla, obvio.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 17
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 16
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 15
+
+[sub_resource type="Resource" id="Mon_3"]
+script = ExtResource("r_2")
+species = ExtResource("r_6")
+level = 18
+requires_flag = "rival_squirtle"
+
+[sub_resource type="Resource" id="Mon_4"]
+script = ExtResource("r_2")
+species = ExtResource("r_7")
+level = 18
+requires_flag = "rival_bulbasaur"
+
+[sub_resource type="Resource" id="Mon_5"]
+script = ExtResource("r_2")
+species = ExtResource("r_8")
+level = 18
+requires_flag = "rival_charmander"
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_9")
+id = "azul"
+display_name = "Azul"
+title = "Rival"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3"), SubResource("Mon_4"), SubResource("Mon_5")])
+lines = {"desafio": "¡Eh, vos! ¡Seguís vivo! ¿Pasaste por el Mt. Moon?|A ver cuánto mejoraste. ¡Mis Pokémon están re entrenados!", "pierde": "¡¿Otra vez?! ...Bueno, ¿sabés qué? Hay un tal Bill pasando el Puente Pepita.|Tiene una colección de Pokémon rarísimos. Andá a verlo, si te animás.", "gana": "¡Ja! Sigo siendo el mejor.", "despues": "Bill vive al norte, pasando el Puente Pepita."}
+arena_id = "arena_campo"
+reward_flags = PackedStringArray("rival_celeste_peleado")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_celeste_0x0"
+display_name = "Azul"
+zone_id = "ciudad_celeste"
+cell = Vector2i(38, 0)
+gfx = "blue"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 0
+challenge_on_talk = false
+show_if = PackedStringArray("historia")
+hide_if = PackedStringArray("rival_celeste_peleado")

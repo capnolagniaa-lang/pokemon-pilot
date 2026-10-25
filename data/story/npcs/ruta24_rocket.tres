@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/ekans.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/zubat.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("vencido_ruta24_ethan")
+lines = PackedStringArray("¿Venís por el Puente Pepita? Ganale a los cinco y te doy un premio.")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Ya me voy, ya me voy...")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 15
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 15
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_5")
+id = "rocket"
+display_name = "Rocket"
+title = "Soldado Rocket"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¿No? ¡Entonces vas a tener que ganártela! ¡Vas a ver lo que es el Team Rocket!", "pierde": "¡Argh! ¡Tenés pasta! Está bien... quedate con la Pepita.", "gana": "¡Ja! Pensá bien lo del Team Rocket.", "despues": "Ya me voy, ya me voy..."}
+arena_id = "arena_campo"
+reward_flags = PackedStringArray("rocket_puente_peleado")
+reward_items = {"pepita": 1}
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta24_rocket"
+display_name = "Rocket"
+zone_id = "ruta24"
+cell = Vector2i(12, 27)
+gfx = "man"
+facing = Vector2i(-1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])
+trainer = SubResource("Trainer")
+sight = 0
+challenge_on_talk = false
+hide_if = PackedStringArray("rocket_puente_peleado")

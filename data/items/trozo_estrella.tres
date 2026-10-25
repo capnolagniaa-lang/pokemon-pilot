@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/star-piece.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "trozo_estrella"
+display_name = "Trozo Estrella"
+description = "Fragmento de una bonita gema roja que puede venderse muy caro en las tiendas."
+icon = ExtResource("2_i")
+pocket = 0
+sort_order = 50
+price = 9800
+usable_in_battle = false

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("El Team Rocket entró a robar en esta casa. Se llevaron una MT.", "No se puede pasar: estamos investigando.")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_celeste_policeman"
+display_name = "Policía"
+zone_id = "ciudad_celeste"
+cell = Vector2i(59, 24)
+gfx = "policeman"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

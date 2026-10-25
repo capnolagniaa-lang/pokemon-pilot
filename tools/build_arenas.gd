@@ -4,10 +4,13 @@ extends SceneTree
 ##  · arena_gimnasio_roca: el gimnasio de Brock, agrandado y épico (paredes, tierra, rocas, la plataforma de piedra
 ##    del líder y rocas que se rompen), con ambientación de tipo roca;
 ##  · arena_torneo: el estadio del Torneo de Plateada (docs/PLAN_TORNEO.md): cancha de tierra, dos lagunas, pasto alto
-##    en las esquinas (se prende fuego), rocas de cobertura y rocas que se rompen, con tribunas y luces.
+##    en las esquinas (se prende fuego), rocas de cobertura y rocas que se rompen, con tribunas y luces;
+##  · arena_gimnasio_agua: el gimnasio de Misty (Ciudad Celeste, docs/PLAN_CAPITULO_2.md), con los tiles del gimnasio de
+##    Celeste: piletas a los costados y dos chicas en el medio (agua de verdad: moja, frena y conduce la electricidad).
 ## Escribe scenes/world/arenas/<id>.tscn (zonas como las del mundo: se pueden retocar con el editor de mapas) y
 ## data/arenas/<id>.tres (ArenaData). Correrlo de nuevo PISA las escenas.
-## Uso: godot --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd
+## Uso: godot --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd [-- --only <id>]
+## `--only arena_gimnasio_agua` arma solo esa (no pisa las otras).
 
 const ARENAS_DIR := "res://scenes/world/arenas"
 const DATA_DIR := "res://data/arenas"
@@ -36,9 +39,12 @@ func _init() -> void:
 	tileset = load(ZoneBuilder.TILESET_PATH)
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(ARENAS_DIR))
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DATA_DIR))
-	_campo()
-	_gimnasio_roca()
-	_torneo()
+	var args := OS.get_cmdline_user_args()
+	var only := args[args.find("--only") + 1] if args.has("--only") and args.find("--only") + 1 < args.size() else ""
+	for step in [["arena_campo", _campo], ["arena_gimnasio_roca", _gimnasio_roca], ["arena_torneo", _torneo],
+			["arena_gimnasio_agua", _gimnasio_agua]]:
+		if only == "" or only == step[0]:
+			step[1].call()
 	quit()
 
 
@@ -230,6 +236,71 @@ func _torneo() -> void:
 	a.crowd = true
 	a.epic = true
 	ResourceSaver.save(a, "%s/arena_torneo.tres" % DATA_DIR)
+
+
+# --- Gimnasio de agua (Misty) ------------------------------------------------------------------------------
+
+## Metatiles del gimnasio de Celeste (cerulean_gym, base 11000): 1 baldosa, 12 sombra de la pared izquierda, 46/47
+## paredes de los costados, filas 0-3 = pared de arriba (5-7, 13-15, 21-23, 29-31; 38/39 esquinas, 20 escudo,
+## 75 salvavidas), pileta: 8/9/10 borde de arriba, 16/17/18 costados y agua, 24/25/26 borde de abajo.
+const CG := 11000
+
+
+func _pool(layer: TileMapLayer, rect: Rect2i) -> void:
+	for y in range(rect.position.y, rect.end.y):
+		for x in range(rect.position.x, rect.end.x):
+			var col := 0 if x == rect.position.x else (2 if x == rect.end.x - 1 else 1)
+			var row := 0 if y == rect.position.y else (2 if y == rect.end.y - 1 else 1)
+			ZoneBuilder.set_metatile(layer, Vector2i(x, y), CG + [[8, 9, 10], [16, 17, 18], [24, 25, 26]][row][col])
+
+
+func _gimnasio_agua() -> void:
+	var w := 40
+	var h := 30
+	var cx := w / 2
+	var root := ZoneBuilder.new_zone_root("arena_gimnasio_agua", tileset)
+	var g: TileMapLayer = root.get_node("Ground")
+	var water: TileMapLayer = root.get_node("Water")
+	for y in h:
+		for x in w:
+			var m := 1
+			if x == 0:
+				m = 38 if y == 0 else 46
+			elif x == w - 1:
+				m = 39 if y == 0 else 47
+			elif y < 4:
+				var row: Array = [[5, 6, 7], [13, 14, 15], [21, 22, 23], [29, 30, 31]][y]
+				m = row[0] if x == 1 else (row[2] if x == w - 2 else row[1])
+				if y == 0 and x == cx:
+					m = 20  # escudo de la Medalla Cascada
+				elif y == 1 and x % 6 == 2 and x > 1 and x < w - 2:
+					m = 75  # salvavidas colgados
+			elif x == 1:
+				m = 12
+			ZoneBuilder.set_metatile(g, Vector2i(x, y), CG + m)
+	# Piletas largas a los costados de la cancha y dos chicas en el medio (cobertura que no tapa los tiros).
+	_pool(water, Rect2i(3, 8, 6, 15))
+	_pool(water, Rect2i(w - 9, 8, 6, 15))
+	_pool(water, Rect2i(cx - 7, 13, 4, 4))
+	_pool(water, Rect2i(cx + 3, 13, 4, 4))
+	root.set("hand_edited", true)
+	_save(root, "arena_gimnasio_agua")
+	var a := ArenaData.new()
+	a.id = "arena_gimnasio_agua"
+	a.display_name = "Gimnasio de Ciudad Celeste"
+	a.scene_path = "%s/arena_gimnasio_agua.tscn" % ARENAS_DIR
+	a.field = Rect2i(10, 7, w - 20, h - 12)
+	a.foe_trainer_cell = Vector2i(cx, 5)
+	a.foe_mon_cell = Vector2i(cx, 9)
+	a.player_cell = Vector2i(cx, h - 3)
+	a.player_mon_cell = Vector2i(cx, h - 7)
+	a.element_id = "agua"
+	a.line_color = Color(0.85, 0.95, 1.0, 0.35)
+	a.particles = "burbujas"
+	a.particle_color = Color(0.7, 0.9, 1.0, 0.55)
+	a.ambient = Color(0.9, 0.97, 1.05)
+	a.epic = true
+	ResourceSaver.save(a, "%s/arena_gimnasio_agua.tres" % DATA_DIR)
 
 
 func _save(root: Node, id: String) -> void:

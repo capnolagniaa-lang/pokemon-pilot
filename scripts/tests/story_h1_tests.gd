@@ -177,7 +177,7 @@ func run() -> void:
 	r["La MT39 enseña Tumba Rocas (y se gasta)"] = msg != "" and mon.learned_moves().has(DB.moves["tumba_rocas"]) 		and GameState.item_count("mt39") == 0
 	var again := GameState.from_dict(GameState.to_dict())
 	r["Lo aprendido por MT se guarda"] = again and GameState.party[0].learned_moves().has(DB.moves["tumba_rocas"])
-	r["Con la medalla, la Guía dice capítulo completo"] = StoryGuide.current().get("index", -1) == StoryGuide.STEPS.size()
+	r["Con la medalla, la Guía pasa al capítulo 2 (Mt. Moon)"] = StoryGuide.current().get("title", "") == "El Mt. Moon"
 	var card := TrainerCard.new()
 	add_child(card)
 	await get_tree().process_frame

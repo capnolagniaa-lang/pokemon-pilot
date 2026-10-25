@@ -441,6 +441,233 @@ EXTRA_NPCS[("ciudad_plateada_torneo", "Fanatico")] = ((12, 5), "gentleman")
 EXTRA_NPCS[("ciudad_plateada_torneo", "Chusma")] = ((3, 6), "youngster")
 
 
+# =================================================================================================================
+# --- Capítulo 2: de Ciudad Plateada al Gimnasio de Ciudad Celeste (docs/PLAN_CAPITULO_2.md) ----------------------
+# Equipos de FireRed (pret: trainer_parties.h). Banderas: fosil_elegido, rival_celeste_peleado, rocket_puente_peleado,
+# magikarp_comprado, bill_ayudado, ticket_barco_recibido, medalla_cascada. La Chica Crissy de la Ruta 4 (Paras Nv. 31)
+# queda afuera. Dos personas con el mismo script en una zona: la segunda usa la clave "<script>_2" (casa de Bill).
+LASS, YOUNG, CAMPER, HIKER, NERD, PICNIC, ROCKET = ("Chica", "Joven", "Campista", "Montañero", "Supernecio",
+                                                    "Dominguera", "Soldado Rocket")
+
+
+def _t(name, title, team, desafio, pierde, despues, **kw):
+    return dict(name=name, title=title, team=team, lines={"desafio": desafio, "pierde": pierde, "despues": despues}, **kw)
+
+
+TRAINERS.update({
+    # Ruta 3
+    ("ruta3", "Robin"): _t("Robina", LASS, [("jigglypuff", 14)], "¡Ay, mirá qué lindo mi Jigglypuff! ¿Peleamos?",
+        "¡Ni la canción lo salvó!", "Si Jigglypuff canta, no te duermas."),
+    ("ruta3", "James"): _t("Jaime", BUG, [("caterpie", 11), ("metapod", 11)],
+        "¡Mis bichos salieron del Bosque Verde para ganarte!", "¡Volvé, Metapod!", "Un Metapod duro aguanta casi todo."),
+    ("ruta3", "Sally"): _t("Sandra", LASS, [("rattata", 10), ("nidoran_f", 10)], "¡Eh! ¿Me mirabas? ¡Entonces peleamos!",
+        "¡Qué vergüenza!", "Los Nidoran tienen púas venenosas, ojo."),
+    ("ruta3", "Greg"): _t("Gregorio", BUG, [("weedle", 9), ("kakuna", 9), ("caterpie", 9), ("metapod", 9)],
+        "¡Tengo cuatro bichos! ¡A ver si aguantás!", "¡Cuatro y ninguno sirvió!", "Algún día van a evolucionar todos."),
+    ("ruta3", "Calvin"): _t("Calvo", YOUNG, [("spearow", 14)], "¡Mi Spearow pica más fuerte que cualquier Pidgey!",
+        "¡Se me desplumó!", "Los Spearow son bravos. Cuidá los ojos."),
+    ("ruta3", "Janice"): _t("Jimena", LASS, [("pidgey", 9), ("pidgey", 9)], "¡Mis dos Pidgey vuelan en pareja!",
+        "Aterrizaron mal...", "Los Pidgey son tranquilos, pero en pareja molestan."),
+    ("ruta3", "Colton"): _t("Colo", BUG, [("caterpie", 10), ("weedle", 10), ("caterpie", 10)],
+        "¡Shh! Vas a espantar a los bichos... ¡ahora peleamos!", "¡Me espantaste a todos!", "Por acá hay Nidoran. Son re lindos."),
+    ("ruta3", "Ben"): _t("Benja", YOUNG, [("rattata", 11), ("ekans", 11)], "¡Pantalón corto y Pokémon cortitos! ¡Dale!",
+        "¡Uh, perdí!", "El Mt. Moon está al final de la ruta. Llevá Antídotos."),
+    # Mt. Moon
+    ("mt_moon", "Iris"): _t("Iris", LASS, [("clefairy", 14)], "¿Viste un Clefairy? ¡Yo tengo uno!",
+        "¡Ay, mi Clefairy!", "Dicen que los Clefairy bailan con la luna llena."),
+    ("mt_moon", "Robby"): _t("Robi", BUG, [("caterpie", 10), ("metapod", 10), ("caterpie", 10)],
+        "¡Hasta en la cueva hay bichos! ¡Peleá!", "¡Acá abajo no ven nada!", "Los Zubat no tienen ojos, ¿sabías?"),
+    ("mt_moon", "Jovan"): _t("Gustavo", NERD, [("magnemite", 11), ("voltorb", 11)], "¡Mis Pokémon eléctricos son puro cálculo!",
+        "¡Me fallaron las cuentas!", "Vine a buscar fósiles. ¡Son de hace millones de años!"),
+    ("mt_moon", "Miriam"): _t("Mirna", LASS, [("oddish", 11), ("bellsprout", 11)],
+        "¡Me perdí en la cueva! Igual... ¡peleemos!", "Ahora estoy perdida y derrotada.", "¿Cuál era la salida? Creo que por abajo..."),
+    ("mt_moon", "Kent"): _t("Casimiro", BUG, [("weedle", 11), ("kakuna", 11)], "¡Los bichos de cueva son los más fuertes!",
+        "Bueno, no tanto.", "Los Paras tienen hongos en la espalda. ¡Qué asco!"),
+    ("mt_moon", "Josh"): _t("José", YOUNG, [("rattata", 10), ("rattata", 10), ("zubat", 10)],
+        "¡Hay un montón de Zubat! ¡Y uno es mío!", "¡Volaron todos!", "Si te molestan los Zubat, corré hacia la salida."),
+    ("mt_moon", "Marcos"): _t("Marcos", HIKER, [("geodude", 10), ("geodude", 10), ("onix", 10)],
+        "¡Las montañas son mi casa! ¡Y mis Pokémon son de piedra!", "¡Se me desmoronó todo!", "Escalar es lindo, pero la cueva es mejor."),
+    ("mt_moon_s2", "Grunt1"): _t("Rocket", ROCKET, [("rattata", 13), ("zubat", 13)],
+        "¡Somos el Team Rocket! ¡Los fósiles son nuestros!", "¡Pff! ¡Esto no termina acá!", "El jefe se va a enojar..."),
+    ("mt_moon_s2", "Grunt2"): _t("Rocket", ROCKET, [("sandshrew", 11), ("rattata", 11), ("zubat", 11)],
+        "¿Un nene en la cueva? ¡Andate antes de que te robe los Pokémon!", "¡Ay! ¡Qué nene fuerte!", "Los fósiles valen una fortuna, ¿sabías?"),
+    ("mt_moon_s2", "Grunt3"): _t("Rocket", ROCKET, [("zubat", 11), ("ekans", 11)], "¡Alto! ¡Este paso es del Team Rocket!",
+        "¡Me ganaste! Pero el Team Rocket nunca se rinde.", "¡Vamos a volver!"),
+    ("mt_moon_s2", "Grunt4"): _t("Rocket", ROCKET, [("rattata", 13), ("sandshrew", 13)],
+        "¡Vos sos el que anda molestando a mis compañeros!", "¡Pero qué es esto!", "Grrr... ¡el Team Rocket se va a vengar!"),
+    ("mt_moon_s2", "Miguel"): _t("Miguel", NERD, [("grimer", 12), ("voltorb", 12), ("koffing", 12)],
+        "¡Ey! ¡Estos fósiles los encontré yo! ¡Son míos!",
+        "¡Está bien, está bien! Uno para cada uno. No hay que ser avaricioso.", "Agarrá el fósil que quieras. El otro es mío.",
+        sight=3),
+    # Ciudad Celeste: el rival antes del Puente Pepita
+    ("ciudad_celeste", "0x0"): dict(name=RIVAL, title="Rival", sight=0, talk_challenge=False,
+        reward_flags=["rival_celeste_peleado"],
+        team=[("pidgeotto", 17), ("abra", 16), ("rattata", 15), ("squirtle", 18, "rival_squirtle"),
+              ("bulbasaur", 18, "rival_bulbasaur"), ("charmander", 18, "rival_charmander")],
+        lines={"desafio": "¡Eh, vos! ¡Seguís vivo! ¿Pasaste por el Mt. Moon?|A ver cuánto mejoraste. ¡Mis Pokémon están re entrenados!",
+               "pierde": "¡¿Otra vez?! ...Bueno, ¿sabés qué? Hay un tal Bill pasando el Puente Pepita.|Tiene una colección de "
+                         "Pokémon rarísimos. Andá a verlo, si te animás.",
+               "gana": "¡Ja! Sigo siendo el mejor.", "despues": "Bill vive al norte, pasando el Puente Pepita."}),
+    # Ruta 24: Puente Pepita (cinco al hilo) y el Rocket disfrazado
+    ("ruta24", "Cale"): _t("Calixto", BUG, [("caterpie", 10), ("weedle", 10), ("metapod", 10), ("kakuna", 10)],
+        "¡Bienvenido al Puente Pepita! ¡Soy el primero de cinco!", "¡Pasaste el primero!", "Si le ganás a los cinco, hay premio."),
+    ("ruta24", "Ali"): _t("Alicia", LASS, [("pidgey", 12), ("oddish", 12), ("bellsprout", 12)],
+        "¡Soy la segunda! ¡No te va a ser fácil!", "¡Ay! Pasaste a la segunda.", "Faltan tres. ¡Suerte!"),
+    ("ruta24", "Timmy"): _t("Tomás", YOUNG, [("sandshrew", 14), ("ekans", 14)],
+        "¡El tercero! ¡A partir de acá se pone picante!", "¡Picante para mí!", "Los dos últimos son los más bravos."),
+    ("ruta24", "Reli"): _t("Rebeca", LASS, [("nidoran_m", 16), ("nidoran_f", 16)], "¡Soy la cuarta! ¡Mis Nidoran son pareja!",
+        "¡Se separaron!", "Te queda uno solo..."),
+    ("ruta24", "Ethan"): _t("Ezequiel", CAMPER, [("mankey", 18)], "¡El último del Puente Pepita! ¡Mi Mankey está furioso!",
+        "¡Pasaste los cinco! ¡Increíble!", "Andá a buscar tu premio, que te lo ganaste."),
+    ("ruta24", "Shane"): _t("Santiago", CAMPER, [("rattata", 14), ("ekans", 14)], "¡Ey! ¡Acá abajo también se pelea!",
+        "¡Uh, me ganaste!", "El pasto de acá tiene Abra. ¡Se teletransportan!"),
+    ("ruta24", "Rocket"): dict(name="Rocket", title=ROCKET, sight=0, talk_challenge=False, team=[("ekans", 15), ("zubat", 15)],
+        reward_flags=["rocket_puente_peleado"], reward_items={"pepita": 1}, lines={
+            "desafio": "¿No? ¡Entonces vas a tener que ganártela! ¡Vas a ver lo que es el Team Rocket!",
+            "pierde": "¡Argh! ¡Tenés pasta! Está bien... quedate con la Pepita.",
+            "gana": "¡Ja! Pensá bien lo del Team Rocket.", "despues": "Ya me voy, ya me voy..."}),
+    # Ruta 25
+    ("ruta25", "Franklin"): _t("Francisco", HIKER, [("machop", 15), ("geodude", 15)],
+        "¡Subiendo montañas se hacen músculos! ¡Mirá!", "¡Me bajaron de la montaña!", "Bill vive al final de la ruta, en la casita del cabo."),
+    ("ruta25", "Joey"): _t("Joaquín", YOUNG, [("rattata", 15), ("spearow", 15)], "¡Mi Rattata está entre el 1% de los mejores!",
+        "¡Nooo! ¡Mi Rattata!", "Igual mi Rattata es el mejor. Te lo digo yo."),
+    ("ruta25", "Wayne"): _t("Wenceslao", HIKER, [("onix", 17)], "¡Encontré este Onix en una cueva! ¡Probalo!",
+        "¡Ni la serpiente de roca!", "El agua y la planta parten las rocas."),
+    ("ruta25", "Dan"): _t("Dani", YOUNG, [("slowpoke", 17)], "Mi Slowpoke es... re... lento... ¡pero pega!",
+        "...¿Ya terminó?", "Mi Slowpoke todavía no se dio cuenta de que perdió."),
+    ("ruta25", "Kelsey"): _t("Celeste", PICNIC, [("nidoran_m", 15), ("nidoran_f", 15)], "¡Vine de picnic con mis Nidoran!",
+        "¡Se me arruinó el picnic!", "¿Querés un sanguchito? Ah, no, se los comieron los Nidoran."),
+    ("ruta25", "Nob"): _t("Norberto", HIKER, [("geodude", 13), ("geodude", 13), ("machop", 13), ("geodude", 13)],
+        "¡Cuatro Pokémon de pura fuerza! ¡Aguantá!", "¡Qué aguante el tuyo!", "Los Geodude ruedan barranca abajo."),
+    ("ruta25", "Flint"): _t("Facundo", CAMPER, [("rattata", 14), ("ekans", 14)], "¡Acampando y peleando, así vivo!",
+        "¡Me desarmaste la carpa!", "¿Ya fuiste a ver a Bill?"),
+    ("ruta25", "Chad"): _t("Chacho", YOUNG, [("ekans", 14), ("sandshrew", 14)], "¡Te estaba esperando!",
+        "¡No era tan fácil como pensaba!", "Bill es un genio de las computadoras."),
+    ("ruta25", "Haley"): _t("Helena", LASS, [("oddish", 13), ("pidgey", 13), ("oddish", 13)], "¡Ay, qué día lindo para pelear!",
+        "¡Qué día feo!", "La casa de Bill tiene vista al mar."),
+    # Gimnasio de Ciudad Celeste (arena de agua: data/arenas/arena_gimnasio_agua)
+    ("ciudad_celeste_gimnasio", "Luis"): _t("Luis", "Nadador", [("horsea", 16), ("shellder", 16)],
+        "¡Antes de Misty, tenés que nadar conmigo!", "¡Me ahogué!", "Misty es la sirena del gimnasio. ¡Ojo!",
+        arena="arena_gimnasio_agua", sight=1),
+    ("ciudad_celeste_gimnasio", "Diana"): _t("Diana", PICNIC, [("goldeen", 19)], "¡Mi Goldeen es la reina del agua!",
+        "¡Se me escapó del anzuelo!", "Para Misty: eléctrico o planta. Te lo regalo.", arena="arena_gimnasio_agua", sight=4),
+    ("ciudad_celeste_gimnasio", "Misty"): dict(name="Misty", title="Líder", team=[("staryu", 18), ("starmie", 21)],
+        arena="arena_gimnasio_agua", sight=0, leader=True, reward_flags=["medalla_cascada"],
+        reward="¡Recibiste la MEDALLA CASCADA de Misty!", lines={
+        "desafio": "¡Hola! Soy Misty, la líder del Gimnasio de Ciudad Celeste.|Mi política es atacar con Pokémon de tipo "
+                   "agua. ¿Te animás a meterte a la pileta?",
+        "pierde": "¡Uf! Sos muy bueno... ¡Está bien, te ganaste la Medalla Cascada!",
+        "gana": "¡Te hundiste! Volvé cuando sepas nadar.",
+        "despues": "Con la Medalla Cascada tus Pokémon te hacen más caso. ¡Seguí así!"}),
+})
+
+_FIVE = ["vencido_ruta24_cale", "vencido_ruta24_ali", "vencido_ruta24_timmy", "vencido_ruta24_reli", "vencido_ruta24_ethan"]
+TALKS.update({
+    # Ruta 3 / Ruta 4
+    ("ruta3", "Youngster"): dict(name="Pibe", talks=[dict(lines=[
+        "¿Ves el Mt. Moon allá? Adentro hay Clefairy... ¡y dicen que también anda el Team Rocket!"])]),
+    ("ruta4", "Woman"): dict(name="Señora", talks=[dict(lines=[
+        "Bajé del Mt. Moon y casi me pierdo. ¡Menos mal que hay un Centro Pokémon acá!"])]),
+    ("ruta4", "Boy"): dict(name="Chico", talks=[dict(lines=[
+        "Si saltás esos bordes no hay vuelta atrás. ¡Ciudad Celeste está al este!"])]),
+    ("ruta4", "MegaPunchTutor"): dict(name="Luchador", talks=[dict(lines=[
+        "¡Hah! ¡Megapuño! ...Todavía no te lo puedo enseñar. Volvé más fuerte."])]),
+    ("ruta4", "MegaKickTutor"): dict(name="Luchador", talks=[dict(lines=["¡Megapatada! El que patea primero, patea dos veces."])]),
+    ("ruta4_centro", "Nurse"): NURSE,
+    ("ruta4_centro", "MagikarpSalesman"): dict(name="Vendedor", talks=[
+        dict(forbids=["magikarp_comprado"], lines=["¡Ey, pibe! Te tengo una oferta imperdible."], action="vender_magikarp"),
+        dict(lines=["Ya te vendí el Magikarp. Sin devoluciones, eh."])]),
+    ("ruta4_centro", "Gentleman"): dict(name="Señor", talks=[dict(lines=[
+        "El Team Rocket anda robando en Ciudad Celeste. ¡Qué tiempos!"])]),
+    ("ruta4_centro", "Boy"): dict(name="Chico", talks=[dict(lines=[
+        "En el Mt. Moon encontré una Piedra Lunar. ¡Dicen que hace evolucionar a Clefairy!"])]),
+    ("ruta4_centro", "Youngster"): dict(name="Pibe", talks=[dict(lines=["Me compré un Magikarp... ¡y solo sabe salpicar!"])]),
+    # Mt. Moon
+    ("mt_moon", "BaldingMan"): dict(name="Señor", talks=[dict(lines=[
+        "Los Zubat salen de todos lados. ¡Por eso vengo con Repelente!"])]),
+    ("mt_moon_s2", "DomeFossil"): dict(name="Fósil Domo", gfx="item_ball", hide_if=["fosil_elegido"], talks=[
+        dict(forbids=["vencido_mt_moon_s2_miguel"], lines=["(Un fósil. Miguel no te deja ni acercarte.)"]),
+        dict(confirm="¿Te llevás el Fósil Domo?", give={"fosil_domo": 1}, set_flags=["fosil_elegido", "fosil_domo_elegido"],
+             lines=["(Es el Fósil Domo: parece el caparazón de un Pokémon antiquísimo.)"], after_speaker="Miguel",
+             after_lines=["¡Entonces el Fósil Hélix es mío! Dicen que en Isla Canela los reviven..."])]),
+    ("mt_moon_s2", "HelixFossil"): dict(name="Fósil Hélix", gfx="item_ball", hide_if=["fosil_elegido"], talks=[
+        dict(forbids=["vencido_mt_moon_s2_miguel"], lines=["(Un fósil. Miguel no te deja ni acercarte.)"]),
+        dict(confirm="¿Te llevás el Fósil Hélix?", give={"fosil_helix": 1}, set_flags=["fosil_elegido", "fosil_helix_elegido"],
+             lines=["(Es el Fósil Hélix: tiene forma de caracol, como una concha antigua.)"], after_speaker="Miguel",
+             after_lines=["¡Entonces el Fósil Domo es mío! Dicen que en Isla Canela los reviven..."])]),
+    # Ciudad Celeste
+    ("ciudad_celeste", "0x0"): dict(name=RIVAL, show_if=["historia"], hide_if=["rival_celeste_peleado"], talks=[
+        dict(lines=["¿Ya fuiste al gimnasio? Yo ya tengo la medalla, obvio."])]),
+    ("ciudad_celeste", "Policeman"): dict(name="Policía", talks=[dict(lines=[
+        "El Team Rocket entró a robar en esta casa. Se llevaron una MT.", "No se puede pasar: estamos investigando."])]),
+    ("ciudad_celeste", "LittleBoy"): dict(name="Nene", talks=[dict(lines=["¡Misty es re linda! Pero pelea re fuerte."])]),
+    ("ciudad_celeste", "BaldingMan"): dict(name="Señor", talks=[dict(lines=["La bici de la tienda cuesta un millón. ¡Un millón!"])]),
+    ("ciudad_celeste", "Slowbro"): dict(name="Slowbro", talks=[dict(lines=[
+        "Slowbro: ...", "(Está mirando la nada. No le importa nada.)"])]),
+    ("ciudad_celeste", "Lass"): dict(name="Chica", talks=[dict(lines=["¡Slowbro, hacé Confusión! ...Nunca me hace caso."])]),
+    ("ciudad_celeste", "Youngster"): dict(name="Pibe", talks=[dict(lines=[
+        "Al norte está el Puente Pepita: cinco entrenadores al hilo."])]),
+    ("ciudad_celeste", "Woman"): dict(name="Señora", talks=[dict(lines=[
+        "Si te entrenás con Pokémon de planta o eléctricos, Misty no te asusta."])]),
+    ("ciudad_celeste_centro", "Nurse"): NURSE,
+    ("ciudad_celeste_centro", "Gentleman"): dict(name="Señor", talks=[dict(lines=[
+        "Bill es el que inventó el sistema de la PC de Pokémon."])]),
+    ("ciudad_celeste_centro", "Rocker"): dict(name="Rockero", talks=[dict(lines=["¡Yeah! ¡Los Pokémon de agua son lo más!"])]),
+    ("ciudad_celeste_centro", "Youngster"): dict(name="Pibe", talks=[dict(lines=[
+        "Me dijeron que pasando el puente hay Abra. ¡Se escapan al toque!"])]),
+    ("ciudad_celeste_centro", "Lass"): dict(name="Chica", talks=[dict(lines=["Misty es la menor de cuatro hermanas. ¡Y la más fuerte!"])]),
+    ("ciudad_celeste_tienda", "Clerk"): dict(name="Vendedor", talks=[dict(lines=["¡Bienvenido a la Tienda Pokémon!"],
+        action="tienda_ciudad_celeste")]),
+    ("ciudad_celeste_tienda", "Woman"): dict(name="Señora", talks=[dict(lines=[
+        "Las Superpociones curan un montón. ¡Valen lo que cuestan!"])]),
+    ("ciudad_celeste_tienda", "Youngster"): dict(name="Pibe", talks=[dict(lines=["Vendí una Pepita acá y me hice rico. ¡Bueno, casi!"])]),
+    ("ciudad_celeste_gimnasio", "GymGuy"): dict(name="Guía", talks=[
+        dict(forbids=["medalla_cascada"], lines=["¡Ey, campeón en potencia! Misty usa Pokémon de agua.",
+            "Los eléctricos y los de planta son tu mejor apuesta. Y ojo: ¡el agua de las piletas conduce la electricidad!"]),
+        dict(lines=["¡Le ganaste a Misty! ¡Qué crack!"])]),
+    ("ciudad_celeste_casa_robada", "Hiker"): dict(name="Dueño", talks=[dict(lines=[
+        "¡El Team Rocket me hizo un agujero en la pared y se llevó mi MT de Excavar!"])]),
+    ("ciudad_celeste_casa_robada", "Lass"): dict(name="Chica", talks=[dict(lines=["¡Qué susto! Entraron por atrás..."])]),
+    # Ruta 24: el Rocket del puente (te felicita, te da la Pepita y te quiere reclutar: disparador "rocket_puente")
+    ("ruta24", "Rocket"): dict(name="Señor", hide_if=["rocket_puente_peleado"], talks=[
+        dict(forbids=_FIVE[-1:], lines=["¿Venís por el Puente Pepita? Ganale a los cinco y te doy un premio."]),
+        dict(lines=["Ya me voy, ya me voy..."])]),
+    ("ruta25", "Beauty"): dict(name="Chica", talks=[dict(lines=["La casa de Bill está acá nomás. ¡Es un genio, un poco raro!"])]),
+    ("ruta25", "Man"): dict(name="Señor", talks=[dict(lines=["Vine a ver los Pokémon raros de Bill. ¡Tiene uno de cada!"])]),
+    # Casa de Bill: Bill convertido en Clefairy (la 2ª persona con el script "Bill" es el Clefairy)
+    ("casa_bill", "Bill"): dict(name="Bill", show_if=["bill_ayudado"], talks=[
+        dict(forbids=["ticket_barco_recibido"], give={"ticket_barco": 1}, set_flags=["ticket_barco_recibido"], lines=[
+            "¡Uf, volví a ser yo! ¡Gracias, de verdad!", "Estaba probando el Separador Celular y me mezclé con un Clefairy...",
+            "Tomá, te regalo esto: un Ticket para el S.S. Anne, el crucero que está en Ciudad Carmín.",
+            "Hay una fiesta a bordo llena de entrenadores. ¡Andá!"]),
+        dict(lines=["Si un día querés ver mi colección de Pokémon raros, pasá cuando quieras."])]),
+    ("casa_bill", "Bill_2"): dict(name="Clefairy", hide_if=["bill_ayudado"], talks=[
+        dict(confirm="¿Activás el Separador Celular de la PC?", set_flags=["bill_ayudado"], lines=[
+            "¡Ey! ¡No soy un Pokémon! ¡Soy Bill, el maniático de los Pokémon!",
+            "Un experimento me salió mal y quedé mezclado con un Clefairy.",
+            "¿Me hacés un favor? Metete en la máquina... ¡no, yo me meto! Vos activá el Separador en la PC."],
+            after_lines=["(Activaste el Separador Celular. ¡La máquina hace un ruido raro!)"])]),
+})
+TRIGGERS["rival_celeste"] = dict(zone="ciudad_celeste", rect=(38, 4, 3, 1), once=False, talk=dict(
+    requires=["historia"], forbids=["rival_celeste_peleado"], speaker=RIVAL, lines=["¡Eh, esperá!"],
+    battle_npc="ciudad_celeste_0x0"))
+TRIGGERS["rocket_puente"] = dict(zone="ruta24", rect=(3, 28, 10, 1), once=False, talk=dict(
+    requires=_FIVE, forbids=["rocket_puente_peleado"], speaker="Señor", lines=[
+        "¡Felicitaciones! ¡Le ganaste a los cinco del Puente Pepita!", "El premio es una Pepita: vale un montón de plata.",
+        "Pero decime... con lo bueno que sos, ¿no te gustaría unirte al Team Rocket?"], battle_npc="ruta24_rocket"))
+for (_zone, _script), _item in {
+        ("mt_moon", "ItemParalyzeHeal"): "antiparalizador", ("mt_moon", "ItemPotion"): "pocion",
+        ("mt_moon", "ItemRareCandy"): "caramelo_raro", ("mt_moon", "ItemMoonStone"): "piedra_lunar",
+        ("mt_moon_s2", "ItemStarPiece"): "trozo_estrella", ("mt_moon_s2", "ItemRevive"): "revivir",
+        ("mt_moon_s2", "ItemAntidote"): "antidoto"}.items():
+    _flag = "objeto_%s_%s" % (_zone, _script.lower())
+    TALKS[(_zone, _script)] = dict(name="Objeto", gfx="item_ball", hide_if=[_flag], talks=[
+        dict(give={_item: 1}, set_flags=[_flag], lines=[])])
+# El chico de Plateada, después de la medalla, te manda a la Ruta 3 (que ahora existe).
+TALKS[("ciudad_plateada", "GymGuide")]["talks"][1] = dict(lines=[
+    "¡Le ganaste a Brock! ¡Sos un crack!", "La Ruta 3 sigue por acá, hacia el Mt. Moon. ¡Del otro lado está Ciudad Celeste!"])
+
+
 class Ext:
     """ext_resource que necesita un .tres (scripts y recursos), con ids estables."""
 
@@ -581,8 +808,12 @@ def main():
     os.makedirs(out, exist_ok=True)
     made = set()
     for z in data["zones"]:
+        seen = set()
         for n in z.get("npcs", []):
             script = n["script"].split("EventScript_")[-1]
+            if script in seen and (z["id"], script + "_2") in TALKS:
+                script += "_2"  # dos personas con el mismo script (Bill y Bill-Clefairy)
+            seen.add(script)
             spec = TALKS.get((z["id"], script))
             t = TRAINERS.get((z["id"], script))
             if t is not None:

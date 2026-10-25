@@ -21,6 +21,7 @@ func _ready() -> void:
 		if s is ShopData:
 			shops[s.id] = s
 			world.story.register_action("tienda_" + s.id, open.bind(s))
+	world.story.register_action("vender_magikarp", sell_magikarp)
 
 
 ## Charla con el vendedor: Comprar / Vender / Nada, hasta que se despide.
@@ -41,6 +42,37 @@ func open(shop: ShopData) -> void:
 			hud.visible = true
 		question = "¿Algo más?"
 	await d.say(shop.clerk, PackedStringArray(["¡Gracias! Volvé cuando quieras."]))
+
+
+## El vendedor del Centro de la Ruta 4 (como en FireRed): un Magikarp Nv. 5 por $500, una sola vez.
+const MAGIKARP_PRICE := 500
+
+
+func sell_magikarp() -> void:
+	var d: DialogBox = world.story.dialog
+	if await d.ask("Vendedor", "¿Te vendo un Magikarp por solo $%d? (Tenés $%d)" % [MAGIKARP_PRICE, GameState.money],
+			PackedStringArray(["Sí", "No"])) != 0:
+		await d.say("Vendedor", PackedStringArray(["¡Te lo perdés! Es un Pokémon con muuucho futuro."]))
+		return
+	var where := buy_magikarp()
+	if where == "":
+		await d.say("Vendedor", PackedStringArray(["No te alcanza la plata, pibe. Volvé con $%d." % MAGIKARP_PRICE]))
+		return
+	await d.say("Vendedor", PackedStringArray(["¡Trato hecho! Tomá tu Magikarp.%s" % (" (Se fue a la Caja: tu equipo está lleno.)"
+		if where == "caja" else ""), "...Ojo que no hago devoluciones, eh."]))
+
+
+## Cobra y entrega el Magikarp (al equipo o, si está lleno, a la Caja). "" si no alcanza la plata o ya lo compró.
+func buy_magikarp() -> String:
+	if GameState.has_flag("magikarp_comprado") or not GameState.spend_money(MAGIKARP_PRICE):
+		return ""
+	GameState.set_flag("magikarp_comprado")
+	var inst := CreatureInstance.create(DB.species["magikarp"], 5)
+	if GameState.add_to_party(inst):
+		return "equipo"
+	GameState.box.append(inst)
+	GameState.mark_fought(inst.species)
+	return "caja"
 
 
 ## Abre la pantalla de comprar (o vender) de una tienda. Se cierra con su señal `closed` (quien la abre la borra).

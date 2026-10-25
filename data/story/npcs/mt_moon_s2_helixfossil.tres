@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("vencido_mt_moon_s2_miguel")
+lines = PackedStringArray("(Un fósil. Miguel no te deja ni acercarte.)")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+set_flags = PackedStringArray("fosil_elegido", "fosil_helix_elegido")
+lines = PackedStringArray("(Es el Fósil Hélix: tiene forma de caracol, como una concha antigua.)")
+give_items = {"fosil_helix": 1}
+confirm = "¿Te llevás el Fósil Hélix?"
+after_speaker = "Miguel"
+after_lines = PackedStringArray("¡Entonces el Fósil Domo es mío! Dicen que en Isla Canela los reviven...")
+
+[resource]
+script = ExtResource("1_n")
+id = "mt_moon_s2_helixfossil"
+display_name = "Fósil Hélix"
+zone_id = "mt_moon_s2"
+cell = Vector2i(28, 15)
+gfx = "item_ball"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])
+hide_if = PackedStringArray("fosil_elegido")

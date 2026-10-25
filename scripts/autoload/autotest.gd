@@ -75,6 +75,13 @@ func _ready() -> void:
 		add_child(st)
 		(st.showcase if "--showcase-story" in OS.get_cmdline_user_args() else st.run).call_deferred()
 		return
+	if "--autotest-story-h2" in OS.get_cmdline_user_args() or "--showcase-misty" in OS.get_cmdline_user_args():
+		set_process(false)
+		var c2 := Chapter2Tests.new()
+		c2.autotest = self
+		add_child(c2)
+		(c2.showcase_misty if "--showcase-misty" in OS.get_cmdline_user_args() else c2.run).call_deferred()
+		return
 	if "--autotest-mart" in OS.get_cmdline_user_args() or "--showcase-mart" in OS.get_cmdline_user_args():
 		set_process(false)
 		var mt := MartTests.new()

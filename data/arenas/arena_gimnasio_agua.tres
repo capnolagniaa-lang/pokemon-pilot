@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="1_ipdcs"]
+
+[resource]
+script = ExtResource("1_ipdcs")
+id = "arena_gimnasio_agua"
+display_name = "Gimnasio de Ciudad Celeste"
+scene_path = "res://scenes/world/arenas/arena_gimnasio_agua.tscn"
+foe_trainer_cell = Vector2i(20, 5)
+player_cell = Vector2i(20, 27)
+foe_mon_cell = Vector2i(20, 9)
+player_mon_cell = Vector2i(20, 23)
+field = Rect2i(10, 7, 20, 18)
+element_id = "agua"
+line_color = Color(0.85, 0.95, 1, 0.35)
+particles = "burbujas"
+particle_color = Color(0.7, 0.9, 1, 0.55)
+ambient = Color(0.9, 0.97, 1.05, 1)
+epic = true

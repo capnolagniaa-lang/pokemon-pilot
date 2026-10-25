@@ -5,6 +5,18 @@
   "h": 32,
   "frames": 10
  },
+ "beauty": {
+  "png": "res://art/pret/characters/beauty.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "bill": {
+  "png": "res://art/pret/characters/bill.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
  "black_belt": {
   "png": "res://art/pret/characters/black_belt.png",
   "w": 16,
@@ -46,6 +58,12 @@
   "w": 16,
   "h": 32,
   "frames": 10
+ },
+ "clefairy": {
+  "png": "res://art/pret/characters/clefairy.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
  },
  "clerk": {
   "png": "res://art/pret/characters/clerk.png",
@@ -95,6 +113,12 @@
   "h": 32,
   "frames": 9
  },
+ "hiker": {
+  "png": "res://art/pret/characters/hiker.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
  "item_ball": {
   "png": "res://art/pret/characters/item_ball.png",
   "w": 16,
@@ -130,6 +154,12 @@
   "w": 16,
   "h": 32,
   "frames": 10
+ },
+ "misty": {
+  "png": "res://art/pret/characters/misty.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
  },
  "mom": {
   "png": "res://art/pret/characters/mom.png",
@@ -167,6 +197,18 @@
   "h": 32,
   "frames": 1
  },
+ "old_woman": {
+  "png": "res://art/pret/characters/old_woman.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "picnicker": {
+  "png": "res://art/pret/characters/picnicker.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
  "policeman": {
   "png": "res://art/pret/characters/policeman.png",
   "w": 16,
@@ -185,17 +227,35 @@
   "h": 32,
   "frames": 10
  },
+ "rocket_m": {
+  "png": "res://art/pret/characters/rocket_m.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
  "scientist": {
   "png": "res://art/pret/characters/scientist.png",
   "w": 16,
   "h": 32,
   "frames": 10
  },
+ "slowbro": {
+  "png": "res://art/pret/characters/slowbro.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
  "spearow": {
   "png": "res://art/pret/characters/spearow.png",
   "w": 16,
   "h": 16,
   "frames": 3
+ },
+ "swimmer_m_water": {
+  "png": "res://art/pret/characters/swimmer_m_water.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
  },
  "woman_1": {
   "png": "res://art/pret/characters/woman_1.png",

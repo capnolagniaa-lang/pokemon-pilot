@@ -19,7 +19,7 @@ extends Resource
 ## Tipo que ambienta la arena (los gimnasios: el de su líder). Vacío = arena común.
 @export var element_id: String = ""
 @export var line_color: Color = Color(1, 1, 1, 0.35)
-## Partículas que flotan: vacío (nada), "polvo", "hojas", "confeti".
+## Partículas que flotan: vacío (nada), "polvo", "hojas", "confeti", "burbujas" (suben; el gimnasio de agua).
 @export var particles: String = ""
 @export var particle_color: Color = Color(1, 1, 1, 0.5)
 ## Braseros con fuego en las esquinas de la cancha.

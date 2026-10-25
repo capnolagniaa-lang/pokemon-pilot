@@ -12,6 +12,10 @@ const STEPS := [
 	["tiene_paquete", "Rumbo a Ciudad Verde", "Andá al norte por la Ruta 1 hasta Ciudad Verde y entrá a la Tienda Pokémon (techo azul)."],
 	["paquete_entregado", "El correo de Oak", "Llevale el Correo-Oak al Profesor Oak, en su laboratorio de Pueblo Paleta (al sur)."],
 	["medalla_roca", "La Medalla Roca", "Ahora el camino al norte de Ciudad Verde está libre: Ruta 2, Bosque Verde y Ciudad Plateada. Entrá al gimnasio y ganale a Brock (tipo roca: el agua y la planta le pegan fuerte)."],
+	# Capítulo 2 (docs/PLAN_CAPITULO_2.md)
+	["fosil_elegido", "El Mt. Moon", "Seguí al este de Ciudad Plateada por la Ruta 3 hasta el Mt. Moon. En lo más hondo de la cueva el Team Rocket busca fósiles: ganale a Miguel y elegí uno."],
+	["rival_celeste_peleado", "Ciudad Celeste", "Salí del Mt. Moon y bajá por la Ruta 4 hasta Ciudad Celeste. Tu rival te espera al norte de la ciudad, camino al Puente Pepita."],
+	["medalla_cascada", "La Medalla Cascada", "Ganale a Misty en el gimnasio de Ciudad Celeste (tipo agua: los eléctricos y los de planta le pegan fuerte; el agua de las piletas conduce la electricidad)."],
 ]
 ## Cosas que se pueden hacer además: [bandera que la completa, banderas que hacen falta, texto]
 const OPTIONAL := [
@@ -19,6 +23,9 @@ const OPTIONAL := [
 	["tiene_mapa", ["paquete_entregado"], "Dalia, la hermana de tu rival (casa de al lado de la tuya), tiene un regalo para vos."],
 	["rival_ruta22_peleado", ["paquete_entregado"], "Tu rival te espera en la Ruta 22, al oeste de Ciudad Verde."],
 	["campeon_nv15_3", ["medalla_roca"], "Probá el Torneo de Ciudad Plateada (la puerta del anexo rosa del museo)."],
+	["magikarp_comprado", ["medalla_roca"], "En el Centro Pokémon de la Ruta 4 (al pie del Mt. Moon) un señor vende un Magikarp."],
+	["rocket_puente_peleado", ["rival_celeste_peleado"], "Al norte de Ciudad Celeste, el Puente Pepita: cinco entrenadores al hilo y un premio."],
+	["ticket_barco_recibido", ["rival_celeste_peleado"], "Pasando el Puente Pepita y la Ruta 25 vive Bill, el de la PC. Dicen que le pasó algo raro..."],
 ]
 ## Cazabichos del Bosque Verde (para contar cuántos te faltan).
 const FOREST_TRAINERS := ["bosque_verde_rick", "bosque_verde_doug", "bosque_verde_sammy", "bosque_verde_anthony",
@@ -32,8 +39,20 @@ static func current() -> Dictionary:
 	for i in STEPS.size():
 		if not GameState.has_flag(STEPS[i][0]):
 			return {"index": i, "total": STEPS.size(), "title": STEPS[i][1], "text": STEPS[i][2]}
-	return {"index": STEPS.size(), "total": STEPS.size(), "title": "¡Capítulo 1 completo!",
-		"text": "Le ganaste a Brock. Muy pronto: la Ruta 3 y el Monte Moon. Mientras tanto, entrenate o probá el Torneo de Ciudad Plateada."}
+	return {"index": STEPS.size(), "total": STEPS.size(), "title": "¡Capítulo 2 completo!",
+		"text": "Le ganaste a Misty. Muy pronto: la Ruta 5, Ciudad Carmín y el S.S. Anne. Mientras tanto, entrenate o probá el Torneo de Ciudad Plateada."}
+
+
+## Primer paso de cada capítulo (índice en STEPS) y su nombre.
+const CHAPTERS := [[0, "Capítulo 1: de Pueblo Paleta a la Medalla Roca"], [6, "Capítulo 2: del Mt. Moon a la Medalla Cascada"]]
+
+
+static func chapter_name(index: int) -> String:
+	var name: String = CHAPTERS[0][1]
+	for c in CHAPTERS:
+		if index >= c[0]:
+			name = c[1]
+	return name
 
 
 ## Lo opcional que todavía no hiciste (y que ya está disponible).

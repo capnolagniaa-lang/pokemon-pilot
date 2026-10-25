@@ -31,9 +31,17 @@ ITEMS = {
     "antihielo": ("ice-heal", "items", 14, {"cures": ["congelado"]}),
     "cura_total": ("full-heal", "items", 15, {"cures": [ALL_BAD]}),
     "revivir": ("revive", "items", 20, {"revive_ratio": 0.5, "use_time": 1.0}),
+    # Capítulo 2 (docs/PLAN_CAPITULO_2.md): Mt. Moon, Puente Pepita y Bill.
+    "caramelo_raro": ("rare-candy", "items", 30, {"level_up": 1, "usable_in_battle": False}),
+    "piedra_lunar": ("moon-stone", "items", 40, {"usable_in_battle": False}),
+    "trozo_estrella": ("star-piece", "items", 50, {"usable_in_battle": False}),
+    "pepita": ("nugget", "items", 51, {"usable_in_battle": False}),
     # Objetos clave de la historia (docs/PLAN_HISTORIA.md, H-2): no se usan, los mira la historia.
     "paquete_oak": ("oaks-parcel", "key", 1, {}),
     "mapa": ("town-map", "key", 2, {}),
+    "fosil_helix": ("helix-fossil", "key", 3, {}),
+    "fosil_domo": ("dome-fossil", "key", 4, {}),
+    "ticket_barco": ("ss-ticket", "key", 5, {}),
 }
 # Precio en la Tienda Pokémon (FireRed/LeafGreen, 3ª gen). PokeAPI ya no los trae (`prices` viene vacío).
 # Sin precio (Master Ball, objetos clave) = no se compra ni se vende.
@@ -42,6 +50,7 @@ PRICES = {
     "pocion": 300, "superpocion": 700, "hiperpocion": 1200, "pocion_maxima": 2500,
     "antidoto": 100, "antiparalizador": 200, "despertar": 250, "antiquemar": 250, "antihielo": 250,
     "cura_total": 600, "revivir": 1500,
+    "caramelo_raro": 4800, "piedra_lunar": 2100, "trozo_estrella": 9800, "pepita": 10000,
 }
 # Descripción propia cuando PokeAPI no tiene una en español.
 DESCRIPTIONS = {

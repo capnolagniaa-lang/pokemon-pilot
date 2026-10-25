@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("ticket_barco_recibido")
+set_flags = PackedStringArray("ticket_barco_recibido")
+lines = PackedStringArray("¡Uf, volví a ser yo! ¡Gracias, de verdad!", "Estaba probando el Separador Celular y me mezclé con un Clefairy...", "Tomá, te regalo esto: un Ticket para el S.S. Anne, el crucero que está en Ciudad Carmín.", "Hay una fiesta a bordo llena de entrenadores. ¡Andá!")
+give_items = {"ticket_barco": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Si un día querés ver mi colección de Pokémon raros, pasá cuando quieras.")
+
+[resource]
+script = ExtResource("1_n")
+id = "casa_bill_bill"
+display_name = "Bill"
+zone_id = "casa_bill"
+cell = Vector2i(7, 5)
+gfx = "bill"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])
+show_if = PackedStringArray("bill_ayudado")
