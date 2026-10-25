@@ -177,7 +177,10 @@ func switch_to(index: int) -> bool:
 	if index >= GameState.party.size() or index == GameState.active_index or _switch_cd > 0.0:
 		return false
 	var story = world.get("story")
-	if story != null and (story.busy or story.dialog.active):
+	# Durante una charla no se cambia; pero las peleas de entrenador/gimnasio/torneo arrancan desde una charla (la
+	# historia queda "ocupada" toda la pelea), así que dentro de la arena sí.
+	var in_arena: bool = world.get("arena") != null and world.arena.active
+	if story != null and (story.dialog.active or (story.busy and not in_arena)):
 		return false
 	var inst: CreatureInstance = GameState.party[index]
 	if inst.hp <= 0.0:

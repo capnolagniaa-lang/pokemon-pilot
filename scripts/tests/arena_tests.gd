@@ -36,6 +36,15 @@ func run() -> void:
 		and world.trainer.global_position.distance_to(TrainerBattle.ARENA_ORIGIN) < 1500.0
 	r["Sale su primer Pokémon (Geodude de Brock)"] = is_instance_valid(foe) and foe.instance.species.id == "geodude" and foe.owner_name == "Brock"
 	r["Tu Pokémon pelea (control y combate trabado)"] = world.combat.in_battle and world.combat.arena_lock and world.companion.player_controlled
+	# Cambiar de Pokémon con las teclas 1-6 en plena pelea de gimnasio (bug: la charla con Brock lo bloqueaba).
+	await autotest._tap("switch_2")
+	await get_tree().create_timer(0.2).timeout
+	r["En el gimnasio se cambia de Pokémon (tecla 2)"] = GameState.active_index == 1 and is_instance_valid(world.companion) \
+		and world.companion.instance.species.id == "bulbasaur" and world.companion.player_controlled
+	await get_tree().create_timer(CombatDirector.SWITCH_COOLDOWN + 0.1).timeout
+	await autotest._tap("switch_1")
+	await get_tree().create_timer(0.2).timeout
+	r["Y se vuelve al primero (tecla 1)"] = GameState.active_index == 0 and world.companion.instance.species.id == "squirtle"
 	var balls := GameState.item_count("poke_ball")
 	await autotest._tap("capture")
 	await get_tree().process_frame
