@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/flight_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "vuelo_butterfree"
+display_name = "Alas de Polvo"
+description = "Vuela como Pidgey: al esquivar con Aliento se eleva y en el aire no le llegan los golpes cuerpo a cuerpo. El primer ataque desde el aire pega más."
+color = Color(0.75, 0.7, 1.0, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"lift_cost": 30.0, "max_air_time": 1.8, "drain_per_second": 35.0, "regen_per_second": 30.0, "height": 14.0, "dive_damage_mult": 1.3}

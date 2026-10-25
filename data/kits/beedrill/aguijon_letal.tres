@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/venom_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "aguijon_letal"
+display_name = "Aguijón Letal"
+description = "Le pega más a lo envenenado: +12% por cada stack de Envenenado del rival (hasta +60%)."
+color = Color(0.95, 0.8, 0.2, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"per_stack": 0.12, "max_mult": 1.6}

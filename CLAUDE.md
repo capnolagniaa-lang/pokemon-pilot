@@ -38,7 +38,7 @@ $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del pl
 $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charmander, Bellsprout, Pidgey, Rattata, Vulpix
 $G --headless --path . --quit-after 60000 -- --autotest-kits-v3  # los 10 kits nuevos (v3): ataques + mecánicas
 $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bichos, Spearow, Mankey, Sandshrew, Onix jefe)
-$G --headless --path . --quit-after 60000 -- --autotest-kits-v5  # kits v5 (Staryu y Starmie, la jefa de Misty)
+$G --headless --path . --quit-after 60000 -- --autotest-kits-v5  # kits v5 (Staryu, Starmie jefa de Misty, Butterfree, Beedrill, Kadabra, Gyarados)
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
@@ -287,7 +287,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   ajustes hechos a mano** en esos .tres: retocar en el inspector y no volver a correrlo.
 - `tools/build_kits_v4.py`: igual para los kits v4 (Kanto hasta Plateada, Onix jefe); además engancha el kit en la
   especie. Mismo aviso: correrlo de nuevo pisa los ajustes a mano.
-- `tools/build_kits_v5.py`: igual para el capítulo 2 (Staryu y Starmie jefa, firma `core_mechanic.gd`).
+- `tools/build_kits_v5.py`: igual para el capítulo 2 (Staryu y Starmie jefa, firma `core_mechanic.gd`) y las evoluciones
+  con kit propio (Butterfree, Beedrill, Kadabra, Gyarados). Criterio: una evolución hereda el kit salvo que cambie mucho
+  su forma de pelear.
 - `tools/fetch_npc_sprites.py`: baja de pret/pokefirered los sprites de las personas de los mapas importados (y las de
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
   (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).

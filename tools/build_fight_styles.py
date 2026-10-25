@@ -68,6 +68,7 @@ STYLES = {
     "ivysaur": ("normal", []),
     "charmeleon": ("normal", []),
     "wartortle": ("normal", []),
+    "gyarados": ("pesado", []),
     "omanyte": ("pesado", []),
     "kabuto": ("pesado", []),
 }

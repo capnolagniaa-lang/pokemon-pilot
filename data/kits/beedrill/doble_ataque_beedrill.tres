@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "doble_ataque_beedrill"
+display_name = "Doble Ataque"
+element = ExtResource("3_x")
+kind = 7
+category = 0
+power = 30.0
+cooldown = 3.0
+knockback = 60.0
+lunge_range = 80.0
+lunge_speed = 480.0
+followup_delay = 0.14
+followup_power_mult = 1.0
+followup_knockback = 150.0
+recovery = 0.1
+status = ExtResource("4_x")
+status_chance = 0.5

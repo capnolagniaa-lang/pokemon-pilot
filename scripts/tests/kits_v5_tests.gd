@@ -1,11 +1,16 @@
 class_name KitsV5Tests
 extends Node
-## Autotest de los kits v5 (capítulo 2, docs/PLAN_CAPITULO_2.md parte K): Staryu y Starmie, la jefa de Misty.
+## Autotest de los kits v5 (capítulo 2, docs/PLAN_CAPITULO_2.md parte K): Staryu y Starmie, la jefa de Misty, y las
+## evoluciones con kit propio (Butterfree, Beedrill, Kadabra, Gyarados).
 ##   godot --headless --path . --quit-after 60000 -- --autotest-kits-v5
 ## Núcleo (core_mechanic.gd): girando desvía proyectiles, más daño a lo Empapado, la barra llena cura; Starmie además
 ## es grande, casi no la empujan y a mitad de vida el núcleo brilla (onda + Núcleo Brillante).
 
-const SPECIES := {"staryu": "velocista", "starmie": "control"}
+const SPECIES := {"staryu": "velocista", "starmie": "control", "butterfree": "control", "beedrill": "asesino",
+	"kadabra": "control", "gyarados": "bruiser"}
+## Estilo de movimiento esperado de cada uno.
+const STYLE := {"staryu": "agil", "starmie": "agil", "butterfree": "volador", "beedrill": "volador", "kadabra": "agil",
+	"gyarados": "pesado"}
 
 var autotest: Node
 var world: Node
@@ -16,11 +21,12 @@ func run() -> void:
 	var r := {}
 	for id in SPECIES:
 		var sp: SpeciesData = DB.species[id]
-		r["%s: kit %s con 4 ataques y firma Núcleo" % [sp.display_name, SPECIES[id]]] = sp.kit != null \
+		r["%s: kit %s con 4 ataques y firma" % [sp.display_name, SPECIES[id]]] = sp.kit != null \
 			and sp.kit.archetype == SPECIES[id] and sp.kit.moves.size() == 4 and sp.kit.signature != null
 		r["%s: aprende el kit (Nv. 1/1/3/5)" % sp.display_name] = sp.learnset.size() >= 4 \
 			and sp.learnset[0].move == sp.kit.moves[0] and sp.learnset[3].level == 5
-		r["%s: tiene estilo de pelea (ágil)" % sp.display_name] = DB.fight_styles.has(id) and DB.fight_styles[id].move_style == "agil"
+		r["%s: estilo de pelea %s" % [sp.display_name, STYLE[id]]] = DB.fight_styles.has(id) \
+			and DB.fight_styles[id].move_style == STYLE[id]
 
 	for id in SPECIES:
 		await _setup(id)
@@ -39,6 +45,8 @@ func run() -> void:
 
 	await _staryu(r)
 	await _starmie(r)
+	await _kadabra(r)
+	await _evolutions(r)
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:
@@ -105,3 +113,48 @@ func _starmie(r: Dictionary) -> void:
 	await get_tree().create_timer(0.3).timeout
 	r["Starmie: a mitad de vida el núcleo brilla (más fuerte)"] = me.statuses.has_status("nucleo_brillante")
 	r["Starmie: la onda del núcleo moja y lastima al rival"] = foe.statuses.has_status("empapado") and foe.instance.hp < foe_hp
+
+
+func _kadabra(r: Dictionary) -> void:
+	await _setup("kadabra")
+	var foe := _dummy("rattata", Vector2(50, 0))
+	await get_tree().physics_frame
+	var plain := HitInfo.from(me, me.moves.slots[0])
+	me.signature.modify_hit(plain)
+	r["Kadabra: sin teletransportarse, golpe normal"] = plain.damage_mult == 1.0
+	me.moves.reset_cooldown(3)
+	r["Kadabra: Teletransporte se usa"] = me.use_slot(3, Vector2.UP, me.global_position + Vector2(0, -60))
+	await get_tree().physics_frame
+	r["Kadabra: Teletransporte lo hace invulnerable"] = me.health.is_invulnerable()
+	var mind := HitInfo.from(me, me.moves.slots[0])
+	me.signature.modify_hit(mind)
+	r["Kadabra: después, Golpe Mental (+50% y desorienta)"] = mind.damage_mult >= 1.5 and mind.extra_status != null \
+		and mind.extra_status.id == "desorientado"
+	var again := HitInfo.from(me, me.moves.slots[0])
+	me.signature.modify_hit(again)
+	r["Kadabra: el Golpe Mental se gasta"] = again.damage_mult == 1.0
+	r["Kadabra: Psicorrayo es un rayo largo"] = me.moves.slots[1].kind == MoveData.Kind.CHANNEL and me.moves.slots[1].cone_length >= 120
+	if is_instance_valid(foe):
+		foe.queue_free()
+
+
+func _evolutions(r: Dictionary) -> void:
+	await _setup("beedrill")
+	var foe := _dummy("bulbasaur", Vector2(40, 0))
+	await get_tree().physics_frame
+	for k in 3:
+		foe.statuses.apply(DB.statuses["envenenado"])
+	r["Beedrill: remata lo envenenado (más que Weedle)"] = me.signature.damage_mult_against(HitInfo.from(me, me.moves.slots[0]), foe) > 1.3
+	me.moves.reset_cooldown(3)
+	me.use_slot(3, Vector2.RIGHT, foe.global_position)
+	await get_tree().physics_frame
+	r["Beedrill: Agilidad lo acelera"] = me.statuses.has_status("agilidad")
+	await _setup("gyarados")
+	r["Gyarados: Hidrobomba es su golpe fuerte (110, moja)"] = me.moves.slots[3].power >= 100 \
+		and me.moves.slots[3].statuses_on_hit.any(func(st): return st.id == "empapado")
+	me.signature.set_value(me.signature.data.max_value)
+	await get_tree().physics_frame
+	r["Gyarados: la Ira llena lo enfurece"] = me.statuses.has_status("enfurecido")
+	await _setup("butterfree")
+	r["Butterfree: vuela (firma de vuelo)"] = me.signature.get_script().resource_path.ends_with("flight_mechanic.gd")
+	r["Butterfree: Tornado desvía proyectiles"] = me.moves.slots[1].deflects_projectiles
