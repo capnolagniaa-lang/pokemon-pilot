@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_305yw"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_e01a2"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0d7kh"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_fyhdu"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fyhdu"]
@@ -8,7 +9,25 @@
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="5_fyhdu"]
 [ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_mgiti"]
 
-[sub_resource type="Resource" id="Resource_fyhdu"]
+[sub_resource type="Resource" id="Resource_e01a2"]
+script = ExtResource("1_e01a2")
+to_id = "hitmonlee"
+level = 20
+stats_cond = 1
+
+[sub_resource type="Resource" id="Resource_1qtm8"]
+script = ExtResource("1_e01a2")
+to_id = "hitmonchan"
+level = 20
+stats_cond = -1
+
+[sub_resource type="Resource" id="Resource_ybw05"]
+script = ExtResource("1_e01a2")
+to_id = "hitmontop"
+level = 20
+stats_cond = 0
+
+[sub_resource type="Resource" id="Resource_mgiti"]
 script = ExtResource("1_305yw")
 move = ExtResource("2_fyhdu")
 
@@ -18,7 +37,8 @@ id = "tyrogue"
 display_name = "Tyrogue"
 dex = 236
 types = Array[ExtResource("4_e01a2")]([ExtResource("5_mgiti")])
-learnset = Array[ExtResource("1_305yw")]([SubResource("Resource_fyhdu")])
+learnset = Array[ExtResource("1_305yw")]([SubResource("Resource_mgiti")])
+evolutions = Array[ExtResource("1_e01a2")]([SubResource("Resource_e01a2"), SubResource("Resource_1qtm8"), SubResource("Resource_ybw05")])
 temperament = ExtResource("5_fyhdu")
 genus = "Pokémon Peleón"
 pokedex_entry = "Tyrogue se pone demasiado nervioso si no lo sacan a entrenarse cada día. Su Entrenador debe establecer y mantener ciertos métodos de entrenamiento durante la cría."

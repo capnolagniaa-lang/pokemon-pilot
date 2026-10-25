@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_6fg0e"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u5np1"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0yygh"]
 [ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="2_gpad3"]
@@ -18,50 +19,55 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_saw63"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_cge63"]
 
-[sub_resource type="Resource" id="Resource_cge63"]
+[sub_resource type="Resource" id="Resource_6fg0e"]
+script = ExtResource("1_6fg0e")
+to_id = "ariados"
+level = 22
+
+[sub_resource type="Resource" id="Resource_lov4v"]
 script = ExtResource("1_u5np1")
 move = ExtResource("2_gpad3")
 
-[sub_resource type="Resource" id="Resource_6fg0e"]
+[sub_resource type="Resource" id="Resource_jbakr"]
 script = ExtResource("1_u5np1")
 move = ExtResource("3_cge63")
 
-[sub_resource type="Resource" id="Resource_lov4v"]
+[sub_resource type="Resource" id="Resource_1363n"]
 script = ExtResource("1_u5np1")
 level = 6
 move = ExtResource("4_6fg0e")
 
-[sub_resource type="Resource" id="Resource_jbakr"]
+[sub_resource type="Resource" id="Resource_6r1m7"]
 script = ExtResource("1_u5np1")
 level = 11
 move = ExtResource("5_lov4v")
 
-[sub_resource type="Resource" id="Resource_1363n"]
+[sub_resource type="Resource" id="Resource_t8137"]
 script = ExtResource("1_u5np1")
 level = 17
 move = ExtResource("6_jbakr")
 
-[sub_resource type="Resource" id="Resource_6r1m7"]
+[sub_resource type="Resource" id="Resource_igmfu"]
 script = ExtResource("1_u5np1")
 level = 23
 move = ExtResource("7_1363n")
 
-[sub_resource type="Resource" id="Resource_t8137"]
+[sub_resource type="Resource" id="Resource_saw63"]
 script = ExtResource("1_u5np1")
 level = 30
 move = ExtResource("8_6r1m7")
 
-[sub_resource type="Resource" id="Resource_igmfu"]
+[sub_resource type="Resource" id="Resource_2dd62"]
 script = ExtResource("1_u5np1")
 level = 37
 move = ExtResource("9_t8137")
 
-[sub_resource type="Resource" id="Resource_saw63"]
+[sub_resource type="Resource" id="Resource_8li17"]
 script = ExtResource("1_u5np1")
 level = 45
 move = ExtResource("10_igmfu")
 
-[sub_resource type="Resource" id="Resource_2dd62"]
+[sub_resource type="Resource" id="Resource_tcdeb"]
 script = ExtResource("1_u5np1")
 level = 53
 move = ExtResource("11_saw63")
@@ -72,7 +78,8 @@ id = "spinarak"
 display_name = "Spinarak"
 dex = 167
 types = Array[ExtResource("4_3x10t")]([ExtResource("5_scdhi"), ExtResource("6_t60d0")])
-learnset = Array[ExtResource("1_u5np1")]([SubResource("Resource_cge63"), SubResource("Resource_6fg0e"), SubResource("Resource_lov4v"), SubResource("Resource_jbakr"), SubResource("Resource_1363n"), SubResource("Resource_6r1m7"), SubResource("Resource_t8137"), SubResource("Resource_igmfu"), SubResource("Resource_saw63"), SubResource("Resource_2dd62")])
+learnset = Array[ExtResource("1_u5np1")]([SubResource("Resource_lov4v"), SubResource("Resource_jbakr"), SubResource("Resource_1363n"), SubResource("Resource_6r1m7"), SubResource("Resource_t8137"), SubResource("Resource_igmfu"), SubResource("Resource_saw63"), SubResource("Resource_2dd62"), SubResource("Resource_8li17"), SubResource("Resource_tcdeb")])
+evolutions = Array[ExtResource("1_6fg0e")]([SubResource("Resource_6fg0e")])
 temperament = ExtResource("14_cge63")
 genus = "Pokémon Escupesoga"
 pokedex_entry = "La tela que teje Spinarak puede considerarse como su segundo sistema nervioso. Dicen que puede adivinar qué tipo de presa ha caído en su red con solo observar las leves vibraciones de los hilos de la tela."

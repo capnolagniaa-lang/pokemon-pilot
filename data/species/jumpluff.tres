@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_0mwsb"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u7b8q"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3c7xn"]
 [ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_fs5vr"]
@@ -18,48 +19,48 @@
 [ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="11_kisob"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_v3ubs"]
 
-[sub_resource type="Resource" id="Resource_v3ubs"]
+[sub_resource type="Resource" id="Resource_0mwsb"]
 script = ExtResource("1_u7b8q")
 move = ExtResource("2_fs5vr")
 
-[sub_resource type="Resource" id="Resource_0mwsb"]
+[sub_resource type="Resource" id="Resource_ufdk8"]
 script = ExtResource("1_u7b8q")
 move = ExtResource("3_v3ubs")
 
-[sub_resource type="Resource" id="Resource_ufdk8"]
+[sub_resource type="Resource" id="Resource_6jl2e"]
 script = ExtResource("1_u7b8q")
 move = ExtResource("4_0mwsb")
 
-[sub_resource type="Resource" id="Resource_6jl2e"]
+[sub_resource type="Resource" id="Resource_28mp6"]
 script = ExtResource("1_u7b8q")
 move = ExtResource("5_ufdk8")
 
-[sub_resource type="Resource" id="Resource_28mp6"]
+[sub_resource type="Resource" id="Resource_g6ml0"]
 script = ExtResource("1_u7b8q")
 level = 13
 move = ExtResource("6_6jl2e")
 
-[sub_resource type="Resource" id="Resource_g6ml0"]
+[sub_resource type="Resource" id="Resource_2nfxd"]
 script = ExtResource("1_u7b8q")
 level = 15
 move = ExtResource("7_28mp6")
 
-[sub_resource type="Resource" id="Resource_2nfxd"]
+[sub_resource type="Resource" id="Resource_3ojly"]
 script = ExtResource("1_u7b8q")
 level = 17
 move = ExtResource("8_g6ml0")
 
-[sub_resource type="Resource" id="Resource_3ojly"]
+[sub_resource type="Resource" id="Resource_kisob"]
 script = ExtResource("1_u7b8q")
 level = 22
 move = ExtResource("9_2nfxd")
 
-[sub_resource type="Resource" id="Resource_kisob"]
+[sub_resource type="Resource" id="Resource_jei6i"]
 script = ExtResource("1_u7b8q")
 level = 33
 move = ExtResource("10_3ojly")
 
-[sub_resource type="Resource" id="Resource_jei6i"]
+[sub_resource type="Resource" id="Resource_bikaa"]
 script = ExtResource("1_u7b8q")
 level = 44
 move = ExtResource("11_kisob")
@@ -70,7 +71,8 @@ id = "jumpluff"
 display_name = "Jumpluff"
 dex = 189
 types = Array[ExtResource("4_hsr2p")]([ExtResource("5_ghd46"), ExtResource("6_n7w06")])
-learnset = Array[ExtResource("1_u7b8q")]([SubResource("Resource_v3ubs"), SubResource("Resource_0mwsb"), SubResource("Resource_ufdk8"), SubResource("Resource_6jl2e"), SubResource("Resource_28mp6"), SubResource("Resource_g6ml0"), SubResource("Resource_2nfxd"), SubResource("Resource_3ojly"), SubResource("Resource_kisob"), SubResource("Resource_jei6i")])
+learnset = Array[ExtResource("1_u7b8q")]([SubResource("Resource_0mwsb"), SubResource("Resource_ufdk8"), SubResource("Resource_6jl2e"), SubResource("Resource_28mp6"), SubResource("Resource_g6ml0"), SubResource("Resource_2nfxd"), SubResource("Resource_3ojly"), SubResource("Resource_kisob"), SubResource("Resource_jei6i"), SubResource("Resource_bikaa")])
+evolves_from = "skiploom"
 temperament = ExtResource("14_v3ubs")
 genus = "Pokémon Algadón"
 pokedex_entry = "Jumpluff se vale de los cálidos vientos del sur para volar a tierras lejanas. Si llega a zonas de aire frío en pleno vuelo, descenderá y tomará tierra."

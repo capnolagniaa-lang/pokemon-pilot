@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_34wqb"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_akvvp"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_qeomp"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_yfksf"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_akjqd"]
@@ -19,58 +20,63 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_lufgp"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_yfc0t"]
 
-[sub_resource type="Resource" id="Resource_yfc0t"]
-script = ExtResource("1_34wqb")
-move = ExtResource("2_yfksf")
-
 [sub_resource type="Resource" id="Resource_akvvp"]
-script = ExtResource("1_34wqb")
-move = ExtResource("3_yfc0t")
+script = ExtResource("1_akvvp")
+to_id = "salamence"
+level = 50
 
 [sub_resource type="Resource" id="Resource_3phta"]
 script = ExtResource("1_34wqb")
-move = ExtResource("4_akvvp")
+move = ExtResource("2_yfksf")
 
 [sub_resource type="Resource" id="Resource_jj4e2"]
 script = ExtResource("1_34wqb")
-move = ExtResource("5_3phta")
+move = ExtResource("3_yfc0t")
 
 [sub_resource type="Resource" id="Resource_e0d3v"]
+script = ExtResource("1_34wqb")
+move = ExtResource("4_akvvp")
+
+[sub_resource type="Resource" id="Resource_6ah67"]
+script = ExtResource("1_34wqb")
+move = ExtResource("5_3phta")
+
+[sub_resource type="Resource" id="Resource_etrnb"]
 script = ExtResource("1_34wqb")
 level = 21
 move = ExtResource("6_jj4e2")
 
-[sub_resource type="Resource" id="Resource_6ah67"]
+[sub_resource type="Resource" id="Resource_d46sq"]
 script = ExtResource("1_34wqb")
 level = 25
 move = ExtResource("7_e0d3v")
 
-[sub_resource type="Resource" id="Resource_etrnb"]
+[sub_resource type="Resource" id="Resource_4mdi4"]
 script = ExtResource("1_34wqb")
 level = 30
 move = ExtResource("8_6ah67")
 
-[sub_resource type="Resource" id="Resource_d46sq"]
+[sub_resource type="Resource" id="Resource_f65io"]
 script = ExtResource("1_34wqb")
 level = 38
 move = ExtResource("9_etrnb")
 
-[sub_resource type="Resource" id="Resource_4mdi4"]
+[sub_resource type="Resource" id="Resource_lufgp"]
 script = ExtResource("1_34wqb")
 level = 47
 move = ExtResource("10_d46sq")
 
-[sub_resource type="Resource" id="Resource_f65io"]
+[sub_resource type="Resource" id="Resource_e1nou"]
 script = ExtResource("1_34wqb")
 level = 56
 move = ExtResource("11_4mdi4")
 
-[sub_resource type="Resource" id="Resource_lufgp"]
+[sub_resource type="Resource" id="Resource_64356"]
 script = ExtResource("1_34wqb")
 level = 69
 move = ExtResource("12_f65io")
 
-[sub_resource type="Resource" id="Resource_e1nou"]
+[sub_resource type="Resource" id="Resource_vykqp"]
 script = ExtResource("1_34wqb")
 level = 78
 move = ExtResource("13_lufgp")
@@ -81,7 +87,9 @@ id = "shelgon"
 display_name = "Shelgon"
 dex = 372
 types = Array[ExtResource("4_fk2tp")]([ExtResource("5_qql7s")])
-learnset = Array[ExtResource("1_34wqb")]([SubResource("Resource_yfc0t"), SubResource("Resource_akvvp"), SubResource("Resource_3phta"), SubResource("Resource_jj4e2"), SubResource("Resource_e0d3v"), SubResource("Resource_6ah67"), SubResource("Resource_etrnb"), SubResource("Resource_d46sq"), SubResource("Resource_4mdi4"), SubResource("Resource_f65io"), SubResource("Resource_lufgp"), SubResource("Resource_e1nou")])
+learnset = Array[ExtResource("1_34wqb")]([SubResource("Resource_3phta"), SubResource("Resource_jj4e2"), SubResource("Resource_e0d3v"), SubResource("Resource_6ah67"), SubResource("Resource_etrnb"), SubResource("Resource_d46sq"), SubResource("Resource_4mdi4"), SubResource("Resource_f65io"), SubResource("Resource_lufgp"), SubResource("Resource_e1nou"), SubResource("Resource_64356"), SubResource("Resource_vykqp")])
+evolutions = Array[ExtResource("1_akvvp")]([SubResource("Resource_akvvp")])
+evolves_from = "bagon"
 temperament = ExtResource("16_yfc0t")
 genus = "Pokémon Resistencia"
 pokedex_entry = "Dentro de la capa acorazada de Shelgon, las células están en pleno proceso de creación de un cuerpo nuevo. El peso de la coraza le hace tener unos movimientos lentos."

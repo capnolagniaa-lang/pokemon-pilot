@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qrsxf"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_wf4fl"]
 [ext_resource type="Resource" path="res://data/moves/profecia.tres" id="2_5bqm8"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_y4i20"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jpktt"]
@@ -19,55 +20,55 @@
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="12_5xjd7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_od7qg"]
 
-[sub_resource type="Resource" id="Resource_od7qg"]
+[sub_resource type="Resource" id="Resource_wf4fl"]
 script = ExtResource("1_qrsxf")
 move = ExtResource("2_5bqm8")
 
-[sub_resource type="Resource" id="Resource_wf4fl"]
+[sub_resource type="Resource" id="Resource_xh884"]
 script = ExtResource("1_qrsxf")
 move = ExtResource("3_od7qg")
 
-[sub_resource type="Resource" id="Resource_xh884"]
+[sub_resource type="Resource" id="Resource_8cf46"]
 script = ExtResource("1_qrsxf")
 level = 6
 move = ExtResource("4_wf4fl")
 
-[sub_resource type="Resource" id="Resource_8cf46"]
+[sub_resource type="Resource" id="Resource_b68gh"]
 script = ExtResource("1_qrsxf")
 level = 12
 move = ExtResource("5_xh884")
 
-[sub_resource type="Resource" id="Resource_b68gh"]
+[sub_resource type="Resource" id="Resource_1adtj"]
 script = ExtResource("1_qrsxf")
 level = 17
 move = ExtResource("6_8cf46")
 
-[sub_resource type="Resource" id="Resource_1adtj"]
+[sub_resource type="Resource" id="Resource_6l8kg"]
 script = ExtResource("1_qrsxf")
 level = 23
 move = ExtResource("7_b68gh")
 
-[sub_resource type="Resource" id="Resource_6l8kg"]
+[sub_resource type="Resource" id="Resource_i6mq3"]
 script = ExtResource("1_qrsxf")
 level = 28
 move = ExtResource("8_1adtj")
 
-[sub_resource type="Resource" id="Resource_i6mq3"]
+[sub_resource type="Resource" id="Resource_tofwe"]
 script = ExtResource("1_qrsxf")
 level = 34
 move = ExtResource("9_6l8kg")
 
-[sub_resource type="Resource" id="Resource_tofwe"]
+[sub_resource type="Resource" id="Resource_5xjd7"]
 script = ExtResource("1_qrsxf")
 level = 39
 move = ExtResource("10_i6mq3")
 
-[sub_resource type="Resource" id="Resource_5xjd7"]
+[sub_resource type="Resource" id="Resource_6qxis"]
 script = ExtResource("1_qrsxf")
 level = 45
 move = ExtResource("11_tofwe")
 
-[sub_resource type="Resource" id="Resource_6qxis"]
+[sub_resource type="Resource" id="Resource_ye3am"]
 script = ExtResource("1_qrsxf")
 level = 50
 move = ExtResource("12_5xjd7")
@@ -78,7 +79,7 @@ id = "yanma"
 display_name = "Yanma"
 dex = 193
 types = Array[ExtResource("4_ftgf2")]([ExtResource("5_abh55"), ExtResource("6_y1y6y")])
-learnset = Array[ExtResource("1_qrsxf")]([SubResource("Resource_od7qg"), SubResource("Resource_wf4fl"), SubResource("Resource_xh884"), SubResource("Resource_8cf46"), SubResource("Resource_b68gh"), SubResource("Resource_1adtj"), SubResource("Resource_6l8kg"), SubResource("Resource_i6mq3"), SubResource("Resource_tofwe"), SubResource("Resource_5xjd7"), SubResource("Resource_6qxis")])
+learnset = Array[ExtResource("1_qrsxf")]([SubResource("Resource_wf4fl"), SubResource("Resource_xh884"), SubResource("Resource_8cf46"), SubResource("Resource_b68gh"), SubResource("Resource_1adtj"), SubResource("Resource_6l8kg"), SubResource("Resource_i6mq3"), SubResource("Resource_tofwe"), SubResource("Resource_5xjd7"), SubResource("Resource_6qxis"), SubResource("Resource_ye3am")])
 temperament = ExtResource("15_od7qg")
 genus = "Pokémon Ala Clara"
 pokedex_entry = "Yanma tiene un ángulo de visión de 360° sin mover los ojos. Es un gran volador, experto en hacer repentinas paradas y cambios de dirección en el aire. Aprovecha la habilidad que tiene de volar para lanzarse sobre su presa."

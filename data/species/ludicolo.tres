@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_orisg"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_uqp20"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_haf1v"]
 [ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_wxkei"]
 [ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="3_nn5w2"]
@@ -12,19 +13,19 @@
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="6_nn5w2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="8_nn5w2"]
 
-[sub_resource type="Resource" id="Resource_nn5w2"]
+[sub_resource type="Resource" id="Resource_uqp20"]
 script = ExtResource("1_orisg")
 move = ExtResource("2_wxkei")
 
-[sub_resource type="Resource" id="Resource_uqp20"]
+[sub_resource type="Resource" id="Resource_jogaq"]
 script = ExtResource("1_orisg")
 move = ExtResource("3_nn5w2")
 
-[sub_resource type="Resource" id="Resource_jogaq"]
+[sub_resource type="Resource" id="Resource_7eqs5"]
 script = ExtResource("1_orisg")
 move = ExtResource("4_uqp20")
 
-[sub_resource type="Resource" id="Resource_7eqs5"]
+[sub_resource type="Resource" id="Resource_hsu57"]
 script = ExtResource("1_orisg")
 move = ExtResource("5_jogaq")
 
@@ -34,7 +35,8 @@ id = "ludicolo"
 display_name = "Ludicolo"
 dex = 272
 types = Array[ExtResource("4_1df27")]([ExtResource("5_wxkei"), ExtResource("6_nn5w2")])
-learnset = Array[ExtResource("1_orisg")]([SubResource("Resource_nn5w2"), SubResource("Resource_uqp20"), SubResource("Resource_jogaq"), SubResource("Resource_7eqs5")])
+learnset = Array[ExtResource("1_orisg")]([SubResource("Resource_uqp20"), SubResource("Resource_jogaq"), SubResource("Resource_7eqs5"), SubResource("Resource_hsu57")])
+evolves_from = "lombre"
 temperament = ExtResource("8_nn5w2")
 genus = "Pokémon Optimista"
 pokedex_entry = "Ludicolo empieza a bailar en cuanto oye música alegre y de fiesta. Dicen que este Pokémon aparece cuando oye cantar a los niños que van de excursión para hacer senderismo."

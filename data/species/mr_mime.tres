@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3oq8d"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_ncvd3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0fxvf"]
 [ext_resource type="Resource" path="res://data/moves/barrera.tres" id="2_oer24"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_e3i6p"]
@@ -24,81 +25,81 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="17_uf6bs"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="20_r53yd"]
 
-[sub_resource type="Resource" id="Resource_r53yd"]
+[sub_resource type="Resource" id="Resource_ncvd3"]
 script = ExtResource("1_3oq8d")
 move = ExtResource("2_oer24")
 
-[sub_resource type="Resource" id="Resource_ncvd3"]
+[sub_resource type="Resource" id="Resource_y5jc8"]
 script = ExtResource("1_3oq8d")
 level = 5
 move = ExtResource("3_r53yd")
 
-[sub_resource type="Resource" id="Resource_y5jc8"]
+[sub_resource type="Resource" id="Resource_6ukmj"]
 script = ExtResource("1_3oq8d")
 level = 8
 move = ExtResource("4_ncvd3")
 
-[sub_resource type="Resource" id="Resource_6ukmj"]
+[sub_resource type="Resource" id="Resource_8l6e8"]
 script = ExtResource("1_3oq8d")
 level = 12
 move = ExtResource("5_y5jc8")
 
-[sub_resource type="Resource" id="Resource_8l6e8"]
+[sub_resource type="Resource" id="Resource_w6gnh"]
 script = ExtResource("1_3oq8d")
 level = 15
 move = ExtResource("6_6ukmj")
 
-[sub_resource type="Resource" id="Resource_w6gnh"]
+[sub_resource type="Resource" id="Resource_sik6x"]
 script = ExtResource("1_3oq8d")
 level = 19
 move = ExtResource("7_8l6e8")
 
-[sub_resource type="Resource" id="Resource_sik6x"]
+[sub_resource type="Resource" id="Resource_ga5bw"]
 script = ExtResource("1_3oq8d")
 level = 19
 move = ExtResource("8_w6gnh")
 
-[sub_resource type="Resource" id="Resource_ga5bw"]
+[sub_resource type="Resource" id="Resource_0oypg"]
 script = ExtResource("1_3oq8d")
 level = 22
 move = ExtResource("9_sik6x")
 
-[sub_resource type="Resource" id="Resource_0oypg"]
+[sub_resource type="Resource" id="Resource_0mryv"]
 script = ExtResource("1_3oq8d")
 level = 26
 move = ExtResource("10_ga5bw")
 
-[sub_resource type="Resource" id="Resource_0mryv"]
+[sub_resource type="Resource" id="Resource_dy86r"]
 script = ExtResource("1_3oq8d")
 level = 29
 move = ExtResource("11_0oypg")
 
-[sub_resource type="Resource" id="Resource_dy86r"]
+[sub_resource type="Resource" id="Resource_dt1jo"]
 script = ExtResource("1_3oq8d")
 level = 33
 move = ExtResource("12_0mryv")
 
-[sub_resource type="Resource" id="Resource_dt1jo"]
+[sub_resource type="Resource" id="Resource_rpobs"]
 script = ExtResource("1_3oq8d")
 level = 36
 move = ExtResource("13_dy86r")
 
-[sub_resource type="Resource" id="Resource_rpobs"]
+[sub_resource type="Resource" id="Resource_1thqr"]
 script = ExtResource("1_3oq8d")
 level = 40
 move = ExtResource("14_dt1jo")
 
-[sub_resource type="Resource" id="Resource_1thqr"]
+[sub_resource type="Resource" id="Resource_uf6bs"]
 script = ExtResource("1_3oq8d")
 level = 43
 move = ExtResource("15_rpobs")
 
-[sub_resource type="Resource" id="Resource_uf6bs"]
+[sub_resource type="Resource" id="Resource_tq78l"]
 script = ExtResource("1_3oq8d")
 level = 47
 move = ExtResource("16_1thqr")
 
-[sub_resource type="Resource" id="Resource_tq78l"]
+[sub_resource type="Resource" id="Resource_7wc8q"]
 script = ExtResource("1_3oq8d")
 level = 50
 move = ExtResource("17_uf6bs")
@@ -109,7 +110,7 @@ id = "mr_mime"
 display_name = "Mr. Mime"
 dex = 122
 types = Array[ExtResource("4_8745b")]([ExtResource("5_xx76p"), ExtResource("6_a4qh6")])
-learnset = Array[ExtResource("1_3oq8d")]([SubResource("Resource_r53yd"), SubResource("Resource_ncvd3"), SubResource("Resource_y5jc8"), SubResource("Resource_6ukmj"), SubResource("Resource_8l6e8"), SubResource("Resource_w6gnh"), SubResource("Resource_sik6x"), SubResource("Resource_ga5bw"), SubResource("Resource_0oypg"), SubResource("Resource_0mryv"), SubResource("Resource_dy86r"), SubResource("Resource_dt1jo"), SubResource("Resource_rpobs"), SubResource("Resource_1thqr"), SubResource("Resource_uf6bs"), SubResource("Resource_tq78l")])
+learnset = Array[ExtResource("1_3oq8d")]([SubResource("Resource_ncvd3"), SubResource("Resource_y5jc8"), SubResource("Resource_6ukmj"), SubResource("Resource_8l6e8"), SubResource("Resource_w6gnh"), SubResource("Resource_sik6x"), SubResource("Resource_ga5bw"), SubResource("Resource_0oypg"), SubResource("Resource_0mryv"), SubResource("Resource_dy86r"), SubResource("Resource_dt1jo"), SubResource("Resource_rpobs"), SubResource("Resource_1thqr"), SubResource("Resource_uf6bs"), SubResource("Resource_tq78l"), SubResource("Resource_7wc8q")])
 temperament = ExtResource("20_r53yd")
 genus = "Pokémon Barrera"
 pokedex_entry = "Mr. Mime es un experto en pantomima. Con sus gestos y movimientos es capaz de convencer a sus espectadores de que algo existe, cuando en realidad no es así. Pero, cuando el público se lo cree, las ilusiones se hacen realidad."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ho2hp"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_r67wu"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_qvn4q"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_yd24a"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_c6m3a"]
@@ -18,51 +19,51 @@
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="11_uve33"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_lsdtf"]
 
-[sub_resource type="Resource" id="Resource_lsdtf"]
+[sub_resource type="Resource" id="Resource_r67wu"]
 script = ExtResource("1_ho2hp")
 move = ExtResource("2_yd24a")
 
-[sub_resource type="Resource" id="Resource_r67wu"]
+[sub_resource type="Resource" id="Resource_bed7w"]
 script = ExtResource("1_ho2hp")
 level = 6
 move = ExtResource("3_lsdtf")
 
-[sub_resource type="Resource" id="Resource_bed7w"]
+[sub_resource type="Resource" id="Resource_ohwvq"]
 script = ExtResource("1_ho2hp")
 level = 12
 move = ExtResource("4_r67wu")
 
-[sub_resource type="Resource" id="Resource_ohwvq"]
+[sub_resource type="Resource" id="Resource_eju3d"]
 script = ExtResource("1_ho2hp")
 level = 17
 move = ExtResource("5_bed7w")
 
-[sub_resource type="Resource" id="Resource_eju3d"]
+[sub_resource type="Resource" id="Resource_2jb2l"]
 script = ExtResource("1_ho2hp")
 level = 17
 move = ExtResource("6_ohwvq")
 
-[sub_resource type="Resource" id="Resource_2jb2l"]
+[sub_resource type="Resource" id="Resource_5urh6"]
 script = ExtResource("1_ho2hp")
 level = 23
 move = ExtResource("7_eju3d")
 
-[sub_resource type="Resource" id="Resource_5urh6"]
+[sub_resource type="Resource" id="Resource_0w5ro"]
 script = ExtResource("1_ho2hp")
 level = 28
 move = ExtResource("8_2jb2l")
 
-[sub_resource type="Resource" id="Resource_0w5ro"]
+[sub_resource type="Resource" id="Resource_uve33"]
 script = ExtResource("1_ho2hp")
 level = 34
 move = ExtResource("9_5urh6")
 
-[sub_resource type="Resource" id="Resource_uve33"]
+[sub_resource type="Resource" id="Resource_vbrla"]
 script = ExtResource("1_ho2hp")
 level = 39
 move = ExtResource("10_0w5ro")
 
-[sub_resource type="Resource" id="Resource_vbrla"]
+[sub_resource type="Resource" id="Resource_1bk5w"]
 script = ExtResource("1_ho2hp")
 level = 45
 move = ExtResource("11_uve33")
@@ -73,7 +74,7 @@ id = "corsola"
 display_name = "Corsola"
 dex = 222
 types = Array[ExtResource("4_s5i6n")]([ExtResource("5_er38u"), ExtResource("6_lr2l8")])
-learnset = Array[ExtResource("1_ho2hp")]([SubResource("Resource_lsdtf"), SubResource("Resource_r67wu"), SubResource("Resource_bed7w"), SubResource("Resource_ohwvq"), SubResource("Resource_eju3d"), SubResource("Resource_2jb2l"), SubResource("Resource_5urh6"), SubResource("Resource_0w5ro"), SubResource("Resource_uve33"), SubResource("Resource_vbrla")])
+learnset = Array[ExtResource("1_ho2hp")]([SubResource("Resource_r67wu"), SubResource("Resource_bed7w"), SubResource("Resource_ohwvq"), SubResource("Resource_eju3d"), SubResource("Resource_2jb2l"), SubResource("Resource_5urh6"), SubResource("Resource_0w5ro"), SubResource("Resource_uve33"), SubResource("Resource_vbrla"), SubResource("Resource_1bk5w")])
 temperament = ExtResource("14_lsdtf")
 genus = "Pokémon Coral"
 pokedex_entry = "Las ramas de Corsola brillan con belleza hasta en siete colores cuando les da el sol. Si se le rompe alguna, el Pokémon la regenera en tan solo una noche."

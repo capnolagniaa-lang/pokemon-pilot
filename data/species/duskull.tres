@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_e2qnk"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_i3xxw"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_6mkw8"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_362h3"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ciav6"]
@@ -18,55 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="12_6cr52"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_ijaac"]
 
-[sub_resource type="Resource" id="Resource_ijaac"]
+[sub_resource type="Resource" id="Resource_i3xxw"]
+script = ExtResource("1_i3xxw")
+to_id = "dusclops"
+level = 37
+
+[sub_resource type="Resource" id="Resource_ucjtw"]
 script = ExtResource("1_e2qnk")
 move = ExtResource("2_6mkw8")
 
-[sub_resource type="Resource" id="Resource_i3xxw"]
+[sub_resource type="Resource" id="Resource_kom37"]
 script = ExtResource("1_e2qnk")
 move = ExtResource("3_ijaac")
 
-[sub_resource type="Resource" id="Resource_ucjtw"]
+[sub_resource type="Resource" id="Resource_l5uen"]
 script = ExtResource("1_e2qnk")
 level = 5
 move = ExtResource("4_i3xxw")
 
-[sub_resource type="Resource" id="Resource_kom37"]
+[sub_resource type="Resource" id="Resource_b6xas"]
 script = ExtResource("1_e2qnk")
 level = 12
 move = ExtResource("5_ucjtw")
 
-[sub_resource type="Resource" id="Resource_l5uen"]
+[sub_resource type="Resource" id="Resource_uyjxp"]
 script = ExtResource("1_e2qnk")
 level = 16
 move = ExtResource("6_kom37")
 
-[sub_resource type="Resource" id="Resource_b6xas"]
+[sub_resource type="Resource" id="Resource_y6pfh"]
 script = ExtResource("1_e2qnk")
 level = 23
 move = ExtResource("7_l5uen")
 
-[sub_resource type="Resource" id="Resource_uyjxp"]
+[sub_resource type="Resource" id="Resource_2lw81"]
 script = ExtResource("1_e2qnk")
 level = 27
 move = ExtResource("8_b6xas")
 
-[sub_resource type="Resource" id="Resource_y6pfh"]
+[sub_resource type="Resource" id="Resource_6cr52"]
 script = ExtResource("1_e2qnk")
 level = 34
 move = ExtResource("9_uyjxp")
 
-[sub_resource type="Resource" id="Resource_2lw81"]
+[sub_resource type="Resource" id="Resource_hp026"]
 script = ExtResource("1_e2qnk")
 level = 38
 move = ExtResource("10_y6pfh")
 
-[sub_resource type="Resource" id="Resource_6cr52"]
+[sub_resource type="Resource" id="Resource_vsmy2"]
 script = ExtResource("1_e2qnk")
 level = 45
 move = ExtResource("11_2lw81")
 
-[sub_resource type="Resource" id="Resource_hp026"]
+[sub_resource type="Resource" id="Resource_6mo0k"]
 script = ExtResource("1_e2qnk")
 level = 49
 move = ExtResource("12_6cr52")
@@ -77,7 +83,8 @@ id = "duskull"
 display_name = "Duskull"
 dex = 355
 types = Array[ExtResource("4_tm04k")]([ExtResource("5_5707o")])
-learnset = Array[ExtResource("1_e2qnk")]([SubResource("Resource_ijaac"), SubResource("Resource_i3xxw"), SubResource("Resource_ucjtw"), SubResource("Resource_kom37"), SubResource("Resource_l5uen"), SubResource("Resource_b6xas"), SubResource("Resource_uyjxp"), SubResource("Resource_y6pfh"), SubResource("Resource_2lw81"), SubResource("Resource_6cr52"), SubResource("Resource_hp026")])
+learnset = Array[ExtResource("1_e2qnk")]([SubResource("Resource_ucjtw"), SubResource("Resource_kom37"), SubResource("Resource_l5uen"), SubResource("Resource_b6xas"), SubResource("Resource_uyjxp"), SubResource("Resource_y6pfh"), SubResource("Resource_2lw81"), SubResource("Resource_6cr52"), SubResource("Resource_hp026"), SubResource("Resource_vsmy2"), SubResource("Resource_6mo0k")])
+evolutions = Array[ExtResource("1_i3xxw")]([SubResource("Resource_i3xxw")])
 temperament = ExtResource("15_ijaac")
 genus = "Pokémon Réquiem"
 pokedex_entry = "Duskull puede atravesar los muros, sea cual sea el grosor que tengan. Cuando este Pokémon elige su objetivo, lo persigue hábilmente hasta el amanecer."

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_a2o72"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_dy32o"]
 [ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="2_dvimp"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_j0cpa"]
@@ -18,51 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="11_3ldc2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_htvx5"]
 
-[sub_resource type="Resource" id="Resource_htvx5"]
+[sub_resource type="Resource" id="Resource_a2o72"]
+script = ExtResource("1_a2o72")
+to_id = "golbat"
+level = 22
+
+[sub_resource type="Resource" id="Resource_ij3ay"]
 script = ExtResource("1_dy32o")
 move = ExtResource("2_dvimp")
 
-[sub_resource type="Resource" id="Resource_a2o72"]
+[sub_resource type="Resource" id="Resource_6vxew"]
 script = ExtResource("1_dy32o")
 level = 6
 move = ExtResource("3_htvx5")
 
-[sub_resource type="Resource" id="Resource_ij3ay"]
+[sub_resource type="Resource" id="Resource_gjg5d"]
 script = ExtResource("1_dy32o")
 level = 11
 move = ExtResource("4_a2o72")
 
-[sub_resource type="Resource" id="Resource_6vxew"]
+[sub_resource type="Resource" id="Resource_qk4ua"]
 script = ExtResource("1_dy32o")
 level = 16
 move = ExtResource("5_ij3ay")
 
-[sub_resource type="Resource" id="Resource_gjg5d"]
+[sub_resource type="Resource" id="Resource_3hf5t"]
 script = ExtResource("1_dy32o")
 level = 21
 move = ExtResource("6_6vxew")
 
-[sub_resource type="Resource" id="Resource_qk4ua"]
+[sub_resource type="Resource" id="Resource_q7i6g"]
 script = ExtResource("1_dy32o")
 level = 26
 move = ExtResource("7_gjg5d")
 
-[sub_resource type="Resource" id="Resource_3hf5t"]
+[sub_resource type="Resource" id="Resource_3ldc2"]
 script = ExtResource("1_dy32o")
 level = 31
 move = ExtResource("8_qk4ua")
 
-[sub_resource type="Resource" id="Resource_q7i6g"]
+[sub_resource type="Resource" id="Resource_wjvfl"]
 script = ExtResource("1_dy32o")
 level = 36
 move = ExtResource("9_3hf5t")
 
-[sub_resource type="Resource" id="Resource_3ldc2"]
+[sub_resource type="Resource" id="Resource_tpkhx"]
 script = ExtResource("1_dy32o")
 level = 41
 move = ExtResource("10_q7i6g")
 
-[sub_resource type="Resource" id="Resource_wjvfl"]
+[sub_resource type="Resource" id="Resource_u1c2c"]
 script = ExtResource("1_dy32o")
 level = 46
 move = ExtResource("11_3ldc2")
@@ -73,7 +79,8 @@ id = "zubat"
 display_name = "Zubat"
 dex = 41
 types = Array[ExtResource("4_2iab6")]([ExtResource("5_hkqpk"), ExtResource("6_w3nj0")])
-learnset = Array[ExtResource("1_dy32o")]([SubResource("Resource_htvx5"), SubResource("Resource_a2o72"), SubResource("Resource_ij3ay"), SubResource("Resource_6vxew"), SubResource("Resource_gjg5d"), SubResource("Resource_qk4ua"), SubResource("Resource_3hf5t"), SubResource("Resource_q7i6g"), SubResource("Resource_3ldc2"), SubResource("Resource_wjvfl")])
+learnset = Array[ExtResource("1_dy32o")]([SubResource("Resource_ij3ay"), SubResource("Resource_6vxew"), SubResource("Resource_gjg5d"), SubResource("Resource_qk4ua"), SubResource("Resource_3hf5t"), SubResource("Resource_q7i6g"), SubResource("Resource_3ldc2"), SubResource("Resource_wjvfl"), SubResource("Resource_tpkhx"), SubResource("Resource_u1c2c")])
+evolutions = Array[ExtResource("1_a2o72")]([SubResource("Resource_a2o72")])
 temperament = ExtResource("14_htvx5")
 genus = "Pokémon Murciélago"
 pokedex_entry = "Durante el día, Zubat permanece inmóvil y a oscuras. Si este Pokémon pasara mucho tiempo expuesto al sol, correría el peligro de sufrir quemaduras."

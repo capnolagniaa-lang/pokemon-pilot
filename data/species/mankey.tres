@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/kits/mankey/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_i25ok"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_xmw45"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_11mv4"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_e8gxr"]
 [ext_resource type="Resource" path="res://data/kits/mankey/aranazo_mankey.tres" id="3_qc677"]
@@ -13,25 +14,30 @@
 [ext_resource type="Resource" path="res://data/kits/mankey/golpe_karate_mankey.tres" id="6_rbcjc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_24m2f"]
 
-[sub_resource type="Resource" id="Resource_qc677"]
+[sub_resource type="Resource" id="Resource_xmw45"]
+script = ExtResource("1_xmw45")
+to_id = "primeape"
+level = 28
+
+[sub_resource type="Resource" id="Resource_y50nf"]
 script = ExtResource("1_i25ok")
 move = ExtResource("3_qc677")
 
-[sub_resource type="Resource" id="Resource_xmw45"]
+[sub_resource type="Resource" id="Resource_rbcjc"]
 script = ExtResource("1_i25ok")
 move = ExtResource("4_xmw45")
 
-[sub_resource type="Resource" id="Resource_y50nf"]
+[sub_resource type="Resource" id="Resource_4o0ie"]
 script = ExtResource("1_i25ok")
 level = 3
 move = ExtResource("5_y50nf")
 
-[sub_resource type="Resource" id="Resource_rbcjc"]
+[sub_resource type="Resource" id="Resource_24m2f"]
 script = ExtResource("1_i25ok")
 level = 5
 move = ExtResource("6_rbcjc")
 
-[sub_resource type="Resource" id="Resource_4o0ie"]
+[sub_resource type="Resource" id="Resource_4x5ip"]
 script = ExtResource("1_i25ok")
 level = 16
 move = ExtResource("6_qihjv")
@@ -43,7 +49,8 @@ display_name = "Mankey"
 dex = 56
 types = Array[ExtResource("4_5f68j")]([ExtResource("5_sukgg")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_i25ok")]([SubResource("Resource_qc677"), SubResource("Resource_xmw45"), SubResource("Resource_y50nf"), SubResource("Resource_rbcjc"), SubResource("Resource_4o0ie")])
+learnset = Array[ExtResource("1_i25ok")]([SubResource("Resource_y50nf"), SubResource("Resource_rbcjc"), SubResource("Resource_4o0ie"), SubResource("Resource_24m2f"), SubResource("Resource_4x5ip")])
+evolutions = Array[ExtResource("1_xmw45")]([SubResource("Resource_xmw45")])
 temperament = ExtResource("15_24m2f")
 genus = "Pokémon Mono Cerdo"
 pokedex_entry = "Cuando Mankey empieza a temblar y a respirar con más intensidad, seguro que va a enfadarse. Aunque prever su enfado no sirve de nada porque alcanza un estado de rabia tan rápido que no hay escapatoria."

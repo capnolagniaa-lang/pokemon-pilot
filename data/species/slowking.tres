@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_nkvl2"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_okjmp"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ahd7r"]
 [ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="2_pxqb4"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_c3ce3"]
@@ -19,54 +20,54 @@
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="12_2f0te"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_v8y7j"]
 
-[sub_resource type="Resource" id="Resource_v8y7j"]
+[sub_resource type="Resource" id="Resource_okjmp"]
 script = ExtResource("1_nkvl2")
 move = ExtResource("2_pxqb4")
 
-[sub_resource type="Resource" id="Resource_okjmp"]
+[sub_resource type="Resource" id="Resource_mrufh"]
 script = ExtResource("1_nkvl2")
 move = ExtResource("3_v8y7j")
 
-[sub_resource type="Resource" id="Resource_mrufh"]
+[sub_resource type="Resource" id="Resource_l324m"]
 script = ExtResource("1_nkvl2")
 move = ExtResource("4_okjmp")
 
-[sub_resource type="Resource" id="Resource_l324m"]
+[sub_resource type="Resource" id="Resource_be4d0"]
 script = ExtResource("1_nkvl2")
 level = 6
 move = ExtResource("5_mrufh")
 
-[sub_resource type="Resource" id="Resource_be4d0"]
+[sub_resource type="Resource" id="Resource_dwi62"]
 script = ExtResource("1_nkvl2")
 level = 13
 move = ExtResource("6_l324m")
 
-[sub_resource type="Resource" id="Resource_dwi62"]
+[sub_resource type="Resource" id="Resource_ba2as"]
 script = ExtResource("1_nkvl2")
 level = 17
 move = ExtResource("7_be4d0")
 
-[sub_resource type="Resource" id="Resource_ba2as"]
+[sub_resource type="Resource" id="Resource_rmy7y"]
 script = ExtResource("1_nkvl2")
 level = 24
 move = ExtResource("8_dwi62")
 
-[sub_resource type="Resource" id="Resource_rmy7y"]
+[sub_resource type="Resource" id="Resource_q4im5"]
 script = ExtResource("1_nkvl2")
 level = 29
 move = ExtResource("9_ba2as")
 
-[sub_resource type="Resource" id="Resource_q4im5"]
+[sub_resource type="Resource" id="Resource_2f0te"]
 script = ExtResource("1_nkvl2")
 level = 36
 move = ExtResource("10_rmy7y")
 
-[sub_resource type="Resource" id="Resource_2f0te"]
+[sub_resource type="Resource" id="Resource_xj6ab"]
 script = ExtResource("1_nkvl2")
 level = 40
 move = ExtResource("11_q4im5")
 
-[sub_resource type="Resource" id="Resource_xj6ab"]
+[sub_resource type="Resource" id="Resource_qjs68"]
 script = ExtResource("1_nkvl2")
 level = 47
 move = ExtResource("12_2f0te")
@@ -77,7 +78,8 @@ id = "slowking"
 display_name = "Slowking"
 dex = 199
 types = Array[ExtResource("4_gg1mv")]([ExtResource("5_pxl5k"), ExtResource("6_vfj1r")])
-learnset = Array[ExtResource("1_nkvl2")]([SubResource("Resource_v8y7j"), SubResource("Resource_okjmp"), SubResource("Resource_mrufh"), SubResource("Resource_l324m"), SubResource("Resource_be4d0"), SubResource("Resource_dwi62"), SubResource("Resource_ba2as"), SubResource("Resource_rmy7y"), SubResource("Resource_q4im5"), SubResource("Resource_2f0te"), SubResource("Resource_xj6ab")])
+learnset = Array[ExtResource("1_nkvl2")]([SubResource("Resource_okjmp"), SubResource("Resource_mrufh"), SubResource("Resource_l324m"), SubResource("Resource_be4d0"), SubResource("Resource_dwi62"), SubResource("Resource_ba2as"), SubResource("Resource_rmy7y"), SubResource("Resource_q4im5"), SubResource("Resource_2f0te"), SubResource("Resource_xj6ab"), SubResource("Resource_qjs68")])
+evolves_from = "slowpoke"
 temperament = ExtResource("15_v8y7j")
 genus = "Pokémon Regio"
 pokedex_entry = "Slowking dedica cada día tiempo a investigar, en un intento por resolver los misterios del mundo. Aunque, según parece, a este Pokémon se le olvida todo lo que ha aprendido si se separa del Shellder que lleva en la cabeza."

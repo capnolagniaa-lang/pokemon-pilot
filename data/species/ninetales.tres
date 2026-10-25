@@ -1,34 +1,48 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_5jb43"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8kd4n"]
-[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="2_35bra"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_syhs7"]
-[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="3_ki2wt"]
+[ext_resource type="Resource" path="res://data/kits/vulpix/kit.tres" id="2_xq8bj"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pymqm"]
 [ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="4_5jb43"]
+[ext_resource type="Resource" path="res://data/kits/vulpix/ascuas.tres" id="4_c4ols"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_o7frg"]
+[ext_resource type="Resource" path="res://data/kits/vulpix/fuego_fatuo.tres" id="5_34mlu"]
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_t7av7"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="5_xq8bj"]
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="6_48gfj"]
+[ext_resource type="Resource" path="res://data/kits/vulpix/rayo_confuso.tres" id="6_u7kq8"]
+[ext_resource type="Resource" path="res://data/kits/vulpix/lanzallamas.tres" id="7_b8k8s"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="9_ki2wt"]
 
-[sub_resource type="Resource" id="Resource_ki2wt"]
+[sub_resource type="Resource" id="Resource_c4ols"]
 script = ExtResource("1_8kd4n")
-move = ExtResource("2_35bra")
+move = ExtResource("4_c4ols")
 
-[sub_resource type="Resource" id="Resource_5jb43"]
+[sub_resource type="Resource" id="Resource_34mlu"]
 script = ExtResource("1_8kd4n")
-move = ExtResource("3_ki2wt")
+move = ExtResource("5_34mlu")
 
-[sub_resource type="Resource" id="Resource_xq8bj"]
+[sub_resource type="Resource" id="Resource_u7kq8"]
+script = ExtResource("1_8kd4n")
+level = 3
+move = ExtResource("6_u7kq8")
+
+[sub_resource type="Resource" id="Resource_b8k8s"]
+script = ExtResource("1_8kd4n")
+level = 5
+move = ExtResource("7_b8k8s")
+
+[sub_resource type="Resource" id="Resource_x3i8b"]
 script = ExtResource("1_8kd4n")
 move = ExtResource("4_5jb43")
 
-[sub_resource type="Resource" id="Resource_48gfj"]
+[sub_resource type="Resource" id="Resource_fvcj4"]
 script = ExtResource("1_8kd4n")
 move = ExtResource("5_xq8bj")
 
-[sub_resource type="Resource" id="Resource_c4ols"]
+[sub_resource type="Resource" id="Resource_qejs3"]
 script = ExtResource("1_8kd4n")
 level = 45
 move = ExtResource("6_48gfj")
@@ -39,7 +53,10 @@ id = "ninetales"
 display_name = "Ninetales"
 dex = 38
 types = Array[ExtResource("4_o7frg")]([ExtResource("5_t7av7")])
-learnset = Array[ExtResource("1_8kd4n")]([SubResource("Resource_ki2wt"), SubResource("Resource_5jb43"), SubResource("Resource_xq8bj"), SubResource("Resource_48gfj"), SubResource("Resource_c4ols")])
+kit = ExtResource("2_xq8bj")
+learnset = Array[ExtResource("1_8kd4n")]([SubResource("Resource_c4ols"), SubResource("Resource_34mlu"), SubResource("Resource_u7kq8"), SubResource("Resource_b8k8s"), SubResource("Resource_x3i8b"), SubResource("Resource_fvcj4"), SubResource("Resource_qejs3")])
+kit_inherited = true
+evolves_from = "vulpix"
 temperament = ExtResource("9_ki2wt")
 genus = "Pokémon Zorro"
 pokedex_entry = "Ninetales emite una siniestra luz a través de los brillantes ojos rojos que tiene, para conseguir controlar del todo la mente de su rival. Dicen que este Pokémon llega a vivir mil años."

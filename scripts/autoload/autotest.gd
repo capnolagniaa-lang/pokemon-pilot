@@ -75,6 +75,13 @@ func _ready() -> void:
 		add_child(st)
 		(st.showcase if "--showcase-story" in OS.get_cmdline_user_args() else st.run).call_deferred()
 		return
+	if "--autotest-evolution" in OS.get_cmdline_user_args() or "--showcase-evolution" in OS.get_cmdline_user_args():
+		set_process(false)
+		var ev := EvolutionTests.new()
+		ev.autotest = self
+		add_child(ev)
+		(ev.showcase if "--showcase-evolution" in OS.get_cmdline_user_args() else ev.run).call_deferred()
+		return
 	if "--autotest-story-h2" in OS.get_cmdline_user_args() or "--showcase-misty" in OS.get_cmdline_user_args():
 		set_process(false)
 		var c2 := Chapter2Tests.new()

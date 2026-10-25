@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fqgu0"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_r86vx"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8hwye"]
 [ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="2_qamxg"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_5jogs"]
@@ -18,54 +19,54 @@
 [ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="12_nqhnb"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_5jogs"]
 
-[sub_resource type="Resource" id="Resource_5jogs"]
+[sub_resource type="Resource" id="Resource_r86vx"]
 script = ExtResource("1_fqgu0")
 move = ExtResource("2_qamxg")
 
-[sub_resource type="Resource" id="Resource_r86vx"]
+[sub_resource type="Resource" id="Resource_exsjo"]
 script = ExtResource("1_fqgu0")
 move = ExtResource("3_5jogs")
 
-[sub_resource type="Resource" id="Resource_exsjo"]
+[sub_resource type="Resource" id="Resource_e6skq"]
 script = ExtResource("1_fqgu0")
 move = ExtResource("4_r86vx")
 
-[sub_resource type="Resource" id="Resource_e6skq"]
+[sub_resource type="Resource" id="Resource_7u8jv"]
 script = ExtResource("1_fqgu0")
 level = 8
 move = ExtResource("5_exsjo")
 
-[sub_resource type="Resource" id="Resource_7u8jv"]
+[sub_resource type="Resource" id="Resource_kshum"]
 script = ExtResource("1_fqgu0")
 level = 16
 move = ExtResource("6_e6skq")
 
-[sub_resource type="Resource" id="Resource_kshum"]
+[sub_resource type="Resource" id="Resource_n1ha5"]
 script = ExtResource("1_fqgu0")
 level = 23
 move = ExtResource("7_7u8jv")
 
-[sub_resource type="Resource" id="Resource_n1ha5"]
+[sub_resource type="Resource" id="Resource_euh1x"]
 script = ExtResource("1_fqgu0")
 level = 30
 move = ExtResource("8_kshum")
 
-[sub_resource type="Resource" id="Resource_euh1x"]
+[sub_resource type="Resource" id="Resource_hspq1"]
 script = ExtResource("1_fqgu0")
 level = 36
 move = ExtResource("9_n1ha5")
 
-[sub_resource type="Resource" id="Resource_hspq1"]
+[sub_resource type="Resource" id="Resource_nqhnb"]
 script = ExtResource("1_fqgu0")
 level = 42
 move = ExtResource("10_euh1x")
 
-[sub_resource type="Resource" id="Resource_nqhnb"]
+[sub_resource type="Resource" id="Resource_e6be2"]
 script = ExtResource("1_fqgu0")
 level = 47
 move = ExtResource("11_hspq1")
 
-[sub_resource type="Resource" id="Resource_e6be2"]
+[sub_resource type="Resource" id="Resource_nemxu"]
 script = ExtResource("1_fqgu0")
 level = 52
 move = ExtResource("12_nqhnb")
@@ -76,7 +77,8 @@ id = "umbreon"
 display_name = "Umbreon"
 dex = 197
 types = Array[ExtResource("4_c561c")]([ExtResource("5_gae2v")])
-learnset = Array[ExtResource("1_fqgu0")]([SubResource("Resource_5jogs"), SubResource("Resource_r86vx"), SubResource("Resource_exsjo"), SubResource("Resource_e6skq"), SubResource("Resource_7u8jv"), SubResource("Resource_kshum"), SubResource("Resource_n1ha5"), SubResource("Resource_euh1x"), SubResource("Resource_hspq1"), SubResource("Resource_nqhnb"), SubResource("Resource_e6be2")])
+learnset = Array[ExtResource("1_fqgu0")]([SubResource("Resource_r86vx"), SubResource("Resource_exsjo"), SubResource("Resource_e6skq"), SubResource("Resource_7u8jv"), SubResource("Resource_kshum"), SubResource("Resource_n1ha5"), SubResource("Resource_euh1x"), SubResource("Resource_hspq1"), SubResource("Resource_nqhnb"), SubResource("Resource_e6be2"), SubResource("Resource_nemxu")])
+evolves_from = "eevee"
 temperament = ExtResource("15_5jogs")
 genus = "Pokémon Luz Lunar"
 pokedex_entry = "Umbreon evolucionó tras haber estado expuesto a ondas lunares. Suele esconderse en la oscuridad en silencio y esperar a que su presa se mueva. Cuando se lanza al ataque, le brillan los anillos del cuerpo."

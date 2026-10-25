@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_ag2k0"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_k3sn4"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_c8w73"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xsegh"]
@@ -18,55 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="12_lon0l"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_rwxk1"]
 
-[sub_resource type="Resource" id="Resource_rwxk1"]
+[sub_resource type="Resource" id="Resource_ag2k0"]
+script = ExtResource("1_ag2k0")
+to_id = "glalie"
+level = 42
+
+[sub_resource type="Resource" id="Resource_vvf5c"]
 script = ExtResource("1_k3sn4")
 move = ExtResource("2_c8w73")
 
-[sub_resource type="Resource" id="Resource_ag2k0"]
+[sub_resource type="Resource" id="Resource_og66i"]
 script = ExtResource("1_k3sn4")
 move = ExtResource("3_rwxk1")
 
-[sub_resource type="Resource" id="Resource_vvf5c"]
+[sub_resource type="Resource" id="Resource_ufx68"]
 script = ExtResource("1_k3sn4")
 level = 7
 move = ExtResource("4_ag2k0")
 
-[sub_resource type="Resource" id="Resource_og66i"]
+[sub_resource type="Resource" id="Resource_qpqnu"]
 script = ExtResource("1_k3sn4")
 level = 10
 move = ExtResource("5_vvf5c")
 
-[sub_resource type="Resource" id="Resource_ufx68"]
+[sub_resource type="Resource" id="Resource_gqome"]
 script = ExtResource("1_k3sn4")
 level = 16
 move = ExtResource("6_og66i")
 
-[sub_resource type="Resource" id="Resource_qpqnu"]
+[sub_resource type="Resource" id="Resource_7r3aj"]
 script = ExtResource("1_k3sn4")
 level = 19
 move = ExtResource("7_ufx68")
 
-[sub_resource type="Resource" id="Resource_gqome"]
+[sub_resource type="Resource" id="Resource_kfgni"]
 script = ExtResource("1_k3sn4")
 level = 25
 move = ExtResource("8_qpqnu")
 
-[sub_resource type="Resource" id="Resource_7r3aj"]
+[sub_resource type="Resource" id="Resource_lon0l"]
 script = ExtResource("1_k3sn4")
 level = 28
 move = ExtResource("9_gqome")
 
-[sub_resource type="Resource" id="Resource_kfgni"]
+[sub_resource type="Resource" id="Resource_isw2k"]
 script = ExtResource("1_k3sn4")
 level = 34
 move = ExtResource("10_7r3aj")
 
-[sub_resource type="Resource" id="Resource_lon0l"]
+[sub_resource type="Resource" id="Resource_pb1kx"]
 script = ExtResource("1_k3sn4")
 level = 37
 move = ExtResource("11_kfgni")
 
-[sub_resource type="Resource" id="Resource_isw2k"]
+[sub_resource type="Resource" id="Resource_dn0nc"]
 script = ExtResource("1_k3sn4")
 level = 43
 move = ExtResource("12_lon0l")
@@ -77,7 +83,8 @@ id = "snorunt"
 display_name = "Snorunt"
 dex = 361
 types = Array[ExtResource("4_mwgyg")]([ExtResource("5_t0m01")])
-learnset = Array[ExtResource("1_k3sn4")]([SubResource("Resource_rwxk1"), SubResource("Resource_ag2k0"), SubResource("Resource_vvf5c"), SubResource("Resource_og66i"), SubResource("Resource_ufx68"), SubResource("Resource_qpqnu"), SubResource("Resource_gqome"), SubResource("Resource_7r3aj"), SubResource("Resource_kfgni"), SubResource("Resource_lon0l"), SubResource("Resource_isw2k")])
+learnset = Array[ExtResource("1_k3sn4")]([SubResource("Resource_vvf5c"), SubResource("Resource_og66i"), SubResource("Resource_ufx68"), SubResource("Resource_qpqnu"), SubResource("Resource_gqome"), SubResource("Resource_7r3aj"), SubResource("Resource_kfgni"), SubResource("Resource_lon0l"), SubResource("Resource_isw2k"), SubResource("Resource_pb1kx"), SubResource("Resource_dn0nc")])
+evolutions = Array[ExtResource("1_ag2k0")]([SubResource("Resource_ag2k0")])
 temperament = ExtResource("15_rwxk1")
 genus = "Pokémon Gorro Nieve"
 pokedex_entry = "Snorunt vive en zonas de grandes nevadas. En primavera y verano, cuando no nieva, se retira a las cavernas para vivir tranquilamente entre estalactitas y estalagmitas."

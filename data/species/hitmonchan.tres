@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_7gh84"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_wvrya"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4felp"]
 [ext_resource type="Resource" path="res://data/moves/puno_cometa.tres" id="2_247f0"]
@@ -19,60 +20,60 @@
 [ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="13_5a3si"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_thttv"]
 
-[sub_resource type="Resource" id="Resource_thttv"]
+[sub_resource type="Resource" id="Resource_7gh84"]
 script = ExtResource("1_wvrya")
 move = ExtResource("2_247f0")
 
-[sub_resource type="Resource" id="Resource_7gh84"]
+[sub_resource type="Resource" id="Resource_qggu0"]
 script = ExtResource("1_wvrya")
 move = ExtResource("3_thttv")
 
-[sub_resource type="Resource" id="Resource_qggu0"]
+[sub_resource type="Resource" id="Resource_e2nh0"]
 script = ExtResource("1_wvrya")
 level = 7
 move = ExtResource("4_7gh84")
 
-[sub_resource type="Resource" id="Resource_e2nh0"]
+[sub_resource type="Resource" id="Resource_t8mkx"]
 script = ExtResource("1_wvrya")
 level = 13
 move = ExtResource("5_qggu0")
 
-[sub_resource type="Resource" id="Resource_t8mkx"]
+[sub_resource type="Resource" id="Resource_sy6x1"]
 script = ExtResource("1_wvrya")
 level = 20
 move = ExtResource("6_e2nh0")
 
-[sub_resource type="Resource" id="Resource_sy6x1"]
+[sub_resource type="Resource" id="Resource_2h8r6"]
 script = ExtResource("1_wvrya")
 level = 26
 move = ExtResource("7_t8mkx")
 
-[sub_resource type="Resource" id="Resource_2h8r6"]
+[sub_resource type="Resource" id="Resource_e4fbc"]
 script = ExtResource("1_wvrya")
 level = 26
 move = ExtResource("8_sy6x1")
 
-[sub_resource type="Resource" id="Resource_e4fbc"]
+[sub_resource type="Resource" id="Resource_n7csg"]
 script = ExtResource("1_wvrya")
 level = 26
 move = ExtResource("9_2h8r6")
 
-[sub_resource type="Resource" id="Resource_n7csg"]
+[sub_resource type="Resource" id="Resource_ip72a"]
 script = ExtResource("1_wvrya")
 level = 32
 move = ExtResource("10_e4fbc")
 
-[sub_resource type="Resource" id="Resource_ip72a"]
+[sub_resource type="Resource" id="Resource_5a3si"]
 script = ExtResource("1_wvrya")
 level = 38
 move = ExtResource("11_n7csg")
 
-[sub_resource type="Resource" id="Resource_5a3si"]
+[sub_resource type="Resource" id="Resource_ry0yq"]
 script = ExtResource("1_wvrya")
 level = 44
 move = ExtResource("12_ip72a")
 
-[sub_resource type="Resource" id="Resource_ry0yq"]
+[sub_resource type="Resource" id="Resource_8sfrg"]
 script = ExtResource("1_wvrya")
 level = 50
 move = ExtResource("13_5a3si")
@@ -83,7 +84,8 @@ id = "hitmonchan"
 display_name = "Hitmonchan"
 dex = 107
 types = Array[ExtResource("4_8akog")]([ExtResource("5_ggei4")])
-learnset = Array[ExtResource("1_wvrya")]([SubResource("Resource_thttv"), SubResource("Resource_7gh84"), SubResource("Resource_qggu0"), SubResource("Resource_e2nh0"), SubResource("Resource_t8mkx"), SubResource("Resource_sy6x1"), SubResource("Resource_2h8r6"), SubResource("Resource_e4fbc"), SubResource("Resource_n7csg"), SubResource("Resource_ip72a"), SubResource("Resource_5a3si"), SubResource("Resource_ry0yq")])
+learnset = Array[ExtResource("1_wvrya")]([SubResource("Resource_7gh84"), SubResource("Resource_qggu0"), SubResource("Resource_e2nh0"), SubResource("Resource_t8mkx"), SubResource("Resource_sy6x1"), SubResource("Resource_2h8r6"), SubResource("Resource_e4fbc"), SubResource("Resource_n7csg"), SubResource("Resource_ip72a"), SubResource("Resource_5a3si"), SubResource("Resource_ry0yq"), SubResource("Resource_8sfrg")])
+evolves_from = "tyrogue"
 temperament = ExtResource("16_thttv")
 genus = "Pokémon Puñetazo"
 pokedex_entry = "Dicen que Hitmonchan tiene el mismo ímpetu que un boxeador entrenándose para un campeonato mundial. Este Pokémon tiene un espíritu indomable que nunca se doblega ante la adversidad."

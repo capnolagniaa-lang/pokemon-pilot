@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qftpt"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_w1a4a"]
 [ext_resource type="Resource" path="res://data/moves/destructor.tres" id="2_chwh8"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mp6gs"]
 [ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="3_jkxui"]
@@ -18,56 +19,61 @@
 [ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="12_3sgwj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_jkxui"]
 
-[sub_resource type="Resource" id="Resource_jkxui"]
+[sub_resource type="Resource" id="Resource_w1a4a"]
+script = ExtResource("1_w1a4a")
+to_id = "loudred"
+level = 20
+
+[sub_resource type="Resource" id="Resource_kmy0p"]
 script = ExtResource("1_qftpt")
 move = ExtResource("2_chwh8")
 
-[sub_resource type="Resource" id="Resource_w1a4a"]
+[sub_resource type="Resource" id="Resource_8lp1s"]
 script = ExtResource("1_qftpt")
 level = 5
 move = ExtResource("3_jkxui")
 
-[sub_resource type="Resource" id="Resource_kmy0p"]
+[sub_resource type="Resource" id="Resource_87s5i"]
 script = ExtResource("1_qftpt")
 level = 11
 move = ExtResource("4_w1a4a")
 
-[sub_resource type="Resource" id="Resource_8lp1s"]
+[sub_resource type="Resource" id="Resource_3m8qa"]
 script = ExtResource("1_qftpt")
 level = 15
 move = ExtResource("5_kmy0p")
 
-[sub_resource type="Resource" id="Resource_87s5i"]
+[sub_resource type="Resource" id="Resource_kbxcy"]
 script = ExtResource("1_qftpt")
 level = 21
 move = ExtResource("6_8lp1s")
 
-[sub_resource type="Resource" id="Resource_3m8qa"]
+[sub_resource type="Resource" id="Resource_6x0iq"]
 script = ExtResource("1_qftpt")
 level = 25
 move = ExtResource("7_87s5i")
 
-[sub_resource type="Resource" id="Resource_kbxcy"]
+[sub_resource type="Resource" id="Resource_7ojit"]
 script = ExtResource("1_qftpt")
 level = 31
 move = ExtResource("8_3m8qa")
 
-[sub_resource type="Resource" id="Resource_6x0iq"]
+[sub_resource type="Resource" id="Resource_3sgwj"]
 script = ExtResource("1_qftpt")
 level = 35
 move = ExtResource("9_kbxcy")
 
-[sub_resource type="Resource" id="Resource_7ojit"]
+[sub_resource type="Resource" id="Resource_438pv"]
 script = ExtResource("1_qftpt")
 level = 41
 move = ExtResource("10_6x0iq")
 
-[sub_resource type="Resource" id="Resource_3sgwj"]
+[sub_resource type="Resource" id="Resource_hgwdu"]
 script = ExtResource("1_qftpt")
 level = 41
 move = ExtResource("11_7ojit")
 
-[sub_resource type="Resource" id="Resource_438pv"]
+[sub_resource type="Resource" id="Resource_a1p8h"]
 script = ExtResource("1_qftpt")
 level = 45
 move = ExtResource("12_3sgwj")
@@ -78,7 +84,8 @@ id = "whismur"
 display_name = "Whismur"
 dex = 293
 types = Array[ExtResource("4_4y7uu")]([ExtResource("5_g7gab")])
-learnset = Array[ExtResource("1_qftpt")]([SubResource("Resource_jkxui"), SubResource("Resource_w1a4a"), SubResource("Resource_kmy0p"), SubResource("Resource_8lp1s"), SubResource("Resource_87s5i"), SubResource("Resource_3m8qa"), SubResource("Resource_kbxcy"), SubResource("Resource_6x0iq"), SubResource("Resource_7ojit"), SubResource("Resource_3sgwj"), SubResource("Resource_438pv")])
+learnset = Array[ExtResource("1_qftpt")]([SubResource("Resource_kmy0p"), SubResource("Resource_8lp1s"), SubResource("Resource_87s5i"), SubResource("Resource_3m8qa"), SubResource("Resource_kbxcy"), SubResource("Resource_6x0iq"), SubResource("Resource_7ojit"), SubResource("Resource_3sgwj"), SubResource("Resource_438pv"), SubResource("Resource_hgwdu"), SubResource("Resource_a1p8h")])
+evolutions = Array[ExtResource("1_w1a4a")]([SubResource("Resource_w1a4a")])
 temperament = ExtResource("15_jkxui")
 genus = "Pokémon Susurro"
 pokedex_entry = "Normalmente, Whismur tiene una voz tenue, casi inaudible, aunque se preste atención. No obstante, si este Pokémon siente que el peligro acecha, puede ponerse a chillar con un volumen ensordecedor."

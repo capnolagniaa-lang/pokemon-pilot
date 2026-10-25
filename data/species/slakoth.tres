@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_lutxu"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_vepw3"]
 [ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_q4bxb"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vc7ug"]
@@ -16,45 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="10_34tn2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_mwia0"]
 
-[sub_resource type="Resource" id="Resource_mwia0"]
+[sub_resource type="Resource" id="Resource_lutxu"]
+script = ExtResource("1_lutxu")
+to_id = "vigoroth"
+level = 18
+
+[sub_resource type="Resource" id="Resource_gkh0g"]
 script = ExtResource("1_vepw3")
 move = ExtResource("2_q4bxb")
 
-[sub_resource type="Resource" id="Resource_lutxu"]
+[sub_resource type="Resource" id="Resource_rprt1"]
 script = ExtResource("1_vepw3")
 move = ExtResource("3_mwia0")
 
-[sub_resource type="Resource" id="Resource_gkh0g"]
+[sub_resource type="Resource" id="Resource_pxwfu"]
 script = ExtResource("1_vepw3")
 level = 7
 move = ExtResource("4_lutxu")
 
-[sub_resource type="Resource" id="Resource_rprt1"]
+[sub_resource type="Resource" id="Resource_kxe6m"]
 script = ExtResource("1_vepw3")
 level = 13
 move = ExtResource("5_gkh0g")
 
-[sub_resource type="Resource" id="Resource_pxwfu"]
+[sub_resource type="Resource" id="Resource_ldmbw"]
 script = ExtResource("1_vepw3")
 level = 19
 move = ExtResource("6_rprt1")
 
-[sub_resource type="Resource" id="Resource_kxe6m"]
+[sub_resource type="Resource" id="Resource_34tn2"]
 script = ExtResource("1_vepw3")
 level = 25
 move = ExtResource("7_pxwfu")
 
-[sub_resource type="Resource" id="Resource_ldmbw"]
+[sub_resource type="Resource" id="Resource_22m5j"]
 script = ExtResource("1_vepw3")
 level = 31
 move = ExtResource("8_kxe6m")
 
-[sub_resource type="Resource" id="Resource_34tn2"]
+[sub_resource type="Resource" id="Resource_4t2qm"]
 script = ExtResource("1_vepw3")
 level = 37
 move = ExtResource("9_ldmbw")
 
-[sub_resource type="Resource" id="Resource_22m5j"]
+[sub_resource type="Resource" id="Resource_df076"]
 script = ExtResource("1_vepw3")
 level = 43
 move = ExtResource("10_34tn2")
@@ -65,7 +71,8 @@ id = "slakoth"
 display_name = "Slakoth"
 dex = 287
 types = Array[ExtResource("4_57f6k")]([ExtResource("5_m0r8e")])
-learnset = Array[ExtResource("1_vepw3")]([SubResource("Resource_mwia0"), SubResource("Resource_lutxu"), SubResource("Resource_gkh0g"), SubResource("Resource_rprt1"), SubResource("Resource_pxwfu"), SubResource("Resource_kxe6m"), SubResource("Resource_ldmbw"), SubResource("Resource_34tn2"), SubResource("Resource_22m5j")])
+learnset = Array[ExtResource("1_vepw3")]([SubResource("Resource_gkh0g"), SubResource("Resource_rprt1"), SubResource("Resource_pxwfu"), SubResource("Resource_kxe6m"), SubResource("Resource_ldmbw"), SubResource("Resource_34tn2"), SubResource("Resource_22m5j"), SubResource("Resource_4t2qm"), SubResource("Resource_df076")])
+evolutions = Array[ExtResource("1_lutxu")]([SubResource("Resource_lutxu")])
 temperament = ExtResource("13_mwia0")
 genus = "Pokémon Gandul"
 pokedex_entry = "Slakoth se pasa más de veinte horas al día tumbado. Como se mueve tan poco, necesita muy poca comida. De hecho, la única toma que hace al día la componen tan solo tres hojas."

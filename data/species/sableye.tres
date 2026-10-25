@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_43ju5"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jsl5v"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_lbqrp"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_odxxx"]
@@ -21,65 +22,65 @@
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="14_6et0a"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_adnw3"]
 
-[sub_resource type="Resource" id="Resource_adnw3"]
+[sub_resource type="Resource" id="Resource_43ju5"]
 script = ExtResource("1_jsl5v")
 move = ExtResource("2_lbqrp")
 
-[sub_resource type="Resource" id="Resource_43ju5"]
+[sub_resource type="Resource" id="Resource_verby"]
 script = ExtResource("1_jsl5v")
 move = ExtResource("3_adnw3")
 
-[sub_resource type="Resource" id="Resource_verby"]
+[sub_resource type="Resource" id="Resource_pd51e"]
 script = ExtResource("1_jsl5v")
 level = 5
 move = ExtResource("4_43ju5")
 
-[sub_resource type="Resource" id="Resource_pd51e"]
+[sub_resource type="Resource" id="Resource_6d1rt"]
 script = ExtResource("1_jsl5v")
 level = 9
 move = ExtResource("5_verby")
 
-[sub_resource type="Resource" id="Resource_6d1rt"]
+[sub_resource type="Resource" id="Resource_bqb7w"]
 script = ExtResource("1_jsl5v")
 level = 13
 move = ExtResource("6_pd51e")
 
-[sub_resource type="Resource" id="Resource_bqb7w"]
+[sub_resource type="Resource" id="Resource_vd3er"]
 script = ExtResource("1_jsl5v")
 level = 17
 move = ExtResource("7_6d1rt")
 
-[sub_resource type="Resource" id="Resource_vd3er"]
+[sub_resource type="Resource" id="Resource_xx4v8"]
 script = ExtResource("1_jsl5v")
 level = 21
 move = ExtResource("8_bqb7w")
 
-[sub_resource type="Resource" id="Resource_xx4v8"]
+[sub_resource type="Resource" id="Resource_xjoh5"]
 script = ExtResource("1_jsl5v")
 level = 25
 move = ExtResource("9_vd3er")
 
-[sub_resource type="Resource" id="Resource_xjoh5"]
+[sub_resource type="Resource" id="Resource_74w4d"]
 script = ExtResource("1_jsl5v")
 level = 29
 move = ExtResource("10_xx4v8")
 
-[sub_resource type="Resource" id="Resource_74w4d"]
+[sub_resource type="Resource" id="Resource_0wxb1"]
 script = ExtResource("1_jsl5v")
 level = 33
 move = ExtResource("11_xjoh5")
 
-[sub_resource type="Resource" id="Resource_0wxb1"]
+[sub_resource type="Resource" id="Resource_6et0a"]
 script = ExtResource("1_jsl5v")
 level = 37
 move = ExtResource("12_74w4d")
 
-[sub_resource type="Resource" id="Resource_6et0a"]
+[sub_resource type="Resource" id="Resource_y7j3u"]
 script = ExtResource("1_jsl5v")
 level = 41
 move = ExtResource("13_0wxb1")
 
-[sub_resource type="Resource" id="Resource_y7j3u"]
+[sub_resource type="Resource" id="Resource_xqpnh"]
 script = ExtResource("1_jsl5v")
 level = 45
 move = ExtResource("14_6et0a")
@@ -90,7 +91,7 @@ id = "sableye"
 display_name = "Sableye"
 dex = 302
 types = Array[ExtResource("4_738da")]([ExtResource("5_45qe7"), ExtResource("6_f6eb1")])
-learnset = Array[ExtResource("1_jsl5v")]([SubResource("Resource_adnw3"), SubResource("Resource_43ju5"), SubResource("Resource_verby"), SubResource("Resource_pd51e"), SubResource("Resource_6d1rt"), SubResource("Resource_bqb7w"), SubResource("Resource_vd3er"), SubResource("Resource_xx4v8"), SubResource("Resource_xjoh5"), SubResource("Resource_74w4d"), SubResource("Resource_0wxb1"), SubResource("Resource_6et0a"), SubResource("Resource_y7j3u")])
+learnset = Array[ExtResource("1_jsl5v")]([SubResource("Resource_43ju5"), SubResource("Resource_verby"), SubResource("Resource_pd51e"), SubResource("Resource_6d1rt"), SubResource("Resource_bqb7w"), SubResource("Resource_vd3er"), SubResource("Resource_xx4v8"), SubResource("Resource_xjoh5"), SubResource("Resource_74w4d"), SubResource("Resource_0wxb1"), SubResource("Resource_6et0a"), SubResource("Resource_y7j3u"), SubResource("Resource_xqpnh")])
 temperament = ExtResource("17_adnw3")
 genus = "Pokémon Oscuridad"
 pokedex_entry = "Los Sableye hacen una vida muy tranquila en cavernas, pero son muy temidos. Se dice que, cuando los ojos les brillan de manera siniestra, están robándole el alma a alguien."

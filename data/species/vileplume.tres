@@ -1,35 +1,49 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6mu4y"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_7tsk8"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0o4hp"]
-[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_j0muh"]
+[ext_resource type="Resource" path="res://data/kits/oddish/kit.tres" id="2_poyqf"]
 [ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="3_42d3l"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_t2syp"]
 [ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="4_7tsk8"]
+[ext_resource type="Resource" path="res://data/kits/oddish/absorber_kit.tres" id="4_jt1pm"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_k5uy8"]
-[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="5_poyqf"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="5_u4xoe"]
+[ext_resource type="Resource" path="res://data/kits/oddish/polvo_veneno_kit.tres" id="5_v0h8j"]
+[ext_resource type="Resource" path="res://data/kits/oddish/paralizador_kit.tres" id="6_aiip4"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_j0muh"]
 [ext_resource type="Resource" path="res://data/moves/danza_petalo.tres" id="6_qfk1e"]
+[ext_resource type="Resource" path="res://data/kits/oddish/florecer.tres" id="7_l7fpy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="9_42d3l"]
 
-[sub_resource type="Resource" id="Resource_42d3l"]
+[sub_resource type="Resource" id="Resource_jt1pm"]
 script = ExtResource("1_6mu4y")
-move = ExtResource("2_j0muh")
+move = ExtResource("4_jt1pm")
 
-[sub_resource type="Resource" id="Resource_7tsk8"]
+[sub_resource type="Resource" id="Resource_v0h8j"]
+script = ExtResource("1_6mu4y")
+move = ExtResource("5_v0h8j")
+
+[sub_resource type="Resource" id="Resource_aiip4"]
+script = ExtResource("1_6mu4y")
+level = 3
+move = ExtResource("6_aiip4")
+
+[sub_resource type="Resource" id="Resource_l7fpy"]
+script = ExtResource("1_6mu4y")
+level = 5
+move = ExtResource("7_l7fpy")
+
+[sub_resource type="Resource" id="Resource_sf4h2"]
 script = ExtResource("1_6mu4y")
 move = ExtResource("3_42d3l")
 
-[sub_resource type="Resource" id="Resource_poyqf"]
+[sub_resource type="Resource" id="Resource_0ykoj"]
 script = ExtResource("1_6mu4y")
 move = ExtResource("4_7tsk8")
 
-[sub_resource type="Resource" id="Resource_qfk1e"]
-script = ExtResource("1_6mu4y")
-move = ExtResource("5_poyqf")
-
-[sub_resource type="Resource" id="Resource_jt1pm"]
+[sub_resource type="Resource" id="Resource_mxi4a"]
 script = ExtResource("1_6mu4y")
 level = 44
 move = ExtResource("6_qfk1e")
@@ -40,7 +54,10 @@ id = "vileplume"
 display_name = "Vileplume"
 dex = 45
 types = Array[ExtResource("4_k5uy8")]([ExtResource("5_u4xoe"), ExtResource("6_j0muh")])
-learnset = Array[ExtResource("1_6mu4y")]([SubResource("Resource_42d3l"), SubResource("Resource_7tsk8"), SubResource("Resource_poyqf"), SubResource("Resource_qfk1e"), SubResource("Resource_jt1pm")])
+kit = ExtResource("2_poyqf")
+learnset = Array[ExtResource("1_6mu4y")]([SubResource("Resource_jt1pm"), SubResource("Resource_v0h8j"), SubResource("Resource_aiip4"), SubResource("Resource_l7fpy"), SubResource("Resource_sf4h2"), SubResource("Resource_0ykoj"), SubResource("Resource_mxi4a")])
+kit_inherited = true
+evolves_from = "gloom"
 temperament = ExtResource("9_42d3l")
 genus = "Pokémon Flor"
 pokedex_entry = "El polen que contienen las esporas tóxicas de Vileplume causa unos ataques de alergia muy agudos. Por eso, no es aconsejable acercarse a ninguna flor selvática, por muy bonita que sea."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_c3xnl"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_tprl1"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_njoic"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_yskap"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_1wxad"]
@@ -15,38 +16,38 @@
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="9_atnft"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_1wxad"]
 
-[sub_resource type="Resource" id="Resource_1wxad"]
+[sub_resource type="Resource" id="Resource_tprl1"]
 script = ExtResource("1_c3xnl")
 move = ExtResource("2_yskap")
 
-[sub_resource type="Resource" id="Resource_tprl1"]
+[sub_resource type="Resource" id="Resource_g05iw"]
 script = ExtResource("1_c3xnl")
 move = ExtResource("3_1wxad")
 
-[sub_resource type="Resource" id="Resource_g05iw"]
+[sub_resource type="Resource" id="Resource_28v4l"]
 script = ExtResource("1_c3xnl")
 move = ExtResource("4_tprl1")
 
-[sub_resource type="Resource" id="Resource_28v4l"]
+[sub_resource type="Resource" id="Resource_ymdoj"]
 script = ExtResource("1_c3xnl")
 move = ExtResource("5_g05iw")
 
-[sub_resource type="Resource" id="Resource_ymdoj"]
+[sub_resource type="Resource" id="Resource_gyf3c"]
 script = ExtResource("1_c3xnl")
 level = 27
 move = ExtResource("6_28v4l")
 
-[sub_resource type="Resource" id="Resource_gyf3c"]
+[sub_resource type="Resource" id="Resource_atnft"]
 script = ExtResource("1_c3xnl")
 level = 30
 move = ExtResource("7_ymdoj")
 
-[sub_resource type="Resource" id="Resource_atnft"]
+[sub_resource type="Resource" id="Resource_25e16"]
 script = ExtResource("1_c3xnl")
 level = 42
 move = ExtResource("8_gyf3c")
 
-[sub_resource type="Resource" id="Resource_25e16"]
+[sub_resource type="Resource" id="Resource_mnenl"]
 script = ExtResource("1_c3xnl")
 level = 57
 move = ExtResource("9_atnft")
@@ -57,7 +58,8 @@ id = "ampharos"
 display_name = "Ampharos"
 dex = 181
 types = Array[ExtResource("4_25mql")]([ExtResource("5_fxgtu")])
-learnset = Array[ExtResource("1_c3xnl")]([SubResource("Resource_1wxad"), SubResource("Resource_tprl1"), SubResource("Resource_g05iw"), SubResource("Resource_28v4l"), SubResource("Resource_ymdoj"), SubResource("Resource_gyf3c"), SubResource("Resource_atnft"), SubResource("Resource_25e16")])
+learnset = Array[ExtResource("1_c3xnl")]([SubResource("Resource_tprl1"), SubResource("Resource_g05iw"), SubResource("Resource_28v4l"), SubResource("Resource_ymdoj"), SubResource("Resource_gyf3c"), SubResource("Resource_atnft"), SubResource("Resource_25e16"), SubResource("Resource_mnenl")])
+evolves_from = "flaaffy"
 temperament = ExtResource("12_1wxad")
 genus = "Pokémon Luz"
 pokedex_entry = "Ampharos desprende tanta luz que es posible verle hasta desde el espacio. Antes, la gente usaba su luz como sistema de comunicación para enviarse señales."

@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/kits/paras/kit.tres" id="0_kitv3"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_n0vu1"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_seqq5"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_arlvc"]
 [ext_resource type="Resource" path="res://data/kits/paras/aranazo_kit.tres" id="3_5jyhx"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_wdw4i"]
@@ -15,30 +16,35 @@
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_f6htp"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_s6mcd"]
 
-[sub_resource type="Resource" id="Resource_5jyhx"]
+[sub_resource type="Resource" id="Resource_seqq5"]
+script = ExtResource("1_seqq5")
+to_id = "parasect"
+level = 24
+
+[sub_resource type="Resource" id="Resource_s6mcd"]
 script = ExtResource("1_n0vu1")
 move = ExtResource("3_5jyhx")
 
-[sub_resource type="Resource" id="Resource_seqq5"]
+[sub_resource type="Resource" id="Resource_ixc5w"]
 script = ExtResource("1_n0vu1")
 move = ExtResource("4_seqq5")
 
-[sub_resource type="Resource" id="Resource_s6mcd"]
+[sub_resource type="Resource" id="Resource_638na"]
 script = ExtResource("1_n0vu1")
 level = 3
 move = ExtResource("5_s6mcd")
 
-[sub_resource type="Resource" id="Resource_ixc5w"]
+[sub_resource type="Resource" id="Resource_03ku6"]
 script = ExtResource("1_n0vu1")
 level = 5
 move = ExtResource("6_ixc5w")
 
-[sub_resource type="Resource" id="Resource_638na"]
+[sub_resource type="Resource" id="Resource_rx0bp"]
 script = ExtResource("1_n0vu1")
 level = 31
 move = ExtResource("7_rx0bp")
 
-[sub_resource type="Resource" id="Resource_03ku6"]
+[sub_resource type="Resource" id="Resource_scsdy"]
 script = ExtResource("1_n0vu1")
 level = 43
 move = ExtResource("9_f6htp")
@@ -50,7 +56,8 @@ display_name = "Paras"
 dex = 46
 types = Array[ExtResource("4_cfikb")]([ExtResource("5_2orq6"), ExtResource("6_tatkk")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_n0vu1")]([SubResource("Resource_5jyhx"), SubResource("Resource_seqq5"), SubResource("Resource_s6mcd"), SubResource("Resource_ixc5w"), SubResource("Resource_638na"), SubResource("Resource_03ku6")])
+learnset = Array[ExtResource("1_n0vu1")]([SubResource("Resource_s6mcd"), SubResource("Resource_ixc5w"), SubResource("Resource_638na"), SubResource("Resource_03ku6"), SubResource("Resource_rx0bp"), SubResource("Resource_scsdy")])
+evolutions = Array[ExtResource("1_seqq5")]([SubResource("Resource_seqq5")])
 temperament = ExtResource("13_s6mcd")
 genus = "Pokémon Hongo"
 pokedex_entry = "Paras lleva dos setas parásitas a cuestas llamadas tochukaso. Estas crecen alimentándose de los nutrientes de este Pokémon de tipo Bicho y Planta que les sirve de huésped. Las setas se usan como elixir de vida."

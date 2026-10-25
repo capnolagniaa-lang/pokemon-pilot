@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1isj0"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_oxmar"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_elxgk"]
 [ext_resource type="Resource" path="res://data/moves/hueso_palo.tres" id="2_yr27j"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_31p6y"]
@@ -19,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_yvnfw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_52ujn"]
 
-[sub_resource type="Resource" id="Resource_52ujn"]
+[sub_resource type="Resource" id="Resource_oxmar"]
 script = ExtResource("1_1isj0")
 move = ExtResource("2_yr27j")
 
-[sub_resource type="Resource" id="Resource_oxmar"]
+[sub_resource type="Resource" id="Resource_lenku"]
 script = ExtResource("1_1isj0")
 move = ExtResource("3_52ujn")
 
-[sub_resource type="Resource" id="Resource_lenku"]
+[sub_resource type="Resource" id="Resource_fgxjs"]
 script = ExtResource("1_1isj0")
 move = ExtResource("4_oxmar")
 
-[sub_resource type="Resource" id="Resource_fgxjs"]
+[sub_resource type="Resource" id="Resource_cjr2a"]
 script = ExtResource("1_1isj0")
 move = ExtResource("5_lenku")
 
-[sub_resource type="Resource" id="Resource_cjr2a"]
+[sub_resource type="Resource" id="Resource_uihww"]
 script = ExtResource("1_1isj0")
 level = 17
 move = ExtResource("6_fgxjs")
 
-[sub_resource type="Resource" id="Resource_uihww"]
+[sub_resource type="Resource" id="Resource_8vsox"]
 script = ExtResource("1_1isj0")
 level = 21
 move = ExtResource("7_cjr2a")
 
-[sub_resource type="Resource" id="Resource_8vsox"]
+[sub_resource type="Resource" id="Resource_funo7"]
 script = ExtResource("1_1isj0")
 level = 25
 move = ExtResource("8_uihww")
 
-[sub_resource type="Resource" id="Resource_funo7"]
+[sub_resource type="Resource" id="Resource_vuoy3"]
 script = ExtResource("1_1isj0")
 level = 32
 move = ExtResource("9_8vsox")
 
-[sub_resource type="Resource" id="Resource_vuoy3"]
+[sub_resource type="Resource" id="Resource_3bfnn"]
 script = ExtResource("1_1isj0")
 level = 39
 move = ExtResource("10_funo7")
 
-[sub_resource type="Resource" id="Resource_3bfnn"]
+[sub_resource type="Resource" id="Resource_yvnfw"]
 script = ExtResource("1_1isj0")
 level = 46
 move = ExtResource("11_vuoy3")
 
-[sub_resource type="Resource" id="Resource_yvnfw"]
+[sub_resource type="Resource" id="Resource_3a3a3"]
 script = ExtResource("1_1isj0")
 level = 53
 move = ExtResource("12_3bfnn")
 
-[sub_resource type="Resource" id="Resource_3a3a3"]
+[sub_resource type="Resource" id="Resource_jbhs5"]
 script = ExtResource("1_1isj0")
 level = 61
 move = ExtResource("13_yvnfw")
@@ -81,7 +82,8 @@ id = "marowak"
 display_name = "Marowak"
 dex = 105
 types = Array[ExtResource("4_qg6wl")]([ExtResource("5_if0to")])
-learnset = Array[ExtResource("1_1isj0")]([SubResource("Resource_52ujn"), SubResource("Resource_oxmar"), SubResource("Resource_lenku"), SubResource("Resource_fgxjs"), SubResource("Resource_cjr2a"), SubResource("Resource_uihww"), SubResource("Resource_8vsox"), SubResource("Resource_funo7"), SubResource("Resource_vuoy3"), SubResource("Resource_3bfnn"), SubResource("Resource_yvnfw"), SubResource("Resource_3a3a3")])
+learnset = Array[ExtResource("1_1isj0")]([SubResource("Resource_oxmar"), SubResource("Resource_lenku"), SubResource("Resource_fgxjs"), SubResource("Resource_cjr2a"), SubResource("Resource_uihww"), SubResource("Resource_8vsox"), SubResource("Resource_funo7"), SubResource("Resource_vuoy3"), SubResource("Resource_3bfnn"), SubResource("Resource_yvnfw"), SubResource("Resource_3a3a3"), SubResource("Resource_jbhs5")])
+evolves_from = "cubone"
 temperament = ExtResource("16_52ujn")
 genus = "Pokémon Apilahueso"
 pokedex_entry = "Marowak es la forma evolucionada de Cubone. Es más fuerte porque ha superado la pena por la pérdida de su madre. El ánimo de este Pokémon, ya curtido y fortalecido, no es muy fácil de alterar."

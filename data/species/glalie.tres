@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5mfqm"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_se6yd"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_b7dh5"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_yqmdb"]
 [ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="3_0it7n"]
@@ -19,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="13_56uvw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_0it7n"]
 
-[sub_resource type="Resource" id="Resource_0it7n"]
+[sub_resource type="Resource" id="Resource_se6yd"]
 script = ExtResource("1_5mfqm")
 move = ExtResource("2_yqmdb")
 
-[sub_resource type="Resource" id="Resource_se6yd"]
+[sub_resource type="Resource" id="Resource_oj83e"]
 script = ExtResource("1_5mfqm")
 move = ExtResource("3_0it7n")
 
-[sub_resource type="Resource" id="Resource_oj83e"]
+[sub_resource type="Resource" id="Resource_p75mq"]
 script = ExtResource("1_5mfqm")
 move = ExtResource("4_se6yd")
 
-[sub_resource type="Resource" id="Resource_p75mq"]
+[sub_resource type="Resource" id="Resource_smv3h"]
 script = ExtResource("1_5mfqm")
 move = ExtResource("5_oj83e")
 
-[sub_resource type="Resource" id="Resource_smv3h"]
+[sub_resource type="Resource" id="Resource_vmsa4"]
 script = ExtResource("1_5mfqm")
 level = 16
 move = ExtResource("6_p75mq")
 
-[sub_resource type="Resource" id="Resource_vmsa4"]
+[sub_resource type="Resource" id="Resource_r0r6b"]
 script = ExtResource("1_5mfqm")
 level = 19
 move = ExtResource("7_smv3h")
 
-[sub_resource type="Resource" id="Resource_r0r6b"]
+[sub_resource type="Resource" id="Resource_g4xad"]
 script = ExtResource("1_5mfqm")
 level = 25
 move = ExtResource("8_vmsa4")
 
-[sub_resource type="Resource" id="Resource_g4xad"]
+[sub_resource type="Resource" id="Resource_ehjlh"]
 script = ExtResource("1_5mfqm")
 level = 28
 move = ExtResource("9_r0r6b")
 
-[sub_resource type="Resource" id="Resource_ehjlh"]
+[sub_resource type="Resource" id="Resource_emcn6"]
 script = ExtResource("1_5mfqm")
 level = 34
 move = ExtResource("10_g4xad")
 
-[sub_resource type="Resource" id="Resource_emcn6"]
+[sub_resource type="Resource" id="Resource_56uvw"]
 script = ExtResource("1_5mfqm")
 level = 42
 move = ExtResource("11_ehjlh")
 
-[sub_resource type="Resource" id="Resource_56uvw"]
+[sub_resource type="Resource" id="Resource_vqvcc"]
 script = ExtResource("1_5mfqm")
 level = 53
 move = ExtResource("12_emcn6")
 
-[sub_resource type="Resource" id="Resource_vqvcc"]
+[sub_resource type="Resource" id="Resource_h1jsr"]
 script = ExtResource("1_5mfqm")
 level = 61
 move = ExtResource("13_56uvw")
@@ -81,7 +82,8 @@ id = "glalie"
 display_name = "Glalie"
 dex = 362
 types = Array[ExtResource("4_vx4va")]([ExtResource("5_uhlao")])
-learnset = Array[ExtResource("1_5mfqm")]([SubResource("Resource_0it7n"), SubResource("Resource_se6yd"), SubResource("Resource_oj83e"), SubResource("Resource_p75mq"), SubResource("Resource_smv3h"), SubResource("Resource_vmsa4"), SubResource("Resource_r0r6b"), SubResource("Resource_g4xad"), SubResource("Resource_ehjlh"), SubResource("Resource_emcn6"), SubResource("Resource_56uvw"), SubResource("Resource_vqvcc")])
+learnset = Array[ExtResource("1_5mfqm")]([SubResource("Resource_se6yd"), SubResource("Resource_oj83e"), SubResource("Resource_p75mq"), SubResource("Resource_smv3h"), SubResource("Resource_vmsa4"), SubResource("Resource_r0r6b"), SubResource("Resource_g4xad"), SubResource("Resource_ehjlh"), SubResource("Resource_emcn6"), SubResource("Resource_56uvw"), SubResource("Resource_vqvcc"), SubResource("Resource_h1jsr")])
+evolves_from = "snorunt"
 temperament = ExtResource("16_0it7n")
 genus = "Pokémon Cara"
 pokedex_entry = "Glalie endurece el cuerpo rocoso que tiene con una coraza de hielo. Este Pokémon tiene la habilidad de congelar la humedad del ambiente y formar la figura que se le antoje."

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_r0l0w"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_uvi7x"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5btfj"]
 [ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_vy0l3"]
@@ -10,16 +11,21 @@
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_dhhtm"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="7_dhhtm"]
 
-[sub_resource type="Resource" id="Resource_dhhtm"]
+[sub_resource type="Resource" id="Resource_r0l0w"]
+script = ExtResource("1_r0l0w")
+to_id = "gyarados"
+level = 20
+
+[sub_resource type="Resource" id="Resource_s6gb0"]
 script = ExtResource("1_uvi7x")
 move = ExtResource("2_vy0l3")
 
-[sub_resource type="Resource" id="Resource_r0l0w"]
+[sub_resource type="Resource" id="Resource_8xheg"]
 script = ExtResource("1_uvi7x")
 level = 15
 move = ExtResource("3_dhhtm")
 
-[sub_resource type="Resource" id="Resource_s6gb0"]
+[sub_resource type="Resource" id="Resource_fggsd"]
 script = ExtResource("1_uvi7x")
 level = 30
 move = ExtResource("4_r0l0w")
@@ -30,7 +36,8 @@ id = "magikarp"
 display_name = "Magikarp"
 dex = 129
 types = Array[ExtResource("4_vy0l3")]([ExtResource("5_dhhtm")])
-learnset = Array[ExtResource("1_uvi7x")]([SubResource("Resource_dhhtm"), SubResource("Resource_r0l0w"), SubResource("Resource_s6gb0")])
+learnset = Array[ExtResource("1_uvi7x")]([SubResource("Resource_s6gb0"), SubResource("Resource_8xheg"), SubResource("Resource_fggsd")])
+evolutions = Array[ExtResource("1_r0l0w")]([SubResource("Resource_r0l0w")])
 temperament = ExtResource("7_dhhtm")
 genus = "Pokémon Pez"
 pokedex_entry = "Magikarp es el triste ejemplo de un Pokémon capaz únicamente de saltar y salpicar. Esta conducta llevó a científicos a estudiarlo en profundidad."

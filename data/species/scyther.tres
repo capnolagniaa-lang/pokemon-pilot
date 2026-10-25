@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_hbqse"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xhtbu"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_06ek4"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_b5gur"]
@@ -19,55 +20,61 @@
 [ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="12_ayj1e"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_2wps2"]
 
-[sub_resource type="Resource" id="Resource_2wps2"]
+[sub_resource type="Resource" id="Resource_hbqse"]
+script = ExtResource("1_hbqse")
+to_id = "scizor"
+method = "intercambio"
+item = "metal-coat"
+
+[sub_resource type="Resource" id="Resource_24vg5"]
 script = ExtResource("1_xhtbu")
 move = ExtResource("2_b5gur")
 
-[sub_resource type="Resource" id="Resource_hbqse"]
+[sub_resource type="Resource" id="Resource_xndai"]
 script = ExtResource("1_xhtbu")
 move = ExtResource("3_2wps2")
 
-[sub_resource type="Resource" id="Resource_24vg5"]
+[sub_resource type="Resource" id="Resource_h4l21"]
 script = ExtResource("1_xhtbu")
 level = 6
 move = ExtResource("4_hbqse")
 
-[sub_resource type="Resource" id="Resource_xndai"]
+[sub_resource type="Resource" id="Resource_xwc23"]
 script = ExtResource("1_xhtbu")
 level = 11
 move = ExtResource("5_24vg5")
 
-[sub_resource type="Resource" id="Resource_h4l21"]
+[sub_resource type="Resource" id="Resource_q6tn6"]
 script = ExtResource("1_xhtbu")
 level = 16
 move = ExtResource("6_xndai")
 
-[sub_resource type="Resource" id="Resource_xwc23"]
+[sub_resource type="Resource" id="Resource_51c4y"]
 script = ExtResource("1_xhtbu")
 level = 21
 move = ExtResource("7_h4l21")
 
-[sub_resource type="Resource" id="Resource_q6tn6"]
+[sub_resource type="Resource" id="Resource_qgasg"]
 script = ExtResource("1_xhtbu")
 level = 26
 move = ExtResource("8_xwc23")
 
-[sub_resource type="Resource" id="Resource_51c4y"]
+[sub_resource type="Resource" id="Resource_ayj1e"]
 script = ExtResource("1_xhtbu")
 level = 31
 move = ExtResource("9_q6tn6")
 
-[sub_resource type="Resource" id="Resource_qgasg"]
+[sub_resource type="Resource" id="Resource_l56as"]
 script = ExtResource("1_xhtbu")
 level = 36
 move = ExtResource("10_51c4y")
 
-[sub_resource type="Resource" id="Resource_ayj1e"]
+[sub_resource type="Resource" id="Resource_dhidr"]
 script = ExtResource("1_xhtbu")
 level = 41
 move = ExtResource("11_qgasg")
 
-[sub_resource type="Resource" id="Resource_l56as"]
+[sub_resource type="Resource" id="Resource_t1ad2"]
 script = ExtResource("1_xhtbu")
 level = 46
 move = ExtResource("12_ayj1e")
@@ -78,7 +85,8 @@ id = "scyther"
 display_name = "Scyther"
 dex = 123
 types = Array[ExtResource("4_d5fm2")]([ExtResource("5_qdvv0"), ExtResource("6_abd5b")])
-learnset = Array[ExtResource("1_xhtbu")]([SubResource("Resource_2wps2"), SubResource("Resource_hbqse"), SubResource("Resource_24vg5"), SubResource("Resource_xndai"), SubResource("Resource_h4l21"), SubResource("Resource_xwc23"), SubResource("Resource_q6tn6"), SubResource("Resource_51c4y"), SubResource("Resource_qgasg"), SubResource("Resource_ayj1e"), SubResource("Resource_l56as")])
+learnset = Array[ExtResource("1_xhtbu")]([SubResource("Resource_24vg5"), SubResource("Resource_xndai"), SubResource("Resource_h4l21"), SubResource("Resource_xwc23"), SubResource("Resource_q6tn6"), SubResource("Resource_51c4y"), SubResource("Resource_qgasg"), SubResource("Resource_ayj1e"), SubResource("Resource_l56as"), SubResource("Resource_dhidr"), SubResource("Resource_t1ad2")])
+evolutions = Array[ExtResource("1_hbqse")]([SubResource("Resource_hbqse")])
 temperament = ExtResource("15_2wps2")
 genus = "Pokémon Mantis"
 pokedex_entry = "Es espectacular ver lo rápido que es Scyther. Su increíble velocidad refuerza el efecto del par de guadañas que tiene en los brazos, que ya son de por sí contundentes; rebanan gruesos troncos de un tajo."

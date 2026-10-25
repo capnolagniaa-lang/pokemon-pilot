@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Resource" path="res://data/kits/onix/kit.tres" id="0_kitv4"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_0lsck"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ywjwf"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_75grp"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_oqb0n"]
@@ -14,25 +15,31 @@
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="7_fikpi"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_q53ba"]
 
-[sub_resource type="Resource" id="Resource_qw8e8"]
+[sub_resource type="Resource" id="Resource_0lsck"]
+script = ExtResource("1_0lsck")
+to_id = "steelix"
+method = "intercambio"
+item = "metal-coat"
+
+[sub_resource type="Resource" id="Resource_grr3h"]
 script = ExtResource("1_ywjwf")
 move = ExtResource("3_y8h3b")
 
-[sub_resource type="Resource" id="Resource_mvmm4"]
+[sub_resource type="Resource" id="Resource_t0m2h"]
 script = ExtResource("1_ywjwf")
 move = ExtResource("4_0lsck")
 
-[sub_resource type="Resource" id="Resource_q53ba"]
+[sub_resource type="Resource" id="Resource_qw8e8"]
 script = ExtResource("1_ywjwf")
 level = 3
 move = ExtResource("5_grr3h")
 
-[sub_resource type="Resource" id="Resource_cntw5"]
+[sub_resource type="Resource" id="Resource_mvmm4"]
 script = ExtResource("1_ywjwf")
 level = 5
 move = ExtResource("6_t0m2h")
 
-[sub_resource type="Resource" id="Resource_x3xxb"]
+[sub_resource type="Resource" id="Resource_q53ba"]
 script = ExtResource("1_ywjwf")
 level = 23
 move = ExtResource("7_fikpi")
@@ -44,7 +51,8 @@ display_name = "Onix"
 dex = 95
 types = Array[ExtResource("4_d1vix")]([ExtResource("5_xcmc8"), ExtResource("6_l4wvc")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_ywjwf")]([SubResource("Resource_qw8e8"), SubResource("Resource_mvmm4"), SubResource("Resource_q53ba"), SubResource("Resource_cntw5"), SubResource("Resource_x3xxb")])
+learnset = Array[ExtResource("1_ywjwf")]([SubResource("Resource_grr3h"), SubResource("Resource_t0m2h"), SubResource("Resource_qw8e8"), SubResource("Resource_mvmm4"), SubResource("Resource_q53ba")])
+evolutions = Array[ExtResource("1_0lsck")]([SubResource("Resource_0lsck")])
 temperament = ExtResource("16_q53ba")
 genus = "Pokémon Serpiente Roca"
 pokedex_entry = "Onix tiene un imán en el cerebro, que actúa como una brújula para no perder la orientación cuando está cavando túneles. A medida que crece, se le redondea y suaviza el cuerpo."

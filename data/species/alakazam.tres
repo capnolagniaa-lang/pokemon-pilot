@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_gunmr"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_k7ypx"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_k22r4"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_m3kkl"]
@@ -18,54 +19,54 @@
 [ext_resource type="Resource" path="res://data/moves/truco.tres" id="12_omy1l"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_hwael"]
 
-[sub_resource type="Resource" id="Resource_hwael"]
+[sub_resource type="Resource" id="Resource_gunmr"]
 script = ExtResource("1_k7ypx")
 move = ExtResource("2_k22r4")
 
-[sub_resource type="Resource" id="Resource_gunmr"]
+[sub_resource type="Resource" id="Resource_lylyv"]
 script = ExtResource("1_k7ypx")
 move = ExtResource("3_hwael")
 
-[sub_resource type="Resource" id="Resource_lylyv"]
+[sub_resource type="Resource" id="Resource_5ei68"]
 script = ExtResource("1_k7ypx")
 move = ExtResource("4_gunmr")
 
-[sub_resource type="Resource" id="Resource_5ei68"]
+[sub_resource type="Resource" id="Resource_onucw"]
 script = ExtResource("1_k7ypx")
 level = 18
 move = ExtResource("5_lylyv")
 
-[sub_resource type="Resource" id="Resource_onucw"]
+[sub_resource type="Resource" id="Resource_jpwt8"]
 script = ExtResource("1_k7ypx")
 level = 21
 move = ExtResource("6_5ei68")
 
-[sub_resource type="Resource" id="Resource_jpwt8"]
+[sub_resource type="Resource" id="Resource_1tbbt"]
 script = ExtResource("1_k7ypx")
 level = 23
 move = ExtResource("7_onucw")
 
-[sub_resource type="Resource" id="Resource_1tbbt"]
+[sub_resource type="Resource" id="Resource_xwbjl"]
 script = ExtResource("1_k7ypx")
 level = 25
 move = ExtResource("8_jpwt8")
 
-[sub_resource type="Resource" id="Resource_xwbjl"]
+[sub_resource type="Resource" id="Resource_jfy3y"]
 script = ExtResource("1_k7ypx")
 level = 30
 move = ExtResource("9_1tbbt")
 
-[sub_resource type="Resource" id="Resource_jfy3y"]
+[sub_resource type="Resource" id="Resource_omy1l"]
 script = ExtResource("1_k7ypx")
 level = 33
 move = ExtResource("10_xwbjl")
 
-[sub_resource type="Resource" id="Resource_omy1l"]
+[sub_resource type="Resource" id="Resource_krpjx"]
 script = ExtResource("1_k7ypx")
 level = 36
 move = ExtResource("11_jfy3y")
 
-[sub_resource type="Resource" id="Resource_krpjx"]
+[sub_resource type="Resource" id="Resource_qaygq"]
 script = ExtResource("1_k7ypx")
 level = 43
 move = ExtResource("12_omy1l")
@@ -76,7 +77,8 @@ id = "alakazam"
 display_name = "Alakazam"
 dex = 65
 types = Array[ExtResource("4_rcufv")]([ExtResource("5_w7dxe")])
-learnset = Array[ExtResource("1_k7ypx")]([SubResource("Resource_hwael"), SubResource("Resource_gunmr"), SubResource("Resource_lylyv"), SubResource("Resource_5ei68"), SubResource("Resource_onucw"), SubResource("Resource_jpwt8"), SubResource("Resource_1tbbt"), SubResource("Resource_xwbjl"), SubResource("Resource_jfy3y"), SubResource("Resource_omy1l"), SubResource("Resource_krpjx")])
+learnset = Array[ExtResource("1_k7ypx")]([SubResource("Resource_gunmr"), SubResource("Resource_lylyv"), SubResource("Resource_5ei68"), SubResource("Resource_onucw"), SubResource("Resource_jpwt8"), SubResource("Resource_1tbbt"), SubResource("Resource_xwbjl"), SubResource("Resource_jfy3y"), SubResource("Resource_omy1l"), SubResource("Resource_krpjx"), SubResource("Resource_qaygq")])
+evolves_from = "kadabra"
 temperament = ExtResource("15_hwael")
 genus = "Pokémon Psi"
 pokedex_entry = "El cerebro de Alakazam nunca deja de crecer y por eso al cuello le cuesta sostener el peso de la cabeza. Este Pokémon usa sus poderes psicoquinéticos para mantener en alto la cabeza."

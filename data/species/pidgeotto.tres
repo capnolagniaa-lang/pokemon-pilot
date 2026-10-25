@@ -1,60 +1,67 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ua3np"]
-[ext_resource type="Resource" path="res://data/moves/tornado.tres" id="2_msm0x"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_yjcug"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ovmhf"]
-[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="3_b0qkw"]
+[ext_resource type="Resource" path="res://data/kits/pidgey/kit.tres" id="2_ssfft"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_isia6"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_lpwvb"]
+[ext_resource type="Resource" path="res://data/kits/pidgey/tornado.tres" id="4_ssfft"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_yjcug"]
+[ext_resource type="Resource" path="res://data/kits/pidgey/ataque_arena.tres" id="5_b48bi"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_g4keq"]
-[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="5_ssfft"]
-[ext_resource type="Resource" path="res://data/moves/remolino.tres" id="6_b48bi"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_fuve5"]
+[ext_resource type="Resource" path="res://data/kits/pidgey/ataque_rapido.tres" id="6_it5yp"]
+[ext_resource type="Resource" path="res://data/kits/pidgey/remolino.tres" id="7_5tho5"]
 [ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="7_it5yp"]
 [ext_resource type="Resource" path="res://data/moves/danza_pluma.tres" id="8_5tho5"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_q2ojw"]
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="10_yfsf5"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_b0qkw"]
 
-[sub_resource type="Resource" id="Resource_b0qkw"]
-script = ExtResource("1_ua3np")
-move = ExtResource("2_msm0x")
-
-[sub_resource type="Resource" id="Resource_yjcug"]
-script = ExtResource("1_ua3np")
-move = ExtResource("3_b0qkw")
+[sub_resource type="Resource" id="Resource_yw42u"]
+script = ExtResource("1_yjcug")
+to_id = "pidgeot"
+level = 36
 
 [sub_resource type="Resource" id="Resource_ssfft"]
 script = ExtResource("1_ua3np")
-move = ExtResource("4_yjcug")
+move = ExtResource("4_ssfft")
 
 [sub_resource type="Resource" id="Resource_b48bi"]
 script = ExtResource("1_ua3np")
-level = 13
-move = ExtResource("5_ssfft")
+move = ExtResource("5_b48bi")
 
 [sub_resource type="Resource" id="Resource_it5yp"]
 script = ExtResource("1_ua3np")
-level = 20
-move = ExtResource("6_b48bi")
+level = 3
+move = ExtResource("6_it5yp")
 
 [sub_resource type="Resource" id="Resource_5tho5"]
+script = ExtResource("1_ua3np")
+level = 5
+move = ExtResource("7_5tho5")
+
+[sub_resource type="Resource" id="Resource_q2ojw"]
+script = ExtResource("1_ua3np")
+move = ExtResource("4_yjcug")
+
+[sub_resource type="Resource" id="Resource_yfsf5"]
 script = ExtResource("1_ua3np")
 level = 27
 move = ExtResource("7_it5yp")
 
-[sub_resource type="Resource" id="Resource_q2ojw"]
+[sub_resource type="Resource" id="Resource_ukv3c"]
 script = ExtResource("1_ua3np")
 level = 34
 move = ExtResource("8_5tho5")
 
-[sub_resource type="Resource" id="Resource_yfsf5"]
+[sub_resource type="Resource" id="Resource_weigu"]
 script = ExtResource("1_ua3np")
 level = 43
 move = ExtResource("9_q2ojw")
 
-[sub_resource type="Resource" id="Resource_ukv3c"]
+[sub_resource type="Resource" id="Resource_ldl2i"]
 script = ExtResource("1_ua3np")
 level = 52
 move = ExtResource("10_yfsf5")
@@ -65,7 +72,11 @@ id = "pidgeotto"
 display_name = "Pidgeotto"
 dex = 17
 types = Array[ExtResource("4_lpwvb")]([ExtResource("5_g4keq"), ExtResource("6_fuve5")])
-learnset = Array[ExtResource("1_ua3np")]([SubResource("Resource_b0qkw"), SubResource("Resource_yjcug"), SubResource("Resource_ssfft"), SubResource("Resource_b48bi"), SubResource("Resource_it5yp"), SubResource("Resource_5tho5"), SubResource("Resource_q2ojw"), SubResource("Resource_yfsf5"), SubResource("Resource_ukv3c")])
+kit = ExtResource("2_ssfft")
+learnset = Array[ExtResource("1_ua3np")]([SubResource("Resource_ssfft"), SubResource("Resource_b48bi"), SubResource("Resource_it5yp"), SubResource("Resource_5tho5"), SubResource("Resource_q2ojw"), SubResource("Resource_yfsf5"), SubResource("Resource_ukv3c"), SubResource("Resource_weigu"), SubResource("Resource_ldl2i")])
+kit_inherited = true
+evolutions = Array[ExtResource("1_yjcug")]([SubResource("Resource_yw42u")])
+evolves_from = "pidgey"
 temperament = ExtResource("13_b0qkw")
 genus = "Pokémon Pájaro"
 pokedex_entry = "Pidgeotto se apodera de una zona muy vasta como su territorio y la sobrevuela para controlarla. Si alguien invade su espacio vital, no tendrá ningún reparo en castigarlo con sus afiladas garras."

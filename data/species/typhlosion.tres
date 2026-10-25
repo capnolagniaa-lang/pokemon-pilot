@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_td5wk"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xwjny"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7q6dj"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_fcq3u"]
@@ -15,38 +16,38 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_4y5v5"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_1fidb"]
 
-[sub_resource type="Resource" id="Resource_1fidb"]
+[sub_resource type="Resource" id="Resource_td5wk"]
 script = ExtResource("1_xwjny")
 move = ExtResource("2_fcq3u")
 
-[sub_resource type="Resource" id="Resource_td5wk"]
+[sub_resource type="Resource" id="Resource_5bknk"]
 script = ExtResource("1_xwjny")
 move = ExtResource("3_1fidb")
 
-[sub_resource type="Resource" id="Resource_5bknk"]
+[sub_resource type="Resource" id="Resource_lj212"]
 script = ExtResource("1_xwjny")
 move = ExtResource("4_td5wk")
 
-[sub_resource type="Resource" id="Resource_lj212"]
+[sub_resource type="Resource" id="Resource_htm15"]
 script = ExtResource("1_xwjny")
 move = ExtResource("5_5bknk")
 
-[sub_resource type="Resource" id="Resource_htm15"]
+[sub_resource type="Resource" id="Resource_own8g"]
 script = ExtResource("1_xwjny")
 level = 21
 move = ExtResource("6_lj212")
 
-[sub_resource type="Resource" id="Resource_own8g"]
+[sub_resource type="Resource" id="Resource_4y5v5"]
 script = ExtResource("1_xwjny")
 level = 31
 move = ExtResource("7_htm15")
 
-[sub_resource type="Resource" id="Resource_4y5v5"]
+[sub_resource type="Resource" id="Resource_pa65w"]
 script = ExtResource("1_xwjny")
 level = 45
 move = ExtResource("8_own8g")
 
-[sub_resource type="Resource" id="Resource_pa65w"]
+[sub_resource type="Resource" id="Resource_jqav6"]
 script = ExtResource("1_xwjny")
 level = 60
 move = ExtResource("9_4y5v5")
@@ -57,7 +58,8 @@ id = "typhlosion"
 display_name = "Typhlosion"
 dex = 157
 types = Array[ExtResource("4_nja3u")]([ExtResource("5_vf4ic")])
-learnset = Array[ExtResource("1_xwjny")]([SubResource("Resource_1fidb"), SubResource("Resource_td5wk"), SubResource("Resource_5bknk"), SubResource("Resource_lj212"), SubResource("Resource_htm15"), SubResource("Resource_own8g"), SubResource("Resource_4y5v5"), SubResource("Resource_pa65w")])
+learnset = Array[ExtResource("1_xwjny")]([SubResource("Resource_td5wk"), SubResource("Resource_5bknk"), SubResource("Resource_lj212"), SubResource("Resource_htm15"), SubResource("Resource_own8g"), SubResource("Resource_4y5v5"), SubResource("Resource_pa65w"), SubResource("Resource_jqav6")])
+evolves_from = "quilava"
 temperament = ExtResource("12_1fidb")
 genus = "Pokémon Volcán"
 pokedex_entry = "Typhlosion se oculta tras un trémulo haz de calor que crea mediante sus intensas y sofocantes llamaradas. Este Pokémon causa explosiones de fuego que reducen todo a cenizas."

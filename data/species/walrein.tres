@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_dr2q5"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_oravc"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_16q0w"]
 [ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_rytin"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_6vf2g"]
@@ -21,63 +22,63 @@
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="14_adsw0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_6vf2g"]
 
-[sub_resource type="Resource" id="Resource_6vf2g"]
+[sub_resource type="Resource" id="Resource_oravc"]
 script = ExtResource("1_dr2q5")
 move = ExtResource("2_rytin")
 
-[sub_resource type="Resource" id="Resource_oravc"]
+[sub_resource type="Resource" id="Resource_tnl3w"]
 script = ExtResource("1_dr2q5")
 move = ExtResource("3_6vf2g")
 
-[sub_resource type="Resource" id="Resource_tnl3w"]
+[sub_resource type="Resource" id="Resource_p5tpm"]
 script = ExtResource("1_dr2q5")
 move = ExtResource("4_oravc")
 
-[sub_resource type="Resource" id="Resource_p5tpm"]
+[sub_resource type="Resource" id="Resource_tvhio"]
 script = ExtResource("1_dr2q5")
 move = ExtResource("5_tnl3w")
 
-[sub_resource type="Resource" id="Resource_tvhio"]
+[sub_resource type="Resource" id="Resource_8v8l1"]
 script = ExtResource("1_dr2q5")
 level = 7
 move = ExtResource("6_p5tpm")
 
-[sub_resource type="Resource" id="Resource_8v8l1"]
+[sub_resource type="Resource" id="Resource_7fvjf"]
 script = ExtResource("1_dr2q5")
 level = 13
 move = ExtResource("7_tvhio")
 
-[sub_resource type="Resource" id="Resource_7fvjf"]
+[sub_resource type="Resource" id="Resource_ocvfe"]
 script = ExtResource("1_dr2q5")
 level = 19
 move = ExtResource("8_8v8l1")
 
-[sub_resource type="Resource" id="Resource_ocvfe"]
+[sub_resource type="Resource" id="Resource_4bf7i"]
 script = ExtResource("1_dr2q5")
 level = 25
 move = ExtResource("9_7fvjf")
 
-[sub_resource type="Resource" id="Resource_4bf7i"]
+[sub_resource type="Resource" id="Resource_vyc81"]
 script = ExtResource("1_dr2q5")
 level = 31
 move = ExtResource("10_ocvfe")
 
-[sub_resource type="Resource" id="Resource_vyc81"]
+[sub_resource type="Resource" id="Resource_fm0gw"]
 script = ExtResource("1_dr2q5")
 level = 39
 move = ExtResource("11_4bf7i")
 
-[sub_resource type="Resource" id="Resource_fm0gw"]
+[sub_resource type="Resource" id="Resource_adsw0"]
 script = ExtResource("1_dr2q5")
 level = 39
 move = ExtResource("12_vyc81")
 
-[sub_resource type="Resource" id="Resource_adsw0"]
+[sub_resource type="Resource" id="Resource_paddh"]
 script = ExtResource("1_dr2q5")
 level = 50
 move = ExtResource("13_fm0gw")
 
-[sub_resource type="Resource" id="Resource_paddh"]
+[sub_resource type="Resource" id="Resource_ue01v"]
 script = ExtResource("1_dr2q5")
 level = 61
 move = ExtResource("14_adsw0")
@@ -88,7 +89,8 @@ id = "walrein"
 display_name = "Walrein"
 dex = 365
 types = Array[ExtResource("4_wgsku")]([ExtResource("5_vg64m"), ExtResource("6_6xi1o")])
-learnset = Array[ExtResource("1_dr2q5")]([SubResource("Resource_6vf2g"), SubResource("Resource_oravc"), SubResource("Resource_tnl3w"), SubResource("Resource_p5tpm"), SubResource("Resource_tvhio"), SubResource("Resource_8v8l1"), SubResource("Resource_7fvjf"), SubResource("Resource_ocvfe"), SubResource("Resource_4bf7i"), SubResource("Resource_vyc81"), SubResource("Resource_fm0gw"), SubResource("Resource_adsw0"), SubResource("Resource_paddh")])
+learnset = Array[ExtResource("1_dr2q5")]([SubResource("Resource_oravc"), SubResource("Resource_tnl3w"), SubResource("Resource_p5tpm"), SubResource("Resource_tvhio"), SubResource("Resource_8v8l1"), SubResource("Resource_7fvjf"), SubResource("Resource_ocvfe"), SubResource("Resource_4bf7i"), SubResource("Resource_vyc81"), SubResource("Resource_fm0gw"), SubResource("Resource_adsw0"), SubResource("Resource_paddh"), SubResource("Resource_ue01v")])
+evolves_from = "sealeo"
 temperament = ExtResource("17_6vf2g")
 genus = "Pokémon Rompehielo"
 pokedex_entry = "Walrein tiene unos exagerados colmillos con los que puede hacer añicos bloques de hielo de hasta 10 toneladas de una sola dentellada. La gruesa capa de grasa que lo recubre le protege de temperaturas inferiores a 0 °C."

@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/kits/caterpie/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mbi7l"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_tubfo"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ehjt8"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_2tn1v"]
 [ext_resource type="Resource" path="res://data/kits/caterpie/placaje_caterpie.tres" id="3_jpwfh"]
@@ -12,20 +13,25 @@
 [ext_resource type="Resource" path="res://data/kits/caterpie/fortaleza_caterpie.tres" id="6_4367q"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="6_ml7ct"]
 
-[sub_resource type="Resource" id="Resource_jpwfh"]
+[sub_resource type="Resource" id="Resource_tubfo"]
+script = ExtResource("1_tubfo")
+to_id = "metapod"
+level = 7
+
+[sub_resource type="Resource" id="Resource_0efvd"]
 script = ExtResource("1_mbi7l")
 move = ExtResource("3_jpwfh")
 
-[sub_resource type="Resource" id="Resource_tubfo"]
+[sub_resource type="Resource" id="Resource_4367q"]
 script = ExtResource("1_mbi7l")
 move = ExtResource("4_tubfo")
 
-[sub_resource type="Resource" id="Resource_0efvd"]
+[sub_resource type="Resource" id="Resource_5h0dt"]
 script = ExtResource("1_mbi7l")
 level = 3
 move = ExtResource("5_0efvd")
 
-[sub_resource type="Resource" id="Resource_4367q"]
+[sub_resource type="Resource" id="Resource_iltmg"]
 script = ExtResource("1_mbi7l")
 level = 5
 move = ExtResource("6_4367q")
@@ -37,7 +43,8 @@ display_name = "Caterpie"
 dex = 10
 types = Array[ExtResource("4_ml7ct")]([ExtResource("5_mb5d7")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_mbi7l")]([SubResource("Resource_jpwfh"), SubResource("Resource_tubfo"), SubResource("Resource_0efvd"), SubResource("Resource_4367q")])
+learnset = Array[ExtResource("1_mbi7l")]([SubResource("Resource_0efvd"), SubResource("Resource_4367q"), SubResource("Resource_5h0dt"), SubResource("Resource_iltmg")])
+evolutions = Array[ExtResource("1_tubfo")]([SubResource("Resource_tubfo")])
 temperament = ExtResource("6_ml7ct")
 genus = "Pokémon Gusano"
 pokedex_entry = "Caterpie tiene un apetito voraz. Es capaz de devorar hojas que superen su tamaño en un abrir y cerrar de ojos. Atención a la antena que tiene: libera un hedor realmente fuerte."

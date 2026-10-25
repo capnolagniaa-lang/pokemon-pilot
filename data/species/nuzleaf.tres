@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fpb3f"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_yms2q"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_a7r4f"]
 [ext_resource type="Resource" path="res://data/moves/destructor.tres" id="2_f82k6"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_7qgo6"]
@@ -18,51 +19,57 @@
 [ext_resource type="Resource" path="res://data/moves/paranormal.tres" id="11_65ip0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_7qgo6"]
 
-[sub_resource type="Resource" id="Resource_7qgo6"]
+[sub_resource type="Resource" id="Resource_yms2q"]
+script = ExtResource("1_yms2q")
+to_id = "shiftry"
+method = "piedra"
+item = "piedra_hoja"
+
+[sub_resource type="Resource" id="Resource_puu4r"]
 script = ExtResource("1_fpb3f")
 move = ExtResource("2_f82k6")
 
-[sub_resource type="Resource" id="Resource_yms2q"]
+[sub_resource type="Resource" id="Resource_hu7dc"]
 script = ExtResource("1_fpb3f")
 level = 3
 move = ExtResource("3_7qgo6")
 
-[sub_resource type="Resource" id="Resource_puu4r"]
+[sub_resource type="Resource" id="Resource_od5cj"]
 script = ExtResource("1_fpb3f")
 level = 7
 move = ExtResource("4_yms2q")
 
-[sub_resource type="Resource" id="Resource_hu7dc"]
+[sub_resource type="Resource" id="Resource_tq85q"]
 script = ExtResource("1_fpb3f")
 level = 13
 move = ExtResource("5_puu4r")
 
-[sub_resource type="Resource" id="Resource_od5cj"]
+[sub_resource type="Resource" id="Resource_tnf3b"]
 script = ExtResource("1_fpb3f")
 level = 19
 move = ExtResource("6_hu7dc")
 
-[sub_resource type="Resource" id="Resource_tq85q"]
+[sub_resource type="Resource" id="Resource_ouqw1"]
 script = ExtResource("1_fpb3f")
 level = 25
 move = ExtResource("7_od5cj")
 
-[sub_resource type="Resource" id="Resource_tnf3b"]
+[sub_resource type="Resource" id="Resource_65ip0"]
 script = ExtResource("1_fpb3f")
 level = 31
 move = ExtResource("8_tq85q")
 
-[sub_resource type="Resource" id="Resource_ouqw1"]
+[sub_resource type="Resource" id="Resource_4kqm4"]
 script = ExtResource("1_fpb3f")
 level = 37
 move = ExtResource("9_tnf3b")
 
-[sub_resource type="Resource" id="Resource_65ip0"]
+[sub_resource type="Resource" id="Resource_8nonu"]
 script = ExtResource("1_fpb3f")
 level = 43
 move = ExtResource("10_ouqw1")
 
-[sub_resource type="Resource" id="Resource_4kqm4"]
+[sub_resource type="Resource" id="Resource_1udtu"]
 script = ExtResource("1_fpb3f")
 level = 49
 move = ExtResource("11_65ip0")
@@ -73,7 +80,9 @@ id = "nuzleaf"
 display_name = "Nuzleaf"
 dex = 274
 types = Array[ExtResource("4_2ov0y")]([ExtResource("5_sdk2x"), ExtResource("6_lr0b1")])
-learnset = Array[ExtResource("1_fpb3f")]([SubResource("Resource_7qgo6"), SubResource("Resource_yms2q"), SubResource("Resource_puu4r"), SubResource("Resource_hu7dc"), SubResource("Resource_od5cj"), SubResource("Resource_tq85q"), SubResource("Resource_tnf3b"), SubResource("Resource_ouqw1"), SubResource("Resource_65ip0"), SubResource("Resource_4kqm4")])
+learnset = Array[ExtResource("1_fpb3f")]([SubResource("Resource_puu4r"), SubResource("Resource_hu7dc"), SubResource("Resource_od5cj"), SubResource("Resource_tq85q"), SubResource("Resource_tnf3b"), SubResource("Resource_ouqw1"), SubResource("Resource_65ip0"), SubResource("Resource_4kqm4"), SubResource("Resource_8nonu"), SubResource("Resource_1udtu")])
+evolutions = Array[ExtResource("1_yms2q")]([SubResource("Resource_yms2q")])
+evolves_from = "seedot"
 temperament = ExtResource("14_7qgo6")
 genus = "Pokémon Astuto"
 pokedex_entry = "Nuzleaf habita bosques muy poblados y, en ocasiones, se atreve a salir para asustar a la gente. A este Pokémon no le gusta nada que le pellizquen la nariz."

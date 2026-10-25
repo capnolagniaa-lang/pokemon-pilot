@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_wqkvk"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yeoyl"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6earm"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_ujtcu"]
@@ -8,7 +9,12 @@
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_uippl"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="5_ujtcu"]
 
-[sub_resource type="Resource" id="Resource_ujtcu"]
+[sub_resource type="Resource" id="Resource_wqkvk"]
+script = ExtResource("1_wqkvk")
+to_id = "dustox"
+level = 10
+
+[sub_resource type="Resource" id="Resource_uippl"]
 script = ExtResource("1_yeoyl")
 move = ExtResource("2_ujtcu")
 
@@ -18,7 +24,9 @@ id = "cascoon"
 display_name = "Cascoon"
 dex = 268
 types = Array[ExtResource("4_wqkvk")]([ExtResource("5_uippl")])
-learnset = Array[ExtResource("1_yeoyl")]([SubResource("Resource_ujtcu")])
+learnset = Array[ExtResource("1_yeoyl")]([SubResource("Resource_uippl")])
+evolutions = Array[ExtResource("1_wqkvk")]([SubResource("Resource_wqkvk")])
+evolves_from = "wurmple"
 temperament = ExtResource("5_ujtcu")
 genus = "Pokémon Capullo"
 pokedex_entry = "Cascoon forma el capullo que lo protege enrollándose por completo en la seda que libera por la boca. Cuando está totalmente recubierto, se prepara para evolucionar en el interior del capullo."

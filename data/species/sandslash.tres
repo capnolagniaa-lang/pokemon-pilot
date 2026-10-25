@@ -1,59 +1,62 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_q2ht3"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_v2i5d"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0rwml"]
-[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_aurcx"]
+[ext_resource type="Resource" path="res://data/kits/sandshrew/kit.tres" id="2_6aw5p"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_4allr"]
-[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="3_xcyk4"]
+[ext_resource type="Resource" path="res://data/kits/sandshrew/aranazo_sandshrew.tres" id="4_6aw5p"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_8o4k0"]
-[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_q2ht3"]
-[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="5_6aw5p"]
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_bfdjk"]
+[ext_resource type="Resource" path="res://data/kits/sandshrew/ataque_arena_sandshrew.tres" id="5_p4rc8"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="6_p4rc8"]
+[ext_resource type="Resource" path="res://data/kits/sandshrew/picotazo_veneno_sandshrew.tres" id="6_ygpvt"]
+[ext_resource type="Resource" path="res://data/kits/sandshrew/rizo_defensa_sandshrew.tres" id="7_8nesc"]
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="7_ygpvt"]
 [ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="8_8nesc"]
 [ext_resource type="Resource" path="res://data/moves/bucle_arena.tres" id="9_bj10l"]
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="10_s78so"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_xcyk4"]
 
-[sub_resource type="Resource" id="Resource_xcyk4"]
-script = ExtResource("1_v2i5d")
-move = ExtResource("2_aurcx")
-
-[sub_resource type="Resource" id="Resource_q2ht3"]
-script = ExtResource("1_v2i5d")
-move = ExtResource("3_xcyk4")
-
 [sub_resource type="Resource" id="Resource_6aw5p"]
 script = ExtResource("1_v2i5d")
-move = ExtResource("4_q2ht3")
+move = ExtResource("4_6aw5p")
 
 [sub_resource type="Resource" id="Resource_p4rc8"]
 script = ExtResource("1_v2i5d")
-level = 17
-move = ExtResource("5_6aw5p")
+move = ExtResource("5_p4rc8")
 
 [sub_resource type="Resource" id="Resource_ygpvt"]
+script = ExtResource("1_v2i5d")
+level = 3
+move = ExtResource("6_ygpvt")
+
+[sub_resource type="Resource" id="Resource_8nesc"]
+script = ExtResource("1_v2i5d")
+level = 5
+move = ExtResource("7_8nesc")
+
+[sub_resource type="Resource" id="Resource_bj10l"]
 script = ExtResource("1_v2i5d")
 level = 24
 move = ExtResource("6_p4rc8")
 
-[sub_resource type="Resource" id="Resource_8nesc"]
+[sub_resource type="Resource" id="Resource_s78so"]
 script = ExtResource("1_v2i5d")
 level = 33
 move = ExtResource("7_ygpvt")
 
-[sub_resource type="Resource" id="Resource_bj10l"]
+[sub_resource type="Resource" id="Resource_f2sxf"]
 script = ExtResource("1_v2i5d")
 level = 42
 move = ExtResource("8_8nesc")
 
-[sub_resource type="Resource" id="Resource_s78so"]
+[sub_resource type="Resource" id="Resource_wtd8x"]
 script = ExtResource("1_v2i5d")
 level = 52
 move = ExtResource("9_bj10l")
 
-[sub_resource type="Resource" id="Resource_f2sxf"]
+[sub_resource type="Resource" id="Resource_hlelb"]
 script = ExtResource("1_v2i5d")
 level = 62
 move = ExtResource("10_s78so")
@@ -64,7 +67,10 @@ id = "sandslash"
 display_name = "Sandslash"
 dex = 28
 types = Array[ExtResource("4_8o4k0")]([ExtResource("5_bfdjk")])
-learnset = Array[ExtResource("1_v2i5d")]([SubResource("Resource_xcyk4"), SubResource("Resource_q2ht3"), SubResource("Resource_6aw5p"), SubResource("Resource_p4rc8"), SubResource("Resource_ygpvt"), SubResource("Resource_8nesc"), SubResource("Resource_bj10l"), SubResource("Resource_s78so"), SubResource("Resource_f2sxf")])
+kit = ExtResource("2_6aw5p")
+learnset = Array[ExtResource("1_v2i5d")]([SubResource("Resource_6aw5p"), SubResource("Resource_p4rc8"), SubResource("Resource_ygpvt"), SubResource("Resource_8nesc"), SubResource("Resource_bj10l"), SubResource("Resource_s78so"), SubResource("Resource_f2sxf"), SubResource("Resource_wtd8x"), SubResource("Resource_hlelb")])
+kit_inherited = true
+evolves_from = "sandshrew"
 temperament = ExtResource("13_xcyk4")
 genus = "Pokémon Ratón"
 pokedex_entry = "Sandslash está recubierto de duras púas que son partes endurecidas de la piel. Suele mudarlas una vez al año; debajo de las viejas púas crecen unas nuevas que las sustituyen."

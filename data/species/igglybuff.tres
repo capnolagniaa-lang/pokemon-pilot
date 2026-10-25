@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_f5qm5"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_unyqn"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7ff2b"]
 [ext_resource type="Resource" path="res://data/moves/encanto.tres" id="2_nrtn7"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ak5a8"]
@@ -13,25 +14,30 @@
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="6_nrtn7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="9_pfrce"]
 
-[sub_resource type="Resource" id="Resource_pfrce"]
+[sub_resource type="Resource" id="Resource_unyqn"]
+script = ExtResource("1_unyqn")
+to_id = "jigglypuff"
+method = "amistad"
+
+[sub_resource type="Resource" id="Resource_wfyc3"]
 script = ExtResource("1_f5qm5")
 move = ExtResource("2_nrtn7")
 
-[sub_resource type="Resource" id="Resource_unyqn"]
+[sub_resource type="Resource" id="Resource_lnsh7"]
 script = ExtResource("1_f5qm5")
 move = ExtResource("3_pfrce")
 
-[sub_resource type="Resource" id="Resource_wfyc3"]
+[sub_resource type="Resource" id="Resource_ftbet"]
 script = ExtResource("1_f5qm5")
 level = 4
 move = ExtResource("4_unyqn")
 
-[sub_resource type="Resource" id="Resource_lnsh7"]
+[sub_resource type="Resource" id="Resource_p8jok"]
 script = ExtResource("1_f5qm5")
 level = 9
 move = ExtResource("5_wfyc3")
 
-[sub_resource type="Resource" id="Resource_ftbet"]
+[sub_resource type="Resource" id="Resource_0s8v7"]
 script = ExtResource("1_f5qm5")
 level = 14
 move = ExtResource("6_lnsh7")
@@ -42,7 +48,8 @@ id = "igglybuff"
 display_name = "Igglybuff"
 dex = 174
 types = Array[ExtResource("4_2g58w")]([ExtResource("5_24fah"), ExtResource("6_nrtn7")])
-learnset = Array[ExtResource("1_f5qm5")]([SubResource("Resource_pfrce"), SubResource("Resource_unyqn"), SubResource("Resource_wfyc3"), SubResource("Resource_lnsh7"), SubResource("Resource_ftbet")])
+learnset = Array[ExtResource("1_f5qm5")]([SubResource("Resource_wfyc3"), SubResource("Resource_lnsh7"), SubResource("Resource_ftbet"), SubResource("Resource_p8jok"), SubResource("Resource_0s8v7")])
+evolutions = Array[ExtResource("1_unyqn")]([SubResource("Resource_unyqn")])
 temperament = ExtResource("9_pfrce")
 genus = "Pokémon Globo"
 pokedex_entry = "Las cuerdas vocales de Igglybuff no están suficientemente desarrolladas. Si tuviera que cantar mucho, se haría daño en la garganta. Este Pokémon suele hacer gárgaras con agua pura de manantial."

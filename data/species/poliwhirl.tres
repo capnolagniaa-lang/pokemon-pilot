@@ -1,53 +1,68 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_h0cys"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_y4sg4"]
-[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_6ie03"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_64jx7"]
-[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="3_0a30s"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/kit.tres" id="2_blf2y"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_285h0"]
-[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_h0cys"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/burbuja_kit.tres" id="4_blf2y"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_othot"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_at81q"]
 [ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="5_blf2y"]
-[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="6_umsxr"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/pistola_agua_poliwag.tres" id="5_umsxr"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/danza_lluvia_kit.tres" id="6_beea0"]
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="7_beea0"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/hipnosis_kit.tres" id="7_em6ef"]
 [ext_resource type="Resource" path="res://data/moves/tambor.tres" id="8_em6ef"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_ng27l"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_0a30s"]
 
-[sub_resource type="Resource" id="Resource_0a30s"]
-script = ExtResource("1_y4sg4")
-move = ExtResource("2_6ie03")
+[sub_resource type="Resource" id="Resource_f3j6j"]
+script = ExtResource("1_h0cys")
+to_id = "poliwrath"
+method = "piedra"
+item = "piedra_agua"
 
-[sub_resource type="Resource" id="Resource_h0cys"]
-script = ExtResource("1_y4sg4")
-move = ExtResource("3_0a30s")
+[sub_resource type="Resource" id="Resource_dfjm5"]
+script = ExtResource("1_h0cys")
+to_id = "politoed"
+method = "intercambio"
+item = "kings-rock"
 
 [sub_resource type="Resource" id="Resource_blf2y"]
 script = ExtResource("1_y4sg4")
-move = ExtResource("4_h0cys")
+move = ExtResource("4_blf2y")
 
 [sub_resource type="Resource" id="Resource_umsxr"]
+script = ExtResource("1_y4sg4")
+move = ExtResource("5_umsxr")
+
+[sub_resource type="Resource" id="Resource_beea0"]
+script = ExtResource("1_y4sg4")
+level = 3
+move = ExtResource("6_beea0")
+
+[sub_resource type="Resource" id="Resource_em6ef"]
+script = ExtResource("1_y4sg4")
+level = 5
+move = ExtResource("7_em6ef")
+
+[sub_resource type="Resource" id="Resource_ng27l"]
 script = ExtResource("1_y4sg4")
 level = 19
 move = ExtResource("5_blf2y")
 
-[sub_resource type="Resource" id="Resource_beea0"]
-script = ExtResource("1_y4sg4")
-level = 27
-move = ExtResource("6_umsxr")
-
-[sub_resource type="Resource" id="Resource_em6ef"]
+[sub_resource type="Resource" id="Resource_ofsjn"]
 script = ExtResource("1_y4sg4")
 level = 35
 move = ExtResource("7_beea0")
 
-[sub_resource type="Resource" id="Resource_ng27l"]
+[sub_resource type="Resource" id="Resource_uktav"]
 script = ExtResource("1_y4sg4")
 level = 43
 move = ExtResource("8_em6ef")
 
-[sub_resource type="Resource" id="Resource_ofsjn"]
+[sub_resource type="Resource" id="Resource_sw3qy"]
 script = ExtResource("1_y4sg4")
 level = 51
 move = ExtResource("9_ng27l")
@@ -58,7 +73,11 @@ id = "poliwhirl"
 display_name = "Poliwhirl"
 dex = 61
 types = Array[ExtResource("4_othot")]([ExtResource("5_at81q")])
-learnset = Array[ExtResource("1_y4sg4")]([SubResource("Resource_0a30s"), SubResource("Resource_h0cys"), SubResource("Resource_blf2y"), SubResource("Resource_umsxr"), SubResource("Resource_beea0"), SubResource("Resource_em6ef"), SubResource("Resource_ng27l"), SubResource("Resource_ofsjn")])
+kit = ExtResource("2_blf2y")
+learnset = Array[ExtResource("1_y4sg4")]([SubResource("Resource_blf2y"), SubResource("Resource_umsxr"), SubResource("Resource_beea0"), SubResource("Resource_em6ef"), SubResource("Resource_ng27l"), SubResource("Resource_ofsjn"), SubResource("Resource_uktav"), SubResource("Resource_sw3qy")])
+kit_inherited = true
+evolutions = Array[ExtResource("1_h0cys")]([SubResource("Resource_f3j6j"), SubResource("Resource_dfjm5")])
+evolves_from = "poliwag"
 temperament = ExtResource("12_0a30s")
 genus = "Pokémon Renacuajo"
 pokedex_entry = "La piel de Poliwhirl está siempre húmeda y lubricada con un fluido viscoso. Gracias a esta película resbaladiza, puede escapar de las garras del enemigo, resbalándosele de las zarpas en pleno combate."

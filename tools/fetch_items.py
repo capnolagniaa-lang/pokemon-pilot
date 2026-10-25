@@ -33,7 +33,12 @@ ITEMS = {
     "revivir": ("revive", "items", 20, {"revive_ratio": 0.5, "use_time": 1.0}),
     # Capítulo 2 (docs/PLAN_CAPITULO_2.md): Mt. Moon, Puente Pepita y Bill.
     "caramelo_raro": ("rare-candy", "items", 30, {"level_up": 1, "usable_in_battle": False}),
-    "piedra_lunar": ("moon-stone", "items", 40, {"usable_in_battle": False}),
+    "piedra_lunar": ("moon-stone", "items", 40, {"evolves": True, "usable_in_battle": False}),
+    "piedra_fuego": ("fire-stone", "items", 41, {"evolves": True, "usable_in_battle": False}),
+    "piedra_agua": ("water-stone", "items", 42, {"evolves": True, "usable_in_battle": False}),
+    "piedra_trueno": ("thunder-stone", "items", 43, {"evolves": True, "usable_in_battle": False}),
+    "piedra_hoja": ("leaf-stone", "items", 44, {"evolves": True, "usable_in_battle": False}),
+    "piedra_solar": ("sun-stone", "items", 45, {"evolves": True, "usable_in_battle": False}),
     "trozo_estrella": ("star-piece", "items", 50, {"usable_in_battle": False}),
     "pepita": ("nugget", "items", 51, {"usable_in_battle": False}),
     # Objetos clave de la historia (docs/PLAN_HISTORIA.md, H-2): no se usan, los mira la historia.
@@ -50,7 +55,8 @@ PRICES = {
     "pocion": 300, "superpocion": 700, "hiperpocion": 1200, "pocion_maxima": 2500,
     "antidoto": 100, "antiparalizador": 200, "despertar": 250, "antiquemar": 250, "antihielo": 250,
     "cura_total": 600, "revivir": 1500,
-    "caramelo_raro": 4800, "piedra_lunar": 2100, "trozo_estrella": 9800, "pepita": 10000,
+    "caramelo_raro": 4800, "piedra_lunar": 2100, "piedra_fuego": 2100, "piedra_agua": 2100,
+    "piedra_trueno": 2100, "piedra_hoja": 2100, "piedra_solar": 2100, "trozo_estrella": 9800, "pepita": 10000,
 }
 # Descripción propia cuando PokeAPI no tiene una en español.
 DESCRIPTIONS = {

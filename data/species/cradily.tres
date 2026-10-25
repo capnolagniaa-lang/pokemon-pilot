@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_715ps"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mfk6n"]
 [ext_resource type="Resource" path="res://data/moves/acido.tres" id="2_phrb3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vtbf7"]
@@ -18,48 +19,48 @@
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_p6erl"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ty8uh"]
 
-[sub_resource type="Resource" id="Resource_ty8uh"]
+[sub_resource type="Resource" id="Resource_715ps"]
 script = ExtResource("1_mfk6n")
 move = ExtResource("2_phrb3")
 
-[sub_resource type="Resource" id="Resource_715ps"]
+[sub_resource type="Resource" id="Resource_vrsta"]
 script = ExtResource("1_mfk6n")
 move = ExtResource("3_ty8uh")
 
-[sub_resource type="Resource" id="Resource_vrsta"]
+[sub_resource type="Resource" id="Resource_1nv1h"]
 script = ExtResource("1_mfk6n")
 move = ExtResource("4_715ps")
 
-[sub_resource type="Resource" id="Resource_1nv1h"]
+[sub_resource type="Resource" id="Resource_b68p5"]
 script = ExtResource("1_mfk6n")
 move = ExtResource("5_vrsta")
 
-[sub_resource type="Resource" id="Resource_b68p5"]
+[sub_resource type="Resource" id="Resource_bbfxl"]
 script = ExtResource("1_mfk6n")
 level = 29
 move = ExtResource("6_1nv1h")
 
-[sub_resource type="Resource" id="Resource_bbfxl"]
+[sub_resource type="Resource" id="Resource_xjs3r"]
 script = ExtResource("1_mfk6n")
 level = 36
 move = ExtResource("7_b68p5")
 
-[sub_resource type="Resource" id="Resource_xjs3r"]
+[sub_resource type="Resource" id="Resource_h4rif"]
 script = ExtResource("1_mfk6n")
 level = 48
 move = ExtResource("8_bbfxl")
 
-[sub_resource type="Resource" id="Resource_h4rif"]
+[sub_resource type="Resource" id="Resource_p6erl"]
 script = ExtResource("1_mfk6n")
 level = 60
 move = ExtResource("9_xjs3r")
 
-[sub_resource type="Resource" id="Resource_p6erl"]
+[sub_resource type="Resource" id="Resource_ku0ky"]
 script = ExtResource("1_mfk6n")
 level = 60
 move = ExtResource("10_h4rif")
 
-[sub_resource type="Resource" id="Resource_ku0ky"]
+[sub_resource type="Resource" id="Resource_0esyl"]
 script = ExtResource("1_mfk6n")
 level = 60
 move = ExtResource("11_p6erl")
@@ -70,7 +71,8 @@ id = "cradily"
 display_name = "Cradily"
 dex = 346
 types = Array[ExtResource("4_sw2w3")]([ExtResource("5_55ww5"), ExtResource("6_8box6")])
-learnset = Array[ExtResource("1_mfk6n")]([SubResource("Resource_ty8uh"), SubResource("Resource_715ps"), SubResource("Resource_vrsta"), SubResource("Resource_1nv1h"), SubResource("Resource_b68p5"), SubResource("Resource_bbfxl"), SubResource("Resource_xjs3r"), SubResource("Resource_h4rif"), SubResource("Resource_p6erl"), SubResource("Resource_ku0ky")])
+learnset = Array[ExtResource("1_mfk6n")]([SubResource("Resource_715ps"), SubResource("Resource_vrsta"), SubResource("Resource_1nv1h"), SubResource("Resource_b68p5"), SubResource("Resource_bbfxl"), SubResource("Resource_xjs3r"), SubResource("Resource_h4rif"), SubResource("Resource_p6erl"), SubResource("Resource_ku0ky"), SubResource("Resource_0esyl")])
+evolves_from = "lileep"
 temperament = ExtResource("14_ty8uh")
 genus = "Pokémon Percebe"
 pokedex_entry = "Cradily va por el fondo oceánico sin rumbo fijo en busca de comida. El cuello de este Pokémon se parece al tronco de un árbol. Cuando quiere atrapar a su presa desprevenida, lo estira y usa los ocho tentáculos que tiene."

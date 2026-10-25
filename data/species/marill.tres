@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8xd0n"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_8y2yl"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wfng8"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_yq25o"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_5g3tr"]
@@ -17,46 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_8xjir"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_wisop"]
 
-[sub_resource type="Resource" id="Resource_wisop"]
+[sub_resource type="Resource" id="Resource_8y2yl"]
+script = ExtResource("1_8y2yl")
+to_id = "azumarill"
+level = 18
+
+[sub_resource type="Resource" id="Resource_ipmra"]
 script = ExtResource("1_8xd0n")
 move = ExtResource("2_yq25o")
 
-[sub_resource type="Resource" id="Resource_8y2yl"]
+[sub_resource type="Resource" id="Resource_16nh3"]
 script = ExtResource("1_8xd0n")
 level = 3
 move = ExtResource("3_wisop")
 
-[sub_resource type="Resource" id="Resource_ipmra"]
+[sub_resource type="Resource" id="Resource_ya2wp"]
 script = ExtResource("1_8xd0n")
 level = 6
 move = ExtResource("4_8y2yl")
 
-[sub_resource type="Resource" id="Resource_16nh3"]
+[sub_resource type="Resource" id="Resource_bjd17"]
 script = ExtResource("1_8xd0n")
 level = 10
 move = ExtResource("5_ipmra")
 
-[sub_resource type="Resource" id="Resource_ya2wp"]
+[sub_resource type="Resource" id="Resource_04t8r"]
 script = ExtResource("1_8xd0n")
 level = 15
 move = ExtResource("6_16nh3")
 
-[sub_resource type="Resource" id="Resource_bjd17"]
+[sub_resource type="Resource" id="Resource_8xjir"]
 script = ExtResource("1_8xd0n")
 level = 21
 move = ExtResource("7_ya2wp")
 
-[sub_resource type="Resource" id="Resource_04t8r"]
+[sub_resource type="Resource" id="Resource_wllm0"]
 script = ExtResource("1_8xd0n")
 level = 28
 move = ExtResource("8_bjd17")
 
-[sub_resource type="Resource" id="Resource_8xjir"]
+[sub_resource type="Resource" id="Resource_a74bl"]
 script = ExtResource("1_8xd0n")
 level = 36
 move = ExtResource("9_04t8r")
 
-[sub_resource type="Resource" id="Resource_wllm0"]
+[sub_resource type="Resource" id="Resource_8r76m"]
 script = ExtResource("1_8xd0n")
 level = 45
 move = ExtResource("10_8xjir")
@@ -67,7 +73,9 @@ id = "marill"
 display_name = "Marill"
 dex = 183
 types = Array[ExtResource("4_iiqx5")]([ExtResource("5_mjgxi"), ExtResource("6_p0njn")])
-learnset = Array[ExtResource("1_8xd0n")]([SubResource("Resource_wisop"), SubResource("Resource_8y2yl"), SubResource("Resource_ipmra"), SubResource("Resource_16nh3"), SubResource("Resource_ya2wp"), SubResource("Resource_bjd17"), SubResource("Resource_04t8r"), SubResource("Resource_8xjir"), SubResource("Resource_wllm0")])
+learnset = Array[ExtResource("1_8xd0n")]([SubResource("Resource_ipmra"), SubResource("Resource_16nh3"), SubResource("Resource_ya2wp"), SubResource("Resource_bjd17"), SubResource("Resource_04t8r"), SubResource("Resource_8xjir"), SubResource("Resource_wllm0"), SubResource("Resource_a74bl"), SubResource("Resource_8r76m")])
+evolutions = Array[ExtResource("1_8y2yl")]([SubResource("Resource_8y2yl")])
+evolves_from = "azurill"
 temperament = ExtResource("13_wisop")
 genus = "Pokémon Ratón Agua"
 pokedex_entry = "La cola de Marill contiene un aceite que hace las veces de chaleco salvavidas. Si ves una moviéndose en el agua, seguro que debajo hay un Marill medio sumergido buscando plantas acuáticas para comer."

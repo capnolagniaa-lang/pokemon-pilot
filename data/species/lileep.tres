@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_0dcn2"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_wbq7q"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_f2b6o"]
 [ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_l2pvs"]
 [ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="3_51ap4"]
@@ -18,51 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_5wlso"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_51ap4"]
 
-[sub_resource type="Resource" id="Resource_51ap4"]
+[sub_resource type="Resource" id="Resource_wbq7q"]
+script = ExtResource("1_wbq7q")
+to_id = "cradily"
+level = 40
+
+[sub_resource type="Resource" id="Resource_6l2lp"]
 script = ExtResource("1_0dcn2")
 move = ExtResource("2_l2pvs")
 
-[sub_resource type="Resource" id="Resource_wbq7q"]
+[sub_resource type="Resource" id="Resource_p8sdr"]
 script = ExtResource("1_0dcn2")
 level = 8
 move = ExtResource("3_51ap4")
 
-[sub_resource type="Resource" id="Resource_6l2lp"]
+[sub_resource type="Resource" id="Resource_bj61t"]
 script = ExtResource("1_0dcn2")
 level = 15
 move = ExtResource("4_wbq7q")
 
-[sub_resource type="Resource" id="Resource_p8sdr"]
+[sub_resource type="Resource" id="Resource_vuaf8"]
 script = ExtResource("1_0dcn2")
 level = 22
 move = ExtResource("5_6l2lp")
 
-[sub_resource type="Resource" id="Resource_bj61t"]
+[sub_resource type="Resource" id="Resource_mnugh"]
 script = ExtResource("1_0dcn2")
 level = 29
 move = ExtResource("6_p8sdr")
 
-[sub_resource type="Resource" id="Resource_vuaf8"]
+[sub_resource type="Resource" id="Resource_e1wnq"]
 script = ExtResource("1_0dcn2")
 level = 36
 move = ExtResource("7_bj61t")
 
-[sub_resource type="Resource" id="Resource_mnugh"]
+[sub_resource type="Resource" id="Resource_5wlso"]
 script = ExtResource("1_0dcn2")
 level = 43
 move = ExtResource("8_vuaf8")
 
-[sub_resource type="Resource" id="Resource_e1wnq"]
+[sub_resource type="Resource" id="Resource_m77ce"]
 script = ExtResource("1_0dcn2")
 level = 50
 move = ExtResource("9_mnugh")
 
-[sub_resource type="Resource" id="Resource_5wlso"]
+[sub_resource type="Resource" id="Resource_s5wl6"]
 script = ExtResource("1_0dcn2")
 level = 50
 move = ExtResource("10_e1wnq")
 
-[sub_resource type="Resource" id="Resource_m77ce"]
+[sub_resource type="Resource" id="Resource_mn6nu"]
 script = ExtResource("1_0dcn2")
 level = 50
 move = ExtResource("11_5wlso")
@@ -73,7 +79,8 @@ id = "lileep"
 display_name = "Lileep"
 dex = 345
 types = Array[ExtResource("4_pb7lr")]([ExtResource("5_7w8hj"), ExtResource("6_5j65k")])
-learnset = Array[ExtResource("1_0dcn2")]([SubResource("Resource_51ap4"), SubResource("Resource_wbq7q"), SubResource("Resource_6l2lp"), SubResource("Resource_p8sdr"), SubResource("Resource_bj61t"), SubResource("Resource_vuaf8"), SubResource("Resource_mnugh"), SubResource("Resource_e1wnq"), SubResource("Resource_5wlso"), SubResource("Resource_m77ce")])
+learnset = Array[ExtResource("1_0dcn2")]([SubResource("Resource_6l2lp"), SubResource("Resource_p8sdr"), SubResource("Resource_bj61t"), SubResource("Resource_vuaf8"), SubResource("Resource_mnugh"), SubResource("Resource_e1wnq"), SubResource("Resource_5wlso"), SubResource("Resource_m77ce"), SubResource("Resource_s5wl6"), SubResource("Resource_mn6nu")])
+evolutions = Array[ExtResource("1_wbq7q")]([SubResource("Resource_wbq7q")])
 temperament = ExtResource("14_51ap4")
 genus = "Pokémon Lirio de Mar"
 pokedex_entry = "Los Lileep se extinguieron hace unos cien millones de años aproximadamente. Este Pokémon se ancla a una roca en el fondo del mar y atrapa a las presas que se le acercan con los tentáculos que tiene en forma de pétalos de flor."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_66c7t"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_x04q4"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_05t7y"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_fl0e0"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_05t7y"]
@@ -8,7 +9,12 @@
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="5_05t7y"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_5451h"]
 
-[sub_resource type="Resource" id="Resource_05t7y"]
+[sub_resource type="Resource" id="Resource_x04q4"]
+script = ExtResource("1_x04q4")
+to_id = "beautifly"
+level = 10
+
+[sub_resource type="Resource" id="Resource_5451h"]
 script = ExtResource("1_66c7t")
 move = ExtResource("2_05t7y")
 
@@ -18,7 +24,9 @@ id = "silcoon"
 display_name = "Silcoon"
 dex = 266
 types = Array[ExtResource("4_x04q4")]([ExtResource("5_5451h")])
-learnset = Array[ExtResource("1_66c7t")]([SubResource("Resource_05t7y")])
+learnset = Array[ExtResource("1_66c7t")]([SubResource("Resource_5451h")])
+evolutions = Array[ExtResource("1_x04q4")]([SubResource("Resource_x04q4")])
+evolves_from = "wurmple"
 temperament = ExtResource("5_05t7y")
 genus = "Pokémon Capullo"
 pokedex_entry = "Silcoon usa la seda que produce para aferrarse a la rama de un árbol y sujetarse bien. Se queda ahí colgado a la espera de su evolución, mientras lo observa todo a través de dos pequeños agujeros en su capullo de seda."

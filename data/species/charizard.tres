@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_oojqh"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_r4qae"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_aa03q"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rb7j3"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_eymdc"]
@@ -20,57 +21,57 @@
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="13_ryhri"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_eymdc"]
 
-[sub_resource type="Resource" id="Resource_eymdc"]
+[sub_resource type="Resource" id="Resource_r4qae"]
 script = ExtResource("1_oojqh")
 move = ExtResource("2_aa03q")
 
-[sub_resource type="Resource" id="Resource_r4qae"]
+[sub_resource type="Resource" id="Resource_k0tiy"]
 script = ExtResource("1_oojqh")
 move = ExtResource("3_eymdc")
 
-[sub_resource type="Resource" id="Resource_k0tiy"]
+[sub_resource type="Resource" id="Resource_bwhci"]
 script = ExtResource("1_oojqh")
 move = ExtResource("4_r4qae")
 
-[sub_resource type="Resource" id="Resource_bwhci"]
+[sub_resource type="Resource" id="Resource_on532"]
 script = ExtResource("1_oojqh")
 move = ExtResource("5_k0tiy")
 
-[sub_resource type="Resource" id="Resource_on532"]
+[sub_resource type="Resource" id="Resource_5nsqo"]
 script = ExtResource("1_oojqh")
 move = ExtResource("6_bwhci")
 
-[sub_resource type="Resource" id="Resource_5nsqo"]
+[sub_resource type="Resource" id="Resource_65kk2"]
 script = ExtResource("1_oojqh")
 level = 20
 move = ExtResource("7_on532")
 
-[sub_resource type="Resource" id="Resource_65kk2"]
+[sub_resource type="Resource" id="Resource_je66w"]
 script = ExtResource("1_oojqh")
 level = 27
 move = ExtResource("8_5nsqo")
 
-[sub_resource type="Resource" id="Resource_je66w"]
+[sub_resource type="Resource" id="Resource_ns5bu"]
 script = ExtResource("1_oojqh")
 level = 34
 move = ExtResource("9_65kk2")
 
-[sub_resource type="Resource" id="Resource_ns5bu"]
+[sub_resource type="Resource" id="Resource_nd6to"]
 script = ExtResource("1_oojqh")
 level = 36
 move = ExtResource("10_je66w")
 
-[sub_resource type="Resource" id="Resource_nd6to"]
+[sub_resource type="Resource" id="Resource_ryhri"]
 script = ExtResource("1_oojqh")
 level = 44
 move = ExtResource("11_ns5bu")
 
-[sub_resource type="Resource" id="Resource_ryhri"]
+[sub_resource type="Resource" id="Resource_6slac"]
 script = ExtResource("1_oojqh")
 level = 54
 move = ExtResource("12_nd6to")
 
-[sub_resource type="Resource" id="Resource_6slac"]
+[sub_resource type="Resource" id="Resource_p5iox"]
 script = ExtResource("1_oojqh")
 level = 64
 move = ExtResource("13_ryhri")
@@ -81,7 +82,8 @@ id = "charizard"
 display_name = "Charizard"
 dex = 6
 types = Array[ExtResource("4_dk3e4")]([ExtResource("5_xolsu"), ExtResource("6_52m7d")])
-learnset = Array[ExtResource("1_oojqh")]([SubResource("Resource_eymdc"), SubResource("Resource_r4qae"), SubResource("Resource_k0tiy"), SubResource("Resource_bwhci"), SubResource("Resource_on532"), SubResource("Resource_5nsqo"), SubResource("Resource_65kk2"), SubResource("Resource_je66w"), SubResource("Resource_ns5bu"), SubResource("Resource_nd6to"), SubResource("Resource_ryhri"), SubResource("Resource_6slac")])
+learnset = Array[ExtResource("1_oojqh")]([SubResource("Resource_r4qae"), SubResource("Resource_k0tiy"), SubResource("Resource_bwhci"), SubResource("Resource_on532"), SubResource("Resource_5nsqo"), SubResource("Resource_65kk2"), SubResource("Resource_je66w"), SubResource("Resource_ns5bu"), SubResource("Resource_nd6to"), SubResource("Resource_ryhri"), SubResource("Resource_6slac"), SubResource("Resource_p5iox")])
+evolves_from = "charmeleon"
 temperament = ExtResource("16_eymdc")
 genus = "Pokémon Llama"
 pokedex_entry = "Charizard se dedica a volar por los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, si su rival es más débil que él, no usará este ataque."

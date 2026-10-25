@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_2tp06"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_65cs8"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_50byp"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lei10"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1y841"]
@@ -16,40 +17,45 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="9_b3rjc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_j5w5s"]
 
-[sub_resource type="Resource" id="Resource_j5w5s"]
+[sub_resource type="Resource" id="Resource_65cs8"]
+script = ExtResource("1_65cs8")
+to_id = "xatu"
+level = 25
+
+[sub_resource type="Resource" id="Resource_63dck"]
 script = ExtResource("1_2tp06")
 move = ExtResource("2_50byp")
 
-[sub_resource type="Resource" id="Resource_65cs8"]
+[sub_resource type="Resource" id="Resource_24umb"]
 script = ExtResource("1_2tp06")
 move = ExtResource("3_j5w5s")
 
-[sub_resource type="Resource" id="Resource_63dck"]
+[sub_resource type="Resource" id="Resource_nfrqm"]
 script = ExtResource("1_2tp06")
 level = 10
 move = ExtResource("4_65cs8")
 
-[sub_resource type="Resource" id="Resource_24umb"]
+[sub_resource type="Resource" id="Resource_lfv8d"]
 script = ExtResource("1_2tp06")
 level = 20
 move = ExtResource("5_63dck")
 
-[sub_resource type="Resource" id="Resource_nfrqm"]
+[sub_resource type="Resource" id="Resource_b3rjc"]
 script = ExtResource("1_2tp06")
 level = 30
 move = ExtResource("6_24umb")
 
-[sub_resource type="Resource" id="Resource_lfv8d"]
+[sub_resource type="Resource" id="Resource_w4dd6"]
 script = ExtResource("1_2tp06")
 level = 30
 move = ExtResource("7_nfrqm")
 
-[sub_resource type="Resource" id="Resource_b3rjc"]
+[sub_resource type="Resource" id="Resource_q6tiy"]
 script = ExtResource("1_2tp06")
 level = 40
 move = ExtResource("8_lfv8d")
 
-[sub_resource type="Resource" id="Resource_w4dd6"]
+[sub_resource type="Resource" id="Resource_1ddlr"]
 script = ExtResource("1_2tp06")
 level = 50
 move = ExtResource("9_b3rjc")
@@ -60,7 +66,8 @@ id = "natu"
 display_name = "Natu"
 dex = 177
 types = Array[ExtResource("4_dkr0k")]([ExtResource("5_g60yt"), ExtResource("6_lnnlq")])
-learnset = Array[ExtResource("1_2tp06")]([SubResource("Resource_j5w5s"), SubResource("Resource_65cs8"), SubResource("Resource_63dck"), SubResource("Resource_24umb"), SubResource("Resource_nfrqm"), SubResource("Resource_lfv8d"), SubResource("Resource_b3rjc"), SubResource("Resource_w4dd6")])
+learnset = Array[ExtResource("1_2tp06")]([SubResource("Resource_63dck"), SubResource("Resource_24umb"), SubResource("Resource_nfrqm"), SubResource("Resource_lfv8d"), SubResource("Resource_b3rjc"), SubResource("Resource_w4dd6"), SubResource("Resource_q6tiy"), SubResource("Resource_1ddlr")])
+evolutions = Array[ExtResource("1_65cs8")]([SubResource("Resource_65cs8")])
 temperament = ExtResource("12_j5w5s")
 genus = "Pokémon Pajarito"
 pokedex_entry = "Natu no puede volar porque las alas no le han crecido lo suficiente. Si alguien cruza la mirada con él, se la devolverá fijamente, aunque, si hace el mínimo movimiento, huirá dando saltitos para ponerse a salvo."

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_8a3p6"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_olfn2"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lkyxg"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_nx5ey"]
@@ -18,51 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_fhxpe"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_72ijm"]
 
-[sub_resource type="Resource" id="Resource_72ijm"]
+[sub_resource type="Resource" id="Resource_8a3p6"]
+script = ExtResource("1_8a3p6")
+to_id = "ledian"
+level = 18
+
+[sub_resource type="Resource" id="Resource_t1ty1"]
 script = ExtResource("1_olfn2")
 move = ExtResource("2_nx5ey")
 
-[sub_resource type="Resource" id="Resource_8a3p6"]
+[sub_resource type="Resource" id="Resource_ap7w3"]
 script = ExtResource("1_olfn2")
 level = 8
 move = ExtResource("3_72ijm")
 
-[sub_resource type="Resource" id="Resource_t1ty1"]
+[sub_resource type="Resource" id="Resource_lpvtr"]
 script = ExtResource("1_olfn2")
 level = 15
 move = ExtResource("4_8a3p6")
 
-[sub_resource type="Resource" id="Resource_ap7w3"]
+[sub_resource type="Resource" id="Resource_fxx7q"]
 script = ExtResource("1_olfn2")
 level = 22
 move = ExtResource("5_t1ty1")
 
-[sub_resource type="Resource" id="Resource_lpvtr"]
+[sub_resource type="Resource" id="Resource_n6bpr"]
 script = ExtResource("1_olfn2")
 level = 22
 move = ExtResource("6_ap7w3")
 
-[sub_resource type="Resource" id="Resource_fxx7q"]
+[sub_resource type="Resource" id="Resource_g7n54"]
 script = ExtResource("1_olfn2")
 level = 22
 move = ExtResource("7_lpvtr")
 
-[sub_resource type="Resource" id="Resource_n6bpr"]
+[sub_resource type="Resource" id="Resource_fhxpe"]
 script = ExtResource("1_olfn2")
 level = 29
 move = ExtResource("8_fxx7q")
 
-[sub_resource type="Resource" id="Resource_g7n54"]
+[sub_resource type="Resource" id="Resource_u5eu6"]
 script = ExtResource("1_olfn2")
 level = 36
 move = ExtResource("9_n6bpr")
 
-[sub_resource type="Resource" id="Resource_fhxpe"]
+[sub_resource type="Resource" id="Resource_gxyv6"]
 script = ExtResource("1_olfn2")
 level = 43
 move = ExtResource("10_g7n54")
 
-[sub_resource type="Resource" id="Resource_u5eu6"]
+[sub_resource type="Resource" id="Resource_24y8e"]
 script = ExtResource("1_olfn2")
 level = 50
 move = ExtResource("11_fhxpe")
@@ -73,7 +79,8 @@ id = "ledyba"
 display_name = "Ledyba"
 dex = 165
 types = Array[ExtResource("4_jsjfb")]([ExtResource("5_36osr"), ExtResource("6_qg5iv")])
-learnset = Array[ExtResource("1_olfn2")]([SubResource("Resource_72ijm"), SubResource("Resource_8a3p6"), SubResource("Resource_t1ty1"), SubResource("Resource_ap7w3"), SubResource("Resource_lpvtr"), SubResource("Resource_fxx7q"), SubResource("Resource_n6bpr"), SubResource("Resource_g7n54"), SubResource("Resource_fhxpe"), SubResource("Resource_u5eu6")])
+learnset = Array[ExtResource("1_olfn2")]([SubResource("Resource_t1ty1"), SubResource("Resource_ap7w3"), SubResource("Resource_lpvtr"), SubResource("Resource_fxx7q"), SubResource("Resource_n6bpr"), SubResource("Resource_g7n54"), SubResource("Resource_fhxpe"), SubResource("Resource_u5eu6"), SubResource("Resource_gxyv6"), SubResource("Resource_24y8e")])
+evolutions = Array[ExtResource("1_8a3p6")]([SubResource("Resource_8a3p6")])
 temperament = ExtResource("14_72ijm")
 genus = "Pokémon 5 Estrellas"
 pokedex_entry = "Ledyba segrega un fluido aromático por los seis puntos de unión que tiene entre las patas y el cuerpo. A través de este fluido se comunica con otros y les informa acerca de sus sentimientos variando la esencia."

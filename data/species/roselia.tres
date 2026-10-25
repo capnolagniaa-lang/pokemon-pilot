@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_f67av"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_uo24x"]
 [ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_hdvhd"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xr3ru"]
@@ -23,76 +24,76 @@
 [ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="16_ex84v"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="19_ouki5"]
 
-[sub_resource type="Resource" id="Resource_ouki5"]
+[sub_resource type="Resource" id="Resource_f67av"]
 script = ExtResource("1_uo24x")
 move = ExtResource("2_hdvhd")
 
-[sub_resource type="Resource" id="Resource_f67av"]
+[sub_resource type="Resource" id="Resource_qllo1"]
 script = ExtResource("1_uo24x")
 level = 5
 move = ExtResource("3_ouki5")
 
-[sub_resource type="Resource" id="Resource_qllo1"]
+[sub_resource type="Resource" id="Resource_hpe00"]
 script = ExtResource("1_uo24x")
 level = 9
 move = ExtResource("4_f67av")
 
-[sub_resource type="Resource" id="Resource_hpe00"]
+[sub_resource type="Resource" id="Resource_npx2e"]
 script = ExtResource("1_uo24x")
 level = 13
 move = ExtResource("5_qllo1")
 
-[sub_resource type="Resource" id="Resource_npx2e"]
+[sub_resource type="Resource" id="Resource_uir4v"]
 script = ExtResource("1_uo24x")
 level = 17
 move = ExtResource("6_hpe00")
 
-[sub_resource type="Resource" id="Resource_uir4v"]
+[sub_resource type="Resource" id="Resource_kpff0"]
 script = ExtResource("1_uo24x")
 level = 21
 move = ExtResource("7_npx2e")
 
-[sub_resource type="Resource" id="Resource_kpff0"]
+[sub_resource type="Resource" id="Resource_j1eum"]
 script = ExtResource("1_uo24x")
 level = 25
 move = ExtResource("8_uir4v")
 
-[sub_resource type="Resource" id="Resource_j1eum"]
+[sub_resource type="Resource" id="Resource_is03n"]
 script = ExtResource("1_uo24x")
 level = 29
 move = ExtResource("9_kpff0")
 
-[sub_resource type="Resource" id="Resource_is03n"]
+[sub_resource type="Resource" id="Resource_sup25"]
 script = ExtResource("1_uo24x")
 level = 33
 move = ExtResource("10_j1eum")
 
-[sub_resource type="Resource" id="Resource_sup25"]
+[sub_resource type="Resource" id="Resource_8poi4"]
 script = ExtResource("1_uo24x")
 level = 37
 move = ExtResource("11_is03n")
 
-[sub_resource type="Resource" id="Resource_8poi4"]
+[sub_resource type="Resource" id="Resource_8sj2u"]
 script = ExtResource("1_uo24x")
 level = 41
 move = ExtResource("12_sup25")
 
-[sub_resource type="Resource" id="Resource_8sj2u"]
+[sub_resource type="Resource" id="Resource_5slu0"]
 script = ExtResource("1_uo24x")
 level = 45
 move = ExtResource("13_8poi4")
 
-[sub_resource type="Resource" id="Resource_5slu0"]
+[sub_resource type="Resource" id="Resource_ex84v"]
 script = ExtResource("1_uo24x")
 level = 49
 move = ExtResource("14_8sj2u")
 
-[sub_resource type="Resource" id="Resource_ex84v"]
+[sub_resource type="Resource" id="Resource_rnr14"]
 script = ExtResource("1_uo24x")
 level = 53
 move = ExtResource("15_5slu0")
 
-[sub_resource type="Resource" id="Resource_rnr14"]
+[sub_resource type="Resource" id="Resource_e0fg0"]
 script = ExtResource("1_uo24x")
 level = 57
 move = ExtResource("16_ex84v")
@@ -103,7 +104,7 @@ id = "roselia"
 display_name = "Roselia"
 dex = 315
 types = Array[ExtResource("4_35st1")]([ExtResource("5_rprff"), ExtResource("6_drg77")])
-learnset = Array[ExtResource("1_uo24x")]([SubResource("Resource_ouki5"), SubResource("Resource_f67av"), SubResource("Resource_qllo1"), SubResource("Resource_hpe00"), SubResource("Resource_npx2e"), SubResource("Resource_uir4v"), SubResource("Resource_kpff0"), SubResource("Resource_j1eum"), SubResource("Resource_is03n"), SubResource("Resource_sup25"), SubResource("Resource_8poi4"), SubResource("Resource_8sj2u"), SubResource("Resource_5slu0"), SubResource("Resource_ex84v"), SubResource("Resource_rnr14")])
+learnset = Array[ExtResource("1_uo24x")]([SubResource("Resource_f67av"), SubResource("Resource_qllo1"), SubResource("Resource_hpe00"), SubResource("Resource_npx2e"), SubResource("Resource_uir4v"), SubResource("Resource_kpff0"), SubResource("Resource_j1eum"), SubResource("Resource_is03n"), SubResource("Resource_sup25"), SubResource("Resource_8poi4"), SubResource("Resource_8sj2u"), SubResource("Resource_5slu0"), SubResource("Resource_ex84v"), SubResource("Resource_rnr14"), SubResource("Resource_e0fg0")])
 temperament = ExtResource("19_ouki5")
 genus = "Pokémon Espina"
 pokedex_entry = "Roselia lanza finas espinas a todo el que se le acerca con intención de robarle las flores de los brazos. El aroma de este Pokémon resulta relajante a los seres vivos."

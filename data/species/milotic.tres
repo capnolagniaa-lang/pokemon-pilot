@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6xfue"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_dpo6u"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_t00ch"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_xd75r"]
 [ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="3_fe3rc"]
@@ -18,56 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="12_guiik"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_fe3rc"]
 
-[sub_resource type="Resource" id="Resource_fe3rc"]
+[sub_resource type="Resource" id="Resource_dpo6u"]
 script = ExtResource("1_6xfue")
 move = ExtResource("2_xd75r")
 
-[sub_resource type="Resource" id="Resource_dpo6u"]
+[sub_resource type="Resource" id="Resource_oormo"]
 script = ExtResource("1_6xfue")
 level = 5
 move = ExtResource("3_fe3rc")
 
-[sub_resource type="Resource" id="Resource_oormo"]
+[sub_resource type="Resource" id="Resource_jgpcf"]
 script = ExtResource("1_6xfue")
 level = 10
 move = ExtResource("4_dpo6u")
 
-[sub_resource type="Resource" id="Resource_jgpcf"]
+[sub_resource type="Resource" id="Resource_ahrto"]
 script = ExtResource("1_6xfue")
 level = 15
 move = ExtResource("5_oormo")
 
-[sub_resource type="Resource" id="Resource_ahrto"]
+[sub_resource type="Resource" id="Resource_7qhig"]
 script = ExtResource("1_6xfue")
 level = 20
 move = ExtResource("6_jgpcf")
 
-[sub_resource type="Resource" id="Resource_7qhig"]
+[sub_resource type="Resource" id="Resource_u1717"]
 script = ExtResource("1_6xfue")
 level = 25
 move = ExtResource("7_ahrto")
 
-[sub_resource type="Resource" id="Resource_u1717"]
+[sub_resource type="Resource" id="Resource_61pyp"]
 script = ExtResource("1_6xfue")
 level = 30
 move = ExtResource("8_7qhig")
 
-[sub_resource type="Resource" id="Resource_61pyp"]
+[sub_resource type="Resource" id="Resource_ivjks"]
 script = ExtResource("1_6xfue")
 level = 35
 move = ExtResource("9_u1717")
 
-[sub_resource type="Resource" id="Resource_ivjks"]
+[sub_resource type="Resource" id="Resource_guiik"]
 script = ExtResource("1_6xfue")
 level = 40
 move = ExtResource("10_61pyp")
 
-[sub_resource type="Resource" id="Resource_guiik"]
+[sub_resource type="Resource" id="Resource_vdavo"]
 script = ExtResource("1_6xfue")
 level = 45
 move = ExtResource("11_ivjks")
 
-[sub_resource type="Resource" id="Resource_vdavo"]
+[sub_resource type="Resource" id="Resource_ho05v"]
 script = ExtResource("1_6xfue")
 level = 50
 move = ExtResource("12_guiik")
@@ -78,7 +79,8 @@ id = "milotic"
 display_name = "Milotic"
 dex = 350
 types = Array[ExtResource("4_a5fas")]([ExtResource("5_osdxy")])
-learnset = Array[ExtResource("1_6xfue")]([SubResource("Resource_fe3rc"), SubResource("Resource_dpo6u"), SubResource("Resource_oormo"), SubResource("Resource_jgpcf"), SubResource("Resource_ahrto"), SubResource("Resource_7qhig"), SubResource("Resource_u1717"), SubResource("Resource_61pyp"), SubResource("Resource_ivjks"), SubResource("Resource_guiik"), SubResource("Resource_vdavo")])
+learnset = Array[ExtResource("1_6xfue")]([SubResource("Resource_dpo6u"), SubResource("Resource_oormo"), SubResource("Resource_jgpcf"), SubResource("Resource_ahrto"), SubResource("Resource_7qhig"), SubResource("Resource_u1717"), SubResource("Resource_61pyp"), SubResource("Resource_ivjks"), SubResource("Resource_guiik"), SubResource("Resource_vdavo"), SubResource("Resource_ho05v")])
+evolves_from = "feebas"
 temperament = ExtResource("15_fe3rc")
 genus = "Pokémon Tierno"
 pokedex_entry = "De Milotic se dice que es el Pokémon más bello. Tiene la capacidad de calmar sentimientos tales como el miedo y la hostilidad, y apaciguar las relaciones de áspera enemistad."

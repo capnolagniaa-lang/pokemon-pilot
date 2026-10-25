@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_k71fr"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_o86xy"]
 [ext_resource type="Resource" path="res://data/moves/contraataque.tres" id="2_hnl5l"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yyoki"]
@@ -11,19 +12,19 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="5_p8e0k"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="8_2k8wp"]
 
-[sub_resource type="Resource" id="Resource_2k8wp"]
+[sub_resource type="Resource" id="Resource_k71fr"]
 script = ExtResource("1_o86xy")
 move = ExtResource("2_hnl5l")
 
-[sub_resource type="Resource" id="Resource_k71fr"]
+[sub_resource type="Resource" id="Resource_p8e0k"]
 script = ExtResource("1_o86xy")
 move = ExtResource("3_2k8wp")
 
-[sub_resource type="Resource" id="Resource_p8e0k"]
+[sub_resource type="Resource" id="Resource_gn7wi"]
 script = ExtResource("1_o86xy")
 move = ExtResource("4_k71fr")
 
-[sub_resource type="Resource" id="Resource_gn7wi"]
+[sub_resource type="Resource" id="Resource_snkw3"]
 script = ExtResource("1_o86xy")
 move = ExtResource("5_p8e0k")
 
@@ -33,7 +34,8 @@ id = "wobbuffet"
 display_name = "Wobbuffet"
 dex = 202
 types = Array[ExtResource("4_sscgo")]([ExtResource("5_hnl5l")])
-learnset = Array[ExtResource("1_o86xy")]([SubResource("Resource_2k8wp"), SubResource("Resource_k71fr"), SubResource("Resource_p8e0k"), SubResource("Resource_gn7wi")])
+learnset = Array[ExtResource("1_o86xy")]([SubResource("Resource_k71fr"), SubResource("Resource_p8e0k"), SubResource("Resource_gn7wi"), SubResource("Resource_snkw3")])
+evolves_from = "wynaut"
 temperament = ExtResource("8_2k8wp")
 genus = "Pokémon Paciente"
 pokedex_entry = "Si dos o más Wobbuffet se encuentran, se volverán competitivos e intentarán superarse en resistencia. Pero también puede que intenten aguantar sin comer; algo que los Entrenadores deben tener muy en cuenta."

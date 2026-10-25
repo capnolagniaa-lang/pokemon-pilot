@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_0ybkr"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_upwpr"]
 [ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_4fv4v"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4ggn3"]
@@ -18,56 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="12_jxd7m"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_p6bl7"]
 
-[sub_resource type="Resource" id="Resource_p6bl7"]
+[sub_resource type="Resource" id="Resource_0ybkr"]
 script = ExtResource("1_upwpr")
 move = ExtResource("2_4fv4v")
 
-[sub_resource type="Resource" id="Resource_0ybkr"]
+[sub_resource type="Resource" id="Resource_t2l6e"]
 script = ExtResource("1_upwpr")
 level = 4
 move = ExtResource("3_p6bl7")
 
-[sub_resource type="Resource" id="Resource_t2l6e"]
+[sub_resource type="Resource" id="Resource_nj8nf"]
 script = ExtResource("1_upwpr")
 level = 7
 move = ExtResource("4_0ybkr")
 
-[sub_resource type="Resource" id="Resource_nj8nf"]
+[sub_resource type="Resource" id="Resource_e5v3u"]
 script = ExtResource("1_upwpr")
 level = 10
 move = ExtResource("5_t2l6e")
 
-[sub_resource type="Resource" id="Resource_e5v3u"]
+[sub_resource type="Resource" id="Resource_svw6i"]
 script = ExtResource("1_upwpr")
 level = 13
 move = ExtResource("6_nj8nf")
 
-[sub_resource type="Resource" id="Resource_svw6i"]
+[sub_resource type="Resource" id="Resource_nvj25"]
 script = ExtResource("1_upwpr")
 level = 19
 move = ExtResource("7_e5v3u")
 
-[sub_resource type="Resource" id="Resource_nvj25"]
+[sub_resource type="Resource" id="Resource_8t501"]
 script = ExtResource("1_upwpr")
 level = 25
 move = ExtResource("8_svw6i")
 
-[sub_resource type="Resource" id="Resource_8t501"]
+[sub_resource type="Resource" id="Resource_n1dxb"]
 script = ExtResource("1_upwpr")
 level = 31
 move = ExtResource("9_nvj25")
 
-[sub_resource type="Resource" id="Resource_n1dxb"]
+[sub_resource type="Resource" id="Resource_jxd7m"]
 script = ExtResource("1_upwpr")
 level = 37
 move = ExtResource("10_8t501")
 
-[sub_resource type="Resource" id="Resource_jxd7m"]
+[sub_resource type="Resource" id="Resource_l1yr7"]
 script = ExtResource("1_upwpr")
 level = 46
 move = ExtResource("11_n1dxb")
 
-[sub_resource type="Resource" id="Resource_l1yr7"]
+[sub_resource type="Resource" id="Resource_6c2sy"]
 script = ExtResource("1_upwpr")
 level = 55
 move = ExtResource("12_jxd7m")
@@ -78,7 +79,7 @@ id = "zangoose"
 display_name = "Zangoose"
 dex = 335
 types = Array[ExtResource("4_nnywx")]([ExtResource("5_miouo")])
-learnset = Array[ExtResource("1_upwpr")]([SubResource("Resource_p6bl7"), SubResource("Resource_0ybkr"), SubResource("Resource_t2l6e"), SubResource("Resource_nj8nf"), SubResource("Resource_e5v3u"), SubResource("Resource_svw6i"), SubResource("Resource_nvj25"), SubResource("Resource_8t501"), SubResource("Resource_n1dxb"), SubResource("Resource_jxd7m"), SubResource("Resource_l1yr7")])
+learnset = Array[ExtResource("1_upwpr")]([SubResource("Resource_0ybkr"), SubResource("Resource_t2l6e"), SubResource("Resource_nj8nf"), SubResource("Resource_e5v3u"), SubResource("Resource_svw6i"), SubResource("Resource_nvj25"), SubResource("Resource_8t501"), SubResource("Resource_n1dxb"), SubResource("Resource_jxd7m"), SubResource("Resource_l1yr7"), SubResource("Resource_6c2sy")])
 temperament = ExtResource("15_p6bl7")
 genus = "Pokémon Gato Hurón"
 pokedex_entry = "Los ecos del combate mantenido con su rival más feroz, Seviper, resuenan aún en cada célula de Zangoose. Este Pokémon esquiva los ataques con auténtica destreza."

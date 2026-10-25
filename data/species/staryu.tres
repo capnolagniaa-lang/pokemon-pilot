@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Resource" path="res://data/kits/staryu/kit.tres" id="0_kitv4"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_f478r"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yhwem"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x3ago"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gdfhv"]
@@ -12,20 +13,26 @@
 [ext_resource type="Resource" path="res://data/kits/staryu/fortaleza_staryu.tres" id="6_yicyn"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_jl5ac"]
 
-[sub_resource type="Resource" id="Resource_qmqk0"]
+[sub_resource type="Resource" id="Resource_f478r"]
+script = ExtResource("1_f478r")
+to_id = "starmie"
+method = "piedra"
+item = "piedra_agua"
+
+[sub_resource type="Resource" id="Resource_24stj"]
 script = ExtResource("1_yhwem")
 move = ExtResource("3_qmqk0")
 
-[sub_resource type="Resource" id="Resource_f478r"]
+[sub_resource type="Resource" id="Resource_yicyn"]
 script = ExtResource("1_yhwem")
 move = ExtResource("4_f478r")
 
-[sub_resource type="Resource" id="Resource_24stj"]
+[sub_resource type="Resource" id="Resource_qhghb"]
 script = ExtResource("1_yhwem")
 level = 3
 move = ExtResource("5_24stj")
 
-[sub_resource type="Resource" id="Resource_yicyn"]
+[sub_resource type="Resource" id="Resource_0qwic"]
 script = ExtResource("1_yhwem")
 level = 5
 move = ExtResource("6_yicyn")
@@ -37,7 +44,8 @@ display_name = "Staryu"
 dex = 120
 types = Array[ExtResource("4_wp8i6")]([ExtResource("5_y0i41")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_yhwem")]([SubResource("Resource_qmqk0"), SubResource("Resource_f478r"), SubResource("Resource_24stj"), SubResource("Resource_yicyn")])
+learnset = Array[ExtResource("1_yhwem")]([SubResource("Resource_24stj"), SubResource("Resource_yicyn"), SubResource("Resource_qhghb"), SubResource("Resource_0qwic")])
+evolutions = Array[ExtResource("1_f478r")]([SubResource("Resource_f478r")])
 temperament = ExtResource("16_jl5ac")
 genus = "Pokémon Estrella"
 pokedex_entry = "Staryu posee un órgano central, conocido como su núcleo, que brilla con una luz roja. A finales de verano, pueden verse en la playa los núcleos de estos Pokémon brillando como las estrellas del cielo."

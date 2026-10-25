@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_g58ah"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_tlu51"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3hq0q"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_xcwcm"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_4yglw"]
@@ -20,59 +21,59 @@
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="13_4j0hv"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_axx62"]
 
-[sub_resource type="Resource" id="Resource_axx62"]
+[sub_resource type="Resource" id="Resource_tlu51"]
 script = ExtResource("1_g58ah")
 move = ExtResource("2_xcwcm")
 
-[sub_resource type="Resource" id="Resource_tlu51"]
+[sub_resource type="Resource" id="Resource_08ipb"]
 script = ExtResource("1_g58ah")
 move = ExtResource("3_axx62")
 
-[sub_resource type="Resource" id="Resource_08ipb"]
+[sub_resource type="Resource" id="Resource_016fl"]
 script = ExtResource("1_g58ah")
 move = ExtResource("4_tlu51")
 
-[sub_resource type="Resource" id="Resource_016fl"]
+[sub_resource type="Resource" id="Resource_ppi2n"]
 script = ExtResource("1_g58ah")
 level = 7
 move = ExtResource("5_08ipb")
 
-[sub_resource type="Resource" id="Resource_ppi2n"]
+[sub_resource type="Resource" id="Resource_l0v6t"]
 script = ExtResource("1_g58ah")
 level = 13
 move = ExtResource("6_016fl")
 
-[sub_resource type="Resource" id="Resource_l0v6t"]
+[sub_resource type="Resource" id="Resource_x5ib6"]
 script = ExtResource("1_g58ah")
 level = 19
 move = ExtResource("7_ppi2n")
 
-[sub_resource type="Resource" id="Resource_x5ib6"]
+[sub_resource type="Resource" id="Resource_2sopg"]
 script = ExtResource("1_g58ah")
 level = 25
 move = ExtResource("8_l0v6t")
 
-[sub_resource type="Resource" id="Resource_2sopg"]
+[sub_resource type="Resource" id="Resource_f2ve1"]
 script = ExtResource("1_g58ah")
 level = 31
 move = ExtResource("9_x5ib6")
 
-[sub_resource type="Resource" id="Resource_f2ve1"]
+[sub_resource type="Resource" id="Resource_i1rac"]
 script = ExtResource("1_g58ah")
 level = 37
 move = ExtResource("10_2sopg")
 
-[sub_resource type="Resource" id="Resource_i1rac"]
+[sub_resource type="Resource" id="Resource_4j0hv"]
 script = ExtResource("1_g58ah")
 level = 43
 move = ExtResource("11_f2ve1")
 
-[sub_resource type="Resource" id="Resource_4j0hv"]
+[sub_resource type="Resource" id="Resource_e3gui"]
 script = ExtResource("1_g58ah")
 level = 49
 move = ExtResource("12_i1rac")
 
-[sub_resource type="Resource" id="Resource_e3gui"]
+[sub_resource type="Resource" id="Resource_d7lbu"]
 script = ExtResource("1_g58ah")
 level = 55
 move = ExtResource("13_4j0hv")
@@ -83,7 +84,7 @@ id = "lapras"
 display_name = "Lapras"
 dex = 131
 types = Array[ExtResource("4_0wu2i")]([ExtResource("5_eua13"), ExtResource("6_87l13")])
-learnset = Array[ExtResource("1_g58ah")]([SubResource("Resource_axx62"), SubResource("Resource_tlu51"), SubResource("Resource_08ipb"), SubResource("Resource_016fl"), SubResource("Resource_ppi2n"), SubResource("Resource_l0v6t"), SubResource("Resource_x5ib6"), SubResource("Resource_2sopg"), SubResource("Resource_f2ve1"), SubResource("Resource_i1rac"), SubResource("Resource_4j0hv"), SubResource("Resource_e3gui")])
+learnset = Array[ExtResource("1_g58ah")]([SubResource("Resource_tlu51"), SubResource("Resource_08ipb"), SubResource("Resource_016fl"), SubResource("Resource_ppi2n"), SubResource("Resource_l0v6t"), SubResource("Resource_x5ib6"), SubResource("Resource_2sopg"), SubResource("Resource_f2ve1"), SubResource("Resource_i1rac"), SubResource("Resource_4j0hv"), SubResource("Resource_e3gui"), SubResource("Resource_d7lbu")])
 temperament = ExtResource("16_axx62")
 genus = "Pokémon Transporte"
 pokedex_entry = "Por culpa de la gente, Lapras está casi en extinción. Dicen que, al anochecer, se pone a cantar quejicoso mientras busca a los miembros de su especie que puedan quedar."

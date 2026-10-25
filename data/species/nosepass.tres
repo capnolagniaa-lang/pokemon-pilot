@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_1djnp"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hnycp"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ax5vx"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_ichiq"]
@@ -17,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="11_tjhc0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_hrwu8"]
 
-[sub_resource type="Resource" id="Resource_hrwu8"]
+[sub_resource type="Resource" id="Resource_1djnp"]
 script = ExtResource("1_hnycp")
 move = ExtResource("2_ichiq")
 
-[sub_resource type="Resource" id="Resource_1djnp"]
+[sub_resource type="Resource" id="Resource_p10ua"]
 script = ExtResource("1_hnycp")
 level = 7
 move = ExtResource("3_hrwu8")
 
-[sub_resource type="Resource" id="Resource_p10ua"]
+[sub_resource type="Resource" id="Resource_lwso1"]
 script = ExtResource("1_hnycp")
 level = 13
 move = ExtResource("4_1djnp")
 
-[sub_resource type="Resource" id="Resource_lwso1"]
+[sub_resource type="Resource" id="Resource_6q18d"]
 script = ExtResource("1_hnycp")
 level = 16
 move = ExtResource("5_p10ua")
 
-[sub_resource type="Resource" id="Resource_6q18d"]
+[sub_resource type="Resource" id="Resource_k0olg"]
 script = ExtResource("1_hnycp")
 level = 22
 move = ExtResource("6_lwso1")
 
-[sub_resource type="Resource" id="Resource_k0olg"]
+[sub_resource type="Resource" id="Resource_xal6w"]
 script = ExtResource("1_hnycp")
 level = 28
 move = ExtResource("7_6q18d")
 
-[sub_resource type="Resource" id="Resource_xal6w"]
+[sub_resource type="Resource" id="Resource_2frlm"]
 script = ExtResource("1_hnycp")
 level = 31
 move = ExtResource("8_k0olg")
 
-[sub_resource type="Resource" id="Resource_2frlm"]
+[sub_resource type="Resource" id="Resource_tjhc0"]
 script = ExtResource("1_hnycp")
 level = 37
 move = ExtResource("9_xal6w")
 
-[sub_resource type="Resource" id="Resource_tjhc0"]
+[sub_resource type="Resource" id="Resource_vqq25"]
 script = ExtResource("1_hnycp")
 level = 43
 move = ExtResource("10_2frlm")
 
-[sub_resource type="Resource" id="Resource_vqq25"]
+[sub_resource type="Resource" id="Resource_dlakl"]
 script = ExtResource("1_hnycp")
 level = 46
 move = ExtResource("11_tjhc0")
@@ -72,7 +73,7 @@ id = "nosepass"
 display_name = "Nosepass"
 dex = 299
 types = Array[ExtResource("4_0bh25")]([ExtResource("5_pborl")])
-learnset = Array[ExtResource("1_hnycp")]([SubResource("Resource_hrwu8"), SubResource("Resource_1djnp"), SubResource("Resource_p10ua"), SubResource("Resource_lwso1"), SubResource("Resource_6q18d"), SubResource("Resource_k0olg"), SubResource("Resource_xal6w"), SubResource("Resource_2frlm"), SubResource("Resource_tjhc0"), SubResource("Resource_vqq25")])
+learnset = Array[ExtResource("1_hnycp")]([SubResource("Resource_1djnp"), SubResource("Resource_p10ua"), SubResource("Resource_lwso1"), SubResource("Resource_6q18d"), SubResource("Resource_k0olg"), SubResource("Resource_xal6w"), SubResource("Resource_2frlm"), SubResource("Resource_tjhc0"), SubResource("Resource_vqq25"), SubResource("Resource_dlakl")])
 temperament = ExtResource("14_hrwu8")
 genus = "Pokémon Brújula"
 pokedex_entry = "Nosepass siempre está con la nariz magnética que tiene orientada hacia el norte. Si se encuentra con otro ejemplar de su especie, no puede mirarle de frente porque sus polos magnéticos se repelen."

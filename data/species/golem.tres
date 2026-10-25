@@ -1,71 +1,74 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_7ml3m"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l8kcx"]
-[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_8dkos"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bdft8"]
+[ext_resource type="Resource" path="res://data/kits/geodude/kit.tres" id="2_q6mhg"]
 [ext_resource type="Resource" path="res://data/moves/chapoteo_lodo.tres" id="3_4g2lp"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_lioup"]
-[ext_resource type="Resource" path="res://data/moves/lanzarrocas.tres" id="4_7ml3m"]
+[ext_resource type="Resource" path="res://data/kits/geodude/placaje_geodude.tres" id="4_q6mhg"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qv2c8"]
 [ext_resource type="Resource" path="res://data/types/roca.tres" id="5_arb56"]
-[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="5_q6mhg"]
+[ext_resource type="Resource" path="res://data/kits/geodude/rodar_kit.tres" id="5_xma7p"]
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_1376t"]
+[ext_resource type="Resource" path="res://data/kits/geodude/lanzarrocas_kit.tres" id="6_vyk02"]
 [ext_resource type="Resource" path="res://data/moves/magnitud.tres" id="6_xma7p"]
+[ext_resource type="Resource" path="res://data/kits/geodude/rizo_defensa_kit.tres" id="7_7k8ub"]
 [ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="7_vyk02"]
-[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="8_7k8ub"]
 [ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="9_sysdy"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_jq4lw"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_p0dhv"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_74ili"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_4g2lp"]
 
-[sub_resource type="Resource" id="Resource_4g2lp"]
-script = ExtResource("1_l8kcx")
-move = ExtResource("2_8dkos")
-
-[sub_resource type="Resource" id="Resource_7ml3m"]
-script = ExtResource("1_l8kcx")
-move = ExtResource("3_4g2lp")
-
 [sub_resource type="Resource" id="Resource_q6mhg"]
 script = ExtResource("1_l8kcx")
-move = ExtResource("4_7ml3m")
+move = ExtResource("4_q6mhg")
 
 [sub_resource type="Resource" id="Resource_xma7p"]
 script = ExtResource("1_l8kcx")
-move = ExtResource("5_q6mhg")
+move = ExtResource("5_xma7p")
 
 [sub_resource type="Resource" id="Resource_vyk02"]
+script = ExtResource("1_l8kcx")
+level = 3
+move = ExtResource("6_vyk02")
+
+[sub_resource type="Resource" id="Resource_7k8ub"]
+script = ExtResource("1_l8kcx")
+level = 5
+move = ExtResource("7_7k8ub")
+
+[sub_resource type="Resource" id="Resource_sysdy"]
+script = ExtResource("1_l8kcx")
+move = ExtResource("3_4g2lp")
+
+[sub_resource type="Resource" id="Resource_jq4lw"]
 script = ExtResource("1_l8kcx")
 level = 16
 move = ExtResource("6_xma7p")
 
-[sub_resource type="Resource" id="Resource_7k8ub"]
+[sub_resource type="Resource" id="Resource_p0dhv"]
 script = ExtResource("1_l8kcx")
 level = 21
 move = ExtResource("7_vyk02")
 
-[sub_resource type="Resource" id="Resource_sysdy"]
-script = ExtResource("1_l8kcx")
-level = 29
-move = ExtResource("8_7k8ub")
-
-[sub_resource type="Resource" id="Resource_jq4lw"]
+[sub_resource type="Resource" id="Resource_74ili"]
 script = ExtResource("1_l8kcx")
 level = 37
 move = ExtResource("9_sysdy")
 
-[sub_resource type="Resource" id="Resource_p0dhv"]
+[sub_resource type="Resource" id="Resource_v0xhl"]
 script = ExtResource("1_l8kcx")
 level = 45
 move = ExtResource("10_jq4lw")
 
-[sub_resource type="Resource" id="Resource_74ili"]
+[sub_resource type="Resource" id="Resource_twyfe"]
 script = ExtResource("1_l8kcx")
 level = 53
 move = ExtResource("11_p0dhv")
 
-[sub_resource type="Resource" id="Resource_v0xhl"]
+[sub_resource type="Resource" id="Resource_s02on"]
 script = ExtResource("1_l8kcx")
 level = 62
 move = ExtResource("12_74ili")
@@ -76,7 +79,10 @@ id = "golem"
 display_name = "Golem"
 dex = 76
 types = Array[ExtResource("4_qv2c8")]([ExtResource("5_arb56"), ExtResource("6_1376t")])
-learnset = Array[ExtResource("1_l8kcx")]([SubResource("Resource_4g2lp"), SubResource("Resource_7ml3m"), SubResource("Resource_q6mhg"), SubResource("Resource_xma7p"), SubResource("Resource_vyk02"), SubResource("Resource_7k8ub"), SubResource("Resource_sysdy"), SubResource("Resource_jq4lw"), SubResource("Resource_p0dhv"), SubResource("Resource_74ili"), SubResource("Resource_v0xhl")])
+kit = ExtResource("2_q6mhg")
+learnset = Array[ExtResource("1_l8kcx")]([SubResource("Resource_q6mhg"), SubResource("Resource_xma7p"), SubResource("Resource_vyk02"), SubResource("Resource_7k8ub"), SubResource("Resource_sysdy"), SubResource("Resource_jq4lw"), SubResource("Resource_p0dhv"), SubResource("Resource_74ili"), SubResource("Resource_v0xhl"), SubResource("Resource_twyfe"), SubResource("Resource_s02on")])
+kit_inherited = true
+evolves_from = "graveler"
 temperament = ExtResource("15_4g2lp")
 genus = "Pokémon Megatón"
 pokedex_entry = "Golem vive en las montañas. Si se produce un gran terremoto, estos Pokémon descienden rodando en masa por las laderas."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_n7d4r"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_o2xx1"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_fmky4"]
 [ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="2_qmyhf"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_570n4"]
@@ -16,40 +17,45 @@
 [ext_resource type="Resource" path="res://data/moves/amnesia.tres" id="9_rdoph"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_m7fg7"]
 
-[sub_resource type="Resource" id="Resource_m7fg7"]
+[sub_resource type="Resource" id="Resource_o2xx1"]
+script = ExtResource("1_o2xx1")
+to_id = "piloswine"
+level = 33
+
+[sub_resource type="Resource" id="Resource_n2em2"]
 script = ExtResource("1_n7d4r")
 move = ExtResource("2_qmyhf")
 
-[sub_resource type="Resource" id="Resource_o2xx1"]
+[sub_resource type="Resource" id="Resource_m081s"]
 script = ExtResource("1_n7d4r")
 move = ExtResource("3_m7fg7")
 
-[sub_resource type="Resource" id="Resource_n2em2"]
+[sub_resource type="Resource" id="Resource_rk1de"]
 script = ExtResource("1_n7d4r")
 level = 10
 move = ExtResource("4_o2xx1")
 
-[sub_resource type="Resource" id="Resource_m081s"]
+[sub_resource type="Resource" id="Resource_kymtu"]
 script = ExtResource("1_n7d4r")
 level = 19
 move = ExtResource("5_n2em2")
 
-[sub_resource type="Resource" id="Resource_rk1de"]
+[sub_resource type="Resource" id="Resource_rdoph"]
 script = ExtResource("1_n7d4r")
 level = 28
 move = ExtResource("6_m081s")
 
-[sub_resource type="Resource" id="Resource_kymtu"]
+[sub_resource type="Resource" id="Resource_4wckt"]
 script = ExtResource("1_n7d4r")
 level = 37
 move = ExtResource("7_rk1de")
 
-[sub_resource type="Resource" id="Resource_rdoph"]
+[sub_resource type="Resource" id="Resource_lijgn"]
 script = ExtResource("1_n7d4r")
 level = 46
 move = ExtResource("8_kymtu")
 
-[sub_resource type="Resource" id="Resource_4wckt"]
+[sub_resource type="Resource" id="Resource_jq4i4"]
 script = ExtResource("1_n7d4r")
 level = 55
 move = ExtResource("9_rdoph")
@@ -60,7 +66,8 @@ id = "swinub"
 display_name = "Swinub"
 dex = 220
 types = Array[ExtResource("4_2a4qu")]([ExtResource("5_hrq6p"), ExtResource("6_2u8i5")])
-learnset = Array[ExtResource("1_n7d4r")]([SubResource("Resource_m7fg7"), SubResource("Resource_o2xx1"), SubResource("Resource_n2em2"), SubResource("Resource_m081s"), SubResource("Resource_rk1de"), SubResource("Resource_kymtu"), SubResource("Resource_rdoph"), SubResource("Resource_4wckt")])
+learnset = Array[ExtResource("1_n7d4r")]([SubResource("Resource_n2em2"), SubResource("Resource_m081s"), SubResource("Resource_rk1de"), SubResource("Resource_kymtu"), SubResource("Resource_rdoph"), SubResource("Resource_4wckt"), SubResource("Resource_lijgn"), SubResource("Resource_jq4i4")])
+evolutions = Array[ExtResource("1_o2xx1")]([SubResource("Resource_o2xx1")])
 temperament = ExtResource("12_m7fg7")
 genus = "Pokémon Cerdo"
 pokedex_entry = "Swinub busca el alimento frotando el hocico contra el suelo. Su comida preferida es una seta que crece bajo la hierba marchita. A veces, al frotar, descubre fuentes termales."

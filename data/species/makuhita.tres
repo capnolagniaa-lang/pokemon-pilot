@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_jm7vh"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rh1sg"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_a8fxp"]
 [ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="2_j52r7"]
@@ -20,65 +21,70 @@
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="14_h8axu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="17_agub3"]
 
-[sub_resource type="Resource" id="Resource_agub3"]
+[sub_resource type="Resource" id="Resource_jm7vh"]
+script = ExtResource("1_jm7vh")
+to_id = "hariyama"
+level = 24
+
+[sub_resource type="Resource" id="Resource_vrynt"]
 script = ExtResource("1_rh1sg")
 move = ExtResource("2_j52r7")
 
-[sub_resource type="Resource" id="Resource_jm7vh"]
+[sub_resource type="Resource" id="Resource_qdxya"]
 script = ExtResource("1_rh1sg")
 move = ExtResource("3_agub3")
 
-[sub_resource type="Resource" id="Resource_vrynt"]
+[sub_resource type="Resource" id="Resource_rg20q"]
 script = ExtResource("1_rh1sg")
 level = 4
 move = ExtResource("4_jm7vh")
 
-[sub_resource type="Resource" id="Resource_qdxya"]
+[sub_resource type="Resource" id="Resource_0i4os"]
 script = ExtResource("1_rh1sg")
 level = 10
 move = ExtResource("5_vrynt")
 
-[sub_resource type="Resource" id="Resource_rg20q"]
+[sub_resource type="Resource" id="Resource_n0e6j"]
 script = ExtResource("1_rh1sg")
 level = 13
 move = ExtResource("6_qdxya")
 
-[sub_resource type="Resource" id="Resource_0i4os"]
+[sub_resource type="Resource" id="Resource_gcgxn"]
 script = ExtResource("1_rh1sg")
 level = 19
 move = ExtResource("7_rg20q")
 
-[sub_resource type="Resource" id="Resource_n0e6j"]
+[sub_resource type="Resource" id="Resource_mvbri"]
 script = ExtResource("1_rh1sg")
 level = 22
 move = ExtResource("8_0i4os")
 
-[sub_resource type="Resource" id="Resource_gcgxn"]
+[sub_resource type="Resource" id="Resource_blj7p"]
 script = ExtResource("1_rh1sg")
 level = 28
 move = ExtResource("9_n0e6j")
 
-[sub_resource type="Resource" id="Resource_mvbri"]
+[sub_resource type="Resource" id="Resource_0x1ip"]
 script = ExtResource("1_rh1sg")
 level = 31
 move = ExtResource("10_gcgxn")
 
-[sub_resource type="Resource" id="Resource_blj7p"]
+[sub_resource type="Resource" id="Resource_h8axu"]
 script = ExtResource("1_rh1sg")
 level = 37
 move = ExtResource("11_mvbri")
 
-[sub_resource type="Resource" id="Resource_0x1ip"]
+[sub_resource type="Resource" id="Resource_stb1j"]
 script = ExtResource("1_rh1sg")
 level = 40
 move = ExtResource("12_blj7p")
 
-[sub_resource type="Resource" id="Resource_h8axu"]
+[sub_resource type="Resource" id="Resource_rwfvl"]
 script = ExtResource("1_rh1sg")
 level = 46
 move = ExtResource("13_0x1ip")
 
-[sub_resource type="Resource" id="Resource_stb1j"]
+[sub_resource type="Resource" id="Resource_3ndew"]
 script = ExtResource("1_rh1sg")
 level = 49
 move = ExtResource("14_h8axu")
@@ -89,7 +95,8 @@ id = "makuhita"
 display_name = "Makuhita"
 dex = 296
 types = Array[ExtResource("4_1jw5p")]([ExtResource("5_l8vkb")])
-learnset = Array[ExtResource("1_rh1sg")]([SubResource("Resource_agub3"), SubResource("Resource_jm7vh"), SubResource("Resource_vrynt"), SubResource("Resource_qdxya"), SubResource("Resource_rg20q"), SubResource("Resource_0i4os"), SubResource("Resource_n0e6j"), SubResource("Resource_gcgxn"), SubResource("Resource_mvbri"), SubResource("Resource_blj7p"), SubResource("Resource_0x1ip"), SubResource("Resource_h8axu"), SubResource("Resource_stb1j")])
+learnset = Array[ExtResource("1_rh1sg")]([SubResource("Resource_vrynt"), SubResource("Resource_qdxya"), SubResource("Resource_rg20q"), SubResource("Resource_0i4os"), SubResource("Resource_n0e6j"), SubResource("Resource_gcgxn"), SubResource("Resource_mvbri"), SubResource("Resource_blj7p"), SubResource("Resource_0x1ip"), SubResource("Resource_h8axu"), SubResource("Resource_stb1j"), SubResource("Resource_rwfvl"), SubResource("Resource_3ndew")])
+evolutions = Array[ExtResource("1_jm7vh")]([SubResource("Resource_jm7vh")])
 temperament = ExtResource("17_agub3")
 genus = "Pokémon Valiente"
 pokedex_entry = "Makuhita es tenaz. Da igual las veces que le venzan; volverá a ponerse en pie y a atacar. De hecho, cada vez que se recupera, acumula más energía para poder evolucionar."

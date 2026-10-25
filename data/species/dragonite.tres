@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_du44j"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u7h3d"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_8wx4b"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cww6y"]
@@ -19,53 +20,53 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="12_lwh8v"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_cto1j"]
 
-[sub_resource type="Resource" id="Resource_cto1j"]
+[sub_resource type="Resource" id="Resource_du44j"]
 script = ExtResource("1_u7h3d")
 move = ExtResource("2_8wx4b")
 
-[sub_resource type="Resource" id="Resource_du44j"]
+[sub_resource type="Resource" id="Resource_ikfqp"]
 script = ExtResource("1_u7h3d")
 move = ExtResource("3_cto1j")
 
-[sub_resource type="Resource" id="Resource_ikfqp"]
+[sub_resource type="Resource" id="Resource_wjy7r"]
 script = ExtResource("1_u7h3d")
 move = ExtResource("4_du44j")
 
-[sub_resource type="Resource" id="Resource_wjy7r"]
+[sub_resource type="Resource" id="Resource_4dj1m"]
 script = ExtResource("1_u7h3d")
 move = ExtResource("5_ikfqp")
 
-[sub_resource type="Resource" id="Resource_4dj1m"]
+[sub_resource type="Resource" id="Resource_k3rxi"]
 script = ExtResource("1_u7h3d")
 level = 22
 move = ExtResource("6_wjy7r")
 
-[sub_resource type="Resource" id="Resource_k3rxi"]
+[sub_resource type="Resource" id="Resource_arvyj"]
 script = ExtResource("1_u7h3d")
 level = 29
 move = ExtResource("7_4dj1m")
 
-[sub_resource type="Resource" id="Resource_arvyj"]
+[sub_resource type="Resource" id="Resource_d7rbj"]
 script = ExtResource("1_u7h3d")
 level = 38
 move = ExtResource("8_k3rxi")
 
-[sub_resource type="Resource" id="Resource_d7rbj"]
+[sub_resource type="Resource" id="Resource_pt7ap"]
 script = ExtResource("1_u7h3d")
 level = 47
 move = ExtResource("9_arvyj")
 
-[sub_resource type="Resource" id="Resource_pt7ap"]
+[sub_resource type="Resource" id="Resource_lwh8v"]
 script = ExtResource("1_u7h3d")
 level = 55
 move = ExtResource("10_d7rbj")
 
-[sub_resource type="Resource" id="Resource_lwh8v"]
+[sub_resource type="Resource" id="Resource_l3keh"]
 script = ExtResource("1_u7h3d")
 level = 61
 move = ExtResource("11_pt7ap")
 
-[sub_resource type="Resource" id="Resource_l3keh"]
+[sub_resource type="Resource" id="Resource_lpv4f"]
 script = ExtResource("1_u7h3d")
 level = 75
 move = ExtResource("12_lwh8v")
@@ -76,7 +77,8 @@ id = "dragonite"
 display_name = "Dragonite"
 dex = 149
 types = Array[ExtResource("4_rheb0")]([ExtResource("5_e10x1"), ExtResource("6_q483x")])
-learnset = Array[ExtResource("1_u7h3d")]([SubResource("Resource_cto1j"), SubResource("Resource_du44j"), SubResource("Resource_ikfqp"), SubResource("Resource_wjy7r"), SubResource("Resource_4dj1m"), SubResource("Resource_k3rxi"), SubResource("Resource_arvyj"), SubResource("Resource_d7rbj"), SubResource("Resource_pt7ap"), SubResource("Resource_lwh8v"), SubResource("Resource_l3keh")])
+learnset = Array[ExtResource("1_u7h3d")]([SubResource("Resource_du44j"), SubResource("Resource_ikfqp"), SubResource("Resource_wjy7r"), SubResource("Resource_4dj1m"), SubResource("Resource_k3rxi"), SubResource("Resource_arvyj"), SubResource("Resource_d7rbj"), SubResource("Resource_pt7ap"), SubResource("Resource_lwh8v"), SubResource("Resource_l3keh"), SubResource("Resource_lpv4f")])
+evolves_from = "dragonair"
 temperament = ExtResource("15_cto1j")
 genus = "Pokémon Dragón"
 pokedex_entry = "Dragonite es capaz de dar la vuelta al mundo en solo 16 horas. Es un Pokémon de buen corazón que guía hasta tierra a los barcos que se encuentran perdidos en plena tormenta y a punto de zozobrar."

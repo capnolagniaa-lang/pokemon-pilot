@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_pjeka"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ywkjh"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_547w6"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_s3bct"]
@@ -17,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_a5vvo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_sj5dy"]
 
-[sub_resource type="Resource" id="Resource_sj5dy"]
+[sub_resource type="Resource" id="Resource_pjeka"]
 script = ExtResource("1_ywkjh")
 move = ExtResource("2_s3bct")
 
-[sub_resource type="Resource" id="Resource_pjeka"]
+[sub_resource type="Resource" id="Resource_3nsi1"]
 script = ExtResource("1_ywkjh")
 level = 7
 move = ExtResource("3_sj5dy")
 
-[sub_resource type="Resource" id="Resource_3nsi1"]
+[sub_resource type="Resource" id="Resource_64uym"]
 script = ExtResource("1_ywkjh")
 level = 11
 move = ExtResource("4_pjeka")
 
-[sub_resource type="Resource" id="Resource_64uym"]
+[sub_resource type="Resource" id="Resource_4rxvg"]
 script = ExtResource("1_ywkjh")
 level = 17
 move = ExtResource("5_3nsi1")
 
-[sub_resource type="Resource" id="Resource_4rxvg"]
+[sub_resource type="Resource" id="Resource_r2g5b"]
 script = ExtResource("1_ywkjh")
 level = 21
 move = ExtResource("6_64uym")
 
-[sub_resource type="Resource" id="Resource_r2g5b"]
+[sub_resource type="Resource" id="Resource_b08i5"]
 script = ExtResource("1_ywkjh")
 level = 27
 move = ExtResource("7_4rxvg")
 
-[sub_resource type="Resource" id="Resource_b08i5"]
+[sub_resource type="Resource" id="Resource_yqjha"]
 script = ExtResource("1_ywkjh")
 level = 31
 move = ExtResource("8_r2g5b")
 
-[sub_resource type="Resource" id="Resource_yqjha"]
+[sub_resource type="Resource" id="Resource_a5vvo"]
 script = ExtResource("1_ywkjh")
 level = 37
 move = ExtResource("9_b08i5")
 
-[sub_resource type="Resource" id="Resource_a5vvo"]
+[sub_resource type="Resource" id="Resource_pmf4b"]
 script = ExtResource("1_ywkjh")
 level = 41
 move = ExtResource("10_yqjha")
 
-[sub_resource type="Resource" id="Resource_pmf4b"]
+[sub_resource type="Resource" id="Resource_kyjxj"]
 script = ExtResource("1_ywkjh")
 level = 47
 move = ExtResource("11_a5vvo")
@@ -72,7 +73,7 @@ id = "stantler"
 display_name = "Stantler"
 dex = 234
 types = Array[ExtResource("4_xqutk")]([ExtResource("5_5n2tc")])
-learnset = Array[ExtResource("1_ywkjh")]([SubResource("Resource_sj5dy"), SubResource("Resource_pjeka"), SubResource("Resource_3nsi1"), SubResource("Resource_64uym"), SubResource("Resource_4rxvg"), SubResource("Resource_r2g5b"), SubResource("Resource_b08i5"), SubResource("Resource_yqjha"), SubResource("Resource_a5vvo"), SubResource("Resource_pmf4b")])
+learnset = Array[ExtResource("1_ywkjh")]([SubResource("Resource_pjeka"), SubResource("Resource_3nsi1"), SubResource("Resource_64uym"), SubResource("Resource_4rxvg"), SubResource("Resource_r2g5b"), SubResource("Resource_b08i5"), SubResource("Resource_yqjha"), SubResource("Resource_a5vvo"), SubResource("Resource_pmf4b"), SubResource("Resource_kyjxj")])
 temperament = ExtResource("14_sj5dy")
 genus = "Pokémon Gran Cuerno"
 pokedex_entry = "Hace tiempo, se comerciaba con la magnífica cornamenta de Stantler. Se vendía como obra de arte a alto precio. Los interesados en cornamentas de valor incalculable empezaron a cazarlos y casi provocan su extinción."

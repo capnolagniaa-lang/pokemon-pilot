@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_pkyyq"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_u3jhn"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="2_7b057"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_klc7q"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_acubc"]
@@ -17,50 +18,55 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_1cxsh"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_rihr0"]
 
-[sub_resource type="Resource" id="Resource_rihr0"]
+[sub_resource type="Resource" id="Resource_u3jhn"]
+script = ExtResource("1_u3jhn")
+to_id = "granbull"
+level = 23
+
+[sub_resource type="Resource" id="Resource_nxq4c"]
 script = ExtResource("1_pkyyq")
 move = ExtResource("2_7b057")
 
-[sub_resource type="Resource" id="Resource_u3jhn"]
+[sub_resource type="Resource" id="Resource_54cob"]
 script = ExtResource("1_pkyyq")
 move = ExtResource("3_rihr0")
 
-[sub_resource type="Resource" id="Resource_nxq4c"]
+[sub_resource type="Resource" id="Resource_c3qg4"]
 script = ExtResource("1_pkyyq")
 level = 4
 move = ExtResource("4_u3jhn")
 
-[sub_resource type="Resource" id="Resource_54cob"]
+[sub_resource type="Resource" id="Resource_dyc82"]
 script = ExtResource("1_pkyyq")
 level = 8
 move = ExtResource("5_nxq4c")
 
-[sub_resource type="Resource" id="Resource_c3qg4"]
+[sub_resource type="Resource" id="Resource_cyb86"]
 script = ExtResource("1_pkyyq")
 level = 13
 move = ExtResource("6_54cob")
 
-[sub_resource type="Resource" id="Resource_dyc82"]
+[sub_resource type="Resource" id="Resource_1f3oo"]
 script = ExtResource("1_pkyyq")
 level = 19
 move = ExtResource("7_c3qg4")
 
-[sub_resource type="Resource" id="Resource_cyb86"]
+[sub_resource type="Resource" id="Resource_1cxsh"]
 script = ExtResource("1_pkyyq")
 level = 26
 move = ExtResource("8_dyc82")
 
-[sub_resource type="Resource" id="Resource_1f3oo"]
+[sub_resource type="Resource" id="Resource_33lgv"]
 script = ExtResource("1_pkyyq")
 level = 34
 move = ExtResource("9_cyb86")
 
-[sub_resource type="Resource" id="Resource_1cxsh"]
+[sub_resource type="Resource" id="Resource_wamua"]
 script = ExtResource("1_pkyyq")
 level = 43
 move = ExtResource("10_1f3oo")
 
-[sub_resource type="Resource" id="Resource_33lgv"]
+[sub_resource type="Resource" id="Resource_5xix7"]
 script = ExtResource("1_pkyyq")
 level = 53
 move = ExtResource("11_1cxsh")
@@ -71,7 +77,8 @@ id = "snubbull"
 display_name = "Snubbull"
 dex = 209
 types = Array[ExtResource("4_vhs1d")]([ExtResource("5_bhoog")])
-learnset = Array[ExtResource("1_pkyyq")]([SubResource("Resource_rihr0"), SubResource("Resource_u3jhn"), SubResource("Resource_nxq4c"), SubResource("Resource_54cob"), SubResource("Resource_c3qg4"), SubResource("Resource_dyc82"), SubResource("Resource_cyb86"), SubResource("Resource_1f3oo"), SubResource("Resource_1cxsh"), SubResource("Resource_33lgv")])
+learnset = Array[ExtResource("1_pkyyq")]([SubResource("Resource_nxq4c"), SubResource("Resource_54cob"), SubResource("Resource_c3qg4"), SubResource("Resource_dyc82"), SubResource("Resource_cyb86"), SubResource("Resource_1f3oo"), SubResource("Resource_1cxsh"), SubResource("Resource_33lgv"), SubResource("Resource_wamua"), SubResource("Resource_5xix7")])
+evolutions = Array[ExtResource("1_u3jhn")]([SubResource("Resource_u3jhn")])
 temperament = ExtResource("14_rihr0")
 genus = "Pokémon Hada"
 pokedex_entry = "Al tener los colmillos por fuera, Snubbull da miedo y espanta a los Pokémon pequeños, que huyen aterrados. Parece que a él le da un poco de pena que salgan huyendo."

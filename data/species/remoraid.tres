@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6u2tn"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_eg266"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_h8tqm"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_tsyky"]
 [ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="3_h46v1"]
@@ -15,41 +16,46 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_uhm5y"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_h46v1"]
 
-[sub_resource type="Resource" id="Resource_h46v1"]
+[sub_resource type="Resource" id="Resource_eg266"]
+script = ExtResource("1_eg266")
+to_id = "octillery"
+level = 25
+
+[sub_resource type="Resource" id="Resource_n5kho"]
 script = ExtResource("1_6u2tn")
 move = ExtResource("2_tsyky")
 
-[sub_resource type="Resource" id="Resource_eg266"]
+[sub_resource type="Resource" id="Resource_y1qrf"]
 script = ExtResource("1_6u2tn")
 level = 11
 move = ExtResource("3_h46v1")
 
-[sub_resource type="Resource" id="Resource_n5kho"]
+[sub_resource type="Resource" id="Resource_uy3bo"]
 script = ExtResource("1_6u2tn")
 level = 22
 move = ExtResource("4_eg266")
 
-[sub_resource type="Resource" id="Resource_y1qrf"]
+[sub_resource type="Resource" id="Resource_at2we"]
 script = ExtResource("1_6u2tn")
 level = 22
 move = ExtResource("5_n5kho")
 
-[sub_resource type="Resource" id="Resource_uy3bo"]
+[sub_resource type="Resource" id="Resource_uhm5y"]
 script = ExtResource("1_6u2tn")
 level = 22
 move = ExtResource("6_y1qrf")
 
-[sub_resource type="Resource" id="Resource_at2we"]
+[sub_resource type="Resource" id="Resource_hl1np"]
 script = ExtResource("1_6u2tn")
 level = 33
 move = ExtResource("7_uy3bo")
 
-[sub_resource type="Resource" id="Resource_uhm5y"]
+[sub_resource type="Resource" id="Resource_l4fjg"]
 script = ExtResource("1_6u2tn")
 level = 44
 move = ExtResource("8_at2we")
 
-[sub_resource type="Resource" id="Resource_hl1np"]
+[sub_resource type="Resource" id="Resource_41vh1"]
 script = ExtResource("1_6u2tn")
 level = 55
 move = ExtResource("9_uhm5y")
@@ -60,7 +66,8 @@ id = "remoraid"
 display_name = "Remoraid"
 dex = 223
 types = Array[ExtResource("4_4o3jt")]([ExtResource("5_vwgch")])
-learnset = Array[ExtResource("1_6u2tn")]([SubResource("Resource_h46v1"), SubResource("Resource_eg266"), SubResource("Resource_n5kho"), SubResource("Resource_y1qrf"), SubResource("Resource_uy3bo"), SubResource("Resource_at2we"), SubResource("Resource_uhm5y"), SubResource("Resource_hl1np")])
+learnset = Array[ExtResource("1_6u2tn")]([SubResource("Resource_n5kho"), SubResource("Resource_y1qrf"), SubResource("Resource_uy3bo"), SubResource("Resource_at2we"), SubResource("Resource_uhm5y"), SubResource("Resource_hl1np"), SubResource("Resource_l4fjg"), SubResource("Resource_41vh1")])
+evolutions = Array[ExtResource("1_eg266")]([SubResource("Resource_eg266")])
 temperament = ExtResource("12_h46v1")
 genus = "Pokémon Reactor"
 pokedex_entry = "Remoraid traga agua y usa los abdominales para lanzarla a gran velocidad contra una presa que esté en el aire. Cuando está a punto de evolucionar, este Pokémon nada en los ríos corriente abajo."

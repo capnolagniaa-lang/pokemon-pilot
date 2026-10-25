@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hg67w"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_kefg3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_jxfmv"]
 [ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="2_la61m"]
 [ext_resource type="Resource" path="res://data/moves/agarre.tres" id="3_0bt5x"]
@@ -17,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/danza_espada.tres" id="11_vyykr"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_0bt5x"]
 
-[sub_resource type="Resource" id="Resource_0bt5x"]
+[sub_resource type="Resource" id="Resource_kefg3"]
 script = ExtResource("1_hg67w")
 move = ExtResource("2_la61m")
 
-[sub_resource type="Resource" id="Resource_kefg3"]
+[sub_resource type="Resource" id="Resource_uu0a7"]
 script = ExtResource("1_hg67w")
 move = ExtResource("3_0bt5x")
 
-[sub_resource type="Resource" id="Resource_uu0a7"]
+[sub_resource type="Resource" id="Resource_ubu1h"]
 script = ExtResource("1_hg67w")
 level = 7
 move = ExtResource("4_kefg3")
 
-[sub_resource type="Resource" id="Resource_ubu1h"]
+[sub_resource type="Resource" id="Resource_24wke"]
 script = ExtResource("1_hg67w")
 level = 13
 move = ExtResource("5_uu0a7")
 
-[sub_resource type="Resource" id="Resource_24wke"]
+[sub_resource type="Resource" id="Resource_18yyf"]
 script = ExtResource("1_hg67w")
 level = 19
 move = ExtResource("6_ubu1h")
 
-[sub_resource type="Resource" id="Resource_18yyf"]
+[sub_resource type="Resource" id="Resource_gi0vq"]
 script = ExtResource("1_hg67w")
 level = 25
 move = ExtResource("7_24wke")
 
-[sub_resource type="Resource" id="Resource_gi0vq"]
+[sub_resource type="Resource" id="Resource_glxnq"]
 script = ExtResource("1_hg67w")
 level = 31
 move = ExtResource("8_18yyf")
 
-[sub_resource type="Resource" id="Resource_glxnq"]
+[sub_resource type="Resource" id="Resource_vyykr"]
 script = ExtResource("1_hg67w")
 level = 37
 move = ExtResource("9_gi0vq")
 
-[sub_resource type="Resource" id="Resource_vyykr"]
+[sub_resource type="Resource" id="Resource_axpds"]
 script = ExtResource("1_hg67w")
 level = 43
 move = ExtResource("10_glxnq")
 
-[sub_resource type="Resource" id="Resource_axpds"]
+[sub_resource type="Resource" id="Resource_8txrk"]
 script = ExtResource("1_hg67w")
 level = 49
 move = ExtResource("11_vyykr")
@@ -71,7 +72,7 @@ id = "pinsir"
 display_name = "Pinsir"
 dex = 127
 types = Array[ExtResource("4_31nkt")]([ExtResource("5_wpx7g")])
-learnset = Array[ExtResource("1_hg67w")]([SubResource("Resource_0bt5x"), SubResource("Resource_kefg3"), SubResource("Resource_uu0a7"), SubResource("Resource_ubu1h"), SubResource("Resource_24wke"), SubResource("Resource_18yyf"), SubResource("Resource_gi0vq"), SubResource("Resource_glxnq"), SubResource("Resource_vyykr"), SubResource("Resource_axpds")])
+learnset = Array[ExtResource("1_hg67w")]([SubResource("Resource_kefg3"), SubResource("Resource_uu0a7"), SubResource("Resource_ubu1h"), SubResource("Resource_24wke"), SubResource("Resource_18yyf"), SubResource("Resource_gi0vq"), SubResource("Resource_glxnq"), SubResource("Resource_vyykr"), SubResource("Resource_axpds"), SubResource("Resource_8txrk")])
 temperament = ExtResource("14_0bt5x")
 genus = "Pokémon Escarabajo"
 pokedex_entry = "Pinsir es sorprendentemente fuerte. Puede agarrar con los cuernos a un rival que pese el doble que él y levantarlo por los aires. En zonas frías, los movimientos de este Pokémon se vuelven lentos."

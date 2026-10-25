@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_buo8u"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_w02df"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_2vrqt"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_eqyti"]
@@ -17,43 +18,43 @@
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="10_sy6fc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_4ebfa"]
 
-[sub_resource type="Resource" id="Resource_4ebfa"]
+[sub_resource type="Resource" id="Resource_buo8u"]
 script = ExtResource("1_w02df")
 move = ExtResource("2_2vrqt")
 
-[sub_resource type="Resource" id="Resource_buo8u"]
+[sub_resource type="Resource" id="Resource_wv2hw"]
 script = ExtResource("1_w02df")
 move = ExtResource("3_4ebfa")
 
-[sub_resource type="Resource" id="Resource_wv2hw"]
+[sub_resource type="Resource" id="Resource_npoas"]
 script = ExtResource("1_w02df")
 move = ExtResource("4_buo8u")
 
-[sub_resource type="Resource" id="Resource_npoas"]
+[sub_resource type="Resource" id="Resource_iasuk"]
 script = ExtResource("1_w02df")
 move = ExtResource("5_wv2hw")
 
-[sub_resource type="Resource" id="Resource_iasuk"]
+[sub_resource type="Resource" id="Resource_jhqgh"]
 script = ExtResource("1_w02df")
 level = 10
 move = ExtResource("6_npoas")
 
-[sub_resource type="Resource" id="Resource_jhqgh"]
+[sub_resource type="Resource" id="Resource_5jhej"]
 script = ExtResource("1_w02df")
 level = 20
 move = ExtResource("7_iasuk")
 
-[sub_resource type="Resource" id="Resource_5jhej"]
+[sub_resource type="Resource" id="Resource_sy6fc"]
 script = ExtResource("1_w02df")
 level = 30
 move = ExtResource("8_jhqgh")
 
-[sub_resource type="Resource" id="Resource_sy6fc"]
+[sub_resource type="Resource" id="Resource_ypg1d"]
 script = ExtResource("1_w02df")
 level = 40
 move = ExtResource("9_5jhej")
 
-[sub_resource type="Resource" id="Resource_ypg1d"]
+[sub_resource type="Resource" id="Resource_may5b"]
 script = ExtResource("1_w02df")
 level = 50
 move = ExtResource("10_sy6fc")
@@ -64,7 +65,7 @@ id = "celebi"
 display_name = "Celebi"
 dex = 251
 types = Array[ExtResource("4_mkiim")]([ExtResource("5_wsobv"), ExtResource("6_cdhuu")])
-learnset = Array[ExtResource("1_w02df")]([SubResource("Resource_4ebfa"), SubResource("Resource_buo8u"), SubResource("Resource_wv2hw"), SubResource("Resource_npoas"), SubResource("Resource_iasuk"), SubResource("Resource_jhqgh"), SubResource("Resource_5jhej"), SubResource("Resource_sy6fc"), SubResource("Resource_ypg1d")])
+learnset = Array[ExtResource("1_w02df")]([SubResource("Resource_buo8u"), SubResource("Resource_wv2hw"), SubResource("Resource_npoas"), SubResource("Resource_iasuk"), SubResource("Resource_jhqgh"), SubResource("Resource_5jhej"), SubResource("Resource_sy6fc"), SubResource("Resource_ypg1d"), SubResource("Resource_may5b")])
 temperament = ExtResource("13_4ebfa")
 genus = "Pokémon Viajetiempo"
 pokedex_entry = "Este Pokémon vino del futuro haciendo un viaje en el tiempo. Hay quien piensa que, mientras Celebi siga apareciendo, hay un futuro brillante y esperanzador."

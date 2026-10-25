@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3pjta"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_8td1e"]
 [ext_resource type="Resource" path="res://data/moves/remolino.tres" id="2_lvssg"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_np6af"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="3_jp2xa"]
@@ -18,51 +19,51 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="11_5hlru"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_jp2xa"]
 
-[sub_resource type="Resource" id="Resource_jp2xa"]
+[sub_resource type="Resource" id="Resource_8td1e"]
 script = ExtResource("1_3pjta")
 move = ExtResource("2_lvssg")
 
-[sub_resource type="Resource" id="Resource_8td1e"]
+[sub_resource type="Resource" id="Resource_gfp55"]
 script = ExtResource("1_3pjta")
 level = 11
 move = ExtResource("3_jp2xa")
 
-[sub_resource type="Resource" id="Resource_gfp55"]
+[sub_resource type="Resource" id="Resource_lycmj"]
 script = ExtResource("1_3pjta")
 level = 22
 move = ExtResource("4_8td1e")
 
-[sub_resource type="Resource" id="Resource_lycmj"]
+[sub_resource type="Resource" id="Resource_3qhf1"]
 script = ExtResource("1_3pjta")
 level = 33
 move = ExtResource("5_gfp55")
 
-[sub_resource type="Resource" id="Resource_3qhf1"]
+[sub_resource type="Resource" id="Resource_mpa7c"]
 script = ExtResource("1_3pjta")
 level = 44
 move = ExtResource("6_lycmj")
 
-[sub_resource type="Resource" id="Resource_mpa7c"]
+[sub_resource type="Resource" id="Resource_pqydi"]
 script = ExtResource("1_3pjta")
 level = 55
 move = ExtResource("7_3qhf1")
 
-[sub_resource type="Resource" id="Resource_pqydi"]
+[sub_resource type="Resource" id="Resource_drj6g"]
 script = ExtResource("1_3pjta")
 level = 66
 move = ExtResource("8_mpa7c")
 
-[sub_resource type="Resource" id="Resource_drj6g"]
+[sub_resource type="Resource" id="Resource_5hlru"]
 script = ExtResource("1_3pjta")
 level = 77
 move = ExtResource("9_pqydi")
 
-[sub_resource type="Resource" id="Resource_5hlru"]
+[sub_resource type="Resource" id="Resource_oxhbw"]
 script = ExtResource("1_3pjta")
 level = 88
 move = ExtResource("10_drj6g")
 
-[sub_resource type="Resource" id="Resource_oxhbw"]
+[sub_resource type="Resource" id="Resource_ty6mf"]
 script = ExtResource("1_3pjta")
 level = 99
 move = ExtResource("11_5hlru")
@@ -73,7 +74,7 @@ id = "lugia"
 display_name = "Lugia"
 dex = 249
 types = Array[ExtResource("4_mi8yd")]([ExtResource("5_20hyn"), ExtResource("6_nnu3r")])
-learnset = Array[ExtResource("1_3pjta")]([SubResource("Resource_jp2xa"), SubResource("Resource_8td1e"), SubResource("Resource_gfp55"), SubResource("Resource_lycmj"), SubResource("Resource_3qhf1"), SubResource("Resource_mpa7c"), SubResource("Resource_pqydi"), SubResource("Resource_drj6g"), SubResource("Resource_5hlru"), SubResource("Resource_oxhbw")])
+learnset = Array[ExtResource("1_3pjta")]([SubResource("Resource_8td1e"), SubResource("Resource_gfp55"), SubResource("Resource_lycmj"), SubResource("Resource_3qhf1"), SubResource("Resource_mpa7c"), SubResource("Resource_pqydi"), SubResource("Resource_drj6g"), SubResource("Resource_5hlru"), SubResource("Resource_oxhbw"), SubResource("Resource_ty6mf")])
 temperament = ExtResource("14_jp2xa")
 genus = "Pokémon Buceo"
 pokedex_entry = "La fuerza que tiene Lugia en las alas es devastadora; con nada que las bata es capaz de derribar edificios enteros. Por eso mismo, prefiere vivir donde no haya nadie, en lo más profundo del mar."

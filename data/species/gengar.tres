@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_kngvj"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_nicgh"]
 [ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="2_45dyh"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ouees"]
@@ -20,59 +21,59 @@
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="13_vp23u"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_6dtjf"]
 
-[sub_resource type="Resource" id="Resource_6dtjf"]
+[sub_resource type="Resource" id="Resource_kngvj"]
 script = ExtResource("1_nicgh")
 move = ExtResource("2_45dyh")
 
-[sub_resource type="Resource" id="Resource_kngvj"]
+[sub_resource type="Resource" id="Resource_hq35k"]
 script = ExtResource("1_nicgh")
 move = ExtResource("3_6dtjf")
 
-[sub_resource type="Resource" id="Resource_hq35k"]
+[sub_resource type="Resource" id="Resource_0dvg8"]
 script = ExtResource("1_nicgh")
 move = ExtResource("4_kngvj")
 
-[sub_resource type="Resource" id="Resource_0dvg8"]
+[sub_resource type="Resource" id="Resource_jy46y"]
 script = ExtResource("1_nicgh")
 level = 13
 move = ExtResource("5_hq35k")
 
-[sub_resource type="Resource" id="Resource_jy46y"]
+[sub_resource type="Resource" id="Resource_by74j"]
 script = ExtResource("1_nicgh")
 level = 16
 move = ExtResource("6_0dvg8")
 
-[sub_resource type="Resource" id="Resource_by74j"]
+[sub_resource type="Resource" id="Resource_4coxh"]
 script = ExtResource("1_nicgh")
 level = 21
 move = ExtResource("7_jy46y")
 
-[sub_resource type="Resource" id="Resource_4coxh"]
+[sub_resource type="Resource" id="Resource_2yvvn"]
 script = ExtResource("1_nicgh")
 level = 25
 move = ExtResource("8_by74j")
 
-[sub_resource type="Resource" id="Resource_2yvvn"]
+[sub_resource type="Resource" id="Resource_kjj72"]
 script = ExtResource("1_nicgh")
 level = 31
 move = ExtResource("9_4coxh")
 
-[sub_resource type="Resource" id="Resource_kjj72"]
+[sub_resource type="Resource" id="Resource_p41xp"]
 script = ExtResource("1_nicgh")
 level = 39
 move = ExtResource("10_2yvvn")
 
-[sub_resource type="Resource" id="Resource_p41xp"]
+[sub_resource type="Resource" id="Resource_vp23u"]
 script = ExtResource("1_nicgh")
 level = 45
 move = ExtResource("11_kjj72")
 
-[sub_resource type="Resource" id="Resource_vp23u"]
+[sub_resource type="Resource" id="Resource_ph4jc"]
 script = ExtResource("1_nicgh")
 level = 53
 move = ExtResource("12_p41xp")
 
-[sub_resource type="Resource" id="Resource_ph4jc"]
+[sub_resource type="Resource" id="Resource_qqpmp"]
 script = ExtResource("1_nicgh")
 level = 64
 move = ExtResource("13_vp23u")
@@ -83,7 +84,8 @@ id = "gengar"
 display_name = "Gengar"
 dex = 94
 types = Array[ExtResource("4_ehkfx")]([ExtResource("5_h27yf"), ExtResource("6_lb3r2")])
-learnset = Array[ExtResource("1_nicgh")]([SubResource("Resource_6dtjf"), SubResource("Resource_kngvj"), SubResource("Resource_hq35k"), SubResource("Resource_0dvg8"), SubResource("Resource_jy46y"), SubResource("Resource_by74j"), SubResource("Resource_4coxh"), SubResource("Resource_2yvvn"), SubResource("Resource_kjj72"), SubResource("Resource_p41xp"), SubResource("Resource_vp23u"), SubResource("Resource_ph4jc")])
+learnset = Array[ExtResource("1_nicgh")]([SubResource("Resource_kngvj"), SubResource("Resource_hq35k"), SubResource("Resource_0dvg8"), SubResource("Resource_jy46y"), SubResource("Resource_by74j"), SubResource("Resource_4coxh"), SubResource("Resource_2yvvn"), SubResource("Resource_kjj72"), SubResource("Resource_p41xp"), SubResource("Resource_vp23u"), SubResource("Resource_ph4jc"), SubResource("Resource_qqpmp")])
+evolves_from = "haunter"
 temperament = ExtResource("16_6dtjf")
 genus = "Pokémon Sombra"
 pokedex_entry = "Si alguien ve que su sombra le adelanta de repente en una noche oscura, es muy probable que lo que esté viendo no sea su sombra, sino a un Gengar haciéndose pasar por la misma."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hu27v"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_sba7p"]
 [ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="2_7xnnd"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_grses"]
 [ext_resource type="Resource" path="res://data/moves/destructor.tres" id="3_da76x"]
@@ -18,55 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="12_4iedq"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_da76x"]
 
-[sub_resource type="Resource" id="Resource_da76x"]
+[sub_resource type="Resource" id="Resource_sba7p"]
+script = ExtResource("1_sba7p")
+to_id = "hypno"
+level = 26
+
+[sub_resource type="Resource" id="Resource_bqpny"]
 script = ExtResource("1_hu27v")
 move = ExtResource("2_7xnnd")
 
-[sub_resource type="Resource" id="Resource_sba7p"]
+[sub_resource type="Resource" id="Resource_vqpxs"]
 script = ExtResource("1_hu27v")
 move = ExtResource("3_da76x")
 
-[sub_resource type="Resource" id="Resource_bqpny"]
+[sub_resource type="Resource" id="Resource_6lndh"]
 script = ExtResource("1_hu27v")
 level = 7
 move = ExtResource("4_sba7p")
 
-[sub_resource type="Resource" id="Resource_vqpxs"]
+[sub_resource type="Resource" id="Resource_c2oik"]
 script = ExtResource("1_hu27v")
 level = 11
 move = ExtResource("5_bqpny")
 
-[sub_resource type="Resource" id="Resource_6lndh"]
+[sub_resource type="Resource" id="Resource_g2j5t"]
 script = ExtResource("1_hu27v")
 level = 17
 move = ExtResource("6_vqpxs")
 
-[sub_resource type="Resource" id="Resource_c2oik"]
+[sub_resource type="Resource" id="Resource_uf4dv"]
 script = ExtResource("1_hu27v")
 level = 21
 move = ExtResource("7_6lndh")
 
-[sub_resource type="Resource" id="Resource_g2j5t"]
+[sub_resource type="Resource" id="Resource_neoij"]
 script = ExtResource("1_hu27v")
 level = 27
 move = ExtResource("8_c2oik")
 
-[sub_resource type="Resource" id="Resource_uf4dv"]
+[sub_resource type="Resource" id="Resource_4iedq"]
 script = ExtResource("1_hu27v")
 level = 31
 move = ExtResource("9_g2j5t")
 
-[sub_resource type="Resource" id="Resource_neoij"]
+[sub_resource type="Resource" id="Resource_3em6u"]
 script = ExtResource("1_hu27v")
 level = 37
 move = ExtResource("10_uf4dv")
 
-[sub_resource type="Resource" id="Resource_4iedq"]
+[sub_resource type="Resource" id="Resource_1mhw8"]
 script = ExtResource("1_hu27v")
 level = 41
 move = ExtResource("11_neoij")
 
-[sub_resource type="Resource" id="Resource_3em6u"]
+[sub_resource type="Resource" id="Resource_rd13b"]
 script = ExtResource("1_hu27v")
 level = 47
 move = ExtResource("12_4iedq")
@@ -77,7 +83,8 @@ id = "drowzee"
 display_name = "Drowzee"
 dex = 96
 types = Array[ExtResource("4_qbhxv")]([ExtResource("5_mara1")])
-learnset = Array[ExtResource("1_hu27v")]([SubResource("Resource_da76x"), SubResource("Resource_sba7p"), SubResource("Resource_bqpny"), SubResource("Resource_vqpxs"), SubResource("Resource_6lndh"), SubResource("Resource_c2oik"), SubResource("Resource_g2j5t"), SubResource("Resource_uf4dv"), SubResource("Resource_neoij"), SubResource("Resource_4iedq"), SubResource("Resource_3em6u")])
+learnset = Array[ExtResource("1_hu27v")]([SubResource("Resource_bqpny"), SubResource("Resource_vqpxs"), SubResource("Resource_6lndh"), SubResource("Resource_c2oik"), SubResource("Resource_g2j5t"), SubResource("Resource_uf4dv"), SubResource("Resource_neoij"), SubResource("Resource_4iedq"), SubResource("Resource_3em6u"), SubResource("Resource_1mhw8"), SubResource("Resource_rd13b")])
+evolutions = Array[ExtResource("1_sba7p")]([SubResource("Resource_sba7p")])
 temperament = ExtResource("15_da76x")
 genus = "Pokémon Hipnosis"
 pokedex_entry = "Si a alguien le pica la nariz mientras duerme, seguro que es porque tiene a uno de estos Pokémon cerca de la almohada intentando sacarle los sueños por la nariz para comérselos."

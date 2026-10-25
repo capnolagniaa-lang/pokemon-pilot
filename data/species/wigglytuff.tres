@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_iw7w2"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_sfyxs"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5336m"]
 [ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_p8g8c"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_frobw"]
@@ -12,19 +13,19 @@
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="6_xj5hu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="8_xj5hu"]
 
-[sub_resource type="Resource" id="Resource_xj5hu"]
+[sub_resource type="Resource" id="Resource_sfyxs"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("2_p8g8c")
 
-[sub_resource type="Resource" id="Resource_sfyxs"]
+[sub_resource type="Resource" id="Resource_bgitb"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("3_xj5hu")
 
-[sub_resource type="Resource" id="Resource_bgitb"]
+[sub_resource type="Resource" id="Resource_boqhd"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("4_sfyxs")
 
-[sub_resource type="Resource" id="Resource_boqhd"]
+[sub_resource type="Resource" id="Resource_k00ji"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("5_bgitb")
 
@@ -34,7 +35,8 @@ id = "wigglytuff"
 display_name = "Wigglytuff"
 dex = 40
 types = Array[ExtResource("4_lyvdw")]([ExtResource("5_p8g8c"), ExtResource("6_xj5hu")])
-learnset = Array[ExtResource("1_iw7w2")]([SubResource("Resource_xj5hu"), SubResource("Resource_sfyxs"), SubResource("Resource_bgitb"), SubResource("Resource_boqhd")])
+learnset = Array[ExtResource("1_iw7w2")]([SubResource("Resource_sfyxs"), SubResource("Resource_bgitb"), SubResource("Resource_boqhd"), SubResource("Resource_k00ji")])
+evolves_from = "jigglypuff"
 temperament = ExtResource("8_xj5hu")
 genus = "Pokémon Globo"
 pokedex_entry = "Wigglytuff tiene unos ojos enormes con forma de platillo, que siempre están cubiertos de lágrimas. Si se le metiera algo en el ojo, enseguida se le saldría solo."

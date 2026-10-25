@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jn6me"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_nekea"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6nedr"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_fl6sf"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_cm2by"]
@@ -21,63 +22,63 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="14_1di18"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_cm2by"]
 
-[sub_resource type="Resource" id="Resource_cm2by"]
+[sub_resource type="Resource" id="Resource_nekea"]
 script = ExtResource("1_jn6me")
 move = ExtResource("2_fl6sf")
 
-[sub_resource type="Resource" id="Resource_nekea"]
+[sub_resource type="Resource" id="Resource_qxpdo"]
 script = ExtResource("1_jn6me")
 move = ExtResource("3_cm2by")
 
-[sub_resource type="Resource" id="Resource_qxpdo"]
+[sub_resource type="Resource" id="Resource_dwm0j"]
 script = ExtResource("1_jn6me")
 move = ExtResource("4_nekea")
 
-[sub_resource type="Resource" id="Resource_dwm0j"]
+[sub_resource type="Resource" id="Resource_iisek"]
 script = ExtResource("1_jn6me")
 move = ExtResource("5_qxpdo")
 
-[sub_resource type="Resource" id="Resource_iisek"]
+[sub_resource type="Resource" id="Resource_8xe6j"]
 script = ExtResource("1_jn6me")
 level = 7
 move = ExtResource("6_dwm0j")
 
-[sub_resource type="Resource" id="Resource_8xe6j"]
+[sub_resource type="Resource" id="Resource_uwubw"]
 script = ExtResource("1_jn6me")
 level = 11
 move = ExtResource("7_iisek")
 
-[sub_resource type="Resource" id="Resource_uwubw"]
+[sub_resource type="Resource" id="Resource_arte2"]
 script = ExtResource("1_jn6me")
 level = 15
 move = ExtResource("8_8xe6j")
 
-[sub_resource type="Resource" id="Resource_arte2"]
+[sub_resource type="Resource" id="Resource_isff8"]
 script = ExtResource("1_jn6me")
 level = 19
 move = ExtResource("9_uwubw")
 
-[sub_resource type="Resource" id="Resource_isff8"]
+[sub_resource type="Resource" id="Resource_ewdhs"]
 script = ExtResource("1_jn6me")
 level = 25
 move = ExtResource("10_arte2")
 
-[sub_resource type="Resource" id="Resource_ewdhs"]
+[sub_resource type="Resource" id="Resource_gj0ai"]
 script = ExtResource("1_jn6me")
 level = 31
 move = ExtResource("11_isff8")
 
-[sub_resource type="Resource" id="Resource_gj0ai"]
+[sub_resource type="Resource" id="Resource_1di18"]
 script = ExtResource("1_jn6me")
 level = 36
 move = ExtResource("12_ewdhs")
 
-[sub_resource type="Resource" id="Resource_1di18"]
+[sub_resource type="Resource" id="Resource_72u7q"]
 script = ExtResource("1_jn6me")
 level = 42
 move = ExtResource("13_gj0ai")
 
-[sub_resource type="Resource" id="Resource_72u7q"]
+[sub_resource type="Resource" id="Resource_om7cw"]
 script = ExtResource("1_jn6me")
 level = 55
 move = ExtResource("14_1di18")
@@ -88,7 +89,8 @@ id = "claydol"
 display_name = "Claydol"
 dex = 344
 types = Array[ExtResource("4_7xjs4")]([ExtResource("5_gh6aj"), ExtResource("6_dsxms")])
-learnset = Array[ExtResource("1_jn6me")]([SubResource("Resource_cm2by"), SubResource("Resource_nekea"), SubResource("Resource_qxpdo"), SubResource("Resource_dwm0j"), SubResource("Resource_iisek"), SubResource("Resource_8xe6j"), SubResource("Resource_uwubw"), SubResource("Resource_arte2"), SubResource("Resource_isff8"), SubResource("Resource_ewdhs"), SubResource("Resource_gj0ai"), SubResource("Resource_1di18"), SubResource("Resource_72u7q")])
+learnset = Array[ExtResource("1_jn6me")]([SubResource("Resource_nekea"), SubResource("Resource_qxpdo"), SubResource("Resource_dwm0j"), SubResource("Resource_iisek"), SubResource("Resource_8xe6j"), SubResource("Resource_uwubw"), SubResource("Resource_arte2"), SubResource("Resource_isff8"), SubResource("Resource_ewdhs"), SubResource("Resource_gj0ai"), SubResource("Resource_1di18"), SubResource("Resource_72u7q"), SubResource("Resource_om7cw")])
+evolves_from = "baltoy"
 temperament = ExtResource("17_cm2by")
 genus = "Pokémon Muñeca Barro"
 pokedex_entry = "Se cree que los Claydol son figuras de barro hechas por humanos primitivos y que un misterioso rayo les hizo cobrar vida. Este Pokémon se desplaza levitando."

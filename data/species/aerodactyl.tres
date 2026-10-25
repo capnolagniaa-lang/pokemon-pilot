@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jm0rt"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_t6xl5"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4w60q"]
 [ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="2_hujf5"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="3_gq55q"]
@@ -16,41 +17,41 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_iodh3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_gq55q"]
 
-[sub_resource type="Resource" id="Resource_gq55q"]
+[sub_resource type="Resource" id="Resource_t6xl5"]
 script = ExtResource("1_jm0rt")
 move = ExtResource("2_hujf5")
 
-[sub_resource type="Resource" id="Resource_t6xl5"]
+[sub_resource type="Resource" id="Resource_lsfxh"]
 script = ExtResource("1_jm0rt")
 level = 8
 move = ExtResource("3_gq55q")
 
-[sub_resource type="Resource" id="Resource_lsfxh"]
+[sub_resource type="Resource" id="Resource_bul0b"]
 script = ExtResource("1_jm0rt")
 level = 15
 move = ExtResource("4_t6xl5")
 
-[sub_resource type="Resource" id="Resource_bul0b"]
+[sub_resource type="Resource" id="Resource_u4doo"]
 script = ExtResource("1_jm0rt")
 level = 22
 move = ExtResource("5_lsfxh")
 
-[sub_resource type="Resource" id="Resource_u4doo"]
+[sub_resource type="Resource" id="Resource_jh842"]
 script = ExtResource("1_jm0rt")
 level = 29
 move = ExtResource("6_bul0b")
 
-[sub_resource type="Resource" id="Resource_jh842"]
+[sub_resource type="Resource" id="Resource_iodh3"]
 script = ExtResource("1_jm0rt")
 level = 36
 move = ExtResource("7_u4doo")
 
-[sub_resource type="Resource" id="Resource_iodh3"]
+[sub_resource type="Resource" id="Resource_k1y3p"]
 script = ExtResource("1_jm0rt")
 level = 43
 move = ExtResource("8_jh842")
 
-[sub_resource type="Resource" id="Resource_k1y3p"]
+[sub_resource type="Resource" id="Resource_cowg3"]
 script = ExtResource("1_jm0rt")
 level = 50
 move = ExtResource("9_iodh3")
@@ -61,7 +62,7 @@ id = "aerodactyl"
 display_name = "Aerodactyl"
 dex = 142
 types = Array[ExtResource("4_7fu47")]([ExtResource("5_em3qc"), ExtResource("6_yuy5m")])
-learnset = Array[ExtResource("1_jm0rt")]([SubResource("Resource_gq55q"), SubResource("Resource_t6xl5"), SubResource("Resource_lsfxh"), SubResource("Resource_bul0b"), SubResource("Resource_u4doo"), SubResource("Resource_jh842"), SubResource("Resource_iodh3"), SubResource("Resource_k1y3p")])
+learnset = Array[ExtResource("1_jm0rt")]([SubResource("Resource_t6xl5"), SubResource("Resource_lsfxh"), SubResource("Resource_bul0b"), SubResource("Resource_u4doo"), SubResource("Resource_jh842"), SubResource("Resource_iodh3"), SubResource("Resource_k1y3p"), SubResource("Resource_cowg3")])
 temperament = ExtResource("12_gq55q")
 genus = "Pokémon Fósil"
 pokedex_entry = "Los orígenes de Aerodactyl datan de la era de los dinosaurios. Se regeneró a partir de material genético contenido en ámbar. Se supone que fue el amo de los cielos en épocas pasadas."

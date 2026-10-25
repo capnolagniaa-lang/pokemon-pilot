@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_kip23"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_srbis"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_hqnoo"]
 [ext_resource type="Resource" path="res://data/moves/desarme.tres" id="2_xc66o"]
@@ -17,51 +18,56 @@
 [ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_7hxo8"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_mf4fh"]
 
-[sub_resource type="Resource" id="Resource_mf4fh"]
+[sub_resource type="Resource" id="Resource_kip23"]
+script = ExtResource("1_kip23")
+to_id = "banette"
+level = 37
+
+[sub_resource type="Resource" id="Resource_1qhpe"]
 script = ExtResource("1_srbis")
 move = ExtResource("2_xc66o")
 
-[sub_resource type="Resource" id="Resource_kip23"]
+[sub_resource type="Resource" id="Resource_voonj"]
 script = ExtResource("1_srbis")
 level = 8
 move = ExtResource("3_mf4fh")
 
-[sub_resource type="Resource" id="Resource_1qhpe"]
+[sub_resource type="Resource" id="Resource_qcrc7"]
 script = ExtResource("1_srbis")
 level = 13
 move = ExtResource("4_kip23")
 
-[sub_resource type="Resource" id="Resource_voonj"]
+[sub_resource type="Resource" id="Resource_3k2cf"]
 script = ExtResource("1_srbis")
 level = 20
 move = ExtResource("5_1qhpe")
 
-[sub_resource type="Resource" id="Resource_qcrc7"]
+[sub_resource type="Resource" id="Resource_w6kfq"]
 script = ExtResource("1_srbis")
 level = 25
 move = ExtResource("6_voonj")
 
-[sub_resource type="Resource" id="Resource_3k2cf"]
+[sub_resource type="Resource" id="Resource_mwcl4"]
 script = ExtResource("1_srbis")
 level = 32
 move = ExtResource("7_qcrc7")
 
-[sub_resource type="Resource" id="Resource_w6kfq"]
+[sub_resource type="Resource" id="Resource_7hxo8"]
 script = ExtResource("1_srbis")
 level = 37
 move = ExtResource("8_3k2cf")
 
-[sub_resource type="Resource" id="Resource_mwcl4"]
+[sub_resource type="Resource" id="Resource_c37ip"]
 script = ExtResource("1_srbis")
 level = 44
 move = ExtResource("9_w6kfq")
 
-[sub_resource type="Resource" id="Resource_7hxo8"]
+[sub_resource type="Resource" id="Resource_8ye2k"]
 script = ExtResource("1_srbis")
 level = 49
 move = ExtResource("10_mwcl4")
 
-[sub_resource type="Resource" id="Resource_c37ip"]
+[sub_resource type="Resource" id="Resource_pwj0c"]
 script = ExtResource("1_srbis")
 level = 56
 move = ExtResource("11_7hxo8")
@@ -72,7 +78,8 @@ id = "shuppet"
 display_name = "Shuppet"
 dex = 353
 types = Array[ExtResource("4_motj0")]([ExtResource("5_uxxtc")])
-learnset = Array[ExtResource("1_srbis")]([SubResource("Resource_mf4fh"), SubResource("Resource_kip23"), SubResource("Resource_1qhpe"), SubResource("Resource_voonj"), SubResource("Resource_qcrc7"), SubResource("Resource_3k2cf"), SubResource("Resource_w6kfq"), SubResource("Resource_mwcl4"), SubResource("Resource_7hxo8"), SubResource("Resource_c37ip")])
+learnset = Array[ExtResource("1_srbis")]([SubResource("Resource_1qhpe"), SubResource("Resource_voonj"), SubResource("Resource_qcrc7"), SubResource("Resource_3k2cf"), SubResource("Resource_w6kfq"), SubResource("Resource_mwcl4"), SubResource("Resource_7hxo8"), SubResource("Resource_c37ip"), SubResource("Resource_8ye2k"), SubResource("Resource_pwj0c")])
+evolutions = Array[ExtResource("1_kip23")]([SubResource("Resource_kip23")])
 temperament = ExtResource("14_mf4fh")
 genus = "Pokémon Títere"
 pokedex_entry = "A Shuppet le atraen los sentimientos de celos y rencor. Si alguien desarrolla fuertes sentimientos de venganza, aparecerá una multitud de Shuppet que se quedará bajo los aleros de su casa."

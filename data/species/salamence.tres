@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1kwty"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_bp15v"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_jast5"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sc5ji"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cd4u6"]
@@ -21,63 +22,63 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="14_hn1ud"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="17_u1j2w"]
 
-[sub_resource type="Resource" id="Resource_u1j2w"]
+[sub_resource type="Resource" id="Resource_bp15v"]
 script = ExtResource("1_1kwty")
 move = ExtResource("2_jast5")
 
-[sub_resource type="Resource" id="Resource_bp15v"]
+[sub_resource type="Resource" id="Resource_o5oyf"]
 script = ExtResource("1_1kwty")
 move = ExtResource("3_u1j2w")
 
-[sub_resource type="Resource" id="Resource_o5oyf"]
+[sub_resource type="Resource" id="Resource_1and3"]
 script = ExtResource("1_1kwty")
 move = ExtResource("4_bp15v")
 
-[sub_resource type="Resource" id="Resource_1and3"]
+[sub_resource type="Resource" id="Resource_ginyt"]
 script = ExtResource("1_1kwty")
 move = ExtResource("5_o5oyf")
 
-[sub_resource type="Resource" id="Resource_ginyt"]
+[sub_resource type="Resource" id="Resource_n0ygp"]
 script = ExtResource("1_1kwty")
 level = 21
 move = ExtResource("6_1and3")
 
-[sub_resource type="Resource" id="Resource_n0ygp"]
+[sub_resource type="Resource" id="Resource_ob4x2"]
 script = ExtResource("1_1kwty")
 level = 25
 move = ExtResource("7_ginyt")
 
-[sub_resource type="Resource" id="Resource_ob4x2"]
+[sub_resource type="Resource" id="Resource_ohdtx"]
 script = ExtResource("1_1kwty")
 level = 30
 move = ExtResource("8_n0ygp")
 
-[sub_resource type="Resource" id="Resource_ohdtx"]
+[sub_resource type="Resource" id="Resource_k75vl"]
 script = ExtResource("1_1kwty")
 level = 38
 move = ExtResource("9_ob4x2")
 
-[sub_resource type="Resource" id="Resource_k75vl"]
+[sub_resource type="Resource" id="Resource_mx7k7"]
 script = ExtResource("1_1kwty")
 level = 47
 move = ExtResource("10_ohdtx")
 
-[sub_resource type="Resource" id="Resource_mx7k7"]
+[sub_resource type="Resource" id="Resource_ubfc1"]
 script = ExtResource("1_1kwty")
 level = 50
 move = ExtResource("11_k75vl")
 
-[sub_resource type="Resource" id="Resource_ubfc1"]
+[sub_resource type="Resource" id="Resource_hn1ud"]
 script = ExtResource("1_1kwty")
 level = 61
 move = ExtResource("12_mx7k7")
 
-[sub_resource type="Resource" id="Resource_hn1ud"]
+[sub_resource type="Resource" id="Resource_yd4k6"]
 script = ExtResource("1_1kwty")
 level = 79
 move = ExtResource("13_ubfc1")
 
-[sub_resource type="Resource" id="Resource_yd4k6"]
+[sub_resource type="Resource" id="Resource_8tdry"]
 script = ExtResource("1_1kwty")
 level = 93
 move = ExtResource("14_hn1ud")
@@ -88,7 +89,8 @@ id = "salamence"
 display_name = "Salamence"
 dex = 373
 types = Array[ExtResource("4_lbgww")]([ExtResource("5_idybf"), ExtResource("6_hcydh")])
-learnset = Array[ExtResource("1_1kwty")]([SubResource("Resource_u1j2w"), SubResource("Resource_bp15v"), SubResource("Resource_o5oyf"), SubResource("Resource_1and3"), SubResource("Resource_ginyt"), SubResource("Resource_n0ygp"), SubResource("Resource_ob4x2"), SubResource("Resource_ohdtx"), SubResource("Resource_k75vl"), SubResource("Resource_mx7k7"), SubResource("Resource_ubfc1"), SubResource("Resource_hn1ud"), SubResource("Resource_yd4k6")])
+learnset = Array[ExtResource("1_1kwty")]([SubResource("Resource_bp15v"), SubResource("Resource_o5oyf"), SubResource("Resource_1and3"), SubResource("Resource_ginyt"), SubResource("Resource_n0ygp"), SubResource("Resource_ob4x2"), SubResource("Resource_ohdtx"), SubResource("Resource_k75vl"), SubResource("Resource_mx7k7"), SubResource("Resource_ubfc1"), SubResource("Resource_hn1ud"), SubResource("Resource_yd4k6"), SubResource("Resource_8tdry")])
+evolves_from = "shelgon"
 temperament = ExtResource("17_u1j2w")
 genus = "Pokémon Dragón"
 pokedex_entry = "Salamence surgió del profundo deseo de tener alas. Dicen que este fuerte deseo fue lo que causó la repentina mutación de las células y el crecimiento de las alas."

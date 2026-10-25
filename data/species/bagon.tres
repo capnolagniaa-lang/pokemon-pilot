@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_11rkk"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_nnb5c"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2lvol"]
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="2_a0157"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="3_3flop"]
@@ -18,56 +19,61 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_spxb6"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_3flop"]
 
-[sub_resource type="Resource" id="Resource_3flop"]
+[sub_resource type="Resource" id="Resource_nnb5c"]
+script = ExtResource("1_nnb5c")
+to_id = "shelgon"
+level = 30
+
+[sub_resource type="Resource" id="Resource_abkrs"]
 script = ExtResource("1_11rkk")
 move = ExtResource("2_a0157")
 
-[sub_resource type="Resource" id="Resource_nnb5c"]
+[sub_resource type="Resource" id="Resource_lrasa"]
 script = ExtResource("1_11rkk")
 level = 5
 move = ExtResource("3_3flop")
 
-[sub_resource type="Resource" id="Resource_abkrs"]
+[sub_resource type="Resource" id="Resource_ehcrp"]
 script = ExtResource("1_11rkk")
 level = 9
 move = ExtResource("4_nnb5c")
 
-[sub_resource type="Resource" id="Resource_lrasa"]
+[sub_resource type="Resource" id="Resource_6oju6"]
 script = ExtResource("1_11rkk")
 level = 17
 move = ExtResource("5_abkrs")
 
-[sub_resource type="Resource" id="Resource_ehcrp"]
+[sub_resource type="Resource" id="Resource_2bnrp"]
 script = ExtResource("1_11rkk")
 level = 21
 move = ExtResource("6_lrasa")
 
-[sub_resource type="Resource" id="Resource_6oju6"]
+[sub_resource type="Resource" id="Resource_teino"]
 script = ExtResource("1_11rkk")
 level = 25
 move = ExtResource("7_ehcrp")
 
-[sub_resource type="Resource" id="Resource_2bnrp"]
+[sub_resource type="Resource" id="Resource_57f4a"]
 script = ExtResource("1_11rkk")
 level = 33
 move = ExtResource("8_6oju6")
 
-[sub_resource type="Resource" id="Resource_teino"]
+[sub_resource type="Resource" id="Resource_spxb6"]
 script = ExtResource("1_11rkk")
 level = 37
 move = ExtResource("9_2bnrp")
 
-[sub_resource type="Resource" id="Resource_57f4a"]
+[sub_resource type="Resource" id="Resource_hg2yi"]
 script = ExtResource("1_11rkk")
 level = 41
 move = ExtResource("10_teino")
 
-[sub_resource type="Resource" id="Resource_spxb6"]
+[sub_resource type="Resource" id="Resource_pc3qh"]
 script = ExtResource("1_11rkk")
 level = 49
 move = ExtResource("11_57f4a")
 
-[sub_resource type="Resource" id="Resource_hg2yi"]
+[sub_resource type="Resource" id="Resource_gwtef"]
 script = ExtResource("1_11rkk")
 level = 53
 move = ExtResource("12_spxb6")
@@ -78,7 +84,8 @@ id = "bagon"
 display_name = "Bagon"
 dex = 371
 types = Array[ExtResource("4_camkb")]([ExtResource("5_edy48")])
-learnset = Array[ExtResource("1_11rkk")]([SubResource("Resource_3flop"), SubResource("Resource_nnb5c"), SubResource("Resource_abkrs"), SubResource("Resource_lrasa"), SubResource("Resource_ehcrp"), SubResource("Resource_6oju6"), SubResource("Resource_2bnrp"), SubResource("Resource_teino"), SubResource("Resource_57f4a"), SubResource("Resource_spxb6"), SubResource("Resource_hg2yi")])
+learnset = Array[ExtResource("1_11rkk")]([SubResource("Resource_abkrs"), SubResource("Resource_lrasa"), SubResource("Resource_ehcrp"), SubResource("Resource_6oju6"), SubResource("Resource_2bnrp"), SubResource("Resource_teino"), SubResource("Resource_57f4a"), SubResource("Resource_spxb6"), SubResource("Resource_hg2yi"), SubResource("Resource_pc3qh"), SubResource("Resource_gwtef")])
+evolutions = Array[ExtResource("1_nnb5c")]([SubResource("Resource_nnb5c")])
 temperament = ExtResource("15_3flop")
 genus = "Pokémon Cabeza Roca"
 pokedex_entry = "Bagon sueña con poder pasar un día volando por el cielo. En vanos intentos por volar, ha llegado a tirarse desde riscos. Como resultado de estas caídas en picado, se le ha puesto la cabeza dura como las piedras."

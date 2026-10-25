@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_6pyd4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_guh76"]
 [ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_ifw40"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ub6v1"]
@@ -14,31 +15,36 @@
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="7_nae14"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="10_8opl6"]
 
-[sub_resource type="Resource" id="Resource_8opl6"]
+[sub_resource type="Resource" id="Resource_6pyd4"]
+script = ExtResource("1_6pyd4")
+to_id = "marill"
+method = "amistad"
+
+[sub_resource type="Resource" id="Resource_av0mb"]
 script = ExtResource("1_guh76")
 move = ExtResource("2_ifw40")
 
-[sub_resource type="Resource" id="Resource_6pyd4"]
+[sub_resource type="Resource" id="Resource_48rrn"]
 script = ExtResource("1_guh76")
 level = 3
 move = ExtResource("3_8opl6")
 
-[sub_resource type="Resource" id="Resource_av0mb"]
+[sub_resource type="Resource" id="Resource_nae14"]
 script = ExtResource("1_guh76")
 level = 6
 move = ExtResource("4_6pyd4")
 
-[sub_resource type="Resource" id="Resource_48rrn"]
+[sub_resource type="Resource" id="Resource_o01cs"]
 script = ExtResource("1_guh76")
 level = 10
 move = ExtResource("5_av0mb")
 
-[sub_resource type="Resource" id="Resource_nae14"]
+[sub_resource type="Resource" id="Resource_6lpks"]
 script = ExtResource("1_guh76")
 level = 15
 move = ExtResource("6_48rrn")
 
-[sub_resource type="Resource" id="Resource_o01cs"]
+[sub_resource type="Resource" id="Resource_km2wr"]
 script = ExtResource("1_guh76")
 level = 21
 move = ExtResource("7_nae14")
@@ -49,7 +55,8 @@ id = "azurill"
 display_name = "Azurill"
 dex = 298
 types = Array[ExtResource("4_w5bjw")]([ExtResource("5_k8y53"), ExtResource("6_t3ntt")])
-learnset = Array[ExtResource("1_guh76")]([SubResource("Resource_8opl6"), SubResource("Resource_6pyd4"), SubResource("Resource_av0mb"), SubResource("Resource_48rrn"), SubResource("Resource_nae14"), SubResource("Resource_o01cs")])
+learnset = Array[ExtResource("1_guh76")]([SubResource("Resource_av0mb"), SubResource("Resource_48rrn"), SubResource("Resource_nae14"), SubResource("Resource_o01cs"), SubResource("Resource_6lpks"), SubResource("Resource_km2wr")])
+evolutions = Array[ExtResource("1_6pyd4")]([SubResource("Resource_6pyd4")])
 temperament = ExtResource("10_8opl6")
 genus = "Pokémon A Topos"
 pokedex_entry = "Azurill enrolla la cola como si fuera un lazo y la despliega a continuación todo lo que puede. De esta forma, un Azurill llegó a lanzarse a sí mismo hasta 10 m."

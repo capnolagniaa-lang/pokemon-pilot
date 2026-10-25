@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_6uocf"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_iv3dk"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_c5kf3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_p3g5x"]
@@ -18,48 +19,53 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_a5ife"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_x4ocm"]
 
-[sub_resource type="Resource" id="Resource_x4ocm"]
-script = ExtResource("1_iv3dk")
-move = ExtResource("2_c5kf3")
-
 [sub_resource type="Resource" id="Resource_6uocf"]
-script = ExtResource("1_iv3dk")
-move = ExtResource("3_x4ocm")
+script = ExtResource("1_6uocf")
+to_id = "tyranitar"
+level = 55
 
 [sub_resource type="Resource" id="Resource_rsv1j"]
 script = ExtResource("1_iv3dk")
-move = ExtResource("4_6uocf")
+move = ExtResource("2_c5kf3")
 
 [sub_resource type="Resource" id="Resource_b8a38"]
 script = ExtResource("1_iv3dk")
-move = ExtResource("5_rsv1j")
+move = ExtResource("3_x4ocm")
 
 [sub_resource type="Resource" id="Resource_k82ck"]
+script = ExtResource("1_iv3dk")
+move = ExtResource("4_6uocf")
+
+[sub_resource type="Resource" id="Resource_hpxk0"]
+script = ExtResource("1_iv3dk")
+move = ExtResource("5_rsv1j")
+
+[sub_resource type="Resource" id="Resource_ure06"]
 script = ExtResource("1_iv3dk")
 level = 22
 move = ExtResource("6_b8a38")
 
-[sub_resource type="Resource" id="Resource_hpxk0"]
+[sub_resource type="Resource" id="Resource_yboip"]
 script = ExtResource("1_iv3dk")
 level = 29
 move = ExtResource("7_k82ck")
 
-[sub_resource type="Resource" id="Resource_ure06"]
+[sub_resource type="Resource" id="Resource_a5ife"]
 script = ExtResource("1_iv3dk")
 level = 38
 move = ExtResource("8_hpxk0")
 
-[sub_resource type="Resource" id="Resource_yboip"]
+[sub_resource type="Resource" id="Resource_clwth"]
 script = ExtResource("1_iv3dk")
 level = 47
 move = ExtResource("9_ure06")
 
-[sub_resource type="Resource" id="Resource_a5ife"]
+[sub_resource type="Resource" id="Resource_d1ke2"]
 script = ExtResource("1_iv3dk")
 level = 56
 move = ExtResource("10_yboip")
 
-[sub_resource type="Resource" id="Resource_clwth"]
+[sub_resource type="Resource" id="Resource_kv2q2"]
 script = ExtResource("1_iv3dk")
 level = 65
 move = ExtResource("11_a5ife")
@@ -70,7 +76,9 @@ id = "pupitar"
 display_name = "Pupitar"
 dex = 247
 types = Array[ExtResource("4_sm55w")]([ExtResource("5_y8x2x"), ExtResource("6_m3tp3")])
-learnset = Array[ExtResource("1_iv3dk")]([SubResource("Resource_x4ocm"), SubResource("Resource_6uocf"), SubResource("Resource_rsv1j"), SubResource("Resource_b8a38"), SubResource("Resource_k82ck"), SubResource("Resource_hpxk0"), SubResource("Resource_ure06"), SubResource("Resource_yboip"), SubResource("Resource_a5ife"), SubResource("Resource_clwth")])
+learnset = Array[ExtResource("1_iv3dk")]([SubResource("Resource_rsv1j"), SubResource("Resource_b8a38"), SubResource("Resource_k82ck"), SubResource("Resource_hpxk0"), SubResource("Resource_ure06"), SubResource("Resource_yboip"), SubResource("Resource_a5ife"), SubResource("Resource_clwth"), SubResource("Resource_d1ke2"), SubResource("Resource_kv2q2")])
+evolutions = Array[ExtResource("1_6uocf")]([SubResource("Resource_6uocf")])
+evolves_from = "larvitar"
 temperament = ExtResource("14_x4ocm")
 genus = "Pokémon Caparazón"
 pokedex_entry = "Pupitar crea un gas en su interior que comprime y expulsa violentamente a modo de autopropulsión. Tiene un cuerpo resistente que se mantiene inalterable hasta cuando se golpea contra duro acero."

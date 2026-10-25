@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fjdd3"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_mipen"]
 [ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_3pffr"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ulskx"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_3vgkt"]
@@ -16,45 +17,45 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="10_hlj32"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_j7ucr"]
 
-[sub_resource type="Resource" id="Resource_j7ucr"]
+[sub_resource type="Resource" id="Resource_mipen"]
 script = ExtResource("1_fjdd3")
 move = ExtResource("2_3pffr")
 
-[sub_resource type="Resource" id="Resource_mipen"]
+[sub_resource type="Resource" id="Resource_nroqg"]
 script = ExtResource("1_fjdd3")
 move = ExtResource("3_j7ucr")
 
-[sub_resource type="Resource" id="Resource_nroqg"]
+[sub_resource type="Resource" id="Resource_adf1s"]
 script = ExtResource("1_fjdd3")
 level = 6
 move = ExtResource("4_mipen")
 
-[sub_resource type="Resource" id="Resource_adf1s"]
+[sub_resource type="Resource" id="Resource_llnhe"]
 script = ExtResource("1_fjdd3")
 level = 13
 move = ExtResource("5_nroqg")
 
-[sub_resource type="Resource" id="Resource_llnhe"]
+[sub_resource type="Resource" id="Resource_pyxxr"]
 script = ExtResource("1_fjdd3")
 level = 18
 move = ExtResource("6_adf1s")
 
-[sub_resource type="Resource" id="Resource_pyxxr"]
+[sub_resource type="Resource" id="Resource_qn5n6"]
 script = ExtResource("1_fjdd3")
 level = 25
 move = ExtResource("7_llnhe")
 
-[sub_resource type="Resource" id="Resource_qn5n6"]
+[sub_resource type="Resource" id="Resource_hlj32"]
 script = ExtResource("1_fjdd3")
 level = 30
 move = ExtResource("8_pyxxr")
 
-[sub_resource type="Resource" id="Resource_hlj32"]
+[sub_resource type="Resource" id="Resource_u254s"]
 script = ExtResource("1_fjdd3")
 level = 37
 move = ExtResource("9_qn5n6")
 
-[sub_resource type="Resource" id="Resource_u254s"]
+[sub_resource type="Resource" id="Resource_0r10s"]
 script = ExtResource("1_fjdd3")
 level = 42
 move = ExtResource("10_hlj32")
@@ -65,7 +66,8 @@ id = "sunflora"
 display_name = "Sunflora"
 dex = 192
 types = Array[ExtResource("4_ix3cu")]([ExtResource("5_7geyp")])
-learnset = Array[ExtResource("1_fjdd3")]([SubResource("Resource_j7ucr"), SubResource("Resource_mipen"), SubResource("Resource_nroqg"), SubResource("Resource_adf1s"), SubResource("Resource_llnhe"), SubResource("Resource_pyxxr"), SubResource("Resource_qn5n6"), SubResource("Resource_hlj32"), SubResource("Resource_u254s")])
+learnset = Array[ExtResource("1_fjdd3")]([SubResource("Resource_mipen"), SubResource("Resource_nroqg"), SubResource("Resource_adf1s"), SubResource("Resource_llnhe"), SubResource("Resource_pyxxr"), SubResource("Resource_qn5n6"), SubResource("Resource_hlj32"), SubResource("Resource_u254s"), SubResource("Resource_0r10s")])
+evolves_from = "sunkern"
 temperament = ExtResource("13_j7ucr")
 genus = "Pokémon Sol"
 pokedex_entry = "Sunflora transforma la energía solar en nutrientes. De día, cuando hace calor, está en continuo movimiento. Solo para cuando comienza a anochecer."

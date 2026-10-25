@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_c13ya"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_mjgny"]
 [ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="2_6ec2x"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ikc6y"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jbptl"]
@@ -21,62 +22,62 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="14_jr1vo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_jqxle"]
 
-[sub_resource type="Resource" id="Resource_jqxle"]
+[sub_resource type="Resource" id="Resource_mjgny"]
 script = ExtResource("1_c13ya")
 move = ExtResource("2_6ec2x")
 
-[sub_resource type="Resource" id="Resource_mjgny"]
+[sub_resource type="Resource" id="Resource_seytd"]
 script = ExtResource("1_c13ya")
 move = ExtResource("3_jqxle")
 
-[sub_resource type="Resource" id="Resource_seytd"]
+[sub_resource type="Resource" id="Resource_nho0u"]
 script = ExtResource("1_c13ya")
 move = ExtResource("4_mjgny")
 
-[sub_resource type="Resource" id="Resource_nho0u"]
+[sub_resource type="Resource" id="Resource_rv76g"]
 script = ExtResource("1_c13ya")
 move = ExtResource("5_seytd")
 
-[sub_resource type="Resource" id="Resource_rv76g"]
+[sub_resource type="Resource" id="Resource_6dgi1"]
 script = ExtResource("1_c13ya")
 move = ExtResource("6_nho0u")
 
-[sub_resource type="Resource" id="Resource_6dgi1"]
+[sub_resource type="Resource" id="Resource_8mple"]
 script = ExtResource("1_c13ya")
 level = 17
 move = ExtResource("7_rv76g")
 
-[sub_resource type="Resource" id="Resource_8mple"]
+[sub_resource type="Resource" id="Resource_1g0h2"]
 script = ExtResource("1_c13ya")
 level = 20
 move = ExtResource("8_6dgi1")
 
-[sub_resource type="Resource" id="Resource_1g0h2"]
+[sub_resource type="Resource" id="Resource_j6wrn"]
 script = ExtResource("1_c13ya")
 level = 25
 move = ExtResource("9_8mple")
 
-[sub_resource type="Resource" id="Resource_j6wrn"]
+[sub_resource type="Resource" id="Resource_m0jjr"]
 script = ExtResource("1_c13ya")
 level = 28
 move = ExtResource("10_1g0h2")
 
-[sub_resource type="Resource" id="Resource_m0jjr"]
+[sub_resource type="Resource" id="Resource_y14tx"]
 script = ExtResource("1_c13ya")
 level = 31
 move = ExtResource("11_j6wrn")
 
-[sub_resource type="Resource" id="Resource_y14tx"]
+[sub_resource type="Resource" id="Resource_jr1vo"]
 script = ExtResource("1_c13ya")
 level = 36
 move = ExtResource("12_m0jjr")
 
-[sub_resource type="Resource" id="Resource_jr1vo"]
+[sub_resource type="Resource" id="Resource_wt2ko"]
 script = ExtResource("1_c13ya")
 level = 42
 move = ExtResource("13_y14tx")
 
-[sub_resource type="Resource" id="Resource_wt2ko"]
+[sub_resource type="Resource" id="Resource_u6mod"]
 script = ExtResource("1_c13ya")
 level = 52
 move = ExtResource("14_jr1vo")
@@ -87,7 +88,8 @@ id = "venomoth"
 display_name = "Venomoth"
 dex = 49
 types = Array[ExtResource("4_ivuka")]([ExtResource("5_nkp0a"), ExtResource("6_w8s5a")])
-learnset = Array[ExtResource("1_c13ya")]([SubResource("Resource_jqxle"), SubResource("Resource_mjgny"), SubResource("Resource_seytd"), SubResource("Resource_nho0u"), SubResource("Resource_rv76g"), SubResource("Resource_6dgi1"), SubResource("Resource_8mple"), SubResource("Resource_1g0h2"), SubResource("Resource_j6wrn"), SubResource("Resource_m0jjr"), SubResource("Resource_y14tx"), SubResource("Resource_jr1vo"), SubResource("Resource_wt2ko")])
+learnset = Array[ExtResource("1_c13ya")]([SubResource("Resource_mjgny"), SubResource("Resource_seytd"), SubResource("Resource_nho0u"), SubResource("Resource_rv76g"), SubResource("Resource_6dgi1"), SubResource("Resource_8mple"), SubResource("Resource_1g0h2"), SubResource("Resource_j6wrn"), SubResource("Resource_m0jjr"), SubResource("Resource_y14tx"), SubResource("Resource_jr1vo"), SubResource("Resource_wt2ko"), SubResource("Resource_u6mod")])
+evolves_from = "venonat"
 temperament = ExtResource("17_jqxle")
 genus = "Pokémon Polilla Ven."
 pokedex_entry = "Venomoth es nocturno, solo actúa en la oscuridad. Su alimento preferido son los pequeños insectos que se concentran cerca de los focos de luz en la oscuridad de la noche."

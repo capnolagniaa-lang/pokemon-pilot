@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cjyki"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_xogvt"]
 [ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_kj0n1"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vh3mg"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_4b8eg"]
@@ -18,52 +19,52 @@
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="12_6cgyx"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_uyhhy"]
 
-[sub_resource type="Resource" id="Resource_uyhhy"]
+[sub_resource type="Resource" id="Resource_xogvt"]
 script = ExtResource("1_cjyki")
 move = ExtResource("2_kj0n1")
 
-[sub_resource type="Resource" id="Resource_xogvt"]
+[sub_resource type="Resource" id="Resource_r5ksv"]
 script = ExtResource("1_cjyki")
 move = ExtResource("3_uyhhy")
 
-[sub_resource type="Resource" id="Resource_r5ksv"]
+[sub_resource type="Resource" id="Resource_3cx6r"]
 script = ExtResource("1_cjyki")
 move = ExtResource("4_xogvt")
 
-[sub_resource type="Resource" id="Resource_3cx6r"]
+[sub_resource type="Resource" id="Resource_1dosh"]
 script = ExtResource("1_cjyki")
 move = ExtResource("5_r5ksv")
 
-[sub_resource type="Resource" id="Resource_1dosh"]
+[sub_resource type="Resource" id="Resource_ugncf"]
 script = ExtResource("1_cjyki")
 move = ExtResource("6_3cx6r")
 
-[sub_resource type="Resource" id="Resource_ugncf"]
+[sub_resource type="Resource" id="Resource_31386"]
 script = ExtResource("1_cjyki")
 level = 23
 move = ExtResource("7_1dosh")
 
-[sub_resource type="Resource" id="Resource_31386"]
+[sub_resource type="Resource" id="Resource_j2t5p"]
 script = ExtResource("1_cjyki")
 level = 27
 move = ExtResource("8_ugncf")
 
-[sub_resource type="Resource" id="Resource_j2t5p"]
+[sub_resource type="Resource" id="Resource_hhwr2"]
 script = ExtResource("1_cjyki")
 level = 38
 move = ExtResource("9_31386")
 
-[sub_resource type="Resource" id="Resource_hhwr2"]
+[sub_resource type="Resource" id="Resource_6cgyx"]
 script = ExtResource("1_cjyki")
 level = 42
 move = ExtResource("10_j2t5p")
 
-[sub_resource type="Resource" id="Resource_6cgyx"]
+[sub_resource type="Resource" id="Resource_s52n0"]
 script = ExtResource("1_cjyki")
 level = 57
 move = ExtResource("11_hhwr2")
 
-[sub_resource type="Resource" id="Resource_s52n0"]
+[sub_resource type="Resource" id="Resource_4p7fq"]
 script = ExtResource("1_cjyki")
 level = 65
 move = ExtResource("12_6cgyx")
@@ -74,7 +75,8 @@ id = "kingler"
 display_name = "Kingler"
 dex = 99
 types = Array[ExtResource("4_xpwj7")]([ExtResource("5_o1igf")])
-learnset = Array[ExtResource("1_cjyki")]([SubResource("Resource_uyhhy"), SubResource("Resource_xogvt"), SubResource("Resource_r5ksv"), SubResource("Resource_3cx6r"), SubResource("Resource_1dosh"), SubResource("Resource_ugncf"), SubResource("Resource_31386"), SubResource("Resource_j2t5p"), SubResource("Resource_hhwr2"), SubResource("Resource_6cgyx"), SubResource("Resource_s52n0")])
+learnset = Array[ExtResource("1_cjyki")]([SubResource("Resource_xogvt"), SubResource("Resource_r5ksv"), SubResource("Resource_3cx6r"), SubResource("Resource_1dosh"), SubResource("Resource_ugncf"), SubResource("Resource_31386"), SubResource("Resource_j2t5p"), SubResource("Resource_hhwr2"), SubResource("Resource_6cgyx"), SubResource("Resource_s52n0"), SubResource("Resource_4p7fq")])
+evolves_from = "krabby"
 temperament = ExtResource("15_uyhhy")
 genus = "Pokémon Tenaza"
 pokedex_entry = "Kingler tiene una pinza enorme y descomunal que usa agitándola en el aire para comunicarse con otros. Lo malo es que, al pesarle tanto, se cansa enseguida."

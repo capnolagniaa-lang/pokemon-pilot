@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_aor3i"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_fsfv6"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ro6h5"]
 [ext_resource type="Resource" path="res://data/moves/presente.tres" id="2_xc7ui"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xc7ui"]
@@ -9,7 +10,7 @@
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="5_xc7ui"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_hri5c"]
 
-[sub_resource type="Resource" id="Resource_xc7ui"]
+[sub_resource type="Resource" id="Resource_fsfv6"]
 script = ExtResource("1_aor3i")
 move = ExtResource("2_xc7ui")
 
@@ -19,7 +20,7 @@ id = "delibird"
 display_name = "Delibird"
 dex = 225
 types = Array[ExtResource("4_fsfv6")]([ExtResource("5_tj7sp"), ExtResource("6_hri5c")])
-learnset = Array[ExtResource("1_aor3i")]([SubResource("Resource_xc7ui")])
+learnset = Array[ExtResource("1_aor3i")]([SubResource("Resource_fsfv6")])
 temperament = ExtResource("5_xc7ui")
 genus = "Pokémon Reparto"
 pokedex_entry = "Delibird usa la cola a modo de saco para llevar su alimento. En una ocasión, un famoso escalador consiguió alcanzar la cima más alta del mundo gracias a que uno de estos Pokémon compartió sus alimentos con él."

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_g0kbi"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hu46g"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ulnpw"]
 [ext_resource type="Resource" path="res://data/moves/torbellino.tres" id="2_vv3gs"]
@@ -15,41 +16,41 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="9_5t87s"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_f64d8"]
 
-[sub_resource type="Resource" id="Resource_f64d8"]
+[sub_resource type="Resource" id="Resource_g0kbi"]
 script = ExtResource("1_hu46g")
 move = ExtResource("2_vv3gs")
 
-[sub_resource type="Resource" id="Resource_g0kbi"]
+[sub_resource type="Resource" id="Resource_oojui"]
 script = ExtResource("1_hu46g")
 level = 8
 move = ExtResource("3_f64d8")
 
-[sub_resource type="Resource" id="Resource_oojui"]
+[sub_resource type="Resource" id="Resource_0idrw"]
 script = ExtResource("1_hu46g")
 level = 15
 move = ExtResource("4_g0kbi")
 
-[sub_resource type="Resource" id="Resource_0idrw"]
+[sub_resource type="Resource" id="Resource_7u08j"]
 script = ExtResource("1_hu46g")
 level = 22
 move = ExtResource("5_oojui")
 
-[sub_resource type="Resource" id="Resource_7u08j"]
+[sub_resource type="Resource" id="Resource_q4tk3"]
 script = ExtResource("1_hu46g")
 level = 29
 move = ExtResource("6_0idrw")
 
-[sub_resource type="Resource" id="Resource_q4tk3"]
+[sub_resource type="Resource" id="Resource_5t87s"]
 script = ExtResource("1_hu46g")
 level = 36
 move = ExtResource("7_7u08j")
 
-[sub_resource type="Resource" id="Resource_5t87s"]
+[sub_resource type="Resource" id="Resource_le38g"]
 script = ExtResource("1_hu46g")
 level = 43
 move = ExtResource("8_q4tk3")
 
-[sub_resource type="Resource" id="Resource_le38g"]
+[sub_resource type="Resource" id="Resource_dglyc"]
 script = ExtResource("1_hu46g")
 level = 50
 move = ExtResource("9_5t87s")
@@ -60,7 +61,8 @@ id = "huntail"
 display_name = "Huntail"
 dex = 367
 types = Array[ExtResource("4_1vqgr")]([ExtResource("5_clio1")])
-learnset = Array[ExtResource("1_hu46g")]([SubResource("Resource_f64d8"), SubResource("Resource_g0kbi"), SubResource("Resource_oojui"), SubResource("Resource_0idrw"), SubResource("Resource_7u08j"), SubResource("Resource_q4tk3"), SubResource("Resource_5t87s"), SubResource("Resource_le38g")])
+learnset = Array[ExtResource("1_hu46g")]([SubResource("Resource_g0kbi"), SubResource("Resource_oojui"), SubResource("Resource_0idrw"), SubResource("Resource_7u08j"), SubResource("Resource_q4tk3"), SubResource("Resource_5t87s"), SubResource("Resource_le38g"), SubResource("Resource_dglyc")])
+evolves_from = "clamperl"
 temperament = ExtResource("12_f64d8")
 genus = "Pokémon Abisal"
 pokedex_entry = "Huntail ha pasado desapercibido durante mucho tiempo por vivir en las profundidades del mar. El sentido de la vista de este Pokémon le permite ver en las oscuras y turbias aguas submarinas."

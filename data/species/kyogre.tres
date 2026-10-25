@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5fl1j"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_itsdi"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_18mgg"]
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="2_jo0xm"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_waayi"]
@@ -18,56 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/salpicar.tres" id="12_oio5s"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_ydk3s"]
 
-[sub_resource type="Resource" id="Resource_ydk3s"]
+[sub_resource type="Resource" id="Resource_itsdi"]
 script = ExtResource("1_5fl1j")
 move = ExtResource("2_jo0xm")
 
-[sub_resource type="Resource" id="Resource_itsdi"]
+[sub_resource type="Resource" id="Resource_tfsgn"]
 script = ExtResource("1_5fl1j")
 level = 5
 move = ExtResource("3_ydk3s")
 
-[sub_resource type="Resource" id="Resource_tfsgn"]
+[sub_resource type="Resource" id="Resource_crxo3"]
 script = ExtResource("1_5fl1j")
 level = 15
 move = ExtResource("4_itsdi")
 
-[sub_resource type="Resource" id="Resource_crxo3"]
+[sub_resource type="Resource" id="Resource_2netx"]
 script = ExtResource("1_5fl1j")
 level = 20
 move = ExtResource("5_tfsgn")
 
-[sub_resource type="Resource" id="Resource_2netx"]
+[sub_resource type="Resource" id="Resource_6wivv"]
 script = ExtResource("1_5fl1j")
 level = 30
 move = ExtResource("6_crxo3")
 
-[sub_resource type="Resource" id="Resource_6wivv"]
+[sub_resource type="Resource" id="Resource_05sdj"]
 script = ExtResource("1_5fl1j")
 level = 35
 move = ExtResource("7_2netx")
 
-[sub_resource type="Resource" id="Resource_05sdj"]
+[sub_resource type="Resource" id="Resource_78er0"]
 script = ExtResource("1_5fl1j")
 level = 45
 move = ExtResource("8_6wivv")
 
-[sub_resource type="Resource" id="Resource_78er0"]
+[sub_resource type="Resource" id="Resource_7qcs3"]
 script = ExtResource("1_5fl1j")
 level = 50
 move = ExtResource("9_05sdj")
 
-[sub_resource type="Resource" id="Resource_7qcs3"]
+[sub_resource type="Resource" id="Resource_oio5s"]
 script = ExtResource("1_5fl1j")
 level = 60
 move = ExtResource("10_78er0")
 
-[sub_resource type="Resource" id="Resource_oio5s"]
+[sub_resource type="Resource" id="Resource_pbwaf"]
 script = ExtResource("1_5fl1j")
 level = 65
 move = ExtResource("11_7qcs3")
 
-[sub_resource type="Resource" id="Resource_pbwaf"]
+[sub_resource type="Resource" id="Resource_4bfbg"]
 script = ExtResource("1_5fl1j")
 level = 75
 move = ExtResource("12_oio5s")
@@ -78,7 +79,7 @@ id = "kyogre"
 display_name = "Kyogre"
 dex = 382
 types = Array[ExtResource("4_w7iyf")]([ExtResource("5_qwuvu")])
-learnset = Array[ExtResource("1_5fl1j")]([SubResource("Resource_ydk3s"), SubResource("Resource_itsdi"), SubResource("Resource_tfsgn"), SubResource("Resource_crxo3"), SubResource("Resource_2netx"), SubResource("Resource_6wivv"), SubResource("Resource_05sdj"), SubResource("Resource_78er0"), SubResource("Resource_7qcs3"), SubResource("Resource_oio5s"), SubResource("Resource_pbwaf")])
+learnset = Array[ExtResource("1_5fl1j")]([SubResource("Resource_itsdi"), SubResource("Resource_tfsgn"), SubResource("Resource_crxo3"), SubResource("Resource_2netx"), SubResource("Resource_6wivv"), SubResource("Resource_05sdj"), SubResource("Resource_78er0"), SubResource("Resource_7qcs3"), SubResource("Resource_oio5s"), SubResource("Resource_pbwaf"), SubResource("Resource_4bfbg")])
 temperament = ExtResource("15_ydk3s")
 genus = "Pokémon Cuenca Mar"
 pokedex_entry = "Kyogre se sirve de la energía de la naturaleza para realizar su Regresión Primigenia y recobrar su apariencia primitiva. Con tal poder, puede desencadenar tempestades para expandir los océanos."

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_gh3e8"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_y3m52"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tsbqm"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_vanpj"]
@@ -17,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_f33r7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_4w5ju"]
 
-[sub_resource type="Resource" id="Resource_4w5ju"]
+[sub_resource type="Resource" id="Resource_gh3e8"]
 script = ExtResource("1_y3m52")
 move = ExtResource("2_vanpj")
 
-[sub_resource type="Resource" id="Resource_gh3e8"]
+[sub_resource type="Resource" id="Resource_qvj03"]
 script = ExtResource("1_y3m52")
 move = ExtResource("3_4w5ju")
 
-[sub_resource type="Resource" id="Resource_qvj03"]
+[sub_resource type="Resource" id="Resource_wc8g8"]
 script = ExtResource("1_y3m52")
 level = 11
 move = ExtResource("4_gh3e8")
 
-[sub_resource type="Resource" id="Resource_wc8g8"]
+[sub_resource type="Resource" id="Resource_6lmtd"]
 script = ExtResource("1_y3m52")
 level = 21
 move = ExtResource("5_qvj03")
 
-[sub_resource type="Resource" id="Resource_6lmtd"]
+[sub_resource type="Resource" id="Resource_m2v2b"]
 script = ExtResource("1_y3m52")
 level = 31
 move = ExtResource("6_wc8g8")
 
-[sub_resource type="Resource" id="Resource_m2v2b"]
+[sub_resource type="Resource" id="Resource_v6ngt"]
 script = ExtResource("1_y3m52")
 level = 41
 move = ExtResource("7_6lmtd")
 
-[sub_resource type="Resource" id="Resource_v6ngt"]
+[sub_resource type="Resource" id="Resource_eji5i"]
 script = ExtResource("1_y3m52")
 level = 51
 move = ExtResource("8_m2v2b")
 
-[sub_resource type="Resource" id="Resource_eji5i"]
+[sub_resource type="Resource" id="Resource_f33r7"]
 script = ExtResource("1_y3m52")
 level = 61
 move = ExtResource("9_v6ngt")
 
-[sub_resource type="Resource" id="Resource_f33r7"]
+[sub_resource type="Resource" id="Resource_m4l0m"]
 script = ExtResource("1_y3m52")
 level = 71
 move = ExtResource("10_eji5i")
 
-[sub_resource type="Resource" id="Resource_m4l0m"]
+[sub_resource type="Resource" id="Resource_uur3i"]
 script = ExtResource("1_y3m52")
 level = 81
 move = ExtResource("11_f33r7")
@@ -71,7 +72,7 @@ id = "raikou"
 display_name = "Raikou"
 dex = 243
 types = Array[ExtResource("4_k2oft")]([ExtResource("5_fxesk")])
-learnset = Array[ExtResource("1_y3m52")]([SubResource("Resource_4w5ju"), SubResource("Resource_gh3e8"), SubResource("Resource_qvj03"), SubResource("Resource_wc8g8"), SubResource("Resource_6lmtd"), SubResource("Resource_m2v2b"), SubResource("Resource_v6ngt"), SubResource("Resource_eji5i"), SubResource("Resource_f33r7"), SubResource("Resource_m4l0m")])
+learnset = Array[ExtResource("1_y3m52")]([SubResource("Resource_gh3e8"), SubResource("Resource_qvj03"), SubResource("Resource_wc8g8"), SubResource("Resource_6lmtd"), SubResource("Resource_m2v2b"), SubResource("Resource_v6ngt"), SubResource("Resource_eji5i"), SubResource("Resource_f33r7"), SubResource("Resource_m4l0m"), SubResource("Resource_uur3i")])
 temperament = ExtResource("14_4w5ju")
 genus = "Pokémon Trueno"
 pokedex_entry = "Raikou tiene la velocidad del rayo. Los rugidos de este Pokémon emiten ondas de choque que se esparcen vibrando por el aire y sacuden el suelo como si fueran auténticas descargas de rayo."

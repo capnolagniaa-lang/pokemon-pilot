@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_42a7x"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_w3tls"]
 [ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_1admv"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cxyrm"]
@@ -17,46 +18,46 @@
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="10_tsv1g"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_vacgl"]
 
-[sub_resource type="Resource" id="Resource_vacgl"]
+[sub_resource type="Resource" id="Resource_42a7x"]
 script = ExtResource("1_w3tls")
 move = ExtResource("2_1admv")
 
-[sub_resource type="Resource" id="Resource_42a7x"]
+[sub_resource type="Resource" id="Resource_we66m"]
 script = ExtResource("1_w3tls")
 level = 13
 move = ExtResource("3_vacgl")
 
-[sub_resource type="Resource" id="Resource_we66m"]
+[sub_resource type="Resource" id="Resource_3ymal"]
 script = ExtResource("1_w3tls")
 level = 17
 move = ExtResource("4_42a7x")
 
-[sub_resource type="Resource" id="Resource_3ymal"]
+[sub_resource type="Resource" id="Resource_aadpa"]
 script = ExtResource("1_w3tls")
 level = 20
 move = ExtResource("5_we66m")
 
-[sub_resource type="Resource" id="Resource_aadpa"]
+[sub_resource type="Resource" id="Resource_dswpu"]
 script = ExtResource("1_w3tls")
 level = 24
 move = ExtResource("6_3ymal")
 
-[sub_resource type="Resource" id="Resource_dswpu"]
+[sub_resource type="Resource" id="Resource_lh7b7"]
 script = ExtResource("1_w3tls")
 level = 27
 move = ExtResource("7_aadpa")
 
-[sub_resource type="Resource" id="Resource_lh7b7"]
+[sub_resource type="Resource" id="Resource_tsv1g"]
 script = ExtResource("1_w3tls")
 level = 31
 move = ExtResource("8_dswpu")
 
-[sub_resource type="Resource" id="Resource_tsv1g"]
+[sub_resource type="Resource" id="Resource_rba06"]
 script = ExtResource("1_w3tls")
 level = 34
 move = ExtResource("9_lh7b7")
 
-[sub_resource type="Resource" id="Resource_rba06"]
+[sub_resource type="Resource" id="Resource_2jxjt"]
 script = ExtResource("1_w3tls")
 level = 38
 move = ExtResource("10_tsv1g")
@@ -67,7 +68,8 @@ id = "beautifly"
 display_name = "Beautifly"
 dex = 267
 types = Array[ExtResource("4_f7kbt")]([ExtResource("5_pv32a"), ExtResource("6_5kb2a")])
-learnset = Array[ExtResource("1_w3tls")]([SubResource("Resource_vacgl"), SubResource("Resource_42a7x"), SubResource("Resource_we66m"), SubResource("Resource_3ymal"), SubResource("Resource_aadpa"), SubResource("Resource_dswpu"), SubResource("Resource_lh7b7"), SubResource("Resource_tsv1g"), SubResource("Resource_rba06")])
+learnset = Array[ExtResource("1_w3tls")]([SubResource("Resource_42a7x"), SubResource("Resource_we66m"), SubResource("Resource_3ymal"), SubResource("Resource_aadpa"), SubResource("Resource_dswpu"), SubResource("Resource_lh7b7"), SubResource("Resource_tsv1g"), SubResource("Resource_rba06"), SubResource("Resource_2jxjt")])
+evolves_from = "silcoon"
 temperament = ExtResource("13_vacgl")
 genus = "Pokémon Mariposa"
 pokedex_entry = "La comida favorita de Beautifly es el dulce polen de las flores. Si quieres ver a este Pokémon, deja una maceta con flores al lado de la ventana y verás cómo aparece un ejemplar de Beautifly en busca de polen."

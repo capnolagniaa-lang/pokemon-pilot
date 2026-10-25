@@ -17,6 +17,13 @@ extends Resource
 ## compatibilidad: los 4 del kit (o los sueltos) en los niveles 1, 1, 3 y 5.
 @export var learnset: Array[LearnsetEntry] = []
 
+## true = el kit es el de su preevolución (tools/apply_evolutions.gd: las evoluciones pelean igual salvo que cambien
+## mucho, decisión del usuario 2026-10-25). Un kit propio (build_kits_*) lo pisa.
+@export var kit_inherited: bool = false
+## Evoluciones (EvolutionData) y de qué especie evoluciona (id; "" = ninguna). tools/apply_evolutions.gd.
+@export var evolutions: Array[EvolutionData] = []
+@export var evolves_from: String = ""
+
 ## Temperamento de los salvajes de esta especie (agresivo, territorial, tímido, curioso). Lo asigna
 ## tools/assign_temperaments.gd (heurística + ajustes a mano); si falta, se usa territorial.
 @export var temperament: Temperament

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_5yybv"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_7e76v"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_g3vfc"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_js22x"]
@@ -15,39 +16,44 @@
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="9_sqokr"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_rphfk"]
 
-[sub_resource type="Resource" id="Resource_rphfk"]
-script = ExtResource("1_7e76v")
-move = ExtResource("2_g3vfc")
-
 [sub_resource type="Resource" id="Resource_5yybv"]
-script = ExtResource("1_7e76v")
-move = ExtResource("3_rphfk")
+script = ExtResource("1_5yybv")
+to_id = "typhlosion"
+level = 36
 
 [sub_resource type="Resource" id="Resource_b1mec"]
 script = ExtResource("1_7e76v")
-move = ExtResource("4_5yybv")
+move = ExtResource("2_g3vfc")
 
 [sub_resource type="Resource" id="Resource_hk5vj"]
+script = ExtResource("1_7e76v")
+move = ExtResource("3_rphfk")
+
+[sub_resource type="Resource" id="Resource_y35y3"]
+script = ExtResource("1_7e76v")
+move = ExtResource("4_5yybv")
+
+[sub_resource type="Resource" id="Resource_4slvy"]
 script = ExtResource("1_7e76v")
 level = 12
 move = ExtResource("5_b1mec")
 
-[sub_resource type="Resource" id="Resource_y35y3"]
+[sub_resource type="Resource" id="Resource_sqokr"]
 script = ExtResource("1_7e76v")
 level = 21
 move = ExtResource("6_hk5vj")
 
-[sub_resource type="Resource" id="Resource_4slvy"]
+[sub_resource type="Resource" id="Resource_1qwk5"]
 script = ExtResource("1_7e76v")
 level = 31
 move = ExtResource("7_y35y3")
 
-[sub_resource type="Resource" id="Resource_sqokr"]
+[sub_resource type="Resource" id="Resource_ashs3"]
 script = ExtResource("1_7e76v")
 level = 42
 move = ExtResource("8_4slvy")
 
-[sub_resource type="Resource" id="Resource_1qwk5"]
+[sub_resource type="Resource" id="Resource_wkklm"]
 script = ExtResource("1_7e76v")
 level = 54
 move = ExtResource("9_sqokr")
@@ -58,7 +64,9 @@ id = "quilava"
 display_name = "Quilava"
 dex = 156
 types = Array[ExtResource("4_61x48")]([ExtResource("5_xhxdk")])
-learnset = Array[ExtResource("1_7e76v")]([SubResource("Resource_rphfk"), SubResource("Resource_5yybv"), SubResource("Resource_b1mec"), SubResource("Resource_hk5vj"), SubResource("Resource_y35y3"), SubResource("Resource_4slvy"), SubResource("Resource_sqokr"), SubResource("Resource_1qwk5")])
+learnset = Array[ExtResource("1_7e76v")]([SubResource("Resource_b1mec"), SubResource("Resource_hk5vj"), SubResource("Resource_y35y3"), SubResource("Resource_4slvy"), SubResource("Resource_sqokr"), SubResource("Resource_1qwk5"), SubResource("Resource_ashs3"), SubResource("Resource_wkklm")])
+evolutions = Array[ExtResource("1_5yybv")]([SubResource("Resource_5yybv")])
+evolves_from = "cyndaquil"
 temperament = ExtResource("12_rphfk")
 genus = "Pokémon Volcán"
 pokedex_entry = "Quilava mantiene a sus rivales a raya con la intensidad de sus llamas y las ráfagas de aire ígneo que producen. También aprovecha su espectacular agilidad para esquivar ataques a la vez que abrasa al rival con sus llamas."

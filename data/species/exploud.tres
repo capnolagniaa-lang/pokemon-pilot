@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ckr0k"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_vlbws"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4k3g0"]
 [ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_lqq7f"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pwbn5"]
@@ -19,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="13_d7la3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_wn2aq"]
 
-[sub_resource type="Resource" id="Resource_wn2aq"]
+[sub_resource type="Resource" id="Resource_vlbws"]
 script = ExtResource("1_ckr0k")
 move = ExtResource("2_lqq7f")
 
-[sub_resource type="Resource" id="Resource_vlbws"]
+[sub_resource type="Resource" id="Resource_qhre4"]
 script = ExtResource("1_ckr0k")
 move = ExtResource("3_wn2aq")
 
-[sub_resource type="Resource" id="Resource_qhre4"]
+[sub_resource type="Resource" id="Resource_chdf7"]
 script = ExtResource("1_ckr0k")
 move = ExtResource("4_vlbws")
 
-[sub_resource type="Resource" id="Resource_chdf7"]
+[sub_resource type="Resource" id="Resource_6kajm"]
 script = ExtResource("1_ckr0k")
 move = ExtResource("5_qhre4")
 
-[sub_resource type="Resource" id="Resource_6kajm"]
+[sub_resource type="Resource" id="Resource_ox607"]
 script = ExtResource("1_ckr0k")
 level = 23
 move = ExtResource("6_chdf7")
 
-[sub_resource type="Resource" id="Resource_ox607"]
+[sub_resource type="Resource" id="Resource_ald0u"]
 script = ExtResource("1_ckr0k")
 level = 29
 move = ExtResource("7_6kajm")
 
-[sub_resource type="Resource" id="Resource_ald0u"]
+[sub_resource type="Resource" id="Resource_4wmub"]
 script = ExtResource("1_ckr0k")
 level = 37
 move = ExtResource("8_ox607")
 
-[sub_resource type="Resource" id="Resource_4wmub"]
+[sub_resource type="Resource" id="Resource_rm6bl"]
 script = ExtResource("1_ckr0k")
 level = 40
 move = ExtResource("9_ald0u")
 
-[sub_resource type="Resource" id="Resource_rm6bl"]
+[sub_resource type="Resource" id="Resource_gnygp"]
 script = ExtResource("1_ckr0k")
 level = 45
 move = ExtResource("10_4wmub")
 
-[sub_resource type="Resource" id="Resource_gnygp"]
+[sub_resource type="Resource" id="Resource_d7la3"]
 script = ExtResource("1_ckr0k")
 level = 55
 move = ExtResource("11_rm6bl")
 
-[sub_resource type="Resource" id="Resource_d7la3"]
+[sub_resource type="Resource" id="Resource_ln153"]
 script = ExtResource("1_ckr0k")
 level = 55
 move = ExtResource("12_gnygp")
 
-[sub_resource type="Resource" id="Resource_ln153"]
+[sub_resource type="Resource" id="Resource_83ug1"]
 script = ExtResource("1_ckr0k")
 level = 63
 move = ExtResource("13_d7la3")
@@ -81,7 +82,8 @@ id = "exploud"
 display_name = "Exploud"
 dex = 295
 types = Array[ExtResource("4_un4u7")]([ExtResource("5_mntg4")])
-learnset = Array[ExtResource("1_ckr0k")]([SubResource("Resource_wn2aq"), SubResource("Resource_vlbws"), SubResource("Resource_qhre4"), SubResource("Resource_chdf7"), SubResource("Resource_6kajm"), SubResource("Resource_ox607"), SubResource("Resource_ald0u"), SubResource("Resource_4wmub"), SubResource("Resource_rm6bl"), SubResource("Resource_gnygp"), SubResource("Resource_d7la3"), SubResource("Resource_ln153")])
+learnset = Array[ExtResource("1_ckr0k")]([SubResource("Resource_vlbws"), SubResource("Resource_qhre4"), SubResource("Resource_chdf7"), SubResource("Resource_6kajm"), SubResource("Resource_ox607"), SubResource("Resource_ald0u"), SubResource("Resource_4wmub"), SubResource("Resource_rm6bl"), SubResource("Resource_gnygp"), SubResource("Resource_d7la3"), SubResource("Resource_ln153"), SubResource("Resource_83ug1")])
+evolves_from = "loudred"
 temperament = ExtResource("16_wn2aq")
 genus = "Pokémon Escandaloso"
 pokedex_entry = "Exploud provoca terremotos con el temblor que causa al levantar la voz. Cuando inhala aire por los tubos, hay que prestar atención, ya que está a punto de soltar un buen bramido."

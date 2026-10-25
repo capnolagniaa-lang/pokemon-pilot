@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_85n31"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_vfkqm"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3nfkl"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_i4y7f"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_06u3m"]
@@ -18,50 +19,55 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_jlaw3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_ymxs2"]
 
-[sub_resource type="Resource" id="Resource_ymxs2"]
+[sub_resource type="Resource" id="Resource_vfkqm"]
+script = ExtResource("1_vfkqm")
+to_id = "sharpedo"
+level = 30
+
+[sub_resource type="Resource" id="Resource_bael6"]
 script = ExtResource("1_85n31")
 move = ExtResource("2_i4y7f")
 
-[sub_resource type="Resource" id="Resource_vfkqm"]
+[sub_resource type="Resource" id="Resource_qxvqo"]
 script = ExtResource("1_85n31")
 move = ExtResource("3_ymxs2")
 
-[sub_resource type="Resource" id="Resource_bael6"]
+[sub_resource type="Resource" id="Resource_anl1s"]
 script = ExtResource("1_85n31")
 level = 7
 move = ExtResource("4_vfkqm")
 
-[sub_resource type="Resource" id="Resource_qxvqo"]
+[sub_resource type="Resource" id="Resource_v7f6l"]
 script = ExtResource("1_85n31")
 level = 13
 move = ExtResource("5_bael6")
 
-[sub_resource type="Resource" id="Resource_anl1s"]
+[sub_resource type="Resource" id="Resource_b0pkl"]
 script = ExtResource("1_85n31")
 level = 16
 move = ExtResource("6_qxvqo")
 
-[sub_resource type="Resource" id="Resource_v7f6l"]
+[sub_resource type="Resource" id="Resource_qt2hb"]
 script = ExtResource("1_85n31")
 level = 22
 move = ExtResource("7_anl1s")
 
-[sub_resource type="Resource" id="Resource_b0pkl"]
+[sub_resource type="Resource" id="Resource_jlaw3"]
 script = ExtResource("1_85n31")
 level = 28
 move = ExtResource("8_v7f6l")
 
-[sub_resource type="Resource" id="Resource_qt2hb"]
+[sub_resource type="Resource" id="Resource_5asyk"]
 script = ExtResource("1_85n31")
 level = 31
 move = ExtResource("9_b0pkl")
 
-[sub_resource type="Resource" id="Resource_jlaw3"]
+[sub_resource type="Resource" id="Resource_ibxax"]
 script = ExtResource("1_85n31")
 level = 37
 move = ExtResource("10_qt2hb")
 
-[sub_resource type="Resource" id="Resource_5asyk"]
+[sub_resource type="Resource" id="Resource_sp8re"]
 script = ExtResource("1_85n31")
 level = 43
 move = ExtResource("11_jlaw3")
@@ -72,7 +78,8 @@ id = "carvanha"
 display_name = "Carvanha"
 dex = 318
 types = Array[ExtResource("4_r5clt")]([ExtResource("5_58wvp"), ExtResource("6_w1c66")])
-learnset = Array[ExtResource("1_85n31")]([SubResource("Resource_ymxs2"), SubResource("Resource_vfkqm"), SubResource("Resource_bael6"), SubResource("Resource_qxvqo"), SubResource("Resource_anl1s"), SubResource("Resource_v7f6l"), SubResource("Resource_b0pkl"), SubResource("Resource_qt2hb"), SubResource("Resource_jlaw3"), SubResource("Resource_5asyk")])
+learnset = Array[ExtResource("1_85n31")]([SubResource("Resource_bael6"), SubResource("Resource_qxvqo"), SubResource("Resource_anl1s"), SubResource("Resource_v7f6l"), SubResource("Resource_b0pkl"), SubResource("Resource_qt2hb"), SubResource("Resource_jlaw3"), SubResource("Resource_5asyk"), SubResource("Resource_ibxax"), SubResource("Resource_sp8re")])
+evolutions = Array[ExtResource("1_vfkqm")]([SubResource("Resource_vfkqm")])
 temperament = ExtResource("14_ymxs2")
 genus = "Pokémon Feroz"
 pokedex_entry = "Carvanha, gracias a las descomunales fauces de afilados colmillos que tiene, es capaz de hacer trizas un barco. Son muchas las naves que han sufrido el ataque de este Pokémon y han acabado naufragando."

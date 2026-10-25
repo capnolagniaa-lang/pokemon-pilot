@@ -258,3 +258,21 @@ func add_exp(amount: int) -> int:
 		ups += 1
 		hp = minf(max_hp(), hp + (max_hp() - before))
 	return ups
+
+
+## Evoluciona a otra especie (EvolutionDirector): conserva el nivel, la EXP, los IVs, el daño recibido y los
+## movimientos que ya sabía (los que la nueva especie no aprende quedan en taught_moves, como en los juegos).
+## Devuelve los movimientos nuevos que aprende al evolucionar (los de su nivel en el learnset nuevo).
+func evolve_into(to: SpeciesData) -> Array[MoveData]:
+	var known := learned_moves()
+	var lost := max_hp() - hp
+	species = to
+	for m in known:
+		if not learned_moves().has(m):
+			taught_moves.append(m)
+	hp = maxf(0.0 if hp <= 0.0 else 1.0, max_hp() - lost)
+	var fresh: Array[MoveData] = []
+	for e in species.learnset_entries():
+		if e.level == level and e.move != null and not known.has(e.move) and not fresh.has(e.move):
+			fresh.append(e.move)
+	return fresh

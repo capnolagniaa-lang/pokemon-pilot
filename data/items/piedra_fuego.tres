@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/fire-stone.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "piedra_fuego"
+display_name = "Piedra Fuego"
+description = "Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es amarilla con una marca naranja."
+icon = ExtResource("2_i")
+pocket = 0
+sort_order = 41
+price = 2100
+evolves = true
+usable_in_battle = false

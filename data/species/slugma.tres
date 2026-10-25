@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_3i4te"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fubu0"]
 [ext_resource type="Resource" path="res://data/moves/polucion.tres" id="2_boaji"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x4jxx"]
@@ -16,45 +17,50 @@
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_c8ctc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_0oq48"]
 
-[sub_resource type="Resource" id="Resource_0oq48"]
+[sub_resource type="Resource" id="Resource_3i4te"]
+script = ExtResource("1_3i4te")
+to_id = "magcargo"
+level = 38
+
+[sub_resource type="Resource" id="Resource_82w0s"]
 script = ExtResource("1_fubu0")
 move = ExtResource("2_boaji")
 
-[sub_resource type="Resource" id="Resource_3i4te"]
+[sub_resource type="Resource" id="Resource_aliay"]
 script = ExtResource("1_fubu0")
 move = ExtResource("3_0oq48")
 
-[sub_resource type="Resource" id="Resource_82w0s"]
+[sub_resource type="Resource" id="Resource_f0e3h"]
 script = ExtResource("1_fubu0")
 level = 8
 move = ExtResource("4_3i4te")
 
-[sub_resource type="Resource" id="Resource_aliay"]
+[sub_resource type="Resource" id="Resource_fs4v2"]
 script = ExtResource("1_fubu0")
 level = 15
 move = ExtResource("5_82w0s")
 
-[sub_resource type="Resource" id="Resource_f0e3h"]
+[sub_resource type="Resource" id="Resource_6fpn8"]
 script = ExtResource("1_fubu0")
 level = 22
 move = ExtResource("6_aliay")
 
-[sub_resource type="Resource" id="Resource_fs4v2"]
+[sub_resource type="Resource" id="Resource_c8ctc"]
 script = ExtResource("1_fubu0")
 level = 29
 move = ExtResource("7_f0e3h")
 
-[sub_resource type="Resource" id="Resource_6fpn8"]
+[sub_resource type="Resource" id="Resource_05j1m"]
 script = ExtResource("1_fubu0")
 level = 36
 move = ExtResource("8_fs4v2")
 
-[sub_resource type="Resource" id="Resource_c8ctc"]
+[sub_resource type="Resource" id="Resource_135mx"]
 script = ExtResource("1_fubu0")
 level = 43
 move = ExtResource("9_6fpn8")
 
-[sub_resource type="Resource" id="Resource_05j1m"]
+[sub_resource type="Resource" id="Resource_t67up"]
 script = ExtResource("1_fubu0")
 level = 50
 move = ExtResource("10_c8ctc")
@@ -65,7 +71,8 @@ id = "slugma"
 display_name = "Slugma"
 dex = 218
 types = Array[ExtResource("4_nip23")]([ExtResource("5_jvmm0")])
-learnset = Array[ExtResource("1_fubu0")]([SubResource("Resource_0oq48"), SubResource("Resource_3i4te"), SubResource("Resource_82w0s"), SubResource("Resource_aliay"), SubResource("Resource_f0e3h"), SubResource("Resource_fs4v2"), SubResource("Resource_6fpn8"), SubResource("Resource_c8ctc"), SubResource("Resource_05j1m")])
+learnset = Array[ExtResource("1_fubu0")]([SubResource("Resource_82w0s"), SubResource("Resource_aliay"), SubResource("Resource_f0e3h"), SubResource("Resource_fs4v2"), SubResource("Resource_6fpn8"), SubResource("Resource_c8ctc"), SubResource("Resource_05j1m"), SubResource("Resource_135mx"), SubResource("Resource_t67up")])
+evolutions = Array[ExtResource("1_3i4te")]([SubResource("Resource_3i4te")])
 temperament = ExtResource("13_0oq48")
 genus = "Pokémon Lava"
 pokedex_entry = "Por el sistema circulatorio de Slugma corre magma líquido. Si este Pokémon se enfriara, el magma perdería el calor y se solidificaría, por lo que se resquebrajaría por completo, perdería algunos trozos y reduciría su tamaño."

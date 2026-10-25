@@ -100,7 +100,7 @@ var _clock := 0.0
 
 func _ready() -> void:
 	sprite.species = instance.species
-	fight_style = DB.fight_styles.get(instance.species.id)
+	fight_style = DB.fight_style_of(instance.species)  # el propio o el de su preevolución
 	health.instance = instance
 	health.heal_mult_source = statuses
 	moves.setup(instance)

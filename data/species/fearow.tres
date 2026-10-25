@@ -1,53 +1,56 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_doxt3"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_w0g6s"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_f7i4w"]
-[ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="2_r6rcp"]
-[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_5jww4"]
+[ext_resource type="Resource" path="res://data/kits/spearow/kit.tres" id="2_hs0w7"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_vj26j"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_doxt3"]
+[ext_resource type="Resource" path="res://data/kits/spearow/picotazo_spearow.tres" id="4_hs0w7"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mekuc"]
-[ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="5_hs0w7"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_ryn2s"]
+[ext_resource type="Resource" path="res://data/kits/spearow/grunido_spearow.tres" id="5_wcfpd"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_5d84f"]
-[ext_resource type="Resource" path="res://data/moves/persecucion.tres" id="6_wcfpd"]
+[ext_resource type="Resource" path="res://data/kits/spearow/ataque_furia_spearow.tres" id="6_iisl5"]
+[ext_resource type="Resource" path="res://data/kits/spearow/persecucion_spearow.tres" id="7_cav0c"]
 [ext_resource type="Resource" path="res://data/moves/espejo.tres" id="7_iisl5"]
 [ext_resource type="Resource" path="res://data/moves/pico_taladro.tres" id="8_cav0c"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="9_sya0f"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_5jww4"]
 
-[sub_resource type="Resource" id="Resource_5jww4"]
-script = ExtResource("1_w0g6s")
-move = ExtResource("2_r6rcp")
-
-[sub_resource type="Resource" id="Resource_doxt3"]
-script = ExtResource("1_w0g6s")
-move = ExtResource("3_5jww4")
-
 [sub_resource type="Resource" id="Resource_hs0w7"]
 script = ExtResource("1_w0g6s")
-move = ExtResource("4_doxt3")
+move = ExtResource("4_hs0w7")
 
 [sub_resource type="Resource" id="Resource_wcfpd"]
 script = ExtResource("1_w0g6s")
-move = ExtResource("5_hs0w7")
+move = ExtResource("5_wcfpd")
 
 [sub_resource type="Resource" id="Resource_iisl5"]
 script = ExtResource("1_w0g6s")
-level = 26
-move = ExtResource("6_wcfpd")
+level = 3
+move = ExtResource("6_iisl5")
 
 [sub_resource type="Resource" id="Resource_cav0c"]
+script = ExtResource("1_w0g6s")
+level = 5
+move = ExtResource("7_cav0c")
+
+[sub_resource type="Resource" id="Resource_sya0f"]
+script = ExtResource("1_w0g6s")
+move = ExtResource("4_doxt3")
+
+[sub_resource type="Resource" id="Resource_doi27"]
 script = ExtResource("1_w0g6s")
 level = 32
 move = ExtResource("7_iisl5")
 
-[sub_resource type="Resource" id="Resource_sya0f"]
+[sub_resource type="Resource" id="Resource_gt2pv"]
 script = ExtResource("1_w0g6s")
 level = 40
 move = ExtResource("8_cav0c")
 
-[sub_resource type="Resource" id="Resource_doi27"]
+[sub_resource type="Resource" id="Resource_a2mqh"]
 script = ExtResource("1_w0g6s")
 level = 47
 move = ExtResource("9_sya0f")
@@ -58,7 +61,10 @@ id = "fearow"
 display_name = "Fearow"
 dex = 22
 types = Array[ExtResource("4_mekuc")]([ExtResource("5_ryn2s"), ExtResource("6_5d84f")])
-learnset = Array[ExtResource("1_w0g6s")]([SubResource("Resource_5jww4"), SubResource("Resource_doxt3"), SubResource("Resource_hs0w7"), SubResource("Resource_wcfpd"), SubResource("Resource_iisl5"), SubResource("Resource_cav0c"), SubResource("Resource_sya0f"), SubResource("Resource_doi27")])
+kit = ExtResource("2_hs0w7")
+learnset = Array[ExtResource("1_w0g6s")]([SubResource("Resource_hs0w7"), SubResource("Resource_wcfpd"), SubResource("Resource_iisl5"), SubResource("Resource_cav0c"), SubResource("Resource_sya0f"), SubResource("Resource_doi27"), SubResource("Resource_gt2pv"), SubResource("Resource_a2mqh")])
+kit_inherited = true
+evolves_from = "spearow"
 temperament = ExtResource("12_5jww4")
 genus = "Pokémon Pico"
 pokedex_entry = "A Fearow se le reconoce por tener un pescuezo y un pico largos que le permiten cazar en tierra y agua. Tiene una gran habilidad moviendo el fino pico para atrapar a sus presas."

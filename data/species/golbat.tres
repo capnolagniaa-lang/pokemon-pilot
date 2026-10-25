@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_8py1k"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ltaki"]
 [ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_4y587"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_e7sow"]
@@ -19,53 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_supsf"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_utrva"]
 
-[sub_resource type="Resource" id="Resource_utrva"]
-script = ExtResource("1_ltaki")
-move = ExtResource("2_4y587")
-
 [sub_resource type="Resource" id="Resource_8py1k"]
-script = ExtResource("1_ltaki")
-move = ExtResource("3_utrva")
+script = ExtResource("1_8py1k")
+to_id = "crobat"
+method = "amistad"
 
 [sub_resource type="Resource" id="Resource_bfy1e"]
 script = ExtResource("1_ltaki")
-move = ExtResource("4_8py1k")
+move = ExtResource("2_4y587")
 
 [sub_resource type="Resource" id="Resource_43rcd"]
 script = ExtResource("1_ltaki")
-move = ExtResource("5_bfy1e")
+move = ExtResource("3_utrva")
 
 [sub_resource type="Resource" id="Resource_8n53x"]
+script = ExtResource("1_ltaki")
+move = ExtResource("4_8py1k")
+
+[sub_resource type="Resource" id="Resource_4eghq"]
+script = ExtResource("1_ltaki")
+move = ExtResource("5_bfy1e")
+
+[sub_resource type="Resource" id="Resource_vfjrn"]
 script = ExtResource("1_ltaki")
 level = 16
 move = ExtResource("6_43rcd")
 
-[sub_resource type="Resource" id="Resource_4eghq"]
+[sub_resource type="Resource" id="Resource_68vmh"]
 script = ExtResource("1_ltaki")
 level = 21
 move = ExtResource("7_8n53x")
 
-[sub_resource type="Resource" id="Resource_vfjrn"]
+[sub_resource type="Resource" id="Resource_kw0ma"]
 script = ExtResource("1_ltaki")
 level = 28
 move = ExtResource("8_4eghq")
 
-[sub_resource type="Resource" id="Resource_68vmh"]
+[sub_resource type="Resource" id="Resource_supsf"]
 script = ExtResource("1_ltaki")
 level = 35
 move = ExtResource("9_vfjrn")
 
-[sub_resource type="Resource" id="Resource_kw0ma"]
+[sub_resource type="Resource" id="Resource_cf680"]
 script = ExtResource("1_ltaki")
 level = 42
 move = ExtResource("10_68vmh")
 
-[sub_resource type="Resource" id="Resource_supsf"]
+[sub_resource type="Resource" id="Resource_vg7q8"]
 script = ExtResource("1_ltaki")
 level = 49
 move = ExtResource("11_kw0ma")
 
-[sub_resource type="Resource" id="Resource_cf680"]
+[sub_resource type="Resource" id="Resource_lkcc1"]
 script = ExtResource("1_ltaki")
 level = 56
 move = ExtResource("12_supsf")
@@ -76,7 +82,9 @@ id = "golbat"
 display_name = "Golbat"
 dex = 42
 types = Array[ExtResource("4_ll58t")]([ExtResource("5_u1t2j"), ExtResource("6_88vbf")])
-learnset = Array[ExtResource("1_ltaki")]([SubResource("Resource_utrva"), SubResource("Resource_8py1k"), SubResource("Resource_bfy1e"), SubResource("Resource_43rcd"), SubResource("Resource_8n53x"), SubResource("Resource_4eghq"), SubResource("Resource_vfjrn"), SubResource("Resource_68vmh"), SubResource("Resource_kw0ma"), SubResource("Resource_supsf"), SubResource("Resource_cf680")])
+learnset = Array[ExtResource("1_ltaki")]([SubResource("Resource_bfy1e"), SubResource("Resource_43rcd"), SubResource("Resource_8n53x"), SubResource("Resource_4eghq"), SubResource("Resource_vfjrn"), SubResource("Resource_68vmh"), SubResource("Resource_kw0ma"), SubResource("Resource_supsf"), SubResource("Resource_cf680"), SubResource("Resource_vg7q8"), SubResource("Resource_lkcc1")])
+evolutions = Array[ExtResource("1_8py1k")]([SubResource("Resource_8py1k")])
+evolves_from = "zubat"
 temperament = ExtResource("15_utrva")
 genus = "Pokémon Murciélago"
 pokedex_entry = "A Golbat le encanta chuparles la sangre a los seres vivos. Este Pokémon es más activo en la oscuridad de la noche. Es al caer la noche cuando sale a revolotear y a buscar sangre fresca."

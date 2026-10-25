@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_0qsvj"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_mxxu5"]
 [ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_6oyko"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_j1vmr"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_h5ull"]
@@ -21,63 +22,68 @@
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="14_rr0y0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_ibntl"]
 
-[sub_resource type="Resource" id="Resource_ibntl"]
-script = ExtResource("1_0qsvj")
-move = ExtResource("2_6oyko")
-
 [sub_resource type="Resource" id="Resource_mxxu5"]
-script = ExtResource("1_0qsvj")
-move = ExtResource("3_ibntl")
+script = ExtResource("1_mxxu5")
+to_id = "walrein"
+level = 44
 
 [sub_resource type="Resource" id="Resource_qe1of"]
 script = ExtResource("1_0qsvj")
-move = ExtResource("4_mxxu5")
+move = ExtResource("2_6oyko")
 
 [sub_resource type="Resource" id="Resource_v1py7"]
 script = ExtResource("1_0qsvj")
-move = ExtResource("5_qe1of")
+move = ExtResource("3_ibntl")
 
 [sub_resource type="Resource" id="Resource_mm36n"]
+script = ExtResource("1_0qsvj")
+move = ExtResource("4_mxxu5")
+
+[sub_resource type="Resource" id="Resource_x18np"]
+script = ExtResource("1_0qsvj")
+move = ExtResource("5_qe1of")
+
+[sub_resource type="Resource" id="Resource_827np"]
 script = ExtResource("1_0qsvj")
 level = 7
 move = ExtResource("6_v1py7")
 
-[sub_resource type="Resource" id="Resource_x18np"]
+[sub_resource type="Resource" id="Resource_oc63s"]
 script = ExtResource("1_0qsvj")
 level = 13
 move = ExtResource("7_mm36n")
 
-[sub_resource type="Resource" id="Resource_827np"]
+[sub_resource type="Resource" id="Resource_jpnrc"]
 script = ExtResource("1_0qsvj")
 level = 19
 move = ExtResource("8_x18np")
 
-[sub_resource type="Resource" id="Resource_oc63s"]
+[sub_resource type="Resource" id="Resource_qgnay"]
 script = ExtResource("1_0qsvj")
 level = 25
 move = ExtResource("9_827np")
 
-[sub_resource type="Resource" id="Resource_jpnrc"]
+[sub_resource type="Resource" id="Resource_ysxud"]
 script = ExtResource("1_0qsvj")
 level = 31
 move = ExtResource("10_oc63s")
 
-[sub_resource type="Resource" id="Resource_qgnay"]
+[sub_resource type="Resource" id="Resource_rr0y0"]
 script = ExtResource("1_0qsvj")
 level = 39
 move = ExtResource("11_jpnrc")
 
-[sub_resource type="Resource" id="Resource_ysxud"]
+[sub_resource type="Resource" id="Resource_q632d"]
 script = ExtResource("1_0qsvj")
 level = 39
 move = ExtResource("12_qgnay")
 
-[sub_resource type="Resource" id="Resource_rr0y0"]
+[sub_resource type="Resource" id="Resource_f5veo"]
 script = ExtResource("1_0qsvj")
 level = 47
 move = ExtResource("13_ysxud")
 
-[sub_resource type="Resource" id="Resource_q632d"]
+[sub_resource type="Resource" id="Resource_g7gxf"]
 script = ExtResource("1_0qsvj")
 level = 55
 move = ExtResource("14_rr0y0")
@@ -88,7 +94,9 @@ id = "sealeo"
 display_name = "Sealeo"
 dex = 364
 types = Array[ExtResource("4_wjxjj")]([ExtResource("5_b1phl"), ExtResource("6_wbh0l")])
-learnset = Array[ExtResource("1_0qsvj")]([SubResource("Resource_ibntl"), SubResource("Resource_mxxu5"), SubResource("Resource_qe1of"), SubResource("Resource_v1py7"), SubResource("Resource_mm36n"), SubResource("Resource_x18np"), SubResource("Resource_827np"), SubResource("Resource_oc63s"), SubResource("Resource_jpnrc"), SubResource("Resource_qgnay"), SubResource("Resource_ysxud"), SubResource("Resource_rr0y0"), SubResource("Resource_q632d")])
+learnset = Array[ExtResource("1_0qsvj")]([SubResource("Resource_qe1of"), SubResource("Resource_v1py7"), SubResource("Resource_mm36n"), SubResource("Resource_x18np"), SubResource("Resource_827np"), SubResource("Resource_oc63s"), SubResource("Resource_jpnrc"), SubResource("Resource_qgnay"), SubResource("Resource_ysxud"), SubResource("Resource_rr0y0"), SubResource("Resource_q632d"), SubResource("Resource_f5veo"), SubResource("Resource_g7gxf")])
+evolutions = Array[ExtResource("1_mxxu5")]([SubResource("Resource_mxxu5")])
+evolves_from = "spheal"
 temperament = ExtResource("17_ibntl")
 genus = "Pokémon Rodabola"
 pokedex_entry = "Cada vez que Sealeo ve algo nuevo, se lo pone en el morro y empieza a darle vueltas. A veces, para entretenerse, hace lo mismo con un Spheal."

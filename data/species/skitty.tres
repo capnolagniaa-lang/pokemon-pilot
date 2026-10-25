@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_j2w2b"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xo174"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_gunkc"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ia3ke"]
@@ -19,60 +20,66 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_lqlg4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_vb7lu"]
 
-[sub_resource type="Resource" id="Resource_vb7lu"]
+[sub_resource type="Resource" id="Resource_j2w2b"]
+script = ExtResource("1_j2w2b")
+to_id = "delcatty"
+method = "piedra"
+item = "piedra_lunar"
+
+[sub_resource type="Resource" id="Resource_80qqs"]
 script = ExtResource("1_xo174")
 move = ExtResource("2_gunkc")
 
-[sub_resource type="Resource" id="Resource_j2w2b"]
+[sub_resource type="Resource" id="Resource_krasc"]
 script = ExtResource("1_xo174")
 move = ExtResource("3_vb7lu")
 
-[sub_resource type="Resource" id="Resource_80qqs"]
+[sub_resource type="Resource" id="Resource_r86yn"]
 script = ExtResource("1_xo174")
 level = 3
 move = ExtResource("4_j2w2b")
 
-[sub_resource type="Resource" id="Resource_krasc"]
+[sub_resource type="Resource" id="Resource_3ejjv"]
 script = ExtResource("1_xo174")
 level = 7
 move = ExtResource("5_80qqs")
 
-[sub_resource type="Resource" id="Resource_r86yn"]
+[sub_resource type="Resource" id="Resource_gl1sb"]
 script = ExtResource("1_xo174")
 level = 13
 move = ExtResource("6_krasc")
 
-[sub_resource type="Resource" id="Resource_3ejjv"]
+[sub_resource type="Resource" id="Resource_ew7ky"]
 script = ExtResource("1_xo174")
 level = 15
 move = ExtResource("7_r86yn")
 
-[sub_resource type="Resource" id="Resource_gl1sb"]
+[sub_resource type="Resource" id="Resource_vrvmw"]
 script = ExtResource("1_xo174")
 level = 19
 move = ExtResource("8_3ejjv")
 
-[sub_resource type="Resource" id="Resource_ew7ky"]
+[sub_resource type="Resource" id="Resource_fjeb5"]
 script = ExtResource("1_xo174")
 level = 25
 move = ExtResource("9_gl1sb")
 
-[sub_resource type="Resource" id="Resource_vrvmw"]
+[sub_resource type="Resource" id="Resource_lqlg4"]
 script = ExtResource("1_xo174")
 level = 27
 move = ExtResource("10_ew7ky")
 
-[sub_resource type="Resource" id="Resource_fjeb5"]
+[sub_resource type="Resource" id="Resource_0a8tw"]
 script = ExtResource("1_xo174")
 level = 31
 move = ExtResource("11_vrvmw")
 
-[sub_resource type="Resource" id="Resource_lqlg4"]
+[sub_resource type="Resource" id="Resource_u4atu"]
 script = ExtResource("1_xo174")
 level = 37
 move = ExtResource("12_fjeb5")
 
-[sub_resource type="Resource" id="Resource_0a8tw"]
+[sub_resource type="Resource" id="Resource_3ph1b"]
 script = ExtResource("1_xo174")
 level = 39
 move = ExtResource("13_lqlg4")
@@ -83,7 +90,8 @@ id = "skitty"
 display_name = "Skitty"
 dex = 300
 types = Array[ExtResource("4_cxat8")]([ExtResource("5_krycb")])
-learnset = Array[ExtResource("1_xo174")]([SubResource("Resource_vb7lu"), SubResource("Resource_j2w2b"), SubResource("Resource_80qqs"), SubResource("Resource_krasc"), SubResource("Resource_r86yn"), SubResource("Resource_3ejjv"), SubResource("Resource_gl1sb"), SubResource("Resource_ew7ky"), SubResource("Resource_vrvmw"), SubResource("Resource_fjeb5"), SubResource("Resource_lqlg4"), SubResource("Resource_0a8tw")])
+learnset = Array[ExtResource("1_xo174")]([SubResource("Resource_80qqs"), SubResource("Resource_krasc"), SubResource("Resource_r86yn"), SubResource("Resource_3ejjv"), SubResource("Resource_gl1sb"), SubResource("Resource_ew7ky"), SubResource("Resource_vrvmw"), SubResource("Resource_fjeb5"), SubResource("Resource_lqlg4"), SubResource("Resource_0a8tw"), SubResource("Resource_u4atu"), SubResource("Resource_3ph1b")])
+evolutions = Array[ExtResource("1_j2w2b")]([SubResource("Resource_j2w2b")])
 temperament = ExtResource("16_vb7lu")
 genus = "Pokémon Gatito"
 pokedex_entry = "A Skitty le encanta mover cosas e ir detrás de ellas. Es de todos sabido que se dedica a ir detrás de su propia cola y que, al final, acaba mareándose."

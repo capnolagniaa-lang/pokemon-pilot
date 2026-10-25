@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_q2kkh"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yhum0"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_au3pc"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_dsq73"]
@@ -19,56 +20,61 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="12_htan2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_er5m5"]
 
-[sub_resource type="Resource" id="Resource_er5m5"]
+[sub_resource type="Resource" id="Resource_q2kkh"]
+script = ExtResource("1_q2kkh")
+to_id = "claydol"
+level = 36
+
+[sub_resource type="Resource" id="Resource_c6cn3"]
 script = ExtResource("1_yhum0")
 move = ExtResource("2_dsq73")
 
-[sub_resource type="Resource" id="Resource_q2kkh"]
+[sub_resource type="Resource" id="Resource_ihfpd"]
 script = ExtResource("1_yhum0")
 level = 3
 move = ExtResource("3_er5m5")
 
-[sub_resource type="Resource" id="Resource_c6cn3"]
+[sub_resource type="Resource" id="Resource_bs7vh"]
 script = ExtResource("1_yhum0")
 level = 5
 move = ExtResource("4_q2kkh")
 
-[sub_resource type="Resource" id="Resource_ihfpd"]
+[sub_resource type="Resource" id="Resource_rrkua"]
 script = ExtResource("1_yhum0")
 level = 7
 move = ExtResource("5_c6cn3")
 
-[sub_resource type="Resource" id="Resource_bs7vh"]
+[sub_resource type="Resource" id="Resource_mlht0"]
 script = ExtResource("1_yhum0")
 level = 11
 move = ExtResource("6_ihfpd")
 
-[sub_resource type="Resource" id="Resource_rrkua"]
+[sub_resource type="Resource" id="Resource_f3atu"]
 script = ExtResource("1_yhum0")
 level = 15
 move = ExtResource("7_bs7vh")
 
-[sub_resource type="Resource" id="Resource_mlht0"]
+[sub_resource type="Resource" id="Resource_h7h2q"]
 script = ExtResource("1_yhum0")
 level = 19
 move = ExtResource("8_rrkua")
 
-[sub_resource type="Resource" id="Resource_f3atu"]
+[sub_resource type="Resource" id="Resource_htan2"]
 script = ExtResource("1_yhum0")
 level = 25
 move = ExtResource("9_mlht0")
 
-[sub_resource type="Resource" id="Resource_h7h2q"]
+[sub_resource type="Resource" id="Resource_mcptr"]
 script = ExtResource("1_yhum0")
 level = 31
 move = ExtResource("10_f3atu")
 
-[sub_resource type="Resource" id="Resource_htan2"]
+[sub_resource type="Resource" id="Resource_8rqbn"]
 script = ExtResource("1_yhum0")
 level = 37
 move = ExtResource("11_h7h2q")
 
-[sub_resource type="Resource" id="Resource_mcptr"]
+[sub_resource type="Resource" id="Resource_xd2yt"]
 script = ExtResource("1_yhum0")
 level = 45
 move = ExtResource("12_htan2")
@@ -79,7 +85,8 @@ id = "baltoy"
 display_name = "Baltoy"
 dex = 343
 types = Array[ExtResource("4_e2u54")]([ExtResource("5_k3gp0"), ExtResource("6_xasyh")])
-learnset = Array[ExtResource("1_yhum0")]([SubResource("Resource_er5m5"), SubResource("Resource_q2kkh"), SubResource("Resource_c6cn3"), SubResource("Resource_ihfpd"), SubResource("Resource_bs7vh"), SubResource("Resource_rrkua"), SubResource("Resource_mlht0"), SubResource("Resource_f3atu"), SubResource("Resource_h7h2q"), SubResource("Resource_htan2"), SubResource("Resource_mcptr")])
+learnset = Array[ExtResource("1_yhum0")]([SubResource("Resource_c6cn3"), SubResource("Resource_ihfpd"), SubResource("Resource_bs7vh"), SubResource("Resource_rrkua"), SubResource("Resource_mlht0"), SubResource("Resource_f3atu"), SubResource("Resource_h7h2q"), SubResource("Resource_htan2"), SubResource("Resource_mcptr"), SubResource("Resource_8rqbn"), SubResource("Resource_xd2yt")])
+evolutions = Array[ExtResource("1_q2kkh")]([SubResource("Resource_q2kkh")])
 temperament = ExtResource("15_er5m5")
 genus = "Pokémon Muñeca Barro"
 pokedex_entry = "Baltoy se mueve girando alrededor de sí mismo sobre la extremidad inferior que tiene. En unas ruinas antiguas, descubrieron pinturas rupestres en las que aparecía este Pokémon conviviendo con personas."

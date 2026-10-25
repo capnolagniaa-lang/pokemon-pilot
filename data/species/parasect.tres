@@ -1,60 +1,62 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_0df41"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_50i45"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cddaa"]
 [ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="2_gx7rg"]
+[ext_resource type="Resource" path="res://data/kits/paras/kit.tres" id="2_wyw52"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_bjepp"]
-[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_lgpf3"]
-[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="4_0df41"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_61tf4"]
+[ext_resource type="Resource" path="res://data/kits/paras/aranazo_kit.tres" id="4_wyw52"]
+[ext_resource type="Resource" path="res://data/kits/paras/paralizador_paras.tres" id="5_hi3c1"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_psnuu"]
-[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="5_wyw52"]
-[ext_resource type="Resource" path="res://data/moves/espora.tres" id="6_hi3c1"]
+[ext_resource type="Resource" path="res://data/kits/paras/chupavidas_kit.tres" id="6_qm45p"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="6_tx5sd"]
+[ext_resource type="Resource" path="res://data/kits/paras/espora_kit.tres" id="7_eklxg"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="7_qm45p"]
 [ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="8_eklxg"]
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_y4cts"]
 [ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="10_l2svw"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_lgpf3"]
 
-[sub_resource type="Resource" id="Resource_lgpf3"]
-script = ExtResource("1_50i45")
-move = ExtResource("2_gx7rg")
-
-[sub_resource type="Resource" id="Resource_0df41"]
-script = ExtResource("1_50i45")
-move = ExtResource("3_lgpf3")
-
 [sub_resource type="Resource" id="Resource_wyw52"]
 script = ExtResource("1_50i45")
-move = ExtResource("4_0df41")
+move = ExtResource("4_wyw52")
 
 [sub_resource type="Resource" id="Resource_hi3c1"]
 script = ExtResource("1_50i45")
-level = 19
-move = ExtResource("5_wyw52")
+move = ExtResource("5_hi3c1")
 
 [sub_resource type="Resource" id="Resource_qm45p"]
 script = ExtResource("1_50i45")
-level = 27
-move = ExtResource("6_hi3c1")
+level = 3
+move = ExtResource("6_qm45p")
 
 [sub_resource type="Resource" id="Resource_eklxg"]
+script = ExtResource("1_50i45")
+level = 5
+move = ExtResource("7_eklxg")
+
+[sub_resource type="Resource" id="Resource_y4cts"]
+script = ExtResource("1_50i45")
+move = ExtResource("2_gx7rg")
+
+[sub_resource type="Resource" id="Resource_l2svw"]
 script = ExtResource("1_50i45")
 level = 35
 move = ExtResource("7_qm45p")
 
-[sub_resource type="Resource" id="Resource_y4cts"]
+[sub_resource type="Resource" id="Resource_ishku"]
 script = ExtResource("1_50i45")
 level = 43
 move = ExtResource("8_eklxg")
 
-[sub_resource type="Resource" id="Resource_l2svw"]
+[sub_resource type="Resource" id="Resource_6c71i"]
 script = ExtResource("1_50i45")
 level = 51
 move = ExtResource("9_y4cts")
 
-[sub_resource type="Resource" id="Resource_ishku"]
+[sub_resource type="Resource" id="Resource_qx146"]
 script = ExtResource("1_50i45")
 level = 59
 move = ExtResource("10_l2svw")
@@ -65,7 +67,10 @@ id = "parasect"
 display_name = "Parasect"
 dex = 47
 types = Array[ExtResource("4_61tf4")]([ExtResource("5_psnuu"), ExtResource("6_tx5sd")])
-learnset = Array[ExtResource("1_50i45")]([SubResource("Resource_lgpf3"), SubResource("Resource_0df41"), SubResource("Resource_wyw52"), SubResource("Resource_hi3c1"), SubResource("Resource_qm45p"), SubResource("Resource_eklxg"), SubResource("Resource_y4cts"), SubResource("Resource_l2svw"), SubResource("Resource_ishku")])
+kit = ExtResource("2_wyw52")
+learnset = Array[ExtResource("1_50i45")]([SubResource("Resource_wyw52"), SubResource("Resource_hi3c1"), SubResource("Resource_qm45p"), SubResource("Resource_eklxg"), SubResource("Resource_y4cts"), SubResource("Resource_l2svw"), SubResource("Resource_ishku"), SubResource("Resource_6c71i"), SubResource("Resource_qx146")])
+kit_inherited = true
+evolves_from = "paras"
 temperament = ExtResource("13_lgpf3")
 genus = "Pokémon Hongo"
 pokedex_entry = "Parasect es conocido por destruir en plaga grandes árboles, absorbiendo los nutrientes que tienen en la parte baja del tronco y las raíces. Cuando un árbol azotado por la plaga muere, los Parasect van a por el siguiente al instante."

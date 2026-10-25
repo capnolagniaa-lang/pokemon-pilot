@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_i74qp"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_nlwco"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1n078"]
 [ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="2_tw8xs"]
 [ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="3_bjlab"]
@@ -17,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/alivio.tres" id="11_tnkih"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_bjlab"]
 
-[sub_resource type="Resource" id="Resource_bjlab"]
+[sub_resource type="Resource" id="Resource_nlwco"]
 script = ExtResource("1_i74qp")
 move = ExtResource("2_tw8xs")
 
-[sub_resource type="Resource" id="Resource_nlwco"]
+[sub_resource type="Resource" id="Resource_hlphe"]
 script = ExtResource("1_i74qp")
 level = 7
 move = ExtResource("3_bjlab")
 
-[sub_resource type="Resource" id="Resource_hlphe"]
+[sub_resource type="Resource" id="Resource_jdhc4"]
 script = ExtResource("1_i74qp")
 level = 12
 move = ExtResource("4_nlwco")
 
-[sub_resource type="Resource" id="Resource_jdhc4"]
+[sub_resource type="Resource" id="Resource_3tfh4"]
 script = ExtResource("1_i74qp")
 level = 18
 move = ExtResource("5_hlphe")
 
-[sub_resource type="Resource" id="Resource_3tfh4"]
+[sub_resource type="Resource" id="Resource_0utif"]
 script = ExtResource("1_i74qp")
 level = 23
 move = ExtResource("6_jdhc4")
 
-[sub_resource type="Resource" id="Resource_0utif"]
+[sub_resource type="Resource" id="Resource_n427n"]
 script = ExtResource("1_i74qp")
 level = 29
 move = ExtResource("7_3tfh4")
 
-[sub_resource type="Resource" id="Resource_n427n"]
+[sub_resource type="Resource" id="Resource_0qwa6"]
 script = ExtResource("1_i74qp")
 level = 34
 move = ExtResource("8_0utif")
 
-[sub_resource type="Resource" id="Resource_0qwa6"]
+[sub_resource type="Resource" id="Resource_tnkih"]
 script = ExtResource("1_i74qp")
 level = 40
 move = ExtResource("9_n427n")
 
-[sub_resource type="Resource" id="Resource_tnkih"]
+[sub_resource type="Resource" id="Resource_0fc3c"]
 script = ExtResource("1_i74qp")
 level = 45
 move = ExtResource("10_0qwa6")
 
-[sub_resource type="Resource" id="Resource_0fc3c"]
+[sub_resource type="Resource" id="Resource_perdv"]
 script = ExtResource("1_i74qp")
 level = 51
 move = ExtResource("11_tnkih")
@@ -72,7 +73,7 @@ id = "lickitung"
 display_name = "Lickitung"
 dex = 108
 types = Array[ExtResource("4_605g8")]([ExtResource("5_i7b16")])
-learnset = Array[ExtResource("1_i74qp")]([SubResource("Resource_bjlab"), SubResource("Resource_nlwco"), SubResource("Resource_hlphe"), SubResource("Resource_jdhc4"), SubResource("Resource_3tfh4"), SubResource("Resource_0utif"), SubResource("Resource_n427n"), SubResource("Resource_0qwa6"), SubResource("Resource_tnkih"), SubResource("Resource_0fc3c")])
+learnset = Array[ExtResource("1_i74qp")]([SubResource("Resource_nlwco"), SubResource("Resource_hlphe"), SubResource("Resource_jdhc4"), SubResource("Resource_3tfh4"), SubResource("Resource_0utif"), SubResource("Resource_n427n"), SubResource("Resource_0qwa6"), SubResource("Resource_tnkih"), SubResource("Resource_0fc3c"), SubResource("Resource_perdv")])
 temperament = ExtResource("14_bjlab")
 genus = "Pokémon Lametazo"
 pokedex_entry = "Cada vez que Lickitung se encuentra con algo que no conoce, le da un lametazo. Es la forma que tiene de memorizar las cosas, por la textura y el sabor. No soporta los sabores ácidos."

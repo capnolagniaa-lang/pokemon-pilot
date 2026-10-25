@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rpvho"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_v5w58"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_0xr1a"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_l3fk6"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ffkf5"]
@@ -19,55 +20,55 @@
 [ext_resource type="Resource" path="res://data/moves/deseo_oculto.tres" id="12_rsnhl"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_gi3bw"]
 
-[sub_resource type="Resource" id="Resource_gi3bw"]
+[sub_resource type="Resource" id="Resource_v5w58"]
 script = ExtResource("1_rpvho")
 move = ExtResource("2_0xr1a")
 
-[sub_resource type="Resource" id="Resource_v5w58"]
+[sub_resource type="Resource" id="Resource_tb4ox"]
 script = ExtResource("1_rpvho")
 move = ExtResource("3_gi3bw")
 
-[sub_resource type="Resource" id="Resource_tb4ox"]
+[sub_resource type="Resource" id="Resource_sxmg0"]
 script = ExtResource("1_rpvho")
 level = 5
 move = ExtResource("4_v5w58")
 
-[sub_resource type="Resource" id="Resource_sxmg0"]
+[sub_resource type="Resource" id="Resource_y86b6"]
 script = ExtResource("1_rpvho")
 level = 10
 move = ExtResource("5_tb4ox")
 
-[sub_resource type="Resource" id="Resource_y86b6"]
+[sub_resource type="Resource" id="Resource_hhcux"]
 script = ExtResource("1_rpvho")
 level = 15
 move = ExtResource("6_sxmg0")
 
-[sub_resource type="Resource" id="Resource_hhcux"]
+[sub_resource type="Resource" id="Resource_rmy6p"]
 script = ExtResource("1_rpvho")
 level = 20
 move = ExtResource("7_y86b6")
 
-[sub_resource type="Resource" id="Resource_rmy6p"]
+[sub_resource type="Resource" id="Resource_ajiqx"]
 script = ExtResource("1_rpvho")
 level = 25
 move = ExtResource("8_hhcux")
 
-[sub_resource type="Resource" id="Resource_ajiqx"]
+[sub_resource type="Resource" id="Resource_16h1r"]
 script = ExtResource("1_rpvho")
 level = 35
 move = ExtResource("9_rmy6p")
 
-[sub_resource type="Resource" id="Resource_16h1r"]
+[sub_resource type="Resource" id="Resource_rsnhl"]
 script = ExtResource("1_rpvho")
 level = 40
 move = ExtResource("10_ajiqx")
 
-[sub_resource type="Resource" id="Resource_rsnhl"]
+[sub_resource type="Resource" id="Resource_02vo2"]
 script = ExtResource("1_rpvho")
 level = 45
 move = ExtResource("11_16h1r")
 
-[sub_resource type="Resource" id="Resource_02vo2"]
+[sub_resource type="Resource" id="Resource_2r5ro"]
 script = ExtResource("1_rpvho")
 level = 50
 move = ExtResource("12_rsnhl")
@@ -78,7 +79,7 @@ id = "jirachi"
 display_name = "Jirachi"
 dex = 385
 types = Array[ExtResource("4_1exnb")]([ExtResource("5_j0qrv"), ExtResource("6_gdb3n")])
-learnset = Array[ExtResource("1_rpvho")]([SubResource("Resource_gi3bw"), SubResource("Resource_v5w58"), SubResource("Resource_tb4ox"), SubResource("Resource_sxmg0"), SubResource("Resource_y86b6"), SubResource("Resource_hhcux"), SubResource("Resource_rmy6p"), SubResource("Resource_ajiqx"), SubResource("Resource_16h1r"), SubResource("Resource_rsnhl"), SubResource("Resource_02vo2")])
+learnset = Array[ExtResource("1_rpvho")]([SubResource("Resource_v5w58"), SubResource("Resource_tb4ox"), SubResource("Resource_sxmg0"), SubResource("Resource_y86b6"), SubResource("Resource_hhcux"), SubResource("Resource_rmy6p"), SubResource("Resource_ajiqx"), SubResource("Resource_16h1r"), SubResource("Resource_rsnhl"), SubResource("Resource_02vo2"), SubResource("Resource_2r5ro")])
 temperament = ExtResource("15_gi3bw")
 genus = "Pokémon Deseo"
 pokedex_entry = "Cuenta la leyenda que Jirachi hará realidad cualquier deseo que se le escriba en las notas que lleva en la cabeza cuando las lea tras salir de su letargo. Si este Pokémon siente peligro, luchará sin haber llegado a despertarse."

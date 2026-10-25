@@ -51,12 +51,16 @@ func _init() -> void:
 		for i in base.size():
 			entries.append(_entry(BASE_LEVELS[mini(i, 3)], base[i]))
 			names.append(base[i].display_name)
-		for row in EXTRAS.get(sp.id, []):
+		# Kit heredado de su preevolución (tools/apply_evolutions.gd): además, el learnset oficial de la evolucionada.
+		var extras: Array = EXTRAS.get(sp.id, [])
+		if sp.kit_inherited:
+			extras = data["species"].get(sp.id, {}).get("learnset", [])
+		for row in extras:
 			var m: MoveData = load("res://data/moves/%s.tres" % row[1])
 			# No repetir un movimiento que el kit ya tiene con otra forma (Ascuas del kit vs. Ascuas suelta).
 			if m == null or names.has(m.display_name):
 				continue
-			entries.append(_entry(row[0], m))
+			entries.append(_entry(int(row[0]), m))
 			names.append(m.display_name)
 		sp.learnset = entries
 		var err := ResourceSaver.save(sp, path)

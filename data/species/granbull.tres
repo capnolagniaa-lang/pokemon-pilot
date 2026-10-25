@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_1f46a"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_b8jkc"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="2_jjl1t"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sdti7"]
@@ -17,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_krdem"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_uhhyg"]
 
-[sub_resource type="Resource" id="Resource_uhhyg"]
+[sub_resource type="Resource" id="Resource_1f46a"]
 script = ExtResource("1_b8jkc")
 move = ExtResource("2_jjl1t")
 
-[sub_resource type="Resource" id="Resource_1f46a"]
+[sub_resource type="Resource" id="Resource_yanl5"]
 script = ExtResource("1_b8jkc")
 move = ExtResource("3_uhhyg")
 
-[sub_resource type="Resource" id="Resource_yanl5"]
+[sub_resource type="Resource" id="Resource_ok8s6"]
 script = ExtResource("1_b8jkc")
 level = 4
 move = ExtResource("4_1f46a")
 
-[sub_resource type="Resource" id="Resource_ok8s6"]
+[sub_resource type="Resource" id="Resource_b7jv1"]
 script = ExtResource("1_b8jkc")
 level = 8
 move = ExtResource("5_yanl5")
 
-[sub_resource type="Resource" id="Resource_b7jv1"]
+[sub_resource type="Resource" id="Resource_gvcc4"]
 script = ExtResource("1_b8jkc")
 level = 13
 move = ExtResource("6_ok8s6")
 
-[sub_resource type="Resource" id="Resource_gvcc4"]
+[sub_resource type="Resource" id="Resource_wi1ld"]
 script = ExtResource("1_b8jkc")
 level = 19
 move = ExtResource("7_b7jv1")
 
-[sub_resource type="Resource" id="Resource_wi1ld"]
+[sub_resource type="Resource" id="Resource_on45m"]
 script = ExtResource("1_b8jkc")
 level = 28
 move = ExtResource("8_gvcc4")
 
-[sub_resource type="Resource" id="Resource_on45m"]
+[sub_resource type="Resource" id="Resource_krdem"]
 script = ExtResource("1_b8jkc")
 level = 38
 move = ExtResource("9_wi1ld")
 
-[sub_resource type="Resource" id="Resource_krdem"]
+[sub_resource type="Resource" id="Resource_0p38r"]
 script = ExtResource("1_b8jkc")
 level = 49
 move = ExtResource("10_on45m")
 
-[sub_resource type="Resource" id="Resource_0p38r"]
+[sub_resource type="Resource" id="Resource_uffr4"]
 script = ExtResource("1_b8jkc")
 level = 61
 move = ExtResource("11_krdem")
@@ -71,7 +72,8 @@ id = "granbull"
 display_name = "Granbull"
 dex = 210
 types = Array[ExtResource("4_tfce7")]([ExtResource("5_8gckx")])
-learnset = Array[ExtResource("1_b8jkc")]([SubResource("Resource_uhhyg"), SubResource("Resource_1f46a"), SubResource("Resource_yanl5"), SubResource("Resource_ok8s6"), SubResource("Resource_b7jv1"), SubResource("Resource_gvcc4"), SubResource("Resource_wi1ld"), SubResource("Resource_on45m"), SubResource("Resource_krdem"), SubResource("Resource_0p38r")])
+learnset = Array[ExtResource("1_b8jkc")]([SubResource("Resource_1f46a"), SubResource("Resource_yanl5"), SubResource("Resource_ok8s6"), SubResource("Resource_b7jv1"), SubResource("Resource_gvcc4"), SubResource("Resource_wi1ld"), SubResource("Resource_on45m"), SubResource("Resource_krdem"), SubResource("Resource_0p38r"), SubResource("Resource_uffr4")])
+evolves_from = "snubbull"
 temperament = ExtResource("14_uhhyg")
 genus = "Pokémon Hada"
 pokedex_entry = "Granbull tiene la mandíbula inferior demasiado desarrollada y colmillos enormes y pesados que le obligan a inclinar la cabeza hacia atrás para compensar el peso. Si no se le asusta, no muerde."

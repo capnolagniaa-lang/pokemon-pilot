@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_4h3g2"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ojdgs"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gppgp"]
 [ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_pagg4"]
@@ -19,61 +20,66 @@
 [ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="13_5b6rj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_fm43v"]
 
-[sub_resource type="Resource" id="Resource_fm43v"]
+[sub_resource type="Resource" id="Resource_4h3g2"]
+script = ExtResource("1_4h3g2")
+to_id = "crawdaunt"
+level = 30
+
+[sub_resource type="Resource" id="Resource_acwua"]
 script = ExtResource("1_ojdgs")
 move = ExtResource("2_pagg4")
 
-[sub_resource type="Resource" id="Resource_4h3g2"]
+[sub_resource type="Resource" id="Resource_df5o6"]
 script = ExtResource("1_ojdgs")
 level = 7
 move = ExtResource("3_fm43v")
 
-[sub_resource type="Resource" id="Resource_acwua"]
+[sub_resource type="Resource" id="Resource_h54ir"]
 script = ExtResource("1_ojdgs")
 level = 10
 move = ExtResource("4_4h3g2")
 
-[sub_resource type="Resource" id="Resource_df5o6"]
+[sub_resource type="Resource" id="Resource_q8s0j"]
 script = ExtResource("1_ojdgs")
 level = 13
 move = ExtResource("5_acwua")
 
-[sub_resource type="Resource" id="Resource_h54ir"]
+[sub_resource type="Resource" id="Resource_ws1gw"]
 script = ExtResource("1_ojdgs")
 level = 19
 move = ExtResource("6_df5o6")
 
-[sub_resource type="Resource" id="Resource_q8s0j"]
+[sub_resource type="Resource" id="Resource_cswnr"]
 script = ExtResource("1_ojdgs")
 level = 22
 move = ExtResource("7_h54ir")
 
-[sub_resource type="Resource" id="Resource_ws1gw"]
+[sub_resource type="Resource" id="Resource_2prfn"]
 script = ExtResource("1_ojdgs")
 level = 25
 move = ExtResource("8_q8s0j")
 
-[sub_resource type="Resource" id="Resource_cswnr"]
+[sub_resource type="Resource" id="Resource_x4dwk"]
 script = ExtResource("1_ojdgs")
 level = 31
 move = ExtResource("9_ws1gw")
 
-[sub_resource type="Resource" id="Resource_2prfn"]
+[sub_resource type="Resource" id="Resource_5b6rj"]
 script = ExtResource("1_ojdgs")
 level = 34
 move = ExtResource("10_cswnr")
 
-[sub_resource type="Resource" id="Resource_x4dwk"]
+[sub_resource type="Resource" id="Resource_rtsw6"]
 script = ExtResource("1_ojdgs")
 level = 37
 move = ExtResource("11_2prfn")
 
-[sub_resource type="Resource" id="Resource_5b6rj"]
+[sub_resource type="Resource" id="Resource_dkhi2"]
 script = ExtResource("1_ojdgs")
 level = 43
 move = ExtResource("12_x4dwk")
 
-[sub_resource type="Resource" id="Resource_rtsw6"]
+[sub_resource type="Resource" id="Resource_ijxay"]
 script = ExtResource("1_ojdgs")
 level = 46
 move = ExtResource("13_5b6rj")
@@ -84,7 +90,8 @@ id = "corphish"
 display_name = "Corphish"
 dex = 341
 types = Array[ExtResource("4_08hh1")]([ExtResource("5_srrti")])
-learnset = Array[ExtResource("1_ojdgs")]([SubResource("Resource_fm43v"), SubResource("Resource_4h3g2"), SubResource("Resource_acwua"), SubResource("Resource_df5o6"), SubResource("Resource_h54ir"), SubResource("Resource_q8s0j"), SubResource("Resource_ws1gw"), SubResource("Resource_cswnr"), SubResource("Resource_2prfn"), SubResource("Resource_x4dwk"), SubResource("Resource_5b6rj"), SubResource("Resource_rtsw6")])
+learnset = Array[ExtResource("1_ojdgs")]([SubResource("Resource_acwua"), SubResource("Resource_df5o6"), SubResource("Resource_h54ir"), SubResource("Resource_q8s0j"), SubResource("Resource_ws1gw"), SubResource("Resource_cswnr"), SubResource("Resource_2prfn"), SubResource("Resource_x4dwk"), SubResource("Resource_5b6rj"), SubResource("Resource_rtsw6"), SubResource("Resource_dkhi2"), SubResource("Resource_ijxay")])
+evolutions = Array[ExtResource("1_4h3g2")]([SubResource("Resource_4h3g2")])
 temperament = ExtResource("16_fm43v")
 genus = "Pokémon Rufián"
 pokedex_entry = "En un principio, se importaban Corphish como mascota. Pero, al final, se hicieron salvajes. Este Pokémon es muy resistente y ha aumentado su población de forma considerable."

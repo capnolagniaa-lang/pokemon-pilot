@@ -119,6 +119,16 @@ func interactions_for(element: ElementType, statuses_node: StatusEffects) -> Arr
 	return out
 
 
+## Estilo de pelea de arena de una especie; si no tiene uno propio, el de su preevolución (como el kit heredado de
+## tools/apply_evolutions.gd: Venusaur pelea como Bulbasaur). null si ninguno de su línea tiene.
+func fight_style_of(sp: SpeciesData) -> FightStyle:
+	while sp != null:
+		if fight_styles.has(sp.id):
+			return fight_styles[sp.id]
+		sp = species.get(sp.evolves_from)
+	return null
+
+
 ## Animaciones de sprite (PMD) de una especie: {"Idle": {...}, "Walk": {...}, "portrait": path}.
 func anims_of(sp: SpeciesData) -> Dictionary:
 	return SpriteData.ANIMS.get(sp.dex, {})

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jgvia"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_mtdjr"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3cj5s"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_udbru"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_bb10n"]
@@ -17,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/rabia.tres" id="11_c1xy7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_empp1"]
 
-[sub_resource type="Resource" id="Resource_empp1"]
+[sub_resource type="Resource" id="Resource_mtdjr"]
 script = ExtResource("1_jgvia")
 move = ExtResource("2_udbru")
 
-[sub_resource type="Resource" id="Resource_mtdjr"]
+[sub_resource type="Resource" id="Resource_yicqr"]
 script = ExtResource("1_jgvia")
 move = ExtResource("3_empp1")
 
-[sub_resource type="Resource" id="Resource_yicqr"]
+[sub_resource type="Resource" id="Resource_qtxr1"]
 script = ExtResource("1_jgvia")
 level = 6
 move = ExtResource("4_mtdjr")
 
-[sub_resource type="Resource" id="Resource_qtxr1"]
+[sub_resource type="Resource" id="Resource_xvxii"]
 script = ExtResource("1_jgvia")
 level = 11
 move = ExtResource("5_yicqr")
 
-[sub_resource type="Resource" id="Resource_xvxii"]
+[sub_resource type="Resource" id="Resource_e110l"]
 script = ExtResource("1_jgvia")
 level = 17
 move = ExtResource("6_qtxr1")
 
-[sub_resource type="Resource" id="Resource_e110l"]
+[sub_resource type="Resource" id="Resource_s8yn3"]
 script = ExtResource("1_jgvia")
 level = 23
 move = ExtResource("7_xvxii")
 
-[sub_resource type="Resource" id="Resource_s8yn3"]
+[sub_resource type="Resource" id="Resource_y2x3x"]
 script = ExtResource("1_jgvia")
 level = 30
 move = ExtResource("8_e110l")
 
-[sub_resource type="Resource" id="Resource_y2x3x"]
+[sub_resource type="Resource" id="Resource_c1xy7"]
 script = ExtResource("1_jgvia")
 level = 37
 move = ExtResource("9_s8yn3")
 
-[sub_resource type="Resource" id="Resource_c1xy7"]
+[sub_resource type="Resource" id="Resource_gn0s3"]
 script = ExtResource("1_jgvia")
 level = 45
 move = ExtResource("10_y2x3x")
 
-[sub_resource type="Resource" id="Resource_gn0s3"]
+[sub_resource type="Resource" id="Resource_841fn"]
 script = ExtResource("1_jgvia")
 level = 53
 move = ExtResource("11_c1xy7")
@@ -71,7 +72,7 @@ id = "misdreavus"
 display_name = "Misdreavus"
 dex = 200
 types = Array[ExtResource("4_j18je")]([ExtResource("5_j3ala")])
-learnset = Array[ExtResource("1_jgvia")]([SubResource("Resource_empp1"), SubResource("Resource_mtdjr"), SubResource("Resource_yicqr"), SubResource("Resource_qtxr1"), SubResource("Resource_xvxii"), SubResource("Resource_e110l"), SubResource("Resource_s8yn3"), SubResource("Resource_y2x3x"), SubResource("Resource_c1xy7"), SubResource("Resource_gn0s3")])
+learnset = Array[ExtResource("1_jgvia")]([SubResource("Resource_mtdjr"), SubResource("Resource_yicqr"), SubResource("Resource_qtxr1"), SubResource("Resource_xvxii"), SubResource("Resource_e110l"), SubResource("Resource_s8yn3"), SubResource("Resource_y2x3x"), SubResource("Resource_c1xy7"), SubResource("Resource_gn0s3"), SubResource("Resource_841fn")])
 temperament = ExtResource("14_empp1")
 genus = "Pokémon Chirrido"
 pokedex_entry = "Misdreavus asusta a la gente con un chillido escalofriante y sollozante. Y, al parecer, usa las esferas rojas para absorber los sentimientos de miedo de los enemigos y usarlos como alimento."

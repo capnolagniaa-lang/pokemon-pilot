@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_e0p4n"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_efbl5"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_adkqn"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vgk0j"]
@@ -17,45 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="10_f2t1a"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_pxdaf"]
 
-[sub_resource type="Resource" id="Resource_pxdaf"]
+[sub_resource type="Resource" id="Resource_e0p4n"]
+script = ExtResource("1_e0p4n")
+to_id = "noctowl"
+level = 20
+
+[sub_resource type="Resource" id="Resource_hqfsx"]
 script = ExtResource("1_efbl5")
 move = ExtResource("2_adkqn")
 
-[sub_resource type="Resource" id="Resource_e0p4n"]
+[sub_resource type="Resource" id="Resource_xtlc3"]
 script = ExtResource("1_efbl5")
 move = ExtResource("3_pxdaf")
 
-[sub_resource type="Resource" id="Resource_hqfsx"]
+[sub_resource type="Resource" id="Resource_wns2k"]
 script = ExtResource("1_efbl5")
 level = 6
 move = ExtResource("4_e0p4n")
 
-[sub_resource type="Resource" id="Resource_xtlc3"]
+[sub_resource type="Resource" id="Resource_o0jiw"]
 script = ExtResource("1_efbl5")
 level = 11
 move = ExtResource("5_hqfsx")
 
-[sub_resource type="Resource" id="Resource_wns2k"]
+[sub_resource type="Resource" id="Resource_5fie6"]
 script = ExtResource("1_efbl5")
 level = 16
 move = ExtResource("6_xtlc3")
 
-[sub_resource type="Resource" id="Resource_o0jiw"]
+[sub_resource type="Resource" id="Resource_f2t1a"]
 script = ExtResource("1_efbl5")
 level = 22
 move = ExtResource("7_wns2k")
 
-[sub_resource type="Resource" id="Resource_5fie6"]
+[sub_resource type="Resource" id="Resource_i1vxs"]
 script = ExtResource("1_efbl5")
 level = 28
 move = ExtResource("8_o0jiw")
 
-[sub_resource type="Resource" id="Resource_f2t1a"]
+[sub_resource type="Resource" id="Resource_j466m"]
 script = ExtResource("1_efbl5")
 level = 34
 move = ExtResource("9_5fie6")
 
-[sub_resource type="Resource" id="Resource_i1vxs"]
+[sub_resource type="Resource" id="Resource_pn4ss"]
 script = ExtResource("1_efbl5")
 level = 48
 move = ExtResource("10_f2t1a")
@@ -66,7 +72,8 @@ id = "hoothoot"
 display_name = "Hoothoot"
 dex = 163
 types = Array[ExtResource("4_dc7dm")]([ExtResource("5_wfvgg"), ExtResource("6_5dmyo")])
-learnset = Array[ExtResource("1_efbl5")]([SubResource("Resource_pxdaf"), SubResource("Resource_e0p4n"), SubResource("Resource_hqfsx"), SubResource("Resource_xtlc3"), SubResource("Resource_wns2k"), SubResource("Resource_o0jiw"), SubResource("Resource_5fie6"), SubResource("Resource_f2t1a"), SubResource("Resource_i1vxs")])
+learnset = Array[ExtResource("1_efbl5")]([SubResource("Resource_hqfsx"), SubResource("Resource_xtlc3"), SubResource("Resource_wns2k"), SubResource("Resource_o0jiw"), SubResource("Resource_5fie6"), SubResource("Resource_f2t1a"), SubResource("Resource_i1vxs"), SubResource("Resource_j466m"), SubResource("Resource_pn4ss")])
+evolutions = Array[ExtResource("1_e0p4n")]([SubResource("Resource_e0p4n")])
 temperament = ExtResource("13_pxdaf")
 genus = "Pokémon Búho"
 pokedex_entry = "Hoothoot tiene un órgano interno que identifica y percibe la rotación de la tierra. Gracias a este órgano, el Pokémon ulula todos los días a la misma hora."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_upkpg"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_xp8nq"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_j5a3v"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_whvbq"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jcjrk"]
@@ -22,67 +23,67 @@
 [ext_resource type="Resource" path="res://data/moves/gancho_alto.tres" id="15_wud2s"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="18_yp1y1"]
 
-[sub_resource type="Resource" id="Resource_yp1y1"]
+[sub_resource type="Resource" id="Resource_xp8nq"]
 script = ExtResource("1_upkpg")
 move = ExtResource("2_j5a3v")
 
-[sub_resource type="Resource" id="Resource_xp8nq"]
+[sub_resource type="Resource" id="Resource_2kk0f"]
 script = ExtResource("1_upkpg")
 move = ExtResource("3_yp1y1")
 
-[sub_resource type="Resource" id="Resource_2kk0f"]
+[sub_resource type="Resource" id="Resource_uvgnb"]
 script = ExtResource("1_upkpg")
 move = ExtResource("4_xp8nq")
 
-[sub_resource type="Resource" id="Resource_uvgnb"]
+[sub_resource type="Resource" id="Resource_d50qc"]
 script = ExtResource("1_upkpg")
 move = ExtResource("5_2kk0f")
 
-[sub_resource type="Resource" id="Resource_d50qc"]
+[sub_resource type="Resource" id="Resource_qem6l"]
 script = ExtResource("1_upkpg")
 move = ExtResource("6_uvgnb")
 
-[sub_resource type="Resource" id="Resource_qem6l"]
+[sub_resource type="Resource" id="Resource_nbq8c"]
 script = ExtResource("1_upkpg")
 level = 16
 move = ExtResource("7_d50qc")
 
-[sub_resource type="Resource" id="Resource_nbq8c"]
+[sub_resource type="Resource" id="Resource_yisrl"]
 script = ExtResource("1_upkpg")
 level = 17
 move = ExtResource("8_qem6l")
 
-[sub_resource type="Resource" id="Resource_yisrl"]
+[sub_resource type="Resource" id="Resource_k80cs"]
 script = ExtResource("1_upkpg")
 level = 21
 move = ExtResource("9_nbq8c")
 
-[sub_resource type="Resource" id="Resource_k80cs"]
+[sub_resource type="Resource" id="Resource_r25au"]
 script = ExtResource("1_upkpg")
 level = 28
 move = ExtResource("10_yisrl")
 
-[sub_resource type="Resource" id="Resource_r25au"]
+[sub_resource type="Resource" id="Resource_yl2ss"]
 script = ExtResource("1_upkpg")
 level = 32
 move = ExtResource("11_k80cs")
 
-[sub_resource type="Resource" id="Resource_yl2ss"]
+[sub_resource type="Resource" id="Resource_ncc37"]
 script = ExtResource("1_upkpg")
 level = 36
 move = ExtResource("12_r25au")
 
-[sub_resource type="Resource" id="Resource_ncc37"]
+[sub_resource type="Resource" id="Resource_wud2s"]
 script = ExtResource("1_upkpg")
 level = 42
 move = ExtResource("13_yl2ss")
 
-[sub_resource type="Resource" id="Resource_wud2s"]
+[sub_resource type="Resource" id="Resource_v47dq"]
 script = ExtResource("1_upkpg")
 level = 49
 move = ExtResource("14_ncc37")
 
-[sub_resource type="Resource" id="Resource_v47dq"]
+[sub_resource type="Resource" id="Resource_uoy54"]
 script = ExtResource("1_upkpg")
 level = 59
 move = ExtResource("15_wud2s")
@@ -93,7 +94,8 @@ id = "blaziken"
 display_name = "Blaziken"
 dex = 257
 types = Array[ExtResource("4_df520")]([ExtResource("5_ld0dl"), ExtResource("6_q0xct")])
-learnset = Array[ExtResource("1_upkpg")]([SubResource("Resource_yp1y1"), SubResource("Resource_xp8nq"), SubResource("Resource_2kk0f"), SubResource("Resource_uvgnb"), SubResource("Resource_d50qc"), SubResource("Resource_qem6l"), SubResource("Resource_nbq8c"), SubResource("Resource_yisrl"), SubResource("Resource_k80cs"), SubResource("Resource_r25au"), SubResource("Resource_yl2ss"), SubResource("Resource_ncc37"), SubResource("Resource_wud2s"), SubResource("Resource_v47dq")])
+learnset = Array[ExtResource("1_upkpg")]([SubResource("Resource_xp8nq"), SubResource("Resource_2kk0f"), SubResource("Resource_uvgnb"), SubResource("Resource_d50qc"), SubResource("Resource_qem6l"), SubResource("Resource_nbq8c"), SubResource("Resource_yisrl"), SubResource("Resource_k80cs"), SubResource("Resource_r25au"), SubResource("Resource_yl2ss"), SubResource("Resource_ncc37"), SubResource("Resource_wud2s"), SubResource("Resource_v47dq"), SubResource("Resource_uoy54")])
+evolves_from = "combusken"
 temperament = ExtResource("18_yp1y1")
 genus = "Pokémon Llameante"
 pokedex_entry = "En combate, Blaziken expulsa vivas llamas por las muñecas y ataca al enemigo con fiereza. Cuanto más fuerte sea el enemigo, más intensas serán las llamas."

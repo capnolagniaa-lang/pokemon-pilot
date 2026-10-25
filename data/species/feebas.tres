@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1g0rg"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_l354l"]
 [ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_4wk4n"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_e62ko"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_3a4ow"]
@@ -10,16 +11,22 @@
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_eyu4x"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="7_eyu4x"]
 
-[sub_resource type="Resource" id="Resource_eyu4x"]
+[sub_resource type="Resource" id="Resource_l354l"]
+script = ExtResource("1_l354l")
+to_id = "milotic"
+method = "intercambio"
+item = "prism-scale"
+
+[sub_resource type="Resource" id="Resource_wo24p"]
 script = ExtResource("1_1g0rg")
 move = ExtResource("2_4wk4n")
 
-[sub_resource type="Resource" id="Resource_l354l"]
+[sub_resource type="Resource" id="Resource_xuk4l"]
 script = ExtResource("1_1g0rg")
 level = 15
 move = ExtResource("3_eyu4x")
 
-[sub_resource type="Resource" id="Resource_wo24p"]
+[sub_resource type="Resource" id="Resource_73eox"]
 script = ExtResource("1_1g0rg")
 level = 30
 move = ExtResource("4_l354l")
@@ -30,7 +37,8 @@ id = "feebas"
 display_name = "Feebas"
 dex = 349
 types = Array[ExtResource("4_4wk4n")]([ExtResource("5_eyu4x")])
-learnset = Array[ExtResource("1_1g0rg")]([SubResource("Resource_eyu4x"), SubResource("Resource_l354l"), SubResource("Resource_wo24p")])
+learnset = Array[ExtResource("1_1g0rg")]([SubResource("Resource_wo24p"), SubResource("Resource_xuk4l"), SubResource("Resource_73eox")])
+evolutions = Array[ExtResource("1_l354l")]([SubResource("Resource_l354l")])
 temperament = ExtResource("7_eyu4x")
 genus = "Pokémon Pez"
 pokedex_entry = "Feebas tiene las aletas melladas y rasgadas desde que nace. Debido a este aspecto poco imponente, son pocos los que lo tienen en cuenta. Este Pokémon puede vivir tanto en agua salada como dulce."

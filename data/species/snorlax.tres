@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_7rf12"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_wwtog"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_448sv"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_qowri"]
@@ -21,71 +22,71 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="15_fi85d"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="18_5mnvq"]
 
-[sub_resource type="Resource" id="Resource_5mnvq"]
+[sub_resource type="Resource" id="Resource_7rf12"]
 script = ExtResource("1_wwtog")
 move = ExtResource("2_qowri")
 
-[sub_resource type="Resource" id="Resource_7rf12"]
+[sub_resource type="Resource" id="Resource_afahm"]
 script = ExtResource("1_wwtog")
 level = 5
 move = ExtResource("3_5mnvq")
 
-[sub_resource type="Resource" id="Resource_afahm"]
+[sub_resource type="Resource" id="Resource_j4ujr"]
 script = ExtResource("1_wwtog")
 level = 9
 move = ExtResource("4_7rf12")
 
-[sub_resource type="Resource" id="Resource_j4ujr"]
+[sub_resource type="Resource" id="Resource_js6ts"]
 script = ExtResource("1_wwtog")
 level = 13
 move = ExtResource("5_afahm")
 
-[sub_resource type="Resource" id="Resource_js6ts"]
+[sub_resource type="Resource" id="Resource_dah3r"]
 script = ExtResource("1_wwtog")
 level = 17
 move = ExtResource("6_j4ujr")
 
-[sub_resource type="Resource" id="Resource_dah3r"]
+[sub_resource type="Resource" id="Resource_12r2k"]
 script = ExtResource("1_wwtog")
 level = 21
 move = ExtResource("7_js6ts")
 
-[sub_resource type="Resource" id="Resource_12r2k"]
+[sub_resource type="Resource" id="Resource_xfdf7"]
 script = ExtResource("1_wwtog")
 level = 25
 move = ExtResource("8_dah3r")
 
-[sub_resource type="Resource" id="Resource_xfdf7"]
+[sub_resource type="Resource" id="Resource_oolmk"]
 script = ExtResource("1_wwtog")
 level = 29
 move = ExtResource("9_12r2k")
 
-[sub_resource type="Resource" id="Resource_oolmk"]
+[sub_resource type="Resource" id="Resource_lkgjy"]
 script = ExtResource("1_wwtog")
 level = 33
 move = ExtResource("10_xfdf7")
 
-[sub_resource type="Resource" id="Resource_lkgjy"]
+[sub_resource type="Resource" id="Resource_yob4f"]
 script = ExtResource("1_wwtog")
 level = 37
 move = ExtResource("11_oolmk")
 
-[sub_resource type="Resource" id="Resource_yob4f"]
+[sub_resource type="Resource" id="Resource_bmmap"]
 script = ExtResource("1_wwtog")
 level = 41
 move = ExtResource("12_lkgjy")
 
-[sub_resource type="Resource" id="Resource_bmmap"]
+[sub_resource type="Resource" id="Resource_fi85d"]
 script = ExtResource("1_wwtog")
 level = 45
 move = ExtResource("13_yob4f")
 
-[sub_resource type="Resource" id="Resource_fi85d"]
+[sub_resource type="Resource" id="Resource_b7qo2"]
 script = ExtResource("1_wwtog")
 level = 49
 move = ExtResource("14_bmmap")
 
-[sub_resource type="Resource" id="Resource_b7qo2"]
+[sub_resource type="Resource" id="Resource_c70ic"]
 script = ExtResource("1_wwtog")
 level = 53
 move = ExtResource("15_fi85d")
@@ -96,7 +97,7 @@ id = "snorlax"
 display_name = "Snorlax"
 dex = 143
 types = Array[ExtResource("4_rvm3q")]([ExtResource("5_542x3")])
-learnset = Array[ExtResource("1_wwtog")]([SubResource("Resource_5mnvq"), SubResource("Resource_7rf12"), SubResource("Resource_afahm"), SubResource("Resource_j4ujr"), SubResource("Resource_js6ts"), SubResource("Resource_dah3r"), SubResource("Resource_12r2k"), SubResource("Resource_xfdf7"), SubResource("Resource_oolmk"), SubResource("Resource_lkgjy"), SubResource("Resource_yob4f"), SubResource("Resource_bmmap"), SubResource("Resource_fi85d"), SubResource("Resource_b7qo2")])
+learnset = Array[ExtResource("1_wwtog")]([SubResource("Resource_7rf12"), SubResource("Resource_afahm"), SubResource("Resource_j4ujr"), SubResource("Resource_js6ts"), SubResource("Resource_dah3r"), SubResource("Resource_12r2k"), SubResource("Resource_xfdf7"), SubResource("Resource_oolmk"), SubResource("Resource_lkgjy"), SubResource("Resource_yob4f"), SubResource("Resource_bmmap"), SubResource("Resource_fi85d"), SubResource("Resource_b7qo2"), SubResource("Resource_c70ic")])
 temperament = ExtResource("18_5mnvq")
 genus = "Pokémon Dormir"
 pokedex_entry = "Un día cualquiera en la vida de Snorlax consiste en comer y dormir. Es un Pokémon tan dócil que es fácil ver niños usando la gran panza que tiene como lugar de juegos."

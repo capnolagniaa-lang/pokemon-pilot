@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_thctf"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_v7nxp"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_62l17"]
 [ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="2_ydwkk"]
 [ext_resource type="Resource" path="res://data/moves/profecia.tres" id="3_fyjgo"]
@@ -19,54 +20,59 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="12_jv63r"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_fyjgo"]
 
-[sub_resource type="Resource" id="Resource_fyjgo"]
-script = ExtResource("1_thctf")
-move = ExtResource("2_ydwkk")
-
 [sub_resource type="Resource" id="Resource_v7nxp"]
-script = ExtResource("1_thctf")
-move = ExtResource("3_fyjgo")
+script = ExtResource("1_v7nxp")
+to_id = "venomoth"
+level = 31
 
 [sub_resource type="Resource" id="Resource_fskkj"]
 script = ExtResource("1_thctf")
-move = ExtResource("4_v7nxp")
+move = ExtResource("2_ydwkk")
 
 [sub_resource type="Resource" id="Resource_dxm7x"]
+script = ExtResource("1_thctf")
+move = ExtResource("3_fyjgo")
+
+[sub_resource type="Resource" id="Resource_akveq"]
+script = ExtResource("1_thctf")
+move = ExtResource("4_v7nxp")
+
+[sub_resource type="Resource" id="Resource_1ahr1"]
 script = ExtResource("1_thctf")
 level = 9
 move = ExtResource("5_fskkj")
 
-[sub_resource type="Resource" id="Resource_akveq"]
+[sub_resource type="Resource" id="Resource_ip4r1"]
 script = ExtResource("1_thctf")
 level = 17
 move = ExtResource("6_dxm7x")
 
-[sub_resource type="Resource" id="Resource_1ahr1"]
+[sub_resource type="Resource" id="Resource_fymot"]
 script = ExtResource("1_thctf")
 level = 20
 move = ExtResource("7_akveq")
 
-[sub_resource type="Resource" id="Resource_ip4r1"]
+[sub_resource type="Resource" id="Resource_u55j3"]
 script = ExtResource("1_thctf")
 level = 25
 move = ExtResource("8_1ahr1")
 
-[sub_resource type="Resource" id="Resource_fymot"]
+[sub_resource type="Resource" id="Resource_jv63r"]
 script = ExtResource("1_thctf")
 level = 28
 move = ExtResource("9_ip4r1")
 
-[sub_resource type="Resource" id="Resource_u55j3"]
+[sub_resource type="Resource" id="Resource_76mfb"]
 script = ExtResource("1_thctf")
 level = 33
 move = ExtResource("10_fymot")
 
-[sub_resource type="Resource" id="Resource_jv63r"]
+[sub_resource type="Resource" id="Resource_xbbs6"]
 script = ExtResource("1_thctf")
 level = 36
 move = ExtResource("11_u55j3")
 
-[sub_resource type="Resource" id="Resource_76mfb"]
+[sub_resource type="Resource" id="Resource_hh8tk"]
 script = ExtResource("1_thctf")
 level = 41
 move = ExtResource("12_jv63r")
@@ -77,7 +83,8 @@ id = "venonat"
 display_name = "Venonat"
 dex = 48
 types = Array[ExtResource("4_rkfdp")]([ExtResource("5_5xubd"), ExtResource("6_1dodj")])
-learnset = Array[ExtResource("1_thctf")]([SubResource("Resource_fyjgo"), SubResource("Resource_v7nxp"), SubResource("Resource_fskkj"), SubResource("Resource_dxm7x"), SubResource("Resource_akveq"), SubResource("Resource_1ahr1"), SubResource("Resource_ip4r1"), SubResource("Resource_fymot"), SubResource("Resource_u55j3"), SubResource("Resource_jv63r"), SubResource("Resource_76mfb")])
+learnset = Array[ExtResource("1_thctf")]([SubResource("Resource_fskkj"), SubResource("Resource_dxm7x"), SubResource("Resource_akveq"), SubResource("Resource_1ahr1"), SubResource("Resource_ip4r1"), SubResource("Resource_fymot"), SubResource("Resource_u55j3"), SubResource("Resource_jv63r"), SubResource("Resource_76mfb"), SubResource("Resource_xbbs6"), SubResource("Resource_hh8tk")])
+evolutions = Array[ExtResource("1_v7nxp")]([SubResource("Resource_v7nxp")])
 temperament = ExtResource("15_fyjgo")
 genus = "Pokémon Insecto"
 pokedex_entry = "Dicen que durante su evolución Venonat desarrolló una fina capa de espeso pelo alrededor de todo el cuerpo para protegerse. Tiene unos ojos tan grandes que no hay presa que le pase desapercibida."

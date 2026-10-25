@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_5mdho"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fejwl"]
 [ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="2_8lbco"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_i1jij"]
@@ -18,51 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="11_o5grq"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_rju8e"]
 
-[sub_resource type="Resource" id="Resource_rju8e"]
+[sub_resource type="Resource" id="Resource_5mdho"]
+script = ExtResource("1_5mdho")
+to_id = "armaldo"
+level = 40
+
+[sub_resource type="Resource" id="Resource_k5tni"]
 script = ExtResource("1_fejwl")
 move = ExtResource("2_8lbco")
 
-[sub_resource type="Resource" id="Resource_5mdho"]
+[sub_resource type="Resource" id="Resource_5rol6"]
 script = ExtResource("1_fejwl")
 level = 7
 move = ExtResource("3_rju8e")
 
-[sub_resource type="Resource" id="Resource_k5tni"]
+[sub_resource type="Resource" id="Resource_6w74g"]
 script = ExtResource("1_fejwl")
 level = 13
 move = ExtResource("4_5mdho")
 
-[sub_resource type="Resource" id="Resource_5rol6"]
+[sub_resource type="Resource" id="Resource_otxdm"]
 script = ExtResource("1_fejwl")
 level = 19
 move = ExtResource("5_k5tni")
 
-[sub_resource type="Resource" id="Resource_6w74g"]
+[sub_resource type="Resource" id="Resource_0uiuh"]
 script = ExtResource("1_fejwl")
 level = 25
 move = ExtResource("6_5rol6")
 
-[sub_resource type="Resource" id="Resource_otxdm"]
+[sub_resource type="Resource" id="Resource_ca5er"]
 script = ExtResource("1_fejwl")
 level = 31
 move = ExtResource("7_6w74g")
 
-[sub_resource type="Resource" id="Resource_0uiuh"]
+[sub_resource type="Resource" id="Resource_o5grq"]
 script = ExtResource("1_fejwl")
 level = 37
 move = ExtResource("8_otxdm")
 
-[sub_resource type="Resource" id="Resource_ca5er"]
+[sub_resource type="Resource" id="Resource_8x3pw"]
 script = ExtResource("1_fejwl")
 level = 43
 move = ExtResource("9_0uiuh")
 
-[sub_resource type="Resource" id="Resource_o5grq"]
+[sub_resource type="Resource" id="Resource_wotcm"]
 script = ExtResource("1_fejwl")
 level = 49
 move = ExtResource("10_ca5er")
 
-[sub_resource type="Resource" id="Resource_8x3pw"]
+[sub_resource type="Resource" id="Resource_ch6ou"]
 script = ExtResource("1_fejwl")
 level = 55
 move = ExtResource("11_o5grq")
@@ -73,7 +79,8 @@ id = "anorith"
 display_name = "Anorith"
 dex = 347
 types = Array[ExtResource("4_oldai")]([ExtResource("5_eh2fx"), ExtResource("6_xqa5k")])
-learnset = Array[ExtResource("1_fejwl")]([SubResource("Resource_rju8e"), SubResource("Resource_5mdho"), SubResource("Resource_k5tni"), SubResource("Resource_5rol6"), SubResource("Resource_6w74g"), SubResource("Resource_otxdm"), SubResource("Resource_0uiuh"), SubResource("Resource_ca5er"), SubResource("Resource_o5grq"), SubResource("Resource_8x3pw")])
+learnset = Array[ExtResource("1_fejwl")]([SubResource("Resource_k5tni"), SubResource("Resource_5rol6"), SubResource("Resource_6w74g"), SubResource("Resource_otxdm"), SubResource("Resource_0uiuh"), SubResource("Resource_ca5er"), SubResource("Resource_o5grq"), SubResource("Resource_8x3pw"), SubResource("Resource_wotcm"), SubResource("Resource_ch6ou")])
+evolutions = Array[ExtResource("1_5mdho")]([SubResource("Resource_5mdho")])
 temperament = ExtResource("14_rju8e")
 genus = "Pokémon Camarón"
 pokedex_entry = "Anorith se regeneró a partir de un fósil prehistórico. Este Pokémon primitivo vivía en mares cálidos. Gracias a sus enormes pinzas puede agarrar a su presa con firmeza."

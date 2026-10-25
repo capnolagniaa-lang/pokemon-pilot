@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cqgle"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_oddbe"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_2qt2r"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_84dq4"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_7emoi"]
@@ -14,35 +15,40 @@
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="8_xwgqo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="11_15iu2"]
 
-[sub_resource type="Resource" id="Resource_15iu2"]
+[sub_resource type="Resource" id="Resource_oddbe"]
+script = ExtResource("1_oddbe")
+to_id = "flaaffy"
+level = 15
+
+[sub_resource type="Resource" id="Resource_oh7vj"]
 script = ExtResource("1_cqgle")
 move = ExtResource("2_2qt2r")
 
-[sub_resource type="Resource" id="Resource_oddbe"]
+[sub_resource type="Resource" id="Resource_0jij8"]
 script = ExtResource("1_cqgle")
 move = ExtResource("3_15iu2")
 
-[sub_resource type="Resource" id="Resource_oh7vj"]
+[sub_resource type="Resource" id="Resource_viaif"]
 script = ExtResource("1_cqgle")
 level = 9
 move = ExtResource("4_oddbe")
 
-[sub_resource type="Resource" id="Resource_0jij8"]
+[sub_resource type="Resource" id="Resource_xwgqo"]
 script = ExtResource("1_cqgle")
 level = 16
 move = ExtResource("5_oh7vj")
 
-[sub_resource type="Resource" id="Resource_viaif"]
+[sub_resource type="Resource" id="Resource_r17dr"]
 script = ExtResource("1_cqgle")
 level = 23
 move = ExtResource("6_0jij8")
 
-[sub_resource type="Resource" id="Resource_xwgqo"]
+[sub_resource type="Resource" id="Resource_lcymn"]
 script = ExtResource("1_cqgle")
 level = 30
 move = ExtResource("7_viaif")
 
-[sub_resource type="Resource" id="Resource_r17dr"]
+[sub_resource type="Resource" id="Resource_084y6"]
 script = ExtResource("1_cqgle")
 level = 37
 move = ExtResource("8_xwgqo")
@@ -53,7 +59,8 @@ id = "mareep"
 display_name = "Mareep"
 dex = 179
 types = Array[ExtResource("4_f0gqb")]([ExtResource("5_w483e")])
-learnset = Array[ExtResource("1_cqgle")]([SubResource("Resource_15iu2"), SubResource("Resource_oddbe"), SubResource("Resource_oh7vj"), SubResource("Resource_0jij8"), SubResource("Resource_viaif"), SubResource("Resource_xwgqo"), SubResource("Resource_r17dr")])
+learnset = Array[ExtResource("1_cqgle")]([SubResource("Resource_oh7vj"), SubResource("Resource_0jij8"), SubResource("Resource_viaif"), SubResource("Resource_xwgqo"), SubResource("Resource_r17dr"), SubResource("Resource_lcymn"), SubResource("Resource_084y6")])
+evolutions = Array[ExtResource("1_oddbe")]([SubResource("Resource_oddbe")])
 temperament = ExtResource("11_15iu2")
 genus = "Pokémon Lana"
 pokedex_entry = "Mareep tiene un pelaje lanudo suave que produce carga estática por el roce. Cuanto más se carga de electricidad estática, más brilla la bombilla que tiene en el extremo de la cola."

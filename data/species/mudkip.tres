@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_375kt"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_gesop"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cpbh0"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_tnr6e"]
@@ -19,60 +20,65 @@
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="13_p5m13"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="16_mqisa"]
 
-[sub_resource type="Resource" id="Resource_mqisa"]
+[sub_resource type="Resource" id="Resource_375kt"]
+script = ExtResource("1_375kt")
+to_id = "marshtomp"
+level = 16
+
+[sub_resource type="Resource" id="Resource_owqck"]
 script = ExtResource("1_gesop")
 move = ExtResource("2_tnr6e")
 
-[sub_resource type="Resource" id="Resource_375kt"]
+[sub_resource type="Resource" id="Resource_c3l5v"]
 script = ExtResource("1_gesop")
 move = ExtResource("3_mqisa")
 
-[sub_resource type="Resource" id="Resource_owqck"]
+[sub_resource type="Resource" id="Resource_8w86l"]
 script = ExtResource("1_gesop")
 level = 6
 move = ExtResource("4_375kt")
 
-[sub_resource type="Resource" id="Resource_c3l5v"]
+[sub_resource type="Resource" id="Resource_gd1qq"]
 script = ExtResource("1_gesop")
 level = 10
 move = ExtResource("5_owqck")
 
-[sub_resource type="Resource" id="Resource_8w86l"]
+[sub_resource type="Resource" id="Resource_wca40"]
 script = ExtResource("1_gesop")
 level = 15
 move = ExtResource("6_c3l5v")
 
-[sub_resource type="Resource" id="Resource_gd1qq"]
+[sub_resource type="Resource" id="Resource_x0okj"]
 script = ExtResource("1_gesop")
 level = 19
 move = ExtResource("7_8w86l")
 
-[sub_resource type="Resource" id="Resource_wca40"]
+[sub_resource type="Resource" id="Resource_lka77"]
 script = ExtResource("1_gesop")
 level = 24
 move = ExtResource("8_gd1qq")
 
-[sub_resource type="Resource" id="Resource_x0okj"]
+[sub_resource type="Resource" id="Resource_ubrub"]
 script = ExtResource("1_gesop")
 level = 28
 move = ExtResource("9_wca40")
 
-[sub_resource type="Resource" id="Resource_lka77"]
+[sub_resource type="Resource" id="Resource_p5m13"]
 script = ExtResource("1_gesop")
 level = 33
 move = ExtResource("10_x0okj")
 
-[sub_resource type="Resource" id="Resource_ubrub"]
+[sub_resource type="Resource" id="Resource_jw2c3"]
 script = ExtResource("1_gesop")
 level = 37
 move = ExtResource("11_lka77")
 
-[sub_resource type="Resource" id="Resource_p5m13"]
+[sub_resource type="Resource" id="Resource_o1kjf"]
 script = ExtResource("1_gesop")
 level = 42
 move = ExtResource("12_ubrub")
 
-[sub_resource type="Resource" id="Resource_jw2c3"]
+[sub_resource type="Resource" id="Resource_8rlmk"]
 script = ExtResource("1_gesop")
 level = 46
 move = ExtResource("13_p5m13")
@@ -83,7 +89,8 @@ id = "mudkip"
 display_name = "Mudkip"
 dex = 258
 types = Array[ExtResource("4_5w6yp")]([ExtResource("5_mp6t4")])
-learnset = Array[ExtResource("1_gesop")]([SubResource("Resource_mqisa"), SubResource("Resource_375kt"), SubResource("Resource_owqck"), SubResource("Resource_c3l5v"), SubResource("Resource_8w86l"), SubResource("Resource_gd1qq"), SubResource("Resource_wca40"), SubResource("Resource_x0okj"), SubResource("Resource_lka77"), SubResource("Resource_ubrub"), SubResource("Resource_p5m13"), SubResource("Resource_jw2c3")])
+learnset = Array[ExtResource("1_gesop")]([SubResource("Resource_owqck"), SubResource("Resource_c3l5v"), SubResource("Resource_8w86l"), SubResource("Resource_gd1qq"), SubResource("Resource_wca40"), SubResource("Resource_x0okj"), SubResource("Resource_lka77"), SubResource("Resource_ubrub"), SubResource("Resource_p5m13"), SubResource("Resource_jw2c3"), SubResource("Resource_o1kjf"), SubResource("Resource_8rlmk")])
+evolutions = Array[ExtResource("1_375kt")]([SubResource("Resource_375kt")])
 temperament = ExtResource("16_mqisa")
 genus = "Pokémon Pez Lodo"
 pokedex_entry = "La aleta que tiene Mudkip en la cabeza actúa de radar y es muy sensible. Puede captar movimientos que se produzcan en el agua y en el aire, y todo lo que ocurra a su alrededor, sin necesidad de abrir los ojos."

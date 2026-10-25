@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_crub6"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_vvdx4"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_42ipx"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_oy2xd"]
 [ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_qsuo1"]
@@ -17,50 +18,55 @@
 [ext_resource type="Resource" path="res://data/moves/perforador.tres" id="11_0xyv7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_qsuo1"]
 
-[sub_resource type="Resource" id="Resource_qsuo1"]
+[sub_resource type="Resource" id="Resource_vvdx4"]
+script = ExtResource("1_vvdx4")
+to_id = "nidorino"
+level = 16
+
+[sub_resource type="Resource" id="Resource_4oais"]
 script = ExtResource("1_crub6")
 move = ExtResource("2_42ipx")
 
-[sub_resource type="Resource" id="Resource_vvdx4"]
+[sub_resource type="Resource" id="Resource_06pnn"]
 script = ExtResource("1_crub6")
 move = ExtResource("3_qsuo1")
 
-[sub_resource type="Resource" id="Resource_4oais"]
+[sub_resource type="Resource" id="Resource_r0qvu"]
 script = ExtResource("1_crub6")
 level = 8
 move = ExtResource("4_vvdx4")
 
-[sub_resource type="Resource" id="Resource_06pnn"]
+[sub_resource type="Resource" id="Resource_ky1ko"]
 script = ExtResource("1_crub6")
 level = 12
 move = ExtResource("5_4oais")
 
-[sub_resource type="Resource" id="Resource_r0qvu"]
+[sub_resource type="Resource" id="Resource_d2veu"]
 script = ExtResource("1_crub6")
 level = 17
 move = ExtResource("6_06pnn")
 
-[sub_resource type="Resource" id="Resource_ky1ko"]
+[sub_resource type="Resource" id="Resource_gjbmn"]
 script = ExtResource("1_crub6")
 level = 20
 move = ExtResource("7_r0qvu")
 
-[sub_resource type="Resource" id="Resource_d2veu"]
+[sub_resource type="Resource" id="Resource_0xyv7"]
 script = ExtResource("1_crub6")
 level = 23
 move = ExtResource("8_ky1ko")
 
-[sub_resource type="Resource" id="Resource_gjbmn"]
+[sub_resource type="Resource" id="Resource_74yfr"]
 script = ExtResource("1_crub6")
 level = 30
 move = ExtResource("9_d2veu")
 
-[sub_resource type="Resource" id="Resource_0xyv7"]
+[sub_resource type="Resource" id="Resource_ipfad"]
 script = ExtResource("1_crub6")
 level = 38
 move = ExtResource("10_gjbmn")
 
-[sub_resource type="Resource" id="Resource_74yfr"]
+[sub_resource type="Resource" id="Resource_l14bw"]
 script = ExtResource("1_crub6")
 level = 47
 move = ExtResource("11_0xyv7")
@@ -71,7 +77,8 @@ id = "nidoran_m"
 display_name = "Nidoran♂"
 dex = 32
 types = Array[ExtResource("4_j8kl4")]([ExtResource("5_x858s")])
-learnset = Array[ExtResource("1_crub6")]([SubResource("Resource_qsuo1"), SubResource("Resource_vvdx4"), SubResource("Resource_4oais"), SubResource("Resource_06pnn"), SubResource("Resource_r0qvu"), SubResource("Resource_ky1ko"), SubResource("Resource_d2veu"), SubResource("Resource_gjbmn"), SubResource("Resource_0xyv7"), SubResource("Resource_74yfr")])
+learnset = Array[ExtResource("1_crub6")]([SubResource("Resource_4oais"), SubResource("Resource_06pnn"), SubResource("Resource_r0qvu"), SubResource("Resource_ky1ko"), SubResource("Resource_d2veu"), SubResource("Resource_gjbmn"), SubResource("Resource_0xyv7"), SubResource("Resource_74yfr"), SubResource("Resource_ipfad"), SubResource("Resource_l14bw")])
+evolutions = Array[ExtResource("1_vvdx4")]([SubResource("Resource_vvdx4")])
 temperament = ExtResource("14_qsuo1")
 genus = "Pokémon Pin Veneno"
 pokedex_entry = "Nidoran♂ ha desarrollado músculos para mover las orejas y orientarlas en cualquier dirección. De este modo, es capaz de captar hasta el sonido más leve."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1ive5"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_nauks"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ord8d"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_tflcr"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_g8axq"]
@@ -17,48 +18,53 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_dxvk4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_qxd70"]
 
-[sub_resource type="Resource" id="Resource_qxd70"]
-script = ExtResource("1_1ive5")
-move = ExtResource("2_tflcr")
-
 [sub_resource type="Resource" id="Resource_nauks"]
-script = ExtResource("1_1ive5")
-move = ExtResource("3_qxd70")
+script = ExtResource("1_nauks")
+to_id = "meganium"
+level = 32
 
 [sub_resource type="Resource" id="Resource_ygjnq"]
 script = ExtResource("1_1ive5")
-move = ExtResource("4_nauks")
+move = ExtResource("2_tflcr")
 
 [sub_resource type="Resource" id="Resource_xmemi"]
 script = ExtResource("1_1ive5")
-move = ExtResource("5_ygjnq")
+move = ExtResource("3_qxd70")
 
 [sub_resource type="Resource" id="Resource_qoj37"]
+script = ExtResource("1_1ive5")
+move = ExtResource("4_nauks")
+
+[sub_resource type="Resource" id="Resource_ibl8l"]
+script = ExtResource("1_1ive5")
+move = ExtResource("5_ygjnq")
+
+[sub_resource type="Resource" id="Resource_d3nmq"]
 script = ExtResource("1_1ive5")
 level = 15
 move = ExtResource("6_xmemi")
 
-[sub_resource type="Resource" id="Resource_ibl8l"]
+[sub_resource type="Resource" id="Resource_2o4j2"]
 script = ExtResource("1_1ive5")
 level = 23
 move = ExtResource("7_qoj37")
 
-[sub_resource type="Resource" id="Resource_d3nmq"]
+[sub_resource type="Resource" id="Resource_dxvk4"]
 script = ExtResource("1_1ive5")
 level = 31
 move = ExtResource("8_ibl8l")
 
-[sub_resource type="Resource" id="Resource_2o4j2"]
+[sub_resource type="Resource" id="Resource_uk7ca"]
 script = ExtResource("1_1ive5")
 level = 39
 move = ExtResource("9_d3nmq")
 
-[sub_resource type="Resource" id="Resource_dxvk4"]
+[sub_resource type="Resource" id="Resource_x0t7j"]
 script = ExtResource("1_1ive5")
 level = 47
 move = ExtResource("10_2o4j2")
 
-[sub_resource type="Resource" id="Resource_uk7ca"]
+[sub_resource type="Resource" id="Resource_gbxw6"]
 script = ExtResource("1_1ive5")
 level = 55
 move = ExtResource("11_dxvk4")
@@ -69,7 +75,9 @@ id = "bayleef"
 display_name = "Bayleef"
 dex = 153
 types = Array[ExtResource("4_2slf5")]([ExtResource("5_vk67p")])
-learnset = Array[ExtResource("1_1ive5")]([SubResource("Resource_qxd70"), SubResource("Resource_nauks"), SubResource("Resource_ygjnq"), SubResource("Resource_xmemi"), SubResource("Resource_qoj37"), SubResource("Resource_ibl8l"), SubResource("Resource_d3nmq"), SubResource("Resource_2o4j2"), SubResource("Resource_dxvk4"), SubResource("Resource_uk7ca")])
+learnset = Array[ExtResource("1_1ive5")]([SubResource("Resource_ygjnq"), SubResource("Resource_xmemi"), SubResource("Resource_qoj37"), SubResource("Resource_ibl8l"), SubResource("Resource_d3nmq"), SubResource("Resource_2o4j2"), SubResource("Resource_dxvk4"), SubResource("Resource_uk7ca"), SubResource("Resource_x0t7j"), SubResource("Resource_gbxw6")])
+evolutions = Array[ExtResource("1_nauks")]([SubResource("Resource_nauks")])
+evolves_from = "chikorita"
 temperament = ExtResource("14_qxd70")
 genus = "Pokémon Hoja"
 pokedex_entry = "Bayleef tiene un collar de hojas alrededor del cuello y un brote de un árbol en cada una de ellas. La fragancia que desprenden estos brotes anima a la gente."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_0wnka"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_fyajl"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_4xdiu"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vpvbx"]
 [ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="3_48xsx"]
@@ -21,63 +22,68 @@
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="14_t1u17"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_48xsx"]
 
-[sub_resource type="Resource" id="Resource_48xsx"]
-script = ExtResource("1_0wnka")
-move = ExtResource("2_4xdiu")
-
 [sub_resource type="Resource" id="Resource_fyajl"]
-script = ExtResource("1_0wnka")
-move = ExtResource("3_48xsx")
+script = ExtResource("1_fyajl")
+to_id = "swampert"
+level = 36
 
 [sub_resource type="Resource" id="Resource_jyahf"]
 script = ExtResource("1_0wnka")
-move = ExtResource("4_fyajl")
+move = ExtResource("2_4xdiu")
 
 [sub_resource type="Resource" id="Resource_crng6"]
 script = ExtResource("1_0wnka")
-move = ExtResource("5_jyahf")
+move = ExtResource("3_48xsx")
 
 [sub_resource type="Resource" id="Resource_ody5n"]
+script = ExtResource("1_0wnka")
+move = ExtResource("4_fyajl")
+
+[sub_resource type="Resource" id="Resource_6hqm0"]
+script = ExtResource("1_0wnka")
+move = ExtResource("5_jyahf")
+
+[sub_resource type="Resource" id="Resource_23xk0"]
 script = ExtResource("1_0wnka")
 level = 15
 move = ExtResource("6_crng6")
 
-[sub_resource type="Resource" id="Resource_6hqm0"]
+[sub_resource type="Resource" id="Resource_j1es8"]
 script = ExtResource("1_0wnka")
 level = 16
 move = ExtResource("7_ody5n")
 
-[sub_resource type="Resource" id="Resource_23xk0"]
+[sub_resource type="Resource" id="Resource_jmlrj"]
 script = ExtResource("1_0wnka")
 level = 20
 move = ExtResource("8_6hqm0")
 
-[sub_resource type="Resource" id="Resource_j1es8"]
+[sub_resource type="Resource" id="Resource_oy6v4"]
 script = ExtResource("1_0wnka")
 level = 25
 move = ExtResource("9_23xk0")
 
-[sub_resource type="Resource" id="Resource_jmlrj"]
+[sub_resource type="Resource" id="Resource_yvxrj"]
 script = ExtResource("1_0wnka")
 level = 31
 move = ExtResource("10_j1es8")
 
-[sub_resource type="Resource" id="Resource_oy6v4"]
+[sub_resource type="Resource" id="Resource_t1u17"]
 script = ExtResource("1_0wnka")
 level = 37
 move = ExtResource("11_jmlrj")
 
-[sub_resource type="Resource" id="Resource_yvxrj"]
+[sub_resource type="Resource" id="Resource_56rqg"]
 script = ExtResource("1_0wnka")
 level = 42
 move = ExtResource("12_oy6v4")
 
-[sub_resource type="Resource" id="Resource_t1u17"]
+[sub_resource type="Resource" id="Resource_f422j"]
 script = ExtResource("1_0wnka")
 level = 46
 move = ExtResource("13_yvxrj")
 
-[sub_resource type="Resource" id="Resource_56rqg"]
+[sub_resource type="Resource" id="Resource_q5jqd"]
 script = ExtResource("1_0wnka")
 level = 53
 move = ExtResource("14_t1u17")
@@ -88,7 +94,9 @@ id = "marshtomp"
 display_name = "Marshtomp"
 dex = 259
 types = Array[ExtResource("4_60m3d")]([ExtResource("5_86i0n"), ExtResource("6_helvy")])
-learnset = Array[ExtResource("1_0wnka")]([SubResource("Resource_48xsx"), SubResource("Resource_fyajl"), SubResource("Resource_jyahf"), SubResource("Resource_crng6"), SubResource("Resource_ody5n"), SubResource("Resource_6hqm0"), SubResource("Resource_23xk0"), SubResource("Resource_j1es8"), SubResource("Resource_jmlrj"), SubResource("Resource_oy6v4"), SubResource("Resource_yvxrj"), SubResource("Resource_t1u17"), SubResource("Resource_56rqg")])
+learnset = Array[ExtResource("1_0wnka")]([SubResource("Resource_jyahf"), SubResource("Resource_crng6"), SubResource("Resource_ody5n"), SubResource("Resource_6hqm0"), SubResource("Resource_23xk0"), SubResource("Resource_j1es8"), SubResource("Resource_jmlrj"), SubResource("Resource_oy6v4"), SubResource("Resource_yvxrj"), SubResource("Resource_t1u17"), SubResource("Resource_56rqg"), SubResource("Resource_f422j"), SubResource("Resource_q5jqd")])
+evolutions = Array[ExtResource("1_fyajl")]([SubResource("Resource_fyajl")])
+evolves_from = "mudkip"
 temperament = ExtResource("17_48xsx")
 genus = "Pokémon Pez Lodo"
 pokedex_entry = "El cuerpo de Marshtomp está cubierto por una fina película pegajosa gracias a la cual puede vivir en tierra. Cuando la marea está baja, a este Pokémon le encanta jugar en el fango."

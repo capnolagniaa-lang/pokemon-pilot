@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hlucd"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_sbm0y"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2rgue"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_eiquy"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_2u6ku"]
@@ -18,48 +19,48 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_8a44l"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_vlbqy"]
 
-[sub_resource type="Resource" id="Resource_vlbqy"]
+[sub_resource type="Resource" id="Resource_sbm0y"]
 script = ExtResource("1_hlucd")
 move = ExtResource("2_eiquy")
 
-[sub_resource type="Resource" id="Resource_sbm0y"]
+[sub_resource type="Resource" id="Resource_usjvj"]
 script = ExtResource("1_hlucd")
 move = ExtResource("3_vlbqy")
 
-[sub_resource type="Resource" id="Resource_usjvj"]
+[sub_resource type="Resource" id="Resource_l7mqc"]
 script = ExtResource("1_hlucd")
 move = ExtResource("4_sbm0y")
 
-[sub_resource type="Resource" id="Resource_l7mqc"]
+[sub_resource type="Resource" id="Resource_kl6tk"]
 script = ExtResource("1_hlucd")
 move = ExtResource("5_usjvj")
 
-[sub_resource type="Resource" id="Resource_kl6tk"]
+[sub_resource type="Resource" id="Resource_8ainp"]
 script = ExtResource("1_hlucd")
 level = 22
 move = ExtResource("6_l7mqc")
 
-[sub_resource type="Resource" id="Resource_8ainp"]
+[sub_resource type="Resource" id="Resource_qjuaq"]
 script = ExtResource("1_hlucd")
 level = 29
 move = ExtResource("7_kl6tk")
 
-[sub_resource type="Resource" id="Resource_qjuaq"]
+[sub_resource type="Resource" id="Resource_llw5y"]
 script = ExtResource("1_hlucd")
 level = 38
 move = ExtResource("8_8ainp")
 
-[sub_resource type="Resource" id="Resource_llw5y"]
+[sub_resource type="Resource" id="Resource_8a44l"]
 script = ExtResource("1_hlucd")
 level = 47
 move = ExtResource("9_qjuaq")
 
-[sub_resource type="Resource" id="Resource_8a44l"]
+[sub_resource type="Resource" id="Resource_ks82r"]
 script = ExtResource("1_hlucd")
 level = 61
 move = ExtResource("10_llw5y")
 
-[sub_resource type="Resource" id="Resource_ks82r"]
+[sub_resource type="Resource" id="Resource_kogda"]
 script = ExtResource("1_hlucd")
 level = 75
 move = ExtResource("11_8a44l")
@@ -70,7 +71,8 @@ id = "tyranitar"
 display_name = "Tyranitar"
 dex = 248
 types = Array[ExtResource("4_wcsqe")]([ExtResource("5_nahth"), ExtResource("6_uw1hm")])
-learnset = Array[ExtResource("1_hlucd")]([SubResource("Resource_vlbqy"), SubResource("Resource_sbm0y"), SubResource("Resource_usjvj"), SubResource("Resource_l7mqc"), SubResource("Resource_kl6tk"), SubResource("Resource_8ainp"), SubResource("Resource_qjuaq"), SubResource("Resource_llw5y"), SubResource("Resource_8a44l"), SubResource("Resource_ks82r")])
+learnset = Array[ExtResource("1_hlucd")]([SubResource("Resource_sbm0y"), SubResource("Resource_usjvj"), SubResource("Resource_l7mqc"), SubResource("Resource_kl6tk"), SubResource("Resource_8ainp"), SubResource("Resource_qjuaq"), SubResource("Resource_llw5y"), SubResource("Resource_8a44l"), SubResource("Resource_ks82r"), SubResource("Resource_kogda")])
+evolves_from = "pupitar"
 temperament = ExtResource("14_vlbqy")
 genus = "Pokémon Coraza"
 pokedex_entry = "Tyranitar tiene una fuerza imponente; es capaz de echar abajo una montaña para hacer su nido. Este Pokémon suele merodear por las zonas de montaña en busca de nuevos rivales contra los que luchar."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_b70tb"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_qk2a3"]
 [ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="2_5vsto"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xdjqj"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_dsch4"]
@@ -18,48 +19,48 @@
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="11_fvlvu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_wuv8b"]
 
-[sub_resource type="Resource" id="Resource_wuv8b"]
+[sub_resource type="Resource" id="Resource_qk2a3"]
 script = ExtResource("1_b70tb")
 move = ExtResource("2_5vsto")
 
-[sub_resource type="Resource" id="Resource_qk2a3"]
+[sub_resource type="Resource" id="Resource_ublsq"]
 script = ExtResource("1_b70tb")
 move = ExtResource("3_wuv8b")
 
-[sub_resource type="Resource" id="Resource_ublsq"]
+[sub_resource type="Resource" id="Resource_4mrr5"]
 script = ExtResource("1_b70tb")
 move = ExtResource("4_qk2a3")
 
-[sub_resource type="Resource" id="Resource_4mrr5"]
+[sub_resource type="Resource" id="Resource_rcups"]
 script = ExtResource("1_b70tb")
 move = ExtResource("5_ublsq")
 
-[sub_resource type="Resource" id="Resource_rcups"]
+[sub_resource type="Resource" id="Resource_xxyt4"]
 script = ExtResource("1_b70tb")
 level = 17
 move = ExtResource("6_4mrr5")
 
-[sub_resource type="Resource" id="Resource_xxyt4"]
+[sub_resource type="Resource" id="Resource_qha1m"]
 script = ExtResource("1_b70tb")
 level = 25
 move = ExtResource("7_rcups")
 
-[sub_resource type="Resource" id="Resource_qha1m"]
+[sub_resource type="Resource" id="Resource_86pj7"]
 script = ExtResource("1_b70tb")
 level = 34
 move = ExtResource("8_xxyt4")
 
-[sub_resource type="Resource" id="Resource_86pj7"]
+[sub_resource type="Resource" id="Resource_fvlvu"]
 script = ExtResource("1_b70tb")
 level = 43
 move = ExtResource("9_qha1m")
 
-[sub_resource type="Resource" id="Resource_fvlvu"]
+[sub_resource type="Resource" id="Resource_1mcwk"]
 script = ExtResource("1_b70tb")
 level = 53
 move = ExtResource("10_86pj7")
 
-[sub_resource type="Resource" id="Resource_1mcwk"]
+[sub_resource type="Resource" id="Resource_iv8xi"]
 script = ExtResource("1_b70tb")
 level = 63
 move = ExtResource("11_fvlvu")
@@ -70,7 +71,8 @@ id = "ariados"
 display_name = "Ariados"
 dex = 168
 types = Array[ExtResource("4_xbo6p")]([ExtResource("5_s1pay"), ExtResource("6_l4htn")])
-learnset = Array[ExtResource("1_b70tb")]([SubResource("Resource_wuv8b"), SubResource("Resource_qk2a3"), SubResource("Resource_ublsq"), SubResource("Resource_4mrr5"), SubResource("Resource_rcups"), SubResource("Resource_xxyt4"), SubResource("Resource_qha1m"), SubResource("Resource_86pj7"), SubResource("Resource_fvlvu"), SubResource("Resource_1mcwk")])
+learnset = Array[ExtResource("1_b70tb")]([SubResource("Resource_qk2a3"), SubResource("Resource_ublsq"), SubResource("Resource_4mrr5"), SubResource("Resource_rcups"), SubResource("Resource_xxyt4"), SubResource("Resource_qha1m"), SubResource("Resource_86pj7"), SubResource("Resource_fvlvu"), SubResource("Resource_1mcwk"), SubResource("Resource_iv8xi")])
+evolves_from = "spinarak"
 temperament = ExtResource("14_wuv8b")
 genus = "Pokémon Pata Larga"
 pokedex_entry = "Ariados tiene unas patas con forma de garfio que le permiten correr por techos y superficies verticales. Este Pokémon oprime al rival con una tela de araña fina y resistente."

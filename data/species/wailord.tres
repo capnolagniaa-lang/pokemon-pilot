@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hl4he"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_u30qo"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7v5pa"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_b8o1x"]
 [ext_resource type="Resource" path="res://data/moves/rodar.tres" id="3_7a4ir"]
@@ -19,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="13_lv6aa"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_7a4ir"]
 
-[sub_resource type="Resource" id="Resource_7a4ir"]
+[sub_resource type="Resource" id="Resource_u30qo"]
 script = ExtResource("1_hl4he")
 move = ExtResource("2_b8o1x")
 
-[sub_resource type="Resource" id="Resource_u30qo"]
+[sub_resource type="Resource" id="Resource_yecqc"]
 script = ExtResource("1_hl4he")
 move = ExtResource("3_7a4ir")
 
-[sub_resource type="Resource" id="Resource_yecqc"]
+[sub_resource type="Resource" id="Resource_agllq"]
 script = ExtResource("1_hl4he")
 move = ExtResource("4_u30qo")
 
-[sub_resource type="Resource" id="Resource_agllq"]
+[sub_resource type="Resource" id="Resource_rh72p"]
 script = ExtResource("1_hl4he")
 move = ExtResource("5_yecqc")
 
-[sub_resource type="Resource" id="Resource_rh72p"]
+[sub_resource type="Resource" id="Resource_wgwmp"]
 script = ExtResource("1_hl4he")
 level = 19
 move = ExtResource("6_agllq")
 
-[sub_resource type="Resource" id="Resource_wgwmp"]
+[sub_resource type="Resource" id="Resource_d6oam"]
 script = ExtResource("1_hl4he")
 level = 23
 move = ExtResource("7_rh72p")
 
-[sub_resource type="Resource" id="Resource_d6oam"]
+[sub_resource type="Resource" id="Resource_5m2qj"]
 script = ExtResource("1_hl4he")
 level = 28
 move = ExtResource("8_wgwmp")
 
-[sub_resource type="Resource" id="Resource_5m2qj"]
+[sub_resource type="Resource" id="Resource_31rap"]
 script = ExtResource("1_hl4he")
 level = 32
 move = ExtResource("9_d6oam")
 
-[sub_resource type="Resource" id="Resource_31rap"]
+[sub_resource type="Resource" id="Resource_pyp27"]
 script = ExtResource("1_hl4he")
 level = 37
 move = ExtResource("10_5m2qj")
 
-[sub_resource type="Resource" id="Resource_pyp27"]
+[sub_resource type="Resource" id="Resource_lv6aa"]
 script = ExtResource("1_hl4he")
 level = 44
 move = ExtResource("11_31rap")
 
-[sub_resource type="Resource" id="Resource_lv6aa"]
+[sub_resource type="Resource" id="Resource_7c3x3"]
 script = ExtResource("1_hl4he")
 level = 52
 move = ExtResource("12_pyp27")
 
-[sub_resource type="Resource" id="Resource_7c3x3"]
+[sub_resource type="Resource" id="Resource_lk2ie"]
 script = ExtResource("1_hl4he")
 level = 59
 move = ExtResource("13_lv6aa")
@@ -81,7 +82,8 @@ id = "wailord"
 display_name = "Wailord"
 dex = 321
 types = Array[ExtResource("4_aps7p")]([ExtResource("5_3w5kx")])
-learnset = Array[ExtResource("1_hl4he")]([SubResource("Resource_7a4ir"), SubResource("Resource_u30qo"), SubResource("Resource_yecqc"), SubResource("Resource_agllq"), SubResource("Resource_rh72p"), SubResource("Resource_wgwmp"), SubResource("Resource_d6oam"), SubResource("Resource_5m2qj"), SubResource("Resource_31rap"), SubResource("Resource_pyp27"), SubResource("Resource_lv6aa"), SubResource("Resource_7c3x3")])
+learnset = Array[ExtResource("1_hl4he")]([SubResource("Resource_u30qo"), SubResource("Resource_yecqc"), SubResource("Resource_agllq"), SubResource("Resource_rh72p"), SubResource("Resource_wgwmp"), SubResource("Resource_d6oam"), SubResource("Resource_5m2qj"), SubResource("Resource_31rap"), SubResource("Resource_pyp27"), SubResource("Resource_lv6aa"), SubResource("Resource_7c3x3"), SubResource("Resource_lk2ie")])
+evolves_from = "wailmer"
 temperament = ExtResource("16_7a4ir")
 genus = "Pokémon Ballenaflot"
 pokedex_entry = "Wailord es el mayor Pokémon registrado hasta la fecha. Este coloso va nadando lánguidamente por el ancho mar con la boca abierta para que penetre la mayor cantidad posible de alimento."

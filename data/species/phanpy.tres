@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1d3jk"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_d6m2n"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pyt3h"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_scb7e"]
 [ext_resource type="Resource" path="res://data/moves/rastreo.tres" id="3_1traa"]
@@ -16,44 +17,49 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="10_bfakx"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_1traa"]
 
-[sub_resource type="Resource" id="Resource_1traa"]
-script = ExtResource("1_1d3jk")
-move = ExtResource("2_scb7e")
-
 [sub_resource type="Resource" id="Resource_d6m2n"]
-script = ExtResource("1_1d3jk")
-move = ExtResource("3_1traa")
+script = ExtResource("1_d6m2n")
+to_id = "donphan"
+level = 25
 
 [sub_resource type="Resource" id="Resource_gave0"]
 script = ExtResource("1_1d3jk")
-move = ExtResource("4_d6m2n")
+move = ExtResource("2_scb7e")
 
 [sub_resource type="Resource" id="Resource_s10mn"]
+script = ExtResource("1_1d3jk")
+move = ExtResource("3_1traa")
+
+[sub_resource type="Resource" id="Resource_rd7wr"]
+script = ExtResource("1_1d3jk")
+move = ExtResource("4_d6m2n")
+
+[sub_resource type="Resource" id="Resource_qcihi"]
 script = ExtResource("1_1d3jk")
 level = 9
 move = ExtResource("5_gave0")
 
-[sub_resource type="Resource" id="Resource_rd7wr"]
+[sub_resource type="Resource" id="Resource_5jcws"]
 script = ExtResource("1_1d3jk")
 level = 17
 move = ExtResource("6_s10mn")
 
-[sub_resource type="Resource" id="Resource_qcihi"]
+[sub_resource type="Resource" id="Resource_bfakx"]
 script = ExtResource("1_1d3jk")
 level = 25
 move = ExtResource("7_rd7wr")
 
-[sub_resource type="Resource" id="Resource_5jcws"]
+[sub_resource type="Resource" id="Resource_lek2e"]
 script = ExtResource("1_1d3jk")
 level = 33
 move = ExtResource("8_qcihi")
 
-[sub_resource type="Resource" id="Resource_bfakx"]
+[sub_resource type="Resource" id="Resource_k8jpt"]
 script = ExtResource("1_1d3jk")
 level = 41
 move = ExtResource("9_5jcws")
 
-[sub_resource type="Resource" id="Resource_lek2e"]
+[sub_resource type="Resource" id="Resource_58uql"]
 script = ExtResource("1_1d3jk")
 level = 49
 move = ExtResource("10_bfakx")
@@ -64,7 +70,8 @@ id = "phanpy"
 display_name = "Phanpy"
 dex = 231
 types = Array[ExtResource("4_f0o5y")]([ExtResource("5_06th3")])
-learnset = Array[ExtResource("1_1d3jk")]([SubResource("Resource_1traa"), SubResource("Resource_d6m2n"), SubResource("Resource_gave0"), SubResource("Resource_s10mn"), SubResource("Resource_rd7wr"), SubResource("Resource_qcihi"), SubResource("Resource_5jcws"), SubResource("Resource_bfakx"), SubResource("Resource_lek2e")])
+learnset = Array[ExtResource("1_1d3jk")]([SubResource("Resource_gave0"), SubResource("Resource_s10mn"), SubResource("Resource_rd7wr"), SubResource("Resource_qcihi"), SubResource("Resource_5jcws"), SubResource("Resource_bfakx"), SubResource("Resource_lek2e"), SubResource("Resource_k8jpt"), SubResource("Resource_58uql")])
+evolutions = Array[ExtResource("1_d6m2n")]([SubResource("Resource_d6m2n")])
 temperament = ExtResource("13_1traa")
 genus = "Pokémon Narizotas"
 pokedex_entry = "Phanpy cava un agujero profundo para hacer su nido en el suelo, en la ribera de los ríos, y marca con la trompa la zona para que el resto vea que ese terreno ya está ocupado."

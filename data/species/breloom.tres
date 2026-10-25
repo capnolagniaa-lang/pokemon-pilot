@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fkyu4"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_rfbxq"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1nxhe"]
 [ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_q54s4"]
 [ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="3_26vh8"]
@@ -19,53 +20,53 @@
 [ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="12_p81ii"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_26vh8"]
 
-[sub_resource type="Resource" id="Resource_26vh8"]
+[sub_resource type="Resource" id="Resource_rfbxq"]
 script = ExtResource("1_fkyu4")
 move = ExtResource("2_q54s4")
 
-[sub_resource type="Resource" id="Resource_rfbxq"]
+[sub_resource type="Resource" id="Resource_vd411"]
 script = ExtResource("1_fkyu4")
 move = ExtResource("3_26vh8")
 
-[sub_resource type="Resource" id="Resource_vd411"]
+[sub_resource type="Resource" id="Resource_st6wn"]
 script = ExtResource("1_fkyu4")
 move = ExtResource("4_rfbxq")
 
-[sub_resource type="Resource" id="Resource_st6wn"]
+[sub_resource type="Resource" id="Resource_n05lb"]
 script = ExtResource("1_fkyu4")
 move = ExtResource("5_vd411")
 
-[sub_resource type="Resource" id="Resource_n05lb"]
+[sub_resource type="Resource" id="Resource_3tmmm"]
 script = ExtResource("1_fkyu4")
 level = 16
 move = ExtResource("6_st6wn")
 
-[sub_resource type="Resource" id="Resource_3tmmm"]
+[sub_resource type="Resource" id="Resource_noepm"]
 script = ExtResource("1_fkyu4")
 level = 22
 move = ExtResource("7_n05lb")
 
-[sub_resource type="Resource" id="Resource_noepm"]
+[sub_resource type="Resource" id="Resource_gvjib"]
 script = ExtResource("1_fkyu4")
 level = 23
 move = ExtResource("8_3tmmm")
 
-[sub_resource type="Resource" id="Resource_gvjib"]
+[sub_resource type="Resource" id="Resource_tyw3l"]
 script = ExtResource("1_fkyu4")
 level = 28
 move = ExtResource("9_noepm")
 
-[sub_resource type="Resource" id="Resource_tyw3l"]
+[sub_resource type="Resource" id="Resource_p81ii"]
 script = ExtResource("1_fkyu4")
 level = 36
 move = ExtResource("10_gvjib")
 
-[sub_resource type="Resource" id="Resource_p81ii"]
+[sub_resource type="Resource" id="Resource_nr5dh"]
 script = ExtResource("1_fkyu4")
 level = 45
 move = ExtResource("11_tyw3l")
 
-[sub_resource type="Resource" id="Resource_nr5dh"]
+[sub_resource type="Resource" id="Resource_vrafb"]
 script = ExtResource("1_fkyu4")
 level = 54
 move = ExtResource("12_p81ii")
@@ -76,7 +77,8 @@ id = "breloom"
 display_name = "Breloom"
 dex = 286
 types = Array[ExtResource("4_80y3a")]([ExtResource("5_1pinx"), ExtResource("6_3pf6d")])
-learnset = Array[ExtResource("1_fkyu4")]([SubResource("Resource_26vh8"), SubResource("Resource_rfbxq"), SubResource("Resource_vd411"), SubResource("Resource_st6wn"), SubResource("Resource_n05lb"), SubResource("Resource_3tmmm"), SubResource("Resource_noepm"), SubResource("Resource_gvjib"), SubResource("Resource_tyw3l"), SubResource("Resource_p81ii"), SubResource("Resource_nr5dh")])
+learnset = Array[ExtResource("1_fkyu4")]([SubResource("Resource_rfbxq"), SubResource("Resource_vd411"), SubResource("Resource_st6wn"), SubResource("Resource_n05lb"), SubResource("Resource_3tmmm"), SubResource("Resource_noepm"), SubResource("Resource_gvjib"), SubResource("Resource_tyw3l"), SubResource("Resource_p81ii"), SubResource("Resource_nr5dh"), SubResource("Resource_vrafb")])
+evolves_from = "shroomish"
 temperament = ExtResource("15_26vh8")
 genus = "Pokémon Hongo"
 pokedex_entry = "Breloom se acerca al enemigo realizando un juego de piernas ágil y enérgico. Y, a continuación, le da unos puñetazos con los brazos elásticos que tiene. Las técnicas de lucha que usa dejan en ridículo al boxeador más profesional."

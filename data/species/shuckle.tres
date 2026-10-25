@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mcj55"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_n5il6"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5es57"]
 [ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="2_lp1dj"]
 [ext_resource type="Resource" path="res://data/moves/refugio.tres" id="3_el5cy"]
@@ -15,35 +16,35 @@
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="8_02uxy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="11_el5cy"]
 
-[sub_resource type="Resource" id="Resource_el5cy"]
+[sub_resource type="Resource" id="Resource_n5il6"]
 script = ExtResource("1_mcj55")
 move = ExtResource("2_lp1dj")
 
-[sub_resource type="Resource" id="Resource_n5il6"]
+[sub_resource type="Resource" id="Resource_lgr4j"]
 script = ExtResource("1_mcj55")
 move = ExtResource("3_el5cy")
 
-[sub_resource type="Resource" id="Resource_lgr4j"]
+[sub_resource type="Resource" id="Resource_fvcrl"]
 script = ExtResource("1_mcj55")
 level = 9
 move = ExtResource("4_n5il6")
 
-[sub_resource type="Resource" id="Resource_fvcrl"]
+[sub_resource type="Resource" id="Resource_5bx7c"]
 script = ExtResource("1_mcj55")
 level = 14
 move = ExtResource("5_lgr4j")
 
-[sub_resource type="Resource" id="Resource_5bx7c"]
+[sub_resource type="Resource" id="Resource_02uxy"]
 script = ExtResource("1_mcj55")
 level = 23
 move = ExtResource("6_fvcrl")
 
-[sub_resource type="Resource" id="Resource_02uxy"]
+[sub_resource type="Resource" id="Resource_1lx7g"]
 script = ExtResource("1_mcj55")
 level = 28
 move = ExtResource("7_5bx7c")
 
-[sub_resource type="Resource" id="Resource_1lx7g"]
+[sub_resource type="Resource" id="Resource_7sibi"]
 script = ExtResource("1_mcj55")
 level = 37
 move = ExtResource("8_02uxy")
@@ -54,7 +55,7 @@ id = "shuckle"
 display_name = "Shuckle"
 dex = 213
 types = Array[ExtResource("4_6n8qb")]([ExtResource("5_a15wi"), ExtResource("6_jgigp")])
-learnset = Array[ExtResource("1_mcj55")]([SubResource("Resource_el5cy"), SubResource("Resource_n5il6"), SubResource("Resource_lgr4j"), SubResource("Resource_fvcrl"), SubResource("Resource_5bx7c"), SubResource("Resource_02uxy"), SubResource("Resource_1lx7g")])
+learnset = Array[ExtResource("1_mcj55")]([SubResource("Resource_n5il6"), SubResource("Resource_lgr4j"), SubResource("Resource_fvcrl"), SubResource("Resource_5bx7c"), SubResource("Resource_02uxy"), SubResource("Resource_1lx7g"), SubResource("Resource_7sibi")])
 temperament = ExtResource("11_el5cy")
 genus = "Pokémon Moho"
 pokedex_entry = "Shuckle permanece escondido bajo las rocas en silencio y, cuando se pone a comer las bayas que almacena, se encierra en el caparazón. Las bayas se mezclan con sus fluidos corporales y originan zumo."

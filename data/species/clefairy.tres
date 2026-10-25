@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_07vgq"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_r3qm6"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_3g0ag"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xo5wa"]
@@ -20,65 +21,71 @@
 [ext_resource type="Resource" path="res://data/moves/puno_meteoro.tres" id="14_xegqh"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="17_0k0ot"]
 
-[sub_resource type="Resource" id="Resource_0k0ot"]
+[sub_resource type="Resource" id="Resource_07vgq"]
+script = ExtResource("1_07vgq")
+to_id = "clefable"
+method = "piedra"
+item = "piedra_lunar"
+
+[sub_resource type="Resource" id="Resource_20of0"]
 script = ExtResource("1_r3qm6")
 move = ExtResource("2_3g0ag")
 
-[sub_resource type="Resource" id="Resource_07vgq"]
+[sub_resource type="Resource" id="Resource_r0alb"]
 script = ExtResource("1_r3qm6")
 move = ExtResource("3_0k0ot")
 
-[sub_resource type="Resource" id="Resource_20of0"]
+[sub_resource type="Resource" id="Resource_1c0nn"]
 script = ExtResource("1_r3qm6")
 level = 5
 move = ExtResource("4_07vgq")
 
-[sub_resource type="Resource" id="Resource_r0alb"]
+[sub_resource type="Resource" id="Resource_gafvm"]
 script = ExtResource("1_r3qm6")
 level = 9
 move = ExtResource("5_20of0")
 
-[sub_resource type="Resource" id="Resource_1c0nn"]
+[sub_resource type="Resource" id="Resource_0cuvh"]
 script = ExtResource("1_r3qm6")
 level = 13
 move = ExtResource("6_r0alb")
 
-[sub_resource type="Resource" id="Resource_gafvm"]
+[sub_resource type="Resource" id="Resource_p5jrk"]
 script = ExtResource("1_r3qm6")
 level = 17
 move = ExtResource("7_1c0nn")
 
-[sub_resource type="Resource" id="Resource_0cuvh"]
+[sub_resource type="Resource" id="Resource_870mj"]
 script = ExtResource("1_r3qm6")
 level = 21
 move = ExtResource("8_gafvm")
 
-[sub_resource type="Resource" id="Resource_p5jrk"]
+[sub_resource type="Resource" id="Resource_m7828"]
 script = ExtResource("1_r3qm6")
 level = 25
 move = ExtResource("9_0cuvh")
 
-[sub_resource type="Resource" id="Resource_870mj"]
+[sub_resource type="Resource" id="Resource_m1asb"]
 script = ExtResource("1_r3qm6")
 level = 29
 move = ExtResource("10_p5jrk")
 
-[sub_resource type="Resource" id="Resource_m7828"]
+[sub_resource type="Resource" id="Resource_xegqh"]
 script = ExtResource("1_r3qm6")
 level = 33
 move = ExtResource("11_870mj")
 
-[sub_resource type="Resource" id="Resource_m1asb"]
+[sub_resource type="Resource" id="Resource_05u3v"]
 script = ExtResource("1_r3qm6")
 level = 37
 move = ExtResource("12_m7828")
 
-[sub_resource type="Resource" id="Resource_xegqh"]
+[sub_resource type="Resource" id="Resource_qt8rt"]
 script = ExtResource("1_r3qm6")
 level = 41
 move = ExtResource("13_m1asb")
 
-[sub_resource type="Resource" id="Resource_05u3v"]
+[sub_resource type="Resource" id="Resource_tvvgh"]
 script = ExtResource("1_r3qm6")
 level = 45
 move = ExtResource("14_xegqh")
@@ -89,7 +96,9 @@ id = "clefairy"
 display_name = "Clefairy"
 dex = 35
 types = Array[ExtResource("4_a5ywf")]([ExtResource("5_qqsvh")])
-learnset = Array[ExtResource("1_r3qm6")]([SubResource("Resource_0k0ot"), SubResource("Resource_07vgq"), SubResource("Resource_20of0"), SubResource("Resource_r0alb"), SubResource("Resource_1c0nn"), SubResource("Resource_gafvm"), SubResource("Resource_0cuvh"), SubResource("Resource_p5jrk"), SubResource("Resource_870mj"), SubResource("Resource_m7828"), SubResource("Resource_m1asb"), SubResource("Resource_xegqh"), SubResource("Resource_05u3v")])
+learnset = Array[ExtResource("1_r3qm6")]([SubResource("Resource_20of0"), SubResource("Resource_r0alb"), SubResource("Resource_1c0nn"), SubResource("Resource_gafvm"), SubResource("Resource_0cuvh"), SubResource("Resource_p5jrk"), SubResource("Resource_870mj"), SubResource("Resource_m7828"), SubResource("Resource_m1asb"), SubResource("Resource_xegqh"), SubResource("Resource_05u3v"), SubResource("Resource_qt8rt"), SubResource("Resource_tvvgh")])
+evolutions = Array[ExtResource("1_07vgq")]([SubResource("Resource_07vgq")])
+evolves_from = "cleffa"
 temperament = ExtResource("17_0k0ot")
 genus = "Pokémon Hada"
 pokedex_entry = "Siempre que hay luna llena, salen en grupo para jugar. Al amanecer, los Clefairy, agotados, regresan a sus refugios de montaña para dormir acurrucados unos con otros."

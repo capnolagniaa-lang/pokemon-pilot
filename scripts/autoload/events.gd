@@ -74,5 +74,9 @@ signal ground_impact(position: Vector2, radius: float, source: String, max_count
 signal combo_landed(attacker: Node, combo_name: String, chain: int)
 ## Cambió el dinero (docs/PLAN_TORNEO.md).
 signal money_changed(money: int)
+## Evoluciones (EvolutionDirector): una criatura del equipo puede evolucionar (al subir de nivel o con una piedra;
+## cancelable = se puede frenar con Esc, como en los juegos) y cuando ya evolucionó.
+signal evolution_ready(inst: Resource, to: Resource, cancelable: bool)
+signal evolved(inst: Resource, from: Resource, to: Resource)
 
 @warning_ignore_restore("unused_signal")

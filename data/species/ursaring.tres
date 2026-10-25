@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_0l5a4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_2evy7"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5dqxv"]
 [ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="2_5oq5j"]
@@ -17,48 +18,48 @@
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="11_6w7kf"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_4j7t4"]
 
-[sub_resource type="Resource" id="Resource_4j7t4"]
+[sub_resource type="Resource" id="Resource_0l5a4"]
 script = ExtResource("1_2evy7")
 move = ExtResource("2_5oq5j")
 
-[sub_resource type="Resource" id="Resource_0l5a4"]
+[sub_resource type="Resource" id="Resource_oyoen"]
 script = ExtResource("1_2evy7")
 move = ExtResource("3_4j7t4")
 
-[sub_resource type="Resource" id="Resource_oyoen"]
+[sub_resource type="Resource" id="Resource_bglev"]
 script = ExtResource("1_2evy7")
 move = ExtResource("4_0l5a4")
 
-[sub_resource type="Resource" id="Resource_bglev"]
+[sub_resource type="Resource" id="Resource_vqdlq"]
 script = ExtResource("1_2evy7")
 move = ExtResource("5_oyoen")
 
-[sub_resource type="Resource" id="Resource_vqdlq"]
+[sub_resource type="Resource" id="Resource_r521f"]
 script = ExtResource("1_2evy7")
 level = 19
 move = ExtResource("6_bglev")
 
-[sub_resource type="Resource" id="Resource_r521f"]
+[sub_resource type="Resource" id="Resource_lxcvp"]
 script = ExtResource("1_2evy7")
 level = 25
 move = ExtResource("7_vqdlq")
 
-[sub_resource type="Resource" id="Resource_lxcvp"]
+[sub_resource type="Resource" id="Resource_abs1w"]
 script = ExtResource("1_2evy7")
 level = 31
 move = ExtResource("8_r521f")
 
-[sub_resource type="Resource" id="Resource_abs1w"]
+[sub_resource type="Resource" id="Resource_6w7kf"]
 script = ExtResource("1_2evy7")
 level = 37
 move = ExtResource("9_lxcvp")
 
-[sub_resource type="Resource" id="Resource_6w7kf"]
+[sub_resource type="Resource" id="Resource_r3d4i"]
 script = ExtResource("1_2evy7")
 level = 43
 move = ExtResource("10_abs1w")
 
-[sub_resource type="Resource" id="Resource_r3d4i"]
+[sub_resource type="Resource" id="Resource_d8y1t"]
 script = ExtResource("1_2evy7")
 level = 49
 move = ExtResource("11_6w7kf")
@@ -69,7 +70,8 @@ id = "ursaring"
 display_name = "Ursaring"
 dex = 217
 types = Array[ExtResource("4_yjo1a")]([ExtResource("5_ei2ue")])
-learnset = Array[ExtResource("1_2evy7")]([SubResource("Resource_4j7t4"), SubResource("Resource_0l5a4"), SubResource("Resource_oyoen"), SubResource("Resource_bglev"), SubResource("Resource_vqdlq"), SubResource("Resource_r521f"), SubResource("Resource_lxcvp"), SubResource("Resource_abs1w"), SubResource("Resource_6w7kf"), SubResource("Resource_r3d4i")])
+learnset = Array[ExtResource("1_2evy7")]([SubResource("Resource_0l5a4"), SubResource("Resource_oyoen"), SubResource("Resource_bglev"), SubResource("Resource_vqdlq"), SubResource("Resource_r521f"), SubResource("Resource_lxcvp"), SubResource("Resource_abs1w"), SubResource("Resource_6w7kf"), SubResource("Resource_r3d4i"), SubResource("Resource_d8y1t")])
+evolves_from = "teddiursa"
 temperament = ExtResource("14_4j7t4")
 genus = "Pokémon Hibernante"
 pokedex_entry = "En los bosques habitados por Ursaring, dicen que abundan los arroyos y árboles gigantes en los que guardan su alimento. Este Pokémon se dedica todos los días a pasear por el bosque para buscar comida y guardarla."

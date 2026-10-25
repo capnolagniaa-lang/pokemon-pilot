@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_en6iu"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_i5m7v"]
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="2_ajkg6"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x0xen"]
@@ -18,56 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="12_w7r7u"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_gw466"]
 
-[sub_resource type="Resource" id="Resource_gw466"]
+[sub_resource type="Resource" id="Resource_en6iu"]
 script = ExtResource("1_i5m7v")
 move = ExtResource("2_ajkg6")
 
-[sub_resource type="Resource" id="Resource_en6iu"]
+[sub_resource type="Resource" id="Resource_yq8f2"]
 script = ExtResource("1_i5m7v")
 level = 4
 move = ExtResource("3_gw466")
 
-[sub_resource type="Resource" id="Resource_yq8f2"]
+[sub_resource type="Resource" id="Resource_3a4c1"]
 script = ExtResource("1_i5m7v")
 level = 11
 move = ExtResource("4_en6iu")
 
-[sub_resource type="Resource" id="Resource_3a4c1"]
+[sub_resource type="Resource" id="Resource_3emim"]
 script = ExtResource("1_i5m7v")
 level = 14
 move = ExtResource("5_yq8f2")
 
-[sub_resource type="Resource" id="Resource_3emim"]
+[sub_resource type="Resource" id="Resource_w6cvv"]
 script = ExtResource("1_i5m7v")
 level = 21
 move = ExtResource("6_3a4c1")
 
-[sub_resource type="Resource" id="Resource_w6cvv"]
+[sub_resource type="Resource" id="Resource_4pjln"]
 script = ExtResource("1_i5m7v")
 level = 24
 move = ExtResource("7_3emim")
 
-[sub_resource type="Resource" id="Resource_4pjln"]
+[sub_resource type="Resource" id="Resource_qcp8j"]
 script = ExtResource("1_i5m7v")
 level = 31
 move = ExtResource("8_w6cvv")
 
-[sub_resource type="Resource" id="Resource_qcp8j"]
+[sub_resource type="Resource" id="Resource_54t4s"]
 script = ExtResource("1_i5m7v")
 level = 34
 move = ExtResource("9_4pjln")
 
-[sub_resource type="Resource" id="Resource_54t4s"]
+[sub_resource type="Resource" id="Resource_w7r7u"]
 script = ExtResource("1_i5m7v")
 level = 41
 move = ExtResource("10_qcp8j")
 
-[sub_resource type="Resource" id="Resource_w7r7u"]
+[sub_resource type="Resource" id="Resource_twr3d"]
 script = ExtResource("1_i5m7v")
 level = 44
 move = ExtResource("11_54t4s")
 
-[sub_resource type="Resource" id="Resource_twr3d"]
+[sub_resource type="Resource" id="Resource_csafn"]
 script = ExtResource("1_i5m7v")
 level = 51
 move = ExtResource("12_w7r7u")
@@ -78,7 +79,7 @@ id = "dunsparce"
 display_name = "Dunsparce"
 dex = 206
 types = Array[ExtResource("4_fas15")]([ExtResource("5_3vnjm")])
-learnset = Array[ExtResource("1_i5m7v")]([SubResource("Resource_gw466"), SubResource("Resource_en6iu"), SubResource("Resource_yq8f2"), SubResource("Resource_3a4c1"), SubResource("Resource_3emim"), SubResource("Resource_w6cvv"), SubResource("Resource_4pjln"), SubResource("Resource_qcp8j"), SubResource("Resource_54t4s"), SubResource("Resource_w7r7u"), SubResource("Resource_twr3d")])
+learnset = Array[ExtResource("1_i5m7v")]([SubResource("Resource_en6iu"), SubResource("Resource_yq8f2"), SubResource("Resource_3a4c1"), SubResource("Resource_3emim"), SubResource("Resource_w6cvv"), SubResource("Resource_4pjln"), SubResource("Resource_qcp8j"), SubResource("Resource_54t4s"), SubResource("Resource_w7r7u"), SubResource("Resource_twr3d"), SubResource("Resource_csafn")])
 temperament = ExtResource("15_gw466")
 genus = "Pokémon Serpiente Tierra"
 pokedex_entry = "La cola de Dunsparce es un taladro que usa para enterrarse en el suelo de espaldas. De todos es sabido que este Pokémon hace su nido a gran profundidad y con una forma muy compleja."

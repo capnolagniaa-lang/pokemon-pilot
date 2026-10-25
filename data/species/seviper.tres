@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_380ef"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_lgkmf"]
 [ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="2_5vy4t"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_upadt"]
@@ -17,51 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="11_ko573"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_o7h28"]
 
-[sub_resource type="Resource" id="Resource_o7h28"]
+[sub_resource type="Resource" id="Resource_380ef"]
 script = ExtResource("1_lgkmf")
 move = ExtResource("2_5vy4t")
 
-[sub_resource type="Resource" id="Resource_380ef"]
+[sub_resource type="Resource" id="Resource_dxnwh"]
 script = ExtResource("1_lgkmf")
 level = 7
 move = ExtResource("3_o7h28")
 
-[sub_resource type="Resource" id="Resource_dxnwh"]
+[sub_resource type="Resource" id="Resource_86tom"]
 script = ExtResource("1_lgkmf")
 level = 10
 move = ExtResource("4_380ef")
 
-[sub_resource type="Resource" id="Resource_86tom"]
+[sub_resource type="Resource" id="Resource_35uwc"]
 script = ExtResource("1_lgkmf")
 level = 16
 move = ExtResource("5_dxnwh")
 
-[sub_resource type="Resource" id="Resource_35uwc"]
+[sub_resource type="Resource" id="Resource_rms4j"]
 script = ExtResource("1_lgkmf")
 level = 19
 move = ExtResource("6_86tom")
 
-[sub_resource type="Resource" id="Resource_rms4j"]
+[sub_resource type="Resource" id="Resource_oqlin"]
 script = ExtResource("1_lgkmf")
 level = 25
 move = ExtResource("7_35uwc")
 
-[sub_resource type="Resource" id="Resource_oqlin"]
+[sub_resource type="Resource" id="Resource_sf03i"]
 script = ExtResource("1_lgkmf")
 level = 28
 move = ExtResource("8_rms4j")
 
-[sub_resource type="Resource" id="Resource_sf03i"]
+[sub_resource type="Resource" id="Resource_ko573"]
 script = ExtResource("1_lgkmf")
 level = 34
 move = ExtResource("9_oqlin")
 
-[sub_resource type="Resource" id="Resource_ko573"]
+[sub_resource type="Resource" id="Resource_68q3a"]
 script = ExtResource("1_lgkmf")
 level = 37
 move = ExtResource("10_sf03i")
 
-[sub_resource type="Resource" id="Resource_68q3a"]
+[sub_resource type="Resource" id="Resource_1rm02"]
 script = ExtResource("1_lgkmf")
 level = 43
 move = ExtResource("11_ko573")
@@ -72,7 +73,7 @@ id = "seviper"
 display_name = "Seviper"
 dex = 336
 types = Array[ExtResource("4_pnovc")]([ExtResource("5_xqhvg")])
-learnset = Array[ExtResource("1_lgkmf")]([SubResource("Resource_o7h28"), SubResource("Resource_380ef"), SubResource("Resource_dxnwh"), SubResource("Resource_86tom"), SubResource("Resource_35uwc"), SubResource("Resource_rms4j"), SubResource("Resource_oqlin"), SubResource("Resource_sf03i"), SubResource("Resource_ko573"), SubResource("Resource_68q3a")])
+learnset = Array[ExtResource("1_lgkmf")]([SubResource("Resource_380ef"), SubResource("Resource_dxnwh"), SubResource("Resource_86tom"), SubResource("Resource_35uwc"), SubResource("Resource_rms4j"), SubResource("Resource_oqlin"), SubResource("Resource_sf03i"), SubResource("Resource_ko573"), SubResource("Resource_68q3a"), SubResource("Resource_1rm02")])
 temperament = ExtResource("14_o7h28")
 genus = "Pokémon Colmillos"
 pokedex_entry = "Seviper lleva años de gran enemistad con Zangoose. Las cicatrices que tiene por todo el cuerpo dan buena muestra de los encarnizados combates en los que se han enfrentado. Seviper ataca usando su cola con forma de espada."

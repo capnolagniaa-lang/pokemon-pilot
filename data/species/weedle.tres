@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/kits/weedle/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_cmdcp"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_nhm84"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wtp2u"]
 [ext_resource type="Resource" path="res://data/kits/weedle/picotazo_veneno_weedle.tres" id="3_agrv1"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_plwu4"]
@@ -13,20 +14,25 @@
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="6_qocq4"]
 [ext_resource type="Resource" path="res://data/kits/weedle/pin_misil_weedle.tres" id="6_r12ed"]
 
-[sub_resource type="Resource" id="Resource_xnna6"]
+[sub_resource type="Resource" id="Resource_nhm84"]
+script = ExtResource("1_nhm84")
+to_id = "kakuna"
+level = 7
+
+[sub_resource type="Resource" id="Resource_dd5eq"]
 script = ExtResource("1_cmdcp")
 move = ExtResource("3_agrv1")
 
-[sub_resource type="Resource" id="Resource_ggl4y"]
+[sub_resource type="Resource" id="Resource_r12ed"]
 script = ExtResource("1_cmdcp")
 move = ExtResource("4_nhm84")
 
-[sub_resource type="Resource" id="Resource_hijns"]
+[sub_resource type="Resource" id="Resource_xnna6"]
 script = ExtResource("1_cmdcp")
 level = 3
 move = ExtResource("5_dd5eq")
 
-[sub_resource type="Resource" id="Resource_0yo51"]
+[sub_resource type="Resource" id="Resource_ggl4y"]
 script = ExtResource("1_cmdcp")
 level = 5
 move = ExtResource("6_r12ed")
@@ -38,7 +44,8 @@ display_name = "Weedle"
 dex = 13
 types = Array[ExtResource("4_qocq4")]([ExtResource("5_y0rq7"), ExtResource("6_ij8fh")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_cmdcp")]([SubResource("Resource_xnna6"), SubResource("Resource_ggl4y"), SubResource("Resource_hijns"), SubResource("Resource_0yo51")])
+learnset = Array[ExtResource("1_cmdcp")]([SubResource("Resource_dd5eq"), SubResource("Resource_r12ed"), SubResource("Resource_xnna6"), SubResource("Resource_ggl4y")])
+evolutions = Array[ExtResource("1_nhm84")]([SubResource("Resource_nhm84")])
 temperament = ExtResource("6_qocq4")
 genus = "Pokémon Oruga"
 pokedex_entry = "Weedle tiene un finísimo sentido del olfato. Es capaz de distinguir las hojas que le gustan de las que no le gustan olisqueando un poco con la gran nariz que tiene."

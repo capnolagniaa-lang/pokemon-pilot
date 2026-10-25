@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l51ae"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_niwy8"]
 [ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="2_3omnb"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yt28n"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_oxqxu"]
@@ -19,55 +20,60 @@
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_51wio"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_oxqxu"]
 
-[sub_resource type="Resource" id="Resource_oxqxu"]
+[sub_resource type="Resource" id="Resource_niwy8"]
+script = ExtResource("1_niwy8")
+to_id = "magneton"
+level = 30
+
+[sub_resource type="Resource" id="Resource_feg78"]
 script = ExtResource("1_l51ae")
 move = ExtResource("2_3omnb")
 
-[sub_resource type="Resource" id="Resource_niwy8"]
+[sub_resource type="Resource" id="Resource_72ith"]
 script = ExtResource("1_l51ae")
 move = ExtResource("3_oxqxu")
 
-[sub_resource type="Resource" id="Resource_feg78"]
+[sub_resource type="Resource" id="Resource_tkgcd"]
 script = ExtResource("1_l51ae")
 level = 6
 move = ExtResource("4_niwy8")
 
-[sub_resource type="Resource" id="Resource_72ith"]
+[sub_resource type="Resource" id="Resource_3uu0r"]
 script = ExtResource("1_l51ae")
 level = 11
 move = ExtResource("5_feg78")
 
-[sub_resource type="Resource" id="Resource_tkgcd"]
+[sub_resource type="Resource" id="Resource_ai7m8"]
 script = ExtResource("1_l51ae")
 level = 16
 move = ExtResource("6_72ith")
 
-[sub_resource type="Resource" id="Resource_3uu0r"]
+[sub_resource type="Resource" id="Resource_ej8qi"]
 script = ExtResource("1_l51ae")
 level = 21
 move = ExtResource("7_tkgcd")
 
-[sub_resource type="Resource" id="Resource_ai7m8"]
+[sub_resource type="Resource" id="Resource_c1dna"]
 script = ExtResource("1_l51ae")
 level = 26
 move = ExtResource("8_3uu0r")
 
-[sub_resource type="Resource" id="Resource_ej8qi"]
+[sub_resource type="Resource" id="Resource_51wio"]
 script = ExtResource("1_l51ae")
 level = 32
 move = ExtResource("9_ai7m8")
 
-[sub_resource type="Resource" id="Resource_c1dna"]
+[sub_resource type="Resource" id="Resource_coakj"]
 script = ExtResource("1_l51ae")
 level = 38
 move = ExtResource("10_ej8qi")
 
-[sub_resource type="Resource" id="Resource_51wio"]
+[sub_resource type="Resource" id="Resource_xwi8k"]
 script = ExtResource("1_l51ae")
 level = 44
 move = ExtResource("11_c1dna")
 
-[sub_resource type="Resource" id="Resource_coakj"]
+[sub_resource type="Resource" id="Resource_lw2pg"]
 script = ExtResource("1_l51ae")
 level = 50
 move = ExtResource("12_51wio")
@@ -78,7 +84,8 @@ id = "magnemite"
 display_name = "Magnemite"
 dex = 81
 types = Array[ExtResource("4_05sr6")]([ExtResource("5_uktkj"), ExtResource("6_jpx5f")])
-learnset = Array[ExtResource("1_l51ae")]([SubResource("Resource_oxqxu"), SubResource("Resource_niwy8"), SubResource("Resource_feg78"), SubResource("Resource_72ith"), SubResource("Resource_tkgcd"), SubResource("Resource_3uu0r"), SubResource("Resource_ai7m8"), SubResource("Resource_ej8qi"), SubResource("Resource_c1dna"), SubResource("Resource_51wio"), SubResource("Resource_coakj")])
+learnset = Array[ExtResource("1_l51ae")]([SubResource("Resource_feg78"), SubResource("Resource_72ith"), SubResource("Resource_tkgcd"), SubResource("Resource_3uu0r"), SubResource("Resource_ai7m8"), SubResource("Resource_ej8qi"), SubResource("Resource_c1dna"), SubResource("Resource_51wio"), SubResource("Resource_coakj"), SubResource("Resource_xwi8k"), SubResource("Resource_lw2pg")])
+evolutions = Array[ExtResource("1_niwy8")]([SubResource("Resource_niwy8")])
 temperament = ExtResource("15_oxqxu")
 genus = "Pokémon Imán"
 pokedex_entry = "Magnemite se engancha a las líneas de tensión para nutrirse de electricidad. Cuando se producen apagones en las casas, es aconsejable revisar el automático y comprobar que no hay Pokémon de este tipo colgados de la caja de fusibles."

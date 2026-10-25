@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3w8rh"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_bg06m"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dv3ig"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_enjak"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_g6iup"]
@@ -15,41 +16,41 @@
 [ext_resource type="Resource" path="res://data/moves/meteorobola.tres" id="9_17ri1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_lbvfy"]
 
-[sub_resource type="Resource" id="Resource_lbvfy"]
-script = ExtResource("1_3w8rh")
-move = ExtResource("2_enjak")
-
 [sub_resource type="Resource" id="Resource_bg06m"]
 script = ExtResource("1_3w8rh")
-level = 10
-move = ExtResource("3_lbvfy")
+move = ExtResource("2_enjak")
 
 [sub_resource type="Resource" id="Resource_rv6cf"]
 script = ExtResource("1_3w8rh")
 level = 10
-move = ExtResource("4_bg06m")
+move = ExtResource("3_lbvfy")
 
 [sub_resource type="Resource" id="Resource_sucl8"]
 script = ExtResource("1_3w8rh")
 level = 10
-move = ExtResource("5_rv6cf")
+move = ExtResource("4_bg06m")
 
 [sub_resource type="Resource" id="Resource_f10ac"]
 script = ExtResource("1_3w8rh")
-level = 20
-move = ExtResource("6_sucl8")
+level = 10
+move = ExtResource("5_rv6cf")
 
 [sub_resource type="Resource" id="Resource_lwroa"]
 script = ExtResource("1_3w8rh")
 level = 20
-move = ExtResource("7_f10ac")
+move = ExtResource("6_sucl8")
 
 [sub_resource type="Resource" id="Resource_17ri1"]
 script = ExtResource("1_3w8rh")
 level = 20
-move = ExtResource("8_lwroa")
+move = ExtResource("7_f10ac")
 
 [sub_resource type="Resource" id="Resource_y7uh5"]
+script = ExtResource("1_3w8rh")
+level = 20
+move = ExtResource("8_lwroa")
+
+[sub_resource type="Resource" id="Resource_70fcx"]
 script = ExtResource("1_3w8rh")
 level = 30
 move = ExtResource("9_17ri1")
@@ -60,7 +61,7 @@ id = "castform"
 display_name = "Castform"
 dex = 351
 types = Array[ExtResource("4_hi4e7")]([ExtResource("5_0m7su")])
-learnset = Array[ExtResource("1_3w8rh")]([SubResource("Resource_lbvfy"), SubResource("Resource_bg06m"), SubResource("Resource_rv6cf"), SubResource("Resource_sucl8"), SubResource("Resource_f10ac"), SubResource("Resource_lwroa"), SubResource("Resource_17ri1"), SubResource("Resource_y7uh5")])
+learnset = Array[ExtResource("1_3w8rh")]([SubResource("Resource_bg06m"), SubResource("Resource_rv6cf"), SubResource("Resource_sucl8"), SubResource("Resource_f10ac"), SubResource("Resource_lwroa"), SubResource("Resource_17ri1"), SubResource("Resource_y7uh5"), SubResource("Resource_70fcx")])
 temperament = ExtResource("12_lbvfy")
 genus = "Pokémon Clima"
 pokedex_entry = "La forma de Castform cambia con las variaciones del tiempo. Este Pokémon consiguió aprender a usar el gran poder de la naturaleza para proteger el pequeño cuerpo que tiene."

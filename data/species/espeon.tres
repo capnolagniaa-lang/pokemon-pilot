@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_1e1uo"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_uoblk"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ellfp"]
 [ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="2_sqf1q"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_6d5rn"]
@@ -18,54 +19,54 @@
 [ext_resource type="Resource" path="res://data/moves/sol_matinal.tres" id="12_heu25"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_6d5rn"]
 
-[sub_resource type="Resource" id="Resource_6d5rn"]
+[sub_resource type="Resource" id="Resource_uoblk"]
 script = ExtResource("1_1e1uo")
 move = ExtResource("2_sqf1q")
 
-[sub_resource type="Resource" id="Resource_uoblk"]
+[sub_resource type="Resource" id="Resource_uugaq"]
 script = ExtResource("1_1e1uo")
 move = ExtResource("3_6d5rn")
 
-[sub_resource type="Resource" id="Resource_uugaq"]
+[sub_resource type="Resource" id="Resource_0y0uw"]
 script = ExtResource("1_1e1uo")
 move = ExtResource("4_uoblk")
 
-[sub_resource type="Resource" id="Resource_0y0uw"]
+[sub_resource type="Resource" id="Resource_kf8p6"]
 script = ExtResource("1_1e1uo")
 level = 8
 move = ExtResource("5_uugaq")
 
-[sub_resource type="Resource" id="Resource_kf8p6"]
+[sub_resource type="Resource" id="Resource_17yl3"]
 script = ExtResource("1_1e1uo")
 level = 16
 move = ExtResource("6_0y0uw")
 
-[sub_resource type="Resource" id="Resource_17yl3"]
+[sub_resource type="Resource" id="Resource_qmjee"]
 script = ExtResource("1_1e1uo")
 level = 23
 move = ExtResource("7_kf8p6")
 
-[sub_resource type="Resource" id="Resource_qmjee"]
+[sub_resource type="Resource" id="Resource_fls64"]
 script = ExtResource("1_1e1uo")
 level = 30
 move = ExtResource("8_17yl3")
 
-[sub_resource type="Resource" id="Resource_fls64"]
+[sub_resource type="Resource" id="Resource_rdq5c"]
 script = ExtResource("1_1e1uo")
 level = 36
 move = ExtResource("9_qmjee")
 
-[sub_resource type="Resource" id="Resource_rdq5c"]
+[sub_resource type="Resource" id="Resource_heu25"]
 script = ExtResource("1_1e1uo")
 level = 42
 move = ExtResource("10_fls64")
 
-[sub_resource type="Resource" id="Resource_heu25"]
+[sub_resource type="Resource" id="Resource_2nged"]
 script = ExtResource("1_1e1uo")
 level = 47
 move = ExtResource("11_rdq5c")
 
-[sub_resource type="Resource" id="Resource_2nged"]
+[sub_resource type="Resource" id="Resource_q01dr"]
 script = ExtResource("1_1e1uo")
 level = 52
 move = ExtResource("12_heu25")
@@ -76,7 +77,8 @@ id = "espeon"
 display_name = "Espeon"
 dex = 196
 types = Array[ExtResource("4_u5c7a")]([ExtResource("5_tmpxx")])
-learnset = Array[ExtResource("1_1e1uo")]([SubResource("Resource_6d5rn"), SubResource("Resource_uoblk"), SubResource("Resource_uugaq"), SubResource("Resource_0y0uw"), SubResource("Resource_kf8p6"), SubResource("Resource_17yl3"), SubResource("Resource_qmjee"), SubResource("Resource_fls64"), SubResource("Resource_rdq5c"), SubResource("Resource_heu25"), SubResource("Resource_2nged")])
+learnset = Array[ExtResource("1_1e1uo")]([SubResource("Resource_uoblk"), SubResource("Resource_uugaq"), SubResource("Resource_0y0uw"), SubResource("Resource_kf8p6"), SubResource("Resource_17yl3"), SubResource("Resource_qmjee"), SubResource("Resource_fls64"), SubResource("Resource_rdq5c"), SubResource("Resource_heu25"), SubResource("Resource_2nged"), SubResource("Resource_q01dr")])
+evolves_from = "eevee"
 temperament = ExtResource("15_6d5rn")
 genus = "Pokémon Sol"
 pokedex_entry = "Espeon es tremendamente leal al Entrenador al que considera digno de ello. Dicen que este Pokémon desarrolló sus poderes adivinatorios para evitar que su Entrenador sufra daño alguno."

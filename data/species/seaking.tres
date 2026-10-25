@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_4w7sn"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_l3f3k"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1lhah"]
 [ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="2_11wu3"]
 [ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="3_58jfp"]
@@ -18,53 +19,53 @@
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="12_55po3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_58jfp"]
 
-[sub_resource type="Resource" id="Resource_58jfp"]
+[sub_resource type="Resource" id="Resource_l3f3k"]
 script = ExtResource("1_4w7sn")
 move = ExtResource("2_11wu3")
 
-[sub_resource type="Resource" id="Resource_l3f3k"]
+[sub_resource type="Resource" id="Resource_2d0pt"]
 script = ExtResource("1_4w7sn")
 move = ExtResource("3_58jfp")
 
-[sub_resource type="Resource" id="Resource_2d0pt"]
+[sub_resource type="Resource" id="Resource_ybmcs"]
 script = ExtResource("1_4w7sn")
 move = ExtResource("4_l3f3k")
 
-[sub_resource type="Resource" id="Resource_ybmcs"]
+[sub_resource type="Resource" id="Resource_cvt6p"]
 script = ExtResource("1_4w7sn")
 move = ExtResource("5_2d0pt")
 
-[sub_resource type="Resource" id="Resource_cvt6p"]
+[sub_resource type="Resource" id="Resource_27cos"]
 script = ExtResource("1_4w7sn")
 level = 15
 move = ExtResource("6_ybmcs")
 
-[sub_resource type="Resource" id="Resource_27cos"]
+[sub_resource type="Resource" id="Resource_cbnpm"]
 script = ExtResource("1_4w7sn")
 level = 24
 move = ExtResource("7_cvt6p")
 
-[sub_resource type="Resource" id="Resource_cbnpm"]
+[sub_resource type="Resource" id="Resource_4f1bs"]
 script = ExtResource("1_4w7sn")
 level = 29
 move = ExtResource("8_27cos")
 
-[sub_resource type="Resource" id="Resource_4f1bs"]
+[sub_resource type="Resource" id="Resource_cavtv"]
 script = ExtResource("1_4w7sn")
 level = 41
 move = ExtResource("9_cbnpm")
 
-[sub_resource type="Resource" id="Resource_cavtv"]
+[sub_resource type="Resource" id="Resource_55po3"]
 script = ExtResource("1_4w7sn")
 level = 49
 move = ExtResource("10_4f1bs")
 
-[sub_resource type="Resource" id="Resource_55po3"]
+[sub_resource type="Resource" id="Resource_kpcsm"]
 script = ExtResource("1_4w7sn")
 level = 61
 move = ExtResource("11_cavtv")
 
-[sub_resource type="Resource" id="Resource_kpcsm"]
+[sub_resource type="Resource" id="Resource_1ucym"]
 script = ExtResource("1_4w7sn")
 level = 69
 move = ExtResource("12_55po3")
@@ -75,7 +76,8 @@ id = "seaking"
 display_name = "Seaking"
 dex = 119
 types = Array[ExtResource("4_hed7u")]([ExtResource("5_d15be")])
-learnset = Array[ExtResource("1_4w7sn")]([SubResource("Resource_58jfp"), SubResource("Resource_l3f3k"), SubResource("Resource_2d0pt"), SubResource("Resource_ybmcs"), SubResource("Resource_cvt6p"), SubResource("Resource_27cos"), SubResource("Resource_cbnpm"), SubResource("Resource_4f1bs"), SubResource("Resource_cavtv"), SubResource("Resource_55po3"), SubResource("Resource_kpcsm")])
+learnset = Array[ExtResource("1_4w7sn")]([SubResource("Resource_l3f3k"), SubResource("Resource_2d0pt"), SubResource("Resource_ybmcs"), SubResource("Resource_cvt6p"), SubResource("Resource_27cos"), SubResource("Resource_cbnpm"), SubResource("Resource_4f1bs"), SubResource("Resource_cavtv"), SubResource("Resource_55po3"), SubResource("Resource_kpcsm"), SubResource("Resource_1ucym")])
+evolves_from = "goldeen"
 temperament = ExtResource("15_58jfp")
 genus = "Pokémon Pez Color"
 pokedex_entry = "En otoño, se ven ejemplares de Seaking macho danzando en las riberas de los ríos para cortejar a las hembras. En esta época, la coloración de este Pokémon alcanza sus niveles máximos de belleza."

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_pbyst"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_uihsg"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2l868"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_i20pw"]
@@ -18,48 +19,48 @@
 [ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="11_j0uk0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_gddjc"]
 
-[sub_resource type="Resource" id="Resource_gddjc"]
+[sub_resource type="Resource" id="Resource_pbyst"]
 script = ExtResource("1_uihsg")
 move = ExtResource("2_i20pw")
 
-[sub_resource type="Resource" id="Resource_pbyst"]
+[sub_resource type="Resource" id="Resource_dsjt1"]
 script = ExtResource("1_uihsg")
 move = ExtResource("3_gddjc")
 
-[sub_resource type="Resource" id="Resource_dsjt1"]
+[sub_resource type="Resource" id="Resource_4br11"]
 script = ExtResource("1_uihsg")
 move = ExtResource("4_pbyst")
 
-[sub_resource type="Resource" id="Resource_4br11"]
+[sub_resource type="Resource" id="Resource_f80cl"]
 script = ExtResource("1_uihsg")
 move = ExtResource("5_dsjt1")
 
-[sub_resource type="Resource" id="Resource_f80cl"]
+[sub_resource type="Resource" id="Resource_l6sqb"]
 script = ExtResource("1_uihsg")
 level = 21
 move = ExtResource("6_4br11")
 
-[sub_resource type="Resource" id="Resource_l6sqb"]
+[sub_resource type="Resource" id="Resource_1pn72"]
 script = ExtResource("1_uihsg")
 level = 26
 move = ExtResource("7_f80cl")
 
-[sub_resource type="Resource" id="Resource_1pn72"]
+[sub_resource type="Resource" id="Resource_tq3j5"]
 script = ExtResource("1_uihsg")
 level = 33
 move = ExtResource("8_l6sqb")
 
-[sub_resource type="Resource" id="Resource_tq3j5"]
+[sub_resource type="Resource" id="Resource_j0uk0"]
 script = ExtResource("1_uihsg")
 level = 42
 move = ExtResource("9_1pn72")
 
-[sub_resource type="Resource" id="Resource_j0uk0"]
+[sub_resource type="Resource" id="Resource_foqwt"]
 script = ExtResource("1_uihsg")
 level = 51
 move = ExtResource("10_tq3j5")
 
-[sub_resource type="Resource" id="Resource_foqwt"]
+[sub_resource type="Resource" id="Resource_ahl1j"]
 script = ExtResource("1_uihsg")
 level = 60
 move = ExtResource("11_j0uk0")
@@ -70,7 +71,8 @@ id = "gardevoir"
 display_name = "Gardevoir"
 dex = 282
 types = Array[ExtResource("4_73ub1")]([ExtResource("5_q7i5h"), ExtResource("6_xyxew")])
-learnset = Array[ExtResource("1_uihsg")]([SubResource("Resource_gddjc"), SubResource("Resource_pbyst"), SubResource("Resource_dsjt1"), SubResource("Resource_4br11"), SubResource("Resource_f80cl"), SubResource("Resource_l6sqb"), SubResource("Resource_1pn72"), SubResource("Resource_tq3j5"), SubResource("Resource_j0uk0"), SubResource("Resource_foqwt")])
+learnset = Array[ExtResource("1_uihsg")]([SubResource("Resource_pbyst"), SubResource("Resource_dsjt1"), SubResource("Resource_4br11"), SubResource("Resource_f80cl"), SubResource("Resource_l6sqb"), SubResource("Resource_1pn72"), SubResource("Resource_tq3j5"), SubResource("Resource_j0uk0"), SubResource("Resource_foqwt"), SubResource("Resource_ahl1j")])
+evolves_from = "kirlia"
 temperament = ExtResource("14_gddjc")
 genus = "Pokémon Envolvente"
 pokedex_entry = "Gardevoir es capaz de leer el futuro. Si siente que su Entrenador está en peligro inminente, dicen que libera automáticamente toda su energía psicoquinética."

@@ -29,6 +29,7 @@ var story: StoryDirector
 ## Torneo de Ciudad Plateada (docs/PLAN_TORNEO.md).
 var tournament: Tournament
 var mart: Mart
+var evolutions: EvolutionDirector
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
 var arena: TrainerBattle
 
@@ -78,6 +79,9 @@ func _ready() -> void:
 	mart = Mart.new()  # el mercado: Tiendas Pokémon (data/shops)
 	mart.name = "Mart"
 	add_child(mart)
+	evolutions = EvolutionDirector.new()  # evoluciones al subir de nivel o con piedras
+	evolutions.name = "EvolutionDirector"
+	add_child(evolutions)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
 	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ZoneBounds.attach(node, z, streamer.world_data))

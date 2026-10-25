@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/kits/psyduck/kit.tres" id="0_kitv3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_a2e4d"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_i6lai"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_sihyx"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="2_gumxw"]
 [ext_resource type="Resource" path="res://data/kits/psyduck/pistola_agua_psyduck.tres" id="3_3h1xc"]
@@ -17,25 +18,30 @@
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_kvyim"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="9_t0c8y"]
 
-[sub_resource type="Resource" id="Resource_3h1xc"]
+[sub_resource type="Resource" id="Resource_i6lai"]
+script = ExtResource("1_i6lai")
+to_id = "golduck"
+level = 33
+
+[sub_resource type="Resource" id="Resource_bsjxf"]
 script = ExtResource("1_sihyx")
 move = ExtResource("3_3h1xc")
 
-[sub_resource type="Resource" id="Resource_i6lai"]
+[sub_resource type="Resource" id="Resource_5x4vy"]
 script = ExtResource("1_sihyx")
 move = ExtResource("4_i6lai")
 
-[sub_resource type="Resource" id="Resource_bsjxf"]
+[sub_resource type="Resource" id="Resource_c724n"]
 script = ExtResource("1_sihyx")
 level = 3
 move = ExtResource("5_bsjxf")
 
-[sub_resource type="Resource" id="Resource_5x4vy"]
+[sub_resource type="Resource" id="Resource_4wmmo"]
 script = ExtResource("1_sihyx")
 level = 5
 move = ExtResource("6_5x4vy")
 
-[sub_resource type="Resource" id="Resource_c724n"]
+[sub_resource type="Resource" id="Resource_jx6qk"]
 script = ExtResource("1_sihyx")
 level = 50
 move = ExtResource("6_t0c8y")
@@ -48,7 +54,8 @@ dex = 54
 types = Array[ExtResource("7_llbsy")]([ExtResource("8_kvyim")])
 moves = Array[ExtResource("1_a2e4d")]([ExtResource("2_gumxw"), ExtResource("3_sihyx"), ExtResource("4_t0c8y"), ExtResource("5_gniud")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_3h1xc"), SubResource("Resource_i6lai"), SubResource("Resource_bsjxf"), SubResource("Resource_5x4vy"), SubResource("Resource_c724n")])
+learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_bsjxf"), SubResource("Resource_5x4vy"), SubResource("Resource_c724n"), SubResource("Resource_4wmmo"), SubResource("Resource_jx6qk")])
+evolutions = Array[ExtResource("1_i6lai")]([SubResource("Resource_i6lai")])
 temperament = ExtResource("9_t0c8y")
 genus = "Pokémon Pato"
 pokedex_entry = "Psyduck tiene un extraño poder, que consiste en generar ondas cerebrales iguales a las que se generan cuando se está dormido. Este descubrimiento levantó una gran polémica entre eruditos."

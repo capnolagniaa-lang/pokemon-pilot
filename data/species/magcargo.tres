@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_fhv12"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_h1lib"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6ii1w"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_amr38"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_hexl7"]
@@ -17,43 +18,43 @@
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_vujkd"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_hq3u4"]
 
-[sub_resource type="Resource" id="Resource_hq3u4"]
+[sub_resource type="Resource" id="Resource_h1lib"]
 script = ExtResource("1_fhv12")
 move = ExtResource("2_amr38")
 
-[sub_resource type="Resource" id="Resource_h1lib"]
+[sub_resource type="Resource" id="Resource_6yv21"]
 script = ExtResource("1_fhv12")
 move = ExtResource("3_hq3u4")
 
-[sub_resource type="Resource" id="Resource_6yv21"]
+[sub_resource type="Resource" id="Resource_2vbud"]
 script = ExtResource("1_fhv12")
 move = ExtResource("4_h1lib")
 
-[sub_resource type="Resource" id="Resource_2vbud"]
+[sub_resource type="Resource" id="Resource_4014i"]
 script = ExtResource("1_fhv12")
 move = ExtResource("5_6yv21")
 
-[sub_resource type="Resource" id="Resource_4014i"]
+[sub_resource type="Resource" id="Resource_71kj4"]
 script = ExtResource("1_fhv12")
 level = 22
 move = ExtResource("6_2vbud")
 
-[sub_resource type="Resource" id="Resource_71kj4"]
+[sub_resource type="Resource" id="Resource_flydx"]
 script = ExtResource("1_fhv12")
 level = 29
 move = ExtResource("7_4014i")
 
-[sub_resource type="Resource" id="Resource_flydx"]
+[sub_resource type="Resource" id="Resource_vujkd"]
 script = ExtResource("1_fhv12")
 level = 36
 move = ExtResource("8_71kj4")
 
-[sub_resource type="Resource" id="Resource_vujkd"]
+[sub_resource type="Resource" id="Resource_l2tsi"]
 script = ExtResource("1_fhv12")
 level = 48
 move = ExtResource("9_flydx")
 
-[sub_resource type="Resource" id="Resource_l2tsi"]
+[sub_resource type="Resource" id="Resource_lv44b"]
 script = ExtResource("1_fhv12")
 level = 60
 move = ExtResource("10_vujkd")
@@ -64,7 +65,8 @@ id = "magcargo"
 display_name = "Magcargo"
 dex = 219
 types = Array[ExtResource("4_w8nfe")]([ExtResource("5_fumgd"), ExtResource("6_vqjtf")])
-learnset = Array[ExtResource("1_fhv12")]([SubResource("Resource_hq3u4"), SubResource("Resource_h1lib"), SubResource("Resource_6yv21"), SubResource("Resource_2vbud"), SubResource("Resource_4014i"), SubResource("Resource_71kj4"), SubResource("Resource_flydx"), SubResource("Resource_vujkd"), SubResource("Resource_l2tsi")])
+learnset = Array[ExtResource("1_fhv12")]([SubResource("Resource_h1lib"), SubResource("Resource_6yv21"), SubResource("Resource_2vbud"), SubResource("Resource_4014i"), SubResource("Resource_71kj4"), SubResource("Resource_flydx"), SubResource("Resource_vujkd"), SubResource("Resource_l2tsi"), SubResource("Resource_lv44b")])
+evolves_from = "slugma"
 temperament = ExtResource("13_hq3u4")
 genus = "Pokémon Lava"
 pokedex_entry = "La coraza de Magcargo es en realidad su propia piel que quedó endurecida al enfriarse. Está muy resquebrajada y es muy frágil; se desharía solo con tocarla. Este Pokémon debe sumergirse en magma para recuperar su forma."

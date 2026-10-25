@@ -1,17 +1,20 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8cy13"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_23u41"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/kit.tres" id="2_3rift"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_b7dh0"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_cog0o"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1tfou"]
 [ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="3_dk4t0"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="4_23u41"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_lhktv"]
-[ext_resource type="Resource" path="res://data/moves/latigo_cepa.tres" id="5_3rift"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/polvo_veneno.tres" id="4_wrop4"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="5_kycrs"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/latigo_cepa.tres" id="5_nkq08"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_2gckv"]
-[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="6_wrop4"]
-[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="7_nkq08"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/sintesis.tres" id="6_nlrtv"]
+[ext_resource type="Resource" path="res://data/kits/bulbasaur/somnifero.tres" id="7_mykmo"]
 [ext_resource type="Resource" path="res://data/moves/hoja_afilada.tres" id="8_nlrtv"]
 [ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="9_mykmo"]
 [ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="10_68g6e"]
@@ -19,53 +22,57 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="12_nnd81"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_dk4t0"]
 
-[sub_resource type="Resource" id="Resource_dk4t0"]
-script = ExtResource("1_8cy13")
-move = ExtResource("2_b7dh0")
-
-[sub_resource type="Resource" id="Resource_23u41"]
-script = ExtResource("1_8cy13")
-move = ExtResource("3_dk4t0")
-
-[sub_resource type="Resource" id="Resource_3rift"]
-script = ExtResource("1_8cy13")
-move = ExtResource("4_23u41")
-
 [sub_resource type="Resource" id="Resource_wrop4"]
 script = ExtResource("1_8cy13")
-move = ExtResource("5_3rift")
+move = ExtResource("4_wrop4")
 
 [sub_resource type="Resource" id="Resource_nkq08"]
 script = ExtResource("1_8cy13")
-level = 15
-move = ExtResource("6_wrop4")
+move = ExtResource("5_nkq08")
 
 [sub_resource type="Resource" id="Resource_nlrtv"]
 script = ExtResource("1_8cy13")
-level = 15
-move = ExtResource("7_nkq08")
+level = 3
+move = ExtResource("6_nlrtv")
 
 [sub_resource type="Resource" id="Resource_mykmo"]
+script = ExtResource("1_8cy13")
+level = 5
+move = ExtResource("7_mykmo")
+
+[sub_resource type="Resource" id="Resource_68g6e"]
+script = ExtResource("1_8cy13")
+move = ExtResource("2_b7dh0")
+
+[sub_resource type="Resource" id="Resource_bby47"]
+script = ExtResource("1_8cy13")
+move = ExtResource("3_dk4t0")
+
+[sub_resource type="Resource" id="Resource_nnd81"]
+script = ExtResource("1_8cy13")
+move = ExtResource("4_23u41")
+
+[sub_resource type="Resource" id="Resource_1rc2y"]
 script = ExtResource("1_8cy13")
 level = 22
 move = ExtResource("8_nlrtv")
 
-[sub_resource type="Resource" id="Resource_68g6e"]
+[sub_resource type="Resource" id="Resource_3hodj"]
 script = ExtResource("1_8cy13")
 level = 29
 move = ExtResource("9_mykmo")
 
-[sub_resource type="Resource" id="Resource_bby47"]
+[sub_resource type="Resource" id="Resource_iwj8v"]
 script = ExtResource("1_8cy13")
 level = 41
 move = ExtResource("10_68g6e")
 
-[sub_resource type="Resource" id="Resource_nnd81"]
+[sub_resource type="Resource" id="Resource_pugv1"]
 script = ExtResource("1_8cy13")
 level = 53
 move = ExtResource("11_bby47")
 
-[sub_resource type="Resource" id="Resource_1rc2y"]
+[sub_resource type="Resource" id="Resource_dhhpl"]
 script = ExtResource("1_8cy13")
 level = 65
 move = ExtResource("12_nnd81")
@@ -76,7 +83,10 @@ id = "venusaur"
 display_name = "Venusaur"
 dex = 3
 types = Array[ExtResource("4_lhktv")]([ExtResource("5_kycrs"), ExtResource("6_2gckv")])
-learnset = Array[ExtResource("1_8cy13")]([SubResource("Resource_dk4t0"), SubResource("Resource_23u41"), SubResource("Resource_3rift"), SubResource("Resource_wrop4"), SubResource("Resource_nkq08"), SubResource("Resource_nlrtv"), SubResource("Resource_mykmo"), SubResource("Resource_68g6e"), SubResource("Resource_bby47"), SubResource("Resource_nnd81"), SubResource("Resource_1rc2y")])
+kit = ExtResource("2_3rift")
+learnset = Array[ExtResource("1_8cy13")]([SubResource("Resource_wrop4"), SubResource("Resource_nkq08"), SubResource("Resource_nlrtv"), SubResource("Resource_mykmo"), SubResource("Resource_68g6e"), SubResource("Resource_bby47"), SubResource("Resource_nnd81"), SubResource("Resource_1rc2y"), SubResource("Resource_3hodj"), SubResource("Resource_iwj8v"), SubResource("Resource_pugv1"), SubResource("Resource_dhhpl")])
+kit_inherited = true
+evolves_from = "ivysaur"
 temperament = ExtResource("15_dk4t0")
 genus = "Pokémon Semilla"
 pokedex_entry = "Venusaur tiene una flor enorme en el lomo que, según parece, adquiere unos colores muy vivos si está bien nutrido y le da mucho el sol. El aroma delicado de la flor tiene un efecto relajante en el ánimo de las personas."

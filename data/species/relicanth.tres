@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3juo2"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_gslb0"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_2befe"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_78luv"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_cyhsh"]
@@ -19,55 +20,55 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_gmc2c"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_cyhsh"]
 
-[sub_resource type="Resource" id="Resource_cyhsh"]
+[sub_resource type="Resource" id="Resource_gslb0"]
 script = ExtResource("1_3juo2")
 move = ExtResource("2_2befe")
 
-[sub_resource type="Resource" id="Resource_gslb0"]
+[sub_resource type="Resource" id="Resource_or820"]
 script = ExtResource("1_3juo2")
 move = ExtResource("3_cyhsh")
 
-[sub_resource type="Resource" id="Resource_or820"]
+[sub_resource type="Resource" id="Resource_n3exf"]
 script = ExtResource("1_3juo2")
 level = 8
 move = ExtResource("4_gslb0")
 
-[sub_resource type="Resource" id="Resource_n3exf"]
+[sub_resource type="Resource" id="Resource_h2s3v"]
 script = ExtResource("1_3juo2")
 level = 15
 move = ExtResource("5_or820")
 
-[sub_resource type="Resource" id="Resource_h2s3v"]
+[sub_resource type="Resource" id="Resource_pibyk"]
 script = ExtResource("1_3juo2")
 level = 22
 move = ExtResource("6_n3exf")
 
-[sub_resource type="Resource" id="Resource_pibyk"]
+[sub_resource type="Resource" id="Resource_x7xdd"]
 script = ExtResource("1_3juo2")
 level = 29
 move = ExtResource("7_h2s3v")
 
-[sub_resource type="Resource" id="Resource_x7xdd"]
+[sub_resource type="Resource" id="Resource_brstk"]
 script = ExtResource("1_3juo2")
 level = 36
 move = ExtResource("8_pibyk")
 
-[sub_resource type="Resource" id="Resource_brstk"]
+[sub_resource type="Resource" id="Resource_7lxyt"]
 script = ExtResource("1_3juo2")
 level = 43
 move = ExtResource("9_x7xdd")
 
-[sub_resource type="Resource" id="Resource_7lxyt"]
+[sub_resource type="Resource" id="Resource_gmc2c"]
 script = ExtResource("1_3juo2")
 level = 50
 move = ExtResource("10_brstk")
 
-[sub_resource type="Resource" id="Resource_gmc2c"]
+[sub_resource type="Resource" id="Resource_igout"]
 script = ExtResource("1_3juo2")
 level = 57
 move = ExtResource("11_7lxyt")
 
-[sub_resource type="Resource" id="Resource_igout"]
+[sub_resource type="Resource" id="Resource_ab6eu"]
 script = ExtResource("1_3juo2")
 level = 64
 move = ExtResource("12_gmc2c")
@@ -78,7 +79,7 @@ id = "relicanth"
 display_name = "Relicanth"
 dex = 369
 types = Array[ExtResource("4_eicyt")]([ExtResource("5_m24kl"), ExtResource("6_q8cae")])
-learnset = Array[ExtResource("1_3juo2")]([SubResource("Resource_cyhsh"), SubResource("Resource_gslb0"), SubResource("Resource_or820"), SubResource("Resource_n3exf"), SubResource("Resource_h2s3v"), SubResource("Resource_pibyk"), SubResource("Resource_x7xdd"), SubResource("Resource_brstk"), SubResource("Resource_7lxyt"), SubResource("Resource_gmc2c"), SubResource("Resource_igout")])
+learnset = Array[ExtResource("1_3juo2")]([SubResource("Resource_gslb0"), SubResource("Resource_or820"), SubResource("Resource_n3exf"), SubResource("Resource_h2s3v"), SubResource("Resource_pibyk"), SubResource("Resource_x7xdd"), SubResource("Resource_brstk"), SubResource("Resource_7lxyt"), SubResource("Resource_gmc2c"), SubResource("Resource_igout"), SubResource("Resource_ab6eu")])
 temperament = ExtResource("15_cyhsh")
 genus = "Pokémon Longevo"
 pokedex_entry = "Relicanth pertenece a una especie de Pokémon que lleva millones de años sin cambiar de forma. Este ancestral Pokémon se alimenta de microorganismos por la boca desdentada que tiene."

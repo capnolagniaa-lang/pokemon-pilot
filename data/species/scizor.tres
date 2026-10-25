@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_4ye6k"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_knc4l"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_bix6o"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dh3sa"]
@@ -19,55 +20,55 @@
 [ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="12_55nfx"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_layuk"]
 
-[sub_resource type="Resource" id="Resource_layuk"]
+[sub_resource type="Resource" id="Resource_4ye6k"]
 script = ExtResource("1_knc4l")
 move = ExtResource("2_bix6o")
 
-[sub_resource type="Resource" id="Resource_4ye6k"]
+[sub_resource type="Resource" id="Resource_83r01"]
 script = ExtResource("1_knc4l")
 move = ExtResource("3_layuk")
 
-[sub_resource type="Resource" id="Resource_83r01"]
+[sub_resource type="Resource" id="Resource_v1is8"]
 script = ExtResource("1_knc4l")
 level = 6
 move = ExtResource("4_4ye6k")
 
-[sub_resource type="Resource" id="Resource_v1is8"]
+[sub_resource type="Resource" id="Resource_xnigt"]
 script = ExtResource("1_knc4l")
 level = 11
 move = ExtResource("5_83r01")
 
-[sub_resource type="Resource" id="Resource_xnigt"]
+[sub_resource type="Resource" id="Resource_fqaia"]
 script = ExtResource("1_knc4l")
 level = 16
 move = ExtResource("6_v1is8")
 
-[sub_resource type="Resource" id="Resource_fqaia"]
+[sub_resource type="Resource" id="Resource_3fe8g"]
 script = ExtResource("1_knc4l")
 level = 21
 move = ExtResource("7_xnigt")
 
-[sub_resource type="Resource" id="Resource_3fe8g"]
+[sub_resource type="Resource" id="Resource_qbjly"]
 script = ExtResource("1_knc4l")
 level = 26
 move = ExtResource("8_fqaia")
 
-[sub_resource type="Resource" id="Resource_qbjly"]
+[sub_resource type="Resource" id="Resource_yay7m"]
 script = ExtResource("1_knc4l")
 level = 31
 move = ExtResource("9_3fe8g")
 
-[sub_resource type="Resource" id="Resource_yay7m"]
+[sub_resource type="Resource" id="Resource_55nfx"]
 script = ExtResource("1_knc4l")
 level = 36
 move = ExtResource("10_qbjly")
 
-[sub_resource type="Resource" id="Resource_55nfx"]
+[sub_resource type="Resource" id="Resource_xg87l"]
 script = ExtResource("1_knc4l")
 level = 41
 move = ExtResource("11_yay7m")
 
-[sub_resource type="Resource" id="Resource_xg87l"]
+[sub_resource type="Resource" id="Resource_mmwks"]
 script = ExtResource("1_knc4l")
 level = 46
 move = ExtResource("12_55nfx")
@@ -78,7 +79,8 @@ id = "scizor"
 display_name = "Scizor"
 dex = 212
 types = Array[ExtResource("4_sp6je")]([ExtResource("5_ppplw"), ExtResource("6_wuon2")])
-learnset = Array[ExtResource("1_knc4l")]([SubResource("Resource_layuk"), SubResource("Resource_4ye6k"), SubResource("Resource_83r01"), SubResource("Resource_v1is8"), SubResource("Resource_xnigt"), SubResource("Resource_fqaia"), SubResource("Resource_3fe8g"), SubResource("Resource_qbjly"), SubResource("Resource_yay7m"), SubResource("Resource_55nfx"), SubResource("Resource_xg87l")])
+learnset = Array[ExtResource("1_knc4l")]([SubResource("Resource_4ye6k"), SubResource("Resource_83r01"), SubResource("Resource_v1is8"), SubResource("Resource_xnigt"), SubResource("Resource_fqaia"), SubResource("Resource_3fe8g"), SubResource("Resource_qbjly"), SubResource("Resource_yay7m"), SubResource("Resource_55nfx"), SubResource("Resource_xg87l"), SubResource("Resource_mmwks")])
+evolves_from = "scyther"
 temperament = ExtResource("15_layuk")
 genus = "Pokémon Tenaza"
 pokedex_entry = "Scizor tiene un cuerpo duro como el acero que no es fácil de alterar con ningún ataque común. Este Pokémon bate las alas para regular la temperatura corporal."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ofcdc"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_xv3gw"]
 [ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="2_mhaie"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pwc0r"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pxdc2"]
@@ -16,41 +17,41 @@
 [ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="9_ij1lb"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_y4a5n"]
 
-[sub_resource type="Resource" id="Resource_y4a5n"]
+[sub_resource type="Resource" id="Resource_xv3gw"]
 script = ExtResource("1_ofcdc")
 move = ExtResource("2_mhaie")
 
-[sub_resource type="Resource" id="Resource_xv3gw"]
+[sub_resource type="Resource" id="Resource_i0jtd"]
 script = ExtResource("1_ofcdc")
 level = 6
 move = ExtResource("3_y4a5n")
 
-[sub_resource type="Resource" id="Resource_i0jtd"]
+[sub_resource type="Resource" id="Resource_w5em7"]
 script = ExtResource("1_ofcdc")
 level = 13
 move = ExtResource("4_xv3gw")
 
-[sub_resource type="Resource" id="Resource_w5em7"]
+[sub_resource type="Resource" id="Resource_pld7g"]
 script = ExtResource("1_ofcdc")
 level = 20
 move = ExtResource("5_i0jtd")
 
-[sub_resource type="Resource" id="Resource_pld7g"]
+[sub_resource type="Resource" id="Resource_1lprn"]
 script = ExtResource("1_ofcdc")
 level = 28
 move = ExtResource("6_w5em7")
 
-[sub_resource type="Resource" id="Resource_1lprn"]
+[sub_resource type="Resource" id="Resource_ij1lb"]
 script = ExtResource("1_ofcdc")
 level = 36
 move = ExtResource("7_pld7g")
 
-[sub_resource type="Resource" id="Resource_ij1lb"]
+[sub_resource type="Resource" id="Resource_ayl5a"]
 script = ExtResource("1_ofcdc")
 level = 44
 move = ExtResource("8_1lprn")
 
-[sub_resource type="Resource" id="Resource_ayl5a"]
+[sub_resource type="Resource" id="Resource_q4uws"]
 script = ExtResource("1_ofcdc")
 level = 52
 move = ExtResource("9_ij1lb")
@@ -61,7 +62,7 @@ id = "gligar"
 display_name = "Gligar"
 dex = 207
 types = Array[ExtResource("4_huhtc")]([ExtResource("5_4s7ec"), ExtResource("6_uq5tj")])
-learnset = Array[ExtResource("1_ofcdc")]([SubResource("Resource_y4a5n"), SubResource("Resource_xv3gw"), SubResource("Resource_i0jtd"), SubResource("Resource_w5em7"), SubResource("Resource_pld7g"), SubResource("Resource_1lprn"), SubResource("Resource_ij1lb"), SubResource("Resource_ayl5a")])
+learnset = Array[ExtResource("1_ofcdc")]([SubResource("Resource_xv3gw"), SubResource("Resource_i0jtd"), SubResource("Resource_w5em7"), SubResource("Resource_pld7g"), SubResource("Resource_1lprn"), SubResource("Resource_ij1lb"), SubResource("Resource_ayl5a"), SubResource("Resource_q4uws")])
 temperament = ExtResource("12_y4a5n")
 genus = "Pokémon Escorpiala"
 pokedex_entry = "Gligar planea por el aire sin hacer ningún ruido, como si fuera patinando. Este Pokémon se agarra a la cara de su rival con las patas traseras, con forma de garra, y las pinzas de las delanteras y le inyecta veneno por el aguijón."

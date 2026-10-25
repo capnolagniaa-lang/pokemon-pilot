@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6vnnq"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_n1hrk"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6iyoy"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_nrrda"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_2jmc7"]
@@ -17,50 +18,55 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="11_eb7xv"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_mkon5"]
 
-[sub_resource type="Resource" id="Resource_mkon5"]
+[sub_resource type="Resource" id="Resource_n1hrk"]
+script = ExtResource("1_n1hrk")
+to_id = "persian"
+level = 28
+
+[sub_resource type="Resource" id="Resource_fnwfa"]
 script = ExtResource("1_6vnnq")
 move = ExtResource("2_nrrda")
 
-[sub_resource type="Resource" id="Resource_n1hrk"]
+[sub_resource type="Resource" id="Resource_ge5ke"]
 script = ExtResource("1_6vnnq")
 move = ExtResource("3_mkon5")
 
-[sub_resource type="Resource" id="Resource_fnwfa"]
+[sub_resource type="Resource" id="Resource_uhsn6"]
 script = ExtResource("1_6vnnq")
 level = 10
 move = ExtResource("4_n1hrk")
 
-[sub_resource type="Resource" id="Resource_ge5ke"]
+[sub_resource type="Resource" id="Resource_evhx0"]
 script = ExtResource("1_6vnnq")
 level = 18
 move = ExtResource("5_fnwfa")
 
-[sub_resource type="Resource" id="Resource_uhsn6"]
+[sub_resource type="Resource" id="Resource_hqc87"]
 script = ExtResource("1_6vnnq")
 level = 25
 move = ExtResource("6_ge5ke")
 
-[sub_resource type="Resource" id="Resource_evhx0"]
+[sub_resource type="Resource" id="Resource_eipgl"]
 script = ExtResource("1_6vnnq")
 level = 31
 move = ExtResource("7_uhsn6")
 
-[sub_resource type="Resource" id="Resource_hqc87"]
+[sub_resource type="Resource" id="Resource_eb7xv"]
 script = ExtResource("1_6vnnq")
 level = 36
 move = ExtResource("8_evhx0")
 
-[sub_resource type="Resource" id="Resource_eipgl"]
+[sub_resource type="Resource" id="Resource_crrxa"]
 script = ExtResource("1_6vnnq")
 level = 40
 move = ExtResource("9_hqc87")
 
-[sub_resource type="Resource" id="Resource_eb7xv"]
+[sub_resource type="Resource" id="Resource_uoyxe"]
 script = ExtResource("1_6vnnq")
 level = 43
 move = ExtResource("10_eipgl")
 
-[sub_resource type="Resource" id="Resource_crrxa"]
+[sub_resource type="Resource" id="Resource_dw6fm"]
 script = ExtResource("1_6vnnq")
 level = 45
 move = ExtResource("11_eb7xv")
@@ -71,7 +77,8 @@ id = "meowth"
 display_name = "Meowth"
 dex = 52
 types = Array[ExtResource("4_a614n")]([ExtResource("5_1u3a2")])
-learnset = Array[ExtResource("1_6vnnq")]([SubResource("Resource_mkon5"), SubResource("Resource_n1hrk"), SubResource("Resource_fnwfa"), SubResource("Resource_ge5ke"), SubResource("Resource_uhsn6"), SubResource("Resource_evhx0"), SubResource("Resource_hqc87"), SubResource("Resource_eipgl"), SubResource("Resource_eb7xv"), SubResource("Resource_crrxa")])
+learnset = Array[ExtResource("1_6vnnq")]([SubResource("Resource_fnwfa"), SubResource("Resource_ge5ke"), SubResource("Resource_uhsn6"), SubResource("Resource_evhx0"), SubResource("Resource_hqc87"), SubResource("Resource_eipgl"), SubResource("Resource_eb7xv"), SubResource("Resource_crrxa"), SubResource("Resource_uoyxe"), SubResource("Resource_dw6fm")])
+evolutions = Array[ExtResource("1_n1hrk")]([SubResource("Resource_n1hrk")])
 temperament = ExtResource("14_mkon5")
 genus = "Pokémon Gato Araña"
 pokedex_entry = "Meowth retrae las afiladas uñas de sus zarpas para caminar a hurtadillas, dando sigilosos pasos para pasar inadvertido. No se sabe muy bien por qué, pero este Pokémon adora las monedas brillantes que resplandecen con la luz."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qj7rd"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_sunhk"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_6u4ol"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vtrxf"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_o5ftt"]
@@ -18,50 +19,50 @@
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_vfu72"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ssukb"]
 
-[sub_resource type="Resource" id="Resource_ssukb"]
+[sub_resource type="Resource" id="Resource_sunhk"]
 script = ExtResource("1_qj7rd")
 move = ExtResource("2_6u4ol")
 
-[sub_resource type="Resource" id="Resource_sunhk"]
+[sub_resource type="Resource" id="Resource_rv75y"]
 script = ExtResource("1_qj7rd")
 move = ExtResource("3_ssukb")
 
-[sub_resource type="Resource" id="Resource_rv75y"]
+[sub_resource type="Resource" id="Resource_dira0"]
 script = ExtResource("1_qj7rd")
 level = 7
 move = ExtResource("4_sunhk")
 
-[sub_resource type="Resource" id="Resource_dira0"]
+[sub_resource type="Resource" id="Resource_7088e"]
 script = ExtResource("1_qj7rd")
 level = 13
 move = ExtResource("5_rv75y")
 
-[sub_resource type="Resource" id="Resource_7088e"]
+[sub_resource type="Resource" id="Resource_oomh5"]
 script = ExtResource("1_qj7rd")
 level = 19
 move = ExtResource("6_dira0")
 
-[sub_resource type="Resource" id="Resource_oomh5"]
+[sub_resource type="Resource" id="Resource_upkoy"]
 script = ExtResource("1_qj7rd")
 level = 25
 move = ExtResource("7_7088e")
 
-[sub_resource type="Resource" id="Resource_upkoy"]
+[sub_resource type="Resource" id="Resource_w6xwr"]
 script = ExtResource("1_qj7rd")
 level = 31
 move = ExtResource("8_oomh5")
 
-[sub_resource type="Resource" id="Resource_w6xwr"]
+[sub_resource type="Resource" id="Resource_vfu72"]
 script = ExtResource("1_qj7rd")
 level = 37
 move = ExtResource("9_upkoy")
 
-[sub_resource type="Resource" id="Resource_vfu72"]
+[sub_resource type="Resource" id="Resource_tl53k"]
 script = ExtResource("1_qj7rd")
 level = 43
 move = ExtResource("10_w6xwr")
 
-[sub_resource type="Resource" id="Resource_tl53k"]
+[sub_resource type="Resource" id="Resource_0qkfk"]
 script = ExtResource("1_qj7rd")
 level = 49
 move = ExtResource("11_vfu72")
@@ -72,7 +73,7 @@ id = "solrock"
 display_name = "Solrock"
 dex = 338
 types = Array[ExtResource("4_0r7va")]([ExtResource("5_u77j8"), ExtResource("6_p2ytg")])
-learnset = Array[ExtResource("1_qj7rd")]([SubResource("Resource_ssukb"), SubResource("Resource_sunhk"), SubResource("Resource_rv75y"), SubResource("Resource_dira0"), SubResource("Resource_7088e"), SubResource("Resource_oomh5"), SubResource("Resource_upkoy"), SubResource("Resource_w6xwr"), SubResource("Resource_vfu72"), SubResource("Resource_tl53k")])
+learnset = Array[ExtResource("1_qj7rd")]([SubResource("Resource_sunhk"), SubResource("Resource_rv75y"), SubResource("Resource_dira0"), SubResource("Resource_7088e"), SubResource("Resource_oomh5"), SubResource("Resource_upkoy"), SubResource("Resource_w6xwr"), SubResource("Resource_vfu72"), SubResource("Resource_tl53k"), SubResource("Resource_0qkfk")])
 temperament = ExtResource("14_ssukb")
 genus = "Pokémon Meteorito"
 pokedex_entry = "Solrock pertenece a una nueva especie de Pokémon a la que se le atribuye una procedencia extraterrestre. Este Pokémon permanece flotando en el aire y se mueve muy despacio. Al luchar, desprende una luz viva e intensa."

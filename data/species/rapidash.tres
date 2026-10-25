@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_du3gi"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_n1t6r"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_5ueat"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_gvpj6"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_4qn7g"]
@@ -18,53 +19,53 @@
 [ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="12_4sv82"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_4qn7g"]
 
-[sub_resource type="Resource" id="Resource_4qn7g"]
+[sub_resource type="Resource" id="Resource_n1t6r"]
 script = ExtResource("1_du3gi")
 move = ExtResource("2_5ueat")
 
-[sub_resource type="Resource" id="Resource_n1t6r"]
+[sub_resource type="Resource" id="Resource_hv4de"]
 script = ExtResource("1_du3gi")
 move = ExtResource("3_4qn7g")
 
-[sub_resource type="Resource" id="Resource_hv4de"]
+[sub_resource type="Resource" id="Resource_7vllj"]
 script = ExtResource("1_du3gi")
 move = ExtResource("4_n1t6r")
 
-[sub_resource type="Resource" id="Resource_7vllj"]
+[sub_resource type="Resource" id="Resource_c5m3f"]
 script = ExtResource("1_du3gi")
 move = ExtResource("5_hv4de")
 
-[sub_resource type="Resource" id="Resource_c5m3f"]
+[sub_resource type="Resource" id="Resource_j52dr"]
 script = ExtResource("1_du3gi")
 level = 19
 move = ExtResource("6_7vllj")
 
-[sub_resource type="Resource" id="Resource_j52dr"]
+[sub_resource type="Resource" id="Resource_ilnki"]
 script = ExtResource("1_du3gi")
 level = 25
 move = ExtResource("7_c5m3f")
 
-[sub_resource type="Resource" id="Resource_ilnki"]
+[sub_resource type="Resource" id="Resource_dty6v"]
 script = ExtResource("1_du3gi")
 level = 31
 move = ExtResource("8_j52dr")
 
-[sub_resource type="Resource" id="Resource_dty6v"]
+[sub_resource type="Resource" id="Resource_7ssnv"]
 script = ExtResource("1_du3gi")
 level = 38
 move = ExtResource("9_ilnki")
 
-[sub_resource type="Resource" id="Resource_7ssnv"]
+[sub_resource type="Resource" id="Resource_4sv82"]
 script = ExtResource("1_du3gi")
 level = 40
 move = ExtResource("10_dty6v")
 
-[sub_resource type="Resource" id="Resource_4sv82"]
+[sub_resource type="Resource" id="Resource_0ii2e"]
 script = ExtResource("1_du3gi")
 level = 50
 move = ExtResource("11_7ssnv")
 
-[sub_resource type="Resource" id="Resource_0ii2e"]
+[sub_resource type="Resource" id="Resource_nmwy0"]
 script = ExtResource("1_du3gi")
 level = 63
 move = ExtResource("12_4sv82")
@@ -75,7 +76,8 @@ id = "rapidash"
 display_name = "Rapidash"
 dex = 78
 types = Array[ExtResource("4_htbbe")]([ExtResource("5_ukm10")])
-learnset = Array[ExtResource("1_du3gi")]([SubResource("Resource_4qn7g"), SubResource("Resource_n1t6r"), SubResource("Resource_hv4de"), SubResource("Resource_7vllj"), SubResource("Resource_c5m3f"), SubResource("Resource_j52dr"), SubResource("Resource_ilnki"), SubResource("Resource_dty6v"), SubResource("Resource_7ssnv"), SubResource("Resource_4sv82"), SubResource("Resource_0ii2e")])
+learnset = Array[ExtResource("1_du3gi")]([SubResource("Resource_n1t6r"), SubResource("Resource_hv4de"), SubResource("Resource_7vllj"), SubResource("Resource_c5m3f"), SubResource("Resource_j52dr"), SubResource("Resource_ilnki"), SubResource("Resource_dty6v"), SubResource("Resource_7ssnv"), SubResource("Resource_4sv82"), SubResource("Resource_0ii2e"), SubResource("Resource_nmwy0")])
+evolves_from = "ponyta"
 temperament = ExtResource("15_4qn7g")
 genus = "Pokémon Caballo Fuego"
 pokedex_entry = "A Rapidash se le suele ver trotando sin rumbo fijo por los campos y llanos. Cuando tiene que ir a algún sitio en concreto, se le aviva el fuego de las melenas y emprende el galope llameante llegando a los 240 km/h."

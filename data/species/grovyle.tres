@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d1ifr"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_t888k"]
 [ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_etwc0"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ni4da"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_aya4j"]
@@ -19,58 +20,63 @@
 [ext_resource type="Resource" path="res://data/moves/falso_tortazo.tres" id="13_eolvc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_tkva5"]
 
-[sub_resource type="Resource" id="Resource_tkva5"]
-script = ExtResource("1_d1ifr")
-move = ExtResource("2_etwc0")
-
 [sub_resource type="Resource" id="Resource_t888k"]
-script = ExtResource("1_d1ifr")
-move = ExtResource("3_tkva5")
+script = ExtResource("1_t888k")
+to_id = "sceptile"
+level = 36
 
 [sub_resource type="Resource" id="Resource_qncac"]
 script = ExtResource("1_d1ifr")
-move = ExtResource("4_t888k")
+move = ExtResource("2_etwc0")
 
 [sub_resource type="Resource" id="Resource_h6hoh"]
 script = ExtResource("1_d1ifr")
-move = ExtResource("5_qncac")
+move = ExtResource("3_tkva5")
 
 [sub_resource type="Resource" id="Resource_k7qx6"]
+script = ExtResource("1_d1ifr")
+move = ExtResource("4_t888k")
+
+[sub_resource type="Resource" id="Resource_7qtdq"]
+script = ExtResource("1_d1ifr")
+move = ExtResource("5_qncac")
+
+[sub_resource type="Resource" id="Resource_fhehr"]
 script = ExtResource("1_d1ifr")
 level = 16
 move = ExtResource("6_h6hoh")
 
-[sub_resource type="Resource" id="Resource_7qtdq"]
+[sub_resource type="Resource" id="Resource_ely4y"]
 script = ExtResource("1_d1ifr")
 level = 17
 move = ExtResource("7_k7qx6")
 
-[sub_resource type="Resource" id="Resource_fhehr"]
+[sub_resource type="Resource" id="Resource_6k1o6"]
 script = ExtResource("1_d1ifr")
 level = 23
 move = ExtResource("8_7qtdq")
 
-[sub_resource type="Resource" id="Resource_ely4y"]
+[sub_resource type="Resource" id="Resource_87epl"]
 script = ExtResource("1_d1ifr")
 level = 29
 move = ExtResource("9_fhehr")
 
-[sub_resource type="Resource" id="Resource_6k1o6"]
+[sub_resource type="Resource" id="Resource_eolvc"]
 script = ExtResource("1_d1ifr")
 level = 35
 move = ExtResource("10_ely4y")
 
-[sub_resource type="Resource" id="Resource_87epl"]
+[sub_resource type="Resource" id="Resource_vyxsx"]
 script = ExtResource("1_d1ifr")
 level = 41
 move = ExtResource("11_6k1o6")
 
-[sub_resource type="Resource" id="Resource_eolvc"]
+[sub_resource type="Resource" id="Resource_s75v6"]
 script = ExtResource("1_d1ifr")
 level = 47
 move = ExtResource("12_87epl")
 
-[sub_resource type="Resource" id="Resource_vyxsx"]
+[sub_resource type="Resource" id="Resource_nnqri"]
 script = ExtResource("1_d1ifr")
 level = 53
 move = ExtResource("13_eolvc")
@@ -81,7 +87,9 @@ id = "grovyle"
 display_name = "Grovyle"
 dex = 253
 types = Array[ExtResource("4_iqpvm")]([ExtResource("5_ywkv1")])
-learnset = Array[ExtResource("1_d1ifr")]([SubResource("Resource_tkva5"), SubResource("Resource_t888k"), SubResource("Resource_qncac"), SubResource("Resource_h6hoh"), SubResource("Resource_k7qx6"), SubResource("Resource_7qtdq"), SubResource("Resource_fhehr"), SubResource("Resource_ely4y"), SubResource("Resource_6k1o6"), SubResource("Resource_87epl"), SubResource("Resource_eolvc"), SubResource("Resource_vyxsx")])
+learnset = Array[ExtResource("1_d1ifr")]([SubResource("Resource_qncac"), SubResource("Resource_h6hoh"), SubResource("Resource_k7qx6"), SubResource("Resource_7qtdq"), SubResource("Resource_fhehr"), SubResource("Resource_ely4y"), SubResource("Resource_6k1o6"), SubResource("Resource_87epl"), SubResource("Resource_eolvc"), SubResource("Resource_vyxsx"), SubResource("Resource_s75v6"), SubResource("Resource_nnqri")])
+evolutions = Array[ExtResource("1_t888k")]([SubResource("Resource_t888k")])
+evolves_from = "treecko"
 temperament = ExtResource("16_tkva5")
 genus = "Pokémon Geco Bosque"
 pokedex_entry = "Las hojas que Grovyle tiene por el cuerpo le resultan muy útiles para camuflarse en el bosque y esconderse de los enemigos. A este Pokémon no hay quien lo supere subiendo a los árboles del bosque."

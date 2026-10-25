@@ -1,34 +1,48 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hpxdu"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_yug3n"]
 [ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="2_71ou5"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/kit.tres" id="2_gj4ul"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_o8nds"]
-[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="3_8ubrf"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_327hx"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/burbuja_kit.tres" id="4_ebfh1"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_l5c5b"]
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="4_yug3n"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/pistola_agua_poliwag.tres" id="5_baso7"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_d75sk"]
-[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_gj4ul"]
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="6_ptj80"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/danza_lluvia_kit.tres" id="6_q2gs6"]
+[ext_resource type="Resource" path="res://data/kits/poliwag/hipnosis_kit.tres" id="7_g0iy2"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="9_8ubrf"]
 
-[sub_resource type="Resource" id="Resource_8ubrf"]
+[sub_resource type="Resource" id="Resource_ebfh1"]
+script = ExtResource("1_hpxdu")
+move = ExtResource("4_ebfh1")
+
+[sub_resource type="Resource" id="Resource_baso7"]
+script = ExtResource("1_hpxdu")
+move = ExtResource("5_baso7")
+
+[sub_resource type="Resource" id="Resource_q2gs6"]
+script = ExtResource("1_hpxdu")
+level = 3
+move = ExtResource("6_q2gs6")
+
+[sub_resource type="Resource" id="Resource_g0iy2"]
+script = ExtResource("1_hpxdu")
+level = 5
+move = ExtResource("7_g0iy2")
+
+[sub_resource type="Resource" id="Resource_dl6gi"]
 script = ExtResource("1_hpxdu")
 move = ExtResource("2_71ou5")
 
-[sub_resource type="Resource" id="Resource_yug3n"]
-script = ExtResource("1_hpxdu")
-move = ExtResource("3_8ubrf")
-
-[sub_resource type="Resource" id="Resource_gj4ul"]
+[sub_resource type="Resource" id="Resource_vo3sf"]
 script = ExtResource("1_hpxdu")
 move = ExtResource("4_yug3n")
 
-[sub_resource type="Resource" id="Resource_ptj80"]
-script = ExtResource("1_hpxdu")
-move = ExtResource("5_gj4ul")
-
-[sub_resource type="Resource" id="Resource_ebfh1"]
+[sub_resource type="Resource" id="Resource_ogji5"]
 script = ExtResource("1_hpxdu")
 level = 51
 move = ExtResource("6_ptj80")
@@ -39,7 +53,10 @@ id = "politoed"
 display_name = "Politoed"
 dex = 186
 types = Array[ExtResource("4_l5c5b")]([ExtResource("5_d75sk")])
-learnset = Array[ExtResource("1_hpxdu")]([SubResource("Resource_8ubrf"), SubResource("Resource_yug3n"), SubResource("Resource_gj4ul"), SubResource("Resource_ptj80"), SubResource("Resource_ebfh1")])
+kit = ExtResource("2_gj4ul")
+learnset = Array[ExtResource("1_hpxdu")]([SubResource("Resource_ebfh1"), SubResource("Resource_baso7"), SubResource("Resource_q2gs6"), SubResource("Resource_g0iy2"), SubResource("Resource_dl6gi"), SubResource("Resource_vo3sf"), SubResource("Resource_ogji5")])
+kit_inherited = true
+evolves_from = "poliwhirl"
 temperament = ExtResource("9_8ubrf")
 genus = "Pokémon Rana"
 pokedex_entry = "El mechón rizado de Politoed confirma su condición de rey. Dicen que cuanto más le crece y más se le riza, mayor es el respeto que recibe de sus súbditos."

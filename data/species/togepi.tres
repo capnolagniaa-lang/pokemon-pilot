@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_pl0th"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_wxo28"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_heejh"]
 [ext_resource type="Resource" path="res://data/moves/encanto.tres" id="2_wjcsa"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_5j8pa"]
@@ -19,60 +20,65 @@
 [ext_resource type="Resource" path="res://data/moves/relevo.tres" id="13_rvy2h"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="16_8e7gu"]
 
-[sub_resource type="Resource" id="Resource_8e7gu"]
+[sub_resource type="Resource" id="Resource_wxo28"]
+script = ExtResource("1_wxo28")
+to_id = "togetic"
+method = "amistad"
+
+[sub_resource type="Resource" id="Resource_lufaj"]
 script = ExtResource("1_pl0th")
 move = ExtResource("2_wjcsa")
 
-[sub_resource type="Resource" id="Resource_wxo28"]
+[sub_resource type="Resource" id="Resource_tw153"]
 script = ExtResource("1_pl0th")
 move = ExtResource("3_8e7gu")
 
-[sub_resource type="Resource" id="Resource_lufaj"]
+[sub_resource type="Resource" id="Resource_dkqu4"]
 script = ExtResource("1_pl0th")
 level = 4
 move = ExtResource("4_wxo28")
 
-[sub_resource type="Resource" id="Resource_tw153"]
+[sub_resource type="Resource" id="Resource_yjjsx"]
 script = ExtResource("1_pl0th")
 level = 9
 move = ExtResource("5_lufaj")
 
-[sub_resource type="Resource" id="Resource_dkqu4"]
+[sub_resource type="Resource" id="Resource_fsjka"]
 script = ExtResource("1_pl0th")
 level = 13
 move = ExtResource("6_tw153")
 
-[sub_resource type="Resource" id="Resource_yjjsx"]
+[sub_resource type="Resource" id="Resource_3kr5a"]
 script = ExtResource("1_pl0th")
 level = 17
 move = ExtResource("7_dkqu4")
 
-[sub_resource type="Resource" id="Resource_fsjka"]
+[sub_resource type="Resource" id="Resource_gto6u"]
 script = ExtResource("1_pl0th")
 level = 21
 move = ExtResource("8_yjjsx")
 
-[sub_resource type="Resource" id="Resource_3kr5a"]
+[sub_resource type="Resource" id="Resource_6pwxw"]
 script = ExtResource("1_pl0th")
 level = 25
 move = ExtResource("9_fsjka")
 
-[sub_resource type="Resource" id="Resource_gto6u"]
+[sub_resource type="Resource" id="Resource_rvy2h"]
 script = ExtResource("1_pl0th")
 level = 29
 move = ExtResource("10_3kr5a")
 
-[sub_resource type="Resource" id="Resource_6pwxw"]
+[sub_resource type="Resource" id="Resource_iqjys"]
 script = ExtResource("1_pl0th")
 level = 33
 move = ExtResource("11_gto6u")
 
-[sub_resource type="Resource" id="Resource_rvy2h"]
+[sub_resource type="Resource" id="Resource_hu8rj"]
 script = ExtResource("1_pl0th")
 level = 37
 move = ExtResource("12_6pwxw")
 
-[sub_resource type="Resource" id="Resource_iqjys"]
+[sub_resource type="Resource" id="Resource_1furp"]
 script = ExtResource("1_pl0th")
 level = 41
 move = ExtResource("13_rvy2h")
@@ -83,7 +89,8 @@ id = "togepi"
 display_name = "Togepi"
 dex = 175
 types = Array[ExtResource("4_vvv4i")]([ExtResource("5_3s1pa")])
-learnset = Array[ExtResource("1_pl0th")]([SubResource("Resource_8e7gu"), SubResource("Resource_wxo28"), SubResource("Resource_lufaj"), SubResource("Resource_tw153"), SubResource("Resource_dkqu4"), SubResource("Resource_yjjsx"), SubResource("Resource_fsjka"), SubResource("Resource_3kr5a"), SubResource("Resource_gto6u"), SubResource("Resource_6pwxw"), SubResource("Resource_rvy2h"), SubResource("Resource_iqjys")])
+learnset = Array[ExtResource("1_pl0th")]([SubResource("Resource_lufaj"), SubResource("Resource_tw153"), SubResource("Resource_dkqu4"), SubResource("Resource_yjjsx"), SubResource("Resource_fsjka"), SubResource("Resource_3kr5a"), SubResource("Resource_gto6u"), SubResource("Resource_6pwxw"), SubResource("Resource_rvy2h"), SubResource("Resource_iqjys"), SubResource("Resource_hu8rj"), SubResource("Resource_1furp")])
+evolutions = Array[ExtResource("1_wxo28")]([SubResource("Resource_wxo28")])
 temperament = ExtResource("16_8e7gu")
 genus = "Pokémon Bolaclavos"
 pokedex_entry = "Togepi usa los sentimientos positivos de compasión y alegría que desprenden las personas y los Pokémon. Este Pokémon almacena sentimientos de felicidad en su interior y después los comparte con otros."

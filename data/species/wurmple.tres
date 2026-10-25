@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_bxsr7"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_gpmq0"]
 [ext_resource type="Resource" path="res://data/moves/disparo_demora.tres" id="2_hm6eb"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yayh0"]
@@ -10,15 +11,25 @@
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_mfe5x"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="7_mfe5x"]
 
-[sub_resource type="Resource" id="Resource_mfe5x"]
+[sub_resource type="Resource" id="Resource_bxsr7"]
+script = ExtResource("1_bxsr7")
+to_id = "silcoon"
+level = 7
+
+[sub_resource type="Resource" id="Resource_rdcfx"]
+script = ExtResource("1_bxsr7")
+to_id = "cascoon"
+level = 7
+
+[sub_resource type="Resource" id="Resource_lmhs3"]
 script = ExtResource("1_gpmq0")
 move = ExtResource("2_hm6eb")
 
-[sub_resource type="Resource" id="Resource_bxsr7"]
+[sub_resource type="Resource" id="Resource_sa8dm"]
 script = ExtResource("1_gpmq0")
 move = ExtResource("3_mfe5x")
 
-[sub_resource type="Resource" id="Resource_lmhs3"]
+[sub_resource type="Resource" id="Resource_rvtx2"]
 script = ExtResource("1_gpmq0")
 level = 5
 move = ExtResource("4_bxsr7")
@@ -29,7 +40,8 @@ id = "wurmple"
 display_name = "Wurmple"
 dex = 265
 types = Array[ExtResource("4_hm6eb")]([ExtResource("5_mfe5x")])
-learnset = Array[ExtResource("1_gpmq0")]([SubResource("Resource_mfe5x"), SubResource("Resource_bxsr7"), SubResource("Resource_lmhs3")])
+learnset = Array[ExtResource("1_gpmq0")]([SubResource("Resource_lmhs3"), SubResource("Resource_sa8dm"), SubResource("Resource_rvtx2")])
+evolutions = Array[ExtResource("1_bxsr7")]([SubResource("Resource_bxsr7"), SubResource("Resource_rdcfx")])
 temperament = ExtResource("7_mfe5x")
 genus = "Pokémon Gusano"
 pokedex_entry = "Wurmple usa las púas del lomo para raspar los troncos de los árboles, quitarles la corteza y beber la savia que emanan. Este Pokémon tiene unas ventosas rematándole los pies, con las que se adhiere al cristal sin resbalarse."

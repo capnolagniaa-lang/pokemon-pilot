@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_eijhw"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_wg7f0"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dkyoa"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_ip2e7"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gm57k"]
@@ -19,57 +20,57 @@
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="13_roq6h"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_ncetx"]
 
-[sub_resource type="Resource" id="Resource_ncetx"]
+[sub_resource type="Resource" id="Resource_wg7f0"]
 script = ExtResource("1_eijhw")
 move = ExtResource("2_ip2e7")
 
-[sub_resource type="Resource" id="Resource_wg7f0"]
+[sub_resource type="Resource" id="Resource_cp5bf"]
 script = ExtResource("1_eijhw")
 move = ExtResource("3_ncetx")
 
-[sub_resource type="Resource" id="Resource_cp5bf"]
+[sub_resource type="Resource" id="Resource_yc2jw"]
 script = ExtResource("1_eijhw")
 move = ExtResource("4_wg7f0")
 
-[sub_resource type="Resource" id="Resource_yc2jw"]
+[sub_resource type="Resource" id="Resource_ueie5"]
 script = ExtResource("1_eijhw")
 move = ExtResource("5_cp5bf")
 
-[sub_resource type="Resource" id="Resource_ueie5"]
+[sub_resource type="Resource" id="Resource_mgqb3"]
 script = ExtResource("1_eijhw")
 move = ExtResource("6_yc2jw")
 
-[sub_resource type="Resource" id="Resource_mgqb3"]
+[sub_resource type="Resource" id="Resource_2oh3e"]
 script = ExtResource("1_eijhw")
 level = 17
 move = ExtResource("7_ueie5")
 
-[sub_resource type="Resource" id="Resource_2oh3e"]
+[sub_resource type="Resource" id="Resource_k6i8l"]
 script = ExtResource("1_eijhw")
 level = 21
 move = ExtResource("8_mgqb3")
 
-[sub_resource type="Resource" id="Resource_k6i8l"]
+[sub_resource type="Resource" id="Resource_o6u0w"]
 script = ExtResource("1_eijhw")
 level = 29
 move = ExtResource("9_2oh3e")
 
-[sub_resource type="Resource" id="Resource_o6u0w"]
+[sub_resource type="Resource" id="Resource_tilpd"]
 script = ExtResource("1_eijhw")
 level = 35
 move = ExtResource("10_k6i8l")
 
-[sub_resource type="Resource" id="Resource_tilpd"]
+[sub_resource type="Resource" id="Resource_roq6h"]
 script = ExtResource("1_eijhw")
 level = 43
 move = ExtResource("11_o6u0w")
 
-[sub_resource type="Resource" id="Resource_roq6h"]
+[sub_resource type="Resource" id="Resource_omesc"]
 script = ExtResource("1_eijhw")
 level = 49
 move = ExtResource("12_tilpd")
 
-[sub_resource type="Resource" id="Resource_omesc"]
+[sub_resource type="Resource" id="Resource_l8eou"]
 script = ExtResource("1_eijhw")
 level = 57
 move = ExtResource("13_roq6h")
@@ -80,7 +81,8 @@ id = "hypno"
 display_name = "Hypno"
 dex = 97
 types = Array[ExtResource("4_t8yxt")]([ExtResource("5_0e3hx")])
-learnset = Array[ExtResource("1_eijhw")]([SubResource("Resource_ncetx"), SubResource("Resource_wg7f0"), SubResource("Resource_cp5bf"), SubResource("Resource_yc2jw"), SubResource("Resource_ueie5"), SubResource("Resource_mgqb3"), SubResource("Resource_2oh3e"), SubResource("Resource_k6i8l"), SubResource("Resource_o6u0w"), SubResource("Resource_tilpd"), SubResource("Resource_roq6h"), SubResource("Resource_omesc")])
+learnset = Array[ExtResource("1_eijhw")]([SubResource("Resource_wg7f0"), SubResource("Resource_cp5bf"), SubResource("Resource_yc2jw"), SubResource("Resource_ueie5"), SubResource("Resource_mgqb3"), SubResource("Resource_2oh3e"), SubResource("Resource_k6i8l"), SubResource("Resource_o6u0w"), SubResource("Resource_tilpd"), SubResource("Resource_roq6h"), SubResource("Resource_omesc"), SubResource("Resource_l8eou")])
+evolves_from = "drowzee"
 temperament = ExtResource("16_ncetx")
 genus = "Pokémon Hipnosis"
 pokedex_entry = "Hypno lleva un péndulo en la mano. El balanceo y el brillo que tiene sumen al rival en un estado de hipnosis profundo. Mientras busca a su presa, saca brillo al péndulo."

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_1pgjb"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_idmf5"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3odjm"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_trn6n"]
@@ -19,60 +20,65 @@
 [ext_resource type="Resource" path="res://data/moves/tambor.tres" id="13_yyn4h"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="16_2n562"]
 
-[sub_resource type="Resource" id="Resource_2n562"]
+[sub_resource type="Resource" id="Resource_1pgjb"]
+script = ExtResource("1_1pgjb")
+to_id = "linoone"
+level = 20
+
+[sub_resource type="Resource" id="Resource_weob0"]
 script = ExtResource("1_idmf5")
 move = ExtResource("2_trn6n")
 
-[sub_resource type="Resource" id="Resource_1pgjb"]
+[sub_resource type="Resource" id="Resource_4f4kg"]
 script = ExtResource("1_idmf5")
 move = ExtResource("3_2n562")
 
-[sub_resource type="Resource" id="Resource_weob0"]
+[sub_resource type="Resource" id="Resource_fhpmh"]
 script = ExtResource("1_idmf5")
 level = 5
 move = ExtResource("4_1pgjb")
 
-[sub_resource type="Resource" id="Resource_4f4kg"]
+[sub_resource type="Resource" id="Resource_huq3y"]
 script = ExtResource("1_idmf5")
 level = 9
 move = ExtResource("5_weob0")
 
-[sub_resource type="Resource" id="Resource_fhpmh"]
+[sub_resource type="Resource" id="Resource_qqvqn"]
 script = ExtResource("1_idmf5")
 level = 13
 move = ExtResource("6_4f4kg")
 
-[sub_resource type="Resource" id="Resource_huq3y"]
+[sub_resource type="Resource" id="Resource_038hb"]
 script = ExtResource("1_idmf5")
 level = 17
 move = ExtResource("7_fhpmh")
 
-[sub_resource type="Resource" id="Resource_qqvqn"]
+[sub_resource type="Resource" id="Resource_sl8hy"]
 script = ExtResource("1_idmf5")
 level = 21
 move = ExtResource("8_huq3y")
 
-[sub_resource type="Resource" id="Resource_038hb"]
+[sub_resource type="Resource" id="Resource_eeufq"]
 script = ExtResource("1_idmf5")
 level = 25
 move = ExtResource("9_qqvqn")
 
-[sub_resource type="Resource" id="Resource_sl8hy"]
+[sub_resource type="Resource" id="Resource_yyn4h"]
 script = ExtResource("1_idmf5")
 level = 29
 move = ExtResource("10_038hb")
 
-[sub_resource type="Resource" id="Resource_eeufq"]
+[sub_resource type="Resource" id="Resource_lrlre"]
 script = ExtResource("1_idmf5")
 level = 33
 move = ExtResource("11_sl8hy")
 
-[sub_resource type="Resource" id="Resource_yyn4h"]
+[sub_resource type="Resource" id="Resource_48psi"]
 script = ExtResource("1_idmf5")
 level = 37
 move = ExtResource("12_eeufq")
 
-[sub_resource type="Resource" id="Resource_lrlre"]
+[sub_resource type="Resource" id="Resource_fngux"]
 script = ExtResource("1_idmf5")
 level = 41
 move = ExtResource("13_yyn4h")
@@ -83,7 +89,8 @@ id = "zigzagoon"
 display_name = "Zigzagoon"
 dex = 263
 types = Array[ExtResource("4_i7ulk")]([ExtResource("5_gxoux")])
-learnset = Array[ExtResource("1_idmf5")]([SubResource("Resource_2n562"), SubResource("Resource_1pgjb"), SubResource("Resource_weob0"), SubResource("Resource_4f4kg"), SubResource("Resource_fhpmh"), SubResource("Resource_huq3y"), SubResource("Resource_qqvqn"), SubResource("Resource_038hb"), SubResource("Resource_sl8hy"), SubResource("Resource_eeufq"), SubResource("Resource_yyn4h"), SubResource("Resource_lrlre")])
+learnset = Array[ExtResource("1_idmf5")]([SubResource("Resource_weob0"), SubResource("Resource_4f4kg"), SubResource("Resource_fhpmh"), SubResource("Resource_huq3y"), SubResource("Resource_qqvqn"), SubResource("Resource_038hb"), SubResource("Resource_sl8hy"), SubResource("Resource_eeufq"), SubResource("Resource_yyn4h"), SubResource("Resource_lrlre"), SubResource("Resource_48psi"), SubResource("Resource_fngux")])
+evolutions = Array[ExtResource("1_1pgjb")]([SubResource("Resource_1pgjb")])
 temperament = ExtResource("16_2n562")
 genus = "Pokémon Mapachito"
 pokedex_entry = "Zigzagoon está todo el día dando vueltas de aquí para allá. Es un Pokémon muy inquieto. Se interesa por todo lo que se encuentra en su camino."

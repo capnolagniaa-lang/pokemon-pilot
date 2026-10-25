@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_dup5u"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_qtlw7"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_80ehu"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uoqv6"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kqt8u"]
@@ -20,58 +21,63 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_vfldc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_ubodn"]
 
-[sub_resource type="Resource" id="Resource_ubodn"]
-script = ExtResource("1_dup5u")
-move = ExtResource("2_80ehu")
-
 [sub_resource type="Resource" id="Resource_qtlw7"]
-script = ExtResource("1_dup5u")
-move = ExtResource("3_ubodn")
+script = ExtResource("1_qtlw7")
+to_id = "aggron"
+level = 42
 
 [sub_resource type="Resource" id="Resource_megum"]
 script = ExtResource("1_dup5u")
-move = ExtResource("4_qtlw7")
+move = ExtResource("2_80ehu")
 
 [sub_resource type="Resource" id="Resource_5cmen"]
 script = ExtResource("1_dup5u")
-move = ExtResource("5_megum")
+move = ExtResource("3_ubodn")
 
 [sub_resource type="Resource" id="Resource_s3tlp"]
+script = ExtResource("1_dup5u")
+move = ExtResource("4_qtlw7")
+
+[sub_resource type="Resource" id="Resource_oj84s"]
+script = ExtResource("1_dup5u")
+move = ExtResource("5_megum")
+
+[sub_resource type="Resource" id="Resource_4o83d"]
 script = ExtResource("1_dup5u")
 level = 13
 move = ExtResource("6_5cmen")
 
-[sub_resource type="Resource" id="Resource_oj84s"]
+[sub_resource type="Resource" id="Resource_gauto"]
 script = ExtResource("1_dup5u")
 level = 17
 move = ExtResource("7_s3tlp")
 
-[sub_resource type="Resource" id="Resource_4o83d"]
+[sub_resource type="Resource" id="Resource_nueo4"]
 script = ExtResource("1_dup5u")
 level = 21
 move = ExtResource("8_oj84s")
 
-[sub_resource type="Resource" id="Resource_gauto"]
+[sub_resource type="Resource" id="Resource_28301"]
 script = ExtResource("1_dup5u")
 level = 25
 move = ExtResource("9_4o83d")
 
-[sub_resource type="Resource" id="Resource_nueo4"]
+[sub_resource type="Resource" id="Resource_vfldc"]
 script = ExtResource("1_dup5u")
 level = 29
 move = ExtResource("10_gauto")
 
-[sub_resource type="Resource" id="Resource_28301"]
+[sub_resource type="Resource" id="Resource_550wc"]
 script = ExtResource("1_dup5u")
 level = 37
 move = ExtResource("11_nueo4")
 
-[sub_resource type="Resource" id="Resource_vfldc"]
+[sub_resource type="Resource" id="Resource_xnjlw"]
 script = ExtResource("1_dup5u")
 level = 45
 move = ExtResource("12_28301")
 
-[sub_resource type="Resource" id="Resource_550wc"]
+[sub_resource type="Resource" id="Resource_72lm8"]
 script = ExtResource("1_dup5u")
 level = 53
 move = ExtResource("13_vfldc")
@@ -82,7 +88,9 @@ id = "lairon"
 display_name = "Lairon"
 dex = 305
 types = Array[ExtResource("4_qafc3")]([ExtResource("5_qiio0"), ExtResource("6_aa63i")])
-learnset = Array[ExtResource("1_dup5u")]([SubResource("Resource_ubodn"), SubResource("Resource_qtlw7"), SubResource("Resource_megum"), SubResource("Resource_5cmen"), SubResource("Resource_s3tlp"), SubResource("Resource_oj84s"), SubResource("Resource_4o83d"), SubResource("Resource_gauto"), SubResource("Resource_nueo4"), SubResource("Resource_28301"), SubResource("Resource_vfldc"), SubResource("Resource_550wc")])
+learnset = Array[ExtResource("1_dup5u")]([SubResource("Resource_megum"), SubResource("Resource_5cmen"), SubResource("Resource_s3tlp"), SubResource("Resource_oj84s"), SubResource("Resource_4o83d"), SubResource("Resource_gauto"), SubResource("Resource_nueo4"), SubResource("Resource_28301"), SubResource("Resource_vfldc"), SubResource("Resource_550wc"), SubResource("Resource_xnjlw"), SubResource("Resource_72lm8")])
+evolutions = Array[ExtResource("1_qtlw7")]([SubResource("Resource_qtlw7")])
+evolves_from = "aron"
 temperament = ExtResource("16_ubodn")
 genus = "Pokémon Coraza Férrea"
 pokedex_entry = "Lairon templa su cuerpo de acero bebiendo agua mineral muy rica en nutrientes hasta que no puede más. Este Pokémon suele crear su nido cerca de manantiales de rica agua."

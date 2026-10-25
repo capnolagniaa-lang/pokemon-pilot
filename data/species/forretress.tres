@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_q0tgi"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_vh4jj"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="2_822b4"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bse8h"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_urh0o"]
@@ -18,49 +19,49 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_d6l7g"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_vlgre"]
 
-[sub_resource type="Resource" id="Resource_vlgre"]
+[sub_resource type="Resource" id="Resource_vh4jj"]
 script = ExtResource("1_q0tgi")
 move = ExtResource("2_822b4")
 
-[sub_resource type="Resource" id="Resource_vh4jj"]
+[sub_resource type="Resource" id="Resource_e1h88"]
 script = ExtResource("1_q0tgi")
 move = ExtResource("3_vlgre")
 
-[sub_resource type="Resource" id="Resource_e1h88"]
+[sub_resource type="Resource" id="Resource_0ap78"]
 script = ExtResource("1_q0tgi")
 move = ExtResource("4_vh4jj")
 
-[sub_resource type="Resource" id="Resource_0ap78"]
+[sub_resource type="Resource" id="Resource_ajwta"]
 script = ExtResource("1_q0tgi")
 level = 15
 move = ExtResource("5_e1h88")
 
-[sub_resource type="Resource" id="Resource_ajwta"]
+[sub_resource type="Resource" id="Resource_okohp"]
 script = ExtResource("1_q0tgi")
 level = 22
 move = ExtResource("6_0ap78")
 
-[sub_resource type="Resource" id="Resource_okohp"]
+[sub_resource type="Resource" id="Resource_x2psf"]
 script = ExtResource("1_q0tgi")
 level = 29
 move = ExtResource("7_ajwta")
 
-[sub_resource type="Resource" id="Resource_x2psf"]
+[sub_resource type="Resource" id="Resource_gteet"]
 script = ExtResource("1_q0tgi")
 level = 31
 move = ExtResource("8_okohp")
 
-[sub_resource type="Resource" id="Resource_gteet"]
+[sub_resource type="Resource" id="Resource_d6l7g"]
 script = ExtResource("1_q0tgi")
 level = 39
 move = ExtResource("9_x2psf")
 
-[sub_resource type="Resource" id="Resource_d6l7g"]
+[sub_resource type="Resource" id="Resource_keg3m"]
 script = ExtResource("1_q0tgi")
 level = 49
 move = ExtResource("10_gteet")
 
-[sub_resource type="Resource" id="Resource_keg3m"]
+[sub_resource type="Resource" id="Resource_w64ms"]
 script = ExtResource("1_q0tgi")
 level = 59
 move = ExtResource("11_d6l7g")
@@ -71,7 +72,8 @@ id = "forretress"
 display_name = "Forretress"
 dex = 205
 types = Array[ExtResource("4_wvbbb")]([ExtResource("5_4kjq8"), ExtResource("6_xvavd")])
-learnset = Array[ExtResource("1_q0tgi")]([SubResource("Resource_vlgre"), SubResource("Resource_vh4jj"), SubResource("Resource_e1h88"), SubResource("Resource_0ap78"), SubResource("Resource_ajwta"), SubResource("Resource_okohp"), SubResource("Resource_x2psf"), SubResource("Resource_gteet"), SubResource("Resource_d6l7g"), SubResource("Resource_keg3m")])
+learnset = Array[ExtResource("1_q0tgi")]([SubResource("Resource_vh4jj"), SubResource("Resource_e1h88"), SubResource("Resource_0ap78"), SubResource("Resource_ajwta"), SubResource("Resource_okohp"), SubResource("Resource_x2psf"), SubResource("Resource_gteet"), SubResource("Resource_d6l7g"), SubResource("Resource_keg3m"), SubResource("Resource_w64ms")])
+evolves_from = "pineco"
 temperament = ExtResource("14_vlgre")
 genus = "Pokémon Larva"
 pokedex_entry = "Forretress se esconde dentro de su concha de acero reforzada. Solo la abre cuando va a atrapar a su presa, pero ocurre tan rápido que no da tiempo de ver su interior."

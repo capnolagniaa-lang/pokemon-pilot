@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_koxx7"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ltfal"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5san0"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_jwoby"]
@@ -19,60 +20,60 @@
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="13_1ehe4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_gh7ai"]
 
-[sub_resource type="Resource" id="Resource_gh7ai"]
+[sub_resource type="Resource" id="Resource_koxx7"]
 script = ExtResource("1_ltfal")
 move = ExtResource("2_jwoby")
 
-[sub_resource type="Resource" id="Resource_koxx7"]
+[sub_resource type="Resource" id="Resource_8jot4"]
 script = ExtResource("1_ltfal")
 move = ExtResource("3_gh7ai")
 
-[sub_resource type="Resource" id="Resource_8jot4"]
+[sub_resource type="Resource" id="Resource_21si2"]
 script = ExtResource("1_ltfal")
 level = 5
 move = ExtResource("4_koxx7")
 
-[sub_resource type="Resource" id="Resource_21si2"]
+[sub_resource type="Resource" id="Resource_x8q58"]
 script = ExtResource("1_ltfal")
 level = 10
 move = ExtResource("5_8jot4")
 
-[sub_resource type="Resource" id="Resource_x8q58"]
+[sub_resource type="Resource" id="Resource_qgsux"]
 script = ExtResource("1_ltfal")
 level = 15
 move = ExtResource("6_21si2")
 
-[sub_resource type="Resource" id="Resource_qgsux"]
+[sub_resource type="Resource" id="Resource_klcky"]
 script = ExtResource("1_ltfal")
 level = 20
 move = ExtResource("7_x8q58")
 
-[sub_resource type="Resource" id="Resource_klcky"]
+[sub_resource type="Resource" id="Resource_gdod2"]
 script = ExtResource("1_ltfal")
 level = 25
 move = ExtResource("8_qgsux")
 
-[sub_resource type="Resource" id="Resource_gdod2"]
+[sub_resource type="Resource" id="Resource_r5wds"]
 script = ExtResource("1_ltfal")
 level = 30
 move = ExtResource("9_klcky")
 
-[sub_resource type="Resource" id="Resource_r5wds"]
+[sub_resource type="Resource" id="Resource_m4rpy"]
 script = ExtResource("1_ltfal")
 level = 35
 move = ExtResource("10_gdod2")
 
-[sub_resource type="Resource" id="Resource_m4rpy"]
+[sub_resource type="Resource" id="Resource_1ehe4"]
 script = ExtResource("1_ltfal")
 level = 40
 move = ExtResource("11_r5wds")
 
-[sub_resource type="Resource" id="Resource_1ehe4"]
+[sub_resource type="Resource" id="Resource_aekjq"]
 script = ExtResource("1_ltfal")
 level = 45
 move = ExtResource("12_m4rpy")
 
-[sub_resource type="Resource" id="Resource_aekjq"]
+[sub_resource type="Resource" id="Resource_n7vs7"]
 script = ExtResource("1_ltfal")
 level = 50
 move = ExtResource("13_1ehe4")
@@ -83,7 +84,7 @@ id = "deoxys"
 display_name = "Deoxys"
 dex = 386
 types = Array[ExtResource("4_yrgcn")]([ExtResource("5_317mk")])
-learnset = Array[ExtResource("1_ltfal")]([SubResource("Resource_gh7ai"), SubResource("Resource_koxx7"), SubResource("Resource_8jot4"), SubResource("Resource_21si2"), SubResource("Resource_x8q58"), SubResource("Resource_qgsux"), SubResource("Resource_klcky"), SubResource("Resource_gdod2"), SubResource("Resource_r5wds"), SubResource("Resource_m4rpy"), SubResource("Resource_1ehe4"), SubResource("Resource_aekjq")])
+learnset = Array[ExtResource("1_ltfal")]([SubResource("Resource_koxx7"), SubResource("Resource_8jot4"), SubResource("Resource_21si2"), SubResource("Resource_x8q58"), SubResource("Resource_qgsux"), SubResource("Resource_klcky"), SubResource("Resource_gdod2"), SubResource("Resource_r5wds"), SubResource("Resource_m4rpy"), SubResource("Resource_1ehe4"), SubResource("Resource_aekjq"), SubResource("Resource_n7vs7")])
 temperament = ExtResource("16_gh7ai")
 genus = "Pokémon ADN"
 pokedex_entry = "Tras estar expuesto a un rayo láser, el ADN de un virus espacial sufrió una mutación y dio origen a Deoxys. Según parece, el órgano cristalino que este Pokémon tiene en el torso es el cerebro."

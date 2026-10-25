@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_7x551"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_obfkb"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5knd8"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_pg7tq"]
@@ -20,61 +21,66 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_oqu3h"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_fjoqn"]
 
-[sub_resource type="Resource" id="Resource_fjoqn"]
+[sub_resource type="Resource" id="Resource_7x551"]
+script = ExtResource("1_7x551")
+to_id = "lairon"
+level = 32
+
+[sub_resource type="Resource" id="Resource_co3m5"]
 script = ExtResource("1_obfkb")
 move = ExtResource("2_pg7tq")
 
-[sub_resource type="Resource" id="Resource_7x551"]
+[sub_resource type="Resource" id="Resource_y2wei"]
 script = ExtResource("1_obfkb")
 level = 4
 move = ExtResource("3_fjoqn")
 
-[sub_resource type="Resource" id="Resource_co3m5"]
+[sub_resource type="Resource" id="Resource_u8g7w"]
 script = ExtResource("1_obfkb")
 level = 7
 move = ExtResource("4_7x551")
 
-[sub_resource type="Resource" id="Resource_y2wei"]
+[sub_resource type="Resource" id="Resource_8m4j4"]
 script = ExtResource("1_obfkb")
 level = 10
 move = ExtResource("5_co3m5")
 
-[sub_resource type="Resource" id="Resource_u8g7w"]
+[sub_resource type="Resource" id="Resource_6yxt5"]
 script = ExtResource("1_obfkb")
 level = 13
 move = ExtResource("6_y2wei")
 
-[sub_resource type="Resource" id="Resource_8m4j4"]
+[sub_resource type="Resource" id="Resource_wuedi"]
 script = ExtResource("1_obfkb")
 level = 17
 move = ExtResource("7_u8g7w")
 
-[sub_resource type="Resource" id="Resource_6yxt5"]
+[sub_resource type="Resource" id="Resource_sw8ja"]
 script = ExtResource("1_obfkb")
 level = 21
 move = ExtResource("8_8m4j4")
 
-[sub_resource type="Resource" id="Resource_wuedi"]
+[sub_resource type="Resource" id="Resource_kujy0"]
 script = ExtResource("1_obfkb")
 level = 25
 move = ExtResource("9_6yxt5")
 
-[sub_resource type="Resource" id="Resource_sw8ja"]
+[sub_resource type="Resource" id="Resource_oqu3h"]
 script = ExtResource("1_obfkb")
 level = 29
 move = ExtResource("10_wuedi")
 
-[sub_resource type="Resource" id="Resource_kujy0"]
+[sub_resource type="Resource" id="Resource_naujn"]
 script = ExtResource("1_obfkb")
 level = 34
 move = ExtResource("11_sw8ja")
 
-[sub_resource type="Resource" id="Resource_oqu3h"]
+[sub_resource type="Resource" id="Resource_a33kj"]
 script = ExtResource("1_obfkb")
 level = 39
 move = ExtResource("12_kujy0")
 
-[sub_resource type="Resource" id="Resource_naujn"]
+[sub_resource type="Resource" id="Resource_p3d81"]
 script = ExtResource("1_obfkb")
 level = 44
 move = ExtResource("13_oqu3h")
@@ -85,7 +91,8 @@ id = "aron"
 display_name = "Aron"
 dex = 304
 types = Array[ExtResource("4_12e7a")]([ExtResource("5_mx0up"), ExtResource("6_5bsum")])
-learnset = Array[ExtResource("1_obfkb")]([SubResource("Resource_fjoqn"), SubResource("Resource_7x551"), SubResource("Resource_co3m5"), SubResource("Resource_y2wei"), SubResource("Resource_u8g7w"), SubResource("Resource_8m4j4"), SubResource("Resource_6yxt5"), SubResource("Resource_wuedi"), SubResource("Resource_sw8ja"), SubResource("Resource_kujy0"), SubResource("Resource_oqu3h"), SubResource("Resource_naujn")])
+learnset = Array[ExtResource("1_obfkb")]([SubResource("Resource_co3m5"), SubResource("Resource_y2wei"), SubResource("Resource_u8g7w"), SubResource("Resource_8m4j4"), SubResource("Resource_6yxt5"), SubResource("Resource_wuedi"), SubResource("Resource_sw8ja"), SubResource("Resource_kujy0"), SubResource("Resource_oqu3h"), SubResource("Resource_naujn"), SubResource("Resource_a33kj"), SubResource("Resource_p3d81")])
+evolutions = Array[ExtResource("1_7x551")]([SubResource("Resource_7x551")])
 temperament = ExtResource("16_fjoqn")
 genus = "Pokémon Coraza Férrea"
 pokedex_entry = "Este Pokémon tiene el cuerpo de acero. Para mantenerlo, se alimenta del hierro que saca de las montañas. A veces, causa verdaderos problemas, pues se come puentes y vías de tren."

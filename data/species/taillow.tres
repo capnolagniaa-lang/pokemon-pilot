@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d7rej"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_hguci"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_t44nl"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vnkfo"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_aggho"]
@@ -17,45 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_5ikxa"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_lmumk"]
 
-[sub_resource type="Resource" id="Resource_lmumk"]
+[sub_resource type="Resource" id="Resource_hguci"]
+script = ExtResource("1_hguci")
+to_id = "swellow"
+level = 22
+
+[sub_resource type="Resource" id="Resource_it1cp"]
 script = ExtResource("1_d7rej")
 move = ExtResource("2_t44nl")
 
-[sub_resource type="Resource" id="Resource_hguci"]
+[sub_resource type="Resource" id="Resource_m8a73"]
 script = ExtResource("1_d7rej")
 move = ExtResource("3_lmumk")
 
-[sub_resource type="Resource" id="Resource_it1cp"]
+[sub_resource type="Resource" id="Resource_lrtd0"]
 script = ExtResource("1_d7rej")
 level = 4
 move = ExtResource("4_hguci")
 
-[sub_resource type="Resource" id="Resource_m8a73"]
+[sub_resource type="Resource" id="Resource_jiosa"]
 script = ExtResource("1_d7rej")
 level = 8
 move = ExtResource("5_it1cp")
 
-[sub_resource type="Resource" id="Resource_lrtd0"]
+[sub_resource type="Resource" id="Resource_vo2p0"]
 script = ExtResource("1_d7rej")
 level = 13
 move = ExtResource("6_m8a73")
 
-[sub_resource type="Resource" id="Resource_jiosa"]
+[sub_resource type="Resource" id="Resource_5ikxa"]
 script = ExtResource("1_d7rej")
 level = 19
 move = ExtResource("7_lrtd0")
 
-[sub_resource type="Resource" id="Resource_vo2p0"]
+[sub_resource type="Resource" id="Resource_5mh0x"]
 script = ExtResource("1_d7rej")
 level = 26
 move = ExtResource("8_jiosa")
 
-[sub_resource type="Resource" id="Resource_5ikxa"]
+[sub_resource type="Resource" id="Resource_itgc8"]
 script = ExtResource("1_d7rej")
 level = 34
 move = ExtResource("9_vo2p0")
 
-[sub_resource type="Resource" id="Resource_5mh0x"]
+[sub_resource type="Resource" id="Resource_ju6nk"]
 script = ExtResource("1_d7rej")
 level = 43
 move = ExtResource("10_5ikxa")
@@ -66,7 +72,8 @@ id = "taillow"
 display_name = "Taillow"
 dex = 276
 types = Array[ExtResource("4_6fpnp")]([ExtResource("5_ovcgu"), ExtResource("6_vngqs")])
-learnset = Array[ExtResource("1_d7rej")]([SubResource("Resource_lmumk"), SubResource("Resource_hguci"), SubResource("Resource_it1cp"), SubResource("Resource_m8a73"), SubResource("Resource_lrtd0"), SubResource("Resource_jiosa"), SubResource("Resource_vo2p0"), SubResource("Resource_5ikxa"), SubResource("Resource_5mh0x")])
+learnset = Array[ExtResource("1_d7rej")]([SubResource("Resource_it1cp"), SubResource("Resource_m8a73"), SubResource("Resource_lrtd0"), SubResource("Resource_jiosa"), SubResource("Resource_vo2p0"), SubResource("Resource_5ikxa"), SubResource("Resource_5mh0x"), SubResource("Resource_itgc8"), SubResource("Resource_ju6nk")])
+evolutions = Array[ExtResource("1_hguci")]([SubResource("Resource_hguci")])
 temperament = ExtResource("13_lmumk")
 genus = "Pokémon Pequebuche"
 pokedex_entry = "Taillow se mantiene firme ante sus rivales, sean lo fuertes que sean. Este valiente Pokémon seguirá mostrándose desafiante, aunque pierda en combate. Además, si se enfada, se pondrá a gritar con energía."

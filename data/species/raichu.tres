@@ -1,31 +1,40 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_8modj"]
-[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="2_mhpdw"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_f6b18"]
+[ext_resource type="Resource" path="res://data/kits/pikachu/kit.tres" id="2_kkkvq"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vcntj"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0wkmi"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="3_abn8t"]
+[ext_resource type="Resource" path="res://data/kits/pikachu/impactrueno_kit.tres" id="4_3mbkb"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_53mw5"]
-[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="4_f6b18"]
-[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="5_kkkvq"]
+[ext_resource type="Resource" path="res://data/kits/pikachu/ataque_rapido_kit.tres" id="5_cqjyd"]
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_mhpdw"]
+[ext_resource type="Resource" path="res://data/kits/pikachu/onda_trueno_kit.tres" id="6_kfyfa"]
+[ext_resource type="Resource" path="res://data/kits/pikachu/rayo_kit.tres" id="7_lvki1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="8_abn8t"]
-
-[sub_resource type="Resource" id="Resource_abn8t"]
-script = ExtResource("1_8modj")
-move = ExtResource("2_mhpdw")
-
-[sub_resource type="Resource" id="Resource_f6b18"]
-script = ExtResource("1_8modj")
-move = ExtResource("3_abn8t")
-
-[sub_resource type="Resource" id="Resource_kkkvq"]
-script = ExtResource("1_8modj")
-move = ExtResource("4_f6b18")
 
 [sub_resource type="Resource" id="Resource_3mbkb"]
 script = ExtResource("1_8modj")
-move = ExtResource("5_kkkvq")
+move = ExtResource("4_3mbkb")
+
+[sub_resource type="Resource" id="Resource_cqjyd"]
+script = ExtResource("1_8modj")
+move = ExtResource("5_cqjyd")
+
+[sub_resource type="Resource" id="Resource_kfyfa"]
+script = ExtResource("1_8modj")
+level = 3
+move = ExtResource("6_kfyfa")
+
+[sub_resource type="Resource" id="Resource_lvki1"]
+script = ExtResource("1_8modj")
+level = 5
+move = ExtResource("7_lvki1")
+
+[sub_resource type="Resource" id="Resource_vgwe5"]
+script = ExtResource("1_8modj")
+move = ExtResource("3_abn8t")
 
 [resource]
 script = ExtResource("3_0wkmi")
@@ -33,7 +42,10 @@ id = "raichu"
 display_name = "Raichu"
 dex = 26
 types = Array[ExtResource("4_53mw5")]([ExtResource("5_mhpdw")])
-learnset = Array[ExtResource("1_8modj")]([SubResource("Resource_abn8t"), SubResource("Resource_f6b18"), SubResource("Resource_kkkvq"), SubResource("Resource_3mbkb")])
+kit = ExtResource("2_kkkvq")
+learnset = Array[ExtResource("1_8modj")]([SubResource("Resource_3mbkb"), SubResource("Resource_cqjyd"), SubResource("Resource_kfyfa"), SubResource("Resource_lvki1"), SubResource("Resource_vgwe5")])
+kit_inherited = true
+evolves_from = "pikachu"
 temperament = ExtResource("8_abn8t")
 genus = "Pokémon Ratón"
 pokedex_entry = "Si las bolsas de los mofletes se le cargan demasiado, Raichu planta la cola en el suelo para liberar electricidad. Es común encontrar zonas chamuscadas cerca de la madriguera de este Pokémon."

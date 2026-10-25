@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_ho60w"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_v5nd7"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_p8fkc"]
 [ext_resource type="Resource" path="res://data/moves/destructor.tres" id="2_srar0"]
@@ -13,31 +14,31 @@
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="7_iim7n"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_4ylja"]
 
-[sub_resource type="Resource" id="Resource_4ylja"]
+[sub_resource type="Resource" id="Resource_ho60w"]
 script = ExtResource("1_v5nd7")
 move = ExtResource("2_srar0")
 
-[sub_resource type="Resource" id="Resource_ho60w"]
+[sub_resource type="Resource" id="Resource_bh11p"]
 script = ExtResource("1_v5nd7")
 level = 10
 move = ExtResource("3_4ylja")
 
-[sub_resource type="Resource" id="Resource_bh11p"]
+[sub_resource type="Resource" id="Resource_qq6hd"]
 script = ExtResource("1_v5nd7")
 level = 20
 move = ExtResource("4_ho60w")
 
-[sub_resource type="Resource" id="Resource_qq6hd"]
+[sub_resource type="Resource" id="Resource_iim7n"]
 script = ExtResource("1_v5nd7")
 level = 30
 move = ExtResource("5_bh11p")
 
-[sub_resource type="Resource" id="Resource_iim7n"]
+[sub_resource type="Resource" id="Resource_ardjm"]
 script = ExtResource("1_v5nd7")
 level = 40
 move = ExtResource("6_qq6hd")
 
-[sub_resource type="Resource" id="Resource_ardjm"]
+[sub_resource type="Resource" id="Resource_tnj73"]
 script = ExtResource("1_v5nd7")
 level = 50
 move = ExtResource("7_iim7n")
@@ -48,7 +49,7 @@ id = "mew"
 display_name = "Mew"
 dex = 151
 types = Array[ExtResource("4_um5ub")]([ExtResource("5_getvn")])
-learnset = Array[ExtResource("1_v5nd7")]([SubResource("Resource_4ylja"), SubResource("Resource_ho60w"), SubResource("Resource_bh11p"), SubResource("Resource_qq6hd"), SubResource("Resource_iim7n"), SubResource("Resource_ardjm")])
+learnset = Array[ExtResource("1_v5nd7")]([SubResource("Resource_ho60w"), SubResource("Resource_bh11p"), SubResource("Resource_qq6hd"), SubResource("Resource_iim7n"), SubResource("Resource_ardjm"), SubResource("Resource_tnj73")])
 temperament = ExtResource("10_4ylja")
 genus = "Pokémon Nueva Especie"
 pokedex_entry = "Dicen que Mew posee el mapa genético de todos los Pokémon. Puede hacerse invisible cuando quiere, así que pasa desapercibido cada vez que se le acerca alguien."

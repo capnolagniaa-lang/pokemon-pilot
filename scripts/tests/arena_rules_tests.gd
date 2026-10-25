@@ -12,7 +12,7 @@ var world: Node
 func run() -> void:
 	var r := {}
 	var kits := DB.species.values().filter(func(s): return s.kit != null)
-	r["Cada Pokémon con kit tiene su estilo de arena (%d)" % DB.fight_styles.size()] = kits.all(func(s): return DB.fight_styles.has(s.id))
+	r["Cada Pokémon con kit tiene su estilo de arena (%d)" % DB.fight_styles.size()] = kits.all(func(s): return DB.fight_style_of(s) != null)
 	var bad := []
 	for st: FightStyle in DB.fight_styles.values():
 		if st.combos.is_empty():

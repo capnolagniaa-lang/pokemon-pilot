@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_lbrug"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_nhftr"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2gt6j"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_ydyw4"]
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="3_mgl3l"]
@@ -16,43 +17,43 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_amh51"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_mgl3l"]
 
-[sub_resource type="Resource" id="Resource_mgl3l"]
+[sub_resource type="Resource" id="Resource_nhftr"]
 script = ExtResource("1_lbrug")
 move = ExtResource("2_ydyw4")
 
-[sub_resource type="Resource" id="Resource_nhftr"]
+[sub_resource type="Resource" id="Resource_h75np"]
 script = ExtResource("1_lbrug")
 move = ExtResource("3_mgl3l")
 
-[sub_resource type="Resource" id="Resource_h75np"]
+[sub_resource type="Resource" id="Resource_vx7p3"]
 script = ExtResource("1_lbrug")
 move = ExtResource("4_nhftr")
 
-[sub_resource type="Resource" id="Resource_vx7p3"]
+[sub_resource type="Resource" id="Resource_66iqh"]
 script = ExtResource("1_lbrug")
 move = ExtResource("5_h75np")
 
-[sub_resource type="Resource" id="Resource_66iqh"]
+[sub_resource type="Resource" id="Resource_u735w"]
 script = ExtResource("1_lbrug")
 level = 21
 move = ExtResource("6_vx7p3")
 
-[sub_resource type="Resource" id="Resource_u735w"]
+[sub_resource type="Resource" id="Resource_wd8if"]
 script = ExtResource("1_lbrug")
 level = 28
 move = ExtResource("7_66iqh")
 
-[sub_resource type="Resource" id="Resource_wd8if"]
+[sub_resource type="Resource" id="Resource_amh51"]
 script = ExtResource("1_lbrug")
 level = 38
 move = ExtResource("8_u735w")
 
-[sub_resource type="Resource" id="Resource_amh51"]
+[sub_resource type="Resource" id="Resource_ap7yc"]
 script = ExtResource("1_lbrug")
 level = 47
 move = ExtResource("9_wd8if")
 
-[sub_resource type="Resource" id="Resource_ap7yc"]
+[sub_resource type="Resource" id="Resource_v1dsk"]
 script = ExtResource("1_lbrug")
 level = 58
 move = ExtResource("10_amh51")
@@ -63,7 +64,8 @@ id = "feraligatr"
 display_name = "Feraligatr"
 dex = 160
 types = Array[ExtResource("4_a4sj1")]([ExtResource("5_g6tn6")])
-learnset = Array[ExtResource("1_lbrug")]([SubResource("Resource_mgl3l"), SubResource("Resource_nhftr"), SubResource("Resource_h75np"), SubResource("Resource_vx7p3"), SubResource("Resource_66iqh"), SubResource("Resource_u735w"), SubResource("Resource_wd8if"), SubResource("Resource_amh51"), SubResource("Resource_ap7yc")])
+learnset = Array[ExtResource("1_lbrug")]([SubResource("Resource_nhftr"), SubResource("Resource_h75np"), SubResource("Resource_vx7p3"), SubResource("Resource_66iqh"), SubResource("Resource_u735w"), SubResource("Resource_wd8if"), SubResource("Resource_amh51"), SubResource("Resource_ap7yc"), SubResource("Resource_v1dsk")])
+evolves_from = "croconaw"
 temperament = ExtResource("13_mgl3l")
 genus = "Pokémon Fauces"
 pokedex_entry = "Feraligatr intimida a sus oponentes abriendo las grandes fauces que tiene. En combate, golpea el suelo bruscamente con las gruesas y fuertes patas traseras que tiene para cargar contra su rival a una velocidad de vértigo."

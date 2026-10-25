@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_jxeai"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_r5xt6"]
 [ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="2_271qj"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_sohxc"]
@@ -18,50 +19,50 @@
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_ovkl7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_w4oqm"]
 
-[sub_resource type="Resource" id="Resource_w4oqm"]
+[sub_resource type="Resource" id="Resource_jxeai"]
 script = ExtResource("1_r5xt6")
 move = ExtResource("2_271qj")
 
-[sub_resource type="Resource" id="Resource_jxeai"]
+[sub_resource type="Resource" id="Resource_lrh4k"]
 script = ExtResource("1_r5xt6")
 move = ExtResource("3_w4oqm")
 
-[sub_resource type="Resource" id="Resource_lrh4k"]
+[sub_resource type="Resource" id="Resource_n63j2"]
 script = ExtResource("1_r5xt6")
 level = 15
 move = ExtResource("4_jxeai")
 
-[sub_resource type="Resource" id="Resource_n63j2"]
+[sub_resource type="Resource" id="Resource_maeni"]
 script = ExtResource("1_r5xt6")
 level = 24
 move = ExtResource("5_lrh4k")
 
-[sub_resource type="Resource" id="Resource_maeni"]
+[sub_resource type="Resource" id="Resource_5pj3v"]
 script = ExtResource("1_r5xt6")
 level = 24
 move = ExtResource("6_n63j2")
 
-[sub_resource type="Resource" id="Resource_5pj3v"]
+[sub_resource type="Resource" id="Resource_gukdm"]
 script = ExtResource("1_r5xt6")
 level = 24
 move = ExtResource("7_maeni")
 
-[sub_resource type="Resource" id="Resource_gukdm"]
+[sub_resource type="Resource" id="Resource_xgjrd"]
 script = ExtResource("1_r5xt6")
 level = 33
 move = ExtResource("8_5pj3v")
 
-[sub_resource type="Resource" id="Resource_xgjrd"]
+[sub_resource type="Resource" id="Resource_ovkl7"]
 script = ExtResource("1_r5xt6")
 level = 42
 move = ExtResource("9_gukdm")
 
-[sub_resource type="Resource" id="Resource_ovkl7"]
+[sub_resource type="Resource" id="Resource_aepu2"]
 script = ExtResource("1_r5xt6")
 level = 51
 move = ExtResource("10_xgjrd")
 
-[sub_resource type="Resource" id="Resource_aepu2"]
+[sub_resource type="Resource" id="Resource_q8xbo"]
 script = ExtResource("1_r5xt6")
 level = 60
 move = ExtResource("11_ovkl7")
@@ -72,7 +73,8 @@ id = "ledian"
 display_name = "Ledian"
 dex = 166
 types = Array[ExtResource("4_x7c78")]([ExtResource("5_vknar"), ExtResource("6_556g6")])
-learnset = Array[ExtResource("1_r5xt6")]([SubResource("Resource_w4oqm"), SubResource("Resource_jxeai"), SubResource("Resource_lrh4k"), SubResource("Resource_n63j2"), SubResource("Resource_maeni"), SubResource("Resource_5pj3v"), SubResource("Resource_gukdm"), SubResource("Resource_xgjrd"), SubResource("Resource_ovkl7"), SubResource("Resource_aepu2")])
+learnset = Array[ExtResource("1_r5xt6")]([SubResource("Resource_jxeai"), SubResource("Resource_lrh4k"), SubResource("Resource_n63j2"), SubResource("Resource_maeni"), SubResource("Resource_5pj3v"), SubResource("Resource_gukdm"), SubResource("Resource_xgjrd"), SubResource("Resource_ovkl7"), SubResource("Resource_aepu2"), SubResource("Resource_q8xbo")])
+evolves_from = "ledyba"
 temperament = ExtResource("14_w4oqm")
 genus = "Pokémon 5 Estrellas"
 pokedex_entry = "Dicen que en zonas en las que el aire está limpio, en las que se ven las estrellas, hay enormes poblaciones de Ledian. La razón es muy sencilla: este Pokémon usa la luz de las estrellas como fuente de energía."

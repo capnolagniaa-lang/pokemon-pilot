@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6ajrw"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_n0jol"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pwo7w"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_s8ee3"]
 [ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_0xs2p"]
@@ -17,45 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="10_ryioy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_0xs2p"]
 
-[sub_resource type="Resource" id="Resource_0xs2p"]
+[sub_resource type="Resource" id="Resource_n0jol"]
+script = ExtResource("1_n0jol")
+to_id = "dodrio"
+level = 31
+
+[sub_resource type="Resource" id="Resource_4khqt"]
 script = ExtResource("1_6ajrw")
 move = ExtResource("2_s8ee3")
 
-[sub_resource type="Resource" id="Resource_n0jol"]
+[sub_resource type="Resource" id="Resource_v335d"]
 script = ExtResource("1_6ajrw")
 move = ExtResource("3_0xs2p")
 
-[sub_resource type="Resource" id="Resource_4khqt"]
+[sub_resource type="Resource" id="Resource_quaoi"]
 script = ExtResource("1_6ajrw")
 level = 9
 move = ExtResource("4_n0jol")
 
-[sub_resource type="Resource" id="Resource_v335d"]
+[sub_resource type="Resource" id="Resource_eb7sj"]
 script = ExtResource("1_6ajrw")
 level = 13
 move = ExtResource("5_4khqt")
 
-[sub_resource type="Resource" id="Resource_quaoi"]
+[sub_resource type="Resource" id="Resource_lv4r1"]
 script = ExtResource("1_6ajrw")
 level = 21
 move = ExtResource("6_v335d")
 
-[sub_resource type="Resource" id="Resource_eb7sj"]
+[sub_resource type="Resource" id="Resource_ryioy"]
 script = ExtResource("1_6ajrw")
 level = 25
 move = ExtResource("7_quaoi")
 
-[sub_resource type="Resource" id="Resource_lv4r1"]
+[sub_resource type="Resource" id="Resource_aeqw6"]
 script = ExtResource("1_6ajrw")
 level = 33
 move = ExtResource("8_eb7sj")
 
-[sub_resource type="Resource" id="Resource_ryioy"]
+[sub_resource type="Resource" id="Resource_gn6pg"]
 script = ExtResource("1_6ajrw")
 level = 37
 move = ExtResource("9_lv4r1")
 
-[sub_resource type="Resource" id="Resource_aeqw6"]
+[sub_resource type="Resource" id="Resource_3wwjt"]
 script = ExtResource("1_6ajrw")
 level = 45
 move = ExtResource("10_ryioy")
@@ -66,7 +72,8 @@ id = "doduo"
 display_name = "Doduo"
 dex = 84
 types = Array[ExtResource("4_107mg")]([ExtResource("5_k73hy"), ExtResource("6_yb8jw")])
-learnset = Array[ExtResource("1_6ajrw")]([SubResource("Resource_0xs2p"), SubResource("Resource_n0jol"), SubResource("Resource_4khqt"), SubResource("Resource_v335d"), SubResource("Resource_quaoi"), SubResource("Resource_eb7sj"), SubResource("Resource_lv4r1"), SubResource("Resource_ryioy"), SubResource("Resource_aeqw6")])
+learnset = Array[ExtResource("1_6ajrw")]([SubResource("Resource_4khqt"), SubResource("Resource_v335d"), SubResource("Resource_quaoi"), SubResource("Resource_eb7sj"), SubResource("Resource_lv4r1"), SubResource("Resource_ryioy"), SubResource("Resource_aeqw6"), SubResource("Resource_gn6pg"), SubResource("Resource_3wwjt")])
+evolutions = Array[ExtResource("1_n0jol")]([SubResource("Resource_n0jol")])
 temperament = ExtResource("13_0xs2p")
 genus = "Pokémon Ave Gemela"
 pokedex_entry = "Las dos cabezas de Doduo duermen de forma independiente, siempre por turnos. Mientras una duerme, la otra hace de centinela por si aparecen enemigos."

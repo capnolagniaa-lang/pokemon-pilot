@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l1a0w"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_lhcsa"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_0baln"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4c2qc"]
 [ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="3_dlbhy"]
@@ -18,56 +19,56 @@
 [ext_resource type="Resource" path="res://data/moves/sana.tres" id="12_qlixt"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_dlbhy"]
 
-[sub_resource type="Resource" id="Resource_dlbhy"]
+[sub_resource type="Resource" id="Resource_lhcsa"]
 script = ExtResource("1_l1a0w")
 move = ExtResource("2_0baln")
 
-[sub_resource type="Resource" id="Resource_lhcsa"]
+[sub_resource type="Resource" id="Resource_g3m2l"]
 script = ExtResource("1_l1a0w")
 level = 5
 move = ExtResource("3_dlbhy")
 
-[sub_resource type="Resource" id="Resource_g3m2l"]
+[sub_resource type="Resource" id="Resource_8s1te"]
 script = ExtResource("1_l1a0w")
 level = 12
 move = ExtResource("4_lhcsa")
 
-[sub_resource type="Resource" id="Resource_8s1te"]
+[sub_resource type="Resource" id="Resource_rcjqw"]
 script = ExtResource("1_l1a0w")
 level = 16
 move = ExtResource("5_g3m2l")
 
-[sub_resource type="Resource" id="Resource_rcjqw"]
+[sub_resource type="Resource" id="Resource_yptd8"]
 script = ExtResource("1_l1a0w")
 level = 23
 move = ExtResource("6_8s1te")
 
-[sub_resource type="Resource" id="Resource_yptd8"]
+[sub_resource type="Resource" id="Resource_djf3l"]
 script = ExtResource("1_l1a0w")
 level = 27
 move = ExtResource("7_rcjqw")
 
-[sub_resource type="Resource" id="Resource_djf3l"]
+[sub_resource type="Resource" id="Resource_60kqb"]
 script = ExtResource("1_l1a0w")
 level = 34
 move = ExtResource("8_yptd8")
 
-[sub_resource type="Resource" id="Resource_60kqb"]
+[sub_resource type="Resource" id="Resource_n6qv2"]
 script = ExtResource("1_l1a0w")
 level = 38
 move = ExtResource("9_djf3l")
 
-[sub_resource type="Resource" id="Resource_n6qv2"]
+[sub_resource type="Resource" id="Resource_qlixt"]
 script = ExtResource("1_l1a0w")
 level = 45
 move = ExtResource("10_60kqb")
 
-[sub_resource type="Resource" id="Resource_qlixt"]
+[sub_resource type="Resource" id="Resource_as8uq"]
 script = ExtResource("1_l1a0w")
 level = 49
 move = ExtResource("11_n6qv2")
 
-[sub_resource type="Resource" id="Resource_as8uq"]
+[sub_resource type="Resource" id="Resource_qalbi"]
 script = ExtResource("1_l1a0w")
 level = 56
 move = ExtResource("12_qlixt")
@@ -78,7 +79,7 @@ id = "spinda"
 display_name = "Spinda"
 dex = 327
 types = Array[ExtResource("4_mpppq")]([ExtResource("5_8el1h")])
-learnset = Array[ExtResource("1_l1a0w")]([SubResource("Resource_dlbhy"), SubResource("Resource_lhcsa"), SubResource("Resource_g3m2l"), SubResource("Resource_8s1te"), SubResource("Resource_rcjqw"), SubResource("Resource_yptd8"), SubResource("Resource_djf3l"), SubResource("Resource_60kqb"), SubResource("Resource_n6qv2"), SubResource("Resource_qlixt"), SubResource("Resource_as8uq")])
+learnset = Array[ExtResource("1_l1a0w")]([SubResource("Resource_lhcsa"), SubResource("Resource_g3m2l"), SubResource("Resource_8s1te"), SubResource("Resource_rcjqw"), SubResource("Resource_yptd8"), SubResource("Resource_djf3l"), SubResource("Resource_60kqb"), SubResource("Resource_n6qv2"), SubResource("Resource_qlixt"), SubResource("Resource_as8uq"), SubResource("Resource_qalbi")])
 temperament = ExtResource("15_dlbhy")
 genus = "Pokémon Panda Topos"
 pokedex_entry = "Dicen que no hay dos Spinda que tengan los mismos dibujos en el pelaje. Este Pokémon tiene una forma de andar inestable, va tambaleándose. Da la sensación de ir bailando."

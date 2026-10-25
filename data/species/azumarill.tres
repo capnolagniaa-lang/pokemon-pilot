@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_8odc0"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_tjiwu"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tll48"]
 [ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="2_ypd44"]
@@ -17,43 +18,43 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_pt4yb"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_ay3w8"]
 
-[sub_resource type="Resource" id="Resource_ay3w8"]
+[sub_resource type="Resource" id="Resource_8odc0"]
 script = ExtResource("1_tjiwu")
 move = ExtResource("2_ypd44")
 
-[sub_resource type="Resource" id="Resource_8odc0"]
+[sub_resource type="Resource" id="Resource_36li5"]
 script = ExtResource("1_tjiwu")
 move = ExtResource("3_ay3w8")
 
-[sub_resource type="Resource" id="Resource_36li5"]
+[sub_resource type="Resource" id="Resource_kdsru"]
 script = ExtResource("1_tjiwu")
 move = ExtResource("4_8odc0")
 
-[sub_resource type="Resource" id="Resource_kdsru"]
+[sub_resource type="Resource" id="Resource_22c0s"]
 script = ExtResource("1_tjiwu")
 move = ExtResource("5_36li5")
 
-[sub_resource type="Resource" id="Resource_22c0s"]
+[sub_resource type="Resource" id="Resource_bai1b"]
 script = ExtResource("1_tjiwu")
 level = 15
 move = ExtResource("6_kdsru")
 
-[sub_resource type="Resource" id="Resource_bai1b"]
+[sub_resource type="Resource" id="Resource_xlx1u"]
 script = ExtResource("1_tjiwu")
 level = 24
 move = ExtResource("7_22c0s")
 
-[sub_resource type="Resource" id="Resource_xlx1u"]
+[sub_resource type="Resource" id="Resource_pt4yb"]
 script = ExtResource("1_tjiwu")
 level = 34
 move = ExtResource("8_bai1b")
 
-[sub_resource type="Resource" id="Resource_pt4yb"]
+[sub_resource type="Resource" id="Resource_e7dow"]
 script = ExtResource("1_tjiwu")
 level = 45
 move = ExtResource("9_xlx1u")
 
-[sub_resource type="Resource" id="Resource_e7dow"]
+[sub_resource type="Resource" id="Resource_wamhw"]
 script = ExtResource("1_tjiwu")
 level = 57
 move = ExtResource("10_pt4yb")
@@ -64,7 +65,8 @@ id = "azumarill"
 display_name = "Azumarill"
 dex = 184
 types = Array[ExtResource("4_x4ady")]([ExtResource("5_g5xsf"), ExtResource("6_8c4bx")])
-learnset = Array[ExtResource("1_tjiwu")]([SubResource("Resource_ay3w8"), SubResource("Resource_8odc0"), SubResource("Resource_36li5"), SubResource("Resource_kdsru"), SubResource("Resource_22c0s"), SubResource("Resource_bai1b"), SubResource("Resource_xlx1u"), SubResource("Resource_pt4yb"), SubResource("Resource_e7dow")])
+learnset = Array[ExtResource("1_tjiwu")]([SubResource("Resource_8odc0"), SubResource("Resource_36li5"), SubResource("Resource_kdsru"), SubResource("Resource_22c0s"), SubResource("Resource_bai1b"), SubResource("Resource_xlx1u"), SubResource("Resource_pt4yb"), SubResource("Resource_e7dow"), SubResource("Resource_wamhw")])
+evolves_from = "marill"
 temperament = ExtResource("13_ay3w8")
 genus = "Pokémon Conejo Agua"
 pokedex_entry = "Azumarill puede hacer burbujas de aire si ve a algún Pokémon que esté a punto de ahogarse. Estas burbujas de aire son básicas para que los Pokémon puedan seguir respirando."

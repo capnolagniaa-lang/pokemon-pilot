@@ -1,68 +1,81 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ah8rh"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_hixbg"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_andjj"]
-[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_ld2q8"]
+[ext_resource type="Resource" path="res://data/kits/charmander/kit.tres" id="2_eorxy"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_81fls"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_k46cf"]
-[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_hixbg"]
+[ext_resource type="Resource" path="res://data/kits/charmander/ascuas_abanico.tres" id="4_5p8ix"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_i6kif"]
+[ext_resource type="Resource" path="res://data/kits/charmander/aranazo_embestida.tres" id="5_1auc4"]
 [ext_resource type="Resource" path="res://data/moves/garra_metal.tres" id="5_eorxy"]
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_uda8v"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="6_5p8ix"]
+[ext_resource type="Resource" path="res://data/kits/charmander/giro_fuego_trampa.tres" id="6_p6sya"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="7_1auc4"]
+[ext_resource type="Resource" path="res://data/kits/charmander/embestida_ignea.tres" id="7_1fke2"]
 [ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="8_p6sya"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_1fke2"]
 [ext_resource type="Resource" path="res://data/moves/furia_dragon.tres" id="10_n82xw"]
-[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="11_58k73"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_k46cf"]
 
-[sub_resource type="Resource" id="Resource_k46cf"]
-script = ExtResource("1_ah8rh")
-move = ExtResource("2_ld2q8")
+[sub_resource type="Resource" id="Resource_kd7jq"]
+script = ExtResource("1_hixbg")
+to_id = "charizard"
+level = 36
 
-[sub_resource type="Resource" id="Resource_hixbg"]
+[sub_resource type="Resource" id="Resource_5p8ix"]
+script = ExtResource("1_ah8rh")
+move = ExtResource("4_5p8ix")
+
+[sub_resource type="Resource" id="Resource_1auc4"]
+script = ExtResource("1_ah8rh")
+move = ExtResource("5_1auc4")
+
+[sub_resource type="Resource" id="Resource_p6sya"]
+script = ExtResource("1_ah8rh")
+level = 3
+move = ExtResource("6_p6sya")
+
+[sub_resource type="Resource" id="Resource_1fke2"]
+script = ExtResource("1_ah8rh")
+level = 5
+move = ExtResource("7_1fke2")
+
+[sub_resource type="Resource" id="Resource_n82xw"]
 script = ExtResource("1_ah8rh")
 move = ExtResource("3_k46cf")
 
-[sub_resource type="Resource" id="Resource_eorxy"]
-script = ExtResource("1_ah8rh")
-move = ExtResource("4_hixbg")
-
-[sub_resource type="Resource" id="Resource_5p8ix"]
+[sub_resource type="Resource" id="Resource_58k73"]
 script = ExtResource("1_ah8rh")
 level = 13
 move = ExtResource("5_eorxy")
 
-[sub_resource type="Resource" id="Resource_1auc4"]
+[sub_resource type="Resource" id="Resource_p7upj"]
 script = ExtResource("1_ah8rh")
 level = 20
 move = ExtResource("6_5p8ix")
 
-[sub_resource type="Resource" id="Resource_p6sya"]
+[sub_resource type="Resource" id="Resource_shyy1"]
 script = ExtResource("1_ah8rh")
 level = 27
 move = ExtResource("7_1auc4")
 
-[sub_resource type="Resource" id="Resource_1fke2"]
+[sub_resource type="Resource" id="Resource_tkcgp"]
 script = ExtResource("1_ah8rh")
 level = 34
 move = ExtResource("8_p6sya")
 
-[sub_resource type="Resource" id="Resource_n82xw"]
+[sub_resource type="Resource" id="Resource_dfc3o"]
 script = ExtResource("1_ah8rh")
 level = 41
 move = ExtResource("9_1fke2")
 
-[sub_resource type="Resource" id="Resource_58k73"]
+[sub_resource type="Resource" id="Resource_td7q1"]
 script = ExtResource("1_ah8rh")
 level = 48
 move = ExtResource("10_n82xw")
-
-[sub_resource type="Resource" id="Resource_p7upj"]
-script = ExtResource("1_ah8rh")
-level = 55
-move = ExtResource("11_58k73")
 
 [resource]
 script = ExtResource("3_81fls")
@@ -70,7 +83,11 @@ id = "charmeleon"
 display_name = "Charmeleon"
 dex = 5
 types = Array[ExtResource("4_i6kif")]([ExtResource("5_uda8v")])
-learnset = Array[ExtResource("1_ah8rh")]([SubResource("Resource_k46cf"), SubResource("Resource_hixbg"), SubResource("Resource_eorxy"), SubResource("Resource_5p8ix"), SubResource("Resource_1auc4"), SubResource("Resource_p6sya"), SubResource("Resource_1fke2"), SubResource("Resource_n82xw"), SubResource("Resource_58k73"), SubResource("Resource_p7upj")])
+kit = ExtResource("2_eorxy")
+learnset = Array[ExtResource("1_ah8rh")]([SubResource("Resource_5p8ix"), SubResource("Resource_1auc4"), SubResource("Resource_p6sya"), SubResource("Resource_1fke2"), SubResource("Resource_n82xw"), SubResource("Resource_58k73"), SubResource("Resource_p7upj"), SubResource("Resource_shyy1"), SubResource("Resource_tkcgp"), SubResource("Resource_dfc3o"), SubResource("Resource_td7q1")])
+kit_inherited = true
+evolutions = Array[ExtResource("1_hixbg")]([SubResource("Resource_kd7jq")])
+evolves_from = "charmander"
 temperament = ExtResource("14_k46cf")
 genus = "Pokémon Llama"
 pokedex_entry = "Charmeleon no tiene reparo en acabar con su rival usando las afiladas garras que tiene. Si su enemigo es fuerte, se vuelve agresivo, y la llama que tiene en el extremo de la cola empieza a arder con mayor intensidad tornándose azulada."

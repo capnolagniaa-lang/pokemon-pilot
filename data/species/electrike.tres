@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_d0k4q"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l8bqf"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4jkdn"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_vglpj"]
@@ -18,56 +19,61 @@
 [ext_resource type="Resource" path="res://data/moves/carga.tres" id="12_ic3sh"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_wri6s"]
 
-[sub_resource type="Resource" id="Resource_wri6s"]
+[sub_resource type="Resource" id="Resource_d0k4q"]
+script = ExtResource("1_d0k4q")
+to_id = "manectric"
+level = 26
+
+[sub_resource type="Resource" id="Resource_k8b5l"]
 script = ExtResource("1_l8bqf")
 move = ExtResource("2_vglpj")
 
-[sub_resource type="Resource" id="Resource_d0k4q"]
+[sub_resource type="Resource" id="Resource_8y6am"]
 script = ExtResource("1_l8bqf")
 level = 4
 move = ExtResource("3_wri6s")
 
-[sub_resource type="Resource" id="Resource_k8b5l"]
+[sub_resource type="Resource" id="Resource_jfoxf"]
 script = ExtResource("1_l8bqf")
 level = 9
 move = ExtResource("4_d0k4q")
 
-[sub_resource type="Resource" id="Resource_8y6am"]
+[sub_resource type="Resource" id="Resource_quayf"]
 script = ExtResource("1_l8bqf")
 level = 12
 move = ExtResource("5_k8b5l")
 
-[sub_resource type="Resource" id="Resource_jfoxf"]
+[sub_resource type="Resource" id="Resource_6fgy8"]
 script = ExtResource("1_l8bqf")
 level = 17
 move = ExtResource("6_8y6am")
 
-[sub_resource type="Resource" id="Resource_quayf"]
+[sub_resource type="Resource" id="Resource_t17o5"]
 script = ExtResource("1_l8bqf")
 level = 20
 move = ExtResource("7_jfoxf")
 
-[sub_resource type="Resource" id="Resource_6fgy8"]
+[sub_resource type="Resource" id="Resource_gu12i"]
 script = ExtResource("1_l8bqf")
 level = 25
 move = ExtResource("8_quayf")
 
-[sub_resource type="Resource" id="Resource_t17o5"]
+[sub_resource type="Resource" id="Resource_ic3sh"]
 script = ExtResource("1_l8bqf")
 level = 28
 move = ExtResource("9_6fgy8")
 
-[sub_resource type="Resource" id="Resource_gu12i"]
+[sub_resource type="Resource" id="Resource_moeh4"]
 script = ExtResource("1_l8bqf")
 level = 33
 move = ExtResource("10_t17o5")
 
-[sub_resource type="Resource" id="Resource_ic3sh"]
+[sub_resource type="Resource" id="Resource_85n5m"]
 script = ExtResource("1_l8bqf")
 level = 36
 move = ExtResource("11_gu12i")
 
-[sub_resource type="Resource" id="Resource_moeh4"]
+[sub_resource type="Resource" id="Resource_vi1eg"]
 script = ExtResource("1_l8bqf")
 level = 41
 move = ExtResource("12_ic3sh")
@@ -78,7 +84,8 @@ id = "electrike"
 display_name = "Electrike"
 dex = 309
 types = Array[ExtResource("4_ckoeb")]([ExtResource("5_3qur0")])
-learnset = Array[ExtResource("1_l8bqf")]([SubResource("Resource_wri6s"), SubResource("Resource_d0k4q"), SubResource("Resource_k8b5l"), SubResource("Resource_8y6am"), SubResource("Resource_jfoxf"), SubResource("Resource_quayf"), SubResource("Resource_6fgy8"), SubResource("Resource_t17o5"), SubResource("Resource_gu12i"), SubResource("Resource_ic3sh"), SubResource("Resource_moeh4")])
+learnset = Array[ExtResource("1_l8bqf")]([SubResource("Resource_k8b5l"), SubResource("Resource_8y6am"), SubResource("Resource_jfoxf"), SubResource("Resource_quayf"), SubResource("Resource_6fgy8"), SubResource("Resource_t17o5"), SubResource("Resource_gu12i"), SubResource("Resource_ic3sh"), SubResource("Resource_moeh4"), SubResource("Resource_85n5m"), SubResource("Resource_vi1eg")])
+evolutions = Array[ExtResource("1_d0k4q")]([SubResource("Resource_d0k4q")])
 temperament = ExtResource("15_wri6s")
 genus = "Pokémon Calambre"
 pokedex_entry = "Electrike acumula electricidad en el largo pelaje que tiene. Este Pokémon estimula los músculos de las patas mediante descargas eléctricas. Estas explosiones de energía le permiten acelerar de forma increíble."

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_b43td"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_codyr"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_4oi1f"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mpf0h"]
@@ -18,50 +19,50 @@
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_wgqp5"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_db4m8"]
 
-[sub_resource type="Resource" id="Resource_db4m8"]
+[sub_resource type="Resource" id="Resource_b43td"]
 script = ExtResource("1_codyr")
 move = ExtResource("2_4oi1f")
 
-[sub_resource type="Resource" id="Resource_b43td"]
+[sub_resource type="Resource" id="Resource_fyka8"]
 script = ExtResource("1_codyr")
 move = ExtResource("3_db4m8")
 
-[sub_resource type="Resource" id="Resource_fyka8"]
+[sub_resource type="Resource" id="Resource_7n8tc"]
 script = ExtResource("1_codyr")
 level = 6
 move = ExtResource("4_b43td")
 
-[sub_resource type="Resource" id="Resource_7n8tc"]
+[sub_resource type="Resource" id="Resource_nfkaa"]
 script = ExtResource("1_codyr")
 level = 11
 move = ExtResource("5_fyka8")
 
-[sub_resource type="Resource" id="Resource_nfkaa"]
+[sub_resource type="Resource" id="Resource_bjw55"]
 script = ExtResource("1_codyr")
 level = 17
 move = ExtResource("6_7n8tc")
 
-[sub_resource type="Resource" id="Resource_bjw55"]
+[sub_resource type="Resource" id="Resource_a4ymb"]
 script = ExtResource("1_codyr")
 level = 23
 move = ExtResource("7_nfkaa")
 
-[sub_resource type="Resource" id="Resource_a4ymb"]
+[sub_resource type="Resource" id="Resource_kdngj"]
 script = ExtResource("1_codyr")
 level = 30
 move = ExtResource("8_bjw55")
 
-[sub_resource type="Resource" id="Resource_kdngj"]
+[sub_resource type="Resource" id="Resource_wgqp5"]
 script = ExtResource("1_codyr")
 level = 37
 move = ExtResource("9_a4ymb")
 
-[sub_resource type="Resource" id="Resource_wgqp5"]
+[sub_resource type="Resource" id="Resource_vwq5y"]
 script = ExtResource("1_codyr")
 level = 45
 move = ExtResource("10_kdngj")
 
-[sub_resource type="Resource" id="Resource_vwq5y"]
+[sub_resource type="Resource" id="Resource_x74lv"]
 script = ExtResource("1_codyr")
 level = 53
 move = ExtResource("11_wgqp5")
@@ -72,7 +73,7 @@ id = "heracross"
 display_name = "Heracross"
 dex = 214
 types = Array[ExtResource("4_mrq4h")]([ExtResource("5_yfg6i"), ExtResource("6_f7nxb")])
-learnset = Array[ExtResource("1_codyr")]([SubResource("Resource_db4m8"), SubResource("Resource_b43td"), SubResource("Resource_fyka8"), SubResource("Resource_7n8tc"), SubResource("Resource_nfkaa"), SubResource("Resource_bjw55"), SubResource("Resource_a4ymb"), SubResource("Resource_kdngj"), SubResource("Resource_wgqp5"), SubResource("Resource_vwq5y")])
+learnset = Array[ExtResource("1_codyr")]([SubResource("Resource_b43td"), SubResource("Resource_fyka8"), SubResource("Resource_7n8tc"), SubResource("Resource_nfkaa"), SubResource("Resource_bjw55"), SubResource("Resource_a4ymb"), SubResource("Resource_kdngj"), SubResource("Resource_wgqp5"), SubResource("Resource_vwq5y"), SubResource("Resource_x74lv")])
 temperament = ExtResource("14_db4m8")
 genus = "Pokémon Cuerno"
 pokedex_entry = "Heracross carga en línea recta contra el enemigo, se le queda encajado por debajo, lo agarra y lo lanza con ayuda del fuerte cuerno que tiene. Este Pokémon tiene fuerza hasta para echar abajo un árbol descomunal."

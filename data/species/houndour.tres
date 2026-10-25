@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_35bxd"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_kknnr"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_hnqwo"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_mcphq"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_2na66"]
@@ -18,50 +19,55 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_dvhax"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_wb1s4"]
 
-[sub_resource type="Resource" id="Resource_wb1s4"]
+[sub_resource type="Resource" id="Resource_kknnr"]
+script = ExtResource("1_kknnr")
+to_id = "houndoom"
+level = 24
+
+[sub_resource type="Resource" id="Resource_vxwjy"]
 script = ExtResource("1_35bxd")
 move = ExtResource("2_mcphq")
 
-[sub_resource type="Resource" id="Resource_kknnr"]
+[sub_resource type="Resource" id="Resource_0005l"]
 script = ExtResource("1_35bxd")
 move = ExtResource("3_wb1s4")
 
-[sub_resource type="Resource" id="Resource_vxwjy"]
+[sub_resource type="Resource" id="Resource_qylfu"]
 script = ExtResource("1_35bxd")
 level = 7
 move = ExtResource("4_kknnr")
 
-[sub_resource type="Resource" id="Resource_0005l"]
+[sub_resource type="Resource" id="Resource_630pe"]
 script = ExtResource("1_35bxd")
 level = 13
 move = ExtResource("5_vxwjy")
 
-[sub_resource type="Resource" id="Resource_qylfu"]
+[sub_resource type="Resource" id="Resource_wyuxv"]
 script = ExtResource("1_35bxd")
 level = 19
 move = ExtResource("6_0005l")
 
-[sub_resource type="Resource" id="Resource_630pe"]
+[sub_resource type="Resource" id="Resource_cp0d2"]
 script = ExtResource("1_35bxd")
 level = 25
 move = ExtResource("7_qylfu")
 
-[sub_resource type="Resource" id="Resource_wyuxv"]
+[sub_resource type="Resource" id="Resource_dvhax"]
 script = ExtResource("1_35bxd")
 level = 31
 move = ExtResource("8_630pe")
 
-[sub_resource type="Resource" id="Resource_cp0d2"]
+[sub_resource type="Resource" id="Resource_xlrhc"]
 script = ExtResource("1_35bxd")
 level = 37
 move = ExtResource("9_wyuxv")
 
-[sub_resource type="Resource" id="Resource_dvhax"]
+[sub_resource type="Resource" id="Resource_jl2tx"]
 script = ExtResource("1_35bxd")
 level = 43
 move = ExtResource("10_cp0d2")
 
-[sub_resource type="Resource" id="Resource_xlrhc"]
+[sub_resource type="Resource" id="Resource_mcpvu"]
 script = ExtResource("1_35bxd")
 level = 49
 move = ExtResource("11_dvhax")
@@ -72,7 +78,8 @@ id = "houndour"
 display_name = "Houndour"
 dex = 228
 types = Array[ExtResource("4_cq65b")]([ExtResource("5_qmixd"), ExtResource("6_aonmr")])
-learnset = Array[ExtResource("1_35bxd")]([SubResource("Resource_wb1s4"), SubResource("Resource_kknnr"), SubResource("Resource_vxwjy"), SubResource("Resource_0005l"), SubResource("Resource_qylfu"), SubResource("Resource_630pe"), SubResource("Resource_wyuxv"), SubResource("Resource_cp0d2"), SubResource("Resource_dvhax"), SubResource("Resource_xlrhc")])
+learnset = Array[ExtResource("1_35bxd")]([SubResource("Resource_vxwjy"), SubResource("Resource_0005l"), SubResource("Resource_qylfu"), SubResource("Resource_630pe"), SubResource("Resource_wyuxv"), SubResource("Resource_cp0d2"), SubResource("Resource_dvhax"), SubResource("Resource_xlrhc"), SubResource("Resource_jl2tx"), SubResource("Resource_mcpvu")])
+evolutions = Array[ExtResource("1_kknnr")]([SubResource("Resource_kknnr")])
 temperament = ExtResource("14_wb1s4")
 genus = "Pokémon Siniestro"
 pokedex_entry = "Houndour sale a cazar con el resto de la manada con total coordinación. Estos Pokémon se comunican unos con otros usando una serie de aullidos para acorralar a su presa. El compañerismo que existe entre ellos es incomparable."

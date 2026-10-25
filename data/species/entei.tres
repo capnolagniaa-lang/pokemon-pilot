@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5amg4"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_xcqsg"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_p3fbv"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_q45d6"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0jfsd"]
@@ -17,50 +18,50 @@
 [ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="11_uby5r"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_cri0q"]
 
-[sub_resource type="Resource" id="Resource_cri0q"]
+[sub_resource type="Resource" id="Resource_xcqsg"]
 script = ExtResource("1_5amg4")
 move = ExtResource("2_q45d6")
 
-[sub_resource type="Resource" id="Resource_xcqsg"]
+[sub_resource type="Resource" id="Resource_2ovl8"]
 script = ExtResource("1_5amg4")
 move = ExtResource("3_cri0q")
 
-[sub_resource type="Resource" id="Resource_2ovl8"]
+[sub_resource type="Resource" id="Resource_10y2o"]
 script = ExtResource("1_5amg4")
 level = 11
 move = ExtResource("4_xcqsg")
 
-[sub_resource type="Resource" id="Resource_10y2o"]
+[sub_resource type="Resource" id="Resource_g05qf"]
 script = ExtResource("1_5amg4")
 level = 21
 move = ExtResource("5_2ovl8")
 
-[sub_resource type="Resource" id="Resource_g05qf"]
+[sub_resource type="Resource" id="Resource_lqwtw"]
 script = ExtResource("1_5amg4")
 level = 31
 move = ExtResource("6_10y2o")
 
-[sub_resource type="Resource" id="Resource_lqwtw"]
+[sub_resource type="Resource" id="Resource_psyi8"]
 script = ExtResource("1_5amg4")
 level = 41
 move = ExtResource("7_g05qf")
 
-[sub_resource type="Resource" id="Resource_psyi8"]
+[sub_resource type="Resource" id="Resource_kt6vl"]
 script = ExtResource("1_5amg4")
 level = 51
 move = ExtResource("8_lqwtw")
 
-[sub_resource type="Resource" id="Resource_kt6vl"]
+[sub_resource type="Resource" id="Resource_uby5r"]
 script = ExtResource("1_5amg4")
 level = 61
 move = ExtResource("9_psyi8")
 
-[sub_resource type="Resource" id="Resource_uby5r"]
+[sub_resource type="Resource" id="Resource_eoflu"]
 script = ExtResource("1_5amg4")
 level = 71
 move = ExtResource("10_kt6vl")
 
-[sub_resource type="Resource" id="Resource_eoflu"]
+[sub_resource type="Resource" id="Resource_vh0n0"]
 script = ExtResource("1_5amg4")
 level = 81
 move = ExtResource("11_uby5r")
@@ -71,7 +72,7 @@ id = "entei"
 display_name = "Entei"
 dex = 244
 types = Array[ExtResource("4_iod2h")]([ExtResource("5_8bio8")])
-learnset = Array[ExtResource("1_5amg4")]([SubResource("Resource_cri0q"), SubResource("Resource_xcqsg"), SubResource("Resource_2ovl8"), SubResource("Resource_10y2o"), SubResource("Resource_g05qf"), SubResource("Resource_lqwtw"), SubResource("Resource_psyi8"), SubResource("Resource_kt6vl"), SubResource("Resource_uby5r"), SubResource("Resource_eoflu")])
+learnset = Array[ExtResource("1_5amg4")]([SubResource("Resource_xcqsg"), SubResource("Resource_2ovl8"), SubResource("Resource_10y2o"), SubResource("Resource_g05qf"), SubResource("Resource_lqwtw"), SubResource("Resource_psyi8"), SubResource("Resource_kt6vl"), SubResource("Resource_uby5r"), SubResource("Resource_eoflu"), SubResource("Resource_vh0n0")])
 temperament = ExtResource("14_cri0q")
 genus = "Pokémon Volcán"
 pokedex_entry = "Entei contiene el fulgor del magma en su interior. Se cree que este Pokémon nació de la erupción de un volcán. Escupe numerosas ráfagas de fuego que devoran y reducen a cenizas todo lo que tocan."

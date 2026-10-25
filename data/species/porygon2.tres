@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_58gi4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_rhhlm"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_fn0d0"]
 [ext_resource type="Resource" path="res://data/moves/conversion.tres" id="2_n5134"]
@@ -18,54 +19,54 @@
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_7t6ng"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_1qckg"]
 
-[sub_resource type="Resource" id="Resource_1qckg"]
+[sub_resource type="Resource" id="Resource_58gi4"]
 script = ExtResource("1_rhhlm")
 move = ExtResource("2_n5134")
 
-[sub_resource type="Resource" id="Resource_58gi4"]
+[sub_resource type="Resource" id="Resource_nbf0c"]
 script = ExtResource("1_rhhlm")
 move = ExtResource("3_1qckg")
 
-[sub_resource type="Resource" id="Resource_nbf0c"]
+[sub_resource type="Resource" id="Resource_u7a2a"]
 script = ExtResource("1_rhhlm")
 move = ExtResource("4_58gi4")
 
-[sub_resource type="Resource" id="Resource_u7a2a"]
+[sub_resource type="Resource" id="Resource_v6myh"]
 script = ExtResource("1_rhhlm")
 level = 9
 move = ExtResource("5_nbf0c")
 
-[sub_resource type="Resource" id="Resource_v6myh"]
+[sub_resource type="Resource" id="Resource_t2vmt"]
 script = ExtResource("1_rhhlm")
 level = 12
 move = ExtResource("6_u7a2a")
 
-[sub_resource type="Resource" id="Resource_t2vmt"]
+[sub_resource type="Resource" id="Resource_sctsc"]
 script = ExtResource("1_rhhlm")
 level = 20
 move = ExtResource("7_v6myh")
 
-[sub_resource type="Resource" id="Resource_sctsc"]
+[sub_resource type="Resource" id="Resource_jxmlp"]
 script = ExtResource("1_rhhlm")
 level = 24
 move = ExtResource("8_t2vmt")
 
-[sub_resource type="Resource" id="Resource_jxmlp"]
+[sub_resource type="Resource" id="Resource_lfak2"]
 script = ExtResource("1_rhhlm")
 level = 32
 move = ExtResource("9_sctsc")
 
-[sub_resource type="Resource" id="Resource_lfak2"]
+[sub_resource type="Resource" id="Resource_7t6ng"]
 script = ExtResource("1_rhhlm")
 level = 36
 move = ExtResource("10_jxmlp")
 
-[sub_resource type="Resource" id="Resource_7t6ng"]
+[sub_resource type="Resource" id="Resource_l0yfg"]
 script = ExtResource("1_rhhlm")
 level = 44
 move = ExtResource("11_lfak2")
 
-[sub_resource type="Resource" id="Resource_l0yfg"]
+[sub_resource type="Resource" id="Resource_5jj2h"]
 script = ExtResource("1_rhhlm")
 level = 48
 move = ExtResource("12_7t6ng")
@@ -76,7 +77,8 @@ id = "porygon2"
 display_name = "Porygon2"
 dex = 233
 types = Array[ExtResource("4_2n0o3")]([ExtResource("5_v3c0d")])
-learnset = Array[ExtResource("1_rhhlm")]([SubResource("Resource_1qckg"), SubResource("Resource_58gi4"), SubResource("Resource_nbf0c"), SubResource("Resource_u7a2a"), SubResource("Resource_v6myh"), SubResource("Resource_t2vmt"), SubResource("Resource_sctsc"), SubResource("Resource_jxmlp"), SubResource("Resource_lfak2"), SubResource("Resource_7t6ng"), SubResource("Resource_l0yfg")])
+learnset = Array[ExtResource("1_rhhlm")]([SubResource("Resource_58gi4"), SubResource("Resource_nbf0c"), SubResource("Resource_u7a2a"), SubResource("Resource_v6myh"), SubResource("Resource_t2vmt"), SubResource("Resource_sctsc"), SubResource("Resource_jxmlp"), SubResource("Resource_lfak2"), SubResource("Resource_7t6ng"), SubResource("Resource_l0yfg"), SubResource("Resource_5jj2h")])
+evolves_from = "porygon"
 temperament = ExtResource("15_1qckg")
 genus = "Pokémon Virtual"
 pokedex_entry = "Porygon2 fue creado por el hombre gracias a los avances de la ciencia. Esta obra humana ha sido provista de inteligencia artificial que le permite aprender gestos y sensaciones nuevas por su cuenta."

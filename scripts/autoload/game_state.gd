@@ -209,6 +209,9 @@ func grant_exp(inst: CreatureInstance, amount: int) -> String:
 		Events.move_learned.emit(inst, m)
 		if equipped:
 			Events.equipment_changed.emit(inst)
+	var evo := Evolution.by_level(inst)
+	if evo != null and party.has(inst):
+		Events.evolution_ready.emit(inst, evo, true)  # EvolutionDirector la muestra cuando termine el combate
 	return text
 
 
@@ -298,6 +301,10 @@ func use_item_on(id: String, inst: CreatureInstance, statuses: StatusEffects = n
 		Events.move_learned.emit(inst, it.teaches_move)
 		if equipped:
 			Events.equipment_changed.emit(inst)
+	elif it.evolves:
+		var to := Evolution.by_item(inst, it.id)
+		parts.append("¡está evolucionando!")
+		Events.evolution_ready.emit(inst, to, false)  # las piedras no se pueden cancelar
 	elif it.level_up > 0:
 		var learned := PackedStringArray()
 		for k in it.level_up:

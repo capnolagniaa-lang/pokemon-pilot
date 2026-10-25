@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_f77uk"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_nm4un"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1dvld"]
 [ext_resource type="Resource" path="res://data/moves/conversion.tres" id="2_y38l8"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_djqj7"]
@@ -18,54 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_35hx6"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_l84t5"]
 
-[sub_resource type="Resource" id="Resource_l84t5"]
-script = ExtResource("1_f77uk")
-move = ExtResource("2_y38l8")
-
 [sub_resource type="Resource" id="Resource_nm4un"]
-script = ExtResource("1_f77uk")
-move = ExtResource("3_l84t5")
+script = ExtResource("1_nm4un")
+to_id = "porygon2"
+method = "intercambio"
+item = "up-grade"
 
 [sub_resource type="Resource" id="Resource_y3eso"]
 script = ExtResource("1_f77uk")
-move = ExtResource("4_nm4un")
+move = ExtResource("2_y38l8")
 
 [sub_resource type="Resource" id="Resource_kdsd8"]
+script = ExtResource("1_f77uk")
+move = ExtResource("3_l84t5")
+
+[sub_resource type="Resource" id="Resource_l6hu1"]
+script = ExtResource("1_f77uk")
+move = ExtResource("4_nm4un")
+
+[sub_resource type="Resource" id="Resource_v680w"]
 script = ExtResource("1_f77uk")
 level = 9
 move = ExtResource("5_y3eso")
 
-[sub_resource type="Resource" id="Resource_l6hu1"]
+[sub_resource type="Resource" id="Resource_cm0du"]
 script = ExtResource("1_f77uk")
 level = 12
 move = ExtResource("6_kdsd8")
 
-[sub_resource type="Resource" id="Resource_v680w"]
+[sub_resource type="Resource" id="Resource_lj1e6"]
 script = ExtResource("1_f77uk")
 level = 20
 move = ExtResource("7_l6hu1")
 
-[sub_resource type="Resource" id="Resource_cm0du"]
+[sub_resource type="Resource" id="Resource_eiqbh"]
 script = ExtResource("1_f77uk")
 level = 24
 move = ExtResource("8_v680w")
 
-[sub_resource type="Resource" id="Resource_lj1e6"]
+[sub_resource type="Resource" id="Resource_35hx6"]
 script = ExtResource("1_f77uk")
 level = 32
 move = ExtResource("9_cm0du")
 
-[sub_resource type="Resource" id="Resource_eiqbh"]
+[sub_resource type="Resource" id="Resource_01bhu"]
 script = ExtResource("1_f77uk")
 level = 36
 move = ExtResource("10_lj1e6")
 
-[sub_resource type="Resource" id="Resource_35hx6"]
+[sub_resource type="Resource" id="Resource_lwgfv"]
 script = ExtResource("1_f77uk")
 level = 44
 move = ExtResource("11_eiqbh")
 
-[sub_resource type="Resource" id="Resource_01bhu"]
+[sub_resource type="Resource" id="Resource_3s0gp"]
 script = ExtResource("1_f77uk")
 level = 48
 move = ExtResource("12_35hx6")
@@ -76,7 +83,8 @@ id = "porygon"
 display_name = "Porygon"
 dex = 137
 types = Array[ExtResource("4_e2fqv")]([ExtResource("5_3pqji")])
-learnset = Array[ExtResource("1_f77uk")]([SubResource("Resource_l84t5"), SubResource("Resource_nm4un"), SubResource("Resource_y3eso"), SubResource("Resource_kdsd8"), SubResource("Resource_l6hu1"), SubResource("Resource_v680w"), SubResource("Resource_cm0du"), SubResource("Resource_lj1e6"), SubResource("Resource_eiqbh"), SubResource("Resource_35hx6"), SubResource("Resource_01bhu")])
+learnset = Array[ExtResource("1_f77uk")]([SubResource("Resource_y3eso"), SubResource("Resource_kdsd8"), SubResource("Resource_l6hu1"), SubResource("Resource_v680w"), SubResource("Resource_cm0du"), SubResource("Resource_lj1e6"), SubResource("Resource_eiqbh"), SubResource("Resource_35hx6"), SubResource("Resource_01bhu"), SubResource("Resource_lwgfv"), SubResource("Resource_3s0gp")])
+evolutions = Array[ExtResource("1_nm4un")]([SubResource("Resource_nm4un")])
 temperament = ExtResource("15_l84t5")
 genus = "Pokémon Virtual"
 pokedex_entry = "Porygon es capaz de convertirse otra vez en datos informáticos y de entrar en el ciberespacio. Tiene protección anticopia, así que es imposible duplicarlo."

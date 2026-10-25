@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_l4eg1"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_sxgyn"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_b47c3"]
 [ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_w4b4r"]
@@ -20,57 +21,57 @@
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="13_fwsae"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_focjs"]
 
-[sub_resource type="Resource" id="Resource_focjs"]
+[sub_resource type="Resource" id="Resource_l4eg1"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("2_w4b4r")
 
-[sub_resource type="Resource" id="Resource_l4eg1"]
+[sub_resource type="Resource" id="Resource_o5430"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("3_focjs")
 
-[sub_resource type="Resource" id="Resource_o5430"]
+[sub_resource type="Resource" id="Resource_0wfno"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("4_l4eg1")
 
-[sub_resource type="Resource" id="Resource_0wfno"]
+[sub_resource type="Resource" id="Resource_1au25"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("5_o5430")
 
-[sub_resource type="Resource" id="Resource_1au25"]
+[sub_resource type="Resource" id="Resource_g345r"]
 script = ExtResource("1_sxgyn")
 move = ExtResource("6_0wfno")
 
-[sub_resource type="Resource" id="Resource_g345r"]
+[sub_resource type="Resource" id="Resource_evdss"]
 script = ExtResource("1_sxgyn")
 level = 25
 move = ExtResource("7_1au25")
 
-[sub_resource type="Resource" id="Resource_evdss"]
+[sub_resource type="Resource" id="Resource_hlqc8"]
 script = ExtResource("1_sxgyn")
 level = 31
 move = ExtResource("8_g345r")
 
-[sub_resource type="Resource" id="Resource_hlqc8"]
+[sub_resource type="Resource" id="Resource_h5ugm"]
 script = ExtResource("1_sxgyn")
 level = 37
 move = ExtResource("9_evdss")
 
-[sub_resource type="Resource" id="Resource_h5ugm"]
+[sub_resource type="Resource" id="Resource_x3k2w"]
 script = ExtResource("1_sxgyn")
 level = 40
 move = ExtResource("10_hlqc8")
 
-[sub_resource type="Resource" id="Resource_x3k2w"]
+[sub_resource type="Resource" id="Resource_fwsae"]
 script = ExtResource("1_sxgyn")
 level = 46
 move = ExtResource("11_h5ugm")
 
-[sub_resource type="Resource" id="Resource_fwsae"]
+[sub_resource type="Resource" id="Resource_xeudj"]
 script = ExtResource("1_sxgyn")
 level = 55
 move = ExtResource("12_x3k2w")
 
-[sub_resource type="Resource" id="Resource_xeudj"]
+[sub_resource type="Resource" id="Resource_syjv5"]
 script = ExtResource("1_sxgyn")
 level = 65
 move = ExtResource("13_fwsae")
@@ -81,7 +82,8 @@ id = "kabutops"
 display_name = "Kabutops"
 dex = 141
 types = Array[ExtResource("4_qe8t2")]([ExtResource("5_6rkw4"), ExtResource("6_gk0cw")])
-learnset = Array[ExtResource("1_sxgyn")]([SubResource("Resource_focjs"), SubResource("Resource_l4eg1"), SubResource("Resource_o5430"), SubResource("Resource_0wfno"), SubResource("Resource_1au25"), SubResource("Resource_g345r"), SubResource("Resource_evdss"), SubResource("Resource_hlqc8"), SubResource("Resource_h5ugm"), SubResource("Resource_x3k2w"), SubResource("Resource_fwsae"), SubResource("Resource_xeudj")])
+learnset = Array[ExtResource("1_sxgyn")]([SubResource("Resource_l4eg1"), SubResource("Resource_o5430"), SubResource("Resource_0wfno"), SubResource("Resource_1au25"), SubResource("Resource_g345r"), SubResource("Resource_evdss"), SubResource("Resource_hlqc8"), SubResource("Resource_h5ugm"), SubResource("Resource_x3k2w"), SubResource("Resource_fwsae"), SubResource("Resource_xeudj"), SubResource("Resource_syjv5")])
+evolves_from = "kabuto"
 temperament = ExtResource("16_focjs")
 genus = "Pokémon Armazón"
 pokedex_entry = "Hace mucho tiempo, Kabutops buceaba para atrapar a sus presas. Parece ser que en algún momento cambió de hábitat y se adaptó a vivir en tierra firme. La transformación que se aprecia en las patas y branquias así lo confirma."

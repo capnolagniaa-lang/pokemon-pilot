@@ -196,6 +196,13 @@ func _show_detail(sp: SpeciesData) -> void:
 	entry.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	entry.custom_minimum_size.x = 540
 	_detail.add_child(entry)
+	if not sp.evolutions.is_empty() or sp.evolves_from != "":
+		var parts := PackedStringArray()
+		if sp.evolves_from != "" and DB.species.has(sp.evolves_from):
+			parts.append("Evoluciona de %s" % DB.species[sp.evolves_from].display_name)
+		if not sp.evolutions.is_empty():
+			parts.append("Evoluciona en " + ", ".join(sp.evolutions.map(func(e): return Evolution.describe(e))))
+		_detail.add_child(UiStyle.label(" · ".join(parts), 14, UiStyle.ACCENT))
 	_add_kit(sp)
 	if not GameState.has_fought(sp):
 		_detail.add_child(UiStyle.label("Peleá contra él para conocer sus estadísticas.", 14, UiStyle.TEXT_DIM))

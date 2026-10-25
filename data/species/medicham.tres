@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_rxuse"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yqyy4"]
 [ext_resource type="Resource" path="res://data/moves/venganza.tres" id="2_glmow"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ji3w5"]
@@ -23,70 +24,70 @@
 [ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="16_7r6b1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="19_xf3vd"]
 
-[sub_resource type="Resource" id="Resource_xf3vd"]
+[sub_resource type="Resource" id="Resource_rxuse"]
 script = ExtResource("1_yqyy4")
 move = ExtResource("2_glmow")
 
-[sub_resource type="Resource" id="Resource_rxuse"]
+[sub_resource type="Resource" id="Resource_gjeva"]
 script = ExtResource("1_yqyy4")
 move = ExtResource("3_xf3vd")
 
-[sub_resource type="Resource" id="Resource_gjeva"]
+[sub_resource type="Resource" id="Resource_ndkq6"]
 script = ExtResource("1_yqyy4")
 move = ExtResource("4_rxuse")
 
-[sub_resource type="Resource" id="Resource_ndkq6"]
+[sub_resource type="Resource" id="Resource_tnck7"]
 script = ExtResource("1_yqyy4")
 move = ExtResource("5_gjeva")
 
-[sub_resource type="Resource" id="Resource_tnck7"]
+[sub_resource type="Resource" id="Resource_mf42m"]
 script = ExtResource("1_yqyy4")
 move = ExtResource("6_ndkq6")
 
-[sub_resource type="Resource" id="Resource_mf42m"]
+[sub_resource type="Resource" id="Resource_u0261"]
 script = ExtResource("1_yqyy4")
 move = ExtResource("7_tnck7")
 
-[sub_resource type="Resource" id="Resource_u0261"]
+[sub_resource type="Resource" id="Resource_ai7he"]
 script = ExtResource("1_yqyy4")
 move = ExtResource("8_mf42m")
 
-[sub_resource type="Resource" id="Resource_ai7he"]
+[sub_resource type="Resource" id="Resource_g7fo5"]
 script = ExtResource("1_yqyy4")
 level = 17
 move = ExtResource("9_u0261")
 
-[sub_resource type="Resource" id="Resource_g7fo5"]
+[sub_resource type="Resource" id="Resource_vrqq1"]
 script = ExtResource("1_yqyy4")
 level = 20
 move = ExtResource("10_ai7he")
 
-[sub_resource type="Resource" id="Resource_vrqq1"]
+[sub_resource type="Resource" id="Resource_jhheu"]
 script = ExtResource("1_yqyy4")
 level = 25
 move = ExtResource("11_g7fo5")
 
-[sub_resource type="Resource" id="Resource_jhheu"]
+[sub_resource type="Resource" id="Resource_np8i5"]
 script = ExtResource("1_yqyy4")
 level = 28
 move = ExtResource("12_vrqq1")
 
-[sub_resource type="Resource" id="Resource_np8i5"]
+[sub_resource type="Resource" id="Resource_jbjec"]
 script = ExtResource("1_yqyy4")
 level = 33
 move = ExtResource("13_jhheu")
 
-[sub_resource type="Resource" id="Resource_jbjec"]
+[sub_resource type="Resource" id="Resource_7r6b1"]
 script = ExtResource("1_yqyy4")
 level = 36
 move = ExtResource("14_np8i5")
 
-[sub_resource type="Resource" id="Resource_7r6b1"]
+[sub_resource type="Resource" id="Resource_417cg"]
 script = ExtResource("1_yqyy4")
 level = 47
 move = ExtResource("15_jbjec")
 
-[sub_resource type="Resource" id="Resource_417cg"]
+[sub_resource type="Resource" id="Resource_isyg1"]
 script = ExtResource("1_yqyy4")
 level = 56
 move = ExtResource("16_7r6b1")
@@ -97,7 +98,8 @@ id = "medicham"
 display_name = "Medicham"
 dex = 308
 types = Array[ExtResource("4_fyxik")]([ExtResource("5_86jsn"), ExtResource("6_x2ji4")])
-learnset = Array[ExtResource("1_yqyy4")]([SubResource("Resource_xf3vd"), SubResource("Resource_rxuse"), SubResource("Resource_gjeva"), SubResource("Resource_ndkq6"), SubResource("Resource_tnck7"), SubResource("Resource_mf42m"), SubResource("Resource_u0261"), SubResource("Resource_ai7he"), SubResource("Resource_g7fo5"), SubResource("Resource_vrqq1"), SubResource("Resource_jhheu"), SubResource("Resource_np8i5"), SubResource("Resource_jbjec"), SubResource("Resource_7r6b1"), SubResource("Resource_417cg")])
+learnset = Array[ExtResource("1_yqyy4")]([SubResource("Resource_rxuse"), SubResource("Resource_gjeva"), SubResource("Resource_ndkq6"), SubResource("Resource_tnck7"), SubResource("Resource_mf42m"), SubResource("Resource_u0261"), SubResource("Resource_ai7he"), SubResource("Resource_g7fo5"), SubResource("Resource_vrqq1"), SubResource("Resource_jhheu"), SubResource("Resource_np8i5"), SubResource("Resource_jbjec"), SubResource("Resource_7r6b1"), SubResource("Resource_417cg"), SubResource("Resource_isyg1")])
+evolves_from = "meditite"
 temperament = ExtResource("19_xf3vd")
 genus = "Pokémon Meditador"
 pokedex_entry = "Dicen que, a través de la meditación, Medicham aumenta su energía interior y agudiza su sexto sentido. Este Pokémon suele pasar desapercibido mimetizándose con el campo y las montañas."

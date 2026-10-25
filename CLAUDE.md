@@ -66,6 +66,8 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 30000 -- --autotest-capture   # captura (fórmula, lanzar, escapar, Caja, guardado)
 $G --headless --path . --quit-after 30000 -- --autotest-bag       # mochila (curas, ranura rápida, objetos del mapa, botín)
 $G --headless --path . --quit-after 20000 -- --autotest-mart      # mercado: Tiendas, precios, comprar/vender, vendedores
+$G --headless --path . --quit-after 60000 -- --autotest-evolution # evoluciones: nivel, piedra, frenarla, kit heredado, guardado
+$G --path . --quit-after 330 --write-movie out/f.png --fixed-fps 30 -- --showcase-evolution  # Charmander → Charmeleon
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-mart  # pantalla de compra y de venta
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-capture  # lanzar bola, Mochila, Caja
 $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
@@ -183,6 +185,14 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   su propia CanvasLayer 11). Precio oficial `ItemData.price` (tabla `PRICES` de `tools/fetch_items.py`: PokeAPI ya no
   los trae); se vende a la mitad (`sell_price`; objetos clave y Master Ball no). Ciudad Verde vende recién después de
   entregar el Correo de Oak (en modo libre, siempre).
+- **Evoluciones**: `SpeciesData.evolutions` (`EvolutionData`: a qué especie, "nivel"/"piedra"/"intercambio"/"amistad")
+  y `evolves_from`, de PokeAPI (`tools/fetch_evolutions.py` → `data/source/evolutions.json` → `tools/apply_evolutions.gd`
+  → `build_learnsets.gd`). Reglas en `Evolution` (solo nivel y piedras: no hay intercambio ni amistad todavía).
+  `GameState.grant_exp` y las piedras (`ItemData.evolves`) emiten `Events.evolution_ready`; `EvolutionDirector`
+  (`world.evolutions`) espera un momento tranquilo y muestra `EvolutionScreen` (Esc la frena, salvo con piedra); la
+  criatura conserva nivel, daño y movimientos (`CreatureInstance.evolve_into`). **Kits** (decisión del usuario
+  2026-10-25): la evolución hereda el kit de su preevolución (`kit_inherited`) salvo las que cambian mucho
+  (`NEW_KIT` de apply_evolutions: Butterfree, Beedrill, Gyarados, Kadabra, Charizard, Eeveelutions...: kit propio).
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_7372f"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_nae22"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tw4l2"]
 [ext_resource type="Resource" path="res://data/moves/empujon.tres" id="2_yxaj3"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_a4lyp"]
@@ -20,63 +21,63 @@
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="14_wiq5d"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="17_fo3ia"]
 
-[sub_resource type="Resource" id="Resource_fo3ia"]
+[sub_resource type="Resource" id="Resource_nae22"]
 script = ExtResource("1_7372f")
 move = ExtResource("2_yxaj3")
 
-[sub_resource type="Resource" id="Resource_nae22"]
+[sub_resource type="Resource" id="Resource_4r4rs"]
 script = ExtResource("1_7372f")
 move = ExtResource("3_fo3ia")
 
-[sub_resource type="Resource" id="Resource_4r4rs"]
+[sub_resource type="Resource" id="Resource_ga623"]
 script = ExtResource("1_7372f")
 move = ExtResource("4_nae22")
 
-[sub_resource type="Resource" id="Resource_ga623"]
+[sub_resource type="Resource" id="Resource_gqkdm"]
 script = ExtResource("1_7372f")
 move = ExtResource("5_4r4rs")
 
-[sub_resource type="Resource" id="Resource_gqkdm"]
+[sub_resource type="Resource" id="Resource_51p76"]
 script = ExtResource("1_7372f")
 level = 13
 move = ExtResource("6_ga623")
 
-[sub_resource type="Resource" id="Resource_51p76"]
+[sub_resource type="Resource" id="Resource_j2iiq"]
 script = ExtResource("1_7372f")
 level = 19
 move = ExtResource("7_gqkdm")
 
-[sub_resource type="Resource" id="Resource_j2iiq"]
+[sub_resource type="Resource" id="Resource_7rlj0"]
 script = ExtResource("1_7372f")
 level = 22
 move = ExtResource("8_51p76")
 
-[sub_resource type="Resource" id="Resource_7rlj0"]
+[sub_resource type="Resource" id="Resource_rbuap"]
 script = ExtResource("1_7372f")
 level = 29
 move = ExtResource("9_j2iiq")
 
-[sub_resource type="Resource" id="Resource_rbuap"]
+[sub_resource type="Resource" id="Resource_wop2k"]
 script = ExtResource("1_7372f")
 level = 33
 move = ExtResource("10_7rlj0")
 
-[sub_resource type="Resource" id="Resource_wop2k"]
+[sub_resource type="Resource" id="Resource_ci2o8"]
 script = ExtResource("1_7372f")
 level = 40
 move = ExtResource("11_rbuap")
 
-[sub_resource type="Resource" id="Resource_ci2o8"]
+[sub_resource type="Resource" id="Resource_wiq5d"]
 script = ExtResource("1_7372f")
 level = 44
 move = ExtResource("12_wop2k")
 
-[sub_resource type="Resource" id="Resource_wiq5d"]
+[sub_resource type="Resource" id="Resource_4ximl"]
 script = ExtResource("1_7372f")
 level = 51
 move = ExtResource("13_ci2o8")
 
-[sub_resource type="Resource" id="Resource_4ximl"]
+[sub_resource type="Resource" id="Resource_23jrr"]
 script = ExtResource("1_7372f")
 level = 55
 move = ExtResource("14_wiq5d")
@@ -87,7 +88,8 @@ id = "hariyama"
 display_name = "Hariyama"
 dex = 297
 types = Array[ExtResource("4_a8pt7")]([ExtResource("5_wumnc")])
-learnset = Array[ExtResource("1_7372f")]([SubResource("Resource_fo3ia"), SubResource("Resource_nae22"), SubResource("Resource_4r4rs"), SubResource("Resource_ga623"), SubResource("Resource_gqkdm"), SubResource("Resource_51p76"), SubResource("Resource_j2iiq"), SubResource("Resource_7rlj0"), SubResource("Resource_rbuap"), SubResource("Resource_wop2k"), SubResource("Resource_ci2o8"), SubResource("Resource_wiq5d"), SubResource("Resource_4ximl")])
+learnset = Array[ExtResource("1_7372f")]([SubResource("Resource_nae22"), SubResource("Resource_4r4rs"), SubResource("Resource_ga623"), SubResource("Resource_gqkdm"), SubResource("Resource_51p76"), SubResource("Resource_j2iiq"), SubResource("Resource_7rlj0"), SubResource("Resource_rbuap"), SubResource("Resource_wop2k"), SubResource("Resource_ci2o8"), SubResource("Resource_wiq5d"), SubResource("Resource_4ximl"), SubResource("Resource_23jrr")])
+evolves_from = "makuhita"
 temperament = ExtResource("17_fo3ia")
 genus = "Pokémon Empuje"
 pokedex_entry = "Hariyama practica los empujones que da estirando los brazos allá por donde va. Este Pokémon puede partir por la mitad un poste de teléfono de un enérgico golpe con los brazos estirados y las manos abiertas."

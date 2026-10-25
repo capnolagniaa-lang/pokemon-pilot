@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/kits/geodude/kit.tres" id="0_kitv3"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ncs6c"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_p402d"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mteow"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_tj3kt"]
 [ext_resource type="Resource" path="res://data/kits/geodude/placaje_geodude.tres" id="3_vd2vk"]
@@ -15,30 +16,35 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_ibnrr"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_bq7t1"]
 
-[sub_resource type="Resource" id="Resource_vd2vk"]
+[sub_resource type="Resource" id="Resource_p402d"]
+script = ExtResource("1_p402d")
+to_id = "graveler"
+level = 25
+
+[sub_resource type="Resource" id="Resource_katab"]
 script = ExtResource("1_ncs6c")
 move = ExtResource("3_vd2vk")
 
-[sub_resource type="Resource" id="Resource_p402d"]
+[sub_resource type="Resource" id="Resource_p3edi"]
 script = ExtResource("1_ncs6c")
 move = ExtResource("4_p402d")
 
-[sub_resource type="Resource" id="Resource_katab"]
+[sub_resource type="Resource" id="Resource_bq7t1"]
 script = ExtResource("1_ncs6c")
 level = 3
 move = ExtResource("5_katab")
 
-[sub_resource type="Resource" id="Resource_p3edi"]
+[sub_resource type="Resource" id="Resource_050d7"]
 script = ExtResource("1_ncs6c")
 level = 5
 move = ExtResource("6_p3edi")
 
-[sub_resource type="Resource" id="Resource_bq7t1"]
+[sub_resource type="Resource" id="Resource_f6go3"]
 script = ExtResource("1_ncs6c")
 level = 16
 move = ExtResource("6_dtxrv")
 
-[sub_resource type="Resource" id="Resource_050d7"]
+[sub_resource type="Resource" id="Resource_dtxrv"]
 script = ExtResource("1_ncs6c")
 level = 36
 move = ExtResource("10_ibnrr")
@@ -50,7 +56,8 @@ display_name = "Geodude"
 dex = 74
 types = Array[ExtResource("4_sacqb")]([ExtResource("5_hp5nt"), ExtResource("6_17vej")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_ncs6c")]([SubResource("Resource_vd2vk"), SubResource("Resource_p402d"), SubResource("Resource_katab"), SubResource("Resource_p3edi"), SubResource("Resource_bq7t1"), SubResource("Resource_050d7")])
+learnset = Array[ExtResource("1_ncs6c")]([SubResource("Resource_katab"), SubResource("Resource_p3edi"), SubResource("Resource_bq7t1"), SubResource("Resource_050d7"), SubResource("Resource_f6go3"), SubResource("Resource_dtxrv")])
+evolutions = Array[ExtResource("1_p402d")]([SubResource("Resource_p402d")])
 temperament = ExtResource("15_bq7t1")
 genus = "Pokémon Roca"
 pokedex_entry = "Cuanto más larga es la vida de Geodude, mayor es el desgaste y la erosión que sufre, y más redondeada la forma que va adquiriendo. Sin embargo, el corazón permanece siempre duro, rocoso y tosco."

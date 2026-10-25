@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_unto1"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xbcyj"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="2_4ghb2"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7su68"]
@@ -18,50 +19,50 @@
 [ext_resource type="Resource" path="res://data/moves/neblina.tres" id="11_g7yls"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_co2c1"]
 
-[sub_resource type="Resource" id="Resource_co2c1"]
+[sub_resource type="Resource" id="Resource_unto1"]
 script = ExtResource("1_xbcyj")
 move = ExtResource("2_4ghb2")
 
-[sub_resource type="Resource" id="Resource_unto1"]
+[sub_resource type="Resource" id="Resource_tajhs"]
 script = ExtResource("1_xbcyj")
 move = ExtResource("3_co2c1")
 
-[sub_resource type="Resource" id="Resource_tajhs"]
+[sub_resource type="Resource" id="Resource_g6ptg"]
 script = ExtResource("1_xbcyj")
 level = 11
 move = ExtResource("4_unto1")
 
-[sub_resource type="Resource" id="Resource_g6ptg"]
+[sub_resource type="Resource" id="Resource_u6po2"]
 script = ExtResource("1_xbcyj")
 level = 16
 move = ExtResource("5_tajhs")
 
-[sub_resource type="Resource" id="Resource_u6po2"]
+[sub_resource type="Resource" id="Resource_tqx0a"]
 script = ExtResource("1_xbcyj")
 level = 23
 move = ExtResource("6_g6ptg")
 
-[sub_resource type="Resource" id="Resource_tqx0a"]
+[sub_resource type="Resource" id="Resource_2dgi0"]
 script = ExtResource("1_xbcyj")
 level = 35
 move = ExtResource("7_u6po2")
 
-[sub_resource type="Resource" id="Resource_2dgi0"]
+[sub_resource type="Resource" id="Resource_cmx5o"]
 script = ExtResource("1_xbcyj")
 level = 42
 move = ExtResource("8_tqx0a")
 
-[sub_resource type="Resource" id="Resource_cmx5o"]
+[sub_resource type="Resource" id="Resource_g7yls"]
 script = ExtResource("1_xbcyj")
 level = 49
 move = ExtResource("9_2dgi0")
 
-[sub_resource type="Resource" id="Resource_g7yls"]
+[sub_resource type="Resource" id="Resource_xxfty"]
 script = ExtResource("1_xbcyj")
 level = 61
 move = ExtResource("10_cmx5o")
 
-[sub_resource type="Resource" id="Resource_xxfty"]
+[sub_resource type="Resource" id="Resource_tuubo"]
 script = ExtResource("1_xbcyj")
 level = 61
 move = ExtResource("11_g7yls")
@@ -72,7 +73,8 @@ id = "quagsire"
 display_name = "Quagsire"
 dex = 195
 types = Array[ExtResource("4_jhv1k")]([ExtResource("5_pa08x"), ExtResource("6_eir1q")])
-learnset = Array[ExtResource("1_xbcyj")]([SubResource("Resource_co2c1"), SubResource("Resource_unto1"), SubResource("Resource_tajhs"), SubResource("Resource_g6ptg"), SubResource("Resource_u6po2"), SubResource("Resource_tqx0a"), SubResource("Resource_2dgi0"), SubResource("Resource_cmx5o"), SubResource("Resource_g7yls"), SubResource("Resource_xxfty")])
+learnset = Array[ExtResource("1_xbcyj")]([SubResource("Resource_unto1"), SubResource("Resource_tajhs"), SubResource("Resource_g6ptg"), SubResource("Resource_u6po2"), SubResource("Resource_tqx0a"), SubResource("Resource_2dgi0"), SubResource("Resource_cmx5o"), SubResource("Resource_g7yls"), SubResource("Resource_xxfty"), SubResource("Resource_tuubo")])
+evolves_from = "wooper"
 temperament = ExtResource("14_co2c1")
 genus = "Pokémon Pez Agua"
 pokedex_entry = "Quagsire caza dejando las fauces abiertas en el agua y esperando a que su presa entre sin darse cuenta. Como se queda quieto, el Pokémon no pasa mucha hambre."

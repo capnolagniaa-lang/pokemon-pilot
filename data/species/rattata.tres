@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/kits/rattata/kit.tres" id="0_kit"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_hnrfa"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_ta41o"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="2_bbbhk"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_e0xm5"]
 [ext_resource type="Resource" path="res://data/kits/rattata/mordisco.tres" id="3_pxxwp"]
@@ -18,30 +19,35 @@
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_e4fv4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_pxxwp"]
 
-[sub_resource type="Resource" id="Resource_pxxwp"]
+[sub_resource type="Resource" id="Resource_ta41o"]
+script = ExtResource("1_ta41o")
+to_id = "raticate"
+level = 20
+
+[sub_resource type="Resource" id="Resource_hecx1"]
 script = ExtResource("2_bbbhk")
 move = ExtResource("3_pxxwp")
 
-[sub_resource type="Resource" id="Resource_ta41o"]
+[sub_resource type="Resource" id="Resource_3lt72"]
 script = ExtResource("2_bbbhk")
 move = ExtResource("4_ta41o")
 
-[sub_resource type="Resource" id="Resource_hecx1"]
+[sub_resource type="Resource" id="Resource_k36m8"]
 script = ExtResource("2_bbbhk")
 level = 3
 move = ExtResource("5_hecx1")
 
-[sub_resource type="Resource" id="Resource_3lt72"]
+[sub_resource type="Resource" id="Resource_e4fv4"]
 script = ExtResource("2_bbbhk")
 level = 5
 move = ExtResource("6_3lt72")
 
-[sub_resource type="Resource" id="Resource_k36m8"]
+[sub_resource type="Resource" id="Resource_fekcx"]
 script = ExtResource("2_bbbhk")
 level = 27
 move = ExtResource("7_k36m8")
 
-[sub_resource type="Resource" id="Resource_e4fv4"]
+[sub_resource type="Resource" id="Resource_mey80"]
 script = ExtResource("2_bbbhk")
 level = 41
 move = ExtResource("8_e4fv4")
@@ -54,7 +60,8 @@ dex = 19
 types = Array[ExtResource("7_qu5il")]([ExtResource("8_cuhiu")])
 moves = Array[ExtResource("1_hnrfa")]([ExtResource("2_e0xm5"), ExtResource("3_v8ixh"), ExtResource("4_knuu5"), ExtResource("5_q7u3j")])
 kit = ExtResource("0_kit")
-learnset = Array[ExtResource("2_bbbhk")]([SubResource("Resource_pxxwp"), SubResource("Resource_ta41o"), SubResource("Resource_hecx1"), SubResource("Resource_3lt72"), SubResource("Resource_k36m8"), SubResource("Resource_e4fv4")])
+learnset = Array[ExtResource("2_bbbhk")]([SubResource("Resource_hecx1"), SubResource("Resource_3lt72"), SubResource("Resource_k36m8"), SubResource("Resource_e4fv4"), SubResource("Resource_fekcx"), SubResource("Resource_mey80")])
+evolutions = Array[ExtResource("1_ta41o")]([SubResource("Resource_ta41o")])
 temperament = ExtResource("15_pxxwp")
 genus = "Pokémon Ratón"
 pokedex_entry = "Rattata es cauto como él solo. Hasta cuando duerme mueve las orejas para oír todos los ruidos. No es nada delicado a la hora de elegir su hábitat. Cualquier sitio es bueno para cavar su madriguera."

@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" path="res://data/kits/metapod/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6xoyk"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_psd2b"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ak1ke"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1qgrv"]
 [ext_resource type="Resource" path="res://data/kits/metapod/placaje_metapod.tres" id="3_tj8ee"]
@@ -12,20 +13,25 @@
 [ext_resource type="Resource" path="res://data/kits/metapod/fortaleza_metapod.tres" id="5_jq4y1"]
 [ext_resource type="Resource" path="res://data/kits/metapod/derribo_metapod.tres" id="6_hklw2"]
 
-[sub_resource type="Resource" id="Resource_tj8ee"]
+[sub_resource type="Resource" id="Resource_psd2b"]
+script = ExtResource("1_psd2b")
+to_id = "butterfree"
+level = 10
+
+[sub_resource type="Resource" id="Resource_jq4y1"]
 script = ExtResource("1_6xoyk")
 move = ExtResource("3_tj8ee")
 
-[sub_resource type="Resource" id="Resource_psd2b"]
+[sub_resource type="Resource" id="Resource_hklw2"]
 script = ExtResource("1_6xoyk")
 move = ExtResource("4_psd2b")
 
-[sub_resource type="Resource" id="Resource_jq4y1"]
+[sub_resource type="Resource" id="Resource_kbwgc"]
 script = ExtResource("1_6xoyk")
 level = 3
 move = ExtResource("5_jq4y1")
 
-[sub_resource type="Resource" id="Resource_hklw2"]
+[sub_resource type="Resource" id="Resource_t52vy"]
 script = ExtResource("1_6xoyk")
 level = 5
 move = ExtResource("6_hklw2")
@@ -37,7 +43,9 @@ display_name = "Metapod"
 dex = 11
 types = Array[ExtResource("4_23myf")]([ExtResource("5_1ike3")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_6xoyk")]([SubResource("Resource_tj8ee"), SubResource("Resource_psd2b"), SubResource("Resource_jq4y1"), SubResource("Resource_hklw2")])
+learnset = Array[ExtResource("1_6xoyk")]([SubResource("Resource_jq4y1"), SubResource("Resource_hklw2"), SubResource("Resource_kbwgc"), SubResource("Resource_t52vy")])
+evolutions = Array[ExtResource("1_psd2b")]([SubResource("Resource_psd2b")])
+evolves_from = "caterpie"
 temperament = ExtResource("5_1qgrv")
 genus = "Pokémon Capullo"
 pokedex_entry = "La capa que recubre el cuerpo de este Pokémon es tan dura como una plancha de hierro. Metapod apenas se mueve. Permanece inmóvil para que las vísceras evolucionen dentro de la coraza que le rodea."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_72icd"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_k53h4"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_e7rfg"]
 [ext_resource type="Resource" path="res://data/moves/psicoonda.tres" id="2_pxmpp"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_egbs7"]
@@ -19,56 +20,56 @@
 [ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="12_jwfvj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_ya1bu"]
 
-[sub_resource type="Resource" id="Resource_ya1bu"]
+[sub_resource type="Resource" id="Resource_k53h4"]
 script = ExtResource("1_72icd")
 move = ExtResource("2_pxmpp")
 
-[sub_resource type="Resource" id="Resource_k53h4"]
+[sub_resource type="Resource" id="Resource_sf72s"]
 script = ExtResource("1_72icd")
 level = 5
 move = ExtResource("3_ya1bu")
 
-[sub_resource type="Resource" id="Resource_sf72s"]
+[sub_resource type="Resource" id="Resource_7lfju"]
 script = ExtResource("1_72icd")
 level = 10
 move = ExtResource("4_k53h4")
 
-[sub_resource type="Resource" id="Resource_7lfju"]
+[sub_resource type="Resource" id="Resource_jb3xy"]
 script = ExtResource("1_72icd")
 level = 15
 move = ExtResource("5_sf72s")
 
-[sub_resource type="Resource" id="Resource_jb3xy"]
+[sub_resource type="Resource" id="Resource_j4kmt"]
 script = ExtResource("1_72icd")
 level = 20
 move = ExtResource("6_7lfju")
 
-[sub_resource type="Resource" id="Resource_j4kmt"]
+[sub_resource type="Resource" id="Resource_3uqab"]
 script = ExtResource("1_72icd")
 level = 25
 move = ExtResource("7_jb3xy")
 
-[sub_resource type="Resource" id="Resource_3uqab"]
+[sub_resource type="Resource" id="Resource_nnwtx"]
 script = ExtResource("1_72icd")
 level = 30
 move = ExtResource("8_j4kmt")
 
-[sub_resource type="Resource" id="Resource_nnwtx"]
+[sub_resource type="Resource" id="Resource_st3dd"]
 script = ExtResource("1_72icd")
 level = 35
 move = ExtResource("9_3uqab")
 
-[sub_resource type="Resource" id="Resource_st3dd"]
+[sub_resource type="Resource" id="Resource_jwfvj"]
 script = ExtResource("1_72icd")
 level = 40
 move = ExtResource("10_nnwtx")
 
-[sub_resource type="Resource" id="Resource_jwfvj"]
+[sub_resource type="Resource" id="Resource_gdo2a"]
 script = ExtResource("1_72icd")
 level = 45
 move = ExtResource("11_st3dd")
 
-[sub_resource type="Resource" id="Resource_gdo2a"]
+[sub_resource type="Resource" id="Resource_5uypf"]
 script = ExtResource("1_72icd")
 level = 50
 move = ExtResource("12_jwfvj")
@@ -79,7 +80,7 @@ id = "latios"
 display_name = "Latios"
 dex = 381
 types = Array[ExtResource("4_ge0e7")]([ExtResource("5_t7rms"), ExtResource("6_rtxg5")])
-learnset = Array[ExtResource("1_72icd")]([SubResource("Resource_ya1bu"), SubResource("Resource_k53h4"), SubResource("Resource_sf72s"), SubResource("Resource_7lfju"), SubResource("Resource_jb3xy"), SubResource("Resource_j4kmt"), SubResource("Resource_3uqab"), SubResource("Resource_nnwtx"), SubResource("Resource_st3dd"), SubResource("Resource_jwfvj"), SubResource("Resource_gdo2a")])
+learnset = Array[ExtResource("1_72icd")]([SubResource("Resource_k53h4"), SubResource("Resource_sf72s"), SubResource("Resource_7lfju"), SubResource("Resource_jb3xy"), SubResource("Resource_j4kmt"), SubResource("Resource_3uqab"), SubResource("Resource_nnwtx"), SubResource("Resource_st3dd"), SubResource("Resource_jwfvj"), SubResource("Resource_gdo2a"), SubResource("Resource_5uypf")])
 temperament = ExtResource("15_ya1bu")
 genus = "Pokémon Eón"
 pokedex_entry = "Latios tiene la habilidad de hacer que los demás vean algo que él ha visto o imaginado. Este Pokémon es muy inteligente. Es capaz de entender el lenguaje humano."

@@ -6,6 +6,14 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Evoluciones (2026-10-25, pedido del usuario)**: las 172 especies que evolucionan (PokeAPI) lo hacen por nivel o con
+  piedra (Lunar, Fuego, Agua, Trueno, Hoja, Solar); intercambio y amistad quedan para cuando exista ese sistema
+  (Kadabra, Graveler, Golbat... por ahora no evolucionan). Pantalla clásica con parpadeo, Esc la frena (con piedra no),
+  espera a que termine el combate. Conserva nivel, daño y movimientos; aprende lo de su nivel. **Kits**: la evolución
+  pelea con el kit de su preevolución (28 heredan: Charmeleon, Pidgeotto, Raticate...) salvo las que cambian mucho
+  (Butterfree, Beedrill, Gyarados, Kadabra: ya tienen kit propio, de la sesión de kits; Charizard y
+  Vaporeon/Jolteon/Flareon todavía no y pelean con su learnset de FireRed). La ficha y la Pokédex muestran a qué evolucionan.
+  Test `--autotest-evolution` (20), vitrina `--showcase-evolution`.
 - **Capítulo 2 de la historia (2026-10-24, pedido del usuario: "hasta el gimnasio de Ciudad Celeste")**: plan y reparto en
   `docs/PLAN_CAPITULO_2.md` (mapas: sesión de mapas; estilos y kit de Starmie: sesión de kits; historia: esta). Hecho
   en la historia: 45 entrenadores con los equipos de FireRed (Ruta 3, Mt. Moon, Rocket, Puente Pepita, Ruta 25, gimnasio),

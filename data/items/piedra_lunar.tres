@@ -12,4 +12,5 @@ icon = ExtResource("2_i")
 pocket = 0
 sort_order = 40
 price = 2100
+evolves = true
 usable_in_battle = false

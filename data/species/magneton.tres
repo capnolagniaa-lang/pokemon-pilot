@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_tevq3"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u4hh6"]
 [ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="2_gamkn"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wqsip"]
@@ -19,53 +20,53 @@
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_5akfe"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_nvb4p"]
 
-[sub_resource type="Resource" id="Resource_nvb4p"]
+[sub_resource type="Resource" id="Resource_tevq3"]
 script = ExtResource("1_u4hh6")
 move = ExtResource("2_gamkn")
 
-[sub_resource type="Resource" id="Resource_tevq3"]
+[sub_resource type="Resource" id="Resource_8btqy"]
 script = ExtResource("1_u4hh6")
 move = ExtResource("3_nvb4p")
 
-[sub_resource type="Resource" id="Resource_8btqy"]
+[sub_resource type="Resource" id="Resource_66yud"]
 script = ExtResource("1_u4hh6")
 move = ExtResource("4_tevq3")
 
-[sub_resource type="Resource" id="Resource_66yud"]
+[sub_resource type="Resource" id="Resource_2rfqe"]
 script = ExtResource("1_u4hh6")
 move = ExtResource("5_8btqy")
 
-[sub_resource type="Resource" id="Resource_2rfqe"]
+[sub_resource type="Resource" id="Resource_7fysu"]
 script = ExtResource("1_u4hh6")
 level = 16
 move = ExtResource("6_66yud")
 
-[sub_resource type="Resource" id="Resource_7fysu"]
+[sub_resource type="Resource" id="Resource_u54xj"]
 script = ExtResource("1_u4hh6")
 level = 21
 move = ExtResource("7_2rfqe")
 
-[sub_resource type="Resource" id="Resource_u54xj"]
+[sub_resource type="Resource" id="Resource_nvx3t"]
 script = ExtResource("1_u4hh6")
 level = 26
 move = ExtResource("8_7fysu")
 
-[sub_resource type="Resource" id="Resource_nvx3t"]
+[sub_resource type="Resource" id="Resource_xa3kw"]
 script = ExtResource("1_u4hh6")
 level = 35
 move = ExtResource("9_u54xj")
 
-[sub_resource type="Resource" id="Resource_xa3kw"]
+[sub_resource type="Resource" id="Resource_5akfe"]
 script = ExtResource("1_u4hh6")
 level = 44
 move = ExtResource("10_nvx3t")
 
-[sub_resource type="Resource" id="Resource_5akfe"]
+[sub_resource type="Resource" id="Resource_vwr3u"]
 script = ExtResource("1_u4hh6")
 level = 53
 move = ExtResource("11_xa3kw")
 
-[sub_resource type="Resource" id="Resource_vwr3u"]
+[sub_resource type="Resource" id="Resource_iprje"]
 script = ExtResource("1_u4hh6")
 level = 62
 move = ExtResource("12_5akfe")
@@ -76,7 +77,8 @@ id = "magneton"
 display_name = "Magneton"
 dex = 82
 types = Array[ExtResource("4_cv15w")]([ExtResource("5_yjabx"), ExtResource("6_e4mmj")])
-learnset = Array[ExtResource("1_u4hh6")]([SubResource("Resource_nvb4p"), SubResource("Resource_tevq3"), SubResource("Resource_8btqy"), SubResource("Resource_66yud"), SubResource("Resource_2rfqe"), SubResource("Resource_7fysu"), SubResource("Resource_u54xj"), SubResource("Resource_nvx3t"), SubResource("Resource_xa3kw"), SubResource("Resource_5akfe"), SubResource("Resource_vwr3u")])
+learnset = Array[ExtResource("1_u4hh6")]([SubResource("Resource_tevq3"), SubResource("Resource_8btqy"), SubResource("Resource_66yud"), SubResource("Resource_2rfqe"), SubResource("Resource_7fysu"), SubResource("Resource_u54xj"), SubResource("Resource_nvx3t"), SubResource("Resource_xa3kw"), SubResource("Resource_5akfe"), SubResource("Resource_vwr3u"), SubResource("Resource_iprje")])
+evolves_from = "magnemite"
 temperament = ExtResource("15_nvb4p")
 genus = "Pokémon Imán"
 pokedex_entry = "Magneton emite una fuerte energía magnética que causa estragos en los instrumentos mecánicos. Por ello, en las ciudades se avisa con sirenas cuando hay concentraciones de estos Pokémon."

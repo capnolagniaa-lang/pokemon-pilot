@@ -65,6 +65,12 @@ func _left_column() -> Control:
 	box.add_child(types)
 	if party_index == GameState.active_index:
 		box.add_child(UiStyle.label("Activo (te sigue)", 14, UiStyle.GOOD))
+	if not _inst.species.evolutions.is_empty():  # a qué evoluciona y cómo (Evolution)
+		var evo := UiStyle.label("Evoluciona: " + ", ".join(_inst.species.evolutions.map(func(e): return Evolution.describe(e))),
+			13, UiStyle.TEXT_DIM)
+		evo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		evo.custom_minimum_size.x = 280
+		box.add_child(evo)
 	var spacer := Control.new()
 	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	box.add_child(spacer)

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d61oy"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_f70rf"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_w622r"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_yrdo6"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kfkqx"]
@@ -18,50 +19,50 @@
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_wmaki"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_qjoxq"]
 
-[sub_resource type="Resource" id="Resource_qjoxq"]
+[sub_resource type="Resource" id="Resource_f70rf"]
 script = ExtResource("1_d61oy")
 move = ExtResource("2_yrdo6")
 
-[sub_resource type="Resource" id="Resource_f70rf"]
+[sub_resource type="Resource" id="Resource_md580"]
 script = ExtResource("1_d61oy")
 move = ExtResource("3_qjoxq")
 
-[sub_resource type="Resource" id="Resource_md580"]
+[sub_resource type="Resource" id="Resource_fq02q"]
 script = ExtResource("1_d61oy")
 level = 7
 move = ExtResource("4_f70rf")
 
-[sub_resource type="Resource" id="Resource_fq02q"]
+[sub_resource type="Resource" id="Resource_005gq"]
 script = ExtResource("1_d61oy")
 level = 13
 move = ExtResource("5_md580")
 
-[sub_resource type="Resource" id="Resource_005gq"]
+[sub_resource type="Resource" id="Resource_4vfad"]
 script = ExtResource("1_d61oy")
 level = 19
 move = ExtResource("6_fq02q")
 
-[sub_resource type="Resource" id="Resource_4vfad"]
+[sub_resource type="Resource" id="Resource_5devk"]
 script = ExtResource("1_d61oy")
 level = 25
 move = ExtResource("7_005gq")
 
-[sub_resource type="Resource" id="Resource_5devk"]
+[sub_resource type="Resource" id="Resource_80u6o"]
 script = ExtResource("1_d61oy")
 level = 31
 move = ExtResource("8_4vfad")
 
-[sub_resource type="Resource" id="Resource_80u6o"]
+[sub_resource type="Resource" id="Resource_wmaki"]
 script = ExtResource("1_d61oy")
 level = 37
 move = ExtResource("9_5devk")
 
-[sub_resource type="Resource" id="Resource_wmaki"]
+[sub_resource type="Resource" id="Resource_s6bfv"]
 script = ExtResource("1_d61oy")
 level = 43
 move = ExtResource("10_80u6o")
 
-[sub_resource type="Resource" id="Resource_s6bfv"]
+[sub_resource type="Resource" id="Resource_5iiek"]
 script = ExtResource("1_d61oy")
 level = 49
 move = ExtResource("11_wmaki")
@@ -72,7 +73,7 @@ id = "girafarig"
 display_name = "Girafarig"
 dex = 203
 types = Array[ExtResource("4_fe55y")]([ExtResource("5_dhiqq"), ExtResource("6_t2y4y")])
-learnset = Array[ExtResource("1_d61oy")]([SubResource("Resource_qjoxq"), SubResource("Resource_f70rf"), SubResource("Resource_md580"), SubResource("Resource_fq02q"), SubResource("Resource_005gq"), SubResource("Resource_4vfad"), SubResource("Resource_5devk"), SubResource("Resource_80u6o"), SubResource("Resource_wmaki"), SubResource("Resource_s6bfv")])
+learnset = Array[ExtResource("1_d61oy")]([SubResource("Resource_f70rf"), SubResource("Resource_md580"), SubResource("Resource_fq02q"), SubResource("Resource_005gq"), SubResource("Resource_4vfad"), SubResource("Resource_5devk"), SubResource("Resource_80u6o"), SubResource("Resource_wmaki"), SubResource("Resource_s6bfv"), SubResource("Resource_5iiek")])
 temperament = ExtResource("14_qjoxq")
 genus = "Pokémon Gran Cuello"
 pokedex_entry = "Girafarig tiene un cerebro también en la cabeza de la cola que reacciona atacando ante olores y sonidos. Cuando alguien se acerca a este Pokémon por la espalda, puede provocar que la cabeza trasera se abalance y lo muerda."

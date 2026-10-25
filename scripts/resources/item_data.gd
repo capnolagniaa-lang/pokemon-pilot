@@ -35,6 +35,11 @@ enum Pocket { ITEMS, BALLS, KEY }
 ## Niveles que sube (Caramelo Raro: 1), con la EXP justa y aprendiendo lo que toque (GameState.grant_exp).
 @export var level_up: int = 0
 
+@export_group("Evolución")
+## Piedra evolutiva (Lunar, Fuego, Agua, Trueno, Hoja, Solar): hace evolucionar a quien tenga esa evolución en
+## SpeciesData.evolutions (método "piedra" con este id).
+@export var evolves: bool = false
+
 @export_group("Máquina técnica")
 ## MT: enseña este movimiento al Pokémon sobre el que se usa (se gasta, como en la 3ª gen).
 @export var teaches_move: MoveData
@@ -67,6 +72,8 @@ func can_use_on(inst: CreatureInstance, active_statuses: Array = []) -> bool:
 		return not inst.learned_moves().has(teaches_move)
 	if level_up > 0:
 		return inst.hp > 0.0 and inst.level < CreatureInstance.MAX_LEVEL
+	if evolves:
+		return inst.hp > 0.0 and inst.species.evolutions.any(func(e): return e.method == "piedra" and e.item == id)
 	if inst.hp <= 0.0:
 		return revive_ratio > 0.0
 	if revive_ratio > 0.0:

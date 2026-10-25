@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_11p3d"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l77gt"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_dwwyi"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_jon07"]
@@ -19,58 +20,58 @@
 [ext_resource type="Resource" path="res://data/moves/ladron.tres" id="13_u1c1s"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_rmp2f"]
 
-[sub_resource type="Resource" id="Resource_rmp2f"]
+[sub_resource type="Resource" id="Resource_11p3d"]
 script = ExtResource("1_l77gt")
 move = ExtResource("2_dwwyi")
 
-[sub_resource type="Resource" id="Resource_11p3d"]
+[sub_resource type="Resource" id="Resource_ohtm3"]
 script = ExtResource("1_l77gt")
 move = ExtResource("3_rmp2f")
 
-[sub_resource type="Resource" id="Resource_ohtm3"]
+[sub_resource type="Resource" id="Resource_keb0f"]
 script = ExtResource("1_l77gt")
 move = ExtResource("4_11p3d")
 
-[sub_resource type="Resource" id="Resource_keb0f"]
+[sub_resource type="Resource" id="Resource_ykujq"]
 script = ExtResource("1_l77gt")
 move = ExtResource("5_ohtm3")
 
-[sub_resource type="Resource" id="Resource_ykujq"]
+[sub_resource type="Resource" id="Resource_h2mk2"]
 script = ExtResource("1_l77gt")
 level = 17
 move = ExtResource("6_keb0f")
 
-[sub_resource type="Resource" id="Resource_h2mk2"]
+[sub_resource type="Resource" id="Resource_mbp07"]
 script = ExtResource("1_l77gt")
 level = 22
 move = ExtResource("7_ykujq")
 
-[sub_resource type="Resource" id="Resource_mbp07"]
+[sub_resource type="Resource" id="Resource_kh7q1"]
 script = ExtResource("1_l77gt")
 level = 27
 move = ExtResource("8_h2mk2")
 
-[sub_resource type="Resource" id="Resource_kh7q1"]
+[sub_resource type="Resource" id="Resource_unbwn"]
 script = ExtResource("1_l77gt")
 level = 32
 move = ExtResource("9_mbp07")
 
-[sub_resource type="Resource" id="Resource_unbwn"]
+[sub_resource type="Resource" id="Resource_y1po6"]
 script = ExtResource("1_l77gt")
 level = 37
 move = ExtResource("10_kh7q1")
 
-[sub_resource type="Resource" id="Resource_y1po6"]
+[sub_resource type="Resource" id="Resource_u1c1s"]
 script = ExtResource("1_l77gt")
 level = 42
 move = ExtResource("11_unbwn")
 
-[sub_resource type="Resource" id="Resource_u1c1s"]
+[sub_resource type="Resource" id="Resource_2k71i"]
 script = ExtResource("1_l77gt")
 level = 47
 move = ExtResource("12_y1po6")
 
-[sub_resource type="Resource" id="Resource_2k71i"]
+[sub_resource type="Resource" id="Resource_e8xey"]
 script = ExtResource("1_l77gt")
 level = 52
 move = ExtResource("13_u1c1s")
@@ -81,7 +82,8 @@ id = "mightyena"
 display_name = "Mightyena"
 dex = 262
 types = Array[ExtResource("4_k37yg")]([ExtResource("5_h8lcu")])
-learnset = Array[ExtResource("1_l77gt")]([SubResource("Resource_rmp2f"), SubResource("Resource_11p3d"), SubResource("Resource_ohtm3"), SubResource("Resource_keb0f"), SubResource("Resource_ykujq"), SubResource("Resource_h2mk2"), SubResource("Resource_mbp07"), SubResource("Resource_kh7q1"), SubResource("Resource_unbwn"), SubResource("Resource_y1po6"), SubResource("Resource_u1c1s"), SubResource("Resource_2k71i")])
+learnset = Array[ExtResource("1_l77gt")]([SubResource("Resource_11p3d"), SubResource("Resource_ohtm3"), SubResource("Resource_keb0f"), SubResource("Resource_ykujq"), SubResource("Resource_h2mk2"), SubResource("Resource_mbp07"), SubResource("Resource_kh7q1"), SubResource("Resource_unbwn"), SubResource("Resource_y1po6"), SubResource("Resource_u1c1s"), SubResource("Resource_2k71i"), SubResource("Resource_e8xey")])
+evolves_from = "poochyena"
 temperament = ExtResource("16_rmp2f")
 genus = "Pokémon Mordisco"
 pokedex_entry = "Es muy fácil prever cuándo va a atacar Mightyena; se pone a gruñir con fuerza y se estira. Este Pokémon da unos mordiscos tremendos con los afilados colmillos que tiene."

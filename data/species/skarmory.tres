@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_4dpci"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ednxg"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_vxei2"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xyto4"]
@@ -18,50 +19,50 @@
 [ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="11_he4xm"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ktsxk"]
 
-[sub_resource type="Resource" id="Resource_ktsxk"]
+[sub_resource type="Resource" id="Resource_4dpci"]
 script = ExtResource("1_ednxg")
 move = ExtResource("2_vxei2")
 
-[sub_resource type="Resource" id="Resource_4dpci"]
+[sub_resource type="Resource" id="Resource_fj0tv"]
 script = ExtResource("1_ednxg")
 move = ExtResource("3_ktsxk")
 
-[sub_resource type="Resource" id="Resource_fj0tv"]
+[sub_resource type="Resource" id="Resource_oe1u8"]
 script = ExtResource("1_ednxg")
 level = 10
 move = ExtResource("4_4dpci")
 
-[sub_resource type="Resource" id="Resource_oe1u8"]
+[sub_resource type="Resource" id="Resource_f7blm"]
 script = ExtResource("1_ednxg")
 level = 13
 move = ExtResource("5_fj0tv")
 
-[sub_resource type="Resource" id="Resource_f7blm"]
+[sub_resource type="Resource" id="Resource_vovth"]
 script = ExtResource("1_ednxg")
 level = 16
 move = ExtResource("6_oe1u8")
 
-[sub_resource type="Resource" id="Resource_vovth"]
+[sub_resource type="Resource" id="Resource_l5vx8"]
 script = ExtResource("1_ednxg")
 level = 26
 move = ExtResource("7_f7blm")
 
-[sub_resource type="Resource" id="Resource_l5vx8"]
+[sub_resource type="Resource" id="Resource_eq2dx"]
 script = ExtResource("1_ednxg")
 level = 29
 move = ExtResource("8_vovth")
 
-[sub_resource type="Resource" id="Resource_eq2dx"]
+[sub_resource type="Resource" id="Resource_he4xm"]
 script = ExtResource("1_ednxg")
 level = 32
 move = ExtResource("9_l5vx8")
 
-[sub_resource type="Resource" id="Resource_he4xm"]
+[sub_resource type="Resource" id="Resource_qm0ga"]
 script = ExtResource("1_ednxg")
 level = 42
 move = ExtResource("10_eq2dx")
 
-[sub_resource type="Resource" id="Resource_qm0ga"]
+[sub_resource type="Resource" id="Resource_4offu"]
 script = ExtResource("1_ednxg")
 level = 45
 move = ExtResource("11_he4xm")
@@ -72,7 +73,7 @@ id = "skarmory"
 display_name = "Skarmory"
 dex = 227
 types = Array[ExtResource("4_hyeq6")]([ExtResource("5_y26uw"), ExtResource("6_43qk0")])
-learnset = Array[ExtResource("1_ednxg")]([SubResource("Resource_ktsxk"), SubResource("Resource_4dpci"), SubResource("Resource_fj0tv"), SubResource("Resource_oe1u8"), SubResource("Resource_f7blm"), SubResource("Resource_vovth"), SubResource("Resource_l5vx8"), SubResource("Resource_eq2dx"), SubResource("Resource_he4xm"), SubResource("Resource_qm0ga")])
+learnset = Array[ExtResource("1_ednxg")]([SubResource("Resource_4dpci"), SubResource("Resource_fj0tv"), SubResource("Resource_oe1u8"), SubResource("Resource_f7blm"), SubResource("Resource_vovth"), SubResource("Resource_l5vx8"), SubResource("Resource_eq2dx"), SubResource("Resource_he4xm"), SubResource("Resource_qm0ga"), SubResource("Resource_4offu")])
 temperament = ExtResource("14_ktsxk")
 genus = "Pokémon Coraza Ave"
 pokedex_entry = "Skarmory está totalmente encerrado en el interior de una fuerte coraza protectora. En vuelo, puede llegar a alcanzar los 300 km/h y usa las afiladas alas que tiene para azotar al rival."

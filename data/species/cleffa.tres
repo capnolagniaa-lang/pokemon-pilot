@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_0g27w"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_blap0"]
 [ext_resource type="Resource" path="res://data/moves/encanto.tres" id="2_3ef8j"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_simlv"]
@@ -13,30 +14,35 @@
 [ext_resource type="Resource" path="res://data/moves/hoja_magica.tres" id="7_ald6b"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="10_rxsmj"]
 
-[sub_resource type="Resource" id="Resource_rxsmj"]
+[sub_resource type="Resource" id="Resource_0g27w"]
+script = ExtResource("1_0g27w")
+to_id = "clefairy"
+method = "amistad"
+
+[sub_resource type="Resource" id="Resource_s2hg7"]
 script = ExtResource("1_blap0")
 move = ExtResource("2_3ef8j")
 
-[sub_resource type="Resource" id="Resource_0g27w"]
+[sub_resource type="Resource" id="Resource_hulie"]
 script = ExtResource("1_blap0")
 move = ExtResource("3_rxsmj")
 
-[sub_resource type="Resource" id="Resource_s2hg7"]
+[sub_resource type="Resource" id="Resource_ald6b"]
 script = ExtResource("1_blap0")
 level = 4
 move = ExtResource("4_0g27w")
 
-[sub_resource type="Resource" id="Resource_hulie"]
+[sub_resource type="Resource" id="Resource_g0b7g"]
 script = ExtResource("1_blap0")
 level = 8
 move = ExtResource("5_s2hg7")
 
-[sub_resource type="Resource" id="Resource_ald6b"]
+[sub_resource type="Resource" id="Resource_3brdc"]
 script = ExtResource("1_blap0")
 level = 13
 move = ExtResource("6_hulie")
 
-[sub_resource type="Resource" id="Resource_g0b7g"]
+[sub_resource type="Resource" id="Resource_1gga4"]
 script = ExtResource("1_blap0")
 level = 17
 move = ExtResource("7_ald6b")
@@ -47,7 +53,8 @@ id = "cleffa"
 display_name = "Cleffa"
 dex = 173
 types = Array[ExtResource("4_nvksc")]([ExtResource("5_iano6")])
-learnset = Array[ExtResource("1_blap0")]([SubResource("Resource_rxsmj"), SubResource("Resource_0g27w"), SubResource("Resource_s2hg7"), SubResource("Resource_hulie"), SubResource("Resource_ald6b"), SubResource("Resource_g0b7g")])
+learnset = Array[ExtResource("1_blap0")]([SubResource("Resource_s2hg7"), SubResource("Resource_hulie"), SubResource("Resource_ald6b"), SubResource("Resource_g0b7g"), SubResource("Resource_3brdc"), SubResource("Resource_1gga4")])
+evolutions = Array[ExtResource("1_0g27w")]([SubResource("Resource_0g27w")])
 temperament = ExtResource("10_rxsmj")
 genus = "Pokémon Estrella"
 pokedex_entry = "Cuando hay lluvia de estrellas, a los Cleffa se les puede ver danzando en círculos durante toda la noche. Solo paran cuando rompe el día; entonces, dejan de bailar y calman su sed con el rocío de la mañana."

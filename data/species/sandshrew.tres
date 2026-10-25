@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Resource" path="res://data/kits/sandshrew/kit.tres" id="0_kitv4"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_f1vlr"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_y5fym"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_h1ruc"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_dqqmv"]
@@ -14,30 +15,35 @@
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="7_d1tyg"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_4g13a"]
 
-[sub_resource type="Resource" id="Resource_3gs23"]
+[sub_resource type="Resource" id="Resource_f1vlr"]
+script = ExtResource("1_f1vlr")
+to_id = "sandslash"
+level = 22
+
+[sub_resource type="Resource" id="Resource_4g13a"]
 script = ExtResource("1_y5fym")
 move = ExtResource("3_xy31g")
 
-[sub_resource type="Resource" id="Resource_hrpu0"]
+[sub_resource type="Resource" id="Resource_lw3rm"]
 script = ExtResource("1_y5fym")
 move = ExtResource("4_f1vlr")
 
-[sub_resource type="Resource" id="Resource_d1tyg"]
+[sub_resource type="Resource" id="Resource_3gs23"]
 script = ExtResource("1_y5fym")
 level = 3
 move = ExtResource("5_4g13a")
 
-[sub_resource type="Resource" id="Resource_l0tlx"]
+[sub_resource type="Resource" id="Resource_hrpu0"]
 script = ExtResource("1_y5fym")
 level = 5
 move = ExtResource("6_lw3rm")
 
-[sub_resource type="Resource" id="Resource_a7vry"]
+[sub_resource type="Resource" id="Resource_d1tyg"]
 script = ExtResource("1_y5fym")
 level = 17
 move = ExtResource("6_hrpu0")
 
-[sub_resource type="Resource" id="Resource_ua4kd"]
+[sub_resource type="Resource" id="Resource_l0tlx"]
 script = ExtResource("1_y5fym")
 level = 30
 move = ExtResource("7_d1tyg")
@@ -49,7 +55,8 @@ display_name = "Sandshrew"
 dex = 27
 types = Array[ExtResource("4_shc8r")]([ExtResource("5_15arq")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_y5fym")]([SubResource("Resource_3gs23"), SubResource("Resource_hrpu0"), SubResource("Resource_d1tyg"), SubResource("Resource_l0tlx"), SubResource("Resource_a7vry"), SubResource("Resource_ua4kd")])
+learnset = Array[ExtResource("1_y5fym")]([SubResource("Resource_4g13a"), SubResource("Resource_lw3rm"), SubResource("Resource_3gs23"), SubResource("Resource_hrpu0"), SubResource("Resource_d1tyg"), SubResource("Resource_l0tlx")])
+evolutions = Array[ExtResource("1_f1vlr")]([SubResource("Resource_f1vlr")])
 temperament = ExtResource("13_4g13a")
 genus = "Pokémon Ratón"
 pokedex_entry = "Sandshrew es capaz de absorber agua y no perder ni una gota, algo que le permite sobrevivir en el desierto. Este Pokémon se enrosca para defenderse de los enemigos."

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_j2cjp"]
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_m1p8o"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0yopg"]
 [ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="2_gq3h3"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0opyn"]
@@ -17,46 +18,51 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_ioths"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_v56k7"]
 
-[sub_resource type="Resource" id="Resource_v56k7"]
+[sub_resource type="Resource" id="Resource_m1p8o"]
+script = ExtResource("1_m1p8o")
+to_id = "tentacruel"
+level = 30
+
+[sub_resource type="Resource" id="Resource_2vwjt"]
 script = ExtResource("1_j2cjp")
 move = ExtResource("2_gq3h3")
 
-[sub_resource type="Resource" id="Resource_m1p8o"]
+[sub_resource type="Resource" id="Resource_8qu4y"]
 script = ExtResource("1_j2cjp")
 level = 6
 move = ExtResource("3_v56k7")
 
-[sub_resource type="Resource" id="Resource_2vwjt"]
+[sub_resource type="Resource" id="Resource_yf5fu"]
 script = ExtResource("1_j2cjp")
 level = 12
 move = ExtResource("4_m1p8o")
 
-[sub_resource type="Resource" id="Resource_8qu4y"]
+[sub_resource type="Resource" id="Resource_jself"]
 script = ExtResource("1_j2cjp")
 level = 19
 move = ExtResource("5_2vwjt")
 
-[sub_resource type="Resource" id="Resource_yf5fu"]
+[sub_resource type="Resource" id="Resource_yekoe"]
 script = ExtResource("1_j2cjp")
 level = 25
 move = ExtResource("6_8qu4y")
 
-[sub_resource type="Resource" id="Resource_jself"]
+[sub_resource type="Resource" id="Resource_ioths"]
 script = ExtResource("1_j2cjp")
 level = 30
 move = ExtResource("7_yf5fu")
 
-[sub_resource type="Resource" id="Resource_yekoe"]
+[sub_resource type="Resource" id="Resource_dv8ij"]
 script = ExtResource("1_j2cjp")
 level = 36
 move = ExtResource("8_jself")
 
-[sub_resource type="Resource" id="Resource_ioths"]
+[sub_resource type="Resource" id="Resource_6sav3"]
 script = ExtResource("1_j2cjp")
 level = 43
 move = ExtResource("9_yekoe")
 
-[sub_resource type="Resource" id="Resource_dv8ij"]
+[sub_resource type="Resource" id="Resource_jwiur"]
 script = ExtResource("1_j2cjp")
 level = 49
 move = ExtResource("10_ioths")
@@ -67,7 +73,8 @@ id = "tentacool"
 display_name = "Tentacool"
 dex = 72
 types = Array[ExtResource("4_5vsut")]([ExtResource("5_6pkhc"), ExtResource("6_hebsy")])
-learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_v56k7"), SubResource("Resource_m1p8o"), SubResource("Resource_2vwjt"), SubResource("Resource_8qu4y"), SubResource("Resource_yf5fu"), SubResource("Resource_jself"), SubResource("Resource_yekoe"), SubResource("Resource_ioths"), SubResource("Resource_dv8ij")])
+learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_2vwjt"), SubResource("Resource_8qu4y"), SubResource("Resource_yf5fu"), SubResource("Resource_jself"), SubResource("Resource_yekoe"), SubResource("Resource_ioths"), SubResource("Resource_dv8ij"), SubResource("Resource_6sav3"), SubResource("Resource_jwiur")])
+evolutions = Array[ExtResource("1_m1p8o")]([SubResource("Resource_m1p8o")])
 temperament = ExtResource("13_v56k7")
 genus = "Pokémon Medusa"
 pokedex_entry = "Tentacool está compuesto en su mayor parte por agua. Si se le saca del mar, se secará y se quedará acartonado. Si este Pokémon se deshidrata, hay que echarlo inmediatamente de vuelta al mar."

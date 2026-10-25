@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_2b5ni"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l41dt"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1arqo"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_1jmp4"]
@@ -18,50 +19,60 @@
 [ext_resource type="Resource" path="res://data/moves/excavar.tres" id="11_efwev"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_a11tv"]
 
-[sub_resource type="Resource" id="Resource_a11tv"]
+[sub_resource type="Resource" id="Resource_2b5ni"]
+script = ExtResource("1_2b5ni")
+to_id = "ninjask"
+level = 20
+
+[sub_resource type="Resource" id="Resource_ujtpf"]
+script = ExtResource("1_2b5ni")
+to_id = "shedinja"
+method = "otro"
+
+[sub_resource type="Resource" id="Resource_vps8w"]
 script = ExtResource("1_l41dt")
 move = ExtResource("2_1jmp4")
 
-[sub_resource type="Resource" id="Resource_2b5ni"]
+[sub_resource type="Resource" id="Resource_iwk5c"]
 script = ExtResource("1_l41dt")
 move = ExtResource("3_a11tv")
 
-[sub_resource type="Resource" id="Resource_vps8w"]
+[sub_resource type="Resource" id="Resource_wqb6o"]
 script = ExtResource("1_l41dt")
 level = 5
 move = ExtResource("4_2b5ni")
 
-[sub_resource type="Resource" id="Resource_iwk5c"]
+[sub_resource type="Resource" id="Resource_7ce4v"]
 script = ExtResource("1_l41dt")
 level = 9
 move = ExtResource("5_vps8w")
 
-[sub_resource type="Resource" id="Resource_wqb6o"]
+[sub_resource type="Resource" id="Resource_p4n1i"]
 script = ExtResource("1_l41dt")
 level = 14
 move = ExtResource("6_iwk5c")
 
-[sub_resource type="Resource" id="Resource_7ce4v"]
+[sub_resource type="Resource" id="Resource_74s5l"]
 script = ExtResource("1_l41dt")
 level = 19
 move = ExtResource("7_wqb6o")
 
-[sub_resource type="Resource" id="Resource_p4n1i"]
+[sub_resource type="Resource" id="Resource_efwev"]
 script = ExtResource("1_l41dt")
 level = 25
 move = ExtResource("8_7ce4v")
 
-[sub_resource type="Resource" id="Resource_74s5l"]
+[sub_resource type="Resource" id="Resource_iftn8"]
 script = ExtResource("1_l41dt")
 level = 31
 move = ExtResource("9_p4n1i")
 
-[sub_resource type="Resource" id="Resource_efwev"]
+[sub_resource type="Resource" id="Resource_lwwxq"]
 script = ExtResource("1_l41dt")
 level = 38
 move = ExtResource("10_74s5l")
 
-[sub_resource type="Resource" id="Resource_iftn8"]
+[sub_resource type="Resource" id="Resource_xrtlf"]
 script = ExtResource("1_l41dt")
 level = 45
 move = ExtResource("11_efwev")
@@ -72,7 +83,8 @@ id = "nincada"
 display_name = "Nincada"
 dex = 290
 types = Array[ExtResource("4_0tsb5")]([ExtResource("5_fq0fe"), ExtResource("6_abeus")])
-learnset = Array[ExtResource("1_l41dt")]([SubResource("Resource_a11tv"), SubResource("Resource_2b5ni"), SubResource("Resource_vps8w"), SubResource("Resource_iwk5c"), SubResource("Resource_wqb6o"), SubResource("Resource_7ce4v"), SubResource("Resource_p4n1i"), SubResource("Resource_74s5l"), SubResource("Resource_efwev"), SubResource("Resource_iftn8")])
+learnset = Array[ExtResource("1_l41dt")]([SubResource("Resource_vps8w"), SubResource("Resource_iwk5c"), SubResource("Resource_wqb6o"), SubResource("Resource_7ce4v"), SubResource("Resource_p4n1i"), SubResource("Resource_74s5l"), SubResource("Resource_efwev"), SubResource("Resource_iftn8"), SubResource("Resource_lwwxq"), SubResource("Resource_xrtlf")])
+evolutions = Array[ExtResource("1_2b5ni")]([SubResource("Resource_2b5ni"), SubResource("Resource_ujtpf")])
 temperament = ExtResource("14_a11tv")
 genus = "Pokémon Aprendiz"
 pokedex_entry = "Nincada vive bajo tierra en la más absoluta oscuridad durante años. Este Pokémon absorbe nutrientes de las raíces de los árboles y permanece inmóvil a la espera de su evolución."
