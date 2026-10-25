@@ -67,6 +67,14 @@ func run() -> void:
 	var s1 := me.register_hit(foe, claw)
 	var s2 := me.register_hit(foe, HitInfo.from(me, me.moves.slots[1]))
 	r["Los pasos seguidos de un mismo ataque cuentan como uno"] = me.moves.slots[1].kind != MoveData.Kind.LUNGE 		or (s2["chain"] == s1["chain"] and s2["mult"] == 1.0)
+	# Apagados en el juego (GameConfig.combos_enabled = false): los golpes de verdad no arman cadena ni combo.
+	var landed := [0]
+	var on_combo := func(_a, _n, _c): landed[0] += 1
+	Events.combo_landed.connect(on_combo)
+	foe.hurtbox.receive(HitInfo.from(me, me.moves.slots[1]))
+	foe.hurtbox.receive(HitInfo.from(me, me.moves.slots[0]))
+	Events.combo_landed.disconnect(on_combo)
+	r["Combos apagados: Arañazo + Ascuas de verdad no arman combo ni cadena"] = not DB.config.combos_enabled and landed[0] == 0
 	await get_tree().create_timer(Creature.CHAIN_WINDOW + 0.2).timeout
 	r["Si pasa mucho tiempo la cadena se corta"] = me.register_hit(foe, HitInfo.from(me, me.moves.slots[0]))["chain"] == 1
 

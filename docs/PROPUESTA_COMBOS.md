@@ -1,5 +1,9 @@
 # Propuesta: combos por Pokémon (v2)
 
+> ⛔ **EN PAUSA (2026-10-24)**: el usuario pidió "por ahora sacá los combos". Quedaron **desactivados** la cadena de
+> golpes y los combos con nombre (`GameConfig.combos_enabled = false`; el código y `data/estilos` siguen ahí). Esta
+> propuesta v2 queda en pausa: **no retomarla sin preguntarle al usuario**.
+
 > Pedido del usuario (2026-10-24): "me gusta eso de los combos por personaje si es que pegan dos habilidades
 > consecutivas. Pensemos un poco más eso para todos los Pokémon que tenemos hoy implementados."
 > **Es una propuesta para discutir**: lo que hay hoy (v1) está en el plan de identidad ("Combate de arena").

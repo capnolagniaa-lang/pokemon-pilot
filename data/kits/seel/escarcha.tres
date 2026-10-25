@@ -7,10 +7,10 @@
 script = ExtResource("2_sd")
 id = "escarcha"
 display_name = "Escarcha"
-description = "Sus ataques de hielo dejan escarcha en el rival (hasta 3). Con 3, se congela."
+description = "Sus ataques de hielo dejan escarcha en el rival (hasta 5). Con 5, se congela."
 color = Color(0.7, 0.92, 1.0, 1)
 max_value = 0.0
 gains = {}
 decay_out_of_combat = 6.0
 mechanic_script = ExtResource("1_mech")
-params = {"stacks_to_freeze": 3}
+params = {"stacks_to_freeze": 5}

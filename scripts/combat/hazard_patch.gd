@@ -1,7 +1,9 @@
 class_name HazardPatch
 extends Hitbox
 ## Parche de suelo peligroso (estela de fuego de la Embestida Ígnea): daña y aplica estado a los enemigos
-## que lo pisan, una vez cada `tick` segundos mientras sigan encima.
+## que lo pisan, una vez cada `TICK` segundos mientras sigan encima. Los parches de una misma estela comparten
+## `shared` (hurtbox → cuadro de física en que puede volver a pegar): toda la estela pega como UN fuego, aunque el
+## rival pise varios parches a la vez (antes cada parche pegaba por su cuenta y la embestida pegaba muchísimo).
 
 const TICK := 0.5
 
@@ -10,9 +12,11 @@ var radius := 7.0
 var color := Color.WHITE
 var _time := 0.0
 var _tick := 0.0
+var _shared: Dictionary = {}
 
 
-func lay(p_hit: HitInfo, at: Vector2, p_duration: float) -> void:
+func lay(p_hit: HitInfo, at: Vector2, p_duration: float, shared: Dictionary = {}) -> void:
+	_shared = shared
 	setup(p_hit, false)
 	global_position = at
 	duration = p_duration
@@ -48,8 +52,10 @@ func _physics_process(delta: float) -> void:
 	_tick -= delta
 	if _tick <= 0.0:
 		_tick = TICK
+		var frame := Engine.get_physics_frames()
 		for a in get_overlapping_areas():
-			if a is Hurtbox:
+			if a is Hurtbox and frame >= _shared.get(a, 0):
+				_shared[a] = frame + int(TICK * Engine.physics_ticks_per_second) - 1
 				hit.origin = global_position
 				a.receive(hit)
 	if _time >= duration:

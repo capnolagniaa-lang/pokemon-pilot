@@ -10,6 +10,8 @@ var _attack := false
 var _recovery := 0.0
 var _trail: MoveData
 var _trail_hit: HitInfo
+## Lo comparten los parches de esta estela: pega una vez por tick a cada rival (HazardPatch).
+var _trail_shared: Dictionary = {}
 var _since_patch := 0.0
 ## Potencia de la embestida (0 = esquive): la usa el entorno para romper rocas frágiles.
 var _power := 0.0
@@ -35,6 +37,7 @@ func enter(msg: Dictionary = {}) -> void:
 		tm.status_chance = _trail.trail_status_chance
 		tm.knockback = 30.0
 		_trail_hit = HitInfo.from(actor, tm)
+		_trail_shared = {}
 	actor.facing = _dir
 	actor.dash_hitbox.monitoring = _attack
 	actor.sprite.afterimages = true
@@ -61,7 +64,7 @@ func physics_update(delta: float) -> void:
 			_since_patch = 0.0
 			var patch := HazardPatch.new()
 			actor.get_parent().add_child(patch)
-			patch.lay(_trail_hit, actor.global_position, _trail.trail_duration)
+			patch.lay(_trail_hit, actor.global_position, _trail.trail_duration, _trail_shared)
 	if _power > 0.0:
 		for i in actor.get_slide_collision_count():
 			var obj = actor.get_slide_collision(i).get_collider()

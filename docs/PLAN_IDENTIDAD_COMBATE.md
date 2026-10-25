@@ -62,6 +62,16 @@ Mecánicas de firma nuevas (`scripts/combat/signatures/`, números en `data/kits
 Los demás (Squirtle, Pikachu, etc.) **todavía usan sus 4 ataques sueltos** de `SpeciesData.moves` (mapeados a
 las 4 teclas) hasta tener kit.
 
+## Ajustes de estados y ataques (2026-10-24, pedido del usuario)
+- **Paralizado "que paralice de verdad"**: ya no es por acumulación. Un golpe que paraliza lo deja 6 s a mitad de
+  velocidad, con **tirones**: cada 1,5 s, 35% de quedar totalmente quieto 0,6 s ("¡Paralizado!"; no activa la
+  resistencia a control). Data-driven: `StatusEffect.jolt_interval/jolt_chance/jolt_time`.
+- **Escarcha de Seel**: congela con **5** cargas (antes 3: con el Rayo Aurora lo dejaba congelado casi sin parar).
+- **Somnífero**: duerme a los **0,6 s** adentro de la nube (antes 1,5 s: "tarda mucho").
+- **El daño de los estados (veneno, quemado) no despierta** al dormido; solo un golpe lo despierta.
+- **Embestida Ígnea**: la estela pega como **un solo fuego** (una vez cada 0,5 s por rival) aunque el rival pise varios
+  parches; antes cada parche pegaba por su cuenta ("pega mucho después del primer golpe").
+
 ## Rework de Empapado (2026-10-23, pedido del usuario)
 Antes "dejaba inútil" al mojado: los disparos de agua mojaban todo el camino (charcos de 15 s), pararse en un
 charco volvía a empapar cada medio segundo y la IA trataba lo mojado como peligroso y se pasaba la pelea
@@ -145,7 +155,9 @@ entrenadores); `GameConfig.arena_rules_everywhere = true` lo lleva al mundo abie
   **ágil** (arranca y frena al instante, esquiva 25% más seguido: Pikachu, Poliwag, Rattata, Weedle, Eevee, Growlithe,
   Mankey) · **pesado** (inercia: acelera y frena de a poco, recibe 40% menos empuje: Geodude, Onix, Metapod, Kakuna,
   Seel) · **volador** (el terreno no lo frena: Pidgey, Spearow) · **normal** (el resto).
-- **Combos**: cadena de golpes seguidos al mismo rival (+5% por golpe, hasta +25%; "COMBO ×N" desde el 3º) y **un
+- **Combos — DESACTIVADOS (2026-10-24, decisión del usuario: "por ahora sacá los combos")**: interruptor
+  `GameConfig.combos_enabled` (apagado); no prenderlo ni seguir con la v2 sin preguntar. Lo que hacían: cadena de
+  golpes seguidos al mismo rival (+5% por golpe, hasta +25%; "COMBO ×N" desde el 3º) y **un
   combo con nombre por Pokémon** (`ComboData`: si conectás `first` y antes de 1,6 s `second`, pega más, empuja más y
   aplica un estado). Ej.: Charmander Arañazo → Ascuas = **Garra Ardiente** (×1,4 y quema); Pikachu Ataque Rápido →
   Impactrueno = **Descarga Relámpago** (paraliza); Onix Atadura → Tumba Rocas = **Sepultura**; Mankey Patada Baja →
@@ -229,7 +241,7 @@ Los estados son el idioma común entre Pokémon. Varios interactúan entre sí, 
 | **Quemado** | Daño por tiempo, −15% daño físico del afectado | Charmander |
 | **Empapado** | −10% velocidad. **Eléctrico contra empapado = aturdimiento** | Squirtle |
 | **Enraizado** | No puede moverse, sí atacar | Bulbasaur, Bellsprout |
-| **Paralizado** | Acumula; al llenar la barra → aturdimiento corto | Pikachu, Oddish |
+| **Paralizado** | (2026-10-24) De un golpe: 6 s a mitad de velocidad y **tirones al azar** (cada 1,5 s, 35%: queda totalmente quieto 0,6 s), como en los juegos. Antes acumulaba una barra | Pikachu, Oddish |
 | **Envenenado** | DoT que escala con stacks (máx. 5) | Oddish, Bellsprout |
 | **Dormido** | Inmóvil hasta recibir daño (con resistencia posterior) | Bulbasaur, Oddish |
 | **Desorientado** | Controles/apuntado imprecisos, precisión reducida | Pidgey |

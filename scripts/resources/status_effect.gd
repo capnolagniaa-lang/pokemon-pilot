@@ -31,6 +31,13 @@ extends Resource
 @export var buildup_decay: float = 0.12
 @export var stun_time: float = 0.8
 
+@export_group("Tirones (Paralizado)")
+## Cada `jolt_interval` s, con probabilidad `jolt_chance`, queda totalmente quieto `jolt_time` s (como la parálisis
+## de los juegos: "¡está paralizado, no se puede mover!"). 0 = sin tirones.
+@export var jolt_interval: float = 0.0
+@export_range(0.0, 1.0) var jolt_chance: float = 0.35
+@export var jolt_time: float = 0.6
+
 @export_group("Reglas especiales")
 ## Se cura al recibir daño (Dormido).
 @export var wake_on_damage: bool = false

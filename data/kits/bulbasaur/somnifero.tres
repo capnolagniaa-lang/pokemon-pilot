@@ -20,5 +20,5 @@ recovery = 0.2
 placement_range = 100.0
 zone_traps = false
 zone_tick = 99.0
-dwell_time = 1.5
+dwell_time = 0.6
 dwell_status = ExtResource("1_cqy1v")

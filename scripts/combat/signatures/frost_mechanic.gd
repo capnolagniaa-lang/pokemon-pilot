@@ -1,7 +1,8 @@
 extends SignatureMechanic
-## Escarcha (Seel, tanque helado): sus ataques de hielo dejan escarcha en el rival (estado `escarcha`, hasta 3;
-## lo ponen los ataques con statuses_on_hit). Al llegar a 3, la escarcha se convierte en Congelado (con la
-## resistencia a control de siempre). Sin barra.
+## Escarcha (Seel, tanque helado): sus ataques de hielo dejan escarcha en el rival (estado `escarcha`, hasta
+## `stacks_to_freeze`; lo ponen los ataques con statuses_on_hit). Al llegar, la escarcha se convierte en Congelado
+## (con la resistencia a control de siempre). Sin barra. 5 cargas (pedido del usuario 2026-10-24: con 3 lo dejaba
+## congelado casi sin parar).
 
 
 func _setup() -> void:
@@ -9,7 +10,7 @@ func _setup() -> void:
 
 
 func _on_inflicted(target: Creature, status: StatusEffect) -> void:
-	if status.id != "escarcha" or not is_instance_valid(target) or target.statuses.stacks("escarcha") < param("stacks_to_freeze", 3):
+	if status.id != "escarcha" or not is_instance_valid(target) or target.statuses.stacks("escarcha") < param("stacks_to_freeze", 5):
 		return
 	target.statuses.cure(status)
 	target.statuses.apply(DB.statuses["congelado"])
@@ -19,4 +20,4 @@ func _on_inflicted(target: Creature, status: StatusEffect) -> void:
 func state_label() -> String:
 	var t: Creature = creature.target
 	var n: int = t.statuses.stacks("escarcha") if is_instance_valid(t) else 0
-	return "ESCARCHA %d/3" % n if n > 0 else ""
+	return "ESCARCHA %d/%d" % [n, param("stacks_to_freeze", 5)] if n > 0 else ""

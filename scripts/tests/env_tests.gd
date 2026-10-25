@@ -37,9 +37,9 @@ func run() -> void:
 	var stunned := false
 	for k in 12:
 		await get_tree().physics_frame
-		stunned = stunned or dummy.statuses.meter("paralizado") > 0.0 or dummy.machine.current_name() == "stunned"
+		stunned = stunned or dummy.statuses.has_status("paralizado") or dummy.machine.current_name() == "stunned"
 	await get_tree().create_timer(0.6).timeout
-	stunned = stunned or dummy.statuses.meter("paralizado") > 0.0 or dummy.machine.current_name() == "stunned"
+	stunned = stunned or dummy.statuses.has_status("paralizado") or dummy.machine.current_name() == "stunned"
 	r["Criatura sobre lo electrificado: se paraliza"] = stunned
 	await get_tree().create_timer(1.0).timeout
 	r["Después vuelve a estar mojado"] = g.state_at(dirt) != null and g.state_at(dirt).id == "mojado"

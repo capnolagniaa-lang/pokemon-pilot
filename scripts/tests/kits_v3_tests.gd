@@ -201,10 +201,13 @@ func _seel(r: Dictionary) -> void:
 	await _setup("seel")
 	var foe := _dummy("rattata", Vector2(40, 0))
 	await get_tree().physics_frame
-	for k in 3:
+	for k in 4:
 		foe.hurtbox.receive(HitInfo.from(me, me.moves.slots[2]))
 		await get_tree().physics_frame
-	r["Seel: 3 escarchas congelan"] = foe.statuses.has_status("congelado") and foe.statuses.stacks("escarcha") == 0
+	var four := foe.statuses.stacks("escarcha") == 4 and not foe.statuses.has_status("congelado")
+	foe.hurtbox.receive(HitInfo.from(me, me.moves.slots[2]))
+	await get_tree().physics_frame
+	r["Seel: con 4 escarchas no congela, con 5 sí"] = four and foe.statuses.has_status("congelado") and foe.statuses.stacks("escarcha") == 0
 
 
 func _geodude(r: Dictionary) -> void:

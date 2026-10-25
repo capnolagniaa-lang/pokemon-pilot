@@ -3,7 +3,7 @@ extends Node
 ## Estados alterados activos de una criatura: duración, stacks, barra de acumulación, daño por tiempo,
 ## multiplicadores y partículas. Las interacciones con elementos las resuelve Creature (StatusInteraction).
 
-## id -> {"status": StatusEffect, "time": float, "stacks": int, "meter": float, "fx": CPUParticles2D}
+## id -> {"status": StatusEffect, "time": float, "stacks": int, "meter": float, "fx": CPUParticles2D, "jolt": float}
 var active: Dictionary = {}
 var _dot_accum := 0.0
 var _dot_timer := 0.0
@@ -15,7 +15,8 @@ var _dot_timer := 0.0
 func apply(s: StatusEffect, duration_mult: float = 1.0) -> void:
 	var fresh := not active.has(s.id)
 	if fresh:
-		active[s.id] = {"status": s, "time": 0.0, "stacks": 0, "meter": 0.0, "fx": _make_fx(s)}
+		active[s.id] = {"status": s, "time": 0.0, "stacks": 0, "meter": 0.0, "fx": _make_fx(s),
+			"jolt": maxf(0.0, s.jolt_interval - 0.5)}  # el primer tirón se puede dar enseguida
 	var e: Dictionary = active[s.id]
 	if s.buildup:
 		e["meter"] += s.buildup_per_apply
@@ -154,6 +155,13 @@ func _physics_process(delta: float) -> void:
 				cure(s)
 			continue
 		entry["time"] -= delta
+		if s.jolt_interval > 0.0:
+			entry["jolt"] += delta
+			if entry["jolt"] >= s.jolt_interval:
+				entry["jolt"] = 0.0
+				if randf() < s.jolt_chance and creature.statuses.can_act():
+					creature.stun(s.jolt_time)  # tirón: no cuenta como control (no activa la resistencia)
+					Events.signature_triggered.emit(creature, "¡%s!" % s.display_name, s.color)
 		if s.heal_per_second > 0.0:
 			creature.health.heal(creature.health.max_hp() * s.heal_per_second * delta)
 		if s.damage_per_second > 0.0:

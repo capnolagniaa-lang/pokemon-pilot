@@ -281,8 +281,8 @@ func _draw_combat_ui(c: Creature, dst: Rect2) -> void:
 	if st.has_status("dormido"):
 		var t := fmod(_time, 1.5) / 1.5
 		draw_string(ThemeDB.fallback_font, Vector2(6 + t * 4.0, dst.position.y + 6 - t * 8.0), "z", HORIZONTAL_ALIGNMENT_LEFT, -1, 8, Color(0.85, 0.9, 1.3, 1.0 - t))
-	if st.has_status("paralizado"):
-		# Barra de parálisis acumulada: al llenarse, aturde.
+	if st.meter("paralizado") > 0.0:
+		# Barra de parálisis acumulada (si el estado es por acumulación): al llenarse, aturde.
 		var w := 16.0
 		draw_rect(Rect2(-w / 2.0, 4.0, w, 2.0), Color(0, 0, 0, 0.6))
 		draw_rect(Rect2(-w / 2.0, 4.0, w * st.meter("paralizado"), 2.0), Color(1.6, 1.4, 0.4))

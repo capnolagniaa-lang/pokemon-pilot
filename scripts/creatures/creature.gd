@@ -534,9 +534,9 @@ func stun(time: float, cc: bool = false) -> void:
 	machine.transition_to("stunned", {"time": time, "cc": cc})
 
 
+## Daño de un estado (veneno, quemado...): no despierta al dormido (pedido del usuario 2026-10-24).
 func take_status_damage(amount: float) -> void:
 	var dealt := health.apply_damage(amount)
-	statuses.on_damaged()
 	damage_received.emit(dealt, null)
 	Events.creature_damaged.emit(self, dealt, null)
 
@@ -557,7 +557,7 @@ func _on_hit(hit: HitInfo) -> void:
 	if signature != null:
 		mult *= signature.damage_taken_mult(hit)
 	var combo := {}
-	if attacker != null and hit.move.power > 0.0 and attacker.arena_rules():
+	if DB.config.combos_enabled and attacker != null and hit.move.power > 0.0 and attacker.arena_rules():
 		combo = attacker.register_hit(self, hit)  # cadena de golpes y combos con nombre
 		mult *= combo["mult"]
 		if combo["name"] != "":
