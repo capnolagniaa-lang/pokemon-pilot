@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("ticket_barco_recibido")
+lines = PackedStringArray("Para subir al S.S. Anne necesitás un ticket.")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Bienvenido! Mostrame tu ticket... ¡Perfecto, adelante!")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_carmin_ferrysailor"
+display_name = "Marinero"
+zone_id = "ciudad_carmin"
+cell = Vector2i(40, 49)
+gfx = "sailor"
+facing = Vector2i(0, -1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

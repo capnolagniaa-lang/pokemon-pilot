@@ -45,6 +45,8 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 150000 -- --autotest-story-h1  # historia H-1 a H-5 (de tu cuarto a la Medalla Roca)
 $G --headless --path . --quit-after 150000 -- --autotest-story-h2  # capítulo 2: Mt. Moon, fósil, rival en Celeste, Puente Pepita, Bill, Misty
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-misty  # Staryu y Starmie en el gimnasio de agua
+$G --headless --path . --quit-after 150000 -- --autotest-story-h3  # capítulo 3: MT28, Ticket, rival en el S.S. Anne, Corte, basureros, Surge
+$G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-surge  # la arena eléctrica de Lt. Surge
 $G --headless --path . --quit-after 100000 -- --autotest-arena-rules  # combate de arena: estilos, combos (apagados), cráteres, salto, superficies
 $G --path . --quit-after 650 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena-rules  # Geodude vs Onix (cráteres)
 $G --headless --path . --quit-after 60000 -- --autotest-slots      # varias partidas con nombre, sin curación sola, desmayo total, modo de prueba del torneo
@@ -163,7 +165,10 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `tools/assign_temperaments.gd`) leído por los estados wander/watch/chase/attack/flee; sin memoria, patrón fijo.
   Entrenadores (pendiente): órdenes + memoria, mismo cuerpo. Mientras hay golpes (`Creature.engaged`, 5 s) un
   salvaje no suelta la pelea por territorio; al soltarla queda tranquilo 6 s (`calm_until`).
-- **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`): `GameState.story_flags` (banderas, se guardan); `NpcData`/`NpcTalk`/
+- **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
+  hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`). **E frente a algo** (`StoryDirector.register_interaction`): Corte
+  (`FieldMoves`: MO01 + Medalla Cascada corta EnvObjects "cortable") y los basureros del gimnasio de Carmín
+  (`VermilionGymPuzzle`). `GameState.story_flags` (banderas, se guardan); `NpcData`/`NpcTalk`/
   `StoryTrigger` en `data/story/` (`DB.npcs`, `DB.story_triggers`); `StoryDirector` (nodo del mundo: saca las personas,
   disparadores, conversaciones con `DialogBox`, efectos). **E contextual**: `PlayerItems` llama a
   `StoryDirector.try_interact()` antes de lanzar la bola. Personas: `tools/build_story_npcs.py` (desde los NPC de

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="1_m000f"]
+
+[resource]
+script = ExtResource("1_m000f")
+id = "arena_gimnasio_electrico"
+display_name = "Gimnasio de Ciudad Carmín"
+scene_path = "res://scenes/world/arenas/arena_gimnasio_electrico.tscn"
+foe_trainer_cell = Vector2i(20, 4)
+player_cell = Vector2i(20, 27)
+foe_mon_cell = Vector2i(20, 8)
+player_mon_cell = Vector2i(20, 23)
+field = Rect2i(4, 6, 32, 18)
+element_id = "electrico"
+line_color = Color(1, 0.95, 0.5, 0.35)
+particles = "polvo"
+particle_color = Color(0.8, 0.92, 1, 0.6)
+epic = true

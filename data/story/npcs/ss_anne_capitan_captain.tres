@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("tiene_corte")
+set_flags = PackedStringArray("tiene_corte")
+lines = PackedStringArray("(El capitán está pálido y apoyado en el escritorio.)", "Uuuh... estoy mareado... me quiero morir...", "(Le frotás la espalda...)", "¡Uf! ¡Ahora sí! ¡Mucho mejor! ¡Gracias, de verdad!", "Te quiero agradecer: tomá esta MO. Es Corte: con ella tus Pokémon cortan los árboles finos que tapan el camino.", "Para usarla fuera de combate necesitás la Medalla Cascada.")
+give_items = {"mo01": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Gracias de nuevo! Con Corte, frente a un árbol fino apretá E.")
+
+[resource]
+script = ExtResource("1_n")
+id = "ss_anne_capitan_captain"
+display_name = "Capitán"
+zone_id = "ss_anne_capitan"
+cell = Vector2i(5, 4)
+gfx = "captain"
+facing = Vector2i(0, -1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

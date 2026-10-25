@@ -59,6 +59,18 @@
   "h": 32,
   "frames": 10
  },
+ "captain": {
+  "png": "res://art/pret/characters/captain.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "chef": {
+  "png": "res://art/pret/characters/chef.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
  "clefairy": {
   "png": "res://art/pret/characters/clefairy.png",
   "w": 16,
@@ -83,6 +95,12 @@
   "h": 32,
   "frames": 10
  },
+ "crush_girl": {
+  "png": "res://art/pret/characters/crush_girl.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
  "daisy": {
   "png": "res://art/pret/characters/daisy.png",
   "w": 16,
@@ -94,6 +112,12 @@
   "w": 16,
   "h": 32,
   "frames": 9
+ },
+ "fisher": {
+  "png": "res://art/pret/characters/fisher.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
  },
  "gentleman": {
   "png": "res://art/pret/characters/gentleman.png",
@@ -148,6 +172,24 @@
   "w": 16,
   "h": 16,
   "frames": 10
+ },
+ "lt_surge": {
+  "png": "res://art/pret/characters/lt_surge.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
+ "machoke": {
+  "png": "res://art/pret/characters/machoke.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "machop": {
+  "png": "res://art/pret/characters/machop.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
  },
  "man": {
   "png": "res://art/pret/characters/man.png",
@@ -209,6 +251,24 @@
   "h": 32,
   "frames": 10
  },
+ "pidgeot": {
+  "png": "res://art/pret/characters/pidgeot.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "pidgey": {
+  "png": "res://art/pret/characters/pidgey.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "pikachu": {
+  "png": "res://art/pret/characters/pikachu.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
  "policeman": {
   "png": "res://art/pret/characters/policeman.png",
   "w": 16,
@@ -233,11 +293,23 @@
   "h": 32,
   "frames": 9
  },
+ "sailor": {
+  "png": "res://art/pret/characters/sailor.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
  "scientist": {
   "png": "res://art/pret/characters/scientist.png",
   "w": 16,
   "h": 32,
   "frames": 10
+ },
+ "seel": {
+  "png": "res://art/pret/characters/seel.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
  },
  "slowbro": {
   "png": "res://art/pret/characters/slowbro.png",
@@ -256,6 +328,12 @@
   "w": 16,
   "h": 32,
   "frames": 10
+ },
+ "wigglytuff": {
+  "png": "res://art/pret/characters/wigglytuff.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
  },
  "woman_1": {
   "png": "res://art/pret/characters/woman_1.png",

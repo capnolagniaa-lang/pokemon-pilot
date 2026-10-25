@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("historia")
+forbids = PackedStringArray("ticket_barco_recibido")
+speaker = "Marinero"
+lines = PackedStringArray("¡Alto! Para subir al S.S. Anne necesitás un ticket.", "Dicen que Bill, el de la PC, tiene uno. Vive pasando el Puente Pepita.")
+
+[resource]
+script = ExtResource("1_g")
+id = "ticket_ss_anne"
+zone_id = "ciudad_carmin"
+rect = Rect2i(38, 48, 3, 1)
+talk = SubResource("Talk")
+once = false
+push_back = true

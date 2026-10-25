@@ -5,7 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡El Team Rocket me hizo un agujero en la pared y se llevó mi MT de Excavar!")
+forbids = PackedStringArray("rocket_celeste_peleado")
+lines = PackedStringArray("¡El Team Rocket me hizo un agujero en la pared y se llevó mi MT de Excavar!", "El ladrón se escapó por atrás. ¡Si lo ves, recuperala!")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¿Recuperaste la MT? ¡Quedatela, te la ganaste!")
 
 [resource]
 script = ExtResource("1_n")
@@ -16,4 +21,4 @@ cell = Vector2i(1, 2)
 gfx = "hiker"
 facing = Vector2i(0, 1)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

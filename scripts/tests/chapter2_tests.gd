@@ -115,7 +115,7 @@ func run() -> void:
 		inst.hp = inst.max_hp()
 	await _win(misty)
 	r["Le ganás a Misty: Medalla Cascada"] = GameState.has_flag("medalla_cascada")
-	r["Con la Medalla Cascada, capítulo 2 completo"] = StoryGuide.current().get("title", "") == "¡Capítulo 2 completo!"
+	r["Con la Medalla Cascada, la Guía pasa al capítulo 3"] = StoryGuide.current().get("title", "") == "Rumbo al S.S. Anne"
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:
@@ -138,8 +138,10 @@ func _ko_all() -> void:
 			break
 		_ko(world.arena.foe)
 		await _until(func(): return not world.arena.active or (is_instance_valid(world.arena.foe) and not world.arena.foe.is_down()), 6.0)
-	await _until(func(): return not world.arena.active and not world.story.busy, 15.0)
-	await get_tree().create_timer(0.3).timeout
+	# fight() directo no traba la historia: esperar también a que se cierre el cartel del premio.
+	for k in 2:
+		await _until(func(): return not world.arena.active and not world.story.busy and not world.story.dialog.active, 15.0)
+		await get_tree().create_timer(0.5).timeout
 
 
 func showcase_misty() -> void:

@@ -6,7 +6,9 @@ extends SceneTree
 ##  · arena_torneo: el estadio del Torneo de Plateada (docs/PLAN_TORNEO.md): cancha de tierra, dos lagunas, pasto alto
 ##    en las esquinas (se prende fuego), rocas de cobertura y rocas que se rompen, con tribunas y luces;
 ##  · arena_gimnasio_agua: el gimnasio de Misty (Ciudad Celeste, docs/PLAN_CAPITULO_2.md), con los tiles del gimnasio de
-##    Celeste: piletas a los costados y dos chicas en el medio (agua de verdad: moja, frena y conduce la electricidad).
+##    Celeste: piletas a los costados y dos chicas en el medio (agua de verdad: moja, frena y conduce la electricidad);
+##  · arena_gimnasio_electrico: el gimnasio de Lt. Surge (Ciudad Carmín, docs/PLAN_CAPITULO_3.md) con los tiles del
+##    gimnasio de Carmín: paredes con máquinas, basureros de cobertura y generadores.
 ## Escribe scenes/world/arenas/<id>.tscn (zonas como las del mundo: se pueden retocar con el editor de mapas) y
 ## data/arenas/<id>.tres (ArenaData). Correrlo de nuevo PISA las escenas.
 ## Uso: godot --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd [-- --only <id>]
@@ -42,7 +44,7 @@ func _init() -> void:
 	var args := OS.get_cmdline_user_args()
 	var only := args[args.find("--only") + 1] if args.has("--only") and args.find("--only") + 1 < args.size() else ""
 	for step in [["arena_campo", _campo], ["arena_gimnasio_roca", _gimnasio_roca], ["arena_torneo", _torneo],
-			["arena_gimnasio_agua", _gimnasio_agua]]:
+			["arena_gimnasio_agua", _gimnasio_agua], ["arena_gimnasio_electrico", _gimnasio_electrico]]:
 		if only == "" or only == step[0]:
 			step[1].call()
 	quit()
@@ -301,6 +303,65 @@ func _gimnasio_agua() -> void:
 	a.ambient = Color(0.9, 0.97, 1.05)
 	a.epic = true
 	ResourceSaver.save(a, "%s/arena_gimnasio_agua.tres" % DATA_DIR)
+
+
+# --- Gimnasio eléctrico (Lt. Surge) ----------------------------------------------------------------------
+
+## Metatiles del gimnasio de Carmín (vermilion_gym, base 58000): 1 piso, 2 sombra de la pared izquierda, 3 sombra de
+## arriba, 8/15 esquinas, 64/65 y 72/73 máquinas de la pared, 16/23 paredes de los costados, 24/31 esquinas de abajo,
+## 10 borde de abajo, 56 basurero, 57/58 generador (arriba/abajo).
+const VG := 58000
+
+
+func _gimnasio_electrico() -> void:
+	var w := 40
+	var h := 30
+	var cx := w / 2
+	var root := ZoneBuilder.new_zone_root("arena_gimnasio_electrico", tileset)
+	var g: TileMapLayer = root.get_node("Ground")
+	for y in h:
+		for x in w:
+			var m := 1
+			if x == 0:
+				m = 8 if y == 0 else (24 if y == h - 1 else 16)
+			elif x == w - 1:
+				m = 15 if y == 0 else (31 if y == h - 1 else 23)
+			elif y == 0:
+				m = 64 if x % 2 == 1 else 65
+			elif y == 1:
+				m = 72 if x % 2 == 1 else 73
+			elif y == h - 1:
+				m = 10
+			elif y == 2:
+				m = 3
+			elif x == 1:
+				m = 2
+			ZoneBuilder.set_metatile(g, Vector2i(x, y), VG + m)
+	# Basureros de cobertura (en simetría, como el puzzle del gimnasio) y generadores en las esquinas de la cancha.
+	for p in [Vector2i(11, 11), Vector2i(16, 15), Vector2i(11, 19), Vector2i(cx, 12), Vector2i(cx, 18)]:
+		ZoneBuilder.set_metatile(g, p, VG + 56)
+		ZoneBuilder.set_metatile(g, Vector2i(w - 1 - p.x, p.y), VG + 56)
+	for p in [Vector2i(6, 9), Vector2i(6, 20)]:
+		for q in [p, Vector2i(w - 1 - p.x, p.y)]:
+			ZoneBuilder.set_metatile(g, q, VG + 57)
+			ZoneBuilder.set_metatile(g, q + Vector2i(0, 1), VG + 58)
+	root.set("hand_edited", true)
+	_save(root, "arena_gimnasio_electrico")
+	var a := ArenaData.new()
+	a.id = "arena_gimnasio_electrico"
+	a.display_name = "Gimnasio de Ciudad Carmín"
+	a.scene_path = "%s/arena_gimnasio_electrico.tscn" % ARENAS_DIR
+	a.field = Rect2i(4, 6, w - 8, h - 12)
+	a.foe_trainer_cell = Vector2i(cx, 4)
+	a.foe_mon_cell = Vector2i(cx, 8)
+	a.player_cell = Vector2i(cx, h - 3)
+	a.player_mon_cell = Vector2i(cx, h - 7)
+	a.element_id = "electrico"
+	a.line_color = Color(1.0, 0.95, 0.5, 0.35)
+	a.particles = "polvo"
+	a.particle_color = Color(0.8, 0.92, 1.0, 0.6)  # chispas (el piso del gimnasio ya es amarillo: sin tinte)
+	a.epic = true
+	ResourceSaver.save(a, "%s/arena_gimnasio_electrico.tres" % DATA_DIR)
 
 
 func _save(root: Node, id: String) -> void:

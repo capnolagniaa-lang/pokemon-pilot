@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/rattata.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/pikachu.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("El capitán está arriba de todo.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 18
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 18
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_5")
+id = "arrate"
+display_name = "Arrate"
+title = "Chica"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¡Mi Pikachu está re cargado!", "pierde": "¡Se le acabó la pila!", "despues": "El capitán está arriba de todo."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "ss_anne_2p_camarote4_dawn"
+display_name = "Arrate"
+zone_id = "ss_anne_2p_camarote4"
+cell = Vector2i(3, 3)
+gfx = "lass"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 4

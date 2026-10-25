@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/shellder.tres" id="r_3"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_4"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Un Shellder cerrado aguanta mucho.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 21
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_4")
+id = "leonardo"
+display_name = "Leonardo"
+title = "Marinero"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
+lines = {"desafio": "¡Mi Shellder no se abre por nada!", "pierde": "¡Se abrió!", "despues": "Un Shellder cerrado aguanta mucho."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "ss_anne_s1_camarote4_leonard"
+display_name = "Leonardo"
+zone_id = "ss_anne_s1_camarote4"
+cell = Vector2i(2, 6)
+gfx = "sailor"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 4

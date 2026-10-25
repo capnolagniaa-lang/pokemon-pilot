@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/voltorb.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/pikachu.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/raichu.tres" id="r_5"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_6"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Con la Medalla Trueno tus Pokémon son más rápidos. ¡Keep it up!")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 21
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 18
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 24
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_6")
+id = "lt. surge"
+display_name = "Lt. Surge"
+title = "Líder"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
+lines = {"desafio": "¡Hey, kid! ¿Llegaste hasta acá? ¡Nice!|Soy Lt. Surge, el líder del Gimnasio de Ciudad Carmín. En la guerra, los Pokémon eléctricos me salvaron la vida.|¡Te voy a electrocutar como a todos! ¡Ready!", "pierde": "¡Whoa! ¡Sos el real deal, kid! Está bien, te ganaste la Medalla Trueno.", "gana": "¡Ha! ¡Volvé cuando aguantes la corriente!", "despues": "Con la Medalla Trueno tus Pokémon son más rápidos. ¡Keep it up!"}
+arena_id = "arena_gimnasio_electrico"
+leader = true
+reward_flags = PackedStringArray("medalla_trueno")
+reward_text = "¡Recibiste la MEDALLA TRUENO de Lt. Surge!"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_carmin_gimnasio_ltsurge"
+display_name = "Lt. Surge"
+zone_id = "ciudad_carmin_gimnasio"
+cell = Vector2i(5, 2)
+gfx = "lt_surge"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 0

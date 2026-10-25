@@ -6,6 +6,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Capítulo 3 de la historia (2026-10-25, pedido del usuario: "hasta el gimnasio de Lt. Surge")**: plan en
+  `docs/PLAN_CAPITULO_3.md` (mapas de la sesión de mapas, 0e8da6c2). Hecho: 29 entrenadores con los equipos de FireRed
+  (Ruta 6, S.S. Anne, gimnasio), el Rocket de la casa robada (MT28 Excavar), el Ticket en el muelle, el rival en el
+  S.S. Anne, el capitán y **Corte** (E frente a un árbol fino), el **puzzle de los basureros** con la barrera eléctrica,
+  **Lt. Surge** (Raichu jefe) en la arena eléctrica, Medalla Trueno, Tienda de Carmín y la Guía del capítulo 3.
+  Arreglado: un entrenador que te veía y se descargaba su zona a mitad de camino dejaba la historia trabada.
+  Test `--autotest-story-h3` (28), vitrina `--showcase-surge`.
 - **Evoluciones (2026-10-25, pedido del usuario)**: las 172 especies que evolucionan (PokeAPI) lo hacen por nivel o con
   piedra (Lunar, Fuego, Agua, Trueno, Hoja, Solar); intercambio y amistad quedan para cuando exista ese sistema
   (Kadabra, Graveler, Golbat... por ahora no evolucionan). Pantalla clásica con parpadeo, Esc la frena (con piedra no),

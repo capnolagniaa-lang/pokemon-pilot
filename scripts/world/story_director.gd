@@ -17,6 +17,9 @@ var dialog: DialogBox
 ## id -> StoryNPC en el mundo.
 var npcs: Dictionary = {}
 var busy := false
+## Interacciones con lo que hay adelante del entrenador al apretar E (Corte, los basureros del gimnasio de Carmín):
+## Callable(zona, celda, posición de adelante) -> bool (true = la tomó; la conversación la arma ella con `lock`/`say`).
+var interactions: Array[Callable] = []
 ## Acciones especiales de las conversaciones (NpcTalk.action): nombre -> Callable que se espera (await).
 var actions: Dictionary = {}
 var _last_cell := Vector2i(-99999, -99999)
@@ -87,7 +90,31 @@ func try_interact() -> bool:
 	if living != null:
 		challenge_living(living)
 		return true
+	var t: Trainer = world.trainer
+	var front := t.global_position + t.facing.normalized() * 16.0
+	var entry: ZoneEntry = world.streamer.world_data.zone_at(front)
+	var zone: Zone = world.streamer.zone_node(entry.id) if entry != null else null
+	if zone != null:
+		for h in interactions:
+			if h.call(entry.id, zone.cell_at(front), front):
+				return true
 	return false
+
+
+func register_interaction(handler: Callable) -> void:
+	interactions.append(handler)
+
+
+## Traba al entrenador y dice algo (para las interacciones registradas). Usar `unlock()` al terminar.
+func lock() -> void:
+	busy = true
+	world.trainer.locked = true
+	world.trainer.autopilot = Vector2.ZERO
+
+
+func unlock() -> void:
+	world.trainer.locked = false
+	busy = false
 
 
 func talk_to(npc: StoryNPC) -> void:
@@ -262,7 +289,9 @@ func _fire(trig: StoryTrigger, zone: Zone, prev: Vector2i) -> void:
 	if trig.once:
 		GameState.set_flag(trig.flag())
 	await run_talk(trig.talk)
-	if trig.push_back and trig.talk.warp_zone == "" and prev != Vector2i(-99999, -99999):
+	if not is_instance_valid(zone):  # se recargó mientras hablaban
+		zone = world.streamer.zone_node(trig.zone_id)
+	if trig.push_back and trig.talk.warp_zone == "" and prev != Vector2i(-99999, -99999) and zone != null:
 		var t: Trainer = world.trainer
 		t.global_position = zone.to_global(zone.ground.map_to_local(prev))
 		_last_cell = prev
@@ -314,7 +343,15 @@ func challenge(npc: StoryNPC, spotted: bool = false) -> void:
 	if spotted:
 		npc.show_emote("!")
 		await get_tree().create_timer(0.6).timeout
-		await npc.walk_to(t.global_position)
+		if is_instance_valid(npc):
+			# Se espera con un timer: si la persona se borra a mitad de camino, su tween nunca termina.
+			var walk := maxf(0.0, npc.global_position.distance_to(t.global_position) - 18.0) / 70.0
+			npc.walk_to(t.global_position)
+			await get_tree().create_timer(walk + 0.05).timeout
+	if not is_instance_valid(npc) or world.arena.active:  # se descargó su zona o ya hay otra pelea: no quedar trabado
+		t.locked = false
+		busy = false
+		return
 	npc.look_at_point(t.global_position)
 	var speaker := ("%s %s" % [td.title, td.display_name]).strip_edges()
 	await _say(speaker, _lines(td, "desafio", "¡Peleá conmigo!"))

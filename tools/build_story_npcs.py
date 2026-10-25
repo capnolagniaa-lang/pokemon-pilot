@@ -668,6 +668,187 @@ TALKS[("ciudad_plateada", "GymGuide")]["talks"][1] = dict(lines=[
     "¡Le ganaste a Brock! ¡Sos un crack!", "La Ruta 3 sigue por acá, hacia el Mt. Moon. ¡Del otro lado está Ciudad Celeste!"])
 
 
+# =================================================================================================================
+# --- Capítulo 3: de Ciudad Celeste al Gimnasio de Ciudad Carmín (docs/PLAN_CAPITULO_3.md) ------------------------
+# Equipos de FireRed (pret: trainer_parties.h). Banderas: rocket_celeste_peleado, rival_ss_anne_peleado, tiene_corte,
+# surge_puerta_abierta (VermilionGymPuzzle), medalla_trueno. Corte: FieldMoves (MO01 + Medalla Cascada).
+SAILOR, GENT, FISHER, ENGINEER = "Marinero", "Caballero", "Pescador", "Mecánico"
+ELEC = "arena_gimnasio_electrico"
+
+TRAINERS.update({
+    # Ciudad Celeste: el Rocket que robó la MT28 (detrás de la casa robada)
+    ("ciudad_celeste", "Grunt"): _t("Rocket", ROCKET, [("machop", 17), ("drowzee", 17)],
+        "¡Ey! ¡Nadie me vio salir por el agujero! ...¿Vos me viste? ¡Entonces peleamos!",
+        "¡Uf! Está bien, está bien. Tomá la MT, igual ya no me sirve.", "Me voy antes de que llegue la policía...",
+        sight=3, reward_items={"mt28": 1}, reward_flags=["rocket_celeste_peleado"]),
+    # Ruta 6
+    ("ruta6", "Keigo"): _t("Kevin", BUG, [("weedle", 16), ("caterpie", 16), ("weedle", 16)],
+        "¡Mis bichos están listos! ¿Y los tuyos?", "¡Bzzz! Se me escaparon.", "Algún día voy a tener un Beedrill."),
+    ("ruta6", "Elijah"): _t("Elías", BUG, [("butterfree", 20)], "¡Mi Caterpie ya es un Butterfree! ¡Mirá cómo vuela!",
+        "¡Aterrizó de panza!", "Los Butterfree tiran polvos que duermen y paralizan."),
+    ("ruta6", "Ricky"): _t("Rodrigo", CAMPER, [("squirtle", 20)], "¡Mi Squirtle y yo somos inseparables!",
+        "¡Squirtle, volvé!", "Squirtle se mete en el caparazón cuando le pegan."),
+    ("ruta6", "Jeff"): _t("Joel", CAMPER, [("spearow", 16), ("raticate", 16)], "¡Ey, vos! ¡Combate ya!",
+        "¡No llegué ni a calentar!", "Ciudad Carmín está al sur. Huele a mar."),
+    ("ruta6", "Nancy"): _t("Nancy", PICNIC, [("rattata", 16), ("pikachu", 16)], "¡Pikachu y yo vinimos de picnic!",
+        "¡Se me cayó el sánguche!", "Pikachu me sigue a todos lados."),
+    ("ruta6", "Isabelle"): _t("Isabel", PICNIC, [("pidgey", 16), ("pidgey", 16), ("pidgey", 16)],
+        "¡Tres Pidgey! ¿Te animás?", "¡Volaron los tres!", "Los Pidgey son re fáciles de criar."),
+    # S.S. Anne
+    ("ss_anne_cubierta", "Trevor"): _t("Toribio", SAILOR, [("machop", 17), ("tentacool", 17)], "¡Ahoy! ¡Los marineros somos fuertes!",
+        "¡Me tiraste por la borda!", "El mar está calmo hoy."),
+    ("ss_anne_cubierta", "Edmond"): _t("Edmundo", SAILOR, [("machop", 18), ("shellder", 18)], "¡A ver qué tal pelea un pasajero!",
+        "¡Hundido!", "El capitán está mareado. ¡Un capitán mareado! Qué papelón."),
+    ("ss_anne_1p_camarote2", "Ann"): _t("Ana", LASS, [("pidgey", 18), ("nidoran_f", 18)], "¡Ay, un pasajero nuevo! ¿Peleamos?",
+        "¡Uy, perdí!", "La fiesta es en el segundo piso."),
+    ("ss_anne_1p_camarote2", "Tyler"): _t("Tadeo", YOUNG, [("nidoran_m", 21)], "¡Mi Nidoran es el más fuerte del barco!",
+        "¡Uh! ¡No era tan fuerte!", "Mi papá me trajo al crucero. ¡Está buenísimo!"),
+    ("ss_anne_1p_camarote5", "Arthur"): _t("Arturo", GENT, [("nidoran_m", 19), ("nidoran_f", 19)], "Un caballero siempre acepta un desafío.",
+        "Excelente combate, joven.", "Viajar en barco es muy elegante, ¿no le parece?"),
+    ("ss_anne_1p_camarote7", "Thomas"): _t("Teodoro", GENT, [("growlithe", 18), ("growlithe", 18)], "Mis Growlithe son de pura raza.",
+        "Mis cachorros...", "Los Growlithe son muy leales."),
+    ("ss_anne_2p_camarote2", "Dale"): _t("Daniel", FISHER, [("goldeen", 17), ("tentacool", 17), ("goldeen", 17)],
+        "¡Picó uno! ...Ah, no, sos un entrenador.", "Se me cortó la línea.", "Desde el barco no se puede pescar. ¡Qué bronca!"),
+    ("ss_anne_2p_camarote2", "Brooks"): _t("Celio", GENT, [("pikachu", 23)], "Mi Pikachu es mi orgullo. ¿Probamos?",
+        "Bravo, bravo.", "Lt. Surge, el líder de Carmín, ama a los Pikachu."),
+    ("ss_anne_2p_camarote4", "Lamar"): _t("Lener", GENT, [("growlithe", 17), ("ponyta", 17)], "¡Fuego en alta mar!",
+        "Se me apagó la llama.", "Ponyta corre más rápido que cualquier barco."),
+    ("ss_anne_2p_camarote4", "Dawn"): _t("Arrate", LASS, [("rattata", 18), ("pikachu", 18)], "¡Mi Pikachu está re cargado!",
+        "¡Se le acabó la pila!", "El capitán está arriba de todo."),
+    ("ss_anne_s1_camarote1", "Barny"): _t("Beltrán", FISHER, [("tentacool", 17), ("staryu", 17), ("shellder", 17)],
+        "Los Pokémon de mar son los mejores. ¡Te lo demuestro!", "¡Se escaparon al agua!", "En el mar hay Tentacool por todos lados."),
+    ("ss_anne_s1_camarote1", "Phillip"): _t("Felipe", SAILOR, [("machop", 20)], "¡Mi Machop levanta anclas!",
+        "¡Ancla caída!", "Los Machop entrenan todo el día."),
+    ("ss_anne_s1_camarote2", "Huey"): _t("Humberto", SAILOR, [("tentacool", 18), ("staryu", 18)], "¡Nadie pasa por mi camarote sin pelear!",
+        "¡Uf, me ganaste!", "El agua y la electricidad no se llevan."),
+    ("ss_anne_s1_camarote3", "Dylan"): _t("Dan", SAILOR, [("horsea", 17), ("horsea", 17), ("horsea", 17)], "¡Tres Horsea al ataque!",
+        "¡Tinta por todos lados!", "Los Horsea tiran tinta para escapar."),
+    ("ss_anne_s1_camarote4", "Duncan"): _t("Dato", SAILOR, [("horsea", 17), ("shellder", 17), ("tentacool", 17)],
+        "¡Marinero en guardia!", "¡Hombre al agua!", "El sótano del barco es puro camarote de marineros."),
+    ("ss_anne_s1_camarote4", "Leonard"): _t("Leonardo", SAILOR, [("shellder", 21)], "¡Mi Shellder no se abre por nada!",
+        "¡Se abrió!", "Un Shellder cerrado aguanta mucho."),
+    # El rival en el pasillo del 2º piso (te frena antes del camarote del capitán)
+    ("ss_anne_2p", "0x0"): dict(name=RIVAL, title="Rival", sight=0, talk_challenge=False, reward_flags=["rival_ss_anne_peleado"],
+        team=[("pidgeotto", 19), ("raticate", 16), ("kadabra", 18), ("wartortle", 20, "rival_squirtle"),
+              ("ivysaur", 20, "rival_bulbasaur"), ("charmeleon", 20, "rival_charmander")],
+        lines={"desafio": "¡Eh! ¿Vos también te colaste a la fiesta?|Seguro que viniste a ver al capitán. ¡Primero tenés que pasar por mí!",
+               "pierde": "¡¿Otra vez?! ...Bueno, el capitán te va a dar algo copado. Andá, andá.|Yo me voy: ¡tengo que atrapar más Pokémon!",
+               "gana": "¡Ja! Seguís siendo el segundo.", "despues": "¡Nos vemos!"}),
+    # Gimnasio de Ciudad Carmín
+    ("ciudad_carmin_gimnasio", "Tucker"): _t("Tucker", GENT, [("pikachu", 23)], "El teniente nos entrenó a todos. ¡En guardia!",
+        "Impecable.", "Los basureros esconden más de lo que parece.", arena=ELEC, sight=3),
+    ("ciudad_carmin_gimnasio", "Dwayne"): _t("Dwayne", SAILOR, [("pikachu", 21), ("pikachu", 21)], "¡Dos Pikachu, doble descarga!",
+        "¡Cortocircuito!", "El teniente Surge fue soldado. ¡Es durísimo!", arena=ELEC, sight=3),
+    ("ciudad_carmin_gimnasio", "Baily"): _t("Benito", ENGINEER, [("voltorb", 21), ("magnemite", 21)], "¡Yo armé las trampas eléctricas de este gimnasio!",
+        "¡Se me quemó un fusible!", "Los interruptores están en los basureros. ¡Pero no te digo cuáles!", arena=ELEC, sight=3),
+    ("ciudad_carmin_gimnasio", "LtSurge"): dict(name="Lt. Surge", title="Líder", team=[("voltorb", 21), ("pikachu", 18), ("raichu", 24)],
+        arena=ELEC, sight=0, leader=True, reward_flags=["medalla_trueno"], reward="¡Recibiste la MEDALLA TRUENO de Lt. Surge!", lines={
+        "desafio": "¡Hey, kid! ¿Llegaste hasta acá? ¡Nice!|Soy Lt. Surge, el líder del Gimnasio de Ciudad Carmín. En la guerra, los Pokémon "
+                   "eléctricos me salvaron la vida.|¡Te voy a electrocutar como a todos! ¡Ready!",
+        "pierde": "¡Whoa! ¡Sos el real deal, kid! Está bien, te ganaste la Medalla Trueno.",
+        "gana": "¡Ha! ¡Volvé cuando aguantes la corriente!",
+        "despues": "Con la Medalla Trueno tus Pokémon son más rápidos. ¡Keep it up!"}),
+})
+
+TALKS.update({
+    # Ciudad Celeste: después de Misty el policía se va de la puerta de la casa robada
+    ("ciudad_celeste", "Policeman"): dict(name="Policía", hide_if=["medalla_cascada"], talks=[dict(lines=[
+        "El Team Rocket entró a robar en esta casa. Se llevaron una MT.", "No se puede pasar: estamos investigando."])]),
+    ("ciudad_celeste_casa_robada", "Hiker"): dict(name="Dueño", talks=[
+        dict(forbids=["rocket_celeste_peleado"], lines=["¡El Team Rocket me hizo un agujero en la pared y se llevó mi MT de Excavar!",
+            "El ladrón se escapó por atrás. ¡Si lo ves, recuperala!"]),
+        dict(lines=["¿Recuperaste la MT? ¡Quedatela, te la ganaste!"])]),
+    # Ruta 5 / Vía Subterránea / Ruta 6
+    ("ruta5_guarderia", "DaycareMan"): dict(name="Señor", talks=[dict(lines=[
+        "Esto va a ser una guardería de Pokémon. Por ahora estamos de mudanza. ¡Volvé más adelante!"])]),
+    ("ruta5_garita", "Guard"): dict(name="Guardia", talks=[dict(lines=["¡Uf, qué sed!", "Ciudad Azafrán está cerrada por ahora. Usá la Vía Subterránea."])]),
+    ("ruta6_garita", "Guard"): dict(name="Guardia", talks=[dict(lines=["Ciudad Azafrán está cerrada. Para ir a Celeste, la Vía Subterránea."])]),
+    ("via_subterranea_norte", "Saige"): dict(name="Nena", talks=[dict(lines=["La Vía Subterránea va derecho hasta Ciudad Carmín. ¡Es larguísima!"])]),
+    ("via_subterranea_sur", "Woman"): dict(name="Señora", talks=[dict(lines=["En Ciudad Carmín está el S.S. Anne, un crucero lujosísimo."])]),
+    # Ciudad Carmín
+    ("ciudad_carmin", "Woman"): dict(name="Señora", talks=[dict(lines=["¡El S.S. Anne viene una vez por año! Hay una fiesta a bordo."])]),
+    ("ciudad_carmin", "OldMan1"): dict(name="Abuelo", talks=[dict(lines=["Ese Machop está aplanando el terreno para construir algo."])]),
+    ("ciudad_carmin", "OldMan2"): dict(name="Abuelo", talks=[dict(lines=["Hay un árbol fino tapando el gimnasio. Sin Corte, no pasás."])]),
+    ("ciudad_carmin", "Machop"): dict(name="Machop", talks=[dict(lines=["Machop: ¡Machooop!", "(Está pisando el suelo con todas sus fuerzas.)"])]),
+    ("ciudad_carmin", "Sailor"): dict(name="Marinero", talks=[dict(lines=["El capitán del S.S. Anne se marea. ¡Un capitán que se marea!"])]),
+    ("ciudad_carmin", "FerrySailor"): dict(name="Marinero", talks=[
+        dict(forbids=["ticket_barco_recibido"], lines=["Para subir al S.S. Anne necesitás un ticket."]),
+        dict(lines=["¡Bienvenido! Mostrame tu ticket... ¡Perfecto, adelante!"])]),
+    ("ciudad_carmin_centro", "Nurse"): NURSE,
+    ("ciudad_carmin_centro", "Man"): dict(name="Señor", talks=[dict(lines=["Lt. Surge es un excombatiente. ¡Sus Pokémon eléctricos son tremendos!"])]),
+    ("ciudad_carmin_centro", "Hiker"): dict(name="Montañero", talks=[dict(lines=["Contra lo eléctrico, la tierra. Un Geodude o un Sandshrew no sienten nada."])]),
+    ("ciudad_carmin_centro", "Youngster"): dict(name="Pibe", talks=[dict(lines=["¡Mi Pikachu le ganó a un Squirtle! El agua no le gana a la electricidad."])]),
+    ("ciudad_carmin_centro", "VSSeekerWoman"): dict(name="Chica", talks=[dict(lines=["Los entrenadores del barco son de todas partes del mundo."])]),
+    ("ciudad_carmin_tienda", "Clerk"): dict(name="Vendedor", talks=[dict(lines=["¡Bienvenido a la Tienda Pokémon!"], action="tienda_ciudad_carmin")]),
+    ("ciudad_carmin_tienda", "CooltrainerF"): dict(name="Chica", talks=[dict(lines=["El Antihielo no se consigue en todos lados. ¡Acá sí!"])]),
+    ("ciudad_carmin_tienda", "BaldingMan"): dict(name="Señor", talks=[dict(lines=["Las Superpociones son lo mejor para un viaje largo."])]),
+    ("club_fans", "Chairman"): dict(name="Presidente", talks=[dict(lines=["¡Bienvenido al Club de Fans de los Pokémon!",
+        "¿Querés que te cuente de mi Rapidash? ...¡Otro día, que es una historia larga!"])]),
+    ("club_fans", "WorkerF"): dict(name="Secretaria", talks=[dict(lines=["El presidente habla horas de su Rapidash. ¡Horas!"])]),
+    ("club_fans", "Pikachu"): dict(name="Pikachu", talks=[dict(lines=["Pikachu: ¡Pika pika!"])]),
+    ("club_fans", "Seel"): dict(name="Seel", talks=[dict(lines=["Seel: ¡Seeel!"])]),
+    ("club_fans", "Woman"): dict(name="Señora", talks=[dict(lines=["Mi Pikachu es el más lindo del club. ¡No discutas!"])]),
+    ("club_fans", "FatMan"): dict(name="Señor", talks=[dict(lines=["Mi Seel es campeón de natación. Bueno, de flotar."])]),
+    ("ciudad_carmin_gimnasio", "GymGuy"): dict(name="Guía", talks=[
+        dict(forbids=["medalla_trueno"], lines=["¡Ey, campeón! Lt. Surge usa Pokémon eléctricos.",
+            "Los de tierra no sienten la electricidad. Y para llegar a él, buscá los interruptores en los basureros:",
+            "el segundo siempre está al lado del primero. ¡Si le errás, se reinician!"]),
+        dict(lines=["¡Le ganaste a Surge! ¡Sos una bestia!"])]),
+    ("ciudad_carmin_casa1", "FishingGuru"): dict(name="Pescador", talks=[dict(lines=["¡Pescar es lo mejor de la vida! Cuando tenga una caña de sobra, te la doy."])]),
+    ("ciudad_carmin_casa2", "Elyssa"): dict(name="Nena", talks=[dict(lines=["Quiero un Farfetch'd. ¡Tienen un puerro!"])]),
+    ("ciudad_carmin_casa3", "Boy"): dict(name="Chico", talks=[dict(lines=["Mi Pidgey lleva cartas a todos lados. ¡Es mi cartero!"])]),
+    ("ciudad_carmin_casa3", "Pidgey"): dict(name="Pidgey", talks=[dict(lines=["Pidgey: ¡Pío!"])]),
+    ("ciudad_carmin_casa3", "Lass"): dict(name="Chica", talks=[dict(lines=["¡Qué lindo es vivir al lado del puerto!"])]),
+    # S.S. Anne
+    ("ss_anne_1p", "Sailor"): dict(name="Marinero", talks=[dict(lines=["¡Bienvenido a bordo del S.S. Anne! La fiesta está en todos los pisos."])]),
+    ("ss_anne_1p", "WorkerM"): dict(name="Mozo", talks=[dict(lines=["¿Gusta algo de tomar? ...Ah, es un nene. ¡Un jugo, entonces!"])]),
+    ("ss_anne_2p", "0x0"): dict(name=RIVAL, show_if=["historia"], hide_if=["rival_ss_anne_peleado"], talks=[
+        dict(lines=["El capitán está acá arriba. ¡Pero primero yo!"])]),
+    ("ss_anne_2p", "Sailor"): dict(name="Marinero", talks=[dict(lines=["El camarote del capitán está al fondo del pasillo, subiendo."])]),
+    ("ss_anne_3p", "Sailor"): dict(name="Marinero", talks=[dict(lines=["Por acá se sube a la cubierta. ¡Ojo con el viento!"])]),
+    ("ss_anne_cubierta", "BaldingMan"): dict(name="Señor", talks=[dict(lines=["¡Uf! Me mareé... Vine a tomar aire."])]),
+    ("ss_anne_cubierta", "Sailor"): dict(name="Marinero", talks=[dict(lines=["¡Qué lindo día para navegar!"])]),
+    ("ss_anne_cubierta", "Youngster"): dict(name="Pibe", talks=[dict(lines=["¡Desde acá se ve todo Ciudad Carmín!"])]),
+    ("ss_anne_capitan", "Captain"): dict(name="Capitán", talks=[
+        dict(forbids=["tiene_corte"], give={"mo01": 1}, set_flags=["tiene_corte"], lines=[
+            "(El capitán está pálido y apoyado en el escritorio.)", "Uuuh... estoy mareado... me quiero morir...",
+            "(Le frotás la espalda...)", "¡Uf! ¡Ahora sí! ¡Mucho mejor! ¡Gracias, de verdad!",
+            "Te quiero agradecer: tomá esta MO. Es Corte: con ella tus Pokémon cortan los árboles finos que tapan el camino.",
+            "Para usarla fuera de combate necesitás la Medalla Cascada."]),
+        dict(lines=["¡Gracias de nuevo! Con Corte, frente a un árbol fino apretá E."])]),
+})
+for (_zone, _script), _who in {
+        ("ss_anne_cocina", "Chef1"): "¡Fuera de la cocina! ...Bueno, mirá nomás.", ("ss_anne_cocina", "Chef2"): "¡Esta noche hay pescado!",
+        ("ss_anne_cocina", "Chef3"): "Le estoy preparando el té al capitán. ¡Para el mareo!", ("ss_anne_cocina", "Chef4"): "¡Más sal! ¡Más sal!",
+        ("ss_anne_cocina", "Chef5"): "¿Un Pokémon en mi cocina? ¡Afuera!", ("ss_anne_cocina", "Chef6"): "La fiesta de esta noche es enorme.",
+        ("ss_anne_cocina", "Chef7"): "¡Uy, se me quemó la salsa!",
+        ("ss_anne_1p_camarote1", "Gentleman"): "Los entrenadores del barco son de primer nivel.",
+        ("ss_anne_1p_camarote2", "Woman"): "Mis hijos no paran de pelear con los pasajeros.",
+        ("ss_anne_1p_camarote3", "LittleGirl"): "¡Mi Wigglytuff es re esponjoso!", ("ss_anne_1p_camarote3", "Wigglytuff"): "Wigglytuff: ¡Wiggly!",
+        ("ss_anne_1p_camarote3", "BaldingMan"): "Viajo por el mundo buscando Pokémon raros.",
+        ("ss_anne_1p_camarote4", "Woman"): "¡Qué crucero divino!", ("ss_anne_1p_camarote6", "Woman"): "Dicen que el capitán se marea. ¡Qué gracioso!",
+        ("ss_anne_2p_camarote1", "Gentleman"): "En otros países hay Pokémon que acá no se ven.",
+        ("ss_anne_2p_camarote3", "Gentleman"): "¿Conocés la Zona Safari? Queda en Ciudad Fucsia.",
+        ("ss_anne_2p_camarote3", "OldMan"): "De joven fui marinero. ¡Nunca me mareé!",
+        ("ss_anne_2p_camarote5", "Gentleman"): "Un Snorlax duerme en una ruta y no deja pasar a nadie. ¡Increíble!",
+        ("ss_anne_2p_camarote5", "LittleBoy"): "¡Quiero un Snorlax!", ("ss_anne_2p_camarote6", "Woman2"): "Esta fiesta es lo más.",
+        ("ss_anne_2p_camarote6", "Woman1"): "¿Ya fuiste a ver al capitán?",
+        ("ss_anne_s1_camarote5", "Boy"): "¡Mi Machoke entrena conmigo todos los días!", ("ss_anne_s1_camarote5", "Machoke"): "Machoke: ¡Machooo!"}.items():
+    _name = _who.split(":")[0] if ": " in _who else ("Cocinero" if _script.startswith("Chef") else "Pasajero")
+    TALKS[(_zone, _script)] = dict(name=_name, talks=[dict(lines=[_who])])
+for (_zone, _script), _item in {("ss_anne_cocina", "ItemGreatBall"): "super_ball",
+                                ("ss_anne_s1_camarote5", "ItemSuperPotion"): "superpocion"}.items():
+    _flag = "objeto_%s_%s" % (_zone, _script.lower())
+    TALKS[(_zone, _script)] = dict(name="Objeto", gfx="item_ball", hide_if=[_flag], talks=[
+        dict(give={_item: 1}, set_flags=[_flag], lines=[])])
+# Sin el Ticket de Bill no se sube al barco; el rival te frena en el pasillo del 2º piso (antes del capitán).
+TRIGGERS["ticket_ss_anne"] = dict(zone="ciudad_carmin", rect=(38, 48, 3, 1), once=False, push_back=True, talk=dict(
+    requires=["historia"], forbids=["ticket_barco_recibido"], speaker="Marinero", lines=[
+        "¡Alto! Para subir al S.S. Anne necesitás un ticket.", "Dicen que Bill, el de la PC, tiene uno. Vive pasando el Puente Pepita."]))
+TRIGGERS["rival_ss_anne"] = dict(zone="ss_anne_2p", rect=(30, 4, 3, 1), once=False, talk=dict(
+    requires=["historia"], forbids=["rival_ss_anne_peleado"], speaker=RIVAL, lines=["¡Eh, esperá!"], battle_npc="ss_anne_2p_0x0"))
+
+
 class Ext:
     """ext_resource que necesita un .tres (scripts y recursos), con ids estables."""
 

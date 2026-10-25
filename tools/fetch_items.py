@@ -47,6 +47,8 @@ ITEMS = {
     "fosil_helix": ("helix-fossil", "key", 3, {}),
     "fosil_domo": ("dome-fossil", "key", 4, {}),
     "ticket_barco": ("ss-ticket", "key", 5, {}),
+    # Capítulo 3 (docs/PLAN_CAPITULO_3.md): el capitán del S.S. Anne te da Corte (cortar árboles finos: FieldMoves).
+    "mo01": ("hm01", "key", 6, {}),
 }
 # Precio en la Tienda Pokémon (FireRed/LeafGreen, 3ª gen). PokeAPI ya no los trae (`prices` viene vacío).
 # Sin precio (Master Ball, objetos clave) = no se compra ni se vende.
@@ -58,8 +60,11 @@ PRICES = {
     "caramelo_raro": 4800, "piedra_lunar": 2100, "piedra_fuego": 2100, "piedra_agua": 2100,
     "piedra_trueno": 2100, "piedra_hoja": 2100, "piedra_solar": 2100, "trozo_estrella": 9800, "pepita": 10000,
 }
-# Descripción propia cuando PokeAPI no tiene una en español.
+# Nombre propio cuando el de PokeAPI no alcanza.
+NAMES = {"mo01": "MO01 Corte"}
+# Descripción propia (manda sobre la de PokeAPI, que a veces no tiene una en español o dice "- - -").
 DESCRIPTIONS = {
+    "mo01": "MO01 Corte. Con la Medalla Cascada, tus Pokémon cortan los árboles finos que tapan el camino (E frente al árbol).",
     "paquete_oak": "Un correo para el Profesor Oak. Te lo dio el vendedor de la Tienda Pokémon de Ciudad Verde.",
 }
 
@@ -101,8 +106,8 @@ def main():
             req = urllib.request.Request(SPRITES % api, headers={"User-Agent": "pokemon-pilot-fangame"})
             with urllib.request.urlopen(req, timeout=40) as r, open(icon, "wb") as f:
                 f.write(r.read())
-        name = es(it["names"]) or api
-        desc = (flavor(it) or DESCRIPTIONS.get(gid, "")).replace('"', '\\"')
+        name = NAMES.get(gid) or es(it["names"]) or api
+        desc = (DESCRIPTIONS.get(gid) or flavor(it)).replace('"', '\\"')
         lines = ['[gd_resource type="Resource" script_class="ItemData" format=3]', "",
                  '[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]',
                  '[ext_resource type="Texture2D" path="res://sprites/items/%s.png" id="2_i"]' % api, "",

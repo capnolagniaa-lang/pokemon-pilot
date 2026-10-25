@@ -16,6 +16,11 @@ const STEPS := [
 	["fosil_elegido", "El Mt. Moon", "Seguí al este de Ciudad Plateada por la Ruta 3 hasta el Mt. Moon. En lo más hondo de la cueva el Team Rocket busca fósiles: ganale a Miguel y elegí uno."],
 	["rival_celeste_peleado", "Ciudad Celeste", "Salí del Mt. Moon y bajá por la Ruta 4 hasta Ciudad Celeste. Tu rival te espera al norte de la ciudad, camino al Puente Pepita."],
 	["medalla_cascada", "La Medalla Cascada", "Ganale a Misty en el gimnasio de Ciudad Celeste (tipo agua: los eléctricos y los de planta le pegan fuerte; el agua de las piletas conduce la electricidad)."],
+	# Capítulo 3 (docs/PLAN_CAPITULO_3.md)
+	["rival_ss_anne_peleado", "Rumbo al S.S. Anne", "Con el Ticket de Bill, andá al sur de Ciudad Celeste: Ruta 5, la Vía Subterránea y la Ruta 6 hasta Ciudad Carmín. Subí al S.S. Anne en el puerto: tu rival anda por el segundo piso."],
+	["tiene_corte", "El capitán mareado", "El capitán del S.S. Anne está en su camarote, al fondo del pasillo del segundo piso. Ayudalo."],
+	["surge_puerta_abierta", "Los basureros de Surge", "Con Corte (E frente al árbol fino) entrá al gimnasio de Ciudad Carmín. Buscá los dos interruptores en los basureros: el segundo está al lado del primero."],
+	["medalla_trueno", "La Medalla Trueno", "Ganale a Lt. Surge (tipo eléctrico: los de tierra no sienten la electricidad)."],
 ]
 ## Cosas que se pueden hacer además: [bandera que la completa, banderas que hacen falta, texto]
 const OPTIONAL := [
@@ -25,6 +30,7 @@ const OPTIONAL := [
 	["campeon_nv15_3", ["medalla_roca"], "Probá el Torneo de Ciudad Plateada (la puerta del anexo rosa del museo)."],
 	["magikarp_comprado", ["medalla_roca"], "En el Centro Pokémon de la Ruta 4 (al pie del Mt. Moon) un señor vende un Magikarp."],
 	["rocket_puente_peleado", ["rival_celeste_peleado"], "Al norte de Ciudad Celeste, el Puente Pepita: cinco entrenadores al hilo y un premio."],
+	["rocket_celeste_peleado", ["medalla_cascada"], "El ladrón de la casa robada de Ciudad Celeste anda por atrás de la casa: tiene la MT28 Excavar."],
 	["ticket_barco_recibido", ["rival_celeste_peleado"], "Pasando el Puente Pepita y la Ruta 25 vive Bill, el de la PC. Dicen que le pasó algo raro..."],
 ]
 ## Cazabichos del Bosque Verde (para contar cuántos te faltan).
@@ -39,12 +45,13 @@ static func current() -> Dictionary:
 	for i in STEPS.size():
 		if not GameState.has_flag(STEPS[i][0]):
 			return {"index": i, "total": STEPS.size(), "title": STEPS[i][1], "text": STEPS[i][2]}
-	return {"index": STEPS.size(), "total": STEPS.size(), "title": "¡Capítulo 2 completo!",
-		"text": "Le ganaste a Misty. Muy pronto: la Ruta 5, Ciudad Carmín y el S.S. Anne. Mientras tanto, entrenate o probá el Torneo de Ciudad Plateada."}
+	return {"index": STEPS.size(), "total": STEPS.size(), "title": "¡Capítulo 3 completo!",
+		"text": "Le ganaste a Lt. Surge. Muy pronto: la Cueva Diglett, el Túnel Roca y Pueblo Lavanda. Mientras tanto, entrenate o probá el Torneo de Ciudad Plateada."}
 
 
 ## Primer paso de cada capítulo (índice en STEPS) y su nombre.
-const CHAPTERS := [[0, "Capítulo 1: de Pueblo Paleta a la Medalla Roca"], [6, "Capítulo 2: del Mt. Moon a la Medalla Cascada"]]
+const CHAPTERS := [[0, "Capítulo 1: de Pueblo Paleta a la Medalla Roca"], [6, "Capítulo 2: del Mt. Moon a la Medalla Cascada"],
+	[9, "Capítulo 3: del S.S. Anne a la Medalla Trueno"]]
 
 
 static func chapter_name(index: int) -> String:

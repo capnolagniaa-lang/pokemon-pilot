@@ -30,6 +30,8 @@ var story: StoryDirector
 var tournament: Tournament
 var mart: Mart
 var evolutions: EvolutionDirector
+var field_moves: FieldMoves
+var vermilion_puzzle: VermilionGymPuzzle
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
 var arena: TrainerBattle
 
@@ -82,6 +84,12 @@ func _ready() -> void:
 	evolutions = EvolutionDirector.new()  # evoluciones al subir de nivel o con piedras
 	evolutions.name = "EvolutionDirector"
 	add_child(evolutions)
+	field_moves = FieldMoves.new()  # Corte (MO01)
+	field_moves.name = "FieldMoves"
+	add_child(field_moves)
+	vermilion_puzzle = VermilionGymPuzzle.new()  # los basureros del gimnasio de Carmín
+	vermilion_puzzle.name = "VermilionGymPuzzle"
+	add_child(vermilion_puzzle)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
 	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ZoneBounds.attach(node, z, streamer.world_data))
