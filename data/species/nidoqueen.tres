@@ -2,41 +2,54 @@
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_ftps4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_w7tg1"]
-[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="2_bou7g"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xkabr"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/kit.tres" id="2_xl4v5"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_8i4bp"]
 [ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="3_u3cg6"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_40gaq"]
-[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="4_ftps4"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/aranazo_nidoran_f.tres" id="4_j4xsp"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_1k6oc"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/doble_patada_nidoran_f.tres" id="5_vgpdi"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_xl4v5"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/mordisco_nidoran_f.tres" id="6_3fml7"]
 [ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="6_sb4im"]
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_w5bvr"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/refuerzo_nidoran_f.tres" id="7_e84if"]
 [ext_resource type="Resource" path="res://data/moves/fuerza_bruta.tres" id="7_j4xsp"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_u3cg6"]
 
-[sub_resource type="Resource" id="Resource_ftps4"]
+[sub_resource type="Resource" id="Resource_e4l4r"]
 script = ExtResource("1_w7tg1")
-move = ExtResource("2_bou7g")
+move = ExtResource("4_j4xsp")
 
-[sub_resource type="Resource" id="Resource_xl4v5"]
+[sub_resource type="Resource" id="Resource_xmi2t"]
+script = ExtResource("1_w7tg1")
+move = ExtResource("5_vgpdi")
+
+[sub_resource type="Resource" id="Resource_2o0t2"]
+script = ExtResource("1_w7tg1")
+level = 3
+move = ExtResource("6_3fml7")
+
+[sub_resource type="Resource" id="Resource_6cgnu"]
+script = ExtResource("1_w7tg1")
+level = 5
+move = ExtResource("7_e84if")
+
+[sub_resource type="Resource" id="Resource_hgd8a"]
 script = ExtResource("1_w7tg1")
 move = ExtResource("3_u3cg6")
 
-[sub_resource type="Resource" id="Resource_sb4im"]
-script = ExtResource("1_w7tg1")
-move = ExtResource("4_ftps4")
-
-[sub_resource type="Resource" id="Resource_j4xsp"]
+[sub_resource type="Resource" id="Resource_6gt1h"]
 script = ExtResource("1_w7tg1")
 move = ExtResource("5_xl4v5")
 
-[sub_resource type="Resource" id="Resource_vgpdi"]
+[sub_resource type="Resource" id="Resource_vk8h8"]
 script = ExtResource("1_w7tg1")
 level = 22
 move = ExtResource("6_sb4im")
 
-[sub_resource type="Resource" id="Resource_3fml7"]
+[sub_resource type="Resource" id="Resource_o1wle"]
 script = ExtResource("1_w7tg1")
 level = 43
 move = ExtResource("7_j4xsp")
@@ -47,7 +60,9 @@ id = "nidoqueen"
 display_name = "Nidoqueen"
 dex = 31
 types = Array[ExtResource("4_40gaq")]([ExtResource("5_1k6oc"), ExtResource("6_w5bvr")])
-learnset = Array[ExtResource("1_w7tg1")]([SubResource("Resource_ftps4"), SubResource("Resource_xl4v5"), SubResource("Resource_sb4im"), SubResource("Resource_j4xsp"), SubResource("Resource_vgpdi"), SubResource("Resource_3fml7")])
+kit = ExtResource("2_xl4v5")
+learnset = Array[ExtResource("1_w7tg1")]([SubResource("Resource_e4l4r"), SubResource("Resource_xmi2t"), SubResource("Resource_2o0t2"), SubResource("Resource_6cgnu"), SubResource("Resource_hgd8a"), SubResource("Resource_6gt1h"), SubResource("Resource_vk8h8"), SubResource("Resource_o1wle")])
+kit_inherited = true
 evolves_from = "nidorina"
 temperament = ExtResource("10_u3cg6")
 genus = "Pokémon Taladro"

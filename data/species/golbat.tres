@@ -3,75 +3,76 @@
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_8py1k"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ltaki"]
 [ext_resource type="Resource" path="res://data/moves/impresionar.tres" id="2_4y587"]
+[ext_resource type="Resource" path="res://data/kits/zubat/kit.tres" id="2_bfy1e"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_e7sow"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_u5ue3"]
-[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="3_utrva"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="4_8py1k"]
+[ext_resource type="Resource" path="res://data/kits/zubat/chupavidas_zubat.tres" id="4_bfy1e"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ll58t"]
-[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="5_bfy1e"]
+[ext_resource type="Resource" path="res://data/kits/zubat/supersonico_zubat.tres" id="5_43rcd"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_u1t2j"]
+[ext_resource type="Resource" path="res://data/kits/zubat/ataque_ala_zubat.tres" id="6_8n53x"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="6_43rcd"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_88vbf"]
-[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="7_8n53x"]
-[ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="8_4eghq"]
+[ext_resource type="Resource" path="res://data/kits/zubat/rayo_confuso_zubat.tres" id="7_4eghq"]
 [ext_resource type="Resource" path="res://data/moves/aire_afilado.tres" id="9_vfjrn"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="10_68vmh"]
 [ext_resource type="Resource" path="res://data/moves/colmillo_veneno.tres" id="11_kw0ma"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_supsf"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_utrva"]
 
-[sub_resource type="Resource" id="Resource_8py1k"]
+[sub_resource type="Resource" id="Resource_wtxpj"]
 script = ExtResource("1_8py1k")
 to_id = "crobat"
 method = "amistad"
 
-[sub_resource type="Resource" id="Resource_bfy1e"]
+[sub_resource type="Resource" id="Resource_vfjrn"]
+script = ExtResource("1_ltaki")
+move = ExtResource("4_bfy1e")
+
+[sub_resource type="Resource" id="Resource_68vmh"]
+script = ExtResource("1_ltaki")
+move = ExtResource("5_43rcd")
+
+[sub_resource type="Resource" id="Resource_kw0ma"]
+script = ExtResource("1_ltaki")
+level = 3
+move = ExtResource("6_8n53x")
+
+[sub_resource type="Resource" id="Resource_supsf"]
+script = ExtResource("1_ltaki")
+level = 5
+move = ExtResource("7_4eghq")
+
+[sub_resource type="Resource" id="Resource_cf680"]
 script = ExtResource("1_ltaki")
 move = ExtResource("2_4y587")
 
-[sub_resource type="Resource" id="Resource_43rcd"]
-script = ExtResource("1_ltaki")
-move = ExtResource("3_utrva")
-
-[sub_resource type="Resource" id="Resource_8n53x"]
+[sub_resource type="Resource" id="Resource_vg7q8"]
 script = ExtResource("1_ltaki")
 move = ExtResource("4_8py1k")
 
-[sub_resource type="Resource" id="Resource_4eghq"]
-script = ExtResource("1_ltaki")
-move = ExtResource("5_bfy1e")
-
-[sub_resource type="Resource" id="Resource_vfjrn"]
+[sub_resource type="Resource" id="Resource_lkcc1"]
 script = ExtResource("1_ltaki")
 level = 16
 move = ExtResource("6_43rcd")
 
-[sub_resource type="Resource" id="Resource_68vmh"]
-script = ExtResource("1_ltaki")
-level = 21
-move = ExtResource("7_8n53x")
-
-[sub_resource type="Resource" id="Resource_kw0ma"]
-script = ExtResource("1_ltaki")
-level = 28
-move = ExtResource("8_4eghq")
-
-[sub_resource type="Resource" id="Resource_supsf"]
+[sub_resource type="Resource" id="Resource_nk4uy"]
 script = ExtResource("1_ltaki")
 level = 35
 move = ExtResource("9_vfjrn")
 
-[sub_resource type="Resource" id="Resource_cf680"]
+[sub_resource type="Resource" id="Resource_8q1ie"]
 script = ExtResource("1_ltaki")
 level = 42
 move = ExtResource("10_68vmh")
 
-[sub_resource type="Resource" id="Resource_vg7q8"]
+[sub_resource type="Resource" id="Resource_01ugw"]
 script = ExtResource("1_ltaki")
 level = 49
 move = ExtResource("11_kw0ma")
 
-[sub_resource type="Resource" id="Resource_lkcc1"]
+[sub_resource type="Resource" id="Resource_227g7"]
 script = ExtResource("1_ltaki")
 level = 56
 move = ExtResource("12_supsf")
@@ -82,8 +83,10 @@ id = "golbat"
 display_name = "Golbat"
 dex = 42
 types = Array[ExtResource("4_ll58t")]([ExtResource("5_u1t2j"), ExtResource("6_88vbf")])
-learnset = Array[ExtResource("1_ltaki")]([SubResource("Resource_bfy1e"), SubResource("Resource_43rcd"), SubResource("Resource_8n53x"), SubResource("Resource_4eghq"), SubResource("Resource_vfjrn"), SubResource("Resource_68vmh"), SubResource("Resource_kw0ma"), SubResource("Resource_supsf"), SubResource("Resource_cf680"), SubResource("Resource_vg7q8"), SubResource("Resource_lkcc1")])
-evolutions = Array[ExtResource("1_8py1k")]([SubResource("Resource_8py1k")])
+kit = ExtResource("2_bfy1e")
+learnset = Array[ExtResource("1_ltaki")]([SubResource("Resource_vfjrn"), SubResource("Resource_68vmh"), SubResource("Resource_kw0ma"), SubResource("Resource_supsf"), SubResource("Resource_cf680"), SubResource("Resource_vg7q8"), SubResource("Resource_lkcc1"), SubResource("Resource_nk4uy"), SubResource("Resource_8q1ie"), SubResource("Resource_01ugw"), SubResource("Resource_227g7")])
+kit_inherited = true
+evolutions = Array[ExtResource("1_8py1k")]([SubResource("Resource_wtxpj")])
 evolves_from = "zubat"
 temperament = ExtResource("15_utrva")
 genus = "Pokémon Murciélago"

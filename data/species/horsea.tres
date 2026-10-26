@@ -1,64 +1,40 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/horsea/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_oamn3"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_wfdij"]
-[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_8byn2"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yuyn3"]
-[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="3_1asac"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1bu64"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jbwhy"]
-[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="4_oamn3"]
-[ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="5_c06bv"]
+[ext_resource type="Resource" path="res://data/kits/horsea/burbuja_horsea.tres" id="4_os23k"]
+[ext_resource type="Resource" path="res://data/kits/horsea/pistola_agua_horsea.tres" id="5_8byn2"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_jw705"]
-[ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="6_b8h2k"]
-[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="7_lbjjd"]
-[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="8_ito1a"]
-[ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="9_0xopb"]
+[ext_resource type="Resource" path="res://data/kits/horsea/pantalla_humo_horsea.tres" id="6_1asac"]
+[ext_resource type="Resource" path="res://data/kits/horsea/chorro_presion_horsea.tres" id="7_oamn3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="12_1asac"]
 
-[sub_resource type="Resource" id="Resource_oamn3"]
+[sub_resource type="Resource" id="Resource_os23k"]
 script = ExtResource("1_oamn3")
 to_id = "seadra"
 level = 32
 
+[sub_resource type="Resource" id="Resource_8byn2"]
+script = ExtResource("1_wfdij")
+move = ExtResource("4_os23k")
+
+[sub_resource type="Resource" id="Resource_1asac"]
+script = ExtResource("1_wfdij")
+move = ExtResource("5_8byn2")
+
+[sub_resource type="Resource" id="Resource_oamn3"]
+script = ExtResource("1_wfdij")
+level = 3
+move = ExtResource("6_1asac")
+
 [sub_resource type="Resource" id="Resource_c06bv"]
 script = ExtResource("1_wfdij")
-move = ExtResource("2_8byn2")
-
-[sub_resource type="Resource" id="Resource_b8h2k"]
-script = ExtResource("1_wfdij")
-level = 8
-move = ExtResource("3_1asac")
-
-[sub_resource type="Resource" id="Resource_lbjjd"]
-script = ExtResource("1_wfdij")
-level = 15
-move = ExtResource("4_oamn3")
-
-[sub_resource type="Resource" id="Resource_ito1a"]
-script = ExtResource("1_wfdij")
-level = 22
-move = ExtResource("5_c06bv")
-
-[sub_resource type="Resource" id="Resource_0xopb"]
-script = ExtResource("1_wfdij")
-level = 29
-move = ExtResource("6_b8h2k")
-
-[sub_resource type="Resource" id="Resource_n312p"]
-script = ExtResource("1_wfdij")
-level = 36
-move = ExtResource("7_lbjjd")
-
-[sub_resource type="Resource" id="Resource_sxd2m"]
-script = ExtResource("1_wfdij")
-level = 43
-move = ExtResource("8_ito1a")
-
-[sub_resource type="Resource" id="Resource_11mrn"]
-script = ExtResource("1_wfdij")
-level = 50
-move = ExtResource("9_0xopb")
+level = 5
+move = ExtResource("7_oamn3")
 
 [resource]
 script = ExtResource("3_1bu64")
@@ -66,8 +42,9 @@ id = "horsea"
 display_name = "Horsea"
 dex = 116
 types = Array[ExtResource("4_jbwhy")]([ExtResource("5_jw705")])
-learnset = Array[ExtResource("1_wfdij")]([SubResource("Resource_c06bv"), SubResource("Resource_b8h2k"), SubResource("Resource_lbjjd"), SubResource("Resource_ito1a"), SubResource("Resource_0xopb"), SubResource("Resource_n312p"), SubResource("Resource_sxd2m"), SubResource("Resource_11mrn")])
-evolutions = Array[ExtResource("1_oamn3")]([SubResource("Resource_oamn3")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_wfdij")]([SubResource("Resource_8byn2"), SubResource("Resource_1asac"), SubResource("Resource_oamn3"), SubResource("Resource_c06bv")])
+evolutions = Array[ExtResource("1_oamn3")]([SubResource("Resource_os23k")])
 temperament = ExtResource("12_1asac")
 genus = "Pokémon Dragón"
 pokedex_entry = "Horsea come insectos pequeños y el musgo de las rocas. Si las corrientes del océano cobran fuerza, este Pokémon se anclará con la cola a rocas o corales para evitar que las aguas lo arrastren."

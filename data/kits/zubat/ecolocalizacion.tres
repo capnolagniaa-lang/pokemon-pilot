@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/body_trait_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "ecolocalizacion"
+display_name = "Ecolocalización"
+description = "Es ciego: no lo desorientan (Ataque Arena, Supersónico, humo...). Contra un rival desorientado, Chupavidas cura el doble."
+color = Color(0.55, 0.45, 0.85, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"immune": ["desorientado"], "drain_bonus_status": "desorientado", "drain_bonus": 1.0}

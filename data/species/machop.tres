@@ -1,87 +1,40 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/machop/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_1fp6m"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_x5lof"]
-[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_cteqe"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_u7st6"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_l853b"]
-[ext_resource type="Resource" path="res://data/moves/patada_baja.tres" id="3_maag8"]
-[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="4_1fp6m"]
+[ext_resource type="Resource" path="res://data/kits/machop/golpe_karate_machop.tres" id="4_3mtri"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_14chi"]
-[ext_resource type="Resource" path="res://data/moves/golpe_karate.tres" id="5_2ow14"]
 [ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_8q8f4"]
-[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="6_7yhli"]
-[ext_resource type="Resource" path="res://data/moves/profecia.tres" id="7_2bgwx"]
-[ext_resource type="Resource" path="res://data/moves/desquite.tres" id="8_ev0pb"]
-[ext_resource type="Resource" path="res://data/moves/llave_vital.tres" id="9_kl85e"]
-[ext_resource type="Resource" path="res://data/moves/sumision.tres" id="10_u5aw8"]
-[ext_resource type="Resource" path="res://data/moves/tajo_cruzado.tres" id="11_65773"]
-[ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="12_qbdef"]
-[ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="13_yipn8"]
+[ext_resource type="Resource" path="res://data/kits/machop/patada_baja_machop.tres" id="5_basd8"]
+[ext_resource type="Resource" path="res://data/kits/machop/malicioso_machop.tres" id="6_pg77g"]
+[ext_resource type="Resource" path="res://data/kits/machop/sismico_machop.tres" id="7_vkkwm"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_maag8"]
 
-[sub_resource type="Resource" id="Resource_1fp6m"]
+[sub_resource type="Resource" id="Resource_3mtri"]
 script = ExtResource("1_1fp6m")
 to_id = "machoke"
 level = 28
 
-[sub_resource type="Resource" id="Resource_2ow14"]
+[sub_resource type="Resource" id="Resource_basd8"]
 script = ExtResource("1_x5lof")
-move = ExtResource("2_cteqe")
+move = ExtResource("4_3mtri")
 
-[sub_resource type="Resource" id="Resource_7yhli"]
+[sub_resource type="Resource" id="Resource_pg77g"]
 script = ExtResource("1_x5lof")
-move = ExtResource("3_maag8")
+move = ExtResource("5_basd8")
 
-[sub_resource type="Resource" id="Resource_2bgwx"]
+[sub_resource type="Resource" id="Resource_vkkwm"]
 script = ExtResource("1_x5lof")
-level = 7
-move = ExtResource("4_1fp6m")
+level = 3
+move = ExtResource("6_pg77g")
 
-[sub_resource type="Resource" id="Resource_ev0pb"]
+[sub_resource type="Resource" id="Resource_6rekt"]
 script = ExtResource("1_x5lof")
-level = 13
-move = ExtResource("5_2ow14")
-
-[sub_resource type="Resource" id="Resource_kl85e"]
-script = ExtResource("1_x5lof")
-level = 19
-move = ExtResource("6_7yhli")
-
-[sub_resource type="Resource" id="Resource_u5aw8"]
-script = ExtResource("1_x5lof")
-level = 22
-move = ExtResource("7_2bgwx")
-
-[sub_resource type="Resource" id="Resource_65773"]
-script = ExtResource("1_x5lof")
-level = 25
-move = ExtResource("8_ev0pb")
-
-[sub_resource type="Resource" id="Resource_qbdef"]
-script = ExtResource("1_x5lof")
-level = 31
-move = ExtResource("9_kl85e")
-
-[sub_resource type="Resource" id="Resource_yipn8"]
-script = ExtResource("1_x5lof")
-level = 37
-move = ExtResource("10_u5aw8")
-
-[sub_resource type="Resource" id="Resource_ftdfo"]
-script = ExtResource("1_x5lof")
-level = 40
-move = ExtResource("11_65773")
-
-[sub_resource type="Resource" id="Resource_vmh7j"]
-script = ExtResource("1_x5lof")
-level = 43
-move = ExtResource("12_qbdef")
-
-[sub_resource type="Resource" id="Resource_31ih4"]
-script = ExtResource("1_x5lof")
-level = 49
-move = ExtResource("13_yipn8")
+level = 5
+move = ExtResource("7_vkkwm")
 
 [resource]
 script = ExtResource("3_l853b")
@@ -89,8 +42,9 @@ id = "machop"
 display_name = "Machop"
 dex = 66
 types = Array[ExtResource("4_14chi")]([ExtResource("5_8q8f4")])
-learnset = Array[ExtResource("1_x5lof")]([SubResource("Resource_2ow14"), SubResource("Resource_7yhli"), SubResource("Resource_2bgwx"), SubResource("Resource_ev0pb"), SubResource("Resource_kl85e"), SubResource("Resource_u5aw8"), SubResource("Resource_65773"), SubResource("Resource_qbdef"), SubResource("Resource_yipn8"), SubResource("Resource_ftdfo"), SubResource("Resource_vmh7j"), SubResource("Resource_31ih4")])
-evolutions = Array[ExtResource("1_1fp6m")]([SubResource("Resource_1fp6m")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_x5lof")]([SubResource("Resource_basd8"), SubResource("Resource_pg77g"), SubResource("Resource_vkkwm"), SubResource("Resource_6rekt")])
+evolutions = Array[ExtResource("1_1fp6m")]([SubResource("Resource_3mtri")])
 temperament = ExtResource("16_maag8")
 genus = "Pokémon Superpoder"
 pokedex_entry = "Gracias a su portentosa musculatura, Machop no se agota por mucho esfuerzo que haga. Este Pokémon es tan fuerte que puede derrotar a cien personas adultas de una sola vez."

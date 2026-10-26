@@ -136,6 +136,11 @@ func ignores_hit(_hit: HitInfo) -> bool:
 	return false
 
 
+## Si esta criatura no recibe un estado (inmunidad de la firma; por defecto, la lista `immune` de los parámetros).
+func blocks_status(s: StatusEffect) -> bool:
+	return s != null and s.id in param("immune", [])
+
+
 ## Multiplicador de velocidad de movimiento.
 func speed_mult() -> float:
 	return 1.0

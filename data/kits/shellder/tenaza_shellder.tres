@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "tenaza_shellder"
+display_name = "Tenaza"
+element = ExtResource("3_x")
+kind = 7
+category = 0
+power = 35.0
+cooldown = 6.0
+knockback = 40.0
+lunge_range = 80.0
+lunge_speed = 420.0
+followup_delay = 0.35
+followup_power_mult = 1.0
+followup_knockback = 120.0
+recovery = 0.2
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

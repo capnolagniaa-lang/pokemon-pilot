@@ -39,6 +39,7 @@ $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charman
 $G --headless --path . --quit-after 60000 -- --autotest-kits-v3  # los 10 kits nuevos (v3): ataques + mecánicas
 $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bichos, Spearow, Mankey, Sandshrew, Onix jefe)
 $G --headless --path . --quit-after 60000 -- --autotest-kits-v5  # kits v5 (Staryu, Starmie jefa de Misty, Butterfree, Beedrill, Kadabra, Gyarados)
+$G --headless --path . --quit-after 200000 -- --autotest-kits-v6  # kits v6 (Raichu jefe de Surge + Tanda A; lento: `--only <especie>` prueba una sola)
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
@@ -321,6 +322,10 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - `tools/build_kits_v5.py`: igual para el capítulo 2 (Staryu y Starmie jefa, firma `core_mechanic.gd`) y las evoluciones
   con kit propio (Butterfree, Beedrill, Kadabra, Gyarados). Criterio: una evolución hereda el kit salvo que cambie mucho
   su forma de pelear.
+- `tools/build_kits_v6.py`: igual para la Tanda A de `docs/PROPUESTA_KITS_PENDIENTES.md` (Raichu jefe de Surge, Zubat,
+  Ekans, Machop, Nidoran♀/♂, Horsea, Shellder, Tentacool, Voltorb). Firmas genéricas por parámetros: `grounding`,
+  `still` y `body_trait` (`scripts/combat/signatures/`); `SignatureMechanic.blocks_status` (inmunidades). Después:
+  `build_learnsets.gd` y `apply_evolutions.gd` (herencia) y otra vez `build_learnsets.gd`.
 - `tools/fetch_npc_sprites.py`: baja de pret/pokefirered los sprites de las personas de los mapas importados (y las de
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
   (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).

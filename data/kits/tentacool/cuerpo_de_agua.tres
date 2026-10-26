@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/body_trait_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "cuerpo_de_agua"
+display_name = "Cuerpo de Agua"
+description = "Sobre agua o suelo mojado (o empapado) se cura 2% por segundo; en seco va 10% más lento."
+color = Color(0.4, 0.7, 0.95, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"wet_heal": 0.02, "dry_speed": 0.9}

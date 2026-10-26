@@ -176,6 +176,37 @@ Vaporeon, Jolteon, Flareon). Son **30 especies con kit propio** (más las que he
 | Gyarados | Bruiser | Mordisco (combo 2, 30% herido) | Furia Dragón (bola grande) | Ciclón (área que empuja, 20% desorienta) | Hidrobomba (110, carga 0,5 s, empuja muchísimo y moja) | **Ira de Dragón**: sube al recibir golpes; llena → Enfurecido 5 s |
 | **Starmie (jefa)** | Control | **Hidropulso**: disparo grande, Empapado y 20% desorienta | **Rapidez**: abanico de 5 estrellas | **Giro Rápido**: embestida fuerte que desvía proyectiles | **Recuperación**: se cura 20% en 2,5 s (va lenta) | **Núcleo Prisma**: cuerpo ×1,3, empuje ×0,35, +25% a lo Empapado, barra llena cura 8%; **a mitad de vida el núcleo brilla**: onda que empuja, moja y deja Expuesto, y queda con Núcleo Brillante hasta el final |
 
+## v6 — Tanda A de la propuesta de kits pendientes (✅ en prueba, 2026-10-26)
+Pedido del usuario: "leé la propuesta de kits pendientes y empezá a implementar" (`docs/PROPUESTA_KITS_PENDIENTES.md`,
+Tanda A completa). Decisiones tomadas con lo que recomendaba la propuesta: **Raichu jefe primero** y
+**Autodestrucción deja a Voltorb en 1 de vida** (no lo debilita). `tools/build_kits_v6.py`; las evoluciones heredan
+(Golbat, Arbok, Machoke/Machamp, Nidorina/Nidoqueen, Nidorino/Nidoking, Seadra/Kingdra, Cloyster, Tentacruel,
+Electrode, Crobat). Raichu deja de heredar el de Pikachu.
+- Firmas nuevas, **genéricas por parámetros**: `grounding_mechanic.gd` (Toma de Tierra), `still_mechanic.gd` (quieto =
+  postura: Enroscarse, Ancla, Camuflaje + Autodestrucción) y `body_trait_mechanic.gd` (inmunidades, drenaje extra,
+  púas, recargas por golpe, defensa por dirección, cuerpo de agua, esquive perfecto).
+- Gancho nuevo `SignatureMechanic.blocks_status` (por defecto la lista `immune` de los parámetros): lo consulta
+  `StatusEffects.apply`.
+- Estados nuevos: `plantado`, `sobrecarga`, `refuerzo`; estado de celda `chamuscado_electrico` (8 s, paraliza).
+- Simplificaciones respecto de la propuesta (se pueden sumar después): Chispa de Raichu no se aturde contra paredes
+  (tiene recuperación larga, que es la ventana); Machop no agarra ni lanza (Sísmico = embestida pesada con cráter) y
+  usa Malicioso en vez de Foco Energía; Tenaza de Shellder frena pero no se engancha; Ataque Ala no atraviesa; el
+  Chorro a Presión de Horsea no atraviesa; Voltorb camuflado se vuelve casi invisible (no se ve como Poké Ball).
+- Autotest `--autotest-kits-v6`.
+
+| Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Firma |
+|---|---|---|---|---|---|---|
+| **Raichu (jefe)** | Bruiser, pesado | Puño Trueno (combo 2, paraliza 25%) | Impactrueno Triple (abanico) | Chispa (embestida telegrafiada, recuperación larga) | Trueno (3 rayos del cielo, paralizan) | **Toma de Tierra**: barra llena → planta la cola 1 s (quieto) y descarga en anillo; el suelo queda chamuscado y electrificado 8 s. ×1,3, empuje ×0,35; a mitad de vida, **Sobrecarga** (+20%) |
+| Zubat | Hostigador | Chupavidas (cura la mitad) | Supersónico (cono que desorienta) | Ataque Ala | Rayo Confuso (lento, desorienta seguro) | **Ecolocalización**: no lo desorientan; Chupavidas cura el doble a un desorientado |
+| Ekans | Control | Picotazo Veneno | Constricción (látigo corto que enraíza) | Ácido (charco: Expuesto) | Deslumbrar (cono que paraliza) | **Enroscarse**: quieto 0,8 s → el próximo golpe +40% y envión |
+| Machop | Bruiser | Golpe Kárate (combo 3) | Patada Baja (ralentiza) | Malicioso (Expuesto) | Sísmico (embestida pesada, cráter) | **Incansable**: cada golpe cuerpo a cuerpo −0,3 s a todas las recargas; no lo ralentizan |
+| Nidoran♀ | Bruiser | Arañazo | Doble Patada | Mordisco (×1,5 a lo envenenado) | Refuerzo (recibe ×0,7 4 s) | **Púas Venenosas**: devuelve 10% del daño cuerpo a cuerpo (+veneno 50%); con Refuerzo 20% y veneno seguro |
+| Nidoran♂ | Asesino | Picotazo | Doble Patada | Malicioso | Cornada (embestida, 30% veneno) | **Oído Fino**: esquive perfecto → recarga Cornada y próximo golpe crítico |
+| Horsea | Espaciador | Burbuja (3, empapan) | Pistola Agua (largo alcance) | Pantalla de Humo (nube que desorienta) | Chorro a Presión (carga 0,4 s, fuerte) | **Ancla**: quieto 0,5 s → disparos +30% y no lo empujan |
+| Shellder | Tanque | Placaje | Carámbano (3, escarcha) | Refugio | Tenaza (se lanza y frena) | **Concha Bivalva**: de frente ×0,6, de espaldas ×1,4 |
+| Tentacool | Control | Picotazo Veneno (latigazo) | Restricción (látigo largo que enraíza) | Ácido | Rayo Burbuja (ralentiza y empapa) | **Cuerpo de Agua**: mojado/en el agua se cura 2%/s; en seco −10% de velocidad |
+| Voltorb | Hostigador | Rodar | Chispa (30% parálisis) | Bomba Sónica (anillo) | Autodestrucción (1,2 s de aviso, área grande; queda en 1 de vida y aturdido 2 s) | **Camuflaje**: quieto 1,5 s casi invisible → próximo golpe crítico |
+
 ## Combate de arena (2026-10-24, inspirado en Pokémon Arena 2D / Pokkén; ✅ implementado)
 Pedido del usuario tras ver Pokémon Arena 2D: terreno que se deforma, superficies, combos y estilo de movimiento por
 Pokémon (sin peleas de varios a la vez). **Por ahora rige solo en las peleas de arena** (torneo, gimnasio,

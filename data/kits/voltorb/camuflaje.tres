@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/still_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "camuflaje"
+display_name = "Camuflaje"
+description = "Quieto 1,5 s se camufla (casi invisible, como una Poké Ball del mapa): el próximo golpe es crítico (×1,5). Autodestrucción explota en área grande y lo deja con 1 de vida, aturdido 2 s."
+color = Color(0.95, 0.3, 0.3, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"still_time": 1.5, "burst_mult": 1.5, "consume_on_hit": true, "camo_alpha": 0.35, "ready_text": "¡Camuflado!", "hit_text": "¡Emboscada!", "label": "CAMUFLADO", "selfdestruct_move": "autodestruccion", "selfdestruct_stun": 2.0}

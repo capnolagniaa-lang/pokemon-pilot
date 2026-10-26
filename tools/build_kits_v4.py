@@ -199,6 +199,15 @@ def hook_species(root, species):
     write(path, s)
 
 
+def _param(v):
+    """Valor de un parámetro de firma en formato .tres (texto, número, booleano o lista de textos)."""
+    if isinstance(v, str):
+        return '"%s"' % v
+    if isinstance(v, list):
+        return "[%s]" % ", ".join(_param(x) for x in v)
+    return val(v)
+
+
 def write_kit(root, species, spec):
     """Escribe la firma y el kit.tres de una especie (los ataques ya están en data/kits/<especie>/)."""
     arch, rng, sig, moves = spec[0], spec[1], spec[2], spec[3]
@@ -208,7 +217,7 @@ def write_kit(root, species, spec):
     for i, m in enumerate(moves):
         ext.append('[ext_resource type="Resource" path="res://data/kits/%s/%s.tres" id="%d_mv"]' % (species, m["id"], i + 4))
     gains = ", ".join('"%s": %s' % (k, val(float(v))) for k, v in sig["gains"].items())
-    params = ", ".join('"%s": %s' % (k, ('"%s"' % v) if isinstance(v, str) else val(v)) for k, v in sig["params"].items())
+    params = ", ".join('"%s": %s' % (k, _param(v)) for k, v in sig["params"].items())
     thr = "thresholds = Array[float]([%s])\n" % ", ".join(val(float(t)) for t in sig["thresholds"]) if "thresholds" in sig else ""
     write(os.path.join(folder, sig["id"] + ".tres"),
           '[gd_resource type="Resource" script_class="SignatureData" format=3]\n\n'

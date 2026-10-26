@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/body_trait_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "concha_bivalva"
+display_name = "Concha Bivalva"
+description = "De frente recibe 40% menos de daño; de espaldas, 40% más (la lengua). Hay que rodearlo."
+color = Color(0.7, 0.55, 0.85, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"front_mult": 0.6, "back_mult": 1.4}

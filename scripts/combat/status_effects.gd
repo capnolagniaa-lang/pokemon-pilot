@@ -13,6 +13,9 @@ var _dot_timer := 0.0
 
 ## Aplica (o refuerza) un estado. `duration_mult` alarga o acorta la duración de esta aplicación.
 func apply(s: StatusEffect, duration_mult: float = 1.0) -> void:
+	var sig = creature.get("signature") if creature != null else null
+	if sig != null and sig.blocks_status(s):
+		return  # inmune por su firma (Zubat no se deja cegar, Machop no se deja frenar...)
 	var fresh := not active.has(s.id)
 	if fresh:
 		active[s.id] = {"status": s, "time": 0.0, "stacks": 0, "meter": 0.0, "fx": _make_fx(s),

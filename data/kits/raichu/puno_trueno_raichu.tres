@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "puno_trueno_raichu"
+display_name = "Puño Trueno"
+element = ExtResource("3_x")
+kind = 4
+category = 0
+power = 75.0
+cooldown = 1.4
+knockback = 80.0
+combo_steps = 2
+combo_window = 0.6
+combo_step_cooldown = 0.25
+final_knockback = 290.0
+melee_range = 16.0
+swing_radius = 14.0
+recovery = 0.15
+status = ExtResource("4_x")
+status_chance = 0.25

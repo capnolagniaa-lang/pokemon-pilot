@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "picotazo_veneno_tentacool"
+display_name = "Picotazo Veneno"
+element = ExtResource("3_x")
+kind = 8
+category = 0
+power = 25.0
+cooldown = 0.9
+knockback = 60.0
+whip_length = 60.0
+whip_width = 8.0
+status = ExtResource("4_x")
+status_chance = 0.3

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/still_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "enroscarse"
+display_name = "Enroscarse"
+description = "Quieto 0,8 s se enrosca. El próximo golpe sale como un resorte: +40% de daño y un envión hacia adelante. Moverse lo desenrosca."
+color = Color(0.65, 0.45, 0.8, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"still_time": 0.8, "burst_mult": 1.4, "burst_push": 260.0, "consume_on_hit": true, "ready_text": "¡Enroscado!", "label": "ENROSCADO"}

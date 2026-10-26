@@ -4,13 +4,14 @@
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_jq2fy"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3dgw2"]
 [ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="2_8kxgc"]
+[ext_resource type="Resource" path="res://data/kits/machop/kit.tres" id="2_gr8o3"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cig07"]
-[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_u1o4a"]
-[ext_resource type="Resource" path="res://data/moves/patada_baja.tres" id="4_jq2fy"]
+[ext_resource type="Resource" path="res://data/kits/machop/golpe_karate_machop.tres" id="4_gr8o3"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_vfgdf"]
+[ext_resource type="Resource" path="res://data/kits/machop/patada_baja_machop.tres" id="5_3wm3s"]
 [ext_resource type="Resource" path="res://data/types/lucha.tres" id="5_gajyf"]
-[ext_resource type="Resource" path="res://data/moves/golpe_karate.tres" id="5_gr8o3"]
-[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="6_3wm3s"]
+[ext_resource type="Resource" path="res://data/kits/machop/malicioso_machop.tres" id="6_hyece"]
+[ext_resource type="Resource" path="res://data/kits/machop/sismico_machop.tres" id="7_1sx30"]
 [ext_resource type="Resource" path="res://data/moves/profecia.tres" id="7_hyece"]
 [ext_resource type="Resource" path="res://data/moves/desquite.tres" id="8_1sx30"]
 [ext_resource type="Resource" path="res://data/moves/llave_vital.tres" id="9_0sume"]
@@ -20,59 +21,59 @@
 [ext_resource type="Resource" path="res://data/moves/puno_dinamico.tres" id="13_4va3a"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_u1o4a"]
 
-[sub_resource type="Resource" id="Resource_jq2fy"]
+[sub_resource type="Resource" id="Resource_0sume"]
+script = ExtResource("1_cs6iw")
+move = ExtResource("4_gr8o3")
+
+[sub_resource type="Resource" id="Resource_lrkp5"]
+script = ExtResource("1_cs6iw")
+move = ExtResource("5_3wm3s")
+
+[sub_resource type="Resource" id="Resource_lstyw"]
+script = ExtResource("1_cs6iw")
+level = 3
+move = ExtResource("6_hyece")
+
+[sub_resource type="Resource" id="Resource_iox03"]
+script = ExtResource("1_cs6iw")
+level = 5
+move = ExtResource("7_1sx30")
+
+[sub_resource type="Resource" id="Resource_4va3a"]
 script = ExtResource("1_cs6iw")
 move = ExtResource("2_8kxgc")
 
-[sub_resource type="Resource" id="Resource_gr8o3"]
-script = ExtResource("1_cs6iw")
-move = ExtResource("3_u1o4a")
-
-[sub_resource type="Resource" id="Resource_3wm3s"]
-script = ExtResource("1_cs6iw")
-move = ExtResource("4_jq2fy")
-
-[sub_resource type="Resource" id="Resource_hyece"]
-script = ExtResource("1_cs6iw")
-level = 13
-move = ExtResource("5_gr8o3")
-
-[sub_resource type="Resource" id="Resource_1sx30"]
-script = ExtResource("1_cs6iw")
-level = 19
-move = ExtResource("6_3wm3s")
-
-[sub_resource type="Resource" id="Resource_0sume"]
+[sub_resource type="Resource" id="Resource_f8wxr"]
 script = ExtResource("1_cs6iw")
 level = 22
 move = ExtResource("7_hyece")
 
-[sub_resource type="Resource" id="Resource_lrkp5"]
+[sub_resource type="Resource" id="Resource_pjd6i"]
 script = ExtResource("1_cs6iw")
 level = 25
 move = ExtResource("8_1sx30")
 
-[sub_resource type="Resource" id="Resource_lstyw"]
+[sub_resource type="Resource" id="Resource_4cvqx"]
 script = ExtResource("1_cs6iw")
 level = 33
 move = ExtResource("9_0sume")
 
-[sub_resource type="Resource" id="Resource_iox03"]
+[sub_resource type="Resource" id="Resource_10cbf"]
 script = ExtResource("1_cs6iw")
 level = 41
 move = ExtResource("10_lrkp5")
 
-[sub_resource type="Resource" id="Resource_4va3a"]
+[sub_resource type="Resource" id="Resource_qs1fv"]
 script = ExtResource("1_cs6iw")
 level = 46
 move = ExtResource("11_lstyw")
 
-[sub_resource type="Resource" id="Resource_f8wxr"]
+[sub_resource type="Resource" id="Resource_l63ow"]
 script = ExtResource("1_cs6iw")
 level = 51
 move = ExtResource("12_iox03")
 
-[sub_resource type="Resource" id="Resource_pjd6i"]
+[sub_resource type="Resource" id="Resource_2ajte"]
 script = ExtResource("1_cs6iw")
 level = 59
 move = ExtResource("13_4va3a")
@@ -83,7 +84,9 @@ id = "machamp"
 display_name = "Machamp"
 dex = 68
 types = Array[ExtResource("4_vfgdf")]([ExtResource("5_gajyf")])
-learnset = Array[ExtResource("1_cs6iw")]([SubResource("Resource_jq2fy"), SubResource("Resource_gr8o3"), SubResource("Resource_3wm3s"), SubResource("Resource_hyece"), SubResource("Resource_1sx30"), SubResource("Resource_0sume"), SubResource("Resource_lrkp5"), SubResource("Resource_lstyw"), SubResource("Resource_iox03"), SubResource("Resource_4va3a"), SubResource("Resource_f8wxr"), SubResource("Resource_pjd6i")])
+kit = ExtResource("2_gr8o3")
+learnset = Array[ExtResource("1_cs6iw")]([SubResource("Resource_0sume"), SubResource("Resource_lrkp5"), SubResource("Resource_lstyw"), SubResource("Resource_iox03"), SubResource("Resource_4va3a"), SubResource("Resource_f8wxr"), SubResource("Resource_pjd6i"), SubResource("Resource_4cvqx"), SubResource("Resource_10cbf"), SubResource("Resource_qs1fv"), SubResource("Resource_l63ow"), SubResource("Resource_2ajte")])
+kit_inherited = true
 evolves_from = "machoke"
 temperament = ExtResource("16_u1o4a")
 genus = "Pokémon Superpoder"

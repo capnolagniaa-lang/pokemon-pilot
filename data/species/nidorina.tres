@@ -3,71 +3,71 @@
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_ghury"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xrdab"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_183tm"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/kit.tres" id="2_kj7tx"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_wudtu"]
-[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_48x00"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_g6j78"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_ghury"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jiitr"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/aranazo_nidoran_f.tres" id="4_kj7tx"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/doble_patada_nidoran_f.tres" id="5_j3qj8"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_jgg5i"]
-[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="5_kj7tx"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/mordisco_nidoran_f.tres" id="6_db8i6"]
 [ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="6_j3qj8"]
-[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="7_db8i6"]
-[ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="8_isebw"]
+[ext_resource type="Resource" path="res://data/kits/nidoran_f/refuerzo_nidoran_f.tres" id="7_isebw"]
 [ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="9_kkqn3"]
 [ext_resource type="Resource" path="res://data/moves/camelo.tres" id="10_6ux1v"]
 [ext_resource type="Resource" path="res://data/moves/triturar.tres" id="11_3urld"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_48x00"]
 
-[sub_resource type="Resource" id="Resource_ghury"]
+[sub_resource type="Resource" id="Resource_sbvr5"]
 script = ExtResource("1_ghury")
 to_id = "nidoqueen"
 method = "piedra"
 item = "piedra_lunar"
 
-[sub_resource type="Resource" id="Resource_kj7tx"]
+[sub_resource type="Resource" id="Resource_kkqn3"]
+script = ExtResource("1_xrdab")
+move = ExtResource("4_kj7tx")
+
+[sub_resource type="Resource" id="Resource_6ux1v"]
+script = ExtResource("1_xrdab")
+move = ExtResource("5_j3qj8")
+
+[sub_resource type="Resource" id="Resource_3urld"]
+script = ExtResource("1_xrdab")
+level = 3
+move = ExtResource("6_db8i6")
+
+[sub_resource type="Resource" id="Resource_cumji"]
+script = ExtResource("1_xrdab")
+level = 5
+move = ExtResource("7_isebw")
+
+[sub_resource type="Resource" id="Resource_f6wkt"]
 script = ExtResource("1_xrdab")
 move = ExtResource("2_wudtu")
 
-[sub_resource type="Resource" id="Resource_j3qj8"]
-script = ExtResource("1_xrdab")
-move = ExtResource("3_48x00")
-
-[sub_resource type="Resource" id="Resource_db8i6"]
+[sub_resource type="Resource" id="Resource_6ald3"]
 script = ExtResource("1_xrdab")
 level = 8
 move = ExtResource("4_ghury")
 
-[sub_resource type="Resource" id="Resource_isebw"]
-script = ExtResource("1_xrdab")
-level = 12
-move = ExtResource("5_kj7tx")
-
-[sub_resource type="Resource" id="Resource_kkqn3"]
+[sub_resource type="Resource" id="Resource_u8slw"]
 script = ExtResource("1_xrdab")
 level = 18
 move = ExtResource("6_j3qj8")
 
-[sub_resource type="Resource" id="Resource_6ux1v"]
-script = ExtResource("1_xrdab")
-level = 22
-move = ExtResource("7_db8i6")
-
-[sub_resource type="Resource" id="Resource_3urld"]
-script = ExtResource("1_xrdab")
-level = 26
-move = ExtResource("8_isebw")
-
-[sub_resource type="Resource" id="Resource_cumji"]
+[sub_resource type="Resource" id="Resource_fte80"]
 script = ExtResource("1_xrdab")
 level = 34
 move = ExtResource("9_kkqn3")
 
-[sub_resource type="Resource" id="Resource_f6wkt"]
+[sub_resource type="Resource" id="Resource_a5qlh"]
 script = ExtResource("1_xrdab")
 level = 43
 move = ExtResource("10_6ux1v")
 
-[sub_resource type="Resource" id="Resource_6ald3"]
+[sub_resource type="Resource" id="Resource_07bk2"]
 script = ExtResource("1_xrdab")
 level = 53
 move = ExtResource("11_3urld")
@@ -78,8 +78,10 @@ id = "nidorina"
 display_name = "Nidorina"
 dex = 30
 types = Array[ExtResource("4_jiitr")]([ExtResource("5_jgg5i")])
-learnset = Array[ExtResource("1_xrdab")]([SubResource("Resource_kj7tx"), SubResource("Resource_j3qj8"), SubResource("Resource_db8i6"), SubResource("Resource_isebw"), SubResource("Resource_kkqn3"), SubResource("Resource_6ux1v"), SubResource("Resource_3urld"), SubResource("Resource_cumji"), SubResource("Resource_f6wkt"), SubResource("Resource_6ald3")])
-evolutions = Array[ExtResource("1_ghury")]([SubResource("Resource_ghury")])
+kit = ExtResource("2_kj7tx")
+learnset = Array[ExtResource("1_xrdab")]([SubResource("Resource_kkqn3"), SubResource("Resource_6ux1v"), SubResource("Resource_3urld"), SubResource("Resource_cumji"), SubResource("Resource_f6wkt"), SubResource("Resource_6ald3"), SubResource("Resource_u8slw"), SubResource("Resource_fte80"), SubResource("Resource_a5qlh"), SubResource("Resource_07bk2")])
+kit_inherited = true
+evolutions = Array[ExtResource("1_ghury")]([SubResource("Resource_sbvr5")])
 evolves_from = "nidoran_f"
 temperament = ExtResource("14_48x00")
 genus = "Pokémon Pin Veneno"

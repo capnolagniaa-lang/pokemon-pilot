@@ -1,71 +1,41 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/tentacool/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_j2cjp"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_m1p8o"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0yopg"]
-[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="2_gq3h3"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0opyn"]
-[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="3_v56k7"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_5vsut"]
-[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="4_m1p8o"]
-[ext_resource type="Resource" path="res://data/moves/acido.tres" id="5_2vwjt"]
+[ext_resource type="Resource" path="res://data/kits/tentacool/picotazo_veneno_tentacool.tres" id="4_6wqm8"]
+[ext_resource type="Resource" path="res://data/kits/tentacool/restriccion_tentacool.tres" id="5_5xa7g"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_6pkhc"]
-[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="6_8qu4y"]
+[ext_resource type="Resource" path="res://data/kits/tentacool/acido_tentacool.tres" id="6_gq3h3"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_hebsy"]
-[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="7_yf5fu"]
-[ext_resource type="Resource" path="res://data/moves/barrera.tres" id="8_jself"]
-[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="9_yekoe"]
-[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="10_ioths"]
+[ext_resource type="Resource" path="res://data/kits/tentacool/rayo_burbuja_tentacool.tres" id="7_v56k7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_v56k7"]
 
-[sub_resource type="Resource" id="Resource_m1p8o"]
+[sub_resource type="Resource" id="Resource_6wqm8"]
 script = ExtResource("1_m1p8o")
 to_id = "tentacruel"
 level = 30
 
-[sub_resource type="Resource" id="Resource_2vwjt"]
+[sub_resource type="Resource" id="Resource_5xa7g"]
 script = ExtResource("1_j2cjp")
-move = ExtResource("2_gq3h3")
+move = ExtResource("4_6wqm8")
 
-[sub_resource type="Resource" id="Resource_8qu4y"]
+[sub_resource type="Resource" id="Resource_gq3h3"]
 script = ExtResource("1_j2cjp")
-level = 6
-move = ExtResource("3_v56k7")
+move = ExtResource("5_5xa7g")
 
-[sub_resource type="Resource" id="Resource_yf5fu"]
+[sub_resource type="Resource" id="Resource_v56k7"]
 script = ExtResource("1_j2cjp")
-level = 12
-move = ExtResource("4_m1p8o")
+level = 3
+move = ExtResource("6_gq3h3")
 
-[sub_resource type="Resource" id="Resource_jself"]
+[sub_resource type="Resource" id="Resource_m1p8o"]
 script = ExtResource("1_j2cjp")
-level = 19
-move = ExtResource("5_2vwjt")
-
-[sub_resource type="Resource" id="Resource_yekoe"]
-script = ExtResource("1_j2cjp")
-level = 25
-move = ExtResource("6_8qu4y")
-
-[sub_resource type="Resource" id="Resource_ioths"]
-script = ExtResource("1_j2cjp")
-level = 30
-move = ExtResource("7_yf5fu")
-
-[sub_resource type="Resource" id="Resource_dv8ij"]
-script = ExtResource("1_j2cjp")
-level = 36
-move = ExtResource("8_jself")
-
-[sub_resource type="Resource" id="Resource_6sav3"]
-script = ExtResource("1_j2cjp")
-level = 43
-move = ExtResource("9_yekoe")
-
-[sub_resource type="Resource" id="Resource_jwiur"]
-script = ExtResource("1_j2cjp")
-level = 49
-move = ExtResource("10_ioths")
+level = 5
+move = ExtResource("7_v56k7")
 
 [resource]
 script = ExtResource("3_0opyn")
@@ -73,8 +43,9 @@ id = "tentacool"
 display_name = "Tentacool"
 dex = 72
 types = Array[ExtResource("4_5vsut")]([ExtResource("5_6pkhc"), ExtResource("6_hebsy")])
-learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_2vwjt"), SubResource("Resource_8qu4y"), SubResource("Resource_yf5fu"), SubResource("Resource_jself"), SubResource("Resource_yekoe"), SubResource("Resource_ioths"), SubResource("Resource_dv8ij"), SubResource("Resource_6sav3"), SubResource("Resource_jwiur")])
-evolutions = Array[ExtResource("1_m1p8o")]([SubResource("Resource_m1p8o")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_5xa7g"), SubResource("Resource_gq3h3"), SubResource("Resource_v56k7"), SubResource("Resource_m1p8o")])
+evolutions = Array[ExtResource("1_m1p8o")]([SubResource("Resource_6wqm8")])
 temperament = ExtResource("13_v56k7")
 genus = "Pokémon Medusa"
 pokedex_entry = "Tentacool está compuesto en su mayor parte por agua. Si se le saca del mar, se secará y se quedará acartonado. Si este Pokémon se deshidrata, hay que echarlo inmediatamente de vuelta al mar."

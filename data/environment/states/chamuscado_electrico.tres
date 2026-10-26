@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnvCellState" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/env_cell_state.gd" id="1_x"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="2_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "chamuscado_electrico"
+display_name = "Chamuscado (electrificado)"
+duration = 8.0
+restore_previous = true
+creature_status = ExtResource("2_x")
+look = 1
+color = Color(1, 0.85, 0.3, 1)

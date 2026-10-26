@@ -4,68 +4,69 @@
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_x5wap"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ahgyy"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_uaix0"]
+[ext_resource type="Resource" path="res://data/kits/ekans/kit.tres" id="2_w8iv4"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_35mqc"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_nsaba"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ctxtg"]
-[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="4_x5wap"]
+[ext_resource type="Resource" path="res://data/kits/ekans/picotazo_veneno_ekans.tres" id="4_w8iv4"]
+[ext_resource type="Resource" path="res://data/kits/ekans/constriccion_ekans.tres" id="5_1kwn8"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_fnsj0"]
-[ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="5_w8iv4"]
-[ext_resource type="Resource" path="res://data/moves/deslumbrar.tres" id="6_1kwn8"]
+[ext_resource type="Resource" path="res://data/kits/ekans/acido_ekans.tres" id="6_0olir"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="7_0olir"]
-[ext_resource type="Resource" path="res://data/moves/acido.tres" id="8_44esx"]
+[ext_resource type="Resource" path="res://data/kits/ekans/deslumbrar_ekans.tres" id="7_44esx"]
 [ext_resource type="Resource" path="res://data/moves/escupir.tres" id="9_pek06"]
 [ext_resource type="Resource" path="res://data/moves/reserva.tres" id="10_kchwe"]
 [ext_resource type="Resource" path="res://data/moves/tragar.tres" id="11_wxw4g"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="12_yd8y3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_nsaba"]
 
-[sub_resource type="Resource" id="Resource_x5wap"]
+[sub_resource type="Resource" id="Resource_pek06"]
+script = ExtResource("1_jjru0")
+move = ExtResource("4_w8iv4")
+
+[sub_resource type="Resource" id="Resource_kchwe"]
+script = ExtResource("1_jjru0")
+move = ExtResource("5_1kwn8")
+
+[sub_resource type="Resource" id="Resource_wxw4g"]
+script = ExtResource("1_jjru0")
+level = 3
+move = ExtResource("6_0olir")
+
+[sub_resource type="Resource" id="Resource_yd8y3"]
+script = ExtResource("1_jjru0")
+level = 5
+move = ExtResource("7_44esx")
+
+[sub_resource type="Resource" id="Resource_1m562"]
 script = ExtResource("1_jjru0")
 move = ExtResource("2_uaix0")
 
-[sub_resource type="Resource" id="Resource_w8iv4"]
+[sub_resource type="Resource" id="Resource_e2yok"]
 script = ExtResource("1_jjru0")
 move = ExtResource("3_nsaba")
 
-[sub_resource type="Resource" id="Resource_1kwn8"]
-script = ExtResource("1_jjru0")
-move = ExtResource("4_x5wap")
-
-[sub_resource type="Resource" id="Resource_0olir"]
-script = ExtResource("1_jjru0")
-move = ExtResource("5_w8iv4")
-
-[sub_resource type="Resource" id="Resource_44esx"]
-script = ExtResource("1_jjru0")
-level = 20
-move = ExtResource("6_1kwn8")
-
-[sub_resource type="Resource" id="Resource_pek06"]
+[sub_resource type="Resource" id="Resource_brxuf"]
 script = ExtResource("1_jjru0")
 level = 28
 move = ExtResource("7_0olir")
 
-[sub_resource type="Resource" id="Resource_kchwe"]
-script = ExtResource("1_jjru0")
-level = 38
-move = ExtResource("8_44esx")
-
-[sub_resource type="Resource" id="Resource_wxw4g"]
+[sub_resource type="Resource" id="Resource_ubevf"]
 script = ExtResource("1_jjru0")
 level = 46
 move = ExtResource("9_pek06")
 
-[sub_resource type="Resource" id="Resource_yd8y3"]
+[sub_resource type="Resource" id="Resource_ry6nw"]
 script = ExtResource("1_jjru0")
 level = 46
 move = ExtResource("10_kchwe")
 
-[sub_resource type="Resource" id="Resource_1m562"]
+[sub_resource type="Resource" id="Resource_0rjw0"]
 script = ExtResource("1_jjru0")
 level = 46
 move = ExtResource("11_wxw4g")
 
-[sub_resource type="Resource" id="Resource_e2yok"]
+[sub_resource type="Resource" id="Resource_u66al"]
 script = ExtResource("1_jjru0")
 level = 56
 move = ExtResource("12_yd8y3")
@@ -76,7 +77,9 @@ id = "arbok"
 display_name = "Arbok"
 dex = 24
 types = Array[ExtResource("4_ctxtg")]([ExtResource("5_fnsj0")])
-learnset = Array[ExtResource("1_jjru0")]([SubResource("Resource_x5wap"), SubResource("Resource_w8iv4"), SubResource("Resource_1kwn8"), SubResource("Resource_0olir"), SubResource("Resource_44esx"), SubResource("Resource_pek06"), SubResource("Resource_kchwe"), SubResource("Resource_wxw4g"), SubResource("Resource_yd8y3"), SubResource("Resource_1m562"), SubResource("Resource_e2yok")])
+kit = ExtResource("2_w8iv4")
+learnset = Array[ExtResource("1_jjru0")]([SubResource("Resource_pek06"), SubResource("Resource_kchwe"), SubResource("Resource_wxw4g"), SubResource("Resource_yd8y3"), SubResource("Resource_1m562"), SubResource("Resource_e2yok"), SubResource("Resource_brxuf"), SubResource("Resource_ubevf"), SubResource("Resource_ry6nw"), SubResource("Resource_0rjw0"), SubResource("Resource_u66al")])
+kit_inherited = true
 evolves_from = "ekans"
 temperament = ExtResource("15_nsaba")
 genus = "Pokémon Cobra"
