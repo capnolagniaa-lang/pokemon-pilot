@@ -155,8 +155,13 @@ func trainer_zone() -> ZoneEntry:
 
 
 func _on_equipment_changed(inst: CreatureInstance) -> void:
-	# Movimientos nuevos: si es el que te sigue y no está peleando, lo sacamos de nuevo para aplicarlos.
-	if is_instance_valid(companion) and companion.instance == inst and not combat.in_battle:
+	# Movimientos nuevos del que está afuera: fuera de combate lo sacamos de nuevo; en plena pelea (subió de nivel o
+	# los equipaste desde el menú de combate) se actualizan sus ranuras ahí mismo (antes no se aplicaban hasta el final).
+	if not is_instance_valid(companion) or companion.instance != inst:
+		return
+	if combat.in_battle:
+		companion.moves.refresh(inst)
+	else:
 		respawn_companion()
 
 

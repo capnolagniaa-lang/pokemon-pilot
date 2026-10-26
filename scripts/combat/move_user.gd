@@ -35,6 +35,21 @@ func setup(instance: CreatureInstance) -> void:
 	_combo_timer.fill(0.0)
 
 
+## Cambió el equipamiento en plena pelea (subió de nivel y aprendió algo, o lo equipaste desde la ficha del menú de
+## combate): actualiza solo las ranuras que cambiaron. El ataque nuevo arranca con su recarga completa (así reequipar
+## no sirve para saltear recargas); las demás conservan la suya.
+func refresh(instance: CreatureInstance) -> void:
+	var source: Array[MoveData] = instance.equipped_moves
+	for i in SLOT_COUNT:
+		var m: MoveData = source[i] if i < source.size() else null
+		if i < slots.size() and slots[i] != m:
+			slots[i] = m
+			cooldowns[i] = m.cooldown if m != null else 0.0
+			cooldown_total[i] = maxf(0.01, cooldowns[i])
+			_combo_step[i] = 0
+			_combo_timer[i] = 0.0
+
+
 ## Ataques no vacíos (para la IA y el autotest).
 var moves: Array[MoveData]:
 	get:
