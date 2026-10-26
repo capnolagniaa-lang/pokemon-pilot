@@ -20,8 +20,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_cooldown = maxf(0.0, _cooldown - delta)
 	var story: StoryDirector = world.get("story")
-	if story != null and (story.busy or story.dialog.active):
-		return  # en una conversación, E y C no hacen nada más
+	var in_arena: bool = world.get("arena") != null and world.arena.active
+	# En una conversación E y C no hacen nada más; pero las peleas de entrenador/gimnasio/torneo arrancan desde una
+	# charla (la historia queda ocupada toda la pelea): ahí sí (pedido del usuario 2026-10-26).
+	if story != null and (story.dialog.active or (story.busy and not in_arena)):
+		return
 	if Input.is_action_just_pressed("capture"):
 		# E contextual (docs/PLAN_HISTORIA.md): si hay alguien al lado, habla; si no, lanza la Pokébola.
 		if story == null or not story.try_interact():
@@ -84,8 +87,6 @@ func use_quick_item() -> bool:
 		return false
 	Events.message_requested.emit(text)
 	if on_field:
-		c.health.changed.emit(inst.hp, inst.max_hp())
 		Fx.burst(c.get_parent(), c.global_position + Vector2(0, -8), Color(0.6, 1.4, 0.7), 10, 30.0)
-		if world.combat.in_battle:
-			c.machine.transition_to("recovery", {"time": it.use_time})  # expuesto mientras lo usa
+	# (la vida en pantalla y quedar expuesto en combate los maneja CombatDirector con Events.item_used)
 	return true

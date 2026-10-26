@@ -53,7 +53,7 @@ func refresh() -> void:
 		var card := _card(i)
 		_grid.add_child(card)
 		_cards.append(card)
-	_hint.text = "%d/%d · Enter: acciones · Esc: volver" % [GameState.party.size(), GameState.MAX_PARTY]
+	_hint.text = "%d/%d · Enter: acciones · Arrastrá con el clic para cambiar de lugar · Esc: volver" % [GameState.party.size(), GameState.MAX_PARTY]
 	UiStyle.focus_later(_cards[clampi(_focus_index, 0, maxi(0, GameState.party.size() - 1))])
 
 
@@ -72,6 +72,9 @@ func _card(i: int) -> Button:
 		b.add_theme_stylebox_override("normal", UiStyle.box(Color(0.12, 0.16, 0.12, 0.96), Color(UiStyle.GOOD, 0.7), 2))
 	b.pressed.connect(_open_actions.bind(i))
 	b.focus_entered.connect(func(): _focus_index = i)
+	# Arrastrar con el clic una tarjeta sobre otra las cambia de lugar (pedido del usuario 2026-10-26).
+	b.set_drag_forwarding(func(_at): return _drag_data(i), func(_at, data): return can_drop(i, data),
+		func(_at, data): drop(i, data))
 	var row := HBoxContainer.new()
 	row.set_anchors_preset(Control.PRESET_FULL_RECT)
 	row.offset_left = 12
@@ -163,7 +166,32 @@ func back() -> bool:
 	return true
 
 
+## Datos del arrastre: el lugar de donde sale (con una vista chiquita del Pokémon).
+func _drag_data(i: int):
+	if i >= GameState.party.size():
+		return null
+	_close_actions()
+	var preview := UiStyle.label("↕ " + GameState.party[i].display_name(), 22, UiStyle.ACCENT)
+	set_drag_preview(preview)
+	return {"party_slot": i}
+
+
+func can_drop(i: int, data) -> bool:
+	return data is Dictionary and data.has("party_slot") and i < GameState.party.size() and data["party_slot"] != i
+
+
+func drop(i: int, data) -> void:
+	if GameState.swap_in_party(int(data["party_slot"]), i):
+		_focus_index = i
+	refresh()
+
+
 func _set_active(i: int) -> void:
+	var world := get_tree().get_first_node_in_group("world")
+	if world != null and world.combat.in_battle:
+		world.combat.switch_to(i)  # en combate es un cambio de pelea (con su recarga)
+		refresh()
+		return
 	if GameState.set_active(i):
 		Events.message_requested.emit("¡Adelante, %s!" % GameState.active().display_name())
 	refresh()

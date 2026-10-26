@@ -23,6 +23,11 @@ var _dex_button: Button
 ## también); en el modo libre, siempre. Se revisa al abrir el menú.
 var _map_button: Button
 var _status: Label
+## Botones del menú por nombre (para el menú reducido en combate).
+var _buttons: Dictionary = {}
+## Abierto en medio de un combate (menú reducido).
+var in_battle := false
+const BATTLE_ENTRIES := ["Mochila", "Equipo", "Cerrar"]
 
 
 func _ready() -> void:
@@ -43,17 +48,20 @@ func try_open() -> bool:
 	if visible:
 		return true
 	var world := get_tree().get_first_node_in_group("world")
-	if world != null and world.combat.in_battle:
-		Events.message_requested.emit("No podés abrir el menú durante un combate.")
-		return false
+	# En combate (también contra entrenadores y en el torneo) se abre reducido: Mochila, Equipo y Cerrar; la pelea
+	# queda en pausa mientras está abierto (pedido del usuario 2026-10-26).
+	in_battle = world != null and world.combat.in_battle
 	if GameState.party.is_empty() and not GameState.has_flag("historia"):
 		return false  # (en la historia sí: antes del laboratorio también se puede guardar y mirar la Guía)
+	for name in _buttons:
+		_buttons[name].visible = not in_battle or name in BATTLE_ENTRIES
 	if _dex_button != null:
-		_dex_button.visible = GameState.has_pokedex()
+		_dex_button.visible = GameState.has_pokedex() and not in_battle
 	if _map_button != null:
-		_map_button.visible = has_map()
+		_map_button.visible = has_map() and not in_battle
+	_first = _buttons["Mochila"] if in_battle else _buttons["Guía"]
 	visible = true
-	_status.text = ""
+	_status.text = "En combate: la pelea queda en pausa. Usar un objeto te deja expuesto un instante." if in_battle else ""
 	get_tree().paused = true
 	_first.grab_focus()
 	return true
@@ -96,6 +104,7 @@ func _build() -> void:
 		var b := UiStyle.button(e[0], 240)
 		b.pressed.connect(e[1])
 		box.add_child(b)
+		_buttons[e[0]] = b
 		if e[0] == "Pokédex":
 			_dex_button = b
 			b.visible = GameState.has_pokedex()  # en la historia, hasta que Oak te la da

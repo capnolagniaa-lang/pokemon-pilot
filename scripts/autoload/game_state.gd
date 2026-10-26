@@ -320,6 +320,19 @@ func set_active(index: int) -> bool:
 
 
 ## Mueve un Pokémon del equipo de lugar (el activo sigue siendo el mismo Pokémon).
+## Intercambia dos lugares del equipo (arrastrar en la pantalla de Equipo). El activo sigue siendo el mismo Pokémon.
+func swap_in_party(a: int, b: int) -> bool:
+	if a < 0 or a >= party.size() or b < 0 or b >= party.size() or a == b:
+		return false
+	var current := active()
+	var tmp := party[a]
+	party[a] = party[b]
+	party[b] = tmp
+	active_index = party.find(current)
+	Events.party_changed.emit()
+	return true
+
+
 func move_in_party(from: int, to: int) -> bool:
 	if from < 0 or from >= party.size() or to < 0 or to >= party.size() or from == to:
 		return false

@@ -51,6 +51,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **Objetos en peleas y equipo arrastrable (2026-10-26, pedido del usuario)**: la C (objeto rápido) anda también en
+  peleas de entrenador, gimnasio y torneo; **Esc en combate** abre un menú reducido (Mochila, Equipo, Cerrar) con la
+  pelea en pausa (en la Mochila, lo que no se usa en combate sale deshabilitado; en Equipo, "Poner como activo" es un
+  cambio de pelea). Usar un objeto en combate te deja expuesto `use_time` s (CombatDirector escucha
+  `Events.item_used`). En **Equipo**, arrastrar una tarjeta sobre otra con el clic las intercambia
+  (`GameState.swap_in_party`). Chequeos en `--autotest-arena`.
 - **Ajustes del juego por partida (2026-10-26, pedido del usuario)**: Esc → Opciones → "Ajustes del juego…". Por
   partida (decisión del usuario): Progresión (EXP, dinero de premios, captura), Combate (daño que hacés y que recibís,
   vida ×N, combos, reglas de arena en todo el mundo), Mundo (cantidad de salvajes, curación sola, objetos en las

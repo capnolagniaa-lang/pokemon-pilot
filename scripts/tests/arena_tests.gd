@@ -45,6 +45,35 @@ func run() -> void:
 	await autotest._tap("switch_1")
 	await get_tree().create_timer(0.2).timeout
 	r["Y se vuelve al primero (tecla 1)"] = GameState.active_index == 0 and world.companion.instance.species.id == "squirtle"
+	# Objetos en la pelea de gimnasio (pedido del usuario 2026-10-26): C (objeto rápido) y la Mochila del menú.
+	GameState.add_item("pocion", 3)
+	GameState.quick_item = "pocion"
+	var mine: CreatureInstance = world.companion.instance
+	mine.hp = mine.max_hp() * 0.4
+	var hp_before := mine.hp
+	await get_tree().create_timer(0.3).timeout
+	await autotest._tap("quick_item")
+	await get_tree().create_timer(0.2).timeout
+	r["En el gimnasio la C usa el objeto rápido (Poción)"] = mine.hp > hp_before
+	r["Usar un objeto en combate te deja expuesto un instante"] = world.companion.machine.current_name() == "recovery"
+	await get_tree().create_timer(1.2).timeout
+	r["En combate Esc abre el menú reducido (Mochila, Equipo) y pausa la pelea"] = world.pause_menu.try_open() \
+		and world.pause_menu._buttons["Mochila"].visible and world.pause_menu._buttons["Equipo"].visible \
+		and not world.pause_menu._buttons["Guía"].visible and not world.pause_menu._buttons["Guardar"].visible and get_tree().paused
+	mine.hp = mine.max_hp() * 0.4
+	hp_before = mine.hp
+	GameState.use_item_on("pocion", mine, world.companion.statuses)  # lo que hace "Usar" en la Mochila
+	r["Desde la Mochila del menú también se cura"] = mine.hp > hp_before
+	world.pause_menu._open_party()
+	await get_tree().process_frame
+	var party_screen = world.pause_menu._stack[-1]
+	var first_id: String = GameState.party[0].species.id
+	party_screen.drop(1, {"party_slot": 0})
+	r["Arrastrar en Equipo cambia de lugar (y el activo sigue siendo el mismo)"] = GameState.party[1].species.id == first_id \
+		and GameState.active().species.id == "squirtle"
+	party_screen.drop(1, {"party_slot": 0})
+	world.pause_menu.close()
+	await get_tree().physics_frame
 	var balls := GameState.item_count("poke_ball")
 	await autotest._tap("capture")
 	await get_tree().process_frame

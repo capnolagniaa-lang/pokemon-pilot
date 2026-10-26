@@ -120,7 +120,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `user://saves/<nombre>.json`; `slot_path` = la actual),
   `Autotest`. Escena principal: `scenes/ui/title_screen.tscn` → `starter_select` → `world`.
 - **Meta-juego (Etapa 2c)**: menús con nodos `Control` y el estilo de `UiStyle` (`scripts/ui/`), menú de pausa
-  en su propia CanvasLayer (pausa el árbol). `GameState` no conoce archivos: `to_dict`/`from_dict`.
+  en su propia CanvasLayer (pausa el árbol). En combate se abre reducido (`PauseMenu.BATTLE_ENTRIES`: Mochila, Equipo,
+  Cerrar). Las peleas de entrenador arrancan desde una charla (`StoryDirector.busy` toda la pelea): lo que se bloquea
+  "en una charla" tiene que dejar pasar `world.arena.active` (cambio 1-6, C, E). `GameState` no conoce archivos: `to_dict`/`from_dict`.
   Movimientos: `SpeciesData.learnset` (de `tools/build_learnsets.gd`) → `CreatureInstance.equipped_moves` →
   `MoveUser.setup(instance)`. La mecánica de firma sigue saliendo del kit de la especie.
 - **Máquina de estados** genérica `StateMachine` + `State` (`scripts/core/`); los estados son nodos hijos

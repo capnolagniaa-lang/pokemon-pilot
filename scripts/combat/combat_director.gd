@@ -25,6 +25,7 @@ var _had_enemies := false
 
 
 func _ready() -> void:
+	Events.item_used.connect(_on_item_used)
 	Events.wild_aggro.connect(_on_wild_aggro)
 	Events.creature_fainted.connect(_on_creature_fainted)
 
@@ -53,6 +54,17 @@ func _process(delta: float) -> void:
 ## Pelea contra un entrenador en su arena (TrainerBattle): la pelea no termina sola (ni con F) aunque tu Pokémon
 ## caiga o no haya rivales cerca, y no hay revivir de práctica; la cierra TrainerBattle.
 var arena_lock := false
+## Objeto usado sobre un Pokémon del equipo (C o la Mochila, también con el menú de combate): si es el que está afuera,
+## se actualiza su vida en pantalla y, en combate, queda expuesto `use_time` s mientras lo usa (usar algo cuesta).
+func _on_item_used(it: ItemData, inst: CreatureInstance) -> void:
+	var c: Creature = world.companion
+	if it == null or not is_instance_valid(c) or c.instance != inst or c.is_down():
+		return
+	c.health.changed.emit(inst.hp, inst.max_hp())
+	if in_battle and it.use_time > 0.0:
+		c.machine.transition_to("recovery", {"time": it.use_time})
+
+
 ## Curación sola fuera de combate con el ajuste "regen" (fracción de la vida por segundo).
 const REGEN_PER_S := 0.01
 

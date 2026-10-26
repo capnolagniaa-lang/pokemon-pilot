@@ -146,6 +146,10 @@ func _show_detail(it: ItemData, focus_actions: bool = false) -> void:
 	else:
 		var use := UiStyle.button("Usar", 300)
 		use.pressed.connect(_open_chooser.bind(it))
+		var fighting := _in_battle()
+		use.disabled = fighting and not it.usable_in_battle
+		if use.disabled:
+			use.text = "No se puede usar en combate"
 		actions.append(use)
 		if it.usable_in_battle:
 			var quick := UiStyle.button("Poner en la ranura rápida (C)" if it.id != GameState.quick_item else "Está en la ranura rápida (C)", 300)
@@ -235,3 +239,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_TAB:
 		_show_pocket((_pocket + 1) % POCKETS.size())
 		get_viewport().set_input_as_handled()
+
+
+## Abierta con el menú de combate (pelea en pausa).
+func _in_battle() -> bool:
+	var world := get_tree().get_first_node_in_group("world")
+	return world != null and world.combat.in_battle

@@ -140,7 +140,9 @@ func showcase_menus() -> void:
 func party_test() -> void:
 	var r := {}
 	var world: Node = await autotest._setup_kit_world("charmander")
-	r["Menú: no se abre en combate"] = not world.pause_menu.try_open() and not get_tree().paused
+	r["Menú: en combate se abre reducido (Mochila, Equipo, Cerrar) y pausa"] = world.pause_menu.try_open() and get_tree().paused \
+		and world.pause_menu._buttons["Mochila"].visible and not world.pause_menu._buttons["Guardar"].visible
+	world.pause_menu.close()
 	world.combat.end_battle()
 	await get_tree().physics_frame
 
