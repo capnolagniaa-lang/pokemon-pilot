@@ -22,6 +22,14 @@ const STEPS := [
 	["surge_puerta_abierta", "Los basureros de Surge", "Con Corte (E frente al árbol fino) entrá al gimnasio de Ciudad Carmín. Buscá los dos interruptores en los basureros: el segundo está al lado del primero."],
 	["medalla_trueno", "La Medalla Trueno", "Ganale a Lt. Surge (tipo eléctrico: los de tierra no sienten la electricidad)."],
 ]
+## Adónde ir en cada paso (bandera del paso -> zona): la estrella del Mapa (Esc → Mapa). Un paso sin fila no marca nada.
+const GOALS := {
+	"oak_te_freno": "ruta1", "tiene_inicial": "laboratorio_oak", "rival_lab_peleado": "laboratorio_oak",
+	"tiene_paquete": "ciudad_verde_tienda", "paquete_entregado": "laboratorio_oak", "medalla_roca": "ciudad_plateada_gimnasio",
+	"fosil_elegido": "mt_moon", "rival_celeste_peleado": "ciudad_celeste", "medalla_cascada": "ciudad_celeste_gimnasio",
+	"rival_ss_anne_peleado": "ss_anne_muelle", "tiene_corte": "ss_anne_muelle", "surge_puerta_abierta": "ciudad_carmin_gimnasio",
+	"medalla_trueno": "ciudad_carmin_gimnasio",
+}
 ## Cosas que se pueden hacer además: [bandera que la completa, banderas que hacen falta, texto]
 const OPTIONAL := [
 	["tutorial_captura", ["paquete_entregado"], "En Ciudad Verde, el abuelo que tapaba el camino te enseña a atrapar Pokémon."],
@@ -38,14 +46,16 @@ const FOREST_TRAINERS := ["bosque_verde_rick", "bosque_verde_doug", "bosque_verd
 	"bosque_verde_charlie"]
 
 
-## El paso actual: {index, total, title, text}; con todo hecho, index == total. En el modo libre (sin historia), {}.
+## El paso actual: {index, total, title, text, goal (zona adonde ir o "")}; con todo hecho, index == total. En el
+## modo libre (sin historia), {}.
 static func current() -> Dictionary:
 	if not GameState.has_flag("historia"):
 		return {}
 	for i in STEPS.size():
 		if not GameState.has_flag(STEPS[i][0]):
-			return {"index": i, "total": STEPS.size(), "title": STEPS[i][1], "text": STEPS[i][2]}
-	return {"index": STEPS.size(), "total": STEPS.size(), "title": "¡Capítulo 3 completo!",
+			return {"index": i, "total": STEPS.size(), "title": STEPS[i][1], "text": STEPS[i][2],
+				"goal": GOALS.get(STEPS[i][0], "")}
+	return {"index": STEPS.size(), "total": STEPS.size(), "goal": "", "title": "¡Capítulo 3 completo!",
 		"text": "Le ganaste a Lt. Surge. Muy pronto: la Cueva Diglett, el Túnel Roca y Pueblo Lavanda. Mientras tanto, entrenate o probá el Torneo de Ciudad Plateada."}
 
 

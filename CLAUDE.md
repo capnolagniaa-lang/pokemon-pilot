@@ -57,6 +57,8 @@ $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd  # rearma las arenas (pisa las escenas; -- --only <id> arma solo una)
 $G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
 $G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carga, learnset, archivos rotos
+$G --headless --path . --quit-after 30000 -- --autotest-town-map  # Mapa del menú (zonas, entradas, íconos, niebla, objetivo, partidas viejas)
+$G --path . --quit-after 90 --write-movie out/f.png --fixed-fps 30 -- --showcase-town-map  # el Mapa abierto
 $G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, activo, menú, ficha
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-menus  # título, equipo, ficha
 $G --headless --path . --quit-after 12000 -- --autotest-env      # entorno reactivo (fuego, agua, hielo, rocas)
@@ -182,6 +184,12 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `GameConfig.combos_enabled`); `Creature.arena_rules()` (en arenas registradas en
   el `ReactionSystem`, o en todos lados con `GameConfig.arena_rules_everywhere`); `MoveData.crater_radius` →
   `Events.ground_impact` → estado de celda "crater".
+- **Mapa del menú** (Esc → Mapa): `TownMap` (`scripts/world/town_map.gd`) dibuja la región en miniatura **desde las
+  capas de tiles de las zonas reales** (4 px por celda; la primera vez que se abre, en el hilo principal) y calcula dónde van los
+  interiores/cuevas/Bosque Verde (en la puerta por la que se entra, siguiendo las puertas), los íconos de Centro/Tienda/
+  Gimnasio y los nombres. `TownMapScreen` (`scripts/ui/`): zoom, arrastre, niebla en lo no visitado
+  (`GameState.visited_zones`, se guarda; partidas viejas: `TownMap.visited_from_progress`), tu posición y la estrella
+  del objetivo (`StoryGuide.GOALS`). En la historia aparece con el objeto Mapa (Dalia); en el modo libre, siempre.
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
   recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; durante el torneo
   `GameState.tournament` guarda el equipo y la mochila de antes (los usa `to_dict`).

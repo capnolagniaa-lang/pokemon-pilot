@@ -91,6 +91,7 @@ func _ready() -> void:
 	vermilion_puzzle.name = "VermilionGymPuzzle"
 	add_child(vermilion_puzzle)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
+	Events.zone_entered.connect(func(z: ZoneEntry): GameState.visit_zone(z.id))
 	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ZoneBounds.attach(node, z, streamer.world_data))
 	for id in streamer.loaded:

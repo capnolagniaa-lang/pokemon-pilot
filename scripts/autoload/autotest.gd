@@ -117,6 +117,13 @@ func _ready() -> void:
 		add_child(an)
 		an.run.call_deferred()
 		return
+	if "--autotest-town-map" in OS.get_cmdline_user_args() or "--showcase-town-map" in OS.get_cmdline_user_args():
+		set_process(false)
+		var tm := TownMapTests.new()
+		tm.autotest = self
+		add_child(tm)
+		(tm.showcase if "--showcase-town-map" in OS.get_cmdline_user_args() else tm.run).call_deferred()
+		return
 	if "--autotest-kits-v5" in OS.get_cmdline_user_args():
 		set_process(false)
 		var k5 := KitsV5Tests.new()

@@ -58,6 +58,9 @@ var test_tournament: Dictionary = {}
 var tournament: Dictionary = {}
 ## Dinero (docs/PLAN_TORNEO.md, T-0): premios de entrenadores y del torneo, entradas. Se guarda.
 var money := 0
+## Zonas donde ya estuviste (id -> true): el Mapa (Esc → Mapa, TownMap) tapa las demás. Se guarda; las partidas de
+## antes del mapa lo arman con su avance de la historia (TownMap.visited_from_progress).
+var visited_zones: Dictionary = {}
 const STARTING_MONEY := 3000
 
 ## Dónde te curaron por última vez (enfermera, mamá): si perdés contra un entrenador volvés ahí. INF = el inicio.
@@ -99,6 +102,7 @@ func new_game(starter: SpeciesData) -> void:
 	pokedex_caught[starter.id] = true
 	field_picked.clear()
 	story_flags.clear()
+	visited_zones.clear()
 	last_heal_position = Vector2.INF
 	money = STARTING_MONEY
 	tournament = {}
@@ -406,6 +410,11 @@ func has_fought(sp: SpeciesData) -> bool:
 	return pokedex_fought.has(sp.id)
 
 
+## Marca una zona como visitada (para el Mapa).
+func visit_zone(id: String) -> void:
+	visited_zones[id] = true
+
+
 # --- Guardado ------------------------------------------------------------------------
 
 func to_dict() -> Dictionary:
@@ -421,7 +430,7 @@ func to_dict() -> Dictionary:
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
-		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money,
+		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money, "visited_zones": visited_zones.keys(),
 		"last_heal_position": [last_heal_position.x, last_heal_position.y] if last_heal_position != Vector2.INF else null}
 
 
@@ -516,6 +525,13 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	if flags is Array:
 		for f in flags:
 			story_flags[str(f)] = true
+	visited_zones.clear()
+	var visited = d.get("visited_zones", null)
+	if visited is Array:
+		for id in visited:
+			visited_zones[str(id)] = true
+	else:  # partida de antes del mapa: lo que ya recorriste según la historia
+		visited_zones = TownMap.visited_from_progress(story_flags, DB.config.world)
 	field_picked.clear()
 	var picked = d.get("field_picked", {})
 	if picked is Dictionary:

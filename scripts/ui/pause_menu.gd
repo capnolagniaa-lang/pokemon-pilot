@@ -1,6 +1,6 @@
 class_name PauseMenu
 extends Control
-## Menú de pausa (Esc en el mundo): Guía, Equipo, Mochila, Caja, Pokédex, Tarjeta, Guardar, Opciones, Volver al
+## Menú de pausa (Esc en el mundo): Guía, Mapa, Equipo, Mochila, Caja, Pokédex, Tarjeta, Guardar, Opciones, Volver al
 ## título y Cerrar. Pausa el mundo
 ## (get_tree().paused) y no se abre durante un combate. Las pantallas (Equipo, ficha, opciones) se apilan
 ## encima; Esc vuelve a la anterior.
@@ -19,6 +19,9 @@ var _first: Button
 ## El botón de la Pokédex: se muestra recién cuando la tenés (en la historia, cuando Oak te la da). Se revisa cada
 ## vez que se abre el menú (antes se armaba una vez y no aparecía hasta volver a cargar la partida).
 var _dex_button: Button
+## El botón del Mapa: en la historia, desde que tenés el objeto Mapa (te lo da Dalia; partidas viejas que ya lo tienen
+## también); en el modo libre, siempre. Se revisa al abrir el menú.
+var _map_button: Button
 var _status: Label
 
 
@@ -47,6 +50,8 @@ func try_open() -> bool:
 		return false  # (en la historia sí: antes del laboratorio también se puede guardar y mirar la Guía)
 	if _dex_button != null:
 		_dex_button.visible = GameState.has_pokedex()
+	if _map_button != null:
+		_map_button.visible = has_map()
 	visible = true
 	_status.text = ""
 	get_tree().paused = true
@@ -84,7 +89,7 @@ func _build() -> void:
 	box.add_theme_constant_override("separation", 8)
 	_main.add_child(box)
 	box.add_child(UiStyle.label("MENÚ", 20, UiStyle.ACCENT))
-	var entries := [["Guía", _open_guide], ["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box],
+	var entries := [["Guía", _open_guide], ["Mapa", _open_map], ["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box],
 		["Pokédex", _open_pokedex], ["Tarjeta", _open_card], ["Guardar", _save], ["Opciones", _open_options],
 		["Volver al título", _to_title], ["Cerrar", close]]
 	for e in entries:
@@ -94,6 +99,9 @@ func _build() -> void:
 		if e[0] == "Pokédex":
 			_dex_button = b
 			b.visible = GameState.has_pokedex()  # en la historia, hasta que Oak te la da
+		if e[0] == "Mapa":
+			_map_button = b
+			b.visible = has_map()
 		if _first == null:
 			_first = b
 	_status = UiStyle.label("", 13, UiStyle.TEXT_DIM)
@@ -146,6 +154,15 @@ func _open_bag() -> void:
 
 func _open_box() -> void:
 	push(BOX_SCENE.instantiate())
+
+
+## Se puede mirar el Mapa: en la historia con el objeto Mapa en la mochila; en el modo libre, siempre.
+static func has_map() -> bool:
+	return not GameState.has_flag("historia") or GameState.item_count("mapa") > 0
+
+
+func _open_map() -> void:
+	push(TownMapScreen.new())
 
 
 func _open_guide() -> void:

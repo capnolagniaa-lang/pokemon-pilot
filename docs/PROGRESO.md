@@ -51,6 +51,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **Mapa en el menú (2026-10-25, pedido del usuario)**: Esc → Mapa (con el objeto Mapa que da Dalia; las partidas que
+  ya lo tienen lo ven sin hacer nada). La región en miniatura dibujada desde los mapas reales, con nombres de ciudades
+  y rutas, tu posición (adentro de una casa o cueva, en su puerta), la estrella del objetivo de la Guía, íconos de
+  Centro/Tienda/Gimnasio y niebla en lo no visitado (las partidas viejas lo arman según su avance). Rueda/+−: zoom;
+  arrastrar o WASD: mover; Espacio: centrar. Test `--autotest-town-map` (24), vitrina `--showcase-town-map`.
 - **Capítulo 2, parte K (2026-10-24)**: kits de Staryu y **Starmie jefa de Misty** (`tools/build_kits_v5.py`, firma
   Núcleo `core_mechanic.gd`: gira y desvía proyectiles, +daño a lo Empapado, se regenera; a mitad de vida el núcleo
   brilla) + `FightStyle` de 33 Pokémon del capítulo 2. Test `--autotest-kits-v5`. Ver `PLAN_IDENTIDAD_COMBATE.md` "v5".
