@@ -32,6 +32,10 @@ Teclas
 - Hablar / mirar / lanzar Poké Ball: E · Objeto rápido: C
 - Cambiar de Pokémon: 1 a 6 · Menú (Guía, Mapa, equipo, mochila, Pokédex, guardar): Esc
 
+Música: poné tus canciones en una carpeta "audio\\musica" al lado de PokemonPilot.exe, con estos nombres
+(.ogg o .mp3): titulo, pueblo_paleta, ruta_1, ciudad_verde, batalla_salvaje, batalla_entrenador, batalla_lider...
+(la lista completa está en docs/AUDIO.md del proyecto).
+
 Si no sabés qué hacer: Esc -> Guía (y Esc -> Mapa para ver dónde estás y adónde ir).
 Tus partidas se guardan en %APPDATA%\\Godot\\app_userdata\\Pokémon Pilot\\saves (si actualizás el juego,
 se conservan).

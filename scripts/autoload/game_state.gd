@@ -287,6 +287,7 @@ func grant_exp(inst: CreatureInstance, amount: int) -> String:
 	if inst.add_exp(amount) == 0:
 		return ""
 	var text := " — ¡%s subió a Nv. %d!" % [inst.display_name(), inst.level]
+	Events.level_up.emit(inst)
 	for m in inst.moves_learned_between(before, inst.level):
 		var equipped := inst.auto_equip(m)
 		text += " ¡Aprendió %s!" % m.display_name

@@ -54,6 +54,29 @@ func _ready() -> void:
 	living.button_pressed = GameState.living_trainers
 	living.toggled.connect(GameState.set_living_trainers)
 	box.add_child(living)
+	# Volumen (de esta PC, no de la partida): user://audio.cfg (Sound).
+	box.add_child(UiStyle.label("Volumen", 16))
+	for vol in [["Música", "music_volume"], ["Efectos", "sfx_volume"], ["Gritos", "cry_volume"]]:
+		var h := HBoxContainer.new()
+		h.add_theme_constant_override("separation", 10)
+		var name := UiStyle.label(vol[0], 14)
+		name.custom_minimum_size.x = 90
+		h.add_child(name)
+		var slider := HSlider.new()
+		slider.min_value = 0.0
+		slider.max_value = 1.0
+		slider.step = 0.05
+		slider.custom_minimum_size = Vector2(300, 22)
+		slider.value = Sound.get(vol[1])
+		var prop: String = vol[1]
+		slider.value_changed.connect(func(v: float):
+			var vols := {"music_volume": Sound.music_volume, "sfx_volume": Sound.sfx_volume, "cry_volume": Sound.cry_volume}
+			vols[prop] = v
+			Sound.set_volumes(vols["music_volume"], vols["sfx_volume"], vols["cry_volume"])
+			if prop != "music_volume":
+				Sound.sfx("menu_mover"))
+		h.add_child(slider)
+		box.add_child(h)
 	var settings := UiStyle.button("Ajustes del juego…", 260)
 	settings.tooltip_text = "Experiencia, dinero, captura, daño, vida, salvajes, curación y la IA personalizada (por partida)."
 	settings.pressed.connect(func():

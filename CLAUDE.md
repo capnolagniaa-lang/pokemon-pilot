@@ -60,6 +60,7 @@ $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd  # rearma las arenas (pisa las escenas; -- --only <id> arma solo una)
 $G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
 $G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carga, learnset, archivos rotos
+$G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabla de música, respaldos, archivos propios, gritos, efectos
 $G --headless --path . --quit-after 30000 -- --autotest-settings  # Ajustes del juego por partida (EXP, dinero, captura, daño, vida, salvajes, IA...)
 $G --path . --quit-after 60 --write-movie out/f.png --fixed-fps 30 -- --showcase-settings  # la pantalla de ajustes
 $G --headless --path . --quit-after 30000 -- --autotest-town-map  # Mapa del menú (zonas, entradas, íconos, niebla, objetivo, partidas viejas)
@@ -116,7 +117,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Data-driven**: especies, ataques, tipos y tabla de efectividad son Resources `.tres` en `data/`.
   `DB` (autoload) carga todo lo que haya en esas carpetas. Clases en `scripts/resources/`.
 - **Autoloads**: `Events` (bus de señales; los sistemas no se llaman entre sí), `DB`, `GameState`,
-  `Controls` (input por código, teclas físicas), `SaveManager` (**varias partidas con nombre**: una por archivo
+  `Controls` (input por código, teclas físicas), `Sound` (música por zona/momento, efectos y gritos **por nombre de
+archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escucha Events; guía `docs/AUDIO.md`),
+`SaveManager` (**varias partidas con nombre**: una por archivo
   `user://saves/<nombre>.json`; `slot_path` = la actual),
   `Autotest`. Escena principal: `scenes/ui/title_screen.tscn` → `starter_select` → `world`.
 - **Meta-juego (Etapa 2c)**: menús con nodos `Control` y el estilo de `UiStyle` (`scripts/ui/`), menú de pausa
@@ -346,6 +349,9 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - `tools/link_official_moves.py`: los ataques oficiales automáticos toman la forma de su versión de kit del mismo
   nombre (y los de mejora propia sin kit, un efecto genérico). **Correrlo después de `apply_official_data.gd --
   --regen-auto`** (si no, vuelven a la forma inventada). `SignatureData.params.element_marks` = sinergia por tipo.
+- `tools/fetch_cries.py` (gritos de PokeAPI → `audio/gritos/<n.º>.ogg`) y `tools/make_sfx.py` (efectos retro hechos
+  por código → `audio/efectos/`, + cortinas por defecto en `audio/musica/` sin pisar las tuyas). Música: la pone el
+  usuario (`docs/AUDIO.md`).
 - `tools/fetch_npc_sprites.py`: baja de pret/pokefirered los sprites de las personas de los mapas importados (y las de
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
   (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).

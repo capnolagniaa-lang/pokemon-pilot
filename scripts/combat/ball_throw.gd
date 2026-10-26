@@ -26,6 +26,7 @@ var _target: Creature
 
 
 func throw(p_ball: ItemData, p_from: Vector2, p_to: Vector2) -> void:
+	Events.ball_thrown.emit()
 	ball = p_ball
 	from = p_from
 	to = p_to
@@ -81,6 +82,7 @@ func _capture(c: Creature) -> void:
 	c.set_captured(true)
 	for i in mini(shakes, 3):
 		await get_tree().create_timer(SHAKE_TIME * 0.5).timeout
+		Events.ball_shook.emit()
 		var tw := create_tween()
 		tw.tween_property(self, "_wobble", 0.5, 0.08)
 		tw.tween_property(self, "_wobble", -0.5, 0.12)
@@ -117,6 +119,7 @@ func _caught(c: Creature) -> void:
 
 
 func _escaped(c: Creature) -> void:
+	Events.capture_escaped.emit()
 	result = "escaped"
 	_phase = "done"
 	finished.emit(result)

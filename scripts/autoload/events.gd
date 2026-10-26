@@ -36,6 +36,20 @@ signal equipment_changed(creature: CreatureInstance)
 ## Un salvaje detectó a un objetivo (normalmente tu Pokémon o el entrenador).
 signal wild_aggro(wild: Node, target: Node)
 signal battle_started()
+## Pelea contra un entrenador en su arena (TrainerBattle): `kind` = "entrenador", "lider", "rival" o "torneo" (la
+## música de esa pelea). Al terminar, el resultado ("win"/"lose") y el mismo kind.
+signal trainer_battle_started(kind: String)
+signal trainer_battle_ended(result: String, kind: String)
+## Sale un Pokémon tuyo a pelear (empieza un combate o lo cambiás): su grito.
+signal companion_out(inst: Resource)
+## Sonidos sueltos (Sound): curar en el Centro / con mamá, saltar un saliente, lanzar la bola, cada sacudida, se
+## escapó de la bola, subió de nivel.
+signal party_healed()
+signal ledge_jumped()
+signal ball_thrown()
+signal ball_shook()
+signal capture_escaped()
+signal level_up(inst: Resource)
 signal battle_ended()
 signal move_used(user: Node, move: MoveData)
 signal creature_damaged(creature: Node, amount: float, hit: HitInfo)

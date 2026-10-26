@@ -131,6 +131,13 @@ func _ready() -> void:
 		add_child(tm)
 		(tm.showcase if "--showcase-town-map" in OS.get_cmdline_user_args() else tm.run).call_deferred()
 		return
+	if "--autotest-audio" in OS.get_cmdline_user_args():
+		set_process(false)
+		var au := AudioTests.new()
+		au.autotest = self
+		add_child(au)
+		au.run.call_deferred()
+		return
 	if "--autotest-settings" in OS.get_cmdline_user_args() or "--showcase-settings" in OS.get_cmdline_user_args():
 		set_process(false)
 		var sg := SettingsTests.new()

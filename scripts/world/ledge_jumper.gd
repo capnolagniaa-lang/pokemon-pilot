@@ -69,6 +69,7 @@ func _walkable_at(pos: Vector2) -> bool:
 
 
 func _jump(t: Trainer, landing: Vector2, d: Vector2i) -> void:
+	Events.ledge_jumped.emit()
 	busy = true
 	t.locked = true
 	t.facing = Vector2(d)

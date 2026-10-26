@@ -76,6 +76,7 @@ func start_battle() -> void:
 	in_battle = true
 	_calm = 0.0
 	_had_enemies = false
+	Events.companion_out.emit(c.instance)  # su grito (Sound)
 	take_control(c)
 	Events.battle_started.emit()
 
@@ -226,6 +227,7 @@ func switch_to(index: int) -> bool:
 			if is_instance_valid(e) and not e.health.is_dead():
 				e.target = c
 	Fx.burst(c.get_parent(), c.global_position, Color(1.0, 0.4, 0.35), 14, 50.0)
+	Events.companion_out.emit(inst)
 	Events.message_requested.emit(("¡Volvé, %s! " % old_name if old_name != "" else "") + "¡Adelante, %s!" % inst.display_name())
 	return true
 

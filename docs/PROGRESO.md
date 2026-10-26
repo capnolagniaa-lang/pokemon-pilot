@@ -51,6 +51,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **Sonido (2026-10-26, pedido del usuario)**: autoload `Sound`. Música por lugar y por momento (salvaje, entrenador,
+  líder, rival, torneo, victorias, evolución, Centro, captura, nivel) desde archivos con nombre en `audio/musica/`
+  (la pone el usuario: su soundtrack; tabla `data/audio/musica.json` con respaldos); efectos retro hechos por código
+  (`tools/make_sfx.py`: menú, bola, puertas, saltos, un golpe por tipo...) y los gritos de los 386 de PokeAPI
+  (`tools/fetch_cries.py`). Volumen en Opciones (de la PC). **Cómo cambiar las canciones: `docs/AUDIO.md`.** Test
+  `--autotest-audio`.
 - **Objetos en peleas y equipo arrastrable (2026-10-26, pedido del usuario)**: la C (objeto rápido) anda también en
   peleas de entrenador, gimnasio y torneo; **Esc en combate** abre un menú reducido (Mochila, Equipo, Cerrar) con la
   pelea en pausa (en la Mochila, lo que no se usa en combate sale deshabilitado; en Equipo, "Poner como activo" es un

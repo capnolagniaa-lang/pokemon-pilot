@@ -252,6 +252,7 @@ func teleport(zone_id: String, cell: Vector2i) -> void:
 ## Cura al equipo: vida llena y sin estados el que está afuera. Si perdés contra un entrenador, volvés acá.
 func heal_party() -> void:
 	GameState.heal_party()
+	Events.party_healed.emit()
 	GameState.last_heal_position = world.trainer.global_position
 	var c: Creature = world.companion
 	if is_instance_valid(c):
@@ -371,6 +372,7 @@ func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) 
 		texture = load("res://art/pret/characters/%s.png" % data.gfx)
 	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": team,
 		"arena_id": td.arena_id, "texture": texture, "leader": td.leader, "no_blackout": no_blackout,
+		"music": "rival" if td.id.contains("rival") else ("lider" if td.leader else "entrenador"),
 		"defeat_lines": _lines(td, "pierde", "¡Me ganaste!")})
 	if r == "win":
 		GameState.set_flag(data.defeated_flag())  # (el NPC ya no existe: la zona se recargó al volver)

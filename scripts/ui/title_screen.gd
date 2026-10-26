@@ -18,6 +18,8 @@ var _parade: Array = []  # [PokemonAnimView, x base, fase]
 
 
 func _ready() -> void:
+	Sound.override_track = ""
+	Sound.set_place(Sound.track_for_event("titulo"))  # música del título (docs/AUDIO.md)
 	theme = UiStyle.theme()
 	get_tree().paused = false
 	var args := OS.get_cmdline_user_args()

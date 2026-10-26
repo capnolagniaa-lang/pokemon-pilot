@@ -95,6 +95,8 @@ func start(opts: Dictionary) -> String:
 	_return_pos = t.global_position
 	_enter_arena(opts.get("texture", null))
 	await get_tree().process_frame
+	var kind: String = opts.get("music", "torneo" if opts.has("banner") else ("lider" if leader else "entrenador"))
+	Events.trainer_battle_started.emit(kind)  # la música de la pelea (Sound)
 	await _fade_to(0.0)
 	var title: String = opts.get("title", "")
 	var who := ("%s %s" % [title, foe_name]).strip_edges()
@@ -122,6 +124,7 @@ func start(opts: Dictionary) -> String:
 	_leave_arena()
 	await get_tree().process_frame
 	await _fade_to(0.0)
+	Events.trainer_battle_ended.emit(result, kind)
 	if result == "lose" and not _no_blackout:
 		await world.story.dialog.say("", PackedStringArray(["Volviste corriendo a curar a tus Pokémon..."]))
 	t.locked = false
