@@ -379,7 +379,7 @@ func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) 
 		var got := PackedStringArray([td.reward_text]) if td.reward_text != "" else PackedStringArray()
 		var cash := prize_of(td, team)
 		if cash > 0:
-			GameState.add_money(cash)
+			GameState.add_prize(cash)
 			got.append("¡Ganaste $%d!" % cash)
 		for id in td.reward_items:
 			if DB.items.has(id):

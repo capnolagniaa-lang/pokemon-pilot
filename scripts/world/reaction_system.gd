@@ -49,7 +49,7 @@ func unregister_zone(zone: Zone) -> void:
 ## Si en esta posición rigen las reglas de arena (cráteres, superficies): en una arena, o en todos lados si
 ## GameConfig.arena_rules_everywhere.
 func arena_rules_at(global_pos: Vector2) -> bool:
-	if DB.config.arena_rules_everywhere:
+	if GameState.setting("arena_everywhere"):
 		return true
 	for z in extra_zones:
 		if is_instance_valid(z) and extra_zones[z].has_point(global_pos):

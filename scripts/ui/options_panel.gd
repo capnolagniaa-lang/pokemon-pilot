@@ -4,6 +4,7 @@ extends Control
 signal closed
 
 var _first: Control
+var _diff_buttons: Dictionary = {}
 
 
 func _ready() -> void:
@@ -33,6 +34,7 @@ func _ready() -> void:
 		b.button_pressed = GameState.difficulty == diff
 		b.pressed.connect(GameState.set_difficulty.bind(id))
 		row.add_child(b)
+		_diff_buttons[id] = b
 		if b.button_pressed or _first == null:
 			_first = b
 	var practice := CheckBox.new()
@@ -52,7 +54,20 @@ func _ready() -> void:
 	living.button_pressed = GameState.living_trainers
 	living.toggled.connect(GameState.set_living_trainers)
 	box.add_child(living)
+	var settings := UiStyle.button("Ajustes del juego…", 260)
+	settings.tooltip_text = "Experiencia, dinero, captura, daño, vida, salvajes, curación y la IA personalizada (por partida)."
+	settings.pressed.connect(func():
+		var menu := get_parent()
+		if menu != null and menu.has_method("push"):
+			menu.push(GameSettingsScreen.new()))
+	box.add_child(settings)
 	var back := UiStyle.button("Volver", 160)
 	back.pressed.connect(func(): closed.emit())
 	box.add_child(back)
 	UiStyle.focus_later(_first)
+
+
+## Al volver de Ajustes del juego (puede haber elegido la dificultad Personalizada, que no tiene botón acá).
+func refresh() -> void:
+	for id in _diff_buttons:
+		_diff_buttons[id].set_pressed_no_signal(GameState.difficulty_id() == id)

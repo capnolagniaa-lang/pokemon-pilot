@@ -18,7 +18,8 @@ static func catch_value(inst: CreatureInstance, ball_mult: float, status_ids: Ar
 	var bonus := 1.0
 	for s in status_ids:
 		bonus = maxf(bonus, STATUS_BONUS.get(s, 1.0))
-	return (3.0 * max_hp - 2.0 * hp) * inst.species.capture_rate * ball_mult / (3.0 * max_hp) * bonus
+	return (3.0 * max_hp - 2.0 * hp) * inst.species.capture_rate * ball_mult / (3.0 * max_hp) * bonus \
+		* float(GameState.setting("catch_mult"))  # Ajustes del juego
 
 
 ## Cuántas tiradas pasa (0-4). 4 = atrapado. La Master Ball (mult ≥ 255) atrapa siempre.

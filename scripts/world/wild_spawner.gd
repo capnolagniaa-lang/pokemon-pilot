@@ -50,7 +50,8 @@ func _process(delta: float) -> void:
 ## Salvajes vivos a la vez: en zonas grandes más (EncounterTable.alive_for, según las celdas donde pueden aparecer).
 func max_alive(zone_id: String) -> int:
 	var t: EncounterTable = _tables.get(zone_id)
-	return 3 if GameState.wild_test_pool or t == null else t.alive_for(_spawn_cells.get(zone_id, 0))
+	var n: int = 3 if GameState.wild_test_pool or t == null else t.alive_for(_spawn_cells.get(zone_id, 0))
+	return maxi(0, roundi(n * float(GameState.setting("wild_mult"))))  # Ajustes del juego: cantidad de salvajes
 
 
 ## Cada cuánto aparece otro: más seguido cuantos más tiene que reponer (así una zona grande se llena igual de rápido).

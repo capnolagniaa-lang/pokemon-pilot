@@ -53,6 +53,8 @@ func _process(delta: float) -> void:
 ## Pelea contra un entrenador en su arena (TrainerBattle): la pelea no termina sola (ni con F) aunque tu Pokémon
 ## caiga o no haya rivales cerca, y no hay revivir de práctica; la cierra TrainerBattle.
 var arena_lock := false
+## Curación sola fuera de combate con el ajuste "regen" (fracción de la vida por segundo).
+const REGEN_PER_S := 0.01
 
 
 func start_battle() -> void:
@@ -151,8 +153,13 @@ func _practice_revive(inst: CreatureInstance) -> void:
 	Events.message_requested.emit("Modo práctica: %s vuelve con la vida al máximo." % inst.species.display_name)
 
 
-## Fuera de combate no hay curación sola: solo si tu Pokémon debilitado volvió a tener vida (Revivir) sale de nuevo.
-func _regen(_delta: float) -> void:
+## Fuera de combate no hay curación sola (salvo con el ajuste "regen": 1% de la vida por segundo a los que siguen en
+## pie): si tu Pokémon debilitado volvió a tener vida (Revivir) sale de nuevo.
+func _regen(delta: float) -> void:
+	if GameState.setting("regen"):
+		for inst in GameState.party:
+			if inst.hp > 0.0 and inst.hp < inst.max_hp():
+				inst.hp = minf(inst.max_hp(), inst.hp + inst.max_hp() * REGEN_PER_S * delta)
 	var c: Creature = world.companion
 	if is_instance_valid(c) and c.is_down() and c.instance.hp > 0.0:
 		world.respawn_companion()

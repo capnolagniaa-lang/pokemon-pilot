@@ -557,7 +557,7 @@ func _on_hit(hit: HitInfo) -> void:
 	if signature != null:
 		mult *= signature.damage_taken_mult(hit)
 	var combo := {}
-	if DB.config.combos_enabled and attacker != null and hit.move.power > 0.0 and attacker.arena_rules():
+	if GameState.setting("combos") and attacker != null and hit.move.power > 0.0 and attacker.arena_rules():
 		combo = attacker.register_hit(self, hit)  # cadena de golpes y combos con nombre
 		mult *= combo["mult"]
 		if combo["name"] != "":

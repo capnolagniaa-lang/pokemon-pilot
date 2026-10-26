@@ -9,6 +9,11 @@ const MAX_LEVEL := 100
 ## Adaptación al tiempo real: la vida se multiplica para que un combate dure varios golpes.
 const HP_SCALE := 3.0
 
+
+## Escala de vida de esta partida (Ajustes del juego; por defecto HP_SCALE).
+static func hp_scale() -> float:
+	return float(GameState.setting("hp_scale"))
+
 @export var species: SpeciesData
 @export var level: int = 1
 ## Experiencia total acumulada (como en los juegos).
@@ -203,7 +208,7 @@ func stat(name: String) -> int:
 
 
 func max_hp() -> float:
-	return stat("hp") * HP_SCALE
+	return stat("hp") * hp_scale()
 
 
 # --- Experiencia ---------------------------------------------------------------
@@ -251,7 +256,7 @@ func exp_progress() -> float:
 ## Experiencia oficial por derrotar a un salvaje (fórmula de la 1ª-4ª gen).
 ## EXP por debilitarlo: fórmula oficial de 1ª-4ª gen (base × nivel / 7) × GameConfig.exp_multiplier.
 static func exp_yield(defeated: CreatureInstance) -> int:
-	var mult: float = DB.config.exp_multiplier if DB.config != null else 1.0
+	var mult: float = float(GameState.setting("exp_mult")) if DB.config != null else 1.0
 	return maxi(1, int(defeated.species.base_experience * defeated.level / 7.0 * mult))
 
 

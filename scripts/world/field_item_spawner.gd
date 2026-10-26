@@ -41,7 +41,7 @@ func _entry(id: String) -> ZoneEntry:
 func _populate(entry: ZoneEntry, zone: Node) -> void:
 	if entry == null or not is_instance_valid(zone) or field_table == null or not is_inside_tree():
 		return
-	if not has_items(entry):
+	if not has_items(entry) or not GameState.setting("field_items"):
 		return
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(entry.id + ":objetos")

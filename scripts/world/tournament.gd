@@ -131,7 +131,7 @@ func play(cup: TournamentCup, team: Array[CreatureInstance]) -> bool:
 		field = _next_round(field)
 		bracket.append(field)
 	if won:
-		GameState.add_money(cup.prize)
+		GameState.add_prize(cup.prize)
 		GameState.set_flag("campeon_" + cup.id)
 		await world.story.dialog.say("Locutor", PackedStringArray(["¡Y TENEMOS CAMPEÓN! ¡Ganaste la %s!" % cup.display_name,
 			"¡Te llevás $%d!" % cup.prize]))

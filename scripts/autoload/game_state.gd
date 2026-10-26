@@ -58,6 +58,12 @@ var test_tournament: Dictionary = {}
 var tournament: Dictionary = {}
 ## Dinero (docs/PLAN_TORNEO.md, T-0): premios de entrenadores y del torneo, entradas. Se guarda.
 var money := 0
+## Ajustes del juego de esta partida (Esc → Opciones → Ajustes del juego; pedido del usuario 2026-10-26): clave -> valor.
+## Solo se guardan los que cambiaste; el resto sale de default_settings() (los valores de siempre). Leer con setting().
+var settings: Dictionary = {}
+## Dificultad "personalizada" armada con los ajustes ai_* (la usa set_difficulty("personalizado")).
+var _custom_difficulty: AiDifficulty
+var _defaults: Dictionary = {}
 ## Zonas donde ya estuviste (id -> true): el Mapa (Esc → Mapa, TownMap) tapa las demás. Se guarda; las partidas de
 ## antes del mapa lo arman con su avance de la historia (TownMap.visited_from_progress).
 var visited_zones: Dictionary = {}
@@ -72,15 +78,87 @@ func _ready() -> void:
 
 
 func set_difficulty(id: String) -> void:
-	if DB.difficulties.has(id):
+	if id == "personalizado":
+		difficulty = custom_difficulty()
+	elif DB.difficulties.has(id):
 		difficulty = DB.difficulties[id]
 
 
 func difficulty_id() -> String:
+	if difficulty != null and difficulty == _custom_difficulty:
+		return "personalizado"
 	for id in DB.difficulties:
 		if DB.difficulties[id] == difficulty:
 			return id
 	return "normal"
+
+
+# --- Ajustes del juego (por partida) -------------------------------------------------
+
+## Los valores de siempre (los de GameConfig y la dificultad Normal): una partida nueva arranca así.
+func default_settings() -> Dictionary:
+	if not _defaults.is_empty():
+		return _defaults
+	var n: AiDifficulty = DB.difficulties.get("normal", AiDifficulty.new())
+	_defaults = {
+		"exp_mult": DB.config.exp_multiplier, "money_mult": 1.0, "catch_mult": 1.0,
+		"dealt_mult": 1.0, "taken_mult": 1.0, "hp_scale": CreatureInstance.HP_SCALE,
+		"combos": DB.config.combos_enabled, "arena_everywhere": DB.config.arena_rules_everywhere,
+		"wild_mult": 1.0, "regen": false, "field_items": true,
+		"ai_attack_interval": n.attack_interval_mult, "ai_aim_error": n.aim_error_deg, "ai_dodge": n.dodge_chance,
+		"ai_lead": n.lead, "ai_damage": n.damage_mult, "ai_think": n.think_interval_mult,
+	}
+	return _defaults
+
+
+func setting(key: String):
+	return settings[key] if settings.has(key) else default_settings().get(key)
+
+
+## Cambia un ajuste. La vida (hp_scale) reescala la vida actual de todo el equipo y la Caja; los ai_* rearman la
+## dificultad personalizada.
+func set_setting(key: String, value) -> void:
+	var before = setting(key)
+	if value == default_settings().get(key):
+		settings.erase(key)
+	else:
+		settings[key] = value
+	if key == "hp_scale" and before != value and float(before) > 0.0:
+		for inst in party + box:
+			if inst != null:
+				inst.hp *= float(value) / float(before)
+		Events.party_changed.emit()
+	if key.begins_with("ai_"):
+		var custom := difficulty_id() == "personalizado"
+		_custom_difficulty = null
+		if custom:
+			set_difficulty("personalizado")
+
+
+func reset_settings() -> void:
+	for key in settings.keys():
+		set_setting(key, default_settings()[key])
+
+
+## La dificultad personalizada con los ajustes ai_* (se arma de nuevo si cambian).
+func custom_difficulty() -> AiDifficulty:
+	if _custom_difficulty == null:
+		var d := AiDifficulty.new()
+		d.id = "personalizado"
+		d.display_name = "Personalizada"
+		d.attack_interval_mult = setting("ai_attack_interval")
+		d.aim_error_deg = setting("ai_aim_error")
+		d.dodge_chance = setting("ai_dodge")
+		d.lead = setting("ai_lead")
+		d.damage_mult = setting("ai_damage")
+		d.think_interval_mult = setting("ai_think")
+		_custom_difficulty = d
+	return _custom_difficulty
+
+
+## Premio en dinero (entrenadores, torneo): con el multiplicador de dinero de los ajustes.
+func add_prize(amount: int) -> void:
+	add_money(roundi(amount * float(setting("money_mult"))))
 
 
 func new_game(starter: SpeciesData) -> void:
@@ -103,6 +181,8 @@ func new_game(starter: SpeciesData) -> void:
 	field_picked.clear()
 	story_flags.clear()
 	visited_zones.clear()
+	settings.clear()
+	_custom_difficulty = null
 	last_heal_position = Vector2.INF
 	money = STARTING_MONEY
 	tournament = {}
@@ -321,7 +401,7 @@ func use_item_on(id: String, inst: CreatureInstance, statuses: StatusEffects = n
 		parts.append("revivió")
 	elif it.heal_full or it.heal_hp > 0.0:
 		var before := inst.hp
-		inst.hp = inst.max_hp() if it.heal_full else minf(inst.max_hp(), inst.hp + it.heal_hp * CreatureInstance.HP_SCALE)
+		inst.hp = inst.max_hp() if it.heal_full else minf(inst.max_hp(), inst.hp + it.heal_hp * CreatureInstance.hp_scale())
 		if inst.hp > before:
 			parts.append("recuperó %d PS" % roundi(inst.hp - before))
 	if statuses != null:
@@ -430,7 +510,7 @@ func to_dict() -> Dictionary:
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
-		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money, "visited_zones": visited_zones.keys(),
+		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money, "visited_zones": visited_zones.keys(), "settings": settings.duplicate(),
 		"last_heal_position": [last_heal_position.x, last_heal_position.y] if last_heal_position != Vector2.INF else null}
 
 
@@ -488,6 +568,13 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 		for id in saved_trainers:
 			if DB.trainers.has(id) and saved_trainers[id] is Dictionary:
 				trainers[id] = TrainerState.from_dict(DB.trainers[id], saved_trainers[id])
+	settings.clear()
+	var saved_settings = d.get("settings", {})
+	if saved_settings is Dictionary:
+		for key in saved_settings:
+			if default_settings().has(str(key)):
+				settings[str(key)] = saved_settings[key]
+	_custom_difficulty = null
 	set_difficulty(str(d.get("difficulty", "normal")))
 	play_time = maxf(0.0, float(d.get("play_time", 0.0)))
 	var pos = d.get("trainer_position", null)

@@ -51,6 +51,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **Ajustes del juego por partida (2026-10-26, pedido del usuario)**: Esc → Opciones → "Ajustes del juego…". Por
+  partida (decisión del usuario): Progresión (EXP, dinero de premios, captura), Combate (daño que hacés y que recibís,
+  vida ×N, combos, reglas de arena en todo el mundo), Mundo (cantidad de salvajes, curación sola, objetos en las
+  rutas) y dificultad de la IA con modo **Personalizada** (ritmo, puntería, esquive, anticipación, daño, tácticas).
+  Se aplican al instante y se guardan con la partida; "Valores por defecto" vuelve a los de siempre. Test
+  `--autotest-settings`, vitrina `--showcase-settings`.
 - **Kits v8 — Tanda C + sinergia (2026-10-26)**: Drowzee, Grimer, Koffing (nubes que detona), Ponyta (galope con
   estela de fuego), Slowpoke (reacciona tarde) y Magikarp (Azote y EXP extra): la propuesta de kits quedó completa.
   Y **sinergia**: los Pokémon con kit aprenden todo su learnset de FireRed; los ataques oficiales toman la forma de su

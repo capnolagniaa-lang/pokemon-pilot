@@ -111,7 +111,7 @@ func _stats_tab() -> Control:
 	for s in CreatureInstance.STATS:
 		var base := _inst.species.base_stat(s)
 		grid.add_child(UiStyle.label(UiStyle.STAT_NAMES[s], 16))
-		grid.add_child(UiStyle.label(str(_inst.stat(s)) if s != "hp" else "%d (×%d)" % [_inst.stat(s), int(CreatureInstance.HP_SCALE)], 16, UiStyle.ACCENT))
+		grid.add_child(UiStyle.label(str(_inst.stat(s)) if s != "hp" else "%d (×%d)" % [_inst.stat(s), int(CreatureInstance.hp_scale())], 16, UiStyle.ACCENT))
 		grid.add_child(UiStyle.label(str(base), 16))
 		grid.add_child(UiStyle.label(str(_inst.ivs.get(s, 0)), 16))
 		grid.add_child(UiStyle.label(str(_inst.evs.get(s, 0)), 16))

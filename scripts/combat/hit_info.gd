@@ -36,6 +36,8 @@ static func from(user: Node, p_move: MoveData) -> HitInfo:
 	h.knockback = p_move.knockback
 	if user.team == 1 and GameState.difficulty != null:  # salvaje: daño según la dificultad
 		h.damage_mult *= GameState.difficulty.damage_mult
+	# Ajustes del juego: daño que hacés (tu equipo) y que recibís (el de los rivales).
+	h.damage_mult *= float(GameState.setting("dealt_mult")) if user.team == 0 else float(GameState.setting("taken_mult"))
 	if user.signature != null:
 		user.signature.modify_hit(h)
 	return h

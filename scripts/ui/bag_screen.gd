@@ -172,7 +172,7 @@ func _effect_text(it: ItemData) -> String:
 	if it.heal_full:
 		parts.append("cura toda la vida")
 	elif it.heal_hp > 0.0:
-		parts.append("cura %d PS (×%d en el juego)" % [roundi(it.heal_hp), int(CreatureInstance.HP_SCALE)])
+		parts.append("cura %d PS (×%d en el juego)" % [roundi(it.heal_hp), int(CreatureInstance.hp_scale())])
 	if not it.cures.is_empty():
 		parts.append("cura " + ("todos los problemas de estado" if it.cures.has("all") else ", ".join(it.cures)))
 	var text := ", ".join(parts) if not parts.is_empty() else "sin efecto"
