@@ -25,11 +25,18 @@ func run() -> void:
 	# Reemplazar = poner un archivo con el nombre: uno en user://audio/musica aparece sin tocar nada más.
 	var dir := "user://audio/musica"
 	DirAccess.make_dir_recursive_absolute(dir)
-	var src := ProjectSettings.globalize_path("res://audio/musica/captura.wav")
 	var test_path := dir.path_join("ruta_1.wav")
 	var had_own := FileAccess.file_exists(test_path)
-	if not had_own:
-		DirAccess.copy_absolute(src, ProjectSettings.globalize_path(test_path))
+	if not had_own:  # un pitido corto en PCM (anda también en el juego empaquetado)
+		var beep := AudioStreamWAV.new()
+		beep.format = AudioStreamWAV.FORMAT_16_BITS
+		beep.mix_rate = 22050
+		var pcm := PackedByteArray()
+		pcm.resize(4410 * 2)
+		for i in 4410:
+			pcm.encode_s16(i * 2, int(sin(i * 0.12) * 8000.0))
+		beep.data = pcm
+		beep.save_to_wav(ProjectSettings.globalize_path(test_path))
 	Sound.clear_cache()
 	r["Un archivo tuyo con el nombre del tema suena (y la Ruta 3 usa el de la Ruta 1 de respaldo)"] = \
 		Sound.resolve("ruta_1") == "ruta_1" and Sound.resolve("ruta_3") in ["ruta_3", "ruta_1"]

@@ -52,10 +52,15 @@ func run() -> void:
 	mine.hp = mine.max_hp() * 0.4
 	var hp_before := mine.hp
 	await get_tree().create_timer(0.3).timeout
+	# El "expuesto" dura 0,6 s: se registra si ocurrió (mirarlo en un instante fijo falla con la PC cargada).
+	var saw_recovery := [false]
+	var watch := func(_from, to): if String(to).to_lower() == "recovery": saw_recovery[0] = true
+	world.companion.machine.state_changed.connect(watch)
 	await autotest._tap("quick_item")
 	await get_tree().create_timer(0.2).timeout
+	world.companion.machine.state_changed.disconnect(watch)
 	r["En el gimnasio la C usa el objeto rápido (Poción)"] = mine.hp > hp_before
-	r["Usar un objeto en combate te deja expuesto un instante"] = world.companion.machine.current_name() == "recovery"
+	r["Usar un objeto en combate te deja expuesto un instante"] = saw_recovery[0]
 	await get_tree().create_timer(1.2).timeout
 	r["En combate Esc abre el menú reducido (Mochila, Equipo) y pausa la pelea"] = world.pause_menu.try_open() \
 		and world.pause_menu._buttons["Mochila"].visible and world.pause_menu._buttons["Equipo"].visible \
