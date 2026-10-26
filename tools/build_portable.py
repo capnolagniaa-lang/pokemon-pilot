@@ -30,9 +30,9 @@ Teclas
 - Ataques: Clic izquierdo, Clic derecho, Q, R (apuntás con el mouse)
 - Esquivar / saltar cráteres: Espacio
 - Hablar / mirar / lanzar Poké Ball: E · Objeto rápido: C
-- Cambiar de Pokémon: 1 a 6 · Menú (equipo, mochila, Pokédex, Guía, guardar): Esc
+- Cambiar de Pokémon: 1 a 6 · Menú (Guía, Mapa, equipo, mochila, Pokédex, guardar): Esc
 
-Si no sabés qué hacer: Esc -> Guía.
+Si no sabés qué hacer: Esc -> Guía (y Esc -> Mapa para ver dónde estás y adónde ir).
 Tus partidas se guardan en %APPDATA%\\Godot\\app_userdata\\Pokémon Pilot\\saves (si actualizás el juego,
 se conservan).
 Si encontrás un error, anotá qué estabas haciendo y avisale a quien te pasó el juego.
