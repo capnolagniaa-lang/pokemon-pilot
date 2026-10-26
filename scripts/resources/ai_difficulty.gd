@@ -1,6 +1,7 @@
 class_name AiDifficulty
 extends Resource
-## Dificultad de la IA salvaje (data/config/difficulty/*.tres). "Difícil" es el comportamiento original.
+## Dificultad de la IA (salvajes y entrenadores; data/config/difficulty/*.tres). "Difícil" ataca al ritmo original,
+## esquiva 40% y anticipa del todo; Normal (2026-10-25) quedó más cerca de Difícil que antes.
 
 @export var id: String = ""
 @export var display_name: String = ""
@@ -14,3 +15,5 @@ extends Resource
 @export var damage_mult: float = 1.0
 ## Multiplica cada cuánto "piensa" (cambia de táctica: acercarse, rodear, alejarse).
 @export var think_interval_mult: float = 1.0
+## Anticipación al disparar (0 = apunta adonde estás; 1 = adonde vas a estar cuando llegue el disparo).
+@export var lead: float = 1.0

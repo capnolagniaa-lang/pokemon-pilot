@@ -117,6 +117,13 @@ func _ready() -> void:
 		add_child(an)
 		an.run.call_deferred()
 		return
+	if "--autotest-ai-steer" in OS.get_cmdline_user_args():
+		set_process(false)
+		var st2 := AiSteerTests.new()
+		st2.autotest = self
+		add_child(st2)
+		st2.run.call_deferred()
+		return
 	if "--autotest-town-map" in OS.get_cmdline_user_args() or "--showcase-town-map" in OS.get_cmdline_user_args():
 		set_process(false)
 		var tm := TownMapTests.new()
@@ -1050,7 +1057,7 @@ func _modes_test() -> void:
 	r["Hay 3 dificultades (Fácil, Normal, Difícil)"] = DB.difficulties.has("facil") and DB.difficulties.has("normal") and DB.difficulties.has("dificil")
 	var hard: AiDifficulty = DB.difficulties["dificil"]
 	var easy: AiDifficulty = DB.difficulties["facil"]
-	r["Difícil = comportamiento original"] = hard.attack_interval_mult == 1.0 and hard.dodge_chance == 0.3 and hard.damage_mult == 1.0
+	r["Difícil: ritmo y daño originales, esquiva más (40%) y anticipa"] = hard.attack_interval_mult == 1.0 		and hard.dodge_chance == 0.4 and hard.damage_mult == 1.0 and hard.lead == 1.0
 	r["Fácil: ataca menos, erra más, no esquiva, pega menos"] = easy.attack_interval_mult > 1.5 and easy.aim_error_deg > 20.0 and easy.dodge_chance == 0.0 and easy.damage_mult < 1.0
 
 	GameState.practice_mode = true

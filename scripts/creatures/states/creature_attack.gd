@@ -14,6 +14,10 @@ var _strafe := 1.0
 var _mode := "strafe"
 ## Próxima ranura de la rotación.
 var _next := 0
+## Con un estilo de hasta esta distancia es de cuerpo a cuerpo (no retrocede para mantener distancia).
+const MELEE_RANGE := 45.0
+## Ataques que necesitan línea libre hasta el objetivo (los frena una pared).
+const NEEDS_SHOT := [MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL, MoveData.Kind.WHIP]
 
 
 func enter(_msg: Dictionary = {}) -> void:
@@ -49,7 +53,7 @@ func physics_update(delta: float) -> void:
 		actor.move(escape, actor.speed())
 		return
 	if actor.spook_left > 0.0:
-		actor.move(-dir, actor.speed() * 0.9)  # espantado: retrocede sin atacar
+		actor.move(actor.body.steer(-dir), actor.speed() * 0.9)  # espantado: retrocede sin atacar
 		actor.facing = dir
 		return
 
@@ -57,20 +61,24 @@ func physics_update(delta: float) -> void:
 	if _think <= 0.0:
 		_think = randf_range(0.4, 0.9) * CombatBody.difficulty().think_interval_mult
 		var ideal := _ideal_range()
-		if dist > ideal * 1.3:
-			_mode = "approach"
-		elif dist < ideal * 0.6:
-			_mode = "retreat"
+		if dist > ideal * 1.3 or (dist > 40.0 and not actor.body.clear_shot(t)):
+			_mode = "approach"  # lejos, o con una pared/árbol en el medio: se acerca rodeando
+		elif dist < ideal * 0.6 and ideal > MELEE_RANGE:
+			_mode = "retreat"  # los de distancia se alejan; los de cuerpo a cuerpo no retroceden solos
 		else:
 			_mode = "strafe"
-		if randf() < 0.35:
+		if randf() < 0.2:
 			_strafe = -_strafe
 
 	_attack_timer -= delta
 	if _attack_timer <= 0.0:
-		_attack_timer = randf_range(0.6, 1.4) * CombatBody.difficulty().attack_interval_mult
 		if _choose_attack(dist):
+			_attack_timer = randf_range(0.5, 1.1) * CombatBody.difficulty().attack_interval_mult
 			return
+		# Ningún ataque llega desde acá: no se queda esperando, se acomoda y vuelve a probar enseguida.
+		_attack_timer = 0.2
+		if dist > _ideal_range() * 0.8:
+			_mode = "approach"
 
 	var move := Vector2.ZERO
 	match _mode:
@@ -80,7 +88,10 @@ func physics_update(delta: float) -> void:
 			move = -dir
 		_:
 			move = dir.orthogonal() * _strafe * 0.8 + dir * 0.15
-	actor.move(move.normalized(), actor.speed() * 0.8)
+	var steered: Vector2 = actor.body.steer(move.normalized(), t.global_position if _mode == "approach" else Vector2.INF)
+	if _mode == "strafe" and steered.dot(move.normalized()) < 0.5:
+		_strafe = -_strafe  # rodeando contra una pared: cambia de lado
+	actor.move(steered, actor.speed() * (0.95 if _mode == "approach" else 0.8))
 	actor.facing = dir
 
 
@@ -102,8 +113,12 @@ func _choose_attack(dist: float) -> bool:
 		var opener: int = actor.body.gap_closer(dist)
 		if opener >= 0 and dist > 40.0 and actor.body.use(opener):
 			return true
+	var shot: bool = actor.body.clear_shot(actor.target)
 	for k in MoveUser.SLOT_COUNT:
 		var slot := (_next + k) % MoveUser.SLOT_COUNT
+		var m: MoveData = actor.moves.slots[slot]
+		if m != null and m.kind in NEEDS_SHOT and not shot:
+			continue  # no tira contra la pared
 		if actor.body.fits(slot, dist):
 			_next = (slot + 1) % MoveUser.SLOT_COUNT
 			return actor.body.use(slot)

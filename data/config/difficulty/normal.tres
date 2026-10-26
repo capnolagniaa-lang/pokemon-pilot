@@ -6,8 +6,9 @@
 script = ExtResource("1")
 id = "normal"
 display_name = "Normal"
-attack_interval_mult = 1.5
-aim_error_deg = 15.0
-dodge_chance = 0.12
-damage_mult = 0.8
-think_interval_mult = 1.3
+attack_interval_mult = 1.2
+aim_error_deg = 10.0
+dodge_chance = 0.22
+damage_mult = 0.85
+think_interval_mult = 1.1
+lead = 0.6

@@ -9,6 +9,25 @@ extends RefCounted
 var actor: Creature
 var _checked: Dictionary = {}
 
+# --- Moverse sin trabarse (steer) ---
+## Distancia que se mira hacia adelante para ver si hay algo sólido.
+const PROBE := 12.0
+## Ángulos (grados) que prueba para esquivar un obstáculo, del más directo al más desviado.
+const DETOUR_ANGLES := [0.0, 35.0, 70.0, 105.0, 140.0]
+## Segundos casi sin avanzar (queriendo moverse) para considerarse trabado y buscar camino por celdas.
+const STUCK_TIME := 0.35
+## Radio (en celdas) del camino que busca alrededor (AStarGrid2D).
+const PATH_RADIUS := 14
+## Lado hacia el que rodea (1/-1): se mantiene un rato para no zigzaguear frente a un árbol.
+var _side := 1.0
+var _side_hold := 0.0
+var _stuck := 0.0
+var _last_pos := Vector2.INF
+## Camino por celdas (posiciones globales) cuando está trabado; se abandona al llegar o si cambia mucho el destino.
+var path: PackedVector2Array = []
+var _path_goal := Vector2.INF
+var _path_time := 0.0
+
 
 func _init(p_actor: Creature) -> void:
 	actor = p_actor
@@ -40,13 +59,17 @@ func gap_closer(dist: float) -> int:
 	return -1
 
 
-## Usa una ranura contra el objetivo, con el error de puntería de la dificultad.
+## Usa una ranura contra el objetivo, con el error de puntería de la dificultad. A los disparos les suma la
+## anticipación (`AiDifficulty.lead`): apunta adonde vas a estar cuando llegue.
 func use(slot: int) -> bool:
 	var t: Creature = actor.target
 	if not is_instance_valid(t):
 		return false
 	var err := deg_to_rad(difficulty().aim_error_deg)
 	var off: Vector2 = t.global_position - actor.global_position
+	var m: MoveData = actor.moves.slots[slot]
+	if m != null and m.kind == MoveData.Kind.PROJECTILE and m.speed > 0.0:
+		off += t.velocity * (off.length() / m.speed) * difficulty().lead
 	var dir := off.normalized().rotated(randf_range(-err, err))
 	# Mismo error para lo que apunta a un punto (zonas, Arañazo).
 	var point: Vector2 = actor.global_position + off.rotated(randf_range(-err, err)) * randf_range(1.0 - err, 1.0 + err)
@@ -86,3 +109,104 @@ func hazard_escape() -> Vector2:
 				and not actor.test_move(actor.global_transform, d * 18.0):
 			return d
 	return Vector2.ZERO
+
+
+## Hay tiro limpio hasta el objetivo (nada sólido en el medio: paredes, árboles, rocas).
+func clear_shot(t: Node2D) -> bool:
+	if not is_instance_valid(t) or not actor.is_inside_tree():
+		return false
+	var from := actor.global_position + Vector2(0, -6)
+	var q := PhysicsRayQueryParameters2D.create(from, t.global_position + Vector2(0, -6), SHOT_MASK)
+	return actor.get_world_2d().direct_space_state.intersect_ray(q).is_empty()
+
+
+## Capas que frenan un disparo: mundo (1) y entorno (8).
+const SHOT_MASK := 1 | (1 << 7)
+
+
+## Dirección para ir hacia `want` sin trabarse: si adelante hay algo sólido prueba girando (hacia el mismo lado un
+## rato, así rodea en vez de zigzaguear); si igual no avanza, busca un camino por celdas hasta `goal` y lo sigue.
+## Llamarlo una vez por cuadro de física con la dirección deseada.
+func steer(want: Vector2, goal: Vector2 = Vector2.INF) -> Vector2:
+	var delta := actor.get_physics_process_delta_time()
+	_side_hold -= delta
+	_path_time -= delta
+	if want == Vector2.ZERO:
+		_last_pos = actor.global_position
+		_stuck = 0.0
+		return want
+	# ¿Trabado? (quiere moverse y casi no avanzó desde el cuadro anterior)
+	if _last_pos != Vector2.INF and actor.global_position.distance_to(_last_pos) < 0.25 and actor.statuses.can_move():
+		_stuck += delta
+	else:
+		_stuck = maxf(0.0, _stuck - delta * 0.5)
+	_last_pos = actor.global_position
+	if _stuck > STUCK_TIME:
+		_stuck = 0.0
+		_side = -_side
+		_side_hold = 0.8
+		if goal != Vector2.INF:
+			find_path(goal)
+	# Siguiendo un camino.
+	if not path.is_empty():
+		if _path_time <= 0.0 or (goal != Vector2.INF and goal.distance_to(_path_goal) > 48.0):
+			path = PackedVector2Array()
+		else:
+			while not path.is_empty() and actor.global_position.distance_to(path[0]) < 6.0:
+				path.remove_at(0)
+			if not path.is_empty():
+				return (path[0] - actor.global_position).normalized()
+	return _free_dir(want.normalized())
+
+
+func _free_dir(want: Vector2) -> Vector2:
+	for a in DETOUR_ANGLES:
+		for s in ([_side, -_side] if a > 0.0 and _side_hold <= 0.0 else [_side]):
+			var d := want.rotated(deg_to_rad(a) * s)
+			if not actor.test_move(actor.global_transform, d * PROBE):
+				if a > 0.0:
+					_side = s
+					_side_hold = maxf(_side_hold, 0.5)
+				return d
+	return want
+
+
+## Busca un camino por celdas (AStarGrid2D, celdas transitables de la zona) hasta `goal`. Deja `path` vacío si no hay.
+func find_path(goal: Vector2) -> bool:
+	path = PackedVector2Array()
+	var world := actor.get_tree().get_first_node_in_group("world")
+	if world == null or world.get("reactions") == null:
+		return false
+	var grid: EnvironmentGrid = world.reactions.grid_at(actor.global_position)
+	if grid == null or grid.zone == null:
+		return false
+	var zone: Zone = grid.zone
+	var from := zone.cell_at(actor.global_position)
+	var to := zone.cell_at(goal)
+	if from.distance_to(to) > PATH_RADIUS * 2:
+		to = from + Vector2i((Vector2(to - from).normalized() * PATH_RADIUS * 1.5).round())
+	var region := Rect2i(from, Vector2i.ONE).expand(to).grow(PATH_RADIUS / 2)
+	var astar := AStarGrid2D.new()
+	astar.region = region
+	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
+	astar.update()
+	var objects := MapRules.objects_by_cell(zone)
+	for x in range(region.position.x, region.end.x):
+		for y in range(region.position.y, region.end.y):
+			var c := Vector2i(x, y)
+			var phys := MapRules.cell_physics(zone, c, objects)
+			if phys == MapRules.SOLID or (phys == MapRules.WATER and not actor.swims):
+				astar.set_point_solid(c)
+	if astar.is_point_solid(to):
+		astar.set_point_solid(to, false)  # el destino puede estar al lado de algo sólido
+	if astar.is_point_solid(from):
+		astar.set_point_solid(from, false)
+	var cells := astar.get_id_path(from, to, true)
+	if cells.size() < 2:
+		return false
+	for i in range(1, cells.size()):
+		path.append(zone.to_global(zone.ground.map_to_local(cells[i])))
+	_path_goal = goal
+	_path_time = 3.0
+	return true
+

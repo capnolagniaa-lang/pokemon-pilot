@@ -51,6 +51,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **IA más pareja (2026-10-25, pedido del usuario: "se quedan trabados cuando tienen un obstáculo enfrente", "no
+  parece tan buena en Normal")**: los Pokémon (salvajes y de entrenadores) rodean árboles, casas y rocas en vez de
+  empujar contra ellos (y si se traban buscan camino por celdas); no disparan contra una pared (se acomodan para
+  tener tiro); los de cuerpo a cuerpo ya no retroceden solos; si ningún ataque llega, se acercan en vez de quedarse
+  un segundo quietos; los disparos anticipan tu movimiento. **Normal** ataca más seguido (×1,2 en vez de ×1,5),
+  apunta mejor (±10° en vez de ±15°), esquiva más (22%) y pega 85%; Difícil esquiva 40%. Test `--autotest-ai-steer`.
 - **Mapa en el menú (2026-10-25, pedido del usuario)**: Esc → Mapa (con el objeto Mapa que da Dalia; las partidas que
   ya lo tienen lo ven sin hacer nada). La región en miniatura dibujada desde los mapas reales, con nombres de ciudades
   y rutas, tu posición (adentro de una casa o cueva, en su puerta), la estrella del objetivo de la Guía, íconos de

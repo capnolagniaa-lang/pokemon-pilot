@@ -11,3 +11,4 @@ aim_error_deg = 28.0
 dodge_chance = 0.0
 damage_mult = 0.6
 think_interval_mult = 1.8
+lead = 0.0

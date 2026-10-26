@@ -32,9 +32,7 @@ func physics_update(delta: float) -> void:
 		return
 	var away: Vector2 = (actor.global_position - _threat.global_position).normalized()
 	var before: Vector2 = actor.global_position
-	if actor.get_slide_collision_count() > 0:
-		away = away.rotated(PI / 2.0)
-	actor.move(away, actor.speed() * 1.1)
+	actor.move(actor.body.steer(away), actor.speed() * 1.1)
 	var progressed: bool = actor.global_position.distance_to(before) > actor.speed() * delta * 0.3
 	var close: bool = actor.global_position.distance_to(_threat.global_position) < 34.0
 	_stuck = _stuck + delta if (close and not progressed) else 0.0

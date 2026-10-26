@@ -19,10 +19,11 @@ func physics_update(_delta: float) -> void:
 			actor.fight_opened = true
 			if actor.body.use(opener):
 				return
-	if diff.length() < _preferred_range() * 1.1:
+	# A tiro y sin nada en el medio (si dispara): a pelear. Si hay una pared o un árbol, sigue acercándose.
+	if diff.length() < _preferred_range() * 1.1 and (diff.length() < 40.0 or actor.body.clear_shot(t)):
 		transition("attack")
 		return
-	actor.move(diff.normalized(), actor.speed())
+	actor.move(actor.body.steer(diff.normalized(), t.global_position), actor.speed())
 
 
 ## Correa: el agresivo persigue lejos; el territorial suelta apenas salís de su zona. Pero mientras están
