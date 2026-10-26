@@ -26,53 +26,53 @@ script = ExtResource("1_8py1k")
 to_id = "crobat"
 method = "amistad"
 
-[sub_resource type="Resource" id="Resource_vfjrn"]
+[sub_resource type="Resource" id="Resource_bfy1e"]
 script = ExtResource("1_ltaki")
 move = ExtResource("4_bfy1e")
 
-[sub_resource type="Resource" id="Resource_68vmh"]
+[sub_resource type="Resource" id="Resource_43rcd"]
 script = ExtResource("1_ltaki")
 move = ExtResource("5_43rcd")
 
-[sub_resource type="Resource" id="Resource_kw0ma"]
+[sub_resource type="Resource" id="Resource_8n53x"]
 script = ExtResource("1_ltaki")
 level = 3
 move = ExtResource("6_8n53x")
 
-[sub_resource type="Resource" id="Resource_supsf"]
+[sub_resource type="Resource" id="Resource_4eghq"]
 script = ExtResource("1_ltaki")
 level = 5
 move = ExtResource("7_4eghq")
 
-[sub_resource type="Resource" id="Resource_cf680"]
+[sub_resource type="Resource" id="Resource_vfjrn"]
 script = ExtResource("1_ltaki")
 move = ExtResource("2_4y587")
 
-[sub_resource type="Resource" id="Resource_vg7q8"]
+[sub_resource type="Resource" id="Resource_68vmh"]
 script = ExtResource("1_ltaki")
 move = ExtResource("4_8py1k")
 
-[sub_resource type="Resource" id="Resource_lkcc1"]
+[sub_resource type="Resource" id="Resource_kw0ma"]
 script = ExtResource("1_ltaki")
 level = 16
 move = ExtResource("6_43rcd")
 
-[sub_resource type="Resource" id="Resource_nk4uy"]
+[sub_resource type="Resource" id="Resource_supsf"]
 script = ExtResource("1_ltaki")
 level = 35
 move = ExtResource("9_vfjrn")
 
-[sub_resource type="Resource" id="Resource_8q1ie"]
+[sub_resource type="Resource" id="Resource_cf680"]
 script = ExtResource("1_ltaki")
 level = 42
 move = ExtResource("10_68vmh")
 
-[sub_resource type="Resource" id="Resource_01ugw"]
+[sub_resource type="Resource" id="Resource_vg7q8"]
 script = ExtResource("1_ltaki")
 level = 49
 move = ExtResource("11_kw0ma")
 
-[sub_resource type="Resource" id="Resource_227g7"]
+[sub_resource type="Resource" id="Resource_lkcc1"]
 script = ExtResource("1_ltaki")
 level = 56
 move = ExtResource("12_supsf")
@@ -84,7 +84,7 @@ display_name = "Golbat"
 dex = 42
 types = Array[ExtResource("4_ll58t")]([ExtResource("5_u1t2j"), ExtResource("6_88vbf")])
 kit = ExtResource("2_bfy1e")
-learnset = Array[ExtResource("1_ltaki")]([SubResource("Resource_vfjrn"), SubResource("Resource_68vmh"), SubResource("Resource_kw0ma"), SubResource("Resource_supsf"), SubResource("Resource_cf680"), SubResource("Resource_vg7q8"), SubResource("Resource_lkcc1"), SubResource("Resource_nk4uy"), SubResource("Resource_8q1ie"), SubResource("Resource_01ugw"), SubResource("Resource_227g7")])
+learnset = Array[ExtResource("1_ltaki")]([SubResource("Resource_bfy1e"), SubResource("Resource_43rcd"), SubResource("Resource_8n53x"), SubResource("Resource_4eghq"), SubResource("Resource_vfjrn"), SubResource("Resource_68vmh"), SubResource("Resource_kw0ma"), SubResource("Resource_supsf"), SubResource("Resource_cf680"), SubResource("Resource_vg7q8"), SubResource("Resource_lkcc1")])
 kit_inherited = true
 evolutions = Array[ExtResource("1_8py1k")]([SubResource("Resource_wtxpj")])
 evolves_from = "zubat"

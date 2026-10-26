@@ -40,6 +40,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-kits-v3  # los 10 kits n
 $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bichos, Spearow, Mankey, Sandshrew, Onix jefe)
 $G --headless --path . --quit-after 60000 -- --autotest-kits-v5  # kits v5 (Staryu, Starmie jefa de Misty, Butterfree, Beedrill, Kadabra, Gyarados)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v6  # kits v6 (Raichu jefe de Surge + Tanda A; lento: `--only <especie>` prueba una sola)
+$G --headless --path . --quit-after 200000 -- --autotest-kits-v7  # kits v7 (Tanda B: Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth)
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
@@ -326,6 +327,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   Ekans, Machop, Nidoran♀/♂, Horsea, Shellder, Tentacool, Voltorb). Firmas genéricas por parámetros: `grounding`,
   `still` y `body_trait` (`scripts/combat/signatures/`); `SignatureMechanic.blocks_status` (inmunidades). Después:
   `build_learnsets.gd` y `apply_evolutions.gd` (herencia) y otra vez `build_learnsets.gd`.
+- `tools/build_kits_v7.py`: igual para la Tanda B (Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth); firmas
+  `metronome`, `puff`, `wary`, `payday`.
 - `tools/fetch_npc_sprites.py`: baja de pret/pokefirered los sprites de las personas de los mapas importados (y las de
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
   (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/dormido.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "canto_clefairy"
+display_name = "Canto"
+element = ExtResource("3_x")
+kind = 5
+category = 2
+power = 0.0
+cooldown = 12.0
+knockback = 0.0
+zone_radius = 42.0
+zone_duration = 3.0
+placement_range = 0.0
+zone_traps = false
+zone_tick = 99.0
+dwell_time = 0.6
+dwell_status = ExtResource("4_x")

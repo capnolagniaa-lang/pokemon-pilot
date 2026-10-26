@@ -11,6 +11,19 @@ const SPECIES := {"raichu": "bruiser", "zubat": "hostigador", "ekans": "control"
 const HEIRS := {"golbat": "zubat", "arbok": "ekans", "machoke": "machop", "nidorina": "nidoran_f",
 	"nidorino": "nidoran_m", "seadra": "horsea", "cloyster": "shellder", "tentacruel": "tentacool", "electrode": "voltorb"}
 
+## Lo que cambia entre tandas (KitsV7Tests sobreescribe estos tres).
+func _species() -> Dictionary:
+	return SPECIES
+
+
+func _heirs() -> Dictionary:
+	return HEIRS
+
+
+func _tag() -> String:
+	return "kits-v6"
+
+
 var autotest: Node
 var world: Node
 var me: Creature
@@ -22,22 +35,25 @@ func run() -> void:
 	# entera arma el mundo 10 veces y con la PC cargada tarda mucho).
 	var args := OS.get_cmdline_user_args()
 	var only: String = args[args.find("--only") + 1] if args.has("--only") and args.find("--only") + 1 < args.size() else ""
-	for id in SPECIES:
+	var species := _species()
+	var heirs := _heirs()
+	for id in species:
 		var sp: SpeciesData = DB.species[id]
-		r["%s: kit %s con 4 ataques y firma" % [sp.display_name, SPECIES[id]]] = sp.kit != null and not sp.kit_inherited \
-			and sp.kit.archetype == SPECIES[id] and sp.kit.moves.size() == 4 and sp.kit.signature != null
+		r["%s: kit %s con 4 ataques y firma" % [sp.display_name, species[id]]] = sp.kit != null and not sp.kit_inherited \
+			and sp.kit.archetype == species[id] and sp.kit.moves.size() == 4 and sp.kit.signature != null
 		r["%s: aprende el kit (Nv. 1/1/3/5)" % sp.display_name] = sp.learnset.size() >= 4 \
 			and sp.learnset[0].move == sp.kit.moves[0] and sp.learnset[3].level == 5
-	for heir in HEIRS:
-		r["%s hereda el kit de %s" % [heir, HEIRS[heir]]] = DB.species[heir].kit == DB.species[HEIRS[heir]].kit
-	r["Raichu ya no pelea con el kit de Pikachu"] = DB.species["raichu"].kit != DB.species["pikachu"].kit
+	for heir in heirs:
+		r["%s hereda el kit de %s" % [heir, heirs[heir]]] = DB.species[heir].kit == DB.species[heirs[heir]].kit
+	if species.has("raichu"):
+		r["Raichu ya no pelea con el kit de Pikachu"] = DB.species["raichu"].kit != DB.species["pikachu"].kit
 
 	# Una sola vuelta por Pokémon (armar el mundo es lo lento): sus 4 ataques y enseguida su firma.
 	var used := []
-	for id in SPECIES:
+	for id in species:
 		if only != "" and id != only:
 			continue
-		print("[kits-v6] … ", id)
+		print("[%s] … %s" % [_tag(), id])
 		await _setup(id)
 		var dummy := _dummy("bulbasaur", Vector2(45, 0))
 		var n := 0
@@ -69,8 +85,8 @@ func run() -> void:
 func _finish(r: Dictionary) -> void:
 	var ok := r.values().all(func(v): return v)
 	for key in r:
-		print("[kits-v6] %s %s" % ["OK   " if r[key] else "FALLO", key])
-	print("[autotest-kits-v6] -> ", "OK" if ok else "FALLO")
+		print("[%s] %s %s" % [_tag(), "OK   " if r[key] else "FALLO", key])
+	print("[autotest-%s] -> " % _tag(), "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
 
 

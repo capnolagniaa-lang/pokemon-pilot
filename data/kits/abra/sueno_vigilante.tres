@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/wary_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "sueno_vigilante"
+display_name = "Sueño Vigilante"
+description = "Cuando le pegan se teletransporta solo lejos del atacante (cada 6 s). Dormido o paralizado no se escapa: así se lo atrapa."
+color = Color(0.95, 0.8, 0.4, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"blink_distance": 90.0, "cooldown": 6.0, "pinned_by": ["dormido", "paralizado"]}

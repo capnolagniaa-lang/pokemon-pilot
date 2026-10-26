@@ -176,6 +176,26 @@ Vaporeon, Jolteon, Flareon). Son **30 especies con kit propio** (más las que he
 | Gyarados | Bruiser | Mordisco (combo 2, 30% herido) | Furia Dragón (bola grande) | Ciclón (área que empuja, 20% desorienta) | Hidrobomba (110, carga 0,5 s, empuja muchísimo y moja) | **Ira de Dragón**: sube al recibir golpes; llena → Enfurecido 5 s |
 | **Starmie (jefa)** | Control | **Hidropulso**: disparo grande, Empapado y 20% desorienta | **Rapidez**: abanico de 5 estrellas | **Giro Rápido**: embestida fuerte que desvía proyectiles | **Recuperación**: se cura 20% en 2,5 s (va lenta) | **Núcleo Prisma**: cuerpo ×1,3, empuje ×0,35, +25% a lo Empapado, barra llena cura 8%; **a mitad de vida el núcleo brilla**: onda que empuja, moja y deja Expuesto, y queda con Núcleo Brillante hasta el final |
 
+## v7 — Tanda B de la propuesta de kits pendientes (✅ en prueba, 2026-10-26)
+Clefairy, Jigglypuff, Abra, Goldeen, Magnemite y Meowth (`tools/build_kits_v7.py`); heredan Clefable, Wigglytuff,
+Seaking, Magneton y Persian. Decisiones (con lo que recomendaba la propuesta): el **Metrónomo elige entre los ataques
+de todos los kits** (no los que lanza una firma, ni Autodestrucción) y **las monedas de tu Meowth suman a tu dinero**.
+Firmas nuevas: `metronome_mechanic.gd`, `puff_mechanic.gd`, `wary_mechanic.gd`, `payday_mechanic.gd`; Goldeen y
+Magnemite reusan `body_trait` (parámetros nuevos `wet_speed`, `pierce_*`). Estados nuevos: `inflado`, `reducido`.
+Simplificaciones: Doble Bofetón es un combo de 4 (no al azar); Canto se centra en el que canta; el inflado de
+Jigglypuff no lo agranda (le baja el empuje); el Abra salvaje no huye de la pelea con Teletransporte Lejano (la IA no lo
+sabe usar para escapar); Fijar Blanco no hace teledirigidos (marca con Expuesto); Meowth suma las monedas al pegar,
+sin recogerlas del piso. Autotest `--autotest-kits-v7` (`--only <especie>`).
+
+| Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Firma |
+|---|---|---|---|---|---|---|
+| Clefairy | Caótico | Doble Bofetón (combo 4) | Canto (anillo: quedarse 0,6 s duerme) | Reducción (recibe ×0,75, más rápido) | **Metrónomo** (un ataque al azar de cualquier kit) | **Luz de Luna**: cada Metrónomo carga la luna; llena, el próximo sale de los 5 más fuertes |
+| Jigglypuff | Control | Destructor | Rodar | Rizo Defensa | Canto (grande, carga 0,6 s) | **Inflado y Marcador**: los golpes que recibe lo inflan (menos empuje); Rodar gasta el inflado (+25% c/u); a un dormido le deja un garabato (Expuesto) |
+| Abra | Velocista | Destello Psíquico | Teletransporte | Confusión | Teletransporte Lejano | **Sueño Vigilante**: al recibir un golpe se teletransporta solo (cada 6 s); dormido o paralizado no |
+| Goldeen | Perseguidor | Picotazo | Supersónico | Hidrochorro (moja alrededor) | Cornada | **Cuerno Perforador**: el cuerno pega ×1,6 a quien tiene una defensa puesta; mojado ×1,3 de velocidad, en seco aletea (×0,85) |
+| Magnemite | Espaciador | Impactrueno (atrae) | Bomba Sónica | Supersónico | Fijar Blanco (atrae y marca: Expuesto) | **Magnetismo**: flota (no lo ralentizan ni enraízan); +25% a lo marcado |
+| Meowth | Asesino | Arañazo (combo 3) | Mordisco | Finta (se lanza rápido) | Golpes Furia (combo 5) | **Día de Pago**: cada golpe suma $5 a tu dinero (si es tuyo); cada 4 golpes baja 0,5 s las recargas |
+
 ## v6 — Tanda A de la propuesta de kits pendientes (✅ en prueba, 2026-10-26)
 Pedido del usuario: "leé la propuesta de kits pendientes y empezá a implementar" (`docs/PROPUESTA_KITS_PENDIENTES.md`,
 Tanda A completa). Decisiones tomadas con lo que recomendaba la propuesta: **Raichu jefe primero** y

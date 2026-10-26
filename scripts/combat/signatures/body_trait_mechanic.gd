@@ -10,6 +10,9 @@ extends SignatureMechanic
 ##  · `melee_cooldown_cut`: cada golpe cuerpo a cuerpo que conecta baja esos segundos todas sus recargas (Machop).
 ##  · `front_mult` / `back_mult`: daño recibido de frente y de espaldas según hacia dónde mira (Shellder).
 ##  · `wet_heal` (fracción por s) + `dry_speed`: sobre agua o suelo mojado se cura; en seco va más lento (Tentacool).
+##  · `wet_speed` (+ `dry_speed`): mojado se mueve más rápido; en seco más lento (Goldeen: fuera del agua aletea).
+##  · `pierce_prefixes` + `pierce_statuses` + `pierce_mult`: esos ataques (el cuerno) pegan más a un rival con una
+##    defensa puesta (Fortaleza, Refugio, Rizo Defensa...): la atraviesan (Goldeen).
 ##  · `perfect_dodge` (s): esquivar con un golpe rival a punto de llegar recarga la ranura `perfect_slot` y deja el
 ##    próximo golpe crítico (`crit_mult`) (Nidoran♂).
 
@@ -84,6 +87,11 @@ func modify_hit(hit: HitInfo) -> void:
 
 
 func damage_mult_against(hit: HitInfo, target: Creature) -> float:
+	var prefixes: Array = param("pierce_prefixes", [])
+	if prefixes.any(func(p): return hit.move.id.begins_with(p)):
+		for s in param("pierce_statuses", []):
+			if target.statuses.has_status(s):
+				return param("pierce_mult", 1.6)
 	var st: String = param("bonus_vs_status", "")
 	if st != "" and hit.move.id.begins_with(param("bonus_move_prefix", "")) and target.statuses.has_status(st):
 		return param("bonus_mult", 1.5)
@@ -104,7 +112,7 @@ func damage_taken_mult(hit: HitInfo) -> float:
 
 func _tick(delta: float) -> void:
 	var heal: float = param("wet_heal", 0.0)
-	if heal <= 0.0:
+	if heal <= 0.0 and not data.params.has("wet_speed"):
 		return
 	var world := creature.get_tree().get_first_node_in_group("world")
 	_wet = false
@@ -113,17 +121,19 @@ func _tick(delta: float) -> void:
 		var st = world.reactions.state_at(creature.global_position) if world.get("reactions") != null else null
 		_wet = tags.has("agua") or creature.swims or (st != null and st.id == "mojado") \
 			or creature.statuses.has_status("empapado")
-	if _wet and not creature.is_down():
+	if _wet and heal > 0.0 and not creature.is_down():
 		creature.health.heal(creature.health.max_hp() * heal * delta)
 
 
 func speed_mult() -> float:
-	return param("dry_speed", 1.0) if data.params.has("wet_heal") and not _wet else 1.0
+	if not (data.params.has("wet_heal") or data.params.has("wet_speed")):
+		return 1.0
+	return param("wet_speed", 1.0) if _wet else param("dry_speed", 1.0)
 
 
 func state_label() -> String:
 	if _crit_ready:
 		return "CRÍTICO LISTO"
-	if data.params.has("wet_heal"):
+	if data.params.has("wet_heal") or data.params.has("wet_speed"):
 		return "MOJADO" if _wet else "SECO"
 	return ""

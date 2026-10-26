@@ -20,52 +20,52 @@
 [ext_resource type="Resource" path="res://data/moves/manto_espejo.tres" id="12_5xwhg"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_bj23p"]
 
-[sub_resource type="Resource" id="Resource_w8moa"]
+[sub_resource type="Resource" id="Resource_fk7nl"]
 script = ExtResource("1_kryne")
 move = ExtResource("4_fk7nl")
 
-[sub_resource type="Resource" id="Resource_w6ifr"]
+[sub_resource type="Resource" id="Resource_b0is3"]
 script = ExtResource("1_kryne")
 move = ExtResource("5_b0is3")
 
-[sub_resource type="Resource" id="Resource_psmf8"]
+[sub_resource type="Resource" id="Resource_oiqni"]
 script = ExtResource("1_kryne")
 level = 3
 move = ExtResource("6_oiqni")
 
-[sub_resource type="Resource" id="Resource_5xwhg"]
+[sub_resource type="Resource" id="Resource_sajou"]
 script = ExtResource("1_kryne")
 level = 5
 move = ExtResource("7_sajou")
 
-[sub_resource type="Resource" id="Resource_j1n8m"]
+[sub_resource type="Resource" id="Resource_w8moa"]
 script = ExtResource("1_kryne")
 move = ExtResource("2_rsstu")
 
-[sub_resource type="Resource" id="Resource_jka5u"]
+[sub_resource type="Resource" id="Resource_w6ifr"]
 script = ExtResource("1_kryne")
 move = ExtResource("3_bj23p")
 
-[sub_resource type="Resource" id="Resource_mmhxd"]
+[sub_resource type="Resource" id="Resource_psmf8"]
 script = ExtResource("1_kryne")
 move = ExtResource("5_fk7nl")
 
-[sub_resource type="Resource" id="Resource_vpfwn"]
+[sub_resource type="Resource" id="Resource_5xwhg"]
 script = ExtResource("1_kryne")
 level = 41
 move = ExtResource("9_w8moa")
 
-[sub_resource type="Resource" id="Resource_uh4kx"]
+[sub_resource type="Resource" id="Resource_j1n8m"]
 script = ExtResource("1_kryne")
 level = 48
 move = ExtResource("10_w6ifr")
 
-[sub_resource type="Resource" id="Resource_5a2xh"]
+[sub_resource type="Resource" id="Resource_jka5u"]
 script = ExtResource("1_kryne")
 level = 54
 move = ExtResource("11_psmf8")
 
-[sub_resource type="Resource" id="Resource_4tfa7"]
+[sub_resource type="Resource" id="Resource_mmhxd"]
 script = ExtResource("1_kryne")
 level = 59
 move = ExtResource("12_5xwhg")
@@ -77,7 +77,7 @@ display_name = "Electrode"
 dex = 101
 types = Array[ExtResource("4_yphxt")]([ExtResource("5_1ewj5")])
 kit = ExtResource("2_fk7nl")
-learnset = Array[ExtResource("1_kryne")]([SubResource("Resource_w8moa"), SubResource("Resource_w6ifr"), SubResource("Resource_psmf8"), SubResource("Resource_5xwhg"), SubResource("Resource_j1n8m"), SubResource("Resource_jka5u"), SubResource("Resource_mmhxd"), SubResource("Resource_vpfwn"), SubResource("Resource_uh4kx"), SubResource("Resource_5a2xh"), SubResource("Resource_4tfa7")])
+learnset = Array[ExtResource("1_kryne")]([SubResource("Resource_fk7nl"), SubResource("Resource_b0is3"), SubResource("Resource_oiqni"), SubResource("Resource_sajou"), SubResource("Resource_w8moa"), SubResource("Resource_w6ifr"), SubResource("Resource_psmf8"), SubResource("Resource_5xwhg"), SubResource("Resource_j1n8m"), SubResource("Resource_jka5u"), SubResource("Resource_mmhxd")])
 kit_inherited = true
 evolves_from = "voltorb"
 temperament = ExtResource("15_bj23p")

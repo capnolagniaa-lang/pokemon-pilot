@@ -18,38 +18,38 @@
 [ext_resource type="Resource" path="res://data/kits/nidoran_m/cornada_nidoran_m.tres" id="7_gexb5"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_dfq30"]
 
-[sub_resource type="Resource" id="Resource_k2maf"]
+[sub_resource type="Resource" id="Resource_diu8g"]
 script = ExtResource("1_nafas")
 move = ExtResource("4_diu8g")
 
-[sub_resource type="Resource" id="Resource_tlo4q"]
+[sub_resource type="Resource" id="Resource_rw1ox"]
 script = ExtResource("1_nafas")
 move = ExtResource("5_rw1ox")
 
-[sub_resource type="Resource" id="Resource_61iiw"]
+[sub_resource type="Resource" id="Resource_1lnhl"]
 script = ExtResource("1_nafas")
 level = 3
 move = ExtResource("6_1lnhl")
 
-[sub_resource type="Resource" id="Resource_nla7b"]
+[sub_resource type="Resource" id="Resource_gexb5"]
 script = ExtResource("1_nafas")
 level = 5
 move = ExtResource("7_gexb5")
 
-[sub_resource type="Resource" id="Resource_lv8by"]
+[sub_resource type="Resource" id="Resource_k2maf"]
 script = ExtResource("1_nafas")
 move = ExtResource("3_dfq30")
 
-[sub_resource type="Resource" id="Resource_6s0uh"]
+[sub_resource type="Resource" id="Resource_tlo4q"]
 script = ExtResource("1_nafas")
 move = ExtResource("5_851v0")
 
-[sub_resource type="Resource" id="Resource_wcr6t"]
+[sub_resource type="Resource" id="Resource_61iiw"]
 script = ExtResource("1_nafas")
 level = 22
 move = ExtResource("6_bp2if")
 
-[sub_resource type="Resource" id="Resource_uqhl8"]
+[sub_resource type="Resource" id="Resource_nla7b"]
 script = ExtResource("1_nafas")
 level = 43
 move = ExtResource("7_diu8g")
@@ -61,7 +61,7 @@ display_name = "Nidoking"
 dex = 34
 types = Array[ExtResource("4_cyf1a")]([ExtResource("5_cu437"), ExtResource("6_5v38f")])
 kit = ExtResource("2_851v0")
-learnset = Array[ExtResource("1_nafas")]([SubResource("Resource_k2maf"), SubResource("Resource_tlo4q"), SubResource("Resource_61iiw"), SubResource("Resource_nla7b"), SubResource("Resource_lv8by"), SubResource("Resource_6s0uh"), SubResource("Resource_wcr6t"), SubResource("Resource_uqhl8")])
+learnset = Array[ExtResource("1_nafas")]([SubResource("Resource_diu8g"), SubResource("Resource_rw1ox"), SubResource("Resource_1lnhl"), SubResource("Resource_gexb5"), SubResource("Resource_k2maf"), SubResource("Resource_tlo4q"), SubResource("Resource_61iiw"), SubResource("Resource_nla7b")])
 kit_inherited = true
 evolves_from = "nidorino"
 temperament = ExtResource("10_dfq30")

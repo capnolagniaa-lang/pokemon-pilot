@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/metronome_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "luz_de_luna"
+display_name = "Luz de Luna"
+description = "Metrónomo lanza un ataque al azar de cualquier kit del juego. Cada uno carga la luna (3 marcas); con la luna llena, el próximo elige entre los 5 más fuertes."
+color = Color(1.0, 0.75, 0.85, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"metronome_move": "metronomo", "charges": 3, "top": 5, "exclude": ["autodestruccion"]}

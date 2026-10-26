@@ -51,6 +51,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **Kits v7 — Tanda B (2026-10-26)**: Clefairy (Metrónomo: un ataque al azar de cualquier kit), Jigglypuff (se infla y
+  le dibuja la cara a los dormidos), Abra (se teletransporta solo al recibir un golpe: hay que dormirlo para atraparlo),
+  Goldeen (el cuerno atraviesa defensas; rápido mojado), Magnemite (flota y atrae) y Meowth (Día de Pago: suma a tu
+  dinero). Ver `PLAN_IDENTIDAD_COMBATE.md` "v7". Queda la Tanda C. Test `--autotest-kits-v7`.
 - **Kits v6 — Tanda A (2026-10-26, pedido del usuario)**: Raichu ahora es **jefe de Lt. Surge** (Toma de Tierra:
   planta la cola, descarga y suelo electrificado; Sobrecarga a mitad de vida), y kits propios para Zubat, Ekans,
   Machop, Nidoran♀, Nidoran♂, Horsea, Shellder, Tentacool y Voltorb (sus evoluciones los heredan). Ver

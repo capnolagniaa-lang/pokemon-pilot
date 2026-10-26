@@ -1,84 +1,42 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/jigglypuff/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_dv7bi"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_vk2ro"]
-[ext_resource type="Resource" path="res://data/moves/canto.tres" id="2_focit"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_w3mic"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_iaxg0"]
-[ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="3_opjgq"]
-[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="4_dv7bi"]
+[ext_resource type="Resource" path="res://data/kits/jigglypuff/destructor_jigglypuff.tres" id="4_hri0y"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_l081b"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_0ws82"]
-[ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="5_3rxeg"]
-[ext_resource type="Resource" path="res://data/moves/rodar.tres" id="6_ktv80"]
+[ext_resource type="Resource" path="res://data/kits/jigglypuff/rodar_jigglypuff.tres" id="5_i8bvh"]
+[ext_resource type="Resource" path="res://data/kits/jigglypuff/rizo_defensa_jigglypuff.tres" id="6_x21ue"]
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="6_xm033"]
-[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="7_7027l"]
-[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="8_mte20"]
-[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="9_vy8bp"]
-[ext_resource type="Resource" path="res://data/moves/mimetico.tres" id="10_qi8ak"]
-[ext_resource type="Resource" path="res://data/moves/vozarron.tres" id="11_s4l7k"]
-[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="12_eieuw"]
+[ext_resource type="Resource" path="res://data/kits/jigglypuff/canto_jigglypuff.tres" id="7_3v77x"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_opjgq"]
 
-[sub_resource type="Resource" id="Resource_dv7bi"]
+[sub_resource type="Resource" id="Resource_hri0y"]
 script = ExtResource("1_dv7bi")
 to_id = "wigglytuff"
 method = "piedra"
 item = "piedra_lunar"
 
-[sub_resource type="Resource" id="Resource_3rxeg"]
+[sub_resource type="Resource" id="Resource_i8bvh"]
 script = ExtResource("1_vk2ro")
-move = ExtResource("2_focit")
+move = ExtResource("4_hri0y")
 
-[sub_resource type="Resource" id="Resource_ktv80"]
+[sub_resource type="Resource" id="Resource_x21ue"]
 script = ExtResource("1_vk2ro")
-level = 4
-move = ExtResource("3_opjgq")
+move = ExtResource("5_i8bvh")
 
-[sub_resource type="Resource" id="Resource_7027l"]
+[sub_resource type="Resource" id="Resource_3v77x"]
 script = ExtResource("1_vk2ro")
-level = 9
-move = ExtResource("4_dv7bi")
+level = 3
+move = ExtResource("6_x21ue")
 
-[sub_resource type="Resource" id="Resource_mte20"]
+[sub_resource type="Resource" id="Resource_focit"]
 script = ExtResource("1_vk2ro")
-level = 14
-move = ExtResource("5_3rxeg")
-
-[sub_resource type="Resource" id="Resource_vy8bp"]
-script = ExtResource("1_vk2ro")
-level = 19
-move = ExtResource("6_ktv80")
-
-[sub_resource type="Resource" id="Resource_qi8ak"]
-script = ExtResource("1_vk2ro")
-level = 24
-move = ExtResource("7_7027l")
-
-[sub_resource type="Resource" id="Resource_s4l7k"]
-script = ExtResource("1_vk2ro")
-level = 29
-move = ExtResource("8_mte20")
-
-[sub_resource type="Resource" id="Resource_eieuw"]
-script = ExtResource("1_vk2ro")
-level = 34
-move = ExtResource("9_vy8bp")
-
-[sub_resource type="Resource" id="Resource_dd2yw"]
-script = ExtResource("1_vk2ro")
-level = 39
-move = ExtResource("10_qi8ak")
-
-[sub_resource type="Resource" id="Resource_gt67s"]
-script = ExtResource("1_vk2ro")
-level = 44
-move = ExtResource("11_s4l7k")
-
-[sub_resource type="Resource" id="Resource_mx3oj"]
-script = ExtResource("1_vk2ro")
-level = 49
-move = ExtResource("12_eieuw")
+level = 5
+move = ExtResource("7_3v77x")
 
 [resource]
 script = ExtResource("3_iaxg0")
@@ -86,8 +44,9 @@ id = "jigglypuff"
 display_name = "Jigglypuff"
 dex = 39
 types = Array[ExtResource("4_l081b")]([ExtResource("5_0ws82"), ExtResource("6_xm033")])
-learnset = Array[ExtResource("1_vk2ro")]([SubResource("Resource_3rxeg"), SubResource("Resource_ktv80"), SubResource("Resource_7027l"), SubResource("Resource_mte20"), SubResource("Resource_vy8bp"), SubResource("Resource_qi8ak"), SubResource("Resource_s4l7k"), SubResource("Resource_eieuw"), SubResource("Resource_dd2yw"), SubResource("Resource_gt67s"), SubResource("Resource_mx3oj")])
-evolutions = Array[ExtResource("1_dv7bi")]([SubResource("Resource_dv7bi")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_vk2ro")]([SubResource("Resource_i8bvh"), SubResource("Resource_x21ue"), SubResource("Resource_3v77x"), SubResource("Resource_focit")])
+evolutions = Array[ExtResource("1_dv7bi")]([SubResource("Resource_hri0y")])
 evolves_from = "igglybuff"
 temperament = ExtResource("15_opjgq")
 genus = "Pokémon Globo"

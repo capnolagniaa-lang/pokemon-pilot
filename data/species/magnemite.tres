@@ -1,82 +1,41 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/magnemite/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_l51ae"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_niwy8"]
-[ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="2_3omnb"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yt28n"]
-[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_oxqxu"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_rx1nw"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_05sr6"]
-[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="4_niwy8"]
-[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="5_feg78"]
+[ext_resource type="Resource" path="res://data/kits/magnemite/impactrueno_magnemite.tres" id="4_fb0ph"]
+[ext_resource type="Resource" path="res://data/kits/magnemite/bomba_sonica_magnemite.tres" id="5_tk7da"]
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_uktkj"]
-[ext_resource type="Resource" path="res://data/moves/bomba_sonica.tres" id="6_72ith"]
+[ext_resource type="Resource" path="res://data/kits/magnemite/supersonico_magnemite.tres" id="6_80hm8"]
 [ext_resource type="Resource" path="res://data/types/acero.tres" id="6_jpx5f"]
-[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="7_tkgcd"]
-[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="8_3uu0r"]
-[ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="9_ai7m8"]
-[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="10_ej8qi"]
-[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="11_c1dna"]
-[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="12_51wio"]
+[ext_resource type="Resource" path="res://data/kits/magnemite/fijar_blanco_magnemite.tres" id="7_nv3j0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_oxqxu"]
 
-[sub_resource type="Resource" id="Resource_niwy8"]
+[sub_resource type="Resource" id="Resource_fb0ph"]
 script = ExtResource("1_niwy8")
 to_id = "magneton"
 level = 30
 
-[sub_resource type="Resource" id="Resource_feg78"]
+[sub_resource type="Resource" id="Resource_tk7da"]
 script = ExtResource("1_l51ae")
-move = ExtResource("2_3omnb")
+move = ExtResource("4_fb0ph")
 
-[sub_resource type="Resource" id="Resource_72ith"]
+[sub_resource type="Resource" id="Resource_80hm8"]
 script = ExtResource("1_l51ae")
-move = ExtResource("3_oxqxu")
+move = ExtResource("5_tk7da")
 
-[sub_resource type="Resource" id="Resource_tkgcd"]
+[sub_resource type="Resource" id="Resource_nv3j0"]
 script = ExtResource("1_l51ae")
-level = 6
-move = ExtResource("4_niwy8")
+level = 3
+move = ExtResource("6_80hm8")
 
-[sub_resource type="Resource" id="Resource_3uu0r"]
+[sub_resource type="Resource" id="Resource_3omnb"]
 script = ExtResource("1_l51ae")
-level = 11
-move = ExtResource("5_feg78")
-
-[sub_resource type="Resource" id="Resource_ai7m8"]
-script = ExtResource("1_l51ae")
-level = 16
-move = ExtResource("6_72ith")
-
-[sub_resource type="Resource" id="Resource_ej8qi"]
-script = ExtResource("1_l51ae")
-level = 21
-move = ExtResource("7_tkgcd")
-
-[sub_resource type="Resource" id="Resource_c1dna"]
-script = ExtResource("1_l51ae")
-level = 26
-move = ExtResource("8_3uu0r")
-
-[sub_resource type="Resource" id="Resource_51wio"]
-script = ExtResource("1_l51ae")
-level = 32
-move = ExtResource("9_ai7m8")
-
-[sub_resource type="Resource" id="Resource_coakj"]
-script = ExtResource("1_l51ae")
-level = 38
-move = ExtResource("10_ej8qi")
-
-[sub_resource type="Resource" id="Resource_xwi8k"]
-script = ExtResource("1_l51ae")
-level = 44
-move = ExtResource("11_c1dna")
-
-[sub_resource type="Resource" id="Resource_lw2pg"]
-script = ExtResource("1_l51ae")
-level = 50
-move = ExtResource("12_51wio")
+level = 5
+move = ExtResource("7_nv3j0")
 
 [resource]
 script = ExtResource("3_rx1nw")
@@ -84,8 +43,9 @@ id = "magnemite"
 display_name = "Magnemite"
 dex = 81
 types = Array[ExtResource("4_05sr6")]([ExtResource("5_uktkj"), ExtResource("6_jpx5f")])
-learnset = Array[ExtResource("1_l51ae")]([SubResource("Resource_feg78"), SubResource("Resource_72ith"), SubResource("Resource_tkgcd"), SubResource("Resource_3uu0r"), SubResource("Resource_ai7m8"), SubResource("Resource_ej8qi"), SubResource("Resource_c1dna"), SubResource("Resource_51wio"), SubResource("Resource_coakj"), SubResource("Resource_xwi8k"), SubResource("Resource_lw2pg")])
-evolutions = Array[ExtResource("1_niwy8")]([SubResource("Resource_niwy8")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_l51ae")]([SubResource("Resource_tk7da"), SubResource("Resource_80hm8"), SubResource("Resource_nv3j0"), SubResource("Resource_3omnb")])
+evolutions = Array[ExtResource("1_niwy8")]([SubResource("Resource_fb0ph")])
 temperament = ExtResource("15_oxqxu")
 genus = "Pokémon Imán"
 pokedex_entry = "Magnemite se engancha a las líneas de tensión para nutrirse de electricidad. Cuando se producen apagones en las casas, es aconsejable revisar el automático y comprobar que no hay Pokémon de este tipo colgados de la caja de fusibles."

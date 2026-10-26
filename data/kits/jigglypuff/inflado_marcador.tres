@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/puff_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "inflado_marcador"
+display_name = "Inflado y Marcador"
+description = "Cada golpe que recibe lo infla (hasta 3: menos empuje). Rodar gasta el inflado (+25% por cada uno). Sus golpes a un dormido le dejan un garabato en la cara (Expuesto)."
+color = Color(1.0, 0.7, 0.8, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"puff_status": "inflado", "roll_move": "rodar", "roll_per_stack": 0.25, "doodle_status": "expuesto"}

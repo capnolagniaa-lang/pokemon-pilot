@@ -2,31 +2,34 @@
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_v8n4x"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xvqjx"]
-[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="2_6pnjj"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8tkwi"]
+[ext_resource type="Resource" path="res://data/kits/clefairy/kit.tres" id="2_xh61h"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_b64rp"]
-[ext_resource type="Resource" path="res://data/moves/metronomo.tres" id="3_sdlnm"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_00ndu"]
-[ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="4_v8n4x"]
+[ext_resource type="Resource" path="res://data/kits/clefairy/doble_bofeton_clefairy.tres" id="4_xh61h"]
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="5_6pnjj"]
-[ext_resource type="Resource" path="res://data/moves/canto.tres" id="5_xh61h"]
+[ext_resource type="Resource" path="res://data/kits/clefairy/canto_clefairy.tres" id="5_qhpeu"]
+[ext_resource type="Resource" path="res://data/kits/clefairy/reduccion_clefairy.tres" id="6_mqip7"]
+[ext_resource type="Resource" path="res://data/kits/clefairy/metronomo_clefairy.tres" id="7_1ck0g"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="8_sdlnm"]
 
-[sub_resource type="Resource" id="Resource_v8n4x"]
+[sub_resource type="Resource" id="Resource_2qf3r"]
 script = ExtResource("1_xvqjx")
-move = ExtResource("2_6pnjj")
+move = ExtResource("4_xh61h")
 
-[sub_resource type="Resource" id="Resource_xh61h"]
+[sub_resource type="Resource" id="Resource_nym4i"]
 script = ExtResource("1_xvqjx")
-move = ExtResource("3_sdlnm")
+move = ExtResource("5_qhpeu")
 
-[sub_resource type="Resource" id="Resource_qhpeu"]
+[sub_resource type="Resource" id="Resource_2us3m"]
 script = ExtResource("1_xvqjx")
-move = ExtResource("4_v8n4x")
+level = 3
+move = ExtResource("6_mqip7")
 
-[sub_resource type="Resource" id="Resource_mqip7"]
+[sub_resource type="Resource" id="Resource_hxish"]
 script = ExtResource("1_xvqjx")
-move = ExtResource("5_xh61h")
+level = 5
+move = ExtResource("7_1ck0g")
 
 [resource]
 script = ExtResource("3_b64rp")
@@ -34,7 +37,9 @@ id = "clefable"
 display_name = "Clefable"
 dex = 36
 types = Array[ExtResource("4_00ndu")]([ExtResource("5_6pnjj")])
-learnset = Array[ExtResource("1_xvqjx")]([SubResource("Resource_v8n4x"), SubResource("Resource_xh61h"), SubResource("Resource_qhpeu"), SubResource("Resource_mqip7")])
+kit = ExtResource("2_xh61h")
+learnset = Array[ExtResource("1_xvqjx")]([SubResource("Resource_2qf3r"), SubResource("Resource_nym4i"), SubResource("Resource_2us3m"), SubResource("Resource_hxish")])
+kit_inherited = true
 evolves_from = "clefairy"
 temperament = ExtResource("8_sdlnm")
 genus = "Pokémon Hada"

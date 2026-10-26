@@ -19,42 +19,42 @@
 [ext_resource type="Resource" path="res://data/kits/shellder/tenaza_shellder.tres" id="7_hds4g"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="10_we54i"]
 
-[sub_resource type="Resource" id="Resource_x2w07"]
+[sub_resource type="Resource" id="Resource_8o5fs"]
 script = ExtResource("1_b88ar")
 move = ExtResource("4_8o5fs")
 
-[sub_resource type="Resource" id="Resource_seyjv"]
+[sub_resource type="Resource" id="Resource_livfq"]
 script = ExtResource("1_b88ar")
 move = ExtResource("5_livfq")
 
-[sub_resource type="Resource" id="Resource_3dd8h"]
+[sub_resource type="Resource" id="Resource_wel43"]
 script = ExtResource("1_b88ar")
 level = 3
 move = ExtResource("6_wel43")
 
-[sub_resource type="Resource" id="Resource_ta22n"]
+[sub_resource type="Resource" id="Resource_hds4g"]
 script = ExtResource("1_b88ar")
 level = 5
 move = ExtResource("7_hds4g")
 
-[sub_resource type="Resource" id="Resource_uake5"]
+[sub_resource type="Resource" id="Resource_x2w07"]
 script = ExtResource("1_b88ar")
 move = ExtResource("2_u5eno")
 
-[sub_resource type="Resource" id="Resource_i5hv1"]
+[sub_resource type="Resource" id="Resource_seyjv"]
 script = ExtResource("1_b88ar")
 move = ExtResource("3_we54i")
 
-[sub_resource type="Resource" id="Resource_wh75x"]
+[sub_resource type="Resource" id="Resource_3dd8h"]
 script = ExtResource("1_b88ar")
 move = ExtResource("4_li8w5")
 
-[sub_resource type="Resource" id="Resource_ggu7p"]
+[sub_resource type="Resource" id="Resource_ta22n"]
 script = ExtResource("1_b88ar")
 level = 36
 move = ExtResource("6_155fv")
 
-[sub_resource type="Resource" id="Resource_enxqp"]
+[sub_resource type="Resource" id="Resource_uake5"]
 script = ExtResource("1_b88ar")
 level = 43
 move = ExtResource("7_00j2b")
@@ -66,7 +66,7 @@ display_name = "Cloyster"
 dex = 91
 types = Array[ExtResource("4_3ll0i")]([ExtResource("5_xcyi0"), ExtResource("6_0820v")])
 kit = ExtResource("2_ehdwd")
-learnset = Array[ExtResource("1_b88ar")]([SubResource("Resource_x2w07"), SubResource("Resource_seyjv"), SubResource("Resource_3dd8h"), SubResource("Resource_ta22n"), SubResource("Resource_uake5"), SubResource("Resource_i5hv1"), SubResource("Resource_wh75x"), SubResource("Resource_ggu7p"), SubResource("Resource_enxqp")])
+learnset = Array[ExtResource("1_b88ar")]([SubResource("Resource_8o5fs"), SubResource("Resource_livfq"), SubResource("Resource_wel43"), SubResource("Resource_hds4g"), SubResource("Resource_x2w07"), SubResource("Resource_seyjv"), SubResource("Resource_3dd8h"), SubResource("Resource_ta22n"), SubResource("Resource_uake5")])
 kit_inherited = true
 evolves_from = "shellder"
 temperament = ExtResource("10_we54i")
