@@ -69,10 +69,25 @@ func run() -> void:
 	GameState.test_tournament = {}
 	SaveManager.slot_path = before_path
 	var setup: Control = load("res://scenes/ui/tournament_test.tscn").instantiate()
-	add_child(setup)
+	var layer := CanvasLayer.new()  # como pantalla propia (sin la cámara del mundo ni el HUD encima), igual que en el juego
+	layer.layer = 100
+	add_child(layer)
+	layer.add_child(setup)
 	await get_tree().process_frame
 	r["La pantalla de prueba del torneo ofrece los Pokémon con kit"] = setup._buttons.size() == DB.species.values().filter(func(s): return s.kit != null).size()
-	setup.queue_free()
+	# Con muchos Pokémon la lista no entraba y no se podía bajar: ahora va en un ScrollContainer (la rueda la maneja
+	# Godot; en headless los eventos de mouse no llegan a la interfaz, así que se verifica la estructura).
+	await get_tree().process_frame
+	var first: Button = setup._buttons.values()[0]
+	var bar: ScrollBar = setup._scroll.get_v_scroll_bar()
+	setup._scroll.scroll_vertical = 200
+	r["En la prueba del torneo la lista de Pokémon tiene scroll (rueda/barra)"] = setup._scroll.is_ancestor_of(first) 		and bar.max_value > bar.page and setup._scroll.scroll_vertical > 0
+	var go_bottom := 0.0
+	for b in setup.find_children("*", "Button", true, false):
+		if b.text == "Empezar el torneo":
+			go_bottom = b.get_global_rect().end.y
+	r["\"Empezar el torneo\" queda a la vista"] = go_bottom > 0.0 and go_bottom <= 720.0
+	layer.queue_free()
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:

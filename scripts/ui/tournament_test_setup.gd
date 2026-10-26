@@ -14,6 +14,7 @@ var _cup := 0
 var _cup_buttons: Array[Button] = []
 var _status: Label
 var _cups: Array[TournamentCup] = []
+var _scroll: ScrollContainer
 
 
 func _ready() -> void:
@@ -35,11 +36,18 @@ func _ready() -> void:
 	add_child(root)
 	root.add_child(UiStyle.label("PROBAR EL TORNEO (modo de prueba: no se guarda)", 24, UiStyle.ACCENT))
 	root.add_child(UiStyle.label("Elegí de 1 a 6 Pokémon (los que ya tienen su estilo de pelea), el nivel y la copa.", 15, UiStyle.TEXT_DIM))
+	# Con las evoluciones hay muchos Pokémon con kit: la grilla va en un recuadro con scroll (rueda o barra) y el nivel,
+	# la copa y "Empezar" quedan siempre a la vista.
+	var scroll := ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(1200, 430)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	root.add_child(scroll)
 	var grid := GridContainer.new()
 	grid.columns = 8
 	grid.add_theme_constant_override("h_separation", 6)
 	grid.add_theme_constant_override("v_separation", 6)
-	root.add_child(grid)
+	scroll.add_child(grid)
+	_scroll = scroll
 	var kits: Array = DB.species_by_dex().filter(func(sp): return sp.kit != null)
 	for sp: SpeciesData in kits:
 		var b := Button.new()
