@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "bostezo"
+display_name = "Bostezo"
+color = Color(0.85, 0.8, 1.0, 1)
+duration = 2.4
+element = ExtResource("1_x")
+speed_mult = 0.9
+tint_strength = 0.25
+fx_amount = 3

@@ -12,25 +12,54 @@
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_4pfsy"]
 [ext_resource type="Resource" path="res://data/kits/gyarados/ciclon_gyarados.tres" id="6_vchwb"]
 [ext_resource type="Resource" path="res://data/kits/gyarados/hidrobomba_gyarados.tres" id="7_lp2ef"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="8_8yyh2"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="9_0ekw6"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="10_u8xgf"]
+[ext_resource type="Resource" path="res://data/moves/danza_dragon.tres" id="11_tvkv5"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="12_mdfld"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="13_vchwb"]
 
-[sub_resource type="Resource" id="Resource_s7cmx"]
+[sub_resource type="Resource" id="Resource_8yyh2"]
 script = ExtResource("1_a6qeh")
 move = ExtResource("4_xhax4")
 
-[sub_resource type="Resource" id="Resource_xhax4"]
+[sub_resource type="Resource" id="Resource_0ekw6"]
 script = ExtResource("1_a6qeh")
 move = ExtResource("5_tf1qy")
 
-[sub_resource type="Resource" id="Resource_tf1qy"]
+[sub_resource type="Resource" id="Resource_u8xgf"]
 script = ExtResource("1_a6qeh")
 level = 3
 move = ExtResource("6_vchwb")
 
-[sub_resource type="Resource" id="Resource_vchwb"]
+[sub_resource type="Resource" id="Resource_tvkv5"]
 script = ExtResource("1_a6qeh")
 level = 5
 move = ExtResource("7_lp2ef")
+
+[sub_resource type="Resource" id="Resource_mdfld"]
+script = ExtResource("1_a6qeh")
+move = ExtResource("8_8yyh2")
+
+[sub_resource type="Resource" id="Resource_eh8d4"]
+script = ExtResource("1_a6qeh")
+level = 30
+move = ExtResource("9_0ekw6")
+
+[sub_resource type="Resource" id="Resource_4etnr"]
+script = ExtResource("1_a6qeh")
+level = 45
+move = ExtResource("10_u8xgf")
+
+[sub_resource type="Resource" id="Resource_8ti08"]
+script = ExtResource("1_a6qeh")
+level = 50
+move = ExtResource("11_tvkv5")
+
+[sub_resource type="Resource" id="Resource_b54xg"]
+script = ExtResource("1_a6qeh")
+level = 55
+move = ExtResource("12_mdfld")
 
 [resource]
 script = ExtResource("3_m1l82")
@@ -39,7 +68,7 @@ display_name = "Gyarados"
 dex = 130
 types = Array[ExtResource("4_t6pyh")]([ExtResource("5_5ukp6"), ExtResource("6_4pfsy")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_a6qeh")]([SubResource("Resource_s7cmx"), SubResource("Resource_xhax4"), SubResource("Resource_tf1qy"), SubResource("Resource_vchwb")])
+learnset = Array[ExtResource("1_a6qeh")]([SubResource("Resource_8yyh2"), SubResource("Resource_0ekw6"), SubResource("Resource_u8xgf"), SubResource("Resource_tvkv5"), SubResource("Resource_mdfld"), SubResource("Resource_eh8d4"), SubResource("Resource_4etnr"), SubResource("Resource_8ti08"), SubResource("Resource_b54xg")])
 evolves_from = "magikarp"
 temperament = ExtResource("13_vchwb")
 genus = "Pokémon Atrocidad"

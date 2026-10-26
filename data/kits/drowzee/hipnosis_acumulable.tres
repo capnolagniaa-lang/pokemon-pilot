@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/stack_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "hipnosis_acumulable"
+display_name = "Hipnosis Acumulable"
+description = "Cualquier ataque psíquico suyo suma Somnolencia al rival; con 4, se duerme. Comesueños roba vida (perfecto contra dormidos)."
+color = Color(0.85, 0.7, 0.4, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"element_marks": {"psiquico": "somnolencia"}, "stack_status": "somnolencia", "stacks": 4, "trigger_status": "dormido", "text": "¡Zzz...!"}

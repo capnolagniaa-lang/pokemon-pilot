@@ -1,20 +1,24 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_37ckn"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_8xebr"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_y0e4m"]
-[ext_resource type="Resource" path="res://data/status/dormido.tres" id="4_ymi2u"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/dormido.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_8xebr")
+script = ExtResource("1_x")
 id = "canto"
 display_name = "Canto"
-element = ExtResource("1_37ckn")
+element = ExtResource("3_x")
+kind = 5
 category = 2
 power = 0.0
-cooldown = 6.0
+cooldown = 12.0
 knockback = 0.0
-statuses_on_hit = Array[ExtResource("3_y0e4m")]([ExtResource("4_ymi2u")])
-speed = 220.0
-size = 4.5
-lifetime = 0.8
+zone_radius = 42.0
+zone_duration = 3.0
+placement_range = 0.0
+zone_traps = false
+zone_tick = 99.0
+dwell_time = 0.6
+dwell_status = ExtResource("4_x")

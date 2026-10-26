@@ -15,33 +15,62 @@
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="6_t0c8y"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_wwmc1"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_llbsy"]
+[ext_resource type="Resource" path="res://data/moves/hidrochorro.tres" id="8_jx6qk"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_kvyim"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="9_lw2pu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="9_t0c8y"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="10_j8hod"]
+[ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="11_hcr2m"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="12_w7dlt"]
 
-[sub_resource type="Resource" id="Resource_i6lai"]
+[sub_resource type="Resource" id="Resource_a24ts"]
 script = ExtResource("1_i6lai")
 to_id = "golduck"
 level = 33
 
-[sub_resource type="Resource" id="Resource_bsjxf"]
+[sub_resource type="Resource" id="Resource_jx6qk"]
 script = ExtResource("1_sihyx")
 move = ExtResource("3_3h1xc")
 
-[sub_resource type="Resource" id="Resource_5x4vy"]
+[sub_resource type="Resource" id="Resource_lw2pu"]
 script = ExtResource("1_sihyx")
 move = ExtResource("4_i6lai")
 
-[sub_resource type="Resource" id="Resource_c724n"]
+[sub_resource type="Resource" id="Resource_j8hod"]
 script = ExtResource("1_sihyx")
 level = 3
 move = ExtResource("5_bsjxf")
 
-[sub_resource type="Resource" id="Resource_4wmmo"]
+[sub_resource type="Resource" id="Resource_hcr2m"]
 script = ExtResource("1_sihyx")
 level = 5
 move = ExtResource("6_5x4vy")
 
-[sub_resource type="Resource" id="Resource_jx6qk"]
+[sub_resource type="Resource" id="Resource_w7dlt"]
+script = ExtResource("1_sihyx")
+move = ExtResource("8_jx6qk")
+
+[sub_resource type="Resource" id="Resource_u6gas"]
+script = ExtResource("1_sihyx")
+level = 5
+move = ExtResource("9_lw2pu")
+
+[sub_resource type="Resource" id="Resource_yo15j"]
+script = ExtResource("1_sihyx")
+level = 23
+move = ExtResource("10_j8hod")
+
+[sub_resource type="Resource" id="Resource_d2bgq"]
+script = ExtResource("1_sihyx")
+level = 31
+move = ExtResource("11_hcr2m")
+
+[sub_resource type="Resource" id="Resource_gfshx"]
+script = ExtResource("1_sihyx")
+level = 40
+move = ExtResource("12_w7dlt")
+
+[sub_resource type="Resource" id="Resource_2hm08"]
 script = ExtResource("1_sihyx")
 level = 50
 move = ExtResource("6_t0c8y")
@@ -54,8 +83,8 @@ dex = 54
 types = Array[ExtResource("7_llbsy")]([ExtResource("8_kvyim")])
 moves = Array[ExtResource("1_a2e4d")]([ExtResource("2_gumxw"), ExtResource("3_sihyx"), ExtResource("4_t0c8y"), ExtResource("5_gniud")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_bsjxf"), SubResource("Resource_5x4vy"), SubResource("Resource_c724n"), SubResource("Resource_4wmmo"), SubResource("Resource_jx6qk")])
-evolutions = Array[ExtResource("1_i6lai")]([SubResource("Resource_i6lai")])
+learnset = Array[ExtResource("1_sihyx")]([SubResource("Resource_jx6qk"), SubResource("Resource_lw2pu"), SubResource("Resource_j8hod"), SubResource("Resource_hcr2m"), SubResource("Resource_w7dlt"), SubResource("Resource_u6gas"), SubResource("Resource_yo15j"), SubResource("Resource_d2bgq"), SubResource("Resource_gfshx"), SubResource("Resource_2hm08")])
+evolutions = Array[ExtResource("1_i6lai")]([SubResource("Resource_a24ts")])
 temperament = ExtResource("9_t0c8y")
 genus = "Pokémon Pato"
 pokedex_entry = "Psyduck tiene un extraño poder, que consiste en generar ondas cerebrales iguales a las que se generan cuando se está dormido. Este descubrimiento levantó una gran polémica entre eruditos."

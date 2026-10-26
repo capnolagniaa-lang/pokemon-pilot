@@ -12,24 +12,44 @@
 [ext_resource type="Resource" path="res://data/kits/raichu/chispa_raichu.tres" id="6_cqjyd"]
 [ext_resource type="Resource" path="res://data/kits/raichu/trueno_raichu.tres" id="7_kfyfa"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="8_abn8t"]
+[ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="8_lvki1"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="9_vgwe5"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="10_h0ltp"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="11_k0m1e"]
 
-[sub_resource type="Resource" id="Resource_kkkvq"]
+[sub_resource type="Resource" id="Resource_lvki1"]
 script = ExtResource("1_8modj")
 move = ExtResource("4_kkkvq")
 
-[sub_resource type="Resource" id="Resource_3mbkb"]
+[sub_resource type="Resource" id="Resource_vgwe5"]
 script = ExtResource("1_8modj")
 move = ExtResource("5_3mbkb")
 
-[sub_resource type="Resource" id="Resource_cqjyd"]
+[sub_resource type="Resource" id="Resource_h0ltp"]
 script = ExtResource("1_8modj")
 level = 3
 move = ExtResource("6_cqjyd")
 
-[sub_resource type="Resource" id="Resource_kfyfa"]
+[sub_resource type="Resource" id="Resource_k0m1e"]
 script = ExtResource("1_8modj")
 level = 5
 move = ExtResource("7_kfyfa")
+
+[sub_resource type="Resource" id="Resource_r2s34"]
+script = ExtResource("1_8modj")
+move = ExtResource("8_lvki1")
+
+[sub_resource type="Resource" id="Resource_ta047"]
+script = ExtResource("1_8modj")
+move = ExtResource("9_vgwe5")
+
+[sub_resource type="Resource" id="Resource_n54oc"]
+script = ExtResource("1_8modj")
+move = ExtResource("10_h0ltp")
+
+[sub_resource type="Resource" id="Resource_eour1"]
+script = ExtResource("1_8modj")
+move = ExtResource("11_k0m1e")
 
 [resource]
 script = ExtResource("3_0wkmi")
@@ -38,7 +58,7 @@ display_name = "Raichu"
 dex = 26
 types = Array[ExtResource("4_53mw5")]([ExtResource("5_mhpdw")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_8modj")]([SubResource("Resource_kkkvq"), SubResource("Resource_3mbkb"), SubResource("Resource_cqjyd"), SubResource("Resource_kfyfa")])
+learnset = Array[ExtResource("1_8modj")]([SubResource("Resource_lvki1"), SubResource("Resource_vgwe5"), SubResource("Resource_h0ltp"), SubResource("Resource_k0m1e"), SubResource("Resource_r2s34"), SubResource("Resource_ta047"), SubResource("Resource_n54oc"), SubResource("Resource_eour1")])
 evolves_from = "pikachu"
 temperament = ExtResource("8_abn8t")
 genus = "Pokémon Ratón"

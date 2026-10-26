@@ -16,29 +16,29 @@
 [ext_resource type="Resource" path="res://data/kits/jigglypuff/canto_jigglypuff.tres" id="7_qlvab"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="8_xj5hu"]
 
-[sub_resource type="Resource" id="Resource_evvap"]
+[sub_resource type="Resource" id="Resource_k00ji"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("4_k00ji")
 
-[sub_resource type="Resource" id="Resource_yto2x"]
+[sub_resource type="Resource" id="Resource_t1ode"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("5_t1ode")
 
-[sub_resource type="Resource" id="Resource_koagi"]
+[sub_resource type="Resource" id="Resource_esjls"]
 script = ExtResource("1_iw7w2")
 level = 3
 move = ExtResource("6_esjls")
 
-[sub_resource type="Resource" id="Resource_wxfnr"]
+[sub_resource type="Resource" id="Resource_qlvab"]
 script = ExtResource("1_iw7w2")
 level = 5
 move = ExtResource("7_qlvab")
 
-[sub_resource type="Resource" id="Resource_xhk3e"]
+[sub_resource type="Resource" id="Resource_evvap"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("3_xj5hu")
 
-[sub_resource type="Resource" id="Resource_b116h"]
+[sub_resource type="Resource" id="Resource_yto2x"]
 script = ExtResource("1_iw7w2")
 move = ExtResource("4_sfyxs")
 
@@ -49,7 +49,7 @@ display_name = "Wigglytuff"
 dex = 40
 types = Array[ExtResource("4_lyvdw")]([ExtResource("5_p8g8c"), ExtResource("6_xj5hu")])
 kit = ExtResource("2_bgitb")
-learnset = Array[ExtResource("1_iw7w2")]([SubResource("Resource_evvap"), SubResource("Resource_yto2x"), SubResource("Resource_koagi"), SubResource("Resource_wxfnr"), SubResource("Resource_xhk3e"), SubResource("Resource_b116h")])
+learnset = Array[ExtResource("1_iw7w2")]([SubResource("Resource_k00ji"), SubResource("Resource_t1ode"), SubResource("Resource_esjls"), SubResource("Resource_qlvab"), SubResource("Resource_evvap"), SubResource("Resource_yto2x")])
 kit_inherited = true
 evolves_from = "jigglypuff"
 temperament = ExtResource("8_xj5hu")

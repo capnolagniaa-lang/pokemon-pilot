@@ -1,17 +1,20 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_wn8fj"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_q27iw"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_26kqi"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/intimidado.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_q27iw")
+script = ExtResource("1_x")
 id = "grunido"
 display_name = "Gruñido"
-element = ExtResource("1_wn8fj")
+element = ExtResource("3_x")
 kind = 2
 category = 2
 power = 0.0
-cooldown = 6.0
+cooldown = 8.0
 knockback = 0.0
-radius = 40.0
+radius = 55.0
+recovery = 0.1
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

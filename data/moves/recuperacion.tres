@@ -1,18 +1,18 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_fqi4n"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_t1tei"]
-[ext_resource type="Resource" path="res://data/status/sintesis.tres" id="3_87j8h"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_g267v"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/recuperando.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_t1tei")
+script = ExtResource("1_x")
 id = "recuperacion"
 display_name = "Recuperación"
-element = ExtResource("1_fqi4n")
+element = ExtResource("3_x")
 kind = 9
 category = 2
 power = 0.0
-cooldown = 10.0
+cooldown = 16.0
 knockback = 0.0
-self_status = ExtResource("3_87j8h")
+self_status = ExtResource("4_x")

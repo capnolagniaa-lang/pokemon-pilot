@@ -41,6 +41,7 @@ $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bich
 $G --headless --path . --quit-after 60000 -- --autotest-kits-v5  # kits v5 (Staryu, Starmie jefa de Misty, Butterfree, Beedrill, Kadabra, Gyarados)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v6  # kits v6 (Raichu jefe de Surge + Tanda A; lento: `--only <especie>` prueba una sola)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v7  # kits v7 (Tanda B: Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth)
+$G --headless --path . --quit-after 200000 -- --autotest-kits-v8  # kits v8 (Tanda C) + sinergia (`--only sinergia`)
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
@@ -329,11 +330,15 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
   `build_learnsets.gd` y `apply_evolutions.gd` (herencia) y otra vez `build_learnsets.gd`.
 - `tools/build_kits_v7.py`: igual para la Tanda B (Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth); firmas
   `metronome`, `puff`, `wary`, `payday`.
+- `tools/build_kits_v8.py`: igual para la Tanda C (Drowzee, Grimer, Koffing, Ponyta, Slowpoke, Magikarp).
+- `tools/link_official_moves.py`: los ataques oficiales automáticos toman la forma de su versión de kit del mismo
+  nombre (y los de mejora propia sin kit, un efecto genérico). **Correrlo después de `apply_official_data.gd --
+  --regen-auto`** (si no, vuelven a la forma inventada). `SignatureData.params.element_marks` = sinergia por tipo.
 - `tools/fetch_npc_sprites.py`: baja de pret/pokefirered los sprites de las personas de los mapas importados (y las de
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
   (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).
-- `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + extras de la tabla `EXTRAS`, niveles de
-  FRLG) y los guarda en las especies. Correrlo después de cambiar un kit o los extras.
+- `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + **todo el learnset de FRLG** + extras de la
+  tabla `EXTRAS`) y los guarda en las especies; el equipamiento inicial es el kit (`default_equipment`). Correrlo después de cambiar un kit o los extras.
 - `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +
   `sprites/items/`. El efecto de cada objeto está en su tabla `ITEMS`.
 - `tools/build_wild_docs.gd`: genera `docs/SALVAJES_LISTADO.md` (qué aparece en cada zona, kit, temperamento y

@@ -1,17 +1,23 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_oireg"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lgk4j"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_y7hys"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/desorientado.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_lgk4j")
+script = ExtResource("1_x")
 id = "pantalla_de_humo"
 display_name = "Pantalla de Humo"
-element = ExtResource("1_oireg")
-kind = 2
+element = ExtResource("3_x")
+kind = 5
 category = 2
 power = 0.0
-cooldown = 6.0
+cooldown = 9.0
 knockback = 0.0
-radius = 40.0
+zone_radius = 34.0
+zone_duration = 4.0
+placement_range = 70.0
+zone_traps = false
+zone_tick = 0.5
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

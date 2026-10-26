@@ -1,16 +1,19 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_b6o30"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_1o3b2"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_4nclg"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="3_x"]
 
 [resource]
-script = ExtResource("2_1o3b2")
+script = ExtResource("1_x")
 id = "teletransporte"
 display_name = "Teletransporte"
-element = ExtResource("1_b6o30")
-kind = 9
+element = ExtResource("3_x")
+kind = 1
 category = 2
 power = 0.0
-cooldown = 10.0
+cooldown = 3.0
 knockback = 0.0
+dash_time = 0.2
+dash_hits = false
+invulnerable_time = 0.3

@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="1_pd3we"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_t5c6g"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_pwpb1"]
+[ext_resource type="Resource" path="res://data/status/recuperando.tres" id="9_self"]
 
 [resource]
 script = ExtResource("2_t5c6g")
@@ -14,3 +15,4 @@ category = 2
 power = 0.0
 cooldown = 10.0
 knockback = 0.0
+self_status = ExtResource("9_self")

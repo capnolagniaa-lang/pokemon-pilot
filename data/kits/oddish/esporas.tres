@@ -13,4 +13,4 @@ max_value = 0.0
 gains = {}
 decay_out_of_combat = 6.0
 mechanic_script = ExtResource("1_mech")
-params = {"bloom_move": "florecer", "radius": 150.0, "heal_per_spore": 0.03}
+params = {"element_marks": {"planta": "esporas", "veneno": "esporas"}, "bloom_move": "florecer", "radius": 150.0, "heal_per_spore": 0.03}

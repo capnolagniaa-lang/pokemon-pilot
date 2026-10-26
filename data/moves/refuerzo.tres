@@ -1,16 +1,18 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_oay0p"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pflq6"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_tejt6"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/refuerzo.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_pflq6")
+script = ExtResource("1_x")
 id = "refuerzo"
 display_name = "Refuerzo"
-element = ExtResource("1_oay0p")
+element = ExtResource("3_x")
 kind = 9
 category = 2
 power = 0.0
 cooldown = 10.0
 knockback = 0.0
+self_status = ExtResource("4_x")

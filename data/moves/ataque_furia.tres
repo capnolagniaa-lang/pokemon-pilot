@@ -1,19 +1,25 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_fn73c"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2jhjl"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_uh45d"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_2jhjl")
+script = ExtResource("1_x")
 id = "ataque_furia"
 display_name = "Ataque Furia"
-element = ExtResource("1_fn73c")
+element = ExtResource("3_x")
 kind = 4
-power = 15.0
-cooldown = 0.8
-knockback = 120.0
-recovery = 0.1
-melee_range = 13.0
-swing_radius = 12.0
-final_knockback = 150.0
+category = 0
+power = 18.0
+cooldown = 3.0
+combo_steps = 5
+combo_window = 0.4
+combo_step_cooldown = 0.1
+knockback = 20.0
+final_knockback = 160.0
+melee_range = 14.0
+swing_radius = 11.0
+status = ExtResource("4_x")
+status_chance = 0.2

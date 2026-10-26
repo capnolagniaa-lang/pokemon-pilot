@@ -12,35 +12,71 @@
 [ext_resource type="Resource" path="res://data/kits/mankey/patada_baja_mankey.tres" id="5_y50nf"]
 [ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="6_qihjv"]
 [ext_resource type="Resource" path="res://data/kits/mankey/golpe_karate_mankey.tres" id="6_rbcjc"]
+[ext_resource type="Resource" path="res://data/moves/foco_energia.tres" id="9_vsbx5"]
+[ext_resource type="Resource" path="res://data/moves/sismico.tres" id="10_qihjv"]
+[ext_resource type="Resource" path="res://data/moves/tajo_cruzado.tres" id="11_51283"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="12_bskf6"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="13_xfh4l"]
+[ext_resource type="Resource" path="res://data/moves/sana.tres" id="14_64t8k"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_24m2f"]
 
-[sub_resource type="Resource" id="Resource_xmw45"]
+[sub_resource type="Resource" id="Resource_fi43s"]
 script = ExtResource("1_xmw45")
 to_id = "primeape"
 level = 28
 
-[sub_resource type="Resource" id="Resource_y50nf"]
+[sub_resource type="Resource" id="Resource_vsbx5"]
 script = ExtResource("1_i25ok")
 move = ExtResource("3_qc677")
 
-[sub_resource type="Resource" id="Resource_rbcjc"]
+[sub_resource type="Resource" id="Resource_qihjv"]
 script = ExtResource("1_i25ok")
 move = ExtResource("4_xmw45")
 
-[sub_resource type="Resource" id="Resource_4o0ie"]
+[sub_resource type="Resource" id="Resource_51283"]
 script = ExtResource("1_i25ok")
 level = 3
 move = ExtResource("5_y50nf")
 
-[sub_resource type="Resource" id="Resource_24m2f"]
+[sub_resource type="Resource" id="Resource_bskf6"]
 script = ExtResource("1_i25ok")
 level = 5
 move = ExtResource("6_rbcjc")
 
-[sub_resource type="Resource" id="Resource_4x5ip"]
+[sub_resource type="Resource" id="Resource_xfh4l"]
 script = ExtResource("1_i25ok")
 level = 16
 move = ExtResource("6_qihjv")
+
+[sub_resource type="Resource" id="Resource_64t8k"]
+script = ExtResource("1_i25ok")
+level = 21
+move = ExtResource("9_vsbx5")
+
+[sub_resource type="Resource" id="Resource_70uqf"]
+script = ExtResource("1_i25ok")
+level = 26
+move = ExtResource("10_qihjv")
+
+[sub_resource type="Resource" id="Resource_hm4mp"]
+script = ExtResource("1_i25ok")
+level = 31
+move = ExtResource("11_51283")
+
+[sub_resource type="Resource" id="Resource_4n3y5"]
+script = ExtResource("1_i25ok")
+level = 36
+move = ExtResource("12_bskf6")
+
+[sub_resource type="Resource" id="Resource_nyony"]
+script = ExtResource("1_i25ok")
+level = 41
+move = ExtResource("13_xfh4l")
+
+[sub_resource type="Resource" id="Resource_rdgb1"]
+script = ExtResource("1_i25ok")
+level = 46
+move = ExtResource("14_64t8k")
 
 [resource]
 script = ExtResource("3_e8gxr")
@@ -49,8 +85,8 @@ display_name = "Mankey"
 dex = 56
 types = Array[ExtResource("4_5f68j")]([ExtResource("5_sukgg")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_i25ok")]([SubResource("Resource_y50nf"), SubResource("Resource_rbcjc"), SubResource("Resource_4o0ie"), SubResource("Resource_24m2f"), SubResource("Resource_4x5ip")])
-evolutions = Array[ExtResource("1_xmw45")]([SubResource("Resource_xmw45")])
+learnset = Array[ExtResource("1_i25ok")]([SubResource("Resource_vsbx5"), SubResource("Resource_qihjv"), SubResource("Resource_51283"), SubResource("Resource_bskf6"), SubResource("Resource_xfh4l"), SubResource("Resource_64t8k"), SubResource("Resource_70uqf"), SubResource("Resource_hm4mp"), SubResource("Resource_4n3y5"), SubResource("Resource_nyony"), SubResource("Resource_rdgb1")])
+evolutions = Array[ExtResource("1_xmw45")]([SubResource("Resource_fi43s")])
 temperament = ExtResource("15_24m2f")
 genus = "Pokémon Mono Cerdo"
 pokedex_entry = "Cuando Mankey empieza a temblar y a respirar con más intensidad, seguro que va a enfadarse. Aunque prever su enfado no sirve de nada porque alcanza un estado de rabia tan rápido que no hay escapatoria."

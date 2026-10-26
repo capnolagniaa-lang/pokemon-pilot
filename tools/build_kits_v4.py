@@ -205,6 +205,8 @@ def _param(v):
         return '"%s"' % v
     if isinstance(v, list):
         return "[%s]" % ", ".join(_param(x) for x in v)
+    if isinstance(v, dict):
+        return "{%s}" % ", ".join('"%s": %s' % (k, _param(x)) for k, x in v.items())
     return val(v)
 
 

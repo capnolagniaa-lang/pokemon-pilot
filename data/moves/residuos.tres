@@ -1,22 +1,22 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/veneno.tres" id="1_gtx3s"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wwhj1"]
-[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="3_bqfy0"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_o7tyx"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_wwhj1")
+script = ExtResource("1_x")
 id = "residuos"
 display_name = "Residuos"
-element = ExtResource("1_gtx3s")
+element = ExtResource("3_x")
+kind = 0
 category = 1
 power = 65.0
-cooldown = 1.9000000000000001
-knockback = 104.0
-recovery = 0.1
-status = ExtResource("3_bqfy0")
+cooldown = 2.2
+knockback = 90.0
+speed = 220.0
+size = 7.0
+lifetime = 0.9
+status = ExtResource("4_x")
 status_chance = 0.3
-speed = 280.0
-size = 4.625
-lifetime = 0.85

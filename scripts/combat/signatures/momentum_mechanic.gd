@@ -8,7 +8,7 @@ var _chain := 0
 
 
 func modify_hit(hit: HitInfo) -> void:
-	if hit.move.id != param("roll_move", "rodar_kit"):
+	if not hit.move.id.begins_with(param("roll_move", "rodar")):  # el Rodar del kit y el oficial
 		return
 	if creature.now() - _last_roll <= param("chain_time", 3.0):
 		_chain = mini(_chain + 1, int(param("max_chain", 2)))

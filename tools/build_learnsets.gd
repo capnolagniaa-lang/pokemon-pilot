@@ -1,9 +1,10 @@
 extends SceneTree
 ## Arma el learnset (movimientos por nivel) de cada especie y lo guarda en su .tres (SpeciesData.learnset).
 ## Regla (decisión del usuario, Etapa 2c): los 4 movimientos del kit (o los sueltos, si no tiene kit) se
-## aprenden en los niveles 1, 1, 3 y 5, así el estilo de pelea está desde el principio; los extras salen
-## de data/moves en el nivel en que se aprenden en FireRed/LeafGreen (data/source/official.json →
-## "learnset_frlg"). Los que no están en el learnset de FRLG se marcan con (*) y usan un nivel parecido.
+## aprenden en los niveles 1, 1, 3 y 5, así el estilo de pelea está desde el principio; después, **todo su learnset
+## de FireRed/LeafGreen** (data/source/official.json → "learnset"; pedido del usuario 2026-10-26) más los EXTRAS a
+## mano (los marcados (*) no están en el learnset de FRLG y usan un nivel parecido). Lo que el kit ya tiene (mismo
+## nombre) no se repite.
 ## Las especies sin kit ni EXTRAS (las 3 regiones) usan el learnset oficial completo de FRLG ("learnset").
 ## Uso: godot --headless --path . --script res://tools/build_learnsets.gd
 
@@ -52,9 +53,11 @@ func _init() -> void:
 			entries.append(_entry(BASE_LEVELS[mini(i, 3)], base[i]))
 			names.append(base[i].display_name)
 		# Kit heredado de su preevolución (tools/apply_evolutions.gd): además, el learnset oficial de la evolucionada.
-		var extras: Array = EXTRAS.get(sp.id, [])
-		if sp.kit_inherited:
-			extras = data["species"].get(sp.id, {}).get("learnset", [])
+		# Todo lo que aprende en FRLG (pedido del usuario 2026-10-26: "todos los movimientos de la wiki tienen que
+		# poder elegirse") + los extras a mano (algunos son MT en FRLG), por nivel.
+		var extras: Array = data["species"].get(sp.id, {}).get("learnset", []).duplicate()
+		extras.append_array(EXTRAS.get(sp.id, []))
+		extras.sort_custom(func(x, y): return int(x[0]) < int(y[0]))
 		for row in extras:
 			var m: MoveData = load("res://data/moves/%s.tres" % row[1])
 			# No repetir un movimiento que el kit ya tiene con otra forma (Ascuas del kit vs. Ascuas suelta).

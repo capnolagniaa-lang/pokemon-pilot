@@ -26,7 +26,25 @@ func setup(p_creature: Creature, p_data: SignatureData) -> void:
 	creature.move_released.connect(func(m):
 		_spending = m.resource_cost != 0.0
 		_on_move_released(m))
+	if data.params.has("element_marks"):
+		creature.hit_dealt.connect(_element_mark)
 	_setup()
+
+
+## Sinergia con cualquier ataque (pedido del usuario 2026-10-26): `element_marks` = {tipo: estado} ("*" = cualquiera).
+## Un golpe de ese tipo le pone ese estado al rival aunque el ataque no sea del kit (un Rayo Hielo aprendido suma
+## escarcha a Seel, un ataque de fuego rastrea para Growlithe). Si el ataque ya pone ese estado, no lo duplica.
+func _element_mark(target: Creature, hit: HitInfo, dealt: float) -> void:
+	if hit == null or hit.move == null or hit.move.element == null or dealt <= 0.0 or not is_instance_valid(target):
+		return
+	var marks: Dictionary = data.params["element_marks"]
+	var sid: String = marks.get(hit.move.element.id, marks.get("*", ""))
+	if sid == "" or not DB.statuses.has(sid):
+		return
+	if (hit.move.status != null and hit.move.status.id == sid) or hit.move.statuses_on_hit.any(func(s): return s.id == sid):
+		return
+	target.statuses.apply(DB.statuses[sid])
+	creature.status_inflicted.emit(target, DB.statuses[sid])  # como si lo pusiera el ataque (Seda, Escarcha...)
 
 
 ## Suma el recurso por un evento (multiplicado por `amount`, ej. píxeles recorridos).

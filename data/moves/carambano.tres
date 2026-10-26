@@ -1,19 +1,23 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/hielo.tres" id="1_814rw"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_thqsy"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_xpxk4"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/escarcha.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_thqsy")
+script = ExtResource("1_x")
 id = "carambano"
 display_name = "Carámbano"
-element = ExtResource("1_814rw")
-kind = 4
+element = ExtResource("3_x")
+kind = 0
+category = 0
 power = 25.0
-cooldown = 0.9
-knockback = 120.0
-recovery = 0.1
-melee_range = 13.0
-swing_radius = 12.0
-final_knockback = 150.0
+cooldown = 1.6
+knockback = 40.0
+speed = 380.0
+size = 4.0
+lifetime = 0.7
+projectile_count = 3
+spread_deg = 8.0
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

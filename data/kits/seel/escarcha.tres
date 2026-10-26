@@ -13,4 +13,4 @@ max_value = 0.0
 gains = {}
 decay_out_of_combat = 6.0
 mechanic_script = ExtResource("1_mech")
-params = {"stacks_to_freeze": 5}
+params = {"element_marks": {"hielo": "escarcha"}, "stacks_to_freeze": 5}

@@ -1,18 +1,19 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_m3lsd"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mjkp4"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_jlfe3"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
 
 [resource]
-script = ExtResource("2_mjkp4")
+script = ExtResource("1_x")
 id = "autodestruccion"
 display_name = "Autodestrucción"
-element = ExtResource("1_m3lsd")
+element = ExtResource("3_x")
 kind = 2
-power = 200.0
-cooldown = 7.7
-cast_time = 0.3
-knockback = 200.0
-recovery = 0.3
-radius = 52.0
+category = 0
+power = 130.0
+cooldown = 20.0
+knockback = 340.0
+cast_time = 1.2
+radius = 85.0
+recovery = 0.2

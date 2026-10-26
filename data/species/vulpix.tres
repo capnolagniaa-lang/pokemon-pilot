@@ -15,38 +15,68 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_7uxqu"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_fy6n3"]
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="8_6ul6a"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="8_b2trj"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="9_ejqce"]
+[ext_resource type="Resource" path="res://data/moves/sellar.tres" id="11_xrowh"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="12_ktayu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_6ul6a"]
+[ext_resource type="Resource" path="res://data/moves/rabia.tres" id="13_njarw"]
 
-[sub_resource type="Resource" id="Resource_nalry"]
+[sub_resource type="Resource" id="Resource_k4y6s"]
 script = ExtResource("1_nalry")
 to_id = "ninetales"
 method = "piedra"
 item = "piedra_fuego"
 
-[sub_resource type="Resource" id="Resource_polnf"]
+[sub_resource type="Resource" id="Resource_b2trj"]
 script = ExtResource("2_fy6n3")
 move = ExtResource("3_6ul6a")
 
-[sub_resource type="Resource" id="Resource_02x1k"]
+[sub_resource type="Resource" id="Resource_ejqce"]
 script = ExtResource("2_fy6n3")
 move = ExtResource("4_nalry")
 
-[sub_resource type="Resource" id="Resource_15p25"]
+[sub_resource type="Resource" id="Resource_xrowh"]
 script = ExtResource("2_fy6n3")
 level = 3
 move = ExtResource("5_polnf")
 
-[sub_resource type="Resource" id="Resource_idw3y"]
+[sub_resource type="Resource" id="Resource_ktayu"]
 script = ExtResource("2_fy6n3")
 level = 5
 move = ExtResource("6_02x1k")
 
-[sub_resource type="Resource" id="Resource_b2trj"]
+[sub_resource type="Resource" id="Resource_njarw"]
+script = ExtResource("2_fy6n3")
+level = 5
+move = ExtResource("8_b2trj")
+
+[sub_resource type="Resource" id="Resource_w0gw5"]
+script = ExtResource("2_fy6n3")
+level = 9
+move = ExtResource("9_ejqce")
+
+[sub_resource type="Resource" id="Resource_rby5s"]
 script = ExtResource("2_fy6n3")
 level = 13
 move = ExtResource("3_rkvq6")
 
-[sub_resource type="Resource" id="Resource_ejqce"]
+[sub_resource type="Resource" id="Resource_x8vjp"]
+script = ExtResource("2_fy6n3")
+level = 25
+move = ExtResource("11_xrowh")
+
+[sub_resource type="Resource" id="Resource_8w1d0"]
+script = ExtResource("2_fy6n3")
+level = 33
+move = ExtResource("12_ktayu")
+
+[sub_resource type="Resource" id="Resource_a8kni"]
+script = ExtResource("2_fy6n3")
+level = 37
+move = ExtResource("13_njarw")
+
+[sub_resource type="Resource" id="Resource_o8a1h"]
 script = ExtResource("2_fy6n3")
 level = 41
 move = ExtResource("4_xls4m")
@@ -59,8 +89,8 @@ dex = 37
 types = Array[ExtResource("7_fy6n3")]([ExtResource("8_6ul6a")])
 moves = Array[ExtResource("1_8s5hk")]([ExtResource("2_i73rs"), ExtResource("3_rkvq6"), ExtResource("4_xls4m"), ExtResource("5_laq3w")])
 kit = ExtResource("0_kit")
-learnset = Array[ExtResource("2_fy6n3")]([SubResource("Resource_polnf"), SubResource("Resource_02x1k"), SubResource("Resource_15p25"), SubResource("Resource_idw3y"), SubResource("Resource_b2trj"), SubResource("Resource_ejqce")])
-evolutions = Array[ExtResource("1_nalry")]([SubResource("Resource_nalry")])
+learnset = Array[ExtResource("2_fy6n3")]([SubResource("Resource_b2trj"), SubResource("Resource_ejqce"), SubResource("Resource_xrowh"), SubResource("Resource_ktayu"), SubResource("Resource_njarw"), SubResource("Resource_w0gw5"), SubResource("Resource_rby5s"), SubResource("Resource_x8vjp"), SubResource("Resource_8w1d0"), SubResource("Resource_a8kni"), SubResource("Resource_o8a1h")])
+evolutions = Array[ExtResource("1_nalry")]([SubResource("Resource_k4y6s")])
 temperament = ExtResource("13_6ul6a")
 genus = "Pokémon Zorro"
 pokedex_entry = "Al nacer, Vulpix tiene una cola blanca que se divide en seis si recibe cariño por parte de su Entrenador. Las seis colas se le rizan de forma majestuosa."

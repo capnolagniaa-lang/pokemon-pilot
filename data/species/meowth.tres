@@ -11,30 +11,65 @@
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_1u3a2"]
 [ext_resource type="Resource" path="res://data/kits/meowth/finta_meowth.tres" id="6_6vwrr"]
 [ext_resource type="Resource" path="res://data/kits/meowth/golpes_furia_meowth.tres" id="7_nrrda"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="8_fnwfa"]
+[ext_resource type="Resource" path="res://data/moves/dia_de_pago.tres" id="9_ge5ke"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="10_uhsn6"]
+[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="11_evhx0"]
+[ext_resource type="Resource" path="res://data/moves/sorpresa.tres" id="12_hqc87"]
+[ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="13_eipgl"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_mkon5"]
 
-[sub_resource type="Resource" id="Resource_l4o3j"]
+[sub_resource type="Resource" id="Resource_dw4hv"]
 script = ExtResource("1_n1hrk")
 to_id = "persian"
 level = 28
 
-[sub_resource type="Resource" id="Resource_0a43j"]
+[sub_resource type="Resource" id="Resource_fnwfa"]
 script = ExtResource("1_6vnnq")
 move = ExtResource("4_l4o3j")
 
-[sub_resource type="Resource" id="Resource_6vwrr"]
+[sub_resource type="Resource" id="Resource_ge5ke"]
 script = ExtResource("1_6vnnq")
 move = ExtResource("5_0a43j")
 
-[sub_resource type="Resource" id="Resource_nrrda"]
+[sub_resource type="Resource" id="Resource_uhsn6"]
 script = ExtResource("1_6vnnq")
 level = 3
 move = ExtResource("6_6vwrr")
 
-[sub_resource type="Resource" id="Resource_mkon5"]
+[sub_resource type="Resource" id="Resource_evhx0"]
 script = ExtResource("1_6vnnq")
 level = 5
 move = ExtResource("7_nrrda")
+
+[sub_resource type="Resource" id="Resource_hqc87"]
+script = ExtResource("1_6vnnq")
+move = ExtResource("8_fnwfa")
+
+[sub_resource type="Resource" id="Resource_eipgl"]
+script = ExtResource("1_6vnnq")
+level = 18
+move = ExtResource("9_ge5ke")
+
+[sub_resource type="Resource" id="Resource_eb7xv"]
+script = ExtResource("1_6vnnq")
+level = 31
+move = ExtResource("10_uhsn6")
+
+[sub_resource type="Resource" id="Resource_crrxa"]
+script = ExtResource("1_6vnnq")
+level = 40
+move = ExtResource("11_evhx0")
+
+[sub_resource type="Resource" id="Resource_uoyxe"]
+script = ExtResource("1_6vnnq")
+level = 43
+move = ExtResource("12_hqc87")
+
+[sub_resource type="Resource" id="Resource_dw6fm"]
+script = ExtResource("1_6vnnq")
+level = 45
+move = ExtResource("13_eipgl")
 
 [resource]
 script = ExtResource("3_2jmc7")
@@ -43,8 +78,8 @@ display_name = "Meowth"
 dex = 52
 types = Array[ExtResource("4_a614n")]([ExtResource("5_1u3a2")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_6vnnq")]([SubResource("Resource_0a43j"), SubResource("Resource_6vwrr"), SubResource("Resource_nrrda"), SubResource("Resource_mkon5")])
-evolutions = Array[ExtResource("1_n1hrk")]([SubResource("Resource_l4o3j")])
+learnset = Array[ExtResource("1_6vnnq")]([SubResource("Resource_fnwfa"), SubResource("Resource_ge5ke"), SubResource("Resource_uhsn6"), SubResource("Resource_evhx0"), SubResource("Resource_hqc87"), SubResource("Resource_eipgl"), SubResource("Resource_eb7xv"), SubResource("Resource_crrxa"), SubResource("Resource_uoyxe"), SubResource("Resource_dw6fm")])
+evolutions = Array[ExtResource("1_n1hrk")]([SubResource("Resource_dw4hv")])
 temperament = ExtResource("14_mkon5")
 genus = "Pokémon Gato Araña"
 pokedex_entry = "Meowth retrae las afiladas uñas de sus zarpas para caminar a hurtadillas, dando sigilosos pasos para pasar inadvertido. No se sabe muy bien por qué, pero este Pokémon adora las monedas brillantes que resplandecen con la luz."

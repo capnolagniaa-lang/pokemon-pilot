@@ -1,19 +1,22 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_nujan"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x3v65"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_ww4rm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
 
 [resource]
-script = ExtResource("2_x3v65")
+script = ExtResource("1_x")
 id = "doble_bofeton"
 display_name = "Doble Bofetón"
-element = ExtResource("1_nujan")
+element = ExtResource("3_x")
 kind = 4
-power = 15.0
-cooldown = 0.8
-knockback = 120.0
-recovery = 0.1
+category = 0
+power = 20.0
+cooldown = 1.0
+knockback = 50.0
+combo_steps = 4
+combo_window = 0.45
+combo_step_cooldown = 0.12
+final_knockback = 180.0
 melee_range = 13.0
-swing_radius = 12.0
-final_knockback = 150.0
+swing_radius = 11.0

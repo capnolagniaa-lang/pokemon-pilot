@@ -13,36 +13,88 @@
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="6_l4wvc"]
 [ext_resource type="Resource" path="res://data/kits/onix/tumba_rocas_onix.tres" id="6_t0m2h"]
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="7_fikpi"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_fikpi"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="9_rvvt8"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="10_tfk74"]
+[ext_resource type="Resource" path="res://data/moves/dragoaliento.tres" id="12_crueh"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="13_w5t07"]
+[ext_resource type="Resource" path="res://data/moves/atizar.tres" id="14_ec3h6"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="15_omufe"]
+[ext_resource type="Resource" path="res://data/moves/bucle_arena.tres" id="16_prtpj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_q53ba"]
+[ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="17_v82ek"]
 
-[sub_resource type="Resource" id="Resource_0lsck"]
+[sub_resource type="Resource" id="Resource_44s0r"]
 script = ExtResource("1_0lsck")
 to_id = "steelix"
 method = "intercambio"
 item = "metal-coat"
 
-[sub_resource type="Resource" id="Resource_grr3h"]
+[sub_resource type="Resource" id="Resource_fikpi"]
 script = ExtResource("1_ywjwf")
 move = ExtResource("3_y8h3b")
 
-[sub_resource type="Resource" id="Resource_t0m2h"]
+[sub_resource type="Resource" id="Resource_rvvt8"]
 script = ExtResource("1_ywjwf")
 move = ExtResource("4_0lsck")
 
-[sub_resource type="Resource" id="Resource_qw8e8"]
+[sub_resource type="Resource" id="Resource_tfk74"]
 script = ExtResource("1_ywjwf")
 level = 3
 move = ExtResource("5_grr3h")
 
-[sub_resource type="Resource" id="Resource_mvmm4"]
+[sub_resource type="Resource" id="Resource_crueh"]
 script = ExtResource("1_ywjwf")
 level = 5
 move = ExtResource("6_t0m2h")
 
-[sub_resource type="Resource" id="Resource_q53ba"]
+[sub_resource type="Resource" id="Resource_w5t07"]
+script = ExtResource("1_ywjwf")
+move = ExtResource("8_fikpi")
+
+[sub_resource type="Resource" id="Resource_ec3h6"]
+script = ExtResource("1_ywjwf")
+move = ExtResource("9_rvvt8")
+
+[sub_resource type="Resource" id="Resource_omufe"]
+script = ExtResource("1_ywjwf")
+level = 19
+move = ExtResource("10_tfk74")
+
+[sub_resource type="Resource" id="Resource_prtpj"]
 script = ExtResource("1_ywjwf")
 level = 23
 move = ExtResource("7_fikpi")
+
+[sub_resource type="Resource" id="Resource_v82ek"]
+script = ExtResource("1_ywjwf")
+level = 30
+move = ExtResource("12_crueh")
+
+[sub_resource type="Resource" id="Resource_1ygpd"]
+script = ExtResource("1_ywjwf")
+level = 34
+move = ExtResource("13_w5t07")
+
+[sub_resource type="Resource" id="Resource_o5dmi"]
+script = ExtResource("1_ywjwf")
+level = 41
+move = ExtResource("14_ec3h6")
+
+[sub_resource type="Resource" id="Resource_jkb6j"]
+script = ExtResource("1_ywjwf")
+level = 45
+move = ExtResource("15_omufe")
+
+[sub_resource type="Resource" id="Resource_un8xn"]
+script = ExtResource("1_ywjwf")
+level = 52
+move = ExtResource("16_prtpj")
+
+[sub_resource type="Resource" id="Resource_53imy"]
+script = ExtResource("1_ywjwf")
+level = 56
+move = ExtResource("17_v82ek")
 
 [resource]
 script = ExtResource("3_oqb0n")
@@ -51,8 +103,8 @@ display_name = "Onix"
 dex = 95
 types = Array[ExtResource("4_d1vix")]([ExtResource("5_xcmc8"), ExtResource("6_l4wvc")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_ywjwf")]([SubResource("Resource_grr3h"), SubResource("Resource_t0m2h"), SubResource("Resource_qw8e8"), SubResource("Resource_mvmm4"), SubResource("Resource_q53ba")])
-evolutions = Array[ExtResource("1_0lsck")]([SubResource("Resource_0lsck")])
+learnset = Array[ExtResource("1_ywjwf")]([SubResource("Resource_fikpi"), SubResource("Resource_rvvt8"), SubResource("Resource_tfk74"), SubResource("Resource_crueh"), SubResource("Resource_w5t07"), SubResource("Resource_ec3h6"), SubResource("Resource_omufe"), SubResource("Resource_prtpj"), SubResource("Resource_v82ek"), SubResource("Resource_1ygpd"), SubResource("Resource_o5dmi"), SubResource("Resource_jkb6j"), SubResource("Resource_un8xn"), SubResource("Resource_53imy")])
+evolutions = Array[ExtResource("1_0lsck")]([SubResource("Resource_44s0r")])
 temperament = ExtResource("16_q53ba")
 genus = "Pokémon Serpiente Roca"
 pokedex_entry = "Onix tiene un imán en el cerebro, que actúa como una brújula para no perder la orientación cuando está cavando túneles. A medida que crece, se le redondea y suaviza el cuerpo."

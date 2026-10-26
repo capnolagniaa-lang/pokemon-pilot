@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "giro_fuego_ponyta"
+display_name = "Giro Fuego"
+element = ExtResource("3_x")
+kind = 5
+category = 1
+power = 15.0
+cooldown = 6.0
+knockback = 0.0
+zone_radius = 22.0
+zone_duration = 3.0
+placement_range = 90.0
+zone_traps = true
+zone_tick = 0.5
+status = ExtResource("4_x")
+status_chance = 0.3

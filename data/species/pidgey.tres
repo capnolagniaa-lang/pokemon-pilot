@@ -17,41 +17,64 @@
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_e0dml"]
 [ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="8_3ymkr"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="8_m7bew"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="8_uufs7"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="9_p5iqk"]
+[ext_resource type="Resource" path="res://data/moves/danza_pluma.tres" id="10_iy02v"]
+[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="12_ha0yf"]
+[ext_resource type="Resource" path="res://data/moves/espejo.tres" id="13_qgql8"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_t4xky"]
 
-[sub_resource type="Resource" id="Resource_s5i2k"]
+[sub_resource type="Resource" id="Resource_t2wri"]
 script = ExtResource("1_s5i2k")
 to_id = "pidgeotto"
 level = 18
 
-[sub_resource type="Resource" id="Resource_lut1e"]
+[sub_resource type="Resource" id="Resource_3ymkr"]
 script = ExtResource("2_4dxcy")
 move = ExtResource("3_t4xky")
 
-[sub_resource type="Resource" id="Resource_pukb8"]
+[sub_resource type="Resource" id="Resource_uufs7"]
 script = ExtResource("2_4dxcy")
 move = ExtResource("4_s5i2k")
 
-[sub_resource type="Resource" id="Resource_8r1o5"]
+[sub_resource type="Resource" id="Resource_iy02v"]
 script = ExtResource("2_4dxcy")
 level = 3
 move = ExtResource("5_lut1e")
 
-[sub_resource type="Resource" id="Resource_3ymkr"]
+[sub_resource type="Resource" id="Resource_ha0yf"]
 script = ExtResource("2_4dxcy")
 level = 5
 move = ExtResource("6_pukb8")
 
-[sub_resource type="Resource" id="Resource_uufs7"]
+[sub_resource type="Resource" id="Resource_qgql8"]
+script = ExtResource("2_4dxcy")
+move = ExtResource("8_uufs7")
+
+[sub_resource type="Resource" id="Resource_ep6ky"]
 script = ExtResource("2_4dxcy")
 level = 25
 move = ExtResource("7_8r1o5")
 
-[sub_resource type="Resource" id="Resource_iy02v"]
+[sub_resource type="Resource" id="Resource_oya7g"]
+script = ExtResource("2_4dxcy")
+level = 31
+move = ExtResource("10_iy02v")
+
+[sub_resource type="Resource" id="Resource_7te0w"]
 script = ExtResource("2_4dxcy")
 level = 31
 move = ExtResource("8_3ymkr")
+
+[sub_resource type="Resource" id="Resource_puc8q"]
+script = ExtResource("2_4dxcy")
+level = 39
+move = ExtResource("12_ha0yf")
+
+[sub_resource type="Resource" id="Resource_e7wcj"]
+script = ExtResource("2_4dxcy")
+level = 47
+move = ExtResource("13_qgql8")
 
 [resource]
 script = ExtResource("6_cree8")
@@ -61,8 +84,8 @@ dex = 16
 types = Array[ExtResource("7_e0dml")]([ExtResource("8_m7bew"), ExtResource("9_p5iqk")])
 moves = Array[ExtResource("1_8pjly")]([ExtResource("2_p5iqk"), ExtResource("3_muvct"), ExtResource("4_naq0o"), ExtResource("5_p3w12")])
 kit = ExtResource("0_kit")
-learnset = Array[ExtResource("2_4dxcy")]([SubResource("Resource_lut1e"), SubResource("Resource_pukb8"), SubResource("Resource_8r1o5"), SubResource("Resource_3ymkr"), SubResource("Resource_uufs7"), SubResource("Resource_iy02v")])
-evolutions = Array[ExtResource("1_s5i2k")]([SubResource("Resource_s5i2k")])
+learnset = Array[ExtResource("2_4dxcy")]([SubResource("Resource_3ymkr"), SubResource("Resource_uufs7"), SubResource("Resource_iy02v"), SubResource("Resource_ha0yf"), SubResource("Resource_qgql8"), SubResource("Resource_ep6ky"), SubResource("Resource_oya7g"), SubResource("Resource_7te0w"), SubResource("Resource_puc8q"), SubResource("Resource_e7wcj")])
+evolutions = Array[ExtResource("1_s5i2k")]([SubResource("Resource_t2wri")])
 temperament = ExtResource("15_t4xky")
 genus = "Pokémon Pajarito"
 pokedex_entry = "Pidgey tiene un sentido de la orientación muy desarrollado. Es capaz de regresar a su nido, por lejos que se encuentre de las zonas que le resultan familiares."

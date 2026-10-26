@@ -1,17 +1,25 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/bicho.tres" id="1_au44a"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_qgr5i"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_b02fo"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="4_x"]
+[ext_resource type="Resource" path="res://data/status/seda.tres" id="5_x"]
 
 [resource]
-script = ExtResource("2_qgr5i")
+script = ExtResource("1_x")
 id = "telarana"
 display_name = "Telaraña"
-element = ExtResource("1_au44a")
-kind = 2
+element = ExtResource("3_x")
+kind = 5
 category = 2
 power = 0.0
 cooldown = 6.0
 knockback = 0.0
-radius = 40.0
+zone_radius = 22.0
+zone_duration = 5.0
+placement_range = 100.0
+zone_traps = false
+zone_tick = 0.8
+zone_max_count = 2
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x"), ExtResource("5_x")])

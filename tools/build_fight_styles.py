@@ -72,6 +72,9 @@ STYLES = {
     # Kits v6 (docs/PROPUESTA_KITS_PENDIENTES.md, Tanda A): Raichu jefe es pesado (lento, como en el anime).
     "raichu": ("pesado", []),
     "machop": ("normal", []),
+    # Kits v8 (Tanda C).
+    "drowzee": ("normal", []),
+    "ponyta": ("agil", []),
     "tentacool": ("normal", []),
     "omanyte": ("pesado", []),
     "kabuto": ("pesado", []),
@@ -83,7 +86,7 @@ JUMPERS = {"charmander", "squirtle", "bulbasaur", "pikachu", "rattata", "vulpix"
            "sandshrew", "psyduck", "poliwag", "paras", "oddish", "bellsprout",
            # capítulo 2
            "nidoran_f", "nidoran_m", "nidorina", "nidorino", "jigglypuff", "clefairy", "meowth", "venonat", "raticate",
-           "ivysaur", "charmeleon", "wartortle", "krabby", "abra", "kadabra", "machop"}
+           "ivysaur", "charmeleon", "wartortle", "krabby", "abra", "kadabra", "machop", "drowzee", "ponyta"}
 
 
 def main():

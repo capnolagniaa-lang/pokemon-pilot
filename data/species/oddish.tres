@@ -16,42 +16,65 @@
 [ext_resource type="Resource" path="res://data/moves/acido.tres" id="6_eqil7"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_eqil7"]
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="7_utxk4"]
+[ext_resource type="Resource" path="res://data/moves/dulce_aroma.tres" id="8_d0038"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="8_utxk4"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="9_i4gho"]
+[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="9_tiyx3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="10_cyrj2"]
+[ext_resource type="Resource" path="res://data/moves/luz_lunar.tres" id="11_ben2c"]
 
-[sub_resource type="Resource" id="Resource_lyd1y"]
+[sub_resource type="Resource" id="Resource_jrpcj"]
 script = ExtResource("1_lyd1y")
 to_id = "gloom"
 level = 21
 
-[sub_resource type="Resource" id="Resource_8a2ij"]
+[sub_resource type="Resource" id="Resource_d0038"]
 script = ExtResource("1_q7ka7")
 move = ExtResource("3_rffxm")
 
-[sub_resource type="Resource" id="Resource_1jid3"]
+[sub_resource type="Resource" id="Resource_tiyx3"]
 script = ExtResource("1_q7ka7")
 move = ExtResource("4_lyd1y")
 
-[sub_resource type="Resource" id="Resource_d0038"]
+[sub_resource type="Resource" id="Resource_ben2c"]
 script = ExtResource("1_q7ka7")
 level = 3
 move = ExtResource("5_8a2ij")
 
-[sub_resource type="Resource" id="Resource_tiyx3"]
+[sub_resource type="Resource" id="Resource_1h03a"]
 script = ExtResource("1_q7ka7")
 level = 5
 move = ExtResource("6_1jid3")
 
-[sub_resource type="Resource" id="Resource_ben2c"]
+[sub_resource type="Resource" id="Resource_55pn3"]
+script = ExtResource("1_q7ka7")
+level = 7
+move = ExtResource("8_d0038")
+
+[sub_resource type="Resource" id="Resource_p31xm"]
+script = ExtResource("1_q7ka7")
+level = 18
+move = ExtResource("9_tiyx3")
+
+[sub_resource type="Resource" id="Resource_x0iji"]
 script = ExtResource("1_q7ka7")
 level = 23
 move = ExtResource("6_eqil7")
 
-[sub_resource type="Resource" id="Resource_1h03a"]
+[sub_resource type="Resource" id="Resource_m4j03"]
+script = ExtResource("1_q7ka7")
+level = 32
+move = ExtResource("11_ben2c")
+
+[sub_resource type="Resource" id="Resource_58jwi"]
 script = ExtResource("1_q7ka7")
 level = 36
 move = ExtResource("7_utxk4")
+
+[sub_resource type="Resource" id="Resource_t8oxx"]
+script = ExtResource("1_q7ka7")
+level = 39
+move = ExtResource("4_fd8ac")
 
 [resource]
 script = ExtResource("6_cyrj2")
@@ -61,8 +84,8 @@ dex = 43
 types = Array[ExtResource("7_eqil7")]([ExtResource("8_utxk4"), ExtResource("9_i4gho")])
 moves = Array[ExtResource("1_68w5j")]([ExtResource("2_i4gho"), ExtResource("3_woh8u"), ExtResource("4_fd8ac"), ExtResource("5_q7ka7")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_q7ka7")]([SubResource("Resource_8a2ij"), SubResource("Resource_1jid3"), SubResource("Resource_d0038"), SubResource("Resource_tiyx3"), SubResource("Resource_ben2c"), SubResource("Resource_1h03a")])
-evolutions = Array[ExtResource("1_lyd1y")]([SubResource("Resource_lyd1y")])
+learnset = Array[ExtResource("1_q7ka7")]([SubResource("Resource_d0038"), SubResource("Resource_tiyx3"), SubResource("Resource_ben2c"), SubResource("Resource_1h03a"), SubResource("Resource_55pn3"), SubResource("Resource_p31xm"), SubResource("Resource_x0iji"), SubResource("Resource_m4j03"), SubResource("Resource_58jwi"), SubResource("Resource_t8oxx")])
+evolutions = Array[ExtResource("1_lyd1y")]([SubResource("Resource_jrpcj")])
 temperament = ExtResource("10_cyrj2")
 genus = "Pokémon Hierbajo"
 pokedex_entry = "Durante el día, Oddish se entierra en el suelo para absorber nutrientes valiéndose de todo el cuerpo. Cuanto más fértil sea el suelo, mayor brillo tendrá en las hojas."

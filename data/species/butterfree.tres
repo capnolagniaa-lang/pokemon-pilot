@@ -12,25 +12,61 @@
 [ext_resource type="Resource" path="res://data/kits/butterfree/paralizador_butterfree.tres" id="6_grndo"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_n8di2"]
 [ext_resource type="Resource" path="res://data/kits/butterfree/somnifero_butterfree.tres" id="7_jqvcn"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="8_kruum"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="9_4d7gq"]
+[ext_resource type="Resource" path="res://data/moves/remolino.tres" id="10_lo4i6"]
+[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="11_75xna"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="12_de4dl"]
+[ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="13_hiaqd"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_jqvcn"]
 
-[sub_resource type="Resource" id="Resource_w7gf6"]
+[sub_resource type="Resource" id="Resource_kruum"]
 script = ExtResource("1_fji23")
 move = ExtResource("4_iy6st")
 
-[sub_resource type="Resource" id="Resource_iy6st"]
+[sub_resource type="Resource" id="Resource_4d7gq"]
 script = ExtResource("1_fji23")
 move = ExtResource("5_t7abg")
 
-[sub_resource type="Resource" id="Resource_t7abg"]
+[sub_resource type="Resource" id="Resource_lo4i6"]
 script = ExtResource("1_fji23")
 level = 3
 move = ExtResource("6_grndo")
 
-[sub_resource type="Resource" id="Resource_grndo"]
+[sub_resource type="Resource" id="Resource_75xna"]
 script = ExtResource("1_fji23")
 level = 5
 move = ExtResource("7_jqvcn")
+
+[sub_resource type="Resource" id="Resource_de4dl"]
+script = ExtResource("1_fji23")
+level = 13
+move = ExtResource("8_kruum")
+
+[sub_resource type="Resource" id="Resource_hiaqd"]
+script = ExtResource("1_fji23")
+level = 18
+move = ExtResource("9_4d7gq")
+
+[sub_resource type="Resource" id="Resource_x52w0"]
+script = ExtResource("1_fji23")
+level = 23
+move = ExtResource("10_lo4i6")
+
+[sub_resource type="Resource" id="Resource_n1cfk"]
+script = ExtResource("1_fji23")
+level = 34
+move = ExtResource("11_75xna")
+
+[sub_resource type="Resource" id="Resource_76dtm"]
+script = ExtResource("1_fji23")
+level = 40
+move = ExtResource("12_de4dl")
+
+[sub_resource type="Resource" id="Resource_k5xlc"]
+script = ExtResource("1_fji23")
+level = 47
+move = ExtResource("13_hiaqd")
 
 [resource]
 script = ExtResource("3_rw58d")
@@ -39,7 +75,7 @@ display_name = "Butterfree"
 dex = 12
 types = Array[ExtResource("4_lltuc")]([ExtResource("5_xxhmh"), ExtResource("6_n8di2")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_fji23")]([SubResource("Resource_w7gf6"), SubResource("Resource_iy6st"), SubResource("Resource_t7abg"), SubResource("Resource_grndo")])
+learnset = Array[ExtResource("1_fji23")]([SubResource("Resource_kruum"), SubResource("Resource_4d7gq"), SubResource("Resource_lo4i6"), SubResource("Resource_75xna"), SubResource("Resource_de4dl"), SubResource("Resource_hiaqd"), SubResource("Resource_x52w0"), SubResource("Resource_n1cfk"), SubResource("Resource_76dtm"), SubResource("Resource_k5xlc")])
 evolves_from = "metapod"
 temperament = ExtResource("14_jqvcn")
 genus = "Pokémon Mariposa"

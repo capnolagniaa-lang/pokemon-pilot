@@ -1,21 +1,29 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/roca.tres" id="1_dlvr5"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ckttk"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_qe4xk"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_ckttk")
+script = ExtResource("1_x")
 id = "tumba_rocas"
 display_name = "Tumba Rocas"
-element = ExtResource("1_dlvr5")
-kind = 4
-power = 60.0
-cooldown = 1.35
-knockback = 120.0
-recovery = 0.1
-melee_range = 13.0
-swing_radius = 12.0
-final_knockback = 150.0
+element = ExtResource("3_x")
+kind = 5
+category = 0
+power = 50.0
+cooldown = 9.0
+cast_time = 0.3
+knockback = 80.0
+zone_radius = 24.0
+placement_range = 130.0
+zone_traps = false
+zone_strike = true
+strike_delay = 0.55
+strike_count = 3
+strike_spread = 40.0
+recovery = 0.3
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])
 crater_radius = 16.0
 crater_max = 3

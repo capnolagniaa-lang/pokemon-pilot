@@ -13,4 +13,4 @@ max_value = 0.0
 gains = {}
 decay_out_of_combat = 6.0
 mechanic_script = ExtResource("1_mech")
-params = {"speed_bonus": 1.25, "damage_bonus": 1.25}
+params = {"element_marks": {"fuego": "rastreado", "siniestro": "rastreado", "normal": "rastreado"}, "speed_bonus": 1.25, "damage_bonus": 1.25}

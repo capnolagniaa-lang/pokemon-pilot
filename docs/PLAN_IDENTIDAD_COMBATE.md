@@ -176,6 +176,40 @@ Vaporeon, Jolteon, Flareon). Son **30 especies con kit propio** (más las que he
 | Gyarados | Bruiser | Mordisco (combo 2, 30% herido) | Furia Dragón (bola grande) | Ciclón (área que empuja, 20% desorienta) | Hidrobomba (110, carga 0,5 s, empuja muchísimo y moja) | **Ira de Dragón**: sube al recibir golpes; llena → Enfurecido 5 s |
 | **Starmie (jefa)** | Control | **Hidropulso**: disparo grande, Empapado y 20% desorienta | **Rapidez**: abanico de 5 estrellas | **Giro Rápido**: embestida fuerte que desvía proyectiles | **Recuperación**: se cura 20% en 2,5 s (va lenta) | **Núcleo Prisma**: cuerpo ×1,3, empuje ×0,35, +25% a lo Empapado, barra llena cura 8%; **a mitad de vida el núcleo brilla**: onda que empuja, moja y deja Expuesto, y queda con Núcleo Brillante hasta el final |
 
+## Sinergia con todo lo que aprenden (2026-10-26, pedido del usuario)
+"Todos los movimientos que aparecen en la wiki de cada personaje tienen que poder ser elegidos y hacer sinergia con el
+kit". Lo que se hizo:
+- **Learnset completo**: los Pokémon con kit aprenden el kit (Nv. 1/1/3/5) **y todo su learnset de FRLG** (antes solo 2
+  extras, y los de las Tandas A y B ninguno). `build_learnsets.gd`. Las partidas viejas los ven solos (lo aprendido
+  sale del nivel). Las MT ya se suman con `taught_moves`; la compatibilidad por especie con cada MT queda pendiente.
+- **Equipamiento inicial = el kit** (`CreatureInstance.default_equipment`): un ataque de FRLG del mismo nivel (Gruñido
+  de Charmander) no desplaza a uno del kit.
+- **Ataques oficiales con la forma de su versión de kit** (`tools/link_official_moves.py`): los automáticos con un
+  ataque de kit del mismo nombre toman su forma (el Gas Venenoso oficial es la nube detonable de Koffing, Refugio
+  activa el parry de Squirtle, Foco Energía guarda el crítico de Rattata...), sin el costo de recurso de firma. Los
+  de mejora propia sin versión de kit tienen un efecto genérico: subir ataque → `potenciado` (+25% 6 s), defensa →
+  Fortaleza, evasión → Agilidad, curarse → Recuperación, Protección/Detección → Refugio. Quedan sin efecto los raros
+  (climas, Sustituto, Salpicadura...: lista `NO_EFFECT_OK` del test).
+- **Firmas por tipo** (`SignatureData.params.element_marks`, en `SignatureMechanic`): un golpe de ese tipo le pone su
+  estado al rival aunque el ataque no sea del kit — Seel hielo → escarcha, Caterpie bicho → seda, Oddish planta/veneno
+  → esporas, Growlithe fuego/siniestro/normal → rastreado, Drowzee psíquico → somnolencia. Impulso de Geodude cuenta
+  cualquier Rodar. Las demás firmas ya reaccionaban a cualquier ataque (golpes, daño, estados, tipo).
+- Test: `--autotest-kits-v8 --only sinergia`.
+
+## v8 — Tanda C de la propuesta (✅ en prueba, 2026-10-26)
+Drowzee, Grimer, Koffing, Ponyta, Slowpoke y Magikarp (`tools/build_kits_v8.py`); heredan Hypno, Muk, Weezing, Rapidash,
+Slowbro y Slowking. Firmas nuevas: `gas_mechanic.gd`, `gallop_mechanic.gd`, `slow_mechanic.gd`, `flail_mechanic.gd`
+(Drowzee reusa `stack`, Grimer `body_trait`). Estados nuevos: `somnolencia`, `bostezo`, `potenciado`.
+
+| Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Firma |
+|---|---|---|---|---|---|---|
+| Drowzee | Control | Destructor | Confusión | Anulación | Comesueños (roba vida) | **Hipnosis Acumulable**: cualquier ataque psíquico suma Somnolencia; con 4, duerme |
+| Grimer | Tanque | Destructor (ralentiza) | Residuos (veneno) | Armadura Ácida (Fortaleza) | Derretirse (charco invulnerable que deja lodo tóxico) | **Cuerpo de Lodo**: no lo ralentizan ni envenenan; al que le pega cuerpo a cuerpo lo pegotea |
+| Koffing | Control | Placaje | Gas Venenoso (nube inflamable) | Pantalla de Humo (nube inflamable) | Detonar | **Gas Inflamable**: sus nubes se prenden con cualquier fuego; Detonar las explota todas |
+| Ponyta | Velocista | Pisotón | Ascuas | Giro Fuego | Derribo | **Galope**: correr derecho → hasta ×1,4 de velocidad, estela de fuego (prende el pasto) y embestidas +40%; girar fuerte lo pierde |
+| Slowpoke | Tanque | Golpe Cabeza | Pistola Agua | Pesca con Cola (atrae) | Bostezo | **Reacción Tardía**: 30% del daño le llega 2 s tarde (se olvida si conecta un golpe); Bostezo duerme a los 2 s |
+| Magikarp | Caótico | Salpicadura (salto) | Placaje | Azote (hasta ×3 con poca vida) | Salpicadura Alta | **Determinación**: +20 EXP por cada rival que derriba y sigue en pie |
+
 ## v7 — Tanda B de la propuesta de kits pendientes (✅ en prueba, 2026-10-26)
 Clefairy, Jigglypuff, Abra, Goldeen, Magnemite y Meowth (`tools/build_kits_v7.py`); heredan Clefable, Wigglytuff,
 Seaking, Magneton y Persian. Decisiones (con lo que recomendaba la propuesta): el **Metrónomo elige entre los ataques

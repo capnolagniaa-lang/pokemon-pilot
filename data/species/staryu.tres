@@ -11,31 +11,79 @@
 [ext_resource type="Resource" path="res://data/kits/staryu/giro_rapido_staryu.tres" id="5_24stj"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_y0i41"]
 [ext_resource type="Resource" path="res://data/kits/staryu/fortaleza_staryu.tres" id="6_yicyn"]
+[ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="8_qsnhp"]
+[ext_resource type="Resource" path="res://data/moves/camuflaje.tres" id="9_cwil0"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="10_5stxh"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="11_xb35w"]
+[ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="12_ymb02"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="13_v55wt"]
+[ext_resource type="Resource" path="res://data/moves/masa_cosmica.tres" id="14_fvs1a"]
+[ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="15_pxmx7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="16_jl5ac"]
 
-[sub_resource type="Resource" id="Resource_f478r"]
+[sub_resource type="Resource" id="Resource_7fnd8"]
 script = ExtResource("1_f478r")
 to_id = "starmie"
 method = "piedra"
 item = "piedra_agua"
 
-[sub_resource type="Resource" id="Resource_24stj"]
+[sub_resource type="Resource" id="Resource_qsnhp"]
 script = ExtResource("1_yhwem")
 move = ExtResource("3_qmqk0")
 
-[sub_resource type="Resource" id="Resource_yicyn"]
+[sub_resource type="Resource" id="Resource_cwil0"]
 script = ExtResource("1_yhwem")
 move = ExtResource("4_f478r")
 
-[sub_resource type="Resource" id="Resource_qhghb"]
+[sub_resource type="Resource" id="Resource_5stxh"]
 script = ExtResource("1_yhwem")
 level = 3
 move = ExtResource("5_24stj")
 
-[sub_resource type="Resource" id="Resource_0qwic"]
+[sub_resource type="Resource" id="Resource_xb35w"]
 script = ExtResource("1_yhwem")
 level = 5
 move = ExtResource("6_yicyn")
+
+[sub_resource type="Resource" id="Resource_ymb02"]
+script = ExtResource("1_yhwem")
+level = 15
+move = ExtResource("8_qsnhp")
+
+[sub_resource type="Resource" id="Resource_v55wt"]
+script = ExtResource("1_yhwem")
+level = 19
+move = ExtResource("9_cwil0")
+
+[sub_resource type="Resource" id="Resource_fvs1a"]
+script = ExtResource("1_yhwem")
+level = 24
+move = ExtResource("10_5stxh")
+
+[sub_resource type="Resource" id="Resource_pxmx7"]
+script = ExtResource("1_yhwem")
+level = 28
+move = ExtResource("11_xb35w")
+
+[sub_resource type="Resource" id="Resource_k1vy7"]
+script = ExtResource("1_yhwem")
+level = 33
+move = ExtResource("12_ymb02")
+
+[sub_resource type="Resource" id="Resource_h7gtf"]
+script = ExtResource("1_yhwem")
+level = 37
+move = ExtResource("13_v55wt")
+
+[sub_resource type="Resource" id="Resource_do12l"]
+script = ExtResource("1_yhwem")
+level = 42
+move = ExtResource("14_fvs1a")
+
+[sub_resource type="Resource" id="Resource_vcukd"]
+script = ExtResource("1_yhwem")
+level = 46
+move = ExtResource("15_pxmx7")
 
 [resource]
 script = ExtResource("3_gdfhv")
@@ -44,8 +92,8 @@ display_name = "Staryu"
 dex = 120
 types = Array[ExtResource("4_wp8i6")]([ExtResource("5_y0i41")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_yhwem")]([SubResource("Resource_24stj"), SubResource("Resource_yicyn"), SubResource("Resource_qhghb"), SubResource("Resource_0qwic")])
-evolutions = Array[ExtResource("1_f478r")]([SubResource("Resource_f478r")])
+learnset = Array[ExtResource("1_yhwem")]([SubResource("Resource_qsnhp"), SubResource("Resource_cwil0"), SubResource("Resource_5stxh"), SubResource("Resource_xb35w"), SubResource("Resource_ymb02"), SubResource("Resource_v55wt"), SubResource("Resource_fvs1a"), SubResource("Resource_pxmx7"), SubResource("Resource_k1vy7"), SubResource("Resource_h7gtf"), SubResource("Resource_do12l"), SubResource("Resource_vcukd")])
+evolutions = Array[ExtResource("1_f478r")]([SubResource("Resource_7fnd8")])
 temperament = ExtResource("16_jl5ac")
 genus = "Pokémon Estrella"
 pokedex_entry = "Staryu posee un órgano central, conocido como su núcleo, que brilla con una luz roja. A finales de verano, pueden verse en la playa los núcleos de estos Pokémon brillando como las estrellas del cielo."

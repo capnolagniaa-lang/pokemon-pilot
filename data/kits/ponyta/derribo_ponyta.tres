@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "derribo_ponyta"
+display_name = "Derribo"
+element = ExtResource("3_x")
+kind = 1
+category = 0
+power = 90.0
+cooldown = 5.0
+knockback = 260.0
+dash_time = 0.35
+invulnerable_time = 0.0
+recovery = 0.3

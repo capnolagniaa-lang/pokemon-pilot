@@ -13,4 +13,4 @@ max_value = 0.0
 gains = {}
 decay_out_of_combat = 6.0
 mechanic_script = ExtResource("1_mech")
-params = {"stack_status": "seda", "stacks": 3, "trigger_status": "enraizado", "text": "¡Enredado!"}
+params = {"element_marks": {"bicho": "seda"}, "stack_status": "seda", "stacks": 3, "trigger_status": "enraizado", "text": "¡Enredado!"}

@@ -1,34 +1,40 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/magikarp/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_r0l0w"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_uvi7x"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5btfj"]
-[ext_resource type="Resource" path="res://data/moves/salpicadura.tres" id="2_vy0l3"]
-[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_dhhtm"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_mq4ba"]
-[ext_resource type="Resource" path="res://data/moves/azote.tres" id="4_r0l0w"]
+[ext_resource type="Resource" path="res://data/kits/magikarp/salpicadura_magikarp.tres" id="4_8xheg"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_vy0l3"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_dhhtm"]
+[ext_resource type="Resource" path="res://data/kits/magikarp/placaje_magikarp.tres" id="5_fggsd"]
+[ext_resource type="Resource" path="res://data/kits/magikarp/azote_magikarp.tres" id="6_lbab0"]
+[ext_resource type="Resource" path="res://data/kits/magikarp/salpicadura_alta_magikarp.tres" id="7_bbvsi"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="7_dhhtm"]
 
-[sub_resource type="Resource" id="Resource_r0l0w"]
+[sub_resource type="Resource" id="Resource_8xheg"]
 script = ExtResource("1_r0l0w")
 to_id = "gyarados"
 level = 20
 
-[sub_resource type="Resource" id="Resource_s6gb0"]
-script = ExtResource("1_uvi7x")
-move = ExtResource("2_vy0l3")
-
-[sub_resource type="Resource" id="Resource_8xheg"]
-script = ExtResource("1_uvi7x")
-level = 15
-move = ExtResource("3_dhhtm")
-
 [sub_resource type="Resource" id="Resource_fggsd"]
 script = ExtResource("1_uvi7x")
-level = 30
-move = ExtResource("4_r0l0w")
+move = ExtResource("4_8xheg")
+
+[sub_resource type="Resource" id="Resource_lbab0"]
+script = ExtResource("1_uvi7x")
+move = ExtResource("5_fggsd")
+
+[sub_resource type="Resource" id="Resource_bbvsi"]
+script = ExtResource("1_uvi7x")
+level = 3
+move = ExtResource("6_lbab0")
+
+[sub_resource type="Resource" id="Resource_p2g2o"]
+script = ExtResource("1_uvi7x")
+level = 5
+move = ExtResource("7_bbvsi")
 
 [resource]
 script = ExtResource("3_mq4ba")
@@ -36,8 +42,9 @@ id = "magikarp"
 display_name = "Magikarp"
 dex = 129
 types = Array[ExtResource("4_vy0l3")]([ExtResource("5_dhhtm")])
-learnset = Array[ExtResource("1_uvi7x")]([SubResource("Resource_s6gb0"), SubResource("Resource_8xheg"), SubResource("Resource_fggsd")])
-evolutions = Array[ExtResource("1_r0l0w")]([SubResource("Resource_r0l0w")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_uvi7x")]([SubResource("Resource_fggsd"), SubResource("Resource_lbab0"), SubResource("Resource_bbvsi"), SubResource("Resource_p2g2o")])
+evolutions = Array[ExtResource("1_r0l0w")]([SubResource("Resource_8xheg")])
 temperament = ExtResource("7_dhhtm")
 genus = "Pokémon Pez"
 pokedex_entry = "Magikarp es el triste ejemplo de un Pokémon capaz únicamente de saltar y salpicar. Esta conducta llevó a científicos a estudiarlo en profundidad."

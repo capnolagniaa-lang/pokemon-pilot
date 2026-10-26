@@ -1,22 +1,23 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_ysoci"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7x47n"]
-[ext_resource type="Resource" path="res://data/status/desorientado.tres" id="3_56k61"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="4_51rki"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/desorientado.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_7x47n")
+script = ExtResource("1_x")
 id = "psicorrayo"
 display_name = "Psicorrayo"
-element = ExtResource("1_ysoci")
+element = ExtResource("3_x")
+kind = 6
 category = 1
 power = 65.0
-cooldown = 1.9000000000000001
-knockback = 104.0
-recovery = 0.1
-status = ExtResource("3_56k61")
-status_chance = 0.1
-speed = 280.0
-size = 4.625
-lifetime = 0.85
+cooldown = 6.0
+knockback = 60.0
+channel_time = 0.9
+cone_angle_deg = 12.0
+cone_length = 140.0
+tick_interval = 0.15
+status = ExtResource("4_x")
+status_chance = 0.3

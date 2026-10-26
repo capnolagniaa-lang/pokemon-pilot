@@ -1,19 +1,24 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_nkd0l"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dsidc"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_sarlk"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_dsidc")
+script = ExtResource("1_x")
 id = "pisoton"
 display_name = "Pisotón"
-element = ExtResource("1_nkd0l")
+element = ExtResource("3_x")
 kind = 4
+category = 0
 power = 65.0
-cooldown = 1.4000000000000001
-knockback = 120.0
-recovery = 0.1
+cooldown = 1.2
+knockback = 50.0
+combo_steps = 1
+combo_window = 0.6
+combo_step_cooldown = 0.25
+final_knockback = 180.0
 melee_range = 13.0
-swing_radius = 12.0
-final_knockback = 150.0
+swing_radius = 11.0
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

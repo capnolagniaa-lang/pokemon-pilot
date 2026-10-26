@@ -14,4 +14,4 @@ gains = {}
 decay_out_of_combat = 6.0
 thresholds = Array[float]([50.0, 100.0])
 mechanic_script = ExtResource("1_mech")
-params = {"roll_move": "rodar_kit", "chain_time": 3.0, "step_bonus": 0.5, "max_chain": 2, "max_mult": 2.0, "curl_mult": 2.0}
+params = {"roll_move": "rodar", "chain_time": 3.0, "step_bonus": 0.5, "max_chain": 2, "max_mult": 2.0, "curl_mult": 2.0}

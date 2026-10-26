@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/flail_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "determinacion"
+display_name = "Determinación"
+description = "Azote pega más cuanto menos vida tiene (hasta ×3). Cada rival que derriba y sigue en pie le da 20 de EXP extra, para llegar a Gyarados."
+color = Color(1.0, 0.5, 0.35, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"flail_move": "azote", "flail_max": 3.0, "exp_bonus": 20}

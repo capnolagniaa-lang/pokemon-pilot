@@ -2,7 +2,9 @@
 
 > **Estado (2026-10-26)**: la **Tanda A está implementada** (Raichu jefe, Zubat, Ekans, Machop, Nidoran♀/♂, Horsea,
 > Shellder, Tentacool, Voltorb): ver `PLAN_IDENTIDAD_COMBATE.md` "v6", con las simplificaciones anotadas ahí. La
-> **Tanda B también** (Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth): "v7". Queda la Tanda C.
+> **Tanda B también** (Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth): "v7". Y la **Tanda C** (Drowzee,
+> Grimer, Koffing, Ponyta, Slowpoke, Magikarp): "v8". **Propuesta completa.** Además, "Sinergia con todo lo que
+> aprenden" (mismo archivo).
 
 Pedido del usuario (2026-10-25): "analizá los Pokémon implementados y, para los que no tienen un kit especializado,
 pensá cómo deberían pelear según sus descripciones y cosas del anime". **Es una propuesta**: nada de esto está

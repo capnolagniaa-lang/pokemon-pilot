@@ -11,31 +11,61 @@
 [ext_resource type="Resource" path="res://data/kits/shellder/carambano_shellder.tres" id="5_w0gm6"]
 [ext_resource type="Resource" path="res://data/kits/shellder/refugio_shellder.tres" id="6_uri0c"]
 [ext_resource type="Resource" path="res://data/kits/shellder/tenaza_shellder.tres" id="7_o37bn"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="8_u8u12"]
+[ext_resource type="Resource" path="res://data/moves/rayo_aurora.tres" id="9_jubi6"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="10_lmveg"]
+[ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="11_qhdjq"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="12_8bpos"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_o37bn"]
 
-[sub_resource type="Resource" id="Resource_5y12f"]
+[sub_resource type="Resource" id="Resource_5nqg5"]
 script = ExtResource("1_33ctd")
 to_id = "cloyster"
 method = "piedra"
 item = "piedra_agua"
 
-[sub_resource type="Resource" id="Resource_w0gm6"]
+[sub_resource type="Resource" id="Resource_u8u12"]
 script = ExtResource("1_aui41")
 move = ExtResource("4_5y12f")
 
-[sub_resource type="Resource" id="Resource_uri0c"]
+[sub_resource type="Resource" id="Resource_jubi6"]
 script = ExtResource("1_aui41")
 move = ExtResource("5_w0gm6")
 
-[sub_resource type="Resource" id="Resource_o37bn"]
+[sub_resource type="Resource" id="Resource_lmveg"]
 script = ExtResource("1_aui41")
 level = 3
 move = ExtResource("6_uri0c")
 
-[sub_resource type="Resource" id="Resource_33ctd"]
+[sub_resource type="Resource" id="Resource_qhdjq"]
 script = ExtResource("1_aui41")
 level = 5
 move = ExtResource("7_o37bn")
+
+[sub_resource type="Resource" id="Resource_8bpos"]
+script = ExtResource("1_aui41")
+level = 15
+move = ExtResource("8_u8u12")
+
+[sub_resource type="Resource" id="Resource_aeysi"]
+script = ExtResource("1_aui41")
+level = 22
+move = ExtResource("9_jubi6")
+
+[sub_resource type="Resource" id="Resource_6jmpf"]
+script = ExtResource("1_aui41")
+level = 29
+move = ExtResource("10_lmveg")
+
+[sub_resource type="Resource" id="Resource_in5xc"]
+script = ExtResource("1_aui41")
+level = 36
+move = ExtResource("11_qhdjq")
+
+[sub_resource type="Resource" id="Resource_ul4tn"]
+script = ExtResource("1_aui41")
+level = 50
+move = ExtResource("12_8bpos")
 
 [resource]
 script = ExtResource("3_fkjla")
@@ -44,8 +74,8 @@ display_name = "Shellder"
 dex = 90
 types = Array[ExtResource("4_6yt1b")]([ExtResource("5_ckhtj")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_aui41")]([SubResource("Resource_w0gm6"), SubResource("Resource_uri0c"), SubResource("Resource_o37bn"), SubResource("Resource_33ctd")])
-evolutions = Array[ExtResource("1_33ctd")]([SubResource("Resource_5y12f")])
+learnset = Array[ExtResource("1_aui41")]([SubResource("Resource_u8u12"), SubResource("Resource_jubi6"), SubResource("Resource_lmveg"), SubResource("Resource_qhdjq"), SubResource("Resource_8bpos"), SubResource("Resource_aeysi"), SubResource("Resource_6jmpf"), SubResource("Resource_in5xc"), SubResource("Resource_ul4tn")])
+evolutions = Array[ExtResource("1_33ctd")]([SubResource("Resource_5nqg5")])
 temperament = ExtResource("13_o37bn")
 genus = "Pokémon Bivalvo"
 pokedex_entry = "Por la noche, este Pokémon usa la ancha lengua que tiene para hacer un agujero en el fondo del mar y echarse a dormir. Mientras duerme, Shellder cierra la concha, pero deja la lengua por fuera."

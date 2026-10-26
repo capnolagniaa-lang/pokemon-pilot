@@ -13,20 +13,20 @@
 [ext_resource type="Resource" path="res://data/kits/clefairy/metronomo_clefairy.tres" id="7_1ck0g"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="8_sdlnm"]
 
-[sub_resource type="Resource" id="Resource_2qf3r"]
+[sub_resource type="Resource" id="Resource_xh61h"]
 script = ExtResource("1_xvqjx")
 move = ExtResource("4_xh61h")
 
-[sub_resource type="Resource" id="Resource_nym4i"]
+[sub_resource type="Resource" id="Resource_qhpeu"]
 script = ExtResource("1_xvqjx")
 move = ExtResource("5_qhpeu")
 
-[sub_resource type="Resource" id="Resource_2us3m"]
+[sub_resource type="Resource" id="Resource_mqip7"]
 script = ExtResource("1_xvqjx")
 level = 3
 move = ExtResource("6_mqip7")
 
-[sub_resource type="Resource" id="Resource_hxish"]
+[sub_resource type="Resource" id="Resource_1ck0g"]
 script = ExtResource("1_xvqjx")
 level = 5
 move = ExtResource("7_1ck0g")
@@ -38,7 +38,7 @@ display_name = "Clefable"
 dex = 36
 types = Array[ExtResource("4_00ndu")]([ExtResource("5_6pnjj")])
 kit = ExtResource("2_xh61h")
-learnset = Array[ExtResource("1_xvqjx")]([SubResource("Resource_2qf3r"), SubResource("Resource_nym4i"), SubResource("Resource_2us3m"), SubResource("Resource_hxish")])
+learnset = Array[ExtResource("1_xvqjx")]([SubResource("Resource_xh61h"), SubResource("Resource_qhpeu"), SubResource("Resource_mqip7"), SubResource("Resource_1ck0g")])
 kit_inherited = true
 evolves_from = "clefairy"
 temperament = ExtResource("8_sdlnm")

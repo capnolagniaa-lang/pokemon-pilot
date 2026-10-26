@@ -172,7 +172,7 @@ KITS = {
     ]),
 }
 
-SKIP = {"id", "name", "el", "kind", "cat", "status", "chance", "on_hit", "self", "dwell_status"}
+SKIP = {"id", "name", "el", "kind", "cat", "status", "chance", "on_hit", "self", "dwell_status", "trail_status"}
 
 
 def val(v):
@@ -210,6 +210,8 @@ def move_tres(m):
         body.append("status_chance = %s" % val(float(m.get("chance", 1.0))))
     if "self" in m:
         body.append('self_status = ExtResource("%s")' % ref("res://data/status/%s.tres" % m["self"]))
+    if "trail_status" in m:
+        body.append('trail_status = ExtResource("%s")' % ref("res://data/status/%s.tres" % m["trail_status"]))
     if "dwell_status" in m:
         body.append('dwell_status = ExtResource("%s")' % ref("res://data/status/%s.tres" % m["dwell_status"]))
     if "on_hit" in m:

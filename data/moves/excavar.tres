@@ -1,19 +1,25 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/tierra.tres" id="1_871ss"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_aorb8"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_rbeyd"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="3_x"]
 
 [resource]
-script = ExtResource("2_aorb8")
+script = ExtResource("1_x")
 id = "excavar"
 display_name = "Excavar"
-element = ExtResource("1_871ss")
-kind = 1
+element = ExtResource("3_x")
+kind = 5
+category = 0
 power = 80.0
-cooldown = 2.15
-knockback = 220.0
+cooldown = 8.0
+knockback = 260.0
+zone_radius = 34.0
+placement_range = 150.0
+zone_traps = false
+zone_strike = true
+strike_delay = 1.0
+strike_burrow = true
 recovery = 0.3
-dash_time = 0.28
-crater_radius = 30.0
+crater_radius = 34.0
 crater_max = 2

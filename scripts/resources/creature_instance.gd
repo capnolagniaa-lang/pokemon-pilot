@@ -95,8 +95,15 @@ func equip(slot: int, m: MoveData) -> bool:
 ## Lo que equipa por defecto: los primeros 4 aprendidos (los del kit, en su orden, van primero).
 func default_equipment() -> Array[MoveData]:
 	var out: Array[MoveData] = []
-	for m in learned_moves():
-		if out.size() < SLOT_COUNT:
+	var learned := learned_moves()
+	# Primero los del kit (su estilo de pelea), aunque el learnset completo de FRLG tenga otros al mismo nivel
+	# (Charmander aprende Gruñido en Nv. 1: no tiene que desplazar a Giro Fuego).
+	if species.kit != null:
+		for m in species.kit.moves:
+			if m != null and learned.has(m) and out.size() < SLOT_COUNT:
+				out.append(m)
+	for m in learned:
+		if out.size() < SLOT_COUNT and not out.has(m):
 			out.append(m)
 	while out.size() < SLOT_COUNT:
 		out.append(null)

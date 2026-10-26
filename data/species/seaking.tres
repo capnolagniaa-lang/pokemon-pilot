@@ -20,54 +20,54 @@
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="12_55po3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_58jfp"]
 
-[sub_resource type="Resource" id="Resource_cbnpm"]
+[sub_resource type="Resource" id="Resource_2d0pt"]
 script = ExtResource("1_4w7sn")
 move = ExtResource("4_2d0pt")
 
-[sub_resource type="Resource" id="Resource_4f1bs"]
+[sub_resource type="Resource" id="Resource_ybmcs"]
 script = ExtResource("1_4w7sn")
 move = ExtResource("5_ybmcs")
 
-[sub_resource type="Resource" id="Resource_cavtv"]
+[sub_resource type="Resource" id="Resource_cvt6p"]
 script = ExtResource("1_4w7sn")
 level = 3
 move = ExtResource("6_cvt6p")
 
-[sub_resource type="Resource" id="Resource_55po3"]
+[sub_resource type="Resource" id="Resource_27cos"]
 script = ExtResource("1_4w7sn")
 level = 5
 move = ExtResource("7_27cos")
 
-[sub_resource type="Resource" id="Resource_kpcsm"]
+[sub_resource type="Resource" id="Resource_cbnpm"]
 script = ExtResource("1_4w7sn")
 move = ExtResource("4_l3f3k")
 
-[sub_resource type="Resource" id="Resource_1ucym"]
+[sub_resource type="Resource" id="Resource_4f1bs"]
 script = ExtResource("1_4w7sn")
 level = 24
 move = ExtResource("7_cvt6p")
 
-[sub_resource type="Resource" id="Resource_m5iv8"]
+[sub_resource type="Resource" id="Resource_cavtv"]
 script = ExtResource("1_4w7sn")
 level = 29
 move = ExtResource("8_27cos")
 
-[sub_resource type="Resource" id="Resource_2grmo"]
+[sub_resource type="Resource" id="Resource_55po3"]
 script = ExtResource("1_4w7sn")
 level = 41
 move = ExtResource("9_cbnpm")
 
-[sub_resource type="Resource" id="Resource_2es5o"]
+[sub_resource type="Resource" id="Resource_kpcsm"]
 script = ExtResource("1_4w7sn")
 level = 49
 move = ExtResource("10_4f1bs")
 
-[sub_resource type="Resource" id="Resource_eixty"]
+[sub_resource type="Resource" id="Resource_1ucym"]
 script = ExtResource("1_4w7sn")
 level = 61
 move = ExtResource("11_cavtv")
 
-[sub_resource type="Resource" id="Resource_n0num"]
+[sub_resource type="Resource" id="Resource_m5iv8"]
 script = ExtResource("1_4w7sn")
 level = 69
 move = ExtResource("12_55po3")
@@ -79,7 +79,7 @@ display_name = "Seaking"
 dex = 119
 types = Array[ExtResource("4_hed7u")]([ExtResource("5_d15be")])
 kit = ExtResource("2_2d0pt")
-learnset = Array[ExtResource("1_4w7sn")]([SubResource("Resource_cbnpm"), SubResource("Resource_4f1bs"), SubResource("Resource_cavtv"), SubResource("Resource_55po3"), SubResource("Resource_kpcsm"), SubResource("Resource_1ucym"), SubResource("Resource_m5iv8"), SubResource("Resource_2grmo"), SubResource("Resource_2es5o"), SubResource("Resource_eixty"), SubResource("Resource_n0num")])
+learnset = Array[ExtResource("1_4w7sn")]([SubResource("Resource_2d0pt"), SubResource("Resource_ybmcs"), SubResource("Resource_cvt6p"), SubResource("Resource_27cos"), SubResource("Resource_cbnpm"), SubResource("Resource_4f1bs"), SubResource("Resource_cavtv"), SubResource("Resource_55po3"), SubResource("Resource_kpcsm"), SubResource("Resource_1ucym"), SubResource("Resource_m5iv8")])
 kit_inherited = true
 evolves_from = "goldeen"
 temperament = ExtResource("15_58jfp")

@@ -12,30 +12,70 @@
 [ext_resource type="Resource" path="res://data/kits/magnemite/supersonico_magnemite.tres" id="6_80hm8"]
 [ext_resource type="Resource" path="res://data/types/acero.tres" id="6_jpx5f"]
 [ext_resource type="Resource" path="res://data/kits/magnemite/fijar_blanco_magnemite.tres" id="7_nv3j0"]
+[ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="8_feg78"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="9_72ith"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="10_tkgcd"]
+[ext_resource type="Resource" path="res://data/moves/chispa.tres" id="11_3uu0r"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="12_ai7m8"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="13_ej8qi"]
+[ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="14_c1dna"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="15_oxqxu"]
 
-[sub_resource type="Resource" id="Resource_fb0ph"]
+[sub_resource type="Resource" id="Resource_b5264"]
 script = ExtResource("1_niwy8")
 to_id = "magneton"
 level = 30
 
-[sub_resource type="Resource" id="Resource_tk7da"]
+[sub_resource type="Resource" id="Resource_feg78"]
 script = ExtResource("1_l51ae")
 move = ExtResource("4_fb0ph")
 
-[sub_resource type="Resource" id="Resource_80hm8"]
+[sub_resource type="Resource" id="Resource_72ith"]
 script = ExtResource("1_l51ae")
 move = ExtResource("5_tk7da")
 
-[sub_resource type="Resource" id="Resource_nv3j0"]
+[sub_resource type="Resource" id="Resource_tkgcd"]
 script = ExtResource("1_l51ae")
 level = 3
 move = ExtResource("6_80hm8")
 
-[sub_resource type="Resource" id="Resource_3omnb"]
+[sub_resource type="Resource" id="Resource_3uu0r"]
 script = ExtResource("1_l51ae")
 level = 5
 move = ExtResource("7_nv3j0")
+
+[sub_resource type="Resource" id="Resource_ai7m8"]
+script = ExtResource("1_l51ae")
+move = ExtResource("8_feg78")
+
+[sub_resource type="Resource" id="Resource_ej8qi"]
+script = ExtResource("1_l51ae")
+move = ExtResource("9_72ith")
+
+[sub_resource type="Resource" id="Resource_c1dna"]
+script = ExtResource("1_l51ae")
+level = 21
+move = ExtResource("10_tkgcd")
+
+[sub_resource type="Resource" id="Resource_51wio"]
+script = ExtResource("1_l51ae")
+level = 26
+move = ExtResource("11_3uu0r")
+
+[sub_resource type="Resource" id="Resource_coakj"]
+script = ExtResource("1_l51ae")
+level = 38
+move = ExtResource("12_ai7m8")
+
+[sub_resource type="Resource" id="Resource_xwi8k"]
+script = ExtResource("1_l51ae")
+level = 44
+move = ExtResource("13_ej8qi")
+
+[sub_resource type="Resource" id="Resource_lw2pg"]
+script = ExtResource("1_l51ae")
+level = 50
+move = ExtResource("14_c1dna")
 
 [resource]
 script = ExtResource("3_rx1nw")
@@ -44,8 +84,8 @@ display_name = "Magnemite"
 dex = 81
 types = Array[ExtResource("4_05sr6")]([ExtResource("5_uktkj"), ExtResource("6_jpx5f")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_l51ae")]([SubResource("Resource_tk7da"), SubResource("Resource_80hm8"), SubResource("Resource_nv3j0"), SubResource("Resource_3omnb")])
-evolutions = Array[ExtResource("1_niwy8")]([SubResource("Resource_fb0ph")])
+learnset = Array[ExtResource("1_l51ae")]([SubResource("Resource_feg78"), SubResource("Resource_72ith"), SubResource("Resource_tkgcd"), SubResource("Resource_3uu0r"), SubResource("Resource_ai7m8"), SubResource("Resource_ej8qi"), SubResource("Resource_c1dna"), SubResource("Resource_51wio"), SubResource("Resource_coakj"), SubResource("Resource_xwi8k"), SubResource("Resource_lw2pg")])
+evolutions = Array[ExtResource("1_niwy8")]([SubResource("Resource_b5264")])
 temperament = ExtResource("15_oxqxu")
 genus = "Pokémon Imán"
 pokedex_entry = "Magnemite se engancha a las líneas de tensión para nutrirse de electricidad. Cuando se producen apagones en las casas, es aconsejable revisar el automático y comprobar que no hay Pokémon de este tipo colgados de la caja de fusibles."

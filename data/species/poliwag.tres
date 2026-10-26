@@ -16,38 +16,50 @@
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="6_j21u2"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="7_inumd"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="7_j21u2"]
+[ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="8_5uedk"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="8_tlbdr"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="10_44mrl"]
+[ext_resource type="Resource" path="res://data/moves/tambor.tres" id="10_hrocr"]
 
-[sub_resource type="Resource" id="Resource_iw0q7"]
+[sub_resource type="Resource" id="Resource_sloip"]
 script = ExtResource("1_iw0q7")
 to_id = "poliwhirl"
 level = 25
 
-[sub_resource type="Resource" id="Resource_xwkpg"]
+[sub_resource type="Resource" id="Resource_5uedk"]
 script = ExtResource("1_nrj5d")
 move = ExtResource("3_pecyu")
 
-[sub_resource type="Resource" id="Resource_5uedk"]
+[sub_resource type="Resource" id="Resource_hrocr"]
 script = ExtResource("1_nrj5d")
 move = ExtResource("4_iw0q7")
 
-[sub_resource type="Resource" id="Resource_hrocr"]
+[sub_resource type="Resource" id="Resource_8mr1v"]
 script = ExtResource("1_nrj5d")
 level = 3
 move = ExtResource("5_xwkpg")
 
-[sub_resource type="Resource" id="Resource_8mr1v"]
+[sub_resource type="Resource" id="Resource_quevk"]
 script = ExtResource("1_nrj5d")
 level = 5
 move = ExtResource("6_5uedk")
 
-[sub_resource type="Resource" id="Resource_quevk"]
+[sub_resource type="Resource" id="Resource_vrk6c"]
+script = ExtResource("1_nrj5d")
+level = 19
+move = ExtResource("8_5uedk")
+
+[sub_resource type="Resource" id="Resource_2m48x"]
 script = ExtResource("1_nrj5d")
 level = 31
 move = ExtResource("6_44mrl")
 
-[sub_resource type="Resource" id="Resource_vrk6c"]
+[sub_resource type="Resource" id="Resource_cyn7y"]
+script = ExtResource("1_nrj5d")
+level = 37
+move = ExtResource("10_hrocr")
+
+[sub_resource type="Resource" id="Resource_tx5s4"]
 script = ExtResource("1_nrj5d")
 level = 43
 move = ExtResource("7_j21u2")
@@ -60,8 +72,8 @@ dex = 60
 types = Array[ExtResource("7_inumd")]([ExtResource("8_tlbdr")])
 moves = Array[ExtResource("1_g3w7n")]([ExtResource("2_r6x3q"), ExtResource("3_fjwno"), ExtResource("4_nrj5d"), ExtResource("5_44mrl")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_nrj5d")]([SubResource("Resource_xwkpg"), SubResource("Resource_5uedk"), SubResource("Resource_hrocr"), SubResource("Resource_8mr1v"), SubResource("Resource_quevk"), SubResource("Resource_vrk6c")])
-evolutions = Array[ExtResource("1_iw0q7")]([SubResource("Resource_iw0q7")])
+learnset = Array[ExtResource("1_nrj5d")]([SubResource("Resource_5uedk"), SubResource("Resource_hrocr"), SubResource("Resource_8mr1v"), SubResource("Resource_quevk"), SubResource("Resource_vrk6c"), SubResource("Resource_2m48x"), SubResource("Resource_cyn7y"), SubResource("Resource_tx5s4")])
+evolutions = Array[ExtResource("1_iw0q7")]([SubResource("Resource_sloip")])
 temperament = ExtResource("10_44mrl")
 genus = "Pokémon Renacuajo"
 pokedex_entry = "Poliwag tiene una piel muy fina. Tanto que es posible entrever a través de la misma las vísceras en espiral que tiene. La piel, aunque fina, tiene la ventaja de ser flexible y hacer rebotar hasta los colmillos más afilados."

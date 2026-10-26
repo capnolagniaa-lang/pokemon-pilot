@@ -1,72 +1,78 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/grimer/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6usfh"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_48jvc"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0ecbs"]
 [ext_resource type="Resource" path="res://data/moves/gas_venenoso.tres" id="2_6jnwg"]
-[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="3_2cshn"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_7dyks"]
+[ext_resource type="Resource" path="res://data/kits/grimer/destructor_grimer.tres" id="4_45lut"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="4_48jvc"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rlhim"]
 [ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="5_cykb4"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_toppp"]
-[ext_resource type="Resource" path="res://data/moves/residuos.tres" id="6_45lut"]
+[ext_resource type="Resource" path="res://data/kits/grimer/residuos_grimer.tres" id="5_umjdq"]
+[ext_resource type="Resource" path="res://data/kits/grimer/armadura_acida_grimer.tres" id="6_gxbak"]
+[ext_resource type="Resource" path="res://data/kits/grimer/derretirse_grimer.tres" id="7_j42uk"]
 [ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="7_umjdq"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_gxbak"]
-[ext_resource type="Resource" path="res://data/moves/armadura_acida.tres" id="9_j42uk"]
 [ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="10_fce0w"]
 [ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_dnab5"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_2cshn"]
 
-[sub_resource type="Resource" id="Resource_48jvc"]
+[sub_resource type="Resource" id="Resource_45lut"]
 script = ExtResource("1_48jvc")
 to_id = "muk"
 level = 38
 
-[sub_resource type="Resource" id="Resource_cykb4"]
+[sub_resource type="Resource" id="Resource_umjdq"]
+script = ExtResource("1_6usfh")
+move = ExtResource("4_45lut")
+
+[sub_resource type="Resource" id="Resource_gxbak"]
+script = ExtResource("1_6usfh")
+move = ExtResource("5_umjdq")
+
+[sub_resource type="Resource" id="Resource_j42uk"]
+script = ExtResource("1_6usfh")
+level = 3
+move = ExtResource("6_gxbak")
+
+[sub_resource type="Resource" id="Resource_fce0w"]
+script = ExtResource("1_6usfh")
+level = 5
+move = ExtResource("7_j42uk")
+
+[sub_resource type="Resource" id="Resource_dnab5"]
 script = ExtResource("1_6usfh")
 move = ExtResource("2_6jnwg")
 
-[sub_resource type="Resource" id="Resource_45lut"]
-script = ExtResource("1_6usfh")
-move = ExtResource("3_2cshn")
-
-[sub_resource type="Resource" id="Resource_umjdq"]
+[sub_resource type="Resource" id="Resource_bkx25"]
 script = ExtResource("1_6usfh")
 level = 4
 move = ExtResource("4_48jvc")
 
-[sub_resource type="Resource" id="Resource_gxbak"]
+[sub_resource type="Resource" id="Resource_ho47a"]
 script = ExtResource("1_6usfh")
 level = 8
 move = ExtResource("5_cykb4")
 
-[sub_resource type="Resource" id="Resource_j42uk"]
-script = ExtResource("1_6usfh")
-level = 13
-move = ExtResource("6_45lut")
-
-[sub_resource type="Resource" id="Resource_fce0w"]
+[sub_resource type="Resource" id="Resource_hw6k7"]
 script = ExtResource("1_6usfh")
 level = 19
 move = ExtResource("7_umjdq")
 
-[sub_resource type="Resource" id="Resource_dnab5"]
+[sub_resource type="Resource" id="Resource_hbrcy"]
 script = ExtResource("1_6usfh")
 level = 26
 move = ExtResource("8_gxbak")
 
-[sub_resource type="Resource" id="Resource_bkx25"]
-script = ExtResource("1_6usfh")
-level = 34
-move = ExtResource("9_j42uk")
-
-[sub_resource type="Resource" id="Resource_ho47a"]
+[sub_resource type="Resource" id="Resource_xaqaw"]
 script = ExtResource("1_6usfh")
 level = 43
 move = ExtResource("10_fce0w")
 
-[sub_resource type="Resource" id="Resource_hw6k7"]
+[sub_resource type="Resource" id="Resource_ray6a"]
 script = ExtResource("1_6usfh")
 level = 53
 move = ExtResource("11_dnab5")
@@ -77,8 +83,9 @@ id = "grimer"
 display_name = "Grimer"
 dex = 88
 types = Array[ExtResource("4_rlhim")]([ExtResource("5_toppp")])
-learnset = Array[ExtResource("1_6usfh")]([SubResource("Resource_cykb4"), SubResource("Resource_45lut"), SubResource("Resource_umjdq"), SubResource("Resource_gxbak"), SubResource("Resource_j42uk"), SubResource("Resource_fce0w"), SubResource("Resource_dnab5"), SubResource("Resource_bkx25"), SubResource("Resource_ho47a"), SubResource("Resource_hw6k7")])
-evolutions = Array[ExtResource("1_48jvc")]([SubResource("Resource_48jvc")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_6usfh")]([SubResource("Resource_umjdq"), SubResource("Resource_gxbak"), SubResource("Resource_j42uk"), SubResource("Resource_fce0w"), SubResource("Resource_dnab5"), SubResource("Resource_bkx25"), SubResource("Resource_ho47a"), SubResource("Resource_hw6k7"), SubResource("Resource_hbrcy"), SubResource("Resource_xaqaw"), SubResource("Resource_ray6a")])
+evolutions = Array[ExtResource("1_48jvc")]([SubResource("Resource_45lut")])
 temperament = ExtResource("14_2cshn")
 genus = "Pokémon Lodo"
 pokedex_entry = "El elástico cuerpo de lodo de Grimer le permite colarse por cualquier orificio, sea del tamaño que sea. Este Pokémon entra en los bajantes de las cloacas para beberse el agua sucia."

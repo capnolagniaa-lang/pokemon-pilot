@@ -13,41 +13,59 @@
 [ext_resource type="Resource" path="res://data/kits/paras/espora_kit.tres" id="6_ixc5w"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="6_tatkk"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="7_rx0bp"]
+[ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="8_638na"]
 [ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="9_f6htp"]
+[ext_resource type="Resource" path="res://data/moves/desarrollo.tres" id="10_03ku6"]
+[ext_resource type="Resource" path="res://data/moves/aromaterapia.tres" id="12_rx0bp"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="13_s6mcd"]
 
-[sub_resource type="Resource" id="Resource_seqq5"]
+[sub_resource type="Resource" id="Resource_8okci"]
 script = ExtResource("1_seqq5")
 to_id = "parasect"
 level = 24
 
-[sub_resource type="Resource" id="Resource_s6mcd"]
+[sub_resource type="Resource" id="Resource_638na"]
 script = ExtResource("1_n0vu1")
 move = ExtResource("3_5jyhx")
 
-[sub_resource type="Resource" id="Resource_ixc5w"]
+[sub_resource type="Resource" id="Resource_03ku6"]
 script = ExtResource("1_n0vu1")
 move = ExtResource("4_seqq5")
 
-[sub_resource type="Resource" id="Resource_638na"]
+[sub_resource type="Resource" id="Resource_rx0bp"]
 script = ExtResource("1_n0vu1")
 level = 3
 move = ExtResource("5_s6mcd")
 
-[sub_resource type="Resource" id="Resource_03ku6"]
+[sub_resource type="Resource" id="Resource_scsdy"]
 script = ExtResource("1_n0vu1")
 level = 5
 move = ExtResource("6_ixc5w")
 
-[sub_resource type="Resource" id="Resource_rx0bp"]
+[sub_resource type="Resource" id="Resource_f6htp"]
+script = ExtResource("1_n0vu1")
+level = 13
+move = ExtResource("8_638na")
+
+[sub_resource type="Resource" id="Resource_2y2q1"]
 script = ExtResource("1_n0vu1")
 level = 31
 move = ExtResource("7_rx0bp")
 
-[sub_resource type="Resource" id="Resource_scsdy"]
+[sub_resource type="Resource" id="Resource_b7j8a"]
+script = ExtResource("1_n0vu1")
+level = 37
+move = ExtResource("10_03ku6")
+
+[sub_resource type="Resource" id="Resource_v4hpa"]
 script = ExtResource("1_n0vu1")
 level = 43
 move = ExtResource("9_f6htp")
+
+[sub_resource type="Resource" id="Resource_cartu"]
+script = ExtResource("1_n0vu1")
+level = 49
+move = ExtResource("12_rx0bp")
 
 [resource]
 script = ExtResource("3_wdw4i")
@@ -56,8 +74,8 @@ display_name = "Paras"
 dex = 46
 types = Array[ExtResource("4_cfikb")]([ExtResource("5_2orq6"), ExtResource("6_tatkk")])
 kit = ExtResource("0_kitv3")
-learnset = Array[ExtResource("1_n0vu1")]([SubResource("Resource_s6mcd"), SubResource("Resource_ixc5w"), SubResource("Resource_638na"), SubResource("Resource_03ku6"), SubResource("Resource_rx0bp"), SubResource("Resource_scsdy")])
-evolutions = Array[ExtResource("1_seqq5")]([SubResource("Resource_seqq5")])
+learnset = Array[ExtResource("1_n0vu1")]([SubResource("Resource_638na"), SubResource("Resource_03ku6"), SubResource("Resource_rx0bp"), SubResource("Resource_scsdy"), SubResource("Resource_f6htp"), SubResource("Resource_2y2q1"), SubResource("Resource_b7j8a"), SubResource("Resource_v4hpa"), SubResource("Resource_cartu")])
+evolutions = Array[ExtResource("1_seqq5")]([SubResource("Resource_8okci")])
 temperament = ExtResource("13_s6mcd")
 genus = "Pokémon Hongo"
 pokedex_entry = "Paras lleva dos setas parásitas a cuestas llamadas tochukaso. Estas crecen alimentándose de los nutrientes de este Pokémon de tipo Bicho y Planta que les sirve de huésped. Las setas se usan como elixir de vida."

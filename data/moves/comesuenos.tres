@@ -1,19 +1,22 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_5pfms"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_2pnv7"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_1rs5s"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="3_x"]
 
 [resource]
-script = ExtResource("2_2pnv7")
+script = ExtResource("1_x")
 id = "comesuenos"
 display_name = "Comesueños"
-element = ExtResource("1_5pfms")
+element = ExtResource("3_x")
+kind = 0
 category = 1
 power = 100.0
-cooldown = 2.5
-cast_time = 0.45
-recovery = 0.4
-speed = 280.0
-size = 5.5
-lifetime = 0.85
+cooldown = 7.0
+knockback = 140.0
+speed = 230.0
+size = 7.0
+lifetime = 0.9
+drain = 0.5
+cast_time = 0.3
+recovery = 0.2

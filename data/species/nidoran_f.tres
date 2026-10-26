@@ -11,30 +11,65 @@
 [ext_resource type="Resource" path="res://data/kits/nidoran_f/doble_patada_nidoran_f.tres" id="5_i4wfw"]
 [ext_resource type="Resource" path="res://data/kits/nidoran_f/mordisco_nidoran_f.tres" id="6_s7i4f"]
 [ext_resource type="Resource" path="res://data/kits/nidoran_f/refuerzo_nidoran_f.tres" id="7_kr61s"]
+[ext_resource type="Resource" path="res://data/moves/grunido.tres" id="8_ss4r4"]
+[ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="9_tujck"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="10_f1ema"]
+[ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="11_1acl7"]
+[ext_resource type="Resource" path="res://data/moves/camelo.tres" id="12_3t4mg"]
+[ext_resource type="Resource" path="res://data/moves/triturar.tres" id="13_1agcq"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_3vqos"]
 
-[sub_resource type="Resource" id="Resource_27omv"]
+[sub_resource type="Resource" id="Resource_2whsd"]
 script = ExtResource("1_10mka")
 to_id = "nidorina"
 level = 16
 
-[sub_resource type="Resource" id="Resource_i4wfw"]
+[sub_resource type="Resource" id="Resource_ss4r4"]
 script = ExtResource("1_5g56r")
 move = ExtResource("4_27omv")
 
-[sub_resource type="Resource" id="Resource_s7i4f"]
+[sub_resource type="Resource" id="Resource_tujck"]
 script = ExtResource("1_5g56r")
 move = ExtResource("5_i4wfw")
 
-[sub_resource type="Resource" id="Resource_kr61s"]
+[sub_resource type="Resource" id="Resource_f1ema"]
 script = ExtResource("1_5g56r")
 level = 3
 move = ExtResource("6_s7i4f")
 
-[sub_resource type="Resource" id="Resource_3vqos"]
+[sub_resource type="Resource" id="Resource_1acl7"]
 script = ExtResource("1_5g56r")
 level = 5
 move = ExtResource("7_kr61s")
+
+[sub_resource type="Resource" id="Resource_3t4mg"]
+script = ExtResource("1_5g56r")
+move = ExtResource("8_ss4r4")
+
+[sub_resource type="Resource" id="Resource_1agcq"]
+script = ExtResource("1_5g56r")
+level = 8
+move = ExtResource("9_tujck")
+
+[sub_resource type="Resource" id="Resource_2sqbn"]
+script = ExtResource("1_5g56r")
+level = 17
+move = ExtResource("10_f1ema")
+
+[sub_resource type="Resource" id="Resource_bf7e8"]
+script = ExtResource("1_5g56r")
+level = 30
+move = ExtResource("11_1acl7")
+
+[sub_resource type="Resource" id="Resource_l6q28"]
+script = ExtResource("1_5g56r")
+level = 38
+move = ExtResource("12_3t4mg")
+
+[sub_resource type="Resource" id="Resource_h6vwe"]
+script = ExtResource("1_5g56r")
+level = 47
+move = ExtResource("13_1agcq")
 
 [resource]
 script = ExtResource("3_v24at")
@@ -43,8 +78,8 @@ display_name = "Nidoran♀"
 dex = 29
 types = Array[ExtResource("4_cah2j")]([ExtResource("5_0ulli")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_5g56r")]([SubResource("Resource_i4wfw"), SubResource("Resource_s7i4f"), SubResource("Resource_kr61s"), SubResource("Resource_3vqos")])
-evolutions = Array[ExtResource("1_10mka")]([SubResource("Resource_27omv")])
+learnset = Array[ExtResource("1_5g56r")]([SubResource("Resource_ss4r4"), SubResource("Resource_tujck"), SubResource("Resource_f1ema"), SubResource("Resource_1acl7"), SubResource("Resource_3t4mg"), SubResource("Resource_1agcq"), SubResource("Resource_2sqbn"), SubResource("Resource_bf7e8"), SubResource("Resource_l6q28"), SubResource("Resource_h6vwe")])
+evolutions = Array[ExtResource("1_10mka")]([SubResource("Resource_2whsd")])
 temperament = ExtResource("14_3vqos")
 genus = "Pokémon Pin Veneno"
 pokedex_entry = "Nidoran♀ tiene púas que segregan un veneno muy potente. Se piensa que las desarrolló como protección del cuerpo tan pequeño que tiene. Cuando se enfada, libera una horrible sustancia tóxica por el cuerno."

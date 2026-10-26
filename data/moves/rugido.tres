@@ -1,17 +1,20 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_nvdgs"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_23yhf"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_0dltm"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/desorientado.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_23yhf")
+script = ExtResource("1_x")
 id = "rugido"
 display_name = "Rugido"
-element = ExtResource("1_nvdgs")
+element = ExtResource("3_x")
 kind = 2
 category = 2
 power = 0.0
 cooldown = 6.0
-knockback = 0.0
-radius = 40.0
+knockback = 300.0
+radius = 42.0
+recovery = 0.15
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

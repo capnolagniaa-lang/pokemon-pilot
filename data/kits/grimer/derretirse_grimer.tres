@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "derretirse_grimer"
+display_name = "Derretirse"
+element = ExtResource("3_x")
+kind = 1
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+dash_time = 0.5
+dash_hits = false
+invulnerable_time = 0.8
+trail_power = 10.0
+trail_status_chance = 0.5
+trail_duration = 3.0
+trail_status = ExtResource("4_x")

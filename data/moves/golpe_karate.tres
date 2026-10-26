@@ -1,19 +1,22 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/lucha.tres" id="1_1w8tx"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_majpy"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_088n8"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="3_x"]
 
 [resource]
-script = ExtResource("2_majpy")
+script = ExtResource("1_x")
 id = "golpe_karate"
 display_name = "Golpe Kárate"
-element = ExtResource("1_1w8tx")
+element = ExtResource("3_x")
 kind = 4
+category = 0
 power = 50.0
-cooldown = 1.25
-knockback = 120.0
-recovery = 0.1
+cooldown = 0.9
+knockback = 50.0
+combo_steps = 3
+combo_window = 0.6
+combo_step_cooldown = 0.2
+final_knockback = 220.0
 melee_range = 13.0
-swing_radius = 12.0
-final_knockback = 150.0
+swing_radius = 11.0

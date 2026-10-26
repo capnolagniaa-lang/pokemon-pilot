@@ -11,30 +11,70 @@
 [ext_resource type="Resource" path="res://data/kits/voltorb/chispa_voltorb.tres" id="5_hw8gw"]
 [ext_resource type="Resource" path="res://data/kits/voltorb/bomba_sonica_voltorb.tres" id="6_rh05c"]
 [ext_resource type="Resource" path="res://data/kits/voltorb/autodestruccion_voltorb.tres" id="7_jtfky"]
+[ext_resource type="Resource" path="res://data/moves/carga.tres" id="8_4vtcj"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="9_4wxdx"]
+[ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="10_8wp66"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="11_j3vlr"]
+[ext_resource type="Resource" path="res://data/moves/rapidez.tres" id="12_6kb3y"]
+[ext_resource type="Resource" path="res://data/moves/explosion.tres" id="13_fh275"]
+[ext_resource type="Resource" path="res://data/moves/manto_espejo.tres" id="14_apka1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_bl1dy"]
 
-[sub_resource type="Resource" id="Resource_cmi02"]
+[sub_resource type="Resource" id="Resource_q3gmb"]
 script = ExtResource("1_fqqqg")
 to_id = "electrode"
 level = 30
 
-[sub_resource type="Resource" id="Resource_hw8gw"]
+[sub_resource type="Resource" id="Resource_4vtcj"]
 script = ExtResource("1_7l3ru")
 move = ExtResource("4_cmi02")
 
-[sub_resource type="Resource" id="Resource_rh05c"]
+[sub_resource type="Resource" id="Resource_4wxdx"]
 script = ExtResource("1_7l3ru")
 move = ExtResource("5_hw8gw")
 
-[sub_resource type="Resource" id="Resource_jtfky"]
+[sub_resource type="Resource" id="Resource_8wp66"]
 script = ExtResource("1_7l3ru")
 level = 3
 move = ExtResource("6_rh05c")
 
-[sub_resource type="Resource" id="Resource_e0ix3"]
+[sub_resource type="Resource" id="Resource_j3vlr"]
 script = ExtResource("1_7l3ru")
 level = 5
 move = ExtResource("7_jtfky")
+
+[sub_resource type="Resource" id="Resource_6kb3y"]
+script = ExtResource("1_7l3ru")
+move = ExtResource("8_4vtcj")
+
+[sub_resource type="Resource" id="Resource_fh275"]
+script = ExtResource("1_7l3ru")
+move = ExtResource("9_4wxdx")
+
+[sub_resource type="Resource" id="Resource_apka1"]
+script = ExtResource("1_7l3ru")
+level = 8
+move = ExtResource("10_8wp66")
+
+[sub_resource type="Resource" id="Resource_wx23i"]
+script = ExtResource("1_7l3ru")
+level = 37
+move = ExtResource("11_j3vlr")
+
+[sub_resource type="Resource" id="Resource_j02to"]
+script = ExtResource("1_7l3ru")
+level = 42
+move = ExtResource("12_6kb3y")
+
+[sub_resource type="Resource" id="Resource_h02gv"]
+script = ExtResource("1_7l3ru")
+level = 46
+move = ExtResource("13_fh275")
+
+[sub_resource type="Resource" id="Resource_d6p0w"]
+script = ExtResource("1_7l3ru")
+level = 49
+move = ExtResource("14_apka1")
 
 [resource]
 script = ExtResource("3_tmw5d")
@@ -43,8 +83,8 @@ display_name = "Voltorb"
 dex = 100
 types = Array[ExtResource("4_un3hl")]([ExtResource("5_4hldd")])
 kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_7l3ru")]([SubResource("Resource_hw8gw"), SubResource("Resource_rh05c"), SubResource("Resource_jtfky"), SubResource("Resource_e0ix3")])
-evolutions = Array[ExtResource("1_fqqqg")]([SubResource("Resource_cmi02")])
+learnset = Array[ExtResource("1_7l3ru")]([SubResource("Resource_4vtcj"), SubResource("Resource_4wxdx"), SubResource("Resource_8wp66"), SubResource("Resource_j3vlr"), SubResource("Resource_6kb3y"), SubResource("Resource_fh275"), SubResource("Resource_apka1"), SubResource("Resource_wx23i"), SubResource("Resource_j02to"), SubResource("Resource_h02gv"), SubResource("Resource_d6p0w")])
+evolutions = Array[ExtResource("1_fqqqg")]([SubResource("Resource_q3gmb")])
 temperament = ExtResource("15_bl1dy")
 genus = "Pokémon Bola"
 pokedex_entry = "Voltorb fue visto por primera vez en una empresa encargada de comercializar Poké Balls. La conexión que existe entre aquella primera vez que se le vio y el hecho de que se parece mucho a una Poké Ball sigue siendo un misterio."

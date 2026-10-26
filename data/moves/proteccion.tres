@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="1_ypvly"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ir2tx"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_ir2tx"]
+[ext_resource type="Resource" path="res://data/status/refugio.tres" id="9_self"]
 
 [resource]
 script = ExtResource("2_ir2tx")
@@ -16,3 +17,4 @@ cooldown = 8.0
 knockback = 0.0
 speed = 150.0
 radius = 45.0
+self_status = ExtResource("9_self")

@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_x20bo"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_31myv"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_qilk5"]
+[ext_resource type="Resource" path="res://data/status/fortaleza.tres" id="9_self"]
 
 [resource]
 script = ExtResource("2_31myv")
@@ -14,3 +15,4 @@ category = 2
 power = 0.0
 cooldown = 10.0
 knockback = 0.0
+self_status = ExtResource("9_self")

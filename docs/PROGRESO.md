@@ -51,6 +51,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **Kits v8 — Tanda C + sinergia (2026-10-26)**: Drowzee, Grimer, Koffing (nubes que detona), Ponyta (galope con
+  estela de fuego), Slowpoke (reacciona tarde) y Magikarp (Azote y EXP extra): la propuesta de kits quedó completa.
+  Y **sinergia**: los Pokémon con kit aprenden todo su learnset de FireRed; los ataques oficiales toman la forma de su
+  versión de kit; los de mejora propia ahora hacen algo; las firmas reaccionan por tipo (un Rayo Hielo aprendido suma
+  escarcha a Seel). El equipamiento inicial sigue siendo el kit. Ver `PLAN_IDENTIDAD_COMBATE.md`. Test
+  `--autotest-kits-v8` (`--only sinergia`).
 - **Kits v7 — Tanda B (2026-10-26)**: Clefairy (Metrónomo: un ataque al azar de cualquier kit), Jigglypuff (se infla y
   le dibuja la cara a los dormidos), Abra (se teletransporta solo al recibir un golpe: hay que dormirlo para atraparlo),
   Goldeen (el cuerno atraviesa defensas; rápido mojado), Magnemite (flota y atrae) y Meowth (Día de Pago: suma a tu

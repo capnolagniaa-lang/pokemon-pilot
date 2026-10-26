@@ -1,17 +1,21 @@
 [gd_resource type="Resource" script_class="MoveData" format=3]
 
-[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_0mhi2"]
-[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bcpep"]
-[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_pxx1a"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/bostezo.tres" id="4_x"]
 
 [resource]
-script = ExtResource("2_bcpep")
+script = ExtResource("1_x")
 id = "bostezo"
 display_name = "Bostezo"
-element = ExtResource("1_0mhi2")
-kind = 2
+element = ExtResource("3_x")
+kind = 0
 category = 2
 power = 0.0
-cooldown = 6.0
+cooldown = 9.0
 knockback = 0.0
-radius = 40.0
+speed = 160.0
+size = 6.0
+lifetime = 1.2
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])
