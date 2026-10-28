@@ -14,6 +14,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   van con luz pareja. "Hora fija" en Ajustes del juego. Por ahora solo visual (decisión del usuario). **Parte B (sombras largas)**:
   casas, árboles y cercas (`ZoneShadows`, máscara de las celdas sólidas + shader) y personajes y Pokémon (`SunShadow`,
   su propio cuadro acostado), según la hora. Test `--autotest-daynight` (23), vitrina `--showcase-daynight`.
+- **Efectos hechos con IA en el juego (2026-10-28, pedido del usuario)**: impactos de Hielo, Planta, Psíquico y Roca
+  (`sprites/fx/types/`) y las áreas de Trueno y Giro Fuego (`sprites/fx/moves/`), con ComfyUI (Qwen-Image + LoRA de
+  pixel art → Wan 2.2 → `tools/fx_from_frames.py`). Los proyectiles de 16 px siguen siendo los de código (a ese tamaño
+  la IA no los mejora). La vitrina `--showcase-vfx` muestra también las áreas.
 - **Creación de gráficos con IA local (2026-10-28)**: ComfyUI con Qwen-Image, Qwen Edit, Wan 2.2 y LoRAs de pixel art.
   Flujo de efectos de ataque (cuadro clave → animación → `tools/fx_from_frames.py` → `sprites/fx/`). Guía:
   `docs/COMFYUI.md`.

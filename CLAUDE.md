@@ -392,9 +392,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `sprites/fx/types/<id>[_impacto].png` (una fila de cuadros cuadrados, apuntando a la derecha, 15 fps).
   `DB.vfx_for` elige (ataque > hoja del ataque oficial del mismo nombre, para las variantes de los kits > tipo);
   `VfxSprite` los dibuja en `Projectile`, `AreaEffect`, `MeleeSwing` y el impacto en `combat_feedback.gd`. Conos y
-  látigos todavía no. **Hojas actuales = hechas por código** con `python -I -B tools/make_vfx.py .` (impacto de los
-  18 tipos + cuerpo de Ascuas, Impactrueno, Pistola Agua, Burbuja, Hoja Afilada; `--sheet <png>` = hoja de contacto).
-  Correrlo de nuevo pisa esas hojas: si se reemplaza una por arte de PixelLab/Sorceress, sacarla de su tabla.
+  látigos todavía no. **Hojas hechas por código** con `python -I -B tools/make_vfx.py .` (impacto de 14 tipos + cuerpo de
+  Ascuas, Impactrueno, Pistola Agua, Burbuja, Hoja Afilada; `--sheet <png>` = hoja de contacto); correrlo de nuevo
+  pisa esas hojas. **Hechas con IA** (ComfyUI, `docs/COMFYUI.md`; están en `HECHOS_CON_IA` de make_vfx para no pisarlas):
+  impactos de Hielo, Planta, Psíquico y Roca, y las áreas de Trueno (`moves/trueno.png`, 64 px) y Giro Fuego (48 px).
 
 ## Trampas conocidas
 - En shaders `canvas_item`, `COLOR` en `fragment()` ya trae la textura: guardar el color de vértice en un

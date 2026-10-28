@@ -108,7 +108,7 @@ func showcase() -> void:
 		dummy.hurtbox.receive(HitInfo.from(me, m))
 		dummy.health.heal(9999.0)
 		dummy.statuses.clear()  # que el quemado no lo tiña de naranja para el siguiente
-		print("[showcase-vfx] impacto ", tid)
+		print("[showcase-vfx] impacto ", tid, " cuadro ", Engine.get_frames_drawn())
 		await get_tree().create_timer(0.5).timeout
 	for id in ["ascuas", "impactrueno", "pistola_agua", "burbuja", "hoja_afilada"]:
 		if not DB.moves.has(id):
@@ -119,6 +119,15 @@ func showcase() -> void:
 		dummy.health.heal(9999.0)
 		print("[showcase-vfx] proyectil ", id)
 		await get_tree().create_timer(0.7).timeout
+	for id in ["trueno", "giro_fuego"]:  # áreas con hoja hecha con IA (docs/COMFYUI.md)
+		if not DB.moves.has(id):
+			continue
+		var a := AreaEffect.new()
+		me.get_parent().add_child(a)
+		a.trigger(HitInfo.from(me, DB.moves[id]), dummy.global_position + Vector2(0, -6))
+		dummy.health.heal(9999.0)
+		print("[showcase-vfx] área ", id, " cuadro ", Engine.get_frames_drawn())
+		await get_tree().create_timer(1.0).timeout
 	get_tree().quit()
 
 

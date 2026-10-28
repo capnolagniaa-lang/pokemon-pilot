@@ -28,6 +28,8 @@ ESTILOS = {
     "veneno": "burbujas", "fantasma": "aros", "psiquico": "aros", "siniestro": "aros", "hada": "destellos",
     "dragon": "aros",
 }
+## Impactos que ya no se hacen por código: los reemplazó una hoja hecha con IA (docs/COMFYUI.md). No pisarlos.
+HECHOS_CON_IA = {"hielo", "planta", "psiquico", "roca"}
 ## Cuerpos de proyectil por ataque: (tipo, estilo).
 BODIES = {
     "ascuas": ("fuego", "bola_fuego"), "impactrueno": ("electrico", "bola_rayo"),
@@ -339,6 +341,8 @@ def main():
     sheet = sys.argv[sys.argv.index("--sheet") + 1] if "--sheet" in sys.argv else None
     rows = []
     for tid, style in ESTILOS.items():
+        if tid in HECHOS_CON_IA:
+            continue
         frames = impact(style, read_type(root, tid), random.Random(tid))
         write_png(os.path.join(root, "sprites", "fx", "types", tid + "_impacto.png"), frames, IMPACT_SIZE)
         rows.append((tid, frames))
