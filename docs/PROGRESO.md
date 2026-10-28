@@ -40,6 +40,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Noche con luz de luna (2026-10-28, pedido del usuario: "demasiado azulado oscuro")**: la noche es plateada y más
   clara, con un brillo de luna con rayos desde arriba a la derecha, sombras de luna y estrellitas que titilan
   (`AmbientFX`, solo afuera). Tabla `KEYS` de `DayNight`.
+- **Día y noche, parte C: ventanas prendidas (2026-10-28, pedido del usuario)**: de noche las ventanas de casas, Centros,
+  Tiendas, gimnasios y edificios se prenden con luz cálida y tiran un charco de luz al suelo (como `verde_noche.png` de
+  Qwen). No se marcó nada a mano: `tools/find_windows.py` detecta los vidrios en los mapas de FireRed (sirve para toda
+  la región, incluidas Azulona y Azafrán cuando se armen) → `data/world/night_windows.json`; `ZoneLights` los dibuja.
+  Revisado en Paleta, Verde, Plateada, Celeste y Carmín (vitrina `--showcase-daynight`). Faltan faroles (FireRed casi no
+  tiene) y que algunas ventanas se apaguen tarde a la noche, si se quiere.
 - **Árboles y pasto alto hechos con IA: probados y descartados (2026-10-28)**: al usuario no le gustaron; volvieron los
   de FireRed. El paquete (`TilePack`, `tools/tile_pack.py`, interruptor en Ajustes) está en el commit d34b20ba por si se
   quiere retomar con otro estilo.
@@ -282,7 +288,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | ✅ Hecha |
 | 4a | IA de los salvajes: cuerpo compartido + temperamentos (sin memoria) | ✅ Hecha |
 | 4 | IA salvaje con estados + spawns por bioma/hora | ⏭️ Siguiente |
-| 5 | Ciclo día/noche, clima, NPCs con horarios | 🟡 Día/noche: partes A, B y D hechas (2026-10-28); faltan ventanas y faroles (C), clima y horarios |
+| 5 | Ciclo día/noche, clima, NPCs con horarios | 🟡 Día/noche: partes A, B, C (ventanas) y D hechas (2026-10-28); faltan faroles, clima y horarios |
 | 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | 🟡 Captura, Mochila, Caja e IVs al azar hechos (2026-10-23); faltan naturalezas, EVs, evoluciones, Centros |
 | 7 | Primer gimnasio (arena con transición) | Pendiente |
 | 8 | Pulido (juice, audio, partículas) | Pendiente |

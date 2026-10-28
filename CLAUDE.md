@@ -70,7 +70,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: tod
 $G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabla de música, respaldos, archivos propios, gritos, efectos
 $G --headless --path . --quit-after 30000 -- --autotest-settings  # Ajustes del juego por partida (EXP, dinero, captura, daño, vida, salvajes, IA...)
 $G --path . --quit-after 60 --write-movie out/f.png --fixed-fps 30 -- --showcase-settings  # la pantalla de ajustes
-$G --headless --path . --quit-after 30000 -- --autotest-daynight   # día y noche: hora, fases, guardado, hora fija, interiores
+$G --headless --path . --quit-after 30000 -- --autotest-daynight   # día y noche: hora, fases, guardado, hora fija, interiores, ventanas
 $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-daynight  # 3 zonas × 4 horas (comparar con docs/referencias/iluminacion)
 $G --headless --path . --quit-after 30000 -- --autotest-town-map  # Mapa del menú (zonas, entradas, íconos, niebla, objetivo, partidas viejas)
 $G --path . --quit-after 90 --write-movie out/f.png --fixed-fps 30 -- --showcase-town-map  # el Mapa abierto
@@ -233,7 +233,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   y arenas: `INDOOR` (luz pareja). Otros sistemas leen `darkness`, `shadow_direction`, `shadow_length` y escuchan
   `Events.time_changed(hour, phase)`. Por ahora solo visual (no cambia salvajes ni tipos). Sombras largas: `ZoneShadows`
   (World la agrega a cada zona exterior: máscara de celdas sólidas + `shaders/sun_shadows.gdshader`) y `SunShadow`
-  (cuadro acostado de personajes y Pokémon, desde `CreatureSprite` y `blob_shadow.gd`).
+  (cuadro acostado de personajes y Pokémon, desde `CreatureSprite` y `blob_shadow.gd`). Ventanas prendidas de noche:
+  `ZoneLights` (World la agrega a cada zona exterior; vidrio cálido + charco de luz) lee `data/world/night_windows.json`
+  (vidrios por metatile, de `tools/find_windows.py`: detecta los vidrios en los mapas de FireRed; no se marca nada por zona).
 - **Ajustes del juego por partida** (Esc → Opciones → "Ajustes del juego…", `GameSettingsScreen`): `GameState.settings`
   (se guarda con la partida; solo lo cambiado; el resto sale de `default_settings()` = GameConfig + dificultad Normal;
   una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `hitstun_mult` (stagger), `exp_mult` (exp_yield), `money_mult`
@@ -399,6 +401,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
   (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + **todo el learnset de FRLG** + extras de la
+- `tools/find_windows.py` (Python + Pillow): arma los mapas exteriores de FireRed con los atlas y detecta los vidrios
+  (manchas celestes chicas sobre edificios, juntando los paños) → `data/world/night_windows.json`. `--debug <carpeta>`
+  pinta lo detectado en magenta. Correrlo después de reimportar tilesets (`pret_import.py`). Excepciones: `NOT_WINDOWS`.
   tabla `EXTRAS`) y los guarda en las especies; el equipamiento inicial es el kit (`default_equipment`). Correrlo después de cambiar un kit o los extras.
 - `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +
   `sprites/items/`. El efecto de cada objeto está en su tabla `ITEMS`.

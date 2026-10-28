@@ -6,7 +6,8 @@ extends Node
 ## docs/referencias/iluminacion/):
 ##   godot --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-daynight
 
-const SHOW_ZONES := [["ruta1", Vector2i(48, 35)], ["ciudad_verde", Vector2i(48, 35)], ["ciudad_plateada", Vector2i(48, 35)]]
+const SHOW_ZONES := [["pueblo_paleta", Vector2i(20, 22)], ["ruta1", Vector2i(48, 35)], ["ciudad_verde", Vector2i(48, 35)], ["ciudad_plateada", Vector2i(48, 35)],
+	["ciudad_celeste", Vector2i(48, 35)], ["ciudad_carmin", Vector2i(48, 35)]]
 const SHOW_HOURS := [12.0, 18.5, 23.0, 6.5]
 const SHOW_FRAMES := 14
 
@@ -96,6 +97,22 @@ func run() -> void:
 	r["El entrenador tiene sombra larga"] = trainer_shadow != null and trainer_shadow.source == world.trainer.get_node("Sprite")
 	r["Tu Pokémon tiene sombra larga"] = world.companion != null and world.companion.get_node_or_null("SunShadow") is SunShadow
 
+	# --- Ventanas prendidas (parte C) ---
+	r["Hay ventanas detectadas (%d metatiles con vidrio)" % ZoneLights.windows().size()] = ZoneLights.windows().size() > 100
+	GameState.set_setting("time_lock", 23.0)
+	await _start("pueblo_paleta", Vector2i(20, 22))
+	var lights: ZoneLights = world.streamer.loaded["pueblo_paleta"].get_node_or_null("NightLights")
+	await get_tree().process_frame
+	r["Pueblo Paleta tiene ventanas (%d celdas, %d tiras)" % [lights.cells.size() if lights else 0,
+		lights.strips.size() if lights else 0]] = lights != null and lights.cells.size() >= 8 and lights.strips.size() >= 4
+	r["De noche las ventanas están prendidas"] = lights != null and lights.visible
+	GameState.set_setting("time_lock", 12.0)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	r["Al mediodía están apagadas"] = lights != null and not lights.visible
+	r["La Ruta 1 (sin casas) no tiene luces"] = world.streamer.loaded.get("ruta1") == null \
+		or world.streamer.loaded["ruta1"].get_node_or_null("NightLights") == null
+
 	# --- Interior: luz pareja aunque sea de noche ---
 	GameState.set_setting("time_lock", 23.0)
 	await _start("ciudad_verde_centro", Vector2i(7, 8))
@@ -105,6 +122,8 @@ func run() -> void:
 	await get_tree().process_frame
 	r["En un interior de noche: luz pareja, sin sol (oscuridad %.2f)" % dn.darkness] = dn.indoor and dn.darkness == 0.0 \
 		and daylight.color.is_equal_approx(DayNight.INDOOR[1]) and float(mat.get_shader_parameter("sun_strength")) == 0.0
+	r["En un interior no hay ventanas prendidas"] = \
+		world.streamer.loaded["ciudad_verde_centro"].get_node_or_null("NightLights") == null
 	r["En un interior no hay sombras largas"] = not dn.casts_shadows and world.streamer.loaded.values().all(
 		func(z): return z.get_node_or_null("SunShadows") == null or not z.get_node("SunShadows").visible)
 	GameState.set_setting("time_lock", -1.0)
@@ -124,6 +143,15 @@ func showcase() -> void:
 	for z in SHOW_ZONES:
 		await _start(z[0], z[1])
 		world.get_node("UI").visible = false
+		# Si la zona tiene ventanas, la cámara va frente a las casas.
+		var zone: Node2D = world.streamer.loaded.get(z[0])
+		var lights: ZoneLights = zone.get_node_or_null("NightLights") if zone != null else null
+		if lights != null and not lights.strips.is_empty():
+			var s: Rect2i = lights.strips[lights.strips.size() / 2]
+			world.trainer.global_position = zone.to_global(Vector2(s.position.x + s.size.x / 2.0, s.position.y + 3.0) * Zone.TILE)
+			if world.companion != null:
+				world.companion.global_position = world.trainer.global_position + Vector2(24, 0)
+			await get_tree().create_timer(0.3).timeout
 		for h in SHOW_HOURS:
 			GameState.set_setting("time_lock", h)
 			var first := Engine.get_frames_drawn()

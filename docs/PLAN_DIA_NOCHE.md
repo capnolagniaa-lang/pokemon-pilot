@@ -60,7 +60,13 @@ Cómo quedó:
 - Toca `ZoneBuilder`/los sellos (de dónde salen las siluetas de los edificios) y `CreatureSprite` (sombra de las
   criaturas). **CreatureSprite queda para B** (la llama de Charmander va por D).
 
-### C) Mapas (agente de mapas; hoy no tiene sesión abierta)
+### C) Mapas — ventanas ✅ hecho 2026-10-28 (sesión de gráficos, sin tocar zonas)
+Cómo quedó: `tools/find_windows.py` arma los mapas exteriores de FireRed y detecta los vidrios (manchas celestes chicas
+sobre celdas sólidas de edificios; junta los paños de una misma ventana; el techo de la Tienda es grande y no entra; el
+logo de la Tienda va en `NOT_WINDOWS`) → `data/world/night_windows.json` (máscara de 16×16 por metatile). `ZoneLights`
+(`scripts/world/zone_lights.gd`, como `ZoneShadows`) pinta el vidrio cálido y un charco de luz delante de cada tira de
+ventanas, según `DayNight.darkness` (compensa el Daylight). Test en `--autotest-daynight`. Faltan faroles y los
+salvajes de noche.
 - Marcar en los datos, no a mano por zona, **qué celdas son ventanas y faroles** (luz de noche) y **qué proyecta
   sombra**: en `data/world/stamps.json` / `reference_curation.json` o en los roles de tile (`TileRoleSet`).
 - Salvajes de noche: filas con `EncounterEntry.time` en `data/world/encounters/` (solo si el usuario lo aprueba).
