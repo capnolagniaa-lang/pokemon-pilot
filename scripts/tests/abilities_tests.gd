@@ -106,6 +106,55 @@ func run() -> void:
 	r["Bulbasaur 17% en el Bosque Verde"] = is_equal_approx(forest.chances_at(Vector2i.ZERO, PackedStringArray(["pasto_alto"])).get("bulbasaur", 0.0), 0.17)
 	r["Squirtle 12% en las flores de Ciudad Celeste"] = is_equal_approx(cerulean.chances_at(Vector2i.ZERO, PackedStringArray(["flores"])).get("squirtle", 0.0), 0.12)
 
+	# --- Abra con Poder Oculto (pedido del usuario 2026-10-28: con Teletransporte solo no ganaba EXP) ---
+	var abra5 := CreatureInstance.create(DB.species["abra"], 5)
+	r["Abra sale con Poder Oculto equipado"] = abra5.equipped_moves.has(DB.moves["poder_oculto"])
+
+	# --- EXP repartida entre los que pelearon y siguen en pie (pedido del usuario 2026-10-28) ---
+	var p1: CreatureInstance = GameState.active()
+	var p2 := CreatureInstance.create(DB.species["pidgey"], 10)
+	var p3 := CreatureInstance.create(DB.species["rattata"], 10)
+	GameState.add_to_party(p2)
+	GameState.add_to_party(p3)
+	var enemy := _spawn("caterpie", "fuga", Vector2(200, 0))
+	world.combat._note_participant(enemy, p2)
+	world.combat._note_participant(enemy, p3)
+	var shares: Dictionary = world.combat.exp_shares(enemy, 90)
+	r["Tres que pelearon: 30 EXP cada uno"] = shares.size() == 3 and shares.values().all(func(v): return v == 30)
+	world.combat._note_participant(enemy, p2)
+	world.combat._note_participant(enemy, p3)
+	p3.hp = 0.0
+	shares = world.combat.exp_shares(enemy, 90)
+	r["Uno debilitado: no recibe y los otros dos se llevan 45"] = shares.size() == 2 and not shares.has(p3) \
+		and shares.get(p1) == 45 and shares.get(p2) == 45
+	shares = world.combat.exp_shares(enemy, 90)
+	r["Sin nadie más: todo para el que está afuera"] = shares.size() == 1 and shares.get(p1) == 90
+	GameState.party.erase(p2)
+	GameState.party.erase(p3)
+	enemy.queue_free()
+
+	# --- Los que huyen se desparraman (pedido del usuario 2026-10-28) ---
+	var threat: Creature = world.companion
+	var flock := []
+	for i in 5:
+		var w := _spawn("pidgey", "fuga", Vector2(90, -15 + 8 * i))
+		w.machine.set_physics_process.call_deferred(true)
+		flock.append(w)
+	await get_tree().physics_frame
+	var starts := flock.map(func(w): return w.global_position)
+	var threat_at: Vector2 = threat.global_position
+	for w in flock:
+		w.machine.transition_to("flee", {"from": threat, "calm": true})
+	await get_tree().create_timer(1.0).timeout
+	var angles := []
+	for i in flock.size():
+		var d: Vector2 = flock[i].global_position - starts[i]
+		if d.length() > 4.0:  # ángulo respecto de "justo en contra de la amenaza"
+			angles.append(rad_to_deg((starts[i] - threat_at).angle_to(d)))
+	angles.sort()
+	var spread: float = angles[-1] - angles[0] if angles.size() > 1 else 0.0
+	r["5 que huyen juntos se abren en abanico, sin volver hacia vos (%s)" % str(angles.map(func(a): return roundi(a)))] = 		angles.size() == 5 and spread > 60.0 and angles.all(func(a): return absf(a) < 100.0)
+
 	# --- Jefe de gimnasio ---
 	var boss_inst := CreatureInstance.create(DB.species["onix"], 14)
 	boss_inst.boss = true

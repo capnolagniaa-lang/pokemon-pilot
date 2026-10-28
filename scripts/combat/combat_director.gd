@@ -20,6 +20,9 @@ var input_source: CombatInput = CombatInput.new()
 var _calm := 0.0
 ## Si el combate tuvo enemigos (si lo sacaste con F sin enemigos, no termina solo).
 var _had_enemies := false
+## EXP repartida (pedido del usuario 2026-10-28): enemigo -> [CreatureInstance] que salieron a pelear contra él. Al
+## debilitarlo, la EXP se divide entre los que siguen en pie (la parte de un debilitado va para los demás).
+var _participants := {}
 
 @onready var world: Node = get_parent()
 
@@ -106,6 +109,9 @@ func end_battle(force: bool = false) -> void:
 			e.target = null
 			e.machine.transition_to("wander")
 	enemies.clear()
+	for e in _participants.keys():
+		if not is_instance_valid(e) or e.health.is_dead():
+			_participants.erase(e)
 	world.trainer.locked = false
 	world.trainer.follow_target = null
 	world.camera.target = world.trainer
@@ -136,12 +142,38 @@ func _on_creature_fainted(c: Creature) -> void:
 		enemies.erase(c)
 		var gained := CreatureInstance.exp_yield(c.instance)
 		var who := "de " + c.owner_name if c.owner_name != "" else "salvaje"
-		var text := "¡%s %s se debilitó! +%d EXP" % [c.instance.species.display_name, who, gained]
-		var mine: CreatureInstance = GameState.active()
-		if mine != null:
-			text += GameState.grant_exp(mine, gained)
+		var text := "¡%s %s se debilitó!" % [c.instance.species.display_name, who]
+		var shares := exp_shares(c, gained)
+		if shares.size() == 1:
+			text += " +%d EXP" % shares.values()[0]
+		elif shares.size() > 1:
+			text += " +%d EXP para %s" % [shares.values()[0], ", ".join(shares.keys().map(func(i): return i.display_name()))]
+		for inst: CreatureInstance in shares:
+			text += GameState.grant_exp(inst, shares[inst])
 		Events.message_requested.emit(text)
 		Events.party_changed.emit()
+
+
+func _note_participant(enemy: Creature, inst: CreatureInstance) -> void:
+	if not _participants.has(enemy):
+		_participants[enemy] = []
+	if not _participants[enemy].has(inst):
+		_participants[enemy].append(inst)
+
+
+## Cuánta EXP le toca a cada uno: {CreatureInstance: int}. La EXP del enemigo dividida por la cantidad de los que
+## pelearon contra él (incluido el que está afuera) y siguen en pie; los debilitados no reciben y su parte se reparte.
+func exp_shares(enemy: Creature, gained: int) -> Dictionary:
+	var who: Array = _participants.get(enemy, []).duplicate()
+	_participants.erase(enemy)
+	var mine: CreatureInstance = GameState.active()
+	if mine != null and not who.has(mine):
+		who.append(mine)
+	who = who.filter(func(i): return i.hp > 0.0 and GameState.party.has(i))
+	var out := {}
+	for inst in who:
+		out[inst] = ceili(float(gained) / who.size())
+	return out
 
 
 func _update_battle(delta: float) -> void:
@@ -150,6 +182,8 @@ func _update_battle(delta: float) -> void:
 		end_battle()
 		return
 	enemies = enemies.filter(func(e): return is_instance_valid(e) and not e.health.is_dead() and e.target == c)
+	for e in enemies:
+		_note_participant(e, c.instance)
 	if not enemies.is_empty():
 		_had_enemies = true
 	if not _had_enemies:

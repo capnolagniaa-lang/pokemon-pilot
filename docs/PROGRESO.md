@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **EXP repartida, Abra con Poder Oculto y huidas dispersas (2026-10-28, pedido del usuario)**: la EXP de un enemigo se
+  divide entre los Pokémon que salieron a pelear contra él (cambiando con 1-6) y siguen en pie; los debilitados no reciben
+  y su parte va para los demás (`CombatDirector.exp_shares`). Abra aprende Poder Oculto en el Nv. 1 (`OFFICIAL_EXTRAS` de
+  `build_learnsets.gd`: con Teletransporte solo no podía ganar EXP). Los salvajes que huyen se desparraman: cada uno toma
+  un rumbo propio según de qué lado del grupo está (hasta 75° de "justo en contra"), se separan entre sí y nunca huyen
+  hacia vos (`creature_flee.gd`). Test: `--autotest-abilities`.
 - **Iniciales salvajes e inmunidades de tipo (2026-10-28, pedido del usuario)**: Charmander 15% en todo Mt. Moon, Bulbasaur
   17% en el Bosque Verde y Squirtle 12% en el cantero de flores de Ciudad Celeste (no tiene pasto alto: el resto de las
   veces no sale nada, fila sin especie); el resto de cada tabla se escaló para que sigan sumando 100. Inmunidades: un

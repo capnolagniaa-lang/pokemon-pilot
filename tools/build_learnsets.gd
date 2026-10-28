@@ -34,6 +34,11 @@ const EXTRAS := {
 	"onix": [[23, "furia"], [40, "excavar"]],
 }
 const BASE_LEVELS := [1, 1, 3, 5]
+## Desde las habilidades (sin kit): ataques que se suman al learnset oficial. Abra solo sabe Teletransporte y no podía
+## ganar EXP peleando (pedido del usuario 2026-10-28): Poder Oculto (su MT10 en FRLG) desde el Nv. 1.
+const OFFICIAL_EXTRAS := {
+	"abra": [[1, "poder_oculto"]],
+}
 
 
 func _init() -> void:
@@ -45,7 +50,10 @@ func _init() -> void:
 		var sp: SpeciesData = load(path)
 		sp.tm_moves = _tms(sp, data["species"].get(sp.id, {}).get("mt", []))
 		if sp.kit == null:  # (desde las habilidades, 2026-10-28: todas sin kit → el learnset oficial de FRLG)
-			_official(sp, path, data["species"].get(sp.id, {}).get("learnset", []))
+			var rows: Array = data["species"].get(sp.id, {}).get("learnset", []).duplicate()
+			rows.append_array(OFFICIAL_EXTRAS.get(sp.id, []))
+			rows.sort_custom(func(x, y): return int(x[0]) < int(y[0]))
+			_official(sp, path, rows)
 			continue
 		var entries: Array[LearnsetEntry] = []
 		var base: Array[MoveData] = sp.kit.moves if sp.kit != null else sp.moves

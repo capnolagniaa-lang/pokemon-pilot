@@ -44,9 +44,13 @@ script = ExtResource("1_g0ol0")
 to_id = "kadabra"
 level = 16
 
-[sub_resource type="Resource" id="Resource_mrcs2"]
+[sub_resource type="Resource" id="Resource_yw567"]
 script = ExtResource("1_fpb4i")
 move = ExtResource("6_yw567")
+
+[sub_resource type="Resource" id="Resource_mrcs2"]
+script = ExtResource("1_fpb4i")
+move = ExtResource("18_fpre3")
 
 [resource]
 script = ExtResource("3_ojtw7")
@@ -54,7 +58,7 @@ id = "abra"
 display_name = "Abra"
 dex = 63
 types = Array[ExtResource("4_g0ol0")]([ExtResource("5_tqonb")])
-learnset = Array[ExtResource("1_fpb4i")]([SubResource("Resource_mrcs2")])
+learnset = Array[ExtResource("1_fpb4i")]([SubResource("Resource_yw567"), SubResource("Resource_mrcs2")])
 tm_moves = Array[ExtResource("2_so6mq")]([ExtResource("11_mrcs2"), ExtResource("12_3e100"), ExtResource("13_d1mhy"), ExtResource("14_5a2yh"), ExtResource("15_1txkh"), ExtResource("16_8532t"), ExtResource("17_jeaw8"), ExtResource("18_fpre3"), ExtResource("19_8xvuc"), ExtResource("20_tmt23"), ExtResource("21_ijemw"), ExtResource("22_os756"), ExtResource("23_u60wf"), ExtResource("24_o28nb"), ExtResource("25_p50d2"), ExtResource("26_h418n"), ExtResource("27_o2w8q"), ExtResource("28_bbshc"), ExtResource("29_hpnjm"), ExtResource("30_gnmyc"), ExtResource("31_p8rm4"), ExtResource("32_xld3k"), ExtResource("33_8gg17"), ExtResource("34_pdjmo"), ExtResource("35_t0gju"), ExtResource("36_ic0sg"), ExtResource("37_3rpls")])
 abilities = Array[ExtResource("1_d1mhy")]([ExtResource("2_5a2yh"), ExtResource("3_1txkh")])
 evolutions = Array[ExtResource("1_g0ol0")]([SubResource("Resource_m4oe2")])

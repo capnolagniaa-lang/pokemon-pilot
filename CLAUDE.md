@@ -178,6 +178,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `MoveData.melee_step` antes del corte (estado `step`) y todo golpe con daño deja **stagger** (`Creature.hitstun_left`:
   sin atacar ni esquivar un ratito, con respiro; ajuste `hitstun_mult`). El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
+- **EXP**: `CombatDirector.exp_shares` la divide entre los que pelearon contra ese enemigo (`_participants`, se anota
+  el que está afuera cada cuadro) y siguen en pie; la parte de un debilitado se reparte entre los demás.
+- **Huida** (`creature_flee.gd`): rumbo fijo por criatura elegido al entrar (de qué lado del grupo está) + separación;
+  nunca hacia la amenaza. Así un grupo que huye se desparrama.
 - **Inmunidades**: efectividad 0 (tabla de tipos) = el golpe no hace nada (`Creature._on_hit` sale antes del daño, el
   estado y el empuje). `StatusEffect.immune_types`: tipos que no lo sufren (Envenenado: Veneno). Fila de encuentro con
   `species_id` vacío = "esa vez no sale nadie" (`WildSpawner.roll`).
@@ -446,7 +450,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
   (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + **todo el learnset de FRLG** + extras de la
-  tabla `EXTRAS`) y los guarda en las especies; el equipamiento inicial es el kit (`default_equipment`). Correrlo después de cambiar un kit o los extras.
+  tabla `EXTRAS`; sin kit: learnset de FRLG + `OFFICIAL_EXTRAS`, ej. Abra con Poder Oculto. Ojo: reescribe los ids internos
+  de todas las especies; si solo cambiaste una, revertir las demás con git) y los guarda en las especies; el equipamiento inicial es el kit (`default_equipment`). Correrlo después de cambiar un kit o los extras.
 - `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +
   `sprites/items/`. El efecto de cada objeto está en su tabla `ITEMS`.
 - `tools/build_pokemon_docs.gd`: genera `docs/POKEMON_HABILIDADES_Y_ATAQUES.md` (los 386: kit, firma, sus 4 ataques con tecla,
