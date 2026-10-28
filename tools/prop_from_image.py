@@ -54,6 +54,33 @@ def main():
                     if not fg[k] and not outer[k]:
                         outer[k] = 1
                         stack.append(k)
+        # Huecos encerrados de blanco puro (entre el brazo y el cuerpo): también son fondo. La ropa blanca tiene
+        # sombras y no es tan pareja, así que queda.
+        holes = bytearray(w * h)
+        for i in range(w * h):
+            if outer[i] or holes[i] or fg[i]:
+                continue
+            p0 = px[i % w, i // w]
+            if min(p0[0], p0[1], p0[2]) < 250:
+                continue
+            region, stack = [i], [i]
+            holes[i] = 1
+            pure = True
+            while stack:
+                j = stack.pop()
+                x, y = j % w, j // w
+                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                    if 0 <= nx < w and 0 <= ny < h:
+                        k = ny * w + nx
+                        if not fg[k] and not outer[k] and not holes[k]:
+                            holes[k] = 1
+                            region.append(k)
+                            stack.append(k)
+                            q = px[nx, ny]
+                            pure = pure and min(q[0], q[1], q[2]) >= 245
+            if pure and len(region) >= 30:
+                for k in region:
+                    outer[k] = 1
         for i in range(w * h):
             fg[i] = 0 if outer[i] else 1
     # Manchas (8 vecinos); se queda con la más grande y las que están a menos de `gap` de su recuadro.

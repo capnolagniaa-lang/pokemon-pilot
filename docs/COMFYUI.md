@@ -74,6 +74,10 @@ cuerpo 30/31 y 28/29, base 36-39, unión de bosque 20-23; 42/43 son techo, no á
   RPG ... 3/4 top-down view ... plain pure white #FFFFFF background", LoRA MOSS 1,0; después
   `tools/prop_from_image.py <png> sprites/props/<x>.png --height <px>`. "Mounted on a wall" dibuja la pared entera:
   pedir objetos parados.
+- **Retratos VS** (2026-10-28): las ilustraciones de batalla de FireRed (`art_src/vs/`) con el workflow de redibujo
+  (Qwen Edit 2511) e instrucción "same character, face, hair, expression and eyes...". ~4 min cada uno. Cambia
+  colores de pelo a veces (Misty y Agatha salieron rubias: se corrigió con un cambio de tono en la zona de la
+  cabeza). Al juego: `prop_from_image.py <png> sprites/vs/<gfx>.png --height 210 --colors 48 --outer-bg`.
 - ComfyUI se puede colgar al alternar Wan (2 × 9,6 GB) y Qwen (13 GB) con 32 GB de RAM: si pasa, reiniciarlo y volver
   a encolar lo que faltó.
 
