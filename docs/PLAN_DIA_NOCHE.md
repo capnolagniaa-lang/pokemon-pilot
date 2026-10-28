@@ -44,7 +44,17 @@ las referencias. Para B y D: `darkness` (0-1; 0 en interiores y arenas), `shadow
 - Autotest `--autotest-daynight` y vitrina `--showcase-daynight` (las 4 fases en las 3 zonas de referencia), para
   compararlas con las referencias.
 
-### B) Sombras con forma (sesión de gráficos)
+### B) Sombras con forma (sesión de gráficos) — ✅ primera versión (2026-10-28)
+Cómo quedó:
+- **Mapa** (`ZoneShadows`, `scripts/world/zone_shadows.gd` + `shaders/sun_shadows.gdshader`): cada zona exterior arma
+  al cargarse una máscara (4 px por celda) con las celdas sólidas del TileSet, sin salientes ni agua. La altura sale
+  del largo de la columna sólida (una cerca = baja, una casa = alta) y los árboles van redondos. El shader estira esa
+  máscara hacia el lado contrario al sol, con un color azul violáceo. No se usaron siluetas de los sellos: la colisión
+  alcanza, y las casas son rectángulos.
+- **Personajes y Pokémon** (`SunShadow`, `scripts/fx/sun_shadow.gd`): su mismo cuadro, oscuro y acostado en el suelo.
+  Lo agregan `CreatureSprite._ready` y `blob_shadow.gd` (entrenador, personas, entrenadores del mapa). La mancha al pie
+  y `tree_shadows.gd` quedan como sombra de contacto.
+- Pendiente: lo que se corta o se rompe (EnvObjects) no proyecta, y las sombras no cruzan de una zona a la vecina.
 - Una copia de la silueta de cada cosa (árbol, edificio, cerca, cartel, criatura, entrenador), oscura y sesgada según
   la dirección y el largo que marque A. Reemplaza la mancha de `tree_shadows.gd`; la sombra de contacto al pie queda.
 - Toca `ZoneBuilder`/los sellos (de dónde salen las siluetas de los edificios) y `CreatureSprite` (sombra de las
@@ -55,7 +65,14 @@ las referencias. Para B y D: `darkness` (0-1; 0 en interiores y arenas), `shadow
   sombra**: en `data/world/stamps.json` / `reference_curation.json` o en los roles de tile (`TileRoleSet`).
 - Salvajes de noche: filas con `EncounterEntry.time` en `data/world/encounters/` (solo si el usuario lo aprueba).
 
-### D) Combate y ataques (sesión "Codigo de kits")
+### D) Combate y ataques (sesión "Codigo de kits") — ✅ hecho 2026-10-28
+Cómo quedó: `NightLight` (`scripts/fx/night_light.gd`): `apply(efecto)` al crear disparos, áreas, conos, trampas,
+golpes cuerpo a cuerpo y rayos del cielo → se multiplican por la inversa del Daylight (HDR 2D: **no se oscurecen**) y
+sus `PointLight2D` crecen con la oscuridad (de día igual que antes, ≤ 0,35; de noche hasta 0,5). `flash()`: destello
+corto en los impactos de los tipos que brillan. `CreatureGlow` (`scripts/fx/creature_glow.gd`): llama que alumbra de
+noche en los Pokémon de tipo fuego (por tipo, agregado en `Creature._ready`), sigue `Events.time_changed`. Las luces
+de Quemado y del fuego en el pasto también crecen de noche. Solo visual. Test `--autotest-night-combat`, vitrina
+`--showcase-night-combat`.
 - Luz chica (`PointLight2D`, **energía ≤ 0,35**, ver la trampa del amarillo en CLAUDE.md) en ataques de fuego,
   eléctricos y similares; los efectos no se oscurecen de noche (material unshaded o CanvasLayer propia).
   Archivos: `scripts/combat/projectile.gd`, `area_effect.gd`, `melee_swing.gd`, `scripts/fx/combat_feedback.gd`.

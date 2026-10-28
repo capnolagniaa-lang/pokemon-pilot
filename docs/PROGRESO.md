@@ -11,8 +11,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   pintó Qwen en `docs/referencias/iluminacion/`. Hecho: `DayNight` (nodo del mundo): la hora del juego corre (un día =
   24 min reales), se guarda con la partida y avisa por `Events.time_changed(hora, fase)`. Pinta el Daylight, la
   gradación, una luz de esquina con rayos (post-procesado), las nubes y las luciérnagas de noche. Interiores y arenas
-  van con luz pareja. "Hora fija" en Ajustes del juego. Por ahora solo visual (decisión del usuario). Sigue la **B:
-  sombras con la forma real**. Test `--autotest-daynight` (19), vitrina `--showcase-daynight`.
+  van con luz pareja. "Hora fija" en Ajustes del juego. Por ahora solo visual (decisión del usuario). **Parte B (sombras largas)**:
+  casas, árboles y cercas (`ZoneShadows`, máscara de las celdas sólidas + shader) y personajes y Pokémon (`SunShadow`,
+  su propio cuadro acostado), según la hora. Test `--autotest-daynight` (23), vitrina `--showcase-daynight`.
 - **Creación de gráficos con IA local (2026-10-28)**: ComfyUI con Qwen-Image, Qwen Edit, Wan 2.2 y LoRAs de pixel art.
   Flujo de efectos de ataque (cuadro clave → animación → `tools/fx_from_frames.py` → `sprites/fx/`). Guía:
   `docs/COMFYUI.md`.
@@ -61,6 +62,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **Día y noche, parte D (2026-10-28)**: de noche los ataques no se oscurecen (los efectos compensan el Daylight), sus
+  luces crecen (hasta 0,5), los impactos de fuego/eléctrico iluminan un instante y los Pokémon de fuego alumbran con
+  su llama. Solo visual. Ver `docs/PLAN_DIA_NOCHE.md`. Test `--autotest-night-combat`.
 - **Arreglo: equipar en plena pelea (2026-10-26)**: al subir de nivel en combate o al equipar desde la ficha del menú
   de combate, el Pokémon que está afuera no recibía los ataques nuevos hasta terminar la pelea. Ahora se actualizan
   ahí mismo (`MoveUser.refresh`; el recién equipado arranca con su recarga). Test `--autotest-equip`.
@@ -241,7 +245,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | ✅ Hecha |
 | 4a | IA de los salvajes: cuerpo compartido + temperamentos (sin memoria) | ✅ Hecha |
 | 4 | IA salvaje con estados + spawns por bioma/hora | ⏭️ Siguiente |
-| 5 | Ciclo día/noche, clima, NPCs con horarios | 🟡 Día/noche parte A hecha (2026-10-28); faltan las sombras con forma (B), ventanas y faroles (C), luces de ataques (D), clima y horarios |
+| 5 | Ciclo día/noche, clima, NPCs con horarios | 🟡 Día/noche: partes A, B y D hechas (2026-10-28); faltan ventanas y faroles (C), clima y horarios |
 | 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | 🟡 Captura, Mochila, Caja e IVs al azar hechos (2026-10-23); faltan naturalezas, EVs, evoluciones, Centros |
 | 7 | Primer gimnasio (arena con transición) | Pendiente |
 | 8 | Pulido (juice, audio, partículas) | Pendiente |

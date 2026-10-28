@@ -60,6 +60,8 @@ $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd  # rearma las arenas (pisa las escenas; -- --only <id> arma solo una)
 $G --headless --path . --quit-after 5000 -- --autotest-modes     # modo práctica + dificultad de la IA
 $G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carga, learnset, archivos rotos
+$G --headless --path . --quit-after 30000 -- --autotest-night-combat  # día/noche D: efectos que no se oscurecen, luces, llama de fuego
+$G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-night-combat  # Charmander tirando Ascuas de noche
 $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: todo lo aprendido, en plena pelea, al subir de nivel
 $G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabla de música, respaldos, archivos propios, gritos, efectos
 $G --headless --path . --quit-after 30000 -- --autotest-settings  # Ajustes del juego por partida (EXP, dinero, captura, daño, vida, salvajes, IA...)
@@ -212,7 +214,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   (1 h = 1 min real; ajuste `time_lock` = hora fija) y pinta según la tabla `KEYS`: Daylight, uniforms del
   post-procesado (tinte, `sun_pos`/`sun_strength`/`rays` = luz de esquina), nubes, luciérnagas (`AmbientFX`). Interiores
   y arenas: `INDOOR` (luz pareja). Otros sistemas leen `darkness`, `shadow_direction`, `shadow_length` y escuchan
-  `Events.time_changed(hour, phase)`. Por ahora solo visual (no cambia salvajes ni tipos).
+  `Events.time_changed(hour, phase)`. Por ahora solo visual (no cambia salvajes ni tipos). Sombras largas: `ZoneShadows`
+  (World la agrega a cada zona exterior: máscara de celdas sólidas + `shaders/sun_shadows.gdshader`) y `SunShadow`
+  (cuadro acostado de personajes y Pokémon, desde `CreatureSprite` y `blob_shadow.gd`).
 - **Ajustes del juego por partida** (Esc → Opciones → "Ajustes del juego…", `GameSettingsScreen`): `GameState.settings`
   (se guarda con la partida; solo lo cambiado; el resto sale de `default_settings()` = GameConfig + dificultad Normal;
   una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `exp_mult` (exp_yield), `money_mult`

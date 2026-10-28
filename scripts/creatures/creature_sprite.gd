@@ -52,6 +52,10 @@ var _ghosts: Array = []  # [posición global, frame src, rect, alpha]
 var _ghost_timer := 0.0
 
 
+func _ready() -> void:
+	SunShadow.attach_to(self)  # sombra larga según el sol (DayNight)
+
+
 func _process(delta: float) -> void:
 	_time += delta * (_rate if _forced_left > 0.0 else 1.0)
 	_forced_left = maxf(0.0, _forced_left - delta)

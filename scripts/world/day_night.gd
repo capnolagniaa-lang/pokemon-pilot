@@ -36,6 +36,10 @@ const DAY_LUMA := 0.98
 
 ## 0 = pleno día, 1 = noche cerrada (0 en interiores y arenas).
 var darkness := 0.0
+## Hay sombras largas (afuera, fuera de las arenas): ZoneShadows y SunShadow.
+var casts_shadows := false
+## Color de las sombras (azul violáceo, como en las referencias; el Daylight lo oscurece de noche).
+var shadow_color := Color(0.16, 0.13, 0.32)
 ## Hacia dónde caen las sombras (unitario, en pantalla/mundo) y cuánto se estiran (1 = mediodía).
 var shadow_direction := Vector2(0.6, 0.8)
 var shadow_length := 1.0
@@ -98,7 +102,8 @@ static func look_at(h: float) -> Array:
 func apply() -> void:
 	var h := hour()
 	var arena_on: bool = _world.get("arena") != null and _world.arena.active
-	var lk: Array = INDOOR if indoor or arena_on else look_at(h)
+	casts_shadows = not indoor and not arena_on
+	var lk: Array = INDOOR if not casts_shadows else look_at(h)
 	var daylight := _world.get_node_or_null("Daylight") as CanvasModulate
 	if daylight:
 		daylight.color = lk[1]

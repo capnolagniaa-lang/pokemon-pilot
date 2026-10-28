@@ -76,6 +76,22 @@ func run() -> void:
 	r["Al atardecer las sombras se estiran (×%.1f) y caen a la derecha" % dn.shadow_length] = dn.shadow_length > 2.5 \
 		and dn.shadow_direction.x > 0.5 and "atardecer" in phases
 
+	# --- Sombras largas (parte B) ---
+	var zone: Node2D = world.streamer.loaded.get("ruta1")
+	var zs: ZoneShadows = zone.get_node_or_null("SunShadows") if zone != null else null
+	var casters := 0
+	if zs != null:
+		var img: Image = (zs.material as ShaderMaterial).get_shader_parameter("mask").get_image()
+		for y in range(0, img.get_height(), ZoneShadows.MASK_PX):
+			for x in range(0, img.get_width(), ZoneShadows.MASK_PX):
+				if img.get_pixel(x, y).b > 0.5:
+					casters += 1
+	r["La zona exterior tiene su máscara de sombras (%d celdas proyectan)" % casters] = zs != null and casters > 50 \
+		and zs.visible
+	var trainer_shadow: SunShadow = world.trainer.get_node_or_null("SunShadow")
+	r["El entrenador tiene sombra larga"] = trainer_shadow != null and trainer_shadow.source == world.trainer.get_node("Sprite")
+	r["Tu Pokémon tiene sombra larga"] = world.companion != null and world.companion.get_node_or_null("SunShadow") is SunShadow
+
 	# --- Interior: luz pareja aunque sea de noche ---
 	GameState.set_setting("time_lock", 23.0)
 	await _start("ciudad_verde_centro", Vector2i(7, 8))
@@ -85,6 +101,8 @@ func run() -> void:
 	await get_tree().process_frame
 	r["En un interior de noche: luz pareja, sin sol (oscuridad %.2f)" % dn.darkness] = dn.indoor and dn.darkness == 0.0 \
 		and daylight.color.is_equal_approx(DayNight.INDOOR[1]) and float(mat.get_shader_parameter("sun_strength")) == 0.0
+	r["En un interior no hay sombras largas"] = not dn.casts_shadows and world.streamer.loaded.values().all(
+		func(z): return z.get_node_or_null("SunShadows") == null or not z.get_node("SunShadows").visible)
 	GameState.set_setting("time_lock", -1.0)
 	await get_tree().process_frame
 	r["Sin hora fija, el tiempo vuelve a correr"] = not GameState.settings.has("time_lock")
