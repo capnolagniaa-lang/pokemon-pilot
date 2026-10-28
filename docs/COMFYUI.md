@@ -10,6 +10,7 @@ Los workflows se abren desde el menú de workflows de ComfyUI (están en `ComfyU
 | `qwen-image-edit-2511-Q4_K_M.gguf` + LoRA `Qwen-Image-Edit-2511-Lightning-8steps` | editar/redibujar una imagen con una instrucción |
 | `Wan2.2-I2V-A14B` (ruido alto + bajo, Q4) + LoRAs `lightx2v_4steps` | animar una imagen (video de 2 s) |
 | LoRA `Qwen-Image-2512-Master-Pixel-Art-LoRA` (prithivMLmods, Apache-2.0) | pixel art con Qwen-Image (empezar el texto con "Pixel Art.") |
+| LoRA `moss_pixelart_qwen_v2` (MOSS! Pixel Art Refiner, Civitai) | pixel art más nítido y fondo negro más limpio que el anterior, para efectos (a veces agrega un marco). En terreno mete matas de más |
 | LoRA `pixel_4walk_32x48_qwen_image_edit_2511_v1` (svntax, Apache-2.0) | Qwen Edit: de un personaje de referencia a una hoja 32×48 en 4 direcciones (caminar, 2 de ataque, golpeado). Para entrenadores/NPC; todavía sin workflow |
 
 ## Workflows
@@ -43,6 +44,21 @@ y viven solo en ComfyUI.
    Proyectil: `sprites/fx/moves/<ataque>.png` (16 px, 4 cuadros, apuntando a la derecha). Ver CLAUDE.md, "Efectos de
    ataque con sprite". **Ojo**: `tools/make_vfx.py` pisa las hojas que genera; si reemplazás una, sacala de su tabla.
    El script necesita Pillow (el Python del sistema lo tiene; si no, el `python_embeded` de ComfyUI).
+
+## Lecciones (pruebas del 2026-10-28)
+- **Caras**: no nombrar lo que no se quiere ("no face", "no rocket": lo dibuja igual, y peor) ni Pokémon/ataques/juegos
+  ("shadow ball", "sludge", "Mystery Dungeon": dibuja a Gastly, Grimer o Geodude con cara). Describir solo energía, luz,
+  partículas y formas. "Toxic" dibuja una calavera. Con eso (reglas fijas de `efecto_1_cuadro_clave`), 0 caras.
+- **Tamaño**: la IA rinde en efectos de 32-48 px (impactos, Trueno, Giro Fuego, Psíquico). A 16 px (proyectiles) queda
+  una mancha: los hechos por código se leen mejor.
+- **Efectos oscuros** (Bola Sombra): sobre fondo negro el centro oscuro se vuelve transparente y queda un anillo.
+  Para esos, fondo blanco (cambiar las Reglas) y `--bg white`.
+- **Wan** a veces cambia el efecto a mitad del video (Giro Fuego termina en fogata): usar `--end N` para quedarse con
+  la primera parte.
+- **Terreno**: Qwen Edit sin LoRA (estilo "HeartGold/SoulSilver") da los árboles y el pasto alto más prolijos, pero
+  dibuja la sombra pegada al árbol (sacarla: el juego ya tiene sombras por hora).
+- ComfyUI se puede colgar al alternar Wan (2 × 9,6 GB) y Qwen (13 GB) con 32 GB de RAM: si pasa, reiniciarlo y volver
+  a encolar lo que faltó.
 
 ## Tiempos (RTX 5060 Ti)
 Cuadro clave ~1 min (la primera vez más, carga el modelo) · animación ~4-6 min · redibujo de sprite ~1 min.

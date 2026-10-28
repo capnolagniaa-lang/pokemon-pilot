@@ -1,6 +1,6 @@
 {
  "last_node_id": 50,
- "last_link_id": 12,
+ "last_link_id": 15,
  "nodes": [
   {
    "id": 1,
@@ -46,8 +46,8 @@
      "name": "CLIP",
      "type": "CLIP",
      "links": [
-      4,
-      5
+      6,
+      8
      ]
     }
    ],
@@ -76,7 +76,7 @@
      "name": "VAE",
      "type": "VAE",
      "links": [
-      11
+      14
      ]
     }
    ],
@@ -153,9 +153,9 @@
    },
    "widgets_values": [
     "Qwen-Image-2512-Master-Pixel-Art-LoRA.safetensors",
-    1
+    0.85
    ],
-   "title": "LoRA pixel art (fuerza: 0,7-1,2)"
+   "title": "LoRA pixel art (fuerza: 0,7-1,1)"
   },
   {
    "id": 6,
@@ -179,7 +179,7 @@
      "name": "MODEL",
      "type": "MODEL",
      "links": [
-      6
+      9
      ]
     }
    ],
@@ -192,8 +192,8 @@
    ]
   },
   {
-   "id": 7,
-   "type": "CLIPTextEncode",
+   "id": 20,
+   "type": "PrimitiveStringMultiline",
    "pos": [
     740,
     60
@@ -201,49 +201,123 @@
    "flags": {},
    "order": 6,
    "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      4
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveStringMultiline"
+   },
+   "widgets_values": [
+    "Pixel Art. An explosion of bright orange, red and yellow flames and sparks bursting outward from the center,"
+   ],
+   "size": [
+    480,
+    200
+   ],
+   "title": "1) QUÉ EFECTO (en inglés; empezá con 'Pixel Art.')"
+  },
+  {
+   "id": 21,
+   "type": "PrimitiveStringMultiline",
+   "pos": [
+    740,
+    300
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      5
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveStringMultiline"
+   },
+   "widgets_values": [
+    "an abstract magic spell visual effect made only of energy, light, particles and simple shapes, like the attack effects of a modern 2D action RPG, chunky 16-bit pixel art, limited color palette, hard pixel edges, centered with lots of empty space around it, floating on a completely flat pure black #000000 background."
+   ],
+   "size": [
+    480,
+    200
+   ],
+   "title": "Reglas: se pegan al final (sin cara, fondo negro...)"
+  },
+  {
+   "id": 22,
+   "type": "StringConcatenate",
+   "pos": [
+    1240,
+    300
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
    "inputs": [
     {
-     "name": "clip",
-     "type": "CLIP",
+     "name": "string_a",
+     "type": "STRING",
      "link": 4
+    },
+    {
+     "name": "string_b",
+     "type": "STRING",
+     "link": 5
     }
    ],
    "outputs": [
     {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
+     "name": "STRING",
+     "type": "STRING",
      "links": [
       7
      ]
     }
    ],
    "properties": {
-    "Node name for S&R": "CLIPTextEncode"
+    "Node name for S&R": "StringConcatenate"
    },
    "widgets_values": [
-    "Pixel Art. A single fire explosion impact effect for a 2D action game, bright orange, red and yellow flames and sparks bursting outward from the center, chunky 16-bit pixel art, limited color palette, hard pixel edges, centered in the image with empty space around it, isolated on a pure solid black background, no ground, no characters, no text, no frame."
-   ],
-   "size": [
-    480,
-    300
-   ],
-   "title": "1) QUÉ EFECTO (en inglés; empezá con 'Pixel Art.' y dejá 'pure solid black background')"
+    "",
+    "",
+    " "
+   ]
   },
   {
-   "id": 8,
+   "id": 7,
    "type": "CLIPTextEncode",
    "pos": [
-    740,
-    400
+    1240,
+    60
    ],
    "flags": {},
-   "order": 7,
+   "order": 9,
    "mode": 0,
    "inputs": [
     {
      "name": "clip",
      "type": "CLIP",
-     "link": 5
+     "link": 6
+    },
+    {
+     "name": "text",
+     "type": "STRING",
+     "link": 7,
+     "widget": {
+      "name": "text"
+     }
     }
    ],
    "outputs": [
@@ -251,7 +325,7 @@
      "name": "CONDITIONING",
      "type": "CONDITIONING",
      "links": [
-      8
+      10
      ]
     }
    ],
@@ -261,17 +335,51 @@
    "widgets_values": [
     ""
    ],
-   "title": "negativo (vacío)"
+   "title": "texto completo"
+  },
+  {
+   "id": 8,
+   "type": "CLIPTextEncode",
+   "pos": [
+    740,
+    540
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 8
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      11
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    ""
+   ],
+   "title": "negativo (con Lightning no se usa)"
   },
   {
    "id": 9,
    "type": "EmptySD3LatentImage",
    "pos": [
     740,
-    560
+    700
    ],
    "flags": {},
-   "order": 8,
+   "order": 11,
    "mode": 0,
    "inputs": [],
    "outputs": [
@@ -279,7 +387,7 @@
      "name": "LATENT",
      "type": "LATENT",
      "links": [
-      9
+      12
      ]
     }
    ],
@@ -301,28 +409,28 @@
     60
    ],
    "flags": {},
-   "order": 9,
+   "order": 12,
    "mode": 0,
    "inputs": [
     {
      "name": "model",
      "type": "MODEL",
-     "link": 6
+     "link": 9
     },
     {
      "name": "positive",
      "type": "CONDITIONING",
-     "link": 7
+     "link": 10
     },
     {
      "name": "negative",
      "type": "CONDITIONING",
-     "link": 8
+     "link": 11
     },
     {
      "name": "latent_image",
      "type": "LATENT",
-     "link": 9
+     "link": 12
     }
    ],
    "outputs": [
@@ -330,7 +438,7 @@
      "name": "LATENT",
      "type": "LATENT",
      "links": [
-      10
+      13
      ]
     }
    ],
@@ -360,18 +468,18 @@
     380
    ],
    "flags": {},
-   "order": 10,
+   "order": 13,
    "mode": 0,
    "inputs": [
     {
      "name": "samples",
      "type": "LATENT",
-     "link": 10
+     "link": 13
     },
     {
      "name": "vae",
      "type": "VAE",
-     "link": 11
+     "link": 14
     }
    ],
    "outputs": [
@@ -379,7 +487,7 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      12
+      15
      ]
     }
    ],
@@ -396,13 +504,13 @@
     60
    ],
    "flags": {},
-   "order": 11,
+   "order": 14,
    "mode": 0,
    "inputs": [
     {
      "name": "images",
      "type": "IMAGE",
-     "link": 12
+     "link": 15
     }
    ],
    "outputs": [],
@@ -423,10 +531,10 @@
    "type": "Note",
    "pos": [
     740,
-    720
+    860
    ],
    "flags": {},
-   "order": 12,
+   "order": 15,
    "mode": 0,
    "inputs": [],
    "outputs": [],
@@ -434,7 +542,7 @@
     "Node name for S&R": "Note"
    },
    "widgets_values": [
-    "PASO 1 DE 3: el cuadro clave del efecto.\n- Describí el efecto en \"1) QUÉ EFECTO\" (en inglés). Fondo NEGRO puro siempre: el paso 3 lo usa para sacar el fondo.\n  Para efectos oscuros (Fantasma, Siniestro) pedí \"pure solid white background\".\n- Ejemplos: \"a crackling yellow electric shock burst with zigzag lightning bolts\", \"a splash of blue water droplets\",\n  \"a swirling green leaf tornado\", \"a purple ghostly shadow ball with dark wisps\", \"an icy blue crystal shatter\".\n- Para proyectiles (Ascuas, Pistola Agua...) pedí que apunte a la derecha: \"a fireball flying to the right\".\n- Cuando te guste uno, pasá al workflow \"efecto_2_animar\" y cargá esa imagen (arrastrala desde la cola al nodo\n  \"Cuadro clave\")."
+    "PASO 1 DE 3: el cuadro clave del efecto.\n- Describí el efecto en \"1) QUÉ EFECTO\" (en inglés) SOLO con energía, luz, partículas y formas. No pongas nombres de\n  ataques ni de Pokémon (\"shadow ball\", \"sludge\"): dibuja un Pokémon con cara. Y no escribas lo que NO querés (\"no\n  face\", \"no rocket\"): lo dibuja igual. Las \"Reglas\" se pegan solas al final (fondo NEGRO puro, el paso 3 lo usa).\n  Para efectos oscuros (Fantasma, Siniestro) cambiá en las Reglas \"black #000000\" por \"white #FFFFFF\".\n- Si igual sale con cara: otra semilla, o bajá la fuerza del LoRA a 0,7.\n- Ejemplos: \"a crackling yellow electric shock burst with zigzag lightning bolts\", \"a splash of blue water droplets\",\n  \"a swirling green leaf tornado\", \"a purple ghostly shadow ball with dark wisps\", \"an icy blue crystal shatter\".\n- Para proyectiles (Ascuas, Pistola Agua...) pedí que apunte a la derecha: \"a fireball flying to the right\".\n- Cuando te guste uno, pasá al workflow \"efecto_2_animar\" y cargá esa imagen (arrastrala desde la cola al nodo\n  \"Cuadro clave\")."
    ],
    "size": [
     720,
@@ -470,6 +578,22 @@
   ],
   [
    4,
+   20,
+   0,
+   22,
+   0,
+   "STRING"
+  ],
+  [
+   5,
+   21,
+   0,
+   22,
+   1,
+   "STRING"
+  ],
+  [
+   6,
    2,
    0,
    7,
@@ -477,7 +601,15 @@
    "CLIP"
   ],
   [
-   5,
+   7,
+   22,
+   0,
+   7,
+   1,
+   "STRING"
+  ],
+  [
+   8,
    2,
    0,
    8,
@@ -485,7 +617,7 @@
    "CLIP"
   ],
   [
-   6,
+   9,
    6,
    0,
    10,
@@ -493,7 +625,7 @@
    "MODEL"
   ],
   [
-   7,
+   10,
    7,
    0,
    10,
@@ -501,7 +633,7 @@
    "CONDITIONING"
   ],
   [
-   8,
+   11,
    8,
    0,
    10,
@@ -509,7 +641,7 @@
    "CONDITIONING"
   ],
   [
-   9,
+   12,
    9,
    0,
    10,
@@ -517,7 +649,7 @@
    "LATENT"
   ],
   [
-   10,
+   13,
    10,
    0,
    11,
@@ -525,7 +657,7 @@
    "LATENT"
   ],
   [
-   11,
+   14,
    3,
    0,
    11,
@@ -533,7 +665,7 @@
    "VAE"
   ],
   [
-   12,
+   15,
    11,
    0,
    12,

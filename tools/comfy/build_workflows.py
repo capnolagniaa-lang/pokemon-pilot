@@ -21,7 +21,10 @@ OUT_TYPES = {
     "EmptySD3LatentImage": ["LATENT"], "KSampler": ["LATENT"], "KSamplerAdvanced": ["LATENT"], "VAEDecode": ["IMAGE"],
     "SaveImage": [], "LoadImage": ["IMAGE", "MASK"], "WanImageToVideo": ["CONDITIONING", "CONDITIONING", "LATENT"],
     "CreateVideo": ["VIDEO"], "SaveVideo": [], "Note": [], "ImageScale": ["IMAGE"],
+    "PrimitiveStringMultiline": ["STRING"], "StringConcatenate": ["STRING"],
 }
+## Entradas que son widgets y pueden llegar conectadas (la interfaz necesita saberlo).
+WIDGET_INPUTS = {"text", "prompt", "width", "height"}
 OUT_NAMES = {"WanImageToVideo": ["positive", "negative", "latent"]}
 
 
@@ -46,7 +49,8 @@ class Workflow:
                 out_links.setdefault((src, slot), []).append(lid)
         nodes = []
         for order, (i, n) in enumerate(self.nodes.items()):
-            inputs = [{"name": l[4], "type": l[5], "link": l[0]} for l in links if l[3] == i]
+            inputs = [dict({"name": l[4], "type": l[5], "link": l[0]}, **({"widget": {"name": l[4]}} if l[4] in WIDGET_INPUTS else {}))
+                      for l in links if l[3] == i]
             outs = [{"name": OUT_NAMES.get(n["t"], OUT_TYPES[n["t"]])[s], "type": typ, "links": out_links.get((i, s))}
                     for s, typ in enumerate(OUT_TYPES[n["t"]])]
             d = {"id": i, "type": n["t"], "pos": list(n["pos"]), "flags": {}, "order": order, "mode": 0,
@@ -82,12 +86,20 @@ col = lambda c: c * 340 + 60
 
 # ---------------------------------------------------------------- 1) cuadro clave del efecto (Qwen-Image)
 PIXEL_LORA = "Qwen-Image-2512-Master-Pixel-Art-LoRA.safetensors"
-EFFECT_PROMPT = (
-    "Pixel Art. A single fire explosion impact effect for a 2D action game, bright orange, red and yellow flames and "
-    "sparks bursting outward from the center, chunky 16-bit pixel art, limited color palette, hard pixel edges, "
-    "centered in the image with empty space around it, isolated on a pure solid black background, "
-    "no ground, no characters, no text, no frame."
+## Lo que escribe el usuario (qué efecto) y las reglas fijas que se le pegan al final. Lección (2026-10-28): NO nombrar
+## lo que no se quiere ("no face", "no rocket"): el modelo lo dibuja igual, y peor. Tampoco nombrar Pokémon ni sus
+## juegos ("Mystery Dungeon", "shadow ball", "sludge"): lo llevan a dibujar un Pokémon con cara (Gastly, Grimer,
+## Geodude). Describir el efecto solo con energía, luz, partículas y formas. Con el Lightning (cfg 1) el negativo no
+## se usa.
+EFFECT_DESC = (
+    "Pixel Art. An explosion of bright orange, red and yellow flames and sparks bursting outward from the center,"
 )
+EFFECT_RULES = (
+    "an abstract magic spell visual effect made only of energy, light, particles and simple shapes, like the attack "
+    "effects of a modern 2D action RPG, chunky 16-bit pixel art, limited color palette, hard pixel edges, "
+    "centered with lots of empty space around it, floating on a completely flat pure black #000000 background."
+)
+PIXEL_LORA_STRENGTH = 0.85
 
 
 def effect_keyframe():
@@ -101,16 +113,23 @@ def effect_keyframe():
     w.node(4, "LoraLoaderModelOnly", ["Qwen-Image-Lightning-8steps-V2.0.safetensors", 1], {"model": (1, 0)},
            {"lora_name": "Qwen-Image-Lightning-8steps-V2.0.safetensors", "strength_model": 1}, "Lightning 8 pasos",
            pos=(col(1), 60))
-    w.node(5, "LoraLoaderModelOnly", [PIXEL_LORA, 1], {"model": (4, 0)},
-           {"lora_name": PIXEL_LORA, "strength_model": 1}, "LoRA pixel art (fuerza: 0,7-1,2)", pos=(col(1), 220))
+    w.node(5, "LoraLoaderModelOnly", [PIXEL_LORA, PIXEL_LORA_STRENGTH], {"model": (4, 0)},
+           {"lora_name": PIXEL_LORA, "strength_model": PIXEL_LORA_STRENGTH}, "LoRA pixel art (fuerza: 0,7-1,1)",
+           pos=(col(1), 220))
     w.node(6, "ModelSamplingAuraFlow", [3.1, "flow"], {"model": (5, 0)}, {"shift": 3.1, "sampling": "flow"},
            pos=(col(1), 380))
-    w.node(7, "CLIPTextEncode", [EFFECT_PROMPT], {"clip": (2, 0)}, {"text": EFFECT_PROMPT},
-           "1) QUÉ EFECTO (en inglés; empezá con 'Pixel Art.' y dejá 'pure solid black background')",
-           pos=(col(2), 60), size=[480, 300])
-    w.node(8, "CLIPTextEncode", [""], {"clip": (2, 0)}, {"text": ""}, "negativo (vacío)", pos=(col(2), 400))
+    w.node(20, "PrimitiveStringMultiline", [EFFECT_DESC], api={"value": EFFECT_DESC},
+           title="1) QUÉ EFECTO (en inglés; empezá con 'Pixel Art.')", pos=(col(2), 60), size=[480, 200])
+    w.node(21, "PrimitiveStringMultiline", [EFFECT_RULES], api={"value": EFFECT_RULES},
+           title="Reglas: se pegan al final (sin cara, fondo negro...)", pos=(col(2), 300), size=[480, 200])
+    w.node(22, "StringConcatenate", ["", "", " "], {"string_a": (20, 0), "string_b": (21, 0)}, {"delimiter": " "},
+           pos=(col(3) + 160, 300))
+    w.node(7, "CLIPTextEncode", [""], {"clip": (2, 0), "text": (22, 0)}, title="texto completo",
+           pos=(col(3) + 160, 60))
+    w.node(8, "CLIPTextEncode", [""], {"clip": (2, 0)}, {"text": ""}, "negativo (con Lightning no se usa)",
+           pos=(col(2), 540))
     w.node(9, "EmptySD3LatentImage", [1024, 1024, 1], api={"width": 1024, "height": 1024, "batch_size": 1},
-           title="tamaño (cuadrado)", pos=(col(2), 560))
+           title="tamaño (cuadrado)", pos=(col(2), 700))
     w.node(10, "KSampler", [42, "randomize", 8, 1, "euler", "simple", 1],
            {"model": (6, 0), "positive": (7, 0), "negative": (8, 0), "latent_image": (9, 0)},
            {"seed": 42, "steps": 8, "cfg": 1, "sampler_name": "euler", "scheduler": "simple", "denoise": 1},
@@ -118,14 +137,17 @@ def effect_keyframe():
     w.node(11, "VAEDecode", [], {"samples": (10, 0), "vae": (3, 0)}, pos=(col(4) - 40, 380))
     w.node(12, "SaveImage", ["efectos/clave"], {"images": (11, 0)}, {"filename_prefix": "efectos/clave"},
            "Cuadro clave (output/efectos/)", pos=(col(5), 60), size=[460, 500])
-    w.node(50, "Note", [NOTE_KEYFRAME], title="LEEME", pos=(col(2), 720), size=[720, 330])
+    w.node(50, "Note", [NOTE_KEYFRAME], title="LEEME", pos=(col(2), 860), size=[720, 330])
     w.group("Modelo (no tocar)", 40, 0, 700, 520)
     return w
 
 
 NOTE_KEYFRAME = """PASO 1 DE 3: el cuadro clave del efecto.
-- Describí el efecto en "1) QUÉ EFECTO" (en inglés). Fondo NEGRO puro siempre: el paso 3 lo usa para sacar el fondo.
-  Para efectos oscuros (Fantasma, Siniestro) pedí "pure solid white background".
+- Describí el efecto en "1) QUÉ EFECTO" (en inglés) SOLO con energía, luz, partículas y formas. No pongas nombres de
+  ataques ni de Pokémon ("shadow ball", "sludge"): dibuja un Pokémon con cara. Y no escribas lo que NO querés ("no
+  face", "no rocket"): lo dibuja igual. Las "Reglas" se pegan solas al final (fondo NEGRO puro, el paso 3 lo usa).
+  Para efectos oscuros (Fantasma, Siniestro) cambiá en las Reglas "black #000000" por "white #FFFFFF".
+- Si igual sale con cara: otra semilla, o bajá la fuerza del LoRA a 0,7.
 - Ejemplos: "a crackling yellow electric shock burst with zigzag lightning bolts", "a splash of blue water droplets",
   "a swirling green leaf tornado", "a purple ghostly shadow ball with dark wisps", "an icy blue crystal shatter".
 - Para proyectiles (Ascuas, Pistola Agua...) pedí que apunte a la derecha: "a fireball flying to the right".
