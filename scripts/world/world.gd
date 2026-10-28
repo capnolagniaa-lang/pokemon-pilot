@@ -92,6 +92,7 @@ func _ready() -> void:
 	vermilion_puzzle = VermilionGymPuzzle.new()  # los basureros del gimnasio de Carmín
 	vermilion_puzzle.name = "VermilionGymPuzzle"
 	add_child(vermilion_puzzle)
+	TilePack.apply(bool(GameState.setting("tile_pack")))  # árboles y pasto alto hechos con IA (o los de FireRed)
 	day_night = DayNight.new()
 	day_night.name = "DayNight"
 	add_child(day_night)

@@ -139,9 +139,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - **Capas de colisión**: 1 mundo · 2 agua · 3 jugador · 4 criatura aliada · 5 criatura salvaje ·
   6 hurtbox aliada · 7 hurtbox salvaje · 8 entorno. Hitboxes/hurtboxes con Area2D (desde Etapa 2).
 - **Mundo**: región de zonas (`data/world/kanto.tres`, `ZoneEntry` con origen, plaza `hub`, `exits`, `warps` e
-  `interior`). Son los **mapas reales de FireRed de Pueblo Paleta a Ciudad Carmín** (capítulo 2: Ruta 3, Ruta 4,
-  Mt. Moon, Celeste, Rutas 24 y 25 y la Casa de Bill; capítulo 3: Ruta 5 y su guardería, Vía Subterránea, Ruta 6,
-  Carmín y el S.S. Anne), agrandados (ver "Pipeline"). Azafrán no se arma (`PHANTOMS`: solo ubica a la Ruta 6).
+  `interior`). Son los **mapas reales de FireRed de toda Kanto** (Pueblo Paleta a la Meseta Añil: 234 zonas, sin
+  las Islas Sete ni la Cueva Celeste), agrandados (ver "Pipeline"). Los interiores, cuevas, bosques y la Zona Safari
+  van debajo de todo el mundo (desde el resto de Kanto bajaron 258 celdas: `GameState.MAP_VERSION` 2 migra las
+  posiciones guardadas).
   `ZoneStreamer` carga/descarga zonas en segundo plano (sin pantallas de carga). `World.tags_at(pos)`.
   Los interiores (casas, Centros, gimnasios, garitas) y el Bosque Verde están lejos, debajo del mundo, y se llega
   por **puertas**: `WarpSystem` (nodo del mundo; puerta sólida = caminar contra ella, transitable = pisarla;
@@ -223,7 +224,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `exp_mult` (exp_yield), `money_mult`
   (`add_prize`: premios de entrenadores y torneo), `catch_mult` (Capture), `dealt_mult`/`taken_mult` (HitInfo.from),
   `hp_scale` (`CreatureInstance.hp_scale()`, reescala la vida actual), `combos`, `arena_everywhere`, `wild_mult`
-  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), y `ai_*` (dificultad
+  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), `tile_pack`
+  (TilePack: árboles y pasto alto hechos con IA en vez de los de FireRed, se cambia al instante), y `ai_*` (dificultad
   "personalizado" = `GameState.custom_difficulty()`). **No leer más `DB.config.exp_multiplier`/`combos_enabled`/
   `arena_rules_everywhere` ni `CreatureInstance.HP_SCALE` directo** (son los valores por defecto).
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
@@ -333,7 +335,13 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `-- --only-new` (solo arma las zonas que no están en kanto.tres; las que ya existen quedan tal cual). Verificar que
   las zonas viejas del JSON no cambiaron. Cuevas: `kind` "cave" (interior, salvajes en cualquier suelo). Desde el capítulo 3 tampoco se ensancha el paso
   que tapa un árbol cortable o una roca (`blocked_passage`: sin costuras pegadas): el Gimnasio de Carmín sigue
-  necesitando Corte (`TourPlanner.new(world, true)` lo simula en los tests). **Pisa las zonas importadas**: después de
+  necesitando Corte (`TourPlanner.new(world, cut, surf, strength)` simula Corte, Surf y Fuerza en los tests).
+  **Resto de Kanto** (`EXTERIORS_4`, `STRETCHED_4`, `CAVES_4`, `WILD_INTERIORS_4`, `INTERIORS_4`): se ubican en una
+  segunda pasada (`PLACE_ORDER`: cada uno pegado al borde con relleno de su padre, sin mover lo anterior); los que
+  cierran un círculo (`FIT`: Rutas 8, 11, 15 y 21) se agrandan justo hasta llenar el espacio; si igual se encima con
+  otra zona, se recorta el que se ubicó después por el lado que menos camino pierde (nunca el de una conexión). En
+  esos mapas el agua no es suelo de relleno (cortaba muelles). Salvajes: plantilla de FireRed del mismo nombre
+  (`snake`). Con `--only-new` también se actualizan los `warps` y el `origin` de las zonas que ya existían. **Pisa las zonas importadas**: después de
   editarlas con el editor de mapas no volver a correrlo.
 - `tools/build_world.gd`: arma el TileSet (desde los roles) y **genera las zonas** a partir de `REGION` (vacía desde la
   región de FireRed) y

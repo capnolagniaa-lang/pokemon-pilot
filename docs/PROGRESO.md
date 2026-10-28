@@ -14,6 +14,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   van con luz pareja. "Hora fija" en Ajustes del juego. Por ahora solo visual (decisión del usuario). **Parte B (sombras largas)**:
   casas, árboles y cercas (`ZoneShadows`, máscara de las celdas sólidas + shader) y personajes y Pokémon (`SunShadow`,
   su propio cuadro acostado), según la hora. Test `--autotest-daynight` (23), vitrina `--showcase-daynight`.
+- **Árboles y pasto alto nuevos, hechos con IA (2026-10-28, prueba del usuario)**: `TilePack` reemplaza EN MEMORIA el
+  dibujo del árbol (32×48, estilo HeartGold/SoulSilver, `art/tile_packs/hgss/arbol.png`) y del pasto alto en el atlas
+  general; mapas, colisión y tags iguales. Interruptor en Ajustes del juego ("Árboles y pasto alto nuevos", prendido por
+  defecto; apagado = los de FireRed al instante). El árbol de FireRed son 2×3 metatiles encadenables (copa 14/15,
+  cuerpo 30/31 y 28/29, base 36-39, unión de bosque 20-23), medido en los mapas. Faltan los árboles de otros tilesets
+  (Bosque Verde, etc.). Herramienta: `tools/tile_pack.py`.
 - **Efectos hechos con IA en el juego (2026-10-28, pedido del usuario)**: impactos de Hielo, Planta, Psíquico y Roca
   (`sprites/fx/types/`) y las áreas de Trueno y Giro Fuego (`sprites/fx/moves/`), con ComfyUI (Qwen-Image + LoRA de
   pixel art → Wan 2.2 → `tools/fx_from_frames.py`). Los proyectiles de 16 px siguen siendo los de código (a ese tamaño
@@ -283,6 +289,16 @@ como en FireRed) y salvajes de FireRed.
 - Entrenadores vivos: sus rutinas pasaron a Ruta 1, Ruta 22, Ruta 2 y Bosque Verde (celda transitable más cercana).
 - `--autotest` reescrito: camina de Pueblo Paleta a Ciudad Plateada entrando al Laboratorio de Oak, pasando por la
   Ruta 22 y cruzando el Bosque Verde por sus garitas (`TourPlanner`).
+- **Mapas del resto de Kanto** (2026-10-28, pedido del usuario: "continuá hasta donde puedas para terminar la
+  historia"): 145 zonas nuevas, toda Kanto hasta la Meseta Añil (Rutas 7-21 y 23; Lavanda + Torre Pokémon; Azulona
+  + Gran Almacén, Casino, Escondite Rocket, gimnasio; Azafrán (ya no es hueco) + Silph S.A., Dojo, gimnasio; Fucsia
+  + Zona Safari; Islas Espuma; Canela + Mansión, Laboratorio, gimnasio; Túnel Roca, Cueva Diglett, Central
+  Eléctrica, Calle Victoria y el Alto Mando). Sin Islas Sete ni Cueva Celeste; ascensores no (destino dinámico).
+  Los interiores bajaron 258 celdas (el mar al sur de Paleta los pisaba): las partidas viejas se migran al cargar.
+  `--autotest-bounds`: con Corte se llega a Lavanda, Torre, Azulona, Azafrán (solo por sus garitas), Fucsia, Safari
+  y Rutas 12-16; con Corte + Surf + Fuerza (simulados) a Canela, Islas Espuma, Calle Victoria y la Liga. **Falta
+  (historia, otra sesión)**: Surf, Fuerza, Flash, Poké Flauta (Snorlax), guardias de Azafrán, puertas del Alto Mando y
+  barreras de la Mansión (scripts de FireRed), y la historia de cada tramo.
 - **Mapas del capítulo 3** (2026-10-25, pedido del usuario: "hasta el gimnasio de Ciudad Carmín respetando la
   guía"): Ruta 5 (guardería, garita), Vía Subterránea (entradas en las Rutas 5 y 6), Ruta 6 (garita), Ciudad Carmín +
   Centro, Tienda, Club de Fans, casas y Gimnasio, y el S.S. Anne entero (muelle, plantas 1 a 3, sótano, cubierta,
