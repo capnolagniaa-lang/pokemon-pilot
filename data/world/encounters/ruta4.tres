@@ -32,6 +32,14 @@ weight = 5
 min_level = 10
 max_level = 12
 
+[sub_resource type="Resource" id="Resource_txwlv"]
+script = ExtResource("2_jctjq")
+species_id = "tentacool"
+weight = 100
+min_level = 5
+max_level = 40
+where = "agua"
+
 [resource]
 script = ExtResource("3_ihgk7")
-entries = Array[ExtResource("2_jctjq")]([SubResource("Resource_dn86e"), SubResource("Resource_ltv5u"), SubResource("Resource_0ixyx"), SubResource("Resource_0u21l")])
+entries = Array[ExtResource("2_jctjq")]([SubResource("Resource_dn86e"), SubResource("Resource_ltv5u"), SubResource("Resource_0ixyx"), SubResource("Resource_0u21l"), SubResource("Resource_txwlv")])

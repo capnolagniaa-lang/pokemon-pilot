@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_cr2ic"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_qb850"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_ef6wc"]
+
+[sub_resource type="Resource" id="Resource_0fkov"]
+script = ExtResource("2_qb850")
+species_id = "psyduck"
+weight = 99
+min_level = 5
+max_level = 40
+where = "agua"
+
+[sub_resource type="Resource" id="Resource_v1isx"]
+script = ExtResource("2_qb850")
+species_id = "koffing"
+weight = 1
+min_level = 30
+max_level = 40
+where = "agua"
+
+[resource]
+script = ExtResource("3_ef6wc")
+entries = Array[ExtResource("2_qb850")]([SubResource("Resource_0fkov"), SubResource("Resource_v1isx")])

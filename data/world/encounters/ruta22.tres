@@ -19,6 +19,14 @@ script = ExtResource("2_p0jmx")
 species_id = "spearow"
 min_level = 3
 
+[sub_resource type="Resource" id="Resource_ly5cm"]
+script = ExtResource("2_p0jmx")
+species_id = "psyduck"
+weight = 100
+min_level = 20
+max_level = 40
+where = "agua"
+
 [resource]
 script = ExtResource("3_tykdw")
-entries = Array[ExtResource("2_p0jmx")]([SubResource("Resource_svauc"), SubResource("Resource_dsaue"), SubResource("Resource_shw1q")])
+entries = Array[ExtResource("2_p0jmx")]([SubResource("Resource_svauc"), SubResource("Resource_dsaue"), SubResource("Resource_shw1q"), SubResource("Resource_ly5cm")])

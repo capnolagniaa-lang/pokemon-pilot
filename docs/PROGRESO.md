@@ -315,7 +315,13 @@ como en FireRed) y salvajes de FireRed.
 - **MO sin trámite, como en Let's Go** (2026-10-28, pedido del usuario: "es tedioso el sistema de MO"): Corte, Surf
   y Fuerza se desbloquean igual que antes (la MO + su medalla) pero no se enseñan ni preguntan nada: caminando contra el
   árbol, el agua o la roca tu Pokémon lo hace solo (`FieldMoves._auto_use`). La E frente al obstáculo dice qué falta.
-  Textos de la historia ajustados. **Próximo**: pelea en el agua y reactivar los salvajes de agua (propuesta al usuario).
+  Textos de la historia ajustados.
+- **Pelea en el agua** (2026-10-28, el usuario eligió la "combinada"): navegando, si te ataca un salvaje, tu Pokémon de
+  tipo Agua sale nadando; los Voladores, Fantasma y los que levitan flotan; el resto pelea montado sobre tu Pokémon de
+  Surf (el primero de agua del equipo, o Lapras si no tenés), más lento y con el entrenador arriba. En tierra, los que
+  nadan o flotan también pueden meterse al agua. Volvieron los salvajes de agua de FireRed (27 tablas: Tentacool,
+  Psyduck, Seel...), que salen solo mientras navegás. Falta: verlo en pantalla (no se probó a mano) y el entorno del
+  agua (hielo que congela, electricidad que se propaga), que quedó para después.
 - **Mapas del resto de Kanto** (2026-10-28, pedido del usuario: "continuá hasta donde puedas para terminar la
   historia"): 145 zonas nuevas, toda Kanto hasta la Meseta Añil (Rutas 7-21 y 23; Lavanda + Torre Pokémon; Azulona
   + Gran Almacén, Casino, Escondite Rocket, gimnasio; Azafrán (ya no es hueco) + Silph S.A., Dojo, gimnasio; Fucsia

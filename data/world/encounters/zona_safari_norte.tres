@@ -66,6 +66,14 @@ weight = 1
 min_level = 28
 max_level = 28
 
+[sub_resource type="Resource" id="Resource_gp53v"]
+script = ExtResource("2_3n6d7")
+species_id = "psyduck"
+weight = 100
+min_level = 20
+max_level = 40
+where = "agua"
+
 [resource]
 script = ExtResource("3_4nhi5")
-entries = Array[ExtResource("2_3n6d7")]([SubResource("Resource_djv7i"), SubResource("Resource_jicc8"), SubResource("Resource_y61ka"), SubResource("Resource_u7xvs"), SubResource("Resource_cnvtf"), SubResource("Resource_q7mng"), SubResource("Resource_5scpo"), SubResource("Resource_6gluf"), SubResource("Resource_m83su")])
+entries = Array[ExtResource("2_3n6d7")]([SubResource("Resource_djv7i"), SubResource("Resource_jicc8"), SubResource("Resource_y61ka"), SubResource("Resource_u7xvs"), SubResource("Resource_cnvtf"), SubResource("Resource_q7mng"), SubResource("Resource_5scpo"), SubResource("Resource_6gluf"), SubResource("Resource_m83su"), SubResource("Resource_gp53v")])

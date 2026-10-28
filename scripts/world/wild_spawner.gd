@@ -111,8 +111,9 @@ func cells_for(zone_id: String, zone: Zone, wheres: PackedStringArray) -> Dictio
 	return by
 
 
-## Lo que aparecería en la zona: [especie, nivel, celda, lugar] (o [] si no hay nada que poner).
-func roll(zone_id: String) -> Array:
+## Lo que aparecería en la zona: [especie, nivel, celda, lugar] (o [] si no hay nada que poner). Con
+## `water` = false no salen los del agua (como en FireRed, salen solo mientras navegás con Surf).
+func roll(zone_id: String, water: bool = true) -> Array:
 	var zone: Zone = world.streamer.zone_node(zone_id)
 	if zone == null:
 		return []
@@ -131,6 +132,8 @@ func roll(zone_id: String) -> Array:
 	var by := cells_for(zone_id, zone, wheres)
 	var pool: Array[Vector2i] = []
 	for w in wheres:  # solo los lugares de esta tabla (el caché puede tener otros)
+		if not water and w in WATER_WHERE:
+			continue
 		for c in by[w]:
 			pool.append(c)
 	for attempt in 6:
@@ -146,7 +149,8 @@ func roll(zone_id: String) -> Array:
 
 
 func _spawn_in(zone_id: String) -> void:
-	var r := roll(zone_id)
+	var fm = world.get("field_moves")
+	var r := roll(zone_id, fm != null and fm.surfing)
 	if r.is_empty():
 		return
 	var zone: Zone = world.streamer.zone_node(zone_id)

@@ -73,7 +73,7 @@ func run() -> void:
 	r["Sin cruzar el Mt. Moon no se llega a Ciudad Celeste"] = not skip_moon
 	# Gimnasio de Carmín: detrás de un árbol cortable, como en FireRed (Corte te lo dan en el S.S. Anne).
 	r["Sin Corte no se llega al Gimnasio de Carmín"] = not by_zone.has("ciudad_carmin_gimnasio")
-	var with_cut := _reach(TourPlanner.new(world, true), world, true)
+	var with_cut := _reach(TourPlanner.new(world, true, false, false, false), world, true)
 	var cut_zones := {}
 	for c: Vector2i in with_cut:
 		cut_zones[world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE).id] = true
@@ -88,7 +88,7 @@ func run() -> void:
 		print("[limites] con Corte no se llega a: ", missing_later)
 	# Azafrán se entra por sus garitas (ahí están los guardias de la historia), no por el costado.
 	var gates := ["ruta5_garita", "ruta6_garita", "ruta7_garita", "ruta8_garita"]
-	var no_gates := _reach(TourPlanner.new(world, true), world, true, gates)
+	var no_gates := _reach(TourPlanner.new(world, true, false, false, false), world, true, gates)
 	var sneak := false
 	for c: Vector2i in no_gates:
 		var z := world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE)
@@ -96,7 +96,7 @@ func run() -> void:
 	r["A Azafrán solo se entra por sus garitas"] = not sneak
 	# Con Corte, Surf y Fuerza (las mecánicas que faltan de la historia): el mar, Canela, las Islas Espuma, la Calle
 	# Victoria y la Liga.
-	var all_hm := _reach(TourPlanner.new(world, true, true, true), world, true)
+	var all_hm := _reach(TourPlanner.new(world, true, true, true, false), world, true)
 	var hm_zones := {}
 	for c: Vector2i in all_hm:
 		hm_zones[world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE).id] = true

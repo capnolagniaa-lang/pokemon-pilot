@@ -8,8 +8,8 @@ extends SceneTree
 ##    scenes/world/zones/<id>.tscn, marcada hand_edited (build_world no la pisa; se sigue editando con el editor).
 ##  - La región queda solo con las zonas importadas: las demás zonas y sus tablas de salvajes se borran (con
 ##    backup en .backup/), salvo con --keep-others.
-##  - Salvajes: cada zona con plantilla de FireRed recibe su tabla (data/world/encounters/<id>.tres), sin las filas
-##    de agua (en FireRed son de Surf).
+##  - Salvajes: cada zona con plantilla de FireRed recibe su tabla (data/world/encounters/<id>.tres), con las filas
+##    de agua (las de Surf: salen solo mientras navegás).
 
 const DATA := "res://data/world/frlg_maps.json"
 
@@ -88,8 +88,7 @@ func _init() -> void:
 		var tpath := EncounterTable.zone_path(e.id)
 		var table := EncounterTable.from_template(templates[tpl]) if templates.has(tpl) else null
 		if table != null:
-			# Sin las filas de agua: en FireRed hacen falta Surf (y son de nivel alto, al lado del inicio).
-			table.entries.assign(table.entries.filter(func(r: EncounterEntry) -> bool: return r.where != "agua"))
+			# Las filas de agua (las de Surf) quedan: WildSpawner las saca solo mientras navegás.
 			if z["kind"] == "cave":  # en las cuevas de FireRed aparecen en cualquier lugar del suelo
 				for r in table.entries:
 					if r.where == "pasto_alto":

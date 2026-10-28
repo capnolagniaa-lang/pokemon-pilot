@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_febmy"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_rx0lu"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_y2lk4"]
+
+[sub_resource type="Resource" id="Resource_j4axk"]
+script = ExtResource("2_rx0lu")
+species_id = "tentacool"
+weight = 100
+min_level = 5
+max_level = 40
+where = "agua"
+
+[resource]
+script = ExtResource("3_y2lk4")
+entries = Array[ExtResource("2_rx0lu")]([SubResource("Resource_j4axk")])

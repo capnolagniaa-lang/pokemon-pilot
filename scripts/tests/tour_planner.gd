@@ -10,8 +10,9 @@ var _ledges := {}  # celda del mundo -> dirección del salto (salientes de FireR
 
 
 ## `cut`: los árboles cortables (EnvObject "cortable") cuentan como transitables (como si tuvieras Corte); `surf`: el
-## agua también (Surf); `strength`: las rocas pesadas también (Fuerza: en FireRed se empujan).
-func _init(p_world: WorldData, cut: bool = false, surf: bool = false, strength: bool = false) -> void:
+## agua también (Surf); `strength`: las rocas pesadas también (Fuerza: en FireRed se empujan). `people` = false: las
+## personas de la historia no tapan (para medir solo el mapa: el Snorlax o los guardias se sacan jugando).
+func _init(p_world: WorldData, cut: bool = false, surf: bool = false, strength: bool = false, people: bool = true) -> void:
 	world = p_world
 	for z in world.zones:
 		_by_id[z.id] = z
@@ -32,7 +33,7 @@ func _init(p_world: WorldData, cut: bool = false, surf: bool = false, strength: 
 				var phys := MapRules.cell_physics(node, Vector2i(x, y), objects)
 				bits[y * z.size.x + x] = 1 if phys < 0 or (surf and phys == MapRules.WATER) else 0
 		for npc: NpcData in DB.npcs.values():  # las personas de la historia también ocupan su celda
-			if npc.zone_id == z.id and npc.visible_now() and Rect2i(Vector2i.ZERO, z.size).has_point(npc.cell):
+			if people and npc.zone_id == z.id and npc.visible_now() and Rect2i(Vector2i.ZERO, z.size).has_point(npc.cell):
 				bits[npc.cell.y * z.size.x + npc.cell.x] = 0
 		_walk[z.id] = bits
 		for c in (node.get_node("Ground") as TileMapLayer).get_used_cells():

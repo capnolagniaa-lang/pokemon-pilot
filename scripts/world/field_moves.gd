@@ -9,6 +9,9 @@ extends Node
 ##    al pisar tierra se baja solo.
 ##  · Fuerza (MO04 + Medalla Arcoíris): caminando contra una roca grande ("pesado") la empuja una celda si del otro
 ##    lado hay lugar. Las rocas vuelven a su lugar al recargar la zona (como en los juegos).
+##  · Pelea en el agua (decisión del usuario 2026-10-28): los de tipo Agua nadan, los Voladores, Fantasma y los que
+##    levitan (FLOATERS) flotan, y el resto, si estás navegando, pelea montado sobre tu Pokémon de Surf (más lento, y
+##    el entrenador va con él). Los salvajes del agua salen solo mientras navegás (WildSpawner).
 ##  · Poké Flauta: despierta a los Snorlax de las Rutas 12 y 16 (acciones "snorlax_<ruta>" de su conversación).
 ## En el modo libre (sin historia) alcanza con tener la MO. Nodo del mundo (world.field_moves).
 
@@ -30,6 +33,14 @@ const SNORLAX := {"snorlax_ruta12": ["snorlax_ruta12_despierto", 30], "snorlax_r
 const LEGENDS := {"legendario_articuno": ["articuno", "articuno_visto", 50, "islas_espuma_s4_articuno"],
 	"legendario_zapdos": ["zapdos", "zapdos_visto", 50, "central_electrica_zapdos"]}
 
+## Los que levitan sin ser Voladores ni Fantasma (Levitación en la 3ª gen, y los imanes de Magnemite).
+const FLOATERS := ["koffing", "weezing", "magnemite", "magneton", "unown", "vibrava", "flygon", "lunatone", "solrock",
+	"baltoy", "claydol", "chimecho", "latias", "latios"]
+## Velocidad del que pelea montado sobre el Pokémon de Surf.
+const MOUNTED_SPEED := 0.75
+## Si no tenés ningún Pokémon de agua en el equipo, te lleva este (como la Poké Montura de los juegos nuevos).
+const DEFAULT_MOUNT := "lapras"
+
 var world: Node
 ## Navegando sobre el agua (Surf).
 var surfing := false
@@ -39,6 +50,8 @@ var _push_time := 0.0
 var _pushing := false
 var _mount: Sprite2D
 var _sprite_y := 0.0
+## Cómo pelea en el agua el Pokémon que está afuera ("" = fuera de combate).
+var water_mode := ""
 ## Al subir al agua, un ratito sin chequear si pisó tierra (todavía está saliendo de la orilla).
 var _surf_grace := 0.0
 
@@ -48,6 +61,9 @@ func _ready() -> void:
 	world.story.register_interaction(_try_cut)
 	world.story.register_interaction(_try_strength)
 	world.story.register_interaction(_try_surf)
+	Events.battle_started.connect(_update_water_battle)
+	Events.battle_ended.connect(_update_water_battle)
+	Events.companion_out.connect(func(_i): _update_water_battle.call_deferred())
 	for action in SNORLAX:
 		world.story.register_action(action, _wake_snorlax.bind(action))
 	for action in LEGENDS:
@@ -216,17 +232,59 @@ func _show_mount(on: bool) -> void:
 		t.add_child(_mount)
 	_mount.visible = on
 	if on:
-		var mon: CreatureInstance = GameState.active()
-		for inst in GameState.party:
-			if inst.species.types.any(func(e): return e.id == "agua"):
-				mon = inst
-				break
-		_mount.texture = DB.idle_frame_of(mon.species) if mon != null else null
+		_mount.texture = DB.idle_frame_of(mount_species())
 		_mount.position = Vector2(0, -6)
 		_sprite_y = t.sprite.position.y
 		t.sprite.position.y = _sprite_y - 8.0
 	else:
 		t.sprite.position.y = _sprite_y
+
+
+## El que te lleva por el agua: el primero de agua del equipo (o la montura de siempre).
+static func mount_species() -> SpeciesData:
+	for inst in GameState.party:
+		if inst.species.types.any(func(e): return e.id == "agua"):
+			return inst.species
+	return DB.species.get(DEFAULT_MOUNT)
+
+
+# --- Pelea en el agua -----------------------------------------------------------------------------------------
+
+## Cómo se mueve una especie en el agua: "nada" (tipo Agua), "flota" (Volador, Fantasma o levita) o "montado" (el
+## resto: solo navegando, sobre tu Pokémon de Surf).
+static func water_mode_of(sp: SpeciesData) -> String:
+	var types: Array = sp.types.map(func(e): return e.id)
+	if types.has("agua"):
+		return "nada"
+	if types.has("volador") or types.has("fantasma") or sp.id in FLOATERS:
+		return "flota"
+	return "montado"
+
+
+## Al empezar o terminar una pelea (o al cambiar de Pokémon): quién puede entrar al agua y cómo.
+func _update_water_battle() -> void:
+	var c: Creature = world.companion
+	if not is_instance_valid(c):
+		return
+	var fighting: bool = world.combat.in_battle
+	var in_arena: bool = world.get("arena") != null and world.arena.active
+	var mode := water_mode_of(c.instance.species) if fighting and not in_arena else ""  # (las arenas tienen sus reglas)
+	if mode == "montado" and not surfing:
+		mode = ""  # en tierra pelea como siempre
+	water_mode = mode
+	var t: Trainer = world.trainer
+	if mode == "" and c.swims and not surfing and world.tags_at(c.global_position).has("agua"):
+		c.global_position = t.global_position + Vector2(0, -12)  # terminó adentro del agua: vuelve a la orilla
+	c.swims = mode != ""
+	c.swim_mult = MOUNTED_SPEED if mode == "montado" else 1.0
+	if not surfing:
+		return
+	c.visible = fighting
+	# Montado: el entrenador (con la montura abajo) va pegado a tu Pokémon, que se para adelante sobre ella.
+	if mode == "montado":
+		t.follow_target = null
+	elif fighting and not world.combat.arena_lock:
+		t.follow_target = c
 
 
 func _physics_process(delta: float) -> void:
@@ -235,8 +293,11 @@ func _physics_process(delta: float) -> void:
 	var t: Trainer = world.trainer
 	if surfing:
 		_surf_grace -= delta
-		if is_instance_valid(world.companion):
+		if water_mode == "montado" and is_instance_valid(world.companion):
+			t.global_position = world.companion.global_position + Vector2(0, -3)  # va arriba de la montura con él
+		elif not world.combat.in_battle and is_instance_valid(world.companion):
 			world.companion.global_position = t.global_position  # viaja "adentro" (no choca con el agua)
+			world.companion.visible = false
 		if _surf_grace <= 0.0 and not world.tags_at(t.global_position).has("agua") and not t.locked:
 			stop_surf()  # pisó tierra: se baja
 	_auto_use(delta)

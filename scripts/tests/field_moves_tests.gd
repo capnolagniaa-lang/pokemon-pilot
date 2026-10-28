@@ -37,6 +37,39 @@ func run() -> void:
 	await get_tree().create_timer(0.4).timeout
 	t.autopilot = Vector2.ZERO
 	r["Puede moverse por el agua"] = fm.surfing and world.tags_at(t.global_position).has("agua")
+
+	# --- Pelea en el agua ---
+	r["Modos: Agua nada, Volador/Fantasma/levita flota, el resto montado"] = \
+		FieldMoves.water_mode_of(DB.species["squirtle"]) == "nada" and FieldMoves.water_mode_of(DB.species["pidgey"]) == "flota" \
+		and FieldMoves.water_mode_of(DB.species["gastly"]) == "flota" and FieldMoves.water_mode_of(DB.species["koffing"]) == "flota" \
+		and FieldMoves.water_mode_of(DB.species["charmander"]) == "montado"
+	var no_water := true
+	for i in 40:
+		var roll: Array = world.spawner.roll("pueblo_paleta", false)
+		if not roll.is_empty() and roll[3] == "agua":
+			no_water = false
+	var tpl: EncounterTable = load(EncounterTable.zone_path("ruta19"))
+	r["Salvajes de agua: en la tabla, pero salen solo navegando"] = no_water and tpl != null \
+		and tpl.entries.any(func(e): return e.where == "agua")
+	world.combat.start_battle()
+	await get_tree().create_timer(0.2).timeout
+	var c: Creature = world.companion
+	r["Navegando, tu Pokémon de agua sale a pelear nadando"] = world.combat.in_battle and c.visible and c.swims \
+		and fm.water_mode == "nada"
+	GameState.party.append(CreatureInstance.create(DB.species["charmander"], 30))
+	await get_tree().create_timer(1.6).timeout  # (recarga de los cambios)
+	world.combat.switch_to(GameState.party.size() - 1)
+	await get_tree().create_timer(0.3).timeout
+	c = world.companion
+	r["Uno que no nada pelea montado (más lento, el entrenador con él)"] = fm.water_mode == "montado" and c.swims \
+		and is_equal_approx(c.swim_mult, FieldMoves.MOUNTED_SPEED) and t.global_position.distance_to(c.global_position) < 6.0 \
+		and FieldMoves.mount_species().id == "squirtle"
+	world.combat.end_battle()
+	await get_tree().create_timer(0.2).timeout
+	r["Al terminar la pelea vuelve adentro (sigue navegando)"] = fm.surfing and fm.water_mode == "" \
+		and not world.companion.visible
+	world.combat.switch_to(0)
+	await get_tree().create_timer(0.2).timeout
 	t.autopilot = Vector2.UP
 	await _until(func(): return not fm.surfing, 4.0)
 	t.autopilot = Vector2.ZERO

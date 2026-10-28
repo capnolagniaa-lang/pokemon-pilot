@@ -42,6 +42,46 @@ min_level = 34
 max_level = 36
 where = "suelo"
 
+[sub_resource type="Resource" id="Resource_3xeky"]
+script = ExtResource("2_8b8s1")
+species_id = "seel"
+weight = 60
+min_level = 25
+max_level = 35
+where = "agua"
+
+[sub_resource type="Resource" id="Resource_8b8s1"]
+script = ExtResource("2_8b8s1")
+species_id = "horsea"
+weight = 30
+min_level = 25
+max_level = 30
+where = "agua"
+
+[sub_resource type="Resource" id="Resource_rjore"]
+script = ExtResource("2_8b8s1")
+species_id = "dewgong"
+weight = 5
+min_level = 35
+max_level = 40
+where = "agua"
+
+[sub_resource type="Resource" id="Resource_67yro"]
+script = ExtResource("2_8b8s1")
+species_id = "psyduck"
+weight = 4
+min_level = 30
+max_level = 40
+where = "agua"
+
+[sub_resource type="Resource" id="Resource_kgcro"]
+script = ExtResource("2_8b8s1")
+species_id = "golduck"
+weight = 1
+min_level = 35
+max_level = 40
+where = "agua"
+
 [resource]
 script = ExtResource("3_rjore")
-entries = Array[ExtResource("2_8b8s1")]([SubResource("Resource_ra1vi"), SubResource("Resource_fv6pt"), SubResource("Resource_bdalu"), SubResource("Resource_w60h2"), SubResource("Resource_kapw8")])
+entries = Array[ExtResource("2_8b8s1")]([SubResource("Resource_ra1vi"), SubResource("Resource_fv6pt"), SubResource("Resource_bdalu"), SubResource("Resource_w60h2"), SubResource("Resource_kapw8"), SubResource("Resource_3xeky"), SubResource("Resource_8b8s1"), SubResource("Resource_rjore"), SubResource("Resource_67yro"), SubResource("Resource_kgcro")])

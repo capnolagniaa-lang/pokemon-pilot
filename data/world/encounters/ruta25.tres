@@ -53,6 +53,14 @@ weight = 1
 min_level = 9
 max_level = 9
 
+[sub_resource type="Resource" id="Resource_knuxv"]
+script = ExtResource("2_r31ug")
+species_id = "psyduck"
+weight = 100
+min_level = 20
+max_level = 40
+where = "agua"
+
 [resource]
 script = ExtResource("3_yycyh")
-entries = Array[ExtResource("2_r31ug")]([SubResource("Resource_po4is"), SubResource("Resource_3el4p"), SubResource("Resource_okoy4"), SubResource("Resource_u3fj5"), SubResource("Resource_b4c6t"), SubResource("Resource_ntbq3"), SubResource("Resource_fqm7j")])
+entries = Array[ExtResource("2_r31ug")]([SubResource("Resource_po4is"), SubResource("Resource_3el4p"), SubResource("Resource_okoy4"), SubResource("Resource_u3fj5"), SubResource("Resource_b4c6t"), SubResource("Resource_ntbq3"), SubResource("Resource_fqm7j"), SubResource("Resource_knuxv")])

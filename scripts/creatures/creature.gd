@@ -48,6 +48,8 @@ var swims := false:
 	set(v):
 		swims = v
 		collision_mask = (collision_mask & ~2) if v else (collision_mask | 2)
+## Velocidad mientras nada (FieldMoves: el que pelea montado sobre el Pokémon de Surf va más lento).
+var swim_mult := 1.0
 ## Tu Pokémon mientras lo controlás en combate.
 var player_controlled := false
 ## Pelea sola con la IA de los salvajes aunque sea de tu equipo (la batería de balance: dos IA peleando entre sí).
@@ -210,6 +212,8 @@ func speed() -> float:
 		m *= signature.speed_mult()
 	if arena_rules():
 		m *= surface_mult()
+	if swims:
+		m *= swim_mult
 	return move_speed_for(instance.stat("speed")) * m
 
 

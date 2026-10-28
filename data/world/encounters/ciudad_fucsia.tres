@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_qq0t2"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_ra47t"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_ily3t"]
+
+[sub_resource type="Resource" id="Resource_8478f"]
+script = ExtResource("2_ra47t")
+species_id = "psyduck"
+weight = 100
+min_level = 20
+max_level = 40
+where = "agua"
+
+[resource]
+script = ExtResource("3_ily3t")
+entries = Array[ExtResource("2_ra47t")]([SubResource("Resource_8478f")])
