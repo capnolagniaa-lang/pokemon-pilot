@@ -22,10 +22,8 @@ func run() -> void:
 
 	var world: Node = await autotest._setup_kit_world("charmander")
 	var me: Creature = world.companion
-	var base: MoveData = null
-	for m: MoveData in me.moves.slots:
-		if m.kind == MoveData.Kind.PROJECTILE:
-			base = m
+	# (desde las habilidades no hay kit: la variante de Ascuas del viejo kit de Charmander sigue en data/kits)
+	var base: MoveData = DB.all_moves["charmander/ascuas_abanico"]
 	var bare := base.duplicate() as MoveData  # ataque y tipo sin hojas: se dibuja por código
 	bare.id = "sin_hoja"
 	bare.display_name = "Sin hoja"
@@ -100,7 +98,7 @@ func showcase() -> void:
 	cam.global_position = (me.global_position + dummy.global_position) / 2.0
 	cam.zoom = Vector2(4, 4)
 	await get_tree().physics_frame
-	var base: MoveData = me.moves.slots[0]
+	var base: MoveData = DB.moves["ascuas"]  # (un disparo con daño; desde las habilidades la 1ª ranura puede ser Gruñido)
 	for tid in DB.types:
 		var m := base.duplicate() as MoveData
 		m.element = DB.types[tid]

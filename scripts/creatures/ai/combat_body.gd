@@ -76,7 +76,7 @@ func use(slot: int) -> bool:
 	var off: Vector2 = t.global_position - actor.global_position
 	var m: MoveData = actor.moves.slots[slot]
 	if m != null and m.kind == MoveData.Kind.PROJECTILE and m.speed > 0.0:
-		off += t.velocity * (off.length() / m.speed) * difficulty().lead
+		off += t.velocity * (off.length() / (m.speed * Projectile.SPEED_MULT)) * difficulty().lead
 	var dir := off.normalized().rotated(randf_range(-err, err))
 	# Mismo error para lo que apunta a un punto (zonas, Arañazo).
 	var point: Vector2 = actor.global_position + off.rotated(randf_range(-err, err)) * randf_range(1.0 - err, 1.0 + err)

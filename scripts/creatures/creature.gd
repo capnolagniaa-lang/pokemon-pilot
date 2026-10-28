@@ -680,7 +680,9 @@ func _on_hit(hit: HitInfo) -> void:
 				attacker.status_inflicted.emit(self, pair[0])
 	for it in interactions:
 		_apply_interaction(it)
-	if (hit.knockback * push >= STAGGER_KNOCKBACK or state in ["cast", "channel"]) and machine.current_name() != "stunned":
+	# Un golpe fuerte aturde (y corta una carga o un canalizado). Los golpes chicos ya no cortan la carga (balance
+	# 2026-10-28: con el stagger en todo golpe, Sofoco o Rayo Solar casi nunca llegaban a salir): solo dejan stagger.
+	if hit.knockback * push >= STAGGER_KNOCKBACK and machine.current_name() != "stunned":
 		stun(0.25)
 	if team == Team.WILD and not is_instance_valid(target) and attacker:
 		# Si le pegan, pelea (también el tímido que huía tranquilo o el curioso que miraba).

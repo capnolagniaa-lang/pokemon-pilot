@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Ataques nuevos y balance de disparos (2026-10-28, pedido del usuario)**: si aprende un ataque y tiene ranura libre
+  se equipa solo; con las 4 llenas, al terminar la pelea aparece un cartel "¿reemplazar uno?" (`MoveLearnDirector` +
+  `MoveLearnScreen`, lo crea `EvolutionDirector`). Balance: los golpes chicos ya no cortan una carga (solo los fuertes) y
+  la IA anticipa al soltar un disparo cargado (Sofoco pegaba 24% de las veces → 44%; Rayo Solar 6% → 38%); los disparos
+  van 25% más rápido (mismo alcance) y su zona de impacto es 2 px más grande. Desvío entre especies con sus mejores
+  ataques: 19,6 → 18,4. Ditto, Metapod y Kakuna siguen sin ganar (como en los juegos, decisión del usuario).
 - **Habilidades en vez de kits (2026-10-28, decisión del usuario)**: cada Pokémon pelea con su habilidad de 3ª gen
   (al azar entre las de su especie), su tipo y los ataques que elijas (nivel + MT; viene con los últimos 4 por nivel);
   los ataques son iguales para todos. Kit de jefe solo con los líderes (Onix, Starmie, Raichu). 76 habilidades

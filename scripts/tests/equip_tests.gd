@@ -48,8 +48,36 @@ func run() -> void:
 	r["Subir de nivel aprende y equipa en la ranura libre (%s)" % text.strip_edges()] = fresh.level >= 20 \
 		and fresh.equipped_moves[3] != null
 
+	# Con las 4 llenas: al terminar la pelea aparece el cartel; "Sí" + elegir la ranura 0 lo reemplaza.
+	world.combat.end_battle()
+	var mine: CreatureInstance = GameState.active()
+	mine.level = 30
+	mine.experience = CreatureInstance.exp_for_level(mine.species.growth_rate, 30)
+	# 4 ranuras llenas, ninguna con Lanzallamas (el que aprende a Nv. 31; también es su MT, por eso se saca a mano).
+	var others := mine.learned_moves().filter(func(m): return m.id != "lanzallamas")
+	for i in 4:
+		mine.equipped_moves[i] = others[i]
+	var learn: MoveLearnDirector = world.evolutions.moves
+	GameState.grant_exp(mine, CreatureInstance.exp_for_level(mine.species.growth_rate, 31) - mine.experience)
+	world.evolutions.queue.clear()  # (un Charmander Nv. 31 también quiere evolucionar: acá solo el cartel del ataque)
+	var flame: MoveData = DB.moves["lanzallamas"]
+	await _until(func(): return learn.showing, 3.0)
+	r["Con las 4 ranuras llenas aparece el cartel (%s)" % flame.display_name] = learn.showing and is_instance_valid(learn.screen) \
+		and learn.screen.move == flame
+	if is_instance_valid(learn.screen):
+		learn.screen.finished.emit(0)
+	await get_tree().process_frame
+	r["Elegir la ranura 1 lo reemplaza ahí"] = mine.equipped_moves[0] == flame and not learn.showing
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[equipar] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-equip] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+
+func _until(cond: Callable, timeout: float) -> void:
+	var t := 0.0
+	while t < timeout and not cond.call():
+		await get_tree().process_frame
+		t += get_process_delta_time()

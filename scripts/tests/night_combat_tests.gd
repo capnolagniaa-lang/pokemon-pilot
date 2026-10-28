@@ -15,6 +15,7 @@ func run() -> void:
 	var r := {}
 	world = await autotest._setup_kit_world("charmander")
 	var me: Creature = world.companion
+	me.moves.slots[0] = DB.moves["ascuas"]  # (desde las habilidades Charmander Nv. 10 no trae un disparo de fuego en la 1ª)
 	# De día.
 	await _set_hour(12.0)
 	var day_shot := await _shoot(me)
@@ -53,6 +54,7 @@ func showcase() -> void:
 	world = await autotest._setup_kit_world("charmander")
 	GameState.set_setting("time_lock", 22.5)
 	var me: Creature = world.companion
+	me.moves.slots[0] = DB.moves["ascuas"]
 	var foe: Creature = autotest._dummy(world, "bulbasaur", me.global_position + Vector2(70, 0))
 	for k in 6:
 		await get_tree().create_timer(0.7).timeout

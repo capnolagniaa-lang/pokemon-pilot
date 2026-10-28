@@ -284,7 +284,7 @@ func active() -> CreatureInstance:
 
 
 ## Le da experiencia a un Pokémon del equipo. Si sube de nivel y aprende movimientos, los equipa en una
-## ranura libre (si hay; si no, quedan en la ficha) y emite move_learned. Devuelve el texto para el mensaje
+## ranura libre (si hay; si no, MoveLearnDirector pregunta si reemplazar uno) y emite move_learned. Devuelve el texto para el mensaje
 ## (" — ¡X subió a Nv. N! ¡Aprendió Y!") o "" si no subió.
 func grant_exp(inst: CreatureInstance, amount: int) -> String:
 	var before := inst.level

@@ -49,7 +49,11 @@ func physics_update(delta: float) -> void:
 			_aim = aim.normalized()
 		_msg["point"] = actor.input_source.aim_point(actor)
 	elif is_instance_valid(actor.target):
-		_aim = (actor.target.global_position - actor.global_position).normalized()
+		var off: Vector2 = actor.target.global_position - actor.global_position
+		# Al soltar un disparo, la IA anticipa hacia dónde va el rival (como con los disparos sin carga).
+		if _move.kind == MoveData.Kind.PROJECTILE and _move.speed > 0.0:
+			off += actor.target.velocity * (off.length() / (_move.speed * Projectile.SPEED_MULT)) * CombatBody.difficulty().lead
+		_aim = off.normalized()
 	actor.facing = _aim
 	actor.telegraph.direction = _aim
 	if _move.kind == MoveData.Kind.ZONE:

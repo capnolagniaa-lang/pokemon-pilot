@@ -16,6 +16,8 @@ var showing := false
 var speed := 1.0
 var _layer: CanvasLayer
 var screen: EvolutionScreen
+## Ataques nuevos con las 4 ranuras llenas (MoveLearnDirector).
+var moves: MoveLearnDirector
 
 
 func _ready() -> void:
@@ -24,6 +26,9 @@ func _ready() -> void:
 	_layer.layer = 12  # encima del HUD, el menú y la tienda
 	add_child(_layer)
 	Events.evolution_ready.connect(_on_ready)
+	moves = MoveLearnDirector.new()  # cartel de "quiere aprender un ataque" (mismo momento tranquilo)
+	moves.name = "MoveLearnDirector"
+	add_child(moves)
 
 
 func _on_ready(inst: CreatureInstance, to: SpeciesData, cancelable: bool) -> void:

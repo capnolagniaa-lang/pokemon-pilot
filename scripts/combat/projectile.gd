@@ -18,18 +18,24 @@ var _dead := false
 var _vfx: VfxSprite
 
 
+## Balance (2026-10-28, batería IA contra IA): los disparos pegaban la mitad de las veces que los golpes. Van más rápido
+## (mismo alcance: dura menos) y su zona de impacto es un poco más grande que el dibujo.
+const SPEED_MULT := 1.25
+const HIT_PAD := 2.0
+
+
 func launch(p_hit: HitInfo, from: Vector2, dir: Vector2) -> void:
 	var m := p_hit.move
 	var el := m.element
 	setup(p_hit, true)
 	global_position = from
-	velocity = dir.normalized() * m.speed
-	life = m.lifetime
+	velocity = dir.normalized() * m.speed * SPEED_MULT
+	life = m.lifetime / SPEED_MULT
 	radius = m.size
 	color = el.hdr(el.color)
 	core = el.hdr(el.core_color, 0.9)
 	var shape := CircleShape2D.new()
-	shape.radius = radius
+	shape.radius = radius + HIT_PAD
 	var col := CollisionShape2D.new()
 	col.shape = shape
 	add_child(col)

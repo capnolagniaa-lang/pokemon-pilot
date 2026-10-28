@@ -176,6 +176,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `MoveData.melee_step` antes del corte (estado `step`) y todo golpe con daño deja **stagger** (`Creature.hitstun_left`:
   sin atacar ni esquivar un ratito, con respiro; ajuste `hitstun_mult`). El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
+- **Ataques nuevos**: con ranura libre se equipa solo (`CreatureInstance.auto_equip`); con las 4 llenas,
+  `MoveLearnDirector` (hijo de `world.evolutions`, en el momento tranquilo de las evoluciones) muestra `MoveLearnScreen`
+  ("¿reemplazar uno?"). Cargas: solo un golpe fuerte (empuje ≥ `STAGGER_KNOCKBACK`) corta una carga o un canalizado;
+  los chicos solo dejan stagger. Disparos: `Projectile.SPEED_MULT` 1,25 (dura menos: mismo alcance) y `HIT_PAD` 2 px.
 - **Habilidades (vigente desde 2026-10-28, decisión del usuario)**: la identidad de combate sale de la **habilidad de
   3ª gen** (`SpeciesData.abilities`, 1 o 2; cada Pokémon nace con una al azar: `CreatureInstance.ability`, se guarda y
   se conserva al evolucionar), el tipo, los stats y los **ataques que elige el jugador** (todo lo de nivel y MT:
