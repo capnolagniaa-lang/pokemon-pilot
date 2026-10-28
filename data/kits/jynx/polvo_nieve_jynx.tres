@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "polvo_nieve_jynx"
+display_name = "Polvo Nieve"
+element = ExtResource("3_x")
+kind = 0
+category = 1
+power = 40.0
+cooldown = 1.4
+knockback = 50.0
+speed = 230.0
+size = 4.0
+lifetime = 0.7
+projectile_count = 3
+spread_deg = 28.0

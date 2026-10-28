@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "ataque_ala_scyther"
+display_name = "Ataque Ala"
+element = ExtResource("3_x")
+kind = 7
+category = 0
+power = 60.0
+cooldown = 3.5
+knockback = 140.0
+lunge_range = 110.0
+lunge_speed = 540.0
+followup_delay = 0.12
+followup_power_mult = 0.5
+followup_knockback = 180.0
+recovery = 0.15

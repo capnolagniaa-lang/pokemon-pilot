@@ -23,62 +23,62 @@
 [ext_resource type="Resource" path="res://data/moves/autosugestion.tres" id="13_svhhd"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_jleu1"]
 
-[sub_resource type="Resource" id="Resource_uix7o"]
+[sub_resource type="Resource" id="Resource_0574f"]
 script = ExtResource("1_gfs18")
 move = ExtResource("4_0574f")
 
-[sub_resource type="Resource" id="Resource_gadmu"]
+[sub_resource type="Resource" id="Resource_op2ll"]
 script = ExtResource("1_gfs18")
 move = ExtResource("5_op2ll")
 
-[sub_resource type="Resource" id="Resource_xrg6g"]
+[sub_resource type="Resource" id="Resource_h7alp"]
 script = ExtResource("1_gfs18")
 level = 3
 move = ExtResource("6_h7alp")
 
-[sub_resource type="Resource" id="Resource_svhhd"]
+[sub_resource type="Resource" id="Resource_glwia"]
 script = ExtResource("1_gfs18")
 level = 5
 move = ExtResource("7_glwia")
 
-[sub_resource type="Resource" id="Resource_8wn88"]
+[sub_resource type="Resource" id="Resource_uix7o"]
 script = ExtResource("1_gfs18")
 move = ExtResource("2_gr66u")
 
-[sub_resource type="Resource" id="Resource_hnrnm"]
+[sub_resource type="Resource" id="Resource_gadmu"]
 script = ExtResource("1_gfs18")
 move = ExtResource("3_jleu1")
 
-[sub_resource type="Resource" id="Resource_aklpn"]
+[sub_resource type="Resource" id="Resource_xrg6g"]
 script = ExtResource("1_gfs18")
 move = ExtResource("4_rk7n0")
 
-[sub_resource type="Resource" id="Resource_cqur5"]
+[sub_resource type="Resource" id="Resource_svhhd"]
 script = ExtResource("1_gfs18")
 level = 17
 move = ExtResource("7_op2ll")
 
-[sub_resource type="Resource" id="Resource_qpwgv"]
+[sub_resource type="Resource" id="Resource_8wn88"]
 script = ExtResource("1_gfs18")
 level = 24
 move = ExtResource("8_h7alp")
 
-[sub_resource type="Resource" id="Resource_213h1"]
+[sub_resource type="Resource" id="Resource_hnrnm"]
 script = ExtResource("1_gfs18")
 level = 36
 move = ExtResource("10_uix7o")
 
-[sub_resource type="Resource" id="Resource_j86f2"]
+[sub_resource type="Resource" id="Resource_aklpn"]
 script = ExtResource("1_gfs18")
 level = 37
 move = ExtResource("11_gadmu")
 
-[sub_resource type="Resource" id="Resource_i7j54"]
+[sub_resource type="Resource" id="Resource_cqur5"]
 script = ExtResource("1_gfs18")
 level = 44
 move = ExtResource("12_xrg6g")
 
-[sub_resource type="Resource" id="Resource_t0gtt"]
+[sub_resource type="Resource" id="Resource_qpwgv"]
 script = ExtResource("1_gfs18")
 level = 55
 move = ExtResource("13_svhhd")
@@ -90,7 +90,7 @@ display_name = "Slowbro"
 dex = 80
 types = Array[ExtResource("4_sqek2")]([ExtResource("5_3o76f"), ExtResource("6_gwxyq")])
 kit = ExtResource("2_2owbi")
-learnset = Array[ExtResource("1_gfs18")]([SubResource("Resource_uix7o"), SubResource("Resource_gadmu"), SubResource("Resource_xrg6g"), SubResource("Resource_svhhd"), SubResource("Resource_8wn88"), SubResource("Resource_hnrnm"), SubResource("Resource_aklpn"), SubResource("Resource_cqur5"), SubResource("Resource_qpwgv"), SubResource("Resource_213h1"), SubResource("Resource_j86f2"), SubResource("Resource_i7j54"), SubResource("Resource_t0gtt")])
+learnset = Array[ExtResource("1_gfs18")]([SubResource("Resource_0574f"), SubResource("Resource_op2ll"), SubResource("Resource_h7alp"), SubResource("Resource_glwia"), SubResource("Resource_uix7o"), SubResource("Resource_gadmu"), SubResource("Resource_xrg6g"), SubResource("Resource_svhhd"), SubResource("Resource_8wn88"), SubResource("Resource_hnrnm"), SubResource("Resource_aklpn"), SubResource("Resource_cqur5"), SubResource("Resource_qpwgv")])
 kit_inherited = true
 evolves_from = "slowpoke"
 temperament = ExtResource("16_jleu1")

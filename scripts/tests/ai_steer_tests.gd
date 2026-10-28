@@ -93,6 +93,38 @@ func run() -> void:
 	world.combat.end_battle()
 	r["Al soltar el control deja de seguir"] = t.follow_target == null
 
+	# Golpe físico con paso adelante y stagger al recibir (pedido del usuario 2026-10-28).
+	world = await autotest._setup_kit_world("machop")
+	var hitter: Creature = world.companion
+	var slot_m := -1
+	for s in MoveUser.SLOT_COUNT:
+		var m: MoveData = hitter.moves.slots[s]
+		if m != null and m.kind == MoveData.Kind.MELEE:
+			slot_m = s
+			break
+	var p1 := hitter.global_position
+	await get_tree().create_timer(0.3).timeout
+	p1 = hitter.global_position
+	var free_dir := Vector2.UP
+	for d in [Vector2.UP, Vector2.LEFT, Vector2.DOWN, Vector2.RIGHT]:
+		if not hitter.test_move(hitter.global_transform, d * 34.0):
+			free_dir = d
+			break
+	hitter.use_slot(slot_m, free_dir)
+	await get_tree().create_timer(0.3).timeout
+	var step_len: float = hitter.moves.slots[slot_m].melee_step
+	r["Sin nadie adelante el golpe físico avanza su paso (%.0f de %.0f px)" % [p1.distance_to(hitter.global_position), step_len]] = 		slot_m >= 0 and (hitter.global_position - p1).dot(free_dir) > step_len * 0.6
+	var victim: Creature = autotest._dummy(world, "rattata", hitter.global_position + Vector2(48, 0))
+	await get_tree().create_timer(1.2).timeout
+	var p0 := hitter.global_position
+	var hp0 := victim.instance.hp
+	hitter.use_slot(slot_m, Vector2.RIGHT)
+	await get_tree().create_timer(0.2).timeout
+	r["El golpe físico avanza antes de pegar (%.0f px) y llega a 48 px" % hitter.global_position.distance_to(p0)] = 		hitter.global_position.x - p0.x > 10.0 and victim.instance.hp < hp0
+	r["El que recibe el golpe queda en stagger (no puede atacar)"] = victim.hitstun_left > 0.0 and not victim.can_act() 		and not victim.use_slot(0, Vector2.LEFT)
+	await get_tree().create_timer(Creature.HITSTUN_MAX + 0.1).timeout
+	r["...y al rato vuelve a poder atacar"] = victim.hitstun_left == 0.0 and victim.can_act()
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[ai-steer] %s %s" % ["OK   " if r[key] else "FALLO", key])

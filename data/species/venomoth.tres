@@ -4,80 +4,79 @@
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_mjgny"]
 [ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="2_6ec2x"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ikc6y"]
+[ext_resource type="Resource" path="res://data/kits/venonat/kit.tres" id="2_seytd"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jbptl"]
 [ext_resource type="Resource" path="res://data/moves/profecia.tres" id="3_jqxle"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ivuka"]
 [ext_resource type="Resource" path="res://data/moves/viento_plata.tres" id="4_mjgny"]
+[ext_resource type="Resource" path="res://data/kits/venonat/chupavidas_venonat.tres" id="4_seytd"]
+[ext_resource type="Resource" path="res://data/kits/venonat/psicorrayo_venonat.tres" id="5_nho0u"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_nkp0a"]
 [ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="5_seytd"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="6_nho0u"]
+[ext_resource type="Resource" path="res://data/kits/venonat/paralizador_venonat.tres" id="6_rv76g"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_w8s5a"]
+[ext_resource type="Resource" path="res://data/kits/venonat/somnifero_venonat.tres" id="7_6dgi1"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="7_rv76g"]
 [ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="8_6dgi1"]
-[ext_resource type="Resource" path="res://data/moves/chupavidas.tres" id="9_8mple"]
-[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="10_1g0h2"]
 [ext_resource type="Resource" path="res://data/moves/tornado.tres" id="11_j6wrn"]
-[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="12_m0jjr"]
-[ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="13_y14tx"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="14_jr1vo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="17_jqxle"]
 
-[sub_resource type="Resource" id="Resource_mjgny"]
-script = ExtResource("1_c13ya")
-move = ExtResource("2_6ec2x")
-
 [sub_resource type="Resource" id="Resource_seytd"]
 script = ExtResource("1_c13ya")
-move = ExtResource("3_jqxle")
+move = ExtResource("4_seytd")
 
 [sub_resource type="Resource" id="Resource_nho0u"]
 script = ExtResource("1_c13ya")
-move = ExtResource("4_mjgny")
+move = ExtResource("5_nho0u")
 
 [sub_resource type="Resource" id="Resource_rv76g"]
 script = ExtResource("1_c13ya")
-move = ExtResource("5_seytd")
+level = 3
+move = ExtResource("6_rv76g")
 
 [sub_resource type="Resource" id="Resource_6dgi1"]
 script = ExtResource("1_c13ya")
-move = ExtResource("6_nho0u")
+level = 5
+move = ExtResource("7_6dgi1")
 
 [sub_resource type="Resource" id="Resource_8mple"]
+script = ExtResource("1_c13ya")
+move = ExtResource("2_6ec2x")
+
+[sub_resource type="Resource" id="Resource_1g0h2"]
+script = ExtResource("1_c13ya")
+move = ExtResource("3_jqxle")
+
+[sub_resource type="Resource" id="Resource_j6wrn"]
+script = ExtResource("1_c13ya")
+move = ExtResource("4_mjgny")
+
+[sub_resource type="Resource" id="Resource_m0jjr"]
+script = ExtResource("1_c13ya")
+move = ExtResource("5_seytd")
+
+[sub_resource type="Resource" id="Resource_y14tx"]
+script = ExtResource("1_c13ya")
+move = ExtResource("6_nho0u")
+
+[sub_resource type="Resource" id="Resource_jr1vo"]
 script = ExtResource("1_c13ya")
 level = 17
 move = ExtResource("7_rv76g")
 
-[sub_resource type="Resource" id="Resource_1g0h2"]
+[sub_resource type="Resource" id="Resource_wt2ko"]
 script = ExtResource("1_c13ya")
 level = 20
 move = ExtResource("8_6dgi1")
 
-[sub_resource type="Resource" id="Resource_j6wrn"]
-script = ExtResource("1_c13ya")
-level = 25
-move = ExtResource("9_8mple")
-
-[sub_resource type="Resource" id="Resource_m0jjr"]
-script = ExtResource("1_c13ya")
-level = 28
-move = ExtResource("10_1g0h2")
-
-[sub_resource type="Resource" id="Resource_y14tx"]
+[sub_resource type="Resource" id="Resource_u6mod"]
 script = ExtResource("1_c13ya")
 level = 31
 move = ExtResource("11_j6wrn")
 
-[sub_resource type="Resource" id="Resource_jr1vo"]
-script = ExtResource("1_c13ya")
-level = 36
-move = ExtResource("12_m0jjr")
-
-[sub_resource type="Resource" id="Resource_wt2ko"]
-script = ExtResource("1_c13ya")
-level = 42
-move = ExtResource("13_y14tx")
-
-[sub_resource type="Resource" id="Resource_u6mod"]
+[sub_resource type="Resource" id="Resource_rkjii"]
 script = ExtResource("1_c13ya")
 level = 52
 move = ExtResource("14_jr1vo")
@@ -88,7 +87,9 @@ id = "venomoth"
 display_name = "Venomoth"
 dex = 49
 types = Array[ExtResource("4_ivuka")]([ExtResource("5_nkp0a"), ExtResource("6_w8s5a")])
-learnset = Array[ExtResource("1_c13ya")]([SubResource("Resource_mjgny"), SubResource("Resource_seytd"), SubResource("Resource_nho0u"), SubResource("Resource_rv76g"), SubResource("Resource_6dgi1"), SubResource("Resource_8mple"), SubResource("Resource_1g0h2"), SubResource("Resource_j6wrn"), SubResource("Resource_m0jjr"), SubResource("Resource_y14tx"), SubResource("Resource_jr1vo"), SubResource("Resource_wt2ko"), SubResource("Resource_u6mod")])
+kit = ExtResource("2_seytd")
+learnset = Array[ExtResource("1_c13ya")]([SubResource("Resource_seytd"), SubResource("Resource_nho0u"), SubResource("Resource_rv76g"), SubResource("Resource_6dgi1"), SubResource("Resource_8mple"), SubResource("Resource_1g0h2"), SubResource("Resource_j6wrn"), SubResource("Resource_m0jjr"), SubResource("Resource_y14tx"), SubResource("Resource_jr1vo"), SubResource("Resource_wt2ko"), SubResource("Resource_u6mod"), SubResource("Resource_rkjii")])
+kit_inherited = true
 evolves_from = "venonat"
 temperament = ExtResource("17_jqxle")
 genus = "Pokémon Polilla Ven."

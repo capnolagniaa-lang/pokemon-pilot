@@ -2,69 +2,75 @@
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_4xuew"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_lpmoe"]
+[ext_resource type="Resource" path="res://data/kits/dratini/kit.tres" id="2_h4kep"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lrtf4"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_vbs4q"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_1org5"]
-[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="3_t631v"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jiaft"]
 [ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="4_lpmoe"]
+[ext_resource type="Resource" path="res://data/kits/dratini/atadura_dratini.tres" id="4_r0u7t"]
 [ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="5_h4kep"]
 [ext_resource type="Resource" path="res://data/types/dragon.tres" id="5_kj0ex"]
-[ext_resource type="Resource" path="res://data/moves/furia_dragon.tres" id="6_r0u7t"]
+[ext_resource type="Resource" path="res://data/kits/dratini/onda_trueno_dratini.tres" id="5_ryqpn"]
+[ext_resource type="Resource" path="res://data/kits/dratini/agilidad_dratini.tres" id="6_44x5e"]
+[ext_resource type="Resource" path="res://data/kits/dratini/furia_dragon_dratini.tres" id="7_n7esk"]
 [ext_resource type="Resource" path="res://data/moves/atizar.tres" id="7_ryqpn"]
-[ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="8_44x5e"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="9_n7esk"]
 [ext_resource type="Resource" path="res://data/moves/enfado.tres" id="10_gwfnf"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_o3p2a"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_t631v"]
 
-[sub_resource type="Resource" id="Resource_lpmoe"]
+[sub_resource type="Resource" id="Resource_1aktu"]
 script = ExtResource("1_lpmoe")
 to_id = "dragonite"
 level = 55
 
-[sub_resource type="Resource" id="Resource_h4kep"]
-script = ExtResource("1_4xuew")
-move = ExtResource("2_vbs4q")
-
 [sub_resource type="Resource" id="Resource_r0u7t"]
 script = ExtResource("1_4xuew")
-move = ExtResource("3_t631v")
+move = ExtResource("4_r0u7t")
 
 [sub_resource type="Resource" id="Resource_ryqpn"]
 script = ExtResource("1_4xuew")
-move = ExtResource("4_lpmoe")
+move = ExtResource("5_ryqpn")
 
 [sub_resource type="Resource" id="Resource_44x5e"]
 script = ExtResource("1_4xuew")
-move = ExtResource("5_h4kep")
+level = 3
+move = ExtResource("6_44x5e")
 
 [sub_resource type="Resource" id="Resource_n7esk"]
 script = ExtResource("1_4xuew")
-level = 22
-move = ExtResource("6_r0u7t")
+level = 5
+move = ExtResource("7_n7esk")
 
 [sub_resource type="Resource" id="Resource_gwfnf"]
+script = ExtResource("1_4xuew")
+move = ExtResource("2_vbs4q")
+
+[sub_resource type="Resource" id="Resource_o3p2a"]
+script = ExtResource("1_4xuew")
+move = ExtResource("4_lpmoe")
+
+[sub_resource type="Resource" id="Resource_j1gfm"]
+script = ExtResource("1_4xuew")
+move = ExtResource("5_h4kep")
+
+[sub_resource type="Resource" id="Resource_d67yb"]
 script = ExtResource("1_4xuew")
 level = 29
 move = ExtResource("7_ryqpn")
 
-[sub_resource type="Resource" id="Resource_o3p2a"]
-script = ExtResource("1_4xuew")
-level = 38
-move = ExtResource("8_44x5e")
-
-[sub_resource type="Resource" id="Resource_j1gfm"]
+[sub_resource type="Resource" id="Resource_mrsi7"]
 script = ExtResource("1_4xuew")
 level = 47
 move = ExtResource("9_n7esk")
 
-[sub_resource type="Resource" id="Resource_d67yb"]
+[sub_resource type="Resource" id="Resource_n2dgn"]
 script = ExtResource("1_4xuew")
 level = 56
 move = ExtResource("10_gwfnf")
 
-[sub_resource type="Resource" id="Resource_mrsi7"]
+[sub_resource type="Resource" id="Resource_3ykmg"]
 script = ExtResource("1_4xuew")
 level = 65
 move = ExtResource("11_o3p2a")
@@ -75,8 +81,10 @@ id = "dragonair"
 display_name = "Dragonair"
 dex = 148
 types = Array[ExtResource("4_jiaft")]([ExtResource("5_kj0ex")])
-learnset = Array[ExtResource("1_4xuew")]([SubResource("Resource_h4kep"), SubResource("Resource_r0u7t"), SubResource("Resource_ryqpn"), SubResource("Resource_44x5e"), SubResource("Resource_n7esk"), SubResource("Resource_gwfnf"), SubResource("Resource_o3p2a"), SubResource("Resource_j1gfm"), SubResource("Resource_d67yb"), SubResource("Resource_mrsi7")])
-evolutions = Array[ExtResource("1_lpmoe")]([SubResource("Resource_lpmoe")])
+kit = ExtResource("2_h4kep")
+learnset = Array[ExtResource("1_4xuew")]([SubResource("Resource_r0u7t"), SubResource("Resource_ryqpn"), SubResource("Resource_44x5e"), SubResource("Resource_n7esk"), SubResource("Resource_gwfnf"), SubResource("Resource_o3p2a"), SubResource("Resource_j1gfm"), SubResource("Resource_d67yb"), SubResource("Resource_mrsi7"), SubResource("Resource_n2dgn"), SubResource("Resource_3ykmg")])
+kit_inherited = true
+evolutions = Array[ExtResource("1_lpmoe")]([SubResource("Resource_1aktu")])
 evolves_from = "dratini"
 temperament = ExtResource("14_t631v")
 genus = "Pokémon Dragón"

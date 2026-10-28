@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "neblina_articuno"
+display_name = "Neblina"
+element = ExtResource("3_x")
+kind = 5
+category = 2
+power = 0.0
+cooldown = 9.0
+knockback = 0.0
+zone_radius = 34.0
+zone_duration = 5.0
+placement_range = 120.0
+zone_traps = false
+zone_tick = 0.5
+zone_max_count = 2
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

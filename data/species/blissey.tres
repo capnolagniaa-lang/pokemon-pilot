@@ -3,77 +3,83 @@
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_m5skw"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_tohey"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_5utgv"]
+[ext_resource type="Resource" path="res://data/kits/chansey/kit.tres" id="2_r1jel"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xbokf"]
-[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="3_2lmuy"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_evykd"]
+[ext_resource type="Resource" path="res://data/kits/chansey/destructor_chansey.tres" id="4_7cejy"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ebhl7"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_m5skw"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_gi3j6"]
+[ext_resource type="Resource" path="res://data/kits/chansey/canto_chansey.tres" id="5_go8hx"]
 [ext_resource type="Resource" path="res://data/moves/alivio.tres" id="5_r1jel"]
 [ext_resource type="Resource" path="res://data/moves/ovocuracion.tres" id="6_7cejy"]
+[ext_resource type="Resource" path="res://data/kits/chansey/amortiguador_chansey.tres" id="6_st6ax"]
+[ext_resource type="Resource" path="res://data/kits/chansey/bomba_huevo_chansey.tres" id="7_31vvm"]
 [ext_resource type="Resource" path="res://data/moves/doble_bofeton.tres" id="7_go8hx"]
 [ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="8_st6ax"]
-[ext_resource type="Resource" path="res://data/moves/canto.tres" id="9_31vvm"]
-[ext_resource type="Resource" path="res://data/moves/bomba_huevo.tres" id="10_7qchs"]
 [ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="11_wdkx8"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="12_yihvy"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="13_jgtvh"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_2lmuy"]
 
-[sub_resource type="Resource" id="Resource_m5skw"]
+[sub_resource type="Resource" id="Resource_7cejy"]
+script = ExtResource("1_tohey")
+move = ExtResource("4_7cejy")
+
+[sub_resource type="Resource" id="Resource_go8hx"]
+script = ExtResource("1_tohey")
+move = ExtResource("5_go8hx")
+
+[sub_resource type="Resource" id="Resource_st6ax"]
+script = ExtResource("1_tohey")
+level = 3
+move = ExtResource("6_st6ax")
+
+[sub_resource type="Resource" id="Resource_31vvm"]
+script = ExtResource("1_tohey")
+level = 5
+move = ExtResource("7_31vvm")
+
+[sub_resource type="Resource" id="Resource_7qchs"]
 script = ExtResource("1_tohey")
 move = ExtResource("2_5utgv")
 
-[sub_resource type="Resource" id="Resource_r1jel"]
-script = ExtResource("1_tohey")
-move = ExtResource("3_2lmuy")
-
-[sub_resource type="Resource" id="Resource_7cejy"]
+[sub_resource type="Resource" id="Resource_wdkx8"]
 script = ExtResource("1_tohey")
 level = 4
 move = ExtResource("4_m5skw")
 
-[sub_resource type="Resource" id="Resource_go8hx"]
+[sub_resource type="Resource" id="Resource_yihvy"]
 script = ExtResource("1_tohey")
 level = 7
 move = ExtResource("5_r1jel")
 
-[sub_resource type="Resource" id="Resource_st6ax"]
+[sub_resource type="Resource" id="Resource_jgtvh"]
 script = ExtResource("1_tohey")
 level = 10
 move = ExtResource("6_7cejy")
 
-[sub_resource type="Resource" id="Resource_31vvm"]
+[sub_resource type="Resource" id="Resource_74csm"]
 script = ExtResource("1_tohey")
 level = 13
 move = ExtResource("7_go8hx")
 
-[sub_resource type="Resource" id="Resource_7qchs"]
+[sub_resource type="Resource" id="Resource_vd8u8"]
 script = ExtResource("1_tohey")
 level = 18
 move = ExtResource("8_st6ax")
 
-[sub_resource type="Resource" id="Resource_wdkx8"]
-script = ExtResource("1_tohey")
-level = 23
-move = ExtResource("9_31vvm")
-
-[sub_resource type="Resource" id="Resource_yihvy"]
-script = ExtResource("1_tohey")
-level = 28
-move = ExtResource("10_7qchs")
-
-[sub_resource type="Resource" id="Resource_jgtvh"]
+[sub_resource type="Resource" id="Resource_f7cim"]
 script = ExtResource("1_tohey")
 level = 33
 move = ExtResource("11_wdkx8")
 
-[sub_resource type="Resource" id="Resource_74csm"]
+[sub_resource type="Resource" id="Resource_su150"]
 script = ExtResource("1_tohey")
 level = 40
 move = ExtResource("12_yihvy")
 
-[sub_resource type="Resource" id="Resource_vd8u8"]
+[sub_resource type="Resource" id="Resource_hpgrp"]
 script = ExtResource("1_tohey")
 level = 47
 move = ExtResource("13_jgtvh")
@@ -84,7 +90,9 @@ id = "blissey"
 display_name = "Blissey"
 dex = 242
 types = Array[ExtResource("4_ebhl7")]([ExtResource("5_gi3j6")])
-learnset = Array[ExtResource("1_tohey")]([SubResource("Resource_m5skw"), SubResource("Resource_r1jel"), SubResource("Resource_7cejy"), SubResource("Resource_go8hx"), SubResource("Resource_st6ax"), SubResource("Resource_31vvm"), SubResource("Resource_7qchs"), SubResource("Resource_wdkx8"), SubResource("Resource_yihvy"), SubResource("Resource_jgtvh"), SubResource("Resource_74csm"), SubResource("Resource_vd8u8")])
+kit = ExtResource("2_r1jel")
+learnset = Array[ExtResource("1_tohey")]([SubResource("Resource_7cejy"), SubResource("Resource_go8hx"), SubResource("Resource_st6ax"), SubResource("Resource_31vvm"), SubResource("Resource_7qchs"), SubResource("Resource_wdkx8"), SubResource("Resource_yihvy"), SubResource("Resource_jgtvh"), SubResource("Resource_74csm"), SubResource("Resource_vd8u8"), SubResource("Resource_f7cim"), SubResource("Resource_su150"), SubResource("Resource_hpgrp")])
+kit_inherited = true
 evolves_from = "chansey"
 temperament = ExtResource("16_2lmuy")
 genus = "Pokémon Felicidad"

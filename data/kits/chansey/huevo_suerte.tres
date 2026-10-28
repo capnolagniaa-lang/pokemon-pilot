@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/body_trait_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "huevo_suerte"
+display_name = "Huevo Suerte"
+description = "Si pasan 2,5 s sin que le peguen, se cura sola un 2% de la vida por segundo."
+color = Color(1.0, 0.75, 0.8, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"regen": 0.02, "regen_delay": 2.5}

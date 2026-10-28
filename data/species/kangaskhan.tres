@@ -1,67 +1,73 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/kangaskhan/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_g0cvf"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_on8h4"]
-[ext_resource type="Resource" path="res://data/moves/puno_cometa.tres" id="2_5eb1c"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5sotx"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_5bh0o"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_safjy"]
-[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="4_on8h4"]
+[ext_resource type="Resource" path="res://data/kits/kangaskhan/puno_cometa_kangaskhan.tres" id="4_2bajd"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_s0g1a"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_1ljuf"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_8su3g"]
+[ext_resource type="Resource" path="res://data/kits/kangaskhan/mordisco_kangaskhan.tres" id="5_gie7c"]
 [ext_resource type="Resource" path="res://data/moves/sorpresa.tres" id="6_2bajd"]
-[ext_resource type="Resource" path="res://data/moves/megapuno.tres" id="7_gie7c"]
+[ext_resource type="Resource" path="res://data/kits/kangaskhan/latigo_kangaskhan.tres" id="6_ij854"]
+[ext_resource type="Resource" path="res://data/kits/kangaskhan/megapuno_kangaskhan.tres" id="7_s0ds0"]
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="8_ij854"]
 [ext_resource type="Resource" path="res://data/moves/aguante.tres" id="9_s0ds0"]
 [ext_resource type="Resource" path="res://data/moves/puno_mareo.tres" id="10_x2ntc"]
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="11_sruut"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_5bh0o"]
 
-[sub_resource type="Resource" id="Resource_on8h4"]
+[sub_resource type="Resource" id="Resource_2bajd"]
 script = ExtResource("1_g0cvf")
-move = ExtResource("2_5eb1c")
+move = ExtResource("4_2bajd")
 
-[sub_resource type="Resource" id="Resource_1ljuf"]
+[sub_resource type="Resource" id="Resource_gie7c"]
+script = ExtResource("1_g0cvf")
+move = ExtResource("5_gie7c")
+
+[sub_resource type="Resource" id="Resource_ij854"]
+script = ExtResource("1_g0cvf")
+level = 3
+move = ExtResource("6_ij854")
+
+[sub_resource type="Resource" id="Resource_s0ds0"]
+script = ExtResource("1_g0cvf")
+level = 5
+move = ExtResource("7_s0ds0")
+
+[sub_resource type="Resource" id="Resource_x2ntc"]
 script = ExtResource("1_g0cvf")
 move = ExtResource("3_5bh0o")
 
-[sub_resource type="Resource" id="Resource_2bajd"]
-script = ExtResource("1_g0cvf")
-level = 7
-move = ExtResource("4_on8h4")
-
-[sub_resource type="Resource" id="Resource_gie7c"]
+[sub_resource type="Resource" id="Resource_sruut"]
 script = ExtResource("1_g0cvf")
 level = 13
 move = ExtResource("5_1ljuf")
 
-[sub_resource type="Resource" id="Resource_ij854"]
+[sub_resource type="Resource" id="Resource_aft81"]
 script = ExtResource("1_g0cvf")
 level = 19
 move = ExtResource("6_2bajd")
 
-[sub_resource type="Resource" id="Resource_s0ds0"]
-script = ExtResource("1_g0cvf")
-level = 25
-move = ExtResource("7_gie7c")
-
-[sub_resource type="Resource" id="Resource_x2ntc"]
+[sub_resource type="Resource" id="Resource_tjd7u"]
 script = ExtResource("1_g0cvf")
 level = 31
 move = ExtResource("8_ij854")
 
-[sub_resource type="Resource" id="Resource_sruut"]
+[sub_resource type="Resource" id="Resource_vj4yi"]
 script = ExtResource("1_g0cvf")
 level = 37
 move = ExtResource("9_s0ds0")
 
-[sub_resource type="Resource" id="Resource_aft81"]
+[sub_resource type="Resource" id="Resource_pjys6"]
 script = ExtResource("1_g0cvf")
 level = 43
 move = ExtResource("10_x2ntc")
 
-[sub_resource type="Resource" id="Resource_tjd7u"]
+[sub_resource type="Resource" id="Resource_5o4fu"]
 script = ExtResource("1_g0cvf")
 level = 49
 move = ExtResource("11_sruut")
@@ -72,7 +78,8 @@ id = "kangaskhan"
 display_name = "Kangaskhan"
 dex = 115
 types = Array[ExtResource("4_s0g1a")]([ExtResource("5_8su3g")])
-learnset = Array[ExtResource("1_g0cvf")]([SubResource("Resource_on8h4"), SubResource("Resource_1ljuf"), SubResource("Resource_2bajd"), SubResource("Resource_gie7c"), SubResource("Resource_ij854"), SubResource("Resource_s0ds0"), SubResource("Resource_x2ntc"), SubResource("Resource_sruut"), SubResource("Resource_aft81"), SubResource("Resource_tjd7u")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_g0cvf")]([SubResource("Resource_2bajd"), SubResource("Resource_gie7c"), SubResource("Resource_ij854"), SubResource("Resource_s0ds0"), SubResource("Resource_x2ntc"), SubResource("Resource_sruut"), SubResource("Resource_aft81"), SubResource("Resource_tjd7u"), SubResource("Resource_vj4yi"), SubResource("Resource_pjys6"), SubResource("Resource_5o4fu")])
 temperament = ExtResource("14_5bh0o")
 genus = "Pokémon Maternal"
 pokedex_entry = "No es recomendable molestar ni intentar atrapar a crías de Kangaskhan mientras estén jugando, ya que seguro que su madre anda cerca y reaccionará con enfado y violencia."

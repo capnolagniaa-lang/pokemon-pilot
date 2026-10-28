@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/embers_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "absorbe_fuego"
+display_name = "Absorbe Fuego"
+description = "Sus golpes contra quemados pegan +35% y renuevan la quemadura: el fuego no se apaga mientras lo siga castigando."
+color = Color(1.0, 0.5, 0.25, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"burned_damage_mult": 1.35}

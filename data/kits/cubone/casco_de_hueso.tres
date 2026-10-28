@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/body_trait_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "casco_de_hueso"
+display_name = "Casco de Hueso"
+description = "El cráneo lo protege de frente: recibe 30% menos de lo que le pegan de frente. Hueso Palo pega ×1,5 a lo ralentizado."
+color = Color(0.85, 0.8, 0.65, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"front_mult": 0.7, "back_mult": 1.1, "bonus_vs_status": "ralentizado", "bonus_move_prefix": "hueso_palo", "bonus_mult": 1.5}

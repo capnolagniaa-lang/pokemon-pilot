@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/body_trait_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "pinza"
+display_name = "Pinza"
+description = "El caparazón lo cubre de frente (−20%). Martillazo pega ×1,5 a lo ralentizado (Agarre lo deja así)."
+color = Color(0.95, 0.45, 0.3, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"front_mult": 0.8, "bonus_vs_status": "ralentizado", "bonus_move_prefix": "martillazo", "bonus_mult": 1.5}

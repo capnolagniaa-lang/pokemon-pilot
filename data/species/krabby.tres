@@ -1,73 +1,73 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/krabby/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_o6cmn"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_tqpkl"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0aoa2"]
-[ext_resource type="Resource" path="res://data/moves/burbuja.tres" id="2_a0qw1"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pfmbd"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_rx08h"]
+[ext_resource type="Resource" path="res://data/kits/krabby/agarre_krabby.tres" id="4_3x2y4"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jedtd"]
-[ext_resource type="Resource" path="res://data/moves/agarre.tres" id="4_o6cmn"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_0qmoj"]
-[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="5_3x2y4"]
+[ext_resource type="Resource" path="res://data/kits/krabby/burbuja_krabby.tres" id="5_v2qn0"]
+[ext_resource type="Resource" path="res://data/kits/krabby/fortaleza_krabby.tres" id="6_ndrkl"]
 [ext_resource type="Resource" path="res://data/moves/disparo_lodo.tres" id="6_v2qn0"]
+[ext_resource type="Resource" path="res://data/kits/krabby/martillazo_krabby.tres" id="7_afj3a"]
 [ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="7_ndrkl"]
 [ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="8_afj3a"]
 [ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="9_bx11v"]
-[ext_resource type="Resource" path="res://data/moves/martillazo.tres" id="10_muuyo"]
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_d7mpq"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_rx08h"]
 
-[sub_resource type="Resource" id="Resource_o6cmn"]
+[sub_resource type="Resource" id="Resource_3x2y4"]
 script = ExtResource("1_o6cmn")
 to_id = "kingler"
 level = 28
 
-[sub_resource type="Resource" id="Resource_3x2y4"]
-script = ExtResource("1_tqpkl")
-move = ExtResource("2_a0qw1")
-
 [sub_resource type="Resource" id="Resource_v2qn0"]
+script = ExtResource("1_tqpkl")
+move = ExtResource("4_3x2y4")
+
+[sub_resource type="Resource" id="Resource_ndrkl"]
+script = ExtResource("1_tqpkl")
+move = ExtResource("5_v2qn0")
+
+[sub_resource type="Resource" id="Resource_afj3a"]
+script = ExtResource("1_tqpkl")
+level = 3
+move = ExtResource("6_ndrkl")
+
+[sub_resource type="Resource" id="Resource_bx11v"]
+script = ExtResource("1_tqpkl")
+level = 5
+move = ExtResource("7_afj3a")
+
+[sub_resource type="Resource" id="Resource_muuyo"]
 script = ExtResource("1_tqpkl")
 level = 5
 move = ExtResource("3_rx08h")
 
-[sub_resource type="Resource" id="Resource_ndrkl"]
-script = ExtResource("1_tqpkl")
-level = 12
-move = ExtResource("4_o6cmn")
-
-[sub_resource type="Resource" id="Resource_afj3a"]
-script = ExtResource("1_tqpkl")
-level = 16
-move = ExtResource("5_3x2y4")
-
-[sub_resource type="Resource" id="Resource_bx11v"]
+[sub_resource type="Resource" id="Resource_d7mpq"]
 script = ExtResource("1_tqpkl")
 level = 23
 move = ExtResource("6_v2qn0")
 
-[sub_resource type="Resource" id="Resource_muuyo"]
+[sub_resource type="Resource" id="Resource_5yo4p"]
 script = ExtResource("1_tqpkl")
 level = 27
 move = ExtResource("7_ndrkl")
 
-[sub_resource type="Resource" id="Resource_d7mpq"]
+[sub_resource type="Resource" id="Resource_sskme"]
 script = ExtResource("1_tqpkl")
 level = 34
 move = ExtResource("8_afj3a")
 
-[sub_resource type="Resource" id="Resource_5yo4p"]
+[sub_resource type="Resource" id="Resource_bapby"]
 script = ExtResource("1_tqpkl")
 level = 38
 move = ExtResource("9_bx11v")
 
-[sub_resource type="Resource" id="Resource_sskme"]
-script = ExtResource("1_tqpkl")
-level = 45
-move = ExtResource("10_muuyo")
-
-[sub_resource type="Resource" id="Resource_bapby"]
+[sub_resource type="Resource" id="Resource_hbwwf"]
 script = ExtResource("1_tqpkl")
 level = 49
 move = ExtResource("11_d7mpq")
@@ -78,8 +78,9 @@ id = "krabby"
 display_name = "Krabby"
 dex = 98
 types = Array[ExtResource("4_jedtd")]([ExtResource("5_0qmoj")])
-learnset = Array[ExtResource("1_tqpkl")]([SubResource("Resource_3x2y4"), SubResource("Resource_v2qn0"), SubResource("Resource_ndrkl"), SubResource("Resource_afj3a"), SubResource("Resource_bx11v"), SubResource("Resource_muuyo"), SubResource("Resource_d7mpq"), SubResource("Resource_5yo4p"), SubResource("Resource_sskme"), SubResource("Resource_bapby")])
-evolutions = Array[ExtResource("1_o6cmn")]([SubResource("Resource_o6cmn")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_tqpkl")]([SubResource("Resource_v2qn0"), SubResource("Resource_ndrkl"), SubResource("Resource_afj3a"), SubResource("Resource_bx11v"), SubResource("Resource_muuyo"), SubResource("Resource_d7mpq"), SubResource("Resource_5yo4p"), SubResource("Resource_sskme"), SubResource("Resource_bapby"), SubResource("Resource_hbwwf")])
+evolutions = Array[ExtResource("1_o6cmn")]([SubResource("Resource_3x2y4")])
 temperament = ExtResource("14_rx08h")
 genus = "Pokémon Cangrejo"
 pokedex_entry = "Krabby vive en la playa, enterrado en agujeros en la arena. Cuando en las playas de arena fina escasea la comida, es común ver a estos Pokémon echando un pulso panza contra panza en defensa de su territorio."

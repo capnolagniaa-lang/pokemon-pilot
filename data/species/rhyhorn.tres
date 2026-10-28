@@ -1,73 +1,79 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_a3kke"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_w7vl3"]
-[ext_resource type="Resource" path="res://data/moves/cornada.tres" id="2_sxvaj"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xlege"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_cpv4t"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="3_j6o4s"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_aax8w"]
-[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="4_w7vl3"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/cornada_rhyhorn.tres" id="4_wrkna"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/pisoton_rhyhorn.tres" id="5_bofvh"]
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_fdhtm"]
 [ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="5_yr8py"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/derribo_rhyhorn.tres" id="6_k7djp"]
 [ext_resource type="Resource" path="res://data/types/roca.tres" id="6_vx4gs"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="6_wrkna"]
 [ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="7_bofvh"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/cornataladro_rhyhorn.tres" id="7_nrwn2"]
 [ext_resource type="Resource" path="res://data/moves/perforador.tres" id="8_k7djp"]
-[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_nrwn2"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_717mn"]
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_wfksy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_j6o4s"]
 
-[sub_resource type="Resource" id="Resource_w7vl3"]
+[sub_resource type="Resource" id="Resource_wrkna"]
 script = ExtResource("1_w7vl3")
 to_id = "rhydon"
 level = 42
 
-[sub_resource type="Resource" id="Resource_yr8py"]
+[sub_resource type="Resource" id="Resource_bofvh"]
 script = ExtResource("1_a3kke")
-move = ExtResource("2_sxvaj")
+move = ExtResource("4_wrkna")
 
-[sub_resource type="Resource" id="Resource_wrkna"]
+[sub_resource type="Resource" id="Resource_k7djp"]
+script = ExtResource("1_a3kke")
+move = ExtResource("5_bofvh")
+
+[sub_resource type="Resource" id="Resource_nrwn2"]
+script = ExtResource("1_a3kke")
+level = 3
+move = ExtResource("6_k7djp")
+
+[sub_resource type="Resource" id="Resource_717mn"]
+script = ExtResource("1_a3kke")
+level = 5
+move = ExtResource("7_nrwn2")
+
+[sub_resource type="Resource" id="Resource_wfksy"]
 script = ExtResource("1_a3kke")
 move = ExtResource("3_j6o4s")
 
-[sub_resource type="Resource" id="Resource_bofvh"]
-script = ExtResource("1_a3kke")
-level = 10
-move = ExtResource("4_w7vl3")
-
-[sub_resource type="Resource" id="Resource_k7djp"]
+[sub_resource type="Resource" id="Resource_8qktv"]
 script = ExtResource("1_a3kke")
 level = 15
 move = ExtResource("5_yr8py")
 
-[sub_resource type="Resource" id="Resource_nrwn2"]
+[sub_resource type="Resource" id="Resource_7cnc6"]
 script = ExtResource("1_a3kke")
 level = 24
 move = ExtResource("6_wrkna")
 
-[sub_resource type="Resource" id="Resource_717mn"]
+[sub_resource type="Resource" id="Resource_ncabk"]
 script = ExtResource("1_a3kke")
 level = 29
 move = ExtResource("7_bofvh")
 
-[sub_resource type="Resource" id="Resource_wfksy"]
+[sub_resource type="Resource" id="Resource_cw7w4"]
 script = ExtResource("1_a3kke")
 level = 38
 move = ExtResource("8_k7djp")
 
-[sub_resource type="Resource" id="Resource_8qktv"]
-script = ExtResource("1_a3kke")
-level = 43
-move = ExtResource("9_nrwn2")
-
-[sub_resource type="Resource" id="Resource_7cnc6"]
+[sub_resource type="Resource" id="Resource_67bhg"]
 script = ExtResource("1_a3kke")
 level = 52
 move = ExtResource("10_717mn")
 
-[sub_resource type="Resource" id="Resource_ncabk"]
+[sub_resource type="Resource" id="Resource_2umw3"]
 script = ExtResource("1_a3kke")
 level = 57
 move = ExtResource("11_wfksy")
@@ -78,8 +84,9 @@ id = "rhyhorn"
 display_name = "Rhyhorn"
 dex = 111
 types = Array[ExtResource("4_aax8w")]([ExtResource("5_fdhtm"), ExtResource("6_vx4gs")])
-learnset = Array[ExtResource("1_a3kke")]([SubResource("Resource_yr8py"), SubResource("Resource_wrkna"), SubResource("Resource_bofvh"), SubResource("Resource_k7djp"), SubResource("Resource_nrwn2"), SubResource("Resource_717mn"), SubResource("Resource_wfksy"), SubResource("Resource_8qktv"), SubResource("Resource_7cnc6"), SubResource("Resource_ncabk")])
-evolutions = Array[ExtResource("1_w7vl3")]([SubResource("Resource_w7vl3")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_a3kke")]([SubResource("Resource_bofvh"), SubResource("Resource_k7djp"), SubResource("Resource_nrwn2"), SubResource("Resource_717mn"), SubResource("Resource_wfksy"), SubResource("Resource_8qktv"), SubResource("Resource_7cnc6"), SubResource("Resource_ncabk"), SubResource("Resource_cw7w4"), SubResource("Resource_67bhg"), SubResource("Resource_2umw3")])
+evolutions = Array[ExtResource("1_w7vl3")]([SubResource("Resource_wrkna")])
 temperament = ExtResource("14_j6o4s")
 genus = "Pokémon Clavos"
 pokedex_entry = "Rhyhorn corre en línea recta arrasando todo lo que encuentra en su camino. Aun estrellándose de cabeza contra un bloque de acero, no se vería afectado; a lo sumo, notaría algo de dolor al día siguiente."

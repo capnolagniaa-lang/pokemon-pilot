@@ -1,72 +1,77 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/jolteon/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hlpng"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_rtggu"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6bhu3"]
 [ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="2_18vdl"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_xji3v"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_y6nlh"]
+[ext_resource type="Resource" path="res://data/kits/jolteon/impactrueno_jolteon.tres" id="4_ir48y"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_m4e57"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_rtggu"]
 [ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="5_75d0r"]
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_d2fgr"]
-[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="6_ir48y"]
+[ext_resource type="Resource" path="res://data/kits/jolteon/doble_patada_jolteon.tres" id="5_sgcfy"]
+[ext_resource type="Resource" path="res://data/kits/jolteon/pin_misil_jolteon.tres" id="6_463g1"]
+[ext_resource type="Resource" path="res://data/kits/jolteon/rayo_jolteon.tres" id="7_gag2o"]
 [ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="7_sgcfy"]
-[ext_resource type="Resource" path="res://data/moves/doble_patada.tres" id="8_463g1"]
-[ext_resource type="Resource" path="res://data/moves/pin_misil.tres" id="9_gag2o"]
 [ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="10_wc7q3"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="11_8px4d"]
 [ext_resource type="Resource" path="res://data/moves/trueno.tres" id="12_abjmu"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="15_xji3v"]
 
-[sub_resource type="Resource" id="Resource_rtggu"]
+[sub_resource type="Resource" id="Resource_ir48y"]
+script = ExtResource("1_hlpng")
+move = ExtResource("4_ir48y")
+
+[sub_resource type="Resource" id="Resource_sgcfy"]
+script = ExtResource("1_hlpng")
+move = ExtResource("5_sgcfy")
+
+[sub_resource type="Resource" id="Resource_463g1"]
+script = ExtResource("1_hlpng")
+level = 3
+move = ExtResource("6_463g1")
+
+[sub_resource type="Resource" id="Resource_gag2o"]
+script = ExtResource("1_hlpng")
+level = 5
+move = ExtResource("7_gag2o")
+
+[sub_resource type="Resource" id="Resource_wc7q3"]
 script = ExtResource("1_hlpng")
 move = ExtResource("2_18vdl")
 
-[sub_resource type="Resource" id="Resource_75d0r"]
+[sub_resource type="Resource" id="Resource_8px4d"]
 script = ExtResource("1_hlpng")
 move = ExtResource("3_xji3v")
 
-[sub_resource type="Resource" id="Resource_ir48y"]
+[sub_resource type="Resource" id="Resource_abjmu"]
 script = ExtResource("1_hlpng")
 move = ExtResource("4_rtggu")
 
-[sub_resource type="Resource" id="Resource_sgcfy"]
+[sub_resource type="Resource" id="Resource_wt35c"]
 script = ExtResource("1_hlpng")
 level = 8
 move = ExtResource("5_75d0r")
 
-[sub_resource type="Resource" id="Resource_463g1"]
-script = ExtResource("1_hlpng")
-level = 16
-move = ExtResource("6_ir48y")
-
-[sub_resource type="Resource" id="Resource_gag2o"]
+[sub_resource type="Resource" id="Resource_g4d3j"]
 script = ExtResource("1_hlpng")
 level = 23
 move = ExtResource("7_sgcfy")
 
-[sub_resource type="Resource" id="Resource_wc7q3"]
-script = ExtResource("1_hlpng")
-level = 30
-move = ExtResource("8_463g1")
-
-[sub_resource type="Resource" id="Resource_8px4d"]
-script = ExtResource("1_hlpng")
-level = 36
-move = ExtResource("9_gag2o")
-
-[sub_resource type="Resource" id="Resource_abjmu"]
+[sub_resource type="Resource" id="Resource_ipv11"]
 script = ExtResource("1_hlpng")
 level = 42
 move = ExtResource("10_wc7q3")
 
-[sub_resource type="Resource" id="Resource_wt35c"]
+[sub_resource type="Resource" id="Resource_3dcvl"]
 script = ExtResource("1_hlpng")
 level = 47
 move = ExtResource("11_8px4d")
 
-[sub_resource type="Resource" id="Resource_g4d3j"]
+[sub_resource type="Resource" id="Resource_rlpsk"]
 script = ExtResource("1_hlpng")
 level = 52
 move = ExtResource("12_abjmu")
@@ -77,7 +82,8 @@ id = "jolteon"
 display_name = "Jolteon"
 dex = 135
 types = Array[ExtResource("4_m4e57")]([ExtResource("5_d2fgr")])
-learnset = Array[ExtResource("1_hlpng")]([SubResource("Resource_rtggu"), SubResource("Resource_75d0r"), SubResource("Resource_ir48y"), SubResource("Resource_sgcfy"), SubResource("Resource_463g1"), SubResource("Resource_gag2o"), SubResource("Resource_wc7q3"), SubResource("Resource_8px4d"), SubResource("Resource_abjmu"), SubResource("Resource_wt35c"), SubResource("Resource_g4d3j")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_hlpng")]([SubResource("Resource_ir48y"), SubResource("Resource_sgcfy"), SubResource("Resource_463g1"), SubResource("Resource_gag2o"), SubResource("Resource_wc7q3"), SubResource("Resource_8px4d"), SubResource("Resource_abjmu"), SubResource("Resource_wt35c"), SubResource("Resource_g4d3j"), SubResource("Resource_ipv11"), SubResource("Resource_3dcvl"), SubResource("Resource_rlpsk")])
 evolves_from = "eevee"
 temperament = ExtResource("15_xji3v")
 genus = "Pokémon Relámpago"

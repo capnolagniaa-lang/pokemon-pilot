@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "triataque_porygon"
+display_name = "Triataque"
+element = ExtResource("3_x")
+kind = 0
+category = 1
+power = 80.0
+cooldown = 4.0
+knockback = 140.0
+speed = 290.0
+size = 5.0
+lifetime = 0.8
+projectile_count = 3
+spread_deg = 18.0
+cast_time = 0.2
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

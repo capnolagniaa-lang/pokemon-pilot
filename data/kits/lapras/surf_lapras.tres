@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "surf_lapras"
+display_name = "Surf"
+element = ExtResource("3_x")
+kind = 2
+category = 1
+power = 90.0
+cooldown = 7.0
+knockback = 260.0
+radius = 65.0
+cast_time = 0.3
+recovery = 0.3

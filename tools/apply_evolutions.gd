@@ -7,7 +7,7 @@ extends SceneTree
 ## Uso: godot --headless --path . --quit-after 20000 --script res://tools/apply_evolutions.gd
 
 ## Cambian mucho al evolucionar (alas, otro tipo, otra forma de atacar): no heredan el kit.
-const NEW_KIT := ["butterfree", "beedrill", "gyarados", "kadabra", "alakazam", "charizard", "vaporeon", "jolteon",
+const NEW_KIT := ["butterfree", "beedrill", "gyarados", "kadabra", "charizard", "vaporeon", "jolteon",
 	"flareon", "espeon", "umbreon", "dustox", "beautifly", "ninjask", "shedinja"]
 
 

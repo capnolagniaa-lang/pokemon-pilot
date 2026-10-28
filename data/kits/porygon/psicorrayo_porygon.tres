@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/desorientado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "psicorrayo_porygon"
+display_name = "Psicorrayo"
+element = ExtResource("3_x")
+kind = 0
+category = 1
+power = 65.0
+cooldown = 1.6
+knockback = 90.0
+speed = 270.0
+size = 5.0
+lifetime = 0.8
+status = ExtResource("4_x")
+status_chance = 0.2

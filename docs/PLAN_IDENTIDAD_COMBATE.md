@@ -25,6 +25,16 @@ el documento original de abajo (que queda como referencia de ideas: estados, sin
   con `use_test_pool = false` vuelven los spawns por zona/bioma (`BY_ZONE`, `BY_BIOME`).
 - Stats oficiales, estados del plan (I-1), interacciones, resistencia a control, telegrafiado y recuperación:
   **siguen igual**.
+- **Golpes físicos con paso adelante (2026-10-28, pedido del usuario)**: todo golpe cuerpo a cuerpo (`MoveData.Kind.MELEE`,
+  también los oficiales automáticos y cada paso de un combo) avanza `MoveData.melee_step` px (30 por defecto) hacia
+  donde apunta antes del corte (estado `step`, `scripts/creatures/states/creature_step.gd`); si el rival ya está cerca,
+  frena justo donde el corte lo alcanza. El alcance que usa la IA (`MoveData.reach`) lo incluye. 0 = golpe en el lugar.
+- **Stagger al recibir un golpe (2026-10-28, pedido del usuario)**: todo golpe con daño deja al que lo recibe 0,2-0,45 s
+  (según la potencia) sin poder atacar ni esquivar y caminando al 45% (`Creature.hitstun_left`, `can_act()`). No se
+  renueva con otro golpe del mismo ataque (ticks de zona, abanicos) y al terminar hay 0,35 s de respiro sin stagger
+  nuevo, así no se puede encadenar a nadie. Jefes y pesados (poco empuje) lo sufren menos (hasta la mitad). Ajuste del
+  juego `hitstun_mult` (Combate → "Stagger al recibir un golpe", 0 = sin stagger). Los golpes de mucho empuje siguen
+  aturdiendo 0,25 s como antes. Test: `--autotest-ai-steer`.
 - **Pantalla de inicio** (pedido del usuario): **Modo práctica** (por defecto activado: si tu Pokémon se debilita,
   vuelve a los 0,8 s con la vida al máximo) y **Dificultad de la IA**: Fácil / **Normal (por defecto)** / Difícil.
   Difícil = la IA original ("está MUY fuerte, hace todo bien"). Datos en `data/config/difficulty/*.tres`
@@ -195,6 +205,55 @@ kit". Lo que se hizo:
   → esporas, Growlithe fuego/siniestro/normal → rastreado, Drowzee psíquico → somnolencia. Impulso de Geodude cuenta
   cualquier Rodar. Las demás firmas ya reaccionaban a cualquier ataque (golpes, daño, estados, tipo).
 - Test: `--autotest-kits-v8 --only sinergia`.
+
+## v9 — kit para todos los Pokémon del juego (✅ en prueba, 2026-10-28)
+Pedido del usuario: "fijate todos los pokemons que haya implementados y ajustales un kit como venías haciendo". Se
+contó todo lo que aparece (tablas de salvajes, ~360 entrenadores de FireRed, legendarios, regalos y fósiles):
+34 especies peleaban con su learnset suelto. `tools/build_kits_v9.py`. Heredan: Haunter y Gengar, Marowak, Dodrio,
+Rhydon, Venomoth, Exeggutor, Kingler, Dragonair y Dragonite, Dugtrio, Omastar, Kabutops, y **Alakazam hereda el de
+Kadabra** (salió de `NEW_KIT`). Firma nueva: `transform_mechanic.gd` (Ditto). `body_trait` suma `echo_hit` (la cría de
+Kangaskhan), `regen` (Chansey) y `shed_every` (Muda de Dratini); `gallop` acepta `trail_every` 0 (sin fuego). El resto
+reusa firmas genéricas con otros parámetros. Estados nuevos: `pavor`, `enredado`. Test `--autotest-kits-v9`
+(`--only <especie>`): además verifica que todo lo que aparece en el juego tenga kit. Pendiente: probarlos jugando.
+
+| Pokémon | Estilo | Clic izq. | Clic der. | Q | R | Firma |
+|---|---|---|---|---|---|---|
+| Gastly | Hostigador | Lengüetazo | Tinieblas | Hipnosis | Comesueños | **Pesadilla**: ataques fantasma suman Pavor; con 3, paralizado de miedo |
+| Cubone | Bruiser | Hueso Palo (ralentiza) | Huesomerang (2 huesos) | Malicioso | Golpe (3 golpes) | **Casco de Hueso**: −30% de frente; Hueso Palo ×1,5 a lo ralentizado |
+| Doduo | Velocista | Picotazo | Ataque Furia | Agilidad | Pico Taladro | **Carrera**: correr derecho acelera (×1,35) y las embestidas pegan +40% |
+| Rhyhorn | Tanque | Cornada | Pisotón (área) | Derribo | Cornataladro (remata <20%) | **Piel de Roca**: −20% físico, casi no lo empujan |
+| Venonat | Control | Chupavidas | Psicorrayo | Paralizador | Somnífero (nube) | **Ojos Compuestos**: no lo desorientan; Psicorrayo ×1,5 a lo paralizado |
+| Exeggcute | Control | Bombardeo (3 huevos) | Hipnosis | Paralizador | Rayo Solar | **Racimo**: quieto se apiña (hasta −40%) |
+| Ditto | Caótico | Pegote | Gel | Rebote | Transformación | **Transformación**: copia los 4 ataques del rival 25 s |
+| Tangela | Control | Látigo Cepa | Absorber | Somnífero | Atadura (atrae) | **Maraña**: ataques planta enredan; con 3, enraizado |
+| Mr. Mime | Control | Doble Bofetón | Confusión | Barrera (desvía disparos) | Psíquico | **Pantomima**: tras la Barrera, el próximo golpe +50% y desorienta |
+| Kangaskhan | Bruiser | Puño Cometa | Mordisco | Látigo | Megapuño | **Cría**: cada golpe cuerpo a cuerpo se repite con 35% del daño |
+| Chansey | Tanque | Destructor | Canto | Amortiguador | Bomba Huevo | **Huevo Suerte**: 2,5 s sin que le peguen → se cura 2%/s |
+| Tauros | Bruiser | Cornada | Cara Susto | Derribo | Hiperrayo | **Estampida**: cada Derribo seguido pega +40% (hasta ×1,8) |
+| Hitmonlee | Asesino | Doble Patada (largo) | Patada Giro | Patada Salto | Patada Salto Alta | **Piernas Elásticas**: quieto 0,6 s → patada resorte +50% |
+| Hitmonchan | Bruiser | Ultrapuño | Puño Fuego | Puño Hielo | Megapuño | **Juego de Pies**: esquive justo recarga Megapuño y deja crítico |
+| Scyther | Asesino | Corte Furia | Ataque Ala | Danza Espada | Cuchillada | **Filo Furioso**: golpes seguidos +10% c/u (hasta 5) |
+| Diglett | Hostigador | Arañazo | Ataque Arena | Excavar | Terremoto | **Bajo Tierra**: cuando le pegan se entierra y asoma lejos (cada 4 s) |
+| Charizard | Bruiser | Cuchillada | Ataque Ala | Giro Fuego | Lanzallamas | **Calor** (el de Charmander, más fuerte) |
+| Lapras | Tanque | Golpe Cuerpo | Rayo Hielo | Canto | Surf | **Aliento Helado**: 4 escarchas congelan |
+| Lickitung | Tanque | Lengüetazo (látigo, ralentiza) | Pisotón | Rizo Defensa | Golpe | **Lengua Larga**: Golpe ×1,4 a lo ralentizado |
+| Farfetch'd | Asesino | Picotazo | Malicioso | Danza Espada | Cuchillada | **Puerro**: Cuchillada ×1,6 a lo Expuesto |
+| Electabuzz | Bruiser | Puño Trueno | Impactrueno | Patada Baja | Trueno | **Electromotor**: moverse carga; llena → Descarga |
+| Krabby | Bruiser | Agarre (ralentiza) | Burbuja | Fortaleza | Martillazo | **Pinza**: −20% de frente; Martillazo ×1,5 a lo ralentizado |
+| Dratini | Control | Atadura | Onda Trueno | Agilidad | Furia Dragón | **Muda**: cada 6 s se saca los problemas de estado |
+| Aerodactyl | Asesino | Mordisco | Ataque Ala | Supersónico | Avalancha | **Vuelo Prehistórico**: se eleva al esquivar; Picado +50% |
+| Jynx | Control | Doble Bofetón | Polvo Nieve | Beso Amoroso | Ventisca | **Canción de Cuna**: hielo y psíquico suman Somnolencia; con 4, duerme |
+| Snorlax | Tanque | Golpe Cuerpo | Bostezo | Descanso | Hiperrayo | **Panza**: enorme, casi no lo empujan, −20% físico |
+| Articuno | Control (jefe) | Rayo Hielo ×3 | Ataque Ala | Neblina | Ventisca (del cielo) | **Ave Helada**: a mitad de vida, Aleteo Helado y enfurecido |
+| Zapdos | Bruiser (jefe) | Impactrueno ×3 | Pico Taladro | Onda Trueno | Trueno ×3 | **Ave Trueno**: a mitad de vida, Descarga y enfurecido |
+| Vaporeon | Tanque | Pistola Agua | Rayo Aurora | Danza Lluvia | Hidrobomba | **Absorbe Agua**: mojado se cura 3%/s y va más rápido |
+| Jolteon | Velocista | Impactrueno | Doble Patada | Pin Misil | Rayo (gasta cargas) | **Absorbe Electricidad**: la Estática de Pikachu |
+| Flareon | Bruiser | Mordisco | Ascuas | Giro Fuego | Lanzallamas | **Absorbe Fuego**: +35% a quemados y renueva la quemadura |
+| Omanyte | Control | Constricción | Pistola Agua | Refugio | Hidrobomba | **Espiral**: −40% de espaldas; mojado más rápido |
+| Kabuto | Hostigador | Arañazo | Absorber | Fortaleza | Cuchillada (embestida) | **Caparazón Fósil**: quieto se endurece (−35%) |
+| Porygon | Control | Placaje | Psicorrayo | Agilidad | Triataque | **Conversión**: 8 s resiste el último tipo que le pegó |
+
+(Moltres y Mewtwo no tienen kit porque no aparecen: el Monte Ascuas es de las Islas Sete y la Cueva Celeste no está.)
 
 ## v8 — Tanda C de la propuesta (✅ en prueba, 2026-10-26)
 Drowzee, Grimer, Koffing, Ponyta, Slowpoke y Magikarp (`tools/build_kits_v8.py`); heredan Hypno, Muk, Weezing, Rapidash,

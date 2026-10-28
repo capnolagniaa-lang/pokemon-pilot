@@ -4,63 +4,70 @@
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_yjtqo"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_bf0df"]
 [ext_resource type="Resource" path="res://data/moves/ataque_furia.tres" id="2_obaok"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/kit.tres" id="2_r1627"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_im7yc"]
-[ext_resource type="Resource" path="res://data/moves/cornada.tres" id="3_m8bt3"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fgesw"]
-[ext_resource type="Resource" path="res://data/moves/pisoton.tres" id="4_yjtqo"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/cornada_rhyhorn.tres" id="4_uqeul"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/pisoton_rhyhorn.tres" id="5_bhpoe"]
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_kpx6n"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="5_r1627"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/derribo_rhyhorn.tres" id="6_5srod"]
 [ext_resource type="Resource" path="res://data/types/roca.tres" id="6_sin2a"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="6_uqeul"]
 [ext_resource type="Resource" path="res://data/moves/pedrada.tres" id="7_bhpoe"]
+[ext_resource type="Resource" path="res://data/kits/rhyhorn/cornataladro_rhyhorn.tres" id="7_fokd6"]
 [ext_resource type="Resource" path="res://data/moves/perforador.tres" id="8_5srod"]
-[ext_resource type="Resource" path="res://data/moves/derribo.tres" id="9_fokd6"]
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_id08p"]
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_nxoq4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_m8bt3"]
 
-[sub_resource type="Resource" id="Resource_yjtqo"]
-script = ExtResource("1_dlkh5")
-move = ExtResource("2_obaok")
-
-[sub_resource type="Resource" id="Resource_r1627"]
-script = ExtResource("1_dlkh5")
-move = ExtResource("3_m8bt3")
-
 [sub_resource type="Resource" id="Resource_uqeul"]
 script = ExtResource("1_dlkh5")
-move = ExtResource("4_yjtqo")
+move = ExtResource("4_uqeul")
 
 [sub_resource type="Resource" id="Resource_bhpoe"]
 script = ExtResource("1_dlkh5")
-move = ExtResource("5_r1627")
+move = ExtResource("5_bhpoe")
 
 [sub_resource type="Resource" id="Resource_5srod"]
+script = ExtResource("1_dlkh5")
+level = 3
+move = ExtResource("6_5srod")
+
+[sub_resource type="Resource" id="Resource_fokd6"]
+script = ExtResource("1_dlkh5")
+level = 5
+move = ExtResource("7_fokd6")
+
+[sub_resource type="Resource" id="Resource_id08p"]
+script = ExtResource("1_dlkh5")
+move = ExtResource("2_obaok")
+
+[sub_resource type="Resource" id="Resource_nxoq4"]
+script = ExtResource("1_dlkh5")
+move = ExtResource("5_r1627")
+
+[sub_resource type="Resource" id="Resource_0cijf"]
 script = ExtResource("1_dlkh5")
 level = 24
 move = ExtResource("6_uqeul")
 
-[sub_resource type="Resource" id="Resource_fokd6"]
+[sub_resource type="Resource" id="Resource_2inb7"]
 script = ExtResource("1_dlkh5")
 level = 29
 move = ExtResource("7_bhpoe")
 
-[sub_resource type="Resource" id="Resource_id08p"]
+[sub_resource type="Resource" id="Resource_f20l4"]
 script = ExtResource("1_dlkh5")
 level = 38
 move = ExtResource("8_5srod")
 
-[sub_resource type="Resource" id="Resource_nxoq4"]
-script = ExtResource("1_dlkh5")
-level = 46
-move = ExtResource("9_fokd6")
-
-[sub_resource type="Resource" id="Resource_0cijf"]
+[sub_resource type="Resource" id="Resource_op1i3"]
 script = ExtResource("1_dlkh5")
 level = 58
 move = ExtResource("10_id08p")
 
-[sub_resource type="Resource" id="Resource_2inb7"]
+[sub_resource type="Resource" id="Resource_k4hu8"]
 script = ExtResource("1_dlkh5")
 level = 66
 move = ExtResource("11_nxoq4")
@@ -71,7 +78,9 @@ id = "rhydon"
 display_name = "Rhydon"
 dex = 112
 types = Array[ExtResource("4_fgesw")]([ExtResource("5_kpx6n"), ExtResource("6_sin2a")])
-learnset = Array[ExtResource("1_dlkh5")]([SubResource("Resource_yjtqo"), SubResource("Resource_r1627"), SubResource("Resource_uqeul"), SubResource("Resource_bhpoe"), SubResource("Resource_5srod"), SubResource("Resource_fokd6"), SubResource("Resource_id08p"), SubResource("Resource_nxoq4"), SubResource("Resource_0cijf"), SubResource("Resource_2inb7")])
+kit = ExtResource("2_r1627")
+learnset = Array[ExtResource("1_dlkh5")]([SubResource("Resource_uqeul"), SubResource("Resource_bhpoe"), SubResource("Resource_5srod"), SubResource("Resource_fokd6"), SubResource("Resource_id08p"), SubResource("Resource_nxoq4"), SubResource("Resource_0cijf"), SubResource("Resource_2inb7"), SubResource("Resource_f20l4"), SubResource("Resource_op1i3"), SubResource("Resource_k4hu8")])
+kit_inherited = true
 evolves_from = "rhyhorn"
 temperament = ExtResource("14_m8bt3")
 genus = "Pokémon Taladro"

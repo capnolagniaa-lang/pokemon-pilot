@@ -1,76 +1,77 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/exeggcute/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3vd4y"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_kvfg7"]
-[ext_resource type="Resource" path="res://data/moves/bombardeo.tres" id="2_cey4i"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dnied"]
-[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="3_f7tdo"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_vlh1i"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jhitn"]
 [ext_resource type="Resource" path="res://data/moves/alboroto.tres" id="4_kvfg7"]
+[ext_resource type="Resource" path="res://data/kits/exeggcute/bombardeo_exeggcute.tres" id="4_nj7sf"]
+[ext_resource type="Resource" path="res://data/kits/exeggcute/hipnosis_exeggcute.tres" id="5_4kqbc"]
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="5_32nix"]
 [ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="5_nj7sf"]
 [ext_resource type="Resource" path="res://data/moves/drenadoras.tres" id="6_4kqbc"]
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="6_bsa32"]
+[ext_resource type="Resource" path="res://data/kits/exeggcute/paralizador_exeggcute.tres" id="6_cctxq"]
+[ext_resource type="Resource" path="res://data/kits/exeggcute/rayo_solar_exeggcute.tres" id="7_anui3"]
 [ext_resource type="Resource" path="res://data/moves/confusion.tres" id="7_cctxq"]
-[ext_resource type="Resource" path="res://data/moves/paralizador.tres" id="8_anui3"]
 [ext_resource type="Resource" path="res://data/moves/polvo_veneno.tres" id="9_mi3ju"]
 [ext_resource type="Resource" path="res://data/moves/somnifero.tres" id="10_n71in"]
-[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_mxxif"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_f7tdo"]
 
-[sub_resource type="Resource" id="Resource_kvfg7"]
+[sub_resource type="Resource" id="Resource_nj7sf"]
 script = ExtResource("1_kvfg7")
 to_id = "exeggutor"
 method = "piedra"
 item = "piedra_hoja"
 
-[sub_resource type="Resource" id="Resource_nj7sf"]
-script = ExtResource("1_3vd4y")
-move = ExtResource("2_cey4i")
-
 [sub_resource type="Resource" id="Resource_4kqbc"]
 script = ExtResource("1_3vd4y")
-move = ExtResource("3_f7tdo")
+move = ExtResource("4_nj7sf")
 
 [sub_resource type="Resource" id="Resource_cctxq"]
 script = ExtResource("1_3vd4y")
-move = ExtResource("4_kvfg7")
+move = ExtResource("5_4kqbc")
 
 [sub_resource type="Resource" id="Resource_anui3"]
+script = ExtResource("1_3vd4y")
+level = 3
+move = ExtResource("6_cctxq")
+
+[sub_resource type="Resource" id="Resource_mi3ju"]
+script = ExtResource("1_3vd4y")
+level = 5
+move = ExtResource("7_anui3")
+
+[sub_resource type="Resource" id="Resource_n71in"]
+script = ExtResource("1_3vd4y")
+move = ExtResource("4_kvfg7")
+
+[sub_resource type="Resource" id="Resource_mxxif"]
 script = ExtResource("1_3vd4y")
 level = 7
 move = ExtResource("5_nj7sf")
 
-[sub_resource type="Resource" id="Resource_mi3ju"]
+[sub_resource type="Resource" id="Resource_1ysrh"]
 script = ExtResource("1_3vd4y")
 level = 13
 move = ExtResource("6_4kqbc")
 
-[sub_resource type="Resource" id="Resource_n71in"]
+[sub_resource type="Resource" id="Resource_64b3f"]
 script = ExtResource("1_3vd4y")
 level = 19
 move = ExtResource("7_cctxq")
 
-[sub_resource type="Resource" id="Resource_mxxif"]
-script = ExtResource("1_3vd4y")
-level = 25
-move = ExtResource("8_anui3")
-
-[sub_resource type="Resource" id="Resource_1ysrh"]
+[sub_resource type="Resource" id="Resource_jnwxu"]
 script = ExtResource("1_3vd4y")
 level = 31
 move = ExtResource("9_mi3ju")
 
-[sub_resource type="Resource" id="Resource_64b3f"]
+[sub_resource type="Resource" id="Resource_4gm4d"]
 script = ExtResource("1_3vd4y")
 level = 37
 move = ExtResource("10_n71in")
-
-[sub_resource type="Resource" id="Resource_jnwxu"]
-script = ExtResource("1_3vd4y")
-level = 43
-move = ExtResource("11_mxxif")
 
 [resource]
 script = ExtResource("3_vlh1i")
@@ -78,8 +79,9 @@ id = "exeggcute"
 display_name = "Exeggcute"
 dex = 102
 types = Array[ExtResource("4_jhitn")]([ExtResource("5_32nix"), ExtResource("6_bsa32")])
-learnset = Array[ExtResource("1_3vd4y")]([SubResource("Resource_nj7sf"), SubResource("Resource_4kqbc"), SubResource("Resource_cctxq"), SubResource("Resource_anui3"), SubResource("Resource_mi3ju"), SubResource("Resource_n71in"), SubResource("Resource_mxxif"), SubResource("Resource_1ysrh"), SubResource("Resource_64b3f"), SubResource("Resource_jnwxu")])
-evolutions = Array[ExtResource("1_kvfg7")]([SubResource("Resource_kvfg7")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_3vd4y")]([SubResource("Resource_4kqbc"), SubResource("Resource_cctxq"), SubResource("Resource_anui3"), SubResource("Resource_mi3ju"), SubResource("Resource_n71in"), SubResource("Resource_mxxif"), SubResource("Resource_1ysrh"), SubResource("Resource_64b3f"), SubResource("Resource_jnwxu"), SubResource("Resource_4gm4d")])
+evolutions = Array[ExtResource("1_kvfg7")]([SubResource("Resource_nj7sf")])
 temperament = ExtResource("14_f7tdo")
 genus = "Pokémon Huevo"
 pokedex_entry = "Este Pokémon está compuesto de seis huevos que forman una tupida piña que va girando. Cuando se empiezan a resquebrajar las cáscaras, no hay duda de que Exeggcute está a punto de evolucionar."

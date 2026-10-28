@@ -2,7 +2,7 @@ extends SignatureMechanic
 ## Galope (Ponyta, velocista; docs/PROPUESTA_KITS_PENDIENTES.md): correr en línea recta llena la barra (girar fuerte, más
 ## de `turn_deg`, o frenar la vacía). Con la barra llena va hasta ×`max_speed` y deja una estela de fuego
 ## (`Events.element_impact` de fuego cada `trail_every` px: prende el pasto como cualquier fuego). Sus embestidas pegan
-## más con el galope (+`dash_bonus` con la barra llena).
+## más con el galope (+`dash_bonus` con la barra llena). `trail_every` 0 = sin estela (la Carrera de Doduo).
 
 var _last_dir := Vector2.ZERO
 var _since_trail := 0.0
@@ -29,7 +29,7 @@ func _tick(delta: float) -> void:
 	else:
 		set_value(value + data.max_value * delta / param("build_time", 1.5))
 	_last_dir = dir
-	if ratio() > 0.6:
+	if ratio() > 0.6 and param("trail_every", 18.0) > 0.0:  # 0 = sin estela de fuego (Doduo)
 		_since_trail += v.length() * delta
 		if _since_trail >= param("trail_every", 18.0):
 			_since_trail = 0.0

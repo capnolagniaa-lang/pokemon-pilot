@@ -42,6 +42,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-kits-v5  # kits v5 (Star
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v6  # kits v6 (Raichu jefe de Surge + Tanda A; lento: `--only <especie>` prueba una sola)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v7  # kits v7 (Tanda B: Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v8  # kits v8 (Tanda C) + sinergia (`--only sinergia`)
+$G --headless --path . --quit-after 400000 -- --autotest-kits-v9  # kits v9 (todos los que aparecen en el juego; `--only <especie>`)
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-story  # la enfermera hablando
@@ -77,7 +78,7 @@ $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 12000 -- --autotest-env      # entorno reactivo (fuego, agua, hielo, rocas)
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-env    # vitrina del entorno
 $G --headless --path . --quit-after 30000 -- --autotest-wild-ai  # IA salvaje: temperamentos, apertura, huida, peligros
-$G --headless --path . --quit-after 30000 -- --autotest-ai-steer  # IA que rodea obstáculos, tiro limpio, anticipación, Normal
+$G --headless --path . --quit-after 30000 -- --autotest-ai-steer  # IA que rodea obstáculos, anticipación, Normal, seguir con F, paso del golpe y stagger
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-wild-ai  # un salvaje de cada temperamento
 $G --headless --path . --quit-after 20000 -- --autotest-trainers  # entrenadores vivos (E-0: interruptor, NPC, guardado)
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-trainers  # los 3 en Ruta 1
@@ -166,7 +167,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   no tiene lógica de mapa. Ver README, "Editor de mapas".
 - **Combate**: `CombatDirector` (modo combate; con la F el entrenador queda `locked` pero sigue a su Pokémon con
   `Trainer.follow_target`, salvo en las arenas), componentes `Health`/`StatusEffects`/`MoveUser`/`Hurtbox`/
-  `Hitbox` en la criatura, `Projectile`/`AreaEffect`, `HitInfo` + `Damage`. El Pokémon controlado lee órdenes
+  `Hitbox` en la criatura, `Projectile`/`AreaEffect`, `HitInfo` + `Damage`. Todo golpe cuerpo a cuerpo avanza
+  `MoveData.melee_step` antes del corte (estado `step`) y todo golpe con daño deja **stagger** (`Creature.hitstun_left`:
+  sin atacar ni esquivar un ratito, con respiro; ajuste `hitstun_mult`). El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
 - **Kits / estilos de pelea** (plan de identidad, **v2 vigente**): `SpeciesData.kit` → `Kit` (`archetype`,
   `preferred_range`, `signature` opcional, `moves` = 4 `MoveData`). **Sin energía**: solo recargas. Teclas en
@@ -228,7 +231,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   (cuadro acostado de personajes y Pokémon, desde `CreatureSprite` y `blob_shadow.gd`).
 - **Ajustes del juego por partida** (Esc → Opciones → "Ajustes del juego…", `GameSettingsScreen`): `GameState.settings`
   (se guarda con la partida; solo lo cambiado; el resto sale de `default_settings()` = GameConfig + dificultad Normal;
-  una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `exp_mult` (exp_yield), `money_mult`
+  una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `hitstun_mult` (stagger), `exp_mult` (exp_yield), `money_mult`
   (`add_prize`: premios de entrenadores y torneo), `catch_mult` (Capture), `dealt_mult`/`taken_mult` (HitInfo.from),
   `hp_scale` (`CreatureInstance.hp_scale()`, reescala la vida actual), `combos`, `arena_everywhere`, `wild_mult`
   (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), y `ai_*` (dificultad
@@ -373,6 +376,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - `tools/build_kits_v7.py`: igual para la Tanda B (Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth); firmas
   `metronome`, `puff`, `wary`, `payday`.
 - `tools/build_kits_v8.py`: igual para la Tanda C (Drowzee, Grimer, Koffing, Ponyta, Slowpoke, Magikarp).
+- `tools/build_kits_v9.py`: igual para todos los que aparecían en el juego sin kit (34: Gastly a Porygon, Charizard,
+  Snorlax, Articuno y Zapdos jefes, las evoluciones de Eevee, los fósiles); firma nueva `transform_mechanic.gd` (Ditto).
 - `tools/link_official_moves.py`: los ataques oficiales automáticos toman la forma de su versión de kit del mismo
   nombre (y los de mejora propia sin kit, un efecto genérico). **Correrlo después de `apply_official_data.gd --
   --regen-auto`** (si no, vuelven a la forma inventada). `SignatureData.params.element_marks` = sinergia por tipo.

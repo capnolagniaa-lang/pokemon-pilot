@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/body_trait_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "espiral"
+display_name = "Espiral"
+description = "El caparazón en espiral lo cubre de espaldas (−40%). Mojado se mueve más rápido; en seco más lento."
+color = Color(0.45, 0.65, 0.95, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"back_mult": 0.6, "front_mult": 1.0, "wet_speed": 1.2, "dry_speed": 0.9}

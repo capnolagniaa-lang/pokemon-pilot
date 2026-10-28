@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/congelado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "ventisca_articuno"
+display_name = "Ventisca"
+element = ExtResource("3_x")
+kind = 5
+category = 1
+power = 110.0
+cooldown = 8.0
+knockback = 200.0
+cast_time = 0.4
+zone_radius = 28.0
+placement_range = 150.0
+zone_traps = false
+zone_strike = true
+strike_delay = 0.8
+strike_count = 3
+strike_spread = 44.0
+recovery = 0.4
+status = ExtResource("4_x")
+status_chance = 0.15

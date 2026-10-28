@@ -3,65 +3,66 @@
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_5ttex"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_qx2mu"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_20d2t"]
-[ext_resource type="Resource" path="res://data/moves/hipnosis.tres" id="2_gn052"]
-[ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="3_3x6iu"]
+[ext_resource type="Resource" path="res://data/kits/gastly/kit.tres" id="2_046t5"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xk00v"]
+[ext_resource type="Resource" path="res://data/kits/gastly/lenguetazo_gastly.tres" id="4_046t5"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_381b5"]
 [ext_resource type="Resource" path="res://data/moves/rencor.tres" id="4_qx2mu"]
 [ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="5_046t5"]
 [ext_resource type="Resource" path="res://data/types/fantasma.tres" id="5_wh8qj"]
+[ext_resource type="Resource" path="res://data/kits/gastly/tinieblas_gastly.tres" id="5_xebi7"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_65i62"]
-[ext_resource type="Resource" path="res://data/moves/tinieblas.tres" id="6_xebi7"]
+[ext_resource type="Resource" path="res://data/kits/gastly/hipnosis_gastly.tres" id="6_udogg"]
+[ext_resource type="Resource" path="res://data/kits/gastly/comesuenos_gastly.tres" id="7_57gvk"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="7_udogg"]
 [ext_resource type="Resource" path="res://data/moves/puno_sombra.tres" id="8_57gvk"]
-[ext_resource type="Resource" path="res://data/moves/comesuenos.tres" id="9_4a5jr"]
 [ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="10_vcuaa"]
 [ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="11_mg565"]
 [ext_resource type="Resource" path="res://data/moves/pesadilla.tres" id="12_m4l42"]
 [ext_resource type="Resource" path="res://data/moves/mal_de_ojo.tres" id="13_au02v"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="16_3x6iu"]
 
-[sub_resource type="Resource" id="Resource_qx2mu"]
+[sub_resource type="Resource" id="Resource_llt7p"]
 script = ExtResource("1_qx2mu")
 to_id = "gengar"
 method = "intercambio"
 
 [sub_resource type="Resource" id="Resource_046t5"]
 script = ExtResource("1_5ttex")
-move = ExtResource("2_gn052")
+move = ExtResource("4_046t5")
 
 [sub_resource type="Resource" id="Resource_xebi7"]
 script = ExtResource("1_5ttex")
-move = ExtResource("3_3x6iu")
+move = ExtResource("5_xebi7")
 
 [sub_resource type="Resource" id="Resource_udogg"]
 script = ExtResource("1_5ttex")
-move = ExtResource("4_qx2mu")
+level = 3
+move = ExtResource("6_udogg")
 
 [sub_resource type="Resource" id="Resource_57gvk"]
+script = ExtResource("1_5ttex")
+level = 5
+move = ExtResource("7_57gvk")
+
+[sub_resource type="Resource" id="Resource_4a5jr"]
+script = ExtResource("1_5ttex")
+move = ExtResource("4_qx2mu")
+
+[sub_resource type="Resource" id="Resource_vcuaa"]
 script = ExtResource("1_5ttex")
 level = 13
 move = ExtResource("5_046t5")
 
-[sub_resource type="Resource" id="Resource_4a5jr"]
-script = ExtResource("1_5ttex")
-level = 16
-move = ExtResource("6_xebi7")
-
-[sub_resource type="Resource" id="Resource_vcuaa"]
+[sub_resource type="Resource" id="Resource_mg565"]
 script = ExtResource("1_5ttex")
 level = 21
 move = ExtResource("7_udogg")
 
-[sub_resource type="Resource" id="Resource_mg565"]
+[sub_resource type="Resource" id="Resource_m4l42"]
 script = ExtResource("1_5ttex")
 level = 25
 move = ExtResource("8_57gvk")
-
-[sub_resource type="Resource" id="Resource_m4l42"]
-script = ExtResource("1_5ttex")
-level = 31
-move = ExtResource("9_4a5jr")
 
 [sub_resource type="Resource" id="Resource_au02v"]
 script = ExtResource("1_5ttex")
@@ -89,8 +90,10 @@ id = "haunter"
 display_name = "Haunter"
 dex = 93
 types = Array[ExtResource("4_381b5")]([ExtResource("5_wh8qj"), ExtResource("6_65i62")])
+kit = ExtResource("2_046t5")
 learnset = Array[ExtResource("1_5ttex")]([SubResource("Resource_046t5"), SubResource("Resource_xebi7"), SubResource("Resource_udogg"), SubResource("Resource_57gvk"), SubResource("Resource_4a5jr"), SubResource("Resource_vcuaa"), SubResource("Resource_mg565"), SubResource("Resource_m4l42"), SubResource("Resource_au02v"), SubResource("Resource_yr4e1"), SubResource("Resource_ajhea"), SubResource("Resource_g7j0t")])
-evolutions = Array[ExtResource("1_qx2mu")]([SubResource("Resource_qx2mu")])
+kit_inherited = true
+evolutions = Array[ExtResource("1_qx2mu")]([SubResource("Resource_llt7p")])
 evolves_from = "gastly"
 temperament = ExtResource("16_3x6iu")
 genus = "Pokémon Gas"

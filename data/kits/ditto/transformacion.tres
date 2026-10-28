@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/transform_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "transformacion"
+display_name = "Transformación"
+description = "Transformación copia los 4 ataques del rival más cercano y pelea con ellos 25 s. Después vuelve a ser Ditto."
+color = Color(0.85, 0.6, 0.9, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"transform_move": "transformacion", "duration": 25.0, "range": 180.0}

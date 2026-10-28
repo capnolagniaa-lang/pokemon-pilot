@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/adapt_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "conversion"
+display_name = "Conversión"
+description = "Se reconvierte: durante 8 s recibe 35% menos del último tipo que le pegó."
+color = Color(0.95, 0.5, 0.6, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"duration": 8.0, "resist_mult": 0.65}

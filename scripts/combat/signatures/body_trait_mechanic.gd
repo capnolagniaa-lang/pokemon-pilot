@@ -15,11 +15,17 @@ extends SignatureMechanic
 ##    defensa puesta (Fortaleza, Refugio, Rizo Defensa...): la atraviesan (Goldeen).
 ##  · `perfect_dodge` (s): esquivar con un golpe rival a punto de llegar recarga la ranura `perfect_slot` y deja el
 ##    próximo golpe crítico (`crit_mult`) (Nidoran♂).
+##  · `echo_hit` (fracción) + `echo_delay` + `echo_text`: cada golpe cuerpo a cuerpo que conecta se repite un instante
+##    después con esa parte del daño (la cría de Kangaskhan también pega).
+##  · `regen` (fracción por s) + `regen_delay` (s): si no le pegan en ese rato, se cura sola (Chansey).
+##  · `shed_every` (s) + `shed_text`: cada tanto se saca de encima los problemas de estado (Muda de Dratini).
 
 const MELEE_KINDS := [MoveData.Kind.MELEE, MoveData.Kind.LUNGE, MoveData.Kind.DASH, MoveData.Kind.WHIP]
 
 var _crit_ready := false
 var _wet := false
+var _last_hurt := -100.0
+var _shed_left := 0.0
 
 
 func _setup() -> void:
@@ -34,6 +40,12 @@ func _on_hit_dealt(target: Creature, hit: HitInfo, dealt: float) -> void:
 	var st: String = param("drain_bonus_status", "")
 	if st != "" and hit.move.drain > 0.0 and dealt > 0.0 and is_instance_valid(target) and target.statuses.has_status(st):
 		creature.health.heal(dealt * hit.move.drain * param("drain_bonus", 1.0))
+	var echo: float = param("echo_hit", 0.0)
+	if echo > 0.0 and dealt > 0.0 and hit.move.kind in MELEE_KINDS and is_instance_valid(target):
+		creature.get_tree().create_timer(param("echo_delay", 0.15)).timeout.connect(func():
+			if is_instance_valid(target) and not target.is_down():
+				target.take_status_damage(dealt * echo)
+				Events.signature_triggered.emit(creature, param("echo_text", "¡Otra vez!"), data.color))
 	var cut: float = param("melee_cooldown_cut", 0.0)
 	if cut > 0.0 and hit.move.kind in MELEE_KINDS:
 		for i in creature.moves.cooldowns.size():
@@ -41,6 +53,8 @@ func _on_hit_dealt(target: Creature, hit: HitInfo, dealt: float) -> void:
 
 
 func _on_damage_received(amount: float, hit: HitInfo) -> void:
+	if amount > 0.0:
+		_last_hurt = creature.now()
 	var k: float = param("thorns", 0.0)
 	if k <= 0.0 or hit == null or hit.move == null or not hit.move.kind in MELEE_KINDS:
 		return
@@ -111,6 +125,19 @@ func damage_taken_mult(hit: HitInfo) -> float:
 
 
 func _tick(delta: float) -> void:
+	var regen: float = param("regen", 0.0)
+	if regen > 0.0 and not creature.is_down() and creature.now() - _last_hurt >= param("regen_delay", 2.5):
+		creature.health.heal(creature.health.max_hp() * regen * delta)
+	var every: float = param("shed_every", 0.0)
+	if every > 0.0:
+		_shed_left -= delta
+		if _shed_left <= 0.0:
+			_shed_left = every
+			var bad: Array = creature.statuses.active.keys().filter(func(id): return ItemData.BAD_STATUSES.has(id))
+			if not bad.is_empty():
+				for id in bad:
+					creature.statuses.cure(creature.statuses.active[id]["status"])
+				Events.signature_triggered.emit(creature, param("shed_text", "¡Muda!"), data.color)
 	var heal: float = param("wet_heal", 0.0)
 	if heal <= 0.0 and not data.params.has("wet_speed"):
 		return

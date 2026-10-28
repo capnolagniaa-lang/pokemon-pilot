@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/tierra.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "excavar_diglett"
+display_name = "Excavar"
+element = ExtResource("3_x")
+kind = 5
+category = 0
+power = 80.0
+cooldown = 6.0
+knockback = 200.0
+zone_radius = 22.0
+placement_range = 120.0
+zone_traps = false
+zone_strike = true
+strike_delay = 0.6
+strike_burrow = true

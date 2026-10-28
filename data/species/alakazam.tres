@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_gunmr"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_k7ypx"]
-[ext_resource type="Resource" path="res://data/moves/confusion.tres" id="2_k22r4"]
+[ext_resource type="Resource" path="res://data/kits/kadabra/kit.tres" id="2_lylyv"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_m3kkl"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_gxd57"]
-[ext_resource type="Resource" path="res://data/moves/kinetico.tres" id="3_hwael"]
-[ext_resource type="Resource" path="res://data/moves/teletransporte.tres" id="4_gunmr"]
+[ext_resource type="Resource" path="res://data/kits/kadabra/confusion_kadabra.tres" id="4_lylyv"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rcufv"]
+[ext_resource type="Resource" path="res://data/kits/kadabra/psicorrayo_kadabra.tres" id="5_5ei68"]
 [ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="5_lylyv"]
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="5_w7dxe"]
-[ext_resource type="Resource" path="res://data/moves/psicorrayo.tres" id="6_5ei68"]
+[ext_resource type="Resource" path="res://data/kits/kadabra/kinetico_kadabra.tres" id="6_onucw"]
+[ext_resource type="Resource" path="res://data/kits/kadabra/teletransporte_kadabra.tres" id="7_jpwt8"]
 [ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="7_onucw"]
 [ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="8_jpwt8"]
 [ext_resource type="Resource" path="res://data/moves/premonicion.tres" id="9_1tbbt"]
@@ -19,54 +20,55 @@
 [ext_resource type="Resource" path="res://data/moves/truco.tres" id="12_omy1l"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_hwael"]
 
-[sub_resource type="Resource" id="Resource_gunmr"]
-script = ExtResource("1_k7ypx")
-move = ExtResource("2_k22r4")
-
 [sub_resource type="Resource" id="Resource_lylyv"]
 script = ExtResource("1_k7ypx")
-move = ExtResource("3_hwael")
+move = ExtResource("4_lylyv")
 
 [sub_resource type="Resource" id="Resource_5ei68"]
 script = ExtResource("1_k7ypx")
-move = ExtResource("4_gunmr")
+move = ExtResource("5_5ei68")
 
 [sub_resource type="Resource" id="Resource_onucw"]
+script = ExtResource("1_k7ypx")
+level = 3
+move = ExtResource("6_onucw")
+
+[sub_resource type="Resource" id="Resource_jpwt8"]
+script = ExtResource("1_k7ypx")
+level = 5
+move = ExtResource("7_jpwt8")
+
+[sub_resource type="Resource" id="Resource_1tbbt"]
 script = ExtResource("1_k7ypx")
 level = 18
 move = ExtResource("5_lylyv")
 
-[sub_resource type="Resource" id="Resource_jpwt8"]
-script = ExtResource("1_k7ypx")
-level = 21
-move = ExtResource("6_5ei68")
-
-[sub_resource type="Resource" id="Resource_1tbbt"]
+[sub_resource type="Resource" id="Resource_xwbjl"]
 script = ExtResource("1_k7ypx")
 level = 23
 move = ExtResource("7_onucw")
 
-[sub_resource type="Resource" id="Resource_xwbjl"]
+[sub_resource type="Resource" id="Resource_jfy3y"]
 script = ExtResource("1_k7ypx")
 level = 25
 move = ExtResource("8_jpwt8")
 
-[sub_resource type="Resource" id="Resource_jfy3y"]
+[sub_resource type="Resource" id="Resource_omy1l"]
 script = ExtResource("1_k7ypx")
 level = 30
 move = ExtResource("9_1tbbt")
 
-[sub_resource type="Resource" id="Resource_omy1l"]
+[sub_resource type="Resource" id="Resource_krpjx"]
 script = ExtResource("1_k7ypx")
 level = 33
 move = ExtResource("10_xwbjl")
 
-[sub_resource type="Resource" id="Resource_krpjx"]
+[sub_resource type="Resource" id="Resource_qaygq"]
 script = ExtResource("1_k7ypx")
 level = 36
 move = ExtResource("11_jfy3y")
 
-[sub_resource type="Resource" id="Resource_qaygq"]
+[sub_resource type="Resource" id="Resource_w6mg1"]
 script = ExtResource("1_k7ypx")
 level = 43
 move = ExtResource("12_omy1l")
@@ -77,7 +79,9 @@ id = "alakazam"
 display_name = "Alakazam"
 dex = 65
 types = Array[ExtResource("4_rcufv")]([ExtResource("5_w7dxe")])
-learnset = Array[ExtResource("1_k7ypx")]([SubResource("Resource_gunmr"), SubResource("Resource_lylyv"), SubResource("Resource_5ei68"), SubResource("Resource_onucw"), SubResource("Resource_jpwt8"), SubResource("Resource_1tbbt"), SubResource("Resource_xwbjl"), SubResource("Resource_jfy3y"), SubResource("Resource_omy1l"), SubResource("Resource_krpjx"), SubResource("Resource_qaygq")])
+kit = ExtResource("2_lylyv")
+learnset = Array[ExtResource("1_k7ypx")]([SubResource("Resource_lylyv"), SubResource("Resource_5ei68"), SubResource("Resource_onucw"), SubResource("Resource_jpwt8"), SubResource("Resource_1tbbt"), SubResource("Resource_xwbjl"), SubResource("Resource_jfy3y"), SubResource("Resource_omy1l"), SubResource("Resource_krpjx"), SubResource("Resource_qaygq"), SubResource("Resource_w6mg1")])
+kit_inherited = true
 evolves_from = "kadabra"
 temperament = ExtResource("15_hwael")
 genus = "Pokémon Psi"

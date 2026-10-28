@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Kit para todos los Pokémon del juego + golpes con paso + stagger (2026-10-28, pedido del usuario)**: los 34 que
+  aparecían sin kit (Gastly, Cubone, Doduo, Rhyhorn, los Hitmon, Charizard, Lapras, Snorlax, Articuno, Zapdos, las
+  evoluciones de Eevee, los fósiles...) tienen su kit v9 y sus evoluciones lo heredan (`docs/PLAN_IDENTIDAD_COMBATE.md`
+  "v9"). Todo golpe físico avanza 30 px antes de pegar, y todo golpe con daño deja al rival un ratito sin poder atacar
+  (stagger, con respiro para que no se encadene; ajuste "Stagger al recibir un golpe"). Tests `--autotest-kits-v9` y
+  `--autotest-ai-steer`. Falta probarlo jugando.
 - **La historia hasta el final (2026-10-28, pedido del usuario: "continuá hasta donde puedas para terminar la historia")**:
   capítulos 4 a 8 (`docs/PLAN_RESTO_KANTO.md`), de la Torre Pokémon al Campeón de la Liga, sobre los mapas de todo
   Kanto de la sesión de mapas. Mecánicas: Surf, Fuerza, Poké Flauta, legendarios, Té y guardias de Azafrán. ~360

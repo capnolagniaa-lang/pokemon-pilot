@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/body_trait_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "lengua_larga"
+display_name = "Lengua Larga"
+description = "Sus lengüetazos babean (ralentizan). Golpe pega ×1,4 a lo ralentizado."
+color = Color(0.95, 0.6, 0.7, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"bonus_vs_status": "ralentizado", "bonus_move_prefix": "golpe", "bonus_mult": 1.4}

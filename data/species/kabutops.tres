@@ -3,75 +3,77 @@
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_l4eg1"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_sxgyn"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_b47c3"]
-[ext_resource type="Resource" path="res://data/moves/absorber.tres" id="2_w4b4r"]
+[ext_resource type="Resource" path="res://data/kits/kabuto/kit.tres" id="2_o5430"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_6khvw"]
 [ext_resource type="Resource" path="res://data/moves/corte_furia.tres" id="3_focjs"]
-[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="4_l4eg1"]
+[ext_resource type="Resource" path="res://data/kits/kabuto/aranazo_kabuto.tres" id="4_o5430"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qe8t2"]
+[ext_resource type="Resource" path="res://data/kits/kabuto/absorber_kabuto.tres" id="5_0wfno"]
 [ext_resource type="Resource" path="res://data/types/roca.tres" id="5_6rkw4"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="5_o5430"]
-[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="6_0wfno"]
+[ext_resource type="Resource" path="res://data/kits/kabuto/fortaleza_kabuto.tres" id="6_1au25"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="6_gk0cw"]
 [ext_resource type="Resource" path="res://data/moves/disparo_lodo.tres" id="7_1au25"]
+[ext_resource type="Resource" path="res://data/kits/kabuto/cuchillada_kabuto.tres" id="7_g345r"]
 [ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="8_g345r"]
 [ext_resource type="Resource" path="res://data/moves/aguante.tres" id="9_evdss"]
-[ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="10_hlqc8"]
 [ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="11_h5ugm"]
 [ext_resource type="Resource" path="res://data/moves/megaagotar.tres" id="12_x3k2w"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="13_fwsae"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_focjs"]
 
-[sub_resource type="Resource" id="Resource_l4eg1"]
-script = ExtResource("1_sxgyn")
-move = ExtResource("2_w4b4r")
-
 [sub_resource type="Resource" id="Resource_o5430"]
 script = ExtResource("1_sxgyn")
-move = ExtResource("3_focjs")
+move = ExtResource("4_o5430")
 
 [sub_resource type="Resource" id="Resource_0wfno"]
 script = ExtResource("1_sxgyn")
-move = ExtResource("4_l4eg1")
+move = ExtResource("5_0wfno")
 
 [sub_resource type="Resource" id="Resource_1au25"]
 script = ExtResource("1_sxgyn")
-move = ExtResource("5_o5430")
+level = 3
+move = ExtResource("6_1au25")
 
 [sub_resource type="Resource" id="Resource_g345r"]
 script = ExtResource("1_sxgyn")
-move = ExtResource("6_0wfno")
+level = 5
+move = ExtResource("7_g345r")
 
 [sub_resource type="Resource" id="Resource_evdss"]
+script = ExtResource("1_sxgyn")
+move = ExtResource("3_focjs")
+
+[sub_resource type="Resource" id="Resource_hlqc8"]
+script = ExtResource("1_sxgyn")
+move = ExtResource("5_o5430")
+
+[sub_resource type="Resource" id="Resource_h5ugm"]
 script = ExtResource("1_sxgyn")
 level = 25
 move = ExtResource("7_1au25")
 
-[sub_resource type="Resource" id="Resource_hlqc8"]
+[sub_resource type="Resource" id="Resource_x3k2w"]
 script = ExtResource("1_sxgyn")
 level = 31
 move = ExtResource("8_g345r")
 
-[sub_resource type="Resource" id="Resource_h5ugm"]
+[sub_resource type="Resource" id="Resource_fwsae"]
 script = ExtResource("1_sxgyn")
 level = 37
 move = ExtResource("9_evdss")
 
-[sub_resource type="Resource" id="Resource_x3k2w"]
-script = ExtResource("1_sxgyn")
-level = 40
-move = ExtResource("10_hlqc8")
-
-[sub_resource type="Resource" id="Resource_fwsae"]
+[sub_resource type="Resource" id="Resource_xeudj"]
 script = ExtResource("1_sxgyn")
 level = 46
 move = ExtResource("11_h5ugm")
 
-[sub_resource type="Resource" id="Resource_xeudj"]
+[sub_resource type="Resource" id="Resource_syjv5"]
 script = ExtResource("1_sxgyn")
 level = 55
 move = ExtResource("12_x3k2w")
 
-[sub_resource type="Resource" id="Resource_syjv5"]
+[sub_resource type="Resource" id="Resource_ljdvg"]
 script = ExtResource("1_sxgyn")
 level = 65
 move = ExtResource("13_fwsae")
@@ -82,7 +84,9 @@ id = "kabutops"
 display_name = "Kabutops"
 dex = 141
 types = Array[ExtResource("4_qe8t2")]([ExtResource("5_6rkw4"), ExtResource("6_gk0cw")])
-learnset = Array[ExtResource("1_sxgyn")]([SubResource("Resource_l4eg1"), SubResource("Resource_o5430"), SubResource("Resource_0wfno"), SubResource("Resource_1au25"), SubResource("Resource_g345r"), SubResource("Resource_evdss"), SubResource("Resource_hlqc8"), SubResource("Resource_h5ugm"), SubResource("Resource_x3k2w"), SubResource("Resource_fwsae"), SubResource("Resource_xeudj"), SubResource("Resource_syjv5")])
+kit = ExtResource("2_o5430")
+learnset = Array[ExtResource("1_sxgyn")]([SubResource("Resource_o5430"), SubResource("Resource_0wfno"), SubResource("Resource_1au25"), SubResource("Resource_g345r"), SubResource("Resource_evdss"), SubResource("Resource_hlqc8"), SubResource("Resource_h5ugm"), SubResource("Resource_x3k2w"), SubResource("Resource_fwsae"), SubResource("Resource_xeudj"), SubResource("Resource_syjv5"), SubResource("Resource_ljdvg")])
+kit_inherited = true
 evolves_from = "kabuto"
 temperament = ExtResource("16_focjs")
 genus = "Pokémon Armazón"

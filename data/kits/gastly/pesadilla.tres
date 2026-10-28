@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/stack_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "pesadilla"
+display_name = "Pesadilla"
+description = "Sus ataques fantasma suman Pavor al rival; con 3, queda paralizado de miedo. Comesueños roba vida."
+color = Color(0.55, 0.4, 0.8, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"element_marks": {"fantasma": "pavor"}, "stack_status": "pavor", "stacks": 3, "trigger_status": "paralizado", "text": "¡Paralizado de miedo!"}

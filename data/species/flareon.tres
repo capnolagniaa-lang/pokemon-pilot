@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/flareon/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_5dj51"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_d8d1d"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0defc"]
@@ -8,68 +9,66 @@
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_61sn3"]
 [ext_resource type="Resource" path="res://data/moves/agitacola.tres" id="4_5dj51"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_bqvf2"]
+[ext_resource type="Resource" path="res://data/kits/flareon/mordisco_flareon.tres" id="4_clrll"]
 [ext_resource type="Resource" path="res://data/types/fuego.tres" id="5_18pwc"]
 [ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="5_clrll"]
-[ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="6_x1rkr"]
+[ext_resource type="Resource" path="res://data/kits/flareon/ascuas_flareon.tres" id="5_x1rkr"]
+[ext_resource type="Resource" path="res://data/kits/flareon/giro_fuego_flareon.tres" id="6_jhy7p"]
+[ext_resource type="Resource" path="res://data/kits/flareon/lanzallamas_flareon.tres" id="7_8s8om"]
 [ext_resource type="Resource" path="res://data/moves/ataque_rapido.tres" id="7_jhy7p"]
-[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="8_8s8om"]
-[ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="9_28tbq"]
 [ext_resource type="Resource" path="res://data/moves/polucion.tres" id="10_l84vh"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="11_iqis7"]
-[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="12_66acx"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_61sn3"]
-
-[sub_resource type="Resource" id="Resource_5dj51"]
-script = ExtResource("1_d8d1d")
-move = ExtResource("2_ppmht")
 
 [sub_resource type="Resource" id="Resource_clrll"]
 script = ExtResource("1_d8d1d")
-move = ExtResource("3_61sn3")
+move = ExtResource("4_clrll")
 
 [sub_resource type="Resource" id="Resource_x1rkr"]
 script = ExtResource("1_d8d1d")
-move = ExtResource("4_5dj51")
+move = ExtResource("5_x1rkr")
 
 [sub_resource type="Resource" id="Resource_jhy7p"]
+script = ExtResource("1_d8d1d")
+level = 3
+move = ExtResource("6_jhy7p")
+
+[sub_resource type="Resource" id="Resource_8s8om"]
+script = ExtResource("1_d8d1d")
+level = 5
+move = ExtResource("7_8s8om")
+
+[sub_resource type="Resource" id="Resource_28tbq"]
+script = ExtResource("1_d8d1d")
+move = ExtResource("2_ppmht")
+
+[sub_resource type="Resource" id="Resource_l84vh"]
+script = ExtResource("1_d8d1d")
+move = ExtResource("3_61sn3")
+
+[sub_resource type="Resource" id="Resource_iqis7"]
+script = ExtResource("1_d8d1d")
+move = ExtResource("4_5dj51")
+
+[sub_resource type="Resource" id="Resource_66acx"]
 script = ExtResource("1_d8d1d")
 level = 8
 move = ExtResource("5_clrll")
 
-[sub_resource type="Resource" id="Resource_8s8om"]
-script = ExtResource("1_d8d1d")
-level = 16
-move = ExtResource("6_x1rkr")
-
-[sub_resource type="Resource" id="Resource_28tbq"]
+[sub_resource type="Resource" id="Resource_digvf"]
 script = ExtResource("1_d8d1d")
 level = 23
 move = ExtResource("7_jhy7p")
 
-[sub_resource type="Resource" id="Resource_l84vh"]
-script = ExtResource("1_d8d1d")
-level = 30
-move = ExtResource("8_8s8om")
-
-[sub_resource type="Resource" id="Resource_iqis7"]
-script = ExtResource("1_d8d1d")
-level = 36
-move = ExtResource("9_28tbq")
-
-[sub_resource type="Resource" id="Resource_66acx"]
+[sub_resource type="Resource" id="Resource_wl8ru"]
 script = ExtResource("1_d8d1d")
 level = 42
 move = ExtResource("10_l84vh")
 
-[sub_resource type="Resource" id="Resource_digvf"]
+[sub_resource type="Resource" id="Resource_iicnx"]
 script = ExtResource("1_d8d1d")
 level = 47
 move = ExtResource("11_iqis7")
-
-[sub_resource type="Resource" id="Resource_wl8ru"]
-script = ExtResource("1_d8d1d")
-level = 52
-move = ExtResource("12_66acx")
 
 [resource]
 script = ExtResource("3_1ougu")
@@ -77,7 +76,8 @@ id = "flareon"
 display_name = "Flareon"
 dex = 136
 types = Array[ExtResource("4_bqvf2")]([ExtResource("5_18pwc")])
-learnset = Array[ExtResource("1_d8d1d")]([SubResource("Resource_5dj51"), SubResource("Resource_clrll"), SubResource("Resource_x1rkr"), SubResource("Resource_jhy7p"), SubResource("Resource_8s8om"), SubResource("Resource_28tbq"), SubResource("Resource_l84vh"), SubResource("Resource_iqis7"), SubResource("Resource_66acx"), SubResource("Resource_digvf"), SubResource("Resource_wl8ru")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_d8d1d")]([SubResource("Resource_clrll"), SubResource("Resource_x1rkr"), SubResource("Resource_jhy7p"), SubResource("Resource_8s8om"), SubResource("Resource_28tbq"), SubResource("Resource_l84vh"), SubResource("Resource_iqis7"), SubResource("Resource_66acx"), SubResource("Resource_digvf"), SubResource("Resource_wl8ru"), SubResource("Resource_iicnx")])
 evolves_from = "eevee"
 temperament = ExtResource("15_61sn3")
 genus = "Pokémon Llama"

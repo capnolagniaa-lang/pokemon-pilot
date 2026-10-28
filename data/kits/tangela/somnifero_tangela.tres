@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/dormido.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "somnifero_tangela"
+display_name = "Somnífero"
+element = ExtResource("3_x")
+kind = 0
+category = 2
+power = 0.0
+cooldown = 10.0
+knockback = 0.0
+speed = 160.0
+size = 6.0
+lifetime = 1.1
+status = ExtResource("4_x")
+status_chance = 1.0

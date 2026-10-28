@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/static_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "electromotor"
+display_name = "Electromotor"
+description = "Moverse y esquivar lo cargan (5 marcas); quieto se descarga. Con la barra llena el próximo golpe es una Descarga que paraliza fuerte."
+color = Color(1.0, 0.85, 0.3, 1)
+max_value = 100.0
+gains = {"moved": 0.25, "dodged": 20.0}
+decay_out_of_combat = 6.0
+thresholds = Array[float]([20.0, 40.0, 60.0, 80.0, 100.0])
+mechanic_script = ExtResource("1_mech")
+params = {"idle_loss": 25.0, "discharge_mult": 1.35}

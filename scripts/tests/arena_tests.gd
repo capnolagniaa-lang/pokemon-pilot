@@ -56,6 +56,8 @@ func run() -> void:
 	# El "expuesto" dura 0,6 s: se registra si ocurrió (mirarlo en un instante fijo falla con la PC cargada).
 	var saw_recovery := [false]
 	var watch := func(_from, to): if String(to).to_lower() == "recovery": saw_recovery[0] = true
+	# (en stagger tampoco se usan objetos: si el Geodude le acaba de pegar, espera a que se recupere)
+	await _until(func(): return world.companion.can_act(), 2.0)
 	world.companion.machine.state_changed.connect(watch)
 	await autotest._tap("quick_item")
 	await get_tree().create_timer(0.2).timeout

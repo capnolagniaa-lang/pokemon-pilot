@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/stack_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "cancion_de_cuna"
+display_name = "Canción de Cuna"
+description = "Sus ataques de hielo y psíquicos suman Somnolencia; con 4, el rival se duerme."
+color = Color(0.9, 0.5, 0.75, 1)
+max_value = 0.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"element_marks": {"hielo": "somnolencia", "psiquico": "somnolencia"}, "stack_status": "somnolencia", "stacks": 4, "trigger_status": "dormido", "text": "¡Zzz...!"}

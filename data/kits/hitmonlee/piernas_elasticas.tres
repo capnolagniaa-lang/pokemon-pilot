@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/still_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "piernas_elasticas"
+display_name = "Piernas Elásticas"
+description = "Quieto 0,6 s recoge las piernas. La próxima patada sale como un resorte: +50% de daño y un envión."
+color = Color(0.75, 0.55, 0.4, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"still_time": 0.6, "burst_mult": 1.5, "burst_push": 280.0, "consume_on_hit": true, "ready_text": "¡Listo!", "label": "RESORTE"}

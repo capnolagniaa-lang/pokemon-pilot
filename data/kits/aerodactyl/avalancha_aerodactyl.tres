@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="3_x"]
+[ext_resource type="Resource" path="res://data/status/ralentizado.tres" id="4_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "avalancha_aerodactyl"
+display_name = "Avalancha"
+element = ExtResource("3_x")
+kind = 5
+category = 0
+power = 75.0
+cooldown = 8.0
+knockback = 180.0
+cast_time = 0.3
+zone_radius = 22.0
+placement_range = 140.0
+zone_traps = false
+zone_strike = true
+strike_delay = 0.6
+strike_count = 3
+strike_spread = 36.0
+recovery = 0.3
+statuses_on_hit = Array[ExtResource("2_x")]([ExtResource("4_x")])

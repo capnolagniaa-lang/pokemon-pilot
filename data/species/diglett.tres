@@ -1,72 +1,73 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Resource" path="res://data/kits/diglett/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_4fg0k"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ryv6o"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_i6483"]
-[ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="2_qg4mu"]
-[ext_resource type="Resource" path="res://data/moves/aranazo.tres" id="3_ary2m"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ghoui"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="4_4fg0k"]
+[ext_resource type="Resource" path="res://data/kits/diglett/aranazo_diglett.tres" id="4_dfe75"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ygo36"]
+[ext_resource type="Resource" path="res://data/kits/diglett/ataque_arena_diglett.tres" id="5_bwi0d"]
 [ext_resource type="Resource" path="res://data/moves/magnitud.tres" id="5_dfe75"]
 [ext_resource type="Resource" path="res://data/types/tierra.tres" id="5_qputh"]
-[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="6_bwi0d"]
+[ext_resource type="Resource" path="res://data/kits/diglett/excavar_diglett.tres" id="6_8dlir"]
 [ext_resource type="Resource" path="res://data/moves/golpes_furia.tres" id="7_8dlir"]
+[ext_resource type="Resource" path="res://data/kits/diglett/terremoto_diglett.tres" id="7_ti26d"]
 [ext_resource type="Resource" path="res://data/moves/bofeton_lodo.tres" id="8_ti26d"]
 [ext_resource type="Resource" path="res://data/moves/cuchillada.tres" id="9_pui24"]
-[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_rluyt"]
 [ext_resource type="Resource" path="res://data/moves/fisura.tres" id="11_njvsn"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_ary2m"]
 
-[sub_resource type="Resource" id="Resource_4fg0k"]
+[sub_resource type="Resource" id="Resource_dfe75"]
 script = ExtResource("1_4fg0k")
 to_id = "dugtrio"
 level = 26
 
-[sub_resource type="Resource" id="Resource_dfe75"]
-script = ExtResource("1_ryv6o")
-move = ExtResource("2_qg4mu")
-
 [sub_resource type="Resource" id="Resource_bwi0d"]
 script = ExtResource("1_ryv6o")
-move = ExtResource("3_ary2m")
+move = ExtResource("4_dfe75")
 
 [sub_resource type="Resource" id="Resource_8dlir"]
+script = ExtResource("1_ryv6o")
+move = ExtResource("5_bwi0d")
+
+[sub_resource type="Resource" id="Resource_ti26d"]
+script = ExtResource("1_ryv6o")
+level = 3
+move = ExtResource("6_8dlir")
+
+[sub_resource type="Resource" id="Resource_pui24"]
+script = ExtResource("1_ryv6o")
+level = 5
+move = ExtResource("7_ti26d")
+
+[sub_resource type="Resource" id="Resource_rluyt"]
 script = ExtResource("1_ryv6o")
 level = 5
 move = ExtResource("4_4fg0k")
 
-[sub_resource type="Resource" id="Resource_ti26d"]
+[sub_resource type="Resource" id="Resource_njvsn"]
 script = ExtResource("1_ryv6o")
 level = 9
 move = ExtResource("5_dfe75")
 
-[sub_resource type="Resource" id="Resource_pui24"]
-script = ExtResource("1_ryv6o")
-level = 17
-move = ExtResource("6_bwi0d")
-
-[sub_resource type="Resource" id="Resource_rluyt"]
+[sub_resource type="Resource" id="Resource_yk5h6"]
 script = ExtResource("1_ryv6o")
 level = 21
 move = ExtResource("7_8dlir")
 
-[sub_resource type="Resource" id="Resource_njvsn"]
+[sub_resource type="Resource" id="Resource_jvsoo"]
 script = ExtResource("1_ryv6o")
 level = 25
 move = ExtResource("8_ti26d")
 
-[sub_resource type="Resource" id="Resource_yk5h6"]
+[sub_resource type="Resource" id="Resource_yxugq"]
 script = ExtResource("1_ryv6o")
 level = 33
 move = ExtResource("9_pui24")
 
-[sub_resource type="Resource" id="Resource_jvsoo"]
-script = ExtResource("1_ryv6o")
-level = 41
-move = ExtResource("10_rluyt")
-
-[sub_resource type="Resource" id="Resource_yxugq"]
+[sub_resource type="Resource" id="Resource_qct7n"]
 script = ExtResource("1_ryv6o")
 level = 49
 move = ExtResource("11_njvsn")
@@ -77,8 +78,9 @@ id = "diglett"
 display_name = "Diglett"
 dex = 50
 types = Array[ExtResource("4_ygo36")]([ExtResource("5_qputh")])
-learnset = Array[ExtResource("1_ryv6o")]([SubResource("Resource_dfe75"), SubResource("Resource_bwi0d"), SubResource("Resource_8dlir"), SubResource("Resource_ti26d"), SubResource("Resource_pui24"), SubResource("Resource_rluyt"), SubResource("Resource_njvsn"), SubResource("Resource_yk5h6"), SubResource("Resource_jvsoo"), SubResource("Resource_yxugq")])
-evolutions = Array[ExtResource("1_4fg0k")]([SubResource("Resource_4fg0k")])
+kit = ExtResource("0_kitv4")
+learnset = Array[ExtResource("1_ryv6o")]([SubResource("Resource_bwi0d"), SubResource("Resource_8dlir"), SubResource("Resource_ti26d"), SubResource("Resource_pui24"), SubResource("Resource_rluyt"), SubResource("Resource_njvsn"), SubResource("Resource_yk5h6"), SubResource("Resource_jvsoo"), SubResource("Resource_yxugq"), SubResource("Resource_qct7n")])
+evolutions = Array[ExtResource("1_4fg0k")]([SubResource("Resource_dfe75")])
 temperament = ExtResource("14_ary2m")
 genus = "Pokémon Topo"
 pokedex_entry = "En la mayoría de las granjas se suelen criar Diglett por la sencilla razón de que, excaven donde excaven, dejan la tierra perfectamente labrada para sembrar. El terreno queda listo para plantar ricas verduras."

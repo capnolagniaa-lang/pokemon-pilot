@@ -16,6 +16,14 @@ const STAGGER_KNOCKBACK := 200.0
 ## Resistencia a control: después de un aturdimiento/sueño, los controles siguientes duran menos.
 const CC_RESIST_TIME := 2.5
 const CC_RESIST_FACTOR := 0.3
+## Stagger (pedido del usuario 2026-10-28: "cuando se golpea tiene que haber un tiempo de stagger así no pueden atacar
+## inmediatamente de ser impactados"): todo golpe con daño deja al que lo recibe sin poder atacar ni esquivar un ratito
+## (y caminando lento). Dura según la potencia; después hay un respiro sin stagger nuevo para que no se pueda encadenar.
+const HITSTUN_MIN := 0.2
+const HITSTUN_MAX := 0.45
+const HITSTUN_PER_POWER := 0.0018
+const HITSTUN_GRACE := 0.35
+const HITSTUN_MOVE := 0.45
 
 # Eventos de combate de esta criatura (para mecánicas de firma)
 signal hit_dealt(target: Creature, hit: HitInfo, damage: float)
@@ -48,6 +56,10 @@ var facing := Vector2.DOWN
 var knockback := Vector2.ZERO
 ## Segundos que quedan de resistencia a control.
 var cc_resist_left := 0.0
+## Segundos que quedan de stagger (no ataca ni esquiva) y de respiro (no recibe stagger nuevo).
+var hitstun_left := 0.0
+var _hitstun_grace := 0.0
+var _hitstun_hit: HitInfo
 ## Mecánica de firma (si la especie tiene kit con una).
 var signature: SignatureMechanic
 ## Estilo de combate de arena (movimiento y combos): data/estilos/<especie>.tres. Rige con las reglas de arena.
@@ -130,6 +142,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_clock += delta
 	cc_resist_left = maxf(0.0, cc_resist_left - delta)
+	if hitstun_left > 0.0:
+		hitstun_left = maxf(0.0, hitstun_left - delta)
+		if hitstun_left == 0.0:
+			_hitstun_grace = HITSTUN_GRACE
+	else:
+		_hitstun_grace = maxf(0.0, _hitstun_grace - delta)
 	spook_left = maxf(0.0, spook_left - delta)
 
 
@@ -334,6 +352,8 @@ func move(dir: Vector2, spd: float) -> void:
 	if jitter > 0.0 and dir != Vector2.ZERO:
 		dir = dir.rotated(sin(_clock * 3.1 + get_instance_id()) * jitter * 0.6)  # desorientado
 	var before := global_position
+	if hitstun_left > 0.0:
+		spd *= HITSTUN_MOVE  # tambaleando por el golpe
 	var want := dir * spd
 	if move_style() == "pesado" and arena_rules():
 		_move_vel = _move_vel.move_toward(want, HEAVY_ACCEL * get_physics_process_delta_time())  # inercia
@@ -350,7 +370,7 @@ func move(dir: Vector2, spd: float) -> void:
 
 
 func can_act() -> bool:
-	return not health.is_dead() and statuses.can_act() and machine.current_name() in ["controlled", "attack", "chase", "flee", "wander", "idle", "follow"]
+	return not health.is_dead() and statuses.can_act() and hitstun_left <= 0.0 and machine.current_name() in ["controlled", "attack", "chase", "flee", "wander", "idle", "follow"]
 
 
 ## Usa la habilidad de una ranura (Kit.Slot) apuntando a `aim`; `point` es el lugar del mundo apuntado
@@ -422,9 +442,13 @@ func release_move(msg: Dictionary) -> void:
 				hit.knockback = m.final_knockback
 			else:
 				recovery = 0.0
-			var s := MeleeSwing.new()
-			get_parent().add_child(s)
-			s.swing(hit, global_position + Vector2(0, -8) + aim * m.melee_range, m.swing_radius * hit.area_mult, aim)
+			var swing := {"move": m, "hit": hit, "aim": aim, "recovery": recovery}
+			var advance := melee_advance(m, aim)
+			if advance > 0.5:
+				machine.transition_to("step", swing.merged({"distance": advance}))
+			else:
+				swing_melee(swing, false)
+			return
 		MoveData.Kind.ZONE:
 			var at := zone_point(m, msg.get("point", Vector2.INF), aim)
 			if m.zone_strike:
@@ -476,6 +500,38 @@ func release_move(msg: Dictionary) -> void:
 			return
 	if recovery > 0.0:
 		machine.transition_to("recovery", {"time": recovery})
+
+
+## Cuánto se adelanta antes del golpe cuerpo a cuerpo: `melee_step`, o menos si hay un rival adelante más cerca
+## (frena justo donde el corte lo alcanza). Enraizado no avanza.
+func melee_advance(m: MoveData, aim: Vector2) -> float:
+	if m.melee_step <= 0.0 or not statuses.can_move():
+		return 0.0
+	var contact := m.melee_range + m.swing_radius * 0.5
+	var best := m.melee_step
+	for c in get_tree().get_nodes_in_group("creatures"):
+		if c == self or c.team == team or c.is_down():
+			continue
+		var rel: Vector2 = c.global_position - global_position
+		var along := rel.dot(aim)
+		if along > 0.0 and absf(rel.cross(aim)) < 14.0 and along < m.melee_step + contact:
+			best = minf(best, maxf(0.0, along - contact))
+	return best
+
+
+## Suelta el corte cuerpo a cuerpo (directo, o al final del paso: estado "step"). msg: move, hit, aim, recovery.
+func swing_melee(msg: Dictionary, from_state: bool = true) -> void:
+	var m: MoveData = msg["move"]
+	var hit: HitInfo = msg["hit"]
+	var aim: Vector2 = msg["aim"]
+	var s := MeleeSwing.new()
+	get_parent().add_child(s)
+	s.swing(hit, global_position + Vector2(0, -8) + aim * m.melee_range, m.swing_radius * hit.area_mult, aim)
+	var recovery: float = msg.get("recovery", 0.0)
+	if recovery > 0.0:
+		machine.transition_to("recovery", {"time": recovery})
+	elif from_state:
+		machine.transition_to(default_state())
 
 
 ## Dónde cae una zona: en el punto apuntado (limitado al alcance), en el objetivo, o delante.
@@ -579,6 +635,8 @@ func _on_hit(hit: HitInfo) -> void:
 	var push := statuses.knockback_mult() * (signature.knockback_taken_mult() if signature != null else 1.0)
 	if move_style() == "pesado" and arena_rules():
 		push *= HEAVY_KNOCKBACK
+	if dealt > 0.0 and hit.move.power > 0.0:
+		_apply_hitstun(hit, push)
 	push *= combo.get("knockback", 1.0)
 	if hit.knockback != 0.0:
 		knockback = (global_position - hit.origin).normalized() * hit.knockback * push
@@ -624,6 +682,19 @@ func _on_hit(hit: HitInfo) -> void:
 	elif team == Team.WILD and temperament != null and hit.knockback >= STAGGER_KNOCKBACK and randf() < temperament.spook_chance:
 		spook_left = 0.8  # se espanta: retrocede un momento
 		emote("gota", 0.8)
+
+
+## Stagger de un golpe: no se renueva con otro golpe del mismo ataque (ticks de una zona, abanico) ni durante el
+## respiro. Los que casi no se dejan empujar (jefes, pesados) lo sufren menos (hasta la mitad).
+func _apply_hitstun(hit: HitInfo, push: float) -> void:
+	if hitstun_left > 0.0 or _hitstun_grace > 0.0 or hit == _hitstun_hit:
+		return
+	var k: float = GameState.setting("hitstun_mult")
+	if k <= 0.0:
+		return
+	_hitstun_hit = hit
+	var power := hit.move.power * hit.move.power_mult
+	hitstun_left = clampf(HITSTUN_MIN + power * HITSTUN_PER_POWER, HITSTUN_MIN, HITSTUN_MAX) * k * clampf(0.5 + push * 0.5, 0.5, 1.0)
 
 
 func _apply_interaction(it: StatusInteraction) -> void:

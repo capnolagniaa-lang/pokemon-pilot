@@ -20,53 +20,53 @@
 [ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_r75bb"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ognyv"]
 
-[sub_resource type="Resource" id="Resource_vg5pk"]
+[sub_resource type="Resource" id="Resource_7fedo"]
 script = ExtResource("1_2510q")
 move = ExtResource("4_7fedo")
 
-[sub_resource type="Resource" id="Resource_r75bb"]
+[sub_resource type="Resource" id="Resource_7r7p1"]
 script = ExtResource("1_2510q")
 move = ExtResource("5_7r7p1")
 
-[sub_resource type="Resource" id="Resource_k7u7h"]
+[sub_resource type="Resource" id="Resource_4fn2m"]
 script = ExtResource("1_2510q")
 level = 3
 move = ExtResource("6_4fn2m")
 
-[sub_resource type="Resource" id="Resource_1c1nn"]
+[sub_resource type="Resource" id="Resource_cwvrm"]
 script = ExtResource("1_2510q")
 level = 5
 move = ExtResource("7_cwvrm")
 
-[sub_resource type="Resource" id="Resource_lq5ky"]
+[sub_resource type="Resource" id="Resource_vg5pk"]
 script = ExtResource("1_2510q")
 move = ExtResource("2_orufx")
 
-[sub_resource type="Resource" id="Resource_dkfu0"]
+[sub_resource type="Resource" id="Resource_r75bb"]
 script = ExtResource("1_2510q")
 move = ExtResource("3_ognyv")
 
-[sub_resource type="Resource" id="Resource_8bfsh"]
+[sub_resource type="Resource" id="Resource_k7u7h"]
 script = ExtResource("1_2510q")
 level = 8
 move = ExtResource("5_blivk")
 
-[sub_resource type="Resource" id="Resource_6qnvf"]
+[sub_resource type="Resource" id="Resource_1c1nn"]
 script = ExtResource("1_2510q")
 level = 19
 move = ExtResource("7_7r7p1")
 
-[sub_resource type="Resource" id="Resource_ti1dk"]
+[sub_resource type="Resource" id="Resource_lq5ky"]
 script = ExtResource("1_2510q")
 level = 26
 move = ExtResource("8_4fn2m")
 
-[sub_resource type="Resource" id="Resource_2tn5n"]
+[sub_resource type="Resource" id="Resource_dkfu0"]
 script = ExtResource("1_2510q")
 level = 47
 move = ExtResource("10_vg5pk")
 
-[sub_resource type="Resource" id="Resource_rl7ov"]
+[sub_resource type="Resource" id="Resource_8bfsh"]
 script = ExtResource("1_2510q")
 level = 61
 move = ExtResource("11_r75bb")
@@ -78,7 +78,7 @@ display_name = "Muk"
 dex = 89
 types = Array[ExtResource("4_1y36n")]([ExtResource("5_jjswu")])
 kit = ExtResource("2_blivk")
-learnset = Array[ExtResource("1_2510q")]([SubResource("Resource_vg5pk"), SubResource("Resource_r75bb"), SubResource("Resource_k7u7h"), SubResource("Resource_1c1nn"), SubResource("Resource_lq5ky"), SubResource("Resource_dkfu0"), SubResource("Resource_8bfsh"), SubResource("Resource_6qnvf"), SubResource("Resource_ti1dk"), SubResource("Resource_2tn5n"), SubResource("Resource_rl7ov")])
+learnset = Array[ExtResource("1_2510q")]([SubResource("Resource_7fedo"), SubResource("Resource_7r7p1"), SubResource("Resource_4fn2m"), SubResource("Resource_cwvrm"), SubResource("Resource_vg5pk"), SubResource("Resource_r75bb"), SubResource("Resource_k7u7h"), SubResource("Resource_1c1nn"), SubResource("Resource_lq5ky"), SubResource("Resource_dkfu0"), SubResource("Resource_8bfsh")])
 kit_inherited = true
 evolves_from = "grimer"
 temperament = ExtResource("14_ognyv")

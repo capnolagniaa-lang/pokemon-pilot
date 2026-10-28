@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "patada_salto_hitmonlee"
+display_name = "Patada Salto"
+element = ExtResource("3_x")
+kind = 7
+category = 0
+power = 85.0
+cooldown = 4.5
+knockback = 160.0
+lunge_range = 120.0
+lunge_speed = 520.0
+followup_delay = 0.12
+followup_power_mult = 0.4
+followup_knockback = 220.0
+recovery = 0.45

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/momentum_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "estampida"
+display_name = "Estampida"
+description = "Cada Derribo dentro de 3 s del anterior pega +40% (hasta ×1,8): una vez que arranca, no para."
+color = Color(0.75, 0.5, 0.35, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"roll_move": "derribo", "chain_time": 3.0, "step_bonus": 0.4, "max_chain": 2, "max_mult": 1.8, "curl_mult": 1.0}

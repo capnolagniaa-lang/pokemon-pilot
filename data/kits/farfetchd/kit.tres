@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Kit" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_md"]
+[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="2_kit"]
+[ext_resource type="Resource" path="res://data/kits/farfetchd/picotazo_farfetchd.tres" id="4_mv"]
+[ext_resource type="Resource" path="res://data/kits/farfetchd/malicioso_farfetchd.tres" id="5_mv"]
+[ext_resource type="Resource" path="res://data/kits/farfetchd/danza_espada_farfetchd.tres" id="6_mv"]
+[ext_resource type="Resource" path="res://data/kits/farfetchd/cuchillada_farfetchd.tres" id="7_mv"]
+[ext_resource type="Resource" path="res://data/kits/farfetchd/puerro.tres" id="3_sig"]
+
+[resource]
+script = ExtResource("2_kit")
+archetype = "asesino"
+preferred_range = 30.0
+signature = ExtResource("3_sig")
+moves = Array[ExtResource("1_md")]([ExtResource("4_mv"), ExtResource("5_mv"), ExtResource("6_mv"), ExtResource("7_mv")])

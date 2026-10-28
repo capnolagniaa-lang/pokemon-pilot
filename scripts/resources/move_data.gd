@@ -97,6 +97,9 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 
 @export_group("Cuerpo a cuerpo")
 @export var melee_range: float = 14.0
+## Paso adelante antes del golpe (px; 0 = en el lugar): todo golpe físico avanza un poco hacia donde apunta
+## (pedido del usuario 2026-10-28). Se frena si el rival ya está cerca.
+@export var melee_step: float = 30.0
 @export var swing_radius: float = 11.0
 ## Golpes del combo (el último cierra el combo, empuja más y dispara la recarga completa).
 @export var combo_steps: int = 1
@@ -161,7 +164,7 @@ func reach() -> float:
 		Kind.AREA:
 			return radius * 0.85
 		Kind.MELEE:
-			return melee_range + swing_radius
+			return melee_range + swing_radius + melee_step
 		Kind.ZONE:
 			return placement_range
 		Kind.CHANNEL:

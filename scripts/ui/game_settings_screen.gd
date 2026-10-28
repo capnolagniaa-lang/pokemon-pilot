@@ -17,6 +17,7 @@ const SECTIONS := [
 		["dealt_mult", "Daño que hacés (×)", 0.25, 3.0, 0.05, "×%.2f"],
 		["taken_mult", "Daño que recibís (×)", 0.25, 3.0, 0.05, "×%.2f"],
 		["hp_scale", "Vida de los Pokémon (× la oficial)", 1.0, 6.0, 0.5, "×%.1f"],
+		["hitstun_mult", "Stagger al recibir un golpe (×; 0 = sin stagger)", 0.0, 2.0, 0.1, "×%.1f"],
 		["combos", "Combos con nombre (arena)"],
 		["arena_everywhere", "Reglas de arena en todo el mundo (cráteres, estilos)"],
 	]],
