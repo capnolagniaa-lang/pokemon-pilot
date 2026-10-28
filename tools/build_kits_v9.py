@@ -207,7 +207,7 @@ KITS = {
     # --- Scyther: guadañas cada vez más rápidas. ---
     "scyther": ("asesino", 30, sig("filo_furioso", "Filo Furioso", "fury_mechanic.gd", (0.55, 0.85, 0.4),
                 "Cada golpe seguido al mismo rival suma una marca (hasta 5): +10% por marca. Si pasan 2,5 s sin pegarle, se pierden.",
-                {"max_stacks": 5, "per_stack": 0.1, "window": 2.5}, max=0), [
+                {"max_stacks": 5, "per_stack": 0.1, "window": 2.5}), [  # (la Furia necesita barra: max 100)
         melee("corte_furia_scyther", "Corte Furia", "bicho", 25, 0.8, 3, step_cd=0.15),
         mv("ataque_ala_scyther", "Ataque Ala", "volador", "LUNGE", "fis", 60, 3.5, 140, lunge_range=110,
            lunge_speed=540, followup_delay=0.12, followup_power_mult=0.5, followup_knockback=180, recovery=0.15),

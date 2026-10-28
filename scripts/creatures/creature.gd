@@ -50,6 +50,8 @@ var swims := false:
 		collision_mask = (collision_mask & ~2) if v else (collision_mask | 2)
 ## Tu Pokémon mientras lo controlás en combate.
 var player_controlled := false
+## Pelea sola con la IA de los salvajes aunque sea de tu equipo (la batería de balance: dos IA peleando entre sí).
+var ai_fighter := false
 ## De dónde salen las órdenes cuando player_controlled (teclado/mouse, o un bot en el autotest).
 var input_source: CombatInput
 var facing := Vector2.DOWN
@@ -186,7 +188,7 @@ func default_state() -> String:
 		return "fainted"
 	if player_controlled:
 		return "controlled"
-	if team == Team.WILD:
+	if team == Team.WILD or ai_fighter:
 		return "attack" if is_instance_valid(target) else "wander"
 	return "idle"
 

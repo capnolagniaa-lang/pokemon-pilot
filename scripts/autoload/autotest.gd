@@ -180,6 +180,13 @@ func _ready() -> void:
 		add_child(sg)
 		(sg.showcase if "--showcase-settings" in OS.get_cmdline_user_args() else sg.run).call_deferred()
 		return
+	if "--autotest-balance" in OS.get_cmdline_user_args():
+		set_process(false)
+		var bal := BalanceTests.new()
+		bal.autotest = self
+		add_child(bal)
+		bal.run.call_deferred()
+		return
 	if "--autotest-kits-v9" in OS.get_cmdline_user_args():
 		set_process(false)
 		var k9 := KitsV9Tests.new()

@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Batería de balance (2026-10-28, pedido del usuario)**: `--autotest-balance` hace pelear solos a dos Pokémon con kit
+  (IA en Difícil, nivel 40, emparejados por stats base ±60, cada pareja dos veces cambiando de lado; ~2 peleas por
+  segundo con `--fixed-fps 60`) y escribe `docs/BALANCE_INFORME.md` (victorias por especie, estilo y tipo, daño por
+  ataque) + un CSV con cada pelea. Encontró un bug: el Filo Furioso de Scyther (y Scizor) curaba al rival (barra de
+  tamaño 0); arreglado. Primera tanda (2000 peleas): bruisers 69% vs caóticos 25%; Dragón 13% y Hada 17%; Chansey,
+  Blissey, Clefairy, Dragonair y Exeggutor casi no ganan. Pendiente: decidir con el usuario qué ajustar.
 - **Kit para todos los Pokémon del juego + golpes con paso + stagger (2026-10-28, pedido del usuario)**: los 34 que
   aparecían sin kit (Gastly, Cubone, Doduo, Rhyhorn, los Hitmon, Charizard, Lapras, Snorlax, Articuno, Zapdos, las
   evoluciones de Eevee, los fósiles...) tienen su kit v9 y sus evoluciones lo heredan (`docs/PLAN_IDENTIDAD_COMBATE.md`

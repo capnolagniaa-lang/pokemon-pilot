@@ -94,3 +94,13 @@ func _dratini(r: Dictionary) -> void:
 	me.statuses.apply(DB.statuses["envenenado"])
 	await get_tree().create_timer(6.5).timeout
 	r["Dratini: la Muda le saca el veneno"] = not me.statuses.has_status("envenenado")
+
+
+func _scyther(r: Dictionary) -> void:
+	await _setup("scyther")
+	var foe := _dummy("rattata", Vector2(30, 0))
+	await get_tree().physics_frame
+	var m1: float = me.signature.damage_mult_against(HitInfo.from(me, me.moves.slots[0]), foe)
+	var m2: float = me.signature.damage_mult_against(HitInfo.from(me, me.moves.slots[0]), foe)
+	r["Scyther: Filo Furioso suma de a poco (%.2f → %.2f, sin números rotos)" % [m1, m2]] = is_finite(m1) and is_finite(m2) \
+		and m2 > m1 and m2 < 1.6
