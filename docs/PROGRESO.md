@@ -26,6 +26,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   van con luz pareja. "Hora fija" en Ajustes del juego. Por ahora solo visual (decisión del usuario). **Parte B (sombras largas)**:
   casas, árboles y cercas (`ZoneShadows`, máscara de las celdas sólidas + shader) y personajes y Pokémon (`SunShadow`,
   su propio cuadro acostado), según la hora. Test `--autotest-daynight` (23), vitrina `--showcase-daynight`.
+- **15 proyectiles hechos con IA (2026-10-28, pedido del usuario)**: Lanzallamas, Confusión, Hiperrayo, Poder Pasado,
+  Rayo Hielo, Psíquico, Rayo Burbuja, Llamarada, Electrocañón, Dragoaliento, Furia Dragón, Ácido, Gigadrenado, Pin
+  Misil y Rapidez (`sprites/fx/moves/`, bucle de 4 cuadros, tamaño según el `size` del ataque). ComfyUI con el LoRA
+  MOSS; lecciones en `docs/COMFYUI.md`. Pendientes: Surf (área), Bomba Lodo, Disparo Lodo, Hidrobomba, Bola Sombra.
 - **Noche con luz de luna (2026-10-28, pedido del usuario: "demasiado azulado oscuro")**: la noche es plateada y más
   clara, con un brillo de luna con rayos desde arriba a la derecha, sombras de luna y estrellitas que titilan
   (`AmbientFX`, solo afuera). Tabla `KEYS` de `DayNight`.

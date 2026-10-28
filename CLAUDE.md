@@ -42,6 +42,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-kits-v5  # kits v5 (Star
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v6  # kits v6 (Raichu jefe de Surge + Tanda A; lento: `--only <especie>` prueba una sola)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v7  # kits v7 (Tanda B: Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v8  # kits v8 (Tanda C) + sinergia (`--only sinergia`)
+$G --headless --path . --fixed-fps 60 --quit-after 90000000 -- --autotest-balance --fights 2000  # balance: IA contra IA (Difícil) → docs/BALANCE_INFORME.md (`--level`, `--bst`, `--species a,b`, `--arena`, `--seed`)
 $G --headless --path . --quit-after 400000 -- --autotest-kits-v9  # kits v9 (todos los que aparecen en el juego; `--only <especie>`)
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
@@ -416,7 +417,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   látigos todavía no. **Hojas hechas por código** con `python -I -B tools/make_vfx.py .` (impacto de 14 tipos + cuerpo de
   Ascuas, Impactrueno, Pistola Agua, Burbuja, Hoja Afilada; `--sheet <png>` = hoja de contacto); correrlo de nuevo
   pisa esas hojas. **Hechas con IA** (ComfyUI, `docs/COMFYUI.md`; están en `HECHOS_CON_IA` de make_vfx para no pisarlas):
-  impactos de Hielo, Planta, Psíquico y Roca, y las áreas de Trueno (`moves/trueno.png`, 64 px) y Giro Fuego (48 px).
+  impactos de Hielo, Planta, Psíquico y Roca, las áreas de Trueno (`moves/trueno.png`, 64 px) y Giro Fuego (48 px) y
+  15 proyectiles (Lanzallamas, Confusión, Hiperrayo, Poder Pasado, Rayo Hielo, Psíquico, Rayo Burbuja, Llamarada,
+  Electrocañón, Dragoaliento, Furia Dragón, Ácido, Gigadrenado, Pin Misil, Rapidez; 4 cuadros en bucle, de 16 a 32 px
+  según el `size` del ataque: `max(16, min(32, size·4))`).
 
 ## Trampas conocidas
 - En shaders `canvas_item`, `COLOR` en `fragment()` ya trae la textura: guardar el color de vértice en un

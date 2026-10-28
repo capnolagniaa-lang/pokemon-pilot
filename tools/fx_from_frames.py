@@ -29,6 +29,8 @@ except ImportError:
 
 
 def load_frames(src):
+    if os.path.isfile(src):
+        return [Image.open(src).convert("RGB")]  # una imagen suelta (p. ej. el cuadro clave, con --spin)
     if os.path.isdir(src):
         files = glob.glob(os.path.join(src, "*.png"))
     else:
@@ -105,6 +107,8 @@ def clean_key(src, dst, cut):
 
 
 def main(argv):
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # la consola de Windows no imprime "→"
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("frames")
     ap.add_argument("--out", help="hoja para el juego (p. ej. sprites/fx/types/fuego_impacto.png)")
@@ -114,6 +118,10 @@ def main(argv):
     ap.add_argument("--start", type=int, default=0, help="saltear los primeros N cuadros del video")
     ap.add_argument("--end", type=int, default=0, help="usar hasta el cuadro N (0 = hasta que se desvanece)")
     ap.add_argument("--grow", type=int, default=0, help="cuadros de crecimiento a agregar al principio")
+    ap.add_argument("--loop", action="store_true", help="bucle (proyectiles): cuadros parejos en el tiempo")
+    ap.add_argument("--spin", action="store_true",
+                    help="sin animación: el bucle sale de rotar el primer cuadro (rocas, hojas que giran; sirve con "
+                         "una imagen suelta, p. ej. el cuadro clave, cuando Wan deforma la animación)")
     ap.add_argument("--bg", choices=["auto", "black", "white"], default="auto")
     ap.add_argument("--colors", type=int, default=16)
     ap.add_argument("--alpha-cut", type=int, default=110, help="opacidad (0-255) desde la que un píxel queda")
@@ -147,8 +155,12 @@ def main(argv):
     end = a.end or max(i for i, c in enumerate(cov) if c >= peak * 0.04) + 1
     active = list(range(a.start, max(a.start + 1, end)))
     n = min(a.count - a.grow, len(active))
-    # Más cuadros al principio (el estallido) que al final (lo que se desvanece).
-    pick = [active[round((k / max(1, n - 1)) ** 1.7 * (len(active) - 1))] for k in range(n)]
+    # Más cuadros al principio (el estallido) que al final (lo que se desvanece); en un bucle, parejos y sin repetir
+    # el último (que se parece al primero).
+    if a.loop:
+        pick = [active[k * len(active) // n] for k in range(n)]
+    else:
+        pick = [active[round((k / max(1, n - 1)) ** 1.7 * (len(active) - 1))] for k in range(n)]
     chosen = [rgba[i] for i in pick]
 
     # Cuadrado común: lo visible del cuadro más lleno (las gotas o chispas que vuelan lejos quedan afuera).
@@ -161,6 +173,10 @@ def main(argv):
     cx, cy = (x0 + x1) // 2, (y0 + y1) // 2
     crop = (cx - side // 2, cy - side // 2, cx - side // 2 + side, cy - side // 2 + side)
     chosen = [im.crop(crop) for im in chosen]
+
+    if a.spin:
+        first = chosen[0]
+        chosen = [first.rotate(-360.0 * k / a.count, resample=Image.NEAREST) for k in range(a.count)]
 
     if a.grow:
         first = chosen[0]
