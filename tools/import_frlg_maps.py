@@ -165,6 +165,11 @@ PLACE_ORDER = [("Route9", "CeruleanCity"), ("Route10", "Route9"), ("LavenderTown
 # mapa -> (eje, zona de un lado, zona del otro lado[, mapa con el que se reparte el espacio]).
 FIT = {"Route8": ("x", "SaffronCity", "LavenderTown"), "Route11": ("x", "VermilionCity", "Route12"),
        "Route15": ("x", "FuchsiaCity", "Route14"), "Route21_North": ("y", "PalletTown", "CinnabarIsland", "Route21_South")}
+# Franjas que se corren después de ubicar todo: mapa -> (columnas x0-x1 y filas y0-y1 locales de la franja,
+# corrimiento en filas). La Ruta 11 se alinea con Carmín y la 12 con Lavanda, y el camino oeste de la Ruta 12 (el que
+# en FireRed llega a la garita de la Ruta 11) quedaba 44 filas más arriba que la salida de la garita, contra el bosque.
+# El corrimiento es par para que el dibujo del bosque (de período 2) siga entero arriba y abajo.
+MOVE_BANDS = {"Route12": (0, 26, 119, 126, 44)}
 # Zonas grandes de salvajes lejos del mundo, agrandadas como el Bosque Verde.
 STRETCHED_4 = {"SafariZone_Center": ("zona_safari", "Zona Safari (centro)"),
                "SafariZone_East": ("zona_safari_este", "Zona Safari (este)"),
@@ -552,6 +557,18 @@ def place_second(maps, by_const, lay_of, grids, pos, box):
             pos[b] = (x0 - len(gb[0]) if side == "left" else x1, ay + na[1] - nb[1])
 
 
+def move_band(cells, rect, band):
+    """Baja una franja del mapa (MOVE_BANDS) y llena lo que deja con el bosque de justo arriba (período 2)."""
+    x0, x1, y0, y1, dy = band
+    rx, ry = rect[0], rect[1]
+    strip = {(x, y): cells[(rx + x, ry + y)] for x in range(x0, x1) for y in range(y0, y1)}
+    for y in range(y0, y0 + dy):
+        for x in range(x0, x1):
+            cells[(rx + x, ry + y)] = cells[(rx + x, ry + y0 - 2 + (y - y0) % 2)]
+    for (x, y), c in strip.items():
+        cells[(rx + x, ry + y + dy)] = c
+
+
 def pad(cells, rect, inner, name, lay, hp, vp):
     """Rellena lo vacío del rectángulo continuando los bordes del mapa (`inner`) con período 2: los árboles del
     borde siguen enteros y un camino que llega al borde sigue hasta la zona vecina. Donde el borde no se puede
@@ -762,6 +779,8 @@ def main():
             ra, rb = rects[a], rects[b]
             if ra[0] < rb[2] and rb[0] < ra[2] and ra[1] < rb[3] and rb[1] < ra[3]:
                 print("  OJO: %s y %s se enciman" % (a, b))
+    for n, band in MOVE_BANDS.items():
+        move_band(cells, rects[n], band)
     # Corrimiento: que el mundo del capítulo 1 empiece en (0, 0) (lo nuevo puede quedar en coordenadas negativas).
     sx = min(rects[n][0] for n in FIRST_EXTERIORS)
     sy = min(rects[n][1] for n in FIRST_EXTERIORS)

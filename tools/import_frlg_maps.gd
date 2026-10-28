@@ -4,6 +4,8 @@ extends SceneTree
 ## Uso: godot --headless --path . --script res://tools/import_frlg_maps.gd [-- --keep-others] [--only-new]
 ##  - --only-new: solo arma las zonas que todavía no están en kanto.tres (las que ya existen quedan tal cual: escena,
 ##    entrada y tabla de salvajes, aunque se hayan editado a mano). Así se suman mapas sin pisar lo anterior.
+##  - --rebuild <id,id>: con --only-new, rearma la escena de esas zonas (para un arreglo del .py, como MOVE_BANDS);
+##    su entrada en kanto.tres (plaza, salidas) y su tabla de salvajes quedan.
 ##  - Rearma el TileSet (con las colisiones por celda que piden los mapas) y guarda cada zona en
 ##    scenes/world/zones/<id>.tscn, marcada hand_edited (build_world no la pisa; se sigue editando con el editor).
 ##  - La región queda solo con las zonas importadas: las demás zonas y sus tablas de salvajes se borran (con
@@ -42,7 +44,9 @@ func _init() -> void:
 		templates[t["id"]] = t
 
 	var old: WorldData = load(ZoneBuilder.WORLD_PATH)
-	var only_new := "--only-new" in OS.get_cmdline_user_args()
+	var args := OS.get_cmdline_user_args()
+	var only_new := "--only-new" in args
+	var rebuild: PackedStringArray = args[args.find("--rebuild") + 1].split(",") if args.has("--rebuild") else []
 	var old_by_id := {}
 	for z in old.zones:
 		old_by_id[z.id] = z
@@ -64,6 +68,12 @@ func _init() -> void:
 				kept.warps[cell] = WARP_OVERRIDES[kept.id][cell].duplicate()
 			if kept.warps.size() != before:
 				print("%-26s puertas: %d -> %d" % [kept.id, before, kept.warps.size()])
+			if kept.id in rebuild:
+				var built := _build(z)
+				_backup(kept.scene_path)
+				ZoneBuilder.save_zone(built, kept.scene_path)
+				built.free()
+				print("%-26s escena rearmada" % kept.id)
 			world.zones.append(kept)
 			continue
 		var e := ZoneEntry.new()
