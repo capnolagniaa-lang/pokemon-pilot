@@ -7,7 +7,8 @@ extends Node
 ##   godot --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-daynight
 
 const SHOW_ZONES := [["pueblo_paleta", Vector2i(20, 22)], ["ruta1", Vector2i(48, 35)], ["ciudad_verde", Vector2i(48, 35)], ["ciudad_plateada", Vector2i(48, 35)],
-	["ciudad_celeste", Vector2i(48, 35)], ["ciudad_carmin", Vector2i(48, 35)]]
+	["ciudad_celeste", Vector2i(48, 35)], ["ciudad_carmin", Vector2i(48, 35)],
+	["ciudad_azulona", Vector2i(48, 35)], ["ciudad_azafran", Vector2i(48, 35)]]
 const SHOW_HOURS := [12.0, 18.5, 23.0, 6.5]
 const SHOW_FRAMES := 14
 

@@ -8,6 +8,7 @@ extends Node2D
 
 const WINDOWS_PATH := "res://data/world/night_windows.json"
 const Z := -6                                   # sobre el suelo y las sombras largas, debajo de los personajes
+const Z_HIGH := 21                              # vidrio de las celdas que tapa Overhead (pisos altos): sobre los techos
 const WARM := Color(1.0, 0.74, 0.34)            # el vidrio prendido (antes de la luz de luna)
 const SPILL := Color(1.0, 0.74, 0.32)           # el charco de luz en el suelo
 const GLASS_ALPHA := 1.0
@@ -19,10 +20,13 @@ static var _windows: Dictionary = {}            # id global -> PackedInt32Array 
 static var _loaded := false
 static var _spill_tex: Texture2D
 
-## Celdas con ventana: celda -> máscara; y tiras horizontales de ventanas (para los charcos).
+## Celdas con ventana: celda -> máscara; las que tapa la capa Overhead (pisos altos de los edificios); y tiras
+## horizontales de ventanas (para los charcos).
 var cells: Dictionary = {}
+var high: Dictionary = {}
 var strips: Array[Rect2i] = []
 var _glass: Node2D
+var _glass_high: Node2D
 var _glow: Node2D
 var _world: Node
 
@@ -48,7 +52,7 @@ static func attach(zone: Node2D, entry: ZoneEntry, _world_data: WorldData) -> Zo
 	var node := ZoneLights.new()
 	node.name = "NightLights"
 	node.z_index = Z
-	node.scan(zone.get_node("Ground"))
+	node.scan(zone.get_node("Ground"), zone.get_node_or_null("Overhead"))
 	if node.cells.is_empty():
 		node.free()
 		return null
@@ -56,13 +60,20 @@ static func attach(zone: Node2D, entry: ZoneEntry, _world_data: WorldData) -> Zo
 	return node
 
 
-## Busca las celdas con vidrio en la capa de suelo y arma las tiras.
-func scan(ground: TileMapLayer) -> void:
+## Busca las celdas con vidrio (la misma celda tiene el mismo metatile en Ground y Overhead) y arma las tiras.
+func scan(ground: TileMapLayer, overhead: TileMapLayer = null) -> void:
 	var w := windows()
-	for cell in ground.get_used_cells():
-		var mt := ZoneBuilder.metatile_of(ground.get_cell_source_id(cell), ground.get_cell_atlas_coords(cell))
-		if w.has(mt):
-			cells[cell] = w[mt]
+	for layer in [ground, overhead]:
+		if layer == null:
+			continue
+		for cell in layer.get_used_cells():
+			var mt := ZoneBuilder.metatile_of(layer.get_cell_source_id(cell), layer.get_cell_atlas_coords(cell))
+			if w.has(mt):
+				cells[cell] = w[mt]
+	if overhead != null:
+		for cell in cells:
+			if overhead.get_cell_source_id(cell) >= 0:
+				high[cell] = true
 	var done := {}
 	for cell in cells:
 		if done.has(cell) or cells.has(cell + Vector2i.LEFT):
@@ -85,8 +96,14 @@ func _ready() -> void:
 	add_child(_glow)
 	_glass = Node2D.new()
 	_glass.name = "Glass"
-	_glass.draw.connect(_draw_glass)
+	_glass.draw.connect(func(): _draw_glass(_glass, false))
 	add_child(_glass)
+	_glass_high = Node2D.new()
+	_glass_high.name = "GlassHigh"
+	_glass_high.z_as_relative = false
+	_glass_high.z_index = Z_HIGH
+	_glass_high.draw.connect(func(): _draw_glass(_glass_high, true))
+	add_child(_glass_high)
 	visible = false
 
 
@@ -105,13 +122,16 @@ func _process(_delta: float) -> void:
 		day = daylight.color
 	var undo := Color(1.0 / maxf(day.r, 0.2), 1.0 / maxf(day.g, 0.2), 1.0 / maxf(day.b, 0.2))
 	_glass.self_modulate = Color(undo.r, undo.g, undo.b, k * GLASS_ALPHA)
+	_glass_high.self_modulate = _glass.self_modulate
 	_glow.self_modulate = Color(undo.r, undo.g, undo.b, k * SPILL_ALPHA)
 
 
-## El vidrio: cada fila de píxeles prendidos, en tiras.
-func _draw_glass() -> void:
+## El vidrio: cada fila de píxeles prendidos, en tiras (en `node`: las celdas bajas o las altas).
+func _draw_glass(node: Node2D, upper: bool) -> void:
 	var t := Zone.TILE
 	for cell in cells:
+		if high.has(cell) != upper:
+			continue
 		var rows: PackedInt32Array = cells[cell]
 		var o := Vector2(cell * t)
 		for y in rows.size():
@@ -124,7 +144,7 @@ func _draw_glass() -> void:
 				var x0 := x
 				while x < t and bits & (1 << x) != 0:
 					x += 1
-				_glass.draw_rect(Rect2(o + Vector2(x0, y), Vector2(x - x0, 1)), WARM)
+				node.draw_rect(Rect2(o + Vector2(x0, y), Vector2(x - x0, 1)), WARM)
 
 
 ## El charco de luz delante de cada tira de ventanas y un halo suave sobre el vidrio.
@@ -132,11 +152,24 @@ func _draw_glow() -> void:
 	var t := float(Zone.TILE)
 	var tex := spill_texture()
 	for s in strips:
+		if high.has(s.position):
+			continue
 		var r := Rect2(Vector2(s.position) * t, Vector2(s.size) * t)
 		var halo := r.grow(t * 0.45)
 		_glow.draw_texture_rect(tex, halo, false, Color(SPILL, 0.45))
+		if _has_windows_below(s):
+			continue
 		var pool := Rect2(r.position.x - t * 0.8, r.end.y - t * 0.3, r.size.x + t * 1.6, t * 3.0)
 		_glow.draw_texture_rect(tex, pool, false, SPILL)
+
+
+## ¿Hay más ventanas en las 2 filas de abajo? (entonces no es la planta baja: el charco va solo bajo la última).
+func _has_windows_below(s: Rect2i) -> bool:
+	for dy in [1, 2]:
+		for x in range(s.position.x, s.end.x):
+			if cells.has(Vector2i(x, s.position.y + dy)):
+				return true
+	return false
 
 
 static func spill_texture() -> Texture2D:

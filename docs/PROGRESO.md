@@ -43,8 +43,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Día y noche, parte C: ventanas prendidas (2026-10-28, pedido del usuario)**: de noche las ventanas de casas, Centros,
   Tiendas, gimnasios y edificios se prenden con luz cálida y tiran un charco de luz al suelo (como `verde_noche.png` de
   Qwen). No se marcó nada a mano: `tools/find_windows.py` detecta los vidrios en los mapas de FireRed (sirve para toda
-  la región, incluidas Azulona y Azafrán cuando se armen) → `data/world/night_windows.json`; `ZoneLights` los dibuja.
-  Revisado en Paleta, Verde, Plateada, Celeste y Carmín (vitrina `--showcase-daynight`). Faltan faroles (FireRed casi no
+  la región) → `data/world/night_windows.json`; `ZoneLights` los dibuja.
+  Revisado en Paleta, Verde, Plateada, Celeste, Carmín, Azulona y Azafrán (vitrina `--showcase-daynight`); los pisos
+  altos (tapados por `Overhead`) se dibujan sobre los techos y el charco va solo bajo la planta baja. Faltan faroles (FireRed casi no
   tiene) y que algunas ventanas se apaguen tarde a la noche, si se quiere.
 - **Árboles y pasto alto hechos con IA: probados y descartados (2026-10-28)**: al usuario no le gustaron; volvieron los
   de FireRed. El paquete (`TilePack`, `tools/tile_pack.py`, interruptor en Ajustes) está en el commit d34b20ba por si se
