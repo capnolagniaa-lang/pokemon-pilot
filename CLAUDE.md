@@ -395,6 +395,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   tabla `EXTRAS`) y los guarda en las especies; el equipamiento inicial es el kit (`default_equipment`). Correrlo después de cambiar un kit o los extras.
 - `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +
   `sprites/items/`. El efecto de cada objeto está en su tabla `ITEMS`.
+- `tools/build_pokemon_docs.gd`: genera `docs/POKEMON_KITS_Y_ATAQUES.md` (los 386: kit, firma, sus 4 ataques con tecla,
+  todo lo que aprenden y si aparecen en el juego). Correrlo después de cambiar kits o learnsets.
 - `tools/build_wild_docs.gd`: genera `docs/SALVAJES_LISTADO.md` (qué aparece en cada zona, kit, temperamento y
   movimientos de cada especie). Correrlo después de tocar tablas de encuentros, kits o learnsets. Cómo funciona
   todo eso y cómo modificarlo: `docs/SALVAJES_Y_MOVIMIENTOS.md`.
