@@ -60,6 +60,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Revisado en Paleta, Verde, Plateada, Celeste, Carmín, Azulona y Azafrán (vitrina `--showcase-daynight`); los pisos
   altos (tapados por `Overhead`) se dibujan sobre los techos y el charco va solo bajo la planta baja. Faltan faroles (FireRed casi no
   tiene) y que algunas ventanas se apaguen tarde a la noche, si se quiere.
+- **Pantalla VS (2026-10-28, pedido del usuario)**: antes de pelear con un líder, el Alto Mando, el rival o Giovanni,
+  2,5 s de "VS" con los dos retratos entrando desde los costados, fondo partido con líneas de velocidad del color del
+  tipo del rival, destello y temblor (E/Espacio la saltean). `--autotest-vs`, `--showcase-vs`.
 - **Diálogos y HUD (2026-10-28, pedido del usuario)**: las charlas comunes ya no te frenan (alejarte las corta; las
   importantes siguen trabando hasta terminar). El HUD se esconde con cualquier diálogo (antes se encimaba en la Poké
   Flauta, el torneo, después de las peleas...) y se vuelve casi transparente cuando un Pokémon o una persona queda

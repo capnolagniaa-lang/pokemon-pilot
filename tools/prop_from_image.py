@@ -1,6 +1,7 @@
 """Pasa un objeto generado con ComfyUI (fondo blanco liso) a un sprite del juego (sprites/props/).
 
-Uso:  python -I -B tools/prop_from_image.py <imagen.png> <salida.png> --height <px> [--colors 24] [--keep-glow]
+Uso:  python -I -B tools/prop_from_image.py <imagen.png> <salida.png> --height <px> [--colors 24] [--outer-bg]
+      (--outer-bg: el fondo es solo el blanco que toca el borde; para personajes con ropa blanca, los retratos VS)
 
 Saca el fondo (lo casi blanco y el halo claro alrededor), se queda con la mancha principal (y las que la tocan: se
 descartan las manchitas sueltas), recorta y achica a la altura pedida promediando cada bloque (el arte de Qwen viene
@@ -36,6 +37,25 @@ def main():
         for x in range(w):
             if not is_bg(px[x, y], cut):
                 fg[y * w + x] = 1
+    if "--outer-bg" in sys.argv:
+        # Fondo = solo lo casi blanco que toca el borde (lo blanco de adentro, como un guardapolvo, se queda).
+        outer = bytearray(w * h)
+        stack = [i for i in range(w)] + [(h - 1) * w + i for i in range(w)] + [y * w for y in range(h)] \
+            + [y * w + w - 1 for y in range(h)]
+        stack = [i for i in stack if not fg[i]]
+        for i in stack:
+            outer[i] = 1
+        while stack:
+            j = stack.pop()
+            x, y = j % w, j // w
+            for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if 0 <= nx < w and 0 <= ny < h:
+                    k = ny * w + nx
+                    if not fg[k] and not outer[k]:
+                        outer[k] = 1
+                        stack.append(k)
+        for i in range(w * h):
+            fg[i] = 0 if outer[i] else 1
     # Manchas (8 vecinos); se queda con la más grande y las que están a menos de `gap` de su recuadro.
     seen = bytearray(w * h)
     blobs = []

@@ -152,6 +152,13 @@ func _ready() -> void:
 		add_child(nc)
 		(nc.showcase if "--showcase-night-combat" in OS.get_cmdline_user_args() else nc.run).call_deferred()
 		return
+	if "--autotest-vs" in OS.get_cmdline_user_args() or "--showcase-vs" in OS.get_cmdline_user_args():
+		set_process(false)
+		var vst := VsTests.new()
+		vst.autotest = self
+		add_child(vst)
+		(vst.showcase if "--showcase-vs" in OS.get_cmdline_user_args() else vst.run).call_deferred()
+		return
 	if "--autotest-daynight" in OS.get_cmdline_user_args() or "--showcase-daynight" in OS.get_cmdline_user_args() 			or "--showcase-cave" in OS.get_cmdline_user_args():
 		set_process(false)
 		var dnt := DayNightTests.new()

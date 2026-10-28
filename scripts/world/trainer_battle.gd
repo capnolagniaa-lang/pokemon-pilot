@@ -73,7 +73,8 @@ func _ready() -> void:
 
 
 ## Arranca la pelea. `opts`: name, title, team (Array[CreatureInstance]), arena_id, texture (sprite del entrenador,
-## hoja de FireRed), leader (líder de gimnasio: presentación de jefe), defeat_lines (lo que dice al perder).
+## hoja de FireRed), leader (líder de gimnasio: presentación de jefe), defeat_lines (lo que dice al perder),
+## vs (gfx del retrato de la pantalla VS, si tiene) y vs_color (su color).
 func start(opts: Dictionary) -> String:
 	if active:
 		return ""
@@ -91,6 +92,15 @@ func start(opts: Dictionary) -> String:
 	t.autopilot = Vector2.ZERO
 	if world.combat.in_battle:
 		world.combat.end_battle(true)
+	# Pantalla VS (líderes, rival...: si hay retrato en sprites/vs/). Termina en negro, como el fundido.
+	if VsScreen.has_portrait(opts.get("vs", "")):
+		var hud: CanvasItem = world.get_node_or_null("UI/HUD")
+		if hud != null:
+			hud.visible = false
+		await VsScreen.play(self, opts["vs"], foe_name, opts.get("title", ""), opts.get("vs_color", Color(0.85, 0.15, 0.15)))
+		_fade.color.a = 1.0
+		if hud != null:
+			hud.visible = true
 	await _fade_to(1.0)
 	_return_pos = t.global_position
 	_enter_arena(opts.get("texture", null))

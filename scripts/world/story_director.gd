@@ -394,6 +394,7 @@ func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) 
 		texture = load("res://art/pret/characters/%s.png" % data.gfx)
 	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": team,
 		"arena_id": td.arena_id, "texture": texture, "leader": td.leader, "no_blackout": no_blackout,
+		"vs": data.gfx, "vs_color": team[0].species.primary_type().color if not team.is_empty() else Color(0.85, 0.15, 0.15),
 		"music": "rival" if td.id.contains("rival") else ("lider" if td.leader else "entrenador"),
 		"defeat_lines": _lines(td, "pierde", "¡Me ganaste!")})
 	if r == "win":

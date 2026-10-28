@@ -61,6 +61,8 @@ $G --path . --quit-after 650 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 60000 -- --autotest-slots      # varias partidas con nombre, sin curación sola, desmayo total, modo de prueba del torneo
 $G --headless --path . --quit-after 300000 -- --autotest-tournament  # torneo de Plateada (dinero, copas, rondas, premio)
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-tournament  # el estadio del torneo
+$G --headless --path . --quit-after 20000 -- --autotest-vs   # pantalla VS (retratos de líderes, Alto Mando y rival)
+$G --path . --quit-after 330 --write-movie out/f.png --fixed-fps 30 -- --showcase-vs  # Brock, Misty y el rival
 $G --headless --path . --quit-after 100000 -- --autotest-arena  # combates contra entrenadores en arena (E-1): Brock, Cazabichos
 $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena  # Brock y Onix en el gimnasio épico
 $G --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd  # rearma las arenas (pisa las escenas; -- --only <id> arma solo una)
@@ -235,6 +237,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   una arena aparte (`ArenaData` en `data/arenas/`, escena = zona de tiles en `scenes/world/arenas/`, ambientación
   `ArenaDecor`), 1 contra 1 con cambios, `CombatDirector.arena_lock`, `Creature.owner_name` (no se atrapa).
   Entrenadores de la historia = `NpcData.trainer` (TrainerData) + `sight`; perder → `GameState.last_heal_position`.
+  **Pantalla VS** (`VsScreen`, layer 12, shader `vs_background`): antes de la pelea si hay `sprites/vs/<gfx>.png` (gfx de su
+  NpcData: líderes, Alto Mando, rival "blue", Giovanni); el tuyo `sprites/vs/jugador.png`. Base: ilustraciones de batalla
+  de FireRed (`art_src/vs/`, de pret `graphics/trainers/front_pics`), redibujadas con Qwen Edit.
 - **Combate de arena** (estilo Pokkén, `docs/PLAN_IDENTIDAD_COMBATE.md`): `FightStyle` por especie en `data/estilos/`
   (`tools/build_fight_styles.py`: estilo de movimiento + `ComboData`; **combos apagados** por decisión del usuario:
   `GameConfig.combos_enabled`); `Creature.arena_rules()` (en arenas registradas en
