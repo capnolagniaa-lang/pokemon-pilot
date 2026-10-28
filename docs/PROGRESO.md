@@ -14,12 +14,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   van con luz pareja. "Hora fija" en Ajustes del juego. Por ahora solo visual (decisión del usuario). **Parte B (sombras largas)**:
   casas, árboles y cercas (`ZoneShadows`, máscara de las celdas sólidas + shader) y personajes y Pokémon (`SunShadow`,
   su propio cuadro acostado), según la hora. Test `--autotest-daynight` (23), vitrina `--showcase-daynight`.
-- **Árboles y pasto alto nuevos, hechos con IA (2026-10-28, prueba del usuario)**: `TilePack` reemplaza EN MEMORIA el
-  dibujo del árbol (32×48, estilo HeartGold/SoulSilver, `art/tile_packs/hgss/arbol.png`) y del pasto alto en el atlas
-  general; mapas, colisión y tags iguales. Interruptor en Ajustes del juego ("Árboles y pasto alto nuevos", prendido por
-  defecto; apagado = los de FireRed al instante). El árbol de FireRed son 2×3 metatiles encadenables (copa 14/15,
-  cuerpo 30/31 y 28/29, base 36-39, unión de bosque 20-23), medido en los mapas. Faltan los árboles de otros tilesets
-  (Bosque Verde, etc.). Herramienta: `tools/tile_pack.py`.
+- **Árboles y pasto alto hechos con IA: probados y descartados (2026-10-28)**: al usuario no le gustaron; volvieron los
+  de FireRed. El paquete (`TilePack`, `tools/tile_pack.py`, interruptor en Ajustes) está en el commit d34b20ba por si se
+  quiere retomar con otro estilo.
 - **Efectos hechos con IA en el juego (2026-10-28, pedido del usuario)**: impactos de Hielo, Planta, Psíquico y Roca
   (`sprites/fx/types/`) y las áreas de Trueno y Giro Fuego (`sprites/fx/moves/`), con ComfyUI (Qwen-Image + LoRA de
   pixel art → Wan 2.2 → `tools/fx_from_frames.py`). Los proyectiles de 16 px siguen siendo los de código (a ese tamaño

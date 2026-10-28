@@ -45,13 +45,12 @@ y viven solo en ComfyUI.
    ataque con sprite". **Ojo**: `tools/make_vfx.py` pisa las hojas que genera; si reemplazás una, sacala de su tabla.
    El script necesita Pillow (el Python del sistema lo tiene; si no, el `python_embeded` de ComfyUI).
 
-## Árboles y pasto alto del juego (paquete de tiles)
-1. Árbol solo sobre blanco: workflow `mejorar_sprite_pokemon` con el árbol original (fondo transparente) e instrucción
-   "redraw this single pixel art tree ... plain flat white background" → salida "grande".
-2. `python -I -B tools/tile_pack.py arbol <grande.png>` → `art/tile_packs/hgss/arbol.png` (32×48).
-3. Pasto alto: una celda del medio de una escena redibujada (salida "juego"):
-   `python -I -B tools/tile_pack.py pasto_alto <juego.png> 3,6`.
-4. El juego lo aplica con `TilePack` si el ajuste "tile_pack" está prendido (ver CLAUDE.md, Ajustes).
+## Árboles y pasto alto del juego: probado y descartado (2026-10-28)
+Se probó reemplazar el árbol y el pasto alto de FireRed por unos redibujados con Qwen (estilo HeartGold/SoulSilver),
+con un interruptor en Ajustes. Al usuario no le gustaron y se sacaron. Todo (`TilePack`, `tools/tile_pack.py`, el árbol
+de 32×48) está en el commit d34b20ba. Lo aprendido: el árbol de FireRed son 2×3 metatiles encadenables (copa 14/15,
+cuerpo 30/31 y 28/29, base 36-39, unión de bosque 20-23; 42/43 son techo, no árbol), y otros tilesets tienen sus propios
+árboles.
 
 ## Lecciones (pruebas del 2026-10-28)
 - **Caras**: no nombrar lo que no se quiere ("no face", "no rocket": lo dibuja igual, y peor) ni Pokémon/ataques/juegos

@@ -107,7 +107,7 @@ func default_settings() -> Dictionary:
 		"exp_mult": DB.config.exp_multiplier, "money_mult": 1.0, "catch_mult": 1.0,
 		"dealt_mult": 1.0, "taken_mult": 1.0, "hp_scale": CreatureInstance.HP_SCALE,
 		"combos": DB.config.combos_enabled, "arena_everywhere": DB.config.arena_rules_everywhere,
-		"wild_mult": 1.0, "regen": false, "field_items": true, "time_lock": -1.0, "tile_pack": true,
+		"wild_mult": 1.0, "regen": false, "field_items": true, "time_lock": -1.0,
 		"ai_attack_interval": n.attack_interval_mult, "ai_aim_error": n.aim_error_deg, "ai_dodge": n.dodge_chance,
 		"ai_lead": n.lead, "ai_damage": n.damage_mult, "ai_think": n.think_interval_mult,
 	}
@@ -126,8 +126,6 @@ func set_setting(key: String, value) -> void:
 		settings.erase(key)
 	else:
 		settings[key] = value
-	if key == "tile_pack":
-		TilePack.apply(bool(value))  # árboles y pasto alto hechos con IA (al instante)
 	if key == "hp_scale" and before != value and float(before) > 0.0:
 		for inst in party + box:
 			if inst != null:

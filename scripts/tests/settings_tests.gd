@@ -78,16 +78,6 @@ func run() -> void:
 	r["Valores por defecto"] = GameState.settings.is_empty() \
 		and is_equal_approx((screen.controls["taken_mult"] as HSlider).value, 1.0)
 
-	# --- Árboles y pasto alto hechos con IA (TilePack): se prenden y apagan en el momento ---
-	var ts: TileSet = load(ZoneBuilder.TILESET_PATH)
-	var src := TilePack._source(ts, TilePack.GENERAL_BELOW)
-	GameState.set_setting("tile_pack", true)
-	r["Árboles nuevos: el atlas usa el paquete"] = TilePack.is_on() and src.texture is ImageTexture
-	GameState.set_setting("tile_pack", false)
-	r["Árboles de FireRed: vuelve el atlas original"] = not TilePack.is_on() \
-		and src.texture.resource_path == TilePack.GENERAL_BELOW
-	GameState.set_setting("tile_pack", true)
-
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[ajustes] %s %s" % ["OK   " if r[key] else "FALLO", key])

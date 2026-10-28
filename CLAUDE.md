@@ -224,8 +224,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `exp_mult` (exp_yield), `money_mult`
   (`add_prize`: premios de entrenadores y torneo), `catch_mult` (Capture), `dealt_mult`/`taken_mult` (HitInfo.from),
   `hp_scale` (`CreatureInstance.hp_scale()`, reescala la vida actual), `combos`, `arena_everywhere`, `wild_mult`
-  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), `tile_pack`
-  (TilePack: árboles y pasto alto hechos con IA en vez de los de FireRed, se cambia al instante), y `ai_*` (dificultad
+  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), y `ai_*` (dificultad
   "personalizado" = `GameState.custom_difficulty()`). **No leer más `DB.config.exp_multiplier`/`combos_enabled`/
   `arena_rules_everywhere` ni `CreatureInstance.HP_SCALE` directo** (son los valores por defecto).
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la

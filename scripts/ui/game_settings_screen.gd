@@ -25,7 +25,6 @@ const SECTIONS := [
 		["regen", "Curación sola fuera de combate (1% por segundo)"],
 		["field_items", "Objetos tirados en las rutas"],
 		["time_lock", "Hora fija (todo a la izquierda: el tiempo corre)", -1.0, 23.5, 0.5, "%.1f h", "Corre"],
-		["tile_pack", "Árboles y pasto alto nuevos (hechos con IA; apagado = los de FireRed)"],
 	]],
 	["IA personalizada (se usa con la dificultad «Personalizada»)", [
 		["ai_attack_interval", "Tiempo entre ataques (×)", 0.5, 3.0, 0.05, "×%.2f"],
