@@ -50,7 +50,7 @@ func open(p_hit: HitInfo) -> void:
 	light.position = Vector2(length * 0.5, 0)
 	add_child(light)
 	z_index = 3
-
+	NightLight.apply(self)  # día y noche: no se oscurece con la noche y su luz crece (docs/PLAN_DIA_NOCHE.md)
 
 func aim(dir: Vector2) -> void:
 	direction = dir.normalized()

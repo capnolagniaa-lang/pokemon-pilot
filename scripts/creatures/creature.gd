@@ -104,6 +104,7 @@ func _ready() -> void:
 	health.instance = instance
 	health.heal_mult_source = statuses
 	moves.setup(instance)
+	CreatureGlow.attach_if_needed(self, instance.species.types)  # llama que alumbra de noche (por tipo)
 	var kit := instance.species.kit
 	if kit != null and kit.signature != null and kit.signature.mechanic_script != null:
 		signature = kit.signature.mechanic_script.new()

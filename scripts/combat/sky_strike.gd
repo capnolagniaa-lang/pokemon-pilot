@@ -83,7 +83,7 @@ func _fall() -> void:
 	Fx.burst(get_parent(), global_position, hit.move.element.hdr(color), 18, radius * 2.0)
 	if burrower != null or not _is_bolt():
 		Fx.burst(get_parent(), global_position, Color(0.55, 0.45, 0.35), 26, radius * 3.0)  # polvo y piedras
-
+	NightLight.apply(self)  # día y noche: no se oscurece con la noche y su luz crece (docs/PLAN_DIA_NOCHE.md)
 
 func _is_bolt() -> bool:
 	return hit != null and hit.move.element.id == "electrico"

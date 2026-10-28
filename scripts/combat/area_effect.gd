@@ -41,7 +41,7 @@ func trigger(p_hit: HitInfo, at: Vector2) -> void:
 	if frames != null:
 		_has_vfx = true
 		VfxSprite.burst(get_parent(), frames, at, 0.0, radius * 2.0)
-
+	NightLight.apply(self)  # día y noche: no se oscurece con la noche y su luz crece (docs/PLAN_DIA_NOCHE.md)
 
 func _physics_process(delta: float) -> void:
 	_time += delta

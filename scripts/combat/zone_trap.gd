@@ -53,7 +53,7 @@ func place(p_hit: HitInfo, center: Vector2) -> void:
 	light.texture_scale = radius / 28.0
 	add_child(light)
 	Events.element_impact.emit(m.element, center, radius)
-
+	NightLight.apply(self)  # día y noche: no se oscurece con la noche y su luz crece (docs/PLAN_DIA_NOCHE.md)
 
 func _physics_process(delta: float) -> void:
 	_time += delta

@@ -29,7 +29,7 @@ func swing(p_hit: HitInfo, center: Vector2, p_radius: float, dir: Vector2) -> vo
 	if frames != null:
 		_has_vfx = true
 		VfxSprite.burst(get_parent(), frames, center, direction.angle())
-
+	NightLight.apply(self)  # día y noche: no se oscurece con la noche y su luz crece (docs/PLAN_DIA_NOCHE.md)
 
 func _physics_process(delta: float) -> void:
 	_time += delta

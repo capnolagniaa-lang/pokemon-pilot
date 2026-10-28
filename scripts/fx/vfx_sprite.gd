@@ -31,6 +31,7 @@ static func burst(parent: Node, frames: SpriteFrames, at: Vector2, rot: float = 
 	s.z_index = z
 	parent.add_child(s)
 	s.global_position = at
+	NightLight.compensate(s)  # de noche no se oscurece
 	s.animation_finished.connect(s.queue_free)
 	s.animation_looped.connect(s.queue_free)
 	s.play("default")

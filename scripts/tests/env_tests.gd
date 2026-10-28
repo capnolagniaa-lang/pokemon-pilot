@@ -18,7 +18,8 @@ func run() -> void:
 	var hielo: ElementType = DB.types["hielo"]
 	var electrico: ElementType = DB.types["electrico"]
 	# 3 de las reacciones + "crater" (el terreno golpeado en las arenas, docs/PLAN_IDENTIDAD_COMBATE.md).
-	r["Datos: 4 estados y 5 reglas cargadas"] = DB.env_states.size() == 4 and DB.env_states.has("crater") and DB.reactions.size() == 5
+	r["Datos: estados (cráter, chamuscado eléctrico de Raichu...) y 5 reglas cargadas"] = DB.env_states.size() >= 5 and DB.env_states.has("crater") \
+		and DB.env_states.has("chamuscado_electrico") and DB.reactions.size() == 5
 
 	# --- El fuego no interactúa con el entorno ---
 	var zone: Zone = await _go_to("ruta1")

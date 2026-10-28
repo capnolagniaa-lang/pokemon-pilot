@@ -220,6 +220,7 @@ func _make_fx(s: StatusEffect) -> CPUParticles2D:
 		light.energy = 0.22
 		light.texture_scale = 0.45
 		p.add_child(light)
+		NightLight.tune(light, NightLight.darkness(creature))
 		var tw := light.create_tween().set_loops()
 		tw.tween_property(light, "energy", 0.1, 0.09)
 		tw.tween_property(light, "energy", 0.26, 0.13)

@@ -47,7 +47,7 @@ func launch(p_hit: HitInfo, from: Vector2, dir: Vector2) -> void:
 		_vfx = VfxSprite.attach(self, frames, velocity.angle())
 	hit_landed.connect(func(_h): _impact())
 	body_entered.connect(func(_b): _impact())
-
+	NightLight.apply(self)  # día y noche: no se oscurece con la noche y su luz crece (docs/PLAN_DIA_NOCHE.md)
 
 func _physics_process(delta: float) -> void:
 	if _dead:

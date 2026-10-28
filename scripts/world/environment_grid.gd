@@ -159,6 +159,7 @@ func _make_fx(cell: Vector2i, st: EnvCellState) -> Node2D:
 		l.energy = 0.15
 		l.texture_scale = 0.6
 		p.add_child(l)
+		NightLight.tune(l, NightLight.darkness(self))  # de noche el fuego del pasto alumbra más
 	return p
 
 
