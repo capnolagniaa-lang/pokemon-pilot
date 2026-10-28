@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/goldeen.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/poliwag.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/horsea.tres" id="r_5"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_6"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¿Querés un sanguchito? Ah, no, no queda.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 28
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 28
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 28
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_6")
+id = "alma"
+display_name = "Alma"
+title = "Dominguera"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
+lines = {"desafio": "¡Vine de picnic con mis Pokémon!", "pierde": "¡Se me arruinó el picnic!", "despues": "¿Querés un sanguchito? Ah, no, no queda."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta13_alma"
+display_name = "Alma"
+zone_id = "ruta13"
+cell = Vector2i(102, 6)
+gfx = "picnicker"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 1

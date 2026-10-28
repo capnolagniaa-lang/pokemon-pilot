@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/victreebel.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/tangela.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/vileplume.tres" id="r_5"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_6"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Con la Medalla Arcoíris podés usar Fuerza.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 29
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 24
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 29
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_6")
+id = "erika"
+display_name = "Erika"
+title = "Líder"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
+lines = {"desafio": "Hola... ¡Ay, perdón, me había quedado dormida! Soy Erika, la líder de este gimnasio.|Me encantan las flores y los Pokémon de tipo planta. ¿Querés pelear? Está bien, pero no voy a perder.", "pierde": "Oh... Perdí. Sos muy fuerte. Te ganaste la Medalla Arcoíris.", "gana": "Las flores siempre vuelven a crecer. Vos también.", "despues": "Con la Medalla Arcoíris podés usar Fuerza."}
+arena_id = "arena_gimnasio_planta"
+leader = true
+reward_flags = PackedStringArray("medalla_arcoiris")
+reward_text = "¡Recibiste la MEDALLA ARCOÍRIS de Erika!"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_azulona_gimnasio_erika"
+display_name = "Erika"
+zone_id = "ciudad_azulona_gimnasio"
+cell = Vector2i(6, 4)
+gfx = "erika"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 0

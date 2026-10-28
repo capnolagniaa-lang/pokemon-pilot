@@ -44,7 +44,7 @@ func _init() -> void:
 	var args := OS.get_cmdline_user_args()
 	var only := args[args.find("--only") + 1] if args.has("--only") and args.find("--only") + 1 < args.size() else ""
 	for step in [["arena_campo", _campo], ["arena_gimnasio_roca", _gimnasio_roca], ["arena_torneo", _torneo],
-			["arena_gimnasio_agua", _gimnasio_agua], ["arena_gimnasio_electrico", _gimnasio_electrico]]:
+			["arena_gimnasio_agua", _gimnasio_agua], ["arena_gimnasio_electrico", _gimnasio_electrico]] + _themed_steps():
 		if only == "" or only == step[0]:
 			step[1].call()
 	quit()
@@ -303,6 +303,127 @@ func _gimnasio_agua() -> void:
 	a.ambient = Color(0.9, 0.97, 1.05)
 	a.epic = true
 	ResourceSaver.save(a, "%s/arena_gimnasio_agua.tres" % DATA_DIR)
+
+
+# --- Arenas temáticas: el resto de los gimnasios y el Alto Mando (docs/PLAN_RESTO_KANTO.md) ------------------------
+
+## id → [nombre, tipo, piso (rol), detalles, partículas, color de partículas, ambiente]. Detalles: "piletas", "pasto"
+## (pasto alto: se prende), "flores", "rocas" (cobertura), "rompibles", "braseros", "publico".
+const THEMED := {
+	"arena_gimnasio_planta": ["Gimnasio de Ciudad Azulona", "planta", "grass", ["flores", "pasto"], "hojas",
+		Color(0.55, 0.9, 0.45, 0.7), Color(0.97, 1.04, 0.95)],
+	"arena_gimnasio_veneno": ["Gimnasio de Ciudad Fucsia", "veneno", "stone_floor", ["rocas", "piletas"], "polvo",
+		Color(0.75, 0.45, 0.9, 0.55), Color(0.97, 0.9, 1.04)],
+	"arena_gimnasio_psiquico": ["Gimnasio de Ciudad Azafrán", "psiquico", "city_floor", ["rocas"], "polvo",
+		Color(1.0, 0.55, 0.85, 0.55), Color(1.03, 0.95, 1.03)],
+	"arena_gimnasio_fuego": ["Gimnasio de Isla Canela", "fuego", "dirt", ["rocas", "braseros", "pasto"], "polvo",
+		Color(1.0, 0.55, 0.25, 0.6), Color(1.05, 0.97, 0.92)],
+	"arena_gimnasio_tierra": ["Gimnasio de Ciudad Verde", "tierra", "sand", ["rocas", "rompibles", "braseros"], "polvo",
+		Color(0.85, 0.7, 0.45, 0.6), Color(1.02, 0.98, 0.92)],
+	"arena_liga_hielo": ["Alto Mando: Lorelei", "hielo", "stone_floor", ["piletas", "braseros"], "polvo",
+		Color(0.92, 0.97, 1.0, 0.7), Color(0.93, 0.98, 1.06)],
+	"arena_liga_lucha": ["Alto Mando: Bruno", "lucha", "dirt", ["rocas", "rompibles", "braseros"], "polvo",
+		Color(0.85, 0.72, 0.5, 0.55), Color(1.03, 0.98, 0.94)],
+	"arena_liga_fantasma": ["Alto Mando: Agatha", "fantasma", "cave_floor", ["rocas"], "polvo",
+		Color(0.7, 0.55, 1.0, 0.55), Color(0.86, 0.82, 0.98)],
+	"arena_liga_dragon": ["Alto Mando: Lance", "dragon", "stone_floor", ["piletas", "rocas", "braseros"], "polvo",
+		Color(0.6, 0.55, 1.0, 0.55), Color(0.97, 0.97, 1.04)],
+}
+
+
+## Piso de un rol: con autotile si tiene las 9 piezas de borde; si no, sus tiles sueltos al azar.
+func _fill_role(layer: TileMapLayer, role: TileRole, rect: Rect2i) -> void:
+	if role.metatiles.size() >= 9:
+		_autotile(layer, role, rect)
+		return
+	for y in range(rect.position.y, rect.end.y):
+		for x in range(rect.position.x, rect.end.x):
+			ZoneBuilder.set_metatile(layer, Vector2i(x, y), role.metatiles[rng.randi() % role.metatiles.size()])
+
+
+func _themed_steps() -> Array:
+	var out := []
+	for id in THEMED:
+		out.append([id, _themed.bind(id)])
+	return out
+
+
+## Una arena temática: paredes de gimnasio (las de Plateada), el piso del rol del tipo y sus detalles en simetría.
+func _themed(id: String) -> void:
+	var spec: Array = THEMED[id]
+	var extras: Array = spec[3]
+	var w := 44
+	var h := 32
+	var cx := w / 2
+	var roles := ZoneBuilder.load_roles()
+	var root := ZoneBuilder.new_zone_root(id, tileset)
+	var g: TileMapLayer = root.get_node("Ground")
+	var water: TileMapLayer = root.get_node("Water")
+	var foliage: TileMapLayer = root.get_node("Foliage")
+	for y in h:
+		for x in w:
+			var m := 35020
+			if y < 4:
+				var row: Array = TOP[y]
+				m = row[0] if x == 0 else (row[1] if x == 1 else (row[5] if x == w - 2 else (row[6] if x == w - 1 and y < 3
+					else (35015 if x == w - 1 else (row[2] if x % 2 == 0 else row[3])))))
+				if y == 3 and x > 1 and x < w - 2:
+					m = row[2] if x == 2 else (row[5] if x == w - 3 else row[3])
+			elif y >= h - 3:
+				var k := y - (h - 3)
+				m = [35016, 35024, 35032][k] if x == 0 else ([35023, 35031, 35039][k] if x == w - 1 else (35040 if x == 1 else 35042))
+			elif x == 0:
+				m = 35008
+			elif x == w - 1:
+				m = 35015
+			ZoneBuilder.set_metatile(g, Vector2i(x, y), m)
+	var field := Rect2i(3, 5, w - 6, h - 9)
+	_fill_role(g, roles.get_role(spec[2]), field)
+	var sym := func(p: Vector2i) -> Array: return [p, Vector2i(w - 1 - p.x, p.y)]
+	if extras.has("piletas"):
+		_autotile(water, roles.get_role("water"), Rect2i(5, h / 2 - 3, 5, 6))
+		_autotile(water, roles.get_role("water"), Rect2i(w - 10, h / 2 - 3, 5, 6))
+	if extras.has("pasto"):
+		for corner in [Vector2i(5, 7), Vector2i(w - 10, 7), Vector2i(5, h - 9), Vector2i(w - 10, h - 9)]:
+			for dy in 2:
+				for dx in 5:
+					ZoneBuilder.set_metatile(foliage, corner + Vector2i(dx, dy), 13)
+	if extras.has("flores"):
+		for p in [Vector2i(12, 9), Vector2i(12, h - 10), Vector2i(cx - 2, 14)]:
+			for q in sym.call(p):
+				var fr: TileRole = roles.get_role("flowers")
+				if fr != null and not fr.metatiles.is_empty():
+					ZoneBuilder.set_metatile(g, q, fr.metatiles[0])
+	if extras.has("rocas"):
+		for p in [Vector2i(13, 12), Vector2i(17, 18), Vector2i(cx - 4, 10), Vector2i(cx - 4, h - 11)]:
+			for q in sym.call(p):
+				ZoneBuilder.set_metatile(g, q, 35035)
+	if extras.has("rompibles"):
+		for p in [Vector2i(15, 14), Vector2i(15, h - 13)]:
+			for q in sym.call(p):
+				ZoneBuilder.add_object(root, ROCK, q)
+	for x in range(2, w - 1):  # pasarela de tablones donde se para el jugador
+		ZoneBuilder.set_metatile(g, Vector2i(x, h - 4), 35041 if x == 2 else (35043 if x == w - 2 else 35042))
+	root.set("hand_edited", true)
+	_save(root, id)
+	var a := ArenaData.new()
+	a.id = id
+	a.display_name = spec[0]
+	a.scene_path = "%s/%s.tscn" % [ARENAS_DIR, id]
+	a.field = field
+	a.foe_trainer_cell = Vector2i(cx, 5)
+	a.foe_mon_cell = Vector2i(cx, field.position.y + 3)
+	a.player_cell = Vector2i(cx, h - 4)
+	a.player_mon_cell = Vector2i(cx, field.end.y - 3)
+	a.element_id = spec[1]
+	a.line_color = Color(1, 1, 1, 0.3)
+	a.particles = spec[4]
+	a.particle_color = spec[5]
+	a.ambient = spec[6]
+	a.braziers = extras.has("braseros")
+	a.crowd = extras.has("publico")
+	a.epic = true
+	ResourceSaver.save(a, "%s/%s.tres" % [DATA_DIR, id])
 
 
 # --- Gimnasio eléctrico (Lt. Surge) ----------------------------------------------------------------------

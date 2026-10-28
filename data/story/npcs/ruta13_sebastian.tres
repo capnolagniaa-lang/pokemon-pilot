@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/pidgey.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/pidgeotto.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Los Pokémon pájaro son muy leales.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 29
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 29
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_5")
+id = "sebastian"
+display_name = "Sebastian"
+title = "Ornitólogo"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¡Mis pájaros vuelan más alto que los tuyos!", "pierde": "¡Aterrizaje forzoso!", "despues": "Los Pokémon pájaro son muy leales."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta13_sebastian"
+display_name = "Sebastian"
+zone_id = "ruta13"
+cell = Vector2i(103, 12)
+gfx = "rocker"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 1

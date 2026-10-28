@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/poliwag.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/poliwhirl.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("La suerte cambia, ya vas a ver.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 22
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 22
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 22
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_5")
+id = "stan"
+display_name = "Stan"
+title = "Jugador"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
+lines = {"desafio": "¡Apuesto a que te gano!", "pierde": "¡Perdí la apuesta!", "despues": "La suerte cambia, ya vas a ver."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta8_stan"
+display_name = "Stan"
+zone_id = "ruta8"
+cell = Vector2i(27, 3)
+gfx = "old_man_1"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 1

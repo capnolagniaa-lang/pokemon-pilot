@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("alto_mando_lance")
+forbids = PackedStringArray("campeon")
+speaker = "Azul"
+lines = PackedStringArray("¡Eh! ¡Por fin llegaste!")
+battle_npc = "liga_campeon_0x0"
+
+[resource]
+script = ExtResource("1_g")
+id = "campeon"
+zone_id = "liga_campeon"
+rect = Rect2i(4, 10, 5, 1)
+talk = SubResource("Talk")
+once = false
+push_back = false

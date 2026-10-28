@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("tiene_silph_scope", "marowak_en_paz")
+lines = PackedStringArray("¡Un fantasma te cierra el paso! No se le ve la forma...", "\"Fuera... fuera de aquí...\"", "(Sin algo para ver fantasmas no se puede seguir.)")
+
+[resource]
+script = ExtResource("1_g")
+id = "fantasma_torre"
+zone_id = "torre_pokemon_6p"
+rect = Rect2i(11, 15, 2, 1)
+talk = SubResource("Talk")
+once = false
+push_back = true

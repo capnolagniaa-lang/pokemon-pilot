@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/shop_data.gd" id="1_s"]
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_d"]
+[ext_resource type="Resource" path="res://data/items/ultra_ball.tres" id="2_i"]
+[ext_resource type="Resource" path="res://data/items/super_ball.tres" id="3_i"]
+[ext_resource type="Resource" path="res://data/items/hiperpocion.tres" id="4_i"]
+[ext_resource type="Resource" path="res://data/items/cura_total.tres" id="5_i"]
+[ext_resource type="Resource" path="res://data/items/revivir.tres" id="6_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "isla_canela"
+display_name = "Tienda Pokémon de Isla Canela"
+items = Array[ExtResource("1_d")]([ExtResource("2_i"), ExtResource("3_i"), ExtResource("4_i"), ExtResource("5_i"), ExtResource("6_i")])

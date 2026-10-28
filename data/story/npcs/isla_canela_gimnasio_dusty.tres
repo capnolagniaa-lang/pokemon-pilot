@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/vulpix.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/growlithe.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Ya me voy, ya me voy...")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 37
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 37
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_5")
+id = "dusty"
+display_name = "Dusty"
+title = "Ladrón"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¡Ey! ¡No viste nada, ¿no?!", "pierde": "¡Me agarraron!", "despues": "Ya me voy, ya me voy..."}
+arena_id = "arena_gimnasio_fuego"
+
+[resource]
+script = ExtResource("1_n")
+id = "isla_canela_gimnasio_dusty"
+display_name = "Dusty"
+zone_id = "isla_canela_gimnasio"
+cell = Vector2i(4, 19)
+gfx = "poke_maniac"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 1

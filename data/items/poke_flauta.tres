@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/poke-flute.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "poke_flauta"
+display_name = "Poké Flauta"
+description = "Una flauta que toca una melodía capaz de despertar a cualquier Pokémon dormido (E frente al Snorlax)."
+icon = ExtResource("2_i")
+pocket = 2
+sort_order = 9

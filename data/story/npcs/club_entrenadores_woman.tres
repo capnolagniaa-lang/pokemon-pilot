@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Club de Fans de Entrenadores es un lugar tranquilo... casi siempre.")
+
+[resource]
+script = ExtResource("1_n")
+id = "club_entrenadores_woman"
+display_name = "Vecino"
+zone_id = "club_entrenadores"
+cell = Vector2i(9, 11)
+gfx = "woman_3"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

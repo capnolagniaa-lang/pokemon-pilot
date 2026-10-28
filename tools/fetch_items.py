@@ -49,6 +49,16 @@ ITEMS = {
     "ticket_barco": ("ss-ticket", "key", 5, {}),
     # Capítulo 3 (docs/PLAN_CAPITULO_3.md): el capitán del S.S. Anne te da Corte (cortar árboles finos: FieldMoves).
     "mo01": ("hm01", "key", 6, {}),
+    # Resto de Kanto (docs/PLAN_RESTO_KANTO.md): MO y objetos clave de la historia (FieldMoves y StoryDirector).
+    "mo03": ("hm03", "key", 7, {}),
+    "mo04": ("hm04", "key", 8, {}),
+    "poke_flauta": ("poke-flute", "key", 9, {}),
+    "te": ("tea", "key", 10, {}),
+    "silph_scope": ("silph-scope", "key", 11, {}),
+    "dientes_oro": ("gold-teeth", "key", 12, {}),
+    "llave_ascensor": ("lift-key", "key", 13, {}),
+    "tarjeta_llave": ("card-key", "key", 14, {}),
+    "llave_secreta": ("secret-key", "key", 15, {}),
 }
 # Precio en la Tienda Pokémon (FireRed/LeafGreen, 3ª gen). PokeAPI ya no los trae (`prices` viene vacío).
 # Sin precio (Master Ball, objetos clave) = no se compra ni se vende.
@@ -61,10 +71,21 @@ PRICES = {
     "piedra_trueno": 2100, "piedra_hoja": 2100, "piedra_solar": 2100, "trozo_estrella": 9800, "pepita": 10000,
 }
 # Nombre propio cuando el de PokeAPI no alcanza.
-NAMES = {"mo01": "MO01 Corte"}
+NAMES = {"mo01": "MO01 Corte", "mo03": "MO03 Surf", "mo04": "MO04 Fuerza", "te": "Té", "silph_scope": "Scope Silph",
+         "dientes_oro": "Dientes de Oro", "llave_ascensor": "Llave Ascensor", "tarjeta_llave": "Tarjeta Llave",
+         "llave_secreta": "Llave Secreta", "poke_flauta": "Poké Flauta"}
 # Descripción propia (manda sobre la de PokeAPI, que a veces no tiene una en español o dice "- - -").
 DESCRIPTIONS = {
     "mo01": "MO01 Corte. Con la Medalla Cascada, tus Pokémon cortan los árboles finos que tapan el camino (E frente al árbol).",
+    "mo03": "MO03 Surf. Con la Medalla Alma, tu Pokémon te lleva sobre el agua (E frente al agua). Al pisar tierra te bajás.",
+    "mo04": "MO04 Fuerza. Con la Medalla Arcoíris, tus Pokémon empujan rocas grandes (E frente a la roca y después caminá contra ella).",
+    "poke_flauta": "Una flauta que toca una melodía capaz de despertar a cualquier Pokémon dormido (E frente al Snorlax).",
+    "te": "Un té riquísimo. Los guardias de Ciudad Azafrán se mueren de sed...",
+    "silph_scope": "Un visor de Silph S.A. que deja ver a los fantasmas tal como son. Sin él, en la Torre Pokémon no se puede pelear contra ellos.",
+    "dientes_oro": "La dentadura de oro del guarda de la Zona Safari. Se le cayó en algún lado...",
+    "llave_ascensor": "La llave del ascensor del Escondite Rocket.",
+    "tarjeta_llave": "La tarjeta que abre todas las puertas de Silph S.A.",
+    "llave_secreta": "La llave del Gimnasio de Isla Canela. Estaba en la Mansión Pokémon.",
     "paquete_oak": "Un correo para el Profesor Oak. Te lo dio el vendedor de la Tienda Pokémon de Ciudad Verde.",
 }
 

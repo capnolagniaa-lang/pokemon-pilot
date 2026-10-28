@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("vencido_torre_pokemon_7p_grunt1")
+lines = PackedStringArray("(El Sr. Fuji está rodeado por el Team Rocket. ¡Hay que ayudarlo!)")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("vencido_torre_pokemon_7p_grunt2")
+lines = PackedStringArray("(Todavía quedan soldados del Team Rocket...)")
+
+[sub_resource type="Resource" id="Talk_2"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("vencido_torre_pokemon_7p_grunt3")
+lines = PackedStringArray("(Todavía queda un soldado del Team Rocket...)")
+
+[sub_resource type="Resource" id="Talk_3"]
+script = ExtResource("2_t")
+set_flags = PackedStringArray("fuji_rescatado")
+lines = PackedStringArray("Gracias... Gracias por salvarme. Soy Fuji, cuido a los Pokémon que no tienen a nadie.", "El Team Rocket mató a la mamá de un Cubone... gracias a vos, su espíritu ya descansa.", "Tomá esto: es la Poké Flauta. Su melodía despierta a cualquier Pokémon dormido.", "Dicen que hay Snorlax durmiendo en las Rutas 12 y 16. Te va a servir.")
+give_items = {"poke_flauta": 1}
+
+[resource]
+script = ExtResource("1_n")
+id = "torre_pokemon_7p_mrfuji"
+display_name = "Sr. Fuji"
+zone_id = "torre_pokemon_7p"
+cell = Vector2i(11, 4)
+gfx = "mr_fuji"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1"), SubResource("Talk_2"), SubResource("Talk_3")])
+hide_if = PackedStringArray("fuji_rescatado")

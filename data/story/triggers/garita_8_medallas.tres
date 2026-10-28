@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("historia")
+forbids = PackedStringArray("medalla_tierra")
+speaker = "Guardia"
+lines = PackedStringArray("¡Alto! Más allá está la Ruta 23 y la Liga Pokémon.", "Solo pasan los que tienen las 8 medallas de Kanto.")
+
+[resource]
+script = ExtResource("1_g")
+id = "garita_8_medallas"
+zone_id = "ruta22_garita"
+rect = Rect2i(0, 4, 15, 1)
+talk = SubResource("Talk")
+once = false
+push_back = true

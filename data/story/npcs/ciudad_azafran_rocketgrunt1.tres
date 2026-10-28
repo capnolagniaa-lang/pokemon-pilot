@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Silph S.A. es del Team Rocket ahora! ¡Andate de acá!")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_azafran_rocketgrunt1"
+display_name = "Rocket"
+zone_id = "ciudad_azafran"
+cell = Vector2i(46, 31)
+gfx = "rocket_m"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+hide_if = PackedStringArray("silph_liberada")

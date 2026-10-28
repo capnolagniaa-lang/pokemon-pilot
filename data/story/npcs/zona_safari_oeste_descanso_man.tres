@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Zona Safari (casa de descanso del oeste) es un lugar tranquilo... casi siempre.")
+
+[resource]
+script = ExtResource("1_n")
+id = "zona_safari_oeste_descanso_man"
+display_name = "Vecino"
+zone_id = "zona_safari_oeste_descanso"
+cell = Vector2i(2, 2)
+gfx = "man"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

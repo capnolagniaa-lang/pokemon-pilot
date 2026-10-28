@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Resource" path="res://data/species/hitmonlee.tres" id="r_2"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("vencido_dojo_karate_masterkoichi")
+lines = PackedStringArray("(Una Poké Ball. El maestro del Dojo no te deja tocarla.)")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+set_flags = PackedStringArray("hitmon_elegido")
+lines = PackedStringArray("(Una Poké Ball con un Hitmonlee.)")
+confirm = "Es un Hitmonlee, el de las patadas. ¿Te lo llevás?"
+give_pokemon = ExtResource("r_2")
+give_level = 25
+
+[resource]
+script = ExtResource("1_n")
+id = "dojo_karate_hitmonleeball"
+display_name = "Poké Ball"
+zone_id = "dojo_karate"
+cell = Vector2i(5, 3)
+gfx = "item_ball"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])
+hide_if = PackedStringArray("hitmon_elegido")

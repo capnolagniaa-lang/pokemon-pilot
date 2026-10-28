@@ -1,0 +1,6651 @@
+{
+ "bosque_verde": {
+  "Anthony": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_ANTHONY",
+   "double": false,
+   "name": "Anthony",
+   "sight": 1,
+   "team": [
+    [
+     "caterpie",
+     7
+    ],
+    [
+     "caterpie",
+     8
+    ]
+   ]
+  },
+  "Charlie": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_CHARLIE",
+   "double": false,
+   "name": "Charlie",
+   "sight": 1,
+   "team": [
+    [
+     "metapod",
+     7
+    ],
+    [
+     "caterpie",
+     7
+    ],
+    [
+     "metapod",
+     7
+    ]
+   ]
+  },
+  "Doug": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_DOUG",
+   "double": false,
+   "name": "Doug",
+   "sight": 4,
+   "team": [
+    [
+     "weedle",
+     7
+    ],
+    [
+     "kakuna",
+     7
+    ],
+    [
+     "weedle",
+     7
+    ]
+   ]
+  },
+  "Rick": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_RICK",
+   "double": false,
+   "name": "Rick",
+   "sight": 5,
+   "team": [
+    [
+     "weedle",
+     6
+    ],
+    [
+     "caterpie",
+     6
+    ]
+   ]
+  },
+  "Sammy": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_SAMMY",
+   "double": false,
+   "name": "Sammy",
+   "sight": 4,
+   "team": [
+    [
+     "weedle",
+     9
+    ]
+   ]
+  }
+ },
+ "calle_victoria_1p": {
+  "Naomi": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_NAOMI",
+   "double": false,
+   "name": "Naomi",
+   "sight": 4,
+   "team": [
+    [
+     "persian",
+     42
+    ],
+    [
+     "ponyta",
+     42
+    ],
+    [
+     "rapidash",
+     42
+    ],
+    [
+     "vulpix",
+     42
+    ],
+    [
+     "ninetales",
+     42
+    ]
+   ]
+  },
+  "Rolando": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_ROLANDO",
+   "double": false,
+   "name": "Rolando",
+   "sight": 4,
+   "team": [
+    [
+     "raticate",
+     42
+    ],
+    [
+     "ivysaur",
+     42
+    ],
+    [
+     "wartortle",
+     42
+    ],
+    [
+     "charmeleon",
+     42
+    ],
+    [
+     "charizard",
+     42
+    ]
+   ]
+  }
+ },
+ "calle_victoria_2p": {
+  "Daisuke": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_DAISUKE",
+   "double": false,
+   "name": "Daisuke",
+   "sight": 4,
+   "team": [
+    [
+     "machoke",
+     43
+    ],
+    [
+     "machop",
+     43
+    ],
+    [
+     "machoke",
+     43
+    ]
+   ]
+  },
+  "Dawson": {
+   "class": "POKEMANIAC",
+   "const": "TRAINER_POKEMANIAC_DAWSON",
+   "double": false,
+   "name": "Dawson",
+   "sight": 1,
+   "team": [
+    [
+     "charmeleon",
+     40
+    ],
+    [
+     "lapras",
+     40
+    ],
+    [
+     "lickitung",
+     40
+    ]
+   ]
+  },
+  "Gregory": {
+   "class": "JUGGLER",
+   "const": "TRAINER_JUGGLER_GREGORY",
+   "double": false,
+   "name": "Gregory",
+   "sight": 3,
+   "team": [
+    [
+     "mr_mime",
+     48
+    ]
+   ]
+  },
+  "Nelson": {
+   "class": "JUGGLER",
+   "const": "TRAINER_JUGGLER_NELSON",
+   "double": false,
+   "name": "Nelson",
+   "sight": 4,
+   "team": [
+    [
+     "drowzee",
+     41
+    ],
+    [
+     "hypno",
+     41
+    ],
+    [
+     "kadabra",
+     41
+    ],
+    [
+     "kadabra",
+     41
+    ]
+   ]
+  },
+  "Vincent": {
+   "class": "TAMER",
+   "const": "TRAINER_TAMER_VINCENT",
+   "double": false,
+   "name": "Vincent",
+   "sight": 1,
+   "team": [
+    [
+     "persian",
+     44
+    ],
+    [
+     "golduck",
+     44
+    ]
+   ]
+  }
+ },
+ "calle_victoria_3p": {
+  "Alexa": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_ALEXA",
+   "double": false,
+   "name": "Alexa",
+   "sight": 4,
+   "team": [
+    [
+     "clefairy",
+     42
+    ],
+    [
+     "jigglypuff",
+     42
+    ],
+    [
+     "persian",
+     42
+    ],
+    [
+     "dewgong",
+     42
+    ],
+    [
+     "chansey",
+     42
+    ]
+   ]
+  },
+  "Caroline": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_CAROLINE",
+   "double": false,
+   "name": "Caroline",
+   "sight": 5,
+   "team": [
+    [
+     "bellsprout",
+     42
+    ],
+    [
+     "weepinbell",
+     42
+    ],
+    [
+     "victreebel",
+     42
+    ],
+    [
+     "paras",
+     42
+    ],
+    [
+     "parasect",
+     42
+    ]
+   ]
+  },
+  "Colby": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_COLBY",
+   "double": false,
+   "name": "Colby",
+   "sight": 5,
+   "team": [
+    [
+     "kingler",
+     41
+    ],
+    [
+     "poliwhirl",
+     42
+    ],
+    [
+     "tentacruel",
+     42
+    ],
+    [
+     "seadra",
+     42
+    ],
+    [
+     "blastoise",
+     43
+    ]
+   ]
+  },
+  "George": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_GEORGE",
+   "double": false,
+   "name": "George",
+   "sight": 1,
+   "team": [
+    [
+     "exeggutor",
+     42
+    ],
+    [
+     "sandslash",
+     42
+    ],
+    [
+     "cloyster",
+     42
+    ],
+    [
+     "electrode",
+     42
+    ],
+    [
+     "arcanine",
+     42
+    ]
+   ]
+  },
+  "Ray": {
+   "class": "COOL_COUPLE",
+   "const": "TRAINER_COOL_COUPLE_RAY_TYRA",
+   "double": true,
+   "name": "Ray & Tyra",
+   "sight": 1,
+   "team": [
+    [
+     "nidoqueen",
+     45
+    ],
+    [
+     "nidoking",
+     45
+    ]
+   ]
+  },
+  "Tyra": {
+   "class": "COOL_COUPLE",
+   "const": "TRAINER_COOL_COUPLE_RAY_TYRA",
+   "double": true,
+   "name": "Ray & Tyra",
+   "sight": 1,
+   "team": [
+    [
+     "nidoqueen",
+     45
+    ],
+    [
+     "nidoking",
+     45
+    ]
+   ]
+  }
+ },
+ "ciudad_azafran_gimnasio": {
+  "Amanda": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_AMANDA",
+   "double": false,
+   "name": "Amanda",
+   "sight": 3,
+   "team": [
+    [
+     "gastly",
+     34
+    ],
+    [
+     "haunter",
+     34
+    ]
+   ]
+  },
+  "Cameron": {
+   "class": "PSYCHIC",
+   "const": "TRAINER_PSYCHIC_CAMERON",
+   "double": false,
+   "name": "Cameron",
+   "sight": 3,
+   "team": [
+    [
+     "slowpoke",
+     33
+    ],
+    [
+     "slowpoke",
+     33
+    ],
+    [
+     "slowbro",
+     33
+    ]
+   ]
+  },
+  "Johan": {
+   "class": "PSYCHIC",
+   "const": "TRAINER_PSYCHIC_JOHAN",
+   "double": false,
+   "name": "Johan",
+   "sight": 3,
+   "team": [
+    [
+     "kadabra",
+     31
+    ],
+    [
+     "slowpoke",
+     31
+    ],
+    [
+     "mr_mime",
+     31
+    ],
+    [
+     "kadabra",
+     31
+    ]
+   ]
+  },
+  "Preston": {
+   "class": "PSYCHIC",
+   "const": "TRAINER_PSYCHIC_PRESTON",
+   "double": false,
+   "name": "Preston",
+   "sight": 3,
+   "team": [
+    [
+     "slowbro",
+     38
+    ]
+   ]
+  },
+  "Sabrina": {
+   "class": "LEADER",
+   "const": "TRAINER_LEADER_SABRINA",
+   "double": false,
+   "name": "Sabrina",
+   "sight": 0,
+   "team": [
+    [
+     "kadabra",
+     38
+    ],
+    [
+     "mr_mime",
+     37
+    ],
+    [
+     "venomoth",
+     38
+    ],
+    [
+     "alakazam",
+     43
+    ]
+   ]
+  },
+  "Stacy": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_STACY",
+   "double": false,
+   "name": "Stacy",
+   "sight": 3,
+   "team": [
+    [
+     "haunter",
+     38
+    ]
+   ]
+  },
+  "Tasha": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_TASHA",
+   "double": false,
+   "name": "Tasha",
+   "sight": 3,
+   "team": [
+    [
+     "gastly",
+     33
+    ],
+    [
+     "gastly",
+     33
+    ],
+    [
+     "haunter",
+     33
+    ]
+   ]
+  },
+  "Tyron": {
+   "class": "PSYCHIC",
+   "const": "TRAINER_PSYCHIC_TYRON",
+   "double": false,
+   "name": "Tyron",
+   "sight": 3,
+   "team": [
+    [
+     "mr_mime",
+     34
+    ],
+    [
+     "kadabra",
+     34
+    ]
+   ]
+  }
+ },
+ "ciudad_azulona_casino": {
+  "RocketGrunt": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_7",
+   "double": false,
+   "name": "Grunt",
+   "sight": 0,
+   "team": [
+    [
+     "raticate",
+     20
+    ],
+    [
+     "zubat",
+     20
+    ]
+   ]
+  }
+ },
+ "ciudad_azulona_gimnasio": {
+  "Bridget": {
+   "class": "BEAUTY",
+   "const": "TRAINER_BEAUTY_BRIDGET",
+   "double": false,
+   "name": "Bridget",
+   "sight": 3,
+   "team": [
+    [
+     "oddish",
+     21
+    ],
+    [
+     "bellsprout",
+     21
+    ],
+    [
+     "oddish",
+     21
+    ],
+    [
+     "bellsprout",
+     21
+    ]
+   ]
+  },
+  "Erika": {
+   "class": "LEADER",
+   "const": "TRAINER_LEADER_ERIKA",
+   "double": false,
+   "name": "Erika",
+   "sight": 0,
+   "team": [
+    [
+     "victreebel",
+     29
+    ],
+    [
+     "tangela",
+     24
+    ],
+    [
+     "vileplume",
+     29
+    ]
+   ]
+  },
+  "Kay": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_KAY",
+   "double": false,
+   "name": "Kay",
+   "sight": 3,
+   "team": [
+    [
+     "bellsprout",
+     23
+    ],
+    [
+     "weepinbell",
+     23
+    ]
+   ]
+  },
+  "Lisa": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_LISA",
+   "double": false,
+   "name": "Lisa",
+   "sight": 2,
+   "team": [
+    [
+     "oddish",
+     23
+    ],
+    [
+     "gloom",
+     23
+    ]
+   ]
+  },
+  "Lori": {
+   "class": "BEAUTY",
+   "const": "TRAINER_BEAUTY_LORI",
+   "double": false,
+   "name": "Lori",
+   "sight": 3,
+   "team": [
+    [
+     "exeggcute",
+     24
+    ]
+   ]
+  },
+  "Mary": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_MARY",
+   "double": false,
+   "name": "Mary",
+   "sight": 2,
+   "team": [
+    [
+     "bellsprout",
+     22
+    ],
+    [
+     "oddish",
+     22
+    ],
+    [
+     "weepinbell",
+     22
+    ],
+    [
+     "gloom",
+     22
+    ],
+    [
+     "ivysaur",
+     22
+    ]
+   ]
+  },
+  "Tamia": {
+   "class": "BEAUTY",
+   "const": "TRAINER_BEAUTY_TAMIA",
+   "double": false,
+   "name": "Tamia",
+   "sight": 4,
+   "team": [
+    [
+     "bellsprout",
+     24
+    ],
+    [
+     "bellsprout",
+     24
+    ]
+   ]
+  },
+  "Tina": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_TINA",
+   "double": false,
+   "name": "Tina",
+   "sight": 2,
+   "team": [
+    [
+     "bulbasaur",
+     24
+    ],
+    [
+     "ivysaur",
+     24
+    ]
+   ]
+  }
+ },
+ "ciudad_carmin_gimnasio": {
+  "Baily": {
+   "class": "ENGINEER",
+   "const": "TRAINER_ENGINEER_BAILY",
+   "double": false,
+   "name": "Baily",
+   "sight": 3,
+   "team": [
+    [
+     "voltorb",
+     21
+    ],
+    [
+     "magnemite",
+     21
+    ]
+   ]
+  },
+  "Dwayne": {
+   "class": "SAILOR",
+   "const": "TRAINER_SAILOR_DWAYNE",
+   "double": false,
+   "name": "Dwayne",
+   "sight": 3,
+   "team": [
+    [
+     "pikachu",
+     21
+    ],
+    [
+     "pikachu",
+     21
+    ]
+   ]
+  },
+  "LtSurge": {
+   "class": "LEADER",
+   "const": "TRAINER_LEADER_LT_SURGE",
+   "double": false,
+   "name": "Lt. Surge",
+   "sight": 0,
+   "team": [
+    [
+     "voltorb",
+     21
+    ],
+    [
+     "pikachu",
+     18
+    ],
+    [
+     "raichu",
+     24
+    ]
+   ]
+  },
+  "Tucker": {
+   "class": "GENTLEMAN",
+   "const": "TRAINER_GENTLEMAN_TUCKER",
+   "double": false,
+   "name": "Tucker",
+   "sight": 3,
+   "team": [
+    [
+     "pikachu",
+     23
+    ]
+   ]
+  }
+ },
+ "ciudad_celeste": {
+  "Grunt": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_5",
+   "double": false,
+   "name": "Grunt",
+   "sight": 0,
+   "team": [
+    [
+     "machop",
+     17
+    ],
+    [
+     "drowzee",
+     17
+    ]
+   ]
+  }
+ },
+ "ciudad_celeste_gimnasio": {
+  "Diana": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_DIANA",
+   "double": false,
+   "name": "Diana",
+   "sight": 4,
+   "team": [
+    [
+     "goldeen",
+     19
+    ]
+   ]
+  },
+  "Luis": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_LUIS",
+   "double": false,
+   "name": "Luis",
+   "sight": 1,
+   "team": [
+    [
+     "horsea",
+     16
+    ],
+    [
+     "shellder",
+     16
+    ]
+   ]
+  },
+  "Misty": {
+   "class": "LEADER",
+   "const": "TRAINER_LEADER_MISTY",
+   "double": false,
+   "name": "Misty",
+   "sight": 0,
+   "team": [
+    [
+     "staryu",
+     18
+    ],
+    [
+     "starmie",
+     21
+    ]
+   ]
+  }
+ },
+ "ciudad_fucsia_gimnasio": {
+  "Edgar": {
+   "class": "TAMER",
+   "const": "TRAINER_TAMER_EDGAR",
+   "double": false,
+   "name": "Edgar",
+   "sight": 2,
+   "team": [
+    [
+     "arbok",
+     33
+    ],
+    [
+     "sandslash",
+     33
+    ],
+    [
+     "arbok",
+     33
+    ]
+   ]
+  },
+  "Kayden": {
+   "class": "JUGGLER",
+   "const": "TRAINER_JUGGLER_KAYDEN",
+   "double": false,
+   "name": "Kayden",
+   "sight": 4,
+   "team": [
+    [
+     "hypno",
+     38
+    ]
+   ]
+  },
+  "Kirk": {
+   "class": "JUGGLER",
+   "const": "TRAINER_JUGGLER_KIRK",
+   "double": false,
+   "name": "Kirk",
+   "sight": 3,
+   "team": [
+    [
+     "drowzee",
+     31
+    ],
+    [
+     "drowzee",
+     31
+    ],
+    [
+     "kadabra",
+     31
+    ],
+    [
+     "drowzee",
+     31
+    ]
+   ]
+  },
+  "Koga": {
+   "class": "LEADER",
+   "const": "TRAINER_LEADER_KOGA",
+   "double": false,
+   "name": "Koga",
+   "sight": 0,
+   "team": [
+    [
+     "koffing",
+     37
+    ],
+    [
+     "muk",
+     39
+    ],
+    [
+     "koffing",
+     37
+    ],
+    [
+     "weezing",
+     43
+    ]
+   ]
+  },
+  "Nate": {
+   "class": "JUGGLER",
+   "const": "TRAINER_JUGGLER_NATE",
+   "double": false,
+   "name": "Nate",
+   "sight": 4,
+   "team": [
+    [
+     "drowzee",
+     34
+    ],
+    [
+     "kadabra",
+     34
+    ]
+   ]
+  },
+  "Phil": {
+   "class": "TAMER",
+   "const": "TRAINER_TAMER_PHIL",
+   "double": false,
+   "name": "Phil",
+   "sight": 2,
+   "team": [
+    [
+     "sandslash",
+     34
+    ],
+    [
+     "arbok",
+     34
+    ]
+   ]
+  },
+  "Shawn": {
+   "class": "JUGGLER",
+   "const": "TRAINER_JUGGLER_SHAWN",
+   "double": false,
+   "name": "Shawn",
+   "sight": 1,
+   "team": [
+    [
+     "drowzee",
+     34
+    ],
+    [
+     "hypno",
+     34
+    ]
+   ]
+  }
+ },
+ "ciudad_plateada_gimnasio": {
+  "Brock": {
+   "class": "LEADER",
+   "const": "TRAINER_LEADER_BROCK",
+   "double": false,
+   "name": "Brock",
+   "sight": 0,
+   "team": [
+    [
+     "geodude",
+     12
+    ],
+    [
+     "onix",
+     14
+    ]
+   ]
+  },
+  "Liam": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_LIAM",
+   "double": false,
+   "name": "Liam",
+   "sight": 4,
+   "team": [
+    [
+     "geodude",
+     10
+    ],
+    [
+     "sandshrew",
+     11
+    ]
+   ]
+  }
+ },
+ "ciudad_verde_gimnasio": {
+  "Atsushi": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_ATSUSHI",
+   "double": false,
+   "name": "Atsushi",
+   "sight": 3,
+   "team": [
+    [
+     "machop",
+     40
+    ],
+    [
+     "machoke",
+     40
+    ]
+   ]
+  },
+  "Cole": {
+   "class": "TAMER",
+   "const": "TRAINER_TAMER_COLE",
+   "double": false,
+   "name": "Cole",
+   "sight": 2,
+   "team": [
+    [
+     "arbok",
+     39
+    ],
+    [
+     "tauros",
+     39
+    ]
+   ]
+  },
+  "Giovanni": {
+   "class": "LEADER",
+   "const": "TRAINER_LEADER_GIOVANNI",
+   "double": false,
+   "name": "Giovanni",
+   "sight": 0,
+   "team": [
+    [
+     "rhyhorn",
+     45
+    ],
+    [
+     "dugtrio",
+     42
+    ],
+    [
+     "nidoqueen",
+     44
+    ],
+    [
+     "nidoking",
+     45
+    ],
+    [
+     "rhyhorn",
+     50
+    ]
+   ]
+  },
+  "Jason": {
+   "class": "TAMER",
+   "const": "TRAINER_TAMER_JASON",
+   "double": false,
+   "name": "Jason",
+   "sight": 3,
+   "team": [
+    [
+     "rhyhorn",
+     43
+    ]
+   ]
+  },
+  "Kiyo": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_KIYO",
+   "double": false,
+   "name": "Kiyo",
+   "sight": 2,
+   "team": [
+    [
+     "machoke",
+     43
+    ]
+   ]
+  },
+  "Samuel": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_SAMUEL",
+   "double": false,
+   "name": "Samuel",
+   "sight": 3,
+   "team": [
+    [
+     "sandslash",
+     37
+    ],
+    [
+     "sandslash",
+     37
+    ],
+    [
+     "rhyhorn",
+     38
+    ],
+    [
+     "nidorino",
+     39
+    ],
+    [
+     "nidoking",
+     39
+    ]
+   ]
+  },
+  "Takashi": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_TAKASHI",
+   "double": false,
+   "name": "Takashi",
+   "sight": 3,
+   "team": [
+    [
+     "machoke",
+     38
+    ],
+    [
+     "machop",
+     38
+    ],
+    [
+     "machoke",
+     38
+    ]
+   ]
+  },
+  "Warren": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_WARREN",
+   "double": false,
+   "name": "Warren",
+   "sight": 3,
+   "team": [
+    [
+     "marowak",
+     37
+    ],
+    [
+     "marowak",
+     37
+    ],
+    [
+     "rhyhorn",
+     38
+    ],
+    [
+     "nidorina",
+     39
+    ],
+    [
+     "nidoqueen",
+     39
+    ]
+   ]
+  },
+  "Yuji": {
+   "class": "COOLTRAINER",
+   "const": "TRAINER_COOLTRAINER_YUJI",
+   "double": false,
+   "name": "Yuji",
+   "sight": 3,
+   "team": [
+    [
+     "sandslash",
+     38
+    ],
+    [
+     "graveler",
+     38
+    ],
+    [
+     "onix",
+     38
+    ],
+    [
+     "graveler",
+     38
+    ],
+    [
+     "marowak",
+     38
+    ]
+   ]
+  }
+ },
+ "dojo_karate": {
+  "Aaron": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_AARON",
+   "double": false,
+   "name": "Aaron",
+   "sight": 7,
+   "team": [
+    [
+     "primeape",
+     36
+    ]
+   ]
+  },
+  "Hideki": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_HIDEKI",
+   "double": false,
+   "name": "Hideki",
+   "sight": 7,
+   "team": [
+    [
+     "machop",
+     32
+    ],
+    [
+     "machoke",
+     32
+    ]
+   ]
+  },
+  "Hitoshi": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_HITOSHI",
+   "double": false,
+   "name": "Hitoshi",
+   "sight": 7,
+   "team": [
+    [
+     "machop",
+     31
+    ],
+    [
+     "mankey",
+     31
+    ],
+    [
+     "primeape",
+     31
+    ]
+   ]
+  },
+  "MasterKoichi": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_KOICHI",
+   "double": false,
+   "name": "Koichi",
+   "sight": 2,
+   "team": [
+    [
+     "hitmonlee",
+     37
+    ],
+    [
+     "hitmonchan",
+     37
+    ]
+   ]
+  },
+  "Mike": {
+   "class": "BLACK_BELT",
+   "const": "TRAINER_BLACK_BELT_MIKE",
+   "double": false,
+   "name": "Mike",
+   "sight": 7,
+   "team": [
+    [
+     "mankey",
+     31
+    ],
+    [
+     "mankey",
+     31
+    ],
+    [
+     "primeape",
+     31
+    ]
+   ]
+  }
+ },
+ "escondite_rocket_s1": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_8",
+   "double": false,
+   "name": "Grunt",
+   "sight": 2,
+   "team": [
+    [
+     "drowzee",
+     21
+    ],
+    [
+     "machop",
+     21
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_9",
+   "double": false,
+   "name": "Grunt",
+   "sight": 5,
+   "team": [
+    [
+     "raticate",
+     21
+    ],
+    [
+     "raticate",
+     21
+    ]
+   ]
+  },
+  "Grunt3": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_10",
+   "double": false,
+   "name": "Grunt",
+   "sight": 3,
+   "team": [
+    [
+     "grimer",
+     20
+    ],
+    [
+     "koffing",
+     20
+    ],
+    [
+     "koffing",
+     20
+    ]
+   ]
+  },
+  "Grunt4": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_11",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "rattata",
+     19
+    ],
+    [
+     "raticate",
+     19
+    ],
+    [
+     "raticate",
+     19
+    ],
+    [
+     "rattata",
+     19
+    ]
+   ]
+  },
+  "Grunt5": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_12",
+   "double": false,
+   "name": "Grunt",
+   "sight": 3,
+   "team": [
+    [
+     "grimer",
+     22
+    ],
+    [
+     "koffing",
+     22
+    ]
+   ]
+  }
+ },
+ "escondite_rocket_s2": {
+  "Grunt": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_13",
+   "double": false,
+   "name": "Grunt",
+   "sight": 2,
+   "team": [
+    [
+     "zubat",
+     17
+    ],
+    [
+     "koffing",
+     17
+    ],
+    [
+     "grimer",
+     17
+    ],
+    [
+     "zubat",
+     17
+    ],
+    [
+     "raticate",
+     17
+    ]
+   ]
+  }
+ },
+ "escondite_rocket_s3": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_14",
+   "double": false,
+   "name": "Grunt",
+   "sight": 2,
+   "team": [
+    [
+     "rattata",
+     20
+    ],
+    [
+     "raticate",
+     20
+    ],
+    [
+     "drowzee",
+     20
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_15",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "machop",
+     21
+    ],
+    [
+     "machop",
+     21
+    ]
+   ]
+  }
+ },
+ "escondite_rocket_s4": {
+  "Giovanni": {
+   "class": "BOSS",
+   "const": "TRAINER_BOSS_GIOVANNI",
+   "double": false,
+   "name": "Giovanni",
+   "sight": 0,
+   "team": [
+    [
+     "onix",
+     25
+    ],
+    [
+     "rhyhorn",
+     24
+    ],
+    [
+     "kangaskhan",
+     29
+    ]
+   ]
+  },
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_18",
+   "double": false,
+   "name": "Grunt",
+   "sight": 1,
+   "team": [
+    [
+     "koffing",
+     21
+    ],
+    [
+     "zubat",
+     21
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_16",
+   "double": false,
+   "name": "Grunt",
+   "sight": 0,
+   "team": [
+    [
+     "sandshrew",
+     23
+    ],
+    [
+     "ekans",
+     23
+    ],
+    [
+     "sandslash",
+     23
+    ]
+   ]
+  },
+  "Grunt3": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_17",
+   "double": false,
+   "name": "Grunt",
+   "sight": 0,
+   "team": [
+    [
+     "ekans",
+     23
+    ],
+    [
+     "sandshrew",
+     23
+    ],
+    [
+     "arbok",
+     23
+    ]
+   ]
+  }
+ },
+ "isla_canela_gimnasio": {
+  "Avery": {
+   "class": "SUPER_NERD",
+   "const": "TRAINER_SUPER_NERD_AVERY",
+   "double": false,
+   "name": "Avery",
+   "sight": 0,
+   "team": [
+    [
+     "ponyta",
+     34
+    ],
+    [
+     "charmander",
+     34
+    ],
+    [
+     "vulpix",
+     34
+    ],
+    [
+     "growlithe",
+     34
+    ]
+   ]
+  },
+  "Blaine": {
+   "class": "LEADER",
+   "const": "TRAINER_LEADER_BLAINE",
+   "double": false,
+   "name": "Blaine",
+   "sight": 0,
+   "team": [
+    [
+     "growlithe",
+     42
+    ],
+    [
+     "ponyta",
+     40
+    ],
+    [
+     "rapidash",
+     42
+    ],
+    [
+     "arcanine",
+     47
+    ]
+   ]
+  },
+  "Derek": {
+   "class": "SUPER_NERD",
+   "const": "TRAINER_SUPER_NERD_DEREK",
+   "double": false,
+   "name": "Derek",
+   "sight": 0,
+   "team": [
+    [
+     "rapidash",
+     41
+    ]
+   ]
+  },
+  "Dusty": {
+   "class": "BURGLAR",
+   "const": "TRAINER_BURGLAR_DUSTY",
+   "double": false,
+   "name": "Dusty",
+   "sight": 0,
+   "team": [
+    [
+     "vulpix",
+     37
+    ],
+    [
+     "growlithe",
+     37
+    ]
+   ]
+  },
+  "Erik": {
+   "class": "SUPER_NERD",
+   "const": "TRAINER_SUPER_NERD_ERIK",
+   "double": false,
+   "name": "Erik",
+   "sight": 0,
+   "team": [
+    [
+     "vulpix",
+     36
+    ],
+    [
+     "vulpix",
+     36
+    ],
+    [
+     "ninetales",
+     36
+    ]
+   ]
+  },
+  "Quinn": {
+   "class": "BURGLAR",
+   "const": "TRAINER_BURGLAR_QUINN",
+   "double": false,
+   "name": "Quinn",
+   "sight": 0,
+   "team": [
+    [
+     "growlithe",
+     36
+    ],
+    [
+     "vulpix",
+     36
+    ],
+    [
+     "ninetales",
+     36
+    ]
+   ]
+  },
+  "Ramon": {
+   "class": "BURGLAR",
+   "const": "TRAINER_BURGLAR_RAMON",
+   "double": false,
+   "name": "Ramon",
+   "sight": 0,
+   "team": [
+    [
+     "ponyta",
+     41
+    ]
+   ]
+  },
+  "Zac": {
+   "class": "SUPER_NERD",
+   "const": "TRAINER_SUPER_NERD_ZAC",
+   "double": false,
+   "name": "Zac",
+   "sight": 0,
+   "team": [
+    [
+     "growlithe",
+     37
+    ],
+    [
+     "vulpix",
+     37
+    ]
+   ]
+  }
+ },
+ "mansion_pokemon_1p": {
+  "Johnson": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_JOHNSON",
+   "double": false,
+   "name": "Johnson",
+   "sight": 1,
+   "team": [
+    [
+     "ekans",
+     33
+    ],
+    [
+     "ekans",
+     33
+    ],
+    [
+     "raticate",
+     34
+    ]
+   ]
+  },
+  "Ted": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_TED",
+   "double": false,
+   "name": "Ted",
+   "sight": 4,
+   "team": [
+    [
+     "electrode",
+     29
+    ],
+    [
+     "weezing",
+     29
+    ]
+   ]
+  }
+ },
+ "mansion_pokemon_2p": {
+  "Arnie": {
+   "class": "BURGLAR",
+   "const": "TRAINER_BURGLAR_ARNIE",
+   "double": false,
+   "name": "Arnie",
+   "sight": 1,
+   "team": [
+    [
+     "charmander",
+     34
+    ],
+    [
+     "charmeleon",
+     34
+    ]
+   ]
+  }
+ },
+ "mansion_pokemon_3p": {
+  "Braydon": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_BRAYDON",
+   "double": false,
+   "name": "Braydon",
+   "sight": 1,
+   "team": [
+    [
+     "magnemite",
+     33
+    ],
+    [
+     "magneton",
+     33
+    ],
+    [
+     "voltorb",
+     33
+    ]
+   ]
+  },
+  "Simon": {
+   "class": "BURGLAR",
+   "const": "TRAINER_BURGLAR_SIMON",
+   "double": false,
+   "name": "Simon",
+   "sight": 1,
+   "team": [
+    [
+     "ninetales",
+     38
+    ]
+   ]
+  }
+ },
+ "mansion_pokemon_s1": {
+  "Ivan": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_IVAN",
+   "double": false,
+   "name": "Ivan",
+   "sight": 6,
+   "team": [
+    [
+     "magnemite",
+     34
+    ],
+    [
+     "electrode",
+     34
+    ]
+   ]
+  },
+  "Lewis": {
+   "class": "BURGLAR",
+   "const": "TRAINER_BURGLAR_LEWIS",
+   "double": false,
+   "name": "Lewis",
+   "sight": 1,
+   "team": [
+    [
+     "growlithe",
+     34
+    ],
+    [
+     "ponyta",
+     34
+    ]
+   ]
+  }
+ },
+ "mt_moon": {
+  "Iris": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_IRIS",
+   "double": false,
+   "name": "Iris",
+   "sight": 2,
+   "team": [
+    [
+     "clefairy",
+     14
+    ]
+   ]
+  },
+  "Josh": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_JOSH",
+   "double": false,
+   "name": "Josh",
+   "sight": 4,
+   "team": [
+    [
+     "rattata",
+     10
+    ],
+    [
+     "rattata",
+     10
+    ],
+    [
+     "zubat",
+     10
+    ]
+   ]
+  },
+  "Jovan": {
+   "class": "SUPER_NERD",
+   "const": "TRAINER_SUPER_NERD_JOVAN",
+   "double": false,
+   "name": "Jovan",
+   "sight": 4,
+   "team": [
+    [
+     "magnemite",
+     11
+    ],
+    [
+     "voltorb",
+     11
+    ]
+   ]
+  },
+  "Kent": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_KENT",
+   "double": false,
+   "name": "Kent",
+   "sight": 4,
+   "team": [
+    [
+     "weedle",
+     11
+    ],
+    [
+     "kakuna",
+     11
+    ]
+   ]
+  },
+  "Marcos": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_MARCOS",
+   "double": false,
+   "name": "Marcos",
+   "sight": 1,
+   "team": [
+    [
+     "geodude",
+     10
+    ],
+    [
+     "geodude",
+     10
+    ],
+    [
+     "onix",
+     10
+    ]
+   ]
+  },
+  "Miriam": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_MIRIAM",
+   "double": false,
+   "name": "Miriam",
+   "sight": 2,
+   "team": [
+    [
+     "oddish",
+     11
+    ],
+    [
+     "bellsprout",
+     11
+    ]
+   ]
+  },
+  "Robby": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_ROBBY",
+   "double": false,
+   "name": "Robby",
+   "sight": 2,
+   "team": [
+    [
+     "caterpie",
+     10
+    ],
+    [
+     "metapod",
+     10
+    ],
+    [
+     "caterpie",
+     10
+    ]
+   ]
+  }
+ },
+ "mt_moon_s2": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT",
+   "double": false,
+   "name": "Grunt",
+   "sight": 2,
+   "team": [
+    [
+     "rattata",
+     13
+    ],
+    [
+     "zubat",
+     13
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_2",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "sandshrew",
+     11
+    ],
+    [
+     "rattata",
+     11
+    ],
+    [
+     "zubat",
+     11
+    ]
+   ]
+  },
+  "Grunt3": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_3",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "zubat",
+     11
+    ],
+    [
+     "ekans",
+     11
+    ]
+   ]
+  },
+  "Grunt4": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_4",
+   "double": false,
+   "name": "Grunt",
+   "sight": 3,
+   "team": [
+    [
+     "rattata",
+     13
+    ],
+    [
+     "sandshrew",
+     13
+    ]
+   ]
+  }
+ },
+ "ruta10": {
+  "Carol": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_CAROL",
+   "double": false,
+   "name": "Carol",
+   "sight": 2,
+   "team": [
+    [
+     "pidgey",
+     21
+    ],
+    [
+     "pidgeotto",
+     21
+    ]
+   ]
+  },
+  "Clark": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_CLARK",
+   "double": false,
+   "name": "Clark",
+   "sight": 1,
+   "team": [
+    [
+     "geodude",
+     21
+    ],
+    [
+     "onix",
+     21
+    ]
+   ]
+  },
+  "Heidi": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_HEIDI",
+   "double": false,
+   "name": "Heidi",
+   "sight": 2,
+   "team": [
+    [
+     "pikachu",
+     20
+    ],
+    [
+     "clefairy",
+     20
+    ]
+   ]
+  },
+  "Herman": {
+   "class": "POKEMANIAC",
+   "const": "TRAINER_POKEMANIAC_HERMAN",
+   "double": false,
+   "name": "Herman",
+   "sight": 2,
+   "team": [
+    [
+     "cubone",
+     20
+    ],
+    [
+     "slowpoke",
+     20
+    ]
+   ]
+  },
+  "Mark": {
+   "class": "POKEMANIAC",
+   "const": "TRAINER_POKEMANIAC_MARK",
+   "double": false,
+   "name": "Mark",
+   "sight": 5,
+   "team": [
+    [
+     "rhyhorn",
+     29
+    ],
+    [
+     "lickitung",
+     29
+    ]
+   ]
+  },
+  "Trent": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_TRENT",
+   "double": false,
+   "name": "Trent",
+   "sight": 2,
+   "team": [
+    [
+     "onix",
+     19
+    ],
+    [
+     "graveler",
+     19
+    ]
+   ]
+  }
+ },
+ "ruta11": {
+  "Bernie": {
+   "class": "ENGINEER",
+   "const": "TRAINER_ENGINEER_BERNIE",
+   "double": false,
+   "name": "Bernie",
+   "sight": 6,
+   "team": [
+    [
+     "magnemite",
+     18
+    ],
+    [
+     "magnemite",
+     18
+    ],
+    [
+     "magneton",
+     18
+    ]
+   ]
+  },
+  "Braxton": {
+   "class": "ENGINEER",
+   "const": "TRAINER_ENGINEER_BRAXTON",
+   "double": false,
+   "name": "Braxton",
+   "sight": 4,
+   "team": [
+    [
+     "magnemite",
+     21
+    ]
+   ]
+  },
+  "Darian": {
+   "class": "GAMER",
+   "const": "TRAINER_GAMER_DARIAN",
+   "double": false,
+   "name": "Darian",
+   "sight": 1,
+   "team": [
+    [
+     "growlithe",
+     18
+    ],
+    [
+     "vulpix",
+     18
+    ]
+   ]
+  },
+  "Dave": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_DAVE",
+   "double": false,
+   "name": "Dave",
+   "sight": 1,
+   "team": [
+    [
+     "nidoran_m",
+     18
+    ],
+    [
+     "nidorino",
+     18
+    ]
+   ]
+  },
+  "Dillon": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_DILLON",
+   "double": false,
+   "name": "Dillon",
+   "sight": 4,
+   "team": [
+    [
+     "sandshrew",
+     19
+    ],
+    [
+     "zubat",
+     19
+    ]
+   ]
+  },
+  "Dirk": {
+   "class": "GAMER",
+   "const": "TRAINER_GAMER_DIRK",
+   "double": false,
+   "name": "Dirk",
+   "sight": 1,
+   "team": [
+    [
+     "voltorb",
+     18
+    ],
+    [
+     "magnemite",
+     18
+    ]
+   ]
+  },
+  "Eddie": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_EDDIE",
+   "double": false,
+   "name": "Eddie",
+   "sight": 4,
+   "team": [
+    [
+     "ekans",
+     21
+    ]
+   ]
+  },
+  "Hugo": {
+   "class": "GAMER",
+   "const": "TRAINER_GAMER_HUGO",
+   "double": false,
+   "name": "Hugo",
+   "sight": 1,
+   "team": [
+    [
+     "poliwag",
+     18
+    ],
+    [
+     "horsea",
+     18
+    ]
+   ]
+  },
+  "Jasper": {
+   "class": "GAMER",
+   "const": "TRAINER_GAMER_JASPER",
+   "double": false,
+   "name": "Jasper",
+   "sight": 1,
+   "team": [
+    [
+     "bellsprout",
+     18
+    ],
+    [
+     "oddish",
+     18
+    ]
+   ]
+  },
+  "Yasu": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_YASU",
+   "double": false,
+   "name": "Yasu",
+   "sight": 1,
+   "team": [
+    [
+     "rattata",
+     17
+    ],
+    [
+     "rattata",
+     17
+    ],
+    [
+     "raticate",
+     17
+    ]
+   ]
+  }
+ },
+ "ruta12": {
+  "Andrew": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_ANDREW",
+   "double": false,
+   "name": "Andrew",
+   "sight": 1,
+   "team": [
+    [
+     "magikarp",
+     24
+    ],
+    [
+     "magikarp",
+     24
+    ]
+   ]
+  },
+  "Chip": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_CHIP",
+   "double": false,
+   "name": "Chip",
+   "sight": 1,
+   "team": [
+    [
+     "tentacool",
+     24
+    ],
+    [
+     "goldeen",
+     24
+    ]
+   ]
+  },
+  "Elliot": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_ELLIOT",
+   "double": false,
+   "name": "Elliot",
+   "sight": 1,
+   "team": [
+    [
+     "poliwag",
+     21
+    ],
+    [
+     "shellder",
+     21
+    ],
+    [
+     "goldeen",
+     21
+    ],
+    [
+     "horsea",
+     21
+    ]
+   ]
+  },
+  "Gia": {
+   "class": "YOUNG_COUPLE",
+   "const": "TRAINER_YOUNG_COUPLE_GIA_JES",
+   "double": true,
+   "name": "Gia & Jes",
+   "sight": 0,
+   "team": [
+    [
+     "nidoran_m",
+     24
+    ],
+    [
+     "nidoran_f",
+     24
+    ]
+   ]
+  },
+  "Hank": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_HANK",
+   "double": false,
+   "name": "Hank",
+   "sight": 4,
+   "team": [
+    [
+     "goldeen",
+     27
+    ]
+   ]
+  },
+  "Jes": {
+   "class": "YOUNG_COUPLE",
+   "const": "TRAINER_YOUNG_COUPLE_GIA_JES",
+   "double": true,
+   "name": "Gia & Jes",
+   "sight": 0,
+   "team": [
+    [
+     "nidoran_m",
+     24
+    ],
+    [
+     "nidoran_f",
+     24
+    ]
+   ]
+  },
+  "Justin": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_JUSTIN",
+   "double": false,
+   "name": "Justin",
+   "sight": 1,
+   "team": [
+    [
+     "nidoran_m",
+     29
+    ],
+    [
+     "nidorino",
+     29
+    ]
+   ]
+  },
+  "Luca": {
+   "class": "ROCKER",
+   "const": "TRAINER_ROCKER_LUCA",
+   "double": false,
+   "name": "Luca",
+   "sight": 1,
+   "team": [
+    [
+     "voltorb",
+     29
+    ],
+    [
+     "electrode",
+     29
+    ]
+   ]
+  },
+  "Ned": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_NED",
+   "double": false,
+   "name": "Ned",
+   "sight": 1,
+   "team": [
+    [
+     "goldeen",
+     22
+    ],
+    [
+     "poliwag",
+     22
+    ],
+    [
+     "goldeen",
+     22
+    ]
+   ]
+  }
+ },
+ "ruta13": {
+  "Alma": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_ALMA",
+   "double": false,
+   "name": "Alma",
+   "sight": 1,
+   "team": [
+    [
+     "goldeen",
+     28
+    ],
+    [
+     "poliwag",
+     28
+    ],
+    [
+     "horsea",
+     28
+    ]
+   ]
+  },
+  "Gwen": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_GWEN",
+   "double": false,
+   "name": "Gwen",
+   "sight": 3,
+   "team": [
+    [
+     "pidgey",
+     27
+    ],
+    [
+     "meowth",
+     27
+    ],
+    [
+     "pidgey",
+     27
+    ],
+    [
+     "pidgeotto",
+     27
+    ]
+   ]
+  },
+  "Jared": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_JARED",
+   "double": false,
+   "name": "Jared",
+   "sight": 1,
+   "team": [
+    [
+     "koffing",
+     28
+    ],
+    [
+     "koffing",
+     28
+    ],
+    [
+     "koffing",
+     28
+    ]
+   ]
+  },
+  "Lola": {
+   "class": "BEAUTY",
+   "const": "TRAINER_BEAUTY_LOLA",
+   "double": false,
+   "name": "Lola",
+   "sight": 3,
+   "team": [
+    [
+     "rattata",
+     27
+    ],
+    [
+     "pikachu",
+     27
+    ],
+    [
+     "rattata",
+     27
+    ]
+   ]
+  },
+  "Perry": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_PERRY",
+   "double": false,
+   "name": "Perry",
+   "sight": 3,
+   "team": [
+    [
+     "spearow",
+     25
+    ],
+    [
+     "pidgey",
+     25
+    ],
+    [
+     "pidgey",
+     25
+    ],
+    [
+     "spearow",
+     25
+    ],
+    [
+     "spearow",
+     25
+    ]
+   ]
+  },
+  "Robert": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_ROBERT",
+   "double": false,
+   "name": "Robert",
+   "sight": 3,
+   "team": [
+    [
+     "pidgey",
+     26
+    ],
+    [
+     "pidgeotto",
+     26
+    ],
+    [
+     "spearow",
+     26
+    ],
+    [
+     "fearow",
+     26
+    ]
+   ]
+  },
+  "Sebastian": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_SEBASTIAN",
+   "double": false,
+   "name": "Sebastian",
+   "sight": 1,
+   "team": [
+    [
+     "pidgey",
+     29
+    ],
+    [
+     "pidgeotto",
+     29
+    ]
+   ]
+  },
+  "Sheila": {
+   "class": "BEAUTY",
+   "const": "TRAINER_BEAUTY_SHEILA",
+   "double": false,
+   "name": "Sheila",
+   "sight": 3,
+   "team": [
+    [
+     "clefairy",
+     29
+    ],
+    [
+     "meowth",
+     29
+    ]
+   ]
+  },
+  "Susie": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_SUSIE",
+   "double": false,
+   "name": "Susie",
+   "sight": 1,
+   "team": [
+    [
+     "pidgey",
+     24
+    ],
+    [
+     "meowth",
+     24
+    ],
+    [
+     "rattata",
+     24
+    ],
+    [
+     "pikachu",
+     24
+    ],
+    [
+     "meowth",
+     24
+    ]
+   ]
+  },
+  "Valerie": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_VALERIE",
+   "double": false,
+   "name": "Valerie",
+   "sight": 1,
+   "team": [
+    [
+     "poliwag",
+     30
+    ],
+    [
+     "poliwag",
+     30
+    ]
+   ]
+  }
+ },
+ "ruta14": {
+  "Beck": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_BECK",
+   "double": false,
+   "name": "Beck",
+   "sight": 4,
+   "team": [
+    [
+     "pidgeotto",
+     29
+    ],
+    [
+     "fearow",
+     29
+    ]
+   ]
+  },
+  "Benny": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_BENNY",
+   "double": false,
+   "name": "Benny",
+   "sight": 1,
+   "team": [
+    [
+     "spearow",
+     29
+    ],
+    [
+     "fearow",
+     29
+    ]
+   ]
+  },
+  "Carter": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_CARTER",
+   "double": false,
+   "name": "Carter",
+   "sight": 1,
+   "team": [
+    [
+     "pidgey",
+     28
+    ],
+    [
+     "doduo",
+     28
+    ],
+    [
+     "pidgeotto",
+     28
+    ]
+   ]
+  },
+  "Donald": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_DONALD",
+   "double": false,
+   "name": "Donald",
+   "sight": 1,
+   "team": [
+    [
+     "farfetchd",
+     33
+    ]
+   ]
+  },
+  "Gerald": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_GERALD",
+   "double": false,
+   "name": "Gerald",
+   "sight": 2,
+   "team": [
+    [
+     "koffing",
+     29
+    ],
+    [
+     "muk",
+     29
+    ]
+   ]
+  },
+  "Isaac": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_ISAAC",
+   "double": false,
+   "name": "Isaac",
+   "sight": 2,
+   "team": [
+    [
+     "grimer",
+     28
+    ],
+    [
+     "grimer",
+     28
+    ],
+    [
+     "koffing",
+     28
+    ]
+   ]
+  },
+  "Jan": {
+   "class": "TWINS",
+   "const": "TRAINER_TWINS_KIRI_JAN",
+   "double": true,
+   "name": "Kiri & Jan",
+   "sight": 1,
+   "team": [
+    [
+     "charmander",
+     29
+    ],
+    [
+     "squirtle",
+     29
+    ]
+   ]
+  },
+  "Kiri": {
+   "class": "TWINS",
+   "const": "TRAINER_TWINS_KIRI_JAN",
+   "double": true,
+   "name": "Kiri & Jan",
+   "sight": 1,
+   "team": [
+    [
+     "charmander",
+     29
+    ],
+    [
+     "squirtle",
+     29
+    ]
+   ]
+  },
+  "Lukas": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_LUKAS",
+   "double": false,
+   "name": "Lukas",
+   "sight": 1,
+   "team": [
+    [
+     "koffing",
+     26
+    ],
+    [
+     "koffing",
+     26
+    ],
+    [
+     "grimer",
+     26
+    ],
+    [
+     "koffing",
+     26
+    ]
+   ]
+  },
+  "Malik": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_MALIK",
+   "double": false,
+   "name": "Malik",
+   "sight": 2,
+   "team": [
+    [
+     "koffing",
+     29
+    ],
+    [
+     "grimer",
+     29
+    ]
+   ]
+  },
+  "Marlon": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_MARLON",
+   "double": false,
+   "name": "Marlon",
+   "sight": 3,
+   "team": [
+    [
+     "spearow",
+     28
+    ],
+    [
+     "doduo",
+     28
+    ],
+    [
+     "fearow",
+     28
+    ]
+   ]
+  },
+  "Mitch": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_MITCH",
+   "double": false,
+   "name": "Mitch",
+   "sight": 1,
+   "team": [
+    [
+     "pidgey",
+     26
+    ],
+    [
+     "spearow",
+     26
+    ],
+    [
+     "pidgey",
+     26
+    ],
+    [
+     "fearow",
+     26
+    ]
+   ]
+  }
+ },
+ "ruta15": {
+  "Alex": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_ALEX",
+   "double": false,
+   "name": "Alex",
+   "sight": 2,
+   "team": [
+    [
+     "koffing",
+     28
+    ],
+    [
+     "grimer",
+     28
+    ],
+    [
+     "weezing",
+     28
+    ]
+   ]
+  },
+  "Becky": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_BECKY",
+   "double": false,
+   "name": "Becky",
+   "sight": 1,
+   "team": [
+    [
+     "pikachu",
+     29
+    ],
+    [
+     "raichu",
+     29
+    ]
+   ]
+  },
+  "Celia": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_CELIA",
+   "double": false,
+   "name": "Celia",
+   "sight": 1,
+   "team": [
+    [
+     "clefairy",
+     33
+    ]
+   ]
+  },
+  "Chester": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_CHESTER",
+   "double": false,
+   "name": "Chester",
+   "sight": 2,
+   "team": [
+    [
+     "dodrio",
+     28
+    ],
+    [
+     "doduo",
+     28
+    ],
+    [
+     "doduo",
+     28
+    ]
+   ]
+  },
+  "Edwin": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_EDWIN",
+   "double": false,
+   "name": "Edwin",
+   "sight": 5,
+   "team": [
+    [
+     "pidgeotto",
+     26
+    ],
+    [
+     "farfetchd",
+     26
+    ],
+    [
+     "doduo",
+     26
+    ],
+    [
+     "pidgey",
+     26
+    ]
+   ]
+  },
+  "Ernest": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_ERNEST",
+   "double": false,
+   "name": "Ernest",
+   "sight": 1,
+   "team": [
+    [
+     "koffing",
+     25
+    ],
+    [
+     "koffing",
+     25
+    ],
+    [
+     "weezing",
+     25
+    ],
+    [
+     "koffing",
+     25
+    ],
+    [
+     "grimer",
+     25
+    ]
+   ]
+  },
+  "Grace": {
+   "class": "BEAUTY",
+   "const": "TRAINER_BEAUTY_GRACE",
+   "double": false,
+   "name": "Grace",
+   "sight": 2,
+   "team": [
+    [
+     "pidgeotto",
+     29
+    ],
+    [
+     "wigglytuff",
+     29
+    ]
+   ]
+  },
+  "Kindra": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_KINDRA",
+   "double": false,
+   "name": "Kindra",
+   "sight": 1,
+   "team": [
+    [
+     "gloom",
+     28
+    ],
+    [
+     "oddish",
+     28
+    ],
+    [
+     "oddish",
+     28
+    ]
+   ]
+  },
+  "Mya": {
+   "class": "CRUSH_KIN",
+   "const": "TRAINER_CRUSH_KIN_RON_MYA",
+   "double": true,
+   "name": "Ron & Mya",
+   "sight": 1,
+   "team": [
+    [
+     "hitmonchan",
+     29
+    ],
+    [
+     "hitmonlee",
+     29
+    ]
+   ]
+  },
+  "Olivia": {
+   "class": "BEAUTY",
+   "const": "TRAINER_BEAUTY_OLIVIA",
+   "double": false,
+   "name": "Olivia",
+   "sight": 2,
+   "team": [
+    [
+     "bulbasaur",
+     29
+    ],
+    [
+     "ivysaur",
+     29
+    ]
+   ]
+  },
+  "Ron": {
+   "class": "CRUSH_KIN",
+   "const": "TRAINER_CRUSH_KIN_RON_MYA",
+   "double": true,
+   "name": "Ron & Mya",
+   "sight": 1,
+   "team": [
+    [
+     "hitmonchan",
+     29
+    ],
+    [
+     "hitmonlee",
+     29
+    ]
+   ]
+  },
+  "Yazmin": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_YAZMIN",
+   "double": false,
+   "name": "Yazmin",
+   "sight": 1,
+   "team": [
+    [
+     "bellsprout",
+     29
+    ],
+    [
+     "oddish",
+     29
+    ],
+    [
+     "tangela",
+     29
+    ]
+   ]
+  }
+ },
+ "ruta16": {
+  "Camron": {
+   "class": "CUE_BALL",
+   "const": "TRAINER_CUE_BALL_CAMRON",
+   "double": false,
+   "name": "Camron",
+   "sight": 1,
+   "team": [
+    [
+     "mankey",
+     29
+    ],
+    [
+     "machop",
+     29
+    ]
+   ]
+  },
+  "Hideo": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_HIDEO",
+   "double": false,
+   "name": "Hideo",
+   "sight": 1,
+   "team": [
+    [
+     "weezing",
+     33
+    ]
+   ]
+  },
+  "Jed": {
+   "class": "YOUNG_COUPLE",
+   "const": "TRAINER_YOUNG_COUPLE_LEA_JED",
+   "double": true,
+   "name": "Lea & Jed",
+   "sight": 1,
+   "team": [
+    [
+     "rapidash",
+     29
+    ],
+    [
+     "ninetales",
+     29
+    ]
+   ]
+  },
+  "Koji": {
+   "class": "CUE_BALL",
+   "const": "TRAINER_CUE_BALL_KOJI",
+   "double": false,
+   "name": "Koji",
+   "sight": 1,
+   "team": [
+    [
+     "machop",
+     28
+    ],
+    [
+     "mankey",
+     28
+    ],
+    [
+     "machop",
+     28
+    ]
+   ]
+  },
+  "Lao": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_LAO",
+   "double": false,
+   "name": "Lao",
+   "sight": 1,
+   "team": [
+    [
+     "grimer",
+     29
+    ],
+    [
+     "koffing",
+     29
+    ]
+   ]
+  },
+  "Lea": {
+   "class": "YOUNG_COUPLE",
+   "const": "TRAINER_YOUNG_COUPLE_LEA_JED",
+   "double": true,
+   "name": "Lea & Jed",
+   "sight": 1,
+   "team": [
+    [
+     "rapidash",
+     29
+    ],
+    [
+     "ninetales",
+     29
+    ]
+   ]
+  },
+  "Luke": {
+   "class": "CUE_BALL",
+   "const": "TRAINER_CUE_BALL_LUKE",
+   "double": false,
+   "name": "Luke",
+   "sight": 1,
+   "team": [
+    [
+     "mankey",
+     29
+    ],
+    [
+     "machop",
+     29
+    ]
+   ]
+  },
+  "Ruben": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_RUBEN",
+   "double": false,
+   "name": "Ruben",
+   "sight": 1,
+   "team": [
+    [
+     "weezing",
+     28
+    ],
+    [
+     "koffing",
+     28
+    ],
+    [
+     "weezing",
+     28
+    ]
+   ]
+  }
+ },
+ "ruta17": {
+  "Billy": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_BILLY",
+   "double": false,
+   "name": "Billy",
+   "sight": 5,
+   "team": [
+    [
+     "muk",
+     33
+    ]
+   ]
+  },
+  "Corey": {
+   "class": "CUE_BALL",
+   "const": "TRAINER_CUE_BALL_COREY",
+   "double": false,
+   "name": "Corey",
+   "sight": 1,
+   "team": [
+    [
+     "primeape",
+     29
+    ],
+    [
+     "machoke",
+     29
+    ]
+   ]
+  },
+  "Isaiah": {
+   "class": "CUE_BALL",
+   "const": "TRAINER_CUE_BALL_ISAIAH",
+   "double": false,
+   "name": "Isaiah",
+   "sight": 1,
+   "team": [
+    [
+     "machop",
+     29
+    ],
+    [
+     "machamp",
+     29
+    ]
+   ]
+  },
+  "Jamal": {
+   "class": "CUE_BALL",
+   "const": "TRAINER_CUE_BALL_JAMAL",
+   "double": false,
+   "name": "Jamal",
+   "sight": 4,
+   "team": [
+    [
+     "mankey",
+     26
+    ],
+    [
+     "mankey",
+     26
+    ],
+    [
+     "machamp",
+     26
+    ],
+    [
+     "machop",
+     26
+    ]
+   ]
+  },
+  "Jaxon": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_JAXON",
+   "double": false,
+   "name": "Jaxon",
+   "sight": 1,
+   "team": [
+    [
+     "weezing",
+     29
+    ],
+    [
+     "muk",
+     29
+    ]
+   ]
+  },
+  "Nikolas": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_NIKOLAS",
+   "double": false,
+   "name": "Nikolas",
+   "sight": 1,
+   "team": [
+    [
+     "voltorb",
+     29
+    ],
+    [
+     "voltorb",
+     29
+    ]
+   ]
+  },
+  "Raul": {
+   "class": "CUE_BALL",
+   "const": "TRAINER_CUE_BALL_RAUL",
+   "double": false,
+   "name": "Raul",
+   "sight": 1,
+   "team": [
+    [
+     "mankey",
+     29
+    ],
+    [
+     "primeape",
+     29
+    ]
+   ]
+  },
+  "Virgil": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_VIRGIL",
+   "double": false,
+   "name": "Virgil",
+   "sight": 1,
+   "team": [
+    [
+     "weezing",
+     28
+    ],
+    [
+     "koffing",
+     28
+    ],
+    [
+     "weezing",
+     28
+    ]
+   ]
+  },
+  "William": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_WILLIAM",
+   "double": false,
+   "name": "William",
+   "sight": 1,
+   "team": [
+    [
+     "koffing",
+     25
+    ],
+    [
+     "weezing",
+     25
+    ],
+    [
+     "koffing",
+     25
+    ],
+    [
+     "koffing",
+     25
+    ],
+    [
+     "weezing",
+     25
+    ]
+   ]
+  },
+  "Zeek": {
+   "class": "CUE_BALL",
+   "const": "TRAINER_CUE_BALL_ZEEK",
+   "double": false,
+   "name": "Zeek",
+   "sight": 3,
+   "team": [
+    [
+     "machoke",
+     33
+    ]
+   ]
+  }
+ },
+ "ruta18": {
+  "Jacob": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_JACOB",
+   "double": false,
+   "name": "Jacob",
+   "sight": 4,
+   "team": [
+    [
+     "spearow",
+     26
+    ],
+    [
+     "spearow",
+     26
+    ],
+    [
+     "fearow",
+     26
+    ],
+    [
+     "spearow",
+     26
+    ]
+   ]
+  },
+  "Ramiro": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_RAMIRO",
+   "double": false,
+   "name": "Ramiro",
+   "sight": 1,
+   "team": [
+    [
+     "dodrio",
+     34
+    ]
+   ]
+  },
+  "Wilton": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_WILTON",
+   "double": false,
+   "name": "Wilton",
+   "sight": 6,
+   "team": [
+    [
+     "spearow",
+     29
+    ],
+    [
+     "fearow",
+     29
+    ]
+   ]
+  }
+ },
+ "ruta19": {
+  "Alice": {
+   "class": "SWIMMER_F",
+   "const": "TRAINER_SWIMMER_FEMALE_ALICE",
+   "double": false,
+   "name": "Alice",
+   "sight": 1,
+   "team": [
+    [
+     "goldeen",
+     30
+    ],
+    [
+     "seaking",
+     30
+    ]
+   ]
+  },
+  "Anya": {
+   "class": "SWIMMER_F",
+   "const": "TRAINER_SWIMMER_FEMALE_ANYA",
+   "double": false,
+   "name": "Anya",
+   "sight": 1,
+   "team": [
+    [
+     "poliwag",
+     27
+    ],
+    [
+     "goldeen",
+     27
+    ],
+    [
+     "seaking",
+     27
+    ],
+    [
+     "goldeen",
+     27
+    ],
+    [
+     "poliwag",
+     27
+    ]
+   ]
+  },
+  "Axle": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_AXLE",
+   "double": false,
+   "name": "Axle",
+   "sight": 1,
+   "team": [
+    [
+     "tentacool",
+     27
+    ],
+    [
+     "tentacool",
+     27
+    ],
+    [
+     "staryu",
+     27
+    ],
+    [
+     "horsea",
+     27
+    ],
+    [
+     "tentacruel",
+     27
+    ]
+   ]
+  },
+  "Connie": {
+   "class": "SWIMMER_F",
+   "const": "TRAINER_SWIMMER_FEMALE_CONNIE",
+   "double": false,
+   "name": "Connie",
+   "sight": 1,
+   "team": [
+    [
+     "staryu",
+     29
+    ],
+    [
+     "staryu",
+     29
+    ],
+    [
+     "staryu",
+     29
+    ]
+   ]
+  },
+  "David": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_DAVID",
+   "double": false,
+   "name": "David",
+   "sight": 6,
+   "team": [
+    [
+     "goldeen",
+     29
+    ],
+    [
+     "shellder",
+     29
+    ],
+    [
+     "seaking",
+     29
+    ]
+   ]
+  },
+  "Douglas": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_DOUGLAS",
+   "double": false,
+   "name": "Douglas",
+   "sight": 1,
+   "team": [
+    [
+     "horsea",
+     27
+    ],
+    [
+     "tentacool",
+     27
+    ],
+    [
+     "tentacool",
+     27
+    ],
+    [
+     "goldeen",
+     27
+    ]
+   ]
+  },
+  "Lia": {
+   "class": "SIS_AND_BRO",
+   "const": "TRAINER_SIS_AND_BRO_LIA_LUC",
+   "double": true,
+   "name": "Lia & Luc",
+   "sight": 1,
+   "team": [
+    [
+     "goldeen",
+     30
+    ],
+    [
+     "seaking",
+     30
+    ]
+   ]
+  },
+  "Luc": {
+   "class": "SIS_AND_BRO",
+   "const": "TRAINER_SIS_AND_BRO_LIA_LUC",
+   "double": true,
+   "name": "Lia & Luc",
+   "sight": 1,
+   "team": [
+    [
+     "goldeen",
+     30
+    ],
+    [
+     "seaking",
+     30
+    ]
+   ]
+  },
+  "Matthew": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_MATTHEW",
+   "double": false,
+   "name": "Matthew",
+   "sight": 1,
+   "team": [
+    [
+     "poliwag",
+     30
+    ],
+    [
+     "poliwhirl",
+     30
+    ]
+   ]
+  },
+  "Reece": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_REECE",
+   "double": false,
+   "name": "Reece",
+   "sight": 3,
+   "team": [
+    [
+     "goldeen",
+     29
+    ],
+    [
+     "horsea",
+     29
+    ],
+    [
+     "staryu",
+     29
+    ]
+   ]
+  },
+  "Richard": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_RICHARD",
+   "double": false,
+   "name": "Richard",
+   "sight": 3,
+   "team": [
+    [
+     "tentacool",
+     30
+    ],
+    [
+     "shellder",
+     30
+    ]
+   ]
+  },
+  "Tony": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_TONY",
+   "double": false,
+   "name": "Tony",
+   "sight": 3,
+   "team": [
+    [
+     "horsea",
+     30
+    ],
+    [
+     "horsea",
+     30
+    ]
+   ]
+  }
+ },
+ "ruta20": {
+  "Barry": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_BARRY",
+   "double": false,
+   "name": "Barry",
+   "sight": 1,
+   "team": [
+    [
+     "shellder",
+     31
+    ],
+    [
+     "cloyster",
+     31
+    ]
+   ]
+  },
+  "Darrin": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_DARRIN",
+   "double": false,
+   "name": "Darrin",
+   "sight": 1,
+   "team": [
+    [
+     "horsea",
+     28
+    ],
+    [
+     "horsea",
+     28
+    ],
+    [
+     "seadra",
+     28
+    ],
+    [
+     "horsea",
+     28
+    ]
+   ]
+  },
+  "Dean": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_DEAN",
+   "double": false,
+   "name": "Dean",
+   "sight": 1,
+   "team": [
+    [
+     "staryu",
+     35
+    ]
+   ]
+  },
+  "Irene": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_IRENE",
+   "double": false,
+   "name": "Irene",
+   "sight": 2,
+   "team": [
+    [
+     "tentacool",
+     30
+    ],
+    [
+     "horsea",
+     30
+    ],
+    [
+     "seel",
+     30
+    ]
+   ]
+  },
+  "Melissa": {
+   "class": "SWIMMER_F",
+   "const": "TRAINER_SWIMMER_FEMALE_MELISSA",
+   "double": false,
+   "name": "Melissa",
+   "sight": 3,
+   "team": [
+    [
+     "poliwag",
+     31
+    ],
+    [
+     "seaking",
+     31
+    ]
+   ]
+  },
+  "Missy": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_MISSY",
+   "double": false,
+   "name": "Missy",
+   "sight": 1,
+   "team": [
+    [
+     "goldeen",
+     31
+    ],
+    [
+     "seaking",
+     31
+    ]
+   ]
+  },
+  "Nora": {
+   "class": "SWIMMER_F",
+   "const": "TRAINER_SWIMMER_FEMALE_NORA",
+   "double": false,
+   "name": "Nora",
+   "sight": 4,
+   "team": [
+    [
+     "shellder",
+     30
+    ],
+    [
+     "shellder",
+     30
+    ],
+    [
+     "cloyster",
+     30
+    ]
+   ]
+  },
+  "Roger": {
+   "class": "BIRD_KEEPER",
+   "const": "TRAINER_BIRD_KEEPER_ROGER",
+   "double": false,
+   "name": "Roger",
+   "sight": 1,
+   "team": [
+    [
+     "fearow",
+     30
+    ],
+    [
+     "fearow",
+     30
+    ],
+    [
+     "pidgeotto",
+     30
+    ]
+   ]
+  },
+  "Shirley": {
+   "class": "SWIMMER_F",
+   "const": "TRAINER_SWIMMER_FEMALE_SHIRLEY",
+   "double": false,
+   "name": "Shirley",
+   "sight": 5,
+   "team": [
+    [
+     "seadra",
+     30
+    ],
+    [
+     "horsea",
+     30
+    ],
+    [
+     "seadra",
+     30
+    ]
+   ]
+  },
+  "Tiffany": {
+   "class": "SWIMMER_F",
+   "const": "TRAINER_SWIMMER_FEMALE_TIFFANY",
+   "double": false,
+   "name": "Tiffany",
+   "sight": 1,
+   "team": [
+    [
+     "seaking",
+     35
+    ]
+   ]
+  }
+ },
+ "ruta21_norte": {
+  "Ian": {
+   "class": "SIS_AND_BRO",
+   "const": "TRAINER_SIS_AND_BRO_LIL_IAN",
+   "double": true,
+   "name": "Lil & Ian",
+   "sight": 1,
+   "team": [
+    [
+     "seadra",
+     33
+    ],
+    [
+     "starmie",
+     33
+    ]
+   ]
+  },
+  "Lil": {
+   "class": "SIS_AND_BRO",
+   "const": "TRAINER_SIS_AND_BRO_LIL_IAN",
+   "double": true,
+   "name": "Lil & Ian",
+   "sight": 1,
+   "team": [
+    [
+     "seadra",
+     33
+    ],
+    [
+     "starmie",
+     33
+    ]
+   ]
+  },
+  "Ronald": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_RONALD",
+   "double": false,
+   "name": "Ronald",
+   "sight": 0,
+   "team": [
+    [
+     "seaking",
+     28
+    ],
+    [
+     "goldeen",
+     28
+    ],
+    [
+     "seaking",
+     28
+    ],
+    [
+     "seaking",
+     28
+    ]
+   ]
+  },
+  "Spencer": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_SPENCER",
+   "double": false,
+   "name": "Spencer",
+   "sight": 1,
+   "team": [
+    [
+     "seadra",
+     33
+    ],
+    [
+     "tentacruel",
+     33
+    ]
+   ]
+  },
+  "Wade": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_WADE",
+   "double": false,
+   "name": "Wade",
+   "sight": 0,
+   "team": [
+    [
+     "magikarp",
+     27
+    ],
+    [
+     "magikarp",
+     27
+    ],
+    [
+     "magikarp",
+     27
+    ],
+    [
+     "magikarp",
+     27
+    ],
+    [
+     "magikarp",
+     27
+    ],
+    [
+     "magikarp",
+     27
+    ]
+   ]
+  }
+ },
+ "ruta21_sur": {
+  "Claude": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_CLAUDE",
+   "double": false,
+   "name": "Claude",
+   "sight": 0,
+   "team": [
+    [
+     "shellder",
+     31
+    ],
+    [
+     "cloyster",
+     31
+    ]
+   ]
+  },
+  "Jack": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_JACK",
+   "double": false,
+   "name": "Jack",
+   "sight": 3,
+   "team": [
+    [
+     "starmie",
+     37
+    ]
+   ]
+  },
+  "Jerome": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_JEROME",
+   "double": false,
+   "name": "Jerome",
+   "sight": 3,
+   "team": [
+    [
+     "staryu",
+     33
+    ],
+    [
+     "wartortle",
+     33
+    ]
+   ]
+  },
+  "Nolan": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_NOLAN",
+   "double": false,
+   "name": "Nolan",
+   "sight": 0,
+   "team": [
+    [
+     "seaking",
+     33
+    ],
+    [
+     "goldeen",
+     33
+    ]
+   ]
+  },
+  "Roland": {
+   "class": "SWIMMER_M",
+   "const": "TRAINER_SWIMMER_MALE_ROLAND",
+   "double": false,
+   "name": "Roland",
+   "sight": 4,
+   "team": [
+    [
+     "poliwhirl",
+     32
+    ],
+    [
+     "tentacool",
+     32
+    ],
+    [
+     "seadra",
+     32
+    ]
+   ]
+  }
+ },
+ "ruta24": {
+  "Ali": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_ALI",
+   "double": false,
+   "name": "Ali",
+   "sight": 2,
+   "team": [
+    [
+     "pidgey",
+     12
+    ],
+    [
+     "oddish",
+     12
+    ],
+    [
+     "bellsprout",
+     12
+    ]
+   ]
+  },
+  "Cale": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_CALE",
+   "double": false,
+   "name": "Cale",
+   "sight": 2,
+   "team": [
+    [
+     "caterpie",
+     10
+    ],
+    [
+     "weedle",
+     10
+    ],
+    [
+     "metapod",
+     10
+    ],
+    [
+     "kakuna",
+     10
+    ]
+   ]
+  },
+  "Ethan": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_ETHAN",
+   "double": false,
+   "name": "Ethan",
+   "sight": 2,
+   "team": [
+    [
+     "mankey",
+     18
+    ]
+   ]
+  },
+  "Reli": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_RELI",
+   "double": false,
+   "name": "Reli",
+   "sight": 2,
+   "team": [
+    [
+     "nidoran_m",
+     16
+    ],
+    [
+     "nidoran_f",
+     16
+    ]
+   ]
+  },
+  "Shane": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_SHANE",
+   "double": false,
+   "name": "Shane",
+   "sight": 5,
+   "team": [
+    [
+     "rattata",
+     14
+    ],
+    [
+     "ekans",
+     14
+    ]
+   ]
+  },
+  "Timmy": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_TIMMY",
+   "double": false,
+   "name": "Timmy",
+   "sight": 2,
+   "team": [
+    [
+     "sandshrew",
+     14
+    ],
+    [
+     "ekans",
+     14
+    ]
+   ]
+  }
+ },
+ "ruta25": {
+  "Chad": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_CHAD",
+   "double": false,
+   "name": "Chad",
+   "sight": 2,
+   "team": [
+    [
+     "ekans",
+     14
+    ],
+    [
+     "sandshrew",
+     14
+    ]
+   ]
+  },
+  "Dan": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_DAN",
+   "double": false,
+   "name": "Dan",
+   "sight": 2,
+   "team": [
+    [
+     "slowpoke",
+     17
+    ]
+   ]
+  },
+  "Flint": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_FLINT",
+   "double": false,
+   "name": "Flint",
+   "sight": 3,
+   "team": [
+    [
+     "rattata",
+     14
+    ],
+    [
+     "ekans",
+     14
+    ]
+   ]
+  },
+  "Franklin": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_FRANKLIN",
+   "double": false,
+   "name": "Franklin",
+   "sight": 4,
+   "team": [
+    [
+     "machop",
+     15
+    ],
+    [
+     "geodude",
+     15
+    ]
+   ]
+  },
+  "Haley": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_HALEY",
+   "double": false,
+   "name": "Haley",
+   "sight": 3,
+   "team": [
+    [
+     "oddish",
+     13
+    ],
+    [
+     "pidgey",
+     13
+    ],
+    [
+     "oddish",
+     13
+    ]
+   ]
+  },
+  "Joey": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_JOEY",
+   "double": false,
+   "name": "Joey",
+   "sight": 2,
+   "team": [
+    [
+     "rattata",
+     15
+    ],
+    [
+     "spearow",
+     15
+    ]
+   ]
+  },
+  "Kelsey": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_KELSEY",
+   "double": false,
+   "name": "Kelsey",
+   "sight": 2,
+   "team": [
+    [
+     "nidoran_m",
+     15
+    ],
+    [
+     "nidoran_f",
+     15
+    ]
+   ]
+  },
+  "Nob": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_NOB",
+   "double": false,
+   "name": "Nob",
+   "sight": 3,
+   "team": [
+    [
+     "geodude",
+     13
+    ],
+    [
+     "geodude",
+     13
+    ],
+    [
+     "machop",
+     13
+    ],
+    [
+     "geodude",
+     13
+    ]
+   ]
+  },
+  "Wayne": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_WAYNE",
+   "double": false,
+   "name": "Wayne",
+   "sight": 2,
+   "team": [
+    [
+     "onix",
+     17
+    ]
+   ]
+  }
+ },
+ "ruta3": {
+  "Ben": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_BEN",
+   "double": false,
+   "name": "Ben",
+   "sight": 2,
+   "team": [
+    [
+     "rattata",
+     11
+    ],
+    [
+     "ekans",
+     11
+    ]
+   ]
+  },
+  "Calvin": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_CALVIN",
+   "double": false,
+   "name": "Calvin",
+   "sight": 5,
+   "team": [
+    [
+     "spearow",
+     14
+    ]
+   ]
+  },
+  "Colton": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_COLTON",
+   "double": false,
+   "name": "Colton",
+   "sight": 3,
+   "team": [
+    [
+     "caterpie",
+     10
+    ],
+    [
+     "weedle",
+     10
+    ],
+    [
+     "caterpie",
+     10
+    ]
+   ]
+  },
+  "Greg": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_GREG",
+   "double": false,
+   "name": "Greg",
+   "sight": 2,
+   "team": [
+    [
+     "weedle",
+     9
+    ],
+    [
+     "kakuna",
+     9
+    ],
+    [
+     "caterpie",
+     9
+    ],
+    [
+     "metapod",
+     9
+    ]
+   ]
+  },
+  "James": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_JAMES",
+   "double": false,
+   "name": "James",
+   "sight": 4,
+   "team": [
+    [
+     "caterpie",
+     11
+    ],
+    [
+     "metapod",
+     11
+    ]
+   ]
+  },
+  "Janice": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_JANICE",
+   "double": false,
+   "name": "Janice",
+   "sight": 5,
+   "team": [
+    [
+     "pidgey",
+     9
+    ],
+    [
+     "pidgey",
+     9
+    ]
+   ]
+  },
+  "Robin": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_ROBIN",
+   "double": false,
+   "name": "Robin",
+   "sight": 3,
+   "team": [
+    [
+     "jigglypuff",
+     14
+    ]
+   ]
+  },
+  "Sally": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_SALLY",
+   "double": false,
+   "name": "Sally",
+   "sight": 5,
+   "team": [
+    [
+     "rattata",
+     10
+    ],
+    [
+     "nidoran_f",
+     10
+    ]
+   ]
+  }
+ },
+ "ruta4": {
+  "Crissy": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_CRISSY",
+   "double": false,
+   "name": "Crissy",
+   "sight": 4,
+   "team": [
+    [
+     "paras",
+     31
+    ],
+    [
+     "paras",
+     31
+    ],
+    [
+     "parasect",
+     31
+    ]
+   ]
+  }
+ },
+ "ruta6": {
+  "Elijah": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_ELIJAH",
+   "double": false,
+   "name": "Elijah",
+   "sight": 3,
+   "team": [
+    [
+     "butterfree",
+     20
+    ]
+   ]
+  },
+  "Isabelle": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_ISABELLE",
+   "double": false,
+   "name": "Isabelle",
+   "sight": 3,
+   "team": [
+    [
+     "pidgey",
+     16
+    ],
+    [
+     "pidgey",
+     16
+    ],
+    [
+     "pidgey",
+     16
+    ]
+   ]
+  },
+  "Jeff": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_JEFF",
+   "double": false,
+   "name": "Jeff",
+   "sight": 3,
+   "team": [
+    [
+     "spearow",
+     16
+    ],
+    [
+     "raticate",
+     16
+    ]
+   ]
+  },
+  "Keigo": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_KEIGO",
+   "double": false,
+   "name": "Keigo",
+   "sight": 5,
+   "team": [
+    [
+     "weedle",
+     16
+    ],
+    [
+     "caterpie",
+     16
+    ],
+    [
+     "weedle",
+     16
+    ]
+   ]
+  },
+  "Nancy": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_NANCY",
+   "double": false,
+   "name": "Nancy",
+   "sight": 0,
+   "team": [
+    [
+     "rattata",
+     16
+    ],
+    [
+     "pikachu",
+     16
+    ]
+   ]
+  },
+  "Ricky": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_RICKY",
+   "double": false,
+   "name": "Ricky",
+   "sight": 0,
+   "team": [
+    [
+     "squirtle",
+     20
+    ]
+   ]
+  }
+ },
+ "ruta8": {
+  "Aidan": {
+   "class": "SUPER_NERD",
+   "const": "TRAINER_SUPER_NERD_AIDAN",
+   "double": false,
+   "name": "Aidan",
+   "sight": 4,
+   "team": [
+    [
+     "voltorb",
+     20
+    ],
+    [
+     "koffing",
+     20
+    ],
+    [
+     "voltorb",
+     20
+    ],
+    [
+     "magnemite",
+     20
+    ]
+   ]
+  },
+  "Andrea": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_ANDREA",
+   "double": false,
+   "name": "Andrea",
+   "sight": 3,
+   "team": [
+    [
+     "meowth",
+     24
+    ],
+    [
+     "meowth",
+     24
+    ],
+    [
+     "meowth",
+     24
+    ]
+   ]
+  },
+  "Anne": {
+   "class": "TWINS",
+   "const": "TRAINER_TWINS_ELI_ANNE",
+   "double": true,
+   "name": "Eli & Anne",
+   "sight": 1,
+   "team": [
+    [
+     "clefairy",
+     22
+    ],
+    [
+     "jigglypuff",
+     22
+    ]
+   ]
+  },
+  "Eli": {
+   "class": "TWINS",
+   "const": "TRAINER_TWINS_ELI_ANNE",
+   "double": true,
+   "name": "Eli & Anne",
+   "sight": 1,
+   "team": [
+    [
+     "clefairy",
+     22
+    ],
+    [
+     "jigglypuff",
+     22
+    ]
+   ]
+  },
+  "Glenn": {
+   "class": "SUPER_NERD",
+   "const": "TRAINER_SUPER_NERD_GLENN",
+   "double": false,
+   "name": "Glenn",
+   "sight": 4,
+   "team": [
+    [
+     "grimer",
+     22
+    ],
+    [
+     "muk",
+     22
+    ],
+    [
+     "grimer",
+     22
+    ]
+   ]
+  },
+  "Jaren": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_JAREN",
+   "double": false,
+   "name": "Jaren",
+   "sight": 1,
+   "team": [
+    [
+     "grimer",
+     24
+    ],
+    [
+     "grimer",
+     24
+    ]
+   ]
+  },
+  "Julia": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_JULIA",
+   "double": false,
+   "name": "Julia",
+   "sight": 6,
+   "team": [
+    [
+     "clefairy",
+     22
+    ],
+    [
+     "clefairy",
+     22
+    ]
+   ]
+  },
+  "Leslie": {
+   "class": "SUPER_NERD",
+   "const": "TRAINER_SUPER_NERD_LESLIE",
+   "double": false,
+   "name": "Leslie",
+   "sight": 6,
+   "team": [
+    [
+     "koffing",
+     26
+    ]
+   ]
+  },
+  "Megan": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_MEGAN",
+   "double": false,
+   "name": "Megan",
+   "sight": 6,
+   "team": [
+    [
+     "pidgey",
+     19
+    ],
+    [
+     "rattata",
+     19
+    ],
+    [
+     "nidoran_m",
+     19
+    ],
+    [
+     "meowth",
+     19
+    ],
+    [
+     "pikachu",
+     19
+    ]
+   ]
+  },
+  "Paige": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_PAIGE",
+   "double": false,
+   "name": "Paige",
+   "sight": 3,
+   "team": [
+    [
+     "nidoran_f",
+     23
+    ],
+    [
+     "nidorina",
+     23
+    ]
+   ]
+  },
+  "Ricardo": {
+   "class": "BIKER",
+   "const": "TRAINER_BIKER_RICARDO",
+   "double": false,
+   "name": "Ricardo",
+   "sight": 1,
+   "team": [
+    [
+     "koffing",
+     22
+    ],
+    [
+     "koffing",
+     22
+    ],
+    [
+     "grimer",
+     23
+    ]
+   ]
+  },
+  "Rich": {
+   "class": "GAMER",
+   "const": "TRAINER_GAMER_RICH",
+   "double": false,
+   "name": "Rich",
+   "sight": 3,
+   "team": [
+    [
+     "growlithe",
+     24
+    ],
+    [
+     "vulpix",
+     24
+    ]
+   ]
+  },
+  "Stan": {
+   "class": "GAMER",
+   "const": "TRAINER_GAMER_STAN",
+   "double": false,
+   "name": "Stan",
+   "sight": 1,
+   "team": [
+    [
+     "poliwag",
+     22
+    ],
+    [
+     "poliwag",
+     22
+    ],
+    [
+     "poliwhirl",
+     22
+    ]
+   ]
+  }
+ },
+ "ruta9": {
+  "Alan": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_ALAN",
+   "double": false,
+   "name": "Alan",
+   "sight": 1,
+   "team": [
+    [
+     "geodude",
+     21
+    ],
+    [
+     "onix",
+     21
+    ]
+   ]
+  },
+  "Alicia": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_ALICIA",
+   "double": false,
+   "name": "Alicia",
+   "sight": 3,
+   "team": [
+    [
+     "oddish",
+     18
+    ],
+    [
+     "bellsprout",
+     18
+    ],
+    [
+     "oddish",
+     18
+    ],
+    [
+     "bellsprout",
+     18
+    ]
+   ]
+  },
+  "Brent": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_BRENT",
+   "double": false,
+   "name": "Brent",
+   "sight": 2,
+   "team": [
+    [
+     "beedrill",
+     19
+    ],
+    [
+     "beedrill",
+     19
+    ]
+   ]
+  },
+  "Brice": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_BRICE",
+   "double": false,
+   "name": "Brice",
+   "sight": 1,
+   "team": [
+    [
+     "geodude",
+     20
+    ],
+    [
+     "machop",
+     20
+    ],
+    [
+     "geodude",
+     20
+    ]
+   ]
+  },
+  "Caitlin": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_CAITLIN",
+   "double": false,
+   "name": "Caitlin",
+   "sight": 4,
+   "team": [
+    [
+     "meowth",
+     23
+    ]
+   ]
+  },
+  "Chris": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_CHRIS",
+   "double": false,
+   "name": "Chris",
+   "sight": 3,
+   "team": [
+    [
+     "growlithe",
+     21
+    ],
+    [
+     "charmander",
+     21
+    ]
+   ]
+  },
+  "Conner": {
+   "class": "BUG_CATCHER",
+   "const": "TRAINER_BUG_CATCHER_CONNER",
+   "double": false,
+   "name": "Conner",
+   "sight": 3,
+   "team": [
+    [
+     "caterpie",
+     20
+    ],
+    [
+     "weedle",
+     20
+    ],
+    [
+     "venonat",
+     20
+    ]
+   ]
+  },
+  "Drew": {
+   "class": "CAMPER",
+   "const": "TRAINER_CAMPER_DREW",
+   "double": false,
+   "name": "Drew",
+   "sight": 5,
+   "team": [
+    [
+     "rattata",
+     19
+    ],
+    [
+     "sandshrew",
+     19
+    ],
+    [
+     "ekans",
+     19
+    ],
+    [
+     "sandshrew",
+     19
+    ]
+   ]
+  },
+  "Jeremy": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_JEREMY",
+   "double": false,
+   "name": "Jeremy",
+   "sight": 4,
+   "team": [
+    [
+     "machop",
+     20
+    ],
+    [
+     "onix",
+     20
+    ]
+   ]
+  }
+ },
+ "silph_10p": {
+  "Grunt": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_39",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "machoke",
+     33
+    ]
+   ]
+  },
+  "Travis": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_TRAVIS",
+   "double": false,
+   "name": "Travis",
+   "sight": 1,
+   "team": [
+    [
+     "magnemite",
+     29
+    ],
+    [
+     "koffing",
+     29
+    ]
+   ]
+  }
+ },
+ "silph_11p": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_40",
+   "double": false,
+   "name": "Grunt",
+   "sight": 5,
+   "team": [
+    [
+     "rattata",
+     25
+    ],
+    [
+     "rattata",
+     25
+    ],
+    [
+     "zubat",
+     25
+    ],
+    [
+     "rattata",
+     25
+    ],
+    [
+     "ekans",
+     25
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_41",
+   "double": false,
+   "name": "Grunt",
+   "sight": 5,
+   "team": [
+    [
+     "cubone",
+     32
+    ],
+    [
+     "drowzee",
+     32
+    ],
+    [
+     "marowak",
+     32
+    ]
+   ]
+  }
+ },
+ "silph_2p": {
+  "Connor": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_CONNOR",
+   "double": false,
+   "name": "Connor",
+   "sight": 0,
+   "team": [
+    [
+     "grimer",
+     26
+    ],
+    [
+     "weezing",
+     26
+    ],
+    [
+     "koffing",
+     26
+    ],
+    [
+     "weezing",
+     26
+    ]
+   ]
+  },
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_23",
+   "double": false,
+   "name": "Grunt",
+   "sight": 3,
+   "team": [
+    [
+     "cubone",
+     29
+    ],
+    [
+     "zubat",
+     29
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_24",
+   "double": false,
+   "name": "Grunt",
+   "sight": 5,
+   "team": [
+    [
+     "golbat",
+     25
+    ],
+    [
+     "zubat",
+     25
+    ],
+    [
+     "zubat",
+     25
+    ],
+    [
+     "raticate",
+     25
+    ],
+    [
+     "zubat",
+     25
+    ]
+   ]
+  },
+  "Jerry": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_JERRY",
+   "double": false,
+   "name": "Jerry",
+   "sight": 4,
+   "team": [
+    [
+     "magnemite",
+     28
+    ],
+    [
+     "voltorb",
+     28
+    ],
+    [
+     "magneton",
+     28
+    ]
+   ]
+  }
+ },
+ "silph_3p": {
+  "Grunt": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_25",
+   "double": false,
+   "name": "Grunt",
+   "sight": 3,
+   "team": [
+    [
+     "raticate",
+     28
+    ],
+    [
+     "hypno",
+     28
+    ],
+    [
+     "raticate",
+     28
+    ]
+   ]
+  },
+  "Jose": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_JOSE",
+   "double": false,
+   "name": "Jose",
+   "sight": 0,
+   "team": [
+    [
+     "electrode",
+     29
+    ],
+    [
+     "weezing",
+     29
+    ]
+   ]
+  }
+ },
+ "silph_4p": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_26",
+   "double": false,
+   "name": "Grunt",
+   "sight": 5,
+   "team": [
+    [
+     "machop",
+     29
+    ],
+    [
+     "drowzee",
+     29
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_27",
+   "double": false,
+   "name": "Grunt",
+   "sight": 1,
+   "team": [
+    [
+     "ekans",
+     28
+    ],
+    [
+     "zubat",
+     28
+    ],
+    [
+     "cubone",
+     28
+    ]
+   ]
+  },
+  "Rodney": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_RODNEY",
+   "double": false,
+   "name": "Rodney",
+   "sight": 2,
+   "team": [
+    [
+     "electrode",
+     33
+    ]
+   ]
+  }
+ },
+ "silph_5p": {
+  "Beau": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_BEAU",
+   "double": false,
+   "name": "Beau",
+   "sight": 1,
+   "team": [
+    [
+     "magneton",
+     26
+    ],
+    [
+     "koffing",
+     26
+    ],
+    [
+     "weezing",
+     26
+    ],
+    [
+     "magnemite",
+     26
+    ]
+   ]
+  },
+  "Dalton": {
+   "class": "JUGGLER",
+   "const": "TRAINER_JUGGLER_DALTON",
+   "double": false,
+   "name": "Dalton",
+   "sight": 4,
+   "team": [
+    [
+     "kadabra",
+     29
+    ],
+    [
+     "mr_mime",
+     29
+    ]
+   ]
+  },
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_28",
+   "double": false,
+   "name": "Grunt",
+   "sight": 3,
+   "team": [
+    [
+     "arbok",
+     33
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_29",
+   "double": false,
+   "name": "Grunt",
+   "sight": 2,
+   "team": [
+    [
+     "hypno",
+     33
+    ]
+   ]
+  }
+ },
+ "silph_6p": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_30",
+   "double": false,
+   "name": "Grunt",
+   "sight": 2,
+   "team": [
+    [
+     "machop",
+     29
+    ],
+    [
+     "machoke",
+     29
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_31",
+   "double": false,
+   "name": "Grunt",
+   "sight": 2,
+   "team": [
+    [
+     "zubat",
+     28
+    ],
+    [
+     "zubat",
+     28
+    ],
+    [
+     "golbat",
+     28
+    ]
+   ]
+  },
+  "Taylor": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_TAYLOR",
+   "double": false,
+   "name": "Taylor",
+   "sight": 4,
+   "team": [
+    [
+     "voltorb",
+     25
+    ],
+    [
+     "koffing",
+     25
+    ],
+    [
+     "magneton",
+     25
+    ],
+    [
+     "magnemite",
+     25
+    ],
+    [
+     "koffing",
+     25
+    ]
+   ]
+  }
+ },
+ "silph_7p": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_33",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "cubone",
+     29
+    ],
+    [
+     "cubone",
+     29
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_34",
+   "double": false,
+   "name": "Grunt",
+   "sight": 2,
+   "team": [
+    [
+     "sandshrew",
+     29
+    ],
+    [
+     "sandslash",
+     29
+    ]
+   ]
+  },
+  "Grunt3": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_35",
+   "double": false,
+   "name": "Grunt",
+   "sight": 3,
+   "team": [
+    [
+     "raticate",
+     26
+    ],
+    [
+     "zubat",
+     26
+    ],
+    [
+     "golbat",
+     26
+    ],
+    [
+     "rattata",
+     26
+    ]
+   ]
+  },
+  "Joshua": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_JOSHUA",
+   "double": false,
+   "name": "Joshua",
+   "sight": 1,
+   "team": [
+    [
+     "electrode",
+     29
+    ],
+    [
+     "muk",
+     29
+    ]
+   ]
+  }
+ },
+ "silph_8p": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_32",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "raticate",
+     26
+    ],
+    [
+     "arbok",
+     26
+    ],
+    [
+     "koffing",
+     26
+    ],
+    [
+     "golbat",
+     26
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_36",
+   "double": false,
+   "name": "Grunt",
+   "sight": 5,
+   "team": [
+    [
+     "weezing",
+     28
+    ],
+    [
+     "golbat",
+     28
+    ],
+    [
+     "koffing",
+     28
+    ]
+   ]
+  },
+  "Parker": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_PARKER",
+   "double": false,
+   "name": "Parker",
+   "sight": 2,
+   "team": [
+    [
+     "grimer",
+     29
+    ],
+    [
+     "electrode",
+     29
+    ]
+   ]
+  }
+ },
+ "silph_9p": {
+  "Ed": {
+   "class": "SCIENTIST",
+   "const": "TRAINER_SCIENTIST_ED",
+   "double": false,
+   "name": "Ed",
+   "sight": 2,
+   "team": [
+    [
+     "voltorb",
+     28
+    ],
+    [
+     "koffing",
+     28
+    ],
+    [
+     "magneton",
+     28
+    ]
+   ]
+  },
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_37",
+   "double": false,
+   "name": "Grunt",
+   "sight": 5,
+   "team": [
+    [
+     "drowzee",
+     28
+    ],
+    [
+     "grimer",
+     28
+    ],
+    [
+     "machop",
+     28
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_38",
+   "double": false,
+   "name": "Grunt",
+   "sight": 3,
+   "team": [
+    [
+     "golbat",
+     28
+    ],
+    [
+     "drowzee",
+     28
+    ],
+    [
+     "hypno",
+     28
+    ]
+   ]
+  }
+ },
+ "ss_anne_1p_camarote2": {
+  "Ann": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_ANN",
+   "double": false,
+   "name": "Ann",
+   "sight": 2,
+   "team": [
+    [
+     "pidgey",
+     18
+    ],
+    [
+     "nidoran_f",
+     18
+    ]
+   ]
+  },
+  "Tyler": {
+   "class": "YOUNGSTER",
+   "const": "TRAINER_YOUNGSTER_TYLER",
+   "double": false,
+   "name": "Tyler",
+   "sight": 3,
+   "team": [
+    [
+     "nidoran_m",
+     21
+    ]
+   ]
+  }
+ },
+ "ss_anne_1p_camarote5": {
+  "Arthur": {
+   "class": "GENTLEMAN",
+   "const": "TRAINER_GENTLEMAN_ARTHUR",
+   "double": false,
+   "name": "Arthur",
+   "sight": 4,
+   "team": [
+    [
+     "nidoran_m",
+     19
+    ],
+    [
+     "nidoran_f",
+     19
+    ]
+   ]
+  }
+ },
+ "ss_anne_1p_camarote7": {
+  "Thomas": {
+   "class": "GENTLEMAN",
+   "const": "TRAINER_GENTLEMAN_THOMAS",
+   "double": false,
+   "name": "Thomas",
+   "sight": 3,
+   "team": [
+    [
+     "growlithe",
+     18
+    ],
+    [
+     "growlithe",
+     18
+    ]
+   ]
+  }
+ },
+ "ss_anne_2p_camarote2": {
+  "Brooks": {
+   "class": "GENTLEMAN",
+   "const": "TRAINER_GENTLEMAN_BROOKS",
+   "double": false,
+   "name": "Brooks",
+   "sight": 2,
+   "team": [
+    [
+     "pikachu",
+     23
+    ]
+   ]
+  },
+  "Dale": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_DALE",
+   "double": false,
+   "name": "Dale",
+   "sight": 3,
+   "team": [
+    [
+     "goldeen",
+     17
+    ],
+    [
+     "tentacool",
+     17
+    ],
+    [
+     "goldeen",
+     17
+    ]
+   ]
+  }
+ },
+ "ss_anne_2p_camarote4": {
+  "Dawn": {
+   "class": "LASS",
+   "const": "TRAINER_LASS_DAWN",
+   "double": false,
+   "name": "Dawn",
+   "sight": 3,
+   "team": [
+    [
+     "rattata",
+     18
+    ],
+    [
+     "pikachu",
+     18
+    ]
+   ]
+  },
+  "Lamar": {
+   "class": "GENTLEMAN",
+   "const": "TRAINER_GENTLEMAN_LAMAR",
+   "double": false,
+   "name": "Lamar",
+   "sight": 3,
+   "team": [
+    [
+     "growlithe",
+     17
+    ],
+    [
+     "ponyta",
+     17
+    ]
+   ]
+  }
+ },
+ "ss_anne_cubierta": {
+  "Edmond": {
+   "class": "SAILOR",
+   "const": "TRAINER_SAILOR_EDMOND",
+   "double": false,
+   "name": "Edmond",
+   "sight": 1,
+   "team": [
+    [
+     "machop",
+     18
+    ],
+    [
+     "shellder",
+     18
+    ]
+   ]
+  },
+  "Trevor": {
+   "class": "SAILOR",
+   "const": "TRAINER_SAILOR_TREVOR",
+   "double": false,
+   "name": "Trevor",
+   "sight": 2,
+   "team": [
+    [
+     "machop",
+     17
+    ],
+    [
+     "tentacool",
+     17
+    ]
+   ]
+  }
+ },
+ "ss_anne_s1_camarote1": {
+  "Barny": {
+   "class": "FISHERMAN",
+   "const": "TRAINER_FISHERMAN_BARNY",
+   "double": false,
+   "name": "Barny",
+   "sight": 2,
+   "team": [
+    [
+     "tentacool",
+     17
+    ],
+    [
+     "staryu",
+     17
+    ],
+    [
+     "shellder",
+     17
+    ]
+   ]
+  },
+  "Phillip": {
+   "class": "SAILOR",
+   "const": "TRAINER_SAILOR_PHILLIP",
+   "double": false,
+   "name": "Phillip",
+   "sight": 2,
+   "team": [
+    [
+     "machop",
+     20
+    ]
+   ]
+  }
+ },
+ "ss_anne_s1_camarote2": {
+  "Huey": {
+   "class": "SAILOR",
+   "const": "TRAINER_SAILOR_HUEY",
+   "double": false,
+   "name": "Huey",
+   "sight": 1,
+   "team": [
+    [
+     "tentacool",
+     18
+    ],
+    [
+     "staryu",
+     18
+    ]
+   ]
+  }
+ },
+ "ss_anne_s1_camarote3": {
+  "Dylan": {
+   "class": "SAILOR",
+   "const": "TRAINER_SAILOR_DYLAN",
+   "double": false,
+   "name": "Dylan",
+   "sight": 3,
+   "team": [
+    [
+     "horsea",
+     17
+    ],
+    [
+     "horsea",
+     17
+    ],
+    [
+     "horsea",
+     17
+    ]
+   ]
+  }
+ },
+ "ss_anne_s1_camarote4": {
+  "Duncan": {
+   "class": "SAILOR",
+   "const": "TRAINER_SAILOR_DUNCAN",
+   "double": false,
+   "name": "Duncan",
+   "sight": 3,
+   "team": [
+    [
+     "horsea",
+     17
+    ],
+    [
+     "shellder",
+     17
+    ],
+    [
+     "tentacool",
+     17
+    ]
+   ]
+  },
+  "Leonard": {
+   "class": "SAILOR",
+   "const": "TRAINER_SAILOR_LEONARD",
+   "double": false,
+   "name": "Leonard",
+   "sight": 1,
+   "team": [
+    [
+     "shellder",
+     21
+    ]
+   ]
+  }
+ },
+ "torre_pokemon_3p": {
+  "Carly": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_CARLY",
+   "double": false,
+   "name": "Carly",
+   "sight": 3,
+   "team": [
+    [
+     "gastly",
+     24
+    ]
+   ]
+  },
+  "Hope": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_HOPE",
+   "double": false,
+   "name": "Hope",
+   "sight": 2,
+   "team": [
+    [
+     "gastly",
+     23
+    ]
+   ]
+  },
+  "Patricia": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_PATRICIA",
+   "double": false,
+   "name": "Patricia",
+   "sight": 3,
+   "team": [
+    [
+     "gastly",
+     22
+    ]
+   ]
+  }
+ },
+ "torre_pokemon_4p": {
+  "Jody": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_JODY",
+   "double": false,
+   "name": "Jody",
+   "sight": 5,
+   "team": [
+    [
+     "gastly",
+     22
+    ]
+   ]
+  },
+  "Laurel": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_LAUREL",
+   "double": false,
+   "name": "Laurel",
+   "sight": 3,
+   "team": [
+    [
+     "gastly",
+     23
+    ],
+    [
+     "gastly",
+     23
+    ]
+   ]
+  },
+  "Paula": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_PAULA",
+   "double": false,
+   "name": "Paula",
+   "sight": 2,
+   "team": [
+    [
+     "gastly",
+     24
+    ]
+   ]
+  }
+ },
+ "torre_pokemon_5p": {
+  "Janae": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_JANAE",
+   "double": false,
+   "name": "Janae",
+   "sight": 2,
+   "team": [
+    [
+     "gastly",
+     22
+    ]
+   ]
+  },
+  "Karina": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_KARINA",
+   "double": false,
+   "name": "Karina",
+   "sight": 2,
+   "team": [
+    [
+     "gastly",
+     24
+    ]
+   ]
+  },
+  "Ruth": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_RUTH",
+   "double": false,
+   "name": "Ruth",
+   "sight": 2,
+   "team": [
+    [
+     "gastly",
+     22
+    ]
+   ]
+  },
+  "Tammy": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_TAMMY",
+   "double": false,
+   "name": "Tammy",
+   "sight": 3,
+   "team": [
+    [
+     "haunter",
+     23
+    ]
+   ]
+  }
+ },
+ "torre_pokemon_6p": {
+  "Angelica": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_ANGELICA",
+   "double": false,
+   "name": "Angelica",
+   "sight": 3,
+   "team": [
+    [
+     "gastly",
+     22
+    ],
+    [
+     "gastly",
+     22
+    ],
+    [
+     "gastly",
+     22
+    ]
+   ]
+  },
+  "Emilia": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_EMILIA",
+   "double": false,
+   "name": "Emilia",
+   "sight": 3,
+   "team": [
+    [
+     "gastly",
+     24
+    ]
+   ]
+  },
+  "Jennifer": {
+   "class": "CHANNELER",
+   "const": "TRAINER_CHANNELER_JENNIFER",
+   "double": false,
+   "name": "Jennifer",
+   "sight": 3,
+   "team": [
+    [
+     "gastly",
+     24
+    ]
+   ]
+  }
+ },
+ "torre_pokemon_7p": {
+  "Grunt1": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_19",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "zubat",
+     25
+    ],
+    [
+     "zubat",
+     25
+    ],
+    [
+     "golbat",
+     25
+    ]
+   ]
+  },
+  "Grunt2": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_20",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "koffing",
+     26
+    ],
+    [
+     "drowzee",
+     26
+    ]
+   ]
+  },
+  "Grunt3": {
+   "class": "TEAM_ROCKET",
+   "const": "TRAINER_TEAM_ROCKET_GRUNT_21",
+   "double": false,
+   "name": "Grunt",
+   "sight": 4,
+   "team": [
+    [
+     "zubat",
+     23
+    ],
+    [
+     "rattata",
+     23
+    ],
+    [
+     "raticate",
+     23
+    ],
+    [
+     "zubat",
+     23
+    ]
+   ]
+  }
+ },
+ "tunel_roca": {
+  "Ariana": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_ARIANA",
+   "double": false,
+   "name": "Ariana",
+   "sight": 4,
+   "team": [
+    [
+     "pidgey",
+     19
+    ],
+    [
+     "rattata",
+     19
+    ],
+    [
+     "rattata",
+     19
+    ],
+    [
+     "bellsprout",
+     19
+    ]
+   ]
+  },
+  "Ashton": {
+   "class": "POKEMANIAC",
+   "const": "TRAINER_POKEMANIAC_ASHTON",
+   "double": false,
+   "name": "Ashton",
+   "sight": 3,
+   "team": [
+    [
+     "cubone",
+     23
+    ],
+    [
+     "slowpoke",
+     23
+    ]
+   ]
+  },
+  "Dana": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_DANA",
+   "double": false,
+   "name": "Dana",
+   "sight": 3,
+   "team": [
+    [
+     "meowth",
+     20
+    ],
+    [
+     "oddish",
+     20
+    ],
+    [
+     "pidgey",
+     20
+    ]
+   ]
+  },
+  "Leah": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_LEAH",
+   "double": false,
+   "name": "Leah",
+   "sight": 5,
+   "team": [
+    [
+     "bellsprout",
+     22
+    ],
+    [
+     "clefairy",
+     22
+    ]
+   ]
+  },
+  "Lenny": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_LENNY",
+   "double": false,
+   "name": "Lenny",
+   "sight": 4,
+   "team": [
+    [
+     "geodude",
+     19
+    ],
+    [
+     "machop",
+     19
+    ],
+    [
+     "geodude",
+     19
+    ],
+    [
+     "geodude",
+     19
+    ]
+   ]
+  },
+  "Lucas": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_LUCAS",
+   "double": false,
+   "name": "Lucas",
+   "sight": 4,
+   "team": [
+    [
+     "geodude",
+     21
+    ],
+    [
+     "graveler",
+     21
+    ]
+   ]
+  },
+  "Oliver": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_OLIVER",
+   "double": false,
+   "name": "Oliver",
+   "sight": 4,
+   "team": [
+    [
+     "onix",
+     20
+    ],
+    [
+     "onix",
+     20
+    ],
+    [
+     "geodude",
+     20
+    ]
+   ]
+  }
+ },
+ "tunel_roca_s1": {
+  "Allen": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_ALLEN",
+   "double": false,
+   "name": "Allen",
+   "sight": 3,
+   "team": [
+    [
+     "geodude",
+     25
+    ]
+   ]
+  },
+  "Cooper": {
+   "class": "POKEMANIAC",
+   "const": "TRAINER_POKEMANIAC_COOPER",
+   "double": false,
+   "name": "Cooper",
+   "sight": 2,
+   "team": [
+    [
+     "slowpoke",
+     20
+    ],
+    [
+     "slowpoke",
+     20
+    ],
+    [
+     "slowpoke",
+     20
+    ]
+   ]
+  },
+  "Dudley": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_DUDLEY",
+   "double": false,
+   "name": "Dudley",
+   "sight": 4,
+   "team": [
+    [
+     "geodude",
+     21
+    ],
+    [
+     "geodude",
+     21
+    ],
+    [
+     "graveler",
+     21
+    ]
+   ]
+  },
+  "Eric": {
+   "class": "HIKER",
+   "const": "TRAINER_HIKER_ERIC",
+   "double": false,
+   "name": "Eric",
+   "sight": 3,
+   "team": [
+    [
+     "machop",
+     20
+    ],
+    [
+     "onix",
+     20
+    ]
+   ]
+  },
+  "Martha": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_MARTHA",
+   "double": false,
+   "name": "Martha",
+   "sight": 2,
+   "team": [
+    [
+     "oddish",
+     22
+    ],
+    [
+     "bulbasaur",
+     22
+    ]
+   ]
+  },
+  "Sofia": {
+   "class": "PICNICKER",
+   "const": "TRAINER_PICNICKER_SOFIA",
+   "double": false,
+   "name": "Sofia",
+   "sight": 4,
+   "team": [
+    [
+     "jigglypuff",
+     21
+    ],
+    [
+     "pidgey",
+     21
+    ],
+    [
+     "meowth",
+     21
+    ]
+   ]
+  },
+  "Steve": {
+   "class": "POKEMANIAC",
+   "const": "TRAINER_POKEMANIAC_STEVE",
+   "double": false,
+   "name": "Steve",
+   "sight": 4,
+   "team": [
+    [
+     "charmander",
+     22
+    ],
+    [
+     "cubone",
+     22
+    ]
+   ]
+  },
+  "Winston": {
+   "class": "POKEMANIAC",
+   "const": "TRAINER_POKEMANIAC_WINSTON",
+   "double": false,
+   "name": "Winston",
+   "sight": 3,
+   "team": [
+    [
+     "slowpoke",
+     25
+    ]
+   ]
+  }
+ }
+}

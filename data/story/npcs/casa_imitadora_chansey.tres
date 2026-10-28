@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Chansey: ¡Chan...!")
+
+[resource]
+script = ExtResource("1_n")
+id = "casa_imitadora_chansey"
+display_name = "Chansey"
+zone_id = "casa_imitadora"
+cell = Vector2i(4, 4)
+gfx = "chansey"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

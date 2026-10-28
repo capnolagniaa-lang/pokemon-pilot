@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/tea.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "te"
+display_name = "Té"
+description = "Un té riquísimo. Los guardias de Ciudad Azafrán se mueren de sed..."
+icon = ExtResource("2_i")
+pocket = 2
+sort_order = 10

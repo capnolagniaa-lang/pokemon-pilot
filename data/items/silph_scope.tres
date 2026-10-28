@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/silph-scope.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "silph_scope"
+display_name = "Scope Silph"
+description = "Un visor de Silph S.A. que deja ver a los fantasmas tal como son. Sin él, en la Torre Pokémon no se puede pelear contra ellos."
+icon = ExtResource("2_i")
+pocket = 2
+sort_order = 11

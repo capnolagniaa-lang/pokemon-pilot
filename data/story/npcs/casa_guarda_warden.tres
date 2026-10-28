@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+requires = PackedStringArray("objeto_zona_safari_oeste_itemgoldteeth")
+forbids = PackedStringArray("mo04_recibido")
+set_flags = PackedStringArray("mo04_recibido")
+lines = PackedStringArray("¡Ehfe! ¡Mif dientef! ¡Lof encontrafte!", "...(Se los pone)... ¡Ahora sí! ¡Gracias!", "Tomá, en agradecimiento: la MO04, Fuerza. Con ella tus Pokémon empujan rocas enormes.")
+give_items = {"mo04": 1}
+take_items = {"dientes_oro": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("mo04_recibido")
+lines = PackedStringArray("¡Ehfe! Ffe me cayeron lof dientef en la Fona Fafari... ¡Fi los encontráf, avifame!")
+
+[sub_resource type="Resource" id="Talk_2"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Con Fuerza movés las rocas de Calle Victoria. ¡Te va a hacer falta!")
+
+[resource]
+script = ExtResource("1_n")
+id = "casa_guarda_warden"
+display_name = "Guarda"
+zone_id = "casa_guarda"
+cell = Vector2i(3, 5)
+gfx = "old_man_2"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1"), SubResource("Talk_2")])

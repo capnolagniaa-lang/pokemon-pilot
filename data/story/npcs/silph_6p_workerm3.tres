@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Acá en Silph S.A. (planta 6) siempre hay algo para hacer.")
+
+[resource]
+script = ExtResource("1_n")
+id = "silph_6p_workerm3"
+display_name = "Empleado"
+zone_id = "silph_6p"
+cell = Vector2i(14, 9)
+gfx = "worker_m"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

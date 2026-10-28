@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="1_0kh07"]
+
+[resource]
+script = ExtResource("1_0kh07")
+id = "arena_gimnasio_veneno"
+display_name = "Gimnasio de Ciudad Fucsia"
+scene_path = "res://scenes/world/arenas/arena_gimnasio_veneno.tscn"
+foe_trainer_cell = Vector2i(22, 5)
+player_cell = Vector2i(22, 28)
+foe_mon_cell = Vector2i(22, 8)
+player_mon_cell = Vector2i(22, 25)
+field = Rect2i(3, 5, 38, 23)
+element_id = "veneno"
+line_color = Color(1, 1, 1, 0.3)
+particles = "polvo"
+particle_color = Color(0.75, 0.45, 0.9, 0.55)
+ambient = Color(0.97, 0.9, 1.04, 1)
+epic = true

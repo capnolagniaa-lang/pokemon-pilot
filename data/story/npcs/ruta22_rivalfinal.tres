@@ -1,0 +1,153 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/pidgeot.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/rhyhorn.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/growlithe.tres" id="r_5"]
+[ext_resource type="Resource" path="res://data/species/exeggcute.tres" id="r_6"]
+[ext_resource type="Resource" path="res://data/species/alakazam.tres" id="r_7"]
+[ext_resource type="Resource" path="res://data/species/blastoise.tres" id="r_8"]
+[ext_resource type="Resource" path="res://data/species/gyarados.tres" id="r_9"]
+[ext_resource type="Resource" path="res://data/species/venusaur.tres" id="r_10"]
+[ext_resource type="Resource" path="res://data/species/charizard.tres" id="r_11"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_12"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Ey!")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 47
+requires_flag = "rival_squirtle"
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 45
+requires_flag = "rival_squirtle"
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 45
+requires_flag = "rival_squirtle"
+
+[sub_resource type="Resource" id="Mon_3"]
+script = ExtResource("r_2")
+species = ExtResource("r_6")
+level = 45
+requires_flag = "rival_squirtle"
+
+[sub_resource type="Resource" id="Mon_4"]
+script = ExtResource("r_2")
+species = ExtResource("r_7")
+level = 47
+requires_flag = "rival_squirtle"
+
+[sub_resource type="Resource" id="Mon_5"]
+script = ExtResource("r_2")
+species = ExtResource("r_8")
+level = 53
+requires_flag = "rival_squirtle"
+
+[sub_resource type="Resource" id="Mon_6"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 47
+requires_flag = "rival_bulbasaur"
+
+[sub_resource type="Resource" id="Mon_7"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 45
+requires_flag = "rival_bulbasaur"
+
+[sub_resource type="Resource" id="Mon_8"]
+script = ExtResource("r_2")
+species = ExtResource("r_9")
+level = 45
+requires_flag = "rival_bulbasaur"
+
+[sub_resource type="Resource" id="Mon_9"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 45
+requires_flag = "rival_bulbasaur"
+
+[sub_resource type="Resource" id="Mon_10"]
+script = ExtResource("r_2")
+species = ExtResource("r_7")
+level = 47
+requires_flag = "rival_bulbasaur"
+
+[sub_resource type="Resource" id="Mon_11"]
+script = ExtResource("r_2")
+species = ExtResource("r_10")
+level = 53
+requires_flag = "rival_bulbasaur"
+
+[sub_resource type="Resource" id="Mon_12"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 47
+requires_flag = "rival_charmander"
+
+[sub_resource type="Resource" id="Mon_13"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 45
+requires_flag = "rival_charmander"
+
+[sub_resource type="Resource" id="Mon_14"]
+script = ExtResource("r_2")
+species = ExtResource("r_6")
+level = 45
+requires_flag = "rival_charmander"
+
+[sub_resource type="Resource" id="Mon_15"]
+script = ExtResource("r_2")
+species = ExtResource("r_9")
+level = 45
+requires_flag = "rival_charmander"
+
+[sub_resource type="Resource" id="Mon_16"]
+script = ExtResource("r_2")
+species = ExtResource("r_7")
+level = 47
+requires_flag = "rival_charmander"
+
+[sub_resource type="Resource" id="Mon_17"]
+script = ExtResource("r_2")
+species = ExtResource("r_11")
+level = 53
+requires_flag = "rival_charmander"
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_12")
+id = "azul"
+display_name = "Azul"
+title = "Rival"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3"), SubResource("Mon_4"), SubResource("Mon_5"), SubResource("Mon_6"), SubResource("Mon_7"), SubResource("Mon_8"), SubResource("Mon_9"), SubResource("Mon_10"), SubResource("Mon_11"), SubResource("Mon_12"), SubResource("Mon_13"), SubResource("Mon_14"), SubResource("Mon_15"), SubResource("Mon_16"), SubResource("Mon_17")])
+lines = {"desafio": "¡Eh! ¿Vos también tenés las 8 medallas? Yo voy derecho a la Liga Pokémon.|¡Pero primero te gano acá!", "pierde": "¡Bah! ¡Igual llego primero a la Liga! ¡Nos vemos en la Meseta Añil!", "gana": "¡Ja! Ni ganes la Liga.", "despues": "¡Nos vemos en la Liga!"}
+arena_id = "arena_campo"
+reward_flags = PackedStringArray("rival_ruta22_final_peleado")
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta22_rivalfinal"
+display_name = "Azul"
+zone_id = "ruta22"
+cell = Vector2i(45, 30)
+gfx = "blue"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 0
+challenge_on_talk = false
+show_if = PackedStringArray("medalla_tierra")
+hide_if = PackedStringArray("rival_ruta22_final_peleado")

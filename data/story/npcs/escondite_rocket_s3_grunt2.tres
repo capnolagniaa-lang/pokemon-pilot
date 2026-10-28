@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/machop.tres" id="r_3"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_4"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Esto no termina acá!")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 21
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 21
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_4")
+id = "grunt"
+display_name = "Grunt"
+title = "Soldado Rocket"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¡El Team Rocket no perdona! ¡Peleá!", "pierde": "¡Grrr! ¡El jefe se va a enojar!", "despues": "¡Esto no termina acá!"}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "escondite_rocket_s3_grunt2"
+display_name = "Grunt"
+zone_id = "escondite_rocket_s3"
+cell = Vector2i(19, 9)
+gfx = "rocket_m"
+facing = Vector2i(0, -1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 4

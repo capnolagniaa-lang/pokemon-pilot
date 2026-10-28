@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¿Ya viste todo Gran Almacén de Azulona (planta 2)?")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_azulona_almacen_2p_lass"
+display_name = "Pibe"
+zone_id = "ciudad_azulona_almacen_2p"
+cell = Vector2i(5, 10)
+gfx = "lass"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

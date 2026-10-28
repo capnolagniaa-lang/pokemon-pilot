@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+forbids = PackedStringArray("te_recibido")
+lines = PackedStringArray("¡Uf, qué sed! No puedo dejar pasar a nadie a Ciudad Azafrán... ¿no tendrás algo para tomar?")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Gracias por el té! Pasá nomás. Cuidate en Azafrán: está lleno del Team Rocket.")
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta8_garita_guard"
+display_name = "Guardia"
+zone_id = "ruta8_garita"
+cell = Vector2i(6, 2)
+gfx = "policeman"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

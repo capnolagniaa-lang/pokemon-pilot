@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¿Ya viste todo Tienda de Ciudad Azafrán?")
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_azafran_tienda_youngster"
+display_name = "Pibe"
+zone_id = "ciudad_azafran_tienda"
+cell = Vector2i(1, 7)
+gfx = "youngster"
+facing = Vector2i(1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

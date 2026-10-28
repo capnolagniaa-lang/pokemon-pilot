@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("historia")
+forbids = PackedStringArray("medalla_volcan")
+lines = PackedStringArray("La puerta del gimnasio de Ciudad Verde está cerrada.", "Dicen que el líder vuelve cuando alguien junta siete medallas.")
+
+[resource]
+script = ExtResource("1_g")
+id = "verde_cerrado"
+zone_id = "ciudad_verde"
+rect = Rect2i(79, 21, 3, 1)
+talk = SubResource("Talk")
+once = false
+push_back = true

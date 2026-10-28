@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Hola! Bienvenido a Centro Pokémon de la Meseta Añil.")
+
+[resource]
+script = ExtResource("1_n")
+id = "meseta_anil_centro_gymguy"
+display_name = "Vecino"
+zone_id = "meseta_anil_centro"
+cell = Vector2i(7, 14)
+gfx = "gym_guy"
+facing = Vector2i(1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

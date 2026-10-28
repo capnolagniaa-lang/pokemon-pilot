@@ -118,7 +118,7 @@ func run() -> void:
 		inst.hp = inst.max_hp()
 	await _win(surge)
 	r["Le ganás a Lt. Surge: Medalla Trueno"] = GameState.has_flag("medalla_trueno")
-	r["Con la Medalla Trueno, capítulo 3 completo"] = StoryGuide.current().get("title", "") == "¡Capítulo 3 completo!"
+	r["Con la Medalla Trueno, la Guía pasa al capítulo 4"] = StoryGuide.current().get("title", "") == "El Escondite Rocket"
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:

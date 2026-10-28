@@ -849,6 +849,405 @@ TRIGGERS["rival_ss_anne"] = dict(zone="ss_anne_2p", rect=(30, 4, 3, 1), once=Fal
     requires=["historia"], forbids=["rival_ss_anne_peleado"], speaker=RIVAL, lines=["¡Eh, esperá!"], battle_npc="ss_anne_2p_0x0"))
 
 
+# =================================================================================================================
+# --- Resto de Kanto (docs/PLAN_RESTO_KANTO.md): entrenadores automáticos ------------------------------------------
+# Los equipos salen de data/source/trainers_frlg.json (tools/fetch_frlg_trainers.py, de pret). Solo para las zonas que
+# todavía no tienen entrenadores a mano (capítulos 1-3 quedan como están). Frases por clase de entrenador; los líderes
+# (LEADERS) con frases propias, su medalla y la arena de su gimnasio.
+CLASS_TITLES = {
+    "BEAUTY": "Belleza", "BIKER": "Motorista", "BIRD_KEEPER": "Ornitólogo", "BLACK_BELT": "Karateka", "BOSS": "Jefe Rocket",
+    "BUG_CATCHER": BUG, "BURGLAR": "Ladrón", "CAMPER": "Campista", "CHANNELER": "Médium", "COOLTRAINER": "Entrenador Guay",
+    "COOL_COUPLE": "Pareja Guay", "CRUSH_KIN": "Luchadoras", "CUE_BALL": "Calvo", "ENGINEER": "Mecánico",
+    "FISHERMAN": "Pescador", "GAMER": "Jugador", "GENTLEMAN": "Caballero", "HIKER": "Montañero", "JUGGLER": "Malabarista",
+    "LASS": "Chica", "LEADER": "Líder", "PICNICKER": "Dominguera", "POKEMANIAC": "Pokemaníaco", "PSYCHIC": "Médium Psíquico",
+    "ROCKER": "Rockero", "SAILOR": "Marinero", "SCIENTIST": "Científico", "SIS_AND_BRO": "Hermanos", "SUPER_NERD": "Supernecio",
+    "SWIMMER_F": "Nadadora", "SWIMMER_M": "Nadador", "TAMER": "Domador", "TEAM_ROCKET": "Soldado Rocket", "TWINS": "Gemelas",
+    "YOUNGSTER": "Joven", "YOUNG_COUPLE": "Parejita",
+}
+# (desafío, pierde, después) por clase; se elige una variante por el nombre del entrenador.
+CLASS_LINES = {
+    "BUG_CATCHER": [("¡Mis bichos son los más fuertes del mundo!", "¡Bzzz! Se escaparon...", "Los bichos crecen rápido, ¿sabías?"),
+                    ("¿Te gustan los bichos? ¡A mí me encantan!", "¡Mis bichitos!", "Voy a seguir buscando bichos raros.")],
+    "LASS": [("¡Ey! ¡Me miraste! Ahora peleamos.", "¡Ay, qué vergüenza!", "La próxima te gano, vas a ver."),
+             ("¡Mis Pokémon son re lindos y re fuertes!", "¡Uy, perdí!", "Igual mis Pokémon son los más lindos.")],
+    "YOUNGSTER": [("¡Pantalón corto todo el año! ¡Peleá!", "¡Uh, perdí!", "¡Tengo que entrenar más!"),
+                  ("¡A que no me ganás!", "¡Me ganaste!", "Ya vas a ver la revancha.")],
+    "CAMPER": [("¡Acampando y peleando, así es la vida!", "¡Me desarmaste la carpa!", "El aire libre es lo mejor."),
+               ("¡Ey, entrenador! ¡Un combate antes de la fogata!", "¡Se me apagó el fuego!", "Hay que entrenar todos los días.")],
+    "PICNICKER": [("¡Vine de picnic con mis Pokémon!", "¡Se me arruinó el picnic!", "¿Querés un sanguchito? Ah, no, no queda."),
+                  ("¡Qué día lindo para pelear!", "¡Qué día feo!", "Mis Pokémon se merecen un descanso.")],
+    "HIKER": [("¡Las montañas me hicieron fuerte! ¡Mirá!", "¡Me bajaste de la montaña!", "Escalar es lo mejor que hay."),
+              ("¡Uf! ¡Cuesta arriba se pelea mejor!", "¡Me desmoroné!", "Llevá siempre agua cuando subas.")],
+    "SAILOR": [("¡Ahoy! ¡Los marineros somos fuertes!", "¡Hombre al agua!", "El mar te enseña a no rendirte.")],
+    "GENTLEMAN": [("Un caballero nunca rechaza un desafío.", "Excelente combate, joven.", "La elegancia también se entrena.")],
+    "FISHERMAN": [("¡Picó uno! ...Ah, no, sos un entrenador.", "Se me cortó la línea.", "La paciencia es la clave de la pesca.")],
+    "SWIMMER_M": [("¡A nadar se aprende peleando!", "¡Me hundí!", "El agua está buenísima.")],
+    "SWIMMER_F": [("¡Las olas me dan fuerza!", "¡Glub, glub!", "Nadar es mi vida.")],
+    "BIRD_KEEPER": [("¡Mis pájaros vuelan más alto que los tuyos!", "¡Aterrizaje forzoso!", "Los Pokémon pájaro son muy leales.")],
+    "BIKER": [("¡Ey, nene! ¡Esta ruta es nuestra!", "¡Se me pinchó una rueda!", "Andá con cuidado por el Camino de Bicis."),
+              ("¡Rrrum! ¡Fuera de mi camino!", "¡Uf, qué piña!", "Sos más rápido de lo que pensaba.")],
+    "CUE_BALL": [("¡Pelado y peligroso! ¡En guardia!", "¡Me dejaste más pelado!", "No te metas con los de la Ruta 16."),
+                 ("¿Qué mirás? ¡Peleá!", "¡Ay, mi cabeza!", "Bueno, bueno, pasá.")],
+    "BLACK_BELT": [("¡Hah! ¡Mis puños son de acero!", "¡Me bloqueaste!", "El entrenamiento duro nunca miente.")],
+    "CHANNELER": [("¡Fuera de aquí! ¡Los espíritus están enojados!", "...¿Qué? ¿Dónde estoy?", "Algo me poseyó... qué miedo."),
+                  ("Kekeke... ¡Los fantasmas te van a llevar!", "Ahh... recuperé la conciencia.", "La torre está llena de almas tristes.")],
+    "PSYCHIC": [("Ya sabía que ibas a venir... ¡Peleemos!", "Esto no lo vi venir.", "La mente puede más que los músculos.")],
+    "SCIENTIST": [("¡Mis experimentos te van a sorprender!", "¡Error en el cálculo!", "La ciencia avanza con cada derrota.")],
+    "SUPER_NERD": [("¡Te calculé todos los movimientos!", "¡Fallaron mis cuentas!", "Voy a revisar mis notas.")],
+    "ENGINEER": [("¡Nada que una buena herramienta no arregle!", "¡Se me quemó un fusible!", "Todo tiene arreglo.")],
+    "BURGLAR": [("¡Ey! ¡No viste nada, ¿no?!", "¡Me agarraron!", "Ya me voy, ya me voy...")],
+    "GAMER": [("¡Apuesto a que te gano!", "¡Perdí la apuesta!", "La suerte cambia, ya vas a ver.")],
+    "JUGGLER": [("¡Mirá cómo hago malabares con mis Pokémon!", "¡Se me cayeron todos!", "La práctica hace al maestro.")],
+    "TAMER": [("¡Mis Pokémon salvajes obedecen solo a mí!", "¡Se me rebelaron!", "Domar requiere paciencia.")],
+    "ROCKER": [("¡Yeah! ¡Rockeemos este combate!", "¡Se me cortó una cuerda!", "¡Rock and roll para siempre!")],
+    "BEAUTY": [("¿Te gusta mi Pokémon? Es tan elegante como yo.", "¡Ay, se me corrió el maquillaje!", "La belleza también pelea.")],
+    "POKEMANIAC": [("¡Los Pokémon raros son mi pasión!", "¡Mi colección!", "¿Viste algún Pokémon raro por ahí?")],
+    "COOLTRAINER": [("Entreno todos los días. ¿Estás a la altura?", "Sos muy bueno. Respeto.", "Seguí así y vas a llegar lejos."),
+                    ("Solo los mejores llegan hasta acá.", "Bien jugado.", "La Liga te espera.")],
+    "TEAM_ROCKET": [("¡El Team Rocket no perdona! ¡Peleá!", "¡Grrr! ¡El jefe se va a enojar!", "¡Esto no termina acá!"),
+                    ("¿Un nene? ¡Andate antes de que te robe los Pokémon!", "¡Imposible!", "Ya nos vamos a ver las caras.")],
+    "TWINS": [("¡Somos dos! ¡Peleamos juntas!", "¡Perdimos las dos!", "¡La próxima ganamos juntas!")],
+    "YOUNG_COUPLE": [("¡Nuestro amor nos hace invencibles!", "¡Ay, no!", "Igual nos queremos mucho.")],
+    "COOL_COUPLE": [("¡Pareja que pelea unida, gana unida!", "¡Nos separaron!", "Bien jugado.")],
+    "SIS_AND_BRO": [("¡Hermanos al ataque!", "¡Mamá!", "La próxima te ganamos.")],
+    "CRUSH_KIN": [("¡Entrenamos los músculos y los Pokémon!", "¡Uf!", "¡A seguir entrenando!")],
+}
+GENERIC_LINES = [("¡Ey! ¡Un combate!", "¡Me ganaste!", "Bien peleado.")]
+# Zona del gimnasio → su arena (los entrenadores del gimnasio pelean ahí).
+GYM_ARENAS = {"ciudad_azulona_gimnasio": "arena_gimnasio_planta", "ciudad_fucsia_gimnasio": "arena_gimnasio_veneno",
+              "ciudad_azafran_gimnasio": "arena_gimnasio_psiquico", "isla_canela_gimnasio": "arena_gimnasio_fuego",
+              "ciudad_verde_gimnasio": "arena_gimnasio_tierra"}
+# Líderes: nombre en pret → medalla, nombre, frases.
+LEADERS = {
+    "Erika": dict(name="Erika", flag="medalla_arcoiris", badge="ARCOÍRIS", lines={
+        "desafio": "Hola... ¡Ay, perdón, me había quedado dormida! Soy Erika, la líder de este gimnasio.|Me encantan las "
+                   "flores y los Pokémon de tipo planta. ¿Querés pelear? Está bien, pero no voy a perder.",
+        "pierde": "Oh... Perdí. Sos muy fuerte. Te ganaste la Medalla Arcoíris.",
+        "gana": "Las flores siempre vuelven a crecer. Vos también.", "despues": "Con la Medalla Arcoíris podés usar Fuerza."}),
+    "Koga": dict(name="Koga", flag="medalla_alma", badge="ALMA", lines={
+        "desafio": "¡Fwahahaha! Un niño se atreve a desafiarme. Soy Koga, el maestro ninja.|Mis Pokémon venenosos te van "
+                   "a envenenar hasta el alma. ¡Prepárate!",
+        "pierde": "¡Hmph! Tu fuerza es auténtica. Tomá la Medalla Alma.",
+        "gana": "¡Fwahahaha! El veneno siempre gana.", "despues": "Con la Medalla Alma podés usar Surf."}),
+    "Sabrina": dict(name="Sabrina", flag="medalla_pantano", badge="PANTANO", lines={
+        "desafio": "Sabía que ibas a venir. Lo vi hace tres años.|Soy Sabrina. Mis poderes psíquicos me dejan ver el "
+                   "futuro... y en él, vos perdés.",
+        "pierde": "Esto... no lo había previsto. Te ganaste la Medalla Pantano.",
+        "gana": "Era tu destino.", "despues": "El futuro cambió por vos. Interesante."}),
+    "Blaine": dict(name="Blaine", flag="medalla_volcan", badge="VOLCÁN", lines={
+        "desafio": "¡Hah! ¡Soy Blaine, el líder ardiente! ¡Mis Pokémon de fuego van a reducirte a cenizas!|¿Tenés "
+                   "suficientes Antiquemar? ¡Más te vale!",
+        "pierde": "¡Me quemé! ¡Sos un fuego! Tomá la Medalla Volcán.",
+        "gana": "¡Hah! ¡Te faltó fuego!", "despues": "La Mansión Pokémon guarda secretos... fijate en el diario."}),
+    "Giovanni": dict(name="Giovanni", flag="medalla_tierra", badge="TIERRA", lines={
+        "desafio": "Así que llegaste hasta acá. Este es mi gimnasio, el de Ciudad Verde.|Soy Giovanni, el líder... y el "
+                   "jefe del Team Rocket. ¡Te voy a enseñar lo que es la verdadera fuerza!",
+        "pierde": "¡Ja! Bien jugado. Te ganaste la Medalla Tierra.|Me voy a retirar a entrenar. El Team Rocket se disuelve.",
+        "gana": "Todavía te falta mucho.", "despues": "..."}),
+}
+SKIP_AUTO = {("ruta4", "Crissy")}
+_manual_zones = {z for (z, _s) in TRAINERS}
+_trainers_json = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "source", "trainers_frlg.json")
+AUTO_TRAINERS = json.load(open(_trainers_json, encoding="utf-8")) if os.path.exists(_trainers_json) else {}
+for _zone, _list in AUTO_TRAINERS.items():
+    if _zone in _manual_zones:
+        continue
+    for _script, _tr in _list.items():
+        if (_zone, _script) in TRAINERS or (_zone, _script) in SKIP_AUTO:
+            continue
+        _variants = CLASS_LINES.get(_tr["class"], GENERIC_LINES)
+        _v = _variants[sum(map(ord, _tr["name"] + _script)) % len(_variants)]
+        _spec = dict(name=_tr["name"], title=CLASS_TITLES.get(_tr["class"], _tr["class"].title()),
+                     team=[tuple(m) for m in _tr["team"]], sight=max(1, min(int(_tr.get("sight", 2)), 5)),
+                     arena=GYM_ARENAS.get(_zone, "arena_campo"),
+                     lines={"desafio": _v[0], "pierde": _v[1], "despues": _v[2]})
+        _lead = LEADERS.get(_tr["name"]) if _tr["class"] == "LEADER" else None
+        if _lead is not None:
+            _spec.update(name=_lead["name"], sight=0, leader=True, reward_flags=[_lead["flag"]],
+                         reward="¡Recibiste la MEDALLA %s de %s!" % (_lead["badge"], _lead["name"]), lines=_lead["lines"])
+        TRAINERS[(_zone, _script)] = _spec
+
+
+# =================================================================================================================
+# --- Capítulos 4 a 8: de Carmín a la Liga Pokémon (docs/PLAN_RESTO_KANTO.md) ---------------------------------------
+# Banderas principales: giovanni_escondite_vencido, medalla_arcoiris (cap. 4) · marowak_en_paz, fuji_rescatado,
+# medalla_alma (cap. 5) · silph_liberada, medalla_pantano (cap. 6) · medalla_volcan (cap. 7) · medalla_tierra,
+# rival_ruta22_final_peleado, alto_mando_*, campeon (cap. 8). Mecánicas: FieldMoves (Surf, Fuerza, Poké Flauta).
+
+
+def _rival(teams, **kw):
+    """El equipo del rival según el inicial que eligió: {"squirtle": [...], "bulbasaur": [...], "charmander": [...]}."""
+    out = []
+    for starter, team in teams.items():
+        out += [(sp, lvl, "rival_" + starter) for sp, lvl in team]
+    return out
+
+
+def _flag_of(zone, script):
+    return "objeto_%s_%s" % (zone, script.lower())
+
+
+ELITE = "Alto Mando"
+AUTO_SPECIES = {f[:-5] for f in os.listdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "species"))
+                if f.endswith(".tres")}
+TRAINERS.update({
+    # --- Cap. 4: el rival en la Torre Pokémon (2º piso) ---
+    ("torre_pokemon_2p", "0x0"): dict(name=RIVAL, title="Rival", sight=0, talk_challenge=False, reward_flags=["rival_torre_peleado"],
+        team=_rival({"squirtle": [("pidgeotto", 25), ("growlithe", 23), ("exeggcute", 22), ("kadabra", 20), ("wartortle", 25)],
+                     "bulbasaur": [("pidgeotto", 25), ("gyarados", 23), ("growlithe", 22), ("kadabra", 20), ("ivysaur", 25)],
+                     "charmander": [("pidgeotto", 25), ("exeggcute", 23), ("gyarados", 22), ("kadabra", 20), ("charmeleon", 25)]}),
+        lines={"desafio": "¡Eh! ¿Qué hacés en la Torre Pokémon? ¿Se te murió algún Pokémon?|...Bueno, ya que estás, ¡peleemos!",
+               "pierde": "¡¿Qué?! ¡Perdí de nuevo!|Arriba hay fantasmas... dicen que con el Scope Silph se los puede ver.",
+               "gana": "¡Ja! Andá a entrenar.", "despues": "Me voy, este lugar me da escalofríos."}),
+    # --- Cap. 6: el rival en Silph S.A. (7º piso) y Giovanni (11º piso) ---
+    ("silph_7p", "0x0"): dict(name=RIVAL, title="Rival", sight=0, talk_challenge=False, reward_flags=["rival_silph_peleado"],
+        team=_rival({"squirtle": [("pidgeot", 37), ("growlithe", 38), ("exeggcute", 35), ("alakazam", 35), ("blastoise", 40)],
+                     "bulbasaur": [("pidgeot", 37), ("gyarados", 38), ("growlithe", 35), ("alakazam", 35), ("venusaur", 40)],
+                     "charmander": [("pidgeot", 37), ("exeggcute", 38), ("gyarados", 35), ("alakazam", 35), ("charizard", 40)]}),
+        lines={"desafio": "¡Llegás tarde! El Team Rocket tomó todo el edificio.|Igual... ¿te animás a una antes de ir por Giovanni?",
+               "pierde": "¡Argh! Bueno, andá vos. Giovanni está arriba, en la oficina del presidente.",
+               "gana": "¡Ja! Así no le ganás a Giovanni.", "despues": "Dale, apurate."}),
+    ("silph_11p", "0x0"): dict(name="Giovanni", title="Jefe Rocket", sight=3, reward_flags=["silph_liberada"],
+        team=[("nidorino", 37), ("kangaskhan", 35), ("rhyhorn", 37), ("nidoqueen", 41)],
+        lines={"desafio": "¿Otra vez vos? Qué molesto.|Estoy negociando con el presidente de Silph. ¡No me hagas perder el tiempo!",
+               "pierde": "¡Argh! ¡Otra vez! ...Está bien. Por ahora, el Team Rocket se retira de Silph S.A.",
+               "gana": "Volvé a tu casa, nene.", "despues": "..."}),
+    # --- Cap. 8: el rival en la Ruta 22 (antes de la Liga) ---
+    ("ruta22", "RivalFinal"): dict(name=RIVAL, title="Rival", sight=0, talk_challenge=False, reward_flags=["rival_ruta22_final_peleado"],
+        team=_rival({"squirtle": [("pidgeot", 47), ("rhyhorn", 45), ("growlithe", 45), ("exeggcute", 45), ("alakazam", 47), ("blastoise", 53)],
+                     "bulbasaur": [("pidgeot", 47), ("rhyhorn", 45), ("gyarados", 45), ("growlithe", 45), ("alakazam", 47), ("venusaur", 53)],
+                     "charmander": [("pidgeot", 47), ("rhyhorn", 45), ("exeggcute", 45), ("gyarados", 45), ("alakazam", 47), ("charizard", 53)]}),
+        lines={"desafio": "¡Eh! ¿Vos también tenés las 8 medallas? Yo voy derecho a la Liga Pokémon.|¡Pero primero te gano acá!",
+               "pierde": "¡Bah! ¡Igual llego primero a la Liga! ¡Nos vemos en la Meseta Añil!",
+               "gana": "¡Ja! Ni ganes la Liga.", "despues": "¡Nos vemos en la Liga!"}),
+    # --- Cap. 8: el Alto Mando y el Campeón ---
+    ("liga_lorelei", "Lorelei"): dict(name="Lorelei", title=ELITE, sight=4, arena="arena_liga_hielo", leader=True, reward_flags=["alto_mando_lorelei"],
+        team=[("dewgong", 52), ("cloyster", 51), ("slowbro", 52), ("jynx", 54), ("lapras", 54)],
+        lines={"desafio": "Bienvenido a la Liga Pokémon. Soy Lorelei, del Alto Mando.|Nadie resiste mis Pokémon de hielo. ¡Te vas a congelar!",
+               "pierde": "Sos bueno... Muy bueno. Seguí: Bruno te espera.", "gana": "Qué frío te dejé.", "despues": "Seguí adelante."}),
+    ("liga_bruno", "Bruno"): dict(name="Bruno", title=ELITE, sight=4, arena="arena_liga_lucha", leader=True, reward_flags=["alto_mando_bruno"],
+        team=[("onix", 51), ("hitmonchan", 53), ("hitmonlee", 53), ("onix", 54), ("machamp", 56)],
+        lines={"desafio": "¡Soy Bruno, del Alto Mando! Entreno mis músculos y mis Pokémon al límite.|¡Hoo hah! ¡Preparate!",
+               "pierde": "¡Imposible! ¡Mis músculos no alcanzaron! Andá, Agatha te espera.", "gana": "¡Hoo hah! ¡Más entrenamiento!",
+               "despues": "Seguí."}),
+    ("liga_agatha", "Agatha"): dict(name="Agatha", title=ELITE, sight=4, arena="arena_liga_fantasma", leader=True, reward_flags=["alto_mando_agatha"],
+        team=[("gengar", 54), ("golbat", 54), ("haunter", 53), ("arbok", 56), ("gengar", 58)],
+        lines={"desafio": "Soy Agatha. Oak y yo fuimos rivales hace mucho... ¡ahora es un viejo débil!|Los Pokémon son para pelear. ¡Te lo voy a mostrar!",
+               "pierde": "¡Ja! Qué entrenador. Ahora entiendo por qué Oak te tiene fe. Andá, Lance te espera.",
+               "gana": "Volvé cuando sepas pelear.", "despues": "Andá."}),
+    ("liga_lance", "Lance"): dict(name="Lance", title=ELITE, sight=4, arena="arena_liga_dragon", leader=True, reward_flags=["alto_mando_lance"],
+        team=[("gyarados", 56), ("dragonair", 54), ("dragonair", 54), ("aerodactyl", 58), ("dragonite", 60)],
+        lines={"desafio": "Te estaba esperando. Soy Lance, el último del Alto Mando.|Los dragones son Pokémon legendarios, casi imposibles de vencer. ¡Vamos!",
+               "pierde": "Me ganaste... Sos digno del título. Pero todavía falta uno: el Campeón te espera.",
+               "gana": "Los dragones no perdonan.", "despues": "El Campeón está pasando esa puerta."}),
+    ("liga_campeon", "0x0"): dict(name=RIVAL, title="Campeón", sight=0, talk_challenge=False, arena="arena_torneo", leader=True,
+        reward_flags=["campeon"], reward="¡Le ganaste al Campeón! ¡Sos el nuevo CAMPEÓN de la Liga Pokémon!",
+        team=_rival({"squirtle": [("pidgeot", 59), ("alakazam", 57), ("rhydon", 59), ("arcanine", 59), ("exeggutor", 61), ("blastoise", 63)],
+                     "bulbasaur": [("pidgeot", 59), ("alakazam", 57), ("rhydon", 59), ("gyarados", 59), ("arcanine", 61), ("venusaur", 63)],
+                     "charmander": [("pidgeot", 59), ("alakazam", 57), ("rhydon", 59), ("exeggutor", 59), ("gyarados", 61), ("charizard", 63)]}),
+        lines={"desafio": "¡Llegaste! Yo le gané al Alto Mando antes que vos. ¡Soy el Campeón de la Liga Pokémon!|"
+                          "Entrené a mis Pokémon con todo para ser el mejor del mundo. ¡Y nadie me va a sacar el título!",
+               "pierde": "¡NO! ¡No puede ser! ¡Fui campeón un minuto nada más!|...Está bien. Sos el mejor. Te lo ganaste.",
+               "gana": "¡Ja! ¡Sigo siendo el Campeón!", "despues": "..."}),
+})
+# El hideout: Giovanni (automático, clase BOSS) con frases propias y la bandera que deja el Scope Silph.
+if ("escondite_rocket_s4", "Giovanni") in TRAINERS:
+    TRAINERS[("escondite_rocket_s4", "Giovanni")].update(name="Giovanni", sight=4, reward_flags=["giovanni_escondite_vencido"], lines={
+        "desafio": "Así que encontraste nuestro escondite. Interesante.|Soy Giovanni, el jefe del Team Rocket. ¡Vas a lamentar haber venido!",
+        "pierde": "¡¿Qué?! ...Hacía mucho que nadie me ganaba. Me voy, pero esto no termina acá.",
+        "gana": "Volvé a jugar a tu casa.", "despues": "..."})
+EXTRA_NPCS[("ruta22", "RivalFinal")] = ((45, 30), "blue")
+
+TALKS.update({
+    # --- Cap. 4: Azulona, la Torre y el Escondite ---
+    ("torre_pokemon_2p", "0x0"): dict(name=RIVAL, show_if=["historia"], hide_if=["rival_torre_peleado"], talks=[dict(lines=["¡Ey, vos!"])]),
+    ("ciudad_azulona_mansion_1p", "TeaWoman"): dict(name="Abuela", talks=[
+        dict(forbids=["te_recibido"], give={"te": 1}, set_flags=["te_recibido"], lines=[
+            "¡Ay, qué chico tan amable! ¿Querés un té? Lo preparo yo misma.", "Llevate uno para el camino. ¡Es buenísimo para la sed!"]),
+        dict(lines=["¿Te gustó el té? Dicen que los guardias de Azafrán se mueren de sed."])]),
+    ("ciudad_azulona_mansion_cuarto", "EeveeBall"): dict(name="Poké Ball", gfx="item_ball", hide_if=["eevee_recibido"], talks=[
+        dict(confirm="Adentro hay un Eevee. ¿Te lo llevás?", give_pokemon="eevee", give_level=25, set_flags=["eevee_recibido"],
+             lines=["(Hay una Poké Ball sobre la mesa. Un cartel dice: \"Para quien lo cuide bien\".)"])]),
+    ("escondite_rocket_s4", "SilphScope"): dict(name="Objeto", gfx="item_ball", show_if=["giovanni_escondite_vencido"],
+        hide_if=["tiene_silph_scope"], talks=[dict(give={"silph_scope": 1}, set_flags=["tiene_silph_scope"], lines=[
+            "(Giovanni dejó caer algo al escapar...)"])]),
+    ("escondite_rocket_s4", "LiftKey"): dict(name="Objeto", gfx="item_ball", hide_if=["tiene_llave_ascensor"], talks=[
+        dict(give={"llave_ascensor": 1}, set_flags=["tiene_llave_ascensor"], lines=[])]),
+    # --- Cap. 5: la Torre (Marowak y el Sr. Fuji), los Snorlax y Fucsia ---
+    ("torre_pokemon_7p", "MrFuji"): dict(name="Sr. Fuji", hide_if=["fuji_rescatado"], talks=[
+        dict(forbids=["vencido_torre_pokemon_7p_grunt1"], lines=["(El Sr. Fuji está rodeado por el Team Rocket. ¡Hay que ayudarlo!)"]),
+        dict(forbids=["vencido_torre_pokemon_7p_grunt2"], lines=["(Todavía quedan soldados del Team Rocket...)"]),
+        dict(forbids=["vencido_torre_pokemon_7p_grunt3"], lines=["(Todavía queda un soldado del Team Rocket...)"]),
+        dict(give={"poke_flauta": 1}, set_flags=["fuji_rescatado"], lines=[
+            "Gracias... Gracias por salvarme. Soy Fuji, cuido a los Pokémon que no tienen a nadie.",
+            "El Team Rocket mató a la mamá de un Cubone... gracias a vos, su espíritu ya descansa.",
+            "Tomá esto: es la Poké Flauta. Su melodía despierta a cualquier Pokémon dormido.",
+            "Dicen que hay Snorlax durmiendo en las Rutas 12 y 16. Te va a servir."])]),
+    ("casa_voluntarios", "MrFuji"): dict(name="Sr. Fuji", show_if=["fuji_rescatado"], talks=[dict(lines=[
+        "Gracias por todo. Los Pokémon de esta casa están felices de que el Team Rocket se haya ido de la Torre."])]),
+    ("ruta12", "Snorlax"): dict(name="Snorlax", hide_if=["snorlax_ruta12_despierto"], talks=[dict(lines=["(Un Snorlax enorme duerme en medio del camino.)"], action="snorlax_ruta12")]),
+    ("ruta16", "Snorlax"): dict(name="Snorlax", hide_if=["snorlax_ruta16_despierto"], talks=[dict(lines=["(Un Snorlax enorme duerme en medio del camino.)"], action="snorlax_ruta16")]),
+    ("zona_safari_casa_secreta", "Attendant"): dict(name="Encargado", talks=[
+        dict(forbids=["mo03_recibido"], give={"mo03": 1}, set_flags=["mo03_recibido"], lines=[
+            "¡Felicitaciones! ¡Encontraste la Casa Secreta de la Zona Safari!", "Como premio, tomá esta MO: es Surf.",
+            "Con la Medalla Alma, tus Pokémon te llevan sobre el agua."]),
+        dict(lines=["Con Surf podés llegar a lugares a los que nadie llega a pie."])]),
+    ("casa_guarda", "Warden"): dict(name="Guarda", talks=[
+        dict(requires=["objeto_zona_safari_oeste_itemgoldteeth"], forbids=["mo04_recibido"], take={"dientes_oro": 1}, give={"mo04": 1},
+             set_flags=["mo04_recibido"], lines=["¡Ehfe! ¡Mif dientef! ¡Lof encontrafte!", "...(Se los pone)... ¡Ahora sí! ¡Gracias!",
+                                                 "Tomá, en agradecimiento: la MO04, Fuerza. Con ella tus Pokémon empujan rocas enormes."]),
+        dict(forbids=["mo04_recibido"], lines=["¡Ehfe! Ffe me cayeron lof dientef en la Fona Fafari... ¡Fi los encontráf, avifame!"]),
+        dict(lines=["Con Fuerza movés las rocas de Calle Victoria. ¡Te va a hacer falta!"])]),
+    # --- Cap. 6: Azafrán y Silph ---
+    ("silph_7p", "0x0"): dict(name=RIVAL, show_if=["historia"], hide_if=["rival_silph_peleado"], talks=[dict(lines=["¡Ey!"])]),
+    ("silph_7p", "LaprasGuy"): dict(name="Empleado", talks=[
+        dict(forbids=["lapras_recibido"], give_pokemon="lapras", give_level=25, set_flags=["lapras_recibido"], lines=[
+            "¡Viniste a salvarnos! Escondí a este Pokémon para que el Team Rocket no se lo llevara.", "Es un Lapras. Cuidalo, por favor."]),
+        dict(lines=["¿Cómo anda el Lapras? Es muy bueno nadando."])]),
+    ("silph_11p", "President"): dict(name="Presidente", talks=[
+        dict(requires=["silph_liberada"], forbids=["master_ball_recibida"], give={"master_ball": 1}, set_flags=["master_ball_recibida"], lines=[
+            "¡Gracias! ¡Salvaste a Silph S.A.!", "Te quiero dar algo especial: la Master Ball. Atrapa cualquier Pokémon, sin fallar.",
+            "Es la única que existe. ¡Usala bien!"]),
+        dict(requires=["silph_liberada"], lines=["Silph S.A. siempre va a estar en deuda con vos."]),
+        dict(lines=["(El presidente está asustado y no habla.)"])]),
+    ("dojo_karate", "HitmonleeBall"): dict(name="Poké Ball", gfx="item_ball", hide_if=["hitmon_elegido"], talks=[
+        dict(forbids=["vencido_dojo_karate_masterkoichi"], lines=["(Una Poké Ball. El maestro del Dojo no te deja tocarla.)"]),
+        dict(confirm="Es un Hitmonlee, el de las patadas. ¿Te lo llevás?", give_pokemon="hitmonlee", give_level=25,
+             set_flags=["hitmon_elegido"], lines=["(Una Poké Ball con un Hitmonlee.)"])]),
+    ("dojo_karate", "HitmonchanBall"): dict(name="Poké Ball", gfx="item_ball", hide_if=["hitmon_elegido"], talks=[
+        dict(forbids=["vencido_dojo_karate_masterkoichi"], lines=["(Una Poké Ball. El maestro del Dojo no te deja tocarla.)"]),
+        dict(confirm="Es un Hitmonchan, el de los puñetazos. ¿Te lo llevás?", give_pokemon="hitmonchan", give_level=25,
+             set_flags=["hitmon_elegido"], lines=["(Una Poké Ball con un Hitmonchan.)"])]),
+    # --- Legendarios (se despiertan y pelean, Nv. 50) ---
+    ("islas_espuma_s4", "Articuno"): dict(name="Articuno", hide_if=["articuno_visto"], talks=[dict(lines=["(Un Pokémon de hielo majestuoso te mira desde lo alto.)"], action="legendario_articuno")]),
+    ("central_electrica", "Zapdos"): dict(name="Zapdos", hide_if=["zapdos_visto"], talks=[dict(lines=["(Un Pokémon eléctrico enorme chisporrotea entre las máquinas.)"], action="legendario_zapdos")]),
+    # --- Cap. 8: Liga ---
+    ("ruta22", "RivalFinal"): dict(name=RIVAL, show_if=["medalla_tierra"], hide_if=["rival_ruta22_final_peleado"], talks=[
+        dict(lines=["¡Ey!"])]),
+    ("ruta22_garita", "BoulderBadgeGuard"): dict(name="Guardia", talks=[
+        dict(forbids=["medalla_tierra"], lines=["Solo pasan los que tienen las 8 medallas de Kanto."]),
+        dict(lines=["¡Las 8 medallas! Adelante: la Calle Victoria lleva a la Liga Pokémon."])]),
+    ("liga_campeon", "0x0"): dict(name=RIVAL, talks=[dict(lines=["..."])]),
+    ("liga_campeon", "0x0_2"): dict(name="Prof. Oak", show_if=["campeon"], talks=[dict(lines=[
+        "¡Lo lograste! ¡Le ganaste a mi nieto!", "Me olvidé de algo muy importante: él no supo tratar a sus Pokémon con cariño.",
+        "Vos sí. Por eso ganaste. ¡Vení, que te llevo al Salón de la Fama!"])]),
+    ("liga_hall", "0x0"): dict(name="Prof. Oak", talks=[dict(lines=[
+        "¡Felicitaciones! ¡Sos el nuevo Campeón de la Liga Pokémon!", "Tu Pokémon y vos formaron un equipo increíble.",
+        "Este es el Salón de la Fama: acá quedan registrados los campeones y sus Pokémon para siempre.",
+        "Pero el mundo Pokémon es enorme... ¡Seguí completando la Pokédex!"])]),
+})
+for _zone, _script in [("ciudad_azafran", "RocketGrunt%d" % i) for i in range(1, 8)] + [("ciudad_azafran", "DoorGuardGrunt")]:
+    TALKS[(_zone, _script)] = dict(name="Rocket", hide_if=["silph_liberada"], talks=[dict(lines=[
+        "¡Silph S.A. es del Team Rocket ahora! ¡Andate de acá!"])])
+for _script in ["Youngster", "WorkerM", "Man", "Boy", "Pidgeot", "Lass"]:
+    TALKS[("ciudad_azafran", _script)] = dict(name="Vecino" if _script != "Pidgeot" else "Pidgeot", show_if=["silph_liberada"], talks=[
+        dict(lines=["¡Gracias por echar al Team Rocket! Ciudad Azafrán volvió a ser la de antes." if _script != "Pidgeot" else "Pidgeot: ¡Piiii!"])])
+# Guardias de las garitas de Azafrán: con el Té te dejan pasar (como en FireRed).
+for _gate in ["ruta5_garita", "ruta6_garita", "ruta7_garita", "ruta8_garita"]:
+    TALKS[(_gate, "Guard")] = dict(name="Guardia", talks=[
+        dict(forbids=["te_recibido"], lines=["¡Uf, qué sed! No puedo dejar pasar a nadie a Ciudad Azafrán... ¿no tendrás algo para tomar?"]),
+        dict(lines=["¡Gracias por el té! Pasá nomás. Cuidate en Azafrán: está lleno del Team Rocket."])])
+for _gate, _rect in [("ruta5_garita", (3, 5, 3, 1)), ("ruta6_garita", (3, 5, 3, 1)), ("ruta7_garita", (5, 4, 1, 3)),
+                     ("ruta8_garita", (5, 4, 1, 3))]:
+    TRIGGERS["guardia_" + _gate] = dict(zone=_gate, rect=_rect, once=False, push_back=True, talk=dict(
+        forbids=["te_recibido"], speaker="Guardia", lines=["¡Alto! Ciudad Azafrán está cerrada.", "...¡Uf, qué sed tengo! Si tuviera algo para tomar..."]))
+    TRIGGERS["te_" + _gate] = dict(zone=_gate, rect=_rect, once=True, talk=dict(
+        requires=["te_recibido"], speaker="Guardia", lines=["¿Eso es té? ¿Me convidás? ...¡Ahh, qué rico!", "¡Gracias! Pasá nomás."]))
+TRIGGERS["rival_torre"] = dict(zone="torre_pokemon_2p", rect=(8, 7, 4, 1), once=False, talk=dict(
+    requires=["historia"], forbids=["rival_torre_peleado"], speaker=RIVAL, lines=["¡Eh, esperá!"], battle_npc="torre_pokemon_2p_0x0"))
+TRIGGERS["fantasma_torre"] = dict(zone="torre_pokemon_6p", rect=(11, 15, 2, 1), once=False, push_back=True, talk=dict(
+    forbids=["tiene_silph_scope", "marowak_en_paz"], speaker="", lines=[
+        "¡Un fantasma te cierra el paso! No se le ve la forma...", "\"Fuera... fuera de aquí...\"", "(Sin algo para ver fantasmas no se puede seguir.)"]))
+TRIGGERS["marowak_torre"] = dict(zone="torre_pokemon_6p", rect=(11, 15, 2, 1), once=True, talk=dict(
+    requires=["tiene_silph_scope"], forbids=["marowak_en_paz"], set_flags=["marowak_en_paz"], speaker="", lines=[
+        "¡Un fantasma te cierra el paso!", "¡El Scope Silph muestra lo que es: el espíritu de una mamá Marowak!",
+        "...El espíritu se calma al ver que ya nadie le va a hacer daño a su hijo.", "Marowak descansa en paz."]))
+TRIGGERS["rival_silph"] = dict(zone="silph_7p", rect=(2, 7, 4, 3), once=False, talk=dict(
+    requires=["historia"], forbids=["rival_silph_peleado"], speaker=RIVAL, lines=["¡Eh, esperá!"], battle_npc="silph_7p_0x0"))
+TRIGGERS["canela_cerrada"] = dict(zone="isla_canela", rect=(37, 5, 3, 1), once=False, push_back=True, talk=dict(
+    requires=["historia"], forbids=["objeto_mansion_pokemon_s1_itemsecretkey"], speaker="", lines=[
+        "La puerta del gimnasio está cerrada con llave.", "Dicen que la llave se perdió en la Mansión Pokémon."]))
+TRIGGERS["verde_cerrado"] = dict(zone="ciudad_verde", rect=(79, 21, 3, 1), once=False, push_back=True, talk=dict(
+    requires=["historia"], forbids=["medalla_volcan"], speaker="", lines=[
+        "La puerta del gimnasio de Ciudad Verde está cerrada.", "Dicen que el líder vuelve cuando alguien junta siete medallas."]))
+TRIGGERS["rival_ruta22_final"] = dict(zone="ruta22", rect=(50, 28, 1, 33), once=False, talk=dict(
+    requires=["medalla_tierra"], forbids=["rival_ruta22_final_peleado"], speaker=RIVAL, lines=["¡Eh, esperá!"], battle_npc="ruta22_rivalfinal"))
+TRIGGERS["garita_8_medallas"] = dict(zone="ruta22_garita", rect=(0, 4, 15, 1), once=False, push_back=True, talk=dict(
+    requires=["historia"], forbids=["medalla_tierra"], speaker="Guardia", lines=[
+        "¡Alto! Más allá está la Ruta 23 y la Liga Pokémon.", "Solo pasan los que tienen las 8 medallas de Kanto."]))
+TRIGGERS["campeon"] = dict(zone="liga_campeon", rect=(4, 10, 5, 1), once=False, talk=dict(
+    requires=["alto_mando_lance"], forbids=["campeon"], speaker=RIVAL, lines=["¡Eh! ¡Por fin llegaste!"], battle_npc="liga_campeon_0x0"))
+# Tiendas de las otras ciudades (lista de FireRed con los objetos que hay en el juego: data/shops).
+SHOP_CLERKS = {("pueblo_lavanda_tienda", "Clerk"): "pueblo_lavanda", ("ciudad_azulona_almacen_2p", "ClerkItems"): "ciudad_azulona",
+               ("ciudad_azulona_almacen_4p", "Clerk"): "ciudad_azulona_piedras", ("ciudad_azafran_tienda", "Clerk"): "ciudad_azafran",
+               ("ciudad_fucsia_tienda", "Clerk"): "ciudad_fucsia", ("isla_canela_tienda", "Clerk"): "isla_canela",
+               ("meseta_anil_centro", "Clerk"): "meseta_anil"}
+for (_zone, _script), _shop in SHOP_CLERKS.items():
+    TALKS[(_zone, _script)] = dict(name="Vendedor", talks=[dict(lines=["¡Bienvenido! ¿Qué vas a llevar?"], action="tienda_" + _shop)])
+
+# --- Relleno: todas las personas sin conversación propia (las zonas nuevas) -------------------------------------
+# Enfermeras curan; objetos tirados se agarran una vez; el resto, una frase según cómo se ve (y el nombre del lugar).
+ITEM_MAP = {"Potion": "pocion", "Potion2": "pocion", "SuperPotion": "superpocion", "HyperPotion": "hiperpocion",
+            "MaxPotion": "pocion_maxima", "FullRestore": "pocion_maxima", "Revive": "revivir", "MaxRevive": "revivir",
+            "FullHeal": "cura_total", "Antidote": "antidoto", "ParalyzeHeal": "antiparalizador", "Awakening": "despertar",
+            "BurnHeal": "antiquemar", "IceHeal": "antihielo", "PokeBall": "poke_ball", "GreatBall": "super_ball",
+            "UltraBall": "ultra_ball", "RareCandy": "caramelo_raro", "MoonStone": "piedra_lunar", "LeafStone": "piedra_hoja",
+            "ThunderStone": "piedra_trueno", "WaterStone": "piedra_agua", "FireStone": "piedra_fuego", "Nugget": "pepita",
+            "StarPiece": "trozo_estrella", "GoldTeeth": "dientes_oro", "SecretKey": "llave_secreta", "CardKey": "tarjeta_llave"}
+FLAVOR = {
+    "kid": ["¡Quiero ser entrenador como vos!", "¡Mi Pokémon favorito es el tuyo!", "¿Ya viste todo {lugar}?"],
+    "old": ["Cuando yo era joven, {lugar} era muy distinto...", "Cuidá a tus Pokémon, que ellos te cuidan a vos.",
+            "Ya no tengo edad para combates, pero me encanta mirarlos."],
+    "adult": ["¡Hola! Bienvenido a {lugar}.", "{lugar} es un lugar tranquilo... casi siempre.", "¿Viste algún Pokémon raro por {lugar}?",
+              "Dicen que el Team Rocket anda por todos lados. ¡Cuidate!", "Me encanta pasear por {lugar} con mis Pokémon."],
+    "worker": ["¡Uf, cuánto trabajo! No tengo ni un minuto.", "Acá en {lugar} siempre hay algo para hacer."],
+    "science": ["Estoy investigando a los Pokémon de {lugar}. ¡Fascinante!", "La ciencia de los Pokémon avanza cada día."],
+    "trainer": ["Entreno todos los días. ¡La Liga Pokémon me espera!", "Los combates se ganan con estrategia, no solo con fuerza."],
+}
+GFX_KIND = {"LITTLE_BOY": "kid", "LITTLE_GIRL": "kid", "BOY": "kid", "YOUNGSTER": "kid", "LASS": "kid", "GBA_KID": "kid",
+            "OLD_MAN_1": "old", "OLD_MAN_2": "old", "OLD_WOMAN": "old", "WORKER_M": "worker", "WORKER_F": "worker", "CLERK": "worker",
+            "SCIENTIST": "science", "COOLTRAINER_M": "trainer", "COOLTRAINER_F": "trainer", "BLACK_BELT": "trainer"}
+_maps_json = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "world", "frlg_maps.json")
+_sprites_json = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "art", "pret", "characters", "npcs.json")
+_with_sprite = set(json.load(open(_sprites_json, encoding="utf-8"))) if os.path.exists(_sprites_json) else set()
+if os.path.exists(_maps_json):
+    for _z in json.load(open(_maps_json, encoding="utf-8"))["zones"]:
+        _seen = set()
+        for _n in _z.get("npcs", []):
+            _script = _n["script"].split("EventScript_")[-1]
+            if _script in _seen:
+                continue
+            _seen.add(_script)
+            _key = (_z["id"], _script)
+            if _key in TALKS or _key in TRAINERS or _n["gfx"] in ("OBJ_EVENT_GFX_0", "OBJ_EVENT_GFX_VAR_0", "OBJ_EVENT_GFX_SS_ANNE",
+                                                                   "OBJ_EVENT_GFX_SEAGALLOP", "OBJ_EVENT_GFX_CLIPBOARD",
+                                                                   "OBJ_EVENT_GFX_POKEDEX", "OBJ_EVENT_GFX_TOWN_MAP"):
+                continue
+            _gfx = _n["gfx"][len("OBJ_EVENT_GFX_"):]
+            if _gfx.lower() not in _with_sprite and not _script.startswith("Item"):
+                continue  # sin sprite (diarios, Ámbar, chicos con la GBA): no se puede mostrar
+            if _script.startswith("Item"):
+                _item = ITEM_MAP.get(_script[4:])
+                if _item:
+                    _flag = _flag_of(_z["id"], _script)
+                    TALKS[_key] = dict(name="Objeto", gfx="item_ball", hide_if=[_flag], talks=[dict(give={_item: 1}, set_flags=[_flag], lines=[])])
+                continue
+            if _script.startswith("Nurse") or _gfx == "NURSE":
+                TALKS[_key] = NURSE
+                continue
+            if _gfx == "ITEM_BALL" or _gfx == "FOSSIL":
+                continue
+            _kind = GFX_KIND.get(_gfx)
+            if _kind is None and _gfx.replace("_", "").isalpha() and _gfx.lower() in AUTO_SPECIES:
+                TALKS[_key] = dict(name=_gfx.title().replace("_", " "), talks=[dict(lines=["%s: ¡%s!" % (_gfx.title().replace("_", " "),
+                                                                                                   _gfx.title()[:4] + "...")])])
+                continue
+            _lines = FLAVOR[_kind or "adult"]
+            _line = _lines[sum(map(ord, _z["id"] + _script)) % len(_lines)].format(lugar=_z.get("name", "este lugar"))
+            TALKS[_key] = dict(name={"kid": "Pibe", "old": "Abuelo", "worker": "Empleado", "science": "Científico",
+                                     "trainer": "Entrenador"}.get(_kind, "Vecino"), talks=[dict(lines=[_line])])
+
+
 class Ext:
     """ext_resource que necesita un .tres (scripts y recursos), con ids estables."""
 
@@ -891,6 +1290,8 @@ def talk_body(sid, t, ext):
         body.append("confirm = " + gd_str(t["confirm"]))
     if t.get("give_pokemon"):
         body.append("give_pokemon = " + species_ref(ext, t["give_pokemon"]))
+    if t.get("give_level"):
+        body.append("give_level = %d" % t["give_level"])
     if t.get("battle_npc"):
         body.append("battle_npc = " + gd_str(t["battle_npc"]))
     if t.get("no_blackout"):
@@ -1014,8 +1415,12 @@ def main():
     for (zone, script), (cell, gfx) in EXTRA_NPCS.items():
         n = {"cell": list(cell), "gfx": "OBJ_EVENT_GFX_" + gfx.upper(), "movement": "MOVEMENT_TYPE_FACE_DOWN"}
         npc_id = "%s_%s" % (zone, script.lower())
+        spec = TALKS[(zone, script)]
+        t = TRAINERS.get((zone, script))
+        if t is not None:  # una persona extra también puede ser entrenador (el rival final de la Ruta 22)
+            spec = dict(spec, name=t["name"], trainer=t)
         with open(os.path.join(out, npc_id + ".tres"), "w", encoding="utf-8", newline="\n") as f:
-            f.write(npc_tres(npc_id, zone, n, TALKS[(zone, script)]))
+            f.write(npc_tres(npc_id, zone, n, spec))
         made.add((zone, script))
     for key in list(TALKS) + list(TRAINERS):
         if key not in made:

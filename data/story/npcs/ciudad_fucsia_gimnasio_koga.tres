@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/koffing.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/muk.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/weezing.tres" id="r_5"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_6"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Con la Medalla Alma podés usar Surf.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 37
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 39
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 37
+
+[sub_resource type="Resource" id="Mon_3"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 43
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_6")
+id = "koga"
+display_name = "Koga"
+title = "Líder"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3")])
+lines = {"desafio": "¡Fwahahaha! Un niño se atreve a desafiarme. Soy Koga, el maestro ninja.|Mis Pokémon venenosos te van a envenenar hasta el alma. ¡Prepárate!", "pierde": "¡Hmph! Tu fuerza es auténtica. Tomá la Medalla Alma.", "gana": "¡Fwahahaha! El veneno siempre gana.", "despues": "Con la Medalla Alma podés usar Surf."}
+arena_id = "arena_gimnasio_veneno"
+leader = true
+reward_flags = PackedStringArray("medalla_alma")
+reward_text = "¡Recibiste la MEDALLA ALMA de Koga!"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_fucsia_gimnasio_koga"
+display_name = "Koga"
+zone_id = "ciudad_fucsia_gimnasio"
+cell = Vector2i(7, 13)
+gfx = "koga"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 0

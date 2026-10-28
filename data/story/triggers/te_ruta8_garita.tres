@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("te_recibido")
+speaker = "Guardia"
+lines = PackedStringArray("¿Eso es té? ¿Me convidás? ...¡Ahh, qué rico!", "¡Gracias! Pasá nomás.")
+
+[resource]
+script = ExtResource("1_g")
+id = "te_ruta8_garita"
+zone_id = "ruta8_garita"
+rect = Rect2i(5, 4, 1, 3)
+talk = SubResource("Talk")
+once = true
+push_back = false

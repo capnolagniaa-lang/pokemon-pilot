@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/arbok.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/tauros.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Domar requiere paciencia.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 39
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 39
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_5")
+id = "cole"
+display_name = "Cole"
+title = "Domador"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "¡Mis Pokémon salvajes obedecen solo a mí!", "pierde": "¡Se me rebelaron!", "despues": "Domar requiere paciencia."}
+arena_id = "arena_gimnasio_tierra"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_verde_gimnasio_cole"
+display_name = "Cole"
+zone_id = "ciudad_verde_gimnasio"
+cell = Vector2i(2, 21)
+gfx = "man"
+facing = Vector2i(1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 2

@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/onix.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/hitmonchan.tres" id="r_4"]
+[ext_resource type="Resource" path="res://data/species/hitmonlee.tres" id="r_5"]
+[ext_resource type="Resource" path="res://data/species/machamp.tres" id="r_6"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_7"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Seguí.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 51
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 53
+
+[sub_resource type="Resource" id="Mon_2"]
+script = ExtResource("r_2")
+species = ExtResource("r_5")
+level = 53
+
+[sub_resource type="Resource" id="Mon_3"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 54
+
+[sub_resource type="Resource" id="Mon_4"]
+script = ExtResource("r_2")
+species = ExtResource("r_6")
+level = 56
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_7")
+id = "bruno"
+display_name = "Bruno"
+title = "Alto Mando"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3"), SubResource("Mon_4")])
+lines = {"desafio": "¡Soy Bruno, del Alto Mando! Entreno mis músculos y mis Pokémon al límite.|¡Hoo hah! ¡Preparate!", "pierde": "¡Imposible! ¡Mis músculos no alcanzaron! Andá, Agatha te espera.", "gana": "¡Hoo hah! ¡Más entrenamiento!", "despues": "Seguí."}
+arena_id = "arena_liga_lucha"
+leader = true
+reward_flags = PackedStringArray("alto_mando_bruno")
+
+[resource]
+script = ExtResource("1_n")
+id = "liga_bruno_bruno"
+display_name = "Bruno"
+zone_id = "liga_bruno"
+cell = Vector2i(6, 5)
+gfx = "bruno"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 4

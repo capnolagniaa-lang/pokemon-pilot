@@ -5,7 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Uf, qué sed!", "Ciudad Azafrán está cerrada por ahora. Usá la Vía Subterránea.")
+forbids = PackedStringArray("te_recibido")
+lines = PackedStringArray("¡Uf, qué sed! No puedo dejar pasar a nadie a Ciudad Azafrán... ¿no tendrás algo para tomar?")
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Gracias por el té! Pasá nomás. Cuidate en Azafrán: está lleno del Team Rocket.")
 
 [resource]
 script = ExtResource("1_n")
@@ -16,4 +21,4 @@ cell = Vector2i(1, 5)
 gfx = "policeman"
 facing = Vector2i(1, 0)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

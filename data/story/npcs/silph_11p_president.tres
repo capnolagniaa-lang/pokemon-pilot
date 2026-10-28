@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+requires = PackedStringArray("silph_liberada")
+forbids = PackedStringArray("master_ball_recibida")
+set_flags = PackedStringArray("master_ball_recibida")
+lines = PackedStringArray("¡Gracias! ¡Salvaste a Silph S.A.!", "Te quiero dar algo especial: la Master Ball. Atrapa cualquier Pokémon, sin fallar.", "Es la única que existe. ¡Usala bien!")
+give_items = {"master_ball": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+requires = PackedStringArray("silph_liberada")
+lines = PackedStringArray("Silph S.A. siempre va a estar en deuda con vos.")
+
+[sub_resource type="Resource" id="Talk_2"]
+script = ExtResource("2_t")
+lines = PackedStringArray("(El presidente está asustado y no habla.)")
+
+[resource]
+script = ExtResource("1_n")
+id = "silph_11p_president"
+display_name = "Presidente"
+zone_id = "silph_11p"
+cell = Vector2i(9, 9)
+gfx = "old_man_2"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1"), SubResource("Talk_2")])

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StoryTrigger" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/story_trigger.gd" id="1_g"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk"]
+script = ExtResource("2_t")
+requires = PackedStringArray("tiene_silph_scope")
+forbids = PackedStringArray("marowak_en_paz")
+set_flags = PackedStringArray("marowak_en_paz")
+lines = PackedStringArray("¡Un fantasma te cierra el paso!", "¡El Scope Silph muestra lo que es: el espíritu de una mamá Marowak!", "...El espíritu se calma al ver que ya nadie le va a hacer daño a su hijo.", "Marowak descansa en paz.")
+
+[resource]
+script = ExtResource("1_g")
+id = "marowak_torre"
+zone_id = "torre_pokemon_6p"
+rect = Rect2i(11, 15, 2, 1)
+talk = SubResource("Talk")
+once = true
+push_back = false

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Entreno todos los días. ¡La Liga Pokémon me espera!")
+
+[resource]
+script = ExtResource("1_n")
+id = "meseta_anil_centro_blackbelt"
+display_name = "Entrenador"
+zone_id = "meseta_anil_centro"
+cell = Vector2i(23, 13)
+gfx = "black_belt"
+facing = Vector2i(1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

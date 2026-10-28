@@ -82,6 +82,20 @@ func _ready() -> void:
 		add_child(ev)
 		(ev.showcase if "--showcase-evolution" in OS.get_cmdline_user_args() else ev.run).call_deferred()
 		return
+	if "--autotest-story-h4" in OS.get_cmdline_user_args():
+		set_process(false)
+		var k4 := KantoStoryTests.new()
+		k4.autotest = self
+		add_child(k4)
+		k4.run.call_deferred()
+		return
+	if "--autotest-field" in OS.get_cmdline_user_args():
+		set_process(false)
+		var fmt := FieldMovesTests.new()
+		fmt.autotest = self
+		add_child(fmt)
+		fmt.run.call_deferred()
+		return
 	if "--autotest-story-h3" in OS.get_cmdline_user_args() or "--showcase-surge" in OS.get_cmdline_user_args():
 		set_process(false)
 		var c3 := Chapter3Tests.new()

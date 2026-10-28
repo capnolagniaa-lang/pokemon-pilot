@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/gastly.tres" id="r_3"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_4"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Algo me poseyó... qué miedo.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 24
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_4")
+id = "paula"
+display_name = "Paula"
+title = "Médium"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
+lines = {"desafio": "¡Fuera de aquí! ¡Los espíritus están enojados!", "pierde": "...¿Qué? ¿Dónde estoy?", "despues": "Algo me poseyó... qué miedo."}
+arena_id = "arena_campo"
+
+[resource]
+script = ExtResource("1_n")
+id = "torre_pokemon_4p_paula"
+display_name = "Paula"
+zone_id = "torre_pokemon_4p"
+cell = Vector2i(4, 12)
+gfx = "channeler"
+facing = Vector2i(1, 0)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 2

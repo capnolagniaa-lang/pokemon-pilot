@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_mon.gd" id="r_2"]
+[ext_resource type="Resource" path="res://data/species/mr_mime.tres" id="r_3"]
+[ext_resource type="Resource" path="res://data/species/kadabra.tres" id="r_4"]
+[ext_resource type="Script" path="res://scripts/resources/trainer_data.gd" id="r_5"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("La mente puede más que los músculos.")
+
+[sub_resource type="Resource" id="Mon_0"]
+script = ExtResource("r_2")
+species = ExtResource("r_3")
+level = 34
+
+[sub_resource type="Resource" id="Mon_1"]
+script = ExtResource("r_2")
+species = ExtResource("r_4")
+level = 34
+
+[sub_resource type="Resource" id="Trainer"]
+script = ExtResource("r_5")
+id = "tyron"
+display_name = "Tyron"
+title = "Médium Psíquico"
+starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
+lines = {"desafio": "Ya sabía que ibas a venir... ¡Peleemos!", "pierde": "Esto no lo vi venir.", "despues": "La mente puede más que los músculos."}
+arena_id = "arena_gimnasio_psiquico"
+
+[resource]
+script = ExtResource("1_n")
+id = "ciudad_azafran_gimnasio_tyron"
+display_name = "Tyron"
+zone_id = "ciudad_azafran_gimnasio"
+cell = Vector2i(24, 10)
+gfx = "cooltrainer_m"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+trainer = SubResource("Trainer")
+sight = 3

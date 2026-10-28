@@ -21,6 +21,17 @@ const STEPS := [
 	["tiene_corte", "El capitán mareado", "El capitán del S.S. Anne está en su camarote, al fondo del pasillo del segundo piso. Ayudalo."],
 	["surge_puerta_abierta", "Los basureros de Surge", "Con Corte (E frente al árbol fino) entrá al gimnasio de Ciudad Carmín. Buscá los dos interruptores en los basureros: el segundo está al lado del primero."],
 	["medalla_trueno", "La Medalla Trueno", "Ganale a Lt. Surge (tipo eléctrico: los de tierra no sienten la electricidad)."],
+	# Capítulos 4 a 8 (docs/PLAN_RESTO_KANTO.md)
+	["giovanni_escondite_vencido", "El Escondite Rocket", "Desde Ciudad Celeste, la Ruta 9 y el Túnel Roca llevan a Pueblo Lavanda; la Ruta 8 y la Vía Subterránea, a Ciudad Azulona. El Team Rocket se esconde debajo del Casino: bajá hasta el fondo y ganale a su jefe."],
+	["medalla_arcoiris", "La Medalla Arcoíris", "Ganale a Erika en el gimnasio de Ciudad Azulona (tipo planta: el fuego, el hielo y los voladores le pegan fuerte). Cortá el árbol de la entrada."],
+	["fuji_rescatado", "La Torre Pokémon", "Con el Scope Silph volvé a la Torre Pokémon de Pueblo Lavanda: subí hasta arriba de todo y rescatá al Sr. Fuji del Team Rocket."],
+	["medalla_alma", "La Medalla Alma", "Con la Poké Flauta despertá al Snorlax de la Ruta 12 (o el de la 16) y seguí hasta Ciudad Fucsia. Ganale a Koga (tipo veneno). En la Zona Safari hay una MO escondida."],
+	["silph_liberada", "Silph S.A.", "Con el Té de la Mansión Azulona los guardias te dejan entrar a Ciudad Azafrán. El Team Rocket tomó Silph S.A.: subí hasta el último piso y echá a Giovanni."],
+	["medalla_pantano", "La Medalla Pantano", "Ganale a Sabrina en el gimnasio de Ciudad Azafrán (tipo psíquico: los bichos y los fantasmas le pegan fuerte)."],
+	["medalla_volcan", "La Medalla Volcán", "Con Surf, bajá desde Ciudad Fucsia por las Rutas 19 y 20 hasta Isla Canela. La llave del gimnasio está en la Mansión Pokémon. Después, ganale a Blaine (tipo fuego)."],
+	["medalla_tierra", "La Medalla Tierra", "Con siete medallas se abre el gimnasio de Ciudad Verde. Su líder es... Giovanni (tipo tierra: el agua y la planta le pegan fuerte)."],
+	["rival_ruta22_final_peleado", "La última pelea con el rival", "Andá al oeste de Ciudad Verde: tu rival te espera en la Ruta 22, antes de la Liga."],
+	["campeon", "La Liga Pokémon", "Con las 8 medallas pasá la garita de la Ruta 22, la Ruta 23 y la Calle Victoria (con Fuerza). En la Meseta Añil te esperan el Alto Mando... y el Campeón."],
 ]
 ## Adónde ir en cada paso (bandera del paso -> zona): la estrella del Mapa (Esc → Mapa). Un paso sin fila no marca nada.
 const GOALS := {
@@ -28,7 +39,10 @@ const GOALS := {
 	"tiene_paquete": "ciudad_verde_tienda", "paquete_entregado": "laboratorio_oak", "medalla_roca": "ciudad_plateada_gimnasio",
 	"fosil_elegido": "mt_moon", "rival_celeste_peleado": "ciudad_celeste", "medalla_cascada": "ciudad_celeste_gimnasio",
 	"rival_ss_anne_peleado": "ss_anne_muelle", "tiene_corte": "ss_anne_muelle", "surge_puerta_abierta": "ciudad_carmin_gimnasio",
-	"medalla_trueno": "ciudad_carmin_gimnasio",
+	"medalla_trueno": "ciudad_carmin_gimnasio", "giovanni_escondite_vencido": "ciudad_azulona_casino",
+	"medalla_arcoiris": "ciudad_azulona_gimnasio", "fuji_rescatado": "torre_pokemon_1p", "medalla_alma": "ciudad_fucsia_gimnasio",
+	"silph_liberada": "silph_1p", "medalla_pantano": "ciudad_azafran_gimnasio", "medalla_volcan": "isla_canela_gimnasio",
+	"medalla_tierra": "ciudad_verde_gimnasio", "rival_ruta22_final_peleado": "ruta22", "campeon": "meseta_anil",
 }
 ## Cosas que se pueden hacer además: [bandera que la completa, banderas que hacen falta, texto]
 const OPTIONAL := [
@@ -39,6 +53,14 @@ const OPTIONAL := [
 	["magikarp_comprado", ["medalla_roca"], "En el Centro Pokémon de la Ruta 4 (al pie del Mt. Moon) un señor vende un Magikarp."],
 	["rocket_puente_peleado", ["rival_celeste_peleado"], "Al norte de Ciudad Celeste, el Puente Pepita: cinco entrenadores al hilo y un premio."],
 	["rocket_celeste_peleado", ["medalla_cascada"], "El ladrón de la casa robada de Ciudad Celeste anda por atrás de la casa: tiene la MT28 Excavar."],
+	["rival_torre_peleado", ["medalla_trueno"], "Tu rival anda por la Torre Pokémon de Pueblo Lavanda."],
+	["te_recibido", ["medalla_trueno"], "En la Mansión Azulona una abuela muy amable convida té..."],
+	["eevee_recibido", ["medalla_trueno"], "En la terraza de la Mansión Azulona hay un regalo esperando a quien lo encuentre."],
+	["mo04_recibido", ["medalla_arcoiris"], "Al guarda de la Zona Safari (Ciudad Fucsia) se le cayeron los dientes de oro en la Zona Safari."],
+	["lapras_recibido", ["fuji_rescatado"], "En el 7º piso de Silph S.A. un empleado esconde un Pokémon."],
+	["hitmon_elegido", ["fuji_rescatado"], "El Dojo Karate de Ciudad Azafrán regala un Pokémon de lucha al que le gane al maestro."],
+	["articuno_visto", ["medalla_alma"], "Dicen que en lo más hondo de las Islas Espuma vive un pájaro de hielo legendario."],
+	["zapdos_visto", ["medalla_alma"], "Dicen que en la Central Eléctrica (Ruta 10, con Surf) vive un pájaro eléctrico legendario."],
 	["ticket_barco_recibido", ["rival_celeste_peleado"], "Pasando el Puente Pepita y la Ruta 25 vive Bill, el de la PC. Dicen que le pasó algo raro..."],
 ]
 ## Cazabichos del Bosque Verde (para contar cuántos te faltan).
@@ -55,13 +77,15 @@ static func current() -> Dictionary:
 		if not GameState.has_flag(STEPS[i][0]):
 			return {"index": i, "total": STEPS.size(), "title": STEPS[i][1], "text": STEPS[i][2],
 				"goal": GOALS.get(STEPS[i][0], "")}
-	return {"index": STEPS.size(), "total": STEPS.size(), "goal": "", "title": "¡Capítulo 3 completo!",
-		"text": "Le ganaste a Lt. Surge. Muy pronto: la Cueva Diglett, el Túnel Roca y Pueblo Lavanda. Mientras tanto, entrenate o probá el Torneo de Ciudad Plateada."}
+	return {"index": STEPS.size(), "total": STEPS.size(), "goal": "", "title": "¡Sos el Campeón de Kanto!",
+		"text": "Le ganaste al Alto Mando y a tu rival. ¡Felicitaciones! Ahora podés completar la Pokédex, buscar a los legendarios o probar el Torneo de Ciudad Plateada."}
 
 
 ## Primer paso de cada capítulo (índice en STEPS) y su nombre.
 const CHAPTERS := [[0, "Capítulo 1: de Pueblo Paleta a la Medalla Roca"], [6, "Capítulo 2: del Mt. Moon a la Medalla Cascada"],
-	[9, "Capítulo 3: del S.S. Anne a la Medalla Trueno"]]
+	[9, "Capítulo 3: del S.S. Anne a la Medalla Trueno"], [13, "Capítulo 4: del Túnel Roca a la Medalla Arcoíris"],
+	[15, "Capítulo 5: de la Torre Pokémon a la Medalla Alma"], [17, "Capítulo 6: Silph S.A. y la Medalla Pantano"],
+	[19, "Capítulo 7: Isla Canela y la Medalla Volcán"], [20, "Capítulo 8: la Medalla Tierra y la Liga Pokémon"]]
 
 
 static func chapter_name(index: int) -> String:

@@ -1,4 +1,16 @@
 {
+ "agatha": {
+  "png": "res://art/pret/characters/agatha.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
+ "articuno": {
+  "png": "res://art/pret/characters/articuno.png",
+  "w": 32,
+  "h": 32,
+  "frames": 1
+ },
  "balding_man": {
   "png": "res://art/pret/characters/balding_man.png",
   "w": 16,
@@ -8,6 +20,12 @@
  "beauty": {
   "png": "res://art/pret/characters/beauty.png",
   "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "biker": {
+  "png": "res://art/pret/characters/biker.png",
+  "w": 32,
   "h": 32,
   "frames": 10
  },
@@ -23,6 +41,12 @@
   "h": 32,
   "frames": 10
  },
+ "blaine": {
+  "png": "res://art/pret/characters/blaine.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
  "blue": {
   "png": "res://art/pret/characters/blue.png",
   "w": 16,
@@ -37,6 +61,12 @@
  },
  "brock": {
   "png": "res://art/pret/characters/brock.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
+ "bruno": {
+  "png": "res://art/pret/characters/bruno.png",
   "w": 16,
   "h": 32,
   "frames": 3
@@ -64,6 +94,18 @@
   "w": 16,
   "h": 32,
   "frames": 9
+ },
+ "channeler": {
+  "png": "res://art/pret/characters/channeler.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "chansey": {
+  "png": "res://art/pret/characters/chansey.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
  },
  "chef": {
   "png": "res://art/pret/characters/chef.png",
@@ -101,17 +143,41 @@
   "h": 32,
   "frames": 10
  },
+ "cubone": {
+  "png": "res://art/pret/characters/cubone.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
  "daisy": {
   "png": "res://art/pret/characters/daisy.png",
   "w": 16,
   "h": 32,
   "frames": 9
  },
+ "doduo": {
+  "png": "res://art/pret/characters/doduo.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "erika": {
+  "png": "res://art/pret/characters/erika.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
  "fat_man": {
   "png": "res://art/pret/characters/fat_man.png",
   "w": 16,
   "h": 32,
   "frames": 9
+ },
+ "fearow": {
+  "png": "res://art/pret/characters/fearow.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
  },
  "fisher": {
   "png": "res://art/pret/characters/fisher.png",
@@ -155,6 +221,30 @@
   "h": 16,
   "frames": 3
  },
+ "kangaskhan": {
+  "png": "res://art/pret/characters/kangaskhan.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "koga": {
+  "png": "res://art/pret/characters/koga.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
+ "lance": {
+  "png": "res://art/pret/characters/lance.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
+ "lapras": {
+  "png": "res://art/pret/characters/lapras.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
  "lass": {
   "png": "res://art/pret/characters/lass.png",
   "w": 16,
@@ -172,6 +262,12 @@
   "w": 16,
   "h": 16,
   "frames": 10
+ },
+ "lorelei": {
+  "png": "res://art/pret/characters/lorelei.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
  },
  "lt_surge": {
   "png": "res://art/pret/characters/lt_surge.png",
@@ -197,6 +293,12 @@
   "h": 32,
   "frames": 10
  },
+ "meowth": {
+  "png": "res://art/pret/characters/meowth.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
  "misty": {
   "png": "res://art/pret/characters/misty.png",
   "w": 16,
@@ -209,8 +311,26 @@
   "h": 32,
   "frames": 3
  },
+ "mr_fuji": {
+  "png": "res://art/pret/characters/mr_fuji.png",
+  "w": 16,
+  "h": 32,
+  "frames": 9
+ },
+ "nidoran_f": {
+  "png": "res://art/pret/characters/nidoran_f.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
  "nidoran_m": {
   "png": "res://art/pret/characters/nidoran_m.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "nidorino": {
+  "png": "res://art/pret/characters/nidorino.png",
   "w": 16,
   "h": 16,
   "frames": 3
@@ -269,17 +389,35 @@
   "h": 16,
   "frames": 3
  },
+ "poke_maniac": {
+  "png": "res://art/pret/characters/poke_maniac.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
  "policeman": {
   "png": "res://art/pret/characters/policeman.png",
   "w": 16,
   "h": 32,
   "frames": 9
  },
+ "poliwrath": {
+  "png": "res://art/pret/characters/poliwrath.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
  "prof_oak": {
   "png": "res://art/pret/characters/prof_oak.png",
   "w": 16,
   "h": 32,
   "frames": 9
+ },
+ "psyduck": {
+  "png": "res://art/pret/characters/psyduck.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
  },
  "rocker": {
   "png": "res://art/pret/characters/rocker.png",
@@ -293,6 +431,12 @@
   "h": 32,
   "frames": 9
  },
+ "sabrina": {
+  "png": "res://art/pret/characters/sabrina.png",
+  "w": 16,
+  "h": 32,
+  "frames": 3
+ },
  "sailor": {
   "png": "res://art/pret/characters/sailor.png",
   "w": 16,
@@ -304,6 +448,12 @@
   "w": 16,
   "h": 32,
   "frames": 10
+ },
+ "seagallop": {
+  "png": "res://art/pret/characters/seagallop.png",
+  "w": 64,
+  "h": 64,
+  "frames": 1
  },
  "seel": {
   "png": "res://art/pret/characters/seel.png",
@@ -317,17 +467,53 @@
   "h": 16,
   "frames": 3
  },
+ "slowpoke": {
+  "png": "res://art/pret/characters/slowpoke.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
+ },
+ "snorlax": {
+  "png": "res://art/pret/characters/snorlax.png",
+  "w": 32,
+  "h": 32,
+  "frames": 1
+ },
  "spearow": {
   "png": "res://art/pret/characters/spearow.png",
   "w": 16,
   "h": 16,
   "frames": 3
  },
+ "swimmer_f_water": {
+  "png": "res://art/pret/characters/swimmer_f_water.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
+ "swimmer_m_land": {
+  "png": "res://art/pret/characters/swimmer_m_land.png",
+  "w": 16,
+  "h": 32,
+  "frames": 10
+ },
  "swimmer_m_water": {
   "png": "res://art/pret/characters/swimmer_m_water.png",
   "w": 16,
   "h": 32,
   "frames": 10
+ },
+ "tuber_m_water": {
+  "png": "res://art/pret/characters/tuber_m_water.png",
+  "w": 16,
+  "h": 16,
+  "frames": 10
+ },
+ "voltorb": {
+  "png": "res://art/pret/characters/voltorb.png",
+  "w": 16,
+  "h": 16,
+  "frames": 3
  },
  "wigglytuff": {
   "png": "res://art/pret/characters/wigglytuff.png",
@@ -370,5 +556,11 @@
   "w": 16,
   "h": 32,
   "frames": 10
+ },
+ "zapdos": {
+  "png": "res://art/pret/characters/zapdos.png",
+  "w": 32,
+  "h": 32,
+  "frames": 1
  }
 }

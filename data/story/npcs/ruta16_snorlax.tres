@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("(Un Snorlax enorme duerme en medio del camino.)")
+action = "snorlax_ruta16"
+
+[resource]
+script = ExtResource("1_n")
+id = "ruta16_snorlax"
+display_name = "Snorlax"
+zone_id = "ruta16"
+cell = Vector2i(55, 13)
+gfx = "snorlax"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+hide_if = PackedStringArray("snorlax_ruta16_despierto")
