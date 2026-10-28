@@ -159,7 +159,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   Salientes (behaviors MB_JUMP_* de FireRed): sólidos, pero `LedgeJumper` (nodo del mundo) los salta caminando
   contra ellos en su dirección; desde el otro lado no se suben. El Pokémon que sigue salta detrás.
 - **Zonas** (`scenes/world/zones/*.tscn`): capas `Ground` (z-10), `Water` (shader agua), `Foliage`
-  (shader viento), `TreeShadows`, `Overhead` (z 20, copas que tapan), `Objects` (EnvObject con tags).
+  (shader viento **apagado**: `strength` 0 en `shaders/materials/foliage_wind.tres` y
+  `canopy_wind.tres`, el usuario no quería que se deformen pasto, techos y copas), `TreeShadows`, `Overhead` (z 20, copas que tapan), `Objects` (EnvObject con tags).
   La estructura la arma **un solo lugar**: `ZoneBuilder.new_zone_root` (`scripts/world/zone_builder.gd`), que usan
   el generador (`ZoneGenerator`) y el editor de mapas. `Zone.hand_edited` = editada con el editor.
   `MapRules` (`scripts/world/map_rules.gd`): colisión real por celda, celda libre más cercana (World reubica al

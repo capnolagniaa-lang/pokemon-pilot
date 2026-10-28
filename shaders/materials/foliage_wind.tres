@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource("1")
-shader_parameter/strength = 1.0
+shader_parameter/strength = 0.0
 shader_parameter/speed = 1.8
 shader_parameter/wave_scale = 0.06
 shader_parameter/gust = 0.7

@@ -1,5 +1,6 @@
 shader_type canvas_item;
 // Balanceo por viento para capas de tiles (pasto alto, flores, copas de árboles).
+// APAGADO (2026-10-28, pedido del usuario): strength = 0 en shaders/materials/foliage_wind.tres y canopy_wind.tres.
 // Desplaza la parte de arriba de cada tile en píxeles enteros, sin salirse del tile en el atlas.
 
 uniform float strength = 1.0;      // desplazamiento máximo en píxeles
