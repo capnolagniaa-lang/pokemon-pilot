@@ -53,7 +53,18 @@ func _init() -> void:
 		ids[z["id"]] = true
 	for z: Dictionary in data["zones"]:
 		if only_new and old_by_id.has(z["id"]):
-			world.zones.append(old_by_id[z["id"]])
+			# Ya existe: queda tal cual (escena, plaza, tabla), salvo sus puertas, que pueden llevar a mapas nuevos.
+			var kept: ZoneEntry = old_by_id[z["id"]]
+			var before := kept.warps.size()
+			kept.origin = Vector2i(int(z["origin"][0]), int(z["origin"][1]))  # (los interiores pueden moverse)
+			kept.warps = {}
+			for w: Dictionary in z["warps"]:
+				kept.warps[Vector2i(int(w["cell"][0]), int(w["cell"][1]))] = {"to": w["to"], "cell": Vector2i(int(w["to_cell"][0]), int(w["to_cell"][1]))}
+			for cell in WARP_OVERRIDES.get(kept.id, {}):
+				kept.warps[cell] = WARP_OVERRIDES[kept.id][cell].duplicate()
+			if kept.warps.size() != before:
+				print("%-26s puertas: %d -> %d" % [kept.id, before, kept.warps.size()])
+			world.zones.append(kept)
 			continue
 		var e := ZoneEntry.new()
 		e.id = z["id"]

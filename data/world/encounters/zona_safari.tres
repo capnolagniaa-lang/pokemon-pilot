@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_ruf8r"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_xjbdo"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_5htvj"]
+
+[sub_resource type="Resource" id="Resource_n82tm"]
+script = ExtResource("2_xjbdo")
+species_id = "rhyhorn"
+weight = 20
+min_level = 25
+max_level = 25
+
+[sub_resource type="Resource" id="Resource_d2pf7"]
+script = ExtResource("2_xjbdo")
+species_id = "nidoran_m"
+weight = 20
+min_level = 22
+max_level = 22
+
+[sub_resource type="Resource" id="Resource_yv5pl"]
+script = ExtResource("2_xjbdo")
+species_id = "exeggcute"
+weight = 20
+min_level = 24
+max_level = 25
+
+[sub_resource type="Resource" id="Resource_rkwlm"]
+script = ExtResource("2_xjbdo")
+species_id = "venonat"
+weight = 15
+min_level = 22
+max_level = 22
+
+[sub_resource type="Resource" id="Resource_anj5y"]
+script = ExtResource("2_xjbdo")
+species_id = "nidorino"
+min_level = 31
+max_level = 31
+
+[sub_resource type="Resource" id="Resource_ia4jh"]
+script = ExtResource("2_xjbdo")
+species_id = "nidorina"
+weight = 5
+min_level = 31
+max_level = 31
+
+[sub_resource type="Resource" id="Resource_jgdp0"]
+script = ExtResource("2_xjbdo")
+species_id = "parasect"
+weight = 5
+min_level = 30
+max_level = 30
+
+[sub_resource type="Resource" id="Resource_avun8"]
+script = ExtResource("2_xjbdo")
+species_id = "scyther"
+weight = 4
+min_level = 23
+max_level = 23
+
+[sub_resource type="Resource" id="Resource_mr4b0"]
+script = ExtResource("2_xjbdo")
+species_id = "chansey"
+weight = 1
+min_level = 23
+max_level = 23
+
+[resource]
+script = ExtResource("3_5htvj")
+entries = Array[ExtResource("2_xjbdo")]([SubResource("Resource_n82tm"), SubResource("Resource_d2pf7"), SubResource("Resource_yv5pl"), SubResource("Resource_rkwlm"), SubResource("Resource_anj5y"), SubResource("Resource_ia4jh"), SubResource("Resource_jgdp0"), SubResource("Resource_avun8"), SubResource("Resource_mr4b0")])

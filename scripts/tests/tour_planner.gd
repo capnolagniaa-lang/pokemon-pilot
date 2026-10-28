@@ -9,8 +9,9 @@ var _by_id := {}
 var _ledges := {}  # celda del mundo -> dirección del salto (salientes de FireRed)
 
 
-## `cut`: los árboles cortables (EnvObject "cortable") cuentan como transitables (como si tuvieras Corte).
-func _init(p_world: WorldData, cut: bool = false) -> void:
+## `cut`: los árboles cortables (EnvObject "cortable") cuentan como transitables (como si tuvieras Corte); `surf`: el
+## agua también (Surf); `strength`: las rocas pesadas también (Fuerza: en FireRed se empujan).
+func _init(p_world: WorldData, cut: bool = false, surf: bool = false, strength: bool = false) -> void:
 	world = p_world
 	for z in world.zones:
 		_by_id[z.id] = z
@@ -20,11 +21,16 @@ func _init(p_world: WorldData, cut: bool = false) -> void:
 			for c in objects.keys():
 				if (objects[c] as EnvObject).has_tag("cortable"):
 					objects.erase(c)
+		if strength:
+			for c in objects.keys():
+				if (objects[c] as EnvObject).has_tag("pesado"):
+					objects.erase(c)
 		var bits := PackedByteArray()
 		bits.resize(z.size.x * z.size.y)
 		for y in z.size.y:
 			for x in z.size.x:
-				bits[y * z.size.x + x] = 1 if MapRules.is_walkable(node, Vector2i(x, y), objects) else 0
+				var phys := MapRules.cell_physics(node, Vector2i(x, y), objects)
+				bits[y * z.size.x + x] = 1 if phys < 0 or (surf and phys == MapRules.WATER) else 0
 		for npc: NpcData in DB.npcs.values():  # las personas de la historia también ocupan su celda
 			if npc.zone_id == z.id and npc.visible_now() and Rect2i(Vector2i.ZERO, z.size).has_point(npc.cell):
 				bits[npc.cell.y * z.size.x + npc.cell.x] = 0

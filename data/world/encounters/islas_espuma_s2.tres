@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_itu4f"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_o4hee"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_pexi0"]
+
+[sub_resource type="Resource" id="Resource_nhkhp"]
+script = ExtResource("2_o4hee")
+species_id = "psyduck"
+weight = 40
+min_level = 30
+max_level = 32
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_0yori"]
+script = ExtResource("2_o4hee")
+species_id = "seel"
+weight = 20
+min_level = 30
+max_level = 32
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_qa0jq"]
+script = ExtResource("2_o4hee")
+species_id = "zubat"
+weight = 20
+min_level = 22
+max_level = 24
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_pf4th"]
+script = ExtResource("2_o4hee")
+species_id = "golbat"
+min_level = 26
+max_level = 30
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_6qurh"]
+script = ExtResource("2_o4hee")
+species_id = "golduck"
+min_level = 32
+max_level = 34
+where = "suelo"
+
+[resource]
+script = ExtResource("3_pexi0")
+entries = Array[ExtResource("2_o4hee")]([SubResource("Resource_nhkhp"), SubResource("Resource_0yori"), SubResource("Resource_qa0jq"), SubResource("Resource_pf4th"), SubResource("Resource_6qurh")])

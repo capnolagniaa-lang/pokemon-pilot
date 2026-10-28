@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_v5u87"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_uvid6"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_g3jca"]
+
+[sub_resource type="Resource" id="Resource_j446w"]
+script = ExtResource("2_uvid6")
+species_id = "oddish"
+weight = 35
+min_level = 22
+max_level = 26
+
+[sub_resource type="Resource" id="Resource_6704p"]
+script = ExtResource("2_uvid6")
+species_id = "venonat"
+weight = 30
+min_level = 24
+max_level = 26
+
+[sub_resource type="Resource" id="Resource_1vmxi"]
+script = ExtResource("2_uvid6")
+species_id = "ditto"
+weight = 15
+min_level = 23
+max_level = 23
+
+[sub_resource type="Resource" id="Resource_pucue"]
+script = ExtResource("2_uvid6")
+species_id = "pidgey"
+min_level = 27
+max_level = 27
+
+[sub_resource type="Resource" id="Resource_8hraa"]
+script = ExtResource("2_uvid6")
+species_id = "gloom"
+weight = 5
+min_level = 30
+max_level = 30
+
+[sub_resource type="Resource" id="Resource_0ujxg"]
+script = ExtResource("2_uvid6")
+species_id = "pidgeotto"
+weight = 5
+min_level = 29
+max_level = 29
+
+[resource]
+script = ExtResource("3_g3jca")
+entries = Array[ExtResource("2_uvid6")]([SubResource("Resource_j446w"), SubResource("Resource_6704p"), SubResource("Resource_1vmxi"), SubResource("Resource_pucue"), SubResource("Resource_8hraa"), SubResource("Resource_0ujxg")])

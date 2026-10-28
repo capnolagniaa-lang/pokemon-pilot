@@ -49,7 +49,7 @@ EXTERIORS = {  # mapa de FireRed -> (id de zona, nombre)
 # Mapas del capítulo 2 (se agrandaron sin proteger las celdas de objetos; se dejan así para que no cambien).
 CHAPTER2_MAPS = {"Route3", "Route4", "CeruleanCity", "Route24", "Route25", "MtMoon_1F", "MtMoon_B1F", "MtMoon_B2F"}
 # Mapas que solo sirven para ubicar a sus vecinos: no se arman como zona (queda un hueco con paredes).
-PHANTOMS = {"SaffronCity"}
+PHANTOMS = set()  # (Azafrán fue hueco en el capítulo 3; desde el resto de Kanto es una zona)
 # Conexiones de FireRed a versiones especiales de un mapa -> el mapa.
 CONNECTION_ALIASES = {"MAP_SAFFRON_CITY_CONNECTION": "SaffronCity"}
 # Exteriores del capítulo 1: el corrimiento del mundo se calcula solo con ellos (así las zonas viejas no se mueven).
@@ -141,6 +141,146 @@ TEMPLATES = {"PalletTown": "pallet_town", "Route1": "route1", "ViridianCity": "v
 OBJECTS = {"OBJ_EVENT_GFX_CUT_TREE": "res://scenes/world/objects/cut_tree.tscn",
            "OBJ_EVENT_GFX_ROCK_SMASH_ROCK": "res://scenes/world/objects/rock_smash_rock.tscn",
            "OBJ_EVENT_GFX_PUSHABLE_BOULDER": "res://scenes/world/objects/strength_boulder.tscn"}
+# --- Resto de Kanto (2026-10-28, "hasta terminar la historia") -------------------------------------------------
+# Exteriores nuevos: se ubican en una segunda pasada (PLACE_ORDER), después de todo lo anterior, así nada se mueve.
+EXTERIORS_4 = {
+    "Route9": ("ruta9", "Ruta 9"), "Route10": ("ruta10", "Ruta 10"), "LavenderTown": ("pueblo_lavanda", "Pueblo Lavanda"),
+    "Route8": ("ruta8", "Ruta 8"), "Route7": ("ruta7", "Ruta 7"), "CeladonCity": ("ciudad_azulona", "Ciudad Azulona"),
+    "Route16": ("ruta16", "Ruta 16"), "Route17": ("ruta17", "Ruta 17 (Ruta Bici)"), "Route18": ("ruta18", "Ruta 18"),
+    "FuchsiaCity": ("ciudad_fucsia", "Ciudad Fucsia"), "Route12": ("ruta12", "Ruta 12"), "Route13": ("ruta13", "Ruta 13"),
+    "Route14": ("ruta14", "Ruta 14"), "Route15": ("ruta15", "Ruta 15"), "Route11": ("ruta11", "Ruta 11"),
+    "Route19": ("ruta19", "Ruta 19"), "Route20": ("ruta20", "Ruta 20"), "CinnabarIsland": ("isla_canela", "Isla Canela"),
+    "Route21_South": ("ruta21_sur", "Ruta 21 (sur)"), "Route21_North": ("ruta21_norte", "Ruta 21 (norte)"),
+    "Route23": ("ruta23", "Ruta 23"), "IndigoPlateau_Exterior": ("meseta_anil", "Meseta Añil"),
+}
+# (mapa nuevo, mapa ya ubicado del que sale): el orden importa (cada uno se alinea con su "padre"; las conexiones que
+# cierran un círculo, como Ruta 8–Azafrán o Ruta 21–Paleta, empalman como pueden).
+PLACE_ORDER = [("Route9", "CeruleanCity"), ("Route10", "Route9"), ("LavenderTown", "Route10"), ("Route8", "LavenderTown"),
+               ("Route7", "SaffronCity"), ("CeladonCity", "Route7"), ("Route16", "CeladonCity"), ("Route17", "Route16"),
+               ("Route18", "Route17"), ("FuchsiaCity", "Route18"), ("Route12", "LavenderTown"), ("Route13", "Route12"),
+               ("Route14", "Route13"), ("Route15", "Route14"), ("Route11", "VermilionCity"), ("Route19", "FuchsiaCity"),
+               ("Route20", "Route19"), ("CinnabarIsland", "Route20"), ("Route21_South", "CinnabarIsland"),
+               ("Route21_North", "Route21_South"), ("Route23", "Route22"), ("IndigoPlateau_Exterior", "Route23")]
+# Mapas que cierran un círculo: se agrandan justo hasta llenar el espacio entre dos zonas ya ubicadas.
+# mapa -> (eje, zona de un lado, zona del otro lado[, mapa con el que se reparte el espacio]).
+FIT = {"Route8": ("x", "SaffronCity", "LavenderTown"), "Route11": ("x", "VermilionCity", "Route12"),
+       "Route15": ("x", "FuchsiaCity", "Route14"), "Route21_North": ("y", "PalletTown", "CinnabarIsland", "Route21_South")}
+# Zonas grandes de salvajes lejos del mundo, agrandadas como el Bosque Verde.
+STRETCHED_4 = {"SafariZone_Center": ("zona_safari", "Zona Safari (centro)"),
+               "SafariZone_East": ("zona_safari_este", "Zona Safari (este)"),
+               "SafariZone_North": ("zona_safari_norte", "Zona Safari (norte)"),
+               "SafariZone_West": ("zona_safari_oeste", "Zona Safari (oeste)")}
+CAVES_4 = {
+    "RockTunnel_1F": ("tunel_roca", "Túnel Roca"), "RockTunnel_B1F": ("tunel_roca_s1", "Túnel Roca (sótano)"),
+    "DiglettsCave_B1F": ("cueva_diglett", "Cueva Diglett"), "PowerPlant": ("central_electrica", "Central Eléctrica"),
+    "SeafoamIslands_1F": ("islas_espuma", "Islas Espuma"), "SeafoamIslands_B1F": ("islas_espuma_s1", "Islas Espuma (sótano 1)"),
+    "SeafoamIslands_B2F": ("islas_espuma_s2", "Islas Espuma (sótano 2)"),
+    "SeafoamIslands_B3F": ("islas_espuma_s3", "Islas Espuma (sótano 3)"),
+    "SeafoamIslands_B4F": ("islas_espuma_s4", "Islas Espuma (sótano 4)"),
+    "VictoryRoad_1F": ("calle_victoria_1p", "Calle Victoria (planta 1)"),
+    "VictoryRoad_2F": ("calle_victoria_2p", "Calle Victoria (planta 2)"),
+    "VictoryRoad_3F": ("calle_victoria_3p", "Calle Victoria (planta 3)"),
+}
+# Interiores 1:1 con salvajes en el suelo (fantasmas de la Torre, la Mansión).
+WILD_INTERIORS_4 = {}
+for _i in range(1, 8):
+    WILD_INTERIORS_4["PokemonTower_%dF" % _i] = ("torre_pokemon_%dp" % _i, "Torre Pokémon (planta %d)" % _i)
+for _f, _id, _n in (("1F", "1p", "planta 1"), ("2F", "2p", "planta 2"), ("3F", "3p", "planta 3"), ("B1F", "s1", "sótano")):
+    WILD_INTERIORS_4["PokemonMansion_" + _f] = ("mansion_pokemon_" + _id, "Mansión Pokémon (%s)" % _n)
+INTERIORS_4 = {
+    "Route10_PokemonCenter_1F": ("ruta10_centro", "Centro Pokémon de la Ruta 10"),
+    "LavenderTown_PokemonCenter_1F": ("pueblo_lavanda_centro", "Centro Pokémon de Pueblo Lavanda"),
+    "LavenderTown_Mart": ("pueblo_lavanda_tienda", "Tienda de Pueblo Lavanda"),
+    "LavenderTown_VolunteerPokemonHouse": ("casa_voluntarios", "Casa de Voluntarios Pokémon"),
+    "LavenderTown_House1": ("pueblo_lavanda_casa1", "Casa de Pueblo Lavanda"),
+    "LavenderTown_House2": ("pueblo_lavanda_casa2", "Casa de Pueblo Lavanda"),
+    "Route8_WestEntrance": ("ruta8_garita", "Garita de la Ruta 8"),
+    "Route7_EastEntrance": ("ruta7_garita", "Garita de la Ruta 7"),
+    "UndergroundPath_EastEntrance": ("via_subterranea_este", "Vía Subterránea (entrada este)"),
+    "UndergroundPath_EastWestTunnel": ("via_subterranea_eo", "Vía Subterránea (este–oeste)"),
+    "UndergroundPath_WestEntrance": ("via_subterranea_oeste", "Vía Subterránea (entrada oeste)"),
+    "CeladonCity_PokemonCenter_1F": ("ciudad_azulona_centro", "Centro Pokémon de Ciudad Azulona"),
+    "CeladonCity_Gym": ("ciudad_azulona_gimnasio", "Gimnasio de Ciudad Azulona"),
+    "CeladonCity_GameCorner": ("ciudad_azulona_casino", "Casino de Azulona"),
+    "CeladonCity_GameCorner_PrizeRoom": ("ciudad_azulona_premios", "Sala de premios del Casino"),
+    "CeladonCity_Hotel": ("ciudad_azulona_hotel", "Hotel de Azulona"),
+    "CeladonCity_Restaurant": ("ciudad_azulona_restaurante", "Restaurante de Azulona"),
+    "CeladonCity_House1": ("ciudad_azulona_casa1", "Casa de Ciudad Azulona"),
+    "CeladonCity_DepartmentStore_Roof": ("ciudad_azulona_almacen_azotea", "Gran Almacén de Azulona (azotea)"),
+    "CeladonCity_Condominiums_Roof": ("ciudad_azulona_mansion_azotea", "Mansión Azulona (azotea)"),
+    "CeladonCity_Condominiums_RoofRoom": ("ciudad_azulona_mansion_cuarto", "Mansión Azulona (cuarto de la azotea)"),
+    "SaffronCity_PokemonCenter_1F": ("ciudad_azafran_centro", "Centro Pokémon de Ciudad Azafrán"),
+    "SaffronCity_Mart": ("ciudad_azafran_tienda", "Tienda de Ciudad Azafrán"),
+    "SaffronCity_Gym": ("ciudad_azafran_gimnasio", "Gimnasio de Ciudad Azafrán"),
+    "SaffronCity_Dojo": ("dojo_karate", "Dojo Karate"),
+    "SaffronCity_House": ("ciudad_azafran_casa", "Casa de Ciudad Azafrán"),
+    "SaffronCity_CopycatsHouse_1F": ("casa_imitadora", "Casa de la Imitadora"),
+    "SaffronCity_CopycatsHouse_2F": ("casa_imitadora_2p", "Casa de la Imitadora (planta alta)"),
+    "SaffronCity_MrPsychicsHouse": ("casa_sr_psiquico", "Casa del Sr. Psíquico"),
+    "SaffronCity_PokemonTrainerFanClub": ("club_entrenadores", "Club de Fans de Entrenadores"),
+    "Route11_EastEntrance_1F": ("ruta11_garita", "Garita de la Ruta 11"),
+    "Route11_EastEntrance_2F": ("ruta11_garita_2p", "Garita de la Ruta 11 (planta alta)"),
+    "DiglettsCave_NorthEntrance": ("cueva_diglett_norte", "Cueva Diglett (entrada norte)"),
+    "DiglettsCave_SouthEntrance": ("cueva_diglett_sur", "Cueva Diglett (entrada sur)"),
+    "Route12_NorthEntrance_1F": ("ruta12_garita", "Garita de la Ruta 12"),
+    "Route12_NorthEntrance_2F": ("ruta12_garita_2p", "Garita de la Ruta 12 (planta alta)"),
+    "Route12_FishingHouse": ("casa_pescador", "Casa del Pescador"),
+    "Route15_WestEntrance_1F": ("ruta15_garita", "Garita de la Ruta 15"),
+    "Route15_WestEntrance_2F": ("ruta15_garita_2p", "Garita de la Ruta 15 (planta alta)"),
+    "Route16_NorthEntrance_1F": ("ruta16_garita", "Garita de la Ruta 16"),
+    "Route16_NorthEntrance_2F": ("ruta16_garita_2p", "Garita de la Ruta 16 (planta alta)"),
+    "Route16_House": ("ruta16_casa", "Casa de la Ruta 16"),
+    "Route18_EastEntrance_1F": ("ruta18_garita", "Garita de la Ruta 18"),
+    "Route18_EastEntrance_2F": ("ruta18_garita_2p", "Garita de la Ruta 18 (planta alta)"),
+    "FuchsiaCity_PokemonCenter_1F": ("ciudad_fucsia_centro", "Centro Pokémon de Ciudad Fucsia"),
+    "FuchsiaCity_Mart": ("ciudad_fucsia_tienda", "Tienda de Ciudad Fucsia"),
+    "FuchsiaCity_Gym": ("ciudad_fucsia_gimnasio", "Gimnasio de Ciudad Fucsia"),
+    "FuchsiaCity_SafariZone_Entrance": ("ciudad_fucsia_safari", "Entrada de la Zona Safari"),
+    "FuchsiaCity_SafariZone_Office": ("ciudad_fucsia_safari_oficina", "Oficina de la Zona Safari"),
+    "FuchsiaCity_WardensHouse": ("casa_guarda", "Casa del Guarda"),
+    "FuchsiaCity_House1": ("ciudad_fucsia_casa1", "Casa de Ciudad Fucsia"),
+    "FuchsiaCity_House2": ("ciudad_fucsia_casa2", "Casa de Ciudad Fucsia"),
+    "FuchsiaCity_House3": ("ciudad_fucsia_casa3", "Casa de Ciudad Fucsia"),
+    "SafariZone_Center_RestHouse": ("zona_safari_descanso", "Zona Safari (casa de descanso)"),
+    "SafariZone_East_RestHouse": ("zona_safari_este_descanso", "Zona Safari (casa de descanso del este)"),
+    "SafariZone_North_RestHouse": ("zona_safari_norte_descanso", "Zona Safari (casa de descanso del norte)"),
+    "SafariZone_West_RestHouse": ("zona_safari_oeste_descanso", "Zona Safari (casa de descanso del oeste)"),
+    "SafariZone_SecretHouse": ("zona_safari_casa_secreta", "Zona Safari (casa secreta)"),
+    "CinnabarIsland_PokemonCenter_1F": ("isla_canela_centro", "Centro Pokémon de Isla Canela"),
+    "CinnabarIsland_Mart": ("isla_canela_tienda", "Tienda de Isla Canela"),
+    "CinnabarIsland_Gym": ("isla_canela_gimnasio", "Gimnasio de Isla Canela"),
+    "CinnabarIsland_PokemonLab_Entrance": ("isla_canela_lab", "Laboratorio Pokémon"),
+    "CinnabarIsland_PokemonLab_Lounge": ("isla_canela_lab_sala", "Laboratorio Pokémon (sala)"),
+    "CinnabarIsland_PokemonLab_ResearchRoom": ("isla_canela_lab_investigacion", "Laboratorio Pokémon (investigación)"),
+    "CinnabarIsland_PokemonLab_ExperimentRoom": ("isla_canela_lab_experimentos", "Laboratorio Pokémon (experimentos)"),
+    "IndigoPlateau_PokemonCenter_1F": ("meseta_anil_centro", "Centro Pokémon de la Meseta Añil"),
+    "PokemonLeague_LoreleisRoom": ("liga_lorelei", "Sala de Lorelei"),
+    "PokemonLeague_BrunosRoom": ("liga_bruno", "Sala de Bruno"),
+    "PokemonLeague_AgathasRoom": ("liga_agatha", "Sala de Agatha"),
+    "PokemonLeague_LancesRoom": ("liga_lance", "Sala de Lance"),
+    "PokemonLeague_ChampionsRoom": ("liga_campeon", "Sala del Campeón"),
+    "PokemonLeague_HallOfFame": ("liga_hall", "Hall de la Fama"),
+}
+for _i in range(1, 6):
+    INTERIORS_4["CeladonCity_DepartmentStore_%dF" % _i] = ("ciudad_azulona_almacen_%dp" % _i,
+                                                           "Gran Almacén de Azulona (planta %d)" % _i)
+for _i in range(1, 4):
+    INTERIORS_4["CeladonCity_Condominiums_%dF" % _i] = ("ciudad_azulona_mansion_%dp" % _i, "Mansión Azulona (planta %d)" % _i)
+for _i in range(1, 5):
+    INTERIORS_4["RocketHideout_B%dF" % _i] = ("escondite_rocket_s%d" % _i, "Escondite Rocket (sótano %d)" % _i)
+for _i in range(1, 12):
+    INTERIORS_4["SilphCo_%dF" % _i] = ("silph_%dp" % _i, "Silph S.A. (planta %d)" % _i)
+
+
+def snake(name):
+    """RockTunnel_1F -> rock_tunnel_1f (así se llaman las plantillas de salvajes de FireRed)."""
+    out = ""
+    for i, ch in enumerate(name):
+        if ch.isupper() and i and name[i - 1].islower():
+            out += "_"
+        out += ch.lower()
+    return out
+
 SPAWN = ("PalletTown", 6, 9)  # frente a tu casa (celda del mapa original)
 INTERIOR_GAP = 24             # celdas libres entre interiores (y entre el mundo y los interiores)
 INTERIOR_ROW = 220            # ancho de cada fila de interiores
@@ -148,6 +288,7 @@ INTERIOR_ROW = 220            # ancho de cada fila de interiores
 KEEP = {"edificios", "otros_edificios", "otros_puertas", "carteles", "otros_carteles", "escaleras",
         "otros_escaleras", "adornos"}
 NO_COPY = set()  # metatiles de esas categorías (lo llena main con el catálogo)
+WATER = set()  # metatiles de agua (catálogo): nunca son suelo de relleno en los mapas nuevos
 
 
 def const_of(name):
@@ -227,21 +368,22 @@ def transpose(grid):
     return [list(col) for col in zip(*grid)]
 
 
-def fillers(grid, vp, hp, n=3):
-    """Suelo de relleno del mapa: los metatiles transitables más comunes que empalman consigo mismos."""
+def fillers(grid, vp, hp, n=3, exclude=frozenset()):
+    """Suelo de relleno del mapa: los metatiles transitables más comunes que empalman consigo mismos (salvo
+    `exclude`: en los mapas nuevos, el agua, que si no corta muelles y puentes)."""
     count = {}
     for row in grid:
         for c in row:
-            if c[0] >= 0 and not c[1] and (c[0], c[0]) in vp and (c[0], c[0]) in hp:
+            if c[0] >= 0 and not c[1] and c[0] not in exclude and (c[0], c[0]) in vp and (c[0], c[0]) in hp:
                 count[c[0]] = count.get(c[0], 0) + 1
     return [g for g, _ in sorted(count.items(), key=lambda kv: -kv[1])[:n]]
 
 
-def insert_seam(grid, vp, hp, target, fill_ids, keep_cells=frozenset(), no_seam=frozenset()):
+def insert_seam(grid, vp, hp, target, fill_ids, keep_cells=frozenset(), no_seam=frozenset(), p=SEAM):
     """Inserta una costura horizontal de SEAM filas (agrega filas). Devuelve la grilla nueva o None si no hay
     ninguna válida. Programación dinámica columna por columna; el estado es (s, relleno): el bloque nuevo ocupa
     las filas [s, s+SEAM) y es una copia de las SEAM filas de arriba o suelo de relleno del mapa."""
-    h, w, p = len(grid), len(grid[0]), SEAM
+    h, w = len(grid), len(grid[0])
     INF = float("inf")
 
     def new(x, st, y):  # celda y de la columna x con la costura del estado st
@@ -307,18 +449,21 @@ def insert_seam(grid, vp, hp, target, fill_ids, keep_cells=frozenset(), no_seam=
     return [[new(x, seam[x], y) for x in range(w)] for y in range(h + p)]
 
 
-def stretch(grid, vp, hp, scale, label="", keep_cells=frozenset(), no_seam=frozenset()):
-    """Agranda la grilla en los dos ejes con costuras hasta `scale` (o hasta donde se pueda)."""
-    fill_ids = fillers(grid, vp, hp)
+def stretch(grid, vp, hp, scale, label="", keep_cells=frozenset(), no_seam=frozenset(), goals=None,
+            fill_exclude=frozenset()):
+    """Agranda la grilla en los dos ejes con costuras hasta `scale` (o hasta donde se pueda). `goals`: {eje: medida
+    exacta} (0 = ancho, 1 = alto) para los mapas que cierran un círculo; ahí la última costura puede ser de 1."""
+    fill_ids = fillers(grid, vp, hp, exclude=fill_exclude)
     for axis in (1, 0):  # 1 = filas (alto), 0 = columnas (ancho)
         g = grid if axis == 1 else transpose(grid)
         v, hh = (vp, hp) if axis == 1 else (hp, vp)
-        goal = round(len(g) * scale)
+        exact = goals is not None and axis in goals
+        goal = goals[axis] if exact else round(len(g) * scale)
         k = 0
-        while len(g) + SEAM <= goal:
+        while len(g) + SEAM <= goal or (exact and len(g) < goal):
             target = ((k * 0.618034) % 1.0) * len(g)
             k += 1
-            n = insert_seam(g, v, hh, target, fill_ids, keep_cells, no_seam)
+            n = insert_seam(g, v, hh, target, fill_ids, keep_cells, no_seam, SEAM if len(g) + SEAM <= goal else 1)
             if n is None:
                 print("  %s: sin más costuras en %s (%d de %d)" % (label, "alto" if axis else "ancho", len(g), goal))
                 break
@@ -388,6 +533,25 @@ def blocked_passage(lay, ox, oy):
     return out
 
 
+def place_second(maps, by_const, lay_of, grids, pos, box):
+    """Ubica los mapas de PLACE_ORDER, cada uno pegado al borde (con relleno) de su padre y alineando el camino."""
+    for b, a in PLACE_ORDER:
+        c = next((c for c in maps[a].get("connections") or [] if by_const.get(c["map"]) == b), None)
+        if c is None:
+            print("  OJO: %s no conecta con %s" % (b, a))
+            continue
+        side, off = c["direction"], int(c["offset"])
+        op = opening(lay_of[a], lay_of[b], side, off, prefer_middle=True)
+        ga, gb = grids[a], grids[b]
+        ax, ay = pos[a]
+        na, nb = (find_cell(ga, *op[0]), find_cell(gb, *op[1])) if op else ((0, 0), (0, 0))
+        x0, y0, x1, y1 = box(a)
+        if side in ("up", "down"):
+            pos[b] = (ax + na[0] - nb[0], y0 - len(gb) if side == "up" else y1)
+        else:
+            pos[b] = (x0 - len(gb[0]) if side == "left" else x1, ay + na[1] - nb[1])
+
+
 def pad(cells, rect, inner, name, lay, hp, vp):
     """Rellena lo vacío del rectángulo continuando los bordes del mapa (`inner`) con período 2: los árboles del
     borde siguen enteros y un camino que llega al borde sigue hasta la zona vecina. Donde el borde no se puede
@@ -454,8 +618,10 @@ def main():
     hp, vp = pairs_of(layouts)
     catalog = json.load(open(os.path.join(root, "art", "pret", "tiles", "catalog.json"), encoding="utf8"))
     NO_COPY.update(int(k) for k, v in catalog["categories"].items() if v in KEEP)
+    WATER.update(int(k) for k, v in catalog["physics"].items() if v == 1)
     maps = {}
-    for name in list(EXTERIORS) + list(STRETCHED) + list(INTERIORS) + list(CAVES) + list(INTERIORS_2) + list(INTERIORS_3):
+    for name in list(EXTERIORS) + list(STRETCHED) + list(INTERIORS) + list(CAVES) + list(INTERIORS_2) + list(INTERIORS_3) \
+            + list(EXTERIORS_4) + list(STRETCHED_4) + list(CAVES_4) + list(WILD_INTERIORS_4) + list(INTERIORS_4):
         maps[name] = json.load(open(os.path.join(pret, "data", "maps", name, "map.json"), encoding="utf8"))
     by_const = {const_of(n): n for n in maps}
     by_const.update(CONNECTION_ALIASES)
@@ -463,7 +629,7 @@ def main():
 
     # --- Exteriores: cada uno agrandado y ubicado según sus conexiones, alineando los caminos ---
     grids = {}
-    for n in list(EXTERIORS) + list(STRETCHED) + list(CAVES):
+    for n in list(EXTERIORS) + list(STRETCHED) + list(CAVES) + list(EXTERIORS_4) + list(STRETCHED_4) + list(CAVES_4):
         # En los mapas nuevos tampoco se copian las celdas de puerta/escalera (en el capítulo 1 sí se copiaron:
         # se deja así para que esas zonas no cambien).
         keep = frozenset() if n in FIRST_EXTERIORS or n in STRETCHED else             frozenset((w["x"], w["y"]) for w in maps[n].get("warp_events", []))
@@ -471,7 +637,8 @@ def main():
                       for c in blocked_passage(lay_of[n], o["x"], o["y"]))
         # (ni la celda de un árbol cortable o una roca: si no, el pasillo que tapa queda más ancho y se lo esquiva;
         # desde el capítulo 3, para que lo ya importado no cambie)
-        grids[n] = stretch(grid_of(lay_of[n]), vp, hp, SCALE, n, keep, no_seam)
+        newer = n in EXTERIORS_4 or n in STRETCHED_4 or n in CAVES_4
+        grids[n] = stretch(grid_of(lay_of[n]), vp, hp, SCALE, n, keep, no_seam, None, WATER if newer else frozenset())
     pos = {"PalletTown": (0, 0)}
     todo = ["PalletTown"]
     while todo:
@@ -505,8 +672,43 @@ def main():
             dx = mx1 - pos[root_map][0]
         for n in members:
             pos[n] = (pos[n][0] + dx, pos[n][1])
+    # Segunda pasada: el resto de Kanto, cada uno pegado a su "padre" ya ubicado (a su borde con relleno).
+    r22 = (pos["Route22"][0], min(pos["Route22"][1], pos["ViridianCity"][1]), mx0,
+           max(pos["Route22"][1] + len(grids["Route22"]), pos["ViridianCity"][1] + len(grids["ViridianCity"])))
+
+    def box(n):
+        x, y = pos[n]
+        g = grids[n]
+        if n in MAIN_COLUMN:
+            return (mx0, y, mx1, y + len(g))
+        if n == "Route22":
+            return r22
+        return (x, y, x + len(g[0]), y + len(g))
+    for fit_pass in range(2):
+        place_second(maps, by_const, lay_of, grids, pos, box)
+        if fit_pass == 1:
+            break
+        # Los que cierran un círculo: medida exacta y otra vez.
+        for n, spec in FIT.items():
+            axis, a, b = spec[0], spec[1], spec[2]
+            ba, bb = box(a), box(b)
+            if axis == "x":
+                size = (bb[0] - ba[2]) if ba[2] <= bb[0] else (ba[0] - bb[2])
+            else:
+                size = (bb[1] - ba[3]) if ba[3] <= bb[1] else (ba[1] - bb[3])
+            parts = [n] + list(spec[3:])
+            for i, m in enumerate(parts):
+                share = size // len(parts) + (1 if i < size % len(parts) else 0)
+                g = grids[m]
+                goals = {0: share} if axis == "x" else {1: share}
+                print("  %s: %s exacto %d (antes %d)" % (m, "ancho" if axis == "x" else "alto", share,
+                                                         len(g[0]) if axis == "x" else len(g)))
+                keep = frozenset((w["x"], w["y"]) for w in maps[m].get("warp_events", []))
+                no_seam = frozenset(c for o in maps[m].get("object_events", []) if o.get("graphics_id") in OBJECTS
+                                    for c in blocked_passage(lay_of[m], o["x"], o["y"]))
+                grids[m] = stretch(grid_of(lay_of[m]), vp, hp, SCALE, m, keep, no_seam, goals, WATER)
     cells, rects, inner = {}, {}, {}
-    for n in EXTERIORS:
+    for n in list(EXTERIORS) + list(EXTERIORS_4):
         x0, y0 = pos[n]
         g = grids[n]
         for y, row in enumerate(g):
@@ -520,6 +722,39 @@ def main():
     rects["Route22"] = [r22[0], min(r22[1], v[1]), mx0, max(r22[3], v[3])]
     for n in EXTERIORS:
         pad(cells, rects[n], inner[n], n, lay_of[n], hp, vp)
+    # Encimados de los mapas nuevos con otra zona: se recorta el nuevo por el lado que menos pierde (si la franja
+    # recortada tiene algo transitable, avisa).
+    order = [m for m, _ in PLACE_ORDER]
+    for b in order:
+        for a in list(rects):
+            if a == b or (a in order and order.index(a) > order.index(b)):
+                continue  # se recorta siempre el que se ubicó después
+            ra, rb = rects[a], rects[b]
+            if not (ra[0] < rb[2] and rb[0] < ra[2] and ra[1] < rb[3] and rb[1] < ra[3]):
+                continue
+            cuts = {"izq": [ra[2], rb[1], rb[2], rb[3]], "der": [rb[0], rb[1], ra[0], rb[3]],
+                    "arriba": [rb[0], ra[3], rb[2], rb[3]], "abajo": [rb[0], rb[1], rb[2], ra[1]]}
+            # nunca del lado por donde se conecta con otro mapa (se cortaría el camino)
+            joined = {{"left": "izq", "right": "der", "up": "arriba", "down": "abajo"}[c["direction"]]
+                      for c in maps[b].get("connections") or [] if by_const.get(c["map"]) in rects}
+            best = None
+            for side, nr in cuts.items():
+                if nr[2] <= nr[0] or nr[3] <= nr[1] or side in joined:
+                    continue
+                lost = [(x, y) for (x, y), c in cells.items()
+                        if c[5] == b and not (nr[0] <= x < nr[2] and nr[1] <= y < nr[3])]
+                walk = sum(1 for k in lost if not cells[k][1] and cells[k][0] >= 0
+                           and catalog["physics"].get(str(cells[k][0])) != 1)  # (el agua no cuenta: sin Surf no se camina)
+                if best is None or (walk, len(lost)) < (best[1], len(best[2])):
+                    best = (side, walk, lost, nr)
+            if best is None:
+                print("  OJO: %s se encima con %s y no se puede recortar" % (b, a))
+                continue
+            side, walk, lost, nr = best
+            print("  %s se encimaba con %s: se recortan %d celdas por %s (%d transitables)" % (b, a, len(lost), side, walk))
+            for k in lost:
+                del cells[k]
+            rects[b] = nr
     # Zonas encimadas (no debería pasar: avisa para revisar la ubicación).
     names = list(rects)
     for i, a in enumerate(names):
@@ -531,30 +766,35 @@ def main():
     sx = min(rects[n][0] for n in FIRST_EXTERIORS)
     sy = min(rects[n][1] for n in FIRST_EXTERIORS)
     zones = []
-    for n in EXTERIORS:
+    ext_all = dict(EXTERIORS, **EXTERIORS_4)
+    for n in ext_all:
         if n in PHANTOMS:
             continue
         x0, y0, x1, y1 = rects[n]
-        zones.append(_zone(n, EXTERIORS[n], [x0 - sx, y0 - sy, x1 - sx, y1 - sy],
+        zones.append(_zone(n, ext_all[n], [x0 - sx, y0 - sy, x1 - sx, y1 - sy],
                            {(x - sx, y - sy): c for (x, y), c in cells.items() if c[5] == n}, "exterior"))
     local = {}  # mapa -> grilla agrandada (para ubicar puertas): celda local = posición en la grilla + corrimiento
     for z in zones:
         n = z["map"]
         x0, y0 = pos[n]
         local[n] = (grids[n], x0 - sx - z["origin"][0], y0 - sy - z["origin"][1])
-    bottom = max(z["origin"][1] + z["size"][1] for z in zones if z["map"] in FIRST_EXTERIORS)
+    # Interiores, cuevas y bosques van debajo de TODO el mundo (desde el resto de Kanto el mar llega más al sur que
+    # Paleta: antes empezaban justo debajo de Paleta y se pisarían). Se movieron: el .gd actualiza sus orígenes.
+    bottom = max(z["origin"][1] + z["size"][1] for z in zones)
 
     # --- Bosque Verde (agrandado) e interiores (1:1), en filas debajo del mundo ---
     ix, iy, row_h = 0, bottom + INTERIOR_GAP, 0
     offworld = list(STRETCHED.items()) + list(INTERIORS.items()) + list(CAVES.items()) + list(INTERIORS_2.items()) \
-        + list(INTERIORS_3.items())
+        + list(INTERIORS_3.items()) + list(STRETCHED_4.items()) + list(CAVES_4.items()) + list(WILD_INTERIORS_4.items()) \
+        + list(INTERIORS_4.items())
     for n, info in offworld:
         g = grids[n] if n in grids else grid_of(lay_of[n])
         w, h = len(g[0]), len(g)
         if ix and ix + w > INTERIOR_ROW:
             ix, iy, row_h = 0, iy + row_h + INTERIOR_GAP, 0
         c = {(ix + x, iy + y): cell + (n,) for y, row in enumerate(g) for x, cell in enumerate(row)}
-        kind = "exterior" if n in STRETCHED else ("cave" if n in CAVES else "interior")
+        kind = "exterior" if n in STRETCHED or n in STRETCHED_4 else \
+            ("cave" if n in CAVES or n in CAVES_4 or n in WILD_INTERIORS_4 else "interior")
         zones.append(_zone(n, info, [ix, iy, ix + w, iy + h], c, kind))
         local[n] = (g, 0, 0)
         ix += w + INTERIOR_GAP
@@ -582,7 +822,8 @@ def main():
                 wp = warps.get((c[2], c[3]))
                 if wp:
                     z["warps"].append(dict(wp, cell=[x + dx, y + dy]))
-        z["template"] = TEMPLATES.get(n, "")
+        new_map = n in EXTERIORS_4 or n in STRETCHED_4 or n in CAVES_4 or n in WILD_INTERIORS_4 or n in INTERIORS_4
+        z["template"] = TEMPLATES.get(n, snake(n) if new_map else "")
         z["objects"] = []
         z["npcs"] = []  # personas de FireRed (la historia las usa: data/story/, docs/PLAN_HISTORIA.md)
         for i, o in enumerate(maps[n].get("object_events", [])):

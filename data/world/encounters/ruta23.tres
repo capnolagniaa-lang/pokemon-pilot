@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_r0juq"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_2uqu4"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_pnyv2"]
+
+[sub_resource type="Resource" id="Resource_0713g"]
+script = ExtResource("2_2uqu4")
+species_id = "mankey"
+weight = 30
+min_level = 32
+max_level = 34
+
+[sub_resource type="Resource" id="Resource_7by84"]
+script = ExtResource("2_2uqu4")
+species_id = "fearow"
+weight = 25
+min_level = 40
+max_level = 44
+
+[sub_resource type="Resource" id="Resource_ili77"]
+script = ExtResource("2_2uqu4")
+species_id = "ekans"
+weight = 20
+min_level = 32
+max_level = 34
+
+[sub_resource type="Resource" id="Resource_45y5g"]
+script = ExtResource("2_2uqu4")
+species_id = "spearow"
+weight = 15
+min_level = 32
+max_level = 34
+
+[sub_resource type="Resource" id="Resource_hth2e"]
+script = ExtResource("2_2uqu4")
+species_id = "primeape"
+weight = 5
+min_level = 42
+max_level = 42
+
+[sub_resource type="Resource" id="Resource_oim78"]
+script = ExtResource("2_2uqu4")
+species_id = "arbok"
+weight = 5
+min_level = 44
+max_level = 44
+
+[resource]
+script = ExtResource("3_pnyv2")
+entries = Array[ExtResource("2_2uqu4")]([SubResource("Resource_0713g"), SubResource("Resource_7by84"), SubResource("Resource_ili77"), SubResource("Resource_45y5g"), SubResource("Resource_hth2e"), SubResource("Resource_oim78")])

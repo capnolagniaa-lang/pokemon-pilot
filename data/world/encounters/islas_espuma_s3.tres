@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_0nhbn"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_s71vq"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_03du0"]
+
+[sub_resource type="Resource" id="Resource_46pnx"]
+script = ExtResource("2_s71vq")
+species_id = "seel"
+weight = 40
+min_level = 30
+max_level = 32
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_yuwc3"]
+script = ExtResource("2_s71vq")
+species_id = "psyduck"
+weight = 20
+min_level = 30
+max_level = 32
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_v1u7k"]
+script = ExtResource("2_s71vq")
+species_id = "golduck"
+weight = 15
+min_level = 32
+max_level = 34
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_rrxyk"]
+script = ExtResource("2_s71vq")
+species_id = "zubat"
+min_level = 24
+max_level = 24
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_lpodp"]
+script = ExtResource("2_s71vq")
+species_id = "golbat"
+min_level = 26
+max_level = 30
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_sbcby"]
+script = ExtResource("2_s71vq")
+species_id = "dewgong"
+weight = 5
+min_level = 32
+max_level = 34
+where = "suelo"
+
+[resource]
+script = ExtResource("3_03du0")
+entries = Array[ExtResource("2_s71vq")]([SubResource("Resource_46pnx"), SubResource("Resource_yuwc3"), SubResource("Resource_v1u7k"), SubResource("Resource_rrxyk"), SubResource("Resource_lpodp"), SubResource("Resource_sbcby")])

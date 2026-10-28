@@ -78,6 +78,38 @@ func run() -> void:
 	for c: Vector2i in with_cut:
 		cut_zones[world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE).id] = true
 	r["Con Corte se llega al Gimnasio de Carmín"] = cut_zones.has("ciudad_carmin_gimnasio")
+	# Resto de Kanto (con Corte, como en FireRed a esa altura): sin Surf ni Fuerza.
+	var later := ["pueblo_lavanda_centro", "torre_pokemon_7p", "ciudad_azulona_centro", "ciudad_azulona_almacen_5p",
+		"ciudad_azafran_centro", "ciudad_fucsia_centro", "zona_safari", "ruta10_centro", "ruta13", "ruta14", "ruta15",
+		"ruta15_garita", "casa_pescador", "ruta16_casa", "ciudad_azulona_gimnasio"]
+	var missing_later := later.filter(func(id: String) -> bool: return not cut_zones.has(id))
+	r["Con Corte se llega a Lavanda, la Torre, Azulona, Azafrán, Fucsia, la Zona Safari y las Rutas 12 a 16"] = missing_later.is_empty()
+	if not missing_later.is_empty():
+		print("[limites] con Corte no se llega a: ", missing_later)
+	# Azafrán se entra por sus garitas (ahí están los guardias de la historia), no por el costado.
+	var gates := ["ruta5_garita", "ruta6_garita", "ruta7_garita", "ruta8_garita"]
+	var no_gates := _reach(TourPlanner.new(world, true), world, true, gates)
+	var sneak := false
+	for c: Vector2i in no_gates:
+		var z := world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE)
+		sneak = sneak or (z != null and z.id == "ciudad_azafran")
+	r["A Azafrán solo se entra por sus garitas"] = not sneak
+	# Con Corte, Surf y Fuerza (las mecánicas que faltan de la historia): el mar, Canela, las Islas Espuma, la Calle
+	# Victoria y la Liga.
+	var all_hm := _reach(TourPlanner.new(world, true, true, true), world, true)
+	var hm_zones := {}
+	for c: Vector2i in all_hm:
+		hm_zones[world.zone_at(Vector2(c * world.tile_size) + Vector2.ONE).id] = true
+	# (El sótano de la Mansión y las salas del Alto Mando después de Lorelei se abren con scripts de la historia:
+	# interruptores de la Mansión y puertas que se abren al ganar. No se cuentan acá.)
+	var end_game := ["isla_canela_centro", "isla_canela_gimnasio", "mansion_pokemon_3p", "islas_espuma_s4", "ruta21_norte",
+		"calle_victoria_3p", "meseta_anil_centro", "liga_lorelei"]
+	var missing_end := end_game.filter(func(id: String) -> bool: return not hm_zones.has(id))
+	r["Con Corte, Surf y Fuerza se llega a Canela, las Islas Espuma, la Calle Victoria y la Liga"] = missing_end.is_empty()
+	if not missing_end.is_empty():
+		print("[limites] con Surf y Fuerza no se llega a: ", missing_end)
+	var never := world.zones.filter(func(z: ZoneEntry) -> bool: return not hm_zones.has(z.id)).map(func(z: ZoneEntry) -> String: return z.id)
+	print("[limites] ni con Corte, Surf y Fuerza se llega a: ", never)
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[limites] %s %s" % ["OK   " if r[key] else "FALLO", key])

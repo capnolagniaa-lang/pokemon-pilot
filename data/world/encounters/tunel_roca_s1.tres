@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_lyahk"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_bqor7"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_iy82q"]
+
+[sub_resource type="Resource" id="Resource_p11ao"]
+script = ExtResource("2_bqor7")
+species_id = "geodude"
+weight = 35
+min_level = 15
+max_level = 17
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_gl146"]
+script = ExtResource("2_bqor7")
+species_id = "zubat"
+weight = 30
+min_level = 15
+max_level = 16
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_sfkxc"]
+script = ExtResource("2_bqor7")
+species_id = "mankey"
+weight = 15
+min_level = 16
+max_level = 17
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_ssrql"]
+script = ExtResource("2_bqor7")
+species_id = "machop"
+min_level = 17
+max_level = 17
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_vdr5a"]
+script = ExtResource("2_bqor7")
+species_id = "onix"
+min_level = 13
+max_level = 17
+where = "suelo"
+
+[resource]
+script = ExtResource("3_iy82q")
+entries = Array[ExtResource("2_bqor7")]([SubResource("Resource_p11ao"), SubResource("Resource_gl146"), SubResource("Resource_sfkxc"), SubResource("Resource_ssrql"), SubResource("Resource_vdr5a")])

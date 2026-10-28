@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_kj0s1"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_rica8"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_4sdxa"]
+
+[sub_resource type="Resource" id="Resource_74qeo"]
+script = ExtResource("2_rica8")
+species_id = "gastly"
+weight = 85
+min_level = 14
+max_level = 19
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_osg8e"]
+script = ExtResource("2_rica8")
+species_id = "cubone"
+weight = 9
+min_level = 17
+max_level = 19
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_cmesn"]
+script = ExtResource("2_rica8")
+species_id = "haunter"
+weight = 6
+min_level = 21
+max_level = 23
+where = "suelo"
+
+[resource]
+script = ExtResource("3_4sdxa")
+entries = Array[ExtResource("2_rica8")]([SubResource("Resource_74qeo"), SubResource("Resource_osg8e"), SubResource("Resource_cmesn")])

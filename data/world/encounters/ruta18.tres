@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_tqj85"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_11gie"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_3y32e"]
+
+[sub_resource type="Resource" id="Resource_h4150"]
+script = ExtResource("2_11gie")
+species_id = "doduo"
+weight = 35
+min_level = 24
+max_level = 28
+
+[sub_resource type="Resource" id="Resource_hcx7q"]
+script = ExtResource("2_11gie")
+species_id = "spearow"
+weight = 30
+min_level = 20
+max_level = 22
+
+[sub_resource type="Resource" id="Resource_6wsgp"]
+script = ExtResource("2_11gie")
+species_id = "raticate"
+weight = 15
+min_level = 25
+max_level = 29
+
+[sub_resource type="Resource" id="Resource_3qh70"]
+script = ExtResource("2_11gie")
+species_id = "fearow"
+weight = 15
+min_level = 25
+max_level = 29
+
+[sub_resource type="Resource" id="Resource_aad1i"]
+script = ExtResource("2_11gie")
+species_id = "rattata"
+weight = 5
+min_level = 22
+max_level = 22
+
+[resource]
+script = ExtResource("3_3y32e")
+entries = Array[ExtResource("2_11gie")]([SubResource("Resource_h4150"), SubResource("Resource_hcx7q"), SubResource("Resource_6wsgp"), SubResource("Resource_3qh70"), SubResource("Resource_aad1i")])

@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_plj6u"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_h1aip"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_sh3ve"]
+
+[sub_resource type="Resource" id="Resource_cfpap"]
+script = ExtResource("2_h1aip")
+species_id = "machop"
+weight = 20
+min_level = 34
+max_level = 34
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_5b84w"]
+script = ExtResource("2_h1aip")
+species_id = "geodude"
+weight = 20
+min_level = 34
+max_level = 34
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_yqgik"]
+script = ExtResource("2_h1aip")
+species_id = "onix"
+weight = 20
+min_level = 45
+max_level = 48
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_3ltuj"]
+script = ExtResource("2_h1aip")
+species_id = "primeape"
+min_level = 42
+max_level = 42
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_k11p4"]
+script = ExtResource("2_h1aip")
+species_id = "zubat"
+min_level = 34
+max_level = 34
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_p73qp"]
+script = ExtResource("2_h1aip")
+species_id = "arbok"
+weight = 5
+min_level = 46
+max_level = 46
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_scglx"]
+script = ExtResource("2_h1aip")
+species_id = "golbat"
+weight = 5
+min_level = 46
+max_level = 46
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_2h1cy"]
+script = ExtResource("2_h1aip")
+species_id = "marowak"
+weight = 5
+min_level = 46
+max_level = 48
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_1e21o"]
+script = ExtResource("2_h1aip")
+species_id = "machoke"
+weight = 5
+min_level = 46
+max_level = 48
+where = "suelo"
+
+[resource]
+script = ExtResource("3_sh3ve")
+entries = Array[ExtResource("2_h1aip")]([SubResource("Resource_cfpap"), SubResource("Resource_5b84w"), SubResource("Resource_yqgik"), SubResource("Resource_3ltuj"), SubResource("Resource_k11p4"), SubResource("Resource_p73qp"), SubResource("Resource_scglx"), SubResource("Resource_2h1cy"), SubResource("Resource_1e21o")])

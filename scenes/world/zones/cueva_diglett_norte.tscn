@@ -1,0 +1,41 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_5gwt2"]
+[ext_resource type="TileSet" path="res://art/tiles/world_tileset.tres" id="2_suqwc"]
+[ext_resource type="Material" path="res://shaders/materials/water.tres" id="3_3yj4f"]
+[ext_resource type="Material" path="res://shaders/materials/foliage_wind.tres" id="4_atm8u"]
+[ext_resource type="Script" path="res://scripts/world/tree_shadows.gd" id="5_a84p2"]
+[ext_resource type="Material" path="res://shaders/materials/canopy_wind.tres" id="6_s56tm"]
+
+[node name="CuevaDiglettNorte" type="Node2D" unique_id=1436018468]
+y_sort_enabled = true
+script = ExtResource("1_5gwt2")
+zone_id = "cueva_diglett_norte"
+hand_edited = true
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=203608967]
+z_index = -10
+tile_map_data = PackedByteArray("AAAAAAAAMAABAAEAAAABAAAAMAABAAEAAAACAAAAMAABAAEAAAADAAAAMAABAAEAAAAEAAAAMAABAAEAAAAFAAAAMAABAAEAAAAGAAAAMAAPAAQAAAAHAAAAMAABAAEAAAAIAAAAMAABAAEAAAAJAAAAMAABAAEAAAAAAAEAMAABAAEAAAABAAEAMAALAAEAAAACAAEAMAABAAYAAAADAAEAMAABAAYAAAAEAAEAMAABAAYAAAAFAAEAMAAJAAEAAAAGAAEAMAAJAAEAAAAHAAEAMAAJAAEAAAAIAAEAMAAMAAEAAAAJAAEAMAABAAEAAAAAAAIAMAAPAAQAAAABAAIAMAAKAAUAAAACAAIAMAAMAAcAAAADAAIAMAABAAgAAAAEAAIAMAAFAAgAAAAFAAIAMAABAAAAAAAGAAIAMAABAAAAAAAHAAIAMAABAAAAAAAIAAIAMAAAAAEAAAAJAAIAMAABAAEAAAAAAAMAMAAPAAQAAAABAAMAMAAKAAUAAAACAAMAMAABAAgAAAADAAMAMAAFAAgAAAAEAAMAMAABAAAAAAAFAAMAMAABAAAAAAAGAAMAMAABAAAAAAAHAAMAMAABAAAAAAAIAAMAMAAAAAEAAAAJAAMAMAAPAAQAAAAAAAQAMAABAAEAAAABAAQAMAAKAAUAAAACAAQAMAANAAcAAAADAAQAMAABAAAAAAAEAAQAMAABAAAAAAAFAAQAMAABAAAAAAAGAAQAMAAPAAIAAAAHAAQAMAABAAAAAAAIAAQAMAAAAAEAAAAJAAQAMAAPAAQAAAAAAAUAMAABAAEAAAABAAUAMAAKAAUAAAACAAUAMAAFAAgAAAADAAUAMAABAAAAAAAEAAUAMAABAAAAAAAFAAUAMAABAAAAAAAGAAUAMAABAAAAAAAHAAUAMAABAAAAAAAIAAUAMAAAAAEAAAAJAAUAMAABAAEAAAAAAAYAMAABAAEAAAABAAYAMAAKAAUAAAACAAYAMAABAAAAAAADAAYAMAABAAAAAAAEAAYAMAAHAAAAAAAFAAYAMAABAAAAAAAGAAYAMAABAAAAAAAHAAYAMAABAAAAAAAIAAYAMAAAAAEAAAAJAAYAMAABAAEAAAAAAAcAMAABAAEAAAABAAcAMAADAAIAAAACAAcAMAAJAAAAAAADAAcAMAAIAAQAAAAEAAcAMAAJAAQAAAAFAAcAMAAKAAQAAAAGAAcAMAAJAAAAAAAHAAcAMAAJAAAAAAAIAAcAMAAEAAIAAAAJAAcAMAABAAEAAAA=")
+tile_set = ExtResource("2_suqwc")
+
+[node name="Water" type="TileMapLayer" parent="." unique_id=1884468495]
+z_index = -9
+material = ExtResource("3_3yj4f")
+tile_set = ExtResource("2_suqwc")
+
+[node name="Foliage" type="TileMapLayer" parent="." unique_id=1479922252]
+z_index = -8
+material = ExtResource("4_atm8u")
+tile_set = ExtResource("2_suqwc")
+
+[node name="TreeShadows" type="Node2D" parent="." unique_id=681058436]
+z_index = -7
+script = ExtResource("5_a84p2")
+
+[node name="Overhead" type="TileMapLayer" parent="." unique_id=1310561812]
+z_index = 20
+material = ExtResource("6_s56tm")
+tile_set = ExtResource("2_suqwc")
+
+[node name="Objects" type="Node2D" parent="." unique_id=843357]
+y_sort_enabled = true

@@ -112,6 +112,10 @@ Vector2i(36, 89): {
 "cell": Vector2i(7, 10),
 "to": "ruta2_garita_sur"
 },
+Vector2i(65, 23): {
+"cell": Vector2i(4, 6),
+"to": "cueva_diglett_norte"
+},
 Vector2i(65, 40): {
 "cell": Vector2i(4, 7),
 "to": "ruta2_casa"
@@ -321,6 +325,78 @@ Vector2i(59, 55): {
 }
 }
 
+[sub_resource type="Resource" id="Resource_kj6nv"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azafran"
+display_name = "Ciudad Azafrán"
+scene_path = "res://scenes/world/zones/ciudad_azafran.tscn"
+origin = Vector2i(466, 110)
+size = Vector2i(116, 95)
+biome = "ciudad"
+hub = Vector2i(58, 47)
+warps = {
+Vector2i(8, 43): {
+"cell": Vector2i(11, 5),
+"to": "ruta7_garita"
+},
+Vector2i(46, 30): {
+"cell": Vector2i(4, 8),
+"to": "casa_imitadora"
+},
+Vector2i(48, 66): {
+"cell": Vector2i(7, 8),
+"to": "ciudad_azafran_centro"
+},
+Vector2i(51, 37): {
+"cell": Vector2i(4, 7),
+"to": "ciudad_azafran_casa"
+},
+Vector2i(57, 46): {
+"cell": Vector2i(8, 20),
+"to": "silph_1p"
+},
+Vector2i(58, 5): {
+"cell": Vector2i(4, 9),
+"to": "ruta5_garita"
+},
+Vector2i(58, 86): {
+"cell": Vector2i(4, 1),
+"to": "ruta6_garita"
+},
+Vector2i(59, 5): {
+"cell": Vector2i(4, 9),
+"to": "ruta5_garita"
+},
+Vector2i(59, 86): {
+"cell": Vector2i(4, 1),
+"to": "ruta6_garita"
+},
+Vector2i(64, 12): {
+"cell": Vector2i(6, 14),
+"to": "dojo_karate"
+},
+Vector2i(64, 37): {
+"cell": Vector2i(4, 7),
+"to": "ciudad_azafran_tienda"
+},
+Vector2i(67, 66): {
+"cell": Vector2i(4, 7),
+"to": "casa_sr_psiquico"
+},
+Vector2i(70, 12): {
+"cell": Vector2i(14, 23),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(71, 37): {
+"cell": Vector2i(5, 15),
+"to": "club_entrenadores"
+},
+Vector2i(108, 43): {
+"cell": Vector2i(1, 5),
+"to": "ruta8_garita"
+}
+}
+
 [sub_resource type="Resource" id="Resource_xjpl4"]
 script = ExtResource("2_3wmne")
 id = "ruta6"
@@ -396,12 +472,513 @@ Vector2i(45, 33): {
 }
 }
 
+[sub_resource type="Resource" id="Resource_l13m1"]
+script = ExtResource("2_3wmne")
+id = "ruta9"
+display_name = "Ruta 9"
+scene_path = "res://scenes/world/zones/ruta9.tscn"
+origin = Vector2i(554, -22)
+size = Vector2i(126, 34)
+hub = Vector2i(63, 17)
+
+[sub_resource type="Resource" id="Resource_dyhe7"]
+script = ExtResource("2_3wmne")
+id = "ruta10"
+display_name = "Ruta 10"
+scene_path = "res://scenes/world/zones/ruta10.tscn"
+origin = Vector2i(680, -32)
+size = Vector2i(24, 140)
+hub = Vector2i(12, 70)
+warps = {
+Vector2i(2, 67): {
+"cell": Vector2i(1, 11),
+"to": "central_electrica"
+},
+Vector2i(7, 70): {
+"cell": Vector2i(11, 68),
+"to": "central_electrica"
+},
+Vector2i(8, 37): {
+"cell": Vector2i(31, 8),
+"to": "tunel_roca"
+},
+Vector2i(8, 97): {
+"cell": Vector2i(34, 67),
+"to": "tunel_roca"
+},
+Vector2i(13, 38): {
+"cell": Vector2i(7, 8),
+"to": "ruta10_centro"
+}
+}
+
+[sub_resource type="Resource" id="Resource_o54yy"]
+script = ExtResource("2_3wmne")
+id = "pueblo_lavanda"
+display_name = "Pueblo Lavanda"
+scene_path = "res://scenes/world/zones/pueblo_lavanda.tscn"
+origin = Vector2i(674, 108)
+size = Vector2i(42, 34)
+biome = "ciudad"
+hub = Vector2i(21, 17)
+warps = {
+Vector2i(12, 5): {
+"cell": Vector2i(7, 8),
+"to": "pueblo_lavanda_centro"
+},
+Vector2i(13, 28): {
+"cell": Vector2i(4, 7),
+"to": "pueblo_lavanda_casa1"
+},
+Vector2i(18, 23): {
+"cell": Vector2i(4, 7),
+"to": "casa_voluntarios"
+},
+Vector2i(18, 28): {
+"cell": Vector2i(4, 7),
+"to": "pueblo_lavanda_casa2"
+},
+Vector2i(36, 6): {
+"cell": Vector2i(11, 18),
+"to": "torre_pokemon_1p"
+},
+Vector2i(36, 27): {
+"cell": Vector2i(4, 7),
+"to": "pueblo_lavanda_tienda"
+}
+}
+
+[sub_resource type="Resource" id="Resource_hk2oc"]
+script = ExtResource("2_3wmne")
+id = "ruta8"
+display_name = "Ruta 8"
+scene_path = "res://scenes/world/zones/ruta8.tscn"
+origin = Vector2i(582, 104)
+size = Vector2i(92, 34)
+hub = Vector2i(46, 17)
+warps = {
+Vector2i(7, 18): {
+"cell": Vector2i(11, 5),
+"to": "ruta8_garita"
+},
+Vector2i(19, 4): {
+"cell": Vector2i(6, 8),
+"to": "via_subterranea_este"
+}
+}
+
+[sub_resource type="Resource" id="Resource_ik2c4"]
+script = ExtResource("2_3wmne")
+id = "ruta7"
+display_name = "Ruta 7"
+scene_path = "res://scenes/world/zones/ruta7.tscn"
+origin = Vector2i(424, 128)
+size = Vector2i(42, 34)
+hub = Vector2i(21, 17)
+warps = {
+Vector2i(15, 26): {
+"cell": Vector2i(6, 8),
+"to": "via_subterranea_oeste"
+},
+Vector2i(33, 18): {
+"cell": Vector2i(1, 5),
+"to": "ruta7_garita"
+}
+}
+
+[sub_resource type="Resource" id="Resource_x5eql"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona"
+display_name = "Ciudad Azulona"
+scene_path = "res://scenes/world/zones/ciudad_azulona.tscn"
+origin = Vector2i(320, 112)
+size = Vector2i(104, 70)
+biome = "ciudad"
+hub = Vector2i(52, 34)
+warps = {
+Vector2i(31, 26): {
+"cell": Vector2i(2, 14),
+"to": "ciudad_azulona_almacen_1p"
+},
+Vector2i(31, 60): {
+"cell": Vector2i(6, 18),
+"to": "ciudad_azulona_gimnasio"
+},
+Vector2i(35, 26): {
+"cell": Vector2i(10, 14),
+"to": "ciudad_azulona_almacen_1p"
+},
+Vector2i(49, 17): {
+"cell": Vector2i(2, 1),
+"to": "ciudad_azulona_mansion_1p"
+},
+Vector2i(50, 16): {
+"cell": Vector2i(2, 1),
+"to": "ciudad_azulona_mansion_1p"
+},
+Vector2i(50, 23): {
+"cell": Vector2i(12, 18),
+"to": "ciudad_azulona_mansion_1p"
+},
+Vector2i(51, 17): {
+"cell": Vector2i(2, 1),
+"to": "ciudad_azulona_mansion_1p"
+},
+Vector2i(54, 33): {
+"cell": Vector2i(9, 13),
+"to": "ciudad_azulona_casino"
+},
+Vector2i(57, 59): {
+"cell": Vector2i(6, 9),
+"to": "ciudad_azulona_restaurante"
+},
+Vector2i(59, 32): {
+"cell": Vector2i(4, 8),
+"to": "ciudad_azulona_premios"
+},
+Vector2i(61, 59): {
+"cell": Vector2i(4, 7),
+"to": "ciudad_azulona_casa1"
+},
+Vector2i(68, 23): {
+"cell": Vector2i(7, 8),
+"to": "ciudad_azulona_centro"
+},
+Vector2i(69, 59): {
+"cell": Vector2i(4, 9),
+"to": "ciudad_azulona_hotel"
+}
+}
+
+[sub_resource type="Resource" id="Resource_iafw4"]
+script = ExtResource("2_3wmne")
+id = "ruta16"
+display_name = "Ruta 16"
+scene_path = "res://scenes/world/zones/ruta16.tscn"
+origin = Vector2i(236, 148)
+size = Vector2i(84, 34)
+hub = Vector2i(42, 13)
+warps = {
+Vector2i(20, 5): {
+"cell": Vector2i(4, 7),
+"to": "ruta16_casa"
+},
+Vector2i(38, 6): {
+"cell": Vector2i(1, 3),
+"to": "ruta16_garita"
+},
+Vector2i(38, 13): {
+"cell": Vector2i(1, 12),
+"to": "ruta16_garita"
+},
+Vector2i(45, 6): {
+"cell": Vector2i(11, 3),
+"to": "ruta16_garita"
+},
+Vector2i(45, 13): {
+"cell": Vector2i(11, 12),
+"to": "ruta16_garita"
+}
+}
+
+[sub_resource type="Resource" id="Resource_ki2mk"]
+script = ExtResource("2_3wmne")
+id = "ruta17"
+display_name = "Ruta 17 (Ruta Bici)"
+scene_path = "res://scenes/world/zones/ruta17.tscn"
+origin = Vector2i(242, 182)
+size = Vector2i(42, 280)
+hub = Vector2i(20, 140)
+
+[sub_resource type="Resource" id="Resource_g1nph"]
+script = ExtResource("2_3wmne")
+id = "ruta18"
+display_name = "Ruta 18"
+scene_path = "res://scenes/world/zones/ruta18.tscn"
+origin = Vector2i(246, 462)
+size = Vector2i(104, 34)
+hub = Vector2i(52, 16)
+warps = {
+Vector2i(75, 15): {
+"cell": Vector2i(1, 6),
+"to": "ruta18_garita"
+},
+Vector2i(82, 15): {
+"cell": Vector2i(11, 6),
+"to": "ruta18_garita"
+}
+}
+
+[sub_resource type="Resource" id="Resource_ht6oy"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia"
+display_name = "Ciudad Fucsia"
+scene_path = "res://scenes/world/zones/ciudad_fucsia.tscn"
+origin = Vector2i(350, 458)
+size = Vector2i(84, 70)
+biome = "ciudad"
+hub = Vector2i(42, 35)
+warps = {
+Vector2i(9, 32): {
+"cell": Vector2i(7, 21),
+"to": "ciudad_fucsia_gimnasio"
+},
+Vector2i(11, 15): {
+"cell": Vector2i(4, 7),
+"to": "ciudad_fucsia_tienda"
+},
+Vector2i(14, 31): {
+"cell": Vector2i(4, 7),
+"to": "ciudad_fucsia_casa1"
+},
+Vector2i(19, 31): {
+"cell": Vector2i(4, 7),
+"to": "ciudad_fucsia_casa3"
+},
+Vector2i(24, 5): {
+"cell": Vector2i(4, 7),
+"to": "ciudad_fucsia_safari"
+},
+Vector2i(25, 31): {
+"cell": Vector2i(7, 8),
+"to": "ciudad_fucsia_centro"
+},
+Vector2i(28, 16): {
+"cell": Vector2i(6, 9),
+"to": "ciudad_fucsia_safari_oficina"
+},
+Vector2i(61, 31): {
+"cell": Vector2i(6, 9),
+"to": "casa_guarda"
+},
+Vector2i(66, 31): {
+"cell": Vector2i(3, 8),
+"to": "ciudad_fucsia_casa2"
+},
+Vector2i(67, 28): {
+"cell": Vector2i(3, 1),
+"to": "ciudad_fucsia_casa2"
+},
+Vector2i(67, 29): {
+"cell": Vector2i(3, 1),
+"to": "ciudad_fucsia_casa2"
+}
+}
+
+[sub_resource type="Resource" id="Resource_ofkfh"]
+script = ExtResource("2_3wmne")
+id = "ruta12"
+display_name = "Ruta 12"
+scene_path = "res://scenes/world/zones/ruta12.tscn"
+origin = Vector2i(664, 142)
+size = Vector2i(42, 210)
+hub = Vector2i(26, 105)
+warps = {
+Vector2i(30, 138): {
+"cell": Vector2i(3, 7),
+"to": "casa_pescador"
+},
+Vector2i(32, 39): {
+"cell": Vector2i(5, 1),
+"to": "ruta12_garita"
+},
+Vector2i(32, 45): {
+"cell": Vector2i(5, 11),
+"to": "ruta12_garita"
+},
+Vector2i(33, 39): {
+"cell": Vector2i(6, 1),
+"to": "ruta12_garita"
+}
+}
+
+[sub_resource type="Resource" id="Resource_kwk1r"]
+script = ExtResource("2_3wmne")
+id = "ruta13"
+display_name = "Ruta 13"
+scene_path = "res://scenes/world/zones/ruta13.tscn"
+origin = Vector2i(594, 352)
+size = Vector2i(126, 20)
+hub = Vector2i(63, 10)
+
+[sub_resource type="Resource" id="Resource_1s3c4"]
+script = ExtResource("2_3wmne")
+id = "ruta14"
+display_name = "Ruta 14"
+scene_path = "res://scenes/world/zones/ruta14.tscn"
+origin = Vector2i(570, 344)
+size = Vector2i(24, 104)
+hub = Vector2i(11, 52)
+
+[sub_resource type="Resource" id="Resource_cjg6v"]
+script = ExtResource("2_3wmne")
+id = "ruta15"
+display_name = "Ruta 15"
+scene_path = "res://scenes/world/zones/ruta15.tscn"
+origin = Vector2i(434, 406)
+size = Vector2i(136, 34)
+hub = Vector2i(68, 16)
+warps = {
+Vector2i(23, 21): {
+"cell": Vector2i(1, 6),
+"to": "ruta15_garita"
+},
+Vector2i(30, 21): {
+"cell": Vector2i(11, 6),
+"to": "ruta15_garita"
+}
+}
+
+[sub_resource type="Resource" id="Resource_repnx"]
+script = ExtResource("2_3wmne")
+id = "ruta11"
+display_name = "Ruta 11"
+scene_path = "res://scenes/world/zones/ruta11.tscn"
+origin = Vector2i(532, 291)
+size = Vector2i(132, 34)
+hub = Vector2i(66, 17)
+warps = {
+Vector2i(14, 13): {
+"cell": Vector2i(4, 6),
+"to": "cueva_diglett_sur"
+},
+Vector2i(110, 18): {
+"cell": Vector2i(1, 6),
+"to": "ruta11_garita"
+},
+Vector2i(117, 18): {
+"cell": Vector2i(11, 6),
+"to": "ruta11_garita"
+}
+}
+
+[sub_resource type="Resource" id="Resource_ewyje"]
+script = ExtResource("2_3wmne")
+id = "ruta19"
+display_name = "Ruta 19"
+scene_path = "res://scenes/world/zones/ruta19.tscn"
+origin = Vector2i(352, 528)
+size = Vector2i(42, 104)
+hub = Vector2i(21, 25)
+
+[sub_resource type="Resource" id="Resource_p8cfa"]
+script = ExtResource("2_3wmne")
+id = "ruta20"
+display_name = "Ruta 20"
+scene_path = "res://scenes/world/zones/ruta20.tscn"
+origin = Vector2i(142, 606)
+size = Vector2i(210, 20)
+hub = Vector2i(105, 10)
+warps = {
+Vector2i(106, 8): {
+"cell": Vector2i(6, 39),
+"to": "islas_espuma"
+},
+Vector2i(130, 14): {
+"cell": Vector2i(60, 39),
+"to": "islas_espuma"
+}
+}
+
+[sub_resource type="Resource" id="Resource_ow8fe"]
+script = ExtResource("2_3wmne")
+id = "isla_canela"
+display_name = "Isla Canela"
+scene_path = "res://scenes/world/zones/isla_canela.tscn"
+origin = Vector2i(100, 606)
+size = Vector2i(42, 34)
+biome = "ciudad"
+hub = Vector2i(21, 17)
+warps = {
+Vector2i(16, 3): {
+"cell": Vector2i(8, 33),
+"to": "mansion_pokemon_1p"
+},
+Vector2i(16, 9): {
+"cell": Vector2i(4, 9),
+"to": "isla_canela_lab"
+},
+Vector2i(22, 11): {
+"cell": Vector2i(7, 8),
+"to": "isla_canela_centro"
+},
+Vector2i(27, 11): {
+"cell": Vector2i(4, 7),
+"to": "isla_canela_tienda"
+},
+Vector2i(38, 4): {
+"cell": Vector2i(25, 23),
+"to": "isla_canela_gimnasio"
+}
+}
+
+[sub_resource type="Resource" id="Resource_qgixo"]
+script = ExtResource("2_3wmne")
+id = "ruta21_sur"
+display_name = "Ruta 21 (sur)"
+scene_path = "res://scenes/world/zones/ruta21_sur.tscn"
+origin = Vector2i(96, 496)
+size = Vector2i(42, 110)
+hub = Vector2i(21, 55)
+
+[sub_resource type="Resource" id="Resource_vvoyh"]
+script = ExtResource("2_3wmne")
+id = "ruta21_norte"
+display_name = "Ruta 21 (norte)"
+scene_path = "res://scenes/world/zones/ruta21_norte.tscn"
+origin = Vector2i(96, 385)
+size = Vector2i(42, 111)
+hub = Vector2i(26, 55)
+
+[sub_resource type="Resource" id="Resource_36hja"]
+script = ExtResource("2_3wmne")
+id = "ruta23"
+display_name = "Ruta 23"
+scene_path = "res://scenes/world/zones/ruta23.tscn"
+origin = Vector2i(0, -70)
+size = Vector2i(24, 280)
+hub = Vector2i(15, 133)
+warps = {
+Vector2i(5, 50): {
+"cell": Vector2i(21, 36),
+"to": "calle_victoria_1p"
+},
+Vector2i(8, 273): {
+"cell": Vector2i(7, 1),
+"to": "ruta22_garita"
+},
+Vector2i(9, 274): {
+"cell": Vector2i(7, 1),
+"to": "ruta22_garita"
+},
+Vector2i(18, 50): {
+"cell": Vector2i(86, 24),
+"to": "calle_victoria_2p"
+}
+}
+
+[sub_resource type="Resource" id="Resource_bswhw"]
+script = ExtResource("2_3wmne")
+id = "meseta_anil"
+display_name = "Meseta Añil"
+scene_path = "res://scenes/world/zones/meseta_anil.tscn"
+origin = Vector2i(-8, -104)
+size = Vector2i(42, 34)
+biome = "ciudad"
+hub = Vector2i(21, 17)
+warps = {
+Vector2i(19, 6): {
+"cell": Vector2i(11, 16),
+"to": "meseta_anil_centro"
+}
+}
+
 [sub_resource type="Resource" id="Resource_pqsf8"]
 script = ExtResource("2_3wmne")
 id = "bosque_verde"
 display_name = "Bosque Verde"
 scene_path = "res://scenes/world/zones/bosque_verde.tscn"
-origin = Vector2i(0, 408)
+origin = Vector2i(0, 664)
 size = Vector2i(94, 121)
 biome = "bosque"
 hub = Vector2i(47, 60)
@@ -437,7 +1014,7 @@ script = ExtResource("2_3wmne")
 id = "casa_jugador"
 display_name = "Tu casa"
 scene_path = "res://scenes/world/zones/casa_jugador.tscn"
-origin = Vector2i(118, 408)
+origin = Vector2i(118, 664)
 size = Vector2i(13, 10)
 biome = "interior"
 hub = Vector2i(5, 5)
@@ -466,7 +1043,7 @@ script = ExtResource("2_3wmne")
 id = "casa_jugador_2p"
 display_name = "Tu casa (planta alta)"
 scene_path = "res://scenes/world/zones/casa_jugador_2p.tscn"
-origin = Vector2i(155, 408)
+origin = Vector2i(155, 664)
 size = Vector2i(12, 9)
 biome = "interior"
 hub = Vector2i(6, 3)
@@ -483,7 +1060,7 @@ script = ExtResource("2_3wmne")
 id = "casa_rival"
 display_name = "Casa de tu rival"
 scene_path = "res://scenes/world/zones/casa_rival.tscn"
-origin = Vector2i(191, 408)
+origin = Vector2i(191, 664)
 size = Vector2i(13, 10)
 biome = "interior"
 hub = Vector2i(5, 5)
@@ -508,7 +1085,7 @@ script = ExtResource("2_3wmne")
 id = "laboratorio_oak"
 display_name = "Laboratorio del Prof. Oak"
 scene_path = "res://scenes/world/zones/laboratorio_oak.tscn"
-origin = Vector2i(0, 553)
+origin = Vector2i(0, 809)
 size = Vector2i(13, 14)
 biome = "interior"
 hub = Vector2i(6, 7)
@@ -533,7 +1110,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_verde_centro"
 display_name = "Centro Pokémon de Ciudad Verde"
 scene_path = "res://scenes/world/zones/ciudad_verde_centro.tscn"
-origin = Vector2i(37, 553)
+origin = Vector2i(37, 809)
 size = Vector2i(15, 10)
 biome = "interior"
 hub = Vector2i(7, 5)
@@ -558,7 +1135,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_verde_tienda"
 display_name = "Tienda de Ciudad Verde"
 scene_path = "res://scenes/world/zones/ciudad_verde_tienda.tscn"
-origin = Vector2i(76, 553)
+origin = Vector2i(76, 809)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 4)
@@ -583,7 +1160,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_verde_gimnasio"
 display_name = "Gimnasio de Ciudad Verde"
 scene_path = "res://scenes/world/zones/ciudad_verde_gimnasio.tscn"
-origin = Vector2i(111, 553)
+origin = Vector2i(111, 809)
 size = Vector2i(20, 24)
 biome = "interior"
 hub = Vector2i(10, 12)
@@ -608,7 +1185,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_verde_escuela"
 display_name = "Escuela de Entrenadores"
 scene_path = "res://scenes/world/zones/ciudad_verde_escuela.tscn"
-origin = Vector2i(155, 553)
+origin = Vector2i(155, 809)
 size = Vector2i(10, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -633,7 +1210,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_verde_casa"
 display_name = "Casa de Ciudad Verde"
 scene_path = "res://scenes/world/zones/ciudad_verde_casa.tscn"
-origin = Vector2i(189, 553)
+origin = Vector2i(189, 809)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -658,7 +1235,7 @@ script = ExtResource("2_3wmne")
 id = "ruta22_garita"
 display_name = "Garita de la Ruta 22"
 scene_path = "res://scenes/world/zones/ruta22_garita.tscn"
-origin = Vector2i(0, 601)
+origin = Vector2i(0, 857)
 size = Vector2i(15, 12)
 biome = "interior"
 hub = Vector2i(7, 6)
@@ -666,6 +1243,10 @@ warps = {
 Vector2i(6, 10): {
 "cell": Vector2i(8, 31),
 "to": "ruta22"
+},
+Vector2i(7, 1): {
+"cell": Vector2i(8, 273),
+"to": "ruta23"
 },
 Vector2i(7, 10): {
 "cell": Vector2i(8, 31),
@@ -683,7 +1264,7 @@ script = ExtResource("2_3wmne")
 id = "ruta2_garita_sur"
 display_name = "Entrada sur del Bosque Verde"
 scene_path = "res://scenes/world/zones/ruta2_garita_sur.tscn"
-origin = Vector2i(39, 601)
+origin = Vector2i(39, 857)
 size = Vector2i(15, 12)
 biome = "interior"
 hub = Vector2i(7, 6)
@@ -712,7 +1293,7 @@ script = ExtResource("2_3wmne")
 id = "ruta2_garita_norte"
 display_name = "Entrada norte del Bosque Verde"
 scene_path = "res://scenes/world/zones/ruta2_garita_norte.tscn"
-origin = Vector2i(78, 601)
+origin = Vector2i(78, 857)
 size = Vector2i(15, 12)
 biome = "interior"
 hub = Vector2i(7, 6)
@@ -741,7 +1322,7 @@ script = ExtResource("2_3wmne")
 id = "ruta2_casa"
 display_name = "Casa de la Ruta 2"
 scene_path = "res://scenes/world/zones/ruta2_casa.tscn"
-origin = Vector2i(117, 601)
+origin = Vector2i(117, 857)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -766,7 +1347,7 @@ script = ExtResource("2_3wmne")
 id = "ruta2_edificio"
 display_name = "Edificio de la Ruta 2"
 scene_path = "res://scenes/world/zones/ruta2_edificio.tscn"
-origin = Vector2i(152, 601)
+origin = Vector2i(152, 857)
 size = Vector2i(15, 12)
 biome = "interior"
 hub = Vector2i(7, 6)
@@ -795,7 +1376,7 @@ script = ExtResource("2_3wmne")
 id = "museo"
 display_name = "Museo de Ciencias"
 scene_path = "res://scenes/world/zones/museo.tscn"
-origin = Vector2i(191, 601)
+origin = Vector2i(191, 857)
 size = Vector2i(28, 11)
 biome = "interior"
 hub = Vector2i(14, 5)
@@ -832,7 +1413,7 @@ script = ExtResource("2_3wmne")
 id = "museo_2p"
 display_name = "Museo de Ciencias (planta alta)"
 scene_path = "res://scenes/world/zones/museo_2p.tscn"
-origin = Vector2i(0, 637)
+origin = Vector2i(0, 893)
 size = Vector2i(19, 10)
 biome = "interior"
 hub = Vector2i(9, 5)
@@ -849,7 +1430,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_plateada_gimnasio"
 display_name = "Gimnasio de Ciudad Plateada"
 scene_path = "res://scenes/world/zones/ciudad_plateada_gimnasio.tscn"
-origin = Vector2i(43, 637)
+origin = Vector2i(43, 893)
 size = Vector2i(13, 16)
 biome = "interior"
 hub = Vector2i(6, 8)
@@ -874,7 +1455,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_plateada_tienda"
 display_name = "Tienda de Ciudad Plateada"
 scene_path = "res://scenes/world/zones/ciudad_plateada_tienda.tscn"
-origin = Vector2i(80, 637)
+origin = Vector2i(80, 893)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 4)
@@ -899,7 +1480,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_plateada_casa1"
 display_name = "Casa de Ciudad Plateada"
 scene_path = "res://scenes/world/zones/ciudad_plateada_casa1.tscn"
-origin = Vector2i(115, 637)
+origin = Vector2i(115, 893)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -924,7 +1505,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_plateada_casa2"
 display_name = "Casa de Ciudad Plateada"
 scene_path = "res://scenes/world/zones/ciudad_plateada_casa2.tscn"
-origin = Vector2i(150, 637)
+origin = Vector2i(150, 893)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -949,7 +1530,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_plateada_centro"
 display_name = "Centro Pokémon de Ciudad Plateada"
 scene_path = "res://scenes/world/zones/ciudad_plateada_centro.tscn"
-origin = Vector2i(185, 637)
+origin = Vector2i(185, 893)
 size = Vector2i(15, 10)
 biome = "interior"
 hub = Vector2i(7, 5)
@@ -974,7 +1555,7 @@ script = ExtResource("2_3wmne")
 id = "mt_moon"
 display_name = "Mt. Moon"
 scene_path = "res://scenes/world/zones/mt_moon.tscn"
-origin = Vector2i(0, 677)
+origin = Vector2i(0, 933)
 size = Vector2i(84, 70)
 biome = "cueva"
 hub = Vector2i(42, 35)
@@ -1003,7 +1584,7 @@ script = ExtResource("2_3wmne")
 id = "mt_moon_s1"
 display_name = "Mt. Moon (sótano 1)"
 scene_path = "res://scenes/world/zones/mt_moon_s1.tscn"
-origin = Vector2i(108, 677)
+origin = Vector2i(108, 933)
 size = Vector2i(85, 70)
 biome = "cueva"
 hub = Vector2i(41, 34)
@@ -1048,7 +1629,7 @@ script = ExtResource("2_3wmne")
 id = "mt_moon_s2"
 display_name = "Mt. Moon (sótano 2)"
 scene_path = "res://scenes/world/zones/mt_moon_s2.tscn"
-origin = Vector2i(0, 771)
+origin = Vector2i(0, 1027)
 size = Vector2i(84, 70)
 biome = "cueva"
 hub = Vector2i(42, 35)
@@ -1077,7 +1658,7 @@ script = ExtResource("2_3wmne")
 id = "ruta4_centro"
 display_name = "Centro Pokémon de la Ruta 4"
 scene_path = "res://scenes/world/zones/ruta4_centro.tscn"
-origin = Vector2i(108, 771)
+origin = Vector2i(108, 1027)
 size = Vector2i(15, 10)
 biome = "interior"
 hub = Vector2i(7, 5)
@@ -1102,7 +1683,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_centro"
 display_name = "Centro Pokémon de Ciudad Celeste"
 scene_path = "res://scenes/world/zones/ciudad_celeste_centro.tscn"
-origin = Vector2i(147, 771)
+origin = Vector2i(147, 1027)
 size = Vector2i(15, 10)
 biome = "interior"
 hub = Vector2i(7, 5)
@@ -1127,7 +1708,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_tienda"
 display_name = "Tienda de Ciudad Celeste"
 scene_path = "res://scenes/world/zones/ciudad_celeste_tienda.tscn"
-origin = Vector2i(186, 771)
+origin = Vector2i(186, 1027)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 4)
@@ -1152,7 +1733,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_gimnasio"
 display_name = "Gimnasio de Ciudad Celeste"
 scene_path = "res://scenes/world/zones/ciudad_celeste_gimnasio.tscn"
-origin = Vector2i(0, 865)
+origin = Vector2i(0, 1121)
 size = Vector2i(17, 20)
 biome = "interior"
 hub = Vector2i(8, 10)
@@ -1177,7 +1758,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_bicis"
 display_name = "Tienda de bicicletas"
 scene_path = "res://scenes/world/zones/ciudad_celeste_bicis.tscn"
-origin = Vector2i(41, 865)
+origin = Vector2i(41, 1121)
 size = Vector2i(11, 10)
 biome = "interior"
 hub = Vector2i(5, 5)
@@ -1202,7 +1783,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_casa1"
 display_name = "Casa de Ciudad Celeste"
 scene_path = "res://scenes/world/zones/ciudad_celeste_casa1.tscn"
-origin = Vector2i(76, 865)
+origin = Vector2i(76, 1121)
 size = Vector2i(10, 10)
 biome = "interior"
 hub = Vector2i(5, 5)
@@ -1231,7 +1812,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_casa_robada"
 display_name = "Casa robada"
 scene_path = "res://scenes/world/zones/ciudad_celeste_casa_robada.tscn"
-origin = Vector2i(110, 865)
+origin = Vector2i(110, 1121)
 size = Vector2i(10, 9)
 biome = "interior"
 hub = Vector2i(5, 4)
@@ -1260,7 +1841,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_casa3"
 display_name = "Casa de Ciudad Celeste"
 scene_path = "res://scenes/world/zones/ciudad_celeste_casa3.tscn"
-origin = Vector2i(144, 865)
+origin = Vector2i(144, 1121)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -1285,7 +1866,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_casa4"
 display_name = "Casa de Ciudad Celeste"
 scene_path = "res://scenes/world/zones/ciudad_celeste_casa4.tscn"
-origin = Vector2i(179, 865)
+origin = Vector2i(179, 1121)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -1302,7 +1883,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_celeste_casa5"
 display_name = "Casa de Ciudad Celeste"
 scene_path = "res://scenes/world/zones/ciudad_celeste_casa5.tscn"
-origin = Vector2i(0, 909)
+origin = Vector2i(0, 1165)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 4)
@@ -1319,7 +1900,7 @@ script = ExtResource("2_3wmne")
 id = "casa_bill"
 display_name = "Casa de Bill"
 scene_path = "res://scenes/world/zones/casa_bill.tscn"
-origin = Vector2i(35, 909)
+origin = Vector2i(35, 1165)
 size = Vector2i(15, 11)
 biome = "interior"
 hub = Vector2i(7, 5)
@@ -1344,7 +1925,7 @@ script = ExtResource("2_3wmne")
 id = "ruta5_guarderia"
 display_name = "Guardería Pokémon"
 scene_path = "res://scenes/world/zones/ruta5_guarderia.tscn"
-origin = Vector2i(74, 909)
+origin = Vector2i(74, 1165)
 size = Vector2i(12, 9)
 biome = "interior"
 hub = Vector2i(6, 4)
@@ -1369,14 +1950,22 @@ script = ExtResource("2_3wmne")
 id = "ruta5_garita"
 display_name = "Garita de la Ruta 5"
 scene_path = "res://scenes/world/zones/ruta5_garita.tscn"
-origin = Vector2i(110, 909)
+origin = Vector2i(110, 1165)
 size = Vector2i(9, 11)
 biome = "interior"
 hub = Vector2i(4, 5)
 warps = {
+Vector2i(3, 9): {
+"cell": Vector2i(58, 5),
+"to": "ciudad_azafran"
+},
 Vector2i(4, 1): {
 "cell": Vector2i(44, 62),
 "to": "ruta5"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(58, 5),
+"to": "ciudad_azafran"
 },
 Vector2i(5, 1): {
 "cell": Vector2i(45, 62),
@@ -1390,7 +1979,7 @@ script = ExtResource("2_3wmne")
 id = "via_subterranea_norte"
 display_name = "Vía Subterránea (entrada norte)"
 scene_path = "res://scenes/world/zones/via_subterranea_norte.tscn"
-origin = Vector2i(143, 909)
+origin = Vector2i(143, 1165)
 size = Vector2i(13, 10)
 biome = "interior"
 hub = Vector2i(7, 5)
@@ -1419,7 +2008,7 @@ script = ExtResource("2_3wmne")
 id = "via_subterranea"
 display_name = "Vía Subterránea"
 scene_path = "res://scenes/world/zones/via_subterranea.tscn"
-origin = Vector2i(180, 909)
+origin = Vector2i(180, 1165)
 size = Vector2i(8, 63)
 biome = "interior"
 hub = Vector2i(4, 31)
@@ -1440,7 +2029,7 @@ script = ExtResource("2_3wmne")
 id = "via_subterranea_sur"
 display_name = "Vía Subterránea (entrada sur)"
 scene_path = "res://scenes/world/zones/via_subterranea_sur.tscn"
-origin = Vector2i(0, 996)
+origin = Vector2i(0, 1252)
 size = Vector2i(13, 10)
 biome = "interior"
 hub = Vector2i(7, 5)
@@ -1469,14 +2058,22 @@ script = ExtResource("2_3wmne")
 id = "ruta6_garita"
 display_name = "Garita de la Ruta 6"
 scene_path = "res://scenes/world/zones/ruta6_garita.tscn"
-origin = Vector2i(37, 996)
+origin = Vector2i(37, 1252)
 size = Vector2i(9, 11)
 biome = "interior"
 hub = Vector2i(4, 5)
 warps = {
+Vector2i(4, 1): {
+"cell": Vector2i(58, 86),
+"to": "ciudad_azafran"
+},
 Vector2i(4, 9): {
 "cell": Vector2i(22, 5),
 "to": "ruta6"
+},
+Vector2i(5, 1): {
+"cell": Vector2i(58, 86),
+"to": "ciudad_azafran"
 },
 Vector2i(5, 9): {
 "cell": Vector2i(22, 5),
@@ -1490,7 +2087,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_carmin_centro"
 display_name = "Centro Pokémon de Ciudad Carmín"
 scene_path = "res://scenes/world/zones/ciudad_carmin_centro.tscn"
-origin = Vector2i(70, 996)
+origin = Vector2i(70, 1252)
 size = Vector2i(15, 10)
 biome = "interior"
 hub = Vector2i(7, 5)
@@ -1515,7 +2112,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_carmin_tienda"
 display_name = "Tienda de Ciudad Carmín"
 scene_path = "res://scenes/world/zones/ciudad_carmin_tienda.tscn"
-origin = Vector2i(109, 996)
+origin = Vector2i(109, 1252)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 4)
@@ -1540,7 +2137,7 @@ script = ExtResource("2_3wmne")
 id = "club_fans"
 display_name = "Club de Fans de Pokémon"
 scene_path = "res://scenes/world/zones/club_fans.tscn"
-origin = Vector2i(144, 996)
+origin = Vector2i(144, 1252)
 size = Vector2i(12, 12)
 biome = "interior"
 hub = Vector2i(7, 6)
@@ -1565,7 +2162,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_carmin_gimnasio"
 display_name = "Gimnasio de Ciudad Carmín"
 scene_path = "res://scenes/world/zones/ciudad_carmin_gimnasio.tscn"
-origin = Vector2i(180, 996)
+origin = Vector2i(180, 1252)
 size = Vector2i(11, 21)
 biome = "interior"
 hub = Vector2i(5, 9)
@@ -1590,7 +2187,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_carmin_casa1"
 display_name = "Casa de Ciudad Carmín"
 scene_path = "res://scenes/world/zones/ciudad_carmin_casa1.tscn"
-origin = Vector2i(0, 1041)
+origin = Vector2i(0, 1297)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -1615,7 +2212,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_carmin_casa2"
 display_name = "Casa de Ciudad Carmín"
 scene_path = "res://scenes/world/zones/ciudad_carmin_casa2.tscn"
-origin = Vector2i(35, 1041)
+origin = Vector2i(35, 1297)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -1640,7 +2237,7 @@ script = ExtResource("2_3wmne")
 id = "ciudad_carmin_casa3"
 display_name = "Casa de Ciudad Carmín"
 scene_path = "res://scenes/world/zones/ciudad_carmin_casa3.tscn"
-origin = Vector2i(70, 1041)
+origin = Vector2i(70, 1297)
 size = Vector2i(11, 9)
 biome = "interior"
 hub = Vector2i(5, 3)
@@ -1665,7 +2262,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_muelle"
 display_name = "Muelle del S.S. Anne"
 scene_path = "res://scenes/world/zones/ss_anne_muelle.tscn"
-origin = Vector2i(105, 1041)
+origin = Vector2i(105, 1297)
 size = Vector2i(70, 32)
 biome = "interior"
 hub = Vector2i(32, 13)
@@ -1698,7 +2295,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_1p"
 display_name = "S.S. Anne (planta 1)"
 scene_path = "res://scenes/world/zones/ss_anne_1p.tscn"
-origin = Vector2i(0, 1097)
+origin = Vector2i(0, 1353)
 size = Vector2i(31, 21)
 biome = "interior"
 hub = Vector2i(15, 10)
@@ -1763,7 +2360,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_2p"
 display_name = "S.S. Anne (planta 2)"
 scene_path = "res://scenes/world/zones/ss_anne_2p.tscn"
-origin = Vector2i(55, 1097)
+origin = Vector2i(55, 1353)
 size = Vector2i(34, 16)
 biome = "interior"
 hub = Vector2i(17, 11)
@@ -1812,7 +2409,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_3p"
 display_name = "S.S. Anne (planta 3)"
 scene_path = "res://scenes/world/zones/ss_anne_3p.tscn"
-origin = Vector2i(113, 1097)
+origin = Vector2i(113, 1353)
 size = Vector2i(22, 7)
 biome = "interior"
 hub = Vector2i(11, 3)
@@ -1837,7 +2434,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_s1"
 display_name = "S.S. Anne (sótano)"
 scene_path = "res://scenes/world/zones/ss_anne_s1.tscn"
-origin = Vector2i(159, 1097)
+origin = Vector2i(159, 1353)
 size = Vector2i(23, 7)
 biome = "interior"
 hub = Vector2i(11, 3)
@@ -1874,7 +2471,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_cubierta"
 display_name = "Cubierta del S.S. Anne"
 scene_path = "res://scenes/world/zones/ss_anne_cubierta.tscn"
-origin = Vector2i(0, 1142)
+origin = Vector2i(0, 1398)
 size = Vector2i(24, 19)
 biome = "interior"
 hub = Vector2i(12, 9)
@@ -1895,7 +2492,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_cocina"
 display_name = "Cocina del S.S. Anne"
 scene_path = "res://scenes/world/zones/ss_anne_cocina.tscn"
-origin = Vector2i(48, 1142)
+origin = Vector2i(48, 1398)
 size = Vector2i(16, 14)
 biome = "interior"
 hub = Vector2i(9, 7)
@@ -1912,7 +2509,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_capitan"
 display_name = "Camarote del capitán"
 scene_path = "res://scenes/world/zones/ss_anne_capitan.tscn"
-origin = Vector2i(88, 1142)
+origin = Vector2i(88, 1398)
 size = Vector2i(9, 10)
 biome = "interior"
 hub = Vector2i(4, 5)
@@ -1929,7 +2526,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_1p_camarote1"
 display_name = "Camarote del S.S. Anne (planta 1)"
 scene_path = "res://scenes/world/zones/ss_anne_1p_camarote1.tscn"
-origin = Vector2i(121, 1142)
+origin = Vector2i(121, 1398)
 size = Vector2i(6, 8)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -1946,7 +2543,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_1p_camarote2"
 display_name = "Camarote del S.S. Anne (planta 1)"
 scene_path = "res://scenes/world/zones/ss_anne_1p_camarote2.tscn"
-origin = Vector2i(151, 1142)
+origin = Vector2i(151, 1398)
 size = Vector2i(6, 8)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -1963,7 +2560,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_1p_camarote3"
 display_name = "Camarote del S.S. Anne (planta 1)"
 scene_path = "res://scenes/world/zones/ss_anne_1p_camarote3.tscn"
-origin = Vector2i(181, 1142)
+origin = Vector2i(181, 1398)
 size = Vector2i(6, 8)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -1980,7 +2577,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_1p_camarote4"
 display_name = "Camarote del S.S. Anne (planta 1)"
 scene_path = "res://scenes/world/zones/ss_anne_1p_camarote4.tscn"
-origin = Vector2i(211, 1142)
+origin = Vector2i(211, 1398)
 size = Vector2i(6, 8)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -1997,7 +2594,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_1p_camarote5"
 display_name = "Camarote del S.S. Anne (planta 1)"
 scene_path = "res://scenes/world/zones/ss_anne_1p_camarote5.tscn"
-origin = Vector2i(0, 1185)
+origin = Vector2i(0, 1441)
 size = Vector2i(6, 8)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2014,7 +2611,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_1p_camarote6"
 display_name = "Camarote del S.S. Anne (planta 1)"
 scene_path = "res://scenes/world/zones/ss_anne_1p_camarote6.tscn"
-origin = Vector2i(30, 1185)
+origin = Vector2i(30, 1441)
 size = Vector2i(6, 8)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2031,7 +2628,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_1p_camarote7"
 display_name = "Camarote del S.S. Anne (planta 1)"
 scene_path = "res://scenes/world/zones/ss_anne_1p_camarote7.tscn"
-origin = Vector2i(60, 1185)
+origin = Vector2i(60, 1441)
 size = Vector2i(6, 8)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2048,7 +2645,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_2p_camarote1"
 display_name = "Camarote del S.S. Anne (planta 2)"
 scene_path = "res://scenes/world/zones/ss_anne_2p_camarote1.tscn"
-origin = Vector2i(90, 1185)
+origin = Vector2i(90, 1441)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2065,7 +2662,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_2p_camarote2"
 display_name = "Camarote del S.S. Anne (planta 2)"
 scene_path = "res://scenes/world/zones/ss_anne_2p_camarote2.tscn"
-origin = Vector2i(120, 1185)
+origin = Vector2i(120, 1441)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2082,7 +2679,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_2p_camarote3"
 display_name = "Camarote del S.S. Anne (planta 2)"
 scene_path = "res://scenes/world/zones/ss_anne_2p_camarote3.tscn"
-origin = Vector2i(150, 1185)
+origin = Vector2i(150, 1441)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2099,7 +2696,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_2p_camarote4"
 display_name = "Camarote del S.S. Anne (planta 2)"
 scene_path = "res://scenes/world/zones/ss_anne_2p_camarote4.tscn"
-origin = Vector2i(180, 1185)
+origin = Vector2i(180, 1441)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2116,7 +2713,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_2p_camarote5"
 display_name = "Camarote del S.S. Anne (planta 2)"
 scene_path = "res://scenes/world/zones/ss_anne_2p_camarote5.tscn"
-origin = Vector2i(210, 1185)
+origin = Vector2i(210, 1441)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2133,7 +2730,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_2p_camarote6"
 display_name = "Camarote del S.S. Anne (planta 2)"
 scene_path = "res://scenes/world/zones/ss_anne_2p_camarote6.tscn"
-origin = Vector2i(0, 1218)
+origin = Vector2i(0, 1474)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2150,7 +2747,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_s1_camarote1"
 display_name = "Camarote del S.S. Anne (sótano)"
 scene_path = "res://scenes/world/zones/ss_anne_s1_camarote1.tscn"
-origin = Vector2i(30, 1218)
+origin = Vector2i(30, 1474)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2167,7 +2764,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_s1_camarote2"
 display_name = "Camarote del S.S. Anne (sótano)"
 scene_path = "res://scenes/world/zones/ss_anne_s1_camarote2.tscn"
-origin = Vector2i(60, 1218)
+origin = Vector2i(60, 1474)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2184,7 +2781,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_s1_camarote3"
 display_name = "Camarote del S.S. Anne (sótano)"
 scene_path = "res://scenes/world/zones/ss_anne_s1_camarote3.tscn"
-origin = Vector2i(90, 1218)
+origin = Vector2i(90, 1474)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2201,7 +2798,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_s1_camarote4"
 display_name = "Camarote del S.S. Anne (sótano)"
 scene_path = "res://scenes/world/zones/ss_anne_s1_camarote4.tscn"
-origin = Vector2i(120, 1218)
+origin = Vector2i(120, 1474)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2218,7 +2815,7 @@ script = ExtResource("2_3wmne")
 id = "ss_anne_s1_camarote5"
 display_name = "Camarote del S.S. Anne (sótano)"
 scene_path = "res://scenes/world/zones/ss_anne_s1_camarote5.tscn"
-origin = Vector2i(150, 1218)
+origin = Vector2i(150, 1474)
 size = Vector2i(6, 9)
 biome = "interior"
 hub = Vector2i(3, 4)
@@ -2226,6 +2823,3520 @@ warps = {
 Vector2i(4, 7): {
 "cell": Vector2i(18, 2),
 "to": "ss_anne_s1"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_t5a4t"]
+script = ExtResource("2_3wmne")
+id = "zona_safari"
+display_name = "Zona Safari (centro)"
+scene_path = "res://scenes/world/zones/zona_safari.tscn"
+origin = Vector2i(0, 1507)
+size = Vector2i(89, 62)
+biome = "ciudad"
+hub = Vector2i(44, 30)
+warps = {
+Vector2i(8, 31): {
+"cell": Vector2i(40, 46),
+"to": "zona_safari_oeste"
+},
+Vector2i(8, 32): {
+"cell": Vector2i(40, 47),
+"to": "zona_safari_oeste"
+},
+Vector2i(8, 33): {
+"cell": Vector2i(40, 48),
+"to": "zona_safari_oeste"
+},
+Vector2i(47, 5): {
+"cell": Vector2i(30, 64),
+"to": "zona_safari_norte"
+},
+Vector2i(48, 5): {
+"cell": Vector2i(31, 64),
+"to": "zona_safari_norte"
+},
+Vector2i(49, 5): {
+"cell": Vector2i(32, 64),
+"to": "zona_safari_norte"
+},
+Vector2i(53, 43): {
+"cell": Vector2i(4, 9),
+"to": "zona_safari_descanso"
+},
+Vector2i(63, 56): {
+"cell": Vector2i(4, 1),
+"to": "ciudad_fucsia_safari"
+},
+Vector2i(64, 56): {
+"cell": Vector2i(4, 1),
+"to": "ciudad_fucsia_safari"
+},
+Vector2i(65, 56): {
+"cell": Vector2i(4, 1),
+"to": "ciudad_fucsia_safari"
+},
+Vector2i(81, 29): {
+"cell": Vector2i(8, 46),
+"to": "zona_safari_este"
+},
+Vector2i(81, 30): {
+"cell": Vector2i(8, 47),
+"to": "zona_safari_este"
+},
+Vector2i(81, 31): {
+"cell": Vector2i(8, 48),
+"to": "zona_safari_este"
+}
+}
+
+[sub_resource type="Resource" id="Resource_thwyo"]
+script = ExtResource("2_3wmne")
+id = "zona_safari_este"
+display_name = "Zona Safari (este)"
+scene_path = "res://scenes/world/zones/zona_safari_este.tscn"
+origin = Vector2i(113, 1507)
+size = Vector2i(54, 61)
+biome = "ciudad"
+hub = Vector2i(27, 28)
+warps = {
+Vector2i(8, 17): {
+"cell": Vector2i(48, 61),
+"to": "zona_safari_norte"
+},
+Vector2i(8, 18): {
+"cell": Vector2i(48, 62),
+"to": "zona_safari_norte"
+},
+Vector2i(8, 19): {
+"cell": Vector2i(48, 63),
+"to": "zona_safari_norte"
+},
+Vector2i(8, 46): {
+"cell": Vector2i(81, 29),
+"to": "zona_safari"
+},
+Vector2i(8, 47): {
+"cell": Vector2i(81, 30),
+"to": "zona_safari"
+},
+Vector2i(8, 48): {
+"cell": Vector2i(81, 31),
+"to": "zona_safari"
+},
+Vector2i(40, 28): {
+"cell": Vector2i(4, 9),
+"to": "zona_safari_este_descanso"
+}
+}
+
+[sub_resource type="Resource" id="Resource_b3557"]
+script = ExtResource("2_3wmne")
+id = "zona_safari_norte"
+display_name = "Zona Safari (norte)"
+scene_path = "res://scenes/world/zones/zona_safari_norte.tscn"
+origin = Vector2i(0, 1593)
+size = Vector2i(57, 70)
+biome = "ciudad"
+hub = Vector2i(28, 35)
+warps = {
+Vector2i(10, 62): {
+"cell": Vector2i(30, 9),
+"to": "zona_safari_oeste"
+},
+Vector2i(11, 62): {
+"cell": Vector2i(31, 9),
+"to": "zona_safari_oeste"
+},
+Vector2i(12, 62): {
+"cell": Vector2i(32, 9),
+"to": "zona_safari_oeste"
+},
+Vector2i(20, 62): {
+"cell": Vector2i(37, 9),
+"to": "zona_safari_oeste"
+},
+Vector2i(21, 62): {
+"cell": Vector2i(38, 9),
+"to": "zona_safari_oeste"
+},
+Vector2i(22, 62): {
+"cell": Vector2i(39, 9),
+"to": "zona_safari_oeste"
+},
+Vector2i(30, 64): {
+"cell": Vector2i(47, 5),
+"to": "zona_safari"
+},
+Vector2i(31, 64): {
+"cell": Vector2i(48, 5),
+"to": "zona_safari"
+},
+Vector2i(32, 64): {
+"cell": Vector2i(49, 5),
+"to": "zona_safari"
+},
+Vector2i(43, 18): {
+"cell": Vector2i(4, 9),
+"to": "zona_safari_norte_descanso"
+},
+Vector2i(48, 61): {
+"cell": Vector2i(8, 17),
+"to": "zona_safari_este"
+},
+Vector2i(48, 62): {
+"cell": Vector2i(8, 18),
+"to": "zona_safari_este"
+},
+Vector2i(48, 63): {
+"cell": Vector2i(8, 19),
+"to": "zona_safari_este"
+}
+}
+
+[sub_resource type="Resource" id="Resource_2kivv"]
+script = ExtResource("2_3wmne")
+id = "zona_safari_oeste"
+display_name = "Zona Safari (oeste)"
+scene_path = "res://scenes/world/zones/zona_safari_oeste.tscn"
+origin = Vector2i(81, 1593)
+size = Vector2i(48, 62)
+biome = "ciudad"
+hub = Vector2i(24, 31)
+warps = {
+Vector2i(12, 7): {
+"cell": Vector2i(4, 9),
+"to": "zona_safari_casa_secreta"
+},
+Vector2i(19, 32): {
+"cell": Vector2i(4, 9),
+"to": "zona_safari_oeste_descanso"
+},
+Vector2i(30, 9): {
+"cell": Vector2i(10, 62),
+"to": "zona_safari_norte"
+},
+Vector2i(31, 9): {
+"cell": Vector2i(11, 62),
+"to": "zona_safari_norte"
+},
+Vector2i(32, 9): {
+"cell": Vector2i(12, 62),
+"to": "zona_safari_norte"
+},
+Vector2i(37, 9): {
+"cell": Vector2i(20, 62),
+"to": "zona_safari_norte"
+},
+Vector2i(38, 9): {
+"cell": Vector2i(21, 62),
+"to": "zona_safari_norte"
+},
+Vector2i(39, 9): {
+"cell": Vector2i(22, 62),
+"to": "zona_safari_norte"
+},
+Vector2i(40, 46): {
+"cell": Vector2i(8, 31),
+"to": "zona_safari"
+},
+Vector2i(40, 47): {
+"cell": Vector2i(8, 32),
+"to": "zona_safari"
+},
+Vector2i(40, 48): {
+"cell": Vector2i(8, 33),
+"to": "zona_safari"
+}
+}
+
+[sub_resource type="Resource" id="Resource_qxxu7"]
+script = ExtResource("2_3wmne")
+id = "tunel_roca"
+display_name = "Túnel Roca"
+scene_path = "res://scenes/world/zones/tunel_roca.tscn"
+origin = Vector2i(0, 1687)
+size = Vector2i(84, 70)
+biome = "cueva"
+hub = Vector2i(42, 35)
+warps = {
+Vector2i(4, 2): {
+"cell": Vector2i(59, 3),
+"to": "tunel_roca_s1"
+},
+Vector2i(31, 8): {
+"cell": Vector2i(8, 37),
+"to": "ruta10"
+},
+Vector2i(34, 67): {
+"cell": Vector2i(8, 97),
+"to": "ruta10"
+},
+Vector2i(36, 23): {
+"cell": Vector2i(43, 22),
+"to": "tunel_roca_s1"
+},
+Vector2i(81, 2): {
+"cell": Vector2i(72, 58),
+"to": "tunel_roca_s1"
+},
+Vector2i(81, 41): {
+"cell": Vector2i(2, 3),
+"to": "tunel_roca_s1"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_j0o0q"]
+script = ExtResource("2_3wmne")
+id = "tunel_roca_s1"
+display_name = "Túnel Roca (sótano)"
+scene_path = "res://scenes/world/zones/tunel_roca_s1.tscn"
+origin = Vector2i(108, 1687)
+size = Vector2i(84, 70)
+biome = "cueva"
+hub = Vector2i(42, 35)
+warps = {
+Vector2i(2, 3): {
+"cell": Vector2i(81, 41),
+"to": "tunel_roca"
+},
+Vector2i(43, 22): {
+"cell": Vector2i(36, 23),
+"to": "tunel_roca"
+},
+Vector2i(59, 3): {
+"cell": Vector2i(4, 2),
+"to": "tunel_roca"
+},
+Vector2i(72, 58): {
+"cell": Vector2i(81, 2),
+"to": "tunel_roca"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_krtcq"]
+script = ExtResource("2_3wmne")
+id = "cueva_diglett"
+display_name = "Cueva Diglett"
+scene_path = "res://scenes/world/zones/cueva_diglett.tscn"
+origin = Vector2i(0, 1781)
+size = Vector2i(149, 140)
+biome = "cueva"
+hub = Vector2i(74, 70)
+warps = {
+Vector2i(3, 3): {
+"cell": Vector2i(6, 4),
+"to": "cueva_diglett_norte"
+},
+Vector2i(146, 123): {
+"cell": Vector2i(6, 4),
+"to": "cueva_diglett_sur"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_0e5w6"]
+script = ExtResource("2_3wmne")
+id = "central_electrica"
+display_name = "Central Eléctrica"
+scene_path = "res://scenes/world/zones/central_electrica.tscn"
+origin = Vector2i(0, 1945)
+size = Vector2i(85, 70)
+biome = "cueva"
+hub = Vector2i(42, 35)
+warps = {
+Vector2i(0, 13): {
+"cell": Vector2i(7, 70),
+"to": "ruta10"
+},
+Vector2i(1, 11): {
+"cell": Vector2i(2, 67),
+"to": "ruta10"
+},
+Vector2i(10, 69): {
+"cell": Vector2i(7, 70),
+"to": "ruta10"
+},
+Vector2i(11, 68): {
+"cell": Vector2i(7, 70),
+"to": "ruta10"
+},
+Vector2i(12, 69): {
+"cell": Vector2i(7, 70),
+"to": "ruta10"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_p1wxu"]
+script = ExtResource("2_3wmne")
+id = "islas_espuma"
+display_name = "Islas Espuma"
+scene_path = "res://scenes/world/zones/islas_espuma.tscn"
+origin = Vector2i(109, 1945)
+size = Vector2i(66, 42)
+biome = "cueva"
+hub = Vector2i(33, 21)
+warps = {
+Vector2i(6, 39): {
+"cell": Vector2i(106, 8),
+"to": "ruta20"
+},
+Vector2i(20, 12): {
+"cell": Vector2i(22, 6),
+"to": "islas_espuma_s1"
+},
+Vector2i(37, 18): {
+"cell": Vector2i(49, 8),
+"to": "islas_espuma_s1"
+},
+Vector2i(50, 33): {
+"cell": Vector2i(50, 35),
+"to": "islas_espuma_s1"
+},
+Vector2i(52, 18): {
+"cell": Vector2i(57, 8),
+"to": "islas_espuma_s1"
+},
+Vector2i(53, 14): {
+"cell": Vector2i(59, 4),
+"to": "islas_espuma_s1"
+},
+Vector2i(60, 39): {
+"cell": Vector2i(130, 14),
+"to": "ruta20"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_740xv"]
+script = ExtResource("2_3wmne")
+id = "islas_espuma_s1"
+display_name = "Islas Espuma (sótano 1)"
+scene_path = "res://scenes/world/zones/islas_espuma_s1.tscn"
+origin = Vector2i(0, 2039)
+size = Vector2i(66, 39)
+biome = "cueva"
+hub = Vector2i(33, 19)
+warps = {
+Vector2i(17, 3): {
+"cell": Vector2i(17, 4),
+"to": "islas_espuma_s2"
+},
+Vector2i(22, 6): {
+"cell": Vector2i(20, 12),
+"to": "islas_espuma"
+},
+Vector2i(31, 9): {
+"cell": Vector2i(33, 21),
+"to": "islas_espuma_s2"
+},
+Vector2i(47, 35): {
+"cell": Vector2i(47, 31),
+"to": "islas_espuma_s2"
+},
+Vector2i(49, 8): {
+"cell": Vector2i(37, 18),
+"to": "islas_espuma"
+},
+Vector2i(50, 35): {
+"cell": Vector2i(50, 33),
+"to": "islas_espuma"
+},
+Vector2i(51, 8): {
+"cell": Vector2i(38, 19),
+"to": "islas_espuma_s2"
+},
+Vector2i(56, 8): {
+"cell": Vector2i(53, 20),
+"to": "islas_espuma_s2"
+},
+Vector2i(57, 8): {
+"cell": Vector2i(52, 18),
+"to": "islas_espuma"
+},
+Vector2i(58, 26): {
+"cell": Vector2i(56, 26),
+"to": "islas_espuma_s2"
+},
+Vector2i(59, 4): {
+"cell": Vector2i(53, 14),
+"to": "islas_espuma"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_j3y8b"]
+script = ExtResource("2_3wmne")
+id = "islas_espuma_s2"
+display_name = "Islas Espuma (sótano 2)"
+scene_path = "res://scenes/world/zones/islas_espuma_s2.tscn"
+origin = Vector2i(90, 2039)
+size = Vector2i(66, 42)
+biome = "cueva"
+hub = Vector2i(32, 21)
+warps = {
+Vector2i(17, 4): {
+"cell": Vector2i(17, 3),
+"to": "islas_espuma_s1"
+},
+Vector2i(17, 29): {
+"cell": Vector2i(16, 14),
+"to": "islas_espuma_s3"
+},
+Vector2i(33, 21): {
+"cell": Vector2i(31, 9),
+"to": "islas_espuma_s1"
+},
+Vector2i(38, 19): {
+"cell": Vector2i(51, 8),
+"to": "islas_espuma_s1"
+},
+Vector2i(40, 20): {
+"cell": Vector2i(43, 9),
+"to": "islas_espuma_s3"
+},
+Vector2i(47, 31): {
+"cell": Vector2i(47, 35),
+"to": "islas_espuma_s1"
+},
+Vector2i(51, 20): {
+"cell": Vector2i(44, 9),
+"to": "islas_espuma_s3"
+},
+Vector2i(53, 20): {
+"cell": Vector2i(56, 8),
+"to": "islas_espuma_s1"
+},
+Vector2i(55, 29): {
+"cell": Vector2i(57, 16),
+"to": "islas_espuma_s3"
+},
+Vector2i(56, 8): {
+"cell": Vector2i(57, 4),
+"to": "islas_espuma_s3"
+},
+Vector2i(56, 26): {
+"cell": Vector2i(58, 26),
+"to": "islas_espuma_s1"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_1i0b0"]
+script = ExtResource("2_3wmne")
+id = "islas_espuma_s3"
+display_name = "Islas Espuma (sótano 3)"
+scene_path = "res://scenes/world/zones/islas_espuma_s3.tscn"
+origin = Vector2i(0, 2105)
+size = Vector2i(66, 42)
+biome = "cueva"
+hub = Vector2i(33, 21)
+warps = {
+Vector2i(14, 18): {
+"cell": Vector2i(8, 17),
+"to": "islas_espuma_s4"
+},
+Vector2i(16, 14): {
+"cell": Vector2i(17, 29),
+"to": "islas_espuma_s2"
+},
+Vector2i(17, 18): {
+"cell": Vector2i(9, 17),
+"to": "islas_espuma_s4"
+},
+Vector2i(20, 9): {
+"cell": Vector2i(27, 9),
+"to": "islas_espuma_s4"
+},
+Vector2i(43, 9): {
+"cell": Vector2i(38, 19),
+"to": "islas_espuma_s2"
+},
+Vector2i(44, 9): {
+"cell": Vector2i(53, 20),
+"to": "islas_espuma_s2"
+},
+Vector2i(51, 5): {
+"cell": Vector2i(60, 5),
+"to": "islas_espuma_s4"
+},
+Vector2i(57, 4): {
+"cell": Vector2i(56, 8),
+"to": "islas_espuma_s2"
+},
+Vector2i(57, 16): {
+"cell": Vector2i(55, 29),
+"to": "islas_espuma_s2"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_ysydb"]
+script = ExtResource("2_3wmne")
+id = "islas_espuma_s4"
+display_name = "Islas Espuma (sótano 4)"
+scene_path = "res://scenes/world/zones/islas_espuma_s4.tscn"
+origin = Vector2i(90, 2105)
+size = Vector2i(66, 24)
+biome = "cueva"
+hub = Vector2i(33, 11)
+warps = {
+Vector2i(8, 17): {
+"cell": Vector2i(14, 18),
+"to": "islas_espuma_s3"
+},
+Vector2i(9, 17): {
+"cell": Vector2i(17, 18),
+"to": "islas_espuma_s3"
+},
+Vector2i(27, 9): {
+"cell": Vector2i(20, 9),
+"to": "islas_espuma_s3"
+},
+Vector2i(60, 5): {
+"cell": Vector2i(51, 5),
+"to": "islas_espuma_s3"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_cy4sy"]
+script = ExtResource("2_3wmne")
+id = "calle_victoria_1p"
+display_name = "Calle Victoria (planta 1)"
+scene_path = "res://scenes/world/zones/calle_victoria_1p.tscn"
+origin = Vector2i(0, 2171)
+size = Vector2i(84, 38)
+biome = "cueva"
+hub = Vector2i(40, 19)
+warps = {
+Vector2i(9, 2): {
+"cell": Vector2i(1, 25),
+"to": "calle_victoria_2p"
+},
+Vector2i(21, 36): {
+"cell": Vector2i(5, 50),
+"to": "ruta23"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_yk55i"]
+script = ExtResource("2_3wmne")
+id = "calle_victoria_2p"
+display_name = "Calle Victoria (planta 2)"
+scene_path = "res://scenes/world/zones/calle_victoria_2p.tscn"
+origin = Vector2i(108, 2171)
+size = Vector2i(89, 38)
+biome = "cueva"
+hub = Vector2i(44, 19)
+warps = {
+Vector2i(1, 25): {
+"cell": Vector2i(9, 2),
+"to": "calle_victoria_1p"
+},
+Vector2i(3, 3): {
+"cell": Vector2i(5, 2),
+"to": "calle_victoria_3p"
+},
+Vector2i(58, 35): {
+"cell": Vector2i(58, 28),
+"to": "calle_victoria_3p"
+},
+Vector2i(60, 33): {
+"cell": Vector2i(69, 31),
+"to": "calle_victoria_3p"
+},
+Vector2i(62, 17): {
+"cell": Vector2i(58, 19),
+"to": "calle_victoria_3p"
+},
+Vector2i(68, 17): {
+"cell": Vector2i(61, 20),
+"to": "calle_victoria_3p"
+},
+Vector2i(85, 25): {
+"cell": Vector2i(18, 50),
+"to": "ruta23"
+},
+Vector2i(86, 24): {
+"cell": Vector2i(18, 50),
+"to": "ruta23"
+},
+Vector2i(87, 25): {
+"cell": Vector2i(18, 50),
+"to": "ruta23"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_2oc3m"]
+script = ExtResource("2_3wmne")
+id = "calle_victoria_3p"
+display_name = "Calle Victoria (planta 3)"
+scene_path = "res://scenes/world/zones/calle_victoria_3p.tscn"
+origin = Vector2i(0, 2233)
+size = Vector2i(79, 38)
+biome = "cueva"
+hub = Vector2i(39, 19)
+warps = {
+Vector2i(5, 2): {
+"cell": Vector2i(3, 3),
+"to": "calle_victoria_2p"
+},
+Vector2i(58, 19): {
+"cell": Vector2i(62, 17),
+"to": "calle_victoria_2p"
+},
+Vector2i(58, 28): {
+"cell": Vector2i(58, 35),
+"to": "calle_victoria_2p"
+},
+Vector2i(61, 20): {
+"cell": Vector2i(68, 17),
+"to": "calle_victoria_2p"
+},
+Vector2i(69, 31): {
+"cell": Vector2i(60, 33),
+"to": "calle_victoria_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_cnuuv"]
+script = ExtResource("2_3wmne")
+id = "torre_pokemon_1p"
+display_name = "Torre Pokémon (planta 1)"
+scene_path = "res://scenes/world/zones/torre_pokemon_1p.tscn"
+origin = Vector2i(103, 2233)
+size = Vector2i(24, 20)
+biome = "cueva"
+hub = Vector2i(12, 10)
+warps = {
+Vector2i(10, 19): {
+"cell": Vector2i(36, 6),
+"to": "pueblo_lavanda"
+},
+Vector2i(11, 18): {
+"cell": Vector2i(36, 6),
+"to": "pueblo_lavanda"
+},
+Vector2i(12, 19): {
+"cell": Vector2i(36, 6),
+"to": "pueblo_lavanda"
+},
+Vector2i(18, 9): {
+"cell": Vector2i(18, 10),
+"to": "torre_pokemon_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_hwkt2"]
+script = ExtResource("2_3wmne")
+id = "torre_pokemon_2p"
+display_name = "Torre Pokémon (planta 2)"
+scene_path = "res://scenes/world/zones/torre_pokemon_2p.tscn"
+origin = Vector2i(151, 2233)
+size = Vector2i(24, 20)
+biome = "cueva"
+hub = Vector2i(12, 10)
+warps = {
+Vector2i(4, 10): {
+"cell": Vector2i(4, 10),
+"to": "torre_pokemon_3p"
+},
+Vector2i(18, 10): {
+"cell": Vector2i(18, 9),
+"to": "torre_pokemon_1p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_v1ol7"]
+script = ExtResource("2_3wmne")
+id = "torre_pokemon_3p"
+display_name = "Torre Pokémon (planta 3)"
+scene_path = "res://scenes/world/zones/torre_pokemon_3p.tscn"
+origin = Vector2i(0, 2295)
+size = Vector2i(24, 20)
+biome = "cueva"
+hub = Vector2i(13, 10)
+warps = {
+Vector2i(4, 10): {
+"cell": Vector2i(4, 10),
+"to": "torre_pokemon_2p"
+},
+Vector2i(18, 10): {
+"cell": Vector2i(18, 10),
+"to": "torre_pokemon_4p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_nyad3"]
+script = ExtResource("2_3wmne")
+id = "torre_pokemon_4p"
+display_name = "Torre Pokémon (planta 4)"
+scene_path = "res://scenes/world/zones/torre_pokemon_4p.tscn"
+origin = Vector2i(48, 2295)
+size = Vector2i(24, 20)
+biome = "cueva"
+hub = Vector2i(12, 9)
+warps = {
+Vector2i(4, 10): {
+"cell": Vector2i(4, 10),
+"to": "torre_pokemon_5p"
+},
+Vector2i(18, 10): {
+"cell": Vector2i(18, 10),
+"to": "torre_pokemon_3p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_0qgy0"]
+script = ExtResource("2_3wmne")
+id = "torre_pokemon_5p"
+display_name = "Torre Pokémon (planta 5)"
+scene_path = "res://scenes/world/zones/torre_pokemon_5p.tscn"
+origin = Vector2i(96, 2295)
+size = Vector2i(24, 20)
+biome = "cueva"
+hub = Vector2i(12, 10)
+warps = {
+Vector2i(4, 10): {
+"cell": Vector2i(4, 10),
+"to": "torre_pokemon_4p"
+},
+Vector2i(18, 10): {
+"cell": Vector2i(18, 10),
+"to": "torre_pokemon_6p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_1swfg"]
+script = ExtResource("2_3wmne")
+id = "torre_pokemon_6p"
+display_name = "Torre Pokémon (planta 6)"
+scene_path = "res://scenes/world/zones/torre_pokemon_6p.tscn"
+origin = Vector2i(144, 2295)
+size = Vector2i(24, 20)
+biome = "cueva"
+hub = Vector2i(12, 9)
+warps = {
+Vector2i(11, 16): {
+"cell": Vector2i(11, 16),
+"to": "torre_pokemon_7p"
+},
+Vector2i(18, 10): {
+"cell": Vector2i(18, 10),
+"to": "torre_pokemon_5p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_of0eb"]
+script = ExtResource("2_3wmne")
+id = "torre_pokemon_7p"
+display_name = "Torre Pokémon (planta 7)"
+scene_path = "res://scenes/world/zones/torre_pokemon_7p.tscn"
+origin = Vector2i(192, 2295)
+size = Vector2i(24, 20)
+biome = "cueva"
+hub = Vector2i(12, 10)
+warps = {
+Vector2i(11, 16): {
+"cell": Vector2i(11, 16),
+"to": "torre_pokemon_6p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_sojbq"]
+script = ExtResource("2_3wmne")
+id = "mansion_pokemon_1p"
+display_name = "Mansión Pokémon (planta 1)"
+scene_path = "res://scenes/world/zones/mansion_pokemon_1p.tscn"
+origin = Vector2i(0, 2339)
+size = Vector2i(38, 35)
+biome = "cueva"
+hub = Vector2i(19, 16)
+warps = {
+Vector2i(7, 33): {
+"cell": Vector2i(16, 3),
+"to": "isla_canela"
+},
+Vector2i(8, 33): {
+"cell": Vector2i(16, 3),
+"to": "isla_canela"
+},
+Vector2i(9, 33): {
+"cell": Vector2i(16, 3),
+"to": "isla_canela"
+},
+Vector2i(10, 13): {
+"cell": Vector2i(6, 14),
+"to": "mansion_pokemon_2p"
+},
+Vector2i(11, 13): {
+"cell": Vector2i(6, 14),
+"to": "mansion_pokemon_2p"
+},
+Vector2i(19, 22): {
+"cell": Vector2i(18, 18),
+"to": "mansion_pokemon_3p"
+},
+Vector2i(20, 22): {
+"cell": Vector2i(19, 18),
+"to": "mansion_pokemon_3p"
+},
+Vector2i(25, 27): {
+"cell": Vector2i(34, 29),
+"to": "mansion_pokemon_s1"
+},
+Vector2i(34, 33): {
+"cell": Vector2i(16, 3),
+"to": "isla_canela"
+},
+Vector2i(35, 34): {
+"cell": Vector2i(16, 3),
+"to": "isla_canela"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_unjd3"]
+script = ExtResource("2_3wmne")
+id = "mansion_pokemon_2p"
+display_name = "Mansión Pokémon (planta 2)"
+scene_path = "res://scenes/world/zones/mansion_pokemon_2p.tscn"
+origin = Vector2i(62, 2339)
+size = Vector2i(38, 38)
+biome = "cueva"
+hub = Vector2i(19, 18)
+warps = {
+Vector2i(6, 14): {
+"cell": Vector2i(10, 13),
+"to": "mansion_pokemon_1p"
+},
+Vector2i(9, 3): {
+"cell": Vector2i(8, 3),
+"to": "mansion_pokemon_3p"
+},
+Vector2i(9, 14): {
+"cell": Vector2i(11, 11),
+"to": "mansion_pokemon_3p"
+},
+Vector2i(27, 17): {
+"cell": Vector2i(23, 18),
+"to": "mansion_pokemon_3p"
+},
+Vector2i(34, 22): {
+"cell": Vector2i(34, 18),
+"to": "mansion_pokemon_3p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_c0bk6"]
+script = ExtResource("2_3wmne")
+id = "mansion_pokemon_3p"
+display_name = "Mansión Pokémon (planta 3)"
+scene_path = "res://scenes/world/zones/mansion_pokemon_3p.tscn"
+origin = Vector2i(124, 2339)
+size = Vector2i(38, 35)
+biome = "cueva"
+hub = Vector2i(19, 17)
+warps = {
+Vector2i(8, 3): {
+"cell": Vector2i(9, 3),
+"to": "mansion_pokemon_2p"
+},
+Vector2i(11, 11): {
+"cell": Vector2i(9, 14),
+"to": "mansion_pokemon_2p"
+},
+Vector2i(18, 18): {
+"cell": Vector2i(19, 22),
+"to": "mansion_pokemon_1p"
+},
+Vector2i(19, 18): {
+"cell": Vector2i(20, 22),
+"to": "mansion_pokemon_1p"
+},
+Vector2i(20, 18): {
+"cell": Vector2i(20, 22),
+"to": "mansion_pokemon_1p"
+},
+Vector2i(23, 18): {
+"cell": Vector2i(27, 17),
+"to": "mansion_pokemon_2p"
+},
+Vector2i(24, 18): {
+"cell": Vector2i(27, 17),
+"to": "mansion_pokemon_2p"
+},
+Vector2i(34, 18): {
+"cell": Vector2i(34, 22),
+"to": "mansion_pokemon_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_klqka"]
+script = ExtResource("2_3wmne")
+id = "mansion_pokemon_s1"
+display_name = "Mansión Pokémon (sótano)"
+scene_path = "res://scenes/world/zones/mansion_pokemon_s1.tscn"
+origin = Vector2i(0, 2401)
+size = Vector2i(38, 35)
+biome = "cueva"
+hub = Vector2i(19, 17)
+warps = {
+Vector2i(34, 29): {
+"cell": Vector2i(25, 27),
+"to": "mansion_pokemon_1p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_rjhju"]
+script = ExtResource("2_3wmne")
+id = "ruta10_centro"
+display_name = "Centro Pokémon de la Ruta 10"
+scene_path = "res://scenes/world/zones/ruta10_centro.tscn"
+origin = Vector2i(62, 2401)
+size = Vector2i(15, 10)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(6, 8): {
+"cell": Vector2i(13, 38),
+"to": "ruta10"
+},
+Vector2i(7, 8): {
+"cell": Vector2i(13, 38),
+"to": "ruta10"
+},
+Vector2i(8, 8): {
+"cell": Vector2i(13, 38),
+"to": "ruta10"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_sj0xa"]
+script = ExtResource("2_3wmne")
+id = "pueblo_lavanda_centro"
+display_name = "Centro Pokémon de Pueblo Lavanda"
+scene_path = "res://scenes/world/zones/pueblo_lavanda_centro.tscn"
+origin = Vector2i(101, 2401)
+size = Vector2i(15, 10)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(6, 8): {
+"cell": Vector2i(12, 5),
+"to": "pueblo_lavanda"
+},
+Vector2i(7, 8): {
+"cell": Vector2i(12, 5),
+"to": "pueblo_lavanda"
+},
+Vector2i(8, 8): {
+"cell": Vector2i(12, 5),
+"to": "pueblo_lavanda"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_fy4vd"]
+script = ExtResource("2_3wmne")
+id = "pueblo_lavanda_tienda"
+display_name = "Tienda de Pueblo Lavanda"
+scene_path = "res://scenes/world/zones/pueblo_lavanda_tienda.tscn"
+origin = Vector2i(140, 2401)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 4)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(36, 27),
+"to": "pueblo_lavanda"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(36, 27),
+"to": "pueblo_lavanda"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(36, 27),
+"to": "pueblo_lavanda"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_0jm1t"]
+script = ExtResource("2_3wmne")
+id = "casa_voluntarios"
+display_name = "Casa de Voluntarios Pokémon"
+scene_path = "res://scenes/world/zones/casa_voluntarios.tscn"
+origin = Vector2i(175, 2401)
+size = Vector2i(12, 9)
+biome = "interior"
+hub = Vector2i(6, 3)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(18, 23),
+"to": "pueblo_lavanda"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(18, 23),
+"to": "pueblo_lavanda"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(18, 23),
+"to": "pueblo_lavanda"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_xmsf1"]
+script = ExtResource("2_3wmne")
+id = "pueblo_lavanda_casa1"
+display_name = "Casa de Pueblo Lavanda"
+scene_path = "res://scenes/world/zones/pueblo_lavanda_casa1.tscn"
+origin = Vector2i(0, 2460)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(13, 28),
+"to": "pueblo_lavanda"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(13, 28),
+"to": "pueblo_lavanda"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(13, 28),
+"to": "pueblo_lavanda"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_v13ay"]
+script = ExtResource("2_3wmne")
+id = "pueblo_lavanda_casa2"
+display_name = "Casa de Pueblo Lavanda"
+scene_path = "res://scenes/world/zones/pueblo_lavanda_casa2.tscn"
+origin = Vector2i(35, 2460)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(18, 28),
+"to": "pueblo_lavanda"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(18, 28),
+"to": "pueblo_lavanda"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(18, 28),
+"to": "pueblo_lavanda"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_bfwo6"]
+script = ExtResource("2_3wmne")
+id = "ruta8_garita"
+display_name = "Garita de la Ruta 8"
+scene_path = "res://scenes/world/zones/ruta8_garita.tscn"
+origin = Vector2i(70, 2460)
+size = Vector2i(13, 9)
+biome = "interior"
+hub = Vector2i(6, 4)
+warps = {
+Vector2i(1, 4): {
+"cell": Vector2i(108, 43),
+"to": "ciudad_azafran"
+},
+Vector2i(1, 5): {
+"cell": Vector2i(108, 43),
+"to": "ciudad_azafran"
+},
+Vector2i(11, 5): {
+"cell": Vector2i(7, 18),
+"to": "ruta8"
+},
+Vector2i(11, 6): {
+"cell": Vector2i(7, 18),
+"to": "ruta8"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_bq8xg"]
+script = ExtResource("2_3wmne")
+id = "ruta7_garita"
+display_name = "Garita de la Ruta 7"
+scene_path = "res://scenes/world/zones/ruta7_garita.tscn"
+origin = Vector2i(107, 2460)
+size = Vector2i(13, 9)
+biome = "interior"
+hub = Vector2i(6, 4)
+warps = {
+Vector2i(1, 5): {
+"cell": Vector2i(33, 18),
+"to": "ruta7"
+},
+Vector2i(1, 6): {
+"cell": Vector2i(33, 18),
+"to": "ruta7"
+},
+Vector2i(11, 5): {
+"cell": Vector2i(8, 43),
+"to": "ciudad_azafran"
+},
+Vector2i(11, 6): {
+"cell": Vector2i(8, 43),
+"to": "ciudad_azafran"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_8mxh0"]
+script = ExtResource("2_3wmne")
+id = "via_subterranea_este"
+display_name = "Vía Subterránea (entrada este)"
+scene_path = "res://scenes/world/zones/via_subterranea_este.tscn"
+origin = Vector2i(144, 2460)
+size = Vector2i(13, 10)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(5, 8): {
+"cell": Vector2i(19, 4),
+"to": "ruta8"
+},
+Vector2i(6, 8): {
+"cell": Vector2i(19, 4),
+"to": "ruta8"
+},
+Vector2i(7, 4): {
+"cell": Vector2i(76, 3),
+"to": "via_subterranea_eo"
+},
+Vector2i(7, 8): {
+"cell": Vector2i(19, 4),
+"to": "ruta8"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_w4a8c"]
+script = ExtResource("2_3wmne")
+id = "via_subterranea_eo"
+display_name = "Vía Subterránea (este–oeste)"
+scene_path = "res://scenes/world/zones/via_subterranea_eo.tscn"
+origin = Vector2i(0, 2494)
+size = Vector2i(80, 7)
+biome = "interior"
+hub = Vector2i(40, 3)
+warps = {
+Vector2i(3, 4): {
+"cell": Vector2i(7, 4),
+"to": "via_subterranea_oeste"
+},
+Vector2i(76, 3): {
+"cell": Vector2i(7, 4),
+"to": "via_subterranea_este"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_ejep7"]
+script = ExtResource("2_3wmne")
+id = "via_subterranea_oeste"
+display_name = "Vía Subterránea (entrada oeste)"
+scene_path = "res://scenes/world/zones/via_subterranea_oeste.tscn"
+origin = Vector2i(104, 2494)
+size = Vector2i(13, 10)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(5, 8): {
+"cell": Vector2i(15, 26),
+"to": "ruta7"
+},
+Vector2i(6, 8): {
+"cell": Vector2i(15, 26),
+"to": "ruta7"
+},
+Vector2i(7, 4): {
+"cell": Vector2i(3, 4),
+"to": "via_subterranea_eo"
+},
+Vector2i(7, 8): {
+"cell": Vector2i(15, 26),
+"to": "ruta7"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_i6idk"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_centro"
+display_name = "Centro Pokémon de Ciudad Azulona"
+scene_path = "res://scenes/world/zones/ciudad_azulona_centro.tscn"
+origin = Vector2i(141, 2494)
+size = Vector2i(15, 10)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(6, 8): {
+"cell": Vector2i(68, 23),
+"to": "ciudad_azulona"
+},
+Vector2i(7, 8): {
+"cell": Vector2i(68, 23),
+"to": "ciudad_azulona"
+},
+Vector2i(8, 8): {
+"cell": Vector2i(68, 23),
+"to": "ciudad_azulona"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_yupq0"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_gimnasio"
+display_name = "Gimnasio de Ciudad Azulona"
+scene_path = "res://scenes/world/zones/ciudad_azulona_gimnasio.tscn"
+origin = Vector2i(180, 2494)
+size = Vector2i(13, 20)
+biome = "interior"
+hub = Vector2i(6, 10)
+warps = {
+Vector2i(5, 18): {
+"cell": Vector2i(31, 60),
+"to": "ciudad_azulona"
+},
+Vector2i(6, 18): {
+"cell": Vector2i(31, 60),
+"to": "ciudad_azulona"
+},
+Vector2i(7, 18): {
+"cell": Vector2i(31, 60),
+"to": "ciudad_azulona"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_dvk4n"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_casino"
+display_name = "Casino de Azulona"
+scene_path = "res://scenes/world/zones/ciudad_azulona_casino.tscn"
+origin = Vector2i(0, 2538)
+size = Vector2i(18, 15)
+biome = "interior"
+hub = Vector2i(9, 7)
+warps = {
+Vector2i(9, 13): {
+"cell": Vector2i(54, 33),
+"to": "ciudad_azulona"
+},
+Vector2i(10, 13): {
+"cell": Vector2i(54, 33),
+"to": "ciudad_azulona"
+},
+Vector2i(11, 13): {
+"cell": Vector2i(54, 33),
+"to": "ciudad_azulona"
+},
+Vector2i(15, 2): {
+"cell": Vector2i(12, 2),
+"to": "escondite_rocket_s1"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_k23xc"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_premios"
+display_name = "Sala de premios del Casino"
+scene_path = "res://scenes/world/zones/ciudad_azulona_premios.tscn"
+origin = Vector2i(42, 2538)
+size = Vector2i(9, 10)
+biome = "interior"
+hub = Vector2i(4, 5)
+warps = {
+Vector2i(3, 9): {
+"cell": Vector2i(59, 32),
+"to": "ciudad_azulona"
+},
+Vector2i(4, 8): {
+"cell": Vector2i(59, 32),
+"to": "ciudad_azulona"
+},
+Vector2i(5, 9): {
+"cell": Vector2i(59, 32),
+"to": "ciudad_azulona"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_o3we4"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_hotel"
+display_name = "Hotel de Azulona"
+scene_path = "res://scenes/world/zones/ciudad_azulona_hotel.tscn"
+origin = Vector2i(75, 2538)
+size = Vector2i(17, 11)
+biome = "interior"
+hub = Vector2i(8, 4)
+warps = {
+Vector2i(3, 10): {
+"cell": Vector2i(69, 59),
+"to": "ciudad_azulona"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(69, 59),
+"to": "ciudad_azulona"
+},
+Vector2i(5, 10): {
+"cell": Vector2i(69, 59),
+"to": "ciudad_azulona"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_aqw71"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_restaurante"
+display_name = "Restaurante de Azulona"
+scene_path = "res://scenes/world/zones/ciudad_azulona_restaurante.tscn"
+origin = Vector2i(116, 2538)
+size = Vector2i(15, 11)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(5, 9): {
+"cell": Vector2i(57, 59),
+"to": "ciudad_azulona"
+},
+Vector2i(6, 9): {
+"cell": Vector2i(57, 59),
+"to": "ciudad_azulona"
+},
+Vector2i(7, 9): {
+"cell": Vector2i(57, 59),
+"to": "ciudad_azulona"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_ab2ar"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_casa1"
+display_name = "Casa de Ciudad Azulona"
+scene_path = "res://scenes/world/zones/ciudad_azulona_casa1.tscn"
+origin = Vector2i(155, 2538)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(61, 59),
+"to": "ciudad_azulona"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(61, 59),
+"to": "ciudad_azulona"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(61, 59),
+"to": "ciudad_azulona"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_tvppf"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_almacen_azotea"
+display_name = "Gran Almacén de Azulona (azotea)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_almacen_azotea.tscn"
+origin = Vector2i(190, 2538)
+size = Vector2i(19, 14)
+biome = "interior"
+hub = Vector2i(9, 7)
+warps = {
+Vector2i(15, 6): {
+"cell": Vector2i(3, 2),
+"to": "ciudad_azulona_almacen_5p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_sr2si"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_mansion_azotea"
+display_name = "Mansión Azulona (azotea)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_mansion_azotea.tscn"
+origin = Vector2i(0, 2577)
+size = Vector2i(14, 23)
+biome = "interior"
+hub = Vector2i(6, 11)
+warps = {
+Vector2i(2, 12): {
+"cell": Vector2i(4, 7),
+"to": "ciudad_azulona_mansion_cuarto"
+},
+Vector2i(4, 2): {
+"cell": Vector2i(4, 2),
+"to": "ciudad_azulona_mansion_3p"
+},
+Vector2i(10, 2): {
+"cell": Vector2i(12, 2),
+"to": "ciudad_azulona_mansion_3p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_4x75e"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_mansion_cuarto"
+display_name = "Mansión Azulona (cuarto de la azotea)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_mansion_cuarto.tscn"
+origin = Vector2i(38, 2577)
+size = Vector2i(10, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(3, 8): {
+"cell": Vector2i(2, 12),
+"to": "ciudad_azulona_mansion_azotea"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(2, 12),
+"to": "ciudad_azulona_mansion_azotea"
+},
+Vector2i(5, 8): {
+"cell": Vector2i(2, 12),
+"to": "ciudad_azulona_mansion_azotea"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_6dnrn"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azafran_centro"
+display_name = "Centro Pokémon de Ciudad Azafrán"
+scene_path = "res://scenes/world/zones/ciudad_azafran_centro.tscn"
+origin = Vector2i(72, 2577)
+size = Vector2i(15, 10)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(6, 8): {
+"cell": Vector2i(48, 66),
+"to": "ciudad_azafran"
+},
+Vector2i(7, 8): {
+"cell": Vector2i(48, 66),
+"to": "ciudad_azafran"
+},
+Vector2i(8, 8): {
+"cell": Vector2i(48, 66),
+"to": "ciudad_azafran"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_ospv5"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azafran_tienda"
+display_name = "Tienda de Ciudad Azafrán"
+scene_path = "res://scenes/world/zones/ciudad_azafran_tienda.tscn"
+origin = Vector2i(111, 2577)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 4)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(64, 37),
+"to": "ciudad_azafran"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(64, 37),
+"to": "ciudad_azafran"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(64, 37),
+"to": "ciudad_azafran"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_fc6bj"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azafran_gimnasio"
+display_name = "Gimnasio de Ciudad Azafrán"
+scene_path = "res://scenes/world/zones/ciudad_azafran_gimnasio.tscn"
+origin = Vector2i(146, 2577)
+size = Vector2i(29, 25)
+biome = "interior"
+hub = Vector2i(14, 12)
+warps = {
+Vector2i(0, 4): {
+"cell": Vector2i(20, 7),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(0, 7): {
+"cell": Vector2i(18, 15),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(0, 12): {
+"cell": Vector2i(28, 15),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(0, 15): {
+"cell": Vector2i(8, 7),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(0, 20): {
+"cell": Vector2i(28, 7),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(0, 23): {
+"cell": Vector2i(16, 7),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(8, 4): {
+"cell": Vector2i(16, 4),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(8, 7): {
+"cell": Vector2i(0, 15),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(8, 12): {
+"cell": Vector2i(12, 7),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(8, 15): {
+"cell": Vector2i(8, 23),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(8, 20): {
+"cell": Vector2i(20, 23),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(8, 23): {
+"cell": Vector2i(8, 15),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(12, 4): {
+"cell": Vector2i(20, 15),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(12, 7): {
+"cell": Vector2i(8, 12),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(13, 23): {
+"cell": Vector2i(70, 12),
+"to": "ciudad_azafran"
+},
+Vector2i(14, 23): {
+"cell": Vector2i(70, 12),
+"to": "ciudad_azafran"
+},
+Vector2i(15, 23): {
+"cell": Vector2i(70, 12),
+"to": "ciudad_azafran"
+},
+Vector2i(16, 4): {
+"cell": Vector2i(8, 4),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(16, 7): {
+"cell": Vector2i(0, 23),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(18, 15): {
+"cell": Vector2i(0, 7),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(18, 20): {
+"cell": Vector2i(28, 23),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(20, 4): {
+"cell": Vector2i(20, 12),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(20, 7): {
+"cell": Vector2i(0, 4),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(20, 12): {
+"cell": Vector2i(20, 4),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(20, 15): {
+"cell": Vector2i(12, 4),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(20, 20): {
+"cell": Vector2i(28, 4),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(20, 23): {
+"cell": Vector2i(8, 20),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(28, 4): {
+"cell": Vector2i(20, 20),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(28, 7): {
+"cell": Vector2i(0, 20),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(28, 12): {
+"cell": Vector2i(28, 20),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(28, 15): {
+"cell": Vector2i(0, 12),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(28, 20): {
+"cell": Vector2i(28, 12),
+"to": "ciudad_azafran_gimnasio"
+},
+Vector2i(28, 23): {
+"cell": Vector2i(18, 20),
+"to": "ciudad_azafran_gimnasio"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_llei0"]
+script = ExtResource("2_3wmne")
+id = "dojo_karate"
+display_name = "Dojo Karate"
+scene_path = "res://scenes/world/zones/dojo_karate.tscn"
+origin = Vector2i(199, 2577)
+size = Vector2i(13, 16)
+biome = "interior"
+hub = Vector2i(6, 8)
+warps = {
+Vector2i(5, 14): {
+"cell": Vector2i(64, 12),
+"to": "ciudad_azafran"
+},
+Vector2i(6, 14): {
+"cell": Vector2i(64, 12),
+"to": "ciudad_azafran"
+},
+Vector2i(7, 14): {
+"cell": Vector2i(64, 12),
+"to": "ciudad_azafran"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_dw2g3"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azafran_casa"
+display_name = "Casa de Ciudad Azafrán"
+scene_path = "res://scenes/world/zones/ciudad_azafran_casa.tscn"
+origin = Vector2i(0, 2626)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(51, 37),
+"to": "ciudad_azafran"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(51, 37),
+"to": "ciudad_azafran"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(51, 37),
+"to": "ciudad_azafran"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_g1i0g"]
+script = ExtResource("2_3wmne")
+id = "casa_imitadora"
+display_name = "Casa de la Imitadora"
+scene_path = "res://scenes/world/zones/casa_imitadora.tscn"
+origin = Vector2i(35, 2626)
+size = Vector2i(13, 10)
+biome = "interior"
+hub = Vector2i(5, 5)
+warps = {
+Vector2i(3, 8): {
+"cell": Vector2i(46, 30),
+"to": "ciudad_azafran"
+},
+Vector2i(4, 8): {
+"cell": Vector2i(46, 30),
+"to": "ciudad_azafran"
+},
+Vector2i(5, 8): {
+"cell": Vector2i(46, 30),
+"to": "ciudad_azafran"
+},
+Vector2i(10, 2): {
+"cell": Vector2i(10, 2),
+"to": "casa_imitadora_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_etot7"]
+script = ExtResource("2_3wmne")
+id = "casa_imitadora_2p"
+display_name = "Casa de la Imitadora (planta alta)"
+scene_path = "res://scenes/world/zones/casa_imitadora_2p.tscn"
+origin = Vector2i(72, 2626)
+size = Vector2i(12, 9)
+biome = "interior"
+hub = Vector2i(6, 4)
+warps = {
+Vector2i(10, 2): {
+"cell": Vector2i(10, 2),
+"to": "casa_imitadora"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_fac7y"]
+script = ExtResource("2_3wmne")
+id = "casa_sr_psiquico"
+display_name = "Casa del Sr. Psíquico"
+scene_path = "res://scenes/world/zones/casa_sr_psiquico.tscn"
+origin = Vector2i(108, 2626)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(67, 66),
+"to": "ciudad_azafran"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(67, 66),
+"to": "ciudad_azafran"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(67, 66),
+"to": "ciudad_azafran"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_6jjyt"]
+script = ExtResource("2_3wmne")
+id = "club_entrenadores"
+display_name = "Club de Fans de Entrenadores"
+scene_path = "res://scenes/world/zones/club_entrenadores.tscn"
+origin = Vector2i(143, 2626)
+size = Vector2i(11, 17)
+biome = "interior"
+hub = Vector2i(5, 8)
+warps = {
+Vector2i(5, 15): {
+"cell": Vector2i(71, 37),
+"to": "ciudad_azafran"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_moqei"]
+script = ExtResource("2_3wmne")
+id = "ruta11_garita"
+display_name = "Garita de la Ruta 11"
+scene_path = "res://scenes/world/zones/ruta11_garita.tscn"
+origin = Vector2i(178, 2626)
+size = Vector2i(13, 12)
+biome = "interior"
+hub = Vector2i(6, 6)
+warps = {
+Vector2i(1, 6): {
+"cell": Vector2i(110, 18),
+"to": "ruta11"
+},
+Vector2i(1, 7): {
+"cell": Vector2i(110, 18),
+"to": "ruta11"
+},
+Vector2i(9, 10): {
+"cell": Vector2i(10, 9),
+"to": "ruta11_garita_2p"
+},
+Vector2i(11, 6): {
+"cell": Vector2i(117, 18),
+"to": "ruta11"
+},
+Vector2i(11, 7): {
+"cell": Vector2i(117, 18),
+"to": "ruta11"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_d5rjt"]
+script = ExtResource("2_3wmne")
+id = "ruta11_garita_2p"
+display_name = "Garita de la Ruta 11 (planta alta)"
+scene_path = "res://scenes/world/zones/ruta11_garita_2p.tscn"
+origin = Vector2i(0, 2667)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(10, 9): {
+"cell": Vector2i(9, 10),
+"to": "ruta11_garita"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_o6r4u"]
+script = ExtResource("2_3wmne")
+id = "cueva_diglett_norte"
+display_name = "Cueva Diglett (entrada norte)"
+scene_path = "res://scenes/world/zones/cueva_diglett_norte.tscn"
+origin = Vector2i(37, 2667)
+size = Vector2i(10, 8)
+biome = "interior"
+hub = Vector2i(5, 4)
+warps = {
+Vector2i(4, 6): {
+"cell": Vector2i(65, 23),
+"to": "ruta2"
+},
+Vector2i(6, 4): {
+"cell": Vector2i(3, 3),
+"to": "cueva_diglett"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_c4pcv"]
+script = ExtResource("2_3wmne")
+id = "cueva_diglett_sur"
+display_name = "Cueva Diglett (entrada sur)"
+scene_path = "res://scenes/world/zones/cueva_diglett_sur.tscn"
+origin = Vector2i(71, 2667)
+size = Vector2i(10, 8)
+biome = "interior"
+hub = Vector2i(5, 4)
+warps = {
+Vector2i(4, 6): {
+"cell": Vector2i(14, 13),
+"to": "ruta11"
+},
+Vector2i(6, 4): {
+"cell": Vector2i(146, 123),
+"to": "cueva_diglett"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_wkukh"]
+script = ExtResource("2_3wmne")
+id = "ruta12_garita"
+display_name = "Garita de la Ruta 12"
+scene_path = "res://scenes/world/zones/ruta12_garita.tscn"
+origin = Vector2i(105, 2667)
+size = Vector2i(11, 13)
+biome = "interior"
+hub = Vector2i(5, 6)
+warps = {
+Vector2i(5, 1): {
+"cell": Vector2i(32, 39),
+"to": "ruta12"
+},
+Vector2i(5, 11): {
+"cell": Vector2i(32, 45),
+"to": "ruta12"
+},
+Vector2i(6, 1): {
+"cell": Vector2i(33, 39),
+"to": "ruta12"
+},
+Vector2i(6, 11): {
+"cell": Vector2i(32, 45),
+"to": "ruta12"
+},
+Vector2i(8, 10): {
+"cell": Vector2i(10, 9),
+"to": "ruta12_garita_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_u2ndb"]
+script = ExtResource("2_3wmne")
+id = "ruta12_garita_2p"
+display_name = "Garita de la Ruta 12 (planta alta)"
+scene_path = "res://scenes/world/zones/ruta12_garita_2p.tscn"
+origin = Vector2i(140, 2667)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(10, 9): {
+"cell": Vector2i(8, 10),
+"to": "ruta12_garita"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_rwsr2"]
+script = ExtResource("2_3wmne")
+id = "casa_pescador"
+display_name = "Casa del Pescador"
+scene_path = "res://scenes/world/zones/casa_pescador.tscn"
+origin = Vector2i(177, 2667)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(2, 8): {
+"cell": Vector2i(30, 138),
+"to": "ruta12"
+},
+Vector2i(3, 7): {
+"cell": Vector2i(30, 138),
+"to": "ruta12"
+},
+Vector2i(4, 8): {
+"cell": Vector2i(30, 138),
+"to": "ruta12"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_npc0l"]
+script = ExtResource("2_3wmne")
+id = "ruta15_garita"
+display_name = "Garita de la Ruta 15"
+scene_path = "res://scenes/world/zones/ruta15_garita.tscn"
+origin = Vector2i(0, 2704)
+size = Vector2i(13, 12)
+biome = "interior"
+hub = Vector2i(6, 6)
+warps = {
+Vector2i(1, 6): {
+"cell": Vector2i(23, 21),
+"to": "ruta15"
+},
+Vector2i(1, 7): {
+"cell": Vector2i(23, 21),
+"to": "ruta15"
+},
+Vector2i(9, 10): {
+"cell": Vector2i(10, 9),
+"to": "ruta15_garita_2p"
+},
+Vector2i(11, 6): {
+"cell": Vector2i(30, 21),
+"to": "ruta15"
+},
+Vector2i(11, 7): {
+"cell": Vector2i(30, 21),
+"to": "ruta15"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_36ch4"]
+script = ExtResource("2_3wmne")
+id = "ruta15_garita_2p"
+display_name = "Garita de la Ruta 15 (planta alta)"
+scene_path = "res://scenes/world/zones/ruta15_garita_2p.tscn"
+origin = Vector2i(37, 2704)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(10, 9): {
+"cell": Vector2i(9, 10),
+"to": "ruta15_garita"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_8e678"]
+script = ExtResource("2_3wmne")
+id = "ruta16_garita"
+display_name = "Garita de la Ruta 16"
+scene_path = "res://scenes/world/zones/ruta16_garita.tscn"
+origin = Vector2i(74, 2704)
+size = Vector2i(13, 18)
+biome = "interior"
+hub = Vector2i(6, 8)
+warps = {
+Vector2i(1, 3): {
+"cell": Vector2i(38, 6),
+"to": "ruta16"
+},
+Vector2i(1, 12): {
+"cell": Vector2i(38, 13),
+"to": "ruta16"
+},
+Vector2i(9, 16): {
+"cell": Vector2i(10, 9),
+"to": "ruta16_garita_2p"
+},
+Vector2i(11, 3): {
+"cell": Vector2i(45, 6),
+"to": "ruta16"
+},
+Vector2i(11, 12): {
+"cell": Vector2i(45, 13),
+"to": "ruta16"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_0piba"]
+script = ExtResource("2_3wmne")
+id = "ruta16_garita_2p"
+display_name = "Garita de la Ruta 16 (planta alta)"
+scene_path = "res://scenes/world/zones/ruta16_garita_2p.tscn"
+origin = Vector2i(111, 2704)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(10, 9): {
+"cell": Vector2i(9, 16),
+"to": "ruta16_garita"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_m4mav"]
+script = ExtResource("2_3wmne")
+id = "ruta16_casa"
+display_name = "Casa de la Ruta 16"
+scene_path = "res://scenes/world/zones/ruta16_casa.tscn"
+origin = Vector2i(148, 2704)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(20, 5),
+"to": "ruta16"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(20, 5),
+"to": "ruta16"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(20, 5),
+"to": "ruta16"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_41ebq"]
+script = ExtResource("2_3wmne")
+id = "ruta18_garita"
+display_name = "Garita de la Ruta 18"
+scene_path = "res://scenes/world/zones/ruta18_garita.tscn"
+origin = Vector2i(183, 2704)
+size = Vector2i(13, 12)
+biome = "interior"
+hub = Vector2i(6, 6)
+warps = {
+Vector2i(1, 6): {
+"cell": Vector2i(75, 15),
+"to": "ruta18"
+},
+Vector2i(9, 10): {
+"cell": Vector2i(10, 9),
+"to": "ruta18_garita_2p"
+},
+Vector2i(11, 6): {
+"cell": Vector2i(82, 15),
+"to": "ruta18"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_4ro8n"]
+script = ExtResource("2_3wmne")
+id = "ruta18_garita_2p"
+display_name = "Garita de la Ruta 18 (planta alta)"
+scene_path = "res://scenes/world/zones/ruta18_garita_2p.tscn"
+origin = Vector2i(0, 2746)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(10, 9): {
+"cell": Vector2i(9, 10),
+"to": "ruta18_garita"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_kgx4i"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia_centro"
+display_name = "Centro Pokémon de Ciudad Fucsia"
+scene_path = "res://scenes/world/zones/ciudad_fucsia_centro.tscn"
+origin = Vector2i(37, 2746)
+size = Vector2i(15, 10)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(6, 8): {
+"cell": Vector2i(25, 31),
+"to": "ciudad_fucsia"
+},
+Vector2i(7, 8): {
+"cell": Vector2i(25, 31),
+"to": "ciudad_fucsia"
+},
+Vector2i(8, 8): {
+"cell": Vector2i(25, 31),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_07kfm"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia_tienda"
+display_name = "Tienda de Ciudad Fucsia"
+scene_path = "res://scenes/world/zones/ciudad_fucsia_tienda.tscn"
+origin = Vector2i(76, 2746)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 4)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(11, 15),
+"to": "ciudad_fucsia"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(11, 15),
+"to": "ciudad_fucsia"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(11, 15),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_r248h"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia_gimnasio"
+display_name = "Gimnasio de Ciudad Fucsia"
+scene_path = "res://scenes/world/zones/ciudad_fucsia_gimnasio.tscn"
+origin = Vector2i(111, 2746)
+size = Vector2i(15, 23)
+biome = "interior"
+hub = Vector2i(7, 10)
+warps = {
+Vector2i(6, 21): {
+"cell": Vector2i(9, 32),
+"to": "ciudad_fucsia"
+},
+Vector2i(7, 21): {
+"cell": Vector2i(9, 32),
+"to": "ciudad_fucsia"
+},
+Vector2i(8, 21): {
+"cell": Vector2i(9, 32),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_m1mtr"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia_safari"
+display_name = "Entrada de la Zona Safari"
+scene_path = "res://scenes/world/zones/ciudad_fucsia_safari.tscn"
+origin = Vector2i(150, 2746)
+size = Vector2i(9, 9)
+biome = "interior"
+hub = Vector2i(4, 4)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(24, 5),
+"to": "ciudad_fucsia"
+},
+Vector2i(4, 1): {
+"cell": Vector2i(64, 56),
+"to": "zona_safari"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(24, 5),
+"to": "ciudad_fucsia"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(24, 5),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_lam7s"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia_safari_oficina"
+display_name = "Oficina de la Zona Safari"
+scene_path = "res://scenes/world/zones/ciudad_fucsia_safari_oficina.tscn"
+origin = Vector2i(183, 2746)
+size = Vector2i(20, 11)
+biome = "interior"
+hub = Vector2i(10, 5)
+warps = {
+Vector2i(5, 9): {
+"cell": Vector2i(28, 16),
+"to": "ciudad_fucsia"
+},
+Vector2i(6, 9): {
+"cell": Vector2i(28, 16),
+"to": "ciudad_fucsia"
+},
+Vector2i(7, 9): {
+"cell": Vector2i(28, 16),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_p60bt"]
+script = ExtResource("2_3wmne")
+id = "casa_guarda"
+display_name = "Casa del Guarda"
+scene_path = "res://scenes/world/zones/casa_guarda.tscn"
+origin = Vector2i(0, 2793)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(5, 10): {
+"cell": Vector2i(61, 31),
+"to": "ciudad_fucsia"
+},
+Vector2i(6, 9): {
+"cell": Vector2i(61, 31),
+"to": "ciudad_fucsia"
+},
+Vector2i(7, 10): {
+"cell": Vector2i(61, 31),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_h4d3b"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia_casa1"
+display_name = "Casa de Ciudad Fucsia"
+scene_path = "res://scenes/world/zones/ciudad_fucsia_casa1.tscn"
+origin = Vector2i(37, 2793)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(14, 31),
+"to": "ciudad_fucsia"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(14, 31),
+"to": "ciudad_fucsia"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(14, 31),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_lx1bh"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia_casa2"
+display_name = "Casa de Ciudad Fucsia"
+scene_path = "res://scenes/world/zones/ciudad_fucsia_casa2.tscn"
+origin = Vector2i(72, 2793)
+size = Vector2i(10, 10)
+biome = "interior"
+hub = Vector2i(5, 5)
+warps = {
+Vector2i(2, 9): {
+"cell": Vector2i(66, 31),
+"to": "ciudad_fucsia"
+},
+Vector2i(3, 1): {
+"cell": Vector2i(67, 28),
+"to": "ciudad_fucsia"
+},
+Vector2i(3, 8): {
+"cell": Vector2i(66, 31),
+"to": "ciudad_fucsia"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(66, 31),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_gbe3x"]
+script = ExtResource("2_3wmne")
+id = "ciudad_fucsia_casa3"
+display_name = "Casa de Ciudad Fucsia"
+scene_path = "res://scenes/world/zones/ciudad_fucsia_casa3.tscn"
+origin = Vector2i(106, 2793)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 3)
+warps = {
+Vector2i(4, 7): {
+"cell": Vector2i(19, 31),
+"to": "ciudad_fucsia"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_xgwsk"]
+script = ExtResource("2_3wmne")
+id = "zona_safari_descanso"
+display_name = "Zona Safari (casa de descanso)"
+scene_path = "res://scenes/world/zones/zona_safari_descanso.tscn"
+origin = Vector2i(141, 2793)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(3, 9): {
+"cell": Vector2i(53, 43),
+"to": "zona_safari"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(53, 43),
+"to": "zona_safari"
+},
+Vector2i(5, 9): {
+"cell": Vector2i(53, 43),
+"to": "zona_safari"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_yiptp"]
+script = ExtResource("2_3wmne")
+id = "zona_safari_este_descanso"
+display_name = "Zona Safari (casa de descanso del este)"
+scene_path = "res://scenes/world/zones/zona_safari_este_descanso.tscn"
+origin = Vector2i(178, 2793)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(3, 9): {
+"cell": Vector2i(40, 28),
+"to": "zona_safari_este"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(40, 28),
+"to": "zona_safari_este"
+},
+Vector2i(5, 9): {
+"cell": Vector2i(40, 28),
+"to": "zona_safari_este"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_dt4b2"]
+script = ExtResource("2_3wmne")
+id = "zona_safari_norte_descanso"
+display_name = "Zona Safari (casa de descanso del norte)"
+scene_path = "res://scenes/world/zones/zona_safari_norte_descanso.tscn"
+origin = Vector2i(0, 2828)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(3, 9): {
+"cell": Vector2i(43, 18),
+"to": "zona_safari_norte"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(43, 18),
+"to": "zona_safari_norte"
+},
+Vector2i(5, 9): {
+"cell": Vector2i(43, 18),
+"to": "zona_safari_norte"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_2hj7y"]
+script = ExtResource("2_3wmne")
+id = "zona_safari_oeste_descanso"
+display_name = "Zona Safari (casa de descanso del oeste)"
+scene_path = "res://scenes/world/zones/zona_safari_oeste_descanso.tscn"
+origin = Vector2i(37, 2828)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(3, 9): {
+"cell": Vector2i(19, 32),
+"to": "zona_safari_oeste"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(19, 32),
+"to": "zona_safari_oeste"
+},
+Vector2i(5, 9): {
+"cell": Vector2i(19, 32),
+"to": "zona_safari_oeste"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_2tvgl"]
+script = ExtResource("2_3wmne")
+id = "zona_safari_casa_secreta"
+display_name = "Zona Safari (casa secreta)"
+scene_path = "res://scenes/world/zones/zona_safari_casa_secreta.tscn"
+origin = Vector2i(74, 2828)
+size = Vector2i(13, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(3, 9): {
+"cell": Vector2i(12, 7),
+"to": "zona_safari_oeste"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(12, 7),
+"to": "zona_safari_oeste"
+},
+Vector2i(5, 9): {
+"cell": Vector2i(12, 7),
+"to": "zona_safari_oeste"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_v22oj"]
+script = ExtResource("2_3wmne")
+id = "isla_canela_centro"
+display_name = "Centro Pokémon de Isla Canela"
+scene_path = "res://scenes/world/zones/isla_canela_centro.tscn"
+origin = Vector2i(111, 2828)
+size = Vector2i(15, 10)
+biome = "interior"
+hub = Vector2i(7, 5)
+warps = {
+Vector2i(6, 8): {
+"cell": Vector2i(22, 11),
+"to": "isla_canela"
+},
+Vector2i(7, 8): {
+"cell": Vector2i(22, 11),
+"to": "isla_canela"
+},
+Vector2i(8, 8): {
+"cell": Vector2i(22, 11),
+"to": "isla_canela"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_h0or4"]
+script = ExtResource("2_3wmne")
+id = "isla_canela_tienda"
+display_name = "Tienda de Isla Canela"
+scene_path = "res://scenes/world/zones/isla_canela_tienda.tscn"
+origin = Vector2i(150, 2828)
+size = Vector2i(11, 9)
+biome = "interior"
+hub = Vector2i(5, 4)
+warps = {
+Vector2i(3, 7): {
+"cell": Vector2i(27, 11),
+"to": "isla_canela"
+},
+Vector2i(4, 7): {
+"cell": Vector2i(27, 11),
+"to": "isla_canela"
+},
+Vector2i(5, 7): {
+"cell": Vector2i(27, 11),
+"to": "isla_canela"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_31uug"]
+script = ExtResource("2_3wmne")
+id = "isla_canela_gimnasio"
+display_name = "Gimnasio de Isla Canela"
+scene_path = "res://scenes/world/zones/isla_canela_gimnasio.tscn"
+origin = Vector2i(185, 2828)
+size = Vector2i(30, 25)
+biome = "interior"
+hub = Vector2i(15, 12)
+warps = {
+Vector2i(24, 23): {
+"cell": Vector2i(38, 4),
+"to": "isla_canela"
+},
+Vector2i(25, 23): {
+"cell": Vector2i(38, 4),
+"to": "isla_canela"
+},
+Vector2i(26, 23): {
+"cell": Vector2i(38, 4),
+"to": "isla_canela"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_yevh6"]
+script = ExtResource("2_3wmne")
+id = "isla_canela_lab"
+display_name = "Laboratorio Pokémon"
+scene_path = "res://scenes/world/zones/isla_canela_lab.tscn"
+origin = Vector2i(0, 2877)
+size = Vector2i(28, 11)
+biome = "interior"
+hub = Vector2i(14, 6)
+warps = {
+Vector2i(3, 9): {
+"cell": Vector2i(16, 9),
+"to": "isla_canela"
+},
+Vector2i(4, 9): {
+"cell": Vector2i(16, 9),
+"to": "isla_canela"
+},
+Vector2i(5, 9): {
+"cell": Vector2i(16, 9),
+"to": "isla_canela"
+},
+Vector2i(13, 5): {
+"cell": Vector2i(7, 9),
+"to": "isla_canela_lab_sala"
+},
+Vector2i(19, 5): {
+"cell": Vector2i(7, 9),
+"to": "isla_canela_lab_investigacion"
+},
+Vector2i(25, 5): {
+"cell": Vector2i(7, 9),
+"to": "isla_canela_lab_experimentos"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_efn7b"]
+script = ExtResource("2_3wmne")
+id = "isla_canela_lab_sala"
+display_name = "Laboratorio Pokémon (sala)"
+scene_path = "res://scenes/world/zones/isla_canela_lab_sala.tscn"
+origin = Vector2i(52, 2877)
+size = Vector2i(15, 11)
+biome = "interior"
+hub = Vector2i(7, 3)
+warps = {
+Vector2i(7, 9): {
+"cell": Vector2i(13, 5),
+"to": "isla_canela_lab"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_8paj7"]
+script = ExtResource("2_3wmne")
+id = "isla_canela_lab_investigacion"
+display_name = "Laboratorio Pokémon (investigación)"
+scene_path = "res://scenes/world/zones/isla_canela_lab_investigacion.tscn"
+origin = Vector2i(91, 2877)
+size = Vector2i(15, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(7, 9): {
+"cell": Vector2i(19, 5),
+"to": "isla_canela_lab"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_uc7vo"]
+script = ExtResource("2_3wmne")
+id = "isla_canela_lab_experimentos"
+display_name = "Laboratorio Pokémon (experimentos)"
+scene_path = "res://scenes/world/zones/isla_canela_lab_experimentos.tscn"
+origin = Vector2i(130, 2877)
+size = Vector2i(15, 11)
+biome = "interior"
+hub = Vector2i(6, 5)
+warps = {
+Vector2i(7, 9): {
+"cell": Vector2i(25, 5),
+"to": "isla_canela_lab"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_h3vx3"]
+script = ExtResource("2_3wmne")
+id = "meseta_anil_centro"
+display_name = "Centro Pokémon de la Meseta Añil"
+scene_path = "res://scenes/world/zones/meseta_anil_centro.tscn"
+origin = Vector2i(169, 2877)
+size = Vector2i(25, 18)
+biome = "interior"
+hub = Vector2i(13, 10)
+warps = {
+Vector2i(4, 1): {
+"cell": Vector2i(6, 12),
+"to": "liga_lorelei"
+},
+Vector2i(11, 16): {
+"cell": Vector2i(19, 6),
+"to": "meseta_anil"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_kirw7"]
+script = ExtResource("2_3wmne")
+id = "liga_lorelei"
+display_name = "Sala de Lorelei"
+scene_path = "res://scenes/world/zones/liga_lorelei.tscn"
+origin = Vector2i(0, 2919)
+size = Vector2i(13, 13)
+biome = "interior"
+hub = Vector2i(6, 6)
+warps = {
+Vector2i(6, 2): {
+"cell": Vector2i(6, 12),
+"to": "liga_bruno"
+},
+Vector2i(6, 12): {
+"cell": Vector2i(4, 1),
+"to": "meseta_anil_centro"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_103pi"]
+script = ExtResource("2_3wmne")
+id = "liga_bruno"
+display_name = "Sala de Bruno"
+scene_path = "res://scenes/world/zones/liga_bruno.tscn"
+origin = Vector2i(37, 2919)
+size = Vector2i(13, 13)
+biome = "interior"
+hub = Vector2i(6, 6)
+warps = {
+Vector2i(6, 2): {
+"cell": Vector2i(6, 12),
+"to": "liga_agatha"
+},
+Vector2i(6, 12): {
+"cell": Vector2i(6, 2),
+"to": "liga_lorelei"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_r8k23"]
+script = ExtResource("2_3wmne")
+id = "liga_agatha"
+display_name = "Sala de Agatha"
+scene_path = "res://scenes/world/zones/liga_agatha.tscn"
+origin = Vector2i(74, 2919)
+size = Vector2i(13, 13)
+biome = "interior"
+hub = Vector2i(6, 6)
+warps = {
+Vector2i(6, 2): {
+"cell": Vector2i(23, 13),
+"to": "liga_lance"
+},
+Vector2i(6, 12): {
+"cell": Vector2i(6, 2),
+"to": "liga_bruno"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_o3hhf"]
+script = ExtResource("2_3wmne")
+id = "liga_lance"
+display_name = "Sala de Lance"
+scene_path = "res://scenes/world/zones/liga_lance.tscn"
+origin = Vector2i(111, 2919)
+size = Vector2i(28, 24)
+biome = "interior"
+hub = Vector2i(15, 12)
+warps = {
+Vector2i(6, 5): {
+"cell": Vector2i(6, 19),
+"to": "liga_campeon"
+},
+Vector2i(23, 13): {
+"cell": Vector2i(6, 2),
+"to": "liga_agatha"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_ytjpe"]
+script = ExtResource("2_3wmne")
+id = "liga_campeon"
+display_name = "Sala del Campeón"
+scene_path = "res://scenes/world/zones/liga_campeon.tscn"
+origin = Vector2i(163, 2919)
+size = Vector2i(13, 20)
+biome = "interior"
+hub = Vector2i(6, 10)
+warps = {
+Vector2i(6, 2): {
+"cell": Vector2i(5, 12),
+"to": "liga_hall"
+},
+Vector2i(6, 19): {
+"cell": Vector2i(6, 5),
+"to": "liga_lance"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_iexg8"]
+script = ExtResource("2_3wmne")
+id = "liga_hall"
+display_name = "Hall de la Fama"
+scene_path = "res://scenes/world/zones/liga_hall.tscn"
+origin = Vector2i(200, 2919)
+size = Vector2i(11, 13)
+biome = "interior"
+hub = Vector2i(5, 6)
+warps = {
+Vector2i(5, 12): {
+"cell": Vector2i(6, 2),
+"to": "liga_campeon"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_xgclh"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_almacen_1p"
+display_name = "Gran Almacén de Azulona (planta 1)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_almacen_1p.tscn"
+origin = Vector2i(0, 2967)
+size = Vector2i(13, 16)
+biome = "interior"
+hub = Vector2i(6, 7)
+warps = {
+Vector2i(1, 15): {
+"cell": Vector2i(31, 26),
+"to": "ciudad_azulona"
+},
+Vector2i(2, 14): {
+"cell": Vector2i(31, 26),
+"to": "ciudad_azulona"
+},
+Vector2i(3, 15): {
+"cell": Vector2i(31, 26),
+"to": "ciudad_azulona"
+},
+Vector2i(4, 2): {
+"cell": Vector2i(3, 2),
+"to": "ciudad_azulona_almacen_2p"
+},
+Vector2i(9, 15): {
+"cell": Vector2i(35, 26),
+"to": "ciudad_azulona"
+},
+Vector2i(10, 14): {
+"cell": Vector2i(35, 26),
+"to": "ciudad_azulona"
+},
+Vector2i(11, 15): {
+"cell": Vector2i(35, 26),
+"to": "ciudad_azulona"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_082js"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_almacen_2p"
+display_name = "Gran Almacén de Azulona (planta 2)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_almacen_2p.tscn"
+origin = Vector2i(37, 2967)
+size = Vector2i(13, 15)
+biome = "interior"
+hub = Vector2i(6, 7)
+warps = {
+Vector2i(3, 2): {
+"cell": Vector2i(4, 2),
+"to": "ciudad_azulona_almacen_1p"
+},
+Vector2i(9, 2): {
+"cell": Vector2i(9, 2),
+"to": "ciudad_azulona_almacen_3p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_j5a34"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_almacen_3p"
+display_name = "Gran Almacén de Azulona (planta 3)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_almacen_3p.tscn"
+origin = Vector2i(74, 2967)
+size = Vector2i(13, 15)
+biome = "interior"
+hub = Vector2i(6, 7)
+warps = {
+Vector2i(3, 2): {
+"cell": Vector2i(3, 2),
+"to": "ciudad_azulona_almacen_4p"
+},
+Vector2i(9, 2): {
+"cell": Vector2i(9, 2),
+"to": "ciudad_azulona_almacen_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_ihw5d"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_almacen_4p"
+display_name = "Gran Almacén de Azulona (planta 4)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_almacen_4p.tscn"
+origin = Vector2i(111, 2967)
+size = Vector2i(13, 15)
+biome = "interior"
+hub = Vector2i(6, 6)
+warps = {
+Vector2i(3, 2): {
+"cell": Vector2i(3, 2),
+"to": "ciudad_azulona_almacen_3p"
+},
+Vector2i(9, 2): {
+"cell": Vector2i(9, 2),
+"to": "ciudad_azulona_almacen_5p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_liefx"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_almacen_5p"
+display_name = "Gran Almacén de Azulona (planta 5)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_almacen_5p.tscn"
+origin = Vector2i(148, 2967)
+size = Vector2i(13, 15)
+biome = "interior"
+hub = Vector2i(6, 7)
+warps = {
+Vector2i(3, 2): {
+"cell": Vector2i(15, 6),
+"to": "ciudad_azulona_almacen_azotea"
+},
+Vector2i(9, 2): {
+"cell": Vector2i(9, 2),
+"to": "ciudad_azulona_almacen_4p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_aj0sl"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_mansion_1p"
+display_name = "Mansión Azulona (planta 1)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_mansion_1p.tscn"
+origin = Vector2i(185, 2967)
+size = Vector2i(15, 20)
+biome = "interior"
+hub = Vector2i(6, 10)
+warps = {
+Vector2i(2, 1): {
+"cell": Vector2i(50, 16),
+"to": "ciudad_azulona"
+},
+Vector2i(4, 2): {
+"cell": Vector2i(4, 2),
+"to": "ciudad_azulona_mansion_2p"
+},
+Vector2i(11, 19): {
+"cell": Vector2i(50, 23),
+"to": "ciudad_azulona"
+},
+Vector2i(12, 2): {
+"cell": Vector2i(12, 2),
+"to": "ciudad_azulona_mansion_2p"
+},
+Vector2i(12, 18): {
+"cell": Vector2i(50, 23),
+"to": "ciudad_azulona"
+},
+Vector2i(13, 19): {
+"cell": Vector2i(50, 23),
+"to": "ciudad_azulona"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_0mq06"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_mansion_2p"
+display_name = "Mansión Azulona (planta 2)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_mansion_2p.tscn"
+origin = Vector2i(0, 3011)
+size = Vector2i(15, 20)
+biome = "interior"
+hub = Vector2i(6, 10)
+warps = {
+Vector2i(2, 2): {
+"cell": Vector2i(2, 2),
+"to": "ciudad_azulona_mansion_3p"
+},
+Vector2i(4, 2): {
+"cell": Vector2i(4, 2),
+"to": "ciudad_azulona_mansion_1p"
+},
+Vector2i(11, 2): {
+"cell": Vector2i(11, 2),
+"to": "ciudad_azulona_mansion_3p"
+},
+Vector2i(12, 2): {
+"cell": Vector2i(12, 2),
+"to": "ciudad_azulona_mansion_1p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_qyeqv"]
+script = ExtResource("2_3wmne")
+id = "ciudad_azulona_mansion_3p"
+display_name = "Mansión Azulona (planta 3)"
+scene_path = "res://scenes/world/zones/ciudad_azulona_mansion_3p.tscn"
+origin = Vector2i(39, 3011)
+size = Vector2i(15, 20)
+biome = "interior"
+hub = Vector2i(6, 10)
+warps = {
+Vector2i(2, 2): {
+"cell": Vector2i(2, 2),
+"to": "ciudad_azulona_mansion_2p"
+},
+Vector2i(4, 2): {
+"cell": Vector2i(4, 2),
+"to": "ciudad_azulona_mansion_azotea"
+},
+Vector2i(11, 2): {
+"cell": Vector2i(11, 2),
+"to": "ciudad_azulona_mansion_2p"
+},
+Vector2i(12, 2): {
+"cell": Vector2i(10, 2),
+"to": "ciudad_azulona_mansion_azotea"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_06bkw"]
+script = ExtResource("2_3wmne")
+id = "escondite_rocket_s1"
+display_name = "Escondite Rocket (sótano 1)"
+scene_path = "res://scenes/world/zones/escondite_rocket_s1.tscn"
+origin = Vector2i(78, 3011)
+size = Vector2i(28, 34)
+biome = "interior"
+hub = Vector2i(14, 17)
+warps = {
+Vector2i(12, 2): {
+"cell": Vector2i(15, 2),
+"to": "ciudad_azulona_casino"
+},
+Vector2i(15, 30): {
+"cell": Vector2i(23, 12),
+"to": "escondite_rocket_s2"
+},
+Vector2i(17, 2): {
+"cell": Vector2i(28, 2),
+"to": "escondite_rocket_s2"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_cnfpf"]
+script = ExtResource("2_3wmne")
+id = "escondite_rocket_s2"
+display_name = "Escondite Rocket (sótano 2)"
+scene_path = "res://scenes/world/zones/escondite_rocket_s2.tscn"
+origin = Vector2i(130, 3011)
+size = Vector2i(32, 22)
+biome = "interior"
+hub = Vector2i(15, 11)
+warps = {
+Vector2i(21, 2): {
+"cell": Vector2i(18, 2),
+"to": "escondite_rocket_s3"
+},
+Vector2i(23, 12): {
+"cell": Vector2i(15, 30),
+"to": "escondite_rocket_s1"
+},
+Vector2i(28, 2): {
+"cell": Vector2i(17, 2),
+"to": "escondite_rocket_s1"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_wjghv"]
+script = ExtResource("2_3wmne")
+id = "escondite_rocket_s3"
+display_name = "Escondite Rocket (sótano 3)"
+scene_path = "res://scenes/world/zones/escondite_rocket_s3.tscn"
+origin = Vector2i(186, 3011)
+size = Vector2i(22, 27)
+biome = "interior"
+hub = Vector2i(11, 13)
+warps = {
+Vector2i(15, 18): {
+"cell": Vector2i(11, 15),
+"to": "escondite_rocket_s4"
+},
+Vector2i(18, 2): {
+"cell": Vector2i(21, 2),
+"to": "escondite_rocket_s2"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_gnvkg"]
+script = ExtResource("2_3wmne")
+id = "escondite_rocket_s4"
+display_name = "Escondite Rocket (sótano 4)"
+scene_path = "res://scenes/world/zones/escondite_rocket_s4.tscn"
+origin = Vector2i(0, 3069)
+size = Vector2i(24, 26)
+biome = "interior"
+hub = Vector2i(12, 13)
+warps = {
+Vector2i(11, 15): {
+"cell": Vector2i(15, 18),
+"to": "escondite_rocket_s3"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_iixf2"]
+script = ExtResource("2_3wmne")
+id = "silph_1p"
+display_name = "Silph S.A. (planta 1)"
+scene_path = "res://scenes/world/zones/silph_1p.tscn"
+origin = Vector2i(48, 3069)
+size = Vector2i(36, 22)
+biome = "interior"
+hub = Vector2i(18, 9)
+warps = {
+Vector2i(7, 21): {
+"cell": Vector2i(57, 46),
+"to": "ciudad_azafran"
+},
+Vector2i(8, 20): {
+"cell": Vector2i(57, 46),
+"to": "ciudad_azafran"
+},
+Vector2i(9, 20): {
+"cell": Vector2i(57, 46),
+"to": "ciudad_azafran"
+},
+Vector2i(31, 2): {
+"cell": Vector2i(30, 2),
+"to": "silph_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_npca2"]
+script = ExtResource("2_3wmne")
+id = "silph_2p"
+display_name = "Silph S.A. (planta 2)"
+scene_path = "res://scenes/world/zones/silph_2p.tscn"
+origin = Vector2i(108, 3069)
+size = Vector2i(36, 22)
+biome = "interior"
+hub = Vector2i(18, 11)
+warps = {
+Vector2i(2, 6): {
+"cell": Vector2i(33, 5),
+"to": "silph_3p"
+},
+Vector2i(7, 19): {
+"cell": Vector2i(29, 5),
+"to": "silph_6p"
+},
+Vector2i(15, 6): {
+"cell": Vector2i(2, 17),
+"to": "silph_8p"
+},
+Vector2i(28, 2): {
+"cell": Vector2i(28, 2),
+"to": "silph_3p"
+},
+Vector2i(30, 2): {
+"cell": Vector2i(31, 2),
+"to": "silph_1p"
+},
+Vector2i(33, 19): {
+"cell": Vector2i(10, 6),
+"to": "silph_8p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_30dts"]
+script = ExtResource("2_3wmne")
+id = "silph_3p"
+display_name = "Silph S.A. (planta 3)"
+scene_path = "res://scenes/world/zones/silph_3p.tscn"
+origin = Vector2i(168, 3069)
+size = Vector2i(36, 22)
+biome = "interior"
+hub = Vector2i(18, 11)
+warps = {
+Vector2i(2, 14): {
+"cell": Vector2i(9, 4),
+"to": "silph_9p"
+},
+Vector2i(3, 20): {
+"cell": Vector2i(2, 20),
+"to": "silph_5p"
+},
+Vector2i(4, 6): {
+"cell": Vector2i(15, 7),
+"to": "silph_5p"
+},
+Vector2i(13, 14): {
+"cell": Vector2i(5, 4),
+"to": "silph_7p"
+},
+Vector2i(28, 2): {
+"cell": Vector2i(28, 2),
+"to": "silph_2p"
+},
+Vector2i(29, 14): {
+"cell": Vector2i(32, 20),
+"to": "silph_3p"
+},
+Vector2i(30, 2): {
+"cell": Vector2i(30, 2),
+"to": "silph_4p"
+},
+Vector2i(32, 20): {
+"cell": Vector2i(29, 14),
+"to": "silph_3p"
+},
+Vector2i(33, 5): {
+"cell": Vector2i(2, 6),
+"to": "silph_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_ym6yb"]
+script = ExtResource("2_3wmne")
+id = "silph_4p"
+display_name = "Silph S.A. (planta 4)"
+scene_path = "res://scenes/world/zones/silph_4p.tscn"
+origin = Vector2i(0, 3119)
+size = Vector2i(36, 22)
+biome = "interior"
+hub = Vector2i(18, 10)
+warps = {
+Vector2i(2, 20): {
+"cell": Vector2i(14, 17),
+"to": "silph_10p"
+},
+Vector2i(12, 9): {
+"cell": Vector2i(10, 14),
+"to": "silph_10p"
+},
+Vector2i(18, 6): {
+"cell": Vector2i(2, 6),
+"to": "silph_6p"
+},
+Vector2i(18, 14): {
+"cell": Vector2i(14, 9),
+"to": "silph_10p"
+},
+Vector2i(28, 2): {
+"cell": Vector2i(28, 2),
+"to": "silph_5p"
+},
+Vector2i(30, 2): {
+"cell": Vector2i(30, 2),
+"to": "silph_3p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_ddan8"]
+script = ExtResource("2_3wmne")
+id = "silph_5p"
+display_name = "Silph S.A. (planta 5)"
+scene_path = "res://scenes/world/zones/silph_5p.tscn"
+origin = Vector2i(60, 3119)
+size = Vector2i(36, 22)
+biome = "interior"
+hub = Vector2i(17, 11)
+warps = {
+Vector2i(2, 20): {
+"cell": Vector2i(3, 20),
+"to": "silph_3p"
+},
+Vector2i(10, 20): {
+"cell": Vector2i(22, 18),
+"to": "silph_9p"
+},
+Vector2i(15, 7): {
+"cell": Vector2i(4, 6),
+"to": "silph_3p"
+},
+Vector2i(28, 2): {
+"cell": Vector2i(28, 2),
+"to": "silph_4p"
+},
+Vector2i(30, 2): {
+"cell": Vector2i(26, 2),
+"to": "silph_6p"
+},
+Vector2i(33, 5): {
+"cell": Vector2i(25, 17),
+"to": "silph_7p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_frbka"]
+script = ExtResource("2_3wmne")
+id = "silph_6p"
+display_name = "Silph S.A. (planta 6)"
+scene_path = "res://scenes/world/zones/silph_6p.tscn"
+origin = Vector2i(120, 3119)
+size = Vector2i(31, 19)
+biome = "interior"
+hub = Vector2i(15, 9)
+warps = {
+Vector2i(2, 6): {
+"cell": Vector2i(18, 6),
+"to": "silph_4p"
+},
+Vector2i(14, 2): {
+"cell": Vector2i(19, 2),
+"to": "silph_7p"
+},
+Vector2i(26, 2): {
+"cell": Vector2i(30, 2),
+"to": "silph_5p"
+},
+Vector2i(29, 5): {
+"cell": Vector2i(7, 19),
+"to": "silph_2p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_km4dv"]
+script = ExtResource("2_3wmne")
+id = "silph_7p"
+display_name = "Silph S.A. (planta 7)"
+scene_path = "res://scenes/world/zones/silph_7p.tscn"
+origin = Vector2i(175, 3119)
+size = Vector2i(31, 19)
+biome = "interior"
+hub = Vector2i(14, 10)
+warps = {
+Vector2i(5, 4): {
+"cell": Vector2i(13, 14),
+"to": "silph_3p"
+},
+Vector2i(5, 8): {
+"cell": Vector2i(2, 5),
+"to": "silph_11p"
+},
+Vector2i(19, 2): {
+"cell": Vector2i(14, 2),
+"to": "silph_6p"
+},
+Vector2i(25, 17): {
+"cell": Vector2i(33, 5),
+"to": "silph_5p"
+},
+Vector2i(27, 2): {
+"cell": Vector2i(28, 2),
+"to": "silph_8p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_vjdca"]
+script = ExtResource("2_3wmne")
+id = "silph_8p"
+display_name = "Silph S.A. (planta 8)"
+scene_path = "res://scenes/world/zones/silph_8p.tscn"
+origin = Vector2i(0, 3165)
+size = Vector2i(31, 19)
+biome = "interior"
+hub = Vector2i(15, 9)
+warps = {
+Vector2i(2, 12): {
+"cell": Vector2i(11, 10),
+"to": "silph_8p"
+},
+Vector2i(2, 17): {
+"cell": Vector2i(15, 6),
+"to": "silph_2p"
+},
+Vector2i(10, 6): {
+"cell": Vector2i(33, 19),
+"to": "silph_2p"
+},
+Vector2i(11, 10): {
+"cell": Vector2i(2, 12),
+"to": "silph_8p"
+},
+Vector2i(16, 2): {
+"cell": Vector2i(16, 2),
+"to": "silph_9p"
+},
+Vector2i(28, 2): {
+"cell": Vector2i(27, 2),
+"to": "silph_7p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_gao66"]
+script = ExtResource("2_3wmne")
+id = "silph_9p"
+display_name = "Silph S.A. (planta 9)"
+scene_path = "res://scenes/world/zones/silph_9p.tscn"
+origin = Vector2i(55, 3165)
+size = Vector2i(31, 19)
+biome = "interior"
+hub = Vector2i(15, 9)
+warps = {
+Vector2i(9, 4): {
+"cell": Vector2i(2, 14),
+"to": "silph_3p"
+},
+Vector2i(16, 2): {
+"cell": Vector2i(16, 2),
+"to": "silph_8p"
+},
+Vector2i(18, 2): {
+"cell": Vector2i(8, 2),
+"to": "silph_10p"
+},
+Vector2i(22, 18): {
+"cell": Vector2i(10, 20),
+"to": "silph_5p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_2li5m"]
+script = ExtResource("2_3wmne")
+id = "silph_10p"
+display_name = "Silph S.A. (planta 10)"
+scene_path = "res://scenes/world/zones/silph_10p.tscn"
+origin = Vector2i(110, 3165)
+size = Vector2i(17, 19)
+biome = "interior"
+hub = Vector2i(9, 8)
+warps = {
+Vector2i(6, 2): {
+"cell": Vector2i(7, 2),
+"to": "silph_11p"
+},
+Vector2i(8, 2): {
+"cell": Vector2i(18, 2),
+"to": "silph_9p"
+},
+Vector2i(10, 14): {
+"cell": Vector2i(12, 9),
+"to": "silph_4p"
+},
+Vector2i(14, 9): {
+"cell": Vector2i(18, 14),
+"to": "silph_4p"
+},
+Vector2i(14, 17): {
+"cell": Vector2i(2, 20),
+"to": "silph_4p"
+}
+}
+interior = true
+
+[sub_resource type="Resource" id="Resource_fwn38"]
+script = ExtResource("2_3wmne")
+id = "silph_11p"
+display_name = "Silph S.A. (planta 11)"
+scene_path = "res://scenes/world/zones/silph_11p.tscn"
+origin = Vector2i(151, 3165)
+size = Vector2i(17, 20)
+biome = "interior"
+hub = Vector2i(8, 10)
+warps = {
+Vector2i(2, 5): {
+"cell": Vector2i(5, 8),
+"to": "silph_7p"
+},
+Vector2i(7, 2): {
+"cell": Vector2i(6, 2),
+"to": "silph_10p"
 }
 }
 interior = true
@@ -2257,5 +6368,5 @@ interior = true
 
 [resource]
 script = ExtResource("1_0oca4")
-zones = Array[ExtResource("2_3wmne")]([SubResource("Resource_0oca4"), SubResource("Resource_3wmne"), SubResource("Resource_c5s1r"), SubResource("Resource_f8nvh"), SubResource("Resource_dgxt3"), SubResource("Resource_6v2ea"), SubResource("Resource_c0im6"), SubResource("Resource_uwos0"), SubResource("Resource_rgi3i"), SubResource("Resource_2evo8"), SubResource("Resource_tlnt6"), SubResource("Resource_kj3ee"), SubResource("Resource_xjpl4"), SubResource("Resource_tyc7x"), SubResource("Resource_pqsf8"), SubResource("Resource_hytxv"), SubResource("Resource_wlkjo"), SubResource("Resource_l0sq1"), SubResource("Resource_7gffs"), SubResource("Resource_osxhv"), SubResource("Resource_cp1up"), SubResource("Resource_d1ooh"), SubResource("Resource_ew6er"), SubResource("Resource_ur2og"), SubResource("Resource_c5d7o"), SubResource("Resource_asggm"), SubResource("Resource_lgmq2"), SubResource("Resource_telah"), SubResource("Resource_4schy"), SubResource("Resource_5uix5"), SubResource("Resource_3h51a"), SubResource("Resource_01064"), SubResource("Resource_gyhqe"), SubResource("Resource_dkw10"), SubResource("Resource_dmgoo"), SubResource("Resource_idini"), SubResource("Resource_0cjc2"), SubResource("Resource_vjogw"), SubResource("Resource_1ut2p"), SubResource("Resource_5ndir"), SubResource("Resource_368wp"), SubResource("Resource_y5doj"), SubResource("Resource_vppxm"), SubResource("Resource_3dxha"), SubResource("Resource_t8ao4"), SubResource("Resource_rev0t"), SubResource("Resource_pbnuv"), SubResource("Resource_3j7co"), SubResource("Resource_urtsu"), SubResource("Resource_sgutw"), SubResource("Resource_jowde"), SubResource("Resource_sjydi"), SubResource("Resource_sq5n5"), SubResource("Resource_glubr"), SubResource("Resource_iibdm"), SubResource("Resource_6q3we"), SubResource("Resource_sktyi"), SubResource("Resource_8ovab"), SubResource("Resource_q3fty"), SubResource("Resource_bhyvg"), SubResource("Resource_3wryc"), SubResource("Resource_84ohu"), SubResource("Resource_loy8r"), SubResource("Resource_ilsyy"), SubResource("Resource_u1nr7"), SubResource("Resource_mjf3i"), SubResource("Resource_3w02o"), SubResource("Resource_3pppd"), SubResource("Resource_gos3p"), SubResource("Resource_4q42k"), SubResource("Resource_buqad"), SubResource("Resource_pr2ox"), SubResource("Resource_rynst"), SubResource("Resource_c0tkf"), SubResource("Resource_8dps3"), SubResource("Resource_kiax5"), SubResource("Resource_kqfnx"), SubResource("Resource_oqa7e"), SubResource("Resource_ymg2g"), SubResource("Resource_8k1t1"), SubResource("Resource_5m7l8"), SubResource("Resource_6i8fv"), SubResource("Resource_py6tp"), SubResource("Resource_et1eb"), SubResource("Resource_rj3st"), SubResource("Resource_urmr2"), SubResource("Resource_0fb53"), SubResource("Resource_m8ior"), SubResource("Resource_dysbc"), SubResource("Resource_torneo")])
+zones = Array[ExtResource("2_3wmne")]([SubResource("Resource_0oca4"), SubResource("Resource_3wmne"), SubResource("Resource_c5s1r"), SubResource("Resource_f8nvh"), SubResource("Resource_dgxt3"), SubResource("Resource_6v2ea"), SubResource("Resource_c0im6"), SubResource("Resource_uwos0"), SubResource("Resource_rgi3i"), SubResource("Resource_2evo8"), SubResource("Resource_tlnt6"), SubResource("Resource_kj3ee"), SubResource("Resource_kj6nv"), SubResource("Resource_xjpl4"), SubResource("Resource_tyc7x"), SubResource("Resource_l13m1"), SubResource("Resource_dyhe7"), SubResource("Resource_o54yy"), SubResource("Resource_hk2oc"), SubResource("Resource_ik2c4"), SubResource("Resource_x5eql"), SubResource("Resource_iafw4"), SubResource("Resource_ki2mk"), SubResource("Resource_g1nph"), SubResource("Resource_ht6oy"), SubResource("Resource_ofkfh"), SubResource("Resource_kwk1r"), SubResource("Resource_1s3c4"), SubResource("Resource_cjg6v"), SubResource("Resource_repnx"), SubResource("Resource_ewyje"), SubResource("Resource_p8cfa"), SubResource("Resource_ow8fe"), SubResource("Resource_qgixo"), SubResource("Resource_vvoyh"), SubResource("Resource_36hja"), SubResource("Resource_bswhw"), SubResource("Resource_pqsf8"), SubResource("Resource_hytxv"), SubResource("Resource_wlkjo"), SubResource("Resource_l0sq1"), SubResource("Resource_7gffs"), SubResource("Resource_osxhv"), SubResource("Resource_cp1up"), SubResource("Resource_d1ooh"), SubResource("Resource_ew6er"), SubResource("Resource_ur2og"), SubResource("Resource_c5d7o"), SubResource("Resource_asggm"), SubResource("Resource_lgmq2"), SubResource("Resource_telah"), SubResource("Resource_4schy"), SubResource("Resource_5uix5"), SubResource("Resource_3h51a"), SubResource("Resource_01064"), SubResource("Resource_gyhqe"), SubResource("Resource_dkw10"), SubResource("Resource_dmgoo"), SubResource("Resource_idini"), SubResource("Resource_0cjc2"), SubResource("Resource_vjogw"), SubResource("Resource_1ut2p"), SubResource("Resource_5ndir"), SubResource("Resource_368wp"), SubResource("Resource_y5doj"), SubResource("Resource_vppxm"), SubResource("Resource_3dxha"), SubResource("Resource_t8ao4"), SubResource("Resource_rev0t"), SubResource("Resource_pbnuv"), SubResource("Resource_3j7co"), SubResource("Resource_urtsu"), SubResource("Resource_sgutw"), SubResource("Resource_jowde"), SubResource("Resource_sjydi"), SubResource("Resource_sq5n5"), SubResource("Resource_glubr"), SubResource("Resource_iibdm"), SubResource("Resource_6q3we"), SubResource("Resource_sktyi"), SubResource("Resource_8ovab"), SubResource("Resource_q3fty"), SubResource("Resource_bhyvg"), SubResource("Resource_3wryc"), SubResource("Resource_84ohu"), SubResource("Resource_loy8r"), SubResource("Resource_ilsyy"), SubResource("Resource_u1nr7"), SubResource("Resource_mjf3i"), SubResource("Resource_3w02o"), SubResource("Resource_3pppd"), SubResource("Resource_gos3p"), SubResource("Resource_4q42k"), SubResource("Resource_buqad"), SubResource("Resource_pr2ox"), SubResource("Resource_rynst"), SubResource("Resource_c0tkf"), SubResource("Resource_8dps3"), SubResource("Resource_kiax5"), SubResource("Resource_kqfnx"), SubResource("Resource_oqa7e"), SubResource("Resource_ymg2g"), SubResource("Resource_8k1t1"), SubResource("Resource_5m7l8"), SubResource("Resource_6i8fv"), SubResource("Resource_py6tp"), SubResource("Resource_et1eb"), SubResource("Resource_rj3st"), SubResource("Resource_urmr2"), SubResource("Resource_0fb53"), SubResource("Resource_m8ior"), SubResource("Resource_dysbc"), SubResource("Resource_t5a4t"), SubResource("Resource_thwyo"), SubResource("Resource_b3557"), SubResource("Resource_2kivv"), SubResource("Resource_qxxu7"), SubResource("Resource_j0o0q"), SubResource("Resource_krtcq"), SubResource("Resource_0e5w6"), SubResource("Resource_p1wxu"), SubResource("Resource_740xv"), SubResource("Resource_j3y8b"), SubResource("Resource_1i0b0"), SubResource("Resource_ysydb"), SubResource("Resource_cy4sy"), SubResource("Resource_yk55i"), SubResource("Resource_2oc3m"), SubResource("Resource_cnuuv"), SubResource("Resource_hwkt2"), SubResource("Resource_v1ol7"), SubResource("Resource_nyad3"), SubResource("Resource_0qgy0"), SubResource("Resource_1swfg"), SubResource("Resource_of0eb"), SubResource("Resource_sojbq"), SubResource("Resource_unjd3"), SubResource("Resource_c0bk6"), SubResource("Resource_klqka"), SubResource("Resource_rjhju"), SubResource("Resource_sj0xa"), SubResource("Resource_fy4vd"), SubResource("Resource_0jm1t"), SubResource("Resource_xmsf1"), SubResource("Resource_v13ay"), SubResource("Resource_bfwo6"), SubResource("Resource_bq8xg"), SubResource("Resource_8mxh0"), SubResource("Resource_w4a8c"), SubResource("Resource_ejep7"), SubResource("Resource_i6idk"), SubResource("Resource_yupq0"), SubResource("Resource_dvk4n"), SubResource("Resource_k23xc"), SubResource("Resource_o3we4"), SubResource("Resource_aqw71"), SubResource("Resource_ab2ar"), SubResource("Resource_tvppf"), SubResource("Resource_sr2si"), SubResource("Resource_4x75e"), SubResource("Resource_6dnrn"), SubResource("Resource_ospv5"), SubResource("Resource_fc6bj"), SubResource("Resource_llei0"), SubResource("Resource_dw2g3"), SubResource("Resource_g1i0g"), SubResource("Resource_etot7"), SubResource("Resource_fac7y"), SubResource("Resource_6jjyt"), SubResource("Resource_moqei"), SubResource("Resource_d5rjt"), SubResource("Resource_o6r4u"), SubResource("Resource_c4pcv"), SubResource("Resource_wkukh"), SubResource("Resource_u2ndb"), SubResource("Resource_rwsr2"), SubResource("Resource_npc0l"), SubResource("Resource_36ch4"), SubResource("Resource_8e678"), SubResource("Resource_0piba"), SubResource("Resource_m4mav"), SubResource("Resource_41ebq"), SubResource("Resource_4ro8n"), SubResource("Resource_kgx4i"), SubResource("Resource_07kfm"), SubResource("Resource_r248h"), SubResource("Resource_m1mtr"), SubResource("Resource_lam7s"), SubResource("Resource_p60bt"), SubResource("Resource_h4d3b"), SubResource("Resource_lx1bh"), SubResource("Resource_gbe3x"), SubResource("Resource_xgwsk"), SubResource("Resource_yiptp"), SubResource("Resource_dt4b2"), SubResource("Resource_2hj7y"), SubResource("Resource_2tvgl"), SubResource("Resource_v22oj"), SubResource("Resource_h0or4"), SubResource("Resource_31uug"), SubResource("Resource_yevh6"), SubResource("Resource_efn7b"), SubResource("Resource_8paj7"), SubResource("Resource_uc7vo"), SubResource("Resource_h3vx3"), SubResource("Resource_kirw7"), SubResource("Resource_103pi"), SubResource("Resource_r8k23"), SubResource("Resource_o3hhf"), SubResource("Resource_ytjpe"), SubResource("Resource_iexg8"), SubResource("Resource_xgclh"), SubResource("Resource_082js"), SubResource("Resource_j5a34"), SubResource("Resource_ihw5d"), SubResource("Resource_liefx"), SubResource("Resource_aj0sl"), SubResource("Resource_0mq06"), SubResource("Resource_qyeqv"), SubResource("Resource_06bkw"), SubResource("Resource_cnfpf"), SubResource("Resource_wjghv"), SubResource("Resource_gnvkg"), SubResource("Resource_iixf2"), SubResource("Resource_npca2"), SubResource("Resource_30dts"), SubResource("Resource_ym6yb"), SubResource("Resource_ddan8"), SubResource("Resource_frbka"), SubResource("Resource_km4dv"), SubResource("Resource_vjdca"), SubResource("Resource_gao66"), SubResource("Resource_2li5m"), SubResource("Resource_fwn38"), SubResource("Resource_torneo")])
 spawn_cell = Vector2i(128, 359)

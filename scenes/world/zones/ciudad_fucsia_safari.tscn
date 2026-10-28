@@ -1,0 +1,42 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_mtdoy"]
+[ext_resource type="TileSet" path="res://art/tiles/world_tileset.tres" id="2_gly8g"]
+[ext_resource type="Material" path="res://shaders/materials/water.tres" id="3_keisj"]
+[ext_resource type="Material" path="res://shaders/materials/foliage_wind.tres" id="4_cwsgy"]
+[ext_resource type="Script" path="res://scripts/world/tree_shadows.gd" id="5_nwfbw"]
+[ext_resource type="Material" path="res://shaders/materials/canopy_wind.tres" id="6_sgisq"]
+
+[node name="CiudadFucsiaSafari" type="Node2D" unique_id=1402430757]
+y_sort_enabled = true
+script = ExtResource("1_mtdoy")
+zone_id = "ciudad_fucsia_safari"
+hand_edited = true
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=1792020990]
+z_index = -10
+tile_map_data = PackedByteArray("AAAAAAAAgQACAAAAAAABAAAAgQACAAAAAAACAAAAgQACAAAAAAADAAAAgQADAAAAAAAEAAAAgQAEAAAAAAAFAAAAgQAFAAAAAAAGAAAAgQACAAAAAAAHAAAAgQACAAAAAAAIAAAAgQACAAAAAAAAAAEAgQAPAAAAAAABAAEAgQAPAAAAAAACAAEAgQAEAAEAAAADAAEAgQALAAAAAAAEAAEAgQAMAAAAAAAFAAEAgQANAAAAAAAGAAEAgQAEAAEAAAAHAAEAgQAPAAAAAAAIAAEAgQAPAAAAAAAAAAIAgQAHAAEAAAABAAIAgQAHAAEAAAACAAIAgQAMAAEAAAADAAIAgQAJAAEAAAAEAAIAgQALAAEAAAAFAAIAgQAKAAEAAAAGAAIAgQAMAAEAAAAHAAIAgQAHAAEAAAAIAAIAgQAHAAEAAAAAAAMAgQADAAIAAAABAAMAgQAAAAIAAAACAAMAgQAMAAEAAAADAAMAgQABAAIAAAAEAAMAgQADAAEAAAAFAAMAgQACAAEAAAAGAAMAgQAMAAEAAAAHAAMAgQAAAAIAAAAIAAMAgQAOAAEAAAAAAAQAgQAHAAIAAAABAAQAgQACAAIAAAACAAQAgQAMAAEAAAADAAQAgQABAAIAAAAEAAQAgQAIAAAAAAAFAAQAgQACAAEAAAAGAAQAgQAMAAEAAAAHAAQAgQACAAIAAAAIAAQAgQAGAAIAAAAAAAUAgQAPAAIAAAABAAUAgQACAAIAAAACAAUAgQAMAAEAAAADAAUAgQABAAIAAAAEAAUAgQADAAEAAAAFAAUAgQACAAEAAAAGAAUAgQAMAAEAAAAHAAUAgQACAAIAAAAIAAUAgQAHAAAAAAAAAAYAgQAPAAEAAAABAAYAgQAAAAIAAAACAAYAgQAMAAEAAAADAAYAgQABAAIAAAAEAAYAgQADAAEAAAAFAAYAgQACAAEAAAAGAAYAgQAMAAEAAAAHAAYAgQAAAAIAAAAIAAYAgQAOAAEAAAAAAAcAgQAGAAIAAAABAAcAgQACAAIAAAACAAcAgQAEAAIAAAADAAcAgQAMAAMAAAAEAAcAgQANAAMAAAAFAAcAgQAOAAMAAAAGAAcAgQAEAAIAAAAHAAcAgQACAAIAAAAIAAcAgQAGAAIAAAAAAAgACQAIAAAAAAABAAgACQAIAAAAAAACAAgACQAIAAAAAAADAAgACQAKAAEAAAAEAAgACQALAAEAAAAFAAgACQAMAAEAAAAGAAgACQAIAAAAAAAHAAgACQAIAAAAAAAIAAgACQAIAAAAAAA=")
+tile_set = ExtResource("2_gly8g")
+
+[node name="Water" type="TileMapLayer" parent="." unique_id=1226303534]
+z_index = -9
+material = ExtResource("3_keisj")
+tile_set = ExtResource("2_gly8g")
+
+[node name="Foliage" type="TileMapLayer" parent="." unique_id=493201288]
+z_index = -8
+material = ExtResource("4_cwsgy")
+tile_set = ExtResource("2_gly8g")
+
+[node name="TreeShadows" type="Node2D" parent="." unique_id=1787261600]
+z_index = -7
+script = ExtResource("5_nwfbw")
+
+[node name="Overhead" type="TileMapLayer" parent="." unique_id=294887258]
+z_index = 20
+material = ExtResource("6_sgisq")
+tile_map_data = PackedByteArray("AAAAAAEAgwAPAAAAAAABAAEAgwAPAAAAAAACAAEAgwAEAAEAAAAGAAEAgwAEAAEAAAAHAAEAgwAPAAAAAAAIAAEAgwAPAAAAAAAAAAgACwAIAAAAAAABAAgACwAIAAAAAAACAAgACwAIAAAAAAAGAAgACwAIAAAAAAAHAAgACwAIAAAAAAAIAAgACwAIAAAAAAA=")
+tile_set = ExtResource("2_gly8g")
+
+[node name="Objects" type="Node2D" parent="." unique_id=537948041]
+y_sort_enabled = true

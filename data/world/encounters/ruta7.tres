@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_t1pud"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_o7x5b"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_nqp17"]
+
+[sub_resource type="Resource" id="Resource_x5fa4"]
+script = ExtResource("2_o7x5b")
+species_id = "meowth"
+weight = 40
+min_level = 17
+max_level = 20
+
+[sub_resource type="Resource" id="Resource_jsfgx"]
+script = ExtResource("2_o7x5b")
+species_id = "pidgey"
+weight = 30
+min_level = 19
+max_level = 22
+
+[sub_resource type="Resource" id="Resource_g4b0o"]
+script = ExtResource("2_o7x5b")
+species_id = "oddish"
+weight = 20
+min_level = 19
+max_level = 22
+
+[sub_resource type="Resource" id="Resource_i8283"]
+script = ExtResource("2_o7x5b")
+species_id = "growlithe"
+min_level = 18
+max_level = 20
+
+[resource]
+script = ExtResource("3_nqp17")
+entries = Array[ExtResource("2_o7x5b")]([SubResource("Resource_x5fa4"), SubResource("Resource_jsfgx"), SubResource("Resource_g4b0o"), SubResource("Resource_i8283")])

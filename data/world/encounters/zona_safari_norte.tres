@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_gp53v"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_3n6d7"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_4nhi5"]
+
+[sub_resource type="Resource" id="Resource_djv7i"]
+script = ExtResource("2_3n6d7")
+species_id = "rhyhorn"
+weight = 20
+min_level = 26
+max_level = 26
+
+[sub_resource type="Resource" id="Resource_jicc8"]
+script = ExtResource("2_3n6d7")
+species_id = "nidoran_m"
+weight = 20
+min_level = 30
+max_level = 30
+
+[sub_resource type="Resource" id="Resource_y61ka"]
+script = ExtResource("2_3n6d7")
+species_id = "exeggcute"
+weight = 20
+min_level = 25
+max_level = 27
+
+[sub_resource type="Resource" id="Resource_u7xvs"]
+script = ExtResource("2_3n6d7")
+species_id = "paras"
+weight = 15
+min_level = 23
+max_level = 23
+
+[sub_resource type="Resource" id="Resource_cnvtf"]
+script = ExtResource("2_3n6d7")
+species_id = "nidorino"
+min_level = 30
+max_level = 30
+
+[sub_resource type="Resource" id="Resource_q7mng"]
+script = ExtResource("2_3n6d7")
+species_id = "nidorina"
+weight = 5
+min_level = 30
+max_level = 30
+
+[sub_resource type="Resource" id="Resource_5scpo"]
+script = ExtResource("2_3n6d7")
+species_id = "venomoth"
+weight = 5
+min_level = 32
+max_level = 32
+
+[sub_resource type="Resource" id="Resource_6gluf"]
+script = ExtResource("2_3n6d7")
+species_id = "chansey"
+weight = 4
+min_level = 26
+max_level = 26
+
+[sub_resource type="Resource" id="Resource_m83su"]
+script = ExtResource("2_3n6d7")
+species_id = "tauros"
+weight = 1
+min_level = 28
+max_level = 28
+
+[resource]
+script = ExtResource("3_4nhi5")
+entries = Array[ExtResource("2_3n6d7")]([SubResource("Resource_djv7i"), SubResource("Resource_jicc8"), SubResource("Resource_y61ka"), SubResource("Resource_u7xvs"), SubResource("Resource_cnvtf"), SubResource("Resource_q7mng"), SubResource("Resource_5scpo"), SubResource("Resource_6gluf"), SubResource("Resource_m83su")])

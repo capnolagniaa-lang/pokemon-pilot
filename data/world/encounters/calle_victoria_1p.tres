@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_svx3s"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_cs4r4"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_7ksxq"]
+
+[sub_resource type="Resource" id="Resource_rcn51"]
+script = ExtResource("2_cs4r4")
+species_id = "onix"
+weight = 30
+min_level = 40
+max_level = 46
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_na42t"]
+script = ExtResource("2_cs4r4")
+species_id = "machop"
+weight = 20
+min_level = 32
+max_level = 32
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_ypmqn"]
+script = ExtResource("2_cs4r4")
+species_id = "geodude"
+weight = 20
+min_level = 32
+max_level = 32
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_omndg"]
+script = ExtResource("2_cs4r4")
+species_id = "zubat"
+min_level = 32
+max_level = 32
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_37rbl"]
+script = ExtResource("2_cs4r4")
+species_id = "arbok"
+weight = 5
+min_level = 44
+max_level = 44
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_ong84"]
+script = ExtResource("2_cs4r4")
+species_id = "golbat"
+weight = 5
+min_level = 44
+max_level = 44
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_cij34"]
+script = ExtResource("2_cs4r4")
+species_id = "marowak"
+weight = 5
+min_level = 44
+max_level = 46
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_fm3fy"]
+script = ExtResource("2_cs4r4")
+species_id = "machoke"
+weight = 5
+min_level = 44
+max_level = 46
+where = "suelo"
+
+[resource]
+script = ExtResource("3_7ksxq")
+entries = Array[ExtResource("2_cs4r4")]([SubResource("Resource_rcn51"), SubResource("Resource_na42t"), SubResource("Resource_ypmqn"), SubResource("Resource_omndg"), SubResource("Resource_37rbl"), SubResource("Resource_ong84"), SubResource("Resource_cij34"), SubResource("Resource_fm3fy")])

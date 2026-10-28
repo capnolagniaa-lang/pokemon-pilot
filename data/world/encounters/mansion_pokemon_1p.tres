@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_lbtvs"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_nd6b4"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_xvp37"]
+
+[sub_resource type="Resource" id="Resource_qc1hh"]
+script = ExtResource("2_nd6b4")
+species_id = "koffing"
+weight = 30
+min_level = 28
+max_level = 30
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_eq84a"]
+script = ExtResource("2_nd6b4")
+species_id = "raticate"
+weight = 30
+min_level = 32
+max_level = 36
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_73v8j"]
+script = ExtResource("2_nd6b4")
+species_id = "growlithe"
+weight = 15
+min_level = 30
+max_level = 32
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_abtc2"]
+script = ExtResource("2_nd6b4")
+species_id = "rattata"
+weight = 15
+min_level = 26
+max_level = 28
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_2ccbl"]
+script = ExtResource("2_nd6b4")
+species_id = "grimer"
+weight = 5
+min_level = 28
+max_level = 28
+where = "suelo"
+
+[sub_resource type="Resource" id="Resource_q62hp"]
+script = ExtResource("2_nd6b4")
+species_id = "weezing"
+weight = 5
+min_level = 32
+max_level = 32
+where = "suelo"
+
+[resource]
+script = ExtResource("3_xvp37")
+entries = Array[ExtResource("2_nd6b4")]([SubResource("Resource_qc1hh"), SubResource("Resource_eq84a"), SubResource("Resource_73v8j"), SubResource("Resource_abtc2"), SubResource("Resource_2ccbl"), SubResource("Resource_q62hp")])

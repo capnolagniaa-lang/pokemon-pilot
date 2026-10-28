@@ -1,0 +1,42 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/world/zone.gd" id="1_hqgph"]
+[ext_resource type="TileSet" path="res://art/tiles/world_tileset.tres" id="2_a2u0m"]
+[ext_resource type="Material" path="res://shaders/materials/water.tres" id="3_hysu2"]
+[ext_resource type="Material" path="res://shaders/materials/foliage_wind.tres" id="4_j05dm"]
+[ext_resource type="Script" path="res://scripts/world/tree_shadows.gd" id="5_g6qo0"]
+[ext_resource type="Material" path="res://shaders/materials/canopy_wind.tres" id="6_xwomx"]
+
+[node name="CiudadAzulonaMansionCuarto" type="Node2D" unique_id=166183677]
+y_sort_enabled = true
+script = ExtResource("1_hqgph")
+zone_id = "ciudad_azulona_mansion_cuarto"
+hand_edited = true
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=1623734346]
+z_index = -10
+tile_map_data = PackedByteArray("AAAAAAAAigAFAAAAAAABAAAAigAGAAAAAAACAAAAigAGAAAAAAADAAAAigAHAAAAAAAEAAAAigADAAAAAAAFAAAAigAEAAAAAAAGAAAAigAAAAIAAAAHAAAAigABAAIAAAAIAAAAigABAAIAAAAJAAAAigABAAIAAAAAAAEAigANAAAAAAABAAEAigAOAAAAAAACAAEAigAOAAAAAAADAAEAigAPAAAAAAAEAAEAigALAAAAAAAFAAEAigAMAAAAAAAGAAEAigAIAAIAAAAHAAEAigAJAAIAAAAIAAEAigALAAEAAAAJAAEAigAMAAEAAAAAAAIAigAFAAEAAAABAAIAigAGAAEAAAACAAIAigAGAAEAAAADAAIAigAHAAEAAAAEAAIAigADAAEAAAAFAAIAigAEAAEAAAAGAAIAigAFAAEAAAAHAAIAigAGAAEAAAAIAAIAigADAAIAAAAJAAIAigAEAAIAAAAAAAMAigANAAEAAAABAAMAigAOAAEAAAACAAMAigAOAAEAAAADAAMAigAOAAEAAAAEAAMAigABAAEAAAAFAAMAigACAAEAAAAGAAMAigAOAAEAAAAHAAMAigAMAAIAAAAIAAMAigAGAAEAAAAJAAMAigAGAAEAAAAAAAQAigANAAEAAAABAAQAigAOAAEAAAACAAQAigAOAAEAAAADAAQAigAOAAEAAAAEAAQAigAJAAEAAAAFAAQAigAKAAEAAAAGAAQAigAOAAEAAAAHAAQAigANAAIAAAAIAAQAigAOAAEAAAAJAAQAigAOAAEAAAAAAAUAigANAAEAAAABAAUAigAOAAEAAAACAAUAigAOAAEAAAADAAUAigAOAAEAAAAEAAUAigAIAAAAAAAFAAUAigAIAAAAAAAGAAUAigAOAAEAAAAHAAUAigAOAAEAAAAIAAUAigAOAAEAAAAJAAUAigAOAAEAAAAAAAYAigABAAAAAAABAAYAigAOAAEAAAACAAYAigAOAAEAAAADAAYAigAOAAEAAAAEAAYAigAAAAEAAAAFAAYAigAAAAEAAAAGAAYAigAOAAEAAAAHAAYAigAOAAEAAAAIAAYAigAOAAEAAAAJAAYAigACAAAAAAAAAAcAigAJAAAAAAABAAcAigAOAAEAAAACAAcAigAOAAEAAAADAAcAigAFAAIAAAAEAAcAigAGAAIAAAAFAAcAigAHAAIAAAAGAAcAigAOAAEAAAAHAAcAigAOAAEAAAAIAAcAigAOAAEAAAAJAAcAigAKAAAAAAAAAAgACQAIAAAAAAABAAgACQAIAAAAAAACAAgACQAIAAAAAAADAAgACQAKAAEAAAAEAAgACQALAAEAAAAFAAgACQAMAAEAAAAGAAgACQAIAAAAAAAHAAgACQAIAAAAAAAIAAgACQAIAAAAAAAJAAgACQAIAAAAAAA=")
+tile_set = ExtResource("2_a2u0m")
+
+[node name="Water" type="TileMapLayer" parent="." unique_id=1205764280]
+z_index = -9
+material = ExtResource("3_hysu2")
+tile_set = ExtResource("2_a2u0m")
+
+[node name="Foliage" type="TileMapLayer" parent="." unique_id=711205729]
+z_index = -8
+material = ExtResource("4_j05dm")
+tile_set = ExtResource("2_a2u0m")
+
+[node name="TreeShadows" type="Node2D" parent="." unique_id=766018078]
+z_index = -7
+script = ExtResource("5_g6qo0")
+
+[node name="Overhead" type="TileMapLayer" parent="." unique_id=1767507530]
+z_index = 20
+material = ExtResource("6_xwomx")
+tile_map_data = PackedByteArray("AAAEAAMAjAABAAEAAAAFAAMAjAACAAEAAAAAAAYAjAABAAAAAAAJAAYAjAACAAAAAAAAAAgACwAIAAAAAAABAAgACwAIAAAAAAACAAgACwAIAAAAAAAGAAgACwAIAAAAAAAHAAgACwAIAAAAAAAIAAgACwAIAAAAAAAJAAgACwAIAAAAAAA=")
+tile_set = ExtResource("2_a2u0m")
+
+[node name="Objects" type="Node2D" parent="." unique_id=2074804934]
+y_sort_enabled = true

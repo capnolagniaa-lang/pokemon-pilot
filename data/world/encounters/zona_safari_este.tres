@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="EncounterTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/encounter_area.gd" id="1_kow7s"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_entry.gd" id="2_rahcx"]
+[ext_resource type="Script" path="res://scripts/resources/encounter_table.gd" id="3_i2t4v"]
+
+[sub_resource type="Resource" id="Resource_g8swp"]
+script = ExtResource("2_rahcx")
+species_id = "nidoran_m"
+weight = 20
+min_level = 24
+max_level = 24
+
+[sub_resource type="Resource" id="Resource_cvxv5"]
+script = ExtResource("2_rahcx")
+species_id = "doduo"
+weight = 20
+min_level = 26
+max_level = 26
+
+[sub_resource type="Resource" id="Resource_qdbqg"]
+script = ExtResource("2_rahcx")
+species_id = "exeggcute"
+weight = 20
+min_level = 23
+max_level = 25
+
+[sub_resource type="Resource" id="Resource_d6a50"]
+script = ExtResource("2_rahcx")
+species_id = "paras"
+weight = 15
+min_level = 22
+max_level = 22
+
+[sub_resource type="Resource" id="Resource_8beus"]
+script = ExtResource("2_rahcx")
+species_id = "nidorino"
+min_level = 33
+max_level = 33
+
+[sub_resource type="Resource" id="Resource_c3fh1"]
+script = ExtResource("2_rahcx")
+species_id = "nidoran_f"
+weight = 5
+min_level = 24
+max_level = 24
+
+[sub_resource type="Resource" id="Resource_xuo84"]
+script = ExtResource("2_rahcx")
+species_id = "parasect"
+weight = 5
+min_level = 25
+max_level = 25
+
+[sub_resource type="Resource" id="Resource_sw20u"]
+script = ExtResource("2_rahcx")
+species_id = "kangaskhan"
+weight = 4
+min_level = 25
+max_level = 25
+
+[sub_resource type="Resource" id="Resource_qxb05"]
+script = ExtResource("2_rahcx")
+species_id = "scyther"
+weight = 1
+min_level = 28
+max_level = 28
+
+[resource]
+script = ExtResource("3_i2t4v")
+entries = Array[ExtResource("2_rahcx")]([SubResource("Resource_g8swp"), SubResource("Resource_cvxv5"), SubResource("Resource_qdbqg"), SubResource("Resource_d6a50"), SubResource("Resource_8beus"), SubResource("Resource_c3fh1"), SubResource("Resource_xuo84"), SubResource("Resource_sw20u"), SubResource("Resource_qxb05")])

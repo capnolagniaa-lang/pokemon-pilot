@@ -515,6 +515,21 @@ func visit_zone(id: String) -> void:
 
 # --- Guardado ------------------------------------------------------------------------
 
+## Versión del mapa del mundo. 2 = el resto de Kanto: los interiores, cuevas y bosques (que van debajo del mundo)
+## bajaron 258 celdas porque el mar llega más al sur; las posiciones guardadas ahí se corren al cargar.
+const MAP_VERSION := 2
+const _OFFWORLD_TOP_V1 := 408  # celdas: desde acá empezaban los interiores en la versión 1
+const _OFFWORLD_SHIFT_V2 := 258
+
+
+## Corre una posición guardada con un mapa viejo al lugar de ahora (los interiores se movieron).
+static func _migrate_position(p: Vector2, version: int) -> Vector2:
+	if p == Vector2.INF or version >= 2:
+		return p
+	var ts: float = 16.0
+	return p + Vector2(0, _OFFWORLD_SHIFT_V2 * ts) if p.y >= _OFFWORLD_TOP_V1 * ts else p
+
+
 func to_dict() -> Dictionary:
 	var members := []
 	# En medio del torneo se guarda el equipo y la mochila de antes (el torneo no se guarda: se abandona).
@@ -529,7 +544,8 @@ func to_dict() -> Dictionary:
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
 		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money, "visited_zones": visited_zones.keys(), "settings": settings.duplicate(),
-		"last_heal_position": [last_heal_position.x, last_heal_position.y] if last_heal_position != Vector2.INF else null}
+		"last_heal_position": [last_heal_position.x, last_heal_position.y] if last_heal_position != Vector2.INF else null,
+		"map_version": MAP_VERSION}
 
 
 func _box_list() -> Array:
@@ -598,6 +614,8 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	time_of_day = fposmod(float(d.get("time_of_day", START_HOUR)), 24.0)
 	var pos = d.get("trainer_position", null)
 	trainer_position = Vector2(float(pos[0]), float(pos[1])) if pos is Array and pos.size() == 2 else Vector2.INF
+	var map_version := int(d.get("map_version", 1))
+	trainer_position = _migrate_position(trainer_position, map_version)
 	zone_name = str(d.get("zone_name", ""))
 	pokedex_seen.clear()
 	pokedex_fought.clear()
@@ -626,6 +644,7 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	money = maxi(0, int(d.get("money", STARTING_MONEY)))
 	var heal_pos = d.get("last_heal_position", null)
 	last_heal_position = Vector2(float(heal_pos[0]), float(heal_pos[1])) if heal_pos is Array and heal_pos.size() == 2 else Vector2.INF
+	last_heal_position = _migrate_position(last_heal_position, map_version)
 	story_flags.clear()
 	var flags = d.get("story_flags", [])
 	if flags is Array:
