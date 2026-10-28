@@ -24,6 +24,7 @@ const SECTIONS := [
 		["wild_mult", "Cantidad de salvajes (×)", 0.0, 3.0, 0.1, "×%.1f"],
 		["regen", "Curación sola fuera de combate (1% por segundo)"],
 		["field_items", "Objetos tirados en las rutas"],
+		["time_lock", "Hora fija (todo a la izquierda: el tiempo corre)", -1.0, 23.5, 0.5, "%.1f h", "Corre"],
 	]],
 	["IA personalizada (se usa con la dificultad «Personalizada»)", [
 		["ai_attack_interval", "Tiempo entre ataques (×)", 0.5, 3.0, 0.05, "×%.2f"],
@@ -118,11 +119,9 @@ func _row(row: Array) -> Control:
 	var value := UiStyle.label("", 15, UiStyle.TEXT_DIM)
 	value.custom_minimum_size.x = 90
 	h.add_child(value)
-	var fmt: String = row[5]
-	var pct := fmt.contains("%%")
 	slider.value_changed.connect(func(v: float):
 		GameState.set_setting(key, v)
-		value.text = fmt % (v * 100.0 if pct else v))
+		value.text = _format(row, v))
 	controls[key] = slider
 	_values[key] = value
 	return h
@@ -137,12 +136,19 @@ func refresh() -> void:
 			c.set_pressed_no_signal(bool(v))
 		else:
 			c.set_value_no_signal(float(v))
-			var row := _find_row(key)
-			var fmt: String = row[5]
-			_values[key].text = fmt % (float(v) * 100.0 if fmt.contains("%%") else float(v))
+			_values[key].text = _format(_find_row(key), float(v))
 	var current := GameState.difficulty_id()
 	for id in _diff_buttons:
 		_diff_buttons[id].set_pressed_no_signal(id == current)
+
+
+## Texto del valor de un deslizador. Un 7.º elemento en la fila = texto para los valores bajo cero (la hora fija:
+## "Corre").
+func _format(row: Array, v: float) -> String:
+	if row.size() > 6 and v < 0.0:
+		return row[6]
+	var fmt: String = row[5]
+	return fmt % (v * 100.0 if fmt.contains("%%") else v)
 
 
 func _find_row(key: String) -> Array:

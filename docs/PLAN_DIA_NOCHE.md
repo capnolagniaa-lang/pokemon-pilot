@@ -27,7 +27,10 @@ Qué tienen las referencias:
 
 ## Reparto
 
-### A) Núcleo de tiempo (sesión de gráficos)
+### A) Núcleo de tiempo (sesión de gráficos) — ✅ hecho (2026-10-28)
+Quedó en `scripts/world/day_night.gd` (`world.day_night`). La tabla `KEYS` dice cómo se ve cada hora, ajustada contra
+las referencias. Para B y D: `darkness` (0-1; 0 en interiores y arenas), `shadow_direction`, `shadow_length`,
+`shadow_alpha`, `indoor` y la señal `Events.time_changed(hour, phase)`, que avisa cada 0,1 h y al cambiar de fase.
 - `DayNight` (nodo del mundo): hora del juego (0-24), que avanza con un ritmo configurable y se guarda en
   `GameState` (`to_dict`/`from_dict`). Emite `Events.time_changed(hour, phase)` (fases: amanecer, día, atardecer,
   noche).

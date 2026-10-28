@@ -6,6 +6,16 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Día y noche, parte A (2026-10-28, pedido del usuario)**: plan y reparto en `docs/PLAN_DIA_NOCHE.md` (A y B:
+  sesión de gráficos; C ventanas/faroles: sesión de mapas; D luces de ataques: sesión de kits), con las referencias que
+  pintó Qwen en `docs/referencias/iluminacion/`. Hecho: `DayNight` (nodo del mundo): la hora del juego corre (un día =
+  24 min reales), se guarda con la partida y avisa por `Events.time_changed(hora, fase)`. Pinta el Daylight, la
+  gradación, una luz de esquina con rayos (post-procesado), las nubes y las luciérnagas de noche. Interiores y arenas
+  van con luz pareja. "Hora fija" en Ajustes del juego. Por ahora solo visual (decisión del usuario). Sigue la **B:
+  sombras con la forma real**. Test `--autotest-daynight` (19), vitrina `--showcase-daynight`.
+- **Creación de gráficos con IA local (2026-10-28)**: ComfyUI con Qwen-Image, Qwen Edit, Wan 2.2 y LoRAs de pixel art.
+  Flujo de efectos de ataque (cuadro clave → animación → `tools/fx_from_frames.py` → `sprites/fx/`). Guía:
+  `docs/COMFYUI.md`.
 - **Capítulo 3 de la historia (2026-10-25, pedido del usuario: "hasta el gimnasio de Lt. Surge")**: plan en
   `docs/PLAN_CAPITULO_3.md` (mapas de la sesión de mapas, 0e8da6c2). Hecho: 29 entrenadores con los equipos de FireRed
   (Ruta 6, S.S. Anne, gimnasio), el Rocket de la casa robada (MT28 Excavar), el Ticket en el muelle, el rival en el
@@ -231,7 +241,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 | 3 | Entorno reactivo (fuego, agua, eléctrico) + puzzles | ✅ Hecha |
 | 4a | IA de los salvajes: cuerpo compartido + temperamentos (sin memoria) | ✅ Hecha |
 | 4 | IA salvaje con estados + spawns por bioma/hora | ⏭️ Siguiente |
-| 5 | Ciclo día/noche, clima, NPCs con horarios | Pendiente |
+| 5 | Ciclo día/noche, clima, NPCs con horarios | 🟡 Día/noche parte A hecha (2026-10-28); faltan las sombras con forma (B), ventanas y faroles (C), luces de ataques (D), clima y horarios |
 | 6 | Captura, equipo y progresión (incluye **IVs al azar al capturar**, naturalezas, EVs) | 🟡 Captura, Mochila, Caja e IVs al azar hechos (2026-10-23); faltan naturalezas, EVs, evoluciones, Centros |
 | 7 | Primer gimnasio (arena con transición) | Pendiente |
 | 8 | Pulido (juice, audio, partículas) | Pendiente |

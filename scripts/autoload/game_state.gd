@@ -58,6 +58,9 @@ var test_tournament: Dictionary = {}
 var tournament: Dictionary = {}
 ## Dinero (docs/PLAN_TORNEO.md, T-0): premios de entrenadores y del torneo, entradas. Se guarda.
 var money := 0
+## Hora del juego (0-24; docs/PLAN_DIA_NOCHE.md). La hace correr DayNight; se guarda con la partida.
+var time_of_day := START_HOUR
+const START_HOUR := 10.0
 ## Ajustes del juego de esta partida (Esc → Opciones → Ajustes del juego; pedido del usuario 2026-10-26): clave -> valor.
 ## Solo se guardan los que cambiaste; el resto sale de default_settings() (los valores de siempre). Leer con setting().
 var settings: Dictionary = {}
@@ -104,7 +107,7 @@ func default_settings() -> Dictionary:
 		"exp_mult": DB.config.exp_multiplier, "money_mult": 1.0, "catch_mult": 1.0,
 		"dealt_mult": 1.0, "taken_mult": 1.0, "hp_scale": CreatureInstance.HP_SCALE,
 		"combos": DB.config.combos_enabled, "arena_everywhere": DB.config.arena_rules_everywhere,
-		"wild_mult": 1.0, "regen": false, "field_items": true,
+		"wild_mult": 1.0, "regen": false, "field_items": true, "time_lock": -1.0,
 		"ai_attack_interval": n.attack_interval_mult, "ai_aim_error": n.aim_error_deg, "ai_dodge": n.dodge_chance,
 		"ai_lead": n.lead, "ai_damage": n.damage_mult, "ai_think": n.think_interval_mult,
 	}
@@ -169,6 +172,7 @@ func new_game(starter: SpeciesData) -> void:
 	selected_ball = "poke_ball"
 	quick_item = "pocion"
 	play_time = 0.0
+	time_of_day = START_HOUR
 	trainer_position = Vector2.INF
 	zone_name = ""
 	pokedex_seen.clear()
@@ -520,7 +524,7 @@ func to_dict() -> Dictionary:
 	return {"party": members, "active_index": active_index if tournament.is_empty() else 0,
 		"bag": tournament.get("bag_before", bag).duplicate(), "selected_ball": selected_ball,
 		"quick_item": quick_item, "practice_mode": practice_mode,
-		"wild_test_pool": wild_test_pool, "difficulty": difficulty_id(), "play_time": play_time,
+		"wild_test_pool": wild_test_pool, "difficulty": difficulty_id(), "play_time": play_time, "time_of_day": time_of_day,
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
@@ -591,6 +595,7 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	_custom_difficulty = null
 	set_difficulty(str(d.get("difficulty", "normal")))
 	play_time = maxf(0.0, float(d.get("play_time", 0.0)))
+	time_of_day = fposmod(float(d.get("time_of_day", START_HOUR)), 24.0)
 	var pos = d.get("trainer_position", null)
 	trainer_position = Vector2(float(pos[0]), float(pos[1])) if pos is Array and pos.size() == 2 else Vector2.INF
 	zone_name = str(d.get("zone_name", ""))

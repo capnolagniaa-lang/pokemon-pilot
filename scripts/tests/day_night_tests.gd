@@ -1,0 +1,124 @@
+class_name DayNightTests
+extends Node
+## Autotest del día y la noche (DayNight, docs/PLAN_DIA_NOCHE.md, parte A):
+##   godot --headless --path . --quit-after 30000 -- --autotest-daynight
+## Vitrina (Ruta 1, Ciudad Verde y Ciudad Plateada a las 12, 18:30, 23 y 6:30; compararla con
+## docs/referencias/iluminacion/):
+##   godot --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-daynight
+
+const SHOW_ZONES := [["ruta1", Vector2i(48, 35)], ["ciudad_verde", Vector2i(48, 35)], ["ciudad_plateada", Vector2i(48, 35)]]
+const SHOW_HOURS := [12.0, 18.5, 23.0, 6.5]
+const SHOW_FRAMES := 14
+
+var autotest: Node
+var world: Node
+
+
+func run() -> void:
+	var r := {}
+	# --- Reglas (sin mundo) ---
+	r["Fases: 3 noche, 6 amanecer, 12 día, 18 atardecer, 21 noche"] = DayNight.phase_of(3.0) == "noche" \
+		and DayNight.phase_of(6.0) == "amanecer" and DayNight.phase_of(12.0) == "dia" \
+		and DayNight.phase_of(18.0) == "atardecer" and DayNight.phase_of(21.0) == "noche"
+	r["A las 24 se ve igual que a las 0"] = DayNight.look_at(24.0)[1] == DayNight.look_at(0.0)[1]
+	r["Al mediodía, el color de siempre (sin oscurecer)"] = DayNight.look_at(12.0)[1].is_equal_approx(DayNight.INDOOR[1])
+	r["De noche, azul y oscuro"] = DayNight.look_at(23.0)[1].get_luminance() < 0.5 and DayNight.look_at(23.0)[1].b > DayNight.look_at(23.0)[1].r
+	r["Al atardecer, dorado (más rojo que azul) y sombras largas"] = DayNight.look_at(18.5)[1].r > DayNight.look_at(18.5)[1].b + 0.1 \
+		and DayNight.look_at(18.5)[10] > 2.5
+	r["Ajuste 'time_lock' por defecto: el tiempo corre (-1)"] = float(GameState.default_settings().get("time_lock", 0)) < 0.0
+	var in_screen := false
+	for section in GameSettingsScreen.SECTIONS:
+		for row in section[1]:
+			in_screen = in_screen or row[0] == "time_lock"
+	r["'Hora fija' está en Ajustes del juego"] = in_screen
+
+	# --- Guardado ---
+	GameState.new_game(DB.species["charmander"])
+	r["Partida nueva: arranca a las %.0f" % GameState.START_HOUR] = GameState.time_of_day == GameState.START_HOUR
+	GameState.time_of_day = 19.25
+	var d := GameState.to_dict()
+	GameState.time_of_day = 3.0
+	GameState.from_dict(d)
+	r["La hora se guarda con la partida"] = is_equal_approx(GameState.time_of_day, 19.25)
+	d.erase("time_of_day")
+	GameState.from_dict(d)
+	r["Partida vieja sin hora: arranca a las %.0f" % GameState.START_HOUR] = GameState.time_of_day == GameState.START_HOUR
+
+	# --- En el mundo: corre la hora ---
+	await _start("ruta1", Vector2i(48, 35))
+	var dn: DayNight = world.day_night
+	r["El mundo tiene su DayNight"] = dn != null and not dn.indoor
+	var phases := []
+	Events.time_changed.connect(func(_h: float, p: String): phases.append(p))
+	GameState.time_of_day = 10.0
+	var t0 := Time.get_ticks_msec()
+	await get_tree().create_timer(1.5).timeout
+	var real := (Time.get_ticks_msec() - t0) / 1000.0
+	var advanced := GameState.time_of_day - 10.0
+	r["1 hora = 1 minuto: en %.1f s avanzó %.3f h" % [real, advanced]] = absf(advanced - real / 60.0) < 0.01
+	var daylight: CanvasModulate = world.get_node("Daylight")
+	var mat: ShaderMaterial = world.get_node("PostProcess/Screen").material
+	GameState.set_setting("time_lock", 23.0)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	r["Hora fija a las 23: noche (oscuridad %.2f)" % dn.darkness] = is_equal_approx(GameState.time_of_day, 23.0) \
+		and dn.darkness > 0.85 and daylight.color.get_luminance() < 0.5
+	r["Se avisó la noche (Events.time_changed)"] = "noche" in phases
+	GameState.set_setting("time_lock", 12.0)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	r["Al mediodía: sin oscuridad, con sol de esquina (%.2f)" % float(mat.get_shader_parameter("sun_strength"))] = \
+		dn.darkness < 0.05 and float(mat.get_shader_parameter("sun_strength")) > 0.1 and "dia" in phases
+	r["Sombras del mediodía hacia abajo (%.2f, %.2f)" % [dn.shadow_direction.x, dn.shadow_direction.y]] = dn.shadow_direction.y > 0.5
+	GameState.set_setting("time_lock", 18.5)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	r["Al atardecer las sombras se estiran (×%.1f) y caen a la derecha" % dn.shadow_length] = dn.shadow_length > 2.5 \
+		and dn.shadow_direction.x > 0.5 and "atardecer" in phases
+
+	# --- Interior: luz pareja aunque sea de noche ---
+	GameState.set_setting("time_lock", 23.0)
+	await _start("ciudad_verde_centro", Vector2i(7, 8))
+	dn = world.day_night
+	daylight = world.get_node("Daylight")
+	mat = world.get_node("PostProcess/Screen").material
+	await get_tree().process_frame
+	r["En un interior de noche: luz pareja, sin sol (oscuridad %.2f)" % dn.darkness] = dn.indoor and dn.darkness == 0.0 \
+		and daylight.color.is_equal_approx(DayNight.INDOOR[1]) and float(mat.get_shader_parameter("sun_strength")) == 0.0
+	GameState.set_setting("time_lock", -1.0)
+	await get_tree().process_frame
+	r["Sin hora fija, el tiempo vuelve a correr"] = not GameState.settings.has("time_lock")
+
+	var ok := r.values().all(func(v): return v)
+	for key in r:
+		print("[daynight] %s %s" % ["OK   " if r[key] else "FALLO", key])
+	print("[autotest-daynight] -> ", "OK" if ok else "FALLO")
+	get_tree().quit(0 if ok else 1)
+
+
+## Vitrina: cada zona a cada hora, SHOW_FRAMES cuadros (imprime qué cuadros son cada una).
+func showcase() -> void:
+	GameState.new_game(DB.species["charmander"])
+	for z in SHOW_ZONES:
+		await _start(z[0], z[1])
+		world.get_node("UI").visible = false
+		for h in SHOW_HOURS:
+			GameState.set_setting("time_lock", h)
+			var first := Engine.get_frames_drawn()
+			for i in SHOW_FRAMES:
+				await get_tree().process_frame
+			print("[showcase-daynight] %s %.1f h: cuadros %d-%d" % [z[0], h, first, Engine.get_frames_drawn()])
+	get_tree().quit()
+
+
+func _start(zone_id: String, cell: Vector2i) -> void:
+	var wd: WorldData = DB.config.world
+	for z in wd.zones:
+		if z.id == zone_id:
+			GameState.trainer_position = Vector2((z.origin + cell) * wd.tile_size) + Vector2.ONE * wd.tile_size / 2.0
+	GameState.wilds_enabled = false
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await get_tree().process_frame
+	await get_tree().process_frame
+	world = get_tree().current_scene
+	await get_tree().create_timer(0.5).timeout

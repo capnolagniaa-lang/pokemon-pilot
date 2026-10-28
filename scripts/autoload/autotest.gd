@@ -131,6 +131,13 @@ func _ready() -> void:
 		add_child(tm)
 		(tm.showcase if "--showcase-town-map" in OS.get_cmdline_user_args() else tm.run).call_deferred()
 		return
+	if "--autotest-daynight" in OS.get_cmdline_user_args() or "--showcase-daynight" in OS.get_cmdline_user_args():
+		set_process(false)
+		var dnt := DayNightTests.new()
+		dnt.autotest = self
+		add_child(dnt)
+		(dnt.showcase if "--showcase-daynight" in OS.get_cmdline_user_args() else dnt.run).call_deferred()
+		return
 	if "--autotest-equip" in OS.get_cmdline_user_args():
 		set_process(false)
 		var eq := EquipTests.new()

@@ -1,6 +1,6 @@
 extends Node2D
 ## Partículas ambientales alrededor de la cámara (hojas, polen, motas de luz).
-## Cambian según el bioma de la zona actual.
+## Cambian según el bioma de la zona actual. De noche (DayNight) las motas son luciérnagas.
 
 ## Cantidades por bioma: [hojas, motas]
 const BIOMES := {
@@ -37,6 +37,7 @@ func _ready() -> void:
 	# Color > 1: el glow las hace brillar.
 	_motes.color_ramp = _fade(Color(1.9, 1.75, 1.2, 1))
 	Events.zone_entered.connect(_on_zone_entered)
+	Events.time_changed.connect(_on_time_changed)
 
 
 func _process(_delta: float) -> void:
@@ -49,6 +50,15 @@ func _on_zone_entered(zone: ZoneEntry) -> void:
 	var amounts: Array = BIOMES.get(zone.biome, [10, 20])
 	_set_amount(_leaves, amounts[0])
 	_set_amount(_motes, amounts[1])
+
+
+func _on_time_changed(_hour: float, _phase: String) -> void:
+	var dn: DayNight = get_parent().get("day_night")
+	var dark := dn.darkness if dn != null and not dn.indoor else 0.0
+	# Color > 1: el glow las hace brillar (de noche, verde amarillento y más fuerte, contra el oscurecido).
+	_motes.color_ramp = _fade(Color(1.9, 1.75, 1.2, 1).lerp(Color(2.6, 3.0, 0.9, 1), dark))
+	_motes.scale_amount_min = 1.0 + dark
+	_motes.scale_amount_max = 1.0 + dark * 1.5
 
 
 func _set_amount(p: CPUParticles2D, amount: int) -> void:

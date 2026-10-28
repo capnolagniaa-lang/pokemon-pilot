@@ -34,6 +34,8 @@ var field_moves: FieldMoves
 var vermilion_puzzle: VermilionGymPuzzle
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
 var arena: TrainerBattle
+## Hora del juego y luz del mundo según la hora (docs/PLAN_DIA_NOCHE.md).
+var day_night: DayNight
 
 
 func _ready() -> void:
@@ -90,6 +92,9 @@ func _ready() -> void:
 	vermilion_puzzle = VermilionGymPuzzle.new()  # los basureros del gimnasio de Carmín
 	vermilion_puzzle.name = "VermilionGymPuzzle"
 	add_child(vermilion_puzzle)
+	day_night = DayNight.new()
+	day_night.name = "DayNight"
+	add_child(day_night)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
 	Events.zone_entered.connect(func(z: ZoneEntry): GameState.visit_zone(z.id))
 	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).

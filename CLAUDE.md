@@ -64,6 +64,8 @@ $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: tod
 $G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabla de música, respaldos, archivos propios, gritos, efectos
 $G --headless --path . --quit-after 30000 -- --autotest-settings  # Ajustes del juego por partida (EXP, dinero, captura, daño, vida, salvajes, IA...)
 $G --path . --quit-after 60 --write-movie out/f.png --fixed-fps 30 -- --showcase-settings  # la pantalla de ajustes
+$G --headless --path . --quit-after 30000 -- --autotest-daynight   # día y noche: hora, fases, guardado, hora fija, interiores
+$G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-daynight  # 3 zonas × 4 horas (comparar con docs/referencias/iluminacion)
 $G --headless --path . --quit-after 30000 -- --autotest-town-map  # Mapa del menú (zonas, entradas, íconos, niebla, objetivo, partidas viejas)
 $G --path . --quit-after 90 --write-movie out/f.png --fixed-fps 30 -- --showcase-town-map  # el Mapa abierto
 $G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, activo, menú, ficha
@@ -206,12 +208,17 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   Gimnasio y los nombres. `TownMapScreen` (`scripts/ui/`): zoom, arrastre, niebla en lo no visitado
   (`GameState.visited_zones`, se guarda; partidas viejas: `TownMap.visited_from_progress`), tu posición y la estrella
   del objetivo (`StoryGuide.GOALS`). En la historia aparece con el objeto Mapa (Dalia); en el modo libre, siempre.
+- **Día y noche** (`docs/PLAN_DIA_NOCHE.md`): `DayNight` (`world.day_night`) hace correr `GameState.time_of_day`
+  (1 h = 1 min real; ajuste `time_lock` = hora fija) y pinta según la tabla `KEYS`: Daylight, uniforms del
+  post-procesado (tinte, `sun_pos`/`sun_strength`/`rays` = luz de esquina), nubes, luciérnagas (`AmbientFX`). Interiores
+  y arenas: `INDOOR` (luz pareja). Otros sistemas leen `darkness`, `shadow_direction`, `shadow_length` y escuchan
+  `Events.time_changed(hour, phase)`. Por ahora solo visual (no cambia salvajes ni tipos).
 - **Ajustes del juego por partida** (Esc → Opciones → "Ajustes del juego…", `GameSettingsScreen`): `GameState.settings`
   (se guarda con la partida; solo lo cambiado; el resto sale de `default_settings()` = GameConfig + dificultad Normal;
   una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `exp_mult` (exp_yield), `money_mult`
   (`add_prize`: premios de entrenadores y torneo), `catch_mult` (Capture), `dealt_mult`/`taken_mult` (HitInfo.from),
   `hp_scale` (`CreatureInstance.hp_scale()`, reescala la vida actual), `combos`, `arena_everywhere`, `wild_mult`
-  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, y `ai_*` (dificultad
+  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), y `ai_*` (dificultad
   "personalizado" = `GameState.custom_difficulty()`). **No leer más `DB.config.exp_multiplier`/`combos_enabled`/
   `arena_rules_everywhere` ni `CreatureInstance.HP_SCALE` directo** (son los valores por defecto).
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
@@ -350,6 +357,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - `tools/link_official_moves.py`: los ataques oficiales automáticos toman la forma de su versión de kit del mismo
   nombre (y los de mejora propia sin kit, un efecto genérico). **Correrlo después de `apply_official_data.gd --
   --regen-auto`** (si no, vuelven a la forma inventada). `SignatureData.params.element_marks` = sinergia por tipo.
+- **IA local (ComfyUI, fuera del repo)**: `docs/COMFYUI.md`. `tools/comfy/build_workflows.py` arma los workflows de
+  efectos (`efecto_1_cuadro_clave` con Qwen-Image + LoRA de pixel art, `efecto_2_animar` con Wan 2.2) y
+  `tools/fx_from_frames.py` (necesita Pillow) pasa los cuadros a una hoja de `sprites/fx/` (`--clean-key` limpia el
+  cuadro clave antes de animar).
 - `tools/fetch_cries.py` (gritos de PokeAPI → `audio/gritos/<n.º>.ogg`) y `tools/make_sfx.py` (efectos retro hechos
   por código → `audio/efectos/`, + cortinas por defecto en `audio/musica/` sin pisar las tuyas). Música: la pone el
   usuario (`docs/AUDIO.md`).

@@ -92,5 +92,8 @@ signal money_changed(money: int)
 ## cancelable = se puede frenar con Esc, como en los juegos) y cuando ya evolucionó.
 signal evolution_ready(inst: Resource, to: Resource, cancelable: bool)
 signal evolved(inst: Resource, from: Resource, to: Resource)
+## Día y noche (DayNight, docs/PLAN_DIA_NOCHE.md): la hora del juego (0-24) avanzó un poco (cada 0,1 h) o cambió de
+## fase ("amanecer", "dia", "atardecer", "noche"). La oscuridad y la dirección del sol: world.day_night.
+signal time_changed(hour: float, phase: String)
 
 @warning_ignore_restore("unused_signal")
