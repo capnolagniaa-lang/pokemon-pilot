@@ -73,6 +73,7 @@ $G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabl
 $G --headless --path . --quit-after 30000 -- --autotest-settings  # Ajustes del juego por partida (EXP, dinero, captura, daño, vida, salvajes, IA...)
 $G --path . --quit-after 60 --write-movie out/f.png --fixed-fps 30 -- --showcase-settings  # la pantalla de ajustes
 $G --headless --path . --quit-after 30000 -- --autotest-daynight   # día y noche: hora, fases, guardado, hora fija, interiores, ventanas
+$G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-cave  # Mt. Moon, Túnel Roca e Islas Espuma
 $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-daynight  # 3 zonas × 4 horas (comparar con docs/referencias/iluminacion)
 $G --headless --path . --quit-after 30000 -- --autotest-town-map  # Mapa del menú (zonas, entradas, íconos, niebla, objetivo, partidas viejas)
 $G --path . --quit-after 90 --write-movie out/f.png --fixed-fps 30 -- --showcase-town-map  # el Mapa abierto
@@ -248,6 +249,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   (cuadro acostado de personajes y Pokémon, desde `CreatureSprite` y `blob_shadow.gd`). Ventanas prendidas de noche:
   `ZoneLights` (World la agrega a cada zona exterior; vidrio cálido + charco de luz) lee `data/world/night_windows.json`
   (vidrios por metatile, de `tools/find_windows.py`: detecta los vidrios en los mapas de FireRed; no se marca nada por zona).
+  Faroles: `StreetLamps` (zonas exteriores salvo bosque: al costado de los caminos = `paths` del mismo JSON, por color).
+  Cuevas (bioma "cueva"): `DayNight.CAVE` (oscuras y frías siempre, `in_cave`, luz chica en el entrenador "CaveLight")
+  + `CaveLights` (antorchas y cristales solos al pie de las paredes; Islas Espuma solo cristales). Sprites en
+  `sprites/props/` (hechos con ComfyUI, `tools/prop_from_image.py`). Todos son decorado (no chocan).
 - **Ajustes del juego por partida** (Esc → Opciones → "Ajustes del juego…", `GameSettingsScreen`): `GameState.settings`
   (se guarda con la partida; solo lo cambiado; el resto sale de `default_settings()` = GameConfig + dificultad Normal;
   una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `hitstun_mult` (stagger), `exp_mult` (exp_yield), `money_mult`
@@ -469,4 +474,6 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - El hitstop se mide con reloj real: al grabar con `--write-movie` se desactiva (si no, la vitrina va en cámara lenta).
 - Correr Python sobre `tools/` con `-B` (`python -I -B ...`): hay `.pyc` versionados en `tools/__pycache__`.
 - Correr Godot headless siempre con `--quit-after`: si un script no compila, el autotest no carga y queda colgado.
+- `Zone.get_tags` en un script suelto (`--script`) tarda ~10 ms por celda (en el juego, nada): para medir o recorrer
+  zonas fuera del juego, usar la colisión (`MapRules.cell_physics`) o la capa `Foliage` en vez de los tags.
 - PowerShell 5: archivos .ps1 sin BOM se leen como ANSI → evitar caracteres no ASCII en scripts .ps1.

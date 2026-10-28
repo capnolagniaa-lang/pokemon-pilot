@@ -70,6 +70,10 @@ cuerpo 30/31 y 28/29, base 36-39, unión de bosque 20-23; 42/43 son techo, no á
   cuadro clave quieto (`--frames 1`). Lo oscuro (una roca, Bola Sombra) va sobre fondo blanco y `--bg white`; y para
   que el recorte no salga enorme, pedirlo "compact" (sin chispas desparramadas). `fx_from_frames.py --loop` (cuadros parejos), `--flip` si la estela quedó del otro lado,
   `--end 5` para quedarse con el principio. Tamaño: `max(16, min(32, size·4))` px.
+- **Objetos del mapa** (poste, antorcha, cristales): las mismas Reglas pero "a single game prop sprite for a top-down 2D
+  RPG ... 3/4 top-down view ... plain pure white #FFFFFF background", LoRA MOSS 1,0; después
+  `tools/prop_from_image.py <png> sprites/props/<x>.png --height <px>`. "Mounted on a wall" dibuja la pared entera:
+  pedir objetos parados.
 - ComfyUI se puede colgar al alternar Wan (2 × 9,6 GB) y Qwen (13 GB) con 32 GB de RAM: si pasa, reiniciarlo y volver
   a encolar lo que faltó.
 

@@ -152,12 +152,15 @@ func _ready() -> void:
 		add_child(nc)
 		(nc.showcase if "--showcase-night-combat" in OS.get_cmdline_user_args() else nc.run).call_deferred()
 		return
-	if "--autotest-daynight" in OS.get_cmdline_user_args() or "--showcase-daynight" in OS.get_cmdline_user_args():
+	if "--autotest-daynight" in OS.get_cmdline_user_args() or "--showcase-daynight" in OS.get_cmdline_user_args() 			or "--showcase-cave" in OS.get_cmdline_user_args():
 		set_process(false)
 		var dnt := DayNightTests.new()
 		dnt.autotest = self
 		add_child(dnt)
-		(dnt.showcase if "--showcase-daynight" in OS.get_cmdline_user_args() else dnt.run).call_deferred()
+		if "--showcase-cave" in OS.get_cmdline_user_args():
+			dnt.showcase_cave.call_deferred()
+		else:
+			(dnt.showcase if "--showcase-daynight" in OS.get_cmdline_user_args() else dnt.run).call_deferred()
 		return
 	if "--autotest-equip" in OS.get_cmdline_user_args():
 		set_process(false)

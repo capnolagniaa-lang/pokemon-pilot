@@ -19,6 +19,7 @@ const ON_FULL := 0.80
 static var _windows: Dictionary = {}            # id global -> PackedInt32Array (16 filas de 16 bits)
 static var _loaded := false
 static var _spill_tex: Texture2D
+static var _mt_cache: Dictionary = {}           # Vector3i(fuente, x, y) -> metatile
 
 ## Celdas con ventana: celda -> máscara; las que tapa la capa Overhead (pisos altos de los edificios); y tiras
 ## horizontales de ventanas (para los charcos).
@@ -41,6 +42,17 @@ static func windows() -> Dictionary:
 				for k in data.get("windows", {}):
 					_windows[int(k)] = PackedInt32Array(data["windows"][k])
 	return _windows
+
+
+## Metatile de una celda, con caché (ZoneBuilder.metatile_of rearma la lista de tilesets en cada llamada: sin caché,
+## ubicar las luces de una zona tardaba segundos).
+static func metatile_at(layer: TileMapLayer, cell: Vector2i) -> int:
+	var src := layer.get_cell_source_id(cell)
+	var at := layer.get_cell_atlas_coords(cell)
+	var key := Vector3i(src, at.x, at.y)
+	if not _mt_cache.has(key):
+		_mt_cache[key] = ZoneBuilder.metatile_of(src, at)
+	return _mt_cache[key]
 
 
 static func attach(zone: Node2D, entry: ZoneEntry, _world_data: WorldData) -> ZoneLights:
@@ -67,7 +79,7 @@ func scan(ground: TileMapLayer, overhead: TileMapLayer = null) -> void:
 		if layer == null:
 			continue
 		for cell in layer.get_used_cells():
-			var mt := ZoneBuilder.metatile_of(layer.get_cell_source_id(cell), layer.get_cell_atlas_coords(cell))
+			var mt := metatile_at(layer, cell)
 			if w.has(mt):
 				cells[cell] = w[mt]
 	if overhead != null:

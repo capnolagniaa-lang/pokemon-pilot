@@ -30,6 +30,14 @@ const KEYS := [
 ]
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
 const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Vector2(0.15, -0.25), Color(1.0, 0.90, 0.65), 0.0, 0.0, 1.0, 0.80, 0.0]
+## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
+## (CaveLights) y una luz chica alrededor del entrenador (CAVE_PLAYER_LIGHT).
+const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Vector2(0.5, -0.5), Color(0.6, 0.7, 1.0), 0.0, 0.0, 1.0, 0.0, 0.0]
+const CAVE_PLAYER_LIGHT := Color(0.80, 0.88, 1.0)
+const CAVE_PLAYER_ENERGY := 0.38
+const CAVE_PLAYER_RADIUS := 64.0
+## Lo que se ve afuera del mapa (el vacío): en las cuevas, casi negro.
+const CAVE_CLEAR := Color(0.02, 0.02, 0.04)
 ## Daylight más claro que el de la noche (para medir la oscuridad). La noche es luz de luna plateada (pedido del
 ## usuario 2026-10-28: "demasiado azulado oscuro"), con un brillo suave desde arriba a la derecha.
 const NIGHT_LUMA := 0.63
@@ -47,18 +55,21 @@ var shadow_length := 1.0
 var shadow_alpha := 0.8
 ## Interior, cueva o arena: sin hora.
 var indoor := false
+## Cueva (bioma "cueva"): oscura aunque sea de día.
+var in_cave := false
 var phase := ""
 
 var _world: Node
 var _last_emit := -1.0
+var _player_light: PointLight2D
 
 
 func _ready() -> void:
 	_world = get_parent()
-	Events.zone_entered.connect(func(z: ZoneEntry): indoor = z.interior)
+	Events.zone_entered.connect(_enter)
 	var here: ZoneEntry = _world.streamer.current if _world.get("streamer") else null
 	if here != null:
-		indoor = here.interior
+		_enter(here)
 	phase = phase_of(hour())
 	apply()
 
@@ -70,6 +81,11 @@ func _process(delta: float) -> void:
 	else:
 		GameState.time_of_day = fposmod(GameState.time_of_day + delta / SECONDS_PER_HOUR, 24.0)
 	apply()
+
+
+func _enter(z: ZoneEntry) -> void:
+	indoor = z.interior
+	in_cave = z.biome == "cueva"
 
 
 func hour() -> float:
@@ -104,7 +120,11 @@ func apply() -> void:
 	var h := hour()
 	var arena_on: bool = _world.get("arena") != null and _world.arena.active
 	casts_shadows = not indoor and not arena_on
-	var lk: Array = INDOOR if not casts_shadows else look_at(h)
+	var cave := in_cave and not arena_on
+	var lk: Array = CAVE if cave else (INDOOR if not casts_shadows else look_at(h))
+	_update_player_light(cave)
+	RenderingServer.set_default_clear_color(CAVE_CLEAR if cave
+		else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
 	var daylight := _world.get_node_or_null("Daylight") as CanvasModulate
 	if daylight:
 		daylight.color = lk[1]
@@ -123,7 +143,7 @@ func apply() -> void:
 	if clouds:
 		clouds.modulate.a = lk[12]
 	var luma: float = lk[1].get_luminance()
-	darkness = clampf((DAY_LUMA - luma) / (DAY_LUMA - NIGHT_LUMA), 0.0, 1.0)
+	darkness = clampf((DAY_LUMA - luma) / (DAY_LUMA - NIGHT_LUMA), 0.0, 1.0)  # en las cuevas, 1
 	shadow_direction = (Vector2(0.5, 0.5) - lk[6]).normalized()
 	shadow_length = lk[10]
 	shadow_alpha = lk[11]
@@ -133,3 +153,20 @@ func apply() -> void:
 		phase = now
 		_last_emit = h
 		Events.time_changed.emit(h, now)
+
+
+## Luz chica y fría alrededor del entrenador en las cuevas (si no, no se ve el camino entre antorcha y antorcha).
+func _update_player_light(on: bool) -> void:
+	var trainer: Node2D = _world.get("trainer")
+	if trainer == null:
+		return
+	if _player_light == null or not is_instance_valid(_player_light):
+		_player_light = PointLight2D.new()
+		_player_light.name = "CaveLight"
+		_player_light.texture = CaveLights.light_texture()
+		_player_light.texture_scale = CAVE_PLAYER_RADIUS * 2.0 / _player_light.texture.get_width()
+		_player_light.color = CAVE_PLAYER_LIGHT
+		_player_light.energy = CAVE_PLAYER_ENERGY
+		_player_light.position = Vector2(0, -10)
+		trainer.add_child(_player_light)
+	_player_light.visible = on

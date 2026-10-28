@@ -6,7 +6,10 @@ Arma cada mapa exterior de art_src/pret (data/layouts) con los atlas importados 
 manchas celestes chicas y más o menos rectangulares sobre celdas sólidas de edificios (el techo celeste de la Tienda
 es una mancha enorme y no entra). Junta lo que encuentra por metatile (un píxel queda prendido si se prendió en al
 menos la mitad de las veces que aparece ese metatile en un edificio) y lo guarda en data/world/night_windows.json:
-    {"windows": {"<id global>": [16 filas, cada una una máscara de 16 bits (bit x = píxel x)]}}
+    {"windows": {"<id global>": [16 filas, cada una una máscara de 16 bits (bit x = píxel x)]}, "paths": [ids]}
+Además junta los metatiles de camino (para los faroles, StreetLamps): suelo transitable que no es verde (tierra,
+arena, baldosas, el suelo claro de los pueblos), sin pasto alto, agua, flores ni árboles; las categorías del catálogo
+no alcanzan (en Paleta y Azulona los caminos figuran como "suelos").
 No toca zonas ni el TileSet: ZoneLights (scripts/world/zone_lights.gd) lee el JSON al cargar cada zona.
 --debug guarda <carpeta>/<mapa>.png con lo prendido pintado de amarillo, para revisar.
 """
@@ -25,6 +28,8 @@ MIN_H, MAX_H = 4, 14
 MAX_PIXELS = 320
 MIN_FILL = 0.45
 VOTE = 0.5
+NOT_PATH_CATS = {"flores", "arboles", "otros_arboles", "salientes", "otros_salientes", "agua", "otros_agua", "cercas",
+                 "escaleras", "otros_escaleras", "carteles", "otros_carteles", "edificios", "otros_edificios"}
 MERGE_GAP = 3
 # Celeste que no es vidrio (revisado con --debug): el logo de la Tienda Pokémon.
 NOT_WINDOWS = {57, 58}
@@ -40,6 +45,12 @@ def load_pret_import(project):
 def is_glass(p):
     r, g, b = p[0], p[1], p[2]
     return b >= 150 and b - r >= 45 and b - g >= 10
+
+
+def is_green(tile):
+    """¿El metatile es pasto? Promedio verde y saturado (el suelo claro de Paleta es verdoso pero apagado)."""
+    r, g, b = [sum(c) / len(c) for c in zip(*[p[:3] for p in tile.get_flattened_data()])]
+    return g > r + 12 and g > b + 4 and max(r, g, b) - min(r, g, b) > 65
 
 
 def is_bright(p):
@@ -162,6 +173,7 @@ def main():
     atlas = Atlas(tiles_dir, manifest)
     uses = collections.Counter()
     lit = collections.defaultdict(collections.Counter)  # id global -> {(x, y): veces prendido}
+    ground_uses, walk_uses = collections.Counter(), collections.Counter()
     for l in layouts:
         psym, ssym = l.get("primary_tileset"), l.get("secondary_tileset")
         if psym not in headers or ssym not in headers:
@@ -185,6 +197,9 @@ def main():
             cx, cy = i % w, i // w
             grid[(cy, cx)] = g
             img.alpha_composite(atlas.tile(g), (cx * T, cy * T))
+            ground_uses[g] += 1
+            if not col:
+                walk_uses[g] += 1
             if col and catalog["categories"].get(str(g)) in building_cats:
                 allowed.add((cy, cx))
                 uses[g] += 1
@@ -211,11 +226,18 @@ def main():
                 rows[y] |= 1 << x
         if any(rows) and g not in NOT_WINDOWS:
             windows[str(g)] = rows
+    paths = []
+    for g, n in sorted(ground_uses.items()):
+        tags = catalog["tags"].get(str(g), [])
+        if walk_uses[g] < 0.8 * n or "pasto_alto" in tags or "agua" in tags or "puerta" in tags                 or catalog["categories"].get(str(g)) in NOT_PATH_CATS:
+            continue
+        if not is_green(atlas.tile(g)):
+            paths.append(g)
     out = os.path.join(project, "data", "world", "night_windows.json")
     with open(out, "w", encoding="utf8") as f:
         json.dump({"_info": "Generado por tools/find_windows.py: vidrios de cada metatile (16 filas de 16 bits).",
-                   "windows": windows}, f)
-    print("metatiles con ventana:", len(windows), "->", out)
+                   "windows": windows, "paths": paths}, f)
+    print("metatiles con ventana:", len(windows), "- de camino:", len(paths), "->", out)
 
 
 if __name__ == "__main__":
