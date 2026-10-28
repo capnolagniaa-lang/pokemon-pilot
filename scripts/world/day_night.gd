@@ -17,21 +17,22 @@ const PHASES := [[5.0, "amanecer"], [7.0, "dia"], [17.5, "atardecer"], [20.0, "n
 ## [hora, color del Daylight, tinte, saturación, contraste, viñeta, sol (posición), color del sol, fuerza, rayos,
 ##  largo de sombra, opacidad de sombra, nubes]
 const KEYS := [
-	[0.0, Color(0.42, 0.48, 0.68), Vector3(0.95, 0.98, 1.05), 0.62, 1.10, 0.52, Vector2(1.10, -0.10), Color(0.55, 0.68, 1.0), 0.12, 0.0, 1.2, 0.35, 0.0],
-	[4.5, Color(0.43, 0.48, 0.68), Vector3(0.95, 0.98, 1.04), 0.65, 1.10, 0.50, Vector2(1.15, 0.10), Color(0.55, 0.68, 1.0), 0.10, 0.0, 1.4, 0.30, 0.0],
+	[0.0, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Vector2(0.85, -0.15), Color(0.85, 0.90, 1.0), 0.30, 0.18, 1.4, 0.45, 0.0],
+	[4.5, Color(0.58, 0.63, 0.79), Vector3(0.97, 1.00, 1.03), 0.74, 1.06, 0.44, Vector2(1.00, 0.05), Color(0.85, 0.90, 1.0), 0.26, 0.14, 1.6, 0.40, 0.0],
 	[6.0, Color(0.86, 0.80, 0.84), Vector3(1.03, 0.98, 0.98), 1.05, 1.05, 0.40, Vector2(1.15, 0.25), Color(1.0, 0.72, 0.58), 0.34, 0.35, 3.0, 0.55, 0.4],
 	[7.5, Color(0.99, 0.95, 0.89), Vector3(1.04, 1.00, 0.94), 1.20, 1.06, 0.34, Vector2(1.00, -0.05), Color(1.0, 0.86, 0.62), 0.36, 0.45, 1.8, 0.75, 0.9],
 	[12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Vector2(0.10, -0.20), Color(1.0, 0.90, 0.66), 0.38, 0.40, 1.0, 0.80, 1.0],
 	[16.5, Color(1.00, 0.96, 0.89), Vector3(1.05, 1.00, 0.92), 1.25, 1.06, 0.34, Vector2(-0.10, 0.05), Color(1.0, 0.82, 0.55), 0.40, 0.45, 1.8, 0.80, 1.0],
 	[18.5, Color(1.00, 0.88, 0.80), Vector3(1.05, 0.97, 0.94), 1.12, 1.07, 0.40, Vector2(-0.15, 0.25), Color(1.0, 0.66, 0.38), 0.50, 0.60, 3.2, 0.70, 0.6],
-	[20.0, Color(0.62, 0.58, 0.76), Vector3(0.98, 0.96, 1.04), 0.85, 1.08, 0.46, Vector2(-0.20, 0.40), Color(0.90, 0.55, 0.62), 0.14, 0.10, 3.6, 0.35, 0.1],
-	[21.5, Color(0.43, 0.48, 0.68), Vector3(0.95, 0.98, 1.05), 0.63, 1.10, 0.52, Vector2(1.05, -0.15), Color(0.55, 0.68, 1.0), 0.12, 0.0, 1.2, 0.35, 0.0],
-	[24.0, Color(0.42, 0.48, 0.68), Vector3(0.95, 0.98, 1.05), 0.62, 1.10, 0.52, Vector2(1.10, -0.10), Color(0.55, 0.68, 1.0), 0.12, 0.0, 1.2, 0.35, 0.0],
+	[20.0, Color(0.70, 0.64, 0.80), Vector3(0.99, 0.97, 1.03), 0.85, 1.07, 0.44, Vector2(-0.20, 0.40), Color(0.90, 0.60, 0.68), 0.16, 0.10, 3.6, 0.35, 0.1],
+	[21.5, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Vector2(0.75, -0.20), Color(0.85, 0.90, 1.0), 0.30, 0.18, 1.3, 0.45, 0.0],
+	[24.0, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Vector2(0.85, -0.15), Color(0.85, 0.90, 1.0), 0.30, 0.18, 1.4, 0.45, 0.0],
 ]
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
 const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Vector2(0.15, -0.25), Color(1.0, 0.90, 0.65), 0.0, 0.0, 1.0, 0.80, 0.0]
-## Daylight más claro que el de la noche (para medir la oscuridad).
-const NIGHT_LUMA := 0.48
+## Daylight más claro que el de la noche (para medir la oscuridad). La noche es luz de luna plateada (pedido del
+## usuario 2026-10-28: "demasiado azulado oscuro"), con un brillo suave desde arriba a la derecha.
+const NIGHT_LUMA := 0.63
 const DAY_LUMA := 0.98
 
 ## 0 = pleno día, 1 = noche cerrada (0 en interiores y arenas).

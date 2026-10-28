@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **La historia hasta el final (2026-10-28, pedido del usuario: "continuá hasta donde puedas para terminar la historia")**:
+  capítulos 4 a 8 (`docs/PLAN_RESTO_KANTO.md`), de la Torre Pokémon al Campeón de la Liga, sobre los mapas de todo
+  Kanto de la sesión de mapas. Mecánicas: Surf, Fuerza, Poké Flauta, legendarios, Té y guardias de Azafrán. ~360
+  entrenadores de FireRed (automáticos + los importantes a mano), 5 líderes, el rival ×4, Giovanni ×3, el Alto Mando,
+  9 arenas temáticas, tiendas de todas las ciudades y la Guía con los 8 capítulos. Tests `--autotest-story-h4` (39) y
+  `--autotest-field`. Falta probarlo jugando entero (ver "Pendiente" en el plan).
 - **Día y noche, parte A (2026-10-28, pedido del usuario)**: plan y reparto en `docs/PLAN_DIA_NOCHE.md` (A y B:
   sesión de gráficos; C ventanas/faroles: sesión de mapas; D luces de ataques: sesión de kits), con las referencias que
   pintó Qwen en `docs/referencias/iluminacion/`. Hecho: `DayNight` (nodo del mundo): la hora del juego corre (un día =
@@ -14,6 +20,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   van con luz pareja. "Hora fija" en Ajustes del juego. Por ahora solo visual (decisión del usuario). **Parte B (sombras largas)**:
   casas, árboles y cercas (`ZoneShadows`, máscara de las celdas sólidas + shader) y personajes y Pokémon (`SunShadow`,
   su propio cuadro acostado), según la hora. Test `--autotest-daynight` (23), vitrina `--showcase-daynight`.
+- **Noche con luz de luna (2026-10-28, pedido del usuario: "demasiado azulado oscuro")**: la noche es plateada y más
+  clara, con un brillo de luna con rayos desde arriba a la derecha, sombras de luna y estrellitas que titilan
+  (`AmbientFX`, solo afuera). Tabla `KEYS` de `DayNight`.
 - **Árboles y pasto alto hechos con IA: probados y descartados (2026-10-28)**: al usuario no le gustaron; volvieron los
   de FireRed. El paquete (`TilePack`, `tools/tile_pack.py`, interruptor en Ajustes) está en el commit d34b20ba por si se
   quiere retomar con otro estilo.

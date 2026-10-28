@@ -1,6 +1,10 @@
 extends Node2D
 ## Partículas ambientales alrededor de la cámara (hojas, polen, motas de luz).
-## Cambian según el bioma de la zona actual. De noche (DayNight) las motas son luciérnagas.
+## Cambian según el bioma de la zona actual. De noche (DayNight) las motas son luciérnagas y titilan estrellitas
+## (afuera).
+
+## Estrellitas de noche (con oscuridad 1).
+const STARS := 70
 
 ## Cantidades por bioma: [hojas, motas]
 const BIOMES := {
@@ -18,6 +22,7 @@ const BIOMES := {
 
 var _leaves: CPUParticles2D
 var _motes: CPUParticles2D
+var _stars: CPUParticles2D
 
 
 func _ready() -> void:
@@ -36,6 +41,21 @@ func _ready() -> void:
 	_motes.initial_velocity_max = 6.0
 	# Color > 1: el glow las hace brillar.
 	_motes.color_ramp = _fade(Color(1.9, 1.75, 1.2, 1))
+	# Estrellitas: quietas, aparecen y se apagan (titilan); blanco azulado > 1 para que brillen con el glow.
+	_stars = _make(_star_texture(), STARS, 2.6)
+	_stars.gravity = Vector2.ZERO
+	_stars.initial_velocity_min = 0.0
+	_stars.initial_velocity_max = 0.0
+	_stars.spread = 0.0
+	_stars.lifetime_randomness = 0.5
+	_stars.scale_amount_min = 0.7
+	_stars.scale_amount_max = 1.3
+	var twinkle := Gradient.new()
+	twinkle.set_color(0, Color(2.2, 2.4, 3.0, 0.0))
+	twinkle.set_color(1, Color(2.2, 2.4, 3.0, 0.0))
+	twinkle.add_point(0.5, Color(3.0, 3.2, 4.0, 1.0))
+	_stars.color_ramp = twinkle
+	_stars.emitting = false
 	Events.zone_entered.connect(_on_zone_entered)
 	Events.time_changed.connect(_on_time_changed)
 
@@ -59,6 +79,9 @@ func _on_time_changed(_hour: float, _phase: String) -> void:
 	_motes.color_ramp = _fade(Color(1.9, 1.75, 1.2, 1).lerp(Color(2.6, 3.0, 0.9, 1), dark))
 	_motes.scale_amount_min = 1.0 + dark
 	_motes.scale_amount_max = 1.0 + dark * 1.5
+	var outside: bool = dn != null and dn.casts_shadows
+	var stars := roundi(STARS * clampf((dark - 0.5) * 2.0, 0.0, 1.0)) if outside else 0
+	_set_amount(_stars, stars)
 
 
 func _set_amount(p: CPUParticles2D, amount: int) -> void:
@@ -99,6 +122,17 @@ func _leaf_texture() -> Texture2D:
 		img.set_pixelv(p, dark)
 	img.set_pixel(1, 1, light)
 	img.set_pixel(2, 1, light)
+	return ImageTexture.create_from_image(img)
+
+
+## Estrellita de 5×5: cruz con el centro fuerte y las puntas suaves.
+func _star_texture() -> Texture2D:
+	var img := Image.create(5, 5, false, Image.FORMAT_RGBA8)
+	for p in [Vector2i(2, 0), Vector2i(0, 2), Vector2i(4, 2), Vector2i(2, 4)]:
+		img.set_pixelv(p, Color(1, 1, 1, 0.35))
+	for p in [Vector2i(2, 1), Vector2i(1, 2), Vector2i(3, 2), Vector2i(2, 3)]:
+		img.set_pixelv(p, Color(1, 1, 1, 0.8))
+	img.set_pixel(2, 2, Color.WHITE)
 	return ImageTexture.create_from_image(img)
 
 

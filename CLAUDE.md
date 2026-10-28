@@ -50,6 +50,8 @@ $G --headless --path . --quit-after 150000 -- --autotest-story-h2  # capítulo 2
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-misty  # Staryu y Starmie en el gimnasio de agua
 $G --headless --path . --quit-after 150000 -- --autotest-story-h3  # capítulo 3: MT28, Ticket, rival en el S.S. Anne, Corte, basureros, Surge
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-surge  # la arena eléctrica de Lt. Surge
+$G --headless --path . --quit-after 400000 -- --autotest-story-h4  # capítulos 4-8: de la Torre Pokémon al Campeón (todos los hitos)
+$G --headless --path . --quit-after 60000 -- --autotest-field      # MO de campo: Surf, Fuerza, Poké Flauta
 $G --headless --path . --quit-after 100000 -- --autotest-arena-rules  # combate de arena: estilos, combos (apagados), cráteres, salto, superficies
 $G --path . --quit-after 650 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena-rules  # Geodude vs Onix (cráteres)
 $G --headless --path . --quit-after 60000 -- --autotest-slots      # varias partidas con nombre, sin curación sola, desmayo total, modo de prueba del torneo
@@ -190,9 +192,13 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `MapRules`). `clear_shot` (rayo contra mundo y entorno): no dispara contra paredes y se acomoda para tener tiro.
   `AiDifficulty.lead`: los disparos anticipan tu movimiento (Fácil 0, Normal 0,6, Difícil 1).
 - **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
-  hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`). **E frente a algo** (`StoryDirector.register_interaction`): Corte
-  (`FieldMoves`: MO01 + Medalla Cascada corta EnvObjects "cortable") y los basureros del gimnasio de Carmín
-  (`VermilionGymPuzzle`). `GameState.story_flags` (banderas, se guardan); `NpcData`/`NpcTalk`/
+  hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`; **capítulos 4-8** hasta el Campeón: `docs/PLAN_RESTO_KANTO.md`). **E frente
+  a algo** (`StoryDirector.register_interaction`): `FieldMoves` = Corte (MO01 + Cascada: EnvObject "cortable"), Surf (MO03
+  + Alma: el agua deja de frenar al entrenador, al pisar tierra se baja), Fuerza (MO04 + Arcoíris: empujar EnvObject
+  "pesado"), Poké Flauta (Snorlax) y legendarios (acciones de su charla); `VermilionGymPuzzle` (basureros de Carmín).
+  Entrenadores de las zonas nuevas: automáticos desde `data/source/trainers_frlg.json` (`tools/fetch_frlg_trainers.py`,
+  de pret) con frases por clase; en `build_story_npcs.py` el bloque "Capítulos 4 a 8" tiene los hitos y al final un
+  **relleno** que le da una frase a toda persona sin charla propia. `GameState.story_flags` (banderas, se guardan); `NpcData`/`NpcTalk`/
   `StoryTrigger` en `data/story/` (`DB.npcs`, `DB.story_triggers`); `StoryDirector` (nodo del mundo: saca las personas,
   disparadores, conversaciones con `DialogBox`, efectos). **E contextual**: `PlayerItems` llama a
   `StoryDirector.try_interact()` antes de lanzar la bola. Personas: `tools/build_story_npcs.py` (desde los NPC de
@@ -214,7 +220,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   del objetivo (`StoryGuide.GOALS`). En la historia aparece con el objeto Mapa (Dalia); en el modo libre, siempre.
 - **Día y noche** (`docs/PLAN_DIA_NOCHE.md`): `DayNight` (`world.day_night`) hace correr `GameState.time_of_day`
   (1 h = 1 min real; ajuste `time_lock` = hora fija) y pinta según la tabla `KEYS`: Daylight, uniforms del
-  post-procesado (tinte, `sun_pos`/`sun_strength`/`rays` = luz de esquina), nubes, luciérnagas (`AmbientFX`). Interiores
+  post-procesado (tinte, `sun_pos`/`sun_strength`/`rays` = luz de esquina; de noche, la luna), nubes, luciérnagas y
+  estrellitas de noche (`AmbientFX`). Interiores
   y arenas: `INDOOR` (luz pareja). Otros sistemas leen `darkness`, `shadow_direction`, `shadow_length` y escuchan
   `Events.time_changed(hour, phase)`. Por ahora solo visual (no cambia salvajes ni tipos). Sombras largas: `ZoneShadows`
   (World la agrega a cada zona exterior: máscara de celdas sólidas + `shaders/sun_shadows.gdshader`) y `SunShadow`

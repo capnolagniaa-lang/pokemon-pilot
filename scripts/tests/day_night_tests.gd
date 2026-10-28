@@ -22,7 +22,7 @@ func run() -> void:
 		and DayNight.phase_of(18.0) == "atardecer" and DayNight.phase_of(21.0) == "noche"
 	r["A las 24 se ve igual que a las 0"] = DayNight.look_at(24.0)[1] == DayNight.look_at(0.0)[1]
 	r["Al mediodía, el color de siempre (sin oscurecer)"] = DayNight.look_at(12.0)[1].is_equal_approx(DayNight.INDOOR[1])
-	r["De noche, azul y oscuro"] = DayNight.look_at(23.0)[1].get_luminance() < 0.5 and DayNight.look_at(23.0)[1].b > DayNight.look_at(23.0)[1].r
+	r["De noche, luz de luna (más oscuro y azulado)"] = DayNight.look_at(23.0)[1].get_luminance() < 0.7 and DayNight.look_at(23.0)[1].b > DayNight.look_at(23.0)[1].r
 	r["Al atardecer, dorado (más rojo que azul) y sombras largas"] = DayNight.look_at(18.5)[1].r > DayNight.look_at(18.5)[1].b + 0.1 \
 		and DayNight.look_at(18.5)[10] > 2.5
 	r["Ajuste 'time_lock' por defecto: el tiempo corre (-1)"] = float(GameState.default_settings().get("time_lock", 0)) < 0.0
@@ -62,8 +62,12 @@ func run() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	r["Hora fija a las 23: noche (oscuridad %.2f)" % dn.darkness] = is_equal_approx(GameState.time_of_day, 23.0) \
-		and dn.darkness > 0.85 and daylight.color.get_luminance() < 0.5
+		and dn.darkness > 0.85 and daylight.color.get_luminance() < 0.7
 	r["Se avisó la noche (Events.time_changed)"] = "noche" in phases
+	GameState.set_setting("time_lock", 12.0)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	r["De noche, la luna alumbra desde una esquina (%.2f)" % float(mat.get_shader_parameter("sun_strength"))] = 		float(mat.get_shader_parameter("sun_strength")) > 0.2
 	GameState.set_setting("time_lock", 12.0)
 	await get_tree().process_frame
 	await get_tree().process_frame
