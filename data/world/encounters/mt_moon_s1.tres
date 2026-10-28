@@ -7,11 +7,18 @@
 [sub_resource type="Resource" id="Resource_cbk83"]
 script = ExtResource("2_cf3is")
 species_id = "paras"
-weight = 100
+weight = 85
 min_level = 5
 max_level = 10
 where = "suelo"
 
+[sub_resource type="Resource" id="Resource_charm"]
+script = ExtResource("2_cf3is")
+species_id = "charmander"
+weight = 15
+min_level = 9
+max_level = 11
+where = "suelo"
 [resource]
 script = ExtResource("3_710uq")
-entries = Array[ExtResource("2_cf3is")]([SubResource("Resource_cbk83")])
+entries = Array[ExtResource("2_cf3is")]([SubResource("Resource_cbk83"), SubResource("Resource_charm")])

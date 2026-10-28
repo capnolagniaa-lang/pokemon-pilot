@@ -632,6 +632,12 @@ func _on_hit(hit: HitInfo) -> void:
 			Events.signature_triggered.emit(attacker, "COMBO ×%d" % combo["chain"], Color(1.0, 0.95, 0.75))
 		Events.combo_landed.emit(attacker, combo["name"], combo["chain"])
 	var amount := Damage.resolve(hit, instance) * mult
+	if hit.effectiveness <= 0.0:
+		# Inmune por tipo (Siniestro a Psíquico, Acero a Veneno, Hada a Dragón, Volador a Tierra, Fantasma a Normal y
+		# Lucha, Tierra a Eléctrico): como en los juegos, el ataque no le hace nada: ni daño, ni estado, ni empuje.
+		Events.signature_triggered.emit(self, "No le afecta", Color(0.75, 0.75, 0.8))
+		damage_received.emit(0.0, hit)
+		return
 	if hit.move.execute_below > 0.0 and health.ratio() <= hit.move.execute_below and hit.effectiveness > 0.0:
 		amount = INF  # ejecución: lo remata aunque le quede vida
 		Events.signature_triggered.emit(self, "¡Remate!", Color(1.5, 0.35, 0.3))

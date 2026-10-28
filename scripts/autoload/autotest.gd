@@ -719,7 +719,7 @@ func _identity_test() -> void:
 	var st := func(id: String) -> StatusEffect: return DB.statuses[id]
 	await get_tree().create_timer(0.3).timeout
 
-	var a: Creature = spawn.call("bulbasaur", Vector2(60, -40))
+	var a: Creature = spawn.call("pikachu", Vector2(60, -40))  # (no uno de tipo Veneno: no se envenenan)
 	for i in 6:
 		a.statuses.apply(st.call("envenenado"))
 	r["Envenenado acumula hasta 5 stacks"] = a.statuses.stacks("envenenado") == 5
@@ -741,7 +741,7 @@ func _identity_test() -> void:
 	await get_tree().create_timer(0.45).timeout
 	r["Con resistencia el control dura menos"] = b.machine.current_name() != "stunned"
 
-	var c: Creature = spawn.call("oddish", Vector2(0, -70))
+	var c: Creature = spawn.call("paras", Vector2(0, -70))
 	c.statuses.apply(st.call("dormido"))
 	await get_tree().physics_frame
 	var asleep := c.machine.current_name() == "stunned"

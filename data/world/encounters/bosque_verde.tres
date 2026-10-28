@@ -7,25 +7,26 @@
 [sub_resource type="Resource" id="Resource_inqq6"]
 script = ExtResource("2_dhkuo")
 species_id = "caterpie"
-weight = 40
+weight = 33
 min_level = 3
 
 [sub_resource type="Resource" id="Resource_kg73e"]
 script = ExtResource("2_dhkuo")
 species_id = "weedle"
-weight = 40
+weight = 33
 min_level = 3
 
 [sub_resource type="Resource" id="Resource_614hi"]
 script = ExtResource("2_dhkuo")
 species_id = "kakuna"
+weight = 8
 min_level = 4
 max_level = 6
 
 [sub_resource type="Resource" id="Resource_p0tmw"]
 script = ExtResource("2_dhkuo")
 species_id = "metapod"
-weight = 5
+weight = 4
 min_level = 5
 
 [sub_resource type="Resource" id="Resource_a0f7o"]
@@ -34,7 +35,13 @@ species_id = "pikachu"
 weight = 5
 min_level = 3
 
+[sub_resource type="Resource" id="Resource_bulba"]
+script = ExtResource("2_dhkuo")
+species_id = "bulbasaur"
+weight = 17
+min_level = 4
+max_level = 6
 [resource]
 script = ExtResource("3_i14i3")
-entries = Array[ExtResource("2_dhkuo")]([SubResource("Resource_inqq6"), SubResource("Resource_kg73e"), SubResource("Resource_614hi"), SubResource("Resource_p0tmw"), SubResource("Resource_a0f7o")])
+entries = Array[ExtResource("2_dhkuo")]([SubResource("Resource_inqq6"), SubResource("Resource_kg73e"), SubResource("Resource_614hi"), SubResource("Resource_p0tmw"), SubResource("Resource_a0f7o"), SubResource("Resource_bulba")])
 max_alive_cap = 40

@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Iniciales salvajes e inmunidades de tipo (2026-10-28, pedido del usuario)**: Charmander 15% en todo Mt. Moon, Bulbasaur
+  17% en el Bosque Verde y Squirtle 12% en el cantero de flores de Ciudad Celeste (no tiene pasto alto: el resto de las
+  veces no sale nada, fila sin especie); el resto de cada tabla se escaló para que sigan sumando 100. Inmunidades: un
+  ataque contra un tipo inmune (Siniestro←Psíquico, Acero←Veneno, Hada←Dragón, Volador←Tierra, Fantasma←Normal/Lucha,
+  Tierra←Eléctrico) no hace nada: ni daño, ni estado, ni empuje ("No le afecta"). Un tipo Veneno no se envenena
+  (`StatusEffect.immune_types`). Test: `--autotest-abilities`.
 - **Ataques nuevos y balance de disparos (2026-10-28, pedido del usuario)**: si aprende un ataque y tiene ranura libre
   se equipa solo; con las 4 llenas, al terminar la pelea aparece un cartel "¿reemplazar uno?" (`MoveLearnDirector` +
   `MoveLearnScreen`, lo crea `EvolutionDirector`). Balance: los golpes chicos ya no cortan una carga (solo los fuertes) y

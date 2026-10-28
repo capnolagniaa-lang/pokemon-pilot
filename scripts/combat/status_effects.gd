@@ -16,6 +16,10 @@ func apply(s: StatusEffect, duration_mult: float = 1.0) -> void:
 	var sig = creature.get("signature") if creature != null else null
 	if sig != null and sig.blocks_status(s):
 		return  # inmune por su firma (Zubat no se deja cegar, Machop no se deja frenar...)
+	if not s.immune_types.is_empty() and creature != null and creature.get("instance") != null:
+		for t: ElementType in creature.instance.species.types:
+			if t != null and t.id in s.immune_types:
+				return  # inmune por su tipo (un tipo Veneno no se envenena)
 	var fresh := not active.has(s.id)
 	if fresh:
 		active[s.id] = {"status": s, "time": 0.0, "stacks": 0, "meter": 0.0, "fx": _make_fx(s),

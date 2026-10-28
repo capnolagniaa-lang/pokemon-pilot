@@ -77,6 +77,35 @@ func run() -> void:
 	var low := HitInfo.from(char, DB.moves["ascuas"]).damage_mult
 	r["Mar Llamas: con poca vida el fuego pega ×1,5 (%.2f → %.2f)" % [full, low]] = absf(low / full - 1.5) < 0.01
 
+	# --- Inmunidades de tipo (pedido del usuario 2026-10-28): ni daño, ni estado, ni empuje ---
+	for case in [["umbreon", "psiquico", "Siniestro a Psíquico"], ["magnemite", "bomba_lodo", "Acero a Veneno"],
+			["clefairy", "dragoaliento", "Hada a Dragón"], ["pidgey", "terremoto", "Volador a Tierra"]]:
+		var c := _spawn(case[0], "fuga", Vector2(-120 + 60 * r.size() % 240, 130))
+		var hp: float = c.instance.hp
+		var h := _hit_from(world.companion, case[1])
+		h.extra_status = DB.statuses["envenenado"]
+		h.extra_status_chance = 1.0
+		c._on_hit(h)
+		r["%s: %s no le hace nada" % [case[2], DB.moves[case[1]].display_name]] = c.instance.hp == hp \
+			and c.statuses.active.is_empty() and c.knockback == Vector2.ZERO
+	var grimer := _spawn("grimer", "fuga", Vector2(-60, 170))
+	var bulba := _spawn("bulbasaur", "fuga", Vector2(60, 170))
+	grimer.statuses.apply(DB.statuses["envenenado"])
+	bulba.statuses.apply(DB.statuses["envenenado"])
+	r["Un tipo Veneno no se envenena (Grimer, ni Bulbasaur Planta/Veneno)"] = \
+		not grimer.statuses.has_status("envenenado") and not bulba.statuses.has_status("envenenado")
+	var rat := _spawn("rattata", "fuga", Vector2(0, 170))
+	rat.statuses.apply(DB.statuses["envenenado"])
+	r["Un Rattata sí se envenena"] = rat.statuses.has_status("envenenado")
+
+	# --- Iniciales salvajes (pedido del usuario 2026-10-28) ---
+	var moon: EncounterTable = load("res://data/world/encounters/mt_moon.tres")
+	var forest: EncounterTable = load("res://data/world/encounters/bosque_verde.tres")
+	var cerulean: EncounterTable = load("res://data/world/encounters/ciudad_celeste.tres")
+	r["Charmander 15% en Mt. Moon"] = is_equal_approx(moon.chances_at(Vector2i.ZERO, PackedStringArray(["suelo"])).get("charmander", 0.0), 0.15)
+	r["Bulbasaur 17% en el Bosque Verde"] = is_equal_approx(forest.chances_at(Vector2i.ZERO, PackedStringArray(["pasto_alto"])).get("bulbasaur", 0.0), 0.17)
+	r["Squirtle 12% en las flores de Ciudad Celeste"] = is_equal_approx(cerulean.chances_at(Vector2i.ZERO, PackedStringArray(["flores"])).get("squirtle", 0.0), 0.12)
+
 	# --- Jefe de gimnasio ---
 	var boss_inst := CreatureInstance.create(DB.species["onix"], 14)
 	boss_inst.boss = true

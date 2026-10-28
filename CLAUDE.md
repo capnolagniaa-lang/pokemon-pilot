@@ -178,6 +178,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `MoveData.melee_step` antes del corte (estado `step`) y todo golpe con daño deja **stagger** (`Creature.hitstun_left`:
   sin atacar ni esquivar un ratito, con respiro; ajuste `hitstun_mult`). El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
+- **Inmunidades**: efectividad 0 (tabla de tipos) = el golpe no hace nada (`Creature._on_hit` sale antes del daño, el
+  estado y el empuje). `StatusEffect.immune_types`: tipos que no lo sufren (Envenenado: Veneno). Fila de encuentro con
+  `species_id` vacío = "esa vez no sale nadie" (`WildSpawner.roll`).
 - **Ataques nuevos**: con ranura libre se equipa solo (`CreatureInstance.auto_equip`); con las 4 llenas,
   `MoveLearnDirector` (hijo de `world.evolutions`, en el momento tranquilo de las evoluciones) muestra `MoveLearnScreen`
   ("¿reemplazar uno?"). Cargas: solo un golpe fuerte (empuje ≥ `STAGGER_KNOCKBACK`) corta una carga o un canalizado;

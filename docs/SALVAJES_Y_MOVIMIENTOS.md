@@ -16,7 +16,9 @@
    de la tabla (tags de celda: `pasto_alto`, `agua`, `arena`, `flores`, `tierra`, `suelo`) y **después la fila**
    que vale en esa celda (`EncounterTable.pick_at`), por **peso**: la probabilidad es peso / suma de pesos de las
    filas de ese mismo "dónde". Así, en Ruta 1 Pidgey (35) y Rattata (35) salen el 35% de las veces en el pasto
-   alto, Bellsprout (15) y Vulpix (15) el 15%.
+   alto, Bellsprout (15) y Vulpix (15) el 15%. Una fila **sin especie** (en el editor: "(nada)") es "esa vez no
+   aparece nadie": sirve para un Pokémon raro en un lugar donde no sale ningún otro (Squirtle 12% + nada 88% en las
+   flores de Ciudad Celeste).
 4. **Áreas pintadas** (`EncounterArea`, se pintan en el editor de mapas): un grupo de celdas con ajustes que
    **pisan** la fila de la misma especie y "dónde", o **suman** filas nuevas (ej. "en el claro del bosque aparece
    Pikachu con más frecuencia").

@@ -98,6 +98,8 @@ func run() -> void:
 				dir = d
 				break
 		me.global_position = rock.global_position - dir * 26.0 + Vector2(0, -2)
+		me.moves.slots[3] = DB.all_moves["charmander/embestida_ignea"]  # (desde las habilidades no viene equipada)
+		me.moves.reset_cooldown(3)
 		await get_tree().physics_frame
 		me.use_slot(3, dir)
 		await get_tree().create_timer(0.5).timeout

@@ -53,6 +53,8 @@ extends Resource
 @export var heal_per_second: float = 0.0
 ## Multiplica el empuje que recibe (0 = no lo pueden empujar).
 @export var knockback_mult: float = 1.0
+## Tipos (ids) que no lo pueden sufrir: un Pokémon de tipo Veneno no se envenena (pedido del usuario 2026-10-28).
+@export var immune_types: PackedStringArray = []
 
 @export_group("Efecto visual")
 ## Partículas sobre la criatura.

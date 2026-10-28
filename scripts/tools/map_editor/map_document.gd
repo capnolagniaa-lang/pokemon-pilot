@@ -725,7 +725,7 @@ func validate_encounters() -> Array[Dictionary]:
 		rows.append_array(a.adjustments)
 	for e in rows:
 		var sp_name: String = DB.species[e.species_id].display_name if DB.species.has(e.species_id) else e.species_id
-		if not DB.species.has(e.species_id):
+		if e.species_id != "" and not DB.species.has(e.species_id):  # "" = fila "nada" (esa vez no sale nadie)
 			out.append({"level": "warn", "msg": "La especie \"%s\" no existe en el juego." % e.species_id, "cell": nowhere})
 		elif not present.has(e.where):
 			out.append({"level": "warn", "msg": "%s aparece en %s, pero la zona no tiene: no va a salir." % [sp_name,

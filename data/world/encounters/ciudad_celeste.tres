@@ -12,6 +12,20 @@ min_level = 5
 max_level = 40
 where = "agua"
 
+[sub_resource type="Resource" id="Resource_squirt"]
+script = ExtResource("2_sfojn")
+species_id = "squirtle"
+weight = 12
+min_level = 10
+max_level = 12
+where = "flores"
+[sub_resource type="Resource" id="Resource_nada"]
+script = ExtResource("2_sfojn")
+species_id = ""
+weight = 88
+min_level = 10
+max_level = 12
+where = "flores"
 [resource]
 script = ExtResource("3_ly27t")
-entries = Array[ExtResource("2_sfojn")]([SubResource("Resource_f1ooc")])
+entries = Array[ExtResource("2_sfojn")]([SubResource("Resource_f1ooc"), SubResource("Resource_squirt"), SubResource("Resource_nada")])

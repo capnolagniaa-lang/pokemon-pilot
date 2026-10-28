@@ -239,7 +239,7 @@ func _row(e: EncounterEntry, i: int, area: int) -> Control:
 	pic.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	top.add_child(pic)
 	var name := Button.new()
-	name.text = ("#%03d %s" % [sp.dex, sp.display_name]) if sp != null else ("¿%s?" % e.species_id)
+	name.text = ("#%03d %s" % [sp.dex, sp.display_name]) if sp != null else ("(nada)" if e.species_id == "" else "¿%s?" % e.species_id)
 	name.tooltip_text = "Cambiar de Pokémon"
 	name.focus_mode = Control.FOCUS_NONE
 	name.flat = true

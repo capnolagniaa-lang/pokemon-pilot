@@ -141,6 +141,8 @@ func roll(zone_id: String, water: bool = true) -> Array:
 			return []
 		var cell: Vector2i = pool[_rng.randi() % pool.size()]
 		var row := table.pick_at(_rng, cell, zone.get_tags(cell))
+		if row != null and row.species_id == "":
+			return []  # fila "nada": esta vez no aparece nadie (Squirtle 12% en las flores de Celeste)
 		if row == null or not DB.species.has(row.species_id):
 			continue
 		var level := _rng.randi_range(mini(row.min_level, row.max_level), maxi(row.min_level, row.max_level))
