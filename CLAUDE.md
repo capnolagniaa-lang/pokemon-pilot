@@ -418,10 +418,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   Ascuas, Impactrueno, Pistola Agua, Burbuja, Hoja Afilada; `--sheet <png>` = hoja de contacto); correrlo de nuevo
   pisa esas hojas. **Hechas con IA** (ComfyUI, `docs/COMFYUI.md`; están en `HECHOS_CON_IA` de make_vfx para no pisarlas):
   impactos de Hielo, Planta, Psíquico y Roca, las áreas de Trueno (`moves/trueno.png`, 64 px), Giro Fuego (48 px) y Surf (64 px, la ola) y
-  15 proyectiles (Lanzallamas, Confusión, Hiperrayo, Poder Pasado, Rayo Hielo, Psíquico, Rayo Burbuja, Llamarada,
+  21 proyectiles: Lanzallamas, Confusión, Hiperrayo, Poder Pasado, Rayo Hielo, Psíquico, Rayo Burbuja, Llamarada,
   Electrocañón, Dragoaliento, Furia Dragón, Ácido, Gigadrenado, Pin Misil, Rapidez, Bomba Lodo, Disparo Lodo, Bola
-  Sombra, Hidrobomba; 4 cuadros en bucle; Lanzarrocas y Hoja Mágica quietos), de 16 a 32 px
-  según el `size` del ataque: `max(16, min(32, size·4))`).
+  Sombra e Hidrobomba (4 cuadros en bucle) y Lanzarrocas y Hoja Mágica (quietos); de 16 a 32 px según el `size` del
+  ataque: `max(16, min(32, size·4))`.
 
 ## Trampas conocidas
 - En shaders `canvas_item`, `COLOR` en `fragment()` ya trae la textura: guardar el color de vértice en un
