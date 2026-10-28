@@ -50,6 +50,7 @@ func run() -> void:
 	await get_tree().physics_frame
 	shooter.target = runner
 	runner.velocity = Vector2(0, 120)  # se mueve hacia abajo
+	shooter.moves.slots[0] = DB.moves["pistola_agua"]  # un disparo conocido
 	var slot := -1
 	for s in MoveUser.SLOT_COUNT:
 		var m: MoveData = shooter.moves.slots[s]
@@ -96,6 +97,7 @@ func run() -> void:
 	# Golpe físico con paso adelante y stagger al recibir (pedido del usuario 2026-10-28).
 	world = await autotest._setup_kit_world("machop")
 	var hitter: Creature = world.companion
+	hitter.moves.slots[0] = DB.all_moves["machop/golpe_karate_machop"]  # un golpe físico conocido (el del viejo kit)
 	var slot_m := -1
 	for s in MoveUser.SLOT_COUNT:
 		var m: MoveData = hitter.moves.slots[s]

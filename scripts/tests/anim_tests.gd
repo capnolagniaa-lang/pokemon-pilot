@@ -32,6 +32,11 @@ func run() -> void:
 
 	var world: Node = await autotest._setup_kit_world("charmander")
 	var me: Creature = world.companion
+	# (desde las habilidades los Pokémon traen sus ataques de nivel: para probar la mecánica, los del viejo kit de Charmander)
+	for i in 4:
+		me.moves.slots[i] = DB.all_moves[["charmander/ascuas_abanico", "charmander/aranazo_embestida",
+			"charmander/giro_fuego_trampa", "charmander/embestida_ignea"][i]]
+		me.moves.reset_cooldown(i)
 	var spr: CreatureSprite = me.sprite
 	r["Charmander: disparo → Shoot, golpe → Strike, golpe fuerte → Swing, embestida → LeapForth"] = \
 		spr.pick(CreatureSprite.chain_for_move(_move(MoveData.Kind.PROJECTILE, 40))) == "Shoot" \

@@ -1,11 +1,14 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_46qy5"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_k84fc"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_q6vmd"]
+[ext_resource type="Resource" path="res://data/abilities/iluminacion.tres" id="2_glbp4"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_rymty"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_w14ed"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="3_a6rrr"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_doajq"]
+[ext_resource type="Resource" path="res://data/abilities/enjambre.tres" id="3_wxkc4"]
 [ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="4_46qy5"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qfb0r"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_bbykw"]
@@ -17,52 +20,75 @@
 [ext_resource type="Resource" path="res://data/moves/refuerzo.tres" id="10_8yasd"]
 [ext_resource type="Resource" path="res://data/moves/doble_filo.tres" id="11_78uoo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="14_a6rrr"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="16_gduaj"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="17_dj0lv"]
+[ext_resource type="Resource" path="res://data/moves/demolicion.tres" id="18_srxee"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="19_k84fc"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="20_glbp4"]
+[ext_resource type="Resource" path="res://data/moves/puno_certero.tres" id="21_wxkc4"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="22_v8wxy"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="23_66gaf"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="24_mw5jl"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="25_tccx6"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="26_1ok6c"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="27_50ns6"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="28_xjrnc"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="29_edy2r"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="30_51mp0"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="31_vpqg1"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="32_qktoq"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="33_r6a30"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="34_rlb4y"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="35_5sbqj"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="36_15yau"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="37_6uiik"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="38_1x8ur"]
 
-[sub_resource type="Resource" id="Resource_46qy5"]
+[sub_resource type="Resource" id="Resource_k84fc"]
 script = ExtResource("1_q6vmd")
 move = ExtResource("2_w14ed")
 
-[sub_resource type="Resource" id="Resource_n3pbo"]
+[sub_resource type="Resource" id="Resource_glbp4"]
 script = ExtResource("1_q6vmd")
 level = 5
 move = ExtResource("3_a6rrr")
 
-[sub_resource type="Resource" id="Resource_4obp8"]
+[sub_resource type="Resource" id="Resource_wxkc4"]
 script = ExtResource("1_q6vmd")
 level = 9
 move = ExtResource("4_46qy5")
 
-[sub_resource type="Resource" id="Resource_r5xw6"]
+[sub_resource type="Resource" id="Resource_v8wxy"]
 script = ExtResource("1_q6vmd")
 level = 13
 move = ExtResource("5_n3pbo")
 
-[sub_resource type="Resource" id="Resource_nrmh2"]
+[sub_resource type="Resource" id="Resource_66gaf"]
 script = ExtResource("1_q6vmd")
 level = 17
 move = ExtResource("6_4obp8")
 
-[sub_resource type="Resource" id="Resource_0ijj3"]
+[sub_resource type="Resource" id="Resource_mw5jl"]
 script = ExtResource("1_q6vmd")
 level = 21
 move = ExtResource("7_r5xw6")
 
-[sub_resource type="Resource" id="Resource_8yasd"]
+[sub_resource type="Resource" id="Resource_tccx6"]
 script = ExtResource("1_q6vmd")
 level = 25
 move = ExtResource("8_nrmh2")
 
-[sub_resource type="Resource" id="Resource_78uoo"]
+[sub_resource type="Resource" id="Resource_1ok6c"]
 script = ExtResource("1_q6vmd")
 level = 29
 move = ExtResource("9_0ijj3")
 
-[sub_resource type="Resource" id="Resource_gyfco"]
+[sub_resource type="Resource" id="Resource_50ns6"]
 script = ExtResource("1_q6vmd")
 level = 33
 move = ExtResource("10_8yasd")
 
-[sub_resource type="Resource" id="Resource_2wlkd"]
+[sub_resource type="Resource" id="Resource_xjrnc"]
 script = ExtResource("1_q6vmd")
 level = 37
 move = ExtResource("11_78uoo")
@@ -73,7 +99,9 @@ id = "volbeat"
 display_name = "Volbeat"
 dex = 313
 types = Array[ExtResource("4_qfb0r")]([ExtResource("5_bbykw")])
-learnset = Array[ExtResource("1_q6vmd")]([SubResource("Resource_46qy5"), SubResource("Resource_n3pbo"), SubResource("Resource_4obp8"), SubResource("Resource_r5xw6"), SubResource("Resource_nrmh2"), SubResource("Resource_0ijj3"), SubResource("Resource_8yasd"), SubResource("Resource_78uoo"), SubResource("Resource_gyfco"), SubResource("Resource_2wlkd")])
+learnset = Array[ExtResource("1_q6vmd")]([SubResource("Resource_k84fc"), SubResource("Resource_glbp4"), SubResource("Resource_wxkc4"), SubResource("Resource_v8wxy"), SubResource("Resource_66gaf"), SubResource("Resource_mw5jl"), SubResource("Resource_tccx6"), SubResource("Resource_1ok6c"), SubResource("Resource_50ns6"), SubResource("Resource_xjrnc")])
+tm_moves = Array[ExtResource("2_rymty")]([ExtResource("16_gduaj"), ExtResource("17_dj0lv"), ExtResource("18_srxee"), ExtResource("4_46qy5"), ExtResource("19_k84fc"), ExtResource("20_glbp4"), ExtResource("21_wxkc4"), ExtResource("22_v8wxy"), ExtResource("23_66gaf"), ExtResource("24_mw5jl"), ExtResource("25_tccx6"), ExtResource("9_0ijj3"), ExtResource("26_1ok6c"), ExtResource("27_50ns6"), ExtResource("28_xjrnc"), ExtResource("29_edy2r"), ExtResource("30_51mp0"), ExtResource("31_vpqg1"), ExtResource("32_qktoq"), ExtResource("33_r6a30"), ExtResource("34_rlb4y"), ExtResource("35_5sbqj"), ExtResource("36_15yau"), ExtResource("37_6uiik"), ExtResource("38_1x8ur")])
+abilities = Array[ExtResource("1_k84fc")]([ExtResource("2_glbp4"), ExtResource("3_wxkc4")])
 temperament = ExtResource("14_a6rrr")
 genus = "Pokémon Luciérnaga"
 pokedex_entry = "Cuando llega la noche, Volbeat emite luz por la cola y regula la intensidad y el destello para comunicarse con el resto. A este Pokémon le atrae el dulce aroma de Illumise."

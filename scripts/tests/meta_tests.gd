@@ -34,7 +34,9 @@ func save_test() -> void:
 
 	var me := GameState.active()
 	var lanzallamas: MoveData = DB.moves["lanzallamas"]
-	r["Movimiento de nivel mayor (Lanzallamas, Nv. 31) no se equipa"] = not me.can_equip(lanzallamas) and not me.equip(3, lanzallamas)
+	# (Lanzallamas también es MT de Charmander y las MT se pueden elegir: el de nivel mayor que no es MT es Cuchillada.)
+	var slash: MoveData = DB.moves["cuchillada"]
+	r["Movimiento de nivel mayor que no es MT (Cuchillada, Nv. 37) no se equipa"] = not me.can_equip(slash) and not me.equip(3, slash)
 	var learned := []
 	Events.move_learned.connect(func(_c, m): learned.append(m))
 	var text := GameState.grant_exp(me, CreatureInstance.exp_for_level(me.species.growth_rate, 31) - me.experience)
@@ -78,7 +80,7 @@ func save_test() -> void:
 	r["JSON corrupto: no crashea ni toca la partida"] = not SaveManager.load_game() and JSON.stringify(GameState.to_dict()) == party_before
 	_write(SaveManager.slot_path, JSON.stringify({"version": 1, "party": [
 		{"species_id": "missingno", "level": 5},
-		{"species_id": "charmander", "level": 8, "equipped_moves": ["no_existe", "charmander/ascuas_abanico", "", "lanzallamas"]}]}))
+		{"species_id": "charmander", "level": 8, "equipped_moves": ["no_existe", "charmander/ascuas_abanico", "", "cuchillada"]}]}))
 	var ok_load := SaveManager.load_game()
 	var eq: Array[MoveData] = GameState.party[0].equipped_moves if ok_load else []
 	r["Especie o movimiento inexistente: se saltea con aviso"] = ok_load and GameState.party.size() == 1 \

@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_4dpci"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ednxg"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_xddky"]
+[ext_resource type="Resource" path="res://data/abilities/vista_lince.tres" id="2_leny4"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_vxei2"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_xyto4"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_8rwkg"]
+[ext_resource type="Resource" path="res://data/abilities/robustez.tres" id="3_d8ciw"]
 [ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="3_ktsxk"]
 [ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="4_4dpci"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_hyeq6"]
@@ -18,51 +21,71 @@
 [ext_resource type="Resource" path="res://data/moves/puas.tres" id="10_eq2dx"]
 [ext_resource type="Resource" path="res://data/moves/eco_metalico.tres" id="11_he4xm"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ktsxk"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="16_mlvdh"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="17_5wis0"]
+[ext_resource type="Resource" path="res://data/moves/corte.tres" id="18_por1a"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="19_xddky"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="20_leny4"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="21_d8ciw"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="22_61ig1"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="23_25kkj"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="24_k27se"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="25_slru1"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="26_oy32w"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="27_acfum"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="28_1nvj3"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="29_tgci1"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="30_fjecc"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="31_2ouns"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="32_1espj"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="33_ljroa"]
+[ext_resource type="Resource" path="res://data/moves/tormento.tres" id="34_cidd7"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="35_a86uy"]
 
-[sub_resource type="Resource" id="Resource_4dpci"]
+[sub_resource type="Resource" id="Resource_xddky"]
 script = ExtResource("1_ednxg")
 move = ExtResource("2_vxei2")
 
-[sub_resource type="Resource" id="Resource_fj0tv"]
+[sub_resource type="Resource" id="Resource_leny4"]
 script = ExtResource("1_ednxg")
 move = ExtResource("3_ktsxk")
 
-[sub_resource type="Resource" id="Resource_oe1u8"]
+[sub_resource type="Resource" id="Resource_d8ciw"]
 script = ExtResource("1_ednxg")
 level = 10
 move = ExtResource("4_4dpci")
 
-[sub_resource type="Resource" id="Resource_f7blm"]
+[sub_resource type="Resource" id="Resource_61ig1"]
 script = ExtResource("1_ednxg")
 level = 13
 move = ExtResource("5_fj0tv")
 
-[sub_resource type="Resource" id="Resource_vovth"]
+[sub_resource type="Resource" id="Resource_25kkj"]
 script = ExtResource("1_ednxg")
 level = 16
 move = ExtResource("6_oe1u8")
 
-[sub_resource type="Resource" id="Resource_l5vx8"]
+[sub_resource type="Resource" id="Resource_k27se"]
 script = ExtResource("1_ednxg")
 level = 26
 move = ExtResource("7_f7blm")
 
-[sub_resource type="Resource" id="Resource_eq2dx"]
+[sub_resource type="Resource" id="Resource_slru1"]
 script = ExtResource("1_ednxg")
 level = 29
 move = ExtResource("8_vovth")
 
-[sub_resource type="Resource" id="Resource_he4xm"]
+[sub_resource type="Resource" id="Resource_oy32w"]
 script = ExtResource("1_ednxg")
 level = 32
 move = ExtResource("9_l5vx8")
 
-[sub_resource type="Resource" id="Resource_qm0ga"]
+[sub_resource type="Resource" id="Resource_acfum"]
 script = ExtResource("1_ednxg")
 level = 42
 move = ExtResource("10_eq2dx")
 
-[sub_resource type="Resource" id="Resource_4offu"]
+[sub_resource type="Resource" id="Resource_1nvj3"]
 script = ExtResource("1_ednxg")
 level = 45
 move = ExtResource("11_he4xm")
@@ -73,7 +96,9 @@ id = "skarmory"
 display_name = "Skarmory"
 dex = 227
 types = Array[ExtResource("4_hyeq6")]([ExtResource("5_y26uw"), ExtResource("6_43qk0")])
-learnset = Array[ExtResource("1_ednxg")]([SubResource("Resource_4dpci"), SubResource("Resource_fj0tv"), SubResource("Resource_oe1u8"), SubResource("Resource_f7blm"), SubResource("Resource_vovth"), SubResource("Resource_l5vx8"), SubResource("Resource_eq2dx"), SubResource("Resource_he4xm"), SubResource("Resource_qm0ga"), SubResource("Resource_4offu")])
+learnset = Array[ExtResource("1_ednxg")]([SubResource("Resource_xddky"), SubResource("Resource_leny4"), SubResource("Resource_d8ciw"), SubResource("Resource_61ig1"), SubResource("Resource_25kkj"), SubResource("Resource_k27se"), SubResource("Resource_slru1"), SubResource("Resource_oy32w"), SubResource("Resource_acfum"), SubResource("Resource_1nvj3")])
+tm_moves = Array[ExtResource("2_xyto4")]([ExtResource("16_mlvdh"), ExtResource("17_5wis0"), ExtResource("18_por1a"), ExtResource("19_xddky"), ExtResource("20_leny4"), ExtResource("21_d8ciw"), ExtResource("22_61ig1"), ExtResource("23_25kkj"), ExtResource("24_k27se"), ExtResource("25_slru1"), ExtResource("26_oy32w"), ExtResource("27_acfum"), ExtResource("28_1nvj3"), ExtResource("29_tgci1"), ExtResource("30_fjecc"), ExtResource("9_l5vx8"), ExtResource("31_2ouns"), ExtResource("32_1espj"), ExtResource("33_ljroa"), ExtResource("34_cidd7"), ExtResource("35_a86uy")])
+abilities = Array[ExtResource("1_xddky")]([ExtResource("2_leny4"), ExtResource("3_d8ciw")])
 temperament = ExtResource("14_ktsxk")
 genus = "Pokémon Coraza Ave"
 pokedex_entry = "Skarmory está totalmente encerrado en el interior de una fuerte coraza protectora. En vuelo, puede llegar a alcanzar los 300 km/h y usa las afiladas alas que tiene para azotar al rival."

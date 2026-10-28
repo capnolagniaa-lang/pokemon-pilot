@@ -1,11 +1,14 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_88uf3"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_en6iu"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_i5m7v"]
+[ext_resource type="Resource" path="res://data/abilities/dicha.tres" id="2_2nva0"]
 [ext_resource type="Resource" path="res://data/moves/furia.tres" id="2_ajkg6"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_x0xen"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0lg0p"]
 [ext_resource type="Resource" path="res://data/moves/rizo_defensa.tres" id="3_gw466"]
+[ext_resource type="Resource" path="res://data/abilities/fuga.tres" id="3_mga2w"]
 [ext_resource type="Resource" path="res://data/moves/bostezo.tres" id="4_en6iu"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fas15"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_3vnjm"]
@@ -18,57 +21,87 @@
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="11_54t4s"]
 [ext_resource type="Resource" path="res://data/moves/esfuerzo.tres" id="12_w7r7u"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_gw466"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="17_wrd46"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="18_foix3"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="19_b5nw6"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="20_88uf3"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="21_2nva0"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="22_mga2w"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="23_limsu"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="24_xmrtn"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="25_46cv0"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="26_h8ps0"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="27_ncq2m"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="28_fgfrm"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="29_8fshf"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="30_7jin8"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="31_vpekw"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="32_3uml4"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="33_bd4m2"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="34_y8pxi"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="35_vwdkr"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="36_d3rwm"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="37_rj1hh"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="38_7xfcd"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="39_jt3on"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="40_6pns3"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="41_jsqog"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="42_jsk55"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="43_bwxm2"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="44_d74bc"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="45_nehas"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="46_h3rsw"]
 
-[sub_resource type="Resource" id="Resource_en6iu"]
+[sub_resource type="Resource" id="Resource_88uf3"]
 script = ExtResource("1_i5m7v")
 move = ExtResource("2_ajkg6")
 
-[sub_resource type="Resource" id="Resource_yq8f2"]
+[sub_resource type="Resource" id="Resource_2nva0"]
 script = ExtResource("1_i5m7v")
 level = 4
 move = ExtResource("3_gw466")
 
-[sub_resource type="Resource" id="Resource_3a4c1"]
+[sub_resource type="Resource" id="Resource_mga2w"]
 script = ExtResource("1_i5m7v")
 level = 11
 move = ExtResource("4_en6iu")
 
-[sub_resource type="Resource" id="Resource_3emim"]
+[sub_resource type="Resource" id="Resource_limsu"]
 script = ExtResource("1_i5m7v")
 level = 14
 move = ExtResource("5_yq8f2")
 
-[sub_resource type="Resource" id="Resource_w6cvv"]
+[sub_resource type="Resource" id="Resource_xmrtn"]
 script = ExtResource("1_i5m7v")
 level = 21
 move = ExtResource("6_3a4c1")
 
-[sub_resource type="Resource" id="Resource_4pjln"]
+[sub_resource type="Resource" id="Resource_46cv0"]
 script = ExtResource("1_i5m7v")
 level = 24
 move = ExtResource("7_3emim")
 
-[sub_resource type="Resource" id="Resource_qcp8j"]
+[sub_resource type="Resource" id="Resource_h8ps0"]
 script = ExtResource("1_i5m7v")
 level = 31
 move = ExtResource("8_w6cvv")
 
-[sub_resource type="Resource" id="Resource_54t4s"]
+[sub_resource type="Resource" id="Resource_ncq2m"]
 script = ExtResource("1_i5m7v")
 level = 34
 move = ExtResource("9_4pjln")
 
-[sub_resource type="Resource" id="Resource_w7r7u"]
+[sub_resource type="Resource" id="Resource_fgfrm"]
 script = ExtResource("1_i5m7v")
 level = 41
 move = ExtResource("10_qcp8j")
 
-[sub_resource type="Resource" id="Resource_twr3d"]
+[sub_resource type="Resource" id="Resource_8fshf"]
 script = ExtResource("1_i5m7v")
 level = 44
 move = ExtResource("11_54t4s")
 
-[sub_resource type="Resource" id="Resource_csafn"]
+[sub_resource type="Resource" id="Resource_7jin8"]
 script = ExtResource("1_i5m7v")
 level = 51
 move = ExtResource("12_w7r7u")
@@ -79,7 +112,9 @@ id = "dunsparce"
 display_name = "Dunsparce"
 dex = 206
 types = Array[ExtResource("4_fas15")]([ExtResource("5_3vnjm")])
-learnset = Array[ExtResource("1_i5m7v")]([SubResource("Resource_en6iu"), SubResource("Resource_yq8f2"), SubResource("Resource_3a4c1"), SubResource("Resource_3emim"), SubResource("Resource_w6cvv"), SubResource("Resource_4pjln"), SubResource("Resource_qcp8j"), SubResource("Resource_54t4s"), SubResource("Resource_w7r7u"), SubResource("Resource_twr3d"), SubResource("Resource_csafn")])
+learnset = Array[ExtResource("1_i5m7v")]([SubResource("Resource_88uf3"), SubResource("Resource_2nva0"), SubResource("Resource_mga2w"), SubResource("Resource_limsu"), SubResource("Resource_xmrtn"), SubResource("Resource_46cv0"), SubResource("Resource_h8ps0"), SubResource("Resource_ncq2m"), SubResource("Resource_fgfrm"), SubResource("Resource_8fshf"), SubResource("Resource_7jin8")])
+tm_moves = Array[ExtResource("2_x0xen")]([ExtResource("17_wrd46"), ExtResource("18_foix3"), ExtResource("19_b5nw6"), ExtResource("20_88uf3"), ExtResource("21_2nva0"), ExtResource("22_mga2w"), ExtResource("23_limsu"), ExtResource("24_xmrtn"), ExtResource("25_46cv0"), ExtResource("26_h8ps0"), ExtResource("27_ncq2m"), ExtResource("28_fgfrm"), ExtResource("29_8fshf"), ExtResource("30_7jin8"), ExtResource("31_vpekw"), ExtResource("32_3uml4"), ExtResource("33_bd4m2"), ExtResource("34_y8pxi"), ExtResource("35_vwdkr"), ExtResource("36_d3rwm"), ExtResource("37_rj1hh"), ExtResource("38_7xfcd"), ExtResource("39_jt3on"), ExtResource("40_6pns3"), ExtResource("41_jsqog"), ExtResource("42_jsk55"), ExtResource("43_bwxm2"), ExtResource("44_d74bc"), ExtResource("45_nehas"), ExtResource("46_h3rsw")])
+abilities = Array[ExtResource("1_88uf3")]([ExtResource("2_2nva0"), ExtResource("3_mga2w")])
 temperament = ExtResource("15_gw466")
 genus = "Pokémon Serpiente Tierra"
 pokedex_entry = "La cola de Dunsparce es un taladro que usa para enterrarse en el suelo de espaldas. De todos es sabido que este Pokémon hace su nido a gran profundidad y con una forma muy compleja."

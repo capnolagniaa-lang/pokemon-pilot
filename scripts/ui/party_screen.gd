@@ -106,8 +106,8 @@ func _card(i: int) -> Button:
 	info.add_child(types)
 	for t in inst.species.types:
 		types.add_child(UiStyle.type_chip(t))
-	if inst.species.kit != null:
-		types.add_child(UiStyle.label("  " + UiStyle.ARCHETYPES.get(inst.species.kit.archetype, inst.species.kit.archetype), 14, UiStyle.TEXT_DIM))
+	if inst.ability_data() != null:
+		types.add_child(UiStyle.label("  " + inst.ability_data().display_name, 14, UiStyle.TEXT_DIM))
 	var ratio := inst.hp / inst.max_hp()
 	info.add_child(UiStyle.label("PS %d/%d%s" % [ceili(inst.hp), ceili(inst.max_hp()), "  —  DEBILITADO" if inst.hp <= 0.0 else ""], 13,
 		UiStyle.BAD if inst.hp <= 0.0 else UiStyle.TEXT))

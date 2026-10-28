@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_b43td"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_codyr"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_otqbc"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_4oi1f"]
+[ext_resource type="Resource" path="res://data/abilities/enjambre.tres" id="2_mkh7w"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_mpf0h"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_db4m8"]
+[ext_resource type="Resource" path="res://data/abilities/agallas.tres" id="3_i6jw1"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_yxps0"]
 [ext_resource type="Resource" path="res://data/moves/cornada.tres" id="4_b43td"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_mrq4h"]
@@ -18,51 +21,73 @@
 [ext_resource type="Resource" path="res://data/moves/inversion.tres" id="10_kdngj"]
 [ext_resource type="Resource" path="res://data/moves/megacuerno.tres" id="11_wgqp5"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_db4m8"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="16_t8v5c"]
+[ext_resource type="Resource" path="res://data/moves/corpulencia.tres" id="17_3gww5"]
+[ext_resource type="Resource" path="res://data/moves/corte.tres" id="18_pxbsg"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="19_otqbc"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="20_mkh7w"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="21_i6jw1"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="22_bk838"]
+[ext_resource type="Resource" path="res://data/moves/puno_certero.tres" id="23_l088p"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="24_36s74"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="25_87xc7"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="26_etwff"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="27_aj4k3"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="28_junlo"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="29_t8tjp"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="30_407hr"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="31_11ya7"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="32_ka7rx"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="33_4mpcu"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="34_evcho"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="35_limc1"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="36_kbyl7"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="37_gss06"]
 
-[sub_resource type="Resource" id="Resource_b43td"]
+[sub_resource type="Resource" id="Resource_otqbc"]
 script = ExtResource("1_codyr")
 move = ExtResource("2_4oi1f")
 
-[sub_resource type="Resource" id="Resource_fyka8"]
+[sub_resource type="Resource" id="Resource_mkh7w"]
 script = ExtResource("1_codyr")
 move = ExtResource("3_db4m8")
 
-[sub_resource type="Resource" id="Resource_7n8tc"]
+[sub_resource type="Resource" id="Resource_i6jw1"]
 script = ExtResource("1_codyr")
 level = 6
 move = ExtResource("4_b43td")
 
-[sub_resource type="Resource" id="Resource_nfkaa"]
+[sub_resource type="Resource" id="Resource_bk838"]
 script = ExtResource("1_codyr")
 level = 11
 move = ExtResource("5_fyka8")
 
-[sub_resource type="Resource" id="Resource_bjw55"]
+[sub_resource type="Resource" id="Resource_l088p"]
 script = ExtResource("1_codyr")
 level = 17
 move = ExtResource("6_7n8tc")
 
-[sub_resource type="Resource" id="Resource_a4ymb"]
+[sub_resource type="Resource" id="Resource_36s74"]
 script = ExtResource("1_codyr")
 level = 23
 move = ExtResource("7_nfkaa")
 
-[sub_resource type="Resource" id="Resource_kdngj"]
+[sub_resource type="Resource" id="Resource_87xc7"]
 script = ExtResource("1_codyr")
 level = 30
 move = ExtResource("8_bjw55")
 
-[sub_resource type="Resource" id="Resource_wgqp5"]
+[sub_resource type="Resource" id="Resource_etwff"]
 script = ExtResource("1_codyr")
 level = 37
 move = ExtResource("9_a4ymb")
 
-[sub_resource type="Resource" id="Resource_vwq5y"]
+[sub_resource type="Resource" id="Resource_aj4k3"]
 script = ExtResource("1_codyr")
 level = 45
 move = ExtResource("10_kdngj")
 
-[sub_resource type="Resource" id="Resource_x74lv"]
+[sub_resource type="Resource" id="Resource_junlo"]
 script = ExtResource("1_codyr")
 level = 53
 move = ExtResource("11_wgqp5")
@@ -73,7 +98,9 @@ id = "heracross"
 display_name = "Heracross"
 dex = 214
 types = Array[ExtResource("4_mrq4h")]([ExtResource("5_yfg6i"), ExtResource("6_f7nxb")])
-learnset = Array[ExtResource("1_codyr")]([SubResource("Resource_b43td"), SubResource("Resource_fyka8"), SubResource("Resource_7n8tc"), SubResource("Resource_nfkaa"), SubResource("Resource_bjw55"), SubResource("Resource_a4ymb"), SubResource("Resource_kdngj"), SubResource("Resource_wgqp5"), SubResource("Resource_vwq5y"), SubResource("Resource_x74lv")])
+learnset = Array[ExtResource("1_codyr")]([SubResource("Resource_otqbc"), SubResource("Resource_mkh7w"), SubResource("Resource_i6jw1"), SubResource("Resource_bk838"), SubResource("Resource_l088p"), SubResource("Resource_36s74"), SubResource("Resource_87xc7"), SubResource("Resource_etwff"), SubResource("Resource_aj4k3"), SubResource("Resource_junlo")])
+tm_moves = Array[ExtResource("2_mpf0h")]([ExtResource("16_t8v5c"), ExtResource("7_nfkaa"), ExtResource("17_3gww5"), ExtResource("18_pxbsg"), ExtResource("19_otqbc"), ExtResource("20_mkh7w"), ExtResource("21_i6jw1"), ExtResource("22_bk838"), ExtResource("23_l088p"), ExtResource("24_36s74"), ExtResource("25_87xc7"), ExtResource("26_etwff"), ExtResource("27_aj4k3"), ExtResource("28_junlo"), ExtResource("29_t8tjp"), ExtResource("30_407hr"), ExtResource("31_11ya7"), ExtResource("32_ka7rx"), ExtResource("33_4mpcu"), ExtResource("34_evcho"), ExtResource("35_limc1"), ExtResource("36_kbyl7"), ExtResource("37_gss06")])
+abilities = Array[ExtResource("1_otqbc")]([ExtResource("2_mkh7w"), ExtResource("3_i6jw1")])
 temperament = ExtResource("14_db4m8")
 genus = "Pokémon Cuerno"
 pokedex_entry = "Heracross carga en línea recta contra el enemigo, se le queda encajado por debajo, lo agarra y lo lanza con ayuda del fuerte cuerno que tiene. Este Pokémon tiene fuerza hasta para echar abajo un árbol descomunal."

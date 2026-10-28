@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_nmw2l"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_w8euk"]
+
+[resource]
+script = ExtResource("2_w8euk")
+id = "escama_especial"
+display_name = "Escama Especial"
+description = "Con un problema de estado recibe 30% menos."
+color = Color(0.35, 0.6, 1, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_nmw2l")
+params = {
+"status_def": 0.7
+}

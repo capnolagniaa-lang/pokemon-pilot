@@ -7,7 +7,28 @@
 
 ---
 
-# ⚠️ ESTADO VIGENTE (v2, 2026-10-21) — LEER PRIMERO
+# ⚠️ ESTADO VIGENTE (v3: HABILIDADES, 2026-10-28) — LEER PRIMERO
+
+El usuario **cambió la dirección** después de la batería de balance: "se respetan las habilidades que tienen los
+Pokémon (la innata de los juegos) y todos los movimientos se comportan iguales para todos; lo que distingue a los
+Pokémon son sus habilidades, el tipo y los movimientos que uno elija: el estilo de pelea lo define el usuario". Y:
+"dejaría el spicy del kit de jefe a los Pokémon jefe de los gimnasios".
+
+- **Habilidades de 3ª gen** (76; las de cada especie, sin las que se inventaron después): `data/abilities/`,
+  `tools/fetch_abilities.py` → `tools/apply_abilities.gd` (tabla `EFFECTS`: qué hace cada una en tiempo real).
+  Decisiones: **al azar** entre las de la especie (como en los juegos), y las que casi no hacen nada en una pelea
+  (Fuga, Recogida, Vista Lince...) se **reinterpretan** con algo chico y útil.
+- **Ataques**: los de `data/moves` (uno por ataque, igual para todos). Viene con **los últimos 4 por nivel**; se elige
+  entre todo lo de nivel y **MT** (`SpeciesData.tm_moves`).
+- **Kit de jefe** solo para el Pokémon de un líder de gimnasio (Onix de Brock, Starmie de Misty, Raichu de Surge).
+- Los kits v3-v9 de abajo quedan como **historia** (sus archivos siguen en `data/kits/`).
+- Balance (`docs/BALANCE_RESUMEN.md`, 15.000 peleas): con los mejores ataques el desvío entre especies es 19,6 puntos
+  (con kits era 19,8); con lo que traen, 23,8. Dragón arriba (74%/59%). Pendiente: balancear **ataques** (Fuego con
+  Sofoco/Llamarada queda en 19%; Transformación y los capullos no hacen daño).
+
+---
+
+# (Histórico) ESTADO v2 (2026-10-21)
 
 El usuario **rediseñó el sistema** después de probar la versión de 5 ranuras. Lo de esta sección **manda** sobre
 el documento original de abajo (que queda como referencia de ideas: estados, sinergias, fichas).

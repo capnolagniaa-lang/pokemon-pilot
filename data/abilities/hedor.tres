@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_5t7ir"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_x7h77"]
+
+[resource]
+script = ExtResource("2_x7h77")
+id = "hedor"
+display_name = "Hedor"
+description = "Sus golpes a veces aturden al rival un instante (10%)."
+color = Color(0.7, 0.45, 0.85, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_5t7ir")
+params = {
+"flinch_chance": 0.1
+}

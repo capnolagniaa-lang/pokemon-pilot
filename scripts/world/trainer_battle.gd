@@ -203,6 +203,7 @@ func _send_next(skip: CreatureInstance = null) -> void:
 		_end("win")
 		return
 	var c: Creature = WildSpawner.CreatureScene.instantiate()
+	next.boss = leader and next.species.boss_kit != null  # el "spicy" de los jefes de gimnasio (Onix, Starmie, Raichu)
 	c.instance = next
 	c.team = Creature.Team.WILD
 	c.owner_name = foe_name

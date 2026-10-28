@@ -76,7 +76,7 @@ KITS = {
     # --- Rhyhorn: tanque de roca que embiste derecho y no piensa. ---
     "rhyhorn": ("tanque", 30, sig("piel_de_roca", "Piel de Roca", "colossus_mechanic.gd", (0.7, 0.65, 0.6),
                 "Cuerpo de roca: recibe 20% menos de los golpes físicos y casi no lo empujan. Pega ×1,3 a lo ralentizado (Pisotón).",
-                {"physical_mult": 0.8, "stagger_bonus": 1.3, "knockback_mult": 0.45, "scale": 1.1, "phase_at": 0.0}), [
+                {"physical_mult": 0.8, "stagger_bonus": 1.3, "knockback_mult": 0.5, "scale": 1.0, "phase_at": 0.0}), [
         melee("cornada_rhyhorn", "Cornada", "normal", 65, 1.3, 1, final_knockback=220, melee_range=15, swing_radius=13),
         mv("pisoton_rhyhorn", "Pisotón", "tierra", "AREA", "fis", 65, 4.0, 160, radius=40, on_hit=["ralentizado"],
            recovery=0.2),
@@ -340,8 +340,8 @@ KITS = {
     ]),
     # --- Snorlax: la montaña dormida que bloquea las rutas. ---
     "snorlax": ("tanque", 30, sig("panza", "Panza", "colossus_mechanic.gd", (0.4, 0.55, 0.65),
-                "Cuerpo enorme: casi no lo empujan y recibe 20% menos de los golpes físicos. Pega ×1,3 a lo ralentizado.",
-                {"physical_mult": 0.8, "stagger_bonus": 1.3, "knockback_mult": 0.25, "scale": 1.35, "phase_at": 0.0}), [
+                "Panza enorme: casi no lo empujan y recibe 20% menos de los golpes físicos. Pega ×1,3 a lo ralentizado.",
+                {"physical_mult": 0.8, "stagger_bonus": 1.3, "knockback_mult": 0.35, "scale": 1.0, "phase_at": 0.0}), [
         melee("golpe_cuerpo_snorlax", "Golpe Cuerpo", "normal", 85, 1.6, 1, final_knockback=260, status="paralizado",
               chance=0.25, melee_range=16, swing_radius=15),
         mv("bostezo_snorlax", "Bostezo", "normal", "PROJECTILE", "est", 0, 9.0, 0, speed=150, size=7, lifetime=1.2,
@@ -351,10 +351,10 @@ KITS = {
            size=10, lifetime=0.8, recovery=1.0),
     ]),
     # --- Articuno: legendario de las Islas Espuma (jefe). ---
-    "articuno": ("control", 70, sig("ave_helada", "Ave Helada", "colossus_mechanic.gd", (0.6, 0.85, 1.0),
-                 "Legendario: cuerpo grande, casi no lo empujan. A mitad de vida bate las alas una vez (Ventisca alrededor que ralentiza) y queda enfurecido.",
-                 {"physical_mult": 0.9, "stagger_bonus": 1.0, "knockback_mult": 0.3, "scale": 1.3, "phase_at": 0.5,
-                  "phase_status": "enfurecido", "roar_move": "res://data/kits/articuno/aleteo_helado.tres"}), [
+    # (Sin kit de jefe: los de jefe son solo para los líderes de gimnasio, decisión del usuario 2026-10-28.)
+    "articuno": ("control", 70, sig("ave_helada", "Ave Helada", "frost_mechanic.gd", (0.6, 0.85, 1.0),
+                 "Sus ataques de hielo dejan escarcha; con 4, el rival se congela.",
+                 {"element_marks": {"hielo": "escarcha"}, "stacks_to_freeze": 4}, max=0), [
         mv("rayo_hielo_articuno", "Rayo Hielo", "hielo", "PROJECTILE", "esp", 90, 1.8, 110, speed=290, size=5,
            lifetime=0.9, projectile_count=3, spread_deg=24, on_hit=["ralentizado"]),
         mv("ataque_ala_articuno", "Ataque Ala", "volador", "LUNGE", "fis", 60, 3.5, 160, lunge_range=120,
@@ -364,12 +364,11 @@ KITS = {
         mv("ventisca_articuno", "Ventisca", "hielo", "ZONE", "esp", 110, 8.0, 200, cast_time=0.4, zone_radius=28,
            placement_range=150, zone_traps=False, zone_strike=True, strike_delay=0.8, strike_count=3,
            strike_spread=44, status="congelado", chance=0.15, recovery=0.4),
-    ], [boss_roar("aleteo_helado", "Aleteo Helado", "hielo", 60, 80, "ralentizado")]),
+    ]),
     # --- Zapdos: legendario de la Central Eléctrica (jefe). ---
-    "zapdos": ("bruiser", 60, sig("ave_trueno", "Ave Trueno", "colossus_mechanic.gd", (1.0, 0.9, 0.3),
-               "Legendario: cuerpo grande, casi no lo empujan. A mitad de vida suelta una descarga alrededor que paraliza y queda enfurecido.",
-               {"physical_mult": 0.9, "stagger_bonus": 1.0, "knockback_mult": 0.3, "scale": 1.3, "phase_at": 0.5,
-                "phase_status": "enfurecido", "roar_move": "res://data/kits/zapdos/descarga_zapdos.tres"}), [
+    "zapdos": ("bruiser", 60, sig("ave_trueno", "Ave Trueno", "static_mechanic.gd", (1.0, 0.9, 0.3),
+               "Volar y esquivar lo cargan (5 marcas); quieto se descarga. Con la barra llena el próximo golpe es una Descarga que paraliza fuerte.",
+               {"idle_loss": 25.0, "discharge_mult": 1.4}, gains={"moved": 0.3, "dodged": 20.0}) | FIVE, [
         mv("impactrueno_zapdos", "Impactrueno", "electrico", "PROJECTILE", "esp", 40, 1.2, 90, speed=330, size=5,
            lifetime=0.8, projectile_count=3, spread_deg=26, status="paralizado", chance=0.15),
         mv("pico_taladro_zapdos", "Pico Taladro", "volador", "DASH", "fis", 80, 4.0, 260, cast_time=0.25,
@@ -379,7 +378,7 @@ KITS = {
         mv("trueno_zapdos", "Trueno", "electrico", "ZONE", "esp", 110, 8.0, 200, cast_time=0.35, zone_radius=24,
            placement_range=160, zone_traps=False, zone_strike=True, strike_delay=0.7, strike_count=3,
            strike_spread=44, status="paralizado", chance=0.5, recovery=0.3),
-    ], [boss_roar("descarga_zapdos", "Descarga", "electrico", 60, 85, "paralizado")]),
+    ]),
     # --- Eeveelutions: las de piedra (Eevee está en la Mansión de Azulona). ---
     "vaporeon": ("tanque", 50, sig("absorbe_agua", "Absorbe Agua", "body_trait_mechanic.gd", (0.35, 0.6, 1.0),
                  "Sobre agua o suelo mojado (o empapado) se cura un 3% por segundo y se mueve más rápido; en seco va un poco más lento.",
@@ -446,6 +445,32 @@ KITS = {
         mv("agilidad_porygon", "Agilidad", "psiquico", "SELF_BUFF", "est", 0, 10.0, 0, self="agilidad"),
         mv("triataque_porygon", "Triataque", "normal", "PROJECTILE", "esp", 80, 4.0, 140, speed=290, size=5,
            lifetime=0.8, projectile_count=3, spread_deg=18, on_hit=["quemado"], cast_time=0.2),
+    ]),
+    # --- Dragones (pasada de balance 1, pedido del usuario: "los dragón tienen que ser casi los más fuertes"). ---
+    "dragonite": ("bruiser", 45, sig("escamas_de_dragon", "Escamas de Dragón", "colossus_mechanic.gd", (0.95, 0.65, 0.3),
+                  "Escamas de dragón: recibe 15% menos de los golpes físicos y lo empujan poco.",
+                  {"physical_mult": 0.85, "stagger_bonus": 1.0, "knockback_mult": 0.6, "scale": 1.0, "phase_at": 0.0}), [
+        mv("ataque_ala_dragonite", "Ataque Ala", "volador", "LUNGE", "fis", 75, 2.5, 180, lunge_range=130,
+           lunge_speed=560, followup_delay=0.12, followup_power_mult=0.5, followup_knockback=220, recovery=0.1),
+        mv("furia_dragon_dragonite", "Furia Dragón", "dragon", "PROJECTILE", "esp", 100, 2.0, 160, speed=300, size=7,
+           lifetime=0.9),
+        melee("golpe_dragonite", "Golpe", "normal", 80, 3.0, 1, final_knockback=280, melee_range=16, swing_radius=15),
+        mv("hiperrayo_dragonite", "Hiperrayo", "normal", "PROJECTILE", "esp", 150, 9.0, 300, cast_time=0.5, speed=400,
+           size=10, lifetime=0.8, recovery=0.8),
+    ]),
+    "kingdra": ("espaciador", 100, sig("ancla_de_dragon", "Ancla de Dragón", "still_mechanic.gd", (0.4, 0.6, 0.95),
+                "Quieto 0,4 s se ancla: mientras no se mueva sus disparos pegan +50% y no lo empujan.",
+                {"still_time": 0.4, "burst_mult": 1.5, "kinds": ["PROJECTILE"], "consume_on_hit": False,
+                 "anchored_knockback": 0.0, "label": "ANCLADO"}), [
+        mv("burbuja_kingdra", "Burbuja", "agua", "PROJECTILE", "esp", 30, 0.8, 50, speed=240, size=4, lifetime=0.9,
+           projectile_count=3, spread_deg=20),
+        mv("furia_dragon_kingdra", "Furia Dragón", "dragon", "PROJECTILE", "esp", 95, 2.2, 160, speed=300, size=7,
+           lifetime=0.9),
+        mv("pantalla_humo_kingdra", "Pantalla de Humo", "normal", "ZONE", "est", 0, 8.0, 0, zone_radius=32,
+           zone_duration=5, placement_range=100, zone_traps=False, zone_tick=0.5, zone_max_count=2,
+           on_hit=["desorientado"]),
+        mv("hidrobomba_kingdra", "Hidrobomba", "agua", "PROJECTILE", "esp", 120, 5.0, 260, cast_time=0.4, speed=330,
+           size=9, lifetime=0.9, recovery=0.25),
     ]),
 }
 

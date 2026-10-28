@@ -1,67 +1,84 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/articuno/kit.tres" id="0_kitv4"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_1r2rc"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_g0n7y"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_kj1iq"]
+[ext_resource type="Resource" path="res://data/abilities/presion.tres" id="2_4tydc"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_7i7ju"]
 [ext_resource type="Resource" path="res://data/moves/tornado.tres" id="2_d8fer"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_qeqmy"]
 [ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="3_w5heq"]
-[ext_resource type="Resource" path="res://data/kits/articuno/rayo_hielo_articuno.tres" id="4_bo85n"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_dkwpk"]
 [ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_dcr3q"]
-[ext_resource type="Resource" path="res://data/kits/articuno/ataque_ala_articuno.tres" id="5_jwesx"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="5_w1jmt"]
 [ext_resource type="Resource" path="res://data/moves/telepata.tres" id="6_bo85n"]
-[ext_resource type="Resource" path="res://data/kits/articuno/neblina_articuno.tres" id="6_fuite"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_uqr0q"]
-[ext_resource type="Resource" path="res://data/kits/articuno/ventisca_articuno.tres" id="7_ejtu0"]
+[ext_resource type="Resource" path="res://data/moves/neblina.tres" id="7_qkmx5"]
 [ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="8_fuite"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="10_1r2rc"]
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="10_pgm0s"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="12_4tydc"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_w5heq"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="17_qkmx5"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="18_1r2rc"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="19_4tydc"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="20_8sph4"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="21_fu300"]
+[ext_resource type="Resource" path="res://data/moves/granizo.tres" id="22_w0p7e"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="23_hqghx"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="24_igxye"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="25_uq7rm"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="26_edxg1"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="27_jnq83"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="28_3g3x0"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="29_8vjon"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="30_iesjk"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="31_vuf23"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="32_bxvof"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="33_mki4h"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="34_pww3a"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="35_ggybu"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="36_l3gvq"]
 
-[sub_resource type="Resource" id="Resource_bo85n"]
-script = ExtResource("1_kj1iq")
-move = ExtResource("4_bo85n")
-
-[sub_resource type="Resource" id="Resource_jwesx"]
-script = ExtResource("1_kj1iq")
-move = ExtResource("5_jwesx")
-
-[sub_resource type="Resource" id="Resource_fuite"]
-script = ExtResource("1_kj1iq")
-level = 3
-move = ExtResource("6_fuite")
-
-[sub_resource type="Resource" id="Resource_ejtu0"]
-script = ExtResource("1_kj1iq")
-level = 5
-move = ExtResource("7_ejtu0")
-
-[sub_resource type="Resource" id="Resource_pgm0s"]
+[sub_resource type="Resource" id="Resource_8sph4"]
 script = ExtResource("1_kj1iq")
 move = ExtResource("2_d8fer")
 
-[sub_resource type="Resource" id="Resource_67li4"]
+[sub_resource type="Resource" id="Resource_fu300"]
 script = ExtResource("1_kj1iq")
 move = ExtResource("3_w5heq")
 
-[sub_resource type="Resource" id="Resource_2k553"]
+[sub_resource type="Resource" id="Resource_w0p7e"]
+script = ExtResource("1_kj1iq")
+level = 13
+move = ExtResource("7_qkmx5")
+
+[sub_resource type="Resource" id="Resource_hqghx"]
 script = ExtResource("1_kj1iq")
 level = 25
 move = ExtResource("5_w1jmt")
 
-[sub_resource type="Resource" id="Resource_mn6oh"]
+[sub_resource type="Resource" id="Resource_igxye"]
 script = ExtResource("1_kj1iq")
 level = 37
 move = ExtResource("6_bo85n")
 
-[sub_resource type="Resource" id="Resource_g75yu"]
+[sub_resource type="Resource" id="Resource_uq7rm"]
+script = ExtResource("1_kj1iq")
+level = 49
+move = ExtResource("10_1r2rc")
+
+[sub_resource type="Resource" id="Resource_edxg1"]
 script = ExtResource("1_kj1iq")
 level = 61
 move = ExtResource("8_fuite")
 
-[sub_resource type="Resource" id="Resource_rhy7s"]
+[sub_resource type="Resource" id="Resource_jnq83"]
+script = ExtResource("1_kj1iq")
+level = 73
+move = ExtResource("12_4tydc")
+
+[sub_resource type="Resource" id="Resource_3g3x0"]
 script = ExtResource("1_kj1iq")
 level = 85
 move = ExtResource("10_pgm0s")
@@ -72,8 +89,9 @@ id = "articuno"
 display_name = "Articuno"
 dex = 144
 types = Array[ExtResource("4_dkwpk")]([ExtResource("5_dcr3q"), ExtResource("6_uqr0q")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_kj1iq")]([SubResource("Resource_bo85n"), SubResource("Resource_jwesx"), SubResource("Resource_fuite"), SubResource("Resource_ejtu0"), SubResource("Resource_pgm0s"), SubResource("Resource_67li4"), SubResource("Resource_2k553"), SubResource("Resource_mn6oh"), SubResource("Resource_g75yu"), SubResource("Resource_rhy7s")])
+learnset = Array[ExtResource("1_kj1iq")]([SubResource("Resource_8sph4"), SubResource("Resource_fu300"), SubResource("Resource_w0p7e"), SubResource("Resource_hqghx"), SubResource("Resource_igxye"), SubResource("Resource_uq7rm"), SubResource("Resource_edxg1"), SubResource("Resource_jnq83"), SubResource("Resource_3g3x0")])
+tm_moves = Array[ExtResource("2_7i7ju")]([ExtResource("17_qkmx5"), ExtResource("12_4tydc"), ExtResource("18_1r2rc"), ExtResource("19_4tydc"), ExtResource("20_8sph4"), ExtResource("21_fu300"), ExtResource("22_w0p7e"), ExtResource("23_hqghx"), ExtResource("24_igxye"), ExtResource("10_1r2rc"), ExtResource("25_uq7rm"), ExtResource("26_edxg1"), ExtResource("8_fuite"), ExtResource("27_jnq83"), ExtResource("28_3g3x0"), ExtResource("29_8vjon"), ExtResource("30_iesjk"), ExtResource("31_vuf23"), ExtResource("32_bxvof"), ExtResource("33_mki4h"), ExtResource("34_pww3a"), ExtResource("35_ggybu"), ExtResource("36_l3gvq")])
+abilities = Array[ExtResource("1_1r2rc")]([ExtResource("2_4tydc")])
 temperament = ExtResource("13_w5heq")
 genus = "Pokémon Congelar"
 pokedex_entry = "Articuno es un Pokémon pájaro legendario que puede controlar el hielo. El batir de sus alas congela el aire. Dicen que consigue hacer que nieve cuando vuela."

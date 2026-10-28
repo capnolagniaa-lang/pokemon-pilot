@@ -16,6 +16,15 @@ extends Resource
 ## Movimientos que aprende por nivel (los arma tools/build_learnsets.gd). Si está vacío se usa uno de
 ## compatibilidad: los 4 del kit (o los sueltos) en los niveles 1, 1, 3 y 5.
 @export var learnset: Array[LearnsetEntry] = []
+## Ataques de MT/MO que puede aprender (los de FireRed, de PokeAPI; tools/build_learnsets.gd). Si el kit tiene uno con
+## el mismo nombre, es el del kit (así acompaña a su firma). Por ahora los usa la batería de balance y el listado.
+@export var tm_moves: Array[MoveData] = []
+## Habilidades de 3ª generación (1 o 2; cada Pokémon nace con una al azar: CreatureInstance.ability). Son SignatureData
+## en data/abilities/ (tools/apply_abilities.gd). Desde 2026-10-28 la identidad de combate sale de acá (decisión del
+## usuario: "se respetan las habilidades y todos los movimientos se comportan igual para todos").
+@export var abilities: Array[SignatureData] = []
+## Kit de jefe (firma + 4 ataques propios): solo lo usa el Pokémon de un líder de gimnasio (CreatureInstance.boss).
+@export var boss_kit: Kit
 
 ## true = el kit es el de su preevolución (tools/apply_evolutions.gd: las evoluciones pelean igual salvo que cambien
 ## mucho, decisión del usuario 2026-10-25). Un kit propio (build_kits_*) lo pisa.

@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_0fs7a"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_jknpk"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_k7t70"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3pmyy"]
+[ext_resource type="Resource" path="res://data/abilities/levitacion.tres" id="2_dt0kx"]
 [ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="2_xy4me"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_5jufc"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="3_g2qjl"]
@@ -19,62 +21,84 @@
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="12_f3ymn"]
 [ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="13_bowmj"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_g2qjl"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="18_66wac"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="19_xkru1"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="20_0fs7a"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="21_dt0kx"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="22_fr73n"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="23_xcp0g"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="24_1pjtm"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="25_owcf0"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="26_knlgm"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="27_hyb0a"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="28_chac1"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="29_83fx5"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="30_d64j7"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="31_f22wd"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="32_dsulv"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="33_4sesk"]
+[ext_resource type="Resource" path="res://data/moves/intercambio.tres" id="34_6otdd"]
+[ext_resource type="Resource" path="res://data/moves/robo.tres" id="35_h0egh"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="36_2bw35"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="37_4cker"]
+[ext_resource type="Resource" path="res://data/moves/tormento.tres" id="38_swoib"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="39_08ow1"]
 
-[sub_resource type="Resource" id="Resource_jknpk"]
+[sub_resource type="Resource" id="Resource_0fs7a"]
 script = ExtResource("1_k7t70")
 move = ExtResource("2_xy4me")
 
-[sub_resource type="Resource" id="Resource_jslbc"]
+[sub_resource type="Resource" id="Resource_dt0kx"]
 script = ExtResource("1_k7t70")
 level = 6
 move = ExtResource("3_g2qjl")
 
-[sub_resource type="Resource" id="Resource_4yjeu"]
+[sub_resource type="Resource" id="Resource_fr73n"]
 script = ExtResource("1_k7t70")
 level = 9
 move = ExtResource("4_jknpk")
 
-[sub_resource type="Resource" id="Resource_k5wco"]
+[sub_resource type="Resource" id="Resource_xcp0g"]
 script = ExtResource("1_k7t70")
 level = 14
 move = ExtResource("5_jslbc")
 
-[sub_resource type="Resource" id="Resource_4igsk"]
+[sub_resource type="Resource" id="Resource_1pjtm"]
 script = ExtResource("1_k7t70")
 level = 17
 move = ExtResource("6_4yjeu")
 
-[sub_resource type="Resource" id="Resource_8h0yq"]
+[sub_resource type="Resource" id="Resource_owcf0"]
 script = ExtResource("1_k7t70")
 level = 22
 move = ExtResource("7_k5wco")
 
-[sub_resource type="Resource" id="Resource_0glb3"]
+[sub_resource type="Resource" id="Resource_knlgm"]
 script = ExtResource("1_k7t70")
 level = 25
 move = ExtResource("8_4igsk")
 
-[sub_resource type="Resource" id="Resource_mosxo"]
+[sub_resource type="Resource" id="Resource_hyb0a"]
 script = ExtResource("1_k7t70")
 level = 30
 move = ExtResource("9_8h0yq")
 
-[sub_resource type="Resource" id="Resource_f3ymn"]
+[sub_resource type="Resource" id="Resource_chac1"]
 script = ExtResource("1_k7t70")
 level = 33
 move = ExtResource("10_0glb3")
 
-[sub_resource type="Resource" id="Resource_bowmj"]
+[sub_resource type="Resource" id="Resource_83fx5"]
 script = ExtResource("1_k7t70")
 level = 38
 move = ExtResource("11_mosxo")
 
-[sub_resource type="Resource" id="Resource_oqr51"]
+[sub_resource type="Resource" id="Resource_d64j7"]
 script = ExtResource("1_k7t70")
 level = 41
 move = ExtResource("12_f3ymn")
 
-[sub_resource type="Resource" id="Resource_grgfm"]
+[sub_resource type="Resource" id="Resource_f22wd"]
 script = ExtResource("1_k7t70")
 level = 46
 move = ExtResource("13_bowmj")
@@ -85,7 +109,9 @@ id = "chimecho"
 display_name = "Chimecho"
 dex = 358
 types = Array[ExtResource("4_25opy")]([ExtResource("5_pxpbg")])
-learnset = Array[ExtResource("1_k7t70")]([SubResource("Resource_jknpk"), SubResource("Resource_jslbc"), SubResource("Resource_4yjeu"), SubResource("Resource_k5wco"), SubResource("Resource_4igsk"), SubResource("Resource_8h0yq"), SubResource("Resource_0glb3"), SubResource("Resource_mosxo"), SubResource("Resource_f3ymn"), SubResource("Resource_bowmj"), SubResource("Resource_oqr51"), SubResource("Resource_grgfm")])
+learnset = Array[ExtResource("1_k7t70")]([SubResource("Resource_0fs7a"), SubResource("Resource_dt0kx"), SubResource("Resource_fr73n"), SubResource("Resource_xcp0g"), SubResource("Resource_1pjtm"), SubResource("Resource_owcf0"), SubResource("Resource_knlgm"), SubResource("Resource_hyb0a"), SubResource("Resource_chac1"), SubResource("Resource_83fx5"), SubResource("Resource_d64j7"), SubResource("Resource_f22wd")])
+tm_moves = Array[ExtResource("2_3pmyy")]([ExtResource("18_66wac"), ExtResource("19_xkru1"), ExtResource("20_0fs7a"), ExtResource("21_dt0kx"), ExtResource("22_fr73n"), ExtResource("23_xcp0g"), ExtResource("24_1pjtm"), ExtResource("25_owcf0"), ExtResource("26_knlgm"), ExtResource("13_bowmj"), ExtResource("27_hyb0a"), ExtResource("28_chac1"), ExtResource("29_83fx5"), ExtResource("30_d64j7"), ExtResource("12_f3ymn"), ExtResource("31_f22wd"), ExtResource("32_dsulv"), ExtResource("33_4sesk"), ExtResource("34_6otdd"), ExtResource("35_h0egh"), ExtResource("36_2bw35"), ExtResource("37_4cker"), ExtResource("38_swoib"), ExtResource("39_08ow1")])
+abilities = Array[ExtResource("1_0fs7a")]([ExtResource("2_dt0kx")])
 temperament = ExtResource("16_g2qjl")
 genus = "Pokémon Sonido Aire"
 pokedex_entry = "Chimecho hace que sus gritos resuenen con eco en su interior. Cuando se enfada, los chillidos se convierten en ondas ultrasónicas capaces de derribar a los enemigos voladores."

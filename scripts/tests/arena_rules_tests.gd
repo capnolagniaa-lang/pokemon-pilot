@@ -11,17 +11,10 @@ var world: Node
 
 func run() -> void:
 	var r := {}
-	var kits := DB.species.values().filter(func(s): return s.kit != null)
-	r["Cada Pokémon con kit tiene su estilo de arena (%d)" % DB.fight_styles.size()] = kits.all(func(s): return DB.fight_style_of(s) != null)
-	var bad := []
-	for st: FightStyle in DB.fight_styles.values():
-		if st.combos.is_empty():
-			continue  # estilos sin combos (capítulo 2): pueden ser de Pokémon sin kit
-		var ids: Array = DB.species[st.species_id].kit.moves.map(func(m): return m.id)
-		for c in st.combos:
-			if not (c.first in ids and c.second in ids):
-				bad.append("%s: %s" % [st.species_id, c.display_name])
-	r["Los combos usan ataques de su kit %s" % str(bad)] = bad.is_empty()
+	# (Desde las habilidades no hay kits salvo los de jefe: los combos con nombre, apagados, quedan de referencia.)
+	var bosses := DB.species.values().filter(func(s): return s.boss_kit != null)
+	r["Los jefes de gimnasio tienen su estilo de arena (%d estilos)" % DB.fight_styles.size()] = \
+		bosses.all(func(s): return DB.fight_style_of(s) != null)
 
 	world = await autotest._setup_kit_world("charmander")
 	world.combat.end_battle()
@@ -35,6 +28,11 @@ func run() -> void:
 	world.arena.start({"name": "Prueba", "team": foe_team, "arena_id": "arena_torneo", "no_blackout": true})
 	await _until(func(): return world.arena.active and world.arena._fighting, 12.0)
 	me = world.companion
+	# (desde las habilidades los Pokémon traen sus ataques de nivel: para probar la mecánica, los del viejo kit de Charmander)
+	for i in 4:
+		me.moves.slots[i] = DB.all_moves[["charmander/ascuas_abanico", "charmander/aranazo_embestida",
+			"charmander/giro_fuego_trampa", "charmander/embestida_ignea"][i]]
+		me.moves.reset_cooldown(i)
 	var foe: Creature = world.arena.foe
 	r["En la arena rigen las reglas de arena"] = me.arena_rules() and foe.arena_rules()
 	foe.machine.set_physics_process(false)

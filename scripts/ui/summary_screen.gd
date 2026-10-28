@@ -86,15 +86,11 @@ func _left_column() -> Control:
 func _stats_tab() -> Control:
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation", 10)
-	var kit := _inst.species.kit
-	if kit != null:
-		var arch: String = UiStyle.ARCHETYPES.get(kit.archetype, kit.archetype)
-		box.add_child(_wrapped("Estilo de pelea: %s — %s" % [arch, UiStyle.ARCHETYPE_INFO.get(kit.archetype, "")], 16))
-		if kit.signature != null:
-			box.add_child(UiStyle.label("Mecánica de firma: " + kit.signature.display_name, 16, kit.signature.color.lightened(0.2)))
-			box.add_child(_wrapped(kit.signature.description, 14, UiStyle.TEXT_DIM))
-	else:
-		box.add_child(UiStyle.label("Estilo de pelea: todavía sin kit propio (usa sus movimientos sueltos).", 15, UiStyle.TEXT_DIM))
+	var ab := _inst.ability_data()
+	if ab != null:
+		box.add_child(UiStyle.label("Habilidad: " + ab.display_name, 16, ab.color.lightened(0.2)))
+		box.add_child(_wrapped(ab.description, 14, UiStyle.TEXT_DIM))
+	box.add_child(_wrapped("El estilo de pelea lo elegís vos: equipá 4 ataques de todo lo que aprende por nivel o por MT (pestaña Movimientos).", 13, UiStyle.TEXT_DIM))
 	box.add_child(HSeparator.new())
 	var ratio := _inst.hp / _inst.max_hp()
 	box.add_child(UiStyle.label("PS  %d / %d" % [ceili(_inst.hp), ceili(_inst.max_hp())], 16))

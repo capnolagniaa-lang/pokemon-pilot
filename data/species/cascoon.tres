@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_kb551"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_wqkvk"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_yeoyl"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6earm"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_ujtcu"]
+[ext_resource type="Resource" path="res://data/abilities/mudar.tres" id="2_yn650"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_ujtcu"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_wqkvk"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_uippl"]
@@ -14,7 +16,7 @@ script = ExtResource("1_wqkvk")
 to_id = "dustox"
 level = 10
 
-[sub_resource type="Resource" id="Resource_uippl"]
+[sub_resource type="Resource" id="Resource_kb551"]
 script = ExtResource("1_yeoyl")
 move = ExtResource("2_ujtcu")
 
@@ -24,7 +26,8 @@ id = "cascoon"
 display_name = "Cascoon"
 dex = 268
 types = Array[ExtResource("4_wqkvk")]([ExtResource("5_uippl")])
-learnset = Array[ExtResource("1_yeoyl")]([SubResource("Resource_uippl")])
+learnset = Array[ExtResource("1_yeoyl")]([SubResource("Resource_kb551")])
+abilities = Array[ExtResource("1_kb551")]([ExtResource("2_yn650")])
 evolutions = Array[ExtResource("1_wqkvk")]([SubResource("Resource_wqkvk")])
 evolves_from = "wurmple"
 temperament = ExtResource("5_ujtcu")

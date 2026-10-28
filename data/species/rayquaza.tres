@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_4io6r"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_6ikm6"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_22hns"]
 [ext_resource type="Resource" path="res://data/moves/ciclon.tres" id="2_0y74s"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_aie0w"]
+[ext_resource type="Resource" path="res://data/abilities/bucle_aire.tres" id="2_cifhh"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="3_3xoyo"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_8lx3k"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0e7re"]
@@ -19,57 +21,89 @@
 [ext_resource type="Resource" path="res://data/moves/enfado.tres" id="11_jki3x"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="12_1chs4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_3xoyo"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="17_gdw8r"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="18_xxjri"]
+[ext_resource type="Resource" path="res://data/moves/demolicion.tres" id="19_4io6r"]
+[ext_resource type="Resource" path="res://data/moves/corpulencia.tres" id="20_cifhh"]
+[ext_resource type="Resource" path="res://data/moves/buceo.tres" id="21_p73if"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="22_r8pqa"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="23_v4tqd"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="24_fm30l"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="25_ijxt5"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="26_6to1s"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="27_rptt8"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="28_matuw"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="29_ixye8"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="30_p230g"]
+[ext_resource type="Resource" path="res://data/moves/sofoco.tres" id="31_6asrn"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="32_sqx3g"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="33_pqkk0"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="34_7ulwy"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="35_uq8rd"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="36_trrin"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="37_3xrlr"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="38_p3esj"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="39_42vdj"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="40_fpg6d"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="41_qcuea"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="42_da4wr"]
+[ext_resource type="Resource" path="res://data/moves/surf.tres" id="43_aix2e"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="44_1wn5c"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="45_tlnjn"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="46_u4203"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="47_j1bp7"]
+[ext_resource type="Resource" path="res://data/moves/cascada.tres" id="48_efa62"]
 
-[sub_resource type="Resource" id="Resource_6ikm6"]
+[sub_resource type="Resource" id="Resource_4io6r"]
 script = ExtResource("1_22hns")
 move = ExtResource("2_0y74s")
 
-[sub_resource type="Resource" id="Resource_e6ro6"]
+[sub_resource type="Resource" id="Resource_cifhh"]
 script = ExtResource("1_22hns")
 level = 5
 move = ExtResource("3_3xoyo")
 
-[sub_resource type="Resource" id="Resource_labqd"]
+[sub_resource type="Resource" id="Resource_p73if"]
 script = ExtResource("1_22hns")
 level = 15
 move = ExtResource("4_6ikm6")
 
-[sub_resource type="Resource" id="Resource_mx6e0"]
+[sub_resource type="Resource" id="Resource_r8pqa"]
 script = ExtResource("1_22hns")
 level = 20
 move = ExtResource("5_e6ro6")
 
-[sub_resource type="Resource" id="Resource_3xqqm"]
+[sub_resource type="Resource" id="Resource_v4tqd"]
 script = ExtResource("1_22hns")
 level = 30
 move = ExtResource("6_labqd")
 
-[sub_resource type="Resource" id="Resource_rq8k5"]
+[sub_resource type="Resource" id="Resource_fm30l"]
 script = ExtResource("1_22hns")
 level = 35
 move = ExtResource("7_mx6e0")
 
-[sub_resource type="Resource" id="Resource_5srku"]
+[sub_resource type="Resource" id="Resource_ijxt5"]
 script = ExtResource("1_22hns")
 level = 45
 move = ExtResource("8_3xqqm")
 
-[sub_resource type="Resource" id="Resource_jki3x"]
+[sub_resource type="Resource" id="Resource_6to1s"]
 script = ExtResource("1_22hns")
 level = 50
 move = ExtResource("9_rq8k5")
 
-[sub_resource type="Resource" id="Resource_1chs4"]
+[sub_resource type="Resource" id="Resource_rptt8"]
 script = ExtResource("1_22hns")
 level = 60
 move = ExtResource("10_5srku")
 
-[sub_resource type="Resource" id="Resource_5ftdk"]
+[sub_resource type="Resource" id="Resource_matuw"]
 script = ExtResource("1_22hns")
 level = 65
 move = ExtResource("11_jki3x")
 
-[sub_resource type="Resource" id="Resource_haxf6"]
+[sub_resource type="Resource" id="Resource_ixye8"]
 script = ExtResource("1_22hns")
 level = 75
 move = ExtResource("12_1chs4")
@@ -80,7 +114,9 @@ id = "rayquaza"
 display_name = "Rayquaza"
 dex = 384
 types = Array[ExtResource("4_0e7re")]([ExtResource("5_tcsi2"), ExtResource("6_04n50")])
-learnset = Array[ExtResource("1_22hns")]([SubResource("Resource_6ikm6"), SubResource("Resource_e6ro6"), SubResource("Resource_labqd"), SubResource("Resource_mx6e0"), SubResource("Resource_3xqqm"), SubResource("Resource_rq8k5"), SubResource("Resource_5srku"), SubResource("Resource_jki3x"), SubResource("Resource_1chs4"), SubResource("Resource_5ftdk"), SubResource("Resource_haxf6")])
+learnset = Array[ExtResource("1_22hns")]([SubResource("Resource_4io6r"), SubResource("Resource_cifhh"), SubResource("Resource_p73if"), SubResource("Resource_r8pqa"), SubResource("Resource_v4tqd"), SubResource("Resource_fm30l"), SubResource("Resource_ijxt5"), SubResource("Resource_6to1s"), SubResource("Resource_rptt8"), SubResource("Resource_matuw"), SubResource("Resource_ixye8")])
+tm_moves = Array[ExtResource("2_aie0w")]([ExtResource("17_gdw8r"), ExtResource("18_xxjri"), ExtResource("19_4io6r"), ExtResource("20_cifhh"), ExtResource("21_p73if"), ExtResource("22_r8pqa"), ExtResource("5_e6ro6"), ExtResource("23_v4tqd"), ExtResource("24_fm30l"), ExtResource("25_ijxt5"), ExtResource("26_6to1s"), ExtResource("8_3xqqm"), ExtResource("27_rptt8"), ExtResource("28_matuw"), ExtResource("12_1chs4"), ExtResource("29_ixye8"), ExtResource("30_p230g"), ExtResource("31_6asrn"), ExtResource("32_sqx3g"), ExtResource("33_pqkk0"), ExtResource("9_rq8k5"), ExtResource("34_7ulwy"), ExtResource("35_uq8rd"), ExtResource("36_trrin"), ExtResource("37_3xrlr"), ExtResource("38_p3esj"), ExtResource("39_42vdj"), ExtResource("40_fpg6d"), ExtResource("41_qcuea"), ExtResource("42_da4wr"), ExtResource("43_aix2e"), ExtResource("44_1wn5c"), ExtResource("45_tlnjn"), ExtResource("46_u4203"), ExtResource("47_j1bp7"), ExtResource("48_efa62")])
+abilities = Array[ExtResource("1_4io6r")]([ExtResource("2_cifhh")])
 temperament = ExtResource("15_3xoyo")
 genus = "Pokémon Cielo"
 pokedex_entry = "Dicen que Rayquaza ha vivido durante millones de años. Las leyendas cuentan que puso fin al continuo enfrentamiento entre Groudon y Kyogre."

@@ -35,6 +35,8 @@ $G --headless --path . --quit-after 30000 -- --autotest-combat   # 3 peleas mane
 $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas reales + spawner
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
+$G --headless --path . --quit-after 30000 -- --autotest-abilities  # habilidades: datos, al azar, guardado, mecánicas, últimos 4, MT, jefe de gimnasio
+# (las 9 de kits que siguen son de la ERA DE KITS, hasta 2026-10-28: ya no aplican, quedan como referencia)
 $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charmander, Bellsprout, Pidgey, Rattata, Vulpix
 $G --headless --path . --quit-after 60000 -- --autotest-kits-v3  # los 10 kits nuevos (v3): ataques + mecánicas
 $G --headless --path . --quit-after 90000 -- --autotest-kits-v4  # kits v4 (bichos, Spearow, Mankey, Sandshrew, Onix jefe)
@@ -42,7 +44,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-kits-v5  # kits v5 (Star
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v6  # kits v6 (Raichu jefe de Surge + Tanda A; lento: `--only <especie>` prueba una sola)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v7  # kits v7 (Tanda B: Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth)
 $G --headless --path . --quit-after 200000 -- --autotest-kits-v8  # kits v8 (Tanda C) + sinergia (`--only sinergia`)
-$G --headless --path . --fixed-fps 60 --quit-after 90000000 -- --autotest-balance --fights 2000  # balance: IA contra IA (Difícil) → docs/BALANCE_INFORME.md (`--level`, `--bst`, `--species a,b`, `--arena`, `--seed`)
+$G --headless --path . --fixed-fps 60 --quit-after 90000000 -- --autotest-balance --fights 2000  # balance: IA contra IA (Difícil) → docs/BALANCE_INFORME.md (`--level`, `--bst`, `--species a,b`, `--arena`, `--seed`; `--equip mejores --out docs/BALANCE_INFORME_MEJORES.md` = los 4 mejores de nivel + MT)
 $G --headless --path . --quit-after 400000 -- --autotest-kits-v9  # kits v9 (todos los que aparecen en el juego; `--only <especie>`)
 $G --path . --quit-after 360 --write-movie out/f.png --fixed-fps 30 -- --showcase-onix  # el jefe Onix en acción
 $G --headless --path . --quit-after 30000 -- --autotest-story  # historia H-0 (banderas, NPC, diálogos, disparadores) + cambio 1-6
@@ -172,7 +174,16 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `MoveData.melee_step` antes del corte (estado `step`) y todo golpe con daño deja **stagger** (`Creature.hitstun_left`:
   sin atacar ni esquivar un ratito, con respiro; ajuste `hitstun_mult`). El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
-- **Kits / estilos de pelea** (plan de identidad, **v2 vigente**): `SpeciesData.kit` → `Kit` (`archetype`,
+- **Habilidades (vigente desde 2026-10-28, decisión del usuario)**: la identidad de combate sale de la **habilidad de
+  3ª gen** (`SpeciesData.abilities`, 1 o 2; cada Pokémon nace con una al azar: `CreatureInstance.ability`, se guarda y
+  se conserva al evolucionar), el tipo, los stats y los **ataques que elige el jugador** (todo lo de nivel y MT:
+  `SpeciesData.tm_moves`; viene con los últimos 4 por nivel). **Los ataques se comportan igual para todos** (los de
+  `data/moves`). Las habilidades son `SignatureData` en `data/abilities/` con `ability_mechanic.gd` (genérica por
+  parámetros, extiende `body_trait`); las arma `tools/apply_abilities.gd` (tabla `EFFECTS`, adaptadas al tiempo real)
+  desde `tools/fetch_abilities.py`. **Kit de jefe** (`SpeciesData.boss_kit`: Onix, Starmie, Raichu): solo lo usa el
+  Pokémon de un **líder de gimnasio** (`CreatureInstance.boss`, lo pone `TrainerBattle`). `SpeciesData.kit` quedó vacío
+  en todas (los archivos de `data/kits/` siguen ahí por si se retoman). Test `--autotest-abilities`.
+- **Kits / estilos de pelea** (plan de identidad, v2; **desde 2026-10-28 solo los jefes de gimnasio**): `Kit` (`archetype`,
   `preferred_range`, `signature` opcional, `moves` = 4 `MoveData`). **Sin energía**: solo recargas. Teclas en
   `Controls.SLOT_ACTIONS` (Clic izq., Clic der., Q, R) + `dodge` (Espacio, igual para todos). La criatura usa
   `use_slot(slot 0-3, aim, point)` y `dodge(dir)`. Las mecánicas de firma son subclases de `SignatureMechanic`
@@ -286,7 +297,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   prioridad, problema de estado). Caché en `tools/.pokeapi_cache` (no se versiona). Se aplica a los `.tres` con
   `tools/apply_official_data.gd`: **18 tipos y tabla oficial completa** (6ª gen+, incluye Hada), crea las
   especies/ataques que falten y la recarga. Después `tools/build_learnsets.gd` arma los learnsets.
-  Orden: fetcher → `--import` → apply → `--import` → build_learnsets.
+  Orden: fetcher → `--import` → apply → `--import` → build_learnsets. **MT/MO** (2026-10-28): el fetcher guarda por
+  especie `mt` (las máquinas de FRLG) y build_learnsets las pone en `SpeciesData.tm_moves` (si el kit tiene un ataque con
+  ese nombre, va el del kit). Ojo: apply también reescribe los ataques que ya existían (recargas, campos): si solo se
+  quieren los nuevos, revertir `data/moves` y `data/types` con git y quedarse con los archivos nuevos.
 - **Ataques automáticos** (`auto` en el JSON): su forma en tiempo real sale de `_shape()` en el apply (estado a
   uno mismo → mejora/escudo/curación; estado al rival → disparo que aplica el problema de estado; daño a todos →
   área; físico con prioridad o ≥80 → embestida, si no golpe; especial → disparo, con carga si ≥80). Los hechos
@@ -385,15 +399,25 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - `tools/build_kits_v7.py`: igual para la Tanda B (Clefairy, Jigglypuff, Abra, Goldeen, Magnemite, Meowth); firmas
   `metronome`, `puff`, `wary`, `payday`.
 - `tools/build_kits_v8.py`: igual para la Tanda C (Drowzee, Grimer, Koffing, Ponyta, Slowpoke, Magikarp).
-- `tools/build_kits_v9.py`: igual para todos los que aparecían en el juego sin kit (34: Gastly a Porygon, Charizard,
+- `tools/fetch_abilities.py` (habilidades de 3ª gen de PokeAPI → `data/source/abilities.json`, deshaciendo los cambios
+  de generaciones posteriores) y `tools/apply_abilities.gd` (crea `data/abilities/`, se las pone a las especies, pasa
+  los kits de Onix/Starmie/Raichu a `boss_kit` y saca los demás). Después: `build_learnsets.gd`.
+- `tools/build_kits_v9.py` (era de kits): igual para todos los que aparecían en el juego sin kit (34: Gastly a Porygon, Charizard,
   Snorlax, Articuno y Zapdos jefes, las evoluciones de Eevee, los fósiles); firma nueva `transform_mechanic.gd` (Ditto).
-- `tools/link_official_moves.py`: los ataques oficiales automáticos toman la forma de su versión de kit del mismo
+- `tools/balance_pass.py`: pasadas de balance de los kits (sale de la batería `--autotest-balance`): tabla `AJUSTES`
+  kit → ataque → campo, calculada desde el commit `BASE` (correrlo dos veces deja lo mismo). Después: build_learnsets.
+- `tools/link_official_moves.py` (**ojo**: si varios kits tienen un ataque con el mismo nombre se queda con el último por
+  orden alfabético, con sus ajustes de balance; con los kits v9 eso rompía Bomba Huevo y Absorber: no correrlo sin revisar
+  el diff): los ataques oficiales automáticos toman la forma de su versión de kit del mismo
   nombre (y los de mejora propia sin kit, un efecto genérico). **Correrlo después de `apply_official_data.gd --
   --regen-auto`** (si no, vuelven a la forma inventada). `SignatureData.params.element_marks` = sinergia por tipo.
 - **IA local (ComfyUI, fuera del repo)**: `docs/COMFYUI.md`. `tools/comfy/build_workflows.py` arma los workflows de
   efectos (`efecto_1_cuadro_clave` con Qwen-Image + LoRA de pixel art, `efecto_2_animar` con Wan 2.2) y
   `tools/fx_from_frames.py` (necesita Pillow) pasa los cuadros a una hoja de `sprites/fx/` (`--clean-key` limpia el
   cuadro clave antes de animar).
+- `tools/find_windows.py` (Python + Pillow): arma los mapas exteriores de FireRed con los atlas y detecta los vidrios
+  (manchas celestes chicas sobre edificios, juntando los paños) → `data/world/night_windows.json`. `--debug <carpeta>`
+  pinta lo detectado en magenta. Correrlo después de reimportar tilesets (`pret_import.py`). Excepciones: `NOT_WINDOWS`.
 - `tools/fetch_cries.py` (gritos de PokeAPI → `audio/gritos/<n.º>.ogg`) y `tools/make_sfx.py` (efectos retro hechos
   por código → `audio/efectos/`, + cortinas por defecto en `audio/musica/` sin pisar las tuyas). Música: la pone el
   usuario (`docs/AUDIO.md`).
@@ -401,13 +425,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
   (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + **todo el learnset de FRLG** + extras de la
-- `tools/find_windows.py` (Python + Pillow): arma los mapas exteriores de FireRed con los atlas y detecta los vidrios
-  (manchas celestes chicas sobre edificios, juntando los paños) → `data/world/night_windows.json`. `--debug <carpeta>`
-  pinta lo detectado en magenta. Correrlo después de reimportar tilesets (`pret_import.py`). Excepciones: `NOT_WINDOWS`.
   tabla `EXTRAS`) y los guarda en las especies; el equipamiento inicial es el kit (`default_equipment`). Correrlo después de cambiar un kit o los extras.
 - `tools/fetch_items.py`: objetos de la mochila (PokeAPI: nombre/descripción en español e ícono) → `data/items/` +
   `sprites/items/`. El efecto de cada objeto está en su tabla `ITEMS`.
-- `tools/build_pokemon_docs.gd`: genera `docs/POKEMON_KITS_Y_ATAQUES.md` (los 386: kit, firma, sus 4 ataques con tecla,
+- `tools/build_pokemon_docs.gd`: genera `docs/POKEMON_HABILIDADES_Y_ATAQUES.md` (los 386: kit, firma, sus 4 ataques con tecla,
   todo lo que aprenden y si aparecen en el juego). Correrlo después de cambiar kits o learnsets.
 - `tools/build_wild_docs.gd`: genera `docs/SALVAJES_LISTADO.md` (qué aparece en cada zona, kit, temperamento y
   movimientos de cada especie). Correrlo después de tocar tablas de encuentros, kits o learnsets. Cómo funciona

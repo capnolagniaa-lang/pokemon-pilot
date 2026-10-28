@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_lmnfm"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_rlrp1"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_u3ok1"]
 [ext_resource type="Resource" path="res://data/moves/tornado.tres" id="2_jwri3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tefag"]
+[ext_resource type="Resource" path="res://data/abilities/clorofila.tres" id="2_tro53"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_0gtpa"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_30ewf"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_4n7xb"]
@@ -19,56 +21,80 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="11_cupky"]
 [ext_resource type="Resource" path="res://data/moves/fotosintesis.tres" id="12_rkwvi"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_0gtpa"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="17_i4ctt"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="18_xpxkh"]
+[ext_resource type="Resource" path="res://data/moves/semilladora.tres" id="19_lmnfm"]
+[ext_resource type="Resource" path="res://data/moves/corte.tres" id="20_tro53"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="21_p2yfh"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="22_r0n3c"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="23_unfpl"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="24_bu3vm"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="25_1qnuo"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="26_r101u"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="27_hybk6"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="28_svqei"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="29_v7xrr"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="30_md1ng"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="31_bxwyf"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="32_iam32"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="33_6gw6l"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="34_p7jtm"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="35_tj5m0"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="36_23efj"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="37_hegrp"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="38_aarm4"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="39_g5ydi"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="40_qg2xn"]
 
-[sub_resource type="Resource" id="Resource_rlrp1"]
+[sub_resource type="Resource" id="Resource_lmnfm"]
 script = ExtResource("1_u3ok1")
 move = ExtResource("2_jwri3")
 
-[sub_resource type="Resource" id="Resource_im0iy"]
+[sub_resource type="Resource" id="Resource_tro53"]
 script = ExtResource("1_u3ok1")
 move = ExtResource("3_0gtpa")
 
-[sub_resource type="Resource" id="Resource_bdutc"]
+[sub_resource type="Resource" id="Resource_p2yfh"]
 script = ExtResource("1_u3ok1")
 level = 7
 move = ExtResource("4_rlrp1")
 
-[sub_resource type="Resource" id="Resource_r88em"]
+[sub_resource type="Resource" id="Resource_r0n3c"]
 script = ExtResource("1_u3ok1")
 level = 11
 move = ExtResource("5_im0iy")
 
-[sub_resource type="Resource" id="Resource_k8iqh"]
+[sub_resource type="Resource" id="Resource_unfpl"]
 script = ExtResource("1_u3ok1")
 level = 17
 move = ExtResource("6_bdutc")
 
-[sub_resource type="Resource" id="Resource_ockpr"]
+[sub_resource type="Resource" id="Resource_bu3vm"]
 script = ExtResource("1_u3ok1")
 level = 21
 move = ExtResource("7_r88em")
 
-[sub_resource type="Resource" id="Resource_r1xkv"]
+[sub_resource type="Resource" id="Resource_1qnuo"]
 script = ExtResource("1_u3ok1")
 level = 27
 move = ExtResource("8_k8iqh")
 
-[sub_resource type="Resource" id="Resource_cupky"]
+[sub_resource type="Resource" id="Resource_r101u"]
 script = ExtResource("1_u3ok1")
 level = 31
 move = ExtResource("9_ockpr")
 
-[sub_resource type="Resource" id="Resource_rkwvi"]
+[sub_resource type="Resource" id="Resource_hybk6"]
 script = ExtResource("1_u3ok1")
 level = 37
 move = ExtResource("10_r1xkv")
 
-[sub_resource type="Resource" id="Resource_o3x1p"]
+[sub_resource type="Resource" id="Resource_svqei"]
 script = ExtResource("1_u3ok1")
 level = 41
 move = ExtResource("11_cupky")
 
-[sub_resource type="Resource" id="Resource_0isnd"]
+[sub_resource type="Resource" id="Resource_v7xrr"]
 script = ExtResource("1_u3ok1")
 level = 47
 move = ExtResource("12_rkwvi")
@@ -79,7 +105,9 @@ id = "tropius"
 display_name = "Tropius"
 dex = 357
 types = Array[ExtResource("4_4n7xb")]([ExtResource("5_p82c3"), ExtResource("6_t4a84")])
-learnset = Array[ExtResource("1_u3ok1")]([SubResource("Resource_rlrp1"), SubResource("Resource_im0iy"), SubResource("Resource_bdutc"), SubResource("Resource_r88em"), SubResource("Resource_k8iqh"), SubResource("Resource_ockpr"), SubResource("Resource_r1xkv"), SubResource("Resource_cupky"), SubResource("Resource_rkwvi"), SubResource("Resource_o3x1p"), SubResource("Resource_0isnd")])
+learnset = Array[ExtResource("1_u3ok1")]([SubResource("Resource_lmnfm"), SubResource("Resource_tro53"), SubResource("Resource_p2yfh"), SubResource("Resource_r0n3c"), SubResource("Resource_unfpl"), SubResource("Resource_bu3vm"), SubResource("Resource_1qnuo"), SubResource("Resource_r101u"), SubResource("Resource_hybk6"), SubResource("Resource_svqei"), SubResource("Resource_v7xrr")])
+tm_moves = Array[ExtResource("2_tefag")]([ExtResource("17_i4ctt"), ExtResource("18_xpxkh"), ExtResource("19_lmnfm"), ExtResource("20_tro53"), ExtResource("21_p2yfh"), ExtResource("22_r0n3c"), ExtResource("23_unfpl"), ExtResource("24_bu3vm"), ExtResource("25_1qnuo"), ExtResource("26_r101u"), ExtResource("27_hybk6"), ExtResource("28_svqei"), ExtResource("29_v7xrr"), ExtResource("30_md1ng"), ExtResource("31_bxwyf"), ExtResource("32_iam32"), ExtResource("33_6gw6l"), ExtResource("34_p7jtm"), ExtResource("35_tj5m0"), ExtResource("36_23efj"), ExtResource("11_cupky"), ExtResource("37_hegrp"), ExtResource("38_aarm4"), ExtResource("39_g5ydi"), ExtResource("40_qg2xn")])
+abilities = Array[ExtResource("1_lmnfm")]([ExtResource("2_tro53")])
 temperament = ExtResource("15_0gtpa")
 genus = "Pokémon Fruto"
 pokedex_entry = "A los niños les encantan los racimos de fruta que Tropius tiene en el cuello. Este Pokémon siempre come fruta; le encanta. De hecho, ese parece ser el motivo por el que él mismo da fruta."

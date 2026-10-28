@@ -97,8 +97,8 @@ func physics_update(delta: float) -> void:
 
 func _ideal_range() -> float:
 	var r := 28.0
-	if actor.instance.species.kit != null:
-		return actor.instance.species.kit.preferred_range
+	if actor.instance.boss and actor.instance.species.boss_kit != null:
+		return actor.instance.species.boss_kit.preferred_range
 	for m in actor.moves.moves:
 		if m.kind == MoveData.Kind.PROJECTILE:
 			r = maxf(r, m.reach() * 0.55)

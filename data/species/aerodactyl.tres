@@ -1,63 +1,88 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/aerodactyl/kit.tres" id="0_kitv4"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_d7wsy"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_jm0rt"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_t6xl5"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_4w60q"]
+[ext_resource type="Resource" path="res://data/abilities/cabeza_roca.tres" id="2_jrmma"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="3_gq55q"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_kiq8a"]
+[ext_resource type="Resource" path="res://data/abilities/presion.tres" id="3_sv05r"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_7fu47"]
-[ext_resource type="Resource" path="res://data/kits/aerodactyl/mordisco_aerodactyl.tres" id="4_bul0b"]
 [ext_resource type="Resource" path="res://data/types/roca.tres" id="5_em3qc"]
-[ext_resource type="Resource" path="res://data/kits/aerodactyl/ataque_ala_aerodactyl.tres" id="5_u4doo"]
+[ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="6_4flf6"]
 [ext_resource type="Resource" path="res://data/moves/poder_pasado.tres" id="6_bul0b"]
-[ext_resource type="Resource" path="res://data/kits/aerodactyl/supersonico_aerodactyl.tres" id="6_jh842"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_yuy5m"]
-[ext_resource type="Resource" path="res://data/kits/aerodactyl/avalancha_aerodactyl.tres" id="7_iodh3"]
 [ext_resource type="Resource" path="res://data/moves/cara_susto.tres" id="7_u4doo"]
+[ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="8_d7wsy"]
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="8_jh842"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="9_iodh3"]
+[ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="9_jrmma"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="12_gq55q"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="16_t0w4q"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="17_4flf6"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="18_d7wsy"]
+[ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="19_jrmma"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="20_sv05r"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="21_2m6ms"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="22_cscfh"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="23_ahbup"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="24_6t00u"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="25_pyclw"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="26_pnh0e"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="27_2dyky"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="28_on0fw"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="29_r58s7"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="30_3c0o2"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="31_cvoxl"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="32_2c7pg"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="33_cwae6"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="34_he3v7"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="35_alebv"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="36_55scd"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="37_51kbv"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="38_qtan4"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="39_smfmq"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="40_m8wnu"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="41_t1hls"]
+[ext_resource type="Resource" path="res://data/moves/tormento.tres" id="42_kn17h"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="43_cxex1"]
 
-[sub_resource type="Resource" id="Resource_bul0b"]
+[sub_resource type="Resource" id="Resource_sv05r"]
 script = ExtResource("1_jm0rt")
-move = ExtResource("4_bul0b")
+move = ExtResource("6_4flf6")
 
-[sub_resource type="Resource" id="Resource_u4doo"]
-script = ExtResource("1_jm0rt")
-move = ExtResource("5_u4doo")
-
-[sub_resource type="Resource" id="Resource_jh842"]
-script = ExtResource("1_jm0rt")
-level = 3
-move = ExtResource("6_jh842")
-
-[sub_resource type="Resource" id="Resource_iodh3"]
-script = ExtResource("1_jm0rt")
-level = 5
-move = ExtResource("7_iodh3")
-
-[sub_resource type="Resource" id="Resource_k1y3p"]
+[sub_resource type="Resource" id="Resource_2m6ms"]
 script = ExtResource("1_jm0rt")
 level = 8
 move = ExtResource("3_gq55q")
 
-[sub_resource type="Resource" id="Resource_cowg3"]
+[sub_resource type="Resource" id="Resource_cscfh"]
+script = ExtResource("1_jm0rt")
+level = 15
+move = ExtResource("8_d7wsy")
+
+[sub_resource type="Resource" id="Resource_ahbup"]
+script = ExtResource("1_jm0rt")
+level = 22
+move = ExtResource("9_jrmma")
+
+[sub_resource type="Resource" id="Resource_6t00u"]
 script = ExtResource("1_jm0rt")
 level = 29
 move = ExtResource("6_bul0b")
 
-[sub_resource type="Resource" id="Resource_56sfr"]
+[sub_resource type="Resource" id="Resource_pyclw"]
 script = ExtResource("1_jm0rt")
 level = 36
 move = ExtResource("7_u4doo")
 
-[sub_resource type="Resource" id="Resource_140mw"]
+[sub_resource type="Resource" id="Resource_pnh0e"]
 script = ExtResource("1_jm0rt")
 level = 43
 move = ExtResource("8_jh842")
 
-[sub_resource type="Resource" id="Resource_vbcli"]
+[sub_resource type="Resource" id="Resource_2dyky"]
 script = ExtResource("1_jm0rt")
 level = 50
 move = ExtResource("9_iodh3")
@@ -68,8 +93,9 @@ id = "aerodactyl"
 display_name = "Aerodactyl"
 dex = 142
 types = Array[ExtResource("4_7fu47")]([ExtResource("5_em3qc"), ExtResource("6_yuy5m")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_jm0rt")]([SubResource("Resource_bul0b"), SubResource("Resource_u4doo"), SubResource("Resource_jh842"), SubResource("Resource_iodh3"), SubResource("Resource_k1y3p"), SubResource("Resource_cowg3"), SubResource("Resource_56sfr"), SubResource("Resource_140mw"), SubResource("Resource_vbcli")])
+learnset = Array[ExtResource("1_jm0rt")]([SubResource("Resource_sv05r"), SubResource("Resource_2m6ms"), SubResource("Resource_cscfh"), SubResource("Resource_ahbup"), SubResource("Resource_6t00u"), SubResource("Resource_pyclw"), SubResource("Resource_pnh0e"), SubResource("Resource_2dyky")])
+tm_moves = Array[ExtResource("2_4w60q")]([ExtResource("16_t0w4q"), ExtResource("17_4flf6"), ExtResource("18_d7wsy"), ExtResource("19_jrmma"), ExtResource("20_sv05r"), ExtResource("21_2m6ms"), ExtResource("22_cscfh"), ExtResource("23_ahbup"), ExtResource("24_6t00u"), ExtResource("25_pyclw"), ExtResource("26_pnh0e"), ExtResource("9_iodh3"), ExtResource("27_2dyky"), ExtResource("28_on0fw"), ExtResource("29_r58s7"), ExtResource("30_3c0o2"), ExtResource("31_cvoxl"), ExtResource("32_2c7pg"), ExtResource("33_cwae6"), ExtResource("34_he3v7"), ExtResource("35_alebv"), ExtResource("36_55scd"), ExtResource("37_51kbv"), ExtResource("38_qtan4"), ExtResource("39_smfmq"), ExtResource("40_m8wnu"), ExtResource("41_t1hls"), ExtResource("42_kn17h"), ExtResource("43_cxex1")])
+abilities = Array[ExtResource("1_d7wsy")]([ExtResource("2_jrmma"), ExtResource("3_sv05r")])
 temperament = ExtResource("12_gq55q")
 genus = "Pokémon Fósil"
 pokedex_entry = "Los orígenes de Aerodactyl datan de la era de los dinosaurios. Se regeneró a partir de material genético contenido en ámbar. Se supone que fue el amo de los cielos en épocas pasadas."

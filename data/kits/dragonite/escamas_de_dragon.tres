@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/colossus_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
+
+[resource]
+script = ExtResource("2_sd")
+id = "escamas_de_dragon"
+display_name = "Escamas de Dragón"
+description = "Escamas de dragón: recibe 15% menos de los golpes físicos y lo empujan poco."
+color = Color(0.95, 0.65, 0.3, 1)
+max_value = 100.0
+gains = {}
+decay_out_of_combat = 6.0
+mechanic_script = ExtResource("1_mech")
+params = {"physical_mult": 0.85, "stagger_bonus": 1.0, "knockback_mult": 0.6, "scale": 1.0, "phase_at": 0.0}

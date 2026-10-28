@@ -12,5 +12,5 @@ element = ExtResource("3_x")
 kind = 9
 category = 2
 power = 0.0
-cooldown = 6.0
+cooldown = 3.5
 knockback = 0.0

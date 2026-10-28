@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mcj55"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_n5il6"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_oelkw"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5es57"]
+[ext_resource type="Resource" path="res://data/abilities/robustez.tres" id="2_ekpwv"]
 [ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="2_lp1dj"]
 [ext_resource type="Resource" path="res://data/moves/refugio.tres" id="3_el5cy"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_svend"]
@@ -15,36 +17,54 @@
 [ext_resource type="Resource" path="res://data/moves/venganza.tres" id="7_5bx7c"]
 [ext_resource type="Resource" path="res://data/moves/descanso.tres" id="8_02uxy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="11_el5cy"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="13_gpykh"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="14_qixbi"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="15_oelkw"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="16_ekpwv"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="17_ts20x"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="18_vpwj5"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="19_06mnd"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="20_ycc1c"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="21_a6dfb"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="22_36vyj"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="23_mmqqf"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="24_2vfbp"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="25_m6wy7"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="26_gmy8s"]
+[ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="27_5ai3e"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="28_6dawy"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="29_5mlvq"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="30_fh6un"]
 
-[sub_resource type="Resource" id="Resource_n5il6"]
+[sub_resource type="Resource" id="Resource_oelkw"]
 script = ExtResource("1_mcj55")
 move = ExtResource("2_lp1dj")
 
-[sub_resource type="Resource" id="Resource_lgr4j"]
+[sub_resource type="Resource" id="Resource_ekpwv"]
 script = ExtResource("1_mcj55")
 move = ExtResource("3_el5cy")
 
-[sub_resource type="Resource" id="Resource_fvcrl"]
+[sub_resource type="Resource" id="Resource_ts20x"]
 script = ExtResource("1_mcj55")
 level = 9
 move = ExtResource("4_n5il6")
 
-[sub_resource type="Resource" id="Resource_5bx7c"]
+[sub_resource type="Resource" id="Resource_vpwj5"]
 script = ExtResource("1_mcj55")
 level = 14
 move = ExtResource("5_lgr4j")
 
-[sub_resource type="Resource" id="Resource_02uxy"]
+[sub_resource type="Resource" id="Resource_06mnd"]
 script = ExtResource("1_mcj55")
 level = 23
 move = ExtResource("6_fvcrl")
 
-[sub_resource type="Resource" id="Resource_1lx7g"]
+[sub_resource type="Resource" id="Resource_ycc1c"]
 script = ExtResource("1_mcj55")
 level = 28
 move = ExtResource("7_5bx7c")
 
-[sub_resource type="Resource" id="Resource_7sibi"]
+[sub_resource type="Resource" id="Resource_a6dfb"]
 script = ExtResource("1_mcj55")
 level = 37
 move = ExtResource("8_02uxy")
@@ -55,7 +75,9 @@ id = "shuckle"
 display_name = "Shuckle"
 dex = 213
 types = Array[ExtResource("4_6n8qb")]([ExtResource("5_a15wi"), ExtResource("6_jgigp")])
-learnset = Array[ExtResource("1_mcj55")]([SubResource("Resource_n5il6"), SubResource("Resource_lgr4j"), SubResource("Resource_fvcrl"), SubResource("Resource_5bx7c"), SubResource("Resource_02uxy"), SubResource("Resource_1lx7g"), SubResource("Resource_7sibi")])
+learnset = Array[ExtResource("1_mcj55")]([SubResource("Resource_oelkw"), SubResource("Resource_ekpwv"), SubResource("Resource_ts20x"), SubResource("Resource_vpwj5"), SubResource("Resource_06mnd"), SubResource("Resource_ycc1c"), SubResource("Resource_a6dfb")])
+tm_moves = Array[ExtResource("2_5es57")]([ExtResource("13_gpykh"), ExtResource("14_qixbi"), ExtResource("15_oelkw"), ExtResource("16_ekpwv"), ExtResource("17_ts20x"), ExtResource("18_vpwj5"), ExtResource("19_06mnd"), ExtResource("20_ycc1c"), ExtResource("21_a6dfb"), ExtResource("8_02uxy"), ExtResource("22_36vyj"), ExtResource("23_mmqqf"), ExtResource("24_2vfbp"), ExtResource("6_fvcrl"), ExtResource("25_m6wy7"), ExtResource("26_gmy8s"), ExtResource("27_5ai3e"), ExtResource("28_6dawy"), ExtResource("29_5mlvq"), ExtResource("30_fh6un")])
+abilities = Array[ExtResource("1_oelkw")]([ExtResource("2_ekpwv")])
 temperament = ExtResource("11_el5cy")
 genus = "Pokémon Moho"
 pokedex_entry = "Shuckle permanece escondido bajo las rocas en silencio y, cuando se pone a comer las bayas que almacena, se encierra en el caparazón. Las bayas se mezclan con sus fluidos corporales y originan zumo."

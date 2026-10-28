@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_hekm5"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_s7shl"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_t726p"]
+[ext_resource type="Resource" path="res://data/abilities/levitacion.tres" id="2_8bm0b"]
 [ext_resource type="Resource" path="res://data/moves/psicoonda.tres" id="2_e6m31"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_o2w1h"]
 [ext_resource type="Resource" path="res://data/moves/deseo.tres" id="3_3bnje"]
@@ -19,57 +21,92 @@
 [ext_resource type="Resource" path="res://data/moves/recuperacion.tres" id="11_q4ues"]
 [ext_resource type="Resource" path="res://data/moves/encanto.tres" id="12_vdwr3"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="15_3bnje"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="17_a4mk7"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="18_yx1su"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="19_hekm5"]
+[ext_resource type="Resource" path="res://data/moves/corte.tres" id="20_8bm0b"]
+[ext_resource type="Resource" path="res://data/moves/buceo.tres" id="21_kagm1"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="22_srxt2"]
+[ext_resource type="Resource" path="res://data/moves/garra_dragon.tres" id="23_dygyw"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="24_ux2tk"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="25_jnabg"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="26_mhfal"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="27_fai0b"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="28_03res"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="29_5o73a"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="30_ihq3k"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="31_0fa5u"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="32_lut36"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="33_l8y6o"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="34_4q2l6"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="35_w0484"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="36_vmd8g"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="37_73eij"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="38_ebvoo"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="39_m75bo"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="40_ka3va"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="41_h30g7"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="42_0i152"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="43_7us1i"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="44_1dia4"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="45_mgd7a"]
+[ext_resource type="Resource" path="res://data/moves/surf.tres" id="46_wuxky"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="47_8ms2y"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="48_g0p7b"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="49_dwbqh"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="50_gamoh"]
+[ext_resource type="Resource" path="res://data/moves/cascada.tres" id="51_0vue5"]
 
-[sub_resource type="Resource" id="Resource_t726p"]
+[sub_resource type="Resource" id="Resource_hekm5"]
 script = ExtResource("1_s7shl")
 move = ExtResource("2_e6m31")
 
-[sub_resource type="Resource" id="Resource_mqpm3"]
+[sub_resource type="Resource" id="Resource_8bm0b"]
 script = ExtResource("1_s7shl")
 level = 5
 move = ExtResource("3_3bnje")
 
-[sub_resource type="Resource" id="Resource_5m7jy"]
+[sub_resource type="Resource" id="Resource_kagm1"]
 script = ExtResource("1_s7shl")
 level = 10
 move = ExtResource("4_t726p")
 
-[sub_resource type="Resource" id="Resource_6qa2h"]
+[sub_resource type="Resource" id="Resource_srxt2"]
 script = ExtResource("1_s7shl")
 level = 15
 move = ExtResource("5_mqpm3")
 
-[sub_resource type="Resource" id="Resource_5ul8p"]
+[sub_resource type="Resource" id="Resource_dygyw"]
 script = ExtResource("1_s7shl")
 level = 20
 move = ExtResource("6_5m7jy")
 
-[sub_resource type="Resource" id="Resource_tjtj7"]
+[sub_resource type="Resource" id="Resource_ux2tk"]
 script = ExtResource("1_s7shl")
 level = 25
 move = ExtResource("7_6qa2h")
 
-[sub_resource type="Resource" id="Resource_om11b"]
+[sub_resource type="Resource" id="Resource_jnabg"]
 script = ExtResource("1_s7shl")
 level = 30
 move = ExtResource("8_5ul8p")
 
-[sub_resource type="Resource" id="Resource_q4ues"]
+[sub_resource type="Resource" id="Resource_mhfal"]
 script = ExtResource("1_s7shl")
 level = 35
 move = ExtResource("9_tjtj7")
 
-[sub_resource type="Resource" id="Resource_vdwr3"]
+[sub_resource type="Resource" id="Resource_fai0b"]
 script = ExtResource("1_s7shl")
 level = 40
 move = ExtResource("10_om11b")
 
-[sub_resource type="Resource" id="Resource_gd1k2"]
+[sub_resource type="Resource" id="Resource_03res"]
 script = ExtResource("1_s7shl")
 level = 45
 move = ExtResource("11_q4ues")
 
-[sub_resource type="Resource" id="Resource_texdn"]
+[sub_resource type="Resource" id="Resource_5o73a"]
 script = ExtResource("1_s7shl")
 level = 50
 move = ExtResource("12_vdwr3")
@@ -80,7 +117,9 @@ id = "latias"
 display_name = "Latias"
 dex = 380
 types = Array[ExtResource("4_ahhte")]([ExtResource("5_scs8q"), ExtResource("6_tt8mg")])
-learnset = Array[ExtResource("1_s7shl")]([SubResource("Resource_t726p"), SubResource("Resource_mqpm3"), SubResource("Resource_5m7jy"), SubResource("Resource_6qa2h"), SubResource("Resource_5ul8p"), SubResource("Resource_tjtj7"), SubResource("Resource_om11b"), SubResource("Resource_q4ues"), SubResource("Resource_vdwr3"), SubResource("Resource_gd1k2"), SubResource("Resource_texdn")])
+learnset = Array[ExtResource("1_s7shl")]([SubResource("Resource_hekm5"), SubResource("Resource_8bm0b"), SubResource("Resource_kagm1"), SubResource("Resource_srxt2"), SubResource("Resource_dygyw"), SubResource("Resource_ux2tk"), SubResource("Resource_jnabg"), SubResource("Resource_mhfal"), SubResource("Resource_fai0b"), SubResource("Resource_03res"), SubResource("Resource_5o73a")])
+tm_moves = Array[ExtResource("2_o2w1h")]([ExtResource("17_a4mk7"), ExtResource("18_yx1su"), ExtResource("19_hekm5"), ExtResource("20_8bm0b"), ExtResource("21_kagm1"), ExtResource("22_srxt2"), ExtResource("23_dygyw"), ExtResource("24_ux2tk"), ExtResource("25_jnabg"), ExtResource("26_mhfal"), ExtResource("27_fai0b"), ExtResource("28_03res"), ExtResource("29_5o73a"), ExtResource("30_ihq3k"), ExtResource("31_0fa5u"), ExtResource("32_lut36"), ExtResource("33_l8y6o"), ExtResource("10_om11b"), ExtResource("34_4q2l6"), ExtResource("35_w0484"), ExtResource("36_vmd8g"), ExtResource("37_73eij"), ExtResource("38_ebvoo"), ExtResource("5_mqpm3"), ExtResource("39_m75bo"), ExtResource("40_ka3va"), ExtResource("41_h30g7"), ExtResource("42_0i152"), ExtResource("43_7us1i"), ExtResource("44_1dia4"), ExtResource("45_mgd7a"), ExtResource("46_wuxky"), ExtResource("47_8ms2y"), ExtResource("48_g0p7b"), ExtResource("49_dwbqh"), ExtResource("50_gamoh"), ExtResource("51_0vue5")])
+abilities = Array[ExtResource("1_hekm5")]([ExtResource("2_8bm0b")])
 temperament = ExtResource("15_3bnje")
 genus = "Pokémon Eón"
 pokedex_entry = "Latias es muy sensible a los sentimientos de la gente. Si detecta algún ápice de hostilidad, desplegará las plumas que tiene por todo el cuerpo y se pondrá a chillar para intimidar al enemigo."

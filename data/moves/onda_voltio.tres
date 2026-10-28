@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="1_ywgo7"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_yuvyh"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_eevst"]
+
+[resource]
+script = ExtResource("2_yuvyh")
+id = "onda_voltio"
+display_name = "Onda Voltio"
+element = ExtResource("1_ywgo7")
+category = 1
+power = 60.0
+cooldown = 1.8
+knockback = 96.0
+recovery = 0.1
+speed = 280.0
+size = 4.5
+lifetime = 0.85

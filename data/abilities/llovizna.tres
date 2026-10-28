@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_n4yf2"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_muwbs"]
+
+[resource]
+script = ExtResource("2_muwbs")
+id = "llovizna"
+display_name = "Llovizna"
+description = "Llueve a su alrededor: los rivales cerca quedan empapados."
+color = Color(0.35, 0.6, 1, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_n4yf2")
+params = {
+"aura_radius": 80.0,
+"aura_status": "empapado"
+}

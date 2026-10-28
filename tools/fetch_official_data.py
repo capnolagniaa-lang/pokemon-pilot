@@ -2,7 +2,9 @@
 data/source/official.json (fuente de verdad para tools/apply_official_data.gd y tools/build_learnsets.gd).
 
 Especies: las 386 de las 3 primeras regiones (Kanto, Johto y Hoenn). Ataques: los de MOVES (hechos a mano)
-más todos los que esas especies aprenden por nivel en FireRed/LeafGreen (Esmeralda si FRLG no lo tiene).
+más todos los que esas especies aprenden por nivel en FireRed/LeafGreen (Esmeralda si FRLG no lo tiene) y, desde
+2026-10-28, los de **MT/MO** de FRLG (`mt_frlg` / `mt` por especie: qué máquinas puede aprender). Los ataques que solo
+salen por MT se agregan después de los demás, así los ids de los que ya existían no cambian.
 
 Uso: python -I tools/fetch_official_data.py <carpeta del proyecto>
 Las respuestas quedan en tools/.pokeapi_cache (no se versiona): volver a correrlo no vuelve a bajar nada.
@@ -99,6 +101,16 @@ def learnset(pokemon):
     return []
 
 
+def machines(pokemon):
+    """Ataques de MT/MO que puede aprender en FRLG (Esmeralda si FRLG no lo tiene)."""
+    for vg in VERSION_GROUPS:
+        out = sorted({m["move"]["name"] for m in pokemon["moves"] for d in m["version_group_details"]
+                      if d["version_group"]["name"] == vg and d["move_learn_method"]["name"] == "machine"})
+        if out:
+            return out
+    return []
+
+
 def fetch_species(n):
     p = get("/pokemon/%d" % n)
     s = get("/pokemon-species/%d" % n)
@@ -112,10 +124,13 @@ def main():
         raw = sorted(pool.map(fetch_species, range(1, MAX_DEX + 1)))
     out = {"source": "https://pokeapi.co (datos de los juegos actuales)", "species": {}, "moves": {}}
     api_moves = set()
+    mt_moves = set()
     for n, p, s in raw:
         gid = by_api.get(s["name"], slug(s["name"]))
         ls = learnset(p)
         api_moves.update(m for _, m in ls)
+        mts = machines(p)
+        mt_moves.update(mts)
         out["species"][gid] = {
             "dex": n,
             "name_es": es(s["names"]),
@@ -130,11 +145,14 @@ def main():
             "capture_rate": s["capture_rate"],
             # [nivel, ataque en PokeAPI] por nivel en FRLG (o Esmeralda). build_learnsets.gd lo traduce a ids.
             "learnset_frlg": ls,
+            # Ataques de MT/MO en FRLG (PokeAPI). build_learnsets.gd los guarda en SpeciesData.tm_moves.
+            "mt_frlg": mts,
         }
     print("especies:", len(out["species"]))
 
     manual = {v: k for k, v in MOVES.items()}
     api_list = sorted(set(MOVES.values()) | api_moves)
+    api_list += sorted(mt_moves - set(api_list))  # los de solo MT, al final (no corren los ids de los demás)
     with ThreadPoolExecutor(8) as pool:
         moves = dict(zip(api_list, pool.map(lambda a: get("/move/" + a), api_list)))
     used = set(MOVES)
@@ -170,6 +188,7 @@ def main():
     api_to_gid = {v["name_en"]: k for k, v in out["moves"].items()}
     for sp in out["species"].values():
         sp["learnset"] = [[lvl, api_to_gid[a]] for lvl, a in sp["learnset_frlg"]]
+        sp["mt"] = [api_to_gid[a] for a in sp["mt_frlg"]]
     print("ataques:", len(out["moves"]))
     os.makedirs(os.path.join(root, "data", "source"), exist_ok=True)
     with open(os.path.join(root, "data", "source", "official.json"), "w", encoding="utf-8") as f:

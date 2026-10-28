@@ -1,85 +1,107 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/lapras/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_g58ah"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_klvfd"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_tlu51"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_3hq0q"]
+[ext_resource type="Resource" path="res://data/abilities/absorbe_agua.tres" id="2_m6fnc"]
 [ext_resource type="Resource" path="res://data/moves/grunido.tres" id="2_xcwcm"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_4yglw"]
+[ext_resource type="Resource" path="res://data/abilities/caparazon.tres" id="3_vweoy"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0wu2i"]
-[ext_resource type="Resource" path="res://data/kits/lapras/golpe_cuerpo_lapras.tres" id="4_016fl"]
 [ext_resource type="Resource" path="res://data/moves/pistola_agua.tres" id="4_tlu51"]
 [ext_resource type="Resource" path="res://data/moves/neblina.tres" id="5_08ipb"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_eua13"]
-[ext_resource type="Resource" path="res://data/kits/lapras/rayo_hielo_lapras.tres" id="5_ppi2n"]
 [ext_resource type="Resource" path="res://data/types/hielo.tres" id="6_87l13"]
-[ext_resource type="Resource" path="res://data/kits/lapras/canto_lapras.tres" id="6_l0v6t"]
+[ext_resource type="Resource" path="res://data/moves/canto.tres" id="7_klvfd"]
 [ext_resource type="Resource" path="res://data/moves/rayo_confuso.tres" id="7_ppi2n"]
-[ext_resource type="Resource" path="res://data/kits/lapras/surf_lapras.tres" id="7_x5ib6"]
 [ext_resource type="Resource" path="res://data/moves/canto_mortal.tres" id="8_l0v6t"]
 [ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="10_2sopg"]
+[ext_resource type="Resource" path="res://data/moves/golpe_cuerpo.tres" id="10_m6fnc"]
 [ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="11_f2ve1"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_i1rac"]
 [ext_resource type="Resource" path="res://data/moves/frio_polar.tres" id="13_4j0hv"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="13_vweoy"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_axx62"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="20_756xq"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="21_shipa"]
+[ext_resource type="Resource" path="res://data/moves/buceo.tres" id="22_klvfd"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="23_m6fnc"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="24_vweoy"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="25_wh2vv"]
+[ext_resource type="Resource" path="res://data/moves/granizo.tres" id="26_bwi57"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="27_t2llv"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="28_mh2yy"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="29_u37q1"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="30_u21pm"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="31_vfcbi"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="32_k2wl0"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="33_wvo40"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="34_qn8a1"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="35_xwrxi"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="36_ilews"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="37_rpq6x"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="38_g44ah"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="39_lne80"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="40_i1nes"]
+[ext_resource type="Resource" path="res://data/moves/surf.tres" id="40_wh2vv"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="41_tt4q2"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="42_0cccd"]
+[ext_resource type="Resource" path="res://data/moves/cascada.tres" id="43_ambvj"]
 
-[sub_resource type="Resource" id="Resource_016fl"]
-script = ExtResource("1_g58ah")
-move = ExtResource("4_016fl")
-
-[sub_resource type="Resource" id="Resource_ppi2n"]
-script = ExtResource("1_g58ah")
-move = ExtResource("5_ppi2n")
-
-[sub_resource type="Resource" id="Resource_l0v6t"]
-script = ExtResource("1_g58ah")
-level = 3
-move = ExtResource("6_l0v6t")
-
-[sub_resource type="Resource" id="Resource_x5ib6"]
-script = ExtResource("1_g58ah")
-level = 5
-move = ExtResource("7_x5ib6")
-
-[sub_resource type="Resource" id="Resource_2sopg"]
+[sub_resource type="Resource" id="Resource_bwi57"]
 script = ExtResource("1_g58ah")
 move = ExtResource("2_xcwcm")
 
-[sub_resource type="Resource" id="Resource_f2ve1"]
+[sub_resource type="Resource" id="Resource_t2llv"]
+script = ExtResource("1_g58ah")
+move = ExtResource("7_klvfd")
+
+[sub_resource type="Resource" id="Resource_mh2yy"]
 script = ExtResource("1_g58ah")
 move = ExtResource("4_tlu51")
 
-[sub_resource type="Resource" id="Resource_i1rac"]
+[sub_resource type="Resource" id="Resource_u37q1"]
 script = ExtResource("1_g58ah")
 level = 7
 move = ExtResource("5_08ipb")
 
-[sub_resource type="Resource" id="Resource_4j0hv"]
+[sub_resource type="Resource" id="Resource_u21pm"]
+script = ExtResource("1_g58ah")
+level = 13
+move = ExtResource("10_m6fnc")
+
+[sub_resource type="Resource" id="Resource_vfcbi"]
 script = ExtResource("1_g58ah")
 level = 19
 move = ExtResource("7_ppi2n")
 
-[sub_resource type="Resource" id="Resource_e3gui"]
+[sub_resource type="Resource" id="Resource_k2wl0"]
 script = ExtResource("1_g58ah")
 level = 25
 move = ExtResource("8_l0v6t")
 
-[sub_resource type="Resource" id="Resource_d7lbu"]
+[sub_resource type="Resource" id="Resource_wvo40"]
+script = ExtResource("1_g58ah")
+level = 31
+move = ExtResource("13_vweoy")
+
+[sub_resource type="Resource" id="Resource_qn8a1"]
 script = ExtResource("1_g58ah")
 level = 37
 move = ExtResource("10_2sopg")
 
-[sub_resource type="Resource" id="Resource_6lc0x"]
+[sub_resource type="Resource" id="Resource_xwrxi"]
 script = ExtResource("1_g58ah")
 level = 43
 move = ExtResource("11_f2ve1")
 
-[sub_resource type="Resource" id="Resource_fwtoa"]
+[sub_resource type="Resource" id="Resource_ilews"]
 script = ExtResource("1_g58ah")
 level = 49
 move = ExtResource("12_i1rac")
 
-[sub_resource type="Resource" id="Resource_vst0h"]
+[sub_resource type="Resource" id="Resource_rpq6x"]
 script = ExtResource("1_g58ah")
 level = 55
 move = ExtResource("13_4j0hv")
@@ -90,8 +112,9 @@ id = "lapras"
 display_name = "Lapras"
 dex = 131
 types = Array[ExtResource("4_0wu2i")]([ExtResource("5_eua13"), ExtResource("6_87l13")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_g58ah")]([SubResource("Resource_016fl"), SubResource("Resource_ppi2n"), SubResource("Resource_l0v6t"), SubResource("Resource_x5ib6"), SubResource("Resource_2sopg"), SubResource("Resource_f2ve1"), SubResource("Resource_i1rac"), SubResource("Resource_4j0hv"), SubResource("Resource_e3gui"), SubResource("Resource_d7lbu"), SubResource("Resource_6lc0x"), SubResource("Resource_fwtoa"), SubResource("Resource_vst0h")])
+learnset = Array[ExtResource("1_g58ah")]([SubResource("Resource_bwi57"), SubResource("Resource_t2llv"), SubResource("Resource_mh2yy"), SubResource("Resource_u37q1"), SubResource("Resource_u21pm"), SubResource("Resource_vfcbi"), SubResource("Resource_k2wl0"), SubResource("Resource_wvo40"), SubResource("Resource_qn8a1"), SubResource("Resource_xwrxi"), SubResource("Resource_ilews"), SubResource("Resource_rpq6x")])
+tm_moves = Array[ExtResource("2_3hq0q")]([ExtResource("20_756xq"), ExtResource("21_shipa"), ExtResource("22_klvfd"), ExtResource("23_m6fnc"), ExtResource("24_vweoy"), ExtResource("25_wh2vv"), ExtResource("26_bwi57"), ExtResource("27_t2llv"), ExtResource("28_mh2yy"), ExtResource("13_vweoy"), ExtResource("29_u37q1"), ExtResource("30_u21pm"), ExtResource("31_vfcbi"), ExtResource("10_2sopg"), ExtResource("32_k2wl0"), ExtResource("33_wvo40"), ExtResource("34_qn8a1"), ExtResource("35_xwrxi"), ExtResource("11_f2ve1"), ExtResource("36_ilews"), ExtResource("37_rpq6x"), ExtResource("38_g44ah"), ExtResource("40_wh2vv"), ExtResource("39_lne80"), ExtResource("40_i1nes"), ExtResource("41_tt4q2"), ExtResource("42_0cccd"), ExtResource("43_ambvj")])
+abilities = Array[ExtResource("1_klvfd")]([ExtResource("2_m6fnc"), ExtResource("3_vweoy")])
 temperament = ExtResource("16_axx62")
 genus = "Pokémon Transporte"
 pokedex_entry = "Por culpa de la gente, Lapras está casi en extinción. Dicen que, al anochecer, se pone a cantar quejicoso mientras busca a los miembros de su especie que puedan quedar."

@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="SignatureData" format=3]
 
-[ext_resource type="Script" path="res://scripts/combat/signatures/colossus_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/combat/signatures/frost_mechanic.gd" id="1_mech"]
 [ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
 
 [resource]
 script = ExtResource("2_sd")
 id = "ave_helada"
 display_name = "Ave Helada"
-description = "Legendario: cuerpo grande, casi no lo empujan. A mitad de vida bate las alas una vez (Ventisca alrededor que ralentiza) y queda enfurecido."
+description = "Sus ataques de hielo dejan escarcha; con 4, el rival se congela."
 color = Color(0.6, 0.85, 1.0, 1)
-max_value = 100.0
+max_value = 0.0
 gains = {}
 decay_out_of_combat = 6.0
 mechanic_script = ExtResource("1_mech")
-params = {"physical_mult": 0.9, "stagger_bonus": 1.0, "knockback_mult": 0.3, "scale": 1.3, "phase_at": 0.5, "phase_status": "enfurecido", "roar_move": "res://data/kits/articuno/aleteo_helado.tres"}
+params = {"element_marks": {"hielo": "escarcha"}, "stacks_to_freeze": 4}

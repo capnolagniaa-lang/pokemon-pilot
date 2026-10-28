@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_7l4hs"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_4yae8"]
+
+[resource]
+script = ExtResource("2_4yae8")
+id = "lodo_liquido"
+display_name = "Lodo Líquido"
+description = "El que le roba vida (Absorber, Chupavidas...) en vez de curarse se lastima."
+color = Color(0.7, 0.45, 0.85, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_7l4hs")
+params = {
+"drain_punish": true
+}

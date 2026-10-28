@@ -1,10 +1,13 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_1f3lf"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_7cbar"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mhqy0"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_du06x"]
+[ext_resource type="Resource" path="res://data/abilities/humo_blanco.tres" id="2_g1kyu"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_wtsq7"]
 [ext_resource type="Resource" path="res://data/moves/polucion.tres" id="3_54euq"]
+[ext_resource type="Resource" path="res://data/abilities/sequia.tres" id="3_o2amv"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_tu5yt"]
 [ext_resource type="Resource" path="res://data/moves/maldicion.tres" id="4_1f3lf"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_752fh"]
@@ -19,62 +22,78 @@
 [ext_resource type="Resource" path="res://data/moves/azote.tres" id="12_h136r"]
 [ext_resource type="Resource" path="res://data/moves/onda_ignea.tres" id="13_6i5ga"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_54euq"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="18_5dmi5"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="19_rp0kg"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="20_a1kof"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="21_7cbar"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="22_g1kyu"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="23_o2amv"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="24_opylg"]
+[ext_resource type="Resource" path="res://data/moves/sofoco.tres" id="25_aje7s"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="26_cauws"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="27_omtu6"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="28_a4ext"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="29_ms7d5"]
+[ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="30_qf5o5"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="31_b1wue"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="32_ihlw7"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="33_vyh7p"]
 
-[sub_resource type="Resource" id="Resource_1f3lf"]
+[sub_resource type="Resource" id="Resource_7cbar"]
 script = ExtResource("1_mhqy0")
 move = ExtResource("2_wtsq7")
 
-[sub_resource type="Resource" id="Resource_takqw"]
+[sub_resource type="Resource" id="Resource_g1kyu"]
 script = ExtResource("1_mhqy0")
 level = 4
 move = ExtResource("3_54euq")
 
-[sub_resource type="Resource" id="Resource_u1d1g"]
+[sub_resource type="Resource" id="Resource_o2amv"]
 script = ExtResource("1_mhqy0")
 level = 7
 move = ExtResource("4_1f3lf")
 
-[sub_resource type="Resource" id="Resource_2e42n"]
+[sub_resource type="Resource" id="Resource_opylg"]
 script = ExtResource("1_mhqy0")
 level = 14
 move = ExtResource("5_takqw")
 
-[sub_resource type="Resource" id="Resource_7exlk"]
+[sub_resource type="Resource" id="Resource_aje7s"]
 script = ExtResource("1_mhqy0")
 level = 17
 move = ExtResource("6_u1d1g")
 
-[sub_resource type="Resource" id="Resource_kxlyo"]
+[sub_resource type="Resource" id="Resource_cauws"]
 script = ExtResource("1_mhqy0")
 level = 20
 move = ExtResource("7_2e42n")
 
-[sub_resource type="Resource" id="Resource_hns42"]
+[sub_resource type="Resource" id="Resource_omtu6"]
 script = ExtResource("1_mhqy0")
 level = 27
 move = ExtResource("8_7exlk")
 
-[sub_resource type="Resource" id="Resource_m5pdn"]
+[sub_resource type="Resource" id="Resource_a4ext"]
 script = ExtResource("1_mhqy0")
 level = 30
 move = ExtResource("9_kxlyo")
 
-[sub_resource type="Resource" id="Resource_h136r"]
+[sub_resource type="Resource" id="Resource_ms7d5"]
 script = ExtResource("1_mhqy0")
 level = 33
 move = ExtResource("10_hns42")
 
-[sub_resource type="Resource" id="Resource_6i5ga"]
+[sub_resource type="Resource" id="Resource_qf5o5"]
 script = ExtResource("1_mhqy0")
 level = 40
 move = ExtResource("11_m5pdn")
 
-[sub_resource type="Resource" id="Resource_no8eo"]
+[sub_resource type="Resource" id="Resource_b1wue"]
 script = ExtResource("1_mhqy0")
 level = 43
 move = ExtResource("12_h136r")
 
-[sub_resource type="Resource" id="Resource_pqq1f"]
+[sub_resource type="Resource" id="Resource_ihlw7"]
 script = ExtResource("1_mhqy0")
 level = 46
 move = ExtResource("13_6i5ga")
@@ -85,7 +104,9 @@ id = "torkoal"
 display_name = "Torkoal"
 dex = 324
 types = Array[ExtResource("4_752fh")]([ExtResource("5_0f76p")])
-learnset = Array[ExtResource("1_mhqy0")]([SubResource("Resource_1f3lf"), SubResource("Resource_takqw"), SubResource("Resource_u1d1g"), SubResource("Resource_2e42n"), SubResource("Resource_7exlk"), SubResource("Resource_kxlyo"), SubResource("Resource_hns42"), SubResource("Resource_m5pdn"), SubResource("Resource_h136r"), SubResource("Resource_6i5ga"), SubResource("Resource_no8eo"), SubResource("Resource_pqq1f")])
+learnset = Array[ExtResource("1_mhqy0")]([SubResource("Resource_7cbar"), SubResource("Resource_g1kyu"), SubResource("Resource_o2amv"), SubResource("Resource_opylg"), SubResource("Resource_aje7s"), SubResource("Resource_cauws"), SubResource("Resource_omtu6"), SubResource("Resource_a4ext"), SubResource("Resource_ms7d5"), SubResource("Resource_qf5o5"), SubResource("Resource_b1wue"), SubResource("Resource_ihlw7")])
+tm_moves = Array[ExtResource("2_du06x")]([ExtResource("18_5dmi5"), ExtResource("19_rp0kg"), ExtResource("20_a1kof"), ExtResource("21_7cbar"), ExtResource("9_kxlyo"), ExtResource("22_g1kyu"), ExtResource("23_o2amv"), ExtResource("24_opylg"), ExtResource("25_aje7s"), ExtResource("8_7exlk"), ExtResource("26_cauws"), ExtResource("27_omtu6"), ExtResource("28_a4ext"), ExtResource("29_ms7d5"), ExtResource("30_qf5o5"), ExtResource("31_b1wue"), ExtResource("32_ihlw7"), ExtResource("33_vyh7p")])
+abilities = Array[ExtResource("1_7cbar")]([ExtResource("2_g1kyu"), ExtResource("3_o2amv")])
 temperament = ExtResource("16_54euq")
 genus = "Pokémon Carbón"
 pokedex_entry = "Torkoal va cavando por las montañas en busca de carbón. Cuando lo encuentra, rellena los huecos que tiene dentro del caparazón y lo quema. Si le atacan, este Pokémon echa un humo negro que le permite la retirada."

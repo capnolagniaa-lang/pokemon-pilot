@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_c8nf3"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_ijxm2"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_jswl2"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_uldsq"]
 [ext_resource type="Resource" path="res://data/moves/mordisco.tres" id="2_uqx75"]
+[ext_resource type="Resource" path="res://data/abilities/agallas.tres" id="2_xk8ib"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_os0mc"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="3_v25uy"]
 [ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="4_jswl2"]
@@ -18,56 +20,73 @@
 [ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="10_7a4po"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="11_f24mo"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="14_v25uy"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="16_oj6mj"]
+[ext_resource type="Resource" path="res://data/moves/demolicion.tres" id="17_yinxx"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="18_ijxm2"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="19_xk8ib"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="20_yopur"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="21_px8pr"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="22_40m13"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="23_tc2d6"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="24_12407"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="25_yq27s"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="26_oh4cp"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="27_jvbuf"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="28_7q5l2"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="29_qkwat"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="30_t52lq"]
+[ext_resource type="Resource" path="res://data/moves/tormento.tres" id="31_yk5h6"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="32_peo4x"]
 
 [sub_resource type="Resource" id="Resource_jswl2"]
 script = ExtResource("1_jswl2")
 to_id = "pupitar"
 level = 30
 
-[sub_resource type="Resource" id="Resource_1u2ms"]
+[sub_resource type="Resource" id="Resource_ijxm2"]
 script = ExtResource("1_c8nf3")
 move = ExtResource("2_uqx75")
 
-[sub_resource type="Resource" id="Resource_3irpi"]
+[sub_resource type="Resource" id="Resource_xk8ib"]
 script = ExtResource("1_c8nf3")
 move = ExtResource("3_v25uy")
 
-[sub_resource type="Resource" id="Resource_yn0iu"]
+[sub_resource type="Resource" id="Resource_yopur"]
 script = ExtResource("1_c8nf3")
 level = 8
 move = ExtResource("4_jswl2")
 
-[sub_resource type="Resource" id="Resource_vkeo4"]
+[sub_resource type="Resource" id="Resource_px8pr"]
 script = ExtResource("1_c8nf3")
 level = 15
 move = ExtResource("5_1u2ms")
 
-[sub_resource type="Resource" id="Resource_vfoia"]
+[sub_resource type="Resource" id="Resource_40m13"]
 script = ExtResource("1_c8nf3")
 level = 22
 move = ExtResource("6_3irpi")
 
-[sub_resource type="Resource" id="Resource_7a4po"]
+[sub_resource type="Resource" id="Resource_tc2d6"]
 script = ExtResource("1_c8nf3")
 level = 29
 move = ExtResource("7_yn0iu")
 
-[sub_resource type="Resource" id="Resource_f24mo"]
+[sub_resource type="Resource" id="Resource_12407"]
 script = ExtResource("1_c8nf3")
 level = 36
 move = ExtResource("8_vkeo4")
 
-[sub_resource type="Resource" id="Resource_364ri"]
+[sub_resource type="Resource" id="Resource_yq27s"]
 script = ExtResource("1_c8nf3")
 level = 43
 move = ExtResource("9_vfoia")
 
-[sub_resource type="Resource" id="Resource_ebira"]
+[sub_resource type="Resource" id="Resource_oh4cp"]
 script = ExtResource("1_c8nf3")
 level = 50
 move = ExtResource("10_7a4po")
 
-[sub_resource type="Resource" id="Resource_jn2vn"]
+[sub_resource type="Resource" id="Resource_jvbuf"]
 script = ExtResource("1_c8nf3")
 level = 57
 move = ExtResource("11_f24mo")
@@ -78,7 +97,9 @@ id = "larvitar"
 display_name = "Larvitar"
 dex = 246
 types = Array[ExtResource("4_q55br")]([ExtResource("5_mc2gt"), ExtResource("6_h77rg")])
-learnset = Array[ExtResource("1_c8nf3")]([SubResource("Resource_1u2ms"), SubResource("Resource_3irpi"), SubResource("Resource_yn0iu"), SubResource("Resource_vkeo4"), SubResource("Resource_vfoia"), SubResource("Resource_7a4po"), SubResource("Resource_f24mo"), SubResource("Resource_364ri"), SubResource("Resource_ebira"), SubResource("Resource_jn2vn")])
+learnset = Array[ExtResource("1_c8nf3")]([SubResource("Resource_ijxm2"), SubResource("Resource_xk8ib"), SubResource("Resource_yopur"), SubResource("Resource_px8pr"), SubResource("Resource_40m13"), SubResource("Resource_tc2d6"), SubResource("Resource_12407"), SubResource("Resource_yq27s"), SubResource("Resource_oh4cp"), SubResource("Resource_jvbuf")])
+tm_moves = Array[ExtResource("2_uldsq")]([ExtResource("16_oj6mj"), ExtResource("17_yinxx"), ExtResource("18_ijxm2"), ExtResource("19_xk8ib"), ExtResource("10_7a4po"), ExtResource("20_yopur"), ExtResource("21_px8pr"), ExtResource("22_40m13"), ExtResource("11_f24mo"), ExtResource("23_tc2d6"), ExtResource("24_12407"), ExtResource("25_yq27s"), ExtResource("26_oh4cp"), ExtResource("27_jvbuf"), ExtResource("4_jswl2"), ExtResource("28_7q5l2"), ExtResource("29_qkwat"), ExtResource("30_t52lq"), ExtResource("31_yk5h6"), ExtResource("32_peo4x")])
+abilities = Array[ExtResource("1_ijxm2")]([ExtResource("2_xk8ib")])
 evolutions = Array[ExtResource("1_jswl2")]([SubResource("Resource_jswl2")])
 temperament = ExtResource("14_v25uy")
 genus = "Pokémon Piel Roca"

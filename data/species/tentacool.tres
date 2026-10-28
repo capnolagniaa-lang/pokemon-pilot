@@ -1,68 +1,93 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/tentacool/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_j2cjp"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_m1p8o"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_t8i0d"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0yopg"]
+[ext_resource type="Resource" path="res://data/abilities/cuerpo_puro.tres" id="2_5spuy"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_0opyn"]
+[ext_resource type="Resource" path="res://data/abilities/lodo_liquido.tres" id="3_wk65i"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_5vsut"]
-[ext_resource type="Resource" path="res://data/kits/tentacool/picotazo_veneno_tentacool.tres" id="4_6wqm8"]
-[ext_resource type="Resource" path="res://data/kits/tentacool/restriccion_tentacool.tres" id="5_5xa7g"]
 [ext_resource type="Resource" path="res://data/types/agua.tres" id="5_6pkhc"]
-[ext_resource type="Resource" path="res://data/kits/tentacool/acido_tentacool.tres" id="6_gq3h3"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_hebsy"]
-[ext_resource type="Resource" path="res://data/kits/tentacool/rayo_burbuja_tentacool.tres" id="7_v56k7"]
+[ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="6_t8i0d"]
 [ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="8_2vwjt"]
+[ext_resource type="Resource" path="res://data/moves/restriccion.tres" id="8_5spuy"]
 [ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="9_8qu4y"]
+[ext_resource type="Resource" path="res://data/moves/acido.tres" id="9_wk65i"]
+[ext_resource type="Resource" path="res://data/moves/rayo_burbuja.tres" id="10_0da7u"]
 [ext_resource type="Resource" path="res://data/moves/barrera.tres" id="10_yf5fu"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="11_jself"]
 [ext_resource type="Resource" path="res://data/moves/hidrobomba.tres" id="12_yekoe"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="13_v56k7"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="16_wsneq"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="17_5h6bf"]
+[ext_resource type="Resource" path="res://data/moves/corte.tres" id="18_t8i0d"]
+[ext_resource type="Resource" path="res://data/moves/buceo.tres" id="19_5spuy"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="20_wk65i"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="21_0da7u"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="22_hp3ps"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="23_yqv07"]
+[ext_resource type="Resource" path="res://data/moves/granizo.tres" id="24_6xuyc"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="25_38wcw"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="26_2xb5l"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="27_1s0v8"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="28_ylqga"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="29_lqq60"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="30_6q70j"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="31_ahvjw"]
+[ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="32_5b17c"]
+[ext_resource type="Resource" path="res://data/moves/surf.tres" id="33_4i77a"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="34_o8fsb"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="35_iredm"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="36_ofhf5"]
+[ext_resource type="Resource" path="res://data/moves/cascada.tres" id="37_x62ti"]
 
 [sub_resource type="Resource" id="Resource_roddf"]
 script = ExtResource("1_m1p8o")
 to_id = "tentacruel"
 level = 30
 
-[sub_resource type="Resource" id="Resource_2vwjt"]
+[sub_resource type="Resource" id="Resource_hp3ps"]
 script = ExtResource("1_j2cjp")
-move = ExtResource("4_6wqm8")
+move = ExtResource("6_t8i0d")
 
-[sub_resource type="Resource" id="Resource_8qu4y"]
-script = ExtResource("1_j2cjp")
-move = ExtResource("5_5xa7g")
-
-[sub_resource type="Resource" id="Resource_yf5fu"]
-script = ExtResource("1_j2cjp")
-level = 3
-move = ExtResource("6_gq3h3")
-
-[sub_resource type="Resource" id="Resource_jself"]
-script = ExtResource("1_j2cjp")
-level = 5
-move = ExtResource("7_v56k7")
-
-[sub_resource type="Resource" id="Resource_yekoe"]
+[sub_resource type="Resource" id="Resource_yqv07"]
 script = ExtResource("1_j2cjp")
 level = 6
 move = ExtResource("8_2vwjt")
 
-[sub_resource type="Resource" id="Resource_ioths"]
+[sub_resource type="Resource" id="Resource_6xuyc"]
+script = ExtResource("1_j2cjp")
+level = 12
+move = ExtResource("8_5spuy")
+
+[sub_resource type="Resource" id="Resource_38wcw"]
+script = ExtResource("1_j2cjp")
+level = 19
+move = ExtResource("9_wk65i")
+
+[sub_resource type="Resource" id="Resource_2xb5l"]
+script = ExtResource("1_j2cjp")
+level = 25
+move = ExtResource("10_0da7u")
+
+[sub_resource type="Resource" id="Resource_1s0v8"]
 script = ExtResource("1_j2cjp")
 level = 30
 move = ExtResource("9_8qu4y")
 
-[sub_resource type="Resource" id="Resource_dv8ij"]
+[sub_resource type="Resource" id="Resource_ylqga"]
 script = ExtResource("1_j2cjp")
 level = 36
 move = ExtResource("10_yf5fu")
 
-[sub_resource type="Resource" id="Resource_6sav3"]
+[sub_resource type="Resource" id="Resource_lqq60"]
 script = ExtResource("1_j2cjp")
 level = 43
 move = ExtResource("11_jself")
 
-[sub_resource type="Resource" id="Resource_jwiur"]
+[sub_resource type="Resource" id="Resource_6q70j"]
 script = ExtResource("1_j2cjp")
 level = 49
 move = ExtResource("12_yekoe")
@@ -73,8 +98,9 @@ id = "tentacool"
 display_name = "Tentacool"
 dex = 72
 types = Array[ExtResource("4_5vsut")]([ExtResource("5_6pkhc"), ExtResource("6_hebsy")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_2vwjt"), SubResource("Resource_8qu4y"), SubResource("Resource_yf5fu"), SubResource("Resource_jself"), SubResource("Resource_yekoe"), SubResource("Resource_ioths"), SubResource("Resource_dv8ij"), SubResource("Resource_6sav3"), SubResource("Resource_jwiur")])
+learnset = Array[ExtResource("1_j2cjp")]([SubResource("Resource_hp3ps"), SubResource("Resource_yqv07"), SubResource("Resource_6xuyc"), SubResource("Resource_38wcw"), SubResource("Resource_2xb5l"), SubResource("Resource_1s0v8"), SubResource("Resource_ylqga"), SubResource("Resource_lqq60"), SubResource("Resource_6q70j")])
+tm_moves = Array[ExtResource("2_0yopg")]([ExtResource("16_wsneq"), ExtResource("17_5h6bf"), ExtResource("18_t8i0d"), ExtResource("19_5spuy"), ExtResource("20_wk65i"), ExtResource("21_0da7u"), ExtResource("22_hp3ps"), ExtResource("23_yqv07"), ExtResource("24_6xuyc"), ExtResource("25_38wcw"), ExtResource("26_2xb5l"), ExtResource("27_1s0v8"), ExtResource("28_ylqga"), ExtResource("29_lqq60"), ExtResource("30_6q70j"), ExtResource("31_ahvjw"), ExtResource("32_5b17c"), ExtResource("33_4i77a"), ExtResource("34_o8fsb"), ExtResource("35_iredm"), ExtResource("36_ofhf5"), ExtResource("37_x62ti")])
+abilities = Array[ExtResource("1_t8i0d")]([ExtResource("2_5spuy"), ExtResource("3_wk65i")])
 evolutions = Array[ExtResource("1_m1p8o")]([SubResource("Resource_roddf")])
 temperament = ExtResource("13_v56k7")
 genus = "Pokémon Medusa"

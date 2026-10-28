@@ -1,9 +1,12 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_552xg"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ofcdc"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_xv3gw"]
+[ext_resource type="Resource" path="res://data/abilities/corte_fuerte.tres" id="2_8ui5l"]
 [ext_resource type="Resource" path="res://data/moves/picotazo_veneno.tres" id="2_mhaie"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pwc0r"]
+[ext_resource type="Resource" path="res://data/abilities/velo_arena.tres" id="3_be8fj"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_pxdc2"]
 [ext_resource type="Resource" path="res://data/moves/ataque_arena.tres" id="3_y4a5n"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_huhtc"]
@@ -16,42 +19,66 @@
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_1lprn"]
 [ext_resource type="Resource" path="res://data/moves/guillotina.tres" id="9_ij1lb"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="12_y4a5n"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="14_t0xxp"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="15_gaxm6"]
+[ext_resource type="Resource" path="res://data/moves/corte.tres" id="16_wxt5i"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="17_552xg"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="18_8ui5l"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="19_be8fj"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="20_0beu1"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="21_waaq0"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="22_aao0g"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="23_kd6xj"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="24_dcorh"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="25_po6gi"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="26_h1140"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="27_qtlyv"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="28_x3l5n"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="29_yd70h"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="30_gnntb"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="31_lnghf"]
+[ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="32_pdhvw"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="33_kv2fy"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="34_fbv8y"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="35_oune7"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="36_fb254"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="37_amkd5"]
 
-[sub_resource type="Resource" id="Resource_xv3gw"]
+[sub_resource type="Resource" id="Resource_552xg"]
 script = ExtResource("1_ofcdc")
 move = ExtResource("2_mhaie")
 
-[sub_resource type="Resource" id="Resource_i0jtd"]
+[sub_resource type="Resource" id="Resource_8ui5l"]
 script = ExtResource("1_ofcdc")
 level = 6
 move = ExtResource("3_y4a5n")
 
-[sub_resource type="Resource" id="Resource_w5em7"]
+[sub_resource type="Resource" id="Resource_be8fj"]
 script = ExtResource("1_ofcdc")
 level = 13
 move = ExtResource("4_xv3gw")
 
-[sub_resource type="Resource" id="Resource_pld7g"]
+[sub_resource type="Resource" id="Resource_0beu1"]
 script = ExtResource("1_ofcdc")
 level = 20
 move = ExtResource("5_i0jtd")
 
-[sub_resource type="Resource" id="Resource_1lprn"]
+[sub_resource type="Resource" id="Resource_waaq0"]
 script = ExtResource("1_ofcdc")
 level = 28
 move = ExtResource("6_w5em7")
 
-[sub_resource type="Resource" id="Resource_ij1lb"]
+[sub_resource type="Resource" id="Resource_aao0g"]
 script = ExtResource("1_ofcdc")
 level = 36
 move = ExtResource("7_pld7g")
 
-[sub_resource type="Resource" id="Resource_ayl5a"]
+[sub_resource type="Resource" id="Resource_kd6xj"]
 script = ExtResource("1_ofcdc")
 level = 44
 move = ExtResource("8_1lprn")
 
-[sub_resource type="Resource" id="Resource_q4uws"]
+[sub_resource type="Resource" id="Resource_dcorh"]
 script = ExtResource("1_ofcdc")
 level = 52
 move = ExtResource("9_ij1lb")
@@ -62,7 +89,9 @@ id = "gligar"
 display_name = "Gligar"
 dex = 207
 types = Array[ExtResource("4_huhtc")]([ExtResource("5_4s7ec"), ExtResource("6_uq5tj")])
-learnset = Array[ExtResource("1_ofcdc")]([SubResource("Resource_xv3gw"), SubResource("Resource_i0jtd"), SubResource("Resource_w5em7"), SubResource("Resource_pld7g"), SubResource("Resource_1lprn"), SubResource("Resource_ij1lb"), SubResource("Resource_ayl5a"), SubResource("Resource_q4uws")])
+learnset = Array[ExtResource("1_ofcdc")]([SubResource("Resource_552xg"), SubResource("Resource_8ui5l"), SubResource("Resource_be8fj"), SubResource("Resource_0beu1"), SubResource("Resource_waaq0"), SubResource("Resource_aao0g"), SubResource("Resource_kd6xj"), SubResource("Resource_dcorh")])
+tm_moves = Array[ExtResource("2_pwc0r")]([ExtResource("14_t0xxp"), ExtResource("15_gaxm6"), ExtResource("16_wxt5i"), ExtResource("17_552xg"), ExtResource("18_8ui5l"), ExtResource("19_be8fj"), ExtResource("20_0beu1"), ExtResource("21_waaq0"), ExtResource("22_aao0g"), ExtResource("23_kd6xj"), ExtResource("24_dcorh"), ExtResource("25_po6gi"), ExtResource("26_h1140"), ExtResource("27_qtlyv"), ExtResource("28_x3l5n"), ExtResource("29_yd70h"), ExtResource("30_gnntb"), ExtResource("31_lnghf"), ExtResource("32_pdhvw"), ExtResource("33_kv2fy"), ExtResource("34_fbv8y"), ExtResource("35_oune7"), ExtResource("36_fb254"), ExtResource("37_amkd5")])
+abilities = Array[ExtResource("1_552xg")]([ExtResource("2_8ui5l"), ExtResource("3_be8fj")])
 temperament = ExtResource("12_y4a5n")
 genus = "Pokémon Escorpiala"
 pokedex_entry = "Gligar planea por el aire sin hacer ningún ruido, como si fuera patinando. Este Pokémon se agarra a la cara de su rival con las patas traseras, con forma de garra, y las pinzas de las delanteras y le inyecta veneno por el aguijón."

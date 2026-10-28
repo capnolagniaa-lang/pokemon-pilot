@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ciyes"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_h74n1"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_jkw7p"]
 [ext_resource type="Resource" path="res://data/moves/derribo.tres" id="2_mnwxk"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_pu5e2"]
+[ext_resource type="Resource" path="res://data/abilities/cuerpo_puro.tres" id="2_sc3ny"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_mnwxk"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_jkw7p"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="5_mnwxk"]
@@ -15,7 +17,7 @@ script = ExtResource("1_jkw7p")
 to_id = "metang"
 level = 20
 
-[sub_resource type="Resource" id="Resource_xe1rs"]
+[sub_resource type="Resource" id="Resource_h74n1"]
 script = ExtResource("1_ciyes")
 move = ExtResource("2_mnwxk")
 
@@ -25,7 +27,8 @@ id = "beldum"
 display_name = "Beldum"
 dex = 374
 types = Array[ExtResource("4_jkw7p")]([ExtResource("5_xe1rs"), ExtResource("6_h74n1")])
-learnset = Array[ExtResource("1_ciyes")]([SubResource("Resource_xe1rs")])
+learnset = Array[ExtResource("1_ciyes")]([SubResource("Resource_h74n1")])
+abilities = Array[ExtResource("1_h74n1")]([ExtResource("2_sc3ny")])
 evolutions = Array[ExtResource("1_jkw7p")]([SubResource("Resource_jkw7p")])
 temperament = ExtResource("5_mnwxk")
 genus = "Pokémon Bola Hierro"

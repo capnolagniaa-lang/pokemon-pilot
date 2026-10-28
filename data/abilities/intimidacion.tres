@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_ngwuq"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_par1a"]
+
+[resource]
+script = ExtResource("2_par1a")
+id = "intimidacion"
+display_name = "Intimidación"
+description = "Al encarar a un rival lo deja Intimidado (pega menos)."
+color = Color(1, 0.5, 0.25, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_ngwuq")
+params = {
+"intimidate": "intimidado"
+}

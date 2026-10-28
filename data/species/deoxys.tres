@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_3aver"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_koxx7"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_ltfal"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_5san0"]
+[ext_resource type="Resource" path="res://data/abilities/presion.tres" id="2_gq7ox"]
 [ext_resource type="Resource" path="res://data/moves/malicioso.tres" id="2_jwoby"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_fhq8l"]
 [ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="3_gh7ai"]
@@ -19,61 +21,94 @@
 [ext_resource type="Resource" path="res://data/moves/psicoataque.tres" id="12_m4rpy"]
 [ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="13_1ehe4"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="16_gh7ai"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="18_6ksmh"]
+[ext_resource type="Resource" path="res://data/moves/demolicion.tres" id="19_tujkv"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="20_3aver"]
+[ext_resource type="Resource" path="res://data/moves/corte.tres" id="21_gq7ox"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="22_1puh8"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="23_1j74m"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="24_qillv"]
+[ext_resource type="Resource" path="res://data/moves/puno_certero.tres" id="25_dlvv1"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="26_juady"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="27_256qh"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="28_kycjb"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="29_a41t5"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="30_32abi"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="31_2pgt6"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="32_olp2d"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="33_odnjp"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="34_gq2qe"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="35_fs8vh"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="36_8ommy"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="37_qtgwp"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="38_3a8eq"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="39_5uysb"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="40_bdkce"]
+[ext_resource type="Resource" path="res://data/moves/intercambio.tres" id="41_m71lk"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="42_m3e1k"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="43_v28cv"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="44_muiqw"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="45_paux0"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="46_g5uq8"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="47_pkwtw"]
+[ext_resource type="Resource" path="res://data/moves/tormento.tres" id="48_pryx3"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="49_tdo1q"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="50_37h2l"]
 
-[sub_resource type="Resource" id="Resource_koxx7"]
+[sub_resource type="Resource" id="Resource_3aver"]
 script = ExtResource("1_ltfal")
 move = ExtResource("2_jwoby")
 
-[sub_resource type="Resource" id="Resource_8jot4"]
+[sub_resource type="Resource" id="Resource_gq7ox"]
 script = ExtResource("1_ltfal")
 move = ExtResource("3_gh7ai")
 
-[sub_resource type="Resource" id="Resource_21si2"]
+[sub_resource type="Resource" id="Resource_1puh8"]
 script = ExtResource("1_ltfal")
 level = 5
 move = ExtResource("4_koxx7")
 
-[sub_resource type="Resource" id="Resource_x8q58"]
+[sub_resource type="Resource" id="Resource_1j74m"]
 script = ExtResource("1_ltfal")
 level = 10
 move = ExtResource("5_8jot4")
 
-[sub_resource type="Resource" id="Resource_qgsux"]
+[sub_resource type="Resource" id="Resource_qillv"]
 script = ExtResource("1_ltfal")
 level = 15
 move = ExtResource("6_21si2")
 
-[sub_resource type="Resource" id="Resource_klcky"]
+[sub_resource type="Resource" id="Resource_dlvv1"]
 script = ExtResource("1_ltfal")
 level = 20
 move = ExtResource("7_x8q58")
 
-[sub_resource type="Resource" id="Resource_gdod2"]
+[sub_resource type="Resource" id="Resource_juady"]
 script = ExtResource("1_ltfal")
 level = 25
 move = ExtResource("8_qgsux")
 
-[sub_resource type="Resource" id="Resource_r5wds"]
+[sub_resource type="Resource" id="Resource_256qh"]
 script = ExtResource("1_ltfal")
 level = 30
 move = ExtResource("9_klcky")
 
-[sub_resource type="Resource" id="Resource_m4rpy"]
+[sub_resource type="Resource" id="Resource_kycjb"]
 script = ExtResource("1_ltfal")
 level = 35
 move = ExtResource("10_gdod2")
 
-[sub_resource type="Resource" id="Resource_1ehe4"]
+[sub_resource type="Resource" id="Resource_a41t5"]
 script = ExtResource("1_ltfal")
 level = 40
 move = ExtResource("11_r5wds")
 
-[sub_resource type="Resource" id="Resource_aekjq"]
+[sub_resource type="Resource" id="Resource_32abi"]
 script = ExtResource("1_ltfal")
 level = 45
 move = ExtResource("12_m4rpy")
 
-[sub_resource type="Resource" id="Resource_n7vs7"]
+[sub_resource type="Resource" id="Resource_2pgt6"]
 script = ExtResource("1_ltfal")
 level = 50
 move = ExtResource("13_1ehe4")
@@ -84,7 +119,9 @@ id = "deoxys"
 display_name = "Deoxys"
 dex = 386
 types = Array[ExtResource("4_yrgcn")]([ExtResource("5_317mk")])
-learnset = Array[ExtResource("1_ltfal")]([SubResource("Resource_koxx7"), SubResource("Resource_8jot4"), SubResource("Resource_21si2"), SubResource("Resource_x8q58"), SubResource("Resource_qgsux"), SubResource("Resource_klcky"), SubResource("Resource_gdod2"), SubResource("Resource_r5wds"), SubResource("Resource_m4rpy"), SubResource("Resource_1ehe4"), SubResource("Resource_aekjq"), SubResource("Resource_n7vs7")])
+learnset = Array[ExtResource("1_ltfal")]([SubResource("Resource_3aver"), SubResource("Resource_gq7ox"), SubResource("Resource_1puh8"), SubResource("Resource_1j74m"), SubResource("Resource_qillv"), SubResource("Resource_dlvv1"), SubResource("Resource_juady"), SubResource("Resource_256qh"), SubResource("Resource_kycjb"), SubResource("Resource_a41t5"), SubResource("Resource_32abi"), SubResource("Resource_2pgt6")])
+tm_moves = Array[ExtResource("2_5san0")]([ExtResource("18_6ksmh"), ExtResource("19_tujkv"), ExtResource("20_3aver"), ExtResource("21_gq7ox"), ExtResource("22_1puh8"), ExtResource("23_1j74m"), ExtResource("24_qillv"), ExtResource("25_dlvv1"), ExtResource("26_juady"), ExtResource("27_256qh"), ExtResource("13_1ehe4"), ExtResource("28_kycjb"), ExtResource("29_a41t5"), ExtResource("30_32abi"), ExtResource("8_qgsux"), ExtResource("31_2pgt6"), ExtResource("32_olp2d"), ExtResource("33_odnjp"), ExtResource("34_gq2qe"), ExtResource("35_fs8vh"), ExtResource("36_8ommy"), ExtResource("37_qtgwp"), ExtResource("38_3a8eq"), ExtResource("39_5uysb"), ExtResource("40_bdkce"), ExtResource("41_m71lk"), ExtResource("9_klcky"), ExtResource("42_m3e1k"), ExtResource("43_v28cv"), ExtResource("44_muiqw"), ExtResource("45_paux0"), ExtResource("46_g5uq8"), ExtResource("47_pkwtw"), ExtResource("48_pryx3"), ExtResource("49_tdo1q"), ExtResource("50_37h2l")])
+abilities = Array[ExtResource("1_3aver")]([ExtResource("2_gq7ox")])
 temperament = ExtResource("16_gh7ai")
 genus = "Pokémon ADN"
 pokedex_entry = "Tras estar expuesto a un rayo láser, el ADN de un virus espacial sufrió una mutación y dio origen a Deoxys. Según parece, el órgano cristalino que este Pokémon tiene en el torso es el cerebro."

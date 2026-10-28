@@ -88,8 +88,11 @@ func _draw_party(c: Creature, in_battle: bool) -> void:
 	draw_string(font, Vector2(x, r.position.y + 26), "%s  Nv. %d" % [inst.species.display_name, inst.level], HORIZONTAL_ALIGNMENT_LEFT, -1, 18)
 	var t := inst.species.primary_type()
 	var tag := t.display_name.to_upper()
-	if inst.species.kit != null:
-		tag = "%s · %s" % [ARCHETYPES.get(inst.species.kit.archetype, inst.species.kit.archetype), tag]
+	var ab := inst.ability_data()
+	if inst.boss and inst.species.boss_kit != null and inst.species.boss_kit.signature != null:
+		tag = "JEFE · %s · %s" % [inst.species.boss_kit.signature.display_name.to_upper(), tag]
+	elif ab != null:
+		tag = "%s · %s" % [ab.display_name.to_upper(), tag]
 	draw_string(font, Vector2(x, r.position.y + 26), tag, HORIZONTAL_ALIGNMENT_RIGHT, r.size.x - 84, 12, t.color.lightened(0.2))
 	var ratio := clampf(inst.hp / inst.max_hp(), 0.0, 1.0)
 	_bar(Rect2(x, r.position.y + 34, 290, 12), ratio, _hp_color(ratio))

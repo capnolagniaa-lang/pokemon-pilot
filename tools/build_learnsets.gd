@@ -43,7 +43,8 @@ func _init() -> void:
 			continue
 		var path := "res://data/species/" + f
 		var sp: SpeciesData = load(path)
-		if not EXTRAS.has(sp.id) and sp.kit == null:
+		sp.tm_moves = _tms(sp, data["species"].get(sp.id, {}).get("mt", []))
+		if sp.kit == null:  # (desde las habilidades, 2026-10-28: todas sin kit → el learnset oficial de FRLG)
 			_official(sp, path, data["species"].get(sp.id, {}).get("learnset", []))
 			continue
 		var entries: Array[LearnsetEntry] = []
@@ -84,6 +85,23 @@ func _official(sp: SpeciesData, path: String, rows: Array) -> void:
 	sp.learnset = entries
 	if ResourceSaver.save(sp, path) != OK:
 		print("%s: ERROR al guardar" % sp.id)
+
+
+## Sus MT/MO de FRLG (official.json "mt"). Si el kit tiene un ataque con el mismo nombre, va el del kit.
+func _tms(sp: SpeciesData, ids: Array) -> Array[MoveData]:
+	var by_name := {}
+	if sp.kit != null:
+		for km in sp.kit.moves:
+			by_name[km.display_name] = km
+	var out: Array[MoveData] = []
+	for id in ids:
+		if not ResourceLoader.exists("res://data/moves/%s.tres" % id):
+			continue
+		var m: MoveData = load("res://data/moves/%s.tres" % id)
+		m = by_name.get(m.display_name, m)
+		if not out.has(m):
+			out.append(m)
+	return out
 
 
 func _entry(level: int, m: MoveData) -> LearnsetEntry:

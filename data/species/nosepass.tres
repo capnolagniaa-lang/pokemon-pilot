@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_1djnp"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_hnycp"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_v5m0l"]
+[ext_resource type="Resource" path="res://data/abilities/robustez.tres" id="2_74aqv"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ax5vx"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_ichiq"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="3_hrwu8"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jy2kh"]
+[ext_resource type="Resource" path="res://data/abilities/iman.tres" id="3_yjn0e"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_0bh25"]
 [ext_resource type="Resource" path="res://data/moves/lanzarrocas.tres" id="4_1djnp"]
 [ext_resource type="Resource" path="res://data/moves/bloqueo.tres" id="5_p10ua"]
@@ -17,52 +20,71 @@
 [ext_resource type="Resource" path="res://data/moves/electrocanon.tres" id="10_2frlm"]
 [ext_resource type="Resource" path="res://data/moves/fijar_blanco.tres" id="11_tjhc0"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_hrwu8"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="16_umkkf"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="17_xmchy"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="18_rjw7k"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="19_v5m0l"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="20_74aqv"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="21_yjn0e"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="22_e0wlu"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="23_8tqte"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="24_garuu"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="25_xxwny"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="26_thdka"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="27_i3htg"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="28_gc8f7"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="29_w8ckv"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="30_ei3h7"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="31_hegyj"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="32_nl7j4"]
+[ext_resource type="Resource" path="res://data/moves/tormento.tres" id="33_elwju"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="34_il78a"]
 
-[sub_resource type="Resource" id="Resource_1djnp"]
+[sub_resource type="Resource" id="Resource_v5m0l"]
 script = ExtResource("1_hnycp")
 move = ExtResource("2_ichiq")
 
-[sub_resource type="Resource" id="Resource_p10ua"]
+[sub_resource type="Resource" id="Resource_74aqv"]
 script = ExtResource("1_hnycp")
 level = 7
 move = ExtResource("3_hrwu8")
 
-[sub_resource type="Resource" id="Resource_lwso1"]
+[sub_resource type="Resource" id="Resource_yjn0e"]
 script = ExtResource("1_hnycp")
 level = 13
 move = ExtResource("4_1djnp")
 
-[sub_resource type="Resource" id="Resource_6q18d"]
+[sub_resource type="Resource" id="Resource_e0wlu"]
 script = ExtResource("1_hnycp")
 level = 16
 move = ExtResource("5_p10ua")
 
-[sub_resource type="Resource" id="Resource_k0olg"]
+[sub_resource type="Resource" id="Resource_8tqte"]
 script = ExtResource("1_hnycp")
 level = 22
 move = ExtResource("6_lwso1")
 
-[sub_resource type="Resource" id="Resource_xal6w"]
+[sub_resource type="Resource" id="Resource_garuu"]
 script = ExtResource("1_hnycp")
 level = 28
 move = ExtResource("7_6q18d")
 
-[sub_resource type="Resource" id="Resource_2frlm"]
+[sub_resource type="Resource" id="Resource_xxwny"]
 script = ExtResource("1_hnycp")
 level = 31
 move = ExtResource("8_k0olg")
 
-[sub_resource type="Resource" id="Resource_tjhc0"]
+[sub_resource type="Resource" id="Resource_thdka"]
 script = ExtResource("1_hnycp")
 level = 37
 move = ExtResource("9_xal6w")
 
-[sub_resource type="Resource" id="Resource_vqq25"]
+[sub_resource type="Resource" id="Resource_i3htg"]
 script = ExtResource("1_hnycp")
 level = 43
 move = ExtResource("10_2frlm")
 
-[sub_resource type="Resource" id="Resource_dlakl"]
+[sub_resource type="Resource" id="Resource_gc8f7"]
 script = ExtResource("1_hnycp")
 level = 46
 move = ExtResource("11_tjhc0")
@@ -73,7 +95,9 @@ id = "nosepass"
 display_name = "Nosepass"
 dex = 299
 types = Array[ExtResource("4_0bh25")]([ExtResource("5_pborl")])
-learnset = Array[ExtResource("1_hnycp")]([SubResource("Resource_1djnp"), SubResource("Resource_p10ua"), SubResource("Resource_lwso1"), SubResource("Resource_6q18d"), SubResource("Resource_k0olg"), SubResource("Resource_xal6w"), SubResource("Resource_2frlm"), SubResource("Resource_tjhc0"), SubResource("Resource_vqq25"), SubResource("Resource_dlakl")])
+learnset = Array[ExtResource("1_hnycp")]([SubResource("Resource_v5m0l"), SubResource("Resource_74aqv"), SubResource("Resource_yjn0e"), SubResource("Resource_e0wlu"), SubResource("Resource_8tqte"), SubResource("Resource_garuu"), SubResource("Resource_xxwny"), SubResource("Resource_thdka"), SubResource("Resource_i3htg"), SubResource("Resource_gc8f7")])
+tm_moves = Array[ExtResource("2_ax5vx")]([ExtResource("16_umkkf"), ExtResource("17_xmchy"), ExtResource("18_rjw7k"), ExtResource("19_v5m0l"), ExtResource("20_74aqv"), ExtResource("21_yjn0e"), ExtResource("22_e0wlu"), ExtResource("9_xal6w"), ExtResource("23_8tqte"), ExtResource("24_garuu"), ExtResource("25_xxwny"), ExtResource("8_k0olg"), ExtResource("26_thdka"), ExtResource("27_i3htg"), ExtResource("28_gc8f7"), ExtResource("29_w8ckv"), ExtResource("30_ei3h7"), ExtResource("31_hegyj"), ExtResource("32_nl7j4"), ExtResource("33_elwju"), ExtResource("34_il78a")])
+abilities = Array[ExtResource("1_v5m0l")]([ExtResource("2_74aqv"), ExtResource("3_yjn0e")])
 temperament = ExtResource("14_hrwu8")
 genus = "Pokémon Brújula"
 pokedex_entry = "Nosepass siempre está con la nariz magnética que tiene orientada hacia el norte. Si se encuentra con otro ejemplar de su especie, no puede mirarle de frente porque sus polos magnéticos se repelen."

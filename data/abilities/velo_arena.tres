@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_pi5mv"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_k4rgf"]
+
+[resource]
+script = ExtResource("2_k4rgf")
+id = "velo_arena"
+display_name = "Velo Arena"
+description = "Un 12% de los golpes no le entran."
+color = Color(0.75, 0.65, 0.5, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_pi5mv")
+params = {
+"evasion": 0.12
+}

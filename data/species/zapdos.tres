@@ -1,65 +1,88 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/zapdos/kit.tres" id="0_kitv4"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_hq2ur"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_ixr46"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_xi7bd"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_6ikyi"]
 [ext_resource type="Resource" path="res://data/moves/picotazo.tres" id="2_6mhxu"]
+[ext_resource type="Resource" path="res://data/abilities/presion.tres" id="2_qah5e"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_nhs5k"]
-[ext_resource type="Resource" path="res://data/kits/zapdos/impactrueno_zapdos.tres" id="4_lgerr"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ysew7"]
-[ext_resource type="Resource" path="res://data/kits/zapdos/pico_taladro_zapdos.tres" id="5_5r41q"]
 [ext_resource type="Resource" path="res://data/moves/agilidad.tres" id="5_lgerr"]
 [ext_resource type="Resource" path="res://data/types/electrico.tres" id="5_tc5tf"]
 [ext_resource type="Resource" path="res://data/moves/deteccion.tres" id="6_5r41q"]
-[ext_resource type="Resource" path="res://data/kits/zapdos/onda_trueno_zapdos.tres" id="6_mmvmh"]
+[ext_resource type="Resource" path="res://data/moves/impactrueno.tres" id="6_hq2ur"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_qqbnt"]
-[ext_resource type="Resource" path="res://data/kits/zapdos/trueno_zapdos.tres" id="7_775tk"]
+[ext_resource type="Resource" path="res://data/moves/onda_trueno.tres" id="7_qah5e"]
 [ext_resource type="Resource" path="res://data/moves/carga.tres" id="8_775tk"]
 [ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="9_54kcl"]
+[ext_resource type="Resource" path="res://data/moves/pico_taladro.tres" id="10_iwyvh"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="13_8xmec"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_nejw6"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="16_bw2nn"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="17_hq2ur"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="18_qah5e"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="19_iwyvh"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="20_8xmec"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="21_e1fdk"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="22_mrda8"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="23_kgqg1"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="24_tvu30"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="25_0ojaj"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="26_0xlxu"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="27_gx761"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="28_fcg2i"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="29_q2bky"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="30_7hxi8"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="31_x57cb"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="32_p4lm8"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="33_pxydb"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="34_o05dl"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="35_ql8qx"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="36_x72vm"]
 
-[sub_resource type="Resource" id="Resource_lgerr"]
-script = ExtResource("1_xi7bd")
-move = ExtResource("4_lgerr")
-
-[sub_resource type="Resource" id="Resource_5r41q"]
-script = ExtResource("1_xi7bd")
-move = ExtResource("5_5r41q")
-
-[sub_resource type="Resource" id="Resource_mmvmh"]
-script = ExtResource("1_xi7bd")
-level = 3
-move = ExtResource("6_mmvmh")
-
-[sub_resource type="Resource" id="Resource_775tk"]
-script = ExtResource("1_xi7bd")
-level = 5
-move = ExtResource("7_775tk")
-
-[sub_resource type="Resource" id="Resource_54kcl"]
+[sub_resource type="Resource" id="Resource_e1fdk"]
 script = ExtResource("1_xi7bd")
 move = ExtResource("2_6mhxu")
 
-[sub_resource type="Resource" id="Resource_y0olp"]
+[sub_resource type="Resource" id="Resource_mrda8"]
+script = ExtResource("1_xi7bd")
+move = ExtResource("6_hq2ur")
+
+[sub_resource type="Resource" id="Resource_kgqg1"]
+script = ExtResource("1_xi7bd")
+level = 13
+move = ExtResource("7_qah5e")
+
+[sub_resource type="Resource" id="Resource_tvu30"]
 script = ExtResource("1_xi7bd")
 level = 25
 move = ExtResource("5_lgerr")
 
-[sub_resource type="Resource" id="Resource_vqcyi"]
+[sub_resource type="Resource" id="Resource_0ojaj"]
 script = ExtResource("1_xi7bd")
 level = 37
 move = ExtResource("6_5r41q")
 
-[sub_resource type="Resource" id="Resource_vfpqq"]
+[sub_resource type="Resource" id="Resource_0xlxu"]
+script = ExtResource("1_xi7bd")
+level = 49
+move = ExtResource("10_iwyvh")
+
+[sub_resource type="Resource" id="Resource_gx761"]
 script = ExtResource("1_xi7bd")
 level = 61
 move = ExtResource("8_775tk")
 
-[sub_resource type="Resource" id="Resource_wik1y"]
+[sub_resource type="Resource" id="Resource_fcg2i"]
 script = ExtResource("1_xi7bd")
 level = 73
 move = ExtResource("9_54kcl")
+
+[sub_resource type="Resource" id="Resource_q2bky"]
+script = ExtResource("1_xi7bd")
+level = 85
+move = ExtResource("13_8xmec")
 
 [resource]
 script = ExtResource("3_nhs5k")
@@ -67,8 +90,9 @@ id = "zapdos"
 display_name = "Zapdos"
 dex = 145
 types = Array[ExtResource("4_ysew7")]([ExtResource("5_tc5tf"), ExtResource("6_qqbnt")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_xi7bd")]([SubResource("Resource_lgerr"), SubResource("Resource_5r41q"), SubResource("Resource_mmvmh"), SubResource("Resource_775tk"), SubResource("Resource_54kcl"), SubResource("Resource_y0olp"), SubResource("Resource_vqcyi"), SubResource("Resource_vfpqq"), SubResource("Resource_wik1y")])
+learnset = Array[ExtResource("1_xi7bd")]([SubResource("Resource_e1fdk"), SubResource("Resource_mrda8"), SubResource("Resource_kgqg1"), SubResource("Resource_tvu30"), SubResource("Resource_0ojaj"), SubResource("Resource_0xlxu"), SubResource("Resource_gx761"), SubResource("Resource_fcg2i"), SubResource("Resource_q2bky")])
+tm_moves = Array[ExtResource("2_6ikyi")]([ExtResource("16_bw2nn"), ExtResource("17_hq2ur"), ExtResource("18_qah5e"), ExtResource("19_iwyvh"), ExtResource("20_8xmec"), ExtResource("21_e1fdk"), ExtResource("22_mrda8"), ExtResource("23_kgqg1"), ExtResource("9_54kcl"), ExtResource("24_tvu30"), ExtResource("25_0ojaj"), ExtResource("26_0xlxu"), ExtResource("27_gx761"), ExtResource("28_fcg2i"), ExtResource("29_q2bky"), ExtResource("30_7hxi8"), ExtResource("31_x57cb"), ExtResource("32_p4lm8"), ExtResource("33_pxydb"), ExtResource("34_o05dl"), ExtResource("13_8xmec"), ExtResource("35_ql8qx"), ExtResource("36_x72vm")])
+abilities = Array[ExtResource("1_hq2ur")]([ExtResource("2_qah5e")])
 temperament = ExtResource("13_nejw6")
 genus = "Pokémon Eléctrico"
 pokedex_entry = "Zapdos es un Pokémon pájaro legendario que tiene la habilidad de controlar la electricidad. Suele vivir en nubarrones. Este Pokémon gana mucha fuerza si le alcanzan los rayos."

@@ -14,13 +14,13 @@ func _species() -> Dictionary:
 		"lapras": "tanque", "lickitung": "tanque", "farfetchd": "asesino", "electabuzz": "bruiser", "krabby": "bruiser",
 		"dratini": "control", "aerodactyl": "asesino", "jynx": "control", "snorlax": "tanque", "articuno": "control",
 		"zapdos": "bruiser", "vaporeon": "tanque", "jolteon": "velocista", "flareon": "bruiser", "omanyte": "control",
-		"kabuto": "hostigador", "porygon": "control"}
+		"kabuto": "hostigador", "porygon": "control", "dragonite": "bruiser", "kingdra": "espaciador"}
 
 
 func _heirs() -> Dictionary:
 	return {"haunter": "gastly", "gengar": "gastly", "marowak": "cubone", "dodrio": "doduo", "rhydon": "rhyhorn",
 		"venomoth": "venonat", "exeggutor": "exeggcute", "kingler": "krabby", "dragonair": "dratini",
-		"dragonite": "dratini", "dugtrio": "diglett", "omastar": "omanyte", "kabutops": "kabuto", "alakazam": "kadabra"}
+		"dugtrio": "diglett", "omastar": "omanyte", "kabutops": "kabuto", "alakazam": "kadabra"}
 
 
 func _tag() -> String:

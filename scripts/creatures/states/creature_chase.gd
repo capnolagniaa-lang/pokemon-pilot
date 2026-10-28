@@ -40,8 +40,8 @@ func _gives_up(t: Creature) -> bool:
 
 
 func _preferred_range() -> float:
-	if actor.instance.species.kit != null:
-		return actor.instance.species.kit.preferred_range
+	if actor.instance.boss and actor.instance.species.boss_kit != null:
+		return actor.instance.species.boss_kit.preferred_range
 	var best := 30.0
 	for m in actor.moves.moves:
 		if m.kind == MoveData.Kind.PROJECTILE:

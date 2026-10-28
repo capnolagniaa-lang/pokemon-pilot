@@ -223,14 +223,15 @@ func _show_detail(sp: SpeciesData) -> void:
 	_detail.add_child(grid)
 
 
-## Estilo de pelea (se ve apenas lo viste): arquetipo, mecánica de firma y los 4 ataques del kit.
+## Habilidades (se ven apenas lo viste) y, si es jefe de un gimnasio, su kit de jefe.
 func _add_kit(sp: SpeciesData) -> void:
-	var kit := sp.kit
+	for ab in sp.abilities:
+		_detail.add_child(UiStyle.label("Habilidad: " + ab.display_name, 15, ab.color.lightened(0.2)))
+		_detail.add_child(_wrapped(ab.description, 13, UiStyle.TEXT_DIM))
+	var kit := sp.boss_kit
 	if kit == null:
-		_detail.add_child(UiStyle.label("Estilo de pelea: sin kit propio (pelea con sus movimientos de siempre).", 14, UiStyle.TEXT_DIM))
 		return
-	var arch: String = UiStyle.ARCHETYPES.get(kit.archetype, kit.archetype)
-	_detail.add_child(_wrapped("Estilo de pelea: %s — %s" % [arch, UiStyle.ARCHETYPE_INFO.get(kit.archetype, "")], 15, UiStyle.ACCENT))
+	_detail.add_child(_wrapped("Con un líder de gimnasio pelea como JEFE, con su kit propio:", 15, UiStyle.ACCENT))
 	if kit.signature != null:
 		_detail.add_child(UiStyle.label("Mecánica de firma: " + kit.signature.display_name, 15, kit.signature.color.lightened(0.2)))
 		_detail.add_child(_wrapped(kit.signature.description, 13, UiStyle.TEXT_DIM))

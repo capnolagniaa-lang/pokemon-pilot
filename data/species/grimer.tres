@@ -1,78 +1,98 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/grimer/kit.tres" id="0_kitv4"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_1acbx"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_6usfh"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_48jvc"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_0ecbs"]
+[ext_resource type="Resource" path="res://data/abilities/hedor.tres" id="2_2afqe"]
 [ext_resource type="Resource" path="res://data/moves/gas_venenoso.tres" id="2_6jnwg"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_7dyks"]
-[ext_resource type="Resource" path="res://data/kits/grimer/destructor_grimer.tres" id="4_45lut"]
+[ext_resource type="Resource" path="res://data/abilities/viscosidad.tres" id="3_a12oj"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="4_48jvc"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_rlhim"]
 [ext_resource type="Resource" path="res://data/moves/anulacion.tres" id="5_cykb4"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_toppp"]
-[ext_resource type="Resource" path="res://data/kits/grimer/residuos_grimer.tres" id="5_umjdq"]
-[ext_resource type="Resource" path="res://data/kits/grimer/armadura_acida_grimer.tres" id="6_gxbak"]
-[ext_resource type="Resource" path="res://data/kits/grimer/derretirse_grimer.tres" id="7_j42uk"]
+[ext_resource type="Resource" path="res://data/moves/destructor.tres" id="7_2nlyv"]
 [ext_resource type="Resource" path="res://data/moves/reduccion.tres" id="7_umjdq"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="8_gxbak"]
+[ext_resource type="Resource" path="res://data/moves/residuos.tres" id="10_1acbx"]
 [ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="10_fce0w"]
 [ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_dnab5"]
+[ext_resource type="Resource" path="res://data/moves/armadura_acida.tres" id="13_2afqe"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_2cshn"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="18_q6g3j"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="19_2nlyv"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="20_1acbx"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="21_2afqe"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="22_a12oj"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="23_s1wjn"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="24_7vttl"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="25_wrk6w"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="26_piih0"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="27_wmmv1"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="28_yamrj"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="29_cntcu"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="30_toykf"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="31_elphx"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="32_3kp6m"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="33_h7jbt"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="34_3uir7"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="35_0lrji"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="36_iuofn"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="37_ncy5d"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="38_6dd4f"]
+[ext_resource type="Resource" path="res://data/moves/tormento.tres" id="39_ql1ry"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="40_tur2y"]
 
 [sub_resource type="Resource" id="Resource_45lut"]
 script = ExtResource("1_48jvc")
 to_id = "muk"
 level = 38
 
-[sub_resource type="Resource" id="Resource_umjdq"]
-script = ExtResource("1_6usfh")
-move = ExtResource("4_45lut")
-
-[sub_resource type="Resource" id="Resource_gxbak"]
-script = ExtResource("1_6usfh")
-move = ExtResource("5_umjdq")
-
-[sub_resource type="Resource" id="Resource_j42uk"]
-script = ExtResource("1_6usfh")
-level = 3
-move = ExtResource("6_gxbak")
-
-[sub_resource type="Resource" id="Resource_fce0w"]
-script = ExtResource("1_6usfh")
-level = 5
-move = ExtResource("7_j42uk")
-
-[sub_resource type="Resource" id="Resource_dnab5"]
+[sub_resource type="Resource" id="Resource_a12oj"]
 script = ExtResource("1_6usfh")
 move = ExtResource("2_6jnwg")
 
-[sub_resource type="Resource" id="Resource_bkx25"]
+[sub_resource type="Resource" id="Resource_s1wjn"]
+script = ExtResource("1_6usfh")
+move = ExtResource("7_2nlyv")
+
+[sub_resource type="Resource" id="Resource_7vttl"]
 script = ExtResource("1_6usfh")
 level = 4
 move = ExtResource("4_48jvc")
 
-[sub_resource type="Resource" id="Resource_ho47a"]
+[sub_resource type="Resource" id="Resource_wrk6w"]
 script = ExtResource("1_6usfh")
 level = 8
 move = ExtResource("5_cykb4")
 
-[sub_resource type="Resource" id="Resource_hw6k7"]
+[sub_resource type="Resource" id="Resource_piih0"]
+script = ExtResource("1_6usfh")
+level = 13
+move = ExtResource("10_1acbx")
+
+[sub_resource type="Resource" id="Resource_wmmv1"]
 script = ExtResource("1_6usfh")
 level = 19
 move = ExtResource("7_umjdq")
 
-[sub_resource type="Resource" id="Resource_hbrcy"]
+[sub_resource type="Resource" id="Resource_yamrj"]
 script = ExtResource("1_6usfh")
 level = 26
 move = ExtResource("8_gxbak")
 
-[sub_resource type="Resource" id="Resource_xaqaw"]
+[sub_resource type="Resource" id="Resource_cntcu"]
+script = ExtResource("1_6usfh")
+level = 34
+move = ExtResource("13_2afqe")
+
+[sub_resource type="Resource" id="Resource_toykf"]
 script = ExtResource("1_6usfh")
 level = 43
 move = ExtResource("10_fce0w")
 
-[sub_resource type="Resource" id="Resource_ray6a"]
+[sub_resource type="Resource" id="Resource_elphx"]
 script = ExtResource("1_6usfh")
 level = 53
 move = ExtResource("11_dnab5")
@@ -83,8 +103,9 @@ id = "grimer"
 display_name = "Grimer"
 dex = 88
 types = Array[ExtResource("4_rlhim")]([ExtResource("5_toppp")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_6usfh")]([SubResource("Resource_umjdq"), SubResource("Resource_gxbak"), SubResource("Resource_j42uk"), SubResource("Resource_fce0w"), SubResource("Resource_dnab5"), SubResource("Resource_bkx25"), SubResource("Resource_ho47a"), SubResource("Resource_hw6k7"), SubResource("Resource_hbrcy"), SubResource("Resource_xaqaw"), SubResource("Resource_ray6a")])
+learnset = Array[ExtResource("1_6usfh")]([SubResource("Resource_a12oj"), SubResource("Resource_s1wjn"), SubResource("Resource_7vttl"), SubResource("Resource_wrk6w"), SubResource("Resource_piih0"), SubResource("Resource_wmmv1"), SubResource("Resource_yamrj"), SubResource("Resource_cntcu"), SubResource("Resource_toykf"), SubResource("Resource_elphx")])
+tm_moves = Array[ExtResource("2_0ecbs")]([ExtResource("18_q6g3j"), ExtResource("19_2nlyv"), ExtResource("20_1acbx"), ExtResource("21_2afqe"), ExtResource("22_a12oj"), ExtResource("23_s1wjn"), ExtResource("24_7vttl"), ExtResource("25_wrk6w"), ExtResource("26_piih0"), ExtResource("27_wmmv1"), ExtResource("28_yamrj"), ExtResource("29_cntcu"), ExtResource("30_toykf"), ExtResource("31_elphx"), ExtResource("32_3kp6m"), ExtResource("33_h7jbt"), ExtResource("10_fce0w"), ExtResource("34_3uir7"), ExtResource("35_0lrji"), ExtResource("36_iuofn"), ExtResource("37_ncy5d"), ExtResource("38_6dd4f"), ExtResource("39_ql1ry"), ExtResource("40_tur2y")])
+abilities = Array[ExtResource("1_1acbx")]([ExtResource("2_2afqe"), ExtResource("3_a12oj")])
 evolutions = Array[ExtResource("1_48jvc")]([SubResource("Resource_45lut")])
 temperament = ExtResource("14_2cshn")
 genus = "Pokémon Lodo"

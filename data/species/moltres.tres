@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_7nqf4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_n5t7s"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_ng36b"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="2_5pkrc"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_c4on4"]
+[ext_resource type="Resource" path="res://data/abilities/presion.tres" id="2_ek62h"]
 [ext_resource type="Resource" path="res://data/moves/ataque_ala.tres" id="3_34s3j"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_mvj7l"]
 [ext_resource type="Resource" path="res://data/moves/giro_fuego.tres" id="4_7nqf4"]
@@ -17,46 +19,66 @@
 [ext_resource type="Resource" path="res://data/moves/onda_ignea.tres" id="9_oixo3"]
 [ext_resource type="Resource" path="res://data/moves/ataque_aereo.tres" id="10_akw8a"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="13_34s3j"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="15_hdd7b"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="16_1g17l"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="17_ng36b"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="18_ek62h"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="19_pxwyi"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="20_7dqjp"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="21_j52n1"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="22_24jst"]
+[ext_resource type="Resource" path="res://data/moves/sofoco.tres" id="23_t35oy"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="24_ksf1o"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="25_1y80r"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="26_rbcfk"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="27_jqkeg"]
+[ext_resource type="Resource" path="res://data/moves/rugido.tres" id="28_qiw3d"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="29_vqaia"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="30_gcofd"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="31_5ldo2"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="32_6fcpg"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="33_bv1kc"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="34_0q33n"]
 
-[sub_resource type="Resource" id="Resource_7nqf4"]
+[sub_resource type="Resource" id="Resource_ng36b"]
 script = ExtResource("1_n5t7s")
 move = ExtResource("2_5pkrc")
 
-[sub_resource type="Resource" id="Resource_jjlf0"]
+[sub_resource type="Resource" id="Resource_ek62h"]
 script = ExtResource("1_n5t7s")
 move = ExtResource("3_34s3j")
 
-[sub_resource type="Resource" id="Resource_dsk7y"]
+[sub_resource type="Resource" id="Resource_pxwyi"]
 script = ExtResource("1_n5t7s")
 level = 13
 move = ExtResource("4_7nqf4")
 
-[sub_resource type="Resource" id="Resource_hbrbf"]
+[sub_resource type="Resource" id="Resource_7dqjp"]
 script = ExtResource("1_n5t7s")
 level = 25
 move = ExtResource("5_jjlf0")
 
-[sub_resource type="Resource" id="Resource_pxv30"]
+[sub_resource type="Resource" id="Resource_j52n1"]
 script = ExtResource("1_n5t7s")
 level = 37
 move = ExtResource("6_dsk7y")
 
-[sub_resource type="Resource" id="Resource_oixo3"]
+[sub_resource type="Resource" id="Resource_24jst"]
 script = ExtResource("1_n5t7s")
 level = 49
 move = ExtResource("7_hbrbf")
 
-[sub_resource type="Resource" id="Resource_akw8a"]
+[sub_resource type="Resource" id="Resource_t35oy"]
 script = ExtResource("1_n5t7s")
 level = 61
 move = ExtResource("8_pxv30")
 
-[sub_resource type="Resource" id="Resource_ud6dq"]
+[sub_resource type="Resource" id="Resource_ksf1o"]
 script = ExtResource("1_n5t7s")
 level = 73
 move = ExtResource("9_oixo3")
 
-[sub_resource type="Resource" id="Resource_gmj3c"]
+[sub_resource type="Resource" id="Resource_1y80r"]
 script = ExtResource("1_n5t7s")
 level = 85
 move = ExtResource("10_akw8a")
@@ -67,7 +89,9 @@ id = "moltres"
 display_name = "Moltres"
 dex = 146
 types = Array[ExtResource("4_ypurr")]([ExtResource("5_f2nb1"), ExtResource("6_u7muo")])
-learnset = Array[ExtResource("1_n5t7s")]([SubResource("Resource_7nqf4"), SubResource("Resource_jjlf0"), SubResource("Resource_dsk7y"), SubResource("Resource_hbrbf"), SubResource("Resource_pxv30"), SubResource("Resource_oixo3"), SubResource("Resource_akw8a"), SubResource("Resource_ud6dq"), SubResource("Resource_gmj3c")])
+learnset = Array[ExtResource("1_n5t7s")]([SubResource("Resource_ng36b"), SubResource("Resource_ek62h"), SubResource("Resource_pxwyi"), SubResource("Resource_7dqjp"), SubResource("Resource_j52n1"), SubResource("Resource_24jst"), SubResource("Resource_t35oy"), SubResource("Resource_ksf1o"), SubResource("Resource_1y80r")])
+tm_moves = Array[ExtResource("2_c4on4")]([ExtResource("15_hdd7b"), ExtResource("16_1g17l"), ExtResource("17_ng36b"), ExtResource("18_ek62h"), ExtResource("7_hbrbf"), ExtResource("19_pxwyi"), ExtResource("20_7dqjp"), ExtResource("21_j52n1"), ExtResource("22_24jst"), ExtResource("23_t35oy"), ExtResource("24_ksf1o"), ExtResource("25_1y80r"), ExtResource("26_rbcfk"), ExtResource("27_jqkeg"), ExtResource("28_qiw3d"), ExtResource("29_vqaia"), ExtResource("8_pxv30"), ExtResource("30_gcofd"), ExtResource("31_5ldo2"), ExtResource("32_6fcpg"), ExtResource("33_bv1kc"), ExtResource("34_0q33n")])
+abilities = Array[ExtResource("1_ng36b")]([ExtResource("2_ek62h")])
 temperament = ExtResource("13_34s3j")
 genus = "Pokémon Llama"
 pokedex_entry = "Moltres es un Pokémon pájaro legendario que tiene la habilidad de controlar el fuego. Dicen que, si resulta herido, se sumerge en el líquido magma de un volcán para arder y curarse."

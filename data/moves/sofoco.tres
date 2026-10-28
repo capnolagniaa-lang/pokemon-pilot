@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="1_iwo7g"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_m0b8g"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_1jfi4"]
+
+[resource]
+script = ExtResource("2_m0b8g")
+id = "sofoco"
+display_name = "Sofoco"
+element = ExtResource("1_iwo7g")
+category = 1
+power = 130.0
+cooldown = 3.0500000000000003
+cast_time = 0.45
+knockback = 208.0
+recovery = 0.4
+speed = 280.0
+size = 6.25
+lifetime = 0.85

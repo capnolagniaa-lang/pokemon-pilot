@@ -1,0 +1,1672 @@
+{
+ "source": "https://pokeapi.co (habilidades de 3ª generación)",
+ "species": {
+  "bulbasaur": [
+   "espesura"
+  ],
+  "ivysaur": [
+   "espesura"
+  ],
+  "venusaur": [
+   "espesura"
+  ],
+  "charmander": [
+   "mar_llamas"
+  ],
+  "charmeleon": [
+   "mar_llamas"
+  ],
+  "charizard": [
+   "mar_llamas"
+  ],
+  "squirtle": [
+   "torrente"
+  ],
+  "wartortle": [
+   "torrente"
+  ],
+  "blastoise": [
+   "torrente"
+  ],
+  "caterpie": [
+   "polvo_escudo"
+  ],
+  "metapod": [
+   "mudar"
+  ],
+  "butterfree": [
+   "ojo_compuesto"
+  ],
+  "weedle": [
+   "polvo_escudo"
+  ],
+  "kakuna": [
+   "mudar"
+  ],
+  "beedrill": [
+   "enjambre"
+  ],
+  "pidgey": [
+   "vista_lince"
+  ],
+  "pidgeotto": [
+   "vista_lince"
+  ],
+  "pidgeot": [
+   "vista_lince"
+  ],
+  "rattata": [
+   "fuga",
+   "agallas"
+  ],
+  "raticate": [
+   "fuga",
+   "agallas"
+  ],
+  "spearow": [
+   "vista_lince"
+  ],
+  "fearow": [
+   "vista_lince"
+  ],
+  "ekans": [
+   "intimidacion",
+   "mudar"
+  ],
+  "arbok": [
+   "intimidacion",
+   "mudar"
+  ],
+  "pikachu": [
+   "electricidad_estatica"
+  ],
+  "raichu": [
+   "electricidad_estatica"
+  ],
+  "sandshrew": [
+   "velo_arena"
+  ],
+  "sandslash": [
+   "velo_arena"
+  ],
+  "nidoran_f": [
+   "punto_toxico"
+  ],
+  "nidorina": [
+   "punto_toxico"
+  ],
+  "nidoqueen": [
+   "punto_toxico"
+  ],
+  "nidoran_m": [
+   "punto_toxico"
+  ],
+  "nidorino": [
+   "punto_toxico"
+  ],
+  "nidoking": [
+   "punto_toxico"
+  ],
+  "clefairy": [
+   "gran_encanto"
+  ],
+  "clefable": [
+   "gran_encanto"
+  ],
+  "vulpix": [
+   "absorbe_fuego"
+  ],
+  "ninetales": [
+   "absorbe_fuego"
+  ],
+  "jigglypuff": [
+   "gran_encanto"
+  ],
+  "wigglytuff": [
+   "gran_encanto"
+  ],
+  "zubat": [
+   "fuerza_mental"
+  ],
+  "golbat": [
+   "fuerza_mental"
+  ],
+  "oddish": [
+   "clorofila"
+  ],
+  "gloom": [
+   "clorofila"
+  ],
+  "vileplume": [
+   "clorofila"
+  ],
+  "paras": [
+   "efecto_espora"
+  ],
+  "parasect": [
+   "efecto_espora"
+  ],
+  "venonat": [
+   "ojo_compuesto"
+  ],
+  "venomoth": [
+   "polvo_escudo"
+  ],
+  "diglett": [
+   "velo_arena",
+   "trampa_arena"
+  ],
+  "dugtrio": [
+   "velo_arena",
+   "trampa_arena"
+  ],
+  "meowth": [
+   "recogida"
+  ],
+  "persian": [
+   "flexibilidad"
+  ],
+  "psyduck": [
+   "humedad",
+   "aclimatacion"
+  ],
+  "golduck": [
+   "humedad",
+   "aclimatacion"
+  ],
+  "mankey": [
+   "espiritu_vital"
+  ],
+  "primeape": [
+   "espiritu_vital"
+  ],
+  "growlithe": [
+   "intimidacion",
+   "absorbe_fuego"
+  ],
+  "arcanine": [
+   "intimidacion",
+   "absorbe_fuego"
+  ],
+  "poliwag": [
+   "absorbe_agua",
+   "humedad"
+  ],
+  "poliwhirl": [
+   "absorbe_agua",
+   "humedad"
+  ],
+  "poliwrath": [
+   "absorbe_agua",
+   "humedad"
+  ],
+  "abra": [
+   "sincronia",
+   "fuerza_mental"
+  ],
+  "kadabra": [
+   "sincronia",
+   "fuerza_mental"
+  ],
+  "alakazam": [
+   "sincronia",
+   "fuerza_mental"
+  ],
+  "machop": [
+   "agallas"
+  ],
+  "machoke": [
+   "agallas"
+  ],
+  "machamp": [
+   "agallas"
+  ],
+  "bellsprout": [
+   "clorofila"
+  ],
+  "weepinbell": [
+   "clorofila"
+  ],
+  "victreebel": [
+   "clorofila"
+  ],
+  "tentacool": [
+   "cuerpo_puro",
+   "lodo_liquido"
+  ],
+  "tentacruel": [
+   "cuerpo_puro",
+   "lodo_liquido"
+  ],
+  "geodude": [
+   "cabeza_roca",
+   "robustez"
+  ],
+  "graveler": [
+   "cabeza_roca",
+   "robustez"
+  ],
+  "golem": [
+   "cabeza_roca",
+   "robustez"
+  ],
+  "ponyta": [
+   "fuga",
+   "absorbe_fuego"
+  ],
+  "rapidash": [
+   "fuga",
+   "absorbe_fuego"
+  ],
+  "slowpoke": [
+   "despiste",
+   "ritmo_propio"
+  ],
+  "slowbro": [
+   "despiste",
+   "ritmo_propio"
+  ],
+  "magnemite": [
+   "iman",
+   "robustez"
+  ],
+  "magneton": [
+   "iman",
+   "robustez"
+  ],
+  "farfetchd": [
+   "vista_lince",
+   "fuerza_mental"
+  ],
+  "doduo": [
+   "fuga",
+   "madrugar"
+  ],
+  "dodrio": [
+   "fuga",
+   "madrugar"
+  ],
+  "seel": [
+   "sebo"
+  ],
+  "dewgong": [
+   "sebo"
+  ],
+  "grimer": [
+   "hedor",
+   "viscosidad"
+  ],
+  "muk": [
+   "hedor",
+   "viscosidad"
+  ],
+  "shellder": [
+   "caparazon"
+  ],
+  "cloyster": [
+   "caparazon"
+  ],
+  "gastly": [
+   "levitacion"
+  ],
+  "haunter": [
+   "levitacion"
+  ],
+  "gengar": [
+   "levitacion"
+  ],
+  "onix": [
+   "cabeza_roca",
+   "robustez"
+  ],
+  "drowzee": [
+   "insomnio"
+  ],
+  "hypno": [
+   "insomnio"
+  ],
+  "krabby": [
+   "corte_fuerte",
+   "caparazon"
+  ],
+  "kingler": [
+   "corte_fuerte",
+   "caparazon"
+  ],
+  "voltorb": [
+   "insonorizar",
+   "electricidad_estatica"
+  ],
+  "electrode": [
+   "insonorizar",
+   "electricidad_estatica"
+  ],
+  "exeggcute": [
+   "clorofila"
+  ],
+  "exeggutor": [
+   "clorofila"
+  ],
+  "cubone": [
+   "cabeza_roca",
+   "pararrayos"
+  ],
+  "marowak": [
+   "cabeza_roca",
+   "pararrayos"
+  ],
+  "hitmonlee": [
+   "flexibilidad"
+  ],
+  "hitmonchan": [
+   "vista_lince"
+  ],
+  "lickitung": [
+   "ritmo_propio",
+   "despiste"
+  ],
+  "koffing": [
+   "levitacion"
+  ],
+  "weezing": [
+   "levitacion"
+  ],
+  "rhyhorn": [
+   "pararrayos",
+   "cabeza_roca"
+  ],
+  "rhydon": [
+   "pararrayos",
+   "cabeza_roca"
+  ],
+  "chansey": [
+   "cura_natural",
+   "dicha"
+  ],
+  "tangela": [
+   "clorofila"
+  ],
+  "kangaskhan": [
+   "madrugar"
+  ],
+  "horsea": [
+   "nado_rapido"
+  ],
+  "seadra": [
+   "punto_toxico"
+  ],
+  "goldeen": [
+   "nado_rapido",
+   "velo_agua"
+  ],
+  "seaking": [
+   "nado_rapido",
+   "velo_agua"
+  ],
+  "staryu": [
+   "iluminacion",
+   "cura_natural"
+  ],
+  "starmie": [
+   "iluminacion",
+   "cura_natural"
+  ],
+  "mr_mime": [
+   "insonorizar"
+  ],
+  "scyther": [
+   "enjambre"
+  ],
+  "jynx": [
+   "despiste"
+  ],
+  "electabuzz": [
+   "electricidad_estatica"
+  ],
+  "magmar": [
+   "cuerpo_llama"
+  ],
+  "pinsir": [
+   "corte_fuerte"
+  ],
+  "tauros": [
+   "intimidacion"
+  ],
+  "magikarp": [
+   "nado_rapido"
+  ],
+  "gyarados": [
+   "intimidacion"
+  ],
+  "lapras": [
+   "absorbe_agua",
+   "caparazon"
+  ],
+  "ditto": [
+   "flexibilidad"
+  ],
+  "eevee": [
+   "fuga"
+  ],
+  "vaporeon": [
+   "absorbe_agua"
+  ],
+  "jolteon": [
+   "absorbe_electricidad"
+  ],
+  "flareon": [
+   "absorbe_fuego"
+  ],
+  "porygon": [
+   "calco"
+  ],
+  "omanyte": [
+   "nado_rapido",
+   "caparazon"
+  ],
+  "omastar": [
+   "nado_rapido",
+   "caparazon"
+  ],
+  "kabuto": [
+   "nado_rapido",
+   "armadura_batalla"
+  ],
+  "kabutops": [
+   "nado_rapido",
+   "armadura_batalla"
+  ],
+  "aerodactyl": [
+   "cabeza_roca",
+   "presion"
+  ],
+  "snorlax": [
+   "inmunidad",
+   "sebo"
+  ],
+  "articuno": [
+   "presion"
+  ],
+  "zapdos": [
+   "presion"
+  ],
+  "moltres": [
+   "presion"
+  ],
+  "dratini": [
+   "mudar"
+  ],
+  "dragonair": [
+   "mudar"
+  ],
+  "dragonite": [
+   "fuerza_mental"
+  ],
+  "mewtwo": [
+   "presion"
+  ],
+  "mew": [
+   "sincronia"
+  ],
+  "chikorita": [
+   "espesura"
+  ],
+  "bayleef": [
+   "espesura"
+  ],
+  "meganium": [
+   "espesura"
+  ],
+  "cyndaquil": [
+   "mar_llamas"
+  ],
+  "quilava": [
+   "mar_llamas"
+  ],
+  "typhlosion": [
+   "mar_llamas"
+  ],
+  "totodile": [
+   "torrente"
+  ],
+  "croconaw": [
+   "torrente"
+  ],
+  "feraligatr": [
+   "torrente"
+  ],
+  "sentret": [
+   "fuga",
+   "vista_lince"
+  ],
+  "furret": [
+   "fuga",
+   "vista_lince"
+  ],
+  "hoothoot": [
+   "insomnio",
+   "vista_lince"
+  ],
+  "noctowl": [
+   "insomnio",
+   "vista_lince"
+  ],
+  "ledyba": [
+   "enjambre",
+   "madrugar"
+  ],
+  "ledian": [
+   "enjambre",
+   "madrugar"
+  ],
+  "spinarak": [
+   "enjambre",
+   "insomnio"
+  ],
+  "ariados": [
+   "enjambre",
+   "insomnio"
+  ],
+  "crobat": [
+   "fuerza_mental"
+  ],
+  "chinchou": [
+   "absorbe_electricidad",
+   "iluminacion"
+  ],
+  "lanturn": [
+   "absorbe_electricidad",
+   "iluminacion"
+  ],
+  "pichu": [
+   "electricidad_estatica"
+  ],
+  "cleffa": [
+   "gran_encanto"
+  ],
+  "igglybuff": [
+   "gran_encanto"
+  ],
+  "togepi": [
+   "entusiasmo",
+   "dicha"
+  ],
+  "togetic": [
+   "entusiasmo",
+   "dicha"
+  ],
+  "natu": [
+   "sincronia",
+   "madrugar"
+  ],
+  "xatu": [
+   "sincronia",
+   "madrugar"
+  ],
+  "mareep": [
+   "electricidad_estatica"
+  ],
+  "flaaffy": [
+   "electricidad_estatica"
+  ],
+  "ampharos": [
+   "electricidad_estatica"
+  ],
+  "bellossom": [
+   "clorofila"
+  ],
+  "marill": [
+   "sebo",
+   "potencia"
+  ],
+  "azumarill": [
+   "sebo",
+   "potencia"
+  ],
+  "sudowoodo": [
+   "robustez",
+   "cabeza_roca"
+  ],
+  "politoed": [
+   "absorbe_agua",
+   "humedad"
+  ],
+  "hoppip": [
+   "clorofila"
+  ],
+  "skiploom": [
+   "clorofila"
+  ],
+  "jumpluff": [
+   "clorofila"
+  ],
+  "aipom": [
+   "fuga",
+   "recogida"
+  ],
+  "sunkern": [
+   "clorofila"
+  ],
+  "sunflora": [
+   "clorofila"
+  ],
+  "yanma": [
+   "impulso",
+   "ojo_compuesto"
+  ],
+  "wooper": [
+   "humedad",
+   "absorbe_agua"
+  ],
+  "quagsire": [
+   "humedad",
+   "absorbe_agua"
+  ],
+  "espeon": [
+   "sincronia"
+  ],
+  "umbreon": [
+   "sincronia"
+  ],
+  "murkrow": [
+   "insomnio"
+  ],
+  "slowking": [
+   "despiste",
+   "ritmo_propio"
+  ],
+  "misdreavus": [
+   "levitacion"
+  ],
+  "unown": [
+   "levitacion"
+  ],
+  "wobbuffet": [
+   "sombra_trampa"
+  ],
+  "girafarig": [
+   "fuerza_mental",
+   "madrugar"
+  ],
+  "pineco": [
+   "robustez"
+  ],
+  "forretress": [
+   "robustez"
+  ],
+  "dunsparce": [
+   "dicha",
+   "fuga"
+  ],
+  "gligar": [
+   "corte_fuerte",
+   "velo_arena"
+  ],
+  "steelix": [
+   "cabeza_roca",
+   "robustez"
+  ],
+  "snubbull": [
+   "intimidacion",
+   "fuga"
+  ],
+  "granbull": [
+   "intimidacion"
+  ],
+  "qwilfish": [
+   "punto_toxico",
+   "nado_rapido"
+  ],
+  "scizor": [
+   "enjambre"
+  ],
+  "shuckle": [
+   "robustez"
+  ],
+  "heracross": [
+   "enjambre",
+   "agallas"
+  ],
+  "sneasel": [
+   "fuerza_mental",
+   "vista_lince"
+  ],
+  "teddiursa": [
+   "recogida"
+  ],
+  "ursaring": [
+   "agallas"
+  ],
+  "slugma": [
+   "escudo_magma",
+   "cuerpo_llama"
+  ],
+  "magcargo": [
+   "escudo_magma",
+   "cuerpo_llama"
+  ],
+  "swinub": [
+   "despiste"
+  ],
+  "piloswine": [
+   "despiste"
+  ],
+  "corsola": [
+   "entusiasmo",
+   "cura_natural"
+  ],
+  "remoraid": [
+   "entusiasmo"
+  ],
+  "octillery": [
+   "ventosas"
+  ],
+  "delibird": [
+   "espiritu_vital",
+   "entusiasmo"
+  ],
+  "mantine": [
+   "nado_rapido",
+   "absorbe_agua"
+  ],
+  "skarmory": [
+   "vista_lince",
+   "robustez"
+  ],
+  "houndour": [
+   "madrugar",
+   "absorbe_fuego"
+  ],
+  "houndoom": [
+   "madrugar",
+   "absorbe_fuego"
+  ],
+  "kingdra": [
+   "nado_rapido"
+  ],
+  "phanpy": [
+   "recogida"
+  ],
+  "donphan": [
+   "robustez"
+  ],
+  "porygon2": [
+   "calco"
+  ],
+  "stantler": [
+   "intimidacion"
+  ],
+  "smeargle": [
+   "ritmo_propio"
+  ],
+  "tyrogue": [
+   "agallas"
+  ],
+  "hitmontop": [
+   "intimidacion"
+  ],
+  "smoochum": [
+   "despiste"
+  ],
+  "elekid": [
+   "electricidad_estatica"
+  ],
+  "magby": [
+   "cuerpo_llama"
+  ],
+  "miltank": [
+   "sebo"
+  ],
+  "blissey": [
+   "cura_natural",
+   "dicha"
+  ],
+  "raikou": [
+   "presion"
+  ],
+  "entei": [
+   "presion"
+  ],
+  "suicune": [
+   "presion"
+  ],
+  "larvitar": [
+   "agallas"
+  ],
+  "pupitar": [
+   "mudar"
+  ],
+  "tyranitar": [
+   "chorro_arena"
+  ],
+  "lugia": [
+   "presion"
+  ],
+  "ho_oh": [
+   "presion"
+  ],
+  "celebi": [
+   "cura_natural"
+  ],
+  "treecko": [
+   "espesura"
+  ],
+  "grovyle": [
+   "espesura"
+  ],
+  "sceptile": [
+   "espesura"
+  ],
+  "torchic": [
+   "mar_llamas"
+  ],
+  "combusken": [
+   "mar_llamas"
+  ],
+  "blaziken": [
+   "mar_llamas"
+  ],
+  "mudkip": [
+   "torrente"
+  ],
+  "marshtomp": [
+   "torrente"
+  ],
+  "swampert": [
+   "torrente"
+  ],
+  "poochyena": [
+   "fuga"
+  ],
+  "mightyena": [
+   "intimidacion"
+  ],
+  "zigzagoon": [
+   "recogida"
+  ],
+  "linoone": [
+   "recogida"
+  ],
+  "wurmple": [
+   "polvo_escudo"
+  ],
+  "silcoon": [
+   "mudar"
+  ],
+  "beautifly": [
+   "enjambre"
+  ],
+  "cascoon": [
+   "mudar"
+  ],
+  "dustox": [
+   "polvo_escudo"
+  ],
+  "lotad": [
+   "nado_rapido",
+   "cura_lluvia"
+  ],
+  "lombre": [
+   "nado_rapido",
+   "cura_lluvia"
+  ],
+  "ludicolo": [
+   "nado_rapido",
+   "cura_lluvia"
+  ],
+  "seedot": [
+   "clorofila",
+   "madrugar"
+  ],
+  "nuzleaf": [
+   "clorofila",
+   "madrugar"
+  ],
+  "shiftry": [
+   "clorofila"
+  ],
+  "taillow": [
+   "agallas"
+  ],
+  "swellow": [
+   "agallas"
+  ],
+  "wingull": [
+   "vista_lince"
+  ],
+  "pelipper": [
+   "vista_lince",
+   "llovizna"
+  ],
+  "ralts": [
+   "sincronia",
+   "calco"
+  ],
+  "kirlia": [
+   "sincronia",
+   "calco"
+  ],
+  "gardevoir": [
+   "sincronia",
+   "calco"
+  ],
+  "surskit": [
+   "nado_rapido"
+  ],
+  "masquerain": [
+   "intimidacion"
+  ],
+  "shroomish": [
+   "efecto_espora"
+  ],
+  "breloom": [
+   "efecto_espora"
+  ],
+  "slakoth": [
+   "ausente"
+  ],
+  "vigoroth": [
+   "espiritu_vital"
+  ],
+  "slaking": [
+   "ausente"
+  ],
+  "nincada": [
+   "ojo_compuesto"
+  ],
+  "ninjask": [
+   "impulso"
+  ],
+  "shedinja": [
+   "superguarda"
+  ],
+  "whismur": [
+   "insonorizar"
+  ],
+  "loudred": [
+   "insonorizar"
+  ],
+  "exploud": [
+   "insonorizar"
+  ],
+  "makuhita": [
+   "sebo",
+   "agallas"
+  ],
+  "hariyama": [
+   "sebo",
+   "agallas"
+  ],
+  "azurill": [
+   "sebo",
+   "potencia"
+  ],
+  "nosepass": [
+   "robustez",
+   "iman"
+  ],
+  "skitty": [
+   "gran_encanto"
+  ],
+  "delcatty": [
+   "gran_encanto"
+  ],
+  "sableye": [
+   "vista_lince"
+  ],
+  "mawile": [
+   "corte_fuerte",
+   "intimidacion"
+  ],
+  "aron": [
+   "robustez",
+   "cabeza_roca"
+  ],
+  "lairon": [
+   "robustez",
+   "cabeza_roca"
+  ],
+  "aggron": [
+   "robustez",
+   "cabeza_roca"
+  ],
+  "meditite": [
+   "energia_pura"
+  ],
+  "medicham": [
+   "energia_pura"
+  ],
+  "electrike": [
+   "electricidad_estatica",
+   "pararrayos"
+  ],
+  "manectric": [
+   "electricidad_estatica",
+   "pararrayos"
+  ],
+  "plusle": [
+   "mas"
+  ],
+  "minun": [
+   "menos"
+  ],
+  "volbeat": [
+   "iluminacion",
+   "enjambre"
+  ],
+  "illumise": [
+   "despiste"
+  ],
+  "roselia": [
+   "cura_natural",
+   "punto_toxico"
+  ],
+  "gulpin": [
+   "lodo_liquido",
+   "viscosidad"
+  ],
+  "swalot": [
+   "lodo_liquido",
+   "viscosidad"
+  ],
+  "carvanha": [
+   "piel_tosca"
+  ],
+  "sharpedo": [
+   "piel_tosca"
+  ],
+  "wailmer": [
+   "velo_agua",
+   "despiste"
+  ],
+  "wailord": [
+   "velo_agua",
+   "despiste"
+  ],
+  "numel": [
+   "despiste"
+  ],
+  "camerupt": [
+   "escudo_magma"
+  ],
+  "torkoal": [
+   "humo_blanco",
+   "sequia"
+  ],
+  "spoink": [
+   "sebo",
+   "ritmo_propio"
+  ],
+  "grumpig": [
+   "sebo",
+   "ritmo_propio"
+  ],
+  "spinda": [
+   "ritmo_propio"
+  ],
+  "trapinch": [
+   "corte_fuerte",
+   "trampa_arena"
+  ],
+  "vibrava": [
+   "levitacion"
+  ],
+  "flygon": [
+   "levitacion"
+  ],
+  "cacnea": [
+   "velo_arena"
+  ],
+  "cacturne": [
+   "velo_arena"
+  ],
+  "swablu": [
+   "cura_natural"
+  ],
+  "altaria": [
+   "cura_natural"
+  ],
+  "zangoose": [
+   "inmunidad"
+  ],
+  "seviper": [
+   "mudar"
+  ],
+  "lunatone": [
+   "levitacion"
+  ],
+  "solrock": [
+   "levitacion"
+  ],
+  "barboach": [
+   "despiste"
+  ],
+  "whiscash": [
+   "despiste"
+  ],
+  "corphish": [
+   "corte_fuerte",
+   "caparazon"
+  ],
+  "crawdaunt": [
+   "corte_fuerte",
+   "caparazon"
+  ],
+  "baltoy": [
+   "levitacion"
+  ],
+  "claydol": [
+   "levitacion"
+  ],
+  "lileep": [
+   "ventosas"
+  ],
+  "cradily": [
+   "ventosas"
+  ],
+  "anorith": [
+   "armadura_batalla"
+  ],
+  "armaldo": [
+   "armadura_batalla"
+  ],
+  "feebas": [
+   "nado_rapido",
+   "despiste"
+  ],
+  "milotic": [
+   "escama_especial"
+  ],
+  "castform": [
+   "prediccion"
+  ],
+  "kecleon": [
+   "cambio_color"
+  ],
+  "shuppet": [
+   "insomnio"
+  ],
+  "banette": [
+   "insomnio"
+  ],
+  "duskull": [
+   "levitacion"
+  ],
+  "dusclops": [
+   "presion"
+  ],
+  "tropius": [
+   "clorofila"
+  ],
+  "chimecho": [
+   "levitacion"
+  ],
+  "absol": [
+   "presion"
+  ],
+  "wynaut": [
+   "sombra_trampa"
+  ],
+  "snorunt": [
+   "fuerza_mental"
+  ],
+  "glalie": [
+   "fuerza_mental"
+  ],
+  "spheal": [
+   "sebo"
+  ],
+  "sealeo": [
+   "sebo"
+  ],
+  "walrein": [
+   "sebo"
+  ],
+  "clamperl": [
+   "caparazon"
+  ],
+  "huntail": [
+   "nado_rapido"
+  ],
+  "gorebyss": [
+   "nado_rapido"
+  ],
+  "relicanth": [
+   "nado_rapido",
+   "cabeza_roca"
+  ],
+  "luvdisc": [
+   "nado_rapido"
+  ],
+  "bagon": [
+   "cabeza_roca"
+  ],
+  "shelgon": [
+   "cabeza_roca"
+  ],
+  "salamence": [
+   "intimidacion"
+  ],
+  "beldum": [
+   "cuerpo_puro"
+  ],
+  "metang": [
+   "cuerpo_puro"
+  ],
+  "metagross": [
+   "cuerpo_puro"
+  ],
+  "regirock": [
+   "cuerpo_puro"
+  ],
+  "regice": [
+   "cuerpo_puro"
+  ],
+  "registeel": [
+   "cuerpo_puro"
+  ],
+  "latias": [
+   "levitacion"
+  ],
+  "latios": [
+   "levitacion"
+  ],
+  "kyogre": [
+   "llovizna"
+  ],
+  "groudon": [
+   "sequia"
+  ],
+  "rayquaza": [
+   "bucle_aire"
+  ],
+  "jirachi": [
+   "dicha"
+  ],
+  "deoxys": [
+   "presion"
+  ]
+ },
+ "abilities": {
+  "espesura": {
+   "name_en": "overgrow",
+   "name_es": "Espesura",
+   "desc_es": "Potencia sus movimientos de tipo Planta cuando le quedan pocos PS."
+  },
+  "mar_llamas": {
+   "name_en": "blaze",
+   "name_es": "Mar Llamas",
+   "desc_es": "Potencia sus movimientos de tipo Fuego cuando le quedan pocos PS."
+  },
+  "torrente": {
+   "name_en": "torrent",
+   "name_es": "Torrente",
+   "desc_es": "Potencia sus movimientos de tipo Agua cuando le quedan pocos PS."
+  },
+  "polvo_escudo": {
+   "name_en": "shield-dust",
+   "name_es": "Polvo Escudo",
+   "desc_es": "El polvo de escamas que lo envuelve lo protege de los efectos secundarios de los ataques recibidos."
+  },
+  "mudar": {
+   "name_en": "shed-skin",
+   "name_es": "Mudar",
+   "desc_es": "Puede curar sus problemas de estado al mudar la piel."
+  },
+  "ojo_compuesto": {
+   "name_en": "compound-eyes",
+   "name_es": "Ojo Compuesto",
+   "desc_es": "Aumenta la precisión de sus movimientos."
+  },
+  "enjambre": {
+   "name_en": "swarm",
+   "name_es": "Enjambre",
+   "desc_es": "Potencia sus movimientos de tipo Bicho cuando le quedan pocos PS."
+  },
+  "vista_lince": {
+   "name_en": "keen-eye",
+   "name_es": "Vista Lince",
+   "desc_es": "Su aguda vista evita que le disminuya la Precisión."
+  },
+  "fuga": {
+   "name_en": "run-away",
+   "name_es": "Fuga",
+   "desc_es": "Puede escaparse de todos los Pokémon salvajes."
+  },
+  "agallas": {
+   "name_en": "guts",
+   "name_es": "Agallas",
+   "desc_es": "Si sufre un problema de estado, se viene arriba y aumenta su Ataque."
+  },
+  "intimidacion": {
+   "name_en": "intimidate",
+   "name_es": "Intimidación",
+   "desc_es": "Al entrar en combate amilana al rival de tal manera que su Ataque disminuye."
+  },
+  "electricidad_estatica": {
+   "name_en": "static",
+   "name_es": "Electricidad Estática",
+   "desc_es": "La electricidad estática que lo envuelve puede paralizar al mínimo contacto."
+  },
+  "velo_arena": {
+   "name_en": "sand-veil",
+   "name_es": "Velo Arena",
+   "desc_es": "Aumenta su Evasión durante las tormentas de arena."
+  },
+  "punto_toxico": {
+   "name_en": "poison-point",
+   "name_es": "Punto Tóxico",
+   "desc_es": "Puede envenenar al mínimo contacto."
+  },
+  "gran_encanto": {
+   "name_en": "cute-charm",
+   "name_es": "Gran Encanto",
+   "desc_es": "Puede causar enamoramiento al rival que lo toque."
+  },
+  "absorbe_fuego": {
+   "name_en": "flash-fire",
+   "name_es": "Absorbe Fuego",
+   "desc_es": "Si le alcanza algún movimiento de tipo Fuego, potencia sus propios movimientos de dicho tipo."
+  },
+  "fuerza_mental": {
+   "name_en": "inner-focus",
+   "name_es": "Fuerza Mental",
+   "desc_es": "Gracias a su profunda concentración, no se amedrenta ante los ataques del rival."
+  },
+  "clorofila": {
+   "name_en": "chlorophyll",
+   "name_es": "Clorofila",
+   "desc_es": "Sube su Velocidad cuando hace sol."
+  },
+  "efecto_espora": {
+   "name_en": "effect-spore",
+   "name_es": "Efecto Espora",
+   "desc_es": "Puede dormir, envenenar o paralizar al Pokémon con el que entre en contacto al recibir un ataque."
+  },
+  "trampa_arena": {
+   "name_en": "arena-trap",
+   "name_es": "Trampa Arena",
+   "desc_es": "Evita que el rival huya."
+  },
+  "recogida": {
+   "name_en": "pickup",
+   "name_es": "Recogida",
+   "desc_es": "Puede recoger objetos que el rival haya usado, o bien otros que encuentre en plena aventura."
+  },
+  "flexibilidad": {
+   "name_en": "limber",
+   "name_es": "Flexibilidad",
+   "desc_es": "Evita ser paralizado gracias a la flexibilidad de su cuerpo."
+  },
+  "humedad": {
+   "name_en": "damp",
+   "name_es": "Humedad",
+   "desc_es": "Aumenta la humedad del entorno y evita que se puedan utilizar movimientos explosivos, tales como Autodestrucción."
+  },
+  "aclimatacion": {
+   "name_en": "cloud-nine",
+   "name_es": "Aclimatación",
+   "desc_es": "Anula todos los efectos del tiempo atmosférico."
+  },
+  "espiritu_vital": {
+   "name_en": "vital-spirit",
+   "name_es": "Espíritu Vital",
+   "desc_es": "Su determinación le impide quedarse dormido."
+  },
+  "absorbe_agua": {
+   "name_en": "water-absorb",
+   "name_es": "Absorbe Agua",
+   "desc_es": "Si le alcanza un movimiento de tipo Agua, recupera PS en vez de sufrir daño."
+  },
+  "sincronia": {
+   "name_en": "synchronize",
+   "name_es": "Sincronía",
+   "desc_es": "Contagia el envenenamiento, las quemaduras o la parálisis al Pokémon que le cause ese estado."
+  },
+  "cuerpo_puro": {
+   "name_en": "clear-body",
+   "name_es": "Cuerpo Puro",
+   "desc_es": "Evita que bajen sus características a causa de movimientos o habilidades de otros Pokémon."
+  },
+  "lodo_liquido": {
+   "name_en": "liquid-ooze",
+   "name_es": "Lodo Líquido",
+   "desc_es": "Exuda una sustancia tóxica de intenso hedor que hiere a quienes intentan drenarle PS."
+  },
+  "cabeza_roca": {
+   "name_en": "rock-head",
+   "name_es": "Cabeza Roca",
+   "desc_es": "No puede dañarse con sus propios movimientos."
+  },
+  "robustez": {
+   "name_en": "sturdy",
+   "name_es": "Robustez",
+   "desc_es": "Evita que el rival pueda debilitarlo de un solo golpe cuando tiene los PS al máximo. También evita los movimientos fulminantes."
+  },
+  "despiste": {
+   "name_en": "oblivious",
+   "name_es": "Despiste",
+   "desc_es": "Su indiferencia evita que sea provocado o caiga presa del enamoramiento."
+  },
+  "ritmo_propio": {
+   "name_en": "own-tempo",
+   "name_es": "Ritmo Propio",
+   "desc_es": "Como le gusta hacer las cosas a su manera, los rivales no logran confundirlo."
+  },
+  "iman": {
+   "name_en": "magnet-pull",
+   "name_es": "Imán",
+   "desc_es": "Su magnetismo atrae a los Pokémon de tipo Acero y les impide huir."
+  },
+  "madrugar": {
+   "name_en": "early-bird",
+   "name_es": "Madrugar",
+   "desc_es": "Si se duerme, tardará la mitad de tiempo en despertarse."
+  },
+  "sebo": {
+   "name_en": "thick-fat",
+   "name_es": "Sebo",
+   "desc_es": "Gracias a la gruesa capa de grasa que lo protege, reduce a la mitad el daño que recibe de ataques de tipo Fuego o Hielo."
+  },
+  "hedor": {
+   "name_en": "stench",
+   "name_es": "Hedor",
+   "desc_es": "Puede amedrentar al rival al atacarlo debido al mal olor que emana."
+  },
+  "viscosidad": {
+   "name_en": "sticky-hold",
+   "name_es": "Viscosidad",
+   "desc_es": "Los objetos se quedan pegados a su cuerpo, por lo que no pueden robárselos."
+  },
+  "caparazon": {
+   "name_en": "shell-armor",
+   "name_es": "Caparazón",
+   "desc_es": "La robusta coraza que lo protege bloquea los golpes críticos."
+  },
+  "levitacion": {
+   "name_en": "levitate",
+   "name_es": "Levitación",
+   "desc_es": "Su capacidad de flotar sobre el suelo le proporciona inmunidad frente a los movimientos de tipo Tierra."
+  },
+  "insomnio": {
+   "name_en": "insomnia",
+   "name_es": "Insomnio",
+   "desc_es": "Su resistencia al sueño le impide quedarse dormido."
+  },
+  "corte_fuerte": {
+   "name_en": "hyper-cutter",
+   "name_es": "Corte Fuerte",
+   "desc_es": "Evita que el rival le baje el Ataque."
+  },
+  "insonorizar": {
+   "name_en": "soundproof",
+   "name_es": "Insonorizar",
+   "desc_es": "Su aislamiento acústico lo protege de movimientos que usan sonido."
+  },
+  "pararrayos": {
+   "name_en": "lightning-rod",
+   "name_es": "Pararrayos",
+   "desc_es": "Atrae y neutraliza los movimientos de tipo Eléctrico, que además le suben el Ataque Especial."
+  },
+  "cura_natural": {
+   "name_en": "natural-cure",
+   "name_es": "Cura Natural",
+   "desc_es": "Cura sus problemas de estado al cambiarse con otro Pokémon."
+  },
+  "dicha": {
+   "name_en": "serene-grace",
+   "name_es": "Dicha",
+   "desc_es": "Aumenta la probabilidad de que los movimientos causen efectos secundarios."
+  },
+  "nado_rapido": {
+   "name_en": "swift-swim",
+   "name_es": "Nado Rápido",
+   "desc_es": "Sube su Velocidad cuando llueve."
+  },
+  "velo_agua": {
+   "name_en": "water-veil",
+   "name_es": "Velo Agua",
+   "desc_es": "Evita las quemaduras gracias a la capa de agua que lo envuelve."
+  },
+  "iluminacion": {
+   "name_en": "illuminate",
+   "name_es": "Iluminación",
+   "desc_es": "Aumenta la probabilidad de encontrar Pokémon al iluminar el entorno."
+  },
+  "cuerpo_llama": {
+   "name_en": "flame-body",
+   "name_es": "Cuerpo Llama",
+   "desc_es": "Puede quemar al mínimo contacto."
+  },
+  "absorbe_electricidad": {
+   "name_en": "volt-absorb",
+   "name_es": "Absorbe Electricidad",
+   "desc_es": "Si le alcanza un movimiento de tipo Eléctrico, recupera PS en vez de sufrir daño."
+  },
+  "calco": {
+   "name_en": "trace",
+   "name_es": "Calco",
+   "desc_es": "Al entrar en combate copia la habilidad del rival."
+  },
+  "armadura_batalla": {
+   "name_en": "battle-armor",
+   "name_es": "Armadura Batalla",
+   "desc_es": "La robusta coraza que lo protege bloquea los golpes críticos."
+  },
+  "presion": {
+   "name_en": "pressure",
+   "name_es": "Presión",
+   "desc_es": "Presiona al rival para que sus PP se acaben antes."
+  },
+  "inmunidad": {
+   "name_en": "immunity",
+   "name_es": "Inmunidad",
+   "desc_es": "Su sistema inmunitario evita el envenenamiento."
+  },
+  "entusiasmo": {
+   "name_en": "hustle",
+   "name_es": "Entusiasmo",
+   "desc_es": "Aumenta su Ataque, pero reduce su Precisión."
+  },
+  "potencia": {
+   "name_en": "huge-power",
+   "name_es": "Potencia",
+   "desc_es": "Duplica la potencia de sus ataques físicos."
+  },
+  "impulso": {
+   "name_en": "speed-boost",
+   "name_es": "Impulso",
+   "desc_es": "Aumenta su Velocidad en cada turno."
+  },
+  "sombra_trampa": {
+   "name_en": "shadow-tag",
+   "name_es": "Sombra Trampa",
+   "desc_es": "Impide que el enemigo huya o sea cambiado por otro."
+  },
+  "escudo_magma": {
+   "name_en": "magma-armor",
+   "name_es": "Escudo Magma",
+   "desc_es": "Gracias al magma candente que lo envuelve, no puede ser congelado."
+  },
+  "ventosas": {
+   "name_en": "suction-cups",
+   "name_es": "Ventosas",
+   "desc_es": "Sus ventosas se aferran al suelo, con lo cual anula movimientos y objetos que fuerzan el relevo."
+  },
+  "chorro_arena": {
+   "name_en": "sand-stream",
+   "name_es": "Chorro Arena",
+   "desc_es": "Crea una tormenta de arena al entrar en combate."
+  },
+  "cura_lluvia": {
+   "name_en": "rain-dish",
+   "name_es": "Cura Lluvia",
+   "desc_es": "Recupera PS de forma gradual cuando llueve."
+  },
+  "llovizna": {
+   "name_en": "drizzle",
+   "name_es": "Llovizna",
+   "desc_es": "Hace que llueva al entrar en combate."
+  },
+  "ausente": {
+   "name_en": "truant",
+   "name_es": "Ausente",
+   "desc_es": "Al ejecutar un movimiento, descansará en el turno siguiente."
+  },
+  "superguarda": {
+   "name_en": "wonder-guard",
+   "name_es": "Superguarda",
+   "desc_es": "Gracias a un poder misterioso, solo le hacen daño los movimientos supereficaces."
+  },
+  "energia_pura": {
+   "name_en": "pure-power",
+   "name_es": "Energía Pura",
+   "desc_es": "Duplica la potencia de sus ataques físicos gracias al yoga."
+  },
+  "mas": {
+   "name_en": "plus",
+   "name_es": "Más",
+   "desc_es": "Potencia su Ataque Especial si un Pokémon aliado tiene la habilidad Más o Menos."
+  },
+  "menos": {
+   "name_en": "minus",
+   "name_es": "Menos",
+   "desc_es": "Potencia su Ataque Especial si un Pokémon aliado tiene la habilidad Más o Menos."
+  },
+  "piel_tosca": {
+   "name_en": "rough-skin",
+   "name_es": "Piel Tosca",
+   "desc_es": "Hiere con su piel áspera al rival que lo ataque con un movimiento de contacto."
+  },
+  "humo_blanco": {
+   "name_en": "white-smoke",
+   "name_es": "Humo Blanco",
+   "desc_es": "El humo blanco que lo protege evita que otros Pokémon le bajen las características."
+  },
+  "sequia": {
+   "name_en": "drought",
+   "name_es": "Sequía",
+   "desc_es": "Cuando entra en combate, el tiempo pasa a ser soleado."
+  },
+  "escama_especial": {
+   "name_en": "marvel-scale",
+   "name_es": "Escama Especial",
+   "desc_es": "Sube su Defensa si sufre un problema de estado."
+  },
+  "prediccion": {
+   "name_en": "forecast",
+   "name_es": "Predicción",
+   "desc_es": "Cambia a tipo Agua, Fuego o Hielo en función del tiempo atmosférico."
+  },
+  "cambio_color": {
+   "name_en": "color-change",
+   "name_es": "Cambio Color",
+   "desc_es": "Adopta el tipo del último movimiento del que es blanco."
+  },
+  "bucle_aire": {
+   "name_en": "air-lock",
+   "name_es": "Bucle Aire",
+   "desc_es": "Neutraliza todos los efectos del tiempo atmosférico."
+  }
+ }
+}

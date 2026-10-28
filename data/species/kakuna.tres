@@ -1,41 +1,25 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/kakuna/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_j3xmr"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_ruu1b"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_stb78"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_21mtb"]
+[ext_resource type="Resource" path="res://data/abilities/mudar.tres" id="2_w03v7"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_su8gq"]
-[ext_resource type="Resource" path="res://data/kits/kakuna/picotazo_veneno_kakuna.tres" id="3_xes4m"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_qoi3x"]
-[ext_resource type="Resource" path="res://data/kits/kakuna/disparo_demora_kakuna.tres" id="4_stb78"]
 [ext_resource type="Resource" path="res://data/types/bicho.tres" id="5_es0uj"]
-[ext_resource type="Resource" path="res://data/kits/kakuna/fortaleza_kakuna.tres" id="5_ruu1b"]
+[ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="5_haq7u"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="5_su8gq"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="6_haq7u"]
-[ext_resource type="Resource" path="res://data/kits/kakuna/derribo_kakuna.tres" id="6_w03v7"]
 
 [sub_resource type="Resource" id="Resource_stb78"]
 script = ExtResource("1_stb78")
 to_id = "beedrill"
 level = 10
 
-[sub_resource type="Resource" id="Resource_ruu1b"]
+[sub_resource type="Resource" id="Resource_xes4m"]
 script = ExtResource("1_j3xmr")
-move = ExtResource("3_xes4m")
-
-[sub_resource type="Resource" id="Resource_w03v7"]
-script = ExtResource("1_j3xmr")
-move = ExtResource("4_stb78")
-
-[sub_resource type="Resource" id="Resource_cpw2b"]
-script = ExtResource("1_j3xmr")
-level = 3
-move = ExtResource("5_ruu1b")
-
-[sub_resource type="Resource" id="Resource_pvm6s"]
-script = ExtResource("1_j3xmr")
-level = 5
-move = ExtResource("6_w03v7")
+move = ExtResource("5_haq7u")
 
 [resource]
 script = ExtResource("3_su8gq")
@@ -43,8 +27,8 @@ id = "kakuna"
 display_name = "Kakuna"
 dex = 14
 types = Array[ExtResource("4_qoi3x")]([ExtResource("5_es0uj"), ExtResource("6_haq7u")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_j3xmr")]([SubResource("Resource_ruu1b"), SubResource("Resource_w03v7"), SubResource("Resource_cpw2b"), SubResource("Resource_pvm6s")])
+learnset = Array[ExtResource("1_j3xmr")]([SubResource("Resource_xes4m")])
+abilities = Array[ExtResource("1_ruu1b")]([ExtResource("2_w03v7")])
 evolutions = Array[ExtResource("1_stb78")]([SubResource("Resource_stb78")])
 evolves_from = "weedle"
 temperament = ExtResource("5_su8gq")

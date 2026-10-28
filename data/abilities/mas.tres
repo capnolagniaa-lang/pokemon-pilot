@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_btvna"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_wi0w4"]
+
+[resource]
+script = ExtResource("2_wi0w4")
+id = "mas"
+display_name = "Más"
+description = "Sus disparos pegan +20%."
+color = Color(1, 0.85, 0.3, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_btvna")
+params = {
+"kind_mult": {
+"PROJECTILE": 1.2
+}
+}

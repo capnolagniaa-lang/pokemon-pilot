@@ -15,10 +15,9 @@ func run() -> void:
 	var ch: SpeciesData = sp["charmander"]
 	r["Charmander → Charmeleon a Nv. 16"] = ch.evolutions.size() == 1 and ch.evolutions[0].to_id == "charmeleon" \
 		and ch.evolutions[0].method == "nivel" and ch.evolutions[0].level == 16 and sp["charmeleon"].evolves_from == "charmander"
-	r["Charmeleon hereda el kit de Charmander (pelea igual)"] = sp["charmeleon"].kit == ch.kit and sp["charmeleon"].kit_inherited
-	r["Charmeleon aprende su kit y además su learnset de FireRed"] = sp["charmeleon"].learnset.size() > ch.kit.moves.size() + 2
-	r["Butterfree y Gyarados no heredan (cambian mucho): kit propio o ninguno"] = \
-		not sp["butterfree"].kit_inherited and not sp["gyarados"].kit_inherited
+	# (Desde las habilidades, 2026-10-28: no hay kits que heredar; cada especie trae sus habilidades de los juegos.)
+	r["Charmeleon tiene su habilidad (Mar Llamas) y su learnset de FireRed"] = \
+		sp["charmeleon"].abilities.map(func(a): return a.id) == ["mar_llamas"] and sp["charmeleon"].learnset.size() >= 8
 	r["Clefairy evoluciona con la Piedra Lunar; Eevee con 3 piedras"] = Evolution.by_item(CreatureInstance.create(sp["clefairy"], 10),
 		"piedra_lunar") == sp["clefable"] and sp["eevee"].evolutions.filter(func(e): return e.method == "piedra").size() == 3
 

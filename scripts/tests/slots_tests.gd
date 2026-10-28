@@ -74,7 +74,7 @@ func run() -> void:
 	add_child(layer)
 	layer.add_child(setup)
 	await get_tree().process_frame
-	r["La pantalla de prueba del torneo ofrece los Pokémon con kit"] = setup._buttons.size() == DB.species.values().filter(func(s): return s.kit != null).size()
+	r["La pantalla de prueba del torneo ofrece los 151 de Kanto"] = setup._buttons.size() == DB.species.values().filter(func(s): return s.dex <= 151).size()
 	# Con muchos Pokémon la lista no entraba y no se podía bajar: ahora va en un ScrollContainer (la rueda la maneja
 	# Godot; en headless los eventos de mouse no llegan a la interfaz, así que se verifica la estructura).
 	await get_tree().process_frame

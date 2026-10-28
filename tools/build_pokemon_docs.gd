@@ -1,11 +1,11 @@
 extends SceneTree
-## Genera docs/POKEMON_KITS_Y_ATAQUES.md (pedido del usuario 2026-10-28): los 386 Pokémon con su kit (estilo, firma,
-## los 4 ataques con su tecla) y todos los ataques que pueden aprender (learnset: kit + FireRed + extras), con tipo,
+## Genera docs/POKEMON_HABILIDADES_Y_ATAQUES.md (pedido del usuario 2026-10-28): los 386 Pokémon con sus habilidades (y el kit
+## de jefe de los líderes) y todos los ataques que pueden aprender (learnset de FireRed y sus MT/MO), con tipo,
 ## categoría, forma en tiempo real, potencia y recarga. Marca cuáles aparecen hoy en el juego (salvajes o entrenadores).
-## Volver a correrlo después de tocar kits o learnsets (el .md es generado, no editarlo a mano).
+## Volver a correrlo después de tocar habilidades o learnsets (el .md es generado, no editarlo a mano).
 ## Uso: godot --headless --path . --quit-after 20000 --script res://tools/build_pokemon_docs.gd
 
-const OUT := "res://docs/POKEMON_KITS_Y_ATAQUES.md"
+const OUT := "res://docs/POKEMON_HABILIDADES_Y_ATAQUES.md"
 const KIND := ["Disparo", "Embestida", "Área", "Defensa", "Golpe", "Zona", "Canalizado", "Embestida+combo", "Látigo", "Mejora propia"]
 const CAT := ["Físico", "Especial", "Estado"]
 const KEYS := ["Clic izq.", "Clic der.", "Q", "R"]
@@ -21,22 +21,20 @@ func _init() -> void:
 	for sp in species:
 		by_id[sp.id] = sp
 	var seen := _in_game()
-	var own := species.filter(func(sp): return sp.kit != null and not sp.kit_inherited).size()
-	var inh := species.filter(func(sp): return sp.kit != null and sp.kit_inherited).size()
 
-	var L: Array[String] = ["# Pokémon: kits y ataques que aprenden", "",
-		"> **Generado** por `tools/build_pokemon_docs.gd` (%s). No editar a mano: cambiar los kits/learnsets y volver a" % Time.get_date_string_from_system(),
-		"> correr la herramienta. Kits: `docs/PLAN_IDENTIDAD_COMBATE.md` · salvajes por zona: `docs/SALVAJES_LISTADO.md`.", "",
-		"**%d especies** · kit propio: %d · kit heredado de su preevolución: %d · sin kit: %d · aparecen hoy en el juego: %d." % [
-			species.size(), own, inh, species.size() - own - inh, seen.size()], "",
-		"Teclas del kit: Clic izq. · Clic der. · Q · R (el de más recarga) + Espacio (esquive, igual para todos). Los ataques",
-		"del learnset se equipan desde la ficha del Pokémon (Esc → Equipo). \"Sin kit\" = pelea con 4 ataques de su learnset y",
-		"sin mecánica de firma.", "", "## Índice", "",
-		"| N.º | Pokémon | Tipos | Kit | Estilo | Firma | ¿En el juego? |", "|---|---|---|---|---|---|---|"]
+	var L: Array[String] = ["# Pokémon: habilidades y ataques que aprenden", "",
+		"> **Generado** por `tools/build_pokemon_docs.gd` (%s). No editar a mano: cambiar las habilidades/learnsets y volver" % Time.get_date_string_from_system(),
+		"> a correr la herramienta. Habilidades: `tools/apply_abilities.gd` · salvajes por zona: `docs/SALVAJES_LISTADO.md`.", "",
+		"**%d especies** · aparecen hoy en el juego: %d. Cada Pokémon nace con una de sus habilidades (al azar). Los ataques" % [
+			species.size(), seen.size()],
+		"se comportan igual para todos; viene con los últimos 4 que aprendió por nivel y desde la ficha (Esc → Equipo) se",
+		"elige entre todo lo de nivel y MT: el estilo de pelea lo arma el jugador. Los Pokémon de los líderes de gimnasio con",
+		"\"kit de jefe\" pelean con él (firma + 4 ataques propios).", "", "## Índice", "",
+		"| N.º | Pokémon | Tipos | Habilidades | Kit de jefe | ¿En el juego? |", "|---|---|---|---|---|---|"]
 	for sp in species:
-		L.append("| %03d | [%s](#%s) | %s | %s | %s | %s | %s |" % [sp.dex, sp.display_name, _anchor(sp), _types(sp),
-			_origin(sp, by_id), sp.kit.archetype if sp.kit else "—",
-			sp.kit.signature.display_name if sp.kit and sp.kit.signature else "—", "sí" if seen.has(sp.id) else ""])
+		L.append("| %03d | [%s](#%s) | %s | %s | %s | %s |" % [sp.dex, sp.display_name, _anchor(sp), _types(sp),
+			" / ".join(sp.abilities.map(func(a): return a.display_name)),
+			sp.boss_kit.signature.display_name if sp.boss_kit and sp.boss_kit.signature else "", "sí" if seen.has(sp.id) else ""])
 	L.append("")
 	L.append("## Fichas")
 	L.append("")
@@ -45,19 +43,19 @@ func _init() -> void:
 		L.append("")
 		L.append("%s · %s%s" % [_types(sp), sp.genus if sp.genus != "" else "", " · **aparece en el juego**" if seen.has(sp.id) else ""])
 		L.append("")
-		if sp.kit != null:
-			L.append("**Kit**: %s, estilo *%s* (distancia preferida %d px)." % [_origin(sp, by_id), sp.kit.archetype, int(sp.kit.preferred_range)])
-			if sp.kit.signature != null:
-				L.append("")
-				L.append("**Firma — %s**: %s" % [sp.kit.signature.display_name, sp.kit.signature.description.replace("\n", " ")])
+		for ab in sp.abilities:
+			L.append("**Habilidad — %s**: %s" % [ab.display_name, ab.description])
+			L.append("")
+		var kit := sp.boss_kit
+		if kit != null:
+			L.append("**Kit de jefe** (solo con un líder de gimnasio), firma **%s**: %s" % [kit.signature.display_name,
+				kit.signature.description.replace("\n", " ")])
 			L.append("")
 			L.append("| Tecla | Ataque | Tipo | Categoría | Forma | Potencia | Recarga |")
 			L.append("|---|---|---|---|---|---|---|")
-			for i in sp.kit.moves.size():
-				var m: MoveData = sp.kit.moves[i]
+			for i in kit.moves.size():
+				var m: MoveData = kit.moves[i]
 				L.append("| %s | %s | %s |" % [KEYS[i] if i < KEYS.size() else "", m.display_name, _move_cols(m)])
-		else:
-			L.append("**Sin kit**: pelea con su learnset (equipa los 4 primeros que aprende a su nivel).")
 		L.append("")
 		L.append("**Ataques que puede aprender (%d)**:" % sp.learnset.size())
 		L.append("")
@@ -65,9 +63,16 @@ func _init() -> void:
 		L.append("|---|---|---|---|---|---|---|")
 		for e in sp.learnset:
 			if e.move != null:
-				var kit_mark := " (kit)" if sp.kit != null and e.move in sp.kit.moves else ""
-				L.append("| %d | %s%s | %s |" % [e.level, e.move.display_name, kit_mark, _move_cols(e.move)])
+				L.append("| %d | %s | %s |" % [e.level, e.move.display_name, _move_cols(e.move)])
 		L.append("")
+		if not sp.tm_moves.is_empty():
+			L.append("**Por MT/MO (%d)**:" % sp.tm_moves.size())
+			L.append("")
+			L.append("| | Ataque | Tipo | Categoría | Forma | Potencia | Recarga |")
+			L.append("|---|---|---|---|---|---|---|")
+			for m in sp.tm_moves:
+				L.append("| MT | %s | %s |" % [m.display_name, _move_cols(m)])
+			L.append("")
 	var f := FileAccess.open(OUT, FileAccess.WRITE)
 	f.store_string("\n".join(L) + "\n")
 	f.close()
@@ -95,17 +100,6 @@ func _in_game() -> Dictionary:
 	for id in ["articuno", "zapdos", "snorlax", "lapras", "eevee", "hitmonlee", "hitmonchan", "omanyte", "kabuto", "aerodactyl"]:
 		out[id] = true  # legendarios, regalos y fósiles de la historia
 	return out
-
-
-func _origin(sp: SpeciesData, by_id: Dictionary) -> String:
-	if sp.kit == null:
-		return "sin kit"
-	if not sp.kit_inherited:
-		return "propio"
-	var from: SpeciesData = by_id.get(sp.evolves_from)
-	while from != null and from.kit_inherited and by_id.has(from.evolves_from):
-		from = by_id[from.evolves_from]
-	return "heredado de %s" % (from.display_name if from != null else "su preevolución")
 
 
 func _types(sp: SpeciesData) -> String:

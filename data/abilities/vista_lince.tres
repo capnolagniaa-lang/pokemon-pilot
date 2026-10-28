@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_kaufp"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_8ue6i"]
+
+[resource]
+script = ExtResource("2_8ue6i")
+id = "vista_lince"
+display_name = "Vista Lince"
+description = "No lo desorientan y sus disparos pegan +10%."
+color = Color(0.85, 0.85, 0.95, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_kaufp")
+params = {
+"immune": ["desorientado"],
+"kind_mult": {
+"PROJECTILE": 1.1
+}
+}

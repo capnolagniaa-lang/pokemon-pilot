@@ -6,6 +6,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Habilidades en vez de kits (2026-10-28, decisión del usuario)**: cada Pokémon pelea con su habilidad de 3ª gen
+  (al azar entre las de su especie), su tipo y los ataques que elijas (nivel + MT; viene con los últimos 4 por nivel);
+  los ataques son iguales para todos. Kit de jefe solo con los líderes (Onix, Starmie, Raichu). 76 habilidades
+  adaptadas al tiempo real (`tools/apply_abilities.gd`), MT de FireRed por especie, pantallas con la habilidad,
+  partidas viejas migradas. Batería en paralelo + `tools/balance_merge.py` → `docs/BALANCE_RESUMEN.md` (y
+  `BALANCE_RESUMEN_KITS.md`, la era de kits, para comparar). Test `--autotest-abilities`. Ver
+  `PLAN_IDENTIDAD_COMBATE.md` "ESTADO VIGENTE (v3)". Próximo: balancear ataques (Fuego, Transformación, capullos).
 - **Batería de balance (2026-10-28, pedido del usuario)**: `--autotest-balance` hace pelear solos a dos Pokémon con kit
   (IA en Difícil, nivel 40, emparejados por stats base ±60, cada pareja dos veces cambiando de lado; ~2 peleas por
   segundo con `--fixed-fps 60`) y escribe `docs/BALANCE_INFORME.md` (victorias por especie, estilo y tipo, daño por

@@ -164,6 +164,16 @@ func speed_mult() -> float:
 	return 1.0
 
 
+## Daño final de un golpe que está por recibir (después de todo): Robustez lo deja en 1 de vida si lo mataba.
+func lethal_guard(amount: float, _hit: HitInfo) -> float:
+	return amount
+
+
+## Multiplicador del stagger que recibe (Fuerza Mental: 0 = no lo sufre).
+func hitstun_mult() -> float:
+	return 1.0
+
+
 ## Texto de estado para la interfaz (ej: "MAR LLAMAS"); vacío si no hay nada especial.
 func state_label() -> String:
 	return ""

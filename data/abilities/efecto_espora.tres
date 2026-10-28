@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_5ooem"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_u5l5u"]
+
+[resource]
+script = ExtResource("2_u5l5u")
+id = "efecto_espora"
+display_name = "Efecto Espora"
+description = "Al que le pega cuerpo a cuerpo le pone veneno, parálisis o sueño (30%)."
+color = Color(0.4, 0.8, 0.35, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_5ooem")
+params = {
+"contact_chance": 0.3,
+"contact_status": ["envenenado", "paralizado", "dormido"]
+}

@@ -48,7 +48,7 @@ func _ready() -> void:
 	grid.add_theme_constant_override("v_separation", 6)
 	scroll.add_child(grid)
 	_scroll = scroll
-	var kits: Array = DB.species_by_dex().filter(func(sp): return sp.kit != null)
+	var kits: Array = DB.species_by_dex().filter(func(sp): return sp.dex <= 151)  # (antes: los que tenían kit)
 	for sp: SpeciesData in kits:
 		var b := Button.new()
 		b.toggle_mode = true

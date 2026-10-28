@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="3_x"]
+
+[resource]
+script = ExtResource("1_x")
+id = "burbuja_kingdra"
+display_name = "Burbuja"
+element = ExtResource("3_x")
+kind = 0
+category = 1
+power = 30.0
+cooldown = 0.8
+knockback = 50.0
+speed = 240.0
+size = 4.0
+lifetime = 0.9
+projectile_count = 3
+spread_deg = 20.0

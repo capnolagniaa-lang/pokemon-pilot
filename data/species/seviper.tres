@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_380ef"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_lgkmf"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_shysp"]
 [ext_resource type="Resource" path="res://data/moves/constriccion.tres" id="2_5vy4t"]
+[ext_resource type="Resource" path="res://data/abilities/mudar.tres" id="2_ft1il"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_upadt"]
 [ext_resource type="Resource" path="res://data/moves/lenguetazo.tres" id="3_o7h28"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_vlrp7"]
@@ -17,52 +19,75 @@
 [ext_resource type="Resource" path="res://data/moves/fanfarronear.tres" id="10_sf03i"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="11_ko573"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="14_o7h28"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="16_1ooef"]
+[ext_resource type="Resource" path="res://data/moves/excavar.tres" id="17_vg5gx"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="18_shysp"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="19_ft1il"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="20_ja5b3"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="21_ijt5m"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="22_llobt"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="23_jm0xv"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="24_egy4b"]
+[ext_resource type="Resource" path="res://data/moves/cola_ferrea.tres" id="25_6k5yx"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="26_rrp7f"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="27_ic2uq"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="28_6nbnq"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="29_680no"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="30_lxn6u"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="31_wikms"]
+[ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="32_0gkqy"]
+[ext_resource type="Resource" path="res://data/moves/robo.tres" id="33_7gkh3"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="34_d1ke2"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="35_va27c"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="36_htj3t"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="37_nmn7s"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="38_c83pw"]
 
-[sub_resource type="Resource" id="Resource_380ef"]
+[sub_resource type="Resource" id="Resource_shysp"]
 script = ExtResource("1_lgkmf")
 move = ExtResource("2_5vy4t")
 
-[sub_resource type="Resource" id="Resource_dxnwh"]
+[sub_resource type="Resource" id="Resource_ft1il"]
 script = ExtResource("1_lgkmf")
 level = 7
 move = ExtResource("3_o7h28")
 
-[sub_resource type="Resource" id="Resource_86tom"]
+[sub_resource type="Resource" id="Resource_ja5b3"]
 script = ExtResource("1_lgkmf")
 level = 10
 move = ExtResource("4_380ef")
 
-[sub_resource type="Resource" id="Resource_35uwc"]
+[sub_resource type="Resource" id="Resource_ijt5m"]
 script = ExtResource("1_lgkmf")
 level = 16
 move = ExtResource("5_dxnwh")
 
-[sub_resource type="Resource" id="Resource_rms4j"]
+[sub_resource type="Resource" id="Resource_llobt"]
 script = ExtResource("1_lgkmf")
 level = 19
 move = ExtResource("6_86tom")
 
-[sub_resource type="Resource" id="Resource_oqlin"]
+[sub_resource type="Resource" id="Resource_jm0xv"]
 script = ExtResource("1_lgkmf")
 level = 25
 move = ExtResource("7_35uwc")
 
-[sub_resource type="Resource" id="Resource_sf03i"]
+[sub_resource type="Resource" id="Resource_egy4b"]
 script = ExtResource("1_lgkmf")
 level = 28
 move = ExtResource("8_rms4j")
 
-[sub_resource type="Resource" id="Resource_ko573"]
+[sub_resource type="Resource" id="Resource_6k5yx"]
 script = ExtResource("1_lgkmf")
 level = 34
 move = ExtResource("9_oqlin")
 
-[sub_resource type="Resource" id="Resource_68q3a"]
+[sub_resource type="Resource" id="Resource_rrp7f"]
 script = ExtResource("1_lgkmf")
 level = 37
 move = ExtResource("10_sf03i")
 
-[sub_resource type="Resource" id="Resource_1rm02"]
+[sub_resource type="Resource" id="Resource_ic2uq"]
 script = ExtResource("1_lgkmf")
 level = 43
 move = ExtResource("11_ko573")
@@ -73,7 +98,9 @@ id = "seviper"
 display_name = "Seviper"
 dex = 336
 types = Array[ExtResource("4_pnovc")]([ExtResource("5_xqhvg")])
-learnset = Array[ExtResource("1_lgkmf")]([SubResource("Resource_380ef"), SubResource("Resource_dxnwh"), SubResource("Resource_86tom"), SubResource("Resource_35uwc"), SubResource("Resource_rms4j"), SubResource("Resource_oqlin"), SubResource("Resource_sf03i"), SubResource("Resource_ko573"), SubResource("Resource_68q3a"), SubResource("Resource_1rm02")])
+learnset = Array[ExtResource("1_lgkmf")]([SubResource("Resource_shysp"), SubResource("Resource_ft1il"), SubResource("Resource_ja5b3"), SubResource("Resource_ijt5m"), SubResource("Resource_llobt"), SubResource("Resource_jm0xv"), SubResource("Resource_egy4b"), SubResource("Resource_6k5yx"), SubResource("Resource_rrp7f"), SubResource("Resource_ic2uq")])
+tm_moves = Array[ExtResource("2_upadt")]([ExtResource("16_1ooef"), ExtResource("17_vg5gx"), ExtResource("18_shysp"), ExtResource("19_ft1il"), ExtResource("20_ja5b3"), ExtResource("21_ijt5m"), ExtResource("22_llobt"), ExtResource("23_jm0xv"), ExtResource("24_egy4b"), ExtResource("25_6k5yx"), ExtResource("26_rrp7f"), ExtResource("27_ic2uq"), ExtResource("28_6nbnq"), ExtResource("29_680no"), ExtResource("30_lxn6u"), ExtResource("31_wikms"), ExtResource("32_0gkqy"), ExtResource("33_7gkh3"), ExtResource("34_d1ke2"), ExtResource("35_va27c"), ExtResource("36_htj3t"), ExtResource("37_nmn7s"), ExtResource("38_c83pw")])
+abilities = Array[ExtResource("1_shysp")]([ExtResource("2_ft1il")])
 temperament = ExtResource("14_o7h28")
 genus = "Pokémon Colmillos"
 pokedex_entry = "Seviper lleva años de gran enemistad con Zangoose. Las cicatrices que tiene por todo el cuerpo dan buena muestra de los encarnizados combates en los que se han enfrentado. Seviper ataca usando su cola con forma de espada."

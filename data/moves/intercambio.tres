@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveData" format=3]
+
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_2c4wc"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_tl5ey"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_mhi0m"]
+
+[resource]
+script = ExtResource("2_tl5ey")
+id = "intercambio"
+display_name = "Intercambio"
+element = ExtResource("1_2c4wc")
+kind = 2
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+radius = 40.0

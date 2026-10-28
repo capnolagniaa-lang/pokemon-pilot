@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_l0k1r"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_8me3e"]
+
+[resource]
+script = ExtResource("2_8me3e")
+id = "sequia"
+display_name = "Sequía"
+description = "Sus golpes a veces queman (10%)."
+color = Color(1, 0.5, 0.25, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_l0k1r")
+params = {
+"on_hit_chance": 0.1,
+"on_hit_status": "quemado"
+}

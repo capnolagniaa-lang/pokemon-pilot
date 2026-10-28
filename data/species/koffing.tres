@@ -1,79 +1,97 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/koffing/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_dobkh"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_mr7lk"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_oh7l2"]
+[ext_resource type="Resource" path="res://data/abilities/levitacion.tres" id="2_u4xwq"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_wvdqa"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_k8hyl"]
 [ext_resource type="Resource" path="res://data/moves/polucion.tres" id="4_dobkh"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_dsy4v"]
-[ext_resource type="Resource" path="res://data/kits/koffing/placaje_koffing.tres" id="4_r0ccd"]
 [ext_resource type="Resource" path="res://data/moves/autodestruccion.tres" id="5_778m8"]
-[ext_resource type="Resource" path="res://data/kits/koffing/gas_venenoso_koffing.tres" id="5_lcxuf"]
+[ext_resource type="Resource" path="res://data/moves/gas_venenoso.tres" id="5_udsg4"]
 [ext_resource type="Resource" path="res://data/types/veneno.tres" id="5_wetmq"]
-[ext_resource type="Resource" path="res://data/kits/koffing/pantalla_humo_koffing.tres" id="6_kpf83"]
+[ext_resource type="Resource" path="res://data/moves/placaje.tres" id="6_oh7l2"]
 [ext_resource type="Resource" path="res://data/moves/residuos.tres" id="6_r0ccd"]
-[ext_resource type="Resource" path="res://data/kits/koffing/detonar_koffing.tres" id="7_q6yg4"]
 [ext_resource type="Resource" path="res://data/moves/niebla.tres" id="8_kpf83"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="9_q6yg4"]
 [ext_resource type="Resource" path="res://data/moves/mismo_destino.tres" id="10_re00g"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_humo.tres" id="10_u4xwq"]
 [ext_resource type="Resource" path="res://data/moves/legado.tres" id="11_lw2np"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_mprpo"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="18_udsg4"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="19_oh7l2"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="20_u4xwq"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="21_odjad"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="22_wob4f"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="23_t53h3"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="24_5epql"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="25_uqdh8"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="26_7s8b2"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="27_t2yko"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="28_75a27"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="29_t83xo"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="30_72rll"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="31_q2his"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="32_6lq6n"]
+[ext_resource type="Resource" path="res://data/moves/bomba_lodo.tres" id="33_1pgvx"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="34_74tqd"]
+[ext_resource type="Resource" path="res://data/moves/mofa.tres" id="35_wa3qb"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="36_aotai"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="37_qg7qk"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="38_jd3fk"]
+[ext_resource type="Resource" path="res://data/moves/tormento.tres" id="39_gswh6"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="40_y04mf"]
 
 [sub_resource type="Resource" id="Resource_r0ccd"]
 script = ExtResource("1_dobkh")
 to_id = "weezing"
 level = 35
 
-[sub_resource type="Resource" id="Resource_lcxuf"]
+[sub_resource type="Resource" id="Resource_odjad"]
 script = ExtResource("1_mr7lk")
-move = ExtResource("4_r0ccd")
+move = ExtResource("5_udsg4")
 
-[sub_resource type="Resource" id="Resource_kpf83"]
+[sub_resource type="Resource" id="Resource_wob4f"]
 script = ExtResource("1_mr7lk")
-move = ExtResource("5_lcxuf")
+move = ExtResource("6_oh7l2")
 
-[sub_resource type="Resource" id="Resource_q6yg4"]
-script = ExtResource("1_mr7lk")
-level = 3
-move = ExtResource("6_kpf83")
-
-[sub_resource type="Resource" id="Resource_re00g"]
-script = ExtResource("1_mr7lk")
-level = 5
-move = ExtResource("7_q6yg4")
-
-[sub_resource type="Resource" id="Resource_lw2np"]
+[sub_resource type="Resource" id="Resource_t53h3"]
 script = ExtResource("1_mr7lk")
 level = 9
 move = ExtResource("4_dobkh")
 
-[sub_resource type="Resource" id="Resource_kyesw"]
+[sub_resource type="Resource" id="Resource_5epql"]
 script = ExtResource("1_mr7lk")
 level = 17
 move = ExtResource("5_778m8")
 
-[sub_resource type="Resource" id="Resource_4084n"]
+[sub_resource type="Resource" id="Resource_uqdh8"]
 script = ExtResource("1_mr7lk")
 level = 21
 move = ExtResource("6_r0ccd")
 
-[sub_resource type="Resource" id="Resource_ohouf"]
+[sub_resource type="Resource" id="Resource_7s8b2"]
+script = ExtResource("1_mr7lk")
+level = 25
+move = ExtResource("10_u4xwq")
+
+[sub_resource type="Resource" id="Resource_t2yko"]
 script = ExtResource("1_mr7lk")
 level = 33
 move = ExtResource("8_kpf83")
 
-[sub_resource type="Resource" id="Resource_pks2q"]
+[sub_resource type="Resource" id="Resource_75a27"]
 script = ExtResource("1_mr7lk")
 level = 41
 move = ExtResource("9_q6yg4")
 
-[sub_resource type="Resource" id="Resource_7a3s1"]
+[sub_resource type="Resource" id="Resource_t83xo"]
 script = ExtResource("1_mr7lk")
 level = 45
 move = ExtResource("10_re00g")
 
-[sub_resource type="Resource" id="Resource_m3adu"]
+[sub_resource type="Resource" id="Resource_72rll"]
 script = ExtResource("1_mr7lk")
 level = 49
 move = ExtResource("11_lw2np")
@@ -84,8 +102,9 @@ id = "koffing"
 display_name = "Koffing"
 dex = 109
 types = Array[ExtResource("4_dsy4v")]([ExtResource("5_wetmq")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_mr7lk")]([SubResource("Resource_lcxuf"), SubResource("Resource_kpf83"), SubResource("Resource_q6yg4"), SubResource("Resource_re00g"), SubResource("Resource_lw2np"), SubResource("Resource_kyesw"), SubResource("Resource_4084n"), SubResource("Resource_ohouf"), SubResource("Resource_pks2q"), SubResource("Resource_7a3s1"), SubResource("Resource_m3adu")])
+learnset = Array[ExtResource("1_mr7lk")]([SubResource("Resource_odjad"), SubResource("Resource_wob4f"), SubResource("Resource_t53h3"), SubResource("Resource_5epql"), SubResource("Resource_uqdh8"), SubResource("Resource_7s8b2"), SubResource("Resource_t2yko"), SubResource("Resource_75a27"), SubResource("Resource_t83xo"), SubResource("Resource_72rll")])
+tm_moves = Array[ExtResource("2_wvdqa")]([ExtResource("18_udsg4"), ExtResource("19_oh7l2"), ExtResource("20_u4xwq"), ExtResource("21_odjad"), ExtResource("22_wob4f"), ExtResource("23_t53h3"), ExtResource("24_5epql"), ExtResource("25_uqdh8"), ExtResource("26_7s8b2"), ExtResource("27_t2yko"), ExtResource("28_75a27"), ExtResource("29_t83xo"), ExtResource("30_72rll"), ExtResource("31_q2his"), ExtResource("32_6lq6n"), ExtResource("33_1pgvx"), ExtResource("34_74tqd"), ExtResource("35_wa3qb"), ExtResource("36_aotai"), ExtResource("37_qg7qk"), ExtResource("38_jd3fk"), ExtResource("39_gswh6"), ExtResource("40_y04mf")])
+abilities = Array[ExtResource("1_oh7l2")]([ExtResource("2_u4xwq")])
 evolutions = Array[ExtResource("1_dobkh")]([SubResource("Resource_r0ccd")])
 temperament = ExtResource("14_mprpo")
 genus = "Pokémon Gas Venenoso"

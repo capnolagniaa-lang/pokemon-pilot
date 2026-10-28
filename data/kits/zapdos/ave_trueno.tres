@@ -1,16 +1,17 @@
 [gd_resource type="Resource" script_class="SignatureData" format=3]
 
-[ext_resource type="Script" path="res://scripts/combat/signatures/colossus_mechanic.gd" id="1_mech"]
+[ext_resource type="Script" path="res://scripts/combat/signatures/static_mechanic.gd" id="1_mech"]
 [ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_sd"]
 
 [resource]
 script = ExtResource("2_sd")
 id = "ave_trueno"
 display_name = "Ave Trueno"
-description = "Legendario: cuerpo grande, casi no lo empujan. A mitad de vida suelta una descarga alrededor que paraliza y queda enfurecido."
+description = "Volar y esquivar lo cargan (5 marcas); quieto se descarga. Con la barra llena el próximo golpe es una Descarga que paraliza fuerte."
 color = Color(1.0, 0.9, 0.3, 1)
 max_value = 100.0
-gains = {}
+gains = {"moved": 0.3, "dodged": 20.0}
 decay_out_of_combat = 6.0
+thresholds = Array[float]([20.0, 40.0, 60.0, 80.0, 100.0])
 mechanic_script = ExtResource("1_mech")
-params = {"physical_mult": 0.9, "stagger_bonus": 1.0, "knockback_mult": 0.3, "scale": 1.3, "phase_at": 0.5, "phase_status": "enfurecido", "roar_move": "res://data/kits/zapdos/descarga_zapdos.tres"}
+params = {"idle_loss": 25.0, "discharge_mult": 1.4}

@@ -1,35 +1,19 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
-[ext_resource type="Resource" path="res://data/kits/ditto/kit.tres" id="0_kitv4"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_78jvr"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_bctre"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_g2q54"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_axtiq"]
+[ext_resource type="Resource" path="res://data/abilities/flexibilidad.tres" id="2_njr0y"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_yna41"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_78jvr"]
-[ext_resource type="Resource" path="res://data/kits/ditto/pegote_ditto.tres" id="4_sat5g"]
-[ext_resource type="Resource" path="res://data/kits/ditto/gel_ditto.tres" id="5_g2q54"]
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="5_kkf8g"]
+[ext_resource type="Resource" path="res://data/moves/transformacion.tres" id="5_mro86"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/curioso.tres" id="5_yna41"]
-[ext_resource type="Resource" path="res://data/kits/ditto/rebote_ditto.tres" id="6_njr0y"]
-[ext_resource type="Resource" path="res://data/kits/ditto/transformacion_ditto.tres" id="7_8lx15"]
 
-[sub_resource type="Resource" id="Resource_sat5g"]
+[sub_resource type="Resource" id="Resource_a0xjc"]
 script = ExtResource("1_bctre")
-move = ExtResource("4_sat5g")
-
-[sub_resource type="Resource" id="Resource_g2q54"]
-script = ExtResource("1_bctre")
-move = ExtResource("5_g2q54")
-
-[sub_resource type="Resource" id="Resource_njr0y"]
-script = ExtResource("1_bctre")
-level = 3
-move = ExtResource("6_njr0y")
-
-[sub_resource type="Resource" id="Resource_8lx15"]
-script = ExtResource("1_bctre")
-level = 5
-move = ExtResource("7_8lx15")
+move = ExtResource("5_mro86")
 
 [resource]
 script = ExtResource("3_yna41")
@@ -37,8 +21,8 @@ id = "ditto"
 display_name = "Ditto"
 dex = 132
 types = Array[ExtResource("4_78jvr")]([ExtResource("5_kkf8g")])
-kit = ExtResource("0_kitv4")
-learnset = Array[ExtResource("1_bctre")]([SubResource("Resource_sat5g"), SubResource("Resource_g2q54"), SubResource("Resource_njr0y"), SubResource("Resource_8lx15")])
+learnset = Array[ExtResource("1_bctre")]([SubResource("Resource_a0xjc")])
+abilities = Array[ExtResource("1_g2q54")]([ExtResource("2_njr0y")])
 temperament = ExtResource("5_yna41")
 genus = "Pokémon Transformación"
 pokedex_entry = "Ditto reorganiza la estructura de sus células para adoptar otras formas. Pero, como intente transformarse en algo guiándose por los datos que tenga almacenados en la memoria, habrá detalles que se le escapen."

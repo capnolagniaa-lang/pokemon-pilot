@@ -121,11 +121,13 @@ func _ready() -> void:
 	health.heal_mult_source = statuses
 	moves.setup(instance)
 	CreatureGlow.attach_if_needed(self, instance.species.types)  # llama que alumbra de noche (por tipo)
-	var kit := instance.species.kit
-	if kit != null and kit.signature != null and kit.signature.mechanic_script != null:
-		signature = kit.signature.mechanic_script.new()
+	# La firma: el kit de jefe (solo el Pokémon de un líder de gimnasio) o su habilidad.
+	var kit := instance.species.boss_kit if instance.boss else null
+	var sig_data: SignatureData = kit.signature if kit != null else instance.ability_data()
+	if sig_data != null and sig_data.mechanic_script != null:
+		signature = sig_data.mechanic_script.new()
 		add_child(signature)
-		signature.setup(self, kit.signature)
+		signature.setup(self, sig_data)
 		var s := signature.body_scale()
 		if s != 1.0:  # jefes (Onix): más grandes, también la hurtbox
 			sprite.scale = Vector2(s, s)
@@ -633,6 +635,8 @@ func _on_hit(hit: HitInfo) -> void:
 	if hit.move.execute_below > 0.0 and health.ratio() <= hit.move.execute_below and hit.effectiveness > 0.0:
 		amount = INF  # ejecución: lo remata aunque le quede vida
 		Events.signature_triggered.emit(self, "¡Remate!", Color(1.5, 0.35, 0.3))
+	if signature != null:
+		amount = signature.lethal_guard(amount, hit)
 	var dealt := health.apply_damage(amount)
 	if dealt > 0.0:
 		statuses.on_damaged()
@@ -695,7 +699,7 @@ func _on_hit(hit: HitInfo) -> void:
 func _apply_hitstun(hit: HitInfo, push: float) -> void:
 	if hitstun_left > 0.0 or _hitstun_grace > 0.0 or hit == _hitstun_hit:
 		return
-	var k: float = GameState.setting("hitstun_mult")
+	var k: float = GameState.setting("hitstun_mult") * (signature.hitstun_mult() if signature != null else 1.0)
 	if k <= 0.0:
 		return
 	_hitstun_hit = hit

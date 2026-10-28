@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_2xux1"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_48c6r"]
+
+[resource]
+script = ExtResource("2_48c6r")
+id = "viscosidad"
+display_name = "Viscosidad"
+description = "Casi no lo empujan."
+color = Color(0.7, 0.45, 0.85, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_2xux1")
+params = {
+"knockback": 0.4
+}

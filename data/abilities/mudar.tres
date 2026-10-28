@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SignatureData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/signatures/ability_mechanic.gd" id="1_87og7"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="2_6e6re"]
+
+[resource]
+script = ExtResource("2_6e6re")
+id = "mudar"
+display_name = "Mudar"
+description = "Cada 4 s se saca de encima los problemas de estado."
+color = Color(0.7, 0.45, 0.85, 1)
+max_value = 0.0
+decay_out_of_combat = 0.0
+mechanic_script = ExtResource("1_87og7")
+params = {
+"shed_every": 4.0,
+"shed_text": "¡Mudar!"
+}

@@ -2,15 +2,37 @@
 
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_aor3i"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_fsfv6"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_t62j2"]
+[ext_resource type="Resource" path="res://data/abilities/espiritu_vital.tres" id="2_l6mfn"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ro6h5"]
 [ext_resource type="Resource" path="res://data/moves/presente.tres" id="2_xc7ui"]
+[ext_resource type="Resource" path="res://data/abilities/entusiasmo.tres" id="3_q5x0w"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_xc7ui"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_fsfv6"]
 [ext_resource type="Resource" path="res://data/types/hielo.tres" id="5_tj7sp"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/timido.tres" id="5_xc7ui"]
 [ext_resource type="Resource" path="res://data/types/volador.tres" id="6_hri5c"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="7_5diyf"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="8_i0wcb"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="9_wl7yw"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="10_t62j2"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="11_l6mfn"]
+[ext_resource type="Resource" path="res://data/moves/vuelo.tres" id="12_q5x0w"]
+[ext_resource type="Resource" path="res://data/moves/puno_certero.tres" id="13_c810x"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="14_7ds0a"]
+[ext_resource type="Resource" path="res://data/moves/granizo.tres" id="15_ifexw"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="16_xvlj3"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="17_aj347"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="18_rbh1j"]
+[ext_resource type="Resource" path="res://data/moves/danza_lluvia.tres" id="19_5w1mn"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="20_8bvjs"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="21_drhxc"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="22_247nl"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="23_yt4rn"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="24_vrm8w"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="25_ud5m3"]
 
-[sub_resource type="Resource" id="Resource_fsfv6"]
+[sub_resource type="Resource" id="Resource_t62j2"]
 script = ExtResource("1_aor3i")
 move = ExtResource("2_xc7ui")
 
@@ -20,7 +42,9 @@ id = "delibird"
 display_name = "Delibird"
 dex = 225
 types = Array[ExtResource("4_fsfv6")]([ExtResource("5_tj7sp"), ExtResource("6_hri5c")])
-learnset = Array[ExtResource("1_aor3i")]([SubResource("Resource_fsfv6")])
+learnset = Array[ExtResource("1_aor3i")]([SubResource("Resource_t62j2")])
+tm_moves = Array[ExtResource("2_ro6h5")]([ExtResource("7_5diyf"), ExtResource("8_i0wcb"), ExtResource("9_wl7yw"), ExtResource("10_t62j2"), ExtResource("11_l6mfn"), ExtResource("12_q5x0w"), ExtResource("13_c810x"), ExtResource("14_7ds0a"), ExtResource("15_ifexw"), ExtResource("16_xvlj3"), ExtResource("17_aj347"), ExtResource("18_rbh1j"), ExtResource("19_5w1mn"), ExtResource("20_8bvjs"), ExtResource("21_drhxc"), ExtResource("22_247nl"), ExtResource("23_yt4rn"), ExtResource("24_vrm8w"), ExtResource("25_ud5m3")])
+abilities = Array[ExtResource("1_t62j2")]([ExtResource("2_l6mfn"), ExtResource("3_q5x0w")])
 temperament = ExtResource("5_xc7ui")
 genus = "Pokémon Reparto"
 pokedex_entry = "Delibird usa la cola a modo de saco para llevar su alimento. En una ocasión, un famoso escalador consiguió alcanzar la cima más alta del mundo gracias a que uno de estos Pokémon compartió sus alimentos con él."

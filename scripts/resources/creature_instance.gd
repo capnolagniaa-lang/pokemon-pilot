@@ -28,6 +28,10 @@ static func hp_scale() -> float:
 @export var equipped_moves: Array[MoveData] = []
 ## Movimientos enseñados con MT (se suman a los del learnset y se guardan con la partida).
 @export var taught_moves: Array[MoveData] = []
+## Habilidad con la que nació (id de data/abilities; una de SpeciesData.abilities, al azar). Se guarda.
+@export var ability: String = ""
+## Pokémon jefe (el de un líder de gimnasio con SpeciesData.boss_kit): pelea con el kit de jefe. No se guarda.
+var boss := false
 ## Para más adelante (Etapa 6): apodo y naturaleza. Vacíos por ahora.
 @export var nickname: String = ""
 @export var nature: String = ""
@@ -45,7 +49,19 @@ static func create(p_species: SpeciesData, p_level: int) -> CreatureInstance:
 		c.evs[s] = 0
 	c.hp = c.max_hp()
 	c.equipped_moves = c.default_equipment()
+	if not p_species.abilities.is_empty():
+		c.ability = p_species.abilities[randi() % p_species.abilities.size()].id
 	return c
+
+
+## La habilidad (SignatureData) con la que pelea: la suya si la especie la tiene, si no la primera de la especie (una
+## evolución puede cambiar de habilidades: se queda con la del mismo lugar).
+func ability_data() -> SignatureData:
+	var list := species.abilities
+	for a in list:
+		if a.id == ability:
+			return a
+	return list[0] if not list.is_empty() else null
 
 
 ## IVs al azar 0-31 por stat (salvajes). Uno perfecto (31 en todo) sale 1 en ~10⁹. La vida queda al máximo.
@@ -68,6 +84,11 @@ func learned_moves() -> Array[MoveData]:
 		if e.level <= level and not out.has(e.move):
 			out.append(e.move)
 	for m in taught_moves:
+		if m != null and not out.has(m):
+			out.append(m)
+	# Las MT/MO de su especie también se pueden elegir (decisión del usuario 2026-10-28: "los movimientos que uno
+	# elija, por nivel o por MT").
+	for m in species.tm_moves:
 		if m != null and not out.has(m):
 			out.append(m)
 	return out
@@ -97,18 +118,17 @@ func equip(slot: int, m: MoveData) -> bool:
 	return true
 
 
-## Lo que equipa por defecto: los primeros 4 aprendidos (los del kit, en su orden, van primero).
+## Lo que equipa por defecto: los últimos 4 que aprendió por nivel, como en los juegos (decisión del usuario 2026-10-28).
+## Después se eligen desde la ficha entre todo lo que sabe (nivel y MT).
 func default_equipment() -> Array[MoveData]:
-	var out: Array[MoveData] = []
-	var learned := learned_moves()
-	# Primero los del kit (su estilo de pelea), aunque el learnset completo de FRLG tenga otros al mismo nivel
-	# (Charmander aprende Gruñido en Nv. 1: no tiene que desplazar a Giro Fuego).
-	if species.kit != null:
-		for m in species.kit.moves:
-			if m != null and learned.has(m) and out.size() < SLOT_COUNT:
-				out.append(m)
-	for m in learned:
-		if out.size() < SLOT_COUNT and not out.has(m):
+	var by_level: Array[MoveData] = []
+	for e in species.learnset_entries():
+		if e.level <= level and e.move != null:
+			by_level.erase(e.move)
+			by_level.append(e.move)
+	var out: Array[MoveData] = by_level.slice(maxi(0, by_level.size() - SLOT_COUNT))
+	for m in taught_moves:
+		if out.size() < SLOT_COUNT and m != null and not out.has(m):
 			out.append(m)
 	while out.size() < SLOT_COUNT:
 		out.append(null)
@@ -151,7 +171,7 @@ func to_dict() -> Dictionary:
 	for m in equipped_moves:
 		eq.append(DB.move_key(m) if m != null else "")
 	return {"species_id": species.id, "level": level, "experience": experience, "ivs": ivs.duplicate(),
-		"evs": evs.duplicate(), "hp": hp, "equipped_moves": eq, "nickname": nickname, "nature": nature,
+		"evs": evs.duplicate(), "hp": hp, "equipped_moves": eq, "nickname": nickname, "nature": nature, "ability": ability,
 		"taught_moves": taught_moves.filter(func(m): return m != null).map(func(m): return DB.move_key(m))}
 
 
@@ -171,6 +191,9 @@ static func from_dict(d: Dictionary, warnings: Array = []) -> CreatureInstance:
 		c.evs[s] = clampi(int(evs_in.get(s, 0)) if evs_in is Dictionary else 0, 0, 252)
 	c.hp = clampf(float(d.get("hp", c.max_hp())), 0.0, c.max_hp())
 	c.nickname = str(d.get("nickname", ""))
+	var ab := str(d.get("ability", ""))
+	if ab != "":
+		c.ability = ab  # (partidas viejas: se queda con la que sorteó create)
 	c.nature = str(d.get("nature", ""))
 	var taught = d.get("taught_moves", [])
 	if taught is Array:
@@ -185,6 +208,8 @@ static func from_dict(d: Dictionary, warnings: Array = []) -> CreatureInstance:
 			var m: MoveData = null
 			if str(key) != "":
 				m = DB.move_by_id(str(key))
+				if m != null and not c.can_equip(m):
+					m = c._same_name(m)  # partidas viejas: el ataque de kit pasa a ser el oficial del mismo nombre
 				if m == null or not c.can_equip(m) or eq.has(m):
 					warnings.append("Movimiento no disponible para %s: %s" % [sp.display_name, key])
 					m = null
@@ -194,6 +219,14 @@ static func from_dict(d: Dictionary, warnings: Array = []) -> CreatureInstance:
 		if c.equipped_moves.all(func(x): return x == null):
 			c.equipped_moves = c.default_equipment()
 	return c
+
+
+## El movimiento que sabe con el mismo nombre que `m` (o null).
+func _same_name(m: MoveData) -> MoveData:
+	for x in learned_moves():
+		if x.display_name == m.display_name:
+			return x
+	return null
 
 
 ## Stat oficial al nivel actual (naturaleza neutra por ahora).
@@ -278,7 +311,10 @@ func add_exp(amount: int) -> int:
 func evolve_into(to: SpeciesData) -> Array[MoveData]:
 	var known := learned_moves()
 	var lost := max_hp() - hp
+	var slot := species.abilities.map(func(a): return a.id).find(ability)
 	species = to
+	if not to.abilities.is_empty():  # la habilidad del mismo lugar (como en los juegos)
+		ability = to.abilities[clampi(slot, 0, to.abilities.size() - 1)].id
 	for m in known:
 		if not learned_moves().has(m):
 			taught_moves.append(m)

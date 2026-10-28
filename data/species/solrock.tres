@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_83pk2"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qj7rd"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_sunhk"]
 [ext_resource type="Resource" path="res://data/moves/fortaleza.tres" id="2_6u4ol"]
+[ext_resource type="Resource" path="res://data/abilities/levitacion.tres" id="2_s0hv7"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vtrxf"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_o5ftt"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_ssukb"]
@@ -18,51 +20,76 @@
 [ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="10_w6xwr"]
 [ext_resource type="Resource" path="res://data/moves/explosion.tres" id="11_vfu72"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="14_ssukb"]
+[ext_resource type="Resource" path="res://data/moves/paz_mental.tres" id="16_eiemo"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="17_qa0to"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="18_83pk2"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="19_s0hv7"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="20_juww3"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="21_0546u"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="22_cnkc3"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="23_tqpt8"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="24_ti63p"]
+[ext_resource type="Resource" path="res://data/moves/hiperrayo.tres" id="25_0grax"]
+[ext_resource type="Resource" path="res://data/moves/pantalla_de_luz.tres" id="26_n8o5i"]
+[ext_resource type="Resource" path="res://data/moves/sofoco.tres" id="27_whx2t"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="28_kwafb"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="29_onohi"]
+[ext_resource type="Resource" path="res://data/moves/reflejo.tres" id="30_vm0el"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="31_j107m"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="32_cp007"]
+[ext_resource type="Resource" path="res://data/moves/tumba_rocas.tres" id="33_vibnr"]
+[ext_resource type="Resource" path="res://data/moves/velo_sagrado.tres" id="34_ssygy"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="35_8ww11"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="36_2il4q"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="37_6gc05"]
+[ext_resource type="Resource" path="res://data/moves/intercambio.tres" id="38_ch04j"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="39_4s1w5"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="40_0yn2y"]
 
-[sub_resource type="Resource" id="Resource_sunhk"]
+[sub_resource type="Resource" id="Resource_83pk2"]
 script = ExtResource("1_qj7rd")
 move = ExtResource("2_6u4ol")
 
-[sub_resource type="Resource" id="Resource_rv75y"]
+[sub_resource type="Resource" id="Resource_s0hv7"]
 script = ExtResource("1_qj7rd")
 move = ExtResource("3_ssukb")
 
-[sub_resource type="Resource" id="Resource_dira0"]
+[sub_resource type="Resource" id="Resource_juww3"]
 script = ExtResource("1_qj7rd")
 level = 7
 move = ExtResource("4_sunhk")
 
-[sub_resource type="Resource" id="Resource_7088e"]
+[sub_resource type="Resource" id="Resource_0546u"]
 script = ExtResource("1_qj7rd")
 level = 13
 move = ExtResource("5_rv75y")
 
-[sub_resource type="Resource" id="Resource_oomh5"]
+[sub_resource type="Resource" id="Resource_cnkc3"]
 script = ExtResource("1_qj7rd")
 level = 19
 move = ExtResource("6_dira0")
 
-[sub_resource type="Resource" id="Resource_upkoy"]
+[sub_resource type="Resource" id="Resource_tqpt8"]
 script = ExtResource("1_qj7rd")
 level = 25
 move = ExtResource("7_7088e")
 
-[sub_resource type="Resource" id="Resource_w6xwr"]
+[sub_resource type="Resource" id="Resource_ti63p"]
 script = ExtResource("1_qj7rd")
 level = 31
 move = ExtResource("8_oomh5")
 
-[sub_resource type="Resource" id="Resource_vfu72"]
+[sub_resource type="Resource" id="Resource_0grax"]
 script = ExtResource("1_qj7rd")
 level = 37
 move = ExtResource("9_upkoy")
 
-[sub_resource type="Resource" id="Resource_tl53k"]
+[sub_resource type="Resource" id="Resource_n8o5i"]
 script = ExtResource("1_qj7rd")
 level = 43
 move = ExtResource("10_w6xwr")
 
-[sub_resource type="Resource" id="Resource_0qkfk"]
+[sub_resource type="Resource" id="Resource_whx2t"]
 script = ExtResource("1_qj7rd")
 level = 49
 move = ExtResource("11_vfu72")
@@ -73,7 +100,9 @@ id = "solrock"
 display_name = "Solrock"
 dex = 338
 types = Array[ExtResource("4_0r7va")]([ExtResource("5_u77j8"), ExtResource("6_p2ytg")])
-learnset = Array[ExtResource("1_qj7rd")]([SubResource("Resource_sunhk"), SubResource("Resource_rv75y"), SubResource("Resource_dira0"), SubResource("Resource_7088e"), SubResource("Resource_oomh5"), SubResource("Resource_upkoy"), SubResource("Resource_w6xwr"), SubResource("Resource_vfu72"), SubResource("Resource_tl53k"), SubResource("Resource_0qkfk")])
+learnset = Array[ExtResource("1_qj7rd")]([SubResource("Resource_83pk2"), SubResource("Resource_s0hv7"), SubResource("Resource_juww3"), SubResource("Resource_0546u"), SubResource("Resource_cnkc3"), SubResource("Resource_tqpt8"), SubResource("Resource_ti63p"), SubResource("Resource_0grax"), SubResource("Resource_n8o5i"), SubResource("Resource_whx2t")])
+tm_moves = Array[ExtResource("2_vtrxf")]([ExtResource("16_eiemo"), ExtResource("17_qa0to"), ExtResource("18_83pk2"), ExtResource("19_s0hv7"), ExtResource("20_juww3"), ExtResource("21_0546u"), ExtResource("22_cnkc3"), ExtResource("23_tqpt8"), ExtResource("24_ti63p"), ExtResource("25_0grax"), ExtResource("26_n8o5i"), ExtResource("27_whx2t"), ExtResource("28_kwafb"), ExtResource("29_onohi"), ExtResource("30_vm0el"), ExtResource("31_j107m"), ExtResource("32_cp007"), ExtResource("33_vibnr"), ExtResource("34_ssygy"), ExtResource("35_8ww11"), ExtResource("36_2il4q"), ExtResource("37_6gc05"), ExtResource("38_ch04j"), ExtResource("10_w6xwr"), ExtResource("39_4s1w5"), ExtResource("40_0yn2y")])
+abilities = Array[ExtResource("1_83pk2")]([ExtResource("2_s0hv7")])
 temperament = ExtResource("14_ssukb")
 genus = "Pokémon Meteorito"
 pokedex_entry = "Solrock pertenece a una nueva especie de Pokémon a la que se le atribuye una procedencia extraterrestre. Este Pokémon permanece flotando en el aire y se mueve muy despacio. Al luchar, desprende una luz viva e intensa."

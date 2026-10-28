@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_0m6w5"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_3w8rh"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_bg06m"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dv3ig"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="2_enjak"]
+[ext_resource type="Resource" path="res://data/abilities/prediccion.tres" id="2_kf1po"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_g6iup"]
 [ext_resource type="Resource" path="res://data/moves/ascuas.tres" id="3_lbvfy"]
 [ext_resource type="Resource" path="res://data/moves/nieve_polvo.tres" id="4_bg06m"]
@@ -15,42 +17,65 @@
 [ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="8_lwroa"]
 [ext_resource type="Resource" path="res://data/moves/meteorobola.tres" id="9_17ri1"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/territorial.tres" id="12_lbvfy"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="14_wd16x"]
+[ext_resource type="Resource" path="res://data/moves/ventisca.tres" id="15_uq4nq"]
+[ext_resource type="Resource" path="res://data/moves/doble_equipo.tres" id="16_0m6w5"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="17_kf1po"]
+[ext_resource type="Resource" path="res://data/moves/llamarada.tres" id="18_32xvj"]
+[ext_resource type="Resource" path="res://data/moves/lanzallamas.tres" id="19_w447a"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="20_185jc"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="21_g3r2d"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="22_jnxpu"]
+[ext_resource type="Resource" path="res://data/moves/rayo_hielo.tres" id="23_2wahd"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="24_nwwtm"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="25_ag3am"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="26_7t3ot"]
+[ext_resource type="Resource" path="res://data/moves/tormenta_de_arena.tres" id="27_aj0n2"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="28_do345"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="29_bpnpf"]
+[ext_resource type="Resource" path="res://data/moves/onda_voltio.tres" id="30_lyrk2"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="31_2ufm0"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="32_xi7ea"]
+[ext_resource type="Resource" path="res://data/moves/trueno.tres" id="33_56mxf"]
+[ext_resource type="Resource" path="res://data/moves/rayo.tres" id="34_6g5x3"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="35_1qsrt"]
+[ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="36_tn4y2"]
 
-[sub_resource type="Resource" id="Resource_bg06m"]
+[sub_resource type="Resource" id="Resource_0m6w5"]
 script = ExtResource("1_3w8rh")
 move = ExtResource("2_enjak")
 
-[sub_resource type="Resource" id="Resource_rv6cf"]
+[sub_resource type="Resource" id="Resource_kf1po"]
 script = ExtResource("1_3w8rh")
 level = 10
 move = ExtResource("3_lbvfy")
 
-[sub_resource type="Resource" id="Resource_sucl8"]
+[sub_resource type="Resource" id="Resource_32xvj"]
 script = ExtResource("1_3w8rh")
 level = 10
 move = ExtResource("4_bg06m")
 
-[sub_resource type="Resource" id="Resource_f10ac"]
+[sub_resource type="Resource" id="Resource_w447a"]
 script = ExtResource("1_3w8rh")
 level = 10
 move = ExtResource("5_rv6cf")
 
-[sub_resource type="Resource" id="Resource_lwroa"]
+[sub_resource type="Resource" id="Resource_185jc"]
 script = ExtResource("1_3w8rh")
 level = 20
 move = ExtResource("6_sucl8")
 
-[sub_resource type="Resource" id="Resource_17ri1"]
+[sub_resource type="Resource" id="Resource_g3r2d"]
 script = ExtResource("1_3w8rh")
 level = 20
 move = ExtResource("7_f10ac")
 
-[sub_resource type="Resource" id="Resource_y7uh5"]
+[sub_resource type="Resource" id="Resource_jnxpu"]
 script = ExtResource("1_3w8rh")
 level = 20
 move = ExtResource("8_lwroa")
 
-[sub_resource type="Resource" id="Resource_70fcx"]
+[sub_resource type="Resource" id="Resource_2wahd"]
 script = ExtResource("1_3w8rh")
 level = 30
 move = ExtResource("9_17ri1")
@@ -61,7 +86,9 @@ id = "castform"
 display_name = "Castform"
 dex = 351
 types = Array[ExtResource("4_hi4e7")]([ExtResource("5_0m7su")])
-learnset = Array[ExtResource("1_3w8rh")]([SubResource("Resource_bg06m"), SubResource("Resource_rv6cf"), SubResource("Resource_sucl8"), SubResource("Resource_f10ac"), SubResource("Resource_lwroa"), SubResource("Resource_17ri1"), SubResource("Resource_y7uh5"), SubResource("Resource_70fcx")])
+learnset = Array[ExtResource("1_3w8rh")]([SubResource("Resource_0m6w5"), SubResource("Resource_kf1po"), SubResource("Resource_32xvj"), SubResource("Resource_w447a"), SubResource("Resource_185jc"), SubResource("Resource_g3r2d"), SubResource("Resource_jnxpu"), SubResource("Resource_2wahd")])
+tm_moves = Array[ExtResource("2_dv3ig")]([ExtResource("14_wd16x"), ExtResource("15_uq4nq"), ExtResource("16_0m6w5"), ExtResource("17_kf1po"), ExtResource("18_32xvj"), ExtResource("19_w447a"), ExtResource("20_185jc"), ExtResource("21_g3r2d"), ExtResource("6_sucl8"), ExtResource("22_jnxpu"), ExtResource("23_2wahd"), ExtResource("24_nwwtm"), ExtResource("7_f10ac"), ExtResource("25_ag3am"), ExtResource("26_7t3ot"), ExtResource("27_aj0n2"), ExtResource("28_do345"), ExtResource("29_bpnpf"), ExtResource("30_lyrk2"), ExtResource("31_2ufm0"), ExtResource("8_lwroa"), ExtResource("32_xi7ea"), ExtResource("33_56mxf"), ExtResource("34_6g5x3"), ExtResource("35_1qsrt"), ExtResource("36_tn4y2")])
+abilities = Array[ExtResource("1_0m6w5")]([ExtResource("2_kf1po")])
 temperament = ExtResource("12_lbvfy")
 genus = "Pokémon Clima"
 pokedex_entry = "La forma de Castform cambia con las variaciones del tiempo. Este Pokémon consiguió aprender a usar el gran poder de la naturaleza para proteger el pequeño cuerpo que tiene."

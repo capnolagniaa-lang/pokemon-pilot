@@ -22,6 +22,8 @@ func setup(instance: CreatureInstance) -> void:
 	if instance.equipped_moves.is_empty():
 		instance.equipped_moves = instance.default_equipment()
 	var source: Array[MoveData] = instance.equipped_moves
+	if instance.boss and instance.species.boss_kit != null:
+		source = instance.species.boss_kit.moves  # el jefe pelea con su kit
 	slots.clear()
 	for i in SLOT_COUNT:
 		slots.append(source[i] if i < source.size() else null)

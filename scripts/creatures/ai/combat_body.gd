@@ -37,13 +37,20 @@ static func difficulty() -> AiDifficulty:
 	return GameState.difficulty if GameState.difficulty != null else AiDifficulty.new()
 
 
-## Si el ataque de una ranura tiene sentido a esta distancia (mejoras propias: solo herido).
+## Si el ataque de una ranura tiene sentido a esta distancia. Mejoras propias (balance 2026-10-28: antes solo herido,
+## y Danza Espada o el Metrónomo de Clefairy casi no salían): las ofensivas (más ataque o velocidad) y las que maneja la
+## firma (sin estado: Metrónomo) en cuanto pelea cerca; las defensivas (escudo, curarse, Fortaleza) cuando está herido.
 func fits(slot: int, dist: float) -> bool:
 	var m: MoveData = actor.moves.slots[slot]
 	if m == null or not actor.moves.can_use(slot):
 		return false
 	match m.kind:
-		MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF:
+		MoveData.Kind.SHIELD:
+			return actor.health.ratio() < 0.6
+		MoveData.Kind.SELF_BUFF:
+			var s: StatusEffect = m.self_status
+			if s == null or s.attack_mult > 1.0 or s.speed_mult > 1.0:
+				return dist < 160.0 and (s == null or not actor.statuses.has_status(s.id))
 			return actor.health.ratio() < 0.6
 		MoveData.Kind.DASH:
 			return m.dash_hits and dist < m.reach()

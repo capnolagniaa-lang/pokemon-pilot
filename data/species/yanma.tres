@@ -1,9 +1,12 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_jmk1b"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_qrsxf"]
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_wf4fl"]
 [ext_resource type="Resource" path="res://data/moves/profecia.tres" id="2_5bqm8"]
+[ext_resource type="Resource" path="res://data/abilities/impulso.tres" id="2_u87d6"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_y4i20"]
+[ext_resource type="Resource" path="res://data/abilities/ojo_compuesto.tres" id="3_eosva"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_jpktt"]
 [ext_resource type="Resource" path="res://data/moves/placaje.tres" id="3_od7qg"]
 [ext_resource type="Script" path="res://scripts/resources/element_type.gd" id="4_ftgf2"]
@@ -19,56 +22,74 @@
 [ext_resource type="Resource" path="res://data/moves/supersonico.tres" id="11_tofwe"]
 [ext_resource type="Resource" path="res://data/moves/chirrido.tres" id="12_5xjd7"]
 [ext_resource type="Resource" path="res://data/ai/temperaments/agresivo.tres" id="15_od7qg"]
+[ext_resource type="Resource" path="res://data/moves/golpe_aereo.tres" id="17_406s5"]
+[ext_resource type="Resource" path="res://data/moves/atraccion.tres" id="18_aw161"]
+[ext_resource type="Resource" path="res://data/moves/fachada.tres" id="19_vsndd"]
+[ext_resource type="Resource" path="res://data/moves/destello.tres" id="20_jmk1b"]
+[ext_resource type="Resource" path="res://data/moves/frustracion.tres" id="21_u87d6"]
+[ext_resource type="Resource" path="res://data/moves/gigadrenado.tres" id="22_eosva"]
+[ext_resource type="Resource" path="res://data/moves/poder_oculto.tres" id="23_shffy"]
+[ext_resource type="Resource" path="res://data/moves/proteccion.tres" id="24_xyu72"]
+[ext_resource type="Resource" path="res://data/moves/psiquico.tres" id="25_fb652"]
+[ext_resource type="Resource" path="res://data/moves/descanso.tres" id="26_mnpkh"]
+[ext_resource type="Resource" path="res://data/moves/retribucion.tres" id="27_4wxfc"]
+[ext_resource type="Resource" path="res://data/moves/dano_secreto.tres" id="28_gf38f"]
+[ext_resource type="Resource" path="res://data/moves/bola_sombra.tres" id="29_jtjm5"]
+[ext_resource type="Resource" path="res://data/moves/rayo_solar.tres" id="30_v0req"]
+[ext_resource type="Resource" path="res://data/moves/ala_de_acero.tres" id="31_slomv"]
+[ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="32_q2ka0"]
+[ext_resource type="Resource" path="res://data/moves/ladron.tres" id="33_d7rmk"]
+[ext_resource type="Resource" path="res://data/moves/toxico.tres" id="34_yl70m"]
 
-[sub_resource type="Resource" id="Resource_wf4fl"]
+[sub_resource type="Resource" id="Resource_jmk1b"]
 script = ExtResource("1_qrsxf")
 move = ExtResource("2_5bqm8")
 
-[sub_resource type="Resource" id="Resource_xh884"]
+[sub_resource type="Resource" id="Resource_u87d6"]
 script = ExtResource("1_qrsxf")
 move = ExtResource("3_od7qg")
 
-[sub_resource type="Resource" id="Resource_8cf46"]
+[sub_resource type="Resource" id="Resource_eosva"]
 script = ExtResource("1_qrsxf")
 level = 6
 move = ExtResource("4_wf4fl")
 
-[sub_resource type="Resource" id="Resource_b68gh"]
+[sub_resource type="Resource" id="Resource_shffy"]
 script = ExtResource("1_qrsxf")
 level = 12
 move = ExtResource("5_xh884")
 
-[sub_resource type="Resource" id="Resource_1adtj"]
+[sub_resource type="Resource" id="Resource_xyu72"]
 script = ExtResource("1_qrsxf")
 level = 17
 move = ExtResource("6_8cf46")
 
-[sub_resource type="Resource" id="Resource_6l8kg"]
+[sub_resource type="Resource" id="Resource_fb652"]
 script = ExtResource("1_qrsxf")
 level = 23
 move = ExtResource("7_b68gh")
 
-[sub_resource type="Resource" id="Resource_i6mq3"]
+[sub_resource type="Resource" id="Resource_mnpkh"]
 script = ExtResource("1_qrsxf")
 level = 28
 move = ExtResource("8_1adtj")
 
-[sub_resource type="Resource" id="Resource_tofwe"]
+[sub_resource type="Resource" id="Resource_4wxfc"]
 script = ExtResource("1_qrsxf")
 level = 34
 move = ExtResource("9_6l8kg")
 
-[sub_resource type="Resource" id="Resource_5xjd7"]
+[sub_resource type="Resource" id="Resource_gf38f"]
 script = ExtResource("1_qrsxf")
 level = 39
 move = ExtResource("10_i6mq3")
 
-[sub_resource type="Resource" id="Resource_6qxis"]
+[sub_resource type="Resource" id="Resource_jtjm5"]
 script = ExtResource("1_qrsxf")
 level = 45
 move = ExtResource("11_tofwe")
 
-[sub_resource type="Resource" id="Resource_ye3am"]
+[sub_resource type="Resource" id="Resource_v0req"]
 script = ExtResource("1_qrsxf")
 level = 50
 move = ExtResource("12_5xjd7")
@@ -79,7 +100,9 @@ id = "yanma"
 display_name = "Yanma"
 dex = 193
 types = Array[ExtResource("4_ftgf2")]([ExtResource("5_abh55"), ExtResource("6_y1y6y")])
-learnset = Array[ExtResource("1_qrsxf")]([SubResource("Resource_wf4fl"), SubResource("Resource_xh884"), SubResource("Resource_8cf46"), SubResource("Resource_b68gh"), SubResource("Resource_1adtj"), SubResource("Resource_6l8kg"), SubResource("Resource_i6mq3"), SubResource("Resource_tofwe"), SubResource("Resource_5xjd7"), SubResource("Resource_6qxis"), SubResource("Resource_ye3am")])
+learnset = Array[ExtResource("1_qrsxf")]([SubResource("Resource_jmk1b"), SubResource("Resource_u87d6"), SubResource("Resource_eosva"), SubResource("Resource_shffy"), SubResource("Resource_xyu72"), SubResource("Resource_fb652"), SubResource("Resource_mnpkh"), SubResource("Resource_4wxfc"), SubResource("Resource_gf38f"), SubResource("Resource_jtjm5"), SubResource("Resource_v0req")])
+tm_moves = Array[ExtResource("2_y4i20")]([ExtResource("17_406s5"), ExtResource("18_aw161"), ExtResource("5_xh884"), ExtResource("19_vsndd"), ExtResource("20_jmk1b"), ExtResource("21_u87d6"), ExtResource("22_eosva"), ExtResource("23_shffy"), ExtResource("24_xyu72"), ExtResource("25_fb652"), ExtResource("26_mnpkh"), ExtResource("27_4wxfc"), ExtResource("28_gf38f"), ExtResource("29_jtjm5"), ExtResource("30_v0req"), ExtResource("31_slomv"), ExtResource("32_q2ka0"), ExtResource("33_d7rmk"), ExtResource("34_yl70m")])
+abilities = Array[ExtResource("1_jmk1b")]([ExtResource("2_u87d6"), ExtResource("3_eosva")])
 temperament = ExtResource("15_od7qg")
 genus = "Pokémon Ala Clara"
 pokedex_entry = "Yanma tiene un ángulo de visión de 360° sin mover los ojos. Es un gran volador, experto en hacer repentinas paradas y cambios de dirección en el aire. Aprovecha la habilidad que tiene de volar para lanzarse sobre su presa."

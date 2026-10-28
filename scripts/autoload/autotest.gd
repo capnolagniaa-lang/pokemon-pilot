@@ -180,6 +180,13 @@ func _ready() -> void:
 		add_child(sg)
 		(sg.showcase if "--showcase-settings" in OS.get_cmdline_user_args() else sg.run).call_deferred()
 		return
+	if "--autotest-abilities" in OS.get_cmdline_user_args():
+		set_process(false)
+		var abt := AbilitiesTests.new()
+		abt.autotest = self
+		add_child(abt)
+		abt.run.call_deferred()
+		return
 	if "--autotest-balance" in OS.get_cmdline_user_args():
 		set_process(false)
 		var bal := BalanceTests.new()
@@ -589,7 +596,7 @@ func _input_test() -> void:
 	Input.action_release("move_right")
 	results["WASD lo mueve"] = world.companion.global_position.x > world.trainer.global_position.x + 10.0
 	await _tap("attack_1", true)
-	results["Clic izq. usa el ataque 1 (Ascuas)"] = used.has("ascuas_abanico")
+	results["Clic izq. usa el ataque 1"] = used.has(world.companion.moves.slots[0].id)
 	await get_tree().create_timer(1.0).timeout
 	await _tap("dodge", true)
 	results["Espacio esquiva"] = world.companion.machine.current_name() == "dash" or world.companion.health.invulnerable_time > 0.0
@@ -749,7 +756,7 @@ func _identity_test() -> void:
 		await get_tree().physics_frame
 	r["Enraizado no se mueve pero puede actuar"] = d.global_position.distance_to(p0) < 1.0 and d.statuses.can_act()
 
-	var e: Creature = spawn.call("psyduck", Vector2(-90, 20))
+	var e: Creature = spawn.call("nidoran_f", Vector2(-90, 20))  # (no psyduck: con Aclimatación no se empapa)
 	e.statuses.apply(st.call("empapado"))
 	var seen := []
 	Events.interaction_triggered.connect(func(_cr, it): seen.append(it.label))
@@ -783,7 +790,9 @@ func _identity_test() -> void:
 
 	world.combat.start_battle()
 	await get_tree().physics_frame
-	var idx := 2  # Giro Fuego (Q)
+	var idx := 2  # (Q) un ataque de zona con carga y recuperación (desde las habilidades ya no viene en el kit)
+	me.moves.slots[idx] = DB.all_moves["charmander/giro_fuego_trampa"]
+	me.moves.reset_cooldown(idx)
 	me.use_slot(idx, Vector2.UP)
 	await get_tree().physics_frame
 	r["Telegrafiado durante la carga"] = me.machine.current_name() == "cast" and me.telegraph.shape == Telegraph.Shape.CIRCLE

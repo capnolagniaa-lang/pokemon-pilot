@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="SpeciesData" format=3]
 
 [ext_resource type="Script" path="res://scripts/resources/evolution_data.gd" id="1_6ugxe"]
+[ext_resource type="Script" path="res://scripts/resources/signature_data.gd" id="1_7gdtq"]
 [ext_resource type="Script" path="res://scripts/resources/learnset_entry.gd" id="1_wur12"]
+[ext_resource type="Resource" path="res://data/abilities/sombra_trampa.tres" id="2_5wc6l"]
 [ext_resource type="Resource" path="res://data/moves/encanto.tres" id="2_jnyfi"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_vhmmj"]
 [ext_resource type="Script" path="res://scripts/resources/species_data.gd" id="3_15n1u"]
@@ -20,34 +22,34 @@ script = ExtResource("1_6ugxe")
 to_id = "wobbuffet"
 level = 15
 
-[sub_resource type="Resource" id="Resource_rrxq1"]
+[sub_resource type="Resource" id="Resource_7gdtq"]
 script = ExtResource("1_wur12")
 move = ExtResource("2_jnyfi")
 
-[sub_resource type="Resource" id="Resource_7gdtq"]
+[sub_resource type="Resource" id="Resource_5wc6l"]
 script = ExtResource("1_wur12")
 move = ExtResource("3_q6sbn")
 
-[sub_resource type="Resource" id="Resource_5wc6l"]
-script = ExtResource("1_wur12")
-move = ExtResource("4_6ugxe")
-
 [sub_resource type="Resource" id="Resource_twuwe"]
 script = ExtResource("1_wur12")
-level = 15
-move = ExtResource("5_rrxq1")
+move = ExtResource("4_6ugxe")
 
 [sub_resource type="Resource" id="Resource_ccqdx"]
 script = ExtResource("1_wur12")
 level = 15
-move = ExtResource("6_7gdtq")
+move = ExtResource("5_rrxq1")
 
 [sub_resource type="Resource" id="Resource_7ubwe"]
 script = ExtResource("1_wur12")
 level = 15
-move = ExtResource("7_5wc6l")
+move = ExtResource("6_7gdtq")
 
 [sub_resource type="Resource" id="Resource_1i6vf"]
+script = ExtResource("1_wur12")
+level = 15
+move = ExtResource("7_5wc6l")
+
+[sub_resource type="Resource" id="Resource_a45ar"]
 script = ExtResource("1_wur12")
 level = 15
 move = ExtResource("8_twuwe")
@@ -58,7 +60,8 @@ id = "wynaut"
 display_name = "Wynaut"
 dex = 360
 types = Array[ExtResource("4_548i5")]([ExtResource("5_lmqkm")])
-learnset = Array[ExtResource("1_wur12")]([SubResource("Resource_rrxq1"), SubResource("Resource_7gdtq"), SubResource("Resource_5wc6l"), SubResource("Resource_twuwe"), SubResource("Resource_ccqdx"), SubResource("Resource_7ubwe"), SubResource("Resource_1i6vf")])
+learnset = Array[ExtResource("1_wur12")]([SubResource("Resource_7gdtq"), SubResource("Resource_5wc6l"), SubResource("Resource_twuwe"), SubResource("Resource_ccqdx"), SubResource("Resource_7ubwe"), SubResource("Resource_1i6vf"), SubResource("Resource_a45ar")])
+abilities = Array[ExtResource("1_7gdtq")]([ExtResource("2_5wc6l")])
 evolutions = Array[ExtResource("1_6ugxe")]([SubResource("Resource_6ugxe")])
 temperament = ExtResource("11_q6sbn")
 genus = "Pokémon Radiante"
