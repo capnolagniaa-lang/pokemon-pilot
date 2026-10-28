@@ -19,7 +19,7 @@ const STEPS := [
 	# Capítulo 3 (docs/PLAN_CAPITULO_3.md)
 	["rival_ss_anne_peleado", "Rumbo al S.S. Anne", "Con el Ticket de Bill, andá al sur de Ciudad Celeste: Ruta 5, la Vía Subterránea y la Ruta 6 hasta Ciudad Carmín. Subí al S.S. Anne en el puerto: tu rival anda por el segundo piso."],
 	["tiene_corte", "El capitán mareado", "El capitán del S.S. Anne está en su camarote, al fondo del pasillo del segundo piso. Ayudalo."],
-	["surge_puerta_abierta", "Los basureros de Surge", "Con Corte (E frente al árbol fino) entrá al gimnasio de Ciudad Carmín. Buscá los dos interruptores en los basureros: el segundo está al lado del primero."],
+	["surge_puerta_abierta", "Los basureros de Surge", "Con Corte (caminá contra el árbol fino) entrá al gimnasio de Ciudad Carmín. Buscá los dos interruptores en los basureros: el segundo está al lado del primero."],
 	["medalla_trueno", "La Medalla Trueno", "Ganale a Lt. Surge (tipo eléctrico: los de tierra no sienten la electricidad)."],
 	# Capítulos 4 a 8 (docs/PLAN_RESTO_KANTO.md)
 	["giovanni_escondite_vencido", "El Escondite Rocket", "Desde Ciudad Celeste, la Ruta 9 y el Túnel Roca llevan a Pueblo Lavanda; la Ruta 8 y la Vía Subterránea, a Ciudad Azulona. El Team Rocket se esconde debajo del Casino: bajá hasta el fondo y ganale a su jefe."],

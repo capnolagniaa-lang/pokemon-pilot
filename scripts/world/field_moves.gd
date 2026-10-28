@@ -1,12 +1,14 @@
 class_name FieldMoves
 extends Node
-## Habilidades fuera de combate (MO y objetos clave; docs/PLAN_CAPITULO_3.md y docs/PLAN_RESTO_KANTO.md). Todas con la E
-## frente a algo (StoryDirector.register_interaction):
+## Habilidades fuera de combate (MO y objetos clave; docs/PLAN_CAPITULO_3.md y docs/PLAN_RESTO_KANTO.md). Las MO van
+## como en los juegos nuevos (Let's Go): la historia las desbloquea (la MO + su medalla) y después no ocupan ataque ni
+## preguntan nada: **caminando contra** el árbol, el agua o la roca tu Pokémon lo hace solo (`_auto_use`). La E frente
+## al obstáculo también sirve, y si todavía no se puede, dice qué falta (StoryDirector.register_interaction):
 ##  · Corte (MO01 + Medalla Cascada): corta un árbol fino (EnvObject "cortable"); vuelve a crecer al recargar la zona.
 ##  · Surf (MO03 + Medalla Alma): frente al agua, el entrenador navega sobre su Pokémon (el agua deja de frenarlo);
 ##    al pisar tierra se baja solo.
-##  · Fuerza (MO04 + Medalla Arcoíris): frente a una roca grande ("pesado") la activa; caminando contra la roca la empuja
-##    una celda si del otro lado hay lugar. Las rocas vuelven a su lugar al recargar la zona (como en los juegos).
+##  · Fuerza (MO04 + Medalla Arcoíris): caminando contra una roca grande ("pesado") la empuja una celda si del otro
+##    lado hay lugar. Las rocas vuelven a su lugar al recargar la zona (como en los juegos).
 ##  · Poké Flauta: despierta a los Snorlax de las Rutas 12 y 16 (acciones "snorlax_<ruta>" de su conversación).
 ## En el modo libre (sin historia) alcanza con tener la MO. Nodo del mundo (world.field_moves).
 
@@ -17,6 +19,8 @@ const STRENGTH_ITEM := "mo04"
 const BADGES := {"mo01": "medalla_cascada", "mo03": "medalla_alma", "mo04": "medalla_arcoiris"}
 const BADGE_NAMES := {"medalla_cascada": "la Medalla Cascada", "medalla_alma": "la Medalla Alma",
 	"medalla_arcoiris": "la Medalla Arcoíris"}
+## Cuánto hay que caminar contra el obstáculo para que se use la MO (para no activarla rozando).
+const AUTO_PUSH := 0.18
 ## Distancia máxima entre el objeto y el punto de adelante del entrenador.
 const REACH := 14.0
 const CELL := 16.0
@@ -29,9 +33,9 @@ const LEGENDS := {"legendario_articuno": ["articuno", "articuno_visto", 50, "isl
 var world: Node
 ## Navegando sobre el agua (Surf).
 var surfing := false
-## Fuerza activada (hasta cambiar de zona).
+## Fuerza activada a mano (los tests); con la MO04 y la medalla está siempre activa (`strength_on`).
 var strength := false
-var _strength_zone := ""
+var _push_time := 0.0
 var _pushing := false
 var _mount: Sprite2D
 var _sprite_y := 0.0
@@ -48,7 +52,6 @@ func _ready() -> void:
 		world.story.register_action(action, _wake_snorlax.bind(action))
 	for action in LEGENDS:
 		world.story.register_action(action, _legend.bind(action))
-	Events.zone_entered.connect(func(z: ZoneEntry): if z.id != _strength_zone: strength = false)
 
 
 ## Si puede usar una MO fuera de combate: la tiene y, en la historia, tiene la medalla.
@@ -102,13 +105,12 @@ func _try_cut(_zone_id: String, _cell: Vector2i, front: Vector2) -> bool:
 
 
 func _cut_dialog(tree: EnvObject) -> void:
+	if can_use(CUT_ITEM):
+		tree.cut()
+		return
 	var story: StoryDirector = world.story
 	story.lock()
-	if not can_use(CUT_ITEM):
-		await story._say("", PackedStringArray(["Este árbol se ve fino... se podría cortar.", _why_not(CUT_ITEM, "Corte")]))
-	elif await story.dialog.ask("", "Este árbol se puede cortar. ¿Usás Corte?", PackedStringArray(["Sí", "No"])) == 0:
-		await story._say("", PackedStringArray(["¡%s usó Corte!" % _mon_name()]))
-		tree.cut()
+	await story._say("", PackedStringArray(["Este árbol se ve fino... se podría cortar.", _why_not(CUT_ITEM, "Corte")]))
 	story.unlock()
 
 
@@ -117,31 +119,31 @@ func _cut_dialog(tree: EnvObject) -> void:
 func _try_strength(zone_id: String, _cell: Vector2i, front: Vector2) -> bool:
 	if object_near(front, "pesado") == null:
 		return false
-	_strength_dialog(zone_id)
+	_strength_dialog()
 	return true
 
 
-func _strength_dialog(zone_id: String) -> void:
+func _strength_dialog() -> void:
 	var story: StoryDirector = world.story
 	story.lock()
-	if strength:
-		await story._say("", PackedStringArray(["La Fuerza está activa: caminá contra la roca para empujarla."]))
-	elif not can_use(STRENGTH_ITEM):
+	if strength_on():
+		await story._say("", PackedStringArray(["Caminá contra la roca y %s la empuja." % _mon_name()]))
+	else:
 		await story._say("", PackedStringArray(["Es una roca enorme. Hace falta mucha fuerza para moverla.", _why_not(STRENGTH_ITEM, "Fuerza")]))
-	elif await story.dialog.ask("", "Es una roca enorme. ¿Usás Fuerza?", PackedStringArray(["Sí", "No"])) == 0:
-		activate_strength(zone_id)
-		await story._say("", PackedStringArray(["¡%s usó Fuerza! Ahora puede empujar las rocas." % _mon_name()]))
 	story.unlock()
 
 
-func activate_strength(zone_id: String) -> void:
+func activate_strength(_zone_id: String = "") -> void:
 	strength = true
-	_strength_zone = zone_id
+
+
+func strength_on() -> bool:
+	return strength or can_use(STRENGTH_ITEM)
 
 
 ## Empuja la roca una celda en `dir` si del otro lado hay lugar (lo usa el entrenador al caminar contra ella y el test).
 func push(boulder: EnvObject, dir: Vector2) -> bool:
-	if _pushing or not strength:
+	if _pushing or not strength_on():
 		return false
 	var d := Vector2(signf(dir.x), 0.0) if absf(dir.x) > absf(dir.y) else Vector2(0.0, signf(dir.y))
 	var entry: ZoneEntry = world.streamer.world_data.zone_at(boulder.global_position)
@@ -171,13 +173,12 @@ func _try_surf(_zone_id: String, _cell: Vector2i, front: Vector2) -> bool:
 
 
 func _surf_dialog(front: Vector2) -> void:
+	if can_use(SURF_ITEM):
+		start_surf(front)
+		return
 	var story: StoryDirector = world.story
 	story.lock()
-	if not can_use(SURF_ITEM):
-		await story._say("", PackedStringArray(["El agua está tranquila y es profunda.", _why_not(SURF_ITEM, "Surf")]))
-	elif await story.dialog.ask("", "El agua está tranquila. ¿Usás Surf?", PackedStringArray(["Sí", "No"])) == 0:
-		await story._say("", PackedStringArray(["¡%s usó Surf!" % _mon_name()]))
-		start_surf(front)
+	await story._say("", PackedStringArray(["El agua está tranquila y es profunda.", _why_not(SURF_ITEM, "Surf")]))
 	story.unlock()
 
 
@@ -238,12 +239,42 @@ func _physics_process(delta: float) -> void:
 			world.companion.global_position = t.global_position  # viaja "adentro" (no choca con el agua)
 		if _surf_grace <= 0.0 and not world.tags_at(t.global_position).has("agua") and not t.locked:
 			stop_surf()  # pisó tierra: se baja
-	if strength and not _pushing:
+	_auto_use(delta)
+	if strength_on() and not _pushing:
 		for i in t.get_slide_collision_count():
 			var obj = t.get_slide_collision(i).get_collider()
 			if obj is EnvObject and obj.has_tag("pesado") and t.velocity.length() > 1.0:
 				push(obj, t.velocity)
 				break
+
+
+## Caminando contra un árbol fino, el agua o una roca (con la habilidad desbloqueada) se usa sola, sin preguntar.
+## (Fuerza no pasa por acá: con `strength_on` el choque contra la roca ya la empuja.)
+func _auto_use(delta: float) -> void:
+	var t: Trainer = world.trainer
+	var input := t.input_dir()
+	var story: StoryDirector = world.story
+	if input == Vector2.ZERO or surfing or t.locked or world.combat.in_battle or story.busy or story.dialog.active \
+			or (world.warps != null and world.warps.busy):
+		_push_time = 0.0
+		return
+	var d := Vector2(WarpSystem._four(input))
+	var front := t.global_position + d * 12.0
+	var tree := cuttable_near(front) if can_use(CUT_ITEM) else null
+	var water: bool = tree == null and can_use(SURF_ITEM) and world.tags_at(front).has("agua") \
+		and not world.tags_at(t.global_position).has("agua")
+	if tree == null and not water:
+		_push_time = 0.0
+		return
+	_push_time += delta
+	if _push_time < AUTO_PUSH:
+		return
+	_push_time = 0.0
+	t.facing = d
+	if tree != null:
+		tree.cut()
+	else:
+		start_surf(t.global_position + d * 16.0)
 
 
 # --- Poké Flauta ----------------------------------------------------------------------------------------------

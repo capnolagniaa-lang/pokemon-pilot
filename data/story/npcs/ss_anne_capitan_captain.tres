@@ -7,12 +7,12 @@
 script = ExtResource("2_t")
 forbids = PackedStringArray("tiene_corte")
 set_flags = PackedStringArray("tiene_corte")
-lines = PackedStringArray("(El capitán está pálido y apoyado en el escritorio.)", "Uuuh... estoy mareado... me quiero morir...", "(Le frotás la espalda...)", "¡Uf! ¡Ahora sí! ¡Mucho mejor! ¡Gracias, de verdad!", "Te quiero agradecer: tomá esta MO. Es Corte: con ella tus Pokémon cortan los árboles finos que tapan el camino.", "Para usarla fuera de combate necesitás la Medalla Cascada.")
+lines = PackedStringArray("(El capitán está pálido y apoyado en el escritorio.)", "Uuuh... estoy mareado... me quiero morir...", "(Le frotás la espalda...)", "¡Uf! ¡Ahora sí! ¡Mucho mejor! ¡Gracias, de verdad!", "Te quiero agradecer: tomá esta MO. Es Corte: no hace falta enseñársela a nadie. Caminá contra un árbol fino y tu Pokémon lo corta.", "Para usarla fuera de combate necesitás la Medalla Cascada.")
 give_items = {"mo01": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Gracias de nuevo! Con Corte, frente a un árbol fino apretá E.")
+lines = PackedStringArray("¡Gracias de nuevo! Con Corte, caminá contra un árbol fino y tu Pokémon lo corta solo.")
 
 [resource]
 script = ExtResource("1_n")

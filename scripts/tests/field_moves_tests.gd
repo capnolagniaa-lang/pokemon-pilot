@@ -42,6 +42,13 @@ func run() -> void:
 	t.autopilot = Vector2.ZERO
 	r["Al pisar tierra se baja solo"] = not fm.surfing and t.get_collision_mask_value(2) \
 		and not world.tags_at(t.global_position).has("agua")
+	t.autopilot = Vector2.DOWN
+	await _until(func(): return fm.surfing, 3.0)
+	t.autopilot = Vector2.ZERO
+	r["Caminando hacia el agua se mete solo (sin preguntar)"] = fm.surfing and not world.story.dialog.active
+	t.autopilot = Vector2.UP
+	await _until(func(): return not fm.surfing, 4.0)
+	t.autopilot = Vector2.ZERO
 
 	# --- Fuerza: una roca de Calle Victoria ---
 	var boulder: EnvObject = await _find_boulder()

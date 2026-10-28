@@ -813,9 +813,9 @@ TALKS.update({
         dict(forbids=["tiene_corte"], give={"mo01": 1}, set_flags=["tiene_corte"], lines=[
             "(El capitán está pálido y apoyado en el escritorio.)", "Uuuh... estoy mareado... me quiero morir...",
             "(Le frotás la espalda...)", "¡Uf! ¡Ahora sí! ¡Mucho mejor! ¡Gracias, de verdad!",
-            "Te quiero agradecer: tomá esta MO. Es Corte: con ella tus Pokémon cortan los árboles finos que tapan el camino.",
+            "Te quiero agradecer: tomá esta MO. Es Corte: no hace falta enseñársela a nadie. Caminá contra un árbol fino y tu Pokémon lo corta.",
             "Para usarla fuera de combate necesitás la Medalla Cascada."]),
-        dict(lines=["¡Gracias de nuevo! Con Corte, frente a un árbol fino apretá E."])]),
+        dict(lines=["¡Gracias de nuevo! Con Corte, caminá contra un árbol fino y tu Pokémon lo corta solo."])]),
 })
 for (_zone, _script), _who in {
         ("ss_anne_cocina", "Chef1"): "¡Fuera de la cocina! ...Bueno, mirá nomás.", ("ss_anne_cocina", "Chef2"): "¡Esta noche hay pescado!",
@@ -1091,13 +1091,13 @@ TALKS.update({
         dict(forbids=["mo03_recibido"], give={"mo03": 1}, set_flags=["mo03_recibido"], lines=[
             "¡Felicitaciones! ¡Encontraste la Casa Secreta de la Zona Safari!", "Como premio, tomá esta MO: es Surf.",
             "Con la Medalla Alma, tus Pokémon te llevan sobre el agua."]),
-        dict(lines=["Con Surf podés llegar a lugares a los que nadie llega a pie."])]),
+        dict(lines=["Con Surf podés llegar a lugares a los que nadie llega a pie: caminá hacia el agua y tu Pokémon te lleva nadando."])]),
     ("casa_guarda", "Warden"): dict(name="Guarda", talks=[
         dict(requires=["objeto_zona_safari_oeste_itemgoldteeth"], forbids=["mo04_recibido"], take={"dientes_oro": 1}, give={"mo04": 1},
              set_flags=["mo04_recibido"], lines=["¡Ehfe! ¡Mif dientef! ¡Lof encontrafte!", "...(Se los pone)... ¡Ahora sí! ¡Gracias!",
-                                                 "Tomá, en agradecimiento: la MO04, Fuerza. Con ella tus Pokémon empujan rocas enormes."]),
+                                                 "Tomá, en agradecimiento: la MO04, Fuerza. Caminá contra una roca enorme y tu Pokémon la empuja."]),
         dict(forbids=["mo04_recibido"], lines=["¡Ehfe! Ffe me cayeron lof dientef en la Fona Fafari... ¡Fi los encontráf, avifame!"]),
-        dict(lines=["Con Fuerza movés las rocas de Calle Victoria. ¡Te va a hacer falta!"])]),
+        dict(lines=["Con Fuerza, caminá contra las rocas de Calle Victoria y se corren. ¡Te va a hacer falta!"])]),
     # --- Cap. 6: Azafrán y Silph ---
     ("silph_7p", "0x0"): dict(name=RIVAL, show_if=["historia"], hide_if=["rival_silph_peleado"], talks=[dict(lines=["¡Ey!"])]),
     ("silph_7p", "LaprasGuy"): dict(name="Empleado", talks=[

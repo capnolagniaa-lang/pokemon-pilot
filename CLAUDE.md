@@ -197,9 +197,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `AiDifficulty.lead`: los disparos anticipan tu movimiento (Fácil 0, Normal 0,6, Difícil 1).
 - **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
   hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`; **capítulos 4-8** hasta el Campeón: `docs/PLAN_RESTO_KANTO.md`). **E frente
-  a algo** (`StoryDirector.register_interaction`): `FieldMoves` = Corte (MO01 + Cascada: EnvObject "cortable"), Surf (MO03
-  + Alma: el agua deja de frenar al entrenador, al pisar tierra se baja), Fuerza (MO04 + Arcoíris: empujar EnvObject
-  "pesado"), Poké Flauta (Snorlax) y legendarios (acciones de su charla); `VermilionGymPuzzle` (basureros de Carmín).
+  a algo** (`StoryDirector.register_interaction`): `FieldMoves` = MO **como en Let's Go** (decisión del usuario 2026-10-28: la MO + su medalla las desbloquea,
+  no ocupan ataque ni preguntan; **caminando contra** el obstáculo se usan solas, `_auto_use`; la E dice qué falta): Corte
+  (MO01 + Cascada: EnvObject "cortable"), Surf (MO03 + Alma: el agua deja de frenar al entrenador, al pisar tierra se
+  baja), Fuerza (MO04 + Arcoíris: empujar EnvObject "pesado"), Poké Flauta (Snorlax) y legendarios (acciones de su charla); `VermilionGymPuzzle` (basureros de Carmín).
   Entrenadores de las zonas nuevas: automáticos desde `data/source/trainers_frlg.json` (`tools/fetch_frlg_trainers.py`,
   de pret) con frases por clase; en `build_story_npcs.py` el bloque "Capítulos 4 a 8" tiene los hitos y al final un
   **relleno** que le da una frase a toda persona sin charla propia. `GameState.story_flags` (banderas, se guardan); `NpcData`/`NpcTalk`/

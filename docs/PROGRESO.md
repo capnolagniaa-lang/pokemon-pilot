@@ -312,6 +312,10 @@ como en FireRed) y salvajes de FireRed.
 - Entrenadores vivos: sus rutinas pasaron a Ruta 1, Ruta 22, Ruta 2 y Bosque Verde (celda transitable más cercana).
 - `--autotest` reescrito: camina de Pueblo Paleta a Ciudad Plateada entrando al Laboratorio de Oak, pasando por la
   Ruta 22 y cruzando el Bosque Verde por sus garitas (`TourPlanner`).
+- **MO sin trámite, como en Let's Go** (2026-10-28, pedido del usuario: "es tedioso el sistema de MO"): Corte, Surf
+  y Fuerza se desbloquean igual que antes (la MO + su medalla) pero no se enseñan ni preguntan nada: caminando contra el
+  árbol, el agua o la roca tu Pokémon lo hace solo (`FieldMoves._auto_use`). La E frente al obstáculo dice qué falta.
+  Textos de la historia ajustados. **Próximo**: pelea en el agua y reactivar los salvajes de agua (propuesta al usuario).
 - **Mapas del resto de Kanto** (2026-10-28, pedido del usuario: "continuá hasta donde puedas para terminar la
   historia"): 145 zonas nuevas, toda Kanto hasta la Meseta Añil (Rutas 7-21 y 23; Lavanda + Torre Pokémon; Azulona
   + Gran Almacén, Casino, Escondite Rocket, gimnasio; Azafrán (ya no es hueco) + Silph S.A., Dojo, gimnasio; Fucsia
