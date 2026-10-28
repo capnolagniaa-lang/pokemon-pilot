@@ -6,6 +6,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Versión para Mac (2026-10-28, pedido del usuario)**: `tools/build_portable.py ... --mac <zip de Godot para macOS>` arma
+  `export/PokemonPilot-Mac-<fecha>.zip` (Godot.app oficial universal sin tocar + .pck + lanzador `.command` + LEEME con
+  cómo abrirlo la primera vez). Sin probar en una Mac de verdad.
 - **EXP repartida, Abra con Poder Oculto y huidas dispersas (2026-10-28, pedido del usuario)**: la EXP de un enemigo se
   divide entre los Pokémon que salieron a pelear contra él (cambiando con 1-6) y siguen en pie; los debilitados no reciben
   y su parte va para los demás (`CombatDirector.exp_shares`). Abra aprende Poder Oculto en el Nv. 1 (`OFFICIAL_EXTRAS` de
