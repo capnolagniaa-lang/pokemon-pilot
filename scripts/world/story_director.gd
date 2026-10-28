@@ -62,16 +62,24 @@ func refresh() -> void:
 
 
 ## La persona más cercana con la que se puede hablar ahora (o null).
+## Con quién hablás: primero la persona que tenés enfrente (aunque otra esté más cerca al costado: en el Centro de
+## Carmín una chica al lado del mostrador te tapaba a la enfermera); si no hay nadie enfrente, la más cercana.
 func npc_in_reach() -> StoryNPC:
-	var t: Node2D = world.trainer
+	var t: Trainer = world.trainer
+	var facing := t.facing.normalized() if t.facing != Vector2.ZERO else Vector2.DOWN
 	var best: StoryNPC = null
-	var best_d := TALK_RADIUS
+	var best_score := INF
 	for npc in npcs.values():
 		if not is_instance_valid(npc):
 			continue
-		var d: float = npc.global_position.distance_to(t.global_position)
-		if d < best_d:
-			best_d = d
+		var to: Vector2 = npc.global_position - t.global_position
+		var d := to.length()
+		if d >= TALK_RADIUS:
+			continue
+		var ahead := d < 1.0 or to.normalized().dot(facing) > 0.7
+		var score := d - (1000.0 if ahead else 0.0)
+		if score < best_score:
+			best_score = score
 			best = npc
 	return best
 

@@ -86,6 +86,17 @@ func run() -> void:
 	r["Un disparador de una vez no se repite"] = GameState.has_flag(trig.flag()) and not trig.ready_to_fire()
 	DB.story_triggers.erase(trig.id)
 
+	# Centro de Carmín: la chica al lado del mostrador no tapa a la enfermera (se habla con la que tenés enfrente).
+	var vnurse: NpcData = DB.npcs["ciudad_carmin_centro_nurse"]
+	await _go_near(vnurse, Vector2i(0, 2))
+	world.trainer.facing = Vector2.UP
+	var reach := story.npc_in_reach()
+	r["En el Centro de Carmín, mirando al mostrador, hablás con la enfermera"] = reach != null \
+		and reach.data.id == vnurse.id
+	world.trainer.facing = Vector2.LEFT
+	reach = story.npc_in_reach()
+	r["Mirando a la chica de al lado, hablás con ella"] = reach != null \
+		and reach.data.id == "ciudad_carmin_centro_vsseekerwoman"
 	r["El mouse es una mira roja mientras jugás"] = world.get_node_or_null("CrosshairCursor") is CrosshairCursor 		and CrosshairCursor.texture().get_width() == CrosshairCursor.SIZE
 	# --- Charlas comunes: alejarse las corta; las importantes traban (decisión del usuario 2026-10-28) ---
 	var casual := NpcTalk.new()
