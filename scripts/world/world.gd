@@ -95,6 +95,9 @@ func _ready() -> void:
 	day_night = DayNight.new()
 	day_night.name = "DayNight"
 	add_child(day_night)
+	var cursor := CrosshairCursor.new()  # el mouse es una mira roja mientras jugás
+	cursor.name = "CrosshairCursor"
+	add_child(cursor)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
 	Events.zone_entered.connect(func(z: ZoneEntry): GameState.visit_zone(z.id))
 	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).

@@ -86,6 +86,7 @@ func run() -> void:
 	r["Un disparador de una vez no se repite"] = GameState.has_flag(trig.flag()) and not trig.ready_to_fire()
 	DB.story_triggers.erase(trig.id)
 
+	r["El mouse es una mira roja mientras jugás"] = world.get_node_or_null("CrosshairCursor") is CrosshairCursor 		and CrosshairCursor.texture().get_width() == CrosshairCursor.SIZE
 	# --- Charlas comunes: alejarse las corta; las importantes traban (decisión del usuario 2026-10-28) ---
 	var casual := NpcTalk.new()
 	casual.lines = PackedStringArray(["Hola.", "Qué lindo día."])
