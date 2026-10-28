@@ -16,6 +16,16 @@ var autopilot := Vector2.ZERO
 var autopilot_run := false
 ## Durante un combate el entrenador se queda quieto mirando (no responde al input).
 var locked := false
+## Mientras controlás a tu Pokémon (F, fuera de las arenas) el entrenador lo sigue solo a una distancia (pedido del
+## usuario 2026-10-28: "se queda lejos"). null = no sigue a nadie.
+var follow_target: Node2D
+## Empieza a caminar si el Pokémon está más lejos que esto; frena al llegar a FOLLOW_NEAR; corre desde FOLLOW_RUN.
+const FOLLOW_FAR := 90.0
+const FOLLOW_NEAR := 55.0
+const FOLLOW_RUN := 150.0
+## Ángulos para rodear lo que tenga adelante (como la IA de las criaturas).
+const DETOUR := [0.0, 40.0, -40.0, 80.0, -80.0, 120.0, -120.0]
+var _following := false
 
 var _anim_time := 0.0
 
@@ -29,14 +39,38 @@ func _ready() -> void:
 
 func input_dir() -> Vector2:
 	if locked:
-		return Vector2.ZERO
+		return _follow_dir()
 	if autopilot != Vector2.ZERO:
 		return autopilot
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 
 func wants_run() -> bool:
+	if locked:
+		return _following and is_instance_valid(follow_target) \
+			and global_position.distance_to(follow_target.global_position) > FOLLOW_RUN
 	return (autopilot_run and autopilot != Vector2.ZERO) or Input.is_action_pressed("run")
+
+
+## Hacia dónde caminar para seguir a `follow_target` (ZERO si está cerca o no hay a quién seguir).
+func _follow_dir() -> Vector2:
+	if not is_instance_valid(follow_target):
+		_following = false
+		return Vector2.ZERO
+	var to := follow_target.global_position - global_position
+	var dist := to.length()
+	if dist > FOLLOW_FAR:
+		_following = true
+	elif dist < FOLLOW_NEAR:
+		_following = false
+	if not _following:
+		return Vector2.ZERO
+	var want := to / maxf(dist, 0.001)
+	for a in DETOUR:
+		var d := want.rotated(deg_to_rad(a))
+		if not test_move(global_transform, d * 10.0):
+			return d
+	return want
 
 
 func move(dir: Vector2, speed: float) -> void:

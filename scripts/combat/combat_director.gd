@@ -87,6 +87,8 @@ func take_control(c: Creature) -> void:
 	c.input_source = input_source
 	c.machine.transition_to("controlled")
 	world.trainer.locked = true
+	# Fuera de las arenas el entrenador sigue a su Pokémon (en la arena se queda en su lugar).
+	world.trainer.follow_target = c if not arena_lock else null
 	world.camera.target = c
 
 
@@ -105,6 +107,7 @@ func end_battle(force: bool = false) -> void:
 			e.machine.transition_to("wander")
 	enemies.clear()
 	world.trainer.locked = false
+	world.trainer.follow_target = null
 	world.camera.target = world.trainer
 	Events.battle_ended.emit()
 
@@ -223,6 +226,8 @@ func switch_to(index: int) -> bool:
 		c.input_source = input_source
 		c.machine.transition_to.call_deferred("controlled")
 		world.camera.target = c
+		if not arena_lock:
+			world.trainer.follow_target = c  # el entrenador sigue al que sale
 		for e in enemies:
 			if is_instance_valid(e) and not e.health.is_dead():
 				e.target = c

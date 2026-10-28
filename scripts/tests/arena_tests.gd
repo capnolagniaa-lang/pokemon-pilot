@@ -36,6 +36,7 @@ func run() -> void:
 		and world.trainer.global_position.distance_to(TrainerBattle.ARENA_ORIGIN) < 1500.0
 	r["Sale su primer Pokémon (Geodude de Brock)"] = is_instance_valid(foe) and foe.instance.species.id == "geodude" and foe.owner_name == "Brock"
 	r["Tu Pokémon pelea (control y combate trabado)"] = world.combat.in_battle and world.combat.arena_lock and world.companion.player_controlled
+	r["En la arena el entrenador se queda en su lugar (no sigue al Pokémon)"] = world.trainer.follow_target == null
 	# Cambiar de Pokémon con las teclas 1-6 en plena pelea de gimnasio (bug: la charla con Brock lo bloqueaba).
 	await autotest._tap("switch_2")
 	await get_tree().create_timer(0.2).timeout

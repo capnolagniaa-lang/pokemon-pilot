@@ -62,6 +62,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Primeras hojas hechas por código** (`tools/make_vfx.py`, sin IA): impacto de los 18 tipos (estrella, llamas,
   salpicadura, rayos, hojas, cristales, escombros, viento, aros, burbujas, destellos) y cuerpo de 5 proyectiles.
   Vitrina `--showcase-vfx`. Calidad "de programador": la idea es ir reemplazándolas por arte de PixelLab/Sorceress.
+- **El entrenador sigue a su Pokémon (2026-10-28, pedido del usuario)**: con la F (controlando al Pokémon, fuera de las
+  arenas) el entrenador camina solo hacia él si se aleja más de 90 px (corre desde 150 px, frena a 55 px y rodea lo que
+  tenga adelante). En las arenas se queda en su lugar. `Trainer.follow_target` (lo pone `CombatDirector`). Chequeos en
+  `--autotest-ai-steer` y `--autotest-arena`.
 - **Día y noche, parte D (2026-10-28)**: de noche los ataques no se oscurecen (los efectos compensan el Daylight), sus
   luces crecen (hasta 0,5), los impactos de fuego/eléctrico iluminan un instante y los Pokémon de fuego alumbran con
   su llama. Solo visual. Ver `docs/PLAN_DIA_NOCHE.md`. Test `--autotest-night-combat`.

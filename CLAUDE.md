@@ -161,7 +161,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `MapDocument` = la zona real abierta + operaciones con reglas (pinceles por rol, autotile, árboles, objetos,
   balde, copiar/pegar con `TileMapPattern`, `UndoRedo`, guardar con backup). La UI (`map_editor.gd` + paneles)
   no tiene lógica de mapa. Ver README, "Editor de mapas".
-- **Combate**: `CombatDirector` (modo combate), componentes `Health`/`StatusEffects`/`MoveUser`/`Hurtbox`/
+- **Combate**: `CombatDirector` (modo combate; con la F el entrenador queda `locked` pero sigue a su Pokémon con
+  `Trainer.follow_target`, salvo en las arenas), componentes `Health`/`StatusEffects`/`MoveUser`/`Hurtbox`/
   `Hitbox` en la criatura, `Projectile`/`AreaEffect`, `HitInfo` + `Damage`. El Pokémon controlado lee órdenes
   de un `CombatInput` (teclado/mouse) o `BotCombatInput` (autotest). El feedback escucha solo `Events`.
 - **Kits / estilos de pelea** (plan de identidad, **v2 vigente**): `SpeciesData.kit` → `Kit` (`archetype`,
