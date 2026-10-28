@@ -67,7 +67,8 @@ cuerpo 30/31 y 28/29, base 36-39, unión de bosque 20-23; 42/43 son techo, no á
 - **Proyectiles**: la palabra "projectile" dibuja balas y cohetes, y "jet" aviones; describir solo la energía ("a ball
   of X moving fast to the right and leaving a short glowing trail..."). Para estos efectos, el LoRA **MOSS** (1,0) va
   mejor que el anterior. Wan a veces deforma el bucle (Lanzarrocas se deshace, Hoja Mágica cambia de forma): ahí,
-  cuadro clave quieto. `fx_from_frames.py --loop` (cuadros parejos), `--flip` si la estela quedó del otro lado,
+  cuadro clave quieto (`--frames 1`). Lo oscuro (una roca, Bola Sombra) va sobre fondo blanco y `--bg white`; y para
+  que el recorte no salga enorme, pedirlo "compact" (sin chispas desparramadas). `fx_from_frames.py --loop` (cuadros parejos), `--flip` si la estela quedó del otro lado,
   `--end 5` para quedarse con el principio. Tamaño: `max(16, min(32, size·4))` px.
 - ComfyUI se puede colgar al alternar Wan (2 × 9,6 GB) y Qwen (13 GB) con 32 GB de RAM: si pasa, reiniciarlo y volver
   a encolar lo que faltó.

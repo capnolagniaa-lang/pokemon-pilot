@@ -36,7 +36,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Pasado, Rayo Hielo, Psíquico, Rayo Burbuja, Llamarada, Electrocañón, Dragoaliento, Furia Dragón, Ácido, Gigadrenado,
   Pin Misil, Rapidez, Bomba Lodo, Disparo Lodo y Bola Sombra (`sprites/fx/moves/`, bucle de 4 cuadros, tamaño según el
   `size` del ataque) y el área de Surf (la ola, idea del usuario). ComfyUI con el LoRA MOSS; lecciones en
-  `docs/COMFYUI.md`. Pendientes: Hidrobomba (sale un avión o una columna), Lanzarrocas y Hoja Mágica (Wan los deforma).
+  `docs/COMFYUI.md`. Después, Hidrobomba (una bola de agua) y Lanzarrocas y Hoja Mágica (quietos: Wan los deformaba).
 - **Noche con luz de luna (2026-10-28, pedido del usuario: "demasiado azulado oscuro")**: la noche es plateada y más
   clara, con un brillo de luna con rayos desde arriba a la derecha, sombras de luna y estrellitas que titilan
   (`AmbientFX`, solo afuera). Tabla `KEYS` de `DayNight`.

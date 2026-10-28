@@ -113,7 +113,7 @@ func showcase() -> void:
 	# Los 5 de código y los 15 hechos con IA (docs/COMFYUI.md).
 	for id in ["ascuas", "impactrueno", "pistola_agua", "burbuja", "hoja_afilada", "lanzallamas", "confusion", "hiperrayo",
 			"poder_pasado", "rayo_hielo", "psiquico", "rayo_burbuja", "llamarada", "electrocanon", "dragoaliento",
-			"furia_dragon", "acido", "gigadrenado", "pin_misil", "rapidez", "bomba_lodo", "disparo_lodo", "bola_sombra"]:
+			"furia_dragon", "acido", "gigadrenado", "pin_misil", "rapidez", "bomba_lodo", "disparo_lodo", "bola_sombra", "hidrobomba", "lanzarrocas", "hoja_magica"]:
 		if not DB.moves.has(id):
 			continue
 		var p := Projectile.new()
