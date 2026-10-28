@@ -5,7 +5,9 @@ extends Node
 ## congela el agua (puente) y lo mojado, el eléctrico corre por el agua y el suelo mojado. El fuego no
 ## interactúa con el entorno (decisión del usuario; más adelante solo prenderá las esporas de un ataque
 ## Espora). También:
-##  · las criaturas paradas encima reciben el estado de la celda (Empapado, Paralizado);
+##  · las criaturas paradas encima reciben el estado de la celda (Empapado); la descarga eléctrica
+##    (`status_on_impact`) paraliza una sola vez, al impactar, a los que están en el agua o lo mojado alcanzado
+##    (no a los que flotan ni al que pelea montado sobre su Pokémon de Surf);
 ##  · las rocas frágiles se rompen con embestidas.
 ## Cada zona tiene su EnvironmentGrid (se crea al primer uso y se va con la zona).
 
@@ -182,8 +184,11 @@ func apply_element_cell(g: EnvironmentGrid, cell: Vector2i, element: ElementType
 		if new_state == st and new_state != null:
 			return  # ya está así (no reiniciar el fuego infinitamente)
 		g.set_state(cell, new_state)
+		var hit := {cell: true}
 		if rule.flood_limit > 0:
-			_flood(g, cell, rule, new_state)
+			_flood(g, cell, rule, new_state, hit)
+		if new_state != null and new_state.status_on_impact and new_state.creature_status != null:
+			_shock(g, hit, new_state.creature_status)
 		_feedback(rule, g.cell_center(cell))
 		return
 
@@ -203,7 +208,7 @@ func _matches(rule: ReactionRule, tags: PackedStringArray, st: EnvCellState) -> 
 
 
 ## Propaga el estado por las celdas conectadas que conducen (eléctrico por agua y suelo mojado).
-func _flood(g: EnvironmentGrid, start: Vector2i, rule: ReactionRule, st: EnvCellState) -> void:
+func _flood(g: EnvironmentGrid, start: Vector2i, rule: ReactionRule, st: EnvCellState, hit: Dictionary) -> void:
 	var seen := {start: true}
 	var queue: Array[Vector2i] = [start]
 	var count := 0
@@ -224,6 +229,7 @@ func _flood(g: EnvironmentGrid, start: Vector2i, rule: ReactionRule, st: EnvCell
 						break
 			if conducts and ns != st:
 				g.set_state(n, st)
+				hit[n] = true
 				queue.append(n)
 				count += 1
 
@@ -253,6 +259,26 @@ func _on_object_struck(obj: Node, power: float) -> void:
 		obj.shatter()
 
 
+## Descarga de una vez: el estado le llega a cada criatura que está en las celdas alcanzadas (salvo las que flotan),
+## con la mitad de su duración (es de rebote: el golpe directo pega más).
+const SHOCK_DURATION := 0.5
+func _shock(g: EnvironmentGrid, cells: Dictionary, status: StatusEffect) -> void:
+	for c in get_tree().get_nodes_in_group("creatures"):
+		if c.is_down() or c.health.is_invulnerable() or not grounded(c) or grid_at(c.global_position) != g:
+			continue
+		if cells.has(g.zone.cell_at(c.global_position)):
+			c.statuses.apply(status, SHOCK_DURATION)
+
+
+## Si toca el suelo o el agua (los Voladores, Fantasma y los que levitan flotan; el que pelea montado va arriba de
+## su Pokémon de Surf).
+func grounded(c: Creature) -> bool:
+	if FieldMoves.water_mode_of(c.instance.species) == "flota":
+		return false
+	var fm = world.get("field_moves")
+	return not (fm != null and fm.water_mode == "montado" and c == world.get("companion"))
+
+
 # --- Criaturas sobre celdas con estado -------------------------------------------------------
 
 func _physics_process(delta: float) -> void:
@@ -264,6 +290,8 @@ func _physics_process(delta: float) -> void:
 		if c.is_down() or c.health.is_invulnerable():
 			continue
 		var st := state_at(c.global_position)
+		if st != null and st.status_on_impact:
+			continue  # (ya la recibió al impactar)
 		# Los que acumulan (Paralizado) se aplican en cada tick; el resto, si no lo tiene ya.
 		if st != null and st.creature_status != null and (st.creature_status.buildup or not c.statuses.has_status(st.creature_status.id)):
 			c.statuses.apply(st.creature_status)

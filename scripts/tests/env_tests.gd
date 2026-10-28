@@ -118,6 +118,21 @@ func run() -> void:
 	r["Eléctrico corre por el agua"] = _cells_with(g, ["electrificado"]) >= 5
 	await get_tree().create_timer(1.6).timeout
 	r["La descarga se termina"] = _cells_with(g, ["electrificado"]) == 0
+	# Pelea en el agua: la descarga paraliza una vez, al impactar, a los que nadan; a los que flotan no.
+	var swimmer: Creature = autotest._dummy(world, "tentacool", _center(zone, water))
+	var floater: Creature = autotest._dummy(world, "gastly", _center(zone, water) + Vector2(4, 0))
+	swimmer.swims = true
+	floater.swims = true
+	await get_tree().create_timer(0.3).timeout
+	rs.apply_element_cell(g, water, electrico)
+	await get_tree().physics_frame
+	r["Descarga en el agua: paraliza al que nada, no al que flota"] = swimmer.statuses.has_status("paralizado") \
+		and not floater.statuses.has_status("paralizado")
+	swimmer.statuses.clear()
+	await get_tree().create_timer(0.6).timeout
+	r["La descarga es de una vez (no queda el agua cargada)"] = not swimmer.statuses.has_status("paralizado")
+	swimmer.queue_free()
+	floater.queue_free()
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:

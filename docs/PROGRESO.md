@@ -320,8 +320,12 @@ como en FireRed) y salvajes de FireRed.
   tipo Agua sale nadando; los Voladores, Fantasma y los que levitan flotan; el resto pelea montado sobre tu Pokémon de
   Surf (el primero de agua del equipo, o Lapras si no tenés), más lento y con el entrenador arriba. En tierra, los que
   nadan o flotan también pueden meterse al agua. Volvieron los salvajes de agua de FireRed (27 tablas: Tentacool,
-  Psyduck, Seel...), que salen solo mientras navegás. Falta: verlo en pantalla (no se probó a mano) y el entorno del
-  agua (hielo que congela, electricidad que se propaga), que quedó para después.
+  Psyduck, Seel...), que salen solo mientras navegás. Falta: verlo en pantalla (no se probó a mano).
+  **Entorno del agua**: el hielo ya congelaba el agua (puente de hielo, 10 s). La electricidad, por pedido del usuario
+  ("se propaga cuando impacta, si no estaría muy roto"), ahora es **una descarga de una vez**: al impactar en el agua (o
+  lo mojado) paraliza, con la mitad de la duración, a los que están en las celdas alcanzadas (hasta 48 por el agua) y
+  la celda queda solo visual 0,5 s (`EnvCellState.status_on_impact`, `ReactionSystem._shock`). No la sienten los que
+  flotan ni el que pelea montado. El fuego sigue sin tocar el entorno (decisión anterior).
 - **Mapas del resto de Kanto** (2026-10-28, pedido del usuario: "continuá hasta donde puedas para terminar la
   historia"): 145 zonas nuevas, toda Kanto hasta la Meseta Añil (Rutas 7-21 y 23; Lavanda + Torre Pokémon; Azulona
   + Gran Almacén, Casino, Escondite Rocket, gimnasio; Azafrán (ya no es hueco) + Silph S.A., Dojo, gimnasio; Fucsia

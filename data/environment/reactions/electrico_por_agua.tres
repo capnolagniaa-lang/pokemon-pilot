@@ -12,6 +12,6 @@ tags_any = PackedStringArray("conductor")
 set_state = "electrificado"
 flood_tags = PackedStringArray("conductor")
 flood_states = PackedStringArray("mojado")
-flood_limit = 80
+flood_limit = 48
 effect = 2
 text = "¡Descarga!"

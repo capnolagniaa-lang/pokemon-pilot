@@ -26,6 +26,9 @@ enum Look { FIRE, SCORCH, WET, ICE, SPARK, CRATER }
 ## Tags que la celda pierde y gana mientras dura (el pasto quemado deja de ser inflamable y pasto alto).
 @export var removes_tags: PackedStringArray = []
 @export var adds_tags: PackedStringArray = []
+## El estado de la criatura se aplica una sola vez, en el momento del impacto, a las que están en las celdas
+## alcanzadas (la descarga eléctrica por el agua); mientras dura la celda es solo visual. Los que flotan no lo sienten.
+@export var status_on_impact: bool = false
 ## El agua congelada se puede caminar (puente de hielo).
 @export var walkable_water: bool = false
 

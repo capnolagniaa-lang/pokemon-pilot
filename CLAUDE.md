@@ -270,7 +270,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - **Stats y progresión = reglas oficiales** (ver sección abajo). Nunca inventar stats: salen de PokeAPI.
 - **Entorno reactivo (Etapa 3)**: `ReactionSystem` (nodo del mundo) escucha `Events.element_impact` y aplica
   `ReactionRule` (`data/environment/reactions/`) a las celdas; el estado vive en un `EnvironmentGrid` por zona
-  (`EnvCellState` en `data/environment/states/`). Sumar reacciones = sumar .tres, sin tocar código.
+  (`EnvCellState` en `data/environment/states/`). Sumar reacciones = sumar .tres, sin tocar código. La descarga
+  eléctrica es de una vez (`EnvCellState.status_on_impact`: paraliza al impactar a los que están en las celdas
+  alcanzadas, no a los que flotan ni al que pelea montado; `ReactionSystem.grounded`).
 - **Tags de entorno**: custom data `tags` del TileSet (`inflamable`, `agua`, `conductor`, `congelable`,
   `pasto_alto`, `solido`, `arbol`...) + `EnvObject.tags` (`fragil`, `pesado`, `cortable`...).
   Base del sistema de entorno reactivo (Etapa 3).
