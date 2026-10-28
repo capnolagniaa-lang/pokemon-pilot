@@ -113,7 +113,7 @@ func showcase() -> void:
 	# Los 5 de código y los 15 hechos con IA (docs/COMFYUI.md).
 	for id in ["ascuas", "impactrueno", "pistola_agua", "burbuja", "hoja_afilada", "lanzallamas", "confusion", "hiperrayo",
 			"poder_pasado", "rayo_hielo", "psiquico", "rayo_burbuja", "llamarada", "electrocanon", "dragoaliento",
-			"furia_dragon", "acido", "gigadrenado", "pin_misil", "rapidez"]:
+			"furia_dragon", "acido", "gigadrenado", "pin_misil", "rapidez", "bomba_lodo", "disparo_lodo", "bola_sombra"]:
 		if not DB.moves.has(id):
 			continue
 		var p := Projectile.new()
@@ -122,7 +122,7 @@ func showcase() -> void:
 		dummy.health.heal(9999.0)
 		print("[showcase-vfx] proyectil ", id, " cuadro ", Engine.get_frames_drawn())
 		await get_tree().create_timer(0.7).timeout
-	for id in ["trueno", "giro_fuego"]:  # áreas con hoja hecha con IA (docs/COMFYUI.md)
+	for id in ["trueno", "giro_fuego", "surf"]:  # áreas con hoja hecha con IA (docs/COMFYUI.md)
 		if not DB.moves.has(id):
 			continue
 		var a := AreaEffect.new()
