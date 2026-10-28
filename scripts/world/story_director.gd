@@ -24,6 +24,9 @@ var interactions: Array[Callable] = []
 var actions: Dictionary = {}
 var _last_cell := Vector2i(-99999, -99999)
 var _last_zone := ""
+## Charla común abierta (no traba): dónde estaba el entrenador al empezar. Si se aleja CASUAL_LEAVE, se corta.
+var _casual_from := Vector2.INF
+const CASUAL_LEAVE := 20.0
 
 
 func _ready() -> void:
@@ -122,13 +125,29 @@ func talk_to(npc: StoryNPC) -> void:
 	if talk == null:
 		return
 	npc.look_at_point(world.trainer.global_position)
-	await run_talk(talk, npc.data.display_name)
+	await run_talk(talk, npc.data.display_name, true)
 
 
-## Abre la conversación (traba al entrenador) y al cerrarla aplica sus efectos.
-func run_talk(talk: NpcTalk, default_speaker: String = "") -> void:
-	busy = true
+## ¿Es una charla común (solo texto, sin pregunta, pelea, regalo, banderas ni nada que pase después)? Esas no
+## traban al entrenador: alejarse la corta (decisión del usuario 2026-10-28). Las importantes traban hasta el final.
+static func is_casual(talk: NpcTalk) -> bool:
+	return talk.confirm == "" and talk.battle_npc == "" and talk.action == "" and talk.give_pokemon == null \
+		and not talk.heal and talk.give_items.is_empty() and talk.take_items.is_empty() and talk.set_flags.is_empty() \
+		and talk.after_lines.is_empty() and talk.warp_zone == ""
+
+
+## Abre la conversación (traba al entrenador, salvo las comunes con una persona: `casual_ok`) y al cerrarla aplica
+## sus efectos. Los disparadores siempre traban (te frenan en un paso).
+func run_talk(talk: NpcTalk, default_speaker: String = "", casual_ok := false) -> void:
 	var t: Trainer = world.trainer
+	if casual_ok and is_casual(talk):
+		busy = true
+		_casual_from = t.global_position
+		await dialog.say(talk.speaker if talk.speaker != "" else default_speaker, talk.lines)
+		_casual_from = Vector2.INF
+		busy = false
+		return
+	busy = true
 	t.locked = true
 	t.autopilot = Vector2.ZERO
 	var hud: CanvasItem = world.get_node_or_null("UI/HUD")
@@ -261,6 +280,9 @@ func heal_party() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if _casual_from != Vector2.INF and dialog.active and (world.combat.in_battle or world.warps.busy
+			or world.trainer.global_position.distance_to(_casual_from) > CASUAL_LEAVE):
+		dialog.cancel()
 	if busy or world.combat.in_battle or world.warps.busy:
 		return
 	var t: Trainer = world.trainer

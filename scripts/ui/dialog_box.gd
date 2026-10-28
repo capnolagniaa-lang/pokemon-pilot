@@ -3,7 +3,8 @@ extends Control
 ## Caja de diálogo de la historia (docs/PLAN_HISTORIA.md, H-0): globo abajo con el nombre de quien habla y el
 ## texto que se va escribiendo. E, Espacio, Enter o clic: si el texto se está escribiendo lo completa; si no, pasa
 ## al siguiente globo. `await say(...)` vuelve cuando se cierra. Mientras está abierta el entrenador no se mueve
-## (lo traba StoryDirector) y Events avisa dialog_started / dialog_finished.
+## (lo traba StoryDirector) y Events avisa dialog_started / dialog_finished. Las charlas comunes no traban: si el
+## entrenador se aleja, StoryDirector la corta con `cancel()`.
 
 signal _advance
 
@@ -15,6 +16,7 @@ var _speaker: Label
 var _arrow: Label
 var _shown := 0.0
 var _armed := false  # la tecla que abrió el diálogo no lo avanza
+var _cancel := false
 var _mouse_was := false
 ## Pregunta con opciones abierta (ask).
 var _choosing := false
@@ -53,6 +55,7 @@ func say(speaker: String, lines: PackedStringArray) -> void:
 		return
 	active = true
 	visible = true
+	_cancel = false
 	Events.dialog_started.emit()
 	for line in lines:
 		_speaker.text = speaker
@@ -62,9 +65,18 @@ func say(speaker: String, lines: PackedStringArray) -> void:
 		_text.visible_characters = 0
 		_armed = false
 		await _advance
+		if _cancel:
+			break
 	visible = false
 	active = false
 	Events.dialog_finished.emit()
+
+
+## Corta la charla abierta (no las preguntas): `say` vuelve como si se hubiera leído todo.
+func cancel() -> void:
+	if active and not _choosing:
+		_cancel = true
+		_advance.emit()
 
 
 ## Pregunta con opciones (Sí / No...). Flechas o W/S eligen; E, Espacio, Enter o clic confirma. Devuelve el

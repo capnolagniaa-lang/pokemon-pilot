@@ -54,6 +54,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Revisado en Paleta, Verde, Plateada, Celeste, Carmín, Azulona y Azafrán (vitrina `--showcase-daynight`); los pisos
   altos (tapados por `Overhead`) se dibujan sobre los techos y el charco va solo bajo la planta baja. Faltan faroles (FireRed casi no
   tiene) y que algunas ventanas se apaguen tarde a la noche, si se quiere.
+- **Diálogos y HUD (2026-10-28, pedido del usuario)**: las charlas comunes ya no te frenan (alejarte las corta; las
+  importantes siguen trabando hasta terminar). El HUD se esconde con cualquier diálogo (antes se encimaba en la Poké
+  Flauta, el torneo, después de las peleas...) y se vuelve casi transparente cuando un Pokémon o una persona queda
+  detrás. Arreglado el texto del estilo encimado con el nombre y la ayuda de teclas que pisaba las ranuras.
 - **Cuevas oscuras con antorchas, y faroles en los caminos (2026-10-28, pedido del usuario)**: las cuevas (bioma
   "cueva": Mt. Moon, Túnel Roca, Islas Espuma, Calle Victoria, Torre Pokémon...) son oscuras y frías a toda hora, con
   una luz chica alrededor del entrenador; antorchas (luz cálida que titila) y cristales celestes (luz fría) se ponen

@@ -221,7 +221,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   de pret) con frases por clase; en `build_story_npcs.py` el bloque "Capítulos 4 a 8" tiene los hitos y al final un
   **relleno** que le da una frase a toda persona sin charla propia. `GameState.story_flags` (banderas, se guardan); `NpcData`/`NpcTalk`/
   `StoryTrigger` en `data/story/` (`DB.npcs`, `DB.story_triggers`); `StoryDirector` (nodo del mundo: saca las personas,
-  disparadores, conversaciones con `DialogBox`, efectos). **E contextual**: `PlayerItems` llama a
+  disparadores, conversaciones con `DialogBox`, efectos). **Charlas comunes** (`StoryDirector.is_casual`: solo texto) no
+  traban: alejarse 20 px las corta (`DialogBox.cancel`); las importantes (pregunta, pelea, regalo, banderas...) traban
+  hasta el final. El HUD se esconde con cualquier diálogo (`Events.dialog_started`) y se vuelve casi transparente si
+  alguien queda detrás de la franja de abajo (`battle_hud.gd`, `something_behind`). **E contextual**: `PlayerItems` llama a
   `StoryDirector.try_interact()` antes de lanzar la bola. Personas: `tools/build_story_npcs.py` (desde los NPC de
   `frlg_maps.json` + sprites de `tools/fetch_npc_sprites.py`). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
 - **Combate contra entrenadores en arena** (E-1, `docs/PLAN_ENTRENADORES.md`): `TrainerBattle` (`world.arena`): fundido a

@@ -13,6 +13,13 @@ var _message := ""
 var _message_time := 0.0
 var _world: Node
 
+## Si un Pokémon, una persona o tu entrenador queda detrás de la franja de abajo, el HUD se vuelve casi transparente
+## (pedido del usuario 2026-10-28: tapaba lo que pasaba abajo).
+const BEHIND_BAND := 140.0          # alto de la franja de abajo (px de pantalla)
+const BEHIND_ALPHA := 0.28
+const FADE_SPEED := 6.0
+const BEHIND_GROUPS := ["creatures", "story_npcs", "trainer_npcs", "trainer"]
+
 
 func _ready() -> void:
 	font = ThemeDB.fallback_font
@@ -26,7 +33,21 @@ func _process(delta: float) -> void:
 	_message_time = maxf(0.0, _message_time - delta)
 	if _world == null:
 		_world = get_tree().get_first_node_in_group("world")
+	modulate.a = move_toward(modulate.a, BEHIND_ALPHA if something_behind() else 1.0, FADE_SPEED * delta)
 	queue_redraw()
+
+
+## ¿Hay alguien (pies o cabeza) en la franja de abajo de la pantalla?
+func something_behind() -> bool:
+	var top := size.y - BEHIND_BAND
+	for g in BEHIND_GROUPS:
+		for n in get_tree().get_nodes_in_group(g):
+			if not (n is Node2D) or not n.is_visible_in_tree():
+				continue
+			var p: Vector2 = (n as Node2D).get_global_transform_with_canvas().origin
+			if p.x >= 0.0 and p.x <= size.x and p.y + 4.0 >= top and p.y - 28.0 <= size.y:
+				return true
+	return false
 
 
 func _draw() -> void:
@@ -49,7 +70,8 @@ func _draw() -> void:
 		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
 	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · 1-6 cambiar · E bola · C objeto · F volver" if in_battle \
 		else "WASD mover · Shift correr · F sacar a tu Pokémon · 1-6 cambiar · E hablar / lanzar bola · C objeto · Esc menú"
-	draw_string(font, Vector2(0, size.y - 14), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
+	# Arriba de los paneles de abajo (antes iba en el borde y pisaba las ranuras de ataque).
+	draw_string(font, Vector2(0, size.y - 112), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
 
 
 ## Mochila rápida: la bola que lanza E y el objeto que usa C, con cuántos quedan.
@@ -93,7 +115,8 @@ func _draw_party(c: Creature, in_battle: bool) -> void:
 		tag = "JEFE · %s · %s" % [inst.species.boss_kit.signature.display_name.to_upper(), tag]
 	elif ab != null:
 		tag = "%s · %s" % [ab.display_name.to_upper(), tag]
-	draw_string(font, Vector2(x, r.position.y + 26), tag, HORIZONTAL_ALIGNMENT_RIGHT, r.size.x - 84, 12, t.color.lightened(0.2))
+	# Abajo a la derecha (arriba, al lado del nombre, se encimaba con "Nombre  Nv. N").
+	draw_string(font, Vector2(x, r.position.y + 82), tag, HORIZONTAL_ALIGNMENT_RIGHT, r.size.x - 84, 11, t.color.lightened(0.2))
 	var ratio := clampf(inst.hp / inst.max_hp(), 0.0, 1.0)
 	_bar(Rect2(x, r.position.y + 34, 290, 12), ratio, _hp_color(ratio))
 	draw_string(font, Vector2(x + 4, r.position.y + 45), "PS %d/%d" % [ceili(inst.hp), ceili(inst.max_hp())], HORIZONTAL_ALIGNMENT_LEFT, -1, 11)

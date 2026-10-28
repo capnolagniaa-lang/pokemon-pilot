@@ -86,6 +86,42 @@ func run() -> void:
 	r["Un disparador de una vez no se repite"] = GameState.has_flag(trig.flag()) and not trig.ready_to_fire()
 	DB.story_triggers.erase(trig.id)
 
+	# --- Charlas comunes: alejarse las corta; las importantes traban (decisión del usuario 2026-10-28) ---
+	var casual := NpcTalk.new()
+	casual.lines = PackedStringArray(["Hola.", "Qué lindo día."])
+	var hud: CanvasItem = world.get_node("UI/HUD")
+	story.run_talk(casual, "Vecino", true)
+	await get_tree().process_frame
+	r["Una charla común no traba al entrenador"] = story.dialog.active and not world.trainer.locked
+	r["Con cualquier diálogo abierto el HUD se esconde"] = not hud.visible
+	world.trainer.global_position += Vector2(0, 40)
+	for i in 3:
+		await get_tree().physics_frame
+	await get_tree().process_frame
+	r["Alejarse corta la charla común"] = not story.dialog.active and not story.busy and hud.visible
+	var serious := NpcTalk.new()
+	serious.lines = PackedStringArray(["Esto es importante."])
+	serious.set_flags = PackedStringArray(["test_charla_seria"])
+	story.run_talk(serious, "Oak")
+	await get_tree().process_frame
+	r["Una charla importante (con bandera) traba al entrenador"] = story.dialog.active and world.trainer.locked
+	await _finish_dialog(story)
+	r["Al terminarla se puede mover y anota la bandera"] = not world.trainer.locked and GameState.has_flag("test_charla_seria")
+	# El HUD se vuelve casi transparente si alguien queda detrás de la franja de abajo.
+	var bhud: Control = null
+	for n in hud.find_children("*", "Control", true, false) + [hud]:
+		if n.has_method("something_behind"):
+			bhud = n
+	var screen := get_viewport().get_visible_rect().size
+	var below: Vector2 = get_viewport().get_canvas_transform().affine_inverse() * Vector2(screen.x / 2.0, screen.y - 50.0)
+	world.companion.global_position = below
+	await get_tree().process_frame
+	r["Con un Pokémon detrás del HUD, el HUD lo nota"] = bhud != null and bhud.something_behind()
+	for i in 30:
+		world.companion.global_position = below  # (si no, vuelve detrás del entrenador)
+		await get_tree().process_frame
+	r["...y se vuelve casi transparente (%.2f)" % (bhud.modulate.a if bhud else 1.0)] = bhud != null and bhud.modulate.a < 0.5
+
 	# --- Banderas en la partida ---
 	var saved := GameState.to_dict()
 	GameState.story_flags.clear()

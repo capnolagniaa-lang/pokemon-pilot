@@ -10,6 +10,9 @@ var _banner_tween: Tween
 func _ready() -> void:
 	zone_banner.modulate.a = 0.0
 	Events.zone_entered.connect(_on_zone_entered)
+	# La caja de diálogo va abajo, donde está el HUD: se esconde con cualquier diálogo (charlas, torneo, peleas...).
+	Events.dialog_started.connect(func(): visible = false)
+	Events.dialog_finished.connect(func(): visible = true)
 
 
 func _on_zone_entered(zone: ZoneEntry) -> void:
