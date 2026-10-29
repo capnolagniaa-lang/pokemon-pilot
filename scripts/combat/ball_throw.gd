@@ -2,7 +2,7 @@ class_name BallThrow
 extends Node2D
 ## Una Pokébola lanzada (docs/PLAN_CAPTURA_MOCHILA.md): vuela en arco hasta el punto apuntado. Si al bajar toca
 ## a un salvaje, lo mete adentro, tiembla según la fórmula oficial (Capture.roll) y lo atrapa o lo deja escapar.
-## Si no toca a nadie, rebota y se pierde (la bola ya se gastó al lanzarla).
+## Si no toca a nadie, rebota y queda en el piso: pasando por encima la recuperás (pedido del usuario 2026-10-28).
 
 ## Terminó: "miss", "caught" o "escaped".
 signal finished(result: String)
@@ -10,6 +10,8 @@ signal finished(result: String)
 const HIT_RADIUS := 13.0
 const SHAKE_TIME := 0.55
 const ARC_HEIGHT := 26.0
+## Cuánto queda en el piso una bola errada antes de perderse.
+const MISS_LIFETIME := 120.0
 
 var ball: ItemData
 var from := Vector2.ZERO
@@ -64,10 +66,21 @@ func _miss() -> void:
 	_phase = "done"
 	result = "miss"
 	finished.emit(result)
+	var rest := global_position + (to - from).normalized() * 10.0 + Vector2(0, 2)
 	var tw := create_tween()
-	tw.tween_property(self, "global_position", global_position + Vector2(10, 4), 0.25)
-	tw.parallel().tween_property(self, "modulate:a", 0.0, 0.35)
-	tw.tween_callback(queue_free)
+	tw.tween_property(self, "global_position", rest, 0.25)
+	tw.tween_callback(_leave_on_ground)
+
+
+## Queda en el piso como objeto (FieldItem) que se recoge pasando por encima.
+func _leave_on_ground() -> void:
+	var f := FieldItem.new()
+	f.item = ball
+	f.lifetime = MISS_LIFETIME
+	f.thrown = true
+	f.position = global_position
+	get_parent().add_child(f)
+	queue_free()
 
 
 ## Mete al salvaje en la bola, tiembla y decide.

@@ -55,6 +55,16 @@ func run_capture() -> void:
 	var threw := world.items.throw_ball(world.trainer.global_position + Vector2(0, 80)) != null
 	await get_tree().create_timer(0.9).timeout
 	r["Errar: la bola se gasta"] = threw and GameState.item_count("poke_ball") == balls_before - 1
+	# ...pero queda en el piso: pasando por encima la recuperás.
+	var lying: FieldItem = null
+	for f in get_tree().get_nodes_in_group("field_items"):
+		if f.thrown:
+			lying = f
+	r["Errar: la bola queda en el piso"] = is_instance_valid(lying) and lying.item.id == "poke_ball" and lying.thrown
+	if is_instance_valid(lying):
+		world.trainer.global_position = lying.global_position
+		await get_tree().create_timer(0.3).timeout
+	r["Errar: pasando por encima la recuperás"] = not is_instance_valid(lying) and GameState.item_count("poke_ball") == balls_before
 
 	# Atrapar con Master Ball → al equipo y a la Pokédex.
 	GameState.add_item("master_ball", 2)

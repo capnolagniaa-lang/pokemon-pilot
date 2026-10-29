@@ -305,7 +305,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.
 - **Captura, Mochila y Caja** (`docs/PLAN_CAPTURA_MOCHILA.md`): `ItemData` en `data/items/` (de
   `tools/fetch_items.py`); `GameState.bag`/`selected_ball`/`quick_item`/`box`/`field_picked`; `PlayerItems` (nodo del
-  mundo: E lanza `BallThrow`, C usa el objeto rápido); `Capture` (fórmula oficial 3ª gen); `FieldItemSpawner` +
+  mundo: E lanza `BallThrow`, C usa el objeto rápido; una bola errada queda en el piso como `FieldItem` `thrown`, 120 s, y
+  se recupera pasando por encima); `Capture` (fórmula oficial 3ª gen); `FieldItemSpawner` +
   `FieldItem` (objetos del mapa y botín, tablas `LootTable` en `data/items/loot/`). Pantallas `BagScreen` y
   `BoxScreen` en el menú de pausa.
 - **Stats y progresión = reglas oficiales** (ver sección abajo). Nunca inventar stats: salen de PokeAPI.

@@ -8,6 +8,8 @@ var item: ItemData
 var amount := 1
 var key := ""
 var lifetime := 0.0
+## Una bola que lanzaste y erraste: se dibuja con su ícono y al recogerla dice "Recuperaste".
+var thrown := false
 var _time := 0.0
 
 
@@ -42,7 +44,8 @@ func pick_up() -> void:
 	GameState.add_item(item.id, amount)
 	if key != "":
 		GameState.field_picked[key] = GameState.play_time
-	Events.message_requested.emit("¡Encontraste %s%s!" % [item.display_name, "" if amount == 1 else " ×%d" % amount])
+	Events.message_requested.emit("¡%s %s%s!" % ["Recuperaste" if thrown else "Encontraste", item.display_name,
+		"" if amount == 1 else " ×%d" % amount])
 	Fx.burst(get_parent(), global_position + Vector2(0, -4), Color(1.5, 1.4, 0.8), 8, 30.0)
 	queue_free()
 
@@ -51,6 +54,11 @@ func _draw() -> void:
 	# Pokéball del suelo (como en los juegos) + un destello que aparece cada tanto.
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, 0.45))
 	draw_circle(Vector2.ZERO, 4.5, Color(0, 0, 0, 0.3))
+	if thrown and item.icon != null:  # la bola que erraste, con su ícono (Super Ball, Ultra Ball...)
+		draw_set_transform(Vector2(0, -5), 0.0, Vector2.ONE * 0.5)
+		draw_texture(item.icon, -item.icon.get_size() / 2.0)
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+		return
 	draw_set_transform(Vector2(0, -5), 0.0, Vector2.ONE)
 	draw_circle(Vector2.ZERO, 4.0, Color(0.9, 0.15, 0.15))
 	draw_rect(Rect2(-4, 0, 8, 4), Color(0.95, 0.95, 0.95))
