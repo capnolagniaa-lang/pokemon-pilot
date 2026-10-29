@@ -210,7 +210,7 @@ func intercepts_switch(index: int) -> bool:
 	if not active or _applying_switch:
 		return false
 	if _going and index in my_team and _end.is_empty():
-		Net.battle_switch(match_id, index)
+		Net.battle_switch(match_id, my_team.find(index))  # (el servidor cuenta en el orden en que elegiste el equipo)
 	elif index not in my_team:
 		Events.message_requested.emit("Ese Pokémon no está en esta pelea.")
 	return true
@@ -295,10 +295,13 @@ func _sync_statuses(c: Creature, ids: Array) -> void:
 			c.statuses.cure(c.statuses.active[id].status)
 
 
+## `index` = lugar en el equipo de la pelea (el orden en que los elegiste), no en tu equipo.
 func _switch_own(index: int, at: Vector2) -> void:
+	if index < 0 or index >= my_team.size():
+		return
 	_applying_switch = true
 	world.combat._switch_cd = 0.0
-	world.combat.switch_to(index)
+	world.combat.switch_to(my_team[index])
 	_applying_switch = false
 	var c: Creature = world.companion
 	if is_instance_valid(c):

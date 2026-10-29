@@ -137,6 +137,20 @@ func run() -> void:
 			bad.append("%s (choca %s, llega %s, adentro %s, vuelve %s)" % [x.zone_id, not clash.is_empty(), reach, inside_ok, back_ok])
 	if not bad.is_empty():
 		print("[online-edificio] centros con problemas: ", bad)
+	# El servidor numera el equipo de la pelea en el orden en que lo elegiste (no el lugar en tu equipo): si elegiste
+	# el 3.º y el 2.º, su "1" es tu 2.º (bug del usuario 2026-10-29: al debilitarse no salía el siguiente).
+	while GameState.party.size() < 3:
+		GameState.party.append(CreatureInstance.create(DB.species["pidgey"], 10))
+	for inst in GameState.party:
+		inst.hp = inst.max_hp()
+	var ob: OnlineBattle = world.online.battle
+	ob.my_team.assign([2, 1])
+	await get_tree().create_timer(1.6).timeout  # (recarga de los cambios)
+	ob._switch_own(1, t.global_position)
+	var second := GameState.active_index
+	await get_tree().create_timer(1.6).timeout
+	ob._switch_own(0, t.global_position)
+	r["Pelea online: el que sale es el del orden en que elegiste el equipo"] = second == 1 and GameState.active_index == 2
 	var n_centers := ExtraContent.buildings.filter(func(x): return x.id.begins_with("centro_online")).size()
 	r["Centro Online en %d ciudades más: se llega, se entra, está la recepcionista y se vuelve" % (n_centers - 1)] = \
 		n_centers >= 9 and bad.is_empty()
