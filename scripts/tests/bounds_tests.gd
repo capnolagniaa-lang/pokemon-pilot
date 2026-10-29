@@ -114,6 +114,40 @@ func run() -> void:
 		print("[limites] con Surf y Fuerza no se llega a: ", missing_end)
 	var never := world.zones.filter(func(z: ZoneEntry) -> bool: return not hm_zones.has(z.id)).map(func(z: ZoneEntry) -> String: return z.id)
 	print("[limites] ni con Corte, Surf y Fuerza se llega a: ", never)
+	# Arenas (escenas sueltas): todo borde de celda transitable que da a la nada tiene pared (ZoneBounds.seal).
+	var open_arenas := []
+	for f in DirAccess.get_files_at("res://scenes/world/arenas"):
+		if not f.ends_with(".tscn"):
+			continue
+		var arena: Node2D = load("res://scenes/world/arenas/" + f).instantiate()
+		arena.position = Vector2(-60000, -60000)
+		add_child(arena)
+		ZoneBounds.seal(arena)
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		var space := arena.get_world_2d().direct_space_state
+		var used := {}
+		for ln in ["Ground", "Water", "Foliage"]:
+			for c in (arena.get_node(ln) as TileMapLayer).get_used_cells():
+				used[c] = true
+		var leaks := 0
+		for c: Vector2i in used:
+			if not MapRules.is_walkable(arena, c) and not (arena as Zone).get_tags(c).has("agua"):
+				continue
+			for d in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
+				if used.has(c + d):
+					continue
+				var q := PhysicsPointQueryParameters2D.new()
+				q.position = arena.to_global((Vector2(c) + Vector2(0.5, 0.5) + Vector2(d) * 0.5) * 16.0 + Vector2(d) * 3.0)
+				q.collision_mask = 1
+				if space.intersect_point(q, 1).is_empty():
+					leaks += 1
+		if leaks > 0:
+			open_arenas.append("%s (%d)" % [f.get_basename(), leaks])
+		arena.queue_free()
+	if not open_arenas.is_empty():
+		print("[limites] arenas abiertas: ", open_arenas)
+	r["De ninguna arena se sale caminando"] = open_arenas.is_empty()
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[limites] %s %s" % ["OK   " if r[key] else "FALLO", key])

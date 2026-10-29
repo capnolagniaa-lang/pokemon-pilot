@@ -73,3 +73,58 @@ static func attach(zone: Node2D, entry: ZoneEntry, world: WorldData) -> StaticBo
 		body.add_child(cs)
 	zone.add_child(body)
 	return body
+
+
+## Cierra una escena suelta (las arenas: no están en la región, así que no hay vecinas): una pared en cada borde de
+## celda con tiles que da a una celda sin tiles. La usan TrainerBattle, OnlineBattle y el servidor online (NetMatch).
+static func seal(zone: Node2D) -> StaticBody2D:
+	var old := zone.get_node_or_null("Bounds")
+	if old != null:
+		old.free()
+	var cells := {}
+	for layer_name in ["Ground", "Water", "Foliage"]:
+		var layer := zone.get_node_or_null(layer_name) as TileMapLayer
+		if layer != null:
+			for c in layer.get_used_cells():
+				cells[c] = true
+	var body := StaticBody2D.new()
+	body.name = "Bounds"
+	body.collision_layer = 1  # capa "mundo", como attach
+	body.collision_mask = 0
+	var ts := float(Zone.TILE)
+	for side in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
+		var horizontal: bool = side.y != 0
+		var edges := {}  # línea del borde -> índices de las celdas que dan al vacío por este lado
+		for c: Vector2i in cells:
+			if not cells.has(c + side):
+				edges.get_or_add(c.y if horizontal else c.x, []).append(c.x if horizontal else c.y)
+		for line: int in edges:
+			var idx: Array = edges[line]
+			idx.sort()
+			var start: int = idx[0]
+			for i in idx.size():
+				if i + 1 < idx.size() and idx[i + 1] == idx[i] + 1:
+					continue
+				var a := float(start) * ts
+				var len := float(idx[i] - start + 1) * ts
+				var b := float(line) * ts
+				var rect: Rect2
+				match side:
+					Vector2i.UP:
+						rect = Rect2(a, b - THICKNESS, len, THICKNESS)
+					Vector2i.DOWN:
+						rect = Rect2(a, b + ts, len, THICKNESS)
+					Vector2i.LEFT:
+						rect = Rect2(b - THICKNESS, a, THICKNESS, len)
+					_:
+						rect = Rect2(b + ts, a, THICKNESS, len)
+				var shape := RectangleShape2D.new()
+				shape.size = rect.size
+				var cs := CollisionShape2D.new()
+				cs.shape = shape
+				cs.position = rect.get_center()
+				body.add_child(cs)
+				if i + 1 < idx.size():
+					start = idx[i + 1]
+	zone.add_child(body)
+	return body

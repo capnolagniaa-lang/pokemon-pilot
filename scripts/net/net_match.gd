@@ -55,6 +55,7 @@ func setup(p_match_id: int, p_a: int, p_b: int, teams: Dictionary) -> void:
 func _ready() -> void:
 	arena = load(arena_data.scene_path).instantiate()
 	add_child(arena)
+	ZoneBounds.seal(arena)  # paredes en el borde: de la arena no se sale
 	for id in sides:
 		sides[id].input.origin = arena.global_position
 		_send(id, _first_healthy(id), _cell_pos(sides[id].cell))

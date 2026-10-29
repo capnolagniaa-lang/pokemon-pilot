@@ -148,6 +148,7 @@ func _enter_arena(texture: Texture2D) -> void:
 	arena = load(arena_data.scene_path).instantiate()
 	arena.position = ARENA_ORIGIN
 	world.get_node("YSort/Zones").add_child(arena)
+	ZoneBounds.seal(arena)  # paredes en el borde: de la arena no se sale
 	decor = ArenaDecor.new()
 	arena.add_child(decor)
 	decor.setup(arena_data)
