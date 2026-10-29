@@ -22,7 +22,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   un rumbo propio según de qué lado del grupo está (hasta 75° de "justo en contra"), se separan entre sí y nunca huyen
   hacia vos (`creature_flee.gd`). Test: `--autotest-abilities`.
 - **Iniciales salvajes e inmunidades de tipo (2026-10-28, pedido del usuario)**: Charmander 15% en todo Mt. Moon, Bulbasaur
-  17% en el Bosque Verde y Squirtle 12% en el cantero de flores de Ciudad Celeste (no tiene pasto alto: el resto de las
+  5% en el Bosque Verde (bajado de 17% a pedido del usuario) y Squirtle 12% en el cantero de flores de Ciudad Celeste (no tiene pasto alto: el resto de las
   veces no sale nada, fila sin especie); el resto de cada tabla se escaló para que sigan sumando 100. Inmunidades: un
   ataque contra un tipo inmune (Siniestro←Psíquico, Acero←Veneno, Hada←Dragón, Volador←Tierra, Fantasma←Normal/Lucha,
   Tierra←Eléctrico) no hace nada: ni daño, ni estado, ni empuje ("No le afecta"). Un tipo Veneno no se envenena

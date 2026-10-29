@@ -103,7 +103,7 @@ func run() -> void:
 	var forest: EncounterTable = load("res://data/world/encounters/bosque_verde.tres")
 	var cerulean: EncounterTable = load("res://data/world/encounters/ciudad_celeste.tres")
 	r["Charmander 15% en Mt. Moon"] = is_equal_approx(moon.chances_at(Vector2i.ZERO, PackedStringArray(["suelo"])).get("charmander", 0.0), 0.15)
-	r["Bulbasaur 17% en el Bosque Verde"] = is_equal_approx(forest.chances_at(Vector2i.ZERO, PackedStringArray(["pasto_alto"])).get("bulbasaur", 0.0), 0.17)
+	r["Bulbasaur 5% en el Bosque Verde"] = is_equal_approx(forest.chances_at(Vector2i.ZERO, PackedStringArray(["pasto_alto"])).get("bulbasaur", 0.0), 0.05)
 	r["Squirtle 12% en las flores de Ciudad Celeste"] = is_equal_approx(cerulean.chances_at(Vector2i.ZERO, PackedStringArray(["flores"])).get("squirtle", 0.0), 0.12)
 
 	# --- Abra con Poder Oculto (pedido del usuario 2026-10-28: con Teletransporte solo no ganaba EXP) ---
