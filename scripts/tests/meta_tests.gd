@@ -202,6 +202,10 @@ func party_test() -> void:
 			pages_ok = pages_ok and tut._body.get_child_count() > 0
 		world.pause_menu._pop()
 	r["Tutorial: pausa, todas las páginas y al cerrarlo sigue el juego"] = pages_ok and not get_tree().paused 		and not world.pause_menu.visible
+	# Después del tutorial del principio, Esc tiene que mostrar el menú (quedaba invisible: pausaba sin verse nada).
+	r["Tutorial: después Esc abre el menú y se ve"] = world.pause_menu.try_open() and world.pause_menu._main.visible \
+		and world.pause_menu._main.is_visible_in_tree()
+	world.pause_menu.close()
 	r["Tutorial: también en el menú (Cómo se juega)"] = world.pause_menu._buttons.has("Cómo se juega")
 	# Qué hace cada ataque: todos los ataques tienen su explicación.
 	var no_text := DB.all_moves.values().filter(func(m): return MoveInfo.what_it_does(m).length() < 20)

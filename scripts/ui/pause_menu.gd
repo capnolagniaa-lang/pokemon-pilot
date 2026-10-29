@@ -74,6 +74,7 @@ func close() -> void:
 	for s in _stack:
 		s.queue_free()
 	_stack.clear()
+	_main.visible = true  # push lo esconde: si se cierra con una pantalla abierta (el tutorial), la próxima vez no se veía
 	visible = false
 	get_tree().paused = false
 
