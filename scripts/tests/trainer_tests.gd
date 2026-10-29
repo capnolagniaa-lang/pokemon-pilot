@@ -44,8 +44,10 @@ func run() -> void:
 	GameState.new_game(DB.species["squirtle"])
 	GameState.living_trainers = false
 	GameState.from_dict(d)
-	r["Se guarda el interruptor y el estado de cada entrenador"] = GameState.living_trainers \
+	# Al cargar queda apagado (sacado del juego por ahora, 2026-10-29): se vuelve a prender para seguir probando.
+	r["Se guarda el estado de cada entrenador (y al cargar queda apagado)"] = not GameState.living_trainers \
 		and GameState.trainer_state(DB.trainers["azul"]).losses == 2
+	GameState.set_living_trainers(true)
 
 	# Al alejarse (se descarga Ruta 1) desaparecen; al volver, reaparecen con su estado.
 	var far := _zone_center("ciudad_plateada")

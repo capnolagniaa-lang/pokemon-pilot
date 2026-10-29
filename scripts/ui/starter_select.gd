@@ -20,7 +20,7 @@ func _build_story_button() -> void:
 	UiStyle.focus_later(b)
 
 
-## Opciones de la partida: dificultad de la IA y modo práctica.
+## Opciones de la partida: dificultad de la IA y modo práctica. (Entrenadores vivos se sacó por ahora: 2026-10-29.)
 func _build_options() -> void:
 	var box := VBoxContainer.new()
 	box.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -58,13 +58,6 @@ func _build_options() -> void:
 	var center := CenterContainer.new()
 	center.add_child(practice)
 	box.add_child(center)
-	var living := CheckBox.new()
-	living.text = "Entrenadores vivos (en prueba: aparecen 3 entrenadores en Ruta 1)"
-	living.button_pressed = GameState.living_trainers
-	living.toggled.connect(GameState.set_living_trainers)
-	var center2 := CenterContainer.new()
-	center2.add_child(living)
-	box.add_child(center2)
 
 
 func _unhandled_input(event: InputEvent) -> void:

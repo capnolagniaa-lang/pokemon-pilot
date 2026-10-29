@@ -595,7 +595,9 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	quick_item = str(d.get("quick_item", "pocion"))
 	practice_mode = bool(d.get("practice_mode", true))
 	wild_test_pool = bool(d.get("wild_test_pool", false))
-	living_trainers = bool(d.get("living_trainers", false))
+	# Entrenadores vivos sacado por ahora (pedido del usuario 2026-10-29): una partida que lo tenía prendido lo apaga
+	# (no hay dónde apagarlo). El sistema y su test siguen; se vuelve a prender con set_living_trainers.
+	living_trainers = false
 	trainers.clear()
 	var saved_trainers = d.get("trainers", {})
 	if saved_trainers is Dictionary:

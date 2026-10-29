@@ -48,12 +48,7 @@ func _ready() -> void:
 	test_pool.button_pressed = GameState.wild_test_pool
 	test_pool.toggled.connect(func(on: bool): GameState.wild_test_pool = on)
 	box.add_child(test_pool)
-	var living := CheckBox.new()
-	living.text = "Entrenadores vivos (en prueba)"
-	living.tooltip_text = "Aparecen entrenadores con memoria y rutina (docs/PLAN_ENTRENADORES.md). Apagado: el juego queda como antes."
-	living.button_pressed = GameState.living_trainers
-	living.toggled.connect(GameState.set_living_trainers)
-	box.add_child(living)
+	# (Entrenadores vivos: sacado de las opciones por ahora, pedido del usuario 2026-10-29.)
 	# Volumen (de esta PC, no de la partida): user://audio.cfg (Sound).
 	box.add_child(UiStyle.label("Volumen", 16))
 	for vol in [["Música", "music_volume"], ["Efectos", "sfx_volume"], ["Gritos", "cry_volume"]]:
