@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ExtraBuilding" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/extra_building.gd" id="1_b"]
+[ext_resource type="Texture2D" path="res://sprites/props/centro_online.png" id="2_t"]
+
+[resource]
+script = ExtResource("1_b")
+id = "centro_online_pueblo_lavanda"
+zone_id = "pueblo_lavanda"
+cell = Vector2i(16, 1)
+size = Vector2i(5, 4)
+texture = ExtResource("2_t")
+door = Vector2i(18, 4)
+to_zone = "centro_online_pueblo_lavanda"
+to_cell = Vector2i(7, 8)

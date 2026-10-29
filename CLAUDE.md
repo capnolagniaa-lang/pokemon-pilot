@@ -274,6 +274,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `GameConfig.combos_enabled`); `Creature.arena_rules()` (en arenas registradas en
   el `ReactionSystem`, o en todos lados con `GameConfig.arena_rules_everywhere`); `MoveData.crater_radius` →
   `Events.ground_impact` → estado de celda "crater".
+- **Globos aerostáticos** (`BalloonTravel`, `world.balloon`): un globo (`ExtraBuilding` "globo_<ciudad>" sin puerta:
+  `to_zone` vacío) y su piloto (acción "globo") por ciudad, de `tools/build_balloons.py`; vuelo por las zonas exteriores
+  (`route_points`) a las ciudades visitadas. Centros de Combate Online por ciudad: `tools/build_online_centers.py`.
 - **Mapa del menú** (Esc → Mapa): `TownMap` (`scripts/world/town_map.gd`) dibuja la región en miniatura **desde las
   capas de tiles de las zonas reales** (4 px por celda; la primera vez que se abre, en el hilo principal) y calcula dónde van los
   interiores/cuevas/Bosque Verde (en la puerta por la que se entra, siguiendo las puertas), los íconos de Centro/Tienda/

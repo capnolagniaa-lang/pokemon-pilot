@@ -31,11 +31,12 @@ static func apply(world: WorldData) -> void:
 			by_id[z.id] = z
 	for b: ExtraBuilding in _load_dir(BUILDINGS_DIR, "ExtraBuilding"):
 		var host: ZoneEntry = by_id.get(b.zone_id)
-		if host == null or not by_id.has(b.to_zone):
+		if host == null or (b.to_zone != "" and not by_id.has(b.to_zone)):
 			push_warning("Edificio agregado %s: no existe la zona %s o %s" % [b.id, b.zone_id, b.to_zone])
 			continue
 		buildings.append(b)
-		host.warps[b.door] = {"to": b.to_zone, "cell": b.to_cell, EXTRA_KEY: true}
+		if b.to_zone != "":  # (sin puerta: un objeto grande, como los globos aerostáticos)
+			host.warps[b.door] = {"to": b.to_zone, "cell": b.to_cell, EXTRA_KEY: true}
 
 
 ## Copia de la región sin lo agregado (para guardarla: así no queda escrito en kanto.tres).

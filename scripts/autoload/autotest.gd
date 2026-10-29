@@ -89,6 +89,13 @@ func _ready() -> void:
 		add_child(k4)
 		k4.run.call_deferred()
 		return
+	if "--autotest-balloon" in OS.get_cmdline_user_args() or "--showcase-balloon" in OS.get_cmdline_user_args():
+		set_process(false)
+		var bt := BalloonTests.new()
+		bt.autotest = self
+		add_child(bt)
+		(bt.showcase if "--showcase-balloon" in OS.get_cmdline_user_args() else bt.run).call_deferred()
+		return
 	if "--autotest-field" in OS.get_cmdline_user_args():
 		set_process(false)
 		var fmt := FieldMovesTests.new()

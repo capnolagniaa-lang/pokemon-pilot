@@ -95,6 +95,11 @@ para desafiarlo.
 | **O-5** ✅ | Poner el servidor: `build_portable.py --server` (un ejecutable de servidor), guía para correrlo en una PC (con el puerto abierto en el router) o en un servidor en la nube gratis (Oracle Cloud Always Free). Dirección del servidor en Opciones (con una por defecto). | Probarlo de verdad con un amigo. |
 | O-6 (después) | Predicción del movimiento propio, ping en pantalla, chat rápido o emotes, sala compartida (verse caminando), nivel 50 opcional. | — |
 
+## Hecho: un Centro por ciudad (2026-10-29)
+- Pedido del usuario: un Centro de Combate Online en cada ciudad. `tools/build_online_centers.py` copia el de Ciudad
+  Verde (edificio, interior debajo del mundo y sus 3 personas) a Plateada, Celeste, Carmín, Lavanda, Azulona, Azafrán,
+  Fucsia y Canela. `OnlineBattle` vuelve al Centro del que saliste (`_back_zone`).
+
 ## Hecho: O-5 (2026-10-29)
 - **Servidor en la nube** (decisión del usuario: VPS barato): Vultr São Paulo, IP fija `216.238.99.5`, en
   `Net.OFFICIAL_SERVER` (los zips se conectan solos). Instalador `tools/server/instalar_servidor.sh` (servicio systemd

@@ -34,6 +34,7 @@ var evolutions: EvolutionDirector
 var field_moves: FieldMoves
 var vermilion_puzzle: VermilionGymPuzzle
 var mansion_switches: MansionSwitches
+var balloon: BalloonTravel
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
 var arena: TrainerBattle
 ## Hora del juego y luz del mundo según la hora (docs/PLAN_DIA_NOCHE.md).
@@ -100,6 +101,9 @@ func _ready() -> void:
 	mansion_switches = MansionSwitches.new()  # las estatuas-interruptor de la Mansión Pokémon
 	mansion_switches.name = "MansionSwitches"
 	add_child(mansion_switches)
+	balloon = BalloonTravel.new()  # globos aerostáticos entre ciudades
+	balloon.name = "BalloonTravel"
+	add_child(balloon)
 	day_night = DayNight.new()
 	day_night.name = "DayNight"
 	add_child(day_night)

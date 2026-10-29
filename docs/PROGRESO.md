@@ -6,6 +6,15 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Globos aerostáticos (2026-10-29, pedido del usuario)**: en cada ciudad con Centro Pokémon hay un globo (sprite de
+  Qwen-Image + LoRA MOSS, `sprites/props/globo.png`) y su piloto. Hablándole elegís una ciudad que ya visitaste (en el
+  modo libre, cualquiera), gratis, y el globo sube y vuela por encima de las rutas hasta allá (zona por zona, por el medio
+  de cada borde), con el entrenador en la canasta; E o Esc lo saltean. `BalloonTravel` (`world.balloon`), lugares y
+  pilotos de `tools/build_balloons.py`. Test: `--autotest-balloon`; vitrina `--showcase-balloon` (Verde -> Plateada).
+- **Centro de Combate Online en cada ciudad (2026-10-29, pedido del usuario)**: además del de Ciudad Verde, uno en
+  Plateada, Celeste, Carmín, Lavanda, Azulona, Azafrán, Fucsia y Canela (copias del de Verde, cada uno con su interior y
+  su recepcionista; al terminar la pelea online volvés al que entraste). `tools/build_online_centers.py` (`--buscar`
+  lista lugares libres). Tests: `--autotest-online-building` y `--autotest-bounds`.
 - **Sin Pokébolas adentro (2026-10-29, pedido del usuario)**: en casas, Centros, tiendas, gimnasios y garitas (bioma
   "interior": ahí nunca hay salvajes) la E ya no tira la bola ("Acá adentro no se pueden tirar Pokébolas."). En cuevas,
   Torre, Central y Mansión (bioma "cueva") sí. `PlayerItems.indoors`. Test: `--autotest-capture`.

@@ -111,6 +111,35 @@ func run() -> void:
 	zone = world.streamer.zone_node("ciudad_verde")
 	r["Por la alfombra se vuelve a Ciudad Verde, frente al edificio"] = _here() == "ciudad_verde" and zone != null \
 		and zone.cell_at(t.global_position).distance_to(b.door) <= 2.0
+
+	# Un Centro en cada ciudad (tools/build_online_centers.py): se entra, adentro está la recepcionista y se sale a
+	# la misma ciudad.
+	var bad := []
+	for x: ExtraBuilding in ExtraContent.buildings:
+		if x.id == "centro_online" or not x.id.begins_with("centro_online"):
+			continue
+		var host: ZoneEntry = _entry(data, x.zone_id)
+		var inner: ZoneEntry = _entry(data, x.to_zone)
+		var clash := data.zones.filter(func(z): return z != inner and Rect2i(z.origin, z.size).intersects(Rect2i(inner.origin, inner.size)))
+		await _go(x.zone_id, x.door + Vector2i(0, 1))
+		var hz: Zone = world.streamer.zone_node(x.zone_id)
+		var reach: bool = MapRules.has_path(hz, host, host.hub, x.door + Vector2i(0, 1))
+		t.facing = Vector2.UP
+		await _walk("move_up", 1.6, x.to_zone)
+		await get_tree().create_timer(0.3).timeout
+		var inside_ok: bool = _here() == x.to_zone and world.story.npcs.has(x.to_zone + "_recepcionista") \
+			and DB.npcs[x.to_zone + "_recepcionista"].talk_now().action == "online"
+		await _go(x.to_zone, Vector2i(7, 6))
+		t.facing = Vector2.DOWN
+		await _walk("move_down", 2.5, x.zone_id)
+		var back_ok: bool = _here() == x.zone_id
+		if not (clash.is_empty() and reach and inside_ok and back_ok):
+			bad.append("%s (choca %s, llega %s, adentro %s, vuelve %s)" % [x.zone_id, not clash.is_empty(), reach, inside_ok, back_ok])
+	if not bad.is_empty():
+		print("[online-edificio] centros con problemas: ", bad)
+	var n_centers := ExtraContent.buildings.filter(func(x): return x.id.begins_with("centro_online")).size()
+	r["Centro Online en %d ciudades más: se llega, se entra, está la recepcionista y se vuelve" % (n_centers - 1)] = \
+		n_centers >= 9 and bad.is_empty()
 	_results()
 
 

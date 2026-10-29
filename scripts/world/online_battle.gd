@@ -39,6 +39,8 @@ var _dodge_seq := 0
 var _applying_switch := false
 var _going := false
 var _end: Dictionary = {}
+## Centro de Combate Online desde el que se entró (hay uno por ciudad: ahí se vuelve al terminar).
+var _back_zone := "centro_online"
 
 
 func _ready() -> void:
@@ -63,6 +65,8 @@ func run(p_match_id: int, p_opponent: Dictionary, p_my_team: Array, p_foe_team: 
 	if local_input == null:
 		local_input = world.combat.input_source
 	var t: Trainer = world.trainer
+	var here: ZoneEntry = world.streamer.world_data.zone_at(t.global_position)
+	_back_zone = here.id if here != null and here.id.begins_with("centro_online") else "centro_online"
 	t.locked = true
 	t.autopilot = Vector2.ZERO
 	if world.combat.in_battle:
@@ -152,7 +156,7 @@ func _leave_arena() -> void:
 	var data: WorldData = world.streamer.world_data
 	var inside: ZoneEntry = null
 	for z in data.zones:
-		if z.id == "centro_online":
+		if z.id == _back_zone:
 			inside = z
 	var back: Vector2 = Vector2((inside.origin + Vector2i(10, 4)) * data.tile_size) + Vector2.ONE * data.tile_size / 2.0 \
 		if inside != null else world.trainer.global_position

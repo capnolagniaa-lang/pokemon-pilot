@@ -13,7 +13,7 @@ extends Resource
 @export var texture: Texture2D
 ## Celda de la puerta (local de la zona).
 @export var door: Vector2i = Vector2i.ZERO
-## A qué zona lleva la puerta y a qué celda (local de esa zona) se llega.
+## A qué zona lleva la puerta y a qué celda (local de esa zona) se llega. Vacío = sin puerta (un objeto grande).
 @export var to_zone: String = ""
 @export var to_cell: Vector2i = Vector2i.ZERO
 

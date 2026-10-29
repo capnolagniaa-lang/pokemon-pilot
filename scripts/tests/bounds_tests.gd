@@ -114,6 +114,12 @@ func run() -> void:
 		print("[limites] con Surf y Fuerza no se llega a: ", missing_end)
 	var never := world.zones.filter(func(z: ZoneEntry) -> bool: return not hm_zones.has(z.id)).map(func(z: ZoneEntry) -> String: return z.id)
 	print("[limites] ni con Corte, Surf y Fuerza se llega a: ", never)
+	# Un Centro de Combate Online por ciudad (tools/build_online_centers.py): se llega a todos.
+	var centers := world.zones.filter(func(z: ZoneEntry) -> bool: return z.id.begins_with("centro_online"))
+	var no_center := centers.filter(func(z: ZoneEntry) -> bool: return not hm_zones.has(z.id)).map(func(z: ZoneEntry) -> String: return z.id)
+	r["Se llega a los %d Centros de Combate Online" % centers.size()] = centers.size() >= 9 and no_center.is_empty()
+	if not no_center.is_empty():
+		print("[limites] Centros Online a los que no se llega: ", no_center)
 	# Arenas (escenas sueltas): todo borde de celda transitable que da a la nada tiene pared (ZoneBounds.seal).
 	var open_arenas := []
 	for f in DirAccess.get_files_at("res://scenes/world/arenas"):

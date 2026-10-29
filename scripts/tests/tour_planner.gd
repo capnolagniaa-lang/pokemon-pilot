@@ -35,6 +35,11 @@ func _init(p_world: WorldData, cut: bool = false, surf: bool = false, strength: 
 		for npc: NpcData in DB.npcs.values():  # las personas de la historia también ocupan su celda
 			if people and npc.zone_id == z.id and npc.visible_now() and Rect2i(Vector2i.ZERO, z.size).has_point(npc.cell):
 				bits[npc.cell.y * z.size.x + npc.cell.x] = 0
+		for b in ExtraContent.buildings:  # los edificios agregados (Centros Online, globos) también son sólidos
+			if b.zone_id == z.id:
+				for c in b.cells():
+					if Rect2i(Vector2i.ZERO, z.size).has_point(c):
+						bits[c.y * z.size.x + c.x] = 0
 		_walk[z.id] = bits
 		for c in (node.get_node("Ground") as TileMapLayer).get_used_cells():
 			var d := LedgeJumper.direction_at(node, c)
