@@ -59,12 +59,14 @@ const PAGES := [
 		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y que recibís, vida de los Pokémon, stagger, cantidad de salvajes, curación sola fuera de combate, objetos en las rutas, hora fija y, en Personalizado, cada detalle de la IA.",
 		"Tus 4 ataques, la Pokébola que lanzás y el objeto rápido de la C.",
 		"Varias partidas con nombre, cada una con sus ajustes.",
+		"Esc → Opciones → Online: tu nombre en la sala online (si lo dejás vacío, va el de la partida).",
 	]],
 	["El menú (Esc)", [
 		"Guía: qué hacer ahora para seguir la historia y lo opcional que te queda.",
 		"Mapa: dónde estás y adónde ir (en la historia, cuando te dan el Mapa).",
 		"Equipo, Mochila, Caja, Pokédex y Tarjeta de entrenador.",
 		"Guardar: guardá seguido. En combate el menú se abre reducido y la pelea queda en pausa.",
+		"Online: en Ciudad Verde, al lado del Centro Pokémon, está el Centro de Combate Online para pelear con tus amigos.",
 		"¡Listo! Andá a buscar tu primer Pokémon.",
 	]],
 ]

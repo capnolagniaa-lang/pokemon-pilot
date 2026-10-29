@@ -89,7 +89,7 @@ para desafiarlo.
 |---|---|---|
 | **O-0** ✅ | Base de red: autoload `Net`, modo `--server` headless, conectar, nombre, chequeo de versión, lista de conectados, desconexiones. **Hecho 2026-10-29** (ver "Hecho: O-0"). | `--autotest-online`: servidor + 2 clientes **en el mismo proceso** (Godot permite una `MultiplayerAPI` por rama del árbol) por `127.0.0.1`. |
 | **O-1** ✅ | El edificio (Qwen) en Ciudad Verde como agregado, la puerta y el interior con enfermera, tienda y recepcionista. | Autotest: entrar y salir por la puerta, curar, comprar, la recepcionista abre la sala. Vitrina con capturas. |
-| **O-2** | Sala: pantalla de conectados, desafiar, aceptar o rechazar, elegir equipo, VS. | Autotest con 2 clientes de prueba que se desafían. |
+| **O-2** ✅ | Sala: pantalla de conectados, desafiar, aceptar o rechazar, elegir equipo. (La pantalla VS va con la pelea, O-3.) | Autotest con 2 clientes de prueba que se desafían. |
 | **O-3** | Pelea online: el servidor simula, `NetCombatInput`, fotos del estado + `Events`, interpolación, fin de la pelea y desconexión. | Autotest: 2 clientes con bots (`BotCombatInput` del lado del cliente) pelean hasta que gana uno; los dos ven lo mismo. |
 | **O-4** | Resultado: EXP para cada uno, vuelta al edificio, guardado. | Autotest: la EXP sube como en un combate en el mundo. |
 | **O-5** | Poner el servidor: `build_portable.py --server` (un ejecutable de servidor), guía para correrlo en una PC (con el puerto abierto en el router) o en un servidor en la nube gratis (Oracle Cloud Always Free). Dirección del servidor en Opciones (con una por defecto). | Probarlo de verdad con un amigo. |
@@ -111,6 +111,27 @@ para desafiarlo.
   sala; escribe en la consola quién entra y sale).
 - Test `--autotest-online`: servidor + 4 clientes en el mismo proceso, el autoload Net y el modo `--server` en otro
   proceso.
+
+## Hecho: O-2 (2026-10-29)
+- **Servidor del juego fijo** (`Net.OFFICIAL_SERVER`): nadie tiene que escribir una dirección. Mientras no haya un
+  servidor de verdad prendido (O-5) es esta misma PC; cuando esté, va ahí su dirección fija (IP de la nube o un nombre
+  tipo DuckDNS si corre en una PC de casa) y sale en los zips. Opciones → Online → "Servidor" queda como **avanzado**
+  (vacío = el del juego; `Net.server_override`, `user://online.cfg`).
+- **Protocolo** (`NetPeer`, `PROTOCOL` 2): `challenge(a quién, formato 1/3/6)` → al otro `got_challenge`; `answer`
+  (aceptar/rechazar) o `withdraw` (retirar); sin contestar en 20 s se cae. Aceptado: `got_choose` a los dos (contra
+  quién, formato, 30 s); `choose_team` manda los `CreatureInstance.to_dict` elegidos (el servidor saca los
+  debilitados y lo que pasa del formato: `clean_battle_team`); con los dos, `got_ready` (con qué viene el otro) y
+  `match_started` en el servidor. **Hasta la O-3 nadie escucha `match_started`: la partida termina ahí y vuelven a estar
+  libres** (`end_match`). Si no eligen a tiempo (30 + 5 s) o alguien se desconecta, `got_cancelled` al otro. Estados en
+  la lista: libre → eligiendo → peleando. No se puede desafiar a uno mismo, a alguien ocupado, ni con un desafío
+  pendiente.
+- **Pantalla** `OnlineLobbyScreen` (la abre la recepcionista; `OnlineDesk.open_lobby`): sala (conectados con retratos y
+  nivel, estado, formato, Desafiar / Retirar, desafío entrante con Aceptar / Rechazar), elegir (tu equipo, contador; al
+  llegar a 0 van los primeros en pie) y lista. Esc o Salir cierra (retira o rechaza lo pendiente). Conectado y con la sala
+  cerrada, un desafío te llega como pregunta de la recepcionista (si estás en una charla, pelea o menú, se rechaza solo).
+  La sala ve tu equipo al día (`Net.refresh_team` al cambiar o curar el equipo).
+- Tests: `--autotest-online` (protocolo) y `--autotest-online-building` (pantalla, con un jugador de prueba); vitrina
+  `--showcase-online-building` (la sala con dos amigos de prueba y la elección de equipo).
 
 ## Hecho: O-1 (2026-10-29)
 - **Edificios y zonas agregados** (`ExtraContent`, `scripts/world/extra_content.gd`): `data/world/extra/zones/*.tres`

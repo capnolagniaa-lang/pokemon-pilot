@@ -84,8 +84,9 @@ func _ready() -> void:
 	name_edit.text_changed.connect(func(t: String): Net.player_name = t; Net.save_config())
 	online.add_child(name_edit)
 	var addr_edit := LineEdit.new()
-	addr_edit.placeholder_text = "Servidor (ej. 192.168.0.10:%d)" % NetPeer.DEFAULT_PORT
-	addr_edit.text = "%s:%d" % [Net.address, Net.port]
+	addr_edit.placeholder_text = "Servidor: el del juego"
+	addr_edit.tooltip_text = "Avanzado: vacío = el servidor del juego. Otro (ej. 192.168.0.10:%d) solo para probar." % NetPeer.DEFAULT_PORT
+	addr_edit.text = Net.server_override
 	addr_edit.custom_minimum_size.x = 260
 	addr_edit.text_changed.connect(func(t: String): Net.set_server(t); Net.save_config())
 	online.add_child(addr_edit)

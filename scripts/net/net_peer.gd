@@ -7,9 +7,18 @@ extends Node
 
 signal state_changed(state: String, message: String)
 signal players_changed(players: Array)
+# Desafíos y elección de equipo (O-2). Cliente:
+signal challenged(from_id: int, from_name: String, count: int)
+signal challenge_withdrawn(from_id: int)
+signal challenge_answered(to_id: int, accepted: bool, message: String)
+signal match_choose(match_id: int, opponent: Dictionary, count: int, seconds: float)
+signal match_ready(match_id: int, opponent: Dictionary, opponent_team: Array)
+signal match_cancelled(match_id: int, reason: String)
+## Servidor: los dos eligieron equipo. La pelea (O-3) la arma quien escuche; si nadie escucha, termina ahí (O-2).
+signal match_started(match: Dictionary)
 
 ## Sube cuando cambian los mensajes: un juego viejo y uno nuevo no se entienden.
-const PROTOCOL := 1
+const PROTOCOL := 2
 const DEFAULT_PORT := 24680
 const MAX_PLAYERS := 32
 const NAME_MAX := 16
@@ -20,6 +29,13 @@ const HELLO_TIMEOUT := 10.0
 const STATUSES := ["libre", "eligiendo", "peleando"]
 ## Cliente: si en este tiempo no entró a la sala, se da por no encontrado.
 const CONNECT_TIMEOUT := 8.0
+## Formatos: cuántos Pokémon lleva cada uno.
+const COUNTS := [1, 3, 6]
+## Desafío sin contestar: se cae solo.
+const ANSWER_TIMEOUT := 20.0
+## Tiempo para elegir equipo (el cliente elige solo al terminar; el servidor espera un poco más y si no, cancela).
+const CHOOSE_TIMEOUT := 30.0
+const CHOOSE_GRACE := 5.0
 
 var is_server := false
 ## Cliente: "offline", "connecting", "online", "rejected".
@@ -38,6 +54,14 @@ var _api: SceneMultiplayer
 var _version := ""
 var _hello: Dictionary = {}
 var _connecting_for := 0.0
+## Servidor: desafíos abiertos, del que desafía → {to, count, t}.
+var _challenges: Dictionary = {}
+## Servidor: partidas, id → {id, a, b, count, teams: {id: [CreatureInstance.to_dict]}, t, ready}.
+var matches: Dictionary = {}
+var _next_match := 1
+## (Vars para que el autotest los achique.)
+var answer_timeout := ANSWER_TIMEOUT
+var choose_timeout := CHOOSE_TIMEOUT
 
 
 func _enter_tree() -> void:
@@ -79,6 +103,18 @@ func _process(delta: float) -> void:
 		if _pending[id] > hello_timeout:
 			_log("echo a %d: no se presentó" % id)
 			_kick(id, "No se presentó a tiempo.")
+	for from in _challenges.keys():
+		var c: Dictionary = _challenges[from]
+		c.t += delta
+		if c.t > answer_timeout:
+			_challenges.erase(from)
+			got_answer.rpc_id(from, c.to, false, "%s no contestó." % _name_of(c.to))
+			got_withdrawn.rpc_id(c.to, from)
+	for mid in matches.keys():
+		var m: Dictionary = matches[mid]
+		m.t += delta
+		if not m.ready and m.t > choose_timeout + CHOOSE_GRACE:
+			_cancel_match(mid, "No se eligió el equipo a tiempo.")
 
 
 func _on_peer_connected(id: int) -> void:
@@ -95,7 +131,19 @@ func _on_peer_disconnected(id: int) -> void:
 	_pending.erase(id)
 	if _by_id.has(id):
 		_log("se fue %s (%d)" % [_by_id[id].name, id])
-		_by_id.erase(id)
+		var who: String = _by_id[id].name
+		_by_id.erase(id)  # antes de avisar: que no se le mande nada al que se fue
+		for from in _challenges.keys():
+			var c: Dictionary = _challenges[from]
+			if from == id:
+				_challenges.erase(from)
+				got_withdrawn.rpc_id(c.to, from)
+			elif c.to == id:
+				_challenges.erase(from)
+				got_answer.rpc_id(from, id, false, "%s se desconectó." % who)
+		for mid in matches.keys():
+			if id in [matches[mid].a, matches[mid].b]:
+				_cancel_match(mid, "%s se desconectó." % who, id)
 		_broadcast_players()
 
 
@@ -138,6 +186,161 @@ func set_status(status: String) -> void:
 	if is_server and _by_id.has(id) and status in STATUSES:
 		_by_id[id].status = status
 		_broadcast_players()
+
+
+## Cliente → servidor: desafiar a alguien (cuántos Pokémon lleva cada uno: COUNTS).
+@rpc("any_peer", "reliable")
+func challenge(to_id: int, count: int) -> void:
+	if not is_server:
+		return
+	var from := _api.get_remote_sender_id()
+	if not _by_id.has(from):
+		return
+	var why := _challenge_problem(from, to_id, count)
+	if why != "":
+		got_answer.rpc_id(from, to_id, false, why)
+		return
+	_challenges[from] = {"to": to_id, "count": count, "t": 0.0}
+	_log("%s desafía a %s (%d contra %d)" % [_name_of(from), _name_of(to_id), count, count])
+	got_challenge.rpc_id(to_id, from, _name_of(from), count)
+
+
+## Cliente → servidor: retirar el desafío que mandé.
+@rpc("any_peer", "reliable")
+func withdraw() -> void:
+	if not is_server:
+		return
+	var from := _api.get_remote_sender_id()
+	if _challenges.has(from):
+		var c: Dictionary = _challenges[from]
+		_challenges.erase(from)
+		got_withdrawn.rpc_id(c.to, from)
+
+
+## Cliente → servidor: aceptar o rechazar el desafío de `from_id`.
+@rpc("any_peer", "reliable")
+func answer(from_id: int, accept: bool) -> void:
+	if not is_server:
+		return
+	var me := _api.get_remote_sender_id()
+	var c = _challenges.get(from_id)
+	if c == null or c.to != me:
+		return
+	_challenges.erase(from_id)
+	if not accept:
+		got_answer.rpc_id(from_id, me, false, "%s no aceptó." % _name_of(me))
+		return
+	if _by_id[from_id].status != "libre" or _by_id[me].status != "libre":
+		got_answer.rpc_id(from_id, me, false, "Uno de los dos está ocupado.")
+		return
+	got_answer.rpc_id(from_id, me, true, "")
+	var m := {"id": _next_match, "a": from_id, "b": me, "count": int(c.count), "teams": {}, "t": 0.0, "ready": false}
+	_next_match += 1
+	matches[m.id] = m
+	for p in [m.a, m.b]:
+		_by_id[p].status = "eligiendo"
+		got_choose.rpc_id(p, m.id, _public(_other(m, p)), m.count, choose_timeout)
+	_broadcast_players()
+
+
+## Cliente → servidor: los Pokémon que lleva a la partida (CreatureInstance.to_dict, hasta `count`).
+@rpc("any_peer", "reliable")
+func choose_team(match_id: int, team: Array) -> void:
+	if not is_server:
+		return
+	var me := _api.get_remote_sender_id()
+	var m = matches.get(match_id)
+	if m == null or m.ready or me not in [m.a, m.b] or m.teams.has(me):
+		return
+	var clean := clean_battle_team(team, m.count)
+	if clean.is_empty():
+		_cancel_match(match_id, "%s no tiene Pokémon en condiciones." % _name_of(me))
+		return
+	m.teams[me] = clean
+	if m.teams.size() < 2:
+		return
+	m.ready = true
+	for p in [m.a, m.b]:
+		_by_id[p].status = "peleando"
+		got_ready.rpc_id(p, m.id, _public(_other(m, p)), m.teams[_other(m, p)])
+	_broadcast_players()
+	_log("partida %d: %s contra %s" % [m.id, _name_of(m.a), _name_of(m.b)])
+	match_started.emit(m)
+	if match_started.get_connections().is_empty():
+		end_match(m.id)  # todavía no hay pelea online (O-3): vuelven a estar libres
+
+
+## Servidor: terminó la partida (la llama la pelea, O-3): los dos quedan libres.
+func end_match(match_id: int) -> void:
+	var m = matches.get(match_id)
+	if m == null:
+		return
+	matches.erase(match_id)
+	for p in [m.a, m.b]:
+		if _by_id.has(p):
+			_by_id[p].status = "libre"
+	_broadcast_players()
+
+
+func _cancel_match(match_id: int, reason: String, skip: int = 0) -> void:
+	var m = matches.get(match_id)
+	if m == null:
+		return
+	for p in [m.a, m.b]:
+		if p != skip and _by_id.has(p):
+			got_cancelled.rpc_id(p, match_id, reason)
+	end_match(match_id)
+
+
+func _challenge_problem(from: int, to_id: int, count: int) -> String:
+	if from == to_id:
+		return "No te podés desafiar a vos mismo."
+	if not _by_id.has(to_id):
+		return "Ya no está conectado."
+	if count not in COUNTS:
+		return "Ese formato no existe."
+	if _busy(from):
+		return "Ya estás en un desafío o en una partida."
+	if _busy(to_id) or _by_id[to_id].status != "libre":
+		return "%s está ocupado." % _name_of(to_id)
+	if _by_id[from].team.is_empty() or _by_id[to_id].team.is_empty():
+		return "Para pelear los dos tienen que tener Pokémon."
+	return ""
+
+
+## En un desafío (mandado o recibido) o en una partida.
+func _busy(id: int) -> bool:
+	if _challenges.has(id) or _challenges.values().any(func(c): return c.to == id):
+		return true
+	return matches.values().any(func(m): return id in [m.a, m.b])
+
+
+func _other(m: Dictionary, p: int) -> int:
+	return m.b if p == m.a else m.a
+
+
+func _public(id: int) -> Dictionary:
+	var e: Dictionary = _by_id.get(id, {})
+	return {"id": id, "name": e.get("name", "?"), "team": e.get("team", [])}
+
+
+func _name_of(id: int) -> String:
+	return _by_id[id].name if _by_id.has(id) else "?"
+
+
+## Equipo para pelear: lo que se puede rearmar como CreatureInstance, en pie, hasta `count`.
+static func clean_battle_team(team: Array, count: int) -> Array:
+	var out: Array = []
+	for d in team:
+		if out.size() >= count:
+			break
+		if not d is Dictionary or not DB.species.has(str(d.get("species_id", ""))):
+			continue
+		var inst := CreatureInstance.from_dict(d)
+		if inst == null or inst.hp <= 0.0:
+			continue
+		out.append(inst.to_dict())
+	return out
 
 
 func _broadcast_players() -> void:
@@ -241,6 +444,63 @@ func player_list(list: Array) -> void:
 	players_changed.emit(players)
 
 
+## Servidor → cliente: te desafían.
+@rpc("authority", "reliable")
+func got_challenge(from_id: int, from_name: String, count: int) -> void:
+	challenged.emit(from_id, from_name, count)
+
+
+## Servidor → cliente: el que te desafió lo retiró (o se cayó).
+@rpc("authority", "reliable")
+func got_withdrawn(from_id: int) -> void:
+	challenge_withdrawn.emit(from_id)
+
+
+## Servidor → cliente: respuesta a tu desafío (o por qué no se pudo mandar).
+@rpc("authority", "reliable")
+func got_answer(to_id: int, accepted: bool, message: String) -> void:
+	challenge_answered.emit(to_id, accepted, message)
+
+
+## Servidor → cliente: aceptado: elegí tu equipo.
+@rpc("authority", "reliable")
+func got_choose(match_id: int, opponent: Dictionary, count: int, seconds: float) -> void:
+	match_choose.emit(match_id, opponent, count, seconds)
+
+
+## Servidor → cliente: los dos eligieron: con qué viene el otro.
+@rpc("authority", "reliable")
+func got_ready(match_id: int, opponent: Dictionary, opponent_team: Array) -> void:
+	match_ready.emit(match_id, opponent, opponent_team)
+
+
+## Servidor → cliente: se cayó la partida antes de empezar.
+@rpc("authority", "reliable")
+func got_cancelled(match_id: int, reason: String) -> void:
+	match_cancelled.emit(match_id, reason)
+
+
+func send_challenge(to_id: int, count: int) -> void:
+	if state == "online":
+		challenge.rpc_id(1, to_id, count)
+
+
+func send_withdraw() -> void:
+	if state == "online":
+		withdraw.rpc_id(1)
+
+
+func send_answer(from_id: int, accept: bool) -> void:
+	if state == "online":
+		answer.rpc_id(1, from_id, accept)
+
+
+## Los Pokémon elegidos (CreatureInstance) para la partida.
+func send_choice(match_id: int, team: Array) -> void:
+	if state == "online":
+		choose_team.rpc_id(1, match_id, team.map(func(c: CreatureInstance): return c.to_dict()))
+
+
 func send_team(team: Array) -> void:
 	if state == "online":
 		update_team.rpc_id(1, team)
@@ -268,6 +528,8 @@ func close() -> void:
 	_clear_peer()
 	_by_id.clear()
 	_pending.clear()
+	_challenges.clear()
+	matches.clear()
 	players = []
 	if was_client:
 		_set_state("offline", "Desconectado.")

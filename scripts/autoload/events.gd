@@ -103,3 +103,11 @@ signal time_changed(hour: float, phase: String)
 signal online_state_changed(state: String, message: String)
 ## Los conectados a la sala: [{id, name, team: [{species, level}], status}].
 signal online_players_changed(players: Array)
+## Desafíos (O-2): te desafían / lo retiró / respuesta a tu desafío.
+signal online_challenged(from_id: int, from_name: String, count: int)
+signal online_challenge_withdrawn(from_id: int)
+signal online_challenge_answered(to_id: int, accepted: bool, message: String)
+## Partida aceptada: elegí equipo (opponent = {id, name, team}); los dos eligieron; se cayó antes de empezar.
+signal online_match_choose(match_id: int, opponent: Dictionary, count: int, seconds: float)
+signal online_match_ready(match_id: int, opponent: Dictionary, opponent_team: Array)
+signal online_match_cancelled(match_id: int, reason: String)

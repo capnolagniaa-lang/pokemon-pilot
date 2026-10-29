@@ -6,6 +6,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Online O-2: la sala (2026-10-29)**: la recepcionista abre la sala: ves a los conectados (equipo y si están libres),
+  elegís el formato (1, 3 o 6) y desafiás; el otro acepta o rechaza (también si tiene la sala cerrada: se lo pregunta la
+  recepcionista); los dos eligen equipo con 30 s. El servidor del juego queda fijo adentro del juego (`Net.OFFICIAL_SERVER`;
+  Opciones → Online solo para otro servidor). **Próximo: O-3** (la pelea en la arena).
 - **Online O-1: Centro de Combate Online en Ciudad Verde (2026-10-29)**: edificio nuevo hecho con Qwen a la derecha del
   Centro Pokémon, con su interior (enfermera, tienda y recepcionista que te conecta a la sala y muestra quién está).
   Se agrega sin tocar las zonas importadas (`ExtraContent`, `data/world/extra/`). Opciones → Online: nombre y servidor.

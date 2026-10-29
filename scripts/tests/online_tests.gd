@@ -67,6 +67,8 @@ func run() -> void:
 		and raw.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED
 	raw.close()
 
+	await _challenge_tests(server, a, b, version)
+
 	# B se va: A lo ve.
 	b.close()
 	r["B se desconecta: queda offline"] = b.state == "offline"
@@ -123,6 +125,114 @@ func _server_process_test(version: String) -> void:
 	e.close()
 	if pid > 0:
 		OS.kill(pid)
+
+
+## O-2: desafiar, contestar, elegir equipo, tiempos y desconexiones.
+func _challenge_tests(server: NetPeer, a: NetPeer, b: NetPeer, version: String) -> void:
+	b.send_status("libre")
+	await _until(func(): return _entry(a, b.my_id).get("status") == "libre")
+	var log := []
+	for p in [a, b]:
+		var who := "A" if p == a else "B"
+		p.challenged.connect(func(id, n, c): log.append([who, "desafio", id, n, c]))
+		p.challenge_withdrawn.connect(func(id): log.append([who, "retirado", id]))
+		p.challenge_answered.connect(func(id, ok, m): log.append([who, "respuesta", id, ok, m]))
+		p.match_choose.connect(func(mid, o, c, t): log.append([who, "elegir", mid, o, c, t]))
+		p.match_ready.connect(func(mid, o, team): log.append([who, "lista", mid, o, team]))
+		p.match_cancelled.connect(func(mid, why): log.append([who, "cancelada", mid, why]))
+	var last := func(who: String, kind: String):
+		for i in range(log.size() - 1, -1, -1):
+			if log[i][0] == who and log[i][1] == kind:
+				return log[i]
+		return null
+
+	# Lo que no se puede.
+	a.send_challenge(a.my_id, 3)
+	await _until(func(): return last.call("A", "respuesta") != null)
+	r["Desafiarse a uno mismo: no"] = last.call("A", "respuesta") != null and not last.call("A", "respuesta")[3]
+	log.clear()
+	a.send_challenge(b.my_id, 4)
+	await _until(func(): return last.call("A", "respuesta") != null)
+	r["Formato que no existe (4): no"] = last.call("A", "respuesta") != null and not last.call("A", "respuesta")[3]
+
+	# Rechazar.
+	log.clear()
+	a.send_challenge(b.my_id, 3)
+	await _until(func(): return last.call("B", "desafio") != null)
+	var got = last.call("B", "desafio")
+	r["B recibe el desafío de A (3 contra 3)"] = got != null and got[2] == a.my_id and got[3] == "Ash" and got[4] == 3
+	b.send_challenge(a.my_id, 1)
+	await _until(func(): return last.call("B", "respuesta") != null)
+	r["Con un desafío pendiente no se puede mandar otro"] = last.call("B", "respuesta") != null and not last.call("B", "respuesta")[3]
+	b.send_answer(a.my_id, false)
+	await _until(func(): return last.call("A", "respuesta") != null)
+	r["B rechaza: A se entera"] = last.call("A", "respuesta") != null and not last.call("A", "respuesta")[3] 		and "no aceptó" in last.call("A", "respuesta")[4]
+
+	# Retirar.
+	log.clear()
+	a.send_challenge(b.my_id, 1)
+	await _until(func(): return last.call("B", "desafio") != null)
+	a.send_withdraw()
+	await _until(func(): return last.call("B", "retirado") != null)
+	r["A retira el desafío: B se entera"] = last.call("B", "retirado") != null
+
+	# Sin contestar: se cae solo.
+	log.clear()
+	server.answer_timeout = 0.5
+	a.send_challenge(b.my_id, 1)
+	await _until(func(): return last.call("A", "respuesta") != null, 3.0)
+	r["Sin contestar a tiempo: se cae (\"no contestó\")"] = last.call("A", "respuesta") != null 		and "no contestó" in last.call("A", "respuesta")[4] and last.call("B", "retirado") != null
+	server.answer_timeout = NetPeer.ANSWER_TIMEOUT
+
+	# Aceptar → elegir → lista.
+	log.clear()
+	a.send_challenge(b.my_id, 3)
+	await _until(func(): return last.call("B", "desafio") != null)
+	b.send_answer(a.my_id, true)
+	await _until(func(): return last.call("A", "elegir") != null and last.call("B", "elegir") != null)
+	var ca = last.call("A", "elegir")
+	var cb = last.call("B", "elegir")
+	r["Acepta: los dos eligen equipo (contra quién, formato y tiempo)"] = ca != null and cb != null and ca[2] == cb[2] 		and ca[3].name == "Ash (2)" and cb[3].name == "Ash" and ca[4] == 3 and ca[5] == NetPeer.CHOOSE_TIMEOUT
+	await _until(func(): return _entry(a, b.my_id).get("status") == "eligiendo")
+	r["Mientras eligen figuran \"eligiendo\""] = _entry(a, a.my_id).get("status") == "eligiendo" and _entry(a, b.my_id).get("status") == "eligiendo"
+	var team_a := [CreatureInstance.create(DB.species["pikachu"], 12), CreatureInstance.create(DB.species["pidgey"], 9),
+		CreatureInstance.create(DB.species["rattata"], 8), CreatureInstance.create(DB.species["onix"], 14)]
+	var fainted := CreatureInstance.create(DB.species["caterpie"], 5)
+	fainted.hp = 0.0
+	a.send_choice(ca[2], team_a)
+	b.send_choice(cb[2], [fainted, CreatureInstance.create(DB.species["ivysaur"], 16)])
+	await _until(func(): return last.call("A", "lista") != null and last.call("B", "lista") != null)
+	var ra = last.call("A", "lista")
+	var rb = last.call("B", "lista")
+	r["Los dos eligieron: cada uno sabe con qué viene el otro"] = ra != null and rb != null 		and ra[4].map(func(d): return d.species_id) == ["ivysaur"] and rb[4].map(func(d): return d.species_id) == ["pikachu", "pidgey", "rattata"]
+	r["Del equipo se saca el debilitado y lo que pasa del formato"] = rb != null and rb[4].size() == 3 and ra[4].size() == 1
+	r["Lleva todo el Pokémon (nivel, ataques, habilidad)"] = rb != null and rb[4][0].level == 12 and rb[4][0].has("equipped_moves") and rb[4][0].has("ability")
+	await _until(func(): return _entry(a, a.my_id).get("status") == "libre" and server.matches.is_empty())
+	r["Sin pelea online todavía (O-3): vuelven a estar libres"] = server.matches.is_empty() and _entry(a, a.my_id).get("status") == "libre"
+
+	# No eligen a tiempo: se cancela.
+	log.clear()
+	server.choose_timeout = 0.2
+	a.send_challenge(b.my_id, 1)
+	await _until(func(): return last.call("B", "desafio") != null)
+	b.send_answer(a.my_id, true)
+	await _until(func(): return last.call("A", "cancelada") != null, NetPeer.CHOOSE_GRACE + 3.0)
+	r["Si no eligen a tiempo, se cancela para los dos"] = last.call("A", "cancelada") != null and last.call("B", "cancelada") != null 		and server.matches.is_empty()
+	server.choose_timeout = NetPeer.CHOOSE_TIMEOUT
+
+	# Se desconecta mientras eligen: al otro se le cancela.
+	log.clear()
+	var c2 := _peer("C2")
+	c2.join("127.0.0.1", PORT, {"version": version, "name": "Gary", "team": [{"species": "eevee", "level": 10}]})
+	await _until(func(): return c2.state == "online" and a.players.size() == 3)
+	a.send_challenge(c2.my_id, 1)
+	await _until(func(): return true, 0.3)
+	c2.send_answer(a.my_id, true)
+	await _until(func(): return last.call("A", "elegir") != null)
+	c2.close()
+	await _until(func(): return last.call("A", "cancelada") != null, 12.0)
+	r["Se desconecta mientras eligen: al otro se le cancela"] = last.call("A", "cancelada") != null 		and "desconectó" in last.call("A", "cancelada")[3]
+	await _until(func(): return a.players.size() == 2)
 
 
 func _peer(n: String) -> NetPeer:

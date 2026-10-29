@@ -3,13 +3,20 @@ extends Node
 ## Los sistemas no le hablan a NetPeer directo: usan esto y escuchan Events (online_state_changed,
 ## online_players_changed).
 ##   Servidor:  godot --headless --path . -- --server [--port 24680]
-## Dirección del servidor: user://online.cfg (de esta PC, no de la partida).
+## Servidor: **el del juego** (`OFFICIAL_SERVER`, fijo adentro del juego: nadie tiene que escribir nada). En Opciones →
+## Online se puede poner otro (avanzado, para probar; vacío = el del juego), guardado en user://online.cfg.
 
 const CONFIG_PATH := "user://online.cfg"
-const DEFAULT_ADDRESS := "127.0.0.1"
+## El servidor del juego. Mientras no haya uno prendido de verdad (O-5) es esta misma PC. Cuando esté, va acá su
+## dirección fija (IP de la nube o un nombre tipo "pokemonpilot.duckdns.org") y sale en los zips.
+const OFFICIAL_SERVER := "127.0.0.1"
+const DEFAULT_ADDRESS := OFFICIAL_SERVER
 
 var client: NetPeer
 var server: NetPeer
+## Lo que escribió el jugador en Opciones ("" = el servidor del juego).
+var server_override := ""
+## A dónde se conecta (sale de server_override o del del juego; los tests lo pisan directo).
 var address := DEFAULT_ADDRESS
 var port := NetPeer.DEFAULT_PORT
 ## Nombre con el que entrás a la sala (vacío = el de la partida).
@@ -28,6 +35,15 @@ func _ready() -> void:
 	add_child(client)
 	client.state_changed.connect(func(s, m): Events.online_state_changed.emit(s, m))
 	client.players_changed.connect(func(p): Events.online_players_changed.emit(p))
+	client.challenged.connect(func(id, n, c): Events.online_challenged.emit(id, n, c))
+	client.challenge_withdrawn.connect(func(id): Events.online_challenge_withdrawn.emit(id))
+	client.challenge_answered.connect(func(id, ok, m): Events.online_challenge_answered.emit(id, ok, m))
+	client.match_choose.connect(func(mid, o, c, t): Events.online_match_choose.emit(mid, o, c, t))
+	client.match_ready.connect(func(mid, o, team): Events.online_match_ready.emit(mid, o, team))
+	client.match_cancelled.connect(func(mid, why): Events.online_match_cancelled.emit(mid, why))
+	# Que la sala vea tu equipo al día (curaste, subiste de nivel, atrapaste...).
+	Events.party_changed.connect(func(): if is_online(): refresh_team())
+	Events.party_healed.connect(func(): if is_online(): refresh_team())
 	if "--server" in OS.get_cmdline_user_args():
 		_start_server.call_deferred()
 
@@ -50,6 +66,28 @@ func _start_server() -> void:
 ## Conectarse a la sala con el nombre y el equipo de la partida actual.
 func go_online() -> Error:
 	return client.join(address, port, {"version": game_version(), "name": display_name(), "team": team_summary()})
+
+
+func challenge(to_id: int, count: int) -> void:
+	client.send_challenge(to_id, count)
+
+
+func withdraw() -> void:
+	client.send_withdraw()
+
+
+func answer(from_id: int, accept: bool) -> void:
+	client.send_answer(from_id, accept)
+
+
+## Los Pokémon (CreatureInstance) que llevás a la partida.
+func choose_team(match_id: int, team: Array) -> void:
+	client.send_choice(match_id, team)
+
+
+## Avisa a la sala que cambió tu equipo (curaste, subiste de nivel...).
+func refresh_team() -> void:
+	client.send_team(team_summary())
 
 
 func go_offline() -> void:
@@ -84,9 +122,10 @@ static func game_version() -> String:
 	return "%d-%08x" % [NetPeer.PROTOCOL, hash("|".join(parts))]
 
 
-## "host" o "host:puerto" (como lo escribe el jugador en Opciones). Vacío = la de siempre.
+## "host" o "host:puerto" (como lo escribe el jugador en Opciones). Vacío = el servidor del juego.
 func set_server(text: String) -> void:
 	var t := text.strip_edges()
+	server_override = t
 	if t == "":
 		address = DEFAULT_ADDRESS
 		port = NetPeer.DEFAULT_PORT
@@ -102,8 +141,7 @@ func set_server(text: String) -> void:
 
 func save_config() -> void:
 	var cfg := ConfigFile.new()
-	cfg.set_value("online", "address", address)
-	cfg.set_value("online", "port", port)
+	cfg.set_value("online", "server", server_override)
 	cfg.set_value("online", "name", player_name)
 	cfg.save(CONFIG_PATH)
 
@@ -112,6 +150,5 @@ func _load_config() -> void:
 	var cfg := ConfigFile.new()
 	if cfg.load(CONFIG_PATH) != OK:
 		return
-	address = str(cfg.get_value("online", "address", DEFAULT_ADDRESS))
-	port = int(cfg.get_value("online", "port", NetPeer.DEFAULT_PORT))
+	set_server(str(cfg.get_value("online", "server", "")))
 	player_name = str(cfg.get_value("online", "name", ""))
