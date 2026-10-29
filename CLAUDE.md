@@ -187,6 +187,12 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - **Inmunidades**: efectividad 0 (tabla de tipos) = el golpe no hace nada (`Creature._on_hit` sale antes del daño, el
   estado y el empuje). `StatusEffect.immune_types`: tipos que no lo sufren (Envenenado: Veneno). Fila de encuentro con
   `species_id` vacío = "esa vez no sale nadie" (`WildSpawner.roll`).
+- **Tutorial y explicación de ataques** (2026-10-28): `TutorialScreen` (páginas `PAGES`: controles, salvajes, combate,
+  equipo, captura, ataques, qué se puede modificar, menú) sale sola la primera vez que se entra al mundo con una partida
+  (bandera `tutorial_visto`, `World`; no en autotests/vitrinas) vía `PauseMenu.show_tutorial`, y en Esc → Cómo se juega.
+  **Si se agrega una tecla o un ajuste, sumarlo a `PAGES`.** `MoveInfo.what_it_does(move)`: qué hace un ataque en
+  palabras, armado desde su `MoveData` (forma, carga, combo, zona, estados con `status_text`); lo muestran la ficha
+  (Movimientos), `MoveLearnScreen` y la Pokédex.
 - **Ataques nuevos**: con ranura libre se equipa solo (`CreatureInstance.auto_equip`); con las 4 llenas,
   `MoveLearnDirector` (hijo de `world.evolutions`, en el momento tranquilo de las evoluciones) muestra `MoveLearnScreen`
   ("¿reemplazar uno?"). Cargas: solo un golpe fuerte (empuje ≥ `STAGGER_KNOCKBACK`) corta una carga o un canalizado;

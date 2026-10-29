@@ -218,6 +218,10 @@ func _show_detail(m: MoveData, level: int) -> void:
 	chips.add_child(UiStyle.type_chip(m.element))
 	chips.add_child(UiStyle.label("%s · %s" % [UiStyle.CATEGORY.get(m.category, ""), UiStyle.KIND.get(m.kind, "")], 14))
 	_detail.add_child(chips)
+	var what := UiStyle.label(MoveInfo.what_it_does(m), 14, UiStyle.ACCENT.lightened(0.4))
+	what.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	what.custom_minimum_size.x = 330
+	_detail.add_child(what)
 	for line in describe(m):
 		var l := UiStyle.label(line, 14)
 		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

@@ -1,6 +1,6 @@
 class_name PauseMenu
 extends Control
-## Menú de pausa (Esc en el mundo): Guía, Mapa, Equipo, Mochila, Caja, Pokédex, Tarjeta, Guardar, Opciones, Volver al
+## Menú de pausa (Esc en el mundo): Guía, Cómo se juega, Mapa, Equipo, Mochila, Caja, Pokédex, Tarjeta, Guardar, Opciones, Volver al
 ## título y Cerrar. Pausa el mundo
 ## (get_tree().paused) y no se abre durante un combate. Las pantallas (Equipo, ficha, opciones) se apilan
 ## encima; Esc vuelve a la anterior.
@@ -27,6 +27,8 @@ var _status: Label
 var _buttons: Dictionary = {}
 ## Abierto en medio de un combate (menú reducido).
 var in_battle := false
+## Abierto solo para el tutorial del principio (World): al cerrarlo se cierra todo el menú.
+var _tutorial_only := false
 const BATTLE_ENTRIES := ["Mochila", "Equipo", "Cerrar"]
 
 
@@ -68,6 +70,7 @@ func try_open() -> bool:
 
 
 func close() -> void:
+	_tutorial_only = false
 	for s in _stack:
 		s.queue_free()
 	_stack.clear()
@@ -97,7 +100,7 @@ func _build() -> void:
 	box.add_theme_constant_override("separation", 8)
 	_main.add_child(box)
 	box.add_child(UiStyle.label("MENÚ", 20, UiStyle.ACCENT))
-	var entries := [["Guía", _open_guide], ["Mapa", _open_map], ["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box],
+	var entries := [["Guía", _open_guide], ["Cómo se juega", _open_tutorial], ["Mapa", _open_map], ["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box],
 		["Pokédex", _open_pokedex], ["Tarjeta", _open_card], ["Guardar", _save], ["Opciones", _open_options],
 		["Volver al título", _to_title], ["Cerrar", close]]
 	for e in entries:
@@ -139,7 +142,9 @@ func _pop() -> void:
 		_stack.append(top)  # la pantalla manejó el Esc (ej. cancelar una elección)
 		return
 	top.queue_free()
-	if _stack.is_empty():
+	if _stack.is_empty() and _tutorial_only:
+		close()
+	elif _stack.is_empty():
 		_main.visible = true
 		_first.grab_focus()
 	else:
@@ -172,6 +177,21 @@ static func has_map() -> bool:
 
 func _open_map() -> void:
 	push(TownMapScreen.new())
+
+
+func _open_tutorial() -> void:
+	push(TutorialScreen.new())
+
+
+## El tutorial solo, sin el menú detrás (la primera vez que entrás al mundo): pausa y al cerrarlo sigue el juego.
+func show_tutorial() -> void:
+	if visible:
+		return
+	in_battle = false
+	_tutorial_only = true
+	visible = true
+	get_tree().paused = true
+	_open_tutorial()
 
 
 func _open_guide() -> void:

@@ -130,6 +130,18 @@ func _ready() -> void:
 	pause_menu = PauseMenuScene.instantiate()
 	menu_layer.add_child(pause_menu)
 	respawn_companion()
+	# Tutorial "Cómo se juega" la primera vez que entrás al mundo con esta partida (no en los autotests/vitrinas).
+	if not GameState.has_flag("tutorial_visto") and not _automated():
+		GameState.set_flag("tutorial_visto")
+		pause_menu.show_tutorial.call_deferred()
+
+
+## Corriendo un autotest, una vitrina o la vista de la región (sin tutorial ni nada que frene).
+static func _automated() -> bool:
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--autotest") or a.begins_with("--showcase") or a == "--overview":
+			return true
+	return false
 
 
 func _process(delta: float) -> void:

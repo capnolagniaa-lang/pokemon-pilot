@@ -246,6 +246,7 @@ func _add_kit(sp: SpeciesData) -> void:
 			row.add_child(UiStyle.type_chip(m.element))
 		row.add_child(UiStyle.label(m.display_name, 15))
 		_detail.add_child(row)
+		_detail.add_child(_wrapped(MoveInfo.what_it_does(m), 13))
 		_detail.add_child(_wrapped(" · ".join(Summary.describe(m)), 13, UiStyle.TEXT_DIM))
 
 

@@ -6,6 +6,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Tutorial "Cómo se juega" y qué hace cada ataque (2026-10-28, pedido del usuario)**: 9 páginas (controles, salvajes y
+  temperamentos, combate, equipo y EXP, captura, ataques y habilidades, lo que se puede modificar, el menú) que salen
+  solas la primera vez que entrás al mundo con una partida (también las partidas viejas, una vez) y siempre desde
+  Esc → Cómo se juega (`TutorialScreen`). Cada ataque explica qué hace en palabras (`MoveInfo`, sale de cómo funciona
+  en tiempo real) en la ficha, al aprender uno nuevo y en la Pokédex. Test: `--autotest-party`; vitrina `--showcase-menus`.
 - **Bolas erradas en el piso (2026-10-28, pedido del usuario)**: si la Pokébola no toca a nadie, rebota y queda en el
   suelo (con su ícono: Super Ball, Ultra Ball...) durante 2 minutos; pasando por encima con el entrenador la recuperás
   ("¡Recuperaste Poké Ball!"). `BallThrow._leave_on_ground` → `FieldItem.thrown`. Test: `--autotest-capture`.

@@ -132,6 +132,14 @@ func showcase_menus() -> void:
 	summary._rows[4].grab_focus()
 	summary._on_row(summary._inst.species.learnset_entries()[4].move, false, summary._rows[4])
 	await get_tree().create_timer(1.5).timeout
+	print("[showcase] tutorial")
+	world.pause_menu.close()
+	world.pause_menu.show_tutorial()
+	await get_tree().create_timer(1.0).timeout
+	world.pause_menu._stack[-1].show_page(3)
+	await get_tree().create_timer(1.0).timeout
+	world.pause_menu._stack[-1].show_page(7)
+	await get_tree().create_timer(1.0).timeout
 	SaveManager.delete_save()
 	SaveManager.slot_path = SaveManager.SLOT
 	get_tree().quit()
@@ -182,6 +190,24 @@ func party_test() -> void:
 	r["Menú: se abre fuera de combate y pausa"] = world.pause_menu.try_open() and get_tree().paused
 	world.pause_menu.close()
 	r["Menú: al cerrar despausa"] = not get_tree().paused
+
+	# Tutorial "Cómo se juega": solo (al principio) pausa, recorre las páginas y al cerrarlo sigue el juego.
+	world.pause_menu.show_tutorial()
+	await get_tree().process_frame
+	var tut = world.pause_menu._stack[-1] if not world.pause_menu._stack.is_empty() else null
+	var pages_ok: bool = tut is TutorialScreen and get_tree().paused and not world.pause_menu._main.visible
+	if tut is TutorialScreen:
+		for i in TutorialScreen.PAGES.size():
+			tut.show_page(i)
+			pages_ok = pages_ok and tut._body.get_child_count() > 0
+		world.pause_menu._pop()
+	r["Tutorial: pausa, todas las páginas y al cerrarlo sigue el juego"] = pages_ok and not get_tree().paused 		and not world.pause_menu.visible
+	r["Tutorial: también en el menú (Cómo se juega)"] = world.pause_menu._buttons.has("Cómo se juega")
+	# Qué hace cada ataque: todos los ataques tienen su explicación.
+	var no_text := DB.all_moves.values().filter(func(m): return MoveInfo.what_it_does(m).length() < 20)
+	r["Cada ataque explica qué hace"] = no_text.is_empty()
+	print("[party] ej.: ", DB.moves["ascuas"].display_name, ": ", MoveInfo.what_it_does(DB.moves["ascuas"]))
+	print("[party] ej.: ", DB.moves["danza_espada"].display_name if DB.moves.has("danza_espada") else "", ": ", MoveInfo.what_it_does(DB.moves.get("danza_espada")))
 
 	var n := GameState.party.size()
 	GameState.party.resize(3)

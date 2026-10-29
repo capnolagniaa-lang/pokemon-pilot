@@ -47,6 +47,7 @@ func _header() -> void:
 		row.add_child(UiStyle.type_chip(move.element))
 	row.add_child(_wrapped(" · ".join(Summary.describe(move)), 14, UiStyle.TEXT_DIM))
 	_box.add_child(row)
+	_box.add_child(_wrapped(MoveInfo.what_it_does(move), 15, UiStyle.TEXT))
 
 
 func _ask() -> void:
@@ -77,7 +78,8 @@ func _choose() -> void:
 			continue
 		var b := UiStyle.button("%s  —  %s" % [Controls.SLOT_KEYS[i] if i < Controls.SLOT_KEYS.size() else str(i + 1),
 			m.display_name], 560)
-		b.tooltip_text = " · ".join(Summary.describe(m))
+		b.tooltip_text = MoveInfo.what_it_does(m) + "
+" + " · ".join(Summary.describe(m))
 		b.pressed.connect(func(): finished.emit(i))
 		_box.add_child(b)
 		if first == null:
