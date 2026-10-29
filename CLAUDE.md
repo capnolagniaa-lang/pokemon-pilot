@@ -218,7 +218,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `Creature.temperament` (`Temperament`, `data/ai/temperaments/`; `SpeciesData.temperament` lo asigna
   `tools/assign_temperaments.gd`) leído por los estados wander/watch/chase/attack/flee; sin memoria, patrón fijo.
   Entrenadores (pendiente): órdenes + memoria, mismo cuerpo. Mientras hay golpes (`Creature.engaged`, 5 s) un
-  salvaje no suelta la pelea por territorio; al soltarla queda tranquilo 6 s (`calm_until`).
+  salvaje no suelta la pelea por territorio; al soltarla queda tranquilo 6 s (`calm_until`); si huís
+  vos (F o se corta el combate), 8 s (`Creature.CALM_AFTER_FLEE`, en `CombatDirector.end_battle`), salvo que le pegues.
   **No se traban** (2026-10-25): los estados se mueven con `CombatBody.steer(dir, meta)` (si adelante hay algo sólido
   gira hacia un lado y lo mantiene; trabado 0,35 s → camino por celdas con `find_path`, AStarGrid2D sobre
   `MapRules`). `clear_shot` (rayo contra mundo y entorno): no dispara contra paredes y se acomoda para tener tiro.

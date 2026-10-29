@@ -95,6 +95,9 @@ var calm_until := 0.0
 
 const ENGAGED_TIME := 5.0
 const CALM_AFTER_GIVING_UP := 6.0
+## Después de que huís de la pelea (F, o se corta el combate): no te vuelve a desafiar enseguida aunque sigas en su
+## territorio (pedido del usuario 2026-10-28: antes te desafiaba al instante).
+const CALM_AFTER_FLEE := 8.0
 ## "Cuerpo" de la IA (ejecución compartida por salvajes y entrenadores; ver CombatBody).
 var body: CombatBody:
 	get:
@@ -175,8 +178,8 @@ func engaged() -> bool:
 
 
 ## Suelta la pelea (salvaje): vuelve a su lugar y no nota a nadie por un rato.
-func give_up_fight() -> void:
-	calm_until = _clock + CALM_AFTER_GIVING_UP
+func give_up_fight(calm: float = CALM_AFTER_GIVING_UP) -> void:
+	calm_until = _clock + calm
 	machine.transition_to("wander")
 
 

@@ -107,7 +107,7 @@ func end_battle(force: bool = false) -> void:
 	for e in enemies:
 		if is_instance_valid(e) and not e.health.is_dead():
 			e.target = null
-			e.machine.transition_to("wander")
+			e.give_up_fight(Creature.CALM_AFTER_FLEE)  # un rato sin desafiarte de nuevo (salvo que le pegues)
 	enemies.clear()
 	for e in _participants.keys():
 		if not is_instance_valid(e) or e.health.is_dead():

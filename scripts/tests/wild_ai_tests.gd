@@ -46,6 +46,18 @@ func run() -> void:
 	_clear(guard)
 	await get_tree().create_timer(2.0).timeout
 
+	# Huir con F adentro de su territorio: no te vuelve a desafiar al instante (Creature.CALM_AFTER_FLEE).
+	var held_guard := _spawn("bellsprout", "territorial", me.global_position + Vector2(40, 0))
+	await get_tree().create_timer(1.2).timeout
+	var fought: bool = held_guard.target == me and world.combat.in_battle
+	world.combat.end_battle()
+	await get_tree().create_timer(3.0).timeout
+	r["Territorial: huís con F en su zona y no te desafía enseguida"] = fought and held_guard.target == null 		and not world.combat.in_battle
+	await get_tree().create_timer(Creature.CALM_AFTER_FLEE).timeout
+	r["Territorial: pasado el respiro, si seguís en su zona vuelve a pelear"] = held_guard.target == me
+	_clear(held_guard)
+	await get_tree().create_timer(2.0).timeout
+
 	# Peleando (hubo golpes) no suelta aunque tu Pokémon salga de su zona: antes cortaba el combate a cada rato.
 	var fighter := _spawn("bellsprout", "territorial", me.global_position + Vector2(50, 0))
 	await get_tree().physics_frame

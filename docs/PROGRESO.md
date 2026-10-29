@@ -6,6 +6,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-23)
+- **Respiro al huir (2026-10-28, pedido del usuario)**: si huís de un salvaje territorial (F) estando en su zona ya no te
+  desafía al instante: queda 8 s tranquilo (`Creature.CALM_AFTER_FLEE`, lo pone `CombatDirector.end_battle` a todos los
+  enemigos); si le pegás pelea igual, y si pasado el respiro seguís en su zona vuelve a pelear. Test: `--autotest-wild-ai`.
 - **Versión para Mac (2026-10-28, pedido del usuario)**: `tools/build_portable.py ... --mac <zip de Godot para macOS>` arma
   `export/PokemonPilot-Mac-<fecha>.zip` (Godot.app oficial universal sin tocar + .pck + lanzador `.command` + LEEME con
   cómo abrirlo la primera vez). Sin probar en una Mac de verdad.
