@@ -245,7 +245,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   baja), Fuerza (MO04 + Arcoíris: empujar EnvObject "pesado"), **pelea en el agua** (`FieldMoves.water_mode_of`: tipo Agua nada, Volador/
   Fantasma/`FLOATERS` flota, el resto pelea "montado" sobre el Pokémon de Surf `mount_species()` si navegás, con
   `Creature.swim_mult`; no en las arenas; los salvajes de agua, filas "agua" de FireRed puestas con
-  `tools/add_water_encounters.gd`, salen solo mientras navegás: `WildSpawner.roll(zona, water)`), Poké Flauta (Snorlax) y legendarios (acciones de su charla); `VermilionGymPuzzle` (basureros de Carmín).
+  `tools/add_water_encounters.gd`, salen solo mientras navegás: `WildSpawner.roll(zona, water)`), Poké Flauta (Snorlax) y legendarios (acciones de su charla); `VermilionGymPuzzle` (basureros de Carmín); `MansionSwitches` (estatuas-interruptor de la Mansión Pokémon: dan vuelta las barreras de los 4 pisos, bandera `mansion_interruptor`; celdas de los scripts de FireRed).
   Entrenadores de las zonas nuevas: automáticos desde `data/source/trainers_frlg.json` (`tools/fetch_frlg_trainers.py`,
   de pret) con frases por clase; en `build_story_npcs.py` el bloque "Capítulos 4 a 8" tiene los hitos y al final un
   **relleno** que le da una frase a toda persona sin charla propia. `GameState.story_flags` (banderas, se guardan); `NpcData`/`NpcTalk`/

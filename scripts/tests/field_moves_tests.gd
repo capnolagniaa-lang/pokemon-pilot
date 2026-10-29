@@ -113,6 +113,23 @@ func run() -> void:
 		r["Con la Poké Flauta se despierta y pelea (salvaje Nv. 30)"] = GameState.has_flag("snorlax_ruta12_despierto") \
 			and not snor.visible_now() and wilds.size() == 1 and wilds[0].instance.level == 30
 
+	# --- Mansión Pokémon: la estatua-interruptor da vuelta las barreras de todos los pisos ---
+	var ms: MansionSwitches = world.mansion_switches
+	await _go("mansion_pokemon_1p", Vector2i(5, 6))
+	var m1: Zone = world.streamer.zone_node("mansion_pokemon_1p")
+	var closed := not MapRules.is_walkable(m1, Vector2i(23, 10)) and MapRules.is_walkable(m1, Vector2i(32, 18))
+	t.facing = Vector2.UP
+	world.story.try_interact()
+	await get_tree().process_frame
+	world.story.dialog.choose(0)
+	await _idle()
+	r["Mansión: la estatua aprieta el interruptor (abre unas barreras y cierra otras)"] = closed 		and GameState.has_flag(MansionSwitches.FLAG) and MapRules.is_walkable(m1, Vector2i(23, 10)) 		and not MapRules.is_walkable(m1, Vector2i(32, 18))
+	await _go("mansion_pokemon_s1", Vector2i(27, 6))
+	var ms1: Zone = world.streamer.zone_node("mansion_pokemon_s1")
+	r["Mansión: el sótano se carga con el interruptor apretado"] = ms1 != null 		and MapRules.is_walkable(ms1, Vector2i(12, 11)) and not MapRules.is_walkable(ms1, Vector2i(34, 21))
+	ms.toggle()
+	r["Mansión: soltarlo deja todo como al principio"] = not GameState.has_flag(MansionSwitches.FLAG) 		and not MapRules.is_walkable(ms1, Vector2i(12, 11)) and MapRules.is_walkable(ms1, Vector2i(34, 21))
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[campo] %s %s" % ["OK   " if r[key] else "FALLO", key])
