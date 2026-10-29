@@ -58,6 +58,37 @@ func run() -> void:
 	_clear(held_guard)
 	await get_tree().create_timer(2.0).timeout
 
+	# Lo matás de un golpe (no llegó a atacarte) o mientras huye: igual ganás EXP (bug del usuario 2026-10-29: no
+	# estaba en los enemigos del combate y no contaba).
+	var strike: MoveData = me.moves.slots.filter(func(m): return m != null and m.power > 0.0)[0]
+	world.combat.start_battle()
+	var one := _spawn("rattata", "timido", me.global_position + Vector2(90, 0))
+	await get_tree().physics_frame
+	one.instance.hp = 0.5
+	var exp0 := me.instance.experience
+	one.hurtbox.receive(HitInfo.from(me, strike))
+	await get_tree().create_timer(0.3).timeout
+	r["Lo matás de un golpe (no te había atacado): ganás EXP"] = one.health.is_dead() and me.instance.experience > exp0
+	_clear(one)
+	await get_tree().create_timer(1.0).timeout
+	world.combat.start_battle()
+	var runner := _spawn("pidgey", "timido", me.global_position + Vector2(60, 0))
+	await get_tree().physics_frame
+	runner.hurtbox.receive(HitInfo.from(me, strike))  # pelea un poco...
+	await get_tree().create_timer(0.3).timeout
+	runner.target = null  # ...y se escapa con poca vida (deja de apuntarte: sale de los enemigos del combate)
+	runner.machine.transition_to("flee")
+	await get_tree().create_timer(0.5).timeout
+	var listed: bool = world.combat.enemies.has(runner)
+	runner.instance.hp = 0.5
+	exp0 = me.instance.experience
+	runner.hurtbox.receive(HitInfo.from(me, strike))
+	await get_tree().create_timer(0.3).timeout
+	r["Lo matás mientras huye (ya no te atacaba): ganás EXP"] = not listed and runner.health.is_dead() \
+		and me.instance.experience > exp0
+	_clear(runner)
+	await get_tree().create_timer(1.0).timeout
+
 	# Peleando (hubo golpes) no suelta aunque tu Pokémon salga de su zona: antes cortaba el combate a cada rato.
 	var fighter := _spawn("bellsprout", "territorial", me.global_position + Vector2(50, 0))
 	await get_tree().physics_frame

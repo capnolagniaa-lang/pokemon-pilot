@@ -77,6 +77,8 @@ var _chain_time := -100.0
 var _last_move_id := ""
 ## El último golpe que conectó (el mismo HitInfo = el mismo ataque: abanico, zona, canalizado, varias piedras).
 var _last_hit_ref: HitInfo
+## Quién le pegó por última vez (para la EXP: si lo matás de un golpe o mientras huye, no estaba en tus enemigos).
+var last_hit_by: Node
 var _world_ref: Node
 ## Salvaje: temperamento (qué hace al verte, hasta dónde persigue, cuándo huye). Sale de la especie; se puede
 ## pisar después de crearla (los autotests fuerzan "agresivo").
@@ -613,6 +615,8 @@ func _on_hit(hit: HitInfo) -> void:
 	if health.is_invulnerable() or (signature != null and signature.ignores_hit(hit)):
 		return
 	var attacker: Creature = hit.attacker if is_instance_valid(hit.attacker) else null
+	if attacker != null:
+		last_hit_by = attacker
 	if attacker != null:
 		last_exchange = _clock
 		attacker.last_exchange = attacker.now()
