@@ -61,6 +61,7 @@ func _draw() -> void:
 	if in_battle and is_instance_valid(c):
 		_draw_moves(c)
 		_draw_enemy()
+		_draw_team()
 	if not GameState.party.is_empty():
 		_draw_items()
 	_draw_message()
@@ -205,6 +206,41 @@ func _draw_enemy() -> void:
 		draw_string(font, Vector2(x, r.position.y + 58), s.display_name.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1, 11, s.color)
 	if enemies.size() > 1:
 		draw_string(font, Vector2(x, r.position.y + 58), "+%d" % (enemies.size() - 1), HORIZONTAL_ALIGNMENT_RIGHT, 300, 12)
+
+
+## Arriba a la derecha (debajo del rival): los que podés sacar en esta pelea, con su tecla de cambio (pedido del usuario
+## 2026-10-29). En la pelea online, solo los que elegiste y en ese orden (1 = el primero que elegiste).
+func _draw_team() -> void:
+	var slots: Array[int] = []
+	var online = _world.get("online")
+	if online != null and online.battle != null and online.battle.active:
+		slots.assign(online.battle.my_team)
+	else:
+		for i in mini(GameState.party.size(), 6):
+			slots.append(i)
+	if slots.size() < 2:
+		return
+	const W := 46.0
+	var r := Rect2(size.x - 16 - W * slots.size() - 8, 88, W * slots.size() + 8, 56)
+	_panel(r)
+	for k in slots.size():
+		if slots[k] >= GameState.party.size():
+			continue
+		var inst: CreatureInstance = GameState.party[slots[k]]
+		var cell := Rect2(r.position.x + 4 + k * W, r.position.y + 4, W - 4, 48)
+		var down := inst.hp <= 0.0
+		if slots[k] == GameState.active_index:
+			draw_rect(cell, Color(1.0, 0.85, 0.3, 0.25))
+			draw_rect(cell, Color(1.0, 0.85, 0.3, 0.9), false, 1.5)
+		var tex := DB.portrait_of(inst.species)
+		if tex:
+			draw_texture_rect(tex, Rect2(cell.position + Vector2(5, 2), Vector2(32, 32)), false,
+				Color(0.35, 0.35, 0.35, 0.8) if down else Color.WHITE)
+		draw_string(font, cell.position + Vector2(3, 13), str(k + 1), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(0, 0, 0, 0.8))
+		draw_string(font, cell.position + Vector2(2, 12), str(k + 1), HORIZONTAL_ALIGNMENT_LEFT, -1, 12,
+			Color(1, 1, 1, 0.4) if down else Color(1, 1, 1, 0.95))
+		var ratio := clampf(inst.hp / inst.max_hp(), 0.0, 1.0)
+		_bar(Rect2(cell.position.x + 3, cell.end.y - 9, cell.size.x - 6, 5), ratio, _hp_color(ratio))
 
 
 func _draw_message() -> void:
