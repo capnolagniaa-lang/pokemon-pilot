@@ -387,6 +387,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   - `CreatureInstance.HP_SCALE = 3`: la vida se triplica para que un combate dure varios golpes.
   - Velocidad de movimiento = `40 + 26·log2(1 + Velocidad/8)` px/s (`Creature.move_speed_for`).
   - Recarga y energía derivadas de la potencia (`apply_official_data.gd::_pace`); energía 100, +12/s.
+  - Canalizados con daño (Psicorrayo: 6 golpes en 0,9 s): `power_mult` 0,25 por golpe (el rayo entero ≈ 1,5 golpes; antes
+    cada golpe iba con la potencia entera y mataba casi al instante, queja del usuario 2026-10-29).
   - Se ignora la precisión (el jugador apunta). Giro Fuego quema 30% (en los juegos atrapa).
   - Tipos de ataques secundarios no implementados (retroceso, bajar stats) se omiten por ahora.
 
