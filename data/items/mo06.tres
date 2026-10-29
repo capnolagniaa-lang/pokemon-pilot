@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/hm06.png" id="2_i"]
+[ext_resource type="Resource" path="res://data/moves/golpe_roca.tres" id="3_m"]
+
+[resource]
+script = ExtResource("1_s")
+id = "mo06"
+display_name = "MO06 Golpe Roca"
+description = "Enseña Golpe Roca. No se gasta: sirve para todos los Pokémon que la puedan aprender."
+icon = ExtResource("2_i")
+pocket = 2
+sort_order = 18
+price = 3000
+teaches_move = ExtResource("3_m")
+usable_in_battle = false

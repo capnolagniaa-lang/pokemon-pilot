@@ -81,15 +81,72 @@ func run() -> void:
 	await get_tree().process_frame
 	var texts: Array = sheet._rows.map(func(b): return b.text)
 	var rock: MoveData = DB.moves["tumba_rocas"]
-	var rock_row := texts.find("MT   Tumba Rocas")
-	r["Ficha de Nidoking: sección Por MT / MO con sus MT de FireRed (%d filas)" % texts.size()] = rock_row >= 0 \
-		and texts.has("MO   Surf") and texts.has("MT   Terremoto") and texts.size() > nido.species.learnset_entries().size()
+	GameState.bag.erase("mt39")
+	r["Ficha de Nidoking: sus MT/MO de FireRed, bloqueadas sin la MT (%d filas)" % texts.size()] = texts.has("MT39   Tumba Rocas   — te falta la MT") 		and texts.has("MO03   Surf   — te falta la MT") and texts.has("MT26   Terremoto   — te falta la MT") 		and texts.size() > nido.species.learnset_entries().size()
+	r["Sin enseñarle la MT no se puede equipar (las MT ya no están libres)"] = not nido.equip(3, rock) and not nido.learned_moves().has(rock)
+	sheet.queue_free()
+	# Con la MT en la mochila dice que se la enseñes; al enseñársela se equipa desde la ficha.
+	GameState.add_item("mt39", 1)
+	sheet = load("res://scenes/ui/summary_screen.tscn").instantiate()
+	sheet.party_index = GameState.party.size() - 1
+	add_child(sheet)
+	await get_tree().process_frame
+	sheet._tabs.current_tab = 1
+	await get_tree().process_frame
+	r["Con la MT en la Mochila: \"enseñale la MT\""] = sheet._rows.map(func(b): return b.text).has("MT39   Tumba Rocas   — enseñale la MT (Mochila)")
+	GameState.use_item_on("mt39", nido)
+	sheet.queue_free()
+	sheet = load("res://scenes/ui/summary_screen.tscn").instantiate()
+	sheet.party_index = GameState.party.size() - 1
+	add_child(sheet)
+	await get_tree().process_frame
+	sheet._tabs.current_tab = 1
+	await get_tree().process_frame
+	texts = sheet._rows.map(func(b): return b.text)
+	var rock_row: int = texts.find("MT39   Tumba Rocas")
+	if rock_row < 0:
+		rock_row = texts.find("MT39   Tumba Rocas   (equipado)")
 	if rock_row >= 0:
+		nido.equip(3, DB.moves["malicioso"] if DB.moves.has("malicioso") else null)
 		sheet._on_row(rock, false, sheet._rows[rock_row])
 		sheet._on_slot(3)
-	r["Desde la ficha se equipa un ataque de MT"] = nido.equipped_moves[3] == rock
+	r["Enseñada la MT (y la MT sigue en la Mochila), se equipa desde la ficha"] = nido.equipped_moves.has(rock) 		and GameState.item_count("mt39") == 1
+	# Partidas de antes: un ataque de MT que ya tenía equipado lo conserva (queda como enseñado).
+	var old := nido.to_dict()
+	old["taught_moves"] = []
+	old["equipped_moves"] = ["terremoto", "", "", ""]
+	var loaded := CreatureInstance.from_dict(old)
+	r["Partida vieja: el ataque de MT que tenía equipado lo conserva"] = loaded.equipped_moves[0] == DB.moves["terremoto"] 		and loaded.taught_moves.has(DB.moves["terremoto"])
 	sheet.queue_free()
 	GameState.party.erase(nido)
+
+	# Las 50 MT y las 8 MO existen y cada una se consigue en algún lado (pedido del usuario 2026-10-29): en el suelo,
+	# de un líder o de regalo (charlas y premios de data/story/npcs) o en una tienda (data/shops).
+	var sources := {}
+	for npc: NpcData in DB.npcs.values():
+		for t: NpcTalk in npc.talks:
+			for id in t.give_items:
+				sources[id] = sources.get(id, []) + [npc.id]
+		if npc.trainer != null:
+			for id in npc.trainer.reward_items:
+				sources[id] = sources.get(id, []) + [npc.id]
+	for f in DirAccess.get_files_at("res://data/shops"):
+		var shop = load("res://data/shops/" + f.trim_suffix(".remap"))
+		if shop is ShopData:
+			for it in shop.items:
+				sources[it.id] = sources.get(it.id, []) + ["tienda " + shop.id]
+	var machines := []
+	for n in range(1, 51):
+		machines.append("mt%02d" % n)
+	for n in range(1, 9):
+		machines.append("mo%02d" % n)
+	var broken := machines.filter(func(id): return not DB.items.has(id) or DB.items[id].teaches_move == null)
+	var nowhere := machines.filter(func(id): return not sources.has(id))
+	r["Las 50 MT y 8 MO existen y enseñan su ataque %s" % str(broken)] = broken.is_empty()
+	r["Cada MT/MO se consigue en algún lado %s" % str(nowhere)] = nowhere.is_empty()
+	r["Los líderes dan su MT de FireRed (Brock 39, Misty 03, Surge 34, Erika 19, Koga 06, Sabrina 04, Blaine 38, Giovanni 26)"] = \
+		["mt39", "mt03", "mt34", "mt19", "mt06", "mt04", "mt38", "mt26"].all(func(id): return sources.get(id, []).any(func(s): return "gimnasio" in s))
+	r["27 MT tiradas en el mapa, como en FireRed"] = DB.npcs.keys().filter(func(k): return "_itemtm" in k).size() == 27
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:

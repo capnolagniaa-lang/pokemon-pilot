@@ -6,6 +6,16 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Sin Pokébolas adentro (2026-10-29, pedido del usuario)**: en casas, Centros, tiendas, gimnasios y garitas (bioma
+  "interior": ahí nunca hay salvajes) la E ya no tira la bola ("Acá adentro no se pueden tirar Pokébolas."). En cuevas,
+  Torre, Central y Mansión (bioma "cueva") sí. `PlayerItems.indoors`. Test: `--autotest-capture`.
+- **MT como en FireRed (2026-10-29, decisión del usuario: "con la MT es mejor la progresión")**: las 50 MT y 8 MO son
+  objetos (`tools/build_tms.py`), no se gastan, y un ataque de MT se equipa recién al enseñarle la MT (la ficha muestra
+  "te falta la MT" / "enseñale la MT"). Se consiguen donde en FireRed: 27 tiradas en el mapa (el agente de mapas verificó
+  las ubicaciones: todas se alcanzan; para la MT14 y la MT22 hizo las estatuas-interruptor de la Mansión, `MansionSwitches`), los 8 líderes, regalos (MT27 garita de la Ruta 12, MT29 Sr. Psíquico, MO02 casa de la Ruta 16, MO05 ayudante
+  de la Ruta 2) y Azulona: vendedor de MT del 2º piso (las de FireRed + las de la azotea y las de las Islas Sete: MT10,
+  36, 42, MO06-08) y el mostrador de premios del Casino (MT13, 23, 24, 30, 35, con plata). Partidas viejas: lo equipado de
+  MT se conserva. Test: `--autotest-equip`.
 - **La ficha muestra las MT (2026-10-29, bug del usuario)**: Equipo → ficha → Movimientos solo listaba "Aprende por
   nivel"; los ataques de MT se podían equipar pero no había dónde elegirlos. Ahora hay una sección "Por MT / MO" (las de
   su especie en FireRed) y "Enseñados" (lo que le enseñaron y no está en esas listas). `SummaryScreen._move_row`.

@@ -376,10 +376,12 @@ func challenge(npc: StoryNPC, spotted: bool = false) -> void:
 		await get_tree().create_timer(0.6).timeout
 		if is_instance_valid(npc):
 			# Se espera con un timer: si la persona se borra a mitad de camino, su tween nunca termina.
-			var walk := maxf(0.0, npc.global_position.distance_to(t.global_position) - 18.0) / 70.0
+			# (Tope de 3 s: si en el medio te fuiste por una puerta, no queda la historia trabada esperando que llegue.)
+			var walk := minf(3.0, maxf(0.0, npc.global_position.distance_to(t.global_position) - 18.0) / 70.0)
 			npc.walk_to(t.global_position)
 			await get_tree().create_timer(walk + 0.05).timeout
-	if not is_instance_valid(npc) or world.arena.active:  # se descargó su zona o ya hay otra pelea: no quedar trabado
+	# Se descargó su zona, ya hay otra pelea o te fuiste lejos (una puerta): no quedar trabado.
+	if not is_instance_valid(npc) or world.arena.active or npc.global_position.distance_to(t.global_position) > 96.0:
 		t.locked = false
 		busy = false
 		return

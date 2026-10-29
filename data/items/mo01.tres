@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
 [ext_resource type="Texture2D" path="res://sprites/items/hm01.png" id="2_i"]
+[ext_resource type="Resource" path="res://data/moves/corte.tres" id="3_m"]
 
 [resource]
 script = ExtResource("1_s")
 id = "mo01"
 display_name = "MO01 Corte"
-description = "MO01 Corte. Con la Medalla Cascada, tus Pokémon cortan los árboles finos que tapan el camino (E frente al árbol)."
+description = "Con la Medalla Cascada, tus Pokémon cortan los árboles finos que tapan el camino (caminá contra el árbol). Enseña Corte. No se gasta: sirve para todos los Pokémon que la puedan aprender."
 icon = ExtResource("2_i")
 pocket = 2
 sort_order = 6
+price = 0
+teaches_move = ExtResource("3_m")
+usable_in_battle = false

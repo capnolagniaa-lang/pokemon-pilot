@@ -116,9 +116,11 @@ TALKS = {
         "El agua y la planta les hacen muchísimo daño."])]),
     ("ruta2_casa", "Scientist"): dict(name="Científico", talks=[dict(lines=[
         "Estudio los intercambios de Pokémon. ¡Algunos evolucionan al cambiar de entrenador!"])]),
-    ("ruta2_edificio", "Aide"): dict(name="Ayudante de Oak", talks=[dict(lines=[
-        "Soy ayudante del Profesor Oak.",
-        "Cuando tengas más Pokémon registrados en la Pokédex, pasá que te voy a dar algo."])]),
+    ("ruta2_edificio", "Aide"): dict(name="Ayudante de Oak", talks=[
+        dict(forbids=["mo05_recibida"], give={"mo05": 1}, set_flags=["mo05_recibida"], lines=[
+            "Soy ayudante del Profesor Oak. ¡Estás llenando la Pokédex!",
+            "Tomá esta MO05: enseña Destello. Las MT y MO no se gastan."]),
+        dict(lines=["¿Cómo va esa Pokédex? ¡El Profesor Oak cuenta con vos!"])]),
     ("ruta2_edificio", "Rocker"): dict(name="Rockero", talks=[dict(lines=[
         "¡Mi Pokémon evolucionó en plena pelea! Fue lo más."])]),
     # --- Bosque Verde ---
@@ -552,7 +554,7 @@ TRAINERS.update({
     ("ciudad_celeste_gimnasio", "Diana"): _t("Diana", PICNIC, [("goldeen", 19)], "¡Mi Goldeen es la reina del agua!",
         "¡Se me escapó del anzuelo!", "Para Misty: eléctrico o planta. Te lo regalo.", arena="arena_gimnasio_agua", sight=4),
     ("ciudad_celeste_gimnasio", "Misty"): dict(name="Misty", title="Líder", team=[("staryu", 18), ("starmie", 21)],
-        arena="arena_gimnasio_agua", sight=0, leader=True, reward_flags=["medalla_cascada"],
+        arena="arena_gimnasio_agua", sight=0, leader=True, reward_flags=["medalla_cascada"], reward_items={"mt03": 1},
         reward="¡Recibiste la MEDALLA CASCADA de Misty!", lines={
         "desafio": "¡Hola! Soy Misty, la líder del Gimnasio de Ciudad Celeste.|Mi política es atacar con Pokémon de tipo "
                    "agua. ¿Te animás a meterte a la pileta?",
@@ -742,7 +744,8 @@ TRAINERS.update({
     ("ciudad_carmin_gimnasio", "Baily"): _t("Benito", ENGINEER, [("voltorb", 21), ("magnemite", 21)], "¡Yo armé las trampas eléctricas de este gimnasio!",
         "¡Se me quemó un fusible!", "Los interruptores están en los basureros. ¡Pero no te digo cuáles!", arena=ELEC, sight=3),
     ("ciudad_carmin_gimnasio", "LtSurge"): dict(name="Lt. Surge", title="Líder", team=[("voltorb", 21), ("pikachu", 18), ("raichu", 24)],
-        arena=ELEC, sight=0, leader=True, reward_flags=["medalla_trueno"], reward="¡Recibiste la MEDALLA TRUENO de Lt. Surge!", lines={
+        arena=ELEC, sight=0, leader=True, reward_flags=["medalla_trueno"], reward_items={"mt34": 1},
+        reward="¡Recibiste la MEDALLA TRUENO de Lt. Surge!", lines={
         "desafio": "¡Hey, kid! ¿Llegaste hasta acá? ¡Nice!|Soy Lt. Surge, el líder del Gimnasio de Ciudad Carmín. En la guerra, los Pokémon "
                    "eléctricos me salvaron la vida.|¡Te voy a electrocutar como a todos! ¡Ready!",
         "pierde": "¡Whoa! ¡Sos el real deal, kid! Está bien, te ganaste la Medalla Trueno.",
@@ -919,27 +922,27 @@ GYM_ARENAS = {"ciudad_azulona_gimnasio": "arena_gimnasio_planta", "ciudad_fucsia
               "ciudad_verde_gimnasio": "arena_gimnasio_tierra"}
 # Líderes: nombre en pret → medalla, nombre, frases.
 LEADERS = {
-    "Erika": dict(name="Erika", flag="medalla_arcoiris", badge="ARCOÍRIS", lines={
+    "Erika": dict(name="Erika", tm="mt19", flag="medalla_arcoiris", badge="ARCOÍRIS", lines={
         "desafio": "Hola... ¡Ay, perdón, me había quedado dormida! Soy Erika, la líder de este gimnasio.|Me encantan las "
                    "flores y los Pokémon de tipo planta. ¿Querés pelear? Está bien, pero no voy a perder.",
         "pierde": "Oh... Perdí. Sos muy fuerte. Te ganaste la Medalla Arcoíris.",
         "gana": "Las flores siempre vuelven a crecer. Vos también.", "despues": "Con la Medalla Arcoíris podés usar Fuerza."}),
-    "Koga": dict(name="Koga", flag="medalla_alma", badge="ALMA", lines={
+    "Koga": dict(name="Koga", tm="mt06", flag="medalla_alma", badge="ALMA", lines={
         "desafio": "¡Fwahahaha! Un niño se atreve a desafiarme. Soy Koga, el maestro ninja.|Mis Pokémon venenosos te van "
                    "a envenenar hasta el alma. ¡Prepárate!",
         "pierde": "¡Hmph! Tu fuerza es auténtica. Tomá la Medalla Alma.",
         "gana": "¡Fwahahaha! El veneno siempre gana.", "despues": "Con la Medalla Alma podés usar Surf."}),
-    "Sabrina": dict(name="Sabrina", flag="medalla_pantano", badge="PANTANO", lines={
+    "Sabrina": dict(name="Sabrina", tm="mt04", flag="medalla_pantano", badge="PANTANO", lines={
         "desafio": "Sabía que ibas a venir. Lo vi hace tres años.|Soy Sabrina. Mis poderes psíquicos me dejan ver el "
                    "futuro... y en él, vos perdés.",
         "pierde": "Esto... no lo había previsto. Te ganaste la Medalla Pantano.",
         "gana": "Era tu destino.", "despues": "El futuro cambió por vos. Interesante."}),
-    "Blaine": dict(name="Blaine", flag="medalla_volcan", badge="VOLCÁN", lines={
+    "Blaine": dict(name="Blaine", tm="mt38", flag="medalla_volcan", badge="VOLCÁN", lines={
         "desafio": "¡Hah! ¡Soy Blaine, el líder ardiente! ¡Mis Pokémon de fuego van a reducirte a cenizas!|¿Tenés "
                    "suficientes Antiquemar? ¡Más te vale!",
         "pierde": "¡Me quemé! ¡Sos un fuego! Tomá la Medalla Volcán.",
         "gana": "¡Hah! ¡Te faltó fuego!", "despues": "La Mansión Pokémon guarda secretos... fijate en el diario."}),
-    "Giovanni": dict(name="Giovanni", flag="medalla_tierra", badge="TIERRA", lines={
+    "Giovanni": dict(name="Giovanni", tm="mt26", flag="medalla_tierra", badge="TIERRA", lines={
         "desafio": "Así que llegaste hasta acá. Este es mi gimnasio, el de Ciudad Verde.|Soy Giovanni, el líder... y el "
                    "jefe del Team Rocket. ¡Te voy a enseñar lo que es la verdadera fuerza!",
         "pierde": "¡Ja! Bien jugado. Te ganaste la Medalla Tierra.|Me voy a retirar a entrenar. El Team Rocket se disuelve.",
@@ -963,7 +966,7 @@ for _zone, _list in AUTO_TRAINERS.items():
                      lines={"desafio": _v[0], "pierde": _v[1], "despues": _v[2]})
         _lead = LEADERS.get(_tr["name"]) if _tr["class"] == "LEADER" else None
         if _lead is not None:
-            _spec.update(name=_lead["name"], sight=0, leader=True, reward_flags=[_lead["flag"]],
+            _spec.update(name=_lead["name"], sight=0, leader=True, reward_flags=[_lead["flag"]], reward_items={_lead["tm"]: 1},
                          reward="¡Recibiste la MEDALLA %s de %s!" % (_lead["badge"], _lead["name"]), lines=_lead["lines"])
         TRAINERS[(_zone, _script)] = _spec
 
@@ -1177,17 +1180,32 @@ TRIGGERS["garita_8_medallas"] = dict(zone="ruta22_garita", rect=(0, 4, 15, 1), o
         "¡Alto! Más allá está la Ruta 23 y la Liga Pokémon.", "Solo pasan los que tienen las 8 medallas de Kanto."]))
 TRIGGERS["campeon"] = dict(zone="liga_campeon", rect=(4, 10, 5, 1), once=False, talk=dict(
     requires=["alto_mando_lance"], forbids=["campeon"], speaker=RIVAL, lines=["¡Eh! ¡Por fin llegaste!"], battle_npc="liga_campeon_0x0"))
+# MT y MO de regalo, como en FireRed (pedido del usuario 2026-10-29: las MT se consiguen como en el original).
+for (_zone, _script), (_who, _item, _lines, _after) in {
+    ("ruta12_garita_2p", "Lass"): ("Chica", "mt27", ["¡Qué lindo cómo cuidás a tus Pokémon!", "Tomá, esta MT27 es Retribución: "
+                                                     "pega más fuerte cuanto más te quiere tu Pokémon."], "¿Le enseñaste Retribución a alguno?"),
+    ("casa_sr_psiquico", "MrPsychic"): ("Sr. Psíquico", "mt29", ["...", "¡Ya sé! Querías esto, ¿no? La MT29: Psíquico."],
+                                        "Ya sabía que ibas a volver."),
+    ("ruta16_casa", "Woman"): ("Señora", "mo02", ["¡Uy, encontraste mi casa secreta!", "Para que nadie se entere, llevate esta MO02: "
+                                                 "Vuelo."], "Shh... es un secreto."),
+}.items():
+    _flag = "%s_recibida" % _item
+    TALKS[(_zone, _script)] = dict(name=_who, talks=[dict(forbids=[_flag], give={_item: 1}, set_flags=[_flag], lines=_lines),
+                                                    dict(lines=[_after])])
+
 # Tiendas de las otras ciudades (lista de FireRed con los objetos que hay en el juego: data/shops).
 SHOP_CLERKS = {("pueblo_lavanda_tienda", "Clerk"): "pueblo_lavanda", ("ciudad_azulona_almacen_2p", "ClerkItems"): "ciudad_azulona",
                ("ciudad_azulona_almacen_4p", "Clerk"): "ciudad_azulona_piedras", ("ciudad_azafran_tienda", "Clerk"): "ciudad_azafran",
                ("ciudad_fucsia_tienda", "Clerk"): "ciudad_fucsia", ("isla_canela_tienda", "Clerk"): "isla_canela",
-               ("meseta_anil_centro", "Clerk"): "meseta_anil"}
+               ("meseta_anil_centro", "Clerk"): "meseta_anil",
+               # MT (2026-10-29): el vendedor de MT del 2º piso y el mostrador de premios del Casino (con plata).
+               ("ciudad_azulona_almacen_2p", "ClerkTMs"): "ciudad_azulona_mt", ("ciudad_azulona_premios", "PrizeClerkTMs"): "ciudad_azulona_premios"}
 for (_zone, _script), _shop in SHOP_CLERKS.items():
     TALKS[(_zone, _script)] = dict(name="Vendedor", talks=[dict(lines=["¡Bienvenido! ¿Qué vas a llevar?"], action="tienda_" + _shop)])
 
 # --- Relleno: todas las personas sin conversación propia (las zonas nuevas) -------------------------------------
 # Enfermeras curan; objetos tirados se agarran una vez; el resto, una frase según cómo se ve (y el nombre del lugar).
-ITEM_MAP = {"Potion": "pocion", "Potion2": "pocion", "SuperPotion": "superpocion", "HyperPotion": "hiperpocion",
+ITEM_MAP = {**{"TM%02d" % _n: "mt%02d" % _n for _n in range(1, 51)}, "Potion": "pocion", "Potion2": "pocion", "SuperPotion": "superpocion", "HyperPotion": "hiperpocion",
             "MaxPotion": "pocion_maxima", "FullRestore": "pocion_maxima", "Revive": "revivir", "MaxRevive": "revivir",
             "FullHeal": "cura_total", "Antidote": "antidoto", "ParalyzeHeal": "antiparalizador", "Awakening": "despertar",
             "BurnHeal": "antiquemar", "IceHeal": "antihielo", "PokeBall": "poke_ball", "GreatBall": "super_ball",

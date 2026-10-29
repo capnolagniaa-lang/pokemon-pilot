@@ -47,11 +47,8 @@ ITEMS = {
     "fosil_helix": ("helix-fossil", "key", 3, {}),
     "fosil_domo": ("dome-fossil", "key", 4, {}),
     "ticket_barco": ("ss-ticket", "key", 5, {}),
-    # Capítulo 3 (docs/PLAN_CAPITULO_3.md): el capitán del S.S. Anne te da Corte (cortar árboles finos: FieldMoves).
-    "mo01": ("hm01", "key", 6, {}),
-    # Resto de Kanto (docs/PLAN_RESTO_KANTO.md): MO y objetos clave de la historia (FieldMoves y StoryDirector).
-    "mo03": ("hm03", "key", 7, {}),
-    "mo04": ("hm04", "key", 8, {}),
+    # Resto de Kanto (docs/PLAN_RESTO_KANTO.md): objetos clave de la historia (FieldMoves y StoryDirector). Las MT y MO
+    # las arma tools/build_tms.py (2026-10-29).
     "poke_flauta": ("poke-flute", "key", 9, {}),
     "te": ("tea", "key", 10, {}),
     "silph_scope": ("silph-scope", "key", 11, {}),

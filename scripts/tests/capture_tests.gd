@@ -120,6 +120,20 @@ func run_capture() -> void:
 	await get_tree().process_frame
 	r["Pantalla de la Caja"] = world.pause_menu._stack[-1]._grid.get_child_count() >= box_n
 	world.pause_menu.close()
+	# Adentro de un Centro, una tienda o un gimnasio no se tiran Pokébolas (pedido del usuario 2026-10-29); en una
+	# cueva sí (ahí hay salvajes).
+	GameState.add_item("poke_ball", 3)
+	var inside_ok := true
+	for z in ["ciudad_verde_centro", "ciudad_verde_tienda", "ciudad_celeste_gimnasio"]:
+		await world.story.teleport(z, Vector2i(4, 5))
+		await get_tree().create_timer(0.3).timeout
+		var before := GameState.item_count("poke_ball")
+		world.items._cooldown = 0.0
+		inside_ok = inside_ok and world.items.indoors(world.trainer.global_position) 			and world.items.throw_ball(world.trainer.global_position + Vector2(0, 40)) == null and GameState.item_count("poke_ball") == before
+	r["Adentro de Centro, tienda y gimnasio no se tiran Pokébolas"] = inside_ok
+	await world.story.teleport("mt_moon", Vector2i(21, 63))
+	await get_tree().create_timer(0.3).timeout
+	r["En una cueva sí (hay salvajes)"] = not world.items.indoors(world.trainer.global_position)
 	_finish("capture", r)
 
 

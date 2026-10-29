@@ -38,6 +38,7 @@ arena_id = "arena_gimnasio_electrico"
 leader = true
 reward_flags = PackedStringArray("medalla_trueno")
 reward_text = "¡Recibiste la MEDALLA TRUENO de Lt. Surge!"
+reward_items = {"mt34": 1}
 
 [resource]
 script = ExtResource("1_n")

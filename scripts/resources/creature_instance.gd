@@ -83,12 +83,9 @@ func learned_moves() -> Array[MoveData]:
 	for e in species.learnset_entries():
 		if e.level <= level and not out.has(e.move):
 			out.append(e.move)
+	# Las MT/MO: recién cuando se las enseñan (decisión del usuario 2026-10-29: "con la MT es mejor la progresión";
+	# las MT no se gastan). Antes estaban todas las de su especie desde el principio.
 	for m in taught_moves:
-		if m != null and not out.has(m):
-			out.append(m)
-	# Las MT/MO de su especie también se pueden elegir (decisión del usuario 2026-10-28: "los movimientos que uno
-	# elija, por nivel o por MT").
-	for m in species.tm_moves:
 		if m != null and not out.has(m):
 			out.append(m)
 	return out
@@ -220,6 +217,10 @@ static func from_dict(d: Dictionary, warnings: Array = []) -> CreatureInstance:
 			var m: MoveData = null
 			if str(key) != "":
 				m = DB.move_by_id(str(key))
+				# Partidas de antes del 2026-10-29 (las MT estaban libres): un ataque de MT que ya tenía equipado
+				# queda como enseñado, así no lo pierde.
+				if m != null and sp.tm_moves.has(m) and not c.can_equip(m) and not c.taught_moves.has(m):
+					c.taught_moves.append(m)
 				if m != null and not c.can_equip(m):
 					m = c._same_name(m)  # partidas viejas: el ataque de kit pasa a ser el oficial del mismo nombre
 				if m == null or not c.can_equip(m) or eq.has(m):

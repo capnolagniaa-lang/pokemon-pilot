@@ -40,7 +40,11 @@ func run() -> void:
 	var names := ch.equipped_moves.map(func(m): return m.display_name if m != null else "")
 	r["Viene con los últimos 4 por nivel (Charmander 31: %s)" % ", ".join(names)] = \
 		names == ["Garra Metal", "Pantalla de Humo", "Cara Susto", "Lanzallamas"]
-	r["Puede elegir sus MT (Charmander: Garra Dragón)"] = ch.can_equip(DB.moves["garra_dragon"]) and not ch.can_equip(DB.moves["surf"])
+	# MT (2026-10-29): se equipan recién al enseñarle la MT (antes estaban todas libres).
+	var claw: MoveData = DB.moves["garra_dragon"]
+	var before_tm := not ch.can_equip(claw) and ch.can_learn_tm(claw) and not ch.can_learn_tm(DB.moves["surf"])
+	ch.taught_moves.append(claw)
+	r["Sus MT: con la MT enseñada la puede elegir (Charmander: Garra Dragón sí, Surf no)"] = before_tm and ch.can_equip(claw)
 	var old := ch.to_dict()
 	old["equipped_moves"] = ["charmander/ascuas_abanico", "", "", ""]
 	var migrated := CreatureInstance.from_dict(old)

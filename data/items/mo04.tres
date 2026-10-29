@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
 [ext_resource type="Texture2D" path="res://sprites/items/hm04.png" id="2_i"]
+[ext_resource type="Resource" path="res://data/moves/fuerza.tres" id="3_m"]
 
 [resource]
 script = ExtResource("1_s")
 id = "mo04"
 display_name = "MO04 Fuerza"
-description = "MO04 Fuerza. Con la Medalla Arcoíris, tus Pokémon empujan rocas grandes (E frente a la roca y después caminá contra ella)."
+description = "Con la Medalla Arcoíris, empujás las rocas grandes (caminá contra la roca). Enseña Fuerza. No se gasta: sirve para todos los Pokémon que la puedan aprender."
 icon = ExtResource("2_i")
 pocket = 2
 sort_order = 8
+price = 0
+teaches_move = ExtResource("3_m")
+usable_in_battle = false

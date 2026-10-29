@@ -88,6 +88,16 @@ func move_key(m: MoveData) -> String:
 	return m.id
 
 
+## La MT o MO que enseña este ataque (data/items, de tools/build_tms.py), o null.
+func machine_for(m: MoveData) -> ItemData:
+	if m == null:
+		return null
+	for it: ItemData in items.values():
+		if it.teaches_move == m:
+			return it
+	return null
+
+
 ## Busca cualquier movimiento por su clave (o, si no la encuentra, por su id).
 func move_by_id(key: String) -> MoveData:
 	if all_moves.has(key):

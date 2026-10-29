@@ -38,6 +38,7 @@ arena_id = "arena_gimnasio_planta"
 leader = true
 reward_flags = PackedStringArray("medalla_arcoiris")
 reward_text = "¡Recibiste la MEDALLA ARCOÍRIS de Erika!"
+reward_items = {"mt19": 1}
 
 [resource]
 script = ExtResource("1_n")

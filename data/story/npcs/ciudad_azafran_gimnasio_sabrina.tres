@@ -44,6 +44,7 @@ arena_id = "arena_gimnasio_psiquico"
 leader = true
 reward_flags = PackedStringArray("medalla_pantano")
 reward_text = "¡Recibiste la MEDALLA PANTANO de Sabrina!"
+reward_items = {"mt04": 1}
 
 [resource]
 script = ExtResource("1_n")

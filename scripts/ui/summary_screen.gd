@@ -173,9 +173,16 @@ func _build_moves() -> void:
 	# Antes no se mostraban: se podían equipar pero no había dónde elegirlas (bug del usuario 2026-10-29).
 	if not _inst.species.tm_moves.is_empty():
 		list.add_child(UiStyle.label("Por MT / MO", 15, UiStyle.TEXT_DIM))
+		var known := _inst.learned_moves()
 		for m in _inst.species.tm_moves:
-			if m != null:
-				list.add_child(_move_row(m, "MO" if m.id in HM_MOVES else "MT", false, 0))
+			if m == null:
+				continue
+			var machine := DB.machine_for(m)
+			var tag := machine.id.to_upper() if machine != null else ("MO" if m.id in HM_MOVES else "MT")
+			var lock := ""
+			if not known.has(m):  # se equipa recién al enseñarle la MT (decisión del usuario 2026-10-29)
+				lock = "enseñale la MT (Mochila)" if machine != null and GameState.item_count(machine.id) > 0 else "te falta la MT"
+			list.add_child(_move_row(m, tag, lock != "", 0, lock))
 	var extra := _inst.taught_moves.filter(func(m): return m != null and not _inst.species.tm_moves.has(m) 		and not _inst.species.learnset_entries().any(func(e): return e.move == m))
 	if not extra.is_empty():
 		list.add_child(UiStyle.label("Enseñados", 15, UiStyle.TEXT_DIM))
@@ -202,7 +209,7 @@ func _row(e: LearnsetEntry) -> Button:
 
 
 ## Una fila de la lista de ataques: `tag` adelante (Nv. 12, MT, MO), bloqueada si todavía no lo aprendió.
-func _move_row(m: MoveData, tag: String, locked: bool, level: int) -> Button:
+func _move_row(m: MoveData, tag: String, locked: bool, level: int, lock_text: String = "BLOQUEADO") -> Button:
 	var b := Button.new()
 	b.focus_mode = Control.FOCUS_ALL
 	b.custom_minimum_size = Vector2(450, 34)
@@ -210,7 +217,7 @@ func _move_row(m: MoveData, tag: String, locked: bool, level: int) -> Button:
 	var equipped := _inst.equipped_moves.has(m)
 	b.text = "%s   %s%s" % [tag, m.display_name, "   (equipado)" if equipped else ""]
 	if locked:
-		b.text = "%s   %s   — BLOQUEADO" % [tag, m.display_name]
+		b.text = "%s   %s   — %s" % [tag, m.display_name, lock_text.to_upper() if lock_text == "BLOQUEADO" else lock_text]
 		b.add_theme_color_override("font_color", Color(1, 1, 1, 0.35))
 		b.add_theme_color_override("font_focus_color", Color(1, 1, 1, 0.55))
 	else:
@@ -313,7 +320,9 @@ func _on_slot(i: int) -> void:
 
 func _on_row(m: MoveData, locked: bool, row: Button) -> void:
 	if locked:
-		_hint.text = "Todavía no lo aprendió."
+		var machine: ItemData = DB.machine_for(m) if not _inst.species.learnset_entries().any(func(e): return e.move == m) else null
+		_hint.text = ("Se aprende con la %s: usala desde la Mochila (no se gasta)." % machine.display_name) if machine != null \
+			else "Todavía no lo aprendió."
 		return
 	if _pending_slot >= 0:
 		_equip(_pending_slot, m)

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/tm-ground.png" id="2_i"]
+[ext_resource type="Resource" path="res://data/moves/terremoto.tres" id="3_m"]
+
+[resource]
+script = ExtResource("1_s")
+id = "mt26"
+display_name = "MT26 Terremoto"
+description = "Enseña Terremoto. No se gasta: sirve para todos los Pokémon que la puedan aprender."
+icon = ExtResource("2_i")
+pocket = 0
+sort_order = 126
+price = 3000
+teaches_move = ExtResource("3_m")
+usable_in_battle = false

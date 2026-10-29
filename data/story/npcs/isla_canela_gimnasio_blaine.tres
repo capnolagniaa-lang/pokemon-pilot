@@ -44,6 +44,7 @@ arena_id = "arena_gimnasio_fuego"
 leader = true
 reward_flags = PackedStringArray("medalla_volcan")
 reward_text = "¡Recibiste la MEDALLA VOLCÁN de Blaine!"
+reward_items = {"mt38": 1}
 
 [resource]
 script = ExtResource("1_n")

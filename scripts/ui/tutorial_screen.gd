@@ -49,6 +49,7 @@ const PAGES := [
 	]],
 	["Ataques y habilidades", [
 		"Esc → Equipo → elegí un Pokémon → Movimientos: ponés los 4 que quieras entre todo lo que aprendió (por nivel y con MT).",
+		"Las MT (las dan los líderes, están tiradas por el mapa o se compran en Azulona) enseñan un ataque a los Pokémon que lo pueden aprender: usalas desde la Mochila. No se gastan.",
 		"Al elegir un ataque se explica qué hace, con su potencia, recarga y estados. También en la Pokédex.",
 		"Si aprende uno nuevo con los 4 lugares llenos, te pregunta si querés reemplazar alguno.",
 		"Cada Pokémon tiene una habilidad (una de las de su especie, al azar) que cambia cómo pelea: la ves en su ficha.",

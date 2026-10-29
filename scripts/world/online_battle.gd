@@ -179,6 +179,8 @@ func _physics_process(_delta: float) -> void:
 	var c = world.companion  # (sin tipo: puede estar liberada)
 	if is_instance_valid(foe) and is_instance_valid(c):
 		foe.target = c  # (CombatDirector cuenta como enemigos a los que te apuntan)
+		if not foe.is_down() and not world.combat.enemies.has(foe):
+			world.combat.enemies.append(foe)  # que siga en sus enemigos: de ahí sale la EXP al debilitarlo
 	if _going and is_instance_valid(c) and not c.is_down() and local_input != null and _end.is_empty():
 		if local_input.wants_dodge():
 			_dodge_seq += 1

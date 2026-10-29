@@ -53,6 +53,9 @@ func throw_ball(at: Vector2) -> BallThrow:
 	if ball == null:
 		Events.message_requested.emit("No te quedan Pokéballs.")
 		return null
+	if indoors(world.trainer.global_position):
+		Events.message_requested.emit("Acá adentro no se pueden tirar Pokébolas.")
+		return null
 	var from: Vector2 = world.trainer.global_position + Vector2(0, -4)
 	var to := from + (at - from).limit_length(THROW_RANGE)
 	GameState.remove_item(ball.id)
@@ -63,6 +66,13 @@ func throw_ball(at: Vector2) -> BallThrow:
 	if to != from:
 		world.trainer.facing = world.trainer._four_dir((to - from).normalized())
 	return b
+
+
+## Adentro de una casa, Centro, tienda, gimnasio o garita (bioma "interior": ahí nunca hay salvajes) no se tiran
+## Pokébolas (pedido del usuario 2026-10-29). Las cuevas, la Torre, la Central y la Mansión son "cueva": ahí sí.
+func indoors(pos: Vector2) -> bool:
+	var entry: ZoneEntry = world.streamer.world_data.zone_at(pos)
+	return entry != null and entry.biome == "interior"
 
 
 ## Usa el objeto rápido sobre el Pokémon activo. Devuelve si se usó.

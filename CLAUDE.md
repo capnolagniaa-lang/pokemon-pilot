@@ -149,8 +149,13 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   "en una charla" tiene que dejar pasar `world.arena.active` (cambio 1-6, C, E). `GameState` no conoce archivos: `to_dict`/`from_dict`.
   Movimientos: `SpeciesData.learnset` (de `tools/build_learnsets.gd`) → `CreatureInstance.equipped_moves` →
   `MoveUser.setup(instance)`. La mecánica de firma sigue saliendo del kit de la especie.
-  **MT** (`ItemData.teaches_move`): **no se gastan**; se pueden usar solo si `CreatureInstance.can_learn_tm` (la especie
-  la aprende en FireRed y no la sabe). Las listas `SpeciesData.tm_moves` coinciden con pret `tmhm_learnsets.h`.
+  **MT/MO** (decisión del usuario 2026-10-29): las 50 MT y 8 MO son objetos (`tools/build_tms.py` → `data/items/mtNN|moNN`,
+  `ItemData.teaches_move`), **no se gastan**, y un ataque de MT se equipa **recién al enseñársela** (`taught_moves`; ya
+  no están libres las de su especie). Se usan solo si `CreatureInstance.can_learn_tm` (la especie la aprende en FireRed:
+  `SpeciesData.tm_moves` = pret `tmhm_learnsets.h`). Dónde se consiguen, como en FireRed: 27 Pokébolas del mapa
+  (`ITEM_MAP` de `build_story_npcs.py`), los 8 líderes (`reward_items`), regalos (MT27, MT29, MO02, MO05) y las tiendas de
+  Azulona (`data/shops/ciudad_azulona_mt` y `_premios`: lo que en FireRed era de las Islas Sete, la azotea o el Casino).
+  Partidas viejas: un ataque de MT que estaba equipado queda como enseñado (`from_dict`).
 - **Máquina de estados** genérica `StateMachine` + `State` (`scripts/core/`); los estados son nodos hijos
   con script (`scripts/characters/states`, `scripts/creatures/states`).
 - **Una escena por responsabilidad** (`scenes/`). Entidades usan origen en los pies (y-sort).
@@ -206,8 +211,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   los chicos solo dejan stagger. Disparos: `Projectile.SPEED_MULT` 1,25 (dura menos: mismo alcance) y `HIT_PAD` 2 px.
 - **Habilidades (vigente desde 2026-10-28, decisión del usuario)**: la identidad de combate sale de la **habilidad de
   3ª gen** (`SpeciesData.abilities`, 1 o 2; cada Pokémon nace con una al azar: `CreatureInstance.ability`, se guarda y
-  se conserva al evolucionar), el tipo, los stats y los **ataques que elige el jugador** (todo lo de nivel y MT:
-  `SpeciesData.tm_moves`; viene con los últimos 4 por nivel). **Los ataques se comportan igual para todos** (los de
+  se conserva al evolucionar), el tipo, los stats y los **ataques que elige el jugador** (lo de nivel y las MT que le
+  enseñaste; viene con los últimos 4 por nivel). **Los ataques se comportan igual para todos** (los de
   `data/moves`). Las habilidades son `SignatureData` en `data/abilities/` con `ability_mechanic.gd` (genérica por
   parámetros, extiende `body_trait`); las arma `tools/apply_abilities.gd` (tabla `EFFECTS`, adaptadas al tiempo real)
   desde `tools/fetch_abilities.py`. **Kit de jefe** (`SpeciesData.boss_kit`: Onix, Starmie, Raichu): solo lo usa el

@@ -49,6 +49,7 @@ arena_id = "arena_gimnasio_tierra"
 leader = true
 reward_flags = PackedStringArray("medalla_tierra")
 reward_text = "¡Recibiste la MEDALLA TIERRA de Giovanni!"
+reward_items = {"mt26": 1}
 
 [resource]
 script = ExtResource("1_n")

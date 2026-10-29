@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
 [ext_resource type="Texture2D" path="res://sprites/items/hm03.png" id="2_i"]
+[ext_resource type="Resource" path="res://data/moves/surf.tres" id="3_m"]
 
 [resource]
 script = ExtResource("1_s")
 id = "mo03"
 display_name = "MO03 Surf"
-description = "MO03 Surf. Con la Medalla Alma, tu Pokémon te lleva sobre el agua (E frente al agua). Al pisar tierra te bajás."
+description = "Con la Medalla Alma, navegás por el agua (caminá hacia el agua). Enseña Surf. No se gasta: sirve para todos los Pokémon que la puedan aprender."
 icon = ExtResource("2_i")
 pocket = 2
 sort_order = 7
+price = 0
+teaches_move = ExtResource("3_m")
+usable_in_battle = false

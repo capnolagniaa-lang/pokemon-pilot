@@ -5,7 +5,14 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Soy ayudante del Profesor Oak.", "Cuando tengas más Pokémon registrados en la Pokédex, pasá que te voy a dar algo.")
+forbids = PackedStringArray("mo05_recibida")
+set_flags = PackedStringArray("mo05_recibida")
+lines = PackedStringArray("Soy ayudante del Profesor Oak. ¡Estás llenando la Pokédex!", "Tomá esta MO05: enseña Destello. Las MT y MO no se gastan.")
+give_items = {"mo05": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¿Cómo va esa Pokédex? ¡El Profesor Oak cuenta con vos!")
 
 [resource]
 script = ExtResource("1_n")
@@ -16,4 +23,4 @@ cell = Vector2i(4, 6)
 gfx = "scientist"
 facing = Vector2i(0, 1)
 look_around = true
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

@@ -43,6 +43,7 @@ arena_id = "arena_gimnasio_veneno"
 leader = true
 reward_flags = PackedStringArray("medalla_alma")
 reward_text = "¡Recibiste la MEDALLA ALMA de Koga!"
+reward_items = {"mt06": 1}
 
 [resource]
 script = ExtResource("1_n")

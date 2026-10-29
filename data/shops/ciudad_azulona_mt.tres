@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/shop_data.gd" id="1_s"]
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_d"]
+[ext_resource type="Resource" path="res://data/items/mt05.tres" id="2_i"]
+[ext_resource type="Resource" path="res://data/items/mt10.tres" id="3_i"]
+[ext_resource type="Resource" path="res://data/items/mt15.tres" id="4_i"]
+[ext_resource type="Resource" path="res://data/items/mt16.tres" id="5_i"]
+[ext_resource type="Resource" path="res://data/items/mt20.tres" id="6_i"]
+[ext_resource type="Resource" path="res://data/items/mt28.tres" id="7_i"]
+[ext_resource type="Resource" path="res://data/items/mt31.tres" id="8_i"]
+[ext_resource type="Resource" path="res://data/items/mt33.tres" id="9_i"]
+[ext_resource type="Resource" path="res://data/items/mt36.tres" id="10_i"]
+[ext_resource type="Resource" path="res://data/items/mt42.tres" id="11_i"]
+[ext_resource type="Resource" path="res://data/items/mt43.tres" id="12_i"]
+[ext_resource type="Resource" path="res://data/items/mt45.tres" id="13_i"]
+[ext_resource type="Resource" path="res://data/items/mo06.tres" id="14_i"]
+[ext_resource type="Resource" path="res://data/items/mo07.tres" id="15_i"]
+[ext_resource type="Resource" path="res://data/items/mo08.tres" id="16_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "ciudad_azulona_mt"
+display_name = "MT del Centro Comercial de Azulona"
+clerk = "Vendedor de MT"
+items = Array[ExtResource("1_d")]([ExtResource("2_i"), ExtResource("3_i"), ExtResource("4_i"), ExtResource("5_i"), ExtResource("6_i"), ExtResource("7_i"), ExtResource("8_i"), ExtResource("9_i"), ExtResource("10_i"), ExtResource("11_i"), ExtResource("12_i"), ExtResource("13_i"), ExtResource("14_i"), ExtResource("15_i"), ExtResource("16_i")])

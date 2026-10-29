@@ -32,6 +32,7 @@ arena_id = "arena_gimnasio_agua"
 leader = true
 reward_flags = PackedStringArray("medalla_cascada")
 reward_text = "¡Recibiste la MEDALLA CASCADA de Misty!"
+reward_items = {"mt03": 1}
 
 [resource]
 script = ExtResource("1_n")

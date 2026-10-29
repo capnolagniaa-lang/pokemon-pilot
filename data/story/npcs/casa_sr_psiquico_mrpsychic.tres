@@ -5,15 +5,22 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que el Team Rocket anda por todos lados. ¡Cuidate!")
+forbids = PackedStringArray("mt29_recibida")
+set_flags = PackedStringArray("mt29_recibida")
+lines = PackedStringArray("...", "¡Ya sé! Querías esto, ¿no? La MT29: Psíquico.")
+give_items = {"mt29": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Ya sabía que ibas a volver.")
 
 [resource]
 script = ExtResource("1_n")
 id = "casa_sr_psiquico_mrpsychic"
-display_name = "Vecino"
+display_name = "Sr. Psíquico"
 zone_id = "casa_sr_psiquico"
 cell = Vector2i(7, 4)
 gfx = "balding_man"
 facing = Vector2i(-1, 0)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])
