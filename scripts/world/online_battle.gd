@@ -230,6 +230,9 @@ func _on_event(mid: int, ev: Dictionary) -> void:
 			var c := _creature_of(int(ev.side))
 			if is_instance_valid(c):
 				_set_hp(c, float(ev.hp))
+				c.hitstun_left = maxf(c.hitstun_left, float(ev.get("hs", 0.0)))  # el stagger, ya (no en la próxima foto)
+				if ev.get("kb") is Vector2:
+					c.knockback = ev.kb
 				Events.creature_damaged.emit(c, float(ev.amount) * c.health.max_hp(), null)
 				_drop_projectiles_near(c.global_position)
 		"faint":

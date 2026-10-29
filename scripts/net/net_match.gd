@@ -15,7 +15,7 @@ const ARENA_ID := "arena_campo"
 const COUNTDOWN := 3.0
 ## Tope de una pelea: gana el que tiene más vida (en proporción) en el equipo.
 const MAX_TIME := 300.0
-const SNAPSHOT_EVERY := 0.05
+const SNAPSHOT_EVERY := 0.033  # (30 por segundo: con 20 el stagger y los empujones se notaban tarde)
 const NEXT_MON_DELAY := 1.2
 const SWITCH_COOLDOWN := 1.5
 
@@ -166,8 +166,9 @@ func _send(id: int, index: int, at: Vector2) -> void:
 func _on_damaged(amount: float, _hit: HitInfo, id: int, c: Creature) -> void:
 	if amount <= 0.0 or not is_instance_valid(c):
 		return
+	# Con el stagger y el empuje del golpe: el juego los aplica apenas llega el golpe, sin esperar la próxima foto.
 	event.emit({"t": "hit", "side": id, "amount": amount / maxf(1.0, c.health.max_hp()), "hp": c.health.ratio(),
-		"p": c.global_position - arena.global_position})
+		"p": c.global_position - arena.global_position, "hs": c.hitstun_left, "kb": c.knockback})
 
 
 func _first_healthy(id: int) -> int:
