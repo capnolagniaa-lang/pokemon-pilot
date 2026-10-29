@@ -123,6 +123,7 @@ $G --path . -- --debug --start-zone ruta1 --start-cell 20,12        # juego dire
 ```
 El usuario lanza el juego con el acceso directo **"Pokémon Pilot"** del escritorio
 (`Godot_v4.7.2-stable_win64.exe --path <proyecto>`, ícono `icon.ico` generado por `tools/make_icon.py`).
+**Servidor online** (VPS de Vultr, IP en `Net.OFFICIAL_SERVER`): guía `docs/SERVIDOR_ONLINE.md`; cada zip nuevo va con `tools/server/subir_servidor.bat` (si no, el servidor lo rechaza por versión).
 **Versión portable para los amigos**: `python -I -B tools/build_portable.py . <Godot_v4.7.2-stable_win64.exe>` (el de
 ventana) → `export/PokemonPilot-<fecha>.zip` (`export/` no se sube). **Mac**: agregar `--mac <Godot_v4.7.2-stable_macos.universal.zip>`
 (el oficial, bajado en `tools/godot/mac/`) → `export/PokemonPilot-Mac-<fecha>.zip`: Godot.app sin tocar (para no romper su

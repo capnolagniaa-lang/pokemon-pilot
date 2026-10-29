@@ -7,9 +7,8 @@ extends Node
 ## Online se puede poner otro (avanzado, para probar; vacío = el del juego), guardado en user://online.cfg.
 
 const CONFIG_PATH := "user://online.cfg"
-## El servidor del juego. Mientras no haya uno prendido de verdad (O-5) es esta misma PC. Cuando esté, va acá su
-## dirección fija (IP de la nube o un nombre tipo "pokemonpilot.duckdns.org") y sale en los zips.
-const OFFICIAL_SERVER := "127.0.0.1"
+## El servidor del juego (O-5, 2026-10-29): un VPS de Vultr en São Paulo (docs/SERVIDOR_ONLINE.md). Sale en los zips.
+const OFFICIAL_SERVER := "216.238.99.5"
 const DEFAULT_ADDRESS := OFFICIAL_SERVER
 
 var client: NetPeer

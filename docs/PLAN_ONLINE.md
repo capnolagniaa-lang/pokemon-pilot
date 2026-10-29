@@ -92,8 +92,14 @@ para desafiarlo.
 | **O-2** ✅ | Sala: pantalla de conectados, desafiar, aceptar o rechazar, elegir equipo. (La pantalla VS va con la pelea, O-3.) | Autotest con 2 clientes de prueba que se desafían. |
 | **O-3** ✅ | Pelea online: el servidor simula, `NetCombatInput`, fotos del estado + `Events`, interpolación, fin de la pelea y desconexión. | Autotest: 2 clientes con bots (`BotCombatInput` del lado del cliente) pelean hasta que gana uno; los dos ven lo mismo. |
 | **O-4** ✅ | Resultado: EXP para cada uno, vuelta al edificio (hecho junto con la O-3; se guarda como siempre, desde el menú). | Autotest: la EXP sube como en un combate en el mundo. |
-| **O-5** | Poner el servidor: `build_portable.py --server` (un ejecutable de servidor), guía para correrlo en una PC (con el puerto abierto en el router) o en un servidor en la nube gratis (Oracle Cloud Always Free). Dirección del servidor en Opciones (con una por defecto). | Probarlo de verdad con un amigo. |
+| **O-5** ✅ | Poner el servidor: `build_portable.py --server` (un ejecutable de servidor), guía para correrlo en una PC (con el puerto abierto en el router) o en un servidor en la nube gratis (Oracle Cloud Always Free). Dirección del servidor en Opciones (con una por defecto). | Probarlo de verdad con un amigo. |
 | O-6 (después) | Predicción del movimiento propio, ping en pantalla, chat rápido o emotes, sala compartida (verse caminando), nivel 50 opcional. | — |
+
+## Hecho: O-5 (2026-10-29)
+- **Servidor en la nube** (decisión del usuario: VPS barato): Vultr São Paulo, IP fija `216.238.99.5`, en
+  `Net.OFFICIAL_SERVER` (los zips se conectan solos). Instalador `tools/server/instalar_servidor.sh` (servicio systemd
+  `pokemon-pilot` con el `.pck` del zip y Godot para Linux) y `tools/server/subir_servidor.bat` (sube y actualiza).
+  Guía completa: `docs/SERVIDOR_ONLINE.md`. Cada versión nueva: zip + subir el `.pck` (si no, "otra versión").
 
 ## Hecho: O-0 (2026-10-29)
 - `NetPeer` (`scripts/net/net_peer.gd`): el mismo script hace de servidor (`host`) o de cliente (`join`), cada uno con
