@@ -87,13 +87,30 @@ para desafiarlo.
 ## Fases (tabla de avance)
 | Fase | Qué | Cómo se prueba |
 |---|---|---|
-| **O-0** | Base de red: autoload `Net`, modo `--server` headless, conectar, nombre, chequeo de versión, lista de conectados, desconexiones. | `--autotest-online`: servidor + 2 clientes **en el mismo proceso** (Godot permite una `MultiplayerAPI` por rama del árbol) por `127.0.0.1`. |
+| **O-0** ✅ | Base de red: autoload `Net`, modo `--server` headless, conectar, nombre, chequeo de versión, lista de conectados, desconexiones. **Hecho 2026-10-29** (ver "Hecho: O-0"). | `--autotest-online`: servidor + 2 clientes **en el mismo proceso** (Godot permite una `MultiplayerAPI` por rama del árbol) por `127.0.0.1`. |
 | **O-1** | El edificio (Qwen) en Ciudad Verde como agregado, la puerta y el interior con enfermera, tienda y recepcionista. | Autotest: entrar y salir por la puerta, curar, comprar, la recepcionista abre la sala. Vitrina con capturas. |
 | **O-2** | Sala: pantalla de conectados, desafiar, aceptar o rechazar, elegir equipo, VS. | Autotest con 2 clientes de prueba que se desafían. |
 | **O-3** | Pelea online: el servidor simula, `NetCombatInput`, fotos del estado + `Events`, interpolación, fin de la pelea y desconexión. | Autotest: 2 clientes con bots (`BotCombatInput` del lado del cliente) pelean hasta que gana uno; los dos ven lo mismo. |
 | **O-4** | Resultado: EXP para cada uno, vuelta al edificio, guardado. | Autotest: la EXP sube como en un combate en el mundo. |
 | **O-5** | Poner el servidor: `build_portable.py --server` (un ejecutable de servidor), guía para correrlo en una PC (con el puerto abierto en el router) o en un servidor en la nube gratis (Oracle Cloud Always Free). Dirección del servidor en Opciones (con una por defecto). | Probarlo de verdad con un amigo. |
 | O-6 (después) | Predicción del movimiento propio, ping en pantalla, chat rápido o emotes, sala compartida (verse caminando), nivel 50 opcional. | — |
+
+## Hecho: O-0 (2026-10-29)
+- `NetPeer` (`scripts/net/net_peer.gd`): el mismo script hace de servidor (`host`) o de cliente (`join`), cada uno con
+  su `SceneMultiplayer` propia (`set_multiplayer` sobre su rama). Mensajes: `hello` (versión, `PROTOCOL`, nombre,
+  equipo) → `welcome` / `rejected`; `player_list` a todos cuando algo cambia; `update_team`, `set_status`
+  ("libre", "eligiendo", "peleando"). El servidor limpia el nombre (16 letras, sin repetir: "Ash (2)") y el equipo
+  (especies que existen, nivel de 1 a 100), echa al que no se presenta en 10 s y rechaza otra versión o sala llena (32).
+  El cliente queda "offline" con un mensaje si no encuentra el servidor (8 s) o si se corta (ENet, 8 s sin respuesta).
+- **Versión** = `Net.game_version()`: `PROTOCOL` + huella de los ataques (forma, potencia, recarga, empuje) y de las
+  especies. Cambia sola cuando cambian los datos: dos zips distintos no se mezclan.
+- Autoload `Net` (`scripts/autoload/net.gd`): `go_online()` (nombre = `Net.player_name` o el de la partida; equipo =
+  especie y nivel), `go_offline()`, `is_online()`, `players`; avisa por `Events.online_state_changed` y
+  `online_players_changed`. Dirección, puerto y nombre en `user://online.cfg` (de la PC). Por defecto `127.0.0.1:24680`.
+- **Servidor**: `godot --headless --path . -- --server [--port 24680]` (descarga la escena del título y solo atiende la
+  sala; escribe en la consola quién entra y sale).
+- Test `--autotest-online`: servidor + 4 clientes en el mismo proceso, el autoload Net y el modo `--server` en otro
+  proceso.
 
 ## Preguntas abiertas (para cuando lleguemos)
 - **Vida después de la pelea**: ¿el daño queda como en el mundo (te curás con la enfermera de al lado) o se vuelve como

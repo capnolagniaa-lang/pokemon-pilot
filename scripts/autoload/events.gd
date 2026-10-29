@@ -97,3 +97,9 @@ signal evolved(inst: Resource, from: Resource, to: Resource)
 signal time_changed(hour: float, phase: String)
 
 @warning_ignore_restore("unused_signal")
+
+# Online (Net, docs/PLAN_ONLINE.md)
+## "offline", "connecting", "online" o "rejected", con un mensaje para mostrar.
+signal online_state_changed(state: String, message: String)
+## Los conectados a la sala: [{id, name, team: [{species, level}], status}].
+signal online_players_changed(players: Array)

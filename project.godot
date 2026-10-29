@@ -19,6 +19,7 @@ GameState="*res://scripts/autoload/game_state.gd"
 Sound="*res://scripts/autoload/sound.gd"
 Controls="*res://scripts/autoload/controls.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
+Net="*res://scripts/autoload/net.gd"
 Autotest="*res://scripts/autoload/autotest.gd"
 
 [display]

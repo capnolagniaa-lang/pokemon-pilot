@@ -71,6 +71,8 @@ $G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carg
 $G --headless --path . --quit-after 30000 -- --autotest-night-combat  # día/noche D: efectos que no se oscurecen, luces, llama de fuego
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-night-combat  # Charmander tirando Ascuas de noche
 $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: todo lo aprendido, en plena pelea, al subir de nivel
+$G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
+$G --headless --path . -- --server --port 24680                    # servidor online (sala); corre hasta cerrarlo
 $G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabla de música, respaldos, archivos propios, gritos, efectos
 $G --headless --path . --quit-after 30000 -- --autotest-settings  # Ajustes del juego por partida (EXP, dinero, captura, daño, vida, salvajes, IA...)
 $G --path . --quit-after 60 --write-movie out/f.png --fixed-fps 30 -- --showcase-settings  # la pantalla de ajustes
@@ -135,7 +137,7 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 - **Autoloads**: `Events` (bus de señales; los sistemas no se llaman entre sí), `DB`, `GameState`,
   `Controls` (input por código, teclas físicas), `Sound` (música por zona/momento, efectos y gritos **por nombre de
 archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escucha Events; guía `docs/AUDIO.md`),
-`SaveManager` (**varias partidas con nombre**: una por archivo
+`Net` (online, ver abajo), `SaveManager` (**varias partidas con nombre**: una por archivo
   `user://saves/<nombre>.json`; `slot_path` = la actual),
   `Autotest`. Escena principal: `scenes/ui/title_screen.tscn` → `starter_select` (nueva partida: **solo la historia**, el modo
   libre se sacó de ahí el 2026-10-29; `GameState.new_game` queda para partidas viejas y tests) → `world`.
@@ -307,8 +309,13 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   criatura conserva nivel, daño y movimientos (`CreatureInstance.evolve_into`). **Kits** (decisión del usuario
   2026-10-25): la evolución hereda el kit de su preevolución (`kit_inherited`) salvo las que cambian mucho
   (`NEW_KIT` de apply_evolutions: Butterfree, Beedrill, Gyarados, Kadabra, Charizard, Eeveelutions...: kit propio).
-- **Multijugador online** (en plan, `docs/PLAN_ONLINE.md`, fases O): servidor propio (`-- --server`) que simula la
-  pelea con `NetCombatInput`; edificio agregado en Ciudad Verde sin tocar las zonas (`extra_buildings`).
+- **Multijugador online** (`docs/PLAN_ONLINE.md`, fases O; hecho O-0): autoload `Net` (`go_online`, `players`, avisos
+  `Events.online_state_changed`/`online_players_changed`, config `user://online.cfg`) sobre `NetPeer`
+  (`scripts/net/`: **el mismo script es servidor y cliente**, porque las RPC tienen que existir igual de los dos lados;
+  cada uno con su `SceneMultiplayer`, así los tests levantan todo en un proceso). Servidor: `-- --server [--port]`.
+  Versión = `Net.game_version()` (huella de ataques y especies: otro zip no entra). Si se cambia un mensaje, subir
+  `NetPeer.PROTOCOL`. Plan: la pelea la simula el servidor con un `NetCombatInput`; edificio agregado en Ciudad Verde sin
+  tocar las zonas (`extra_buildings`).
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E; **sacado de las opciones por ahora**, 2026-10-29: al
   cargar queda apagado): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en

@@ -6,6 +6,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Online O-0: base de red (2026-10-29)**: autoload `Net` + `NetPeer` (servidor y cliente con el mismo script), modo
+  servidor `-- --server`, sala con lista de conectados (nombre, equipo, estado), chequeo de versión por huella de los
+  datos, desconexiones. Todavía no hay nada a la vista en el juego (eso es O-1/O-2). Test `--autotest-online`. Detalle en
+  `docs/PLAN_ONLINE.md`. **Próximo: O-1** (edificio en Ciudad Verde con Qwen + interior).
 - **Multijugador online: plan escrito (2026-10-29)**: `docs/PLAN_ONLINE.md` (fases O-0 a O-6). Decidido: servidor
   propio que simula la pelea, solo una lista de conectados en un NPC, nivel real, da EXP como un combate en el mundo, y
   un edificio nuevo hecho con Qwen en Ciudad Verde (enfermera, tienda y recepcionista online). **Próximo paso: O-0**
