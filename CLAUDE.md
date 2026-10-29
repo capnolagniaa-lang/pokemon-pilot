@@ -137,7 +137,8 @@ Para ver resultados visuales: renderizar frames con `--write-movie` a la carpeta
 archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escucha Events; guía `docs/AUDIO.md`),
 `SaveManager` (**varias partidas con nombre**: una por archivo
   `user://saves/<nombre>.json`; `slot_path` = la actual),
-  `Autotest`. Escena principal: `scenes/ui/title_screen.tscn` → `starter_select` → `world`.
+  `Autotest`. Escena principal: `scenes/ui/title_screen.tscn` → `starter_select` (nueva partida: **solo la historia**, el modo
+  libre se sacó de ahí el 2026-10-29; `GameState.new_game` queda para partidas viejas y tests) → `world`.
 - **Meta-juego (Etapa 2c)**: menús con nodos `Control` y el estilo de `UiStyle` (`scripts/ui/`), menú de pausa
   en su propia CanvasLayer (pausa el árbol). En combate se abre reducido (`PauseMenu.BATTLE_ENTRIES`: Mochila, Equipo,
   Cerrar). Las peleas de entrenador arrancan desde una charla (`StoryDirector.busy` toda la pelea): lo que se bloquea

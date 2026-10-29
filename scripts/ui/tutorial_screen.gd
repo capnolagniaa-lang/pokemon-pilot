@@ -10,7 +10,7 @@ signal closed
 const PAGES := [
 	["¡Bienvenido a Pokémon Pilot!", [
 		"Es un juego de Pokémon con combates en tiempo real: vos manejás a tu Pokémon y atacás como en un juego de acción.",
-		"En la historia recorrés Kanto como en FireRed: gimnasios, rival, Team Rocket y la Liga. En el modo libre explorás sin historia.",
+		"En la historia recorrés Kanto como en FireRed: gimnasios, rival, Team Rocket y la Liga.",
 		"Este tutorial lo podés volver a ver cuando quieras en Esc → Cómo se juega.",
 	]],
 	["Moverte y explorar", [

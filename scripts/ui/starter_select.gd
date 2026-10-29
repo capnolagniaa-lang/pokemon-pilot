@@ -1,33 +1,22 @@
 extends Control
-## Pantalla de elección de inicial. Arma las tarjetas a partir de GameConfig.starters.
+## Pantalla de nueva partida: solo la historia (el modo libre, empezar ya con un inicial en el mundo abierto, se sacó
+## por pedido del usuario 2026-10-29; las partidas viejas del modo libre siguen cargando igual).
 
 const WORLD_SCENE := "res://scenes/world/world.tscn"
 
-@onready var cards: HBoxContainer = $Center/VBox/Cards
-
 
 func _ready() -> void:
-	var starters := DB.config.starters
-	for i in starters.size():
-		cards.add_child(_card(starters[i], i))
 	_build_story_button()
 	_build_options()
 
 
-## Historia (docs/PLAN_HISTORIA.md): arrancás en tu cuarto sin Pokémon y elegís el inicial en el laboratorio de
-## Oak. Las tarjetas de abajo son el modo libre (arrancás ya con ese Pokémon).
+## Historia (docs/PLAN_HISTORIA.md): arrancás en tu cuarto sin Pokémon y elegís el inicial en el laboratorio de Oak.
 func _build_story_button() -> void:
-	var b := UiStyle.button("▶  Empezar la historia (elegís tu inicial en el laboratorio de Oak)", 640)
+	var b := UiStyle.button("▶  Empezar la historia", 640)
 	b.pressed.connect(func():
 		GameState.new_story()
 		get_tree().change_scene_to_file(WORLD_SCENE))
-	var free := UiStyle.label("o modo libre: empezá ya con uno de estos", 15, UiStyle.TEXT_DIM)
-	free.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var vbox: VBoxContainer = $Center/VBox
-	vbox.add_child(b)
-	vbox.move_child(b, cards.get_index())
-	vbox.add_child(free)
-	vbox.move_child(free, cards.get_index())
+	$Center/VBox.add_child(b)
 	UiStyle.focus_later(b)
 
 
@@ -78,42 +67,6 @@ func _build_options() -> void:
 	box.add_child(center2)
 
 
-func _card(sp: SpeciesData, index: int) -> Control:
-	var btn := Button.new()
-	btn.custom_minimum_size = Vector2(220, 250)
-	btn.focus_mode = Control.FOCUS_ALL
-	var box := VBoxContainer.new()
-	box.set_anchors_preset(Control.PRESET_FULL_RECT)
-	box.alignment = BoxContainer.ALIGNMENT_CENTER
-	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var pic := TextureRect.new()
-	pic.texture = DB.portrait_of(sp)
-	pic.custom_minimum_size = Vector2(120, 120)
-	pic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	pic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	pic.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	pic.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	box.add_child(pic)
-	var name_label := Label.new()
-	name_label.text = "%s\n%s\n[%d]" % [sp.display_name, sp.primary_type().display_name, index + 1]
-	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	name_label.add_theme_color_override("font_color", sp.primary_type().color.lightened(0.3))
-	name_label.add_theme_font_size_override("font_size", 20)
-	box.add_child(name_label)
-	btn.add_child(box)
-	btn.pressed.connect(_choose.bind(sp))
-	return btn
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		get_tree().change_scene_to_file("res://scenes/ui/title_screen.tscn")
-		return
-	for i in DB.config.starters.size():
-		if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_1 + i:
-			_choose(DB.config.starters[i])
-
-
-func _choose(sp: SpeciesData) -> void:
-	GameState.new_game(sp)
-	get_tree().change_scene_to_file(WORLD_SCENE)

@@ -5,7 +5,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-10-23)
+## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Solo la historia al empezar (2026-10-29, pedido del usuario)**: la pantalla de nueva partida (`starter_select`) ya no
+  tiene las tarjetas del modo libre (empezar con un inicial directo en el mundo abierto): solo "Empezar la historia" +
+  dificultad y opciones. El código del modo libre (`GameState.new_game`) queda para las partidas viejas y los tests.
+  Arreglo de paso: después del tutorial del principio, Esc pausaba pero el menú no se veía (`PauseMenu.close`).
 - **Tutorial "Cómo se juega" y qué hace cada ataque (2026-10-28, pedido del usuario)**: 9 páginas (controles, salvajes y
   temperamentos, combate, equipo y EXP, captura, ataques y habilidades, lo que se puede modificar, el menú) que salen
   solas la primera vez que entrás al mundo con una partida (también las partidas viejas, una vez) y siempre desde
