@@ -6,6 +6,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Multijugador online: plan escrito (2026-10-29)**: `docs/PLAN_ONLINE.md` (fases O-0 a O-6). Decidido: servidor
+  propio que simula la pelea, solo una lista de conectados en un NPC, nivel real, da EXP como un combate en el mundo, y
+  un edificio nuevo hecho con Qwen en Ciudad Verde (enfermera, tienda y recepcionista online). **Próximo paso: O-0**
+  (base de red). Entrenadores vivos: sacado de la nueva partida y de Opciones por ahora (al cargar queda apagado; el
+  sistema y su test siguen).
 - **Solo la historia al empezar (2026-10-29, pedido del usuario)**: la pantalla de nueva partida (`starter_select`) ya no
   tiene las tarjetas del modo libre (empezar con un inicial directo en el mundo abierto): solo "Empezar la historia" +
   dificultad y opciones. El código del modo libre (`GameState.new_game`) queda para las partidas viejas y los tests.

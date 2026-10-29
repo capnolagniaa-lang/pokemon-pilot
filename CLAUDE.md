@@ -307,7 +307,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   criatura conserva nivel, daño y movimientos (`CreatureInstance.evolve_into`). **Kits** (decisión del usuario
   2026-10-25): la evolución hereda el kit de su preevolución (`kit_inherited`) salvo las que cambian mucho
   (`NEW_KIT` de apply_evolutions: Butterfree, Beedrill, Gyarados, Kadabra, Charizard, Eeveelutions...: kit propio).
-- **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E): interruptor `GameState.living_trainers`; datos
+- **Multijugador online** (en plan, `docs/PLAN_ONLINE.md`, fases O): servidor propio (`-- --server`) que simula la
+  pelea con `NetCombatInput`; edificio agregado en Ciudad Verde sin tocar las zonas (`extra_buildings`).
+- **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E; **sacado de las opciones por ahora**, 2026-10-29: al
+  cargar queda apagado): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.
 - **Captura, Mochila y Caja** (`docs/PLAN_CAPTURA_MOCHILA.md`): `ItemData` en `data/items/` (de
