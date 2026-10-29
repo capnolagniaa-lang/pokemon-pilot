@@ -50,6 +50,10 @@ func try_open() -> bool:
 	if visible:
 		return true
 	var world := get_tree().get_first_node_in_group("world")
+	var online = world.get("online") if world != null else null
+	if online != null and online.battle != null and online.battle.active:
+		Events.message_requested.emit("En la pelea online no hay pausa.")
+		return false
 	# En combate (también contra entrenadores y en el torneo) se abre reducido: Mochila, Equipo y Cerrar; la pelea
 	# queda en pausa mientras está abierto (pedido del usuario 2026-10-26).
 	in_battle = world != null and world.combat.in_battle

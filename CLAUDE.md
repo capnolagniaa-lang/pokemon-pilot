@@ -316,7 +316,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   (`scripts/net/`: **el mismo script es servidor y cliente**, porque las RPC tienen que existir igual de los dos lados;
   cada uno con su `SceneMultiplayer`, así los tests levantan todo en un proceso). Servidor: `-- --server [--port]`.
   Versión = `Net.game_version()` (huella de ataques y especies: otro zip no entra). Si se cambia un mensaje, subir
-  `NetPeer.PROTOCOL`. Plan: la pelea la simula el servidor con un `NetCombatInput`. **Hecho O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
+  `NetPeer.PROTOCOL`. Plan: la pelea la simula el servidor con un `NetCombatInput`. **Hecho O-3**: la pelea (`NetMatch` en el servidor, `NetCombatInput`;
+  `OnlineBattle` en el jugador imita la pelea con el combate de siempre, sin hurtbox, corrigiéndose con las fotos del
+  servidor; EXP vía CombatDirector). **O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
   servidor `match_started`, que escuchará la pelea de la O-3; servidor del juego fijo en `Net.OFFICIAL_SERVER`). **O-1**: Centro de Combate Online en
   Ciudad Verde (`OnlineDesk` = `world.online`, acción `online` de la recepcionista).
 - **Edificios y zonas agregados** (`ExtraContent`): `data/world/extra/zones/*.tres` (ZoneEntry) y

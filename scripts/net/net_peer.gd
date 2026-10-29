@@ -14,11 +14,14 @@ signal challenge_answered(to_id: int, accepted: bool, message: String)
 signal match_choose(match_id: int, opponent: Dictionary, count: int, seconds: float)
 signal match_ready(match_id: int, opponent: Dictionary, opponent_team: Array)
 signal match_cancelled(match_id: int, reason: String)
-## Servidor: los dos eligieron equipo. La pelea (O-3) la arma quien escuche; si nadie escucha, termina ahí (O-2).
+## Servidor: los dos eligieron equipo (la pelea la arma este mismo NetPeer si `host_battles`).
 signal match_started(match: Dictionary)
+## Cliente: la pelea online (O-3): foto del servidor (20 por segundo) y hechos (inicio, golpe, debilitado, sale otro, fin).
+signal battle_state_received(match_id: int, state: Dictionary)
+signal battle_event_received(match_id: int, ev: Dictionary)
 
 ## Sube cuando cambian los mensajes: un juego viejo y uno nuevo no se entienden.
-const PROTOCOL := 2
+const PROTOCOL := 3
 const DEFAULT_PORT := 24680
 const MAX_PLAYERS := 32
 const NAME_MAX := 16
@@ -62,6 +65,10 @@ var _next_match := 1
 ## (Vars para que el autotest los achique.)
 var answer_timeout := ANSWER_TIMEOUT
 var choose_timeout := CHOOSE_TIMEOUT
+## Servidor: simula las peleas (O-3). Apagado: la partida termina al elegir equipo (como en la O-2).
+var host_battles := true
+## Servidor: peleas en curso, id de partida → NetMatch.
+var battles: Dictionary = {}
 
 
 func _enter_tree() -> void:
@@ -143,7 +150,10 @@ func _on_peer_disconnected(id: int) -> void:
 				got_answer.rpc_id(from, id, false, "%s se desconectó." % who)
 		for mid in matches.keys():
 			if id in [matches[mid].a, matches[mid].b]:
-				_cancel_match(mid, "%s se desconectó." % who, id)
+				if battles.has(mid):
+					battles[mid].finish(_other(matches[mid], id), "%s se desconectó." % who)
+				else:
+					_cancel_match(mid, "%s se desconectó." % who, id)
 		_broadcast_players()
 
 
@@ -266,8 +276,59 @@ func choose_team(match_id: int, team: Array) -> void:
 	_broadcast_players()
 	_log("partida %d: %s contra %s" % [m.id, _name_of(m.a), _name_of(m.b)])
 	match_started.emit(m)
-	if match_started.get_connections().is_empty():
-		end_match(m.id)  # todavía no hay pelea online (O-3): vuelven a estar libres
+	if host_battles:
+		_start_battle(m)
+	else:
+		end_match(m.id)
+
+
+## Arma la pelea en el servidor (NetMatch), lejos de las demás, y reparte sus fotos y hechos a los dos.
+func _start_battle(m: Dictionary) -> void:
+	var nm := NetMatch.new()
+	nm.name = "Match%d" % m.id
+	nm.setup(m.id, m.a, m.b, m.teams)
+	nm.position = Vector2(-60000 + (m.id % 16) * 4000, -60000)
+	nm.event.connect(func(ev: Dictionary):
+		for p in [m.a, m.b]:
+			if _by_id.has(p):
+				battle_event.rpc_id(p, m.id, ev))
+	nm.snapshot.connect(func(st: Dictionary):
+		for p in [m.a, m.b]:
+			if _by_id.has(p):
+				battle_state.rpc_id(p, m.id, st))
+	nm.finished.connect(func(winner: int, reason: String):
+		_log("partida %d: ganó %s%s" % [m.id, _name_of(winner), " (%s)" % reason if reason != "" else ""])
+		battles.erase(m.id)
+		nm.queue_free.call_deferred()
+		end_match(m.id))
+	battles[m.id] = nm
+	add_child(nm)
+
+
+## Cliente → servidor: mis teclas en la pelea (NetCombatInput.pack). Muchas por segundo: sin garantía, en orden.
+@rpc("any_peer", "unreliable_ordered")
+func battle_input(match_id: int, packet: Array) -> void:
+	if is_server and battles.has(match_id):
+		battles[match_id].set_input(_api.get_remote_sender_id(), packet)
+
+
+## Cliente → servidor: cambiar de Pokémon (1-6).
+@rpc("any_peer", "reliable")
+func battle_switch(match_id: int, index: int) -> void:
+	if is_server and battles.has(match_id):
+		battles[match_id].request_switch(_api.get_remote_sender_id(), index)
+
+
+## Servidor → cliente: foto de la pelea.
+@rpc("authority", "unreliable_ordered")
+func battle_state(match_id: int, st: Dictionary) -> void:
+	battle_state_received.emit(match_id, st)
+
+
+## Servidor → cliente: un hecho de la pelea.
+@rpc("authority", "reliable")
+func battle_event(match_id: int, ev: Dictionary) -> void:
+	battle_event_received.emit(match_id, ev)
 
 
 ## Servidor: terminó la partida (la llama la pelea, O-3): los dos quedan libres.
@@ -328,7 +389,8 @@ func _name_of(id: int) -> String:
 	return _by_id[id].name if _by_id.has(id) else "?"
 
 
-## Equipo para pelear: lo que se puede rearmar como CreatureInstance, en pie, hasta `count`.
+## Equipo para pelear: lo que se puede rearmar como CreatureInstance, en pie, hasta `count`. La vida va como
+## proporción (`hp_ratio`): cada partida puede tener otra escala de vida (Ajustes del juego).
 static func clean_battle_team(team: Array, count: int) -> Array:
 	var out: Array = []
 	for d in team:
@@ -339,7 +401,9 @@ static func clean_battle_team(team: Array, count: int) -> Array:
 		var inst := CreatureInstance.from_dict(d)
 		if inst == null or inst.hp <= 0.0:
 			continue
-		out.append(inst.to_dict())
+		var clean := inst.to_dict()
+		clean["hp_ratio"] = clampf(float(d.get("hp_ratio", inst.hp / maxf(1.0, inst.max_hp()))), 0.01, 1.0)
+		out.append(clean)
 	return out
 
 
@@ -498,7 +562,20 @@ func send_answer(from_id: int, accept: bool) -> void:
 ## Los Pokémon elegidos (CreatureInstance) para la partida.
 func send_choice(match_id: int, team: Array) -> void:
 	if state == "online":
-		choose_team.rpc_id(1, match_id, team.map(func(c: CreatureInstance): return c.to_dict()))
+		choose_team.rpc_id(1, match_id, team.map(func(c: CreatureInstance):
+			var d := c.to_dict()
+			d["hp_ratio"] = c.hp / maxf(1.0, c.max_hp())
+			return d))
+
+
+func send_battle_input(match_id: int, packet: Array) -> void:
+	if state == "online":
+		battle_input.rpc_id(1, match_id, packet)
+
+
+func send_battle_switch(match_id: int, index: int) -> void:
+	if state == "online":
+		battle_switch.rpc_id(1, match_id, index)
 
 
 func send_team(team: Array) -> void:
@@ -530,6 +607,10 @@ func close() -> void:
 	_pending.clear()
 	_challenges.clear()
 	matches.clear()
+	for nm in battles.values():
+		if is_instance_valid(nm):
+			nm.queue_free()
+	battles.clear()
 	players = []
 	if was_client:
 		_set_state("offline", "Desconectado.")

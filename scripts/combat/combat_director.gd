@@ -31,6 +31,7 @@ func _ready() -> void:
 	Events.item_used.connect(_on_item_used)
 	Events.wild_aggro.connect(_on_wild_aggro)
 	Events.creature_fainted.connect(_on_creature_fainted)
+	Events.creature_damaged.connect(_on_creature_damaged)
 
 
 ## Recarga entre cambios de Pokémon (1-6), para que no sea gratis esquivar un golpe cambiando.
@@ -138,8 +139,10 @@ func _on_creature_fainted(c: Creature) -> void:
 			get_tree().create_timer(0.8).timeout.connect(_practice_revive.bind(c.instance))
 		elif not arena_lock:
 			get_tree().create_timer(NEXT_MON_DELAY).timeout.connect(_after_faint)
-	elif enemies.has(c):
+	elif enemies.has(c) or _killed_by_us(c):
 		enemies.erase(c)
+		if is_instance_valid(world.companion) and c.get("last_hit_by") == world.companion:
+			_note_participant(c, world.companion.instance)
 		var gained := CreatureInstance.exp_yield(c.instance)
 		var who := "de " + c.owner_name if c.owner_name != "" else "salvaje"
 		var text := "¡%s %s se debilitó!" % [c.instance.species.display_name, who]
@@ -152,6 +155,22 @@ func _on_creature_fainted(c: Creature) -> void:
 			text += GameState.grant_exp(inst, shares[inst])
 		Events.message_requested.emit(text)
 		Events.party_changed.emit()
+
+
+## Un salvaje que le pegaste cuenta para la EXP aunque no te esté atacando (huye, o lo ignorabas): pelearon.
+func _on_creature_damaged(c: Node, _amount: float, hit: HitInfo) -> void:
+	var mine: Creature = world.companion
+	if hit == null or not is_instance_valid(mine) or hit.attacker != mine or not c is Creature or c == mine:
+		return
+	if c.team == Creature.Team.WILD and c.owner_name == "":
+		_note_participant(c, mine.instance)
+
+
+## Lo debilitó tu Pokémon (de un golpe, o mientras huía: no estaba en `enemies`). Los de un entrenador no: esos los
+## maneja su pelea.
+func _killed_by_us(c: Creature) -> bool:
+	return c.team == Creature.Team.WILD and c.owner_name == "" and is_instance_valid(world.companion) \
+		and c.last_hit_by == world.companion
 
 
 func _note_participant(enemy: Creature, inst: CreatureInstance) -> void:
@@ -231,6 +250,9 @@ func _after_faint() -> void:
 ## Cambia al Pokémon del lugar `index` del equipo (teclas 1-6). En combate el nuevo sale donde estaba el
 ## anterior, sigue la pelea y los rivales lo pasan a atacar a él. Devuelve si cambió.
 func switch_to(index: int) -> bool:
+	var online = world.get("online")
+	if online != null and online.battle != null and online.battle.intercepts_switch(index):
+		return false  # pelea online: el cambio lo pide al servidor (OnlineBattle)
 	if index >= GameState.party.size() or index == GameState.active_index or _switch_cd > 0.0:
 		return false
 	var story = world.get("story")

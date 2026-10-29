@@ -5,7 +5,7 @@ extends Control
 ##   sala   → los conectados (equipo y si están libres), elegís el formato (1, 3 o 6 Pokémon) y desafiás; un desafío
 ##            que te llega aparece arriba con Aceptar / Rechazar.
 ##   elegir → aceptado: elegís qué Pokémon llevás (con tiempo; si se termina, van los primeros en pie).
-##   listo  → los dos eligieron: con quién y contra qué vas. (La pelea en la arena es la O-3.)
+##   listo  → los dos eligieron: con quién y contra qué vas; enseguida se cierra y `OnlineDesk` arranca la pelea (O-3).
 ## Esc o "Salir" cierra en la sala (retira tu desafío si había uno). Habla con el servidor solo a través de `Net`.
 
 signal closed
@@ -250,7 +250,7 @@ func _build_ready() -> void:
 	_body.add_child(UiStyle.label("Vas contra %s, que lleva:" % opp.name, 20))
 	var team: Array = match_info.get("opponent_team", [])
 	_body.add_child(_team_row(team.map(func(d): return {"species": d.get("species_id", ""), "level": d.get("level", 1)})))
-	_body.add_child(UiStyle.label("La pelea en la arena llega en la próxima fase (O-3). Por ahora vuelven a la sala.", 18, UiStyle.TEXT_DIM))
+	_body.add_child(UiStyle.label("¡A la arena! Sin pausa: la pelea sigue aunque abras el menú.", 18, UiStyle.TEXT_DIM))
 	var back := UiStyle.button("Volver a la sala", 240)
 	back.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	back.pressed.connect(func():

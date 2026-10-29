@@ -97,6 +97,7 @@ func run() -> void:
 	if lobby != null:
 		await _lobby_tests(server, lobby, desk)
 	answers = [1]
+	desk = world.story.npcs.get("centro_online_recepcionista")  # (después de la pelea es otra: se volvió a cargar la zona)
 	world.story.talk_to(desk)
 	await get_tree().create_timer(0.3).timeout
 	await _until(func(): return not world.story.busy, 20.0)
@@ -104,6 +105,7 @@ func run() -> void:
 	server.close()
 
 	# Volver afuera por la alfombra.
+	await _go("centro_online", Vector2i(7, 6))
 	t.facing = Vector2.DOWN
 	await _walk("move_down", 2.5, "ciudad_verde")
 	zone = world.streamer.zone_node("ciudad_verde")
@@ -137,14 +139,40 @@ func _lobby_tests(server: NetPeer, lobby: OnlineLobbyScreen, desk: StoryNPC) -> 
 	await _until(func(): return lobby.step == "elegir" and not has.call("elegir").is_empty())
 	r["Acepta: a elegir equipo, con tiempo (con 1 Pokémon se elige 1)"] = lobby.step == "elegir" and lobby.pick_size() == 1 \
 		and _text_in(lobby).contains("CONTRA GARY")
+	# O-3: la pelea. Tu Charmander (lo maneja un bot) contra el Magikarp de Gary (quieto).
+	var battle: OnlineBattle = world.online.battle
+	var bot := BotCombatInput.new(world)
+	bot.keep_distance = 16.0  # Charmander a nivel 10 pega cuerpo a cuerpo (Arañazo)
+	battle.local_input = bot
+	var mon: CreatureInstance = GameState.party[0]
+	mon.level = 30  # que la pelea dure poco (el bot es al azar)
+	mon.hp = mon.max_hp()
+	var exp0 := mon.experience
 	lobby.toggle_pick(0)
 	lobby.confirm_pick()
-	gary.send_choice(has.call("elegir")[0][1], [CreatureInstance.create(DB.species["eevee"], 10)])
-	await _until(func(): return lobby.step == "listo")
-	r["Los dos eligieron: muestra contra qué vas"] = lobby.step == "listo" and lobby.match_info.opponent_team[0].species_id == "eevee"
-	lobby.step = "sala"
-	lobby.refresh()
+	gary.send_choice(has.call("elegir")[0][1], [CreatureInstance.create(DB.species["magikarp"], 3)])
+	await _until(func(): return battle.active and battle._going, 20.0)
+	r["Los dos eligieron: se cierra la sala y van a la arena"] = battle.active and not is_instance_valid(world.online.screen) \
+		and battle.arena != null
+	r["En la arena: tu Pokémon y el del rival (en tus enemigos, no se atrapa)"] = is_instance_valid(battle.foe) \
+		and battle.foe.instance.species.id == "magikarp" and world.combat.enemies.has(battle.foe) and battle.foe.owner_name == "Gary" \
+		and world.companion.instance == mon
+	r["Acá los golpes no pegan (los decide el servidor)"] = not world.companion.get_node("Hurtbox").monitorable \
+		and not battle.foe.get_node("Hurtbox").monitorable
+	r["En la pelea online no hay pausa"] = not world.pause_menu.try_open() and not get_tree().paused
+	var hits := [0]
+	Events.online_battle_event.connect(func(_m, e): if e.t == "hit": hits[0] += 1)
+	await _until(func(): return not battle.active, 120.0)
+	r["Pelea: le pega (el servidor manda los golpes) y gana"] = hits[0] > 0 and battle.result == "win"
+	r["Gana EXP como en un combate en el mundo"] = mon.experience > exp0
+	r["Vuelve al edificio, frente a la recepcionista, y puede caminar"] = _here() == "centro_online" and not battle.active \
+		and is_instance_valid(world.companion)
+	await _until(func(): return not world.story.busy, 15.0)
 	await _until(func(): return server.matches.is_empty() and Net.players.all(func(p): return p.status == "libre"))
+	r["En la sala vuelven a estar libres"] = server.matches.is_empty()
+	world.online.open_lobby()
+	await get_tree().process_frame
+	lobby = world.online.screen
 
 	# Desafío que llega con la sala abierta: aparece arriba; se rechaza.
 	glog.clear()
@@ -162,6 +190,7 @@ func _lobby_tests(server: NetPeer, lobby: OnlineLobbyScreen, desk: StoryNPC) -> 
 	glog.clear()
 	answers = [0]
 	gary.send_challenge(Net.client.my_id, 1)
+	await get_tree().create_timer(1.0).timeout
 	await _until(func(): return is_instance_valid(world.online.screen) and world.online.screen.step == "elegir", 10.0)
 	r["Desafío con la sala cerrada: pregunta y abre la elección"] = is_instance_valid(world.online.screen) \
 		and world.online.screen.step == "elegir" and world.trainer.locked
@@ -221,6 +250,13 @@ func showcase() -> void:
 	lobby.toggle_pick(0)
 	lobby.toggle_pick(2)
 	await get_tree().create_timer(1.5).timeout
+	# La pelea: tu equipo (un bot) contra el de Misty (quieta).
+	world.online.battle.local_input = BotCombatInput.new(world)
+	var mid: int = lobby.match_info.id
+	lobby.toggle_pick(1)
+	lobby.confirm_pick()
+	friends[1].send_choice(mid, [CreatureInstance.create(DB.species["staryu"], 12), CreatureInstance.create(DB.species["goldeen"], 10)])
+	await get_tree().create_timer(12.0).timeout
 	get_tree().quit()
 
 

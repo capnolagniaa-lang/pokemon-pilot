@@ -68,6 +68,7 @@ func run() -> void:
 	raw.close()
 
 	await _challenge_tests(server, a, b, version)
+	await _battle_tests(server, a, b)
 
 	# B se va: A lo ve.
 	b.close()
@@ -129,6 +130,7 @@ func _server_process_test(version: String) -> void:
 
 ## O-2: desafiar, contestar, elegir equipo, tiempos y desconexiones.
 func _challenge_tests(server: NetPeer, a: NetPeer, b: NetPeer, version: String) -> void:
+	server.host_battles = false  # acá solo la sala (O-2); la pelea se prueba aparte (_battle_tests)
 	b.send_status("libre")
 	await _until(func(): return _entry(a, b.my_id).get("status") == "libre")
 	var log := []
@@ -208,7 +210,7 @@ func _challenge_tests(server: NetPeer, a: NetPeer, b: NetPeer, version: String) 
 	r["Del equipo se saca el debilitado y lo que pasa del formato"] = rb != null and rb[4].size() == 3 and ra[4].size() == 1
 	r["Lleva todo el Pokémon (nivel, ataques, habilidad)"] = rb != null and rb[4][0].level == 12 and rb[4][0].has("equipped_moves") and rb[4][0].has("ability")
 	await _until(func(): return _entry(a, a.my_id).get("status") == "libre" and server.matches.is_empty())
-	r["Sin pelea online todavía (O-3): vuelven a estar libres"] = server.matches.is_empty() and _entry(a, a.my_id).get("status") == "libre"
+	r["Sin pelea (host_battles apagado): vuelven a estar libres"] = server.matches.is_empty() and _entry(a, a.my_id).get("status") == "libre"
 
 	# No eligen a tiempo: se cancela.
 	log.clear()
@@ -233,6 +235,88 @@ func _challenge_tests(server: NetPeer, a: NetPeer, b: NetPeer, version: String) 
 	await _until(func(): return last.call("A", "cancelada") != null, 12.0)
 	r["Se desconecta mientras eligen: al otro se le cancela"] = last.call("A", "cancelada") != null 		and "desconectó" in last.call("A", "cancelada")[3]
 	await _until(func(): return a.players.size() == 2)
+
+
+## O-3: la pelea en el servidor. A (fuerte, un bot que se acerca y pega) contra B (dos débiles; cambia al segundo).
+func _battle_tests(server: NetPeer, a: NetPeer, b: NetPeer) -> void:
+	server.host_battles = true
+	var ev := {a: [], b: []}
+	var st := {a: {}, b: {}}
+	for p in [a, b]:
+		p.battle_event_received.connect(func(_mid, e): ev[p].append(e))
+		p.battle_state_received.connect(func(_mid, s2): st[p] = s2)
+	var kinds := func(p: NetPeer, k: String): return ev[p].filter(func(e): return e.t == k)
+	var chose := [0]
+	a.match_choose.connect(func(mid, _o, _c, _t): chose[0] = mid)
+	a.send_challenge(b.my_id, 3)
+	await _until(func(): return b.my_id != 0)
+	await get_tree().create_timer(0.3).timeout
+	b.send_answer(a.my_id, true)
+	await _until(func(): return chose[0] != 0)
+	var mid: int = chose[0]
+	var strong := CreatureInstance.create(DB.species["mewtwo"], 70)
+	a.send_choice(mid, [strong])
+	b.send_choice(mid, [CreatureInstance.create(DB.species["magikarp"], 3), CreatureInstance.create(DB.species["caterpie"], 3)])
+	await _until(func(): return not kinds.call(a, "start").is_empty() and not kinds.call(b, "start").is_empty())
+	var start: Dictionary = kinds.call(a, "start")[0] if not kinds.call(a, "start").is_empty() else {}
+	r["Pelea: el servidor la arma y avisa a los dos (lado A = el que desafió)"] = start.get("a") == a.my_id \
+		and start.get("b") == b.my_id and server.battles.has(mid)
+	r["Sale el primero de cada uno"] = kinds.call(a, "send").size() == 2
+	await _until(func(): return not st[a].is_empty() and st[a].has(b.my_id))
+	r["Llegan fotos con posición, vida y estados de los dos"] = st[a].has(a.my_id) and st[a].has(b.my_id) \
+		and st[a][b.my_id].has("p") and st[a][b.my_id].hp == 1.0
+	var p0: Vector2 = st[a][a.my_id].p if st[a].has(a.my_id) else Vector2.ZERO
+	# Durante la cuenta regresiva no se mueven.
+	var seq := [0]
+	var drive := func():
+		var me: Dictionary = st[a].get(a.my_id, {})
+		var foe: Dictionary = st[a].get(b.my_id, {})
+		if me.is_empty() or foe.is_empty():
+			return
+		var to: Vector2 = foe.p - me.p
+		a.send_battle_input(mid, [to.normalized() if to.length() > 26.0 else Vector2.ZERO, to, foe.p, 0b1111, 0])
+	for i in 60:
+		drive.call()
+		await get_tree().physics_frame
+	r["En la cuenta regresiva no se mueve"] = st[a][a.my_id].p.distance_to(p0) < 1.0
+	await get_tree().create_timer(NetMatch.COUNTDOWN).timeout
+	b.send_battle_switch(mid, 1)
+	await _until(func(): return kinds.call(b, "send").size() >= 3)
+	r["B cambia de Pokémon (1-6): el servidor lo saca"] = kinds.call(b, "send").size() >= 3 and kinds.call(b, "send")[-1].index == 1
+	var t := 0.0
+	while t < 40.0 and kinds.call(a, "end").is_empty():
+		drive.call()
+		await get_tree().physics_frame
+		t += get_physics_process_delta_time()
+	r["A se mueve y pega: el servidor manda los golpes"] = not kinds.call(b, "hit").is_empty() and st[a][a.my_id].p.distance_to(p0) > 4.0
+	r["Debilitados: los dos de B, y sale el que queda"] = kinds.call(a, "faint").filter(func(e): return e.side == b.my_id).size() == 2
+	var end: Dictionary = kinds.call(b, "end")[0] if not kinds.call(b, "end").is_empty() else {}
+	r["Fin: gana A y los dos se enteran, con la vida final de cada uno"] = end.get("winner") == a.my_id \
+		and not kinds.call(a, "end").is_empty() and end.get("hp", {}).get(b.my_id, []) == [0.0, 0.0]
+	await _until(func(): return server.battles.is_empty() and _entry(a, a.my_id).get("status") == "libre")
+	r["Al terminar vuelven a estar libres"] = server.battles.is_empty() and server.matches.is_empty() \
+		and _entry(a, b.my_id).get("status") == "libre"
+
+	# Se desconecta en plena pelea: gana el otro.
+	ev[a].clear()
+	chose[0] = 0
+	b.send_challenge(a.my_id, 1)
+	await get_tree().create_timer(0.3).timeout
+	a.send_answer(b.my_id, true)
+	await _until(func(): return chose[0] != 0)
+	a.send_choice(chose[0], [CreatureInstance.create(DB.species["pikachu"], 10)])
+	b.send_choice(chose[0], [CreatureInstance.create(DB.species["eevee"], 10)])
+	await _until(func(): return not kinds.call(a, "start").is_empty())
+	var b_id := b.my_id
+	b.close()
+	await _until(func(): return not kinds.call(a, "end").is_empty(), 12.0)
+	var end2: Dictionary = kinds.call(a, "end")[0] if not kinds.call(a, "end").is_empty() else {}
+	r["Se desconecta en plena pelea: gana el otro"] = end2.get("winner") == a.my_id and "desconectó" in str(end2.get("reason", ""))
+	await _until(func(): return server.battles.is_empty())
+	r["...y la pelea se cierra en el servidor"] = server.battles.is_empty() and not server.players.any(func(p): return p.id == b_id)
+	# B vuelve a entrar para lo que sigue.
+	b.join("127.0.0.1", PORT, {"version": Net.game_version(), "name": "Ash", "team": [{"species": "ivysaur", "level": 16}]})
+	await _until(func(): return b.state == "online" and a.players.size() == 2)
 
 
 func _peer(n: String) -> NetPeer:

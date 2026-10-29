@@ -9,6 +9,10 @@ const SPEAKER := "Recepcionista"
 
 var world: Node
 var screen: OnlineLobbyScreen
+## La pelea online (O-3).
+var battle: OnlineBattle
+## Partida lista mientras la sala estaba abierta: {id, opponent, my, team}. Se pelea al cerrar la sala.
+var _pending_battle: Dictionary = {}
 var _layer: CanvasLayer
 var _last_message := ""
 
@@ -21,6 +25,10 @@ func _ready() -> void:
 	world.story.register_action("online", desk)
 	Events.online_state_changed.connect(func(_s, m): _last_message = m)
 	Events.online_challenged.connect(_on_challenged)
+	Events.online_match_ready.connect(_on_match_ready)
+	battle = OnlineBattle.new()
+	battle.name = "OnlineBattle"
+	add_child(battle)
 
 
 func desk() -> void:
@@ -55,6 +63,18 @@ func open_lobby() -> void:
 	screen = null
 	if hud != null:
 		hud.visible = true
+	if not _pending_battle.is_empty():
+		var p := _pending_battle
+		_pending_battle = {}
+		await battle.run(p.id, p.opponent, p.my, p.team)
+
+
+## Los dos eligieron: se cierra la sala y a la arena.
+func _on_match_ready(match_id: int, opponent: Dictionary, opponent_team: Array) -> void:
+	if not is_instance_valid(screen):
+		return
+	_pending_battle = {"id": match_id, "opponent": opponent, "my": screen.picked.duplicate(), "team": opponent_team}
+	screen.close.call_deferred()
 
 
 ## Conecta y espera la respuesta del servidor. Devuelve si quedó conectado.

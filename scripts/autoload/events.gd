@@ -111,3 +111,6 @@ signal online_challenge_answered(to_id: int, accepted: bool, message: String)
 signal online_match_choose(match_id: int, opponent: Dictionary, count: int, seconds: float)
 signal online_match_ready(match_id: int, opponent: Dictionary, opponent_team: Array)
 signal online_match_cancelled(match_id: int, reason: String)
+## La pelea online (O-3): foto del servidor (20 por segundo) y hechos (start, hit, faint, send, end).
+signal online_battle_state(match_id: int, state: Dictionary)
+signal online_battle_event(match_id: int, ev: Dictionary)

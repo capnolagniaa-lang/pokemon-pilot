@@ -41,6 +41,8 @@ func _ready() -> void:
 	client.match_choose.connect(func(mid, o, c, t): Events.online_match_choose.emit(mid, o, c, t))
 	client.match_ready.connect(func(mid, o, team): Events.online_match_ready.emit(mid, o, team))
 	client.match_cancelled.connect(func(mid, why): Events.online_match_cancelled.emit(mid, why))
+	client.battle_state_received.connect(func(mid, st): Events.online_battle_state.emit(mid, st))
+	client.battle_event_received.connect(func(mid, ev): Events.online_battle_event.emit(mid, ev))
 	# Que la sala vea tu equipo al día (curaste, subiste de nivel, atrapaste...).
 	Events.party_changed.connect(func(): if is_online(): refresh_team())
 	Events.party_healed.connect(func(): if is_online(): refresh_team())
@@ -83,6 +85,15 @@ func answer(from_id: int, accept: bool) -> void:
 ## Los Pokémon (CreatureInstance) que llevás a la partida.
 func choose_team(match_id: int, team: Array) -> void:
 	client.send_choice(match_id, team)
+
+
+## Pelea online: mis teclas (NetCombatInput.pack) y pedir un cambio de Pokémon.
+func battle_input(match_id: int, packet: Array) -> void:
+	client.send_battle_input(match_id, packet)
+
+
+func battle_switch(match_id: int, index: int) -> void:
+	client.send_battle_switch(match_id, index)
 
 
 ## Avisa a la sala que cambió tu equipo (curaste, subiste de nivel...).

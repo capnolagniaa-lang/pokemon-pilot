@@ -6,6 +6,15 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Arreglo: EXP al matar de un golpe o mientras huye (2026-10-29, bug del usuario)**: la EXP solo contaba si el salvaje
+  estaba en los enemigos del combate (entra recién cuando te ataca, y sale si deja de apuntarte); al matarlo de un golpe,
+  el "se debilitó" sale antes que el "recibió daño". Ahora la criatura guarda quién le pegó último (`Creature.last_hit_by`)
+  y CombatDirector da la EXP si lo mató tu Pokémon (`_killed_by_us`); además todo salvaje que golpeás cuenta como
+  participante (`_on_creature_damaged`). Test: `--autotest-wild-ai`.
+- **Online O-3: la pelea online (2026-10-29)**: después de elegir equipo, a la arena: el servidor simula la pelea con
+  las teclas de los dos y cada juego la muestra con el combate de siempre (corrigiéndose con lo que dice el servidor).
+  Cambios 1-6, debilitados, gana el que deja al otro sin Pokémon; da EXP como un combate en el mundo; sin pausa ni
+  objetos. **Próximo: O-4/O-5** (EXP ya está; falta poner el servidor de verdad para jugar con amigos).
 - **Online O-2: la sala (2026-10-29)**: la recepcionista abre la sala: ves a los conectados (equipo y si están libres),
   elegís el formato (1, 3 o 6) y desafiás; el otro acepta o rechaza (también si tiene la sala cerrada: se lo pregunta la
   recepcionista); los dos eligen equipo con 30 s. El servidor del juego queda fijo adentro del juego (`Net.OFFICIAL_SERVER`;

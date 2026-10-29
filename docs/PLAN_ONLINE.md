@@ -90,8 +90,8 @@ para desafiarlo.
 | **O-0** ✅ | Base de red: autoload `Net`, modo `--server` headless, conectar, nombre, chequeo de versión, lista de conectados, desconexiones. **Hecho 2026-10-29** (ver "Hecho: O-0"). | `--autotest-online`: servidor + 2 clientes **en el mismo proceso** (Godot permite una `MultiplayerAPI` por rama del árbol) por `127.0.0.1`. |
 | **O-1** ✅ | El edificio (Qwen) en Ciudad Verde como agregado, la puerta y el interior con enfermera, tienda y recepcionista. | Autotest: entrar y salir por la puerta, curar, comprar, la recepcionista abre la sala. Vitrina con capturas. |
 | **O-2** ✅ | Sala: pantalla de conectados, desafiar, aceptar o rechazar, elegir equipo. (La pantalla VS va con la pelea, O-3.) | Autotest con 2 clientes de prueba que se desafían. |
-| **O-3** | Pelea online: el servidor simula, `NetCombatInput`, fotos del estado + `Events`, interpolación, fin de la pelea y desconexión. | Autotest: 2 clientes con bots (`BotCombatInput` del lado del cliente) pelean hasta que gana uno; los dos ven lo mismo. |
-| **O-4** | Resultado: EXP para cada uno, vuelta al edificio, guardado. | Autotest: la EXP sube como en un combate en el mundo. |
+| **O-3** ✅ | Pelea online: el servidor simula, `NetCombatInput`, fotos del estado + `Events`, interpolación, fin de la pelea y desconexión. | Autotest: 2 clientes con bots (`BotCombatInput` del lado del cliente) pelean hasta que gana uno; los dos ven lo mismo. |
+| **O-4** ✅ | Resultado: EXP para cada uno, vuelta al edificio (hecho junto con la O-3; se guarda como siempre, desde el menú). | Autotest: la EXP sube como en un combate en el mundo. |
 | **O-5** | Poner el servidor: `build_portable.py --server` (un ejecutable de servidor), guía para correrlo en una PC (con el puerto abierto en el router) o en un servidor en la nube gratis (Oracle Cloud Always Free). Dirección del servidor en Opciones (con una por defecto). | Probarlo de verdad con un amigo. |
 | O-6 (después) | Predicción del movimiento propio, ping en pantalla, chat rápido o emotes, sala compartida (verse caminando), nivel 50 opcional. | — |
 
@@ -111,6 +111,30 @@ para desafiarlo.
   sala; escribe en la consola quién entra y sale).
 - Test `--autotest-online`: servidor + 4 clientes en el mismo proceso, el autoload Net y el modo `--server` en otro
   proceso.
+
+## Hecho: O-3 (2026-10-29)
+- **Servidor** (`NetMatch`, `scripts/net/net_match.gd`; lo arma `NetPeer._start_battle` cuando los dos eligieron, con
+  `host_battles`): la arena `arena_campo` (solo sus tiles, sin el mundo: las criaturas y los ataques no lo necesitan) y
+  el Pokémon de cada uno, en estado "controlled", movidos por `NetCombatInput` (las teclas que llegan: mover, apuntar,
+  punto, bits de los 4 ataques y un contador de esquives). Lado A = el que desafió (abajo), B = el que aceptó (arriba).
+  Cuenta regresiva de 3 s; cambios 1-6 con 1,5 s de espera; al debilitarse sale el siguiente en pie a los 1,2 s; sin
+  ninguno, gana el otro. Tope 5 min (gana el que tiene más vida en proporción). Si alguien se desconecta, gana el otro.
+  Manda una foto 20 veces por segundo (`battle_state`: posición relativa a la arena, mirada, vida en proporción,
+  estados, stagger, quién está afuera y sus teclas) y los hechos (`battle_event`: start, hit, faint, send, end con la
+  vida final de cada equipo). Cada pelea va lejos de las otras (`-60000 + id·4000`).
+- **Jugador** (`OnlineBattle`, `world.online.battle`; la arranca `OnlineDesk` al cerrar la sala): fundido, arena (lejos de
+  la de los entrenadores), tu Pokémon = el compañero de siempre manejado con el teclado (CombatDirector, `arena_lock`) y el
+  del rival imitado con sus teclas. **Se imita la pelea con el mismo combate del juego** (se ven igual los ataques y los
+  efectos), pero acá los golpes no pegan (sin hurtbox): vida, estados, debilitados y cambios los dice el servidor; las
+  posiciones se corrigen con sus fotos (el rival se acerca rápido; el tuyo solo si se fue más de 28 px, así no tironea).
+  El Pokémon del rival está en los enemigos de CombatDirector: cuando se debilita, **la EXP se reparte como en un combate
+  en el mundo** (entre los que pelearon contra él). El daño queda (como en el mundo; la enfermera está al lado). Sin
+  pausa (el menú no abre), sin E ni C (objetos) en la pelea. 1-6 pide el cambio al servidor (`intercepts_switch`). Al
+  terminar: cartel "¡GANASTE!" / "Perdiste...", y de vuelta frente a la recepcionista.
+- `PROTOCOL` 3 (la vida va como proporción, `hp_ratio`: cada partida puede tener otra escala de vida).
+- Tests: `--autotest-online` (pelea en el servidor: cuenta regresiva, golpes, cambio, debilitados, fin, desconexión) y
+  `--autotest-online-building` (la pelea con el mundo: arena, rival en tus enemigos, sin pausa, gana y suma EXP, vuelve
+  al edificio).
 
 ## Hecho: O-2 (2026-10-29)
 - **Servidor del juego fijo** (`Net.OFFICIAL_SERVER`): nadie tiene que escribir una dirección. Mientras no haya un
