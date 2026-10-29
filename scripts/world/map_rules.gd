@@ -15,6 +15,8 @@ static func cell_physics(zone: Node, cell: Vector2i, objects = null) -> int:
 		objects = objects_by_cell(zone)
 	if objects.has(cell):
 		return SOLID
+	if zone.has_meta(ExtraContent.SOLID_META) and zone.get_meta(ExtraContent.SOLID_META).has(cell):
+		return SOLID  # edificio agregado (ExtraContent)
 	var out := -1
 	for layer_name in ["Ground", "Water", "Foliage"]:
 		var td: TileData = (zone.get_node(layer_name) as TileMapLayer).get_cell_tile_data(cell)

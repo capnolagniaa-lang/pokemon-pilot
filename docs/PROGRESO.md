@@ -6,6 +6,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Online O-1: Centro de Combate Online en Ciudad Verde (2026-10-29)**: edificio nuevo hecho con Qwen a la derecha del
+  Centro Pokémon, con su interior (enfermera, tienda y recepcionista que te conecta a la sala y muestra quién está).
+  Se agrega sin tocar las zonas importadas (`ExtraContent`, `data/world/extra/`). Opciones → Online: nombre y servidor.
+  Test `--autotest-online-building`, vitrina `--showcase-online-building`. **Próximo: O-2** (pantalla de la sala:
+  desafiar, aceptar, elegir equipo).
 - **Online O-0: base de red (2026-10-29)**: autoload `Net` + `NetPeer` (servidor y cliente con el mismo script), modo
   servidor `-- --server`, sala con lista de conectados (nombre, equipo, estado), chequeo de versión por huella de los
   datos, desconexiones. Todavía no hay nada a la vista en el juego (eso es O-1/O-2). Test `--autotest-online`. Detalle en

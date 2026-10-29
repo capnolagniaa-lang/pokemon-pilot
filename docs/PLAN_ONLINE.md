@@ -88,7 +88,7 @@ para desafiarlo.
 | Fase | Qué | Cómo se prueba |
 |---|---|---|
 | **O-0** ✅ | Base de red: autoload `Net`, modo `--server` headless, conectar, nombre, chequeo de versión, lista de conectados, desconexiones. **Hecho 2026-10-29** (ver "Hecho: O-0"). | `--autotest-online`: servidor + 2 clientes **en el mismo proceso** (Godot permite una `MultiplayerAPI` por rama del árbol) por `127.0.0.1`. |
-| **O-1** | El edificio (Qwen) en Ciudad Verde como agregado, la puerta y el interior con enfermera, tienda y recepcionista. | Autotest: entrar y salir por la puerta, curar, comprar, la recepcionista abre la sala. Vitrina con capturas. |
+| **O-1** ✅ | El edificio (Qwen) en Ciudad Verde como agregado, la puerta y el interior con enfermera, tienda y recepcionista. | Autotest: entrar y salir por la puerta, curar, comprar, la recepcionista abre la sala. Vitrina con capturas. |
 | **O-2** | Sala: pantalla de conectados, desafiar, aceptar o rechazar, elegir equipo, VS. | Autotest con 2 clientes de prueba que se desafían. |
 | **O-3** | Pelea online: el servidor simula, `NetCombatInput`, fotos del estado + `Events`, interpolación, fin de la pelea y desconexión. | Autotest: 2 clientes con bots (`BotCombatInput` del lado del cliente) pelean hasta que gana uno; los dos ven lo mismo. |
 | **O-4** | Resultado: EXP para cada uno, vuelta al edificio, guardado. | Autotest: la EXP sube como en un combate en el mundo. |
@@ -111,6 +111,25 @@ para desafiarlo.
   sala; escribe en la consola quién entra y sale).
 - Test `--autotest-online`: servidor + 4 clientes en el mismo proceso, el autoload Net y el modo `--server` en otro
   proceso.
+
+## Hecho: O-1 (2026-10-29)
+- **Edificios y zonas agregados** (`ExtraContent`, `scripts/world/extra_content.gd`): `data/world/extra/zones/*.tres`
+  (ZoneEntry) y `data/world/extra/buildings/*.tres` (`ExtraBuilding`: zona, celda, tamaño, sprite, puerta, destino).
+  `DB` los suma a la región al arrancar (zona nueva + puerta en la zona de afuera, marcada `"extra": true`); `World` pone
+  el sprite, la colisión (`Body`) y las celdas sólidas (meta `extra_solid`, la lee `MapRules.cell_physics`) al cargar la
+  zona. El editor de mapas guarda la región con `ExtraContent.without_extras` (kanto.tres queda igual). **No se tocó
+  ninguna zona importada.**
+- **El edificio**: `sprites/props/centro_online.png` (80×64, Qwen Edit 2511 a partir del Centro Pokémon de Ciudad
+  Verde, lo hizo la sesión de ComfyUI; variantes en su carpeta). En Ciudad Verde, celdas (64, 43) a (68, 46), a la
+  derecha del Centro; puerta (66, 46).
+- **El interior** `centro_online` ("Centro de Combate Online"): por ahora una copia del Centro Pokémon de Ciudad Verde
+  (`scenes/world/extra/centro_online.tscn`), debajo de todo el mundo (origen 0, 3300). Se puede retocar con el editor
+  de mapas. Personas (`data/story/npcs/centro_online_*.tres`, escritas a mano: no salen de `build_story_npcs.py`):
+  enfermera (cura y marca adónde volvés si perdés), vendedor (`data/shops/online.tres`, la lista de Ciudad Verde) y la
+  recepcionista del Club de Cable (acción `online`: `OnlineDesk`, `world.online`; conecta, dice cuántos hay, "Ver quién
+  está" con sus equipos, "Desconectarme").
+- **Opciones → Online**: tu nombre y el servidor (`host` o `host:puerto`; `Net.set_server`), en `user://online.cfg`.
+- Test `--autotest-online-building`; vitrina `--showcase-online-building`.
 
 ## Preguntas abiertas (para cuando lleguemos)
 - **Vida después de la pelea**: ¿el daño queda como en el mundo (te curás con la enfermera de al lado) o se vuelve como

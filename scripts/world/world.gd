@@ -29,6 +29,7 @@ var story: StoryDirector
 ## Torneo de Ciudad Plateada (docs/PLAN_TORNEO.md).
 var tournament: Tournament
 var mart: Mart
+var online: OnlineDesk
 var evolutions: EvolutionDirector
 var field_moves: FieldMoves
 var vermilion_puzzle: VermilionGymPuzzle
@@ -83,6 +84,9 @@ func _ready() -> void:
 	mart = Mart.new()  # el mercado: Tiendas Pokémon (data/shops)
 	mart.name = "Mart"
 	add_child(mart)
+	online = OnlineDesk.new()  # la recepcionista del Centro de Combate Online (docs/PLAN_ONLINE.md)
+	online.name = "OnlineDesk"
+	add_child(online)
 	evolutions = EvolutionDirector.new()  # evoluciones al subir de nivel o con piedras
 	evolutions.name = "EvolutionDirector"
 	add_child(evolutions)
@@ -102,6 +106,7 @@ func _ready() -> void:
 	Events.zone_entered.connect(func(z: ZoneEntry): GameState.visit_zone(z.id))
 	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ZoneBounds.attach(node, z, streamer.world_data))
+	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ExtraContent.attach(node, z, streamer.world_data))
 	# Sombras largas de casas, árboles y cercas según el sol (DayNight; solo afuera).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ZoneShadows.attach(node, z, streamer.world_data))
 	# Ventanas prendidas de noche (DayNight; solo afuera).
@@ -114,6 +119,7 @@ func _ready() -> void:
 		for z in streamer.world_data.zones:
 			if z.id == id:
 				ZoneBounds.attach(streamer.loaded[id], z, streamer.world_data)
+				ExtraContent.attach(streamer.loaded[id], z, streamer.world_data)
 				ZoneShadows.attach(streamer.loaded[id], z, streamer.world_data)
 				ZoneLights.attach(streamer.loaded[id], z, streamer.world_data)
 				CaveLights.attach(streamer.loaded[id], z, streamer.world_data)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/shop_data.gd" id="1_s"]
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_d"]
+[ext_resource type="Resource" path="res://data/items/poke_ball.tres" id="2_i"]
+[ext_resource type="Resource" path="res://data/items/pocion.tres" id="3_i"]
+[ext_resource type="Resource" path="res://data/items/antidoto.tres" id="4_i"]
+[ext_resource type="Resource" path="res://data/items/antiparalizador.tres" id="5_i"]
+[ext_resource type="Resource" path="res://data/items/antiquemar.tres" id="6_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "online"
+display_name = "Tienda del Centro de Combate Online"
+items = Array[ExtResource("1_d")]([ExtResource("2_i"), ExtResource("3_i"), ExtResource("4_i"), ExtResource("5_i"), ExtResource("6_i")])

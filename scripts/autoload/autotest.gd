@@ -176,6 +176,13 @@ func _ready() -> void:
 		add_child(eq)
 		eq.run.call_deferred()
 		return
+	if "--autotest-online-building" in OS.get_cmdline_user_args() or "--showcase-online-building" in OS.get_cmdline_user_args():
+		set_process(false)
+		var ob := OnlineBuildingTests.new()
+		ob.autotest = self
+		add_child(ob)
+		(ob.showcase if "--showcase-online-building" in OS.get_cmdline_user_args() else ob.run).call_deferred()
+		return
 	if "--autotest-online" in OS.get_cmdline_user_args():
 		set_process(false)
 		var ol := OnlineTests.new()

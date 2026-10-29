@@ -72,6 +72,24 @@ func _ready() -> void:
 				Sound.sfx("menu_mover"))
 		h.add_child(slider)
 		box.add_child(h)
+	# Online (de esta PC, no de la partida): user://online.cfg (Net). Se usa en el Centro de Combate Online.
+	box.add_child(UiStyle.label("Online", 16))
+	var online := HBoxContainer.new()
+	online.add_theme_constant_override("separation", 10)
+	var name_edit := LineEdit.new()
+	name_edit.placeholder_text = "Tu nombre (%s)" % SaveManager.current_name
+	name_edit.text = Net.player_name
+	name_edit.max_length = NetPeer.NAME_MAX
+	name_edit.custom_minimum_size.x = 200
+	name_edit.text_changed.connect(func(t: String): Net.player_name = t; Net.save_config())
+	online.add_child(name_edit)
+	var addr_edit := LineEdit.new()
+	addr_edit.placeholder_text = "Servidor (ej. 192.168.0.10:%d)" % NetPeer.DEFAULT_PORT
+	addr_edit.text = "%s:%d" % [Net.address, Net.port]
+	addr_edit.custom_minimum_size.x = 260
+	addr_edit.text_changed.connect(func(t: String): Net.set_server(t); Net.save_config())
+	online.add_child(addr_edit)
+	box.add_child(online)
 	var settings := UiStyle.button("Ajustes del juego…", 260)
 	settings.tooltip_text = "Experiencia, dinero, captura, daño, vida, salvajes, curación y la IA personalizada (por partida)."
 	settings.pressed.connect(func():

@@ -52,6 +52,7 @@ func _ready() -> void:
 		fight_styles[st.species_id] = st
 	type_chart = load("res://data/types/type_chart.tres")
 	config = load("res://data/config/game_config.tres")
+	ExtraContent.apply(config.world)  # edificios e interiores agregados (sin tocar kanto.tres: online, O-1)
 	_index_moves()
 
 

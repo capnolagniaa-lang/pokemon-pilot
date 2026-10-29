@@ -84,6 +84,22 @@ static func game_version() -> String:
 	return "%d-%08x" % [NetPeer.PROTOCOL, hash("|".join(parts))]
 
 
+## "host" o "host:puerto" (como lo escribe el jugador en Opciones). Vacío = la de siempre.
+func set_server(text: String) -> void:
+	var t := text.strip_edges()
+	if t == "":
+		address = DEFAULT_ADDRESS
+		port = NetPeer.DEFAULT_PORT
+		return
+	var i := t.rfind(":")
+	if i > 0 and t.substr(i + 1).is_valid_int():
+		address = t.substr(0, i)
+		port = clampi(int(t.substr(i + 1)), 1, 65535)
+	else:
+		address = t
+		port = NetPeer.DEFAULT_PORT
+
+
 func save_config() -> void:
 	var cfg := ConfigFile.new()
 	cfg.set_value("online", "address", address)

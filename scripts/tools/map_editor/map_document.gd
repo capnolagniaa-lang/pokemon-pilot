@@ -778,7 +778,8 @@ func save(path: String = "", save_region: bool = true) -> Error:
 	if err != OK:
 		return err
 	if save_region and region_dirty:
-		err = ResourceSaver.save(world, ZoneBuilder.WORLD_PATH)
+		# Sin los edificios e interiores agregados (ExtraContent): esos viven en data/world/extra/.
+		err = ResourceSaver.save(ExtraContent.without_extras(world), ZoneBuilder.WORLD_PATH)
 		if err != OK:
 			return err
 		region_dirty = false
