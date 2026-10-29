@@ -68,6 +68,7 @@ const PAGES := [
 		"Equipo, Mochila, Caja, Pokédex y Tarjeta de entrenador.",
 		"Guardar: guardá seguido. En combate el menú se abre reducido y la pelea queda en pausa.",
 		"Online: en Ciudad Verde, al lado del Centro Pokémon, está el Centro de Combate Online para pelear con tus amigos.",
+		"Ctrl + Shift + G: consola de Game Master (EXP, niveles, objetos, volar para mirar el mapa...; no está en la versión portable). Escribí ayuda.",
 		"¡Listo! Andá a buscar tu primer Pokémon.",
 	]],
 ]

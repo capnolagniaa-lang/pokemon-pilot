@@ -39,6 +39,9 @@ var balloon: BalloonTravel
 var arena: TrainerBattle
 ## Hora del juego y luz del mundo según la hora (docs/PLAN_DIA_NOCHE.md).
 var day_night: DayNight
+## Consola de Game Master (Ctrl+Shift+G; no en la versión portable) y su modo vuelo.
+var gm_console: GmConsole
+var gm_flight: GmFlight
 
 
 func _ready() -> void:
@@ -107,6 +110,13 @@ func _ready() -> void:
 	day_night = DayNight.new()
 	day_night.name = "DayNight"
 	add_child(day_night)
+	gm_flight = GmFlight.new()  # "volar" de la consola de Game Master
+	gm_flight.name = "GmFlight"
+	add_child(gm_flight)
+	if GmConsole.enabled():
+		gm_console = GmConsole.new()  # Ctrl+Shift+G
+		gm_console.name = "GmConsole"
+		add_child(gm_console)
 	var cursor := CrosshairCursor.new()  # el mouse es una mira roja mientras jugás
 	cursor.name = "CrosshairCursor"
 	add_child(cursor)

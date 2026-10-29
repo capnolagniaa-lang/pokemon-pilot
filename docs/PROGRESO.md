@@ -6,6 +6,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Consola de Game Master (2026-10-29, pedido del usuario)**: Ctrl+Shift+G (no en la versión portable). Pausa el juego;
+  comandos (`GmCommands`): `exp`, `nivel`, `curar` (sin cambiar adónde volvés al perder), `dinero`, `objeto`, `pokemon`,
+  `hora`, `volar`, `ayuda`. `volar` (`GmFlight`, `world.gm_flight`) = cámara libre con el juego en pausa (WASD, Shift,
+  rueda = zoom hasta 1×); el entrenador no se mueve y las zonas que cruza la cámara **no quedan visitadas** (Mapa, globos):
+  se restauran al volver con Esc. Test: `--autotest-gm`.
 - **Globos aerostáticos (2026-10-29, pedido del usuario)**: en cada ciudad con Centro Pokémon hay un globo (sprite de
   Qwen-Image + LoRA MOSS, `sprites/props/globo.png`) y su piloto. Hablándole elegís una ciudad que ya visitaste (en el
   modo libre, cualquiera), gratis, y el globo sube y vuela por encima de las rutas hasta allá (zona por zona, por el medio

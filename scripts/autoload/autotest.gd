@@ -89,6 +89,13 @@ func _ready() -> void:
 		add_child(k4)
 		k4.run.call_deferred()
 		return
+	if "--autotest-gm" in OS.get_cmdline_user_args():
+		set_process(false)
+		var gmt := GmTests.new()
+		gmt.autotest = self
+		add_child(gmt)
+		gmt.run.call_deferred()
+		return
 	if "--autotest-balloon" in OS.get_cmdline_user_args() or "--showcase-balloon" in OS.get_cmdline_user_args():
 		set_process(false)
 		var bt := BalloonTests.new()
