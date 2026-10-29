@@ -595,6 +595,16 @@ func _drop(message: String) -> void:
 	_set_state("offline", message)
 
 
+## Cliente: ida y vuelta al servidor en ms (lo mide ENet todo el tiempo; -1 si no hay conexión).
+func ping_ms() -> int:
+	if is_server or _api == null:
+		return -1
+	var enet := _api.multiplayer_peer as ENetMultiplayerPeer
+	if enet == null or enet.get_peer(1) == null:
+		return -1
+	return int(enet.get_peer(1).get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME))
+
+
 # --- Los dos -------------------------------------------------------------------------------
 
 ## Corta todo (cliente: se desconecta; servidor: deja de escuchar).

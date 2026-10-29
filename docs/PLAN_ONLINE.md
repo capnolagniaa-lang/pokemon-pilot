@@ -95,6 +95,15 @@ para desafiarlo.
 | **O-5** ✅ | Poner el servidor: `build_portable.py --server` (un ejecutable de servidor), guía para correrlo en una PC (con el puerto abierto en el router) o en un servidor en la nube gratis (Oracle Cloud Always Free). Dirección del servidor en Opciones (con una por defecto). | Probarlo de verdad con un amigo. |
 | O-6 (después) | Predicción del movimiento propio, ping en pantalla, chat rápido o emotes, sala compartida (verse caminando), nivel 50 opcional. | — |
 
+## Hecho: parte de la O-6 (2026-10-29, pedido del usuario)
+- **Tu golpe se ve al instante**: el rival en tu pantalla tiene hurtbox, pero conectada a `OnlineBattle._on_predicted_hit`
+  (no a `Creature._on_hit`): chispa, freno del impacto, stagger y empujón al tocarlo, sin sacarle vida (la vida, el
+  estado y el debilitado siguen llegando del servidor en el evento "hit", que no vuelve a empujarlo si ya lo adivinaste:
+  `PREDICTED_WINDOW`). A vos no te pega nada local.
+- **Ping en pantalla** durante la pelea (`Net.ping_ms`, ida y vuelta de ENet; verde ≤80 ms, amarillo ≤150, rojo más).
+- Antes (mismo día): el stagger y el empuje llegan con el evento "hit" y 30 fotos por segundo; 1-6 = el equipo de la pelea
+  en el orden elegido (protocolo 4); la barra del equipo arriba a la derecha.
+
 ## Hecho: un Centro por ciudad (2026-10-29)
 - Pedido del usuario: un Centro de Combate Online en cada ciudad. `tools/build_online_centers.py` copia el de Ciudad
   Verde (edificio, interior debajo del mundo y sus 3 personas) a Plateada, Celeste, Carmín, Lavanda, Azulona, Azafrán,

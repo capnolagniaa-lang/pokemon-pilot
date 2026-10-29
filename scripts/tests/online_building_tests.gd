@@ -206,8 +206,17 @@ func _lobby_tests(server: NetPeer, lobby: OnlineLobbyScreen, desk: StoryNPC) -> 
 	r["En la arena: tu Pokémon y el del rival (en tus enemigos, no se atrapa)"] = is_instance_valid(battle.foe) \
 		and battle.foe.instance.species.id == "magikarp" and world.combat.enemies.has(battle.foe) and battle.foe.owner_name == "Gary" \
 		and world.companion.instance == mon
-	r["Acá los golpes no pegan (los decide el servidor)"] = not world.companion.get_node("Hurtbox").monitorable \
-		and not battle.foe.get_node("Hurtbox").monitorable
+	# Tu golpe al rival se ve al instante (chispa, stagger) pero la vida la saca el servidor; a vos no te pega nada local.
+	var foe_hp := battle.foe.health.hp()
+	var dmg_moves: Array = world.companion.moves.slots.filter(func(m): return m != null and m.power > 0.0)
+	var guess := HitInfo.from(world.companion, dmg_moves[0])
+	guess.origin = world.companion.global_position
+	battle.foe.get_node("Hurtbox").receive(guess)
+	r["Acá los golpes no sacan vida (los decide el servidor), pero tu golpe se ve al instante"] = \
+		not world.companion.get_node("Hurtbox").monitorable and is_equal_approx(battle.foe.health.hp(), foe_hp) \
+		and battle.foe.has_meta("predicted_at") and Net.ping_ms() >= 0
+	print("[online-edificio] adivinado: vida %s -> %s, marca %s, ping %d" % [foe_hp, battle.foe.health.hp(),
+		battle.foe.has_meta("predicted_at"), Net.ping_ms()])
 	r["En la pelea online no hay pausa"] = not world.pause_menu.try_open() and not get_tree().paused
 	var hits := [0]
 	Events.online_battle_event.connect(func(_m, e): if e.t == "hit": hits[0] += 1)

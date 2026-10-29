@@ -108,6 +108,11 @@ func is_online() -> bool:
 	return client.state == "online"
 
 
+## Ida y vuelta al servidor (ms), o -1 sin conexión.
+func ping_ms() -> int:
+	return client.ping_ms() if is_online() else -1
+
+
 func display_name() -> String:
 	return NetPeer.clean_name(player_name if player_name.strip_edges() != "" else SaveManager.current_name)
 

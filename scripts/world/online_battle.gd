@@ -19,6 +19,10 @@ const OWN_LERP := 0.12
 const SNAP := 96.0
 ## Esperando el inicio del servidor.
 const START_TIMEOUT := 10.0
+## Freno del impacto de un golpe adivinado (como combat_feedback.gd) y cuánto vale "lo adiviné" cuando llega el del servidor.
+const HITSTOP_NORMAL := 0.045
+const HITSTOP_STRONG := 0.09
+const PREDICTED_WINDOW := 0.5
 
 var world: Node
 var active := false
@@ -232,8 +236,11 @@ func _on_event(mid: int, ev: Dictionary) -> void:
 			if is_instance_valid(c):
 				_set_hp(c, float(ev.hp))
 				c.hitstun_left = maxf(c.hitstun_left, float(ev.get("hs", 0.0)))  # el stagger, ya (no en la próxima foto)
-				if ev.get("kb") is Vector2:
+				var guessed := Time.get_ticks_msec() / 1000.0 - float(c.get_meta("predicted_at", -10.0)) < PREDICTED_WINDOW
+				if ev.get("kb") is Vector2 and not guessed:  # (si ya lo empujó tu pantalla, no otra vez)
 					c.knockback = ev.kb
+				if not guessed:
+					c.sprite.flash()
 				Events.creature_damaged.emit(c, float(ev.amount) * c.health.max_hp(), null)
 				_drop_projectiles_near(c.global_position)
 		"faint":
@@ -334,7 +341,7 @@ func _spawn_foe(index: int, at: Vector2) -> void:
 	c.position = at
 	world.entities.add_child(c)
 	c.machine.transition_to.call_deferred("controlled")
-	_no_local_hits(c)
+	_predict_hits(c)
 	c.target = world.companion
 	if not world.combat.enemies.has(c):
 		world.combat.enemies.append(c)
@@ -342,7 +349,43 @@ func _spawn_foe(index: int, at: Vector2) -> void:
 	Events.message_requested.emit("¡%s saca a %s!" % [c.owner_name, inst.display_name()])
 
 
-## Acá los golpes no pegan (los decide el servidor): sin hurtbox.
+## El rival en tu pantalla: tus golpes lo tocan (para que se sienta al instante) pero no le sacan vida (eso lo decide el
+## servidor y llega en el evento "hit", unos ms después): solo la chispa, el freno del impacto, el stagger y el empujón.
+func _predict_hits(c: Creature) -> void:
+	var hb: Hurtbox = c.get_node_or_null("Hurtbox")
+	if hb == null:
+		return
+	if hb.hit_received.is_connected(c._on_hit):
+		hb.hit_received.disconnect(c._on_hit)
+	hb.hit_received.connect(_on_predicted_hit.bind(c))
+
+
+func _on_predicted_hit(hit: HitInfo, c: Creature) -> void:
+	if not _going or not _end.is_empty() or not is_instance_valid(c) or c.is_down():
+		return
+	if hit.attacker != world.companion or hit.move.power <= 0.0 or c.health.is_invulnerable():
+		return
+	var now := Time.get_ticks_msec() / 1000.0
+	if hit == c.get_meta("predicted_hit", null) and now - float(c.get_meta("predicted_at", 0.0)) < 0.12:
+		return  # (los ticks de un canalizado: una chispa cada tanto, no en cada cuadro)
+	c.set_meta("predicted_hit", hit)
+	c.set_meta("predicted_at", now)
+	c.sprite.flash()
+	c.sprite.play_once("Hurt", 0.25)
+	c._apply_hitstun(hit, 1.0)
+	if hit.knockback != 0.0:
+		c.knockback = (c.global_position - hit.origin).normalized() * hit.knockback
+	var el := hit.move.element
+	Fx.burst(c.get_parent(), c.global_position + Vector2(0, -8), el.hdr(el.color), 8, 70.0)
+	var impact := DB.vfx_for(hit.move, true)
+	if impact != null:
+		VfxSprite.burst(c.get_parent(), impact, c.global_position + Vector2(0, -8))
+	var strong := hit.move.knockback >= Creature.STAGGER_KNOCKBACK
+	Events.hitstop.emit(HITSTOP_STRONG if strong else HITSTOP_NORMAL)
+	Events.camera_shake.emit(2.0 + (2.0 if strong else 0.0))
+
+
+## Tu Pokémon: acá los golpes del rival no pegan (los decide el servidor): sin hurtbox.
 func _no_local_hits(c: Creature) -> void:
 	var hb: Area2D = c.get_node_or_null("Hurtbox")
 	if hb != null:

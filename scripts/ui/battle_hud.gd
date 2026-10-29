@@ -62,6 +62,7 @@ func _draw() -> void:
 		_draw_moves(c)
 		_draw_enemy()
 		_draw_team()
+		_draw_ping()
 	if not GameState.party.is_empty():
 		_draw_items()
 	_draw_message()
@@ -241,6 +242,19 @@ func _draw_team() -> void:
 			Color(1, 1, 1, 0.4) if down else Color(1, 1, 1, 0.95))
 		var ratio := clampf(inst.hp / inst.max_hp(), 0.0, 1.0)
 		_bar(Rect2(cell.position.x + 3, cell.end.y - 9, cell.size.x - 6, 5), ratio, _hp_color(ratio))
+
+
+## En la pelea online: el ping al servidor (ida y vuelta), para saber si un lag es de la conexión. Verde hasta 80 ms,
+## amarillo hasta 150, rojo más.
+func _draw_ping() -> void:
+	var online = _world.get("online")
+	if online == null or online.battle == null or not online.battle.active:
+		return
+	var ms := Net.ping_ms()
+	var text := "Ping: sin conexión" if ms < 0 else "Ping %d ms" % ms
+	var col := Color(1, 0.45, 0.4) if ms < 0 or ms > 150 else (Color(1.0, 0.85, 0.3) if ms > 80 else Color(0.45, 0.95, 0.5))
+	draw_string(font, Vector2(0, 162), text, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 18, 14, Color(0, 0, 0, 0.7))
+	draw_string(font, Vector2(0, 161), text, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 19, 14, col)
 
 
 func _draw_message() -> void:
