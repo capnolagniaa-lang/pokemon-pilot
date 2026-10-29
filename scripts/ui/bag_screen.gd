@@ -198,8 +198,10 @@ func _open_chooser(it: ItemData) -> void:
 		var comp: Creature = world.companion if world != null and is_instance_valid(world.companion) and world.companion.instance == inst else null
 		var statuses: StatusEffects = comp.statuses if comp != null else null
 		var useful := it.can_use_on(inst, statuses.active.keys() if statuses != null else [])
-		var b := UiStyle.button("%s  Nv. %d   PS %d/%d%s" % [inst.display_name(), inst.level, ceili(inst.hp), ceili(inst.max_hp()),
-			"  (debilitado)" if inst.hp <= 0.0 else ""], 420)
+		var note := "  (debilitado)" if inst.hp <= 0.0 else ""
+		if it.teaches_move != null:  # como en FireRed: si la puede aprender
+			note = "  · Puede aprenderla" if useful else ("  · Ya la sabe" if inst.species.tm_moves.has(it.teaches_move) else "  · No puede")
+		var b := UiStyle.button("%s  Nv. %d   PS %d/%d%s" % [inst.display_name(), inst.level, ceili(inst.hp), ceili(inst.max_hp()), note], 420)
 		b.disabled = not useful
 		b.pressed.connect(_use.bind(it, inst, statuses))
 		box.add_child(b)

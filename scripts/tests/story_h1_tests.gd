@@ -172,11 +172,25 @@ func run() -> void:
 		await _until(func(): return not world.arena.active or (is_instance_valid(world.arena.foe) and not world.arena.foe.is_down()), 6.0)
 	await _until(func(): return not world.arena.active and not world.story.busy, 15.0)
 	r["Brock te da la Medalla Roca y la MT39"] = GameState.has_flag("medalla_roca") and GameState.item_count("mt39") == 1
-	var mon: CreatureInstance = GameState.party[0]
-	var msg := GameState.use_item_on("mt39", mon)
-	r["La MT39 enseña Tumba Rocas (y se gasta)"] = msg != "" and mon.learned_moves().has(DB.moves["tumba_rocas"]) 		and GameState.item_count("mt39") == 0
+	# MT: solo a los que la aprenden en FireRed, y no se gasta (bug y pedido del usuario 2026-10-29: Nidoking no podía
+	# aprender Tumba Rocas y Kadabra sí Excavar; la comprobación estaba al revés).
+	var starter: CreatureInstance = GameState.party[0]
+	var nidoking := CreatureInstance.create(DB.species["nidoking"], 30)
+	var kadabra := CreatureInstance.create(DB.species["kadabra"], 20)
+	GameState.party.append(nidoking)
+	GameState.party.append(kadabra)
+	var rock: MoveData = DB.moves["tumba_rocas"]
+	r["MT39 Tumba Rocas: Nidoking puede, Kadabra y tu inicial no (como en FireRed)"] = DB.items["mt39"].can_use_on(nidoking) \
+		and not DB.items["mt39"].can_use_on(kadabra) and not DB.items["mt39"].can_use_on(starter)
+	r["MT28 Excavar: Nidoking puede, Kadabra no"] = DB.items["mt28"].can_use_on(nidoking) and not DB.items["mt28"].can_use_on(kadabra)
+	r["Usarla en uno que no la aprende: no hace nada"] = GameState.use_item_on("mt39", kadabra) == "" and GameState.item_count("mt39") == 1
+	var msg := GameState.use_item_on("mt39", nidoking)
+	r["La MT39 le enseña Tumba Rocas a Nidoking y NO se gasta"] = msg != "" and nidoking.taught_moves.has(rock) \
+		and GameState.item_count("mt39") == 1
+	r["...y después ya la sabe (no se usa dos veces en el mismo)"] = not DB.items["mt39"].can_use_on(nidoking)
 	var again := GameState.from_dict(GameState.to_dict())
-	r["Lo aprendido por MT se guarda"] = again and GameState.party[0].learned_moves().has(DB.moves["tumba_rocas"])
+	r["Lo aprendido por MT se guarda"] = again and GameState.party[1].taught_moves.has(rock)
+	GameState.party.resize(1)
 	r["Con la medalla, la Guía pasa al capítulo 2 (Mt. Moon)"] = StoryGuide.current().get("title", "") == "El Mt. Moon"
 	var card := TrainerCard.new()
 	add_child(card)

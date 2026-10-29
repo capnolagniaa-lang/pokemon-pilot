@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **MT arregladas (2026-10-29, bug y pedido del usuario)**: la comprobación de "¿la puede aprender?" estaba al revés
+  (miraba si el ataque ya estaba disponible, y todas las MT de la especie lo están): Nidoking no podía aprender Tumba Rocas
+  y Kadabra sí Excavar. Ahora `CreatureInstance.can_learn_tm`: solo si su especie la aprende en FireRed (`tm_moves`,
+  verificado contra pret/pokefirered `tmhm_learnsets.h` y Bulbapedia: 0 diferencias en las 386) y no se la enseñaron
+  ni la sabe por nivel. **Las MT no se gastan** (sirven para todos los que la aprendan). La Mochila muestra "Puede
+  aprenderla / Ya la sabe / No puede", como FireRed. Test: `--autotest-story-h1`.
 - **Arreglo: EXP al matar de un golpe o mientras huye (2026-10-29, bug del usuario)**: la EXP solo contaba si el salvaje
   estaba en los enemigos del combate (entra recién cuando te ataca, y sale si deja de apuntarte); al matarlo de un golpe,
   el "se debilitó" sale antes que el "recibió daño". Ahora la criatura guarda quién le pegó último (`Creature.last_hit_by`)

@@ -8,7 +8,7 @@
 script = ExtResource("1_s")
 id = "mt28"
 display_name = "MT28 Excavar"
-description = "La MT que el Team Rocket robó en Ciudad Celeste. Enseña Excavar: se mete bajo tierra y sale pegando donde apuntás. Se gasta al usarla."
+description = "La MT que el Team Rocket robó en Ciudad Celeste. Enseña Excavar: se mete bajo tierra y sale pegando donde apuntás. No se gasta: sirve para todos los Pokémon que la puedan aprender."
 icon = ExtResource("2_i")
 pocket = 0
 sort_order = 51

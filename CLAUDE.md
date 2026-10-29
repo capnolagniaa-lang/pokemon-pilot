@@ -149,6 +149,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   "en una charla" tiene que dejar pasar `world.arena.active` (cambio 1-6, C, E). `GameState` no conoce archivos: `to_dict`/`from_dict`.
   Movimientos: `SpeciesData.learnset` (de `tools/build_learnsets.gd`) → `CreatureInstance.equipped_moves` →
   `MoveUser.setup(instance)`. La mecánica de firma sigue saliendo del kit de la especie.
+  **MT** (`ItemData.teaches_move`): **no se gastan**; se pueden usar solo si `CreatureInstance.can_learn_tm` (la especie
+  la aprende en FireRed y no la sabe). Las listas `SpeciesData.tm_moves` coinciden con pret `tmhm_learnsets.h`.
 - **Máquina de estados** genérica `StateMachine` + `State` (`scripts/core/`); los estados son nodos hijos
   con script (`scripts/characters/states`, `scripts/creatures/states`).
 - **Una escena por responsabilidad** (`scenes/`). Entidades usan origen en los pies (y-sort).

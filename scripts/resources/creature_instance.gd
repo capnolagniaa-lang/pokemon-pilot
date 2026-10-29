@@ -94,6 +94,18 @@ func learned_moves() -> Array[MoveData]:
 	return out
 
 
+## ¿Le sirve esta MT? Solo si su especie la aprende en FireRed (`tm_moves`) y todavía no se la enseñaron ni lo sabe
+## por nivel. (Antes miraba `learned_moves`, que ya trae todas las MT de su especie: quedaba al revés, bug del usuario
+## 2026-10-29: Nidoking no podía aprender Tumba Rocas y Kadabra sí Excavar.)
+func can_learn_tm(m: MoveData) -> bool:
+	if m == null or not species.tm_moves.has(m) or taught_moves.has(m):
+		return false
+	for e in species.learnset_entries():
+		if e.move == m and e.level <= level:
+			return false
+	return true
+
+
 func can_equip(m: MoveData) -> bool:
 	return m != null and learned_moves().has(m)
 

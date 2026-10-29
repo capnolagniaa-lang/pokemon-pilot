@@ -385,7 +385,7 @@ func pocket_items(pocket: int) -> Array[ItemData]:
 	return out
 
 
-## Usa un objeto sobre un Pokémon del equipo (cura, sana estados, revive) y lo gasta. `statuses` = el componente
+## Usa un objeto sobre un Pokémon del equipo (cura, sana estados, revive) y lo gasta (las MT no). `statuses` = el componente
 ## de estados de ese Pokémon si está afuera (los estados solo existen en el que está en el mundo). Devuelve un
 ## texto para el mensaje, o "" si no sirvió (no se gasta).
 func use_item_on(id: String, inst: CreatureInstance, statuses: StatusEffects = null) -> String:
@@ -428,7 +428,8 @@ func use_item_on(id: String, inst: CreatureInstance, statuses: StatusEffects = n
 				var st: StatusEffect = statuses.active[sid]["status"]
 				statuses.cure(st)
 				parts.append("se curó de %s" % st.display_name.to_lower())
-	remove_item(id)
+	if it.teaches_move == null:
+		remove_item(id)  # las MT no se gastan (pedido del usuario 2026-10-29): sirven para todos los que la aprendan
 	Events.item_used.emit(it, inst)
 	if it.revive_ratio > 0.0:
 		Events.equipment_changed.emit(inst)  # si es el activo, vuelve a salir

@@ -69,7 +69,7 @@ func can_use_on(inst: CreatureInstance, active_statuses: Array = []) -> bool:
 	if is_ball():
 		return false
 	if teaches_move != null:
-		return not inst.learned_moves().has(teaches_move)
+		return inst.can_learn_tm(teaches_move)
 	if level_up > 0:
 		return inst.hp > 0.0 and inst.level < CreatureInstance.MAX_LEVEL
 	if evolves:
