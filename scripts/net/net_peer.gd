@@ -21,7 +21,7 @@ signal battle_state_received(match_id: int, state: Dictionary)
 signal battle_event_received(match_id: int, ev: Dictionary)
 
 ## Sube cuando cambian los mensajes: un juego viejo y uno nuevo no se entienden.
-const PROTOCOL := 3
+const PROTOCOL := 4  # (4: el cambio 1-6 de la pelea online es el lugar en el equipo elegido)
 const DEFAULT_PORT := 24680
 const MAX_PLAYERS := 32
 const NAME_MAX := 16

@@ -205,14 +205,15 @@ func _correct(c, id: int, slack: float, lerp_w: float) -> void:  # (c sin tipo: 
 		c.global_position = c.global_position.lerp(target, lerp_w)
 
 
-## ¿Lo maneja la pelea online? (CombatDirector.switch_to: el cambio lo decide el servidor.)
+## ¿Lo maneja la pelea online? (CombatDirector.switch_to: el cambio lo decide el servidor.) En la pelea, las teclas 1-6
+## son el equipo de la pelea en el orden en que lo elegiste (1 = el primero que elegiste), como lo cuenta el servidor.
 func intercepts_switch(index: int) -> bool:
 	if not active or _applying_switch:
 		return false
-	if _going and index in my_team and _end.is_empty():
-		Net.battle_switch(match_id, my_team.find(index))  # (el servidor cuenta en el orden en que elegiste el equipo)
-	elif index not in my_team:
-		Events.message_requested.emit("Ese Pokémon no está en esta pelea.")
+	if index >= my_team.size():
+		Events.message_requested.emit("En esta pelea tenés %d Pokémon: teclas 1 a %d." % [my_team.size(), my_team.size()])
+	elif _going and _end.is_empty():
+		Net.battle_switch(match_id, index)
 	return true
 
 

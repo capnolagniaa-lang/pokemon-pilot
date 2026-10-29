@@ -145,12 +145,18 @@ func run() -> void:
 		inst.hp = inst.max_hp()
 	var ob: OnlineBattle = world.online.battle
 	ob.my_team.assign([2, 1])
+	# Como en la pelea de verdad: la abriste hablando con la recepcionista, así que la historia queda "ocupada".
+	world.story.busy = true
+	ob.active = true
 	await get_tree().create_timer(1.6).timeout  # (recarga de los cambios)
 	ob._switch_own(1, t.global_position)
 	var second := GameState.active_index
 	await get_tree().create_timer(1.6).timeout
 	ob._switch_own(0, t.global_position)
-	r["Pelea online: el que sale es el del orden en que elegiste el equipo"] = second == 1 and GameState.active_index == 2
+	var third := GameState.active_index
+	ob.active = false
+	world.story.busy = false
+	r["Pelea online: sale el siguiente (en el orden en que elegiste el equipo), aunque la abriste en una charla"] = 		second == 1 and third == 2
 	var n_centers := ExtraContent.buildings.filter(func(x): return x.id.begins_with("centro_online")).size()
 	r["Centro Online en %d ciudades más: se llega, se entra, está la recepcionista y se vuelve" % (n_centers - 1)] = \
 		n_centers >= 9 and bad.is_empty()
