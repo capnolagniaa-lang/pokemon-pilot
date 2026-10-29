@@ -6,6 +6,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **La ficha muestra las MT (2026-10-29, bug del usuario)**: Equipo → ficha → Movimientos solo listaba "Aprende por
+  nivel"; los ataques de MT se podían equipar pero no había dónde elegirlos. Ahora hay una sección "Por MT / MO" (las de
+  su especie en FireRed) y "Enseñados" (lo que le enseñaron y no está en esas listas). `SummaryScreen._move_row`.
+  Test: `--autotest-equip` (Nidoking: Tumba Rocas, Terremoto, Surf; equipar desde la ficha).
 - **MT arregladas (2026-10-29, bug y pedido del usuario)**: la comprobación de "¿la puede aprender?" estaba al revés
   (miraba si el ataque ya estaba disponible, y todas las MT de la especie lo están): Nidoking no podía aprender Tumba Rocas
   y Kadabra sí Excavar. Ahora `CreatureInstance.can_learn_tm`: solo si su especie la aprende en FireRed (`tm_moves`,

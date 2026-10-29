@@ -169,6 +169,18 @@ func _build_moves() -> void:
 	list.add_child(UiStyle.label("Aprende por nivel", 15, UiStyle.TEXT_DIM))
 	for e in _inst.species.learnset_entries():
 		list.add_child(_row(e))
+	# Las MT/MO de su especie (como en FireRed) y lo que le enseñaron aparte (de su preevolución, por ejemplo).
+	# Antes no se mostraban: se podían equipar pero no había dónde elegirlas (bug del usuario 2026-10-29).
+	if not _inst.species.tm_moves.is_empty():
+		list.add_child(UiStyle.label("Por MT / MO", 15, UiStyle.TEXT_DIM))
+		for m in _inst.species.tm_moves:
+			if m != null:
+				list.add_child(_move_row(m, "MO" if m.id in HM_MOVES else "MT", false, 0))
+	var extra := _inst.taught_moves.filter(func(m): return m != null and not _inst.species.tm_moves.has(m) 		and not _inst.species.learnset_entries().any(func(e): return e.move == m))
+	if not extra.is_empty():
+		list.add_child(UiStyle.label("Enseñados", 15, UiStyle.TEXT_DIM))
+		for m in extra:
+			list.add_child(_move_row(m, "  ★", false, 0))
 	var detail_panel := PanelContainer.new()
 	detail_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	mid.add_child(detail_panel)
@@ -181,17 +193,24 @@ func _build_moves() -> void:
 	_show_detail(_inst.equipped_moves[0] if not _inst.equipped_moves.is_empty() else null, 0)
 
 
+## Ataques de las MO (máquinas ocultas) de FireRed: en la lista dicen "MO" en vez de "MT".
+const HM_MOVES := ["corte", "vuelo", "surf", "fuerza", "destello", "golpe_roca", "cascada", "buceo"]
+
+
 func _row(e: LearnsetEntry) -> Button:
-	var m := e.move
-	var locked := e.level > _inst.level
+	return _move_row(e.move, "Nv. %2d" % e.level, e.level > _inst.level, e.level)
+
+
+## Una fila de la lista de ataques: `tag` adelante (Nv. 12, MT, MO), bloqueada si todavía no lo aprendió.
+func _move_row(m: MoveData, tag: String, locked: bool, level: int) -> Button:
 	var b := Button.new()
 	b.focus_mode = Control.FOCUS_ALL
 	b.custom_minimum_size = Vector2(450, 34)
 	b.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	var equipped := _inst.equipped_moves.has(m)
-	b.text = "Nv. %2d   %s%s" % [e.level, m.display_name, "   (equipado)" if equipped else ""]
+	b.text = "%s   %s%s" % [tag, m.display_name, "   (equipado)" if equipped else ""]
 	if locked:
-		b.text = "Nv. %2d   %s   — BLOQUEADO" % [e.level, m.display_name]
+		b.text = "%s   %s   — BLOQUEADO" % [tag, m.display_name]
 		b.add_theme_color_override("font_color", Color(1, 1, 1, 0.35))
 		b.add_theme_color_override("font_focus_color", Color(1, 1, 1, 0.55))
 	else:
@@ -199,7 +218,7 @@ func _row(e: LearnsetEntry) -> Button:
 	b.pressed.connect(_on_row.bind(m, locked, b))
 	b.focus_entered.connect(func():
 		if _pending_move == null:
-			_show_detail(m, e.level))
+			_show_detail(m, level))
 	_rows.append(b)
 	return b
 

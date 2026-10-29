@@ -69,6 +69,28 @@ func run() -> void:
 	await get_tree().process_frame
 	r["Elegir la ranura 1 lo reemplaza ahí"] = mine.equipped_moves[0] == flame and not learn.showing
 
+	# La ficha muestra las MT/MO de su especie y se pueden equipar desde ahí (bug del usuario 2026-10-29: Nidoking
+	# solo mostraba los de nivel).
+	var nido := CreatureInstance.create(DB.species["nidoking"], 30)
+	GameState.party.append(nido)
+	var sheet: Control = load("res://scenes/ui/summary_screen.tscn").instantiate()
+	sheet.party_index = GameState.party.size() - 1
+	add_child(sheet)
+	await get_tree().process_frame
+	sheet._tabs.current_tab = 1
+	await get_tree().process_frame
+	var texts: Array = sheet._rows.map(func(b): return b.text)
+	var rock: MoveData = DB.moves["tumba_rocas"]
+	var rock_row := texts.find("MT   Tumba Rocas")
+	r["Ficha de Nidoking: sección Por MT / MO con sus MT de FireRed (%d filas)" % texts.size()] = rock_row >= 0 \
+		and texts.has("MO   Surf") and texts.has("MT   Terremoto") and texts.size() > nido.species.learnset_entries().size()
+	if rock_row >= 0:
+		sheet._on_row(rock, false, sheet._rows[rock_row])
+		sheet._on_slot(3)
+	r["Desde la ficha se equipa un ataque de MT"] = nido.equipped_moves[3] == rock
+	sheet.queue_free()
+	GameState.party.erase(nido)
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[equipar] %s %s" % ["OK   " if r[key] else "FALLO", key])

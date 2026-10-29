@@ -132,6 +132,10 @@ func showcase_menus() -> void:
 	summary._rows[4].grab_focus()
 	summary._on_row(summary._inst.species.learnset_entries()[4].move, false, summary._rows[4])
 	await get_tree().create_timer(1.5).timeout
+	# La lista baja hasta las MT/MO.
+	var tm_row: Button = summary._rows[summary._inst.species.learnset_entries().size()]
+	tm_row.grab_focus()
+	await get_tree().create_timer(1.0).timeout
 	print("[showcase] tutorial")
 	world.pause_menu.close()
 	world.pause_menu.show_tutorial()
