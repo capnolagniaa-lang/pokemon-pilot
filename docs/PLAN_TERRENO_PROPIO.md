@@ -129,6 +129,15 @@ registro de la sesión). Lo que se reprodujo en Godot:
   `--sun-energy <x>` para calibrar en la vitrina.
 - **Gradación en dos tonos** (`post_process.gdshader`, `split`): lo oscuro recibe el tinte opuesto al de la hora
   (sombras frías con luz cálida).
+- **Corrección (misma tarde)**: la sombra "desplazada" estaba mal (corría la silueta entera a media altura: la copa
+  del árbol flotaba al costado). Para una vista desde arriba lo correcto es la proyección "acostada" de los personajes
+  (cada punto cae al piso según su altura), más larga (`flatten_k` 0,5) y borrosa (5 dibujos corridos). Y las sombras no
+  se veían por el **y-sort de la zona**: el suelo (ColorRect) se agregaba después de las casas y las sombras estaban en
+  (0,0); ahora el suelo va primero (`move_child`) y cada sombra/contacto se pone en la posición de su objeto, un pelo
+  por encima. `--shadow-debug` las pinta de rojo opaco e imprime dónde caen.
+- El arco del sol pasa un poco a la izquierda del centro (`sun_at`: 0,36) para que a mediodía las sombras caigan abajo
+  a la derecha y no justo debajo (donde no se ven); `SHADOW_MIN` 1,0. Horas con más carácter en `KEYS` (7:30 fría,
+  10 y 15 de día, 17 y 18:30 doradas) y `split` 0,9. El suelo lleva manchas grandes de luz y sombra (ruido en el shader).
 - Pendiente para acercarse más a la referencia: verdes más profundos y saturación por hora (hoy el tinte cálido de las
   8 y las 17 deja el pasto lima), empedrado con más variación de color, relieve más marcado (quizá pedirle a Qwen
   versiones iluminadas de izquierda/derecha de cada objeto), y los interiores.

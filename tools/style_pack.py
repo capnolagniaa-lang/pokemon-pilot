@@ -54,9 +54,9 @@ SCENE_CROP = (0.22, 0.22, 0.56, 0.56)
 ## Corrección de tono de los suelos (multiplicador RGB y saturación): Qwen los saca claros y amarillos y el día del juego
 ## (tinte cálido, saturación 1,28) los lava. Por paquete y material; "*" = todos.
 TONE = {
-    "*": {"*": ((0.9, 0.9, 0.9), 0.9)},
-    "campo": {"mat_pasto": ((0.8, 0.95, 0.82), 0.85), "mat_empedrado": ((0.78, 0.76, 0.74), 0.8), "mat_tierra": ((0.9, 0.86, 0.8), 0.9)},
-    "cuento": {"mat_pasto": ((0.82, 0.95, 0.8), 0.9)},
+    "*": {"*": ((0.78, 0.78, 0.78), 0.9)},
+    "campo": {"mat_pasto": ((0.55, 0.74, 0.56), 0.85), "mat_empedrado": ((0.72, 0.7, 0.7), 0.8), "mat_tierra": ((0.8, 0.74, 0.68), 0.9)},
+    "cuento": {"mat_pasto": ((0.56, 0.76, 0.56), 0.9), "mat_empedrado": ((0.75, 0.74, 0.74), 0.8)},
 }
 ## Curva de brillo por paquete (gamma < 1 aclara las sombras): el siniestro sale casi negro de Qwen y en el juego no se
 ## leía contra el suelo.

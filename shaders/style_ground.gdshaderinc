@@ -60,6 +60,9 @@ void fragment() {
 	vec2 px = floor(UV * zone_cells * CELL) + 0.5;
 	int i = shifted(px);
 	vec4 c = sample_mat(i, px);
+	// Manchas grandes y suaves de luz y sombra (el suelo parejo se ve plano; en los HD-2D hay variación amplia).
+	float shade = vnoise(px / 110.0) * 0.55 + vnoise(px / 37.0 + 7.3) * 0.45;
+	c.rgb *= 0.86 + 0.22 * shade;
 	// Borde: si un vecino (corrido igual) es de otro material, se oscurece un poco.
 	if (shifted(px + vec2(1.0, 0.0)) != i || shifted(px + vec2(0.0, 1.0)) != i
 			|| shifted(px - vec2(1.0, 0.0)) != i || shifted(px - vec2(0.0, 1.0)) != i) {

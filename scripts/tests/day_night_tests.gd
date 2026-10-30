@@ -34,7 +34,7 @@ func run() -> void:
 	var m18: Array = DayNight.sun_at(18.0)
 	r["Sombras: a la mañana a la izquierda (%.2f), al mediodía abajo (%.2f), a la tarde a la derecha (%.2f)" % [
 		m7[1].x, m12[1].x, m18[1].x]] = m7[1].x < -0.5 and absf(m12[1].x) < 0.3 and m12[1].y > 0.8 and m18[1].x > 0.5
-	r["Sombras cortas al mediodía (×%.2f) y largas a la mañana (×%.2f)" % [m12[2], m7[2]]] = m12[2] < 1.0 and m7[2] > 1.8
+	r["Sombras cortas al mediodía (×%.2f) y largas a la mañana (×%.2f)" % [m12[2], m7[2]]] = m12[2] <= 1.0 and m7[2] > 1.8
 	r["Las sombras se mueven de a poco (12:00 → 12:06 gira %.2f°)" % rad_to_deg(DayNight.sun_at(12.0)[1].angle_to(
 		DayNight.sun_at(12.1)[1]))] = absf(DayNight.sun_at(12.0)[1].angle_to(DayNight.sun_at(12.1)[1])) > 0.003
 	r["Al ponerse el sol la sombra se desvanece (sin saltos de lado)"] = DayNight.sun_at(19.45)[3] < 0.05 		and DayNight.sun_at(19.55)[3] < 0.05

@@ -21,10 +21,12 @@ const KEYS := [
 	[0.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
 	[4.5, Color(0.38, 0.42, 0.53), Vector3(0.97, 1.00, 1.03), 0.82, 1.11, 0.56, Color(0.85, 0.90, 1.0), 0.04, 0.0, 0.0],
 	[6.0, Color(0.86, 0.80, 0.84), Vector3(1.03, 0.98, 0.98), 1.05, 1.05, 0.40, Color(1.0, 0.72, 0.58), 0.20, 0.14, 0.4],
-	[7.5, Color(0.99, 0.95, 0.89), Vector3(1.04, 1.00, 0.94), 1.20, 1.06, 0.34, Color(1.0, 0.86, 0.62), 0.18, 0.16, 0.9],
+	[7.5, Color(0.90, 0.93, 0.98), Vector3(0.95, 0.99, 1.08), 1.00, 1.05, 0.38, Color(1.0, 0.88, 0.70), 0.22, 0.18, 0.9],
+	[10.0, Color(1.00, 0.98, 0.94), Vector3(1.03, 1.01, 0.95), 1.22, 1.06, 0.33, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0],
 	[12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0],
-	[16.5, Color(1.00, 0.96, 0.89), Vector3(1.05, 1.00, 0.92), 1.25, 1.06, 0.34, Color(1.0, 0.82, 0.55), 0.18, 0.16, 1.0],
-	[18.5, Color(1.00, 0.88, 0.80), Vector3(1.05, 0.97, 0.94), 1.12, 1.07, 0.40, Color(1.0, 0.66, 0.38), 0.26, 0.20, 0.6],
+	[15.0, Color(1.00, 0.97, 0.92), Vector3(1.04, 1.01, 0.93), 1.26, 1.06, 0.34, Color(1.0, 0.86, 0.60), 0.17, 0.14, 1.0],
+	[17.0, Color(1.00, 0.90, 0.76), Vector3(1.12, 0.98, 0.84), 1.25, 1.07, 0.38, Color(1.0, 0.74, 0.44), 0.26, 0.2, 0.8],
+	[18.5, Color(1.00, 0.84, 0.70), Vector3(1.14, 0.92, 0.80), 1.20, 1.08, 0.42, Color(1.0, 0.64, 0.36), 0.30, 0.22, 0.6],
 	[20.0, Color(0.52, 0.48, 0.64), Vector3(0.99, 0.97, 1.03), 0.85, 1.10, 0.52, Color(0.90, 0.60, 0.68), 0.06, 0.0, 0.1],
 	[21.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
 	[24.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
@@ -34,7 +36,7 @@ const KEYS := [
 ## para el lado contrario y su largo sale de la altura (mediodía cortas, amanecer y atardecer muy largas).
 const SUNRISE := 5.5
 const SUNSET := 19.5
-const SHADOW_MIN := 0.75     # largo al mediodía (1 = el de antes)
+const SHADOW_MIN := 1.0      # largo al mediodía
 const SHADOW_MAX := 3.8      # largo con el sol casi en el horizonte
 const SUN_SHADOW_ALPHA := 0.8
 const MOON_SHADOW_ALPHA := 0.25
@@ -132,7 +134,9 @@ static func sun_at(h: float) -> Array:
 	var day := h >= SUNRISE and h < SUNSET
 	var t := (h - SUNRISE) / (SUNSET - SUNRISE) if day 		else fposmod(h - SUNSET, 24.0) / (24.0 - SUNSET + SUNRISE)
 	var height := sin(PI * t)
-	var pos := Vector2(0.45 + 0.8 * cos(PI * t), 0.3 - 0.6 * height)
+	# El arco pasa un poco a la izquierda del centro: a mediodía las sombras caen abajo a la derecha (nunca justo
+	# debajo, donde no se ven), como en los juegos HD-2D.
+	var pos := Vector2(0.36 + 0.8 * cos(PI * t), 0.3 - 0.5 * height)
 	var dir := (Vector2(0.5, 0.5) - pos).normalized()
 	var length := clampf(SHADOW_MIN / maxf(height, 0.01), SHADOW_MIN, SHADOW_MAX)
 	# Pegado al horizonte la sombra se desvanece (así no salta cuando el sol se pone y sale la luna).

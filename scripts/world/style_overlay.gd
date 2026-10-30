@@ -103,10 +103,16 @@ func build() -> void:
 		for x in size.x:
 			var c := Vector2i(x, y)
 			cells.set_pixel(x, y, Color8(_material_at(c, roles, cave, covered), 0, 0))
-	_ground(cells)
+	_ground(cells)  # (se mueve al principio: la zona ordena por Y y el suelo tiene que ir antes que todo)
+	zone.move_child(zone.get_node("StyleGround"), 0)
 	_trees()
 	_cell_pieces(roles)
 	_cave_mouths()
+	if OS.get_cmdline_user_args().has("--shadow-debug"):
+		for sp in _sprites:
+			if sp is Sprite2D and sp.texture != null:
+				var tp: String = (sp.texture.diffuse_texture if sp.texture is CanvasTexture else sp.texture).resource_path.get_file()
+				print("[ovdbg] ", tp, " at ", sp.position, " z=", sp.z_index, " mod=", sp.modulate, " scale=", sp.scale)
 	for name in LAYERS:
 		var l := zone.get_node_or_null(name) as CanvasItem
 		if l != null and l.visible:
@@ -244,8 +250,9 @@ func _sprite(piece: String, feet: Vector2, flip := false, shadows := true) -> Sp
 			_contact(feet, t.get_width() * s.scale.x)
 		var sh := SunShadow.new()  # (no attach_to: agrega diferido y al cambiar de estilo quedaba huérfana)
 		sh.source = s
+		sh.position = feet - Vector2(0, 0.5)  # y-sort de la zona: en su lugar, un pelo antes que el objeto
 		sh.soft = true
-		sh.offset_mode = true
+		sh.flatten_k = 0.5  # un poco más larga que la de los personajes (como en los HD-2D)
 		sh.z_index = SunShadow.Z
 		zone.add_child(sh)
 		_sprites.append(sh)
@@ -256,7 +263,7 @@ func _sprite(piece: String, feet: Vector2, flip := false, shadows := true) -> Sp
 func _contact(feet: Vector2, width: float) -> void:
 	var c := Sprite2D.new()
 	c.texture = _contact_texture()
-	c.position = feet + Vector2(0, -1)
+	c.position = feet + Vector2(0, -0.6)
 	c.scale = Vector2(width * CONTACT_WIDTH, width * CONTACT_WIDTH * 0.32) / c.texture.get_width()
 	c.modulate = Color(0.1, 0.08, 0.16, CONTACT_ALPHA)
 	c.z_index = SunShadow.Z
