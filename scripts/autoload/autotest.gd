@@ -454,6 +454,12 @@ func _overview() -> void:
 		var r := z.world_rect(data.tile_size)
 		bounds = r if bounds.size == Vector2.ZERO else bounds.merge(r)
 		world.streamer.load_around_now(r.get_center())
+	# `--overview-rect x,y,ancho,alto` (en celdas del mundo): solo ese pedazo, de cerca.
+	var args := OS.get_cmdline_user_args()
+	var at := args.find("--overview-rect")
+	if at >= 0 and at + 1 < args.size():
+		var p := args[at + 1].split(",")
+		bounds = Rect2(Vector2(int(p[0]), int(p[1])), Vector2(int(p[2]), int(p[3]))) * Transform2D.IDENTITY.scaled(Vector2.ONE * data.tile_size)
 	world.streamer.target = null
 	world.get_node("PostProcess").visible = false
 	world.get_node("CloudShadows").visible = false
