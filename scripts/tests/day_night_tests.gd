@@ -118,7 +118,8 @@ func run() -> void:
 	r["El entrenador tiene sombra larga"] = trainer_shadow != null and trainer_shadow.source == world.trainer.get_node("Sprite")
 	r["Tu Pokémon tiene sombra larga"] = world.companion != null and world.companion.get_node_or_null("SunShadow") is SunShadow
 
-	# --- Ventanas prendidas (parte C) ---
+	# --- Ventanas prendidas (parte C) --- (con la skin clásica: con una skin repintada las ventanas vienen pintadas)
+	GameState.set_setting("skin", PaintedZone.CLASSIC)
 	r["Hay ventanas detectadas (%d metatiles con vidrio)" % ZoneLights.windows().size()] = ZoneLights.windows().size() > 100
 	GameState.set_setting("time_lock", 23.0)
 	await _start("pueblo_paleta", Vector2i(20, 22))

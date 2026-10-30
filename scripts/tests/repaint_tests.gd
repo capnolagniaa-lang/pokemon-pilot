@@ -6,10 +6,9 @@ extends Node
 ##   godot --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-repaint
 
 const ZONE := "pueblo_paleta"
-const SPOTS := [[Vector2i(56, 12), 12.0], [Vector2i(66, 16), 12.0], [Vector2i(56, 12), 7.0], [Vector2i(56, 12), 18.5],
+const SPOTS := [[Vector2i(56, 12), 12.0], [Vector2i(52, 28), 12.0], [Vector2i(56, 12), 7.0], [Vector2i(56, 12), 18.5],
 	[Vector2i(56, 12), 23.0]]
 const FRAMES := 24
-const ALL := {"": 1, "noche": 1, "atardecer": 1, "manana": 1}
 
 var autotest: Node
 var world: Node
@@ -20,10 +19,7 @@ func run() -> void:
 	r["Hay skins: clásica primero y HD (%s)" % str(PaintedZone.skins())] = PaintedZone.skins().size() >= 2 \
 		and PaintedZone.skins()[0][0] == PaintedZone.CLASSIC
 	r["Pueblo Paleta tiene su imagen en la skin HD"] = PaintedZone.available(ZONE, "hd")
-	r["La hora funde las imágenes de cada momento (12 h la base; 19:30 atardecer con noche)"] = \
-		PaintedZone.blend_at(12.0, ALL).slice(0, 2) == ["", ""] \
-		and PaintedZone.blend_at(19.5, ALL).slice(0, 2) == ["atardecer", "noche"]
-	r["Si faltan momentos, usa la imagen base"] = PaintedZone.blend_at(19.5, {"": 1}).slice(0, 2) == ["", ""]
+	r["La noche pintada se funde al oscurecer (0 de día, 1 de noche cerrada)"] = PaintedZone.night_weight(0.0) == 0.0 		and PaintedZone.night_weight(1.0) == 1.0 and PaintedZone.night_weight(0.7) > 0.0
 	GameState.new_game(DB.species["charmander"])
 	r["Una partida nueva arranca con la skin HD"] = PaintedZone.current() == "hd"
 	await _start(Vector2i(56, 12))
@@ -32,10 +28,10 @@ func run() -> void:
 	r["Se dibuja la imagen en lugar de los tiles"] = pz != null and PaintedZone.covers(town) \
 		and pz.find_child("PaintedGround", true, false) != null \
 		and not town.get_node("Ground").visible and not town.get_node("Overhead").visible
-	var top: CanvasLayer = pz.find_child("PaintedOverheadLayer", true, false) if pz != null else null
-	var bottom: CanvasLayer = pz.find_child("PaintedGroundLayer", true, false) if pz != null else null
-	r["Suelo debajo del mundo y techos/copas encima (tapan al pasar por detrás)"] = top != null and bottom != null \
-		and bottom.layer < 0 and top.layer > 0 and top.layer < 5
+	var top: Sprite2D = pz.find_child("PaintedOverhead", true, false) if pz != null else null
+	var water: Sprite2D = pz.find_child("PaintedWater", true, false) if pz != null else null
+	r["Techos y copas con el z de su capa (tapan al pasar por detrás)"] = top != null 		and top.z_index == town.get_node("Overhead").z_index
+	r["El agua va aparte, con ondas (el estanque)"] = water != null 		and (water.material as ShaderMaterial).get_shader_parameter("water") == true
 	await get_tree().process_frame
 	r["Con skin, sin sombras del mapa ni faroles calculados"] = not town.get_node("SunShadows").visible \
 		and (town.get_node_or_null("StreetLamps") == null or not town.get_node("StreetLamps").visible)

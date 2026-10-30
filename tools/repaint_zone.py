@@ -4,7 +4,7 @@ Sale art/skins/<skin>/<zona>.png (+ .json con la escala y el prompt): la skin de
 juego (PaintedZone la dibuja en lugar de los tiles).
 
 Uso:
-  python -I -B tools/repaint_zone.py <proyecto> <zona> [--skin hd] [--forest 0,1] [--redo 0] [--seed 21] [--width 40] [--overlap 8] [--size 1792]
+  python -I -B tools/repaint_zone.py <proyecto> <zona> [--skin hd] [--forest 0,1] [--redo 0] [--night] [--seed 21] [--width 40] [--overlap 8] [--size 1792]
          [--style "texto extra de estilo"] [--only-stitch]
 
 Pasos: 1) Godot renderiza cada trozo (--overview --overview-rect --clean). 2) Los sube a ComfyUI y encola Qwen.
@@ -42,24 +42,17 @@ FOREST = ("Repaint this top-down 2D RPG screenshot as a beautiful HD-2D game sce
 PALETTE = "Use a natural, harmonious palette: deep natural greens for grass and trees, warm terracotta roofs, cream plaster walls."
 
 
-## Luz horneada por momento del día (--relight): Qwen re-ilumina cada trozo ya repintado y se cose igual. Sale
-## <zona>@<momento>.png; la imagen sin @ es el mediodía.
-## Solo luz, color de la luz y sombras: nada que se pueda "dibujar" (brillitos, rocío, niebla, luciérnagas, partículas),
-## porque Qwen lo pinta encima de la textura (ver docs/QWEN_PROMPTS.md).
-RELIGHT_KEEP = ("Relight this top-down 2D game scene while keeping absolutely everything else identical: the same layout, the "
-                "same buildings, trees, paths, fences, flowers, water and every object at exactly the same position, shape "
-                "and size, the same camera and the same pixel art details and textures. Do not add anything: no new flowers, "
-                "plants, particles, sparkles or details. Only change the lighting, the color of the light and the shadows:")
-RELIGHT = {
-    "manana": "early morning: a low, soft golden sun from the right; every house and tree casts a long soft shadow to the "
-              "left; the shadows are slightly cool blue; the lit sides are warm and pale; the whole scene is a bit cooler "
-              "and softer than at noon, with gentle contrast.",
-    "atardecer": "sunset light: deep orange sun from the left casting long soft shadows to the right, warm rim light on "
-                 "roofs and treetops, purple shade, soft contact shadows and ambient occlusion, a gentle warm glow in the air.",
-    "noche": "night: dark blue moonlit scene, every house window glowing warm yellow and casting a soft pool of light on "
-             "the ground below it, soft contact shadows, ambient occlusion, everything still readable but clearly night. "
-             "No street lamps added, no fireflies, no stars.",
-}
+## Noche (--night): se pinta desde la misma maqueta en una sola pasada, con la luz de noche en el prompt (re-iluminar la
+## pintura de día con Qwen rompe la textura: docs/QWEN_PROMPTS.md). Sale <zona>@noche.png; las ondas, el Daylight y
+## la mezcla con la de día los pone el juego (PaintedZone).
+NIGHT = ("It is night: a calm dark blue moonlit night. Every house window glows warm yellow and casts a soft pool of warm "
+         "light on the ground right in front of it; doors stay closed. Cool blue moonlight from above, deep but readable "
+         "shadows, the scene clearly at night but every shape still visible. No street lamps, no fireflies, no stars, no "
+         "fog, no sparkles, nothing added.")
+## Noche de un trozo de puro bosque: sin ventanas (si no, Qwen inventa casitas con la ventana prendida entre los árboles).
+NIGHT_FOREST = ("It is night: a calm moonlit night. Soft cool blue moonlight from above on the tree crowns, the grass between "
+                "them in deep but readable shade, every tree still clearly visible. No lights at all: no windows, no lamps, "
+                "no houses, no fireflies, no stars, no fog, no sparkles, nothing added.")
 
 
 def zone_rect(root, zone):
@@ -113,7 +106,11 @@ def upload(path):
     return name
 
 
-def queue(image_name, prompt, seed, size, prefix):
+## Qwen-Image 2.1 Turbo (8 pasos): como en la plantilla oficial de ComfyUI (image_qwen_image_2_1_turbo_image_edit).
+TURBO_SIGMAS = "1.0, 0.978453, 0.95418, 0.926626, 0.89508, 0.845148, 0.704534, 0.414568, 0"
+
+
+def queue(image_name, prompt, seed, size, prefix, turbo=False):
     api = {
         "1": {"class_type": "UNETLoader", "inputs": {"unet_name": "qwen_image_2.1_int8_convrot.safetensors", "weight_dtype": "default"}},
         "2": {"class_type": "CLIPLoader", "inputs": {"clip_name": "qwen3vl_8b_w4a8.safetensors", "type": "qwen_image", "device": "default"}},
@@ -124,9 +121,19 @@ def queue(image_name, prompt, seed, size, prefix):
               "negative_prompt": "", "resolution": size, "images.image_1": ["5", 0]}},
         "7": {"class_type": "KSampler", "inputs": {"model": ["4", 0], "positive": ["6", 0], "negative": ["6", 1],
               "latent_image": ["6", 2], "seed": seed, "steps": 25, "cfg": 1.0, "sampler_name": "euler", "scheduler": "simple", "denoise": 1.0}},
+        "7b": None,
         "8": {"class_type": "VAEDecode", "inputs": {"samples": ["7", 0], "vae": ["3", 0]}},
         "9": {"class_type": "SaveImage", "inputs": {"images": ["8", 0], "filename_prefix": prefix}},
     }
+    del api["7b"]
+    if turbo:
+        api["1"]["inputs"]["unet_name"] = "qwen_image_2.1_turbo_int8_convrot.safetensors"
+        api["7"] = {"class_type": "SamplerCustomAdvanced", "inputs": {"noise": ["20", 0], "guider": ["21", 0],
+                    "sampler": ["22", 0], "sigmas": ["23", 0], "latent_image": ["6", 2]}}
+        api["20"] = {"class_type": "RandomNoise", "inputs": {"noise_seed": seed}}
+        api["21"] = {"class_type": "CFGGuider", "inputs": {"model": ["4", 0], "positive": ["6", 0], "negative": ["6", 1], "cfg": 1.0}}
+        api["22"] = {"class_type": "KSamplerSelect", "inputs": {"sampler_name": "euler"}}
+        api["23"] = {"class_type": "ManualSigmas", "inputs": {"sigmas": TURBO_SIGMAS}}
     r = json.load(urllib.request.urlopen(urllib.request.Request(COMFY + "/prompt", json.dumps({"prompt": api}).encode(),
                                                                 {"Content-Type": "application/json"})))
     return r["prompt_id"]
@@ -200,85 +207,102 @@ def main():
     ap.add_argument("zone")
     ap.add_argument("--seed", type=int, default=21)
     ap.add_argument("--width", type=int, default=40, help="ancho de cada trozo en celdas")
+    ap.add_argument("--height", type=int, default=36, help="alto máximo de cada trozo en celdas")
     ap.add_argument("--overlap", type=int, default=8)
     ap.add_argument("--size", type=int, default=1792, help="presupuesto de píxeles de Qwen (lado)")
     ap.add_argument("--style", default=PALETTE)
     ap.add_argument("--skin", default="hd", help="skin del mundo (carpeta art/skins/<skin>/)")
+    ap.add_argument("--quality", action="store_true", help="modelo normal (25 pasos) en vez de Turbo (8): un poco más detalle, 3x más lento")
     ap.add_argument("--only-stitch", action="store_true")
     ap.add_argument("--redo", default="", help="repintar solo estos trozos (ej.: 0,2) y volver a coser")
-    ap.add_argument("--forest", default="", help="trozos que son solo bosque (ej.: 0): prompt de bosque")
-    ap.add_argument("--relight", default="", help="momentos del día a hornear desde lo ya pintado (ej.: manana,atardecer,noche)")
+    ap.add_argument("--forest", default="auto", help="trozos que son solo bosque (ej.: 0), o auto (mira las maquetas)")
+    ap.add_argument("--night", action="store_true", help="pintar la versión de noche (<zona>@noche.png) desde las maquetas")
     a = ap.parse_args()
     root = os.path.abspath(a.root)
     zx, zy, zw, zh = zone_rect(root, a.zone)
     work = os.path.join(root, "out", "repintado", a.zone)
     os.makedirs(work, exist_ok=True)
     open(os.path.join(root, "out", ".gdignore"), "a").close()  # que Godot no importe los cuadros de trabajo
-    xs = chunks(zx, zw, a.width, a.overlap)
-    cw = min(a.width, zw)
-    print("%s: %dx%d celdas, %d trozos de %dx%d en x=%s" % (a.zone, zw, zh, len(xs), cw, zh, xs))
-    prompt = " ".join([KEEP, RICH, a.style])
-    results = []
-    if a.relight:
-        relight(root, a, work, xs, cw, zw, zh)
-        return
+    g = Grid(zx, zy, zw, zh, a.width, a.height, a.overlap)
+    print("%s: %dx%d celdas, %d trozos de %dx%d (filas y=%s, columnas x=%s); trozo i = fila*%d + columna"
+          % (a.zone, zw, zh, len(g.rects), g.cw, g.ch, g.ys, g.xs, len(g.xs)))
+    forest = {int(v) for v in a.forest.split(",") if v.strip()}
+    if a.forest == "auto":
+        forest = {i for i, rect in enumerate(g.rects) if only_trees(os.path.join(work, "maqueta_%d.png" % i))}
+        print("  trozos de puro bosque:", sorted(forest))
     redo = {int(v) for v in a.redo.split(",") if v.strip()} if a.redo else None
+    day = " ".join([KEEP, RICH, a.style])
+    tag = "noche" if a.night else "pintado"
     if not a.only_stitch:
-        ids = []
-        for i, x in enumerate(xs):
+        jobs = []
+        for i, rect in enumerate(g.rects):
             if redo is not None and i not in redo:
-                ids.append(None)
                 continue
             maq = os.path.join(work, "maqueta_%d.png" % i)
-            render_maqueta(root, (x, zy, cw, zh), maq)
-            forest = {int(v) for v in a.forest.split(",") if v.strip()}
-            p = " ".join([FOREST, a.style]) if i in forest else prompt
-            ids.append(queue(upload(maq), p, a.seed, a.size, "repintado/%s_%d" % (a.zone, i)))
+            if not a.night or not os.path.exists(maq):
+                render_maqueta(root, rect, maq)
+            if a.night:
+                base = " ".join([FOREST if i in forest else " ".join([KEEP, RICH]), a.style])
+                base = base.replace("Neutral soft daylight from above, no strong cast shadows, no fog, no vignette.", "")
+                p = base + " " + (NIGHT_FOREST if i in forest else NIGHT)
+            else:
+                p = " ".join([FOREST, a.style]) if i in forest else day
+            jobs.append((i, queue(upload(maq), p, a.seed, a.size, "repintado/%s_%s_%d" % (a.zone, tag, i), turbo=not a.quality)))
             print("  trozo %d encolado" % i, flush=True)
-        for i, pid in enumerate(ids):
-            if pid is None:
-                continue
-            src = wait_output(pid)
-            dst = os.path.join(work, "pintado_%d.png" % i)
-            shutil.copy(src, dst)
+        for i, pid in jobs:
+            shutil.copy(wait_output(pid), os.path.join(work, "%s_%d.png" % (tag, i)))
             print("  trozo %d listo" % i, flush=True)
-    stitch(root, a.skin, a.zone, [os.path.join(work, "pintado_%d.png" % i) for i in range(len(xs))], xs, cw, zw, zh,
-           {"seed": a.seed, "prompt": prompt})
+    name = a.zone + ("@noche" if a.night else "")
+    stitch(root, a.skin, name, g, [os.path.join(work, "%s_%d.png" % (tag, i)) for i in range(len(g.rects))],
+           {"moment": "noche" if a.night else "dia", "seed": a.seed, "prompt": NIGHT if a.night else day,
+            "turbo": not a.quality})
 
 
-def relight(root, a, work, xs, cw, zw, zh):
-    moments = [m.strip() for m in a.relight.split(",") if m.strip()]
-    jobs = []
-    for m in moments:
-        for i in range(len(xs)):
-            src = os.path.join(work, "pintado_%d.png" % i)
-            jobs.append((m, i, queue(upload(src), RELIGHT_KEEP + " " + RELIGHT[m], a.seed, a.size,
-                                     "repintado/%s_%s_%d" % (a.zone, m, i))))
-    print("  %d re-iluminaciones encoladas" % len(jobs), flush=True)
-    for m, i, pid in jobs:
-        shutil.copy(wait_output(pid), os.path.join(work, "luz_%s_%d.png" % (m, i)))
-        print("  %s %d listo" % (m, i), flush=True)
-    for m in moments:
-        stitch(root, a.skin, a.zone + "@" + m, [os.path.join(work, "luz_%s_%d.png" % (m, i)) for i in range(len(xs))],
-               xs, cw, zw, zh, {"moment": m, "prompt": RELIGHT_KEEP + " " + RELIGHT[m]})
+def only_trees(maq_path):
+    """¿La maqueta (si ya existe) es puro verde (árboles y pasto, sin techos, caminos ni agua)? Mira los colores."""
+    if not os.path.exists(maq_path):
+        return False
+    im = Image.open(maq_path).convert("RGB").resize((96, 96))
+    px = list(im.get_flattened_data()) if hasattr(im, "get_flattened_data") else list(im.getdata())
+    # Pasto de ciudad (verde claro, casi blanco) y techos/paredes no cuentan como bosque: verde saturado y oscuro.
+    trees = sum(1 for r, g, b in px if g > r + 20 and g > b + 10 and g < 230)
+    return trees / len(px) > 0.78
 
 
-def stitch(root, skin, name, files, xs, cw, zw, zh, info):
+class Grid:
+    """Trozos de la zona: columnas en x, filas en y, con solapamiento; rects en celdas del mundo."""
+
+    def __init__(self, zx, zy, zw, zh, width, height, overlap):
+        self.cw, self.ch = min(width, zw), min(height, zh)
+        self.xs = chunks(zx, zw, width, overlap)
+        self.ys = chunks(zy, zh, height, overlap)
+        self.zx, self.zy, self.zw, self.zh = zx, zy, zw, zh
+        self.rects = [(x, y, self.cw, self.ch) for y in self.ys for x in self.xs]
+
+
+def stitch(root, skin, name, g, files, info):
     paints = [Image.open(f).convert("RGB") for f in files]
-    # Escala común: píxeles por celda del primer trozo.
-    ppc = paints[0].width / cw
-    H = round(zh * ppc)
-    paints = [p.resize((round(cw * ppc), H), Image.LANCZOS) for p in paints]
-    full = paints[0]
-    for i in range(1, len(xs)):
-        ov_cells = (xs[i - 1] + cw) - xs[i]
-        # Lo que ya está cosido termina en xs[i-1]+cw; el trozo nuevo empieza ov_cells antes.
-        full = min_cut_join(full, paints[i], round(ov_cells * ppc))
-    full = full.resize((round(zw * ppc), H), Image.LANCZOS)
+    ppc = paints[0].width / g.cw  # píxeles por celda (del primer trozo)
+    W, H = round(g.cw * ppc), round(g.ch * ppc)
+    paints = [p.resize((W, H), Image.LANCZOS) for p in paints]
+    rows = []
+    for r in range(len(g.ys)):
+        row = paints[r * len(g.xs)]
+        for c in range(1, len(g.xs)):
+            ov = (g.xs[c - 1] + g.cw) - g.xs[c]
+            row = min_cut_join(row, paints[r * len(g.xs) + c], round(ov * ppc))
+        rows.append(row)
+    full = rows[0]
+    for r in range(1, len(rows)):
+        ov = (g.ys[r - 1] + g.ch) - g.ys[r]
+        # Costura horizontal = la vertical sobre las imágenes traspuestas.
+        t = min_cut_join(full.transpose(Image.Transpose.TRANSPOSE), rows[r].transpose(Image.Transpose.TRANSPOSE), round(ov * ppc))
+        full = t.transpose(Image.Transpose.TRANSPOSE)
+    full = full.resize((round(g.zw * ppc), round(g.zh * ppc)), Image.LANCZOS)
     out_dir = os.path.join(root, "art", "skins", skin)
     os.makedirs(out_dir, exist_ok=True)
     full.save(os.path.join(out_dir, name + ".png"))
-    info = dict(info, cells=[zw, zh], px_per_cell=full.width / zw)
+    info = dict(info, cells=[g.zw, g.zh], px_per_cell=full.width / g.zw, chunks=[len(g.xs), len(g.ys)])
     with open(os.path.join(out_dir, name + ".json"), "w", encoding="utf8", newline="\n") as f:
         json.dump(info, f, ensure_ascii=False, indent=1)
     print("listo:", os.path.join(out_dir, name + ".png"), full.size)

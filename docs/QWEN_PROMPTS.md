@@ -9,6 +9,7 @@ Lo que aprendimos generando gráficos para el juego con ComfyUI local (2026-10-2
 |---|---|
 | **Qwen-Image 2.1** (`qwen_image_2.1_int8_convrot`, 25 pasos, cfg 1): entiende la cámara "desde arriba con el frente de las paredes de cara", respeta la distribución al editar | Qwen-Image viejo (ago. 2025) + LoRAs de pixel art (Master, MOSS, Redmond): casi todo sale en **diagonal/isométrico** aunque se lo prohíba |
 | Edición con una imagen de entrada (la maqueta del juego) para todo lo que tiene que calzar con el mapa | Solo texto para algo que tiene que calzar con celdas: inventa la distribución |
+| **Qwen-Image 2.1 Turbo** (8 pasos, sigmas de la plantilla oficial): ~75 s por trozo contra ~250 s del normal, misma composición y casi el mismo detalle (el pasto un poco más liso). Por defecto en `repaint_zone.py`; `--quality` usa el normal | |
 | Resolución 1536-1792 (sale ~2K): a 1920×1080 y zoom ×2,5 hace falta ~3 px de imagen por px del mundo | 1024: a 1080p se ve borroso |
 
 ## Cámara (va en todo prompt de escena u objeto)
@@ -32,6 +33,12 @@ En edición, además: `The camera stays straight top-down with walls facing the 
 **corte de mínimo error** (`tools/repaint_zone.py`) busca el camino por donde los dos trozos más se parecen y rodea
 casas y objetos. Solapamiento de 8 celdas.
 
+## Noche (lo que funciona, 2026-10-30)
+Pintarla **desde la maqueta en una sola pasada** con el prompt de escena + `It is night: a calm dark blue moonlit night.
+Every house window glows warm yellow and casts a soft pool of warm light on the ground right in front of it; doors stay
+closed. Cool blue moonlight from above, deep but readable shadows... No street lamps, no fireflies, no stars, no fog, no
+sparkles, nothing added.` En trozos de puro bosque, el de noche sin ventanas (`NIGHT_FOREST`).
+
 ## Luz por momento del día (re-iluminar lo ya pintado)
 > **2026-10-30: re-iluminar los trozos ya repintados de Pueblo Paleta salió mal en todos los casos** (mañana y
 > atardecer, cancelado): el pasto y los árboles se deshicieron en puntitos de colores, con y sin palabras "dibujables".
@@ -45,6 +52,7 @@ casas y objetos. Solapamiento de 8 celdas.
 | Hablar **solo de luz, color de la luz y sombras**: dirección del sol, largo de las sombras, color de lo iluminado y de la sombra | Cualquier cosa que se pueda dibujar: **"dew sparkles", "mist", "fog", "fireflies", "glow in the air", "particles"** → Qwen las pinta como puntitos de colores sobre toda la textura (la mañana salió como un campo de flores) |
 | `Do not add anything: no new flowers, plants, particles, sparkles or details. Only change the lighting, the color of the light and the shadows:` | |
 | Atardecer: `deep orange sun from the left casting long soft shadows to the right, warm rim light on roofs and treetops, purple shade, soft contact shadows and ambient occlusion` (salió muy bien en las referencias) | |
+| Noche **pintada desde la maqueta** (una pasada), nunca re-iluminando la pintura de día | Noche con "every house window glows" en un trozo **de puro bosque**: inventa casitas con la ventana prendida entre los árboles → prompt de noche de bosque sin ventanas ni luces |
 | Noche: `dark blue moonlit scene, every house window glowing warm yellow and casting a soft pool of light on the ground below it` + `No street lamps added, no fireflies, no stars.` | |
 
 ## Objetos sueltos (un sprite por imagen)

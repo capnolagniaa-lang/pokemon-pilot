@@ -1,34 +1,33 @@
 class_name PaintedZone
 extends Node2D
-## Skins del mundo (docs/PLAN_TERRENO_PROPIO.md, "Repintado"): una skin es una carpeta art/skins/<skin>/ con una imagen
-## repintada por zona (<zona>.png = mediodía, de tools/repaint_zone.py), las mismas re-iluminadas por momento del día
-## (<zona>@manana.png, @atardecer, @noche: luz horneada) y un skin.json con su nombre. Con la skin elegida en Ajustes del
-## juego (ajuste de partida "skin"; "clasico" = los tiles de FireRed), la zona que tenga imagen se dibuja con ella en
-## lugar de sus capas de tiles, fundiendo las dos imágenes más cercanas a la hora (shaders/painted_zone.gdshader).
-## La pintura va en sus propias capas (CanvasLayer que siguen a la cámara: el suelo debajo del mundo, techos y copas
-## encima), así el tinte de la hora (Daylight) no la vuelve a teñir: solo tiñe a personajes, Pokémon y efectos. En una
-## zona con skin no se dibujan las sombras del mapa, las ventanas ni los faroles calculados (ya están pintados):
-## `covers(zone)` lo consultan ZoneShadows, ZoneLights, StreetLamps y DayNight.
+## Skins del mundo (docs/PLAN_TERRENO_PROPIO.md, "Workflow vigente"): una skin es una carpeta art/skins/<skin>/ con una
+## escena pintada por zona (<zona>.png = de día, <zona>@noche.png = de noche con las ventanas prendidas; de
+## tools/repaint_zone.py) y un skin.json con su nombre. Con la skin elegida en Ajustes del juego (ajuste de partida
+## "skin"; "clasico" = los tiles de FireRed), la zona que tenga imagen se dibuja con ella en lugar de sus capas de tiles:
+## - suelo: la pintura entera, con el z de la capa Ground;
+## - agua: la misma pintura solo en las celdas de la capa Water, con ondas (shaders/painted_zone.gdshader);
+## - techos y copas: la misma pintura solo en las celdas de la capa Overhead, con su z (te tapan al pasar por detrás).
+## La pintura va dentro de la zona (z de sus capas): el Daylight (CanvasModulate) tiñe la pintura de día como a todo; al
+## oscurecer se funde la de noche, que ya trae su luz: el shader la divide por el color del Daylight para que el
+## CanvasModulate no la oscurezca dos veces. (En CanvasLayer propias se veía mucho más oscura y saturada con HDR 2D.)
+## Con skin no se dibujan las sombras del mapa, las ventanas ni los faroles calculados (`covers`); sí las de personajes.
 ## La colisión, las puertas, los tags y los salvajes siguen saliendo de las celdas (las capas quedan, invisibles).
 
 const ROOT := "res://art/skins/"
 const CLASSIC := "clasico"
 const LAYERS := ["Ground", "Water", "Foliage", "TreeShadows", "Overhead"]
 const SHADER := preload("res://shaders/painted_zone.gdshader")
-## Momentos del día que puede tener una zona ("" = la imagen base, el mediodía) y a qué hora se ve cada uno entero;
-## entre dos se funde. Si falta alguno, se usa la base.
-const MOMENTS := [[0.0, "noche"], [5.0, "noche"], [7.0, "manana"], [10.0, ""], [15.5, ""], [18.5, "atardecer"],
-	[20.5, "noche"], [24.0, "noche"]]
-## Capas: el suelo debajo del mundo (capa 0, la del Daylight) y los techos encima (debajo del post-procesado, 5).
-const GROUND_LAYER := -1
-const TOP_LAYER := 1
+## Oscuridad de DayNight entre la que se funde la pintura de noche.
+const NIGHT_FROM := 0.45
+const NIGHT_FULL := 0.95
 
 var zone: Zone
 var entry: ZoneEntry
 var _hidden: Array[CanvasItem] = []
 var _built := ""  # skin dibujada ahora ("" = ninguna: tiles)
-var _tex := {}    # momento -> Texture2D
+var _night: Texture2D
 var _sprites: Array[Sprite2D] = []
+var _world: Node
 
 
 ## Las skins que hay: [[id, nombre], ...], la clásica primero.
@@ -61,6 +60,11 @@ static func covers(zone_node: Node) -> bool:
 	return pz != null and pz._built != ""
 
 
+## Cuánto de la pintura de noche se ve con esa oscuridad (0 = de día).
+static func night_weight(darkness: float) -> float:
+	return smoothstep(NIGHT_FROM, NIGHT_FULL, darkness)
+
+
 static func attach(zone_node: Node2D, e: ZoneEntry) -> PaintedZone:
 	var old := zone_node.get_node_or_null("PaintedZone")
 	if old != null:
@@ -76,10 +80,19 @@ static func attach(zone_node: Node2D, e: ZoneEntry) -> PaintedZone:
 	return node
 
 
+func _ready() -> void:
+	_world = get_tree().get_first_node_in_group("world")
+
+
 func _process(_delta: float) -> void:
 	_sync()
 	if _built != "":
-		_blend(GameState.time_of_day)
+		_light()
+		# Sin sombras de nubes en la zona donde estás si tiene skin (el multiplicado oscurecía y saturaba la pintura).
+		var st = _world.get("streamer") if _world != null else null
+		var clouds := _world.get_node_or_null("CloudShadows") as CanvasItem if _world != null else null
+		if st != null and st.current != null and st.current.id == entry.id and clouds != null:
+			clouds.visible = false
 
 
 ## Dibuja la skin elegida si cambió (o vuelve a los tiles).
@@ -94,24 +107,23 @@ func _sync() -> void:
 
 func build(skin: String) -> void:
 	_built = skin
-	_tex.clear()
-	for m in MOMENTS:
-		var moment: String = m[1]
-		var path := ROOT + skin + "/" + entry.id + ("" if moment == "" else "@" + moment) + ".png"
-		if not _tex.has(moment) and ResourceLoader.exists(path):
-			_tex[moment] = load(path)
-	var base: Texture2D = _tex[""]
-	var k := float(base.get_width()) / (entry.size.x * Zone.TILE)  # píxeles de la imagen por píxel del mundo
-	_sprites.append(_layer("PaintedGround", GROUND_LAYER, base, k, null))
-	var cells := _overhead_cells()
-	if cells != null:
-		_sprites.append(_layer("PaintedOverhead", TOP_LAYER, base, k, cells))
+	var day: Texture2D = load(ROOT + skin + "/" + entry.id + ".png")
+	var night_path := ROOT + skin + "/" + entry.id + "@noche.png"
+	_night = load(night_path) if ResourceLoader.exists(night_path) else day
+	var k := float(day.get_width()) / (entry.size.x * Zone.TILE)  # píxeles de la imagen por píxel del mundo
+	_layer("PaintedGround", day, k, null, false).z_index = (zone.ground as CanvasItem).z_index
+	var water := zone.get_node_or_null("Water") as TileMapLayer
+	if water != null and not water.get_used_cells().is_empty():
+		_layer("PaintedWater", day, k, _cells(water), true).z_index = water.z_index
+	var top := zone.get_node_or_null("Overhead") as TileMapLayer
+	if top != null and not top.get_used_cells().is_empty():
+		_layer("PaintedOverhead", day, k, _cells(top), false).z_index = top.z_index
 	for name in LAYERS:
 		var l := zone.get_node_or_null(name) as CanvasItem
 		if l != null and l.visible:
 			l.visible = false
 			_hidden.append(l)
-	_blend(GameState.time_of_day)
+	_light()
 
 
 ## Deja la zona como estaba (los tiles a la vista).
@@ -126,60 +138,41 @@ func clear() -> void:
 	_hidden.clear()
 
 
-## Qué dos imágenes y cuánto de cada una a esa hora.
-static func blend_at(h: float, have: Dictionary) -> Array:
-	h = fposmod(h, 24.0)
-	for i in range(MOMENTS.size() - 1):
-		var a: Array = MOMENTS[i]
-		var b: Array = MOMENTS[i + 1]
-		if h <= b[0]:
-			var ma: String = a[1] if have.has(a[1]) else ""
-			var mb: String = b[1] if have.has(b[1]) else ""
-			var t := 0.0 if b[0] == a[0] else smoothstep(0.0, 1.0, (h - a[0]) / (b[0] - a[0]))
-			return [ma, mb, t]
-	return ["", "", 0.0]
-
-
-func _blend(h: float) -> void:
-	var b := blend_at(h, _tex)
+## El color de la hora sobre la pintura de día y la de noche fundida según la oscuridad (esa ya trae su luz).
+func _light() -> void:
+	var dn: DayNight = _world.get("day_night") if _world != null else null
+	var t := night_weight(dn.darkness) if dn != null and _night != null else 0.0
+	var daylight := _world.get_node_or_null("Daylight") as CanvasModulate if _world != null else null
+	var d := daylight.color if daylight != null else Color.WHITE
 	for s in _sprites:
-		if not is_instance_valid(s):
-			continue
-		s.texture = _tex[b[0]]
-		var mat := s.material as ShaderMaterial
-		mat.set_shader_parameter("tex_b", _tex[b[1]])
-		mat.set_shader_parameter("mix_t", b[2])
+		var m := s.material as ShaderMaterial
+		m.set_shader_parameter("night_t", t)
+		m.set_shader_parameter("daylight", Vector3(d.r, d.g, d.b))
 
 
-## Un sprite de la pintura en su propia capa (sigue a la cámara, en coordenadas del mundo).
-func _layer(node_name: String, layer: int, tex: Texture2D, k: float, cells: Texture2D) -> Sprite2D:
-	var cl := CanvasLayer.new()
-	cl.name = node_name + "Layer"
-	cl.layer = layer
-	cl.follow_viewport_enabled = true
-	add_child(cl)
+func _layer(node_name: String, tex: Texture2D, k: float, cells: Texture2D, is_water: bool) -> Sprite2D:
 	var s := Sprite2D.new()
 	s.name = node_name
 	s.texture = tex
 	s.centered = false
-	s.position = zone.global_position
 	s.scale = Vector2.ONE / k
 	s.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	var mat := ShaderMaterial.new()
 	mat.shader = SHADER
+	mat.set_shader_parameter("tex_night", _night)
 	mat.set_shader_parameter("use_cells", cells != null)
+	mat.set_shader_parameter("water", is_water)
+	mat.set_shader_parameter("image_px", Vector2(tex.get_size()))
 	if cells != null:
 		mat.set_shader_parameter("cells", cells)
 	s.material = mat
-	cl.add_child(s)
+	add_child(s)
+	_sprites.append(s)
 	return s
 
 
-## Máscara de un píxel por celda con las celdas de la capa Overhead (techos, copas), o null si no hay.
-func _overhead_cells() -> Texture2D:
-	var layer := zone.get_node_or_null("Overhead") as TileMapLayer
-	if layer == null or layer.get_used_cells().is_empty():
-		return null
+## Máscara de un píxel por celda con las celdas usadas de una capa de tiles.
+func _cells(layer: TileMapLayer) -> Texture2D:
 	var img := Image.create(entry.size.x, entry.size.y, false, Image.FORMAT_L8)
 	for c in layer.get_used_cells():
 		if Rect2i(Vector2i.ZERO, entry.size).has_point(c):

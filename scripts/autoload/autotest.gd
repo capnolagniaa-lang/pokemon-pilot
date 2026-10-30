@@ -490,7 +490,9 @@ func _overview() -> void:
 			world.get_node(path).visible = false
 		for zn in world.streamer.loaded.values():
 			for c in zn.get_children():
-				if c.name in ["SunShadows", "NightLights", "StreetLamps", "CaveLights", "TreeShadows"]:
+				# Objects = árboles de Corte, rocas de Fuerza... (interactivos: van como sprites encima de la pintura);
+				# Extra_* = edificios agregados (Centros Online, globos), que ya tienen su sprite propio.
+				if c.name in ["SunShadows", "NightLights", "StreetLamps", "CaveLights", "TreeShadows", "Objects"] 						or str(c.name).begins_with("Extra_"):
 					c.visible = false
 					c.set_process(false)
 	for i in 10:

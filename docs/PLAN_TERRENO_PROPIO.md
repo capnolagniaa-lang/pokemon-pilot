@@ -218,6 +218,32 @@ vea igual en dos pueblos. Cambiar un mapa = repintar sus trozos.
 - Próximo: Ruta 1, interiores (otra cámara: paredes), agua animada sobre la pintura, pasto alto (recortar el pedazo
   de la pintura para tapar las piernas).
 
+## Workflow vigente (acordado con el usuario 2026-10-30)
+**Escena pintada de fondo + capa de sprites encima.** El mapa de celdas (zonas de FireRed) es la fuente de la verdad;
+la pintura es un resultado que se regenera, nunca se retoca a mano.
+1. **Pintado (fondo, por zona)**: suelo, caminos, casas, edificios, cercas, carteles fijos, árboles que no se cortan.
+   `tools/repaint_zone.py <proyecto> <zona> [--forest i] [--redo i]`: maqueta limpia de cada trozo (tiles originales, sin
+   personajes ni objetos interactivos) → Qwen-Image 2.1 → costura de mínimo error → `art/skins/<skin>/<zona>.png` + .json
+   con la receta (prompt, semilla). Revisar cada trozo apenas sale y rehacer los que fallan con `--redo`.
+2. **Capa de arriba**: lo que se mueve o se usa. Agua y pasto alto = la pintura con un **shader encima** solo en sus
+   celdas (ondas, vaivén) + el frente del pasto que tapa las piernas recortado de la pintura. Árboles de Corte, rocas de
+   Fuerza, barreras, Pokébolas, personas = sprites sueltos (más adelante, generados con la pintura de la zona como
+   referencia de estilo). Fuentes, cascadas: animación chica aparte.
+3. **Luz**: gradación de Godot (la de la hora) sobre la pintura del día + una **versión de noche pintada desde la
+   maqueta** (ventanas prendidas) que se funde al oscurecer. Re-iluminar la pintura con Qwen no funciona (rompe la
+   textura). Con skin no se dibujan las sombras del mapa, las ventanas ni los faroles calculados; sí las de personajes.
+4. **Editar un mapa** = repintar los trozos que cambiaron (huella de la maqueta, a automatizar).
+**Hecho en Pueblo Paleta (2026-10-30)**: noche pintada desde la maqueta (`--night`; bosque con su propio prompt sin
+ventanas, detectado solo con `--forest auto`), agua con ondas sobre la pintura, luz de la hora del Daylight sobre la
+pintura de día y la de noche fundida al oscurecer (`PaintedZone.night_weight`; el shader divide la noche por el color del
+Daylight). Sin nubes, sombras del mapa, ventanas ni faroles calculados en zonas con skin. `repaint_zone.py` corta en
+grilla (`--width 40 --height 36`, costura en los dos sentidos) y usa **Qwen-Image 2.1 Turbo** por defecto (~75 s por
+trozo; `--quality` = el normal, 3× más lento). Trampas: en `painted_zone.gdshader` TEXTURE solo se lee dentro de
+`fragment()` y `COLOR` ya trae la textura (el modulate va por un varying del vertex); en CanvasLayer propia la pintura
+salía oscura y saturada con HDR 2D (va dentro de la zona).
+5. Próximos: Pueblo Paleta completo (agua, noche, luz) → Ruta 1 y Ciudad Verde (variedad y tiempos) → compresión de las
+   imágenes para el zip → interiores (otro prompt).
+
 ## Para decidir
 - **Identidad**: "campo sudamericano" (terracota, encalado, ceibos, jacarandás), "cuento" (cabañas con techo de musgo,
   arroyos, faroles) o una mezcla (cada región/bioma con su carácter).
