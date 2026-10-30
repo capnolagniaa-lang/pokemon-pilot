@@ -61,6 +61,17 @@ static func refresh(world: Node) -> void:
 				attach(world.streamer.loaded[id], z)
 
 
+## El StyleOverlay de la zona en esa posición (global), o null.
+static func at(world: Node, pos: Vector2) -> StyleOverlay:
+	if active == "" or world == null or world.get("streamer") == null:
+		return null
+	for z in world.streamer.loaded.values():
+		var ov := (z as Node).get_node_or_null("StyleOverlay") as StyleOverlay
+		if ov != null and Rect2(Vector2(ov.entry.origin * Zone.TILE), Vector2(ov.entry.size * Zone.TILE)).has_point(pos):
+			return ov
+	return null
+
+
 static func is_hd() -> bool:
 	return active.ends_with("_hd")
 

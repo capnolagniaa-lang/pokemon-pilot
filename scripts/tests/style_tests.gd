@@ -59,6 +59,18 @@ func run() -> void:
 		and StyleOverlay.active == "siniestro"
 	r["Un estilo que no existe no rompe nada"] = "No conozco" in gm.run("estilo marciano") and StyleOverlay.active == "siniestro"
 
+	# Pasto alto: el frente de la mata que tapa las piernas es la del paquete, no el tile de FireRed.
+	await _start("pruebas_bosque", Vector2i(16, 13))
+	var grass: Sprite2D = world.trainer.get_node_or_null("GrassOverlay")
+	for i in 4:
+		await get_tree().physics_frame
+	r["En el pasto alto, la mata de encima es la del paquete (%s)" % (grass.texture.resource_path.get_file() if grass and grass.texture else "-")] = 		grass != null and grass.visible and grass.texture == StyleOverlay.texture("pasto_alto")
+	StyleOverlay.active = ""
+	StyleOverlay.refresh(world)
+	for i in 4:
+		await get_tree().physics_frame
+	r["Sin paquete vuelve la de FireRed"] = grass != null and grass.texture.resource_path.ends_with("general_below.png")
+	StyleOverlay.active = "siniestro"
 	await _start("ruta1", Vector2i(48, 35))
 	r["Fuera de la zona de pruebas, nada cambia"] = world.streamer.loaded.values().all(
 		func(z): return z.get_node_or_null("StyleOverlay") == null)
