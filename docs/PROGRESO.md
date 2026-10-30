@@ -31,6 +31,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
+- **Skins del mundo: Pueblo Paleta repintado con IA (2026-10-30)**: `tools/repaint_zone.py` repinta una zona entera con
+  Qwen-Image 2.1 desde maquetas limpias (en trozos, cosidos con un corte de mínimo error) y `PaintedZone` la dibuja en
+  lugar de los tiles; Ajustes del juego → "Skin del mundo" (Clásico / HD). Pueblo Paleta hecho; luces y sombras siguen
+  siendo de Godot. Test `--autotest-repaint`.
 - **Terreno propio con IA (2026-10-30, plan `docs/PLAN_TERRENO_PROPIO.md`)**: se probó con **Qwen-Image 2.1** armar
   zonas con piezas sueltas (zona de pruebas + `StyleOverlay`, después Pueblo Paleta y la Ruta 1) y **se volvió atrás a
   pedido del usuario**: cada pieza salía con otra densidad y estilo. Quedaron lo global (luz por hora más dramática:

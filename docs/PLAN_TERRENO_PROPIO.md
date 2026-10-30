@@ -198,6 +198,26 @@ vea igual en dos pueblos. Cambiar un mapa = repintar sus trozos.
 - Próximo: Pueblo Paleta entero (6 trozos) cosido y metido en el juego como capa de suelo, con techos y copas
   recortados por máscara para el y-sort; ver cómo se ve caminando, de día y de noche.
 
+## Skins del mundo: Pueblo Paleta en el juego (2026-10-30)
+- **Skins** (idea del usuario): `art/skins/<skin>/<zona>.png` + `skin.json` (nombre). Ajuste de partida `skin`
+  ("clasico" = tiles de FireRed; por defecto "hd"), en Ajustes del juego → "Skin del mundo". `PaintedZone`
+  (`scripts/world/painted_zone.gd`, World la agrega a cada zona): dibuja la imagen en lugar de Ground/Water/Foliage/
+  TreeShadows/Overhead, y recorta techos y copas de la misma imagen en las celdas que tienen algo en `Overhead` (mismo z:
+  te tapan al pasar por detrás). Cambiar de skin se ve al instante. Zona sin imagen en esa skin = tiles.
+- **`tools/repaint_zone.py <proyecto> <zona> [--skin hd] [--forest 0] [--redo 0] [--seed 21]`**: la zona en una fila de
+  trozos de 40 celdas × el alto entero (solape 8), maqueta limpia de cada uno con Godot (`--overview --overview-rect
+  --clean`, que usa la skin clásica: si no, se repinta sobre el repintado anterior), Qwen-Image 2.1 a `--size 1792`,
+  costura de mínimo error. Trabajo en `out/repintado/<zona>/` (ignorado por git y por Godot). Pueblo Paleta: 3 trozos,
+  ~8 min, 4685×1659 (3 px de imagen por px del mundo).
+- **Trozos de puro bosque** (`--forest`): con el prompt general Qwen inventa casitas en una grilla de árboles; el
+  prompt de bosque ("only trees and grass: absolutely no houses...") lo arregla.
+- **Luces y sombras**: siguen siendo de Godot (hora, niebla, gradación, ventanas, faroles, sombras de personajes) y
+  calzan porque salen de las celdas. La pintura trae su oclusión suave; por eso las sombras del mapa en zonas con skin
+  van más claras y con el borde suavizado (`ZoneShadows.PAINTED_ALPHA` 0,6, `soften` 5 px en `sun_shadows.gdshader`).
+- Test `--autotest-repaint`, vitrina `--showcase-repaint`.
+- Próximo: Ruta 1, interiores (otra cámara: paredes), agua animada sobre la pintura, pasto alto (recortar el pedazo
+  de la pintura para tapar las piernas).
+
 ## Para decidir
 - **Identidad**: "campo sudamericano" (terracota, encalado, ceibos, jacarandás), "cuento" (cabañas con techo de musgo,
   arroyos, faroles) o una mezcla (cada región/bioma con su carácter).

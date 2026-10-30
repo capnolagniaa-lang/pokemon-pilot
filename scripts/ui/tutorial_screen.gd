@@ -57,7 +57,7 @@ const PAGES := [
 	]],
 	["Lo que podés modificar", [
 		"Esc → Opciones: dificultad de la IA (Fácil, Normal, Difícil o Personalizado) y el volumen.",
-		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y que recibís, vida de los Pokémon, stagger, cantidad de salvajes, curación sola fuera de combate, objetos en las rutas, hora fija, campo de visión de la cámara, que un entrenador que te gana seguido afloje un poco y, en Personalizado, cada detalle de la IA.",
+		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y que recibís, vida de los Pokémon, stagger, cantidad de salvajes, curación sola fuera de combate, objetos en las rutas, hora fija, campo de visión de la cámara, skin del mundo (gráficos repintados con IA), que un entrenador que te gana seguido afloje un poco y, en Personalizado, cada detalle de la IA.",
 		"Tus 4 ataques, la Pokébola que lanzás y el objeto rápido de la C.",
 		"Varias partidas con nombre, cada una con sus ajustes.",
 		"Esc → Opciones → Online: tu nombre en la sala online (si lo dejás vacío, va el de la partida).",

@@ -13,6 +13,8 @@ const MASK_PX := 4          # píxeles de máscara por celda
 const BASE_LENGTH := 26.0   # largo (px) de la sombra de algo de altura 1 al mediodía
 const MAX_RUN := 4          # celdas sólidas en columna para la altura máxima
 const TREE_HEIGHT := 0.8
+const PAINTED_ALPHA := 0.6
+const PAINTED_SOFTEN := 5.0
 const Z := -7               # junto a TreeShadows: sobre Ground, Water y Foliage; debajo de todo lo demás
 
 var _world: Node
@@ -100,5 +102,9 @@ func _process(_delta: float) -> void:
 	var m := material as ShaderMaterial
 	m.set_shader_parameter("dir", dn.shadow_direction)
 	m.set_shader_parameter("len_px", BASE_LENGTH * dn.shadow_length)
-	m.set_shader_parameter("alpha", dn.shadow_alpha)
+	# Con una skin (PaintedZone) la pintura ya trae su sombra suave al pie de las cosas: la del sol va más suave y clara.
+	var pz := get_parent().get_node_or_null("PaintedZone")
+	var painted: bool = pz != null and pz.get_node_or_null("PaintedGround") != null
+	m.set_shader_parameter("alpha", dn.shadow_alpha * (PAINTED_ALPHA if painted else 1.0))
+	m.set_shader_parameter("soften", PAINTED_SOFTEN if painted else 0.0)
 	m.set_shader_parameter("shadow_color", Vector3(dn.shadow_color.r, dn.shadow_color.g, dn.shadow_color.b))

@@ -138,6 +138,13 @@ func _ready() -> void:
 		add_child(vx)
 		(vx.showcase if "--showcase-vfx" in OS.get_cmdline_user_args() else vx.run).call_deferred()
 		return
+	if "--autotest-repaint" in OS.get_cmdline_user_args() or "--showcase-repaint" in OS.get_cmdline_user_args():
+		set_process(false)
+		var rpt := RepaintTests.new()
+		rpt.autotest = self
+		add_child(rpt)
+		(rpt.showcase if "--showcase-repaint" in OS.get_cmdline_user_args() else rpt.run).call_deferred()
+		return
 	if "--autotest-anims" in OS.get_cmdline_user_args() or "--showcase-sleep" in OS.get_cmdline_user_args():
 		set_process(false)
 		var an := AnimTests.new()
@@ -444,22 +451,26 @@ func _start() -> void:
 ## Vista de toda la región de una vez (godot --path . --write-movie mapa.png -- --overview).
 func _overview() -> void:
 	GameState.new_game(DB.config.starters[1])
+	if "--clean" in OS.get_cmdline_user_args():
+		GameState.set_setting("skin", PaintedZone.CLASSIC)  # la maqueta para repintar sale siempre de los tiles originales
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
 	var world := get_tree().current_scene
 	var data := DB.config.world
 	var bounds := Rect2()
-	for z in data.zones:
-		var r := z.world_rect(data.tile_size)
-		bounds = r if bounds.size == Vector2.ZERO else bounds.merge(r)
-		world.streamer.load_around_now(r.get_center())
-	# `--overview-rect x,y,ancho,alto` (en celdas del mundo): solo ese pedazo, de cerca.
+	# `--overview-rect x,y,ancho,alto` (en celdas del mundo): solo ese pedazo, de cerca (y solo carga lo de alrededor).
 	var args := OS.get_cmdline_user_args()
 	var at := args.find("--overview-rect")
 	if at >= 0 and at + 1 < args.size():
 		var p := args[at + 1].split(",")
 		bounds = Rect2(Vector2(int(p[0]), int(p[1])), Vector2(int(p[2]), int(p[3]))) * Transform2D.IDENTITY.scaled(Vector2.ONE * data.tile_size)
+		world.streamer.load_around_now(bounds.get_center())
+	else:
+		for z in data.zones:
+			var r := z.world_rect(data.tile_size)
+			bounds = r if bounds.size == Vector2.ZERO else bounds.merge(r)
+			world.streamer.load_around_now(r.get_center())
 	world.streamer.target = null
 	world.get_node("PostProcess").visible = false
 	world.get_node("CloudShadows").visible = false
@@ -485,6 +496,7 @@ func _overview() -> void:
 	for i in 10:
 		cam.zoom = Vector2(z, z)
 		await get_tree().process_frame
+	print("[overview] listo en el cuadro ", Engine.get_frames_drawn())
 	get_tree().quit()
 
 

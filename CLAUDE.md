@@ -73,6 +73,8 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: todo lo aprendido, en plena pelea, al subir de nivel
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
+$G --headless --path . --quit-after 60000 -- --autotest-repaint  # skins del mundo (Pueblo Paleta repintado, clásica, techos, colisión)
+$G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-repaint  # Pueblo Paleta HD a varias horas
 $G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos, volar sin descubrir zonas e ir <zona>
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-online-building  # afuera y adentro
 $G --headless --path . -- --server --port 24680                    # servidor online (sala); corre hasta cerrarlo
@@ -362,9 +364,11 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   servidor; EXP vía CombatDirector). **O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
   servidor `match_started`, que escuchará la pelea de la O-3; servidor del juego fijo en `Net.OFFICIAL_SERVER`). **O-1**: Centro de Combate Online en
   Ciudad Verde (`OnlineDesk` = `world.online`, acción `online` de la recepcionista).
-- **Terreno propio con IA** (`docs/PLAN_TERRENO_PROPIO.md`): se probó armar zonas con piezas sueltas hechas con Qwen
-  (zona de pruebas + `StyleOverlay`) y **se volvió atrás** (2026-10-30: texturas dispares entre piezas); el enfoque nuevo
-  es **repintar la zona entera** con Qwen. El código de la prueba quedó en los commits 4aebebbe..4f49b808.
+- **Skins del mundo / terreno repintado con IA** (`docs/PLAN_TERRENO_PROPIO.md`): `PaintedZone` dibuja
+  `art/skins/<skin>/<zona>.png` en lugar de las capas de tiles (techos y copas recortados por las celdas de `Overhead`);
+  ajuste de partida `skin` ("clasico" = FireRed, por defecto "hd"). Las imágenes las hace `tools/repaint_zone.py` (maquetas
+  `--overview --overview-rect --clean` + Qwen-Image 2.1 en ComfyUI + costura de mínimo error). La lógica no cambia (todo
+  sale de las celdas). Antes se probó armar zonas con piezas sueltas y se volvió atrás (commits 4aebebbe..4f49b808).
 - **Edificios y zonas agregados** (`ExtraContent`): `data/world/extra/zones/*.tres` (ZoneEntry) y
   `data/world/extra/buildings/*.tres` (`ExtraBuilding`). Así se suma algo al mapa **sin tocar las zonas importadas ni
   kanto.tres** (las maneja otro agente): DB los mete en la región, World pone sprite + colisión + celdas sólidas (meta

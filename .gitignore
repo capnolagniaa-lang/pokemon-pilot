@@ -8,3 +8,5 @@ export/
 tools/.pokeapi_cache/
 # Hojas de referencia de terceros (The Spriters Resource): solo se usan para generar datos curados
 art_src/referencia/
+# Cuadros de las vitrinas (--write-movie out/...) y trabajo de tools/repaint_zone.py
+out/
