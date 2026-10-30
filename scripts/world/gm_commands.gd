@@ -17,6 +17,7 @@ const HELP := [
 	["pokemon <especie> <nivel>", "al equipo (o a la Caja si está lleno)"],
 	["hora <0-23>", "cambia la hora del día"],
 	["ir <zona> [x,y]", "te lleva a una zona (a su plaza o a esa celda); ir pruebas = la zona de pruebas"],
+	["estilo [campo|cuento|siniestro|fire]", "dibuja la zona de pruebas con un paquete de terreno propio (fire = los tiles de siempre)"],
 	["volar", "cámara libre para mirar el mapa: WASD, Shift = rápido, rueda = zoom, Esc vuelve. No descubre nada"],
 	["limpiar", "borra la consola"],
 ]
@@ -56,6 +57,8 @@ func run(line: String) -> String:
 			return _fly()
 		"ir", "tp", "teleport":
 			return _go(args)
+		"estilo", "style":
+			return _style(args)
 	return "No conozco «%s». Escribí ayuda." % parts[0]
 
 
@@ -240,3 +243,16 @@ static func _choices(kind: String, found: Array) -> String:
 	for res in found.slice(0, 12):
 		names.append(str(res.display_name))
 	return "¿Cuál? %s%s" % [", ".join(names), " …" if found.size() > 12 else ""]
+
+
+## Paquete de terreno propio para las zonas de pruebas (StyleOverlay, docs/PLAN_TERRENO_PROPIO.md).
+func _style(args: PackedStringArray) -> String:
+	if args.is_empty():
+		return "Estilo actual: %s. Hay: %s, fire." % [StyleOverlay.active if StyleOverlay.active != "" else "fire",
+			", ".join(StyleOverlay.PACKS)]
+	var name := norm(args[0])
+	if name != "fire" and not name in StyleOverlay.PACKS:
+		return "No conozco el estilo «%s». Hay: %s, fire." % [args[0], ", ".join(StyleOverlay.PACKS)]
+	StyleOverlay.active = "" if name == "fire" else name
+	StyleOverlay.refresh(world)
+	return "Estilo: %s (se ve en la zona de pruebas: ir pruebas)." % name

@@ -35,6 +35,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
+- **Terreno propio con IA (2026-10-30, pedido del usuario; plan `docs/PLAN_TERRENO_PROPIO.md`)**: pruebas con Qwen (el
+  mejor: **Qwen-Image 2.1**, solo texto, con la cámara descrita), zona de pruebas aislada (`ir pruebas` en la consola de
+  GM, la armó la sesión del editor de mapas) y `StyleOverlay`, que la dibuja con paquetes de piezas propias
+  (`art/estilos/`, de `tools/style_pack.py`): campo, cuento y siniestro, en pixel art y **HD** (`*_hd`, 4× más
+  detalle por celda: la dirección elegida, 2D-HD). Comando `estilo <paquete|fire>`. Test `--autotest-style`.
 - **Noche más oscura y reloj (2026-10-30, pedido del usuario: "después de las 20 se ve mucho")**: noche plateada más
   oscura (Daylight 0,36/0,40/0,52, noche cerrada desde las 21), luna casi sin brillo (0,05, sin rayos) y sombras de luna
   más suaves (0,25). Bug arreglado: las sombras de nubes (`blend_mul`) con `modulate.a` bajo oscurecían toda la pantalla

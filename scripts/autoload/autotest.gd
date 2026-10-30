@@ -143,6 +143,13 @@ func _ready() -> void:
 		add_child(vx)
 		(vx.showcase if "--showcase-vfx" in OS.get_cmdline_user_args() else vx.run).call_deferred()
 		return
+	if "--autotest-style" in OS.get_cmdline_user_args() or "--showcase-style" in OS.get_cmdline_user_args():
+		set_process(false)
+		var stt := StyleTests.new()
+		stt.autotest = self
+		add_child(stt)
+		(stt.showcase if "--showcase-style" in OS.get_cmdline_user_args() else stt.run).call_deferred()
+		return
 	if "--autotest-anims" in OS.get_cmdline_user_args() or "--showcase-sleep" in OS.get_cmdline_user_args():
 		set_process(false)
 		var an := AnimTests.new()

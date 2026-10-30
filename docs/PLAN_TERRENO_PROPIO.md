@@ -89,6 +89,29 @@ Lecciones:
 - El boceto sirve cuando hace falta una forma exacta (una casa de 5×4 con la puerta en el medio); dibujarlo con proporciones lindas (techo más bajo, alero, jardín) porque las copia.
 - Modelos bajados (ComfyUI): `qwen_image_2.1_int8_convrot`, `qwen_image_2.1_turbo_int8_convrot`, `qwen3vl_8b_int8_convrot` y `_w4a8`, `qwen_image_2.1_vae_bf16`, `qwen_image_2.1_fun_controlnet_union_int8_convrot` (de Comfy-Org/Qwen-Image-2.1) y el LoRA PixelArt Redmond (artificialguybr, Apache-2.0). Workflows oficiales en las plantillas de ComfyUI (`image_qwen_image_2_1_*`).
 
+## Primera prueba en el juego (T-3 en la zona de pruebas, 2026-10-30)
+- **Zona de pruebas** (`pruebas_pueblo`, `pruebas_bosque`, `pruebas_cueva`; la armó la sesión del editor de mapas con
+  `tools/build_test_zone.gd`): se llega con `ir pruebas` en la consola de GM (Ctrl+Shift+G).
+- **`StyleOverlay`** (`scripts/world/style_overlay.gd`): dibuja una zona de pruebas con un paquete leyendo sus celdas
+  (rol/tags → material; sellos `PalletTown_5_3` → casa/almacén y `VermilionCity_25_32` → fuente; `tree_cells` → árboles;
+  metatiles 214/215 → cercas; pasto alto; boca de cueva sobre la puerta a una cueva). Esconde las capas de tiles; la
+  colisión, las puertas y los tags siguen siendo los de la zona. Suelo: `shaders/style_ground*.gdshader` (cuerpo en
+  `style_ground.gdshaderinc`): textura por material + borde orgánico con ruido + borde oscurecido.
+- **Paquetes** en `art/estilos/<paquete>/`, los arma `tools/style_pack.py` desde las salidas de ComfyUI (tabla `PACKS`:
+  pieza → imagen). `campo`, `cuento`, `siniestro` (pixel art, 16 px por celda, en paleta) y **`*_hd`** (4 veces más
+  píxeles por celda, sin paleta; se dibujan a 1/4 de escala y con filtro suave). Comando de GM `estilo <paquete|fire>`.
+- **Decisión (usuario, 2026-10-30): el objetivo es 2D-HD**, no pixel art de 16 px: achicar las imágenes de Qwen 6-8
+  veces perdía justo el detalle que las hacía lindas ("no se ven en HD"). Con los paquetes `_hd` se ve el detalle real.
+  La idea a futuro: redibujar todo el mundo de FireRed así, zona por zona, con el mismo traductor.
+- Test `--autotest-style`, vitrina `--showcase-style` (cada paquete en el pueblo, el bosque y la cueva).
+- Lecciones de prompts: el estilo describe **solo colores y técnica** (si dice "pueblo, techos de tejas" mete casas en
+  todo: la fuente salía como una plaza, la roca como una isla con casas); el material va en la descripción de cada pieza;
+  "exactly one object, no ground patch"; los suelos "only the ground surface, nothing standing on it". "No animals" a veces
+  se ignora (un bichito al lado de la casa: `style_pack.py` se queda con la mancha más grande). El blanco encerrado
+  (entre ramas) se saca en una segunda pasada. El siniestro sale casi negro: `GAMMA` 0,7 en sus objetos.
+- Falta: pasto mejor (pruebas "en bloques" en curso), agua y roca de verdad (corregidos en cola), sombras de FireRed que
+  todavía se ven debajo de las casas, interiores de las casas, y personajes HD (más adelante).
+
 ## Para decidir
 - **Identidad**: "campo sudamericano" (terracota, encalado, ceibos, jacarandás), "cuento" (cabañas con techo de musgo,
   arroyos, faroles) o una mezcla (cada región/bioma con su carácter).
