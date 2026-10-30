@@ -5,6 +5,12 @@
 > perdés la entrada. Solo se pueden usar 6 Pociones, que vienen con la entrada. La arena tiene que ser **épica**
 > (agua, rocas, etc.). Los **entrenadores con memoria (como Brock) participan con su equipo y aprenden de vos**.
 > El **tope de nivel es para tu entrada, pero jugás con tu propio equipo** (no se nivela a nadie).
+> **Rivales más variados (2026-10-30, pedido del usuario: "solo de primera fase, sin evoluciones, muy fácil")**: los 7
+> rivales generados salen de **toda Kanto y 3 visitantes de Johto o Hoenn** (el locutor dice de dónde vienen), con
+> **16 clases** de entrenador y sus tipos (Karateka: Lucha, Nadador: Agua, Médium: Fantasma/Psíquico...; cada una pelea
+> con su TrainerStyle), Pokémon **evolucionados según el nivel** (`Tournament.evolve_for`: por nivel como siempre; piedra
+> desde Nv. 28, amistad 22, intercambio 36) y a 0-2 niveles del tope. Sin legendarios (`BANNED`). Brock y Azul también
+> evolucionan (Azul con su equipo de FireRed: Pidgeot, Alakazam, Rhydon, Exeggutor, Arcanine + su inicial).
 > **Estado (2026-10-23): T-0 a T-3 hechas** (dinero, edificio, torneo, estadio). Falta **T-4** (rivales que aprenden:
 > depende de E-2 a E-4). Decisiones: el usuario dijo "mandale" → se tomaron las recomendadas de la sección 5.
 

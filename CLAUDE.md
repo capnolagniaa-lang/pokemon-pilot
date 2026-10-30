@@ -334,7 +334,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   comandos en `GmCommands` (tabla `HELP`: sumar uno = una fila + su `match`). `volar` = `GmFlight` (cámara libre en pausa;
   restaura `visited_zones` al volver: volando no se descubre nada). No tocar banderas de historia desde la consola.
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
-  recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; durante el torneo
+  recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; rivales generados de toda Kanto + visitantes de Johto/Hoenn
+  (`REGIONS`, `CLASSES` con sus tipos, `BANNED`), evolucionados según el nivel (`Tournament.evolve_for`); durante el torneo
   `GameState.tournament` guarda el equipo y la mochila de antes (los usa `to_dict`).
 - **Mercado** (Tiendas Pokémon): `ShopData` en `data/shops/<ciudad>.tres` (lo que vende cada una, lista oficial de
   FireRed con los objetos que hay); `Mart` (`world.mart`) registra la acción `tienda_<id>` en el `StoryDirector` (la usa

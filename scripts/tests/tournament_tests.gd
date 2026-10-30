@@ -38,6 +38,43 @@ func run() -> void:
 	Events.party_changed.emit()
 	GameState.bag["superpocion"] = 2
 	var cup: TournamentCup = world.tournament.cups[0]
+
+	# Rivales generados (pedido del usuario 2026-10-30): de toda Kanto y visitantes de Johto/Hoenn, evolucionados.
+	var t: Tournament = world.tournament
+	var strong: Array[CreatureInstance] = [CreatureInstance.create(DB.species["charizard"], 45)]
+	var seen_species := {}
+	var evolved := 0
+	var visitors := 0
+	var banned := 0
+	var over_cap := 0
+	for i in 6:
+		for e in t._field(t.cups[5], strong):  # Copa Libre (6): al nivel de tu más alto (45)
+			if str(e) == "jugador":
+				continue
+			if e.has("origen"):
+				visitors += 1
+			for m in e["team"]:
+				seen_species[m[0]] = true
+				if DB.species[m[0]].evolves_from != "":
+					evolved += 1
+				if m[0] in Tournament.BANNED:
+					banned += 1
+	r["Rivales con muchas especies distintas (%d en 6 cuadros)" % seen_species.size()] = seen_species.size() >= 60
+	r["A nivel 45 casi todos vienen evolucionados (%d)" % evolved] = evolved >= 150
+	r["Hay visitantes de Johto y Hoenn (%d)" % visitors] = visitors >= 12
+	r["Sin legendarios ni los que no pelean"] = banned == 0
+	for e in t._field(t.cups[0], GameState.party):  # Copa Nv. 15
+		if str(e) != "jugador":
+			for m in e["team"]:
+				if m[1] > 15:
+					over_cap += 1
+	r["En la Copa Nv. 15 nadie pasa el nivel 15"] = over_cap == 0
+	r["Evolucionan como un entrenador: Charmander a Nv. 40 es Charizard, Abra es Alakazam"] = \
+		Tournament.evolve_for(DB.species["charmander"], 40).id == "charizard" and Tournament.evolve_for(DB.species["abra"], 40).id == "alakazam" \
+		and Tournament.evolve_for(DB.species["charmander"], 12).id == "charmander"
+	var azul: Dictionary = t._rival(t.cups[5], 45)
+	r["Azul a Nv. 45 trae su equipo evolucionado (%s)" % str(azul["team"])] = azul["team"].any(func(m): return m[0] == "pidgeot") \
+		and azul["team"].any(func(m): return m[0] == "alakazam")
 	r["Se inscriben los primeros 3 con nivel <= 15"] = world.tournament.eligible(cup).map(func(i): return i.species.id) == \
 		["charmander", "squirtle", "bulbasaur"]
 

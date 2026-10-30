@@ -7,23 +7,42 @@ extends Node
 ## rondas**: las 6 Pociones son para todo el torneo. Si ganás la final: el premio en dinero; si perdés una pelea,
 ## quedás afuera (la entrada no se devuelve). Al salir vuelven tu equipo completo y tu Mochila.
 ## Rivales: Brock y Azul (cuando ya los enfrentaste en la historia, o siempre en el modo libre) con su equipo, que
-## crece según la copa, y entrenadores del torneo generados con Pokémon de la zona (cada uno con su kit).
+## crece y evoluciona según la copa, y entrenadores generados (pedido del usuario 2026-10-30: antes eran solo 20
+## Pokémon de primera fase y era muy fácil): de Kanto y **visitantes de Johto y Hoenn**, cada clase con sus tipos
+## (Karateka: Lucha; Nadador: Agua...), con Pokémon de su región **evolucionados según el nivel** (por nivel, piedra,
+## intercambio o amistad, como harían los entrenadores de los juegos) y cerca del tope de la copa. Cada clase pelea con
+## su estilo (TrainerStyle).
 
 const ROUNDS := ["CUARTOS DE FINAL", "SEMIFINAL", "FINAL"]
 const POTIONS := 6
-## Especies para los rivales generados (todas con kit: cada uno pelea distinto).
-const POOL := ["pidgey", "rattata", "spearow", "caterpie", "weedle", "metapod", "kakuna", "mankey", "sandshrew",
-	"pikachu", "oddish", "bellsprout", "paras", "psyduck", "poliwag", "growlithe", "vulpix", "eevee", "seel", "geodude"]
-## [clase, sprite (art/pret/characters), nombres]
+## Regiones de donde vienen los entrenadores: [nombre, primer n.º de Pokédex, último].
+const REGIONS := [["Kanto", 1, 151], ["Johto", 152, 251], ["Hoenn", 252, 386]]
+## De los 7 rivales generados, cuántos son visitantes (de Johto o Hoenn).
+const VISITORS := 3
+## Los que nunca salen en el torneo (legendarios y los que casi no pelean).
+const BANNED := ["articuno", "zapdos", "moltres", "mewtwo", "mew", "raikou", "entei", "suicune", "lugia", "ho_oh",
+	"celebi", "regirock", "regice", "registeel", "latias", "latios", "kyogre", "groudon", "rayquaza", "jirachi", "deoxys",
+	"unown", "wobbuffet", "wynaut", "smeargle", "ditto", "shedinja", "magikarp", "feebas"]
+## Nivel desde el que un entrenador ya tiene la evolución que no es por nivel (piedra, intercambio, amistad...).
+const EVO_LEVEL := {"piedra": 28, "intercambio": 36, "amistad": 22, "otro": 30}
+## [clase, sprite (art/pret/characters), nombres, tipos que le gustan (vacío = cualquiera)]
 const CLASSES := [
-	["Cazabichos", "bug_catcher", ["Nico", "Bruno", "Tiago"]],
-	["Campista", "camper", ["Lucas", "Ramiro", "Gonzalo"]],
-	["Chica", "lass", ["Sofía", "Martina", "Lola"]],
-	["Joven", "youngster", ["Facu", "Lautaro", "Joaco"]],
-	["Entrenadora Guay", "cooltrainer_f", ["Valentina", "Camila", "Abril"]],
-	["Entrenador Guay", "cooltrainer_m", ["Mateo", "Santino", "Bauti"]],
-	["Karateka", "black_belt", ["Hernán", "Kenji", "Dante"]],
-	["Rockero", "rocker", ["Pity", "Rulo", "Chino"]],
+	["Cazabichos", "bug_catcher", ["Nico", "Bruno", "Tiago"], ["bicho"]],
+	["Campista", "camper", ["Lucas", "Ramiro", "Gonzalo"], ["tierra", "roca", "normal"]],
+	["Chica", "lass", ["Sofía", "Martina", "Lola"], ["normal", "hada", "planta"]],
+	["Joven", "youngster", ["Facu", "Lautaro", "Joaco"], ["normal", "volador"]],
+	["Entrenadora Guay", "cooltrainer_f", ["Valentina", "Camila", "Abril"], []],
+	["Entrenador Guay", "cooltrainer_m", ["Mateo", "Santino", "Bauti"], []],
+	["Karateka", "black_belt", ["Hernán", "Kenji", "Dante"], ["lucha"]],
+	["Rockero", "rocker", ["Pity", "Rulo", "Chino"], ["electrico", "veneno"]],
+	["Montañero", "hiker", ["Tano", "Beto", "Cacho"], ["roca", "tierra", "acero"]],
+	["Nadador", "swimmer_m_land", ["Nahuel", "Thiago", "Ciro"], ["agua", "hielo"]],
+	["Médium", "channeler", ["Ofelia", "Rosa", "Delia"], ["fantasma", "psiquico", "siniestro"]],
+	["Pokemaníaco", "poke_maniac", ["Ezequiel", "Pipo", "Marcos"], ["dragon", "tierra", "normal"]],
+	["Belleza", "beauty", ["Julieta", "Renata", "Mora"], ["planta", "hada", "agua"]],
+	["Motorista", "biker", ["Toro", "Chancho", "Rata"], ["veneno", "fuego", "siniestro"]],
+	["Científico", "scientist", ["Ulises", "Ernesto", "Iván"], ["electrico", "acero", "psiquico"]],
+	["Caballero", "gentleman", ["Don Aníbal", "Don Ramón", "Don Julio"], ["fuego", "normal", "agua"]],
 ]
 
 var world: Node
@@ -119,8 +138,9 @@ func play(cup: TournamentCup, team: Array[CreatureInstance]) -> bool:
 	for r in ROUNDS.size():
 		var me_index := field.find("jugador")
 		var rival: Dictionary = field[me_index ^ 1]
-		await world.story.dialog.say("Locutor", PackedStringArray(["¡%s! Te toca contra %s %s." % [
-			ROUNDS[r].capitalize(), rival["title"], rival["name"]]]))
+		var from: String = (" ¡Viene desde %s!" % rival["origen"]) if rival.has("origen") else ""
+		await world.story.dialog.say("Locutor", PackedStringArray(["¡%s! Te toca contra %s %s.%s" % [
+			ROUNDS[r].capitalize(), rival["title"], rival["name"], from]]))
 		var result: String = await world.arena.start({"name": rival["name"], "title": rival["title"],
 			"team": _team_of(rival), "arena_id": "arena_torneo", "texture": _texture(rival["gfx"]),
 			"leader": r == ROUNDS.size() - 1, "no_blackout": true, "banner": ROUNDS[r],
@@ -189,16 +209,18 @@ func _field(cup: TournamentCup, team: Array[CreatureInstance]) -> Array:
 	if not story or GameState.has_flag("rival_ruta22_peleado"):
 		out.append(_rival(cup, cap))
 	var used := {}
+	var visitors := 0
 	while out.size() < 8:
 		var cls: Array = CLASSES[randi() % CLASSES.size()]
 		var nm: String = cls[2][randi() % cls[2].size()]
 		if used.has(nm):
 			continue
 		used[nm] = true
-		var mons := []
-		for k in cup.team_size:
-			mons.append([POOL[randi() % POOL.size()], clampi(cap - randi_range(0, 4), 2, 100)])
-		out.append({"name": nm, "title": cls[0], "gfx": cls[1], "team": mons, "pierde": "¡Uh, me ganaste!"})
+		var region: Array = REGIONS[0]
+		if visitors < VISITORS:
+			region = REGIONS[1 + randi() % 2]
+			visitors += 1
+		out.append(generated_trainer(cls, nm, region, cup.team_size, cap))
 	var rest := out.slice(1)
 	rest.shuffle()
 	var me_at := randi() % 8
@@ -206,14 +228,63 @@ func _field(cup: TournamentCup, team: Array[CreatureInstance]) -> Array:
 	return rest
 
 
-## Brock: su equipo de roca, que crece con la copa (más Pokémon y más nivel).
+## Un entrenador generado: Pokémon de su región (de primera fase, evolucionados según el nivel), de los tipos de su
+## clase si hay suficientes, a 0-2 niveles del tope. Los visitantes avisan de dónde vienen.
+func generated_trainer(cls: Array, nm: String, region: Array, size: int, cap: int) -> Dictionary:
+	var pool := pool_for(region, cls[3])
+	if pool.size() < size * 2:
+		pool = pool_for(region, [])
+	pool.shuffle()
+	var mons := []
+	for k in size:
+		var lvl := clampi(cap - randi_range(0, 2), 2, 100)
+		mons.append([evolve_for(DB.species[pool[k % pool.size()]], lvl).id, lvl])
+	var entry := {"name": nm, "title": cls[0], "gfx": cls[1], "team": mons, "pierde": "¡Uh, me ganaste!"}
+	if region[0] != "Kanto":
+		entry["origen"] = region[0]
+		entry["pierde"] = "¡Qué nivel tienen en Kanto! Me vuelvo a %s a entrenar." % region[0]
+	return entry
+
+
+## Especies de primera fase de una región (sin los prohibidos), de esos tipos si se piden.
+static func pool_for(region: Array, types: Array) -> Array:
+	var out := []
+	for sp: SpeciesData in DB.species.values():
+		if sp.dex < region[1] or sp.dex > region[2] or sp.id in BANNED:
+			continue
+		if sp.evolves_from != "" and DB.species.has(sp.evolves_from) \
+				and DB.species[sp.evolves_from].dex >= region[1] and DB.species[sp.evolves_from].dex <= region[2]:
+			continue  # (solo la primera fase de la región: la evolución sale por nivel)
+		if not types.is_empty() and not sp.types.any(func(t): return t.id in types):
+			continue
+		out.append(sp.id)
+	return out
+
+
+## La especie que tendría un entrenador con ese Pokémon a ese nivel: evoluciona por nivel como siempre, y por piedra,
+## intercambio o amistad desde EVO_LEVEL (como los entrenadores de los juegos). Si hay varias, una al azar.
+static func evolve_for(sp: SpeciesData, level: int) -> SpeciesData:
+	for step in 3:
+		var options: Array[SpeciesData] = []
+		for e: EvolutionData in sp.evolutions:
+			if not DB.species.has(e.to_id) or DB.species[e.to_id].id in BANNED:
+				continue
+			var need: int = e.level if e.method == "nivel" else int(EVO_LEVEL.get(e.method, 30))
+			if need > 0 and level >= need:
+				options.append(DB.species[e.to_id])
+		if options.is_empty():
+			break
+		sp = options[randi() % options.size()]
+	return sp
+
+
+## Brock: su equipo de roca, que crece y evoluciona con la copa (más Pokémon y más nivel).
 func _brock(cup: TournamentCup, cap: int) -> Dictionary:
 	var rocks := ["geodude", "onix", "sandshrew", "rhyhorn", "omanyte", "kabuto"]
-	if cap >= 25:
-		rocks[0] = "graveler"
 	var mons := []
 	for k in cup.team_size:
-		mons.append([rocks[k], cap if rocks[k] == "onix" else maxi(2, cap - 1)])
+		var lvl := cap if rocks[k] == "onix" else maxi(2, cap - 1)
+		mons.append([rocks[k] if rocks[k] == "onix" else evolve_for(DB.species[rocks[k]], lvl).id, lvl])
 	return {"name": "Brock", "title": "Líder", "gfx": "brock", "team": mons,
 		"pierde": "¡Tus Pokémon están cada vez más fuertes! Me voy a acordar de esta pelea."}
 
@@ -224,10 +295,11 @@ func _rival(cup: TournamentCup, cap: int) -> Dictionary:
 	for sp in ["charmander", "squirtle", "bulbasaur"]:
 		if GameState.has_flag("rival_" + sp):
 			starter = sp
-	var others := ["pidgey", "rattata", "spearow", "mankey", "pikachu"]
+	var others := ["pidgey", "abra", "rhyhorn", "exeggcute", "growlithe"]  # (su equipo de FireRed)
 	var mons := []
 	for k in cup.team_size:
-		mons.append([starter if k == cup.team_size - 1 else others[k], cap])
+		var sp: String = starter if k == cup.team_size - 1 else others[k]
+		mons.append([evolve_for(DB.species[sp], cap).id, cap])
 	return {"name": "Azul", "title": "Rival", "gfx": "blue", "team": mons, "pierde": "¡¿Otra vez?! ¡La próxima no te escapás!"}
 
 

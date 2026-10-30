@@ -6,6 +6,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-30)
+- **Torneo más difícil (2026-10-30, pedido del usuario)**: los rivales generados salen de toda Kanto y hay 3 visitantes de
+  Johto o Hoenn por cuadro, con 16 clases (cada una con sus tipos y su estilo de pelea) y Pokémon evolucionados según el
+  nivel de la copa (`Tournament.evolve_for`, `pool_for`, `generated_trainer`); Brock y Azul también evolucionan. Ver
+  `docs/PLAN_TORNEO.md`. Test `--autotest-tournament`.
 - **IA de los Pokémon (2026-10-30, pedido del usuario): plan `docs/PLAN_IA.md`, fases IA-1 a IA-6.** Hecha la **IA-1**:
   `TacticalMind` (`Creature.mind`) elige el ataque por situación (potencia × STAB × efectividad, más ganas si estás en
   stagger/cargando/recuperándote, no repite siempre el mismo, no tira lo que no te hace nada) y lee el cruce de tipos
