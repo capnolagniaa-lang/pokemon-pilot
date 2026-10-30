@@ -28,11 +28,6 @@ var _done := false
 
 
 func _ready() -> void:
-	if "--build-test-zone" in OS.get_cmdline_user_args():  # tools/build_test_zone.gd (necesita DB)
-		set_process(false)
-		load("res://tools/build_test_zone.gd").new().build()
-		get_tree().quit()
-		return
 	if "--overview" in OS.get_cmdline_user_args():
 		GameState.wilds_enabled = false
 		_overview.call_deferred()
@@ -142,13 +137,6 @@ func _ready() -> void:
 		vx.autotest = self
 		add_child(vx)
 		(vx.showcase if "--showcase-vfx" in OS.get_cmdline_user_args() else vx.run).call_deferred()
-		return
-	if "--autotest-style" in OS.get_cmdline_user_args() or "--showcase-style" in OS.get_cmdline_user_args():
-		set_process(false)
-		var stt := StyleTests.new()
-		stt.autotest = self
-		add_child(stt)
-		(stt.showcase if "--showcase-style" in OS.get_cmdline_user_args() else stt.run).call_deferred()
 		return
 	if "--autotest-anims" in OS.get_cmdline_user_args() or "--showcase-sleep" in OS.get_cmdline_user_args():
 		set_process(false)

@@ -1,7 +1,6 @@
 extends Sprite2D
 ## Cuando el personaje está en pasto alto, dibuja el frente del pasto sobre sus piernas
-## y suelta hojitas al entrar a cada mata nueva. En una zona dibujada con un paquete de estilo (StyleOverlay), el pasto
-## es la mata del paquete y no el tile de FireRed.
+## y suelta hojitas al entrar a cada mata nueva.
 
 const TILE := 16
 const GRASS_METATILE := 13
@@ -12,14 +11,10 @@ var _last_cell := Vector2i(1 << 30, 0)
 var _world: Node
 
 
-var _fire_texture: Texture2D
-var _styled: Texture2D
-
-
 func _ready() -> void:
-	_fire_texture = load("res://art/pret/tiles/general_below.png")
-	_use_fire()
+	texture = load("res://art/pret/tiles/general_below.png")
 	region_enabled = true
+	region_rect = Rect2((GRASS_METATILE % 16) * TILE, (GRASS_METATILE / 16) * TILE + TILE - COVER, TILE, COVER)
 	centered = false
 	top_level = true
 	z_index = 1
@@ -38,31 +33,10 @@ func _physics_process(_delta: float) -> void:
 		_last_cell = Vector2i(1 << 30, 0)
 		return
 	var cell := Vector2i((feet / TILE).floor())
-	var ov := StyleOverlay.at(_world, feet)
-	var styled := StyleOverlay.texture("pasto_alto") if ov != null else null
-	if styled == null:
-		_use_fire()
-	elif styled != _styled:
-		_styled = styled
-		texture = styled
-		var k := float(styled.get_width()) / TILE  # píxeles de la mata por píxel del mundo (4 en HD)
-		region_rect = Rect2(0, styled.get_height() - COVER * k, styled.get_width(), COVER * k)
-		scale = Vector2.ONE / k
-		texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR if k > 1.0 else CanvasItem.TEXTURE_FILTER_PARENT_NODE
 	global_position = Vector2(cell * TILE) + Vector2(0, TILE - COVER)
 	if cell != _last_cell:
 		_last_cell = cell
 		_rustle(Vector2(cell * TILE) + Vector2(TILE / 2.0, TILE - 4))
-
-
-func _use_fire() -> void:
-	if texture == _fire_texture:
-		return
-	_styled = null
-	texture = _fire_texture
-	scale = Vector2.ONE
-	texture_filter = CanvasItem.TEXTURE_FILTER_PARENT_NODE
-	region_rect = Rect2((GRASS_METATILE % 16) * TILE, (GRASS_METATILE / 16) * TILE + TILE - COVER, TILE, COVER)
 
 
 func _rustle(at: Vector2) -> void:

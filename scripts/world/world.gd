@@ -121,7 +121,7 @@ func _ready() -> void:
 	cursor.name = "CrosshairCursor"
 	add_child(cursor)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
-	Events.zone_entered.connect(_on_zone_entered_visit)
+	Events.zone_entered.connect(func(z: ZoneEntry): GameState.visit_zone(z.id))
 	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ZoneBounds.attach(node, z, streamer.world_data))
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ExtraContent.attach(node, z, streamer.world_data))
@@ -133,8 +133,6 @@ func _ready() -> void:
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): CaveLights.attach(node, z, streamer.world_data))
 	# Faroles al costado de los caminos (se prenden de noche).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): StreetLamps.attach(node, z, streamer.world_data))
-	# Terreno propio (zonas de pruebas, con un paquete elegido con «estilo» en la consola de GM).
-	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): StyleOverlay.attach(node, z))
 	for id in streamer.loaded:
 		for z in streamer.world_data.zones:
 			if z.id == id:
@@ -144,7 +142,6 @@ func _ready() -> void:
 				ZoneLights.attach(streamer.loaded[id], z, streamer.world_data)
 				CaveLights.attach(streamer.loaded[id], z, streamer.world_data)
 				StreetLamps.attach(streamer.loaded[id], z, streamer.world_data)
-				StyleOverlay.attach(streamer.loaded[id], z)
 	var loot := FieldItemSpawner.new()
 	loot.name = "FieldItemSpawner"
 	add_child(loot)
@@ -251,9 +248,3 @@ func respawn_companion() -> void:
 	companion.position = trainer.global_position + Vector2(0, -12)
 	companion.add_to_group("ally_creatures")
 	entities.add_child(companion)
-
-
-## Zona nueva para el Mapa del menú y los globos (las de prueba no cuentan).
-func _on_zone_entered_visit(z: ZoneEntry) -> void:
-	if not z.test_zone:
-		GameState.visit_zone(z.id)
