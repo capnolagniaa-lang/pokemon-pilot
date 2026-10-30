@@ -23,8 +23,14 @@ uniform float sun_strength = 0.0;
 uniform float sun_reach = 1.1;        // hasta dónde llega (en altos de pantalla)
 uniform float rays = 0.0;             // rayos de luz (0..1)
 
+// Hash con enteros (exacto): el de fract(sin(...) * 23758) daba distinto en las dos celdas de un mismo borde según
+// cómo lo compilara la placa, y la niebla salía en bloques rectangulares claros que se movían por la pantalla.
 float mist_hash(vec2 p) {
-	return fract(sin(dot(p, vec2(41.3, 289.1))) * 23758.5453);
+	uvec2 q = uvec2(ivec2(floor(p)) + ivec2(4096));
+	uint h = q.x * 1597334677u ^ q.y * 3812015801u;
+	h = (h ^ (h >> 16u)) * 2246822519u;
+	h ^= h >> 13u;
+	return float(h) / 4294967295.0;
 }
 
 float mist_noise(vec2 p) {
