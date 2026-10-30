@@ -90,6 +90,7 @@ $G --headless --path . --quit-after 12000 -- --autotest-env      # entorno react
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-env    # vitrina del entorno
 $G --headless --path . --quit-after 30000 -- --autotest-wild-ai  # IA salvaje: temperamentos, apertura, huida, peligros
 $G --headless --path . --quit-after 30000 -- --autotest-ai-steer  # IA que rodea obstáculos, anticipación, Normal, seguir con F, paso del golpe y stagger
+$G --headless --path . --quit-after 30000 -- --autotest-ai-mind  # IA-1: elegir ataque por situación, tipos, reacción humana, aviso de ataques fuertes
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-wild-ai  # un salvaje de cada temperamento
 $G --headless --path . --quit-after 20000 -- --autotest-trainers  # entrenadores vivos (E-0: interruptor, NPC, guardado)
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-trainers  # los 3 en Ruta 1
@@ -244,6 +245,11 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   gira hacia un lado y lo mantiene; trabado 0,35 s → camino por celdas con `find_path`, AStarGrid2D sobre
   `MapRules`). `clear_shot` (rayo contra mundo y entorno): no dispara contra paredes y se acomoda para tener tiro.
   `AiDifficulty.lead`: los disparos anticipan tu movimiento (Fácil 0, Normal 0,6, Difícil 1).
+  **Mente táctica** (`docs/PLAN_IA.md`, fases IA; hecha IA-1): `TacticalMind` (`Creature.mind`) = *qué* ataque (puntaje
+  por potencia, STAB, efectividad, rival expuesto, sin repetir) y cruce de tipos (`matchup`: "cuidate"/"presiona"); el
+  estado `attack` la usa (la apertura del temperamento sigue). Justicia: `AiDifficulty.reaction` (esquiva recién pasado
+  ese tiempo, `CombatBody.try_dodge`) y `telegraph` (los fuertes sin carga brillan, `CreatureSprite.tell_left`, y se
+  frenan antes); `smarts` mezcla el puntaje con azar (Fácil).
 - **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
   hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`; **capítulos 4-8** hasta el Campeón: `docs/PLAN_RESTO_KANTO.md`). **E frente
   a algo** (`StoryDirector.register_interaction`): `FieldMoves` = MO **como en Let's Go** (decisión del usuario 2026-10-28: la MO + su medalla las desbloquea,

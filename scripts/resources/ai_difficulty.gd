@@ -17,3 +17,9 @@ extends Resource
 @export var think_interval_mult: float = 1.0
 ## Anticipación al disparar (0 = apunta adonde estás; 1 = adonde vas a estar cuando llegue el disparo).
 @export var lead: float = 1.0
+## Cuánto piensa al elegir ataque (docs/PLAN_IA.md, IA-1): 1 = el mejor para la situación, 0 = cualquiera que llegue.
+@export_range(0.0, 1.0) var smarts: float = 0.7
+## Tiempo de reacción (s) entre ver un disparo y esquivarlo (±30 %).
+@export var reaction: float = 0.22
+## Aviso (s) antes de un ataque fuerte sin carga: brilla y se frena.
+@export var telegraph: float = 0.22

@@ -106,6 +106,12 @@ var body: CombatBody:
 		if body == null:
 			body = CombatBody.new(self)
 		return body
+## "Mente" táctica (qué ataque usar, cruce de tipos; ver TacticalMind, docs/PLAN_IA.md).
+var mind: TacticalMind:
+	get:
+		if mind == null:
+			mind = TacticalMind.new(self)
+		return mind
 
 var _clock := 0.0
 

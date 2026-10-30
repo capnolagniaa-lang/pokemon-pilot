@@ -7,7 +7,14 @@ extends RefCounted
 ## del salvaje o, más adelante, las órdenes del entrenador).
 
 var actor: Creature
+## Disparos vistos: proyectil -> [cuándo lo vio (s), si decidió esquivarlo]. Esquiva recién pasado el tiempo de
+## reacción de la dificultad (docs/PLAN_IA.md, IA-1).
 var _checked: Dictionary = {}
+## Ataques que necesitan línea libre hasta el objetivo (los frena una pared).
+const NEEDS_SHOT := [MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL, MoveData.Kind.WHIP]
+## A qué distancia ve venir un disparo y a cuál ya es tarde para pensarlo.
+const SEE_SHOT := 200.0
+const DODGE_SHOT := 100.0
 
 # --- Moverse sin trabarse (steer) ---
 ## Distancia que se mira hacia adelante para ver si hay algo sólido.
@@ -83,19 +90,29 @@ func use(slot: int) -> bool:
 	return actor.use_slot(slot, dir, point)
 
 
-## Esquiva proyectiles enemigos que vienen hacia él (decide una vez por proyectil).
+## Esquiva proyectiles enemigos que vienen hacia él: decide una vez por proyectil (dodge_chance) al verlo venir, y
+## esquiva recién pasado su tiempo de reacción (`AiDifficulty.reaction`, ±30 %), si sigue viniendo.
 func try_dodge() -> bool:
-	if not actor.moves.can_dodge():
-		return false
+	var now := actor.now()
+	for p in _checked.keys():
+		if not is_instance_valid(p):
+			_checked.erase(p)
 	for p in actor.get_parent().get_children():
-		if not p is Projectile or p.hit == null or p.hit.team == actor.team or _checked.has(p):
+		if not p is Projectile or p.hit == null or p.hit.team == actor.team:
 			continue
 		var rel: Vector2 = actor.global_position - p.global_position
-		if rel.length() < 70.0 and p.velocity.dot(rel) > 0.0:
-			_checked[p] = true
-			if randf() < difficulty().dodge_chance:
-				var perp: Vector2 = p.velocity.orthogonal().normalized()
-				return actor.dodge(perp if randf() < 0.5 else -perp)
+		if p.velocity.dot(rel) <= 0.0:
+			continue
+		if not _checked.has(p):
+			if rel.length() < SEE_SHOT:
+				var react := difficulty().reaction * randf_range(0.7, 1.3)
+				_checked[p] = [now + react, randf() < difficulty().dodge_chance]
+			continue
+		var seen: Array = _checked[p]
+		if seen[1] and now >= seen[0] and rel.length() < DODGE_SHOT and actor.moves.can_dodge():
+			seen[1] = false
+			var perp: Vector2 = p.velocity.orthogonal().normalized()
+			return actor.dodge(perp if randf() < 0.5 else -perp)
 	return false
 
 

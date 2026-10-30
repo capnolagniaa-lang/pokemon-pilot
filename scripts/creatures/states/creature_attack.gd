@@ -1,9 +1,10 @@
 extends State
-## Salvaje peleando (mente de salvaje: instinto, sin memoria). Mantiene su distancia, rodea, y ataca con un
-## **patrón reconocible**: abre siempre igual (si está lejos, con su ataque de acercamiento) y después rota sus
-## ataques en orden, sin azar, así el jugador aprende a leerlo. La ejecución (apuntar, esquivar, puntería según
-## la dificultad) la hace el cuerpo compartido (CombatBody). Huye con poca vida según su temperamento, se
-## espanta con golpes fuertes y sale de las celdas peligrosas.
+## Peleando (salvajes y Pokémon de entrenador). Mantiene su distancia, rodea, y ataca: abre siempre igual (si está
+## lejos, con su ataque de acercamiento: instinto, se lee) y después elige el ataque que mejor le sirve en la situación
+## (TacticalMind: potencia, tipos, si estás expuesto; docs/PLAN_IA.md, IA-1). Con el cruce de tipos en contra se cuida
+## (más lejos, ataca menos seguido); a favor, presiona. Los ataques fuertes sin carga se avisan (brillo + pausa corta).
+## La ejecución (apuntar, esquivar con tiempo de reacción, puntería según la dificultad) la hace CombatBody. Huye con
+## poca vida según su temperamento, se espanta con golpes fuertes y sale de las celdas peligrosas.
 
 ## Si no tiene temperamento (no debería pasar), huye con menos de esto.
 @export var flee_below := 0.25
@@ -12,16 +13,27 @@ var _think := 0.0
 var _attack_timer := 0.6
 var _strafe := 1.0
 var _mode := "strafe"
-## Próxima ranura de la rotación.
-var _next := 0
+## Ataque avisado que espera soltar (-1 = ninguno) y cuánto le falta al aviso.
+var _tell_slot := -1
+var _tell_left := 0.0
 ## Con un estilo de hasta esta distancia es de cuerpo a cuerpo (no retrocede para mantener distancia).
 const MELEE_RANGE := 45.0
-## Ataques que necesitan línea libre hasta el objetivo (los frena una pared).
-const NEEDS_SHOT := [MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL, MoveData.Kind.WHIP]
 
 
 func enter(_msg: Dictionary = {}) -> void:
 	_attack_timer = randf_range(0.3, 0.8) * CombatBody.difficulty().attack_interval_mult
+	_cancel_tell()
+
+
+func exit() -> void:
+	_cancel_tell()
+
+
+func _cancel_tell() -> void:
+	_tell_slot = -1
+	_tell_left = 0.0
+	if actor != null and actor.sprite != null:
+		actor.sprite.tell_left = 0.0
 
 
 func physics_update(delta: float) -> void:
@@ -46,6 +58,17 @@ func physics_update(delta: float) -> void:
 		actor.give_up_fight()  # saliste de su territorio sin pelear: te deja ir
 		return
 	actor.facing = dir
+	# Avisando un ataque fuerte: quieto, mirándote; al terminar lo suelta apuntando adonde estás ahora.
+	if _tell_slot >= 0:
+		if not actor.can_act():
+			_cancel_tell()
+		else:
+			_tell_left -= delta
+			if _tell_left <= 0.0:
+				var slot := _tell_slot
+				_cancel_tell()
+				actor.body.use(slot)
+			return
 	if actor.body.try_dodge():
 		return
 	var escape: Vector2 = actor.body.hazard_escape()
@@ -73,7 +96,7 @@ func physics_update(delta: float) -> void:
 	_attack_timer -= delta
 	if _attack_timer <= 0.0:
 		if _choose_attack(dist):
-			_attack_timer = randf_range(0.5, 1.1) * CombatBody.difficulty().attack_interval_mult
+			_attack_timer = randf_range(0.5, 1.1) * CombatBody.difficulty().attack_interval_mult * _pace()
 			return
 		# Ningún ataque llega desde acá: no se queda esperando, se acomoda y vuelve a probar enseguida.
 		_attack_timer = 0.2
@@ -102,24 +125,38 @@ func _ideal_range() -> float:
 	for m in actor.moves.moves:
 		if m.kind == MoveData.Kind.PROJECTILE:
 			r = maxf(r, m.reach() * 0.55)
+	if r > MELEE_RANGE and actor.mind.matchup() == "cuidate":
+		r *= 1.25  # los de distancia, con los tipos en contra, se quedan más lejos
 	return r
 
 
-## Patrón fijo: la primera vez, si está lejos, abre con su ataque de acercamiento; después recorre las
-## ranuras en orden (0, 1, 2, 3...) usando la primera que le sirva a esta distancia.
+## Ritmo de ataque según el cruce de tipos: con los tipos en contra ataca menos seguido; a favor, presiona.
+func _pace() -> float:
+	match actor.mind.matchup():
+		"cuidate":
+			return 1.2
+		"presiona":
+			return 0.85
+	return 1.0
+
+
+## La primera vez, si está lejos, abre con su ataque de acercamiento (instinto); después elige con TacticalMind.
+## Los fuertes sin carga se avisan antes (`AiDifficulty.telegraph`).
 func _choose_attack(dist: float) -> bool:
 	if not actor.fight_opened:
 		actor.fight_opened = true
 		var opener: int = actor.body.gap_closer(dist)
 		if opener >= 0 and dist > 40.0 and actor.body.use(opener):
+			actor.mind.last_slot = opener
 			return true
-	var shot: bool = actor.body.clear_shot(actor.target)
-	for k in MoveUser.SLOT_COUNT:
-		var slot := (_next + k) % MoveUser.SLOT_COUNT
-		var m: MoveData = actor.moves.slots[slot]
-		if m != null and m.kind in NEEDS_SHOT and not shot:
-			continue  # no tira contra la pared
-		if actor.body.fits(slot, dist):
-			_next = (slot + 1) % MoveUser.SLOT_COUNT
-			return actor.body.use(slot)
-	return false
+	var slot: int = actor.mind.pick(dist)
+	if slot < 0:
+		return false
+	actor.mind.last_slot = slot
+	var tell := CombatBody.difficulty().telegraph
+	if TacticalMind.needs_tell(actor.moves.slots[slot]) and tell > 0.0:
+		_tell_slot = slot
+		_tell_left = tell
+		actor.sprite.tell_left = tell
+		return true
+	return actor.body.use(slot)

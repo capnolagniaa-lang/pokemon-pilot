@@ -5,7 +5,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-10-29)
+## 📍 Dónde estamos (actualizado 2026-10-30)
+- **IA de los Pokémon (2026-10-30, pedido del usuario): plan `docs/PLAN_IA.md`, fases IA-1 a IA-6.** Hecha la **IA-1**:
+  `TacticalMind` (`Creature.mind`) elige el ataque por situación (potencia × STAB × efectividad, más ganas si estás en
+  stagger/cargando/recuperándote, no repite siempre el mismo, no tira lo que no te hace nada) y lee el cruce de tipos
+  (con los tipos en contra se cuida, a favor presiona). Justicia: reacción humana antes de esquivar y aviso (brillo
+  anaranjado + pausa) antes de los ataques fuertes sin carga. Dificultad: `smarts`, `reaction`, `telegraph`. Sirve para
+  salvajes y entrenadores (mismo estado "attack"). Test `--autotest-ai-mind`. **Siguiente: IA-2 (memoria corta).**
 - **Plazas, playa y Snorlax (2026-10-29, pedidos del usuario)**: plazas con un puesto de panchos y hamburguesas (y su
   puestero) y una parrilla (y su parrillero) en Celeste, Carmín, Azulona, Azafrán y Fucsia, en el lugar más abierto de
   cada una (`tools/build_plazas.py`; sprites con Qwen-Image + LoRA MOSS: `sprites/props/puesto_panchos.png`,

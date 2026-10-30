@@ -48,6 +48,8 @@ var _forced_left := 0.0
 ## Velocidad de reproducción de la animación forzada (>1 = comprimida para entrar en su tiempo).
 var _rate := 1.0
 var _flash := 0.0
+## Aviso de un ataque fuerte de la IA (docs/PLAN_IA.md, IA-1): brilla anaranjado, titilando, mientras dura.
+var tell_left := 0.0
 var _ghosts: Array = []  # [posición global, frame src, rect, alpha]
 var _ghost_timer := 0.0
 
@@ -60,6 +62,7 @@ func _process(delta: float) -> void:
 	_time += delta * (_rate if _forced_left > 0.0 else 1.0)
 	_forced_left = maxf(0.0, _forced_left - delta)
 	_flash = maxf(0.0, _flash - delta)
+	tell_left = maxf(0.0, tell_left - delta)
 	emote_left = maxf(0.0, emote_left - delta)
 	var parent := get_parent() as CharacterBody2D
 	var want := "Idle"
@@ -247,6 +250,9 @@ func _draw() -> void:
 		tint = Color.WHITE.lerp(st, k if _status_frozen() else pulse)
 	if c is Creature and c.health != null and c.health.invulnerable_time > 0.0 and not c.health.is_dead():
 		tint.a = 0.55
+	if tell_left > 0.0:
+		var k := 0.5 + 0.5 * sin(_time * 40.0)
+		tint = tint.lerp(Color(2.6, 1.5, 0.6, tint.a), 0.55 + 0.45 * k)  # HDR: brilla con el glow
 	if _flash > 0.0:
 		tint = Color(3.0, 3.0, 3.0, tint.a)  # HDR: el glow hace brillar el golpe
 	draw_texture_rect_region(cur[0], cur[2], cur[1], tint)

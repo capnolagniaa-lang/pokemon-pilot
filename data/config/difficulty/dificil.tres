@@ -12,3 +12,6 @@ dodge_chance = 0.4
 damage_mult = 1.0
 think_interval_mult = 1.0
 lead = 1.0
+smarts = 1.0
+reaction = 0.14
+telegraph = 0.12

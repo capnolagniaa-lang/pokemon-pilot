@@ -145,6 +145,13 @@ func _ready() -> void:
 		add_child(an)
 		an.run.call_deferred()
 		return
+	if "--autotest-ai-mind" in OS.get_cmdline_user_args():
+		set_process(false)
+		var mt := AiMindTests.new()
+		mt.autotest = self
+		add_child(mt)
+		mt.run.call_deferred()
+		return
 	if "--autotest-ai-steer" in OS.get_cmdline_user_args():
 		set_process(false)
 		var st2 := AiSteerTests.new()
