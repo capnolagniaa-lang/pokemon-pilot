@@ -74,6 +74,8 @@ $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: tod
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
 $G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos, volar sin descubrir zonas e ir (zona de pruebas)
+$G --headless --path . --quit-after 60000 -- --autotest-style  # terreno propio en la zona de pruebas (StyleOverlay, paquetes, estilo fire)
+$G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-style  # cada paquete en pueblo, bosque y cueva de pruebas
 $G --headless --path . --quit-after 60000 -- --build-test-zone  # rearma la zona de pruebas (tools/build_test_zone.gd; pisa sus escenas)
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-online-building  # afuera y adentro
 $G --headless --path . -- --server --port 24680                    # servidor online (sala); corre hasta cerrarlo
@@ -364,6 +366,11 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   servidor; EXP vía CombatDirector). **O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
   servidor `match_started`, que escuchará la pelea de la O-3; servidor del juego fijo en `Net.OFFICIAL_SERVER`). **O-1**: Centro de Combate Online en
   Ciudad Verde (`OnlineDesk` = `world.online`, acción `online` de la recepcionista).
+- **Terreno propio con IA** (`docs/PLAN_TERRENO_PROPIO.md`): `StyleOverlay` dibuja las zonas de pruebas
+  (`ZoneEntry.test_zone`, `ir pruebas`) con un paquete de `art/estilos/<paquete>/` (de `tools/style_pack.py`, desde las
+  salidas de Qwen en ComfyUI) leyendo sus celdas; la colisión y todo lo demás siguen siendo los de la zona. Paquetes
+  `*_hd` = 4× más píxeles por celda (dirección 2D-HD). Comando de GM `estilo <paquete|fire>`. Para sumar un sello o una
+  pieza: `STAMP_PIECES`/`MATERIALS` en StyleOverlay y `PACKS`/`OBJ_WIDTH` en style_pack.py.
 - **Edificios y zonas agregados** (`ExtraContent`): `data/world/extra/zones/*.tres` (ZoneEntry) y
   `data/world/extra/buildings/*.tres` (`ExtraBuilding`). Así se suma algo al mapa **sin tocar las zonas importadas ni
   kanto.tres** (las maneja otro agente): DB los mete en la región, World pone sprite + colisión + celdas sólidas (meta
