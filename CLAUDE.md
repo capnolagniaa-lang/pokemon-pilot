@@ -104,6 +104,7 @@ $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
 $G --headless --path . --quit-after 30000 -- --autotest-anims    # animaciones de combate (Shoot, Charge, Strike, Hop, Faint, Sleep...)
+$G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-sleep  # dormidos: respiran, "z", ojos cerrados, los dos lados
 $G --headless --path . --quit-after 20000 -- --autotest-vfx      # efectos de ataque con sprite (hojas, prioridad, proyectil/área/golpe/impacto)
 $G --path . --quit-after 500 --write-movie out/f.png --fixed-fps 30 -- --showcase-vfx  # el impacto de cada tipo y los proyectiles con hoja, de cerca
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
@@ -524,7 +525,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   agregar animaciones hechas a mano). Qué animación usa cada acción: `CreatureSprite.CHAINS` (disparo → Shoot,
   carga → Charge, golpes → Strike/Swing/Double según potencia y paso del combo, embestida → LeapForth, esquive →
   Hop/Rotate/Tumble según el estilo de movimiento, debilitado → Faint/HitGround/LostBalance, dormido → Sleep; si la
-  especie no la tiene, cae a Attack). Efectos y animaciones con IA: `docs/TUTORIAL_PIXELLAB_SORCERESS.md`.
+  especie no la tiene, cae a Attack). Las hojas de una sola fila (Sleep, Tumble...) miran a la izquierda y se espejan;
+  dormido = respiración y "z" por código. Ojos cerrados en Sleep: `tools/sleep_eyes.py` (cuadro de Qwen Edit → todos los
+  cuadros; ya hecho en 21 especies, pisa `Sleep-Anim.png`: no volver a bajar esas hojas). Efectos y animaciones con IA: `docs/TUTORIAL_PIXELLAB_SORCERESS.md`.
 - **Efectos de ataque con sprite** (opcionales; sin ellos se dibujan por código): `MoveData.vfx`/`impact_vfx` y
   `ElementType.vfx`/`impact_vfx` (SpriteFrames), o hojas `sprites/fx/moves/<id>[_impacto].png` y
   `sprites/fx/types/<id>[_impacto].png` (una fila de cuadros cuadrados, apuntando a la derecha, 15 fps).

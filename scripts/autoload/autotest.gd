@@ -138,12 +138,12 @@ func _ready() -> void:
 		add_child(vx)
 		(vx.showcase if "--showcase-vfx" in OS.get_cmdline_user_args() else vx.run).call_deferred()
 		return
-	if "--autotest-anims" in OS.get_cmdline_user_args():
+	if "--autotest-anims" in OS.get_cmdline_user_args() or "--showcase-sleep" in OS.get_cmdline_user_args():
 		set_process(false)
 		var an := AnimTests.new()
 		an.autotest = self
 		add_child(an)
-		an.run.call_deferred()
+		(an.showcase_sleep if "--showcase-sleep" in OS.get_cmdline_user_args() else an.run).call_deferred()
 		return
 	if "--autotest-ai-mind" in OS.get_cmdline_user_args():
 		set_process(false)

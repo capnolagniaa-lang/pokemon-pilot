@@ -87,6 +87,16 @@ func run() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	r["Dormido usa Sleep"] = sleeper.sprite.current_anim() == "Sleep"
+	# La hoja Sleep tiene una sola fila (mira a la izquierda): se usa esa fila y se espeja si mira a la derecha.
+	sleeper.facing = Vector2.RIGHT
+	var cur: Array = sleeper.sprite._current()
+	r["Dormido mirando a la derecha: fila 0, espejado"] = cur[1].position.y == 0.0 and cur[3]
+	sleeper.facing = Vector2.LEFT
+	cur = sleeper.sprite._current()
+	r["Dormido mirando a la izquierda: fila 0, sin espejar"] = cur[1].position.y == 0.0 and not cur[3]
+	var body := CreatureSprite._body_rect(cur[0], cur[1])
+	r["Respiración: encuentra el cuerpo dentro del cuadro (%s)" % body] = body.size.y > 6 \
+		and body.size.y < int(cur[1].size.y) + 1
 
 	var victim: Creature = autotest._dummy(world, "charmander", me.global_position + Vector2(-60, 0))
 	await get_tree().process_frame
@@ -111,6 +121,29 @@ func run() -> void:
 		print("[anims] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-anims] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+
+## Vitrina: Pokémon dormidos (respiran y sueltan "z"), mirando a los dos lados. Los de arriba tienen ojos cerrados
+## redibujados con Qwen (docs/COMFYUI.md); los de abajo, la hoja de PMD tal cual.
+##   godot --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-sleep
+func showcase_sleep() -> void:
+	var world: Node = await autotest._setup_kit_world("charmander")
+	world.combat.end_battle()
+	world.companion.visible = false
+	world.trainer.visible = false
+	var base: Vector2 = world.trainer.global_position + Vector2(0, 110)
+	var ids := ["charmander", "pikachu", "snorlax", "gyarados", "magikarp", "gastly", "beedrill", "butterfree"]
+	for i in ids.size():
+		for side in 2:
+			var c: Creature = autotest._dummy(world, ids[i], base + Vector2(-147 + i * 42, -22 + side * 48))
+			c.statuses.apply(DB.statuses["dormido"], 100.0)
+			c.facing = Vector2.LEFT if side == 0 else Vector2.RIGHT
+	world.camera.target = null
+	world.camera.global_position = base
+	for i in 210:  # (la cámara vuelve al zoom normal sola)
+		world.camera.zoom = Vector2(3.6, 3.6)
+		await get_tree().process_frame
+	get_tree().quit()
 
 
 ## Ataque de prueba de Charmander (tipo Fuego) con la forma y potencia pedidas.

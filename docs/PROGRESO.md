@@ -14,6 +14,15 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   salvajes y entrenadores (mismo estado "attack"). Test `--autotest-ai-mind`. **IA-2 (memoria corta)** también: te lee hacia qué lado esquivás y
   apunta ahí, nota si peleás de lejos o de cerca, castiga cuando tenés tus ataques fuertes en recarga, con poca vida
   huye / se juega todo / se cubre según el temperamento, y amaga (fintas, más en Difícil). **Siguiente: IA-3.**
+- **Pokémon dormidos (2026-10-30, pedido del usuario)**: respiran (al inhalar la parte de arriba del cuerpo sube 1 px
+  repitiendo la fila del pecho, sin deformar el pixel art) y les salen "z" de pixel art de la cabeza
+  (`CreatureSprite._draw_breathing`, `_draw_zzz`). Las hojas de una sola fila (Sleep, Tumble, HitGround, LostBalance,
+  LeapForth) se espejan cuando mira a la derecha: antes se pedía la fila de la dirección y **no se dibujaba nada**. Los que
+  en la hoja de PMD dormían con los ojos abiertos ahora los cierran: cuadro 0 pasado por Qwen Image Edit ("cerrá los
+  ojos, no cambies nada más") y `tools/sleep_eyes.py` lleva ese cambio a todos los cuadros con la paleta original
+  (pisa `Sleep-Anim.png`). Son 21: Butterfree, Beedrill, Golbat, Magnemite, Magneton, Gastly, Horsea, Seadra,
+  Magikarp, Gyarados, Aerodactyl, Articuno, Zapdos, Unown, Octillery, Dustox, Dusclops, Glalie, Relicanth, Beldum y
+  Metang (de 58 probados: en los demás Qwen cambiaba el diseño, como Groudon o Latias, o no había ojos para cerrar). Vitrina `--showcase-sleep`; test `--autotest-anims`.
 - **Plazas, playa y Snorlax (2026-10-29, pedidos del usuario)**: plazas con un puesto de panchos y hamburguesas (y su
   puestero) y una parrilla (y su parrillero) en Celeste, Carmín, Azulona, Azafrán y Fucsia, en el lugar más abierto de
   cada una (`tools/build_plazas.py`; sprites con Qwen-Image + LoRA MOSS: `sprites/props/puesto_panchos.png`,

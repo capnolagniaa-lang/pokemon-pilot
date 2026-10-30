@@ -24,6 +24,11 @@ const CHAINS := {
 }
 ## Las que se repiten mientras duran (las demás se quedan en el último cuadro).
 const LOOPED := ["Idle", "Walk", "Sleep", "Charge"]
+## Dormido: un ciclo de respiración (s) y cada cuánto sale una "z".
+const BREATH_TIME := 2.4
+const ZZZ_TIME := 2.1
+
+static var _bodies := {}  # "hoja:cuadro" → rect del cuerpo (respiración)
 
 var species: SpeciesData:
 	set(value):
@@ -196,7 +201,7 @@ func _row(facing: Vector2) -> int:
 
 
 func _current() -> Array:
-	## [textura, rect origen, rect destino] del frame actual, o [] si no hay hoja.
+	## [textura, rect origen, rect destino, espejado] del frame actual, o [] si no hay hoja.
 	if not _anims.has(_anim):
 		return []
 	var anim: Dictionary = _anims[_anim]
@@ -205,7 +210,13 @@ func _current() -> Array:
 	var facing: Vector2 = get_parent().get("facing") if get_parent() != null else Vector2.DOWN
 	var frozen := _status_frozen()
 	var frame := 0 if frozen else _frame(anim["durations"], LOOPED.has(_anim))
-	return [DB.texture(anim["file"]), Rect2(frame * fw, _row(facing) * fh, fw, fh), Rect2(-fw / 2.0, -fh / 2.0 - foot_offset, fw, fh)]
+	var tex := DB.texture(anim["file"])
+	# Algunas hojas (Sleep, Tumble, HitGround...) tienen una sola fila, mirando a la izquierda: se espejan si mira a
+	# la derecha (antes se pedía la fila de la dirección y no se dibujaba nada).
+	var single := tex != null and tex.get_height() < fh * 8.0
+	var row := 0 if single else _row(facing)
+	var flip := single and facing.x > 0.3
+	return [tex, Rect2(frame * fw, row * fh, fw, fh), Rect2(-fw / 2.0, -fh / 2.0 - foot_offset, fw, fh), flip]
 
 
 func _status_frozen() -> bool:
@@ -255,10 +266,78 @@ func _draw() -> void:
 		tint = tint.lerp(Color(2.6, 1.5, 0.6, tint.a), 0.55 + 0.45 * k)  # HDR: brilla con el glow
 	if _flash > 0.0:
 		tint = Color(3.0, 3.0, 3.0, tint.a)  # HDR: el glow hace brillar el golpe
-	draw_texture_rect_region(cur[0], cur[2], cur[1], tint)
+	draw_set_transform(up, 0.0, Vector2(-1.0 if cur[3] else 1.0, 1.0))
+	if _anim == "Sleep" and not _status_frozen():
+		_draw_breathing(cur[0], cur[2], cur[1], tint)
+	else:
+		draw_texture_rect_region(cur[0], cur[2], cur[1], tint)
+	draw_set_transform(up, 0.0, Vector2.ONE)
 
 	if c is Creature:
 		_draw_combat_ui(c, cur[2])
+
+
+## Dormido: respira. Al inhalar, la parte de arriba del cuerpo sube 1 px y la fila del pecho (a 2/5 del alto, desde los
+## pies) se repite para llenar el hueco: el pixel art no se deforma (las hojas Sleep de PMD tienen 2 cuadros casi iguales).
+func _draw_breathing(tex: Texture2D, dst: Rect2, src: Rect2, tint: Color) -> void:
+	var body := _body_rect(tex, src)
+	var inhale := fmod(_time, BREATH_TIME) < BREATH_TIME * 0.45
+	if not inhale or body.size.y < 6:
+		draw_texture_rect_region(tex, dst, src, tint)
+		return
+	var split := float(body.end.y - int(body.size.y * 0.4))  # fila del pecho, en el cuadro
+	var top_h := split
+	draw_texture_rect_region(tex, Rect2(dst.position + Vector2(0, -1), Vector2(dst.size.x, top_h)), \
+		Rect2(src.position, Vector2(src.size.x, top_h)), tint)
+	draw_texture_rect_region(tex, Rect2(dst.position + Vector2(0, split - 1), Vector2(dst.size.x, 1)), \
+		Rect2(src.position + Vector2(0, split - 1), Vector2(src.size.x, 1)), tint)
+	draw_texture_rect_region(tex, Rect2(dst.position + Vector2(0, split), Vector2(dst.size.x, src.size.y - split)), \
+		Rect2(src.position + Vector2(0, split), Vector2(src.size.x, src.size.y - split)), tint)
+
+
+## Lo que ocupa el cuerpo dentro del cuadro (sin el margen transparente), guardado por hoja y cuadro.
+static func _body_rect(tex: Texture2D, src: Rect2) -> Rect2i:
+	var key := "%d:%s" % [tex.get_rid().get_id(), src.position]
+	if not _bodies.has(key):
+		var img := tex.get_image()
+		var r := Rect2i(Vector2i.ZERO, Vector2i(src.size))
+		if img != null:
+			if img.is_compressed():
+				img.decompress()
+			var used := img.get_region(Rect2i(src)).get_used_rect()
+			if used.size.y > 0:
+				r = used
+		_bodies[key] = r
+	return _bodies[key]
+
+
+## Dormido: "z" que salen de la cabeza, suben en zigzag, crecen y se desvanecen (dos a la vez, desfasadas).
+func _draw_zzz(dst: Rect2) -> void:
+	var head := dst.position.y + 2.0
+	var cur := _current()
+	if not cur.is_empty() and _anim == "Sleep":
+		head = dst.position.y + _body_rect(cur[0], cur[1]).position.y
+	var side := 1.0 if not cur.is_empty() and cur[3] else -1.0  # del lado de la cabeza (las hojas miran a la izquierda)
+	for k in 2:
+		var t := fmod(_time / ZZZ_TIME + k * 0.5, 1.0)
+		var a := minf(1.0, t * 5.0) * (1.0 - t)
+		var p := Vector2(side * (5.0 + t * 7.0 + sin(t * TAU) * 1.5), head - t * 14.0)
+		_draw_pixel_z(p.round(), 4 if t < 0.45 else 5, a)
+
+
+## Una "z" de pixel art (n×n píxeles) con sombra oscura abajo a la derecha: con la fuente salía borrosa a este tamaño.
+func _draw_pixel_z(p: Vector2, n: int, a: float) -> void:
+	var px: Array[Vector2] = []
+	for i in n:
+		px.append(Vector2(i, 0))
+		px.append(Vector2(i, n - 1))
+	for i in range(1, n - 1):
+		px.append(Vector2(n - 1 - i, i))
+	for pass_i in 2:
+		var col := Color(0.1, 0.12, 0.35, 0.75 * a) if pass_i == 0 else Color(1.0, 1.0, 1.3, a)
+		var off := Vector2.ONE if pass_i == 0 else Vector2.ZERO
+		for q in px:
+			draw_rect(Rect2(p + q + off, Vector2.ONE), col)
 
 
 ## Globo de aviso sobre la cabeza (aparece con un saltito y se desvanece al final).
@@ -289,8 +368,7 @@ func _draw_combat_ui(c: Creature, dst: Rect2) -> void:
 			var base := Vector2(cos(a) * 8.0, 2.0 + sin(a) * 2.5)
 			draw_line(base, base + Vector2(cos(a) * 2.0, -5.0 - (k % 2) * 2.0), root_col, 1.5)
 	if st.has_status("dormido"):
-		var t := fmod(_time, 1.5) / 1.5
-		draw_string(ThemeDB.fallback_font, Vector2(6 + t * 4.0, dst.position.y + 6 - t * 8.0), "z", HORIZONTAL_ALIGNMENT_LEFT, -1, 8, Color(0.85, 0.9, 1.3, 1.0 - t))
+		_draw_zzz(dst)
 	if st.meter("paralizado") > 0.0:
 		# Barra de parálisis acumulada (si el estado es por acumulación): al llenarse, aturde.
 		var w := 16.0
