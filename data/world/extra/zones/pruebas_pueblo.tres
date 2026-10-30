@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ZoneEntry" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/zone_entry.gd" id="1_c1f5f"]
+
+[resource]
+script = ExtResource("1_c1f5f")
+id = "pruebas_pueblo"
+display_name = "Pueblo de pruebas"
+scene_path = "res://scenes/world/extra/pruebas_pueblo.tscn"
+origin = Vector2i(1000, 3400)
+size = Vector2i(40, 32)
+hub = Vector2i(21, 18)
+warps = {
+Vector2i(8, 11): {
+"cell": Vector2i(4, 8),
+"to": "pruebas_casa_1"
+},
+Vector2i(8, 23): {
+"cell": Vector2i(4, 8),
+"to": "pruebas_casa_3"
+},
+Vector2i(27, 11): {
+"cell": Vector2i(4, 8),
+"to": "pruebas_casa_2"
+},
+Vector2i(27, 23): {
+"cell": Vector2i(4, 8),
+"to": "pruebas_casa_4"
+}
+}
+test_zone = true

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ZoneEntry" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/zone_entry.gd" id="1_1wif4"]
+
+[resource]
+script = ExtResource("1_1wif4")
+id = "pruebas_casa_2"
+display_name = "Casa de pruebas 2"
+scene_path = "res://scenes/world/zones/casa_rival.tscn"
+origin = Vector2i(1016, 3480)
+size = Vector2i(13, 10)
+biome = "interior"
+hub = Vector2i(5, 5)
+warps = {
+Vector2i(3, 8): {
+"cell": Vector2i(27, 11),
+"to": "pruebas_pueblo"
+},
+Vector2i(4, 8): {
+"cell": Vector2i(27, 11),
+"to": "pruebas_pueblo"
+}
+}
+interior = true
+test_zone = true

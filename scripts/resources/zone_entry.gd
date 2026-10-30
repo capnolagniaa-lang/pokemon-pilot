@@ -17,6 +17,9 @@ extends Resource
 @export var warps: Dictionary = {}
 ## Interior (casa, Centro, gimnasio...): sin salvajes ni clima.
 @export var interior := false
+## Zona de pruebas (tools/build_test_zone.gd, se llega con «ir pruebas» en la consola de GM): no cuenta como visitada
+## (ni en el Mapa ni para los globos). Van lejos, debajo del mundo y sin puertas desde él, así que tampoco salen en el Mapa.
+@export var test_zone := false
 
 
 func world_rect(tile_size: int) -> Rect2:

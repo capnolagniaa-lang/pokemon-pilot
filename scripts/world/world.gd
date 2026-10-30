@@ -121,7 +121,7 @@ func _ready() -> void:
 	cursor.name = "CrosshairCursor"
 	add_child(cursor)
 	Events.zone_entered.connect(func(z: ZoneEntry): $CloudShadows.visible = not z.interior)
-	Events.zone_entered.connect(func(z: ZoneEntry): GameState.visit_zone(z.id))
+	Events.zone_entered.connect(_on_zone_entered_visit)
 	# Paredes invisibles donde una zona da al vacío (no se sale a lo no dibujado).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ZoneBounds.attach(node, z, streamer.world_data))
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): ExtraContent.attach(node, z, streamer.world_data))
@@ -248,3 +248,9 @@ func respawn_companion() -> void:
 	companion.position = trainer.global_position + Vector2(0, -12)
 	companion.add_to_group("ally_creatures")
 	entities.add_child(companion)
+
+
+## Zona nueva para el Mapa del menú y los globos (las de prueba no cuentan).
+func _on_zone_entered_visit(z: ZoneEntry) -> void:
+	if not z.test_zone:
+		GameState.visit_zone(z.id)

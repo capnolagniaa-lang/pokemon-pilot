@@ -1,7 +1,11 @@
 class_name GmCommands
 extends RefCounted
 ## Comandos de la consola de Game Master (GmConsole, pedido del usuario 2026-10-29). `run(línea)` devuelve el texto
-## que muestra la consola. Nada de esto toca la historia (banderas), las zonas visitadas ni dónde volvés al perder.
+## que muestra la consola. Nada de esto toca la historia (banderas), las zonas visitadas (salvo llegar con «ir» a una
+## zona: estás ahí) ni dónde volvés al perder.
+
+## «ir pruebas»: la zona de pruebas (tools/build_test_zone.gd).
+const TEST_ZONE := "pruebas_pueblo"
 
 const HELP := [
 	["ayuda", "esta lista"],
@@ -12,6 +16,7 @@ const HELP := [
 	["objeto <nombre> [cantidad]", "a la Mochila (con parte del nombre te muestra cuáles hay)"],
 	["pokemon <especie> <nivel>", "al equipo (o a la Caja si está lleno)"],
 	["hora <0-23>", "cambia la hora del día"],
+	["ir <zona> [x,y]", "te lleva a una zona (a su plaza o a esa celda); ir pruebas = la zona de pruebas"],
 	["volar", "cámara libre para mirar el mapa: WASD, Shift = rápido, rueda = zoom, Esc vuelve. No descubre nada"],
 	["limpiar", "borra la consola"],
 ]
@@ -49,6 +54,8 @@ func run(line: String) -> String:
 			return _hour(args)
 		"volar", "fly":
 			return _fly()
+		"ir", "tp", "teleport":
+			return _go(args)
 	return "No conozco «%s». Escribí ayuda." % parts[0]
 
 
@@ -177,6 +184,45 @@ func _hour(args: Array) -> String:
 	if float(GameState.setting("time_lock")) >= 0.0:
 		text += " Ojo: tenés la hora fija en los Ajustes del juego, así que vuelve a esa."
 	return text
+
+
+## Te lleva a una zona: a la celda pedida o a la caminable más cercana a su plaza. La consola se cierra y el viaje
+## (StoryDirector.teleport, con fundido) arranca al cerrarla.
+func _go(args: Array) -> String:
+	if args.is_empty():
+		return "Uso: ir <zona> [x,y]  (ej.: ir pruebas, ir ciudad celeste, ir ruta4 180,13)"
+	if world.combat.in_battle or world.arena.active:
+		return "No en plena pelea."
+	var words := args.duplicate()
+	var at := ""
+	if words.size() > 1 and str(words[-1]).contains(","):
+		at = words.pop_back()
+	var query := " ".join(words)
+	if norm(query) == "pruebas":
+		query = TEST_ZONE
+	var data: WorldData = world.streamer.world_data
+	var table := {}
+	for z in data.zones:
+		table[z.id] = z
+	var found = find_named(table, query)
+	if found is Array:
+		return _choices("zona", found)
+	var entry: ZoneEntry = found
+	var cell := entry.hub
+	if at != "":
+		var p := at.split(",")
+		if p.size() != 2 or not p[0].strip_edges().is_valid_int() or not p[1].strip_edges().is_valid_int():
+			return "La celda va como x,y (ej.: 20,12)."
+		cell = Vector2i(int(p[0]), int(p[1]))
+		if not Rect2i(Vector2i.ZERO, entry.size).has_point(cell):
+			return "%s mide %d×%d: esa celda queda afuera." % [entry.display_name, entry.size.x, entry.size.y]
+	else:
+		world.streamer.load_around_now(Vector2((entry.origin + cell) * data.tile_size))
+		var zone: Node = world.streamer.zone_node(entry.id)
+		if zone != null:
+			cell = MapRules.nearest_walkable(zone, entry, cell)
+	world.story.teleport.call_deferred(entry.id, cell)
+	return "Yendo a %s (%d, %d)." % [entry.display_name, cell.x, cell.y]
 
 
 func _fly() -> String:

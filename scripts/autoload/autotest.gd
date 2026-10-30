@@ -28,6 +28,11 @@ var _done := false
 
 
 func _ready() -> void:
+	if "--build-test-zone" in OS.get_cmdline_user_args():  # tools/build_test_zone.gd (necesita DB)
+		set_process(false)
+		load("res://tools/build_test_zone.gd").new().build()
+		get_tree().quit()
+		return
 	if "--overview" in OS.get_cmdline_user_args():
 		GameState.wilds_enabled = false
 		_overview.call_deferred()

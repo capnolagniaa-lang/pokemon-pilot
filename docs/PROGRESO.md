@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-30)
+- **Zona de pruebas y comando `ir` (2026-10-30, pedido del usuario para probar el terreno propio,
+  `docs/PLAN_TERRENO_PROPIO.md`)**: un pueblo chico (4 casas con interior, plaza con fuente, estanque, cercas, flores),
+  un bosque chico con sendero y pasto alto, y una cueva chica (escalera, charco), sin conexión con la historia, fuera del
+  Mapa del menú y sin contar como visitadas (`ZoneEntry.test_zone`). Se arma con `tools/build_test_zone.gd`
+  (`-- --build-test-zone`). Consola de GM (Ctrl+Shift+G): `ir <zona> [x,y]` te lleva a cualquier zona; `ir pruebas`, a
+  esta. Test `--autotest-gm`. También: el borde oeste de Ciudad Celeste empalma con la Ruta 4 (`MOVE_BANDS`).
 - **Torneo más difícil (2026-10-30, pedido del usuario)**: los rivales generados salen de toda Kanto y hay 3 visitantes de
   Johto o Hoenn por cuadro, con 16 clases (cada una con sus tipos y su estilo de pelea) y Pokémon evolucionados según el
   nivel de la copa (`Tournament.evolve_for`, `pool_for`, `generated_trainer`); Brock y Azul también evolucionan. Ver
