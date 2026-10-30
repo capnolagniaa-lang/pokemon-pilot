@@ -6,6 +6,14 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-29)
+- **Plazas, playa y Snorlax (2026-10-29, pedidos del usuario)**: plazas con un puesto de panchos y hamburguesas (y su
+  puestero) y una parrilla (y su parrillero) en Celeste, Carmín, Azulona, Azafrán y Fucsia, en el lugar más abierto de
+  cada una (`tools/build_plazas.py`; sprites con Qwen-Image + LoRA MOSS: `sprites/props/puesto_panchos.png`,
+  `parrilla.png`, `sombrilla.png`, `art/pret/characters/parrillero.png` y `puestero.png`). Playa en Ciudad Celeste: el
+  cerco del lago de arriba a la izquierda es ahora orilla de arena y el césped, arena, con 3 sombrillas (`PAINTS` del
+  importador). El Snorlax de la Ruta 12 vuelve a tapar la entrada del camino de la Ruta 11, como en FireRed (con el
+  empalme de la garita había quedado 44 filas más arriba: `MOVE_NPCS`). El globo ya no "visita" las ciudades que
+  sobrevuela (solo la de destino).
 - **Consola de Game Master (2026-10-29, pedido del usuario)**: Ctrl+Shift+G (no en la versión portable). Pausa el juego;
   comandos (`GmCommands`): `exp`, `nivel`, `curar` (sin cambiar adónde volvés al perder), `dinero`, `objeto`, `pokemon`,
   `hora`, `volar`, `ayuda`. `volar` (`GmFlight`, `world.gm_flight`) = cámara libre con el juego en pausa (WASD, Shift,

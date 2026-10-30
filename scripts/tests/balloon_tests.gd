@@ -36,6 +36,9 @@ func run() -> void:
 		print("[globo] ciudades con problemas: ", bad)
 	r["En cada ciudad el globo es sólido y se baja en un lugar caminable"] = bad.is_empty()
 	# Viaje de verdad: Verde -> Plateada (se saltea a la mitad con E).
+	await _go("ciudad_verde", by_city["ciudad_verde"].cell + Vector2i(1, 4))
+	GameState.visited_zones = {"ciudad_verde": true}
+	var visited_start: Dictionary = GameState.visited_zones.duplicate()
 	await _ride(by_city["ciudad_verde"], true)
 	var t: Trainer = world.trainer
 	var flew: bool = world.balloon.flying and not t.visible and world.camera.target != t
@@ -45,6 +48,7 @@ func run() -> void:
 	await _idle()
 	var land: Vector2 = BalloonTravel.landing_point(data, by_city["ciudad_plateada"])
 	r["Hablando con el piloto se sube y vuela (sin el entrenador en el piso)"] = flew
+	r["Volando por arriba no se desbloquea nada (solo la ciudad a la que llegaste)"] = 		GameState.visited_zones.keys().all(func(z): return z in visited_start or z == "ciudad_plateada")
 	r["Llega a Plateada, frente al globo, y puede caminar"] = _zone_id() == "ciudad_plateada" \
 		and t.global_position.distance_to(land) < 2.0 and t.visible and not t.locked and world.camera.target == t
 	var ok := r.values().all(func(v): return v)

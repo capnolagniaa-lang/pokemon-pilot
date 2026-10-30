@@ -71,6 +71,9 @@ func _talk() -> void:
 func fly(from: ExtraBuilding, to: ExtraBuilding) -> void:
 	flying = true
 	_skip = false
+	# Volando por arriba no se "visita" nada (bug del usuario 2026-10-29: pasar sobre una ciudad la desbloqueaba para el
+	# globo y le sacaba la niebla en el Mapa): al bajar quedan las de antes + la de destino.
+	var visited_before: Dictionary = GameState.visited_zones.duplicate()
 	var data: WorldData = world.streamer.world_data
 	var t: Trainer = world.trainer
 	var start := ground_point(data, from)
@@ -120,6 +123,8 @@ func fly(from: ExtraBuilding, to: ExtraBuilding) -> void:
 	# Bajaste: frente al globo de la otra ciudad.
 	var land := landing_point(data, to)
 	world.streamer.load_around_now(land)
+	GameState.visited_zones = visited_before
+	GameState.visit_zone(to.zone_id)
 	t.global_position = land
 	var trail: Array[Vector2] = [land]
 	t.trail = trail

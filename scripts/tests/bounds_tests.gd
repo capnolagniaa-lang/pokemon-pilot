@@ -53,10 +53,12 @@ func run() -> void:
 		print("
 ".join(rows))
 	r["Se llega a Ciudad Plateada"] = by_zone.has("ciudad_plateada")
-	# Saliendo de la garita de la Ruta 11 hacia el este se sigue caminando a la Ruta 12 (MOVE_BANDS del importador).
+	# Saliendo de la garita de la Ruta 11 hacia el este se sigue caminando a la Ruta 12 (MOVE_BANDS del importador), salvo
+	# por el Snorlax dormido, que tapa justo esa entrada como en FireRed (MOVE_NPCS).
 	var r11 := plan.entry("ruta11")
 	var r12 := plan.entry("ruta12")
-	r["De la garita de la Ruta 11 se sigue caminando a la Ruta 12"] = r11 != null and r12 != null 		and not plan.path(r11.origin + Vector2i(125, 18), r12.origin + Vector2i(30, 166)).is_empty()
+	var no_people := TourPlanner.new(world, false, false, false, false)
+	r["De la garita de la Ruta 11 se sigue a la Ruta 12, pero Snorlax tapa la entrada (como en FireRed)"] = r11 != null 		and r12 != null and not no_people.path(r11.origin + Vector2i(125, 18), r12.origin + Vector2i(30, 166)).is_empty() 		and plan.path(r11.origin + Vector2i(125, 18), r12.origin + Vector2i(30, 166)).is_empty()
 	var key_places := ["laboratorio_oak", "ciudad_verde_centro", "ciudad_verde_tienda", "ciudad_verde_gimnasio",
 		"ciudad_plateada_centro", "ciudad_plateada_tienda", "ciudad_plateada_gimnasio", "ciudad_plateada_torneo", "museo",
 		"ruta4_centro", "mt_moon_s2", "ciudad_celeste_centro", "ciudad_celeste_tienda", "ciudad_celeste_gimnasio", "casa_bill",

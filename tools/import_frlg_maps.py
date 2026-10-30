@@ -170,6 +170,14 @@ FIT = {"Route8": ("x", "SaffronCity", "LavenderTown"), "Route11": ("x", "Vermili
 # en FireRed llega a la garita de la Ruta 11) quedaba 44 filas más arriba que la salida de la garita, contra el bosque.
 # El corrimiento es par para que el dibujo del bosque (de período 2) siga entero arriba y abajo.
 MOVE_BANDS = {"Route12": (0, 26, 119, 126, 44)}
+# Personas que se mueven con eso: mapa -> {script: celda local nueva}. El Snorlax de la Ruta 12 duerme (en FireRed) justo
+# donde entra el camino de la Ruta 11; con la franja corrida, ese cruce quedó más abajo: va a la boca del camino nuevo
+# (una sola celda de ancho: la tapa entera). Pedido del usuario 2026-10-29.
+MOVE_NPCS = {"Route12": {"Route12_EventScript_Snorlax": (25, 166)}}
+# Tiles que se pintan encima después de ubicar todo: mapa -> [(x0, x1, y0, y1, metatile, sólida)] en celdas locales.
+# Playa de Ciudad Celeste (pedido del usuario 2026-10-29): el cerco del lago de arriba a la izquierda pasa a ser la orilla
+# (269: arena con el agua arriba, como en las playas de FireRed) y el césped de abajo, arena (277), hasta las casas.
+PAINTS = {"CeruleanCity": [(8, 37, 11, 12, 269, 0), (8, 37, 12, 20, 277, 0)]}
 # Zonas grandes de salvajes lejos del mundo, agrandadas como el Bosque Verde.
 STRETCHED_4 = {"SafariZone_Center": ("zona_safari", "Zona Safari (centro)"),
                "SafariZone_East": ("zona_safari_este", "Zona Safari (este)"),
@@ -781,6 +789,13 @@ def main():
                 print("  OJO: %s y %s se enciman" % (a, b))
     for n, band in MOVE_BANDS.items():
         move_band(cells, rects[n], band)
+    for n, paints in PAINTS.items():
+        rx, ry = rects[n][0], rects[n][1]
+        for x0, x1, y0, y1, metatile, solid in paints:
+            for y in range(y0, y1):
+                for x in range(x0, x1):
+                    c = cells[(rx + x, ry + y)]
+                    cells[(rx + x, ry + y)] = (metatile, solid) + c[2:]
     # Corrimiento: que el mundo del capítulo 1 empiece en (0, 0) (lo nuevo puede quedar en coordenadas negativas).
     sx = min(rects[n][0] for n in FIRST_EXTERIORS)
     sy = min(rects[n][1] for n in FIRST_EXTERIORS)
@@ -851,6 +866,9 @@ def main():
             if c and scene:
                 z["objects"].append({"cell": [c[0] + dx, c[1] + dy], "scene": scene})
             elif c:
+                moved = MOVE_NPCS.get(n, {}).get(o.get("script", ""))
+                if moved:
+                    c, dx, dy = moved, 0, 0
                 z["npcs"].append({"cell": [c[0] + dx, c[1] + dy], "gfx": o.get("graphics_id", ""), "index": i + 1,
                                   "script": o.get("script", ""), "movement": o.get("movement_type", ""),
                                   "flag": o.get("flag", "0")})

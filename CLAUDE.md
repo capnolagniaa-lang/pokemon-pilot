@@ -278,6 +278,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - **Globos aerostáticos** (`BalloonTravel`, `world.balloon`): un globo (`ExtraBuilding` "globo_<ciudad>" sin puerta:
   `to_zone` vacío) y su piloto (acción "globo") por ciudad, de `tools/build_balloons.py`; vuelo por las zonas exteriores
   (`route_points`) a las ciudades visitadas. Centros de Combate Online por ciudad: `tools/build_online_centers.py`.
+  Plazas (puesto de panchos + parrilla, con sus personas) en las ciudades grandes: `tools/build_plazas.py`.
 - **Mapa del menú** (Esc → Mapa): `TownMap` (`scripts/world/town_map.gd`) dibuja la región en miniatura **desde las
   capas de tiles de las zonas reales** (4 px por celda; la primera vez que se abre, en el hilo principal) y calcula dónde van los
   interiores/cuevas/Bosque Verde (en la puerta por la que se entra, siguiendo las puertas), los íconos de Centro/Tienda/
@@ -433,7 +434,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   del mapa). El .gd rearma el TileSet (colisión por celda: `ZoneBuilder.imported_collision_alts`), guarda las zonas
   `hand_edited` (agua en Water y pasto alto en Foliage, como los pinceles; árboles cortables de FireRed como
   EnvObject), la región, las tablas de salvajes de FireRed sin las filas de agua (son de Surf) y **borra las zonas viejas** (backup en `.backup/`;
-  `-- --keep-others` las conserva). Orden: `.py` → `--import` → `.gd`. **Para sumar mapas** (como el capítulo
+  `-- --keep-others` las conserva). Orden: `.py` → `--import` → `.gd`. Retoques después de ubicar todo (en el `.py`):
+  `MOVE_BANDS` (franja corrida: Ruta 12), `MOVE_NPCS` (Snorlax de la Ruta 12) y `PAINTS` (playa de Celeste); para rearmar
+  solo esas escenas: `.gd -- --only-new --rebuild <id,id>`. **Para sumar mapas** (como el capítulo
   2): agregarlos al final de las tablas del `.py` (`EXTERIORS`, `CAVES`, `INTERIORS_2`; así lo viejo no se mueve: el
   corrimiento sale solo de `FIRST_EXTERIORS` y los interiores nuevos van después) y correr el `.gd` con
   `-- --only-new` (solo arma las zonas que no están en kanto.tres; las que ya existen quedan tal cual). Verificar que

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("¡Panchos y hamburguesas! ¡Calentitos, recién hechos!", "Dicen que un Snorlax se comió todo el puesto de mi primo en la Ruta 12... ¡Ojo con los tuyos!")
+
+[resource]
+script = ExtResource("1_n")
+id = "plaza_ciudad_fucsia_puestero"
+display_name = "Puestero"
+zone_id = "ciudad_fucsia"
+cell = Vector2i(38, 39)
+gfx = "puestero"
+facing = Vector2i(0, 1)
+look_around = false
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
