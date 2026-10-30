@@ -469,7 +469,21 @@ func _overview() -> void:
 	var view := get_viewport().get_visible_rect().size
 	var z := minf(view.x / bounds.size.x, view.y / bounds.size.y)
 	cam.zoom = Vector2(z, z)
+	# `--clean`: maqueta limpia para repintar con IA (docs/PLAN_TERRENO_PROPIO.md): sin personajes, sombras, luces,
+	# partículas ni hora (luz pareja); solo las capas de tiles de las zonas.
+	if "--clean" in args:
+		GameState.set_setting("time_lock", 12.0)
+		world.day_night.set_process(false)
+		world.get_node("Daylight").color = Color.WHITE
+		for path in ["YSort/Entities", "AmbientFX", "UI"]:
+			world.get_node(path).visible = false
+		for zn in world.streamer.loaded.values():
+			for c in zn.get_children():
+				if c.name in ["SunShadows", "NightLights", "StreetLamps", "CaveLights", "TreeShadows"]:
+					c.visible = false
+					c.set_process(false)
 	for i in 10:
+		cam.zoom = Vector2(z, z)
 		await get_tree().process_frame
 	get_tree().quit()
 

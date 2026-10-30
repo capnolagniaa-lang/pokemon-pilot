@@ -177,6 +177,27 @@ con la misma mano, luz y densidad. En vez de componer piezas sueltas:
 Riesgos a probar: que no corra el dibujo (colisiones alineadas), las costuras entre trozos y que un mismo edificio se
 vea igual en dos pueblos. Cambiar un mapa = repintar sus trozos.
 
+## Repintado: primera prueba (2026-10-30)
+- **Maqueta limpia**: `-- --overview --overview-rect x,y,ancho,alto --clean` (en `autotest.gd`): un pedazo del mundo
+  en celdas, sin personajes, sombras, luces, partículas ni hora. Trozo de 40×22 celdas a zoom 2 = 1280×720.
+- **Repintado**: Qwen-Image 2.1 edición, la maqueta como imagen 1, resolución 1536 (sale 2048×1152, ~95 s por trozo).
+  **2K hace falta**: a 1920×1080 y zoom ×2,5 cada píxel del mundo ocupa 3,75 px de pantalla; 2K da 3,2 px por píxel
+  del mundo (1K daría 1,6: borroso).
+- **Posición**: casas, laboratorio, cerca y flores quedan sobre los bordes de la maqueta con 1-2 px de diferencia
+  (la colisión sirve). El medidor automático por bloques exagera porque compara las manchas del pasto.
+- **Prompt que mejor anduvo** ("rico", semilla 21): "Repaint this top-down 2D RPG screenshot as a beautiful HD-2D game
+  scene. Keep EXACTLY the same layout and composition [...] Make it look like a polished modern HD-2D game: much richer
+  detail and texture everywhere [...] Neutral soft daylight from above, no strong cast shadows [...]" + paleta natural.
+  Sale con tejas, pasto con matas y piedritas, caminitos de tierra en las puertas, plantas, árboles con volumen. El
+  "fiel"/"natural" sin "rico" sale como FireRed en HD (conservador).
+- **Costura**: mezclar el solapamiento deja objetos fantasma (buzón doble); cortar derecho se nota. **Corte de mínimo
+  error** (programación dinámica dentro del solapamiento de 8 celdas, mezcla de 3 px): el corte rodea casas y objetos y
+  pasa por el pasto; no se ve.
+- Scripts (scratchpad de la sesión, pasar a `tools/` en la fase siguiente): `t21.py` (encola Qwen 2.1), `alinea.py`
+  (bordes de la maqueta sobre el repintado), `cose_corte.py` (costura).
+- Próximo: Pueblo Paleta entero (6 trozos) cosido y metido en el juego como capa de suelo, con techos y copas
+  recortados por máscara para el y-sort; ver cómo se ve caminando, de día y de noche.
+
 ## Para decidir
 - **Identidad**: "campo sudamericano" (terracota, encalado, ceibos, jacarandás), "cuento" (cabañas con techo de musgo,
   arroyos, faroles) o una mezcla (cada región/bioma con su carácter).
