@@ -1,5 +1,11 @@
 # Plan: terreno propio hecho con IA (fases T)
 
+> **Estado (2026-10-30)**: el enfoque de **piezas sueltas** (todo lo de abajo hasta "Alternativa") se probó y **se
+> volvió atrás** a pedido del usuario: las piezas generadas por separado no combinan entre sí. El código de esa prueba
+> está en los commits 4aebebbe..4f49b808 (StyleOverlay, `tools/style_pack.py`, zona de pruebas). Se conservó lo global:
+> luz por hora (tinte de sombras, niebla, gradación en dos tonos, arco del sol), `camera_zoom` y el comando `ir`.
+> **Próximo paso: "Alternativa: repintar la zona entera".**
+
 Pedido del usuario (2026-10-30): dejar de depender de los tiles de FireRed y generar con Qwen (ComfyUI local) un terreno
 **propio, con identidad**, sin copiar a Pokémon ni a otro juego: biomas, bosque, cuevas, edificios y pisos de pueblos y
 ciudades. Este documento es el plan; las pruebas que lo respaldan están en "Pruebas" (abajo) y las decisiones que faltan,

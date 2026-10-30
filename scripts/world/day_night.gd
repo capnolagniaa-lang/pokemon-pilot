@@ -38,8 +38,8 @@ const KEYS := [
 const SUNRISE := 5.5
 const SUNSET := 19.5
 const SHADOW_MIN := 1.0      # largo al mediodía
-const SHADOW_MAX := 3.8      # largo con el sol casi en el horizonte
-const SUN_SHADOW_ALPHA := 0.8
+const SHADOW_MAX := 2.4      # largo con el sol casi en el horizonte (más largas parecían bloques)
+const SUN_SHADOW_ALPHA := 0.62
 const MOON_SHADOW_ALPHA := 0.25
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
 const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.65), 0.0, 0.0, 0.0, Vector3(0.96, 0.97, 1.02), 0.0]
@@ -61,7 +61,7 @@ var darkness := 0.0
 ## Hay sombras largas (afuera, fuera de las arenas): ZoneShadows y SunShadow.
 var casts_shadows := false
 ## Color de las sombras (azul violáceo, como en las referencias; el Daylight lo oscurece de noche).
-var shadow_color := Color(0.16, 0.13, 0.32)
+var shadow_color := Color(0.18, 0.17, 0.30)
 ## Hacia dónde caen las sombras (unitario, en pantalla/mundo) y cuánto se estiran (1 = mediodía).
 var shadow_direction := Vector2(0.6, 0.8)
 var shadow_length := 1.0
@@ -141,8 +141,8 @@ static func sun_at(h: float) -> Array:
 	var dir := (Vector2(0.5, 0.5) - pos).normalized()
 	var length := clampf(SHADOW_MIN / maxf(height, 0.01), SHADOW_MIN, SHADOW_MAX)
 	# Pegado al horizonte la sombra se desvanece (así no salta cuando el sol se pone y sale la luna).
-	# Con el sol bajo la sombra es más densa (hasta ×1,25), como al atardecer de los HD-2D; pegada al horizonte se va.
-	var alpha := (SUN_SHADOW_ALPHA if day else MOON_SHADOW_ALPHA) * smoothstep(0.02, 0.3, height) * (1.25 - 0.25 * height)
+	# Con el sol bajo la sombra se aclara (es más larga y difusa); pegada al horizonte se va.
+	var alpha := (SUN_SHADOW_ALPHA if day else MOON_SHADOW_ALPHA) * smoothstep(0.02, 0.3, height) * (0.75 + 0.25 * height)
 	return [pos, dir, length, alpha]
 
 

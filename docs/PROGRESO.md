@@ -6,12 +6,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-30)
-- **Zona de pruebas y comando `ir` (2026-10-30, pedido del usuario para probar el terreno propio,
-  `docs/PLAN_TERRENO_PROPIO.md`)**: un pueblo chico (4 casas con interior, plaza con fuente, estanque, cercas, flores),
-  un bosque chico con sendero y pasto alto, y una cueva chica (escalera, charco), sin conexión con la historia, fuera del
-  Mapa del menú y sin contar como visitadas (`ZoneEntry.test_zone`). Se arma con `tools/build_test_zone.gd`
-  (`-- --build-test-zone`). Consola de GM (Ctrl+Shift+G): `ir <zona> [x,y]` te lleva a cualquier zona; `ir pruebas`, a
-  esta. Test `--autotest-gm`. También: el borde oeste de Ciudad Celeste empalma con la Ruta 4 (`MOVE_BANDS`).
+- **Comando `ir` (2026-10-30)**: en la consola de GM (Ctrl+Shift+G), `ir <zona> [x,y]` te lleva a cualquier zona.
+  También: el borde oeste de Ciudad Celeste empalma con la Ruta 4 (`MOVE_BANDS`). Test `--autotest-gm`.
 - **Torneo más difícil (2026-10-30, pedido del usuario)**: los rivales generados salen de toda Kanto y hay 3 visitantes de
   Johto o Hoenn por cuadro, con 16 clases (cada una con sus tipos y su estilo de pelea) y Pokémon evolucionados según el
   nivel de la copa (`Tournament.evolve_for`, `pool_for`, `generated_trainer`); Brock y Azul también evolucionan. Ver
@@ -35,11 +31,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
-- **Terreno propio con IA (2026-10-30, pedido del usuario; plan `docs/PLAN_TERRENO_PROPIO.md`)**: pruebas con Qwen (el
-  mejor: **Qwen-Image 2.1**, solo texto, con la cámara descrita), zona de pruebas aislada (`ir pruebas` en la consola de
-  GM, la armó la sesión del editor de mapas) y `StyleOverlay`, que la dibuja con paquetes de piezas propias
-  (`art/estilos/`, de `tools/style_pack.py`): campo, cuento y siniestro, en pixel art y **HD** (`*_hd`, 4× más
-  detalle por celda: la dirección elegida, 2D-HD). Comando `estilo <paquete|fire>`. Test `--autotest-style`.
+- **Terreno propio con IA (2026-10-30, plan `docs/PLAN_TERRENO_PROPIO.md`)**: se probó con **Qwen-Image 2.1** armar
+  zonas con piezas sueltas (zona de pruebas + `StyleOverlay`, después Pueblo Paleta y la Ruta 1) y **se volvió atrás a
+  pedido del usuario**: cada pieza salía con otra densidad y estilo. Quedaron lo global (luz por hora más dramática:
+  tinte de sombras y niebla; campo de visión `camera_zoom`, ×2,5) y el plan; lo próximo es **repintar la zona entera**.
 - **Noche más oscura y reloj (2026-10-30, pedido del usuario: "después de las 20 se ve mucho")**: noche plateada más
   oscura (Daylight 0,36/0,40/0,52, noche cerrada desde las 21), luna casi sin brillo (0,05, sin rayos) y sombras de luna
   más suaves (0,25). Bug arreglado: las sombras de nubes (`blend_mul`) con `modulate.a` bajo oscurecían toda la pantalla

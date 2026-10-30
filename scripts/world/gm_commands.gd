@@ -4,9 +4,6 @@ extends RefCounted
 ## que muestra la consola. Nada de esto toca la historia (banderas), las zonas visitadas (salvo llegar con «ir» a una
 ## zona: estás ahí) ni dónde volvés al perder.
 
-## «ir pruebas»: la zona de pruebas (tools/build_test_zone.gd).
-const TEST_ZONE := "pruebas_pueblo"
-
 const HELP := [
 	["ayuda", "esta lista"],
 	["exp <cantidad> [lugar]", "EXP a un Pokémon (lugar 1-6 del equipo; sin lugar, el que está afuera)"],
@@ -16,8 +13,7 @@ const HELP := [
 	["objeto <nombre> [cantidad]", "a la Mochila (con parte del nombre te muestra cuáles hay)"],
 	["pokemon <especie> <nivel>", "al equipo (o a la Caja si está lleno)"],
 	["hora <0-23>", "cambia la hora del día"],
-	["ir <zona> [x,y]", "te lleva a una zona (a su plaza o a esa celda); ir pruebas = la zona de pruebas"],
-	["estilo [campo|cuento|siniestro|fire]", "dibuja la zona de pruebas con un paquete de terreno propio (fire = los tiles de siempre)"],
+	["ir <zona> [x,y]", "te lleva a una zona (a su plaza o a esa celda)"],
 	["volar", "cámara libre para mirar el mapa: WASD, Shift = rápido, rueda = zoom, Esc vuelve. No descubre nada"],
 	["limpiar", "borra la consola"],
 ]
@@ -57,8 +53,6 @@ func run(line: String) -> String:
 			return _fly()
 		"ir", "tp", "teleport":
 			return _go(args)
-		"estilo", "style":
-			return _style(args)
 	return "No conozco «%s». Escribí ayuda." % parts[0]
 
 
@@ -193,7 +187,7 @@ func _hour(args: Array) -> String:
 ## (StoryDirector.teleport, con fundido) arranca al cerrarla.
 func _go(args: Array) -> String:
 	if args.is_empty():
-		return "Uso: ir <zona> [x,y]  (ej.: ir pruebas, ir ciudad celeste, ir ruta4 180,13)"
+		return "Uso: ir <zona> [x,y]  (ej.: ir ciudad celeste, ir ruta4 180,13)"
 	if world.combat.in_battle or world.arena.active:
 		return "No en plena pelea."
 	var words := args.duplicate()
@@ -201,8 +195,6 @@ func _go(args: Array) -> String:
 	if words.size() > 1 and str(words[-1]).contains(","):
 		at = words.pop_back()
 	var query := " ".join(words)
-	if norm(query) == "pruebas":
-		query = TEST_ZONE
 	var data: WorldData = world.streamer.world_data
 	var table := {}
 	for z in data.zones:
@@ -244,15 +236,3 @@ static func _choices(kind: String, found: Array) -> String:
 		names.append(str(res.display_name))
 	return "¿Cuál? %s%s" % [", ".join(names), " …" if found.size() > 12 else ""]
 
-
-## Paquete de terreno propio para las zonas de pruebas (StyleOverlay, docs/PLAN_TERRENO_PROPIO.md).
-func _style(args: PackedStringArray) -> String:
-	if args.is_empty():
-		return "Estilo actual: %s. Hay: %s, fire." % [StyleOverlay.active if StyleOverlay.active != "" else "fire",
-			", ".join(StyleOverlay.PACKS)]
-	var name := norm(args[0])
-	if name != "fire" and not name in StyleOverlay.PACKS:
-		return "No conozco el estilo «%s». Hay: %s, fire." % [args[0], ", ".join(StyleOverlay.PACKS)]
-	StyleOverlay.active = "" if name == "fire" else name
-	StyleOverlay.refresh(world)
-	return "Estilo: %s (se ve en la zona de pruebas: ir pruebas)." % name

@@ -84,25 +84,13 @@ func run() -> void:
 	await get_tree().create_timer(0.5).timeout
 	r["Vuelve a estar en su zona (música, luz)"] = world.streamer.current != null and world.streamer.current.id == here
 
-	# --- ir: a la zona de pruebas (tools/build_test_zone.gd) y a una celda de cualquier zona ---
+	# --- ir: a una zona o a una celda de cualquier zona ---
 	gm.open()
 	r["ir sin zona explica el uso"] = gm.submit("ir").begins_with("Uso:")
-	r["ir a una celda fuera de la zona avisa"] = gm.submit("ir pruebas_cueva 99,99").contains("afuera")
-	gm.submit("ir pruebas")
-	r["ir cierra la consola"] = not gm.is_open()
-	await _until(func(): return world.streamer.current != null and world.streamer.current.id == "pruebas_pueblo", 6.0)
-	await get_tree().create_timer(0.8).timeout
-	r["ir pruebas: llegás al pueblo de pruebas"] = world.streamer.current != null 		and world.streamer.current.id == "pruebas_pueblo"
-	r["La zona de pruebas no queda visitada (ni sale en el Mapa)"] = not GameState.visited_zones.has("pruebas_pueblo") 		and not TownMap.on_map(world.streamer.world_data, world.streamer.current) 		and not TownMap.entrances(world.streamer.world_data).has("pruebas_cueva")
-	var plan := TourPlanner.new(world.streamer.world_data)
-	var town := plan.entry("pruebas_pueblo")
-	var lost := ["pruebas_bosque", "pruebas_cueva", "pruebas_casa_1", "pruebas_casa_2", "pruebas_casa_3",
-		"pruebas_casa_4"].filter(func(id: String) -> bool: return plan.route(town.origin + town.hub, id).is_empty())
-	r["En la zona de pruebas se llega caminando al bosque, la cueva y las 4 casas"] = lost.is_empty()
-	if not lost.is_empty():
-		print("[gm] zona de pruebas, no se llega a: ", lost)
+	r["ir a una celda fuera de la zona avisa"] = gm.submit("ir ciudad celeste 999,999").contains("afuera")
 	gm.open()
 	gm.submit("ir ciudad celeste 22,32")
+	r["ir cierra la consola"] = not gm.is_open()
 	await _until(func(): return world.streamer.current != null and world.streamer.current.id == "ciudad_celeste", 6.0)
 	await get_tree().create_timer(0.8).timeout
 	r["ir <zona> x,y: a esa celda"] = _zone_id() == "ciudad_celeste" 		and t.global_position.distance_to(_pos("ciudad_celeste", Vector2i(22, 32))) < 24.0

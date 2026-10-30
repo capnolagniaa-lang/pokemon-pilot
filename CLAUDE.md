@@ -73,10 +73,7 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: todo lo aprendido, en plena pelea, al subir de nivel
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
-$G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos, volar sin descubrir zonas e ir (zona de pruebas)
-$G --headless --path . --quit-after 60000 -- --autotest-style  # terreno propio en la zona de pruebas (StyleOverlay, paquetes, estilo fire)
-$G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-style  # cada paquete en pueblo, bosque y cueva de pruebas
-$G --headless --path . --quit-after 60000 -- --build-test-zone  # rearma la zona de pruebas (tools/build_test_zone.gd; pisa sus escenas)
+$G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos, volar sin descubrir zonas e ir <zona>
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-online-building  # afuera y adentro
 $G --headless --path . -- --server --port 24680                    # servidor online (sala); corre hasta cerrarlo
 $G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabla de música, respaldos, archivos propios, gritos, efectos
@@ -336,8 +333,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `arena_rules_everywhere` ni `CreatureInstance.HP_SCALE` directo** (son los valores por defecto).
 - **Consola de Game Master** (Ctrl+Shift+G, `GmConsole` en `world.gm_console`; no en la versión portable): pausa el juego;
   comandos en `GmCommands` (tabla `HELP`: sumar uno = una fila + su `match`). `volar` = `GmFlight` (cámara libre en pausa;
-  restaura `visited_zones` al volver: volando no se descubre nada). `ir <zona> [x,y]` = `StoryDirector.teleport` (a su plaza o a esa celda;
-  `ir pruebas` = la zona de pruebas). No tocar banderas de historia desde la consola.
+  restaura `visited_zones` al volver: volando no se descubre nada). `ir <zona> [x,y]` = `StoryDirector.teleport` (a su plaza o a esa celda). No tocar banderas de historia desde la consola.
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
   recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; rivales generados de toda Kanto + visitantes de Johto/Hoenn
   (`REGIONS`, `CLASSES` con sus tipos, `BANNED`), evolucionados según el nivel (`Tournament.evolve_for`); durante el torneo
@@ -366,19 +362,13 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   servidor; EXP vía CombatDirector). **O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
   servidor `match_started`, que escuchará la pelea de la O-3; servidor del juego fijo en `Net.OFFICIAL_SERVER`). **O-1**: Centro de Combate Online en
   Ciudad Verde (`OnlineDesk` = `world.online`, acción `online` de la recepcionista).
-- **Terreno propio con IA** (`docs/PLAN_TERRENO_PROPIO.md`): `StyleOverlay` dibuja las zonas de pruebas
-  (`ZoneEntry.test_zone`, `ir pruebas`) con un paquete de `art/estilos/<paquete>/` (de `tools/style_pack.py`, desde las
-  salidas de Qwen en ComfyUI) leyendo sus celdas; la colisión y todo lo demás siguen siendo los de la zona. Paquetes
-  `*_hd` = 4× más píxeles por celda (dirección 2D-HD). Comando de GM `estilo <paquete|fire>`. Para sumar un sello o una
-  pieza: `STAMP_PIECES`/`MATERIALS` en StyleOverlay y `PACKS`/`OBJ_WIDTH` en style_pack.py.
+- **Terreno propio con IA** (`docs/PLAN_TERRENO_PROPIO.md`): se probó armar zonas con piezas sueltas hechas con Qwen
+  (zona de pruebas + `StyleOverlay`) y **se volvió atrás** (2026-10-30: texturas dispares entre piezas); el enfoque nuevo
+  es **repintar la zona entera** con Qwen. El código de la prueba quedó en los commits 4aebebbe..4f49b808.
 - **Edificios y zonas agregados** (`ExtraContent`): `data/world/extra/zones/*.tres` (ZoneEntry) y
   `data/world/extra/buildings/*.tres` (`ExtraBuilding`). Así se suma algo al mapa **sin tocar las zonas importadas ni
   kanto.tres** (las maneja otro agente): DB los mete en la región, World pone sprite + colisión + celdas sólidas (meta
   `extra_solid`, `MapRules`), y el editor guarda la región sin ellos (`without_extras`).
-  **Zona de pruebas** (para probar gráficos, sin conexión con la historia): `pruebas_pueblo` (4 casas → `pruebas_casa_1..4`,
-  que usan la escena de la casa del rival), `pruebas_bosque` (a su derecha) y `pruebas_cueva` (boca en el bosque), en
-  (1000, 3400), debajo del mundo; `tools/build_test_zone.gd` (corre con `-- --build-test-zone`: usa `MapDocument`, las
-  mismas operaciones del editor). `ZoneEntry.test_zone`: no cuenta como visitada.
 - **Entrenadores vivos** (`docs/PLAN_ENTRENADORES.md`, fases E; **sacado de las opciones por ahora**, 2026-10-29: al
   cargar queda apagado): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
