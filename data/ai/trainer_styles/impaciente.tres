@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TrainerStyle" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/trainer_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "impaciente"
+display_name = "Impaciente"
+classes = PackedStringArray("Cazabichos", "Joven", "Chica", "Campista", "Dominguera", "Supernecio", "Nadador", "Nadadora", "Pescador", "Gemelas", "Hermanos", "Parejita", "Malabarista")
+smarts_mult = 0.6
+pace = 0.8
+retreat = 0.1
+low_hp = 1

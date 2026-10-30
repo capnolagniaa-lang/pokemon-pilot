@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrainerStyle" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/trainer_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "estratega"
+display_name = "Estratega"
+classes = PackedStringArray("Entrenador Guay", "Pareja Guay", "Científico", "Médium", "Médium Psíquico", "Caballero", "Belleza", "Pokemaníaco", "Jugador", "Ornitólogo", "Estratega", "Explorador")
+smarts_mult = 1.3
+switch_types = 0.7
+retreat = 0.6
+smart_next = true
+potions = 1
+low_hp = 2

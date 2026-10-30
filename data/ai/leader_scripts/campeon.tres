@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="LeaderScript" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/leader_script.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/resources/leader_moment.gd" id="2"]
+
+[sub_resource type="Resource" id="m0"]
+script = ExtResource("2")
+trigger = 1
+line = "¡No pienso perder contra vos!"
+status_id = "potenciado"
+status_mult = 2.0
+pace = 0.8
+pace_time = 8.0
+
+[sub_resource type="Resource" id="m1"]
+script = ExtResource("2")
+trigger = 0
+value = 0.3
+line = "¡Todavía no terminó!"
+heal_ratio = 0.25
+
+[resource]
+script = ExtResource("1")
+id = "campeon"
+trainer_ids = PackedStringArray("liga_campeon_0x0")
+moments = Array[ExtResource("2")]([SubResource("m0"), SubResource("m1")])

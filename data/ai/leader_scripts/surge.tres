@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LeaderScript" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/leader_script.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/resources/leader_moment.gd" id="2"]
+
+[sub_resource type="Resource" id="m0"]
+script = ExtResource("2")
+trigger = 0
+value = 0.5
+line = "¡A toda carga, soldado!"
+status_id = "enfurecido"
+status_mult = 2.0
+pace = 0.7
+pace_time = 8.0
+
+[resource]
+script = ExtResource("1")
+id = "surge"
+trainer_ids = PackedStringArray("lt. surge")
+moments = Array[ExtResource("2")]([SubResource("m0")])

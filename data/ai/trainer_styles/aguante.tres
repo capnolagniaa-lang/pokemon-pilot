@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TrainerStyle" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/trainer_style.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "aguante"
+display_name = "Aguante"
+classes = PackedStringArray("Montañero", "Karateka", "Motorista", "Calvo", "Marinero", "Luchadoras", "Mecánico", "Rockero", "Domador")
+counter = true
+retreat = 0.2
+low_hp = 2

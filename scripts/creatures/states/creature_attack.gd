@@ -172,7 +172,7 @@ func _pace() -> float:
 			k *= 0.7
 		"cuidado":
 			k *= 1.25
-	return k
+	return k * actor.mind.trainer_pace()
 
 
 ## La primera vez, si está lejos, abre con su ataque de acercamiento (instinto); después elige con TacticalMind.

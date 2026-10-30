@@ -91,6 +91,7 @@ $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 30000 -- --autotest-wild-ai  # IA salvaje: temperamentos, apertura, huida, peligros
 $G --headless --path . --quit-after 30000 -- --autotest-ai-steer  # IA que rodea obstáculos, anticipación, Normal, seguir con F, paso del golpe y stagger
 $G --headless --path . --quit-after 30000 -- --autotest-ai-mind  # IA-1: elegir ataque por situación, tipos, reacción humana, aviso de ataques fuertes
+$G --headless --path . --quit-after 60000 -- --autotest-ai-trainers  # IA-4: estilo por clase, cambio por tipos, Superpoción, guion de líderes (Misty de verdad)
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-wild-ai  # un salvaje de cada temperamento
 $G --headless --path . --quit-after 20000 -- --autotest-trainers  # entrenadores vivos (E-0: interruptor, NPC, guardado)
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-trainers  # los 3 en Ruta 1
@@ -254,7 +255,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `Creature.last_dodge_dir` → `aim_read`; estilo del rival; `window_open` = tus fuertes en recarga), `Temperament.low_hp`
   (huye / se juega todo / se cubre) y `AiDifficulty.feint_chance` (fintas). **IA-3**: `ability_mult` (lee
   `signature.data.params`: absorb, contact_status, pinch...), `env_mult` y `danger_at` (con `ReactionSystem.rule_for/harms_at/
-  sets_up`, que miran las reglas sin aplicarlas; `hazard_escape` usa `danger_at`).
+  sets_up`, que miran las reglas sin aplicarlas; `hazard_escape` usa `danger_at`). **IA-4** (entrenadores): `TrainerStyle`
+  por clase (`data/ai/trainer_styles`, `DB.trainer_style_for(título)`, `Creature.trainer_style`), `TrainerBattle.think`
+  (guion, retirar, cambio por tipos con `TacticalMind.matchup_score`, Superpoción) y guion de líder `LeaderScript` +
+  `LeaderMoment` (`data/ai/leader_scripts`, por id de TrainerData/NpcData; `StoryDirector.fight` pasa `trainer_ids`).
 - **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
   hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`; **capítulos 4-8** hasta el Campeón: `docs/PLAN_RESTO_KANTO.md`). **E frente
   a algo** (`StoryDirector.register_interaction`): `FieldMoves` = MO **como en Let's Go** (decisión del usuario 2026-10-28: la MO + su medalla las desbloquea,

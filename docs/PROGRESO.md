@@ -16,7 +16,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   huye / se juega todo / se cubre según el temperamento, y amaga (fintas, más en Difícil). **IA-3**: lee las
   habilidades (no tira lo que absorbés, evita el cuerpo a cuerpo contra Electricidad Estática y compañía, aprovecha
   Torrente...) y el suelo (descarga eléctrica si estás en lo mojado, te moja primero si tiene con qué electrificarte, no
-  se queda en el agua frente a un eléctrico). **Siguiente: IA-4 (entrenadores con cabeza).**
+  se queda en el agua frente a un eléctrico). **IA-4**: cada clase de entrenador pelea distinto
+  (impaciente, aguante, estratega, rocket, líder), cambian de Pokémon cuando el cruce de tipos les es malo, sacan el que
+  mejor les va, usan Superpociones, y los 8 líderes y el Campeón tienen su guion (Brock se planta con Fortaleza, Starmie
+  inunda la cancha, Surge a toda carga...). Test `--autotest-ai-trainers`. **Siguiente: IA-5 (salvajes vivos).**
 - **Pokémon dormidos (2026-10-30, pedido del usuario)**: respiran (al inhalar la parte de arriba del cuerpo sube 1 px
   repitiendo la fila del pecho, sin deformar el pixel art) y les salen "z" de pixel art de la cabeza
   (`CreatureSprite._draw_breathing`, `_draw_zzz`). Las hojas de una sola fila (Sleep, Tumble, HitGround, LostBalance,

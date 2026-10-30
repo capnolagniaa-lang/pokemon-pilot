@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="LeaderScript" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/leader_script.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/resources/leader_moment.gd" id="2"]
+
+[sub_resource type="Resource" id="m0"]
+script = ExtResource("2")
+trigger = 0
+value = 0.4
+line = "Tranquila... respirá hondo."
+status_id = "recuperando"
+status_mult = 1.5
+
+[sub_resource type="Resource" id="m1"]
+script = ExtResource("2")
+trigger = 1
+line = "Las flores también saben pelear."
+status_id = "potenciado"
+status_mult = 1.5
+
+[resource]
+script = ExtResource("1")
+id = "erika"
+trainer_ids = PackedStringArray("erika")
+moments = Array[ExtResource("2")]([SubResource("m0"), SubResource("m1")])

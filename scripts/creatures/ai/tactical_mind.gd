@@ -49,6 +49,9 @@ var last_slot := -1
 var dodge_sides: Array[int] = []
 var ranged_seen: Array[bool] = []
 var feints := 0
+## Ataca más seguido por un rato (momento del guion de un líder: multiplica el tiempo entre ataques).
+var pace_boost := 1.0
+var pace_boost_until := -1.0
 ## Ya avisó que se juega todo (con poca vida y temperamento valiente).
 var all_in := false
 var _watching: Creature
@@ -174,7 +177,8 @@ func low_hp_plan() -> String:
 	var temp: Temperament = actor.temperament
 	if temp == null or actor.health.ratio() >= maxf(LOW_HP, temp.flee_below):
 		return ""
-	match temp.low_hp:
+	var plan: Temperament.LowHp = actor.trainer_style.low_hp if actor.trainer_style != null else temp.low_hp
+	match plan:
 		Temperament.LowHp.ALL_IN:
 			return "todo"
 		Temperament.LowHp.CAREFUL:
@@ -255,7 +259,7 @@ func score(slot: int, dist: float, shot: bool) -> float:
 ## Elige la ranura a usar (-1 = ninguna llega). Con `smarts` bajo (Fácil) piensa menos: mezcla el puntaje con azar.
 func pick(dist: float) -> int:
 	var shot: bool = actor.body.clear_shot(actor.target)
-	var smarts := clampf(difficulty().smarts, 0.0, 1.0)
+	var smarts := clampf(difficulty().smarts * (actor.trainer_style.smarts_mult if actor.trainer_style != null else 1.0), 0.0, 1.0)
 	var best := -1
 	var best_value := 0.0
 	var top := 0.0
@@ -352,3 +356,48 @@ func danger_at(pos: Vector2) -> bool:
 		if m != null and m.power > 0.0 and m.element != null and rs.harms_at(m.element, pos):
 			return true
 	return false
+
+
+# --- Entrenadores (IA-4) ---
+
+## Multiplica el tiempo entre ataques por un rato (momento del guion de un líder).
+func boost(mult: float, time: float) -> void:
+	pace_boost = mult
+	pace_boost_until = actor.now() + time
+
+
+## Ritmo propio del entrenador: su estilo (impaciente, aguante...) y el envión de un momento del guion.
+func trainer_pace() -> float:
+	var k := 1.0
+	var st: TrainerStyle = actor.trainer_style
+	if st != null:
+		k *= st.pace
+		if st.counter:
+			k *= 0.6 if window_open() or exposed(actor.target) else 1.3  # aguanta y contragolpea
+	if actor.now() < pace_boost_until:
+		k *= pace_boost
+	return k
+
+
+## Qué tan bien le va a un Pokémon (instancia, con sus ataques equipados) contra `against`: su mejor efectividad
+## contra él dividida la de él contra este, por la vida que le queda. Para elegir a quién sacar.
+static func matchup_score(inst: CreatureInstance, against: Creature) -> float:
+	var edge := 0.0
+	var any := false
+	for m in inst.equipped_moves:
+		if m == null or m.power <= 0.0 or m.category == MoveData.Category.STATUS:
+			continue
+		any = true
+		edge = maxf(edge, DB.type_chart.get_multiplier(m.element, against.instance.species.types))
+	if not any:
+		edge = 1.0
+	var danger := 0.0
+	any = false
+	for m in against.moves.moves:
+		if m == null or m.power <= 0.0 or m.category == MoveData.Category.STATUS:
+			continue
+		any = true
+		danger = maxf(danger, DB.type_chart.get_multiplier(m.element, inst.species.types))
+	if not any:
+		danger = 1.0
+	return edge / maxf(danger, 0.25) * (inst.hp / inst.max_hp())

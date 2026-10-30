@@ -56,6 +56,8 @@ var player_controlled := false
 var ai_fighter := false
 ## De dónde salen las órdenes cuando player_controlled (teclado/mouse, o un bot en el autotest).
 var input_source: CombatInput
+## Cómo pelea su entrenador (TrainerStyle, docs/PLAN_IA.md IA-4; null = salvaje).
+var trainer_style: TrainerStyle
 ## Hacia dónde fue el último esquive (lo mira la memoria de la IA rival: TacticalMind, docs/PLAN_IA.md IA-2).
 var last_dodge_dir := Vector2.ZERO
 var facing := Vector2.DOWN

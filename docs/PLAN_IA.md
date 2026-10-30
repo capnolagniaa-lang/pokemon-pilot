@@ -34,8 +34,9 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
 | IA-1 | ✅ Hecha (2026-10-30) | `TacticalMind`, `AiDifficulty.smarts/reaction/telegraph`, aviso `CreatureSprite.tell_left` |
 | IA-2 | ✅ Hecha (2026-10-30) | memoria en `TacticalMind`, `Temperament.low_hp`, `AiDifficulty.feint_chance` |
 | IA-3 | ✅ Hecha (2026-10-30) | `TacticalMind.ability_mult/env_mult/danger_at`, `ReactionSystem.rule_for/harms_at/sets_up` |
-| IA-4 | ⏭️ Siguiente | |
-| IA-5 y IA-6 | Pendientes | |
+| IA-4 | ✅ Hecha (2026-10-30) | `TrainerStyle` (data/ai/trainer_styles), `LeaderScript`/`LeaderMoment` (data/ai/leader_scripts), `TrainerBattle.think` |
+| IA-5 | ⏭️ Siguiente | |
+| IA-6 | Pendiente | |
 
 ## Detalle IA-1
 
@@ -83,3 +84,23 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
 - **Dónde pararse** (`danger_at`): peligroso = la celda ya le pone un estado, o el rival tiene un ataque que ahí se lo
   pondría. `CombatBody.hazard_escape` sale de ahí, y al moverse no entra (rodea para el otro lado). Si ya está en un
   lugar sin salida cerca (un nadador en medio del lago), pelea igual.
+
+## Detalle IA-4
+
+- **Estilo por clase** (`TrainerStyle`, `data/ai/trainer_styles/*.tres`, `classes` = títulos; `DB.trainer_style_for`;
+  `Creature.trainer_style`, lo pone `TrainerBattle`). Perillas: `smarts_mult`, `pace`, `counter` (aguanta y contragolpea:
+  ×1,3 más lento, ×0,6 cuando estás expuesto o con tus fuertes en recarga), `switch_types`, `retreat`, `smart_next`,
+  `potions`, `low_hp`. Estilos: **impaciente** (Cazabichos, Joven, Nadador, Pescador...: piensa menos, ataca más seguido, se
+  juega todo), **aguante** (Montañero, Karateka, Motorista...: contragolpea), **estratega** (Entrenador Guay, Científico,
+  Médium...: piensa más, cambia por tipos, saca el mejor, 1 Superpoción), **rocket** (agresivo), **líder** (Líder, Alto
+  Mando, Rival, Campeón: piensa más, cambia, 2 Superpociones). Sin clase: como antes (retira al muy golpeado 35 %).
+- **Pelea** (`TrainerBattle.think`, cada 0,4 s): momentos del guion → retirar al muy golpeado (`retreat`) → **cambio por
+  tipos** (si su Pokémon está "cuidate" hace 5 s y tiene uno con el doble de `TacticalMind.matchup_score`; una vez por
+  cruce, 2 por pelea) → **Superpoción** (< 30 % de vida, una por Pokémon: cura 50 PS × escala de vida y queda aturdido
+  0,6 s). Con `smart_next`, al caer uno saca el que mejor le va contra el tuyo.
+- **Guion de líder** (`LeaderScript` + `LeaderMoment`, `data/ai/leader_scripts/*.tres`, por id de TrainerData o de NpcData:
+  `StoryDirector.fight` pasa `trainer_ids`). Momentos: `HP_BELOW` (su Pokémon baja de `value`), `LAST_MON`, `FIRST_FAINT`;
+  cada uno una vez por pelea: frase (sobre su Pokémon y en los mensajes), estado, elemento alrededor (Misty moja la
+  cancha), curarse, atacar más seguido un rato (`TacticalMind.boost`). Brock (Fortaleza a la mitad), Misty (Starmie inunda
+  la cancha + se cura un poco), Surge (a toda carga), Erika (Recuperación; el último se potencia), Koga, Sabrina, Blaine,
+  Giovanni y el Campeón (el rival de antes no: comparte id "azul").

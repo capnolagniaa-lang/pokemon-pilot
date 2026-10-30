@@ -17,6 +17,8 @@ var difficulties: Dictionary = {}  # id -> AiDifficulty (facil, normal, dificil)
 var env_states: Dictionary = {}  # id -> EnvCellState (entorno reactivo: ardiendo, mojado...)
 var reactions: Dictionary = {}  # id -> ReactionRule
 var temperaments: Dictionary = {}  # id -> Temperament (agresivo, territorial, timido, curioso)
+var trainer_styles: Dictionary = {}  # id -> TrainerStyle (docs/PLAN_IA.md, IA-4)
+var leader_scripts: Dictionary = {}  # id -> LeaderScript
 var trainers: Dictionary = {}  # id -> TrainerData (entrenadores vivos, data/trainers)
 var items: Dictionary = {}  # id -> ItemData (mochila, data/items)
 var npcs: Dictionary = {}  # id -> NpcData (historia, data/story/npcs)
@@ -43,6 +45,8 @@ func _ready() -> void:
 	env_states = _load_dir("res://data/environment/states", "EnvCellState")
 	reactions = _load_dir("res://data/environment/reactions", "ReactionRule")
 	temperaments = _load_dir("res://data/ai/temperaments", "Temperament")
+	trainer_styles = _load_dir("res://data/ai/trainer_styles", "TrainerStyle")
+	leader_scripts = _load_dir("res://data/ai/leader_scripts", "LeaderScript")
 	trainers = _load_dir("res://data/trainers", "TrainerData")
 	items = _load_dir("res://data/items", "ItemData")
 	npcs = _load_dir("res://data/story/npcs", "NpcData")
@@ -242,3 +246,19 @@ func texture(path: String) -> Texture2D:
 			tex = ImageTexture.create_from_image(img)
 	_textures[path] = tex
 	return tex
+
+
+## Cómo pelea una clase de entrenador (por su título); sin estilo, los valores por defecto de TrainerStyle.
+func trainer_style_for(title: String) -> TrainerStyle:
+	for st in trainer_styles.values():
+		if title in st.classes:
+			return st
+	return TrainerStyle.new()
+
+
+## Guion del líder con ese id de TrainerData (null si no tiene).
+func leader_script_for(trainer_id: String) -> LeaderScript:
+	for ls in leader_scripts.values():
+		if trainer_id in ls.trainer_ids:
+			return ls
+	return null
