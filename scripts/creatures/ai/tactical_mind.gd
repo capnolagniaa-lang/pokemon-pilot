@@ -1,9 +1,11 @@
 class_name TacticalMind
 extends RefCounted
-## "Mente" táctica de la IA (docs/PLAN_IA.md, IA-1): *qué* hacer en la pelea. Puntúa los ataques según la situación
+## "Mente" táctica de la IA (docs/PLAN_IA.md): *qué* hacer en la pelea. Puntúa los ataques según la situación
 ## (potencia, STAB, efectividad contra el rival, si el rival está vulnerable, no repetir siempre) y lee los tipos para
-## saber si conviene cuidarse o presionar. El *cómo* (apuntar, esquivar, moverse) sigue en CombatBody. Una por
-## criatura (`Creature.mind`); la usan los salvajes y los Pokémon de los entrenadores (mismo estado "attack").
+## saber si conviene cuidarse o presionar (IA-1). Tiene **memoria corta** de la pelea actual (IA-2): hacia qué lado
+## esquivás (y te apunta ahí), si peleás de lejos o de cerca, cuándo tenés tus ataques fuertes en recarga (castiga esa
+## ventana) y qué hacer con poca vida según su temperamento. El *cómo* (apuntar, esquivar, moverse) sigue en
+## CombatBody. Una por criatura (`Creature.mind`); la usan los salvajes y los Pokémon de los entrenadores.
 
 ## Ataques de estado / mejora (no tienen potencia): valor fijo; si CombatBody.fits los deja, son buena idea.
 const STATUS_VALUE := 45.0
@@ -16,8 +18,30 @@ const TELL_POWER := 60.0
 ## Estados del rival en los que está expuesto.
 const EXPOSED_STATES := ["cast", "recovery", "channel", "stunned"]
 
+## Cuántos eventos recuerda de cada cosa (la pelea actual; se borra al cambiar de rival).
+const MEMORY := 10
+## Esquives vistos para animarse a anticipar el próximo, y qué tan seguido tienen que ir al mismo lado.
+const READ_MIN := 3
+const READ_SURE := 0.75
+## Cuánto corre el disparo hacia el lado al que vas a esquivar (px) y con qué probabilidad (× confianza × smarts).
+const READ_OFFSET := 42.0
+const READ_CHANCE := 0.6
+## Ataques tuyos vistos para saber si peleás de lejos o de cerca.
+const STYLE_MIN := 4
+const STYLE_SURE := 0.7
+## Vida por debajo de la cual cambia de plan (además del flee_below del temperamento).
+const LOW_HP := 0.35
+const RANGED_KINDS := [MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL, MoveData.Kind.WHIP, MoveData.Kind.ZONE]
+
 var actor: Creature
 var last_slot := -1
+## Memoria de la pelea actual (contra `_watching`): lado de cada esquive (+1/-1) y forma de cada ataque tuyo.
+var dodge_sides: Array[int] = []
+var ranged_seen: Array[bool] = []
+var feints := 0
+## Ya avisó que se juega todo (con poca vida y temperamento valiente).
+var all_in := false
+var _watching: Creature
 
 
 func _init(p_actor: Creature) -> void:
@@ -26,6 +50,126 @@ func _init(p_actor: Creature) -> void:
 
 static func difficulty() -> AiDifficulty:
 	return CombatBody.difficulty()
+
+
+# --- Memoria corta (IA-2) ---
+
+## Mira al rival actual: si cambió, olvida lo anterior y empieza a observar al nuevo. Llamarlo cada cuadro de pelea.
+func observe() -> void:
+	var t: Creature = actor.target
+	if t == _watching:
+		return
+	forget()
+	if is_instance_valid(t):
+		_watching = t
+		t.dodged.connect(_on_dodged)
+		t.move_released.connect(_on_move)
+
+
+func forget() -> void:
+	if is_instance_valid(_watching):
+		if _watching.dodged.is_connected(_on_dodged):
+			_watching.dodged.disconnect(_on_dodged)
+		if _watching.move_released.is_connected(_on_move):
+			_watching.move_released.disconnect(_on_move)
+	_watching = null
+	dodge_sides.clear()
+	ranged_seen.clear()
+	feints = 0
+	all_in = false
+
+
+## Esquivó: ¿a qué lado de la línea entre los dos? (+1 / -1; si fue para atrás o adelante no cuenta).
+func _on_dodged() -> void:
+	if not is_instance_valid(_watching) or not is_instance_valid(actor):
+		return
+	var line := (_watching.global_position - actor.global_position).normalized()
+	var side := line.cross(_watching.last_dodge_dir.normalized())
+	if absf(side) < 0.35:
+		return
+	dodge_sides.append(1 if side > 0.0 else -1)
+	if dodge_sides.size() > MEMORY:
+		dodge_sides.pop_front()
+
+
+func _on_move(m: MoveData) -> void:
+	if m == null or m.category == MoveData.Category.STATUS and m.power <= 0.0:
+		return
+	ranged_seen.append(m.kind in RANGED_KINDS)
+	if ranged_seen.size() > MEMORY:
+		ranged_seen.pop_front()
+
+
+## Hacia qué lado suele esquivar (+1/-1) y qué tan seguro (0..1); 0 si todavía no se sabe.
+func dodge_read() -> Array:
+	if dodge_sides.size() < READ_MIN:
+		return [0, 0.0]
+	var right := dodge_sides.count(1)
+	var share := float(maxi(right, dodge_sides.size() - right)) / dodge_sides.size()
+	if share < READ_SURE:
+		return [0, 0.0]
+	return [1 if right * 2 > dodge_sides.size() else -1, share]
+
+
+## Corrimiento del disparo hacia donde vas a esquivar (ZERO si no te tiene leído o esta vez no lo intenta). `off` =
+## del actor al objetivo.
+func aim_read(off: Vector2) -> Vector2:
+	var read := dodge_read()
+	if read[0] == 0 or randf() >= READ_CHANCE * float(read[1]) * clampf(difficulty().smarts, 0.0, 1.0):
+		return Vector2.ZERO
+	# (lado +1 en _on_dodged = cross(línea, esquive) > 0 = hacia -línea.orthogonal())
+	var perp := off.normalized().orthogonal() * -1.0
+	return perp * float(read[0]) * READ_OFFSET
+
+
+## Cómo pelea el rival: "lejos", "cerca" o "" (todavía no se sabe).
+func foe_style() -> String:
+	if ranged_seen.size() < STYLE_MIN:
+		return ""
+	var share := float(ranged_seen.count(true)) / ranged_seen.size()
+	if share >= STYLE_SURE:
+		return "lejos"
+	if share <= 1.0 - STYLE_SURE:
+		return "cerca"
+	return ""
+
+
+## Más ganas de esquivar si el rival tira mucho de lejos (lo vio venir).
+func dodge_bonus() -> float:
+	if difficulty().dodge_chance <= 0.0:
+		return 0.0  # (en Fácil no esquiva nunca)
+	return 0.15 * clampf(difficulty().smarts, 0.0, 1.0) if foe_style() == "lejos" else 0.0
+
+
+## El rival tiene sus ataques fuertes en recarga (o se está recuperando): ventana para atacar.
+func window_open() -> bool:
+	var t: Creature = actor.target
+	if not is_instance_valid(t) or t.moves == null:
+		return false
+	if t.machine.current_name() == "recovery":
+		return true
+	var strong := 0
+	for slot in MoveUser.SLOT_COUNT:
+		var m: MoveData = t.moves.slots[slot]
+		if m == null or m.power * m.power_mult < TELL_POWER or m.category == MoveData.Category.STATUS:
+			continue
+		strong += 1
+		if t.moves.can_use(slot):
+			return false
+	return strong > 0
+
+
+## Plan con poca vida según el temperamento: "" (todo normal), "huye", "todo" (se juega todo) o "cuidado".
+func low_hp_plan() -> String:
+	var temp: Temperament = actor.temperament
+	if temp == null or actor.health.ratio() >= maxf(LOW_HP, temp.flee_below):
+		return ""
+	match temp.low_hp:
+		Temperament.LowHp.ALL_IN:
+			return "todo"
+		Temperament.LowHp.CAREFUL:
+			return "cuidado"
+	return "huye"
 
 
 ## Efectividad de un tipo de ataque contra una criatura (1 si falta algo).
@@ -89,6 +233,8 @@ func score(slot: int, dist: float, shot: bool) -> float:
 			value *= PUNISH
 	elif m.status != null and is_instance_valid(t) and t.statuses.has_status(m.status.id):
 		return 0.0  # ya lo tiene
+	elif m.kind in [MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF] and low_hp_plan() == "cuidado":
+		value *= 2.5  # con poca vida y cauteloso: se cubre o se cura
 	if slot == last_slot:
 		value *= REPEAT
 	return value * randf_range(0.85, 1.15)

@@ -32,8 +32,9 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
 | Fase | Estado | Notas |
 |---|---|---|
 | IA-1 | ✅ Hecha (2026-10-30) | `TacticalMind`, `AiDifficulty.smarts/reaction/telegraph`, aviso `CreatureSprite.tell_left` |
-| IA-2 | ⏭️ Siguiente | |
-| IA-3 a IA-6 | Pendientes | |
+| IA-2 | ✅ Hecha (2026-10-30) | memoria en `TacticalMind`, `Temperament.low_hp`, `AiDifficulty.feint_chance` |
+| IA-3 | ⏭️ Siguiente | |
+| IA-4 a IA-6 | Pendientes | |
 
 ## Detalle IA-1
 
@@ -50,3 +51,21 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
   recién pasado `reaction` (±30 %), si sigue viniendo. Fácil 0,35 s · Normal 0,22 s · Difícil 0,14 s.
 - **Aviso** (estado `attack`): un ataque de potencia ≥ 60 sin carga (los con carga ya se marcan en el suelo) se
   anuncia: brilla anaranjado y se frena `telegraph` s (Fácil 0,35 · Normal 0,22 · Difícil 0,12); apunta al soltarlo.
+
+## Detalle IA-2
+
+- **Memoria** (`TacticalMind`, de la pelea actual; `observe()` cada cuadro: si cambia el rival, `forget()`): los últimos
+  10 esquives (de qué lado de la línea entre los dos, con `Creature.last_dodge_dir`) y las formas de tus últimos 10
+  ataques (`move_released`).
+- **Te lee el esquive**: con 3+ esquives y 75 % al mismo lado, sus disparos y zonas se corren 42 px hacia ese lado
+  (`aim_read`, en `CombatBody.use`) con probabilidad 0,6 × confianza × `smarts`. Si no esquivás, ese tiro te pasa al
+  costado: se le puede ganar cambiando de lado.
+- **Tu estilo**: si 70 % de tus ataques son de lejos, esquiva más (+0,15 × smarts; en Fácil nunca); si son de cerca, los
+  de distancia te mantienen más lejos (×1,2).
+- **Ventana**: si tenés todos tus ataques fuertes (≥ 60) en recarga o te estás recuperando, se te viene encima y ataca
+  ×0,75 más seguido.
+- **Poca vida** (< 35 % o el `flee_below` del temperamento; `Temperament.low_hp`): tímido y curioso **huyen** (como antes),
+  agresivo **se juega todo** ("!", no huye, ataca ×0,7), territorial y los de entrenador **se cubren** (más lejos, ataca
+  ×1,25 más lento, escudos y curas valen ×2,5).
+- **Fintas** (`AiDifficulty.feint_chance`: Fácil 0, Normal 0,05, Difícil 0,2): el ataque avisado no sale y ataca 0,25 s
+  después (castiga si esquivaste al aviso).

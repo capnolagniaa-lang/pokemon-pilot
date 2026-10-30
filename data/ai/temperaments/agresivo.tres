@@ -16,3 +16,4 @@ nervous_attack_chance = 0.4
 flee_below = 0.15
 spook_chance = 0.0
 notice_emote = "!"
+low_hp = 1

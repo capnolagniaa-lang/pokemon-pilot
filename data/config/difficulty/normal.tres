@@ -15,3 +15,4 @@ lead = 0.6
 smarts = 0.7
 reaction = 0.22
 telegraph = 0.22
+feint_chance = 0.05

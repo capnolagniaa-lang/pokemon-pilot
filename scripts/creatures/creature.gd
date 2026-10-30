@@ -56,6 +56,8 @@ var player_controlled := false
 var ai_fighter := false
 ## De dónde salen las órdenes cuando player_controlled (teclado/mouse, o un bot en el autotest).
 var input_source: CombatInput
+## Hacia dónde fue el último esquive (lo mira la memoria de la IA rival: TacticalMind, docs/PLAN_IA.md IA-2).
+var last_dodge_dir := Vector2.ZERO
 var facing := Vector2.DOWN
 var knockback := Vector2.ZERO
 ## Segundos que quedan de resistencia a control.
@@ -302,6 +304,7 @@ func _jump_to(landing: Vector2) -> void:
 	health.invulnerable_time = time + 0.12
 	if signature != null:
 		moves.dodge_cooldown *= signature.dodge_cooldown_mult()
+	last_dodge_dir = dir
 	machine.transition_to("dash", {"dir": dir, "time": time, "attack": false, "speed": dist / time})
 	var tw := create_tween()
 	tw.tween_property(sprite, "lift", clampf(dist * 0.18, 10.0, 26.0), time * 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
@@ -595,7 +598,8 @@ func dodge(dir: Vector2, aim: Vector2 = Vector2.ZERO) -> bool:
 		moves.dodge_cooldown *= signature.dodge_cooldown_mult()
 	if move_style() == "agil" and arena_rules():
 		moves.dodge_cooldown *= AGILE_DODGE
-	machine.transition_to("dash", {"dir": dir if dir.length() > 0.1 else facing, "time": DODGE_TIME, "attack": false})
+	last_dodge_dir = dir if dir.length() > 0.1 else facing
+	machine.transition_to("dash", {"dir": last_dodge_dir, "time": DODGE_TIME, "attack": false})
 	dodged.emit()
 	return true
 

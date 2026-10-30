@@ -249,7 +249,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   por potencia, STAB, efectividad, rival expuesto, sin repetir) y cruce de tipos (`matchup`: "cuidate"/"presiona"); el
   estado `attack` la usa (la apertura del temperamento sigue). Justicia: `AiDifficulty.reaction` (esquiva recién pasado
   ese tiempo, `CombatBody.try_dodge`) y `telegraph` (los fuertes sin carga brillan, `CreatureSprite.tell_left`, y se
-  frenan antes); `smarts` mezcla el puntaje con azar (Fácil).
+  frenan antes); `smarts` mezcla el puntaje con azar (Fácil). **IA-2**: memoria corta en la mente (esquives con
+  `Creature.last_dodge_dir` → `aim_read`; estilo del rival; `window_open` = tus fuertes en recarga), `Temperament.low_hp`
+  (huye / se juega todo / se cubre) y `AiDifficulty.feint_chance` (fintas).
 - **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
   hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`; **capítulos 4-8** hasta el Campeón: `docs/PLAN_RESTO_KANTO.md`). **E frente
   a algo** (`StoryDirector.register_interaction`): `FieldMoves` = MO **como en Let's Go** (decisión del usuario 2026-10-28: la MO + su medalla las desbloquea,

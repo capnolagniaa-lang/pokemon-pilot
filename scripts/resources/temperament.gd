@@ -8,6 +8,9 @@ extends Resource
 ## ATTACK te ataca apenas te ve · TERRITORY solo si entrás a su territorio · FLEE huye (pelea si lo acorralás
 ## o le pegás) · APPROACH se acerca a mirarte (si te le venís encima, se pone nervioso).
 enum OnNotice { ATTACK, TERRITORY, FLEE, APPROACH }
+## Con poca vida (docs/PLAN_IA.md, IA-2): FLEE intenta huir (por debajo de flee_below) · ALL_IN se juega todo (no
+## huye, ataca más seguido) · CAREFUL se cubre (más lejos, ataca menos, usa escudos y curas).
+enum LowHp { FLEE, ALL_IN, CAREFUL }
 
 @export var id: String = ""
 @export var display_name: String = ""
@@ -25,6 +28,7 @@ enum OnNotice { ATTACK, TERRITORY, FLEE, APPROACH }
 @export_range(0.0, 1.0) var nervous_attack_chance: float = 0.4
 ## En combate, con menos de esta fracción de vida intenta huir.
 @export_range(0.0, 1.0) var flee_below: float = 0.2
+@export var low_hp: LowHp = LowHp.FLEE
 ## Probabilidad de espantarse (retroceder un momento) cuando recibe un golpe fuerte.
 @export_range(0.0, 1.0) var spook_chance: float = 0.0
 ## Aviso que muestra al notarte ("!" agresivo, "?" curioso, gota tímido...).

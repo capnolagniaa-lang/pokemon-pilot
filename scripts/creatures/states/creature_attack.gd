@@ -5,6 +5,8 @@ extends State
 ## (más lejos, ataca menos seguido); a favor, presiona. Los ataques fuertes sin carga se avisan (brillo + pausa corta).
 ## La ejecución (apuntar, esquivar con tiempo de reacción, puntería según la dificultad) la hace CombatBody. Huye con
 ## poca vida según su temperamento, se espanta con golpes fuertes y sale de las celdas peligrosas.
+## Memoria corta (IA-2, TacticalMind): castiga cuando tenés tus ataques fuertes en recarga, se aleja más si peleás
+## de cerca, con poca vida huye / se juega todo / se cubre según el temperamento, y a veces amaga (finta).
 
 ## Si no tiene temperamento (no debería pasar), huye con menos de esto.
 @export var flee_below := 0.25
@@ -47,9 +49,14 @@ func physics_update(delta: float) -> void:
 	if dist > 260.0:
 		transition("chase")
 		return
+	actor.mind.observe()
 	var temp: Temperament = actor.temperament
 	var flee_at: float = temp.flee_below if temp != null else flee_below
-	if actor.health.ratio() < flee_at and randf() < 0.5 * delta:
+	var plan: String = actor.mind.low_hp_plan()
+	if plan == "todo" and not actor.mind.all_in:
+		actor.mind.all_in = true
+		actor.emote("!", 1.0)  # se juega todo
+	if plan != "todo" and actor.health.ratio() < flee_at and randf() < 0.5 * delta:
 		actor.emote("gota", 1.0)
 		transition("flee")
 		return
@@ -67,7 +74,13 @@ func physics_update(delta: float) -> void:
 			if _tell_left <= 0.0:
 				var slot := _tell_slot
 				_cancel_tell()
-				actor.body.use(slot)
+				if randf() < CombatBody.difficulty().feint_chance:
+					# Finta: amagó y no sale; ataca enseguida (castiga si esquivaste al vacío).
+					actor.mind.feints += 1
+					_attack_timer = 0.25
+					_mode = "approach"
+				else:
+					actor.body.use(slot)
 			return
 	if actor.body.try_dodge():
 		return
@@ -84,7 +97,9 @@ func physics_update(delta: float) -> void:
 	if _think <= 0.0:
 		_think = randf_range(0.4, 0.9) * CombatBody.difficulty().think_interval_mult
 		var ideal := _ideal_range()
-		if dist > ideal * 1.3 or (dist > 40.0 and not actor.body.clear_shot(t)):
+		if actor.mind.window_open() and dist > MELEE_RANGE:
+			_mode = "approach"  # tus ataques fuertes están en recarga: se te viene encima
+		elif dist > ideal * 1.3 or (dist > 40.0 and not actor.body.clear_shot(t)):
 			_mode = "approach"  # lejos, o con una pared/árbol en el medio: se acerca rodeando
 		elif dist < ideal * 0.6 and ideal > MELEE_RANGE:
 			_mode = "retreat"  # los de distancia se alejan; los de cuerpo a cuerpo no retroceden solos
@@ -125,19 +140,32 @@ func _ideal_range() -> float:
 	for m in actor.moves.moves:
 		if m.kind == MoveData.Kind.PROJECTILE:
 			r = maxf(r, m.reach() * 0.55)
-	if r > MELEE_RANGE and actor.mind.matchup() == "cuidate":
-		r *= 1.25  # los de distancia, con los tipos en contra, se quedan más lejos
+	if r > MELEE_RANGE:
+		if actor.mind.matchup() == "cuidate":
+			r *= 1.25  # los de distancia, con los tipos en contra, se quedan más lejos
+		if actor.mind.foe_style() == "cerca":
+			r *= 1.2  # peleás de cerca: te mantiene a raya
+		if actor.mind.low_hp_plan() == "cuidado":
+			r *= 1.3
 	return r
 
 
 ## Ritmo de ataque según el cruce de tipos: con los tipos en contra ataca menos seguido; a favor, presiona.
 func _pace() -> float:
+	var k := 1.0
 	match actor.mind.matchup():
 		"cuidate":
-			return 1.2
+			k = 1.2
 		"presiona":
-			return 0.85
-	return 1.0
+			k = 0.85
+	if actor.mind.window_open():
+		k *= 0.75  # ventana: tus ataques fuertes en recarga
+	match actor.mind.low_hp_plan():
+		"todo":
+			k *= 0.7
+		"cuidado":
+			k *= 1.25
+	return k
 
 
 ## La primera vez, si está lejos, abre con su ataque de acercamiento (instinto); después elige con TacticalMind.

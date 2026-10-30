@@ -23,3 +23,5 @@ extends Resource
 @export var reaction: float = 0.22
 ## Aviso (s) antes de un ataque fuerte sin carga: brilla y se frena.
 @export var telegraph: float = 0.22
+## Probabilidad de que un ataque avisado sea una finta (amaga, no sale, y ataca enseguida: castiga tu esquive).
+@export_range(0.0, 1.0) var feint_chance: float = 0.05

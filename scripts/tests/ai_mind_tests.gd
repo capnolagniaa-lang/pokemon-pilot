@@ -113,7 +113,74 @@ func run() -> void:
 			told_before_use = true
 	r["Cuchillada (70, sin carga) brilla antes de salir"] = TacticalMind.needs_tell(DB.moves["cuchillada"]) and told_before_use and not used.is_empty()
 	r["Placaje (40) no se avisa; los que cargan tampoco (ya se marcan en el suelo)"] = not TacticalMind.needs_tell(DB.moves["placaje"]) \
-		and not TacticalMind.needs_tell(DB.moves["lanzallamas"]) or DB.moves["lanzallamas"].cast_time <= 0.0
+		and (DB.moves["lanzallamas"].cast_time <= 0.0 or not TacticalMind.needs_tell(DB.moves["lanzallamas"]))
+
+	# --- IA-2: memoria corta ---
+	# Finta: con feint_chance 1, el ataque avisado no sale (amaga) y vuelve a intentar enseguida.
+	var feinty := AiDifficulty.new()
+	feinty.feint_chance = 1.0
+	feinty.telegraph = 0.1
+	GameState.difficulty = feinty
+	brute.mind.feints = 0
+	used.clear()
+	t = 0.0
+	while t < 2.0 and brute.mind.feints < 2:
+		await get_tree().physics_frame
+		t += get_physics_process_delta_time()
+	r["Finta: amaga el ataque fuerte y no lo suelta (%d fintas)" % brute.mind.feints] = brute.mind.feints >= 2 and used.is_empty()
+	brute.machine.transition_to("idle")
+	GameState.difficulty = hard
+
+	# Te lee el esquive: 4 esquives a la derecha de la línea entre los dos → apunta corrido hacia ese lado.
+	var reader: Creature = autotest._dummy(world, "squirtle", base + Vector2(-120, -60))
+	var foe: Creature = autotest._dummy(world, "rattata", base + Vector2(-40, -60))
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	reader.target = foe
+	reader.mind.observe()
+	var side_dir := Vector2(0, 1)  # (la línea va hacia la derecha: esquivar hacia abajo es siempre el mismo lado)
+	for i in 4:
+		foe.moves.dodge_cooldown = 0.0
+		foe.dodge(side_dir)
+		foe.machine.transition_to("idle")
+		await get_tree().physics_frame
+	var read: Array = reader.mind.dodge_read()
+	r["Recuerda hacia qué lado esquivás (%s)" % str(read)] = read[0] != 0 and read[1] >= 0.75
+	var off: Vector2 = foe.global_position - reader.global_position
+	var shifted := 0
+	var toward := 0
+	for i in 200:
+		var o: Vector2 = reader.mind.aim_read(off)
+		if o != Vector2.ZERO:
+			shifted += 1
+			if o.normalized().dot(side_dir) > 0.9:
+				toward += 1
+	r["Y te apunta a ese lado (a veces: %d de 200)" % shifted] = shifted > 40 and shifted < 200 and toward == shifted
+	# Si peleás de lejos esquiva más; de cerca, te mantiene a raya.
+	for i in 5:
+		foe.move_released.emit(DB.moves["pistola_agua"])
+	r["Se da cuenta de que peleás de lejos (esquiva más)"] = reader.mind.foe_style() == "lejos" and reader.mind.dodge_bonus() > 0.0
+	# Al cambiar de rival se olvida de todo.
+	reader.target = grass
+	reader.mind.observe()
+	r["Con otro rival empieza de cero"] = reader.mind.dodge_sides.is_empty() and reader.mind.foe_style() == ""
+	# Ventana: tus ataques fuertes en recarga.
+	reader.target = foe
+	reader.mind.observe()
+	_set_moves(foe, ["cuchillada", "placaje"])
+	var closed: bool = not reader.mind.window_open()
+	foe.moves.cooldowns[0] = 3.0
+	r["Castiga cuando tu ataque fuerte está en recarga"] = closed and reader.mind.window_open()
+	# Con poca vida, según el temperamento.
+	var plans := {}
+	for id in ["agresivo", "timido", "territorial", "entrenador"]:
+		reader.temperament = DB.temperaments[id]
+		reader.instance.hp = reader.instance.max_hp() * 0.2
+		plans[id] = reader.mind.low_hp_plan()
+	reader.instance.hp = reader.instance.max_hp()
+	plans["sano"] = reader.mind.low_hp_plan()
+	r["Con poca vida: agresivo se juega todo, tímido huye, territorial y entrenador se cubren (%s)" % str(plans)] = \
+		plans == {"agresivo": "todo", "timido": "huye", "territorial": "cuidado", "entrenador": "cuidado", "sano": ""}
 
 	var ok := r.values().all(func(v): return v)
 	for k in r:

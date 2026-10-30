@@ -11,7 +11,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   stagger/cargando/recuperándote, no repite siempre el mismo, no tira lo que no te hace nada) y lee el cruce de tipos
   (con los tipos en contra se cuida, a favor presiona). Justicia: reacción humana antes de esquivar y aviso (brillo
   anaranjado + pausa) antes de los ataques fuertes sin carga. Dificultad: `smarts`, `reaction`, `telegraph`. Sirve para
-  salvajes y entrenadores (mismo estado "attack"). Test `--autotest-ai-mind`. **Siguiente: IA-2 (memoria corta).**
+  salvajes y entrenadores (mismo estado "attack"). Test `--autotest-ai-mind`. **IA-2 (memoria corta)** también: te lee hacia qué lado esquivás y
+  apunta ahí, nota si peleás de lejos o de cerca, castiga cuando tenés tus ataques fuertes en recarga, con poca vida
+  huye / se juega todo / se cubre según el temperamento, y amaga (fintas, más en Difícil). **Siguiente: IA-3.**
 - **Plazas, playa y Snorlax (2026-10-29, pedidos del usuario)**: plazas con un puesto de panchos y hamburguesas (y su
   puestero) y una parrilla (y su parrillero) en Celeste, Carmín, Azulona, Azafrán y Fucsia, en el lugar más abierto de
   cada una (`tools/build_plazas.py`; sprites con Qwen-Image + LoRA MOSS: `sprites/props/puesto_panchos.png`,

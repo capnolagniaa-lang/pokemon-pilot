@@ -84,6 +84,8 @@ func use(slot: int) -> bool:
 	var m: MoveData = actor.moves.slots[slot]
 	if m != null and m.kind == MoveData.Kind.PROJECTILE and m.speed > 0.0:
 		off += t.velocity * (off.length() / (m.speed * Projectile.SPEED_MULT)) * difficulty().lead
+	if m != null and m.kind in [MoveData.Kind.PROJECTILE, MoveData.Kind.ZONE, MoveData.Kind.AREA]:
+		off += actor.mind.aim_read(off)  # te tiene leído hacia qué lado esquivás (TacticalMind, IA-2)
 	var dir := off.normalized().rotated(randf_range(-err, err))
 	# Mismo error para lo que apunta a un punto (zonas, Arañazo).
 	var point: Vector2 = actor.global_position + off.rotated(randf_range(-err, err)) * randf_range(1.0 - err, 1.0 + err)
@@ -106,7 +108,7 @@ func try_dodge() -> bool:
 		if not _checked.has(p):
 			if rel.length() < SEE_SHOT:
 				var react := difficulty().reaction * randf_range(0.7, 1.3)
-				_checked[p] = [now + react, randf() < difficulty().dodge_chance]
+				_checked[p] = [now + react, randf() < difficulty().dodge_chance + actor.mind.dodge_bonus()]
 			continue
 		var seen: Array = _checked[p]
 		if seen[1] and now >= seen[0] and rel.length() < DODGE_SHOT and actor.moves.can_dodge():
