@@ -401,3 +401,23 @@ static func matchup_score(inst: CreatureInstance, against: Creature) -> float:
 	if not any:
 		danger = 1.0
 	return edge / maxf(danger, 0.25) * (inst.hp / inst.max_hp())
+
+
+# --- Manada (IA-5) ---
+
+## Peleando con otro salvaje contra el mismo rival: el lugar del otro lado del rival (para rodearlo). INF si está solo
+## o es el que se queda de frente (el de menor id).
+func flank_point(ideal: float) -> Vector2:
+	var t: Creature = actor.target
+	if actor.team != Creature.Team.WILD or actor.owner_name != "" or not is_instance_valid(t):
+		return Vector2.INF
+	var mate: Creature = null
+	for o in actor.get_tree().get_nodes_in_group("creatures"):
+		if o != actor and o is Creature and o.team == actor.team and not o.is_down() and o.target == t \
+				and o.owner_name == "" and o.global_position.distance_to(t.global_position) < 160.0:
+			if mate == null or o.global_position.distance_to(actor.global_position) < mate.global_position.distance_to(actor.global_position):
+				mate = o
+	if mate == null or actor.get_instance_id() < mate.get_instance_id():
+		return Vector2.INF
+	var side: Vector2 = (t.global_position - mate.global_position).normalized()
+	return t.global_position + side * maxf(ideal, 24.0)

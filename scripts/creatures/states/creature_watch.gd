@@ -5,7 +5,8 @@ extends State
 
 @export var max_time := 7.0
 
-var _who: Creature
+## Lo que mira: tu Pokémon o, los curiosos, una Pokébola tirada o un objeto del piso (IA-5).
+var _who: Node2D
 var _time := 0.0
 
 
@@ -17,7 +18,7 @@ func enter(msg: Dictionary = {}) -> void:
 func physics_update(delta: float) -> void:
 	_time += delta
 	var temp: Temperament = actor.temperament
-	if not is_instance_valid(_who) or _who.is_down() or _time > max_time \
+	if not is_instance_valid(_who) or (_who is Creature and _who.is_down()) or _time > max_time \
 			or actor.global_position.distance_to(_who.global_position) > temp.detect_radius * 1.6 \
 			or actor.global_position.distance_to(actor.home) > temp.leash:
 		transition("wander")
@@ -25,6 +26,13 @@ func physics_update(delta: float) -> void:
 	var to: Vector2 = _who.global_position - actor.global_position
 	var dist := to.length()
 	actor.facing = to.normalized()
+	if not _who is Creature:
+		# Un objeto: se acerca a olerlo y se queda mirándolo.
+		if dist > 14.0:
+			actor.move(to.normalized(), actor.speed() * 0.45)
+		else:
+			actor.move(Vector2.ZERO, 0.0)
+		return
 	if dist < temp.nervous_distance:
 		if randf() < temp.nervous_attack_chance:
 			actor.target = _who

@@ -31,6 +31,8 @@ func _ready() -> void:
 	_rng.randomize()
 	Events.zone_loaded.connect(_on_zone_loaded)
 	Events.zone_unloaded.connect(_on_zone_unloaded)
+	Events.time_changed.connect(_on_time_changed)
+	Events.wild_aggro.connect(func(w, t): if w is Creature and t is Creature: WildSociety.call_pack(w, t))
 
 
 func _process(delta: float) -> void:
@@ -163,6 +165,27 @@ func _spawn_in(zone_id: String) -> void:
 	if r[3] in WATER_WHERE:
 		c.swims = true
 	_alive[zone_id].append(c)
+	# Salvajes vivos (docs/PLAN_IA.md, IA-5): si es su hora de dormir, muchos aparecen durmiendo.
+	if WildSociety.sleepy(c.instance.species, GameState.time_of_day, _in_cave()) and randf() < WildSociety.rules().sleep_chance:
+		WildSociety.nap.call_deferred(c)
+
+
+func _in_cave() -> bool:
+	var dn = world.get("day_night")
+	return dn != null and dn.in_cave
+
+
+## Cambió la hora: los que duermen y ya es su hora se despiertan solos; los tranquilos a los que les toca, se duermen.
+func _on_time_changed(hour: float, _phase: String) -> void:
+	for list in _alive.values():
+		for c in list:
+			if not is_instance_valid(c) or c.is_down():
+				continue
+			var sleepy := WildSociety.sleepy(c.instance.species, hour, _in_cave())
+			if c.napping and not sleepy:
+				WildSociety.wake(c)
+			elif not c.napping and sleepy and c.machine.current_name() == "wander" and not is_instance_valid(c.target) 					and randf() < WildSociety.rules().sleep_chance * 0.5:
+				WildSociety.nap(c)
 
 
 ## Crea un salvaje en una posición (también lo usa el autotest).

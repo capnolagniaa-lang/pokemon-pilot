@@ -19,6 +19,7 @@ var reactions: Dictionary = {}  # id -> ReactionRule
 var temperaments: Dictionary = {}  # id -> Temperament (agresivo, territorial, timido, curioso)
 var trainer_styles: Dictionary = {}  # id -> TrainerStyle (docs/PLAN_IA.md, IA-4)
 var leader_scripts: Dictionary = {}  # id -> LeaderScript
+var wild_life: WildLife  # reglas de los salvajes vivos (docs/PLAN_IA.md, IA-5)
 var trainers: Dictionary = {}  # id -> TrainerData (entrenadores vivos, data/trainers)
 var items: Dictionary = {}  # id -> ItemData (mochila, data/items)
 var npcs: Dictionary = {}  # id -> NpcData (historia, data/story/npcs)
@@ -47,6 +48,8 @@ func _ready() -> void:
 	temperaments = _load_dir("res://data/ai/temperaments", "Temperament")
 	trainer_styles = _load_dir("res://data/ai/trainer_styles", "TrainerStyle")
 	leader_scripts = _load_dir("res://data/ai/leader_scripts", "LeaderScript")
+	if ResourceLoader.exists("res://data/ai/wild_life.tres"):
+		wild_life = load("res://data/ai/wild_life.tres")
 	trainers = _load_dir("res://data/trainers", "TrainerData")
 	items = _load_dir("res://data/items", "ItemData")
 	npcs = _load_dir("res://data/story/npcs", "NpcData")

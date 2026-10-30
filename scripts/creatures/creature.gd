@@ -58,6 +58,8 @@ var ai_fighter := false
 var input_source: CombatInput
 ## Cómo pelea su entrenador (TrainerStyle, docs/PLAN_IA.md IA-4; null = salvaje).
 var trainer_style: TrainerStyle
+## Durmiendo en su hora (salvajes vivos, WildSociety; docs/PLAN_IA.md IA-5).
+var napping := false
 ## Hacia dónde fue el último esquive (lo mira la memoria de la IA rival: TacticalMind, docs/PLAN_IA.md IA-2).
 var last_dodge_dir := Vector2.ZERO
 var facing := Vector2.DOWN
@@ -709,7 +711,9 @@ func _on_hit(hit: HitInfo) -> void:
 	# 2026-10-28: con el stagger en todo golpe, Sofoco o Rayo Solar casi nunca llegaban a salir): solo dejan stagger.
 	if hit.knockback * push >= STAGGER_KNOCKBACK and machine.current_name() != "stunned":
 		stun(0.25)
-	if team == Team.WILD and not is_instance_valid(target) and attacker:
+	if team == Team.WILD and napping and attacker:
+		WildSociety.wake(self, attacker)  # lo despertaste a los golpes: furioso (o huye, si es tímido)
+	elif team == Team.WILD and not is_instance_valid(target) and attacker:
 		# Si le pegan, pelea (también el tímido que huía tranquilo o el curioso que miraba).
 		target = attacker
 		Events.wild_aggro.emit(self, attacker)

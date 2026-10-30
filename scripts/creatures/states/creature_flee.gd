@@ -50,6 +50,9 @@ func physics_update(delta: float) -> void:
 	var progressed: bool = actor.global_position.distance_to(before) > actor.speed() * delta * 0.3
 	var close: bool = actor.global_position.distance_to(_threat.global_position) < 34.0
 	_stuck = _stuck + delta if (close and not progressed) else 0.0
+	if _stuck >= cornered_time and _threat.team == actor.team:
+		transition("wander")  # (huía de un cazador salvaje: no se pelean entre ellos)
+		return
 	if _stuck >= cornered_time:
 		# Acorralado: se da vuelta y pelea.
 		actor.emote("!", 1.0)

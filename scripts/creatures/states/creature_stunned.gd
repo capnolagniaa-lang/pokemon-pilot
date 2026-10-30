@@ -24,6 +24,8 @@ func physics_update(delta: float) -> void:
 	# Mientras un estado le impida actuar (congelado, dormido) se queda; si se lo curan, se levanta enseguida.
 	if not actor.statuses.can_act():
 		_held = true
+		if actor.napping:
+			WildSociety.sleep_tick(actor, delta)  # salvaje durmiendo en su hora: si pasás al lado, se despierta
 		return
 	if _held:  # se le terminó o le curaron el estado: se levanta casi enseguida
 		_held = false

@@ -126,6 +126,9 @@ func physics_update(delta: float) -> void:
 			move = -dir
 		_:
 			move = dir.orthogonal() * _strafe * 0.8 + dir * 0.15
+	var flank: Vector2 = actor.mind.flank_point(_ideal_range())
+	if flank != Vector2.INF and actor.global_position.distance_to(flank) > 16.0 and _mode != "retreat":
+		move = (flank - actor.global_position).normalized()  # en manada: te rodea (cada uno de un lado)
 	var steered: Vector2 = actor.body.steer(move.normalized(), t.global_position if _mode == "approach" else Vector2.INF)
 	if _mode == "strafe" and steered.dot(move.normalized()) < 0.5:
 		_strafe = -_strafe  # rodeando contra una pared: cambia de lado

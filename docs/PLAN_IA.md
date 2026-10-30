@@ -35,8 +35,8 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
 | IA-2 | ✅ Hecha (2026-10-30) | memoria en `TacticalMind`, `Temperament.low_hp`, `AiDifficulty.feint_chance` |
 | IA-3 | ✅ Hecha (2026-10-30) | `TacticalMind.ability_mult/env_mult/danger_at`, `ReactionSystem.rule_for/harms_at/sets_up` |
 | IA-4 | ✅ Hecha (2026-10-30) | `TrainerStyle` (data/ai/trainer_styles), `LeaderScript`/`LeaderMoment` (data/ai/leader_scripts), `TrainerBattle.think` |
-| IA-5 | ⏭️ Siguiente | |
-| IA-6 | Pendiente | |
+| IA-5 | ✅ Hecha (2026-10-30) | `WildSociety` + datos `data/ai/wild_life.tres` (`WildLife`), estado `hunt`, `Creature.napping` |
+| IA-6 | ⏭️ Siguiente | |
 
 ## Detalle IA-1
 
@@ -104,3 +104,23 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
   cancha), curarse, atacar más seguido un rato (`TacticalMind.boost`). Brock (Fortaleza a la mitad), Misty (Starmie inunda
   la cancha + se cura un poco), Surge (a toda carga), Erika (Recuperación; el último se potencia), Koga, Sabrina, Blaine,
   Giovanni y el Campeón (el rival de antes no: comparte id "azul").
+
+## Detalle IA-5
+
+Reglas en datos: `data/ai/wild_life.tres` (`WildLife`, `DB.wild_life`); lógica en `WildSociety`.
+- **Día y noche**: nocturnos (tipos Fantasma y Siniestro + Zubat, Oddish, Venonat, Hoothoot, Meowth, Clefairy, Drowzee,
+  Murkrow, Houndour...) duermen de día; diurnos (Pidgey, Spearow, Butterfree, Ledyba, Sunkern, Hoppip, Taillow, Doduo...)
+  de noche. En las cuevas siempre es de noche. El que aparece (`WildSpawner._spawn_in`) en su hora de dormir duerme con
+  75 % (`Creature.napping` + Dormido largo: queda en el estado "stunned", que llama a `WildSociety.sleep_tick`). Pasando a
+  menos de 22 px puede despertarse (60 %/s); despertado (al lado o a los golpes): tímidos y curiosos huyen, los demás te
+  atacan **enfurecidos**. Cuando llega su hora se despierta solo, tranquilo; y a los que les toca dormir, a veces se duermen
+  (`WildSpawner._on_time_changed`).
+- **Respeto**: si tu Pokémon le lleva 10 niveles o más (`outclass_gap`), al verte se va (si le pegás, pelea igual). No los
+  jefes ni los Pokémon de entrenador.
+- **Manadas** (`Temperament.calls_group`: agresivo, territorial, curioso): cuando uno te ataca (`Events.wild_aggro`), los de
+  su misma familia (misma primera evolución) a 110 px se suman (y se despiertan); si le lleva 5+ niveles al atacado, "¡Defiende
+  a su cría!" y viene enfurecido. En la pelea **te rodean**: el segundo se pone del otro lado (`TacticalMind.flank_point`).
+- **Presas y depredadores** (`predators`: por especie o tipo; los voladores cazan bichos, Ekans y Arbok ratas y pájaros,
+  Meowth y Persian ratas, Houndour, Hoothoot, Zangoose a Seviper...): la presa a 60 px del cazador huye; el cazador a 90 px
+  sale a perseguirla (35 %, estado `hunt`, 4 s). No se pegan entre ellos (la presa acorralada no pelea).
+- **Curiosidad**: los curiosos se acercan a mirar una Pokébola tirada o un objeto del piso a 80 px.

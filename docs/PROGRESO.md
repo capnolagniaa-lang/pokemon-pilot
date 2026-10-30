@@ -19,7 +19,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   se queda en el agua frente a un eléctrico). **IA-4**: cada clase de entrenador pelea distinto
   (impaciente, aguante, estratega, rocket, líder), cambian de Pokémon cuando el cruce de tipos les es malo, sacan el que
   mejor les va, usan Superpociones, y los 8 líderes y el Campeón tienen su guion (Brock se planta con Fortaleza, Starmie
-  inunda la cancha, Surge a toda carga...). Test `--autotest-ai-trainers`. **Siguiente: IA-5 (salvajes vivos).**
+  inunda la cancha, Surge a toda carga...). Test `--autotest-ai-trainers`. **IA-5 (salvajes vivos)**: los nocturnos
+  duermen de día y los diurnos de noche (si los despertás salen enfurecidos o huyen), no te atacan si tu Pokémon les lleva
+  10 niveles, en manada se ayudan y te rodean (el grande defiende a su cría), los cazadores persiguen a sus presas y los
+  curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **Siguiente: IA-6 (ajuste fino).**
 - **Pokémon dormidos (2026-10-30, pedido del usuario)**: respiran (al inhalar la parte de arriba del cuerpo sube 1 px
   repitiendo la fila del pecho, sin deformar el pixel art) y les salen "z" de pixel art de la cabeza
   (`CreatureSprite._draw_breathing`, `_draw_zzz`). Las hojas de una sola fila (Sleep, Tumble, HitGround, LostBalance,

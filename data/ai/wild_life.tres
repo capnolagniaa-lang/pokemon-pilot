@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="WildLife" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/wild_life.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+nocturnal_types = PackedStringArray("fantasma", "siniestro")
+nocturnal_species = PackedStringArray("zubat", "golbat", "crobat", "oddish", "gloom", "venonat", "venomoth", "hoothoot", "noctowl", "spinarak", "ariados", "meowth", "persian", "clefairy", "clefable", "drowzee", "hypno", "misdreavus", "murkrow", "sneasel", "houndour", "houndoom", "umbreon", "poochyena", "mightyena", "sableye", "duskull", "dusclops", "shuppet", "banette", "volbeat", "illumise")
+diurnal_species = PackedStringArray("pidgey", "pidgeotto", "spearow", "fearow", "butterfree", "ledyba", "ledian", "sunkern", "sunflora", "hoppip", "skiploom", "jumpluff", "taillow", "swellow", "beautifly", "doduo", "dodrio")
+sleep_chance = 0.75
+wake_radius = 22.0
+wake_chance = 0.6
+outclass_gap = 10
+pack_radius = 110.0
+young_gap = 5
+predators = {
+"arbok": ["rattata", "raticate", "pidgey", "spearow", "zigzagoon"],
+"ekans": ["rattata", "pidgey", "spearow", "zigzagoon"],
+"golbat": ["bicho"],
+"houndoom": ["rattata", "raticate", "zigzagoon"],
+"houndour": ["rattata", "zigzagoon"],
+"meowth": ["rattata"],
+"noctowl": ["rattata", "raticate", "bicho"],
+"hoothoot": ["rattata", "bicho"],
+"persian": ["rattata", "raticate"],
+"pidgeotto": ["magikarp", "bicho"],
+"volador": ["bicho"],
+"zangoose": ["seviper"],
+"zubat": ["bicho"]
+}
+hunt_radius = 90.0
+hunt_chance = 0.35
+prey_alert = 60.0
+curious_radius = 80.0

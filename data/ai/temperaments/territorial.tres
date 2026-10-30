@@ -17,3 +17,4 @@ flee_below = 0.2
 spook_chance = 0.1
 notice_emote = "!"
 low_hp = 2
+calls_group = true

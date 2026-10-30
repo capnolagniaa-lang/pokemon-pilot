@@ -159,6 +159,13 @@ func _ready() -> void:
 		add_child(tat)
 		tat.run.call_deferred()
 		return
+	if "--autotest-wild-life" in OS.get_cmdline_user_args():
+		set_process(false)
+		var wlt := WildLifeTests.new()
+		wlt.autotest = self
+		add_child(wlt)
+		wlt.run.call_deferred()
+		return
 	if "--autotest-ai-steer" in OS.get_cmdline_user_args():
 		set_process(false)
 		var st2 := AiSteerTests.new()
