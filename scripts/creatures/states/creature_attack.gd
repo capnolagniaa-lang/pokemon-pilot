@@ -129,6 +129,13 @@ func physics_update(delta: float) -> void:
 	var steered: Vector2 = actor.body.steer(move.normalized(), t.global_position if _mode == "approach" else Vector2.INF)
 	if _mode == "strafe" and steered.dot(move.normalized()) < 0.5:
 		_strafe = -_strafe  # rodeando contra una pared: cambia de lado
+	if actor.mind.danger_at(actor.global_position + steered * 14.0) and not actor.mind.danger_at(actor.global_position):
+		# Adelante hay un lugar peligroso (agua frente a un eléctrico...): rodea para el otro lado, o se queda.
+		# (si ya está en uno sin salida cerca, como un nadador en medio del lago, pelea igual)
+		_strafe = -_strafe
+		steered = actor.body.steer(dir.orthogonal() * _strafe, Vector2.INF)
+		if actor.mind.danger_at(actor.global_position + steered * 14.0):
+			steered = Vector2.ZERO
 	actor.move(steered, actor.speed() * (0.95 if _mode == "approach" else 0.8))
 	actor.facing = dir
 

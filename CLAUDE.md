@@ -252,7 +252,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   ese tiempo, `CombatBody.try_dodge`) y `telegraph` (los fuertes sin carga brillan, `CreatureSprite.tell_left`, y se
   frenan antes); `smarts` mezcla el puntaje con azar (Fácil). **IA-2**: memoria corta en la mente (esquives con
   `Creature.last_dodge_dir` → `aim_read`; estilo del rival; `window_open` = tus fuertes en recarga), `Temperament.low_hp`
-  (huye / se juega todo / se cubre) y `AiDifficulty.feint_chance` (fintas).
+  (huye / se juega todo / se cubre) y `AiDifficulty.feint_chance` (fintas). **IA-3**: `ability_mult` (lee
+  `signature.data.params`: absorb, contact_status, pinch...), `env_mult` y `danger_at` (con `ReactionSystem.rule_for/harms_at/
+  sets_up`, que miran las reglas sin aplicarlas; `hazard_escape` usa `danger_at`).
 - **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
   hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`; **capítulos 4-8** hasta el Campeón: `docs/PLAN_RESTO_KANTO.md`). **E frente
   a algo** (`StoryDirector.register_interaction`): `FieldMoves` = MO **como en Let's Go** (decisión del usuario 2026-10-28: la MO + su medalla las desbloquea,

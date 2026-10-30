@@ -118,20 +118,21 @@ func try_dodge() -> bool:
 	return false
 
 
-## Si está parado en una celda peligrosa (electrificada, mojada...), hacia dónde salir; ZERO si está bien.
+## Si está parado en una celda peligrosa, hacia dónde salir; ZERO si está bien. Peligrosa (TacticalMind.danger_at):
+## la celda ya le pone un estado (electrificada), o el rival tiene un ataque que ahí se lo pondría (el agua o lo mojado
+## frente a uno con ataques eléctricos; IA-3).
 func hazard_escape() -> Vector2:
 	var world := actor.get_tree().get_first_node_in_group("world")
 	if world == null or world.reactions == null:
 		return Vector2.ZERO
-	var here: EnvCellState = world.reactions.state_at(actor.global_position)
-	if here == null or here.creature_status == null:
+	if not actor.mind.danger_at(actor.global_position):
 		return Vector2.ZERO
 	# La primera dirección sin estado peligroso y sin nada que lo frene (empieza por un lado distinto cada
 	# criatura, así no salen todas para el mismo lado).
 	var start := get_instance_id() % 8
 	for k in 8:
 		var d := Vector2.RIGHT.rotated((start + k) * TAU / 8.0)
-		if world.reactions.state_at(actor.global_position + d * 18.0) == null \
+		if not actor.mind.danger_at(actor.global_position + d * 18.0) \
 				and not actor.test_move(actor.global_transform, d * 18.0):
 			return d
 	return Vector2.ZERO

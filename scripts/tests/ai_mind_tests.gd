@@ -182,6 +182,45 @@ func run() -> void:
 	r["Con poca vida: agresivo se juega todo, tímido huye, territorial y entrenador se cubren (%s)" % str(plans)] = \
 		plans == {"agresivo": "todo", "timido": "huye", "territorial": "cuidado", "entrenador": "cuidado", "sano": ""}
 
+	# --- IA-3: habilidades ---
+	var water_mv: MoveData = DB.moves["pistola_agua"]
+	var tackle: MoveData = DB.moves["placaje"]
+	foe.signature.data = load("res://data/abilities/absorbe_agua.tres")
+	reader.target = foe
+	r["No tira Agua contra Absorbe Agua"] = reader.mind.ability_mult(water_mv, foe) == 0.0
+	_set_moves(reader, ["pistola_agua", "placaje"])
+	r["...ni la elige (puntaje 0)"] = reader.mind.score(0, 20.0, true) == 0.0 and reader.mind.score(1, 20.0, true) > 0.0
+	foe.signature.data = load("res://data/abilities/electricidad_estatica.tres")
+	r["Cuerpo a cuerpo contra Electricidad Estática vale menos"] = is_equal_approx(reader.mind.ability_mult(tackle, foe), TacticalMind.CONTACT_RISK) \
+		and reader.mind.ability_mult(water_mv, foe) == 1.0
+	reader.signature.data = load("res://data/abilities/torrente.tres")
+	reader.instance.hp = reader.instance.max_hp() * 0.2
+	r["Con Torrente y poca vida, el Agua vale ×1,5"] = is_equal_approx(reader.mind.ability_mult(water_mv, foe), 1.5)
+	reader.instance.hp = reader.instance.max_hp()
+
+	# --- IA-3: entorno (lo mojado y la descarga) ---
+	var rs: ReactionSystem = world.reactions
+	var spot := _ground_spot(rs, base)
+	r["Hay suelo para mojar cerca (%s)" % str(spot)] = spot != Vector2.INF
+	if spot != Vector2.INF:
+		var zap: MoveData = DB.moves["impactrueno"]
+		foe.global_position = spot
+		reader.global_position = spot + Vector2(-60, 0)
+		_set_moves(reader, ["pistola_agua", "impactrueno"])
+		await get_tree().physics_frame
+		r["En seco: mojarte primero prepara la descarga (×%.2f)" % reader.mind.env_mult(water_mv, foe)] = \
+			is_equal_approx(reader.mind.env_mult(water_mv, foe), TacticalMind.ENV_SETUP) and reader.mind.env_mult(zap, foe) == 1.0
+		rs.apply_element(water_mv.element, spot, 4.0)
+		r["Mojado: la descarga vale ×1,6"] = rs.state_at(spot) != null and rs.state_at(spot).id == "mojado" \
+			and is_equal_approx(reader.mind.env_mult(zap, foe), TacticalMind.ENV_PUNISH)
+		# Al revés: el que está parado en lo mojado frente a uno con ataques eléctricos se va.
+		_set_moves(reader, ["impactrueno"])
+		foe.target = reader
+		var foe_body_spot := foe.global_position
+		r["Parado en lo mojado frente a un eléctrico: peligro"] = foe.mind.danger_at(foe_body_spot) \
+			and not foe.mind.danger_at(reader.global_position)
+		r["...y sabe para dónde salir"] = foe.body.hazard_escape() != Vector2.ZERO
+
 	var ok := r.values().all(func(v): return v)
 	for k in r:
 		print("[ia] %s %s" % ["OK   " if r[k] else "FALLO", k])
@@ -208,3 +247,14 @@ func _avg_score(c: Creature, slot: int) -> float:
 	for i in 200:
 		total += c.mind.score(slot, 20.0, true)
 	return total / 200.0
+
+
+## Un lugar de suelo (que se moja) cerca, con suelo alrededor (para salir).
+func _ground_spot(rs: ReactionSystem, around: Vector2) -> Vector2:
+	for r in range(0, 160, 16):
+		for k in 16:
+			var p := around + Vector2.RIGHT.rotated(k * TAU / 16.0) * r
+			if rs.tags_at(p).has("suelo") and rs.state_at(p) == null and rs.tags_at(p + Vector2(18, 0)).has("suelo") \
+					and rs.tags_at(p + Vector2(-60, 0)).has("suelo"):
+				return p
+	return Vector2.INF

@@ -193,6 +193,45 @@ func apply_element_cell(g: EnvironmentGrid, cell: Vector2i, element: ElementType
 		return
 
 
+## Qué regla aplicaría un elemento en esa posición, sin aplicarla (null = ninguna). Lo usa la IA (TacticalMind, IA-3).
+func rule_for(element: ElementType, global_pos: Vector2) -> ReactionRule:
+	var g := grid_at(global_pos)
+	if g == null or element == null:
+		return null
+	var cell := g.zone.cell_at(global_pos)
+	return _first_rule(element, g.tags_of(cell), g.state_at(cell))
+
+
+func _first_rule(element: ElementType, tags: PackedStringArray, st: EnvCellState) -> ReactionRule:
+	for rule in rules:
+		if rule.element == element and _matches(rule, tags, st):
+			return rule
+	return null
+
+
+## Un golpe de ese elemento ahí le haría mal al que está parado (deja un estado que pone un problema: la descarga
+## eléctrica en el agua o lo mojado).
+func harms_at(element: ElementType, global_pos: Vector2) -> bool:
+	var rule := rule_for(element, global_pos)
+	var st := state_by_id(rule.set_state) if rule != null else null
+	return st != null and st.creature_status != null
+
+
+## Un golpe de `first` ahí prepara la celda para que uno de `then` le haga mal (mojar el suelo y después la descarga).
+func sets_up(first: ElementType, global_pos: Vector2, then: ElementType) -> bool:
+	var g := grid_at(global_pos)
+	var rule := rule_for(first, global_pos)
+	if g == null or rule == null or then == null:
+		return false
+	var cell := g.zone.cell_at(global_pos)
+	var mid := state_by_id(rule.set_state)
+	if mid == null or mid == g.state_at(cell):
+		return false
+	var follow := _first_rule(then, g.tags_of(cell), mid)
+	var bad := state_by_id(follow.set_state) if follow != null else null
+	return bad != null and bad.creature_status != null
+
+
 func _matches(rule: ReactionRule, tags: PackedStringArray, st: EnvCellState) -> bool:
 	var sid := st.id if st != null else "none"
 	if rule.state_required != "" and rule.state_required != sid:

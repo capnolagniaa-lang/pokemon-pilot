@@ -4,7 +4,10 @@ extends RefCounted
 ## (potencia, STAB, efectividad contra el rival, si el rival está vulnerable, no repetir siempre) y lee los tipos para
 ## saber si conviene cuidarse o presionar (IA-1). Tiene **memoria corta** de la pelea actual (IA-2): hacia qué lado
 ## esquivás (y te apunta ahí), si peleás de lejos o de cerca, cuándo tenés tus ataques fuertes en recarga (castiga esa
-## ventana) y qué hacer con poca vida según su temperamento. El *cómo* (apuntar, esquivar, moverse) sigue en
+## ventana) y qué hacer con poca vida según su temperamento. Lee las **habilidades** (no tira lo que tu habilidad absorbe,
+## evita el cuerpo a cuerpo si tu habilidad castiga el contacto, aprovecha las suyas) y el **entorno** (descarga eléctrica
+## si estás en el agua o lo mojado, te moja primero si tiene con qué electrificarte, y no se para donde le harías eso
+## vos) (IA-3). El *cómo* (apuntar, esquivar, moverse) sigue en
 ## CombatBody. Una por criatura (`Creature.mind`); la usan los salvajes y los Pokémon de los entrenadores.
 
 ## Ataques de estado / mejora (no tienen potencia): valor fijo; si CombatBody.fits los deja, son buena idea.
@@ -32,6 +35,13 @@ const STYLE_SURE := 0.7
 ## Vida por debajo de la cual cambia de plan (además del flee_below del temperamento).
 const LOW_HP := 0.35
 const RANGED_KINDS := [MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL, MoveData.Kind.WHIP, MoveData.Kind.ZONE]
+
+## Entorno: golpe que te deja un estado malo donde estás parado (descarga en lo mojado) y golpe que lo prepara.
+const ENV_PUNISH := 1.6
+const ENV_SETUP := 1.25
+## Pegar cuerpo a cuerpo a uno cuya habilidad castiga el contacto (Electricidad Estática, Punto Tóxico...).
+const CONTACT_RISK := 0.6
+const MELEE_KINDS := [MoveData.Kind.MELEE, MoveData.Kind.LUNGE, MoveData.Kind.DASH, MoveData.Kind.WHIP]
 
 var actor: Creature
 var last_slot := -1
@@ -228,7 +238,9 @@ func score(slot: int, dist: float, shot: bool) -> float:
 		if eff <= 0.0:
 			return 0.0  # no le hace nada: ni lo intenta
 		var stab := Damage.STAB if m.element in actor.instance.species.types else 1.0
-		value = m.power * m.power_mult * stab * eff
+		value = m.power * m.power_mult * stab * eff * ability_mult(m, t) * env_mult(m, t)
+		if value <= 0.0:
+			return 0.0  # su habilidad lo absorbe
 		if exposed(t):
 			value *= PUNISH
 	elif m.status != null and is_instance_valid(t) and t.statuses.has_status(m.status.id):
@@ -267,3 +279,76 @@ func pick(dist: float) -> int:
 static func needs_tell(m: MoveData) -> bool:
 	return m != null and m.cast_time <= 0.0 and m.power * m.power_mult >= TELL_POWER \
 		and m.category != MoveData.Category.STATUS
+
+
+# --- Habilidades y entorno (IA-3) ---
+
+static func _params(c: Creature) -> Dictionary:
+	if not is_instance_valid(c) or c.signature == null or c.signature.data == null:
+		return {}
+	return c.signature.data.params
+
+
+## Cuánto vale un ataque según las habilidades: la del rival (lo absorbe = 0, recibe menos de ese tipo, castiga el
+## contacto) y la propia (Torrente y compañía con poca vida, más daño con esa forma o contra esos tipos).
+func ability_mult(m: MoveData, t: Creature) -> float:
+	var mult := 1.0
+	var el: String = m.element.id if m.element != null else ""
+	var foe := _params(t)
+	if foe.get("absorb", {}).has(el):
+		return 0.0
+	var taken: Dictionary = foe.get("element_taken", {})
+	if taken.has(el):
+		mult *= float(taken[el])
+	if m.kind in MELEE_KINDS and (foe.has("contact_status") or float(foe.get("thorns", 0.0)) > 0.0):
+		mult *= CONTACT_RISK
+	var own := _params(actor)
+	if el != "" and own.get("pinch", "") == el and actor.health.ratio() < 1.0 / 3.0:
+		mult *= 1.5
+	var kinds: Dictionary = own.get("kind_mult", {})
+	var kname: String = MoveData.Kind.keys()[m.kind]
+	if kinds.has(kname):
+		mult *= float(kinds[kname])
+	var bonus: Dictionary = own.get("type_bonus", {})
+	if is_instance_valid(t):
+		for ty in t.instance.species.types:
+			if bonus.has(ty.id):
+				mult *= float(bonus[ty.id])
+	return mult
+
+
+func _reactions() -> ReactionSystem:
+	var world := actor.get_tree().get_first_node_in_group("world") if actor.is_inside_tree() else null
+	return world.get("reactions") if world != null else null
+
+
+## Cuánto vale un ataque según dónde estás parado: si te deja un estado malo ahí (descarga en el agua o lo mojado)
+## ×1,6; si prepara la celda para otro ataque suyo que lo haga (mojar y después electrificar) ×1,25.
+func env_mult(m: MoveData, t: Creature) -> float:
+	var rs := _reactions()
+	if rs == null or m.element == null or not is_instance_valid(t) or not rs.grounded(t):
+		return 1.0
+	if rs.harms_at(m.element, t.global_position):
+		return ENV_PUNISH
+	for other in actor.moves.moves:
+		if other != null and other != m and other.element != null and other.element != m.element and other.power > 0.0 				and rs.sets_up(m.element, t.global_position, other.element):
+			return ENV_SETUP
+	return 1.0
+
+
+## Lugar peligroso para pararse: la celda ya le pone un estado, o el rival tiene un ataque que ahí se lo pondría
+## (no se queda en el agua frente a uno con ataques eléctricos).
+func danger_at(pos: Vector2) -> bool:
+	var rs := _reactions()
+	if rs == null:
+		return false
+	var st := rs.state_at(pos)
+	if st != null and st.creature_status != null:
+		return true
+	var t: Creature = actor.target
+	if not is_instance_valid(t) or not rs.grounded(actor):
+		return false
+	for m in t.moves.moves:
+		if m != null and m.power > 0.0 and m.element != null and rs.harms_at(m.element, pos):
+			return true
+	return false

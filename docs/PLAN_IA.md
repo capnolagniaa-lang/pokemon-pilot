@@ -22,7 +22,7 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
 |---|---|---|
 | **IA-1** | **Mente táctica + justicia**: elige el ataque por situación (potencia, STAB, efectividad contra tu Pokémon, si estás en stagger/cargando/recuperándote, no repetir siempre el mismo); lee los tipos para posicionarse (si tu Pokémon le pega súper efectivo se cuida: más distancia y ataca menos seguido; si él te pega súper efectivo, presiona); **tiempo de reacción** humano antes de esquivar; **aviso** (brillo + pausa corta) antes de los ataques fuertes sin carga. Dificultad: `smarts` (cuánto piensa vs. azar), `reaction`, `telegraph`. | `--autotest-ai-mind` |
 | IA-2 | **Memoria corta** (la pelea actual, ~10 eventos): hacia dónde esquivás, con qué abrís, tus recargas (castiga la ventana), cambio de plan con poca vida según temperamento (valiente se juega todo, tímido huye, astuto se cubre/cura), **fintas** en Difícil. | bot que siempre esquiva a la derecha → la IA lo anticipa |
-| IA-3 | **Habilidad y entorno**: la mente lee los parámetros de la habilidad (contacto, Intimidación...) y el `ReactionSystem` (descarga eléctrica si estás en el agua, prende el pasto alto entre los dos, evita las celdas que le hacen mal y te empuja a ellas). | casos armados en `--autotest-ai-mind` |
+| IA-3 | **Habilidad y entorno**: la mente lee los parámetros de la habilidad (absorber, contacto, Torrente...) y el `ReactionSystem` (descarga eléctrica si estás en el agua o lo mojado, te moja primero, evita las celdas que le harían mal). El fuego no prende el pasto: el fuego no interactúa con el entorno (decisión anterior del usuario). | casos armados en `--autotest-ai-mind` |
 | IA-4 | **Entrenadores con cabeza**: cambian de Pokémon con criterio (tipos, vida), usan objetos (líderes: 1-2 Superpociones), **personalidad por clase** (perillas en datos), **líderes con guion** (2-3 momentos por líder, en datos). | peleas de arena con bot |
 | IA-5 | **Salvajes vivos**: rutinas de día/noche (nocturnos duermen de día), **manadas** (se coordinan, defienden a las crías), presas y depredadores, **huyen de un Pokémon mucho más fuerte**, curiosidad (Pokébola, objetos). | `--autotest-wild-ai` ampliado + vitrina |
 | IA-6 | **Ajuste fino**: dificultad dinámica opcional (si perdés seguido contra el mismo líder, baja un poco su reacción; ajuste de partida), batería de balance IA contra IA para que nada quede injusto. | `--autotest-balance` |
@@ -33,8 +33,9 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
 |---|---|---|
 | IA-1 | ✅ Hecha (2026-10-30) | `TacticalMind`, `AiDifficulty.smarts/reaction/telegraph`, aviso `CreatureSprite.tell_left` |
 | IA-2 | ✅ Hecha (2026-10-30) | memoria en `TacticalMind`, `Temperament.low_hp`, `AiDifficulty.feint_chance` |
-| IA-3 | ⏭️ Siguiente | |
-| IA-4 a IA-6 | Pendientes | |
+| IA-3 | ✅ Hecha (2026-10-30) | `TacticalMind.ability_mult/env_mult/danger_at`, `ReactionSystem.rule_for/harms_at/sets_up` |
+| IA-4 | ⏭️ Siguiente | |
+| IA-5 y IA-6 | Pendientes | |
 
 ## Detalle IA-1
 
@@ -69,3 +70,16 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
   ×1,25 más lento, escudos y curas valen ×2,5).
 - **Fintas** (`AiDifficulty.feint_chance`: Fácil 0, Normal 0,05, Difícil 0,2): el ataque avisado no sale y ataca 0,25 s
   después (castiga si esquivaste al aviso).
+
+## Detalle IA-3
+
+- **Habilidades** (`TacticalMind.ability_mult`, lee `signature.data.params`): la del rival — lo que absorbe (`absorb`:
+  Absorbe Agua, Pararrayos, Levitación...) vale 0 y no lo tira; `element_taken` (Sebo) multiplica; si castiga el contacto
+  (`contact_status`: Electricidad Estática, Punto Tóxico, Efecto Espora...; o `thorns`) el cuerpo a cuerpo vale ×0,6. La
+  propia: `pinch` (Torrente, Mar Llamas... con < 1/3 de vida ×1,5), `kind_mult` (Cabeza Roca, Entusiasmo) y `type_bonus` (Imán).
+- **Entorno** (`env_mult`, con `ReactionSystem.rule_for/harms_at/sets_up`, que miran las reglas sin aplicarlas): un ataque
+  que donde estás parado deja un estado malo (la descarga en el agua o lo mojado) vale ×1,6; uno que prepara la celda para
+  otro ataque suyo que lo haga (mojarte teniendo un eléctrico) ×1,25. No cuenta si flotás o peleás montado (`grounded`).
+- **Dónde pararse** (`danger_at`): peligroso = la celda ya le pone un estado, o el rival tiene un ataque que ahí se lo
+  pondría. `CombatBody.hazard_escape` sale de ahí, y al moverse no entra (rodea para el otro lado). Si ya está en un
+  lugar sin salida cerca (un nadador en medio del lago), pelea igual.
