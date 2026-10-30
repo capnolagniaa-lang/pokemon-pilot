@@ -10,12 +10,12 @@ uniform vec2 dir = vec2(0.6, 0.8);             // hacia dónde caen las sombras
 uniform float len_px = 18.0;                   // largo de la sombra de algo de altura 1
 uniform float alpha = 0.6;
 uniform vec3 shadow_color = vec3(0.16, 0.13, 0.32);
-uniform float soften = 0.0;  // px de suavizado del borde (zonas con skin: la grilla por celda se nota sobre la pintura)
 
 const int STEPS = 30;
 
-float shadow_at(vec2 p) {
-	float own = texture(mask, p / zone_px).b;
+void fragment() {
+	vec2 p = UV * zone_px;
+	float own = texture(mask, UV).b;
 	float s = 0.0;
 	if (own < 0.99 && len_px > 0.5) {
 		for (int i = 0; i < STEPS; i++) {
@@ -26,19 +26,10 @@ float shadow_at(vec2 p) {
 			}
 			vec4 m = texture(mask, q);
 			float reach = m.r * len_px;
+			// Más fuerte cerca de lo que la proyecta, se desvanece hacia la punta.
 			float k = m.g * (1.0 - smoothstep(reach * 0.55, reach + 1.0, t));
 			s = max(s, k);
 		}
 	}
-	return s * (1.0 - own);
-}
-
-void fragment() {
-	vec2 p = UV * zone_px;
-	float s = shadow_at(p);
-	if (soften > 0.0) {
-		s = (s * 2.0 + shadow_at(p + vec2(soften, 0.0)) + shadow_at(p - vec2(soften, 0.0))
-			+ shadow_at(p + vec2(0.0, soften)) + shadow_at(p - vec2(0.0, soften))) / 6.0;
-	}
-	COLOR = vec4(shadow_color, s * alpha);
+	COLOR = vec4(shadow_color, s * (1.0 - own) * alpha);
 }

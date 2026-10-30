@@ -6,8 +6,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-30)
-- **Comando `ir` (2026-10-30)**: en la consola de GM (Ctrl+Shift+G), `ir <zona> [x,y]` te lleva a cualquier zona.
-  También: el borde oeste de Ciudad Celeste empalma con la Ruta 4 (`MOVE_BANDS`). Test `--autotest-gm`.
+- **Dos ramas (decisión del usuario 2026-10-30)**: `main` = el juego (jugabilidad, historia, etc.), sin nada de los
+  gráficos nuevos: volvió al estado de `ee776278` (antes de empezar con 2D-HD). **`hd2d`** = la versión con gráficos
+  2D-HD hechos con IA (skins del mundo, Pueblo Paleta repintado, `tools/repaint_zone.py`, luz por hora más dramática,
+  `docs/PLAN_TERRENO_PROPIO.md` y `docs/QWEN_PROMPTS.md`); en esta PC está en la carpeta `../pokemon-tiempo-real-hd2d`
+  (git worktree). Lo de jugabilidad se hace en `main`; para traerlo a `hd2d`, `git merge main` desde esa carpeta.
 - **Torneo más difícil (2026-10-30, pedido del usuario)**: los rivales generados salen de toda Kanto y hay 3 visitantes de
   Johto o Hoenn por cuadro, con 16 clases (cada una con sus tipos y su estilo de pelea) y Pokémon evolucionados según el
   nivel de la copa (`Tournament.evolve_for`, `pool_for`, `generated_trainer`); Brock y Azul también evolucionan. Ver
@@ -31,14 +34,6 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
-- **Skins del mundo: Pueblo Paleta repintado con IA (2026-10-30)**: `tools/repaint_zone.py` repinta una zona entera con
-  Qwen-Image 2.1 desde maquetas limpias (en trozos, cosidos con un corte de mínimo error) y `PaintedZone` la dibuja en
-  lugar de los tiles; Ajustes del juego → "Skin del mundo" (Clásico / HD). Pueblo Paleta hecho; luces y sombras siguen
-  siendo de Godot. Test `--autotest-repaint`.
-- **Terreno propio con IA (2026-10-30, plan `docs/PLAN_TERRENO_PROPIO.md`)**: se probó con **Qwen-Image 2.1** armar
-  zonas con piezas sueltas (zona de pruebas + `StyleOverlay`, después Pueblo Paleta y la Ruta 1) y **se volvió atrás a
-  pedido del usuario**: cada pieza salía con otra densidad y estilo. Quedaron lo global (luz por hora más dramática:
-  tinte de sombras y niebla; campo de visión `camera_zoom`, ×2,5) y el plan; lo próximo es **repintar la zona entera**.
 - **Noche más oscura y reloj (2026-10-30, pedido del usuario: "después de las 20 se ve mucho")**: noche plateada más
   oscura (Daylight 0,36/0,40/0,52, noche cerrada desde las 21), luna casi sin brillo (0,05, sin rayos) y sombras de luna
   más suaves (0,25). Bug arreglado: las sombras de nubes (`blend_mul`) con `modulate.a` bajo oscurecían toda la pantalla

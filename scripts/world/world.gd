@@ -133,8 +133,6 @@ func _ready() -> void:
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): CaveLights.attach(node, z, streamer.world_data))
 	# Faroles al costado de los caminos (se prenden de noche).
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): StreetLamps.attach(node, z, streamer.world_data))
-	# Zonas repintadas con IA (art/repintado/<zona>.png): la imagen en lugar de los tiles.
-	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): PaintedZone.attach(node, z))
 	for id in streamer.loaded:
 		for z in streamer.world_data.zones:
 			if z.id == id:
@@ -144,7 +142,6 @@ func _ready() -> void:
 				ZoneLights.attach(streamer.loaded[id], z, streamer.world_data)
 				CaveLights.attach(streamer.loaded[id], z, streamer.world_data)
 				StreetLamps.attach(streamer.loaded[id], z, streamer.world_data)
-				PaintedZone.attach(streamer.loaded[id], z)
 	var loot := FieldItemSpawner.new()
 	loot.name = "FieldItemSpawner"
 	add_child(loot)

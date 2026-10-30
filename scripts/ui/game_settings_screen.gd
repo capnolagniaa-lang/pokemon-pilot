@@ -27,8 +27,6 @@ const SECTIONS := [
 		["regen", "Curación sola fuera de combate (1% por segundo)"],
 		["field_items", "Objetos tirados en las rutas"],
 		["time_lock", "Hora fija (todo a la izquierda: el tiempo corre)", -1.0, 23.5, 0.5, "%.1f h", "Corre"],
-		["camera_zoom", "Campo de visión de la cámara (más chico = se ve más)", 2.0, 3.5, 0.25, "×%.2f"],
-		["skin", "Skin del mundo (gráficos repintados con IA en las zonas que los tienen)", "skins"],
 	]],
 	["IA personalizada (se usa con la dificultad «Personalizada»)", [
 		["ai_attack_interval", "Tiempo entre ataques (×)", 0.5, 3.0, 0.05, "×%.2f"],
@@ -103,24 +101,6 @@ func _ready() -> void:
 
 func _row(row: Array) -> Control:
 	var key: String = row[0]
-	if row.size() == 3 and row[2] == "skins":  # elegir entre las skins del mundo (PaintedZone)
-		var hb := HBoxContainer.new()
-		hb.add_theme_constant_override("separation", 12)
-		var label := UiStyle.label(row[1], 15)
-		label.custom_minimum_size.x = 380
-		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		hb.add_child(label)
-		var ob := OptionButton.new()
-		ob.custom_minimum_size.x = 380
-		var ids := []
-		for sk in PaintedZone.skins():
-			ob.add_item(sk[1])
-			ids.append(sk[0])
-		ob.item_selected.connect(func(i: int): GameState.set_setting(key, ids[i]))
-		ob.set_meta("ids", ids)
-		hb.add_child(ob)
-		controls[key] = ob
-		return hb
 	if row.size() == 2:
 		var cb := CheckBox.new()
 		cb.text = row[1]
@@ -156,9 +136,6 @@ func refresh() -> void:
 		var v = GameState.setting(key)
 		if c is CheckBox:
 			c.set_pressed_no_signal(bool(v))
-		elif c is OptionButton:
-			var i: int = (c.get_meta("ids") as Array).find(str(v))
-			c.select(maxi(i, 0))
 		else:
 			c.set_value_no_signal(float(v))
 			_values[key].text = _format(_find_row(key), float(v))

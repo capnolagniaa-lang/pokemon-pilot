@@ -138,13 +138,6 @@ func _ready() -> void:
 		add_child(vx)
 		(vx.showcase if "--showcase-vfx" in OS.get_cmdline_user_args() else vx.run).call_deferred()
 		return
-	if "--autotest-repaint" in OS.get_cmdline_user_args() or "--showcase-repaint" in OS.get_cmdline_user_args():
-		set_process(false)
-		var rpt := RepaintTests.new()
-		rpt.autotest = self
-		add_child(rpt)
-		(rpt.showcase if "--showcase-repaint" in OS.get_cmdline_user_args() else rpt.run).call_deferred()
-		return
 	if "--autotest-anims" in OS.get_cmdline_user_args() or "--showcase-sleep" in OS.get_cmdline_user_args():
 		set_process(false)
 		var an := AnimTests.new()
@@ -451,26 +444,22 @@ func _start() -> void:
 ## Vista de toda la región de una vez (godot --path . --write-movie mapa.png -- --overview).
 func _overview() -> void:
 	GameState.new_game(DB.config.starters[1])
-	if "--clean" in OS.get_cmdline_user_args():
-		GameState.set_setting("skin", PaintedZone.CLASSIC)  # la maqueta para repintar sale siempre de los tiles originales
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
 	var world := get_tree().current_scene
 	var data := DB.config.world
 	var bounds := Rect2()
-	# `--overview-rect x,y,ancho,alto` (en celdas del mundo): solo ese pedazo, de cerca (y solo carga lo de alrededor).
+	for z in data.zones:
+		var r := z.world_rect(data.tile_size)
+		bounds = r if bounds.size == Vector2.ZERO else bounds.merge(r)
+		world.streamer.load_around_now(r.get_center())
+	# `--overview-rect x,y,ancho,alto` (en celdas del mundo): solo ese pedazo, de cerca.
 	var args := OS.get_cmdline_user_args()
 	var at := args.find("--overview-rect")
 	if at >= 0 and at + 1 < args.size():
 		var p := args[at + 1].split(",")
 		bounds = Rect2(Vector2(int(p[0]), int(p[1])), Vector2(int(p[2]), int(p[3]))) * Transform2D.IDENTITY.scaled(Vector2.ONE * data.tile_size)
-		world.streamer.load_around_now(bounds.get_center())
-	else:
-		for z in data.zones:
-			var r := z.world_rect(data.tile_size)
-			bounds = r if bounds.size == Vector2.ZERO else bounds.merge(r)
-			world.streamer.load_around_now(r.get_center())
 	world.streamer.target = null
 	world.get_node("PostProcess").visible = false
 	world.get_node("CloudShadows").visible = false
@@ -480,23 +469,8 @@ func _overview() -> void:
 	var view := get_viewport().get_visible_rect().size
 	var z := minf(view.x / bounds.size.x, view.y / bounds.size.y)
 	cam.zoom = Vector2(z, z)
-	# `--clean`: maqueta limpia para repintar con IA (docs/PLAN_TERRENO_PROPIO.md): sin personajes, sombras, luces,
-	# partículas ni hora (luz pareja); solo las capas de tiles de las zonas.
-	if "--clean" in args:
-		GameState.set_setting("time_lock", 12.0)
-		world.day_night.set_process(false)
-		world.get_node("Daylight").color = Color.WHITE
-		for path in ["YSort/Entities", "AmbientFX", "UI"]:
-			world.get_node(path).visible = false
-		for zn in world.streamer.loaded.values():
-			for c in zn.get_children():
-				if c.name in ["SunShadows", "NightLights", "StreetLamps", "CaveLights", "TreeShadows"]:
-					c.visible = false
-					c.set_process(false)
 	for i in 10:
-		cam.zoom = Vector2(z, z)
 		await get_tree().process_frame
-	print("[overview] listo en el cuadro ", Engine.get_frames_drawn())
 	get_tree().quit()
 
 

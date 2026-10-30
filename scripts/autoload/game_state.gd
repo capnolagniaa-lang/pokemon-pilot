@@ -110,7 +110,7 @@ func default_settings() -> Dictionary:
 		"exp_mult": DB.config.exp_multiplier, "money_mult": 1.0, "catch_mult": 1.0,
 		"dealt_mult": 1.0, "taken_mult": 1.0, "hp_scale": CreatureInstance.HP_SCALE,
 		"combos": DB.config.combos_enabled, "arena_everywhere": DB.config.arena_rules_everywhere,
-		"wild_mult": 1.0, "regen": false, "hitstun_mult": 1.0, "field_items": true, "time_lock": -1.0, "ai_adaptive": true, "camera_zoom": 2.5, "skin": "hd",
+		"wild_mult": 1.0, "regen": false, "hitstun_mult": 1.0, "field_items": true, "time_lock": -1.0, "ai_adaptive": true,
 		"ai_attack_interval": n.attack_interval_mult, "ai_aim_error": n.aim_error_deg, "ai_dodge": n.dodge_chance,
 		"ai_lead": n.lead, "ai_damage": n.damage_mult, "ai_think": n.think_interval_mult,
 	}

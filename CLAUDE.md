@@ -14,6 +14,10 @@ Hay **dos planes**:
    usuario): arquetipos, mecánica de firma y kit propio por Pokémon. Es la dirección del combate: cada
    Pokémon tiene que sentirse distinto de jugar. Tiene su propia tabla de avance (pasos I-0 a I-9).
 
+**Ramas**: `main` = el juego (acá se trabaja jugabilidad, historia, etc.). `hd2d` = gráficos 2D-HD con IA (skins
+repintadas con Qwen), en la carpeta hermana `../pokemon-tiempo-real-hd2d` (git worktree): no traer nada de `hd2d` a
+`main` sin que el usuario lo pida.
+
 ## Reglas de trabajo (acordadas con el usuario)
 - Hablar en **español rioplatense** (voseo).
 - Se trabaja **por etapas** (ver `docs/PROGRESO.md`). Al terminar cada una: autotest OK, explicar brevemente
@@ -73,9 +77,7 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: todo lo aprendido, en plena pelea, al subir de nivel
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
-$G --headless --path . --quit-after 60000 -- --autotest-repaint  # skins del mundo (Pueblo Paleta repintado, clásica, techos, colisión)
-$G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-repaint  # Pueblo Paleta HD a varias horas
-$G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos, volar sin descubrir zonas e ir <zona>
+$G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos y volar sin descubrir zonas
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-online-building  # afuera y adentro
 $G --headless --path . -- --server --port 24680                    # servidor online (sala); corre hasta cerrarlo
 $G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabla de música, respaldos, archivos propios, gritos, efectos
@@ -335,7 +337,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `arena_rules_everywhere` ni `CreatureInstance.HP_SCALE` directo** (son los valores por defecto).
 - **Consola de Game Master** (Ctrl+Shift+G, `GmConsole` en `world.gm_console`; no en la versión portable): pausa el juego;
   comandos en `GmCommands` (tabla `HELP`: sumar uno = una fila + su `match`). `volar` = `GmFlight` (cámara libre en pausa;
-  restaura `visited_zones` al volver: volando no se descubre nada). `ir <zona> [x,y]` = `StoryDirector.teleport` (a su plaza o a esa celda). No tocar banderas de historia desde la consola.
+  restaura `visited_zones` al volver: volando no se descubre nada). No tocar banderas de historia desde la consola.
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
   recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; rivales generados de toda Kanto + visitantes de Johto/Hoenn
   (`REGIONS`, `CLASSES` con sus tipos, `BANNED`), evolucionados según el nivel (`Tournament.evolve_for`); durante el torneo
@@ -364,11 +366,6 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   servidor; EXP vía CombatDirector). **O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
   servidor `match_started`, que escuchará la pelea de la O-3; servidor del juego fijo en `Net.OFFICIAL_SERVER`). **O-1**: Centro de Combate Online en
   Ciudad Verde (`OnlineDesk` = `world.online`, acción `online` de la recepcionista).
-- **Skins del mundo / terreno repintado con IA** (`docs/PLAN_TERRENO_PROPIO.md`): `PaintedZone` dibuja
-  `art/skins/<skin>/<zona>.png` en lugar de las capas de tiles (techos y copas recortados por las celdas de `Overhead`);
-  ajuste de partida `skin` ("clasico" = FireRed, por defecto "hd"). Las imágenes las hace `tools/repaint_zone.py` (maquetas
-  `--overview --overview-rect --clean` + Qwen-Image 2.1 en ComfyUI + costura de mínimo error). La lógica no cambia (todo
-  sale de las celdas). Antes se probó armar zonas con piezas sueltas y se volvió atrás (commits 4aebebbe..4f49b808).
 - **Edificios y zonas agregados** (`ExtraContent`): `data/world/extra/zones/*.tres` (ZoneEntry) y
   `data/world/extra/buildings/*.tres` (`ExtraBuilding`). Así se suma algo al mapa **sin tocar las zonas importadas ni
   kanto.tres** (las maneja otro agente): DB los mete en la región, World pone sprite + colisión + celdas sólidas (meta

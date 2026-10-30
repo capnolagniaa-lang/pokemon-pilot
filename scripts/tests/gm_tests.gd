@@ -83,17 +83,6 @@ func run() -> void:
 	r["Lo que cruzaste volando no queda visitado (Mapa, globos)"] = GameState.visited_zones.keys() == [here]
 	await get_tree().create_timer(0.5).timeout
 	r["Vuelve a estar en su zona (música, luz)"] = world.streamer.current != null and world.streamer.current.id == here
-
-	# --- ir: a una zona o a una celda de cualquier zona ---
-	gm.open()
-	r["ir sin zona explica el uso"] = gm.submit("ir").begins_with("Uso:")
-	r["ir a una celda fuera de la zona avisa"] = gm.submit("ir ciudad celeste 999,999").contains("afuera")
-	gm.open()
-	gm.submit("ir ciudad celeste 22,32")
-	r["ir cierra la consola"] = not gm.is_open()
-	await _until(func(): return world.streamer.current != null and world.streamer.current.id == "ciudad_celeste", 6.0)
-	await get_tree().create_timer(0.8).timeout
-	r["ir <zona> x,y: a esa celda"] = _zone_id() == "ciudad_celeste" 		and t.global_position.distance_to(_pos("ciudad_celeste", Vector2i(22, 32))) < 24.0
 	var ok := r.values().all(func(v): return v)
 	for k in r:
 		print("[gm] %s %s" % ["OK   " if r[k] else "FALLO", k])
