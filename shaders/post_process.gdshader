@@ -9,8 +9,11 @@ uniform float tilt_band = 0.45;       // franja central nítida (0..1)
 uniform float saturation = 1.28;
 uniform float contrast = 1.06;
 uniform vec3 tint = vec3(1.04, 1.01, 0.93);
-// Gradación en dos tonos: lo oscuro recibe el tinte opuesto (sombras frías con luz cálida y viceversa). 0 = apagado.
-uniform float split = 0.9;
+// Gradación en dos tonos: lo oscuro recibe su propio tinte (sombras frías o violetas con luz cálida); split = cuánto.
+uniform float split = 1.0;
+uniform vec3 shadow_tint = vec3(0.94, 0.96, 1.04);
+// Niebla baja animada (mañana, anochecer): 0 = nada.
+uniform float mist = 0.0;
 uniform float vignette = 0.32;
 uniform float aberration = 0.0012;
 // Luz de esquina (0 = apagada). sun_pos en coordenadas de pantalla (0..1, puede caer afuera).
@@ -19,6 +22,17 @@ uniform vec3 sun_color = vec3(1.0, 0.9, 0.65);
 uniform float sun_strength = 0.0;
 uniform float sun_reach = 1.1;        // hasta dónde llega (en altos de pantalla)
 uniform float rays = 0.0;             // rayos de luz (0..1)
+
+float mist_hash(vec2 p) {
+	return fract(sin(dot(p, vec2(41.3, 289.1))) * 23758.5453);
+}
+
+float mist_noise(vec2 p) {
+	vec2 i = floor(p);
+	vec2 f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(mist_hash(i), mist_hash(i + vec2(1.0, 0.0)), f.x), mix(mist_hash(i + vec2(0.0, 1.0)), mist_hash(i + vec2(1.0, 1.0)), f.x), f.y);
+}
 
 void fragment() {
 	vec2 uv = SCREEN_UV;
@@ -32,8 +46,14 @@ void fragment() {
 	float l = dot(c, vec3(0.299, 0.587, 0.114));
 	c = mix(vec3(l), c, saturation);
 	c = (c - 0.5) * contrast + 0.5;
-	vec3 shadow_tint = mix(vec3(1.0), 2.0 - tint, split);
-	c *= mix(shadow_tint, tint, smoothstep(0.15, 0.75, l));
+	c *= mix(mix(vec3(1.0), shadow_tint, split), tint, smoothstep(0.15, 0.75, l));
+	if (mist > 0.0) {
+		vec2 p = uv * vec2(3.0, 2.0) + vec2(TIME * 0.02, TIME * 0.008);
+		float n = mist_noise(p) * 0.6 + mist_noise(p * 2.1 + 3.7) * 0.4;
+		float fog = smoothstep(0.35, 0.8, n) * mist * 0.45 * (0.6 + 0.4 * uv.y);
+		vec3 mist_color = mix(vec3(0.76, 0.85, 1.0), sun_color, 0.2);
+		c = mix(c, mist_color, fog);
+	}
 	if (sun_strength > 0.0) {
 		vec2 aspect = vec2(SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x, 1.0);
 		vec2 to = (uv - sun_pos) * aspect;

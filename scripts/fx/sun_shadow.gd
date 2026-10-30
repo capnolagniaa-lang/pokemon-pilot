@@ -73,7 +73,7 @@ func _draw() -> void:
 		var k := (i - (taps - 1) / 2.0) * spread
 		var y_axis := Vector2(0, 1) + lean if offset_mode else lean  # acostada: el eje Y entero cae sobre lean
 		draw_set_transform_matrix(Transform2D(Vector2(1, 0), y_axis, shift + side * k))
-		draw_texture_rect_region(frame[0], dst, frame[1], Color(dn.shadow_color, dn.shadow_alpha * 0.75 / taps))
+		draw_texture_rect_region(frame[0], dst, frame[1], Color(dn.shadow_color, dn.shadow_alpha * (1.0 if soft else 0.75) / taps))
 
 
 ## [textura, rect de origen, rect de destino (local al sprite)] del cuadro actual, o [].

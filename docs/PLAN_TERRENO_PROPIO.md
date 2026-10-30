@@ -138,6 +138,11 @@ registro de la sesión). Lo que se reprodujo en Godot:
 - El arco del sol pasa un poco a la izquierda del centro (`sun_at`: 0,36) para que a mediodía las sombras caigan abajo
   a la derecha y no justo debajo (donde no se ven); `SHADOW_MIN` 1,0. Horas con más carácter en `KEYS` (7:30 fría,
   10 y 15 de día, 17 y 18:30 doradas) y `split` 0,9. El suelo lleva manchas grandes de luz y sombra (ruido en el shader).
+- **Tercera pasada (más dramático, pedido del usuario)**: `KEYS` tiene dos columnas más: **tinte de las sombras**
+  (lo oscuro en la gradación de dos tonos: frío a la mañana, violeta al atardecer) y **niebla** (post-procesado:
+  niebla baja animada, fuerte a las 6-7:30 y al anochecer). Sombras de los objetos más largas (`flatten_k` 0,65), con
+  alfa entero y hasta ×1,25 más densas con el sol bajo; sombra de contacto más ancha. Pasto calibrado midiendo el mismo
+  pasto en el juego y en la referencia (scratchpad `calib2.py`: cajas verdes en los dos → proporción → `TONE`).
 - Pendiente para acercarse más a la referencia: verdes más profundos y saturación por hora (hoy el tinte cálido de las
   8 y las 17 deja el pasto lima), empedrado con más variación de color, relieve más marcado (quizá pedirle a Qwen
   versiones iluminadas de izquierda/derecha de cada objeto), y los interiores.

@@ -29,8 +29,8 @@ const FENCE_METATILES := [214, 215]
 ## Capas de la zona que se esconden (SunShadows = las sombras de FireRed por celda: cada sprite tira la suya).
 const LAYERS := ["Ground", "Water", "Foliage", "TreeShadows", "Overhead", "SunShadows"]
 ## Sombra de contacto: mancha oscura al pie de cada objeto (ancho relativo al sprite, opacidad).
-const CONTACT_WIDTH := 0.8
-const CONTACT_ALPHA := 0.35
+const CONTACT_WIDTH := 1.15
+const CONTACT_ALPHA := 0.42
 ## Luz del sol sobre los sprites HD con relieve (<pieza>_n.png): solo ilumina lo que tiene este bit en light_mask.
 const LIGHT_BIT := 1 << 9
 ## Los sprites con relieve van un poco más oscuros: la luz suma del lado que da al sol (el otro queda en sombra).
@@ -252,7 +252,7 @@ func _sprite(piece: String, feet: Vector2, flip := false, shadows := true) -> Sp
 		sh.source = s
 		sh.position = feet - Vector2(0, 0.5)  # y-sort de la zona: en su lugar, un pelo antes que el objeto
 		sh.soft = true
-		sh.flatten_k = 0.5  # un poco más larga que la de los personajes (como en los HD-2D)
+		sh.flatten_k = 0.65  # más larga que la de los personajes (como en los HD-2D)
 		sh.z_index = SunShadow.Z
 		zone.add_child(sh)
 		_sprites.append(sh)
@@ -264,7 +264,7 @@ func _contact(feet: Vector2, width: float) -> void:
 	var c := Sprite2D.new()
 	c.texture = _contact_texture()
 	c.position = feet + Vector2(0, -0.6)
-	c.scale = Vector2(width * CONTACT_WIDTH, width * CONTACT_WIDTH * 0.32) / c.texture.get_width()
+	c.scale = Vector2(width * CONTACT_WIDTH, width * CONTACT_WIDTH * 0.42) / c.texture.get_width()
 	c.modulate = Color(0.1, 0.08, 0.16, CONTACT_ALPHA)
 	c.z_index = SunShadow.Z
 	zone.add_child(c)

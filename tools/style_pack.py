@@ -55,8 +55,8 @@ SCENE_CROP = (0.22, 0.22, 0.56, 0.56)
 ## (tinte cálido, saturación 1,28) los lava. Por paquete y material; "*" = todos.
 TONE = {
     "*": {"*": ((0.78, 0.78, 0.78), 0.9)},
-    "campo": {"mat_pasto": ((0.55, 0.74, 0.56), 0.85), "mat_empedrado": ((0.72, 0.7, 0.7), 0.8), "mat_tierra": ((0.8, 0.74, 0.68), 0.9)},
-    "cuento": {"mat_pasto": ((0.56, 0.76, 0.56), 0.9), "mat_empedrado": ((0.75, 0.74, 0.74), 0.8)},
+    "campo": {"mat_pasto": ((0.35, 0.49, 0.73), 0.85), "mat_empedrado": ((0.7, 0.64, 0.66), 0.8), "mat_tierra": ((0.69, 0.57, 0.58), 0.9)},
+    "cuento": {"mat_pasto": ((0.35, 0.51, 0.73), 0.9), "mat_empedrado": ((0.73, 0.67, 0.7), 0.8)},
 }
 ## Curva de brillo por paquete (gamma < 1 aclara las sombras): el siniestro sale casi negro de Qwen y en el juego no se
 ## leía contra el suelo.

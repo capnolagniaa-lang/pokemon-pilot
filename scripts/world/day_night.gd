@@ -14,22 +14,23 @@ const PHASES := [[5.0, "amanecer"], [7.0, "dia"], [17.5, "atardecer"], [20.0, "n
 
 ## Cómo se ve cada hora (se interpola entre filas; la de las 24 = la de las 0). Dónde está el sol (o la luna) y las
 ## sombras no van acá: salen del arco de `sun_at` (se mueven cuadro a cuadro).
-## [hora, color del Daylight, tinte, saturación, contraste, viñeta, color del sol, fuerza, rayos, nubes]
+## [hora, color del Daylight, tinte, saturación, contraste, viñeta, color del sol, fuerza, rayos, nubes,
+##  tinte de las sombras (gradación en dos tonos: lo oscuro), niebla]
 ## Fuerza y rayos bajos (pedido del usuario 2026-10-30: "el sol encandila mucho"). De noche, más oscuro y la luna apenas
 ## un brillo (2026-10-30: "después de las 20 se ve mucho": la luz de luna aclaraba toda la pantalla, quedaba lechoso).
 const KEYS := [
-	[0.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
-	[4.5, Color(0.38, 0.42, 0.53), Vector3(0.97, 1.00, 1.03), 0.82, 1.11, 0.56, Color(0.85, 0.90, 1.0), 0.04, 0.0, 0.0],
-	[6.0, Color(0.86, 0.80, 0.84), Vector3(1.03, 0.98, 0.98), 1.05, 1.05, 0.40, Color(1.0, 0.72, 0.58), 0.20, 0.14, 0.4],
-	[7.5, Color(0.90, 0.93, 0.98), Vector3(0.95, 0.99, 1.08), 1.00, 1.05, 0.38, Color(1.0, 0.88, 0.70), 0.22, 0.18, 0.9],
-	[10.0, Color(1.00, 0.98, 0.94), Vector3(1.03, 1.01, 0.95), 1.22, 1.06, 0.33, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0],
-	[12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0],
-	[15.0, Color(1.00, 0.97, 0.92), Vector3(1.04, 1.01, 0.93), 1.26, 1.06, 0.34, Color(1.0, 0.86, 0.60), 0.17, 0.14, 1.0],
-	[17.0, Color(1.00, 0.90, 0.76), Vector3(1.12, 0.98, 0.84), 1.25, 1.07, 0.38, Color(1.0, 0.74, 0.44), 0.26, 0.2, 0.8],
-	[18.5, Color(1.00, 0.84, 0.70), Vector3(1.14, 0.92, 0.80), 1.20, 1.08, 0.42, Color(1.0, 0.64, 0.36), 0.30, 0.22, 0.6],
-	[20.0, Color(0.52, 0.48, 0.64), Vector3(0.99, 0.97, 1.03), 0.85, 1.10, 0.52, Color(0.90, 0.60, 0.68), 0.06, 0.0, 0.1],
-	[21.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
-	[24.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
+	[0.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0, Vector3(0.90, 0.95, 1.10), 0.15],
+	[4.5, Color(0.38, 0.42, 0.53), Vector3(0.97, 1.00, 1.03), 0.82, 1.11, 0.56, Color(0.85, 0.90, 1.0), 0.04, 0.0, 0.0, Vector3(0.90, 0.95, 1.10), 0.22],
+	[6.0, Color(0.86, 0.80, 0.84), Vector3(1.03, 0.98, 0.98), 1.05, 1.05, 0.40, Color(1.0, 0.72, 0.58), 0.20, 0.14, 0.4, Vector3(0.85, 0.90, 1.15), 0.5],
+	[7.5, Color(0.86, 0.91, 1.00), Vector3(0.93, 0.99, 1.12), 0.98, 1.05, 0.40, Color(1.0, 0.86, 0.66), 0.28, 0.22, 0.9, Vector3(0.86, 0.92, 1.14), 0.35],
+	[10.0, Color(1.00, 0.98, 0.94), Vector3(1.03, 1.01, 0.95), 1.22, 1.06, 0.33, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0, Vector3(0.92, 0.96, 1.06), 0.06],
+	[12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0, Vector3(0.94, 0.96, 1.04), 0.0],
+	[15.0, Color(1.00, 0.97, 0.92), Vector3(1.04, 1.01, 0.93), 1.26, 1.06, 0.34, Color(1.0, 0.86, 0.60), 0.17, 0.14, 1.0, Vector3(0.95, 0.95, 1.03), 0.0],
+	[17.0, Color(1.00, 0.89, 0.74), Vector3(1.15, 0.97, 0.82), 1.28, 1.07, 0.38, Color(1.0, 0.72, 0.42), 0.28, 0.2, 0.8, Vector3(0.90, 0.84, 1.06), 0.05],
+	[18.5, Color(1.00, 0.80, 0.64), Vector3(1.22, 0.90, 0.74), 1.26, 1.09, 0.44, Color(1.0, 0.60, 0.32), 0.36, 0.26, 0.6, Vector3(0.86, 0.76, 1.10), 0.15],
+	[20.0, Color(0.52, 0.48, 0.64), Vector3(0.99, 0.97, 1.03), 0.85, 1.10, 0.52, Color(0.90, 0.60, 0.68), 0.06, 0.0, 0.1, Vector3(0.85, 0.82, 1.10), 0.2],
+	[21.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0, Vector3(0.90, 0.95, 1.10), 0.15],
+	[24.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0, Vector3(0.90, 0.95, 1.10), 0.15],
 ]
 ## El arco del sol (de día) y de la luna (de noche): sale por la derecha (este) a SUNRISE, pasa por arriba de la
 ## pantalla y se pone por la izquierda a SUNSET; la luna hace el mismo camino de SUNSET a SUNRISE. Las sombras caen
@@ -41,10 +42,10 @@ const SHADOW_MAX := 3.8      # largo con el sol casi en el horizonte
 const SUN_SHADOW_ALPHA := 0.8
 const MOON_SHADOW_ALPHA := 0.25
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
-const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.65), 0.0, 0.0, 0.0]
+const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.65), 0.0, 0.0, 0.0, Vector3(0.96, 0.97, 1.02), 0.0]
 ## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
 ## (CaveLights) y una luz chica alrededor del entrenador (CAVE_PLAYER_LIGHT).
-const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
+const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0, Vector3(0.9, 0.95, 1.1), 0.1]
 const CAVE_PLAYER_LIGHT := Color(0.80, 0.88, 1.0)
 const CAVE_PLAYER_ENERGY := 0.38
 const CAVE_PLAYER_RADIUS := 64.0
@@ -140,7 +141,8 @@ static func sun_at(h: float) -> Array:
 	var dir := (Vector2(0.5, 0.5) - pos).normalized()
 	var length := clampf(SHADOW_MIN / maxf(height, 0.01), SHADOW_MIN, SHADOW_MAX)
 	# Pegado al horizonte la sombra se desvanece (así no salta cuando el sol se pone y sale la luna).
-	var alpha := (SUN_SHADOW_ALPHA if day else MOON_SHADOW_ALPHA) * smoothstep(0.02, 0.3, height)
+	# Con el sol bajo la sombra es más densa (hasta ×1,25), como al atardecer de los HD-2D; pegada al horizonte se va.
+	var alpha := (SUN_SHADOW_ALPHA if day else MOON_SHADOW_ALPHA) * smoothstep(0.02, 0.3, height) * (1.25 - 0.25 * height)
 	return [pos, dir, length, alpha]
 
 
@@ -169,6 +171,8 @@ func apply() -> void:
 		m.set_shader_parameter("sun_color", Vector3(lk[6].r, lk[6].g, lk[6].b))
 		m.set_shader_parameter("sun_strength", lk[7])
 		m.set_shader_parameter("rays", lk[8])
+		m.set_shader_parameter("shadow_tint", lk[10])
+		m.set_shader_parameter("mist", lk[11])
 	var clouds := _world.get_node_or_null("CloudShadows") as CanvasItem
 	if clouds and clouds.material is ShaderMaterial:
 		(clouds.material as ShaderMaterial).set_shader_parameter("amount", lk[9])
