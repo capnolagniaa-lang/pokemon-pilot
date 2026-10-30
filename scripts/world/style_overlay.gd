@@ -8,8 +8,8 @@ extends Node2D
 ##   orgánicos sin dibujar piezas de transición).
 ## - Objetos: casas y fuente (sellos de FireRed reconocidos por sus metatiles), árboles (`Zone.tree_cells` y celdas
 ##   "arbol" sueltas), cercas, pasto alto y la boca de la cueva (en su puerta), como sprites con y-sort.
-## Por ahora solo en las zonas de pruebas (`ZoneEntry.test_zone`); el paquete se elige con `estilo <nombre>` en la
-## consola de Game Master. Sin paquete ("fire") la zona se ve como siempre.
+## En las zonas de pruebas (`ZoneEntry.test_zone`) y en las de `REAL_ZONES` (las que ya se traducen de Kanto); el
+## paquete se elige con `estilo <nombre>` en la consola de Game Master. Sin paquete ("fire") la zona se ve como siempre.
 
 const SHADER := preload("res://shaders/style_ground.gdshader")
 const SHADER_HD := preload("res://shaders/style_ground_hd.gdshader")
@@ -23,9 +23,22 @@ enum { PASTO, TIERRA, EMPEDRADO, AGUA, ROCA, CUEVA_PISO, PASTO_ALTO, VOID = 255 
 const ROLE_MATERIAL := {"grass": PASTO, "meadow": PASTO, "flowers": PASTO, "tall_grass": PASTO, "tree": PASTO,
 	"dirt": TIERRA, "sand": TIERRA, "stone_floor": EMPEDRADO, "city_floor": EMPEDRADO, "water": AGUA,
 	"cave_floor": CUEVA_PISO}
+## Zonas reales de Kanto que se dibujan con el paquete (se van sumando a medida que tienen sus piezas).
+const REAL_ZONES := ["pueblo_paleta", "ruta1"]
 ## Sellos de FireRed que se cambian por un objeto del paquete.
-const STAMP_PIECES := {"PalletTown_5_3": "casa", "VermilionCity_25_32": "fuente"}
-const FENCE_METATILES := [214, 215]
+const STAMP_PIECES := {"PalletTown_5_3": "casa", "VermilionCity_25_32": "fuente", "PalletTown_13_9": "laboratorio"}
+## Sellos que son árboles (pinos de 2×3 en hilera, encimados cada 2 filas): un sprite por sello, sin tapar el suelo.
+const STAMP_TREES := {"ViridianCity_26_0": "pino", "ViridianCity_12_23": "pino"}
+## (214/215 Ruta 4; 33004/33007 y 33049/33057 Pueblo Paleta, que el catálogo no clasifica como cerca)
+const FENCE_METATILES := [214, 215, 33004, 33007, 33049, 33057]
+## Metatiles sueltos que son un cartel (el catálogo los tiene como "adornos"/"edificios").
+const SIGN_METATILES := [2]
+## Categorías del catálogo de FireRed (tile_catalog.tres) → qué se dibuja. Suelo: material; objetos por celda: pieza.
+const CAT_MATERIAL := {"suelos": PASTO, "otros_suelo": PASTO, "otros_terreno": PASTO, "caminos": TIERRA, "arena": TIERRA, "otros_arena": TIERRA,
+	"agua": AGUA, "otros_agua": AGUA, "rocas": ROCA, "otros_rocas": ROCA, "cuevas": CUEVA_PISO}
+## Tiras: una por corrida horizontal (cercas, salientes = el borde de pasto con la cara de tierra abajo).
+const CAT_STRIP := {"cercas": "cerca", "salientes": "saliente", "otros_salientes": "saliente"}
+const CAT_PIECE := {"otros_carteles": "cartel", "carteles": "cartel"}
 ## Capas de la zona que se esconden (SunShadows = las sombras de FireRed por celda: cada sprite tira la suya).
 const LAYERS := ["Ground", "Water", "Foliage", "TreeShadows", "Overhead", "SunShadows"]
 ## Sombra de contacto: mancha oscura al pie de cada objeto (ancho relativo al sprite, opacidad).
@@ -45,6 +58,9 @@ static var _sun: DirectionalLight2D
 var zone: Zone
 var entry: ZoneEntry
 var _hidden: Array[CanvasItem] = []
+## Celdas de árbol que ya se dibujaron como sello (pinos): _trees no las vuelve a dibujar.
+var _tree_done := {}
+var _catalog: TileCatalog
 var _sprites: Array[Node] = []
 
 
@@ -53,7 +69,7 @@ static func attach(zone_node: Node2D, e: ZoneEntry) -> StyleOverlay:
 	if old != null:
 		(old as StyleOverlay).restore()
 		old.free()
-	if active == "" or not e.test_zone or (e.interior and e.biome != "cueva"):
+	if active == "" or not (e.test_zone or e.id in REAL_ZONES) or (e.interior and e.biome != "cueva"):
 		return null
 	var node := StyleOverlay.new()
 	node.name = "StyleOverlay"
@@ -176,8 +192,13 @@ func _material_at(c: Vector2i, roles: TileRoleSet, cave: bool, covered: Dictiona
 	var role := roles.role_of(m)
 	if role != null and ROLE_MATERIAL.has(role.id):
 		return ROLE_MATERIAL[role.id]
-	if m in FENCE_METATILES:
+	if m in FENCE_METATILES or m in SIGN_METATILES:
 		return PASTO
+	var cat := _category(m)
+	if CAT_STRIP.has(cat) or CAT_PIECE.has(cat) or cat.contains("arbol"):
+		return PASTO  # debajo de una cerca, un saliente o un cartel va pasto
+	if CAT_MATERIAL.has(cat):
+		return CAT_MATERIAL[cat]
 	var tags := zone.get_tags(c)
 	if "agua" in tags:
 		return AGUA
@@ -201,6 +222,17 @@ func _foliage_role(c: Vector2i, roles: TileRoleSet) -> String:
 ## Número fijo por celda (para variar sin azar: la zona se ve igual cada vez).
 static func _hash(c: Vector2i) -> int:
 	return absi((c.x * 73856093) ^ (c.y * 19349663))
+
+
+func _category(m: int) -> String:
+	if _catalog == null:
+		_catalog = load("res://data/world/tile_catalog.tres")
+	return str(_catalog.categories.get(m, _catalog.categories.get(str(m), "")))
+
+
+func _metatile(layer: TileMapLayer, c: Vector2i) -> int:
+	var src := layer.get_cell_source_id(c)
+	return ZoneBuilder.metatile_of(src, layer.get_cell_atlas_coords(c)) if src >= 0 else -1
 
 
 func _ground(cells: Image) -> void:
@@ -301,6 +333,18 @@ func _place_stamps(covered: Dictionary) -> void:
 	var catalog: TileCatalog = load("res://data/world/tile_catalog.tres")
 	var n := 0
 	for st: Dictionary in catalog.stamps:
+		if STAMP_TREES.has(st["id"]) and texture(STAMP_TREES[st["id"]]) != null:
+			var tsize: Vector2i = st["size"]
+			var tcells: PackedInt32Array = (st["variants"][0] if st.has("variants") else st)["cells"]
+			for y in range(entry.size.y - tsize.y + 1):
+				for x in range(entry.size.x - tsize.x + 1):
+					if _matches(Vector2i(x, y), tsize, tcells):
+						for j in tsize.y:
+							for i in tsize.x:
+								_tree_done[Vector2i(x + i, y + j)] = true
+						var h := _hash(Vector2i(x, y))
+						_sprite(STAMP_TREES[st["id"]], Vector2((x + tsize.x / 2.0) * Zone.TILE, (y + tsize.y) * Zone.TILE) 							+ Vector2(h % 5 - 2, 0), h % 2 == 0)
+			continue
 		if not STAMP_PIECES.has(st["id"]):
 			continue
 		var size: Vector2i = st["size"]
@@ -334,7 +378,9 @@ func _matches(at: Vector2i, size: Vector2i, want: PackedInt32Array) -> bool:
 func _trees() -> void:
 	var forest := entry.biome == "bosque"
 	var piece := "arbol_bosque" if forest and texture("arbol_bosque") != null else "arbol"
-	var done := {}
+	# En Kanto, los árboles de FireRed que cierran las zonas (por tags, sin `tree_cells`) son pinos.
+	var border_piece := "pino" if entry.id in REAL_ZONES and texture("pino") != null else piece
+	var done := _tree_done.duplicate()
 	var origins: Array[Vector2i] = zone.tree_cells.duplicate()
 	for y in entry.size.y:
 		for x in entry.size.x:
@@ -353,31 +399,42 @@ func _trees() -> void:
 	for o in origins:
 		var h := _hash(o)  # un poco de variedad: corrido unos píxeles y espejado
 		var jitter := Vector2(h % 7 - 3, (h / 7) % 5 - 2)
-		_sprite(piece, Vector2((o.x + 1) * Zone.TILE, (o.y + 2) * Zone.TILE) + jitter, h % 2 == 0)
+		_sprite(piece if zone.tree_cells.has(o) else border_piece,
+			Vector2((o.x + 1) * Zone.TILE, (o.y + 2) * Zone.TILE) + jitter, h % 2 == 0)
 
 
 ## Cercas (tramos de metatiles 214/215) y pasto alto, celda por celda.
 func _cell_pieces(roles: TileRoleSet) -> void:
-	var fence := texture("cerca")
+	# Tiras (cercas y salientes): una por cada corrida horizontal de celdas de esa pieza, con la textura repetida.
 	for y in entry.size.y:
 		var x := 0
 		while x < entry.size.x:
+			var piece := _strip_piece(Vector2i(x, y))
 			var run := 0
-			while x + run < entry.size.x and _is_fence(Vector2i(x + run, y)):
+			while piece != "" and x + run < entry.size.x and _strip_piece(Vector2i(x + run, y)) == piece:
 				run += 1
-			if run > 0 and fence != null:
+			var tex := texture(piece) if piece != "" else null
+			if run > 0 and tex != null:
 				var s := Sprite2D.new()
-				s.texture = fence
+				s.texture = tex
 				s.centered = false
 				s.region_enabled = true
 				s.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
-				s.region_rect = Rect2(0, 0, run * Zone.TILE * (HD if is_hd() else 1), fence.get_height())
-				s.offset = Vector2(0, -fence.get_height())
+				s.region_rect = Rect2(0, 0, run * Zone.TILE * (HD if is_hd() else 1), tex.get_height())
+				s.offset = Vector2(0, -tex.get_height())
 				s.position = Vector2(x * Zone.TILE, (y + 1) * Zone.TILE)
 				_scale_hd(s)
 				zone.add_child(s)
 				_sprites.append(s)
 			x += max(run, 1)
+	# Piezas sueltas por celda (carteles).
+	for y in entry.size.y:
+		for x in entry.size.x:
+			var c := Vector2i(x, y)
+			var mt := _metatile(zone.ground, c)
+			var cat := "carteles" if mt in SIGN_METATILES else _category(mt)
+			if CAT_PIECE.has(cat) and texture(CAT_PIECE[cat]) != null:
+				_sprite(CAT_PIECE[cat], Vector2((x + 0.5) * Zone.TILE, (y + 1) * Zone.TILE), false, false)
 	if texture("pasto_alto") == null:
 		return
 	# Con textura de pasto alto, unas matas sueltas encima (una de cada tres celdas); sin ella, una por celda.
@@ -392,9 +449,14 @@ func _cell_pieces(roles: TileRoleSet) -> void:
 			_sprite("pasto_alto", Vector2((x + 0.5) * Zone.TILE, (y + 1) * Zone.TILE + 1) + jitter, h % 2 == 0, false)
 
 
-func _is_fence(c: Vector2i) -> bool:
-	var src := zone.ground.get_cell_source_id(c)
-	return src >= 0 and ZoneBuilder.metatile_of(src, zone.ground.get_cell_atlas_coords(c)) in FENCE_METATILES
+## Qué tira va en esa celda ("cerca", "saliente") o "" si ninguna.
+func _strip_piece(c: Vector2i) -> String:
+	var m := _metatile(zone.ground, c)
+	if m < 0:
+		return ""
+	if m in FENCE_METATILES:
+		return "cerca"
+	return CAT_STRIP.get(_category(m), "")
 
 
 ## La boca de la cueva va encima de cada puerta que lleva a una cueva (afuera).

@@ -21,6 +21,8 @@ PACKS = {
         "casa": "v8_campo_sin_casa", "tienda": "v8_campo_sin_tienda", "fuente": "v8_campo_sin_fuente",
         "arbol": "v8_campo_sin_arbol", "arbol_bosque": "v10_campo_arbol_bosque", "cerca": "v8_campo_sin_cerca",
         "pasto_alto": "v10_campo_pasto_alto", "cueva": "v8_campo_sin_cueva", "roca": "v8_campo_sin_roca",
+        "laboratorio": "v19_campo_laboratorio", "pino": "v19_campo_pino", "cartel": "v19_campo_cartel", "buzon": "v19_campo_buzon",
+        "saliente": "v22_campo_saliente", "flores": "v19_campo_flores",
         "mat_pasto": "v18_campo_mat_pasto", "mat_tierra": "v18_campo_mat_tierra",
         "mat_empedrado": "v18_campo_mat_empedrado", "mat_cueva_piso": "v11_campo_mat_cueva_piso",
         "mat_agua": "v18_campo_mat_agua", "mat_roca": "v13_campo_mat_roca", "mat_pasto_alto": "v14_campo_mat_pasto_alto",
@@ -29,6 +31,8 @@ PACKS = {
         "casa": "v8_cuento_sin_casa", "tienda": "v8_cuento_sin_tienda", "fuente": "v8_cuento_sin_fuente",
         "arbol": "v8_cuento_sin_arbol", "arbol_bosque": "v10_cuento_arbol_bosque", "cerca": "v8_cuento_sin_cerca",
         "pasto_alto": "v10_cuento_pasto_alto", "cueva": "v8_cuento_sin_cueva", "roca": "v8_cuento_sin_roca",
+        "laboratorio": "v19_cuento_laboratorio", "pino": "v19_cuento_pino", "cartel": "v19_cuento_cartel", "buzon": "v19_cuento_buzon",
+        "saliente": "v22_cuento_saliente", "flores": "v19_cuento_flores",
         "mat_pasto": "v18_cuento_mat_pasto", "mat_tierra": "v18_cuento_mat_tierra",
         "mat_empedrado": "v18_cuento_mat_empedrado", "mat_cueva_piso": "v11_cuento_mat_cueva_piso",
         "mat_agua": "v18_cuento_mat_agua", "mat_roca": "v13_cuento_mat_roca", "mat_pasto_alto": "v14_cuento_mat_pasto_alto",
@@ -37,6 +41,8 @@ PACKS = {
         "casa": "v10_siniestro_casa", "tienda": "v10_siniestro_tienda", "fuente": "v10_siniestro_fuente",
         "arbol": "v10_siniestro_arbol", "arbol_bosque": "v10_siniestro_arbol_bosque", "cerca": "v10_siniestro_cerca",
         "pasto_alto": "v10_siniestro_pasto_alto", "cueva": "v10_siniestro_cueva", "roca": "v10_siniestro_roca",
+        "laboratorio": "v19_siniestro_laboratorio", "pino": "v19_siniestro_pino", "cartel": "v19_siniestro_cartel", "buzon": "v19_siniestro_buzon",
+        "saliente": "v22_siniestro_saliente", "flores": "v19_siniestro_flores",
         "mat_pasto": "v18_siniestro_mat_pasto", "mat_tierra": "v18_siniestro_mat_tierra",
         "mat_empedrado": "v18_siniestro_mat_empedrado", "mat_cueva_piso": "v13_siniestro_mat_cueva_piso",
         "mat_agua": "v18_siniestro_mat_agua", "mat_roca": "v13_siniestro_mat_roca",
@@ -45,7 +51,7 @@ PACKS = {
 }
 ## Ancho en el juego (px; una celda = 16). La casa ocupa el sello de 5×5 de FireRed.
 OBJ_WIDTH = {"casa": 80, "tienda": 80, "fuente": 40, "arbol": 40, "arbol_bosque": 44, "cerca": 48, "pasto_alto": 16,
-             "cueva": 72, "roca": 28}
+             "cueva": 72, "roca": 28, "laboratorio": 112, "pino": 34, "cartel": 16, "buzon": 12, "saliente": 48, "flores": 16}
 MAT_SIZE = 128
 COLORS = 32
 ## Recorte (fracciones) de las imágenes pedidas como "escena vacía" (tanda 18: un claro visto desde arriba): el centro es
@@ -146,9 +152,18 @@ def to_palette(im, colors=COLORS):
     return out
 
 
-def make_object(src, width, hd=False):
+## Recorte horizontal (fracciones del ancho) después de sacar el fondo: las tiras (salientes) se repiten y Qwen mete un
+## muñequito en el medio aunque se le pida que no; se usa solo el pedazo de la izquierda.
+CROP_X = {"saliente": (0.03, 0.4)}
+
+
+def make_object(src, width, hd=False, piece=""):
     im = keep_main(remove_white(Image.open(src)))
     im = im.crop(im.getbbox())
+    if piece in CROP_X:
+        a, b = CROP_X[piece]
+        im = im.crop((int(im.width * a), 0, int(im.width * b), im.height))
+        im = im.crop(im.getbbox())
     if hd:
         width *= HD
     h = max(1, round(im.height * width / im.width))
@@ -230,7 +245,7 @@ def main():
             if not os.path.exists(src):
                 print("falta", pack, piece, name)
                 continue
-            im = make_material(src, hd=hd) if piece.startswith("mat_") else make_object(src, OBJ_WIDTH[piece], hd)
+            im = make_material(src, hd=hd) if piece.startswith("mat_") else make_object(src, OBJ_WIDTH[piece], hd, piece)
             if piece.startswith("mat_"):
                 t = TONE.get(base, {}).get(piece) or TONE["*"]["*"]
                 im = tone(im, t[0], t[1])

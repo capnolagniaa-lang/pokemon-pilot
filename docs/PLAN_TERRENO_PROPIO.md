@@ -147,6 +147,30 @@ registro de la sesión). Lo que se reprodujo en Godot:
   8 y las 17 deja el pasto lima), empedrado con más variación de color, relieve más marcado (quizá pedirle a Qwen
   versiones iluminadas de izquierda/derecha de cada objeto), y los interiores.
 
+## Pueblo Paleta y Ruta 1 reales (2026-10-30, primera prueba del traductor)
+- `StyleOverlay.REAL_ZONES`: zonas reales de Kanto que ya se dibujan con el paquete (sin tocar sus escenas). Traductor
+  por **categoría del catálogo** (`CAT_MATERIAL`, `CAT_STRIP` cercas/salientes, `CAT_PIECE` carteles) + sellos
+  (`STAMP_PIECES`: casa, laboratorio, fuente; `STAMP_TREES`: pinos en hilera) + metatiles sueltos que el catálogo no
+  clasifica bien (`FENCE_METATILES`, `SIGN_METATILES`). `tools/style_audit.gd -- <zona>` lista qué usa una zona.
+- Piezas nuevas (tanda 19-22): laboratorio, pino, cartel, buzón, saliente (tira; `CROP_X` se queda con la izquierda
+  porque Qwen mete un muñequito en el medio), flores. Referencias de Qwen de las dos zonas (`v20_ref_*`).
+- Ajuste de partida **`camera_zoom`** (campo de visión; por defecto 2,5, antes 3 fijo), pedido del usuario.
+- **Resultado y duda del usuario**: funciona (colisión, puertas y todo igual), pero armar la zona con piezas generadas
+  por separado da texturas de densidad y estilo distintos (suelo liso, carteles, salientes, pasto alto): "queda todo
+  bastante raro". Ver "Alternativa: repintar la zona entera" abajo.
+
+## Alternativa: repintar la zona entera (propuesta, 2026-10-30)
+Las referencias que más gustaron (`v17_luz_*`, `v20_ref_*`) salen de darle a Qwen una escena entera: pinta todo junto,
+con la misma mano, luz y densidad. En vez de componer piezas sueltas:
+1. Render "maqueta" de la zona desde sus celdas (lo que ya hace StyleOverlay, o los tiles de FireRed tal cual) en trozos
+   del tamaño de una pantalla con solapamiento.
+2. Qwen-Image 2.1 edición repinta cada trozo ("misma distribución, HD-2D, luz neutra"), con la misma semilla y una
+   imagen de estilo fija; se cosen los trozos mezclando el solapamiento.
+3. La imagen de la zona es el suelo; lo que tapa al jugador (techos, copas) se recorta de la misma imagen con máscaras
+   que salen de las celdas (sellos, árboles) y va como capa con y-sort. Sombras, luz y hora siguen siendo de Godot.
+Riesgos a probar: que no corra el dibujo (colisiones alineadas), las costuras entre trozos y que un mismo edificio se
+vea igual en dos pueblos. Cambiar un mapa = repintar sus trozos.
+
 ## Para decidir
 - **Identidad**: "campo sudamericano" (terracota, encalado, ceibos, jacarandás), "cuento" (cabañas con techo de musgo,
   arroyos, faroles) o una mezcla (cada región/bioma con su carácter).

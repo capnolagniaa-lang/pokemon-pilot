@@ -27,6 +27,7 @@ const SECTIONS := [
 		["regen", "Curación sola fuera de combate (1% por segundo)"],
 		["field_items", "Objetos tirados en las rutas"],
 		["time_lock", "Hora fija (todo a la izquierda: el tiempo corre)", -1.0, 23.5, 0.5, "%.1f h", "Corre"],
+		["camera_zoom", "Campo de visión de la cámara (más chico = se ve más)", 2.0, 3.5, 0.25, "×%.2f"],
 	]],
 	["IA personalizada (se usa con la dificultad «Personalizada»)", [
 		["ai_attack_interval", "Tiempo entre ataques (×)", 0.5, 3.0, 0.05, "×%.2f"],

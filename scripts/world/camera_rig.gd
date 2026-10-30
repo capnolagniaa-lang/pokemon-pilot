@@ -8,6 +8,7 @@ extends Camera2D
 
 var target: Node2D
 var _shake := 0.0
+var _applied_zoom := 0.0
 
 
 func _ready() -> void:
@@ -20,6 +21,12 @@ func snap() -> void:
 
 
 func _process(delta: float) -> void:
+	# Campo de visión: ajuste "camera_zoom" de la partida (pedido del usuario 2026-10-30: el mapa es grande y con el
+	# terreno HD se puede alejar). Las vitrinas y la cámara libre lo ponen a mano: no se pisa mientras no cambie.
+	var want := float(GameState.setting("camera_zoom"))
+	if want > 0.0 and not is_equal_approx(want, _applied_zoom):  # solo cuando cambia el ajuste
+		zoom = Vector2(want, want)
+		_applied_zoom = want
 	if is_instance_valid(target):
 		var goal := target.global_position + follow_offset
 		global_position = global_position.lerp(goal, 1.0 - exp(-follow_speed * delta))

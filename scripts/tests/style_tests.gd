@@ -71,9 +71,21 @@ func run() -> void:
 		await get_tree().physics_frame
 	r["Sin paquete vuelve la de FireRed"] = grass != null and grass.texture.resource_path.ends_with("general_below.png")
 	StyleOverlay.active = "siniestro"
-	await _start("ruta1", Vector2i(48, 35))
-	r["Fuera de la zona de pruebas, nada cambia"] = world.streamer.loaded.values().all(
-		func(z): return z.get_node_or_null("StyleOverlay") == null)
+	# Zonas reales ya traducidas (REAL_ZONES): Pueblo Paleta se dibuja con el paquete; Ciudad Verde todavía no.
+	await _start("pueblo_paleta", Vector2i(56, 12))
+	var paleta: Node2D = world.streamer.loaded.get("pueblo_paleta")
+	var pov: StyleOverlay = paleta.get_node_or_null("StyleOverlay") if paleta != null else null
+	var lab := 0
+	var pines := 0
+	for s in (pov._sprites if pov != null else []):
+		if s is Sprite2D and s.texture != null:
+			var tp: String = (s.texture.diffuse_texture if s.texture is CanvasTexture else s.texture).resource_path.get_file()
+			lab += 1 if tp == "laboratorio.png" else 0
+			pines += 1 if tp == "pino.png" else 0
+	r["Pueblo Paleta se dibuja con el paquete (laboratorio %d, pinos %d)" % [lab, pines]] = pov != null 		and (lab == 1 or StyleOverlay.texture("laboratorio") == null) and (pines > 20 or StyleOverlay.texture("pino") == null)
+	await _start("ciudad_verde", Vector2i(48, 35))
+	r["Fuera de las zonas traducidas, nada cambia"] = world.streamer.loaded.values().all(
+		func(z): return z.get_node_or_null("StyleOverlay") == null or z.zone_id in StyleOverlay.REAL_ZONES)
 	StyleOverlay.active = ""
 
 	var ok := r.values().all(func(v): return v)
