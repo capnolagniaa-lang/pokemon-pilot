@@ -26,10 +26,21 @@ const ROLE_MATERIAL := {"grass": PASTO, "meadow": PASTO, "flowers": PASTO, "tall
 ## Sellos de FireRed que se cambian por un objeto del paquete.
 const STAMP_PIECES := {"PalletTown_5_3": "casa", "VermilionCity_25_32": "fuente"}
 const FENCE_METATILES := [214, 215]
-const LAYERS := ["Ground", "Water", "Foliage", "TreeShadows", "Overhead"]
+## Capas de la zona que se esconden (SunShadows = las sombras de FireRed por celda: cada sprite tira la suya).
+const LAYERS := ["Ground", "Water", "Foliage", "TreeShadows", "Overhead", "SunShadows"]
+## Sombra de contacto: mancha oscura al pie de cada objeto (ancho relativo al sprite, opacidad).
+const CONTACT_WIDTH := 0.8
+const CONTACT_ALPHA := 0.35
+## Luz del sol sobre los sprites HD con relieve (<pieza>_n.png): solo ilumina lo que tiene este bit en light_mask.
+const LIGHT_BIT := 1 << 9
+## Los sprites con relieve van un poco más oscuros: la luz suma del lado que da al sol (el otro queda en sombra).
+const LIT_BASE := 0.72
+const SUN_ENERGY := 0.3
 
 ## Paquete activo ("" = los tiles de FireRed). No se guarda: es para mirar.
 static var active := ""
+## El "sol" de los sprites con relieve (uno solo para todas las zonas).
+static var _sun: DirectionalLight2D
 
 var zone: Zone
 var entry: ZoneEntry
@@ -100,7 +111,36 @@ func build() -> void:
 		var l := zone.get_node_or_null(name) as CanvasItem
 		if l != null and l.visible:
 			l.visible = false
+			l.set_process(false)  # ZoneShadows se vuelve a prender sola en _process
 			_hidden.append(l)
+
+
+func _ensure_sun() -> void:
+	if _sun != null and is_instance_valid(_sun):
+		return
+	_sun = DirectionalLight2D.new()
+	_sun.name = "StyleSun"
+	_sun.range_item_cull_mask = LIGHT_BIT
+	_sun.blend_mode = Light2D.BLEND_MODE_ADD
+	get_tree().get_first_node_in_group("world").add_child(_sun)
+
+
+## El sol de los sprites con relieve sigue a DayNight: dirección de las sombras, altura y color de la hora.
+func _process(_delta: float) -> void:
+	if _sun == null or not is_instance_valid(_sun):
+		return
+	var dn: DayNight = get_tree().get_first_node_in_group("world").get("day_night")
+	if dn == null:
+		return
+	var sun := DayNight.sun_at(dn.hour())
+	_sun.rotation = (sun[1] as Vector2).angle() - PI / 2.0  # la luz baja (+Y) hacia donde caen las sombras
+	_sun.height = clampf(DayNight.SHADOW_MIN / float(sun[2]), 0.15, 0.95)
+	var lk := DayNight.look_at(dn.hour())
+	_sun.color = lk[6]
+	var args := OS.get_cmdline_user_args()
+	var at := args.find("--sun-energy")  # calibración desde la línea de comandos
+	var base := float(args[at + 1]) if at >= 0 and at + 1 < args.size() else SUN_ENERGY
+	_sun.energy = base * (1.0 - dn.darkness * 0.8)
 
 
 ## Deja la zona como estaba (los tiles de FireRed a la vista).
@@ -108,6 +148,7 @@ func restore() -> void:
 	for l in _hidden:
 		if is_instance_valid(l):
 			l.visible = true
+			l.set_process(true)
 	_hidden.clear()
 	for s in _sprites:
 		if is_instance_valid(s):
@@ -176,12 +217,21 @@ func _ground(cells: Image) -> void:
 
 
 ## Sprite con los pies en `feet` (local de la zona), y-sort con los personajes.
-func _sprite(piece: String, feet: Vector2, flip := false) -> Sprite2D:
+func _sprite(piece: String, feet: Vector2, flip := false, shadows := true) -> Sprite2D:
 	var t := texture(piece)
 	if t == null:
 		return null
 	var s := Sprite2D.new()
 	s.texture = t
+	var normal := texture(piece + "_n") if is_hd() else null
+	if normal != null:
+		var ct := CanvasTexture.new()
+		ct.diffuse_texture = t
+		ct.normal_texture = normal
+		s.texture = ct
+		s.light_mask = LIGHT_BIT
+		s.self_modulate = Color(LIT_BASE, LIT_BASE, LIT_BASE)
+		_ensure_sun()
 	s.centered = false
 	s.offset = Vector2(-t.get_width() / 2.0, -t.get_height())
 	s.position = feet
@@ -189,7 +239,48 @@ func _sprite(piece: String, feet: Vector2, flip := false) -> Sprite2D:
 	_scale_hd(s)
 	zone.add_child(s)
 	_sprites.append(s)
+	if shadows:
+		if not OS.get_cmdline_user_args().has("--no-contact"):
+			_contact(feet, t.get_width() * s.scale.x)
+		var sh := SunShadow.new()  # (no attach_to: agrega diferido y al cambiar de estilo quedaba huérfana)
+		sh.source = s
+		sh.soft = true
+		sh.offset_mode = true
+		sh.z_index = SunShadow.Z
+		zone.add_child(sh)
+		_sprites.append(sh)
 	return s
+
+
+## Mancha oscura y suave al pie de un objeto (lo "apoya" en el suelo).
+func _contact(feet: Vector2, width: float) -> void:
+	var c := Sprite2D.new()
+	c.texture = _contact_texture()
+	c.position = feet + Vector2(0, -1)
+	c.scale = Vector2(width * CONTACT_WIDTH, width * CONTACT_WIDTH * 0.32) / c.texture.get_width()
+	c.modulate = Color(0.1, 0.08, 0.16, CONTACT_ALPHA)
+	c.z_index = SunShadow.Z
+	zone.add_child(c)
+	_sprites.append(c)
+
+
+static var _contact_tex: Texture2D
+
+
+static func _contact_texture() -> Texture2D:
+	if _contact_tex == null:
+		var g := Gradient.new()
+		g.set_color(0, Color.WHITE)
+		g.set_color(1, Color(1, 1, 1, 0))
+		var t := GradientTexture2D.new()
+		t.gradient = g
+		t.fill = GradientTexture2D.FILL_RADIAL
+		t.fill_from = Vector2(0.5, 0.5)
+		t.fill_to = Vector2(1.0, 0.5)
+		t.width = 64
+		t.height = 64
+		_contact_tex = t
+	return _contact_tex
 
 
 ## HD: la textura tiene HD veces más píxeles: se achica y se filtra suave.
@@ -291,7 +382,7 @@ func _cell_pieces(roles: TileRoleSet) -> void:
 			if _foliage_role(c, roles) != "tall_grass" or (sparse and h % 3 != 0):
 				continue
 			var jitter := Vector2(h % 9 - 4, (h / 9) % 5 - 2) if sparse else Vector2.ZERO
-			_sprite("pasto_alto", Vector2((x + 0.5) * Zone.TILE, (y + 1) * Zone.TILE + 1) + jitter, h % 2 == 0)
+			_sprite("pasto_alto", Vector2((x + 0.5) * Zone.TILE, (y + 1) * Zone.TILE + 1) + jitter, h % 2 == 0, false)
 
 
 func _is_fence(c: Vector2i) -> bool:

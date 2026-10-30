@@ -9,6 +9,8 @@ uniform float tilt_band = 0.45;       // franja central nítida (0..1)
 uniform float saturation = 1.28;
 uniform float contrast = 1.06;
 uniform vec3 tint = vec3(1.04, 1.01, 0.93);
+// Gradación en dos tonos: lo oscuro recibe el tinte opuesto (sombras frías con luz cálida y viceversa). 0 = apagado.
+uniform float split = 0.6;
 uniform float vignette = 0.32;
 uniform float aberration = 0.0012;
 // Luz de esquina (0 = apagada). sun_pos en coordenadas de pantalla (0..1, puede caer afuera).
@@ -30,7 +32,8 @@ void fragment() {
 	float l = dot(c, vec3(0.299, 0.587, 0.114));
 	c = mix(vec3(l), c, saturation);
 	c = (c - 0.5) * contrast + 0.5;
-	c *= tint;
+	vec3 shadow_tint = mix(vec3(1.0), 2.0 - tint, split);
+	c *= mix(shadow_tint, tint, smoothstep(0.15, 0.75, l));
 	if (sun_strength > 0.0) {
 		vec2 aspect = vec2(SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x, 1.0);
 		vec2 to = (uv - sun_pos) * aspect;

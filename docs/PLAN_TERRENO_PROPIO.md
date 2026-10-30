@@ -112,6 +112,27 @@ Lecciones:
 - Falta: pasto mejor (pruebas "en bloques" en curso), agua y roca de verdad (corregidos en cola), sombras de FireRed que
   todavía se ven debajo de las casas, interiores de las casas, y personajes HD (más adelante).
 
+## Render HD-2D (2026-10-30, segunda pasada)
+Referencia: la captura del pueblo HD pasada por Qwen-Image 2.1 ("relight" a mediodía, mañana y atardecer; prompts en el
+registro de la sesión). Lo que se reprodujo en Godot:
+- **Suelos como "escena vacía"** (tanda 18): pedir "a screenshot of an HD-2D game looking straight down at an empty
+  meadow/road/square/lake" da materiales con el mismo acabado que los objetos; `style_pack.py` recorta el centro
+  (`SCENE_CROP`, evitando el muñequito del medio y los bordes) y corrige el tono (`TONE`: Qwen los saca claros y
+  amarillos, y el día del juego los lava). Pedirlos como "seamless texture" daba moteado chico sin diseño.
+- **Sombras de los objetos** (`SunShadow.offset_mode` + `soft`): silueta corrida hacia donde caen las sombras según
+  la altura del sprite (`OFFSET_K`), apenas inclinada, dibujada 5 veces corrida (borrosa). Los personajes siguen con la
+  acostada. Ojo: con `CanvasTexture` (relieve) la sombra salía clara: se usa `diffuse_texture`.
+- **Sombra de contacto** al pie de cada objeto (mancha radial, `CONTACT_*`).
+- **Relieve**: `<pieza>_n.png` (mapa de normales desde la silueta suavizada + brillo, `make_normal`) + un
+  `DirectionalLight2D` (`StyleSun`, solo sobre `LIGHT_BIT`) que sigue al sol de DayNight. Es sutil; con mucha energía
+  los sprites pasan de blanco y el glow (HDR) lava toda la pantalla: `SUN_ENERGY` 0,3 y `LIT_BASE` 0,72.
+  `--sun-energy <x>` para calibrar en la vitrina.
+- **Gradación en dos tonos** (`post_process.gdshader`, `split`): lo oscuro recibe el tinte opuesto al de la hora
+  (sombras frías con luz cálida).
+- Pendiente para acercarse más a la referencia: verdes más profundos y saturación por hora (hoy el tinte cálido de las
+  8 y las 17 deja el pasto lima), empedrado con más variación de color, relieve más marcado (quizá pedirle a Qwen
+  versiones iluminadas de izquierda/derecha de cada objeto), y los interiores.
+
 ## Para decidir
 - **Identidad**: "campo sudamericano" (terracota, encalado, ceibos, jacarandás), "cuento" (cabañas con techo de musgo,
   arroyos, faroles) o una mezcla (cada región/bioma con su carácter).
