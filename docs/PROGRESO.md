@@ -29,6 +29,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
+- **Sol, sombras y estrellitas (2026-10-30, pedido del usuario)**: el sol (y de noche la luna) hace un arco
+  (`DayNight.sun_at`: sale por la derecha a las 5:30, pasa por arriba y se pone por la izquierda a las 19:30), así que
+  las sombras giran y se estiran cuadro a cuadro (mediodía cortas hacia abajo, ×0,75; amanecer/atardecer largas, hasta
+  ×3,8) y se desvanecen al ponerse el sol; la luz de esquina del post-procesado sigue al sol y encandila la mitad
+  (`KEYS` sin posición ni sombras; `sun_reach` 1,1). Estrellitas rehechas (`ambient_fx.gd`): puntitos de 1 px con
+  halo o destello, colores fríos/cálidos, parallax 0,2, alguna fugaz; aparecen de a poco y en interiores, cuevas y
+  arenas se apagan en el acto. Test `--autotest-daynight` (43 OK).
 - **Pokémon dormidos (2026-10-30, pedido del usuario)**: respiran (al inhalar la parte de arriba del cuerpo sube 1 px
   repitiendo la fila del pecho, sin deformar el pixel art) y les salen "z" de pixel art de la cabeza
   (`CreatureSprite._draw_breathing`, `_draw_zzz`). Las hojas de una sola fila (Sleep, Tumble, HitGround, LostBalance,

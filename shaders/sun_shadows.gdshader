@@ -11,7 +11,7 @@ uniform float len_px = 18.0;                   // largo de la sombra de algo de 
 uniform float alpha = 0.6;
 uniform vec3 shadow_color = vec3(0.16, 0.13, 0.32);
 
-const int STEPS = 22;
+const int STEPS = 30;
 
 void fragment() {
 	vec2 p = UV * zone_px;

@@ -12,27 +12,36 @@ const SECONDS_PER_HOUR := 60.0  # decisión del usuario: un día = 24 min reales
 const EMIT_STEP := 0.1
 const PHASES := [[5.0, "amanecer"], [7.0, "dia"], [17.5, "atardecer"], [20.0, "noche"]]
 
-## Cómo se ve cada hora (se interpola entre filas; la de las 24 = la de las 0). sun = dónde está la luz en la
-## pantalla (0-1, puede caer afuera); las sombras van para el lado contrario.
-## [hora, color del Daylight, tinte, saturación, contraste, viñeta, sol (posición), color del sol, fuerza, rayos,
-##  largo de sombra, opacidad de sombra, nubes]
+## Cómo se ve cada hora (se interpola entre filas; la de las 24 = la de las 0). Dónde está el sol (o la luna) y las
+## sombras no van acá: salen del arco de `sun_at` (se mueven cuadro a cuadro).
+## [hora, color del Daylight, tinte, saturación, contraste, viñeta, color del sol, fuerza, rayos, nubes]
+## Fuerza y rayos bajos (pedido del usuario 2026-10-30: "el sol encandila mucho").
 const KEYS := [
-	[0.0, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Vector2(0.85, -0.15), Color(0.85, 0.90, 1.0), 0.30, 0.18, 1.4, 0.45, 0.0],
-	[4.5, Color(0.58, 0.63, 0.79), Vector3(0.97, 1.00, 1.03), 0.74, 1.06, 0.44, Vector2(1.00, 0.05), Color(0.85, 0.90, 1.0), 0.26, 0.14, 1.6, 0.40, 0.0],
-	[6.0, Color(0.86, 0.80, 0.84), Vector3(1.03, 0.98, 0.98), 1.05, 1.05, 0.40, Vector2(1.15, 0.25), Color(1.0, 0.72, 0.58), 0.34, 0.35, 3.0, 0.55, 0.4],
-	[7.5, Color(0.99, 0.95, 0.89), Vector3(1.04, 1.00, 0.94), 1.20, 1.06, 0.34, Vector2(1.00, -0.05), Color(1.0, 0.86, 0.62), 0.36, 0.45, 1.8, 0.75, 0.9],
-	[12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Vector2(0.10, -0.20), Color(1.0, 0.90, 0.66), 0.38, 0.40, 1.0, 0.80, 1.0],
-	[16.5, Color(1.00, 0.96, 0.89), Vector3(1.05, 1.00, 0.92), 1.25, 1.06, 0.34, Vector2(-0.10, 0.05), Color(1.0, 0.82, 0.55), 0.40, 0.45, 1.8, 0.80, 1.0],
-	[18.5, Color(1.00, 0.88, 0.80), Vector3(1.05, 0.97, 0.94), 1.12, 1.07, 0.40, Vector2(-0.15, 0.25), Color(1.0, 0.66, 0.38), 0.50, 0.60, 3.2, 0.70, 0.6],
-	[20.0, Color(0.70, 0.64, 0.80), Vector3(0.99, 0.97, 1.03), 0.85, 1.07, 0.44, Vector2(-0.20, 0.40), Color(0.90, 0.60, 0.68), 0.16, 0.10, 3.6, 0.35, 0.1],
-	[21.5, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Vector2(0.75, -0.20), Color(0.85, 0.90, 1.0), 0.30, 0.18, 1.3, 0.45, 0.0],
-	[24.0, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Vector2(0.85, -0.15), Color(0.85, 0.90, 1.0), 0.30, 0.18, 1.4, 0.45, 0.0],
+	[0.0, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Color(0.85, 0.90, 1.0), 0.16, 0.06, 0.0],
+	[4.5, Color(0.58, 0.63, 0.79), Vector3(0.97, 1.00, 1.03), 0.74, 1.06, 0.44, Color(0.85, 0.90, 1.0), 0.12, 0.04, 0.0],
+	[6.0, Color(0.86, 0.80, 0.84), Vector3(1.03, 0.98, 0.98), 1.05, 1.05, 0.40, Color(1.0, 0.72, 0.58), 0.20, 0.14, 0.4],
+	[7.5, Color(0.99, 0.95, 0.89), Vector3(1.04, 1.00, 0.94), 1.20, 1.06, 0.34, Color(1.0, 0.86, 0.62), 0.18, 0.16, 0.9],
+	[12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0],
+	[16.5, Color(1.00, 0.96, 0.89), Vector3(1.05, 1.00, 0.92), 1.25, 1.06, 0.34, Color(1.0, 0.82, 0.55), 0.18, 0.16, 1.0],
+	[18.5, Color(1.00, 0.88, 0.80), Vector3(1.05, 0.97, 0.94), 1.12, 1.07, 0.40, Color(1.0, 0.66, 0.38), 0.26, 0.20, 0.6],
+	[20.0, Color(0.70, 0.64, 0.80), Vector3(0.99, 0.97, 1.03), 0.85, 1.07, 0.44, Color(0.90, 0.60, 0.68), 0.10, 0.04, 0.1],
+	[21.5, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Color(0.85, 0.90, 1.0), 0.16, 0.06, 0.0],
+	[24.0, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Color(0.85, 0.90, 1.0), 0.16, 0.06, 0.0],
 ]
+## El arco del sol (de día) y de la luna (de noche): sale por la derecha (este) a SUNRISE, pasa por arriba de la
+## pantalla y se pone por la izquierda a SUNSET; la luna hace el mismo camino de SUNSET a SUNRISE. Las sombras caen
+## para el lado contrario y su largo sale de la altura (mediodía cortas, amanecer y atardecer muy largas).
+const SUNRISE := 5.5
+const SUNSET := 19.5
+const SHADOW_MIN := 0.75     # largo al mediodía (1 = el de antes)
+const SHADOW_MAX := 3.8      # largo con el sol casi en el horizonte
+const SUN_SHADOW_ALPHA := 0.8
+const MOON_SHADOW_ALPHA := 0.38
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
-const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Vector2(0.15, -0.25), Color(1.0, 0.90, 0.65), 0.0, 0.0, 1.0, 0.80, 0.0]
+const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.65), 0.0, 0.0, 0.0]
 ## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
 ## (CaveLights) y una luz chica alrededor del entrenador (CAVE_PLAYER_LIGHT).
-const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Vector2(0.5, -0.5), Color(0.6, 0.7, 1.0), 0.0, 0.0, 1.0, 0.0, 0.0]
+const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
 const CAVE_PLAYER_LIGHT := Color(0.80, 0.88, 1.0)
 const CAVE_PLAYER_ENERGY := 0.38
 const CAVE_PLAYER_RADIUS := 64.0
@@ -115,6 +124,21 @@ static func look_at(h: float) -> Array:
 	return KEYS[0]
 
 
+## El sol (o la luna) a esa hora: [posición en pantalla (0-1, cae afuera: la luz de esquina del post-procesado),
+## hacia dónde caen las sombras (unitario), largo de sombra, opacidad de sombra].
+static func sun_at(h: float) -> Array:
+	h = fposmod(h, 24.0)
+	var day := h >= SUNRISE and h < SUNSET
+	var t := (h - SUNRISE) / (SUNSET - SUNRISE) if day 		else fposmod(h - SUNSET, 24.0) / (24.0 - SUNSET + SUNRISE)
+	var height := sin(PI * t)
+	var pos := Vector2(0.45 + 0.8 * cos(PI * t), 0.3 - 0.6 * height)
+	var dir := (Vector2(0.5, 0.5) - pos).normalized()
+	var length := clampf(SHADOW_MIN / maxf(height, 0.01), SHADOW_MIN, SHADOW_MAX)
+	# Pegado al horizonte la sombra se desvanece (así no salta cuando el sol se pone y sale la luna).
+	var alpha := (SUN_SHADOW_ALPHA if day else MOON_SHADOW_ALPHA) * smoothstep(0.02, 0.3, height)
+	return [pos, dir, length, alpha]
+
+
 ## Pinta el mundo según la hora (o la luz pareja) y avisa si corresponde.
 func apply() -> void:
 	var h := hour()
@@ -122,6 +146,7 @@ func apply() -> void:
 	casts_shadows = not indoor and not arena_on
 	var cave := in_cave and not arena_on
 	var lk: Array = CAVE if cave else (INDOOR if not casts_shadows else look_at(h))
+	var sun := sun_at(h)
 	_update_player_light(cave)
 	RenderingServer.set_default_clear_color(CAVE_CLEAR if cave
 		else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
@@ -135,18 +160,18 @@ func apply() -> void:
 		m.set_shader_parameter("saturation", lk[3])
 		m.set_shader_parameter("contrast", lk[4])
 		m.set_shader_parameter("vignette", lk[5])
-		m.set_shader_parameter("sun_pos", lk[6])
-		m.set_shader_parameter("sun_color", Vector3(lk[7].r, lk[7].g, lk[7].b))
-		m.set_shader_parameter("sun_strength", lk[8])
-		m.set_shader_parameter("rays", lk[9])
+		m.set_shader_parameter("sun_pos", sun[0])
+		m.set_shader_parameter("sun_color", Vector3(lk[6].r, lk[6].g, lk[6].b))
+		m.set_shader_parameter("sun_strength", lk[7])
+		m.set_shader_parameter("rays", lk[8])
 	var clouds := _world.get_node_or_null("CloudShadows") as CanvasItem
 	if clouds:
-		clouds.modulate.a = lk[12]
+		clouds.modulate.a = lk[9]
 	var luma: float = lk[1].get_luminance()
 	darkness = clampf((DAY_LUMA - luma) / (DAY_LUMA - NIGHT_LUMA), 0.0, 1.0)  # en las cuevas, 1
-	shadow_direction = (Vector2(0.5, 0.5) - lk[6]).normalized()
-	shadow_length = lk[10]
-	shadow_alpha = lk[11]
+	shadow_direction = sun[1]
+	shadow_length = sun[2]
+	shadow_alpha = sun[3]
 	var now := phase_of(h)
 	var stepped := absf(h - _last_emit) >= EMIT_STEP and absf(h - _last_emit) < 24.0 - EMIT_STEP
 	if now != phase or stepped or _last_emit < 0.0:

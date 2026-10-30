@@ -112,7 +112,7 @@ $G --path . --quit-after 500 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase   # vitrina de estados
 $G --path . --write-movie out/f.png --fixed-fps 30 -- --autotest   # renderiza frames (requiere GPU)
-$G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región
+$G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de toda la región (`--overview-rect x,y,ancho,alto` = un pedazo, en celdas)
 $G --headless --path . --quit-after 20000 -- --autotest-map-editor  # editor de mapas (ida y vuelta, pinceles, UI...)
 $G --headless --path . --quit-after 20000 -- --autotest-stamps      # sellos: sin agujeros, colisión, puertas, deshacer
 $G --headless --path . --quit-after 20000 -- --autotest-encounters  # salvajes: tablas, %, áreas pintadas, agua, editor
@@ -308,7 +308,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   (`GameState.visited_zones`, se guarda; partidas viejas: `TownMap.visited_from_progress`), tu posición y la estrella
   del objetivo (`StoryGuide.GOALS`). En la historia aparece con el objeto Mapa (Dalia); en el modo libre, siempre.
 - **Día y noche** (`docs/PLAN_DIA_NOCHE.md`): `DayNight` (`world.day_night`) hace correr `GameState.time_of_day`
-  (1 h = 1 min real; ajuste `time_lock` = hora fija) y pinta según la tabla `KEYS`: Daylight, uniforms del
+  (1 h = 1 min real; ajuste `time_lock` = hora fija); el sol/luna y las sombras salen del arco `DayNight.sun_at` y el
+  resto de la tabla `KEYS`: Daylight, uniforms del
   post-procesado (tinte, `sun_pos`/`sun_strength`/`rays` = luz de esquina; de noche, la luna), nubes, luciérnagas y
   estrellitas de noche (`AmbientFX`). Interiores
   y arenas: `INDOOR` (luz pareja). Otros sistemas leen `darkness`, `shadow_direction`, `shadow_length` y escuchan
@@ -459,7 +460,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `hand_edited` (agua en Water y pasto alto en Foliage, como los pinceles; árboles cortables de FireRed como
   EnvObject), la región, las tablas de salvajes de FireRed sin las filas de agua (son de Surf) y **borra las zonas viejas** (backup en `.backup/`;
   `-- --keep-others` las conserva). Orden: `.py` → `--import` → `.gd`. Retoques después de ubicar todo (en el `.py`):
-  `MOVE_BANDS` (franja corrida: Ruta 12), `MOVE_NPCS` (Snorlax de la Ruta 12) y `PAINTS` (playa de Celeste); para rearmar
+  `MOVE_BANDS` (franja corrida: Ruta 12; borde oeste de Celeste, que empalma con la Ruta 4), `MOVE_NPCS` (Snorlax de la Ruta 12, guardia de la Cueva Celeste) y `PAINTS` (playa de Celeste, cerco de la Ruta 4); para rearmar
   solo esas escenas: `.gd -- --only-new --rebuild <id,id>`. **Para sumar mapas** (como el capítulo
   2): agregarlos al final de las tablas del `.py` (`EXTERIORS`, `CAVES`, `INTERIORS_2`; así lo viejo no se mueve: el
   corrimiento sale solo de `FIRST_EXTERIORS` y los interiores nuevos van después) y correr el `.gd` con

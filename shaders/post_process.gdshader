@@ -15,7 +15,7 @@ uniform float aberration = 0.0012;
 uniform vec2 sun_pos = vec2(0.15, -0.25);
 uniform vec3 sun_color = vec3(1.0, 0.9, 0.65);
 uniform float sun_strength = 0.0;
-uniform float sun_reach = 1.35;       // hasta dónde llega (en altos de pantalla)
+uniform float sun_reach = 1.1;        // hasta dónde llega (en altos de pantalla)
 uniform float rays = 0.0;             // rayos de luz (0..1)
 
 void fragment() {

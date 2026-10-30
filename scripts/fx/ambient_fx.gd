@@ -1,10 +1,15 @@
 extends Node2D
 ## Partículas ambientales alrededor de la cámara (hojas, polen, motas de luz).
 ## Cambian según el bioma de la zona actual. De noche (DayNight) las motas son luciérnagas y titilan estrellitas
-## (afuera).
+## (solo afuera: en interiores, cuevas y arenas se apagan en el acto).
 
-## Estrellitas de noche (con oscuridad 1).
-const STARS := 70
+## Estrellitas de noche (con oscuridad 1). Rehechas el 2026-10-30 (al usuario no le gustaban las cruces que
+## brillaban con el glow): puntitos de 1 px que titilan despacio, unos pocos destellos en cruz y alguna fugaz; van
+## "más arriba" que el suelo (se corren con la cámara a STAR_PARALLAX), no pegados al pasto.
+const STARS := 60
+const STAR_PARALLAX := 0.2
+const STAR_COLORS := [Color(1.0, 1.0, 1.0), Color(0.80, 0.88, 1.0), Color(1.0, 0.93, 0.78)]
+const SHOOTING_EVERY := 14.0  # segundos promedio entre estrellas fugaces
 
 ## Cantidades por bioma: [hojas, motas]
 const BIOMES := {
@@ -22,7 +27,14 @@ const BIOMES := {
 
 var _leaves: CPUParticles2D
 var _motes: CPUParticles2D
-var _stars: CPUParticles2D
+## [posición base (0-1), fase, período, tipo (0 punto, 1 punto con halo, 2 destello), color] por estrella.
+var _stars := []
+## Cuánto se ven (0-1): sigue a la oscuridad despacio; afuera de golpe a 0.
+var _star_fade := 0.0
+## Estrella fugaz en curso: [desde (local), dirección, tiempo] o [].
+var _shooting := []
+var _rng := RandomNumberGenerator.new()
+var _drawn := false
 
 
 func _ready() -> void:
@@ -41,29 +53,74 @@ func _ready() -> void:
 	_motes.initial_velocity_max = 6.0
 	# Color > 1: el glow las hace brillar.
 	_motes.color_ramp = _fade(Color(1.9, 1.75, 1.2, 1))
-	# Estrellitas: quietas, aparecen y se apagan (titilan); blanco azulado > 1 para que brillen con el glow.
-	_stars = _make(_star_texture(), STARS, 2.6)
-	_stars.gravity = Vector2.ZERO
-	_stars.initial_velocity_min = 0.0
-	_stars.initial_velocity_max = 0.0
-	_stars.spread = 0.0
-	_stars.lifetime_randomness = 0.5
-	_stars.scale_amount_min = 0.7
-	_stars.scale_amount_max = 1.3
-	var twinkle := Gradient.new()
-	twinkle.set_color(0, Color(2.2, 2.4, 3.0, 0.0))
-	twinkle.set_color(1, Color(2.2, 2.4, 3.0, 0.0))
-	twinkle.add_point(0.5, Color(3.0, 3.2, 4.0, 1.0))
-	_stars.color_ramp = twinkle
-	_stars.emitting = false
+	for i in STARS:
+		var kind := 2 if i % 9 == 0 else (1 if i % 3 == 0 else 0)
+		_stars.append([Vector2(_rng.randf(), _rng.randf()), _rng.randf() * TAU, _rng.randf_range(2.5, 6.0), kind,
+			STAR_COLORS[_rng.randi() % STAR_COLORS.size()]])
 	Events.zone_entered.connect(_on_zone_entered)
 	Events.time_changed.connect(_on_time_changed)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	var cam := get_viewport().get_camera_2d()
 	if cam:
 		global_position = cam.get_screen_center_position()
+	var dn: DayNight = get_parent().get("day_night")
+	var outside: bool = dn != null and dn.casts_shadows
+	var target := clampf((dn.darkness - 0.5) * 2.0, 0.0, 1.0) if outside else 0.0
+	_star_fade = move_toward(_star_fade, target, delta * 0.5) if outside else 0.0
+	if _star_fade > 0.0 or _drawn:
+		_update_shooting(delta)
+		queue_redraw()
+
+
+func _draw() -> void:
+	_drawn = _star_fade > 0.0
+	if not _drawn:
+		_shooting = []
+		return
+	var view := _view_size()
+	var drift := global_position * STAR_PARALLAX
+	var now := Time.get_ticks_msec() / 1000.0
+	for s in _stars:
+		var p := Vector2(fposmod(s[0].x * view.x - drift.x, view.x), fposmod(s[0].y * view.y - drift.y, view.y)) - view / 2.0
+		p = p.floor()
+		var b := pow(0.5 + 0.5 * sin(TAU * now / s[2] + s[1]), 3.0)
+		var a := (0.25 + 0.75 * b) * _star_fade
+		var c: Color = s[4]
+		draw_rect(Rect2(p, Vector2.ONE), Color(c, a))
+		if s[3] >= 1 and b > 0.4:
+			var halo := Color(c, a * 0.35 * (b - 0.4) / 0.6)
+			for o in [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]:
+				draw_rect(Rect2(p + o, Vector2.ONE), halo)
+		if s[3] == 2 and b > 0.75:
+			var arm := Color(c, a * 0.25 * (b - 0.75) / 0.25)
+			for o in [Vector2(2, 0), Vector2(-2, 0), Vector2(0, 2), Vector2(0, -2)]:
+				draw_rect(Rect2(p + o, Vector2.ONE), arm)
+	if not _shooting.is_empty():
+		var t: float = _shooting[2]
+		var head: Vector2 = _shooting[0] + _shooting[1] * t * 140.0
+		var fade := sin(PI * clampf(t / 0.7, 0.0, 1.0)) * _star_fade
+		for i in 12:
+			draw_rect(Rect2((head - _shooting[1] * i * 1.5).floor(), Vector2.ONE), Color(1, 1, 1, fade * (1.0 - i / 12.0)))
+
+
+## Lo que muestra la cámara, en píxeles del mundo.
+func _view_size() -> Vector2:
+	var cam := get_viewport().get_camera_2d()
+	return get_viewport_rect().size / (cam.zoom if cam else Vector2.ONE)
+
+
+func _update_shooting(delta: float) -> void:
+	if _shooting.is_empty():
+		if _rng.randf() < delta / SHOOTING_EVERY:
+			var view := _view_size() / 2.0
+			_shooting = [Vector2(_rng.randf_range(-view.x, view.x), _rng.randf_range(-view.y, 0.0)),
+				Vector2(_rng.randf_range(-1.0, 1.0), 0.45).normalized(), 0.0]
+		return
+	_shooting[2] += delta
+	if _shooting[2] > 0.7:
+		_shooting = []
 
 
 func _on_zone_entered(zone: ZoneEntry) -> void:
@@ -79,9 +136,6 @@ func _on_time_changed(_hour: float, _phase: String) -> void:
 	_motes.color_ramp = _fade(Color(1.9, 1.75, 1.2, 1).lerp(Color(2.6, 3.0, 0.9, 1), dark))
 	_motes.scale_amount_min = 1.0 + dark
 	_motes.scale_amount_max = 1.0 + dark * 1.5
-	var outside: bool = dn != null and dn.casts_shadows
-	var stars := roundi(STARS * clampf((dark - 0.5) * 2.0, 0.0, 1.0)) if outside else 0
-	_set_amount(_stars, stars)
 
 
 func _set_amount(p: CPUParticles2D, amount: int) -> void:
@@ -122,17 +176,6 @@ func _leaf_texture() -> Texture2D:
 		img.set_pixelv(p, dark)
 	img.set_pixel(1, 1, light)
 	img.set_pixel(2, 1, light)
-	return ImageTexture.create_from_image(img)
-
-
-## Estrellita de 5×5: cruz con el centro fuerte y las puntas suaves.
-func _star_texture() -> Texture2D:
-	var img := Image.create(5, 5, false, Image.FORMAT_RGBA8)
-	for p in [Vector2i(2, 0), Vector2i(0, 2), Vector2i(4, 2), Vector2i(2, 4)]:
-		img.set_pixelv(p, Color(1, 1, 1, 0.35))
-	for p in [Vector2i(2, 1), Vector2i(1, 2), Vector2i(3, 2), Vector2i(2, 3)]:
-		img.set_pixelv(p, Color(1, 1, 1, 0.8))
-	img.set_pixel(2, 2, Color.WHITE)
 	return ImageTexture.create_from_image(img)
 
 

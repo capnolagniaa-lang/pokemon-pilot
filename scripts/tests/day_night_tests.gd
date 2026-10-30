@@ -26,7 +26,19 @@ func run() -> void:
 	r["Al mediodía, el color de siempre (sin oscurecer)"] = DayNight.look_at(12.0)[1].is_equal_approx(DayNight.INDOOR[1])
 	r["De noche, luz de luna (más oscuro y azulado)"] = DayNight.look_at(23.0)[1].get_luminance() < 0.7 and DayNight.look_at(23.0)[1].b > DayNight.look_at(23.0)[1].r
 	r["Al atardecer, dorado (más rojo que azul) y sombras largas"] = DayNight.look_at(18.5)[1].r > DayNight.look_at(18.5)[1].b + 0.1 \
-		and DayNight.look_at(18.5)[10] > 2.5
+		and DayNight.sun_at(18.5)[2] > 2.5
+	# El sol hace un arco (sale por la derecha, pasa por arriba, se pone por la izquierda): las sombras giran y se
+	# estiran solas a lo largo del día (pedido del usuario 2026-10-30).
+	var m7: Array = DayNight.sun_at(7.0)
+	var m12: Array = DayNight.sun_at(12.5)
+	var m18: Array = DayNight.sun_at(18.0)
+	r["Sombras: a la mañana a la izquierda (%.2f), al mediodía abajo (%.2f), a la tarde a la derecha (%.2f)" % [
+		m7[1].x, m12[1].x, m18[1].x]] = m7[1].x < -0.5 and absf(m12[1].x) < 0.3 and m12[1].y > 0.8 and m18[1].x > 0.5
+	r["Sombras cortas al mediodía (×%.2f) y largas a la mañana (×%.2f)" % [m12[2], m7[2]]] = m12[2] < 1.0 and m7[2] > 1.8
+	r["Las sombras se mueven de a poco (12:00 → 12:06 gira %.2f°)" % rad_to_deg(DayNight.sun_at(12.0)[1].angle_to(
+		DayNight.sun_at(12.1)[1]))] = absf(DayNight.sun_at(12.0)[1].angle_to(DayNight.sun_at(12.1)[1])) > 0.003
+	r["Al ponerse el sol la sombra se desvanece (sin saltos de lado)"] = DayNight.sun_at(19.45)[3] < 0.05 		and DayNight.sun_at(19.55)[3] < 0.05
+	r["De noche, sombras de luna más suaves"] = DayNight.sun_at(0.5)[3] > 0.2 and DayNight.sun_at(0.5)[3] < DayNight.sun_at(12.0)[3]
 	r["Ajuste 'time_lock' por defecto: el tiempo corre (-1)"] = float(GameState.default_settings().get("time_lock", 0)) < 0.0
 	var in_screen := false
 	for section in GameSettingsScreen.SECTIONS:
@@ -66,15 +78,15 @@ func run() -> void:
 	r["Hora fija a las 23: noche (oscuridad %.2f)" % dn.darkness] = is_equal_approx(GameState.time_of_day, 23.0) \
 		and dn.darkness > 0.85 and daylight.color.get_luminance() < 0.7
 	r["Se avisó la noche (Events.time_changed)"] = "noche" in phases
-	GameState.set_setting("time_lock", 12.0)
-	await get_tree().process_frame
-	await get_tree().process_frame
-	r["De noche, la luna alumbra desde una esquina (%.2f)" % float(mat.get_shader_parameter("sun_strength"))] = 		float(mat.get_shader_parameter("sun_strength")) > 0.2
+	r["De noche, la luna alumbra desde una esquina (%.2f)" % float(mat.get_shader_parameter("sun_strength"))] = 		float(mat.get_shader_parameter("sun_strength")) > 0.1
+	await get_tree().create_timer(2.5).timeout
+	var fx: Node = world.get_node("AmbientFX")
+	r["De noche, afuera, titilan estrellitas (%.2f)" % fx._star_fade] = fx._star_fade > 0.5
 	GameState.set_setting("time_lock", 12.0)
 	await get_tree().process_frame
 	await get_tree().process_frame
 	r["Al mediodía: sin oscuridad, con sol de esquina (%.2f)" % float(mat.get_shader_parameter("sun_strength"))] = \
-		dn.darkness < 0.05 and float(mat.get_shader_parameter("sun_strength")) > 0.1 and "dia" in phases
+		dn.darkness < 0.05 and float(mat.get_shader_parameter("sun_strength")) > 0.1 		and float(mat.get_shader_parameter("sun_strength")) < 0.25 and "dia" in phases
 	r["Sombras del mediodía hacia abajo (%.2f, %.2f)" % [dn.shadow_direction.x, dn.shadow_direction.y]] = dn.shadow_direction.y > 0.5
 	GameState.set_setting("time_lock", 18.5)
 	await get_tree().process_frame
@@ -126,6 +138,8 @@ func run() -> void:
 	await get_tree().process_frame
 	r["En un interior de noche: luz pareja, sin sol (oscuridad %.2f)" % dn.darkness] = dn.indoor and dn.darkness == 0.0 \
 		and daylight.color.is_equal_approx(DayNight.INDOOR[1]) and float(mat.get_shader_parameter("sun_strength")) == 0.0
+	await get_tree().process_frame
+	r["En un interior de noche no hay estrellitas"] = world.get_node("AmbientFX")._star_fade == 0.0
 	r["En un interior no hay ventanas prendidas"] = \
 		world.streamer.loaded["ciudad_verde_centro"].get_node_or_null("NightLights") == null
 	r["En un interior no hay sombras largas"] = not dn.casts_shadows and world.streamer.loaded.values().all(
