@@ -58,6 +58,8 @@ var ai_fighter := false
 var input_source: CombatInput
 ## Cómo pelea su entrenador (TrainerStyle, docs/PLAN_IA.md IA-4; null = salvaje).
 var trainer_style: TrainerStyle
+## Dificultad dinámica (IA-6): cuánto afloja su IA (0..0,36) porque le perdiste seguido a su entrenador.
+var ease := 0.0
 ## Durmiendo en su hora (salvajes vivos, WildSociety; docs/PLAN_IA.md IA-5).
 var napping := false
 ## Hacia dónde fue el último esquive (lo mira la memoria de la IA rival: TacticalMind, docs/PLAN_IA.md IA-2).

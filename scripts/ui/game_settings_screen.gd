@@ -20,6 +20,7 @@ const SECTIONS := [
 		["hitstun_mult", "Stagger al recibir un golpe (×; 0 = sin stagger)", 0.0, 2.0, 0.1, "×%.1f"],
 		["combos", "Combos con nombre (arena)"],
 		["arena_everywhere", "Reglas de arena en todo el mundo (cráteres, estilos)"],
+		["ai_adaptive", "Un entrenador que te gana seguido afloja un poco (sin avisar)"],
 	]],
 	["Mundo", [
 		["wild_mult", "Cantidad de salvajes (×)", 0.0, 3.0, 0.1, "×%.1f"],

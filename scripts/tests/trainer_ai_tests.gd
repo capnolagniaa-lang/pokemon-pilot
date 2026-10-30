@@ -20,6 +20,7 @@ func run() -> void:
 
 	world = await autotest._setup_kit_world("squirtle")
 	world.combat.end_battle()
+	_dialogs()
 	var me := GameState.active()
 	me.level = 30
 	me.equipped_moves = me.default_equipment()
@@ -94,6 +95,37 @@ func run() -> void:
 		and arena.foe.instance.species.id == "starmie" and arena.foe.statuses.has_status("potenciado")
 	await _finish(arena)
 
+	# --- Dificultad dinámica (IA-6): perdés seguido contra el mismo, afloja un poco ---
+	GameState.ai_losses.clear()
+	r["Sin derrotas no afloja"] = TrainerBattle.ease_for("gus_test") == 0.0
+	for i in 2:
+		team = [CreatureInstance.create(DB.species["charmander"], 20)]
+		world.arena.start({"name": "Gus", "title": "Cazabichos", "team": team, "trainer_ids": ["gus_test"], "no_blackout": true})
+		await _until(func(): return arena.active and is_instance_valid(arena.foe), 8.0)
+		arena._end("lose")
+		await _until(func(): return not arena.active, 12.0)
+		GameState.heal_party()
+		world.respawn_companion()
+		await get_tree().physics_frame
+	r["Perdiste 2 veces: se anota (%s)" % str(GameState.ai_losses)] = GameState.ai_losses.get("gus_test", 0) == 2 \
+		and is_equal_approx(TrainerBattle.ease_for("gus_test"), 0.24)
+	team = [CreatureInstance.create(DB.species["charmander"], 20)]
+	world.arena.start({"name": "Gus", "title": "Cazabichos", "team": team, "trainer_ids": ["gus_test"]})
+	await _until(func(): return arena.active and is_instance_valid(arena.foe), 8.0)
+	var eased: Creature = arena.foe
+	var plain_pace: float = DB.trainer_style_for("Cazabichos").pace
+	r["Su Pokémon viene aflojado (ataca menos seguido, piensa menos)"] = is_equal_approx(eased.ease, 0.24) \
+		and eased.mind.trainer_pace() > plain_pace * 1.2
+	GameState.set_setting("ai_adaptive", false)
+	r["Con el ajuste apagado no afloja"] = TrainerBattle.ease_for("gus_test") == 0.0
+	GameState.set_setting("ai_adaptive", true)
+	var saved := GameState.to_dict()
+	GameState.ai_losses.clear()
+	GameState.from_dict(saved)
+	r["Las derrotas se guardan con la partida"] = GameState.ai_losses.get("gus_test", 0) == 2
+	await _finish(arena)
+	r["Al ganarle se borra"] = not GameState.ai_losses.has("gus_test")
+
 	# --- Estilos en la mente ---
 	var dummy: Creature = autotest._dummy(world, "geodude", world.companion.global_position + Vector2(60, 0))
 	var target: Creature = autotest._dummy(world, "rattata", world.companion.global_position + Vector2(90, 0))
@@ -130,3 +162,15 @@ func _until(cond: Callable, timeout: float) -> void:
 	while t < timeout and not cond.call():
 		await get_tree().process_frame
 		t += get_process_delta_time()
+
+
+## Avanza solos los diálogos (los premios después de ganarle a un líder).
+func _dialogs() -> void:
+	while is_inside_tree():
+		await get_tree().create_timer(0.12).timeout
+		var d: DialogBox = world.story.dialog
+		if d.active:
+			if d._choosing:
+				d.choose(0)
+			else:
+				d.advance()

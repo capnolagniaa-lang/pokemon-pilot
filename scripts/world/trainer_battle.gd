@@ -53,6 +53,11 @@ var _switches := 0
 var _entered_at := 0.0
 var _clock := 0.0
 var _think_timer := 0.0
+## Dificultad dinámica (docs/PLAN_IA.md, IA-6): de quién son las derrotas y cuánto afloja (0 = nada).
+const EASE_PER_LOSS := 0.12
+const EASE_MAX_LOSSES := 3
+var _loss_key := ""
+var ease := 0.0
 var _waiting := false
 ## La pelea empezó (ya salieron los dos Pokémon): recién ahí se vigila quién cae.
 var _fighting := false
@@ -112,6 +117,9 @@ func start(opts: Dictionary) -> String:
 		if script_data != null:
 			break
 	potions_left = style.potions
+	var ids: Array = opts.get("trainer_ids", [])
+	_loss_key = str(ids[0]) if not ids.is_empty() else ""
+	ease = ease_for(_loss_key)
 	_moments_done.clear()
 	_potion_used.clear()
 	_switch_checked.clear()
@@ -254,6 +262,7 @@ func _send_next(skip: CreatureInstance = null, pick: CreatureInstance = null) ->
 	c.owner_name = foe_name
 	c.temperament = DB.temperaments.get("entrenador")
 	c.trainer_style = style
+	c.ease = ease
 	c.position = cell_pos(arena_data.foe_mon_cell)
 	world.entities.add_child(c)
 	c.home = c.global_position
@@ -473,10 +482,22 @@ func play_moment(m: LeaderMoment) -> void:
 	Events.camera_shake.emit(3.0)
 
 
+## Cuánto afloja la IA de ese entrenador: 12 % por cada derrota seguida tuya (hasta 3), si el ajuste está prendido.
+static func ease_for(key: String) -> float:
+	if key == "" or not GameState.setting("ai_adaptive"):
+		return 0.0
+	return EASE_PER_LOSS * mini(int(GameState.ai_losses.get(key, 0)), EASE_MAX_LOSSES)
+
+
 func _end(r: String) -> void:
 	if result != "":
 		return
 	result = r
+	if _loss_key != "":
+		if r == "lose":
+			GameState.ai_losses[_loss_key] = int(GameState.ai_losses.get(_loss_key, 0)) + 1
+		else:
+			GameState.ai_losses.erase(_loss_key)
 	_fighting = false
 	world.combat.arena_lock = false
 	world.combat.end_battle(true)

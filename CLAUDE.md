@@ -263,7 +263,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   **IA-5** (salvajes vivos): `WildSociety` + `data/ai/wild_life.tres` (`DB.wild_life`): duermen en su hora
   (`Creature.napping`, Dormido largo en el estado "stunned"; `WildSpawner._spawn_in` y `_on_time_changed`), respeto
   (`outclass_gap`), manadas (`call_pack` en `Events.wild_aggro`, `Temperament.calls_group`; `TacticalMind.flank_point`),
-  presas/depredadores (estado `hunt`; no se pegan) y curiosidad (`watch` acepta un objeto del piso).
+  presas/depredadores (estado `hunt`; no se pegan) y curiosidad (`watch` acepta un objeto del piso). **IA-6**: ajuste
+  `ai_adaptive` + `GameState.ai_losses` (derrotas seguidas por entrenador, se guardan) → `Creature.ease` (lo leen la mente,
+  el cuerpo y el estado `attack`).
 - **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
   hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`; **capítulos 4-8** hasta el Campeón: `docs/PLAN_RESTO_KANTO.md`). **E frente
   a algo** (`StoryDirector.register_interaction`): `FieldMoves` = MO **como en Let's Go** (decisión del usuario 2026-10-28: la MO + su medalla las desbloquea,
@@ -324,7 +326,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `hitstun_mult` (stagger), `exp_mult` (exp_yield), `money_mult`
   (`add_prize`: premios de entrenadores y torneo), `catch_mult` (Capture), `dealt_mult`/`taken_mult` (HitInfo.from),
   `hp_scale` (`CreatureInstance.hp_scale()`, reescala la vida actual), `combos`, `arena_everywhere`, `wild_mult`
-  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), y `ai_*` (dificultad
+  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), `ai_adaptive` (dificultad dinámica,
+  TrainerBattle), y `ai_*` (dificultad
   "personalizado" = `GameState.custom_difficulty()`). **No leer más `DB.config.exp_multiplier`/`combos_enabled`/
   `arena_rules_everywhere` ni `CreatureInstance.HP_SCALE` directo** (son los valores por defecto).
 - **Consola de Game Master** (Ctrl+Shift+G, `GmConsole` en `world.gm_console`; no en la versión portable): pausa el juego;

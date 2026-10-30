@@ -107,8 +107,8 @@ func try_dodge() -> bool:
 			continue
 		if not _checked.has(p):
 			if rel.length() < SEE_SHOT:
-				var react := difficulty().reaction * randf_range(0.7, 1.3)
-				_checked[p] = [now + react, randf() < difficulty().dodge_chance + actor.mind.dodge_bonus()]
+				var react := difficulty().reaction * randf_range(0.7, 1.3) * (1.0 + 2.0 * actor.ease)
+				_checked[p] = [now + react, randf() < (difficulty().dodge_chance + actor.mind.dodge_bonus()) * (1.0 - actor.ease)]
 			continue
 		var seen: Array = _checked[p]
 		if seen[1] and now >= seen[0] and rel.length() < DODGE_SHOT and actor.moves.can_dodge():

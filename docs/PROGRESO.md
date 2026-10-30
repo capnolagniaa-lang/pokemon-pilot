@@ -22,7 +22,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   inunda la cancha, Surge a toda carga...). Test `--autotest-ai-trainers`. **IA-5 (salvajes vivos)**: los nocturnos
   duermen de día y los diurnos de noche (si los despertás salen enfurecidos o huyen), no te atacan si tu Pokémon les lleva
   10 niveles, en manada se ayudan y te rodean (el grande defiende a su cría), los cazadores persiguen a sus presas y los
-  curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **Siguiente: IA-6 (ajuste fino).**
+  curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
+  "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
+  y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
 - **Pokémon dormidos (2026-10-30, pedido del usuario)**: respiran (al inhalar la parte de arriba del cuerpo sube 1 px
   repitiendo la fila del pecho, sin deformar el pixel art) y les salen "z" de pixel art de la cabeza
   (`CreatureSprite._draw_breathing`, `_draw_zzz`). Las hojas de una sola fila (Sleep, Tumble, HitGround, LostBalance,

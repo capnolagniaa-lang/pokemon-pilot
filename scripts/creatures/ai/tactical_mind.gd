@@ -259,7 +259,7 @@ func score(slot: int, dist: float, shot: bool) -> float:
 ## Elige la ranura a usar (-1 = ninguna llega). Con `smarts` bajo (Fácil) piensa menos: mezcla el puntaje con azar.
 func pick(dist: float) -> int:
 	var shot: bool = actor.body.clear_shot(actor.target)
-	var smarts := clampf(difficulty().smarts * (actor.trainer_style.smarts_mult if actor.trainer_style != null else 1.0), 0.0, 1.0)
+	var smarts := clampf(difficulty().smarts * (actor.trainer_style.smarts_mult if actor.trainer_style != null else 1.0) * (1.0 - actor.ease), 0.0, 1.0)
 	var best := -1
 	var best_value := 0.0
 	var top := 0.0
@@ -376,7 +376,7 @@ func trainer_pace() -> float:
 			k *= 0.6 if window_open() or exposed(actor.target) else 1.3  # aguanta y contragolpea
 	if actor.now() < pace_boost_until:
 		k *= pace_boost
-	return k
+	return k * (1.0 + actor.ease)  # (dificultad dinámica: ataca menos seguido)
 
 
 ## Qué tan bien le va a un Pokémon (instancia, con sus ataques equipados) contra `against`: su mejor efectividad

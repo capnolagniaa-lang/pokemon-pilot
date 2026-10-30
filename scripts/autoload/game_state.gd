@@ -70,6 +70,9 @@ var _defaults: Dictionary = {}
 ## Zonas donde ya estuviste (id -> true): el Mapa (Esc → Mapa, TownMap) tapa las demás. Se guarda; las partidas de
 ## antes del mapa lo arman con su avance de la historia (TownMap.visited_from_progress).
 var visited_zones: Dictionary = {}
+## Derrotas seguidas contra cada entrenador (id -> cantidad; se borra al ganarle): la dificultad dinámica las usa para
+## aflojarle un poco la IA (ajuste "ai_adaptive", docs/PLAN_IA.md IA-6).
+var ai_losses: Dictionary = {}
 const STARTING_MONEY := 3000
 
 ## Dónde te curaron por última vez (enfermera, mamá): si perdés contra un entrenador volvés ahí. INF = el inicio.
@@ -107,7 +110,7 @@ func default_settings() -> Dictionary:
 		"exp_mult": DB.config.exp_multiplier, "money_mult": 1.0, "catch_mult": 1.0,
 		"dealt_mult": 1.0, "taken_mult": 1.0, "hp_scale": CreatureInstance.HP_SCALE,
 		"combos": DB.config.combos_enabled, "arena_everywhere": DB.config.arena_rules_everywhere,
-		"wild_mult": 1.0, "regen": false, "hitstun_mult": 1.0, "field_items": true, "time_lock": -1.0,
+		"wild_mult": 1.0, "regen": false, "hitstun_mult": 1.0, "field_items": true, "time_lock": -1.0, "ai_adaptive": true,
 		"ai_attack_interval": n.attack_interval_mult, "ai_aim_error": n.aim_error_deg, "ai_dodge": n.dodge_chance,
 		"ai_lead": n.lead, "ai_damage": n.damage_mult, "ai_think": n.think_interval_mult,
 	}
@@ -185,6 +188,7 @@ func new_game(starter: SpeciesData) -> void:
 	field_picked.clear()
 	story_flags.clear()
 	visited_zones.clear()
+	ai_losses.clear()
 	settings.clear()
 	_custom_difficulty = null
 	last_heal_position = Vector2.INF
@@ -544,7 +548,7 @@ func to_dict() -> Dictionary:
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
-		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money, "visited_zones": visited_zones.keys(), "settings": settings.duplicate(),
+		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money, "visited_zones": visited_zones.keys(), "settings": settings.duplicate(), "ai_losses": ai_losses.duplicate(),
 		"last_heal_position": [last_heal_position.x, last_heal_position.y] if last_heal_position != Vector2.INF else null,
 		"map_version": MAP_VERSION}
 
@@ -654,6 +658,11 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 		for f in flags:
 			story_flags[str(f)] = true
 	visited_zones.clear()
+	ai_losses.clear()
+	var losses = d.get("ai_losses", {})
+	if losses is Dictionary:
+		for k in losses:
+			ai_losses[str(k)] = int(losses[k])
 	var visited = d.get("visited_zones", null)
 	if visited is Array:
 		for id in visited:

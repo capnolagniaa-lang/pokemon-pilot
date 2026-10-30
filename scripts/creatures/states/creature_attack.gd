@@ -39,8 +39,11 @@ func _cancel_tell() -> void:
 
 
 func physics_update(delta: float) -> void:
+	if not is_instance_valid(actor.target):
+		transition("wander")  # (su rival ya no existe: lo guardaron o se fue de la zona)
+		return
 	var t: Creature = actor.target
-	if not is_instance_valid(t) or t.is_down():
+	if t.is_down():
 		transition("wander")
 		return
 	var to: Vector2 = t.global_position - actor.global_position
@@ -74,7 +77,7 @@ func physics_update(delta: float) -> void:
 			if _tell_left <= 0.0:
 				var slot := _tell_slot
 				_cancel_tell()
-				if randf() < CombatBody.difficulty().feint_chance:
+				if randf() < CombatBody.difficulty().feint_chance * (1.0 - 2.0 * actor.ease):
 					# Finta: amagó y no sale; ataca enseguida (castiga si esquivaste al vacío).
 					actor.mind.feints += 1
 					_attack_timer = 0.25
@@ -191,7 +194,7 @@ func _choose_attack(dist: float) -> bool:
 	if slot < 0:
 		return false
 	actor.mind.last_slot = slot
-	var tell := CombatBody.difficulty().telegraph
+	var tell: float = CombatBody.difficulty().telegraph * (1.0 + actor.ease)
 	if TacticalMind.needs_tell(actor.moves.slots[slot]) and tell > 0.0:
 		_tell_slot = slot
 		_tell_left = tell

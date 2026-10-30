@@ -36,7 +36,7 @@ ataques fuertes avisan antes, reacciona con tiempo humano y la dificultad regula
 | IA-3 | ✅ Hecha (2026-10-30) | `TacticalMind.ability_mult/env_mult/danger_at`, `ReactionSystem.rule_for/harms_at/sets_up` |
 | IA-4 | ✅ Hecha (2026-10-30) | `TrainerStyle` (data/ai/trainer_styles), `LeaderScript`/`LeaderMoment` (data/ai/leader_scripts), `TrainerBattle.think` |
 | IA-5 | ✅ Hecha (2026-10-30) | `WildSociety` + datos `data/ai/wild_life.tres` (`WildLife`), estado `hunt`, `Creature.napping` |
-| IA-6 | ⏭️ Siguiente | |
+| IA-6 | ✅ Hecha (2026-10-30) | ajuste "ai_adaptive", `GameState.ai_losses`, `Creature.ease`, batería de balance |
 
 ## Detalle IA-1
 
@@ -124,3 +124,20 @@ Reglas en datos: `data/ai/wild_life.tres` (`WildLife`, `DB.wild_life`); lógica 
   Meowth y Persian ratas, Houndour, Hoothoot, Zangoose a Seviper...): la presa a 60 px del cazador huye; el cazador a 90 px
   sale a perseguirla (35 %, estado `hunt`, 4 s). No se pegan entre ellos (la presa acorralada no pelea).
 - **Curiosidad**: los curiosos se acercan a mirar una Pokébola tirada o un objeto del piso a 80 px.
+
+## Detalle IA-6
+
+- **Dificultad dinámica** (ajuste de partida "ai_adaptive", prendido por defecto; Esc → Opciones → Ajustes del juego →
+  Combate): cada derrota seguida contra el mismo entrenador (`GameState.ai_losses`, por id de TrainerData: el rival de
+  todas las peleas comparte "azul") le afloja un 12 % la IA, hasta 3 (36 %): `Creature.ease` (lo pone `TrainerBattle`
+  con `ease_for`) → piensa menos (`smarts`), ataca menos seguido, reacciona más lento, esquiva menos, avisa más largo y
+  amaga menos. No se avisa. Al ganarle se borra. Se guarda con la partida. Solo las peleas de la historia (las que
+  pasan `trainer_ids`); el torneo no.
+- **Balance**: batería IA contra IA (`--autotest-balance`, 400 peleas, Difícil, nivel 40) con la mente nueva (IA-1 a
+  IA-5): ver abajo.
+
+Resultado (2026-10-30, 400 peleas, 274 s, semilla 1, con lo que traen): sin errores ni peleas trabadas; 3 % de empates por
+tiempo (6 de 200 parejas: peleas largas entre tanques); 18,6 s por victoria en promedio; ninguna especie ⬇ y 6 ⬆ con pocas
+peleas cada una (las de siempre: Lickitung, Rhyhorn...). Como las dos IA usan la misma mente, la batería mide que nada se
+rompa o se alargue; lo justo contra vos (avisos, reacción, fintas) se mide jugando. Informe completo: correr
+`--autotest-balance --fights 400 --out user://balance_ia.md`.
