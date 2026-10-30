@@ -43,6 +43,8 @@ const SUN_SHADOW_ALPHA := 0.62
 const MOON_SHADOW_ALPHA := 0.25
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
 const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.65), 0.0, 0.0, 0.0, Vector3(0.96, 0.97, 1.02), 0.0]
+## Post-procesado en una zona con skin: casi neutro (la gradación ya está en la pintura), con un poco de viñeta.
+const PAINTED := [12.0, Color.WHITE, Vector3(1.0, 1.0, 1.0), 1.04, 1.02, 0.30, Color.WHITE, 0.0, 0.0, 0.0, Vector3.ONE, 0.0]
 ## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
 ## (CaveLights) y una luz chica alrededor del entrenador (CAVE_PLAYER_LIGHT).
 const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0, Vector3(0.9, 0.95, 1.1), 0.1]
@@ -153,6 +155,10 @@ func apply() -> void:
 	casts_shadows = not indoor and not arena_on
 	var cave := in_cave and not arena_on
 	var lk: Array = CAVE if cave else (INDOOR if not casts_shadows else look_at(h))
+	# Zona con skin (PaintedZone): la luz de la hora ya está pintada en la imagen, que va en su propia capa (sin
+	# Daylight). La pantalla queda neutra (sin tinte, niebla, sol de esquina ni nubes) y el Daylight de la hora sigue
+	# tiñendo a personajes y Pokémon, para que combinen con la luz pintada.
+	var painted := casts_shadows and not cave and _current_painted()
 	var sun := sun_at(h)
 	_update_player_light(cave)
 	RenderingServer.set_default_clear_color(CAVE_CLEAR if cave
@@ -161,21 +167,22 @@ func apply() -> void:
 	if daylight:
 		daylight.color = lk[1]
 	var screen := _world.get_node_or_null("PostProcess/Screen") as ColorRect
+	var post: Array = PAINTED if painted else lk
 	if screen and screen.material is ShaderMaterial:
 		var m: ShaderMaterial = screen.material
-		m.set_shader_parameter("tint", lk[2])
-		m.set_shader_parameter("saturation", lk[3])
-		m.set_shader_parameter("contrast", lk[4])
-		m.set_shader_parameter("vignette", lk[5])
+		m.set_shader_parameter("tint", post[2])
+		m.set_shader_parameter("saturation", post[3])
+		m.set_shader_parameter("contrast", post[4])
+		m.set_shader_parameter("vignette", post[5])
 		m.set_shader_parameter("sun_pos", sun[0])
-		m.set_shader_parameter("sun_color", Vector3(lk[6].r, lk[6].g, lk[6].b))
-		m.set_shader_parameter("sun_strength", lk[7])
-		m.set_shader_parameter("rays", lk[8])
-		m.set_shader_parameter("shadow_tint", lk[10])
-		m.set_shader_parameter("mist", lk[11])
+		m.set_shader_parameter("sun_color", Vector3(post[6].r, post[6].g, post[6].b))
+		m.set_shader_parameter("sun_strength", post[7])
+		m.set_shader_parameter("rays", post[8])
+		m.set_shader_parameter("shadow_tint", post[10])
+		m.set_shader_parameter("mist", post[11])
 	var clouds := _world.get_node_or_null("CloudShadows") as CanvasItem
 	if clouds and clouds.material is ShaderMaterial:
-		(clouds.material as ShaderMaterial).set_shader_parameter("amount", lk[9])
+		(clouds.material as ShaderMaterial).set_shader_parameter("amount", 0.0 if painted else lk[9])
 	var luma: float = lk[1].get_luminance()
 	darkness = clampf((DAY_LUMA - luma) / (DAY_LUMA - NIGHT_LUMA), 0.0, 1.0)  # en las cuevas, 1
 	shadow_direction = sun[1]
@@ -187,6 +194,14 @@ func apply() -> void:
 		phase = now
 		_last_emit = h
 		Events.time_changed.emit(h, now)
+
+
+## ¿La zona donde está el entrenador se dibuja con una skin?
+func _current_painted() -> bool:
+	var st = _world.get("streamer")
+	if st == null or st.current == null:
+		return false
+	return PaintedZone.covers(st.loaded.get(st.current.id))
 
 
 ## Luz chica y fría alrededor del entrenador en las cuevas (si no, no se ve el camino entre antorcha y antorcha).

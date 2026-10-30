@@ -518,7 +518,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   el diff): los ataques oficiales automáticos toman la forma de su versión de kit del mismo
   nombre (y los de mejora propia sin kit, un efecto genérico). **Correrlo después de `apply_official_data.gd --
   --regen-auto`** (si no, vuelven a la forma inventada). `SignatureData.params.element_marks` = sinergia por tipo.
-- **IA local (ComfyUI, fuera del repo)**: `docs/COMFYUI.md`. `tools/comfy/build_workflows.py` arma los workflows de
+- **IA local (ComfyUI, fuera del repo)**: `docs/COMFYUI.md`; qué prompts funcionan y cuáles no: `docs/QWEN_PROMPTS.md`. `tools/comfy/build_workflows.py` arma los workflows de
   efectos (`efecto_1_cuadro_clave` con Qwen-Image + LoRA de pixel art, `efecto_2_animar` con Wan 2.2) y
   `tools/fx_from_frames.py` (necesita Pillow) pasa los cuadros a una hoja de `sprites/fx/` (`--clean-key` limpia el
   cuadro clave antes de animar).

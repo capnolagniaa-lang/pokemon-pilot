@@ -42,6 +42,26 @@ FOREST = ("Repaint this top-down 2D RPG screenshot as a beautiful HD-2D game sce
 PALETTE = "Use a natural, harmonious palette: deep natural greens for grass and trees, warm terracotta roofs, cream plaster walls."
 
 
+## Luz horneada por momento del día (--relight): Qwen re-ilumina cada trozo ya repintado y se cose igual. Sale
+## <zona>@<momento>.png; la imagen sin @ es el mediodía.
+## Solo luz, color de la luz y sombras: nada que se pueda "dibujar" (brillitos, rocío, niebla, luciérnagas, partículas),
+## porque Qwen lo pinta encima de la textura (ver docs/QWEN_PROMPTS.md).
+RELIGHT_KEEP = ("Relight this top-down 2D game scene while keeping absolutely everything else identical: the same layout, the "
+                "same buildings, trees, paths, fences, flowers, water and every object at exactly the same position, shape "
+                "and size, the same camera and the same pixel art details and textures. Do not add anything: no new flowers, "
+                "plants, particles, sparkles or details. Only change the lighting, the color of the light and the shadows:")
+RELIGHT = {
+    "manana": "early morning: a low, soft golden sun from the right; every house and tree casts a long soft shadow to the "
+              "left; the shadows are slightly cool blue; the lit sides are warm and pale; the whole scene is a bit cooler "
+              "and softer than at noon, with gentle contrast.",
+    "atardecer": "sunset light: deep orange sun from the left casting long soft shadows to the right, warm rim light on "
+                 "roofs and treetops, purple shade, soft contact shadows and ambient occlusion, a gentle warm glow in the air.",
+    "noche": "night: dark blue moonlit scene, every house window glowing warm yellow and casting a soft pool of light on "
+             "the ground below it, soft contact shadows, ambient occlusion, everything still readable but clearly night. "
+             "No street lamps added, no fireflies, no stars.",
+}
+
+
 def zone_rect(root, zone):
     s = open(os.path.join(root, "data/world/kanto.tres"), encoding="utf8").read()
     i = s.index('id = "%s"' % zone)
@@ -187,6 +207,7 @@ def main():
     ap.add_argument("--only-stitch", action="store_true")
     ap.add_argument("--redo", default="", help="repintar solo estos trozos (ej.: 0,2) y volver a coser")
     ap.add_argument("--forest", default="", help="trozos que son solo bosque (ej.: 0): prompt de bosque")
+    ap.add_argument("--relight", default="", help="momentos del día a hornear desde lo ya pintado (ej.: manana,atardecer,noche)")
     a = ap.parse_args()
     root = os.path.abspath(a.root)
     zx, zy, zw, zh = zone_rect(root, a.zone)
@@ -198,6 +219,9 @@ def main():
     print("%s: %dx%d celdas, %d trozos de %dx%d en x=%s" % (a.zone, zw, zh, len(xs), cw, zh, xs))
     prompt = " ".join([KEEP, RICH, a.style])
     results = []
+    if a.relight:
+        relight(root, a, work, xs, cw, zw, zh)
+        return
     redo = {int(v) for v in a.redo.split(",") if v.strip()} if a.redo else None
     if not a.only_stitch:
         ids = []
@@ -218,7 +242,29 @@ def main():
             dst = os.path.join(work, "pintado_%d.png" % i)
             shutil.copy(src, dst)
             print("  trozo %d listo" % i, flush=True)
-    paints = [Image.open(os.path.join(work, "pintado_%d.png" % i)).convert("RGB") for i in range(len(xs))]
+    stitch(root, a.skin, a.zone, [os.path.join(work, "pintado_%d.png" % i) for i in range(len(xs))], xs, cw, zw, zh,
+           {"seed": a.seed, "prompt": prompt})
+
+
+def relight(root, a, work, xs, cw, zw, zh):
+    moments = [m.strip() for m in a.relight.split(",") if m.strip()]
+    jobs = []
+    for m in moments:
+        for i in range(len(xs)):
+            src = os.path.join(work, "pintado_%d.png" % i)
+            jobs.append((m, i, queue(upload(src), RELIGHT_KEEP + " " + RELIGHT[m], a.seed, a.size,
+                                     "repintado/%s_%s_%d" % (a.zone, m, i))))
+    print("  %d re-iluminaciones encoladas" % len(jobs), flush=True)
+    for m, i, pid in jobs:
+        shutil.copy(wait_output(pid), os.path.join(work, "luz_%s_%d.png" % (m, i)))
+        print("  %s %d listo" % (m, i), flush=True)
+    for m in moments:
+        stitch(root, a.skin, a.zone + "@" + m, [os.path.join(work, "luz_%s_%d.png" % (m, i)) for i in range(len(xs))],
+               xs, cw, zw, zh, {"moment": m, "prompt": RELIGHT_KEEP + " " + RELIGHT[m]})
+
+
+def stitch(root, skin, name, files, xs, cw, zw, zh, info):
+    paints = [Image.open(f).convert("RGB") for f in files]
     # Escala común: píxeles por celda del primer trozo.
     ppc = paints[0].width / cw
     H = round(zh * ppc)
@@ -229,12 +275,13 @@ def main():
         # Lo que ya está cosido termina en xs[i-1]+cw; el trozo nuevo empieza ov_cells antes.
         full = min_cut_join(full, paints[i], round(ov_cells * ppc))
     full = full.resize((round(zw * ppc), H), Image.LANCZOS)
-    out_dir = os.path.join(root, "art", "skins", a.skin)
+    out_dir = os.path.join(root, "art", "skins", skin)
     os.makedirs(out_dir, exist_ok=True)
-    full.save(os.path.join(out_dir, a.zone + ".png"))
-    json.dump({"zone": a.zone, "cells": [zw, zh], "px_per_cell": full.width / zw, "seed": a.seed, "prompt": prompt},
-              open(os.path.join(out_dir, a.zone + ".json"), "w", encoding="utf8"), ensure_ascii=False, indent=1)
-    print("listo:", os.path.join(out_dir, a.zone + ".png"), full.size)
+    full.save(os.path.join(out_dir, name + ".png"))
+    info = dict(info, cells=[zw, zh], px_per_cell=full.width / zw)
+    with open(os.path.join(out_dir, name + ".json"), "w", encoding="utf8", newline="\n") as f:
+        json.dump(info, f, ensure_ascii=False, indent=1)
+    print("listo:", os.path.join(out_dir, name + ".png"), full.size)
 
 
 if __name__ == "__main__":

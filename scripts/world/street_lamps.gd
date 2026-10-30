@@ -158,6 +158,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	visible = not PaintedZone.covers(get_parent())  # con skin no hay faroles agregados (la luz viene pintada)
+	if not visible:
+		return
 	var dn: DayNight = _world.get("day_night") if _world != null else null
 	var k := 0.0
 	if dn != null and dn.casts_shadows:

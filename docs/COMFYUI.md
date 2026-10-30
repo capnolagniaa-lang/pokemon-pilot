@@ -3,6 +3,8 @@
 ComfyUI está instalado en `C:\Users\Gusti\ComfyUI\ComfyUI_windows_portable` (fuera del repo), con una RTX 5060 Ti de 16 GB.
 Los workflows se abren desde el menú de workflows de ComfyUI (están en `ComfyUI/user/default/workflows/`).
 
+**Diccionario de prompts (qué funciona y qué no para escenas, terreno, objetos y luz): `docs/QWEN_PROMPTS.md`.**
+
 ## Modelos instalados
 | Modelo | Para qué |
 |---|---|

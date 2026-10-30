@@ -1,14 +1,15 @@
 class_name RepaintTests
 extends Node
-## Skins del mundo: zonas repintadas con IA (PaintedZone, tools/repaint_zone.py):
+## Skins del mundo: zonas repintadas con IA y su luz horneada por momento del día (PaintedZone, tools/repaint_zone.py):
 ##   godot --headless --path . --quit-after 60000 -- --autotest-repaint
 ## Vitrina (Pueblo Paleta con la skin HD en varios lugares y horas; imprime qué cuadros son cada uno):
 ##   godot --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-repaint
 
 const ZONE := "pueblo_paleta"
-const SPOTS := [[Vector2i(56, 12), 12.0], [Vector2i(66, 16), 12.0], [Vector2i(56, 12), 8.0], [Vector2i(56, 12), 18.5],
+const SPOTS := [[Vector2i(56, 12), 12.0], [Vector2i(66, 16), 12.0], [Vector2i(56, 12), 7.0], [Vector2i(56, 12), 18.5],
 	[Vector2i(56, 12), 23.0]]
 const FRAMES := 24
+const ALL := {"": 1, "noche": 1, "atardecer": 1, "manana": 1}
 
 var autotest: Node
 var world: Node
@@ -19,16 +20,25 @@ func run() -> void:
 	r["Hay skins: clásica primero y HD (%s)" % str(PaintedZone.skins())] = PaintedZone.skins().size() >= 2 \
 		and PaintedZone.skins()[0][0] == PaintedZone.CLASSIC
 	r["Pueblo Paleta tiene su imagen en la skin HD"] = PaintedZone.available(ZONE, "hd")
+	r["La hora funde las imágenes de cada momento (12 h la base; 19:30 atardecer con noche)"] = \
+		PaintedZone.blend_at(12.0, ALL).slice(0, 2) == ["", ""] \
+		and PaintedZone.blend_at(19.5, ALL).slice(0, 2) == ["atardecer", "noche"]
+	r["Si faltan momentos, usa la imagen base"] = PaintedZone.blend_at(19.5, {"": 1}).slice(0, 2) == ["", ""]
 	GameState.new_game(DB.species["charmander"])
 	r["Una partida nueva arranca con la skin HD"] = PaintedZone.current() == "hd"
 	await _start(Vector2i(56, 12))
 	var town: Node2D = world.streamer.loaded.get(ZONE)
 	var pz: PaintedZone = town.get_node_or_null("PaintedZone") if town != null else null
-	r["Se dibuja la imagen en lugar de los tiles"] = pz != null and pz.get_node_or_null("PaintedGround") != null \
+	r["Se dibuja la imagen en lugar de los tiles"] = pz != null and PaintedZone.covers(town) \
+		and pz.find_child("PaintedGround", true, false) != null \
 		and not town.get_node("Ground").visible and not town.get_node("Overhead").visible
-	r["Techos y copas recortados en su capa (tapan al pasar por detrás)"] = pz != null \
-		and pz.get_node_or_null("PaintedOverhead") != null \
-		and pz.get_node("PaintedOverhead").z_index == town.get_node("Overhead").z_index
+	var top: CanvasLayer = pz.find_child("PaintedOverheadLayer", true, false) if pz != null else null
+	var bottom: CanvasLayer = pz.find_child("PaintedGroundLayer", true, false) if pz != null else null
+	r["Suelo debajo del mundo y techos/copas encima (tapan al pasar por detrás)"] = top != null and bottom != null \
+		and bottom.layer < 0 and top.layer > 0 and top.layer < 5
+	await get_tree().process_frame
+	r["Con skin, sin sombras del mapa ni faroles calculados"] = not town.get_node("SunShadows").visible \
+		and (town.get_node_or_null("StreetLamps") == null or not town.get_node("StreetLamps").visible)
 	# La colisión es la de siempre: la pared de una casa sigue siendo sólida aunque no se vea su tile.
 	var q := PhysicsPointQueryParameters2D.new()
 	q.position = town.to_global((Vector2(45, 6) + Vector2(0.5, 0.5)) * Zone.TILE)  # casa de arriba a la izquierda (sello en 43,3)
@@ -37,14 +47,14 @@ func run() -> void:
 	GameState.set_setting("skin", PaintedZone.CLASSIC)
 	await get_tree().process_frame
 	await get_tree().process_frame
-	r["Con la skin clásica vuelven los tiles de FireRed"] = town.get_node("Ground").visible \
-		and pz.get_node_or_null("PaintedGround") == null
+	r["Con la skin clásica vuelven los tiles de FireRed (y sus sombras)"] = town.get_node("Ground").visible \
+		and not PaintedZone.covers(town) and town.get_node("SunShadows").visible
 	GameState.set_setting("skin", "hd")
 	await get_tree().process_frame
 	await get_tree().process_frame
-	r["Y con la HD vuelve la imagen"] = not town.get_node("Ground").visible and pz.get_node_or_null("PaintedGround") != null
+	r["Y con la HD vuelve la imagen"] = not town.get_node("Ground").visible and PaintedZone.covers(town)
 	r["Una zona sin imagen queda con sus tiles"] = world.streamer.loaded.values().all(
-		func(z): return PaintedZone.available(z.zone_id) or z.get_node("PaintedZone").get_node_or_null("PaintedGround") == null)
+		func(z): return PaintedZone.available(z.zone_id) or not PaintedZone.covers(z))
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[repaint] %s %s" % ["OK   " if r[key] else "FALLO", key])

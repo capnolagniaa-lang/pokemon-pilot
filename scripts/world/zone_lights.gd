@@ -122,7 +122,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	var dn: DayNight = _world.get("day_night") if _world != null else null
 	var k := 0.0
-	if dn != null and dn.casts_shadows:
+	if dn != null and dn.casts_shadows and not PaintedZone.covers(get_parent()):  # con skin, las ventanas ya vienen pintadas
 		k = smoothstep(ON_FROM, ON_FULL, dn.darkness)
 	visible = k > 0.01
 	if not visible:
