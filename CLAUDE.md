@@ -311,7 +311,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   (1 h = 1 min real; ajuste `time_lock` = hora fija); el sol/luna y las sombras salen del arco `DayNight.sun_at` y el
   resto de la tabla `KEYS`: Daylight, uniforms del
   post-procesado (tinte, `sun_pos`/`sun_strength`/`rays` = luz de esquina; de noche, la luna), nubes, luciérnagas y
-  estrellitas de noche (`AmbientFX`). Interiores
+  estrellitas de noche (`AmbientFX`); reloj del HUD `HudClock`. Interiores
   y arenas: `INDOOR` (luz pareja). Otros sistemas leen `darkness`, `shadow_direction`, `shadow_length` y escuchan
   `Events.time_changed(hour, phase)`. Por ahora solo visual (no cambia salvajes ni tipos). Sombras largas: `ZoneShadows`
   (World la agrega a cada zona exterior: máscara de celdas sólidas + `shaders/sun_shadows.gdshader`) y `SunShadow`
@@ -573,4 +573,6 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - Correr Godot headless siempre con `--quit-after`: si un script no compila, el autotest no carga y queda colgado.
 - `Zone.get_tags` en un script suelto (`--script`) tarda ~10 ms por celda (en el juego, nada): para medir o recorrer
   zonas fuera del juego, usar la colisión (`MapRules.cell_physics`) o la capa `Foliage` en vez de los tags.
+- Las sombras de nubes (`cloud_shadows.gdshader`, `blend_mul`) se regulan con el uniform `amount`, nunca con
+  `modulate.a` (con alpha bajo oscurecen toda la pantalla), y son `unshaded` (si no, el Daylight las multiplica otra vez).
 - PowerShell 5: archivos .ps1 sin BOM se leen como ANSI → evitar caracteres no ASCII en scripts .ps1.

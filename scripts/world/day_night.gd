@@ -15,18 +15,19 @@ const PHASES := [[5.0, "amanecer"], [7.0, "dia"], [17.5, "atardecer"], [20.0, "n
 ## Cómo se ve cada hora (se interpola entre filas; la de las 24 = la de las 0). Dónde está el sol (o la luna) y las
 ## sombras no van acá: salen del arco de `sun_at` (se mueven cuadro a cuadro).
 ## [hora, color del Daylight, tinte, saturación, contraste, viñeta, color del sol, fuerza, rayos, nubes]
-## Fuerza y rayos bajos (pedido del usuario 2026-10-30: "el sol encandila mucho").
+## Fuerza y rayos bajos (pedido del usuario 2026-10-30: "el sol encandila mucho"). De noche, más oscuro y la luna apenas
+## un brillo (2026-10-30: "después de las 20 se ve mucho": la luz de luna aclaraba toda la pantalla, quedaba lechoso).
 const KEYS := [
-	[0.0, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Color(0.85, 0.90, 1.0), 0.16, 0.06, 0.0],
-	[4.5, Color(0.58, 0.63, 0.79), Vector3(0.97, 1.00, 1.03), 0.74, 1.06, 0.44, Color(0.85, 0.90, 1.0), 0.12, 0.04, 0.0],
+	[0.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
+	[4.5, Color(0.38, 0.42, 0.53), Vector3(0.97, 1.00, 1.03), 0.82, 1.11, 0.56, Color(0.85, 0.90, 1.0), 0.04, 0.0, 0.0],
 	[6.0, Color(0.86, 0.80, 0.84), Vector3(1.03, 0.98, 0.98), 1.05, 1.05, 0.40, Color(1.0, 0.72, 0.58), 0.20, 0.14, 0.4],
 	[7.5, Color(0.99, 0.95, 0.89), Vector3(1.04, 1.00, 0.94), 1.20, 1.06, 0.34, Color(1.0, 0.86, 0.62), 0.18, 0.16, 0.9],
 	[12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0],
 	[16.5, Color(1.00, 0.96, 0.89), Vector3(1.05, 1.00, 0.92), 1.25, 1.06, 0.34, Color(1.0, 0.82, 0.55), 0.18, 0.16, 1.0],
 	[18.5, Color(1.00, 0.88, 0.80), Vector3(1.05, 0.97, 0.94), 1.12, 1.07, 0.40, Color(1.0, 0.66, 0.38), 0.26, 0.20, 0.6],
-	[20.0, Color(0.70, 0.64, 0.80), Vector3(0.99, 0.97, 1.03), 0.85, 1.07, 0.44, Color(0.90, 0.60, 0.68), 0.10, 0.04, 0.1],
-	[21.5, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Color(0.85, 0.90, 1.0), 0.16, 0.06, 0.0],
-	[24.0, Color(0.58, 0.64, 0.80), Vector3(0.97, 1.00, 1.04), 0.72, 1.06, 0.44, Color(0.85, 0.90, 1.0), 0.16, 0.06, 0.0],
+	[20.0, Color(0.52, 0.48, 0.64), Vector3(0.99, 0.97, 1.03), 0.85, 1.10, 0.52, Color(0.90, 0.60, 0.68), 0.06, 0.0, 0.1],
+	[21.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
+	[24.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0],
 ]
 ## El arco del sol (de día) y de la luna (de noche): sale por la derecha (este) a SUNRISE, pasa por arriba de la
 ## pantalla y se pone por la izquierda a SUNSET; la luna hace el mismo camino de SUNSET a SUNRISE. Las sombras caen
@@ -36,7 +37,7 @@ const SUNSET := 19.5
 const SHADOW_MIN := 0.75     # largo al mediodía (1 = el de antes)
 const SHADOW_MAX := 3.8      # largo con el sol casi en el horizonte
 const SUN_SHADOW_ALPHA := 0.8
-const MOON_SHADOW_ALPHA := 0.38
+const MOON_SHADOW_ALPHA := 0.25
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
 const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.65), 0.0, 0.0, 0.0]
 ## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
@@ -49,7 +50,7 @@ const CAVE_PLAYER_RADIUS := 64.0
 const CAVE_CLEAR := Color(0.02, 0.02, 0.04)
 ## Daylight más claro que el de la noche (para medir la oscuridad). La noche es luz de luna plateada (pedido del
 ## usuario 2026-10-28: "demasiado azulado oscuro"), con un brillo suave desde arriba a la derecha.
-const NIGHT_LUMA := 0.63
+const NIGHT_LUMA := 0.40
 const DAY_LUMA := 0.98
 
 ## 0 = pleno día, 1 = noche cerrada (0 en interiores y arenas).
@@ -165,8 +166,8 @@ func apply() -> void:
 		m.set_shader_parameter("sun_strength", lk[7])
 		m.set_shader_parameter("rays", lk[8])
 	var clouds := _world.get_node_or_null("CloudShadows") as CanvasItem
-	if clouds:
-		clouds.modulate.a = lk[9]
+	if clouds and clouds.material is ShaderMaterial:
+		(clouds.material as ShaderMaterial).set_shader_parameter("amount", lk[9])
 	var luma: float = lk[1].get_luminance()
 	darkness = clampf((DAY_LUMA - luma) / (DAY_LUMA - NIGHT_LUMA), 0.0, 1.0)  # en las cuevas, 1
 	shadow_direction = sun[1]

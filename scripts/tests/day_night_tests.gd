@@ -78,7 +78,15 @@ func run() -> void:
 	r["Hora fija a las 23: noche (oscuridad %.2f)" % dn.darkness] = is_equal_approx(GameState.time_of_day, 23.0) \
 		and dn.darkness > 0.85 and daylight.color.get_luminance() < 0.7
 	r["Se avisó la noche (Events.time_changed)"] = "noche" in phases
-	r["De noche, la luna alumbra desde una esquina (%.2f)" % float(mat.get_shader_parameter("sun_strength"))] = 		float(mat.get_shader_parameter("sun_strength")) > 0.1
+	r["De noche, la luna apenas brilla desde una esquina (%.2f)" % float(mat.get_shader_parameter("sun_strength"))] = 		float(mat.get_shader_parameter("sun_strength")) > 0.0 and float(mat.get_shader_parameter("sun_strength")) < 0.08
+	# Las nubes multiplican: con la intensidad en 0 no tocan nada (antes, con modulate.a bajo, oscurecían toda la
+	# pantalla entre las 20 y las 21:30) y no les pega el Daylight (unshaded: si no, la noche se aplicaba dos veces).
+	var clouds: CanvasItem = world.get_node("CloudShadows")
+	r["De noche las nubes no oscurecen nada (intensidad %.2f, opacidad %.2f)" % [
+		float((clouds.material as ShaderMaterial).get_shader_parameter("amount")), clouds.modulate.a]] = 		float((clouds.material as ShaderMaterial).get_shader_parameter("amount")) == 0.0 and clouds.modulate.a == 1.0 		and "unshaded" in (clouds.material as ShaderMaterial).shader.code
+	var clock: HudClock = world.get_node_or_null("UI/HUD/Clock")
+	r["Reloj arriba a la izquierda (%s): 21:36 = %s, 7:05 = %s" % [clock != null, HudClock.text_for(21.6),
+		HudClock.text_for(7.0834)]] = clock != null and clock.visible and clock.position.x < 40 and clock.position.y < 40 		and HudClock.text_for(21.6) == "21:36" and HudClock.text_for(7.0834) == "07:05" and HudClock.text_for(24.0) == "00:00"
 	await get_tree().create_timer(2.5).timeout
 	var fx: Node = world.get_node("AmbientFX")
 	r["De noche, afuera, titilan estrellitas (%.2f)" % fx._star_fade] = fx._star_fade > 0.5

@@ -29,6 +29,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
+- **Noche más oscura y reloj (2026-10-30, pedido del usuario: "después de las 20 se ve mucho")**: noche plateada más
+  oscura (Daylight 0,36/0,40/0,52, noche cerrada desde las 21), luna casi sin brillo (0,05, sin rayos) y sombras de luna
+  más suaves (0,25). Bug arreglado: las sombras de nubes (`blend_mul`) con `modulate.a` bajo oscurecían toda la pantalla
+  entre las 20 y las 21:30 y al amanecer, y les pegaba el Daylight (la noche se aplicaba dos veces): ahora `amount` en el
+  shader y `unshaded`. **Reloj** arriba a la izquierda (`HudClock`, en `hud.gd`; sol o luna, los dos puntos titilan si
+  la hora corre); el cartel de zona bajó abajo del reloj.
 - **Sol, sombras y estrellitas (2026-10-30, pedido del usuario)**: el sol (y de noche la luna) hace un arco
   (`DayNight.sun_at`: sale por la derecha a las 5:30, pasa por arriba y se pone por la izquierda a las 19:30), así que
   las sombras giran y se estiran cuadro a cuadro (mediodía cortas hacia abajo, ×0,75; amanecer/atardecer largas, hasta
