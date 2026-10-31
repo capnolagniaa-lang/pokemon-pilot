@@ -1,6 +1,6 @@
 {
  "moment": "dia",
- "seed": 33,
+ "seed": 21,
  "prompt": "Repaint this top-down 2D RPG screenshot as a beautiful HD-2D game scene. Keep EXACTLY the same layout and composition: every building, every tree, every fence, sign, mailbox, flower bed, ledge and object stays at exactly the same position, size and outline, and every path, water and grass area keeps its exact shape. The camera stays straight top-down with walls facing the viewer; no isometric angle, no perspective change, no zoom, no crop. Do not add anything that is not in the original image: no new houses, buildings, paths or objects; an area that is only trees stays only trees. Make it look like a polished modern HD-2D game: much richer detail and texture everywhere, every surface hand painted with many small details, varied grass with darker and lighter patches, small stones, clover and wildflowers scattered in the grass, worn dirt at the doorsteps, weathered roofs with individual tiles, plants and small details around the houses, trees with depth and volume, gentle ambient occlusion at the base of walls and trees. Neutral soft daylight from above, no strong cast shadows, no fog, no vignette. No text, no characters, no animals. Use a natural, harmonious palette: deep natural greens for grass and trees, warm terracotta roofs, cream plaster walls.",
  "turbo": true,
  "cells": [

@@ -554,6 +554,11 @@ def night_compose(day, qwen_night):
     over = lambda im, t: im.point(lambda v: 255 if v > t else 0)
     # Solo luz: amarillo brillante (la arena y la tierra de la noche de Qwen son marrones, más oscuras).
     warm = ImageChops.multiply(ImageChops.multiply(over(ImageChops.subtract(r, b), 60), over(r, 170)), over(g, 125))
+    # Una luz es algo amarillo de noche que de día no lo era: la arena clara (Isla Canela, toda la explanada) sale
+    # amarilla en las dos y no es luz.
+    dr, dg, db = day.convert("RGB").resize(base.size).split()
+    day_sand = ImageChops.multiply(ImageChops.multiply(over(dr, 200), over(dg, 170)), over(ImageChops.subtract(dr, db), 60))
+    warm = ImageChops.multiply(warm, ImageChops.invert(day_sand.filter(ImageFilter.MinFilter(5))))
     warm = warm.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(3))
     return Image.composite(q, base, warm)
 
@@ -607,6 +612,36 @@ def rock_mask(maq, size):
     return mask.filter(ImageFilter.MaxFilter(5)).resize(size, Image.BILINEAR)
 
 
+def sea_rock_mask(maq, size):
+    """Máscara de las rocas del mar de la maqueta (bultitos gris-blancos rodeados de agua azul de FireRed)."""
+    m = Image.open(maq).convert("RGB")
+    r, g, b = m.split()
+    over = lambda im, t: im.point(lambda v: 255 if v > t else 0)
+    hi = ImageChops.lighter(ImageChops.lighter(r, g), b)
+    lo = ImageChops.darker(ImageChops.darker(r, g), b)
+    grey = ImageChops.multiply(over(lo, 150), ImageChops.invert(over(ImageChops.subtract(hi, lo), 40)))
+    water = ImageChops.multiply(over(ImageChops.subtract(b, r), 80), over(b, 150))
+    near_water = water.filter(ImageFilter.MaxFilter(9))
+    return ImageChops.multiply(grey, near_water).filter(ImageFilter.MaxFilter(5)).resize(size, Image.BILINEAR)
+
+
+def fix_sea_rocks(paint, maq):
+    """Rocas del mar pintadas como casitas o matas (Rutas 17-18, Carmín): donde la maqueta tiene una roca de mar, lo
+    que no es agua en la pintura (techo naranja, mata verde) pasa a gris piedra con la misma luz."""
+    mask = sea_rock_mask(maq, paint.size)
+    if mask.getbbox() is None:
+        return paint
+    r, g, b = paint.split()
+    over = lambda im, t: im.point(lambda v: 255 if v > t else 0)
+    not_water = ImageChops.invert(over(ImageChops.subtract(b, r), 50))
+    sand = ImageChops.multiply(over(g, 175), over(r, 200))  # arena clara de la orilla (los techos tienen menos verde)
+    not_water = ImageChops.multiply(not_water, ImageChops.invert(sand.filter(ImageFilter.MaxFilter(3))))
+    lum = paint.convert("L")
+    stone = Image.merge("RGB", (lum.point(lambda v: min(255, int(v * 0.95 + 20))), lum.point(lambda v: min(255, int(v * 0.97 + 22))),
+                                lum.point(lambda v: min(255, int(v * 1.0 + 28)))))
+    return Image.composite(stone, paint, ImageChops.multiply(mask, not_water).filter(ImageFilter.GaussianBlur(1)))
+
+
 def fix_rock_roofs(paint, maq):
     """Las crestas finas y los bordes de roca salen como techos de tejas naranjas con cualquier prompt, semilla o
     negativo (Rutas 3 y 4): donde la maqueta es roca, el naranja de teja se pasa a color de roca (misma luz y
@@ -627,7 +662,7 @@ def fix_rock_roofs(paint, maq):
 
 def stitch(root, skin, name, g, files, info):
     maq_of = lambda f: os.path.join(os.path.dirname(f), "maqueta_" + os.path.basename(f).split("_", 1)[1])
-    paints = [fix_rock_roofs(Image.open(f).convert("RGB"), maq_of(f)) for f in files]
+    paints = [fix_sea_rocks(fix_rock_roofs(Image.open(f).convert("RGB"), maq_of(f)), maq_of(f)) for f in files]
     ppc = paints[0].width / g.cw  # píxeles por celda (del primer trozo)
     W, H = round(g.cw * ppc), round(g.ch * ppc)
     paints = [p.resize((W, H), Image.LANCZOS) for p in paints]

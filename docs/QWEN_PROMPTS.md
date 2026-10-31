@@ -74,6 +74,8 @@ dense hand-placed pixel detail, rich color ramps, careful dithering...`). Lo apr
 | Ciudad Azafrán: la plaza de pavimento gris oscuro salía mitad pasto | `paved_share` con umbral más bajo (gris > 170: el de Azafrán es ~200, el de Ciudad Verde ~225) |
 | De noche, plazas de pavimento claro moteadas (la máscara de caminos tomaba baldosas sueltas) | `darken_night_paths` suma el pavimento claro y sin color (sin la roca rosada) entero |
 | Charcos de luz grandes y marrones (`night_compose` tomaba el piso de tierra iluminado como luz) | Solo lo bien brillante (rojo > 170, verde > 125) y menos agrandado |
+| Rutas 17-21, Carmín, Canela: las rocas del mar salen como casitas o matas | `fix_sea_rocks` al coser: donde la maqueta tiene una roca de mar (gris-blanca junto al agua), lo que no es agua ni arena pasa a gris piedra (siguen con forma de casita, pero se leen como roca) |
+| Isla Canela: de noche, la explanada de arena entera salía como un charco de luz (Qwen la ilumina y es amarilla) | `night_compose` descarta como luz lo que ya era arena clara de día |
 | Subir a ComfyUI con nombre `rep_maqueta_6.png`: una tanda de otra zona pisaba la imagen antes de que corriera el trabajo encolado | El nombre lleva skin y zona |
 
 ## Noche (lo que funciona, 2026-10-30)
