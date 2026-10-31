@@ -58,6 +58,10 @@ dense hand-placed pixel detail, rich color ramps, careful dithering...`). Lo apr
 | De noche los caminos de tierra quedaban beige o gris lavanda clarito (aunque el prompt diga que no) | `darken_night_paths` después de coser la noche: la tierra de la pintura de día es la máscara (coinciden píxel a píxel) |
 | De noche los techos verdes salían marrones (la paleta dice "terracotta roofs") | `Every roof keeps its original color (a green roof stays green), only darker.` en `NIGHT` |
 | **Atardecer pintado** (`--dusk`, dos prompts, dos semillas): siempre un filtro amarillo-oliva parejo, pasto mostaza | Descartado: el atardecer lo hace Godot (Daylight + ventanas que se prenden; ver PLAN_TERRENO_PROPIO). `--dusk` queda en la herramienta |
+| Ruta 22: las celdas de la meseta tienen el tag "arbol" (son sólidas) → el trozo contaba como bosque y salía bosque encima de la roca | `rock_share` (color rosado-marrón de la maqueta): con >12 % nunca los prompts de bosque, y la leyenda de roca solo por color (>10 %: un techo rosado da ~6 %; las celdas de "roca" también cuentan paredes de garitas, que hacían inventar mesetas en la Ruta 2) |
+| Ruta 2: en trozos con garita, la grilla de copitas iguales salía como masa verde lisa o pradera; el pasto alto, como pasto liso | `TREES_LEGEND` (árboles > 30 % descontando la roca: "paint every tree crown individually... Blocks of tall grass are not trees") y `TALL_LEGEND` (pasto alto) en todo trozo que lo tenga |
+| De noche, un trozo abierto sin casas usaba el prompt de bosque ("moonlight on the tree crowns") y pintaba árboles sobre el pasto alto | `NIGHT_WILD` (campo de noche, "tall grass stays tall grass"); `NIGHT_FOREST` solo con los prompts de bosque |
+| Oscurecer de noche lo claro y sin color (para una franja de pasto claro que quedó gris lavanda) | Dejaba manchas oscuras sueltas: descartado (la franja clara se lee como sendero a la luz de la luna) |
 | Subir a ComfyUI con nombre `rep_maqueta_6.png`: una tanda de otra zona pisaba la imagen antes de que corriera el trabajo encolado | El nombre lleva skin y zona |
 
 ## Noche (lo que funciona, 2026-10-30)

@@ -110,9 +110,22 @@ DUSK_FOREST = ("It is sunset: the sun is low in the west and the light is warm a
                "orange filter. No long cast shadows, no sun or sky visible, no lens flare, no fog, no lights, no houses.")
 
 
+## Noche de un trozo abierto sin casas (rutas): NIGHT_FOREST habla de copas de árboles y pintaba árboles sobre el pasto
+## alto (Ruta 22).
+NIGHT_WILD = ("It is night: a calm moonlit night over the countryside. Soft cool blue moonlight from above on the grass, "
+              "the patches of tall grass, the paths and the trees, everything in deep but readable shade and every shape "
+              "the same as by day: tall grass stays tall grass. No lights at all: no windows, no lamps, no houses, no "
+              "fireflies, no stars, no fog, no sparkles, nothing added. Dirt paths and sand are in the same dim cool blue "
+              "moonlight, darker and greyer than by day, never bright beige.")
+
+
 ## Con pocas celdas de edificio (una puntita en el borde del trozo) el prompt con ventanas hacía que Qwen inventara casas
 ## prendidas (Ciudad Verde trozo 6: una en el estanque): ahí va el de sin luces.
 LIT_MIN_CELLS = 20
+
+
+def is_forest_prompt(p):
+    return p.startswith(FOREST[:60]) and ("only a dense forest" in p or "mostly a dense forest" in p)
 
 
 def lit(c):
@@ -320,7 +333,7 @@ def main():
             if a.night:
                 p = p.replace("Neutral soft daylight from above, no strong cast shadows, no fog, no vignette.", "")
                 c = cells_info(maq)
-                p += " " + (NIGHT if lit(c) else NIGHT_FOREST)
+                p += " " + (NIGHT if lit(c) else (NIGHT_FOREST if is_forest_prompt(p) else NIGHT_WILD))
             elif a.dusk:
                 p = p.replace("Neutral soft daylight from above, no strong cast shadows, no fog, no vignette.", "")
                 c = cells_info(maq)
@@ -379,6 +392,18 @@ ROCK_LEGEND = ("The pinkish-brown stepped areas are a raised natural rocky plate
                "ground: no forest, no rows of trees and no buildings on it.")
 
 
+## Pasto alto en trozos con edificios (garitas, pueblos): sin esto salía como pasto liso (Ruta 2).
+TALL_LEGEND = ("The blocks of darker green grass with small tufts are patches of tall wild grass: paint them as thick "
+               "untidy clumps of tall grass, clearly taller and darker than the short lawn around them, not crops.")
+
+
+## Bosques grandes en trozos que no son de bosque (con garitas o pueblos): la grilla de copitas iguales salía como una
+## masa verde lisa o una pradera con matas (Ruta 2).
+TREES_LEGEND = ("The large areas filled with a grid of identical small round tree crowns are a dense forest: paint every "
+                "tree crown individually as a real tree seen from above, packed tightly in the same grid, never as grass, "
+                "a meadow, hedges or a flat green mass. Blocks of tall grass are not trees: they stay tall grass.")
+
+
 ## Plazas y calles de ciudad (gris casi blanco en FireRed): con PLAIN_GRASS salían como pasto claro.
 PAVED_LEGEND = ("The very light grey, almost white areas are the paved town square and streets, not grass: paint them as "
                 "a light warm packed-earth and sandy stone plaza with subtle paving stones, clearly different from the lawn.")
@@ -403,8 +428,15 @@ def rock_share(maq_path):
 
 def legends(c, maq_path=None):
     out = []
-    if (c is not None and c.get("roca", 0) > 0) or rock_share(maq_path) > 0.03:
+    # Solo por el color: las celdas de "roca" también cuentan paredes (garitas) y en la Ruta 2 la leyenda hacía que
+    # Qwen inventara mesetas en medio del bosque.
+    if rock_share(maq_path) > 0.1:  # (un techo rosado de edificio da ~0,06; las mesetas, 0,15 o más)
         out.append(ROCK_LEGEND)
+    if c is not None and c.get("pasto_alto", 0) > 0:
+        out.append(TALL_LEGEND)
+    # (La roca de meseta a veces tiene el tag "arbol": se descuenta.)
+    if c is not None and c["arbol"] / max(1, c["arbol"] + c["pasto"] + c["otro"]) - rock_share(maq_path) > 0.3:
+        out.append(TREES_LEGEND)
     if paved_share(maq_path) > 0.05:
         out.append(PAVED_LEGEND)
     return " ".join(out)
