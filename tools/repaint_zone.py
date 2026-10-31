@@ -77,7 +77,8 @@ FINISH = {
 ## matas de pasto alto de RPG.
 PLAIN_GRASS = ("The large plain pale green areas are open lawn of short grass: paint them as short grass richly detailed pixel "
                "by pixel, with subtle color variation, tiny flowers, clover and small pebbles scattered evenly; but do not "
-               "add dirt paths, borders, tall grass patches, bushes or trees that are not in the original.")
+               "add dirt paths, borders, tall grass patches, bushes or trees that are not in the original. The open lawn has "
+               "no trees at all: trees only where the original has trees.")
 PALETTE = "Use a natural, harmonious palette: deep natural greens for grass and trees, warm terracotta roofs, cream plaster walls."
 
 
