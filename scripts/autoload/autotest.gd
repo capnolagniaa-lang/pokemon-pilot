@@ -453,6 +453,7 @@ func _overview() -> void:
 	GameState.new_game(DB.config.starters[1])
 	if "--clean" in OS.get_cmdline_user_args():
 		GameState.set_setting("skin", PaintedZone.CLASSIC)  # la maqueta para repintar sale siempre de los tiles originales
+		GameState.wilds_enabled = false  # (el cartel "Dormido" de un salvaje quedaba en la maqueta y Qwen lo pintaba)
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -498,6 +499,9 @@ func _overview() -> void:
 	for i in 10:
 		cam.zoom = Vector2(z, z)
 		await get_tree().process_frame
+		if "--clean" in args:  # ningún texto flotante (estados, nombres): Qwen los copia como letras
+			for n in world.find_children("*", "Label", true, false) + world.find_children("*", "RichTextLabel", true, false):
+				(n as CanvasItem).visible = false
 	# `--cells-out <archivo>`: qué hay en las celdas del pedazo (tools/repaint_zone.py decide si es puro bosque).
 	var co := args.find("--cells-out")
 	if co >= 0 and co + 1 < args.size() and at >= 0:

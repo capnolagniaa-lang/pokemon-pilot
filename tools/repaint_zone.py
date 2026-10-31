@@ -432,6 +432,14 @@ WATER_LEGEND = ("The blue areas are water (a river, a stream or a pond): keep ev
                 "the same shape and size, with gentle ripples and natural banks; never turn water into grass or ground.")
 
 
+## Mucha agua (puertos, mar): Qwen la achicaba a estanques con tierra alrededor y hacía matas de las rocas del mar
+## (Ciudad Carmín).
+SEA_LEGEND = ("Most of this area is open sea: every blue area stays deep blue sea water with exactly the same shape and "
+              "size, with gentle waves; never turn sea into land, grass, ponds or islands. The small white-grey bumps "
+              "scattered in the water are small rocks sticking out of the sea, not bushes or trees. The pale stone strips "
+              "with railings over the water are piers.")
+
+
 ## Plazas y calles de ciudad (gris casi blanco en FireRed): con PLAIN_GRASS salían como pasto claro.
 PAVED_LEGEND = ("The very light grey, almost white areas are the paved town square and streets, not grass: paint them as "
                 "a light warm packed-earth and sandy stone plaza with subtle paving stones, clearly different from the lawn.")
@@ -476,6 +484,8 @@ def legends(c, maq_path=None):
         out.append(TREES_LEGEND)
     if c is not None and c.get("agua", 0) == 0:
         out.append(NO_WATER)
+    elif c is not None and c["agua"] / max(1, c["arbol"] + c["pasto"] + c["otro"]) > 0.4:
+        out.append(SEA_LEGEND)
     elif c is not None:
         out.append(WATER_LEGEND)
     if sand_share(maq_path) > 0.05:
