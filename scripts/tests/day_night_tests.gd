@@ -48,9 +48,6 @@ func run() -> void:
 
 	# --- Guardado ---
 	GameState.new_game(DB.species["charmander"])
-	# La luz de los tiles (sol, luna, sombras del mapa) se prueba con la skin clásica: sobre una zona pintada se apagan a
-	# propósito (la pintura trae su luz; eso lo prueba --autotest-repaint).
-	GameState.set_setting("skin", PaintedZone.CLASSIC)
 	r["Partida nueva: arranca a las %.0f" % GameState.START_HOUR] = GameState.time_of_day == GameState.START_HOUR
 	GameState.time_of_day = 19.25
 	var d := GameState.to_dict()
@@ -121,8 +118,7 @@ func run() -> void:
 	r["El entrenador tiene sombra larga"] = trainer_shadow != null and trainer_shadow.source == world.trainer.get_node("Sprite")
 	r["Tu Pokémon tiene sombra larga"] = world.companion != null and world.companion.get_node_or_null("SunShadow") is SunShadow
 
-	# --- Ventanas prendidas (parte C) --- (con la skin clásica: con una skin repintada las ventanas vienen pintadas)
-	GameState.set_setting("skin", PaintedZone.CLASSIC)
+	# --- Ventanas prendidas (parte C) ---
 	r["Hay ventanas detectadas (%d metatiles con vidrio)" % ZoneLights.windows().size()] = ZoneLights.windows().size() > 100
 	GameState.set_setting("time_lock", 23.0)
 	await _start("pueblo_paleta", Vector2i(20, 22))

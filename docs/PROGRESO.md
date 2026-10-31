@@ -5,7 +5,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-10-30)
+## 📍 Dónde estamos (actualizado 2026-10-31)
+- **Rama hd2d vuelta atrás (2026-10-31, pedido del usuario)**: se probó repintar cada zona entera con Qwen-Image 2.1
+  (primero HD y después pixel art, las 37 zonas exteriores de día y de noche, cosiendo trozos de 40×36 celdas). Al
+  usuario no le cerró: costuras visibles y colores sin coherencia entre trozos. La rama volvió al estado de 21affe49
+  (antes del repintado) y **se cambia de enfoque**. Todo ese trabajo (tools/repaint_zone.py, PaintedZone, shader, skins,
+  lecciones en docs/QWEN_PROMPTS.md) quedó en la etiqueta `repintado-zonas-entero` (48b20b09).
 - **Comando `ir` (2026-10-30)**: en la consola de GM (Ctrl+Shift+G), `ir <zona> [x,y]` te lleva a cualquier zona.
   También: el borde oeste de Ciudad Celeste empalma con la Ruta 4 (`MOVE_BANDS`). Test `--autotest-gm`.
 - **Torneo más difícil (2026-10-30, pedido del usuario)**: los rivales generados salen de toda Kanto y hay 3 visitantes de
@@ -31,15 +36,6 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
-- **Skin pixel art (rama hd2d, 2026-10-30)**: estilo "indie rico" elegido por el usuario; **Pueblo Paleta, Ruta 1,
-  Ciudad Verde, Ruta 22, Ruta 2, Ciudad Plateada, Ruta 3, Ruta 4, Ciudad Celeste, Ruta 24, Ruta 25, Ruta 5, Ruta 6, Ciudad Carmín, Ruta 11, Ruta 9, Ruta 10, Pueblo Lavanda, Ruta 8, Ruta 7, Ciudad Azulona, Ciudad Azafrán, Rutas 12 a 23, Ciudad Fucsia, Isla Canela y Meseta Añil (las 37 zonas exteriores de Kanto)** pintadas de día y de noche (`repaint_zone.py --skin pixel [--night]`, revisando cada trozo; prompts por
-  tipo de trozo en `docs/QWEN_PROMPTS.md`). En el juego la pintura se ve tal cual (post-procesado neutro, noche en lineal),
-  las ventanas se prenden solas al atardecer, la noche entra de 19 a 21, rocío y agua plateada de noche; perillas en
-  `skin.json`. Es la skin por defecto de partida nueva en esta rama. Detalle en `docs/PLAN_TERRENO_PROPIO.md`.
-- **Skins del mundo: Pueblo Paleta repintado con IA (2026-10-30)**: `tools/repaint_zone.py` repinta una zona entera con
-  Qwen-Image 2.1 desde maquetas limpias (en trozos, cosidos con un corte de mínimo error) y `PaintedZone` la dibuja en
-  lugar de los tiles; Ajustes del juego → "Skin del mundo" (Clásico / HD). Pueblo Paleta hecho; luces y sombras siguen
-  siendo de Godot. Test `--autotest-repaint`.
 - **Terreno propio con IA (2026-10-30, plan `docs/PLAN_TERRENO_PROPIO.md`)**: se probó con **Qwen-Image 2.1** armar
   zonas con piezas sueltas (zona de pruebas + `StyleOverlay`, después Pueblo Paleta y la Ruta 1) y **se volvió atrás a
   pedido del usuario**: cada pieza salía con otra densidad y estilo. Quedaron lo global (luz por hora más dramática:

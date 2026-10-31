@@ -73,8 +73,6 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: todo lo aprendido, en plena pelea, al subir de nivel
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
-$G --headless --path . --quit-after 60000 -- --autotest-repaint  # skins del mundo (Pueblo Paleta repintado, clásica, techos, colisión)
-$G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-repaint  # Pueblo Paleta HD a varias horas
 $G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos, volar sin descubrir zonas e ir <zona>
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-online-building  # afuera y adentro
 $G --headless --path . -- --server --port 24680                    # servidor online (sala); corre hasta cerrarlo
@@ -364,11 +362,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   servidor; EXP vía CombatDirector). **O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
   servidor `match_started`, que escuchará la pelea de la O-3; servidor del juego fijo en `Net.OFFICIAL_SERVER`). **O-1**: Centro de Combate Online en
   Ciudad Verde (`OnlineDesk` = `world.online`, acción `online` de la recepcionista).
-- **Skins del mundo / terreno repintado con IA** (`docs/PLAN_TERRENO_PROPIO.md`): `PaintedZone` dibuja
-  `art/skins/<skin>/<zona>.png` en lugar de las capas de tiles (techos y copas recortados por las celdas de `Overhead`);
-  ajuste de partida `skin` ("clasico" = FireRed, por defecto "hd"). Las imágenes las hace `tools/repaint_zone.py` (maquetas
-  `--overview --overview-rect --clean` + Qwen-Image 2.1 en ComfyUI + costura de mínimo error). La lógica no cambia (todo
-  sale de las celdas). Antes se probó armar zonas con piezas sueltas y se volvió atrás (commits 4aebebbe..4f49b808).
+- **Terreno propio con IA** (`docs/PLAN_TERRENO_PROPIO.md`): se probó armar zonas con piezas sueltas hechas con Qwen
+  (zona de pruebas + `StyleOverlay`) y **se volvió atrás** (2026-10-30: texturas dispares entre piezas); el enfoque nuevo
+  es **repintar la zona entera** con Qwen. El código de la prueba quedó en los commits 4aebebbe..4f49b808.
 - **Edificios y zonas agregados** (`ExtraContent`): `data/world/extra/zones/*.tres` (ZoneEntry) y
   `data/world/extra/buildings/*.tres` (`ExtraBuilding`). Así se suma algo al mapa **sin tocar las zonas importadas ni
   kanto.tres** (las maneja otro agente): DB los mete en la región, World pone sprite + colisión + celdas sólidas (meta
@@ -518,7 +514,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   el diff): los ataques oficiales automáticos toman la forma de su versión de kit del mismo
   nombre (y los de mejora propia sin kit, un efecto genérico). **Correrlo después de `apply_official_data.gd --
   --regen-auto`** (si no, vuelven a la forma inventada). `SignatureData.params.element_marks` = sinergia por tipo.
-- **IA local (ComfyUI, fuera del repo)**: `docs/COMFYUI.md`; qué prompts funcionan y cuáles no: `docs/QWEN_PROMPTS.md`. `tools/comfy/build_workflows.py` arma los workflows de
+- **IA local (ComfyUI, fuera del repo)**: `docs/COMFYUI.md`. `tools/comfy/build_workflows.py` arma los workflows de
   efectos (`efecto_1_cuadro_clave` con Qwen-Image + LoRA de pixel art, `efecto_2_animar` con Wan 2.2) y
   `tools/fx_from_frames.py` (necesita Pillow) pasa los cuadros a una hoja de `sprites/fx/` (`--clean-key` limpia el
   cuadro clave antes de animar).

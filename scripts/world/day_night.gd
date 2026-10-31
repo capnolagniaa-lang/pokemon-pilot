@@ -56,9 +56,6 @@ const CAVE_CLEAR := Color(0.02, 0.02, 0.04)
 const NIGHT_LUMA := 0.40
 const DAY_LUMA := 0.98
 
-## Viñeta máxima sobre una zona pintada (la de noche, 0,58, oscurecía mucho las esquinas de la pintura).
-const PAINTED_VIGNETTE := 0.3
-
 ## 0 = pleno día, 1 = noche cerrada (0 en interiores y arenas).
 var darkness := 0.0
 ## Hay sombras largas (afuera, fuera de las arenas): ZoneShadows y SunShadow.
@@ -176,23 +173,9 @@ func apply() -> void:
 		m.set_shader_parameter("rays", lk[8])
 		m.set_shader_parameter("shadow_tint", lk[10])
 		m.set_shader_parameter("mist", lk[11])
-		if _current_painted():
-			# La pintura ya trae su luz (y la de noche, sus ventanas): sin gradación de pantalla encima, que la dejaba
-			# azul y con las luces lavadas (pedido del usuario 2026-10-30: "la imagen pintada por sí sola se ve mucho
-			# mejor"). El color de la hora le llega igual por el Daylight a la pintura de día.
-			m.set_shader_parameter("tint", Vector3.ONE)
-			m.set_shader_parameter("saturation", 1.0)
-			m.set_shader_parameter("contrast", 1.0)
-			m.set_shader_parameter("shadow_tint", Vector3.ONE)
-			m.set_shader_parameter("vignette", minf(lk[5], PAINTED_VIGNETTE))
-			m.set_shader_parameter("rays", 0.0)
-			# Ni brillo de sol/luna ni niebla: sobre la pintura eran una bruma gris que la lavaba (sobre todo de noche).
-			m.set_shader_parameter("sun_strength", 0.0)
-			m.set_shader_parameter("mist", 0.0)
 	var clouds := _world.get_node_or_null("CloudShadows") as CanvasItem
 	if clouds and clouds.material is ShaderMaterial:
-		# Con skin, sin sombras de nubes: el multiplicado sobre la capa pintada la oscurecía y saturaba toda.
-		(clouds.material as ShaderMaterial).set_shader_parameter("amount", 0.0 if _current_painted() else lk[9])
+		(clouds.material as ShaderMaterial).set_shader_parameter("amount", lk[9])
 	var luma: float = lk[1].get_luminance()
 	darkness = clampf((DAY_LUMA - luma) / (DAY_LUMA - NIGHT_LUMA), 0.0, 1.0)  # en las cuevas, 1
 	shadow_direction = sun[1]
@@ -204,14 +187,6 @@ func apply() -> void:
 		phase = now
 		_last_emit = h
 		Events.time_changed.emit(h, now)
-
-
-## ¿La zona donde está el entrenador se dibuja con una skin?
-func _current_painted() -> bool:
-	var st = _world.get("streamer")
-	if st == null or st.current == null:
-		return false
-	return PaintedZone.covers(st.loaded.get(st.current.id))
 
 
 ## Luz chica y fría alrededor del entrenador en las cuevas (si no, no se ve el camino entre antorcha y antorcha).

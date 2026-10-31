@@ -1,4 +1,0 @@
-{
- "name": "HD (repintado con IA)",
- "description": "Zonas repintadas con Qwen-Image 2.1 desde los mapas de FireRed (tools/repaint_zone.py --skin hd)."
-}

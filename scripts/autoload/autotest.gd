@@ -138,13 +138,6 @@ func _ready() -> void:
 		add_child(vx)
 		(vx.showcase if "--showcase-vfx" in OS.get_cmdline_user_args() else vx.run).call_deferred()
 		return
-	if "--autotest-repaint" in OS.get_cmdline_user_args() or "--showcase-repaint" in OS.get_cmdline_user_args():
-		set_process(false)
-		var rpt := RepaintTests.new()
-		rpt.autotest = self
-		add_child(rpt)
-		(rpt.showcase if "--showcase-repaint" in OS.get_cmdline_user_args() else rpt.run).call_deferred()
-		return
 	if "--autotest-anims" in OS.get_cmdline_user_args() or "--showcase-sleep" in OS.get_cmdline_user_args():
 		set_process(false)
 		var an := AnimTests.new()
@@ -451,27 +444,22 @@ func _start() -> void:
 ## Vista de toda la región de una vez (godot --path . --write-movie mapa.png -- --overview).
 func _overview() -> void:
 	GameState.new_game(DB.config.starters[1])
-	if "--clean" in OS.get_cmdline_user_args():
-		GameState.set_setting("skin", PaintedZone.CLASSIC)  # la maqueta para repintar sale siempre de los tiles originales
-		GameState.wilds_enabled = false  # (el cartel "Dormido" de un salvaje quedaba en la maqueta y Qwen lo pintaba)
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
 	var world := get_tree().current_scene
 	var data := DB.config.world
 	var bounds := Rect2()
-	# `--overview-rect x,y,ancho,alto` (en celdas del mundo): solo ese pedazo, de cerca (y solo carga lo de alrededor).
+	for z in data.zones:
+		var r := z.world_rect(data.tile_size)
+		bounds = r if bounds.size == Vector2.ZERO else bounds.merge(r)
+		world.streamer.load_around_now(r.get_center())
+	# `--overview-rect x,y,ancho,alto` (en celdas del mundo): solo ese pedazo, de cerca.
 	var args := OS.get_cmdline_user_args()
 	var at := args.find("--overview-rect")
 	if at >= 0 and at + 1 < args.size():
 		var p := args[at + 1].split(",")
 		bounds = Rect2(Vector2(int(p[0]), int(p[1])), Vector2(int(p[2]), int(p[3]))) * Transform2D.IDENTITY.scaled(Vector2.ONE * data.tile_size)
-		world.streamer.load_around_now(bounds.get_center())
-	else:
-		for z in data.zones:
-			var r := z.world_rect(data.tile_size)
-			bounds = r if bounds.size == Vector2.ZERO else bounds.merge(r)
-			world.streamer.load_around_now(r.get_center())
 	world.streamer.target = null
 	world.get_node("PostProcess").visible = false
 	world.get_node("CloudShadows").visible = false
@@ -481,98 +469,9 @@ func _overview() -> void:
 	var view := get_viewport().get_visible_rect().size
 	var z := minf(view.x / bounds.size.x, view.y / bounds.size.y)
 	cam.zoom = Vector2(z, z)
-	# `--clean`: maqueta limpia para repintar con IA (docs/PLAN_TERRENO_PROPIO.md): sin personajes, sombras, luces,
-	# partículas ni hora (luz pareja); solo las capas de tiles de las zonas.
-	if "--clean" in args:
-		GameState.set_setting("time_lock", 12.0)
-		world.day_night.set_process(false)
-		world.get_node("Daylight").color = Color.WHITE
-		for path in ["YSort/Entities", "AmbientFX", "UI"]:
-			world.get_node(path).visible = false
-		for zn in world.streamer.loaded.values():
-			for c in zn.get_children():
-				# Objects = árboles de Corte, rocas de Fuerza... (interactivos: van como sprites encima de la pintura);
-				# Extra_* = edificios agregados (Centros Online, globos), que ya tienen su sprite propio.
-				if c.name in ["SunShadows", "NightLights", "StreetLamps", "CaveLights", "TreeShadows", "Objects"] 						or str(c.name).begins_with("Extra_"):
-					c.visible = false
-					c.set_process(false)
 	for i in 10:
-		cam.zoom = Vector2(z, z)
 		await get_tree().process_frame
-		if "--clean" in args:  # ningún texto flotante (estados, nombres): Qwen los copia como letras
-			for n in world.find_children("*", "Label", true, false) + world.find_children("*", "RichTextLabel", true, false):
-				(n as CanvasItem).visible = false
-	# `--cells-out <archivo>`: qué hay en las celdas del pedazo (tools/repaint_zone.py decide si es puro bosque).
-	var co := args.find("--cells-out")
-	if co >= 0 and co + 1 < args.size() and at >= 0:
-		var p := args[at + 1].split(",")
-		var counts := {"arbol": 0, "pasto": 0, "otro": 0, "edificio": 0, "agua": 0, "pasto_alto": 0, "camino": 0,
-			"saliente": 0, "flores": 0, "cerca": 0, "roca": 0}
-		var roles := ZoneBuilder.load_roles()
-		for y in range(int(p[1]), int(p[1]) + int(p[3])):
-			for x in range(int(p[0]), int(p[0]) + int(p[2])):
-				var k := _cell_kind(world, Vector2i(x, y), roles)
-				counts[k[0]] += 1
-				if k[1] != "":
-					counts[k[1]] += 1
-		var f := FileAccess.open(args[co + 1], FileAccess.WRITE)
-		f.store_string(JSON.stringify(counts))
-		f.close()
-	print("[overview] listo en el cuadro ", Engine.get_frames_drawn())
 	get_tree().quit()
-
-
-var _cat: TileCatalog
-
-
-func _catalog() -> TileCatalog:
-	if _cat == null:
-		_cat = load("res://data/world/tile_catalog.tres")
-	return _cat
-
-
-## Para el repintado: [clase, detalle]. Clase "arbol", "pasto" (liso, sin nada encima) u "otro"; detalle (para describir
-## el pedazo en el prompt): "edificio", "agua", "pasto_alto", "camino", "saliente", "flores", "cerca" o "".
-func _cell_kind(world: Node, cell: Vector2i, roles: TileRoleSet) -> Array:
-	var pos := Vector2(cell * 16) + Vector2(8, 8)
-	for z in world.streamer.loaded.values():
-		var zn := z as Zone
-		var c := zn.cell_at(pos)
-		var src := zn.ground.get_cell_source_id(c)
-		if src < 0:
-			continue
-		if "arbol" in zn.get_tags(c):
-			return ["arbol", ""]
-		if zn.water.get_cell_source_id(c) >= 0:
-			return ["otro", "agua"]
-		var fsrc := zn.foliage.get_cell_source_id(c)
-		if fsrc >= 0:
-			var fr := roles.role_of(ZoneBuilder.metatile_of(fsrc, zn.foliage.get_cell_atlas_coords(c)))
-			return ["otro", "pasto_alto" if fr != null and fr.id == "tall_grass" else "flores"]
-		var m := ZoneBuilder.metatile_of(src, zn.ground.get_cell_atlas_coords(c))
-		var role := roles.role_of(m)
-		if role != null:
-			if role.id in ["grass", "meadow"]:
-				return ["pasto", ""]
-			return ["otro", {"dirt": "camino", "sand": "camino", "water": "agua", "flowers": "flores",
-				"tall_grass": "pasto_alto"}.get(role.id, "")]
-		var cat := str(_catalog().categories.get(m, _catalog().categories.get(str(m), "")))
-		if cat in ["suelos", "otros_suelo", "otros_terreno"]:
-			return ["pasto", ""]
-		if cat.contains("edificio") or cat.contains("puerta"):
-			return ["otro", "edificio"]
-		if cat.contains("saliente"):
-			return ["otro", "saliente"]
-		if cat.contains("roca") or cat.contains("pared") or cat.contains("acantilado"):
-			return ["otro", "roca"]
-		if cat.contains("cerca"):
-			return ["otro", "cerca"]
-		if cat.contains("camino") or cat.contains("arena"):
-			return ["otro", "camino"]
-		if cat.contains("agua"):
-			return ["otro", "agua"]
-		return ["otro", ""]
-	return ["otro", ""]
 
 
 func _build_waypoints() -> void:

@@ -94,8 +94,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var dn: DayNight = _world.get("day_night") if _world != null else null
-	# Zona con skin (PaintedZone): la luz y las sombras ya vienen pintadas.
-	visible = dn != null and dn.casts_shadows and dn.shadow_alpha > 0.0 and not PaintedZone.covers(get_parent())
+	visible = dn != null and dn.casts_shadows and dn.shadow_alpha > 0.0
 	if not visible:
 		return
 	var m := material as ShaderMaterial
