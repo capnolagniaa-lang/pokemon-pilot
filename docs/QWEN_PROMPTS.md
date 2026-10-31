@@ -65,6 +65,8 @@ dense hand-placed pixel detail, rich color ramps, careful dithering...`). Lo apr
 | Rutas 3 y 4: crestas finas y bordes de roca salen como **techos de tejas / invernaderos** con cualquier leyenda, semilla, maqueta en gris o negativo (modelo normal, cfg 3) | Arreglo en la imagen, no en el prompt: `fix_rock_roofs` al coser (donde la maqueta es roca, el naranja de teja —verde < 62 % del rojo— pasa a color de roca con la misma luz) |
 | Ruta 4: el pasto verde claro sin agua salía como agua turquesa | `NO_WATER` en trozos sin celdas de agua |
 | Ciudad Celeste: la plaza de arena amarilla salía mitad arena, mitad pasto (cuenta como pasto liso y `PLAIN_GRASS` la volvía césped) | `SAND_LEGEND` si >5 % de la maqueta es amarillo pálido |
+| Ruta 24: el río (celdas de agua) salía como pasto alto: KEEP_WILD no nombra el agua | `WATER_LEGEND` en todo trozo con agua |
+| **Noche de campo abierto** (Rutas 24 y 25): con cualquier prompt o semilla inventaba árboles y matas en los campos o dejaba trozos casi de día | **Trozos sin ventanas: la noche sale de la pintura de día por código** (`night_grade`: rojo ×0,30, verde ×0,43, azul a un piso; calibrado con las noches buenas de Qwen). Mismas formas exactas. En los trozos con ventanas, la base también sale por código y de la noche de Qwen se toman solo las luces amarillas (`night_compose`; la de Qwen queda en `qnoche_<i>.png`): toda la zona con la misma noche (si no, los trozos de Qwen quedaban más claros y turquesa) |
 | Subir a ComfyUI con nombre `rep_maqueta_6.png`: una tanda de otra zona pisaba la imagen antes de que corriera el trabajo encolado | El nombre lleva skin y zona |
 
 ## Noche (lo que funciona, 2026-10-30)

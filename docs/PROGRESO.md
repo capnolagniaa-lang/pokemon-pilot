@@ -32,7 +32,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
 - **Skin pixel art (rama hd2d, 2026-10-30)**: estilo "indie rico" elegido por el usuario; **Pueblo Paleta, Ruta 1,
-  Ciudad Verde, Ruta 22, Ruta 2, Ciudad Plateada, Ruta 3, Ruta 4 y Ciudad Celeste** pintadas de día y de noche (`repaint_zone.py --skin pixel [--night]`, revisando cada trozo; prompts por
+  Ciudad Verde, Ruta 22, Ruta 2, Ciudad Plateada, Ruta 3, Ruta 4, Ciudad Celeste, Ruta 24, Ruta 25 y Ruta 5** pintadas de día y de noche (`repaint_zone.py --skin pixel [--night]`, revisando cada trozo; prompts por
   tipo de trozo en `docs/QWEN_PROMPTS.md`). En el juego la pintura se ve tal cual (post-procesado neutro, noche en lineal),
   las ventanas se prenden solas al atardecer, la noche entra de 19 a 21, rocío y agua plateada de noche; perillas en
   `skin.json`. Es la skin por defecto de partida nueva en esta rama. Detalle en `docs/PLAN_TERRENO_PROPIO.md`.

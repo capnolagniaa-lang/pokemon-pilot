@@ -114,7 +114,8 @@ DUSK_FOREST = ("It is sunset: the sun is low in the west and the light is warm a
 ## alto (Ruta 22).
 NIGHT_WILD = ("It is night: a calm moonlit night over the countryside. Soft cool blue moonlight from above on the grass, "
               "the patches of tall grass, the paths and the trees, everything in deep but readable shade and every shape "
-              "the same as by day: tall grass stays tall grass. No lights at all: no windows, no lamps, no houses, no "
+              "the same as by day: tall grass stays tall grass, and large open lawns stay empty, flat and as dark as the "
+              "rest (no trees, bushes or tall grass added on them). No lights at all: no windows, no lamps, no houses, no "
               "fireflies, no stars, no fog, no sparkles, nothing added. Dirt paths and sand are in the same dim cool blue "
               "moonlight, darker and greyer than by day, never bright beige.")
 
@@ -330,6 +331,11 @@ def main():
         jobs = []
         for i in todo:
             maq = os.path.join(work, "maqueta_%d.png" % i)
+            day_paint = os.path.join(work, "pintado_%d.png" % i)
+            if a.night and not lit(cells_info(maq)) and os.path.exists(day_paint):
+                night_grade(Image.open(day_paint)).save(os.path.join(work, "noche_%d.png" % i))
+                print("  trozo %d de noche desde el de día (sin ventanas)" % i, flush=True)
+                continue
             p = finish(day_prompt(maq, a.style, i in forest), a.skin, maq)
             if a.night:
                 p = p.replace("Neutral soft daylight from above, no strong cast shadows, no fog, no vignette.", "")
@@ -342,7 +348,12 @@ def main():
             jobs.append((i, queue(upload(maq), p, a.seed, a.size, "repintado/%s_%s_%d" % (a.zone, tag, i), turbo=not a.quality)))
             print("  trozo %d encolado" % i, flush=True)
         for i, pid in jobs:
-            shutil.copy(wait_output(pid), os.path.join(work, "%s_%d.png" % (tag, i)))
+            out = os.path.join(work, "%s_%d.png" % (tag, i))
+            shutil.copy(wait_output(pid), out)
+            day_paint = os.path.join(work, "pintado_%d.png" % i)
+            if a.night and os.path.exists(day_paint):
+                shutil.copy(out, os.path.join(work, "qnoche_%d.png" % i))  # la de Qwen tal cual, por si se recompone
+                night_compose(Image.open(day_paint), Image.open(out)).save(out)
             print("  trozo %d listo" % i, flush=True)
     name = a.zone + ("@noche" if a.night else ("@atardecer" if a.dusk else ""))
     stitch(root, a.skin, name, g, [os.path.join(work, "%s_%d.png" % (tag, i)) for i in range(len(g.rects))],
@@ -416,6 +427,11 @@ SAND_LEGEND = ("The large pale yellow areas are open ground of warm light packed
                "paint all of them as sand with small pebbles, never as grass.")
 
 
+## Trozo con agua: en las rutas (KEEP_WILD no la nombra) el río salía como pasto alto (Ruta 24).
+WATER_LEGEND = ("The blue areas are water (a river, a stream or a pond): keep every blue area as clear water with exactly "
+                "the same shape and size, with gentle ripples and natural banks; never turn water into grass or ground.")
+
+
 ## Plazas y calles de ciudad (gris casi blanco en FireRed): con PLAIN_GRASS salían como pasto claro.
 PAVED_LEGEND = ("The very light grey, almost white areas are the paved town square and streets, not grass: paint them as "
                 "a light warm packed-earth and sandy stone plaza with subtle paving stones, clearly different from the lawn.")
@@ -460,6 +476,8 @@ def legends(c, maq_path=None):
         out.append(TREES_LEGEND)
     if c is not None and c.get("agua", 0) == 0:
         out.append(NO_WATER)
+    elif c is not None:
+        out.append(WATER_LEGEND)
     if sand_share(maq_path) > 0.05:
         out.append(SAND_LEGEND)
     if paved_share(maq_path) > 0.05:
@@ -504,6 +522,29 @@ class Grid:
         self.ys = chunks(zy, zh, height, overlap)
         self.zx, self.zy, self.zw, self.zh = zx, zy, zw, zh
         self.rects = [(x, y, self.cw, self.ch) for y in self.ys for x in self.xs]
+
+
+def night_grade(day):
+    """Noche de un trozo sin ventanas, sacada de su pintura de día por código: las mismas formas exactas (Qwen, de noche,
+    inventaba árboles en los campos abiertos o los dejaba casi de día: Rutas 24 y 25). Calibrado con las noches de Qwen
+    que salieron bien (Ruta 1, Ruta 22, Ciudad Verde): rojo ×0,30, verde ×0,43, azul a un piso de luz de luna."""
+    r, g, b = day.convert("RGB").split()
+    return Image.merge("RGB", (r.point(lambda v: int(v * 0.30)), g.point(lambda v: int(v * 0.43)),
+                               b.point(lambda v: int(v * 0.35 + 25))))
+
+
+def night_compose(day, qwen_night):
+    """Noche de un trozo con ventanas: la base sale de la pintura de día por código (`night_grade`, igual que los trozos
+    sin ventanas, así toda la zona tiene la misma noche) y de la noche de Qwen se toman solo las luces cálidas (ventanas
+    prendidas y su charco de luz en el piso)."""
+    base = night_grade(day)
+    q = qwen_night.convert("RGB").resize(base.size, Image.LANCZOS)
+    r, g, b = q.split()
+    over = lambda im, t: im.point(lambda v: 255 if v > t else 0)
+    # Solo luz: amarillo brillante (la arena y la tierra de la noche de Qwen son marrones, más oscuras).
+    warm = ImageChops.multiply(ImageChops.multiply(over(ImageChops.subtract(r, b), 60), over(r, 140)), over(g, 100))
+    warm = warm.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(4))
+    return Image.composite(q, base, warm)
 
 
 def darken_night_paths(out_dir, zone):
