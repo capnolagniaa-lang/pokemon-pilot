@@ -6,6 +6,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-31)
+- **Atardecer nuevo (2026-10-31, rama hd2d)**: como la referencia de Qwen Edit que eligió el usuario: luz cálida sin
+  filtro naranja, sombras largas azules y nítidas, resplandor del sol en el borde y lo lejano frío; crepúsculo violeta a
+  las 19.4. Ver `docs/PLAN_DIA_NOCHE.md` (E). Arreglada otra vez la niebla en bloques (se había ido con la vuelta atrás).
 - **Rama hd2d vuelta atrás (2026-10-31, pedido del usuario)**: se probó repintar cada zona entera con Qwen-Image 2.1
   (primero HD y después pixel art, las 37 zonas exteriores de día y de noche, cosiendo trozos de 40×36 celdas). Al
   usuario no le cerró: costuras visibles y colores sin coherencia entre trozos. La rama volvió al estado de 21affe49

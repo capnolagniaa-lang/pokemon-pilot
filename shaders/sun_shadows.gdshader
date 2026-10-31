@@ -10,6 +10,8 @@ uniform vec2 dir = vec2(0.6, 0.8);             // hacia dónde caen las sombras
 uniform float len_px = 18.0;                   // largo de la sombra de algo de altura 1
 uniform float alpha = 0.6;
 uniform vec3 shadow_color = vec3(0.16, 0.13, 0.32);
+// 0 = se desvanece desde la mitad (sombra difusa); 1 = fuerte hasta la punta (atardecer).
+uniform float crisp = 0.0;
 
 const int STEPS = 30;
 
@@ -27,7 +29,7 @@ void fragment() {
 			vec4 m = texture(mask, q);
 			float reach = m.r * len_px;
 			// Más fuerte cerca de lo que la proyecta, se desvanece hacia la punta.
-			float k = m.g * (1.0 - smoothstep(reach * 0.55, reach + 1.0, t));
+			float k = m.g * (1.0 - smoothstep(reach * mix(0.55, 0.88, crisp), reach + 1.0, t));
 			s = max(s, k);
 		}
 	}

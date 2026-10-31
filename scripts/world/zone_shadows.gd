@@ -102,3 +102,4 @@ func _process(_delta: float) -> void:
 	m.set_shader_parameter("len_px", BASE_LENGTH * dn.shadow_length)
 	m.set_shader_parameter("alpha", dn.shadow_alpha)
 	m.set_shader_parameter("shadow_color", Vector3(dn.shadow_color.r, dn.shadow_color.g, dn.shadow_color.b))
+	m.set_shader_parameter("crisp", dn.dusk)

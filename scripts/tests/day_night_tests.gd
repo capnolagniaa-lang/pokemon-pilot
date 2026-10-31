@@ -178,9 +178,18 @@ func run() -> void:
 
 
 ## Vitrina: cada zona a cada hora, SHOW_FRAMES cuadros (imprime qué cuadros son cada una).
+## `-- --hours 16.5,19` = otras horas; `--zones pueblo_paleta,ciudad_verde` = solo esas zonas.
 func showcase() -> void:
 	GameState.new_game(DB.species["charmander"])
-	for z in SHOW_ZONES:
+	var args := OS.get_cmdline_user_args()
+	var hours: Array = SHOW_HOURS
+	var zones: Array = SHOW_ZONES
+	if "--hours" in args:
+		hours = Array(args[args.find("--hours") + 1].split(",")).map(func(v): return float(v))
+	if "--zones" in args:
+		var want: PackedStringArray = args[args.find("--zones") + 1].split(",")
+		zones = SHOW_ZONES.filter(func(z): return z[0] in want)
+	for z in zones:
 		await _start(z[0], z[1])
 		world.get_node("UI").visible = false
 		# Si la zona tiene ventanas, la cámara va frente a las casas.
@@ -192,7 +201,7 @@ func showcase() -> void:
 			if world.companion != null:
 				world.companion.global_position = world.trainer.global_position + Vector2(24, 0)
 			await get_tree().create_timer(0.3).timeout
-		for h in SHOW_HOURS:
+		for h in hours:
 			GameState.set_setting("time_lock", h)
 			var first := Engine.get_frames_drawn()
 			for i in SHOW_FRAMES:

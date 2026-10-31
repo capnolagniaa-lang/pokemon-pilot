@@ -88,6 +88,17 @@ de Quemado y del fuego en el pasto también crecen de noche. Solo visual. Test `
 - Sonido: si se quieren variantes de noche, se suma "zonas_noche" a `data/audio/musica.json` y `Sound` escucha
   `Events.time_changed` (lo hace D).
 
+### E) Atardecer como la referencia de Qwen — ✅ 2026-10-31 (rama hd2d)
+Se pidieron a Qwen Edit 2511 referencias reiluminando capturas del juego (mediodía, atardecer, noche, amanecer). El
+usuario eligió solo la del **atardecer**; el resto queda como estaba. Antes era un filtro naranja parejo; ahora:
+- luz cálida color durazno (fila 18.5 de `KEYS`, valores fuertes porque con HDR 2D el Daylight y el tinte pesan en
+  lineal) y un crepúsculo violeta a las 19.4 (antes, a las 19:12 quedaba un gris lechoso);
+- el resplandor del sol arrimado al borde izquierdo y sin rayos (`DUSK_SUN_REACH`; el sol real ya está fuera de cuadro);
+- lo lejano al sol más frío (`DUSK_FAR`, uniform `far_tint` del post-procesado);
+- sombras largas **azul intenso y nítidas** (`DUSK_SHADOW`, `DUSK_SHADOW_ALPHA`, uniform `crisp` de `sun_shadows`).
+Todo pesa con `DayNight.dusk_weight(h)` (16-20 h; a la mañana, 0). Vitrina: `--showcase-daynight -- --hours 17.5,18.5
+--zones pueblo_paleta` (horas y zonas a elección).
+
 ## Orden propuesto
 1. **A** (hora + color + post-procesado) → ya se ve el día, el atardecer y la noche.
 2. **B** (sombras con forma) → lo que más acerca el juego a las referencias.

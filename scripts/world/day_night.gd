@@ -16,7 +16,9 @@ const PHASES := [[5.0, "amanecer"], [7.0, "dia"], [17.5, "atardecer"], [20.0, "n
 ## sombras no van acá: salen del arco de `sun_at` (se mueven cuadro a cuadro).
 ## [hora, color del Daylight, tinte, saturación, contraste, viñeta, color del sol, fuerza, rayos, nubes,
 ##  tinte de las sombras (gradación en dos tonos: lo oscuro), niebla]
-## Fuerza y rayos bajos (pedido del usuario 2026-10-30: "el sol encandila mucho"). De noche, más oscuro y la luna apenas
+## Fuerza y rayos bajos (pedido del usuario 2026-10-30: "el sol encandila mucho"). Atardecer (2026-10-31, como la
+## referencia de Qwen Edit que eligió el usuario): luz apagada y malva en vez de un filtro naranja, el resplandor cálido
+## del lado del sol, lo lejano frío (DUSK_FAR) y sombras largas azules y nítidas (DUSK_SHADOW). De noche, más oscuro y la luna apenas
 ## un brillo (2026-10-30: "después de las 20 se ve mucho": la luz de luna aclaraba toda la pantalla, quedaba lechoso).
 const KEYS := [
 	[0.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0, Vector3(0.90, 0.95, 1.10), 0.15],
@@ -26,12 +28,19 @@ const KEYS := [
 	[10.0, Color(1.00, 0.98, 0.94), Vector3(1.03, 1.01, 0.95), 1.22, 1.06, 0.33, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0, Vector3(0.92, 0.96, 1.06), 0.06],
 	[12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.66), 0.15, 0.12, 1.0, Vector3(0.94, 0.96, 1.04), 0.0],
 	[15.0, Color(1.00, 0.97, 0.92), Vector3(1.04, 1.01, 0.93), 1.26, 1.06, 0.34, Color(1.0, 0.86, 0.60), 0.17, 0.14, 1.0, Vector3(0.95, 0.95, 1.03), 0.0],
-	[17.0, Color(1.00, 0.89, 0.74), Vector3(1.15, 0.97, 0.82), 1.28, 1.07, 0.38, Color(1.0, 0.72, 0.42), 0.28, 0.2, 0.8, Vector3(0.90, 0.84, 1.06), 0.05],
-	[18.5, Color(1.00, 0.80, 0.64), Vector3(1.22, 0.90, 0.74), 1.26, 1.09, 0.44, Color(1.0, 0.60, 0.32), 0.36, 0.26, 0.6, Vector3(0.86, 0.76, 1.10), 0.15],
+	[17.0, Color(1.00, 0.91, 0.80), Vector3(1.12, 0.98, 0.86), 1.12, 1.08, 0.38, Color(1.0, 0.74, 0.44), 0.36, 0.2, 0.7, Vector3(0.86, 0.84, 1.10), 0.0],
+	[18.5, Color(1.00, 0.72, 0.56), Vector3(1.24, 0.90, 0.76), 1.0, 1.10, 0.42, Color(1.0, 0.70, 0.30), 0.62, 0.0, 0.4, Vector3(0.78, 0.80, 1.16), 0.0],
+	[19.4, Color(0.78, 0.58, 0.62), Vector3(1.10, 0.90, 0.96), 0.95, 1.10, 0.48, Color(1.0, 0.56, 0.42), 0.30, 0.0, 0.2, Vector3(0.80, 0.78, 1.16), 0.0],
 	[20.0, Color(0.52, 0.48, 0.64), Vector3(0.99, 0.97, 1.03), 0.85, 1.10, 0.52, Color(0.90, 0.60, 0.68), 0.06, 0.0, 0.1, Vector3(0.85, 0.82, 1.10), 0.2],
 	[21.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0, Vector3(0.90, 0.95, 1.10), 0.15],
 	[24.0, Color(0.36, 0.40, 0.52), Vector3(0.97, 1.00, 1.03), 0.82, 1.12, 0.58, Color(0.85, 0.90, 1.0), 0.05, 0.0, 0.0, Vector3(0.90, 0.95, 1.10), 0.15],
 ]
+## Cuánto de atardecer hay a esa hora (las sombras azules y lo lejano frío; de mañana, 0: el amanecer queda como está).
+static func dusk_weight(h: float) -> float:
+	h = fposmod(h, 24.0)
+	return smoothstep(16.0, 18.0, h) * (1.0 - smoothstep(19.2, 20.0, h))
+
+
 ## El arco del sol (de día) y de la luna (de noche): sale por la derecha (este) a SUNRISE, pasa por arriba de la
 ## pantalla y se pone por la izquierda a SUNSET; la luna hace el mismo camino de SUNSET a SUNRISE. Las sombras caen
 ## para el lado contrario y su largo sale de la altura (mediodía cortas, amanecer y atardecer muy largas).
@@ -41,6 +50,14 @@ const SHADOW_MIN := 1.0      # largo al mediodía
 const SHADOW_MAX := 2.4      # largo con el sol casi en el horizonte (más largas parecían bloques)
 const SUN_SHADOW_ALPHA := 0.62
 const MOON_SHADOW_ALPHA := 0.25
+## Atardecer: sombras azul intenso, más fuertes y con la punta nítida; y lo que está lejos del sol, más frío (violeta).
+## Pesan según `dusk_weight`.
+const SHADOW_COLOR := Color(0.18, 0.17, 0.30)
+const DUSK_SHADOW := Color(0.06, 0.09, 0.48)
+const DUSK_SHADOW_ALPHA := 0.84
+const DUSK_FAR := Vector3(0.78, 0.82, 1.04)
+const SUN_REACH := 1.1
+const DUSK_SUN_REACH := 0.95
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
 const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.65), 0.0, 0.0, 0.0, Vector3(0.96, 0.97, 1.02), 0.0]
 ## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
@@ -61,11 +78,13 @@ var darkness := 0.0
 ## Hay sombras largas (afuera, fuera de las arenas): ZoneShadows y SunShadow.
 var casts_shadows := false
 ## Color de las sombras (azul violáceo, como en las referencias; el Daylight lo oscurece de noche).
-var shadow_color := Color(0.18, 0.17, 0.30)
+var shadow_color := SHADOW_COLOR
 ## Hacia dónde caen las sombras (unitario, en pantalla/mundo) y cuánto se estiran (1 = mediodía).
 var shadow_direction := Vector2(0.6, 0.8)
 var shadow_length := 1.0
 var shadow_alpha := 0.8
+## Cuánto de atardecer hay (0-1): sombras nítidas (ZoneShadows) y del color de DUSK_SHADOW.
+var dusk := 0.0
 ## Interior, cueva o arena: sin hora.
 var indoor := false
 ## Cueva (bioma "cueva"): oscura aunque sea de día.
@@ -146,6 +165,14 @@ static func sun_at(h: float) -> Array:
 	return [pos, dir, length, alpha]
 
 
+## Altura del sol (0 en el horizonte, 1 arriba; de noche, la de la luna).
+static func sun_height(h: float) -> float:
+	h = fposmod(h, 24.0)
+	var day := h >= SUNRISE and h < SUNSET
+	var t := (h - SUNRISE) / (SUNSET - SUNRISE) if day else fposmod(h - SUNSET, 24.0) / (24.0 - SUNSET + SUNRISE)
+	return sin(PI * t)
+
+
 ## Pinta el mundo según la hora (o la luz pareja) y avisa si corresponde.
 func apply() -> void:
 	var h := hour()
@@ -167,12 +194,16 @@ func apply() -> void:
 		m.set_shader_parameter("saturation", lk[3])
 		m.set_shader_parameter("contrast", lk[4])
 		m.set_shader_parameter("vignette", lk[5])
-		m.set_shader_parameter("sun_pos", sun[0])
+		# Al atardecer el resplandor se arrima al borde (el sol real ya está muy afuera y no se veía).
+		var dwg := dusk_weight(h) if casts_shadows and not cave else 0.0
+		m.set_shader_parameter("sun_pos", (sun[0] as Vector2).lerp(Vector2(-0.12, (sun[0] as Vector2).y), dwg))
 		m.set_shader_parameter("sun_color", Vector3(lk[6].r, lk[6].g, lk[6].b))
 		m.set_shader_parameter("sun_strength", lk[7])
 		m.set_shader_parameter("rays", lk[8])
 		m.set_shader_parameter("shadow_tint", lk[10])
 		m.set_shader_parameter("mist", lk[11])
+		m.set_shader_parameter("far_tint", Vector3.ONE.lerp(DUSK_FAR, dwg))
+		m.set_shader_parameter("sun_reach", lerpf(SUN_REACH, DUSK_SUN_REACH, dwg))  # el sol bajo entra más en la pantalla
 	var clouds := _world.get_node_or_null("CloudShadows") as CanvasItem
 	if clouds and clouds.material is ShaderMaterial:
 		(clouds.material as ShaderMaterial).set_shader_parameter("amount", lk[9])
@@ -181,6 +212,13 @@ func apply() -> void:
 	shadow_direction = sun[1]
 	shadow_length = sun[2]
 	shadow_alpha = sun[3]
+	dusk = dusk_weight(h) if casts_shadows else 0.0
+	if dusk > 0.0:
+		# Con el sol bajo la sombra de la tarde no se aclara (se ve larga, azul y fuerte); se va recién pegada al horizonte.
+		shadow_color = SHADOW_COLOR.lerp(DUSK_SHADOW, dusk)
+		shadow_alpha = lerpf(shadow_alpha, DUSK_SHADOW_ALPHA * smoothstep(0.0, 0.08, sun_height(h)), dusk)
+	else:
+		shadow_color = SHADOW_COLOR
 	var now := phase_of(h)
 	var stepped := absf(h - _last_emit) >= EMIT_STEP and absf(h - _last_emit) < 24.0 - EMIT_STEP
 	if now != phase or stepped or _last_emit < 0.0:

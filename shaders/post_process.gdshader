@@ -22,6 +22,8 @@ uniform vec3 sun_color = vec3(1.0, 0.9, 0.65);
 uniform float sun_strength = 0.0;
 uniform float sun_reach = 1.1;        // hasta dónde llega (en altos de pantalla)
 uniform float rays = 0.0;             // rayos de luz (0..1)
+// Tinte de lo que está lejos del sol (atardecer: violeta frío; 1 = nada): cerca del sol queda la luz cálida.
+uniform vec3 far_tint = vec3(1.0);
 
 // Hash con enteros (exacto): el de fract(sin(...) * 23758) daba distinto en las dos celdas de un mismo borde según
 // cómo lo compilara la placa, y la niebla salía en bloques rectangulares claros que se movían por la pantalla.
@@ -59,6 +61,11 @@ void fragment() {
 		float fog = smoothstep(0.35, 0.8, n) * mist * 0.45 * (0.6 + 0.4 * uv.y);
 		vec3 mist_color = mix(vec3(0.76, 0.85, 1.0), sun_color, 0.2);
 		c = mix(c, mist_color, fog);
+	}
+	if (far_tint != vec3(1.0)) {
+		vec2 asp = vec2(SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x, 1.0);
+		float near = 1.0 - smoothstep(0.3, 1.6, length((uv - sun_pos) * asp));
+		c *= mix(far_tint, vec3(1.0), near);
 	}
 	if (sun_strength > 0.0) {
 		vec2 aspect = vec2(SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x, 1.0);
