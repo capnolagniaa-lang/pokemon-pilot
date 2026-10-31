@@ -192,7 +192,8 @@ def upload(path):
 TURBO_SIGMAS = "1.0, 0.978453, 0.95418, 0.926626, 0.89508, 0.845148, 0.704534, 0.414568, 0"
 
 
-def queue(image_name, prompt, seed, size, prefix, turbo=False):
+def queue(image_name, prompt, seed, size, prefix, turbo=False, negative="", cfg=1.0):
+    """`negative` y `cfg` > 1: solo con el modelo normal (Turbo usa cfg 1, que ignora el negativo)."""
     api = {
         "1": {"class_type": "UNETLoader", "inputs": {"unet_name": "qwen_image_2.1_int8_convrot.safetensors", "weight_dtype": "default"}},
         "2": {"class_type": "CLIPLoader", "inputs": {"clip_name": "qwen3vl_8b_w4a8.safetensors", "type": "qwen_image", "device": "default"}},
@@ -200,9 +201,9 @@ def queue(image_name, prompt, seed, size, prefix, turbo=False):
         "4": {"class_type": "QwenImage21Cache", "inputs": {"model": ["1", 0], "device": "auto", "dtype": "default"}},
         "5": {"class_type": "LoadImage", "inputs": {"image": image_name}},
         "6": {"class_type": "TextEncodeQwenImage21", "inputs": {"clip": ["2", 0], "vae": ["3", 0], "prompt": prompt,
-              "negative_prompt": "", "resolution": size, "images.image_1": ["5", 0]}},
+              "negative_prompt": negative, "resolution": size, "images.image_1": ["5", 0]}},
         "7": {"class_type": "KSampler", "inputs": {"model": ["4", 0], "positive": ["6", 0], "negative": ["6", 1],
-              "latent_image": ["6", 2], "seed": seed, "steps": 25, "cfg": 1.0, "sampler_name": "euler", "scheduler": "simple", "denoise": 1.0}},
+              "latent_image": ["6", 2], "seed": seed, "steps": 25, "cfg": cfg, "sampler_name": "euler", "scheduler": "simple", "denoise": 1.0}},
         "7b": None,
         "8": {"class_type": "VAEDecode", "inputs": {"samples": ["7", 0], "vae": ["3", 0]}},
         "9": {"class_type": "SaveImage", "inputs": {"images": ["8", 0], "filename_prefix": prefix}},
@@ -389,7 +390,9 @@ ROCK_LEGEND = ("The pinkish-brown stepped areas are a raised natural rocky plate
                "greenhouses. The thin rows of small green tree tops lying on the rock are glitches, not trees: remove them "
                "and fill the top of the plateau with what fits a wild rocky highland: scattered boulders, dry grass "
                "tufts, a few small hardy shrubs and wildflowers growing in the cracks. The plateau top stays open rocky "
-               "ground: no forest, no rows of trees and no buildings on it.")
+               "ground: no forest, no rows of trees and no buildings on it. Long narrow strips of the same rock (one or "
+               "two cells wide, with rounded ends) are low natural rock ridges of piled stones and boulders, not "
+               "buildings, not greenhouses, not roofs.")
 
 
 ## Pasto alto en trozos con edificios (garitas, pueblos): sin esto salía como pasto liso (Ruta 2).
@@ -404,9 +407,27 @@ TREES_LEGEND = ("The large areas filled with a grid of identical small round tre
                 "a meadow, hedges or a flat green mass. Blocks of tall grass are not trees: they stay tall grass.")
 
 
+## Trozo sin agua: el pasto verde claro de FireRed salía como agua turquesa (Ruta 4).
+NO_WATER = "There is no water anywhere in this area: the light mint green areas are short grass, the pale yellow areas are sand."
+
+
+## Arena amarilla pálida (plazas y caminos de arena): sin esto, parte salía como pasto (Ciudad Celeste).
+SAND_LEGEND = ("The large pale yellow areas are open ground of warm light packed sand (town square and sandy paths): "
+               "paint all of them as sand with small pebbles, never as grass.")
+
+
 ## Plazas y calles de ciudad (gris casi blanco en FireRed): con PLAIN_GRASS salían como pasto claro.
 PAVED_LEGEND = ("The very light grey, almost white areas are the paved town square and streets, not grass: paint them as "
                 "a light warm packed-earth and sandy stone plaza with subtle paving stones, clearly different from the lawn.")
+
+
+def sand_share(maq_path):
+    """Parte de la maqueta que es arena amarilla pálida (plaza de Celeste, caminos de arena): esas celdas cuentan como
+    pasto y, con PLAIN_GRASS, la mitad de la plaza salía verde."""
+    if not maq_path or not os.path.exists(maq_path):
+        return 0.0
+    px = Image.open(maq_path).convert("RGB").resize((160, 144)).get_flattened_data()
+    return sum(1 for r, g, b in px if r > 205 and g > 195 and b < 175 and r - b > 55) / len(px)
 
 
 def paved_share(maq_path):
@@ -437,6 +458,10 @@ def legends(c, maq_path=None):
     # (La roca de meseta a veces tiene el tag "arbol": se descuenta.)
     if c is not None and c["arbol"] / max(1, c["arbol"] + c["pasto"] + c["otro"]) - rock_share(maq_path) > 0.3:
         out.append(TREES_LEGEND)
+    if c is not None and c.get("agua", 0) == 0:
+        out.append(NO_WATER)
+    if sand_share(maq_path) > 0.05:
+        out.append(SAND_LEGEND)
     if paved_share(maq_path) > 0.05:
         out.append(PAVED_LEGEND)
     return " ".join(out)
@@ -507,8 +532,38 @@ def darken_night_paths(out_dir, zone):
     print("  caminos de noche oscurecidos", flush=True)
 
 
+def rock_mask(maq, size):
+    """Máscara (L, del tamaño de la pintura) de lo que en la maqueta es roca de meseta (rosado-marrón)."""
+    m = Image.open(maq).convert("RGB")
+    r, g, b = m.split()
+    over = lambda im, t: im.point(lambda v: 255 if v > t else 0)
+    mask = ImageChops.multiply(ImageChops.multiply(over(r, 150), over(ImageChops.subtract(r, g), 15)),
+                               ImageChops.multiply(over(ImageChops.subtract(r, b), 34),
+                                                   ImageChops.invert(over(ImageChops.subtract(r, b), 70))))
+    return mask.filter(ImageFilter.MaxFilter(5)).resize(size, Image.BILINEAR)
+
+
+def fix_rock_roofs(paint, maq):
+    """Las crestas finas y los bordes de roca salen como techos de tejas naranjas con cualquier prompt, semilla o
+    negativo (Rutas 3 y 4): donde la maqueta es roca, el naranja de teja se pasa a color de roca (misma luz y
+    textura). Los techos de verdad no se tocan (los edificios no son roca en la maqueta)."""
+    if rock_share(maq) < 0.01:
+        return paint
+    mask = rock_mask(maq, paint.size)
+    r, g, b = paint.split()
+    over = lambda im, t: im.point(lambda v: 255 if v > t else 0)
+    # Teja: el verde por debajo del 62 % del rojo (de día y de noche); la tierra marrón anda por el 75-85 %.
+    orange = ImageChops.multiply(over(ImageChops.subtract(r, g.point(lambda v: min(255, int(v * 1.6)))), 0), over(r, 45))
+    orange = orange.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(1.5))
+    lum = paint.convert("L")
+    rock = Image.merge("RGB", (lum.point(lambda v: min(255, int(v * 1.02 + 10))), lum.point(lambda v: int(v * 0.88 + 6)),
+                               lum.point(lambda v: int(v * 0.74))))
+    return Image.composite(rock, paint, ImageChops.multiply(mask, orange))
+
+
 def stitch(root, skin, name, g, files, info):
-    paints = [Image.open(f).convert("RGB") for f in files]
+    maq_of = lambda f: os.path.join(os.path.dirname(f), "maqueta_" + os.path.basename(f).split("_", 1)[1])
+    paints = [fix_rock_roofs(Image.open(f).convert("RGB"), maq_of(f)) for f in files]
     ppc = paints[0].width / g.cw  # píxeles por celda (del primer trozo)
     W, H = round(g.cw * ppc), round(g.ch * ppc)
     paints = [p.resize((W, H), Image.LANCZOS) for p in paints]

@@ -62,6 +62,9 @@ dense hand-placed pixel detail, rich color ramps, careful dithering...`). Lo apr
 | Ruta 2: en trozos con garita, la grilla de copitas iguales salía como masa verde lisa o pradera; el pasto alto, como pasto liso | `TREES_LEGEND` (árboles > 30 % descontando la roca: "paint every tree crown individually... Blocks of tall grass are not trees") y `TALL_LEGEND` (pasto alto) en todo trozo que lo tenga |
 | De noche, un trozo abierto sin casas usaba el prompt de bosque ("moonlight on the tree crowns") y pintaba árboles sobre el pasto alto | `NIGHT_WILD` (campo de noche, "tall grass stays tall grass"); `NIGHT_FOREST` solo con los prompts de bosque |
 | Oscurecer de noche lo claro y sin color (para una franja de pasto claro que quedó gris lavanda) | Dejaba manchas oscuras sueltas: descartado (la franja clara se lee como sendero a la luz de la luna) |
+| Rutas 3 y 4: crestas finas y bordes de roca salen como **techos de tejas / invernaderos** con cualquier leyenda, semilla, maqueta en gris o negativo (modelo normal, cfg 3) | Arreglo en la imagen, no en el prompt: `fix_rock_roofs` al coser (donde la maqueta es roca, el naranja de teja —verde < 62 % del rojo— pasa a color de roca con la misma luz) |
+| Ruta 4: el pasto verde claro sin agua salía como agua turquesa | `NO_WATER` en trozos sin celdas de agua |
+| Ciudad Celeste: la plaza de arena amarilla salía mitad arena, mitad pasto (cuenta como pasto liso y `PLAIN_GRASS` la volvía césped) | `SAND_LEGEND` si >5 % de la maqueta es amarillo pálido |
 | Subir a ComfyUI con nombre `rep_maqueta_6.png`: una tanda de otra zona pisaba la imagen antes de que corriera el trabajo encolado | El nombre lleva skin y zona |
 
 ## Noche (lo que funciona, 2026-10-30)
