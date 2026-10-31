@@ -71,6 +71,9 @@ dense hand-placed pixel detail, rich color ramps, careful dithering...`). Lo apr
 | Ruta 6: palabritas escritas en el pasto alto | Venían de la maqueta: el cartel de estado ("Dormido") de un salvaje. `--clean` esconde todo `Label`/`RichTextLabel` del mundo |
 | **Pendiente** Pueblo Lavanda: árboles inventados sobre el pasto liso (con dos semillas y "the open lawn has no trees at all"); un filtro por oscuridad no los sacaba (borraba el detalle del pasto). Se ven como árboles que no chocan | Por resolver (sprites interactivos encima o retoque a mano) |
 | **Pendiente** Ruta 9: los bloques sueltos de roca salen como casitas de techo marrón/gris (el filtro de techos solo toma el naranja) | Son obstáculos sólidos igual; por resolver |
+| Ciudad Azafrán: la plaza de pavimento gris oscuro salía mitad pasto | `paved_share` con umbral más bajo (gris > 170: el de Azafrán es ~200, el de Ciudad Verde ~225) |
+| De noche, plazas de pavimento claro moteadas (la máscara de caminos tomaba baldosas sueltas) | `darken_night_paths` suma el pavimento claro y sin color (sin la roca rosada) entero |
+| Charcos de luz grandes y marrones (`night_compose` tomaba el piso de tierra iluminado como luz) | Solo lo bien brillante (rojo > 170, verde > 125) y menos agrandado |
 | Subir a ComfyUI con nombre `rep_maqueta_6.png`: una tanda de otra zona pisaba la imagen antes de que corriera el trabajo encolado | El nombre lleva skin y zona |
 
 ## Noche (lo que funciona, 2026-10-30)

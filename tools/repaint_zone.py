@@ -460,7 +460,7 @@ def paved_share(maq_path):
     if not maq_path or not os.path.exists(maq_path):
         return 0.0
     px = Image.open(maq_path).convert("RGB").resize((160, 144)).get_flattened_data()
-    return sum(1 for r, g, b in px if min(r, g, b) > 195 and max(r, g, b) - min(r, g, b) < 22) / len(px)
+    return sum(1 for r, g, b in px if min(r, g, b) > 170 and max(r, g, b) - min(r, g, b) < 24) / len(px)
 
 
 def rock_share(maq_path):
@@ -553,8 +553,8 @@ def night_compose(day, qwen_night):
     r, g, b = q.split()
     over = lambda im, t: im.point(lambda v: 255 if v > t else 0)
     # Solo luz: amarillo brillante (la arena y la tierra de la noche de Qwen son marrones, más oscuras).
-    warm = ImageChops.multiply(ImageChops.multiply(over(ImageChops.subtract(r, b), 60), over(r, 140)), over(g, 100))
-    warm = warm.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(4))
+    warm = ImageChops.multiply(ImageChops.multiply(over(ImageChops.subtract(r, b), 60), over(r, 170)), over(g, 125))
+    warm = warm.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(3))
     return Image.composite(q, base, warm)
 
 
@@ -576,7 +576,19 @@ def darken_night_paths(out_dir, zone):
                             ImageChops.multiply(over(ImageChops.subtract(r, b), 40), over(ImageChops.subtract(r, g), 0)))
     # Primero se borran las manchas chicas (piedritas y flores color tierra en el pasto: de noche quedaban puntitos
     # oscuros) y después se agranda para cubrir el filo del camino.
-    m = m.filter(ImageFilter.MinFilter(7)).filter(ImageFilter.MaxFilter(15)).filter(ImageFilter.GaussianBlur(2))
+    # El pavimento claro de las plazas (beige/gris, de día casi blanco) entra entero: si no, la máscara tomaba solo
+    # algunas baldosas y de noche quedaba moteado (Azafrán).
+    pave = ImageChops.multiply(over(ImageChops.darker(ImageChops.darker(r, g), b), 160),
+                               ImageChops.invert(over(ImageChops.subtract(r, b), 45)))
+    rock = over(ImageChops.subtract(r, g), 18)  # la roca de meseta es rosada (r bien por encima de g); el pavimento no
+    pave = ImageChops.multiply(pave, ImageChops.invert(rock))
+    m = ImageChops.lighter(m, pave)
+    m = m.filter(ImageFilter.MinFilter(7)).filter(ImageFilter.MaxFilter(15))
+    # Lo que la máscara toma a medias (baldosas sueltas de una plaza clara: Azafrán) se descarta: solo cuenta lo que,
+    # promediado en 6 celdas, es mayormente camino; si no, de noche quedaba moteado.
+    k = max(3, d.width // 60) | 1
+    m = ImageChops.multiply(m, m.filter(ImageFilter.BoxBlur(k)).point(lambda v: 255 if v > 110 else 0).filter(ImageFilter.MaxFilter(9)))
+    m = m.filter(ImageFilter.GaussianBlur(2))
     nr, ng, nb = n.split()
     dark = Image.merge("RGB", (nr.point(lambda v: int(v * 0.55)), ng.point(lambda v: int(v * 0.58)),
                                nb.point(lambda v: int(v * 0.66))))
