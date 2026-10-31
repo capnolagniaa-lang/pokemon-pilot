@@ -13,7 +13,7 @@ Necesita ComfyUI corriendo en 127.0.0.1:8188 con los modelos de Qwen-Image 2.1 (
 """
 import argparse, json, os, re, shutil, subprocess, sys, time, urllib.request, uuid
 
-from PIL import Image, ImageFilter
+from PIL import Image, ImageChops, ImageFilter
 
 GODOT = r"C:\Users\Gusti\Documents\claude\tools\godot\Godot_v4.7.2-stable_win64_console.exe"
 COMFY = "http://127.0.0.1:8188"
@@ -39,6 +39,45 @@ FOREST = ("Repaint this top-down 2D RPG screenshot as a beautiful HD-2D game sce
           "grass and small plants between them. Only trees and grass: absolutely no houses, no roofs, no buildings, no "
           "paths, no fences, no objects. Neutral soft daylight from above, no strong cast shadows, no fog, no vignette. "
           "No text, no characters, no animals.")
+## Trozo sin edificios (rutas): KEEP y RICH nombran casas, techos y puertas y Qwen las inventa (Ruta 1: dos casitas en
+## un claro). Además le explica qué es cada cosa de FireRed: las líneas marrones son salientes (no cercas) y los bloques
+## de pasto alto son pasto silvestre (no cultivos).
+KEEP_WILD = ("Repaint this top-down 2D RPG screenshot of a countryside route as a beautiful HD-2D game scene. Keep EXACTLY "
+             "the same layout and composition: every tree, every patch of tall grass, every ledge, flower bed and path stays "
+             "at exactly the same position, size and outline. The camera stays straight top-down; no isometric angle, no "
+             "perspective change, no zoom, no crop. There are no houses or buildings anywhere in this route: do not draw any "
+             "house, roof, hut, barn or building.")
+WILD_LEGEND = ("What the shapes are: the thin brown horizontal lines are low grassy ledges, small one-way earth steps with a "
+               "grass edge on top and bare soil below, not fences; the blocks of darker grass are patches of tall wild grass "
+               "drawn as thick untidy clumps, not crops or fields; the sandy areas are dirt paths.")
+RICH_WILD = ("Make it look like a polished modern HD-2D game: much richer detail and texture everywhere, every surface hand "
+             "painted, varied grass with darker and lighter patches, small stones, clover and wildflowers scattered in the "
+             "grass, worn edges on the paths, trees with depth and volume, gentle ambient occlusion at the base of trees and "
+             "ledges. Neutral soft daylight from above, no strong cast shadows, no fog, no vignette. No text, no characters, "
+             "no animals.")
+## Trozo mayormente bosque (sin edificios, >60 % árboles) con una franja abierta: con KEEP + la lista de edificios, Qwen
+## raleaba el bosque en un claro e inventaba casitas; con este, respeta el bosque y la franja (prueba Ruta 1, 2026-10-30).
+FOREST_MOSTLY = ("Repaint this top-down 2D RPG screenshot as a beautiful HD-2D game scene. This area is mostly a dense forest: "
+                 "rows of trees seen from above, packed tightly together. Keep exactly the same trees at the same positions, "
+                 "as dense as in the original, with the same camera straight top-down. Paint lush, detailed tree crowns with "
+                 "depth and volume, varied greens. Where the original has open ground without trees, keep it open and keep "
+                 "what is in it exactly where it is: %s. The thin brown horizontal lines are low grassy ledges (earth "
+                 "steps), not fences. Absolutely no houses, no roofs, no buildings, no huts, no fences "
+                 "or paths that are not in the original. Neutral soft daylight from above, no strong cast shadows, no fog, "
+                 "no vignette. No text, no characters, no animals.")
+## Acabado de cada skin (reemplaza a RICH / RICH_WILD en los prompts). "pixel" = estilo "indie rico", elegido por el
+## usuario entre 6 estilos de pixel art (2026-10-30).
+FINISH = {
+    "pixel": ("Make it look like a lush modern indie pixel art game (like the most beautiful pixel art adventure games): "
+              "dense hand-placed pixel detail, rich color ramps, careful dithering, small flowers, stones and grass tufts "
+              "drawn pixel by pixel, depth with darker pixel shadows under roofs and trees. Neutral soft daylight from "
+              "above, no strong cast shadows, no fog, no vignette. No text, no characters, no animals."),
+}
+## Pasto de pueblo (en FireRed es casi blanco, con brillitos): sin esto, en pixel art Qwen llena el claro con caminos y
+## matas de pasto alto de RPG.
+PLAIN_GRASS = ("The large plain pale green areas are open lawn of short grass: paint them as short grass richly detailed pixel "
+               "by pixel, with subtle color variation, tiny flowers, clover and small pebbles scattered evenly; but do not "
+               "add dirt paths, borders, tall grass patches, bushes or trees that are not in the original.")
 PALETTE = "Use a natural, harmonious palette: deep natural greens for grass and trees, warm terracotta roofs, cream plaster walls."
 
 
@@ -48,11 +87,36 @@ PALETTE = "Use a natural, harmonious palette: deep natural greens for grass and 
 NIGHT = ("It is night: a calm dark blue moonlit night. Every house window glows warm yellow and casts a soft pool of warm "
          "light on the ground right in front of it; doors stay closed. Cool blue moonlight from above, deep but readable "
          "shadows, the scene clearly at night but every shape still visible. No street lamps, no fireflies, no stars, no "
-         "fog, no sparkles, nothing added.")
+         "fog, no sparkles, nothing added. Dirt paths, sand and paving are in the same dim cool blue moonlight as the "
+         "grass, darker and greyer than by day, never bright beige. Every roof keeps its original color (a green roof "
+         "stays green), only darker.")
 ## Noche de un trozo de puro bosque: sin ventanas (si no, Qwen inventa casitas con la ventana prendida entre los árboles).
 NIGHT_FOREST = ("It is night: a calm moonlit night. Soft cool blue moonlight from above on the tree crowns, the grass between "
                 "them in deep but readable shade, every tree still clearly visible. No lights at all: no windows, no lamps, "
-                "no houses, no fireflies, no stars, no fog, no sparkles, nothing added.")
+                "no houses, no fireflies, no stars, no fog, no sparkles, nothing added. Dirt paths and sand are in the same "
+                "dim cool blue moonlight, darker and greyer than by day, never bright beige.")
+
+
+## Atardecer (--dusk; el juego también lo usa al amanecer, con otro tinte): luz dorada baja, sin sombras largas (al
+## usuario no le gustaban las sombras proyectadas de casas y árboles), algunas ventanas recién prendidas.
+DUSK = ("It is sunset: the sun is low in the west and the light is warm and golden, slightly dimmer than at midday. The "
+        "grass and trees stay lush green, lit by warm golden-peach highlights on the sides facing the sun and soft "
+        "rose-violet tones in the shade; roofs and walls glow warm. This is real warm evening light with color contrast, "
+        "not a uniform yellow or orange filter over everything. No long cast shadows, no sun or sky visible, no lens "
+        "flare, no fog. A few house windows are just starting to glow warm yellow. Every roof keeps its original color.")
+DUSK_FOREST = ("It is sunset: the sun is low in the west and the light is warm and golden, slightly dimmer than at midday. "
+               "The trees and grass stay lush green, lit by warm golden-peach highlights on the sides facing the sun and "
+               "soft rose-violet tones in the shade. Real warm evening light with color contrast, not a uniform yellow or "
+               "orange filter. No long cast shadows, no sun or sky visible, no lens flare, no fog, no lights, no houses.")
+
+
+## Con pocas celdas de edificio (una puntita en el borde del trozo) el prompt con ventanas hacía que Qwen inventara casas
+## prendidas (Ciudad Verde trozo 6: una en el estanque): ahí va el de sin luces.
+LIT_MIN_CELLS = 20
+
+
+def lit(c):
+    return c is None or c.get("edificio", 0) > LIT_MIN_CELLS
 
 
 def zone_rect(root, zone):
@@ -77,12 +141,14 @@ def chunks(x0, w, cw, ov):
 
 
 def render_maqueta(root, rect, path):
+    """Maqueta limpia del pedazo + <path>.cells.json (cuántas celdas son árbol, pasto liso u otra cosa)."""
     tmp = os.path.join(os.path.dirname(path), "_movie")
     shutil.rmtree(tmp, ignore_errors=True)
     os.makedirs(tmp)
     # La vista general se cierra sola cuando el encuadre está listo (y avisa en qué cuadro); --quit-after es de seguridad.
     run = subprocess.run([GODOT, "--path", root, "--quit-after", "20000", "--write-movie", os.path.join(tmp, "f.png"),
-                          "--fixed-fps", "30", "--", "--overview", "--overview-rect", "%d,%d,%d,%d" % rect, "--clean"],
+                          "--fixed-fps", "30", "--", "--overview", "--overview-rect", "%d,%d,%d,%d" % rect, "--clean",
+                          "--cells-out", os.path.abspath(path + ".cells.json")],
                          capture_output=True, text=True, encoding="utf8", errors="replace", timeout=900)
     if "[overview] listo" not in run.stdout:
         raise SystemExit("La maqueta no llegó a encuadrarse (¿la vista general no corrió?):\n" + run.stdout[-2000:])
@@ -98,7 +164,10 @@ def render_maqueta(root, rect, path):
 
 
 def upload(path):
-    name = "rep_" + os.path.basename(path)
+    # El nombre lleva la carpeta (skin y zona): con solo "maqueta_6" una tanda de otra zona pisaba la imagen en ComfyUI
+    # antes de que corriera el trabajo encolado.
+    parts = os.path.normpath(os.path.abspath(path)).split(os.sep)
+    name = "rep_" + "_".join(parts[-3:])
     b = uuid.uuid4().hex
     body = (f'--{b}\r\nContent-Disposition: form-data; name="image"; filename="{name}"\r\nContent-Type: image/png\r\n\r\n').encode() \
         + open(path, "rb").read() + f'\r\n--{b}\r\nContent-Disposition: form-data; name="overwrite"\r\n\r\ntrue\r\n--{b}--\r\n'.encode()
@@ -217,56 +286,156 @@ def main():
     ap.add_argument("--redo", default="", help="repintar solo estos trozos (ej.: 0,2) y volver a coser")
     ap.add_argument("--forest", default="auto", help="trozos que son solo bosque (ej.: 0), o auto (mira las maquetas)")
     ap.add_argument("--night", action="store_true", help="pintar la versión de noche (<zona>@noche.png) desde las maquetas")
+    ap.add_argument("--dusk", action="store_true", help="pintar la del atardecer (<zona>@atardecer.png; también es el amanecer)")
     a = ap.parse_args()
     root = os.path.abspath(a.root)
     zx, zy, zw, zh = zone_rect(root, a.zone)
-    work = os.path.join(root, "out", "repintado", a.zone)
+    work = os.path.join(root, "out", "repintado" if a.skin == "hd" else "repintado_" + a.skin, a.zone)
     os.makedirs(work, exist_ok=True)
     open(os.path.join(root, "out", ".gdignore"), "a").close()  # que Godot no importe los cuadros de trabajo
     g = Grid(zx, zy, zw, zh, a.width, a.height, a.overlap)
     print("%s: %dx%d celdas, %d trozos de %dx%d (filas y=%s, columnas x=%s); trozo i = fila*%d + columna"
           % (a.zone, zw, zh, len(g.rects), g.cw, g.ch, g.ys, g.xs, len(g.xs)))
-    forest = {int(v) for v in a.forest.split(",") if v.strip()}
-    if a.forest == "auto":
-        forest = {i for i, rect in enumerate(g.rects) if only_trees(os.path.join(work, "maqueta_%d.png" % i))}
-        print("  trozos de puro bosque:", sorted(forest))
     redo = {int(v) for v in a.redo.split(",") if v.strip()} if a.redo else None
+    todo = [i for i in range(len(g.rects)) if redo is None or i in redo]
+    # Primero las maquetas (de día; la noche reusa las que ya están), así se puede ver cuáles son puro bosque.
+    if not a.only_stitch:
+        for i in todo:
+            maq = os.path.join(work, "maqueta_%d.png" % i)
+            if not (a.night or a.dusk) or not os.path.exists(maq):
+                render_maqueta(root, g.rects[i], maq)
+                print("  maqueta %d lista" % i, flush=True)
+    if a.forest == "auto":
+        forest = {i for i in range(len(g.rects)) if only_trees(os.path.join(work, "maqueta_%d.png" % i))}
+        print("  trozos de puro bosque:", sorted(forest))
+    else:
+        forest = {int(v) for v in a.forest.split(",") if v.strip()}
     day = " ".join([KEEP, RICH, a.style])
-    tag = "noche" if a.night else "pintado"
+    tag = "noche" if a.night else ("atardecer" if a.dusk else "pintado")
     if not a.only_stitch:
         jobs = []
-        for i, rect in enumerate(g.rects):
-            if redo is not None and i not in redo:
-                continue
+        for i in todo:
             maq = os.path.join(work, "maqueta_%d.png" % i)
-            if not a.night or not os.path.exists(maq):
-                render_maqueta(root, rect, maq)
+            p = finish(day_prompt(maq, a.style, i in forest), a.skin, maq)
             if a.night:
-                base = " ".join([FOREST if i in forest else " ".join([KEEP, RICH]), a.style])
-                base = base.replace("Neutral soft daylight from above, no strong cast shadows, no fog, no vignette.", "")
-                p = base + " " + (NIGHT_FOREST if i in forest else NIGHT)
-            else:
-                p = " ".join([FOREST, a.style]) if i in forest else day
+                p = p.replace("Neutral soft daylight from above, no strong cast shadows, no fog, no vignette.", "")
+                c = cells_info(maq)
+                p += " " + (NIGHT if lit(c) else NIGHT_FOREST)
+            elif a.dusk:
+                p = p.replace("Neutral soft daylight from above, no strong cast shadows, no fog, no vignette.", "")
+                c = cells_info(maq)
+                p += " " + (DUSK if lit(c) else DUSK_FOREST)
             jobs.append((i, queue(upload(maq), p, a.seed, a.size, "repintado/%s_%s_%d" % (a.zone, tag, i), turbo=not a.quality)))
             print("  trozo %d encolado" % i, flush=True)
         for i, pid in jobs:
             shutil.copy(wait_output(pid), os.path.join(work, "%s_%d.png" % (tag, i)))
             print("  trozo %d listo" % i, flush=True)
-    name = a.zone + ("@noche" if a.night else "")
+    name = a.zone + ("@noche" if a.night else ("@atardecer" if a.dusk else ""))
     stitch(root, a.skin, name, g, [os.path.join(work, "%s_%d.png" % (tag, i)) for i in range(len(g.rects))],
-           {"moment": "noche" if a.night else "dia", "seed": a.seed, "prompt": NIGHT if a.night else day,
+           {"moment": tag if tag != "pintado" else "dia", "seed": a.seed,
+            "prompt": NIGHT if a.night else (DUSK if a.dusk else day),
             "turbo": not a.quality})
+    if a.night:
+        darken_night_paths(os.path.join(root, "art", "skins", a.skin), a.zone)
+
+
+def cells_info(maq_path):
+    info = maq_path + ".cells.json"
+    return json.load(open(info, encoding="utf8")) if os.path.exists(info) else None
+
+
+def things_in(c):
+    """Lo que hay en el suelo abierto del pedazo, en palabras (de las celdas)."""
+    names = [name for key, name in [("camino", "dirt paths"), ("pasto_alto", "patches of tall wild grass"),
+             ("saliente", "low grassy ledges (small earth steps)"), ("flores", "small flower beds"), ("cerca", "short fences"),
+             ("agua", "water")] if c.get(key, 0) > 0]
+    return ", ".join(names) if names else "short grass"
+
+
+def finish(prompt, skin, maq_path=None):
+    """Cambia el párrafo de acabado según la skin y, si el trozo tiene mucho pasto liso (pueblos), suma la aclaración
+    del pasto (en un trozo de bosque esa frase hacía que Qwen abriera un claro)."""
+    if skin not in FINISH:
+        return prompt
+    out = prompt.replace(RICH, FINISH[skin]).replace(RICH_WILD, FINISH[skin])
+    if FINISH[skin] not in out:  # prompts de bosque: no tienen RICH, el acabado va al final
+        out += " " + FINISH[skin]
+    c = cells_info(maq_path) if maq_path else None
+    if c is not None:
+        total = max(1, c["arbol"] + c["pasto"] + c["otro"])
+        if c["pasto"] / total > 0.3:
+            out += " " + PLAIN_GRASS
+    return out
+
+
+## Aclaraciones según lo que hay en el trozo (cells.json): sin esto, las mesetas de roca escalonadas de FireRed salen
+## como techos de tejas (Ciudad Verde, 2026-10-30).
+ROCK_LEGEND = ("The pinkish-brown stepped areas are a raised natural rocky plateau with layered stone cliff terraces, "
+               "seen from above: bare rock and earth, not roofs, not buildings, not tiles. Where that rock has vertical "
+               "stripes it is a tall natural stone cliff face with rough vertical crevices, not a row of roofs, sheds or "
+               "greenhouses. The thin rows of small green tree tops lying on the rock are glitches, not trees: remove them "
+               "and fill the top of the plateau with what fits a wild rocky highland: scattered boulders, dry grass "
+               "tufts, a few small hardy shrubs and wildflowers growing in the cracks. The plateau top stays open rocky "
+               "ground: no forest, no rows of trees and no buildings on it.")
+
+
+## Plazas y calles de ciudad (gris casi blanco en FireRed): con PLAIN_GRASS salían como pasto claro.
+PAVED_LEGEND = ("The very light grey, almost white areas are the paved town square and streets, not grass: paint them as "
+                "a light warm packed-earth and sandy stone plaza with subtle paving stones, clearly different from the lawn.")
+
+
+def paved_share(maq_path):
+    """Parte de la maqueta que es pavimento de ciudad (gris casi blanco); no hay tag de celda que lo distinga del pasto."""
+    if not maq_path or not os.path.exists(maq_path):
+        return 0.0
+    px = Image.open(maq_path).convert("RGB").resize((160, 144)).get_flattened_data()
+    return sum(1 for r, g, b in px if min(r, g, b) > 195 and max(r, g, b) - min(r, g, b) < 22) / len(px)
+
+
+def rock_share(maq_path):
+    """Parte de la maqueta que es roca de meseta (rosado-marrón de FireRed). Hace falta además de las celdas: en la Ruta 22
+    esas celdas tienen el tag "arbol" (son sólidas) y se contaban como bosque (salía bosque encima de la meseta)."""
+    if not maq_path or not os.path.exists(maq_path):
+        return 0.0
+    px = Image.open(maq_path).convert("RGB").resize((160, 144)).get_flattened_data()
+    return sum(1 for r, g, b in px if r > 170 and 35 <= r - b <= 70 and b < g < r and r - g > 15) / len(px)
+
+
+def legends(c, maq_path=None):
+    out = []
+    if (c is not None and c.get("roca", 0) > 0) or rock_share(maq_path) > 0.03:
+        out.append(ROCK_LEGEND)
+    if paved_share(maq_path) > 0.05:
+        out.append(PAVED_LEGEND)
+    return " ".join(out)
+
+
+def day_prompt(maq_path, style, pure_forest):
+    """El prompt de día de un trozo según lo que tiene: puro bosque, mayormente bosque o lo general (con aviso de que no
+    hay edificios cuando no los hay)."""
+    c = cells_info(maq_path)
+    extra = legends(c, maq_path)
+    rocky = rock_share(maq_path) > 0.12  # mucha meseta: nunca los prompts de bosque (la llenaban de árboles)
+    if pure_forest and not rocky:
+        return " ".join([FOREST, style])
+    if c is not None:
+        total = max(1, c["arbol"] + c["pasto"] + c["otro"])
+        if c.get("edificio", 0) == 0 and c["arbol"] / total > 0.6 and not rocky:
+            return " ".join([FOREST_MOSTLY % things_in(c), extra, style])
+        if c.get("edificio", 0) == 0:
+            return " ".join([KEEP_WILD, WILD_LEGEND, extra, RICH_WILD, style])
+    return " ".join([KEEP, extra, RICH, style])
 
 
 def only_trees(maq_path):
-    """¿La maqueta (si ya existe) es puro verde (árboles y pasto, sin techos, caminos ni agua)? Mira los colores."""
-    if not os.path.exists(maq_path):
+    """¿El pedazo es puro bosque? Solo árboles y pasto liso (sin caminos, salientes, flores, agua ni edificios), y
+    mayormente árboles. Sale de las celdas (render_maqueta escribe <maqueta>.cells.json)."""
+    info = maq_path + ".cells.json"
+    if not os.path.exists(info):
         return False
-    im = Image.open(maq_path).convert("RGB").resize((96, 96))
-    px = list(im.get_flattened_data()) if hasattr(im, "get_flattened_data") else list(im.getdata())
-    # Pasto de ciudad (verde claro, casi blanco) y techos/paredes no cuentan como bosque: verde saturado y oscuro.
-    trees = sum(1 for r, g, b in px if g > r + 20 and g > b + 10 and g < 230)
-    return trees / len(px) > 0.78
+    c = json.load(open(info, encoding="utf8"))
+    total = max(1, c["arbol"] + c["pasto"] + c["otro"])
+    return c["otro"] <= total * 0.005 and c["arbol"] / total > 0.6
 
 
 class Grid:
@@ -278,6 +447,32 @@ class Grid:
         self.ys = chunks(zy, zh, height, overlap)
         self.zx, self.zy, self.zw, self.zh = zx, zy, zw, zh
         self.rects = [(x, y, self.cw, self.ch) for y in self.ys for x in self.xs]
+
+
+def darken_night_paths(out_dir, zone):
+    """Caminos de tierra de la noche: Qwen los deja claros (beige o gris lavanda) aunque se le pida que no, y resaltan
+    sobre el pasto oscuro. Día y noche salen de la misma maqueta y coinciden píxel a píxel: la tierra de la pintura de
+    día (tostada) es la máscara, agrandada un poco para no dejar un filo claro, y ahí la noche se oscurece y enfría."""
+    day_path = os.path.join(out_dir, zone + ".png")
+    night_path = os.path.join(out_dir, zone + "@noche.png")
+    if not os.path.exists(day_path):
+        return
+    d = Image.open(day_path).convert("RGB")
+    n = Image.open(night_path).convert("RGB")
+    if d.size != n.size:
+        return
+    r, g, b = d.split()
+    over = lambda im, t: im.point(lambda v: 255 if v > t else 0)
+    m = ImageChops.multiply(ImageChops.multiply(over(r, 140), over(g, 100)),
+                            ImageChops.multiply(over(ImageChops.subtract(r, b), 40), over(ImageChops.subtract(r, g), 0)))
+    # Primero se borran las manchas chicas (piedritas y flores color tierra en el pasto: de noche quedaban puntitos
+    # oscuros) y después se agranda para cubrir el filo del camino.
+    m = m.filter(ImageFilter.MinFilter(7)).filter(ImageFilter.MaxFilter(15)).filter(ImageFilter.GaussianBlur(2))
+    nr, ng, nb = n.split()
+    dark = Image.merge("RGB", (nr.point(lambda v: int(v * 0.55)), ng.point(lambda v: int(v * 0.58)),
+                               nb.point(lambda v: int(v * 0.66))))
+    Image.composite(dark, n, m).save(night_path)
+    print("  caminos de noche oscurecidos", flush=True)
 
 
 def stitch(root, skin, name, g, files, info):

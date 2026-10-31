@@ -244,6 +244,26 @@ salía oscura y saturada con HDR 2D (va dentro de la zona).
 5. Próximos: Pueblo Paleta completo (agua, noche, luz) → Ruta 1 y Ciudad Verde (variedad y tiempos) → compresión de las
    imágenes para el zip → interiores (otro prompt).
 
+## Skin pixel en el juego: luz y horas (2026-10-30)
+Skin **pixel** (estilo "indie rico", elegido por el usuario; ajuste por defecto de partida nueva en esta rama) pintada en
+**Pueblo Paleta, Ruta 1 y Ciudad Verde**, de día y de noche. Cómo se ve cada hora (`PaintedZone` + `painted_zone.gdshader`):
+- **Con zona pintada, el post-procesado queda neutro** (`DayNight.apply`: sin tinte, saturación, contraste, tinte de
+  sombras, rayos, brillo de sol/luna ni niebla; viñeta ≤ 0,3). Pedido del usuario: "la imagen pintada por sí sola se ve
+  mucho mejor"; la gradación de noche la dejaba azul, lavada y con bruma gris.
+- **HDR 2D**: el Daylight (CanvasModulate) multiplica en lineal. La pintura de noche se pasa a lineal y se divide por el
+  Daylight en lineal (`srgb_to_linear`): así se ve exactamente lo pintado. La de día va tal cual (pasada a lineal quedaba
+  más oscura que la pintura).
+- **Horas** (`moment_weights`, `lights_weight`): día con el color de la hora del Daylight (dorado 17 h, naranja 18:30);
+  las **ventanas de la pintura de noche se prenden solas desde las 17:30** (`lights_t`: lo cálido y brillante de la
+  noche sobre la de día); la noche entra de 19 a 21; de madrugada sale de 4:30 a 6 y las ventanas se apagan de 5:30 a
+  6:30. Un atardecer pintado por Qwen salió siempre como filtro amarillo (descartado); si una zona tuviera
+  `<zona>@atardecer.png`, se funde de 16:30 a 18:30 (y al amanecer con `dawn_tint`).
+- **Destellos de luna** (solo de noche): rocío que titila en el pasto (puntitos con hash entero) y brillo plateado en las
+  ondas del agua.
+- **Perillas por skin** (`art/skins/<skin>/skin.json`): `night_gain`, `night_tint`, `window_boost`, `moon_glints`,
+  `dawn_tint` (en neutro = como está pintado).
+- Vitrina: `--showcase-repaint --skin pixel --zone <zona> --cells "x,y;x,y" --hours 12,18.5,23`.
+
 ## Para decidir
 - **Identidad**: "campo sudamericano" (terracota, encalado, ceibos, jacarandás), "cuento" (cabañas con techo de musgo,
   arroyos, faroles) o una mezcla (cada región/bioma con su carácter).

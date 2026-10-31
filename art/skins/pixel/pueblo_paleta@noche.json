@@ -1,0 +1,15 @@
+{
+ "moment": "noche",
+ "seed": 21,
+ "prompt": "It is night: a calm dark blue moonlit night. Every house window glows warm yellow and casts a soft pool of warm light on the ground right in front of it; doors stay closed. Cool blue moonlight from above, deep but readable shadows, the scene clearly at night but every shape still visible. No street lamps, no fireflies, no stars, no fog, no sparkles, nothing added.",
+ "turbo": true,
+ "cells": [
+  96,
+  34
+ ],
+ "px_per_cell": 48.802083333333336,
+ "chunks": [
+  3,
+  1
+ ]
+}

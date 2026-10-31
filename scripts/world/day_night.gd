@@ -56,6 +56,9 @@ const CAVE_CLEAR := Color(0.02, 0.02, 0.04)
 const NIGHT_LUMA := 0.40
 const DAY_LUMA := 0.98
 
+## Viñeta máxima sobre una zona pintada (la de noche, 0,58, oscurecía mucho las esquinas de la pintura).
+const PAINTED_VIGNETTE := 0.3
+
 ## 0 = pleno día, 1 = noche cerrada (0 en interiores y arenas).
 var darkness := 0.0
 ## Hay sombras largas (afuera, fuera de las arenas): ZoneShadows y SunShadow.
@@ -172,8 +175,20 @@ func apply() -> void:
 		m.set_shader_parameter("sun_strength", lk[7])
 		m.set_shader_parameter("rays", lk[8])
 		m.set_shader_parameter("shadow_tint", lk[10])
-		# Con skin (PaintedZone) la niebla va mucho más leve: sobre la pintura tapaba el detalle.
-		m.set_shader_parameter("mist", lk[11] * (0.3 if _current_painted() else 1.0))
+		m.set_shader_parameter("mist", lk[11])
+		if _current_painted():
+			# La pintura ya trae su luz (y la de noche, sus ventanas): sin gradación de pantalla encima, que la dejaba
+			# azul y con las luces lavadas (pedido del usuario 2026-10-30: "la imagen pintada por sí sola se ve mucho
+			# mejor"). El color de la hora le llega igual por el Daylight a la pintura de día.
+			m.set_shader_parameter("tint", Vector3.ONE)
+			m.set_shader_parameter("saturation", 1.0)
+			m.set_shader_parameter("contrast", 1.0)
+			m.set_shader_parameter("shadow_tint", Vector3.ONE)
+			m.set_shader_parameter("vignette", minf(lk[5], PAINTED_VIGNETTE))
+			m.set_shader_parameter("rays", 0.0)
+			# Ni brillo de sol/luna ni niebla: sobre la pintura eran una bruma gris que la lavaba (sobre todo de noche).
+			m.set_shader_parameter("sun_strength", 0.0)
+			m.set_shader_parameter("mist", 0.0)
 	var clouds := _world.get_node_or_null("CloudShadows") as CanvasItem
 	if clouds and clouds.material is ShaderMaterial:
 		# Con skin, sin sombras de nubes: el multiplicado sobre la capa pintada la oscurecía y saturaba toda.

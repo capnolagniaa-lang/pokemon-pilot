@@ -31,6 +31,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   curiosos van a mirar las Pokébolas tiradas. Test `--autotest-wild-life`. **IA-6**: dificultad dinámica (ajuste
   "Un entrenador que te gana seguido afloja un poco": 12 % por derrota seguida, hasta 3, sin avisar; se borra al ganarle)
   y batería de balance con la mente nueva. **Plan de IA terminado**; ideas para seguir en `docs/PLAN_IA.md`.
+- **Skin pixel art (rama hd2d, 2026-10-30)**: estilo "indie rico" elegido por el usuario; **Pueblo Paleta, Ruta 1 y
+  Ciudad Verde** pintadas de día y de noche (`repaint_zone.py --skin pixel [--night]`, revisando cada trozo; prompts por
+  tipo de trozo en `docs/QWEN_PROMPTS.md`). En el juego la pintura se ve tal cual (post-procesado neutro, noche en lineal),
+  las ventanas se prenden solas al atardecer, la noche entra de 19 a 21, rocío y agua plateada de noche; perillas en
+  `skin.json`. Es la skin por defecto de partida nueva en esta rama. Detalle en `docs/PLAN_TERRENO_PROPIO.md`.
 - **Skins del mundo: Pueblo Paleta repintado con IA (2026-10-30)**: `tools/repaint_zone.py` repinta una zona entera con
   Qwen-Image 2.1 desde maquetas limpias (en trozos, cosidos con un corte de mínimo error) y `PaintedZone` la dibuja en
   lugar de los tiles; Ajustes del juego → "Skin del mundo" (Clásico / HD). Pueblo Paleta hecho; luces y sombras siguen

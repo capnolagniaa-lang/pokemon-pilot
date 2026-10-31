@@ -48,6 +48,9 @@ func run() -> void:
 
 	# --- Guardado ---
 	GameState.new_game(DB.species["charmander"])
+	# La luz de los tiles (sol, luna, sombras del mapa) se prueba con la skin clásica: sobre una zona pintada se apagan a
+	# propósito (la pintura trae su luz; eso lo prueba --autotest-repaint).
+	GameState.set_setting("skin", PaintedZone.CLASSIC)
 	r["Partida nueva: arranca a las %.0f" % GameState.START_HOUR] = GameState.time_of_day == GameState.START_HOUR
 	GameState.time_of_day = 19.25
 	var d := GameState.to_dict()

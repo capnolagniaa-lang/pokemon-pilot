@@ -4,6 +4,7 @@ extends Node
 ##   godot --headless --path . --quit-after 60000 -- --autotest-repaint
 ## Vitrina (Pueblo Paleta con la skin HD en varios lugares y horas; imprime qué cuadros son cada uno):
 ##   godot --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-repaint
+## (`--skin pixel` = con otra skin; `--zone ruta1 --cells 20,30;20,60 --hours 12,23` = otros lugares y horas.)
 
 const ZONE := "pueblo_paleta"
 const SPOTS := [[Vector2i(56, 12), 12.0], [Vector2i(52, 28), 12.0], [Vector2i(56, 12), 7.0], [Vector2i(56, 12), 18.5],
@@ -19,9 +20,16 @@ func run() -> void:
 	r["Hay skins: clásica primero y HD (%s)" % str(PaintedZone.skins())] = PaintedZone.skins().size() >= 2 \
 		and PaintedZone.skins()[0][0] == PaintedZone.CLASSIC
 	r["Pueblo Paleta tiene su imagen en la skin HD"] = PaintedZone.available(ZONE, "hd")
-	r["La noche pintada se funde al oscurecer (0 de día, 1 de noche cerrada)"] = PaintedZone.night_weight(0.0) == 0.0 		and PaintedZone.night_weight(1.0) == 1.0 and PaintedZone.night_weight(0.7) > 0.0
+	var noon := PaintedZone.moment_weights(12.0)
+	var dusk := PaintedZone.moment_weights(18.7)
+	var night := PaintedZone.moment_weights(23.0)
+	var dawn := PaintedZone.moment_weights(6.3)
+	r["Las pinturas se funden por hora: día, atardecer, noche y amanecer (%s %s %s %s)" % [noon, dusk, night, dawn]] = 		noon == Vector2.ZERO and dusk.x > 0.9 and dusk.y < 0.1 and night.y == 1.0 and dawn.x == 1.0 and dawn.y < 0.1 		and PaintedZone.moment_weights(18.7, false).x == 0.0
 	GameState.new_game(DB.species["charmander"])
-	r["Una partida nueva arranca con la skin HD"] = PaintedZone.current() == "hd"
+	r["Skin pixel: Pueblo Paleta, Ruta 1 y Ciudad Verde, de día y de noche"] = ["pueblo_paleta", "ruta1", "ciudad_verde"].all(
+		func(z): return PaintedZone.available(z, "pixel") and ResourceLoader.exists(PaintedZone.ROOT + "pixel/" + z + "@noche.png"))
+	r["Las ventanas se prenden antes de la noche y se apagan al amanecer"] = PaintedZone.lights_weight(12.0) == 0.0 		and PaintedZone.lights_weight(18.7) > 0.5 and PaintedZone.lights_weight(23.0) == 1.0 and PaintedZone.lights_weight(7.0) == 0.0
+	r["Una partida nueva arranca con la skin pixel (la elegida)"] = PaintedZone.current() == "pixel"
 	await _start(Vector2i(56, 12))
 	var town: Node2D = world.streamer.loaded.get(ZONE)
 	var pz: PaintedZone = town.get_node_or_null("PaintedZone") if town != null else null
@@ -60,9 +68,19 @@ func run() -> void:
 
 func showcase() -> void:
 	GameState.new_game(DB.species["charmander"])
-	for spot in SPOTS:
+	var spots := SPOTS.duplicate()
+	var zone := _arg("--zone", ZONE)
+	if _arg("--cells", "") != "":
+		spots.clear()
+		for h in _arg("--hours", "12").split(","):
+			for c in _arg("--cells", "").split(";"):
+				var xy := c.split(",")
+				spots.append([Vector2i(int(xy[0]), int(xy[1])), float(h)])
+	if _arg("--skin", "") != "":
+		GameState.set_setting("skin", _arg("--skin", ""))
+	for spot in spots:
 		GameState.set_setting("time_lock", spot[1])
-		await _start(spot[0])
+		await _start(spot[0], zone)
 		world.get_node("UI").visible = false
 		var first := Engine.get_frames_drawn()
 		for i in FRAMES:
@@ -71,10 +89,16 @@ func showcase() -> void:
 	get_tree().quit()
 
 
-func _start(cell: Vector2i) -> void:
+func _arg(name: String, fallback: String) -> String:
+	var args := OS.get_cmdline_user_args()
+	var i := args.find(name)
+	return args[i + 1] if i >= 0 and i + 1 < args.size() else fallback
+
+
+func _start(cell: Vector2i, zone := ZONE) -> void:
 	var wd: WorldData = DB.config.world
 	for z in wd.zones:
-		if z.id == ZONE:
+		if z.id == zone:
 			GameState.trainer_position = Vector2((z.origin + cell) * wd.tile_size) + Vector2.ONE * wd.tile_size / 2.0
 	GameState.wilds_enabled = false
 	GameState.set_flag("tutorial_visto")

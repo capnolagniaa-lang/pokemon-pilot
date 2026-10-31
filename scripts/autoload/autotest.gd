@@ -498,8 +498,77 @@ func _overview() -> void:
 	for i in 10:
 		cam.zoom = Vector2(z, z)
 		await get_tree().process_frame
+	# `--cells-out <archivo>`: qué hay en las celdas del pedazo (tools/repaint_zone.py decide si es puro bosque).
+	var co := args.find("--cells-out")
+	if co >= 0 and co + 1 < args.size() and at >= 0:
+		var p := args[at + 1].split(",")
+		var counts := {"arbol": 0, "pasto": 0, "otro": 0, "edificio": 0, "agua": 0, "pasto_alto": 0, "camino": 0,
+			"saliente": 0, "flores": 0, "cerca": 0, "roca": 0}
+		var roles := ZoneBuilder.load_roles()
+		for y in range(int(p[1]), int(p[1]) + int(p[3])):
+			for x in range(int(p[0]), int(p[0]) + int(p[2])):
+				var k := _cell_kind(world, Vector2i(x, y), roles)
+				counts[k[0]] += 1
+				if k[1] != "":
+					counts[k[1]] += 1
+		var f := FileAccess.open(args[co + 1], FileAccess.WRITE)
+		f.store_string(JSON.stringify(counts))
+		f.close()
 	print("[overview] listo en el cuadro ", Engine.get_frames_drawn())
 	get_tree().quit()
+
+
+var _cat: TileCatalog
+
+
+func _catalog() -> TileCatalog:
+	if _cat == null:
+		_cat = load("res://data/world/tile_catalog.tres")
+	return _cat
+
+
+## Para el repintado: [clase, detalle]. Clase "arbol", "pasto" (liso, sin nada encima) u "otro"; detalle (para describir
+## el pedazo en el prompt): "edificio", "agua", "pasto_alto", "camino", "saliente", "flores", "cerca" o "".
+func _cell_kind(world: Node, cell: Vector2i, roles: TileRoleSet) -> Array:
+	var pos := Vector2(cell * 16) + Vector2(8, 8)
+	for z in world.streamer.loaded.values():
+		var zn := z as Zone
+		var c := zn.cell_at(pos)
+		var src := zn.ground.get_cell_source_id(c)
+		if src < 0:
+			continue
+		if "arbol" in zn.get_tags(c):
+			return ["arbol", ""]
+		if zn.water.get_cell_source_id(c) >= 0:
+			return ["otro", "agua"]
+		var fsrc := zn.foliage.get_cell_source_id(c)
+		if fsrc >= 0:
+			var fr := roles.role_of(ZoneBuilder.metatile_of(fsrc, zn.foliage.get_cell_atlas_coords(c)))
+			return ["otro", "pasto_alto" if fr != null and fr.id == "tall_grass" else "flores"]
+		var m := ZoneBuilder.metatile_of(src, zn.ground.get_cell_atlas_coords(c))
+		var role := roles.role_of(m)
+		if role != null:
+			if role.id in ["grass", "meadow"]:
+				return ["pasto", ""]
+			return ["otro", {"dirt": "camino", "sand": "camino", "water": "agua", "flowers": "flores",
+				"tall_grass": "pasto_alto"}.get(role.id, "")]
+		var cat := str(_catalog().categories.get(m, _catalog().categories.get(str(m), "")))
+		if cat in ["suelos", "otros_suelo", "otros_terreno"]:
+			return ["pasto", ""]
+		if cat.contains("edificio") or cat.contains("puerta"):
+			return ["otro", "edificio"]
+		if cat.contains("saliente"):
+			return ["otro", "saliente"]
+		if cat.contains("roca") or cat.contains("pared") or cat.contains("acantilado"):
+			return ["otro", "roca"]
+		if cat.contains("cerca"):
+			return ["otro", "cerca"]
+		if cat.contains("camino") or cat.contains("arena"):
+			return ["otro", "camino"]
+		if cat.contains("agua"):
+			return ["otro", "agua"]
+		return ["otro", ""]
+	return ["otro", ""]
 
 
 func _build_waypoints() -> void:

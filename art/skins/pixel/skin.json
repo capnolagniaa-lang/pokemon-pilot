@@ -1,0 +1,8 @@
+{
+ "name": "Pixel art (repintado con IA)",
+ "description": "Zonas repintadas con Qwen-Image 2.1 en pixel art estilo indie (tools/repaint_zone.py --skin pixel).",
+ "night_gain": 1.0,
+ "night_tint": [1.0, 1.0, 1.0],
+ "window_boost": 1.0,
+ "moon_glints": 1.0
+}

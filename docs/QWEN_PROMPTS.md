@@ -29,9 +29,36 @@ En edición, además: `The camera stays straight top-down with walls facing the 
 | Luz pareja: `Neutral soft daylight from above, no strong cast shadows, no fog, no vignette.` (la luz de la hora va aparte) | |
 | Paleta como frase de colores: `Use a natural, harmonious palette: deep natural greens for grass and trees, warm terracotta roofs, cream plaster walls.` | |
 
+**Prompt según lo que tiene el trozo** (`day_prompt` en `tools/repaint_zone.py`, de las celdas: `<maqueta>.cells.json`):
+| Trozo | Prompt | Por qué |
+|---|---|---|
+| Puro bosque (solo árboles y pasto liso) | `FOREST` | con el general inventa casitas en la grilla |
+| Mayormente bosque (>60 %) sin edificios | `FOREST_MOSTLY` (+ lo que hay en la franja libre) | con el general raleaba el bosque en un claro y ponía casas |
+| Sin edificios (rutas) | `KEEP_WILD` + `WILD_LEGEND` + `RICH_WILD` | `KEEP`/`RICH` nombran casas, techos, puertas → las inventa; sin leyenda, los salientes salen como **cercas** y el pasto alto como **cultivos** |
+| Con edificios | `KEEP` + `RICH` | |
+
+Regla general: **no nombrar en el prompt lo que no está en el trozo** (aunque sea para la lista de "mantener") y
+**explicarle qué es cada forma de FireRed** que se puede leer mal (línea marrón = saliente, bloque oscuro = pasto alto).
+
 **Costura entre trozos**: mezclar el solapamiento deja objetos fantasma (un buzón doble); cortar derecho se nota. El
 **corte de mínimo error** (`tools/repaint_zone.py`) busca el camino por donde los dos trozos más se parecen y rodea
 casas y objetos. Solapamiento de 8 celdas.
+
+## Skin pixel ("indie rico", elegida por el usuario 2026-10-30)
+`--skin pixel` cambia `RICH`/`RICH_WILD` por `FINISH["pixel"]` (`Make it look like a lush modern indie pixel art game...
+dense hand-placed pixel detail, rich color ramps, careful dithering...`). Lo aprendido en Pueblo Paleta, Ruta 1 y Ciudad Verde:
+| Pasó | Arreglo (en `repaint_zone.py`) |
+|---|---|
+| El pasto de pueblo (casi blanco en FireRed) se llenaba de caminos y matas inventadas | `PLAIN_GRASS` ("the large plain pale green areas are open lawn..."), **solo si el trozo tiene >30 % de pasto liso**: en un trozo de bosque abría un claro |
+| La plaza pavimentada de ciudad (gris casi blanco) salía como pasto claro | `PAVED_LEGEND` si >5 % de la maqueta es gris casi blanco (`paved_share`: no hay tag de celda que la distinga) |
+| La meseta de roca escalonada salía como **techos de tejas**; sus paredes con rayas verticales, como **galpones** | `ROCK_LEGEND` si el trozo tiene celdas de roca (`cells.json` → "roca": categorías roca/pared/acantilado): meseta natural, acantilado con grietas, "not a row of roofs, sheds or greenhouses" |
+| Filas de copas de árbol cortadas sobre la meseta (glitch del agrandado ×1,75) | En `ROCK_LEGEND`: son un error, sacarlas y llenar la meseta con rocas, matas secas y arbustos (pedido del usuario) |
+| Aun con la leyenda, una semilla puede insistir (galpones en Ciudad Verde 3 y 6 con la 21) | Probar otra semilla en ese trozo (la 33 salió bien) y copiarla como `pintado_<i>.png` + `--only-stitch` |
+| De noche, un trozo con 6 celdas de edificio en el borde inventaba casas prendidas (una en el estanque) | `lit(c)`: el prompt con ventanas solo con más de `LIT_MIN_CELLS` (20) celdas de edificio |
+| De noche los caminos de tierra quedaban beige o gris lavanda clarito (aunque el prompt diga que no) | `darken_night_paths` después de coser la noche: la tierra de la pintura de día es la máscara (coinciden píxel a píxel) |
+| De noche los techos verdes salían marrones (la paleta dice "terracotta roofs") | `Every roof keeps its original color (a green roof stays green), only darker.` en `NIGHT` |
+| **Atardecer pintado** (`--dusk`, dos prompts, dos semillas): siempre un filtro amarillo-oliva parejo, pasto mostaza | Descartado: el atardecer lo hace Godot (Daylight + ventanas que se prenden; ver PLAN_TERRENO_PROPIO). `--dusk` queda en la herramienta |
+| Subir a ComfyUI con nombre `rep_maqueta_6.png`: una tanda de otra zona pisaba la imagen antes de que corriera el trabajo encolado | El nombre lleva skin y zona |
 
 ## Noche (lo que funciona, 2026-10-30)
 Pintarla **desde la maqueta en una sola pasada** con el prompt de escena + `It is night: a calm dark blue moonlit night.
