@@ -1010,6 +1010,7 @@ def main():
         g = grids[n] if n in grids else grid_of(lay_of[n])
         if n in CLEAR_NEAR_WARPS:
             g = clear_near_warps(g, maps[n], *CLEAR_NEAR_WARPS[n])
+            g = widen_corridors(g, *CLEAR_NEAR_WARPS[n][:2])
         w, h = len(g[0]), len(g)
         if ix and ix + w > INTERIOR_ROW:
             ix, iy, row_h = 0, iy + row_h + INTERIOR_GAP, 0
@@ -1069,6 +1070,37 @@ def main():
         for z in zones:
             print("%-26s origen %-12s tamaño %-10s puertas %d" % (z["id"], z["origin"], z["size"], len(z["warps"])))
     print("zonas:", len(zones), "puertas:", sum(len(z["warps"]) for z in zones))
+
+
+def widen_corridors(grid, solid, floor):
+    """Saca `solid` (las lápidas de la Torre) hasta que no quede ningún pasillo de una sola celda en el que esté una
+    (pedido del usuario 2026-11-01: "más espacio en general"). Orden fijo: siempre sale lo mismo."""
+    g = [list(row) for row in grid]
+    h, w = len(g), len(g[0])
+
+    def blocked(x, y):
+        return not (0 <= x < w and 0 <= y < h) or g[y][x][1] != 0
+
+    def is_solid(x, y):
+        return 0 <= x < w and 0 <= y < h and g[y][x][0] == solid
+
+    changed = True
+    while changed:
+        changed = False
+        for y in range(h):
+            for x in range(w):
+                if g[y][x][1] != 0:
+                    continue
+                for (ax, ay), (bx, by) in (((x - 1, y), (x + 1, y)), ((x, y - 1), (x, y + 1))):
+                    if not (blocked(ax, ay) and blocked(bx, by)):
+                        continue
+                    cands = [c for c in ((ax, ay), (bx, by)) if is_solid(*c)]
+                    if not cands:
+                        continue
+                    cx, cy = cands[(x + y) % len(cands)]
+                    g[cy][cx] = (floor, 0) + tuple(g[cy][cx][2:])
+                    changed = True
+    return g
 
 
 def clear_near_warps(grid, m, solid, floor, r):

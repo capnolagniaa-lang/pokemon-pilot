@@ -19,10 +19,18 @@ const RADIUS := 5.0                     # celdas que alumbra (aprox.)
 ## o mezcla (el resto: 1 de cada 3, cristales).
 const ONLY_CRYSTALS := ["islas_espuma"]
 const ONLY_TORCHES := ["torre_pokemon", "mansion_pokemon", "central_electrica"]
+## Velas sobre las lápidas (pedido del usuario 2026-11-01: "la Torre se ve muy oscura"): lápida = celda sólida con
+## suelo arriba y abajo; una cada CANDLE_SPACING celdas.
+const CANDLES := ["torre_pokemon"]
+const CANDLE_PATH := "res://sprites/props/vela.png"
+const CANDLE_SPACING := 3
+const CANDLE_COLOR := Color(1.0, 0.62, 0.28)
+const CANDLE_ENERGY := 0.6
+const CANDLE_RADIUS := 3.5
 
 static var _light_tex: Texture2D
 
-## Las luces puestas: [celda de la pared, "antorcha" o "cristales"].
+## Las luces puestas: [celda de la pared o la lápida, "antorcha", "cristales" o "vela"].
 var spots: Array = []
 var _lights: Array[PointLight2D] = []
 var _t := 0.0
@@ -64,8 +72,29 @@ func place(zone: Node2D, entry: ZoneEntry) -> void:
 				break
 		if free:
 			spots.append([c, _kind(c, entry.id)])
+	if CANDLES.any(func(p: String) -> bool: return entry.id.begins_with(p)):
+		_place_candles(zone, entry, objects)
 	for s in spots:
 		_build(s[0], s[1])
+
+
+func _place_candles(zone: Node2D, entry: ZoneEntry, objects: Dictionary) -> void:
+	var stones: Array[Vector2i] = []
+	for y in range(1, entry.size.y - 1):
+		for x in range(1, entry.size.x - 1):
+			var c := Vector2i(x, y)
+			if MapRules.cell_physics(zone, c, objects) == MapRules.SOLID 					and MapRules.cell_physics(zone, c + Vector2i.UP, objects) < 0 					and MapRules.cell_physics(zone, c + Vector2i.DOWN, objects) < 0:
+				stones.append(c)
+	stones.sort_custom(func(a: Vector2i, b: Vector2i): return _hash(a, entry.id + "v") < _hash(b, entry.id + "v"))
+	for c in stones:
+		var free := true
+		for s in spots:
+			var d: Vector2i = (s[0] as Vector2i) - c
+			if maxi(absi(d.x), absi(d.y)) < CANDLE_SPACING:
+				free = false
+				break
+		if free:
+			spots.append([c, "vela"])
 
 
 func _kind(c: Vector2i, zone_id: String) -> String:
@@ -85,13 +114,16 @@ static func _hash(c: Vector2i, salt: String) -> int:
 func _build(cell: Vector2i, kind: String) -> void:
 	var t := float(Zone.TILE)
 	var torch := kind == "antorcha"
-	var path := TORCH_PATH if torch else CRYSTAL_PATH
+	var candle := kind == "vela"
+	var path := CANDLE_PATH if candle else (TORCH_PATH if torch else CRYSTAL_PATH)
 	var tex: Texture2D = load(path) if ResourceLoader.exists(path) else null
 	if tex == null:  # sin el dibujo: solo la luz, al pie de la pared
 		tex = PlaceholderTexture2D.new()
 		(tex as PlaceholderTexture2D).size = Vector2(1, 16)
-	# Al pie de la pared, centrada en la celda.
+	# Al pie de la pared, centrada en la celda; la vela, arriba de la lápida.
 	var foot := Vector2(cell.x * t + t / 2.0, (cell.y + 1) * t)
+	if candle:
+		foot = Vector2(cell.x * t + t / 2.0, cell.y * t + 5.0)
 	var sprite := Sprite2D.new()
 	sprite.texture = tex
 	sprite.centered = false
@@ -100,12 +132,12 @@ func _build(cell: Vector2i, kind: String) -> void:
 	add_child(sprite)
 	var light := PointLight2D.new()
 	light.texture = light_texture()
-	light.color = TORCH_COLOR if torch else CRYSTAL_COLOR
-	light.energy = TORCH_ENERGY if torch else CRYSTAL_ENERGY
-	light.texture_scale = RADIUS * 2.0 * t / light.texture.get_width()
-	light.position = foot - Vector2(0, tex.get_height() * (0.75 if torch else 0.4))
+	light.color = CANDLE_COLOR if candle else (TORCH_COLOR if torch else CRYSTAL_COLOR)
+	light.energy = CANDLE_ENERGY if candle else (TORCH_ENERGY if torch else CRYSTAL_ENERGY)
+	light.texture_scale = (CANDLE_RADIUS if candle else RADIUS) * 2.0 * t / light.texture.get_width()
+	light.position = foot - Vector2(0, tex.get_height() * (0.85 if candle else (0.75 if torch else 0.4)))
 	light.set_meta("base", light.energy)
-	light.set_meta("torch", torch)
+	light.set_meta("torch", torch or candle)
 	light.set_meta("phase", float(_hash(cell, "f") % 1000) / 100.0)
 	add_child(light)
 	_lights.append(light)

@@ -43,6 +43,9 @@ const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28,
 ## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
 ## (CaveLights) y una luz chica alrededor del entrenador (CAVE_PLAYER_LIGHT).
 const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
+## La Torre Pokémon: igual de fría pero menos oscura (pedido del usuario 2026-11-01: "se ve muy oscura").
+const DIM_CAVES := ["torre_pokemon"]
+const CAVE_DIM := [0.0, Color(0.46, 0.46, 0.60), Vector3(0.96, 0.98, 1.08), 0.92, 1.08, 0.48, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
 const CAVE_PLAYER_LIGHT := Color(0.80, 0.88, 1.0)
 const CAVE_PLAYER_ENERGY := 0.38
 const CAVE_PLAYER_RADIUS := 64.0
@@ -67,6 +70,7 @@ var shadow_alpha := 0.8
 var indoor := false
 ## Cueva (bioma "cueva"): oscura aunque sea de día.
 var in_cave := false
+var _dim_cave := false
 var phase := ""
 
 var _world: Node
@@ -96,6 +100,7 @@ func _process(delta: float) -> void:
 func _enter(z: ZoneEntry) -> void:
 	indoor = z.interior
 	in_cave = z.biome == "cueva"
+	_dim_cave = in_cave and DIM_CAVES.any(func(p: String) -> bool: return z.id.begins_with(p))
 
 
 func hour() -> float:
@@ -146,7 +151,7 @@ func apply() -> void:
 	var arena_on: bool = _world.get("arena") != null and _world.arena.active
 	casts_shadows = not indoor and not arena_on
 	var cave := in_cave and not arena_on
-	var lk: Array = CAVE if cave else (INDOOR if not casts_shadows else look_at(h))
+	var lk: Array = (CAVE_DIM if _dim_cave else CAVE) if cave else (INDOOR if not casts_shadows else look_at(h))
 	var sun := sun_at(h)
 	_update_player_light(cave)
 	RenderingServer.set_default_clear_color(CAVE_CLEAR if cave

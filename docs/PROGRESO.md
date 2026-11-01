@@ -6,6 +6,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-01)
+- **Torre Pokémon más amplia y con velas (2026-11-01, pedido del usuario: "más espacio en general", "se ve muy
+  oscura")**: `import_frlg_maps.py::widen_corridors` saca lápidas hasta que ninguna deja un pasillo de una sola celda
+  (pisos 2-7; el 4.º pasó de 45 a 19). `CaveLights.CANDLES`: velas (`sprites/props/vela.png`) sobre las lápidas, una cada
+  3 celdas, luz cálida que titila; `DayNight.CAVE_DIM` = la Torre igual de fría que una cueva pero menos oscura.
+  `--showcase-cave` suma el 4.º piso.
 - **Escaleras de la Torre Pokémon con lugar (2026-11-01, pedido del usuario: "no puedo avanzar")**: en FireRed cada
   escalera queda en un pasillo de una celda entre lápidas; acá, al llegar aparecías pegado a la escalera y un paso te
   devolvía al piso de antes. `import_frlg_maps.py` → `CLEAR_NEAR_WARPS`: sin lápidas a 3 celdas de cada escalera

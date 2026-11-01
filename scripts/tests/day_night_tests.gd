@@ -201,11 +201,12 @@ func showcase() -> void:
 	get_tree().quit()
 
 
-## Vitrina de una cueva: Mt. Moon frente a varias luces (imprime los cuadros).
+## Vitrina de las cuevas: Mt. Moon, Túnel Roca, Islas Espuma y la Torre Pokémon (con velas), frente a varias luces
+## (imprime los cuadros).
 ##   godot --path . --quit-after 160 --write-movie out/f.png --fixed-fps 30 -- --showcase-cave
 func showcase_cave() -> void:
 	GameState.new_game(DB.species["charmander"])
-	for zone_id in ["mt_moon", "tunel_roca", "islas_espuma"]:
+	for zone_id in ["mt_moon", "tunel_roca", "islas_espuma", "torre_pokemon_4p"]:
 		await _start(zone_id, Vector2i(10, 10))
 		world.get_node("UI").visible = false
 		var zone: Node2D = world.streamer.loaded.get(zone_id)
