@@ -158,3 +158,11 @@ la pose sola, sin fuego ni agua.
 - Revisión: `out/animaciones/revision.html` (lo rehace `review_page.py` después de cada especie): Bien / Rehacer / No va
   + nota por familia, guardado en el navegador, "Copiar revisión" arma el texto para pasárselo a Claude.
 - El último cuadro se reemplaza solo por el Idle si sale con otra forma (el "plato volador" de Geodude).
+- **Más parecidos al sprite (2026-11-01, "algunos están feos, como Bulbasaur")**: (1) el paso a 32 px igualaba mal los
+  colores (la IA pinta con los del arte oficial, Bulbasaur turquesa, y el sprite de PMD es pálido) y promediar dejaba
+  puntitos: ahora se iguala media y desvío de cada canal al sprite original, cada pixel va al color de paleta más
+  parecido (pesa la luz) y cada pixel chico es el color con más votos de su bloque (`strike_sheet.convert`). (2) El
+  prompt manda como **imagen 2 la animación Attack de PMD** de esa dirección ("dibujá en exactamente ese estilo") y pide
+  copiar colores, sombreado, proporciones y tamaño de pixel; sin líneas de velocidad (quedaban rayitas sueltas).
+  Comparado en Bulbasaur, Pidgey y Geodude contra el prompt anterior. Lo hecho con el prompt viejo quedó en
+  `out/animaciones_v1/`.

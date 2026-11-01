@@ -26,15 +26,22 @@ VIEWS = ["facing down toward the viewer", "in three-quarter view facing down-rig
          "in three-quarter back view facing up-right", "seen from behind, facing away from the viewer"]
 DIRS = ["toward the viewer", "toward the lower right", "to the right", "toward the upper right, away from the viewer",
         "away from the viewer"]
-HEAD = ("This image is a pixel art sprite sheet: 4 animation frames of %s side by side in one row, %s, on a plain white "
+# Prompt afinado el 2026-11-01 ("que se parezcan más al modelo"): imagen 1 = la fila de Idle; imagen 2 = su animación
+# Attack de PMD (referencia de estilo: así copia el dibujo, los colores pálidos y las proporciones del sprite y no los
+# del arte oficial); sin líneas de velocidad (quedaban rayitas sueltas a 32 px).
+HEAD = ("Image 1 is a pixel art sprite sheet: 4 animation frames of %s side by side in one row, %s, on a plain white "
         "background. Redraw it as a 4-frame %s animation, keeping exactly 4 cells of equal width in one row: %s "
         "Use exaggerated, readable key poses with strong anticipation and follow-through, so the silhouette clearly "
-        "changes from frame to frame. Keep the identical character design, colors, proportions and facing direction "
-        "from the input. Each cell is a tiny low-resolution game sprite enlarged 8 times: big square pixels on a strict "
-        "grid, a 1-pixel dark outline, flat colors, no gradients, no anti-aliasing, no blur. Same character size in "
-        "every cell. Plain pure white background everywhere, no floor, no ground line, no shadow, no text.")
-# (sin colores de efectos: un golpe no los necesita, y el gris y el celeste se comían los verdes del cuerpo)
-EFFECT_COLORS = []
+        "changes from frame to frame. ")
+REFERENCE = ("Image 2 shows the same character in its original game attack animation: draw in exactly that pixel art "
+             "style, colors and proportions. ")
+TAIL = ("It must look like the very same sprite from the input, only in new poses: copy its exact colors (the same "
+        "shades as the input, not the official artwork colors), its shading, its proportions, its outline and its pixel "
+        "size, and keep its facing direction. Do not redesign it, do not add detail, do not add colors that are not in "
+        "the input. Each cell is a tiny low-resolution game sprite enlarged 8 times: big square pixels on a strict grid, "
+        "a 1-pixel dark outline, flat colors, no gradients, no anti-aliasing, no blur. Same character size in every "
+        "cell. Plain pure white background everywhere, no floor, no ground line, no shadow, no motion lines, no speed "
+        "lines, no text.")
 
 
 def folder_of(num):
@@ -56,6 +63,24 @@ def idle_row(num, row):
     return [im.crop(((i % n) * fw, row * fh, (i % n + 1) * fw, (row + 1) * fh)) for i in range(N)], fw, fh
 
 
+def attack_strip(num, row, path):
+    """4 cuadros de la animación Attack de PMD en esa dirección (×4, fondo blanco), o None si la especie no la tiene."""
+    fw = fh = 0
+    for a in ET.parse(os.path.join(folder_of(num), "AnimData.xml")).getroot().iter("Anim"):
+        if a.findtext("Name") == "Attack" and a.findtext("FrameWidth"):
+            fw, fh = int(a.findtext("FrameWidth")), int(a.findtext("FrameHeight"))
+    src = os.path.join(folder_of(num), "Attack-Anim.png")
+    if not fw or not os.path.exists(src):
+        return None
+    im = Image.open(src).convert("RGBA")
+    n = im.width // fw
+    strip = Image.new("RGBA", (fw * N, fh), (255, 255, 255, 255))
+    for i, j in enumerate([0, n // 3, (2 * n) // 3, n - 1]):
+        strip.alpha_composite(im.crop((j * fw, row * fh, (j + 1) * fw, (row + 1) * fh)), (i * fw, 0))
+    strip.convert("RGB").resize((strip.width * 4, strip.height * 4), Image.NEAREST).save(path)
+    return path
+
+
 def bbox(im):
     return im.getchannel("A").point(lambda a: 255 if a > 0 else 0).getbbox()
 
@@ -70,7 +95,10 @@ def gen(num, desc, action, out, seeds, kind="melee attack", preview=True):
             strip.alpha_composite(f, (i * fw, 0))
         big = os.path.join(out, "d%d_entrada.png" % row)
         strip.convert("RGB").resize((strip.width * 8, strip.height * 8), Image.NEAREST).save(big)
-        prompt = HEAD % (desc, VIEWS[row], kind, action.replace("{dir}", DIRS[row]))
+        ref = attack_strip(num, row, os.path.join(out, "d%d_referencia.png" % row))
+        prompt = HEAD % (desc, VIEWS[row], kind, action.replace("{dir}", DIRS[row])) + (REFERENCE if ref else "") + TAIL
+        if not ref:
+            prompt = prompt.replace("Image 1 is", "This image is")
         line = []
         for seed in seeds:
             name = "d%d_s%d" % (row, seed)
@@ -78,7 +106,8 @@ def gen(num, desc, action, out, seeds, kind="melee attack", preview=True):
             only = os.environ.get("ROWS")  # ROWS=4 → solo genera esa(s) fila(s) (las demás, si ya están)
             if not os.path.exists(os.path.join(out, name + ".png")) and (not only or str(row) in only.split(",")):
                 subprocess.run([sys.executable, "-I", os.path.join(HERE, "qwen21_run.py"), name, str(strip.width * 8),
-                               str(strip.height * 8), prompt, big], check=True, env=env, stdout=subprocess.DEVNULL)
+                               str(strip.height * 8), prompt, big] + ([ref] if ref else []), check=True, env=env,
+                               stdout=subprocess.DEVNULL)
             if os.path.exists(os.path.join(out, name + ".png")):
                 line.append(convert(num, row, os.path.join(out, name + ".png")))
             else:
@@ -96,6 +125,24 @@ def gen(num, desc, action, out, seeds, kind="melee attack", preview=True):
                 sheet.alpha_composite(c, (i * cw, (r * len(seeds) + s) * ch + r * 6))
     sheet.resize((sheet.width * 3, sheet.height * 3), Image.NEAREST).save(os.path.join(out, "elegir.png"))
     print("semillas por fila, de arriba abajo:", seeds)
+
+
+def _lab(c):
+    """Aproximación perceptual barata: luz (pesa el doble) y dos ejes de color."""
+    r, g, b = [v / 255.0 for v in c[:3]]
+    y = 0.299 * r + 0.587 * g + 0.114 * b
+    return (y * 2.0, b - y, r - y)
+
+
+def _pixels(im):
+    return getattr(im, "get_flattened_data", im.getdata)()
+
+
+def _stats(pixels):
+    n = float(len(pixels))
+    mean = [sum(p[i] for p in pixels) / n for i in range(3)]
+    sd = [max(1.0, (sum((p[i] - mean[i]) ** 2 for p in pixels) / n) ** 0.5) for i in range(3)]
+    return mean, sd
 
 
 def convert(num, row, ai_path, idle_last=None):
@@ -141,31 +188,50 @@ def convert(num, row, ai_path, idle_last=None):
     # corrimiento: el centro abajo de la pose de reposo achicada cae en el del Idle (dentro de la celda con margen)
     dx = round(PAD + ocx - (rb[0] + rb[2]) / 2.0 * k)
     dy = round(PAD + obot - rb[3] * k)
-    cols = {c[:3] for o in orig for _, c in o.getcolors(4096) if c[3] > 0}
-    outline = min(cols, key=sum)
-    cols = list(cols) + EFFECT_COLORS
-    pal = Image.new("P", (1, 1))
-    flat = [v for c in cols for v in c]
-    pal.putpalette(flat + flat[:3] * (256 - len(cols)))
+    # Colores (2026-11-01, "algunos están feos"): la IA pinta con los colores del arte oficial (Bulbasaur turquesa) y el
+    # sprite de PMD es más pálido; promediar y pasar a la paleta dejaba otros tonos y puntitos sueltos. Ahora: se igualan
+    # la media y el desvío de cada canal a los del sprite original, cada pixel grande va al color de la paleta más
+    # parecido (luz pesa más que tono) y cada pixel chico es el color que más votos tiene en su bloque.
+    opx = [p[:3] for o in orig for p in _pixels(o) if p[3] > 0]
+    pal = sorted(set(opx))
+    outline = min(pal, key=sum)
+    palab = [_lab(p) for p in pal]
+    apx = [p[:3] for c in big for p in _pixels(c) if p[3] > 0] or opx
+    om, osd = _stats(opx)
+    am, asd = _stats(apx)
+    cache = {}
     out = []
     for c in big:
+        src = c.load()
         w2, h2 = max(1, round(c.width * k)), max(1, round(c.height * k))
-        s = c.resize((w2, h2), Image.BOX)
-        sp = s.load()
-        q = s.convert("RGB").quantize(palette=pal, dither=Image.Dither.NONE).convert("RGBA")
+        q = Image.new("RGBA", (w2, h2))
         qp = q.load()
-        for y in range(h2):
-            for x in range(w2):
-                if sp[x, y][3] < 128:
-                    qp[x, y] = (0, 0, 0, 0)
+        for oy in range(h2):
+            y0, y1 = int(oy / k), max(int(oy / k) + 1, int((oy + 1) / k))
+            for ox in range(w2):
+                x0, x1 = int(ox / k), max(int(ox / k) + 1, int((ox + 1) / k))
+                votes, total, solid = {}, 0, 0
+                for y in range(y0, min(y1, c.height)):
+                    for x in range(x0, min(x1, c.width)):
+                        total += 1
+                        p = src[x, y]
+                        if p[3] == 0:
+                            continue
+                        solid += 1
+                        t = tuple(max(0, min(255, int((p[i] - am[i]) / asd[i] * osd[i] + om[i]))) // 8 * 8
+                                  for i in range(3))
+                        if t not in cache:
+                            lt = _lab(t)
+                            cache[t] = min(range(len(pal)), key=lambda j: sum((a - b) ** 2 for a, b in zip(lt, palab[j])))
+                        votes[cache[t]] = votes.get(cache[t], 0) + 1
+                if total and solid * 2 >= total:
+                    qp[ox, oy] = pal[max(votes, key=votes.get)] + (255,)
         on = [[qp[x, y][3] > 0 for x in range(w2)] for y in range(h2)]
         for y in range(h2):
             for x in range(w2):
                 if on[y][x] and any(not (0 <= x + ex < w2 and 0 <= y + ey < h2) or not on[y + ey][x + ex]
                                     for ex, ey in ((1, 0), (-1, 0), (0, 1), (0, -1))):
-                    r, g, b, _ = qp[x, y]
-                    if r + g + b < 600:
-                        qp[x, y] = outline + (255,)
+                    qp[x, y] = outline + (255,)
         f = Image.new("RGBA", (cw, ch))
         f.alpha_composite(q.crop((max(0, -dx), max(0, -dy), w2, h2)), (max(0, dx), max(0, dy)))
         out.append(f)
