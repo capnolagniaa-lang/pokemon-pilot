@@ -67,7 +67,15 @@ def run_species(d, dex, seeds, only=None):
         out = os.path.join(base, fam)
         t0 = time.time()
         title, action = mf.FAMILIES[fam]
-        ss.gen(dex, label, action.replace("{n}", name), out, seeds, kind="attack", preview=False)
+        try:  # (si ComfyUI lo corta o lo está usando otro, se reintenta una vez y si no se saltea: queda para después)
+            ss.gen(dex, label, action.replace("{n}", name), out, seeds, kind="attack", preview=False)
+        except Exception:
+            time.sleep(20)
+            try:
+                ss.gen(dex, label, action.replace("{n}", name), out, seeds, kind="attack", preview=False)
+            except Exception as e:
+                print("%d %s / %s: FALLÓ (%s), sigo con la próxima" % (dex, name, fam, type(e).__name__), flush=True)
+                continue
         sheet, cw, ch = ss.sheet_of(dex, out, [seeds[0]] * 5)
         sheet.save(os.path.join(out, fam + ".png"))
         compass_gif(dex, sheet, cw, ch, os.path.join(out, fam + ".gif"))
