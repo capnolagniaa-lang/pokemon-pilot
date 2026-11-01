@@ -33,7 +33,7 @@ func run() -> void:
 		wild.machine.transition_to("chase")
 		# Llegó = pasó al otro lado de la pared (más abajo que ella) y está cerca tuyo.
 		var wall_y: float = zone.to_global(zone.ground.map_to_local(wall)).y
-		var arrived := func() -> bool: return is_instance_valid(wild) and wild.global_position.y > wall_y + 10.0 			and wild.global_position.distance_to(me.global_position) < 36.0
+		var arrived := func() -> bool: return is_instance_valid(wild) and wild.global_position.y > wall_y + 10.0 			and wild.global_position.distance_to(me.global_position) < 64.0  # (los de cuerpo a cuerpo esperan a ~52 px)
 		var t := 0.0
 		while t < 10.0 and not arrived.call():
 			await get_tree().physics_frame
@@ -126,6 +126,42 @@ func run() -> void:
 	r["El que recibe el golpe queda en stagger (no puede atacar)"] = victim.hitstun_left > 0.0 and not victim.can_act() 		and not victim.use_slot(0, Vector2.LEFT)
 	await get_tree().create_timer(Creature.HITSTUN_MAX + 0.1).timeout
 	r["...y al rato vuelve a poder atacar"] = victim.hitstun_left == 0.0 and victim.can_act()
+
+	# Cuerpo a cuerpo (pedido del usuario 2026-10-31: "se quedan dando vueltas arriba de uno"): entra, pega y sale; no
+	# orbita pegado.
+	world = await autotest._setup_kit_world("squirtle")
+	var still: Creature = world.companion
+	still.machine.set_physics_process(false)
+	var brawler: Creature = world.spawner.spawn(DB.species["machop"], 12, still.global_position + Vector2(70, 0))
+	await get_tree().physics_frame
+	var melee_moves: Array[MoveData] = []
+	for m in DB.moves.values():
+		if m.kind == MoveData.Kind.MELEE and m.power > 0.0 and melee_moves.size() < 4:
+			melee_moves.append(m)
+	for i in MoveUser.SLOT_COUNT:
+		brawler.moves.slots[i] = melee_moves[i]
+	brawler.target = still
+	brawler.machine.transition_to("attack")
+	var hp_before := still.instance.hp
+	var turned := 0.0
+	var last_ang := (brawler.global_position - still.global_position).angle()
+	var glued := 0.0
+	var tt := 0.0
+	while tt < 5.0 and is_instance_valid(brawler):
+		await get_tree().physics_frame
+		var dt := get_physics_process_delta_time()
+		tt += dt
+		var off := brawler.global_position - still.global_position
+		turned += absf(angle_difference(last_ang, off.angle()))
+		last_ang = off.angle()
+		if off.length() < 24.0:
+			glued += dt
+	r["Cuerpo a cuerpo: pega (%.0f de daño en 5 s)" % (hp_before - still.instance.hp)] = still.instance.hp < hp_before
+	r["...sin dar vueltas encima tuyo (giró %.0f° en 5 s)" % rad_to_deg(turned)] = turned < TAU
+	r["...ni quedarse pegado todo el tiempo (%.1f s de 5 a menos de 24 px)" % glued] = glued < 3.0
+	if is_instance_valid(brawler):
+		brawler.queue_free()
+	still.machine.set_physics_process(true)
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:

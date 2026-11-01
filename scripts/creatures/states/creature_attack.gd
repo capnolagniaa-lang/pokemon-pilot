@@ -18,8 +18,18 @@ var _mode := "strafe"
 ## Ataque avisado que espera soltar (-1 = ninguno) y cuánto le falta al aviso.
 var _tell_slot := -1
 var _tell_left := 0.0
+## Cuerpo a cuerpo: después de pegar sale para atrás este rato (entra, pega, sale).
+var _backoff := 0.0
 ## Con un estilo de hasta esta distancia es de cuerpo a cuerpo (no retrocede para mantener distancia).
 const MELEE_RANGE := 45.0
+## Cuerpo a cuerpo con el ataque en espera (pedido del usuario 2026-10-31: "se quedan dando vueltas arriba de uno"):
+## se queda a esta distancia, de frente, amagando de costado despacio, y entra recién cuando va a pegar
+## (como un melee de MOBA: entra, pega, sale).
+const MELEE_SPACING := 52.0
+## Entra a pegar cuando le falta esto para atacar.
+const MELEE_ENTER := 0.45
+## Más cerca que esto no empuja (no se le sube encima).
+const CONTACT := 18.0
 
 
 func enter(_msg: Dictionary = {}) -> void:
@@ -115,25 +125,38 @@ func physics_update(delta: float) -> void:
 	if _attack_timer <= 0.0:
 		if _choose_attack(dist):
 			_attack_timer = randf_range(0.5, 1.1) * CombatBody.difficulty().attack_interval_mult * _pace()
+			if _ideal_range() <= MELEE_RANGE and not actor.mind.all_in:
+				_backoff = randf_range(0.4, 0.65)
+				_attack_timer = maxf(_attack_timer, _backoff + MELEE_ENTER + 0.15)
 			return
 		# Ningún ataque llega desde acá: no se queda esperando, se acomoda y vuelve a probar enseguida.
 		_attack_timer = 0.2
 		if dist > _ideal_range() * 0.8:
 			_mode = "approach"
 
+	var speed_k := 0.95 if _mode == "approach" else 0.8
+	if _ideal_range() <= MELEE_RANGE:
+		_mode = _melee_mode(dist)
+		speed_k = 0.95 if _mode == "approach" else (0.6 if _mode == "retreat" else 0.35)
 	var move := Vector2.ZERO
 	match _mode:
 		"approach":
-			move = dir
+			move = dir if dist > CONTACT else Vector2.ZERO
 		"retreat":
 			move = -dir
+		"hold":
+			move = dir.orthogonal() * _strafe * 0.6 + dir * clampf((dist - MELEE_SPACING) / 20.0, -0.6, 0.6)
 		_:
 			move = dir.orthogonal() * _strafe * 0.8 + dir * 0.15
 	var flank: Vector2 = actor.mind.flank_point(_ideal_range())
 	if flank != Vector2.INF and actor.global_position.distance_to(flank) > 16.0 and _mode != "retreat":
 		move = (flank - actor.global_position).normalized()  # en manada: te rodea (cada uno de un lado)
+	if move == Vector2.ZERO:
+		actor.move(Vector2.ZERO, 0.0)  # pegado: espera el golpe de frente, sin dar vueltas
+		actor.facing = dir
+		return
 	var steered: Vector2 = actor.body.steer(move.normalized(), t.global_position if _mode == "approach" else Vector2.INF)
-	if _mode == "strafe" and steered.dot(move.normalized()) < 0.5:
+	if _mode in ["strafe", "hold"] and steered.dot(move.normalized()) < 0.5:
 		_strafe = -_strafe  # rodeando contra una pared: cambia de lado
 	if actor.mind.danger_at(actor.global_position + steered * 14.0) and not actor.mind.danger_at(actor.global_position):
 		# Adelante hay un lugar peligroso (agua frente a un eléctrico...): rodea para el otro lado, o se queda.
@@ -142,8 +165,25 @@ func physics_update(delta: float) -> void:
 		steered = actor.body.steer(dir.orthogonal() * _strafe, Vector2.INF)
 		if actor.mind.danger_at(actor.global_position + steered * 14.0):
 			steered = Vector2.ZERO
-	actor.move(steered, actor.speed() * (0.95 if _mode == "approach" else 0.8))
+	actor.move(steered, actor.speed() * speed_k)
 	actor.facing = dir
+
+
+## Cuerpo a cuerpo: entra cuando va a pegar (o tenés tus fuertes en recarga, o se juega todo); si no, sale a su
+## distancia y espera de frente.
+func _melee_mode(dist: float) -> String:
+	_backoff -= get_physics_process_delta_time()
+	if dist > 40.0 and not actor.body.clear_shot(actor.target):
+		return "approach"  # una pared o un árbol en el medio: la rodea
+	if _backoff > 0.0:
+		return "retreat" if dist < MELEE_SPACING else "hold"
+	if _attack_timer <= MELEE_ENTER or actor.mind.window_open() or actor.mind.all_in:
+		return "approach"
+	if dist < MELEE_SPACING * 0.75:
+		return "retreat"
+	if dist > MELEE_SPACING * 1.6:
+		return "approach"
+	return "hold"
 
 
 func _ideal_range() -> float:

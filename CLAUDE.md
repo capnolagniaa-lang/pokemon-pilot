@@ -233,7 +233,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   pasar el daño por segundo del ataque), Clic der. y Q = habilidades, R = **definitiva** (recarga ×1,6, mínimo 8 s, daño
   ×1,3). Los rivales y salvajes se ordenan solos (`by_role`); los tuyos, como los pongas en la ficha. `HitInfo.from` aplica
   el daño del rol y `TacticalMind` lo cuenta. Además `cooldown_mult` (× todas las recargas y el esquive) y `attack_gap`
-  (pausa entre cualquier ataque), neutros por defecto: se van puliendo jugando.
+  (pausa entre cualquier ataque), neutros por defecto: se van puliendo jugando. **IA cuerpo a cuerpo**
+  (`creature_attack.gd::_melee_mode`): entra a pegar (`MELEE_ENTER`), sale (`_backoff`) y espera a `MELEE_SPACING` de
+  frente; no orbita pegado.
 - **Kits / estilos de pelea** (plan de identidad, v2; **desde 2026-10-28 solo los jefes de gimnasio**): `Kit` (`archetype`,
   `preferred_range`, `signature` opcional, `moves` = 4 `MoveData`). **Sin energía**: solo recargas. Teclas en
   `Controls.SLOT_ACTIONS` (Clic izq., Clic der., Q, R) + `dodge` (Espacio, igual para todos). La criatura usa

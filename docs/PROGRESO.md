@@ -10,6 +10,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   jugando)**: Clic izq. = ataque básico (seguido, pega menos), Clic der. y Q = habilidades, R = definitiva (recarga larga,
   pega ×1,3). Los rivales ordenan sus ataques solos por rol. Ajustes del juego → Combate: "Teclas por rol", "Ritmo:
   recargas" (×) y "Ritmo: pausa entre un ataque y otro". `MoveUser` (roles, `slot_cooldown`, `role_damage`).
+  Balance (400 peleas IA contra IA, misma semilla que antes): las peleas duran ~45% más y los empates por tiempo pasaron
+  de 3% a 11%; Paras cayó (83% → 21%: su básico es un ataque de recarga larga) y Clefairy sigue en 0% (ya estaba).
+- **IA cuerpo a cuerpo (2026-10-31, pedido del usuario: "se quedan dando vueltas arriba de uno")**: entra cuando va a
+  pegar, pega y sale para atrás (`_backoff`); mientras espera se queda a ~52 px de frente (`MELEE_SPACING`, modo
+  "hold") en vez de orbitar pegado. Si hay una pared en el medio la rodea igual. Test en `--autotest-ai-steer`.
 - **Empalmes y cercas de más (2026-10-31, pedido del usuario)**: revisión de todos los bordes entre zonas
   (`tools/check_seams.py`, informe en `docs/EMPALMES.md`). Arreglado en el importador: cercas y salientes dobles, en
   escalón o con huecos (`straighten_lines`, 31 zonas), Fucsia–Ruta 15 no se tocaban (`EXTEND`: camino nuevo), hueco y canal
