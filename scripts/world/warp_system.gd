@@ -117,9 +117,17 @@ func use(entry: ZoneEntry, cell: Vector2i) -> void:
 ## Dónde aparecer al usar una puerta que lleva a `cell`: [celda, dirección hacia donde se sale]. La primera vecina
 ## transitable que no sea otra puerta (y con lugar para dar un paso más); si no hay, la celda libre más cercana.
 static func arrival(walkable: Callable, entry: ZoneEntry, cell: Vector2i) -> Array:
+	var dirs := ARRIVAL_DIRS.duplicate()
+	# Escalera de costado (una puerta transitable con lo sólido de un lado): se baja hacia el otro lado, así un
+	# paso de más no te vuelve a subir.
+	if walkable.call(cell):
+		for d: Vector2i in [Vector2i.LEFT, Vector2i.RIGHT]:
+			if not walkable.call(cell - d) and _inside(entry, cell + d) and walkable.call(cell + d):
+				dirs.erase(d)
+				dirs.push_front(d)
 	for strict in [true, false]:
-		for d in ARRIVAL_DIRS:
-			var n := cell + d
+		for d: Vector2i in dirs:
+			var n: Vector2i = cell + d
 			if not _inside(entry, n) or entry.warps.has(n) or not walkable.call(n):
 				continue
 			if strict and not (_inside(entry, n + d) and walkable.call(n + d)):

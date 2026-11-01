@@ -211,6 +211,10 @@ CAVES_4 = {
 WILD_INTERIORS_4 = {}
 for _i in range(1, 8):
     WILD_INTERIORS_4["PokemonTower_%dF" % _i] = ("torre_pokemon_%dp" % _i, "Torre Pokémon (planta %d)" % _i)
+# Lápidas que se sacan alrededor de las escaleras (mapa -> (metatile de lápida, metatile de piso, radio en celdas)):
+# en FireRed la escalera queda en un pasillo de una celda entre lápidas, y acá, con el Pokémon atrás y sin grilla, al
+# moverse un poco se volvía a pisar la escalera (pedido del usuario 2026-11-01: más espacio en las escaleras).
+CLEAR_NEAR_WARPS = {"PokemonTower_%dF" % _i: (39017, 39002, 3) for _i in range(1, 8)}
 for _f, _id, _n in (("1F", "1p", "planta 1"), ("2F", "2p", "planta 2"), ("3F", "3p", "planta 3"), ("B1F", "s1", "sótano")):
     WILD_INTERIORS_4["PokemonMansion_" + _f] = ("mansion_pokemon_" + _id, "Mansión Pokémon (%s)" % _n)
 INTERIORS_4 = {
@@ -1004,6 +1008,8 @@ def main():
         + list(INTERIORS_4.items())
     for n, info in offworld:
         g = grids[n] if n in grids else grid_of(lay_of[n])
+        if n in CLEAR_NEAR_WARPS:
+            g = clear_near_warps(g, maps[n], *CLEAR_NEAR_WARPS[n])
         w, h = len(g[0]), len(g)
         if ix and ix + w > INTERIOR_ROW:
             ix, iy, row_h = 0, iy + row_h + INTERIOR_GAP, 0
@@ -1063,6 +1069,17 @@ def main():
         for z in zones:
             print("%-26s origen %-12s tamaño %-10s puertas %d" % (z["id"], z["origin"], z["size"], len(z["warps"])))
     print("zonas:", len(zones), "puertas:", sum(len(z["warps"]) for z in zones))
+
+
+def clear_near_warps(grid, m, solid, floor, r):
+    """Cambia `solid` por `floor` (caminable) a `r` celdas o menos de cada puerta del mapa (interiores 1:1)."""
+    g = [list(row) for row in grid]
+    for w in m.get("warp_events", []):
+        for y in range(max(0, w["y"] - r), min(len(g), w["y"] + r + 1)):
+            for x in range(max(0, w["x"] - r), min(len(g[0]), w["x"] + r + 1)):
+                if g[y][x][0] == solid:
+                    g[y][x] = (floor, 0) + tuple(g[y][x][2:])
+    return g
 
 
 def _zone(name, info, rect, cells, kind):

@@ -5,7 +5,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-10-31)
+## 📍 Dónde estamos (actualizado 2026-11-01)
+- **Escaleras de la Torre Pokémon con lugar (2026-11-01, pedido del usuario: "no puedo avanzar")**: en FireRed cada
+  escalera queda en un pasillo de una celda entre lápidas; acá, al llegar aparecías pegado a la escalera y un paso te
+  devolvía al piso de antes. `import_frlg_maps.py` → `CLEAR_NEAR_WARPS`: sin lápidas a 3 celdas de cada escalera
+  (plantas 2 a 6). `WarpSystem.arrival`: en una escalera de costado (puerta transitable con lo sólido a un lado)
+  aparecés del otro lado, no arriba ni abajo.
 - **Ritmo del combate, estilo LoL (2026-10-31, pedido del usuario: "muy rápido, spam de mi parte"; se va puliendo
   jugando)**: Clic izq. = ataque básico (seguido, pega menos), Clic der. y Q = habilidades, R = definitiva (recarga larga,
   pega ×1,3). Los rivales ordenan sus ataques solos por rol. Ajustes del juego → Combate: "Teclas por rol", "Ritmo:
