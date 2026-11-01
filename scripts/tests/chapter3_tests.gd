@@ -112,6 +112,16 @@ func run() -> void:
 	world.trainer.facing = Vector2.UP
 	r["E frente a un basurero lo revisa"] = world.story.try_interact()
 	await _idle()
+	# Con un entrenador al lado (Benito, en el cruce de (2, 11)), la E sigue revisando el basurero de enfrente.
+	await _go("ciudad_carmin_gimnasio", Vector2i(2, 12))
+	world.trainer.facing = Vector2.LEFT
+	var benito: StoryNPC = world.story.npc_in_reach()
+	world.story.try_interact()
+	await get_tree().process_frame
+	var dlg = world.story.dialog
+	r["Con Benito al lado (%s), E frente al basurero lo revisa (%s)" % [benito.data.display_name if benito else "nadie",
+		dlg._speaker.text]] = benito != null and dlg.active and dlg._speaker.text == ""
+	await _idle()
 
 	# --- Lt. Surge ---
 	for inst in GameState.party:

@@ -66,7 +66,6 @@ func refresh() -> void:
 ## Carmín una chica al lado del mostrador te tapaba a la enfermera); si no hay nadie enfrente, la más cercana.
 func npc_in_reach() -> StoryNPC:
 	var t: Trainer = world.trainer
-	var facing := t.facing.normalized() if t.facing != Vector2.ZERO else Vector2.DOWN
 	var best: StoryNPC = null
 	var best_score := INF
 	for npc in npcs.values():
@@ -76,8 +75,7 @@ func npc_in_reach() -> StoryNPC:
 		var d := to.length()
 		if d >= TALK_RADIUS:
 			continue
-		var ahead := d < 1.0 or to.normalized().dot(facing) > 0.7
-		var score := d - (1000.0 if ahead else 0.0)
+		var score := d - (1000.0 if npc_ahead(npc) else 0.0)
 		if score < best_score:
 			best_score = score
 			best = npc
@@ -91,6 +89,10 @@ func try_interact() -> bool:
 	if world.combat.in_battle or world.warps.busy:
 		return false
 	var npc := npc_in_reach()
+	# Una persona al costado o atrás no le gana a lo que tenés enfrente (en el gimnasio de Carmín, Benito y Dwayne están
+	# entre los basureros y la E les hablaba a ellos en vez de revisar el basurero).
+	if npc != null and not npc_ahead(npc) and _interact_front():
+		return true
 	if npc != null:
 		if npc.data.is_undefeated_trainer() and npc.data.challenge_on_talk and _has_fighter():
 			challenge(npc)
@@ -101,6 +103,19 @@ func try_interact() -> bool:
 	if living != null:
 		challenge_living(living)
 		return true
+	return _interact_front()
+
+
+## ¿La persona está enfrente del entrenador (o encima)? El mismo criterio que usa `npc_in_reach` para preferirla.
+func npc_ahead(npc: StoryNPC) -> bool:
+	var t: Trainer = world.trainer
+	var facing := t.facing.normalized() if t.facing != Vector2.ZERO else Vector2.DOWN
+	var to: Vector2 = npc.global_position - t.global_position
+	return to.length() < 1.0 or to.normalized().dot(facing) > 0.7
+
+
+## Las interacciones registradas (basureros, carteles, rocas...) con la celda que el entrenador tiene enfrente.
+func _interact_front() -> bool:
 	var t: Trainer = world.trainer
 	var front := t.global_position + t.facing.normalized() * 16.0
 	var entry: ZoneEntry = world.streamer.world_data.zone_at(front)
