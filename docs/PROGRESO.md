@@ -18,6 +18,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   solos (3%/s en pelea, 20%/s fuera; ajuste `pp_regen`) y se llenan al curarse. Con PP las recargas quedan cortas (×0,3,
   0,35-2 s): limita la barra. HUD: barra azul bajo la vida y costo en cada ataque (se oscurece si no alcanza). La IA guarda
   PP (con menos del 30% los ataques que gastan valen la mitad). Ajuste `pp_mode`. `CreatureInstance.pp` no se guarda.
+  Balance (400 peleas IA contra IA): victorias en ~10 s de promedio (antes 8,8; con solo teclas por rol 12,7), pero los
+  empates por tiempo suben a 14% (antes 3%). A pulir jugando: costos, recarga de PP o daño del básico.
 - **IA cuerpo a cuerpo (2026-10-31, pedido del usuario: "se quedan dando vueltas arriba de uno")**: entra cuando va a
   pegar, pega y sale para atrás (`_backoff`); mientras espera se queda a ~52 px de frente (`MELEE_SPACING`, modo
   "hold") en vez de orbitar pegado. Si hay una pared en el medio la rodea igual. Test en `--autotest-ai-steer`.
