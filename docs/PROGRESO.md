@@ -12,6 +12,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   recargas" (×) y "Ritmo: pausa entre un ataque y otro". `MoveUser` (roles, `slot_cooldown`, `role_damage`).
   Balance (400 peleas IA contra IA, misma semilla que antes): las peleas duran ~45% más y los empates por tiempo pasaron
   de 3% a 11%; Paras cayó (83% → 21%: su básico es un ataque de recarga larga) y Clefairy sigue en 0% (ya estaba).
+- **Torre Pokémon con menos salvajes (2026-11-01, pedido del usuario)**: cada piso (`encounters/torre_pokemon_3p` a `7p`) tiene a lo sumo 2 a la vez (`max_alive` 2, `cells_per_wild` 0; antes se sumaba uno cada 150 celdas de suelo) y repone cada 40 s.
 - **PP como maná (2026-10-31, pedido del usuario: "los ataques tienen que costar por ejemplo 40 PP y mientras subís de
   nivel tenés más PP", como Pokémon Reloaded)**: barra de PP por Pokémon = 100 + 4 × nivel (`MoveUser.max_pp`); cada
   ataque gasta 8 + 0,55 × potencia (estado 25; `pp_cost_of`); el básico es gratis y devuelve 6 PP al pegar; se recargan

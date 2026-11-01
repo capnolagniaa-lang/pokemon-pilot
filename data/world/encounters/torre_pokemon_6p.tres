@@ -31,3 +31,6 @@ where = "suelo"
 [resource]
 script = ExtResource("3_4sdxa")
 entries = Array[ExtResource("2_rica8")]([SubResource("Resource_74qeo"), SubResource("Resource_osg8e"), SubResource("Resource_cmesn")])
+max_alive = 2
+cells_per_wild = 0
+respawn_time = 40.0
