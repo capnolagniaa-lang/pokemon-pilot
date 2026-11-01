@@ -95,6 +95,7 @@ def parse_dexes(arg):
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8")  # (Nidoran♀ en la consola de Windows)
     args = sys.argv[1:]
     seeds = [1234]
     only = None
