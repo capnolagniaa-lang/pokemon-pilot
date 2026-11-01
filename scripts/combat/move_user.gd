@@ -23,11 +23,18 @@ const ROLE_NAMES := ["Básico", "Habilidad", "Habilidad", "Definitiva"]
 ## quedan cortas (`PP_COOLDOWN`): lo que limita es la barra.
 const PP_BASE := 100.0
 const PP_PER_LEVEL := 4.0
-const PP_COST_BASE := 8.0
-const PP_COST_PER_POWER := 0.55
-const PP_STATUS_COST := 25.0
-## Recarga sola por segundo (fracción de la barra): en pelea y fuera de pelea.
-const PP_REGEN_FIGHT := 0.06
+## Costo según la potencia, medido en Pokemon Arena 2D (2026-11-01, cuadro por cuadro en un video: potencia 65 = 20 %
+## de la barra, 85 = 43 %; los fuertes son una decisión, no algo que se tira seguido): [potencia, fracción de la barra
+## de referencia], interpolado. La barra de referencia es la de Nv. 30 (220 PP): el costo en PP es fijo, así que a más
+## nivel (barra más grande) rinde más.
+const PP_COST_CURVE := [[20.0, 0.08], [65.0, 0.20], [85.0, 0.40], [120.0, 0.60], [150.0, 0.70]]
+const PP_REFERENCE := 220.0
+const PP_STATUS_COST := 33.0
+## Canalizados (Lanzallamas...): pagan esto al empezar y el resto mientras sale el chorro; sin PP se cortan.
+const PP_CHANNEL_UPFRONT := 0.3
+## Recarga sola por segundo (fracción de la barra): en pelea y fuera de pelea. En pelea, de vacía a llena en ~7,5 s
+## (en Pokemon Arena 2D, ~7 s; antes era 0,06: ~17 s).
+const PP_REGEN_FIGHT := 0.13
 const PP_REGEN_CALM := 0.3
 ## PP que devuelve cada golpe del básico.
 const PP_BASIC_GAIN := 6.0
@@ -211,13 +218,24 @@ func set_pp(value: float) -> void:
 		inst.pp = clampf(value, 0.0, max_pp())
 
 
-## Lo que gasta un ataque: según su potencia (Placaje ~26, Lanzallamas ~46, Hiperrayo ~70; los de estado 25).
+## Lo que gasta un ataque, según su potencia (`PP_COST_CURVE`: Placaje 40 ~29, Ascuas 40 ~29, Colmillo Ígneo 65 ~44,
+## Pulso Dragón 85 ~88, Lanzallamas 90 ~94, Hiperrayo 150 ~154; los de estado 33).
 static func pp_cost_of(m: MoveData) -> float:
 	if m == null:
 		return 0.0
 	if m.power <= 0.0 or m.category == MoveData.Category.STATUS:
 		return PP_STATUS_COST
-	return roundf(PP_COST_BASE + PP_COST_PER_POWER * m.power)
+	return roundf(cost_fraction(m.power) * PP_REFERENCE)
+
+
+static func cost_fraction(power: float) -> float:
+	var c: Array = PP_COST_CURVE
+	if power <= c[0][0]:
+		return c[0][1]
+	for i in range(1, c.size()):
+		if power <= c[i][0]:
+			return lerpf(c[i - 1][1], c[i][1], (power - c[i - 1][0]) / (c[i][0] - c[i - 1][0]))
+	return c[c.size() - 1][1]
 
 
 ## Lo que gasta la ranura (el básico, nada).
@@ -233,6 +251,13 @@ func has_pp(slot: int) -> bool:
 	return pp() >= pp_cost(slot)
 
 
+## Lo que gasta por segundo un canalizado mientras sale (0 si es gratis o no hay PP).
+func channel_drain(m: MoveData) -> float:
+	if not pp_on() or m == null or m.kind != MoveData.Kind.CHANNEL or m.channel_time <= 0.0:
+		return 0.0
+	return pp_cost(slots.find(m)) * (1.0 - PP_CHANNEL_UPFRONT) / m.channel_time
+
+
 ## El básico pegó: devuelve un poco de PP.
 func basic_landed(m: MoveData) -> void:
 	if pp_on() and roles_on() and slots.find(m) == BASIC_SLOT:
@@ -246,7 +271,8 @@ func consume(slot: int) -> Array:
 	var step := 0
 	gap_left = float(GameState.setting("attack_gap"))
 	if m.combo_steps <= 1 or _combo_step[slot] == 0:
-		set_pp(pp() - pp_cost(slot))  # (un combo gasta una vez, al empezar)
+		# (un combo gasta una vez, al empezar; un canalizado, una parte: el resto mientras dura, `channel_drain`)
+		set_pp(pp() - pp_cost(slot) * (PP_CHANNEL_UPFRONT if m.kind == MoveData.Kind.CHANNEL else 1.0))
 	if m.combo_steps > 1:
 		step = _combo_step[slot]
 		_combo_step[slot] = (step + 1) % m.combo_steps

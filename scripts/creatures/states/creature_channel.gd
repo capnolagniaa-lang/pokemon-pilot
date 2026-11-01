@@ -1,7 +1,8 @@
 extends State
 ## Canalizado (Lanzallamas): mantiene un cono que golpea en ticks durante `channel_time`. Se mueve muy
 ## lento y gira el cono hacia donde apunta (con giro limitado). Un golpe fuerte lo corta (pasa a stunned).
-## Al terminar, recuperación (ventana de castigo).
+## Al terminar, recuperación (ventana de castigo). Con PP, gasta mientras sale (`MoveUser.channel_drain`) y sin PP se
+## corta antes.
 
 const MOVE_FACTOR := 0.2
 const TURN_SPEED := 2.5  # radianes por segundo
@@ -46,7 +47,12 @@ func physics_update(delta: float) -> void:
 	_cone.aim(_aim)
 	actor.move(dir, actor.speed() * MOVE_FACTOR)
 	actor.facing = _aim
-	if _time >= _move.channel_time:
+	var drain: float = actor.moves.channel_drain(_move) if actor.get("moves") != null else 0.0
+	var dry := false
+	if drain > 0.0:
+		actor.moves.set_pp(actor.moves.pp() - drain * delta)
+		dry = actor.moves.pp() <= 0.0
+	if _time >= _move.channel_time or dry:
 		if _move.recovery > 0.0:
 			transition("recovery", {"time": _move.recovery})
 		else:

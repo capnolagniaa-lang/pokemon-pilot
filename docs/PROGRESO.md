@@ -29,6 +29,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Animaciones por ataque, por familias (2026-11-01, en revisión, no están en el juego)**: cada ataque cae en una familia de movimiento (morder, puño, patada, soplar por la boca...) y se generan con Qwen las de cada especie de Kanto (`tools/comfy/family_anims.py`, docs/COMFYUI.md). El usuario las revisa en `out/animaciones/revision.html` antes de meterlas.
 - **Golpes hechos con IA (2026-11-01, prueba con 5)**: Bulbasaur, Squirtle, Pidgey, Rattata y Geodude tienen su propio golpe (`Strike`) en 8 direcciones, dibujado con Qwen-Image 2.1 (`tools/comfy/strike_sheet.py`, docs/COMFYUI.md); antes usaban el Attack genérico. Vitrina: `--showcase-strike`.
 - **Torre Pokémon con menos salvajes (2026-11-01, pedido del usuario)**: cada piso (`encounters/torre_pokemon_3p` a `7p`) tiene a lo sumo 2 a la vez (`max_alive` 2, `cells_per_wild` 0; antes se sumaba uno cada 150 celdas de suelo) y repone cada 40 s.
+- **PP como Pokemon Arena 2D (2026-11-01, pedido del usuario)**: medida cuadro por cuadro la barra de energía en un video
+  de Pokemon Arena 2D (6 contra 6): se llena en ~7 s y potencia 65 cuesta ~20 % de la barra, 85 ~43 %, y Lanzallamas gasta
+  mientras sale. Ahora: recarga en pelea 13 %/s (antes 6 %), costo por curva `PP_COST_CURVE` sobre la barra de Nv. 30
+  (220 PP; 40 → 29, 65 → 44, 85 → 88, 120 → 132, 150 → 154; estado 33) y los canalizados pagan el 30 % al empezar y el
+  resto mientras salen (`channel_drain`; sin PP se cortan). El básico sigue gratis (+6 PP al pegar).
 - **PP como maná (2026-10-31, pedido del usuario: "los ataques tienen que costar por ejemplo 40 PP y mientras subís de
   nivel tenés más PP", como Pokémon Reloaded)**: barra de PP por Pokémon = 100 + 4 × nivel (`MoveUser.max_pp`); cada
   ataque gasta 8 + 0,55 × potencia (estado 25; `pp_cost_of`); el básico es gratis y devuelve 6 PP al pegar; se recargan

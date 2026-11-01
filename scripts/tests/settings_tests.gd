@@ -73,6 +73,16 @@ func run() -> void:
 	r["PP: la barra crece con el nivel (Nv. %d = %d)" % [lvl, int(mu.max_pp())]] = is_equal_approx(mu.max_pp(), 		MoveUser.PP_BASE + MoveUser.PP_PER_LEVEL * lvl)
 	var heavy := MoveData.new(); heavy.power = 150.0
 	r["PP: los fuertes gastan más (Hiperrayo %d, Placaje %d)" % [MoveUser.pp_cost_of(heavy), MoveUser.pp_cost_of(weak)]] = 		MoveUser.pp_cost_of(heavy) > MoveUser.pp_cost_of(weak) * 2.0
+	# Como en Pokemon Arena 2D (2026-11-01): potencia 65 ≈ 20 % de la barra de referencia, 85 ≈ 40 %.
+	var mid := MoveData.new(); mid.power = 65.0
+	var big := MoveData.new(); big.power = 85.0
+	r["PP: 65 de potencia ≈ 20 %% y 85 ≈ 40 %% (%d y %d PP)" % [MoveUser.pp_cost_of(mid), MoveUser.pp_cost_of(big)]] = 		is_equal_approx(MoveUser.cost_fraction(65.0), 0.2) and is_equal_approx(MoveUser.cost_fraction(85.0), 0.4)
+	var stream := MoveData.new(); stream.power = 90.0; stream.kind = MoveData.Kind.CHANNEL; stream.channel_time = 1.0
+	var keep := mu.slots[1]
+	mu.slots[1] = stream
+	var upfront := mu.pp_cost(1) * MoveUser.PP_CHANNEL_UPFRONT
+	r["PP: un canalizado paga una parte al empezar y el resto mientras sale"] = mu.channel_drain(stream) > 0.0 		and absf(upfront + mu.channel_drain(stream) * stream.channel_time - mu.pp_cost(1)) < 0.01
+	mu.slots[1] = keep
 	r["PP: el básico es gratis"] = mu.pp_cost(0) == 0.0
 	var paid := -1
 	for i in [1, 2, 3]:
