@@ -69,6 +69,7 @@ func _init() -> void:
 			if kept.warps.size() != before:
 				print("%-26s puertas: %d -> %d" % [kept.id, before, kept.warps.size()])
 			if kept.id in rebuild:
+				kept.size = Vector2i(int(z["size"][0]), int(z["size"][1]))  # (un arreglo del .py puede alargarla: EXTEND)
 				var built := _build(z)
 				_backup(kept.scene_path)
 				ZoneBuilder.save_zone(built, kept.scene_path)

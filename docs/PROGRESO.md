@@ -5,7 +5,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-10-30)
+## 📍 Dónde estamos (actualizado 2026-10-31)
+- **Empalmes y cercas de más (2026-10-31, pedido del usuario)**: revisión de todos los bordes entre zonas
+  (`tools/check_seams.py`, informe en `docs/EMPALMES.md`). Arreglado en el importador: cercas y salientes dobles, en
+  escalón o con huecos (`straighten_lines`, 31 zonas), Fucsia–Ruta 15 no se tocaban (`EXTEND`: camino nuevo), hueco y canal
+  corrido entre Paleta y la Ruta 21 (`FIT` reparte lo que falta, `REALIGN`), franjas de acantilado (`pad`). Pendiente
+  (decisión del usuario): las garitas dobles de Azafrán.
 - **Dos ramas (decisión del usuario 2026-10-30)**: `main` = el juego (jugabilidad, historia, etc.), sin nada de los
   gráficos nuevos: volvió al estado de `ee776278` (antes de empezar con 2D-HD). **`hd2d`** = la versión con gráficos
   2D-HD hechos con IA (skins del mundo, Pueblo Paleta repintado, `tools/repaint_zone.py`, luz por hora más dramática,

@@ -816,7 +816,7 @@ id = "ruta15"
 display_name = "Ruta 15"
 scene_path = "res://scenes/world/zones/ruta15.tscn"
 origin = Vector2i(434, 406)
-size = Vector2i(136, 34)
+size = Vector2i(136, 78)
 hub = Vector2i(68, 16)
 warps = {
 Vector2i(23, 21): {
@@ -926,8 +926,8 @@ script = ExtResource("2_3wmne")
 id = "ruta21_norte"
 display_name = "Ruta 21 (norte)"
 scene_path = "res://scenes/world/zones/ruta21_norte.tscn"
-origin = Vector2i(96, 385)
-size = Vector2i(42, 111)
+origin = Vector2i(116, 384)
+size = Vector2i(42, 112)
 hub = Vector2i(26, 55)
 
 [sub_resource type="Resource" id="Resource_36hja"]

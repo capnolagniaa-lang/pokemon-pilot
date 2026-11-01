@@ -165,6 +165,9 @@ PLACE_ORDER = [("Route9", "CeruleanCity"), ("Route10", "Route9"), ("LavenderTown
 # mapa -> (eje, zona de un lado, zona del otro lado[, mapa con el que se reparte el espacio]).
 FIT = {"Route8": ("x", "SaffronCity", "LavenderTown"), "Route11": ("x", "VermilionCity", "Route12"),
        "Route15": ("x", "FuchsiaCity", "Route14"), "Route21_North": ("y", "PalletTown", "CinnabarIsland", "Route21_South")}
+# El canal de la Ruta 21 Norte quedaba 20 columnas corrido del estanque de Paleta (no se podía salir surfeando al sur):
+# se alinea con Paleta; con la Ruta 21 Sur se toca en mar abierto (revisión de empalmes, 2026-10-31).
+REALIGN = {"Route21_North": "PalletTown"}
 # Franjas que se corren después de ubicar todo: mapa -> (columnas x0-x1 y filas y0-y1 locales de la franja,
 # corrimiento en filas). La Ruta 11 se alinea con Carmín y la 12 con Lavanda, y el camino oeste de la Ruta 12 (el que
 # en FireRed llega a la garita de la Ruta 11) quedaba 44 filas más arriba que la salida de la garita, contra el bosque.
@@ -183,6 +186,11 @@ MOVE_NPCS = {"Route12": {"Route12_EventScript_Snorlax": (25, 166)},
 # (269: arena con el agua arriba, como en las playas de FireRed) y el césped de abajo, arena (277), hasta las casas.
 # El cerco de la Ruta 4 (231, sobre su canal) sigue por el borde de Celeste hasta el río.
 PAINTS = {"CeruleanCity": [(8, 37, 11, 12, 269, 0), (8, 37, 12, 20, 277, 0), (0, 4, 31, 32, 231, 1)]}
+# Zonas que se alargan hacia abajo con bosque (repitiendo sus dos últimas filas) y un paso de suelo abierto:
+# mapa -> (filas nuevas, [(x0, x1, y0, y1) del paso, en celdas locales]). La Ruta 15 cierra el círculo Fucsia–Ruta 14
+# alineada con la Ruta 14, y su camino quedaba 52 filas más arriba que la salida este de Fucsia, contra el vacío:
+# el paso baja desde el camino de la Ruta 15 hasta esa salida (revisión de empalmes, pedido del usuario 2026-10-31).
+EXTEND = {"Route15": (44, [(2, 6, 23, 72), (0, 6, 72, 76)])}
 # Zonas grandes de salvajes lejos del mundo, agrandadas como el Bosque Verde.
 STRETCHED_4 = {"SafariZone_Center": ("zona_safari", "Zona Safari (centro)"),
                "SafariZone_East": ("zona_safari_este", "Zona Safari (este)"),
@@ -307,6 +315,12 @@ KEEP = {"edificios", "otros_edificios", "otros_puertas", "carteles", "otros_cart
         "otros_escaleras", "adornos"}
 NO_COPY = set()  # metatiles de esas categorías (lo llena main con el catálogo)
 WATER = set()  # metatiles de agua (catálogo): nunca son suelo de relleno en los mapas nuevos
+# Líneas finas (cercas y salientes): al agrandar, una costura que las cruza las deja dobles o partidas en escalón;
+# straighten_lines las vuelve a poner en una sola fila (o columna). Lo llena main con el catálogo.
+LINES = {"cercas", "salientes", "otros_salientes"}
+LINE_IDS = set()
+LINE_GAP = 3
+TREE_IDS = set()  # árboles (catálogo): no sirven de suelo para tapar el hueco de una línea corrida
 
 
 def const_of(name):
@@ -490,6 +504,99 @@ def stretch(grid, vp, hp, scale, label="", keep_cells=frozenset(), no_seam=froze
     return grid
 
 
+def straighten_lines(grid, lay, protect=frozenset(), ground=frozenset()):
+    """Cercas y salientes de vuelta en línea. Cada tramo horizontal del original (celdas LINE_IDS seguidas en una fila)
+    tiene que quedar en una sola fila de la grilla agrandada: la que más celdas originales del tramo tiene. Lo que
+    quedó en otra fila (la copia de una costura que pasó por debajo, o el pedazo que una costura doblada corrió) va a
+    esa fila si ahí hay lugar, y donde estaba queda el suelo de al lado. Después, lo mismo con los tramos verticales
+    (sobre la grilla transpuesta). `protect`: celdas originales que no se pisan (puertas, personas, objetos); `ground`:
+    el suelo común del mapa (lo que se prefiere para tapar el hueco)."""
+    w0 = lay["w"]
+
+    def is_line(ox, oy):
+        return 0 <= ox < w0 and 0 <= oy < lay["h"] and lay["cells"][oy * w0 + ox][0] in LINE_IDS
+
+    for axis in (0, 1):
+        g = grid if axis == 0 else transpose(grid)
+        (ax, ay), (px, py) = ((1, 0), (0, 1)) if axis == 0 else ((0, 1), (1, 0))  # a lo largo y a lo ancho del tramo
+        groups = {}
+        for y, row in enumerate(g):
+            for x, c in enumerate(row):
+                if c[0] not in LINE_IDS or c[2] < 0:
+                    continue
+                ox, oy = c[2], c[3]
+                if not (is_line(ox - ax, oy - ay) or is_line(ox + ax, oy + ay)) \
+                        or is_line(ox - px, oy - py) or is_line(ox + px, oy + py):
+                    continue  # no es parte de un tramo en este sentido (o es una esquina)
+                # el tramo, y los de la misma fila separados por un paso de hasta GAP celdas (una cerca con su
+                # entrada), van juntos: si no, cada pedazo quedaba a otra altura
+                moved = True
+                while moved:
+                    moved = False
+                    for k in range(1, LINE_GAP + 2):
+                        if is_line(ox - k * ax, oy - k * ay):
+                            ox, oy, moved = ox - k * ax, oy - k * ay, True
+                            break
+                groups.setdefault((ox, oy), []).append((x, y))
+        changed = False
+        for cells in groups.values():
+            rows = {}
+            for x, y in cells:
+                rows[y] = rows.get(y, 0) + (0 if g[y][x][4] else 10) + 1
+            main = max(rows, key=lambda r: (rows[r], -r))
+            by_col = {}
+            for x, y in cells:
+                by_col.setdefault(x, []).append(y)
+            for x, ys in by_col.items():
+                off = [y for y in ys if y != main]
+                if not off:
+                    continue
+                if main not in ys:
+                    t = g[main][x]
+                    if t[0] in LINE_IDS or t[0] in NO_COPY or (t[2], t[3]) in protect:
+                        continue  # ahí hay otra cosa que no se pisa: queda como está
+                    g[main][x] = g[off[0]][x]
+                for y in off:
+                    # el suelo de al lado: primero el de más allá de la línea, después el de los costados; mejor algo
+                    # transitable que no sea árbol (si no, el borde de un bosque se estiraba por toda la fila)
+                    d = 1 if y > main else -1
+                    src = None
+                    near = [(x, y + d), (x, y - d), (x - 1, y), (x + 1, y)]
+                    for level in (2, 1, 0):  # 2 = suelo común del mapa, 1 = transitable y no árbol, 0 = lo que sea
+                        for kx, ky in near:
+                            if not (0 <= ky < len(g) and 0 <= kx < len(g[0])) or ky == main:
+                                continue
+                            c = g[ky][kx]
+                            if c[0] < 0 or c[0] in LINE_IDS or c[0] in NO_COPY:
+                                continue
+                            if (level == 2 and c[0] not in ground) or (level == 1 and (c[1] or c[0] in TREE_IDS)):
+                                continue
+                            src = c
+                            break
+                        if src is not None:
+                            break
+                    if src is not None and (g[y][x][2], g[y][x][3]) not in protect:
+                        g[y][x] = (src[0], src[1], -1, -1, True)  # suelo suelto: no es copia de una puerta
+                changed = True
+            # Huecos que abrió el ensanche: entre dos pedazos de la línea, celdas de relleno (no del original) →
+            # la pieza del medio de la línea. Las entradas del original no son relleno y quedan abiertas.
+            xs = sorted(by_col)
+            piece = max(set(g[main][x][:2] for x in xs if g[main][x][0] in LINE_IDS) or {None},
+                        key=lambda p: sum(1 for x in xs if g[main][x][:2] == p))
+            for x0, x1 in zip(xs, xs[1:]):
+                gap = range(x0 + 1, x1)
+                if piece is None or not 0 < len(gap) <= 2 * SEAM or g[main][x0][0] not in LINE_IDS \
+                        or g[main][x1][0] not in LINE_IDS:
+                    continue
+                if all(g[main][x][2] < 0 and g[main][x][0] not in NO_COPY for x in gap):
+                    for x in gap:
+                        g[main][x] = piece + (-1, -1, True)
+                    changed = True
+        if changed:
+            grid = g if axis == 0 else transpose(g)
+    return grid
+
+
 def find_cell(grid, ox, oy):
     """Celda nueva (x, y) del original (ox, oy) (la que no es copia)."""
     for y, row in enumerate(grid):
@@ -617,9 +724,31 @@ def pad(cells, rect, inner, name, lay, hp, vp):
     todo = [(x, y) for y in range(y0, y1) for x in range(x0, x1)
             if not ((x, y) in cells and cells[(x, y)][5] == name)]
     fallback = [(x, y) for (x, y) in todo if not extends(x, y)]
+    # Lo que no es textura (el borde de un acantilado, el pasto de arriba de una pared) repetido con período 2 deja
+    # franjas: ahí va la textura más común del mapa que empalma consigo misma (roca lisa si es sólido). Los árboles sí
+    # se repiten (su dibujo es de período 2).
+    count, lh, lv = {}, set(), set()  # (pares de este mapa: los de todos los mapas dejaban pasar bordes dobles)
+    for (x, y), c in cells.items():
+        if c[5] == name and ix0 <= x < ix1 and iy0 <= y < iy1:
+            r, d = cells.get((x + 1, y)), cells.get((x, y + 1))
+            if r is not None and r[5] == name and r[0] == c[0]:
+                lh.add(c[0])
+            if d is not None and d[5] == name and d[0] == c[0]:
+                lv.add(c[0])
+    for (x, y), c in cells.items():
+        if c[5] == name and ix0 <= x < ix1 and iy0 <= y < iy1 and c[0] in lh and c[0] in lv:
+            count[(c[0], c[1])] = count.get((c[0], c[1]), 0) + 1
+    plain = {}
+    for (v, col), k in count.items():
+        if k > plain.get(col, (None, 0))[1]:
+            plain[col] = ((v, col), k)
     for (x, y) in todo:
         if (x, y) not in fallback:
             c = cells[(src(x, ix0, ix1), src(y, iy0, iy1))]
+            out_x, out_y = not ix0 <= x < ix1, not iy0 <= y < iy1
+            stripes = c[0] not in TREE_IDS and ((out_x and c[0] not in lh) or (out_y and c[0] not in lv))
+            if stripes and c[1] in plain:
+                c = plain[c[1]][0]
             cells[(x, y)] = (c[0], c[1], -1, -1, True, name)
     best, best_score = (0, 0), -1
     for px in range(bw):
@@ -649,6 +778,8 @@ def main():
     catalog = json.load(open(os.path.join(root, "art", "pret", "tiles", "catalog.json"), encoding="utf8"))
     NO_COPY.update(int(k) for k, v in catalog["categories"].items() if v in KEEP)
     WATER.update(int(k) for k, v in catalog["physics"].items() if v == 1)
+    LINE_IDS.update(int(k) for k, v in catalog["categories"].items() if v in LINES)
+    TREE_IDS.update(int(k) for k, v in catalog["categories"].items() if v in ("arboles", "otros_arboles"))
     maps = {}
     for name in list(EXTERIORS) + list(STRETCHED) + list(INTERIORS) + list(CAVES) + list(INTERIORS_2) + list(INTERIORS_3) \
             + list(EXTERIORS_4) + list(STRETCHED_4) + list(CAVES_4) + list(WILD_INTERIORS_4) + list(INTERIORS_4):
@@ -656,6 +787,13 @@ def main():
     by_const = {const_of(n): n for n in maps}
     by_const.update(CONNECTION_ALIASES)
     lay_of = {n: layouts[maps[n]["layout"]] for n in maps}
+
+    def straight(n, g):  # cercas y salientes en línea (no en las cuevas), sin pisar puertas, personas ni objetos
+        if n in CAVES or n in CAVES_4:
+            return g
+        protect = frozenset([(w["x"], w["y"]) for w in maps[n].get("warp_events", [])]
+                            + [(o["x"], o["y"]) for o in maps[n].get("object_events", [])])
+        return straighten_lines(g, lay_of[n], protect, frozenset(fillers(grid_of(lay_of[n]), vp, hp)))
 
     # --- Exteriores: cada uno agrandado y ubicado según sus conexiones, alineando los caminos ---
     grids = {}
@@ -669,6 +807,7 @@ def main():
         # desde el capítulo 3, para que lo ya importado no cambie)
         newer = n in EXTERIORS_4 or n in STRETCHED_4 or n in CAVES_4
         grids[n] = stretch(grid_of(lay_of[n]), vp, hp, SCALE, n, keep, no_seam, None, WATER if newer else frozenset())
+        grids[n] = straight(n, grids[n])
     pos = {"PalletTown": (0, 0)}
     todo = ["PalletTown"]
     while todo:
@@ -727,8 +866,13 @@ def main():
             else:
                 size = (bb[1] - ba[3]) if ba[3] <= bb[1] else (ba[1] - bb[3])
             parts = [n] + list(spec[3:])
-            for i, m in enumerate(parts):
-                share = size // len(parts) + (1 if i < size % len(parts) else 0)
+            # Si uno no llega a su parte (sin más costuras), lo que falta lo toma el siguiente, y al final el
+            # primero: si no, queda un hueco de vacío entre las zonas (pasaba entre Paleta y la Ruta 21).
+            todo_fit = [(m, size // len(parts) + (1 if i < size % len(parts) else 0)) for i, m in enumerate(parts)]
+            carry, done_fit = 0, {}
+            while todo_fit:
+                m, share = todo_fit.pop(0)
+                share += carry
                 g = grids[m]
                 goals = {0: share} if axis == "x" else {1: share}
                 print("  %s: %s exacto %d (antes %d)" % (m, "ancho" if axis == "x" else "alto", share,
@@ -737,6 +881,26 @@ def main():
                 no_seam = frozenset(c for o in maps[m].get("object_events", []) if o.get("graphics_id") in OBJECTS
                                     for c in blocked_passage(lay_of[m], o["x"], o["y"]))
                 grids[m] = stretch(grid_of(lay_of[m]), vp, hp, SCALE, m, keep, no_seam, goals, WATER)
+                grids[m] = straight(m, grids[m])
+                got = len(grids[m][0]) if axis == "x" else len(grids[m])
+                carry = share - got
+                done_fit[m] = done_fit.get(m, 0) + 1
+                if carry > 0 and not todo_fit and done_fit[parts[0]] < 2:
+                    todo_fit.append((parts[0], (len(grids[parts[0]][0]) if axis == "x" else len(grids[parts[0]]))))
+    # Los que cierran un círculo quedan alineados con el que los ubicó, no con el otro lado: estos se corren en el
+    # otro eje para que la unión con ese otro lado sí empalme (mapa -> mapa con el que se alinea).
+    for n, a in REALIGN.items():
+        c = next(c for c in maps[n].get("connections") or [] if by_const.get(c["map"]) == a)
+        side = c["direction"]
+        op = opening(lay_of[n], lay_of[a], side, int(c["offset"]), prefer_middle=True)
+        if op is None:
+            print("  OJO: %s no tiene paso hacia %s" % (n, a))
+            continue
+        na, nb = find_cell(grids[n], *op[0]), find_cell(grids[a], *op[1])
+        if side in ("up", "down"):
+            pos[n] = (pos[a][0] + nb[0] - na[0], pos[n][1])
+        else:
+            pos[n] = (pos[n][0], pos[a][1] + nb[1] - na[1])
     cells, rects, inner = {}, {}, {}
     for n in list(EXTERIORS) + list(EXTERIORS_4):
         x0, y0 = pos[n]
@@ -801,6 +965,18 @@ def main():
                 for x in range(x0, x1):
                     c = cells[(rx + x, ry + y)]
                     cells[(rx + x, ry + y)] = (metatile, solid) + c[2:]
+    for n, (rows, paths) in EXTEND.items():
+        r = rects[n]
+        for y in range(r[3], r[3] + rows):
+            for x in range(r[0], r[2]):
+                src = cells[(x, r[3] - 2 + (y - r[3]) % 2)]
+                cells[(x, y)] = (src[0], src[1], -1, -1, True, n)
+        floor = fillers(grid_of(lay_of[n]), vp, hp)[0]
+        for x0, x1, y0, y1 in paths:
+            for y in range(y0, y1):
+                for x in range(x0, x1):
+                    cells[(r[0] + x, r[1] + y)] = (floor, 0, -1, -1, True, n)
+        r[3] += rows
     # Corrimiento: que el mundo del capítulo 1 empiece en (0, 0) (lo nuevo puede quedar en coordenadas negativas).
     sx = min(rects[n][0] for n in FIRST_EXTERIORS)
     sy = min(rects[n][1] for n in FIRST_EXTERIORS)
