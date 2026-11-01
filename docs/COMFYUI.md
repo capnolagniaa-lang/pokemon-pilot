@@ -83,3 +83,16 @@ cuerpo 30/31 y 28/29, base 36-39, unión de bosque 20-23; 42/43 son techo, no á
 
 ## Tiempos (RTX 5060 Ti)
 Cuadro clave ~1 min (la primera vez más, carga el modelo) · animación ~4-6 min · redibujo de sprite ~1 min.
+
+## Prueba: animaciones con Qwen-Image 2.1 (2026-11-01)
+Qwen-Image 2.1 Turbo (`qwen_image_2.1_turbo_int8_convrot` + `qwen3vl_8b_int8_convrot`, nodo `TextEncodeQwenImage21`
+con la imagen de referencia, 8 pasos con `ManualSigmas` de la plantilla, cfg 1) arma **una hoja entera de animación en
+una sola imagen** y en ~6-12 s:
+- **Sprite de Pokémon**: se le pasa la fila de Idle de PMD agrandada ×8 (fondo blanco) y se le pide "redibujala como una
+  animación de N cuadros de <ataque> en la misma fila". Mantiene personaje, dirección y estilo (Charmander: llamarada de
+  frente y arañazo de perfil salieron bien). Para bajar a 32×40 conviene mapear a la **paleta del sprite original**; sin
+  eso queda borroso. Pendiente: sacar el fondo antes de achicar (si no, deja un borde claro) y ajustar el tamaño (lo dibuja
+  un poco más grande que el original).
+- **Efectos**: solo texto, "sprite sheet de 6 cuadros, fondo negro" (impacto de fuego y de hielo): coherentes de un cuadro
+  al otro, mejor y mucho más rápido que el cuadro clave + Wan 2.2.
+- El modelo completo (no turbo, 30 pasos, ~18 s) no fue mejor que el Turbo.
