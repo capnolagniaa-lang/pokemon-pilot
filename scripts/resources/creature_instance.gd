@@ -32,6 +32,9 @@ static func hp_scale() -> float:
 @export var ability: String = ""
 ## Pokémon jefe (el de un líder de gimnasio con SpeciesData.boss_kit): pelea con el kit de jefe. No se guarda.
 var boss := false
+## PP actuales (el maná de los ataques, MoveUser; pedido del usuario 2026-10-31). -1 = llenos. No se guarda: al cargar
+## la partida o curarse vuelven a estar llenos.
+var pp := -1.0
 ## Para más adelante (Etapa 6): apodo y naturaleza. Vacíos por ahora.
 @export var nickname: String = ""
 @export var nature: String = ""

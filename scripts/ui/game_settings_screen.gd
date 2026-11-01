@@ -18,6 +18,8 @@ const SECTIONS := [
 		["taken_mult", "Daño que recibís (×)", 0.25, 3.0, 0.05, "×%.2f"],
 		["hp_scale", "Vida de los Pokémon (× la oficial)", 1.0, 6.0, 0.5, "×%.1f"],
 		["slot_roles", "Teclas por rol: Clic izq. básico, R definitiva (estilo LoL)"],
+		["pp_mode", "PP como maná: cada ataque gasta PP de una barra que crece con el nivel"],
+		["pp_regen", "PP: recarga sola (×)", 0.0, 3.0, 0.1, "×%.1f"],
 		["cooldown_mult", "Ritmo: recargas de los ataques (×; más = más pausado)", 0.5, 2.5, 0.05, "×%.2f"],
 		["attack_gap", "Ritmo: pausa entre un ataque y otro (s)", 0.0, 1.0, 0.05, "%.2f s"],
 		["hitstun_mult", "Stagger al recibir un golpe (×; 0 = sin stagger)", 0.0, 2.0, 0.1, "×%.1f"],

@@ -229,6 +229,11 @@ static func exposed(t: Creature) -> bool:
 
 
 ## Puntaje de una ranura a esta distancia (0 = no sirve). `shot` = hay tiro limpio.
+## Con los PP por debajo de esto (fracción de la barra) los ataques que gastan valen menos.
+const PP_RESERVE := 0.3
+const PP_THRIFT := 0.5
+
+
 func score(slot: int, dist: float, shot: bool) -> float:
 	var m: MoveData = actor.moves.slots[slot]
 	if m == null or not actor.body.fits(slot, dist):
@@ -253,6 +258,9 @@ func score(slot: int, dist: float, shot: bool) -> float:
 		value *= 2.5  # con poca vida y cauteloso: se cubre o se cura
 	if slot == last_slot:
 		value *= REPEAT
+	var cost: float = actor.moves.pp_cost(slot)
+	if cost > 0.0 and actor.moves.pp() - cost < actor.moves.max_pp() * PP_RESERVE and not all_in:
+		value *= PP_THRIFT  # pocos PP: guarda para lo importante y usa más el básico
 	return value * randf_range(0.85, 1.15)
 
 

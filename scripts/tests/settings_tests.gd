@@ -60,15 +60,48 @@ func run() -> void:
 	var basic := mu.slots[0]
 	r["Básico: recarga corta según la Velocidad"] = mu.slot_cooldown(0, 10.0) <= 0.9 and mu.slot_cooldown(0, 10.0) >= 0.45
 	r["Básico: no pasa el daño por segundo del ataque"] = basic == null or mu.role_damage(basic) <= 1.0
-	r["Definitiva: recarga larga y pega más"] = mu.slot_cooldown(3, 2.0) >= 8.0 		and (mu.slots[3] == null or mu.role_damage(mu.slots[3]) > 1.0)
-	var weak := MoveData.new(); weak.power = 20.0
+	GameState.set_setting("pp_mode", false)
+	r["Definitiva (sin PP): recarga larga y pega más"] = mu.slot_cooldown(3, 2.0) >= 8.0 		and (mu.slots[3] == null or mu.role_damage(mu.slots[3]) > 1.0)
+	GameState.set_setting("pp_mode", true)
+	var weak := MoveData.new(); weak.power = 40.0
 	var strong := MoveData.new(); strong.power = 120.0
 	var buff := MoveData.new(); buff.category = MoveData.Category.STATUS
 	var sorted := MoveUser.by_role([strong, buff, weak] as Array[MoveData])
 	r["Rivales: el más flojo de básico y el más fuerte de definitiva"] = sorted[0] == weak and sorted[-1] == strong
+	# PP como maná (pedido del usuario 2026-10-31): barra que crece con el nivel, cada ataque gasta, el básico no.
+	var lvl := me.instance.level
+	r["PP: la barra crece con el nivel (Nv. %d = %d)" % [lvl, int(mu.max_pp())]] = is_equal_approx(mu.max_pp(), 		MoveUser.PP_BASE + MoveUser.PP_PER_LEVEL * lvl)
+	var heavy := MoveData.new(); heavy.power = 150.0
+	r["PP: los fuertes gastan más (Hiperrayo %d, Placaje %d)" % [MoveUser.pp_cost_of(heavy), MoveUser.pp_cost_of(weak)]] = 		MoveUser.pp_cost_of(heavy) > MoveUser.pp_cost_of(weak) * 2.0
+	r["PP: el básico es gratis"] = mu.pp_cost(0) == 0.0
+	var paid := -1
+	for i in [1, 2, 3]:
+		if mu.slots[i] != null:
+			paid = i
+			break
+	if paid >= 0:
+		mu.reset_cooldown(paid)
+		mu.set_pp(mu.max_pp())
+		var before_pp := mu.pp()
+		var cost := mu.pp_cost(paid)
+		me.use_slot(paid, Vector2.RIGHT)
+		r["PP: usar un ataque gasta su costo (%d)" % int(cost)] = absf(before_pp - mu.pp() - cost) < 2.0
+		mu.set_pp(cost - 1.0)
+		mu.reset_cooldown(paid)
+		r["PP: sin PP suficientes no sale"] = not mu.can_use(paid)
+		mu.set_pp(mu.max_pp())
+		r["PP: la recarga queda corta (%.2f s)" % mu.slot_cooldown(paid, 10.0)] = mu.slot_cooldown(paid, 10.0) <= MoveUser.PP_COOLDOWN_MAX
+	me.instance.pp = 10.0
+	GameState.heal_party()
+	r["PP: curarse los llena"] = is_equal_approx(mu.pp(), mu.max_pp())
+	GameState.set_setting("pp_mode", false)
+	r["Sin PP: nada gasta"] = mu.pp_cost(1) == 0.0 and mu.pp_cost(3) == 0.0
+	GameState.set_setting("pp_mode", true)
 	GameState.set_setting("slot_roles", false)
-	r["Sin teclas por rol: recargas de siempre"] = is_equal_approx(mu.slot_cooldown(0, 3.0), 3.0) and is_equal_approx(mu.slot_cooldown(3, 3.0), 3.0)
+	GameState.set_setting("pp_mode", false)
+	r["Sin teclas por rol ni PP: recargas de siempre"] = is_equal_approx(mu.slot_cooldown(0, 3.0), 3.0) and is_equal_approx(mu.slot_cooldown(3, 3.0), 3.0)
 	GameState.set_setting("slot_roles", true)
+	GameState.set_setting("pp_mode", true)
 	GameState.set_setting("dealt_mult", 2.0)
 	GameState.set_setting("wild_mult", 0.0)
 	r["Cantidad de salvajes ×0 → no aparece ninguno"] = world.spawner.max_alive(world.streamer.current.id) == 0

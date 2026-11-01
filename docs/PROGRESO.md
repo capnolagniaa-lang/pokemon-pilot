@@ -12,6 +12,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   recargas" (×) y "Ritmo: pausa entre un ataque y otro". `MoveUser` (roles, `slot_cooldown`, `role_damage`).
   Balance (400 peleas IA contra IA, misma semilla que antes): las peleas duran ~45% más y los empates por tiempo pasaron
   de 3% a 11%; Paras cayó (83% → 21%: su básico es un ataque de recarga larga) y Clefairy sigue en 0% (ya estaba).
+- **PP como maná (2026-10-31, pedido del usuario: "los ataques tienen que costar por ejemplo 40 PP y mientras subís de
+  nivel tenés más PP", como Pokémon Reloaded)**: barra de PP por Pokémon = 100 + 4 × nivel (`MoveUser.max_pp`); cada
+  ataque gasta 10 + 0,4 × potencia (estado 25; `pp_cost_of`); el básico es gratis y devuelve 6 PP al pegar; se recargan
+  solos (3%/s en pelea, 20%/s fuera; ajuste `pp_regen`) y se llenan al curarse. Con PP las recargas quedan cortas (×0,3,
+  0,35-2 s): limita la barra. HUD: barra azul bajo la vida y costo en cada ataque (se oscurece si no alcanza). La IA guarda
+  PP (con menos del 30% los ataques que gastan valen la mitad). Ajuste `pp_mode`. `CreatureInstance.pp` no se guarda.
 - **IA cuerpo a cuerpo (2026-10-31, pedido del usuario: "se quedan dando vueltas arriba de uno")**: entra cuando va a
   pegar, pega y sale para atrás (`_backoff`); mientras espera se queda a ~52 px de frente (`MELEE_SPACING`, modo
   "hold") en vez de orbitar pegado. Si hay una pared en el medio la rodea igual. Test en `--autotest-ai-steer`.

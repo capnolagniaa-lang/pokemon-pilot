@@ -17,6 +17,25 @@ const ULT_DAMAGE := 1.3
 const BASIC_MIN_DAMAGE := 0.25
 const ROLE_NAMES := ["Básico", "Habilidad", "Habilidad", "Definitiva"]
 
+## PP como maná (pedido del usuario 2026-10-31: "los ataques tienen que costar por ejemplo 40 PP y mientras subís de
+## nivel tenés más PP base", como Pokémon Reloaded; ajuste "pp_mode"): una barra por Pokémon que crece con el nivel;
+## cada ataque gasta según su potencia y el básico (Clic izq.) es gratis y devuelve PP al pegar. Con PP las recargas
+## quedan cortas (`PP_COOLDOWN`): lo que limita es la barra.
+const PP_BASE := 100.0
+const PP_PER_LEVEL := 4.0
+const PP_COST_BASE := 10.0
+const PP_COST_PER_POWER := 0.4
+const PP_STATUS_COST := 25.0
+## Recarga sola por segundo (fracción de la barra): en pelea y fuera de pelea.
+const PP_REGEN_FIGHT := 0.03
+const PP_REGEN_CALM := 0.2
+## PP que devuelve cada golpe del básico.
+const PP_BASIC_GAIN := 6.0
+## Recarga de los ataques con PP: la de siempre × esto, entre estos valores.
+const PP_COOLDOWN := 0.3
+const PP_COOLDOWN_MIN := 0.35
+const PP_COOLDOWN_MAX := 2.0
+
 ## Ataque de cada tecla (Clic izq., Clic der., Q, R); puede haber huecos (null).
 var slots: Array[MoveData] = []
 var cooldowns: Array[float] = []
@@ -121,11 +140,12 @@ func role_damage(m: MoveData) -> float:
 
 ## Recarga completa del ataque de una ranura, con su rol y el ajuste de ritmo (para la interfaz y la IA).
 func slot_cooldown(slot: int, base: float) -> float:
-	if roles_on():
-		if slot == BASIC_SLOT:
-			base = minf(base, basic_interval())
-		elif slot == ULT_SLOT:
-			base = maxf(base * ULT_COOLDOWN, ULT_MIN_COOLDOWN)
+	if roles_on() and slot == BASIC_SLOT:
+		base = minf(base, basic_interval())
+	elif pp_on():
+		base = clampf(base * PP_COOLDOWN, PP_COOLDOWN_MIN, PP_COOLDOWN_MAX)  # con PP limita la barra, no el reloj
+	elif roles_on() and slot == ULT_SLOT:
+		base = maxf(base * ULT_COOLDOWN, ULT_MIN_COOLDOWN)
 	return base * float(GameState.setting("cooldown_mult"))
 
 
@@ -142,6 +162,10 @@ var moves: Array[MoveData]:
 func _physics_process(delta: float) -> void:
 	dodge_cooldown = maxf(0.0, dodge_cooldown - delta)
 	gap_left = maxf(0.0, gap_left - delta)
+	if pp_on() and pp() < max_pp():
+		var c := get_parent()
+		var fighting: bool = c != null and c.has_method("engaged") and c.engaged()
+		set_pp(pp() + max_pp() * (PP_REGEN_FIGHT if fighting else PP_REGEN_CALM) * delta * float(GameState.setting("pp_regen")))
 	for i in cooldowns.size():
 		cooldowns[i] = maxf(0.0, cooldowns[i] - delta)
 		if _combo_timer[i] > 0.0:
@@ -156,8 +180,63 @@ func slot_of(m: MoveData) -> int:
 
 
 func can_use(slot: int) -> bool:
-	return slot >= 0 and slot < slots.size() and slots[slot] != null and cooldowns[slot] <= 0.0 and gap_left <= 0.0
+	return slot >= 0 and slot < slots.size() and slots[slot] != null and cooldowns[slot] <= 0.0 and gap_left <= 0.0 		and has_pp(slot)
 
+
+static func pp_on() -> bool:
+	return bool(GameState.setting("pp_mode"))
+
+
+func _instance() -> CreatureInstance:
+	var c := get_parent()
+	return c.instance if c != null and c.get("instance") != null else null
+
+
+## PP máximos: crecen con el nivel (Nv. 5 = 120, Nv. 50 = 300).
+func max_pp() -> float:
+	var inst := _instance()
+	return PP_BASE + PP_PER_LEVEL * (inst.level if inst != null else 5)
+
+
+func pp() -> float:
+	var inst := _instance()
+	if inst == null or inst.pp < 0.0:
+		return max_pp()
+	return minf(inst.pp, max_pp())
+
+
+func set_pp(value: float) -> void:
+	var inst := _instance()
+	if inst != null:
+		inst.pp = clampf(value, 0.0, max_pp())
+
+
+## Lo que gasta un ataque: según su potencia (Placaje ~26, Lanzallamas ~46, Hiperrayo ~70; los de estado 25).
+static func pp_cost_of(m: MoveData) -> float:
+	if m == null:
+		return 0.0
+	if m.power <= 0.0 or m.category == MoveData.Category.STATUS:
+		return PP_STATUS_COST
+	return roundf(PP_COST_BASE + PP_COST_PER_POWER * m.power)
+
+
+## Lo que gasta la ranura (el básico, nada).
+func pp_cost(slot: int) -> float:
+	if not pp_on() or slot < 0 or slot >= slots.size() or slots[slot] == null:
+		return 0.0
+	if roles_on() and slot == BASIC_SLOT:
+		return 0.0
+	return pp_cost_of(slots[slot])
+
+
+func has_pp(slot: int) -> bool:
+	return pp() >= pp_cost(slot)
+
+
+## El básico pegó: devuelve un poco de PP.
+func basic_landed(m: MoveData) -> void:
+	if pp_on() and roles_on() and slots.find(m) == BASIC_SLOT:
+		set_pp(pp() + PP_BASIC_GAIN)
 
 ## Arranca la recarga (o avanza el combo). Devuelve [ataque, paso del combo] o [] si no se puede.
 func consume(slot: int) -> Array:
@@ -166,6 +245,8 @@ func consume(slot: int) -> Array:
 	var m := slots[slot]
 	var step := 0
 	gap_left = float(GameState.setting("attack_gap"))
+	if m.combo_steps <= 1 or _combo_step[slot] == 0:
+		set_pp(pp() - pp_cost(slot))  # (un combo gasta una vez, al empezar)
 	if m.combo_steps > 1:
 		step = _combo_step[slot]
 		_combo_step[slot] = (step + 1) % m.combo_steps

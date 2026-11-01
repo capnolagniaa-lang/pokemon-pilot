@@ -123,6 +123,10 @@ func _draw_party(c: Creature, in_battle: bool) -> void:
 	_bar(Rect2(x, r.position.y + 34, 290, 12), ratio, _hp_color(ratio))
 	draw_string(font, Vector2(x + 4, r.position.y + 45), "PS %d/%d" % [ceili(inst.hp), ceili(inst.max_hp())], HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
 	_bar(Rect2(x, r.position.y + 62, 290, 4), inst.exp_progress(), Color(0.4, 0.7, 1.0))
+	if is_instance_valid(c) and MoveUser.pp_on():  # PP = maná de los ataques
+		var mp: float = c.moves.max_pp()
+		_bar(Rect2(x, r.position.y + 50, 290, 8), c.moves.pp() / mp, PP_COLOR)
+		draw_string(font, Vector2(x + 296, r.position.y + 58), "PP %d" % floori(c.moves.pp()), HORIZONTAL_ALIGNMENT_LEFT, -1, 10, PP_COLOR)
 	if is_instance_valid(c) and not c.statuses.active.is_empty():
 		var s: StatusEffect = c.statuses.active.values()[-1]["status"]
 		draw_string(font, Vector2(x, r.position.y + 82), s.display_name.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, s.color)
@@ -153,6 +157,9 @@ func _draw_signature(c: Creature) -> void:
 	draw_string(font, Vector2(bar.end.x + 8, r.position.y + 18), label, HORIZONTAL_ALIGNMENT_LEFT, r.end.x - bar.end.x - 12, 11, col)
 
 
+const PP_COLOR := Color(0.45, 0.65, 1.0)
+
+
 func _draw_moves(c: Creature) -> void:
 	var slots: Array[MoveData] = c.moves.slots
 	for i in slots.size():
@@ -166,6 +173,13 @@ func _draw_moves(c: Creature) -> void:
 		draw_string(font, r.position + Vector2(6, 46), m.display_name, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 14 if m.display_name.length() <= 11 else 12)
 		var kind: String = MoveUser.ROLE_NAMES[i] if MoveUser.roles_on() else KIND.get(m.kind, "")
 		var info := "%s · %ss" % [kind, _secs(c.moves.slot_cooldown(i, m.cooldown))]
+		var cost: float = c.moves.pp_cost(i)
+		if cost > 0.0:
+			info = "%s · %d PP" % [kind, int(cost)]
+			if not c.moves.has_pp(i):  # no te alcanzan los PP
+				draw_rect(r, Color(0.1, 0.15, 0.4, 0.55))
+		elif MoveUser.pp_on() and MoveUser.roles_on() and i == MoveUser.BASIC_SLOT:
+			info = "%s · gratis" % kind
 		draw_string(font, r.position + Vector2(6, 68), info, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 10, Color(1, 1, 1, 0.6))
 		if m.cast_time > 0.0:  # ícono de carga
 			draw_arc(r.position + Vector2(r.size.x - 12, 36), 4.5, -PI / 2.0, PI, 12, Color(1, 1, 1, 0.8), 1.5)

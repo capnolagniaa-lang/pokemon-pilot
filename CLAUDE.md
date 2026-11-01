@@ -233,7 +233,11 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   pasar el daño por segundo del ataque), Clic der. y Q = habilidades, R = **definitiva** (recarga ×1,6, mínimo 8 s, daño
   ×1,3). Los rivales y salvajes se ordenan solos (`by_role`); los tuyos, como los pongas en la ficha. `HitInfo.from` aplica
   el daño del rol y `TacticalMind` lo cuenta. Además `cooldown_mult` (× todas las recargas y el esquive) y `attack_gap`
-  (pausa entre cualquier ataque), neutros por defecto: se van puliendo jugando. **IA cuerpo a cuerpo**
+  (pausa entre cualquier ataque), neutros por defecto: se van puliendo jugando. **PP como maná** (ajuste `pp_mode`,
+  pedido del usuario 2026-10-31, como Pokémon Reloaded): barra `MoveUser.max_pp()` = 100 + 4·nivel, costo
+  `pp_cost_of(move)` = 10 + 0,4·potencia (estado 25), básico gratis (+6 PP al pegar, `basic_landed`), recarga sola
+  (`PP_REGEN_*` × ajuste `pp_regen`); con PP las recargas son cortas (`PP_COOLDOWN`). `CreatureInstance.pp` (runtime,
+  -1 = lleno; `heal_party` lo llena). La IA ahorra PP (`TacticalMind.PP_RESERVE`). **IA cuerpo a cuerpo**
   (`creature_attack.gd::_melee_mode`): entra a pegar (`MELEE_ENTER`), sale (`_backoff`) y espera a `MELEE_SPACING` de
   frente; no orbita pegado.
 - **Kits / estilos de pelea** (plan de identidad, v2; **desde 2026-10-28 solo los jefes de gimnasio**): `Kit` (`archetype`,
@@ -336,7 +340,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `sprites/props/` (hechos con ComfyUI, `tools/prop_from_image.py`). Todos son decorado (no chocan).
 - **Ajustes del juego por partida** (Esc → Opciones → "Ajustes del juego…", `GameSettingsScreen`): `GameState.settings`
   (se guarda con la partida; solo lo cambiado; el resto sale de `default_settings()` = GameConfig + dificultad Normal;
-  una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `hitstun_mult` (stagger), `cooldown_mult`/`attack_gap`/`slot_roles` (ritmo del combate, `MoveUser`), `exp_mult` (exp_yield), `money_mult`
+  una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `hitstun_mult` (stagger), `cooldown_mult`/`attack_gap`/`slot_roles`/`pp_mode`/`pp_regen` (ritmo del combate y PP, `MoveUser`), `exp_mult` (exp_yield), `money_mult`
   (`add_prize`: premios de entrenadores y torneo), `catch_mult` (Capture), `dealt_mult`/`taken_mult` (HitInfo.from),
   `hp_scale` (`CreatureInstance.hp_scale()`, reescala la vida actual), `combos`, `arena_everywhere`, `wild_mult`
   (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), `ai_adaptive` (dificultad dinámica,
