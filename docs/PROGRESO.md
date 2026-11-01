@@ -26,6 +26,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   recargas" (×) y "Ritmo: pausa entre un ataque y otro". `MoveUser` (roles, `slot_cooldown`, `role_damage`).
   Balance (400 peleas IA contra IA, misma semilla que antes): las peleas duran ~45% más y los empates por tiempo pasaron
   de 3% a 11%; Paras cayó (83% → 21%: su básico es un ataque de recarga larga) y Clefairy sigue en 0% (ya estaba).
+- **Animaciones por ataque, por familias (2026-11-01, en revisión, no están en el juego)**: cada ataque cae en una familia de movimiento (morder, puño, patada, soplar por la boca...) y se generan con Qwen las de cada especie de Kanto (`tools/comfy/family_anims.py`, docs/COMFYUI.md). El usuario las revisa en `out/animaciones/revision.html` antes de meterlas.
 - **Golpes hechos con IA (2026-11-01, prueba con 5)**: Bulbasaur, Squirtle, Pidgey, Rattata y Geodude tienen su propio golpe (`Strike`) en 8 direcciones, dibujado con Qwen-Image 2.1 (`tools/comfy/strike_sheet.py`, docs/COMFYUI.md); antes usaban el Attack genérico. Vitrina: `--showcase-strike`.
 - **Torre Pokémon con menos salvajes (2026-11-01, pedido del usuario)**: cada piso (`encounters/torre_pokemon_3p` a `7p`) tiene a lo sumo 2 a la vez (`max_alive` 2, `cells_per_wild` 0; antes se sumaba uno cada 150 celdas de suelo) y repone cada 40 s.
 - **PP como maná (2026-10-31, pedido del usuario: "los ataques tienen que costar por ejemplo 40 PP y mientras subís de

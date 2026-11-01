@@ -143,3 +143,18 @@ Lo aprendido:
   frente y de espaldas la IA tiende a girarlo de costado (Squirtle de espaldas necesitó 4 semillas; Pidgey de frente
   estira el cuello para arriba); "floating" hace que Geodude salga como plato volador con rayas (no usar la palabra), y
   Geodude sale más liso que su sprite original (se nota al volver al Idle).
+
+### Animaciones por ataque: familias de movimiento (2026-11-01, para revisar; todavía no entran al juego)
+Decisión del usuario: en vez de una animación por ataque y especie (decenas de miles), cada ataque cae en una **familia
+de movimiento** (`tools/comfy/move_families.py`: embestida, morder, arañar, puño, patada, picotazo, ala, cabezazo,
+cola/látigo, cuerno, pisotón, lanzar, soplar por la boca, descarga, mirada/mental, grito, sacudirse, potenciarse; por
+nombre en inglés y, si no está en la tabla, por categoría/tipo/objetivo) y por especie se genera solo la familia de cada
+ataque que aprende por nivel en FRLG (~5 por especie). El **efecto va aparte, encima** (VfxSprite): los prompts piden
+la pose sola, sin fuego ni agua.
+- `python -I -B tools/comfy/family_anims.py 1-151` (o `25`, `1,4,7`; `--only boca,morder`, `--seeds`): una semilla por
+  dirección (~40 s por familia), todo en `out/animaciones/<n.º>_<nombre>/<familia>/` (no se sube): lo de la IA, la hoja
+  de 8 filas a 32 px y un GIF con las 8 direcciones (Idle en el centro). Lo ya hecho no se repite. Descripciones para el
+  prompt: `tools/comfy/species_desc.json` (Kanto; las de Johto y Hoenn, a sumar).
+- Revisión: `out/animaciones/revision.html` (lo rehace `review_page.py` después de cada especie): Bien / Rehacer / No va
+  + nota por familia, guardado en el navegador, "Copiar revisión" arma el texto para pasárselo a Claude.
+- El último cuadro se reemplaza solo por el Idle si sale con otra forma (el "plato volador" de Geodude).

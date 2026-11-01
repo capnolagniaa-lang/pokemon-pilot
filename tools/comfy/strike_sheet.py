@@ -5,7 +5,8 @@
 #       Idle de esa dirección; deja <carpeta>/d<fila>_s<semilla>.png (la IA) y elegir.png (a 32 px). Lo que ya está
 #       generado no se repite (correrlo de nuevo solo rehace elegir.png).
 #   python -I -B tools/comfy/strike_sheet.py build <n.º> <carpeta> <semilla fila 0>,<fila 1>,...,<fila 4>
-#       (semilla con "i" al final, ej. 777i: el último cuadro salió mal y se usa el Idle original en su lugar)
+#       (semilla con "i" al final, ej. 777i: el último cuadro salió mal y se usa el Idle original en su lugar; sin la
+#       "i" se decide solo: si el último cuadro no se parece de forma al Idle y el primero sí)
 #       Arma sprites/pokemon/<n.º>/Strike-Anim.png (8 filas: las 3 de la izquierda espejadas), lo anota en su
 #       AnimData.xml (pisa un Strike "CopyOf") y en scripts/generated/sprite_data.gd. Después: --import.
 #
@@ -26,7 +27,7 @@ VIEWS = ["facing down toward the viewer", "in three-quarter view facing down-rig
 DIRS = ["toward the viewer", "toward the lower right", "to the right", "toward the upper right, away from the viewer",
         "away from the viewer"]
 HEAD = ("This image is a pixel art sprite sheet: 4 animation frames of %s side by side in one row, %s, on a plain white "
-        "background. Redraw it as a 4-frame melee attack animation, keeping exactly 4 cells of equal width in one row: %s "
+        "background. Redraw it as a 4-frame %s animation, keeping exactly 4 cells of equal width in one row: %s "
         "Use exaggerated, readable key poses with strong anticipation and follow-through, so the silhouette clearly "
         "changes from frame to frame. Keep the identical character design, colors, proportions and facing direction "
         "from the input. Each cell is a tiny low-resolution game sprite enlarged 8 times: big square pixels on a strict "
@@ -59,7 +60,7 @@ def bbox(im):
     return im.getchannel("A").point(lambda a: 255 if a > 0 else 0).getbbox()
 
 
-def gen(num, desc, action, out, seeds):
+def gen(num, desc, action, out, seeds, kind="melee attack", preview=True):
     os.makedirs(out, exist_ok=True)
     rows = []
     for row in range(5):
@@ -69,7 +70,7 @@ def gen(num, desc, action, out, seeds):
             strip.alpha_composite(f, (i * fw, 0))
         big = os.path.join(out, "d%d_entrada.png" % row)
         strip.convert("RGB").resize((strip.width * 8, strip.height * 8), Image.NEAREST).save(big)
-        prompt = HEAD % (desc, VIEWS[row], action.replace("{dir}", DIRS[row]))
+        prompt = HEAD % (desc, VIEWS[row], kind, action.replace("{dir}", DIRS[row]))
         line = []
         for seed in seeds:
             name = "d%d_s%d" % (row, seed)
@@ -83,6 +84,8 @@ def gen(num, desc, action, out, seeds):
             else:
                 line.append([])
         rows.append(line)
+    if not preview:
+        return
     # elegir.png: por fila (dirección) el Idle y cada semilla, ×4 sobre verde
     fw, fh = idle_info(num)
     cw, ch = fw + 2 * PAD, fh + 2 * PAD
@@ -95,7 +98,7 @@ def gen(num, desc, action, out, seeds):
     print("semillas por fila, de arriba abajo:", seeds)
 
 
-def convert(num, row, ai_path, idle_last=False):
+def convert(num, row, ai_path, idle_last=None):
     """La salida de la IA → 4 cuadros de (Idle + 2·PAD), alineados con el Idle de esa fila. idle_last: el último cuadro
     salió mal (ej. Geodude como plato volador): se mide con el primero y el último pasa a ser el Idle original."""
     orig, fw, fh = idle_row(num, row)
@@ -126,6 +129,12 @@ def convert(num, row, ai_path, idle_last=False):
                 for y in range(c.height):
                     px[x, y] = (0, 0, 0, 0)
         big.append(c)
+    if idle_last is None:  # automático: el último cuadro no se parece de forma al Idle (ej. plato volador)
+        ob0 = bbox(orig[0])
+        lb, fb = bbox(big[-1]), bbox(big[0])
+        aspect = lambda b: (b[2] - b[0]) / max(1, b[3] - b[1])
+        idle_last = lb is None or (fb is not None and abs(aspect(lb) / aspect(ob0) - 1) > 0.6
+                                   and abs(aspect(fb) / aspect(ob0) - 1) < abs(aspect(lb) / aspect(ob0) - 1))
     ref = big[0] if idle_last else big[-1]
     rb = bbox(ref) or (0, 0, ref.width, ref.height)
     k = min(oh / max(1, rb[3] - rb[1]), owid * 1.15 / max(1, rb[2] - rb[0]))
@@ -166,17 +175,23 @@ def convert(num, row, ai_path, idle_last=False):
     return out
 
 
-def build(num, out, picks):
+def sheet_of(num, out, picks):
+    """Hoja de 8 filas (las 3 de la izquierda espejadas) con la semilla elegida por fila."""
     fw, fh = idle_info(num)
     cw, ch = fw + 2 * PAD, fh + 2 * PAD
-    rows = [convert(num, r, os.path.join(out, "d%d_s%s.png" % (r, str(picks[r]).rstrip("i"))), str(picks[r]).endswith("i"))
-            for r in range(5)]
+    rows = [convert(num, r, os.path.join(out, "d%d_s%s.png" % (r, str(picks[r]).rstrip("i"))),
+                    True if str(picks[r]).endswith("i") else None) for r in range(5)]
     # 5 = arriba-izq. (espejo de 3), 6 = izq. (de 2), 7 = abajo-izq. (de 1)
     rows += [[f.transpose(Image.FLIP_LEFT_RIGHT) for f in rows[m]] for m in (3, 2, 1)]
     sheet = Image.new("RGBA", (cw * N, ch * 8))
     for r, cells in enumerate(rows):
         for i, c in enumerate(cells):
             sheet.paste(c, (i * cw, r * ch))
+    return sheet, cw, ch
+
+
+def build(num, out, picks):
+    sheet, cw, ch = sheet_of(num, out, picks)
     folder = folder_of(num)
     sheet.save(os.path.join(folder, "Strike-Anim.png"))
     # AnimData.xml: Strike propio (pisa el "CopyOf Attack" si estaba)
