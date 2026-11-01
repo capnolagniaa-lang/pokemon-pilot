@@ -14,8 +14,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   de 3% a 11%; Paras cayó (83% → 21%: su básico es un ataque de recarga larga) y Clefairy sigue en 0% (ya estaba).
 - **PP como maná (2026-10-31, pedido del usuario: "los ataques tienen que costar por ejemplo 40 PP y mientras subís de
   nivel tenés más PP", como Pokémon Reloaded)**: barra de PP por Pokémon = 100 + 4 × nivel (`MoveUser.max_pp`); cada
-  ataque gasta 10 + 0,4 × potencia (estado 25; `pp_cost_of`); el básico es gratis y devuelve 6 PP al pegar; se recargan
-  solos (3%/s en pelea, 20%/s fuera; ajuste `pp_regen`) y se llenan al curarse. Con PP las recargas quedan cortas (×0,3,
+  ataque gasta 8 + 0,55 × potencia (estado 25; `pp_cost_of`); el básico es gratis y devuelve 6 PP al pegar; se recargan
+  solos (6%/s en pelea, 30%/s fuera; 2026-11-01 subido de 3%/20% y costo de 10 + 0,4·potencia, pedido del usuario; ajuste `pp_regen`) y se llenan al curarse. Con PP las recargas quedan cortas (×0,3,
   0,35-2 s): limita la barra. HUD: barra azul bajo la vida y costo en cada ataque (se oscurece si no alcanza). La IA guarda
   PP (con menos del 30% los ataques que gastan valen la mitad). Ajuste `pp_mode`. `CreatureInstance.pp` no se guarda.
   Balance (400 peleas IA contra IA): victorias en ~10 s de promedio (antes 8,8; con solo teclas por rol 12,7), pero los

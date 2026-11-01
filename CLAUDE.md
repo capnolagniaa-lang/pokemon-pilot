@@ -235,7 +235,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   el daño del rol y `TacticalMind` lo cuenta. Además `cooldown_mult` (× todas las recargas y el esquive) y `attack_gap`
   (pausa entre cualquier ataque), neutros por defecto: se van puliendo jugando. **PP como maná** (ajuste `pp_mode`,
   pedido del usuario 2026-10-31, como Pokémon Reloaded): barra `MoveUser.max_pp()` = 100 + 4·nivel, costo
-  `pp_cost_of(move)` = 10 + 0,4·potencia (estado 25), básico gratis (+6 PP al pegar, `basic_landed`), recarga sola
+  `pp_cost_of(move)` = 8 + 0,55·potencia (estado 25; 2026-11-01: antes 10 + 0,4), básico gratis (+6 PP al pegar, `basic_landed`), recarga sola
   (`PP_REGEN_*` × ajuste `pp_regen`); con PP las recargas son cortas (`PP_COOLDOWN`). `CreatureInstance.pp` (runtime,
   -1 = lleno; `heal_party` lo llena). La IA ahorra PP (`TacticalMind.PP_RESERVE`). **IA cuerpo a cuerpo**
   (`creature_attack.gd::_melee_mode`): entra a pegar (`MELEE_ENTER`), sale (`_backoff`) y espera a `MELEE_SPACING` de

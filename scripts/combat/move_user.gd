@@ -23,12 +23,12 @@ const ROLE_NAMES := ["Básico", "Habilidad", "Habilidad", "Definitiva"]
 ## quedan cortas (`PP_COOLDOWN`): lo que limita es la barra.
 const PP_BASE := 100.0
 const PP_PER_LEVEL := 4.0
-const PP_COST_BASE := 10.0
-const PP_COST_PER_POWER := 0.4
+const PP_COST_BASE := 8.0
+const PP_COST_PER_POWER := 0.55
 const PP_STATUS_COST := 25.0
 ## Recarga sola por segundo (fracción de la barra): en pelea y fuera de pelea.
-const PP_REGEN_FIGHT := 0.03
-const PP_REGEN_CALM := 0.2
+const PP_REGEN_FIGHT := 0.06
+const PP_REGEN_CALM := 0.3
 ## PP que devuelve cada golpe del básico.
 const PP_BASIC_GAIN := 6.0
 ## Recarga de los ataques con PP: la de siempre × esto, entre estos valores.
