@@ -96,3 +96,34 @@ una sola imagen** y en ~6-12 s:
 - **Efectos**: solo texto, "sprite sheet de 6 cuadros, fondo negro" (impacto de fuego y de hielo): coherentes de un cuadro
   al otro, mejor y mucho más rápido que el cuadro clave + Wan 2.2.
 - El modelo completo (no turbo, 30 pasos, ~18 s) no fue mejor que el Turbo.
+
+### Prompts que funcionan (afinado el 2026-11-01)
+Herramientas: `tools/comfy/qwen21_prep.py <n.º> <fila> <nombre>` (fila de Idle de PMD ×8 con fondo blanco; fila 0 = de
+frente, 1 abajo-derecha, 2 derecha, 3 arriba-derecha, 4 de espaldas), `tools/comfy/qwen21_run.py <nombre> <ancho> <alto>
+"<prompt>" <imagen>` (ancho/alto = los de la tira; `SEED`, `MODEL`, `LORA`, `OUT`) y `tools/comfy/qwen21_down.py
+<ia.png> <nombre>_orig.png 4 <salida>` (a tamaño real: saca el fondo y las líneas de grilla en grande, escala para que el
+último cuadro, la pose de reposo, mida como el original, pasa a la paleta del original y le pone el contorno oscuro; los
+efectos claros quedan sin contorno). Plantilla que mejor anduvo:
+
+> This image is a pixel art sprite sheet: 4 animation frames of **{Especie (descripción corta: "a round grey boulder
+> with two big muscular rock arms, no legs")}** side by side in one row, **{vista}**, on a plain white background. Redraw
+> it as a 4-frame **{ataque}** animation, keeping exactly 4 cells of equal width in one row: **frame 1 … frame 2 …
+> frame 3 … frame 4 …** Use exaggerated, readable key poses with strong anticipation and follow-through, so the
+> silhouette clearly changes from frame to frame. Keep the identical character design, colors, proportions and facing
+> direction from the input. Each cell is a tiny low-resolution game sprite enlarged 8 times: big square pixels on a
+> strict grid, a 1-pixel dark outline, flat colors, no gradients, no anti-aliasing, no blur. Same character size in every
+> cell. Plain pure white background everywhere, no floor, no ground line, no shadow, no text.
+
+Lo aprendido:
+- **Describir la especie** entre paréntesis: sin eso Geodude salió sin brazos (no lo reconoció en 32×24).
+- "Exaggerated key poses / anticipation / follow-through" = poses con más fuerza (sin eso se mueve poco).
+- No decir "ground line" (dibuja una línea de suelo); decir "no floor, no ground line".
+- Vistas: "facing down toward the viewer", "in three-quarter view facing down-right", "seen from the side facing right",
+  "in three-quarter back view facing up-right", "seen from behind, facing away from the viewer". Una corrida por
+  dirección (5) y las 3 de la izquierda espejadas: así salen las 8 de PMD. **Pedir la hoja entera de 8 filas de una vez
+  no sirve** (pierde direcciones o el golpe sale solo en algunas filas).
+- Algunas semillas dibujan una grilla o dan vuelta un cuadro: probar 2 semillas y quedarse con la mejor (~10 s cada una).
+- **LoRAs de pixel art** (Redmond, Master Pixel Art, moss): son del Qwen-Image viejo; en 2.1 casi no cargan ("lora key
+  not loaded") y no cambian nada. Con Qwen-Image-Edit 2511 (`tools/comfy/qwen_edit2511_run.py`) sí cargan, pero sale peor
+  (pixeles rotos, sombra; el `pixel_4walk` lo pone de frente) y tarda ~90 s. **Quedarse con 2.1 Turbo sin LoRA.**
+- Uso posible en el juego: solo 48 de 386 especies tienen `Strike` y 94 `LeapForth` (las demás caen a `Attack`).
