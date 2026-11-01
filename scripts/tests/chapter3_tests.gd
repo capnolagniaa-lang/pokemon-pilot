@@ -122,6 +122,17 @@ func run() -> void:
 	r["Con Benito al lado (%s), E frente al basurero lo revisa (%s)" % [benito.data.display_name if benito else "nadie",
 		dlg._speaker.text]] = benito != null and dlg.active and dlg._speaker.text == ""
 	await _idle()
+	# Y con el marinero (Dwayne, en (8, 13)): desde arriba de él y desde su costado.
+	for spot in [[Vector2i(8, 12), Vector2.LEFT], [Vector2i(8, 12), Vector2.RIGHT], [Vector2i(7, 13), Vector2.UP],
+			[Vector2i(9, 13), Vector2.DOWN]]:
+		await _go("ciudad_carmin_gimnasio", spot[0])
+		world.trainer.facing = spot[1]
+		var near: StoryNPC = world.story.npc_in_reach()
+		world.story.try_interact()
+		await get_tree().process_frame
+		r["Con Dwayne al lado (%s), en %s mirando %s revisa el basurero (%s)" % [near.data.display_name if near else "nadie",
+			spot[0], spot[1], dlg._speaker.text]] = near != null and dlg.active and dlg._speaker.text == ""
+		await _idle()
 
 	# --- Lt. Surge ---
 	for inst in GameState.party:
