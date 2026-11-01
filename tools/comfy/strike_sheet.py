@@ -48,30 +48,39 @@ def folder_of(num):
     return os.path.join(ROOT, "sprites", "pokemon", "%04d" % num)
 
 
+def anim_info(num, name):
+    """(archivo, ancho, alto) de una animación siguiendo los CopyOf (el Idle de Beedrill es una copia de Walk), o None."""
+    anims = {a.findtext("Name"): a for a in ET.parse(os.path.join(folder_of(num), "AnimData.xml")).getroot().iter("Anim")}
+    a = anims.get(name)
+    while a is not None and a.findtext("CopyOf"):
+        a = anims.get(a.findtext("CopyOf"))
+    if a is None or not a.findtext("FrameWidth"):
+        return None
+    return (os.path.join(folder_of(num), "%s-Anim.png" % a.findtext("Name")), int(a.findtext("FrameWidth")),
+            int(a.findtext("FrameHeight")))
+
+
 def idle_info(num):
-    for a in ET.parse(os.path.join(folder_of(num), "AnimData.xml")).getroot().iter("Anim"):
-        if a.findtext("Name") == "Idle":
-            return int(a.findtext("FrameWidth")), int(a.findtext("FrameHeight"))
-    raise SystemExit("sin Idle")
+    info = anim_info(num, "Idle")
+    if info is None:
+        raise SystemExit("sin Idle")
+    return info[1], info[2]
 
 
 def idle_row(num, row):
     """Los cuadros de Idle de esa fila, repetidos hasta 4."""
     fw, fh = idle_info(num)
-    im = Image.open(os.path.join(folder_of(num), "Idle-Anim.png")).convert("RGBA")
+    im = Image.open(anim_info(num, "Idle")[0]).convert("RGBA")
     n = im.width // fw
     return [im.crop(((i % n) * fw, row * fh, (i % n + 1) * fw, (row + 1) * fh)) for i in range(N)], fw, fh
 
 
 def attack_strip(num, row, path):
     """4 cuadros de la animación Attack de PMD en esa dirección (×4, fondo blanco), o None si la especie no la tiene."""
-    fw = fh = 0
-    for a in ET.parse(os.path.join(folder_of(num), "AnimData.xml")).getroot().iter("Anim"):
-        if a.findtext("Name") == "Attack" and a.findtext("FrameWidth"):
-            fw, fh = int(a.findtext("FrameWidth")), int(a.findtext("FrameHeight"))
-    src = os.path.join(folder_of(num), "Attack-Anim.png")
-    if not fw or not os.path.exists(src):
+    info = anim_info(num, "Attack")
+    if info is None or not os.path.exists(info[0]):
         return None
+    src, fw, fh = info
     im = Image.open(src).convert("RGBA")
     n = im.width // fw
     strip = Image.new("RGBA", (fw * N, fh), (255, 255, 255, 255))
