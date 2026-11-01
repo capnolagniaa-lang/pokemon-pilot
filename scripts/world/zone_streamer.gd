@@ -6,9 +6,9 @@ extends Node
 @export var world_data: WorldData
 @export var zones_root: Node2D
 ## Distancia (en celdas) desde el borde de una zona a la que empieza a cargarse.
-@export var load_margin := 14
+@export var load_margin := 22  # con la cámara alejada (CameraRig.MIN_ZOOM) se ven 20 celdas a cada lado
 ## Distancia (en celdas) a la que se descarga (mayor que load_margin para no oscilar).
-@export var unload_margin := 22
+@export var unload_margin := 30
 @export var check_interval := 0.25
 
 var target: Node2D

@@ -19,6 +19,7 @@ const PAGES := [
 		"Puertas: caminá contra ellas. Los salientes del pasto se bajan saltando (no se suben).",
 		"Pokébolas en el suelo: pasá por encima para juntarlas (objetos de las rutas y lo que sueltan los salvajes).",
 		"Corte, Surf y Fuerza: con la MO y su medalla se usan solas al caminar contra el árbol, el agua o la roca.",
+		"Rueda del mouse: alejar o acercar la cámara para ver más del mapa.",
 	]],
 	["Los salvajes", [
 		"Cada especie tiene su temperamento: los agresivos te atacan apenas te ven; los territoriales solo si entrás a su zona (si te miran con \"...\", todavía estás afuera); los tímidos huyen; los curiosos se acercan a mirar.",
