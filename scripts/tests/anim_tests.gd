@@ -6,6 +6,8 @@ extends Node
 ## esquivar, dormirse y debilitarse (y que caiga a Attack si la especie no la tiene).
 
 const DATA_SPECIES := ["charmander", "squirtle", "pikachu", "geodude", "pidgey"]
+## Golpe (Strike) hecho con Qwen-Image 2.1 (tools/comfy/strike_sheet.py, docs/COMFYUI.md): no lo tenían en SpriteCollab.
+const QWEN_STRIKE := ["bulbasaur", "squirtle", "pidgey", "rattata", "geodude"]
 
 var autotest: Node
 
@@ -29,6 +31,13 @@ func run() -> void:
 			if anim != "portrait" and not ResourceLoader.exists(a[anim]["file"]):
 				files_ok = false
 		r["%s: hojas nuevas (%d animaciones) e importadas" % [id, a.size() - 1]] = files_ok and a.size() > 6
+
+	for id in QWEN_STRIKE:
+		var a := DB.anims_of(DB.species[id])
+		var st: Dictionary = a.get("Strike", {})
+		var own: bool = str(st.get("file", "")).ends_with("/Strike-Anim.png") and ResourceLoader.exists(st["file"])
+		var tex: Texture2D = load(st["file"]) if own else null
+		r["%s: golpe propio (Strike de 8 direcciones)" % id] = tex != null and tex.get_height() == int(st["h"]) * 8 and not a.has("QuickStrike")
 
 	var world: Node = await autotest._setup_kit_world("charmander")
 	var me: Creature = world.companion
@@ -142,6 +151,40 @@ func showcase_sleep() -> void:
 	world.camera.global_position = base
 	for i in 210:  # (la cámara vuelve al zoom normal sola)
 		world.camera.zoom = Vector2(3.6, 3.6)
+		await get_tree().process_frame
+	get_tree().quit()
+
+
+## Vitrina: los golpes hechos con Qwen (arriba) contra el Attack de PMD que usaban antes (abajo), girando por las
+## 8 direcciones.
+##   godot --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-strike
+func showcase_strike() -> void:
+	var world: Node = await autotest._setup_kit_world("charmander")
+	world.combat.end_battle()
+	world.companion.visible = false
+	world.trainer.visible = false
+	var base: Vector2 = world.trainer.global_position + Vector2(0, 110)
+	var rows: Array = []
+	for i in QWEN_STRIKE.size():
+		var pair: Array = []
+		for side in 2:
+			var c: Creature = autotest._dummy(world, QWEN_STRIKE[i], base + Vector2(-100 + i * 50, -24 + side * 52))
+			c.set_physics_process(false)
+			pair.append(c)
+		rows.append(pair)
+	world.camera.target = null
+	world.camera.global_position = base
+	var dirs := [Vector2.DOWN, Vector2(1, 1), Vector2.RIGHT, Vector2(1, -1), Vector2.UP, Vector2(-1, -1), Vector2.LEFT,
+		Vector2(-1, 1)]
+	for f in 390:
+		world.camera.zoom = Vector2(3.4, 3.4)
+		if f % 24 == 0:
+			var d: Vector2 = dirs[(f / 48) % dirs.size()].normalized()
+			for pair in rows:
+				pair[0].facing = d
+				pair[1].facing = d
+				pair[0].sprite.play_chain("strike", 0.35)
+				pair[1].sprite.play_once("Attack", 0.35)
 		await get_tree().process_frame
 	get_tree().quit()
 

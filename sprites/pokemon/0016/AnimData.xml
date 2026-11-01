@@ -40,10 +40,20 @@
       </Durations>
     </Anim>
     <Anim>
-      <Name>Strike</Name>
-      <Index>2</Index>
-      <CopyOf>Attack</CopyOf>
-    </Anim>
+			<Name>Strike</Name>
+			<Index>2</Index>
+			<FrameWidth>48</FrameWidth>
+			<FrameHeight>64</FrameHeight>
+			<RushFrame>1</RushFrame>
+			<HitFrame>2</HitFrame>
+			<ReturnFrame>3</ReturnFrame>
+			<Durations>
+				<Duration>3</Duration>
+				<Duration>5</Duration>
+				<Duration>4</Duration>
+				<Duration>6</Duration>
+			</Durations>
+		</Anim>
     <Anim>
       <Name>Shoot</Name>
       <Index>3</Index>

@@ -127,3 +127,19 @@ Lo aprendido:
   not loaded") y no cambian nada. Con Qwen-Image-Edit 2511 (`tools/comfy/qwen_edit2511_run.py`) sí cargan, pero sale peor
   (pixeles rotos, sombra; el `pixel_4walk` lo pone de frente) y tarda ~90 s. **Quedarse con 2.1 Turbo sin LoRA.**
 - Uso posible en el juego: solo 48 de 386 especies tienen `Strike` y 94 `LeapForth` (las demás caen a `Attack`).
+
+### Golpes en el juego: 5 especies de prueba (2026-11-01)
+`tools/comfy/strike_sheet.py` hace todo el camino para una especie sin `Strike` propio:
+- `gen <n.º> "<especie (descripción)>" "<acción con {dir}>" <carpeta> [semillas]`: 5 corridas por semilla (una por
+  dirección, sobre su fila de Idle) y `elegir.png` (cada dirección con cada semilla, ya a 32 px). Lo generado no se
+  repite; `ROWS=4` genera solo esa fila (para probar más semillas en una dirección que salió mal).
+- `build <n.º> <carpeta> <semilla por fila, 5>`: arma `sprites/pokemon/<n.º>/Strike-Anim.png` (8 filas: las 3 de la
+  izquierda espejadas; celda = la del Idle + 12 px por lado, el golpe se corre hacia adelante sin cortarse), lo anota en
+  su `AnimData.xml` (pisa el `CopyOf Attack`) y en `sprite_data.gd`. Una semilla con `i` (ej. `777i`) = el último cuadro
+  salió mal: se mide con el primero y el último pasa a ser el Idle original. Después `--import`.
+- Hechos: Bulbasaur, Squirtle, Pidgey, Rattata y Geodude (test `--autotest-anims`, vitrina `--showcase-strike`: arriba el
+  golpe nuevo, abajo el Attack de antes, por las 8 direcciones).
+- Lo que se aprendió: sin colores de efectos en la paleta (el gris y el celeste se comían el verde de Bulbasaur); de
+  frente y de espaldas la IA tiende a girarlo de costado (Squirtle de espaldas necesitó 4 semillas; Pidgey de frente
+  estira el cuello para arriba); "floating" hace que Geodude salga como plato volador con rayas (no usar la palabra), y
+  Geodude sale más liso que su sprite original (se nota al volver al Idle).

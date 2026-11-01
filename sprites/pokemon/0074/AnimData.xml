@@ -224,5 +224,20 @@
 				<Duration>2</Duration>
 			</Durations>
 		</Anim>
+		<Anim>
+			<Name>Strike</Name>
+			<Index>99</Index>
+			<FrameWidth>56</FrameWidth>
+			<FrameHeight>48</FrameHeight>
+			<RushFrame>1</RushFrame>
+			<HitFrame>2</HitFrame>
+			<ReturnFrame>3</ReturnFrame>
+			<Durations>
+				<Duration>3</Duration>
+				<Duration>5</Duration>
+				<Duration>4</Duration>
+				<Duration>6</Duration>
+			</Durations>
+		</Anim>
 	</Anims>
 </AnimData>

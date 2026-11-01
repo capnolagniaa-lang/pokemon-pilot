@@ -111,6 +111,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies 
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
 $G --headless --path . --quit-after 30000 -- --autotest-anims    # animaciones de combate (Shoot, Charge, Strike, Hop, Faint, Sleep...)
 $G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-sleep  # dormidos: respiran, "z", ojos cerrados, los dos lados
+$G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-strike  # golpes hechos con Qwen (arriba) vs. el Attack de antes (abajo)
 $G --headless --path . --quit-after 20000 -- --autotest-vfx      # efectos de ataque con sprite (hojas, prioridad, proyectil/área/golpe/impacto)
 $G --path . --quit-after 500 --write-movie out/f.png --fixed-fps 30 -- --showcase-vfx  # el impacto de cada tipo y los proyectiles con hoja, de cerca
 $G --path . --quit-after 2400 --write-movie out/f.png --fixed-fps 30 -- --showcase-kit  # vitrina de kits
