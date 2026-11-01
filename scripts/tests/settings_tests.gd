@@ -53,7 +53,23 @@ func run() -> void:
 	world = await autotest._setup_kit_world("charmander")
 	var me: Creature = world.companion
 	GameState.set_setting("dealt_mult", 2.0)
-	r["Daño que hacés ×2"] = HitInfo.from(me, me.moves.slots[0]).damage_mult >= 1.99
+	r["Daño que hacés ×2"] = HitInfo.from(me, me.moves.slots[1]).damage_mult >= 1.99  # (ranura 1: la 0 es el básico)
+	GameState.set_setting("dealt_mult", 1.0)
+	# Teclas por rol (estilo LoL): básico seguido y flojo, definitiva lenta y fuerte; los rivales se ordenan solos.
+	var mu: MoveUser = me.moves
+	var basic := mu.slots[0]
+	r["Básico: recarga corta según la Velocidad"] = mu.slot_cooldown(0, 10.0) <= 0.9 and mu.slot_cooldown(0, 10.0) >= 0.45
+	r["Básico: no pasa el daño por segundo del ataque"] = basic == null or mu.role_damage(basic) <= 1.0
+	r["Definitiva: recarga larga y pega más"] = mu.slot_cooldown(3, 2.0) >= 8.0 		and (mu.slots[3] == null or mu.role_damage(mu.slots[3]) > 1.0)
+	var weak := MoveData.new(); weak.power = 20.0
+	var strong := MoveData.new(); strong.power = 120.0
+	var buff := MoveData.new(); buff.category = MoveData.Category.STATUS
+	var sorted := MoveUser.by_role([strong, buff, weak] as Array[MoveData])
+	r["Rivales: el más flojo de básico y el más fuerte de definitiva"] = sorted[0] == weak and sorted[-1] == strong
+	GameState.set_setting("slot_roles", false)
+	r["Sin teclas por rol: recargas de siempre"] = is_equal_approx(mu.slot_cooldown(0, 3.0), 3.0) and is_equal_approx(mu.slot_cooldown(3, 3.0), 3.0)
+	GameState.set_setting("slot_roles", true)
+	GameState.set_setting("dealt_mult", 2.0)
 	GameState.set_setting("wild_mult", 0.0)
 	r["Cantidad de salvajes ×0 → no aparece ninguno"] = world.spawner.max_alive(world.streamer.current.id) == 0
 	world.combat.end_battle()

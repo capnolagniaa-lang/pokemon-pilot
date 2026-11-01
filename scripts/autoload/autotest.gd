@@ -1224,7 +1224,7 @@ func _modes_test() -> void:
 	var me: Creature = world.companion
 	var wild: Creature = world.spawner.spawn(DB.species["rattata"], 5, me.global_position + Vector2(60, 0))
 	await get_tree().physics_frame
-	var h := HitInfo.from(wild, wild.moves.slots[0])
+	var h := HitInfo.from(wild, wild.moves.slots[1])  # (la 0 es el básico)
 	r["El daño salvaje usa la dificultad"] = absf(h.damage_mult - easy.damage_mult) < 0.001
 	wild.queue_free()  # que no le pegue al Pokémon que vuelve (la vida tiene que estar al máximo)
 	var inst: CreatureInstance = me.instance

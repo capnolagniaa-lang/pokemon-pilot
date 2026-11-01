@@ -38,6 +38,8 @@ static func from(user: Node, p_move: MoveData) -> HitInfo:
 		h.damage_mult *= GameState.difficulty.damage_mult
 	# Ajustes del juego: daño que hacés (tu equipo) y que recibís (el de los rivales).
 	h.damage_mult *= float(GameState.setting("dealt_mult")) if user.team == 0 else float(GameState.setting("taken_mult"))
+	if user.get("moves") != null:
+		h.damage_mult *= user.moves.role_damage(p_move)  # básico / definitiva (MoveUser)
 	if user.signature != null:
 		user.signature.modify_hit(h)
 	return h

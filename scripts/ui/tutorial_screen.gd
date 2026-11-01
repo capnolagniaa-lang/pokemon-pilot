@@ -29,6 +29,7 @@ const PAGES := [
 	["El combate", [
 		"WASD: mover a tu Pokémon.  Mouse: apuntar.",
 		"Clic izquierdo, Clic derecho, Q y R: sus 4 ataques. Cada uno tiene su recarga.",
+		"Como en un MOBA: Clic izq. es el ataque básico (sale seguido, pega menos), Clic der. y Q son habilidades y R es la definitiva (recarga larga, pega más). Ordenalos desde la ficha.",
 		"Espacio: esquivar (te tirás hacia un costado).",
 		"Todo golpe deja aturdido un instante (stagger); un golpe fuerte corta los ataques que se cargan.",
 		"Los tipos importan como en los juegos: súper eficaz, poco eficaz e inmunidades (a un Volador no le hace nada un ataque Tierra, a un Veneno no lo envenenás...).",

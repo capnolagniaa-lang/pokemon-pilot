@@ -164,7 +164,8 @@ func _draw_moves(c: Creature) -> void:
 		draw_rect(Rect2(r.position, Vector2(r.size.x, 5)), m.element.color)
 		draw_string(font, r.position + Vector2(6, 22), Controls.SLOT_KEYS[i], HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(1, 1, 1, 0.75))
 		draw_string(font, r.position + Vector2(6, 46), m.display_name, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 14 if m.display_name.length() <= 11 else 12)
-		var info := "%s · %ss" % [KIND.get(m.kind, ""), _secs(m.cooldown)]
+		var kind: String = MoveUser.ROLE_NAMES[i] if MoveUser.roles_on() else KIND.get(m.kind, "")
+		var info := "%s · %ss" % [kind, _secs(c.moves.slot_cooldown(i, m.cooldown))]
 		draw_string(font, r.position + Vector2(6, 68), info, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 10, Color(1, 1, 1, 0.6))
 		if m.cast_time > 0.0:  # ícono de carga
 			draw_arc(r.position + Vector2(r.size.x - 12, 36), 4.5, -PI / 2.0, PI, 12, Color(1, 1, 1, 0.8), 1.5)
@@ -177,7 +178,7 @@ func _draw_moves(c: Creature) -> void:
 	_panel(d)
 	draw_string(font, d.position + Vector2(0, 30), "Espacio", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 11, Color(1, 1, 1, 0.75))
 	draw_string(font, d.position + Vector2(0, 54), "Esquive", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 12)
-	var dk := c.moves.dodge_cooldown / MoveUser.DODGE_COOLDOWN
+	var dk := c.moves.dodge_cooldown / (MoveUser.DODGE_COOLDOWN * float(GameState.setting("cooldown_mult")))
 	if dk > 0.0:
 		draw_rect(Rect2(d.position.x, d.end.y - d.size.y * dk, d.size.x, d.size.y * dk), Color(0, 0, 0, 0.55))
 

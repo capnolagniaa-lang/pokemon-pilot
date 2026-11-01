@@ -6,6 +6,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-10-31)
+- **Ritmo del combate, estilo LoL (2026-10-31, pedido del usuario: "muy rápido, spam de mi parte"; se va puliendo
+  jugando)**: Clic izq. = ataque básico (seguido, pega menos), Clic der. y Q = habilidades, R = definitiva (recarga larga,
+  pega ×1,3). Los rivales ordenan sus ataques solos por rol. Ajustes del juego → Combate: "Teclas por rol", "Ritmo:
+  recargas" (×) y "Ritmo: pausa entre un ataque y otro". `MoveUser` (roles, `slot_cooldown`, `role_damage`).
 - **Empalmes y cercas de más (2026-10-31, pedido del usuario)**: revisión de todos los bordes entre zonas
   (`tools/check_seams.py`, informe en `docs/EMPALMES.md`). Arreglado en el importador: cercas y salientes dobles, en
   escalón o con huecos (`straighten_lines`, 31 zonas), Fucsia–Ruta 15 no se tocaban (`EXTEND`: camino nuevo), hueco y canal

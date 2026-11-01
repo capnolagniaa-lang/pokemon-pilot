@@ -242,7 +242,7 @@ func score(slot: int, dist: float, shot: bool) -> float:
 		if eff <= 0.0:
 			return 0.0  # no le hace nada: ni lo intenta
 		var stab := Damage.STAB if m.element in actor.instance.species.types else 1.0
-		value = m.power * m.power_mult * stab * eff * ability_mult(m, t) * env_mult(m, t)
+		value = m.power * m.power_mult * stab * eff * ability_mult(m, t) * env_mult(m, t) * actor.moves.role_damage(m)
 		if value <= 0.0:
 			return 0.0  # su habilidad lo absorbe
 		if exposed(t):
