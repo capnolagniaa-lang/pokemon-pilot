@@ -138,6 +138,13 @@ func _ready() -> void:
 		add_child(vx)
 		(vx.showcase if "--showcase-vfx" in OS.get_cmdline_user_args() else vx.run).call_deferred()
 		return
+	if "--autotest-updater" in OS.get_cmdline_user_args():
+		set_process(false)
+		var ut := UpdaterTests.new()
+		ut.autotest = self
+		add_child(ut)
+		ut.run.call_deferred()
+		return
 	if "--autotest-anims" in OS.get_cmdline_user_args() or "--showcase-sleep" in OS.get_cmdline_user_args() or "--showcase-strike" in OS.get_cmdline_user_args():
 		set_process(false)
 		var an := AnimTests.new()

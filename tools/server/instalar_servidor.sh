@@ -56,10 +56,47 @@ RestartSec=3
 WantedBy=multi-user.target
 UNIT
 
-# Firewall: SSH y el puerto del juego (UDP).
+# Actualizaciones automáticas de los clientes (docs/PLAN_ACTUALIZACIONES.md): nginx sirve en
+# http://<IP>/pokemon-pilot/ el update.json, su firma y el .pck (con el nombre que dice update.json). El .pck va
+# primero y el update.json al final, así nadie ve un update.json que apunte a un archivo que todavía no está.
+WWW=/var/www/pokemon-pilot
+if [ -f update.json ] && [ -f update.sig ]; then
+	if ! command -v nginx >/dev/null; then
+		echo "Instalando nginx (para las actualizaciones)..."
+		apt-get update -qq && apt-get install -y -qq nginx >/dev/null
+	fi
+	cat > /etc/nginx/sites-available/pokemon-pilot <<SITE
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	location /pokemon-pilot/ {
+		alias $WWW/;
+		autoindex off;
+		add_header Cache-Control "no-cache";
+	}
+	location / { return 404; }
+}
+SITE
+	ln -sf /etc/nginx/sites-available/pokemon-pilot /etc/nginx/sites-enabled/pokemon-pilot
+	rm -f /etc/nginx/sites-enabled/default
+	mkdir -p "$WWW"
+	PCK_NAME=$(grep -o '"file": *"[^"]*"' update.json | sed 's/.*"\([^"]*\)"$/\1/')
+	install -m 644 PokemonPilot.pck "$WWW/$PCK_NAME"
+	install -m 644 update.sig "$WWW/update.sig.nuevo"
+	install -m 644 update.json "$WWW/update.json.nuevo"
+	mv -f "$WWW/update.sig.nuevo" "$WWW/update.sig"
+	mv -f "$WWW/update.json.nuevo" "$WWW/update.json"
+	# los .pck viejos: queda solo el que dice update.json
+	find "$WWW" -name 'PokemonPilot-*.pck' ! -name "$PCK_NAME" -delete
+	nginx -t >/dev/null 2>&1 && systemctl enable nginx >/dev/null 2>&1 && systemctl reload-or-restart nginx
+	echo "Actualización publicada: http://$(hostname -I | awk '{print $1}')/pokemon-pilot/$PCK_NAME"
+fi
+
+# Firewall: SSH, el puerto del juego (UDP) y HTTP (actualizaciones).
 if command -v ufw >/dev/null; then
 	ufw allow 22/tcp >/dev/null
 	ufw allow $PORT/udp >/dev/null
+	ufw allow 80/tcp >/dev/null
 	ufw --force enable >/dev/null
 fi
 

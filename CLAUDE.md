@@ -75,6 +75,7 @@ $G --headless --path . --quit-after 9000 -- --autotest-save      # guardado/carg
 $G --headless --path . --quit-after 30000 -- --autotest-night-combat  # día/noche D: efectos que no se oscurecen, luces, llama de fuego
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-night-combat  # Charmander tirando Ascuas de noche
 $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: todo lo aprendido, en plena pelea, al subir de nivel
+$G --headless --path . --quit-after 60000 -- --autotest-updater   # actualizaciones automáticas (firma, bajar, comprobar, relanzar, sin conexión)
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
 $G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos y volar sin descubrir zonas
@@ -134,6 +135,13 @@ $G --path . -- --debug --start-zone ruta1 --start-cell 20,12        # juego dire
 El usuario lanza el juego con el acceso directo **"Pokémon Pilot"** del escritorio
 (`Godot_v4.7.2-stable_win64.exe --path <proyecto>`, ícono `icon.ico` generado por `tools/make_icon.py`).
 **Servidor online** (VPS de Vultr, IP en `Net.OFFICIAL_SERVER`): guía `docs/SERVIDOR_ONLINE.md`; cada zip nuevo va con `tools/server/subir_servidor.bat` (si no, el servidor lo rechaza por versión).
+**Actualizaciones automáticas** (`docs/PLAN_ACTUALIZACIONES.md`, decisión del usuario 2026-11-01: el juego se actualiza solo y
+es obligatorio): autoload `Updater` (`GameUpdater`, solo en la versión portable) pide `http://<servidor>/pokemon-pilot/update.json`
++ `update.sig`, verifica la firma (`GameUpdater.PUBLIC_KEY`; la privada está solo en la PC del usuario:
+`%USERPROFILE%\.pokemon_pilot\update_private.key`, `tools/update_keys.gd`) y si la huella SHA-256 del .pck es otra baja el
+nuevo a `user://updates/` y se relanza con `--main-pack` (+ `--pck`, `--home-pck`, `--relanzado`: Godot se come
+`--main-pack` y `--headless` de `OS.get_cmdline_args`), que lo copia encima del de la carpeta del juego. **Publicar una versión =
+`build_portable.py` (arma y firma `update.json`) + `subir_servidor.bat`** (servidor online + nginx con el .pck para los clientes).
 **Versión portable para los amigos**: `python -I -B tools/build_portable.py . <Godot_v4.7.2-stable_win64.exe>` (el de
 ventana) → `export/PokemonPilot-<fecha>.zip` (`export/` no se sube). **Mac**: agregar `--mac <Godot_v4.7.2-stable_macos.universal.zip>`
 (el oficial, bajado en `tools/godot/mac/`) → `export/PokemonPilot-Mac-<fecha>.zip`: Godot.app sin tocar (para no romper su

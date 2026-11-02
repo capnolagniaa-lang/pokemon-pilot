@@ -15,7 +15,10 @@ Apple Silicon) **sin tocar** (si se le agrega o cambia algo se rompe su firma y 
 tal cual (permisos de ejecución y enlaces). Las partidas quedan en ~/Library/Application Support/Godot/app_userdata.
 """
 import datetime
+import hashlib
+import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -41,6 +44,8 @@ Teclas
 Música: poné tus canciones en una carpeta "audio\\musica" al lado de PokemonPilot.exe, con estos nombres
 (.ogg o .mp3): titulo, pueblo_paleta, ruta_1, ciudad_verde, batalla_salvaje, batalla_entrenador, batalla_lider...
 (la lista completa está en docs/AUDIO.md del proyecto).
+
+El juego se actualiza solo: al abrirlo (con internet) baja la versión nueva si hay una y se vuelve a abrir.
 
 Si no sabés qué hacer: Esc -> Guía (y Esc -> Mapa para ver dónde estás y adónde ir).
 Tus partidas se guardan en %APPDATA%\\Godot\\app_userdata\\Pokémon Pilot\\saves (si actualizás el juego,
@@ -69,6 +74,8 @@ Teclas
 - Hablar / mirar / lanzar Poké Ball: E · Objeto rápido: C
 - Cambiar de Pokémon: 1 a 6 · Menú (Guía, Mapa, equipo, mochila, Pokédex, guardar): Esc
 
+El juego se actualiza solo: al abrirlo (con internet) baja la versión nueva si hay una y se vuelve a abrir.
+
 Si no sabés qué hacer: Esc -> Guía (y Esc -> Mapa para ver dónde estás y adónde ir).
 Tus partidas se guardan en ~/Library/Application Support/Godot/app_userdata/Pokémon Pilot/saves (si actualizás el
 juego, se conservan).
@@ -78,7 +85,7 @@ Si encontrás un error, anotá qué estabas haciendo y avisale a quien te pasó 
 LAUNCHER = """#!/bin/bash
 # Abre Pokémon Pilot: el Godot.app de al lado con el juego (PokemonPilot.pck).
 cd "$(dirname "$0")"
-exec "./Godot.app/Contents/MacOS/Godot" --main-pack "./PokemonPilot.pck"
+exec "./Godot.app/Contents/MacOS/Godot" --main-pack "$(pwd)/PokemonPilot.pck" -- --pck "$(pwd)/PokemonPilot.pck"
 """
 
 
@@ -99,6 +106,34 @@ def build_mac(root, pck, godot_zip):
     print("zip Mac:", zip_path, "%.1f MB" % (os.path.getsize(zip_path) / 1e6))
 
 
+def write_update(root, godot, out, pck):
+    """update.json + update.sig al lado del .pck, para las actualizaciones automáticas (docs/PLAN_ACTUALIZACIONES.md):
+    los sube tools/server/subir_servidor.bat. La firma la hace tools/update_keys.gd con la clave privada de esta PC."""
+    h = hashlib.sha256()
+    with open(pck, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    sha = h.hexdigest()
+    version = re.search(r"(\d+\.\d+(?:\.\d+)?)", os.path.basename(godot))
+    engine = version.group(1) if version else ""
+    if engine.count(".") == 1:
+        engine += ".0"
+    manifest = {"sha256": sha, "size": os.path.getsize(pck), "file": "PokemonPilot-%s.pck" % sha[:16],
+                "godot": engine, "date": datetime.datetime.now().isoformat(timespec="minutes")}
+    path = os.path.join(out, "update.json")
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(manifest, ensure_ascii=False))
+    sig = os.path.join(out, "update.sig")
+    if os.path.exists(sig):
+        os.remove(sig)
+    subprocess.run([godot, "--headless", "--path", root, "--quit-after", "20000", "--script", "res://tools/update_keys.gd",
+                    "--", "--sign", path, sig], stdout=subprocess.DEVNULL)
+    if os.path.exists(sig):
+        print("actualización: update.json + update.sig (%s)" % sha[:16])
+    else:
+        print("OJO: no se pudo firmar update.json (falta la clave privada: tools/update_keys.gd -- --init)")
+
+
 def main():
     root, godot = sys.argv[1], sys.argv[2]
     out = os.path.join(root, "export", "Pokemon Pilot")
@@ -107,6 +142,7 @@ def main():
     subprocess.run([godot, "--headless", "--path", root, "--quit-after", "600000", "--export-pack", "Windows Desktop",
                     pck], check=True, stdout=subprocess.DEVNULL)
     shutil.copyfile(godot, os.path.join(out, "PokemonPilot.exe"))
+    write_update(root, godot, out, pck)
     with open(os.path.join(out, "LEEME.txt"), "w", encoding="utf-8-sig", newline="\r\n") as f:
         f.write(README)
     zip_path = os.path.join(root, "export", "PokemonPilot-%s.zip" % datetime.date.today().isoformat())

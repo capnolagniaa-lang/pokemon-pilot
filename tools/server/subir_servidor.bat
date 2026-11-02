@@ -1,5 +1,6 @@
 @echo off
-rem Sube el juego al servidor online y lo instala o actualiza (docs/SERVIDOR_ONLINE.md).
+rem Sube el juego al servidor online y lo instala o actualiza (docs/SERVIDOR_ONLINE.md), y publica la actualizacion
+rem automatica para los juegos de tus amigos (update.json, update.sig y el .pck: docs/PLAN_ACTUALIZACIONES.md).
 rem Uso: doble clic. Te pide la contrasena del servidor dos veces.
 set IP=216.238.99.5
 cd /d "%~dp0..\.."
@@ -8,14 +9,20 @@ if not exist "export\Pokemon Pilot\PokemonPilot.pck" (
   pause
   exit /b 1
 )
+if not exist "export\Pokemon Pilot\update.sig" (
+  echo OJO: falta export\Pokemon Pilot\update.sig: se actualiza el servidor, pero los juegos de tus amigos no se
+  echo actualizan solos. Arma el zip de nuevo con tools\build_portable.py despues de crear la clave.
+  pause
+  exit /b 1
+)
 echo Subiendo el juego a %IP% ... (contrasena del servidor)
-scp -o StrictHostKeyChecking=accept-new "export\Pokemon Pilot\PokemonPilot.pck" "tools\server\instalar_servidor.sh" root@%IP%:/root/
+scp -o StrictHostKeyChecking=accept-new "export\Pokemon Pilot\PokemonPilot.pck" "export\Pokemon Pilot\update.json" "export\Pokemon Pilot\update.sig" "tools\server\instalar_servidor.sh" root@%IP%:/root/
 if errorlevel 1 goto error
 echo Instalando... (contrasena otra vez)
 ssh -o StrictHostKeyChecking=accept-new root@%IP% "bash /root/instalar_servidor.sh"
 if errorlevel 1 goto error
 echo.
-echo Listo. Ya se puede jugar online.
+echo Listo. Ya se puede jugar online, y los juegos de tus amigos se actualizan solos al abrirlos.
 pause
 exit /b 0
 :error
