@@ -77,7 +77,21 @@ func _physics_process(delta: float) -> void:
 ## Usa la puerta `cell` (local) de la zona `entry`.
 func use(entry: ZoneEntry, cell: Vector2i) -> void:
 	var w: Dictionary = entry.warps[cell]
-	var dest := _entry(w["to"])
+	if w.has(Lifts.KEY) and world.get("lifts") != null:  # puerta de ascensor: primero el piso
+		world.lifts.ride(entry, cell)
+		return
+	await travel(entry, w["to"], w["cell"])
+
+
+## Que no se use ninguna puerta por `seconds` (después de un "no" en el ascensor, aunque sigas caminando contra él).
+func hold(seconds: float) -> void:
+	_cooldown = maxf(_cooldown, seconds)
+	_push_time = 0.0
+
+
+## Fundido y aparecer al lado de la celda `to_cell` de la zona `to_id` (viniendo de `entry`).
+func travel(entry: ZoneEntry, to_id: String, to_cell: Vector2i) -> void:
+	var dest := _entry(to_id)
 	if dest == null:
 		return
 	busy = true
@@ -88,9 +102,9 @@ func use(entry: ZoneEntry, cell: Vector2i) -> void:
 	tw.tween_property(_fade, "color:a", 1.0, FADE)
 	await tw.finished
 	var ts: int = world.streamer.world_data.tile_size
-	world.streamer.load_around_now(Vector2((dest.origin + w["cell"]) * ts))
+	world.streamer.load_around_now(Vector2((dest.origin + to_cell) * ts))
 	var zone: Zone = world.streamer.zone_node(dest.id)
-	var at: Vector2i = w["cell"]
+	var at: Vector2i = to_cell
 	var dir := Vector2i.DOWN
 	if zone != null:
 		var found := arrival(func(c: Vector2i) -> bool: return MapRules.is_walkable(zone, c), dest, at)

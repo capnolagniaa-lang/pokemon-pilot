@@ -5,7 +5,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-11-01)
+## 📍 Dónde estamos (actualizado 2026-11-02)
 - **Zoom con la rueda (2026-11-01, pedido del usuario: "más zoom out para ver más del mapa")**: `CameraRig` acerca y
   aleja de 3× (el de siempre) a 2× en pasos de 0,25, suave, y lo recuerda en `user://camara.cfg` (los tests y vitrinas
   usan siempre 3×). `ZoneStreamer.load_margin` 14 → 22 (y descarga a 30) para que alejado no se vean bordes sin cargar.
@@ -27,6 +27,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Balance (400 peleas IA contra IA, misma semilla que antes): las peleas duran ~45% más y los empates por tiempo pasaron
   de 3% a 11%; Paras cayó (83% → 21%: su básico es un ataque de recarga larga) y Clefairy sigue en 0% (ya estaba).
 - **Actualizaciones automáticas (2026-11-01, decisión del usuario: el juego se actualiza solo y es obligatorio)**: al abrir la versión portable, el juego le pregunta al servidor (nginx en el VPS) si hay un .pck nuevo; si lo hay lo baja (con barra), comprueba firma y huella y se vuelve a abrir con él (Windows y Mac). Sin internet se juega con lo que hay. Publicar = `build_portable.py` + `subir_servidor.bat`. Plan y detalles: `docs/PLAN_ACTUALIZACIONES.md`; test `--autotest-updater` + prueba de punta a punta con el juego exportado. **Hay que pasarles a mano este zip una última vez.**
+- **Ascensores (2026-11-02, pedido del usuario: "problema con la llave del ascensor y el ascensor")**: en FireRed el ascensor es un cuarto con destino dinámico que el importador no trae: las puertas del ascensor no llevaban a ningún lado y en el sótano 4 del Escondite Rocket la parte de Giovanni no se podía alcanzar. Ahora `Lifts` (`world.lifts`) suma las puertas de los ascensores (Escondite Rocket, Silph S.A. y Gran Almacén de Azulona) al arrancar: caminando contra la puerta (o con la E) sale "¿A qué piso?" y se sale por el ascensor del piso elegido; el del Escondite pide la Llave Ascensor. Test en `--autotest-story-h4`.
 - **E frente a algo le gana a una persona al costado (2026-11-01, pedido del usuario)**: en el Gimnasio de Carmín, Benito y Dwayne están en los cruces entre basureros y la E les hablaba a ellos en vez de revisar el basurero de enfrente. Ahora, si la persona no está enfrente y hay algo para usar adelante (basurero, cartel...), va eso (`StoryDirector.try_interact` / `npc_ahead`). Test en `--autotest-story-h3`.
 - **Animaciones por ataque, por familias (2026-11-01, en revisión, no están en el juego)**: cada ataque cae en una familia de movimiento (morder, puño, patada, soplar por la boca...) y se generan con Qwen las de cada especie de Kanto (`tools/comfy/family_anims.py`, docs/COMFYUI.md). El usuario las revisa en `out/animaciones/revision.html` antes de meterlas.
 - **Golpes hechos con IA (2026-11-01, prueba con 5)**: Bulbasaur, Squirtle, Pidgey, Rattata y Geodude tienen su propio golpe (`Strike`) en 8 direcciones, dibujado con Qwen-Image 2.1 (`tools/comfy/strike_sheet.py`, docs/COMFYUI.md); antes usaban el Attack genérico. Vitrina: `--showcase-strike`.

@@ -34,6 +34,7 @@ var evolutions: EvolutionDirector
 var field_moves: FieldMoves
 var vermilion_puzzle: VermilionGymPuzzle
 var mansion_switches: MansionSwitches
+var lifts: Lifts
 var balloon: BalloonTravel
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
 var arena: TrainerBattle
@@ -104,6 +105,9 @@ func _ready() -> void:
 	mansion_switches = MansionSwitches.new()  # las estatuas-interruptor de la Mansión Pokémon
 	mansion_switches.name = "MansionSwitches"
 	add_child(mansion_switches)
+	lifts = Lifts.new()  # ascensores (Escondite Rocket con la Llave Ascensor, Silph, Gran Almacén)
+	lifts.name = "Lifts"
+	add_child(lifts)
 	balloon = BalloonTravel.new()  # globos aerostáticos entre ciudades
 	balloon.name = "BalloonTravel"
 	add_child(balloon)

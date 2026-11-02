@@ -50,6 +50,7 @@ func run() -> void:
 	r["Sin Té el guardia de Azafrán no te deja pasar"] = _cell().y > 5
 	await _rival_trigger("torre_pokemon_2p", Vector2i(9, 8), Vector2i(9, 7))
 	r["El rival en la Torre Pokémon"] = GameState.has_flag("rival_torre_peleado")
+	await _lift(r)
 	await _win(DB.npcs["escondite_rocket_s4_giovanni"])
 	r["Giovanni en el Escondite Rocket"] = GameState.has_flag("giovanni_escondite_vencido")
 	await _talk("escondite_rocket_s4_silphscope")
@@ -131,6 +132,56 @@ func run() -> void:
 		print("[historia-h4] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-story-h4] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+
+## El ascensor del Escondite Rocket (Lifts): sin la Llave Ascensor no anda; con ella, caminando contra la puerta del
+## sótano 1 se elige "Sótano 4" y se llega a la parte de Giovanni (que solo se alcanza por el ascensor).
+func _lift(r: Dictionary) -> void:
+	await _go("escondite_rocket_s1", Vector2i(24, 26))
+	await _push(Vector2.UP)
+	r["Ascensor del Escondite: sin la llave no anda"] = _zone_id() == "escondite_rocket_s1"
+	await _talk("escondite_rocket_s4_liftkey")
+	r["La Llave Ascensor en el sótano 4"] = GameState.item_count("llave_ascensor") == 1
+	await _go("escondite_rocket_s1", Vector2i(24, 26))
+	answer = 1  # Sótano 2, *Sótano 4*, Quedarse
+	await _push(Vector2.UP)
+	answer = 0
+	await _until(func(): return _zone_id() == "escondite_rocket_s4" and not world.warps.busy, 5.0)
+	r["Con la llave, el ascensor te lleva al sótano 4 (%s %s)" % [_zone_id(), _cell()]] = _zone_id() == "escondite_rocket_s4" \
+		and absi(_cell().x - 20) <= 2 and absi(_cell().y - 23) <= 2
+	var zone: Zone = world.streamer.zone_node("escondite_rocket_s4")
+	r["Desde el ascensor se llega a Giovanni"] = zone != null and _reachable(zone, _cell(), Vector2i(19, 5))
+	await _go("escondite_rocket_s4", Vector2i(20, 24))
+	answer = 2  # Sótano 1, Sótano 2, *Quedarse*
+	await _push(Vector2.UP)
+	answer = 0
+	await get_tree().create_timer(0.4).timeout
+	r["\"Quedarse\" no te mueve"] = _zone_id() == "escondite_rocket_s4" and not world.story.busy
+
+
+## Camina contra lo que hay en `dir` hasta que se abre un diálogo o se usa una puerta, y espera a que termine.
+func _push(dir: Vector2) -> void:
+	world.trainer.facing = dir
+	world.trainer.autopilot = dir
+	await _until(func(): return world.story.busy or world.warps.busy, 3.0)
+	world.trainer.autopilot = Vector2.ZERO
+	await _idle()
+	await _until(func(): return not world.warps.busy, 5.0)
+
+
+func _reachable(zone: Zone, from: Vector2i, to: Vector2i) -> bool:
+	var seen := {from: true}
+	var queue: Array[Vector2i] = [from]
+	while not queue.is_empty():
+		var c: Vector2i = queue.pop_front()
+		if c == to:
+			return true
+		for d in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+			var n: Vector2i = c + d
+			if not seen.has(n) and n.x >= 0 and n.y >= 0 and n.x < 40 and n.y < 40 and MapRules.is_walkable(zone, n):
+				seen[n] = true
+				queue.append(n)
+	return false
 
 
 func _leader(zone: String) -> NpcData:
