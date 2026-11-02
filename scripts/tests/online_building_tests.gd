@@ -218,6 +218,20 @@ func _lobby_tests(server: NetPeer, lobby: OnlineLobbyScreen, desk: StoryNPC) -> 
 	print("[online-edificio] adivinado: vida %s -> %s, marca %s, ping %d" % [foe_hp, battle.foe.health.hp(),
 		battle.foe.has_meta("predicted_at"), Net.ping_ms()])
 	r["En la pelea online no hay pausa"] = not world.pause_menu.try_open() and not get_tree().paused
+	# El rival ataca cuando el servidor avisa ("use"), aunque en esta copia el ataque esté en recarga y sin PP; con sus
+	# teclas solas no ataca (antes dependía de las recargas de tu pantalla: a veces no se veía).
+	var foe_used: Array = []
+	var log_use := func(u, m): if u == battle.foe: foe_used.append(m.id)
+	Events.move_used.connect(log_use)
+	var fm: MoveData = battle.foe.moves.slots[0]
+	battle.foe.moves.cooldowns[0] = 99.0
+	battle.foe.moves.set_pp(0.0)
+	battle.foe.hitstun_left = 1.0
+	Events.online_battle_event.emit(battle.match_id, {"t": "use", "side": int(battle.opponent.get("id", 0)), "m": fm.id,
+		"aim": Vector2.LEFT})
+	await get_tree().physics_frame
+	r["El ataque del rival se ve cuando el servidor lo avisa (%s), no con sus teclas" % str(foe_used)] = foe_used == [fm.id] 		and not battle._foe_input.attacks
+	Events.move_used.disconnect(log_use)
 	var hits := [0]
 	Events.online_battle_event.connect(func(_m, e): if e.t == "hit": hits[0] += 1)
 	await _until(func(): return not battle.active, 120.0)

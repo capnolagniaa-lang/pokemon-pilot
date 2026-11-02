@@ -157,6 +157,7 @@ func _send(id: int, index: int, at: Vector2) -> void:
 	add_child(c)
 	c.machine.transition_to.call_deferred("controlled")  # arranca quieto o paseando (salvaje): que obedezca
 	c.damage_received.connect(_on_damaged.bind(id, c))
+	c.slot_used.connect(_on_slot_used.bind(id, c))
 	s.creature = c
 	s.index = index
 	s.down = false
@@ -169,6 +170,16 @@ func _on_damaged(amount: float, _hit: HitInfo, id: int, c: Creature) -> void:
 	# Con el stagger y el empuje del golpe: el juego los aplica apenas llega el golpe, sin esperar la próxima foto.
 	event.emit({"t": "hit", "side": id, "amount": amount / maxf(1.0, c.health.max_hp()), "hp": c.health.ratio(),
 		"p": c.global_position - arena.global_position, "hs": c.hitstun_left, "kb": c.knockback})
+
+
+## Atacó: los clientes lo muestran con este aviso (no con las teclas, que en su copia pueden no alcanzar).
+func _on_slot_used(slot: int, aim: Vector2, point: Vector2, id: int, c: Creature) -> void:
+	if not is_instance_valid(c) or slot < 0 or slot >= c.moves.slots.size() or c.moves.slots[slot] == null:
+		return
+	var ev := {"t": "use", "side": id, "m": c.moves.slots[slot].id, "aim": aim}
+	if point.is_finite():
+		ev["pt"] = point - arena.global_position
+	event.emit(ev)
 
 
 func _first_healthy(id: int) -> int:

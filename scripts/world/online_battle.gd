@@ -36,7 +36,7 @@ var arena_data: ArenaData
 var result := ""
 ## De dónde salen tus órdenes (el teclado; el autotest pone un bot). Se mandan al servidor cada cuadro.
 var local_input: CombatInput
-var _foe_input := NetCombatInput.new()
+var _foe_input := _make_foe_input()
 var _start: Dictionary = {}
 var _state: Dictionary = {}
 var _dodge_seq := 0
@@ -243,6 +243,10 @@ func _on_event(mid: int, ev: Dictionary) -> void:
 					c.sprite.flash()
 				Events.creature_damaged.emit(c, float(ev.amount) * c.health.max_hp(), null)
 				_drop_projectiles_near(c.global_position)
+		"use":  # el rival atacó (el tuyo ya atacó en tu pantalla, con tus teclas)
+			if int(ev.side) != me and is_instance_valid(foe) and not foe.is_down():
+				var pt: Vector2 = arena.global_position + ev.pt if ev.get("pt") is Vector2 else Vector2.INF
+				foe.force_move(str(ev.get("m", "")), ev.get("aim", foe.facing), pt)
 		"faint":
 			var c := _creature_of(int(ev.side))
 			if is_instance_valid(c) and not c.is_down():
@@ -398,6 +402,12 @@ func _drop_projectiles_near(at: Vector2) -> void:
 	for n in world.entities.get_children():
 		if n is Projectile and n.global_position.distance_to(at) < 28.0:
 			n.queue_free()
+
+
+static func _make_foe_input() -> NetCombatInput:
+	var input := NetCombatInput.new()
+	input.attacks = false  # ataca con el aviso "use" del servidor
+	return input
 
 
 func _cell(cell: Vector2i) -> Vector2:

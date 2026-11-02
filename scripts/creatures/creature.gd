@@ -33,6 +33,8 @@ signal dodged()
 signal killed(target: Creature)
 signal status_inflicted(target: Creature, status: StatusEffect)
 signal move_released(move: MoveData)
+## Usó una ranura (antes de la carga, si tiene): la pelea online se lo cuenta a los clientes.
+signal slot_used(slot: int, aim: Vector2, point: Vector2)
 
 ## Datos de la criatura (especie, nivel, vida). Se asigna antes de agregarla al árbol.
 var instance: CreatureInstance
@@ -422,12 +424,30 @@ func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
 	if m.resource_cost != 0.0 and signature != null:
 		spent = signature.consume(m.resource_cost)
 	Events.move_used.emit(self, m)
+	slot_used.emit(slot, facing, point)
 	var msg := {"move": m, "aim": facing, "step": step, "point": point, "spent": spent}
 	if m.cast_time > 0.0:
 		machine.transition_to("cast", msg)
 	else:
 		release_move(msg)
 	return true
+
+
+## Usa el ataque `move_id` sí o sí: lo decidió otro (el servidor, en la pelea online), así que no se mira la recarga, los
+## PP, la pausa entre ataques ni el stagger de esta copia, que pueden no coincidir con los del servidor.
+func force_move(move_id: String, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
+	var slot := -1
+	for i in moves.slots.size():
+		if moves.slots[i] != null and moves.slots[i].id == move_id:
+			slot = i
+	if slot < 0 or health.is_dead():
+		return false
+	hitstun_left = 0.0
+	moves.reset_cooldown(slot)
+	moves.set_pp(maxf(moves.pp(), moves.pp_cost(slot)))
+	if machine.current_name() != "controlled":
+		machine.transition_to("controlled")
+	return use_slot(slot, aim, point)
 
 
 ## Compatibilidad: usar "el ataque i" = la ranura i.

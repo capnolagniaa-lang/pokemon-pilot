@@ -256,12 +256,22 @@ func _battle_tests(server: NetPeer, a: NetPeer, b: NetPeer) -> void:
 	var mid: int = chose[0]
 	var strong := CreatureInstance.create(DB.species["mewtwo"], 70)
 	a.send_choice(mid, [strong])
-	b.send_choice(mid, [CreatureInstance.create(DB.species["magikarp"], 3), CreatureInstance.create(DB.species["caterpie"], 3)])
+	# El de B con los ataques en el orden que eligió (el más fuerte primero): el servidor no lo reordena "por rol".
+	var ghost := CreatureInstance.create(DB.species["haunter"], 30)
+	var eq: Array[MoveData] = ghost.equipped_moves.duplicate()
+	eq.sort_custom(func(x: MoveData, y: MoveData): return x.power > y.power)
+	ghost.equipped_moves = eq
+	var eq_ids := eq.map(func(m): return m.id)
+	b.send_choice(mid, [ghost, CreatureInstance.create(DB.species["caterpie"], 3)])
 	await _until(func(): return not kinds.call(a, "start").is_empty() and not kinds.call(b, "start").is_empty())
 	var start: Dictionary = kinds.call(a, "start")[0] if not kinds.call(a, "start").is_empty() else {}
 	r["Pelea: el servidor la arma y avisa a los dos (lado A = el que desafió)"] = start.get("a") == a.my_id \
 		and start.get("b") == b.my_id and server.battles.has(mid)
 	r["Sale el primero de cada uno"] = kinds.call(a, "send").size() == 2
+	await get_tree().physics_frame
+	var srv_b = server.battles[mid].sides[b.my_id].creature if server.battles.has(mid) else null
+	var srv_ids: Array = srv_b.moves.slots.filter(func(m): return m != null).map(func(m): return m.id) if is_instance_valid(srv_b) else []
+	r["En el servidor, las teclas de B son sus ataques en su orden (%s)" % str(srv_ids)] = srv_ids == eq_ids and eq_ids.size() >= 2
 	await _until(func(): return not st[a].is_empty() and st[a].has(b.my_id))
 	r["Llegan fotos con posición, vida y estados de los dos"] = st[a].has(a.my_id) and st[a].has(b.my_id) \
 		and st[a][b.my_id].has("p") and st[a][b.my_id].hp == 1.0
@@ -289,6 +299,8 @@ func _battle_tests(server: NetPeer, a: NetPeer, b: NetPeer) -> void:
 		await get_tree().physics_frame
 		t += get_physics_process_delta_time()
 	r["A se mueve y pega: el servidor manda los golpes"] = not kinds.call(b, "hit").is_empty() and st[a][a.my_id].p.distance_to(p0) > 4.0
+	var uses: Array = kinds.call(b, "use").filter(func(e): return e.side == a.my_id)
+	r["Cada ataque de A le llega a B como aviso \"use\" con el ataque (%d)" % uses.size()] = not uses.is_empty() 		and uses.all(func(e): return strong.equipped_moves.any(func(m): return m.id == e.m) and e.aim is Vector2)
 	r["Debilitados: los dos de B, y sale el que queda"] = kinds.call(a, "faint").filter(func(e): return e.side == b.my_id).size() == 2
 	var end: Dictionary = kinds.call(b, "end")[0] if not kinds.call(b, "end").is_empty() else {}
 	r["Fin: gana A y los dos se enteran, con la vida final de cada uno"] = end.get("winner") == a.my_id \

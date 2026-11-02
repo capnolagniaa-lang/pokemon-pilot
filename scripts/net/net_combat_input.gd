@@ -14,6 +14,9 @@ var dodge_seq := 0
 var origin := Vector2.ZERO
 ## Apagado (cuenta regresiva, pelea terminada): no se mueve ni ataca.
 var enabled := true
+## ¿Ataca con las teclas del paquete? El servidor sí; la copia del rival en un cliente no: ataca cuando el servidor
+## avisa que atacó (evento "use", OnlineBattle), así no depende de las recargas y los PP de esta copia.
+var attacks := true
 var _dodge_used := 0
 
 
@@ -40,7 +43,7 @@ func aim_point(_actor: Creature) -> Vector2:
 
 
 func wants_slot(slot: int) -> bool:
-	return enabled and (slots >> slot) & 1 == 1
+	return enabled and attacks and (slots >> slot) & 1 == 1
 
 
 func wants_dodge() -> bool:

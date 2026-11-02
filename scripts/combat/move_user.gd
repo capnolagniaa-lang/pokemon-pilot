@@ -98,9 +98,10 @@ static func roles_on() -> bool:
 
 
 ## Tu Pokémon (los ordenás vos desde la ficha): los demás se ordenan por rol.
+## Los tuyos y los que maneja una persona (los de la pelea online, de los dos lados): sus teclas, como los ordenó.
 func _player_owned() -> bool:
 	var c := get_parent()
-	return c != null and c.get("team") == 0
+	return c != null and (c.get("team") == 0 or c.get("player_controlled") == true)
 
 
 ## Ordena ataques para las teclas por rol: el de menos potencia primero (básico), los de estado en el medio y el
