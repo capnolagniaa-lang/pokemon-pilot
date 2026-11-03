@@ -39,7 +39,8 @@ $G --headless --path . --quit-after 30000 -- --autotest-combat   # 3 peleas mane
 $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas reales + spawner
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
-$G --headless --path . --quit-after 30000 -- --autotest-status-moves  # ataques de estado: bajar stats, Drenadoras, los que no hacen nada (IA, equipamiento, descripción)
+$G --headless --path . --quit-after 60000 -- --autotest-status-moves  # ataques de estado: bajar stats, Drenadoras, mecánicas chicas, climas, los que no hacen nada (IA, equipamiento, descripción)
+$G --path . --quit-after 300 --write-movie out/f.png --fixed-fps 30 -- --showcase-weather  # los 4 climas en pantalla
 $G --headless --path . --quit-after 30000 -- --autotest-abilities  # habilidades: datos, al azar, guardado, mecánicas, últimos 4, MT, jefe de gimnasio
 # (las 9 de kits que siguen son de la ERA DE KITS, hasta 2026-10-28: ya no aplican, quedan como referencia)
 $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charmander, Bellsprout, Pidgey, Rattata, Vulpix
@@ -448,8 +449,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   a mano (`MOVES` del fetcher, kits) no se tocan. Rearmar los automáticos: apply con `-- --regen-auto`.
   Bajar stats del rival = estados (Expuesto, Muy expuesto, Intimidado, Muy intimidado, Frenado, Desorientado) y Drenadoras =
   Drenado (`StatusEffect.leech`). Los que todavía no hacen nada: `MoveData.does_nothing()` (la IA no los usa, el
-  equipamiento de fábrica los deja al final, la descripción lo avisa). Pendiente: esos 46 (climas, copiar, Sustituto...),
-  retroceso.
+  equipamiento de fábrica los deja al final, la descripción lo avisa). Reglas de estado: `StatusEffect.only_while`/
+  `no_status_moves`/`no_repeat`/`no_dodge`/`traps` (`StatusEffects.flag`); `MoveData.pp_drain`, `pain_split`. **Clima de pelea**:
+  `CombatWeather` (estáticas `current`/`time_left`, `MoveData.weather`; lo lee `Damage`, las habilidades y `TacticalMind`).
+  Los de estado ignoran la inmunidad de tipo (salvo eléctricos). Pendiente: 31 de copiar/cambiar (Sustituto, Relevo...), retroceso.
 - **Stats** (`CreatureInstance.stat`): fórmula oficial 3ª gen+; IV 31 en todos los stats por ahora
   (**decisión del usuario: "stats máximos para su nivel"**), EV 0, naturaleza neutra.
   - **Plan futuro (Etapa 6)**: IVs al azar al capturar (0-31 por stat), con un perfecto (31 en todo)

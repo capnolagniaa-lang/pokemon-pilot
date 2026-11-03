@@ -221,7 +221,7 @@ func speed_mult() -> float:
 	if day != 1.0:
 		var world := creature.get_tree().get_first_node_in_group("world")
 		var dn = world.get("day_night") if world != null else null
-		if dn == null or dn.darkness < 0.3:
+		if dn == null or dn.darkness < 0.3 or CombatWeather.current == "sol":
 			m *= day
 	return m
 

@@ -36,6 +36,9 @@ func enter(msg: Dictionary = {}) -> void:
 
 func physics_update(delta: float) -> void:
 	_time += delta
+	if actor.statuses.flag("traps") and is_instance_valid(actor.target):
+		transition("attack")  # Mal de Ojo: no puede escaparse
+		return
 	if not is_instance_valid(_threat) or _threat.is_down() or _time > max_time \
 			or actor.global_position.distance_to(_threat.global_position) > safe_distance:
 		actor.home = actor.global_position

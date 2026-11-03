@@ -257,6 +257,16 @@ func score(slot: int, dist: float, shot: bool) -> float:
 	elif not m.statuses_on_hit.is_empty() and is_instance_valid(t) \
 			and m.statuses_on_hit.all(func(st: StatusEffect): return t.statuses.has_status(st.id)):
 		return 0.0  # ya tiene todo lo que deja (Gruñido sobre uno intimidado)
+	elif is_instance_valid(t) and m.statuses_on_hit.any(func(st: StatusEffect): return st.only_while != "" and not t.statuses.has_status(st.only_while)):
+		return 0.0  # Pesadilla sobre uno despierto: no prende
+	elif m.weather != "":
+		value *= CombatWeather.value_for(m.weather, actor, t)  # solo si le conviene (y no si ya está ese clima)
+		if value <= 0.0:
+			return 0.0
+	elif m.pain_split and is_instance_valid(t):
+		value *= 3.0 * (t.instance.hp - actor.instance.hp) / actor.health.max_hp()  # conviene si él tiene más vida
+		if value <= 0.0:
+			return 0.0
 	elif m.kind in [MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF] and low_hp_plan() == "cuidado":
 		value *= 2.5  # con poca vida y cauteloso: se cubre o se cura
 	if slot == last_slot:

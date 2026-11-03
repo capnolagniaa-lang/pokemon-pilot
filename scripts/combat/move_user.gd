@@ -50,6 +50,8 @@ const PP_COOLDOWN_MIN := 0.35
 const PP_COOLDOWN_MAX := 2.0
 
 ## Ataque de cada tecla (Clic izq., Clic der., Q, R); puede haber huecos (null).
+## Última ranura usada (Tormento no deja repetirla).
+var last_used := -1
 var slots: Array[MoveData] = []
 var cooldowns: Array[float] = []
 ## Duración completa de la recarga en curso de cada ranura (para la interfaz).
@@ -195,7 +197,18 @@ func slot_of(m: MoveData) -> int:
 
 func can_use(slot: int) -> bool:
 	return slot >= 0 and slot < slots.size() and slots[slot] != null and cooldowns[slot] <= 0.0 and gap_left <= 0.0 \
-		and has_pp(slot) and not heal_blocked(slot)
+		and has_pp(slot) and not heal_blocked(slot) and not status_locked(slot)
+
+
+## Un estado no lo deja usarlo: Mofa (ataques de estado) o Tormento (el mismo de recién).
+func status_locked(slot: int) -> bool:
+	var c := get_parent()
+	if c == null or c.get("statuses") == null:
+		return false
+	var m := slots[slot]
+	if m.power <= 0.0 and m.category == MoveData.Category.STATUS and c.statuses.flag("no_status_moves"):
+		return true
+	return slot == last_used and c.statuses.flag("no_repeat")
 
 
 ## ¿Es una cura? (un ataque propio cuyo estado cura vida: Descanso, Recuperación, Síntesis, Arraigo...)
@@ -288,6 +301,7 @@ func consume(slot: int) -> Array:
 		return []
 	var m := slots[slot]
 	var step := 0
+	last_used = slot
 	gap_left = float(GameState.setting("attack_gap"))
 	if m.combo_steps <= 1 or _combo_step[slot] == 0:
 		# (un combo gasta una vez, al empezar; un canalizado, una parte: el resto mientras dura, `channel_drain`)

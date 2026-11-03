@@ -21,6 +21,8 @@ func apply(s: StatusEffect, duration_mult: float = 1.0, source: Node = null) -> 
 		for t: ElementType in creature.instance.species.types:
 			if t != null and t.id in s.immune_types:
 				return  # inmune por su tipo (un tipo Veneno no se envenena)
+	if s.only_while != "" and not active.has(s.only_while):
+		return  # (Pesadilla sobre uno despierto: no prende)
 	var fresh := not active.has(s.id)
 	if fresh:
 		active[s.id] = {"status": s, "time": 0.0, "stacks": 0, "meter": 0.0, "fx": _make_fx(s),
@@ -74,6 +76,14 @@ func extend(s: StatusEffect, mult: float) -> void:
 
 func has_status(id: String) -> bool:
 	return active.has(id)
+
+
+## ¿Algún estado activo tiene prendida esta regla? (no_dodge, traps, no_status_moves, no_repeat)
+func flag(prop: String) -> bool:
+	for id in active:
+		if active[id]["status"].get(prop):
+			return true
+	return false
 
 
 func stacks(id: String) -> int:
@@ -165,6 +175,8 @@ func _physics_process(delta: float) -> void:
 				cure(s)
 			continue
 		entry["time"] -= delta
+		if s.only_while != "" and not active.has(s.only_while):
+			entry["time"] = 0.0  # se despertó: la pesadilla se va
 		if s.jolt_interval > 0.0:
 			entry["jolt"] += delta
 			if entry["jolt"] >= s.jolt_interval:

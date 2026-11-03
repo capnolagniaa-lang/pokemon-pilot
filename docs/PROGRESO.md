@@ -15,7 +15,14 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   quedan (climas, Canto Mortal, Metrónomo, Transformación, Sustituto, Relevo, Mofa, Rencor...) los marca
   `MoveData.does_nothing()`: la IA no los usa (ni repite uno cuyo estado el rival ya tiene), el equipamiento de fábrica los
   deja para el final (`default_equipment`) y la descripción dice "Todavía no hace nada en combate". Las descripciones de
-  los estados ahora dicen cuánto (porcentajes, segundos, inmunes). Test `--autotest-status-moves`. Pendiente: los 46.
+  los estados ahora dicen cuánto (porcentajes, segundos, inmunes). Test `--autotest-status-moves`.
+  **Segunda tanda (mismo día)**: mecánicas chicas: Pesadilla (6 %/s solo dormido), Atracción (Enamorado: se traba de a ratos,
+  sin géneros), Mofa (sin ataques de estado), Tormento (no repite), Rastreo, Profecía y Telépata (Descubierto: no esquiva), Mal de
+  Ojo y Bloqueo (Atrapado: no huye ni se cambia), Rencor (−40 % de la barra de PP), Divide Dolor (promedian la vida). **Climas**
+  (`CombatWeather`, `MoveData.weather`, 20 s, se corta al terminar la pelea): lluvia y sol (±50 % a Agua y Fuego; la lluvia empapa),
+  granizo y arena (2 %/s salvo inmunes), con efecto en pantalla (`--showcase-weather`). Cuentan para Nado Rápido, Cura Lluvia y
+  Clorofila; la IA los usa solo si le convienen. Los ataques de estado ahora ignoran la inmunidad de tipo, como en los juegos
+  (salvo los eléctricos). **Pendiente: 31 de copiar/cambiar** (Metrónomo, Transformación, Sustituto, Relevo, Canto Mortal...).
 - **Shiny (2026-11-03, pedido del usuario)**: cualquier Pokémon (salvaje, regalo, de entrenador o del torneo) sale shiny
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda

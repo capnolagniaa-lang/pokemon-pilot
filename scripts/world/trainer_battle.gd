@@ -365,7 +365,7 @@ func think() -> void:
 	_moment(LeaderMoment.Trigger.HP_BELOW)
 	if not is_instance_valid(foe):
 		return
-	if _maybe_retreat() or _maybe_switch():
+	if not foe.statuses.flag("traps") and (_maybe_retreat() or _maybe_switch()):
 		return
 	_maybe_potion()
 

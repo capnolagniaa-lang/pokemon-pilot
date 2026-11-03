@@ -53,12 +53,12 @@ static func what_it_does(m: MoveData) -> String:
 		MoveData.Kind.SELF_BUFF:
 			if m.self_status != null:
 				s.append("Te da %s por %.0f s: %s." % [m.self_status.display_name, m.self_status.duration, status_text(m.self_status)])
-			else:
+			elif m.weather == "":
 				s.append("Te mejora por un rato.")
 	if m.cast_time > 0.0:
 		s.append("Hay que cargarlo un momento antes de que salga (un golpe fuerte lo corta).")
 	if m.power <= 0.0 and m.kind not in [MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF] and m.status == null \
-			and m.statuses_on_hit.is_empty() and m.dwell_status == null:
+			and m.statuses_on_hit.is_empty() and m.dwell_status == null and m.pp_drain <= 0.0 and not m.pain_split:
 		s.append("No hace daño.")
 	if m.status != null and m.status_chance > 0.0:
 		s.append("Puede dejar %s (%d%%): %s." % [m.status.display_name, roundi(m.status_chance * 100.0), status_text(m.status)])
@@ -66,6 +66,19 @@ static func what_it_does(m: MoveData) -> String:
 		s.append("Deja %s por %.0f s: %s." % [st.display_name, st.duration, status_text(st)])
 	if m.dwell_status != null:
 		s.append("Si alguien se queda %.1f s adentro, queda %s." % [m.dwell_time, m.dwell_status.display_name])
+	match m.weather:
+		"lluvia":
+			s.append("Llueve %d s: el Agua pega un 50 %% más, el Fuego la mitad y los que pelean quedan empapados." % CombatWeather.DURATION)
+		"sol":
+			s.append("Sol fuerte %d s: el Fuego pega un 50 %% más y el Agua la mitad." % CombatWeather.DURATION)
+		"granizo":
+			s.append("Graniza %d s: los que pelean pierden un 2 %% de vida por segundo, salvo los tipo Hielo." % CombatWeather.DURATION)
+		"arena":
+			s.append("Tormenta de arena %d s: los que pelean pierden un 2 %% de vida por segundo, salvo los tipos Roca, Tierra y Acero." % CombatWeather.DURATION)
+	if m.pp_drain > 0.0:
+		s.append("Le saca el %s de su barra de PP." % _pct(m.pp_drain))
+	if m.pain_split:
+		s.append("Los dos quedan con la misma vida: el promedio entre la tuya y la suya.")
 	if m.knockback < 0.0:
 		s.append("Atrae al rival hacia vos.")
 	elif m.knockback >= 240.0:
@@ -110,6 +123,16 @@ static func status_text(st: StatusEffect) -> String:
 		out.append("se cura menos")
 	if st.knockback_mult < 1.0:
 		out.append("lo empujan menos")
+	if st.no_status_moves:
+		out.append("no puede usar ataques de estado")
+	if st.no_repeat:
+		out.append("no puede repetir el mismo ataque dos veces seguidas")
+	if st.no_dodge:
+		out.append("no puede esquivar")
+	if st.traps:
+		out.append("no puede huir ni cambiarse")
+	if st.only_while != "" and DB.statuses.has(st.only_while):
+		out.append("solo si está %s" % DB.statuses[st.only_while].display_name.to_lower())
 	if st.buildup:
 		out.append("si se le acumula, queda aturdido")
 	if st.wake_on_damage:

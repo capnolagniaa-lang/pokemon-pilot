@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "enamorado"
+display_name = "Enamorado"
+color = Color(1.0, 0.55, 0.75, 1)
+duration = 6.0
+element = ExtResource("1_x")
+jolt_interval = 1.0
+jolt_chance = 0.4
+jolt_time = 0.6
+tint_strength = 0.25
+fx_amount = 3

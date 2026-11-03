@@ -53,6 +53,16 @@ extends Resource
 @export var heal_per_second: float = 0.0
 ## Fracción del daño por tiempo que cura al que lo puso (Drenadoras: 1 = todo lo que le saca).
 @export var leech: float = 0.0
+## Solo dura mientras tenga este otro estado (Pesadilla: mientras duerme; sin él no prende o se va).
+@export var only_while: String = ""
+## No puede usar ataques de estado (Mofa).
+@export var no_status_moves: bool = false
+## No puede usar el mismo ataque dos veces seguidas (Tormento).
+@export var no_repeat: bool = false
+## No puede esquivar (Rastreo, Profecía, Telépata).
+@export var no_dodge: bool = false
+## No puede huir ni lo pueden cambiar (Mal de Ojo, Bloqueo).
+@export var traps: bool = false
 ## Multiplica el empuje que recibe (0 = no lo pueden empujar).
 @export var knockback_mult: float = 1.0
 ## Tipos (ids) que no lo pueden sufrir: un Pokémon de tipo Veneno no se envenena (pedido del usuario 2026-10-28).

@@ -46,6 +46,12 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export var cleanse_self: bool = false
 ## Anulación: el golpeado tarda estos segundos más en recargar todos sus ataques.
 @export var cooldown_lock: float = 0.0
+## Le saca esta parte de su barra de PP al que golpea (Rencor).
+@export_range(0.0, 1.0) var pp_drain: float = 0.0
+## Los dos quedan con la misma vida, el promedio (Divide Dolor).
+@export var pain_split: bool = false
+## Clima que larga: "lluvia", "sol", "granizo" o "arena" (CombatWeather).
+@export var weather: String = ""
 ## Esporas inflamables (Paras): si un ataque de fuego toca este parche o nube, arde 3 s y quema a quien esté adentro.
 @export var zone_flammable: bool = false
 ## Deja un cráter en el suelo donde impacta, de este radio en px (0 = no). Excavar, Tumba Rocas, Lanzarrocas,
@@ -160,7 +166,7 @@ func does_nothing() -> bool:
 	if power > 0.0 or knockback != 0.0 or status != null or not statuses_on_hit.is_empty() or self_status != null:
 		return false
 	if dwell_status != null or trail_status != null or drain > 0.0 or cleanse_self or cooldown_lock > 0.0 \
-			or deflects_projectiles:
+			or deflects_projectiles or pp_drain > 0.0 or pain_split or weather != "":
 		return false
 	return kind not in [Kind.SHIELD, Kind.DASH] and not (kind == Kind.ZONE and zone_traps)
 

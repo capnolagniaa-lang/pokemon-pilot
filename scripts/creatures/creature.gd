@@ -442,6 +442,8 @@ func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
 	if m.resource_cost != 0.0 and signature != null:
 		spent = signature.consume(m.resource_cost)
 	Events.move_used.emit(self, m)
+	if m.weather != "":
+		CombatWeather.start(m.weather, self)
 	slot_used.emit(slot, facing, point)
 	var msg := {"move": m, "aim": facing, "step": step, "point": point, "spent": spent}
 	if m.cast_time > 0.0:
@@ -626,7 +628,7 @@ func _track_zone(m: MoveData, zone: Node) -> void:
 ## Esquive (Espacio). Con reglas de arena, si el estilo puede saltar y hay un cráter adelante (hacia `aim`, donde
 ## apuntás; si no, hacia `dir`), salta: cruza todos los cráteres seguidos hasta la otra punta, por el aire.
 func dodge(dir: Vector2, aim: Vector2 = Vector2.ZERO) -> bool:
-	if not can_act() or not statuses.can_move():
+	if not can_act() or not statuses.can_move() or statuses.flag("no_dodge"):
 		return false
 	# Salto de cráter: hacia donde apunta el mouse y, si ahí no hay pozo, hacia donde camina (WASD).
 	var landing := crater_jump_target(aim.normalized()) if aim.length() > 4.0 else Vector2.INF
@@ -693,7 +695,8 @@ func _on_hit(hit: HitInfo) -> void:
 			Events.signature_triggered.emit(attacker, "COMBO ×%d" % combo["chain"], Color(1.0, 0.95, 0.75))
 		Events.combo_landed.emit(attacker, combo["name"], combo["chain"])
 	var amount := Damage.resolve(hit, instance) * mult
-	if hit.effectiveness <= 0.0:
+	# (los de estado no miran la inmunidad, como en los juegos: Rencor y Pesadilla le entran a un Normal; salvo Onda Trueno a Tierra)
+	if hit.effectiveness <= 0.0 and (hit.move.power > 0.0 or hit.move.category != MoveData.Category.STATUS or hit.move.element.id == "electrico"):
 		# Inmune por tipo (Siniestro a Psíquico, Acero a Veneno, Hada a Dragón, Volador a Tierra, Fantasma a Normal y
 		# Lucha, Tierra a Eléctrico): como en los juegos, el ataque no le hace nada: ni daño, ni estado, ni empuje.
 		Events.signature_triggered.emit(self, "No le afecta", Color(0.75, 0.75, 0.8))
@@ -722,6 +725,21 @@ func _on_hit(hit: HitInfo) -> void:
 		if hit.move.drain > 0.0 and dealt > 0.0:
 			attacker.health.heal(dealt * hit.move.drain)  # Absorber, Chupavidas
 		attacker.hit_dealt.emit(self, hit, dealt)
+	if hit.move.pp_drain > 0.0:  # Rencor: le saca PP (sin PP, le alarga las recargas)
+		if MoveUser.pp_on():
+			moves.set_pp(moves.pp() - moves.max_pp() * hit.move.pp_drain)
+		else:
+			for i in moves.cooldowns.size():
+				moves.cooldowns[i] += 1.5
+				moves.cooldown_total[i] = maxf(moves.cooldown_total[i], moves.cooldowns[i])
+		Events.signature_triggered.emit(self, "¡Menos PP!", Color(0.7, 0.5, 0.9))
+	if hit.move.pain_split and attacker:  # Divide Dolor: los dos quedan con la misma vida (el promedio)
+		var avg := (instance.hp + attacker.instance.hp) * 0.5
+		instance.hp = minf(avg, health.max_hp())
+		attacker.instance.hp = minf(avg, attacker.health.max_hp())
+		health.changed.emit(instance.hp, health.max_hp())
+		attacker.health.changed.emit(attacker.instance.hp, attacker.health.max_hp())
+		Events.signature_triggered.emit(self, "¡Divide Dolor!", Color(0.8, 0.7, 0.9))
 	if hit.move.cooldown_lock > 0.0:
 		for i in moves.cooldowns.size():  # Anulación: tarda más en recargar todo
 			moves.cooldowns[i] += hit.move.cooldown_lock

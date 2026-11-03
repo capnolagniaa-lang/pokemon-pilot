@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/siniestro.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "mofado"
+display_name = "Provocado"
+color = Color(0.85, 0.35, 0.3, 1)
+duration = 5.0
+element = ExtResource("1_x")
+no_status_moves = true
+tint_strength = 0.2
+fx_amount = 2

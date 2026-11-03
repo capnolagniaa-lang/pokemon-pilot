@@ -100,6 +100,7 @@ func end_battle(force: bool = false) -> void:
 	if not in_battle or (arena_lock and not force):
 		return
 	in_battle = false
+	CombatWeather.stop(get_tree())
 	var c: Creature = world.companion
 	if is_instance_valid(c):
 		c.player_controlled = false
@@ -261,6 +262,10 @@ func switch_to(index: int) -> bool:
 	var in_arena: bool = (world.get("arena") != null and world.arena.active) \
 		or (online != null and online.battle != null and online.battle.active)
 	if story != null and (story.dialog.active or (story.busy and not in_arena)):
+		return false
+	var current = world.get("companion")
+	if is_instance_valid(current) and not current.is_down() and current.statuses.flag("traps"):
+		Events.message_requested.emit("%s no puede volver: está atrapado." % current.instance.display_name())
 		return false
 	var inst: CreatureInstance = GameState.party[index]
 	if inst.hp <= 0.0:
