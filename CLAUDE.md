@@ -78,7 +78,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: tod
 $G --headless --path . --quit-after 60000 -- --autotest-updater   # actualizaciones automáticas (firma, bajar, comprobar, relanzar, sin conexión)
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
-$G --headless --path . --quit-after 200000 -- --autotest-room-walk  # camina cada celda a la que se llega de un lugar (`--zone`, def. centro_online) + imagen de la colisión sobre el dibujo (`--out <png>`)
+$G --headless --path . --quit-after 200000 -- --autotest-room-walk  # camina cada celda a la que se llega de un lugar (`--zone`, def. centro_online; `--arena <id>` = una arena) + imagen de la colisión sobre el dibujo (`--out <png>`)
 $G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos y volar sin descubrir zonas
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-online-building  # afuera y adentro
 $G --headless --path . -- --server --port 24680                    # servidor online (sala); corre hasta cerrarlo
@@ -314,7 +314,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `frlg_maps.json` + sprites de `tools/fetch_npc_sprites.py`). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
 - **Combate contra entrenadores en arena** (E-1, `docs/PLAN_ENTRENADORES.md`): `TrainerBattle` (`world.arena`): fundido a
   una arena aparte (`ArenaData` en `data/arenas/`, escena = zona de tiles en `scenes/world/arenas/`, ambientación
-  `ArenaDecor`), 1 contra 1 con cambios, `CombatDirector.arena_lock`, `Creature.owner_name` (no se atrapa).
+  `ArenaDecor`; **arenas pintadas** con Qwen (2026-11-03, "MUY EPICAS": por ahora el campo y Brock): `ArenaData.painting`
+  encima de los tiles (que quedan para la colisión y el entorno), luz neutra `DayNight.PAINTED`, config en
+  `data/arenas/pinturas.json` → `tools/paint_arenas.py` (plano automático por brillo + rectángulos) → `build_arenas.gd`;
+  revisar con `--autotest-room-walk --arena <id>`), 1 contra 1 con cambios, `CombatDirector.arena_lock`, `Creature.owner_name` (no se atrapa).
   Entrenadores de la historia = `NpcData.trainer` (TrainerData) + `sight`; perder → `GameState.last_heal_position`.
   **Pantalla VS** (`VsScreen`, layer 12, shader `vs_background`): antes de la pelea si hay `sprites/vs/<gfx>.png` (gfx de su
   NpcData: líderes, Alto Mando, rival "blue", Giovanni); el tuyo `sprites/vs/jugador.png`. Base: ilustraciones de batalla

@@ -6,8 +6,10 @@ extends Node
 ## dibujo), FALLO. Además arma una imagen del lugar con la colisión encima (verde = se camina y se llegó, rojo = choca,
 ## amarillo = caminable pero no se llegó, azul = puerta), para ver si te frena el aire o pasás por arriba de un mueble.
 ##   godot --headless --path . --quit-after 200000 -- --autotest-room-walk [--zone centro_online] [--out <png>]
+##   ... -- --autotest-room-walk --arena arena_gimnasio_roca   (una arena de combate: entra como en una pelea, sin rival,
+##   desde donde se para el jugador; las rocas que se rompen cuentan como sólidas)
 ## Sin --out la imagen va a user://room_walk_<zona>.png. El fondo es la pintura del lugar si tiene (ExtraBuilding
-## `walkable` del tamaño de la zona); si no, un gris.
+## `walkable` del tamaño de la zona, o ArenaData.painting); si no, un gris.
 
 const STEP_TIMEOUT := 1.2  # segundos de juego para pasar de una celda a la de al lado
 const NEAR := 3.0  # px: llegó al centro de la celda
@@ -24,16 +26,36 @@ func run() -> void:
 	world.combat.end_battle()
 	var data: WorldData = world.streamer.world_data
 	var entry: ZoneEntry = null
-	for z in data.zones:
-		if z.id == zone_id:
-			entry = z
-	if entry == null:
-		print("[autotest-room-walk] no existe la zona ", zone_id, " -> FALLO")
-		get_tree().quit(1)
-		return
-	await world.story.teleport(zone_id, entry.hub)
-	await get_tree().create_timer(0.5).timeout
-	var zone: Node = world.streamer.zone_node(zone_id)
+	var zone: Node = null
+	var painting: Texture2D = null
+	var arena_id := _arg(args, "--arena", "")
+	if arena_id != "":
+		var ad: ArenaData = load("res://data/arenas/%s.tres" % arena_id)
+		world.arena.arena_data = ad
+		world.arena._enter_arena(null)
+		await get_tree().create_timer(0.5).timeout
+		zone = world.arena.arena
+		entry = ZoneEntry.new()  # la arena no es una zona de la región: una de mentira con su lugar y tamaño
+		entry.id = arena_id
+		entry.origin = Vector2i(TrainerBattle.ARENA_ORIGIN / float(data.tile_size))
+		entry.size = (zone.get_node("Ground") as TileMapLayer).get_used_rect().end
+		entry.hub = ad.player_cell
+		painting = ad.painting
+		zone_id = arena_id
+	else:
+		for z in data.zones:
+			if z.id == zone_id:
+				entry = z
+		if entry == null:
+			print("[autotest-room-walk] no existe la zona ", zone_id, " -> FALLO")
+			get_tree().quit(1)
+			return
+		await world.story.teleport(zone_id, entry.hub)
+		await get_tree().create_timer(0.5).timeout
+		zone = world.streamer.zone_node(zone_id)
+		for b in ExtraContent.buildings:
+			if b.zone_id == entry.id and b.walkable and b.size == entry.size and b.texture != null:
+				painting = b.texture
 	var objects := MapRules.objects_by_cell(zone)
 	var walk := func(c: Vector2i) -> bool:
 		return Rect2i(Vector2i.ZERO, entry.size).has_point(c) and not entry.warps.has(c) and MapRules.is_walkable(zone, c, objects)
@@ -61,7 +83,7 @@ func run() -> void:
 	Engine.time_scale = 1.0
 	var missing := reachable.keys().filter(func(c): return not reached.has(c))
 	var out := _arg(args, "--out", "user://room_walk_%s.png" % zone_id)
-	_draw(entry, zone, objects, reached, out)
+	_draw(entry, zone, objects, reached, out, painting)
 	print("[room-walk] %s: %d celdas caminables desde la plaza, pisadas %d" % [zone_id, reachable.size(), reached.size()])
 	if not blocked.is_empty():
 		print("[room-walk] no se pudo pasar a: ", blocked)
@@ -154,11 +176,10 @@ func _path(from: Vector2i, to: Vector2i, cells: Dictionary) -> Array[Vector2i]:
 	return out
 
 
-func _draw(entry: ZoneEntry, zone: Node, objects, reached: Dictionary, out: String) -> void:
+func _draw(entry: ZoneEntry, zone: Node, objects, reached: Dictionary, out: String, painting: Texture2D) -> void:
 	var img: Image = null
-	for b in ExtraContent.buildings:
-		if b.zone_id == entry.id and b.walkable and b.size == entry.size and b.texture != null:
-			img = Image.load_from_file(ProjectSettings.globalize_path(b.texture.resource_path))
+	if painting != null:
+		img = Image.load_from_file(ProjectSettings.globalize_path(painting.resource_path))
 	if img == null:
 		img = Image.create_empty(entry.size.x * 48, entry.size.y * 48, false, Image.FORMAT_RGBA8)
 		img.fill(Color(0.3, 0.3, 0.3))

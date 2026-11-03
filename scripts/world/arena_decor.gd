@@ -18,6 +18,9 @@ func setup(p_data: ArenaData) -> void:
 	_rect = Rect2(Vector2(data.field.position * T), Vector2(data.field.size * T))
 	if data.particles != "":
 		_add_particles()
+	if data.painting != null:
+		_add_painting()
+		return
 	if data.braziers:
 		for corner in [_rect.position, Vector2(_rect.end.x, _rect.position.y), Vector2(_rect.position.x, _rect.end.y), _rect.end]:
 			_add_brazier(corner)
@@ -29,6 +32,10 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
+	if data.painting != null:  # la cancha, el emblema, los braseros y la luz ya están pintados
+		if data.crowd:
+			_draw_crowd()
+		return
 	var c := data.line_color
 	var r := _rect.grow(-4)
 	# Cancha: borde, línea del medio, círculo central y los puntos de salida.
@@ -188,3 +195,17 @@ func _add_brazier(at: Vector2) -> void:
 	var tw := light.create_tween().set_loops()
 	tw.tween_property(light, "energy", 0.18, 0.11)
 	tw.tween_property(light, "energy", 0.32, 0.16)
+
+
+## La pintura de la arena, del tamaño de la zona (la escena), encima de los tiles y debajo de todo lo demás.
+func _add_painting() -> void:
+	var ground := get_parent().get_node_or_null("Ground") as TileMapLayer
+	var size := Vector2(ground.get_used_rect().end * T) if ground != null else data.painting.get_size()
+	var spr := Sprite2D.new()
+	spr.name = "Pintura"
+	spr.texture = data.painting
+	spr.centered = false
+	spr.scale = size / data.painting.get_size()
+	spr.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	spr.z_index = -7  # sobre el suelo y el agua; el hollín, los charcos y los cráteres (-6) van encima
+	get_parent().add_child.call_deferred(spr)

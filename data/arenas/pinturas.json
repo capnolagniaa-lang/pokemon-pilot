@@ -1,0 +1,29 @@
+{
+  "_doc": "Arenas pintadas con Qwen (2026-11-03, pedido del usuario: 'MUY EPICAS'). tools/paint_arenas.py arma el plano y la pintura; tools/build_arenas.gd las escenas. size = celdas; auto = umbral de brillo (celdas claras unidas al centro = piso) o null; open/solid = rectangulos [x, y, ancho, alto] que se abren o cierran despues; rocks = rocas que se rompen; cells = donde se para cada uno; field = la cancha; floor/wall = metatiles (colision y tags).",
+  "arena_campo": {
+    "size": [40, 30],
+    "auto": 70,
+    "open": [],
+    "solid": [[28, 24, 4, 6], [4, 22, 4, 2]],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {"foe_trainer": [20, 6], "foe_mon": [20, 10], "player_mon": [20, 21], "player": [20, 26]},
+    "field": [6, 7, 28, 18],
+    "prompt": "Pixel art, top-down 3/4 view of an epic outdoor trainer battle clearing in a forest for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A large flat open grass field in the middle with a worn dirt battle area, faint battle lines and a circle mark at the center, surrounded by lush layered pine and oak trees, big roots, mossy rocks, flowers and bushes, a small stream in one corner with a wooden bridge, sunbeams through the leaves. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text.",
+    "seed": 13
+  },
+  "arena_gimnasio_roca": {
+    "size": [40, 30],
+    "auto": null,
+    "open": [[9, 8, 22, 16], [17, 3, 6, 5], [17, 24, 6, 5]],
+    "solid": [[9, 22, 1, 2], [30, 22, 1, 2]],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [[14, 12], [25, 12], [14, 19], [25, 19], [11, 15], [28, 15]],
+    "cells": {"foe_trainer": [20, 4], "foe_mon": [20, 11], "player_mon": [20, 20], "player": [20, 25]},
+    "field": [9, 8, 22, 16],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC rock-type gym battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A legendary canyon colosseum: a large flat open stone battle field in the middle with etched battle lines and a giant carved rock badge emblem at the center; around it rugged layered cliff walls, huge carved stone pillars, glowing amber crystals, burning braziers; at the top center a raised empty stone platform with wide stairs; at the bottom center a wooden entrance deck. Warm dramatic lighting from above, dust in the air. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 11
+  }
+}

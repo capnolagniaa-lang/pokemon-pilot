@@ -13,10 +13,14 @@ extends SceneTree
 ## data/arenas/<id>.tres (ArenaData). Correrlo de nuevo PISA las escenas.
 ## Uso: godot --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd [-- --only <id>]
 ## `--only arena_gimnasio_agua` arma solo esa (no pisa las otras).
+## Las arenas PINTADAS (data/arenas/pinturas.json, 2026-11-03) se arman desde su plano (data/arenas/planos/<id>.txt, de
+## tools/paint_arenas.py) en vez de con tiles de FireRed: los tiles quedan para la colisión y el entorno, y la pintura
+## (sprites/arenas/<id>.png) va en ArenaData.painting. Lo demás de su ArenaData (tipo, partículas, épica...) se conserva.
 
 const ARENAS_DIR := "res://scenes/world/arenas"
 const DATA_DIR := "res://data/arenas"
 const ROCK := "res://scenes/world/objects/rock_smash_rock.tscn"
+const PAINTED := "res://data/arenas/pinturas.json"
 
 ## Metatiles del gimnasio de Plateada (pewter_gym): filas 0-3 = pared de arriba, 35008/35015 paredes de los
 ## costados, 35019 sombra de la pared, 35020 tierra, 35035 roca, 35040-35043 tablones, 35044-35055 plataforma.
@@ -41,12 +45,16 @@ func _init() -> void:
 	tileset = load(ZoneBuilder.TILESET_PATH)
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(ARENAS_DIR))
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(DATA_DIR))
+	var painted: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PAINTED))
 	var args := OS.get_cmdline_user_args()
 	var only := args[args.find("--only") + 1] if args.has("--only") and args.find("--only") + 1 < args.size() else ""
 	for step in [["arena_campo", _campo], ["arena_gimnasio_roca", _gimnasio_roca], ["arena_torneo", _torneo],
 			["arena_gimnasio_agua", _gimnasio_agua], ["arena_gimnasio_electrico", _gimnasio_electrico]] + _themed_steps():
 		if only == "" or only == step[0]:
-			step[1].call()
+			if painted.has(step[0]):
+				_painted(step[0], painted[step[0]])
+			else:
+				step[1].call()
 	quit()
 
 
@@ -483,6 +491,36 @@ func _gimnasio_electrico() -> void:
 	a.particle_color = Color(0.8, 0.92, 1.0, 0.6)  # chispas (el piso del gimnasio ya es amarillo: sin tinte)
 	a.epic = true
 	ResourceSaver.save(a, "%s/arena_gimnasio_electrico.tres" % DATA_DIR)
+
+
+# --- Arenas pintadas ----------------------------------------------------------------------------------
+
+func _painted(id: String, cfg: Dictionary) -> void:
+	var rows := FileAccess.get_file_as_string("res://data/arenas/planos/%s.txt" % id).strip_edges().split("
+")
+	var root := ZoneBuilder.new_zone_root(id, tileset)
+	var g: TileMapLayer = root.get_node("Ground")
+	for y in rows.size():
+		for x in rows[y].length():
+			ZoneBuilder.set_metatile(g, Vector2i(x, y), int(cfg.floor) if rows[y][x] == "." else int(cfg.wall))
+	for p in cfg.get("rocks", []):
+		ZoneBuilder.add_object(root, ROCK, Vector2i(int(p[0]), int(p[1])))
+	root.set("hand_edited", true)
+	_save(root, id)
+	var path := "%s/%s.tres" % [DATA_DIR, id]
+	var a: ArenaData = load(path) if ResourceLoader.exists(path) else ArenaData.new()
+	a.id = id
+	a.scene_path = "%s/%s.tscn" % [ARENAS_DIR, id]
+	a.painting = load("res://sprites/arenas/%s.png" % id)
+	var cells: Dictionary = cfg.cells
+	a.foe_trainer_cell = Vector2i(int(cells.foe_trainer[0]), int(cells.foe_trainer[1]))
+	a.foe_mon_cell = Vector2i(int(cells.foe_mon[0]), int(cells.foe_mon[1]))
+	a.player_mon_cell = Vector2i(int(cells.player_mon[0]), int(cells.player_mon[1]))
+	a.player_cell = Vector2i(int(cells.player[0]), int(cells.player[1]))
+	var f: Array = cfg.field
+	a.field = Rect2i(int(f[0]), int(f[1]), int(f[2]), int(f[3]))
+	a.braziers = false  # pintados
+	ResourceSaver.save(a, path)
 
 
 func _save(root: Node, id: String) -> void:

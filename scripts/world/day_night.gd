@@ -40,6 +40,9 @@ const SUN_SHADOW_ALPHA := 0.8
 const MOON_SHADOW_ALPHA := 0.25
 ## La luz pareja de los interiores y las arenas (la de siempre, sin sol).
 const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28, 1.06, 0.32, Color(1.0, 0.90, 0.65), 0.0, 0.0, 0.0]
+## Las arenas pintadas con Qwen (ArenaData.painting): la luz ya viene en la pintura, así que va neutra (con INDOOR la
+## del gimnasio de Brock quedaba saturada de amarillo).
+const PAINTED := [12.0, Color(1, 1, 1), Vector3(1, 1, 1), 1.0, 1.03, 0.3, Color(1, 1, 1), 0.0, 0.0, 0.0]
 ## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
 ## (CaveLights) y una luz chica alrededor del entrenador (CAVE_PLAYER_LIGHT).
 const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
@@ -151,7 +154,8 @@ func apply() -> void:
 	var arena_on: bool = _world.get("arena") != null and _world.arena.active
 	casts_shadows = not indoor and not arena_on
 	var cave := in_cave and not arena_on
-	var lk: Array = (CAVE_DIM if _dim_cave else CAVE) if cave else (INDOOR if not casts_shadows else look_at(h))
+	var painted: bool = arena_on and _world.arena.arena_data != null and _world.arena.arena_data.painting != null
+	var lk: Array = (CAVE_DIM if _dim_cave else CAVE) if cave else (PAINTED if painted else INDOOR if not casts_shadows else look_at(h))
 	var sun := sun_at(h)
 	_update_player_light(cave)
 	RenderingServer.set_default_clear_color(CAVE_CLEAR if cave

@@ -15,6 +15,10 @@ extends Resource
 ## Rectángulo de la cancha (celdas): ahí se dibujan las líneas.
 @export var field: Rect2i = Rect2i()
 
+## Pintura de la arena entera (Qwen, sprites/arenas/<id>.png; tools/paint_arenas.py): se dibuja encima de los tiles,
+## que quedan para la colisión y el entorno. Con pintura no se dibujan las líneas, el emblema ni los braseros por código.
+@export var painting: Texture2D
+
 @export_group("Ambientación")
 ## Tipo que ambienta la arena (los gimnasios: el de su líder). Vacío = arena común.
 @export var element_id: String = ""
