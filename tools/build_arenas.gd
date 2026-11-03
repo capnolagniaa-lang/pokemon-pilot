@@ -529,7 +529,8 @@ func _painted(id: String, _cfg: Dictionary) -> void:
 	a.player_cell = Vector2i(int(cells.player[0]), int(cells.player[1]))
 	var f: Array = cfg.field
 	a.field = Rect2i(int(f[0]), int(f[1]), int(f[2]), int(f[3]))
-	a.braziers = false  # pintados
+	a.braziers = false  # pintados (el público también viene en la pintura)
+	a.crowd = false
 	ResourceSaver.save(a, path)
 
 

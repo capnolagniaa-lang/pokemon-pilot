@@ -435,5 +435,140 @@
     "field": [7, 7, 26, 17],
     "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. An imposing ground-type gym arena of the boss: a large flat packed sandy earth battle field in the middle with a giant earth badge emblem carved in the center, surrounded by sandstone cliffs, huge carved stone statues, cracked dry ground, dunes, golden ornaments, red carpets and marble columns of a luxurious hall, dust in the air, warm dramatic light. At the top center a raised golden platform with a throne for the leader, at the bottom center the entrance. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
     "seed": 22
+  },
+  "arena_liga_hielo": {
+    "name": "Alto Mando: Lorelei",
+    "size": [40, 30],
+    "scale": 1.1,
+    "auto": null,
+    "open": [
+      [5, 6, 31, 20],
+      [18, 3, 4, 4],
+      [18, 25, 4, 3]
+    ],
+    "solid": [],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 4],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [5, 6, 31, 20],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A majestic ice-type Elite Four battle hall: a large flat floor of polished glossy ice and frosted blue marble in the middle with a giant snowflake emblem in the center, surrounded by huge ice crystal pillars, frozen waterfalls on the back wall, snow drifts, icicles, glowing pale blue light, cold mist. At the top center a raised icy platform, at the bottom center the entrance. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 21
+  },
+  "arena_liga_lucha": {
+    "name": "Alto Mando: Bruno",
+    "size": [40, 30],
+    "scale": 1.1,
+    "auto": null,
+    "open": [
+      [6, 6, 28, 19],
+      [18, 3, 4, 3],
+      [19, 25, 2, 3]
+    ],
+    "solid": [
+      [6, 20, 1, 5],
+      [33, 20, 1, 5]
+    ],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 4],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [7, 6, 26, 19],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A mighty fighting-type Elite Four battle hall: a large flat sandy stone fighting ring in the middle with a giant fist emblem in the center, surrounded by massive carved stone pillars, heavy boulders, cracked rock walls, burning braziers, ropes and training logs, dust in the air, warm dramatic torchlight. At the top center a raised stone platform, at the bottom center the entrance. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 21
+  },
+  "arena_liga_fantasma": {
+    "name": "Alto Mando: Agatha",
+    "size": [40, 30],
+    "scale": 1.1,
+    "auto": null,
+    "open": [
+      [5, 5, 30, 21],
+      [17, 3, 6, 3],
+      [18, 24, 4, 4]
+    ],
+    "solid": [
+      [5, 5, 3, 4],
+      [32, 5, 3, 4],
+      [5, 21, 3, 4],
+      [32, 21, 3, 4]
+    ],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 4],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [8, 6, 24, 18],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A dark ghost-type Elite Four battle hall, dim but readable: a large flat floor of old dark purple stone tiles in the middle with a giant ghostly eye emblem in the center, surrounded by ancient tombs, floating purple will-o-wisp flames, broken gothic arches, chains, a huge crescent moon window on the back wall, purple ghost mist curling at the edges. At the top center a raised platform, at the bottom center the entrance. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 24,
+    "brillo": 1.45
+  },
+  "arena_liga_dragon": {
+    "name": "Alto Mando: Lance",
+    "size": [40, 30],
+    "scale": 1.1,
+    "auto": null,
+    "open": [
+      [6, 6, 28, 19],
+      [18, 1, 4, 6],
+      [18, 23, 4, 5]
+    ],
+    "solid": [],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 4],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [7, 7, 26, 17],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A legendary dragon-type Elite Four battle hall at the top of a sky temple: a large flat floor of red and gold stone tiles in the middle with a giant dragon emblem in the center, surrounded by colossal dragon statues, golden pillars, red banners, burning braziers, clouds and sky visible beyond the edges, glowing dramatic light. At the top center a raised golden platform, at the bottom center the entrance. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 22
+  },
+  "arena_torneo": {
+    "name": "Estadio del Torneo de Plateada",
+    "size": [40, 30],
+    "scale": 1.15,
+    "auto": null,
+    "open": [
+      [7, 8, 26, 17],
+      [3, 10, 34, 8],
+      [19, 5, 3, 3],
+      [19, 25, 3, 3]
+    ],
+    "solid": [],
+    "water": [
+      [3, 11, 3, 5],
+      [34, 11, 3, 5]
+    ],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 6],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [10, 9, 20, 15],
+    "prompt": "This image is the floor plan sketch of a stadium battle arena (dark = walls, light = floor, blue = water ponds). Redraw it as a grand EPIC tournament stadium keeping EXACTLY the same layout: the two blue ponds stay as real water ponds in the same place and size, the walls stay on the edges and the light floor stays open. A huge sports stadium: a large flat green grass pitch with a dirt battle field and white battle lines and a center circle, the two clear blue ponds on the left and right sides of the pitch, patches of tall grass in the corners, packed crowd stands all around the edges, big floodlights, colorful flags and banners, a big screen at the top. At the bottom center the entrance. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 22,
+    "sketch": "art_src/arenas/arena_torneo_boceto.png"
   }
 }
