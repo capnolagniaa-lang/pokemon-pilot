@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Igual nos queremos mucho.")
+lines = PackedStringArray("Lea: Jeje, perdón. Es que Jed es re canchero.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "lea & jed"
 display_name = "Lea & Jed"
 title = "Parejita"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Nuestro amor nos hace invencibles!", "pierde": "¡Ay, no!", "despues": "Igual nos queremos mucho."}
+lines = {"desafio": "Lea: A veces lo intenso de nuestro amor me da miedo.", "pierde": "Lea: ¡Ay! ¡Pero Jed queda canchero hasta perdiendo!", "despues": "Lea: Jeje, perdón. Es que Jed es re canchero."}
 arena_id = "arena_campo"
 
 [resource]

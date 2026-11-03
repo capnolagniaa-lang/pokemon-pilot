@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Nadar es mi vida.")
+lines = PackedStringArray("Si tuviera que andar en un Pokémon por el mar, elegiría un Lapras.|Es tan grande que seguro no me mojo.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -31,7 +31,7 @@ id = "connie"
 display_name = "Connie"
 title = "Nadadora"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Las olas me dan fuerza!", "pierde": "¡Glub, glub!", "despues": "Nadar es mi vida."}
+lines = {"desafio": "Nadé hasta acá con mis amigos... Estoy cansada...", "pierde": "Estoy agotada...", "despues": "Si tuviera que andar en un Pokémon por el mar, elegiría un Lapras.|Es tan grande que seguro no me mojo."}
 arena_id = "arena_campo"
 
 [resource]

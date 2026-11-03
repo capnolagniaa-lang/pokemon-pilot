@@ -12,7 +12,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Seguí así y vas a llegar lejos.")
+lines = PackedStringArray("Peleando batallas duras te hacés más fuerte.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -45,7 +45,7 @@ id = "alexa"
 display_name = "Alexa"
 title = "Entrenador Guay"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3"), SubResource("Mon_4")])
-lines = {"desafio": "Entreno todos los días. ¿Estás a la altura?", "pierde": "Sos muy bueno. Respeto.", "despues": "Seguí así y vas a llegar lejos."}
+lines = {"desafio": "Los entrenadores viven buscando rivales más fuertes.", "pierde": "¡Ay! ¡Qué fuerte!", "despues": "Peleando batallas duras te hacés más fuerte."}
 arena_id = "arena_campo"
 
 [resource]

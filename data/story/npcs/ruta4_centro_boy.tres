@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("En el Mt. Moon encontré una Piedra Lunar. ¡Dicen que hace evolucionar a Clefairy!")
+lines = PackedStringArray("A ver, seis Poké Balls en el cinturón...", "Sí, así está. Como mucho podés llevar seis Pokémon encima.")
 
 [resource]
 script = ExtResource("1_n")

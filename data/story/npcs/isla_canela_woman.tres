@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Isla Canela es un lugar tranquilo... casi siempre.")
+lines = PackedStringArray("Blaine, el del gimnasio de Canela, es un tipo bastante raro.", "Vive en la isla desde mucho antes de que hicieran el laboratorio.")
 
 [resource]
 script = ExtResource("1_n")
 id = "isla_canela_woman"
-display_name = "Vecino"
+display_name = "Señora"
 zone_id = "isla_canela"
 cell = Vector2i(22, 6)
 gfx = "woman_2"

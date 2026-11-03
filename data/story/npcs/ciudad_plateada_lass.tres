@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Brock, el líder del gimnasio, usa Pokémon de tipo roca.", "¡Son durísimos! Su Onix es enorme.")
+lines = PackedStringArray("Dicen que los Clefairy vinieron de la luna.", "Aparecieron cuando cayeron Piedras Lunares en el Mt. Moon.")
 
 [resource]
 script = ExtResource("1_n")

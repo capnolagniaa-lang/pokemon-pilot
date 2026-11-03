@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que en el Monte Moon cayó una piedra del espacio.")
+lines = PackedStringArray("¿Piedra Lunar? ¿Qué tiene de especial?", "A mí me parece una piedra cualquiera.")
 
 [resource]
 script = ExtResource("1_n")

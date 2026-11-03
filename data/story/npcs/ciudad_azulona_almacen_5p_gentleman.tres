@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Me encanta pasear por Gran Almacén de Azulona (planta 5) con mis Pokémon.")
+lines = PackedStringArray("Los potenciadores de stats para Pokémon solo se venden acá.", "Más PS sube los PS base; el Calcio, el Ataque Especial; el Zinc, la Defensa Especial; el Carburante, la Velocidad.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_almacen_5p_gentleman"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "ciudad_azulona_almacen_5p"
 cell = Vector2i(11, 6)
 gfx = "gentleman"

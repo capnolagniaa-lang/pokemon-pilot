@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La Cuerda Huida te saca de una cueva en un segundo.")
+lines = PackedStringArray("Si criás a tus Pokémon con dedicación, pasan cosas buenas.", "Hasta los débiles te pueden sorprender si no los abandonás.")
 
 [resource]
 script = ExtResource("1_n")

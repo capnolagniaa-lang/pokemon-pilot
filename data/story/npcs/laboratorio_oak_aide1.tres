@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Soy ayudante del Profesor Oak.", "El profe estudia a los Pokémon día y noche. ¡No para nunca!")
+lines = PackedStringArray("El Profesor Oak va a tener su propio programa de radio.", "Se va a llamar «El Seminario Pokémon del Profesor Oak».")
 
 [resource]
 script = ExtResource("1_n")

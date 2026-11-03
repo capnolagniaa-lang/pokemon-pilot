@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Ya viste todo Ciudad Azulona?")
+lines = PackedStringArray("Mi Koffing lo conseguí en Canela.", "Casi siempre es bueno, pero cuando se enoja tira veneno.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_littlegirl"
-display_name = "Pibe"
+display_name = "Nena"
 zone_id = "ciudad_azulona"
 cell = Vector2i(31, 32)
 gfx = "little_girl"

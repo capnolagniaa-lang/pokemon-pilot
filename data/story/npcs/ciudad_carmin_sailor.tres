@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El capitán del S.S. Anne se marea. ¡Un capitán que se marea!")
+lines = PackedStringArray("El S.S. Anne es un crucero de lujo famosísimo.", "Pasa por Carmín una vez por año.")
 
 [resource]
 script = ExtResource("1_n")

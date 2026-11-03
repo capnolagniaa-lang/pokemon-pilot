@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Acá en Silph S.A. (planta 1) siempre hay algo para hacer.")
+lines = PackedStringArray("Bienvenido.", "El presidente está en la sala de directorio del piso 11.")
 
 [resource]
 script = ExtResource("1_n")
 id = "silph_1p_receptionist"
-display_name = "Empleado"
+display_name = "Recepcionista"
 zone_id = "silph_1p"
 cell = Vector2i(3, 7)
 gfx = "worker_f"

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Ciudad Plateada es gris como la piedra. Por eso el nombre, ¿viste?")
+lines = PackedStringArray("Acá no hay muchos entrenadores en serio.", "Son todos como los Cazabichos: lo hacen por hobby.", "Pero Brock, el del gimnasio, no es así para nada.")
 
 [resource]
 script = ExtResource("1_n")

@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que el Team Rocket anda por todos lados. ¡Cuidate!")
+lines = PackedStringArray("No podés ser un buen entrenador con un solo Pokémon fuerte.", "Pero criar muchos Pokémon parejos tampoco es fácil.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_fucsia_centro_man"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "ciudad_fucsia_centro"
 cell = Vector2i(12, 5)
 gfx = "man"

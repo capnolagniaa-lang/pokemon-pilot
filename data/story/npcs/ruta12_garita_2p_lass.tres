@@ -7,12 +7,12 @@
 script = ExtResource("2_t")
 forbids = PackedStringArray("mt27_recibida")
 set_flags = PackedStringArray("mt27_recibida")
-lines = PackedStringArray("¡Qué lindo cómo cuidás a tus Pokémon!", "Tomá, esta MT27 es Retribución: pega más fuerte cuanto más te quiere tu Pokémon.")
+lines = PackedStringArray("Las cenizas de mi Pokémon están en la Torre Pokémon.", "Te podés quedar con esta MT. Ya no la necesito...")
 give_items = {"mt27": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Le enseñaste Retribución a alguno?")
+lines = PackedStringArray("La MT27 es un ataque que se llama Retribución...", "Si tratás bien a tu Pokémon, te devuelve el cariño dando todo en la pelea.")
 
 [resource]
 script = ExtResource("1_n")

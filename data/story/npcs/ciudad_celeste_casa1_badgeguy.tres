@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Casa de Ciudad Celeste?")
+lines = PackedStringArray("Solo los entrenadores hábiles consiguen medallas Pokémon. Veo que tenés al menos una.", "¿Sabías que las medallas guardan secretos increíbles?", "Hacen que los Pokémon te obedezcan, mejoran sus stats y te dejan usar las MO fuera de combate.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_celeste_casa1_badgeguy"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "ciudad_celeste_casa1"
 cell = Vector2i(6, 5)
 gfx = "gentleman"

@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Gimnasio de Isla Canela?")
+lines = PackedStringArray("¡Ey, futuro campeón!", "El cabeza caliente de Blaine es un profesional de los Pokémon de fuego.", "¡Apagale el entusiasmo con agua! Y mejor llevá unos Antiquemar.")
 
 [resource]
 script = ExtResource("1_n")
 id = "isla_canela_gimnasio_gymguy"
-display_name = "Vecino"
+display_name = "Guía"
 zone_id = "isla_canela_gimnasio"
 cell = Vector2i(24, 20)
 gfx = "gym_guy"

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡El S.S. Anne viene una vez por año! Hay una fiesta a bordo.")
+lines = PackedStringArray("Acá cuidamos mucho la contaminación.", "Dicen que los Grimer se multiplican en el barro tóxico.")
 
 [resource]
 script = ExtResource("1_n")

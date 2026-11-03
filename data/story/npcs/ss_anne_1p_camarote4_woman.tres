@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Qué crucero divino!")
+lines = PackedStringArray("¡Mozo! Quisiera un pastel de cerezas, por favor.")
 
 [resource]
 script = ExtResource("1_n")

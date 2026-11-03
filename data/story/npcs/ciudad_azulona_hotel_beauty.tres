@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que el Team Rocket anda por todos lados. ¡Cuidate!")
+lines = PackedStringArray("Estoy de vacaciones con mi hermano y mi novio.", "¡Azulona es una ciudad tan linda!")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_hotel_beauty"
-display_name = "Vecino"
+display_name = "Chica"
 zone_id = "ciudad_azulona_hotel"
 cell = Vector2i(3, 6)
 gfx = "beauty"

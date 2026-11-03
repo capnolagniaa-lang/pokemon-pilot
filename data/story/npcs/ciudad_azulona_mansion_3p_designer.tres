@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Mansión Azulona (planta 3)?")
+lines = PackedStringArray("¡Soy el diseñador del juego!", "Llenar la Pokédex es difícil, ¡pero no abandones!", "Cuando la termines, ¡vení a contarme!")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_mansion_3p_designer"
-display_name = "Vecino"
+display_name = "Diseñador"
 zone_id = "ciudad_azulona_mansion_3p"
 cell = Vector2i(3, 8)
 gfx = "man"

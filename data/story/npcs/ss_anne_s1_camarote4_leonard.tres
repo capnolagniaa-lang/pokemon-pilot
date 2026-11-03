@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Un Shellder cerrado aguanta mucho.")
+lines = PackedStringArray("¡Jajaja! ¿Querés ser marinero, compañero?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "leonardo"
 display_name = "Leonardo"
 title = "Marinero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Mi Shellder no se abre por nada!", "pierde": "¡Se abrió!", "despues": "Un Shellder cerrado aguanta mucho."}
+lines = {"desafio": "¡Ya sabés lo que dicen de los marineros y las peleas!", "pierde": "¡Bien! ¡Buena pelea, compañero!", "despues": "¡Jajaja! ¿Querés ser marinero, compañero?"}
 arena_id = "arena_campo"
 
 [resource]

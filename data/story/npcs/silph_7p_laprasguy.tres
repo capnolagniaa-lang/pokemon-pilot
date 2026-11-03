@@ -8,13 +8,13 @@
 script = ExtResource("2_t")
 forbids = PackedStringArray("lapras_recibido")
 set_flags = PackedStringArray("lapras_recibido")
-lines = PackedStringArray("¡Viniste a salvarnos! Escondí a este Pokémon para que el Team Rocket no se lo llevara.", "Es un Lapras. Cuidalo, por favor.")
+lines = PackedStringArray("¡Ah! ¡Hola! No sos un Rocket. ¿Viniste a salvarnos? ¡Gracias!", "Te quiero dar este Pokémon por salvarnos: es un Lapras.", "Es un Pokémon muy inteligente. Lo teníamos en el laboratorio, pero con vos va a estar mucho mejor.")
 give_pokemon = ExtResource("r_2")
 give_level = 25
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Cómo anda el Lapras? Es muy bueno nadando.")
+lines = PackedStringArray("Creo que vas a ser un buen entrenador para Lapras.", "Nada muy bien: ¡te puede llevar por el agua!")
 
 [resource]
 script = ExtResource("1_n")

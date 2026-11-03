@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Slowbro, hacé Confusión! ...Nunca me hace caso.")
+lines = PackedStringArray("¡Dale, Slowbro! ¡Usá Bomba Sónica! ...¡Slowbro, prestá atención!", "¡No! ¡Otra vez lo hiciste mal! Qué difícil es manejar a los Pokémon...", "Dicen que un Pokémon te hace caso según lo bueno que seas como entrenador.")
 
 [resource]
 script = ExtResource("1_n")

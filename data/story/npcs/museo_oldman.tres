@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Ese esqueleto es de un Kabutops. ¡Mirá el tamaño!")
+lines = PackedStringArray("Tengo que estar agradecido por vivir tantos años.", "¡Nunca pensé que iba a ver los huesos de un dragón!")
 
 [resource]
 script = ExtResource("1_n")

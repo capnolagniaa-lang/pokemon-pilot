@@ -6,11 +6,11 @@
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
 forbids = PackedStringArray("medalla_cascada")
-lines = PackedStringArray("¡Ey, campeón en potencia! Misty usa Pokémon de agua.", "Los eléctricos y los de planta son tu mejor apuesta. Y ojo: ¡el agua de las piletas conduce la electricidad!")
+lines = PackedStringArray("¡Ey, futuro campeón! ¡Te doy un consejo!", "La líder, Misty, es una profesional que usa Pokémon tipo agua.", "Con Pokémon tipo planta les podés chupar toda el agua.", "¡O podés usar Pokémon eléctricos y darles un buen choque!")
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Le ganaste a Misty! ¡Qué crack!")
+lines = PackedStringArray("¡Le ganaste a Misty! ¿Viste? ¿Qué te dije?", "¡Vos y yo hacemos un equipo bárbaro!")
 
 [resource]
 script = ExtResource("1_n")

@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los basureros esconden más de lo que parece.")
+lines = PackedStringArray("No es fácil abrir esa puerta.|En el ejército, Lt. Surge era famoso por lo precavido.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "tucker"
 display_name = "Tucker"
 title = "Caballero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "El teniente nos entrenó a todos. ¡En guardia!", "pierde": "Impecable.", "despues": "Los basureros esconden más de lo que parece."}
+lines = {"desafio": "Cuando estaba en el ejército, Lt. Surge era mi comandante.|Era durísimo.", "pierde": "¡Pará! ¡Sos muy bueno!", "despues": "No es fácil abrir esa puerta.|En el ejército, Lt. Surge era famoso por lo precavido."}
 arena_id = "arena_gimnasio_electrico"
 
 [resource]

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Ese Jigglypuff canta y a todos les da sueño... ¡Zzz!")
+lines = PackedStringArray("¡Aaah! (bostezo)", "Cuando Jigglypuff canta, a los Pokémon les da sueño...", "...A mí también... Zzz...")
 
 [resource]
 script = ExtResource("1_n")

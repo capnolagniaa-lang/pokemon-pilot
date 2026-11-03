@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Horsea tiran tinta para escapar.")
+lines = PackedStringArray("Los Pokémon de mar viven en aguas profundas. ¡Para sacarlos vas a necesitar una caña!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -31,7 +31,7 @@ id = "dan"
 display_name = "Dan"
 title = "Marinero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Tres Horsea al ataque!", "pierde": "¡Tinta por todos lados!", "despues": "Los Horsea tiran tinta para escapar."}
+lines = {"desafio": "¡Me gustan los pibes con garra como vos!", "pierde": "¡Argh! ¡Perdí!", "despues": "Los Pokémon de mar viven en aguas profundas. ¡Para sacarlos vas a necesitar una caña!"}
 arena_id = "arena_campo"
 
 [resource]

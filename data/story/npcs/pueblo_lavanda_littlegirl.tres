@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Ya viste todo Pueblo Lavanda?")
+lines = PackedStringArray("¿Vos creés en los fantasmas?", "Jajaja, me parece que no...", "Esa mano blanca que tenés en el hombro... debe ser mi imaginación.")
 
 [resource]
 script = ExtResource("1_n")
 id = "pueblo_lavanda_littlegirl"
-display_name = "Pibe"
+display_name = "Nena"
 zone_id = "pueblo_lavanda"
 cell = Vector2i(35, 10)
 gfx = "little_girl"

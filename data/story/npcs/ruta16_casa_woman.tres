@@ -7,12 +7,12 @@
 script = ExtResource("2_t")
 forbids = PackedStringArray("mo02_recibida")
 set_flags = PackedStringArray("mo02_recibida")
-lines = PackedStringArray("¡Uy, encontraste mi casa secreta!", "Para que nadie se entere, llevate esta MO02: Vuelo.")
+lines = PackedStringArray("Ay, encontraste mi refugio secreto.", "Por favor, no le digas a nadie que estoy acá. ¡Te lo compenso con esto!")
 give_items = {"mo02": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Shh... es un secreto.")
+lines = PackedStringArray("La MO02 es Vuelo. Es un ataque comodísimo.", "Por favor, usalo bien.")
 
 [resource]
 script = ExtResource("1_n")

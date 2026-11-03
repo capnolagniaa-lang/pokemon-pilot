@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Gracias por echar al Team Rocket! Ciudad Azafrán volvió a ser la de antes.")
+lines = PackedStringArray("Vine volando en mi Pidgeot cuando leí lo de Silph.", "¿Ya terminó todo? Me perdí el momento de las cámaras...")
 
 [resource]
 script = ExtResource("1_n")

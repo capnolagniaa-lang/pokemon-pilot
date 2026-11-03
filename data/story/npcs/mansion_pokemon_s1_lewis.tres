@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Ya me voy, ya me voy...")
+lines = PackedStringArray("Hay cosas tiradas por ahí. Las deben haber dejado los que vivían acá.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "lewis"
 display_name = "Lewis"
 title = "Ladrón"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Ey! ¡No viste nada, ¿no?!", "pierde": "¡Me agarraron!", "despues": "Ya me voy, ya me voy..."}
+lines = {"desafio": "Uh... ¿Dónde estoy ahora?", "pierde": "¡Auuu!", "despues": "Hay cosas tiradas por ahí. Las deben haber dejado los que vivían acá."}
 arena_id = "arena_campo"
 
 [resource]

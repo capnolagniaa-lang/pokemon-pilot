@@ -11,7 +11,7 @@ lines = PackedStringArray("¡Perdón! Mi abuelo no tomó su café y se tiró en 
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Más al norte está el Bosque Verde.", "Es fácil perderse ahí adentro. ¡Llevá Antídotos!")
+lines = PackedStringArray("De vez en cuando voy de compras a Ciudad Plateada.", "Para llegar tengo que cruzar el Bosque Verde, que es todo vueltas.")
 
 [resource]
 script = ExtResource("1_n")

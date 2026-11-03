@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El entrenamiento duro nunca miente.")
+lines = PackedStringArray("¡Lo único que nos da miedo es el poder psíquico!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "aaron"
 display_name = "Aaron"
 title = "Karateka"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Hah! ¡Mis puños son de acero!", "pierde": "¡Me bloqueaste!", "despues": "El entrenamiento duro nunca miente."}
+lines = {"desafio": "¡Jiyah! ¡No le tengo miedo a nada duro!|¡Rompo rocas todos los días para entrenar!", "pierde": "¡Ay! ¡Me doblé los dedos!", "despues": "¡Lo único que nos da miedo es el poder psíquico!"}
 arena_id = "arena_campo"
 
 [resource]

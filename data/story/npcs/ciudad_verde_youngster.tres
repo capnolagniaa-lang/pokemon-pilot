@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste el gimnasio? Siempre está cerrado.", "Nadie sabe quién es el líder. Dicen que es alguien muy importante...")
+lines = PackedStringArray("¿Querés saber de los dos Pokémon oruga?", "Caterpie no tiene veneno, pero Weedle sí.", "¡Cuidá que a tus Pokémon no los pinche el Picotazo Veneno de un Weedle!")
 
 [resource]
 script = ExtResource("1_n")

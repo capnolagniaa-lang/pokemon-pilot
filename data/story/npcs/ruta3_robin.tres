@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Si Jigglypuff canta, no te duermas.")
+lines = PackedStringArray("La Ruta 4 queda al pie del Mt. Moon.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "robina"
 display_name = "Robina"
 title = "Chica"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Ay, mirá qué lindo mi Jigglypuff! ¿Peleamos?", "pierde": "¡Ni la canción lo salvó!", "despues": "Si Jigglypuff canta, no te duermas."}
+lines = {"desafio": "¡Ay! ¿Me tocaste?", "pierde": "¿Ya está?", "despues": "La Ruta 4 queda al pie del Mt. Moon."}
 arena_id = "arena_campo"
 
 [resource]

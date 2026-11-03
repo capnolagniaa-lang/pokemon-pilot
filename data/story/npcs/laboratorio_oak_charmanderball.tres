@@ -12,7 +12,7 @@ lines = PackedStringArray("Mejor no. Ya tenés a tu compañero.")
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
 set_flags = PackedStringArray("tiene_inicial", "inicial_charmander", "rival_squirtle")
-lines = PackedStringArray("¡Es Charmander, el Pokémon tipo fuego!", "Su estilo es el de un bruiser: entra, aguanta y se calienta cuanto más pelea.")
+lines = PackedStringArray("¡Así que elegís a Charmander, el Pokémon tipo fuego!", "Hay que criarlo con paciencia. ¡Es un Pokémon con mucha energía!")
 confirm = "¿Querés a Charmander?"
 give_pokemon = ExtResource("r_2")
 after_speaker = "Azul"

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Pokémon que evolucionan se vuelven más fuertes.", "Pero a veces también cambia su forma de pelear.")
+lines = PackedStringArray("Los Pokémon aprenden técnicas nuevas a medida que crecen.", "Pero algunos ataques se los tiene que enseñar la gente.")
 
 [resource]
 script = ExtResource("1_n")

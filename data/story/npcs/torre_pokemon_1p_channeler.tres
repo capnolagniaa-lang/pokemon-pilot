@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Hola! Bienvenido a Torre Pokémon (planta 1).")
+lines = PackedStringArray("Soy médium.", "Hay espíritus haciendo de las suyas. Los siento arriba de todo de la Torre.")
 
 [resource]
 script = ExtResource("1_n")
 id = "torre_pokemon_1p_channeler"
-display_name = "Vecino"
+display_name = "Médium"
 zone_id = "torre_pokemon_1p"
 cell = Vector2i(18, 7)
 gfx = "channeler"

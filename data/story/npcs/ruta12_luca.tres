@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Rock and roll para siempre!")
+lines = PackedStringArray("El agua conduce la electricidad: a los Pokémon de mar, dales con rayos.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "luca"
 display_name = "Luca"
 title = "Rockero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Yeah! ¡Rockeemos este combate!", "pierde": "¡Se me cortó una cuerda!", "despues": "¡Rock and roll para siempre!"}
+lines = {"desafio": "La electricidad es mi especialidad.|De los Pokémon de mar no sé nada, eso sí.", "pierde": "¡Desenchufado!", "despues": "El agua conduce la electricidad: a los Pokémon de mar, dales con rayos."}
 arena_id = "arena_campo"
 
 [resource]

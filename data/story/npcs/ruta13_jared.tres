@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Andá con cuidado por el Camino de Bicis.")
+lines = PackedStringArray("¡Tomátela!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -31,7 +31,7 @@ id = "jared"
 display_name = "Jared"
 title = "Motorista"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Ey, nene! ¡Esta ruta es nuestra!", "pierde": "¡Se me pinchó una rueda!", "despues": "Andá con cuidado por el Camino de Bicis."}
+lines = {"desafio": "¿Qué mirás?", "pierde": "¡Uh! ¡Se me rompieron los cambios!", "despues": "¡Tomátela!"}
 arena_id = "arena_campo"
 
 [resource]

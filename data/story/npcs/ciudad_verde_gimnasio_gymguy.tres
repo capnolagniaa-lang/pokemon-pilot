@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Ey! El líder de este gimnasio anda de viaje.", "Volvé cuando tengas más medallas.")
+lines = PackedStringArray("¡Ey, futuro campeón!", "Ni yo sé quién es el líder de Ciudad Verde.", "Pero una cosa es segura: va a ser el más bravo de todos los líderes.", "Ah, y dicen que a los entrenadores de acá les gustan los Pokémon tipo tierra.")
 
 [resource]
 script = ExtResource("1_n")

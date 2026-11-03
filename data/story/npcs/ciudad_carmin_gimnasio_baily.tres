@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los interruptores están en los basureros. ¡Pero no te digo cuáles!")
+lines = PackedStringArray("¡Está bien, hablo!|Lt. Surge dijo que escondió los interruptores de la puerta adentro de algo.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "benito"
 display_name = "Benito"
 title = "Mecánico"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Yo armé las trampas eléctricas de este gimnasio!", "pierde": "¡Se me quemó un fusible!", "despues": "Los interruptores están en los basureros. ¡Pero no te digo cuáles!"}
+lines = {"desafio": "¡Seré liviano, pero con la electricidad soy bueno!|Por eso entré a este gimnasio.", "pierde": "¡Frito!", "despues": "¡Está bien, hablo!|Lt. Surge dijo que escondió los interruptores de la puerta adentro de algo."}
 arena_id = "arena_gimnasio_electrico"
 
 [resource]

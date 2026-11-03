@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Querés un sanguchito? Ah, no, no queda.")
+lines = PackedStringArray("Vi unos Pokemaníacos rondando por acá.|¿Te imaginás? ¿Ellos? ¿Acá arriba en la montaña?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "heidi"
 display_name = "Heidi"
 title = "Dominguera"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Vine de picnic con mis Pokémon!", "pierde": "¡Se me arruinó el picnic!", "despues": "¿Querés un sanguchito? Ah, no, no queda."}
+lines = {"desafio": "Fui a gimnasios Pokémon varias veces...|...pero siempre pierdo.", "pierde": "¡Ay! ¡Con todo lo que entrené!", "despues": "Vi unos Pokemaníacos rondando por acá.|¿Te imaginás? ¿Ellos? ¿Acá arriba en la montaña?"}
 arena_id = "arena_campo"
 
 [resource]

@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Nadar es mi vida.")
+lines = PackedStringArray("¿Mis perlas crecerán adentro de un Cloyster?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -32,7 +32,7 @@ id = "nora"
 display_name = "Nora"
 title = "Nadadora"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Las olas me dan fuerza!", "pierde": "¡Glub, glub!", "despues": "Nadar es mi vida."}
+lines = {"desafio": "Mi novio me regaló unas perlas enormes.", "pierde": "¡Ay, no! ¡Mis perlas estaban adentro!", "despues": "¿Mis perlas crecerán adentro de un Cloyster?"}
 arena_id = "arena_campo"
 
 [resource]

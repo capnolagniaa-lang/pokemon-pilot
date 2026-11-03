@@ -6,11 +6,11 @@
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
 forbids = PackedStringArray("rocket_celeste_peleado")
-lines = PackedStringArray("¡El Team Rocket me hizo un agujero en la pared y se llevó mi MT de Excavar!", "El ladrón se escapó por atrás. ¡Si lo ves, recuperala!")
+lines = PackedStringArray("¡Esos Rocket miserables! ¡Mirá lo que le hicieron a mi casa!", "¡Se robaron una MT para enseñarle a los Pokémon a cavar pozos!", "La iba a usar en un Mankey o un Sandshrew... ¡Me costó una fortuna!")
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Recuperaste la MT? ¡Quedatela, te la ganaste!")
+lines = PackedStringArray("Lo perdido, perdido está. Decidí enseñarle a mi Diglett a cavar sin MT.", "Así que la MT quedátela vos.")
 
 [resource]
 script = ExtResource("1_n")

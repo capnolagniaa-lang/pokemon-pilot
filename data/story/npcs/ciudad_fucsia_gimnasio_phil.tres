@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Domar requiere paciencia.")
+lines = PackedStringArray("¡Me impresionaste! Te doy una pista:|buscá con mucha atención los huecos en las paredes invisibles.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "phil"
 display_name = "Phil"
 title = "Domador"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Mis Pokémon salvajes obedecen solo a mí!", "pierde": "¡Se me rebelaron!", "despues": "Domar requiere paciencia."}
+lines = {"desafio": "¡Alto ahí!|¿Te tienen loco las famosas paredes invisibles del Gimnasio de Fucsia?", "pierde": "¡Uh! ¡La tenés clara!", "despues": "¡Me impresionaste! Te doy una pista:|buscá con mucha atención los huecos en las paredes invisibles."}
 arena_id = "arena_gimnasio_veneno"
 
 [resource]

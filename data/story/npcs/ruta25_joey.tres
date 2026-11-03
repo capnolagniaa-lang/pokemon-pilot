@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Igual mi Rattata es el mejor. Te lo digo yo.")
+lines = PackedStringArray("Todos los Pokémon tienen debilidades, hasta los más fuertes.|Por eso conviene criar Pokémon de tipos distintos.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "joaquín"
 display_name = "Joaquín"
 title = "Joven"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Mi Rattata está entre el 1% de los mejores!", "pierde": "¡Nooo! ¡Mi Rattata!", "despues": "Igual mi Rattata es el mejor. Te lo digo yo."}
+lines = {"desafio": "Los entrenadores de la zona vienen acá a practicar.", "pierde": "No estás nada mal.", "despues": "Todos los Pokémon tienen debilidades, hasta los más fuertes.|Por eso conviene criar Pokémon de tipos distintos."}
 arena_id = "arena_campo"
 
 [resource]

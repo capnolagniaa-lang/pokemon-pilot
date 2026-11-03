@@ -6,6 +6,14 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-03)
+- **Diálogos fieles a FireRed (2026-11-03, pedido del usuario: "chequeá todos los diálogos contra los de FireRed")**: se
+  cruzaron las 811 personas con los textos de pret (`text.inc` de cada mapa): solo ~90 contaban lo mismo. Ahora 683
+  (vecinos, guías de gimnasio, entrenadores de ruta y los que antes tenían una frase de relleno por clase) dicen lo
+  mismo que en FireRed, con palabras propias en rioplatense: `tools/dialogos_frlg/*.json`, que `build_story_npcs.py`
+  aplica encima de sus tablas. Sin cambiar la lógica (regalos, banderas, peleas); lo que FireRed da y acá no existe
+  (bici, cañas, fichas, intercambios, Piedra Eterna...) se cuenta sin el regalo. La pasajera del S.S. Anne, la médium del
+  5.º piso de la Torre y la empleada del 9.º de Silph ahora curan, como en FireRed. Sin tocar: líderes y Alto Mando (ya
+  coincidían), las peleas del rival, Oak, las enfermeras y las tiendas.
 - **Centro de Combate Online rediseñado (2026-11-03, pedido del usuario: "más lindo, con identidad propia, no tan
   FireRed")**: Qwen dio 4 ideas y el usuario eligió la 4 (pantalla de llaves, mostrador, filas de máquinas de link y un
   escenario holográfico). Esa imagen es ahora el cuarto entero (`sprites/props/centro_online_sala.png`, en los 9

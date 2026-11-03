@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por ahí?")
+lines = PackedStringArray("El cosplay Pokémon es disfrazarse de Pokémon para divertirse.|Clefairy es de los favoritos.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "steve"
 display_name = "Steve"
 title = "Pokemaníaco"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Los Pokémon raros son mi pasión!", "pierde": "¡Mi colección!", "despues": "¿Viste algún Pokémon raro por ahí?"}
+lines = {"desafio": "Ehh... ¿Conocés el cosplay Pokémon?", "pierde": "Bueno, eso fue todo.", "despues": "El cosplay Pokémon es disfrazarse de Pokémon para divertirse.|Clefairy es de los favoritos."}
 arena_id = "arena_campo"
 
 [resource]

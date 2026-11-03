@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("En el mar hay Tentacool por todos lados.")
+lines = PackedStringArray("¡Y yo que te iba a hacer mi ayudante!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -33,7 +33,7 @@ id = "beltrán"
 display_name = "Beltrán"
 title = "Pescador"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "Los Pokémon de mar son los mejores. ¡Te lo demuestro!", "pierde": "¡Se escaparon al agua!", "despues": "En el mar hay Tentacool por todos lados."}
+lines = {"desafio": "¡Hola, forastero!|No sé si venís del mar o de la montaña, pero pará a charlar.|Todos mis Pokémon son del mar.", "pierde": "¡Uh! ¡Se me escapó ese!", "despues": "¡Y yo que te iba a hacer mi ayudante!"}
 arena_id = "arena_campo"
 
 [resource]

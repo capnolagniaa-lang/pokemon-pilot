@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Geodude ruedan barranca abajo.")
+lines = PackedStringArray("El Pokemaníaco hace honor al nombre: tiene un montón de especies rarísimas.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -37,7 +37,7 @@ id = "norberto"
 display_name = "Norberto"
 title = "Montañero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3")])
-lines = {"desafio": "¡Cuatro Pokémon de pura fuerza! ¡Aguantá!", "pierde": "¡Qué aguante el tuyo!", "despues": "Los Geodude ruedan barranca abajo."}
+lines = {"desafio": "Voy al cabo a ver la colección de un Pokemaníaco.", "pierde": "¡Me ganaste, y bien ganado!", "despues": "El Pokemaníaco hace honor al nombre: tiene un montón de especies rarísimas."}
 arena_id = "arena_campo"
 
 [resource]

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Contra lo eléctrico, la tierra. Un Geodude o un Sandshrew no sienten nada.")
+lines = PackedStringArray("Aunque tengan el mismo nivel, dos Pokémon pueden tener stats muy distintos.", "Un Pokémon criado por un entrenador es más fuerte que uno salvaje.")
 
 [resource]
 script = ExtResource("1_n")

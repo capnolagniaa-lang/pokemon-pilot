@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que los Clefairy bailan con la luna llena.")
+lines = PackedStringArray("Vine porque dicen que acá hay fósiles rarísimos.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "iris"
 display_name = "Iris"
 title = "Chica"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¿Viste un Clefairy? ¡Yo tengo uno!", "pierde": "¡Ay, mi Clefairy!", "despues": "Dicen que los Clefairy bailan con la luna llena."}
+lines = {"desafio": "¿Qué? Estoy esperando a que mis amigos me encuentren.", "pierde": "¿Perdí?", "despues": "Vine porque dicen que acá hay fósiles rarísimos."}
 arena_id = "arena_campo"
 
 [resource]

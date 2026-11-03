@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Ves el Mt. Moon allá? Adentro hay Clefairy... ¡y dicen que también anda el Team Rocket!")
+lines = PackedStringArray("Uf... Me tengo que sentar un rato...", "¡Ese túnel desde Celeste te deja de cama!")
 
 [resource]
 script = ExtResource("1_n")

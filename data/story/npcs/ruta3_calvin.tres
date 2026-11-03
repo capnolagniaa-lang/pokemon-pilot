@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Spearow son bravos. Cuidá los ojos.")
+lines = PackedStringArray("Yo uso pantalón corto hasta en invierno. Es mi filosofía.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "calvo"
 display_name = "Calvo"
 title = "Joven"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Mi Spearow pica más fuerte que cualquier Pidgey!", "pierde": "¡Se me desplumó!", "despues": "Los Spearow son bravos. Cuidá los ojos."}
+lines = {"desafio": "¡Eh! ¡No tenés pantalón corto! ¿Qué te pasa?", "pierde": "¡Perdí! ¡Perdí! ¡Perdí!", "despues": "Yo uso pantalón corto hasta en invierno. Es mi filosofía."}
 arena_id = "arena_campo"
 
 [resource]

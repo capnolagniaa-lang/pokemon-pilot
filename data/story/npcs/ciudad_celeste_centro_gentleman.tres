@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Bill es el que inventó el sistema de la PC de Pokémon.")
+lines = PackedStringArray("¿Escuchaste hablar de Bill? ¡Todos le dicen Pokemaníaco!", "Yo creo que le tienen envidia.", "¿Quién no querría presumir de sus Pokémon?")
 
 [resource]
 script = ExtResource("1_n")

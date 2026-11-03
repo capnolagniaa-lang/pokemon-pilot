@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los combates se ganan con estrategia, no solo con fuerza.")
+lines = PackedStringArray("Caminé un montón, pero no vi ningún Pokémon de los que quería.")
 
 [resource]
 script = ExtResource("1_n")
 id = "zona_safari_oeste_descanso_cooltrainerf"
-display_name = "Entrenador"
+display_name = "Chica"
 zone_id = "zona_safari_oeste_descanso"
 cell = Vector2i(7, 3)
 gfx = "cooltrainer_f"

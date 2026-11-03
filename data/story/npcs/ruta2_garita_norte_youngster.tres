@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Saliste del bosque! Ciudad Plateada está al norte.")
+lines = PackedStringArray("Muchos Pokémon viven solo en bosques y cuevas.", "Para conseguir de todas las clases tenés que ser constante y buscar en todos lados.")
 
 [resource]
 script = ExtResource("1_n")

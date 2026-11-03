@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Desde el barco no se puede pescar. ¡Qué bronca!")
+lines = PackedStringArray("¿Fiesta?|La fiesta del crucero ya debe haber terminado.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -32,7 +32,7 @@ id = "daniel"
 display_name = "Daniel"
 title = "Pescador"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Picó uno! ...Ah, no, sos un entrenador.", "pierde": "Se me cortó la línea.", "despues": "Desde el barco no se puede pescar. ¡Qué bronca!"}
+lines = {"desafio": "¡Mirá lo que pesqué!", "pierde": "¡Me quedé sin nada!", "despues": "¿Fiesta?|La fiesta del crucero ya debe haber terminado."}
 arena_id = "arena_campo"
 
 [resource]

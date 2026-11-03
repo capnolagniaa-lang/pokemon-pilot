@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Entreno todos los días. ¡La Liga Pokémon me espera!")
+lines = PackedStringArray("¿Probaste la Velocidad X? Hace más rápido a un Pokémon en la pelea.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_fucsia_tienda_cooltrainerf"
-display_name = "Entrenador"
+display_name = "Chica"
 zone_id = "ciudad_fucsia_tienda"
 cell = Vector2i(9, 5)
 gfx = "cooltrainer_f"

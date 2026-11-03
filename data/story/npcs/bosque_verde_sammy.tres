@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Cuidado con el veneno de los Weedle: pica fuerte.")
+lines = PackedStringArray("A veces hay cosas tiradas en el piso.|Estoy buscando lo que se me cayó. ¿Me ayudás?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "samuel"
 display_name = "Samuel"
 title = "Cazabichos"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Mi Weedle es el más fuerte de todo el bosque!", "pierde": "¡¿Cómo?! ¡Perdí con mi mejor Weedle!", "despues": "Cuidado con el veneno de los Weedle: pica fuerte."}
+lines = {"desafio": "¡Eh, esperá! ¿Cuál es el apuro?", "pierde": "¡Me rindo! ¡Sos bueno en esto!", "despues": "A veces hay cosas tiradas en el piso.|Estoy buscando lo que se me cayó. ¿Me ayudás?"}
 arena_id = "arena_campo"
 
 [resource]

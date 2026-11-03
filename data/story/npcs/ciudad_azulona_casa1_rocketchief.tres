@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Ya no tengo edad para combates, pero me encanta mirarlos.")
+lines = PackedStringArray("¡Jejeje!", "¡Las tragamonedas nos llenan de plata, y en grande!")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_casa1_rocketchief"
-display_name = "Abuelo"
+display_name = "Jefe"
 zone_id = "ciudad_azulona_casa1"
 cell = Vector2i(5, 2)
 gfx = "old_man_2"

@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Casino de Azulona?")
+lines = PackedStringArray("¡Eh! ¡Tenés cosas mejores que hacer, futuro campeón!", "La líder del Gimnasio de Azulona es Erika. Usa Pokémon planta y está en armonía con la naturaleza.", "Parecerá tranquila por lo de los arreglos florales... ¡pero no hay que tomarla a la ligera!")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_casino_gymguy"
-display_name = "Vecino"
+display_name = "Guía"
 zone_id = "ciudad_azulona_casino"
 cell = Vector2i(7, 10)
 gfx = "gym_guy"

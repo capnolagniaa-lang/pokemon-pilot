@@ -11,11 +11,11 @@
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
 forbids = PackedStringArray("tiene_inicial")
-lines = PackedStringArray("¡Abuelo! ¡Me aburro de esperar!", "¿Eh? ¿Vos también vas a elegir? Dale, elegí primero. Yo soy re generoso.")
+lines = PackedStringArray("¡Abuelo! ¡Me aburro de esperar!", "Je, yo no necesito ser angurriento como vos. ¡Soy maduro! Dale, elegí vos primero.")
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Mi Pokémon es mucho mejor que el tuyo. Ya vas a ver.")
+lines = PackedStringArray("Mi Pokémon parece mucho más fuerte que el tuyo.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")

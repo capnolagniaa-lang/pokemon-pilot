@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Mi Slowpoke todavía no se dio cuenta de que perdió.")
+lines = PackedStringArray("En el S.S. Anne vi entrenadores de todo el mundo.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "dani"
 display_name = "Dani"
 title = "Joven"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "Mi Slowpoke es... re... lento... ¡pero pega!", "pierde": "...¿Ya terminó?", "despues": "Mi Slowpoke todavía no se dio cuenta de que perdió."}
+lines = {"desafio": "Mi papá me llevó a una fiesta bárbara en el S.S. Anne, en Ciudad Carmín.", "pierde": "¡No estoy enojado!", "despues": "En el S.S. Anne vi entrenadores de todo el mundo."}
 arena_id = "arena_campo"
 
 [resource]

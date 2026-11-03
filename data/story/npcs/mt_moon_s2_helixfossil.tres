@@ -11,7 +11,7 @@ lines = PackedStringArray("(Un fósil. Miguel no te deja ni acercarte.)")
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
 set_flags = PackedStringArray("fosil_elegido", "fosil_helix_elegido")
-lines = PackedStringArray("(Es el Fósil Hélix: tiene forma de caracol, como una concha antigua.)")
+lines = PackedStringArray("¿Querés el Fósil Hélix?", "¡Conseguiste el Fósil Hélix!")
 give_items = {"fosil_helix": 1}
 confirm = "¿Te llevás el Fósil Hélix?"
 after_speaker = "Miguel"

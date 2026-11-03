@@ -11,7 +11,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La ciencia avanza con cada derrota.")
+lines = PackedStringArray("Trabajábamos en la Poké Ball definitiva, la que atrapa cualquier cosa.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -39,7 +39,7 @@ id = "beau"
 display_name = "Beau"
 title = "Científico"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3")])
-lines = {"desafio": "¡Mis experimentos te van a sorprender!", "pierde": "¡Error en el cálculo!", "despues": "La ciencia avanza con cada derrota."}
+lines = {"desafio": "En este piso estudiamos la tecnología de las Poké Balls.", "pierde": "¡Uh! ¡Maldición!", "despues": "Trabajábamos en la Poké Ball definitiva, la que atrapa cualquier cosa."}
 arena_id = "arena_campo"
 
 [resource]

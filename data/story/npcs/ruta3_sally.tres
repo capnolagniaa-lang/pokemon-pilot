@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Nidoran tienen púas venenosas, ojo.")
+lines = PackedStringArray("Si no dejás que los entrenadores te vean, te ahorrás las peleas.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "sandra"
 display_name = "Sandra"
 title = "Chica"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Eh! ¿Me mirabas? ¡Entonces peleamos!", "pierde": "¡Qué vergüenza!", "despues": "Los Nidoran tienen púas venenosas, ojo."}
+lines = {"desafio": "Esa mirada que me echaste... ¡me intriga!", "pierde": "¡No seas malo!", "despues": "Si no dejás que los entrenadores te vean, te ahorrás las peleas."}
 arena_id = "arena_campo"
 
 [resource]

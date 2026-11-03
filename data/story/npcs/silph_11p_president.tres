@@ -8,13 +8,13 @@ script = ExtResource("2_t")
 requires = PackedStringArray("silph_liberada")
 forbids = PackedStringArray("master_ball_recibida")
 set_flags = PackedStringArray("master_ball_recibida")
-lines = PackedStringArray("¡Gracias! ¡Salvaste a Silph S.A.!", "Te quiero dar algo especial: la Master Ball. Atrapa cualquier Pokémon, sin fallar.", "Es la única que existe. ¡Usala bien!")
+lines = PackedStringArray("Presidente: ¡Ay, muchacho! Gracias por salvar a Silph.", "Nunca me voy a olvidar de que nos salvaste en el peor momento. Te tengo que agradecer de alguna forma.", "Como soy rico, te puedo dar cualquier cosa... Tomá, esto puede servir: la Master Ball.")
 give_items = {"master_ball": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
 requires = PackedStringArray("silph_liberada")
-lines = PackedStringArray("Silph S.A. siempre va a estar en deuda con vos.")
+lines = PackedStringArray("Presidente: Eso no se compra en ningún lado. Es nuestro prototipo secreto, la Master Ball.", "¡Atrapa a cualquier Pokémon sin fallar! Eso sí, usala con discreción.")
 
 [sub_resource type="Resource" id="Talk_2"]
 script = ExtResource("2_t")

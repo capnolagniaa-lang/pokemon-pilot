@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("No te metas con los de la Ruta 16.")
+lines = PackedStringArray("Si voy a tener Pokémon, que sean feroces.|Los usaría para dejar hechos trizas a mis enemigos.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "camron"
 display_name = "Camron"
 title = "Calvo"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Pelado y peligroso! ¡En guardia!", "pierde": "¡Me dejaste más pelado!", "despues": "No te metas con los de la Ruta 16."}
+lines = {"desafio": "¡Tengo hambre y mala onda! ¡Necesito una bolsa de boxeo!", "pierde": "¡Mal, mal, mal!", "despues": "Si voy a tener Pokémon, que sean feroces.|Los usaría para dejar hechos trizas a mis enemigos."}
 arena_id = "arena_campo"
 
 [resource]

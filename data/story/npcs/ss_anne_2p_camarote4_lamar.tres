@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Ponyta corre más rápido que cualquier barco.")
+lines = PackedStringArray("Yo, personalmente, prefiero los Pokémon fuertes y raros.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "lener"
 display_name = "Lener"
 title = "Caballero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Fuego en alta mar!", "pierde": "Se me apagó la llama.", "despues": "Ponyta corre más rápido que cualquier barco."}
+lines = {"desafio": "¿Qué vale más para vos, un Pokémon fuerte o uno raro?", "pierde": "¡Te tengo que saludar!", "despues": "Yo, personalmente, prefiero los Pokémon fuertes y raros."}
 arena_id = "arena_campo"
 
 [resource]

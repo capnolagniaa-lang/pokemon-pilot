@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Club de Fans de Entrenadores?")
+lines = PackedStringArray("Me parece que los entrenadores son re cancheros cuando pelean.", "¿Vos no pensás lo mismo?")
 
 [resource]
 script = ExtResource("1_n")
 id = "club_entrenadores_crushgirl"
-display_name = "Vecino"
+display_name = "Chica"
 zone_id = "club_entrenadores"
 cell = Vector2i(7, 13)
 gfx = "crush_girl"

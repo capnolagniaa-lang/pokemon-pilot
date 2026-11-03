@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Me encanta pasear por Centro Pokémon de la Ruta 10 con mis Pokémon.")
+lines = PackedStringArray("Una Pepita no sirve para nada. Así que la vendí por 5000 Pokédólares.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ruta10_centro_fatman"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "ruta10_centro"
 cell = Vector2i(2, 3)
 gfx = "fat_man"

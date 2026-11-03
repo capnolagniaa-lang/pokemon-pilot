@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Algún día voy a tener un Beedrill.")
+lines = PackedStringArray("A mí me encantan los bichos, así que me vuelvo al Bosque Verde.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -32,7 +32,7 @@ id = "kevin"
 display_name = "Kevin"
 title = "Cazabichos"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Mis bichos están listos! ¿Y los tuyos?", "pierde": "¡Bzzz! Se me escaparon.", "despues": "Algún día voy a tener un Beedrill."}
+lines = {"desafio": "Por acá no hay muchos bichos.", "pierde": "¡No! ¡Me estás cargando!", "despues": "A mí me encantan los bichos, así que me vuelvo al Bosque Verde."}
 arena_id = "arena_campo"
 
 [resource]

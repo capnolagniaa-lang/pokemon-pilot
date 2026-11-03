@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El aire libre es lo mejor.")
+lines = PackedStringArray("¿Vos también vas al Túnel Roca?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -38,7 +38,7 @@ id = "drew"
 display_name = "Drew"
 title = "Campista"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3")])
-lines = {"desafio": "¡Acampando y peleando, así es la vida!", "pierde": "¡Me desarmaste la carpa!", "despues": "El aire libre es lo mejor."}
+lines = {"desafio": "Voy por el Túnel Roca hasta Lavanda...", "pierde": "No estoy a la altura...", "despues": "¿Vos también vas al Túnel Roca?"}
 arena_id = "arena_campo"
 
 [resource]

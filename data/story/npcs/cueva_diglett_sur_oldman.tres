@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Cuando yo era joven, Cueva Diglett (entrada sur) era muy distinto...")
+lines = PackedStringArray("¡Pero qué sorpresa! ¡Este túnel tan largo lo cavaron los Diglett!", "Dicen que llega hasta Ciudad Verde.")
 
 [resource]
 script = ExtResource("1_n")

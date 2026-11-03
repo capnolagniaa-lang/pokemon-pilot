@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La práctica hace al maestro.")
+lines = PackedStringArray("¡Me gustan las técnicas de veneno y de sueño, porque duran después de la pelea!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "nate"
 display_name = "Nate"
 title = "Malabarista"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Mirá cómo hago malabares con mis Pokémon!", "pierde": "¡Se me cayeron todos!", "despues": "La práctica hace al maestro."}
+lines = {"desafio": "¡A ver si le ganás a mis técnicas especiales!", "pierde": "¡Me engañaste!", "despues": "¡Me gustan las técnicas de veneno y de sueño, porque duran después de la pelea!"}
 arena_id = "arena_gimnasio_veneno"
 
 [resource]

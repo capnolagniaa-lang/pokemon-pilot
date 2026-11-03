@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Hola! Bienvenido a Tienda de bicicletas.")
+lines = PackedStringArray("A mí me alcanza con una bici de paseo.", "Total, a una de montaña no le podés poner canasto para las compras.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_celeste_bicis_woman"
-display_name = "Vecino"
+display_name = "Señora"
 zone_id = "ciudad_celeste_bicis"
 cell = Vector2i(5, 5)
 gfx = "woman_2"

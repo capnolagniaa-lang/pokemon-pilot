@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Mi Pidgey lleva cartas a todos lados. ¡Es mi cartero!")
+lines = PackedStringArray("Mi Pidgey va a llevar volando una carta a Azafrán, al norte.")
 
 [resource]
 script = ExtResource("1_n")

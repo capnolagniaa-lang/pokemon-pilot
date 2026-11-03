@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Gracias por todo. Los Pokémon de esta casa están felices de que el Team Rocket se haya ido de la Torre.")
+lines = PackedStringArray("Sr. Fuji: ¿Te sirvió mi Poké Flauta?", "Tu misión de completar la Pokédex pide mucha dedicación.", "Sin un amor profundo por los Pokémon, no se puede.")
 
 [resource]
 script = ExtResource("1_n")

@@ -5,12 +5,13 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Hola! Bienvenido a Silph S.A. (planta 9).")
+lines = PackedStringArray("Te ves cansado. Deberías dormir una siestita.", "...", "¡No te rindas!")
+heal = true
 
 [resource]
 script = ExtResource("1_n")
 id = "silph_9p_healwoman"
-display_name = "Vecino"
+display_name = "Empleada"
 zone_id = "silph_9p"
 cell = Vector2i(2, 16)
 gfx = "woman_2"

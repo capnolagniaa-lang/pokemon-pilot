@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La ciencia avanza con cada derrota.")
+lines = PackedStringArray("Las puertas tienen cerradura electrónica.|Para abrirlas hace falta una Llave Magnética.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "rodney"
 display_name = "Rodney"
 title = "Científico"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Mis experimentos te van a sorprender!", "pierde": "¡Error en el cálculo!", "despues": "La ciencia avanza con cada derrota."}
+lines = {"desafio": "Mi Pokémon es mi sirviente leal.", "pierde": "¡Uh! ¡Pokémon débil!", "despues": "Las puertas tienen cerradura electrónica.|Para abrirlas hace falta una Llave Magnética."}
 arena_id = "arena_campo"
 
 [resource]

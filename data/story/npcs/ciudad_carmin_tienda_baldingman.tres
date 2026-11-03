@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Las Superpociones son lo mejor para un viaje largo.")
+lines = PackedStringArray("Hay gente mala que usa a los Pokémon para cometer crímenes.", "El Team Rocket trafica Pokémon raros, por ejemplo.", "Y abandona a los que les parecen feos o inútiles. Así de horribles son.")
 
 [resource]
 script = ExtResource("1_n")

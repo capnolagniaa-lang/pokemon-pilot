@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El Profesor Oak es una eminencia. Medio despistado, pero una eminencia.")
+lines = PackedStringArray("Capaz que el Profesor Oak no impresiona a primera vista, pero es la eminencia en Pokémon.", "Muchísimos entrenadores lo respetan.")
 
 [resource]
 script = ExtResource("1_n")

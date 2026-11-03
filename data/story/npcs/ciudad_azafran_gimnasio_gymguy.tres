@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Gimnasio de Ciudad Azafrán?")
+lines = PackedStringArray("¡Ey, futuro campeón!", "Los Pokémon de Sabrina usan poder psíquico en vez de fuerza.", "Los de tipo lucha son especialmente débiles contra los psíquicos: ¡los destruyen antes de que tiren una piña!")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azafran_gimnasio_gymguy"
-display_name = "Vecino"
+display_name = "Guía"
 zone_id = "ciudad_azafran_gimnasio"
 cell = Vector2i(15, 20)
 gfx = "gym_guy"

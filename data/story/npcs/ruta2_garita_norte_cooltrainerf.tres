@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Brock, el líder de Plateada, usa Pokémon de roca.", "El agua y la planta les hacen muchísimo daño.")
+lines = PackedStringArray("¿Conocés la técnica para cancelar una evolución?", "Mientras un Pokémon evoluciona, podés frenar el proceso.", "Sirve para criar a los Pokémon tal como son.")
 
 [resource]
 script = ExtResource("1_n")

@@ -13,7 +13,7 @@ give_items = {"mapa": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Buscás a mi hermano? Salió temprano.", "Dice que va a ser el mejor entrenador del mundo. ¡Siempre tan modesto!")
+lines = PackedStringArray("Los Pokémon te quieren más si los criás con cariño.", "El tuyo ya te va tomando confianza. ¡Seguí tratándolo bien!")
 
 [resource]
 script = ExtResource("1_n")

@@ -12,7 +12,7 @@ lines = PackedStringArray("Mejor no. Ya tenés a tu compañero.")
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
 set_flags = PackedStringArray("tiene_inicial", "inicial_squirtle", "rival_bulbasaur")
-lines = PackedStringArray("¡Es Squirtle, el Pokémon tipo agua!", "Su estilo es el de un tanque: se mete en el caparazón y castiga los errores.")
+lines = PackedStringArray("¡Así que elegís a Squirtle, el Pokémon tipo agua!", "Vale la pena criarlo. ¡Es un Pokémon con mucha energía!")
 confirm = "¿Querés a Squirtle?"
 give_pokemon = ExtResource("r_2")
 after_speaker = "Azul"

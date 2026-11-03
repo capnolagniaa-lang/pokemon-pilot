@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("...")
+lines = PackedStringArray("Veo que criás a tus Pokémon con muchísimo cuidado.|Un chico como vos nunca entendería lo que quiero lograr.|Por esta vez me hago a un lado. Ojalá nos volvamos a ver...")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -33,7 +33,7 @@ id = "giovanni"
 display_name = "Giovanni"
 title = "Jefe Rocket"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "Así que encontraste nuestro escondite. Interesante.|Soy Giovanni, el jefe del Team Rocket. ¡Vas a lamentar haber venido!", "pierde": "¡¿Qué?! ...Hacía mucho que nadie me ganaba. Me voy, pero esto no termina acá.", "gana": "Volvé a jugar a tu casa.", "despues": "..."}
+lines = {"desafio": "¡Vaya! Tengo que reconocer que me impresiona que hayas llegado hasta acá.|El Team Rocket atrapa Pokémon de todo el mundo: son herramientas para mantener nuestro negocio.|¡Soy el líder, Giovanni! ¡Por tu insolencia, vas a conocer el dolor!", "pierde": "¡QUÉ! ¡No puede ser!", "gana": "Volvé a jugar a tu casa.", "despues": "Veo que criás a tus Pokémon con muchísimo cuidado.|Un chico como vos nunca entendería lo que quiero lograr.|Por esta vez me hago a un lado. Ojalá nos volvamos a ver..."}
 arena_id = "arena_campo"
 reward_flags = PackedStringArray("giovanni_escondite_vencido")
 

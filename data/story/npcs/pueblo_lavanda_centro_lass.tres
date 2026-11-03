@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Ya viste todo Centro Pokémon de Pueblo Lavanda?")
+lines = PackedStringArray("Vi a la mamá de Cubone tratando de escaparse del Team Rocket.", "La mataron mientras huía...")
 
 [resource]
 script = ExtResource("1_n")
 id = "pueblo_lavanda_centro_lass"
-display_name = "Pibe"
+display_name = "Chica"
 zone_id = "pueblo_lavanda_centro"
 cell = Vector2i(5, 6)
 gfx = "lass"

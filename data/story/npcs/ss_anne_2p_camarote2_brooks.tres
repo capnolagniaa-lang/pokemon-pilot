@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Lt. Surge, el líder de Carmín, ama a los Pikachu.")
+lines = PackedStringArray("¡Hace quince años te hubiera ganado!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "celio"
 display_name = "Celio"
 title = "Caballero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "Mi Pikachu es mi orgullo. ¿Probamos?", "pierde": "Bravo, bravo.", "despues": "Lt. Surge, el líder de Carmín, ama a los Pikachu."}
+lines = {"desafio": "Pelear con los jóvenes me mantiene joven.", "pierde": "¡Buena pelea! ¡Ah, me siento joven otra vez!", "despues": "¡Hace quince años te hubiera ganado!"}
 arena_id = "arena_campo"
 
 [resource]

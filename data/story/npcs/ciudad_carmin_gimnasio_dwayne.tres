@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El teniente Surge fue soldado. ¡Es durísimo!")
+lines = PackedStringArray("Las trampas del gimnasio las puso el mismo Lt. Surge.|Puso cerraduras dobles en todos lados. Te doy una pista:|cuando abrís la primera, la segunda está justo al lado.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -26,7 +26,7 @@ id = "dwayne"
 display_name = "Dwayne"
 title = "Marinero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Dos Pikachu, doble descarga!", "pierde": "¡Cortocircuito!", "despues": "El teniente Surge fue soldado. ¡Es durísimo!"}
+lines = {"desafio": "¡Este no es lugar para chicos! ¡Ni aunque seas bueno!", "pierde": "¡Uh! ¡Me sorprendiste!", "despues": "Las trampas del gimnasio las puso el mismo Lt. Surge.|Puso cerraduras dobles en todos lados. Te doy una pista:|cuando abrís la primera, la segunda está justo al lado."}
 arena_id = "arena_gimnasio_electrico"
 
 [resource]

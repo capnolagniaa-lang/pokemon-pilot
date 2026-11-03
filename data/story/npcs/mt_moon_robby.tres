@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Zubat no tienen ojos, ¿sabías?")
+lines = PackedStringArray("¡Zubat es duro! Pero si atrapás uno, vas a poder contar con él.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -32,7 +32,7 @@ id = "robi"
 display_name = "Robi"
 title = "Cazabichos"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Hasta en la cueva hay bichos! ¡Peleá!", "pierde": "¡Acá abajo no ven nada!", "despues": "Los Zubat no tienen ojos, ¿sabías?"}
+lines = {"desafio": "Para llegar a Ciudad Celeste tenés que cruzar esta cueva.", "pierde": "Perdí.", "despues": "¡Zubat es duro! Pero si atrapás uno, vas a poder contar con él."}
 arena_id = "arena_campo"
 
 [resource]

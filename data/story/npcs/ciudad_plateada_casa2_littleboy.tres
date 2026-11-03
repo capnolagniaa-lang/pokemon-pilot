@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Mi abuelo sabe todo sobre Pokémon.")
+lines = PackedStringArray("Un Pokémon es más fácil de atrapar si tiene un problema de estado.", "Dormido, envenenado, quemado o paralizado: todos sirven.", "¡Pero atrapar Pokémon nunca es seguro!")
 
 [resource]
 script = ExtResource("1_n")

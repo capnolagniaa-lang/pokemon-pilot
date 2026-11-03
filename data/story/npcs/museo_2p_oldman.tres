@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Vengo todas las semanas a ver el transbordador.")
+lines = PackedStringArray("¡20 de julio de 1969! Ese día la humanidad pisó la luna por primera vez.", "Me compré una tele a color solo para ver esa noticia.")
 
 [resource]
 script = ExtResource("1_n")

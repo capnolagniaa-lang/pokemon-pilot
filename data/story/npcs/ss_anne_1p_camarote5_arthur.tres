@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Viajar en barco es muy elegante, ¿no le parece?")
+lines = PackedStringArray("¡Quiero que me dejen solo! ¡Fuera!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "arturo"
 display_name = "Arturo"
 title = "Caballero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "Un caballero siempre acepta un desafío.", "pierde": "Excelente combate, joven.", "despues": "Viajar en barco es muy elegante, ¿no le parece?"}
+lines = {"desafio": "¡Mocoso insolente! ¿Cómo te atrevés a entrar así?", "pierde": "¡Hmpf! ¡Qué chico maleducado! ¡No tenés modales!", "despues": "¡Quiero que me dejen solo! ¡Fuera!"}
 arena_id = "arena_campo"
 
 [resource]

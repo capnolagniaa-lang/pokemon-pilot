@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los combates se ganan con estrategia, no solo con fuerza.")
+lines = PackedStringArray("¡Esos Rocket horribles! ¡No merecen piedad!", "La pobre mamá de este Cubone... La mataron mientras se escapaba del Team Rocket.")
 
 [resource]
 script = ExtResource("1_n")
 id = "pueblo_lavanda_casa1_cooltrainerf"
-display_name = "Entrenador"
+display_name = "Chica"
 zone_id = "pueblo_lavanda_casa1"
 cell = Vector2i(4, 4)
 gfx = "cooltrainer_f"

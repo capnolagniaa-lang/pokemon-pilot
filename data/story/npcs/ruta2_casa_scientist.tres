@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Estudio los intercambios de Pokémon. ¡Algunos evolucionan al cambiar de entrenador!")
+lines = PackedStringArray("Un Pokémon debilitado ya no tiene energía para pelear.", "Pero igual puede usar ataques como Corte fuera del combate.")
 
 [resource]
 script = ExtResource("1_n")

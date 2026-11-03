@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Todo tiene arreglo.")
+lines = PackedStringArray("Bueno, mejor vuelvo a laburar.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -32,7 +32,7 @@ id = "bernie"
 display_name = "Bernie"
 title = "Mecánico"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Nada que una buena herramienta no arregle!", "pierde": "¡Se me quemó un fusible!", "despues": "Todo tiene arreglo."}
+lines = {"desafio": "¡Cuidado con los cables pelados!", "pierde": "¡Uh! ¡Sos una bujía!", "despues": "Bueno, mejor vuelvo a laburar."}
 arena_id = "arena_campo"
 
 [resource]

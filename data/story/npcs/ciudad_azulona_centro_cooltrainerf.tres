@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los combates se ganan con estrategia, no solo con fuerza.")
+lines = PackedStringArray("Vine en bici desde Fucsia.", "La Ruta Ciclista es toda en subida, así que estoy muerta.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_centro_cooltrainerf"
-display_name = "Entrenador"
+display_name = "Chica"
 zone_id = "ciudad_azulona_centro"
 cell = Vector2i(10, 6)
 gfx = "cooltrainer_f"

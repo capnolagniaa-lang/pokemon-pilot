@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Centro Pokémon de Isla Canela es un lugar tranquilo... casi siempre.")
+lines = PackedStringArray("¿Tenés muchos amigos?", "Jugar con los de siempre está bueno, pero de vez en cuando conectate con gente nueva.", "¡Capaz que terminás haciendo amigos nuevos!")
 
 [resource]
 script = ExtResource("1_n")
 id = "isla_canela_centro_gentleman"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "isla_canela_centro"
 cell = Vector2i(9, 7)
 gfx = "gentleman"

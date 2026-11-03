@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Me encanta pasear por Casa del Pescador con mis Pokémon.")
+lines = PackedStringArray("¡Hola! ¿Estuviste pescando?", "En cada lugar hay Pokémon distintos: probá en cualquier agua.", "¡Ah, y no te olvides de traerme un Magikarp gigante!")
 
 [resource]
 script = ExtResource("1_n")
 id = "casa_pescador_fishinggurubrother"
-display_name = "Vecino"
+display_name = "Pescador"
 zone_id = "casa_pescador"
 cell = Vector2i(4, 4)
 gfx = "fisher"

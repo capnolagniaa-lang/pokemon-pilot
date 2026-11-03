@@ -12,7 +12,7 @@ lines = PackedStringArray("(Una Poké Ball. El maestro del Dojo no te deja tocar
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
 set_flags = PackedStringArray("hitmon_elegido")
-lines = PackedStringArray("(Una Poké Ball con un Hitmonlee.)")
+lines = PackedStringArray("¿Querés a Hitmonlee, el de las patadas tremendas?")
 confirm = "Es un Hitmonlee, el de las patadas. ¿Te lo llevás?"
 give_pokemon = ExtResource("r_2")
 give_level = 25

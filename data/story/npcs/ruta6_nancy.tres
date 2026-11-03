@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Pikachu me sigue a todos lados.")
+lines = PackedStringArray("(Cuchichea con su compañero...)")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "nancy"
 display_name = "Nancy"
 title = "Dominguera"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Pikachu y yo vinimos de picnic!", "pierde": "¡Se me cayó el sánguche!", "despues": "Pikachu me sigue a todos lados."}
+lines = {"desafio": "¡Disculpá! ¡Esta es una charla privada!", "pierde": "¡Uf! Odio perder.", "despues": "(Cuchichea con su compañero...)"}
 arena_id = "arena_campo"
 
 [resource]

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("En Ciudad Carmín está el S.S. Anne, un crucero lujosísimo.")
+lines = PackedStringArray("En la oscuridad de la Vía Subterránea la gente pierde un montón de cosas.")
 
 [resource]
 script = ExtResource("1_n")

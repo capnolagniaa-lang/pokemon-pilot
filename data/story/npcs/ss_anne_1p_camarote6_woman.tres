@@ -5,7 +5,8 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que el capitán se marea. ¡Qué gracioso!")
+lines = PackedStringArray("Te ves cansado. ¿Querés descansar un ratito?", "...", "Ay, perdón por mimarte tanto. Es que te parecés a mi hermanito...", "Qué lindo ver que todos quedaron frescos y con energía.")
+heal = true
 
 [resource]
 script = ExtResource("1_n")

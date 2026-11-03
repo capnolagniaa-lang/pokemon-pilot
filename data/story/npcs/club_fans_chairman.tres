@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Bienvenido al Club de Fans de los Pokémon!", "¿Querés que te cuente de mi Rapidash? ...¡Otro día, que es una historia larga!")
+lines = PackedStringArray("¡Soy el presidente del Club de Fans de los Pokémon! ¡Crío más de cien Pokémon!", "Con los Pokémon soy muy exigente. ¡Muy, muy exigente!", "Mi Rapidash favorito es... lindo... adorable... inteligente... ¡espectacular!... cuando duerme es calentito...", "...¡Uy! ¡Mirá la hora! Te tuve un montón. ¡Gracias por escucharme!")
 
 [resource]
 script = ExtResource("1_n")

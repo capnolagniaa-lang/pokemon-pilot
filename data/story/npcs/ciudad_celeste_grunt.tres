@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Me voy antes de que llegue la policía...")
+lines = PackedStringArray("¡Mejor me voy yendo! ¡Chau!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "rocket"
 display_name = "Rocket"
 title = "Soldado Rocket"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Ey! ¡Nadie me vio salir por el agujero! ...¿Vos me viste? ¡Entonces peleamos!", "pierde": "¡Uf! Está bien, está bien. Tomá la MT, igual ya no me sirve.", "despues": "Me voy antes de que llegue la policía..."}
+lines = {"desafio": "¡Eh! ¡Fuera de acá, que este patio no es tuyo!|¿Eh? ¿Yo? Yo pasaba por acá nomás. ¿No me creés?", "pierde": "¡Pará, pará! ¡Me rindo! Me voy calladito...|Está bien, te devuelvo la MT que me robé.", "despues": "¡Mejor me voy yendo! ¡Chau!"}
 arena_id = "arena_campo"
 reward_flags = PackedStringArray("rocket_celeste_peleado")
 reward_items = {"mt28": 1}

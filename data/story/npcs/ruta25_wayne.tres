@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El agua y la planta parten las rocas.")
+lines = PackedStringArray("El camino de abajo es un atajo a Ciudad Celeste.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "wenceslao"
 display_name = "Wenceslao"
 title = "Montañero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Encontré este Onix en una cueva! ¡Probalo!", "pierde": "¡Ni la serpiente de roca!", "despues": "El agua y la planta parten las rocas."}
+lines = {"desafio": "¿Vas a ver a Bill? ¡Primero peleamos!", "pierde": "Sos bravo.", "despues": "El camino de abajo es un atajo a Ciudad Celeste."}
 arena_id = "arena_campo"
 
 [resource]

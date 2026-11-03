@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Tienda de Pueblo Lavanda?")
+lines = PackedStringArray("¿Compraste Revivir? ¡Reanima a cualquier Pokémon debilitado!")
 
 [resource]
 script = ExtResource("1_n")
 id = "pueblo_lavanda_tienda_rocker"
-display_name = "Vecino"
+display_name = "Rockero"
 zone_id = "pueblo_lavanda_tienda"
 cell = Vector2i(9, 2)
 gfx = "rocker"

@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Estoy investigando a los Pokémon de Ciudad Carmín. ¡Fascinante!")
+lines = PackedStringArray("¡Hola! ¿Cómo andás? Soy uno de los ayudantes del Profesor Oak.", "¿Te cruzaste con el otro ayudante? Tenía un paquete del profe para vos.", "Dijo que te iba a buscar por la Ruta 2. Si andás por ahí, fijate.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_carmin_oaksaide"
-display_name = "Científico"
+display_name = "Ayudante de Oak"
 zone_id = "ciudad_carmin"
 cell = Vector2i(45, 13)
 gfx = "scientist"

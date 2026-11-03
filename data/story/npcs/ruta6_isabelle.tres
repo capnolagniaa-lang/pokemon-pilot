@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Pidgey son re fáciles de criar.")
+lines = PackedStringArray("Quiero hacerme más fuerte. ¿Cuál es tu secreto?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -31,7 +31,7 @@ id = "isabel"
 display_name = "Isabel"
 title = "Dominguera"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Tres Pidgey! ¿Te animás?", "pierde": "¡Volaron los tres!", "despues": "Los Pidgey son re fáciles de criar."}
+lines = {"desafio": "¿Yo? Bueno, dale, ¡juego!", "pierde": "No me salió nada...", "despues": "Quiero hacerme más fuerte. ¿Cuál es tu secreto?"}
 arena_id = "arena_campo"
 
 [resource]

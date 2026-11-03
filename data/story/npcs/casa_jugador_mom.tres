@@ -7,11 +7,11 @@
 script = ExtResource("2_t")
 requires = PackedStringArray("historia")
 forbids = PackedStringArray("tiene_inicial")
-lines = PackedStringArray("¡Buen día! Hoy es un gran día, ¿no?", "El Profesor Oak, el vecino, te andaba buscando. ¡Pasá por su laboratorio!")
+lines = PackedStringArray("...Claro. Todos los chicos se van de casa algún día. Lo dijeron en la tele.", "¡Ah, cierto! El Profesor Oak, el vecino, te andaba buscando.")
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Hola! Te veo cansado. Sentate un ratito.", "Tus Pokémon también se merecen un descanso.", "...¡Listo! Ahora sí, a seguir con tu aventura. ¡Cuidate!")
+lines = PackedStringArray("¡Hola! Te veo cansado: tendrías que descansar un poquito.", "...", "¡Muy bien! Vos y tus Pokémon están como nuevos. ¡Cuidate mucho!")
 heal = true
 
 [resource]

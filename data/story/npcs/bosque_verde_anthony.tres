@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Algún día mis Caterpie van a ser Butterfree.")
+lines = PackedStringArray("Perdí parte de mi mesada...")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -26,7 +26,7 @@ id = "antonio"
 display_name = "Antonio"
 title = "Cazabichos"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Mirá cuántos Caterpie atrapé! ¡A ver si les ganás!", "pierde": "Tendría que haber atrapado un Pikachu...", "despues": "Algún día mis Caterpie van a ser Butterfree."}
+lines = {"desafio": "Seré chiquito, ¡pero no me gusta que me la hagan fácil!", "pierde": "Uf. No me salió nada.", "despues": "Perdí parte de mi mesada..."}
 arena_id = "arena_campo"
 
 [resource]

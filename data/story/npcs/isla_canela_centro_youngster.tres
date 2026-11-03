@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Mi Pokémon favorito es el tuyo!")
+lines = PackedStringArray("Un Pokémon puede seguir aprendiendo técnicas aunque frenes su evolución.", "La evolución puede esperar hasta que aprenda los ataques nuevos.")
 
 [resource]
 script = ExtResource("1_n")

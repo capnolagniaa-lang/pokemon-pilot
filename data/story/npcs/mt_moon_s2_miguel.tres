@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Agarrá el fósil que quieras. El otro es mío.")
+lines = PackedStringArray("Lejos de acá, en la Isla Canela, hay un laboratorio Pokémon.|Investigan cómo revivir fósiles.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -33,7 +33,7 @@ id = "miguel"
 display_name = "Miguel"
 title = "Supernecio"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Ey! ¡Estos fósiles los encontré yo! ¡Son míos!", "pierde": "¡Está bien, está bien! Uno para cada uno. No hay que ser avaricioso.", "despues": "Agarrá el fósil que quieras. El otro es mío."}
+lines = {"desafio": "¡Eh, pará!|¡Estos fósiles los encontré yo! ¡Son los dos míos!", "pierde": "¡Está bien! ¡Los comparto!|Nos llevamos uno cada uno. ¡Nada de angurrias!", "despues": "Lejos de acá, en la Isla Canela, hay un laboratorio Pokémon.|Investigan cómo revivir fósiles."}
 arena_id = "arena_campo"
 
 [resource]

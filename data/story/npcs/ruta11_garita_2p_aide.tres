@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La ciencia de los Pokémon avanza cada día.")
+lines = PackedStringArray("¡Hola! ¿Te acordás de mí? Soy uno de los ayudantes del Profesor Oak.", "Hay objetos tirados en el piso que no se ven a simple vista.", "Si te fijás bien por los rincones, vas a encontrar cosas escondidas.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ruta11_garita_2p_aide"
-display_name = "Científico"
+display_name = "Ayudante de Oak"
 zone_id = "ruta11_garita_2p"
 cell = Vector2i(2, 6)
 gfx = "scientist"

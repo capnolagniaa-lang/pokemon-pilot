@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Ya no tengo edad para combates, pero me encanta mirarlos.")
+lines = PackedStringArray("¿Pokémon? No, este es un hotel para personas.", "Y además, por desgracia, está todo lleno.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_hotel_receptionist"
-display_name = "Abuelo"
+display_name = "Recepcionista"
 zone_id = "ciudad_azulona_hotel"
 cell = Vector2i(5, 4)
 gfx = "old_woman"

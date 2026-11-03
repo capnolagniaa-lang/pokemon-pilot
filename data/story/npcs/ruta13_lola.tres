@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La belleza también pelea.")
+lines = PackedStringArray("¿Quiénes serán más fuertes, los Pokémon machos o las hembras?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -32,7 +32,7 @@ id = "lola"
 display_name = "Lola"
 title = "Belleza"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¿Te gusta mi Pokémon? Es tan elegante como yo.", "pierde": "¡Ay, se me corrió el maquillaje!", "despues": "La belleza también pelea."}
+lines = {"desafio": "Claro que juego con vos, tesoro.", "pierde": "¡Ay! ¡Qué bestia!", "despues": "¿Quiénes serán más fuertes, los Pokémon machos o las hembras?"}
 arena_id = "arena_campo"
 
 [resource]

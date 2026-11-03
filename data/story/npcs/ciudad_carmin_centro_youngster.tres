@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Mi Pikachu le ganó a un Squirtle! El agua no le gana a la electricidad.")
+lines = PackedStringArray("Es cierto que un Pokémon de más nivel es más fuerte...", "Pero todos tienen puntos débiles contra ciertos tipos.", "Así que no hay ningún Pokémon que sea fuerte contra todo.")
 
 [resource]
 script = ExtResource("1_n")

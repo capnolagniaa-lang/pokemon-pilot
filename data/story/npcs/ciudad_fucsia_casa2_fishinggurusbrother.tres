@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que el Team Rocket anda por todos lados. ¡Cuidate!")
+lines = PackedStringArray("Soy el hermano mayor del Gurú de la Pesca. ¡Me encanta pescar!", "La pesca es un estilo de vida. ¡Es como la mejor poesía!", "Con una caña vieja solo salen Magikarp, ¿no? Con una buena se pescan Pokémon mucho mejores.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_fucsia_casa2_fishinggurusbrother"
-display_name = "Vecino"
+display_name = "Pescador"
 zone_id = "ciudad_fucsia_casa2"
 cell = Vector2i(6, 5)
 gfx = "fisher"

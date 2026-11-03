@@ -11,7 +11,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Si le ganás a los cinco, hay premio.")
+lines = PackedStringArray("Hice lo mejor que pude. No me arrepiento de nada.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -39,7 +39,7 @@ id = "calixto"
 display_name = "Calixto"
 title = "Cazabichos"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2"), SubResource("Mon_3")])
-lines = {"desafio": "¡Bienvenido al Puente Pepita! ¡Soy el primero de cinco!", "pierde": "¡Pasaste el primero!", "despues": "Si le ganás a los cinco, hay premio."}
+lines = {"desafio": "¡A esto le dicen el Puente Pepita!|¡Ganale a los cinco entrenadores y te llevás un premio fabuloso! ¿Te da?", "pierde": "¡Uh! ¡Muy bien!", "despues": "Hice lo mejor que pude. No me arrepiento de nada."}
 arena_id = "arena_campo"
 
 [resource]

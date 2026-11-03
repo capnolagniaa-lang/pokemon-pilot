@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los combates se ganan con estrategia, no solo con fuerza.")
+lines = PackedStringArray("¡Jiyah! Respeto a mi maestro del Dojo Karate.", "¡Nunca voy a ser fan de nadie más que de mi maestro!")
 
 [resource]
 script = ExtResource("1_n")
 id = "club_entrenadores_blackbelt"
-display_name = "Entrenador"
+display_name = "Karateka"
 zone_id = "club_entrenadores"
 cell = Vector2i(5, 11)
 gfx = "black_belt"

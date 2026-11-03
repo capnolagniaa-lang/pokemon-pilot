@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Hola! Bienvenido a Garita de la Ruta 11.")
+lines = PackedStringArray("¿No te parece difícil pensar buenos apodos para tus Pokémon? Sobre todo si atrapaste un montón.", "En Pueblo Lavanda hay un señor que juzga los apodos de los Pokémon.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ruta11_garita_topguard"
-display_name = "Vecino"
+display_name = "Guardia"
 zone_id = "ruta11_garita"
 cell = Vector2i(6, 2)
 gfx = "policeman"

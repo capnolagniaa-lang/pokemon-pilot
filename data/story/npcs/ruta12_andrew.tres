@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La paciencia es la clave de la pesca.")
+lines = PackedStringArray("¿Magikarp?|Los saco todo el tiempo. Pero qué debiluchos que son...")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -26,7 +26,7 @@ id = "andrew"
 display_name = "Andrew"
 title = "Pescador"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Picó uno! ...Ah, no, sos un entrenador.", "pierde": "Se me cortó la línea.", "despues": "La paciencia es la clave de la pesca."}
+lines = {"desafio": "¿Qué pica?|¡Nunca sabés qué podés sacar!", "pierde": "¡Lo perdí!", "despues": "¿Magikarp?|Los saco todo el tiempo. Pero qué debiluchos que son..."}
 arena_id = "arena_campo"
 
 [resource]

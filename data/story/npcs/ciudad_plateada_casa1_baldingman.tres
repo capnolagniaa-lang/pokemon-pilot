@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Mi hijo quiere que su Nidoran pelee contra Brock... ¡Todavía le falta!")
+lines = PackedStringArray("Nuestro Pokémon es de intercambio: es caprichoso y cuesta manejarlo.", "Los Pokémon de intercambio crecen rápido, pero pueden no hacerle caso a un entrenador sin experiencia.", "Si tuviéramos alguna medalla...")
 
 [resource]
 script = ExtResource("1_n")

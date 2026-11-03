@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los fósiles son restos de Pokémon que vivieron hace millones de años.")
+lines = PackedStringArray("Tenemos en exhibición dos fósiles de Pokémon prehistóricos rarísimos.")
 
 [resource]
 script = ExtResource("1_n")

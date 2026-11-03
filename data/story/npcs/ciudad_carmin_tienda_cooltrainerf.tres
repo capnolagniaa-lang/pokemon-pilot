@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El Antihielo no se consigue en todos lados. ¡Acá sí!")
+lines = PackedStringArray("Yo creo que los Pokémon pueden ser buenos o malos. Depende del entrenador.")
 
 [resource]
 script = ExtResource("1_n")

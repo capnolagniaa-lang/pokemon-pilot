@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La ciencia de los Pokémon avanza cada día.")
+lines = PackedStringArray("Te podés quedar con cualquier objeto que encuentres en la Zona Safari.", "Pero si los querés todos de una, no te va a alcanzar el tiempo.")
 
 [resource]
 script = ExtResource("1_n")

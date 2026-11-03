@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Tienda de Pueblo Lavanda es un lugar tranquilo... casi siempre.")
+lines = PackedStringArray("Busco objetos que suban los stats de los Pokémon durante una pelea.", "Ataque X, Defensa X, Velocidad X, Especial X... ¿Sabés dónde los consigo?")
 
 [resource]
 script = ExtResource("1_n")
 id = "pueblo_lavanda_tienda_baldingman"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "pueblo_lavanda_tienda"
 cell = Vector2i(6, 2)
 gfx = "balding_man"

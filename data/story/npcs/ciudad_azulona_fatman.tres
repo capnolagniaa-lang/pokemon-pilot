@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Ciudad Azulona?")
+lines = PackedStringArray("Este es mi compañero de confianza, Poliwrath.", "Era un Poliwhirl y evolucionó cuando le di una Piedra Agua.")
 
 [resource]
 script = ExtResource("1_n")

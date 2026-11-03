@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La ciencia avanza con cada derrota.")
+lines = PackedStringArray("Aprovechar los puntos débiles funciona. Pensá en las ventajas de tipo.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -33,7 +33,7 @@ id = "ed"
 display_name = "Ed"
 title = "Científico"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Mis experimentos te van a sorprender!", "pierde": "¡Error en el cálculo!", "despues": "La ciencia avanza con cada derrota."}
+lines = {"desafio": "¡Tus Pokémon tienen puntos débiles! ¡Les voy a dar ahí!", "pierde": "¡Me martillaste!", "despues": "Aprovechar los puntos débiles funciona. Pensá en las ventajas de tipo."}
 arena_id = "arena_campo"
 
 [resource]

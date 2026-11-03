@@ -7,12 +7,12 @@
 script = ExtResource("2_t")
 forbids = PackedStringArray("ticket_barco_recibido")
 set_flags = PackedStringArray("ticket_barco_recibido")
-lines = PackedStringArray("¡Uf, volví a ser yo! ¡Gracias, de verdad!", "Estaba probando el Separador Celular y me mezclé con un Clefairy...", "Tomá, te regalo esto: un Ticket para el S.S. Anne, el crucero que está en Ciudad Carmín.", "Hay una fiesta a bordo llena de entrenadores. ¡Andá!")
+lines = PackedStringArray("¡Yuju! ¡Gracias, amigo! ¡Te debo una!", "¿Y? ¿Viniste a ver mi colección de Pokémon? ¿No? Qué bajón...", "Te tengo que agradecer... ¡Ah, ya sé! Tomá esto: un Ticket del S.S. Anne.", "El crucero S.S. Anne está en Ciudad Carmín, lleno de entrenadores.", "Me invitaron a la fiesta, pero no me bancan las cosas de etiqueta. ¿Por qué no vas vos? ¡Pasala bien!")
 give_items = {"ticket_barco": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Si un día querés ver mi colección de Pokémon raros, pasá cuando quieras.")
+lines = PackedStringArray("¿Querés ver algunos de mis Pokémon raros en la PC? ¡Dale, mirá nomás!")
 
 [resource]
 script = ExtResource("1_n")

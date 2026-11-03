@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("El sótano del barco es puro camarote de marineros.")
+lines = PackedStringArray("¿Viste al Gurú de la Pesca en Ciudad Carmín?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -33,7 +33,7 @@ id = "dato"
 display_name = "Dato"
 title = "Marinero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Marinero en guardia!", "pierde": "¡Hombre al agua!", "despues": "El sótano del barco es puro camarote de marineros."}
+lines = {"desafio": "¡Vamos, entonces! ¡Está en juego mi orgullo de marinero!", "pierde": "¡Tu garra me hundió!", "despues": "¿Viste al Gurú de la Pesca en Ciudad Carmín?"}
 arena_id = "arena_campo"
 
 [resource]

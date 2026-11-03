@@ -1,7 +1,8 @@
 """Arma las personas que hablan (data/story/npcs/<id>.tres, NpcData) desde los NPC reales de FireRed que exporta
 tools/import_frlg_maps.py en data/world/frlg_maps.json ("npcs": celda ya agrandada, gráfico, script, movimiento).
 Historia: docs/PLAN_HISTORIA.md (H-0: vecinos, enfermeras, mamá, empleados). Los textos son propios (en
-rioplatense), cuentan lo mismo que FireRed sin copiar sus diálogos.
+rioplatense), cuentan lo mismo que FireRed sin copiar sus diálogos. Desde el 2026-11-03 cada persona dice lo mismo
+que su par de FireRed (tools/dialogos_frlg/*.json pisa las frases de TALKS, del relleno y de los entrenadores).
 
 Uso: python -I -B tools/build_story_npcs.py <carpeta del proyecto>
 Solo arma los NPC que están en TALKS (los entrenadores, Oak, el rival, el viejo del tutorial... llegan en sus
@@ -1264,6 +1265,35 @@ if os.path.exists(_maps_json):
             _line = _lines[sum(map(ord, _z["id"] + _script)) % len(_lines)].format(lugar=_z.get("name", "este lugar"))
             TALKS[_key] = dict(name={"kid": "Pibe", "old": "Abuelo", "worker": "Empleado", "science": "Científico",
                                      "trainer": "Entrenador"}.get(_kind, "Vecino"), talks=[dict(lines=[_line])])
+
+
+# --- Textos fieles a FireRed (pedido del usuario 2026-11-03) ---------------------------------------------------
+# Cada persona cuenta lo mismo que en FireRed, con palabras propias. tools/dialogos_frlg/*.json: "zona/script" ->
+# {"lines": [...]} (pisa la única charla, o la última si hay varias), {"talks": [[...] o null, ...]} (una por
+# conversación, en orden; null = la deja), {"trainer": [desafío, pierde, después]} y opcionales "name" y "heal"
+# (la última charla cura, como la pasajera del S.S. Anne).
+_fiel_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dialogos_frlg")
+FIEL = {}
+if os.path.isdir(_fiel_dir):
+    for _f in sorted(os.listdir(_fiel_dir)):
+        if _f.endswith(".json"):
+            FIEL.update(json.load(open(os.path.join(_fiel_dir, _f), encoding="utf-8")))
+for _k, _o in FIEL.items():
+    _key = tuple(_k.split("/", 1))
+    if "trainer" in _o and _key in TRAINERS:
+        TRAINERS[_key] = dict(TRAINERS[_key], lines=dict(TRAINERS[_key]["lines"], **dict(zip(("desafio", "pierde", "despues"), _o["trainer"]))))
+    if _key in TALKS and ("lines" in _o or "talks" in _o):
+        _talks = [dict(t) for t in TALKS[_key].get("talks", [])]
+        if "lines" in _o and _talks:
+            _talks[-1]["lines"] = _o["lines"]
+        if _o.get("heal") and _talks:
+            _talks[-1]["heal"] = True
+        for _i, _l in enumerate(_o.get("talks", [])):
+            if _l is not None and _i < len(_talks):
+                _talks[_i]["lines"] = _l
+        TALKS[_key] = dict(TALKS[_key], talks=_talks)
+    if "name" in _o and _key in TALKS:
+        TALKS[_key] = dict(TALKS[_key], name=_o["name"])
 
 
 class Ext:

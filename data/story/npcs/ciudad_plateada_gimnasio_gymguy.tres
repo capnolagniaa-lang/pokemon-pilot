@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Hola, futuro campeón!", "Brock usa Pokémon de roca: el agua y la planta son tu mejor opción.", "Su Onix es durísimo. Cuando se enoja... ¡cuidado!")
+lines = PackedStringArray("¡Hola! ¿Te animás a soñar en grande? ¿A ser el campeón Pokémon?", "No soy entrenador, pero te puedo aconsejar para ganar.", "El primer Pokémon que sale es el primero de tu equipo.", "Cambiando el orden podés sacar ventaja: probá distintos órdenes según el rival. ¡Es gratis!")
 
 [resource]
 script = ExtResource("1_n")

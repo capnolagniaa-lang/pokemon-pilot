@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Butterfree tiran polvos que duermen y paralizan.")
+lines = PackedStringArray("¿Mis Pokémon son débiles o el malo soy yo? ¿Vos qué pensás?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "elías"
 display_name = "Elías"
 title = "Cazabichos"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Mi Caterpie ya es un Butterfree! ¡Mirá cómo vuela!", "pierde": "¡Aterrizó de panza!", "despues": "Los Butterfree tiran polvos que duermen y paralizan."}
+lines = {"desafio": "Nunca te vi por acá. ¿Sos bueno?", "pierde": "¡Sos demasiado bueno!", "despues": "¿Mis Pokémon son débiles o el malo soy yo? ¿Vos qué pensás?"}
 arena_id = "arena_campo"
 
 [resource]

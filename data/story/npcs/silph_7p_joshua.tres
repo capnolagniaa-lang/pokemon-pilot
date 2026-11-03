@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La ciencia avanza con cada derrota.")
+lines = PackedStringArray("¡A pesar de tu edad, sos un entrenador habilidoso!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "joshua"
 display_name = "Joshua"
 title = "Científico"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Mis experimentos te van a sorprender!", "pierde": "¡Error en el cálculo!", "despues": "La ciencia avanza con cada derrota."}
+lines = {"desafio": "¡Jeje!|¿Me confundiste con un empleado de Silph?", "pierde": "¡Estoy acabado!", "despues": "¡A pesar de tu edad, sos un entrenador habilidoso!"}
 arena_id = "arena_campo"
 
 [resource]

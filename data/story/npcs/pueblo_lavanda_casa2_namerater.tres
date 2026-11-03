@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Viste algún Pokémon raro por Casa de Pueblo Lavanda?")
+lines = PackedStringArray("¡Hola, hola! Soy el Juez de Apodos oficial.", "Un buen apodo es un regalo para tu Pokémon.", "Los nombres simples se recuerdan mejor, ¡pero que tengan onda!")
 
 [resource]
 script = ExtResource("1_n")
 id = "pueblo_lavanda_casa2_namerater"
-display_name = "Vecino"
+display_name = "Juez de Apodos"
 zone_id = "pueblo_lavanda_casa2"
 cell = Vector2i(4, 4)
 gfx = "gentleman"

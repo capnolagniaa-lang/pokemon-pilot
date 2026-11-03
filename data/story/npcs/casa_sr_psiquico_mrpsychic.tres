@@ -7,12 +7,12 @@
 script = ExtResource("2_t")
 forbids = PackedStringArray("mt29_recibida")
 set_flags = PackedStringArray("mt29_recibida")
-lines = PackedStringArray("...", "¡Ya sé! Querías esto, ¿no? La MT29: Psíquico.")
+lines = PackedStringArray("...¡Esperá! ¡No digas nada!", "Querías esto, ¿no? ¡Tomá!")
 give_items = {"mt29": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Ya sabía que ibas a volver.")
+lines = PackedStringArray("Ya lo sabés, ¿no? La MT29 es Psíquico.", "Es un ataque que además puede bajar la defensa especial del rival.")
 
 [resource]
 script = ExtResource("1_n")

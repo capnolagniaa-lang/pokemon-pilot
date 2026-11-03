@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Cazabichos del bosque te desafían apenas te ven.", "¡Tené tus Pokémon listos!")
+lines = PackedStringArray("Rattata será chiquito, pero no subestimes su mordida.", "¿Ya atrapaste uno?")
 
 [resource]
 script = ExtResource("1_n")

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Ya viste todo Centro Pokémon de Pueblo Lavanda?")
+lines = PackedStringArray("¿Viste que los Cubone usan una calavera, no?", "Hay gente que paga un montón por una.")
 
 [resource]
 script = ExtResource("1_n")

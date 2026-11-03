@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Quiero ser entrenador como vos!")
+lines = PackedStringArray("...Gracias por escribirme. ¡Espero verte pronto!", "...¡Eh! ¡No me leas la carta!")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azafran_casa_lass"
-display_name = "Pibe"
+display_name = "Chica"
 zone_id = "ciudad_azafran_casa"
 cell = Vector2i(4, 4)
 gfx = "lass"

@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Club de Fans de Entrenadores es un lugar tranquilo... casi siempre.")
+lines = PackedStringArray("¡Ay, Dios mío! ¿Sos vos? ¡Me encanta cómo peleás!", "Espero que sigas así. ¡Voy a ser tu fan número uno!")
 
 [resource]
 script = ExtResource("1_n")
 id = "club_entrenadores_woman"
-display_name = "Vecino"
+display_name = "Señora"
 zone_id = "club_entrenadores"
 cell = Vector2i(9, 11)
 gfx = "woman_3"

@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Entreno todos los días. ¡La Liga Pokémon me espera!")
+lines = PackedStringArray("No hay nada que yo no sepa, como escribí en el pizarrón.", "¡Sé todo sobre el mundo de los Pokémon!", "¡Juntate con tus amigos y disfrutá intercambiando Pokémon!")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azulona_mansion_cuarto_blackbelt"
-display_name = "Entrenador"
+display_name = "Karateka"
 zone_id = "ciudad_azulona_mansion_cuarto"
 cell = Vector2i(3, 5)
 gfx = "black_belt"

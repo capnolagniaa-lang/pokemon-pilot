@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los combates se ganan con estrategia, no solo con fuerza.")
+lines = PackedStringArray("Esta es la Cueva Celeste. Adentro viven Pokémon terriblemente fuertes.", "Solo puede entrar un entrenador muy especial.", "Para empezar, tendrías que ser lo bastante fuerte como para ser Campeón de la Liga.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_celeste_ceruleancaveguard"
-display_name = "Entrenador"
+display_name = "Guardia"
 zone_id = "ciudad_celeste"
 cell = Vector2i(1, 29)
 gfx = "cooltrainer_m"

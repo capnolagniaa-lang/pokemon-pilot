@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡La próxima ganamos juntas!")
+lines = PackedStringArray("Ana: Yo crío Pokémon con Eli.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "eli & anne"
 display_name = "Eli & Anne"
 title = "Gemelas"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Somos dos! ¡Peleamos juntas!", "pierde": "¡Perdimos las dos!", "despues": "¡La próxima ganamos juntas!"}
+lines = {"desafio": "Ana: ¡Te vamos a electrizar con el poder de las gemelas!", "pierde": "Ana: Nuestro poder de gemelas...", "despues": "Ana: Yo crío Pokémon con Eli."}
 arena_id = "arena_campo"
 
 [resource]

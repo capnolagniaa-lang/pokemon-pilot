@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La próxima te gano, vas a ver.")
+lines = PackedStringArray("Leí que Clefairy evoluciona con una Piedra Lunar.|Lo leí en una revista Pokémon. ¿Será cierto?")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -26,7 +26,7 @@ id = "julia"
 display_name = "Julia"
 title = "Chica"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Ey! ¡Me miraste! Ahora peleamos.", "pierde": "¡Ay, qué vergüenza!", "despues": "La próxima te gano, vas a ver."}
+lines = {"desafio": "¿Qué Pokémon es lindo, redondo y esponjoso?", "pierde": "¡Pará! ¡No seas malo con mi Clefairy!", "despues": "Leí que Clefairy evoluciona con una Piedra Lunar.|Lo leí en una revista Pokémon. ¿Será cierto?"}
 arena_id = "arena_campo"
 
 [resource]

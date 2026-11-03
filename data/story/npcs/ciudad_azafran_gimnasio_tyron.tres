@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("La mente puede más que los músculos.")
+lines = PackedStringArray("Sabrina acaba de hacer polvo al Maestro Karateka de al lado.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "tyron"
 display_name = "Tyron"
 title = "Médium Psíquico"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "Ya sabía que ibas a venir... ¡Peleemos!", "pierde": "Esto no lo vi venir.", "despues": "La mente puede más que los músculos."}
+lines = {"desafio": "Lo entendés, ¿no?|Que en el mundo Pokémon la fuerza sola no alcanza para ganar.", "pierde": "¡No lo puedo creer!", "despues": "Sabrina acaba de hacer polvo al Maestro Karateka de al lado."}
 arena_id = "arena_gimnasio_psiquico"
 
 [resource]

@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Vendí una Pepita acá y me hice rico. ¡Bueno, casi!")
+lines = PackedStringArray("El Repelente no solo espanta bichos: también sirve con los Pokémon débiles.", "Poné a tu Pokémon más fuerte primero en el equipo.", "Si el primero es fuerte, el Repelente funciona mejor.")
 
 [resource]
 script = ExtResource("1_n")

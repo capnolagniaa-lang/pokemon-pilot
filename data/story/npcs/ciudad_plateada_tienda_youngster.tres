@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Comprá Antídotos antes de cruzar el bosque. ¡Los Weedle envenenan!")
+lines = PackedStringArray("¡Un viejo sospechoso me convenció de comprarle un Pokémon pez rarísimo!", "¡Es re débil y me costó 500 Pokédólares!")
 
 [resource]
 script = ExtResource("1_n")

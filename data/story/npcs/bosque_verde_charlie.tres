@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Un Metapod endurecido aguanta casi todo. Casi.")
+lines = PackedStringArray("Los Pokémon bicho evolucionan rapidísimo. ¡Son re divertidos!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -32,7 +32,7 @@ id = "carlos"
 display_name = "Carlos"
 title = "Cazabichos"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1"), SubResource("Mon_2")])
-lines = {"desafio": "¡Mis Metapod no se mueven, pero no los vas a poder romper!", "pierde": "Bueno... se rompieron.", "despues": "Un Metapod endurecido aguanta casi todo. Casi."}
+lines = {"desafio": "¿Sabías que los Pokémon evolucionan?", "pierde": "¡Ay! ¡Perdí!", "despues": "Los Pokémon bicho evolucionan rapidísimo. ¡Son re divertidos!"}
 arena_id = "arena_campo"
 
 [resource]

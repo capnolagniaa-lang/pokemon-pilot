@@ -555,7 +555,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   usuario (`docs/AUDIO.md`).
 - `tools/fetch_npc_sprites.py`: baja de pret/pokefirered los sprites de las personas de los mapas importados (y las de
   la historia) → `art/pret/characters/<gfx>.png` + `npcs.json`. `tools/build_story_npcs.py`: arma `data/story/npcs/`
-  (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres).
+  (diálogos en su tabla `TALKS`; correrlo de nuevo pisa esos .tres). **Textos fieles a FireRed** (decisión del usuario
+  2026-11-03): `tools/dialogos_frlg/*.json` ("zona/script" → `lines`, `talks`, `trainer` [desafío, pierde, después],
+  `name`, `heal`) pisa las frases para que cada persona cuente lo mismo que en FireRed, con palabras propias en rioplatense
+  (no traducción literal). Lo que FireRed da y acá no existe (bici, cañas, fichas, intercambios) se cuenta sin el regalo.
 - `tools/build_learnsets.gd`: arma los learnsets (kit en Nv. 1/1/3/5 + **todo el learnset de FRLG** + extras de la
   tabla `EXTRAS`; sin kit: learnset de FRLG + `OFFICIAL_EXTRAS`, ej. Abra con Poder Oculto. Ojo: reescribe los ids internos
   de todas las especies; si solo cambiaste una, revertir las demás con git) y los guarda en las especies; el equipamiento inicial es el kit (`default_equipment`). Correrlo después de cambiar un kit o los extras.

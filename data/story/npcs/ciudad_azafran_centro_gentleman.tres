@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Centro Pokémon de Ciudad Azafrán es un lugar tranquilo... casi siempre.")
+lines = PackedStringArray("Silph S.A. es conocida en todos lados.", "Es víctima de su propia fama: por eso atrajo al Team Rocket.")
 
 [resource]
 script = ExtResource("1_n")
 id = "ciudad_azafran_centro_gentleman"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "ciudad_azafran_centro"
 cell = Vector2i(14, 6)
 gfx = "gentleman"

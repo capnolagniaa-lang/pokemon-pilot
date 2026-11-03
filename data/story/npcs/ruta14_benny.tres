@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Pokémon pájaro son muy leales.")
+lines = PackedStringArray("Ganar, perder... No importa nada bajo este cielo enorme.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "benny"
 display_name = "Benny"
 title = "Ornitólogo"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Mis pájaros vuelan más alto que los tuyos!", "pierde": "¡Aterrizaje forzoso!", "despues": "Los Pokémon pájaro son muy leales."}
+lines = {"desafio": "No tengo muchas ganas, pero bueno. ¡Vamos!", "pierde": "¡Lo sabía!", "despues": "Ganar, perder... No importa nada bajo este cielo enorme."}
 arena_id = "arena_campo"
 
 [resource]

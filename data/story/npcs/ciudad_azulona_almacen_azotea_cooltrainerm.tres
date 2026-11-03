@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los combates se ganan con estrategia, no solo con fuerza.")
+lines = PackedStringArray("Aunque no lo creas, mi hermana es entrenadora.", "¡Pero es tan inmadura que me vuelve loco!")
 
 [resource]
 script = ExtResource("1_n")

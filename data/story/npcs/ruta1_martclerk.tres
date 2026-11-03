@@ -7,12 +7,12 @@
 script = ExtResource("2_t")
 forbids = PackedStringArray("muestra_pocion")
 set_flags = PackedStringArray("muestra_pocion")
-lines = PackedStringArray("¡Hola! Trabajo en la Tienda Pokémon de Ciudad Verde.", "Estoy repartiendo muestras gratis. ¡Tomá, llevate una!")
+lines = PackedStringArray("¡Hola! Trabajo en una Tienda Pokémon.", "Somos una cadena re práctica: vendemos de todo un poco.", "Vení a visitarnos a Ciudad Verde.", "¡Ya sé! Te doy una muestra gratis. ¡Tomá!")
 give_items = {"pocion": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Pasate por la Tienda de Ciudad Verde cuando quieras. ¡Tenemos de todo!")
+lines = PackedStringArray("Si necesitás Poké Balls para atrapar Pokémon, pasate por la Tienda.")
 
 [resource]
 script = ExtResource("1_n")

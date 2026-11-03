@@ -8,18 +8,18 @@ script = ExtResource("2_t")
 requires = PackedStringArray("objeto_zona_safari_oeste_itemgoldteeth")
 forbids = PackedStringArray("mo04_recibido")
 set_flags = PackedStringArray("mo04_recibido")
-lines = PackedStringArray("¡Ehfe! ¡Mif dientef! ¡Lof encontrafte!", "...(Se los pone)... ¡Ahora sí! ¡Gracias!", "Tomá, en agradecimiento: la MO04, Fuerza. Caminá contra una roca enorme y tu Pokémon la empuja.")
+lines = PackedStringArray("(Le das los Dientes de Oro al guarda... ¡Se los pone!)", "Guarda: ¡Gracias, pibe! ¡Me salvaste la vida! Nadie entendía una palabra de lo que decía.", "Me daba vergüenza hasta ir a la oficina. Te quiero dar algo por la molestia: la MO04, Fuerza.")
 give_items = {"mo04": 1}
 take_items = {"dientes_oro": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
 forbids = PackedStringArray("mo04_recibido")
-lines = PackedStringArray("¡Ehfe! Ffe me cayeron lof dientef en la Fona Fafari... ¡Fi los encontráf, avifame!")
+lines = PackedStringArray("Guarda: ¡Ehfe fefe huhifoo! ¡Ha hof ha fifi ho! (No se le entiende nada...)")
 
 [sub_resource type="Resource" id="Talk_2"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Con Fuerza, caminá contra las rocas de Calle Victoria y se corren. ¡Te va a hacer falta!")
+lines = PackedStringArray("Guarda: Adentro de la MO04 está Fuerza. Con ella los Pokémon mueven rocas enormes fuera del combate.", "Ah, ¿encontraste la Casa Secreta de la Zona Safari?")
 
 [resource]
 script = ExtResource("1_n")

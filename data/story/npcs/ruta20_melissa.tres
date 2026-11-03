@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Nadar es mi vida.")
+lines = PackedStringArray("Canela es una isla volcánica.|Dicen que salió del mar cuando hizo erupción un volcán.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -27,7 +27,7 @@ id = "melissa"
 display_name = "Melissa"
 title = "Nadadora"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "¡Las olas me dan fuerza!", "pierde": "¡Glub, glub!", "despues": "Nadar es mi vida."}
+lines = {"desafio": "En Canela, al oeste, hay un laboratorio de Pokémon.|Mi papá trabaja ahí.", "pierde": "¡Esperá! ¡Tenías que esperar!", "despues": "Canela es una isla volcánica.|Dicen que salió del mar cuando hizo erupción un volcán."}
 arena_id = "arena_campo"
 
 [resource]

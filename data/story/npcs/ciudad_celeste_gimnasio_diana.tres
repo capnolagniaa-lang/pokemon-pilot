@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Para Misty: eléctrico o planta. Te lo regalo.")
+lines = PackedStringArray("Tenés que enfrentar a otros entrenadores para saber lo bueno que sos de verdad.")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -21,7 +21,7 @@ id = "diana"
 display_name = "Diana"
 title = "Dominguera"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0")])
-lines = {"desafio": "¡Mi Goldeen es la reina del agua!", "pierde": "¡Se me escapó del anzuelo!", "despues": "Para Misty: eléctrico o planta. Te lo regalo."}
+lines = {"desafio": "¿Qué? ¿Vos? ¡Yo te alcanzo y te sobro!|Misty no se va a tener que molestar.", "pierde": "¡Me pasaste por arriba!", "despues": "Tenés que enfrentar a otros entrenadores para saber lo bueno que sos de verdad."}
 arena_id = "arena_gimnasio_agua"
 
 [resource]

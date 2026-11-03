@@ -6,11 +6,11 @@
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
 forbids = PackedStringArray("medalla_trueno")
-lines = PackedStringArray("¡Ey, campeón! Lt. Surge usa Pokémon eléctricos.", "Los de tierra no sienten la electricidad. Y para llegar a él, buscá los interruptores en los basureros:", "el segundo siempre está al lado del primero. ¡Si le errás, se reinician!")
+lines = PackedStringArray("¡Ey, futuro campeón!", "A Lt. Surge le dicen el Americano Relámpago. Es un experto en Pokémon eléctricos.", "Los Pokémon pájaro y los de agua la pasan mal contra lo eléctrico. ¡Y cuidado con la parálisis!", "Lt. Surge es muy precavido: se encerró, así que no va a ser fácil llegar hasta él.")
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Le ganaste a Surge! ¡Sos una bestia!")
+lines = PackedStringArray("¡Uf! ¡Esa pelea fue eléctrica!")
 
 [resource]
 script = ExtResource("1_n")

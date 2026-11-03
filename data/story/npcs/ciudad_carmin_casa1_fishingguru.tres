@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¡Pescar es lo mejor de la vida! Cuando tenga una caña de sobra, te la doy.")
+lines = PackedStringArray("¡Soy el Gurú de la Pesca! ¡Me encanta pescar! No puedo vivir sin eso.", "La pesca es un estilo de vida. ¡Es como la mejor poesía!", "Del mar a los ríos, salí a sacar el pez más grande, amigo.")
 
 [resource]
 script = ExtResource("1_n")

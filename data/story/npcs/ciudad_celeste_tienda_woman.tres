@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Las Superpociones curan un montón. ¡Valen lo que cuestan!")
+lines = PackedStringArray("¿Conocés los Caramelos Raros? No los venden en las tiendas.", "Me parece que hacen crecer a un Pokémon de golpe.")
 
 [resource]
 script = ExtResource("1_n")

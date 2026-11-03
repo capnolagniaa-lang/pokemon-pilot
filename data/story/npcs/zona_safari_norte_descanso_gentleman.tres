@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que el Team Rocket anda por todos lados. ¡Cuidate!")
+lines = PackedStringArray("Mi Eevee evolucionó en Flareon.", "Pero el Eevee de un amigo se volvió Vaporeon. ¿Por qué será?")
 
 [resource]
 script = ExtResource("1_n")
 id = "zona_safari_norte_descanso_gentleman"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "zona_safari_norte_descanso"
 cell = Vector2i(3, 4)
 gfx = "gentleman"

@@ -7,12 +7,12 @@
 script = ExtResource("2_t")
 forbids = PackedStringArray("te_recibido")
 set_flags = PackedStringArray("te_recibido")
-lines = PackedStringArray("¡Ay, qué chico tan amable! ¿Querés un té? Lo preparo yo misma.", "Llevate uno para el camino. ¡Es buenísimo para la sed!")
+lines = PackedStringArray("Mis queridos Pokémon me hacen compañía. ¡Meowth hasta trae plata a casa!", "No gastes toda tu plata en bebidas, tesoro. Mejor probá esto: un té.")
 give_items = {"te": 1}
 
 [sub_resource type="Resource" id="Talk_1"]
 script = ExtResource("2_t")
-lines = PackedStringArray("¿Te gustó el té? Dicen que los guardias de Azafrán se mueren de sed.")
+lines = PackedStringArray("Hola, tesoro. ¿Te gustó mi té? Nada quita la sed como un té calentito.", "Por cierto, ¿vos sos de Pueblo Paleta? Hay una chica de ahí, Dalia, que toma té todos los días.")
 
 [resource]
 script = ExtResource("1_n")

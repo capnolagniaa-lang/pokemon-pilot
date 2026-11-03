@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Mi hija tiene un Spearow. Le puso Speary.", "Lo cuida como si fuera de la familia. Bueno, es de la familia.")
+lines = PackedStringArray("Inventar apodos es divertido, pero no es tan fácil.", "Los nombres ingeniosos están buenos, pero los simples se recuerdan mejor.")
 
 [resource]
 script = ExtResource("1_n")

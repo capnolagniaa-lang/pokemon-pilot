@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Los Growlithe son muy leales.")
+lines = PackedStringArray("¡Hay que tratar bien a los amigos!")
 
 [sub_resource type="Resource" id="Mon_0"]
 script = ExtResource("r_2")
@@ -26,7 +26,7 @@ id = "teodoro"
 display_name = "Teodoro"
 title = "Caballero"
 starting_team = Array[ExtResource("r_2")]([SubResource("Mon_0"), SubResource("Mon_1")])
-lines = {"desafio": "Mis Growlithe son de pura raza.", "pierde": "Mis cachorros...", "despues": "Los Growlithe son muy leales."}
+lines = {"desafio": "No soy más que un viajero solitario...|Mis únicos compañeros son los Pokémon que atrapé en mis viajes...", "pierde": "Mis... mis amigos...", "despues": "¡Hay que tratar bien a los amigos!"}
 arena_id = "arena_campo"
 
 [resource]

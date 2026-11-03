@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Dicen que el Team Rocket anda por todos lados. ¡Cuidate!")
+lines = PackedStringArray("¡El Team Rocket hace cualquier cosa por plata!", "No hay trabajo demasiado sucio ni crimen demasiado malvado para ellos.")
 
 [resource]
 script = ExtResource("1_n")
 id = "pueblo_lavanda_centro_gentleman"
-display_name = "Vecino"
+display_name = "Señor"
 zone_id = "pueblo_lavanda_centro"
 cell = Vector2i(9, 4)
 gfx = "gentleman"
