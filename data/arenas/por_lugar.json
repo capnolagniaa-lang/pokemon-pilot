@@ -1,0 +1,18 @@
+{
+  "_doc": "Arena según el lugar (2026-11-03, pedido del usuario: las peleas de la Torre, Silph, etc. no tienen que ser en el campo). Un entrenador con la arena por defecto (arena_campo) pelea en la de su zona: la primera fila cuyo prefijo tenga el id de la zona (o `rutas` para la lista exacta de rutas de mar). Si esa arena todavía no existe, sigue en el campo. Lo usa ArenaData.for_zone.",
+  "prefijos": [
+    ["torre_pokemon", "arena_torre"],
+    ["silph", "arena_silph"],
+    ["escondite_rocket", "arena_rocket"],
+    ["ciudad_azulona_casino", "arena_rocket"],
+    ["ss_anne", "arena_barco"],
+    ["mansion_pokemon", "arena_mansion"],
+    ["mt_moon", "arena_cueva"],
+    ["tunel_roca", "arena_cueva"],
+    ["calle_victoria", "arena_cueva"],
+    ["cueva", "arena_cueva"],
+    ["islas_espuma", "arena_cueva"],
+    ["dojo_karate", "arena_dojo"]
+  ],
+  "rutas": {"ruta19": "arena_playa", "ruta20": "arena_playa", "ruta21_norte": "arena_playa", "ruta21_sur": "arena_playa"}
+}

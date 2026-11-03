@@ -34,3 +34,24 @@ extends Resource
 @export var epic: bool = false
 ## Estadio: tribunas con público sobre la pared de arriba y a los costados (el torneo).
 @export var crowd: bool = false
+
+
+const DEFAULT_ID := "arena_campo"
+const PLACES_PATH := "res://data/arenas/por_lugar.json"
+static var _places: Dictionary = {}
+
+
+## La arena de una pelea (pedido del usuario 2026-11-03): si el entrenador tiene la de siempre (el campo), la de su
+## lugar según data/arenas/por_lugar.json (Torre, Silph, cuevas, el S.S. Anne...), si ya existe; si no, la suya.
+static func for_zone(arena_id: String, zone_id: String) -> String:
+	if arena_id != DEFAULT_ID or zone_id == "":
+		return arena_id
+	if _places.is_empty() and FileAccess.file_exists(PLACES_PATH):
+		_places = JSON.parse_string(FileAccess.get_file_as_string(PLACES_PATH))
+	var pick: String = _places.get("rutas", {}).get(zone_id, "")
+	if pick == "":
+		for row in _places.get("prefijos", []):
+			if zone_id.begins_with(str(row[0])):
+				pick = str(row[1])
+				break
+	return pick if pick != "" and ResourceLoader.exists("res://data/arenas/%s.tres" % pick) else arena_id

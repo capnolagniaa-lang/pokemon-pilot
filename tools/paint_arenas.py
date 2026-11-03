@@ -1,12 +1,16 @@
 """Arenas pintadas (2026-11-03, pedido del usuario: arenas "MUY EPICAS" hechas con Qwen). Por cada arena de
 data/arenas/pinturas.json:
-  - la pintura (art_src/arenas/<id>.png, de Qwen-Image 2.1 Turbo con el `prompt` y la `seed` del JSON, 1600x1200) va a
-    sprites/arenas/<id>.png sin achicar (×2,5 la resolución del juego en una arena de 40x30);
-  - el plano de colisión: con `auto` = las celdas claras (pasto, tierra, piso) unidas al centro son piso y lo oscuro
-    (árboles, paredes) choca; después se abren los rectángulos `open` y se cierran los `solid`. Va a
-    data/arenas/planos/<id>.txt ("." piso, "#" choca), que lee tools/build_arenas.gd para armar la escena.
+  - la pintura (art_src/arenas/<id>.png, de Qwen-Image 2.1 Turbo con el `prompt` y la `seed` del JSON, 1600x1200; con
+    `sketch` se le pasó ese boceto como imagen para que respete dónde va el agua) va a sprites/arenas/<id>.png sin achicar;
+  - el plano, resuelto, a data/arenas/planos/<id>.json, que lee tools/build_arenas.gd para armar la escena:
+    `rows` ("." piso, "#" choca, "~" agua de verdad: moja, frena y conduce), floor/wall (metatiles), rocks, cells, field,
+    water (rectángulos de pileta). Con `auto` = las celdas claras (pasto, tierra, piso) unidas al centro son piso y lo
+    oscuro choca; después se abren los rectángulos `open`, se cierran los `solid` y se ponen los `water`.
+  - `brillo` (opcional) aclara la pintura al copiarla (1,35 = un 35 % más clara);
+  - `scale` agranda la arena: todas las celdas y rectángulos del JSON (que se marcan sobre la grilla de `size`) se
+    multiplican y la arena queda de size × scale celdas, con la misma pintura dibujada más grande.
 Después: godot --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd -- --only <id>
-y revisar con --autotest-room-walk --zone <id> (la imagen de la colisión sobre la pintura).
+y revisar con --autotest-room-walk --arena <id> (la imagen de la colisión sobre la pintura).
 
 Uso: python -I -B tools/paint_arenas.py . [<id>]
 """
@@ -42,22 +46,51 @@ def auto_plan(img, w, h, threshold):
     return seen
 
 
+def cells_of(rects, k):
+    out = set()
+    for x0, y0, rw, rh in rects:
+        x1, y1 = round(x0 * k), round(y0 * k)
+        out |= {(x, y) for x in range(x1, round((x0 + rw) * k)) for y in range(y1, round((y0 + rh) * k))}
+    return out
+
+
 def build(root, arena_id, cfg):
-    w, h = cfg["size"]
+    k = float(cfg.get("scale", 1.0))
+    w, h = round(cfg["size"][0] * k), round(cfg["size"][1] * k)
     src = os.path.join(root, "art_src/arenas/%s.png" % arena_id)
     img = Image.open(src)
     floor = auto_plan(img, w, h, cfg["auto"]) if cfg.get("auto") is not None else set()
-    for x0, y0, rw, rh in cfg.get("open", []):
-        floor |= {(x, y) for x in range(x0, x0 + rw) for y in range(y0, y0 + rh)}
-    for x0, y0, rw, rh in cfg.get("solid", []):
-        floor -= {(x, y) for x in range(x0, x0 + rw) for y in range(y0, y0 + rh)}
+    floor |= cells_of(cfg.get("open", []), k)
+    floor -= cells_of(cfg.get("solid", []), k)
+    water = cells_of(cfg.get("water", []), k)
+    rows = ["".join("~" if (x, y) in water else "." if (x, y) in floor else "#" for x in range(w)) for y in range(h)]
+    pt = lambda p: [round(p[0] * k), round(p[1] * k)]
+    rect = lambda r: [round(r[0] * k), round(r[1] * k), round((r[0] + r[2]) * k) - round(r[0] * k),
+                      round((r[1] + r[3]) * k) - round(r[1] * k)]
+    plan = {
+        "name": cfg.get("name", ""),
+        "rows": rows,
+        "floor": cfg["floor"],
+        "wall": cfg["wall"],
+        "rocks": [pt(p) for p in cfg.get("rocks", [])],
+        "cells": {name: pt(p) for name, p in cfg["cells"].items()},
+        "field": rect(cfg["field"]),
+        "water": [rect(r) for r in cfg.get("water", [])],
+    }
     os.makedirs(os.path.join(root, "data/arenas/planos"), exist_ok=True)
     os.makedirs(os.path.join(root, "sprites/arenas"), exist_ok=True)
-    with open(os.path.join(root, "data/arenas/planos/%s.txt" % arena_id), "w", encoding="utf8", newline="\n") as f:
-        for y in range(h):
-            f.write("".join("." if (x, y) in floor else "#" for x in range(w)) + "\n")
-    shutil.copyfile(src, os.path.join(root, "sprites/arenas/%s.png" % arena_id))
-    print("%-26s %dx%d, %d celdas de piso" % (arena_id, w, h, len(floor)))
+    with open(os.path.join(root, "data/arenas/planos/%s.json" % arena_id), "w", encoding="utf8", newline="\n") as f:
+        json.dump(plan, f, ensure_ascii=False, indent=1)
+    old = os.path.join(root, "data/arenas/planos/%s.txt" % arena_id)  # (formato viejo)
+    if os.path.exists(old):
+        os.remove(old)
+    dst = os.path.join(root, "sprites/arenas/%s.png" % arena_id)
+    if cfg.get("brillo", 1.0) != 1.0:  # las muy oscuras (Surge, el Escondite): en plena pelea no se veía el piso
+        from PIL import ImageEnhance
+        ImageEnhance.Brightness(img.convert("RGB")).enhance(float(cfg["brillo"])).save(dst)
+    else:
+        shutil.copyfile(src, dst)
+    print("%-26s %dx%d, %d de piso, %d de agua" % (arena_id, w, h, sum(r.count(".") for r in rows), len(water)))
 
 
 def main(root, only=None):

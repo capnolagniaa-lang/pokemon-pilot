@@ -15,8 +15,14 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   (cañón con cristales de ámbar, braseros, plataforma del líder con escalera). Pintura en `ArenaData.painting` sobre los
   tiles (colisión y entorno), luz neutra (`DayNight.PAINTED`; con la de interiores quedaba saturada), sin líneas ni
   emblema por código. Config `data/arenas/pinturas.json` (prompt, semilla, plano automático por brillo o rectángulos,
-  piedras, celdas) → `tools/paint_arenas.py` → `build_arenas.gd`. Verificado con `--autotest-room-walk --arena <id>`.
-  **Próximo**: los otros 7 gimnasios, la Liga y el torneo (cada uno con la temática de su tipo). Para probarlas: consola
+  piedras, celdas, `scale`, `water`, `brillo`) → `tools/paint_arenas.py` (plano resuelto en `data/arenas/planos/<id>.json`)
+  → `build_arenas.gd`. Verificado con `--autotest-room-walk --arena <id>`. **Segunda tanda (2026-11-03)**: Brock agrandado
+  a 56×42 (la cancha había quedado a la mitad), **Misty** (palacio de agua; Qwen con un boceto para que las 4 piletas de
+  agua de verdad caigan sobre las pintadas) y **Surge**, y **arenas por lugar** (pedido del usuario: las peleas de la
+  Torre, Silph, etc. no en el campo): Silph, Torre, cuevas, Escondite Rocket (+ Casino), S.S. Anne, Mansión, Dojo y playa
+  (rutas de mar); `data/arenas/por_lugar.json` + `ArenaData.for_zone` (solo cambia a los que tenían el campo). El Bosque
+  Verde sigue en el campo (las versiones salieron oscuras y borrosas). **Próximo**: los otros 5 gimnasios (Erika, Koga,
+  Sabrina, Blaine, Giovanni), la Liga y el torneo. Para probarlas: consola
   de Game Master → `arena <nombre> [nivel]` (entrenador al azar con 3 Pokémon; perder no te manda al Centro).
 - **Todas las teclas iguales y el básico gasta PP (2026-11-03, pedido del usuario: "el combate es más rápido de lo que
   quiero" y "Confusión pega más que Psíquico")**: medido con la prueba nueva `--autotest-move-damage` (cada ataque en

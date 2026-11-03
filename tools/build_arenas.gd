@@ -13,7 +13,7 @@ extends SceneTree
 ## data/arenas/<id>.tres (ArenaData). Correrlo de nuevo PISA las escenas.
 ## Uso: godot --headless --path . --quit-after 20000 --script res://tools/build_arenas.gd [-- --only <id>]
 ## `--only arena_gimnasio_agua` arma solo esa (no pisa las otras).
-## Las arenas PINTADAS (data/arenas/pinturas.json, 2026-11-03) se arman desde su plano (data/arenas/planos/<id>.txt, de
+## Las arenas PINTADAS (data/arenas/pinturas.json, 2026-11-03) se arman desde su plano (data/arenas/planos/<id>.json, de
 ## tools/paint_arenas.py) en vez de con tiles de FireRed: los tiles quedan para la colisión y el entorno, y la pintura
 ## (sprites/arenas/<id>.png) va en ArenaData.painting. Lo demás de su ArenaData (tipo, partículas, épica...) se conserva.
 
@@ -48,13 +48,18 @@ func _init() -> void:
 	var painted: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PAINTED))
 	var args := OS.get_cmdline_user_args()
 	var only := args[args.find("--only") + 1] if args.has("--only") and args.find("--only") + 1 < args.size() else ""
+	var built := {}
 	for step in [["arena_campo", _campo], ["arena_gimnasio_roca", _gimnasio_roca], ["arena_torneo", _torneo],
 			["arena_gimnasio_agua", _gimnasio_agua], ["arena_gimnasio_electrico", _gimnasio_electrico]] + _themed_steps():
+		built[step[0]] = true
 		if only == "" or only == step[0]:
 			if painted.has(step[0]):
 				_painted(step[0], painted[step[0]])
 			else:
 				step[1].call()
+	for id: String in painted:  # las que son solo pintadas (las de lugares: Torre, Silph, cuevas...)
+		if not id.begins_with("_") and not built.has(id) and (only == "" or only == id):
+			_painted(id, painted[id])
 	quit()
 
 
@@ -495,14 +500,17 @@ func _gimnasio_electrico() -> void:
 
 # --- Arenas pintadas ----------------------------------------------------------------------------------
 
-func _painted(id: String, cfg: Dictionary) -> void:
-	var rows := FileAccess.get_file_as_string("res://data/arenas/planos/%s.txt" % id).strip_edges().split("
-")
+func _painted(id: String, _cfg: Dictionary) -> void:
+	var cfg: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/arenas/planos/%s.json" % id))
+	var rows: Array = cfg.rows
 	var root := ZoneBuilder.new_zone_root(id, tileset)
 	var g: TileMapLayer = root.get_node("Ground")
 	for y in rows.size():
-		for x in rows[y].length():
-			ZoneBuilder.set_metatile(g, Vector2i(x, y), int(cfg.floor) if rows[y][x] == "." else int(cfg.wall))
+		var row: String = rows[y]
+		for x in row.length():
+			ZoneBuilder.set_metatile(g, Vector2i(x, y), int(cfg.wall) if row[x] == "#" else int(cfg.floor))
+	for r in cfg.get("water", []):  # agua de verdad (la de la pintura se ve encima)
+		_pool(root.get_node("Water"), Rect2i(int(r[0]), int(r[1]), int(r[2]), int(r[3])))
 	for p in cfg.get("rocks", []):
 		ZoneBuilder.add_object(root, ROCK, Vector2i(int(p[0]), int(p[1])))
 	root.set("hand_edited", true)
@@ -510,6 +518,8 @@ func _painted(id: String, cfg: Dictionary) -> void:
 	var path := "%s/%s.tres" % [DATA_DIR, id]
 	var a: ArenaData = load(path) if ResourceLoader.exists(path) else ArenaData.new()
 	a.id = id
+	if str(cfg.get("name", "")) != "":
+		a.display_name = cfg.name
 	a.scene_path = "%s/%s.tscn" % [ARENAS_DIR, id]
 	a.painting = load("res://sprites/arenas/%s.png" % id)
 	var cells: Dictionary = cfg.cells

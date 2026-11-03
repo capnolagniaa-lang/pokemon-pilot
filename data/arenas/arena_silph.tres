@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Texture2D" path="res://sprites/arenas/arena_silph.png" id="1_y21ea"]
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="2_tdwih"]
+
+[resource]
+script = ExtResource("2_tdwih")
+id = "arena_silph"
+display_name = "Silph S.A."
+scene_path = "res://scenes/world/arenas/arena_silph.tscn"
+foe_trainer_cell = Vector2i(20, 7)
+player_cell = Vector2i(20, 26)
+foe_mon_cell = Vector2i(20, 11)
+player_mon_cell = Vector2i(20, 21)
+field = Rect2i(7, 8, 26, 16)
+painting = ExtResource("1_y21ea")

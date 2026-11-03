@@ -33,6 +33,8 @@ func run() -> void:
 		var ad: ArenaData = load("res://data/arenas/%s.tres" % arena_id)
 		world.arena.arena_data = ad
 		world.arena._enter_arena(null)
+		world.arena.active = true  # (la luz y las nubes como en una pelea de verdad)
+		world.day_night.apply()
 		await get_tree().create_timer(0.5).timeout
 		zone = world.arena.arena
 		entry = ZoneEntry.new()  # la arena no es una zona de la región: una de mentira con su lugar y tamaño
@@ -184,7 +186,8 @@ func _draw(entry: ZoneEntry, zone: Node, objects, reached: Dictionary, out: Stri
 		img = Image.create_empty(entry.size.x * 48, entry.size.y * 48, false, Image.FORMAT_RGBA8)
 		img.fill(Color(0.3, 0.3, 0.3))
 	img.convert(Image.FORMAT_RGBA8)
-	var k := img.get_width() / entry.size.x
+	var kx := float(img.get_width()) / entry.size.x  # (con decimales: una arena agrandada no da justo)
+	var ky := float(img.get_height()) / entry.size.y
 	for y in entry.size.y:
 		for x in entry.size.x:
 			var c := Vector2i(x, y)
@@ -197,9 +200,9 @@ func _draw(entry: ZoneEntry, zone: Node, objects, reached: Dictionary, out: Stri
 				col = Color(0.1, 1.0, 0.2, 0.3)
 			else:
 				col = Color(1.0, 0.9, 0.0, 0.6)
-			for py in range(y * k, (y + 1) * k):
-				for px in range(x * k, (x + 1) * k):
-					var edge := px == x * k or py == y * k
+			for py in range(int(y * ky), int((y + 1) * ky)):
+				for px in range(int(x * kx), int((x + 1) * kx)):
+					var edge := px == int(x * kx) or py == int(y * ky)
 					img.set_pixel(px, py, img.get_pixel(px, py).blend(Color(0, 0, 0, 0.5) if edge else col))
 	if out.begins_with("user://"):
 		img.save_png(out)

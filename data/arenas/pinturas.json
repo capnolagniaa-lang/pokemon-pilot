@@ -1,29 +1,312 @@
 {
-  "_doc": "Arenas pintadas con Qwen (2026-11-03, pedido del usuario: 'MUY EPICAS'). tools/paint_arenas.py arma el plano y la pintura; tools/build_arenas.gd las escenas. size = celdas; auto = umbral de brillo (celdas claras unidas al centro = piso) o null; open/solid = rectangulos [x, y, ancho, alto] que se abren o cierran despues; rocks = rocas que se rompen; cells = donde se para cada uno; field = la cancha; floor/wall = metatiles (colision y tags).",
+  "_doc": "Arenas pintadas con Qwen (2026-11-03, pedido del usuario: 'MUY EPICAS'). tools/paint_arenas.py arma el plano y la pintura; tools/build_arenas.gd las escenas. size = celdas de la grilla en la que se marca todo; scale = agranda la arena (size x scale, misma pintura); water = piletas de agua de verdad [x, y, ancho, alto]; auto = umbral de brillo (celdas claras unidas al centro = piso) o null; open/solid = rectangulos [x, y, ancho, alto] que se abren o cierran despues; rocks = rocas que se rompen; cells = donde se para cada uno; field = la cancha; floor/wall = metatiles (colision y tags). brillo = aclara la pintura (las muy oscuras).",
   "arena_campo": {
     "size": [40, 30],
     "auto": 70,
     "open": [],
-    "solid": [[28, 24, 4, 6], [4, 22, 4, 2]],
+    "solid": [
+      [28, 24, 4, 6],
+      [4, 22, 4, 2]
+    ],
     "floor": 1,
     "wall": 35008,
     "rocks": [],
-    "cells": {"foe_trainer": [20, 6], "foe_mon": [20, 10], "player_mon": [20, 21], "player": [20, 26]},
+    "cells": {
+      "foe_trainer": [20, 6],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
     "field": [6, 7, 28, 18],
     "prompt": "Pixel art, top-down 3/4 view of an epic outdoor trainer battle clearing in a forest for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A large flat open grass field in the middle with a worn dirt battle area, faint battle lines and a circle mark at the center, surrounded by lush layered pine and oak trees, big roots, mossy rocks, flowers and bushes, a small stream in one corner with a wooden bridge, sunbeams through the leaves. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text.",
     "seed": 13
   },
   "arena_gimnasio_roca": {
     "size": [40, 30],
+    "scale": 1.4,
     "auto": null,
-    "open": [[9, 8, 22, 16], [17, 3, 6, 5], [17, 24, 6, 5]],
-    "solid": [[9, 22, 1, 2], [30, 22, 1, 2]],
+    "open": [
+      [9, 8, 22, 16],
+      [17, 3, 6, 5],
+      [17, 24, 6, 5]
+    ],
+    "solid": [
+      [9, 22, 1, 2],
+      [30, 22, 1, 2]
+    ],
     "floor": 35020,
     "wall": 35008,
-    "rocks": [[14, 12], [25, 12], [14, 19], [25, 19], [11, 15], [28, 15]],
-    "cells": {"foe_trainer": [20, 4], "foe_mon": [20, 11], "player_mon": [20, 20], "player": [20, 25]},
+    "rocks": [
+      [14, 12],
+      [25, 12],
+      [14, 19],
+      [25, 19],
+      [11, 15],
+      [28, 15]
+    ],
+    "cells": {
+      "foe_trainer": [20, 4],
+      "foe_mon": [20, 11],
+      "player_mon": [20, 20],
+      "player": [20, 25]
+    },
     "field": [9, 8, 22, 16],
     "prompt": "Pixel art, top-down 3/4 view of an EPIC rock-type gym battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A legendary canyon colosseum: a large flat open stone battle field in the middle with etched battle lines and a giant carved rock badge emblem at the center; around it rugged layered cliff walls, huge carved stone pillars, glowing amber crystals, burning braziers; at the top center a raised empty stone platform with wide stairs; at the bottom center a wooden entrance deck. Warm dramatic lighting from above, dust in the air. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
     "seed": 11
+  },
+  "arena_gimnasio_agua": {
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [3, 7, 34, 18],
+      [18, 6, 4, 2],
+      [19, 24, 2, 4]
+    ],
+    "solid": [
+      [9, 14, 1, 2],
+      [30, 14, 1, 2],
+      [3, 23, 3, 2],
+      [34, 23, 3, 2]
+    ],
+    "water": [
+      [4, 8, 5, 15],
+      [31, 8, 5, 15],
+      [13, 13, 4, 4],
+      [23, 13, 4, 4]
+    ],
+    "floor": 11001,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 7],
+      "foe_mon": [20, 11],
+      "player_mon": [20, 21],
+      "player": [20, 24]
+    },
+    "field": [10, 8, 20, 16],
+    "sketch": "art_src/arenas/arena_gimnasio_agua_boceto.png",
+    "prompt": "This image is the floor plan sketch of a water-type gym battle arena (dark = walls, light = floor, blue = water pools). Redraw it as an EPIC breathtaking water-type gym arena keeping EXACTLY the same layout: the blue pools stay as real water pools in the same place and size, the walls stay on the edges and the light floor stays open. A grand aquatic palace: white marble and aquamarine tiles, glowing blue water in the pools with ripples and light caustics, fountains and waterfalls on the back wall, a huge cascade badge emblem in the center of the floor, coral and shells, blue banners. At the top center a raised platform for the leader, at the bottom center the entrance. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 22
+  },
+  "arena_gimnasio_electrico": {
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [7, 6, 27, 19],
+      [18, 2, 4, 4],
+      [18, 25, 4, 4]
+    ],
+    "solid": [],
+    "floor": 58001,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 3],
+      "foe_mon": [20, 9],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [7, 6, 27, 19],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A colossal electric-type gym arena: a dark steel floor with glowing yellow circuit lines and a giant thunder badge emblem in the center, huge humming generators and tesla coils around the edges crackling with blue and yellow lightning, cables, warning stripes, big floodlights. At the top center a raised metal platform for the leader, at the bottom center the entrance. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 21,
+    "brillo": 1.35
+  },
+  "arena_mansion": {
+    "name": "Mansión Pokémon",
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [5, 8, 31, 17],
+      [18, 25, 4, 4]
+    ],
+    "solid": [
+      [4, 8, 3, 4],
+      [33, 8, 3, 4],
+      [4, 20, 3, 5],
+      [33, 20, 3, 5],
+      [15, 23, 3, 3],
+      [23, 23, 3, 3]
+    ],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 9],
+      "foe_mon": [20, 13],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [6, 9, 28, 15],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A burned abandoned mansion hall used as a battle arena: a cracked marble floor in the middle with burn marks, surrounded by broken statues, collapsed bookshelves, scorched walls, broken chandeliers, embers and a big old fireplace, eerie warm light. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 24
+  },
+  "arena_dojo": {
+    "name": "Dojo Karate",
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [8, 6, 25, 20],
+      [18, 26, 4, 3]
+    ],
+    "solid": [],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 6],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 22],
+      "player": [20, 27]
+    },
+    "field": [8, 6, 25, 20],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A traditional martial arts dojo used as a battle arena: a big flat wooden tatami floor in the middle with a fighting circle painted on it, surrounded by paper walls, wooden pillars, training dummies, hanging scrolls, drums, punching bags, warm lantern light. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 24
+  },
+  "arena_silph": {
+    "name": "Silph S.A.",
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [5, 7, 30, 18],
+      [18, 25, 4, 4]
+    ],
+    "solid": [
+      [5, 5, 2, 3],
+      [32, 5, 3, 3],
+      [4, 23, 2, 3],
+      [33, 23, 3, 3]
+    ],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 7],
+      "foe_mon": [20, 11],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [7, 8, 26, 16],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A modern corporate skyscraper floor turned into a battle arena: a polished grey and blue office floor in the middle with a big company logo on it, surrounded by office desks, computers, glass walls, potted plants, server racks with blinking lights, a city skyline seen through big windows at the top. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 22
+  },
+  "arena_rocket": {
+    "name": "Escondite Rocket",
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [6, 6, 28, 19]
+    ],
+    "solid": [],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 6],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 20],
+      "player": [20, 24]
+    },
+    "field": [7, 7, 26, 17],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A secret villain hideout battle room underground: a dark metal floor in the middle with a big red R emblem painted on it, surrounded by crates, computer consoles, pipes, red warning lights, hazard stripes, conveyor belts and steel walls. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 22,
+    "brillo": 1.35
+  },
+  "arena_barco": {
+    "name": "Cubierta del S.S. Anne",
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [7, 7, 26, 18]
+    ],
+    "solid": [
+      [18, 7, 5, 2]
+    ],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 10],
+      "foe_mon": [20, 13],
+      "player_mon": [20, 21],
+      "player": [20, 24]
+    },
+    "field": [7, 7, 26, 18],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. The wide wooden deck of a luxury cruise ship used as a battle arena: a large flat polished wooden deck in the middle, surrounded by white railings, lifebuoys, deck chairs, a smokestack, ropes and barrels, with the deep blue ocean all around the edges and seagulls. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 22
+  },
+  "arena_playa": {
+    "name": "Playa",
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [9, 6, 22, 19],
+      [7, 6, 26, 18],
+      [4, 9, 32, 11],
+      [19, 0, 2, 6]
+    ],
+    "solid": [],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 5],
+      "foe_mon": [20, 9],
+      "player_mon": [20, 20],
+      "player": [20, 24]
+    },
+    "field": [7, 6, 26, 18],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A tropical beach battle arena by the sea: a big flat sandy beach field in the middle with a battle circle drawn in the sand, surrounded by clear turquoise ocean waves at the bottom and sides, palm trees, rocks, shells, a wooden pier, sunny bright light. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 21
+  },
+  "arena_cueva": {
+    "name": "Cueva",
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [5, 6, 30, 19],
+      [18, 2, 5, 4],
+      [18, 25, 4, 4]
+    ],
+    "solid": [
+      [4, 4, 4, 3],
+      [32, 4, 4, 4],
+      [3, 21, 5, 5],
+      [32, 21, 4, 5]
+    ],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 4],
+      "foe_mon": [20, 9],
+      "player_mon": [20, 21],
+      "player": [20, 26]
+    },
+    "field": [6, 6, 28, 19],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A huge underground cave battle chamber, well lit by glowing crystals: a wide flat cave floor in the middle made of detailed layered stone slabs with cracks, pebbles, moss patches, puddles and glowing blue crystal veins, surrounded by tall rock walls, stalagmites, big clusters of glowing blue and purple crystals casting colored light, a small underground stream at one edge with a stone bridge, warm torches. Readable, not too dark. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 24,
+    "brillo": 1.15
+  },
+  "arena_torre": {
+    "name": "Torre Pokémon",
+    "size": [40, 30],
+    "auto": null,
+    "open": [
+      [6, 6, 30, 19]
+    ],
+    "solid": [],
+    "floor": 35020,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [20, 6],
+      "foe_mon": [20, 10],
+      "player_mon": [20, 20],
+      "player": [20, 24]
+    },
+    "field": [7, 6, 28, 19],
+    "prompt": "Pixel art, top-down 3/4 view of an EPIC battle arena for a 2D RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A haunted tower floor used as a battle arena, dim but readable: a large flat floor of old detailed wooden planks with a faded ritual circle pattern, cracks and scattered petals, surrounded by rows of gravestones with offerings, many flickering purple and orange candles, cobwebs, ghostly purple mist curling at the edges, broken stone pillars, incense, moonlight shafts from tall windows. The battle field in the middle is large, flat and open, with no objects on it. Rich detailed shading, dramatic lighting, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 22,
+    "brillo": 1.15
   }
 }

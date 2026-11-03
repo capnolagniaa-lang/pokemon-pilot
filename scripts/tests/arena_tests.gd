@@ -17,6 +17,16 @@ func run() -> void:
 	r["Entrenadores de la historia cargados (%d)" % trainers.size()] = trainers.size() >= 8
 	r["Brock: Geodude 12 + Onix 14 en el gimnasio de roca"] = _team_of("ciudad_plateada_gimnasio_brock") == "geodude12 onix14" \
 		and DB.npcs["ciudad_plateada_gimnasio_brock"].trainer.arena_id == "arena_gimnasio_roca"
+	# Arena según el lugar (data/arenas/por_lugar.json): la del campo pasa a la del lugar, si existe; las otras no cambian.
+	var places := {"silph_5p": "arena_silph", "torre_pokemon_3p": "arena_torre", "mt_moon_s2": "arena_cueva",
+		"ss_anne_cubierta": "arena_barco", "ruta20": "arena_playa", "ruta1": "arena_campo"}
+	var bad := []
+	for z in places:
+		var want: String = places[z] if ResourceLoader.exists("res://data/arenas/%s.tres" % places[z]) else "arena_campo"
+		if ArenaData.for_zone("arena_campo", z) != want:
+			bad.append(z)
+	r["La arena sale del lugar (Silph, Torre, cueva, barco, mar; las rutas, el campo) %s" % str(bad)] = bad.is_empty() \
+		and ArenaData.for_zone("arena_gimnasio_agua", "silph_5p") == "arena_gimnasio_agua"
 
 	world = await autotest._setup_kit_world("squirtle")
 	world.combat.end_battle()

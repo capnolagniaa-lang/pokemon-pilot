@@ -420,7 +420,7 @@ func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) 
 	if texture == null and ResourceLoader.exists("res://art/pret/characters/%s.png" % data.gfx):
 		texture = load("res://art/pret/characters/%s.png" % data.gfx)
 	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": team,
-		"arena_id": td.arena_id, "texture": texture, "leader": td.leader, "no_blackout": no_blackout,
+		"arena_id": ArenaData.for_zone(td.arena_id, data.zone_id), "texture": texture, "leader": td.leader, "no_blackout": no_blackout,
 		"trainer_ids": [td.id, data.id],  # (guion de líder: docs/PLAN_IA.md, IA-4)
 		"vs": data.gfx, "vs_color": team[0].species.primary_type().color if not team.is_empty() else Color(0.85, 0.15, 0.15),
 		"music": "rival" if td.id.contains("rival") else ("lider" if td.leader else "entrenador"),
@@ -465,7 +465,8 @@ func challenge_living(npc: TrainerNPC) -> void:
 	for inst in st.team:
 		inst.hp = inst.max_hp()  # entre peleas descansa
 	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": st.team,
-		"arena_id": td.arena_id, "texture": td.sprite, "leader": td.leader,
+		"arena_id": ArenaData.for_zone(td.arena_id, world.streamer.current.id if world.streamer.current != null else ""),
+		"texture": td.sprite, "leader": td.leader,
 		"defeat_lines": _lines(td, "pierde", "¡Me ganaste!")})
 	if r == "win":
 		st.losses += 1
