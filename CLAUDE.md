@@ -239,7 +239,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   desde `tools/fetch_abilities.py`. **Kit de jefe** (`SpeciesData.boss_kit`: Onix, Starmie, Raichu): solo lo usa el
   Pokémon de un **líder de gimnasio** (`CreatureInstance.boss`, lo pone `TrainerBattle`). `SpeciesData.kit` quedó vacío
   en todas (los archivos de `data/kits/` siguen ahí por si se retoman). Test `--autotest-abilities`.
-- **Teclas por rol, estilo LoL** (pedido del usuario 2026-10-31, "lo siento muy rápido, spam"; ajuste `slot_roles`): en
+- **Teclas por rol, estilo LoL** (pedido del usuario 2026-10-31, "lo siento muy rápido, spam"; ajuste `slot_roles`, **apagado por defecto desde el 2026-11-03**: "no debería haber diferencia entre las ranuras", todas pegan y recargan igual; con el ajuste prendido): en
   `MoveUser`, Clic izq. = **básico** (recarga = `basic_interval()` según Velocidad, 0,9-0,45 s; daño × `role_damage` para no
   pasar el daño por segundo del ataque), Clic der. y Q = habilidades, R = **definitiva** (recarga ×1,6, mínimo 8 s, daño
   ×1,3). Los rivales y salvajes se ordenan solos (`by_role`); los tuyos, como los pongas en la ficha. `HitInfo.from` aplica

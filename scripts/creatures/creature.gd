@@ -671,7 +671,6 @@ func _on_hit(hit: HitInfo) -> void:
 	if attacker != null:
 		last_exchange = _clock
 		attacker.last_exchange = attacker.now()
-		attacker.moves.basic_landed(hit.move)  # el básico devuelve PP al pegar
 	var interactions := DB.interactions_for(hit.move.element, statuses)
 	var mult := 1.0
 	for it in interactions:

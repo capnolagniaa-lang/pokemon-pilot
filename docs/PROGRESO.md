@@ -6,6 +6,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-03)
+- **Todas las teclas iguales y el básico gasta PP (2026-11-03, pedido del usuario: "el combate es más rápido de lo que
+  quiero" y "Confusión pega más que Psíquico")**: medido con la prueba nueva `--autotest-move-damage` (cada ataque en
+  cada tecla contra un muñeco): Confusión pegaba más solo porque el Clic izquierdo le dejaba a Psíquico/Premonición un
+  25-30 % del daño (y la R le sumaba ×1,3). Ahora las teclas por rol (`slot_roles`) vienen apagadas: cualquier ataque
+  pega y recarga lo mismo en cualquier tecla. El básico ya no es gratis ni devuelve PP al pegar.
 - **Evoluciones por intercambio y amistad (2026-11-03, pedido del usuario: "como lo suelen hacer los fangames")**:
   antes no evolucionaban nunca. Ahora Kadabra, Machoke, Graveler y Haunter evolucionan a Nv. 37; Onix, Scyther, Seadra,
   Slowpoke (Slowking), Poliwhirl (Politoed), Porygon y Clamperl con su objeto usado como piedra (6 objetos nuevos, a

@@ -58,6 +58,9 @@ func run() -> void:
 	# Teclas por rol (estilo LoL): básico seguido y flojo, definitiva lenta y fuerte; los rivales se ordenan solos.
 	var mu: MoveUser = me.moves
 	var basic := mu.slots[0]
+	var keys_before = GameState.setting("slot_roles")
+	r["Por defecto todas las teclas pegan y recargan igual (sin roles)"] = keys_before == false 		and (basic == null or mu.role_damage(basic) == 1.0) and is_equal_approx(mu.slot_cooldown(0, 3.0), mu.slot_cooldown(1, 3.0))
+	GameState.set_setting("slot_roles", true)  # lo que sigue prueba los roles prendidos a mano
 	r["Básico: recarga corta según la Velocidad"] = mu.slot_cooldown(0, 10.0) <= 0.9 and mu.slot_cooldown(0, 10.0) >= 0.45
 	r["Básico: no pasa el daño por segundo del ataque"] = basic == null or mu.role_damage(basic) <= 1.0
 	GameState.set_setting("pp_mode", false)
@@ -83,7 +86,7 @@ func run() -> void:
 	var upfront := mu.pp_cost(1) * MoveUser.PP_CHANNEL_UPFRONT
 	r["PP: un canalizado paga una parte al empezar y el resto mientras sale"] = mu.channel_drain(stream) > 0.0 		and absf(upfront + mu.channel_drain(stream) * stream.channel_time - mu.pp_cost(1)) < 0.01
 	mu.slots[1] = keep
-	r["PP: el básico es gratis"] = mu.pp_cost(0) == 0.0
+	r["PP: el básico gasta en proporción a lo que pega (%d)" % mu.pp_cost(0)] = basic == null 		or (mu.pp_cost(0) > 0.0 and is_equal_approx(mu.pp_cost(0), roundf(MoveUser.pp_cost_of(basic) * mu.role_damage(basic))))
 	var paid := -1
 	for i in [1, 2, 3]:
 		if mu.slots[i] != null:

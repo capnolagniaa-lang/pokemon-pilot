@@ -6,7 +6,8 @@ extends Node
 const SLOT_COUNT := 4
 const DODGE_COOLDOWN := 0.9
 
-## Teclas por rol, estilo League of Legends (pedido del usuario 2026-10-31; ajuste "slot_roles"): Clic izq. = ataque
+## Teclas por rol, estilo League of Legends (pedido del usuario 2026-10-31; ajuste "slot_roles", APAGADO por defecto
+## desde el 2026-11-03: "no debería haber diferencia entre las ranuras"; se puede prender en Ajustes): Clic izq. = ataque
 ## básico (recarga corta según la Velocidad, daño escalado para no superar el daño por segundo del ataque), Clic der.
 ## y Q = habilidades (como siempre), R = definitiva (recarga larga, pega más fuerte).
 const BASIC_SLOT := 0
@@ -43,8 +44,6 @@ const PP_CHANNEL_UPFRONT := 0.3
 ## (en Pokemon Arena 2D, ~7 s; antes era 0,06: ~17 s).
 const PP_REGEN_FIGHT := 0.13
 const PP_REGEN_CALM := 0.3
-## PP que devuelve cada golpe del básico.
-const PP_BASIC_GAIN := 6.0
 ## Recarga de los ataques con PP: la de siempre × esto, entre estos valores.
 const PP_COOLDOWN := 0.3
 const PP_COOLDOWN_MIN := 0.35
@@ -258,13 +257,14 @@ static func cost_fraction(power: float) -> float:
 	return c[c.size() - 1][1]
 
 
-## Lo que gasta la ranura (el básico, nada).
+## Lo que gasta la ranura. El básico paga como los demás, en proporción a lo que pega (pedido del usuario 2026-11-03:
+## antes era gratis y devolvía PP al pegar, y el combate se sentía muy rápido).
 func pp_cost(slot: int) -> float:
 	if not pp_on() or slot < 0 or slot >= slots.size() or slots[slot] == null:
 		return 0.0
-	if roles_on() and slot == BASIC_SLOT:
-		return 0.0
 	var m := slots[slot]
+	if roles_on() and slot == BASIC_SLOT:
+		return roundf(pp_cost_of(m) * role_damage(m))
 	if is_heal(m):
 		return roundf(max_pp() * HEAL_PP.get(m.self_status.id, HEAL_PP_DEFAULT))
 	return pp_cost_of(m)
@@ -281,10 +281,6 @@ func channel_drain(m: MoveData) -> float:
 	return pp_cost(slots.find(m)) * (1.0 - PP_CHANNEL_UPFRONT) / m.channel_time
 
 
-## El básico pegó: devuelve un poco de PP.
-func basic_landed(m: MoveData) -> void:
-	if pp_on() and roles_on() and slots.find(m) == BASIC_SLOT:
-		set_pp(pp() + PP_BASIC_GAIN)
 
 ## Arranca la recarga (o avanza el combo). Devuelve [ataque, paso del combo] o [] si no se puede.
 func consume(slot: int) -> Array:
