@@ -2,6 +2,23 @@ class_name GmTests
 extends StoryH1Tests
 ## Consola de Game Master (GmConsole, GmCommands, GmFlight).
 ##   godot --headless --path . --quit-after 30000 -- --autotest-gm
+## Vitrina (la pelea de prueba de la consola, como la ve el jugador):
+##   godot --path . --quit-after 300 --write-movie out/f.png --fixed-fps 30 -- --showcase-gm-arena tierra
+
+
+func showcase_arena() -> void:
+	var args := OS.get_cmdline_user_args()
+	var i := args.find("--showcase-gm-arena")
+	var name: String = args[i + 1] if i + 1 < args.size() else "campo"
+	GameState.new_game(DB.species["charmander"])
+	GameState.wilds_enabled = false
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await get_tree().process_frame
+	await get_tree().process_frame
+	world = get_tree().current_scene
+	_dialogs()
+	await get_tree().create_timer(0.3).timeout
+	print("[showcase-gm-arena] ", world.gm_console.submit("arena %s 30" % name))
 
 
 func run() -> void:

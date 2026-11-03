@@ -80,6 +80,7 @@ $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: 
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
 $G --headless --path . --quit-after 200000 -- --autotest-room-walk  # camina cada celda a la que se llega de un lugar (`--zone`, def. centro_online; `--arena <id>` = una arena) + imagen de la colisión sobre el dibujo (`--out <png>`)
 $G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos y volar sin descubrir zonas
+$G --path . --quit-after 300 --write-movie out/f.png --fixed-fps 30 -- --showcase-gm-arena tierra  # la pelea de prueba `arena <nombre>` de la consola
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-online-building  # afuera y adentro
 $G --headless --path . -- --server --port 24680                    # servidor online (sala); corre hasta cerrarlo
 $G --headless --path . --quit-after 20000 -- --autotest-audio     # sonido: tabla de música, respaldos, archivos propios, gritos, efectos
