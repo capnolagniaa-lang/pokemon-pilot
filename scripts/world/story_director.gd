@@ -204,9 +204,11 @@ func run_talk(talk: NpcTalk, default_speaker: String = "", casual_ok := false) -
 			GameState.mark_fought(inst.species)
 			GameState.pokedex_caught[inst.species.id] = true
 			Events.party_changed.emit()
+			after.append("¡Recibiste a %s!" % inst.display_name())
+		elif GameState.add_caught(inst) == "caja":  # con el equipo lleno va a la Caja (antes se perdía)
+			after.append("¡Recibiste a %s! Como tu equipo está lleno, lo mandaste a la Caja." % inst.display_name())
 		else:
-			GameState.add_to_party(inst)
-		after.append("¡Recibiste a %s!" % inst.display_name())
+			after.append("¡Recibiste a %s!" % inst.display_name())
 	if talk.heal:
 		heal_party()
 		after.append("¡Tu equipo se recuperó por completo!")

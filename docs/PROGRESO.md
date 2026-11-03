@@ -5,7 +5,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-11-02)
+## 📍 Dónde estamos (actualizado 2026-11-03)
+- **Nerf de PP y curas (2026-11-03, pedido del usuario: "consumen muy poco y podés spamear mucho")**: todos los
+  ataques cuestan ×1,5 de PP (`MoveUser.PP_COST_MULT`; la recarga de la barra no se tocó). Las curas (Descanso,
+  Recuperación, Síntesis, Luz Lunar, Arraigo...) gastan una parte de la barra según cuánto curan (`HEAL_PP`) y no salen
+  sin un rival cerca (`Creature.foe_near`): ya no se cura uno paseando o con la F. Tests en `--autotest-settings`.
+- **Regalos con el equipo lleno (2026-11-03)**: un Pokémon regalado (Lapras de Silph, Eevee, etc.) va a la Caja si el
+  equipo está lleno (antes se perdía; `StoryDirector` usa `GameState.add_caught`). Test en `--autotest-story-h4`.
 - **Minimapa con Tab (2026-11-03, pedido del usuario)**: `Minimap` (`scripts/ui/minimap.gd`, arriba a la derecha):
   afuera recorta la imagen del Mapa del menú (`TownMap.image`) con vos en el centro, niebla en lo no visitado e íconos;
   en interiores, cuevas y la Torre dibuja ese lugar solo (`TownMap.zone_image`, agrandado si es chico) con puertas y

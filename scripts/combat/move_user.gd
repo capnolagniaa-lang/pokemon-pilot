@@ -29,7 +29,14 @@ const PP_PER_LEVEL := 4.0
 ## nivel (barra más grande) rinde más.
 const PP_COST_CURVE := [[20.0, 0.08], [65.0, 0.20], [85.0, 0.40], [120.0, 0.60], [150.0, 0.70]]
 const PP_REFERENCE := 220.0
-const PP_STATUS_COST := 33.0
+## Nerf del 2026-11-03 (pedido del usuario: "consumen muy poco y podés spamear mucho"): todo cuesta ×1,5 (la recarga no
+## se tocó). Colmillo Ígneo 44 → 66, Lanzallamas 94 → 141, Hiperrayo 154 → 231; los de estado 33 → 50.
+const PP_COST_MULT := 1.5
+const PP_STATUS_COST := 50.0
+## Curas (Descanso, Recuperación, Síntesis...): gastan una parte de la barra según cuánto curan (por su estado propio;
+## crece con el nivel sola) y solo se usan con un rival cerca (`Creature.foe_near`): fuera de pelea no.
+const HEAL_PP := {"descansando": 0.6, "recuperando": 0.4, "sintesis": 0.35, "arraigado": 0.25}
+const HEAL_PP_DEFAULT := 0.3
 ## Canalizados (Lanzallamas...): pagan esto al empezar y el resto mientras sale el chorro; sin PP se cortan.
 const PP_CHANNEL_UPFRONT := 0.3
 ## Recarga sola por segundo (fracción de la barra): en pelea y fuera de pelea. En pelea, de vacía a llena en ~7,5 s
@@ -188,7 +195,19 @@ func slot_of(m: MoveData) -> int:
 
 
 func can_use(slot: int) -> bool:
-	return slot >= 0 and slot < slots.size() and slots[slot] != null and cooldowns[slot] <= 0.0 and gap_left <= 0.0 		and has_pp(slot)
+	return slot >= 0 and slot < slots.size() and slots[slot] != null and cooldowns[slot] <= 0.0 and gap_left <= 0.0 \
+		and has_pp(slot) and not heal_blocked(slot)
+
+
+## ¿Es una cura? (un ataque propio cuyo estado cura vida: Descanso, Recuperación, Síntesis, Arraigo...)
+static func is_heal(m: MoveData) -> bool:
+	return m != null and m.self_status != null and m.self_status.heal_per_second > 0.0
+
+
+## Una cura sin rival cerca no sale (que no se cure gratis paseando o con la F sin nadie).
+func heal_blocked(slot: int) -> bool:
+	var c := get_parent()
+	return is_heal(slots[slot]) and c != null and c.has_method("foe_near") and not c.foe_near()
 
 
 static func pp_on() -> bool:
@@ -219,14 +238,14 @@ func set_pp(value: float) -> void:
 		inst.pp = clampf(value, 0.0, max_pp())
 
 
-## Lo que gasta un ataque, según su potencia (`PP_COST_CURVE`: Placaje 40 ~29, Ascuas 40 ~29, Colmillo Ígneo 65 ~44,
-## Pulso Dragón 85 ~88, Lanzallamas 90 ~94, Hiperrayo 150 ~154; los de estado 33).
+## Lo que gasta un ataque, según su potencia (`PP_COST_CURVE` × `PP_COST_MULT`: Placaje 40 ~44, Colmillo Ígneo 65 ~66,
+## Pulso Dragón 85 ~132, Lanzallamas 90 ~141, Hiperrayo 150 ~231; los de estado 50). Las curas: `pp_cost`.
 static func pp_cost_of(m: MoveData) -> float:
 	if m == null:
 		return 0.0
 	if m.power <= 0.0 or m.category == MoveData.Category.STATUS:
 		return PP_STATUS_COST
-	return roundf(cost_fraction(m.power) * PP_REFERENCE)
+	return roundf(cost_fraction(m.power) * PP_REFERENCE * PP_COST_MULT)
 
 
 static func cost_fraction(power: float) -> float:
@@ -245,7 +264,10 @@ func pp_cost(slot: int) -> float:
 		return 0.0
 	if roles_on() and slot == BASIC_SLOT:
 		return 0.0
-	return pp_cost_of(slots[slot])
+	var m := slots[slot]
+	if is_heal(m):
+		return roundf(max_pp() * HEAL_PP.get(m.self_status.id, HEAL_PP_DEFAULT))
+	return pp_cost_of(m)
 
 
 func has_pp(slot: int) -> bool:

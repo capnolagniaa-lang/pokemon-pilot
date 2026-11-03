@@ -195,6 +195,21 @@ func engaged() -> bool:
 	return _clock - last_exchange < ENGAGED_TIME
 
 
+## Distancia a la que un rival cuenta como "en pelea" para las curas (MoveUser.heal_blocked).
+const FOE_NEAR := 240.0
+
+
+## ¿Hay un rival en pie cerca? (otro equipo; o el que tiene de objetivo). Sin eso, las curas no salen.
+func foe_near() -> bool:
+	if is_instance_valid(target) and not target.is_down() and global_position.distance_to(target.global_position) <= FOE_NEAR:
+		return true
+	for c in get_tree().get_nodes_in_group("creatures"):
+		if c != self and c is Creature and c.team != team and not c.is_down() \
+				and global_position.distance_to(c.global_position) <= FOE_NEAR:
+			return true
+	return false
+
+
 ## Suelta la pelea (salvaje): vuelve a su lugar y no nota a nadie por un rato.
 func give_up_fight(calm: float = CALM_AFTER_GIVING_UP) -> void:
 	calm_until = _clock + calm

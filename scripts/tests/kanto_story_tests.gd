@@ -93,8 +93,16 @@ func run() -> void:
 	r["Con el Té el guardia te deja pasar"] = _cell().y <= 5 and not world.story.busy
 	await _rival_trigger("silph_7p", Vector2i(3, 9), Vector2i(3, 8))
 	r["El rival en Silph S.A."] = GameState.has_flag("rival_silph_peleado")
+	# Con el equipo lleno, el regalo va a la Caja (antes se perdía).
+	var padding: Array[CreatureInstance] = []
+	while GameState.party.size() < GameState.MAX_PARTY:
+		padding.append(CreatureInstance.create(DB.species["rattata"], 5))
+		GameState.party.append(padding[-1])
 	await _talk("silph_7p_laprasguy")
-	r["El Lapras de regalo"] = GameState.party.any(func(i): return i.species.id == "lapras") or GameState.box.any(func(i): return i.species.id == "lapras")
+	r["El Lapras de regalo, con el equipo lleno, a la Caja"] = GameState.box.any(func(i): return i.species.id == "lapras")
+	for p in padding:
+		GameState.party.erase(p)
+	Events.party_changed.emit()
 	await _win(DB.npcs["silph_11p_0x0"])
 	r["Giovanni en Silph: Azafrán liberada"] = GameState.has_flag("silph_liberada") and not DB.npcs["ciudad_azafran_rocketgrunt1"].visible_now()
 	await _talk("silph_11p_president")

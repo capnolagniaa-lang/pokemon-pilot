@@ -101,6 +101,27 @@ func run() -> void:
 		r["PP: sin PP suficientes no sale"] = not mu.can_use(paid)
 		mu.set_pp(mu.max_pp())
 		r["PP: la recarga queda corta (%.2f s)" % mu.slot_cooldown(paid, 10.0)] = mu.slot_cooldown(paid, 10.0) <= MoveUser.PP_COOLDOWN_MAX
+	# Nerf del 2026-11-03: todo ×1,5 y las curas gastan una parte de la barra y solo salen con un rival cerca.
+	r["PP: los costos subieron ×1,5 (65 de potencia = %d)" % MoveUser.pp_cost_of(mid)] = MoveUser.pp_cost_of(mid) == 66.0 \
+		and MoveUser.pp_cost_of(buff) == MoveUser.PP_STATUS_COST
+	var rest: MoveData = load("res://data/moves/descanso.tres")
+	var keep_heal := mu.slots[1]
+	mu.slots[1] = rest
+	mu.reset_cooldown(1)
+	mu.set_pp(mu.max_pp())
+	r["Curas: Descanso gasta el 60 %% de la barra (%d de %d)" % [mu.pp_cost(1), mu.max_pp()]] = MoveUser.is_heal(rest) \
+		and is_equal_approx(mu.pp_cost(1), roundf(mu.max_pp() * 0.6))
+	r["Curas: sin un rival cerca no salen"] = not me.foe_near() and not mu.can_use(1) and not me.use_slot(1, Vector2.RIGHT)
+	var wild: Creature = load("res://scenes/creatures/creature.tscn").instantiate()
+	wild.instance = CreatureInstance.create(DB.species["rattata"], 5)
+	wild.team = Creature.Team.WILD
+	wild.position = me.global_position + Vector2(60, 0)
+	wild.process_mode = Node.PROCESS_MODE_DISABLED  # quieto: que no arranque una pelea
+	me.get_parent().add_child(wild)
+	await get_tree().physics_frame
+	r["Curas: con un rival cerca sí"] = me.foe_near() and mu.can_use(1)
+	wild.queue_free()
+	mu.slots[1] = keep_heal
 	me.instance.pp = 10.0
 	GameState.heal_party()
 	r["PP: curarse los llena"] = is_equal_approx(mu.pp(), mu.max_pp())
