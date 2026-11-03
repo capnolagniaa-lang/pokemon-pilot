@@ -35,7 +35,7 @@ PLAN = [
     "##.....##########...####",  # 4 maceta, mostrador, quiosco de la derecha
     "##.....##......##...####",  # 5 vendedor (10, 5), enfermera (12, 5) y recepcionista (14, 5) detrás del mostrador
     "###....##########...####",  # 6
-    "###....................#",  # 7
+    "###...................##",  # 7 (21, 7) caminable: la entrada al pasillo de la derecha
     "##..###...........###..#",  # 8 máquinas de link (4-6 y 18-20); el escenario (10-14, 8-12) se pisa
     "###.###...........###..#",  # 9
     "###.###...........###..#",  # 10

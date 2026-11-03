@@ -27,6 +27,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   quedaron el vendedor, la enfermera y la recepcionista juntos en el mostrador; antes la recepcionista y el vendedor
   estaban parados encima de los floreros y de la PC (la parte de arriba de la PC le tapaba la cabeza). Los nombres
   ahora muestran solo el de la persona más cercana. Camino abierto para hacer lo mismo con otros interiores.
+  Test `--autotest-room-walk` (pedido del usuario): el entrenador pisa con las teclas cada celda a la que se llega desde la
+  plaza (FALLO si alguna no se alcanza) y deja una imagen de la colisión sobre la pintura (verde/rojo/amarillo/azul).
 - **Nerf de PP y curas (2026-11-03, pedido del usuario: "consumen muy poco y podés spamear mucho")**: todos los
   ataques cuestan ×1,5 de PP (`MoveUser.PP_COST_MULT`; la recarga de la barra no se tocó). Las curas (Descanso,
   Recuperación, Síntesis, Luz Lunar, Arraigo...) gastan una parte de la barra según cuánto curan (`HEAL_PP`) y no salen

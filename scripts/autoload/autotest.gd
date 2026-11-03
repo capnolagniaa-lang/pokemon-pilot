@@ -75,6 +75,13 @@ func _ready() -> void:
 		add_child(st)
 		(st.showcase if "--showcase-story" in OS.get_cmdline_user_args() else st.run).call_deferred()
 		return
+	if "--autotest-move-damage" in OS.get_cmdline_user_args():
+		set_process(false)
+		var md := MoveDamageTests.new()
+		md.autotest = self
+		add_child(md)
+		md.run.call_deferred()
+		return
 	if "--autotest-evolution" in OS.get_cmdline_user_args() or "--showcase-evolution" in OS.get_cmdline_user_args():
 		set_process(false)
 		var ev := EvolutionTests.new()
@@ -223,6 +230,13 @@ func _ready() -> void:
 		eq.autotest = self
 		add_child(eq)
 		eq.run.call_deferred()
+		return
+	if "--autotest-room-walk" in OS.get_cmdline_user_args():
+		set_process(false)
+		var rw := RoomWalkTests.new()
+		rw.autotest = self
+		add_child(rw)
+		rw.run.call_deferred()
 		return
 	if "--autotest-online-building" in OS.get_cmdline_user_args() or "--showcase-online-building" in OS.get_cmdline_user_args():
 		set_process(false)
