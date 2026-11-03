@@ -45,7 +45,7 @@ var _going := false
 var _end: Dictionary = {}
 ## Centro de Combate Online desde el que se entró (hay uno por ciudad: ahí se vuelve al terminar).
 var _back_zone := "centro_online"
-const DESK_FRONT := Vector2i(8, 5)  # frente al mostrador de la recepcionista (tools/build_online_interior.py)
+const DESK_FRONT := Vector2i(14, 7)  # frente al mostrador de la recepcionista (tools/build_online_interior.py)
 
 
 func _ready() -> void:

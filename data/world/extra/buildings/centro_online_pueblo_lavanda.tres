@@ -12,4 +12,4 @@ size = Vector2i(5, 4)
 texture = ExtResource("2_t")
 door = Vector2i(18, 4)
 to_zone = "centro_online_pueblo_lavanda"
-to_cell = Vector2i(7, 8)
+to_cell = Vector2i(11, 13)

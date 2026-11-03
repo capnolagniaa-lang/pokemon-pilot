@@ -17,7 +17,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Centro de Combate Online rediseñado (2026-11-03, pedido del usuario: "más lindo, con identidad propia, no tan
   FireRed")**: Qwen dio 4 ideas y el usuario eligió la 4 (pantalla de llaves, mostrador, filas de máquinas de link y un
   escenario holográfico). Esa imagen es ahora el cuarto entero (`sprites/props/centro_online_sala.png`, en los 9
-  Centros; a 720×480 = ×3 la resolución del juego, porque a ×1 se veía muy pixelada) y los tiles de abajo son solo la colisión (`tools/build_online_interior.py`). Se borró la enfermera pintada y
+  Centros; el cuarto se agrandó a 24×16 celdas y la pintura va a ×3 la resolución del juego, porque a ×1 se
+  veía muy pixelada; los interiores quedaron a 30 celdas uno del otro) y los tiles de abajo son solo la colisión (`tools/build_online_interior.py`). Se borró la enfermera pintada y
   quedaron el vendedor, la enfermera y la recepcionista juntos en el mostrador; antes la recepcionista y el vendedor
   estaban parados encima de los floreros y de la PC (la parte de arriba de la PC le tapaba la cabeza). Los nombres
   ahora muestran solo el de la persona más cercana. Camino abierto para hacer lo mismo con otros interiores.

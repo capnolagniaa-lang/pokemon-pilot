@@ -8,8 +8,9 @@ Overhead queda vacía.
 
 Cómo se pintó: Qwen-Image 2.1 Turbo (tools/comfy/qwen21_run.py, semilla 44, 1152x768) con una captura del interior
 viejo como imagen y el prompt de art_src/centro_online/prompt.txt → art_src/centro_online/idea4_qwen.png; se borró la
-enfermera pintada (y dos figuritas) copiando el panel de atrás, se dejó negro lo de afuera, y se achicó a 720x480
-(×3 la resolución del juego; ExtraBuilding la dibuja escalada y suave): `--pintura` en este script.
+enfermera pintada (y dos figuritas) copiando el panel de atrás, se dejó negro lo de afuera, sin achicarla (1152x768 = las
+24x16 celdas del cuarto a ×3 la resolución del juego; ExtraBuilding la dibuja escalada y suave). Antes el cuarto era de
+15x10 y la pintura quedaba chica; se agrandó a pedido del usuario (2026-11-03).: `--pintura` en este script.
 
 Uso: python -I -B tools/build_online_interior.py .              (la colisión)
      python -I -B tools/build_online_interior.py . --pintura    (vuelve a armar el sprite desde art_src)
@@ -19,23 +20,30 @@ import re
 import struct
 import sys
 
-W, H = 15, 10
+W, H = 24, 16
 PC_BELOW, PC_ABOVE, BUILDING_BELOW, BUILDING_ABOVE = 108, 110, 9, 11  # fuentes del TileSet
 
 # Plano de colisión del cuarto pintado (idea 4 de Qwen, la que eligió el usuario): "#" = sólido (un tile de pared),
 # "." = piso, "-" = se deja lo que había (la fila de abajo, con la alfombra de salida). Los tiles no se ven.
 PLAN = [
-    # 0123456789ABCDE
-    "###############",  # 0 pared de pantallas
-    "###############",  # 1
-    "##...#####..###",  # 2 maceta, pantalla grande, cables, quiosco
-    "##...#...##.###",  # 3 vendedor, enfermera y recepcionista detrás del mostrador (6-8, 3)
-    "##...######.###",  # 4
-    "#.##.......##.#",  # 5 máquinas de link (2-3 y 11-12) y el escenario (6-8, 5-7, se pisa)
-    "####.......##.#",  # 6
-    "####.......##.#",  # 7
-    "#.###.....####-",  # 8 sillones, plantas, la salida (6-8, 8)
-    "---------------",  # 9
+    # 0         1         2
+    # 012345678901234567890123
+    "########################",  # 0 pared de pantallas
+    "########################",  # 1
+    "########################",  # 2
+    "########################",  # 3
+    "##.....##########...####",  # 4 maceta, mostrador, quiosco de la derecha
+    "##.....##......##...####",  # 5 vendedor (10, 5), enfermera (12, 5) y recepcionista (14, 5) detrás del mostrador
+    "###....##########...####",  # 6
+    "###....................#",  # 7
+    "##..###...........###..#",  # 8 máquinas de link (4-6 y 18-20); el escenario (10-14, 8-12) se pisa
+    "###.###...........###..#",  # 9
+    "###.###...........###..#",  # 10
+    "##..###...........###..#",  # 11
+    "##..###...........######",  # 12
+    "########........########",  # 13 sillones y plantas; la salida es la alfombra (11-12, 13)
+    "########################",  # 14
+    "########################",  # 15
 ]
 SOLID, FLOOR = "40", "10"
 PAINT_SCALE = 3  # píxeles de la pintura por píxel del juego
@@ -124,8 +132,8 @@ def paint(root):
     im.paste(black.crop((0, 0, 1152, 60)), (0, 715))  # afuera del cuarto
     im.paste(black.crop((0, 0, 505, 20)), (0, 700))
     im.paste(black.crop((0, 0, 512, 20)), (640, 700))
-    # ×3 la resolución del juego (720x480): con el zoom de la cámara (2-3) se ve casi a la resolución de la pantalla.
-    # A 240x160 (un píxel por píxel del juego) quedaba muy pixelado (queja del usuario 2026-11-03).
+    # ×3 la resolución del juego: con el zoom de la cámara (2-3) se ve casi a la resolución de la pantalla. A ×1 (un
+    # píxel por píxel del juego) quedaba muy pixelado (queja del usuario 2026-11-03).
     out = im.resize((W * 16 * PAINT_SCALE, H * 16 * PAINT_SCALE), Image.LANCZOS)
     out.convert("RGBA").save(root + "/sprites/props/centro_online_sala.png")
     print("listo: sprites/props/centro_online_sala.png")

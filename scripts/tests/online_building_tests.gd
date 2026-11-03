@@ -105,7 +105,7 @@ func run() -> void:
 	server.close()
 
 	# Volver afuera por la alfombra.
-	await _go("centro_online", Vector2i(7, 6))
+	await _go("centro_online", Vector2i(12, 11))
 	t.facing = Vector2.DOWN
 	await _walk("move_down", 2.5, "ciudad_verde")
 	zone = world.streamer.zone_node("ciudad_verde")
@@ -129,7 +129,7 @@ func run() -> void:
 		await get_tree().create_timer(0.3).timeout
 		var inside_ok: bool = _here() == x.to_zone and world.story.npcs.has(x.to_zone + "_recepcionista") \
 			and DB.npcs[x.to_zone + "_recepcionista"].talk_now().action == "online"
-		await _go(x.to_zone, Vector2i(7, 6))
+		await _go(x.to_zone, Vector2i(12, 11))
 		t.facing = Vector2.DOWN
 		await _walk("move_down", 2.5, x.zone_id)
 		var back_ok: bool = _here() == x.zone_id
@@ -293,7 +293,7 @@ func showcase() -> void:
 	var b: ExtraBuilding = ExtraContent.buildings[0]
 	await _go("ciudad_verde", b.door + Vector2i(0, 3))
 	await get_tree().create_timer(2.5).timeout
-	await _go("centro_online", Vector2i(7, 5))
+	await _go("centro_online", Vector2i(12, 9))
 	await get_tree().create_timer(2.5).timeout
 	# La sala con dos jugadores de prueba; después, la elección de equipo.
 	var server := NetPeer.new()

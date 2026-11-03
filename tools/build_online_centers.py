@@ -34,15 +34,15 @@ CENTERS = {
     "isla_canela": (31, 9),
 }
 SIZE = (5, 4)
-INTERIOR_SIZE = (15, 10)
+INTERIOR_SIZE = (24, 16)
 # Objetos de adentro: id -> (sprite, celda, tamaño, se pisa). "sala" = el cuarto entero pintado con Qwen (2026-11-03,
 # pedido del usuario: más lindo y con identidad propia, no tan FireRed) encima de los tiles, que quedan para la colisión.
 DECOR = {
-    "sala": ("centro_online_sala", (0, 0), (15, 10), True),
+    "sala": ("centro_online_sala", (0, 0), INTERIOR_SIZE, True),
 }
 # Los interiores van en fila al lado del de Ciudad Verde (origen 0, 3300), cada uno a 20 celdas.
 INTERIOR_Y = 3300
-INTERIOR_STEP = 20
+INTERIOR_STEP = 30
 
 BUILDING = """[gd_resource type="Resource" script_class="ExtraBuilding" format=3]
 
@@ -58,7 +58,7 @@ size = Vector2i({w}, {h})
 texture = ExtResource("2_t")
 door = Vector2i({dx}, {dy})
 to_zone = "centro_online_{c}"
-to_cell = Vector2i(7, 8)
+to_cell = Vector2i(11, 13)
 """
 
 ZONE = """[gd_resource type="Resource" script_class="ZoneEntry" format=3]
@@ -73,14 +73,14 @@ scene_path = "res://scenes/world/extra/centro_online_{c}.tscn"
 origin = Vector2i({ox}, {oy})
 size = Vector2i({w}, {h})
 biome = "interior"
-hub = Vector2i(7, 5)
+hub = Vector2i(12, 10)
 warps = {{
 {warps}
 }}
 interior = true
 """
 
-WARP = """Vector2i({x}, 8): {{
+WARP = """Vector2i({x}, 13): {{
 "cell": Vector2i({dx}, {dy}),
 "to": "{c}"
 }}"""
@@ -122,7 +122,7 @@ def build(root):
     for k, (city, cell) in enumerate(CENTERS.items(), start=1):
         write_decor(root, "centro_online_" + city)
         dx, dy = door_of(cell)
-        warps = ",\n".join(WARP.format(x=x, dx=dx, dy=dy, c=city) for x in (6, 7, 8))
+        warps = ",\n".join(WARP.format(x=x, dx=dx, dy=dy, c=city) for x in (11, 12))
         out = {
             "data/world/extra/buildings/centro_online_%s.tres" % city:
                 BUILDING.format(c=city, x=cell[0], y=cell[1], w=SIZE[0], h=SIZE[1], dx=dx, dy=dy),
