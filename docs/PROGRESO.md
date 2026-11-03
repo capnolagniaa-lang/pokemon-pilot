@@ -11,7 +11,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   Recuperación, Síntesis, Luz Lunar, Arraigo...) gastan una parte de la barra según cuánto curan (`HEAL_PP`) y no salen
   sin un rival cerca (`Creature.foe_near`): ya no se cura uno paseando o con la F. Tests en `--autotest-settings`.
 - **Regalos con el equipo lleno (2026-11-03)**: un Pokémon regalado (Lapras de Silph, Eevee, etc.) va a la Caja si el
-  equipo está lleno (antes se perdía; `StoryDirector` usa `GameState.add_caught`). Test en `--autotest-story-h4`.
+  equipo está lleno (antes se perdía; `StoryDirector` usa `GameState.add_caught`). **Partidas viejas**: al cargar,
+  `GameState.restore_lost_gifts` revisa las banderas de los regalos (Lapras, Eevee, Hitmon del Dojo): si te lo dieron y
+  no tenés esa especie ni una evolución, va a la Caja (una vez por regalo, bandera `regalo_revisado_<bandera>`; del Dojo va
+  Hitmonchan porque no se sabe cuál elegiste) y el mundo avisa con un cartel. Test en `--autotest-story-h4`.
 - **Minimapa con Tab (2026-11-03, pedido del usuario)**: `Minimap` (`scripts/ui/minimap.gd`, arriba a la derecha):
   afuera recorta la imagen del Mapa del menú (`TownMap.image`) con vos en el centro, niebla en lo no visitado e íconos;
   en interiores, cuevas y la Torre dibuja ese lugar solo (`TownMap.zone_image`, agrandado si es chico) con puertas y

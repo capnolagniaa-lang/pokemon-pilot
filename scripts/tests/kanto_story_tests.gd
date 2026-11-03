@@ -103,6 +103,21 @@ func run() -> void:
 	for p in padding:
 		GameState.party.erase(p)
 	Events.party_changed.emit()
+	# Partida vieja que perdió el Lapras (equipo lleno, antes del arreglo): al cargar vuelve a la Caja, una sola vez.
+	var saved := GameState.to_dict()
+	var lost := func(list: Array) -> Array: return list.filter(func(m): return m["species_id"] != "lapras")
+	saved["box"] = lost.call(saved["box"])
+	saved["party"] = lost.call(saved["party"])
+	saved["story_flags"] = (saved["story_flags"] as Array).filter(func(f): return not str(f).begins_with("regalo_revisado_"))
+	var eevees := func() -> int: return (GameState.party + GameState.box).filter(func(i): return i.species.id in GameState._line_of(DB.species["eevee"])).size()
+	var eevee_before: int = eevees.call()
+	GameState.from_dict(saved)
+	var laprases := func() -> int: return (GameState.party + GameState.box).filter(func(i): return i.species.id == "lapras").size()
+	r["Partida que perdió el Lapras: al cargar vuelve a la Caja (%s)" % ", ".join(GameState.restored_gifts)] = \
+		laprases.call() == 1 and "Lapras" in GameState.restored_gifts
+	r["...y el Eevee que ya tenías no se duplica"] = eevees.call() == eevee_before
+	GameState.from_dict(GameState.to_dict())
+	r["...y no se vuelve a dar"] = laprases.call() == 1 and GameState.restored_gifts.is_empty()
 	await _win(DB.npcs["silph_11p_0x0"])
 	r["Giovanni en Silph: Azafrán liberada"] = GameState.has_flag("silph_liberada") and not DB.npcs["ciudad_azafran_rocketgrunt1"].visible_now()
 	await _talk("silph_11p_president")

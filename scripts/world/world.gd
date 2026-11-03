@@ -168,6 +168,12 @@ func _ready() -> void:
 	if not GameState.has_flag("tutorial_visto") and not _automated():
 		GameState.set_flag("tutorial_visto")
 		pause_menu.show_tutorial.call_deferred()
+	# Regalos que se habían perdido con el equipo lleno (GameState.restore_lost_gifts, al cargar): avisar.
+	if not GameState.restored_gifts.is_empty():
+		var names := ", ".join(GameState.restored_gifts)
+		GameState.restored_gifts = PackedStringArray()
+		get_tree().create_timer(1.5).timeout.connect(func(): Events.message_requested.emit(
+			"%s estaba perdido y ahora está en la Caja (Esc → Caja)." % names))
 
 
 ## Corriendo un autotest, una vitrina o la vista de la región (sin tutorial ni nada que frene).

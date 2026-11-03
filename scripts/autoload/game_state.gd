@@ -675,5 +675,64 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	if picked is Dictionary:
 		for key in picked:
 			field_picked[str(key)] = float(picked[key])
+	restored_gifts = restore_lost_gifts()
 	Events.party_changed.emit()
 	return true
+
+
+## Regalos devueltos al cargar (nombres; World avisa con un cartel y lo vacía).
+var restored_gifts: PackedStringArray = []
+
+
+## Revisión de la historia (2026-11-03): hasta ahora un Pokémon regalado con el equipo lleno se perdía (Lapras de Silph,
+## Eevee, el Hitmon del Dojo). Si la bandera del regalo está puesta y no tenés esa especie ni una evolución en el equipo
+## ni en la Caja, va a la Caja. Una sola vez por regalo (bandera "regalo_revisado_<bandera>"). Los iniciales no se
+## revisan (se reciben con el equipo vacío). Devuelve los nombres de los devueltos.
+func restore_lost_gifts() -> PackedStringArray:
+	var out := PackedStringArray()
+	var groups := {}  # bandera -> [[especie, nivel]] (el Dojo: dos opciones con la misma bandera)
+	var ids: Array = DB.npcs.keys()
+	ids.sort()
+	for id in ids:
+		for talk: NpcTalk in DB.npcs[id].talks:
+			if talk.give_pokemon == null or talk.set_flags.is_empty() or talk.set_flags.has("tiene_inicial"):
+				continue
+			var key := talk.set_flags[0]
+			if not groups.has(key):
+				groups[key] = []
+			groups[key].append([talk.give_pokemon, talk.give_level if talk.give_level > 0 else DB.config.starting_level])
+	var owned := {}
+	for inst in party + box:
+		owned[inst.species.id] = true
+	for key: String in groups:
+		var mark := "regalo_revisado_" + key
+		if not has_flag(key) or has_flag(mark):
+			continue
+		set_flag(mark)
+		var found := false
+		for g in groups[key]:
+			for sid in _line_of(g[0]):
+				found = found or owned.has(sid)
+		if found:
+			continue
+		var first: Array = groups[key][0]  # (el Dojo: no se sabe cuál elegiste; va el primero, Hitmonchan)
+		var inst := CreatureInstance.create(first[0], first[1])
+		pokedex_caught[inst.species.id] = true
+		box.append(inst)
+		out.append(inst.display_name())
+	return out
+
+
+## La especie y todas sus evoluciones (Eevee → Vaporeon, Jolteon...).
+static func _line_of(sp: SpeciesData) -> Array:
+	var out := [sp.id]
+	var i := 0
+	while i < out.size():
+		var s: SpeciesData = DB.species.get(out[i])
+		i += 1
+		if s == null:
+			continue
+		for e in s.evolutions:
+			if e != null and DB.species.has(e.to_id) and not e.to_id in out:
+				out.append(e.to_id)
+	return out
