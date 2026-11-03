@@ -14,6 +14,7 @@ const HELP := [
 	["pokemon <especie> <nivel>", "al equipo (o a la Caja si está lleno)"],
 	["hora <0-23>", "cambia la hora del día"],
 	["ir <zona> [x,y]", "te lleva a una zona (a su plaza o a esa celda)"],
+	["arena [nombre] [nivel]", "pelea de prueba en esa arena contra un entrenador al azar (3 Pokémon; nivel = el del tuyo). Sin nombre: la lista. Perder no te manda al Centro"],
 	["volar", "cámara libre para mirar el mapa: WASD, Shift = rápido, rueda = zoom, Esc vuelve. No descubre nada"],
 	["limpiar", "borra la consola"],
 ]
@@ -53,6 +54,8 @@ func run(line: String) -> String:
 			return _fly()
 		"ir", "tp", "teleport":
 			return _go(args)
+		"arena":
+			return _arena(args)
 	return "No conozco «%s». Escribí ayuda." % parts[0]
 
 
@@ -218,6 +221,48 @@ func _go(args: Array) -> String:
 			cell = MapRules.nearest_walkable(zone, entry, cell)
 	world.story.teleport.call_deferred(entry.id, cell)
 	return "Yendo a %s (%d, %d)." % [entry.display_name, cell.x, cell.y]
+
+
+const ARENAS_DIR := "res://data/arenas"
+const TEST_NAMES := ["Rulo", "Pocha", "Tincho", "Maru", "Coco", "Lali", "Nacho", "Juli"]
+const TEST_SPRITES := ["youngster", "lass", "bug_catcher", "camper", "hiker"]
+
+
+## Pelea de prueba en una arena (pedido del usuario 2026-11-03, para probar las arenas pintadas): un entrenador al azar
+## con 3 Pokémon al azar, evolucionados para su nivel. Arranca al cerrar la consola (va diferido).
+func _arena(args: Array) -> String:
+	if world.combat.in_battle or world.arena.active:
+		return "No en plena pelea."
+	var table := {}
+	for f in DirAccess.get_files_at(ARENAS_DIR):
+		if f.ends_with(".tres"):
+			var ad: ArenaData = load("%s/%s" % [ARENAS_DIR, f])
+			table[ad.id] = ad
+	var words := args.duplicate()
+	var lvl := GameState.active().level if GameState.active() != null else 20
+	if not words.is_empty() and str(words[-1]).is_valid_int():
+		lvl = clampi(int(words.pop_back()), 1, CreatureInstance.MAX_LEVEL)
+	if words.is_empty():
+		var ids := table.keys()
+		ids.sort()
+		return "Arenas: %s" % ", ".join(ids.map(func(i): return str(i).trim_prefix("arena_")))
+	var found = find_named(table, " ".join(words))  # por nombre o parte del id (campo, gimnasio roca...)
+	if found is Array:
+		return _choices("arena", found)
+	var arena: ArenaData = found
+	var team: Array[CreatureInstance] = []
+	var all := DB.species.values()
+	while team.size() < 3:
+		var sp: SpeciesData = Tournament.evolve_for(all[randi() % all.size()], lvl)
+		var inst := CreatureInstance.create(sp, lvl)
+		team.append(inst)
+	var gfx: String = TEST_SPRITES[randi() % TEST_SPRITES.size()]
+	var tex: Texture2D = load("res://art/pret/characters/%s.png" % gfx) if ResourceLoader.exists("res://art/pret/characters/%s.png" % gfx) else null
+	var who: String = TEST_NAMES[randi() % TEST_NAMES.size()]
+	world.arena.start.call_deferred({"name": who, "title": "Entrenador", "team": team, "arena_id": arena.id,
+		"texture": tex, "no_blackout": true})
+	return "Peleando en %s contra %s (Nv. %d): %s." % [arena.display_name, who, lvl,
+		", ".join(team.map(func(m): return m.species.display_name))]
 
 
 func _fly() -> String:

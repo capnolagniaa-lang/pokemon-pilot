@@ -368,7 +368,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   "personalizado" = `GameState.custom_difficulty()`). **No leer más `DB.config.exp_multiplier`/`combos_enabled`/
   `arena_rules_everywhere` ni `CreatureInstance.HP_SCALE` directo** (son los valores por defecto).
 - **Consola de Game Master** (Ctrl+Shift+G, `GmConsole` en `world.gm_console`; no en la versión portable): pausa el juego;
-  comandos en `GmCommands` (tabla `HELP`: sumar uno = una fila + su `match`). `volar` = `GmFlight` (cámara libre en pausa;
+  comandos en `GmCommands` (tabla `HELP`: sumar uno = una fila + su `match`; `arena <nombre> [nivel]` = pelea de prueba en una arena). `volar` = `GmFlight` (cámara libre en pausa;
   restaura `visited_zones` al volver: volando no se descubre nada). No tocar banderas de historia desde la consola.
 - **Dinero y Torneo** (`docs/PLAN_TORNEO.md`): `GameState.money`; `Tournament` (`world.tournament`, acción "torneo" de la
   recepcionista vía `StoryDirector.register_action`), copas `TournamentCup` en `data/tournament/`; rivales generados de toda Kanto + visitantes de Johto/Hoenn

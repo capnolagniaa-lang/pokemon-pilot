@@ -94,6 +94,16 @@ func run() -> void:
 	await _until(func(): return world.streamer.current != null and world.streamer.current.id == "ciudad_celeste", 6.0)
 	await get_tree().create_timer(0.8).timeout
 	r["ir <zona> x,y: a esa celda"] = _zone_id() == "ciudad_celeste" 		and t.global_position.distance_to(_pos("ciudad_celeste", Vector2i(22, 32))) < 24.0
+
+	# --- arena: pelea de prueba contra un entrenador al azar ---
+	gm.open()
+	r["arena sin nombre lista las arenas"] = gm.submit("arena").contains("gimnasio_roca")
+	var said := gm.submit("arena gimnasio roca 15")
+	r["arena <nombre> <nivel>: cierra la consola y arranca la pelea"] = said.begins_with("Peleando en") and not gm.is_open()
+	await _until(func(): return world.arena.active and world.arena.arena_data != null, 6.0)
+	r["...en esa arena, con 3 Pokémon a ese nivel"] = world.arena.active \
+		and world.arena.arena_data.id == "arena_gimnasio_roca" and world.arena.foe_team.size() == 3 \
+		and world.arena.foe_team.all(func(m): return m.level == 15)
 	var ok := r.values().all(func(v): return v)
 	for k in r:
 		print("[gm] %s %s" % ["OK   " if r[k] else "FALLO", k])

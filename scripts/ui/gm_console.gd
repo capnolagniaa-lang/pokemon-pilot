@@ -73,7 +73,7 @@ func submit(line: String) -> String:
 	print_line(out)
 	if GmCommands.norm(line.split(" ", false)[0]) in ["volar", "fly"] and world.gm_flight.why_not() == "":
 		close()  # (vuela al cerrar: start va diferido)
-	elif out.begins_with("Yendo a "):
+	elif out.begins_with("Yendo a ") or out.begins_with("Peleando en "):
 		close()  # (el viaje con fundido arranca al cerrar: va diferido)
 	return out
 

@@ -12,7 +12,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   tiles (colisión y entorno), luz neutra (`DayNight.PAINTED`; con la de interiores quedaba saturada), sin líneas ni
   emblema por código. Config `data/arenas/pinturas.json` (prompt, semilla, plano automático por brillo o rectángulos,
   piedras, celdas) → `tools/paint_arenas.py` → `build_arenas.gd`. Verificado con `--autotest-room-walk --arena <id>`.
-  **Próximo**: los otros 7 gimnasios, la Liga y el torneo (cada uno con la temática de su tipo).
+  **Próximo**: los otros 7 gimnasios, la Liga y el torneo (cada uno con la temática de su tipo). Para probarlas: consola
+  de Game Master → `arena <nombre> [nivel]` (entrenador al azar con 3 Pokémon; perder no te manda al Centro).
 - **Todas las teclas iguales y el básico gasta PP (2026-11-03, pedido del usuario: "el combate es más rápido de lo que
   quiero" y "Confusión pega más que Psíquico")**: medido con la prueba nueva `--autotest-move-damage` (cada ataque en
   cada tecla contra un muñeco): Confusión pegaba más solo porque el Clic izquierdo le dejaba a Psíquico/Premonición un
