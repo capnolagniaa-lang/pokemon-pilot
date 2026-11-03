@@ -3,6 +3,8 @@
 [ext_resource type="Resource" path="res://data/types/normal.tres" id="1_o65m3"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_ucuh7"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_l7jnl"]
+[ext_resource type="Resource" path="res://data/status/intimidado.tres" id="st_intimidado"]
+[ext_resource type="Resource" path="res://data/status/expuesto.tres" id="st_expuesto"]
 
 [resource]
 script = ExtResource("2_ucuh7")
@@ -12,6 +14,8 @@ element = ExtResource("1_o65m3")
 kind = 2
 category = 2
 power = 0.0
-cooldown = 6.0
+cooldown = 8.0
 knockback = 0.0
-radius = 40.0
+radius = 55.0
+recovery = 0.1
+statuses_on_hit = Array[ExtResource("3_l7jnl")]([ExtResource("st_intimidado"), ExtResource("st_expuesto")])

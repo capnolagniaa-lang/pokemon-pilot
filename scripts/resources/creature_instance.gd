@@ -153,7 +153,18 @@ func default_equipment() -> Array[MoveData]:
 		if e.level <= level and e.move != null:
 			by_level.erase(e.move)
 			by_level.append(e.move)
-	var out: Array[MoveData] = by_level.slice(maxi(0, by_level.size() - SLOT_COUNT))
+	# Los que todavía no hacen nada en combate (MoveData.does_nothing) se saltean: van los anteriores que sí hacen algo,
+	# y solo si no alcanzan se completa con ellos (balance 2026-11-03: Clefairy o Ditto llegaban sin un ataque útil).
+	var useful := by_level.filter(func(m: MoveData): return not m.does_nothing())
+	var out: Array[MoveData] = []
+	out.assign(useful.slice(maxi(0, useful.size() - SLOT_COUNT)))
+	for i in range(by_level.size() - 1, -1, -1):
+		var m := by_level[i]
+		if out.size() < SLOT_COUNT and m.does_nothing():
+			out.append(m)
+	if not out.is_empty():
+		var order := func(a: MoveData, b: MoveData): return by_level.find(a) < by_level.find(b)
+		out.sort_custom(order)  # en el orden en que los aprendió, como antes
 	for m in taught_moves:
 		if out.size() < SLOT_COUNT and m != null and not out.has(m):
 			out.append(m)

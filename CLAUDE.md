@@ -39,6 +39,7 @@ $G --headless --path . --quit-after 30000 -- --autotest-combat   # 3 peleas mane
 $G --headless --path . --quit-after 30000 -- --autotest-input    # simula teclas reales + spawner
 $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP contra valores oficiales
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
+$G --headless --path . --quit-after 30000 -- --autotest-status-moves  # ataques de estado: bajar stats, Drenadoras, los que no hacen nada (IA, equipamiento, descripción)
 $G --headless --path . --quit-after 30000 -- --autotest-abilities  # habilidades: datos, al azar, guardado, mecánicas, últimos 4, MT, jefe de gimnasio
 # (las 9 de kits que siguen son de la ERA DE KITS, hasta 2026-10-28: ya no aplican, quedan como referencia)
 $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charmander, Bellsprout, Pidgey, Rattata, Vulpix
@@ -315,7 +316,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `frlg_maps.json` + sprites de `tools/fetch_npc_sprites.py`). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
 - **Combate contra entrenadores en arena** (E-1, `docs/PLAN_ENTRENADORES.md`): `TrainerBattle` (`world.arena`): fundido a
   una arena aparte (`ArenaData` en `data/arenas/`, escena = zona de tiles en `scenes/world/arenas/`, ambientación
-  `ArenaDecor`; **arenas pintadas** con Qwen (2026-11-03, "MUY EPICAS": el campo, los 8 gimnasios y las de lugares; falta la Liga y el torneo): `ArenaData.painting`
+  `ArenaDecor`; **arenas pintadas** con Qwen (2026-11-03, "MUY EPICAS": todas: el campo, los 8 gimnasios, el Alto Mando, el estadio del torneo y las de lugares): `ArenaData.painting`
   encima de los tiles (que quedan para la colisión y el entorno), luz neutra `DayNight.PAINTED`, config en
   `data/arenas/pinturas.json` → `tools/paint_arenas.py` (plano automático por brillo + rectángulos) → `build_arenas.gd`;
   revisar con `--autotest-room-walk --arena <id>`; **arena por lugar**: `ArenaData.for_zone` + `data/arenas/por_lugar.json`, el
@@ -445,7 +446,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   uno mismo → mejora/escudo/curación; estado al rival → disparo que aplica el problema de estado; daño a todos →
   área; físico con prioridad o ≥80 → embestida, si no golpe; especial → disparo, con carga si ≥80). Los hechos
   a mano (`MOVES` del fetcher, kits) no se tocan. Rearmar los automáticos: apply con `-- --regen-auto`.
-  Pendiente: subir/bajar stats, drenar, retroceso (los ataques de ese tipo existen pero sin ese efecto).
+  Bajar stats del rival = estados (Expuesto, Muy expuesto, Intimidado, Muy intimidado, Frenado, Desorientado) y Drenadoras =
+  Drenado (`StatusEffect.leech`). Los que todavía no hacen nada: `MoveData.does_nothing()` (la IA no los usa, el
+  equipamiento de fábrica los deja al final, la descripción lo avisa). Pendiente: esos 46 (climas, copiar, Sustituto...),
+  retroceso.
 - **Stats** (`CreatureInstance.stat`): fórmula oficial 3ª gen+; IV 31 en todos los stats por ahora
   (**decisión del usuario: "stats máximos para su nivel"**), EV 0, naturaleza neutra.
   - **Plan futuro (Etapa 6)**: IVs al azar al capturar (0-31 por stat), con un perfecto (31 en todo)

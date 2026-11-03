@@ -51,6 +51,8 @@ extends Resource
 @export var damage_taken_mult: float = 1.0
 ## Curación por segundo (fracción de la vida máxima): Arraigo, Síntesis.
 @export var heal_per_second: float = 0.0
+## Fracción del daño por tiempo que cura al que lo puso (Drenadoras: 1 = todo lo que le saca).
+@export var leech: float = 0.0
 ## Multiplica el empuje que recibe (0 = no lo pueden empujar).
 @export var knockback_mult: float = 1.0
 ## Tipos (ids) que no lo pueden sufrir: un Pokémon de tipo Veneno no se envenena (pedido del usuario 2026-10-28).

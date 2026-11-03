@@ -742,7 +742,7 @@ func _on_hit(hit: HitInfo) -> void:
 		to_apply.append([combo["status"], 1.0])  # el estado del combo con nombre
 	for pair in to_apply:
 		if pair[0] != null and randf() < pair[1]:
-			statuses.apply(pair[0])
+			statuses.apply(pair[0], 1.0, attacker)
 			if attacker:
 				attacker.status_inflicted.emit(self, pair[0])
 	for it in interactions:

@@ -82,6 +82,13 @@ func _ready() -> void:
 		add_child(sh)
 		sh.run.call_deferred()
 		return
+	if "--autotest-status-moves" in OS.get_cmdline_user_args():
+		set_process(false)
+		var sm := StatusMovesTests.new()
+		sm.autotest = self
+		add_child(sm)
+		sm.run.call_deferred()
+		return
 	if "--autotest-move-damage" in OS.get_cmdline_user_args():
 		set_process(false)
 		var md := MoveDamageTests.new()

@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/hada.tres" id="1_fbpq1"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_lmrip"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_x7npi"]
+[ext_resource type="Resource" path="res://data/status/muy_intimidado.tres" id="st_muy_intimidado"]
 
 [resource]
 script = ExtResource("2_lmrip")
@@ -12,6 +13,8 @@ element = ExtResource("1_fbpq1")
 kind = 2
 category = 2
 power = 0.0
-cooldown = 6.0
+cooldown = 8.0
 knockback = 0.0
-radius = 40.0
+radius = 55.0
+recovery = 0.1
+statuses_on_hit = Array[ExtResource("3_x7npi")]([ExtResource("st_muy_intimidado")])

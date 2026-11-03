@@ -11,8 +11,9 @@ var _dot_timer := 0.0
 @onready var creature = get_parent()
 
 
-## Aplica (o refuerza) un estado. `duration_mult` alarga o acorta la duración de esta aplicación.
-func apply(s: StatusEffect, duration_mult: float = 1.0) -> void:
+## Aplica (o refuerza) un estado. `duration_mult` alarga o acorta la duración de esta aplicación. `source` = quién lo
+## puso (lo usa `StatusEffect.leech`: Drenadoras lo cura a él).
+func apply(s: StatusEffect, duration_mult: float = 1.0, source: Node = null) -> void:
 	var sig = creature.get("signature") if creature != null else null
 	if sig != null and sig.blocks_status(s):
 		return  # inmune por su firma (Zubat no se deja cegar, Machop no se deja frenar...)
@@ -23,8 +24,10 @@ func apply(s: StatusEffect, duration_mult: float = 1.0) -> void:
 	var fresh := not active.has(s.id)
 	if fresh:
 		active[s.id] = {"status": s, "time": 0.0, "stacks": 0, "meter": 0.0, "fx": _make_fx(s),
-			"jolt": maxf(0.0, s.jolt_interval - 0.5)}  # el primer tirón se puede dar enseguida
+			"jolt": maxf(0.0, s.jolt_interval - 0.5), "leeched": 0.0}  # el primer tirón se puede dar enseguida
 	var e: Dictionary = active[s.id]
+	if source != null:
+		e["source"] = source
 	if s.buildup:
 		e["meter"] += s.buildup_per_apply
 		e["time"] = INF
@@ -172,7 +175,10 @@ func _physics_process(delta: float) -> void:
 		if s.heal_per_second > 0.0:
 			creature.health.heal(creature.health.max_hp() * s.heal_per_second * delta)
 		if s.damage_per_second > 0.0:
-			_dot_accum += creature.health.max_hp() * s.damage_per_second * entry["stacks"] * delta
+			var dot: float = creature.health.max_hp() * s.damage_per_second * entry["stacks"] * delta
+			_dot_accum += dot
+			if s.leech > 0.0:
+				entry["leeched"] += dot * s.leech
 		if entry["time"] <= 0.0:
 			cure(s)
 	# El daño por tiempo se aplica de a un número por segundo (no spamea la pantalla).
@@ -182,6 +188,12 @@ func _physics_process(delta: float) -> void:
 		if _dot_accum > 0.0:
 			creature.take_status_damage(_dot_accum)
 			_dot_accum = 0.0
+		for id in active:
+			var e: Dictionary = active[id]
+			var src = e.get("source")
+			if e.get("leeched", 0.0) > 0.0 and is_instance_valid(src) and not src.health.is_dead():
+				src.health.heal(e["leeched"])  # Drenadoras: lo que le saca se lo pasa al que la plantó
+			e["leeched"] = 0.0
 
 
 ## Partículas (y luz opcional) del estado, configuradas desde el StatusEffect.

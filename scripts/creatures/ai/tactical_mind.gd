@@ -236,8 +236,8 @@ const PP_THRIFT := 0.5
 
 func score(slot: int, dist: float, shot: bool) -> float:
 	var m: MoveData = actor.moves.slots[slot]
-	if m == null or not actor.body.fits(slot, dist):
-		return 0.0
+	if m == null or m.does_nothing() or not actor.body.fits(slot, dist):
+		return 0.0  # (los que todavía no hacen nada en combate, ni los intenta)
 	if m.kind in CombatBody.NEEDS_SHOT and not shot:
 		return 0.0
 	var t: Creature = actor.target
@@ -254,6 +254,9 @@ func score(slot: int, dist: float, shot: bool) -> float:
 			value *= PUNISH
 	elif m.status != null and is_instance_valid(t) and t.statuses.has_status(m.status.id):
 		return 0.0  # ya lo tiene
+	elif not m.statuses_on_hit.is_empty() and is_instance_valid(t) \
+			and m.statuses_on_hit.all(func(st: StatusEffect): return t.statuses.has_status(st.id)):
+		return 0.0  # ya tiene todo lo que deja (Gruñido sobre uno intimidado)
 	elif m.kind in [MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF] and low_hp_plan() == "cuidado":
 		value *= 2.5  # con poca vida y cauteloso: se cubre o se cura
 	if slot == last_slot:

@@ -9,6 +9,8 @@ extends RefCounted
 static func what_it_does(m: MoveData) -> String:
 	if m == null:
 		return ""
+	if m.does_nothing():
+		return "Todavía no hace nada en combate: el efecto que tiene en los juegos no está hecho acá."
 	var s: Array[String] = []
 	match m.kind:
 		MoveData.Kind.PROJECTILE:
@@ -61,7 +63,7 @@ static func what_it_does(m: MoveData) -> String:
 	if m.status != null and m.status_chance > 0.0:
 		s.append("Puede dejar %s (%d%%): %s." % [m.status.display_name, roundi(m.status_chance * 100.0), status_text(m.status)])
 	for st in m.statuses_on_hit:
-		s.append("Deja %s: %s." % [st.display_name, status_text(st)])
+		s.append("Deja %s por %.0f s: %s." % [st.display_name, st.duration, status_text(st)])
 	if m.dwell_status != null:
 		s.append("Si alguien se queda %.1f s adentro, queda %s." % [m.dwell_time, m.dwell_status.display_name])
 	if m.knockback < 0.0:
@@ -77,9 +79,11 @@ static func what_it_does(m: MoveData) -> String:
 static func status_text(st: StatusEffect) -> String:
 	var out: Array[String] = []
 	if st.damage_per_second > 0.0:
-		out.append("pierde vida de a poco")
+		out.append("pierde un %s de su vida por segundo" % _pct(st.damage_per_second))
+		if st.leech > 0.0:
+			out.append("y esa vida te la pasa a vos")
 	if st.heal_per_second > 0.0:
-		out.append("recupera vida de a poco")
+		out.append("recupera un %s de su vida por segundo" % _pct(st.heal_per_second))
 	if not st.can_act and not st.can_move:
 		out.append("no puede moverse ni atacar")
 	elif not st.can_act:
@@ -87,17 +91,17 @@ static func status_text(st: StatusEffect) -> String:
 	elif not st.can_move:
 		out.append("no puede moverse")
 	if st.speed_mult < 1.0:
-		out.append("va más lento")
+		out.append("va un %s más lento" % _pct(1.0 - st.speed_mult))
 	elif st.speed_mult > 1.0:
-		out.append("va más rápido")
+		out.append("va un %s más rápido" % _pct(st.speed_mult - 1.0))
 	if st.attack_mult < 1.0:
-		out.append("pega menos")
+		out.append("sus golpes físicos pegan un %s menos" % _pct(1.0 - st.attack_mult))
 	elif st.attack_mult > 1.0:
-		out.append("pega más")
+		out.append("sus golpes físicos pegan un %s más" % _pct(st.attack_mult - 1.0))
 	if st.damage_taken_mult > 1.0:
-		out.append("recibe más daño")
+		out.append("recibe un %s más de daño" % _pct(st.damage_taken_mult - 1.0))
 	elif st.damage_taken_mult < 1.0:
-		out.append("recibe menos daño")
+		out.append("recibe un %s menos de daño" % _pct(1.0 - st.damage_taken_mult))
 	if st.jolt_interval > 0.0:
 		out.append("se traba de a ratos")
 	if st.aim_jitter_deg > 0.0:
@@ -112,4 +116,14 @@ static func status_text(st: StatusEffect) -> String:
 		out.append("se le pasa si le pegan")
 	if out.is_empty():
 		return "lo afecta un rato"
-	return ", ".join(out)
+	var text := ", ".join(out).replace(", y esa", " y esa")
+	if not st.immune_types.is_empty():
+		var names: Array[String] = []
+		for t in st.immune_types:
+			names.append(DB.types[t].display_name if DB.types.has(t) else t.capitalize())
+		text += " (a los de tipo %s no les hace nada)" % ", ".join(names)
+	return text
+
+
+static func _pct(f: float) -> String:
+	return "%d %%" % roundi(f * 100.0)

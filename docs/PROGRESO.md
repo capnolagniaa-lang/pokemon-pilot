@@ -6,6 +6,16 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-03)
+- **Ataques de estado que no hacían nada (2026-11-03, queja del usuario: "Drenadoras, Agitacola... no hacen nada")**: había
+  58 sin daño, sin estado ni mejora (el armado automático no sabía bajar stats, drenar ni clima). Arreglados 12 con estados:
+  Agitacola y Dulce Aroma → Expuesto; Chirrido, Llanto Falso y Eco Metálico → Muy expuesto (+45 % de daño); Encanto y Danza
+  Pluma → Muy intimidado (−35 % físico); Cosquillas → Intimidado + Expuesto; Cara Susto y Esporagodón → Frenado (−40 %
+  velocidad, 5 s); Destello → Desorientado; **Drenadoras** = semilla que deja Drenado (3 % de vida por segundo, 8 s, y esa
+  vida cura al que la tiró: `StatusEffect.leech`, `StatusEffects.apply(..., source)`; no prende en tipo Planta). Los 46 que
+  quedan (climas, Canto Mortal, Metrónomo, Transformación, Sustituto, Relevo, Mofa, Rencor...) los marca
+  `MoveData.does_nothing()`: la IA no los usa (ni repite uno cuyo estado el rival ya tiene), el equipamiento de fábrica los
+  deja para el final (`default_equipment`) y la descripción dice "Todavía no hace nada en combate". Las descripciones de
+  los estados ahora dicen cuánto (porcentajes, segundos, inmunes). Test `--autotest-status-moves`. Pendiente: los 46.
 - **Shiny (2026-11-03, pedido del usuario)**: cualquier Pokémon (salvaje, regalo, de entrenador o del torneo) sale shiny
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda
@@ -25,7 +35,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   gimnasios, a 44×33 (`scale` 1,1, como las de antes): **Erika** (invernadero con pasto y canteros de flores; el piso es
   pasto), **Koga** (salón oscuro con piletas tóxicas en las esquinas), **Sabrina** (plataforma de cristal rosa flotando en
   el espacio, con espejos), **Blaine** (cancha de basalto rodeada de lava) y **Giovanni** (arena de tierra con estatuas y
-  trono). **Próximo**: la Liga (4) y el torneo. Para probarlas: consola
+  trono). **Cuarta tanda (2026-11-03)**: el **Alto Mando** (Lorelei: salón de hielo con pilares de cristal; Bruno: ring de
+  arena con columnas y braseros; Agatha: salón oscuro de tumbas con la luna; Lance: templo en el cielo con dragones de
+  piedra) y el **estadio del torneo** (46×34; ahí también pelea el Campeón): cancha de fútbol con tribunas llenas y dos
+  lagunas de agua de verdad (boceto como el de Misty). Las arenas pintadas ya no dibujan público por código (venía
+  duplicado con el de la pintura). Ya están pintadas **todas** las arenas. Para probarlas: consola
   de Game Master → `arena <nombre> [nivel]` (entrenador al azar con 3 Pokémon; perder no te manda al Centro).
 - **Todas las teclas iguales y el básico gasta PP (2026-11-03, pedido del usuario: "el combate es más rápido de lo que
   quiero" y "Confusión pega más que Psíquico")**: medido con la prueba nueva `--autotest-move-damage` (cada ataque en

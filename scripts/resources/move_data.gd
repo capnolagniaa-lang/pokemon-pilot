@@ -154,6 +154,17 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 ## Animación al pegarle a alguien (o sprites/fx/moves/<id>_impacto.png, después la del tipo).
 @export var impact_vfx: SpriteFrames
 
+## No hace nada en combate (ni daño, ni estado, ni mejora, ni empuje: el efecto de los juegos todavía no está, como
+## Canto Mortal o los climas). La IA no lo usa y el equipamiento de fábrica lo deja para el final.
+func does_nothing() -> bool:
+	if power > 0.0 or knockback != 0.0 or status != null or not statuses_on_hit.is_empty() or self_status != null:
+		return false
+	if dwell_status != null or trail_status != null or drain > 0.0 or cleanse_self or cooldown_lock > 0.0 \
+			or deflects_projectiles:
+		return false
+	return kind not in [Kind.SHIELD, Kind.DASH] and not (kind == Kind.ZONE and zone_traps)
+
+
 ## Alcance aproximado (para la IA).
 func reach() -> float:
 	match kind:
