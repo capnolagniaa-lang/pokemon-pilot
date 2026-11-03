@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ArenaData" format=3]
 
+[ext_resource type="Texture2D" path="res://sprites/arenas/arena_gimnasio_planta.png" id="1_ifp8w"]
 [ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="1_ifx21"]
 
 [resource]
@@ -7,11 +8,12 @@ script = ExtResource("1_ifx21")
 id = "arena_gimnasio_planta"
 display_name = "Gimnasio de Ciudad Azulona"
 scene_path = "res://scenes/world/arenas/arena_gimnasio_planta.tscn"
-foe_trainer_cell = Vector2i(22, 5)
-player_cell = Vector2i(22, 28)
-foe_mon_cell = Vector2i(22, 8)
-player_mon_cell = Vector2i(22, 25)
-field = Rect2i(3, 5, 38, 23)
+foe_trainer_cell = Vector2i(22, 3)
+player_cell = Vector2i(22, 30)
+foe_mon_cell = Vector2i(22, 11)
+player_mon_cell = Vector2i(22, 23)
+field = Rect2i(9, 7, 26, 21)
+painting = ExtResource("1_ifp8w")
 element_id = "planta"
 line_color = Color(1, 1, 1, 0.3)
 particles = "hojas"

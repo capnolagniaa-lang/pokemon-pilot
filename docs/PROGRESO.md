@@ -21,8 +21,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   agua de verdad caigan sobre las pintadas) y **Surge**, y **arenas por lugar** (pedido del usuario: las peleas de la
   Torre, Silph, etc. no en el campo): Silph, Torre, cuevas, Escondite Rocket (+ Casino), S.S. Anne, Mansión, Dojo y playa
   (rutas de mar); `data/arenas/por_lugar.json` + `ArenaData.for_zone` (solo cambia a los que tenían el campo). El Bosque
-  Verde sigue en el campo (las versiones salieron oscuras y borrosas). **Próximo**: los otros 5 gimnasios (Erika, Koga,
-  Sabrina, Blaine, Giovanni), la Liga y el torneo. Para probarlas: consola
+  Verde sigue en el campo (las versiones salieron oscuras y borrosas). **Tercera tanda (2026-11-03)**: los otros 5
+  gimnasios, a 44×33 (`scale` 1,1, como las de antes): **Erika** (invernadero con pasto y canteros de flores; el piso es
+  pasto), **Koga** (salón oscuro con piletas tóxicas en las esquinas), **Sabrina** (plataforma de cristal rosa flotando en
+  el espacio, con espejos), **Blaine** (cancha de basalto rodeada de lava) y **Giovanni** (arena de tierra con estatuas y
+  trono). **Próximo**: la Liga (4) y el torneo. Para probarlas: consola
   de Game Master → `arena <nombre> [nivel]` (entrenador al azar con 3 Pokémon; perder no te manda al Centro).
 - **Todas las teclas iguales y el básico gasta PP (2026-11-03, pedido del usuario: "el combate es más rápido de lo que
   quiero" y "Confusión pega más que Psíquico")**: medido con la prueba nueva `--autotest-move-damage` (cada ataque en
