@@ -333,7 +333,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   Gimnasio y los nombres. `TownMapScreen` (`scripts/ui/`): zoom, arrastre, niebla en lo no visitado
   (`GameState.visited_zones`, se guarda; partidas viejas: `TownMap.visited_from_progress`), tu posición y la estrella
   del objetivo (`StoryGuide.GOALS`). En la historia aparece con el objeto Mapa (Dalia); en el modo libre, siempre.
-  **Minimapa** (Tab, `Minimap` en `world.minimap`, arriba a la derecha, siempre disponible): afuera, la imagen del Mapa
+  **Minimapa** (Tab, `Minimap` en `world.minimap`, arriba a la derecha; como el Mapa, en la historia recién con el objeto Mapa): afuera, la imagen del Mapa
   alrededor tuyo con niebla e íconos; en lo que no está en el mapa, `TownMap.zone_image` (ese lugar solo) con las puertas;
   prendido/apagado en `user://interfaz.cfg`.
 - **Día y noche** (`docs/PLAN_DIA_NOCHE.md`): `DayNight` (`world.day_night`) hace correr `GameState.time_of_day`

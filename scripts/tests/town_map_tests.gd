@@ -65,6 +65,7 @@ func run() -> void:
 	await _start("ciudad_plateada_gimnasio", Vector2i(6, 10))
 	r["Al entrar a una zona queda visitada"] = GameState.visited_zones.has("ciudad_plateada_gimnasio")
 	r["Sin el objeto Mapa no aparece en el menú"] = world.pause_menu.try_open() and not world.pause_menu._map_button.visible
+	r["Sin el objeto Mapa no hay minimapa"] = not world.minimap.visible
 	world.pause_menu.close()
 	GameState.add_item("mapa", 1)
 	r["Con el objeto Mapa (Dalia) aparece en el menú"] = world.pause_menu.try_open() and world.pause_menu._map_button.visible
@@ -126,6 +127,7 @@ func showcase_minimap() -> void:
 	GameState.new_story()
 	GameState.visited_zones = TownMap.visited_from_progress(GameState.story_flags, DB.config.world)
 	GameState.set_flag("tutorial_visto")
+	GameState.add_item("mapa", 1)
 	for spot in [["pueblo_paleta", Vector2i(-1, -1)], ["torre_pokemon_4p", Vector2i(10, 12)], ["mt_moon", Vector2i(20, 20)]]:
 		var cell: Vector2i = spot[1]
 		if cell.x < 0:  # el medio de la zona

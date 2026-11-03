@@ -9,7 +9,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 - **Minimapa con Tab (2026-11-03, pedido del usuario)**: `Minimap` (`scripts/ui/minimap.gd`, arriba a la derecha):
   afuera recorta la imagen del Mapa del menú (`TownMap.image`) con vos en el centro, niebla en lo no visitado e íconos;
   en interiores, cuevas y la Torre dibuja ese lugar solo (`TownMap.zone_image`, agrandado si es chico) con puertas y
-  escaleras titilando. No hace falta el objeto Mapa. Se esconde en las arenas; Tab lo prende/apaga y se recuerda
+  escaleras titilando. Como el Mapa del menú, en la historia aparece recién con el objeto Mapa (Dalia; decisión del usuario). Se esconde en las arenas; Tab lo prende/apaga y se recuerda
   (`user://interfaz.cfg`). La acción "switch" (Tab, sin uso) pasó a "minimap". Tests en `--autotest-town-map`, vitrina
   `--showcase-minimap`.
 - **Zoom con la rueda (2026-11-01, pedido del usuario: "más zoom out para ver más del mapa")**: `CameraRig` acerca y

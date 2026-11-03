@@ -4,7 +4,7 @@ extends Control
 ## miniatura, girando con vos en el centro. Afuera = la imagen del Mapa del menú (`TownMap.image`, con niebla en lo no
 ## visitado e íconos de Centro / Tienda / Gimnasio); en un lugar que no está en el mapa (interiores, cuevas, la Torre)
 ## = ese lugar solo (`TownMap.zone_image`), más grande si es chico, con sus puertas y escaleras marcadas. Sin el
-## minimapa en las arenas. Si está prendido se recuerda en PREFS_PATH.
+## minimapa en las arenas, ni en la historia hasta tener el objeto Mapa (Dalia; decisión del usuario 2026-11-03). Si está prendido se recuerda en PREFS_PATH.
 
 const SIZE := Vector2(208, 208)
 const MARGIN := 12.0
@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	_time += delta
 	var t: Node2D = world.get("trainer") if world != null else null
 	var arena_on: bool = world != null and world.get("arena") != null and world.arena.active
-	visible = shown and t != null and not arena_on
+	visible = shown and t != null and not arena_on and PauseMenu.has_map()
 	if not visible:
 		return
 	if _wd == null:

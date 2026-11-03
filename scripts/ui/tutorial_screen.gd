@@ -20,7 +20,7 @@ const PAGES := [
 		"Pokébolas en el suelo: pasá por encima para juntarlas (objetos de las rutas y lo que sueltan los salvajes).",
 		"Corte, Surf y Fuerza: con la MO y su medalla se usan solas al caminar contra el árbol, el agua o la roca.",
 		"Rueda del mouse: alejar o acercar la cámara para ver más del mapa.",
-		"Tab: mostrar u ocultar el minimapa (arriba a la derecha; en cuevas y edificios marca las puertas y escaleras).",
+		"Tab: mostrar u ocultar el minimapa (cuando tengas el Mapa; arriba a la derecha, y en cuevas y edificios marca las puertas y escaleras).",
 	]],
 	["Los salvajes", [
 		"Cada especie tiene su temperamento: los agresivos te atacan apenas te ven; los territoriales solo si entrás a su zona (si te miran con \"...\", todavía estás afuera); los tímidos huyen; los curiosos se acercan a mirar.",
