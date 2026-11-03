@@ -16,6 +16,9 @@ extends Resource
 ## A qué zona lleva la puerta y a qué celda (local de esa zona) se llega. Vacío = sin puerta (un objeto grande).
 @export var to_zone: String = ""
 @export var to_cell: Vector2i = Vector2i.ZERO
+## Algo del piso que se pisa (el escenario del Centro Online): sin colisión ni celdas sólidas, dibujado debajo de todos y
+## centrado en sus celdas.
+@export var walkable := false
 
 
 func cells() -> Array[Vector2i]:

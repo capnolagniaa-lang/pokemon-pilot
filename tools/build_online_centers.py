@@ -5,6 +5,8 @@
   - data/world/extra/zones/centro_online_<ciudad>.tres      (el interior, debajo de todo el mundo, uno al lado del otro)
   - scenes/world/extra/centro_online_<ciudad>.tscn          (copia del interior de Ciudad Verde)
   - data/story/npcs/centro_online_<ciudad>_{nurse,clerk,recepcionista}.tres (copias de las de Ciudad Verde)
+  - data/world/extra/buildings/decor_centro_online[_<ciudad>]_<objeto>.tres (los objetos de Qwen de adentro, `DECOR`; también
+    en el de Ciudad Verde). El interior en sí lo arma tools/build_online_interior.py.
 Correrlo de nuevo pisa esos archivos (no los de Ciudad Verde).
 
 Uso: python -I -B tools/build_online_centers.py .            (arma todo)
@@ -33,6 +35,11 @@ CENTERS = {
 }
 SIZE = (5, 4)
 INTERIOR_SIZE = (15, 10)
+# Objetos de adentro: id -> (sprite, celda, tamaño, se pisa). "sala" = el cuarto entero pintado con Qwen (2026-11-03,
+# pedido del usuario: más lindo y con identidad propia, no tan FireRed) encima de los tiles, que quedan para la colisión.
+DECOR = {
+    "sala": ("centro_online_sala", (0, 0), (15, 10), True),
+}
 # Los interiores van en fila al lado del de Ciudad Verde (origen 0, 3300), cada uno a 20 celdas.
 INTERIOR_Y = 3300
 INTERIOR_STEP = 20
@@ -79,6 +86,29 @@ WARP = """Vector2i({x}, 8): {{
 }}"""
 
 
+DECOR_RES = """[gd_resource type="Resource" script_class="ExtraBuilding" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/extra_building.gd" id="1_b"]
+[ext_resource type="Texture2D" path="res://sprites/props/{sprite}.png" id="2_t"]
+
+[resource]
+script = ExtResource("1_b")
+id = "decor_{zone}_{name}"
+zone_id = "{zone}"
+cell = Vector2i({x}, {y})
+size = Vector2i({w}, {h})
+texture = ExtResource("2_t")
+walkable = {walk}
+"""
+
+
+def write_decor(root, zone):
+    for name, (sprite, (x, y), (w, h), walk) in DECOR.items():
+        path = os.path.join(root, "data/world/extra/buildings/decor_%s_%s.tres" % (zone, name))
+        with open(path, "w", encoding="utf8", newline="\n") as f:
+            f.write(DECOR_RES.format(sprite=sprite, zone=zone, name=name, x=x, y=y, w=w, h=h, walk=str(walk).lower()))
+
+
 def door_of(cell):
     return (cell[0] + 2, cell[1] + SIZE[1] - 1)
 
@@ -88,7 +118,9 @@ def build(root):
     scene = re.sub(r' uid="[^"]*"', "", scene, count=1)  # (la copia no puede tener el mismo uid)
     npcs = {n: open(os.path.join(root, "data/story/npcs/centro_online_%s.tres" % n), encoding="utf8").read()
             for n in ("nurse", "clerk", "recepcionista")}
+    write_decor(root, "centro_online")
     for k, (city, cell) in enumerate(CENTERS.items(), start=1):
+        write_decor(root, "centro_online_" + city)
         dx, dy = door_of(cell)
         warps = ",\n".join(WARP.format(x=x, dx=dx, dy=dy, c=city) for x in (6, 7, 8))
         out = {

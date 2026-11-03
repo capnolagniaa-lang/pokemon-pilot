@@ -36,7 +36,7 @@ func _init(p_world: WorldData, cut: bool = false, surf: bool = false, strength: 
 			if people and npc.zone_id == z.id and npc.visible_now() and Rect2i(Vector2i.ZERO, z.size).has_point(npc.cell):
 				bits[npc.cell.y * z.size.x + npc.cell.x] = 0
 		for b in ExtraContent.buildings:  # los edificios agregados (Centros Online, globos) también son sólidos
-			if b.zone_id == z.id:
+			if b.zone_id == z.id and not b.walkable:
 				for c in b.cells():
 					if Rect2i(Vector2i.ZERO, z.size).has_point(c):
 						bits[c.y * z.size.x + c.x] = 0

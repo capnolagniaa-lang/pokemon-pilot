@@ -211,6 +211,12 @@ static func zone_image(z: ZoneEntry) -> Image:
 		var img := Image.create_empty(maxi(1, z.size.x * CELL_PX), maxi(1, z.size.y * CELL_PX), false, Image.FORMAT_RGBA8)
 		img.fill(Color(0, 0, 0, 0))
 		_paint_zone(img, z, Vector2i.ZERO)
+		for b in ExtraContent.buildings:  # un lugar pintado entero (el Centro Online): la pintura, no los tiles de colisión
+			if b.zone_id == z.id and b.walkable and b.cell == Vector2i.ZERO and b.size == z.size and b.texture != null:
+				var paint := b.texture.get_image()
+				paint.convert(Image.FORMAT_RGBA8)
+				paint.resize(img.get_width(), img.get_height(), Image.INTERPOLATE_BILINEAR)
+				img = paint
 		_zone_images[z.id] = img
 	return _zone_images[z.id]
 

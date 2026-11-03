@@ -325,7 +325,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `Events.ground_impact` → estado de celda "crater".
 - **Globos aerostáticos** (`BalloonTravel`, `world.balloon`): un globo (`ExtraBuilding` "globo_<ciudad>" sin puerta:
   `to_zone` vacío) y su piloto (acción "globo") por ciudad, de `tools/build_balloons.py`; vuelo por las zonas exteriores
-  (`route_points`) a las ciudades visitadas. Centros de Combate Online por ciudad: `tools/build_online_centers.py`.
+  (`route_points`) a las ciudades visitadas. Centros de Combate Online por ciudad: `tools/build_online_centers.py`. **Interior pintado** (2026-11-03, "identidad propia, no tan
+  FireRed"): el cuarto es una pintura de Qwen (`sprites/props/centro_online_sala.png`, `ExtraBuilding` con `walkable` = piso
+  sin colisión, debajo de todos; `TownMap.zone_image` la usa para el minimapa) y los tiles quedan solo para la colisión
+  (`tools/build_online_interior.py`: `PLAN` y `--pintura`). Vendedor, enfermera y recepcionista juntos en el mostrador.
   Plazas (puesto de panchos + parrilla, con sus personas) en las ciudades grandes: `tools/build_plazas.py`.
 - **Mapa del menú** (Esc → Mapa): `TownMap` (`scripts/world/town_map.gd`) dibuja la región en miniatura **desde las
   capas de tiles de las zonas reales** (4 px por celda; la primera vez que se abre, en el hilo principal) y calcula dónde van los

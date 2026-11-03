@@ -45,6 +45,7 @@ var _going := false
 var _end: Dictionary = {}
 ## Centro de Combate Online desde el que se entró (hay uno por ciudad: ahí se vuelve al terminar).
 var _back_zone := "centro_online"
+const DESK_FRONT := Vector2i(8, 5)  # frente al mostrador de la recepcionista (tools/build_online_interior.py)
 
 
 func _ready() -> void:
@@ -162,7 +163,7 @@ func _leave_arena() -> void:
 	for z in data.zones:
 		if z.id == _back_zone:
 			inside = z
-	var back: Vector2 = Vector2((inside.origin + Vector2i(10, 4)) * data.tile_size) + Vector2.ONE * data.tile_size / 2.0 \
+	var back: Vector2 = Vector2((inside.origin + DESK_FRONT) * data.tile_size) + Vector2.ONE * data.tile_size / 2.0 \
 		if inside != null else world.trainer.global_position
 	world.streamer.load_around_now(back)
 	world.trainer.global_position = back

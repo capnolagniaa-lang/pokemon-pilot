@@ -44,7 +44,8 @@ static func _frames_index() -> Dictionary:
 func _process(delta: float) -> void:
 	var player: Node2D = get_tree().get_first_node_in_group("trainer")
 	var near := player != null and player.global_position.distance_to(global_position) < NOTICE_RADIUS
-	name_label.visible = near
+	# El nombre, solo el del más cercano (en un mostrador con tres juntos se pisaban).
+	name_label.visible = near and _closest_to(player)
 	if near:
 		look_at_point(player.global_position)
 	elif data.look_around:
@@ -98,3 +99,11 @@ func _apply_facing() -> void:
 	else:
 		sprite.frame = 2
 	sprite.flip_h = facing.x > 0
+
+
+func _closest_to(player: Node2D) -> bool:
+	var d := player.global_position.distance_squared_to(global_position)
+	for other: Node2D in get_tree().get_nodes_in_group("story_npcs"):
+		if other != self and other.visible and player.global_position.distance_squared_to(other.global_position) < d:
+			return false
+	return true

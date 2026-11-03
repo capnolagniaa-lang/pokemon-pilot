@@ -6,6 +6,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-03)
+- **Centro de Combate Online rediseñado (2026-11-03, pedido del usuario: "más lindo, con identidad propia, no tan
+  FireRed")**: Qwen dio 4 ideas y el usuario eligió la 4 (pantalla de llaves, mostrador, filas de máquinas de link y un
+  escenario holográfico). Esa imagen es ahora el cuarto entero (`sprites/props/centro_online_sala.png`, en los 9
+  Centros) y los tiles de abajo son solo la colisión (`tools/build_online_interior.py`). Se borró la enfermera pintada y
+  quedaron el vendedor, la enfermera y la recepcionista juntos en el mostrador; antes la recepcionista y el vendedor
+  estaban parados encima de los floreros y de la PC (la parte de arriba de la PC le tapaba la cabeza). Los nombres
+  ahora muestran solo el de la persona más cercana. Camino abierto para hacer lo mismo con otros interiores.
 - **Nerf de PP y curas (2026-11-03, pedido del usuario: "consumen muy poco y podés spamear mucho")**: todos los
   ataques cuestan ×1,5 de PP (`MoveUser.PP_COST_MULT`; la recarga de la barra no se tocó). Las curas (Descanso,
   Recuperación, Síntesis, Luz Lunar, Arraigo...) gastan una parte de la barra según cuánto curan (`HEAL_PP`) y no salen

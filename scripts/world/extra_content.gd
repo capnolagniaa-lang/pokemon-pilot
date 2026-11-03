@@ -76,6 +76,12 @@ static func attach(zone: Node2D, entry: ZoneEntry, world: WorldData) -> void:
 			spr.position = Vector2(0, -b.texture.get_height())
 			spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 			root.add_child(spr)
+			if b.walkable:
+				spr.position = ((Vector2(b.size * ts) - b.texture.get_size()) / 2.0).floor() - Vector2(0, b.size.y * ts)
+				root.z_index = -5  # piso: debajo de los personajes
+		if b.walkable:
+			zone.add_child(root)
+			continue
 		var body := StaticBody2D.new()
 		body.name = "Body"
 		body.collision_layer = 1  # mundo
