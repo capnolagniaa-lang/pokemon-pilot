@@ -149,9 +149,31 @@ func fight_style_of(sp: SpeciesData) -> FightStyle:
 	return null
 
 
-## Animaciones de sprite (PMD) de una especie: {"Idle": {...}, "Walk": {...}, "portrait": path}.
-func anims_of(sp: SpeciesData) -> Dictionary:
-	return SpriteData.ANIMS.get(sp.dex, {})
+## Animaciones de sprite (PMD) de una especie: {"Idle": {...}, "Walk": {...}, "portrait": path}. Shiny: las mismas
+## hojas de sprites/pokemon/<n.º>/shiny/ (tools/download_shiny_sprites.py; mismos cuadros), o la normal si falta.
+func anims_of(sp: SpeciesData, shiny := false) -> Dictionary:
+	var a: Dictionary = SpriteData.ANIMS.get(sp.dex, {})
+	if not shiny or a.is_empty():
+		return a
+	if not _shiny_anims.has(sp.dex):
+		var out := {}
+		for key in a:
+			if key == "portrait":
+				out[key] = _shiny_path(a[key])
+			else:
+				var e: Dictionary = a[key].duplicate()
+				e["file"] = _shiny_path(e["file"])
+				out[key] = e
+		_shiny_anims[sp.dex] = out
+	return _shiny_anims[sp.dex]
+
+
+var _shiny_anims := {}
+
+
+func _shiny_path(path: String) -> String:
+	var s := path.get_base_dir() + "/shiny/" + path.get_file()
+	return s if ResourceLoader.exists(s) or FileAccess.file_exists(s) else path
 
 
 ## Efecto con sprite de un ataque (impact = el del golpe al pegar), o null = se dibuja por código.
@@ -231,8 +253,8 @@ func species_by_dex() -> Array[SpeciesData]:
 	return out
 
 
-func portrait_of(sp: SpeciesData) -> Texture2D:
-	var a := anims_of(sp)
+func portrait_of(sp: SpeciesData, shiny := false) -> Texture2D:
+	var a := anims_of(sp, shiny)
 	return texture(a["portrait"]) if a.has("portrait") else null
 
 

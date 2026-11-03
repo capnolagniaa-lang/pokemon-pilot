@@ -6,6 +6,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-03)
+- **Shiny (2026-11-03, pedido del usuario)**: cualquier Pokémon (salvaje, regalo, de entrenador o del torneo) sale shiny
+  1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
+  `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda
+  con la partida. Test `--autotest-shiny`.
 - **Arenas pintadas con Qwen (2026-11-03, pedido del usuario: "MUY EPICAS")**: se probaron 3 enfoques (repintar el plano,
   libre, Qwen Edit) y el usuario eligió **libre**. Hechas: el **campo** (claro con arroyo y puente) y el **gimnasio de Brock**
   (cañón con cristales de ámbar, braseros, plataforma del líder con escalera). Pintura en `ArenaData.painting` sobre los
@@ -18,7 +22,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   quiero" y "Confusión pega más que Psíquico")**: medido con la prueba nueva `--autotest-move-damage` (cada ataque en
   cada tecla contra un muñeco): Confusión pegaba más solo porque el Clic izquierdo le dejaba a Psíquico/Premonición un
   25-30 % del daño (y la R le sumaba ×1,3). Ahora las teclas por rol (`slot_roles`) vienen apagadas: cualquier ataque
-  pega y recarga lo mismo en cualquier tecla. El básico ya no es gratis ni devuelve PP al pegar.
+  pega y recarga lo mismo en cualquier tecla. El básico ya no es gratis ni devuelve PP al pegar. La recarga de PP en pelea subió de 13 % a 16 % de la barra por segundo (de vacía a llena en ~6,3 s); tabla de costos en `docs/PP_ATAQUES.md`.
 - **Evoluciones por intercambio y amistad (2026-11-03, pedido del usuario: "como lo suelen hacer los fangames")**:
   antes no evolucionaban nunca. Ahora Kadabra, Machoke, Graveler y Haunter evolucionan a Nv. 37; Onix, Scyther, Seadra,
   Slowpoke (Slowking), Poliwhirl (Politoed), Porygon y Clamperl con su objeto usado como piedra (6 objetos nuevos, a

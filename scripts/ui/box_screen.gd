@@ -85,7 +85,7 @@ func _mon_button(inst: CreatureInstance, size: Vector2) -> Button:
 	b.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	b.icon = DB.idle_frame_of(inst.species)
 	b.expand_icon = false
-	b.text = "%s  Nv. %d" % [inst.display_name(), inst.level]
+	b.text = "%s  Nv. %d" % [inst.label(), inst.level]
 	return b
 
 

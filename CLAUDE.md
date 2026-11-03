@@ -246,7 +246,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   el daño del rol y `TacticalMind` lo cuenta. Además `cooldown_mult` (× todas las recargas y el esquive) y `attack_gap`
   (pausa entre cualquier ataque), neutros por defecto: se van puliendo jugando. **PP como maná** (ajuste `pp_mode`,
   pedido del usuario 2026-10-31, como Pokémon Reloaded): barra `MoveUser.max_pp()` = 100 + 4·nivel, costo
-  `pp_cost_of(move)` = curva `PP_COST_CURVE` × 220 × `PP_COST_MULT` 1,5 (nerf del 2026-11-03: 65 → 66, 85 → 132, 150 → 231; estado 50; la curva se midió en Pokemon Arena 2D, 2026-11-01); **curas** (`MoveUser.is_heal`: su estado propio cura) = parte de la barra según cuánto curan (`HEAL_PP`: Descanso 60 %, Recuperación 40 %, Síntesis 35 %, Arraigo 25 %) y solo con un rival cerca (`Creature.foe_near`, `heal_blocked`), canalizados 30 % al empezar y el resto mientras salen (`channel_drain`), recarga en pelea 13 %/s, básico paga su costo × `role_damage` (desde el 2026-11-03; antes era gratis y devolvía PP), recarga sola
+  `pp_cost_of(move)` = curva `PP_COST_CURVE` × 220 × `PP_COST_MULT` 1,5 (nerf del 2026-11-03: 65 → 66, 85 → 132, 150 → 231; estado 50; la curva se midió en Pokemon Arena 2D, 2026-11-01); **curas** (`MoveUser.is_heal`: su estado propio cura) = parte de la barra según cuánto curan (`HEAL_PP`: Descanso 60 %, Recuperación 40 %, Síntesis 35 %, Arraigo 25 %) y solo con un rival cerca (`Creature.foe_near`, `heal_blocked`), canalizados 30 % al empezar y el resto mientras salen (`channel_drain`), recarga en pelea 16 %/s (antes 13 %), básico paga su costo × `role_damage` (desde el 2026-11-03; antes era gratis y devolvía PP), recarga sola
   (`PP_REGEN_*` × ajuste `pp_regen`); con PP las recargas son cortas (`PP_COOLDOWN`). `CreatureInstance.pp` (runtime,
   -1 = lleno; `heal_party` lo llena). La IA ahorra PP (`TacticalMind.PP_RESERVE`). **IA cuerpo a cuerpo**
   (`creature_attack.gd::_melee_mode`): entra a pegar (`MELEE_ENTER`), sale (`_backoff`) y espera a `MELEE_SPACING` de
@@ -406,6 +406,12 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   cargar queda apagado): interruptor `GameState.living_trainers`; datos
   `TrainerData` en `data/trainers/` (de `tools/build_trainers.gd`); estado jugando `TrainerState` en
   `GameState.trainers` (se guarda); `TrainerDirector` (nodo del mundo) saca/guarda los `TrainerNPC`.
+- **Shiny** (pedido del usuario 2026-11-03): `CreatureInstance.shiny` (se guarda; sale al azar en `create`: 1 en el ajuste
+  `shiny_odds`, 1024 por defecto, para salvajes, regalos, entrenadores y torneo). Sprites = las mismas hojas en
+  `sprites/pokemon/<n.º>/shiny/` (`tools/download_shiny_sprites.py`, de PMDCollab: mismo AnimData; si falta una hoja se usa la
+  normal) vía `DB.anims_of(sp, shiny)` / `portrait_of(sp, shiny)`, `CreatureSprite.shiny` y `PokemonAnimView.shiny`.
+  `ShinySparkle` (destello + `audio/efectos/shiny.wav`) al aparecer; `CreatureInstance.label()` = nombre con ★ (menús).
+  Test `--autotest-shiny`. Las hojas retocadas a mano (Sleep con ojos cerrados, golpes de Qwen) en shiny son las originales.
 - **Captura, Mochila y Caja** (`docs/PLAN_CAPTURA_MOCHILA.md`): `ItemData` en `data/items/` (de
   `tools/fetch_items.py`); `GameState.bag`/`selected_ball`/`quick_item`/`box`/`field_picked`; `PlayerItems` (nodo del
   mundo: E lanza `BallThrow`, C usa el objeto rápido; una bola errada queda en el piso como `FieldItem` `thrown`, 120 s, y

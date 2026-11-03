@@ -29,6 +29,7 @@ const SECTIONS := [
 	]],
 	["Mundo", [
 		["wild_mult", "Cantidad de salvajes (×)", 0.0, 3.0, 0.1, "×%.1f"],
+		["shiny_odds", "Shiny: sale 1 de cada (0 = nunca)", 0.0, 8192.0, 64.0, "%.0f"],
 		["regen", "Curación sola fuera de combate (1% por segundo)"],
 		["field_items", "Objetos tirados en las rutas"],
 		["time_lock", "Hora fija (todo a la izquierda: el tiempo corre)", -1.0, 23.5, 0.5, "%.1f h", "Corre"],

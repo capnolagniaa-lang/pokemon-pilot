@@ -85,6 +85,7 @@ func _card(i: int) -> Button:
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	b.add_child(row)
 	var view := PokemonAnimView.new()
+	view.shiny = inst.shiny
 	view.species = inst.species
 	view.pixel_scale = 3
 	view.custom_minimum_size = Vector2(130, 140)
@@ -97,7 +98,7 @@ func _card(i: int) -> Button:
 	var name_row := HBoxContainer.new()
 	name_row.add_theme_constant_override("separation", 10)
 	info.add_child(name_row)
-	name_row.add_child(UiStyle.label(inst.display_name(), 20))
+	name_row.add_child(UiStyle.label(inst.label(), 20))
 	name_row.add_child(UiStyle.label("Nv. %d" % inst.level, 18, UiStyle.ACCENT))
 	if active:
 		name_row.add_child(UiStyle.label("ACTIVO", 13, UiStyle.GOOD))

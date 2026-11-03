@@ -105,11 +105,11 @@ func _draw_party(c: Creature, in_battle: bool) -> void:
 		return
 	var r := Rect2(16, size.y - 104, 380, 88)
 	_panel(r)
-	var tex := DB.portrait_of(inst.species)
+	var tex := DB.portrait_of(inst.species, inst.shiny)
 	if tex:
 		draw_texture_rect(tex, Rect2(r.position + Vector2(10, 10), Vector2(52, 52)), false)
 	var x := r.position.x + 74
-	draw_string(font, Vector2(x, r.position.y + 26), "%s  Nv. %d" % [inst.species.display_name, inst.level], HORIZONTAL_ALIGNMENT_LEFT, -1, 18)
+	draw_string(font, Vector2(x, r.position.y + 26), "%s%s  Nv. %d" % [inst.species.display_name, " ★" if inst.shiny else "", inst.level], HORIZONTAL_ALIGNMENT_LEFT, -1, 18)
 	var t := inst.species.primary_type()
 	var tag := t.display_name.to_upper()
 	var ab := inst.ability_data()
@@ -210,7 +210,7 @@ func _draw_enemy() -> void:
 		return
 	var r := Rect2(size.x - 396, 16, 380, 64)
 	_panel(r)
-	var tex := DB.portrait_of(e.instance.species)
+	var tex := DB.portrait_of(e.instance.species, e.instance.shiny)
 	if tex:
 		draw_texture_rect(tex, Rect2(r.position + Vector2(8, 8), Vector2(48, 48)), false)
 	var x := r.position.x + 66
@@ -248,7 +248,7 @@ func _draw_team() -> void:
 		if slots[k] == GameState.active_index:
 			draw_rect(cell, Color(1.0, 0.85, 0.3, 0.25))
 			draw_rect(cell, Color(1.0, 0.85, 0.3, 0.9), false, 1.5)
-		var tex := DB.portrait_of(inst.species)
+		var tex := DB.portrait_of(inst.species, inst.shiny)
 		if tex:
 			draw_texture_rect(tex, Rect2(cell.position + Vector2(5, 2), Vector2(32, 32)), false,
 				Color(0.35, 0.35, 0.35, 0.8) if down else Color.WHITE)

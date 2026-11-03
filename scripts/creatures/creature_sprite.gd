@@ -33,7 +33,12 @@ static var _bodies := {}  # "hoja:cuadro" → rect del cuerpo (respiración)
 var species: SpeciesData:
 	set(value):
 		species = value
-		_anims = DB.anims_of(value) if value != null else {}
+		_anims = DB.anims_of(value, shiny) if value != null else {}
+## Shiny: hojas de otros colores (CreatureInstance.shiny).
+var shiny := false:
+	set(value):
+		shiny = value
+		_anims = DB.anims_of(species, shiny) if species != null else {}
 
 ## Progreso de carga de un ataque (0..1); -1 = sin carga.
 var charge := -1.0

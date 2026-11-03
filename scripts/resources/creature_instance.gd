@@ -30,6 +30,9 @@ static func hp_scale() -> float:
 @export var taught_moves: Array[MoveData] = []
 ## Habilidad con la que nació (id de data/abilities; una de SpeciesData.abilities, al azar). Se guarda.
 @export var ability: String = ""
+## Shiny (pedido del usuario 2026-11-03): otros colores (sprites de sprites/pokemon/<n.º>/shiny/), estrella en los menús y
+## un destello al aparecer. Sale al azar al crearse (1 en `shiny_odds`, ajuste; 1024 por defecto). Se guarda.
+@export var shiny := false
 ## Pokémon jefe (el de un líder de gimnasio con SpeciesData.boss_kit): pelea con el kit de jefe. No se guarda.
 var boss := false
 ## PP actuales (el maná de los ataques, MoveUser; pedido del usuario 2026-10-31). -1 = llenos. No se guarda: al cargar
@@ -54,7 +57,14 @@ static func create(p_species: SpeciesData, p_level: int) -> CreatureInstance:
 	c.equipped_moves = c.default_equipment()
 	if not p_species.abilities.is_empty():
 		c.ability = p_species.abilities[randi() % p_species.abilities.size()].id
+	c.shiny = roll_shiny()
 	return c
+
+
+## ¿Sale shiny? 1 en `shiny_odds` (ajuste del juego; 0 = nunca).
+static func roll_shiny() -> bool:
+	var odds := int(GameState.setting("shiny_odds"))
+	return odds > 0 and randi() % odds == 0
 
 
 ## La habilidad (SignatureData) con la que pelea: la suya si la especie la tiene, si no la primera de la especie (una
@@ -76,6 +86,11 @@ func roll_ivs() -> void:
 
 func display_name() -> String:
 	return nickname if nickname != "" else species.display_name
+
+
+## El nombre para los menús: con una estrella si es shiny.
+func label() -> String:
+	return display_name() + (" ★" if shiny else "")
 
 
 # --- Movimientos -------------------------------------------------------------------
@@ -183,7 +198,7 @@ func to_dict() -> Dictionary:
 	for m in equipped_moves:
 		eq.append(DB.move_key(m) if m != null else "")
 	return {"species_id": species.id, "level": level, "experience": experience, "ivs": ivs.duplicate(),
-		"evs": evs.duplicate(), "hp": hp, "equipped_moves": eq, "nickname": nickname, "nature": nature, "ability": ability,
+		"evs": evs.duplicate(), "hp": hp, "equipped_moves": eq, "nickname": nickname, "nature": nature, "ability": ability, "shiny": shiny,
 		"taught_moves": taught_moves.filter(func(m): return m != null).map(func(m): return DB.move_key(m))}
 
 
@@ -207,6 +222,7 @@ static func from_dict(d: Dictionary, warnings: Array = []) -> CreatureInstance:
 	if ab != "":
 		c.ability = ab  # (partidas viejas: se queda con la que sorteó create)
 	c.nature = str(d.get("nature", ""))
+	c.shiny = bool(d.get("shiny", false))  # (partidas viejas: no)
 	var taught = d.get("taught_moves", [])
 	if taught is Array:
 		for key in taught:

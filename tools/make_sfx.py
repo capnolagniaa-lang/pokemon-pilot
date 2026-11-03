@@ -125,6 +125,7 @@ EFFECTS = {
     "mensaje": lambda: tone(0.03, 900, vol=0.2, duty=0.125),
     "firma": lambda: tone(0.25, 700, 1700, vol=0.25, duty=0.25, vib=0.02),
     "curacion": lambda: notes([(76, 0.08), (79, 0.08), (84, 0.2)], wave_fn="tri"),
+    "shiny": lambda: seq(*[tone(0.05, f, wave_fn="tri", vol=0.3) for f in (2093, 2637, 3136, 4186)], tone(0.25, 3136, 4186, wave_fn="sine", vol=0.2, vib=0.04, vib_rate=20)),
     "cambio": lambda: seq(tone(0.06, 700, 1100, vol=0.3), tone(0.08, 1100, 1500, vol=0.25, duty=0.25)),
     # Un golpe por tipo (el que más se oye en combate).
     "golpe_normal": lambda: mix(noise(0.08, 0.6, lowpass=0.7), tone(0.05, 240, 110, vol=0.35)),

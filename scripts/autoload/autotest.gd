@@ -75,6 +75,13 @@ func _ready() -> void:
 		add_child(st)
 		(st.showcase if "--showcase-story" in OS.get_cmdline_user_args() else st.run).call_deferred()
 		return
+	if "--autotest-shiny" in OS.get_cmdline_user_args():
+		set_process(false)
+		var sh := ShinyTests.new()
+		sh.autotest = self
+		add_child(sh)
+		sh.run.call_deferred()
+		return
 	if "--autotest-move-damage" in OS.get_cmdline_user_args():
 		set_process(false)
 		var md := MoveDamageTests.new()

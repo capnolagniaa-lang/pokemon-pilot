@@ -23,6 +23,7 @@ const PAGES := [
 		"Tab: mostrar u ocultar el minimapa (cuando tengas el Mapa; arriba a la derecha, y en cuevas y edificios marca las puertas y escaleras).",
 	]],
 	["Los salvajes", [
+		"Shiny: muy de vez en cuando (1 de cada 1024) sale un Pokémon de otros colores, con un destello y un sonido al aparecer. En los menús lleva una ★.",
 		"Cada especie tiene su temperamento: los agresivos te atacan apenas te ven; los territoriales solo si entrás a su zona (si te miran con \"...\", todavía estás afuera); los tímidos huyen; los curiosos se acercan a mirar.",
 		"Cuando uno te desafía empieza el combate y manejás a tu Pokémon.",
 		"F: entrar o salir del combate. Si huís, el salvaje te deja unos segundos tranquilo para que te alejes.",
@@ -61,7 +62,7 @@ const PAGES := [
 	]],
 	["Lo que podés modificar", [
 		"Esc → Opciones: dificultad de la IA (Fácil, Normal, Difícil o Personalizado) y el volumen.",
-		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y que recibís, vida de los Pokémon, stagger, cantidad de salvajes, curación sola fuera de combate, objetos en las rutas, hora fija, que un entrenador que te gana seguido afloje un poco y, en Personalizado, cada detalle de la IA.",
+		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y que recibís, vida de los Pokémon, stagger, cantidad de salvajes, cada cuánto sale un shiny, curación sola fuera de combate, objetos en las rutas, hora fija, que un entrenador que te gana seguido afloje un poco y, en Personalizado, cada detalle de la IA.",
 		"Tus 4 ataques, la Pokébola que lanzás y el objeto rápido de la C.",
 		"Varias partidas con nombre, cada una con sus ajustes.",
 		"Esc → Opciones → Online: tu nombre en la sala online (si lo dejás vacío, va el de la partida).",

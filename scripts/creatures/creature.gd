@@ -136,7 +136,10 @@ var _clock := 0.0
 
 
 func _ready() -> void:
+	sprite.shiny = instance.shiny
 	sprite.species = instance.species
+	if instance.shiny:
+		add_child(ShinySparkle.new())  # destello al aparecer
 	fight_style = DB.fight_style_of(instance.species)  # el propio o el de su preevolución
 	health.instance = instance
 	health.heal_mult_source = statuses

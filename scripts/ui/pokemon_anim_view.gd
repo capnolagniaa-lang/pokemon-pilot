@@ -7,6 +7,8 @@ var species: SpeciesData:
 	set(value):
 		species = value
 		queue_redraw()
+## Shiny: dibuja las hojas de otros colores.
+var shiny := false
 var anim_name := "Idle"
 ## Escala del pixel art (entera para que no se deforme).
 var pixel_scale := 3
@@ -32,9 +34,9 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	if species == null:
 		return
-	var anims := DB.anims_of(species)
+	var anims := DB.anims_of(species, shiny)
 	if not anims.has(anim_name):
-		var tex := DB.portrait_of(species)
+		var tex := DB.portrait_of(species, shiny)
 		if tex != null:
 			var s := minf(size.x / tex.get_width(), size.y / tex.get_height())
 			var d := tex.get_size() * floorf(maxf(1.0, s))

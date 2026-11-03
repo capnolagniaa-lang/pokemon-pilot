@@ -42,7 +42,7 @@ const HEAL_PP_DEFAULT := 0.3
 const PP_CHANNEL_UPFRONT := 0.3
 ## Recarga sola por segundo (fracción de la barra): en pelea y fuera de pelea. En pelea, de vacía a llena en ~7,5 s
 ## (en Pokemon Arena 2D, ~7 s; antes era 0,06: ~17 s).
-const PP_REGEN_FIGHT := 0.13
+const PP_REGEN_FIGHT := 0.16  # 2026-11-03: 0,13 → 0,16 (pedido del usuario: "un poco más rápida"; llena en ~6,3 s)
 const PP_REGEN_CALM := 0.3
 ## Recarga de los ataques con PP: la de siempre × esto, entre estos valores.
 const PP_COOLDOWN := 0.3

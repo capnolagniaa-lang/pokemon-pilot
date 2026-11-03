@@ -52,11 +52,12 @@ func _left_column() -> Control:
 	box.add_theme_constant_override("separation", 8)
 	panel.add_child(box)
 	var view := PokemonAnimView.new()
+	view.shiny = _inst.shiny
 	view.species = _inst.species
 	view.pixel_scale = 5
 	view.custom_minimum_size = Vector2(290, 260)
 	box.add_child(view)
-	box.add_child(UiStyle.label(_inst.display_name(), 26))
+	box.add_child(UiStyle.label(_inst.label(), 26))
 	box.add_child(UiStyle.label("Nv. %d  ·  N.º %03d" % [_inst.level, _inst.species.dex], 18, UiStyle.ACCENT))
 	var types := HBoxContainer.new()
 	types.add_theme_constant_override("separation", 6)
