@@ -89,6 +89,7 @@ $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcas
 $G --path . --quit-after 700 --write-movie out/f.png --fixed-fps 30 -- --showcase-daynight  # 3 zonas × 4 horas (comparar con docs/referencias/iluminacion)
 $G --headless --path . --quit-after 30000 -- --autotest-town-map  # Mapa del menú (zonas, entradas, íconos, niebla, objetivo, partidas viejas)
 $G --path . --quit-after 90 --write-movie out/f.png --fixed-fps 30 -- --showcase-town-map  # el Mapa abierto
+$G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-minimap  # minimapa (Tab) en Paleta, la Torre y el Mt. Moon
 $G --headless --path . --quit-after 9000 -- --autotest-party     # equipo de 6, activo, menú, ficha
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-menus  # título, equipo, ficha
 $G --headless --path . --quit-after 12000 -- --autotest-env      # entorno reactivo (fuego, agua, hielo, rocas)
@@ -332,6 +333,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   Gimnasio y los nombres. `TownMapScreen` (`scripts/ui/`): zoom, arrastre, niebla en lo no visitado
   (`GameState.visited_zones`, se guarda; partidas viejas: `TownMap.visited_from_progress`), tu posición y la estrella
   del objetivo (`StoryGuide.GOALS`). En la historia aparece con el objeto Mapa (Dalia); en el modo libre, siempre.
+  **Minimapa** (Tab, `Minimap` en `world.minimap`, arriba a la derecha, siempre disponible): afuera, la imagen del Mapa
+  alrededor tuyo con niebla e íconos; en lo que no está en el mapa, `TownMap.zone_image` (ese lugar solo) con las puertas;
+  prendido/apagado en `user://interfaz.cfg`.
 - **Día y noche** (`docs/PLAN_DIA_NOCHE.md`): `DayNight` (`world.day_night`) hace correr `GameState.time_of_day`
   (1 h = 1 min real; ajuste `time_lock` = hora fija); el sol/luna y las sombras salen del arco `DayNight.sun_at` y el
   resto de la tabla `KEYS`: Daylight, uniforms del

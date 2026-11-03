@@ -23,7 +23,7 @@ const KEYS := {
 	"dodge": [KEY_SPACE],
 	"capture": [KEY_E],  # lanzar la Pokébola elegida (docs/PLAN_CAPTURA_MOCHILA.md)
 	"quick_item": [KEY_C],  # usar el objeto de la ranura rápida
-	"switch": [KEY_TAB],
+	"minimap": [KEY_TAB],  # mostrar u ocultar el minimapa (Minimap)
 	"battle_toggle": [KEY_F],
 	"pause": [KEY_ESCAPE],
 	## Solo con `-- --debug` (o desde el editor): suma un Pokémon al azar al equipo.

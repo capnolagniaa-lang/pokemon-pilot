@@ -38,6 +38,7 @@ static var _image: Image
 static var _origin := Vector2i.ZERO
 static var _mini: Dictionary = {}  # "fuente:x,y" -> Image de CELL_PX×CELL_PX
 static var _atlas_images: Dictionary = {}  # fuente -> Image del atlas
+static var _zone_images: Dictionary = {}  # id -> Image de una zona sola (el minimapa en interiores y cuevas)
 
 
 # --- Geometría -------------------------------------------------------------------------
@@ -198,24 +199,38 @@ static func _build(wd: WorldData) -> void:
 	var img := Image.create_empty(maxi(1, b.size.x * CELL_PX), maxi(1, b.size.y * CELL_PX), false, Image.FORMAT_RGBA8)
 	img.fill(Color(0, 0, 0, 0))
 	for z in map_zones(wd):
-		var packed: PackedScene = load(z.scene_path)
-		if packed == null:
-			continue
-		var root := packed.instantiate()
-		var at := (z.origin - b.position) * CELL_PX
-		for layer_name in LAYERS:
-			var layer := root.get_node_or_null(layer_name) as TileMapLayer
-			if layer == null or layer.tile_set == null:
-				continue
-			for cell in layer.get_used_cells():
-				if cell.x < 0 or cell.y < 0 or cell.x >= z.size.x or cell.y >= z.size.y:
-					continue
-				var mini := _mini_tile(layer.tile_set, layer.get_cell_source_id(cell), layer.get_cell_atlas_coords(cell))
-				if mini != null:
-					img.blend_rect(mini, Rect2i(Vector2i.ZERO, Vector2i(CELL_PX, CELL_PX)), at + cell * CELL_PX)
-		root.free()
+		_paint_zone(img, z, (z.origin - b.position) * CELL_PX)
 	_origin = b.position
 	_image = img
+
+
+## Una zona sola en miniatura (píxel = celda local * CELL_PX), con caché: la usa el minimapa en los lugares que no
+## están en el mapa (interiores, cuevas, la Torre).
+static func zone_image(z: ZoneEntry) -> Image:
+	if not _zone_images.has(z.id):
+		var img := Image.create_empty(maxi(1, z.size.x * CELL_PX), maxi(1, z.size.y * CELL_PX), false, Image.FORMAT_RGBA8)
+		img.fill(Color(0, 0, 0, 0))
+		_paint_zone(img, z, Vector2i.ZERO)
+		_zone_images[z.id] = img
+	return _zone_images[z.id]
+
+
+static func _paint_zone(img: Image, z: ZoneEntry, at: Vector2i) -> void:
+	var packed: PackedScene = load(z.scene_path)
+	if packed == null:
+		return
+	var root := packed.instantiate()
+	for layer_name in LAYERS:
+		var layer := root.get_node_or_null(layer_name) as TileMapLayer
+		if layer == null or layer.tile_set == null:
+			continue
+		for cell in layer.get_used_cells():
+			if cell.x < 0 or cell.y < 0 or cell.x >= z.size.x or cell.y >= z.size.y:
+				continue
+			var mini := _mini_tile(layer.tile_set, layer.get_cell_source_id(cell), layer.get_cell_atlas_coords(cell))
+			if mini != null:
+				img.blend_rect(mini, Rect2i(Vector2i.ZERO, Vector2i(CELL_PX, CELL_PX)), at + cell * CELL_PX)
+	root.free()
 
 
 ## Un tile reducido a CELL_PX×CELL_PX (con caché).

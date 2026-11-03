@@ -38,6 +38,8 @@ var lifts: Lifts
 var balloon: BalloonTravel
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
 var arena: TrainerBattle
+## Minimapa de arriba a la derecha (Tab).
+var minimap: Minimap
 ## Hora del juego y luz del mundo según la hora (docs/PLAN_DIA_NOCHE.md).
 var day_night: DayNight
 ## Consola de Game Master (Ctrl+Shift+G; no en la versión portable) y su modo vuelo.
@@ -121,6 +123,10 @@ func _ready() -> void:
 		gm_console = GmConsole.new()  # Ctrl+Shift+G
 		gm_console.name = "GmConsole"
 		add_child(gm_console)
+	minimap = Minimap.new()  # Tab
+	minimap.name = "Minimap"
+	minimap.world = self
+	get_node("UI").add_child(minimap)
 	var cursor := CrosshairCursor.new()  # el mouse es una mira roja mientras jugás
 	cursor.name = "CrosshairCursor"
 	add_child(cursor)

@@ -6,6 +6,12 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-02)
+- **Minimapa con Tab (2026-11-03, pedido del usuario)**: `Minimap` (`scripts/ui/minimap.gd`, arriba a la derecha):
+  afuera recorta la imagen del Mapa del menú (`TownMap.image`) con vos en el centro, niebla en lo no visitado e íconos;
+  en interiores, cuevas y la Torre dibuja ese lugar solo (`TownMap.zone_image`, agrandado si es chico) con puertas y
+  escaleras titilando. No hace falta el objeto Mapa. Se esconde en las arenas; Tab lo prende/apaga y se recuerda
+  (`user://interfaz.cfg`). La acción "switch" (Tab, sin uso) pasó a "minimap". Tests en `--autotest-town-map`, vitrina
+  `--showcase-minimap`.
 - **Zoom con la rueda (2026-11-01, pedido del usuario: "más zoom out para ver más del mapa")**: `CameraRig` acerca y
   aleja de 3× (el de siempre) a 2× en pasos de 0,25, suave, y lo recuerda en `user://camara.cfg` (los tests y vitrinas
   usan siempre 3×). `ZoneStreamer.load_margin` 14 → 22 (y descarga a 30) para que alejado no se vean bordes sin cargar.

@@ -89,12 +89,55 @@ func run() -> void:
 	world.pause_menu._pop()
 	r["Esc vuelve al menú"] = world.pause_menu._stack.is_empty()
 	world.pause_menu.close()
+	await get_tree().process_frame
+
+	# --- Minimapa (Tab) ---
+	var mm: Minimap = world.minimap
+	await get_tree().process_frame
+	r["Minimapa prendido arriba a la derecha"] = mm != null and mm.visible and mm.position.x > 900 and mm.position.y < 40
+	var gym: ZoneEntry = null
+	for z in wd.zones:
+		if z.id == "ciudad_plateada_gimnasio":
+			gym = z
+	var zimg := TownMap.zone_image(gym)
+	r["En el gimnasio dibuja el gimnasio solo (%s)" % zimg.get_size()] = mm._zone == gym 		and zimg.get_size() == gym.size * TownMap.CELL_PX and not zimg.is_invisible()
+	var tab := InputEventAction.new()
+	tab.action = "minimap"
+	tab.pressed = true
+	Input.parse_input_event(tab)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	r["Tab lo oculta"] = not mm.shown and not mm.visible
+	Input.parse_input_event(tab)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	r["Tab lo vuelve a mostrar"] = mm.shown and mm.visible
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[town-map] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-town-map] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+
+## Vitrina del minimapa: Pueblo Paleta, la Torre Pokémon (4.º piso) y el Mt. Moon (imprime los cuadros).
+##   godot --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-minimap
+func showcase_minimap() -> void:
+	GameState.new_story()
+	GameState.visited_zones = TownMap.visited_from_progress(GameState.story_flags, DB.config.world)
+	GameState.set_flag("tutorial_visto")
+	for spot in [["pueblo_paleta", Vector2i(-1, -1)], ["torre_pokemon_4p", Vector2i(10, 12)], ["mt_moon", Vector2i(20, 20)]]:
+		var cell: Vector2i = spot[1]
+		if cell.x < 0:  # el medio de la zona
+			for z in DB.config.world.zones:
+				if z.id == spot[0]:
+					cell = z.size / 2
+		await _start(spot[0], cell)
+		var first := Engine.get_frames_drawn()
+		for i in 20:
+			await get_tree().process_frame
+		print("[showcase-minimap] %s: cuadros %d-%d" % [spot[0], first, Engine.get_frames_drawn()])
+	get_tree().quit()
 
 
 ## Vitrina: el mapa abierto con niebla (hasta Ciudad Plateada) y la estrella en el Mt. Moon.
