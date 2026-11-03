@@ -52,16 +52,16 @@
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="46_5udb0"]
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="47_ibqx2"]
 
-[sub_resource type="Resource" id="Resource_jcbax"]
+[sub_resource type="Resource" id="Resource_sin0e"]
 script = ExtResource("1_s6cyy")
 to_id = "slowbro"
 level = 37
 
-[sub_resource type="Resource" id="Resource_44mkk"]
+[sub_resource type="Resource" id="Resource_cvtwc"]
 script = ExtResource("1_s6cyy")
 to_id = "slowking"
-method = "intercambio"
-item = "kings-rock"
+method = "piedra"
+item = "roca_del_rey"
 
 [sub_resource type="Resource" id="Resource_7e30y"]
 script = ExtResource("1_4slof")
@@ -124,7 +124,7 @@ types = Array[ExtResource("4_dclml")]([ExtResource("5_w8mec"), ExtResource("6_fq
 learnset = Array[ExtResource("1_4slof")]([SubResource("Resource_7e30y"), SubResource("Resource_yr3l0"), SubResource("Resource_rgere"), SubResource("Resource_5hs56"), SubResource("Resource_ixfue"), SubResource("Resource_chox7"), SubResource("Resource_txnui"), SubResource("Resource_pf3ux"), SubResource("Resource_ei0o1"), SubResource("Resource_4e8u7"), SubResource("Resource_r3cmt")])
 tm_moves = Array[ExtResource("2_485nm")]([ExtResource("19_vnx6o"), ExtResource("20_sin0e"), ExtResource("21_cvtwc"), ExtResource("22_i57hx"), ExtResource("23_7e30y"), ExtResource("24_yr3l0"), ExtResource("25_rgere"), ExtResource("26_5hs56"), ExtResource("27_ixfue"), ExtResource("28_chox7"), ExtResource("29_txnui"), ExtResource("30_pf3ux"), ExtResource("31_ei0o1"), ExtResource("32_4e8u7"), ExtResource("33_r3cmt"), ExtResource("34_5nek4"), ExtResource("35_gaxtw"), ExtResource("11_frv5u"), ExtResource("36_jx3jl"), ExtResource("37_ecwn1"), ExtResource("38_aac4r"), ExtResource("39_xp17i"), ExtResource("40_gtx7k"), ExtResource("41_2q66y"), ExtResource("42_4kbvv"), ExtResource("43_ypkce"), ExtResource("44_bvaxk"), ExtResource("45_jibfk"), ExtResource("46_5udb0"), ExtResource("47_ibqx2")])
 abilities = Array[ExtResource("1_cvtwc")]([ExtResource("2_i57hx"), ExtResource("3_7e30y")])
-evolutions = Array[ExtResource("1_s6cyy")]([SubResource("Resource_jcbax"), SubResource("Resource_44mkk")])
+evolutions = Array[ExtResource("1_s6cyy")]([SubResource("Resource_sin0e"), SubResource("Resource_cvtwc")])
 temperament = ExtResource("15_600os")
 genus = "Pokémon Atontado"
 pokedex_entry = "Slowpoke usa la cola para atrapar a sus presas metiéndola bajo el agua en las riberas de los ríos. Con todo, es olvidadizo, se le puede pasar lo que estaba haciendo y quedarse días enteros holgazaneando en la orilla."

@@ -1,7 +1,7 @@
 class_name Evolution
 extends RefCounted
 ## Reglas de evolución (datos en SpeciesData.evolutions, de tools/apply_evolutions.gd). Solo evolucionan por nivel y
-## con piedras: el intercambio y la amistad todavía no existen en el juego.
+## con piedras u objetos: las de intercambio y amistad se pasaron a eso, como en los fangames (FANGAME del apply).
 
 
 ## La especie a la que evoluciona por nivel ahora (o null). Tyrogue mira ataque y defensa; Wurmple elige al azar
@@ -13,10 +13,17 @@ static func by_level(inst: CreatureInstance) -> SpeciesData:
 			continue
 		if e.stats_cond != 99 and signi(inst.stat("attack") - inst.stat("defense")) != e.stats_cond:
 			continue
+		if e.time != "" and e.time != time_now():
+			continue
 		options.append(DB.species[e.to_id])
 	if options.is_empty():
 		return null
 	return options[0] if options.size() == 1 else options[hash(inst.ivs) % options.size()]
+
+
+## "dia" o "noche" (amanecer y atardecer cuentan como día).
+static func time_now() -> String:
+	return "noche" if DayNight.phase_of(GameState.time_of_day) == "noche" else "dia"
 
 
 ## La especie a la que evoluciona con esta piedra (o null).
@@ -33,7 +40,7 @@ static func describe(e: EvolutionData) -> String:
 	var name := to.display_name if to != null else e.to_id
 	match e.method:
 		"nivel":
-			return "%s (Nv. %d)" % [name, e.level]
+			return "%s (Nv. %d%s)" % [name, e.level, {"dia": ", de día", "noche": ", de noche"}.get(e.time, "")]
 		"piedra":
 			return "%s (%s)" % [name, DB.items[e.item].display_name if DB.items.has(e.item) else e.item]
 		"intercambio":

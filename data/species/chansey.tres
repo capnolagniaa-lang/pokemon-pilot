@@ -61,10 +61,10 @@
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="56_5oucb"]
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="57_u18nr"]
 
-[sub_resource type="Resource" id="Resource_4gr4e"]
+[sub_resource type="Resource" id="Resource_6q307"]
 script = ExtResource("1_swu5h")
 to_id = "blissey"
-method = "amistad"
+level = 40
 
 [sub_resource type="Resource" id="Resource_tnj7b"]
 script = ExtResource("1_5k2ei")
@@ -133,7 +133,7 @@ types = Array[ExtResource("4_idjla")]([ExtResource("5_7n3sc")])
 learnset = Array[ExtResource("1_5k2ei")]([SubResource("Resource_tnj7b"), SubResource("Resource_6o1oe"), SubResource("Resource_dowjh"), SubResource("Resource_sskj7"), SubResource("Resource_53bj5"), SubResource("Resource_gly70"), SubResource("Resource_6vdgi"), SubResource("Resource_0ms41"), SubResource("Resource_t3p6v"), SubResource("Resource_k056q"), SubResource("Resource_e7ik4"), SubResource("Resource_a3opq")])
 tm_moves = Array[ExtResource("2_btf3w")]([ExtResource("20_b4w0u"), ExtResource("21_6q307"), ExtResource("22_7i2lt"), ExtResource("23_14fje"), ExtResource("24_tnj7b"), ExtResource("25_6o1oe"), ExtResource("26_dowjh"), ExtResource("27_sskj7"), ExtResource("28_53bj5"), ExtResource("29_gly70"), ExtResource("30_6vdgi"), ExtResource("31_0ms41"), ExtResource("32_t3p6v"), ExtResource("33_k056q"), ExtResource("34_e7ik4"), ExtResource("35_a3opq"), ExtResource("36_5wfn2"), ExtResource("12_5sd6y"), ExtResource("37_eiml2"), ExtResource("38_lboh2"), ExtResource("39_pqic2"), ExtResource("40_51ota"), ExtResource("41_thqqb"), ExtResource("42_t31y7"), ExtResource("43_3w218"), ExtResource("44_83fxt"), ExtResource("45_ebff5"), ExtResource("46_xf8ik"), ExtResource("47_e85ht"), ExtResource("48_1pe74"), ExtResource("49_ac3co"), ExtResource("50_p0763"), ExtResource("51_xn3gy"), ExtResource("52_4ljog"), ExtResource("53_esio4"), ExtResource("54_3u3a1"), ExtResource("55_k6n2c"), ExtResource("56_5oucb"), ExtResource("57_u18nr")])
 abilities = Array[ExtResource("1_7i2lt")]([ExtResource("2_14fje"), ExtResource("3_tnj7b")])
-evolutions = Array[ExtResource("1_swu5h")]([SubResource("Resource_4gr4e")])
+evolutions = Array[ExtResource("1_swu5h")]([SubResource("Resource_6q307")])
 temperament = ExtResource("16_gn8rm")
 genus = "Pokémon Huevo"
 pokedex_entry = "Chansey pone a diario huevos con un valor nutritivo altísimo. Están tan ricos que hasta quien no tenga hambre se los comerá en un abrir y cerrar de ojos."

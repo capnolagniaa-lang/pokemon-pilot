@@ -40,10 +40,10 @@
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="33_6qr4v"]
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="34_w6cji"]
 
-[sub_resource type="Resource" id="Resource_unyqn"]
+[sub_resource type="Resource" id="Resource_pp1sj"]
 script = ExtResource("1_unyqn")
 to_id = "jigglypuff"
-method = "amistad"
+level = 15
 
 [sub_resource type="Resource" id="Resource_iideq"]
 script = ExtResource("1_f5qm5")
@@ -77,7 +77,7 @@ types = Array[ExtResource("4_2g58w")]([ExtResource("5_24fah"), ExtResource("6_nr
 learnset = Array[ExtResource("1_f5qm5")]([SubResource("Resource_iideq"), SubResource("Resource_crx2n"), SubResource("Resource_3wyhg"), SubResource("Resource_i18en"), SubResource("Resource_ohq2k")])
 tm_moves = Array[ExtResource("2_7ff2b")]([ExtResource("11_on4df"), ExtResource("12_cbfvn"), ExtResource("13_iideq"), ExtResource("14_crx2n"), ExtResource("15_3wyhg"), ExtResource("16_i18en"), ExtResource("17_ohq2k"), ExtResource("18_pp1sj"), ExtResource("19_48lpn"), ExtResource("20_mb0yr"), ExtResource("21_b4uu7"), ExtResource("22_5apsq"), ExtResource("23_pmlv7"), ExtResource("24_vaknv"), ExtResource("25_iuqbs"), ExtResource("26_2agob"), ExtResource("27_7xy47"), ExtResource("28_0asaj"), ExtResource("29_17nl8"), ExtResource("30_i88m7"), ExtResource("31_xheoj"), ExtResource("32_1pixp"), ExtResource("33_6qr4v"), ExtResource("34_w6cji")])
 abilities = Array[ExtResource("1_iideq")]([ExtResource("2_crx2n")])
-evolutions = Array[ExtResource("1_unyqn")]([SubResource("Resource_unyqn")])
+evolutions = Array[ExtResource("1_unyqn")]([SubResource("Resource_pp1sj")])
 temperament = ExtResource("9_pfrce")
 genus = "Pokémon Globo"
 pokedex_entry = "Las cuerdas vocales de Igglybuff no están suficientemente desarrolladas. Si tuviera que cantar mucho, se haría daño en la garganta. Este Pokémon suele hacer gárgaras con agua pura de manantial."

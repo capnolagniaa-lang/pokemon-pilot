@@ -32,10 +32,10 @@
 [ext_resource type="Resource" path="res://data/moves/rayo.tres" id="26_gb4pk"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="27_i5r51"]
 
-[sub_resource type="Resource" id="Resource_t0r2j"]
+[sub_resource type="Resource" id="Resource_l6o1v"]
 script = ExtResource("1_t0r2j")
 to_id = "pikachu"
-method = "amistad"
+level = 15
 
 [sub_resource type="Resource" id="Resource_5thoh"]
 script = ExtResource("1_taqgf")
@@ -69,7 +69,7 @@ types = Array[ExtResource("4_5yl8p")]([ExtResource("5_3yf8n")])
 learnset = Array[ExtResource("1_taqgf")]([SubResource("Resource_5thoh"), SubResource("Resource_x8t2b"), SubResource("Resource_ladlg"), SubResource("Resource_fypyh"), SubResource("Resource_m26fo")])
 tm_moves = Array[ExtResource("2_pjn8n")]([ExtResource("11_g5tb2"), ExtResource("12_kd1jg"), ExtResource("13_5thoh"), ExtResource("14_x8t2b"), ExtResource("15_ladlg"), ExtResource("16_fypyh"), ExtResource("17_m26fo"), ExtResource("18_l6o1v"), ExtResource("19_qbtdo"), ExtResource("20_pf3o3"), ExtResource("21_7qj0q"), ExtResource("22_37hvi"), ExtResource("23_sknhx"), ExtResource("24_xffby"), ExtResource("25_lgclc"), ExtResource("26_gb4pk"), ExtResource("27_i5r51")])
 abilities = Array[ExtResource("1_5thoh")]([ExtResource("2_x8t2b")])
-evolutions = Array[ExtResource("1_t0r2j")]([SubResource("Resource_t0r2j")])
+evolutions = Array[ExtResource("1_t0r2j")]([SubResource("Resource_l6o1v")])
 temperament = ExtResource("9_1xcpj")
 genus = "Pokémon Ratoncito"
 pokedex_entry = "A Pichu le resulta más fácil cargarse de electricidad en días de nubarrones o cuando sopla un aire muy seco. Es posible oír la electricidad estática que emana de este Pokémon."

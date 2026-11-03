@@ -43,10 +43,10 @@
 [ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="36_2wnhd"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="37_3bxhp"]
 
-[sub_resource type="Resource" id="Resource_m8ri2"]
+[sub_resource type="Resource" id="Resource_d33w4"]
 script = ExtResource("1_iwmfs")
 to_id = "golem"
-method = "intercambio"
+level = 37
 
 [sub_resource type="Resource" id="Resource_d2alw"]
 script = ExtResource("1_qknf3")
@@ -108,7 +108,7 @@ types = Array[ExtResource("4_vpi0r")]([ExtResource("5_acxy6"), ExtResource("6_1c
 learnset = Array[ExtResource("1_qknf3")]([SubResource("Resource_d2alw"), SubResource("Resource_1lhgd"), SubResource("Resource_2scgg"), SubResource("Resource_lemm6"), SubResource("Resource_53gbt"), SubResource("Resource_qox6a"), SubResource("Resource_dsaou"), SubResource("Resource_g6myj"), SubResource("Resource_xvvci"), SubResource("Resource_xsq2u"), SubResource("Resource_kdqmb")])
 tm_moves = Array[ExtResource("2_jwktc")]([ExtResource("18_ynmc4"), ExtResource("19_uohwq"), ExtResource("20_d33w4"), ExtResource("21_l54dh"), ExtResource("10_4xylu"), ExtResource("22_kcg6q"), ExtResource("23_6xfla"), ExtResource("24_d2alw"), ExtResource("25_1lhgd"), ExtResource("26_2scgg"), ExtResource("27_lemm6"), ExtResource("28_53gbt"), ExtResource("29_qox6a"), ExtResource("30_dsaou"), ExtResource("31_g6myj"), ExtResource("32_xvvci"), ExtResource("33_xsq2u"), ExtResource("34_kdqmb"), ExtResource("35_lvmlu"), ExtResource("36_2wnhd"), ExtResource("37_3bxhp")])
 abilities = Array[ExtResource("1_d33w4")]([ExtResource("2_l54dh"), ExtResource("3_kcg6q")])
-evolutions = Array[ExtResource("1_iwmfs")]([SubResource("Resource_m8ri2")])
+evolutions = Array[ExtResource("1_iwmfs")]([SubResource("Resource_d33w4")])
 evolves_from = "geodude"
 temperament = ExtResource("15_hfwnl")
 genus = "Pokémon Roca"

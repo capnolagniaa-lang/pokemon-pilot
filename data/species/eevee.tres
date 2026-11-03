@@ -36,33 +36,35 @@
 [ext_resource type="Resource" path="res://data/moves/dia_soleado.tres" id="32_reyni"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="33_6men3"]
 
-[sub_resource type="Resource" id="Resource_ifnpa"]
+[sub_resource type="Resource" id="Resource_druyq"]
 script = ExtResource("1_2bwl8")
 to_id = "vaporeon"
 method = "piedra"
 item = "piedra_agua"
 
-[sub_resource type="Resource" id="Resource_hh7v0"]
+[sub_resource type="Resource" id="Resource_by5tp"]
 script = ExtResource("1_2bwl8")
 to_id = "jolteon"
 method = "piedra"
 item = "piedra_trueno"
 
-[sub_resource type="Resource" id="Resource_ln5cg"]
+[sub_resource type="Resource" id="Resource_x4x7d"]
 script = ExtResource("1_2bwl8")
 to_id = "flareon"
 method = "piedra"
 item = "piedra_fuego"
 
-[sub_resource type="Resource" id="Resource_xbgiy"]
+[sub_resource type="Resource" id="Resource_reyni"]
 script = ExtResource("1_2bwl8")
 to_id = "espeon"
-method = "amistad"
+level = 25
+time = "dia"
 
-[sub_resource type="Resource" id="Resource_0ki5b"]
+[sub_resource type="Resource" id="Resource_6men3"]
 script = ExtResource("1_2bwl8")
 to_id = "umbreon"
-method = "amistad"
+level = 25
+time = "noche"
 
 [sub_resource type="Resource" id="Resource_tk2ow"]
 script = ExtResource("1_qesf0")
@@ -116,7 +118,7 @@ moves = Array[ExtResource("1_lmnbl")]([ExtResource("2_ugdki"), ExtResource("3_d1
 learnset = Array[ExtResource("1_qesf0")]([SubResource("Resource_tk2ow"), SubResource("Resource_jakfj"), SubResource("Resource_kcv58"), SubResource("Resource_myebv"), SubResource("Resource_i8jcx"), SubResource("Resource_pvg46"), SubResource("Resource_w8335"), SubResource("Resource_oh4o5"), SubResource("Resource_7db76")])
 tm_moves = Array[ExtResource("1_lmnbl")]([ExtResource("20_druyq"), ExtResource("21_by5tp"), ExtResource("22_x4x7d"), ExtResource("23_tk2ow"), ExtResource("24_jakfj"), ExtResource("25_kcv58"), ExtResource("26_myebv"), ExtResource("5_qqvwa"), ExtResource("27_i8jcx"), ExtResource("28_pvg46"), ExtResource("29_w8335"), ExtResource("30_oh4o5"), ExtResource("31_7db76"), ExtResource("32_reyni"), ExtResource("33_6men3")])
 abilities = Array[ExtResource("1_by5tp")]([ExtResource("2_x4x7d")])
-evolutions = Array[ExtResource("1_2bwl8")]([SubResource("Resource_ifnpa"), SubResource("Resource_hh7v0"), SubResource("Resource_ln5cg"), SubResource("Resource_xbgiy"), SubResource("Resource_0ki5b")])
+evolutions = Array[ExtResource("1_2bwl8")]([SubResource("Resource_druyq"), SubResource("Resource_by5tp"), SubResource("Resource_x4x7d"), SubResource("Resource_reyni"), SubResource("Resource_6men3")])
 temperament = ExtResource("10_qqvwa")
 genus = "Pokémon Evolución"
 pokedex_entry = "La configuración genética de Eevee le permite mutar y adaptarse enseguida a cualquier medio en el que viva. La evolución de este Pokémon suele ser posible gracias a las radiaciones emitidas por varias piedras."

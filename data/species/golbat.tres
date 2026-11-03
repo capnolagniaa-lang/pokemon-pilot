@@ -44,10 +44,10 @@
 [ext_resource type="Resource" path="res://data/moves/tormento.tres" id="38_2vnd0"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="39_s2l8v"]
 
-[sub_resource type="Resource" id="Resource_wtxpj"]
+[sub_resource type="Resource" id="Resource_w6mfv"]
 script = ExtResource("1_8py1k")
 to_id = "crobat"
-method = "amistad"
+level = 40
 
 [sub_resource type="Resource" id="Resource_vvshc"]
 script = ExtResource("1_ltaki")
@@ -109,7 +109,7 @@ types = Array[ExtResource("4_ll58t")]([ExtResource("5_u1t2j"), ExtResource("6_88
 learnset = Array[ExtResource("1_ltaki")]([SubResource("Resource_vvshc"), SubResource("Resource_i5c48"), SubResource("Resource_r7e3s"), SubResource("Resource_38xof"), SubResource("Resource_ritcr"), SubResource("Resource_5j7ok"), SubResource("Resource_qwkri"), SubResource("Resource_vi6x8"), SubResource("Resource_f41yo"), SubResource("Resource_fe8ym"), SubResource("Resource_41eie")])
 tm_moves = Array[ExtResource("2_e7sow")]([ExtResource("18_bw8g8"), ExtResource("19_w6mfv"), ExtResource("20_nrmf2"), ExtResource("21_6pd1v"), ExtResource("22_y3gvc"), ExtResource("23_vvshc"), ExtResource("24_i5c48"), ExtResource("25_r7e3s"), ExtResource("26_38xof"), ExtResource("27_ritcr"), ExtResource("28_5j7ok"), ExtResource("29_qwkri"), ExtResource("30_vi6x8"), ExtResource("31_f41yo"), ExtResource("32_fe8ym"), ExtResource("33_41eie"), ExtResource("34_et0xr"), ExtResource("35_du5b4"), ExtResource("36_nswqs"), ExtResource("37_brwta"), ExtResource("38_2vnd0"), ExtResource("39_s2l8v")])
 abilities = Array[ExtResource("1_w6mfv")]([ExtResource("2_nrmf2")])
-evolutions = Array[ExtResource("1_8py1k")]([SubResource("Resource_wtxpj")])
+evolutions = Array[ExtResource("1_8py1k")]([SubResource("Resource_w6mfv")])
 evolves_from = "zubat"
 temperament = ExtResource("15_utrva")
 genus = "Pokémon Murciélago"

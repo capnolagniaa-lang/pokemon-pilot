@@ -44,10 +44,10 @@
 [ext_resource type="Resource" path="res://data/moves/tormento.tres" id="38_hcha2"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="39_0cl22"]
 
-[sub_resource type="Resource" id="Resource_llt7p"]
+[sub_resource type="Resource" id="Resource_xpmij"]
 script = ExtResource("1_qx2mu")
 to_id = "gengar"
-method = "intercambio"
+level = 37
 
 [sub_resource type="Resource" id="Resource_po1up"]
 script = ExtResource("1_5ttex")
@@ -115,7 +115,7 @@ types = Array[ExtResource("4_381b5")]([ExtResource("5_wh8qj"), ExtResource("6_65
 learnset = Array[ExtResource("1_5ttex")]([SubResource("Resource_po1up"), SubResource("Resource_qcrk1"), SubResource("Resource_gns2i"), SubResource("Resource_edu23"), SubResource("Resource_fai2a"), SubResource("Resource_jt1jx"), SubResource("Resource_8q7gc"), SubResource("Resource_fdkcf"), SubResource("Resource_kfouy"), SubResource("Resource_tg4hd"), SubResource("Resource_xjwqs"), SubResource("Resource_5e180")])
 tm_moves = Array[ExtResource("2_20d2t")]([ExtResource("19_5fvc8"), ExtResource("20_xpmij"), ExtResource("21_rmr74"), ExtResource("22_pvoag"), ExtResource("23_jxnku"), ExtResource("24_po1up"), ExtResource("25_qcrk1"), ExtResource("26_gns2i"), ExtResource("27_edu23"), ExtResource("28_fai2a"), ExtResource("29_jt1jx"), ExtResource("30_8q7gc"), ExtResource("11_mg565"), ExtResource("31_fdkcf"), ExtResource("32_kfouy"), ExtResource("33_tg4hd"), ExtResource("34_xjwqs"), ExtResource("35_5e180"), ExtResource("36_7w2fn"), ExtResource("37_530cg"), ExtResource("38_hcha2"), ExtResource("39_0cl22")])
 abilities = Array[ExtResource("1_xpmij")]([ExtResource("2_rmr74")])
-evolutions = Array[ExtResource("1_qx2mu")]([SubResource("Resource_llt7p")])
+evolutions = Array[ExtResource("1_qx2mu")]([SubResource("Resource_xpmij")])
 evolves_from = "gastly"
 temperament = ExtResource("16_3x6iu")
 genus = "Pokémon Gas"

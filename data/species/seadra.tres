@@ -37,11 +37,11 @@
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="33_7brt7"]
 [ext_resource type="Resource" path="res://data/moves/cascada.tres" id="34_jvvj2"]
 
-[sub_resource type="Resource" id="Resource_prmmt"]
+[sub_resource type="Resource" id="Resource_p8a3l"]
 script = ExtResource("1_gntwc")
 to_id = "kingdra"
-method = "intercambio"
-item = "dragon-scale"
+method = "piedra"
+item = "escama_dragon"
 
 [sub_resource type="Resource" id="Resource_6td3p"]
 script = ExtResource("1_1emld")
@@ -88,7 +88,7 @@ types = Array[ExtResource("4_cybae")]([ExtResource("5_pjpvd")])
 learnset = Array[ExtResource("1_1emld")]([SubResource("Resource_6td3p"), SubResource("Resource_5u65u"), SubResource("Resource_w1pva"), SubResource("Resource_by656"), SubResource("Resource_0ufgr"), SubResource("Resource_q761j"), SubResource("Resource_l651m"), SubResource("Resource_4evr8")])
 tm_moves = Array[ExtResource("2_b36co")]([ExtResource("16_p8a3l"), ExtResource("17_jb268"), ExtResource("18_mjjyj"), ExtResource("19_6td3p"), ExtResource("20_5u65u"), ExtResource("21_w1pva"), ExtResource("22_by656"), ExtResource("23_0ufgr"), ExtResource("24_q761j"), ExtResource("25_l651m"), ExtResource("26_4evr8"), ExtResource("27_0tnci"), ExtResource("28_0p0s6"), ExtResource("29_5vq5y"), ExtResource("30_aaa11"), ExtResource("31_ry4sa"), ExtResource("32_tn2ap"), ExtResource("33_7brt7"), ExtResource("34_jvvj2")])
 abilities = Array[ExtResource("1_jb268")]([ExtResource("2_mjjyj")])
-evolutions = Array[ExtResource("1_gntwc")]([SubResource("Resource_prmmt")])
+evolutions = Array[ExtResource("1_gntwc")]([SubResource("Resource_p8a3l")])
 evolves_from = "horsea"
 temperament = ExtResource("12_0sp2d")
 genus = "Pokémon Dragón"

@@ -39,6 +39,13 @@ ITEMS = {
     "piedra_trueno": ("thunder-stone", "items", 43, {"evolves": True, "usable_in_battle": False}),
     "piedra_hoja": ("leaf-stone", "items", 44, {"evolves": True, "usable_in_battle": False}),
     "piedra_solar": ("sun-stone", "items", 45, {"evolves": True, "usable_in_battle": False}),
+    # Evoluciones por intercambio con objeto, como en los fangames (2026-11-03): el objeto se usa como una piedra.
+    "revestimiento_metalico": ("metal-coat", "items", 46, {"evolves": True, "usable_in_battle": False}),
+    "escama_dragon": ("dragon-scale", "items", 47, {"evolves": True, "usable_in_battle": False}),
+    "roca_del_rey": ("kings-rock", "items", 48, {"evolves": True, "usable_in_battle": False}),
+    "mejora": ("up-grade", "items", 49, {"evolves": True, "usable_in_battle": False}),
+    "diente_marino": ("deep-sea-tooth", "items", 52, {"evolves": True, "usable_in_battle": False}),
+    "escama_marina": ("deep-sea-scale", "items", 53, {"evolves": True, "usable_in_battle": False}),
     "trozo_estrella": ("star-piece", "items", 50, {"usable_in_battle": False}),
     "pepita": ("nugget", "items", 51, {"usable_in_battle": False}),
     # Objetos clave de la historia (docs/PLAN_HISTORIA.md, H-2): no se usan, los mira la historia.
@@ -65,7 +72,9 @@ PRICES = {
     "antidoto": 100, "antiparalizador": 200, "despertar": 250, "antiquemar": 250, "antihielo": 250,
     "cura_total": 600, "revivir": 1500,
     "caramelo_raro": 4800, "piedra_lunar": 2100, "piedra_fuego": 2100, "piedra_agua": 2100,
-    "piedra_trueno": 2100, "piedra_hoja": 2100, "piedra_solar": 2100, "trozo_estrella": 9800, "pepita": 10000,
+    "piedra_trueno": 2100, "piedra_hoja": 2100, "piedra_solar": 2100,
+    "revestimiento_metalico": 2100, "escama_dragon": 2100, "roca_del_rey": 2100, "mejora": 2100, "diente_marino": 2100,
+    "escama_marina": 2100, "trozo_estrella": 9800, "pepita": 10000,
 }
 # Nombre propio cuando el de PokeAPI no alcanza.
 NAMES = {"mo01": "MO01 Corte", "mo03": "MO03 Surf", "mo04": "MO04 Fuerza", "te": "Té", "silph_scope": "Scope Silph",
@@ -73,6 +82,12 @@ NAMES = {"mo01": "MO01 Corte", "mo03": "MO03 Surf", "mo04": "MO04 Fuerza", "te":
          "llave_secreta": "Llave Secreta", "poke_flauta": "Poké Flauta"}
 # Descripción propia (manda sobre la de PokeAPI, que a veces no tiene una en español o dice "- - -").
 DESCRIPTIONS = {
+    "revestimiento_metalico": "Una capa metálica especial. Usala con Onix o Scyther para que evolucionen.",
+    "escama_dragon": "Una escama dura y resistente. Usala con Seadra para que evolucione.",
+    "roca_del_rey": "Una roca que parece una corona. Usala con Slowpoke o Poliwhirl para que evolucionen.",
+    "mejora": "Una caja transparente con tecnología de Silph S.A. Usala con Porygon para que evolucione.",
+    "diente_marino": "Un colmillo afilado que brilla plateado. Usalo con Clamperl para que evolucione en Huntail.",
+    "escama_marina": "Una escama que brilla en tonos rosados. Usala con Clamperl para que evolucione en Gorebyss.",
     "mo01": "MO01 Corte. Con la Medalla Cascada, tus Pokémon cortan los árboles finos que tapan el camino (E frente al árbol).",
     "mo03": "MO03 Surf. Con la Medalla Alma, tu Pokémon te lleva sobre el agua (E frente al agua). Al pisar tierra te bajás.",
     "mo04": "MO04 Fuerza. Con la Medalla Arcoíris, tus Pokémon empujan rocas grandes (E frente a la roca y después caminá contra ella).",

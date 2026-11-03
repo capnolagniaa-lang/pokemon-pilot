@@ -20,6 +20,26 @@ func run() -> void:
 		sp["charmeleon"].abilities.map(func(a): return a.id) == ["mar_llamas"] and sp["charmeleon"].learnset.size() >= 8
 	r["Clefairy evoluciona con la Piedra Lunar; Eevee con 3 piedras"] = Evolution.by_item(CreatureInstance.create(sp["clefairy"], 10),
 		"piedra_lunar") == sp["clefable"] and sp["eevee"].evolutions.filter(func(e): return e.method == "piedra").size() == 3
+	# Intercambio y amistad como en los fangames (2026-11-03): por nivel u objeto; ninguna queda sin forma de evolucionar.
+	r["Ninguna evolución queda por intercambio o amistad"] = sp.values().all(func(s): return s.evolutions.all(
+		func(e): return e.method != "intercambio" and e.method != "amistad"))
+	var kad := CreatureInstance.create(sp["kadabra"], 37)
+	r["Kadabra → Alakazam a Nv. 37 (antes, por intercambio)"] = Evolution.by_level(kad) == sp["alakazam"] \
+		and Evolution.by_level(CreatureInstance.create(sp["kadabra"], 36)) == null
+	r["Onix → Steelix con el Revestimiento Metálico; Seadra con la Escama Dragón"] = \
+		Evolution.by_item(CreatureInstance.create(sp["onix"], 20), "revestimiento_metalico") == sp["steelix"] \
+		and Evolution.by_item(CreatureInstance.create(sp["seadra"], 32), "escama_dragon") == sp["kingdra"] \
+		and DB.items["revestimiento_metalico"].evolves
+	var eevee := CreatureInstance.create(sp["eevee"], 25)
+	var hour := GameState.time_of_day
+	GameState.time_of_day = 12.0
+	var by_day := Evolution.by_level(eevee)
+	GameState.time_of_day = 23.0
+	var by_night := Evolution.by_level(eevee)
+	GameState.time_of_day = hour
+	r["Eevee a Nv. 25: Espeon de día, Umbreon de noche"] = by_day == sp["espeon"] and by_night == sp["umbreon"]
+	var shop: ShopData = load("res://data/shops/ciudad_azulona_piedras.tres")
+	r["Los objetos de evolución se venden en el 4º piso de Azulona"] = shop.items.any(func(i): return i.id == "mejora")
 
 	var world: Node = await autotest._setup_kit_world("charmander")
 	world.combat.end_battle()

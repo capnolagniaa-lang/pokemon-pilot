@@ -44,17 +44,17 @@
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="38_7emak"]
 [ext_resource type="Resource" path="res://data/moves/cascada.tres" id="39_b2j10"]
 
-[sub_resource type="Resource" id="Resource_f3j6j"]
+[sub_resource type="Resource" id="Resource_eetx4"]
 script = ExtResource("1_h0cys")
 to_id = "poliwrath"
 method = "piedra"
 item = "piedra_agua"
 
-[sub_resource type="Resource" id="Resource_dfjm5"]
+[sub_resource type="Resource" id="Resource_0bwaw"]
 script = ExtResource("1_h0cys")
 to_id = "politoed"
-method = "intercambio"
-item = "kings-rock"
+method = "piedra"
+item = "roca_del_rey"
 
 [sub_resource type="Resource" id="Resource_syooc"]
 script = ExtResource("1_y4sg4")
@@ -102,7 +102,7 @@ types = Array[ExtResource("4_othot")]([ExtResource("5_at81q")])
 learnset = Array[ExtResource("1_y4sg4")]([SubResource("Resource_syooc"), SubResource("Resource_s514x"), SubResource("Resource_vwt02"), SubResource("Resource_cl4no"), SubResource("Resource_2qui3"), SubResource("Resource_fvasj"), SubResource("Resource_jlsks"), SubResource("Resource_gfhp4")])
 tm_moves = Array[ExtResource("2_64jx7")]([ExtResource("15_cfct8"), ExtResource("16_px07b"), ExtResource("17_eetx4"), ExtResource("18_0bwaw"), ExtResource("19_8g1ro"), ExtResource("20_btd3s"), ExtResource("21_syooc"), ExtResource("22_s514x"), ExtResource("23_vwt02"), ExtResource("24_cl4no"), ExtResource("25_2qui3"), ExtResource("26_fvasj"), ExtResource("27_jlsks"), ExtResource("28_gfhp4"), ExtResource("29_rhuoq"), ExtResource("10_btd3s"), ExtResource("30_ymc4v"), ExtResource("31_7pht1"), ExtResource("32_ywsfb"), ExtResource("33_2oeap"), ExtResource("34_lyngo"), ExtResource("35_8gx51"), ExtResource("36_2kspa"), ExtResource("37_k0yqn"), ExtResource("38_7emak"), ExtResource("39_b2j10")])
 abilities = Array[ExtResource("1_eetx4")]([ExtResource("2_0bwaw"), ExtResource("3_8g1ro")])
-evolutions = Array[ExtResource("1_h0cys")]([SubResource("Resource_f3j6j"), SubResource("Resource_dfjm5")])
+evolutions = Array[ExtResource("1_h0cys")]([SubResource("Resource_eetx4"), SubResource("Resource_0bwaw")])
 evolves_from = "poliwag"
 temperament = ExtResource("12_0a30s")
 genus = "Pokémon Renacuajo"

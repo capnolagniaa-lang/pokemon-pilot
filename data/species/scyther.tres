@@ -39,11 +39,11 @@
 [ext_resource type="Resource" path="res://data/moves/ladron.tres" id="33_u01da"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="34_3smts"]
 
-[sub_resource type="Resource" id="Resource_24vg5"]
+[sub_resource type="Resource" id="Resource_tdfxy"]
 script = ExtResource("1_hbqse")
 to_id = "scizor"
-method = "intercambio"
-item = "metal-coat"
+method = "piedra"
+item = "revestimiento_metalico"
 
 [sub_resource type="Resource" id="Resource_f6t3v"]
 script = ExtResource("1_xhtbu")
@@ -107,7 +107,7 @@ types = Array[ExtResource("4_d5fm2")]([ExtResource("5_qdvv0"), ExtResource("6_ab
 learnset = Array[ExtResource("1_xhtbu")]([SubResource("Resource_f6t3v"), SubResource("Resource_lqwyq"), SubResource("Resource_m7pmq"), SubResource("Resource_ctx3o"), SubResource("Resource_uqgis"), SubResource("Resource_0815w"), SubResource("Resource_21xgu"), SubResource("Resource_w6j3w"), SubResource("Resource_57r2s"), SubResource("Resource_y5jfd"), SubResource("Resource_u01da")])
 tm_moves = Array[ExtResource("2_06ek4")]([ExtResource("18_1w82n"), ExtResource("19_tdfxy"), ExtResource("20_ujh38"), ExtResource("11_qgasg"), ExtResource("21_wnhri"), ExtResource("22_qc2r4"), ExtResource("23_f6t3v"), ExtResource("24_lqwyq"), ExtResource("25_m7pmq"), ExtResource("26_ctx3o"), ExtResource("27_uqgis"), ExtResource("28_0815w"), ExtResource("29_21xgu"), ExtResource("30_w6j3w"), ExtResource("31_57r2s"), ExtResource("32_y5jfd"), ExtResource("33_u01da"), ExtResource("34_3smts")])
 abilities = Array[ExtResource("1_tdfxy")]([ExtResource("2_ujh38")])
-evolutions = Array[ExtResource("1_hbqse")]([SubResource("Resource_24vg5")])
+evolutions = Array[ExtResource("1_hbqse")]([SubResource("Resource_tdfxy")])
 temperament = ExtResource("15_2wps2")
 genus = "Pokémon Mantis"
 pokedex_entry = "Es espectacular ver lo rápido que es Scyther. Su increíble velocidad refuerza el efecto del par de guadañas que tiene en los brazos, que ya son de por sí contundentes; rebanan gruesos troncos de un tajo."

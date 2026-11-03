@@ -46,10 +46,10 @@
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="39_hx1qm"]
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="40_fvohv"]
 
-[sub_resource type="Resource" id="Resource_wxo28"]
+[sub_resource type="Resource" id="Resource_2bkkn"]
 script = ExtResource("1_wxo28")
 to_id = "togetic"
-method = "amistad"
+level = 15
 
 [sub_resource type="Resource" id="Resource_7r4si"]
 script = ExtResource("1_pl0th")
@@ -118,7 +118,7 @@ types = Array[ExtResource("4_vvv4i")]([ExtResource("5_3s1pa")])
 learnset = Array[ExtResource("1_pl0th")]([SubResource("Resource_7r4si"), SubResource("Resource_jbdq3"), SubResource("Resource_80wa1"), SubResource("Resource_12qy5"), SubResource("Resource_j3qro"), SubResource("Resource_oorhd"), SubResource("Resource_0n5fn"), SubResource("Resource_cknfj"), SubResource("Resource_7nm38"), SubResource("Resource_5orgt"), SubResource("Resource_ptomg"), SubResource("Resource_ttkk8")])
 tm_moves = Array[ExtResource("2_heejh")]([ExtResource("18_7iabq"), ExtResource("19_aiih4"), ExtResource("20_li2n6"), ExtResource("21_7r4si"), ExtResource("22_jbdq3"), ExtResource("23_80wa1"), ExtResource("24_12qy5"), ExtResource("25_j3qro"), ExtResource("26_oorhd"), ExtResource("27_0n5fn"), ExtResource("28_cknfj"), ExtResource("29_7nm38"), ExtResource("30_5orgt"), ExtResource("31_ptomg"), ExtResource("32_ttkk8"), ExtResource("33_2bkkn"), ExtResource("11_gto6u"), ExtResource("34_wfpar"), ExtResource("35_jlx5g"), ExtResource("36_desgu"), ExtResource("37_8qgq2"), ExtResource("38_d4eil"), ExtResource("39_hx1qm"), ExtResource("40_fvohv")])
 abilities = Array[ExtResource("1_7r4si")]([ExtResource("2_jbdq3"), ExtResource("3_80wa1")])
-evolutions = Array[ExtResource("1_wxo28")]([SubResource("Resource_wxo28")])
+evolutions = Array[ExtResource("1_wxo28")]([SubResource("Resource_2bkkn")])
 temperament = ExtResource("16_8e7gu")
 genus = "Pokémon Bolaclavos"
 pokedex_entry = "Togepi usa los sentimientos positivos de compasión y alegría que desprenden las personas y los Pokémon. Este Pokémon almacena sentimientos de felicidad en su interior y después los comparte con otros."

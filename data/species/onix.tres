@@ -44,11 +44,11 @@
 [ext_resource type="Resource" path="res://data/moves/tormento.tres" id="36_67ls0"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="37_7xuu5"]
 
-[sub_resource type="Resource" id="Resource_44s0r"]
+[sub_resource type="Resource" id="Resource_k15du"]
 script = ExtResource("1_0lsck")
 to_id = "steelix"
-method = "intercambio"
-item = "metal-coat"
+method = "piedra"
+item = "revestimiento_metalico"
 
 [sub_resource type="Resource" id="Resource_rdmag"]
 script = ExtResource("1_ywjwf")
@@ -118,7 +118,7 @@ learnset = Array[ExtResource("1_ywjwf")]([SubResource("Resource_rdmag"), SubReso
 tm_moves = Array[ExtResource("2_75grp")]([ExtResource("21_qpj5q"), ExtResource("23_kjxmw"), ExtResource("22_gui3b"), ExtResource("23_5in0r"), ExtResource("24_k15du"), ExtResource("25_56p8g"), ExtResource("26_kjxmw"), ExtResource("15_omufe"), ExtResource("27_5v36o"), ExtResource("28_rdmag"), ExtResource("29_rml6g"), ExtResource("30_34c0k"), ExtResource("31_v34fb"), ExtResource("34_5v36o"), ExtResource("13_w5t07"), ExtResource("32_78efn"), ExtResource("33_st22a"), ExtResource("34_2kj85"), ExtResource("35_2e4jv"), ExtResource("36_67ls0"), ExtResource("37_7xuu5")])
 abilities = Array[ExtResource("1_k15du")]([ExtResource("2_56p8g"), ExtResource("3_kjxmw")])
 boss_kit = ExtResource("0_kitv4")
-evolutions = Array[ExtResource("1_0lsck")]([SubResource("Resource_44s0r")])
+evolutions = Array[ExtResource("1_0lsck")]([SubResource("Resource_k15du")])
 temperament = ExtResource("16_q53ba")
 genus = "Pokémon Serpiente Roca"
 pokedex_entry = "Onix tiene un imán en el cerebro, que actúa como una brújula para no perder la orientación cuando está cavando túneles. A medida que crece, se le redondea y suaviza el cuerpo."

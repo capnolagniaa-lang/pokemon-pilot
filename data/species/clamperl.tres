@@ -32,17 +32,17 @@
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="26_w7125"]
 [ext_resource type="Resource" path="res://data/moves/cascada.tres" id="27_xyxyp"]
 
-[sub_resource type="Resource" id="Resource_au3bi"]
+[sub_resource type="Resource" id="Resource_7a4t6"]
 script = ExtResource("1_au3bi")
 to_id = "huntail"
-method = "intercambio"
-item = "deep-sea-tooth"
+method = "piedra"
+item = "diente_marino"
 
-[sub_resource type="Resource" id="Resource_k161o"]
+[sub_resource type="Resource" id="Resource_hbeyh"]
 script = ExtResource("1_au3bi")
 to_id = "gorebyss"
-method = "intercambio"
-item = "deep-sea-scale"
+method = "piedra"
+item = "escama_marina"
 
 [sub_resource type="Resource" id="Resource_4ran1"]
 script = ExtResource("1_4le33")
@@ -69,7 +69,7 @@ types = Array[ExtResource("4_0tpct")]([ExtResource("5_8ibeo")])
 learnset = Array[ExtResource("1_4le33")]([SubResource("Resource_4ran1"), SubResource("Resource_hsqs0"), SubResource("Resource_blu34"), SubResource("Resource_k2jfa")])
 tm_moves = Array[ExtResource("2_tdguo")]([ExtResource("10_2hc5n"), ExtResource("11_bsvfl"), ExtResource("12_4ran1"), ExtResource("13_hsqs0"), ExtResource("14_blu34"), ExtResource("15_k2jfa"), ExtResource("16_7a4t6"), ExtResource("17_hbeyh"), ExtResource("18_k7t8h"), ExtResource("19_ro0h5"), ExtResource("20_da1xw"), ExtResource("21_w52se"), ExtResource("22_g83lp"), ExtResource("23_mgsda"), ExtResource("24_ieysx"), ExtResource("25_ri7og"), ExtResource("26_w7125"), ExtResource("27_xyxyp")])
 abilities = Array[ExtResource("1_4ran1")]([ExtResource("2_hsqs0")])
-evolutions = Array[ExtResource("1_au3bi")]([SubResource("Resource_au3bi"), SubResource("Resource_k161o")])
+evolutions = Array[ExtResource("1_au3bi")]([SubResource("Resource_7a4t6"), SubResource("Resource_hbeyh")])
 temperament = ExtResource("8_pan4n")
 genus = "Pokémon Bivalvo"
 pokedex_entry = "La sólida concha que rodea a Clamperl no solo le sirve para protegerse, sino también de cepo para atrapar a su presa. Cuando la concha alcanza su mayor tamaño, presenta muescas y rasguños por todas partes."

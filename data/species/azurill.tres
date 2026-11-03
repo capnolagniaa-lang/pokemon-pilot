@@ -36,10 +36,10 @@
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="28_b0f6j"]
 [ext_resource type="Resource" path="res://data/moves/cascada.tres" id="29_ks0ry"]
 
-[sub_resource type="Resource" id="Resource_6pyd4"]
+[sub_resource type="Resource" id="Resource_k7y8b"]
 script = ExtResource("1_6pyd4")
 to_id = "marill"
-method = "amistad"
+level = 15
 
 [sub_resource type="Resource" id="Resource_qnggx"]
 script = ExtResource("1_guh76")
@@ -79,7 +79,7 @@ types = Array[ExtResource("4_w5bjw")]([ExtResource("5_k8y53"), ExtResource("6_t3
 learnset = Array[ExtResource("1_guh76")]([SubResource("Resource_qnggx"), SubResource("Resource_ku2o4"), SubResource("Resource_gf4ex"), SubResource("Resource_7m1i0"), SubResource("Resource_lutwp"), SubResource("Resource_ekmb1")])
 tm_moves = Array[ExtResource("2_ub6v1")]([ExtResource("12_hp0we"), ExtResource("13_usp2v"), ExtResource("14_w7gk8"), ExtResource("15_qnggx"), ExtResource("16_ku2o4"), ExtResource("17_gf4ex"), ExtResource("18_7m1i0"), ExtResource("19_lutwp"), ExtResource("20_ekmb1"), ExtResource("21_k7y8b"), ExtResource("22_q4leu"), ExtResource("23_cfudq"), ExtResource("24_l4nhg"), ExtResource("25_4wkn2"), ExtResource("26_d2dk2"), ExtResource("27_p6y0f"), ExtResource("28_b0f6j"), ExtResource("29_ks0ry")])
 abilities = Array[ExtResource("1_qnggx")]([ExtResource("2_ku2o4"), ExtResource("3_gf4ex")])
-evolutions = Array[ExtResource("1_6pyd4")]([SubResource("Resource_6pyd4")])
+evolutions = Array[ExtResource("1_6pyd4")]([SubResource("Resource_k7y8b")])
 temperament = ExtResource("10_8opl6")
 genus = "Pokémon A Topos"
 pokedex_entry = "Azurill enrolla la cola como si fuera un lazo y la despliega a continuación todo lo que puede. De esta forma, un Azurill llegó a lanzarse a sí mismo hasta 10 m."

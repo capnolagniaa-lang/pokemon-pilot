@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/metal-coat.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "revestimiento_metalico"
+display_name = "Revest. Metálico"
+description = "Una capa metálica especial. Usala con Onix o Scyther para que evolucionen."
+icon = ExtResource("2_i")
+pocket = 0
+sort_order = 46
+price = 2100
+evolves = true
+usable_in_battle = false

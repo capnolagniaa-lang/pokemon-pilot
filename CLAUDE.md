@@ -378,7 +378,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   entregar el Correo de Oak (en modo libre, siempre).
 - **Evoluciones**: `SpeciesData.evolutions` (`EvolutionData`: a qué especie, "nivel"/"piedra"/"intercambio"/"amistad")
   y `evolves_from`, de PokeAPI (`tools/fetch_evolutions.py` → `data/source/evolutions.json` → `tools/apply_evolutions.gd`
-  → `build_learnsets.gd`). Reglas en `Evolution` (solo nivel y piedras: no hay intercambio ni amistad todavía).
+  → `build_learnsets.gd`). Reglas en `Evolution` (solo nivel y piedras/objetos). **Intercambio y amistad como en los fangames** (decisión del usuario 2026-11-03, tabla `FANGAME` de apply_evolutions): intercambio simple → Nv. 37 (Alakazam, Machamp, Golem, Gengar); con objeto → ese objeto usado como piedra (Revestimiento Metálico, Escama Dragón, Roca del Rey, Mejora, Diente/Escama Marina; 4º piso del Gran Almacén de Azulona); Milotic Nv. 30; amistad → Nv. 15 los bebés, 40 Crobat y Blissey, 25 Espeon de día / Umbreon de noche (`EvolutionData.time`).
   `GameState.grant_exp` y las piedras (`ItemData.evolves`) emiten `Events.evolution_ready`; `EvolutionDirector`
   (`world.evolutions`) espera un momento tranquilo y muestra `EvolutionScreen` (Esc la frena, salvo con piedra); la
   criatura conserva nivel, daño y movimientos (`CreatureInstance.evolve_into`). **Kits** (decisión del usuario

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/item_data.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://sprites/items/deep-sea-scale.png" id="2_i"]
+
+[resource]
+script = ExtResource("1_s")
+id = "escama_marina"
+display_name = "Escama Marina"
+description = "Una escama que brilla en tonos rosados. Usala con Clamperl para que evolucione en Gorebyss."
+icon = ExtResource("2_i")
+pocket = 0
+sort_order = 53
+price = 2100
+evolves = true
+usable_in_battle = false

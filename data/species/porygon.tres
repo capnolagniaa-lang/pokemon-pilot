@@ -45,11 +45,11 @@
 [ext_resource type="Resource" path="res://data/moves/rayo.tres" id="40_pdhcp"]
 [ext_resource type="Resource" path="res://data/moves/toxico.tres" id="41_w5ct4"]
 
-[sub_resource type="Resource" id="Resource_y3eso"]
+[sub_resource type="Resource" id="Resource_0itig"]
 script = ExtResource("1_nm4un")
 to_id = "porygon2"
-method = "intercambio"
-item = "up-grade"
+method = "piedra"
+item = "mejora"
 
 [sub_resource type="Resource" id="Resource_8we8j"]
 script = ExtResource("1_f77uk")
@@ -112,7 +112,7 @@ types = Array[ExtResource("4_e2fqv")]([ExtResource("5_3pqji")])
 learnset = Array[ExtResource("1_f77uk")]([SubResource("Resource_8we8j"), SubResource("Resource_o4e07"), SubResource("Resource_c0mn5"), SubResource("Resource_qw0gt"), SubResource("Resource_lxh18"), SubResource("Resource_gv3uu"), SubResource("Resource_vwstx"), SubResource("Resource_cc2n0"), SubResource("Resource_6jnig"), SubResource("Resource_qtfva"), SubResource("Resource_nklgx")])
 tm_moves = Array[ExtResource("2_1dvld")]([ExtResource("18_q7oci"), ExtResource("19_0itig"), ExtResource("20_twk2v"), ExtResource("21_3gjgu"), ExtResource("22_su6id"), ExtResource("23_8we8j"), ExtResource("24_o4e07"), ExtResource("25_c0mn5"), ExtResource("26_qw0gt"), ExtResource("27_lxh18"), ExtResource("28_gv3uu"), ExtResource("29_vwstx"), ExtResource("30_cc2n0"), ExtResource("31_6jnig"), ExtResource("32_qtfva"), ExtResource("33_nklgx"), ExtResource("34_4xnan"), ExtResource("35_f5mys"), ExtResource("36_awf64"), ExtResource("37_khlna"), ExtResource("38_jnfl5"), ExtResource("39_gu7ds"), ExtResource("40_pdhcp"), ExtResource("41_w5ct4")])
 abilities = Array[ExtResource("1_0itig")]([ExtResource("2_twk2v")])
-evolutions = Array[ExtResource("1_nm4un")]([SubResource("Resource_y3eso")])
+evolutions = Array[ExtResource("1_nm4un")]([SubResource("Resource_0itig")])
 temperament = ExtResource("15_l84t5")
 genus = "Pokémon Virtual"
 pokedex_entry = "Porygon es capaz de convertirse otra vez en datos informáticos y de entrar en el ciberespacio. Tiene protección anticopia, así que es imposible duplicarlo."

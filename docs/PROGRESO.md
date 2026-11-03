@@ -6,6 +6,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-03)
+- **Evoluciones por intercambio y amistad (2026-11-03, pedido del usuario: "como lo suelen hacer los fangames")**:
+  antes no evolucionaban nunca. Ahora Kadabra, Machoke, Graveler y Haunter evolucionan a Nv. 37; Onix, Scyther, Seadra,
+  Slowpoke (Slowking), Poliwhirl (Politoed), Porygon y Clamperl con su objeto usado como piedra (6 objetos nuevos, a
+  2100 en el 4º piso del Gran Almacén de Azulona); Feebas a Nv. 30; los de amistad por nivel (bebés 15, Crobat y Blissey
+  40, Eevee a Nv. 25: Espeon de día, Umbreon de noche). Un Pokémon que ya pasó ese nivel evoluciona al subir el próximo.
 - **Diálogos fieles a FireRed (2026-11-03, pedido del usuario: "chequeá todos los diálogos contra los de FireRed")**: se
   cruzaron las 811 personas con los textos de pret (`text.inc` de cada mapa): solo ~90 contaban lo mismo. Ahora 683
   (vecinos, guías de gimnasio, entrenadores de ruta y los que antes tenían una frase de relleno por clase) dicen lo

@@ -32,11 +32,10 @@
 [ext_resource type="Resource" path="res://data/moves/hidropulso.tres" id="25_hp45r"]
 [ext_resource type="Resource" path="res://data/moves/cascada.tres" id="26_eo2qq"]
 
-[sub_resource type="Resource" id="Resource_l354l"]
+[sub_resource type="Resource" id="Resource_uq8mf"]
 script = ExtResource("1_l354l")
 to_id = "milotic"
-method = "intercambio"
-item = "prism-scale"
+level = 30
 
 [sub_resource type="Resource" id="Resource_7viui"]
 script = ExtResource("1_1g0rg")
@@ -61,7 +60,7 @@ types = Array[ExtResource("4_4wk4n")]([ExtResource("5_eyu4x")])
 learnset = Array[ExtResource("1_1g0rg")]([SubResource("Resource_7viui"), SubResource("Resource_7pp1d"), SubResource("Resource_de001")])
 tm_moves = Array[ExtResource("2_e62ko")]([ExtResource("9_2le4p"), ExtResource("10_e1t58"), ExtResource("11_7rles"), ExtResource("12_7viui"), ExtResource("13_7pp1d"), ExtResource("14_de001"), ExtResource("15_uq8mf"), ExtResource("16_idpes"), ExtResource("17_32cy2"), ExtResource("18_vlk2t"), ExtResource("19_nnlqd"), ExtResource("20_4m6hj"), ExtResource("21_msrqj"), ExtResource("22_6c2fc"), ExtResource("23_eqqqc"), ExtResource("24_rdip5"), ExtResource("25_hp45r"), ExtResource("26_eo2qq")])
 abilities = Array[ExtResource("1_7viui")]([ExtResource("2_7pp1d"), ExtResource("3_de001")])
-evolutions = Array[ExtResource("1_l354l")]([SubResource("Resource_l354l")])
+evolutions = Array[ExtResource("1_l354l")]([SubResource("Resource_uq8mf")])
 temperament = ExtResource("7_eyu4x")
 genus = "Pokémon Pez"
 pokedex_entry = "Feebas tiene las aletas melladas y rasgadas desde que nace. Debido a este aspecto poco imponente, son pocos los que lo tienen en cuenta. Este Pokémon puede vivir tanto en agua salada como dulce."
