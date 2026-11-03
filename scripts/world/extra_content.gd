@@ -77,7 +77,13 @@ static func attach(zone: Node2D, entry: ZoneEntry, world: WorldData) -> void:
 			spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 			root.add_child(spr)
 			if b.walkable:
-				spr.position = ((Vector2(b.size * ts) - b.texture.get_size()) / 2.0).floor() - Vector2(0, b.size.y * ts)
+				# Una pintura más grande que sus celdas (el Centro Online, ×3) se achica a su lugar y se dibuja suave.
+				var fit := minf(float(b.size.x * ts) / b.texture.get_width(), float(b.size.y * ts) / b.texture.get_height())
+				if fit < 1.0:
+					spr.scale = Vector2.ONE * fit
+					spr.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+				var drawn := b.texture.get_size() * minf(fit, 1.0)
+				spr.position = ((Vector2(b.size * ts) - drawn) / 2.0).floor() - Vector2(0, b.size.y * ts)
 				root.z_index = -5  # piso: debajo de los personajes
 		if b.walkable:
 			zone.add_child(root)

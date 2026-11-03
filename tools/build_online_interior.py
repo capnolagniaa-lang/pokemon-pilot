@@ -8,8 +8,8 @@ Overhead queda vacía.
 
 Cómo se pintó: Qwen-Image 2.1 Turbo (tools/comfy/qwen21_run.py, semilla 44, 1152x768) con una captura del interior
 viejo como imagen y el prompt de art_src/centro_online/prompt.txt → art_src/centro_online/idea4_qwen.png; se borró la
-enfermera pintada (y dos figuritas) copiando el panel de atrás, se dejó negro lo de afuera, y se achicó a 240x160
-(promedio por bloque, 96 colores, sin tramado): `--pintura` en este script.
+enfermera pintada (y dos figuritas) copiando el panel de atrás, se dejó negro lo de afuera, y se achicó a 720x480
+(×3 la resolución del juego; ExtraBuilding la dibuja escalada y suave): `--pintura` en este script.
 
 Uso: python -I -B tools/build_online_interior.py .              (la colisión)
      python -I -B tools/build_online_interior.py . --pintura    (vuelve a armar el sprite desde art_src)
@@ -38,6 +38,7 @@ PLAN = [
     "---------------",  # 9
 ]
 SOLID, FLOOR = "40", "10"
+PAINT_SCALE = 3  # píxeles de la pintura por píxel del juego
 GROUND = [[{"#": SOLID, ".": FLOOR}.get(ch, "-") for ch in row] for row in PLAN]
 # Overhead (si no estuviera la pintura): cada celda nueva de GROUND con la parte de arriba de su metatile.
 PAINTED = True  # con el cuarto pintado encima no va nada arriba
@@ -123,7 +124,9 @@ def paint(root):
     im.paste(black.crop((0, 0, 1152, 60)), (0, 715))  # afuera del cuarto
     im.paste(black.crop((0, 0, 505, 20)), (0, 700))
     im.paste(black.crop((0, 0, 512, 20)), (640, 700))
-    out = im.resize((W * 16, H * 16), Image.BOX).quantize(96, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
+    # ×3 la resolución del juego (720x480): con el zoom de la cámara (2-3) se ve casi a la resolución de la pantalla.
+    # A 240x160 (un píxel por píxel del juego) quedaba muy pixelado (queja del usuario 2026-11-03).
+    out = im.resize((W * 16 * PAINT_SCALE, H * 16 * PAINT_SCALE), Image.LANCZOS)
     out.convert("RGBA").save(root + "/sprites/props/centro_online_sala.png")
     print("listo: sprites/props/centro_online_sala.png")
 
