@@ -53,6 +53,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda
   con la partida. Test `--autotest-shiny`.
+- **Enseñar a todos (2026-11-04, pedido del usuario)**: al usar una MT en la Mochila hay un botón nuevo que se la enseña a
+  todos los que pueden aprenderla, del equipo y de la Caja (`GameState.teach_all`). La MT no se gasta; los del equipo con
+  las 4 ranuras llenas preguntan después si reemplazar uno. Test en `--autotest-equip`.
 - **Cuadros negros en las escaleras (2026-11-03, pedido del usuario)**: en Silph, el Escondite Rocket, la sala de Lance y
   algunas celdas sueltas (los Centros, la guardería, el laboratorio de Canela, la casa de la imitadora) había tiles sin
   dibujar. FireRed guarda esos metatiles en el tileset primario, pero con gráficos o paletas del secundario, así que al

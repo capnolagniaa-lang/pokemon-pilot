@@ -148,6 +148,45 @@ func run() -> void:
 		["mt39", "mt03", "mt34", "mt19", "mt06", "mt04", "mt38", "mt26"].all(func(id): return sources.get(id, []).any(func(s): return "gimnasio" in s))
 	r["27 MT tiradas en el mapa, como en FireRed"] = DB.npcs.keys().filter(func(k): return "_itemtm" in k).size() == 27
 
+	# Enseñar a todos: la MT llega al equipo y a la Caja, y solo a los que pueden aprenderla.
+	var tm: ItemData = DB.items["mt39"]
+	var can: Array = DB.species.values().filter(func(sp): return CreatureInstance.create(sp, 5).can_learn_tm(tm.teaches_move))
+	var cant: Array = DB.species.values().filter(func(sp): return not sp.tm_moves.has(tm.teaches_move))
+	var saved_party := GameState.party.duplicate()
+	var saved_box := GameState.box.duplicate()
+	var learner_a := CreatureInstance.create(can[0], 5)
+	var learner_b := CreatureInstance.create(can[1], 5)
+	var stored := CreatureInstance.create(can[2], 5)
+	var other := CreatureInstance.create(cant[0], 5)
+	GameState.party.clear()
+	GameState.party.append_array([learner_a, other, learner_b])
+	GameState.box.clear()
+	GameState.box.append(stored)
+	GameState.add_item("mt39", 1)
+	var had := GameState.item_count("mt39")
+	var bag: Control = load("res://scenes/ui/bag_screen.tscn").instantiate()
+	add_child(bag)
+	await get_tree().process_frame
+	bag._open_chooser(tm)
+	var teach_btn: Button = null
+	for b in bag._chooser.get_child(0).get_children():
+		if b is Button and b.text.begins_with("Enseñar a todos"):
+			teach_btn = b
+	r["El botón Enseñar a todos aparece con la MT, contando a los 3 que pueden"] = teach_btn != null and teach_btn.text.contains("3") and not teach_btn.disabled
+	teach_btn.pressed.emit()
+	await get_tree().process_frame
+	r["La aprenden los del equipo y la Caja"] = [learner_a, learner_b, stored].all(func(i): return i.taught_moves.has(tm.teaches_move))
+	r["No se la enseña al que no puede"] = not other.taught_moves.has(tm.teaches_move)
+	r["La MT no se gasta y el mensaje lo cuenta: %s" % bag._status.text] = GameState.item_count("mt39") == had and bag._status.text.contains("3 (2 del equipo, 1 de la Caja)")
+	bag._open_chooser(tm)
+	var again: Array = bag._chooser.get_child(0).get_children().filter(func(b): return b is Button and b.text.begins_with("Enseñar a todos"))
+	r["Si ya la saben todos, el botón queda apagado"] = again[0].disabled and GameState.teach_all("mt39") == ""
+	bag.queue_free()
+	GameState.party.clear()
+	GameState.party.append_array(saved_party)
+	GameState.box.clear()
+	GameState.box.append_array(saved_box)
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[equipar] %s %s" % ["OK   " if r[key] else "FALLO", key])

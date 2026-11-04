@@ -443,6 +443,35 @@ func use_item_on(id: String, inst: CreatureInstance, statuses: StatusEffects = n
 	return "%s: %s %s." % [it.display_name, inst.display_name(), ", ".join(parts)]
 
 
+## Los que todavía pueden aprender esta MT: los del equipo y después los de la Caja.
+func tm_learners(id: String) -> Array[CreatureInstance]:
+	var it: ItemData = DB.items.get(id)
+	var out: Array[CreatureInstance] = []
+	if it != null and it.teaches_move != null and item_count(id) > 0:
+		for inst: CreatureInstance in party + box:
+			if inst.can_learn_tm(it.teaches_move):
+				out.append(inst)
+	return out
+
+
+## Enseña la MT a todos los que pueden aprenderla (pedido del usuario 2026-11-04). Los del equipo con las 4 ranuras
+## llenas preguntan después si reemplazar uno (MoveLearnDirector), igual que de a uno. Devuelve el texto del mensaje.
+func teach_all(id: String) -> String:
+	var who := tm_learners(id)
+	if who.is_empty():
+		return ""
+	var in_party := 0
+	var names := PackedStringArray()
+	for inst in who:
+		in_party += 1 if party.has(inst) else 0
+		names.append(inst.display_name())
+		use_item_on(id, inst)
+	var it: ItemData = DB.items[id]
+	var list := ", ".join(names.slice(0, 4)) + (" y %d más" % (names.size() - 4) if names.size() > 4 else "")
+	return "%s: la aprendieron %d (%d del equipo, %d de la Caja): %s." % [it.teaches_move.display_name,
+		who.size(), in_party, who.size() - in_party, list]
+
+
 # --- Pokédex -------------------------------------------------------------------------
 
 ## Registra una especie como vista. Devuelve true si es la primera vez (emite pokedex_registered).

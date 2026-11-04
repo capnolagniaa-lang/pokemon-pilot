@@ -207,6 +207,14 @@ func _open_chooser(it: ItemData) -> void:
 		box.add_child(b)
 		if first == null and useful:
 			first = b
+	if it.teaches_move != null:
+		var learners := GameState.tm_learners(it.id).size()
+		var all := UiStyle.button("Enseñar a todos (%d, con la Caja)" % learners, 420)
+		all.disabled = learners == 0
+		all.pressed.connect(_teach_all.bind(it))
+		box.add_child(all)
+		if first == null and learners > 0:
+			first = all
 	var cancel := UiStyle.button("Cancelar", 420)
 	cancel.pressed.connect(func(): _close_chooser(); refresh())
 	box.add_child(cancel)
@@ -218,6 +226,12 @@ func _open_chooser(it: ItemData) -> void:
 func _use(it: ItemData, inst: CreatureInstance, statuses: StatusEffects) -> void:
 	var text := GameState.use_item_on(it.id, inst, statuses)
 	_status.text = text if text != "" else "No tendría efecto."
+	_close_chooser()
+	refresh()
+
+
+func _teach_all(it: ItemData) -> void:
+	_status.text = GameState.teach_all(it.id)
 	_close_chooser()
 	refresh()
 
