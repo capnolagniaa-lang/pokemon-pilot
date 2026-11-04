@@ -91,8 +91,18 @@ func _saved_gym(r: Dictionary) -> void:
 func _walk_it(r: Dictionary) -> void:
 	GameState.set_flag(MansionSwitches.FLAG, false)
 	GameState.trainer_position = Vector2.INF
+	var isla: ZoneEntry = world.streamer.world_data.zones.filter(func(z): return z.id == OUTSIDE)[0]
+	await world.story.teleport(OUTSIDE, isla.hub)
+	await get_tree().create_timer(0.3).timeout
+	GameState.set_flag(MansionSwitches.HINT_FLAG, false)
+	var hints := []
+	var on_message := func(text: String) -> void: hints.append(text)
+	Events.message_requested.connect(on_message)
 	await world.story.teleport("mansion_pokemon_1p", Vector2i(8, 32))
 	await get_tree().create_timer(0.3).timeout
+	Events.message_requested.disconnect(on_message)
+	r["Pista: la primera vez que entrás avisa de las estatuas"] = GameState.has_flag(MansionSwitches.HINT_FLAG) \
+		and hints.any(func(m): return "estatuas" in m)
 	var walker := RoomWalkTests.new()
 	walker.autotest = autotest
 	add_child(walker)

@@ -7,6 +7,8 @@ extends Node
 ## StoryDirector.register_interaction.
 
 const FLAG := "mansion_interruptor"
+const HINT_FLAG := "mansion_pista_vista"
+const KEY_FLAG := "objeto_mansion_pokemon_s1_itemsecretkey"
 ## Dónde se entra desde Isla Canela (la puerta; se aparece al lado).
 const ENTRANCE := Vector2i(8, 33)
 ## Estatuas: la celda de la base (la del cartel de FireRed); también sirve mirando la de arriba.
@@ -68,6 +70,7 @@ func _ready() -> void:
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node):
 		if TILES.has(z.id) and GameState.has_flag(FLAG) and node is Zone:
 			apply(node, z.id, true))
+	Events.zone_entered.connect(_hint_on_first_visit)
 	# Los pisos que ya estaban cargados al armar el mundo (partida guardada acá adentro) no avisan con zone_loaded.
 	if GameState.has_flag(FLAG):
 		for id in TILES:
@@ -75,6 +78,16 @@ func _ready() -> void:
 			if zone != null:
 				apply(zone, id, true)
 	_rescue_if_enclosed()
+
+
+## La primera vez que entrás: nada en el mapa dice que las estatuas son interruptores (pedido del usuario 2026-11-04).
+## No sale si ya apretaste una o ya tenés la Llave Secreta.
+func _hint_on_first_visit(z: ZoneEntry) -> void:
+	if not TILES.has(z.id) or GameState.has_flag(HINT_FLAG):
+		return
+	GameState.set_flag(HINT_FLAG)
+	if not GameState.has_flag(FLAG) and not GameState.has_flag(KEY_FLAG):
+		Events.message_requested.emit("Las estatuas de esta mansión tienen algo raro... Probá acercarte de frente y apretar E.")
 
 
 ## Partida guardada en un lugar sin salida (con la versión que al cargar no ponía las barreras se podía caminar a una sala
