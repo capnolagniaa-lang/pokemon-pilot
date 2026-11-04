@@ -5,6 +5,9 @@ extends StoryH1Tests
 ## En el modo libre (sin historia: alcanza con tener la MO).
 
 
+var _seen_in_arena := false
+
+
 func run() -> void:
 	var r := {}
 	GameState.new_game(DB.species["squirtle"])
@@ -190,7 +193,9 @@ func _water_fights(r: Dictionary, fm: FieldMoves, t: Trainer, shore: Vector2i) -
 	# Entrenador en el agua (nadador): pelea de arena desde el agua
 	start.call("squirtle")
 	await _into_water(fm, t, shore)
+	_seen_in_arena = false
 	await _arena_from_water(t)
+	r["Arena desde el agua: tu Pokémon se ve"] = _seen_in_arena
 	r["Arena desde el agua: vuelve navegando y se mueve"] = fm.surfing and world.tags_at(t.global_position).has("agua") 		and not t.get_collision_mask_value(2) and await _moves_freely(t)
 	# Te desafía en plena pelea con un salvaje (la arena corta la pelea)
 	await _into_water(fm, t, shore)
@@ -245,6 +250,7 @@ func _arena_from_water(t: Trainer) -> void:
 	world.arena.start({"name": "Nadador", "title": "Nadador", "team": foe, "arena_id": "arena_campo", "no_blackout": true})
 	await _until(func(): return world.arena._fighting, 8.0)
 	await get_tree().create_timer(0.3).timeout
+	_seen_in_arena = is_instance_valid(world.companion) and world.companion.is_visible_in_tree()
 	world.arena._end("win")
 	await _until(func(): return not world.arena.active, 10.0)
 	await get_tree().create_timer(0.2).timeout

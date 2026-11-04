@@ -335,6 +335,8 @@ func _in_arena() -> bool:
 
 func _mount_for_arena() -> void:
 	var on := not _in_arena()
+	if not on and is_instance_valid(world.companion):
+		world.companion.visible = true  # navegando viaja "adentro": en la arena tiene que salir a pelear
 	if is_instance_valid(_mount) and _mount.visible != on:
 		_mount.visible = on
 		world.trainer.sprite.position.y = _sprite_y - 8.0 if on else _sprite_y
