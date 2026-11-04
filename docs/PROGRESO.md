@@ -34,7 +34,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   **Balance después de esto (2026-11-04, IA Difícil, nivel 40, dos tandas de 2000 peleas, semillas 1 y 2; informe = semilla 1):** entre las dos
   semillas, con el mismo código, una especie varía 14 puntos de media: mirar solo lo que se repite. Empates 8-9 % (antes 10 %). Mejoran Clefairy, Mew y
   Ditto. Problema a decidir: varios quedan con un solo ataque de daño entre los últimos 4 por nivel (Slowbro empata 32 de 46, Hitmonlee, Vulpix)
-  y los fantasmas empatan la mitad (probable: Comesueños sin nadie dormido). Sin cambios de balance todavía.
+  y los fantasmas empatan la mitad (causa sin aislar; Comesueños no tiene condición de sueño).
+  **Rivales con sus mejores ataques (mismo día, pedido del usuario):** `CreatureInstance.create_rival` (salvajes, entrenadores, torneo): 3 de daño + el mejor de estado
+  (`best_equipment`, `move_damage_score`, `utility_rank`); los tuyos siguen con los últimos 4 por nivel. Empates 8 % → 2 %, Slowbro 11 % → 85 %, pero las peleas bajan de 21 a
+  17 s por victoria. Quedan abajo: Metapod, Kakuna (no pegan), Chansey, Diglett, Rapidash, Meowth, Lickitung, Jynx; arriba: Dratini, Slowbro, Hypno, Exeggcute, Kadabra. Tipos: Dragón y Psíquico arriba.
   **Trabado después de pelear en el agua (2026-11-04):** al ganar una pelea de arena navegando (nadadores), `end_battle` destrababa al entrenador en la
   arena, `FieldMoves` veía tierra y lo bajaba de Surf, y volvía adentro del agua chocando con ella. Ahora en una arena sigue navegando (sin mostrar la montura) y queda
   trabado hasta el fundido de vuelta. **Partidas ya trabadas**: adentro del agua sin navegar vuelve a Surf solo (`FieldMoves._resume_if_in_water`, cada 0,5 s), y al cargar

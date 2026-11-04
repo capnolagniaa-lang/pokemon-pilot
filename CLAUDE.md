@@ -230,6 +230,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   **Si se agrega una tecla o un ajuste, sumarlo a `PAGES`.** `MoveInfo.what_it_does(move)`: qué hace un ataque en
   palabras, armado desde su `MoveData` (forma, carga, combo, zona, estados con `status_text`); lo muestran la ficha
   (Movimientos), `MoveLearnScreen` y la Pokédex.
+- **Equipamiento de los rivales** (2026-11-04): salvajes, entrenadores y torneo salen con `CreatureInstance.create_rival` = `best_equipment` (hasta `RIVAL_ATTACKS` 3 de daño + lo mejor de
+  estado, `utility_rank`); tus Pokémon, con `create` = `default_equipment` (los últimos 4 por nivel).
 - **Ataques nuevos**: con ranura libre se equipa solo (`CreatureInstance.auto_equip`); con las 4 llenas,
   `MoveLearnDirector` (hijo de `world.evolutions`, en el momento tranquilo de las evoluciones) muestra `MoveLearnScreen`
   ("¿reemplazar uno?"). Cargas: solo un golpe fuerte (empuje ≥ `STAGGER_KNOCKBACK`) corta una carga o un canalizado;

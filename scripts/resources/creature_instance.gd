@@ -207,7 +207,8 @@ func _pick_attacks(pool: Array, count: int) -> Array[MoveData]:
 	return out
 
 
-## Daño estimado por segundo de un ataque en este Pokémon (stat, STAB, golpes, ciclo).
+## Cuánto vale un ataque en este Pokémon (stat, STAB, golpes). El ritmo pesa poco (raíz del ciclo): con PP, lo que frena no
+## es la recarga, y por segundo ganaban los flojos y rápidos (Picotazo antes que Cornada).
 func move_damage_score(m: MoveData) -> float:
 	var p := m.power * m.power_mult
 	if p <= 0.0:
@@ -228,13 +229,16 @@ func move_damage_score(m: MoveData) -> float:
 			hits = maxf(1, m.strike_count) if m.zone_strike else maxf(1.0, m.zone_duration / maxf(0.1, m.zone_tick)) * 0.4
 	var st := stat("sp_attack") if m.category == MoveData.Category.SPECIAL else stat("attack")
 	var stab := 1.5 if m.element != null and species.types.has(m.element) else 1.0
-	return p * hits * stab * st / maxf(0.5, cycle)
+	return p * hits * stab * st / sqrt(maxf(0.5, cycle))
 
 
-## Cuánto suma un ataque sin daño: 3 cura o le pone un estado al rival, 2 se mejora, 1 el resto, 0 no conviene llevarlo.
+## Cuánto suma un ataque sin daño: 4 llama a otro ataque (Metrónomo), 3 cura o le pone un estado al rival, 2 se mejora,
+## 1 el resto, 0 no conviene llevarlo.
 static func utility_rank(m: MoveData) -> int:
 	if m.special == "legado" or (m.self_status != null and (m.self_status.destiny or m.self_status.grudge)):
 		return 0  # se juegan la vida: no son para traer de fábrica
+	if m.special in ["metronomo", "espejo", "ayuda", "adaptacion", "transformacion"]:
+		return 4
 	if MoveUser.is_heal(m) or m.status != null or not m.statuses_on_hit.is_empty():
 		return 3
 	return 2 if m.self_status != null else 1
