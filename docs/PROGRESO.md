@@ -31,6 +31,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   salvajes cercanos van por vos), Sonámbulo (dormido tira solo, salvo la siesta de un salvaje), Capa Mágica, Robo, Sellar, Otra Vez,
   Púas (zona) y Chapoteo Lodo. Lo cambiado en la pelea se deshace al cambiar de Pokémon o al terminar
   (`Creature.reset_fight_changes`). Test `--autotest-special-moves`. Sin probar jugando ni en una pelea online real.
+  **Balance después de esto (2026-11-04, IA Difícil, nivel 40, dos tandas de 2000 peleas, semillas 1 y 2; informe = semilla 1):** entre las dos
+  semillas, con el mismo código, una especie varía 14 puntos de media: mirar solo lo que se repite. Empates 8-9 % (antes 10 %). Mejoran Clefairy, Mew y
+  Ditto. Problema a decidir: varios quedan con un solo ataque de daño entre los últimos 4 por nivel (Slowbro empata 32 de 46, Hitmonlee, Vulpix)
+  y los fantasmas empatan la mitad (probable: Comesueños sin nadie dormido). Sin cambios de balance todavía.
 - **Shiny (2026-11-03, pedido del usuario)**: cualquier Pokémon (salvaje, regalo, de entrenador o del torneo) sale shiny
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda
