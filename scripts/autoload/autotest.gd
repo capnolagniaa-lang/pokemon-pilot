@@ -252,6 +252,13 @@ func _ready() -> void:
 		add_child(eq)
 		eq.run.call_deferred()
 		return
+	if "--autotest-mansion" in OS.get_cmdline_user_args():
+		set_process(false)
+		var mt := MansionTests.new()
+		mt.autotest = self
+		add_child(mt)
+		mt.run.call_deferred()
+		return
 	if "--autotest-room-walk" in OS.get_cmdline_user_args():
 		set_process(false)
 		var rw := RoomWalkTests.new()

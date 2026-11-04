@@ -63,6 +63,7 @@ $G --headless --path . --quit-after 150000 -- --autotest-story-h3  # capítulo 3
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-surge  # la arena eléctrica de Lt. Surge
 $G --headless --path . --quit-after 400000 -- --autotest-story-h4  # capítulos 4-8: de la Torre Pokémon al Campeón (todos los hitos)
 $G --headless --path . --quit-after 60000 -- --autotest-field      # MO de campo: Surf, Fuerza, Poké Flauta
+$G --headless --path . --quit-after 200000 -- --autotest-mansion  # Mansión Pokémon: se llega a todo, no hay lugares sin salida, guardar y cargar adentro, recorrido a pie
 $G --headless --path . --quit-after 100000 -- --autotest-arena-rules  # combate de arena: estilos, combos (apagados), cráteres, salto, superficies
 $G --path . --quit-after 650 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena-rules  # Geodude vs Onix (cráteres)
 $G --headless --path . --quit-after 60000 -- --autotest-slots      # varias partidas con nombre, sin curación sola, desmayo total, modo de prueba del torneo

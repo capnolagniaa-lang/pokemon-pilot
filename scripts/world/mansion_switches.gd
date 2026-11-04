@@ -7,6 +7,8 @@ extends Node
 ## StoryDirector.register_interaction.
 
 const FLAG := "mansion_interruptor"
+## Dónde se entra desde Isla Canela (la puerta; se aparece al lado).
+const ENTRANCE := Vector2i(8, 33)
 ## Estatuas: la celda de la base (la del cartel de FireRed); también sirve mirando la de arriba.
 const STATUES := {"mansion_pokemon_1p": [Vector2i(5, 5)], "mansion_pokemon_2p": [Vector2i(2, 16)],
 	"mansion_pokemon_3p": [Vector2i(12, 5)], "mansion_pokemon_s1": [Vector2i(24, 29), Vector2i(27, 5)]}
@@ -66,6 +68,49 @@ func _ready() -> void:
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node):
 		if TILES.has(z.id) and GameState.has_flag(FLAG) and node is Zone:
 			apply(node, z.id, true))
+	# Los pisos que ya estaban cargados al armar el mundo (partida guardada acá adentro) no avisan con zone_loaded.
+	if GameState.has_flag(FLAG):
+		for id in TILES:
+			var zone: Zone = world.streamer.zone_node(id)
+			if zone != null:
+				apply(zone, id, true)
+	_rescue_if_enclosed()
+
+
+## Partida guardada en un lugar sin salida (con la versión que al cargar no ponía las barreras se podía caminar a una sala
+## que en realidad estaba cerrada): si no se llega ni a una puerta ni a una estatua, aparece en la entrada de la Mansión.
+func _rescue_if_enclosed() -> void:
+	var t: Trainer = world.trainer
+	var entry: ZoneEntry = world.streamer.world_data.zone_at(t.global_position)
+	if entry == null or not TILES.has(entry.id):
+		return
+	var zone: Zone = world.streamer.zone_node(entry.id)
+	if zone == null:
+		return
+	var cell := MapRules.nearest_walkable(zone, entry, zone.cell_at(t.global_position))
+	if has_way_out(zone, entry, cell):
+		t.global_position = zone.to_global(zone.ground.map_to_local(cell))
+		t.trail = [t.global_position]
+		return
+	world.warps.travel.call_deferred(entry, "mansion_pokemon_1p", ENTRANCE)
+	Events.message_requested.emit.call_deferred("Te perdiste en la Mansión y volviste a la entrada.")
+
+
+## ¿Desde esta celda se llega caminando a una puerta o a una estatua?
+func has_way_out(zone: Zone, entry: ZoneEntry, from: Vector2i) -> bool:
+	var objects := MapRules.objects_by_cell(zone)
+	var seen := {from: true}
+	var queue: Array[Vector2i] = [from]
+	while not queue.is_empty():
+		var c: Vector2i = queue.pop_back()
+		for d: Vector2i in [Vector2i.DOWN, Vector2i.UP, Vector2i.LEFT, Vector2i.RIGHT]:
+			var n: Vector2i = c + d
+			if entry.warps.has(n) or (STATUES[entry.id] as Array).has(n):
+				return true
+			if not seen.has(n) and MapRules.is_walkable(zone, n, objects):
+				seen[n] = true
+				queue.append(n)
+	return false
 
 
 ## Aprieta (o suelta) el interruptor: cambia la bandera y las barreras de los pisos cargados.

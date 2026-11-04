@@ -30,6 +30,9 @@ func _ready() -> void:
 	world.story.register_interaction(_on_interact)
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node): if z.id == ZONE: _on_gym_loaded(node))
 	Events.zone_entered.connect(func(z: ZoneEntry): if z.id == ZONE and not GameState.has_flag(FLAG): shuffle())
+	var zone: Zone = world.streamer.zone_node(ZONE)  # ya estaba cargado al armar el mundo: partida guardada acá adentro
+	if zone != null:
+		_on_gym_loaded(zone)
 
 
 ## Esconde los interruptores de nuevo: el primero en cualquier basurero y el segundo en uno vecino.

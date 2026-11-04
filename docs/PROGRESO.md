@@ -5,7 +5,13 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-11-03)
+## 📍 Dónde estamos (actualizado 2026-11-04)
+- **Mansión Pokémon: encerrado al cargar (2026-11-04, queja de un amigo: "trabado en un piso")**: el mapa en sí está bien (se llega
+  a todo y no hay lugares sin salida, con el interruptor de las dos maneras). El problema era al cargar una partida guardada
+  adentro con el interruptor apretado: el piso ya estaba cargado antes de que existiera `MansionSwitches`, volvía a las
+  barreras de fábrica y se podía quedar encerrado (por ejemplo al lado de la Llave Secreta, sin estatua). Ahora se aplican al
+  arrancar y, si la partida quedó en un lugar sin puerta ni estatua (`has_way_out`), aparece en la entrada. Mismo arreglo en
+  la barrera del gimnasio de Carmín. Test `--autotest-mansion` (grafo piso/celda/interruptor, guardar y cargar, recorrido a pie).
 - **Ataques de estado que no hacían nada (2026-11-03, queja del usuario: "Drenadoras, Agitacola... no hacen nada")**: había
   58 sin daño, sin estado ni mejora (el armado automático no sabía bajar stats, drenar ni clima). Arreglados 12 con estados:
   Agitacola y Dulce Aroma → Expuesto; Chirrido, Llanto Falso y Eco Metálico → Muy expuesto (+45 % de daño); Encanto y Danza
