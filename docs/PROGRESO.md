@@ -57,6 +57,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda
   con la partida. Test `--autotest-shiny`.
+- **Empalme de las Rutas 14 y 15 (2026-11-04, pedido del usuario)**: al agrandar, la Ruta 15 ganó 4 filas de pasto arriba de
+  su camino de abajo y la Ruta 14 no, y el camino chocaba contra el cerco y el bosque. `INSERT_ROWS` de `import_frlg_maps.py`
+  le agrega esas 4 filas a la Ruta 14 (mismo alto; nadie se mueve); `--autotest-bounds` lo controla. Contra la Ruta 13 quedan
+  cercas corridas 2 filas y pasto contra el agua: se pasa igual (moverla desarmaría el empalme con la Ruta 12).
 - **Enseñar a todos (2026-11-04, pedido del usuario)**: al usar una MT en la Mochila hay un botón nuevo que se la enseña a
   todos los que pueden aprenderla, del equipo y de la Caja (`GameState.teach_all`). La MT no se gasta; los del equipo con
   las 4 ranuras llenas preguntan después si reemplazar uno. Test en `--autotest-equip`.

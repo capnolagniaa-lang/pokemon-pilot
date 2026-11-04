@@ -186,6 +186,10 @@ MOVE_NPCS = {"Route12": {"Route12_EventScript_Snorlax": (25, 166)},
 # (269: arena con el agua arriba, como en las playas de FireRed) y el césped de abajo, arena (277), hasta las casas.
 # El cerco de la Ruta 4 (231, sobre su canal) sigue por el borde de Celeste hasta el río.
 PAINTS = {"CeruleanCity": [(8, 37, 11, 12, 269, 0), (8, 37, 12, 20, 277, 0), (0, 4, 31, 32, 231, 1)]}
+# Filas de más para que dos mapas agrandados por separado sigan empalmando: mapa -> (fila local, cuántas). Repiten las dos
+# filas de arriba y salen del fondo (mismo alto). La Ruta 15 ganó 4 filas de pasto arriba de su camino de abajo y la Ruta 14
+# no: el camino chocaba contra el cerco y el bosque (pedido del usuario 2026-11-04).
+INSERT_ROWS = {"Route14": (80, 4)}
 # Zonas que se alargan hacia abajo con bosque (repitiendo sus dos últimas filas) y un paso de suelo abierto:
 # mapa -> (filas nuevas, [(x0, x1, y0, y1) del paso, en celdas locales]). La Ruta 15 cierra el círculo Fucsia–Ruta 14
 # alineada con la Ruta 14, y su camino quedaba 52 filas más arriba que la salida este de Fucsia, contra el vacío:
@@ -965,6 +969,14 @@ def main():
                 print("  OJO: %s y %s se enciman" % (a, b))
     for n, band in MOVE_BANDS.items():
         move_band(cells, rects[n], band)
+    for n, (at, rows) in INSERT_ROWS.items():
+        x0, y0, x1, y1 = rects[n]
+        for x in range(x0, x1):
+            for y in range(y1 - 1, y0 + at + rows - 1, -1):
+                cells[(x, y)] = cells[(x, y - rows)]
+            for k in range(rows):
+                src = cells[(x, y0 + at - 2 + k % 2)]
+                cells[(x, y0 + at + k)] = (src[0], src[1], -1, -1, True, n)
     for n, paints in PAINTS.items():
         rx, ry = rects[n][0], rects[n][1]
         for x0, x1, y0, y1, metatile, solid in paints:

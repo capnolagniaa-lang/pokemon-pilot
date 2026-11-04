@@ -169,6 +169,9 @@ func run() -> void:
 	if not open_arenas.is_empty():
 		print("[limites] arenas abiertas: ", open_arenas)
 	r["De ninguna arena se sale caminando"] = open_arenas.is_empty()
+	var r14: ZoneEntry = plan.entry("ruta14")
+	var road_y := r14.origin.y + 85  # el camino de abajo de la Ruta 15 sigue derecho en la Ruta 14
+	r["El camino de abajo de la Ruta 15 empalma con el de la Ruta 14"] = 		[-1, 0, 1, 2].all(func(dx): return plan.walkable(Vector2i(r14.origin.x + dx, road_y)))
 	# Toda puerta o escalera: lleva a una zona que existe, se puede usar y se aparece en una celda libre que no es otra puerta.
 	var bad_warps := []
 	var free_plan := TourPlanner.new(world, true, true, true, false)  # con MO y sin personas: los guardias se corren
