@@ -101,6 +101,19 @@ func run() -> void:
 	r["Online: el segundo aviso lo saca"] = me.force_move("excavar", Vector2.RIGHT) and not me.is_burrowed()
 	await _until(func() -> bool: return me.machine.current_name() == "controlled", 1.0)
 
+	# Online: si tu pantalla y el servidor no coinciden, manda el servidor (después de la demora normal de la red)
+	OnlineBattle.sync_burrow(me, true)
+	r["Online: la demora normal de la red no lo mueve"] = not me.is_burrowed()
+	await get_tree().create_timer(OnlineBattle.BURROW_SLACK + 0.1).timeout
+	OnlineBattle.sync_burrow(me, true)
+	r["Online: el servidor dice abajo y acá no: entra"] = me.is_burrowed() and me.burrow.remote
+	OnlineBattle.sync_burrow(me, true)
+	OnlineBattle.sync_burrow(me, false)
+	await get_tree().create_timer(OnlineBattle.BURROW_SLACK + 0.1).timeout
+	OnlineBattle.sync_burrow(me, false)
+	r["Online: el servidor dice arriba y acá no: sale, sin golpear de nuevo"] = not me.is_burrowed() and me.sprite.visible
+	await _until(func() -> bool: return me.machine.current_name() == "controlled", 1.0)
+
 	# Terminar la pelea bajo tierra
 	me.moves.reset_cooldown(0)
 	me.use_slot(0, Vector2.RIGHT)

@@ -182,6 +182,9 @@ func _leave_arena() -> void:
 		world.companion.machine.transition_to("follow")
 
 
+const BURROW_SLACK := 0.5
+
+
 func _physics_process(_delta: float) -> void:
 	if not active or arena == null:
 		return
@@ -287,6 +290,29 @@ func _on_state(mid: int, st: Dictionary) -> void:
 		_set_hp(c, float(st[id].hp))
 		_sync_statuses(c, st[id].get("st", []))
 		c.hitstun_left = maxf(c.hitstun_left, float(st[id].get("hs", 0.0)))
+		sync_burrow(c, bool(st[id].get("bw", false)))
+
+
+## Excavar: tu pantalla entra y sale con tus teclas, pero manda el servidor (pudo rechazar el toque, estando en stagger, o
+## perderse el paquete). Si no coinciden por más de `BURROW_SLACK` (lo normal es la demora de la red), se corrige.
+static func sync_burrow(c: Creature, under: bool) -> void:
+	if c.is_burrowed() == under:
+		c.remove_meta("burrow_off_since")
+		return
+	var now := Time.get_ticks_msec() / 1000.0
+	if not c.has_meta("burrow_off_since"):
+		c.set_meta("burrow_off_since", now)
+	if now - float(c.get_meta("burrow_off_since")) < BURROW_SLACK:
+		return
+	c.remove_meta("burrow_off_since")
+	if not under:
+		c.burrow.finish()
+		return
+	var dig: MoveData = DB.moves["excavar"]
+	for m in c.moves.slots:
+		if m != null and m.burrow_time > 0.0:
+			dig = m
+	Burrow.start(c, dig, c.moves.slots.find(dig)).remote = true
 
 
 func _creature_of(id: int) -> Creature:

@@ -330,6 +330,46 @@ func _battle_tests(server: NetPeer, a: NetPeer, b: NetPeer) -> void:
 	b.join("127.0.0.1", PORT, {"version": Net.game_version(), "name": "Ash", "team": [{"species": "ivysaur", "level": 16}]})
 	await _until(func(): return b.state == "online" and a.players.size() == 2)
 
+	# Excavar en el servidor: entra, sale con el segundo toque y sale solo; cada vez un aviso y las fotos lo dicen.
+	ev[a].clear()
+	st[a] = {}
+	chose[0] = 0
+	b.send_challenge(a.my_id, 1)
+	await get_tree().create_timer(0.3).timeout
+	a.send_answer(b.my_id, true)
+	await _until(func(): return chose[0] != 0)
+	var mid3: int = chose[0]
+	a.send_choice(mid3, [CreatureInstance.create(DB.species["sandshrew"], 30)])
+	b.send_choice(mid3, [CreatureInstance.create(DB.species["eevee"], 30)])
+	await _until(func(): return not kinds.call(a, "start").is_empty())
+	await get_tree().physics_frame
+	var diggers: Creature = server.battles[mid3].sides[a.my_id].creature
+	diggers.moves.slots[0] = DB.moves["excavar"]
+	await get_tree().create_timer(NetMatch.COUNTDOWN + 0.2).timeout
+	var keys := func(bits: int, frames: int):
+		for i in frames:
+			a.send_battle_input(mid3, [Vector2.ZERO, Vector2.RIGHT, Vector2.ZERO, bits, 0])
+			await get_tree().physics_frame
+	var digs := func(): return kinds.call(a, "use").filter(func(e): return e.side == a.my_id and e.m == "excavar").size()
+	await keys.call(1, 6)
+	await keys.call(0, 12)
+	r["Excavar online: el primer toque lo mete, con su aviso y en la foto"] = digs.call() == 1 and st[a].get(a.my_id, {}).get("bw", false) == true
+	await keys.call(1, 6)
+	await keys.call(0, 12)
+	r["Excavar online: el segundo toque lo saca, con otro aviso"] = digs.call() == 2 and st[a].get(a.my_id, {}).get("bw", true) == false
+	await get_tree().create_timer(2.5).timeout
+	diggers.moves.reset_cooldown(0)
+	diggers.moves.set_pp(diggers.moves.max_pp())
+	await keys.call(1, 6)
+	await keys.call(0, 12)
+	var in_again: bool = digs.call() == 3
+	await get_tree().create_timer(DB.moves["excavar"].burrow_time + 0.3).timeout
+	r["Excavar online: si no lo apretás sale solo y también avisa"] = in_again and digs.call() == 4 and st[a].get(a.my_id, {}).get("bw", true) == false
+	b.close()
+	await _until(func(): return server.battles.is_empty(), 12.0)
+	b.join("127.0.0.1", PORT, {"version": Net.game_version(), "name": "Ash", "team": [{"species": "ivysaur", "level": 16}]})
+	await _until(func(): return b.state == "online" and a.players.size() == 2)
+
 
 func _peer(n: String) -> NetPeer:
 	var p := NetPeer.new()

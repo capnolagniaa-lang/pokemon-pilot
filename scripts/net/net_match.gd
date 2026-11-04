@@ -115,7 +115,7 @@ func state() -> Dictionary:
 		if not is_instance_valid(c):
 			continue
 		out[id] = {"p": c.global_position - arena.global_position, "f": c.facing, "hp": c.health.ratio(),
-			"st": c.statuses.active.keys(), "hs": c.hitstun_left, "i": s.index, "in": s.packet}
+			"st": c.statuses.active.keys(), "hs": c.hitstun_left, "bw": c.is_burrowed(), "i": s.index, "in": s.packet}
 	return out
 
 
