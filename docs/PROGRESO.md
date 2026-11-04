@@ -37,7 +37,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   y los fantasmas empatan la mitad (probable: Comesueños sin nadie dormido). Sin cambios de balance todavía.
   **Trabado después de pelear en el agua (2026-11-04):** al ganar una pelea de arena navegando (nadadores), `end_battle` destrababa al entrenador en la
   arena, `FieldMoves` veía tierra y lo bajaba de Surf, y volvía adentro del agua chocando con ella. Ahora en una arena sigue navegando (sin mostrar la montura) y queda
-  trabado hasta el fundido de vuelta. Test en `--autotest-field`. Sin probar jugando.
+  trabado hasta el fundido de vuelta. **Partidas ya trabadas**: adentro del agua sin navegar vuelve a Surf solo (`FieldMoves._resume_if_in_water`, cada 0,5 s), y al cargar
+  una partida guardada en el agua, con Surf, se queda ahí navegando (`World._safe_spawn`; antes lo mandaba a la orilla). Test en `--autotest-field`. Sin probar jugando.
 - **Shiny (2026-11-03, pedido del usuario)**: cualquier Pokémon (salvaje, regalo, de entrenador o del torneo) sale shiny
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda

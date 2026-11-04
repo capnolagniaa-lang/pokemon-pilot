@@ -132,6 +132,7 @@ func run() -> void:
 	ms.toggle()
 	r["Mansión: soltarlo deja todo como al principio"] = not GameState.has_flag(MansionSwitches.FLAG) 		and not MapRules.is_walkable(ms1, Vector2i(12, 11)) and MapRules.is_walkable(ms1, Vector2i(34, 21))
 
+	await _stuck_save(r, shore)
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[campo] %s %s" % ["OK   " if r[key] else "FALLO", key])
@@ -139,7 +140,28 @@ func run() -> void:
 	get_tree().quit(0 if ok else 1)
 
 
-## Una celda de tierra con agua justo abajo (para entrar al agua mirando hacia abajo).
+## La partida de un amigo que quedó trabado con la versión vieja: guardada en el agua, sin navegar. Guardar, cargar y moverse.
+func _stuck_save(r: Dictionary, shore: Vector2i) -> void:
+	var fm: FieldMoves = world.field_moves
+	await _into_water(fm, world.trainer, shore)
+	var at: Vector2 = world.trainer.global_position
+	fm.stop_surf()
+	GameState.trainer_position = at
+	var saved: Dictionary = JSON.parse_string(JSON.stringify(GameState.to_dict()))
+	GameState.from_dict(saved)
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await get_tree().create_timer(0.3).timeout
+	world = get_tree().current_scene
+	await get_tree().create_timer(1.0).timeout
+	var t: Trainer = world.trainer
+	r["Partida trabada: al cargar sigue en su lugar, navegando"] = world.field_moves.surfing and t.global_position.distance_to(at) < 8.0
+	r["Partida trabada: al cargar se mueve"] = await _moves_freely(t)
+	t.autopilot = Vector2.UP
+	await _until(func(): return not world.field_moves.surfing, 5.0)
+	t.autopilot = Vector2.ZERO
+	r["Partida trabada: puede volver a tierra"] = not world.field_moves.surfing
+
+
 ## Después de pelear en el agua el entrenador se tiene que poder mover (queja del usuario 2026-11-04: "queda trabado").
 func _water_fights(r: Dictionary, fm: FieldMoves, t: Trainer, shore: Vector2i) -> void:
 	var start := func(species: String) -> void:
@@ -176,6 +198,24 @@ func _water_fights(r: Dictionary, fm: FieldMoves, t: Trainer, shore: Vector2i) -
 	await get_tree().create_timer(0.3).timeout
 	await _arena_from_water(t)
 	r["Arena en plena pelea en el agua: vuelve navegando y se mueve"] = fm.surfing and world.tags_at(t.global_position).has("agua") 		and not t.get_collision_mask_value(2) and await _moves_freely(t)
+	# Partida trabada de la versión vieja: adentro del agua sin navegar, chocando con ella
+	await _into_water(fm, t, shore)
+	var water_pos := t.global_position
+	fm.stop_surf()
+	await _until(func(): return fm.surfing, 2.0)
+	await get_tree().create_timer(0.5).timeout
+	r["Trabado en el agua: vuelve a navegar solo y se mueve"] = fm.surfing and not t.get_collision_mask_value(2) and await _moves_freely(t)
+	# Al cargar una partida guardada en el agua
+	r["Cargar en el agua con Surf: se queda ahí"] = world._safe_spawn(water_pos) == water_pos
+	GameState.bag.erase("mo03")
+	r["Cargar en el agua sin Surf: va a la orilla"] = world._safe_spawn(water_pos) != water_pos
+	GameState.add_item("mo03", 1)
+	# Caminando por la orilla no se sube solo
+	await _go("pueblo_paleta", shore)
+	if fm.surfing:
+		fm.stop_surf()
+	await get_tree().create_timer(0.8).timeout
+	r["En la orilla no se sube solo"] = not fm.surfing
 	# Pelea en el agua sin navegar: tu Pokémon entra al agua, vos quedás en la orilla
 	await _go("pueblo_paleta", shore)
 	if fm.surfing:
@@ -225,6 +265,7 @@ func _moves_freely(t: Trainer) -> bool:
 	return best > 6.0
 
 
+## Una celda de tierra con agua justo abajo (para entrar al agua mirando hacia abajo).
 func _find_shore(zone_id: String) -> Vector2i:
 	await _go(zone_id, world.streamer.world_data.zones.filter(func(z): return z.id == zone_id)[0].hub)
 	var zone: Zone = world.streamer.zone_node(zone_id)

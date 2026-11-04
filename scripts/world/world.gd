@@ -201,6 +201,8 @@ func _safe_spawn(pos: Vector2) -> Vector2:
 	if zone == null:
 		return pos
 	var cell := zone.cell_at(pos)
+	if MapRules.cell_physics(zone, cell) == MapRules.WATER and FieldMoves.can_use(FieldMoves.SURF_ITEM):
+		return pos  # guardó navegando: sigue navegando (FieldMoves._resume_if_in_water)
 	var free := MapRules.nearest_walkable(zone, entry, cell)
 	if free == cell:
 		return pos

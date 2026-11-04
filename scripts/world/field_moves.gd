@@ -54,6 +54,7 @@ var _sprite_y := 0.0
 var water_mode := ""
 ## Al subir al agua, un ratito sin chequear si pisó tierra (todavía está saliendo de la orilla).
 var _surf_grace := 0.0
+var _water_check := 0.0
 
 
 func _ready() -> void:
@@ -302,6 +303,10 @@ func _physics_process(delta: float) -> void:
 			world.companion.visible = false
 		if _surf_grace <= 0.0 and not world.tags_at(t.global_position).has("agua") and not t.locked:
 			stop_surf()  # pisó tierra: se baja
+	_water_check -= delta
+	if _water_check <= 0.0:
+		_water_check = 0.5
+		_resume_if_in_water()
 	_auto_use(delta)
 	if strength_on() and not _pushing:
 		for i in t.get_slide_collision_count():
@@ -309,6 +314,18 @@ func _physics_process(delta: float) -> void:
 			if obj is EnvObject and obj.has_tag("pesado") and t.velocity.length() > 1.0:
 				push(obj, t.velocity)
 				break
+
+
+## Adentro del agua sin navegar no hay forma de moverse (partida guardada navegando, o trabada por versiones viejas): vuelve a Surf.
+func _resume_if_in_water() -> void:
+	var t: Trainer = world.trainer
+	if surfing or t.locked or world.story.busy or _in_arena() or (world.warps != null and world.warps.busy) 			or not world.tags_at(t.global_position).has("agua"):
+		return
+	var q := PhysicsPointQueryParameters2D.new()
+	q.position = t.global_position
+	q.collision_mask = 2  # capa de agua
+	if not t.get_world_2d().direct_space_state.intersect_point(q, 1).is_empty():
+		start_surf(t.global_position)
 
 
 ## Parado en una arena: sigue navegando (al terminar vuelve al agua), pero sin la montura a la vista.

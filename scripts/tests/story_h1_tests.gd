@@ -210,6 +210,8 @@ func run() -> void:
 func _dialogs() -> void:
 	while is_inside_tree():
 		await get_tree().create_timer(0.12).timeout
+		if not is_instance_valid(world):
+			continue  # (cambiando de escena)
 		var d: DialogBox = world.story.dialog
 		if d.active:
 			if d._choosing:
