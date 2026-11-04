@@ -17,6 +17,7 @@ var autotest: Node
 
 func _small_mechanics(_world: Node, me: Creature, dummy: Creature) -> Dictionary:
 	var r := {}
+	dummy.moves.slots.fill(null)  # (si sabe Sonámbulo, dormido le pega al de prueba)
 	dummy.statuses.clear()
 	dummy.statuses.apply(DB.statuses["pesadilla"])
 	r["Pesadilla no prende en uno despierto"] = not dummy.statuses.has_status("pesadilla")
@@ -176,14 +177,11 @@ func run() -> void:
 	r.merge(await _weather(me, dummy))
 	var noop: Array = DB.moves.values().filter(func(m: MoveData): return m.does_nothing())
 	r["Quedan %d ataques sin efecto (ninguno de los arreglados ni Aguante/Teletransporte)" % noop.size()] = \
-		noop.size() > 20 and noop.all(func(m): return m.id not in LOWERS and m.id not in ["aguante", "teletransporte", "salpicadura"])
-	r["La descripción lo dice"] = MoveInfo.what_it_does(DB.moves["sustituto"]).begins_with("Todavía no") \
-		and MoveInfo.what_it_does(DB.moves["drenadoras"]).contains("te la pasa") \
+		noop.is_empty() and noop.all(func(m): return m.id not in LOWERS and m.id not in ["aguante", "teletransporte", "salpicadura"])
+	r["La descripción lo dice"] = MoveInfo.what_it_does(DB.moves["drenadoras"]).contains("te la pasa") \
 		and MoveInfo.what_it_does(DB.moves["chirrido"]).contains("45 %")
 
-	me.moves.slots[1] = DB.moves["sustituto"]
 	me.target = dummy
-	r["La IA no usa los que no hacen nada"] = me.mind.score(1, 20.0, true) == 0.0
 	dummy.statuses.apply(DB.statuses["expuesto"])
 	me.moves.slots[1] = DB.moves["agitacola"]
 	r["Ni repite uno que ya dejó su estado"] = me.mind.score(1, 20.0, true) == 0.0

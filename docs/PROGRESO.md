@@ -22,7 +22,15 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   (`CombatWeather`, `MoveData.weather`, 20 s, se corta al terminar la pelea): lluvia y sol (±50 % a Agua y Fuego; la lluvia empapa),
   granizo y arena (2 %/s salvo inmunes), con efecto en pantalla (`--showcase-weather`). Cuentan para Nado Rápido, Cura Lluvia y
   Clorofila; la IA los usa solo si le convienen. Los ataques de estado ahora ignoran la inmunidad de tipo, como en los juegos
-  (salvo los eléctricos). **Pendiente: 31 de copiar/cambiar** (Metrónomo, Transformación, Sustituto, Relevo, Canto Mortal...).
+  (salvo los eléctricos).
+  **Tercera tanda (mismo día): ya no queda ningún ataque sin efecto.** `SpecialMoves` (`MoveData.special`) + estados con reglas:
+  llaman a otro (Metrónomo, Espejo, Ayuda, Adaptación), copian (Mimético, Esquema para siempre, Imitación, Intercambio,
+  Transformación, Autosugestión), cambian el tipo (Conversión, Conversión 2, Camuflaje: `CreatureInstance.fight_types`), Sustituto
+  (muñeco con un cuarto de la vida), Canto Mortal (15 s), Mismo Destino, Rabia, Legado, Maldición, Relevo, Niebla, Truco (no hay
+  objetos equipados: intercambia problemas de estado), Reciclaje (devuelve el último objeto usado en pelea), Señuelo (los
+  salvajes cercanos van por vos), Sonámbulo (dormido tira solo, salvo la siesta de un salvaje), Capa Mágica, Robo, Sellar, Otra Vez,
+  Púas (zona) y Chapoteo Lodo. Lo cambiado en la pelea se deshace al cambiar de Pokémon o al terminar
+  (`Creature.reset_fight_changes`). Test `--autotest-special-moves`. Sin probar jugando ni en una pelea online real.
 - **Shiny (2026-11-03, pedido del usuario)**: cualquier Pokémon (salvaje, regalo, de entrenador o del torneo) sale shiny
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda

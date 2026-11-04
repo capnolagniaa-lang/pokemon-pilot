@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "rencoroso"
+display_name = "Rencoroso"
+color = Color(0.55, 0.35, 0.65, 1)
+duration = 8.0
+element = ExtResource("1_x")
+grudge = true
+note = "si lo debilitan a golpes, el rival se queda sin PP y con ese ataque 30 s en recarga"
+tint_strength = 0.25
+fx_amount = 3

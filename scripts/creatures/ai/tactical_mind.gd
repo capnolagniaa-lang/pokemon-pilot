@@ -190,7 +190,7 @@ func low_hp_plan() -> String:
 static func effectiveness(element: ElementType, against: Creature) -> float:
 	if element == null or not is_instance_valid(against) or against.instance == null or DB.type_chart == null:
 		return 1.0
-	return DB.type_chart.get_multiplier(element, against.instance.species.types)
+	return DB.type_chart.get_multiplier(element, against.instance.types())
 
 
 ## La mejor efectividad de los ataques con daño de `from` contra `to`.
@@ -236,7 +236,7 @@ const PP_THRIFT := 0.5
 
 func score(slot: int, dist: float, shot: bool) -> float:
 	var m: MoveData = actor.moves.slots[slot]
-	if m == null or m.does_nothing() or not actor.body.fits(slot, dist):
+	if m == null or m.does_nothing() or actor.moves.status_locked(slot) or not actor.body.fits(slot, dist):
 		return 0.0  # (los que todavía no hacen nada en combate, ni los intenta)
 	if m.kind in CombatBody.NEEDS_SHOT and not shot:
 		return 0.0
@@ -246,7 +246,7 @@ func score(slot: int, dist: float, shot: bool) -> float:
 		var eff := effectiveness(m.element, t)
 		if eff <= 0.0:
 			return 0.0  # no le hace nada: ni lo intenta
-		var stab := Damage.STAB if m.element in actor.instance.species.types else 1.0
+		var stab := Damage.STAB if m.element in actor.instance.types() else 1.0
 		value = m.power * m.power_mult * stab * eff * ability_mult(m, t) * env_mult(m, t) * actor.moves.role_damage(m)
 		if value <= 0.0:
 			return 0.0  # su habilidad lo absorbe
@@ -259,6 +259,10 @@ func score(slot: int, dist: float, shot: bool) -> float:
 		return 0.0  # ya tiene todo lo que deja (Gruñido sobre uno intimidado)
 	elif is_instance_valid(t) and m.statuses_on_hit.any(func(st: StatusEffect): return st.only_while != "" and not t.statuses.has_status(st.only_while)):
 		return 0.0  # Pesadilla sobre uno despierto: no prende
+	elif m.special != "":
+		value *= SpecialMoves.ai_value(m, actor, t)
+		if value <= 0.0:
+			return 0.0
 	elif m.weather != "":
 		value *= CombatWeather.value_for(m.weather, actor, t)  # solo si le conviene (y no si ya está ese clima)
 		if value <= 0.0:
@@ -336,7 +340,7 @@ func ability_mult(m: MoveData, t: Creature) -> float:
 		mult *= float(kinds[kname])
 	var bonus: Dictionary = own.get("type_bonus", {})
 	if is_instance_valid(t):
-		for ty in t.instance.species.types:
+		for ty in t.instance.types():
 			if bonus.has(ty.id):
 				mult *= float(bonus[ty.id])
 	return mult
@@ -409,7 +413,7 @@ static func matchup_score(inst: CreatureInstance, against: Creature) -> float:
 		if m == null or m.power <= 0.0 or m.category == MoveData.Category.STATUS:
 			continue
 		any = true
-		edge = maxf(edge, DB.type_chart.get_multiplier(m.element, against.instance.species.types))
+		edge = maxf(edge, DB.type_chart.get_multiplier(m.element, against.instance.types()))
 	if not any:
 		edge = 1.0
 	var danger := 0.0

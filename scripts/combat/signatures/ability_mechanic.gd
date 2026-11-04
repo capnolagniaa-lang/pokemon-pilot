@@ -111,7 +111,7 @@ func ignores_hit(hit: HitInfo) -> bool:
 func damage_mult_against(hit: HitInfo, target: Creature) -> float:
 	var mult: float = super.damage_mult_against(hit, target)
 	var bonus: Dictionary = param("type_bonus", {})
-	for t in target.instance.species.types:
+	for t in target.instance.types():
 		if bonus.has(t.id):
 			mult *= float(bonus[t.id])
 	return mult

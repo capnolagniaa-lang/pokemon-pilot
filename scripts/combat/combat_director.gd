@@ -103,6 +103,7 @@ func end_battle(force: bool = false) -> void:
 	CombatWeather.stop(get_tree())
 	var c: Creature = world.companion
 	if is_instance_valid(c):
+		c.reset_fight_changes()
 		c.player_controlled = false
 		if not c.is_down():
 			c.machine.transition_to("follow")
@@ -250,6 +251,12 @@ func _after_faint() -> void:
 
 ## Cambia al Pokémon del lugar `index` del equipo (teclas 1-6). En combate el nuevo sale donde estaba el
 ## anterior, sigue la pelea y los rivales lo pasan a atacar a él. Devuelve si cambió.
+## Relevo: cambia sin esperar la pausa entre cambios.
+func force_switch(index: int) -> bool:
+	_switch_cd = 0.0
+	return switch_to(index)
+
+
 func switch_to(index: int) -> bool:
 	var online = world.get("online")
 	if online != null and online.battle != null and online.battle.intercepts_switch(index):

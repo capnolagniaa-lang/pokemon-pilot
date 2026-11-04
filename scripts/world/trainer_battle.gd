@@ -418,6 +418,12 @@ func _maybe_potion() -> void:
 
 
 ## Guarda al que está en la cancha y saca a `pick` (o al que toque).
+## Relevo de su Pokémon: sale otro (hereda las mejoras, SpecialMoves.receive_baton).
+func baton_out() -> void:
+	if is_instance_valid(foe):
+		_withdraw(_best_against(world.companion, foe.instance) if style != null and style.smart_next else null)
+
+
 func _withdraw(pick: CreatureInstance) -> void:
 	var inst := foe.instance
 	Events.message_requested.emit("¡%s retira a %s!" % [foe_name, inst.display_name()])

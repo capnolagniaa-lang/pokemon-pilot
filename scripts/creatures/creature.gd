@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 enum Team { ALLY, WILD }
 
+const SLEEP_TALK_EVERY := 1.2
 const BODY_LAYER_ALLY := 1 << 3
 const BODY_LAYER_WILD := 1 << 4
 const DASH_SPEED := 520.0
@@ -89,6 +90,14 @@ var _last_move_id := ""
 var _last_hit_ref: HitInfo
 ## Quién le pegó por última vez (para la EXP: si lo matás de un golpe o mientras huye, no estaba en tus enemigos).
 var last_hit_by: Node
+## Último ataque que usó (Espejo, Mimético, Esquema, Conversión 2).
+var last_move: MoveData
+## Vida que le queda al muñeco de Sustituto.
+var sub_hp := 0.0
+## Mimético o Transformación le cambiaron los ataques (reset_fight_changes los vuelve a armar).
+var fight_moves_changed := false
+var _own_ability: SignatureData
+var _sleep_talk_left := 0.0
 var _world_ref: Node
 ## Salvaje: temperamento (qué hace al verte, hasta dónde persigue, cuándo huye). Sale de la especie; se puede
 ## pisar después de crearla (los autotests fuerzan "agresivo").
@@ -162,6 +171,8 @@ func _ready() -> void:
 	hurtbox.hit_received.connect(_on_hit)
 	health.depleted.connect(_on_depleted)
 	add_to_group("creatures")
+	reset_fight_changes()
+	SpecialMoves.receive_baton(self)
 	if team == Team.WILD:
 		home = global_position
 		if temperament == null:
@@ -171,6 +182,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_clock += delta
+	_tick_sleep_talk(delta)
 	cc_resist_left = maxf(0.0, cc_resist_left - delta)
 	if hitstun_left > 0.0:
 		hitstun_left = maxf(0.0, hitstun_left - delta)
@@ -442,6 +454,7 @@ func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
 	if m.resource_cost != 0.0 and signature != null:
 		spent = signature.consume(m.resource_cost)
 	Events.move_used.emit(self, m)
+	last_move = m
 	if m.weather != "":
 		CombatWeather.start(m.weather, self)
 	slot_used.emit(slot, facing, point)
@@ -451,6 +464,65 @@ func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
 	else:
 		release_move(msg)
 	return true
+
+
+## Tira un ataque que no está en sus ranuras, sin gastar (Metrónomo, Espejo, Ayuda...: SpecialMoves).
+func cast_other(m: MoveData) -> void:
+	if is_down():
+		return
+	var point: Vector2 = target.global_position if is_instance_valid(target) else global_position + facing.normalized() * 80.0
+	var aim: Vector2 = (point - global_position).normalized() if point != global_position else facing
+	var msg := {"move": m, "aim": aim, "step": 0, "point": point, "spent": 0.0}
+	if m.cast_time > 0.0:
+		machine.transition_to("cast", msg)
+	else:
+		release_move(msg)
+
+
+## Robo: un rival con el estado se queda con la mejora que estoy por recibir.
+func _snatcher_or_self() -> Creature:
+	for c in get_tree().get_nodes_in_group("creatures"):
+		if c.team != team and not c.is_down() and c.statuses.flag("snatch") \
+				and c.global_position.distance_to(global_position) <= SpecialMoves.RANGE:
+			Events.signature_triggered.emit(c, "¡Robo!", Color(0.7, 0.6, 0.9))
+			return c
+	return self
+
+
+## Sonámbulo: con el ataque equipado, mientras duerme tira otro cada tanto.
+func _tick_sleep_talk(delta: float) -> void:
+	if not statuses.has_status("dormido") or is_down():
+		_sleep_talk_left = SLEEP_TALK_EVERY
+		return
+	_sleep_talk_left -= delta
+	if _sleep_talk_left <= 0.0:
+		_sleep_talk_left = SLEEP_TALK_EVERY
+		if moves.slots.any(func(s): return s != null and s.special == "sonambulo"):
+			SpecialMoves.sleep_talk(self)
+
+
+func save_ability() -> void:
+	if _own_ability == null and signature != null:
+		_own_ability = signature.data
+
+
+func ability_saved() -> bool:
+	return _own_ability != null
+
+
+## Deshace lo que cambió en esta pelea: tipos, stats, ataques copiados, habilidad y muñeco. Al aparecer y al terminar la pelea.
+func reset_fight_changes() -> void:
+	instance.fight_types = []
+	instance.fight_stats = null
+	sub_hp = 0.0
+	if fight_moves_changed:
+		fight_moves_changed = false
+		moves.setup(instance)
+	if _own_ability != null and signature != null:
+		signature.data = _own_ability
+	_own_ability = null
+	if sprite.species != instance.species:
+		sprite.species = instance.species
 
 
 ## Usa el ataque `move_id` sí o sí: lo decidió otro (el servidor, en la pelea online), así que no se mira la recarga, los
@@ -486,6 +558,8 @@ func release_move(msg: Dictionary) -> void:
 	if m.resource_scaling > 0.0 and signature != null:
 		hit.damage_mult *= 1.0 + m.resource_scaling * msg.get("spent", 0.0) / signature.data.max_value
 	move_released.emit(m)
+	if m.special != "":
+		SpecialMoves.run(m, self)
 	if m.cleanse_self:  # Giro Rápido: se saca de encima los problemas de estado
 		for sid in statuses.active.keys():
 			if ItemData.BAD_STATUSES.has(sid):
@@ -560,13 +634,13 @@ func release_move(msg: Dictionary) -> void:
 			w.lash(hit, global_position + Vector2(0, -8), aim)
 		MoveData.Kind.SELF_BUFF:
 			if m.self_status != null:
-				statuses.apply(m.self_status)
+				_snatcher_or_self().statuses.apply(m.self_status)
 		MoveData.Kind.SHIELD:
 			health.shield_time = m.duration
 		MoveData.Kind.CHANNEL:
 			machine.transition_to("channel", {"move": m, "aim": aim, "hit": hit})
 			return
-	if recovery > 0.0:
+	if recovery > 0.0 and not msg.get("no_recovery", false):
 		machine.transition_to("recovery", {"time": recovery})
 
 
@@ -677,7 +751,7 @@ func _on_hit(hit: HitInfo) -> void:
 		last_exchange = _clock
 		attacker.last_exchange = attacker.now()
 	var interactions := DB.interactions_for(hit.move.element, statuses)
-	var mult := 1.0
+	var mult := statuses.type_taken_mult(hit.move.element)
 	for it in interactions:
 		mult *= it.damage_mult
 	if attacker and attacker.signature != null and hit.move.power > 0.0:
@@ -702,11 +776,31 @@ func _on_hit(hit: HitInfo) -> void:
 		Events.signature_triggered.emit(self, "No le afecta", Color(0.75, 0.75, 0.8))
 		damage_received.emit(0.0, hit)
 		return
+	var status_move := hit.move.power <= 0.0 and hit.move.category == MoveData.Category.STATUS
+	if status_move and attacker != null and statuses.flag("bounce_status"):
+		for st in hit.move.statuses_on_hit:  # Capa Mágica: se lo devuelve
+			attacker.statuses.apply(st, 1.0, self)
+		Events.signature_triggered.emit(self, "¡Capa Mágica!", Color(0.8, 0.7, 1.0))
+		damage_received.emit(0.0, hit)
+		return
+	if sub_hp > 0.0 and attacker != null:  # Sustituto: el muñeco recibe todo
+		sub_hp -= amount
+		if sub_hp <= 0.0:
+			sub_hp = 0.0
+			if DB.statuses.has("sustituto"):
+				statuses.cure(DB.statuses["sustituto"])
+			Events.signature_triggered.emit(self, "¡Se rompió el muñeco!", Color(0.9, 0.85, 0.7))
+		else:
+			Events.signature_triggered.emit(self, "El muñeco lo aguanta", Color(0.9, 0.85, 0.7))
+		damage_received.emit(0.0, hit)
+		return
 	if hit.move.execute_below > 0.0 and health.ratio() <= hit.move.execute_below and hit.effectiveness > 0.0:
 		amount = INF  # ejecución: lo remata aunque le quede vida
 		Events.signature_triggered.emit(self, "¡Remate!", Color(1.5, 0.35, 0.3))
 	if signature != null:
 		amount = signature.lethal_guard(amount, hit)
+	var destiny := statuses.flag("destiny")  # (al debilitarse se borran los estados)
+	var grudge := statuses.flag("grudge")
 	var dealt := health.apply_damage(amount)
 	if dealt > 0.0:
 		statuses.on_damaged()
@@ -748,6 +842,14 @@ func _on_hit(hit: HitInfo) -> void:
 	Events.creature_damaged.emit(self, dealt, hit)
 	if health.is_dead():
 		if attacker:
+			if destiny and not attacker.is_down():  # Mismo Destino
+				Events.signature_triggered.emit(attacker, "¡Mismo Destino!", Color(0.6, 0.4, 0.8))
+				attacker.take_status_damage(attacker.health.max_hp())
+			elif grudge and attacker.moves.last_used >= 0:  # Rabia
+				attacker.moves.set_pp(0.0)
+				attacker.moves.cooldowns[attacker.moves.last_used] += 30.0
+				attacker.moves.cooldown_total[attacker.moves.last_used] = attacker.moves.cooldowns[attacker.moves.last_used]
+				Events.signature_triggered.emit(attacker, "¡Rabia: sin PP!", Color(0.6, 0.4, 0.8))
 			attacker.killed.emit(self)
 		return
 	var state := machine.current_name()

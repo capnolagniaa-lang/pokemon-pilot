@@ -3,6 +3,7 @@
 [ext_resource type="Resource" path="res://data/types/fantasma.tres" id="1_s7nat"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_45x67"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_y3th6"]
+[ext_resource type="Resource" path="res://data/status/rencoroso.tres" id="st_self"]
 
 [resource]
 script = ExtResource("2_45x67")
@@ -12,5 +13,7 @@ element = ExtResource("1_s7nat")
 kind = 9
 category = 2
 power = 0.0
-cooldown = 10.0
+cooldown = 15.0
 knockback = 0.0
+self_status = ExtResource("st_self")
+special = "rabia"

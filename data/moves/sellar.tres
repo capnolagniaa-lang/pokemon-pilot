@@ -3,14 +3,18 @@
 [ext_resource type="Resource" path="res://data/types/psiquico.tres" id="1_ky3hk"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_dopn1"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_ir72k"]
+[ext_resource type="Resource" path="res://data/status/sellado.tres" id="st_hit"]
 
 [resource]
 script = ExtResource("2_dopn1")
 id = "sellar"
 display_name = "Sellar"
 element = ExtResource("1_ky3hk")
-kind = 9
+kind = 2
 category = 2
 power = 0.0
 cooldown = 10.0
 knockback = 0.0
+statuses_on_hit = Array[ExtResource("3_ir72k")]([ExtResource("st_hit")])
+radius = 55.0
+recovery = 0.1

@@ -10,7 +10,7 @@ const STAB := 1.5
 
 static func resolve(hit: HitInfo, defender: CreatureInstance) -> float:
 	var move := hit.move
-	hit.effectiveness = DB.type_chart.get_multiplier(move.element, defender.species.types)
+	hit.effectiveness = DB.type_chart.get_multiplier(move.element, defender.types())
 	if move.category == MoveData.Category.STATUS or move.power <= 0.0:
 		return 0.0
 	var def_stat := "defense" if move.category == MoveData.Category.PHYSICAL else "sp_defense"

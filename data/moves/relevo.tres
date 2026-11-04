@@ -12,5 +12,6 @@ element = ExtResource("1_ko8x5")
 kind = 9
 category = 2
 power = 0.0
-cooldown = 10.0
+cooldown = 15.0
 knockback = 0.0
+special = "relevo"

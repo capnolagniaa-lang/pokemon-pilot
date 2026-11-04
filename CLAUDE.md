@@ -41,6 +41,7 @@ $G --headless --path . --quit-after 3000 -- --autotest-stats     # stats/EXP con
 $G --headless --path . --quit-after 3000 -- --autotest-identity  # reglas del plan de identidad (estados, CC...)
 $G --headless --path . --quit-after 60000 -- --autotest-status-moves  # ataques de estado: bajar stats, Drenadoras, mecánicas chicas, climas, los que no hacen nada (IA, equipamiento, descripción)
 $G --path . --quit-after 300 --write-movie out/f.png --fixed-fps 30 -- --showcase-weather  # los 4 climas en pantalla
+$G --headless --path . --quit-after 60000 -- --autotest-special-moves  # ataques con efecto propio (Metrónomo, Transformación, Sustituto, Relevo, Canto Mortal...)
 $G --headless --path . --quit-after 30000 -- --autotest-abilities  # habilidades: datos, al azar, guardado, mecánicas, últimos 4, MT, jefe de gimnasio
 # (las 9 de kits que siguen son de la ERA DE KITS, hasta 2026-10-28: ya no aplican, quedan como referencia)
 $G --headless --path . --quit-after 9000 -- --autotest-kit       # kits: Charmander, Bellsprout, Pidgey, Rattata, Vulpix
@@ -452,7 +453,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   equipamiento de fábrica los deja al final, la descripción lo avisa). Reglas de estado: `StatusEffect.only_while`/
   `no_status_moves`/`no_repeat`/`no_dodge`/`traps` (`StatusEffects.flag`); `MoveData.pp_drain`, `pain_split`. **Clima de pelea**:
   `CombatWeather` (estáticas `current`/`time_left`, `MoveData.weather`; lo lee `Damage`, las habilidades y `TacticalMind`).
-  Los de estado ignoran la inmunidad de tipo (salvo eléctricos). Pendiente: 31 de copiar/cambiar (Sustituto, Relevo...), retroceso.
+  Los de estado ignoran la inmunidad de tipo (salvo eléctricos). **Efectos propios**: `SpecialMoves` (`MoveData.special`: `run`,
+  `ai_value`, `TEXT`), reglas de estado `seals`/`encore`/`bounce_status`/`snatch`/`destiny`/`grudge`/`faint_on_end`/`resist_type`/`note`,
+  tipos y stats de la pelea en `CreatureInstance.fight_types`/`fight_stats` (leer `instance.types()` en lo de combate), y
+  `Creature.reset_fight_changes` los deshace. `does_nothing()` hoy no da true en ninguno de `data/moves`. Pendiente: retroceso.
 - **Stats** (`CreatureInstance.stat`): fórmula oficial 3ª gen+; IV 31 en todos los stats por ahora
   (**decisión del usuario: "stats máximos para su nivel"**), EV 0, naturaleza neutra.
   - **Plan futuro (Etapa 6)**: IVs al azar al capturar (0-31 por stat), con un perfecto (31 en todo)

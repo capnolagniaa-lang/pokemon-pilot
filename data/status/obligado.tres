@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "obligado"
+display_name = "Obligado"
+color = Color(0.95, 0.7, 0.4, 1)
+duration = 5.0
+element = ExtResource("1_x")
+encore = true
+note = "solo puede usar el último ataque que usó"
+tint_strength = 0.25
+fx_amount = 3

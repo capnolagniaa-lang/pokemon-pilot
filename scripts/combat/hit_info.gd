@@ -30,7 +30,7 @@ static func from(user: Node, p_move: MoveData) -> HitInfo:
 	h.attacker = user
 	h.attacker_level = user.instance.level
 	h.attack = user.attack_stat_for(p_move.category)
-	h.attacker_types = user.instance.species.types
+	h.attacker_types = user.instance.types()
 	h.origin = user.global_position
 	h.team = user.team
 	h.knockback = p_move.knockback

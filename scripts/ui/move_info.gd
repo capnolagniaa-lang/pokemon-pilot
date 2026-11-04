@@ -53,7 +53,7 @@ static func what_it_does(m: MoveData) -> String:
 		MoveData.Kind.SELF_BUFF:
 			if m.self_status != null:
 				s.append("Te da %s por %.0f s: %s." % [m.self_status.display_name, m.self_status.duration, status_text(m.self_status)])
-			elif m.weather == "":
+			elif m.weather == "" and m.special == "":
 				s.append("Te mejora por un rato.")
 	if m.cast_time > 0.0:
 		s.append("Hay que cargarlo un momento antes de que salga (un golpe fuerte lo corta).")
@@ -66,6 +66,8 @@ static func what_it_does(m: MoveData) -> String:
 		s.append("Deja %s por %.0f s: %s." % [st.display_name, st.duration, status_text(st)])
 	if m.dwell_status != null:
 		s.append("Si alguien se queda %.1f s adentro, queda %s." % [m.dwell_time, m.dwell_status.display_name])
+	if SpecialMoves.TEXT.has(m.special):
+		s.append(SpecialMoves.TEXT[m.special])
 	match m.weather:
 		"lluvia":
 			s.append("Llueve %d s: el Agua pega un 50 %% más, el Fuego la mitad y los que pelean quedan empapados." % CombatWeather.DURATION)
@@ -123,6 +125,8 @@ static func status_text(st: StatusEffect) -> String:
 		out.append("se cura menos")
 	if st.knockback_mult < 1.0:
 		out.append("lo empujan menos")
+	if st.note != "":
+		out.append(st.note)
 	if st.no_status_moves:
 		out.append("no puede usar ataques de estado")
 	if st.no_repeat:

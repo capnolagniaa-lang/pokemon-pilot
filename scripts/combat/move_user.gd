@@ -208,7 +208,14 @@ func status_locked(slot: int) -> bool:
 	var m := slots[slot]
 	if m.power <= 0.0 and m.category == MoveData.Category.STATUS and c.statuses.flag("no_status_moves"):
 		return true
-	return slot == last_used and c.statuses.flag("no_repeat")
+	if slot == last_used and c.statuses.flag("no_repeat"):
+		return true
+	if last_used >= 0 and slot != last_used and c.statuses.flag("encore"):
+		return true  # Otra Vez: solo el último que usó
+	for src in c.statuses.sources_with("seals"):
+		if src.moves.slots.has(m):
+			return true  # Sellar: no puede usar lo que también sabe el que lo selló
+	return false
 
 
 ## ¿Es una cura? (un ataque propio cuyo estado cura vida: Descanso, Recuperación, Síntesis, Arraigo...)

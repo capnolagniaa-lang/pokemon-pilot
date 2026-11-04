@@ -5,6 +5,8 @@ extends Node
 ## Máximo de Pokémon en el equipo (más adelante, lo que no entre irá a una caja).
 const MAX_PARTY := 6
 
+## Último objeto usado en la pelea (Reciclaje lo devuelve); no se guarda.
+var last_item_used := ""
 var party: Array[CreatureInstance] = []
 var active_index := 0
 ## Mochila (docs/PLAN_CAPTURA_MOCHILA.md): id de objeto (data/items) -> cantidad.

@@ -89,6 +89,13 @@ func _ready() -> void:
 		add_child(sm)
 		(sm.showcase if "--showcase-weather" in OS.get_cmdline_user_args() else sm.run).call_deferred()
 		return
+	if "--autotest-special-moves" in OS.get_cmdline_user_args():
+		set_process(false)
+		var spm := SpecialMovesTests.new()
+		spm.autotest = self
+		add_child(spm)
+		spm.run.call_deferred()
+		return
 	if "--autotest-move-damage" in OS.get_cmdline_user_args():
 		set_process(false)
 		var md := MoveDamageTests.new()

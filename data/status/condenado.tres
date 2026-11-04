@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "condenado"
+display_name = "Condenado"
+color = Color(0.35, 0.3, 0.45, 1)
+duration = 15.0
+element = ExtResource("1_x")
+faint_on_end = true
+note = "al terminarse, se debilita"
+tint_strength = 0.25
+fx_amount = 3

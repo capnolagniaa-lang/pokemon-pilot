@@ -96,6 +96,8 @@ func use_quick_item() -> bool:
 		Events.message_requested.emit("%s no tendría efecto." % it.display_name)
 		return false
 	Events.message_requested.emit(text)
+	if world.combat.in_battle:
+		GameState.last_item_used = it.id  # (Reciclaje)
 	if on_field:
 		Fx.burst(c.get_parent(), c.global_position + Vector2(0, -8), Color(0.6, 1.4, 0.7), 10, 30.0)
 	# (la vida en pantalla y quedar expuesto en combate los maneja CombatDirector con Events.item_used)

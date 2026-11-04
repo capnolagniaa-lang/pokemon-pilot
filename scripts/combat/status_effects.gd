@@ -18,7 +18,7 @@ func apply(s: StatusEffect, duration_mult: float = 1.0, source: Node = null) -> 
 	if sig != null and sig.blocks_status(s):
 		return  # inmune por su firma (Zubat no se deja cegar, Machop no se deja frenar...)
 	if not s.immune_types.is_empty() and creature != null and creature.get("instance") != null:
-		for t: ElementType in creature.instance.species.types:
+		for t: ElementType in creature.instance.types():
 			if t != null and t.id in s.immune_types:
 				return  # inmune por su tipo (un tipo Veneno no se envenena)
 	if s.only_while != "" and not active.has(s.only_while):
@@ -76,6 +76,25 @@ func extend(s: StatusEffect, mult: float) -> void:
 
 func has_status(id: String) -> bool:
 	return active.has(id)
+
+
+## Multiplica el daño que recibe de ese tipo (Chapoteo Lodo).
+func type_taken_mult(element: ElementType) -> float:
+	var m := 1.0
+	if element != null:
+		for id in active:
+			if active[id]["status"].resist_type == element.id:
+				m *= active[id]["status"].resist_mult
+	return m
+
+
+## Quiénes le pusieron un estado con esta regla (Sellar).
+func sources_with(prop: String) -> Array:
+	var out := []
+	for id in active:
+		if active[id]["status"].get(prop) and is_instance_valid(active[id].get("source")):
+			out.append(active[id]["source"])
+	return out
 
 
 ## ¿Algún estado activo tiene prendida esta regla? (no_dodge, traps, no_status_moves, no_repeat)
@@ -193,6 +212,9 @@ func _physics_process(delta: float) -> void:
 				entry["leeched"] += dot * s.leech
 		if entry["time"] <= 0.0:
 			cure(s)
+			if s.faint_on_end:
+				creature.take_status_damage(creature.health.max_hp())  # Canto Mortal
+				return
 	# El daño por tiempo se aplica de a un número por segundo (no spamea la pantalla).
 	_dot_timer += delta
 	if _dot_timer >= 1.0:

@@ -12,5 +12,6 @@ element = ExtResource("1_rxx5q")
 kind = 9
 category = 2
 power = 0.0
-cooldown = 10.0
+cooldown = 30.0
 knockback = 0.0
+special = "canto_mortal"

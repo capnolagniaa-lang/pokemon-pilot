@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3]
+
+[ext_resource type="Resource" path="res://data/types/fantasma.tres" id="1_x"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="2_x"]
+
+[resource]
+script = ExtResource("2_x")
+id = "destino"
+display_name = "Mismo Destino"
+color = Color(0.45, 0.3, 0.7, 1)
+duration = 3.0
+element = ExtResource("1_x")
+destiny = true
+note = "si lo debilitan a golpes, el rival también cae"
+tint_strength = 0.25
+fx_amount = 3

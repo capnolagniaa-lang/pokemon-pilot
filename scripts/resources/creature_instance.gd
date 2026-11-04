@@ -33,6 +33,9 @@ static func hp_scale() -> float:
 ## Shiny (pedido del usuario 2026-11-03): otros colores (sprites de sprites/pokemon/<n.º>/shiny/), estrella en los menús y
 ## un destello al aparecer. Sale al azar al crearse (1 en `shiny_odds`, ajuste; 1024 por defecto). Se guarda.
 @export var shiny := false
+## Cambios de esta pelea, no se guardan (Creature.reset_fight_changes): tipos y de quién copia los stats (Transformación).
+var fight_types: Array[ElementType] = []
+var fight_stats: CreatureInstance = null
 ## Pokémon jefe (el de un líder de gimnasio con SpeciesData.boss_kit): pelea con el kit de jefe. No se guarda.
 var boss := false
 ## PP actuales (el maná de los ataques, MoveUser; pedido del usuario 2026-10-31). -1 = llenos. No se guarda: al cargar
@@ -143,6 +146,11 @@ func equip(slot: int, m: MoveData) -> bool:
 		equipped_moves[other] = equipped_moves[slot]
 	equipped_moves[slot] = m
 	return true
+
+
+## Sus tipos en esta pelea (Conversión, Camuflaje, Transformación: `fight_types`; si no, los de la especie).
+func types() -> Array[ElementType]:
+	return fight_types if not fight_types.is_empty() else species.types
 
 
 ## Lo que equipa por defecto: los últimos 4 que aprendió por nivel, como en los juegos (decisión del usuario 2026-10-28).
@@ -274,6 +282,8 @@ func _same_name(m: MoveData) -> MoveData:
 
 ## Stat oficial al nivel actual (naturaleza neutra por ahora).
 func stat(name: String) -> int:
+	if fight_stats != null and name != "hp":
+		return fight_stats.stat(name)  # Transformación
 	var base := species.base_stat(name)
 	var iv: int = ivs.get(name, MAX_IV)
 	var ev: int = evs.get(name, 0)

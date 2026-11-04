@@ -77,7 +77,7 @@ static func hurts(c: Creature) -> bool:
 
 
 static func _has_type(c: Creature, ids: Array) -> bool:
-	for t: ElementType in c.instance.species.types:
+	for t: ElementType in c.instance.types():
 		if t != null and t.id in ids:
 			return true
 	return false

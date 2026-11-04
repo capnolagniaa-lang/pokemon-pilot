@@ -63,6 +63,25 @@ extends Resource
 @export var no_dodge: bool = false
 ## No puede huir ni lo pueden cambiar (Mal de Ojo, Bloqueo).
 @export var traps: bool = false
+## No puede usar los ataques que también sabe el que se lo puso (Sellar).
+@export var seals: bool = false
+## Solo puede usar el último ataque que usó (Otra Vez).
+@export var encore: bool = false
+## Le devuelve al que se los tira los ataques de estado (Capa Mágica).
+@export var bounce_status: bool = false
+## Se queda con las mejoras propias que use el rival (Robo).
+@export var snatch: bool = false
+## Si lo debilitan a golpes, el que lo hizo se debilita también (Mismo Destino).
+@export var destiny: bool = false
+## Si lo debilitan a golpes, el que lo hizo se queda sin PP y con ese ataque en recarga larga (Rabia).
+@export var grudge: bool = false
+## Al terminarse el estado se debilita (Canto Mortal).
+@export var faint_on_end: bool = false
+## Tipo cuyo daño recibe multiplicado por `resist_mult` (Chapoteo Lodo: eléctrico a la mitad).
+@export var resist_type: String = ""
+@export var resist_mult: float = 1.0
+## Lo que hace, en palabras, para lo que no sale de los números (lo muestra MoveInfo).
+@export var note: String = ""
 ## Multiplica el empuje que recibe (0 = no lo pueden empujar).
 @export var knockback_mult: float = 1.0
 ## Tipos (ids) que no lo pueden sufrir: un Pokémon de tipo Veneno no se envenena (pedido del usuario 2026-10-28).
