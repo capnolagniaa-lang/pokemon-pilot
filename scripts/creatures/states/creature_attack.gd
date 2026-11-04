@@ -59,6 +59,11 @@ func physics_update(delta: float) -> void:
 	var to: Vector2 = t.global_position - actor.global_position
 	var dist := to.length()
 	var dir := to.normalized()
+	if actor.is_burrowed():  # bajo tierra: va hasta abajo tuyo y sale
+		actor.move(actor.body.steer(dir, t.global_position), actor.speed())
+		if dist < actor.burrow.move.zone_radius * 0.6:
+			actor.burrow.emerge()
+		return
 	if dist > 260.0:
 		transition("chase")
 		return
@@ -122,7 +127,7 @@ func physics_update(delta: float) -> void:
 			_strafe = -_strafe
 
 	_attack_timer -= delta
-	if _attack_timer <= 0.0:
+	if _attack_timer <= 0.0 and not t.is_burrowed():  # (no le tira a alguien que está bajo tierra)
 		if _choose_attack(dist):
 			_attack_timer = randf_range(0.5, 1.1) * CombatBody.difficulty().attack_interval_mult * _pace()
 			if _ideal_range() <= MELEE_RANGE and not actor.mind.all_in:

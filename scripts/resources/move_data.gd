@@ -139,6 +139,9 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 @export var strike_spread: float = 30.0
 ## Excavar: el que lo usa se mete bajo tierra (invisible e invulnerable) y sale donde cae el golpe.
 @export var strike_burrow: bool = false
+## Excavar en dos tiempos (`Burrow`): segundos que puede estar bajo tierra moviéndose; se sale con el mismo ataque o solo
+## al terminar. 0 = como `strike_burrow`, sale donde apuntó (el Excavar del jefe Onix).
+@export var burrow_time: float = 0.0
 
 @export_group("Látigo (WHIP)")
 @export var whip_length: float = 70.0

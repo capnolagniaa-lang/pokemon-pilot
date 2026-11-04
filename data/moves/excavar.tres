@@ -20,6 +20,7 @@ zone_traps = false
 zone_strike = true
 strike_delay = 1.0
 strike_burrow = true
+burrow_time = 4.0
 recovery = 0.3
 crater_radius = 34.0
 crater_max = 2

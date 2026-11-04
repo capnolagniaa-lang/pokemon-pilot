@@ -36,7 +36,9 @@ static func what_it_does(m: MoveData) -> String:
 			if m.combo_steps > 1:
 				s.append("Apretalo seguido para encadenar %d golpes; el último empuja más." % m.combo_steps)
 		MoveData.Kind.ZONE:
-			if m.zone_strike and m.strike_burrow:
+			if m.burrow_time > 0.0:
+				s.append("Te metés bajo tierra hasta %.0f s: no te pueden pegar y vas un %d%% más rápido. Apretalo otra vez para salir golpeando alrededor." % [m.burrow_time, roundi((Burrow.SPEED_MULT - 1.0) * 100.0)])
+			elif m.zone_strike and m.strike_burrow:
 				s.append("Te metés bajo tierra (no te pueden pegar) y salís golpeando donde apuntás.")
 			elif m.zone_strike:
 				s.append("Marca un círculo donde apuntás y enseguida cae el golpe" + (" (%d veces, alrededor)." % m.strike_count if m.strike_count > 1 else "."))

@@ -21,7 +21,7 @@ signal battle_state_received(match_id: int, state: Dictionary)
 signal battle_event_received(match_id: int, ev: Dictionary)
 
 ## Sube cuando cambian los mensajes: un juego viejo y uno nuevo no se entienden.
-const PROTOCOL := 5  # (4: el cambio 1-6 es el lugar en el equipo elegido; 5: aviso "use" de cada ataque, sin orden por rol)
+const PROTOCOL := 6  # (4: el cambio 1-6 es el lugar en el equipo elegido; 5: aviso "use" de cada ataque, sin orden por rol; 6: Excavar en dos tiempos, dos avisos "use")
 const DEFAULT_PORT := 24680
 const MAX_PLAYERS := 32
 const NAME_MAX := 16

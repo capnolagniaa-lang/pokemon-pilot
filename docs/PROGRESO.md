@@ -6,6 +6,10 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-04)
+- **Stagger +15 % y Excavar en dos tiempos (2026-11-04, pedido del usuario)**: `HITSTUN_*` de 0,2-0,45 s a 0,23-0,52 s. Excavar: primer
+  toque bajo tierra (hasta 4 s, +10 % de velocidad, no te pegan), segundo toque sale golpeando; sale solo al terminar (`Burrow`, ver
+  CLAUDE.md). `NetPeer.PROTOCOL` 6: hay que subir la versión al servidor. Sin jugar a mano. `--autotest-arena-rules` falla en "tope de
+  cráteres" desde antes de este cambio (da igual sin él).
 - **Mansión Pokémon: encerrado al cargar (2026-11-04, queja de un amigo: "trabado en un piso")**: el mapa en sí está bien (se llega
   a todo y no hay lugares sin salida, con el interruptor de las dos maneras). El problema era al cargar una partida guardada
   adentro con el interruptor apretado: el piso ya estaba cargado antes de que existiera `MansionSwitches`, volvía a las

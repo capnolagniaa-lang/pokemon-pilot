@@ -252,6 +252,13 @@ func _ready() -> void:
 		add_child(eq)
 		eq.run.call_deferred()
 		return
+	if "--autotest-burrow" in OS.get_cmdline_user_args():
+		set_process(false)
+		var bt := BurrowTests.new()
+		bt.autotest = self
+		add_child(bt)
+		bt.run.call_deferred()
+		return
 	if "--autotest-mansion" in OS.get_cmdline_user_args():
 		set_process(false)
 		var mt := MansionTests.new()

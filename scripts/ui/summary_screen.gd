@@ -262,7 +262,7 @@ func _show_detail(m: MoveData, level: int) -> void:
 static func describe(m: MoveData) -> Array[String]:
 	var out: Array[String] = []
 	if m.zone_strike:
-		out.append("Sale bajo tierra donde apuntás" if m.strike_burrow else ("Cae del cielo donde apuntás" + (" (×%d)" % m.strike_count if m.strike_count > 1 else "")))
+		out.append(("Bajo tierra hasta %.0f s: apretalo otra vez para salir" % m.burrow_time) if m.burrow_time > 0.0 else "Sale bajo tierra donde apuntás" if m.strike_burrow else ("Cae del cielo donde apuntás" + (" (×%d)" % m.strike_count if m.strike_count > 1 else "")))
 	if m.power > 0.0:
 		var p := roundi(m.power * m.power_mult)
 		if m.kind == MoveData.Kind.PROJECTILE and m.projectile_count > 1:

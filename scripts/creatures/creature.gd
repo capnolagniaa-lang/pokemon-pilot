@@ -20,9 +20,9 @@ const CC_RESIST_FACTOR := 0.3
 ## Stagger (pedido del usuario 2026-10-28: "cuando se golpea tiene que haber un tiempo de stagger así no pueden atacar
 ## inmediatamente de ser impactados"): todo golpe con daño deja al que lo recibe sin poder atacar ni esquivar un ratito
 ## (y caminando lento). Dura según la potencia; después hay un respiro sin stagger nuevo para que no se pueda encadenar.
-const HITSTUN_MIN := 0.2
-const HITSTUN_MAX := 0.45
-const HITSTUN_PER_POWER := 0.0018
+const HITSTUN_MIN := 0.23  # (2026-11-04, pedido del usuario: +15 % los tres; antes 0,2 / 0,45 / 0,0018)
+const HITSTUN_MAX := 0.52
+const HITSTUN_PER_POWER := 0.00207
 const HITSTUN_GRACE := 0.35
 const HITSTUN_MOVE := 0.45
 
@@ -73,6 +73,8 @@ var knockback := Vector2.ZERO
 var cc_resist_left := 0.0
 ## Segundos que quedan de stagger (no ataca ni esquiva) y de respiro (no recibe stagger nuevo).
 var hitstun_left := 0.0
+## Bajo tierra con Excavar (null = no): `Burrow`.
+var burrow: Burrow = null
 var _hitstun_grace := 0.0
 var _hitstun_hit: HitInfo
 ## Mecánica de firma (si la especie tiene kit con una).
@@ -249,6 +251,10 @@ func default_state() -> String:
 
 
 ## Fuera de combate: debilitado (aunque ya haya recuperado algo de vida y esté por volver).
+func is_burrowed() -> bool:
+	return is_instance_valid(burrow)
+
+
 func is_down() -> bool:
 	return health.is_dead() or machine.current_name() == "fainted"
 
@@ -267,6 +273,8 @@ func speed() -> float:
 		m *= surface_mult()
 	if swims:
 		m *= swim_mult
+	if is_burrowed():
+		m *= Burrow.SPEED_MULT
 	return move_speed_for(instance.stat("speed")) * m
 
 
@@ -430,12 +438,17 @@ func move(dir: Vector2, spd: float) -> void:
 
 
 func can_act() -> bool:
-	return not health.is_dead() and statuses.can_act() and hitstun_left <= 0.0 and machine.current_name() in ["controlled", "attack", "chase", "flee", "wander", "idle", "follow"]
+	return not health.is_dead() and not is_burrowed() and statuses.can_act() and hitstun_left <= 0.0 and machine.current_name() in ["controlled", "attack", "chase", "flee", "wander", "idle", "follow"]
 
 
 ## Usa la habilidad de una ranura (Kit.Slot) apuntando a `aim`; `point` es el lugar del mundo apuntado
 ## (para ubicar zonas). Con cast_time pasa por el estado "cast" (telegrafiado).
 func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
+	if is_burrowed():  # el mismo ataque lo saca (hay que haber soltado la tecla); los demás no salen bajo tierra
+		if burrow.armed and burrow.slot == slot:
+			burrow.emerge()
+			return true
+		return false
 	if not can_act() or slot < 0 or slot >= moves.slots.size() or moves.slots[slot] == null:
 		return false
 	if moves.slots[slot].kind in [MoveData.Kind.DASH, MoveData.Kind.LUNGE] and not statuses.can_move():
@@ -534,12 +547,18 @@ func force_move(move_id: String, aim: Vector2, point: Vector2 = Vector2.INF) -> 
 			slot = i
 	if slot < 0 or health.is_dead():
 		return false
+	if is_burrowed():  # segundo aviso de Excavar: sale
+		burrow.emerge()
+		return true
 	hitstun_left = 0.0
 	moves.reset_cooldown(slot)
 	moves.set_pp(maxf(moves.pp(), moves.pp_cost(slot)))
 	if machine.current_name() != "controlled":
 		machine.transition_to("controlled")
-	return use_slot(slot, aim, point)
+	var used := use_slot(slot, aim, point)
+	if is_burrowed():
+		burrow.remote = true  # sale cuando avise el servidor
+	return used
 
 
 ## Compatibilidad: usar "el ataque i" = la ranura i.
@@ -592,6 +611,9 @@ func release_move(msg: Dictionary) -> void:
 				swing_melee(swing, false)
 			return
 		MoveData.Kind.ZONE:
+			if m.burrow_time > 0.0:
+				Burrow.start(self, m, moves.slots.find(m))
+				return
 			var at := zone_point(m, msg.get("point", Vector2.INF), aim)
 			if m.zone_strike:
 				for k in maxi(1, m.strike_count):

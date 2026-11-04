@@ -63,6 +63,7 @@ $G --headless --path . --quit-after 150000 -- --autotest-story-h3  # capítulo 3
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-surge  # la arena eléctrica de Lt. Surge
 $G --headless --path . --quit-after 400000 -- --autotest-story-h4  # capítulos 4-8: de la Torre Pokémon al Campeón (todos los hitos)
 $G --headless --path . --quit-after 60000 -- --autotest-field      # MO de campo: Surf, Fuerza, Poké Flauta
+$G --headless --path . --quit-after 60000 -- --autotest-burrow    # Excavar en dos tiempos (entrar, moverse, salir, sale solo, online, IA) y el stagger
 $G --headless --path . --quit-after 200000 -- --autotest-mansion  # Mansión Pokémon: se llega a todo, no hay lugares sin salida, guardar y cargar adentro, recorrido a pie
 $G --headless --path . --quit-after 100000 -- --autotest-arena-rules  # combate de arena: estilos, combos (apagados), cráteres, salto, superficies
 $G --path . --quit-after 650 --write-movie out/f.png --fixed-fps 30 -- --showcase-arena-rules  # Geodude vs Onix (cráteres)
@@ -233,6 +234,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   (Movimientos), `MoveLearnScreen` y la Pokédex.
 - **Equipamiento de los rivales** (2026-11-04): salvajes, entrenadores y torneo salen con `CreatureInstance.create_rival` = `best_equipment` (hasta `RIVAL_ATTACKS` 3 de daño + lo mejor de
   estado, `utility_rank`); tus Pokémon, con `create` = `default_equipment` (los últimos 4 por nivel).
+- **Excavar en dos tiempos** (`Burrow`, `MoveData.burrow_time` = 4 s en `data/moves/excavar.tres`; pedido del usuario 2026-11-04): el primer toque lo mete bajo tierra (`Creature.burrow`: invisible, invulnerable, sin hurtbox, pasa por debajo de los demás, +10 % de velocidad, sin otros ataques ni esquive); el segundo, con la tecla ya soltada (`armed`), lo saca golpeando alrededor (`SkyStrike` sin espera) y recién ahí arranca la recarga; si no, sale solo. La IA va hasta abajo tuyo y sale (`creature_attack`) y no le tira a alguien bajo tierra. Online: dos avisos "use"; la copia del rival espera el aviso (`remote`). El Excavar del jefe Onix (`excavar_onix`, sin `burrow_time`) sigue saliendo donde apunta.
 - **Ataques nuevos**: con ranura libre se equipa solo (`CreatureInstance.auto_equip`); con las 4 llenas,
   `MoveLearnDirector` (hijo de `world.evolutions`, en el momento tranquilo de las evoluciones) muestra `MoveLearnScreen`
   ("¿reemplazar uno?"). Cargas: solo un golpe fuerte (empuje ≥ `STAGGER_KNOCKBACK`) corta una carga o un canalizado;
