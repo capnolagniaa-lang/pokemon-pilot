@@ -329,7 +329,7 @@ func _team_of(entry: Dictionary) -> Array[CreatureInstance]:
 	var out: Array[CreatureInstance] = []
 	for m in entry["team"]:
 		if DB.species.has(m[0]):
-			out.append(CreatureInstance.create(DB.species[m[0]], m[1]))
+			out.append(CreatureInstance.create_rival(DB.species[m[0]], m[1]))
 	return out
 
 

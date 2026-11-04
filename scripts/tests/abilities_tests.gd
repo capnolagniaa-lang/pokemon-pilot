@@ -171,6 +171,22 @@ func run() -> void:
 	r["Un Onix salvaje pelea con su habilidad y sus ataques"] = wild.signature != null \
 		and wild.signature.data.id == "robustez" and not wild.moves.slots.has(DB.species["onix"].boss_kit.moves[0])
 
+	# Los rivales traen lo mejor que saben (pedido del usuario 2026-11-04); los tuyos, los últimos 4
+	var attacks_of := func(list: Array) -> int:
+		return list.filter(func(x): return x != null and x.power * x.power_mult > 0.0).size()
+	var best_ok := true
+	for sp: SpeciesData in DB.species.values():
+		var known := CreatureInstance.create(sp, 40).learned_moves().filter(func(x): return x.power * x.power_mult > 0.0).size()
+		var got: int = attacks_of.call(CreatureInstance.create_rival(sp, 40).equipped_moves)
+		if got < mini(known, CreatureInstance.RIVAL_ATTACKS):
+			best_ok = false
+			print("[abilities] %s: %d de %d ataques" % [sp.id, got, known])
+	r["Rival: trae hasta 3 ataques de daño si los sabe (las 386)"] = best_ok
+	var gastly := CreatureInstance.create_rival(DB.species["gastly"], 40).equipped_moves
+	r["Rival: no trae Mismo Destino de fábrica"] = not gastly.has(DB.moves["mismo_destino"])
+	var mine := CreatureInstance.create(DB.species["hitmonlee"], 40).equipped_moves
+	r["Tuyo: sigue con los últimos 4 por nivel"] = mine.has(DB.moves["profecia"])
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[abilities] %s %s" % ["OK   " if r[key] else "FALLO", key])

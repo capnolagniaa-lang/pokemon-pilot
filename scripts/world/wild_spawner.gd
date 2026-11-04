@@ -191,7 +191,7 @@ func _on_time_changed(hour: float, _phase: String) -> void:
 ## Crea un salvaje en una posición (también lo usa el autotest).
 func spawn(sp: SpeciesData, level: int, pos: Vector2) -> Creature:
 	var c: Creature = CreatureScene.instantiate()
-	c.instance = CreatureInstance.create(sp, level)
+	c.instance = CreatureInstance.create_rival(sp, level)
 	c.instance.roll_ivs()  # IVs al azar (Etapa 6): lo que atrapás conserva los suyos
 	c.team = Creature.Team.WILD
 	c.position = pos

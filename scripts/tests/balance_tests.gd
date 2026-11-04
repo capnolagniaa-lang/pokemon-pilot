@@ -9,7 +9,7 @@ extends Node
 ##   godot --headless --path . --fixed-fps 60 --quit-after 9000000 -- --autotest-balance [--fights 400] [--level 40]
 ##     [--bst 60] [--seed 1] [--species a,b,c] [--arena] [--timeout 60] [--equip juego|mejores] [--out docs/X.md]
 ## Desde las habilidades (2026-10-28) cada uno pelea con su habilidad (al azar, como en los juegos) y: `--equip juego` =
-## los 4 que trae equipados (los últimos 4 por nivel); `--equip mejores` = los 4 que más daño estiman de todo lo que
+## lo que trae un rival (CreatureInstance.create_rival); `--equip mejores` = los 4 que más daño estiman de todo lo que
 ## aprende hasta ese nivel o por MT (pedido del usuario: "hay que utilizar lo mejor que puede aprender").
 ## `--fixed-fps 60` hace que corra lo más rápido que da la PC (sin esperar al reloj real): sin eso va a velocidad normal.
 
@@ -145,7 +145,7 @@ func _fight(a: SpeciesData, b: SpeciesData, n: int) -> void:
 
 func _spawn(sp: SpeciesData, team: int, pos: Vector2, temp: Temperament) -> Creature:
 	var c: Creature = CreatureScene.instantiate()
-	c.instance = CreatureInstance.create(sp, int(opts["level"]))
+	c.instance = CreatureInstance.create_rival(sp, int(opts["level"]))
 	if opts["equip"] == "mejores":
 		c.instance.equipped_moves = best_moves(c.instance)
 		_note_set(sp.id, c.instance.equipped_moves)
@@ -160,7 +160,7 @@ func _spawn(sp: SpeciesData, team: int, pos: Vector2, temp: Temperament) -> Crea
 
 
 func _equip_label() -> String:
-	return "los 4 mejores que aprende hasta ese nivel o por MT" if opts["equip"] == "mejores" else "los 4 que trae (últimos por nivel)"
+	return "los 4 mejores que aprende hasta ese nivel o por MT" if opts["equip"] == "mejores" else "los que trae un rival (3 de daño y 1 de estado, los mejores que sabe)"
 
 
 ## Los 4 ataques que más daño por segundo estiman de lo que aprendió hasta su nivel + sus MT/MO (potencia × golpes × STAB × su stat de ataque o At.
@@ -196,26 +196,9 @@ static func best_moves(inst: CreatureInstance) -> Array[MoveData]:
 
 
 static func move_score(inst: CreatureInstance, m: MoveData) -> float:
-	var p := m.power * m.power_mult
-	if p <= 0.0:
+	if m.power * m.power_mult <= 0.0:
 		return 0.01 if m.self_status != null and m.self_status.attack_mult > 1.0 else 0.0
-	var hits := 1.0
-	var cycle := m.cooldown + m.cast_time + m.recovery
-	match m.kind:
-		MoveData.Kind.PROJECTILE:
-			hits = maxf(1, m.projectile_count) * (1.0 if m.projectile_count <= 1 else 0.6)  # un abanico no pega entero
-		MoveData.Kind.MELEE:
-			hits = m.combo_steps
-			cycle += m.combo_steps * m.combo_step_cooldown
-		MoveData.Kind.LUNGE:
-			hits = 1.0 + m.followup_power_mult
-		MoveData.Kind.CHANNEL:
-			hits = maxf(1.0, m.channel_time / maxf(0.05, m.tick_interval)) * 0.5
-		MoveData.Kind.ZONE:
-			hits = maxf(1, m.strike_count) if m.zone_strike else maxf(1.0, m.zone_duration / maxf(0.1, m.zone_tick)) * 0.4
-	var stat := inst.stat("sp_attack") if m.category == MoveData.Category.SPECIAL else inst.stat("attack")
-	var stab := 1.5 if m.element != null and inst.species.types.has(m.element) else 1.0
-	return p * hits * stab * stat / maxf(0.5, cycle)
+	return inst.move_damage_score(m)
 
 
 ## Qué juego de ataques usó cada especie (para el informe, con --equip mejores).

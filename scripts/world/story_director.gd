@@ -416,7 +416,7 @@ func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) 
 	var team: Array[CreatureInstance] = []
 	for m in td.starting_team:
 		if m.requires_flag == "" or GameState.has_flag(m.requires_flag):
-			team.append(CreatureInstance.create(m.species, m.level))
+			team.append(CreatureInstance.create_rival(m.species, m.level))
 	if texture == null and ResourceLoader.exists("res://art/pret/characters/%s.png" % data.gfx):
 		texture = load("res://art/pret/characters/%s.png" % data.gfx)
 	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": team,

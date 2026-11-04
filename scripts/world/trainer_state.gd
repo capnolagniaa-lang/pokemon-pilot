@@ -19,7 +19,7 @@ static func create(data: TrainerData) -> TrainerState:
 	s.id = data.id
 	for mon in data.starting_team:
 		if mon != null and mon.species != null:
-			s.team.append(CreatureInstance.create(mon.species, mon.level))
+			s.team.append(CreatureInstance.create_rival(mon.species, mon.level))
 	return s
 
 

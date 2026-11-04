@@ -46,6 +46,8 @@ var pp := -1.0
 @export var nature: String = ""
 
 const SLOT_COUNT := 4
+## Cuántos ataques de daño lleva un rival (el resto, de estado).
+const RIVAL_ATTACKS := 3
 
 
 static func create(p_species: SpeciesData, p_level: int) -> CreatureInstance:
@@ -61,6 +63,14 @@ static func create(p_species: SpeciesData, p_level: int) -> CreatureInstance:
 	if not p_species.abilities.is_empty():
 		c.ability = p_species.abilities[randi() % p_species.abilities.size()].id
 	c.shiny = roll_shiny()
+	return c
+
+
+## Un rival (salvaje, entrenador, torneo): pelea con lo mejor que sabe, no con lo último que aprendió
+## (pedido del usuario 2026-11-04). Tu Pokémon arranca con `default_equipment` y lo elegís vos.
+static func create_rival(p_species: SpeciesData, p_level: int) -> CreatureInstance:
+	var c := create(p_species, p_level)
+	c.equipped_moves = c.best_equipment()
 	return c
 
 
@@ -151,6 +161,83 @@ func equip(slot: int, m: MoveData) -> bool:
 ## Sus tipos en esta pelea (Conversión, Camuflaje, Transformación: `fight_types`; si no, los de la especie).
 func types() -> Array[ElementType]:
 	return fight_types if not fight_types.is_empty() else species.types
+
+
+## Los mejores de lo que sabe: hasta RIVAL_ATTACKS de daño (los que más estiman, de tipos distintos si se puede) y lo
+## mejor de estado en lo que quede; si no tiene de estado, más de daño.
+func best_equipment() -> Array[MoveData]:
+	var attacks: Array[MoveData] = []
+	var others: Array[MoveData] = []
+	for m in learned_moves():
+		if m.does_nothing():
+			continue
+		(attacks if m.power * m.power_mult > 0.0 else others).append(m)
+	var out := _pick_attacks(attacks, RIVAL_ATTACKS)
+	others.reverse()  # (a igual valor, el último que aprendió)
+	var ranked: Array[MoveData] = []
+	ranked.assign(others.filter(func(m: MoveData): return utility_rank(m) > 0))
+	var rank_sort := func(a: MoveData, b: MoveData): return utility_rank(a) > utility_rank(b)
+	ranked.sort_custom(rank_sort)
+	for m in ranked:
+		if out.size() < SLOT_COUNT:
+			out.append(m)
+	for m in _pick_attacks(attacks.filter(func(x: MoveData): return not out.has(x)), SLOT_COUNT - out.size()):
+		out.append(m)
+	while out.size() < SLOT_COUNT:
+		out.append(null)
+	return out
+
+
+func _pick_attacks(pool: Array, count: int) -> Array[MoveData]:
+	var out: Array[MoveData] = []
+	var left := pool.duplicate()
+	var seen := {}
+	while out.size() < count and not left.is_empty():
+		var best: MoveData = null
+		var best_v := -1.0
+		for m: MoveData in left:
+			var v := move_damage_score(m) * (0.85 if m.element != null and seen.has(m.element.id) else 1.0)
+			if v > best_v:
+				best_v = v
+				best = m
+		out.append(best)
+		left.erase(best)
+		if best.element != null:
+			seen[best.element.id] = true
+	return out
+
+
+## Daño estimado por segundo de un ataque en este Pokémon (stat, STAB, golpes, ciclo).
+func move_damage_score(m: MoveData) -> float:
+	var p := m.power * m.power_mult
+	if p <= 0.0:
+		return 0.0
+	var hits := 1.0
+	var cycle := m.cooldown + m.cast_time + m.recovery
+	match m.kind:
+		MoveData.Kind.PROJECTILE:
+			hits = maxf(1, m.projectile_count) * (1.0 if m.projectile_count <= 1 else 0.6)  # un abanico no pega entero
+		MoveData.Kind.MELEE:
+			hits = m.combo_steps
+			cycle += m.combo_steps * m.combo_step_cooldown
+		MoveData.Kind.LUNGE:
+			hits = 1.0 + m.followup_power_mult
+		MoveData.Kind.CHANNEL:
+			hits = maxf(1.0, m.channel_time / maxf(0.05, m.tick_interval)) * 0.5
+		MoveData.Kind.ZONE:
+			hits = maxf(1, m.strike_count) if m.zone_strike else maxf(1.0, m.zone_duration / maxf(0.1, m.zone_tick)) * 0.4
+	var st := stat("sp_attack") if m.category == MoveData.Category.SPECIAL else stat("attack")
+	var stab := 1.5 if m.element != null and species.types.has(m.element) else 1.0
+	return p * hits * stab * st / maxf(0.5, cycle)
+
+
+## Cuánto suma un ataque sin daño: 3 cura o le pone un estado al rival, 2 se mejora, 1 el resto, 0 no conviene llevarlo.
+static func utility_rank(m: MoveData) -> int:
+	if m.special == "legado" or (m.self_status != null and (m.self_status.destiny or m.self_status.grudge)):
+		return 0  # se juegan la vida: no son para traer de fábrica
+	if MoveUser.is_heal(m) or m.status != null or not m.statuses_on_hit.is_empty():
+		return 3
+	return 2 if m.self_status != null else 1
 
 
 ## Lo que equipa por defecto: los últimos 4 que aprendió por nivel, como en los juegos (decisión del usuario 2026-10-28).

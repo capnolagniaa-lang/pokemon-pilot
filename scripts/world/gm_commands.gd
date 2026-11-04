@@ -254,7 +254,7 @@ func _arena(args: Array) -> String:
 	var all := DB.species.values()
 	while team.size() < 3:
 		var sp: SpeciesData = Tournament.evolve_for(all[randi() % all.size()], lvl)
-		var inst := CreatureInstance.create(sp, lvl)
+		var inst := CreatureInstance.create_rival(sp, lvl)
 		team.append(inst)
 	var gfx: String = TEST_SPRITES[randi() % TEST_SPRITES.size()]
 	var tex: Texture2D = load("res://art/pret/characters/%s.png" % gfx) if ResourceLoader.exists("res://art/pret/characters/%s.png" % gfx) else null
