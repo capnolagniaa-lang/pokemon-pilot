@@ -83,6 +83,8 @@ func run() -> void:
 	await _until(func(): return not fm.surfing, 4.0)
 	t.autopilot = Vector2.ZERO
 
+	await _water_fights(r, fm, t, shore)
+
 	# --- Fuerza: una roca de Calle Victoria ---
 	var boulder: EnvObject = await _find_boulder()
 	r["Hay rocas de Fuerza en Calle Victoria / Islas Espuma"] = boulder != null
@@ -138,6 +140,91 @@ func run() -> void:
 
 
 ## Una celda de tierra con agua justo abajo (para entrar al agua mirando hacia abajo).
+## Después de pelear en el agua el entrenador se tiene que poder mover (queja del usuario 2026-11-04: "queda trabado").
+func _water_fights(r: Dictionary, fm: FieldMoves, t: Trainer, shore: Vector2i) -> void:
+	var start := func(species: String) -> void:
+		GameState.party.resize(1)
+		GameState.party[0] = CreatureInstance.create(DB.species[species], 30)
+		GameState.set_active(0)
+		world.respawn_companion()
+	# Montado, de punta a punta
+	start.call("charmander")
+	await _into_water(fm, t, shore)
+	world.combat.start_battle()
+	await get_tree().create_timer(0.3).timeout
+	var mounted: bool = fm.water_mode == "montado"
+	world.combat.end_battle()
+	await get_tree().create_timer(0.2).timeout
+	r["Montado: al terminar se mueve solo (sin pegarse al Pokémon)"] = mounted and fm.water_mode == "" and await _moves_freely(t)
+	# Montado: tu Pokémon cae y sale otro
+	GameState.party.append(CreatureInstance.create(DB.species["pidgey"], 30))
+	await _into_water(fm, t, shore)
+	world.combat.start_battle()
+	await get_tree().create_timer(0.3).timeout
+	world.companion.instance.hp = 1.0
+	world.companion.health.apply_damage(9999.0)
+	await get_tree().create_timer(CombatDirector.NEXT_MON_DELAY + 0.5).timeout
+	r["Montado: cae tu Pokémon, sale otro y se mueve"] = fm.water_mode == "" and await _moves_freely(t)
+	# Entrenador en el agua (nadador): pelea de arena desde el agua
+	start.call("squirtle")
+	await _into_water(fm, t, shore)
+	await _arena_from_water(t)
+	r["Arena desde el agua: vuelve navegando y se mueve"] = fm.surfing and world.tags_at(t.global_position).has("agua") 		and not t.get_collision_mask_value(2) and await _moves_freely(t)
+	# Te desafía en plena pelea con un salvaje (la arena corta la pelea)
+	await _into_water(fm, t, shore)
+	world.combat.start_battle()
+	await get_tree().create_timer(0.3).timeout
+	await _arena_from_water(t)
+	r["Arena en plena pelea en el agua: vuelve navegando y se mueve"] = fm.surfing and world.tags_at(t.global_position).has("agua") 		and not t.get_collision_mask_value(2) and await _moves_freely(t)
+	# Pelea en el agua sin navegar: tu Pokémon entra al agua, vos quedás en la orilla
+	await _go("pueblo_paleta", shore)
+	if fm.surfing:
+		fm.stop_surf()
+	world.combat.start_battle()
+	await get_tree().create_timer(0.3).timeout
+	world.companion.global_position += Vector2(0, 40)
+	await get_tree().create_timer(0.3).timeout
+	world.combat.end_battle()
+	await get_tree().create_timer(0.2).timeout
+	r["Sin navegar: al terminar se mueve"] = not fm.surfing and await _moves_freely(t)
+	await _go("pueblo_paleta", shore)
+	if fm.surfing:
+		fm.stop_surf()
+
+
+func _into_water(fm: FieldMoves, t: Trainer, shore: Vector2i) -> void:
+	if fm.surfing:
+		fm.stop_surf()
+	await _go("pueblo_paleta", shore)
+	fm.start_surf(t.global_position + Vector2(0, 16))
+	await get_tree().create_timer(0.5).timeout
+
+
+func _arena_from_water(t: Trainer) -> void:
+	var foe: Array[CreatureInstance] = [CreatureInstance.create(DB.species["caterpie"], 2)]
+	world.arena.start({"name": "Nadador", "title": "Nadador", "team": foe, "arena_id": "arena_campo", "no_blackout": true})
+	await _until(func(): return world.arena._fighting, 8.0)
+	await get_tree().create_timer(0.3).timeout
+	world.arena._end("win")
+	await _until(func(): return not world.arena.active, 10.0)
+	await get_tree().create_timer(0.2).timeout
+
+
+## Prueba las 4 direcciones (alguna tiene que estar libre) y lo deja donde estaba.
+func _moves_freely(t: Trainer) -> bool:
+	await get_tree().create_timer(0.1).timeout
+	if t.locked:
+		return false
+	var best := 0.0
+	for d: Vector2 in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
+		t.autopilot = d
+		var at := t.global_position
+		await get_tree().create_timer(0.25).timeout
+		best = maxf(best, t.global_position.distance_to(at))
+	t.autopilot = Vector2.ZERO
+	return best > 6.0
+
+
 func _find_shore(zone_id: String) -> Vector2i:
 	await _go(zone_id, world.streamer.world_data.zones.filter(func(z): return z.id == zone_id)[0].hub)
 	var zone: Zone = world.streamer.zone_node(zone_id)

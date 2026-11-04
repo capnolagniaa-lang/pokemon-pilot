@@ -277,7 +277,7 @@ func _update_water_battle() -> void:
 		c.global_position = t.global_position + Vector2(0, -12)  # terminó adentro del agua: vuelve a la orilla
 	c.swims = mode != ""
 	c.swim_mult = MOUNTED_SPEED if mode == "montado" else 1.0
-	if not surfing:
+	if not surfing or _in_arena():
 		return
 	c.visible = fighting
 	# Montado: el entrenador (con la montura abajo) va pegado a tu Pokémon, que se para adelante sobre ella.
@@ -292,6 +292,8 @@ func _physics_process(delta: float) -> void:
 		return
 	var t: Trainer = world.trainer
 	if surfing:
+		_mount_for_arena()
+	if surfing and not _in_arena():
 		_surf_grace -= delta
 		if water_mode == "montado" and is_instance_valid(world.companion):
 			t.global_position = world.companion.global_position + Vector2(0, -3)  # va arriba de la montura con él
@@ -307,6 +309,18 @@ func _physics_process(delta: float) -> void:
 			if obj is EnvObject and obj.has_tag("pesado") and t.velocity.length() > 1.0:
 				push(obj, t.velocity)
 				break
+
+
+## Parado en una arena: sigue navegando (al terminar vuelve al agua), pero sin la montura a la vista.
+func _in_arena() -> bool:
+	return world.get("arena") != null and world.arena.arena != null
+
+
+func _mount_for_arena() -> void:
+	var on := not _in_arena()
+	if is_instance_valid(_mount) and _mount.visible != on:
+		_mount.visible = on
+		world.trainer.sprite.position.y = _sprite_y - 8.0 if on else _sprite_y
 
 
 ## Caminando contra un árbol fino, el agua o una roca (con la habilidad desbloqueada) se usa sola, sin preguntar.

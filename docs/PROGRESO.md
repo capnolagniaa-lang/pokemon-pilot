@@ -35,6 +35,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   semillas, con el mismo código, una especie varía 14 puntos de media: mirar solo lo que se repite. Empates 8-9 % (antes 10 %). Mejoran Clefairy, Mew y
   Ditto. Problema a decidir: varios quedan con un solo ataque de daño entre los últimos 4 por nivel (Slowbro empata 32 de 46, Hitmonlee, Vulpix)
   y los fantasmas empatan la mitad (probable: Comesueños sin nadie dormido). Sin cambios de balance todavía.
+  **Trabado después de pelear en el agua (2026-11-04):** al ganar una pelea de arena navegando (nadadores), `end_battle` destrababa al entrenador en la
+  arena, `FieldMoves` veía tierra y lo bajaba de Surf, y volvía adentro del agua chocando con ella. Ahora en una arena sigue navegando (sin mostrar la montura) y queda
+  trabado hasta el fundido de vuelta. Test en `--autotest-field`. Sin probar jugando.
 - **Shiny (2026-11-03, pedido del usuario)**: cualquier Pokémon (salvaje, regalo, de entrenador o del torneo) sale shiny
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda

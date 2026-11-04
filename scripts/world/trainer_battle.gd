@@ -126,10 +126,10 @@ func start(opts: Dictionary) -> String:
 	_switches = 0
 	arena_data = load("res://data/arenas/%s.tres" % opts.get("arena_id", "arena_campo"))
 	var t: Trainer = world.trainer
-	t.locked = true
 	t.autopilot = Vector2.ZERO
 	if world.combat.in_battle:
 		world.combat.end_battle(true)
+	t.locked = true  # (después de end_battle, que lo destraba)
 	# Pantalla VS (líderes, rival...: si hay retrato en sprites/vs/). Termina en negro, como el fundido.
 	if VsScreen.has_portrait(opts.get("vs", "")):
 		var hud: CanvasItem = world.get_node_or_null("UI/HUD")
@@ -160,6 +160,7 @@ func start(opts: Dictionary) -> String:
 	_send_next()
 	_fighting = true
 	await finished
+	t.locked = true  # end_battle lo destrabó, pero seguimos en la arena hasta el fundido
 	var lines: PackedStringArray = opts.get("defeat_lines", PackedStringArray())
 	if result == "win":
 		await get_tree().create_timer(0.8).timeout
@@ -170,6 +171,7 @@ func start(opts: Dictionary) -> String:
 		await _show_banner("Te quedaste sin Pokémon...", "", 1.6)
 	await _fade_to(1.0)
 	_leave_arena()
+	t.locked = true
 	await get_tree().process_frame
 	await _fade_to(0.0)
 	Events.trainer_battle_ended.emit(result, kind)
