@@ -8,9 +8,22 @@ extends Node
 var autotest: Node
 
 
+## Puertas de una sola mano, como en FireRed: se salen por ahí pero no se entra (la de atrás de la casa robada de
+## Celeste y la de Fucsia, y la de entrada de las salas de la Liga, que se cierra detrás tuyo).
+const ONE_WAY := ["ciudad_celeste", "ciudad_fucsia", "liga_lorelei", "liga_bruno", "liga_agatha", "liga_lance"]
+
+
 func run() -> void:
 	var r := {}
 	var world: WorldData = DB.config.world
+	# Sin cuadros negros: toda celda de los mapas de FireRed tiene su gráfico (las escaleras de Silph usan tiles del
+	# primario con gráficos del secundario: pret_import.py los copia al secundario).
+	var maps = JSON.parse_string(FileAccess.get_file_as_string("res://data/world/frlg_maps.json"))
+	var no_art := []
+	for z in maps["zones"] if maps is Dictionary else maps:
+		if (z["cells"] as Array).has(-1.0):
+			no_art.append(z["id"])
+	r["Ninguna celda de los mapas se quedó sin gráfico %s" % str(no_art)] = no_art.is_empty()
 	var plan := TourPlanner.new(world)
 	var with_warps := _reach(plan, world, true)
 	var void_edges := {}
@@ -156,6 +169,31 @@ func run() -> void:
 	if not open_arenas.is_empty():
 		print("[limites] arenas abiertas: ", open_arenas)
 	r["De ninguna arena se sale caminando"] = open_arenas.is_empty()
+	# Toda puerta o escalera: lleva a una zona que existe, se puede usar y se aparece en una celda libre que no es otra puerta.
+	var bad_warps := []
+	var free_plan := TourPlanner.new(world, true, true, true, false)  # con MO y sin personas: los guardias se corren
+	for z in world.zones:
+		for c: Vector2i in z.warps:
+			var w: Dictionary = z.warps[c]
+			if w.has(Lifts.KEY):
+				continue
+			var at := z.origin + c
+			if free_plan.entry(w["to"]) == null:
+				bad_warps.append("%s %s: lleva a %s, que no existe" % [z.id, c, w["to"]])
+				continue
+			if not free_plan.walkable(at) and free_plan.approach(at) == at and not ONE_WAY.has(z.id):
+				# Vale si otra puerta de la zona lleva al mismo lugar (escaleras de dos celdas, una tapada).
+				var other := false
+				for o: Vector2i in free_plan.warps_to(z.id, w["to"]):
+					other = other or free_plan.walkable(o) or free_plan.approach(o) != o
+				if not other:
+					bad_warps.append("%s %s: no se llega" % [z.id, c])
+			var there := free_plan.arrival(at)
+			if not free_plan.walkable(there) or free_plan.is_warp(there):
+				bad_warps.append("%s %s: se aparece encerrado en %s" % [z.id, c, w["to"]])
+	if not bad_warps.is_empty():
+		print("[limites] puertas: ", "\n  ".join(bad_warps))
+	r["Las %d puertas y escaleras funcionan" % world.zones.reduce(func(n, z): return n + z.warps.size(), 0)] = bad_warps.is_empty()
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[limites] %s %s" % ["OK   " if r[key] else "FALLO", key])

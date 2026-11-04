@@ -35,6 +35,14 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   1 de cada 1024 (ajuste "Shiny: sale 1 de cada"). Sprites shiny oficiales de PMDCollab para los 386 (5075 hojas, ~86 MB,
   `tools/download_shiny_sprites.py`), destello con sonido al aparecer y ★ en el equipo, la Caja, la ficha y el HUD. Se guarda
   con la partida. Test `--autotest-shiny`.
+- **Cuadros negros en las escaleras (2026-11-03, pedido del usuario)**: en Silph, el Escondite Rocket, la sala de Lance y
+  algunas celdas sueltas (los Centros, la guardería, el laboratorio de Canela, la casa de la imitadora) había tiles sin
+  dibujar. FireRed guarda esos metatiles en el tileset primario, pero con gráficos o paletas del secundario, así que al
+  importarlos solos salían vacíos o a medias. `pret_import.py` ahora los copia al final de cada secundario
+  (`manifest[...]["borrowed"]`, los ids de antes no se mueven); cambiaron 32 zonas, solo esas celdas. Además, al llegar por
+  una puerta detrás de una pared (las salas de la Liga, el S.S. Anne, la Zona Safari) quedabas sobre la celda sólida:
+  `WarpSystem.arrival` busca la celda libre más cercana. `--autotest-bounds` controla que ninguna celda quede sin gráfico y
+  que las 899 puertas lleven a un lugar donde pararse. Quedan algunos píxeles sueltos transparentes en cuevas (hasta 5 por celda).
 - **Arenas pintadas con Qwen (2026-11-03, pedido del usuario: "MUY EPICAS")**: se probaron 3 enfoques (repintar el plano,
   libre, Qwen Edit) y el usuario eligió **libre**. Hechas: el **campo** (claro con arroyo y puente) y el **gimnasio de Brock**
   (cañón con cristales de ámbar, braseros, plataforma del líder con escalera). Pintura en `ArenaData.painting` sobre los

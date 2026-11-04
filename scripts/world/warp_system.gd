@@ -147,6 +147,15 @@ static func arrival(walkable: Callable, entry: ZoneEntry, cell: Vector2i) -> Arr
 			if strict and not (_inside(entry, n + d) and walkable.call(n + d)):
 				continue
 			return [n, d]
+	# Puerta detrás de una pared (las salas de la Liga, la del S.S. Anne): la celda libre más cercana, no arriba de la pared.
+	for r in range(2, 7):
+		for d: Vector2i in dirs:
+			var side := Vector2i(d.y, d.x)
+			for k in range(0, r):
+				for s in ([1, -1] if k > 0 else [1]):
+					var n: Vector2i = cell + d * (r - k) + side * k * s
+					if _inside(entry, n) and not entry.warps.has(n) and walkable.call(n):
+						return [n, d]
 	return [cell, Vector2i.DOWN]
 
 

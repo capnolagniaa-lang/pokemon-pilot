@@ -346,6 +346,9 @@ class Sets:
 
     def gid(self, pn, sn, mt):
         setn, local = (pn, mt) if mt < NUM_PRIMARY else (sn, mt - NUM_PRIMARY)
+        lent = self.manifest[sn].get("borrowed", {}).get(str(mt))  # del primario, con gráficos del secundario
+        if lent is not None:
+            setn, local = sn, lent
         info = self.manifest[setn]
         if local >= info["count"] or info["empty"][local]:
             return -1

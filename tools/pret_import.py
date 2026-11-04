@@ -216,6 +216,34 @@ def layers_for(attr):
     return [0], [1]  # NORMAL / SPLIT: la segunda mitad tapa al personaje
 
 
+def borrowed_metatiles(root, layouts, headers):
+    """Metatiles del primario que usan tiles o paletas del secundario (las escaleras de Silph y del Escondite Rocket,
+    las estatuas de Lance...): solos salen vacíos o a medias. {secundario: [metatiles]}, los que usa algún mapa."""
+    cache, out = {}, {}
+    for l in layouts:
+        psym, ssym = l.get("primary_tileset"), l.get("secondary_tileset")
+        if psym not in headers or ssym not in headers:
+            continue
+        if psym not in cache:
+            raw = open(os.path.join(root, headers[psym]["metatiles"], "metatiles.bin"), "rb").read()
+            cache[psym] = [struct.unpack("<8H", raw[i:i + 16]) for i in range(0, len(raw), 16)]
+        w, h = l["width"], l["height"]
+        raw = open(os.path.join(root, l["blockdata_filepath"]), "rb").read()
+        for v in struct.unpack("<%dH" % (w * h), raw[:w * h * 2]):
+            mt = v & 0x3FF
+            if mt < len(cache[psym]) and any((e & 0x3FF) >= NUM_TILES_PRIMARY or (e >> 12) >= NUM_PALS_PRIMARY for e in cache[psym][mt]):
+                out.setdefault(headers[ssym]["name"], set()).add(mt)
+    return {k: sorted(v) for k, v in out.items()}
+
+
+def resolve(manifest, pn, sn, mt):
+    """(tileset, índice local) del metatile `mt` de un mapa con esos tilesets."""
+    if mt >= NUM_METATILES_PRIMARY:
+        return sn, mt - NUM_METATILES_PRIMARY
+    local = manifest[sn].get("borrowed", {}).get(str(mt))
+    return (pn, mt) if local is None else (sn, local)
+
+
 def export_tileset(ts, out_dir, manifest):
     """Atlas below/above/anim del tileset + su entrada del manifest. Devuelve (below, above, colores medios)."""
     n = len(ts.metatiles)
@@ -483,6 +511,7 @@ def main():
 
     manifest = {"order": order}
     built, colors = {}, {}
+    borrowed = borrowed_metatiles(root, layouts, headers)
     for name in ["general"] + order:
         h = by_name[name]
         primary = None
@@ -493,8 +522,17 @@ def main():
             primary = built[pname]
         ts = built.get(name) or Tileset(root, name, h, primary)
         built[name] = ts
+        # Los prestados van al final del secundario (los ids de antes no se mueven), dibujados con sus gráficos.
+        lent = {}
+        if h["secondary"]:
+            for mt in borrowed.get(name, []):
+                lent[str(mt)] = len(ts.metatiles)
+                ts.metatiles.append(ts.primary.metatiles[mt])
+                ts.attrs.append(ts.primary.attrs[mt])
         below, above, colors[name] = export_tileset(ts, tiles_dir, manifest)
         info = manifest[name]
+        if lent:
+            info["borrowed"] = lent
         k = order.index(name) if name in order else -1
         info["display"] = TILESET_NAMES.get(name, name.replace("_", " ").capitalize())
         info["primary"] = ts.primary.name
@@ -536,7 +574,7 @@ def analyze(root, layouts, headers, manifest, colors):
         grid = []
         for v in vals:
             mt, col = v & 0x3FF, (v >> 10) & 3
-            setn, local = (pn, mt) if mt < NUM_METATILES_PRIMARY else (sn, mt - NUM_METATILES_PRIMARY)
+            setn, local = resolve(manifest, pn, sn, mt)
             info = manifest[setn]
             if local >= info["count"] or info["empty"][local]:
                 grid.append((-1, col, 0, (0, 0, 0)))

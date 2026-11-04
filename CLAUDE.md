@@ -484,6 +484,8 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   exterior/interior) + `catalog.json` (tipo, tags y colisión por metatile sacados de behaviors y mapas reales;
   sellos de edificios). Después: `build_world.gd -- --tileset` (pasa el catálogo a `data/world/tile_catalog.tres`
   y rearma el TileSet). Los 6 tilesets que no usa ningún mapa (dummy/garitas) no se importan.
+  **Prestados**: metatiles del primario con tiles o paletas del secundario (escaleras de Silph y del Escondite Rocket) se copian al
+  final de cada secundario (`manifest[<secundario>]["borrowed"]`: metatile → índice local), si no salen vacíos (cuadros negros).
 - **Sellos y paleta curados** (`tools/match_reference.py`, Python sin dependencias): cruza las hojas de referencia
   `art_src/referencia/frlg_edificios.png` y `frlg_tiles_mundo.png` (The Spriters Resource; **no se suben a git**,
   las baja el usuario) con los metatiles renderizados (comparando en 5 bits por canal, todos los cuadros de las
