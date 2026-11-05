@@ -96,6 +96,12 @@ func run() -> void:
 	await _release()
 	r["Respeta la recarga de los cambios"] = GameState.active().species.id == "charmander"
 
+	# El dibujo de Controles: un punto por botón, sin repetir, y los carteles parejos a cada lado.
+	var spots: Array = ControlsScreen.PadDiagram.SPOTS
+	var specs := spots.map(func(x): return x[0])
+	r["El dibujo del joystick marca cada botón una vez"] = spots.size() == 16 and specs.all(func(x): return specs.count(x) == 1)
+	r["...con R3 y Círculo"] = specs.has({"btn": JOY_BUTTON_RIGHT_STICK}) and specs.has({"btn": JOY_BUTTON_B})
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[ruleta] %s %s" % ["OK   " if r[key] else "FALLO", key])

@@ -197,7 +197,7 @@ class PadDiagram extends Control:
 		[{"axis": [JOY_AXIS_TRIGGER_RIGHT, 1.0]}, ART_AT + ART_SCALE * Vector2(1070, 165), "der"],
 		[{"btn": JOY_BUTTON_RIGHT_SHOULDER}, ART_AT + ART_SCALE * Vector2(985, 165), "der"],
 		[{"btn": JOY_BUTTON_Y}, ART_AT + ART_SCALE * Vector2(1035, 275), "der"],
-		[{"btn": JOY_BUTTON_BACK}, ART_AT + ART_SCALE * Vector2(600, 380), "izq"],
+		[{"btn": JOY_BUTTON_B}, ART_AT + ART_SCALE * Vector2(1118, 358), "der"],
 		[{"btn": JOY_BUTTON_START}, ART_AT + ART_SCALE * Vector2(810, 380), "der"],
 		[{"btn": JOY_BUTTON_X}, ART_AT + ART_SCALE * Vector2(950, 358), "der"],
 		[{"btn": JOY_BUTTON_A}, ART_AT + ART_SCALE * Vector2(1035, 435), "der"],
