@@ -273,6 +273,13 @@ func _ready() -> void:
 		add_child(bt)
 		(bt.showcase if "--showcase-burrow" in OS.get_cmdline_user_args() else bt.run).call_deferred()
 		return
+	if "--autotest-save-sync" in OS.get_cmdline_user_args():
+		set_process(false)
+		var ss := SaveSyncTests.new()
+		ss.autotest = self
+		add_child(ss)
+		ss.run.call_deferred()
+		return
 	if "--autotest-mansion" in OS.get_cmdline_user_args():
 		set_process(false)
 		var mt := MansionTests.new()

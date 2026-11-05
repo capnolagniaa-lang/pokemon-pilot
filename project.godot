@@ -21,6 +21,7 @@ Controls="*res://scripts/autoload/controls.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 Net="*res://scripts/autoload/net.gd"
 Updater="*res://scripts/autoload/updater.gd"
+Sync="*res://scripts/autoload/save_sync.gd"
 Autotest="*res://scripts/autoload/autotest.gd"
 
 [display]

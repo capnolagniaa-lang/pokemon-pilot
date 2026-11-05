@@ -7,6 +7,7 @@ set -euo pipefail
 GODOT_VERSION="4.7.2-stable"
 DIR=/opt/pokemon-pilot
 PORT=24680
+PARTIDAS_PORT=24681
 cd "$(dirname "$0")"
 
 if [ ! -f PokemonPilot.pck ]; then
@@ -56,6 +57,27 @@ RestartSec=3
 WantedBy=multi-user.target
 UNIT
 
+# Partidas de los jugadores y panel (partidas_server.py; la base queda en $DIR/partidas y sobrevive a las actualizaciones).
+command -v python3 >/dev/null || { apt-get update -qq && apt-get install -y -qq python3 >/dev/null; }
+install -m 644 partidas_server.py "$DIR/partidas_server.py"
+mkdir -p "$DIR/partidas"
+chmod 700 "$DIR/partidas"
+chown -R pokemon:pokemon "$DIR/partidas"
+cat > /etc/systemd/system/pokemon-pilot-partidas.service <<UNIT
+[Unit]
+Description=Partidas de Pokemon Pilot
+After=network-online.target
+
+[Service]
+User=pokemon
+ExecStart=/usr/bin/env python3 $DIR/partidas_server.py --port $PARTIDAS_PORT --db $DIR/partidas/partidas.db
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+
 # Actualizaciones automáticas de los clientes (docs/PLAN_ACTUALIZACIONES.md): nginx sirve en
 # http://<IP>/pokemon-pilot/ el update.json, su firma y el .pck (con el nombre que dice update.json). El .pck va
 # primero y el update.json al final, así nadie ve un update.json que apunte a un archivo que todavía no está.
@@ -69,6 +91,12 @@ if [ -f update.json ] && [ -f update.sig ]; then
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
+	location /pokemon-pilot/partidas/ {
+		proxy_pass http://127.0.0.1:$PARTIDAS_PORT/;
+		proxy_set_header X-Real-IP \$remote_addr;
+		client_max_body_size 5m;
+		access_log off;
+	}
 	location /pokemon-pilot/ {
 		alias $WWW/;
 		autoindex off;
@@ -103,7 +131,14 @@ fi
 systemctl daemon-reload
 systemctl enable pokemon-pilot >/dev/null 2>&1
 systemctl restart pokemon-pilot
+systemctl enable pokemon-pilot-partidas >/dev/null 2>&1
+systemctl restart pokemon-pilot-partidas
 sleep 8
+if [ -f "$DIR/partidas/panel_token" ]; then
+	echo "Panel de partidas: http://$(hostname -I | awk '{print $1}')/pokemon-pilot/partidas/panel?k=$(cat "$DIR/partidas/panel_token")"
+else
+	echo "OJO: el servicio de partidas no arrancó: journalctl -u pokemon-pilot-partidas" >&2
+fi
 if systemctl is-active --quiet pokemon-pilot && journalctl -u pokemon-pilot -n 30 --no-pager | grep -q "escuchando"; then
 	journalctl -u pokemon-pilot -n 30 --no-pager | grep "escuchando" | tail -1
 	echo "LISTO: el servidor está prendido en el puerto $PORT (UDP)."

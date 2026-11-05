@@ -16,7 +16,7 @@ if not exist "export\Pokemon Pilot\update.sig" (
   exit /b 1
 )
 echo Subiendo el juego a %IP% ... (contrasena del servidor)
-scp -o StrictHostKeyChecking=accept-new "export\Pokemon Pilot\PokemonPilot.pck" "export\Pokemon Pilot\update.json" "export\Pokemon Pilot\update.sig" "tools\server\instalar_servidor.sh" root@%IP%:/root/
+scp -o StrictHostKeyChecking=accept-new "export\Pokemon Pilot\PokemonPilot.pck" "export\Pokemon Pilot\update.json" "export\Pokemon Pilot\update.sig" "tools\server\instalar_servidor.sh" "tools\server\partidas_server.py" root@%IP%:/root/
 if errorlevel 1 goto error
 echo Instalando... (contrasena otra vez)
 ssh -o StrictHostKeyChecking=accept-new root@%IP% "bash /root/instalar_servidor.sh"

@@ -20,6 +20,16 @@ El servidor rechaza un juego de otra versión (`Net.game_version`: huella de ata
    con `scp` y lo corre con `ssh` (pide la contraseña de root del VPS dos veces; está en el panel de Vultr).
 3. Pasar el zip nuevo a los amigos.
 
+## Partidas de los jugadores
+El juego manda cada partida al guardar, las que falten al abrir y, jugando, cómo viene cada 2 minutos (`scripts/autoload/save_sync.gd`,
+solo en la versión portable). Las guarda `tools/server/partidas_server.py` (servicio `pokemon-pilot-partidas`, base en
+`/opt/pokemon-pilot/partidas/partidas.db`, sobrevive a las actualizaciones).
+- **Panel**: `subir_servidor.bat` imprime la dirección al terminar. Para verla de nuevo:
+  `ssh root@216.238.99.5 cat /opt/pokemon-pilot/partidas/panel_token` y abrir `http://216.238.99.5/pokemon-pilot/partidas/panel?k=<token>`.
+  No compartir ese enlace. Para cambiarlo: borrar `panel_token` y `systemctl restart pokemon-pilot-partidas`.
+- Va por HTTP sin cifrar: alcanza para datos del juego, no sumar nada personal. El servicio no guarda direcciones IP.
+- Las partidas borradas en una PC siguen en el panel (a propósito: el historial sirve para detectar cosas raras).
+
 ## Mirar o tocar el servidor
 - Entrar: `ssh root@216.238.99.5` (la contraseña, del panel de Vultr).
 - Estado y últimas líneas: `systemctl status pokemon-pilot` · `journalctl -u pokemon-pilot -f` (las líneas

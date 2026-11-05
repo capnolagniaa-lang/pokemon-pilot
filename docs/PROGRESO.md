@@ -6,6 +6,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-05)
+- **Partidas en el servidor (2026-11-05, pedido del usuario)**: copia de cada partida + historial + panel privado con equipo, Caja, lugar,
+  medallas y dinero (`Sync`, `tools/server/partidas_server.py`, `docs/SERVIDOR_ONLINE.md`). Sin aviso en el juego, por decisión del usuario.
+  Falta (más adelante): detección de cosas raras e inscripción al torneo con el equipo congelado.
 - **Salvajes del agua arreglados (2026-11-05, queja del usuario: "no los veo salir")**: solo salían en 6 de 25 zonas: los de tierra llenaban el cupo y en lagunas chicas nada
   podía aparecer lejos de vos. Ahora tienen cupo aparte, salen cerca tuyo mientras navegás (`WildSpawner._process_water`). El cupo de los de tierra ya no cuenta celdas de agua: hay menos en zonas muy mojadas (Ruta 25: de 9 a 3). `--autotest-water-wilds`: 27 de 27.
 - **Rayo y Lanzallamas nuevos (2026-11-05, pedido del usuario)**: Rayo marca una zona donde apuntás (190 px de alcance, radio 28) y a los 0,55 s cae del cielo; Lanzallamas

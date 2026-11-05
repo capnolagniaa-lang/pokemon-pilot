@@ -65,6 +65,7 @@ $G --headless --path . --quit-after 400000 -- --autotest-story-h4  # capítulos 
 $G --headless --path . --quit-after 60000 -- --autotest-field      # MO de campo: Surf, Fuerza, Poké Flauta
 $G --headless --path . --quit-after 30000 -- --autotest-sky-stream  # Rayo (marca y cae del cielo) y Lanzallamas (chorro sostenido)
 $G --path . --quit-after 100 --write-movie out/f.png --fixed-fps 30 -- --showcase-sky-stream  # los dos en acción
+$G --headless --path . --quit-after 60000 -- --autotest-save-sync  # partidas en el servidor: servicio de verdad con Python en esta PC, subir, panel, token, sin conexión
 $G --headless --path . --quit-after 60000 -- --autotest-burrow    # Excavar en dos tiempos (entrar, moverse, salir, sale solo, online, IA) y el stagger
 $G --path . --quit-after 130 --write-movie out/f.png --fixed-fps 30 -- --showcase-burrow  # Excavar: el pozo, el montículo con su rastro y la erupción
 $G --headless --path . --quit-after 200000 -- --autotest-mansion  # Mansión Pokémon: se llega a todo, no hay lugares sin salida, guardar y cargar adentro, recorrido a pie
@@ -187,6 +188,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   (`ITEM_MAP` de `build_story_npcs.py`), los 8 líderes (`reward_items`), regalos (MT27, MT29, MO02, MO05) y las tiendas de
   Azulona (`data/shops/ciudad_azulona_mt` y `_premios`: lo que en FireRed era de las Islas Sete, la azotea o el Casino).
   Partidas viejas: un ataque de MT que estaba equipado queda como enseñado (`from_dict`). **Enseñar a todos** (Mochila → Usar una MT, `GameState.teach_all`): equipo y Caja; los del equipo con las 4 ranuras llenas preguntan después si reemplazar uno.
+- **Partidas en el servidor** (pedido del usuario 2026-11-05, sin aviso en el juego por decisión suya): autoload `Sync` (`SaveSync`, solo en la versión portable) manda a `http://<servidor>/pokemon-pilot/partidas/subir` cada partida al guardar, las que falten al abrir y, jugando, la partida en curso cada 2 min; código de instalación al azar (`user://save_sync.cfg`). `tools/server/partidas_server.py` (Python sin dependencias, servicio `pokemon-pilot-partidas` detrás de nginx, SQLite en `/opt/pokemon-pilot/partidas`): última copia + historial (una foto cada 10 min jugando, siempre al guardar). Panel privado con el token de `panel_token`: `docs/SERVIDOR_ONLINE.md`.
 - **Máquina de estados** genérica `StateMachine` + `State` (`scripts/core/`); los estados son nodos hijos
   con script (`scripts/characters/states`, `scripts/creatures/states`).
 - **Una escena por responsabilidad** (`scenes/`). Entidades usan origen en los pies (y-sort).
