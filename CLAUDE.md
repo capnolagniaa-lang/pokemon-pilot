@@ -146,7 +146,7 @@ $G --path . -- --map-editor                                        # editor de m
 python -I tools/pret_import.py art_src/pret art/pret && $G --headless --path . --import && $G --headless --path . --quit-after 20000 --script res://tools/build_world.gd -- --tileset  # reimportar FireRed
 $G --path . -- --debug --start-zone ruta1 --start-cell 20,12        # juego directo en una zona (lo usa F5 del editor)
 ```
-El usuario juega con el acceso directo **"Pokémon Pilot"** del escritorio: el cliente de `C:\Users\Gusti\Documents\claude\Pokemon Pilot\` (exe + .pck, fuera del repo, decisión del usuario 2026-11-05). Se actualiza solo desde el servidor, como el de los amigos: **lo nuevo le llega recién al subir la versión**, y `build_portable.py` no lo toca.
+El usuario juega con el acceso directo **"Pokémon Pilot"** del escritorio: el cliente de `C:\Users\Gusti\Documents\claude\Pokemon Pilot\` (exe + .pck, fuera del repo, decisión del usuario 2026-11-05). Se actualiza solo desde el servidor, como el de los amigos: **lo nuevo le llega recién al subir la versión**, y `build_portable.py` no lo toca. Para probar lo último sin subirlo: **"Pokémon Pilot - Local"** (Godot con `--path` del proyecto: mismas partidas, sin actualizarse ni mandar nada al servidor).
 **Servidor online** (VPS de Vultr, IP en `Net.OFFICIAL_SERVER`): guía `docs/SERVIDOR_ONLINE.md`; cada zip nuevo va con `tools/server/subir_servidor.bat` (si no, el servidor lo rechaza por versión).
 **Actualizaciones automáticas** (`docs/PLAN_ACTUALIZACIONES.md`, decisión del usuario 2026-11-01: el juego se actualiza solo y
 es obligatorio): autoload `Updater` (`GameUpdater`, solo en la versión portable) pide `http://<servidor>/pokemon-pilot/update.json`
