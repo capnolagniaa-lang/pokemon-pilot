@@ -65,12 +65,7 @@ func run() -> void:
 	me = await _switch_check(me)
 
 	# Lanzar bola
-	var wild: Creature = autotest._dummy(world, "rattata", world.trainer.global_position + Vector2(60, 0))
-	await get_tree().physics_frame
-	r["La bola va al salvaje más cercano"] = world.items._pad_throw_point().distance_to(wild.global_position) < 1.0
-	wild.queue_free()
-	await get_tree().physics_frame
-	r["Sin salvajes, adelante"] = world.items._pad_throw_point().distance_to(world.trainer.global_position) > 20.0
+	await _ball_aim()
 
 	# F vuelve a sacarlo con B
 	var was: bool = world.combat.in_battle
@@ -129,6 +124,163 @@ func run() -> void:
 		ok = ok and r[k]
 	print("[autotest-gamepad] -> %s" % ("OK" if ok else "FALLO"))
 	get_tree().quit(0 if ok else 1)
+
+
+## La Pokébola: un toque al más cercano; mantener = mira con el stick derecho.
+func _ball_aim() -> void:
+	var items: PlayerItems = world.items
+	GameState.add_item("poke_ball", 10)
+	var from: Vector2 = world.trainer.global_position
+	var balls := func() -> Array: return world.entities.get_children().filter(func(c): return c is BallThrow)
+	var last_ball := func() -> BallThrow:
+		var all: Array = balls.call()
+		return all[-1] if not all.is_empty() else null
+
+	# Un toque: al más cercano, sin mira
+	var wild: Creature = autotest._dummy(world, "rattata", from + Vector2(60, 0))
+	await get_tree().physics_frame
+	await _capture_down()
+	await _frames(2)
+	r["Al apretar todavía no se ve la mira"] = items.is_aiming() and items.aim_mark() == null
+	await _capture_up()
+	await _frames(2)
+	var b: BallThrow = last_ball.call()
+	r["Un toque: lanza al salvaje más cercano"] = b != null and b.to.distance_to(wild.global_position) < 8.0 and not items.is_aiming()
+	if is_instance_valid(wild):
+		wild.queue_free()
+	await get_tree().create_timer(1.0).timeout
+	items._cooldown = 0.0
+
+	# Un salvaje que se mueve: apunta un poco adelante
+	wild = autotest._dummy(world, "rattata", from + Vector2(60, 0))
+	await get_tree().physics_frame
+	wild.velocity = Vector2(100, 0)
+	await _capture_down()
+	await _frames(2)
+	r["Si se mueve, apunta un poco adelante"] = items.aim_throw_point().x > wild.global_position.x + 10.0
+	# Mantener: la mira aparece encima
+	await get_tree().create_timer(PlayerItems.AIM_HOLD + 0.1).timeout
+	var mark: BallAim = items.aim_mark()
+	r["Manteniendo aparece la mira sobre el salvaje"] = mark != null and mark.visible and mark.locked and mark.global_position.distance_to(wild.global_position) < 2.0
+	# Stick derecho: se suelta y se mueve
+	await _right_stick(Vector2(0, -1))
+	await get_tree().create_timer(0.25).timeout
+	await _right_stick(Vector2.ZERO)
+	await _frames(2)
+	var moved := items.aim_mark()
+	r["El stick derecho la mueve y se suelta del salvaje"] = moved != null and not moved.locked and moved.global_position.y < wild.global_position.y - 30.0
+	var point: Vector2 = items.aim_throw_point()
+	await _capture_up()
+	await _frames(2)
+	b = last_ball.call()
+	r["Al soltar cae en la mira"] = b != null and b.to.distance_to(point) < 8.0
+	r["Y la mira se va"] = items.aim_mark() == null or not is_instance_valid(items.aim_mark())
+	await get_tree().create_timer(1.0).timeout
+	items._cooldown = 0.0
+
+	# Se pega a otro salvaje
+	await _capture_down()
+	await get_tree().create_timer(PlayerItems.AIM_HOLD + 0.05).timeout
+	await _right_stick(Vector2(0, -1))
+	await get_tree().create_timer(0.2).timeout
+	await _right_stick(Vector2(0, 1))
+	var back := func() -> bool: return items._aim_point.distance_to(wild.global_position) < PlayerItems.AIM_MAGNET - 4.0
+	var left := 1.0
+	while left > 0.0 and not back.call():
+		await get_tree().process_frame
+		left -= get_process_delta_time()
+	await _right_stick(Vector2.ZERO)
+	await _frames(3)
+	r["Se pega al salvaje que tiene cerca"] = items.aim_mark() != null and items.aim_mark().locked
+
+	# No se va más lejos que el alcance
+	await _right_stick(Vector2(1, 0))
+	await get_tree().create_timer(1.2).timeout
+	r["La mira no pasa del alcance"] = items.aim_mark().global_position.distance_to(world.trainer.global_position) <= PlayerItems.THROW_RANGE + 1.0
+	await _right_stick(Vector2.ZERO)
+
+	# El menú cancela
+	world.pause_menu.try_open()
+	await _frames(3)
+	await _capture_up()
+	world.pause_menu.close()
+	var n: int = balls.call().size()
+	await _frames(3)
+	r["Abrir el menú cancela, no se lanza"] = not items.is_aiming() and balls.call().size() == n
+
+	if is_instance_valid(wild):
+		wild.queue_free()
+	await get_tree().physics_frame
+	# Sin salvajes, adelante
+	items._cooldown = 0.0
+	await _capture_down()
+	await _frames(2)
+	r["Sin salvajes, adelante"] = items.aim_throw_point().distance_to(world.trainer.global_position) > 20.0
+	await _capture_up()
+	await _frames(2)
+	await get_tree().create_timer(1.0).timeout
+	items._cooldown = 0.0
+	# Con teclado no cambia
+	await get_tree().process_frame
+	var key := InputEventKey.new()
+	key.physical_keycode = KEY_E
+	key.pressed = true
+	Input.parse_input_event(key)
+	Input.flush_buffered_events()
+	await _frames(2)
+	r["Con teclado y mouse no hay mira nueva: lanza al apretar"] = not Controls.gamepad and not items.is_aiming() and balls.call().size() > 0
+	var key_up := InputEventKey.new()
+	key_up.physical_keycode = KEY_E
+	key_up.pressed = false
+	Input.parse_input_event(key_up)
+	Input.flush_buffered_events()
+	await _button(JOY_BUTTON_DPAD_UP)
+	await get_tree().create_timer(1.0).timeout
+
+
+func _capture_down() -> void:
+	await get_tree().process_frame
+	var ev := InputEventJoypadButton.new()
+	ev.button_index = JOY_BUTTON_Y
+	ev.pressed = true
+	Input.parse_input_event(ev)
+	Input.flush_buffered_events()
+
+
+func _capture_up() -> void:
+	await get_tree().process_frame
+	var ev := InputEventJoypadButton.new()
+	ev.button_index = JOY_BUTTON_Y
+	ev.pressed = false
+	Input.parse_input_event(ev)
+	Input.flush_buffered_events()
+
+
+func _right_stick(v: Vector2) -> void:
+	await get_tree().process_frame
+	for pair in [[JOY_AXIS_RIGHT_X, v.x], [JOY_AXIS_RIGHT_Y, v.y]]:
+		var ev := InputEventJoypadMotion.new()
+		ev.axis = pair[0]
+		ev.axis_value = pair[1]
+		Input.parse_input_event(ev)
+	Input.flush_buffered_events()
+
+
+## Para ver la mira: --showcase-ball-aim.
+func showcase() -> void:
+	world = await autotest._setup_kit_world("charmander")
+	world.combat.end_battle()
+	Controls.gamepad = true
+	GameState.add_item("poke_ball", 5)
+	var from: Vector2 = world.trainer.global_position
+	var wild: Creature = autotest._dummy(world, "rattata", from + Vector2(70, 10))
+	await get_tree().physics_frame
+	await _capture_down()
+	await get_tree().create_timer(1.0).timeout
+	await _right_stick(Vector2(-0.3, -1))
+	await get_tree().create_timer(0.4).timeout
+	await _right_stick(Vector2.ZERO)
+	wild.get_instance_id()
 
 
 ## La cruceta: siguiente, anterior, y salta a los debilitados.

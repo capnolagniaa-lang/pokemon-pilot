@@ -42,7 +42,7 @@ const PAGES := [
 		"Stick izquierdo: moverte.  Apretar {run} una vez: corrés hasta que te pares.",
 		"{attack_1}, {attack_2}, {attack_3} y {attack_4}: los 4 ataques. Salen hacia donde mira tu Pokémon.",
 		"{dodge}: esquivar.  {battle_toggle}: sacar o guardar a tu Pokémon.  {quick_item}: objeto rápido.",
-		"{capture}: hablar o lanzar bola (va al salvaje más cercano).",
+		"{capture}: hablar o lanzar bola. Un toque va al salvaje más cercano; si lo mantenés aparece una mira que movés con el stick derecho, y sale al soltar.",
 		"{switch_prev} y {switch_next}: el Pokémon anterior o el siguiente.  {menu}: menú.  {minimap}: minimapa.",
 		"Mantené {pokemon_wheel}: ruleta con tu equipo. El stick izquierdo marca a uno y al soltar sale ese (Círculo cancela). El tiempo va lento, salvo online.",
 		"Ataques de zona (Rayo, Trueno...): un toque cae encima tuyo; mantené el botón y la marca se aleja hasta su alcance. Sale al soltar.",

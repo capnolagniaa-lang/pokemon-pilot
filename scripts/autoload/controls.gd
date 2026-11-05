@@ -43,6 +43,11 @@ const KEYS := {
 	"menu_tab_prev": [],
 	"menu_scroll_up": [],
 	"menu_scroll_down": [],
+	## Mover la mira de la Pokébola (stick derecho, PlayerItems): tampoco se configura.
+	"aim_left": [],
+	"aim_right": [],
+	"aim_up": [],
+	"aim_down": [],
 }
 
 const PAD_BUTTONS := {
@@ -71,6 +76,10 @@ const PAD_AXES := {
 	"quick_item": [JOY_AXIS_TRIGGER_LEFT, 1.0],
 	"menu_scroll_up": [JOY_AXIS_RIGHT_Y, -1.0],
 	"menu_scroll_down": [JOY_AXIS_RIGHT_Y, 1.0],
+	"aim_left": [JOY_AXIS_RIGHT_X, -1.0],
+	"aim_right": [JOY_AXIS_RIGHT_X, 1.0],
+	"aim_up": [JOY_AXIS_RIGHT_Y, -1.0],
+	"aim_down": [JOY_AXIS_RIGHT_Y, 1.0],
 }
 ## Los menús y las charlas (si Godot no los trae ya).
 const UI_PAD := {"ui_accept": JOY_BUTTON_A, "ui_cancel": JOY_BUTTON_B, "ui_up": JOY_BUTTON_DPAD_UP, "ui_down": JOY_BUTTON_DPAD_DOWN,
