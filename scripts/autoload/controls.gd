@@ -2,8 +2,8 @@ extends Node
 ## Registra las acciones de input (teclas físicas, así funciona con cualquier distribución).
 ## Combate: Clic izq. = ataque 1 · Clic der. = ataque 2 · Q = ataque 3 · R = ataque 4 (el de más recarga) ·
 ## Espacio = esquive. Los números 1-6 cambian al Pokémon de ese lugar del equipo (también en combate).
-## Joystick (2026-11-05, nombres de Xbox): RT, LT, RB y LB = los 4 ataques, que salen hacia donde mira el Pokémon
-## (decisión del usuario; CombatInput). `gamepad` dice qué se usó último: tocar el teclado o el mouse vuelve a la mira.
+## Joystick (2026-11-05, botones elegidos por el usuario; los nombres de JOY_BUTTON son de Xbox): Cuadrado, Cruz, Círculo y
+## R1 = los 4 ataques, que salen hacia donde mira el Pokémon (CombatInput); L1 = esquive; L3 = correr (Trainer). `gamepad` dice qué se usó último: tocar el teclado o el mouse vuelve a la mira.
 
 const KEYS := {
 	"move_up": [KEY_W, KEY_UP],
@@ -36,12 +36,12 @@ const KEYS := {
 }
 
 const PAD_BUTTONS := {
-	"attack_3": JOY_BUTTON_RIGHT_SHOULDER,
-	"attack_4": JOY_BUTTON_LEFT_SHOULDER,
-	"dodge": JOY_BUTTON_A,
-	"capture": JOY_BUTTON_X,
-	"quick_item": JOY_BUTTON_Y,
-	"battle_toggle": JOY_BUTTON_B,
+	"attack_1": JOY_BUTTON_X,
+	"attack_2": JOY_BUTTON_A,
+	"attack_3": JOY_BUTTON_B,
+	"attack_4": JOY_BUTTON_RIGHT_SHOULDER,
+	"dodge": JOY_BUTTON_LEFT_SHOULDER,
+	"capture": JOY_BUTTON_Y,
 	"run": JOY_BUTTON_LEFT_STICK,
 	"pause": JOY_BUTTON_START,
 	"minimap": JOY_BUTTON_BACK,
@@ -54,9 +54,17 @@ const PAD_AXES := {
 	"move_right": [JOY_AXIS_LEFT_X, 1.0],
 	"move_up": [JOY_AXIS_LEFT_Y, -1.0],
 	"move_down": [JOY_AXIS_LEFT_Y, 1.0],
-	"attack_1": [JOY_AXIS_TRIGGER_RIGHT, 1.0],
-	"attack_2": [JOY_AXIS_TRIGGER_LEFT, 1.0],
+	"battle_toggle": [JOY_AXIS_TRIGGER_RIGHT, 1.0],
+	"quick_item": [JOY_AXIS_TRIGGER_LEFT, 1.0],
 }
+## Los menús y las charlas (si Godot no los trae ya).
+const UI_PAD := {"ui_accept": JOY_BUTTON_A, "ui_cancel": JOY_BUTTON_B, "ui_up": JOY_BUTTON_DPAD_UP, "ui_down": JOY_BUTTON_DPAD_DOWN,
+	"ui_left": JOY_BUTTON_DPAD_LEFT, "ui_right": JOY_BUTTON_DPAD_RIGHT}
+## Cómo se llaman los botones en cada mando (en palabras: la letra del juego no trae los símbolos de PlayStation).
+const PAD_XBOX := {"attack_1": "X", "attack_2": "A", "attack_3": "B", "attack_4": "RB", "dodge": "LB", "capture": "Y",
+	"battle_toggle": "RT", "quick_item": "LT", "pause": "Start"}
+const PAD_PS := {"attack_1": "Cuadrado", "attack_2": "Cruz", "attack_3": "Círculo", "attack_4": "R1", "dodge": "L1", "capture": "Triángulo",
+	"battle_toggle": "R2", "quick_item": "L2", "pause": "Options"}
 const PAD_DEADZONE := 0.3
 ## Cuánto hay que mover un stick o gatillo para que cuente como "ahora uso el joystick" (un stick gastado queda algo corrido).
 const PAD_WAKE := 0.5
@@ -75,23 +83,38 @@ const MOUSE := {
 const SLOT_ACTIONS := ["attack_1", "attack_2", "attack_3", "attack_4"]
 ## Cómo se muestran en la interfaz.
 const SLOT_KEYS := ["Clic", "Clic der.", "Q", "R"]
-const SLOT_PAD := ["RT", "LT", "RB", "LB"]
 
 ## ¿Lo último que se tocó fue el joystick?
 var gamepad := false
 
 
+## Nombre del último mando que se tocó (de ahí salen los nombres de los botones).
+var pad_name := ""
+
+
 ## Cómo se llama ahora la tecla de un ataque.
 func slot_key(i: int) -> String:
-	var names: Array = SLOT_PAD if gamepad else SLOT_KEYS
-	return names[i] if i < names.size() else str(i + 1)
+	if i >= SLOT_ACTIONS.size():
+		return str(i + 1)
+	return pad_label(SLOT_ACTIONS[i]) if gamepad else SLOT_KEYS[i]
+
+
+## Cómo se llama el botón de una acción en el mando que estás usando.
+func pad_label(action: String) -> String:
+	return (PAD_PS if is_playstation(pad_name) else PAD_XBOX).get(action, "")
+
+
+static func is_playstation(joy_name: String) -> bool:
+	var n := joy_name.to_lower()
+	return "dualsense" in n or "dualshock" in n or "playstation" in n or n.begins_with("ps") or n == "wireless controller"
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventJoypadButton:
-		gamepad = gamepad or event.pressed
-	elif event is InputEventJoypadMotion:
-		gamepad = gamepad or absf(event.axis_value) >= PAD_WAKE
+	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		var woke: bool = event.pressed if event is InputEventJoypadButton else absf(event.axis_value) >= PAD_WAKE
+		if woke:
+			gamepad = true
+			pad_name = Input.get_joy_name(event.device)
 	elif event is InputEventKey or event is InputEventMouseButton:
 		gamepad = gamepad and not event.pressed
 	elif event is InputEventMouseMotion:
@@ -127,3 +150,9 @@ func _ready() -> void:
 		ev.device = -1
 		InputMap.action_add_event(action, ev)
 		InputMap.action_set_deadzone(action, PAD_DEADZONE)
+	for action in UI_PAD:
+		var ev := InputEventJoypadButton.new()
+		ev.button_index = UI_PAD[action]
+		ev.device = -1
+		if not InputMap.action_has_event(action, ev):
+			InputMap.action_add_event(action, ev)

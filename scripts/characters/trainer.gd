@@ -26,6 +26,8 @@ const FOLLOW_RUN := 150.0
 ## Ángulos para rodear lo que tenga adelante (como la IA de las criaturas).
 const DETOUR := [0.0, 40.0, -40.0, 80.0, -80.0, 120.0, -120.0]
 var _following := false
+## Joystick: con apretar L3 una vez corre hasta que se para (pedido del usuario 2026-11-05).
+var _pad_running := false
 
 var _anim_time := 0.0
 
@@ -35,6 +37,13 @@ var _anim_time := 0.0
 
 func _ready() -> void:
 	trail.append(global_position)
+
+
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("run") and Controls.gamepad:
+		_pad_running = true
+	if locked or input_dir() == Vector2.ZERO:
+		_pad_running = false
 
 
 func input_dir() -> Vector2:
@@ -49,7 +58,7 @@ func wants_run() -> bool:
 	if locked:
 		return _following and is_instance_valid(follow_target) \
 			and global_position.distance_to(follow_target.global_position) > FOLLOW_RUN
-	return (autopilot_run and autopilot != Vector2.ZERO) or Input.is_action_pressed("run")
+	return (autopilot_run and autopilot != Vector2.ZERO) or Input.is_action_pressed("run") or _pad_running
 
 
 ## Hacia dónde caminar para seguir a `follow_target` (ZERO si está cerca o no hay a quién seguir).

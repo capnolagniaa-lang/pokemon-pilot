@@ -30,7 +30,7 @@ func run() -> void:
 	await _stick(Vector2(-1, 0))
 	var x0: float = me.global_position.x
 	await get_tree().create_timer(0.3).timeout
-	r["Tocar el joystick cambia de modo y el nombre de los botones"] = Controls.gamepad and Controls.slot_key(0) == "RT"
+	r["Tocar el joystick cambia de modo y el nombre de los botones"] = Controls.gamepad and Controls.slot_key(0) == "X" and Controls.slot_key(3) == "RB"
 	r["El stick mueve al Pokémon"] = me.global_position.x < x0 - 5.0
 	r["Y lo hace mirar para ese lado"] = me.facing.x < -0.9
 	await _stick(Vector2.ZERO)
@@ -41,10 +41,8 @@ func run() -> void:
 	Events.move_used.connect(func(_u, m): used.append(m.id))
 	me.moves.slots[0] = DB.moves["ascuas"]
 	me.moves.reset_cooldown(0)
-	await _axis(JOY_AXIS_TRIGGER_RIGHT, 1.0)
-	await _frames(3)
-	await _axis(JOY_AXIS_TRIGGER_RIGHT, 0.0)
-	r["RT tira el ataque 1"] = used.has("ascuas")
+	await _hold(JOY_BUTTON_X)
+	r["Cuadrado (X) tira el ataque 1"] = used.has("ascuas")
 	r["El ataque sale para donde mira"] = me.facing.x < -0.9
 	var shots: Array = world.entities.get_children().filter(func(c): return c is Projectile)
 	r["El disparo va hacia allá"] = not shots.is_empty() and shots.all(func(s): return s.velocity.x < 0.0)
@@ -61,8 +59,8 @@ func run() -> void:
 	await _frames(3)
 
 	# Botones
-	await _button(JOY_BUTTON_A)
-	r["A esquiva"] = me.machine.current_name() == "dash" or me.health.invulnerable_time > 0.0
+	await _hold(JOY_BUTTON_LEFT_SHOULDER)
+	r["L1 (LB) esquiva"] = me.machine.current_name() == "dash" or me.health.invulnerable_time > 0.0
 	await get_tree().create_timer(0.5).timeout
 	me = await _switch_check(me)
 
@@ -76,9 +74,40 @@ func run() -> void:
 
 	# F vuelve a sacarlo con B
 	var was: bool = world.combat.in_battle
-	await _button(JOY_BUTTON_B)
+	await _axis(JOY_AXIS_TRIGGER_RIGHT, 1.0)
 	await _frames(2)
-	r["B saca o guarda al Pokémon"] = world.combat.in_battle != was
+	await _axis(JOY_AXIS_TRIGGER_RIGHT, 0.0)
+	await _frames(2)
+	r["R2 (RT) saca o guarda al Pokémon"] = world.combat.in_battle != was
+
+	# Correr con L3: una vez y sigue hasta que te parás
+	if world.combat.in_battle:
+		world.combat.end_battle()
+	await _frames(3)
+	var t: Trainer = world.trainer
+	await _stick(Vector2(1, 0))
+	await _frames(3)
+	r["Caminando no corre solo"] = not t.wants_run()
+	await _hold(JOY_BUTTON_LEFT_STICK)
+	await _frames(3)
+	r["L3 una vez: sigue corriendo con el botón suelto"] = t.wants_run()
+	await _stick(Vector2.ZERO)
+	await _frames(3)
+	await _stick(Vector2(1, 0))
+	await _frames(3)
+	r["Al pararse deja de correr"] = not t.wants_run()
+	await _stick(Vector2.ZERO)
+	await _frames(2)
+
+	# Nombres según el mando, y los botones de las charlas
+	r["Reconoce los mandos de PlayStation"] = Controls.is_playstation("DualSense Wireless Controller") \
+		and Controls.is_playstation("PS4 Controller") and not Controls.is_playstation("Xbox Series Controller")
+	Controls.pad_name = "DualSense Wireless Controller"
+	r["Con DualSense los nombres son los suyos"] = Controls.slot_key(0) == "Cuadrado" and Controls.slot_key(3) == "R1" and Controls.pad_label("dodge") == "L1"
+	Controls.pad_name = ""
+	var accept := InputEventJoypadButton.new()
+	accept.button_index = JOY_BUTTON_A
+	r["Cruz (A) acepta en las charlas y los menús"] = InputMap.event_is_action(accept, "ui_accept")
 
 	# Volver al teclado o al mouse
 	var key := InputEventKey.new()
@@ -158,6 +187,23 @@ func _button(button: JoyButton) -> void:
 	up.pressed = false
 	Input.parse_input_event(up)
 	Input.flush_buffered_events()
+
+
+## Apretado unos cuadros, como un toque de verdad (lo leen en _physics_process).
+func _hold(button: JoyButton) -> void:
+	await get_tree().physics_frame
+	var ev := InputEventJoypadButton.new()
+	ev.button_index = button
+	ev.pressed = true
+	Input.parse_input_event(ev)
+	Input.flush_buffered_events()
+	await _frames(3)
+	var up := InputEventJoypadButton.new()
+	up.button_index = button
+	up.pressed = false
+	Input.parse_input_event(up)
+	Input.flush_buffered_events()
+	await _frames(1)
 
 
 func _frames(n: int) -> void:

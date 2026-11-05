@@ -70,12 +70,22 @@ func _draw() -> void:
 		var mode := "IA: %s%s%s" % [GameState.difficulty.display_name, "  ·  Modo práctica" if GameState.practice_mode else "",
 			"  ·  Entrenadores vivos" if GameState.living_trainers else ""]
 		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
-	var hint := ("Stick mover · RT / LT / RB / LB ataques · A esquivar · Cruceta cambiar · X bola · Y objeto · B volver" if in_battle \
-		else "Stick mover · L3 correr · B sacar a tu Pokémon · Cruceta cambiar · X hablar / lanzar bola · Y objeto · Start menú") if Controls.gamepad \
+	var hint := _pad_hint(in_battle) if Controls.gamepad \
 		else "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · 1-6 cambiar · E bola · C objeto · F volver" if in_battle \
 		else "WASD mover · Shift correr · F sacar a tu Pokémon · 1-6 cambiar · E hablar / lanzar bola · C objeto · Esc menú"
 	# Arriba de los paneles de abajo (antes iba en el borde y pisaba las ranuras de ataque).
 	draw_string(font, Vector2(0, size.y - 112), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
+
+
+## La ayuda con joystick, con los nombres de los botones de ese mando.
+func _pad_hint(in_battle: bool) -> String:
+	var p := func(action: String) -> String: return Controls.pad_label(action)
+	if not in_battle:
+		return "Stick mover · L3 correr · %s sacar a tu Pokémon · Cruceta cambiar · %s hablar / lanzar bola · %s objeto · %s menú" % [
+			p.call("battle_toggle"), p.call("capture"), p.call("quick_item"), p.call("pause")]
+	return "Stick mover · %s / %s / %s / %s ataques · %s esquivar · Cruceta cambiar · %s bola · %s objeto · %s volver" % [
+		p.call("attack_1"), p.call("attack_2"), p.call("attack_3"), p.call("attack_4"), p.call("dodge"), p.call("capture"),
+		p.call("quick_item"), p.call("battle_toggle")]
 
 
 ## Mochila rápida: la bola que lanza E y el objeto que usa C, con cuántos quedan.
@@ -84,7 +94,7 @@ func _draw_items() -> void:
 	_panel(r)
 	var ball: ItemData = _world.items.ball_to_throw() if _world.items != null else null
 	var quick: ItemData = DB.items.get(GameState.quick_item)
-	var rows := [["E", ball, "Sin Pokéballs"], ["C", quick, "Sin objeto rápido"]]
+	var rows := [[Controls.pad_label("capture") if Controls.gamepad else "E", ball, "Sin Pokéballs"], [Controls.pad_label("quick_item") if Controls.gamepad else "C", quick, "Sin objeto rápido"]]
 	for i in rows.size():
 		var y := r.position.y + 8 + i * 30
 		var it: ItemData = rows[i][1]
@@ -192,7 +202,7 @@ func _draw_moves(c: Creature) -> void:
 	# Esquive (Espacio)
 	var d := Rect2(412 + 4 * 112, size.y - 104, 62, 88)
 	_panel(d)
-	draw_string(font, d.position + Vector2(0, 30), "Espacio", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 11, Color(1, 1, 1, 0.75))
+	draw_string(font, d.position + Vector2(0, 30), Controls.pad_label("dodge") if Controls.gamepad else "Espacio", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 11, Color(1, 1, 1, 0.75))
 	draw_string(font, d.position + Vector2(0, 54), "Esquive", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 12)
 	var dk := c.moves.dodge_cooldown / (MoveUser.DODGE_COOLDOWN * float(GameState.setting("cooldown_mult")))
 	if dk > 0.0:

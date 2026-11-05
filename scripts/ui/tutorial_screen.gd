@@ -40,9 +40,11 @@ const PAGES := [
 	]],
 	["Con joystick", [
 		"Stick izquierdo: moverte.  Apretarlo (L3): correr.",
-		"RT, LT, RB y LB: los 4 ataques. Salen hacia donde mira tu Pokémon; las zonas caen un poco más adelante.",
-		"A: esquivar y aceptar.  B: sacar o guardar a tu Pokémon.  X: hablar o lanzar bola (va al salvaje más cercano).  Y: objeto rápido.",
-		"Cruceta izquierda y derecha: el Pokémon anterior o el siguiente.  Start: menú.  Select: minimapa.",
+		"Ataques: Cuadrado, Cruz, Círculo y R1 (Xbox: X, A, B y RB). Salen hacia donde mira tu Pokémon; las zonas caen un poco más adelante.",
+		"L1 (LB): esquivar.  R2 (RT): sacar o guardar a tu Pokémon.  L2 (LT): objeto rápido.",
+		"Triángulo (Y): hablar o lanzar bola (va al salvaje más cercano).  Cruz (A): aceptar en los menús y las charlas.",
+		"Apretar el stick (L3) una vez: corrés hasta que te pares.",
+		"Cruceta izquierda y derecha: el Pokémon anterior o el siguiente.  Options (Start): menú.  Create (Select): minimapa.",
 		"Tocá el teclado o el mouse cuando quieras y vuelve la mira. Algunos menús todavía se manejan mejor con el mouse.",
 	]],
 	["Tu equipo", [
