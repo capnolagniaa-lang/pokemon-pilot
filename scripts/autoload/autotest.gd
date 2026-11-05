@@ -273,6 +273,13 @@ func _ready() -> void:
 		add_child(bt)
 		(bt.showcase if "--showcase-burrow" in OS.get_cmdline_user_args() else bt.run).call_deferred()
 		return
+	if "--autotest-menus" in OS.get_cmdline_user_args() or "--showcase-controls" in OS.get_cmdline_user_args():
+		set_process(false)
+		var mn := MenuTests.new()
+		mn.autotest = self
+		add_child(mn)
+		mn.run.call_deferred()
+		return
 	if "--autotest-gamepad" in OS.get_cmdline_user_args():
 		set_process(false)
 		var gp := GamepadTests.new()

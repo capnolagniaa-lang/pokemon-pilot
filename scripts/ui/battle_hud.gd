@@ -71,10 +71,20 @@ func _draw() -> void:
 			"  ·  Entrenadores vivos" if GameState.living_trainers else ""]
 		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
 	var hint := _pad_hint(in_battle) if Controls.gamepad \
-		else "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · 1-6 cambiar · E bola · C objeto · F volver" if in_battle \
-		else "WASD mover · Shift correr · F sacar a tu Pokémon · 1-6 cambiar · E hablar / lanzar bola · C objeto · Esc menú"
+		else _key_hint(in_battle)
 	# Arriba de los paneles de abajo (antes iba en el borde y pisaba las ranuras de ataque).
 	draw_string(font, Vector2(0, size.y - 112), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
+
+
+## La ayuda con teclado y mouse, con las teclas que eligió.
+func _key_hint(in_battle: bool) -> String:
+	var k := func(action: String) -> String: return Controls.key_label(action)
+	if not in_battle:
+		return "Mover · %s correr · %s sacar a tu Pokémon · 1-6 cambiar · %s hablar / lanzar bola · %s objeto · Esc menú" % [
+			k.call("run"), k.call("battle_toggle"), k.call("capture"), k.call("quick_item")]
+	return "Mover · Mouse apuntar · %s / %s / %s / %s ataques · %s esquivar · 1-6 cambiar · %s bola · %s objeto · %s volver" % [
+		k.call("attack_1"), k.call("attack_2"), k.call("attack_3"), k.call("attack_4"), k.call("dodge"), k.call("capture"),
+		k.call("quick_item"), k.call("battle_toggle")]
 
 
 ## La ayuda con joystick, con los nombres de los botones de ese mando.
@@ -94,7 +104,7 @@ func _draw_items() -> void:
 	_panel(r)
 	var ball: ItemData = _world.items.ball_to_throw() if _world.items != null else null
 	var quick: ItemData = DB.items.get(GameState.quick_item)
-	var rows := [[Controls.pad_label("capture").left(3) if Controls.gamepad else "E", ball, "Sin Pokéballs"], [Controls.pad_label("quick_item") if Controls.gamepad else "C", quick, "Sin objeto rápido"]]
+	var rows := [[Controls.label("capture").left(3), ball, "Sin Pokéballs"], [Controls.label("quick_item").left(3), quick, "Sin objeto rápido"]]
 	for i in rows.size():
 		var y := r.position.y + 8 + i * 30
 		var it: ItemData = rows[i][1]
@@ -202,7 +212,7 @@ func _draw_moves(c: Creature) -> void:
 	# Esquive (Espacio)
 	var d := Rect2(412 + 4 * 112, size.y - 104, 62, 88)
 	_panel(d)
-	draw_string(font, d.position + Vector2(0, 30), Controls.pad_label("dodge") if Controls.gamepad else "Espacio", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 11, Color(1, 1, 1, 0.75))
+	draw_string(font, d.position + Vector2(0, 30), Controls.label("dodge"), HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 11, Color(1, 1, 1, 0.75))
 	draw_string(font, d.position + Vector2(0, 54), "Esquive", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 12)
 	var dk := c.moves.dodge_cooldown / (MoveUser.DODGE_COOLDOWN * float(GameState.setting("cooldown_mult")))
 	if dk > 0.0:

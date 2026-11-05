@@ -6,10 +6,11 @@ extends State
 const ORDER := [3, 2, 1, 0]
 
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 	var input: CombatInput = actor.input_source
 	if input == null:
 		return
+	input.tick(actor, delta)
 	var dir := input.move_dir(actor)
 	actor.move(dir, actor.speed())
 	var aim := input.aim(actor)  # (después de moverse: con joystick se apunta hacia donde mira)

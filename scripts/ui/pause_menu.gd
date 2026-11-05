@@ -84,7 +84,8 @@ func close() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_action_pressed("pause"):
+	# (Círculo también vuelve, con el menú abierto; las pantallas con su propio "volver" lo agarran antes.)
+	if not event.is_action_pressed("pause") and not (visible and event.is_action_pressed("ui_cancel")):
 		return
 	get_viewport().set_input_as_handled()
 	if not visible:
@@ -106,7 +107,7 @@ func _build() -> void:
 	_main.add_child(box)
 	box.add_child(UiStyle.label("MENÚ", 20, UiStyle.ACCENT))
 	var entries := [["Guía", _open_guide], ["Cómo se juega", _open_tutorial], ["Mapa", _open_map], ["Equipo", _open_party], ["Mochila", _open_bag], ["Caja", _open_box],
-		["Pokédex", _open_pokedex], ["Tarjeta", _open_card], ["Guardar", _save], ["Opciones", _open_options],
+		["Pokédex", _open_pokedex], ["Tarjeta", _open_card], ["Guardar", _save], ["Opciones", _open_options], ["Controles", _open_controls],
 		["Volver al título", _to_title], ["Cerrar", close]]
 	for e in entries:
 		var b := UiStyle.button(e[0], 240)
@@ -125,7 +126,11 @@ func _build() -> void:
 	_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_status.custom_minimum_size.x = 240
 	box.add_child(_status)
-	box.add_child(UiStyle.label("Esc: volver", 12, UiStyle.TEXT_DIM))
+	box.add_child(UiStyle.label("Esc o Círculo (B): volver", 12, UiStyle.TEXT_DIM))
+
+
+func _open_controls() -> void:
+	push(ControlsScreen.new())
 
 
 ## Abre una pantalla encima del menú.

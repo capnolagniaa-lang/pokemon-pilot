@@ -222,6 +222,12 @@ var _name_error: Label
 var _checking_name := false
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and is_instance_valid(_overlay):
+		get_viewport().set_input_as_handled()
+		_close_overlay()
+
+
 ## Nombre del personaje nuevo (es también el nombre de la partida; no se puede repetir: ni en esta PC ni, con conexión,
 ## con el de otro jugador: Sync.reserve_name).
 func _ask_name() -> void:

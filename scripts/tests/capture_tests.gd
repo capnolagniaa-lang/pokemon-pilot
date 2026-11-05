@@ -202,6 +202,8 @@ func run_bag() -> void:
 	r["No vuelve enseguida"] = not spawner._exists(key)
 	world.trainer.global_position += Vector2(0, -60)  # que no lo recoja apenas reaparece
 	await get_tree().physics_frame
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	GameState.play_time += FieldItemSpawner.RESPAWN_TIME + 1.0
 	spawner._populate(spawner._entry(zone_id), world.streamer.zone_node(zone_id))
 	await get_tree().process_frame

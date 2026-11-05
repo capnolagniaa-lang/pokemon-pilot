@@ -263,6 +263,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
+## R1 / L1 (MenuNav).
+func menu_tab(step: int) -> void:
+	_show_region(posmod(_region + step, REGIONS.size()))
+
+
 ## Fondo del Pokémon elegido: rayos de colores como en "¿Quién es ese Pokémon?" (más apagado si ya se vio).
 class WhoStage extends Control:
 	var reveal := false

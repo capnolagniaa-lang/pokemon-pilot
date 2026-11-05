@@ -20,6 +20,11 @@ var attacks := true
 var _dodge_used := 0
 
 
+## (El apuntado de los ataques de zona con joystick pasa en el juego del jugador: acá llega el ataque ya soltado.)
+func tick(_actor_now: Creature, _delta: float) -> void:
+	pass
+
+
 func set_packet(p: Array) -> void:
 	if p.size() < 5:
 		return

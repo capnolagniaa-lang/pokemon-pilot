@@ -8,7 +8,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 ## 📍 Dónde estamos (actualizado 2026-11-05)
 - **Joystick, parte 1: jugar (2026-11-05, lo pedían los amigos)**: mover, correr, 4 ataques, esquivar, bola, objeto, sacar al Pokémon y cambiarlo con la cruceta. Los ataques salen hacia
   donde mira el Pokémon (decisión del usuario); con teclado y mouse no cambia nada. Test `--autotest-gamepad` (botones simulados): falta probarlo con un joystick en la mano.
-  Parte 2 pendiente: todos los menús sin mouse (Ficha, Caja, Mochila, Mapa, sala online). Parte 3, si la piden: reasignar botones.
+  Parte 2 hecha: menús con joystick (`MenuNav`), controles configurables (Esc → Controles, con dibujo del mando) y ataques de zona que se apuntan manteniendo el botón.
+  Falta: escribir nombres con joystick (no hay teclado en pantalla) y mover el Mapa con el stick. Falta probarlo a mano.
 - **Partidas en el servidor (2026-11-05, pedido del usuario)**: copia de cada partida + historial + panel privado con equipo, Caja, lugar,
   medallas y dinero (`Sync`, `tools/server/partidas_server.py`, `docs/SERVIDOR_ONLINE.md`). Sin aviso en el juego, por decisión del usuario.
   Falta (más adelante): detección de cosas raras e inscripción al torneo con el equipo congelado.

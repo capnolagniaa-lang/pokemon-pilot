@@ -45,7 +45,10 @@ const PAGES := [
 		"Triángulo (Y): hablar o lanzar bola (va al salvaje más cercano).  Cruz (A): aceptar en los menús y las charlas.",
 		"Apretar el stick (L3) una vez: corrés hasta que te pares.",
 		"Cruceta izquierda y derecha: el Pokémon anterior o el siguiente.  Options (Start): menú.  Create (Select): minimapa.",
-		"Tocá el teclado o el mouse cuando quieras y vuelve la mira. Algunos menús todavía se manejan mejor con el mouse.",
+		"Ataques de zona (Rayo, Trueno...): un toque cae encima tuyo; mantené el botón y la marca se aleja hasta su alcance. Sale al soltar.",
+		"En los menús: Cruz (A) acepta, Círculo (B) vuelve, R1 y L1 cambian de pestaña y el stick derecho baja por las listas.",
+		"Tocá el teclado o el mouse cuando quieras y vuelve la mira.",
+		"Esc o Options → Controles: cambiá las teclas y los botones a tu gusto.",
 	]],
 	["Tu equipo", [
 		"1 a 6: cambiar de Pokémon en plena pelea (tiene una recarga corta).",
@@ -154,6 +157,11 @@ func show_page(i: int) -> void:
 
 
 ## En _input (antes que los botones): si no, ←/→ solo movían el foco entre los botones.
+## R1 / L1 (MenuNav).
+func menu_tab(step: int) -> void:
+	show_page(page + step)
+
+
 func _input(event: InputEvent) -> void:
 	if not is_visible_in_tree():
 		return

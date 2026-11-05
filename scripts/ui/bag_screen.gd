@@ -257,6 +257,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
+## R1 / L1 (MenuNav).
+func menu_tab(step: int) -> void:
+	_show_pocket(posmod(_pocket + step, POCKETS.size()))
+
+
 ## Abierta con el menú de combate (pelea en pausa).
 func _in_battle() -> bool:
 	var world := get_tree().get_first_node_in_group("world")

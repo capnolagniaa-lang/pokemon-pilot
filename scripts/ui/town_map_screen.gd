@@ -130,6 +130,11 @@ func _process(delta: float) -> void:
 	view.queue_redraw()  # el punto de tu posición late
 
 
+## R1 / L1 (MenuNav): acercar y alejar.
+func menu_tab(step: int) -> void:
+	set_zoom(zoom * (1.25 if step > 0 else 0.8))
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible or not (event is InputEventKey and event.pressed):
 		return

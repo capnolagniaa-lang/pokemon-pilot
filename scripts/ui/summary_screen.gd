@@ -375,15 +375,20 @@ func _update_hint() -> void:
 		_hint.text = "Enter en un movimiento y después en una ranura para equiparlo · Supr vacía una ranura."
 
 
+## Tab, o R1 / L1 (MenuNav).
+func menu_tab(step: int) -> void:
+	_tabs.current_tab = posmod(_tabs.current_tab + step, _tabs.get_tab_count())
+	if _tabs.current_tab == 1 and not _slot_buttons.is_empty():
+		_slot_buttons[0].grab_focus()
+	else:
+		_tabs.get_tab_bar().grab_focus()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
 		return
 	if event.physical_keycode == KEY_TAB:
-		_tabs.current_tab = (_tabs.current_tab + 1) % _tabs.get_tab_count()
-		if _tabs.current_tab == 1 and not _slot_buttons.is_empty():
-			_slot_buttons[0].grab_focus()
-		else:
-			_tabs.get_tab_bar().grab_focus()
+		menu_tab(1)
 		get_viewport().set_input_as_handled()
 	elif event.physical_keycode == KEY_DELETE or event.physical_keycode == KEY_BACKSPACE:
 		var i := _slot_buttons.find(get_viewport().gui_get_focus_owner())
