@@ -143,9 +143,15 @@ func _choose(index: int) -> void:
 	if index == GameState.active_index:
 		return
 	if _fighting():
-		world.combat.switch_to(index)  # con su recarga, y online lo decide el servidor
+		world.combat.switch_to(switch_index(index))  # con su recarga, y online lo decide el servidor
 	elif GameState.set_active(index):
 		Events.message_requested.emit("¡Adelante, %s!" % GameState.active().display_name())
+
+
+## Lo que hay que pedirle a CombatDirector.switch_to para sacar a ese Pokémon: su lugar en tu equipo, salvo online, donde
+## se pide por el lugar en el equipo de la pelea (los gajos guardan el lugar en tu equipo).
+func switch_index(party_index: int) -> int:
+	return world.online.battle.my_team.find(party_index) if _online() else party_index
 
 
 func _redraw() -> void:

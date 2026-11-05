@@ -21,6 +21,7 @@ func run() -> void:
 	world.combat.end_battle()
 	await _frames(3)
 	await _menus()
+	await _party_and_summary()
 	await _bindings()
 	DirAccess.remove_absolute(CFG)
 	Controls.reset("key")
@@ -252,6 +253,102 @@ func _bindings() -> void:
 	await _tap(JOY_BUTTON_B)
 	await _frames(3)
 	menu.close()
+
+
+## Después de elegir un Pokémon (queja del usuario 2026-11-05: "solo con la flecha derecha").
+func _party_and_summary() -> void:
+	Controls.gamepad = true
+	var added: Array = [CreatureInstance.create(DB.species["pidgey"], 20), CreatureInstance.create(DB.species["rattata"], 20)]
+	GameState.party.append_array(added)
+	var menu = world.pause_menu
+	await _tap(JOY_BUTTON_START)
+	await _frames(3)
+	menu._open_party()
+	await _frames(6)
+	var party = menu._stack[-1]
+	var focus := func() -> Control: return get_viewport().gui_get_focus_owner()
+	await _tap(JOY_BUTTON_A)
+	await _frames(4)
+	var buttons: Array = party._actions.get_child(0).get_children().filter(func(b): return not b.disabled)
+	r["Acciones: arranca en la primera"] = focus.call() == buttons[0]
+	var inside := true
+	var seen := []
+	for i in buttons.size():
+		await _tap(JOY_BUTTON_DPAD_DOWN)
+		await _frames(3)
+		inside = inside and buttons.has(focus.call())
+		seen.append(focus.call())
+	r["Acciones: abajo las recorre todas sin irse a las tarjetas"] = inside and seen.size() == buttons.size() and buttons.all(func(b): return seen.has(b))
+	await _tap(JOY_BUTTON_DPAD_UP)
+	await _frames(3)
+	r["Acciones: arriba también"] = buttons.has(focus.call()) and focus.call() != buttons[0]
+	await _tap(JOY_BUTTON_B)
+	await _frames(4)
+	r["Círculo cierra las acciones y vuelve a la tarjeta"] = not is_instance_valid(party._actions) and focus.call() == party._cards[0]
+	# Las tarjetas: se recorren y no se para en los lugares vacíos
+	var empty_ok := true
+	for b in [JOY_BUTTON_DPAD_RIGHT, JOY_BUTTON_DPAD_DOWN, JOY_BUTTON_DPAD_DOWN, JOY_BUTTON_DPAD_LEFT]:
+		await _tap(b)
+		await _frames(3)
+		empty_ok = empty_ok and focus.call() is Button and not focus.call().disabled
+	r["Equipo: el foco no se para en lugares vacíos"] = empty_ok
+	party._cards[0].grab_focus()
+	await _frames(2)
+	# La ficha, dos veces
+	for time in 2:
+		await _tap(JOY_BUTTON_A)
+		await _frames(4)
+		await _tap(JOY_BUTTON_A)
+		await _frames(6)
+		var sum = menu._stack[-1]
+		r["Ficha %d: abre" % (time + 1)] = sum.has_method("menu_tab") and sum != party and focus.call() is TabBar
+		await _tap(JOY_BUTTON_DPAD_LEFT)
+		await _frames(3)
+		r["Ficha %d: izquierda en la primera pestaña no se va" % (time + 1)] = focus.call() is TabBar and sum._tabs.current_tab == 0
+		await _tap(JOY_BUTTON_DPAD_RIGHT)
+		await _frames(3)
+		r["Ficha %d: derecha va a Movimientos" % (time + 1)] = sum._tabs.current_tab == 1 and focus.call() is TabBar
+		await _tap(JOY_BUTTON_DPAD_LEFT)
+		await _frames(3)
+		r["Ficha %d: izquierda vuelve a Estadísticas" % (time + 1)] = sum._tabs.current_tab == 0 and focus.call() is TabBar
+		await _tap(JOY_BUTTON_DPAD_DOWN)
+		await _frames(3)
+		r["Ficha %d: abajo en Estadísticas va a Volver" % (time + 1)] = focus.call() == sum._back_button
+		await _tap(JOY_BUTTON_DPAD_UP)
+		await _frames(3)
+		r["Ficha %d: de Volver se vuelve a las pestañas" % (time + 1)] = focus.call() is TabBar
+		await _tap(JOY_BUTTON_RIGHT_SHOULDER)
+		await _frames(3)
+		r["Ficha %d: R1 a Movimientos, con una ranura elegida" % (time + 1)] = sum._tabs.current_tab == 1 and focus.call() == sum._slot_buttons[0]
+		await _tap(JOY_BUTTON_LEFT_SHOULDER)
+		await _frames(3)
+		r["Ficha %d: L1 a Estadísticas" % (time + 1)] = sum._tabs.current_tab == 0
+		await _tap(JOY_BUTTON_DPAD_RIGHT)
+		await _frames(3)
+		await _tap(JOY_BUTTON_DPAD_DOWN)
+		await _frames(3)
+		r["Ficha %d: abajo en Movimientos entra a las ranuras" % (time + 1)] = focus.call() == sum._slot_buttons[0]
+		await _tap(JOY_BUTTON_B)
+		await _frames(5)
+		r["Ficha %d: Círculo vuelve al Equipo con foco" % (time + 1)] = menu._stack[-1] == party and focus.call() is Button
+	await _tap(JOY_BUTTON_B)
+	await _frames(3)
+	menu.close()
+	for m in added:
+		GameState.party.erase(m)
+	await _frames(2)
+
+	# Ruleta online: pide por el lugar en el equipo de la pelea, no en tu equipo
+	var battle := OnlineBattle.new()
+	battle.active = true
+	battle.my_team.assign([2, 0, 5])
+	var before = world.online.battle
+	world.online.battle = battle
+	r["Ruleta online: el 3.º de tu equipo es el 1.º de la pelea"] = world.wheel.switch_index(2) == 0
+	r["Ruleta online: y el 6.º, el 3.º"] = world.wheel.switch_index(5) == 2
+	world.online.battle = before
+	battle.free()
+	r["Ruleta fuera de online: tu lugar de siempre"] = world.wheel.switch_index(2) == 2
 
 
 func _press(button: JoyButton, down: bool) -> void:

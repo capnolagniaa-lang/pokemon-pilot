@@ -16,6 +16,7 @@ var _detail: VBoxContainer
 var _hint: Label
 var _pending_move: MoveData
 var _pending_slot := -1
+var _back_button: Button
 ## Botón marcado como elegido (movimiento o ranura) mientras se completa el equipar.
 var _marked: Button
 
@@ -42,6 +43,8 @@ func _ready() -> void:
 	_moves_tab.add_theme_constant_override("separation", 10)
 	_tabs.add_child(_moves_tab)
 	_build_moves()
+	_tabs.tab_changed.connect(func(_i): _wire_tabs())
+	_wire_tabs()
 	UiStyle.focus_later(_tabs.get_tab_bar())
 
 
@@ -79,6 +82,7 @@ func _left_column() -> Control:
 	var back := UiStyle.button("Volver", 160)
 	back.pressed.connect(func(): closed.emit())
 	box.add_child(back)
+	_back_button = back
 	return panel
 
 
@@ -362,6 +366,7 @@ func _equip(slot: int, m: MoveData) -> void:
 	if ok:
 		Events.equipment_changed.emit(_inst)
 	_build_moves()
+	_wire_tabs()
 	_hint.text = msg
 	UiStyle.focus_later(_slot_buttons[slot])
 
@@ -373,6 +378,21 @@ func _update_hint() -> void:
 		_hint.text = "Elegí el movimiento para %s (Esc cancela)." % Controls.slot_key(_pending_slot)
 	else:
 		_hint.text = "Enter en un movimiento y después en una ranura para equiparlo · Supr vacía una ranura."
+
+
+## Con la cruceta: las pestañas se recorren con izquierda y derecha sin irse a otro lado, y abajo se entra a lo de esa
+## pestaña (Movimientos) o a Volver (Estadísticas, que no tiene botones). "Volver" siempre vuelve a las pestañas.
+func _wire_tabs() -> void:
+	var bar := _tabs.get_tab_bar()
+	bar.focus_neighbor_left = bar.get_path_to(bar)
+	bar.focus_neighbor_right = bar.get_path_to(bar)
+	bar.focus_neighbor_top = bar.get_path_to(bar)
+	var below: Control = _slot_buttons[0] if _tabs.current_tab == 1 and not _slot_buttons.is_empty() else _back_button
+	bar.focus_neighbor_bottom = bar.get_path_to(below)
+	_back_button.focus_neighbor_top = _back_button.get_path_to(bar)
+	_back_button.focus_neighbor_right = _back_button.get_path_to(bar)
+	_back_button.focus_neighbor_left = _back_button.get_path_to(_back_button)
+	_back_button.focus_neighbor_bottom = _back_button.get_path_to(_back_button)
 
 
 ## Tab, o R1 / L1 (MenuNav).

@@ -134,6 +134,23 @@ static func focus_later(c: Control) -> void:
 	(func(): if is_instance_valid(c) and c.is_inside_tree(): c.grab_focus()).call_deferred()
 
 
+## Un menú que se abre encima de otra cosa: el foco da la vuelta entre sus botones y no se escapa a lo que queda atrás (con
+## la cruceta iba a parar a las tarjetas de abajo, con el menú todavía abierto). Se llama con los botones ya en el árbol.
+static func focus_loop(controls: Array, vertical: bool = true) -> void:
+	var on: Array = controls.filter(func(c): return not (c is BaseButton and c.disabled))
+	for i in on.size():
+		var c: Control = on[i]
+		var next: NodePath = c.get_path_to(on[(i + 1) % on.size()])
+		var prev: NodePath = c.get_path_to(on[i - 1])
+		var stay: NodePath = c.get_path_to(c)
+		c.focus_neighbor_bottom = next if vertical else stay
+		c.focus_neighbor_top = prev if vertical else stay
+		c.focus_neighbor_right = stay if vertical else next
+		c.focus_neighbor_left = stay if vertical else prev
+		c.focus_next = next
+		c.focus_previous = prev
+
+
 ## Panel a pantalla completa con fondo oscurecido.
 static func dim() -> ColorRect:
 	var r := ColorRect.new()

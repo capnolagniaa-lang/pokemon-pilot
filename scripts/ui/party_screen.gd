@@ -64,6 +64,7 @@ func _card(i: int) -> Button:
 	var inst: CreatureInstance = GameState.party[i] if i < GameState.party.size() else null
 	if inst == null:
 		b.disabled = true
+		b.focus_mode = Control.FOCUS_NONE  # (un lugar vacío: el foco no se para ahí)
 		b.text = "—"
 		b.add_theme_font_size_override("font_size", 28)
 		return b
@@ -145,6 +146,7 @@ func _open_actions(i: int) -> void:
 	add_child(_actions)
 	var card := _cards[i]
 	_actions.position = card.global_position + Vector2(card.size.x - 240, 8)
+	UiStyle.focus_loop(box.get_children())
 	first.grab_focus()
 
 

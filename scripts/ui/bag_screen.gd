@@ -220,6 +220,7 @@ func _open_chooser(it: ItemData) -> void:
 	box.add_child(cancel)
 	add_child(_chooser)
 	_chooser.position = Vector2(640, 220)
+	UiStyle.focus_loop(box.get_children().filter(func(c): return c is Button))
 	(first if first != null else cancel).grab_focus()
 
 

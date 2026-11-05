@@ -43,6 +43,7 @@ func _build(text: String, options: Array) -> void:
 		b.pressed.connect(_choose.bind(i))
 		row.add_child(b)
 		_buttons.append(b)
+	UiStyle.focus_loop(_buttons, false)
 	UiStyle.focus_later(_buttons[0])
 
 

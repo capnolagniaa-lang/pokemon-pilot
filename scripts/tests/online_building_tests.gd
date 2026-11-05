@@ -258,6 +258,49 @@ func _lobby_tests(server: NetPeer, lobby: OnlineLobbyScreen, desk: StoryNPC) -> 
 	lobby.close()
 	await _until(func(): return not world.story.busy, 10.0)
 
+	# La ruleta (R3) en una pelea de verdad, con un equipo que no es el principio del tuyo: elegís al 3.º y al 1.º.
+	var extra: Array = [CreatureInstance.create(DB.species["pidgey"], 30), CreatureInstance.create(DB.species["rattata"], 30)]
+	GameState.party.append_array(extra)
+	glog.clear()
+	world.online.open_lobby()
+	await get_tree().process_frame
+	lobby = world.online.screen
+	gary.send_challenge(Net.client.my_id, 3)
+	await _until(func(): return not lobby.incoming.is_empty())
+	lobby.accept_incoming()
+	await _until(func(): return lobby.step == "elegir" and not has.call("elegir").is_empty())
+	var wheel_battle: OnlineBattle = world.online.battle
+	wheel_battle.local_input = null
+	var third: CreatureInstance = GameState.party[2]
+	var first: CreatureInstance = GameState.party[0]
+	lobby.toggle_pick(2)
+	lobby.toggle_pick(0)
+	lobby.toggle_pick(1)
+	lobby.confirm_pick()
+	gary.send_choice(has.call("elegir")[0][1], [CreatureInstance.create(DB.species["magikarp"], 3), CreatureInstance.create(DB.species["magikarp"], 3)])
+	await _until(func(): return wheel_battle.active and wheel_battle._going, 20.0)
+	r["Ruleta online: sale el primero que elegiste"] = wheel_battle.active and world.companion.instance == third
+	var wheel: PokemonWheel = world.wheel
+	r["Ruleta online: abre"] = wheel.can_open()
+	wheel.open()
+	r["Ruleta online: muestra tu equipo de la pelea"] = wheel.slots.filter(func(i): return i >= 0).size() == 3
+	wheel.marked = wheel.slots.find(GameState.party.find(first))
+	wheel.close(true)
+	await _until(func(): return is_instance_valid(world.companion) and world.companion.instance == first, 5.0)
+	r["Ruleta online: el servidor cambia al que marcaste"] = is_instance_valid(world.companion) and world.companion.instance == first
+	var live_match = server.battles.get(wheel_battle.match_id)
+	if live_match != null:
+		r["Ruleta online: en el servidor también"] = live_match.sides[Net.client.my_id].index == 1
+		live_match.finish(Net.client.my_id, "")
+	await _until(func(): return not wheel_battle.active, 20.0)
+	await _until(func(): return not world.story.busy, 15.0)
+	await _until(func(): return server.matches.is_empty() and Net.players.all(func(p): return p.status == "libre"))
+	for m in extra:
+		GameState.party.erase(m)
+	GameState.set_active(0)
+	world.respawn_companion()
+	await get_tree().physics_frame
+
 	# Con la sala cerrada: te pregunta; si aceptás, se abre la elección de equipo.
 	glog.clear()
 	answers = [0]
