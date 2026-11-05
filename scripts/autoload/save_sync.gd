@@ -9,6 +9,7 @@ extends Node
 const LIVE_EVERY := 120.0
 const FIRST_SCAN_DELAY := 5.0
 const TIMEOUT := 20.0
+const NAME_TIMEOUT := 4.0
 
 ## Lo prende `enabled()` o un test.
 var active := false
@@ -83,6 +84,23 @@ func _process(delta: float) -> void:
 	if _live_left <= 0.0:
 		_live_left = LIVE_EVERY
 		send_live(world)
+
+
+## Pide un nombre para un personaje nuevo: "libre" (queda para esta instalación), "ocupado" (lo usa otro jugador) o
+## "sin_conexion" (no se pudo preguntar: se juega igual, con el control local).
+func reserve_name(character: String) -> String:
+	if not active:
+		return "sin_conexion"
+	var http := HTTPRequest.new()
+	http.timeout = NAME_TIMEOUT
+	add_child(http)
+	var body := JSON.stringify({"install": install_id(), "name": character})
+	if http.request(url.get_base_dir().path_join("nombre"), PackedStringArray(["Content-Type: application/json"]), HTTPClient.METHOD_POST, body) != OK:
+		http.queue_free()
+		return "sin_conexion"
+	var res: Array = await http.request_completed
+	http.queue_free()
+	return {200: "libre", 409: "ocupado"}.get(res[1], "sin_conexion")
 
 
 ## Manda las partidas guardadas que cambiaron desde la última vez.

@@ -1,6 +1,6 @@
 extends Control
 ## Pantalla de título (escena principal): Continuar (lista de partidas guardadas: cargar o borrar), Nueva
-## partida (pide el nombre de la partida; avisa si ya hay una con ese nombre) y Salir. Fondo con cielo en degradé, colinas y Pokémon animados.
+## partida (pide el nombre del personaje, que no se puede repetir) y Salir. Fondo con cielo en degradé, colinas y Pokémon animados.
 
 const STARTER_SCENE := "res://scenes/ui/starter_select.tscn"
 const WORLD_SCENE := "res://scenes/world/world.tscn"
@@ -218,18 +218,25 @@ func _ask_delete(s: Dictionary) -> void:
 			get_tree().reload_current_scene())
 
 
-## Nombre de la partida nueva.
+var _name_error: Label
+var _checking_name := false
+
+
+## Nombre del personaje nuevo (es también el nombre de la partida; no se puede repetir: ni en esta PC ni, con conexión,
+## con el de otro jugador: Sync.reserve_name).
 func _ask_name() -> void:
 	_close_overlay()
 	_overlay = _overlay_panel("NUEVA PARTIDA")
 	var box: VBoxContainer = _overlay.get_meta("box")
-	box.add_child(UiStyle.label("Nombre de la partida:", 18))
+	box.add_child(UiStyle.label("Nombre de tu personaje:", 18))
 	var edit := LineEdit.new()
-	edit.text = "Partida %d" % (_saves.size() + 1)
+	edit.placeholder_text = "Tu nombre"
 	edit.max_length = 24
 	edit.custom_minimum_size = Vector2(420, 44)
 	edit.add_theme_font_size_override("font_size", 20)
 	box.add_child(edit)
+	_name_error = UiStyle.label("", 15, Color(1.0, 0.55, 0.45))
+	box.add_child(_name_error)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 10)
 	var ok := UiStyle.button("Empezar", 200)
@@ -241,20 +248,24 @@ func _ask_name() -> void:
 	edit.text_submitted.connect(func(t: String): _start_named(t))
 	cancel.pressed.connect(_close_overlay)
 	edit.grab_focus.call_deferred()
-	edit.select_all.call_deferred()
 
 
 func _start_named(save_name: String) -> void:
 	save_name = save_name.strip_edges()
-	if save_name == "":
+	if _checking_name:
 		return
-	if FileAccess.file_exists(SaveManager.path_for_name(save_name)):
-		var d := ConfirmDialog.ask(self, "Ya hay una partida \"%s\". Si empezás otra con ese nombre y guardás, se reemplaza. ¿Empezar igual?" % save_name,
-			["Empezar", "Cancelar"])
-		d.chosen.connect(func(i: int):
-			if i == 0:
-				SaveManager.use_name(save_name)
-				get_tree().change_scene_to_file(STARTER_SCENE))
+	if save_name == "":
+		_name_error.text = "Escribí un nombre."
+		return
+	if SaveManager.name_taken(save_name):
+		_name_error.text = "Ya tenés un personaje con ese nombre: elegí otro."
+		return
+	_checking_name = true
+	_name_error.text = ""
+	var answer: String = await Sync.reserve_name(save_name)
+	_checking_name = false
+	if answer == "ocupado":
+		_name_error.text = "Ese nombre ya lo usa otro jugador: elegí otro."
 		return
 	SaveManager.use_name(save_name)
 	get_tree().change_scene_to_file(STARTER_SCENE)

@@ -108,6 +108,11 @@ static func path_for_name(save_name: String) -> String:
 	return DIR.path_join(("partida" if slug.replace("_", "") == "" else slug) + ".json")
 
 
+## ¿Ya hay un personaje con ese nombre en esta PC? (mismo archivo: "Ash" y "ash!" son el mismo)
+static func name_taken(save_name: String) -> bool:
+	return FileAccess.file_exists(path_for_name(save_name))
+
+
 ## Elige la partida actual por nombre (la nueva partida guarda ahí).
 func use_name(save_name: String) -> void:
 	current_name = save_name.strip_edges() if save_name.strip_edges() != "" else "Partida"

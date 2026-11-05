@@ -19,6 +19,7 @@ import secrets
 import sqlite3
 import threading
 import time
+import unicodedata
 import zlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, quote, urlparse
@@ -57,8 +58,11 @@ def init_db() -> None:
                 id INTEGER PRIMARY KEY, install TEXT NOT NULL, name TEXT NOT NULL, at REAL NOT NULL, live INTEGER NOT NULL,
                 zone TEXT, data BLOB NOT NULL);
             CREATE INDEX IF NOT EXISTS snapshots_save ON snapshots (install, name, at);
+            CREATE TABLE IF NOT EXISTS names (norm TEXT PRIMARY KEY, install TEXT NOT NULL, name TEXT NOT NULL);
             """
         )
+        for r in con.execute("SELECT install, name FROM saves ORDER BY updated").fetchall():
+            con.execute("INSERT OR IGNORE INTO names (norm, install, name) VALUES (?,?,?)", (norm_name(r["name"]), r["install"], r["name"]))
 
 
 def load_token(folder: str) -> str:
@@ -83,6 +87,27 @@ def rate_ok(key: str, limit: int) -> bool:
         return True
 
 
+def norm_name(name: str) -> str:
+    """Para comparar nombres: "Ash", "ÁSH" y "a s-h!" son el mismo."""
+    plain = unicodedata.normalize("NFKD", name)
+    return "".join(c for c in plain if c.isalnum()).casefold()
+
+
+def reserve_name(body: dict) -> int:
+    """Nombre de un personaje nuevo: 200 si queda para esta instalación, 409 si ya es de otra."""
+    install = str(body.get("install", ""))
+    name = str(body.get("name", "")).strip()[:60]
+    norm = norm_name(name)
+    if not INSTALL_RE.match(install) or not norm:
+        return 400
+    if not rate_ok("i:" + install, RATE_PER_INSTALL):
+        return 429
+    with db() as con:
+        con.execute("INSERT OR IGNORE INTO names (norm, install, name) VALUES (?,?,?)", (norm, install, name))
+        owner = con.execute("SELECT install FROM names WHERE norm=?", (norm,)).fetchone()[0]
+    return 200 if owner == install else 409
+
+
 def store(body: dict) -> int:
     """Guarda una partida. Devuelve el código HTTP."""
     install = str(body.get("install", ""))
@@ -99,6 +124,7 @@ def store(body: dict) -> int:
     blob = zlib.compress(json.dumps(data, ensure_ascii=False).encode("utf-8"), 6)
     now = time.time()
     with db() as con:
+        con.execute("INSERT OR IGNORE INTO names (norm, install, name) VALUES (?,?,?)", (norm_name(name), install, name))
         known = con.execute("SELECT 1 FROM saves WHERE install=? AND name=?", (install, name)).fetchone()
         if not known and con.execute("SELECT COUNT(*) FROM saves WHERE install=?", (install,)).fetchone()[0] >= MAX_SAVES_PER_INSTALL:
             return 429
@@ -195,7 +221,7 @@ def panel() -> str:
                len(medals(d)), e(d.get("money", 0)), team_text(d), len(d.get("box", [])), dex(d, "caught"))
         )
     table = "<tr><td colspan=10>Todavía no llegó ninguna partida.</td></tr>" if not lines else "".join(lines)
-    return page("Partidas", "<h1>Partidas</h1><p>%d partidas de %d jugadores. Se actualiza solo cada minuto.</p><div class=scroll><table><tr><th>Partida<th>Jugador<th>Última vez<th>Por dónde anda<th>Tiempo<th>Medallas<th>Dinero<th>Equipo<th>Caja<th>Atrapados</tr>%s</table></div>"
+    return page("Partidas", "<h1>Partidas</h1><p>%d personajes de %d jugadores. Se actualiza solo cada minuto.</p><div class=scroll><table><tr><th>Personaje<th>Nombre online<th>Última vez<th>Por dónde anda<th>Tiempo<th>Medallas<th>Dinero<th>Equipo<th>Caja<th>Atrapados</tr>%s</table></div>"
                 % (len(rows), len({r["install"] for r in rows}), table), True)
 
 
@@ -254,7 +280,8 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(raw)
 
     def do_POST(self) -> None:
-        if urlparse(self.path).path != "/subir":
+        route = urlparse(self.path).path
+        if route not in ("/subir", "/nombre"):
             return self._send(404)
         try:
             size = int(self.headers.get("Content-Length", "0"))
@@ -268,7 +295,9 @@ class Handler(BaseHTTPRequestHandler):
             body = json.loads(self.rfile.read(size).decode("utf-8"))
         except (ValueError, UnicodeDecodeError):
             return self._send(400)
-        self._send(store(body) if isinstance(body, dict) else 400)
+        if not isinstance(body, dict):
+            return self._send(400)
+        self._send(store(body) if route == "/subir" else reserve_name(body))
 
     def do_GET(self) -> None:
         url = urlparse(self.path)

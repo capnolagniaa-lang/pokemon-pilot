@@ -106,6 +106,32 @@ func _checks() -> void:
 	list = await _fetch("panel?k=" + _token)
 	r["Al volver la conexión se manda lo que faltaba"] = "1111" in list[1]
 
+	# Nombres que no se repiten
+	r["Nombre nuevo: queda para vos"] = await Sync.reserve_name("Barriwow") == "libre"
+	r["Tu mismo nombre sigue siendo tuyo"] = await Sync.reserve_name("Barriwow") == "libre"
+	var other := "ab".repeat(16)
+	r["Otro jugador no puede usarlo (ni con otras mayúsculas o tildes)"] = await _post({"install": other, "name": "BÁRRI wow!"}, "nombre") == 409
+	r["Una partida ya subida también lo ocupa"] = await _post({"install": other, "name": "prueba sync"}, "nombre") == 409
+	r["Otro nombre sí puede"] = await _post({"install": other, "name": "Misty"}, "nombre") == 200
+	r["Y entonces a vos te dice ocupado"] = await Sync.reserve_name("misty") == "ocupado"
+	Sync.url = "http://127.0.0.1:%d/subir" % (PORT + 1)
+	r["Sin conexión deja seguir"] = await Sync.reserve_name("Otro") == "sin_conexion"
+	Sync.url = "http://127.0.0.1:%d/subir" % PORT
+
+	# La pantalla de título
+	get_tree().change_scene_to_file("res://scenes/ui/title_screen.tscn")
+	await get_tree().create_timer(0.4).timeout
+	var title: Node = get_tree().current_scene
+	title._ask_name()
+	var labels: Array = title._overlay.find_children("*", "Label", true, false).map(func(l): return l.text)
+	r["Pide el nombre del personaje"] = labels.has("Nombre de tu personaje:")
+	await title._start_named("")
+	r["Sin nombre no arranca"] = title._name_error.text != "" and get_tree().current_scene == title
+	await title._start_named(SAVE_NAME.to_upper() + " ")
+	r["Un nombre que ya tenés en esta PC no se puede repetir"] = "Ya tenés" in title._name_error.text and get_tree().current_scene == title
+	await title._start_named("misty")
+	r["Un nombre de otro jugador no se puede usar"] = "otro jugador" in title._name_error.text and get_tree().current_scene == title
+
 
 func _drain() -> void:
 	var left := 25.0
@@ -124,10 +150,10 @@ func _fetch(path: String) -> Array:
 	return [res[1], (res[3] as PackedByteArray).get_string_from_utf8()]
 
 
-func _post(body: Dictionary) -> int:
+func _post(body: Dictionary, route := "subir") -> int:
 	var http := HTTPRequest.new()
 	add_child(http)
-	http.request("http://127.0.0.1:%d/subir" % PORT, PackedStringArray(["Content-Type: application/json"]), HTTPClient.METHOD_POST, JSON.stringify(body))
+	http.request("http://127.0.0.1:%d/%s" % [PORT, route], PackedStringArray(["Content-Type: application/json"]), HTTPClient.METHOD_POST, JSON.stringify(body))
 	var res: Array = await http.request_completed
 	http.queue_free()
 	return res[1]
