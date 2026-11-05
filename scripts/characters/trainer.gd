@@ -51,6 +51,8 @@ func input_dir() -> Vector2:
 		return _follow_dir()
 	if autopilot != Vector2.ZERO:
 		return autopilot
+	if Controls.wheel_open:
+		return Vector2.ZERO
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 

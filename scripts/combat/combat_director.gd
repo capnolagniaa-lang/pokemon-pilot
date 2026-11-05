@@ -41,17 +41,18 @@ var _switch_cd := 0.0
 
 func _process(delta: float) -> void:
 	_switch_cd = maxf(0.0, _switch_cd - delta)
-	for i in GameState.MAX_PARTY:
-		if Input.is_action_just_pressed("switch_%d" % (i + 1)):
-			switch_to(i)
-	for pair in [["switch_prev", -1], ["switch_next", 1]]:
-		if Input.is_action_just_pressed(pair[0]):
-			_switch_step(pair[1])
-	if Input.is_action_just_pressed("battle_toggle") and not arena_lock:
-		if in_battle:
-			end_battle()
-		else:
-			start_battle()
+	if not Controls.wheel_open:
+		for i in GameState.MAX_PARTY:
+			if Input.is_action_just_pressed("switch_%d" % (i + 1)):
+				switch_to(i)
+		for pair in [["switch_prev", -1], ["switch_next", 1]]:
+			if Input.is_action_just_pressed(pair[0]):
+				_switch_step(pair[1])
+		if Input.is_action_just_pressed("battle_toggle") and not arena_lock:
+			if in_battle:
+				end_battle()
+			else:
+				start_battle()
 	if in_battle:
 		_update_battle(delta)
 	else:

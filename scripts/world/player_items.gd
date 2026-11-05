@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	var in_arena: bool = world.get("arena") != null and world.arena.active
 	# En una conversación E y C no hacen nada más; pero las peleas de entrenador/gimnasio/torneo arrancan desde una
 	# charla (la historia queda ocupada toda la pelea): ahí sí (pedido del usuario 2026-10-26).
-	if story != null and (story.dialog.active or (story.busy and not in_arena)):
+	if Controls.wheel_open or (story != null and (story.dialog.active or (story.busy and not in_arena))):
 		return
 	if Input.is_action_just_pressed("capture"):
 		# E contextual (docs/PLAN_HISTORIA.md): si hay alguien al lado, habla; si no, lanza la Pokébola.

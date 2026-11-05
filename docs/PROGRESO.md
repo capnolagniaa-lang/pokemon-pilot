@@ -77,6 +77,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   su camino de abajo y la Ruta 14 no, y el camino chocaba contra el cerco y el bosque. `INSERT_ROWS` de `import_frlg_maps.py`
   le agrega esas 4 filas a la Ruta 14 (mismo alto; nadie se mueve); `--autotest-bounds` lo controla. Contra la Ruta 13 quedan
   cercas corridas 2 filas y pasto contra el agua: se pasa igual (moverla desarmaría el empalme con la Ruta 12).
+- **Ruleta de Pokémon (2026-11-05, pedido del usuario, como la de armas de Red Dead 2)**: mantener R3 abre el equipo en gajos,
+  el stick izquierdo marca y al soltar sale ese (Círculo o no marcar nada = no cambia). En combate y fuera; el tiempo va a ×0,2
+  (`CombatFeedback.set_slowdown`), salvo online, donde muestra solo tu equipo de la pelea. Test `--autotest-wheel`.
 - **Enseñar a todos (2026-11-04, pedido del usuario)**: al usar una MT en la Mochila hay un botón nuevo que se la enseña a
   todos los que pueden aprenderla, del equipo y de la Caja (`GameState.teach_all`). La MT no se gasta; los del equipo con
   las 4 ranuras llenas preguntan después si reemplazar uno. Test en `--autotest-equip`.

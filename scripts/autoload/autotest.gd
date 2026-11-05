@@ -280,6 +280,13 @@ func _ready() -> void:
 		add_child(mn)
 		mn.run.call_deferred()
 		return
+	if "--autotest-wheel" in OS.get_cmdline_user_args() or "--showcase-wheel" in OS.get_cmdline_user_args():
+		set_process(false)
+		var wh := WheelTests.new()
+		wh.autotest = self
+		add_child(wh)
+		(wh.showcase if "--showcase-wheel" in OS.get_cmdline_user_args() else wh.run).call_deferred()
+		return
 	if "--autotest-gamepad" in OS.get_cmdline_user_args():
 		set_process(false)
 		var gp := GamepadTests.new()

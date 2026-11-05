@@ -7,6 +7,7 @@ const HITSTOP_STRONG := 0.09
 
 var _base_time_scale := 1.0
 var _hitstop_until := 0  # msec (reloj real)
+var _slowdown := 1.0  # cámara lenta de la ruleta de Pokémon
 
 
 func _ready() -> void:
@@ -25,6 +26,18 @@ func _process(_delta: float) -> void:
 	if _hitstop_until > 0 and Time.get_ticks_msec() >= _hitstop_until:
 		_hitstop_until = 0
 		Engine.time_scale = _base_time_scale
+
+
+## Cámara lenta (× la velocidad normal; 1 = sacarla). Un hitstop en curso vuelve a la velocidad nueva, no a la de antes.
+func set_slowdown(mult: float) -> void:
+	var stopped := _hitstop_until > 0
+	var base := (_base_time_scale if stopped else Engine.time_scale) / _slowdown * mult
+	_slowdown = mult
+	if stopped:
+		_base_time_scale = base
+		Engine.time_scale = base * 0.05
+	else:
+		Engine.time_scale = base
 
 
 func _on_damaged(c: Creature, amount: float, hit: HitInfo) -> void:

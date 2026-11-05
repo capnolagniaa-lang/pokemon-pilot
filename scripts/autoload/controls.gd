@@ -36,6 +36,8 @@ const KEYS := {
 	## Cruceta: el Pokémon anterior o el siguiente (el cambio directo 1-6 es del teclado).
 	"switch_prev": [],
 	"switch_next": [],
+	## Ruleta de Pokémon (solo joystick, PokemonWheel).
+	"pokemon_wheel": [],
 	## Menús (MenuNav): siempre los mismos botones, no se configuran.
 	"menu_tab_next": [],
 	"menu_tab_prev": [],
@@ -55,6 +57,7 @@ const PAD_BUTTONS := {
 	"minimap": JOY_BUTTON_BACK,
 	"switch_prev": JOY_BUTTON_DPAD_LEFT,
 	"switch_next": JOY_BUTTON_DPAD_RIGHT,
+	"pokemon_wheel": JOY_BUTTON_RIGHT_STICK,
 	"menu_tab_next": JOY_BUTTON_RIGHT_SHOULDER,
 	"menu_tab_prev": JOY_BUTTON_LEFT_SHOULDER,
 }
@@ -99,7 +102,7 @@ const KEYBOARD_ROWS := [["move_up", "Caminar arriba"], ["move_down", "Caminar ab
 	["switch_3", "Pokémon 3"], ["switch_4", "Pokémon 4"], ["switch_5", "Pokémon 5"], ["switch_6", "Pokémon 6"]]
 const PAD_ROWS := [["attack_1", "Ataque 1"], ["attack_2", "Ataque 2"], ["attack_3", "Ataque 3"], ["attack_4", "Ataque 4"],
 	["dodge", "Esquivar"], ["run", "Correr"], ["capture", "Hablar / lanzar bola"], ["quick_item", "Objeto rápido"],
-	["battle_toggle", "Sacar o guardar al Pokémon"], ["switch_prev", "Pokémon anterior"], ["switch_next", "Pokémon siguiente"], ["minimap", "Minimapa"]]
+	["battle_toggle", "Sacar o guardar al Pokémon"], ["switch_prev", "Pokémon anterior"], ["switch_next", "Pokémon siguiente"], ["pokemon_wheel", "Ruleta de Pokémon"], ["minimap", "Minimapa"]]
 
 ## Nombres de los botones (índice JOY_BUTTON_*) en cada mando, en palabras: la letra del juego no trae los símbolos de PlayStation.
 const NAMES_XBOX := {JOY_BUTTON_A: "A", JOY_BUTTON_B: "B", JOY_BUTTON_X: "X", JOY_BUTTON_Y: "Y", JOY_BUTTON_LEFT_SHOULDER: "LB",
@@ -109,6 +112,8 @@ const NAMES_PS := {JOY_BUTTON_A: "Cruz", JOY_BUTTON_B: "Círculo", JOY_BUTTON_X:
 	JOY_BUTTON_RIGHT_SHOULDER: "R1", JOY_BUTTON_LEFT_STICK: "L3", JOY_BUTTON_RIGHT_STICK: "R3", JOY_BUTTON_START: "Options",
 	JOY_BUTTON_BACK: "Create", JOY_BUTTON_DPAD_UP: "Arriba", JOY_BUTTON_DPAD_DOWN: "Abajo", JOY_BUTTON_DPAD_LEFT: "Izquierda", JOY_BUTTON_DPAD_RIGHT: "Derecha"}
 
+## Ruleta de Pokémon abierta: el stick elige ahí y no mueve, no se ataca (PokemonWheel).
+var wheel_open := false
 ## ¿Lo último que se tocó fue el joystick?
 var gamepad := false
 ## Nombre del último mando que se tocó (de ahí salen los nombres de los botones).

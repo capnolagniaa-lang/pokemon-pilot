@@ -40,6 +40,8 @@ var balloon: BalloonTravel
 var arena: TrainerBattle
 ## Minimapa de arriba a la derecha (Tab).
 var minimap: Minimap
+## Ruleta de Pokémon del joystick (R3).
+var wheel: PokemonWheel
 ## Hora del juego y luz del mundo según la hora (docs/PLAN_DIA_NOCHE.md).
 var day_night: DayNight
 ## Consola de Game Master (Ctrl+Shift+G; no en la versión portable) y su modo vuelo.
@@ -127,6 +129,10 @@ func _ready() -> void:
 	minimap.name = "Minimap"
 	minimap.world = self
 	get_node("UI").add_child(minimap)
+	wheel = PokemonWheel.new()
+	wheel.name = "PokemonWheel"
+	wheel.world = self
+	get_node("UI").add_child(wheel)
 	var cursor := CrosshairCursor.new()  # el mouse es una mira roja mientras jugás
 	cursor.name = "CrosshairCursor"
 	add_child(cursor)

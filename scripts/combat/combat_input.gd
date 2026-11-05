@@ -20,6 +20,8 @@ var _fire_point := Vector2.ZERO
 
 
 func move_dir(_actor_now: Creature) -> Vector2:
+	if Controls.wheel_open:
+		return Vector2.ZERO
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 
@@ -40,6 +42,8 @@ func aim_point(actor: Creature) -> Vector2:
 
 ## ¿Quiere usar el ataque de esta ranura (0-3)? Mientras se mantenga apretado.
 func wants_slot(slot: int) -> bool:
+	if Controls.wheel_open:
+		return false
 	if Controls.gamepad and is_instance_valid(_actor) and is_aimed(_actor, slot):
 		return slot == _fire_slot and _firing()
 	return Input.is_action_pressed(Controls.SLOT_ACTIONS[slot])
@@ -47,7 +51,7 @@ func wants_slot(slot: int) -> bool:
 
 ## ¿Quiere esquivar? (Espacio, al apretar).
 func wants_dodge() -> bool:
-	return Input.is_action_just_pressed("dodge")
+	return not Controls.wheel_open and Input.is_action_just_pressed("dodge")
 
 
 ## Una vez por cuadro, desde el estado "controlled".
@@ -55,7 +59,7 @@ func tick(actor: Creature, delta: float) -> void:
 	if actor != _actor:
 		_stop_aiming()
 		_actor = actor
-	if not Controls.gamepad:
+	if not Controls.gamepad or Controls.wheel_open:
 		_stop_aiming()
 		return
 	if _aiming < 0:
