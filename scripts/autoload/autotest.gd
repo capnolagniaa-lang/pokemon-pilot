@@ -252,6 +252,13 @@ func _ready() -> void:
 		add_child(eq)
 		eq.run.call_deferred()
 		return
+	if "--autotest-water-wilds" in OS.get_cmdline_user_args():
+		set_process(false)
+		var ww := WaterWildTests.new()
+		ww.autotest = self
+		add_child(ww)
+		ww.run.call_deferred()
+		return
 	if "--autotest-sky-stream" in OS.get_cmdline_user_args() or "--showcase-sky-stream" in OS.get_cmdline_user_args():
 		set_process(false)
 		var st := SkyStreamTests.new()

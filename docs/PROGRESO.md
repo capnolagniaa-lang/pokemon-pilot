@@ -6,6 +6,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-05)
+- **Salvajes del agua arreglados (2026-11-05, queja del usuario: "no los veo salir")**: solo salían en 6 de 25 zonas: los de tierra llenaban el cupo y en lagunas chicas nada
+  podía aparecer lejos de vos. Ahora tienen cupo aparte, salen cerca tuyo mientras navegás (`WildSpawner._process_water`). El cupo de los de tierra ya no cuenta celdas de agua: hay menos en zonas muy mojadas (Ruta 25: de 9 a 3). `--autotest-water-wilds`: 27 de 27.
 - **Rayo y Lanzallamas nuevos (2026-11-05, pedido del usuario)**: Rayo marca una zona donde apuntás (190 px de alcance, radio 28) y a los 0,55 s cae del cielo; Lanzallamas
   es un chorro sostenido como Psicorrayo (0,9 s, 130 px, 6 golpes de 0,2 × 90, recarga 6 s, 5 % de quemar por golpe). Gráficos de Qwen (`rayo_marca`, `rayo_caida`, `lanzallamas_chorro`). Cambian `data/moves`: hay que
   publicar versión para el online. Valores sin probar jugando. `--autotest-sky-stream`, vitrina `--showcase-sky-stream`.

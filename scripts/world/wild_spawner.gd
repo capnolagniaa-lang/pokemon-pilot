@@ -12,6 +12,15 @@ const CreatureScene := preload("res://scenes/creatures/creature.tscn")
 const TEST_POOL := ["pidgey", "bellsprout", "rattata", "vulpix"]
 ## Lugares de agua: el salvaje que aparece ahí nada (no choca con el agua).
 const WATER_WHERE := ["agua"]
+## Los del agua van aparte de los de tierra (si no, estos llenan el cupo y nunca sale uno): mientras navegás, salen cerca
+## tuyo, los que quedan lejos se van, y al bajarte se van los que no están peleando. En un mar enorme así siempre hay alguno.
+const WATER_NEAR := 4
+const WATER_RESPAWN := 5.0
+const WATER_FIRST := 1.0
+const WATER_MIN_DIST := 32.0
+const WATER_MAX_DIST := 260.0
+const WATER_FAR := 480.0
+const WATER_FAR_ON_LAND := 320.0
 
 ## zone_id -> Array[Creature]
 var _alive: Dictionary = {}
@@ -23,6 +32,7 @@ var _cells: Dictionary = {}
 ## zone_id -> celdas donde puede aparecer algo (para max_alive)
 var _spawn_cells: Dictionary = {}
 var _rng := RandomNumberGenerator.new()
+var _water_timer := WATER_FIRST
 
 @onready var world: Node = get_parent()
 
@@ -41,12 +51,74 @@ func _process(delta: float) -> void:
 	for id in _alive.keys():
 		var list: Array = _alive[id].filter(func(c): return is_instance_valid(c))
 		_alive[id] = list
-		if list.size() < max_alive(id):
+		if list.filter(func(c): return not c.swims).size() < max_alive(id):
 			var respawn := respawn_time(id)
 			_timers[id] = _timers.get(id, respawn) - delta
 			if _timers[id] <= 0.0:
 				_timers[id] = respawn
 				_spawn_in(id)
+	_process_water(delta)
+
+
+## Los del agua: ver WATER_NEAR.
+func _process_water(delta: float) -> void:
+	var fm = world.get("field_moves")
+	var surfing: bool = fm != null and fm.surfing
+	var at: Vector2 = world.trainer.global_position
+	var near := 0
+	for list in _alive.values():
+		for c in list:
+			if not is_instance_valid(c) or not c.swims:
+				continue
+			if not is_instance_valid(c.target) and c.global_position.distance_to(at) > (WATER_FAR if surfing else WATER_FAR_ON_LAND):
+				c.queue_free()
+			else:
+				near += 1
+	if not surfing:
+		_water_timer = WATER_FIRST
+		return
+	_water_timer -= delta
+	var here: ZoneEntry = world.streamer.current
+	if _water_timer > 0.0 or here == null or not _alive.has(here.id) or near >= WATER_NEAR \
+			or float(GameState.setting("wild_mult")) <= 0.0:
+		return
+	_water_timer = WATER_RESPAWN
+	_spawn_water(here.id, at)
+
+
+## Pone uno del agua cerca de `at` (si la tabla de la zona tiene y hay agua a esa distancia).
+func _spawn_water(zone_id: String, at: Vector2) -> void:
+	var r := roll_water(zone_id, at)
+	if r.is_empty():
+		return
+	var zone: Zone = world.streamer.zone_node(zone_id)
+	var c := spawn(r[0], r[1], zone.to_global(zone.ground.map_to_local(r[2])))
+	c.swims = true
+	_alive[zone_id].append(c)
+
+
+## Lo que aparecería en el agua cerca de `at`: [especie, nivel, celda, lugar] (o []).
+func roll_water(zone_id: String, at: Vector2) -> Array:
+	var zone: Zone = world.streamer.zone_node(zone_id)
+	var table: EncounterTable = _tables.get(zone_id)
+	if zone == null or table == null or GameState.wild_test_pool:
+		return []
+	var wheres := PackedStringArray()
+	for w in table.wheres():
+		if w in WATER_WHERE:
+			wheres.append(w)
+	var by := cells_for(zone_id, zone, wheres)
+	for w in wheres:
+		var cells: Array = by[w].filter(func(cell: Vector2i) -> bool:  # (la laguna de al lado puede ser chiquita)
+			var d: float = zone.to_global(zone.ground.map_to_local(cell)).distance_to(at)
+			return d >= WATER_MIN_DIST and d <= WATER_MAX_DIST)
+		for attempt in 6 if not cells.is_empty() else 0:
+			var cell: Vector2i = cells[_rng.randi() % cells.size()]
+			var row := table.pick_at(_rng, cell, zone.get_tags(cell))
+			if row == null or not DB.species.has(row.species_id):
+				continue
+			return [DB.species[row.species_id], _rng.randi_range(mini(row.min_level, row.max_level), maxi(row.min_level, row.max_level)), cell, row.where]
+	return []
 
 
 ## Salvajes vivos a la vez: en zonas grandes más (EncounterTable.alive_for, según las celdas donde pueden aparecer).
@@ -92,7 +164,8 @@ func _count_spawn_cells(zone_id: String, zone: Node) -> int:
 	var n := 0
 	var by := cells_for(zone_id, zone, t.wheres())
 	for w in t.wheres():
-		n += by[w].size()
+		if not w in WATER_WHERE:  # (los del agua van aparte)
+			n += by[w].size()
 	return n
 
 
@@ -153,8 +226,7 @@ func roll(zone_id: String, water: bool = true) -> Array:
 
 
 func _spawn_in(zone_id: String) -> void:
-	var fm = world.get("field_moves")
-	var r := roll(zone_id, fm != null and fm.surfing)
+	var r := roll(zone_id, false)
 	if r.is_empty():
 		return
 	var zone: Zone = world.streamer.zone_node(zone_id)
@@ -162,8 +234,6 @@ func _spawn_in(zone_id: String) -> void:
 	if pos.distance_to(world.trainer.global_position) < 120.0:
 		return
 	var c := spawn(r[0], r[1], pos)
-	if r[3] in WATER_WHERE:
-		c.swims = true
 	_alive[zone_id].append(c)
 	# Salvajes vivos (docs/PLAN_IA.md, IA-5): si es su hora de dormir, muchos aparecen durmiendo.
 	if WildSociety.sleepy(c.instance.species, GameState.time_of_day, _in_cave()) and randf() < WildSociety.rules().sleep_chance:
