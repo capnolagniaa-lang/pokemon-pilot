@@ -28,7 +28,7 @@ solo en la versión portable). Las guarda `tools/server/partidas_server.py` (ser
   `ssh root@216.238.99.5 cat /opt/pokemon-pilot/partidas/panel_token` y abrir `http://216.238.99.5/pokemon-pilot/partidas/panel?k=<token>`.
   No compartir ese enlace. Para cambiarlo: borrar `panel_token` y `systemctl restart pokemon-pilot-partidas`.
 - Va por HTTP sin cifrar: alcanza para datos del juego, no sumar nada personal. El servicio no guarda direcciones IP.
-- Las partidas borradas en una PC siguen en el panel (a propósito: el historial sirve para detectar cosas raras).
+- Borrar una partida en el juego la borra del servidor, con su historial, y libera el nombre (sin conexión, queda anotado y se manda al volver). En el panel, el detalle de cada partida tiene "Borrar del servidor" para las que quedaron de antes.
 
 ## Mirar o tocar el servidor
 - Entrar: `ssh root@216.238.99.5` (la contraseña, del panel de Vultr).

@@ -105,10 +105,41 @@ func reserve_name(character: String) -> String:
 	return {200: "libre", 409: "ocupado"}.get(res[1], "sin_conexion")
 
 
+## Se borró una partida en esta PC: también se borra del servidor, con su historial (pedido del usuario 2026-11-05). Sin
+## conexión queda anotado y se manda al volver; desde la versión local (sin Sync prendido) lo manda el zip la próxima vez.
+func forget_save(path: String, save_name: String) -> void:
+	if not active:
+		if Controls._automated():
+			return
+		_cfg = ConfigFile.new()
+		_cfg.load(config_path)
+	if str(_cfg.get_value("sync", "install", "")) == "":
+		return  # esta PC nunca mandó nada
+	if _cfg.has_section_key("enviados", path.get_file()):
+		_cfg.erase_section_key("enviados", path.get_file())
+	var pending: Array = _cfg.get_value("sync", "borrar", [])
+	if not pending.has(save_name):
+		pending.append(save_name)
+	_cfg.set_value("sync", "borrar", pending)
+	_cfg.save(config_path)
+	if active:
+		_queue = _queue.filter(func(q): return q.get("name") != save_name)
+		_send_deletes()
+
+
+func _send_deletes() -> void:
+	for save_name in _cfg.get_value("sync", "borrar", []):
+		if _queue.any(func(q): return q.get("delete") == save_name):
+			continue
+		_queue.append({"body": JSON.stringify({"install": install_id(), "save_name": save_name}), "delete": save_name})
+	_pump()
+
+
 ## Manda las partidas guardadas que cambiaron desde la última vez.
 func send_all_saved() -> void:
 	if not active:
 		return
+	_send_deletes()
 	for s in SaveManager.list_saves():
 		_send_file(str(s["path"]))
 
@@ -144,7 +175,7 @@ func send_live(world: Node) -> void:
 func _enqueue(save_name: String, data: Dictionary, live: bool, file: String, sha: String) -> void:
 	var body := JSON.stringify({"install": install_id(), "save_name": save_name, "live": live, "player": NetPeer.clean_name(save_name),
 		"game_version": Net.game_version(), "data": data})
-	_queue.append({"body": body, "file": file, "sha": sha})
+	_queue.append({"body": body, "file": file, "sha": sha, "name": save_name})
 	_pump()
 
 
@@ -153,7 +184,8 @@ func _pump() -> void:
 		return
 	_current = _queue.pop_front()
 	_busy = true
-	if _http.request(url, PackedStringArray(["Content-Type: application/json"]), HTTPClient.METHOD_POST, _current["body"]) != OK:
+	var to := url.get_base_dir().path_join("borrar") if _current.has("delete") else url
+	if _http.request(to, PackedStringArray(["Content-Type: application/json"]), HTTPClient.METHOD_POST, _current["body"]) != OK:
 		_busy = false
 
 
@@ -161,6 +193,13 @@ func _on_done(_result: int, code: int, _headers: PackedStringArray, _body: Packe
 	_busy = false
 	if code == 200:
 		sent_ok += 1
+		# Borrado hecho, o una partida nueva con ese nombre ya subida: ya no queda nada por borrar.
+		var done := str(_current.get("delete", _current.get("name", "")))
+		var pending: Array = _cfg.get_value("sync", "borrar", [])
+		if pending.has(done):
+			pending.erase(done)
+			_cfg.set_value("sync", "borrar", pending)
+			_cfg.save(config_path)
 		if str(_current.get("file", "")) != "":  # si falló, queda sin marcar y se vuelve a mandar al abrir el juego
 			_cfg.set_value("enviados", _current["file"], _current["sha"])
 			_cfg.save(config_path)

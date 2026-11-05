@@ -112,6 +112,23 @@ def reserve_name(body: dict) -> int:
     return 200 if owner == install else 409
 
 
+def delete_save(install: str, name: str) -> int:
+    """Borra una partida con todo su historial y libera su nombre. Si no estaba, también da 200 (ya está como se pidió)."""
+    name = name.strip()[:60]
+    if not INSTALL_RE.match(install) or not name:
+        return 400
+    if not rate_ok("i:" + install, RATE_PER_INSTALL):
+        return 429
+    with db() as con:
+        con.execute("DELETE FROM saves WHERE install=? AND name=?", (install, name))
+        con.execute("DELETE FROM snapshots WHERE install=? AND name=?", (install, name))
+        con.execute("DELETE FROM names WHERE norm=? AND install=?", (norm_name(name), install))
+    vacuum = sqlite3.connect(DB_PATH, timeout=20)  # para que el archivo de verdad achique
+    vacuum.execute("VACUUM")
+    vacuum.close()
+    return 200
+
+
 def store(body: dict) -> int:
     """Guarda una partida. Devuelve el código HTTP."""
     install = str(body.get("install", ""))
@@ -261,13 +278,16 @@ def detail(install: str, name: str):
         hist.append("<tr><td class=n>%s</td><td>%s</td><td class=n>%s</td><td>%d</td><td>%d</td><td class=n>$%s</td><td>%d</td><td>%s</td></tr>"
                     % (e(when(s["at"])), e(s["zone"] or "—"), e(play_time(x.get("play_time"))), top, len(medals(x)), e(num(x.get("money", 0))), len(x.get("box", [])), "jugando" if s["live"] else "guardó"))
     back = "panel?k=%s" % quote(TOKEN)
+    erase = "panel-borrar?k=%s&i=%s&n=%s" % (quote(TOKEN), install, quote(name))
+    erase_form = ("<form method='post' action='%s' style='margin-top:24px' onsubmit=\"return confirm('¿Borrar esta partida y todo su historial del servidor?')\">"
+                  "<button>Borrar del servidor</button></form>" % e(erase))
     body = ("<p><a href='%s'>← Todas las partidas</a></p><h1>%s</h1><p>%s · %s · %s · %s · $%s · versión %s</p>" % (
         e(back), e(r["name"]), e(r["player"] or r["install"][:6]), e(ago(r["updated"])), e(r["zone"] or "—"), e(play_time(d.get("play_time"))), e(num(d.get("money", 0))), e(r["game_version"] or "?"))
         + "<p>Medallas: %s. Pokédex: %d vistos, %d atrapados.</p>" % (e(", ".join(medals(d)) or "ninguna"), dex(d, "seen"), dex(d, "caught"))
         + "<h2>Equipo</h2><div class=scroll><table>%s%s</table></div>" % (head, mon_rows(d.get("party", [])))
         + "<h2>Caja (%d)</h2><div class=scroll><table>%s%s</table></div>" % (len(d.get("box", [])), head, mon_rows(d.get("box", [])))
         + "<h2>Mochila</h2><div class=scroll><table><tr><th>Objeto<th>Cantidad</tr>%s</table></div>" % (bag_rows or "<tr><td colspan=2>—</td></tr>")
-        + "<h2>Historial (últimas %d fotos)</h2><div class=scroll><table><tr><th>Cuándo<th>Dónde<th>Tiempo<th>Nivel más alto<th>Medallas<th>Dinero<th>Caja<th></tr>%s</table></div>" % (len(hist), "".join(hist)))
+        + "<h2>Historial (últimas %d fotos)</h2><div class=scroll><table><tr><th>Cuándo<th>Dónde<th>Tiempo<th>Nivel más alto<th>Medallas<th>Dinero<th>Caja<th></tr>%s</table></div>" % (len(hist), "".join(hist)) + erase_form)
     return page(r["name"], body)
 
 
@@ -289,8 +309,19 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(raw)
 
     def do_POST(self) -> None:
-        route = urlparse(self.path).path
-        if route not in ("/subir", "/nombre"):
+        url = urlparse(self.path)
+        route = url.path
+        if route == "/panel-borrar":  # el botón del panel: solo con el token
+            q = parse_qs(url.query)
+            if not hmac.compare_digest(q.get("k", [""])[0].encode(), TOKEN.encode()):
+                return self._send(404)
+            delete_save(q.get("i", [""])[0], q.get("n", [""])[0])
+            self.send_response(303)
+            self.send_header("Location", "panel?k=%s" % quote(TOKEN))
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return None
+        if route not in ("/subir", "/nombre", "/borrar"):
             return self._send(404)
         try:
             size = int(self.headers.get("Content-Length", "0"))
@@ -306,6 +337,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(400)
         if not isinstance(body, dict):
             return self._send(400)
+        if route == "/borrar":
+            return self._send(delete_save(str(body.get("install", "")), str(body.get("save_name", ""))))
         self._send(store(body) if route == "/subir" else reserve_name(body))
 
     def do_GET(self) -> None:

@@ -215,6 +215,7 @@ func _ask_delete(s: Dictionary) -> void:
 	d.chosen.connect(func(i: int):
 		if i == 0:
 			DirAccess.remove_absolute(s["path"])
+			Sync.forget_save(str(s["path"]), str(s["name"]))
 			get_tree().reload_current_scene())
 
 

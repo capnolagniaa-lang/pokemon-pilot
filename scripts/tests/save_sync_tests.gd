@@ -142,6 +142,28 @@ func _checks() -> void:
 	await title._start_named("misty")
 	r["Un nombre de otro jugador no se puede usar"] = "otro jugador" in title._name_error.text and get_tree().current_scene == title
 
+	# Borrar una partida la borra del servidor, también si no había conexión
+	var path: String = SaveManager.slot_path
+	DirAccess.remove_absolute(path)
+	Sync.url = "http://127.0.0.1:%d/subir" % (PORT + 1)
+	Sync.forget_save(path, SAVE_NAME)
+	await _drain()
+	r["Sin conexión sigue en el servidor y queda anotado"] = SAVE_NAME in (await _fetch("panel?k=" + _token))[1] and Sync._cfg.get_value("sync", "borrar", []).has(SAVE_NAME)
+	Sync.url = "http://127.0.0.1:%d/subir" % PORT
+	Sync.send_all_saved()
+	await _drain()
+	r["Al volver la conexión se borra"] = SAVE_NAME not in (await _fetch("panel?k=" + _token))[1] and Sync._cfg.get_value("sync", "borrar", []).is_empty()
+	r["Y se va su historial"] = (await _fetch("detalle?k=%s&i=%s&n=%s" % [_token, id, SAVE_NAME.uri_encode()]))[0] == 404
+	r["Y su nombre queda libre"] = await _post({"install": other, "name": SAVE_NAME}, "nombre") == 200
+	await _post({"install": other, "save_name": "Misty2", "data": {"money": 1, "party": []}})
+	r["Otro jugador solo puede borrar lo suyo"] = await _post({"install": id, "save_name": "Misty2"}, "borrar") == 200 and "Misty2" in (await _fetch("panel?k=" + _token))[1]
+	# El botón del panel
+	r["El botón del panel pide el token"] = await _post({}, "panel-borrar?k=otro&i=%s&n=Misty2" % other) == 404
+	var page_ok: Array = await _fetch("detalle?k=%s&i=%s&n=Misty2" % [_token, other])
+	r["El detalle tiene el botón"] = "Borrar del servidor" in page_ok[1]
+	await _post({}, "panel-borrar?k=%s&i=%s&n=Misty2" % [_token, other])
+	r["El botón del panel la borra"] = "Misty2" not in (await _fetch("panel?k=" + _token))[1]
+
 
 func _drain() -> void:
 	var left := 25.0
