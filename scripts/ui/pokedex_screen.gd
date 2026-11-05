@@ -241,7 +241,7 @@ func _add_kit(sp: SpeciesData) -> void:
 			continue
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 8)
-		row.add_child(UiStyle.label(Controls.SLOT_KEYS[i] if i < Controls.SLOT_KEYS.size() else "", 14, UiStyle.ACCENT))
+		row.add_child(UiStyle.label(Controls.slot_key(i) if i < Controls.SLOT_ACTIONS.size() else "", 14, UiStyle.ACCENT))
 		if m.element != null:
 			row.add_child(UiStyle.type_chip(m.element))
 		row.add_child(UiStyle.label(m.display_name, 15))

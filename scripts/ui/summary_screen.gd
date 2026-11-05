@@ -145,7 +145,7 @@ func _build_moves() -> void:
 		var b := Button.new()
 		b.custom_minimum_size = Vector2(206, 64)
 		b.focus_mode = Control.FOCUS_ALL
-		b.text = "%s\n%s" % [Controls.SLOT_KEYS[i], m.display_name if m != null else "—"]
+		b.text = "%s\n%s" % [Controls.slot_key(i), m.display_name if m != null else "—"]
 		if m != null:
 			b.add_theme_stylebox_override("normal", UiStyle.box(UiStyle.BG_SOFT, Color(m.element.color, 0.8), 2))
 		b.pressed.connect(_on_slot.bind(i))
@@ -354,7 +354,7 @@ func _unmark() -> void:
 
 func _equip(slot: int, m: MoveData) -> void:
 	var ok := _inst.equip(slot, m)
-	var msg := ("%s equipado en %s." % [m.display_name, Controls.SLOT_KEYS[slot]]) if m != null else "Ranura vaciada."
+	var msg := ("%s equipado en %s." % [m.display_name, Controls.slot_key(slot)]) if m != null else "Ranura vaciada."
 	if not ok:
 		msg = "No se puede: tiene que quedar al menos un movimiento." if m == null else "No se puede equipar."
 	_pending_move = null
@@ -370,7 +370,7 @@ func _update_hint() -> void:
 	if _pending_move != null:
 		_hint.text = "Elegí la ranura para %s (Esc cancela)." % _pending_move.display_name
 	elif _pending_slot >= 0:
-		_hint.text = "Elegí el movimiento para %s (Esc cancela)." % Controls.SLOT_KEYS[_pending_slot]
+		_hint.text = "Elegí el movimiento para %s (Esc cancela)." % Controls.slot_key(_pending_slot)
 	else:
 		_hint.text = "Enter en un movimiento y después en una ranura para equiparlo · Supr vacía una ranura."
 
