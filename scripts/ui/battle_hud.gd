@@ -94,7 +94,7 @@ func _draw_items() -> void:
 	_panel(r)
 	var ball: ItemData = _world.items.ball_to_throw() if _world.items != null else null
 	var quick: ItemData = DB.items.get(GameState.quick_item)
-	var rows := [[Controls.pad_label("capture") if Controls.gamepad else "E", ball, "Sin Pokéballs"], [Controls.pad_label("quick_item") if Controls.gamepad else "C", quick, "Sin objeto rápido"]]
+	var rows := [[Controls.pad_label("capture").left(3) if Controls.gamepad else "E", ball, "Sin Pokéballs"], [Controls.pad_label("quick_item") if Controls.gamepad else "C", quick, "Sin objeto rápido"]]
 	for i in rows.size():
 		var y := r.position.y + 8 + i * 30
 		var it: ItemData = rows[i][1]
