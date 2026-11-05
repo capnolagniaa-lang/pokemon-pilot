@@ -6,6 +6,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-05)
+- **Opciones recortadas (2026-11-05, pedido del usuario)**: fuera Modo práctica y Salvajes de prueba (las partidas que los tenían los apagan), y de Ajustes: teclas por rol, PP (maná y recarga), ritmo, stagger, combos, reglas de arena en todo el mundo, curación sola, objetos en las rutas y % de shiny (quedan en lo normal; los objetos siguen saliendo). La dificultad dinámica se eliminó del todo.
 - **Joystick, parte 1: jugar (2026-11-05, lo pedían los amigos)**: mover, correr, 4 ataques, esquivar, bola, objeto, sacar al Pokémon y cambiarlo con la cruceta. Los ataques salen hacia
   donde mira el Pokémon (decisión del usuario); con teclado y mouse no cambia nada. Test `--autotest-gamepad` (botones simulados): falta probarlo con un joystick en la mano.
   Parte 2 hecha: menús con joystick (`MenuNav`), controles configurables (Esc → Controles, con dibujo del mando) y ataques de zona que se apuntan manteniendo el botón.

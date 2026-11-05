@@ -114,6 +114,8 @@ const NAMES_PS := {JOY_BUTTON_A: "Cruz", JOY_BUTTON_B: "Círculo", JOY_BUTTON_X:
 
 ## Ruleta de Pokémon abierta: el stick elige ahí y no mueve, no se ataca (PokemonWheel).
 var wheel_open := false
+## Ruleta de Pokémon abierta: el stick elige ahí y no mueve, no se ataca (PokemonWheel).
+var wheel_open := false
 ## ¿Lo último que se tocó fue el joystick?
 var gamepad := false
 ## Nombre del último mando que se tocó (de ahí salen los nombres de los botones).
@@ -316,6 +318,21 @@ func spec_name(spec: Dictionary) -> String:
 		return (NAMES_PS if ps else NAMES_XBOX).get(spec["btn"], "Botón %d" % spec["btn"])
 	var left: bool = spec["axis"][0] == JOY_AXIS_TRIGGER_LEFT
 	return ("L2" if left else "R2") if ps else ("LT" if left else "RT")
+
+
+## Nombre de un botón fijo en el mando que se está usando ("Círculo" o "B"...).
+func button_name(button: JoyButton) -> String:
+	return (NAMES_PS if is_playstation(pad_name) else NAMES_XBOX)[button]
+
+
+## Para los textos: {attack_1}, {dodge}... (lo que tiene asignado cada acción) y {aceptar}, {volver}, {pestana_der}, {pestana_izq},
+## {menu} (los botones fijos), con los nombres de este mando.
+func pad_tokens() -> Dictionary:
+	var out := {"aceptar": button_name(JOY_BUTTON_A), "volver": button_name(JOY_BUTTON_B), "pestana_der": button_name(JOY_BUTTON_RIGHT_SHOULDER),
+		"pestana_izq": button_name(JOY_BUTTON_LEFT_SHOULDER), "menu": button_name(JOY_BUTTON_START)}
+	for row in PAD_ROWS:
+		out[row[0]] = pad_label(row[0])
+	return out
 
 
 static func is_playstation(joy_name: String) -> bool:

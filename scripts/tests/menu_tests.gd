@@ -218,6 +218,21 @@ func _bindings() -> void:
 	await _tap(JOY_BUTTON_START)
 	await _frames(2)
 	r["Options cancela sin cambiar nada"] = not screen.capturing() and Controls.pad_label("capture") == "Triángulo"
+	# Con un mando de Xbox, los nombres de Xbox en todos lados
+	Controls.pad_name = "Xbox Series Controller"
+	r["Xbox: botones de Xbox"] = Controls.slot_key(0) == "X" and Controls.slot_key(1) == "A" and Controls.slot_key(3) == "RB" \
+		and Controls.pad_label("battle_toggle") == "RT" and Controls.pad_label("quick_item") == "LT" and Controls.button_name(JOY_BUTTON_B) == "B"
+	Controls.pad_name = "XInput Gamepad"
+	r["XInput también es de Xbox"] = Controls.slot_key(0) == "X"
+	var xbox_text: String = "{attack_1} {aceptar} {volver} {menu}".format(Controls.pad_tokens())
+	r["Los textos también: %s" % xbox_text] = xbox_text == "X A B Start"
+	var fresh := ControlsScreen.new()
+	add_child(fresh)
+	await _frames(2)
+	r["La pantalla de controles también"] = fresh._rows["pad"]["attack_1"].text == "X"
+	fresh.queue_free()
+	Controls.pad_name = "DualSense Wireless Controller"
+	r["Con DualSense los textos son los suyos"] = "{volver}".format(Controls.pad_tokens()) == "Círculo"
 	# Teclado
 	Controls.set_binding("key", "dodge", {"key": KEY_G})
 	r["Teclado: se cambia la tecla"] = Controls.key_label("dodge") == "G"

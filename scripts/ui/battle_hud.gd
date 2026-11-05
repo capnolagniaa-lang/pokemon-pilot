@@ -67,7 +67,7 @@ func _draw() -> void:
 		_draw_items()
 	_draw_message()
 	if GameState.difficulty != null:
-		var mode := "IA: %s%s%s" % [GameState.difficulty.display_name, "  ·  Modo práctica" if GameState.practice_mode else "",
+		var mode := "IA: %s%s" % [GameState.difficulty.display_name,
 			"  ·  Entrenadores vivos" if GameState.living_trainers else ""]
 		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
 	var hint := _pad_hint(in_battle) if Controls.gamepad \

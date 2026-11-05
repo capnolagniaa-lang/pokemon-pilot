@@ -130,7 +130,7 @@ func run() -> void:
 	r["Los de ruta pelean en el claro de pinos"] = world.arena.arena_data != null and world.arena.arena_data.id == "arena_campo"
 	for k in 3:
 		await _until(func(): return is_instance_valid(world.companion) and not world.companion.is_down(), 4.0)
-		if not world.arena.active:
+		if not world.arena.active or world.arena.result != "":  # (ya perdió: no volver a debilitar al que ya curaron)
 			break
 		_ko(world.companion)
 		await get_tree().create_timer(1.5).timeout

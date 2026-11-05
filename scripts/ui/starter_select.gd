@@ -51,13 +51,6 @@ func _build_options() -> void:
 		b.pressed.connect(GameState.set_difficulty.bind(id))
 		row.add_child(b)
 
-	var practice := CheckBox.new()
-	practice.text = "Modo práctica (si tu Pokémon se debilita, vuelve al instante con la vida al máximo)"
-	practice.button_pressed = GameState.practice_mode
-	practice.toggled.connect(func(on: bool): GameState.practice_mode = on)
-	var center := CenterContainer.new()
-	center.add_child(practice)
-	box.add_child(center)
 
 
 func _unhandled_input(event: InputEvent) -> void:

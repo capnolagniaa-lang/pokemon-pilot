@@ -153,9 +153,19 @@ func run() -> void:
 	layer.add_child(screen)
 	await get_tree().process_frame
 	(screen.controls["taken_mult"] as HSlider).value = 0.5
-	(screen.controls["field_items"] as CheckBox).button_pressed = false
-	r["La pantalla cambia los ajustes (daño recibido ×0,5, sin objetos)"] = is_equal_approx(GameState.setting("taken_mult"), 0.5) \
-		and GameState.setting("field_items") == false
+	r["La pantalla cambia los ajustes (daño recibido ×0,5)"] = is_equal_approx(GameState.setting("taken_mult"), 0.5)
+	# Lo que se sacó de la pantalla (2026-11-05)
+	r["Ya no están en la pantalla"] = GameState.REMOVED_SETTINGS.all(func(k): return not screen.controls.has(k)) and not screen.controls.has("ai_adaptive")
+	var old_save := GameState.to_dict()
+	old_save["practice_mode"] = true
+	old_save["wild_test_pool"] = true
+	old_save["ai_losses"] = {"brock": 3}
+	old_save["settings"] = {"pp_mode": false, "regen": true, "field_items": false, "hitstun_mult": 0.0, "shiny_odds": 1, "ai_adaptive": true, "exp_mult": 2.0}
+	GameState.from_dict(old_save)
+	r["Partida vieja: modo práctica y salvajes de prueba apagados"] = not GameState.practice_mode and not GameState.wild_test_pool
+	r["Partida vieja: lo que tenía cambiado vuelve a lo normal"] = GameState.setting("pp_mode") == true and GameState.setting("regen") == false \
+		and GameState.setting("field_items") == true and GameState.setting("hitstun_mult") == 1.0 and GameState.setting("shiny_odds") == 1024
+	r["Partida vieja: lo que sigue existiendo se conserva"] = is_equal_approx(GameState.setting("exp_mult"), 2.0)
 	GameState.reset_settings()
 	screen.refresh()
 	r["Valores por defecto"] = GameState.settings.is_empty() \

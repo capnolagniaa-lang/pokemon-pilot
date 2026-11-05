@@ -92,7 +92,7 @@ func physics_update(delta: float) -> void:
 			if _tell_left <= 0.0:
 				var slot := _tell_slot
 				_cancel_tell()
-				if randf() < CombatBody.difficulty().feint_chance * (1.0 - 2.0 * actor.ease):
+				if randf() < CombatBody.difficulty().feint_chance:
 					# Finta: amagó y no sale; ataca enseguida (castiga si esquivaste al vacío).
 					actor.mind.feints += 1
 					_attack_timer = 0.25
@@ -239,7 +239,7 @@ func _choose_attack(dist: float) -> bool:
 	if slot < 0:
 		return false
 	actor.mind.last_slot = slot
-	var tell: float = CombatBody.difficulty().telegraph * (1.0 + actor.ease)
+	var tell: float = CombatBody.difficulty().telegraph
 	if TacticalMind.needs_tell(actor.moves.slots[slot]) and tell > 0.0:
 		_tell_slot = slot
 		_tell_left = tell

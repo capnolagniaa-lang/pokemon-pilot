@@ -23,7 +23,7 @@ var balls: int:
 ## Si es false no aparecen salvajes (lo usa el autotest de recorrido).
 var wilds_enabled := true
 ## Modo práctica (se elige al iniciar): si tu Pokémon se debilita, vuelve al instante con la vida al máximo.
-var practice_mode := true
+var practice_mode := false
 ## Salvajes de prueba (Opciones): en todo el mapa aparecen solo Pidgey, Bellsprout, Rattata y Vulpix, como en la
 ## fase de prueba del combate. Apagado: mandan las tablas de encuentros de cada zona (editor de mapas).
 var wild_test_pool := false
@@ -72,9 +72,6 @@ var _defaults: Dictionary = {}
 ## Zonas donde ya estuviste (id -> true): el Mapa (Esc → Mapa, TownMap) tapa las demás. Se guarda; las partidas de
 ## antes del mapa lo arman con su avance de la historia (TownMap.visited_from_progress).
 var visited_zones: Dictionary = {}
-## Derrotas seguidas contra cada entrenador (id -> cantidad; se borra al ganarle): la dificultad dinámica las usa para
-## aflojarle un poco la IA (ajuste "ai_adaptive", docs/PLAN_IA.md IA-6).
-var ai_losses: Dictionary = {}
 const STARTING_MONEY := 3000
 
 ## Dónde te curaron por última vez (enfermera, mamá): si perdés contra un entrenador volvés ahí. INF = el inicio.
@@ -104,6 +101,11 @@ func difficulty_id() -> String:
 # --- Ajustes del juego (por partida) -------------------------------------------------
 
 ## Los valores de siempre (los de GameConfig y la dificultad Normal): una partida nueva arranca así.
+## Ajustes que ya no se pueden elegir (pedido del usuario 2026-11-05): una partida que los tenía cambiados vuelve a lo normal.
+const REMOVED_SETTINGS := ["slot_roles", "pp_mode", "pp_regen", "cooldown_mult", "attack_gap", "hitstun_mult", "combos",
+	"arena_everywhere", "regen", "field_items", "shiny_odds"]
+
+
 func default_settings() -> Dictionary:
 	if not _defaults.is_empty():
 		return _defaults
@@ -112,8 +114,7 @@ func default_settings() -> Dictionary:
 		"exp_mult": DB.config.exp_multiplier, "money_mult": 1.0, "catch_mult": 1.0,
 		"dealt_mult": 1.0, "taken_mult": 1.0, "hp_scale": CreatureInstance.HP_SCALE,
 		"combos": DB.config.combos_enabled, "arena_everywhere": DB.config.arena_rules_everywhere,
-		"wild_mult": 1.0, "regen": false, "hitstun_mult": 1.0, "cooldown_mult": 1.0, "attack_gap": 0.0, "slot_roles": false, "shiny_odds": 1024, "pp_mode": true, "pp_regen": 1.0, "field_items": true, "time_lock": -1.0, "ai_adaptive": true,
-		"ai_attack_interval": n.attack_interval_mult, "ai_aim_error": n.aim_error_deg, "ai_dodge": n.dodge_chance,
+		"wild_mult": 1.0, "regen": false, "hitstun_mult": 1.0, "cooldown_mult": 1.0, "attack_gap": 0.0, "slot_roles": false, "shiny_odds": 1024, "pp_mode": true, "pp_regen": 1.0, "field_items": true, "time_lock": -1.0, "ai_attack_interval": n.attack_interval_mult, "ai_aim_error": n.aim_error_deg, "ai_dodge": n.dodge_chance,
 		"ai_lead": n.lead, "ai_damage": n.damage_mult, "ai_think": n.think_interval_mult,
 	}
 	return _defaults
@@ -190,7 +191,6 @@ func new_game(starter: SpeciesData) -> void:
 	field_picked.clear()
 	story_flags.clear()
 	visited_zones.clear()
-	ai_losses.clear()
 	settings.clear()
 	_custom_difficulty = null
 	last_heal_position = Vector2.INF
@@ -580,7 +580,7 @@ func to_dict() -> Dictionary:
 		"trainer_position": [trainer_position.x, trainer_position.y] if trainer_position != Vector2.INF else null,
 		"zone_name": zone_name, "pokedex": {"seen": pokedex_seen.keys(), "fought": pokedex_fought.keys(),
 		"caught": pokedex_caught.keys()}, "box": _box_list(), "field_picked": field_picked.duplicate(),
-		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money, "visited_zones": visited_zones.keys(), "settings": settings.duplicate(), "ai_losses": ai_losses.duplicate(),
+		"living_trainers": living_trainers, "trainers": _trainers_dict(), "story_flags": story_flags.keys(), "money": money, "visited_zones": visited_zones.keys(), "settings": settings.duplicate(),
 		"last_heal_position": [last_heal_position.x, last_heal_position.y] if last_heal_position != Vector2.INF else null,
 		"map_version": MAP_VERSION}
 
@@ -630,8 +630,8 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 		bag["poke_ball"] = int(d.get("balls", DB.config.starting_balls))
 	selected_ball = str(d.get("selected_ball", "poke_ball"))
 	quick_item = str(d.get("quick_item", "pocion"))
-	practice_mode = bool(d.get("practice_mode", true))
-	wild_test_pool = bool(d.get("wild_test_pool", false))
+	practice_mode = false  # (ya no son opciones, 2026-11-05: una partida que los tenía prendidos los apaga)
+	wild_test_pool = false
 	# Entrenadores vivos sacado por ahora (pedido del usuario 2026-10-29): una partida que lo tenía prendido lo apaga
 	# (no hay dónde apagarlo). El sistema y su test siguen; se vuelve a prender con set_living_trainers.
 	living_trainers = false
@@ -645,7 +645,7 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	var saved_settings = d.get("settings", {})
 	if saved_settings is Dictionary:
 		for key in saved_settings:
-			if default_settings().has(str(key)):
+			if default_settings().has(str(key)) and not REMOVED_SETTINGS.has(str(key)):
 				settings[str(key)] = saved_settings[key]
 	_custom_difficulty = null
 	set_difficulty(str(d.get("difficulty", "normal")))
@@ -690,11 +690,6 @@ func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 		for f in flags:
 			story_flags[str(f)] = true
 	visited_zones.clear()
-	ai_losses.clear()
-	var losses = d.get("ai_losses", {})
-	if losses is Dictionary:
-		for k in losses:
-			ai_losses[str(k)] = int(losses[k])
 	var visited = d.get("visited_zones", null)
 	if visited is Array:
 		for id in visited:

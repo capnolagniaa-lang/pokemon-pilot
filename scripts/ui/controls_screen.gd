@@ -46,7 +46,7 @@ func _ready() -> void:
 	var back := UiStyle.button("Volver", 160)
 	back.pressed.connect(func(): closed.emit())
 	row.add_child(back)
-	row.add_child(UiStyle.label("Cambiar de pestaña: R1 / L1 o con el mouse", 13, UiStyle.TEXT_DIM))
+	row.add_child(UiStyle.label("Cambiar de pestaña: %s / %s o con el mouse" % [Controls.button_name(JOY_BUTTON_RIGHT_SHOULDER), Controls.button_name(JOY_BUTTON_LEFT_SHOULDER)], 13, UiStyle.TEXT_DIM))
 	_tabs.current_tab = 1 if Controls.gamepad else 0
 	_refresh()
 	_focus_first.call_deferred()
@@ -86,7 +86,7 @@ func _pad_tab() -> Control:
 	box.add_child(list)
 	for row in Controls.PAD_ROWS:
 		list.add_child(_row("pad", row[0], row[1]))
-	list.add_child(UiStyle.label("Fijos: stick izquierdo mueve; Options abre el menú.", 13, UiStyle.TEXT_DIM))
+	list.add_child(UiStyle.label("Fijos: stick izquierdo mueve; %s abre el menú." % Controls.button_name(JOY_BUTTON_START), 13, UiStyle.TEXT_DIM))
 	list.add_child(UiStyle.label("Ataques de zona: mantené el botón para alejar la marca.", 13, UiStyle.TEXT_DIM))
 	return box
 
@@ -131,7 +131,7 @@ func _start_capture(kind: String, action: String) -> void:
 	_capture_action = action
 	MenuNav.blocked = true
 	_rows[kind][action].text = "Apretá…"
-	_status.text = "Apretá la tecla o el clic nuevo (Esc cancela)." if kind == "key" else "Apretá el botón nuevo (Options cancela)."
+	_status.text = "Apretá la tecla o el clic nuevo (Esc cancela)." if kind == "key" else "Apretá el botón nuevo (%s cancela)." % Controls.button_name(JOY_BUTTON_START)
 
 
 func capturing() -> bool:

@@ -1,5 +1,5 @@
 extends Control
-## Opciones editables en partida: dificultad de la IA y modo práctica (las mismas que al iniciar).
+## Opciones editables en partida: dificultad de la IA, volumen y servidor.
 
 signal closed
 
@@ -37,17 +37,6 @@ func _ready() -> void:
 		_diff_buttons[id] = b
 		if b.button_pressed or _first == null:
 			_first = b
-	var practice := CheckBox.new()
-	practice.text = "Modo práctica (si tu Pokémon se debilita, vuelve al instante)"
-	practice.button_pressed = GameState.practice_mode
-	practice.toggled.connect(func(on: bool): GameState.practice_mode = on)
-	box.add_child(practice)
-	var test_pool := CheckBox.new()
-	test_pool.text = "Salvajes de prueba (solo Pidgey, Bellsprout, Rattata y Vulpix)"
-	test_pool.tooltip_text = "Apagado: en cada zona aparecen los Pokémon de su tabla (se arman en el editor de mapas)."
-	test_pool.button_pressed = GameState.wild_test_pool
-	test_pool.toggled.connect(func(on: bool): GameState.wild_test_pool = on)
-	box.add_child(test_pool)
 	# (Entrenadores vivos: sacado de las opciones por ahora, pedido del usuario 2026-10-29.)
 	# Volumen (de esta PC, no de la partida): user://audio.cfg (Sound).
 	box.add_child(UiStyle.label("Volumen", 16))

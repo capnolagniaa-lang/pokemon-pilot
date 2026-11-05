@@ -39,16 +39,16 @@ const PAGES := [
 		"Los tipos importan como en los juegos: súper eficaz, poco eficaz e inmunidades (a un Volador no le hace nada un ataque Tierra, a un Veneno no lo envenenás...).",
 	]],
 	["Con joystick", [
-		"Stick izquierdo: moverte.  Apretarlo (L3): correr.",
-		"Ataques: Cuadrado, Cruz, Círculo y R1 (Xbox: X, A, B y RB). Salen hacia donde mira tu Pokémon; las zonas caen un poco más adelante.",
-		"L1 (LB): esquivar.  R2 (RT): sacar o guardar a tu Pokémon.  L2 (LT): objeto rápido.",
-		"Triángulo (Y): hablar o lanzar bola (va al salvaje más cercano).  Cruz (A): aceptar en los menús y las charlas.",
-		"Apretar el stick (L3) una vez: corrés hasta que te pares.",
-		"Cruceta izquierda y derecha: el Pokémon anterior o el siguiente.  Options (Start): menú.  Create (Select): minimapa.",
+		"Stick izquierdo: moverte.  Apretar {run} una vez: corrés hasta que te pares.",
+		"{attack_1}, {attack_2}, {attack_3} y {attack_4}: los 4 ataques. Salen hacia donde mira tu Pokémon.",
+		"{dodge}: esquivar.  {battle_toggle}: sacar o guardar a tu Pokémon.  {quick_item}: objeto rápido.",
+		"{capture}: hablar o lanzar bola (va al salvaje más cercano).",
+		"{switch_prev} y {switch_next}: el Pokémon anterior o el siguiente.  {menu}: menú.  {minimap}: minimapa.",
+		"Mantené {pokemon_wheel}: ruleta con tu equipo. El stick izquierdo marca a uno y al soltar sale ese (Círculo cancela). El tiempo va lento, salvo online.",
 		"Ataques de zona (Rayo, Trueno...): un toque cae encima tuyo; mantené el botón y la marca se aleja hasta su alcance. Sale al soltar.",
-		"En los menús: Cruz (A) acepta, Círculo (B) vuelve, R1 y L1 cambian de pestaña y el stick derecho baja por las listas.",
+		"En los menús: {aceptar} acepta, {volver} vuelve, {pestana_der} y {pestana_izq} cambian de pestaña y el stick derecho baja por las listas.",
 		"Tocá el teclado o el mouse cuando quieras y vuelve la mira.",
-		"Esc o Options → Controles: cambiá las teclas y los botones a tu gusto.",
+		"Esc o {menu} → Controles: cambiá las teclas y los botones a tu gusto.",
 	]],
 	["Tu equipo", [
 		"1 a 6: cambiar de Pokémon en plena pelea (tiene una recarga corta).",
@@ -74,7 +74,7 @@ const PAGES := [
 	]],
 	["Lo que podés modificar", [
 		"Esc → Opciones: dificultad de la IA (Fácil, Normal, Difícil o Personalizado) y el volumen.",
-		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y que recibís, vida de los Pokémon, stagger, cantidad de salvajes, cada cuánto sale un shiny, curación sola fuera de combate, objetos en las rutas, hora fija, que un entrenador que te gana seguido afloje un poco y, en Personalizado, cada detalle de la IA.",
+		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y recibís, vida de los Pokémon, cantidad de salvajes, hora fija e IA personalizada.",
 		"Tus 4 ataques, la Pokébola que lanzás y el objeto rápido de la C.",
 		"Varias partidas con nombre, cada una con sus ajustes.",
 		"Tu nombre en la sala online es el de tu personaje.",
@@ -148,7 +148,7 @@ func show_page(i: int) -> void:
 	for c in _body.get_children():
 		c.queue_free()
 	for line in PAGES[page][1]:
-		var l := UiStyle.label("•  " + line, 18)
+		var l := UiStyle.label("•  " + str(line).format(Controls.pad_tokens()), 18)
 		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		l.custom_minimum_size.x = 836
 		_body.add_child(l)

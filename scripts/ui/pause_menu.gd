@@ -66,6 +66,7 @@ func try_open() -> bool:
 	if _map_button != null:
 		_map_button.visible = has_map() and not in_battle
 	_first = _buttons["Mochila"] if in_battle else _buttons["Guía"]
+	_back_hint.text = "%s: volver" % (Controls.button_name(JOY_BUTTON_B) if Controls.gamepad else "Esc")
 	visible = true
 	_status.text = "En combate: la pelea queda en pausa. Usar un objeto te deja expuesto un instante." if in_battle else ""
 	get_tree().paused = true
@@ -94,6 +95,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		close()
 	else:
 		_pop()
+
+
+var _back_hint: Label
 
 
 func _build() -> void:
@@ -126,7 +130,8 @@ func _build() -> void:
 	_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_status.custom_minimum_size.x = 240
 	box.add_child(_status)
-	box.add_child(UiStyle.label("Esc o Círculo (B): volver", 12, UiStyle.TEXT_DIM))
+	_back_hint = UiStyle.label("", 12, UiStyle.TEXT_DIM)
+	box.add_child(_back_hint)
 
 
 func _open_controls() -> void:

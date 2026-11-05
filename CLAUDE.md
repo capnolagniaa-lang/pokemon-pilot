@@ -312,9 +312,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   **IA-5** (salvajes vivos): `WildSociety` + `data/ai/wild_life.tres` (`DB.wild_life`): duermen en su hora
   (`Creature.napping`, Dormido largo en el estado "stunned"; `WildSpawner._spawn_in` y `_on_time_changed`), respeto
   (`outclass_gap`), manadas (`call_pack` en `Events.wild_aggro`, `Temperament.calls_group`; `TacticalMind.flank_point`),
-  presas/depredadores (estado `hunt`; no se pegan) y curiosidad (`watch` acepta un objeto del piso). **IA-6**: ajuste
-  `ai_adaptive` + `GameState.ai_losses` (derrotas seguidas por entrenador, se guardan) → `Creature.ease` (lo leen la mente,
-  el cuerpo y el estado `attack`).
+  presas/depredadores (estado `hunt`; no se pegan) y curiosidad (`watch` acepta un objeto del piso). La dificultad dinámica (IA-6) se sacó el 2026-11-05, por pedido del usuario.
 - **Historia** (`docs/PLAN_HISTORIA.md`, fases H; **capítulo 2** hasta Misty: `docs/PLAN_CAPITULO_2.md`; **capítulo 3**
   hasta Lt. Surge: `docs/PLAN_CAPITULO_3.md`; **capítulos 4-8** hasta el Campeón: `docs/PLAN_RESTO_KANTO.md`). **E frente
   a algo** (`StoryDirector.register_interaction`): `FieldMoves` = MO **como en Let's Go** (decisión del usuario 2026-10-28: la MO + su medalla las desbloquea,
@@ -383,11 +381,10 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `sprites/props/` (hechos con ComfyUI, `tools/prop_from_image.py`). Todos son decorado (no chocan).
 - **Ajustes del juego por partida** (Esc → Opciones → "Ajustes del juego…", `GameSettingsScreen`): `GameState.settings`
   (se guarda con la partida; solo lo cambiado; el resto sale de `default_settings()` = GameConfig + dificultad Normal;
-  una partida nueva arranca de cero). Leer siempre con `GameState.setting(clave)`: `hitstun_mult` (stagger), `cooldown_mult`/`attack_gap`/`slot_roles`/`pp_mode`/`pp_regen` (ritmo del combate y PP, `MoveUser`), `exp_mult` (exp_yield), `money_mult`
+  una partida nueva arranca de cero). **Sacados de la pantalla el 2026-11-05** (`GameState.REMOVED_SETTINGS`; una partida que los tenía cambiados vuelve a lo normal al cargar; quedan los valores por defecto): `slot_roles`, `pp_mode`, `pp_regen`, `cooldown_mult`, `attack_gap`, `hitstun_mult`, `combos`, `arena_everywhere`, `regen`, `field_items` (los objetos de las rutas siguen saliendo), `shiny_odds`; también Modo práctica y Salvajes de prueba de Opciones (`from_dict` los apaga). Leer siempre con `GameState.setting(clave)`: `hitstun_mult` (stagger), `cooldown_mult`/`attack_gap`/`slot_roles`/`pp_mode`/`pp_regen` (ritmo del combate y PP, `MoveUser`), `exp_mult` (exp_yield), `money_mult`
   (`add_prize`: premios de entrenadores y torneo), `catch_mult` (Capture), `dealt_mult`/`taken_mult` (HitInfo.from),
   `hp_scale` (`CreatureInstance.hp_scale()`, reescala la vida actual), `combos`, `arena_everywhere`, `wild_mult`
-  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight), `ai_adaptive` (dificultad dinámica,
-  TrainerBattle), y `ai_*` (dificultad
+  (WildSpawner.max_alive), `regen` (curación sola, CombatDirector), `field_items`, `time_lock` (DayNight) y `ai_*` (dificultad
   "personalizado" = `GameState.custom_difficulty()`). **No leer más `DB.config.exp_multiplier`/`combos_enabled`/
   `arena_rules_everywhere` ni `CreatureInstance.HP_SCALE` directo** (son los valores por defecto).
 - **Consola de Game Master** (Ctrl+Shift+G, `GmConsole` en `world.gm_console`; no en la versión portable): pausa el juego;
