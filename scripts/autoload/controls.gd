@@ -114,8 +114,6 @@ const NAMES_PS := {JOY_BUTTON_A: "Cruz", JOY_BUTTON_B: "Círculo", JOY_BUTTON_X:
 
 ## Ruleta de Pokémon abierta: el stick elige ahí y no mueve, no se ataca (PokemonWheel).
 var wheel_open := false
-## Ruleta de Pokémon abierta: el stick elige ahí y no mueve, no se ataca (PokemonWheel).
-var wheel_open := false
 ## ¿Lo último que se tocó fue el joystick?
 var gamepad := false
 ## Nombre del último mando que se tocó (de ahí salen los nombres de los botones).
