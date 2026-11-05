@@ -96,6 +96,9 @@ func use(slot: int) -> bool:
 ## esquiva recién pasado su tiempo de reacción (`AiDifficulty.reaction`, ±30 %), si sigue viniendo.
 func try_dodge() -> bool:
 	var now := actor.now()
+	if actor.mind.read_dodge_due() and actor.moves.can_dodge():  # el ataque que repetís: se lo veía venir (IA-7)
+		var line: Vector2 = actor.target.global_position - actor.global_position
+		return actor.dodge(line.orthogonal().normalized() * (1.0 if randf() < 0.5 else -1.0))
 	for p in _checked.keys():
 		if not is_instance_valid(p):
 			_checked.erase(p)

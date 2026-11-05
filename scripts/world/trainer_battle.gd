@@ -21,9 +21,14 @@ const NEXT_DELAY := 1.2
 const RETREAT_BELOW := 0.25
 ## Cambio por tipos (docs/PLAN_IA.md, IA-4): el que entra tiene que irle al menos así de mejor, después de este tiempo
 ## en la cancha, y como mucho estos cambios por pelea.
-const SWITCH_EDGE := 2.0
+const SWITCH_EDGE := 1.6
 const SWITCH_AFTER := 5.0
-const SWITCH_MAX := 2
+## Si le viene ganando (matchup_score) no cambia.
+const SWITCH_STAY := 1.2
+## Cuando vos cambiás, tarda esto en responder, como una persona, y entre un cambio suyo y otro espera esto (así no se puede
+## jugar a cambiar los dos sin parar).
+const SWITCH_REACT := 1.5
+const SWITCH_GAP := 6.0
 ## Superpoción: con menos de esta vida; cura 50 PS (× la escala de vida) y queda expuesto un instante.
 const POTION_BELOW := 0.3
 const POTION_HP := 50.0
@@ -50,6 +55,11 @@ var _moments_done := {}  # índice del momento -> true
 var _potion_used := {}  # instancia -> true
 var _switch_checked := {}  # [instancia, tu instancia] -> true
 var _switches := 0
+var _player_swapped_at := -100.0
+var _player_mon: CreatureInstance
+var _last_switch := -100.0
+## Lo que el equipo rival fue viendo de cómo jugás (IA-7): sigue al cambiar de Pokémon.
+var _memory := FoeMemory.new()
 var _entered_at := 0.0
 var _clock := 0.0
 var _think_timer := 0.0
@@ -116,6 +126,10 @@ func start(opts: Dictionary) -> String:
 	_potion_used.clear()
 	_switch_checked.clear()
 	_switches = 0
+	_player_swapped_at = -100.0
+	_player_mon = null
+	_last_switch = -100.0
+	_memory = FoeMemory.new()
 	arena_data = load("res://data/arenas/%s.tres" % opts.get("arena_id", "arena_campo"))
 	var t: Trainer = world.trainer
 	t.autopilot = Vector2.ZERO
@@ -259,6 +273,7 @@ func _send_next(skip: CreatureInstance = null, pick: CreatureInstance = null) ->
 	c.position = cell_pos(arena_data.foe_mon_cell)
 	world.entities.add_child(c)
 	c.home = c.global_position
+	c.mind.share_memory(_memory)
 	foe = c
 	Fx.burst(world.entities, c.global_position, Color(1.0, 0.4, 0.35), 18, 60.0)
 	Events.message_requested.emit("¡%s saca a %s!" % [foe_name, next.display_name()])
@@ -348,6 +363,11 @@ func _physics_process(delta: float) -> void:
 	if _think_timer <= 0.0:
 		_think_timer = 0.4
 		think()
+	# Sacaste a otro (CombatDirector ya le cambió el objetivo al rival: se nota por tu Pokémon).
+	if c.instance != _player_mon:
+		if _player_mon != null:
+			_player_swapped_at = _clock
+		_player_mon = c.instance
 
 
 ## Lo que piensa el entrenador durante la pelea (docs/PLAN_IA.md, IA-4): los momentos del guion del líder, la
@@ -377,25 +397,34 @@ func _maybe_retreat() -> bool:
 	return true
 
 
-## Cambia si el tuyo le pega súper efectivo y él a vos no, y tiene uno al que le va mucho mejor (una vez por cada
-## cruce, con la probabilidad de su estilo).
+## Cambia si va perdiendo el cruce y tiene uno al que le va mucho mejor (IA-7, con el daño de verdad). Piensa una vez por
+## cada cruce y por cada costumbre tuya que note, con la probabilidad de su estilo. Si cambiaste vos, responde enseguida.
 func _maybe_switch() -> bool:
 	var me: Creature = world.companion
-	if style.switch_types <= 0.0 or _switches >= SWITCH_MAX or not is_instance_valid(me) or _clock - _entered_at < SWITCH_AFTER:
+	if style.switch_types <= 0.0 or _switches >= style.max_switches or not is_instance_valid(me) or _clock - _last_switch < SWITCH_GAP:
 		return false
-	if foe.mind.matchup() != "cuidate":
+	var you_swapped := _player_swapped_at > _entered_at
+	if _clock - (_player_swapped_at if you_swapped else _entered_at) < (SWITCH_REACT if you_swapped else SWITCH_AFTER):
 		return false
-	var key := [foe.instance, me.instance]
+	var key := [foe.instance, me.instance, _memory.habit()]
 	if _switch_checked.has(key):
+		return false
+	var now_score := TacticalMind.matchup_score(foe.instance, me, _known())
+	if now_score >= SWITCH_STAY:
 		return false
 	_switch_checked[key] = true
 	var best := _best_against(me, foe.instance)
-	if best == null or TacticalMind.matchup_score(best, me) < TacticalMind.matchup_score(foe.instance, me) * SWITCH_EDGE \
-			or randf() >= style.switch_types:
+	if best == null or TacticalMind.matchup_score(best, me, _known()) < now_score * SWITCH_EDGE or randf() >= style.switch_types:
 		return false
 	_switches += 1
+	_last_switch = _clock
 	_withdraw(best)
 	return true
+
+
+## Lo que sabe de tus ataques: null = todo (te estudió), o lo que te vio.
+func _known() -> FoeMemory:
+	return null if style != null and style.knows_moves else _memory
 
 
 ## Superpoción a su Pokémon con poca vida (una por Pokémon, mientras le queden): se cura y queda expuesto un instante.
@@ -434,7 +463,9 @@ func _best_against(against: Creature, skip: CreatureInstance) -> CreatureInstanc
 	for inst in foe_team:
 		if inst == skip or inst.hp <= 0.0 or (skip != null and inst.hp < inst.max_hp() * 0.4):
 			continue
-		var s: float = TacticalMind.matchup_score(inst, against) if is_instance_valid(against) else inst.hp
+		if leader and inst == foe_team[-1] and foe_team.any(func(m): return m != inst and m != skip and m.hp > 0.0):
+			continue  # el líder guarda a su último: entra con todo y tiene su momento del guion
+		var s: float = TacticalMind.matchup_score(inst, against, _known()) if is_instance_valid(against) else inst.hp
 		if s > best_score:
 			best_score = s
 			best = inst

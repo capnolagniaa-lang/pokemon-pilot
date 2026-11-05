@@ -141,3 +141,14 @@ tiempo (6 de 200 parejas: peleas largas entre tanques); 18,6 s por victoria en p
 peleas cada una (las de siempre: Lickitung, Rhyhorn...). Como las dos IA usan la misma mente, la batería mide que nada se
 rompa o se alargue; lo justo contra vos (avisos, reacción, fintas) se mide jugando. Informe completo: correr
 `--autotest-balance --fights 400 --out user://balance_ia.md`.
+
+## IA-7: te lee (hecha 2026-11-05)
+
+Pedido del usuario: "que identifique cómo estoy jugando y adopte patrones". Sin aprendizaje de máquina: cuenta lo que hacés y responde.
+
+- **Cruces**: `TacticalMind.hit_share` calcula qué parte de la vida saca cada ataque con la fórmula de `Damage`; `matchup_score` = golpes que aguanta / golpes que necesita.
+- **Solo sabe lo que vio** (`FoeMemory`), salvo `TrainerStyle.knows_moves`. Sin ver nada, supone un ataque común de tu tipo.
+- **Cambios**: si pierde el cruce (< `SWITCH_STAY`) y hay uno `SWITCH_EDGE` veces mejor. Responde a tu cambio en `SWITCH_REACT`; `SWITCH_GAP` entre cambios; `max_switches` por estilo. Un líder guarda a su último.
+- **Costumbres**: repetir un ataque (`habit`) hace que esquive antes y que cambie a uno que lo resista; el lado al que esquivás ya se leía (IA-2), ahora según `reads`.
+- **Por clase** (`reads`, `switch_types`, `max_switches`): impaciente 0,1/0/0 · rocket 0,2/0,2/1 · aguante 0,25/0,25/1 · estratega 0,5/0,8/2 · líder 0,7/0,7/3 · élite 1/1/4.
+- Los salvajes no estudian qué repetís.

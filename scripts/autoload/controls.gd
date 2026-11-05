@@ -316,6 +316,8 @@ func pad_label(action: String) -> String:
 func spec_name(spec: Dictionary) -> String:
 	if spec.has("key"):
 		var code: int = spec["key"]
+		if DisplayServer.get_name() == "headless":  # (sin pantalla no hay teclado: daría un error por cuadro)
+			return OS.get_keycode_string(code)
 		var named := OS.get_keycode_string(DisplayServer.keyboard_get_keycode_from_physical(code))
 		return named if named != "" else OS.get_keycode_string(code)
 	if spec.has("mouse"):

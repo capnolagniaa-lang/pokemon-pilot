@@ -9,6 +9,7 @@ extends RefCounted
 ## si estás en el agua o lo mojado, te moja primero si tiene con qué electrificarte, y no se para donde le harías eso
 ## vos) (IA-3). El *cómo* (apuntar, esquivar, moverse) sigue en
 ## CombatBody. Una por criatura (`Creature.mind`); la usan los salvajes y los Pokémon de los entrenadores.
+## IA-7: calcula el daño de verdad de cada cruce (`hit_share`, `matchup_score`) y lee costumbres (`FoeMemory`).
 
 ## Ataques de estado / mejora (no tienen potencia): valor fijo; si CombatBody.fits los deja, son buena idea.
 const STATUS_VALUE := 45.0
@@ -35,6 +36,16 @@ const STYLE_SURE := 0.7
 ## Vida por debajo de la cual cambia de plan (además del flee_below del temperamento).
 const LOW_HP := 0.35
 const RANGED_KINDS := [MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL, MoveData.Kind.WHIP, MoveData.Kind.ZONE]
+## Cruces: la suerte promedio del daño (0,85-1), el mínimo para no dividir por cero y la potencia que supone sin haber visto nada.
+const AVERAGE_ROLL := 0.925
+const MIN_SHARE := 0.01
+const ASSUMED_POWER := 70.0
+## Atacante contra defensor: hasta dónde pesa la diferencia de stats al elegir ataque.
+const STAT_EDGE_MIN := 0.4
+const STAT_EDGE_MAX := 2.5
+## Repetís un ataque: esquiva antes, con esta parte de su tiempo de reacción, si estás a esta distancia.
+const READ_REACT := 0.6
+const READ_DODGE_DIST := 140.0
 
 ## Entorno: golpe que te deja un estado malo donde estás parado (descarga en lo mojado) y golpe que lo prepara.
 const ENV_PUNISH := 1.6
@@ -45,10 +56,17 @@ const MELEE_KINDS := [MoveData.Kind.MELEE, MoveData.Kind.LUNGE, MoveData.Kind.DA
 
 var actor: Creature
 var last_slot := -1
-## Memoria de la pelea actual (contra `_watching`): lado de cada esquive (+1/-1) y forma de cada ataque tuyo.
-var dodge_sides: Array[int] = []
-var ranged_seen: Array[bool] = []
+## Lo que vio de cómo jugás. Propia, o la de todo el equipo en una pelea de entrenador (TrainerBattle).
+var memory := FoeMemory.new()
+var _shared_memory := false
+var dodge_sides: Array[int]:
+	get:
+		return memory.dodge_sides
+var ranged_seen: Array[bool]:
+	get:
+		return memory.ranged_seen
 var feints := 0
+var _read_dodge_at := -1.0
 ## Ataca más seguido por un rato (momento del guion de un líder: multiplica el tiempo entre ataques).
 var pace_boost := 1.0
 var pace_boost_until := -1.0
@@ -68,6 +86,11 @@ static func difficulty() -> AiDifficulty:
 # --- Memoria corta (IA-2) ---
 
 ## Mira al rival actual: si cambió, olvida lo anterior y empieza a observar al nuevo. Llamarlo cada cuadro de pelea.
+func share_memory(shared: FoeMemory) -> void:
+	memory = shared
+	_shared_memory = true
+
+
 func observe() -> void:
 	var t: Creature = actor.target
 	if t == _watching:
@@ -86,8 +109,9 @@ func forget() -> void:
 		if _watching.move_released.is_connected(_on_move):
 			_watching.move_released.disconnect(_on_move)
 	_watching = null
-	dodge_sides.clear()
-	ranged_seen.clear()
+	if not _shared_memory:
+		memory.clear()
+	_read_dodge_at = -1.0
 	feints = 0
 	all_in = false
 
@@ -100,17 +124,31 @@ func _on_dodged() -> void:
 	var side := line.cross(_watching.last_dodge_dir.normalized())
 	if absf(side) < 0.35:
 		return
-	dodge_sides.append(1 if side > 0.0 else -1)
-	if dodge_sides.size() > MEMORY:
-		dodge_sides.pop_front()
+	memory.note_dodge(1 if side > 0.0 else -1)
 
 
 func _on_move(m: MoveData) -> void:
 	if m == null or m.category == MoveData.Category.STATUS and m.power <= 0.0:
 		return
-	ranged_seen.append(m.kind in RANGED_KINDS)
-	if ranged_seen.size() > MEMORY:
-		ranged_seen.pop_front()
+	memory.note_move(_watching.instance, m, m.kind in RANGED_KINDS)
+	# Otra vez el de siempre: se lo veía venir, esquiva antes (según cuánto lee su entrenador).
+	if m == memory.habit() and randf() < reads():
+		_read_dodge_at = actor.now() + difficulty().reaction * READ_REACT
+
+
+## Cuánto lee tus costumbres su entrenador (0..1). Los salvajes no estudian qué ataque repetís.
+func reads() -> float:
+	return actor.trainer_style.reads if actor.trainer_style != null else 0.0
+
+
+## Hay que esquivar ya el ataque que repetís (una vez por ataque). Lo pregunta CombatBody.
+func read_dodge_due() -> bool:
+	if _read_dodge_at < 0.0 or actor.now() < _read_dodge_at:
+		return false
+	_read_dodge_at = -1.0
+	var t: Creature = actor.target
+	return difficulty().dodge_chance > 0.0 and is_instance_valid(t) \
+		and t.global_position.distance_to(actor.global_position) < READ_DODGE_DIST
 
 
 ## Hacia qué lado suele esquivar (+1/-1) y qué tan seguro (0..1); 0 si todavía no se sabe.
@@ -128,7 +166,8 @@ func dodge_read() -> Array:
 ## del actor al objetivo.
 func aim_read(off: Vector2) -> Vector2:
 	var read := dodge_read()
-	if read[0] == 0 or randf() >= READ_CHANCE * float(read[1]) * clampf(difficulty().smarts, 0.0, 1.0):
+	var how_much: float = actor.trainer_style.reads if actor.trainer_style != null else 1.0
+	if read[0] == 0 or randf() >= READ_CHANCE * float(read[1]) * clampf(difficulty().smarts, 0.0, 1.0) * how_much:
 		return Vector2.ZERO
 	# (lado +1 en _on_dodged = cross(línea, esquive) > 0 = hacia -línea.orthogonal())
 	var perp := off.normalized().orthogonal() * -1.0
@@ -247,7 +286,7 @@ func score(slot: int, dist: float, shot: bool) -> float:
 		if eff <= 0.0:
 			return 0.0  # no le hace nada: ni lo intenta
 		var stab := Damage.STAB if m.element in actor.instance.types() else 1.0
-		value = m.power * m.power_mult * stab * eff * ability_mult(m, t) * env_mult(m, t) * actor.moves.role_damage(m)
+		value = m.power * m.power_mult * stab * eff * stat_edge(m, t) * ability_mult(m, t) * env_mult(m, t) * actor.moves.role_damage(m)
 		if value <= 0.0:
 			return 0.0  # su habilidad lo absorbe
 		if exposed(t):
@@ -279,6 +318,16 @@ func score(slot: int, dist: float, shot: bool) -> float:
 	if cost > 0.0 and actor.moves.pp() - cost < actor.moves.max_pp() * PP_RESERVE and not all_in:
 		value *= PP_THRIFT  # pocos PP: guarda para lo importante y usa más el básico
 	return value * randf_range(0.85, 1.15)
+
+
+## Cuánto rinde ese ataque por los stats: su Ataque contra tu Defensa si es físico, At. Esp. contra Def. Esp. si es especial.
+func stat_edge(m: MoveData, t: Creature) -> float:
+	if not is_instance_valid(t) or t.instance == null:
+		return 1.0
+	var special := m.category == MoveData.Category.SPECIAL
+	var a := float(actor.instance.stat("sp_attack" if special else "attack"))
+	var d := float(maxi(1, t.instance.stat("sp_defense" if special else "defense")))
+	return clampf(a / d, STAT_EDGE_MIN, STAT_EDGE_MAX)
 
 
 ## Elige la ranura a usar (-1 = ninguna llega). Con `smarts` bajo (Fácil) piensa menos: mezcla el puntaje con azar.
@@ -404,28 +453,63 @@ func trainer_pace() -> float:
 	return k
 
 
-## Qué tan bien le va a un Pokémon (instancia, con sus ataques equipados) contra `against`: su mejor efectividad
-## contra él dividida la de él contra este, por la vida que le queda. Para elegir a quién sacar.
-static func matchup_score(inst: CreatureInstance, against: Creature) -> float:
-	var edge := 0.0
-	var any := false
-	for m in inst.equipped_moves:
-		if m == null or m.power <= 0.0 or m.category == MoveData.Category.STATUS:
-			continue
-		any = true
-		edge = maxf(edge, DB.type_chart.get_multiplier(m.element, against.instance.types()))
-	if not any:
-		edge = 1.0
-	var danger := 0.0
-	any = false
-	for m in against.moves.moves:
-		if m == null or m.power <= 0.0 or m.category == MoveData.Category.STATUS:
-			continue
-		any = true
-		danger = maxf(danger, DB.type_chart.get_multiplier(m.element, inst.species.types))
-	if not any:
-		danger = 1.0
-	return edge / maxf(danger, 0.25) * (inst.hp / inst.max_hp())
+## Qué tan bien le va a un Pokémon contra `against` (IA-7): cuántos golpes aguanta dividido cuántos necesita, con el daño
+## de verdad (potencia, stats, STAB, tipos, habilidades) y la vida que le queda a cada uno. Más de 1 = gana el cruce. Sin
+## `memory` conoce todos los ataques del rival; con ella, solo los que le vio, y si repite uno espera ese.
+static func matchup_score(inst: CreatureInstance, against: Creature, memory: FoeMemory = null) -> float:
+	var foe_inst: CreatureInstance = against.instance
+	var mine := maxf(best_share(inst.equipped_moves, inst, foe_inst), MIN_SHARE)
+	var theirs := MIN_SHARE
+	if memory == null:
+		theirs = best_share(against.moves.moves, foe_inst, inst)
+	else:
+		var habit := memory.habit()
+		if habit != null and against.moves.moves.has(habit):
+			theirs = maxf(hit_share(habit, foe_inst, inst), assumed_share(foe_inst, inst) * 0.5)
+		else:
+			theirs = maxf(best_share(memory.seen_moves(foe_inst), foe_inst, inst), assumed_share(foe_inst, inst))
+	theirs = maxf(theirs, MIN_SHARE)
+	var my_hp := inst.hp / maxf(inst.max_hp(), 1.0)
+	var foe_hp := maxf(foe_inst.hp / maxf(foe_inst.max_hp(), 1.0), 0.05)
+	return (my_hp / theirs) / (foe_hp / mine)
+
+
+## Qué parte de la vida de `def` saca un uso de ese ataque de `atk`, en promedio (la fórmula de Damage, sin la suerte).
+static func hit_share(m: MoveData, atk: CreatureInstance, def: CreatureInstance) -> float:
+	if m == null or m.power <= 0.0 or m.category == MoveData.Category.STATUS or m.element == null:
+		return 0.0
+	var shots := maxi(1, maxi(m.combo_steps, m.projectile_count))
+	return _share(m.power * m.power_mult, m.element, m.category == MoveData.Category.SPECIAL, atk, def) * shots
+
+
+static func best_share(moves: Array, atk: CreatureInstance, def: CreatureInstance) -> float:
+	var best := 0.0
+	for m in moves:
+		best = maxf(best, hit_share(m, atk, def))
+	return best
+
+
+## Lo que se puede suponer sin haberle visto nada: un ataque común de su tipo, con su mejor stat de ataque.
+static func assumed_share(atk: CreatureInstance, def: CreatureInstance) -> float:
+	var best := 0.0
+	var special: bool = atk.stat("sp_attack") > atk.stat("attack")
+	for ty in atk.types():
+		best = maxf(best, _share(ASSUMED_POWER, ty, special, atk, def))
+	return best
+
+
+static func _share(power: float, element: ElementType, special: bool, atk: CreatureInstance, def: CreatureInstance) -> float:
+	var a := float(atk.stat("sp_attack" if special else "attack"))
+	var d := float(maxi(1, def.stat("sp_defense" if special else "defense")))
+	var base := (2.0 * atk.level / 5.0 + 2.0) * power * a / d / 50.0 + 2.0
+	var stab := Damage.STAB if element in atk.types() else 1.0
+	var value := base * stab * DB.type_chart.get_multiplier(element, def.types()) * AVERAGE_ROLL
+	var ability := def.ability_data()
+	if ability != null:
+		if ability.params.get("absorb", {}).has(element.id):
+			return 0.0
+		value *= float(ability.params.get("element_taken", {}).get(element.id, 1.0))
+	return value / maxf(def.max_hp(), 1.0)
 
 
 # --- Manada (IA-5) ---

@@ -11,3 +11,5 @@ smarts_mult = 0.6
 pace = 0.8
 retreat = 0.1
 low_hp = 1
+reads = 0.1
+max_switches = 0

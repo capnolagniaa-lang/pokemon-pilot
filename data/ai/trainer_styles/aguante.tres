@@ -10,3 +10,5 @@ classes = PackedStringArray("Montañero", "Karateka", "Motorista", "Calvo", "Mar
 counter = true
 retreat = 0.2
 low_hp = 2
+reads = 0.25
+switch_types = 0.25

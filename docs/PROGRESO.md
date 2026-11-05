@@ -6,6 +6,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-05)
+- **IA que te lee (IA-7, 2026-11-05)**: los entrenadores calculan el daño real de cada cruce, cambian de Pokémon como una persona (responden a tu cambio) y notan si repetís un ataque o esquivás siempre igual. Graduado por clase; Alto Mando y Campeón al máximo. Falta (si hace falta): atacar apenas termina tu recarga, recordar entre peleas. Probarlo jugando: si queda muy difícil, bajar `reads`.
 - **Pokébola con joystick (2026-11-05)**: un toque al salvaje más cercano (con algo de anticipación); mantener = mira que se mueve con el stick derecho y se pega al salvaje cercano; sale al soltar (`PlayerItems`, `BallAim`). Falta probarlo con el mando en la mano.
 - **Opciones recortadas (2026-11-05, pedido del usuario)**: fuera Modo práctica y Salvajes de prueba (las partidas que los tenían los apagan), y de Ajustes: teclas por rol, PP (maná y recarga), ritmo, stagger, combos, reglas de arena en todo el mundo, curación sola, objetos en las rutas y % de shiny (quedan en lo normal; los objetos siguen saliendo). La dificultad dinámica se eliminó del todo.
 - **Joystick, parte 1: jugar (2026-11-05, lo pedían los amigos)**: mover, correr, 4 ataques, esquivar, bola, objeto, sacar al Pokémon y cambiarlo con la cruceta. Los ataques salen hacia

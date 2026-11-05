@@ -17,6 +17,12 @@ extends Resource
 @export var counter: bool = false
 ## Probabilidad de cambiar de Pokémon cuando el cruce de tipos le es malo y tiene uno mejor.
 @export_range(0.0, 1.0) var switch_types: float = 0.0
+## Cuántos cambios hace como mucho en una pelea.
+@export var max_switches: int = 1
+## Cuánto te lee (0..1): si esquiva lo que repetís y si tira hacia donde esquivás (docs/PLAN_IA.md, IA-7).
+@export_range(0.0, 1.0) var reads: float = 0.3
+## Conoce tus ataques desde el principio (te estudió); si no, solo los que te vio usar.
+@export var knows_moves: bool = false
 ## Probabilidad de retirar a uno muy golpeado si tiene otro sano.
 @export_range(0.0, 1.0) var retreat: float = 0.35
 ## Al caer uno, saca el que mejor le va contra el tuyo (si no, el siguiente de la lista).
