@@ -11,8 +11,8 @@ func physics_update(_delta: float) -> void:
 	if input == null:
 		return
 	var dir := input.move_dir(actor)
-	var aim := input.aim(actor)
 	actor.move(dir, actor.speed())
+	var aim := input.aim(actor)  # (después de moverse: con joystick se apunta hacia donde mira)
 	if aim.length() > 4.0:
 		actor.facing = aim.normalized()
 	if input.wants_dodge() and actor.dodge(dir if dir.length() > 0.1 else aim, aim):

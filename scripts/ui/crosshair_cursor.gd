@@ -22,10 +22,15 @@ func _process(_delta: float) -> void:
 	var want := not get_tree().paused
 	if want != _on:
 		_use_crosshair(want)
+	# Con joystick jugando no hay mira (ataques hacia donde mira el Pokémon); en los menús, el mouse se puede usar igual.
+	var mode := Input.MOUSE_MODE_HIDDEN if want and Controls.gamepad else Input.MOUSE_MODE_VISIBLE
+	if Input.mouse_mode != mode:
+		Input.mouse_mode = mode
 
 
 func _exit_tree() -> void:
 	Input.set_custom_mouse_cursor(null)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_on = false
 
 

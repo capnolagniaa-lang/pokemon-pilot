@@ -38,6 +38,13 @@ const PAGES := [
 		"Todo golpe deja aturdido un instante (stagger); un golpe fuerte corta los ataques que se cargan.",
 		"Los tipos importan como en los juegos: súper eficaz, poco eficaz e inmunidades (a un Volador no le hace nada un ataque Tierra, a un Veneno no lo envenenás...).",
 	]],
+	["Con joystick", [
+		"Stick izquierdo: moverte.  Apretarlo (L3): correr.",
+		"RT, LT, RB y LB: los 4 ataques. Salen hacia donde mira tu Pokémon; las zonas caen un poco más adelante.",
+		"A: esquivar y aceptar.  B: sacar o guardar a tu Pokémon.  X: hablar o lanzar bola (va al salvaje más cercano).  Y: objeto rápido.",
+		"Cruceta izquierda y derecha: el Pokémon anterior o el siguiente.  Start: menú.  Select: minimapa.",
+		"Tocá el teclado o el mouse cuando quieras y vuelve la mira. Algunos menús todavía se manejan mejor con el mouse.",
+	]],
 	["Tu equipo", [
 		"1 a 6: cambiar de Pokémon en plena pelea (tiene una recarga corta).",
 		"La experiencia se reparte entre los que pelearon contra ese rival y siguen en pie.",

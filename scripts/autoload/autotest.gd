@@ -273,6 +273,13 @@ func _ready() -> void:
 		add_child(bt)
 		(bt.showcase if "--showcase-burrow" in OS.get_cmdline_user_args() else bt.run).call_deferred()
 		return
+	if "--autotest-gamepad" in OS.get_cmdline_user_args():
+		set_process(false)
+		var gp := GamepadTests.new()
+		gp.autotest = self
+		add_child(gp)
+		gp.run.call_deferred()
+		return
 	if "--autotest-save-sync" in OS.get_cmdline_user_args():
 		set_process(false)
 		var ss := SaveSyncTests.new()

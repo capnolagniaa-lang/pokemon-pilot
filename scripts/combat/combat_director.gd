@@ -44,6 +44,9 @@ func _process(delta: float) -> void:
 	for i in GameState.MAX_PARTY:
 		if Input.is_action_just_pressed("switch_%d" % (i + 1)):
 			switch_to(i)
+	for pair in [["switch_prev", -1], ["switch_next", 1]]:
+		if Input.is_action_just_pressed(pair[0]):
+			_switch_step(pair[1])
 	if Input.is_action_just_pressed("battle_toggle") and not arena_lock:
 		if in_battle:
 			end_battle()
@@ -255,6 +258,22 @@ func _after_faint() -> void:
 func force_switch(index: int) -> bool:
 	_switch_cd = 0.0
 	return switch_to(index)
+
+
+## Cruceta del joystick: al anterior o al siguiente que pueda pelear.
+func _switch_step(step: int) -> void:
+	var online = world.get("online")
+	if online != null and online.battle != null and online.battle.active:
+		var next: int = online.battle.next_in_team(step)
+		if next >= 0:
+			switch_to(next)
+		return
+	var n := GameState.party.size()
+	for k in range(1, n):
+		var i := posmod(GameState.active_index + step * k, n)
+		if GameState.party[i].hp > 0.0:
+			switch_to(i)
+			return
 
 
 func switch_to(index: int) -> bool:

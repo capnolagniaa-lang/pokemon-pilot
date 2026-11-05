@@ -213,6 +213,17 @@ func _correct(c, id: int, slack: float, lerp_w: float) -> void:  # (c sin tipo: 
 		c.global_position = c.global_position.lerp(target, lerp_w)
 
 
+## El anterior o el siguiente de tu equipo de la pelea que pueda pelear, o -1 (la cruceta del joystick).
+func next_in_team(step: int) -> int:
+	var n := my_team.size()
+	var now: int = maxi(my_team.find(GameState.active_index), 0)
+	for k in range(1, n):
+		var i := posmod(now + step * k, n)
+		if GameState.party[my_team[i]].hp > 0.0:
+			return i
+	return -1
+
+
 ## ¿Lo maneja la pelea online? (CombatDirector.switch_to: el cambio lo decide el servidor.) En la pelea, las teclas 1-6
 ## son el equipo de la pelea en el orden en que lo elegiste (1 = el primero que elegiste), como lo cuenta el servidor.
 func intercepts_switch(index: int) -> bool:

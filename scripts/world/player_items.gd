@@ -31,9 +31,26 @@ func _process(delta: float) -> void:
 			if world.get("arena") != null and world.arena.active:
 				Events.message_requested.emit("¡No se puede atrapar al Pokémon de otro entrenador!")
 			else:
-				throw_ball(world.get_global_mouse_position())
+				throw_ball(_pad_throw_point() if Controls.gamepad else world.get_global_mouse_position())
 	if Input.is_action_just_pressed("quick_item"):
 		use_quick_item()
+
+
+## Con joystick no hay mira: al salvaje más cercano que esté al alcance; si no hay, adelante de quien manejás.
+func _pad_throw_point() -> Vector2:
+	var from: Vector2 = world.trainer.global_position
+	var best := Vector2.INF
+	var best_d := THROW_RANGE
+	for c in get_tree().get_nodes_in_group("creatures"):
+		if c.team == Creature.Team.WILD and not c.is_down() and c.global_position.distance_to(from) < best_d:
+			best_d = c.global_position.distance_to(from)
+			best = c.global_position
+	if best != Vector2.INF:
+		return best
+	var c: Creature = world.companion
+	if world.combat.in_battle and is_instance_valid(c):
+		return c.global_position + c.facing.normalized() * THROW_RANGE * 0.6
+	return from + world.trainer.facing * THROW_RANGE * 0.6
 
 
 ## Bola que se lanzaría: la elegida si quedan; si no, la primera que haya.

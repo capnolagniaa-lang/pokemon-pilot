@@ -70,7 +70,9 @@ func _draw() -> void:
 		var mode := "IA: %s%s%s" % [GameState.difficulty.display_name, "  ·  Modo práctica" if GameState.practice_mode else "",
 			"  ·  Entrenadores vivos" if GameState.living_trainers else ""]
 		draw_string(font, Vector2(18, 82), mode, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1, 1, 1, 0.6))
-	var hint := "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · 1-6 cambiar · E bola · C objeto · F volver" if in_battle \
+	var hint := ("Stick mover · RT / LT / RB / LB ataques · A esquivar · Cruceta cambiar · X bola · Y objeto · B volver" if in_battle \
+		else "Stick mover · L3 correr · B sacar a tu Pokémon · Cruceta cambiar · X hablar / lanzar bola · Y objeto · Start menú") if Controls.gamepad \
+		else "WASD mover · Mouse apuntar · Clic / Clic der. / Q / R ataques · Espacio esquivar · 1-6 cambiar · E bola · C objeto · F volver" if in_battle \
 		else "WASD mover · Shift correr · F sacar a tu Pokémon · 1-6 cambiar · E hablar / lanzar bola · C objeto · Esc menú"
 	# Arriba de los paneles de abajo (antes iba en el borde y pisaba las ranuras de ataque).
 	draw_string(font, Vector2(0, size.y - 112), hint, HORIZONTAL_ALIGNMENT_RIGHT, size.x - 16, 13, Color(1, 1, 1, 0.75))
@@ -169,7 +171,7 @@ func _draw_moves(c: Creature) -> void:
 		if m == null:
 			continue
 		draw_rect(Rect2(r.position, Vector2(r.size.x, 5)), m.element.color)
-		draw_string(font, r.position + Vector2(6, 22), Controls.SLOT_KEYS[i], HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(1, 1, 1, 0.75))
+		draw_string(font, r.position + Vector2(6, 22), Controls.slot_key(i), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(1, 1, 1, 0.75))
 		draw_string(font, r.position + Vector2(6, 46), m.display_name, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 14 if m.display_name.length() <= 11 else 12)
 		var kind: String = MoveUser.ROLE_NAMES[i] if MoveUser.roles_on() else KIND.get(m.kind, "")
 		var info := "%s · %ss" % [kind, _secs(c.moves.slot_cooldown(i, m.cooldown))]

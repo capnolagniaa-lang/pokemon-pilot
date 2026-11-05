@@ -76,7 +76,7 @@ func _choose() -> void:
 		var m: MoveData = inst.equipped_moves[i]
 		if m == null:
 			continue
-		var b := UiStyle.button("%s  —  %s" % [Controls.SLOT_KEYS[i] if i < Controls.SLOT_KEYS.size() else str(i + 1),
+		var b := UiStyle.button("%s  —  %s" % [Controls.slot_key(i),
 			m.display_name], 560)
 		b.tooltip_text = MoveInfo.what_it_does(m) + "
 " + " · ".join(Summary.describe(m))
