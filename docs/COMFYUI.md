@@ -123,6 +123,9 @@ Lo aprendido:
   dirección (5) y las 3 de la izquierda espejadas: así salen las 8 de PMD. **Pedir la hoja entera de 8 filas de una vez
   no sirve** (pierde direcciones o el golpe sale solo en algunas filas).
 - Algunas semillas dibujan una grilla o dan vuelta un cuadro: probar 2 semillas y quedarse con la mejor (~10 s cada una).
+- **Efectos de tierra de una sola tira** (Excavar, 2026-11-05; ~4 s por tira): describir cuadro por cuadro + "Exactly the same
+  center position in every cell", fondo blanco, y pasarla con `tools/fx_from_strip.py <tira> <hoja> --frames 6 --size 96`
+  (no recorta por cuadro, así no salta; `--trim 12` si la semilla dibujó grilla). Lado de la tira: 256 por cuadro.
 - **LoRAs de pixel art** (Redmond, Master Pixel Art, moss): son del Qwen-Image viejo; en 2.1 casi no cargan ("lora key
   not loaded") y no cambian nada. Con Qwen-Image-Edit 2511 (`tools/comfy/qwen_edit2511_run.py`) sí cargan, pero sale peor
   (pixeles rotos, sombra; el `pixel_4walk` lo pone de frente) y tarda ~90 s. **Quedarse con 2.1 Turbo sin LoRA.**

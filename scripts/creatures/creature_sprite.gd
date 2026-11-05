@@ -224,6 +224,23 @@ func _current() -> Array:
 	return [tex, Rect2(frame * fw, row * fh, fw, fh), Rect2(-fw / 2.0, -fh / 2.0 - foot_offset, fw, fh), flip]
 
 
+## Copia suelta del cuadro actual, con su origen en los pies (efectos que siguen después de esconderlo: Excavar).
+func snapshot() -> Sprite2D:
+	var cur := _current()
+	if cur.is_empty() or cur[0] == null:
+		return null
+	var at := AtlasTexture.new()
+	at.atlas = cur[0]
+	at.region = cur[1]
+	var s := Sprite2D.new()
+	s.texture = at
+	s.centered = false
+	s.offset = (cur[2] as Rect2).position
+	s.flip_h = cur[3]
+	s.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	return s
+
+
 func _status_frozen() -> bool:
 	var c := get_parent()
 	return c is Creature and c.statuses != null and c.statuses.has_status("congelado")

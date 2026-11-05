@@ -5,7 +5,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > **Plan paralelo:** la identidad del combate (arquetipos, mecánica de firma y kit por Pokémon) se sigue en
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
-## 📍 Dónde estamos (actualizado 2026-11-04)
+## 📍 Dónde estamos (actualizado 2026-11-05)
+- **Gráficos nuevos de Excavar (2026-11-05, pedido del usuario)**: `DigFx` + 4 hojas hechas con Qwen 2.1 (`sprites/fx/moves/excavar_*`): el pozo se abre y
+  el Pokémon se hunde, un montículo viaja dejando tierra removida (se agita en el último segundo) y sale con una erupción de 96 px
+  y un saltito; el golpe en el rival es un impacto de tierra. Solo visual: no cambia reglas ni la versión online. Vitrina `--showcase-burrow`.
+  Sin jugar a mano: visto en cuadros de la vitrina y con `--autotest-burrow`, `-vfx` y `-online`.
 - **Stagger +15 % y Excavar en dos tiempos (2026-11-04, pedido del usuario)**: `HITSTUN_*` de 0,2-0,45 s a 0,23-0,52 s. Excavar: primer
   toque bajo tierra (hasta 4 s, +10 % de velocidad, no te pegan), segundo toque sale golpeando; sale solo al terminar (`Burrow`, ver
   CLAUDE.md). `NetPeer.PROTOCOL` 6: hay que subir la versión al servidor. Sin jugar a mano. `--autotest-arena-rules` falla en "tope de

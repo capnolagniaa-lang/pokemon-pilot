@@ -83,6 +83,8 @@ func _fall() -> void:
 	Fx.burst(get_parent(), global_position, hit.move.element.hdr(color), 18, radius * 2.0)
 	if burrower != null or not _is_bolt():
 		Fx.burst(get_parent(), global_position, Color(0.55, 0.45, 0.35), 26, radius * 3.0)  # polvo y piedras
+	if burrower != null:
+		DigFx.erupt(get_parent(), global_position, burrower)
 	NightLight.apply(self)  # día y noche: no se oscurece con la noche y su luz crece (docs/PLAN_DIA_NOCHE.md)
 
 func _is_bolt() -> bool:
@@ -113,6 +115,8 @@ func _draw() -> void:
 				draw_circle(p, 5.0, Color(0.42, 0.36, 0.3, 0.95))
 				draw_circle(p + Vector2(-1.4, -1.4), 2.2, Color(0.66, 0.6, 0.52, 0.95))
 		return
+	if burrower != null:
+		return  # la erupción ya es el golpe (DigFx)
 	var fade := clampf(1.0 - (_time - delay) / BOLT_TIME, 0.0, 1.0)
 	draw_circle(Vector2.ZERO, radius, Color(color.r * 1.4, color.g * 1.4, color.b * 1.4, 0.45 * fade))
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)

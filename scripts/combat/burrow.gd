@@ -10,6 +10,10 @@ const DUST_EVERY := 0.2
 const BODIES_MASK := (1 << 2) | (1 << 3) | (1 << 4)
 ## En la copia del rival de la pelea online sale cuando avisa el servidor; esto es por si el aviso no llega.
 const REMOTE_MARGIN := 1.5
+## Cada cuánto deja tierra removida atrás, en píxeles.
+const TRAIL_EVERY := 16.0
+## Cuando le queda poco, el montículo se agita (va a salir solo).
+const HURRY_TIME := 1.0
 
 var creature: Creature
 var move: MoveData
@@ -22,7 +26,8 @@ var remote := false
 var _layer := 0
 var _mask := 0
 var _dust := 0.0
-var _cracks: Array = []  # [ángulo, largo] del montículo
+var _mound: AnimatedSprite2D
+var _last_trail := Vector2.ZERO
 
 
 static func start(c: Creature, m: MoveData, p_slot: int) -> Burrow:
@@ -38,14 +43,15 @@ static func start(c: Creature, m: MoveData, p_slot: int) -> Burrow:
 
 func _ready() -> void:
 	z_index = -5
-	for i in 6:
-		_cracks.append([randf() * TAU, randf_range(0.6, 1.0)])
 	_layer = creature.collision_layer
 	_mask = creature.collision_mask
 	creature.collision_layer = 0
 	creature.collision_mask = _mask & ~BODIES_MASK
 	creature.hurtbox.set_deferred("monitorable", false)  # los disparos pasan por arriba
+	DigFx.dive(creature)
 	creature.sprite.visible = false
+	_mound = DigFx.mound(self)
+	_last_trail = creature.global_position
 	creature.health.depleted.connect(finish, CONNECT_ONE_SHOT)
 	Fx.burst(creature.get_parent(), creature.global_position, Color(0.55, 0.45, 0.35), 16, 60.0)
 	Events.camera_shake.emit(2.0)
@@ -64,7 +70,11 @@ func _physics_process(delta: float) -> void:
 	if _dust <= 0.0:
 		_dust = DUST_EVERY
 		Fx.burst(creature.get_parent(), creature.global_position, Color(0.55, 0.45, 0.35), 3, 18.0)  # se ve por dónde va
-	queue_redraw()
+	if creature.global_position.distance_to(_last_trail) >= TRAIL_EVERY:
+		_last_trail = creature.global_position
+		DigFx.trail(creature.get_parent(), _last_trail)
+	if _mound != null and time_left < HURRY_TIME:
+		_mound.speed_scale = 1.4
 
 
 ## Sale golpeando alrededor (el golpe es el de SkyStrike, sin espera). La recarga arranca recién acá.
@@ -94,11 +104,3 @@ func finish() -> void:
 	creature.hurtbox.set_deferred("monitorable", true)
 	creature.sprite.visible = true
 	queue_free()
-
-
-func _draw() -> void:
-	draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, 0.6))
-	draw_circle(Vector2.ZERO, 11.0, Color(0.32, 0.24, 0.16, 0.85))
-	draw_circle(Vector2(-2, -2), 6.5, Color(0.5, 0.4, 0.28, 0.9))
-	for cr in _cracks:
-		draw_line(Vector2.ZERO, Vector2.from_angle(cr[0]) * 15.0 * cr[1], Color(0.2, 0.14, 0.09, 0.8), 1.5)

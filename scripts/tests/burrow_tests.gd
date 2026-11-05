@@ -2,6 +2,7 @@ class_name BurrowTests
 extends Node
 ## Excavar en dos tiempos (`Burrow`) y el stagger:
 ##   godot --headless --path . --quit-after 60000 -- --autotest-burrow
+##   godot --path . --quit-after 240 --write-movie out/f.png --fixed-fps 30 -- --showcase-burrow
 
 
 ## Teclas de mentira: lo que el test diga.
@@ -49,6 +50,9 @@ func run() -> void:
 	keys.held = 0
 	await _frames(3)
 	r["Primer toque: queda bajo tierra, no se ve"] = me.is_burrowed() and not me.sprite.visible
+	r["Se ve el montículo andando y las hojas de Excavar están"] = me.burrow._mound != null and me.burrow._mound.is_playing() \
+		and DB.vfx_sheet(DigFx.ENTRY).get_frame_count("default") == 6 \
+		and DB.vfx_sheet(DigFx.ERUPTION).get_frame_count("default") == 6
 	r["Bajo tierra va un 10 % más rápido"] = absf(me.speed() / normal - 1.1) < 0.001
 	r["Bajo tierra no le pegan"] = _no_damage_from(foe, me)
 	await _frames(3)
@@ -164,6 +168,31 @@ func _ai_uses_it() -> void:
 	await _until(func() -> bool: return not rival.is_burrowed(), 3.5)
 	await get_tree().create_timer(0.15).timeout
 	r["IA: sale cerca tuyo y te pega"] = not rival.is_burrowed() and rival.global_position.distance_to(me.global_position) < 34.0 and me.instance.hp < hp0
+
+
+## Vitrina: se mete, viaja por el suelo y sale al lado de un Rattata, dos veces.
+func showcase() -> void:
+	world = await autotest._setup_kit_world("charmander")
+	var me: Creature = world.companion
+	var keys := FakeInput.new()
+	me.input_source = keys
+	me.machine.transition_to("controlled")
+	me.moves.slots[0] = DB.moves["excavar"]
+	autotest._dummy(world, "rattata", me.global_position + Vector2(70, 0))
+	await _frames(10)
+	for dir: Vector2 in [Vector2.RIGHT, Vector2.LEFT]:
+		me.moves.reset_cooldown(0)
+		keys.held = 0
+		await _frames(3)
+		keys.held = -1
+		await _frames(20)
+		keys.dir = dir
+		await _frames(45)
+		keys.dir = Vector2.ZERO
+		keys.held = 0
+		await _frames(3)
+		keys.held = -1
+		await _frames(45)
 
 
 func _frames(n: int) -> void:
