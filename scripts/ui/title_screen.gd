@@ -231,7 +231,7 @@ func _ask_name() -> void:
 	box.add_child(UiStyle.label("Nombre de tu personaje:", 18))
 	var edit := LineEdit.new()
 	edit.placeholder_text = "Tu nombre"
-	edit.max_length = 24
+	edit.max_length = NetPeer.NAME_MAX  # (es también tu nombre online)
 	edit.custom_minimum_size = Vector2(420, 44)
 	edit.add_theme_font_size_override("font_size", 20)
 	box.add_child(edit)

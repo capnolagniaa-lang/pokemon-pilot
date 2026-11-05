@@ -76,13 +76,6 @@ func _ready() -> void:
 	box.add_child(UiStyle.label("Online", 16))
 	var online := HBoxContainer.new()
 	online.add_theme_constant_override("separation", 10)
-	var name_edit := LineEdit.new()
-	name_edit.placeholder_text = "Tu nombre (%s)" % SaveManager.current_name
-	name_edit.text = Net.player_name
-	name_edit.max_length = NetPeer.NAME_MAX
-	name_edit.custom_minimum_size.x = 200
-	name_edit.text_changed.connect(func(t: String): Net.player_name = t; Net.save_config())
-	online.add_child(name_edit)
 	var addr_edit := LineEdit.new()
 	addr_edit.placeholder_text = "Servidor: el del juego"
 	addr_edit.tooltip_text = "Avanzado: vacío = el servidor del juego. Otro (ej. 192.168.0.10:%d) solo para probar." % NetPeer.DEFAULT_PORT

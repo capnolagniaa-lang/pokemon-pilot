@@ -19,7 +19,6 @@ var server_override := ""
 var address := DEFAULT_ADDRESS
 var port := NetPeer.DEFAULT_PORT
 ## Nombre con el que entrás a la sala (vacío = el de la partida).
-var player_name := ""
 
 var state: String:
 	get: return client.state
@@ -113,8 +112,9 @@ func ping_ms() -> int:
 	return client.ping_ms() if is_online() else -1
 
 
+## Tu nombre online es el de tu personaje (decisión del usuario 2026-11-05).
 func display_name() -> String:
-	return NetPeer.clean_name(player_name if player_name.strip_edges() != "" else SaveManager.current_name)
+	return NetPeer.clean_name(SaveManager.current_name)
 
 
 ## Lo que ven los demás en la lista: especie y nivel de cada uno.
@@ -157,7 +157,6 @@ func set_server(text: String) -> void:
 func save_config() -> void:
 	var cfg := ConfigFile.new()
 	cfg.set_value("online", "server", server_override)
-	cfg.set_value("online", "name", player_name)
 	cfg.save(CONFIG_PATH)
 
 
@@ -166,4 +165,3 @@ func _load_config() -> void:
 	if cfg.load(CONFIG_PATH) != OK:
 		return
 	set_server(str(cfg.get_value("online", "server", "")))
-	player_name = str(cfg.get_value("online", "name", ""))

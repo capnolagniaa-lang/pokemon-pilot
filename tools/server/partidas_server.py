@@ -61,6 +61,10 @@ def init_db() -> None:
             CREATE TABLE IF NOT EXISTS names (norm TEXT PRIMARY KEY, install TEXT NOT NULL, name TEXT NOT NULL);
             """
         )
+        # Las primeras subidas llamaron "slot_1" a la partida vieja que en el juego se llama "Partida 1".
+        for table in ("saves", "snapshots"):
+            con.execute("UPDATE OR IGNORE %s SET name='Partida 1' WHERE name='slot_1'" % table)
+        con.execute("DELETE FROM saves WHERE name='slot_1'")
         for r in con.execute("SELECT install, name FROM saves ORDER BY updated").fetchall():
             con.execute("INSERT OR IGNORE INTO names (norm, install, name) VALUES (?,?,?)", (norm_name(r["name"]), r["install"], r["name"]))
 
@@ -173,6 +177,11 @@ def play_time(seconds) -> str:
     return "%d h %02d min" % (mins // 60, mins % 60) if mins >= 60 else "%d min" % mins
 
 
+def num(value) -> str:
+    """Los números vienen de JSON: 3100.0 se muestra 3100."""
+    return str(int(value)) if isinstance(value, float) and value.is_integer() else str(value)
+
+
 def species(m: dict) -> str:
     name = str(m.get("species_id", "?")).replace("_", " ").capitalize()
     nick = str(m.get("nickname", "") or "")
@@ -180,7 +189,7 @@ def species(m: dict) -> str:
 
 
 def team_text(data: dict) -> str:
-    return ", ".join("%s Nv. %s" % (e(species(m)), e(m.get("level", "?"))) for m in data.get("party", []) if isinstance(m, dict)) or "—"
+    return ", ".join("%s Nv. %s" % (e(species(m)), e(num(m.get("level", "?")))) for m in data.get("party", []) if isinstance(m, dict)) or "—"
 
 
 def medals(data: dict) -> list:
@@ -218,10 +227,10 @@ def panel() -> str:
         lines.append(
             "<tr><td><a href='%s'><b>%s</b></a></td><td>%s</td><td class=n>%s</td><td>%s</td><td class=n>%s</td><td>%d</td><td class=n>$%s</td><td>%s</td><td>%d</td><td>%d</td></tr>"
             % (e(link), e(r["name"]), e(r["player"] or r["install"][:6]), e(ago(r["updated"])), e(r["zone"] or "—"), e(play_time(d.get("play_time"))),
-               len(medals(d)), e(d.get("money", 0)), team_text(d), len(d.get("box", [])), dex(d, "caught"))
+               len(medals(d)), e(num(d.get("money", 0))), team_text(d), len(d.get("box", [])), dex(d, "caught"))
         )
     table = "<tr><td colspan=10>Todavía no llegó ninguna partida.</td></tr>" if not lines else "".join(lines)
-    return page("Partidas", "<h1>Partidas</h1><p>%d personajes de %d jugadores. Se actualiza solo cada minuto.</p><div class=scroll><table><tr><th>Personaje<th>Nombre online<th>Última vez<th>Por dónde anda<th>Tiempo<th>Medallas<th>Dinero<th>Equipo<th>Caja<th>Atrapados</tr>%s</table></div>"
+    return page("Partidas", "<h1>Partidas</h1><p>Personajes: %d. Jugadores: %d. Se actualiza solo cada minuto.</p><div class=scroll><table><tr><th>Personaje<th>Nombre online<th>Última vez<th>Por dónde anda<th>Tiempo<th>Medallas<th>Dinero<th>Equipo<th>Caja<th>Atrapados</tr>%s</table></div>"
                 % (len(rows), len({r["install"] for r in rows}), table), True)
 
 
@@ -230,7 +239,7 @@ def mon_rows(mons: list) -> str:
     for m in mons:
         if isinstance(m, dict):
             moves = ", ".join(e(x) for x in m.get("equipped_moves", []) if x)
-            out.append("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % (e(species(m)), e(m.get("level", "?")), e(m.get("ability", "") or "—"), moves or "—"))
+            out.append("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % (e(species(m)), e(num(m.get("level", "?"))), e(m.get("ability", "") or "—"), moves or "—"))
     return "".join(out) or "<tr><td colspan=4>—</td></tr>"
 
 
@@ -250,10 +259,10 @@ def detail(install: str, name: str):
         party = [m for m in x.get("party", []) if isinstance(m, dict)]
         top = max((int(m.get("level", 0) or 0) for m in party), default=0)
         hist.append("<tr><td class=n>%s</td><td>%s</td><td class=n>%s</td><td>%d</td><td>%d</td><td class=n>$%s</td><td>%d</td><td>%s</td></tr>"
-                    % (e(when(s["at"])), e(s["zone"] or "—"), e(play_time(x.get("play_time"))), top, len(medals(x)), e(x.get("money", 0)), len(x.get("box", [])), "jugando" if s["live"] else "guardó"))
+                    % (e(when(s["at"])), e(s["zone"] or "—"), e(play_time(x.get("play_time"))), top, len(medals(x)), e(num(x.get("money", 0))), len(x.get("box", [])), "jugando" if s["live"] else "guardó"))
     back = "panel?k=%s" % quote(TOKEN)
     body = ("<p><a href='%s'>← Todas las partidas</a></p><h1>%s</h1><p>%s · %s · %s · %s · $%s · versión %s</p>" % (
-        e(back), e(r["name"]), e(r["player"] or r["install"][:6]), e(ago(r["updated"])), e(r["zone"] or "—"), e(play_time(d.get("play_time"))), e(d.get("money", 0)), e(r["game_version"] or "?"))
+        e(back), e(r["name"]), e(r["player"] or r["install"][:6]), e(ago(r["updated"])), e(r["zone"] or "—"), e(play_time(d.get("play_time"))), e(num(d.get("money", 0))), e(r["game_version"] or "?"))
         + "<p>Medallas: %s. Pokédex: %d vistos, %d atrapados.</p>" % (e(", ".join(medals(d)) or "ninguna"), dex(d, "seen"), dex(d, "caught"))
         + "<h2>Equipo</h2><div class=scroll><table>%s%s</table></div>" % (head, mon_rows(d.get("party", [])))
         + "<h2>Caja (%d)</h2><div class=scroll><table>%s%s</table></div>" % (len(d.get("box", [])), head, mon_rows(d.get("box", [])))

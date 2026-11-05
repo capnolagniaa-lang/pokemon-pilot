@@ -85,7 +85,7 @@ func run() -> void:
 	Events.online_players_changed.connect(on_list)
 	Net.address = "127.0.0.1"
 	Net.port = PORT
-	Net.player_name = "Rojo"
+	SaveManager.current_name = "Rojo"
 	Net.go_online()
 	await _until(func(): return Net.is_online() and Net.players.size() == 2)
 	r["Net: se conecta con el nombre y el equipo de la partida"] = Net.is_online() and _entry(a, Net.client.my_id).get("name") == "Rojo" \

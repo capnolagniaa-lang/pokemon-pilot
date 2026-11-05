@@ -65,7 +65,7 @@ const PAGES := [
 		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y que recibís, vida de los Pokémon, stagger, cantidad de salvajes, cada cuánto sale un shiny, curación sola fuera de combate, objetos en las rutas, hora fija, que un entrenador que te gana seguido afloje un poco y, en Personalizado, cada detalle de la IA.",
 		"Tus 4 ataques, la Pokébola que lanzás y el objeto rápido de la C.",
 		"Varias partidas con nombre, cada una con sus ajustes.",
-		"Esc → Opciones → Online: tu nombre en la sala online (si lo dejás vacío, va el de la partida).",
+		"Tu nombre en la sala online es el de tu personaje.",
 	]],
 	["El menú (Esc)", [
 		"Guía: qué hacer ahora para seguir la historia y lo opcional que te queda.",

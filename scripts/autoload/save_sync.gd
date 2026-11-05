@@ -10,6 +10,8 @@ const LIVE_EVERY := 120.0
 const FIRST_SCAN_DELAY := 5.0
 const TIMEOUT := 20.0
 const NAME_TIMEOUT := 4.0
+## Subir este número hace mandar de nuevo todas las partidas (cambió lo que se manda).
+const SEND_FORMAT := 2
 
 ## Lo prende `enabled()` o un test.
 var active := false
@@ -121,10 +123,10 @@ func _send_file(path: String) -> void:
 	var data: Variant = JSON.parse_string(text)
 	if not data is Dictionary:
 		return
-	var sha := GameUpdater.sha256_bytes(text.to_utf8_buffer()).hex_encode()
+	var sha := "%d:%s" % [SEND_FORMAT, GameUpdater.sha256_bytes(text.to_utf8_buffer()).hex_encode()]
 	if str(_cfg.get_value("enviados", path.get_file(), "")) == sha or _queue.any(func(q): return q.get("sha") == sha):
 		return
-	_enqueue(str(data.get("save_name", path.get_file().get_basename())), data, false, path.get_file(), sha)
+	_enqueue(str(data.get("save_name", "Partida 1")), data, false, path.get_file(), sha)
 
 
 ## Cómo viene la partida que se está jugando, sin guardarla.
@@ -140,7 +142,7 @@ func send_live(world: Node) -> void:
 
 
 func _enqueue(save_name: String, data: Dictionary, live: bool, file: String, sha: String) -> void:
-	var body := JSON.stringify({"install": install_id(), "save_name": save_name, "live": live, "player": Net.display_name(),
+	var body := JSON.stringify({"install": install_id(), "save_name": save_name, "live": live, "player": NetPeer.clean_name(save_name),
 		"game_version": Net.game_version(), "data": data})
 	_queue.append({"body": body, "file": file, "sha": sha})
 	_pump()

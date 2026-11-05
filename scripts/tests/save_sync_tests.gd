@@ -67,6 +67,16 @@ func _checks() -> void:
 	r["Guardar manda la partida"] = Sync.sent_ok > before
 	var list := await _fetch("panel?k=" + _token)
 	r["El panel la muestra con su nombre, equipo y dinero"] = list[0] == 200 and SAVE_NAME in list[1] and "Charmander" in list[1] and "4321" in list[1]
+	r["El nombre online es el del personaje"] = Net.display_name() == SAVE_NAME and "<td>%s</td>" % SAVE_NAME in list[1]
+	r["Los números se ven sin decimales"] = "$4321<" in list[1] and "Nv. 10<" in list[1] or "Nv. 10," in list[1]
+	var old_save := DIR.path_join("vieja.json")
+	var old_file := FileAccess.open(old_save, FileAccess.WRITE)
+	old_file.store_string(JSON.stringify({"party": [], "money": 7}))
+	old_file.close()
+	Sync._send_file(old_save)
+	await _drain()
+	r["Una partida vieja sin nombre se llama como en el juego"] = "Partida 1" in (await _fetch("panel?k=" + _token))[1]
+	list = await _fetch("panel?k=" + _token)
 	r["Los apodos no se meten en la página"] = "<b>Fueguito" not in list[1] and "&lt;b&gt;Fueguito" in list[1]
 
 	# Lo mismo no se manda dos veces
