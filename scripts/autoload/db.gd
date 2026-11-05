@@ -196,6 +196,15 @@ func vfx_for(m: MoveData, impact: bool = false) -> SpriteFrames:
 	return own
 
 
+## Hoja de una parte de un ataque (`moves/<id>_<parte>.png`), o la del ataque oficial del mismo nombre, para las variantes.
+func vfx_part(m: MoveData, part: String) -> SpriteFrames:
+	var own := vfx_sheet("res://sprites/fx/moves/%s_%s.png" % [m.id, part])
+	if own != null:
+		return own
+	var official := _official_move_id(m.display_name)
+	return vfx_sheet("res://sprites/fx/moves/%s_%s.png" % [official, part]) if official != "" else null
+
+
 ## Id del ataque de data/moves con ese nombre ("" si no hay): las variantes de los kits usan su hoja.
 func _official_move_id(display_name: String) -> String:
 	if not _vfx.has("names"):

@@ -8,6 +8,13 @@ extends Node2D
 const BOLT_TIME := 0.28
 const BOLT_HEIGHT := 150.0
 const LIGHT_TEX := preload("res://art/fx/soft_shadow.tres")
+## Hojas del rayo (Qwen, docs/COMFYUI.md): la marca en el piso y la caída. Sirven para todo golpe eléctrico del cielo.
+const MARK_SHEET := "res://sprites/fx/moves/rayo_marca.png"
+const BOLT_SHEET := "res://sprites/fx/moves/rayo_caida.png"
+## Ancho del anillo dentro de un cuadro de la marca (48 px), y a qué altura de la caída (168 px) está el punto que toca el piso.
+const MARK_RING := 36.0
+const BOLT_GROUND := 69.0
+const BOLT_GLOW := Color(1.7, 1.7, 1.4)
 
 var hit: HitInfo
 var radius := 30.0
@@ -18,6 +25,7 @@ var _struck := false
 var _bolt: PackedVector2Array = []
 var burrower: Creature
 var _cracks: Array = []  # [ángulo, largo] de las grietas de Excavar
+var _mark: VfxSprite
 
 
 func strike(p_hit: HitInfo, center: Vector2, extra_delay: float = 0.0, p_burrower: Creature = null) -> void:
@@ -29,6 +37,10 @@ func strike(p_hit: HitInfo, center: Vector2, extra_delay: float = 0.0, p_burrowe
 	color = m.element.color
 	z_index = -5
 	burrower = p_burrower
+	var mark := DB.vfx_sheet(MARK_SHEET) if _is_bolt() else null
+	if mark != null:
+		_mark = VfxSprite.attach(self, mark, 0.0, mark.get_frame_texture("default", 0).get_width() * radius * 2.0 / MARK_RING)
+		_mark.modulate = BOLT_GLOW
 	if burrower != null:
 		for i in 7:
 			_cracks.append([randf() * TAU, randf_range(0.5, 1.0)])
@@ -67,8 +79,13 @@ func _fall() -> void:
 		y += randf_range(14.0, 24.0)
 		_bolt.append(Vector2(randf_range(-9, 9), minf(y, 0.0)))
 	_bolt.append(Vector2.ZERO)
-	if not _is_bolt():
+	var bolt_sheet := DB.vfx_sheet(BOLT_SHEET) if _is_bolt() else null
+	if not _is_bolt() or bolt_sheet != null:
 		_bolt.clear()
+	if bolt_sheet != null:
+		VfxSprite.burst(get_parent(), bolt_sheet, global_position + Vector2(0, -BOLT_GROUND)).modulate = BOLT_GLOW
+	if is_instance_valid(_mark):
+		_mark.queue_free()
 	var light := PointLight2D.new()
 	light.texture = LIGHT_TEX
 	light.color = color
@@ -98,7 +115,8 @@ func _draw() -> void:
 		var k := clampf(_time / maxf(delay, 0.01), 0.0, 1.0)
 		draw_circle(Vector2.ZERO, radius, Color(color.r, color.g, color.b, 0.12 + 0.12 * k))
 		draw_circle(Vector2.ZERO, radius * k, Color(color.r, color.g, color.b, 0.25))
-		draw_arc(Vector2.ZERO, radius, 0.0, TAU, 40, Color(color.r * 1.3, color.g * 1.3, color.b * 1.3, 0.9), 1.5)
+		if _mark == null:
+			draw_arc(Vector2.ZERO, radius, 0.0, TAU, 40, Color(color.r * 1.3, color.g * 1.3, color.b * 1.3, 0.9), 1.5)
 		if burrower != null:
 			# Grietas que crecen y tiemblan donde va a salir.
 			var shake := Vector2(randf_range(-1, 1), randf_range(-1, 1)) * 1.5 * k

@@ -6,6 +6,9 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
 > [`PLAN_IDENTIDAD_COMBATE.md`](PLAN_IDENTIDAD_COMBATE.md), con su propia tabla de avance.
 
 ## 📍 Dónde estamos (actualizado 2026-11-05)
+- **Rayo y Lanzallamas nuevos (2026-11-05, pedido del usuario)**: Rayo marca una zona donde apuntás (190 px de alcance, radio 28) y a los 0,55 s cae del cielo; Lanzallamas
+  es un chorro sostenido como Psicorrayo (0,9 s, 130 px, 6 golpes de 0,2 × 90, recarga 6 s, 5 % de quemar por golpe). Gráficos de Qwen (`rayo_marca`, `rayo_caida`, `lanzallamas_chorro`). Cambian `data/moves`: hay que
+  publicar versión para el online. Valores sin probar jugando. `--autotest-sky-stream`, vitrina `--showcase-sky-stream`.
 - **Gráficos nuevos de Excavar (2026-11-05, pedido del usuario)**: `DigFx` + 4 hojas hechas con Qwen 2.1 (`sprites/fx/moves/excavar_*`): el pozo se abre y
   el Pokémon se hunde, un montículo viaja dejando tierra removida (se agita en el último segundo) y sale con una erupción de 96 px
   y un saltito; el golpe en el rival es un impacto de tierra. Solo visual: no cambia reglas ni la versión online. Vitrina `--showcase-burrow`.

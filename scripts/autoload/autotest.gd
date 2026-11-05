@@ -252,6 +252,13 @@ func _ready() -> void:
 		add_child(eq)
 		eq.run.call_deferred()
 		return
+	if "--autotest-sky-stream" in OS.get_cmdline_user_args() or "--showcase-sky-stream" in OS.get_cmdline_user_args():
+		set_process(false)
+		var st := SkyStreamTests.new()
+		st.autotest = self
+		add_child(st)
+		(st.showcase if "--showcase-sky-stream" in OS.get_cmdline_user_args() else st.run).call_deferred()
+		return
 	if "--autotest-burrow" in OS.get_cmdline_user_args() or "--showcase-burrow" in OS.get_cmdline_user_args():
 		set_process(false)
 		var bt := BurrowTests.new()

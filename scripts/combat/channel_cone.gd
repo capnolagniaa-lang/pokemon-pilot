@@ -1,7 +1,9 @@
 class_name ChannelCone
 extends Hitbox
 ## Cono canalizado (Lanzallamas): golpea a todo lo que esté adentro cada `tick_interval` mientras dure.
-## Lo maneja el estado "channel" de la criatura (que lo orienta y lo apaga).
+## Lo maneja el estado "channel" de la criatura (que lo orienta y lo apaga). Si el ataque tiene hoja de chorro
+## (`sprites/fx/moves/<id>_chorro.png`, apuntando a la derecha desde el borde izquierdo), se dibuja con ella estirada al largo
+## del cono, y las partículas quedan como chispas.
 
 const LIGHT_TEX := preload("res://art/fx/soft_shadow.tres")
 
@@ -9,6 +11,7 @@ var direction := Vector2.RIGHT
 var _tick := 0.0
 var _flames: CPUParticles2D
 var _poly: CollisionPolygon2D
+var _stream: VfxSprite
 
 
 func open(p_hit: HitInfo) -> void:
@@ -22,8 +25,14 @@ func open(p_hit: HitInfo) -> void:
 		pts.append(Vector2.RIGHT.rotated(lerpf(-half, half, k / 6.0)) * length)
 	_poly.polygon = pts
 	add_child(_poly)
+	var sheet := DB.vfx_part(m, "chorro")
+	if sheet != null:
+		var side: float = sheet.get_frame_texture("default", 0).get_width()
+		_stream = VfxSprite.attach(self, sheet, 0.0, length)
+		_stream.offset = Vector2(side / 2.0, 0.0)
+		_stream.modulate = Color(1.4, 1.4, 1.3)
 	_flames = CPUParticles2D.new()
-	_flames.amount = 70
+	_flames.amount = 70 if sheet == null else 18
 	_flames.lifetime = 0.35
 	_flames.texture = StatusEffects._flame_texture()
 	_flames.direction = Vector2.RIGHT
@@ -31,8 +40,8 @@ func open(p_hit: HitInfo) -> void:
 	_flames.gravity = Vector2(0, -30)
 	_flames.initial_velocity_min = length / 0.4
 	_flames.initial_velocity_max = length / 0.3
-	_flames.scale_amount_min = 1.2
-	_flames.scale_amount_max = 3.0
+	_flames.scale_amount_min = 1.2 if sheet == null else 0.3
+	_flames.scale_amount_max = 3.0 if sheet == null else 0.7
 	_flames.local_coords = false
 	var el := m.element
 	var ramp := Gradient.new()
@@ -72,6 +81,8 @@ func close() -> void:
 	set_deferred("monitoring", false)
 	hit = null
 	_flames.emitting = false
+	if is_instance_valid(_stream):
+		_stream.queue_free()
 	get_tree().create_timer(0.4).timeout.connect(queue_free)
 
 

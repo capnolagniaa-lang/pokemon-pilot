@@ -63,6 +63,8 @@ $G --headless --path . --quit-after 150000 -- --autotest-story-h3  # capítulo 3
 $G --path . --quit-after 600 --write-movie out/f.png --fixed-fps 30 -- --showcase-surge  # la arena eléctrica de Lt. Surge
 $G --headless --path . --quit-after 400000 -- --autotest-story-h4  # capítulos 4-8: de la Torre Pokémon al Campeón (todos los hitos)
 $G --headless --path . --quit-after 60000 -- --autotest-field      # MO de campo: Surf, Fuerza, Poké Flauta
+$G --headless --path . --quit-after 30000 -- --autotest-sky-stream  # Rayo (marca y cae del cielo) y Lanzallamas (chorro sostenido)
+$G --path . --quit-after 100 --write-movie out/f.png --fixed-fps 30 -- --showcase-sky-stream  # los dos en acción
 $G --headless --path . --quit-after 60000 -- --autotest-burrow    # Excavar en dos tiempos (entrar, moverse, salir, sale solo, online, IA) y el stagger
 $G --path . --quit-after 130 --write-movie out/f.png --fixed-fps 30 -- --showcase-burrow  # Excavar: el pozo, el montículo con su rastro y la erupción
 $G --headless --path . --quit-after 200000 -- --autotest-mansion  # Mansión Pokémon: se llega a todo, no hay lugares sin salida, guardar y cargar adentro, recorrido a pie
@@ -236,6 +238,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
 - **Equipamiento de los rivales** (2026-11-04): salvajes, entrenadores y torneo salen con `CreatureInstance.create_rival` = `best_equipment` (hasta `RIVAL_ATTACKS` 3 de daño + lo mejor de
   estado, `utility_rank`); tus Pokémon, con `create` = `default_equipment` (los últimos 4 por nivel).
 - **Excavar en dos tiempos** (`Burrow`, `MoveData.burrow_time` = 4 s en `data/moves/excavar.tres`; pedido del usuario 2026-11-04): el primer toque lo mete bajo tierra (`Creature.burrow`: invisible, invulnerable, sin hurtbox, pasa por debajo de los demás, +10 % de velocidad, sin otros ataques ni esquive); el segundo, con la tecla ya soltada (`armed`), lo saca golpeando alrededor (`SkyStrike` sin espera) y recién ahí arranca la recarga; si no, sale solo. La IA va hasta abajo tuyo y sale (`creature_attack`) y no le tira a alguien bajo tierra. Online: dos avisos "use"; la copia del rival espera el aviso (`remote`), y la foto del servidor trae `bw`: si tu pantalla no coincide por más de 0,5 s, manda el servidor (`OnlineBattle.sync_burrow`). El Excavar del jefe Onix (`excavar_onix`, sin `burrow_time`) sigue saliendo donde apunta. Gráficos en `DigFx` (hojas `sprites/fx/moves/excavar_entrada|monticulo|salida|impacto.png`, de Qwen 2.1 + `tools/fx_from_strip.py`): se hunde cortado a la altura de los pies, el montículo viaja dejando tierra removida y la salida es una erupción.
+- **Rayo y Lanzallamas** (pedido del usuario 2026-11-05): Rayo = zona que cae del cielo a los 0,55 s (`SkyStrike`, hojas `rayo_marca|caida`, para todo golpe eléctrico del cielo); Lanzallamas = chorro sostenido como Psicorrayo (`ChannelCone`, 0,9 s, 130 px, 14°; hoja `<id>_chorro`, `DB.vfx_part`, estirada al largo del cono). Hechos en `data/moves`, a mano.
 - **Ataques nuevos**: con ranura libre se equipa solo (`CreatureInstance.auto_equip`); con las 4 llenas,
   `MoveLearnDirector` (hijo de `world.evolutions`, en el momento tranquilo de las evoluciones) muestra `MoveLearnScreen`
   ("¿reemplazar uno?"). Cargas: solo un golpe fuerte (empuje ≥ `STAGGER_KNOCKBACK`) corta una carga o un canalizado;
