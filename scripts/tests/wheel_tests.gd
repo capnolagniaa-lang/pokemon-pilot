@@ -28,9 +28,9 @@ func run() -> void:
 	await _frames(2)
 	var normal := Engine.time_scale
 
-	# Fuera de combate: a la derecha está el segundo de los 4 (Pidgey).
+	# Fuera de combate: el primer gajo va arriba a la derecha y a la derecha está el segundo (Pidgey).
 	await _press()
-	r["Se abre con el equipo y frena el tiempo"] = wheel.is_open and wheel.slots.size() == 4 and is_equal_approx(Engine.time_scale, normal * PokemonWheel.SLOW)
+	r["Se abre con el equipo y frena el tiempo"] = wheel.is_open and wheel.slots == [0, 1, 2, 3, -1, -1] and is_equal_approx(Engine.time_scale, normal * PokemonWheel.SLOW)
 	await _stick("move_right")
 	r["El stick marca el gajo y no mueve al entrenador"] = wheel.marked == 1 and world.trainer.input_dir() == Vector2.ZERO
 	Input.action_release("move_right")
@@ -48,18 +48,23 @@ func run() -> void:
 	r["Sin mover el stick no cambia"] = GameState.active().species.id == "pidgey"
 	await _press()
 	await _stick("move_down")
-	r["Abajo marca al tercero"] = wheel.marked == 2
+	await _stick("move_right")
+	r["Abajo a la derecha marca al tercero"] = wheel.marked == 2
 	Input.action_release("move_down")
+	Input.action_release("move_right")
 	Input.action_press("ui_cancel")
 	await _frames(2)
 	Input.action_release("ui_cancel")
 	await _release()
 	r["Círculo cancela"] = not wheel.is_open and GameState.active().species.id == "pidgey"
 
-	# El debilitado (a la izquierda) no se marca.
+	# El debilitado (abajo a la izquierda) y los gajos vacíos no se marcan.
 	await _press()
 	await _stick("move_left")
+	r["Un gajo vacío no se marca"] = wheel.marked == -1
+	await _stick("move_down")
 	r["Un debilitado no se marca"] = wheel.marked == -1
+	Input.action_release("move_down")
 	Input.action_release("move_left")
 	await _release()
 
@@ -80,12 +85,14 @@ func run() -> void:
 	r["Abierta no se ataca ni se esquiva"] = not input.wants_slot(0) and not input.wants_dodge() and input.move_dir(world.companion) == Vector2.ZERO
 	Input.action_release("attack_1")
 	await _stick("move_up")
+	await _stick("move_right")
 	Input.action_release("move_up")
+	Input.action_release("move_right")
 	await _release()
 	r["En combate cambia, y el nuevo sigue peleando"] = GameState.active().species.id == "charmander" and world.combat.in_battle and is_instance_valid(world.companion) and world.companion.instance == GameState.active()
 	await _press()
-	await _stick("move_down")
-	Input.action_release("move_down")
+	await _stick("move_right")
+	Input.action_release("move_right")
 	await _release()
 	r["Respeta la recarga de los cambios"] = GameState.active().species.id == "charmander"
 

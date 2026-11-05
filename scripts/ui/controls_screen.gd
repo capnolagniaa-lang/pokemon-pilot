@@ -78,6 +78,7 @@ func _pad_tab() -> Control:
 	var box := HBoxContainer.new()
 	box.add_theme_constant_override("separation", 18)
 	_diagram = PadDiagram.new()
+	_diagram.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	_diagram.custom_minimum_size = Vector2(700, 460)
 	box.add_child(_diagram)
 	var list := VBoxContainer.new()
@@ -178,15 +179,29 @@ class PadDiagram extends Control:
 	var highlight := ""
 
 	## Botón, dónde está en el dibujo y de qué lado va su cartel.
+	## El dibujo (sprites/ui/joystick.png, tools/make_wheel_art.py): las celdas de los botones están medidas en la imagen de
+	## Qwen de 1408 px (art_src/ui/joystick_qwen.png) y `ART_SCALE` / `ART_AT` las pasan a este cuadro.
+	const ART := preload("res://sprites/ui/joystick.png")
+	const ART_SCALE := 0.31
+	const ART_AT := Vector2(131.5, 46)
+
 	const SPOTS := [
-		[{"axis": [JOY_AXIS_TRIGGER_LEFT, 1.0]}, Vector2(258, 92), "izq"], [{"btn": JOY_BUTTON_LEFT_SHOULDER}, Vector2(258, 118), "izq"],
-		[{"btn": JOY_BUTTON_BACK}, Vector2(305, 150), "izq"], [{"btn": JOY_BUTTON_DPAD_UP}, Vector2(254, 178), "izq"],
-		[{"btn": JOY_BUTTON_DPAD_RIGHT}, Vector2(276, 200), "izq"], [{"btn": JOY_BUTTON_DPAD_LEFT}, Vector2(232, 200), "izq"],
-		[{"btn": JOY_BUTTON_DPAD_DOWN}, Vector2(254, 222), "izq"], [{"btn": JOY_BUTTON_LEFT_STICK}, Vector2(292, 280), "izq"],
-		[{"axis": [JOY_AXIS_TRIGGER_RIGHT, 1.0]}, Vector2(442, 92), "der"], [{"btn": JOY_BUTTON_RIGHT_SHOULDER}, Vector2(442, 118), "der"],
-		[{"btn": JOY_BUTTON_START}, Vector2(395, 150), "der"], [{"btn": JOY_BUTTON_Y}, Vector2(446, 172), "der"],
-		[{"btn": JOY_BUTTON_B}, Vector2(472, 198), "der"], [{"btn": JOY_BUTTON_X}, Vector2(420, 198), "der"],
-		[{"btn": JOY_BUTTON_A}, Vector2(446, 224), "der"], [{"btn": JOY_BUTTON_RIGHT_STICK}, Vector2(408, 280), "der"],
+		[{"axis": [JOY_AXIS_TRIGGER_LEFT, 1.0]}, ART_AT + ART_SCALE * Vector2(335, 165), "izq"],
+		[{"btn": JOY_BUTTON_LEFT_SHOULDER}, ART_AT + ART_SCALE * Vector2(420, 165), "izq"],
+		[{"btn": JOY_BUTTON_DPAD_UP}, ART_AT + ART_SCALE * Vector2(378, 300), "izq"],
+		[{"btn": JOY_BUTTON_DPAD_LEFT}, ART_AT + ART_SCALE * Vector2(320, 355), "izq"],
+		[{"btn": JOY_BUTTON_DPAD_RIGHT}, ART_AT + ART_SCALE * Vector2(430, 355), "izq"],
+		[{"btn": JOY_BUTTON_BACK}, ART_AT + ART_SCALE * Vector2(600, 380), "izq"],
+		[{"btn": JOY_BUTTON_DPAD_DOWN}, ART_AT + ART_SCALE * Vector2(378, 430), "izq"],
+		[{"btn": JOY_BUTTON_LEFT_STICK}, ART_AT + ART_SCALE * Vector2(530, 510), "izq"],
+		[{"axis": [JOY_AXIS_TRIGGER_RIGHT, 1.0]}, ART_AT + ART_SCALE * Vector2(1070, 165), "der"],
+		[{"btn": JOY_BUTTON_RIGHT_SHOULDER}, ART_AT + ART_SCALE * Vector2(985, 165), "der"],
+		[{"btn": JOY_BUTTON_Y}, ART_AT + ART_SCALE * Vector2(1035, 275), "der"],
+		[{"btn": JOY_BUTTON_BACK}, ART_AT + ART_SCALE * Vector2(600, 380), "izq"],
+		[{"btn": JOY_BUTTON_START}, ART_AT + ART_SCALE * Vector2(810, 380), "der"],
+		[{"btn": JOY_BUTTON_X}, ART_AT + ART_SCALE * Vector2(950, 358), "der"],
+		[{"btn": JOY_BUTTON_A}, ART_AT + ART_SCALE * Vector2(1035, 435), "der"],
+		[{"btn": JOY_BUTTON_RIGHT_STICK}, ART_AT + ART_SCALE * Vector2(875, 510), "der"],
 	]
 
 	func _draw() -> void:
@@ -200,7 +215,7 @@ class PadDiagram extends Control:
 			var what := _what_does(spec)
 			var hot: bool = highlight != "" and Controls.specs("pad", highlight).has(spec)
 			var col: Color = UiStyle.ACCENT if hot else UiStyle.TEXT
-			draw_circle(at, 12.0 if hot else 10.0, Color(UiStyle.ACCENT, 0.9) if hot else Color(0.32, 0.36, 0.42))
+			draw_circle(at, 8.0 if hot else 4.0, UiStyle.ACCENT if hot else Color(0.85, 0.72, 0.4))
 			var y: float = 40.0 + rows[side] * 52.0
 			rows[side] += 1
 			var x := 6.0 if side == "izq" else 512.0
@@ -210,19 +225,7 @@ class PadDiagram extends Control:
 			draw_string(font, Vector2(x, y + 19.0), what, HORIZONTAL_ALIGNMENT_LEFT, 182, 13, col if what != "—" else UiStyle.TEXT_DIM)
 
 	func _draw_body() -> void:
-		var body := Color(0.16, 0.19, 0.23)
-		var edge := Color(1, 1, 1, 0.22)
-		# Hombros, cuerpo y agarres.
-		draw_rect(Rect2(230, 80, 60, 50), Color(0.24, 0.27, 0.32))
-		draw_rect(Rect2(410, 80, 60, 50), Color(0.24, 0.27, 0.32))
-		draw_circle(Vector2(230, 300), 58.0, body)
-		draw_circle(Vector2(470, 300), 58.0, body)
-		draw_colored_polygon(PackedVector2Array([Vector2(205, 130), Vector2(495, 130), Vector2(528, 300), Vector2(412, 300), Vector2(370, 260),
-			Vector2(330, 260), Vector2(288, 300), Vector2(172, 300)]), body)
-		draw_arc(Vector2(292, 280), 25.0, 0.0, TAU, 32, edge, 2.0)
-		draw_arc(Vector2(408, 280), 25.0, 0.0, TAU, 32, edge, 2.0)
-		draw_rect(Rect2(245, 180, 18, 42), Color(0.1, 0.12, 0.15))
-		draw_rect(Rect2(233, 192, 42, 18), Color(0.1, 0.12, 0.15))
+		draw_texture_rect(ART, Rect2(ART_AT, ART.get_size() * ART_SCALE * 2.0), false)
 
 	## Qué hace ese botón, o "—".
 	func _what_does(spec: Dictionary) -> String:
