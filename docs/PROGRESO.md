@@ -86,6 +86,11 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   el stick izquierdo marca y al soltar sale ese (Círculo o no marcar nada = no cambia). En combate y fuera; el tiempo va a ×0,2
   (`CombatFeedback.set_slowdown`), salvo online, donde muestra solo tu equipo de la pelea. Test `--autotest-wheel`. Gráficos elegidos entre ideas de Qwen: ruleta
   Pokébola de 6 gajos fijos y dibujo oscuro con filete dorado del joystick en Controles (`tools/make_wheel_art.py`).
+- **Pesca (2026-11-06, pedido del usuario)**: 21 puntos de pesca (cartel con un pescadito y burbujas: `data/world/pesca_puntos.json`,
+  elegidos sobre el mapa, se llega sin Surf). E frente al agua: tirás la línea, pica ("¡!", 0,8 s para apretar) y frenás la aguja en lo
+  verde (más chico y rápido con los raros); sale una pelea normal contra un salvaje. Qué se pesca = FireRed por zona y caña
+  (`tools/build_fishing.py` → `data/world/pesca.json`). Caña Vieja (Gurú de Carmín), Buena (Fucsia) y Súper (casa de la Ruta 12).
+  Test `--autotest-fishing`. Solo en esos puntos, no desde cualquier orilla.
 - **Pantalla completa (2026-11-05, pedido del usuario)**: F11 en cualquier momento o Esc → Opciones; se recuerda en esa PC
   (`Controls.set_fullscreen`, `user://interfaz.cfg`). Test `--autotest-fullscreen`.
 - **Enseñar a todos (2026-11-04, pedido del usuario)**: al usar una MT en la Mochila hay un botón nuevo que se la enseña a

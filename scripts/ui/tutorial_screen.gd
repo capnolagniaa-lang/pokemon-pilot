@@ -21,6 +21,7 @@ const PAGES := [
 		"Corte, Surf y Fuerza: con la MO y su medalla se usan solas al caminar contra el árbol, el agua o la roca.",
 		"Rueda del mouse: alejar o acercar la cámara para ver más del mapa.",
 		"F11: pantalla completa (también en Esc → Opciones).",
+		"Pesca: con una caña (te la da el Gurú de la Pesca de Ciudad Carmín), apretá hablar frente a un punto de pesca (cartel con un pescadito y burbujas), apretá de nuevo cuando pique y frená la aguja en lo verde.",
 		"Tab: mostrar u ocultar el minimapa (cuando tengas el Mapa; arriba a la derecha, y en cuevas y edificios marca las puertas y escaleras).",
 	]],
 	["Los salvajes", [

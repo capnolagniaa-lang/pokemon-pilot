@@ -5,6 +5,14 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
+forbids = PackedStringArray("cana_super_dada")
+set_flags = PackedStringArray("cana_super_dada")
+lines = PackedStringArray("¡Hola! Soy el hermano menor del Gurú de la Pesca. ¡Vos sí que tenés pinta de pescador!", "Tomá, la Súper Caña. Con esta sale lo mejor de cada lugar.")
+give_items = {"cana_super": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+requires = PackedStringArray("cana_super_dada")
 lines = PackedStringArray("¡Hola! ¿Estuviste pescando?", "En cada lugar hay Pokémon distintos: probá en cualquier agua.", "¡Ah, y no te olvides de traerme un Magikarp gigante!")
 
 [resource]
@@ -16,4 +24,4 @@ cell = Vector2i(4, 4)
 gfx = "fisher"
 facing = Vector2i(0, 1)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

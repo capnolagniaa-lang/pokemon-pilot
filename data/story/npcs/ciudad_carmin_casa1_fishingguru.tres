@@ -5,6 +5,14 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
+forbids = PackedStringArray("cana_vieja_dada")
+set_flags = PackedStringArray("cana_vieja_dada")
+lines = PackedStringArray("¡Soy el Gurú de la Pesca! ¡Tenés cara de que te gustaría pescar!", "Tomá, llevate esta Caña Vieja. Buscá un punto de pesca: un cartel con un pescadito y burbujas en el agua.", "Apretá hablar frente al agua, esperá que pique y frená la aguja en lo verde.")
+give_items = {"cana_vieja": 1}
+
+[sub_resource type="Resource" id="Talk_1"]
+script = ExtResource("2_t")
+requires = PackedStringArray("cana_vieja_dada")
 lines = PackedStringArray("¡Soy el Gurú de la Pesca! ¡Me encanta pescar! No puedo vivir sin eso.", "La pesca es un estilo de vida. ¡Es como la mejor poesía!", "Del mar a los ríos, salí a sacar el pez más grande, amigo.")
 
 [resource]
@@ -16,4 +24,4 @@ cell = Vector2i(4, 5)
 gfx = "fisher"
 facing = Vector2i(0, 1)
 look_around = false
-talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

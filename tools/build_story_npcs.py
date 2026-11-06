@@ -798,7 +798,23 @@ TALKS.update({
             "Los de tierra no sienten la electricidad. Y para llegar a él, buscá los interruptores en los basureros:",
             "el segundo siempre está al lado del primero. ¡Si le errás, se reinician!"]),
         dict(lines=["¡Le ganaste a Surge! ¡Sos una bestia!"])]),
-    ("ciudad_carmin_casa1", "FishingGuru"): dict(name="Pescador", talks=[dict(lines=["¡Pescar es lo mejor de la vida! Cuando tenga una caña de sobra, te la doy."])]),
+    # Las tres cañas, con la misma gente que en FireRed (Fishing). La última charla la pisa la de dialogos_frlg.
+    ("ciudad_carmin_casa1", "FishingGuru"): dict(name="Pescador", talks=[
+        dict(forbids=["cana_vieja_dada"], set_flags=["cana_vieja_dada"], give={"cana_vieja": 1}, lines=[
+            "¡Soy el Gurú de la Pesca! ¡Tenés cara de que te gustaría pescar!",
+            "Tomá, llevate esta Caña Vieja. Buscá un punto de pesca: un cartel con un pescadito y burbujas en el agua.",
+            "Apretá hablar frente al agua, esperá que pique y frená la aguja en lo verde."]),
+        dict(requires=["cana_vieja_dada"], lines=["¡Pescar es lo mejor de la vida!"])]),
+    ("ciudad_fucsia_casa2", "FishingGurusBrother"): dict(name="Pescador", talks=[
+        dict(forbids=["cana_buena_dada"], set_flags=["cana_buena_dada"], give={"cana_buena": 1}, lines=[
+            "Soy el hermano mayor del Gurú de la Pesca. ¿Viniste a pescar?",
+            "Con una caña vieja solo salen Magikarp, ¿no? Tomá, una Caña Buena. ¡Con esta pican Pokémon mucho mejores!"]),
+        dict(requires=["cana_buena_dada"], lines=["¡Me encanta pescar!"])]),
+    ("casa_pescador", "FishingGuruBrother"): dict(name="Pescador", talks=[
+        dict(forbids=["cana_super_dada"], set_flags=["cana_super_dada"], give={"cana_super": 1}, lines=[
+            "¡Hola! Soy el hermano menor del Gurú de la Pesca. ¡Vos sí que tenés pinta de pescador!",
+            "Tomá, la Súper Caña. Con esta sale lo mejor de cada lugar."]),
+        dict(requires=["cana_super_dada"], lines=["¡Hola! ¿Estuviste pescando?"])]),
     ("ciudad_carmin_casa2", "Elyssa"): dict(name="Nena", talks=[dict(lines=["Quiero un Farfetch'd. ¡Tienen un puerro!"])]),
     ("ciudad_carmin_casa3", "Boy"): dict(name="Chico", talks=[dict(lines=["Mi Pidgey lleva cartas a todos lados. ¡Es mi cartero!"])]),
     ("ciudad_carmin_casa3", "Pidgey"): dict(name="Pidgey", talks=[dict(lines=["Pidgey: ¡Pío!"])]),

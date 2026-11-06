@@ -40,6 +40,8 @@ var balloon: BalloonTravel
 var arena: TrainerBattle
 ## Minimapa de arriba a la derecha (Tab).
 var minimap: Minimap
+## Pesca (puntos de pesca, E frente al agua).
+var fishing: Fishing
 ## Ruleta de Pokémon del joystick (R3).
 var wheel: PokemonWheel
 ## Hora del juego y luz del mundo según la hora (docs/PLAN_DIA_NOCHE.md).
@@ -129,6 +131,9 @@ func _ready() -> void:
 	minimap.name = "Minimap"
 	minimap.world = self
 	get_node("UI").add_child(minimap)
+	fishing = Fishing.new()
+	fishing.name = "Fishing"
+	add_child(fishing)
 	wheel = PokemonWheel.new()
 	wheel.name = "PokemonWheel"
 	wheel.world = self

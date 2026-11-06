@@ -54,6 +54,10 @@ ITEMS = {
     "fosil_helix": ("helix-fossil", "key", 3, {}),
     "fosil_domo": ("dome-fossil", "key", 4, {}),
     "ticket_barco": ("ss-ticket", "key", 5, {}),
+    # Las cañas: las dan los Pescadores, como en FireRed (Fishing).
+    "cana_vieja": ("old-rod", "key", 20, {}),
+    "cana_buena": ("good-rod", "key", 21, {}),
+    "cana_super": ("super-rod", "key", 22, {}),
     # Resto de Kanto (docs/PLAN_RESTO_KANTO.md): objetos clave de la historia (FieldMoves y StoryDirector). Las MT y MO
     # las arma tools/build_tms.py (2026-10-29).
     "poke_flauta": ("poke-flute", "key", 9, {}),
@@ -79,7 +83,8 @@ PRICES = {
 # Nombre propio cuando el de PokeAPI no alcanza.
 NAMES = {"mo01": "MO01 Corte", "mo03": "MO03 Surf", "mo04": "MO04 Fuerza", "te": "Té", "silph_scope": "Scope Silph",
          "dientes_oro": "Dientes de Oro", "llave_ascensor": "Llave Ascensor", "tarjeta_llave": "Tarjeta Llave",
-         "llave_secreta": "Llave Secreta", "poke_flauta": "Poké Flauta"}
+         "llave_secreta": "Llave Secreta", "poke_flauta": "Poké Flauta",
+         "cana_vieja": "Caña Vieja", "cana_buena": "Caña Buena", "cana_super": "Súper Caña"}
 # Descripción propia (manda sobre la de PokeAPI, que a veces no tiene una en español o dice "- - -").
 DESCRIPTIONS = {
     "revestimiento_metalico": "Una capa metálica especial. Usala con Onix o Scyther para que evolucionen.",
@@ -97,6 +102,9 @@ DESCRIPTIONS = {
     "dientes_oro": "La dentadura de oro del guarda de la Zona Safari. Se le cayó en algún lado...",
     "llave_ascensor": "La llave del ascensor del Escondite Rocket.",
     "tarjeta_llave": "La tarjeta que abre todas las puertas de Silph S.A.",
+    "cana_vieja": "Una caña vieja y gastada. Andá a un punto de pesca y apretá hablar frente al agua. Casi todo lo que sale es Magikarp.",
+    "cana_buena": "Una caña decente: en los puntos de pesca ya pican Pokémon más interesantes.",
+    "cana_super": "La mejor caña que hay: en los puntos de pesca saca lo mejor de cada lugar.",
     "llave_secreta": "La llave del Gimnasio de Isla Canela. Estaba en la Mansión Pokémon.",
     "paquete_oak": "Un correo para el Profesor Oak. Te lo dio el vendedor de la Tienda Pokémon de Ciudad Verde.",
 }
@@ -132,7 +140,10 @@ def main():
     root = sys.argv[1]
     os.makedirs(os.path.join(root, "data", "items"), exist_ok=True)
     os.makedirs(os.path.join(root, "sprites", "items"), exist_ok=True)
+    only = sys.argv[2:]  # (opcional) solo esos objetos
     for gid, (api, pocket, order, effect) in ITEMS.items():
+        if only and gid not in only:
+            continue
         it = get("/item/" + api)
         icon = os.path.join(root, "sprites", "items", api + ".png")
         if not os.path.exists(icon):

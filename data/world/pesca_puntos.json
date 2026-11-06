@@ -1,0 +1,317 @@
+[
+ {
+  "sign": [
+   46,
+   32
+  ],
+  "stand": [
+   46,
+   31
+  ],
+  "water": [
+   47,
+   31
+  ],
+  "zone": "pueblo_paleta"
+ },
+ {
+  "sign": [
+   41,
+   45
+  ],
+  "stand": [
+   40,
+   45
+  ],
+  "water": [
+   40,
+   46
+  ],
+  "zone": "ciudad_verde"
+ },
+ {
+  "sign": [
+   41,
+   36
+  ],
+  "stand": [
+   41,
+   35
+  ],
+  "water": [
+   42,
+   35
+  ],
+  "zone": "ruta22"
+ },
+ {
+  "sign": [
+   35,
+   11
+  ],
+  "stand": [
+   36,
+   11
+  ],
+  "water": [
+   36,
+   10
+  ],
+  "zone": "ciudad_celeste"
+ },
+ {
+  "sign": [
+   9,
+   29
+  ],
+  "stand": [
+   8,
+   29
+  ],
+  "water": [
+   8,
+   30
+  ],
+  "zone": "ruta24"
+ },
+ {
+  "sign": [
+   78,
+   16
+  ],
+  "stand": [
+   78,
+   17
+  ],
+  "water": [
+   79,
+   17
+  ],
+  "zone": "ruta25"
+ },
+ {
+  "sign": [
+   22,
+   38
+  ],
+  "stand": [
+   21,
+   38
+  ],
+  "water": [
+   21,
+   39
+  ],
+  "zone": "ruta6"
+ },
+ {
+  "sign": [
+   40,
+   38
+  ],
+  "stand": [
+   39,
+   38
+  ],
+  "water": [
+   39,
+   39
+  ],
+  "zone": "ciudad_carmin"
+ },
+ {
+  "sign": [
+   11,
+   8
+  ],
+  "stand": [
+   12,
+   8
+  ],
+  "water": [
+   12,
+   7
+  ],
+  "zone": "ruta10"
+ },
+ {
+  "sign": [
+   48,
+   54
+  ],
+  "stand": [
+   49,
+   54
+  ],
+  "water": [
+   49,
+   53
+  ],
+  "zone": "ciudad_azulona"
+ },
+ {
+  "sign": [
+   62,
+   26
+  ],
+  "stand": [
+   62,
+   25
+  ],
+  "water": [
+   63,
+   25
+  ],
+  "zone": "ciudad_fucsia"
+ },
+ {
+  "sign": [
+   27,
+   105
+  ],
+  "stand": [
+   26,
+   105
+  ],
+  "water": [
+   26,
+   104
+  ],
+  "zone": "ruta12"
+ },
+ {
+  "sign": [
+   85,
+   12
+  ],
+  "stand": [
+   85,
+   13
+  ],
+  "water": [
+   86,
+   13
+  ],
+  "zone": "ruta13"
+ },
+ {
+  "sign": [
+   25,
+   20
+  ],
+  "stand": [
+   25,
+   21
+  ],
+  "water": [
+   24,
+   21
+  ],
+  "zone": "ruta11"
+ },
+ {
+  "sign": [
+   22,
+   25
+  ],
+  "stand": [
+   21,
+   25
+  ],
+  "water": [
+   21,
+   26
+  ],
+  "zone": "ruta19"
+ },
+ {
+  "sign": [
+   13,
+   210
+  ],
+  "stand": [
+   14,
+   210
+  ],
+  "water": [
+   14,
+   209
+  ],
+  "zone": "ruta23"
+ },
+ {
+  "sign": [
+   31,
+   8
+  ],
+  "stand": [
+   31,
+   9
+  ],
+  "water": [
+   30,
+   9
+  ],
+  "zone": "ss_anne_muelle"
+ },
+ {
+  "sign": [
+   40,
+   33
+  ],
+  "stand": [
+   41,
+   33
+  ],
+  "water": [
+   41,
+   32
+  ],
+  "zone": "zona_safari"
+ },
+ {
+  "sign": [
+   25,
+   30
+  ],
+  "stand": [
+   25,
+   29
+  ],
+  "water": [
+   26,
+   29
+  ],
+  "zone": "zona_safari_este"
+ },
+ {
+  "sign": [
+   19,
+   29
+  ],
+  "stand": [
+   20,
+   29
+  ],
+  "water": [
+   20,
+   28
+  ],
+  "zone": "zona_safari_norte"
+ },
+ {
+  "sign": [
+   18,
+   34
+  ],
+  "stand": [
+   18,
+   33
+  ],
+  "water": [
+   17,
+   33
+  ],
+  "zone": "zona_safari_oeste"
+ }
+]

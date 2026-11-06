@@ -1,0 +1,1528 @@
+{
+ "ss_anne_muelle": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 44,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "shellder",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "zona_safari": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "goldeen",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "poliwag",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "goldeen",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seaking",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "dratini",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 4,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "dragonair",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "zona_safari_este": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "goldeen",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "poliwag",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "goldeen",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seaking",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "dratini",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 4,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "dragonair",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "zona_safari_norte": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "goldeen",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "poliwag",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "goldeen",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seaking",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "dratini",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 4,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "dragonair",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "zona_safari_oeste": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "goldeen",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "poliwag",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "goldeen",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seaking",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "dratini",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 4,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "dragonair",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "islas_espuma_s3": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 80,
+    "min": 15,
+    "max": 30
+   },
+   {
+    "species": "gyarados",
+    "pct": 16,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "psyduck",
+    "pct": 4,
+    "min": 15,
+    "max": 25
+   }
+  ]
+ },
+ "islas_espuma_s4": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 80,
+    "min": 15,
+    "max": 30
+   },
+   {
+    "species": "gyarados",
+    "pct": 16,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "psyduck",
+    "pct": 4,
+    "min": 15,
+    "max": 25
+   }
+  ]
+ },
+ "ruta4": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 84,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta6": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "poliwag",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "goldeen",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "poliwag",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "poliwhirl",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 5,
+    "min": 15,
+    "max": 35
+   }
+  ]
+ },
+ "ruta10": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 84,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta11": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 84,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta12": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 84,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta13": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 84,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta19": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 80,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seadra",
+    "pct": 4,
+    "min": 25,
+    "max": 35
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta20": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 80,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seadra",
+    "pct": 4,
+    "min": 25,
+    "max": 35
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta21_norte": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 80,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seadra",
+    "pct": 4,
+    "min": 25,
+    "max": 35
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta21_sur": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 80,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seadra",
+    "pct": 4,
+    "min": 25,
+    "max": 35
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta22": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "poliwag",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "goldeen",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "poliwag",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "poliwhirl",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 5,
+    "min": 15,
+    "max": 35
+   }
+  ]
+ },
+ "ruta23": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "poliwag",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "goldeen",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "poliwag",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "poliwhirl",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 5,
+    "min": 15,
+    "max": 35
+   }
+  ]
+ },
+ "ruta24": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 84,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ruta25": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "poliwag",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "goldeen",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "poliwag",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "poliwhirl",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 5,
+    "min": 15,
+    "max": 35
+   }
+  ]
+ },
+ "pueblo_paleta": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 10
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "shellder",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seadra",
+    "pct": 4,
+    "min": 25,
+    "max": 35
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ciudad_verde": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "poliwag",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "goldeen",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "poliwag",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "poliwhirl",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 5,
+    "min": 15,
+    "max": 35
+   }
+  ]
+ },
+ "ciudad_celeste": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 84,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ciudad_carmin": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 44,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "shellder",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ },
+ "ciudad_azulona": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "magikarp",
+    "pct": 99,
+    "min": 15,
+    "max": 35
+   },
+   {
+    "species": "grimer",
+    "pct": 1,
+    "min": 30,
+    "max": 40
+   }
+  ]
+ },
+ "ciudad_fucsia": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "goldeen",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "poliwag",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "goldeen",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seaking",
+    "pct": 40,
+    "min": 20,
+    "max": 30
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "psyduck",
+    "pct": 5,
+    "min": 15,
+    "max": 35
+   }
+  ]
+ },
+ "isla_canela": {
+  "vieja": [
+   {
+    "species": "magikarp",
+    "pct": 100,
+    "min": 5,
+    "max": 5
+   }
+  ],
+  "buena": [
+   {
+    "species": "horsea",
+    "pct": 60,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "magikarp",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   },
+   {
+    "species": "krabby",
+    "pct": 20,
+    "min": 5,
+    "max": 15
+   }
+  ],
+  "super": [
+   {
+    "species": "horsea",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "shellder",
+    "pct": 40,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "gyarados",
+    "pct": 15,
+    "min": 15,
+    "max": 25
+   },
+   {
+    "species": "seadra",
+    "pct": 4,
+    "min": 25,
+    "max": 35
+   },
+   {
+    "species": "psyduck",
+    "pct": 1,
+    "min": 25,
+    "max": 35
+   }
+  ]
+ }
+}

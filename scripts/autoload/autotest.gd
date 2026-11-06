@@ -294,6 +294,16 @@ func _ready() -> void:
 		add_child(mn)
 		mn.run.call_deferred()
 		return
+	if "--autotest-fishing" in OS.get_cmdline_user_args() or "--showcase-fishing" in OS.get_cmdline_user_args():
+		set_process(false)
+		var fi := FishingTests.new()
+		fi.autotest = self
+		add_child(fi)
+		if "--generate-spots" in OS.get_cmdline_user_args():
+			fi.generate_spots.call_deferred()
+		else:
+			(fi.showcase if "--showcase-fishing" in OS.get_cmdline_user_args() else fi.run).call_deferred()
+		return
 	if "--autotest-fullscreen" in OS.get_cmdline_user_args():
 		set_process(false)
 		var fs := FullscreenTests.new()
