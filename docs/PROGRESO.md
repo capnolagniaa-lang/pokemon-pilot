@@ -92,7 +92,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   elegidos sobre el mapa, se llega sin Surf). E frente al agua: tirás la línea, pica ("¡!", 0,8 s para apretar) y frenás la aguja en lo
   verde (más chico y rápido con los raros); sale una pelea normal contra un salvaje. Qué se pesca = FireRed por zona y caña
   (`tools/build_fishing.py` → `data/world/pesca.json`). Caña Vieja (Gurú de Carmín), Buena (Fucsia) y Súper (casa de la Ruta 12).
-  Test `--autotest-fishing`. Solo en esos puntos, no desde cualquier orilla.
+  Test `--autotest-fishing`. Solo en esos puntos, no desde cualquier orilla. Cerca del punto (`Fishing.NEAR`) la E pesca mires para donde mires y guarda a tu Pokémon si no hay pelea; con un salvaje cerca sigue lanzando la bola.
 - **Pantalla completa (2026-11-05, pedido del usuario)**: F11 en cualquier momento o Esc → Opciones; se recuerda en esa PC
   (`Controls.set_fullscreen`, `user://interfaz.cfg`). Test `--autotest-fullscreen`.
 - **Enseñar a todos (2026-11-04, pedido del usuario)**: al usar una MT en la Mochila hay un botón nuevo que se la enseña a

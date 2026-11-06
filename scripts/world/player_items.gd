@@ -48,7 +48,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("capture"):
 		# E contextual (docs/PLAN_HISTORIA.md): si hay alguien al lado, habla; si no, lanza la Pokébola.
 		if story == null or not story.try_interact():
-			if world.get("arena") != null and world.arena.active:
+			if world.get("fishing") != null and world.fishing.try_near():
+				pass  # en un punto de pesca, la E pesca
+			elif world.get("arena") != null and world.arena.active:
 				Events.message_requested.emit("¡No se puede atrapar al Pokémon de otro entrenador!")
 			else:
 				if Controls.gamepad:

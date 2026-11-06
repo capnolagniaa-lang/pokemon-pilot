@@ -129,12 +129,51 @@ func run() -> void:
 	GameState.add_item("cana_vieja", 1)
 	r["La mejor caña que tengas manda"] = fish.best_rod() == "vieja"
 	fish.fixed_wait = 0.1
-	world.story.try_interact()
+	await _press_only()
 	r["La E frente al agua tira la línea y traba al entrenador"] = fish.phase == Fishing.Phase.WAITING and world.trainer.locked
+	Input.action_release("capture")
 	await _until(func(): return fish.phase == Fishing.Phase.BITE, 2.0)
 	r["Pica"] = fish.phase == Fishing.Phase.BITE
 	await _until(func(): return fish.phase == Fishing.Phase.IDLE, 3.0)
 	r["Si no apretás a tiempo se escapa y te destraba"] = fish.phase == Fishing.Phase.IDLE and not world.trainer.locked
+
+	# En el punto, la E pesca y no tira la bola: con el Pokémon afuera, mirando a otro lado o una celda más atrás.
+	GameState.add_item("poke_ball", 5)
+	var balls := GameState.item_count("poke_ball")
+	fish.fixed_wait = 30.0
+	var away := Vector2(spot["stand"] - spot["water"])
+	world.trainer.facing = away
+	await _press()
+	r["Mirando para otro lado, pesca"] = fish.phase == Fishing.Phase.WAITING and world.trainer.facing == -away
+	await _press()
+	await _frames(3)
+	r["Apretando de nuevo recoge la línea"] = fish.phase == Fishing.Phase.IDLE and not world.trainer.locked
+	world.trainer.global_position += away * 16.0
+	await _frames(25)
+	await _press()
+	r["Una celda más atrás, pesca"] = fish.phase == Fishing.Phase.WAITING
+	await _press()
+	await _frames(3)
+	world.trainer.global_position -= away * 16.0
+	world.combat.start_battle()
+	await _frames(25)
+	r["(sacó al Pokémon)"] = world.combat.in_battle
+	await _press()
+	r["Con el Pokémon afuera y sin pelea, lo guarda y pesca"] = fish.phase == Fishing.Phase.WAITING and not world.combat.in_battle
+	await _press()
+	await _frames(3)
+	r["Nunca tiró una bola"] = GameState.item_count("poke_ball") == balls
+	var far_at: Vector2 = world.trainer.global_position
+	var close: Creature = world.spawner.spawn(DB.species["pidgey"], 3, far_at + Vector2(-away.y, away.x) * 48.0 + away * 16.0)
+	await _frames(25)
+	world.trainer.facing = away  # (mirando al agua, la E es Surf, como en cualquier orilla)
+	await _press()
+	r["Con un salvaje cerca, la E sigue lanzando la bola"] = fish.phase == Fishing.Phase.IDLE and GameState.item_count("poke_ball") == balls - 1
+	if is_instance_valid(close):
+		close.queue_free()
+	world.combat.end_battle()
+	fish.fixed_wait = 0.1
+	await get_tree().create_timer(1.6).timeout
 
 	# Aguja afuera de lo verde: se suelta.
 	await _hook(fish)
@@ -186,10 +225,18 @@ func showcase() -> void:
 
 func _hook(fish: Fishing) -> void:
 	await _frames(3)
-	world.story.try_interact()
+	await _press()
 	await _until(func(): return fish.phase == Fishing.Phase.BITE, 2.0)
 	await _press()
 	await _frames(2)
+
+
+## Apretar y quedarse con el botón abajo, como una persona.
+func _press_only() -> void:
+	await get_tree().process_frame
+	Input.action_press("capture")
+	await get_tree().process_frame
+	await get_tree().process_frame
 
 
 func _press() -> void:

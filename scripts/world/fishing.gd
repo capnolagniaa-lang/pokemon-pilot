@@ -14,6 +14,10 @@ const WAIT_MIN := 1.5
 const WAIT_MAX := 4.0
 ## Segundos para reaccionar cuando pica.
 const BITE_WINDOW := 0.8
+## A cuánto del agua del punto (px) la E ya pesca, mires para donde mires, para no tirar la bola sin querer.
+const NEAR := 56.0
+## Con un salvaje a esta distancia (px) la E lanza la bola, aunque estés en un punto de pesca.
+const WILD_CLOSE := 110.0
 ## Cuánto hay que apretar: los de menos del `RARE_PCT` % de esa caña son raros.
 const RARE_PCT := 15
 const ZONE_COMMON := 0.30
@@ -36,6 +40,7 @@ var tables: Dictionary = {}
 ## zona → [{water, stand, sign}], en celdas locales.
 var spots: Dictionary = {}
 var _timer := 0.0
+var _cast_frame := -1  # el apretón que tira la línea no la recoge
 var _needle_time := 0.0
 var _needle_speed := 1.0
 var _hooked: Dictionary = {}
@@ -108,7 +113,7 @@ func roll(zone_id: String, rod: String) -> Dictionary:
 func _on_interact(zone_id: String, cell: Vector2i, front: Vector2) -> bool:
 	if not spots.has(zone_id) or phase != Phase.IDLE or (world.field_moves != null and world.field_moves.surfing):
 		return false
-	if not world.tags_at(front).has("agua"):
+	if not world.tags_at(front).has("agua") or world.items._nearest_wild(world.trainer.global_position, WILD_CLOSE) != null:
 		return false
 	if best_rod() == "" and world.field_moves != null and world.field_moves.can_use(FieldMoves.SURF_ITEM):
 		return false  # sin caña, un punto de pesca no le saca la E a Surf
@@ -116,6 +121,26 @@ func _on_interact(zone_id: String, cell: Vector2i, front: Vector2) -> bool:
 		var water: Vector2i = s["water"]
 		if absi(cell.x - water.x) + absi(cell.y - water.y) <= 1:
 			_cast(zone_id, s)
+			return true
+	return false
+
+
+## Lo llama la E antes de lanzar la bola: si estás en un punto de pesca, pesca (guarda a tu Pokémon si estaba afuera sin pelear).
+func try_near() -> bool:
+	if phase != Phase.IDLE or world.arena.active or (world.field_moves != null and world.field_moves.surfing):
+		return false
+	if world.combat.in_battle and not world.combat.enemies.is_empty():
+		return false
+	var t: Trainer = world.trainer
+	var entry: ZoneEntry = world.streamer.world_data.zone_at(t.global_position)
+	if entry == null or not spots.has(entry.id) or world.items._nearest_wild(t.global_position, WILD_CLOSE) != null:
+		return false
+	var ts: int = world.streamer.world_data.tile_size
+	for s: Dictionary in spots[entry.id]:
+		var water := Vector2((entry.origin + s["water"]) * ts) + Vector2.ONE * ts / 2.0
+		if t.global_position.distance_to(water) <= NEAR:
+			world.combat.end_battle()
+			_cast(entry.id, s)
 			return true
 	return false
 
@@ -139,7 +164,8 @@ func _cast(zone_id: String, spot: Dictionary) -> void:
 	var entry: ZoneEntry = _entry(zone_id)
 	var ts: int = world.streamer.world_data.tile_size
 	var bobber := Vector2((entry.origin + spot["water"]) * ts) + Vector2.ONE * ts / 2.0
-	world.trainer.facing = (bobber - world.trainer.global_position).normalized()
+	var to_water: Vector2 = bobber - world.trainer.global_position
+	world.trainer.facing = Vector2(signf(to_water.x), 0.0) if absf(to_water.x) > absf(to_water.y) else Vector2(0.0, signf(to_water.y))
 	_line = FishingLine.new()
 	_line.from = world.trainer.global_position + Vector2(0, -10)
 	_line.to = bobber
@@ -147,11 +173,12 @@ func _cast(zone_id: String, spot: Dictionary) -> void:
 	Sound.sfx("bola_lanzar")
 	_timer = fixed_wait if fixed_wait >= 0.0 else randf_range(WAIT_MIN, WAIT_MAX)
 	phase = Phase.WAITING
+	_cast_frame = Engine.get_process_frames()
 	_ui.refresh()
 
 
 func _process(delta: float) -> void:
-	if phase == Phase.IDLE:
+	if phase == Phase.IDLE or Engine.get_process_frames() == _cast_frame:
 		return
 	var press := Input.is_action_just_pressed("capture") or Input.is_action_just_pressed("ui_accept")
 	if phase == Phase.WAITING:
