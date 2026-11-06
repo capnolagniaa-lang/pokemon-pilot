@@ -3,186 +3,185 @@
 > **Generado** por `tools/balance_merge.py` juntando corridas de `--autotest-balance` (IA contra IA en Difícil,
 > nivel 40, emparejados por stats base, cada pareja dos veces cambiando de lado). ± = margen de error (95%).
 
-- **Con lo que trae**: 7500 peleas · desvío entre especies 22.8 puntos (cuanto más chico, más parejo).
-- **Con los mejores**: 7500 peleas · desvío entre especies 18.4 puntos (cuanto más chico, más parejo).
+- **Con lo que trae**: 12000 peleas · desvío entre especies 20.1 puntos (cuanto más chico, más parejo).
 
 Con lo que trae = los últimos 4 ataques por nivel (como en los juegos). Con los mejores = los 4 que más daño
 estiman de todo lo que aprende por nivel o por MT. ⬆ = 65% o más, ⬇ = 35% o menos.
 
 ## Por especie
 
-| Pokémon | Habilidades | Stats | Con lo que trae | ± | Con los mejores | ± | Mejores ataques |
-|---|---|---|---|---|---|---|---|
-| Snorlax ⬆ | Inmunidad/Sebo | 540 | 92% (106) | 5 | 68% (118) | 8 | Fachada, Daño Secreto, Golpe Cuerpo, Frustración |
-| Lickitung ⬆ | Ritmo propio/Despiste | 385 | 89% (90) | 6 | 38% (100) | 10 | Pisotón, Hiperrayo, Fachada, Daño Secreto |
-| Machop ⬆ | Agallas | 305 | 88% (92) | 7 | 74% (114) | 8 | Golpe Kárate, Puño Certero, Demolición, Llave Vital |
-| Hitmonchan ⬆ | Vista lince | 455 | 88% (114) | 6 | 55% (110) | 9 | Puño Trueno, Puño Certero, Demolición, Desquite |
-| Seel ⬆ | Sebo | 325 | 86% (94) | 7 | 74% (94) | 9 | Hidropulso, Viento Hielo, Buceo, Cascada |
-| Slowpoke ⬆ | Despiste/Ritmo propio | 315 | 86% (104) | 7 | 79% (102) | 8 | Buceo, Psíquico, Fachada, Cola Férrea |
-| Machoke ⬆ | Agallas | 405 | 85% (86) | 8 | 78% (74) | 9 | Golpe Kárate, Puño Certero, Demolición, Llave Vital |
-| Venomoth ⬆ | Polvo escudo | 450 | 83% (108) | 7 | 46% (102) | 10 | Bomba Lodo, Viento Plata, Gigadrenado, Hiperrayo |
-| Doduo ⬆ | Fuga/Madrugar | 310 | 83% (116) | 7 | 44% (112) | 9 | Picotazo, Fachada, Daño Secreto, Vuelo |
-| Butterfree ⬆ | Ojo compuesto | 395 | 82% (94) | 8 | 34% (98) | 9 | Tornado, Gigadrenado, Hiperrayo, Psíquico |
-| Venusaur ⬆ | Espesura | 525 | 82% (94) | 8 | 41% (114) | 9 | Gigadrenado, Bomba Lodo, Hiperrayo, Rayo Solar |
-| Hypno ⬆ | Insomnio | 483 | 82% (114) | 7 | 46% (108) | 9 | Destructor, Psíquico, Puño Certero, Ladrón |
-| Machamp ⬆ | Agallas | 505 | 82% (92) | 8 | 62% (90) | 10 | Golpe Kárate, Puño Certero, Demolición, Llave Vital |
-| Exeggcute ⬆ | Clorofila | 325 | 81% (112) | 7 | 79% (104) | 8 | Gigadrenado, Psíquico, Alboroto, Bomba Lodo |
-| Dratini ⬆ | Mudar | 300 | 79% (110) | 8 | 39% (104) | 9 | Fachada, Cola Férrea, Hidropulso, Furia Dragón |
-| Kangaskhan ⬆ | Madrugar | 490 | 78% (114) | 8 | 36% (122) | 9 | Fachada, Daño Secreto, Frustración, Retribución |
-| Cubone ⬆ | Cabeza roca/Pararrayos | 320 | 76% (102) | 8 | 49% (84) | 11 | Hueso Palo, Puño Certero, Saña, Huesomerang |
-| Blastoise ⬆ | Torrente | 530 | 75% (102) | 8 | 65% (106) | 9 | Hidropulso, Puño Certero, Buceo, Cascada |
-| Dewgong ⬆ | Sebo | 475 | 75% (92) | 9 | 58% (100) | 10 | Viento Hielo, Hidropulso, Rayo Hielo, Buceo |
-| Exeggutor ⬆ | Clorofila | 530 | 75% (118) | 8 | 48% (108) | 9 | Gigadrenado, Psíquico, Pisotón, Bomba Lodo |
-| Goldeen ⬆ | Nado rapido/Velo agua | 320 | 74% (90) | 9 | 59% (92) | 10 | Picotazo, Cascada, Buceo, Fachada |
-| Zubat ⬆ | Fuerza mental | 245 | 73% (106) | 8 | 66% (96) | 10 | Golpe Aéreo, Bomba Lodo, Ataque Ala, Fachada |
-| Mr. Mime ⬆ | Insonorizar | 460 | 72% (120) | 8 | 89% (102) | 6 | Psíquico, Psicorrayo, Hiperrayo, Bola Sombra |
-| Weepinbell ⬆ | Clorofila | 390 | 72% (94) | 9 | 43% (86) | 10 | Gigadrenado, Bomba Lodo, Fachada, Ladrón |
-| Dragonair ⬆ | Mudar | 420 | 72% (100) | 9 | 40% (92) | 10 | Fachada, Cola Férrea, Hidropulso, Furia Dragón |
-| Venonat ⬆ | Ojo compuesto | 305 | 70% (108) | 9 | 35% (82) | 10 | Bomba Lodo, Fachada, Ladrón, Daño Secreto |
-| Nidoking ⬆ | Punto toxico | 505 | 70% (86) | 10 | 51% (116) | 9 | Picotazo, Picotazo Veneno, Puño Certero, Saña |
-| Golbat ⬆ | Fuerza mental | 455 | 69% (120) | 8 | 47% (102) | 10 | Golpe Aéreo, Bomba Lodo, Ataque Ala, Fachada |
-| Gastly ⬆ | Levitacion | 310 | 67% (92) | 10 | 80% (106) | 8 | Bomba Lodo, Bola Sombra, Tinieblas, Gigadrenado |
-| Kadabra ⬆ | Sincronia/Fuerza mental | 400 | 66% (94) | 10 | 90% (78) | 7 | Psíquico, Psicorrayo, Premonición, Bola Sombra |
-| Charizard ⬆ | Mar llamas | 534 | 66% (88) | 10 | 32% (96) | 9 | Sofoco, Vuelo, Lanzallamas, Llamarada |
-| Rattata ⬆ | Fuga/Agallas | 253 | 66% (120) | 8 | 46% (120) | 9 | Fachada, Daño Secreto, Superdiente, Frustración |
-| Omanyte ⬆ | Nado rapido/Caparazon | 355 | 66% (122) | 8 | 58% (106) | 9 | Hidropulso, Rayo Hielo, Pistola Agua, Poder Oculto |
-| Arcanine ⬆ | Intimidacion/Absorbe fuego | 555 | 65% (100) | 9 | 18% (122) | 7 | Sofoco, Lanzallamas, Fachada, Llamarada |
-| Spearow | Vista lince | 262 | 65% (116) | 9 | 64% (84) | 10 | Picotazo, Fachada, Daño Secreto, Vuelo |
-| Fearow | Vista lince | 442 | 65% (110) | 9 | 46% (112) | 9 | Picotazo, Fachada, Daño Secreto, Vuelo |
-| Graveler | Cabeza roca/Robustez | 390 | 64% (92) | 10 | 49% (76) | 11 | Lanzarrocas, Puño Certero, Fachada, Demolición |
-| Pinsir | Corte fuerte | 500 | 64% (94) | 10 | 63% (90) | 10 | Puño Certero, Fachada, Ladrón, Demolición |
-| Pidgeotto | Vista lince | 349 | 63% (106) | 9 | 56% (126) | 9 | Fachada, Vuelo, Daño Secreto, Golpe Aéreo |
-| Magikarp | Nado rapido | 200 | 63% (86) | 10 | 65% (92) | 10 | Placaje, Azote, Salpicadura |
-| Poliwrath | Absorbe agua/Humedad | 510 | 63% (94) | 10 | 73% (106) | 8 | Puño Certero, Doble Bofetón, Demolición, Buceo |
-| Flareon | Absorbe fuego | 525 | 63% (102) | 9 | 39% (112) | 9 | Sofoco, Fachada, Cola Férrea, Daño Secreto |
-| Aerodactyl | Cabeza roca/Presion | 515 | 62% (80) | 11 | 54% (78) | 11 | Vuelo, Golpe Aéreo, Ataque Ala, Fachada |
-| Alakazam | Sincronia/Fuerza mental | 500 | 62% (98) | 10 | 82% (104) | 7 | Psíquico, Psicorrayo, Premonición, Hiperrayo |
-| Magnemite | Iman/Robustez | 325 | 62% (94) | 10 | 76% (92) | 9 | Rayo, Onda Voltio, Impactrueno, Rapidez |
-| Vaporeon | Absorbe agua | 525 | 62% (130) | 8 | 72% (94) | 9 | Hidropulso, Hiperrayo, Bola Sombra, Pistola Agua |
-| Nidoqueen | Punto toxico | 505 | 61% (116) | 9 | 53% (106) | 10 | Picotazo Veneno, Puño Certero, Bomba Lodo, Fachada |
-| Growlithe | Intimidacion/Absorbe fuego | 350 | 61% (118) | 9 | 34% (96) | 10 | Sofoco, Lanzallamas, Llamarada, Rueda Fuego |
-| Dragonite | Fuerza mental | 600 | 61% (64) | 12 | 90% (78) | 7 | Vuelo, Garra Dragón, Golpe Aéreo, Puño Certero |
-| Electabuzz | Electricidad estatica | 490 | 60% (96) | 10 | 55% (104) | 10 | Puño Trueno, Rayo, Onda Voltio, Puño Certero |
-| Pikachu | Electricidad estatica | 320 | 59% (96) | 10 | 62% (94) | 10 | Rayo, Puño Certero, Onda Voltio, Fachada |
-| Gengar | Levitacion | 500 | 59% (90) | 10 | 74% (84) | 9 | Bomba Lodo, Bola Sombra, Tinieblas, Gigadrenado |
-| Scyther | Enjambre | 500 | 58% (120) | 9 | 40% (108) | 9 | Golpe Aéreo, Cuchillada, Ataque Ala, Ala de Acero |
-| Vileplume | Clorofila | 490 | 58% (112) | 9 | 47% (104) | 10 | Gigadrenado, Bomba Lodo, Hiperrayo, Rayo Solar |
-| Golem | Cabeza roca/Robustez | 495 | 58% (114) | 9 | 50% (98) | 10 | Lanzarrocas, Puño Certero, Fachada, Demolición |
-| Starmie | Iluminacion/Cura natural | 520 | 57% (100) | 10 | 54% (112) | 9 | Hidropulso, Psíquico, Hiperrayo, Rayo Hielo |
-| Bellsprout | Clorofila | 300 | 57% (88) | 10 | 62% (92) | 10 | Gigadrenado, Bomba Lodo, Hoja Afilada, Fachada |
-| Jolteon | Absorbe electricidad | 525 | 57% (104) | 10 | 57% (108) | 9 | Rayo, Onda Voltio, Hiperrayo, Bola Sombra |
-| Squirtle | Torrente | 314 | 56% (108) | 9 | 74% (82) | 9 | Hidropulso, Puño Certero, Buceo, Cascada |
-| Geodude | Cabeza roca/Robustez | 300 | 56% (112) | 9 | 54% (104) | 10 | Lanzarrocas, Puño Certero, Fachada, Demolición |
-| Drowzee | Insomnio | 328 | 56% (114) | 9 | 40% (98) | 10 | Destructor, Psíquico, Puño Certero, Ladrón |
-| Marowak | Cabeza roca/Pararrayos | 425 | 56% (84) | 11 | 57% (98) | 10 | Hueso Palo, Puño Certero, Huesomerang, Fachada |
-| Charmeleon | Mar llamas | 405 | 56% (86) | 10 | 55% (78) | 11 | Sofoco, Lanzallamas, Llamarada, Puño Certero |
-| Nidorina | Punto toxico | 365 | 56% (106) | 9 | 48% (124) | 9 | Picotazo Veneno, Bomba Lodo, Fachada, Hidropulso |
-| Jigglypuff | Gran encanto | 270 | 56% (90) | 10 | 12% (98) | 6 | Doble Bofetón, Destructor, Fachada, Daño Secreto |
-| Sandslash | Velo arena | 450 | 55% (92) | 10 | 61% (122) | 9 | Puño Certero, Cuchillada, Cola Férrea, Golpe Aéreo |
-| Krabby | Corte fuerte/Caparazon | 325 | 55% (102) | 10 | 71% (92) | 9 | Buceo, Pisotón, Ladrón, Fachada |
-| Eevee | Fuga | 325 | 55% (104) | 10 | 29% (100) | 9 | Fachada, Daño Secreto, Frustración, Retribución |
-| Mankey | Espiritu vital | 305 | 55% (106) | 9 | 57% (86) | 10 | Golpe Kárate, Puño Certero, Demolición, Tajo Cruzado |
-| Ekans | Intimidacion/Mudar | 288 | 54% (90) | 10 | 27% (108) | 8 | Picotazo Veneno, Fachada, Cola Férrea, Ladrón |
-| Oddish | Clorofila | 320 | 54% (92) | 10 | 48% (92) | 10 | Gigadrenado, Bomba Lodo, Rayo Solar, Ácido |
-| Pidgey | Vista lince | 251 | 52% (108) | 9 | 74% (102) | 9 | Fachada, Vuelo, Daño Secreto, Golpe Aéreo |
-| Mew | Sincronia | 600 | 52% (64) | 12 | 45% (60) | 13 | Destructor, Psíquico, Puño Certero, Hidropulso |
-| Porygon | Calco | 395 | 52% (64) | 12 | 42% (92) | 10 | Hiperrayo, Triataque, Poder Oculto, Fachada |
-| Primeape | Espiritu vital | 455 | 51% (96) | 10 | 46% (120) | 9 | Golpe Kárate, Puño Certero, Demolición, Tajo Cruzado |
-| Tangela | Clorofila | 435 | 50% (104) | 10 | 35% (102) | 9 | Gigadrenado, Hiperrayo, Bomba Lodo, Rayo Solar |
-| Gloom | Clorofila | 395 | 50% (88) | 10 | 53% (114) | 9 | Gigadrenado, Bomba Lodo, Rayo Solar, Ácido |
-| Staryu | Iluminacion/Cura natural | 340 | 50% (104) | 10 | 61% (120) | 9 | Hidropulso, Psíquico, Rayo Hielo, Rayo |
-| Tentacool | Cuerpo puro/Lodo liquido | 335 | 49% (106) | 10 | 50% (98) | 10 | Hidropulso, Bomba Lodo, Picotazo Veneno, Buceo |
-| Victreebel | Clorofila | 490 | 49% (92) | 10 | 58% (84) | 11 | Gigadrenado, Bomba Lodo, Hoja Afilada, Fachada |
-| Raichu | Electricidad estatica | 485 | 47% (114) | 9 | 50% (88) | 10 | Rayo, Puño Certero, Onda Voltio, Fachada |
-| Meowth | Recogida | 290 | 47% (90) | 10 | 16% (92) | 8 | Cuchillada, Fachada, Daño Secreto, Frustración |
-| Pidgeot | Vista lince | 479 | 46% (92) | 10 | 49% (112) | 9 | Fachada, Vuelo, Daño Secreto, Golpe Aéreo |
-| Dodrio | Fuga/Madrugar | 470 | 45% (88) | 10 | 53% (92) | 10 | Picotazo, Fachada, Daño Secreto, Vuelo |
-| Haunter | Levitacion | 405 | 45% (104) | 10 | 84% (92) | 8 | Bomba Lodo, Bola Sombra, Tinieblas, Gigadrenado |
-| Bulbasaur | Espesura | 318 | 45% (114) | 9 | 40% (102) | 10 | Gigadrenado, Bomba Lodo, Rayo Solar, Hoja Afilada |
-| Ninetales | Absorbe fuego | 505 | 44% (86) | 10 | 23% (102) | 8 | Sofoco, Lanzallamas, Llamarada, Fachada |
-| Kingler | Corte fuerte/Caparazon | 475 | 43% (92) | 10 | 56% (108) | 9 | Buceo, Pisotón, Ladrón, Fachada |
-| Ponyta | Fuga/Absorbe fuego | 410 | 43% (90) | 10 | 39% (100) | 10 | Pisotón, Sofoco, Cola Férrea, Lanzallamas |
-| Nidorino | Punto toxico | 365 | 43% (116) | 9 | 41% (104) | 9 | Picotazo, Picotazo Veneno, Fachada, Cola Férrea |
-| Gyarados | Intimidacion | 540 | 42% (116) | 9 | 83% (102) | 7 | Buceo, Cascada, Saña, Fachada |
-| Charmander | Mar llamas | 309 | 42% (108) | 9 | 54% (92) | 10 | Sofoco, Lanzallamas, Llamarada, Puño Certero |
-| Hitmonlee | Flexibilidad | 455 | 41% (112) | 9 | 68% (102) | 9 | Puño Certero, Patada Salto Alta, Demolición, Patada Salto |
-| Sandshrew | Velo arena | 300 | 41% (112) | 9 | 74% (104) | 8 | Puño Certero, Cuchillada, Cola Férrea, Golpe Aéreo |
-| Poliwhirl | Absorbe agua/Humedad | 385 | 41% (106) | 9 | 64% (86) | 10 | Doble Bofetón, Hidropulso, Puño Certero, Buceo |
-| Farfetch’d | Vista lince/Fuerza mental | 377 | 40% (102) | 10 | 72% (90) | 9 | Picotazo, Fachada, Daño Secreto, Vuelo |
-| Rhyhorn | Pararrayos/Cabeza roca | 345 | 39% (102) | 9 | 49% (100) | 10 | Pisotón, Cola Férrea, Ladrón, Fachada |
-| Paras | Efecto espora | 285 | 39% (92) | 10 | 45% (116) | 9 | Cuchillada, Gigadrenado, Golpe Aéreo, Ladrón |
-| Raticate | Fuga/Agallas | 413 | 39% (106) | 9 | 30% (96) | 9 | Fachada, Daño Secreto, Superdiente, Frustración |
-| Tentacruel | Cuerpo puro/Lodo liquido | 515 | 39% (106) | 9 | 60% (92) | 10 | Hidropulso, Bomba Lodo, Picotazo Veneno, Buceo |
-| Persian | Flexibilidad | 440 | 38% (102) | 9 | 14% (120) | 6 | Fachada, Daño Secreto, Frustración, Retribución |
-| Ivysaur | Espesura | 405 | 38% (114) | 9 | 39% (96) | 10 | Gigadrenado, Bomba Lodo, Rayo Solar, Hoja Afilada |
-| Rhydon | Pararrayos/Cabeza roca | 485 | 38% (114) | 9 | 49% (122) | 9 | Pisotón, Puño Certero, Cola Férrea, Ladrón |
-| Zapdos | Presion | 580 | 36% (88) | 10 | 61% (76) | 11 | Picotazo, Rayo, Onda Voltio, Hiperrayo |
-| Parasect | Efecto espora | 405 | 36% (84) | 10 | 38% (104) | 9 | Cuchillada, Gigadrenado, Golpe Aéreo, Ladrón |
-| Vulpix | Absorbe fuego | 299 | 36% (90) | 10 | 35% (114) | 9 | Sofoco, Lanzallamas, Llamarada, Ascuas |
-| Kabuto | Nado rapido/Armadura batalla | 355 | 35% (114) | 9 | 45% (104) | 10 | Cascada, Hidropulso, Fachada, Golpe Aéreo |
-| Seadra ⬇ | Punto toxico | 440 | 34% (94) | 10 | 47% (122) | 9 | Hidropulso, Hiperrayo, Rayo Hielo, Burbuja |
-| Rapidash ⬇ | Fuga/Absorbe fuego | 500 | 34% (106) | 9 | 21% (112) | 8 | Pisotón, Sofoco, Cola Férrea, Lanzallamas |
-| Moltres ⬇ | Presion | 580 | 34% (86) | 10 | 26% (86) | 9 | Sofoco, Vuelo, Lanzallamas, Llamarada |
-| Weezing ⬇ | Levitacion | 490 | 32% (102) | 9 | 35% (86) | 10 | Bomba Lodo, Fachada, Residuos, Ladrón |
-| Weedle ⬇ | Polvo escudo | 195 | 32% (84) | 10 | 35% (80) | 10 | Picotazo Veneno, Disparo Demora |
-| Arbok ⬇ | Intimidacion/Mudar | 448 | 32% (110) | 9 | 25% (106) | 8 | Picotazo Veneno, Fachada, Cola Férrea, Ladrón |
-| Nidoran♀ ⬇ | Punto toxico | 275 | 32% (76) | 10 | 55% (102) | 10 | Picotazo Veneno, Bomba Lodo, Fachada, Cola Férrea |
-| Dugtrio ⬇ | Velo arena/Trampa arena | 425 | 32% (92) | 9 | 18% (96) | 8 | Cuchillada, Bucle Arena, Golpe Aéreo, Ladrón |
-| Jynx ⬇ | Despiste | 455 | 31% (124) | 8 | 44% (108) | 9 | Psíquico, Rayo Hielo, Hidropulso, Hiperrayo |
-| Slowbro ⬇ | Despiste/Ritmo propio | 490 | 31% (96) | 9 | 76% (96) | 9 | Hidropulso, Psíquico, Hiperrayo, Puño Certero |
-| Magneton ⬇ | Iman/Robustez | 465 | 31% (116) | 8 | 52% (82) | 11 | Rayo, Onda Voltio, Hiperrayo, Impactrueno |
-| Kabutops ⬇ | Nado rapido/Armadura batalla | 495 | 31% (118) | 8 | 62% (106) | 9 | Buceo, Cascada, Cuchillada, Demolición |
-| Horsea ⬇ | Nado rapido | 295 | 29% (100) | 9 | 65% (98) | 9 | Hidropulso, Rayo Hielo, Burbuja, Pistola Agua |
-| Diglett ⬇ | Velo arena/Trampa arena | 265 | 29% (90) | 9 | 15% (108) | 7 | Cuchillada, Golpe Aéreo, Ladrón, Fachada |
-| Omastar ⬇ | Nado rapido/Caparazon | 495 | 28% (92) | 9 | 47% (100) | 10 | Hidropulso, Hiperrayo, Pistola Agua, Rayo Hielo |
-| Koffing ⬇ | Levitacion | 340 | 26% (110) | 8 | 47% (100) | 10 | Bomba Lodo, Fachada, Residuos, Ladrón |
-| Lapras ⬇ | Absorbe agua/Caparazon | 535 | 26% (92) | 9 | 73% (94) | 9 | Hidropulso, Rayo Hielo, Buceo, Cascada |
-| Magmar ⬇ | Cuerpo llama | 495 | 25% (106) | 8 | 31% (106) | 9 | Puño Fuego, Puño Certero, Lanzallamas, Llamarada |
-| Electrode ⬇ | Insonorizar/Electricidad estatica | 490 | 25% (96) | 9 | 44% (110) | 9 | Rayo, Onda Voltio, Hiperrayo, Poder Oculto |
-| Caterpie ⬇ | Polvo escudo | 195 | 24% (78) | 10 | 40% (82) | 11 | Placaje, Disparo Demora |
-| Tauros ⬇ | Intimidacion | 490 | 21% (118) | 7 | 37% (102) | 9 | Fachada, Daño Secreto, Frustración, Retribución |
-| Wartortle ⬇ | Torrente | 405 | 21% (96) | 8 | 70% (106) | 9 | Hidropulso, Puño Certero, Buceo, Cascada |
-| Shellder ⬇ | Caparazon | 305 | 21% (112) | 7 | 52% (126) | 9 | Buceo, Hidropulso, Fachada, Daño Secreto |
-| Seaking ⬇ | Nado rapido/Velo agua | 450 | 20% (94) | 8 | 62% (110) | 9 | Picotazo, Buceo, Cascada, Hidropulso |
-| Poliwag ⬇ | Absorbe agua/Humedad | 300 | 20% (106) | 8 | 41% (94) | 10 | Doble Bofetón, Hidropulso, Buceo, Cascada |
-| Beedrill ⬇ | Enjambre | 395 | 18% (94) | 8 | 19% (98) | 8 | Demolición, Fachada, Golpe Aéreo, Ladrón |
-| Grimer ⬇ | Hedor/Viscosidad | 325 | 16% (86) | 8 | 35% (122) | 8 | Destructor, Ladrón, Bomba Lodo, Fachada |
-| Onix ⬇ | Cabeza roca/Robustez | 385 | 16% (94) | 7 | 42% (100) | 10 | Lanzarrocas, Fachada, Cola Férrea, Daño Secreto |
-| Psyduck ⬇ | Humedad/Aclimatacion | 320 | 15% (106) | 7 | 67% (114) | 9 | Hidropulso, Puño Certero, Buceo, Cascada |
-| Muk ⬇ | Hedor/Viscosidad | 500 | 15% (94) | 7 | 64% (92) | 10 | Destructor, Puño Certero, Bomba Lodo, Ladrón |
-| Voltorb ⬇ | Insonorizar/Electricidad estatica | 330 | 14% (94) | 7 | 57% (108) | 9 | Rayo, Onda Voltio, Poder Oculto, Ladrón |
-| Articuno ⬇ | Presion | 580 | 12% (84) | 7 | 52% (94) | 10 | Rayo Hielo, Vuelo, Hidropulso, Golpe Aéreo |
-| Wigglytuff ⬇ | Gran encanto | 435 | 9% (112) | 5 | 30% (88) | 10 | Doble Bofetón, Hiperrayo, Fachada, Daño Secreto |
-| Chansey ⬇ | Cura natural/Dicha | 450 | 8% (106) | 5 | 33% (116) | 9 | Hiperrayo, Poder Oculto, Hidropulso, Psíquico |
-| Nidoran♂ ⬇ | Punto toxico | 273 | 7% (84) | 6 | 21% (118) | 7 | Picotazo, Picotazo Veneno, Fachada, Cola Férrea |
-| Golduck ⬇ | Humedad/Aclimatacion | 500 | 5% (88) | 4 | 59% (100) | 10 | Hidropulso, Puño Certero, Buceo, Cascada |
-| Clefable ⬇ | Gran encanto | 483 | 0% (106) | 0 | 54% (96) | 10 | Doble Bofetón, Hidropulso, Psíquico, Puño Certero |
-| Cloyster ⬇ | Caparazon | 525 | 0% (108) | 0 | 45% (98) | 10 | Hidropulso, Rayo Hielo, Buceo, Fachada |
-| Metapod ⬇ | Mudar | 205 | 0% (84) | 0 | 0% (86) | 0 | Fortaleza |
-| Clefairy ⬇ | Gran encanto | 323 | 0% (128) | 0 | 20% (76) | 9 | Doble Bofetón, Hidropulso, Destructor, Puño Certero |
-| Abra ⬇ | Sincronia/Fuerza mental | 310 | 0% (106) | 0 | 47% (110) | 9 | Psíquico, Bola Sombra, Poder Oculto, Onda Voltio |
-| Kakuna ⬇ | Mudar | 205 | 0% (72) | 0 | 0% (84) | 0 | Fortaleza |
-| Ditto ⬇ | Flexibilidad | 288 | 0% (80) | 0 | 0% (90) | 0 | Transformación |
+| Pokémon | Habilidades | Stats | Con lo que trae | ± | Mejores ataques |
+|---|---|---|---|---|---|
+| Exeggcute ⬆ | Clorofila | 325 | 88% (168) | 5 |  |
+| Porygon ⬆ | Calco | 395 | 88% (152) | 5 |  |
+| Slowbro ⬆ | Despiste/Ritmo propio | 490 | 85% (158) | 6 |  |
+| Zapdos ⬆ | Presion | 580 | 82% (150) | 6 |  |
+| Butterfree ⬆ | Ojo compuesto | 395 | 82% (146) | 6 |  |
+| Zubat ⬆ | Fuerza mental | 245 | 81% (166) | 6 |  |
+| Jolteon ⬆ | Absorbe electricidad | 525 | 80% (146) | 6 |  |
+| Kadabra ⬆ | Sincronia/Fuerza mental | 400 | 78% (158) | 6 |  |
+| Drowzee ⬆ | Insomnio | 328 | 77% (172) | 6 |  |
+| Hypno ⬆ | Insomnio | 483 | 77% (180) | 6 |  |
+| Dewgong ⬆ | Sebo | 475 | 76% (166) | 7 |  |
+| Staryu ⬆ | Iluminacion/Cura natural | 340 | 76% (176) | 6 |  |
+| Gloom ⬆ | Clorofila | 395 | 74% (144) | 7 |  |
+| Alakazam ⬆ | Sincronia/Fuerza mental | 500 | 73% (154) | 7 |  |
+| Weepinbell ⬆ | Clorofila | 390 | 73% (150) | 7 |  |
+| Mr. Mime ⬆ | Insonorizar | 460 | 73% (194) | 6 |  |
+| Dratini ⬆ | Mudar | 300 | 73% (182) | 6 |  |
+| Shellder ⬆ | Caparazon | 305 | 73% (158) | 7 |  |
+| Seel ⬆ | Sebo | 325 | 72% (158) | 7 |  |
+| Tentacool ⬆ | Cuerpo puro/Lodo liquido | 335 | 70% (176) | 7 |  |
+| Snorlax ⬆ | Inmunidad/Sebo | 540 | 70% (180) | 7 |  |
+| Victreebel ⬆ | Clorofila | 490 | 70% (164) | 7 |  |
+| Blastoise ⬆ | Torrente | 530 | 69% (144) | 8 |  |
+| Oddish ⬆ | Clorofila | 320 | 69% (158) | 7 |  |
+| Slowpoke ⬆ | Despiste/Ritmo propio | 315 | 69% (138) | 8 |  |
+| Squirtle ⬆ | Torrente | 314 | 69% (170) | 7 |  |
+| Tentacruel ⬆ | Cuerpo puro/Lodo liquido | 515 | 68% (174) | 7 |  |
+| Golem ⬆ | Cabeza roca/Robustez | 495 | 68% (172) | 7 |  |
+| Omastar ⬆ | Nado rapido/Caparazon | 495 | 68% (154) | 7 |  |
+| Beedrill ⬆ | Enjambre | 395 | 67% (138) | 8 |  |
+| Golbat ⬆ | Fuerza mental | 455 | 66% (152) | 8 |  |
+| Aerodactyl ⬆ | Cabeza roca/Presion | 515 | 66% (160) | 7 |  |
+| Dragonair ⬆ | Mudar | 420 | 66% (140) | 8 |  |
+| Machoke ⬆ | Agallas | 405 | 66% (160) | 7 |  |
+| Omanyte ⬆ | Nado rapido/Caparazon | 355 | 65% (168) | 7 |  |
+| Poliwrath ⬆ | Absorbe agua/Humedad | 510 | 65% (156) | 7 |  |
+| Tauros ⬆ | Intimidacion | 490 | 65% (164) | 7 |  |
+| Vaporeon | Absorbe agua | 525 | 65% (178) | 7 |  |
+| Magmar | Cuerpo llama | 495 | 65% (186) | 7 |  |
+| Dragonite | Fuerza mental | 600 | 64% (104) | 9 |  |
+| Charmander | Mar llamas | 309 | 64% (184) | 7 |  |
+| Seadra | Punto toxico | 440 | 63% (174) | 7 |  |
+| Pidgey | Vista lince | 251 | 63% (204) | 7 |  |
+| Magikarp | Nado rapido | 200 | 63% (118) | 9 |  |
+| Magneton | Iman/Robustez | 465 | 62% (176) | 7 |  |
+| Grimer | Hedor/Viscosidad | 325 | 62% (154) | 8 |  |
+| Lapras | Absorbe agua/Caparazon | 535 | 62% (172) | 7 |  |
+| Magnemite | Iman/Robustez | 325 | 62% (170) | 7 |  |
+| Charmeleon | Mar llamas | 405 | 61% (166) | 7 |  |
+| Bulbasaur | Espesura | 318 | 61% (170) | 7 |  |
+| Machop | Agallas | 305 | 60% (162) | 8 |  |
+| Geodude | Cabeza roca/Robustez | 300 | 60% (176) | 7 |  |
+| Raichu | Electricidad estatica | 485 | 59% (170) | 7 |  |
+| Wartortle | Torrente | 405 | 59% (152) | 8 |  |
+| Bellsprout | Clorofila | 300 | 58% (154) | 8 |  |
+| Exeggutor | Clorofila | 530 | 57% (166) | 8 |  |
+| Muk | Hedor/Viscosidad | 500 | 57% (166) | 8 |  |
+| Doduo | Fuga/Madrugar | 310 | 57% (158) | 8 |  |
+| Horsea | Nado rapido | 295 | 57% (160) | 8 |  |
+| Golduck | Humedad/Aclimatacion | 500 | 57% (146) | 8 |  |
+| Koffing | Levitacion | 340 | 56% (150) | 8 |  |
+| Graveler | Cabeza roca/Robustez | 390 | 56% (136) | 8 |  |
+| Machamp | Agallas | 505 | 56% (160) | 8 |  |
+| Nidoqueen | Punto toxico | 505 | 55% (136) | 8 |  |
+| Gengar | Levitacion | 500 | 55% (156) | 8 |  |
+| Vileplume | Clorofila | 490 | 55% (162) | 8 |  |
+| Starmie | Iluminacion/Cura natural | 520 | 54% (142) | 8 |  |
+| Venonat | Ojo compuesto | 305 | 54% (152) | 8 |  |
+| Tangela | Clorofila | 435 | 54% (158) | 8 |  |
+| Moltres | Presion | 580 | 54% (132) | 9 |  |
+| Gyarados | Intimidacion | 540 | 53% (152) | 8 |  |
+| Vulpix | Absorbe fuego | 299 | 53% (172) | 7 |  |
+| Gastly | Levitacion | 310 | 53% (144) | 8 |  |
+| Rattata | Fuga/Agallas | 253 | 53% (180) | 7 |  |
+| Cubone | Cabeza roca/Pararrayos | 320 | 52% (164) | 8 |  |
+| Weezing | Levitacion | 490 | 52% (166) | 8 |  |
+| Haunter | Levitacion | 405 | 52% (128) | 9 |  |
+| Articuno | Presion | 580 | 51% (136) | 8 |  |
+| Flareon | Absorbe fuego | 525 | 49% (138) | 8 |  |
+| Primeape | Espiritu vital | 455 | 49% (188) | 7 |  |
+| Spearow | Vista lince | 262 | 49% (156) | 8 |  |
+| Kabuto | Nado rapido/Armadura batalla | 355 | 48% (168) | 8 |  |
+| Eevee | Fuga | 325 | 48% (164) | 8 |  |
+| Mankey | Espiritu vital | 305 | 47% (182) | 7 |  |
+| Venusaur | Espesura | 525 | 46% (168) | 8 |  |
+| Venomoth | Polvo escudo | 450 | 46% (166) | 8 |  |
+| Pikachu | Electricidad estatica | 320 | 46% (180) | 7 |  |
+| Charizard | Mar llamas | 534 | 45% (190) | 7 |  |
+| Cloyster | Caparazon | 525 | 45% (160) | 8 |  |
+| Ivysaur | Espesura | 405 | 44% (138) | 8 |  |
+| Fearow | Vista lince | 442 | 44% (150) | 8 |  |
+| Arbok | Intimidacion/Mudar | 448 | 44% (166) | 8 |  |
+| Arcanine | Intimidacion/Absorbe fuego | 555 | 44% (174) | 7 |  |
+| Marowak | Cabeza roca/Pararrayos | 425 | 44% (158) | 8 |  |
+| Ninetales | Absorbe fuego | 505 | 44% (186) | 7 |  |
+| Nidoran♀ | Punto toxico | 275 | 42% (146) | 8 |  |
+| Clefairy | Gran encanto | 323 | 42% (154) | 8 |  |
+| Psyduck | Humedad/Aclimatacion | 320 | 42% (150) | 8 |  |
+| Kangaskhan | Madrugar | 490 | 41% (162) | 8 |  |
+| Paras | Efecto espora | 285 | 41% (144) | 8 |  |
+| Pidgeotto | Vista lince | 349 | 40% (184) | 7 |  |
+| Nidorina | Punto toxico | 365 | 39% (158) | 8 |  |
+| Jigglypuff | Gran encanto | 270 | 39% (162) | 8 |  |
+| Goldeen | Nado rapido/Velo agua | 320 | 39% (150) | 8 |  |
+| Ekans | Intimidacion/Mudar | 288 | 39% (140) | 8 |  |
+| Onix | Cabeza roca/Robustez | 385 | 38% (164) | 7 |  |
+| Krabby | Corte fuerte/Caparazon | 325 | 38% (142) | 8 |  |
+| Ponyta | Fuga/Absorbe fuego | 410 | 38% (150) | 8 |  |
+| Seaking | Nado rapido/Velo agua | 450 | 37% (164) | 7 |  |
+| Electabuzz | Electricidad estatica | 490 | 36% (174) | 7 |  |
+| Poliwhirl | Absorbe agua/Humedad | 385 | 36% (162) | 7 |  |
+| Parasect | Efecto espora | 405 | 35% (162) | 7 |  |
+| Dodrio ⬇ | Fuga/Madrugar | 470 | 35% (152) | 8 |  |
+| Pidgeot ⬇ | Vista lince | 479 | 34% (178) | 7 |  |
+| Sandshrew ⬇ | Velo arena | 300 | 33% (150) | 8 |  |
+| Farfetch’d ⬇ | Vista lince/Fuerza mental | 377 | 33% (162) | 7 |  |
+| Poliwag ⬇ | Absorbe agua/Humedad | 300 | 32% (176) | 7 |  |
+| Nidoking ⬇ | Punto toxico | 505 | 32% (152) | 7 |  |
+| Caterpie ⬇ | Polvo escudo | 195 | 30% (130) | 8 |  |
+| Rhydon ⬇ | Pararrayos/Cabeza roca | 485 | 29% (184) | 7 |  |
+| Dugtrio ⬇ | Velo arena/Trampa arena | 425 | 29% (156) | 7 |  |
+| Growlithe ⬇ | Intimidacion/Absorbe fuego | 350 | 28% (162) | 7 |  |
+| Raticate ⬇ | Fuga/Agallas | 413 | 28% (146) | 7 |  |
+| Kingler ⬇ | Corte fuerte/Caparazon | 475 | 26% (156) | 7 |  |
+| Wigglytuff ⬇ | Gran encanto | 435 | 26% (168) | 7 |  |
+| Hitmonlee ⬇ | Flexibilidad | 455 | 26% (176) | 6 |  |
+| Sandslash ⬇ | Velo arena | 450 | 26% (176) | 6 |  |
+| Abra ⬇ | Sincronia/Fuerza mental | 310 | 25% (158) | 7 |  |
+| Rhyhorn ⬇ | Pararrayos/Cabeza roca | 345 | 25% (184) | 6 |  |
+| Scyther ⬇ | Enjambre | 500 | 24% (180) | 6 |  |
+| Nidorino ⬇ | Punto toxico | 365 | 24% (180) | 6 |  |
+| Persian ⬇ | Flexibilidad | 440 | 23% (160) | 7 |  |
+| Hitmonchan ⬇ | Vista lince | 455 | 23% (174) | 6 |  |
+| Ditto ⬇ | Flexibilidad | 288 | 23% (154) | 7 |  |
+| Kabutops ⬇ | Nado rapido/Armadura batalla | 495 | 21% (178) | 6 |  |
+| Diglett ⬇ | Velo arena/Trampa arena | 265 | 20% (168) | 6 |  |
+| Pinsir ⬇ | Corte fuerte | 500 | 20% (144) | 7 |  |
+| Voltorb ⬇ | Insonorizar/Electricidad estatica | 330 | 17% (170) | 6 |  |
+| Electrode ⬇ | Insonorizar/Electricidad estatica | 490 | 16% (158) | 6 |  |
+| Mew ⬇ | Sincronia | 600 | 15% (124) | 6 |  |
+| Lickitung ⬇ | Ritmo propio/Despiste | 385 | 15% (122) | 6 |  |
+| Nidoran♂ ⬇ | Punto toxico | 273 | 14% (152) | 6 |  |
+| Rapidash ⬇ | Fuga/Absorbe fuego | 500 | 14% (152) | 5 |  |
+| Clefable ⬇ | Gran encanto | 483 | 13% (144) | 6 |  |
+| Weedle ⬇ | Polvo escudo | 195 | 11% (116) | 6 |  |
+| Meowth ⬇ | Recogida | 290 | 8% (176) | 4 |  |
+| Jynx ⬇ | Despiste | 455 | 5% (172) | 3 |  |
+| Chansey ⬇ | Cura natural/Dicha | 450 | 4% (196) | 3 |  |
+| Kakuna ⬇ | Mudar | 205 | 0% (150) | 0 |  |
+| Metapod ⬇ | Mudar | 205 | 0% (126) | 0 |  |
 
 ## Por tipo
 
-| | Con lo que trae | Con los mejores |
-|---|---|---|
-| Dragon | 72% | 54% |
-| Lucha | 68% | 63% |
-| Psiquico | 58% | 63% |
-| Fantasma | 57% | 79% |
-| Planta | 57% | 48% |
-| Volador | 56% | 54% |
-| Normal | 51% | 41% |
-| Tierra | 50% | 48% |
-| Veneno | 48% | 46% |
-| Fuego | 47% | 33% |
-| Bicho | 45% | 34% |
-| Roca | 45% | 51% |
-| Acero | 45% | 65% |
-| Agua | 44% | 62% |
-| Electrico | 44% | 57% |
-| Hielo | 28% | 54% |
-| Hada | 26% | 43% |
+| | Con lo que trae |
+|---|---|
+| Dragon | 69% |
+| Acero | 62% |
+| Psiquico | 61% |
+| Planta | 59% |
+| Agua | 57% |
+| Fantasma | 53% |
+| Volador | 53% |
+| Veneno | 52% |
+| Electrico | 51% |
+| Roca | 49% |
+| Lucha | 48% |
+| Hielo | 48% |
+| Fuego | 47% |
+| Hada | 41% |
+| Normal | 40% |
+| Tierra | 40% |
+| Bicho | 35% |
 

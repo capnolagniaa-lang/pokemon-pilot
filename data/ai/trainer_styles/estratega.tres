@@ -15,3 +15,4 @@ potions = 1
 low_hp = 2
 reads = 0.5
 max_switches = 2
+patience = 0.9

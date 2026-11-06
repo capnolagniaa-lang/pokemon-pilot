@@ -13,3 +13,4 @@ retreat = 0.1
 low_hp = 1
 reads = 0.1
 max_switches = 0
+patience = 0.15

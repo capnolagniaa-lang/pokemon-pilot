@@ -35,3 +35,5 @@ enum LowHp { FLEE, ALL_IN, CAREFUL }
 @export var notice_emote: String = "!"
 ## Reservado para "en grupo" (si atacás a uno vienen los demás): todavía no se usa.
 @export var calls_group: bool = false
+## Qué tanto se aguanta de tirar un ataque malo para juntar PP (TacticalMind.patience; docs/PLAN_IA.md, H-1).
+@export_range(0.0, 1.0) var patience: float = 0.5

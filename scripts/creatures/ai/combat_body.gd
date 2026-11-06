@@ -47,9 +47,9 @@ static func difficulty() -> AiDifficulty:
 ## Si el ataque de una ranura tiene sentido a esta distancia. Mejoras propias (balance 2026-10-28: antes solo herido,
 ## y Danza Espada o el Metrónomo de Clefairy casi no salían): las ofensivas (más ataque o velocidad) y las que maneja la
 ## firma (sin estado: Metrónomo) en cuanto pelea cerca; las defensivas (escudo, curarse, Fortaleza) cuando está herido.
-func fits(slot: int, dist: float) -> bool:
+func fits(slot: int, dist: float, soon: bool = false) -> bool:
 	var m: MoveData = actor.moves.slots[slot]
-	if m == null or not actor.moves.can_use(slot):
+	if m == null or not actor.moves.can_use(slot, soon):
 		return false
 	match m.kind:
 		MoveData.Kind.SHIELD:

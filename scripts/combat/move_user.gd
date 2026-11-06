@@ -195,9 +195,17 @@ func slot_of(m: MoveData) -> int:
 	return slots.find(m)
 
 
-func can_use(slot: int) -> bool:
-	return slot >= 0 and slot < slots.size() and slots[slot] != null and cooldowns[slot] <= 0.0 and gap_left <= 0.0 \
-		and has_pp(slot) and not heal_blocked(slot) and not status_locked(slot)
+## `soon` = sin mirar la recarga ni los PP: se podría usar, si espera (`seconds_until_ready`).
+func can_use(slot: int, soon: bool = false) -> bool:
+	return slot >= 0 and slot < slots.size() and slots[slot] != null \
+		and (soon or (cooldowns[slot] <= 0.0 and gap_left <= 0.0 and has_pp(slot))) \
+		and not heal_blocked(slot) and not status_locked(slot)
+
+
+## Cuánto falta para poder usarla: que termine la recarga y junte los PP (a lo que recarga en pelea).
+func seconds_until_ready(slot: int) -> float:
+	var regen := maxf(max_pp() * PP_REGEN_FIGHT * float(GameState.setting("pp_regen")), 0.001)
+	return maxf(cooldowns[slot], maxf(0.0, pp_cost(slot) - pp()) / regen)
 
 
 ## Un estado no lo deja usarlo: Mofa (ataques de estado) o Tormento (el mismo de recién).

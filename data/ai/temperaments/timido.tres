@@ -17,3 +17,4 @@ flee_below = 0.3
 spook_chance = 0.5
 notice_emote = "gota"
 low_hp = 0
+patience = 0.7

@@ -7,6 +7,7 @@ extends State
 ## poca vida según su temperamento, se espanta con golpes fuertes y sale de las celdas peligrosas.
 ## Memoria corta (IA-2, TacticalMind): castiga cuando tenés tus ataques fuertes en recarga, se aleja más si peleás
 ## de cerca, con poca vida huye / se juega todo / se cubre según el temperamento, y a veces amaga (finta).
+## Juntando PP (TacticalMind.saving, H-1): no ataca; si le falta bastante se aleja y da vueltas, sin dejar de esquivar.
 
 ## Si no tiene temperamento (no debería pasar), huye con menos de esto.
 @export var flee_below := 0.25
@@ -30,6 +31,8 @@ const MELEE_SPACING := 52.0
 const MELEE_ENTER := 0.45
 ## Más cerca que esto no empuja (no se le sube encima).
 const CONTACT := 18.0
+## Juntando PP se queda por lo menos a esta distancia.
+const SAVE_DISTANCE := 90.0
 
 
 func enter(_msg: Dictionary = {}) -> void:
@@ -39,6 +42,8 @@ func enter(_msg: Dictionary = {}) -> void:
 
 func exit() -> void:
 	_cancel_tell()
+	if actor.mind != null:
+		actor.mind.saving = false
 
 
 func _cancel_tell() -> void:
@@ -140,7 +145,10 @@ func physics_update(delta: float) -> void:
 			_mode = "approach"
 
 	var speed_k := 0.95 if _mode == "approach" else 0.8
-	if _ideal_range() <= MELEE_RANGE:
+	if actor.mind.saving and actor.mind.save_left() >= TacticalMind.SAVE_BACK_OFF:
+		_mode = "retreat" if dist < maxf(_ideal_range(), SAVE_DISTANCE) else "strafe"
+		speed_k = 0.85
+	elif _ideal_range() <= MELEE_RANGE:
 		_mode = _melee_mode(dist)
 		speed_k = 0.95 if _mode == "approach" else (0.6 if _mode == "retreat" else 0.35)
 	var move := Vector2.ZERO

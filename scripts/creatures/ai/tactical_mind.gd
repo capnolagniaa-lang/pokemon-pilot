@@ -10,6 +10,7 @@ extends RefCounted
 ## vos) (IA-3). El *cómo* (apuntar, esquivar, moverse) sigue en
 ## CombatBody. Una por criatura (`Creature.mind`); la usan los salvajes y los Pokémon de los entrenadores.
 ## IA-7: calcula el daño de verdad de cada cruce (`hit_share`, `matchup_score`) y lee costumbres (`FoeMemory`).
+## H-1: administra los PP: puede elegir no atacar (`saving`) para juntar lo que falta para un ataque mucho mejor.
 
 ## Ataques de estado / mejora (no tienen potencia): valor fijo; si CombatBody.fits los deja, son buena idea.
 const STATUS_VALUE := 45.0
@@ -54,6 +55,23 @@ const ENV_SETUP := 1.25
 const CONTACT_RISK := 0.6
 const MELEE_KINDS := [MoveData.Kind.MELEE, MoveData.Kind.LUNGE, MoveData.Kind.DASH, MoveData.Kind.WHIP]
 
+## Juntar PP (H-1): espera por un ataque que esté a lo sumo a este tiempo, si lo que puede tirar ya vale menos que el
+## valor de ese × SAVE_RATIO × paciencia (cuanto más lejos está, menos atrae: a SAVE_MAX_WAIT vale la mitad).
+const SAVE_MAX_WAIT := 3.0
+const SAVE_RATIO := 0.75
+## Le falta más que esto: se aleja a juntar y lo muestra. Menos: se queda cerca (irse y volver le lleva más que esperar).
+const SAVE_BACK_OFF := 1.0
+## Tope por si algo le sigue sacando PP: deja de esperar y por un rato no vuelve a intentarlo.
+const SAVE_GIVE_UP := 4.0
+const SAVE_RETRY := 2.0
+## Cada cuánto muestra que está juntando.
+const SAVE_EMOTE_GAP := 3.0
+## Daño por PP: los ataques caros pierden valor a medida que se vacía la barra (costo de referencia y cuánto pesa).
+const THRIFT_COST := 66.0
+const THRIFT_WEIGHT := 0.5
+## Para rematar con el más barato: tiene que sacar la vida que le queda, con este margen por la suerte del daño.
+const FINISH_MARGIN := 1.1
+
 var actor: Creature
 var last_slot := -1
 ## Lo que vio de cómo jugás. Propia, o la de todo el equipo en una pelea de entrenador (TrainerBattle).
@@ -73,6 +91,12 @@ var pace_boost_until := -1.0
 ## Ya avisó que se juega todo (con poca vida y temperamento valiente).
 var all_in := false
 var _watching: Creature
+## No ataca a propósito: está juntando PP para `_save_slot` (creature_attack se aleja y esquiva mientras tanto).
+var saving := false
+var _save_slot := -1
+var _save_since := 0.0
+var _save_blocked_until := -1.0
+var _save_emote_at := -100.0
 
 
 func _init(p_actor: Creature) -> void:
@@ -274,8 +298,23 @@ const PP_THRIFT := 0.5
 
 
 func score(slot: int, dist: float, shot: bool) -> float:
+	var value := move_value(slot, dist, shot)
+	if value <= 0.0:
+		return 0.0
+	var cost: float = actor.moves.pp_cost(slot)
+	if cost > 0.0 and not all_in:
+		if actor.moves.pp() - cost < actor.moves.max_pp() * PP_RESERVE:
+			value *= PP_THRIFT  # pocos PP: guarda para lo importante y usa más el básico
+		# Con la barra llena abre con lo fuerte; a medida que se vacía mira cuánto daño da por PP.
+		var used := 1.0 - actor.moves.pp() / actor.moves.max_pp()
+		value *= pow(THRIFT_COST / maxf(cost, 1.0), THRIFT_WEIGHT * used * patience())
+	return value * randf_range(0.85, 1.15)
+
+
+## Lo que vale esa ranura a esa distancia, sin mirar los PP (0 = no sirve). `soon` = aunque todavía no se pueda pagar.
+func move_value(slot: int, dist: float, shot: bool, soon: bool = false) -> float:
 	var m: MoveData = actor.moves.slots[slot]
-	if m == null or m.does_nothing() or actor.moves.status_locked(slot) or not actor.body.fits(slot, dist):
+	if m == null or m.does_nothing() or actor.moves.status_locked(slot) or not actor.body.fits(slot, dist, soon):
 		return 0.0  # (los que todavía no hacen nada en combate, ni los intenta)
 	if m.kind in CombatBody.NEEDS_SHOT and not shot:
 		return 0.0
@@ -286,7 +325,7 @@ func score(slot: int, dist: float, shot: bool) -> float:
 		if eff <= 0.0:
 			return 0.0  # no le hace nada: ni lo intenta
 		var stab := Damage.STAB if m.element in actor.instance.types() else 1.0
-		value = m.power * m.power_mult * stab * eff * stat_edge(m, t) * ability_mult(m, t) * env_mult(m, t) * actor.moves.role_damage(m)
+		value = m.power * m.power_mult * hits_of(m) * stab * eff * stat_edge(m, t) * ability_mult(m, t) * env_mult(m, t) * actor.moves.role_damage(m)
 		if value <= 0.0:
 			return 0.0  # su habilidad lo absorbe
 		if exposed(t):
@@ -314,10 +353,86 @@ func score(slot: int, dist: float, shot: bool) -> float:
 		value *= 2.5  # con poca vida y cauteloso: se cubre o se cura
 	if slot == last_slot:
 		value *= REPEAT
-	var cost: float = actor.moves.pp_cost(slot)
-	if cost > 0.0 and actor.moves.pp() - cost < actor.moves.max_pp() * PP_RESERVE and not all_in:
-		value *= PP_THRIFT  # pocos PP: guarda para lo importante y usa más el básico
-	return value * randf_range(0.85, 1.15)
+	return value
+
+
+## Golpes de un uso: su potencia es por golpe (Lanzallamas 6 × 0,2, Doble Bofetón 4 × 20): sin contarlos parecían flojísimos.
+static func hits_of(m: MoveData) -> int:
+	var hits := maxi(m.combo_steps, m.projectile_count)
+	if m.kind == MoveData.Kind.CHANNEL and m.tick_interval > 0.0:
+		hits = maxi(hits, ceili(m.channel_time / m.tick_interval))
+	return maxi(1, hits)
+
+
+# --- Juntar PP (H-1) ---
+
+## Cuánto administra sus PP (0..1): lo que dice su entrenador o su temperamento, por lo que piensa en esta dificultad.
+func patience() -> float:
+	var base := 0.5
+	if actor.trainer_style != null:
+		base = actor.trainer_style.patience
+	elif actor.temperament != null:
+		base = actor.temperament.patience
+	return base * clampf(difficulty().smarts, 0.0, 1.0)
+
+
+## Cuánto le falta para el ataque que está esperando.
+func save_left() -> float:
+	return actor.moves.seconds_until_ready(_save_slot) if saving or _save_slot >= 0 else 0.0
+
+
+## Un ataque que te remata: el más barato (no gasta el caro de más). -1 si no hay o esta vez no se fija.
+func _finisher(scores: Array[float]) -> int:
+	var t: Creature = actor.target
+	if not is_instance_valid(t) or t.instance == null or randf() >= patience():
+		return -1
+	var left := t.instance.hp / maxf(t.instance.max_hp(), 1.0) * FINISH_MARGIN
+	var best := -1
+	var best_cost := INF
+	for slot in MoveUser.SLOT_COUNT:
+		if scores[slot] > 0.0 and hit_share(actor.moves.slots[slot], actor.instance, t.instance) >= left \
+				and actor.moves.pp_cost(slot) < best_cost:
+			best = slot
+			best_cost = actor.moves.pp_cost(slot)
+	return best
+
+
+## ¿Conviene no atacar y juntar? No si te tiene expuesto o se juega todo. Una vez que decidió, sigue hasta poder usarlo.
+func _wants_to_save(dist: float, shot: bool, scores: Array[float]) -> bool:
+	var t: Creature = actor.target
+	var now := actor.now()
+	if all_in or now < _save_blocked_until or exposed(t):
+		return false
+	if saving and _save_slot >= 0:
+		if actor.moves.can_use(_save_slot, true) and not actor.moves.can_use(_save_slot):
+			if now - _save_since < SAVE_GIVE_UP:
+				return true
+			_save_blocked_until = now + SAVE_RETRY
+		return false
+	var best_now := 0.0
+	var later := -1
+	var later_value := 0.0
+	for slot in MoveUser.SLOT_COUNT:
+		var m: MoveData = actor.moves.slots[slot]
+		if m == null:
+			continue
+		if scores[slot] > 0.0:
+			best_now = maxf(best_now, move_value(slot, dist, shot))
+		elif m.power > 0.0 and m.category != MoveData.Category.STATUS and not actor.moves.can_use(slot):
+			var wait: float = actor.moves.seconds_until_ready(slot)
+			# (el cuerpo a cuerpo se aleja mientras junta: vale lo mismo aunque ahora no llegue)
+			var v := move_value(slot, minf(dist, m.reach() * 0.9), shot, true) * (1.0 - wait / (SAVE_MAX_WAIT * 2.0))
+			if wait <= SAVE_MAX_WAIT and v > later_value:
+				later = slot
+				later_value = v
+	if later < 0 or best_now >= later_value * SAVE_RATIO * patience():
+		return false
+	_save_slot = later
+	_save_since = now
+	if save_left() >= SAVE_BACK_OFF and now - _save_emote_at > SAVE_EMOTE_GAP:
+		_save_emote_at = now
+		actor.emote("...", 0.8)
+	return true
 
 
 ## Cuánto rinde ese ataque por los stats: su Ataque contra tu Defensa si es físico, At. Esp. contra Def. Esp. si es especial.
@@ -342,6 +457,13 @@ func pick(dist: float) -> int:
 		var s := score(slot, dist, shot)
 		scores.append(s)
 		top = maxf(top, s)
+	var finisher := _finisher(scores)
+	if finisher >= 0:
+		saving = false
+		return finisher
+	saving = _wants_to_save(dist, shot, scores)
+	if saving:
+		return -1
 	for slot in MoveUser.SLOT_COUNT:
 		if scores[slot] <= 0.0:
 			continue
@@ -478,8 +600,7 @@ static func matchup_score(inst: CreatureInstance, against: Creature, memory: Foe
 static func hit_share(m: MoveData, atk: CreatureInstance, def: CreatureInstance) -> float:
 	if m == null or m.power <= 0.0 or m.category == MoveData.Category.STATUS or m.element == null:
 		return 0.0
-	var shots := maxi(1, maxi(m.combo_steps, m.projectile_count))
-	return _share(m.power * m.power_mult, m.element, m.category == MoveData.Category.SPECIAL, atk, def) * shots
+	return _share(m.power * m.power_mult, m.element, m.category == MoveData.Category.SPECIAL, atk, def) * hits_of(m)
 
 
 static func best_share(moves: Array, atk: CreatureInstance, def: CreatureInstance) -> float:

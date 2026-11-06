@@ -17,3 +17,4 @@ low_hp = 2
 reads = 1.0
 max_switches = 4
 knows_moves = true
+patience = 1.0

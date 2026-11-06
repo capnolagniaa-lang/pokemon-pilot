@@ -152,3 +152,21 @@ Pedido del usuario: "que identifique cómo estoy jugando y adopte patrones". Sin
 - **Costumbres**: repetir un ataque (`habit`) hace que esquive antes y que cambie a uno que lo resista; el lado al que esquivás ya se leía (IA-2), ahora según `reads`.
 - **Por clase** (`reads`, `switch_types`, `max_switches`): impaciente 0,1/0/0 · rocket 0,2/0,2/1 · aguante 0,25/0,25/1 · estratega 0,5/0,8/2 · líder 0,7/0,7/3 · élite 1/1/4.
 - Los salvajes no estudian qué repetís.
+
+## Programa "IA humana" (pedido del usuario 2026-11-05; H-1 hecha, H-2 a H-4 propuestas)
+
+Queja: gasta los ataques caros mientras va ganando, nunca junta PP y sigue atacando, así que termina usando ataques que no le sirven en vez de esperar.
+
+**Lo que pasa hoy** (`TacticalMind.score/pick`, `creature_attack._choose_attack`): la IA no tiene la opción "no atacar". Cada 0,5-1,1 s tira lo mejor que puede pagar en ese momento; si solo le alcanza para uno malo, tira ese. `PP_THRIFT` divide por 2 a los que la dejan bajo el 30 %, pero no compara con esperar ni mira el costo. Cuenta a nivel 40: barra 260, recarga 42 PP/s; un ataque de 66 PP cada 0,8 s gasta 82 PP/s, el doble de lo que recarga, así que vive con la barra vacía.
+
+| Fase | Qué | Cómo se prueba |
+|---|---|---|
+| **H-1** | **Administrar PP.** Nueva opción "esperar": compara lo que puede tirar ya con lo que podría tirar si junta PP unos segundos. Si lo de ahora rinde mucho menos, junta. Mientras junta no se queda quieta: se aleja, esquiva y rodea. Corta la espera si estás expuesto, si te puede rematar o si se juega todo. Elige también por daño por PP, y no gasta el ataque caro si uno barato ya te remata. | `--autotest-ai-pp`: casos armados + cuántos ataques malos tira teniendo uno bueno a pocos segundos |
+| H-2 | **Plan de varios segundos.** Presionar / juntar / castigar / rematar: se compromete con uno hasta que algo lo cambie, en vez de decidir de cero en cada ataque. Ráfagas y respiros, como una persona. | Bot + jugarlo |
+| H-3 | **Leer tu barra.** Calcula tus PP con lo que te vio gastar (no los espía): si te vaciaste, se te viene encima; si tenés la barra llena, te respeta. | Bot que gasta todo de golpe |
+| H-4 | **Ánimo y errores creíbles.** Se confía si viene ganando, se cuida después de un golpe fuerte, a veces se apura o duda. Sin puntería mala a propósito. | Jugarlo + medir que se pueda ganar |
+
+**Por clase**: perilla `patience` en `TrainerStyle` (impaciente casi no espera; estratega, líder y élite administran bien), los salvajes por instinto (`Temperament`) y la dificultad regula cuánto.
+**Resultado de H-1** (2026-11-06, IA contra IA en Difícil, nivel 40, 12.000 peleas con y sin H-1; `docs/BALANCE_RESUMEN.md`): sin errores; duración 16,4 → 16,1 s, empates 2,2 % en los dos casos; desvío entre especies 18,9 → 20,1 puntos (algo menos parejo). Cambian de más de lo que explica el azar 35 de 150 especies: suben las que tienen un ataque bueno que antes malgastaban o estaba mal valuado (Staryu 49 → 76 %, Dewgong 52 → 76 %, Doduo 37 → 57 %) y bajan las que viven de ataques de estado (Clefairy 66 → 42 %, Wigglytuff 40 → 26 %, Chansey 12 → 4 %). La IA-7 sola casi no movió estos números (desvío 20,4 → 18,9): la batería es 1 contra 1, sin entrenadores. En la pelea armada del test, Charmander con Llamarada contra Bulbasaur tira el ataque bueno el 100 % de las veces con paciencia y el 7 % sin ella. Los valores de paciencia están a ojo: falta probarlos jugando.
+
+**Justicia**: junta PP de forma que se note, para que puedas castigarla. **Balance**: `--autotest-balance` antes y después de cada fase. Aplica también a la batería, porque usa la misma mente.

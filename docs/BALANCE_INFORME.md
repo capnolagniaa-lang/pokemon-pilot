@@ -1,11 +1,11 @@
 # Informe de balance (batería de peleas IA contra IA)
 
-> **Generado** por `--autotest-balance` (2026-11-04). Ver cómo correrlo en `scripts/tests/balance_tests.gd`.
+> **Generado** por `--autotest-balance` (2026-11-06). Ver cómo correrlo en `scripts/tests/balance_tests.gd`.
 > Cada pelea: dos Pokémon con su habilidad, IA en Difícil, nivel 40, reglas del mundo, **los que trae un rival (3 de daño y 1 de estado, los mejores que sabe)**, emparejados por stats base (±60), cada pareja
-> dos veces cambiando de lado. 2000 peleas en 1682 s (semilla 1). Con pocas peleas por especie los % varían mucho:
+> dos veces cambiando de lado. 2000 peleas en 1931 s (semilla 311). Con pocas peleas por especie los % varían mucho:
 > mirar las que tienen 10 o más.
 
-Empates por tiempo (60 s): 22 de 1000 (2%).
+Empates por tiempo (60 s): 20 de 1000 (2%).
 
 ## Por especie (de más fuerte a más débil)
 
@@ -13,238 +13,238 @@ Daño hecho/recibido = de golpes (sin veneno ni quemaduras), en vidas enteras de
 
 | Pokémon | Habilidades | Stats base | Peleas | Victorias | % | Vida al ganar | Seg. por victoria | Daño hecho | Daño recibido | Empates |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Kadabra ⬆ | Sincronía/Fuerza Mental | 400 | 20 | 19 | 95% | 48% | 7.8 | 1.01 | 0.56 | 0 |
-| Venomoth ⬆ | Polvo Escudo | 450 | 20 | 18 | 90% | 57% | 14.0 | 0.97 | 0.49 | 0 |
-| Slowbro ⬆ | Despiste/Ritmo Propio | 490 | 30 | 26 | 87% | 64% | 14.5 | 0.96 | 0.44 | 0 |
-| Graveler ⬆ | Cabeza Roca/Robustez | 390 | 22 | 19 | 86% | 72% | 11.0 | 0.92 | 0.35 | 0 |
-| Hypno ⬆ | Insomnio | 483 | 20 | 17 | 85% | 34% | 16.9 | 0.81 | 0.69 | 0 |
-| Oddish ⬆ | Clorofila | 320 | 32 | 27 | 84% | 50% | 19.2 | 0.93 | 0.77 | 0 |
-| Dratini ⬆ | Mudar | 300 | 18 | 15 | 83% | 61% | 9.7 | 1.01 | 0.48 | 0 |
-| Seel ⬆ | Sebo | 325 | 32 | 26 | 81% | 48% | 12.8 | 0.93 | 0.57 | 1 |
-| Drowzee ⬆ | Insomnio | 328 | 32 | 26 | 81% | 57% | 11.3 | 0.88 | 0.52 | 0 |
-| Squirtle ⬆ | Torrente | 314 | 26 | 21 | 81% | 40% | 13.4 | 0.95 | 0.66 | 0 |
-| Charizard ⬆ | Mar Llamas | 534 | 20 | 16 | 80% | 41% | 14.3 | 0.93 | 0.64 | 0 |
-| Exeggcute ⬆ | Clorofila | 325 | 30 | 24 | 80% | 56% | 11.6 | 0.84 | 0.54 | 0 |
-| Weepinbell ⬆ | Clorofila | 390 | 28 | 22 | 79% | 67% | 8.1 | 0.87 | 0.48 | 0 |
-| Tauros ⬆ | Intimidación | 490 | 32 | 25 | 78% | 34% | 14.3 | 0.96 | 0.73 | 0 |
-| Magikarp ⬆ | Nado Rápido | 200 | 26 | 20 | 77% | 82% | 45.5 | 0.90 | 0.36 | 0 |
-| Beedrill ⬆ | Enjambre | 395 | 26 | 20 | 77% | 39% | 14.8 | 0.78 | 0.70 | 0 |
-| Victreebel ⬆ | Clorofila | 490 | 30 | 23 | 77% | 68% | 10.5 | 0.93 | 0.45 | 2 |
-| Slowpoke ⬆ | Despiste/Ritmo Propio | 315 | 30 | 23 | 77% | 49% | 15.8 | 0.93 | 0.57 | 0 |
-| Tentacruel ⬆ | Cuerpo Puro/Lodo Líquido | 515 | 34 | 26 | 76% | 52% | 15.3 | 0.75 | 0.58 | 0 |
-| Magnemite ⬆ | Imán/Robustez | 325 | 38 | 29 | 76% | 49% | 17.8 | 0.91 | 0.60 | 0 |
-| Venusaur ⬆ | Espesura | 525 | 20 | 15 | 75% | 57% | 17.0 | 0.92 | 0.57 | 0 |
-| Zubat ⬆ | Fuerza Mental | 245 | 20 | 15 | 75% | 61% | 8.9 | 0.95 | 0.54 | 1 |
-| Mr. Mime ⬆ | Insonorizar | 460 | 20 | 15 | 75% | 41% | 11.6 | 0.91 | 0.66 | 0 |
-| Exeggutor ⬆ | Clorofila | 530 | 30 | 22 | 73% | 47% | 14.0 | 0.89 | 0.65 | 0 |
-| Jolteon ⬆ | Absorbe Electricidad | 525 | 30 | 22 | 73% | 56% | 17.6 | 0.90 | 0.56 | 0 |
-| Vaporeon ⬆ | Absorbe Agua | 525 | 26 | 19 | 73% | 37% | 19.2 | 0.94 | 0.71 | 0 |
-| Dragonair ⬆ | Mudar | 420 | 22 | 16 | 73% | 43% | 16.1 | 0.92 | 0.68 | 1 |
-| Bellsprout ⬆ | Clorofila | 300 | 32 | 23 | 72% | 51% | 10.2 | 0.86 | 0.63 | 0 |
-| Omastar ⬆ | Nado Rápido/Caparazón | 495 | 28 | 20 | 71% | 72% | 13.6 | 0.85 | 0.48 | 0 |
-| Omanyte ⬆ | Nado Rápido/Caparazón | 355 | 30 | 21 | 70% | 54% | 12.8 | 0.90 | 0.62 | 0 |
-| Charmander ⬆ | Mar Llamas | 309 | 20 | 14 | 70% | 50% | 11.5 | 0.76 | 0.63 | 0 |
-| Grimer ⬆ | Hedor/Viscosidad | 325 | 26 | 18 | 69% | 47% | 14.4 | 0.84 | 0.67 | 0 |
-| Shellder ⬆ | Caparazón | 305 | 32 | 22 | 69% | 57% | 12.9 | 0.82 | 0.59 | 0 |
-| Kabuto ⬆ | Nado Rápido/Armadura Batalla | 355 | 22 | 15 | 68% | 60% | 17.6 | 0.84 | 0.60 | 0 |
-| Charmeleon ⬆ | Mar Llamas | 405 | 28 | 19 | 68% | 39% | 14.2 | 0.83 | 0.73 | 0 |
-| Zapdos ⬆ | Presión | 580 | 24 | 16 | 67% | 54% | 14.4 | 0.84 | 0.64 | 0 |
-| Horsea ⬆ | Nado Rápido | 295 | 24 | 16 | 67% | 64% | 9.8 | 0.81 | 0.56 | 0 |
-| Seadra ⬆ | Punto Tóxico | 440 | 32 | 21 | 66% | 57% | 13.5 | 0.80 | 0.61 | 0 |
-| Alakazam ⬆ | Sincronía/Fuerza Mental | 500 | 32 | 21 | 66% | 48% | 11.0 | 0.91 | 0.69 | 0 |
-| Pikachu ⬆ | Electricidad Estática | 320 | 26 | 17 | 65% | 41% | 14.4 | 0.91 | 0.70 | 0 |
-| Golbat | Fuerza Mental | 455 | 34 | 22 | 65% | 44% | 16.0 | 0.89 | 0.71 | 0 |
-| Pidgey | Vista Lince | 251 | 34 | 22 | 65% | 62% | 11.1 | 0.78 | 0.58 | 0 |
-| Bulbasaur | Espesura | 318 | 30 | 19 | 63% | 51% | 18.2 | 0.83 | 0.83 | 0 |
-| Porygon | Calco | 395 | 30 | 19 | 63% | 44% | 17.6 | 0.87 | 0.71 | 0 |
-| Magneton | Imán/Robustez | 465 | 38 | 24 | 63% | 51% | 22.2 | 0.92 | 0.63 | 4 |
-| Gloom | Clorofila | 395 | 32 | 20 | 63% | 64% | 18.9 | 0.72 | 0.79 | 0 |
-| Poliwag | Absorbe Agua/Humedad | 300 | 32 | 20 | 63% | 41% | 14.8 | 0.87 | 0.75 | 0 |
-| Muk | Hedor/Viscosidad | 500 | 34 | 21 | 62% | 39% | 19.7 | 0.61 | 0.76 | 0 |
-| Geodude | Cabeza Roca/Robustez | 300 | 28 | 17 | 61% | 71% | 12.8 | 0.81 | 0.56 | 0 |
-| Dragonite | Fuerza Mental | 600 | 20 | 12 | 60% | 55% | 18.4 | 0.89 | 0.67 | 0 |
-| Poliwrath | Absorbe Agua/Humedad | 510 | 20 | 12 | 60% | 45% | 31.8 | 0.92 | 0.57 | 1 |
-| Butterfree | Ojo Compuesto | 395 | 28 | 16 | 57% | 47% | 17.3 | 0.86 | 0.73 | 1 |
-| Raichu | Electricidad Estática | 485 | 30 | 17 | 57% | 43% | 14.7 | 0.90 | 0.70 | 2 |
-| Ninetales | Absorbe Fuego | 505 | 30 | 17 | 57% | 29% | 22.9 | 0.72 | 0.79 | 1 |
-| Haunter | Levitación | 405 | 36 | 20 | 56% | 69% | 14.7 | 0.80 | 0.69 | 0 |
-| Snorlax | Inmunidad/Sebo | 540 | 36 | 20 | 56% | 39% | 18.1 | 0.79 | 0.72 | 4 |
-| Machop | Agallas | 305 | 22 | 12 | 55% | 57% | 4.9 | 0.81 | 0.68 | 0 |
-| Tentacool | Cuerpo Puro/Lodo Líquido | 335 | 22 | 12 | 55% | 32% | 18.4 | 0.86 | 0.83 | 0 |
-| Vulpix | Absorbe Fuego | 299 | 28 | 15 | 54% | 44% | 12.5 | 0.78 | 0.74 | 1 |
-| Magmar | Cuerpo Llama | 495 | 28 | 15 | 54% | 52% | 24.2 | 0.59 | 0.69 | 0 |
-| Staryu | Iluminación/Cura Natural | 340 | 34 | 18 | 53% | 47% | 12.2 | 0.80 | 0.79 | 0 |
-| Gastly | Levitación | 310 | 34 | 18 | 53% | 70% | 7.8 | 0.84 | 0.65 | 0 |
-| Lapras | Absorbe Agua/Caparazón | 535 | 38 | 20 | 53% | 53% | 22.4 | 0.83 | 0.68 | 3 |
-| Wartortle | Torrente | 405 | 24 | 12 | 50% | 50% | 18.8 | 0.83 | 0.70 | 2 |
-| Koffing | Levitación | 340 | 30 | 15 | 50% | 40% | 16.7 | 0.76 | 0.80 | 0 |
-| Cloyster | Caparazón | 525 | 22 | 11 | 50% | 44% | 25.0 | 0.46 | 0.73 | 0 |
-| Ivysaur | Espesura | 405 | 22 | 11 | 50% | 47% | 20.2 | 0.86 | 0.77 | 0 |
-| Psyduck | Humedad/Aclimatación | 320 | 24 | 12 | 50% | 38% | 16.4 | 0.77 | 0.79 | 0 |
-| Pidgeot | Vista Lince | 479 | 32 | 16 | 50% | 41% | 17.2 | 0.86 | 0.77 | 1 |
-| Goldeen | Nado Rápido/Velo Agua | 320 | 30 | 15 | 50% | 43% | 13.0 | 0.79 | 0.76 | 0 |
-| Aerodactyl | Cabeza Roca/Presión | 515 | 26 | 13 | 50% | 46% | 17.0 | 0.88 | 0.73 | 0 |
-| Arcanine | Intimidación/Absorbe Fuego | 555 | 40 | 19 | 48% | 45% | 16.6 | 0.62 | 0.74 | 0 |
-| Tangela | Clorofila | 435 | 32 | 15 | 47% | 56% | 14.2 | 0.73 | 0.73 | 0 |
-| Clefairy | Gran Encanto | 323 | 30 | 14 | 47% | 53% | 23.0 | 0.74 | 0.99 | 0 |
-| Rattata | Fuga/Agallas | 253 | 30 | 14 | 47% | 80% | 11.0 | 0.81 | 0.61 | 1 |
-| Gyarados | Intimidación | 540 | 30 | 14 | 47% | 37% | 26.4 | 0.82 | 0.81 | 0 |
-| Dewgong | Sebo | 475 | 28 | 13 | 46% | 53% | 14.3 | 0.85 | 0.64 | 0 |
-| Mankey | Espíritu Vital | 305 | 26 | 12 | 46% | 56% | 7.2 | 0.84 | 0.72 | 0 |
-| Scyther | Enjambre | 500 | 26 | 12 | 46% | 47% | 10.6 | 0.66 | 0.77 | 0 |
-| Cubone | Cabeza Roca/Pararrayos | 320 | 24 | 11 | 46% | 36% | 14.4 | 0.67 | 0.83 | 0 |
-| Nidoqueen | Punto Tóxico | 505 | 24 | 11 | 46% | 45% | 12.9 | 0.60 | 0.79 | 1 |
-| Ponyta | Fuga/Absorbe Fuego | 410 | 24 | 11 | 46% | 39% | 13.5 | 0.69 | 0.82 | 0 |
-| Flareon | Absorbe Fuego | 525 | 22 | 10 | 45% | 47% | 21.2 | 0.86 | 0.77 | 0 |
-| Primeape | Espíritu Vital | 455 | 22 | 10 | 45% | 74% | 6.0 | 0.70 | 0.63 | 0 |
-| Blastoise | Torrente | 530 | 22 | 10 | 45% | 58% | 17.6 | 0.77 | 0.58 | 0 |
-| Moltres | Presión | 580 | 22 | 10 | 45% | 23% | 21.0 | 0.69 | 0.89 | 0 |
-| Marowak | Cabeza Roca/Pararrayos | 425 | 18 | 8 | 44% | 33% | 21.7 | 0.65 | 0.85 | 0 |
-| Articuno | Presión | 580 | 18 | 8 | 44% | 33% | 23.9 | 0.84 | 0.84 | 0 |
-| Arbok | Intimidación/Mudar | 448 | 30 | 13 | 43% | 49% | 17.3 | 0.75 | 0.78 | 1 |
-| Weezing | Levitación | 490 | 30 | 13 | 43% | 39% | 16.4 | 0.59 | 0.82 | 0 |
-| Farfetch’d | Vista Lince/Fuerza Mental | 377 | 28 | 12 | 43% | 33% | 13.4 | 0.87 | 0.82 | 0 |
-| Seaking | Nado Rápido/Velo Agua | 450 | 26 | 11 | 42% | 35% | 13.6 | 0.76 | 0.82 | 0 |
-| Wigglytuff | Gran Encanto | 435 | 24 | 10 | 42% | 96% | 39.5 | 0.78 | 0.26 | 12 |
-| Paras | Efecto Espora | 285 | 24 | 10 | 42% | 54% | 10.5 | 0.47 | 0.84 | 0 |
-| Golem | Cabeza Roca/Robustez | 495 | 24 | 10 | 42% | 47% | 12.8 | 0.66 | 0.79 | 0 |
-| Starmie | Iluminación/Cura Natural | 520 | 22 | 9 | 41% | 31% | 26.4 | 0.79 | 0.86 | 2 |
-| Eevee | Fuga | 325 | 22 | 9 | 41% | 40% | 16.2 | 0.82 | 0.84 | 0 |
-| Electabuzz | Electricidad Estática | 490 | 22 | 9 | 41% | 36% | 22.6 | 0.82 | 0.79 | 1 |
-| Gengar | Levitación | 500 | 22 | 9 | 41% | 62% | 17.5 | 0.80 | 0.57 | 4 |
-| Venonat | Ojo Compuesto | 305 | 32 | 13 | 41% | 51% | 20.7 | 0.89 | 0.80 | 0 |
-| Vileplume | Clorofila | 490 | 20 | 8 | 40% | 62% | 15.8 | 0.74 | 0.96 | 0 |
-| Kangaskhan | Madrugar | 490 | 40 | 16 | 40% | 33% | 16.8 | 0.77 | 0.83 | 0 |
-| Golduck | Humedad/Aclimatación | 500 | 30 | 12 | 40% | 36% | 22.4 | 0.76 | 0.84 | 1 |
-| Hitmonchan | Vista Lince | 455 | 28 | 11 | 39% | 30% | 13.0 | 0.68 | 0.83 | 0 |
-| Sandshrew | Velo Arena | 300 | 18 | 7 | 39% | 29% | 22.3 | 0.55 | 0.88 | 0 |
-| Kingler | Corte Fuerte/Caparazón | 475 | 26 | 10 | 38% | 57% | 10.0 | 0.48 | 0.75 | 3 |
-| Doduo | Fuga/Madrugar | 310 | 24 | 9 | 38% | 54% | 6.5 | 0.68 | 0.79 | 0 |
-| Caterpie | Polvo Escudo | 195 | 16 | 6 | 38% | 100% | 55.8 | 0.74 | 0.50 | 2 |
-| Parasect | Efecto Espora | 405 | 22 | 8 | 36% | 61% | 16.8 | 0.70 | 0.84 | 0 |
-| Nidoking | Punto Tóxico | 505 | 22 | 8 | 36% | 55% | 12.2 | 0.59 | 0.78 | 0 |
-| Onix ⬇ | Cabeza Roca/Robustez | 385 | 26 | 9 | 35% | 57% | 30.7 | 0.62 | 0.71 | 2 |
-| Pidgeotto ⬇ | Vista Lince | 349 | 30 | 10 | 33% | 38% | 13.7 | 0.73 | 0.80 | 0 |
-| Machoke ⬇ | Agallas | 405 | 28 | 9 | 32% | 32% | 11.4 | 0.65 | 0.82 | 0 |
-| Clefable ⬇ | Gran Encanto | 483 | 28 | 9 | 32% | 28% | 26.9 | 0.60 | 0.91 | 0 |
-| Fearow ⬇ | Vista Lince | 442 | 26 | 8 | 31% | 39% | 11.0 | 0.72 | 0.86 | 0 |
-| Spearow ⬇ | Vista Lince | 262 | 26 | 8 | 31% | 48% | 9.0 | 0.76 | 0.81 | 0 |
-| Raticate ⬇ | Fuga/Agallas | 413 | 20 | 6 | 30% | 42% | 9.8 | 0.62 | 0.83 | 0 |
-| Growlithe ⬇ | Intimidación/Absorbe Fuego | 350 | 20 | 6 | 30% | 47% | 6.6 | 0.62 | 0.85 | 0 |
-| Nidoran♀ ⬇ | Punto Tóxico | 275 | 20 | 6 | 30% | 15% | 17.1 | 0.62 | 0.95 | 0 |
-| Machamp ⬇ | Agallas | 505 | 24 | 7 | 29% | 30% | 15.0 | 0.61 | 0.88 | 0 |
-| Hitmonlee ⬇ | Flexibilidad | 455 | 26 | 7 | 27% | 35% | 8.9 | 0.58 | 0.90 | 0 |
-| Poliwhirl ⬇ | Absorbe Agua/Humedad | 385 | 20 | 5 | 25% | 38% | 18.1 | 0.72 | 0.89 | 0 |
-| Mew ⬇ | Sincronía | 600 | 16 | 4 | 25% | 17% | 19.4 | 0.73 | 0.95 | 0 |
-| Sandslash ⬇ | Velo Arena | 450 | 28 | 7 | 25% | 56% | 21.0 | 0.64 | 0.83 | 2 |
-| Ditto ⬇ | Flexibilidad | 288 | 26 | 6 | 23% | 34% | 14.2 | 0.67 | 0.91 | 0 |
-| Pinsir ⬇ | Corte Fuerte | 500 | 32 | 7 | 22% | 53% | 13.3 | 0.62 | 0.87 | 0 |
-| Ekans ⬇ | Intimidación/Mudar | 288 | 28 | 6 | 21% | 21% | 23.9 | 0.75 | 1.11 | 0 |
-| Dugtrio ⬇ | Velo Arena/Trampa Arena | 425 | 28 | 6 | 21% | 58% | 10.8 | 0.42 | 0.87 | 0 |
-| Abra ⬇ | Sincronía/Fuerza Mental | 310 | 28 | 6 | 21% | 39% | 8.6 | 0.79 | 0.88 | 0 |
-| Voltorb ⬇ | Insonorizar/Electricidad Estática | 330 | 28 | 6 | 21% | 19% | 22.0 | 0.57 | 0.87 | 0 |
-| Rhyhorn ⬇ | Pararrayos/Cabeza Roca | 345 | 38 | 8 | 21% | 42% | 26.3 | 0.38 | 0.90 | 0 |
-| Dodrio ⬇ | Fuga/Madrugar | 470 | 24 | 5 | 21% | 33% | 12.4 | 0.60 | 0.89 | 0 |
-| Kabutops ⬇ | Nado Rápido/Armadura Batalla | 495 | 20 | 4 | 20% | 51% | 26.7 | 0.47 | 0.78 | 0 |
-| Nidorina ⬇ | Punto Tóxico | 365 | 26 | 5 | 19% | 38% | 26.7 | 0.64 | 0.93 | 0 |
-| Nidorino ⬇ | Punto Tóxico | 365 | 26 | 5 | 19% | 49% | 12.6 | 0.43 | 0.91 | 0 |
-| Nidoran♂ ⬇ | Punto Tóxico | 273 | 16 | 3 | 19% | 23% | 15.9 | 0.45 | 0.92 | 0 |
-| Persian ⬇ | Flexibilidad | 440 | 38 | 7 | 18% | 50% | 12.8 | 0.60 | 0.90 | 0 |
-| Lickitung ⬇ | Ritmo Propio/Despiste | 385 | 22 | 4 | 18% | 21% | 15.9 | 0.68 | 0.91 | 1 |
-| Jigglypuff ⬇ | Gran Encanto | 270 | 18 | 3 | 17% | 31% | 8.0 | 0.70 | 0.93 | 0 |
-| Krabby ⬇ | Corte Fuerte/Caparazón | 325 | 26 | 4 | 15% | 36% | 16.0 | 0.43 | 0.93 | 0 |
-| Weedle ⬇ | Polvo Escudo | 195 | 20 | 3 | 15% | 100% | 49.4 | 0.36 | 0.60 | 5 |
-| Rapidash ⬇ | Fuga/Absorbe Fuego | 500 | 30 | 4 | 13% | 33% | 16.5 | 0.50 | 0.91 | 0 |
-| Diglett ⬇ | Velo Arena/Trampa Arena | 265 | 32 | 4 | 13% | 100% | 29.5 | 0.41 | 0.87 | 0 |
-| Rhydon ⬇ | Pararrayos/Cabeza Roca | 485 | 32 | 4 | 13% | 44% | 23.3 | 0.39 | 0.87 | 6 |
-| Electrode ⬇ | Insonorizar/Electricidad Estática | 490 | 34 | 4 | 12% | 25% | 21.4 | 0.63 | 0.93 | 0 |
-| Meowth ⬇ | Recogida | 290 | 28 | 3 | 11% | 28% | 9.7 | 0.42 | 0.93 | 0 |
-| Jynx ⬇ | Despiste | 455 | 18 | 1 | 6% | 29% | 7.9 | 0.37 | 0.95 | 0 |
-| Chansey ⬇ | Cura Natural/Dicha | 450 | 20 | 0 | 0% | — | — | 0.24 | 1.09 | 0 |
-| Kakuna ⬇ | Mudar | 205 | 28 | 0 | 0% | — | — | 0.00 | 0.75 | 9 |
-| Metapod ⬇ | Mudar | 205 | 28 | 0 | 0% | — | — | 0.00 | 0.74 | 10 |
+| Zubat ⬆ | Fuerza Mental | 245 | 32 | 31 | 97% | 72% | 7.8 | 0.99 | 0.30 | 0 |
+| Exeggcute ⬆ | Clorofila | 325 | 30 | 28 | 93% | 63% | 15.5 | 0.81 | 0.39 | 0 |
+| Hypno ⬆ | Insomnio | 483 | 24 | 22 | 92% | 60% | 19.0 | 0.92 | 0.44 | 0 |
+| Dewgong ⬆ | Sebo | 475 | 30 | 26 | 87% | 57% | 14.2 | 0.97 | 0.49 | 0 |
+| Kadabra ⬆ | Sincronía/Fuerza Mental | 400 | 40 | 34 | 85% | 48% | 8.6 | 0.96 | 0.63 | 0 |
+| Exeggutor ⬆ | Clorofila | 530 | 26 | 22 | 85% | 54% | 13.7 | 0.96 | 0.53 | 0 |
+| Magikarp ⬆ | Nado Rápido | 200 | 24 | 20 | 83% | 88% | 47.7 | 0.96 | 0.27 | 1 |
+| Omanyte ⬆ | Nado Rápido/Caparazón | 355 | 32 | 26 | 81% | 47% | 14.9 | 1.01 | 0.59 | 0 |
+| Slowbro ⬆ | Despiste/Ritmo Propio | 490 | 26 | 21 | 81% | 61% | 16.8 | 0.93 | 0.50 | 0 |
+| Drowzee ⬆ | Insomnio | 328 | 20 | 16 | 80% | 41% | 13.6 | 0.86 | 0.64 | 0 |
+| Porygon ⬆ | Calco | 395 | 20 | 16 | 80% | 55% | 11.8 | 0.98 | 0.54 | 0 |
+| Shellder ⬆ | Caparazón | 305 | 24 | 19 | 79% | 63% | 10.7 | 0.98 | 0.49 | 0 |
+| Victreebel ⬆ | Clorofila | 490 | 24 | 19 | 79% | 54% | 19.5 | 0.95 | 0.57 | 1 |
+| Gloom ⬆ | Clorofila | 395 | 28 | 22 | 79% | 73% | 11.8 | 0.81 | 0.50 | 0 |
+| Snorlax ⬆ | Inmunidad/Sebo | 540 | 32 | 25 | 78% | 42% | 17.4 | 0.92 | 0.66 | 0 |
+| Dragonair ⬆ | Mudar | 420 | 26 | 20 | 77% | 42% | 18.0 | 0.96 | 0.64 | 2 |
+| Poliwrath ⬆ | Absorbe Agua/Humedad | 510 | 30 | 23 | 77% | 48% | 20.1 | 0.92 | 0.62 | 0 |
+| Seadra ⬆ | Punto Tóxico | 440 | 24 | 18 | 75% | 60% | 11.6 | 0.84 | 0.54 | 0 |
+| Jolteon ⬆ | Absorbe Electricidad | 525 | 16 | 12 | 75% | 62% | 14.8 | 0.85 | 0.53 | 0 |
+| Slowpoke ⬆ | Despiste/Ritmo Propio | 315 | 24 | 18 | 75% | 66% | 13.1 | 0.87 | 0.46 | 0 |
+| Magmar ⬆ | Cuerpo Llama | 495 | 30 | 22 | 73% | 59% | 17.1 | 0.67 | 0.55 | 0 |
+| Dratini ⬆ | Mudar | 300 | 26 | 19 | 73% | 44% | 10.5 | 0.94 | 0.65 | 0 |
+| Zapdos ⬆ | Presión | 580 | 24 | 17 | 71% | 46% | 16.8 | 0.89 | 0.67 | 0 |
+| Tentacruel ⬆ | Cuerpo Puro/Lodo Líquido | 515 | 32 | 22 | 69% | 56% | 16.7 | 0.83 | 0.62 | 0 |
+| Squirtle ⬆ | Torrente | 314 | 22 | 15 | 68% | 42% | 14.5 | 0.91 | 0.69 | 0 |
+| Butterfree ⬆ | Ojo Compuesto | 395 | 22 | 15 | 68% | 54% | 12.5 | 0.94 | 0.62 | 0 |
+| Weepinbell ⬆ | Clorofila | 390 | 22 | 15 | 68% | 60% | 9.4 | 0.81 | 0.59 | 0 |
+| Tentacool ⬆ | Cuerpo Puro/Lodo Líquido | 335 | 36 | 24 | 67% | 51% | 11.9 | 0.85 | 0.66 | 0 |
+| Starmie ⬆ | Iluminación/Cura Natural | 520 | 24 | 16 | 67% | 59% | 18.7 | 0.82 | 0.60 | 0 |
+| Oddish ⬆ | Clorofila | 320 | 30 | 20 | 67% | 50% | 15.8 | 0.89 | 0.81 | 0 |
+| Machop ⬆ | Agallas | 305 | 36 | 24 | 67% | 53% | 6.7 | 0.85 | 0.64 | 1 |
+| Omastar ⬆ | Nado Rápido/Caparazón | 495 | 26 | 17 | 65% | 43% | 18.3 | 0.85 | 0.70 | 0 |
+| Charmander ⬆ | Mar Llamas | 309 | 26 | 17 | 65% | 49% | 12.4 | 0.74 | 0.68 | 0 |
+| Raichu ⬆ | Electricidad Estática | 485 | 26 | 17 | 65% | 45% | 13.8 | 0.85 | 0.68 | 1 |
+| Vileplume ⬆ | Clorofila | 490 | 20 | 13 | 65% | 47% | 26.9 | 0.92 | 0.78 | 2 |
+| Seel | Sebo | 325 | 34 | 22 | 65% | 46% | 14.4 | 0.94 | 0.66 | 0 |
+| Tauros | Intimidación | 490 | 34 | 22 | 65% | 44% | 13.3 | 0.95 | 0.73 | 1 |
+| Haunter | Levitación | 405 | 22 | 14 | 64% | 62% | 12.6 | 0.80 | 0.55 | 4 |
+| Venusaur | Espesura | 525 | 30 | 19 | 63% | 63% | 16.2 | 0.81 | 0.60 | 1 |
+| Vaporeon | Absorbe Agua | 525 | 30 | 19 | 63% | 65% | 13.8 | 0.87 | 0.56 | 0 |
+| Dragonite | Fuerza Mental | 600 | 16 | 10 | 63% | 26% | 21.4 | 0.87 | 0.84 | 0 |
+| Grimer | Hedor/Viscosidad | 325 | 34 | 21 | 62% | 30% | 19.0 | 0.66 | 0.82 | 0 |
+| Beedrill | Enjambre | 395 | 26 | 16 | 62% | 46% | 13.2 | 0.80 | 0.69 | 2 |
+| Mr. Mime | Insonorizar | 460 | 26 | 16 | 62% | 45% | 14.4 | 0.95 | 0.70 | 0 |
+| Vulpix | Absorbe Fuego | 299 | 36 | 22 | 61% | 47% | 11.3 | 0.81 | 0.70 | 1 |
+| Kabuto | Nado Rápido/Armadura Batalla | 355 | 28 | 17 | 61% | 45% | 17.3 | 0.87 | 0.78 | 0 |
+| Blastoise | Torrente | 530 | 28 | 17 | 61% | 61% | 15.3 | 0.84 | 0.59 | 0 |
+| Muk | Hedor/Viscosidad | 500 | 30 | 18 | 60% | 34% | 20.0 | 0.76 | 0.78 | 0 |
+| Machoke | Agallas | 405 | 30 | 18 | 60% | 58% | 7.2 | 0.83 | 0.59 | 0 |
+| Ivysaur | Espesura | 405 | 32 | 19 | 59% | 56% | 11.1 | 0.88 | 0.61 | 2 |
+| Aerodactyl | Cabeza Roca/Presión | 515 | 22 | 13 | 59% | 55% | 16.1 | 0.85 | 0.60 | 0 |
+| Golduck | Humedad/Aclimatación | 500 | 22 | 13 | 59% | 35% | 23.7 | 0.84 | 0.74 | 0 |
+| Staryu | Iluminación/Cura Natural | 340 | 24 | 14 | 58% | 59% | 12.6 | 0.79 | 0.68 | 0 |
+| Jigglypuff | Gran Encanto | 270 | 24 | 14 | 58% | 27% | 17.0 | 0.84 | 0.98 | 2 |
+| Mankey | Espíritu Vital | 305 | 38 | 22 | 58% | 51% | 7.7 | 0.84 | 0.67 | 0 |
+| Alakazam | Sincronía/Fuerza Mental | 500 | 26 | 15 | 58% | 57% | 16.1 | 0.85 | 0.72 | 0 |
+| Horsea | Nado Rápido | 295 | 28 | 16 | 57% | 55% | 11.1 | 0.89 | 0.64 | 0 |
+| Magnemite | Imán/Robustez | 325 | 28 | 16 | 57% | 51% | 10.9 | 0.82 | 0.63 | 0 |
+| Geodude | Cabeza Roca/Robustez | 300 | 28 | 16 | 57% | 66% | 10.2 | 0.81 | 0.57 | 0 |
+| Charmeleon | Mar Llamas | 405 | 32 | 18 | 56% | 39% | 15.1 | 0.79 | 0.77 | 0 |
+| Graveler | Cabeza Roca/Robustez | 390 | 32 | 18 | 56% | 66% | 16.3 | 0.79 | 0.62 | 0 |
+| Articuno | Presión | 580 | 16 | 9 | 56% | 50% | 20.9 | 0.90 | 0.67 | 0 |
+| Koffing | Levitación | 340 | 20 | 11 | 55% | 49% | 21.5 | 0.77 | 0.73 | 0 |
+| Onix | Cabeza Roca/Robustez | 385 | 20 | 11 | 55% | 44% | 16.4 | 0.74 | 0.68 | 0 |
+| Machamp | Agallas | 505 | 22 | 12 | 55% | 57% | 9.6 | 0.75 | 0.66 | 0 |
+| Weezing | Levitación | 490 | 24 | 13 | 54% | 55% | 23.3 | 0.74 | 0.70 | 0 |
+| Moltres | Presión | 580 | 26 | 14 | 54% | 43% | 15.8 | 0.75 | 0.75 | 0 |
+| Charizard | Mar Llamas | 534 | 30 | 16 | 53% | 30% | 18.2 | 0.76 | 0.82 | 0 |
+| Bulbasaur | Espesura | 318 | 30 | 16 | 53% | 53% | 14.2 | 0.83 | 0.79 | 1 |
+| Gastly | Levitación | 310 | 32 | 17 | 53% | 75% | 8.1 | 1.02 | 0.57 | 2 |
+| Pidgey | Vista Lince | 251 | 36 | 19 | 53% | 72% | 8.2 | 0.72 | 0.61 | 0 |
+| Nidoran♀ | Punto Tóxico | 275 | 18 | 9 | 50% | 31% | 24.1 | 0.75 | 0.82 | 1 |
+| Doduo | Fuga/Madrugar | 310 | 32 | 16 | 50% | 44% | 7.8 | 0.81 | 0.73 | 0 |
+| Tangela | Clorofila | 435 | 30 | 15 | 50% | 69% | 12.5 | 0.77 | 0.65 | 0 |
+| Wartortle | Torrente | 405 | 20 | 10 | 50% | 70% | 10.2 | 0.76 | 0.62 | 0 |
+| Arcanine | Intimidación/Absorbe Fuego | 555 | 24 | 12 | 50% | 47% | 15.7 | 0.73 | 0.66 | 0 |
+| Golem | Cabeza Roca/Robustez | 495 | 26 | 13 | 50% | 86% | 9.5 | 0.71 | 0.57 | 0 |
+| Golbat | Fuerza Mental | 455 | 26 | 13 | 50% | 64% | 12.5 | 0.73 | 0.68 | 0 |
+| Rattata | Fuga/Agallas | 253 | 32 | 16 | 50% | 61% | 11.3 | 0.74 | 0.68 | 1 |
+| Magneton | Imán/Robustez | 465 | 26 | 13 | 50% | 59% | 16.0 | 0.77 | 0.64 | 3 |
+| Gyarados | Intimidación | 540 | 28 | 14 | 50% | 29% | 21.1 | 0.76 | 0.82 | 0 |
+| Cloyster | Caparazón | 525 | 34 | 16 | 47% | 53% | 15.8 | 0.55 | 0.72 | 0 |
+| Paras | Efecto Espora | 285 | 34 | 16 | 47% | 43% | 12.5 | 0.55 | 0.84 | 0 |
+| Seaking | Nado Rápido/Velo Agua | 450 | 28 | 13 | 46% | 47% | 17.1 | 0.71 | 0.76 | 0 |
+| Lapras | Absorbe Agua/Caparazón | 535 | 26 | 12 | 46% | 38% | 30.5 | 0.83 | 0.74 | 0 |
+| Rhydon | Pararrayos/Cabeza Roca | 485 | 26 | 12 | 46% | 46% | 22.6 | 0.52 | 0.67 | 2 |
+| Psyduck | Humedad/Aclimatación | 320 | 22 | 10 | 45% | 36% | 13.9 | 0.82 | 0.81 | 0 |
+| Pidgeot | Vista Lince | 479 | 22 | 10 | 45% | 34% | 16.6 | 0.75 | 0.83 | 0 |
+| Nidoqueen | Punto Tóxico | 505 | 22 | 10 | 45% | 55% | 18.8 | 0.59 | 0.74 | 0 |
+| Gengar | Levitación | 500 | 22 | 10 | 45% | 80% | 10.8 | 0.78 | 0.60 | 2 |
+| Ninetales | Absorbe Fuego | 505 | 38 | 17 | 45% | 38% | 18.8 | 0.58 | 0.79 | 0 |
+| Goldeen | Nado Rápido/Velo Agua | 320 | 18 | 8 | 44% | 35% | 22.3 | 0.76 | 0.75 | 0 |
+| Arbok | Intimidación/Mudar | 448 | 34 | 15 | 44% | 36% | 17.5 | 0.72 | 0.82 | 0 |
+| Nidoking | Punto Tóxico | 505 | 16 | 7 | 44% | 28% | 14.2 | 0.58 | 0.88 | 0 |
+| Pidgeotto | Vista Lince | 349 | 32 | 14 | 44% | 34% | 11.9 | 0.80 | 0.78 | 0 |
+| Venomoth | Polvo Escudo | 450 | 28 | 12 | 43% | 63% | 13.7 | 0.79 | 0.72 | 2 |
+| Clefairy | Gran Encanto | 323 | 28 | 12 | 43% | 39% | 25.7 | 0.80 | 1.12 | 0 |
+| Bellsprout | Clorofila | 300 | 26 | 11 | 42% | 60% | 8.7 | 0.70 | 0.74 | 0 |
+| Fearow | Vista Lince | 442 | 24 | 10 | 42% | 49% | 11.1 | 0.69 | 0.77 | 0 |
+| Cubone | Cabeza Roca/Pararrayos | 320 | 24 | 10 | 42% | 45% | 13.0 | 0.78 | 0.74 | 0 |
+| Flareon | Absorbe Fuego | 525 | 22 | 9 | 41% | 48% | 15.8 | 0.73 | 0.76 | 0 |
+| Electabuzz | Electricidad Estática | 490 | 22 | 9 | 41% | 54% | 19.6 | 0.77 | 0.70 | 3 |
+| Sandshrew | Velo Arena | 300 | 20 | 8 | 40% | 38% | 22.6 | 0.54 | 0.81 | 0 |
+| Dodrio | Fuga/Madrugar | 470 | 28 | 11 | 39% | 36% | 19.3 | 0.66 | 0.85 | 0 |
+| Venonat | Ojo Compuesto | 305 | 26 | 10 | 38% | 48% | 22.9 | 0.80 | 0.84 | 0 |
+| Growlithe | Intimidación/Absorbe Fuego | 350 | 24 | 9 | 38% | 20% | 11.5 | 0.68 | 0.85 | 1 |
+| Farfetch’d | Vista Lince/Fuerza Mental | 377 | 24 | 9 | 38% | 45% | 16.6 | 0.62 | 0.77 | 0 |
+| Nidorino | Punto Tóxico | 365 | 38 | 14 | 37% | 33% | 17.9 | 0.54 | 0.87 | 0 |
+| Nidorina | Punto Tóxico | 365 | 34 | 12 | 35% | 29% | 19.9 | 0.48 | 0.88 | 0 |
+| Wigglytuff ⬇ | Gran Encanto | 435 | 46 | 16 | 35% | 69% | 45.7 | 0.59 | 0.56 | 17 |
+| Pikachu ⬇ | Electricidad Estática | 320 | 26 | 9 | 35% | 40% | 12.9 | 0.76 | 0.82 | 0 |
+| Primeape ⬇ | Espíritu Vital | 455 | 26 | 9 | 35% | 52% | 7.1 | 0.66 | 0.79 | 1 |
+| Spearow ⬇ | Vista Lince | 262 | 32 | 11 | 34% | 47% | 12.0 | 0.70 | 0.84 | 1 |
+| Hitmonlee ⬇ | Flexibilidad | 455 | 38 | 13 | 34% | 48% | 6.2 | 0.75 | 0.83 | 0 |
+| Caterpie ⬇ | Polvo Escudo | 195 | 18 | 6 | 33% | 77% | 51.3 | 0.63 | 0.60 | 2 |
+| Ponyta ⬇ | Fuga/Absorbe Fuego | 410 | 22 | 7 | 32% | 52% | 16.5 | 0.63 | 0.80 | 1 |
+| Nidoran♂ ⬇ | Punto Tóxico | 273 | 16 | 5 | 31% | 13% | 16.4 | 0.41 | 0.94 | 0 |
+| Krabby ⬇ | Corte Fuerte/Caparazón | 325 | 26 | 8 | 31% | 44% | 10.2 | 0.53 | 0.85 | 0 |
+| Ekans ⬇ | Intimidación/Mudar | 288 | 24 | 7 | 29% | 31% | 20.1 | 0.68 | 1.06 | 0 |
+| Parasect ⬇ | Efecto Espora | 405 | 28 | 8 | 29% | 49% | 21.0 | 0.58 | 0.90 | 1 |
+| Raticate ⬇ | Fuga/Agallas | 413 | 22 | 6 | 27% | 28% | 15.0 | 0.76 | 0.86 | 0 |
+| Kangaskhan ⬇ | Madrugar | 490 | 22 | 6 | 27% | 31% | 18.5 | 0.71 | 0.88 | 1 |
+| Dugtrio ⬇ | Velo Arena/Trampa Arena | 425 | 26 | 7 | 27% | 56% | 8.7 | 0.48 | 0.84 | 0 |
+| Marowak ⬇ | Cabeza Roca/Pararrayos | 425 | 20 | 5 | 25% | 32% | 18.0 | 0.49 | 0.90 | 0 |
+| Rapidash ⬇ | Fuga/Absorbe Fuego | 500 | 28 | 7 | 25% | 29% | 17.8 | 0.47 | 0.89 | 0 |
+| Rhyhorn ⬇ | Pararrayos/Cabeza Roca | 345 | 24 | 6 | 25% | 61% | 17.8 | 0.38 | 0.73 | 0 |
+| Poliwhirl ⬇ | Absorbe Agua/Humedad | 385 | 26 | 6 | 23% | 66% | 13.5 | 0.63 | 0.79 | 0 |
+| Electrode ⬇ | Insonorizar/Electricidad Estática | 490 | 26 | 6 | 23% | 27% | 17.5 | 0.53 | 0.91 | 0 |
+| Sandslash ⬇ | Velo Arena | 450 | 40 | 9 | 23% | 35% | 15.3 | 0.54 | 0.87 | 0 |
+| Abra ⬇ | Sincronía/Fuerza Mental | 310 | 24 | 5 | 21% | 34% | 10.5 | 0.66 | 0.89 | 0 |
+| Eevee ⬇ | Fuga | 325 | 24 | 5 | 21% | 45% | 13.5 | 0.66 | 0.88 | 0 |
+| Pinsir ⬇ | Corte Fuerte | 500 | 34 | 7 | 21% | 74% | 7.9 | 0.57 | 0.81 | 0 |
+| Diglett ⬇ | Velo Arena/Trampa Arena | 265 | 30 | 6 | 20% | 72% | 21.6 | 0.42 | 0.85 | 0 |
+| Kingler ⬇ | Corte Fuerte/Caparazón | 475 | 22 | 4 | 18% | 36% | 16.2 | 0.41 | 0.89 | 0 |
+| Ditto ⬇ | Flexibilidad | 288 | 22 | 4 | 18% | 34% | 12.1 | 0.55 | 0.91 | 0 |
+| Lickitung ⬇ | Ritmo Propio/Despiste | 385 | 24 | 4 | 17% | 55% | 16.5 | 0.58 | 0.83 | 0 |
+| Scyther ⬇ | Enjambre | 500 | 30 | 5 | 17% | 43% | 11.8 | 0.46 | 0.91 | 0 |
+| Voltorb ⬇ | Insonorizar/Electricidad Estática | 330 | 26 | 4 | 15% | 33% | 10.8 | 0.51 | 0.88 | 0 |
+| Poliwag ⬇ | Absorbe Agua/Humedad | 300 | 36 | 5 | 14% | 38% | 20.1 | 0.67 | 0.92 | 0 |
+| Mew ⬇ | Sincronía | 600 | 18 | 2 | 11% | 18% | 31.5 | 0.73 | 0.97 | 0 |
+| Persian ⬇ | Flexibilidad | 440 | 28 | 3 | 11% | 71% | 11.2 | 0.63 | 0.88 | 0 |
+| Hitmonchan ⬇ | Vista Lince | 455 | 20 | 2 | 10% | 14% | 10.7 | 0.48 | 0.97 | 0 |
+| Chansey ⬇ | Cura Natural/Dicha | 450 | 36 | 3 | 8% | 39% | 50.2 | 0.33 | 1.17 | 7 |
+| Kabutops ⬇ | Nado Rápido/Armadura Batalla | 495 | 20 | 1 | 5% | 23% | 18.5 | 0.46 | 0.94 | 0 |
+| Meowth ⬇ | Recogida | 290 | 22 | 1 | 5% | 14% | 9.4 | 0.48 | 0.94 | 0 |
+| Clefable ⬇ | Gran Encanto | 483 | 22 | 1 | 5% | 0% | 33.3 | 0.43 | 0.94 | 0 |
+| Metapod ⬇ | Mudar | 205 | 20 | 0 | 0% | — | — | 0.00 | 0.90 | 2 |
+| Jynx ⬇ | Despiste | 455 | 26 | 0 | 0% | — | — | 0.37 | 0.96 | 0 |
+| Kakuna ⬇ | Mudar | 205 | 30 | 0 | 0% | — | — | 0.00 | 0.90 | 6 |
+| Weedle ⬇ | Polvo Escudo | 195 | 16 | 0 | 0% | — | — | 0.20 | 0.88 | 2 |
 
 ## Por habilidad (la que le tocó en cada pelea)
 
 | | Peleas | % de victorias |
 |---|---|---|
-| Insomnio | 52 | 83% |
-| Absorbe Electricidad | 30 | 73% |
-| Cuerpo Puro | 26 | 73% |
-| Mar Llamas | 68 | 72% |
-| Clorofila | 266 | 69% |
-| Viscosidad | 24 | 67% |
-| Robustez | 87 | 66% |
-| Hedor | 36 | 64% |
-| Imán | 33 | 64% |
-| Absorbe Agua | 85 | 64% |
-| Calco | 30 | 63% |
-| Lodo Líquido | 30 | 63% |
-| Espesura | 72 | 63% |
-| Enjambre | 52 | 62% |
-| Sebo | 78 | 62% |
-| Inmunidad | 18 | 61% |
-| Torrente | 72 | 60% |
-| Ritmo Propio | 46 | 59% |
-| Fuerza Mental | 143 | 58% |
-| Nado Rápido | 128 | 58% |
-| Caparazón | 123 | 57% |
-| Armadura Batalla | 23 | 57% |
-| Iluminación | 32 | 56% |
-| Presión | 78 | 54% |
-| Cuerpo Llama | 28 | 54% |
-| Velo Agua | 28 | 54% |
-| Intimidación | 127 | 51% |
-| Sincronía | 47 | 51% |
-| Despiste | 54 | 50% |
-| Levitación | 152 | 49% |
-| Ojo Compuesto | 60 | 48% |
-| Polvo Escudo | 56 | 48% |
-| Espíritu Vital | 48 | 46% |
-| Absorbe Fuego | 132 | 45% |
-| Cabeza Roca | 119 | 45% |
-| Electricidad Estática | 109 | 44% |
-| Vista Lince | 184 | 43% |
-| Aclimatación | 28 | 43% |
-| Humedad | 55 | 42% |
-| Insonorizar | 51 | 39% |
-| Efecto Espora | 46 | 39% |
-| Madrugar | 60 | 38% |
-| Agallas | 98 | 37% |
-| Gran Encanto | 100 | 36% |
-| Punto Tóxico | 166 | 36% |
-| Fuga | 103 | 33% |
-| Mudar | 124 | 32% |
-| Velo Arena | 70 | 31% |
-| Cura Natural | 34 | 26% |
-| Corte Fuerte | 64 | 23% |
-| Flexibilidad | 90 | 22% |
-| Pararrayos | 61 | 20% |
-| Recogida | 28 | 11% |
-| Trampa Arena | 36 | 6% |
-| Dicha | 10 | 0% |
+| Insomnio | 44 | 86% |
+| Calco | 20 | 80% |
+| Sebo | 80 | 76% |
+| Absorbe Electricidad | 16 | 75% |
+| Inmunidad | 16 | 75% |
+| Cuerpo Llama | 30 | 73% |
+| Lodo Líquido | 36 | 72% |
+| Iluminación | 24 | 71% |
+| Clorofila | 236 | 70% |
+| Viscosidad | 34 | 68% |
+| Fuerza Mental | 128 | 64% |
+| Cuerpo Puro | 32 | 63% |
+| Ritmo Propio | 45 | 62% |
+| Torrente | 70 | 60% |
+| Espesura | 92 | 59% |
+| Presión | 79 | 58% |
+| Mar Llamas | 88 | 58% |
+| Caparazón | 128 | 58% |
+| Nado Rápido | 126 | 56% |
+| Agallas | 114 | 56% |
+| Imán | 25 | 56% |
+| Levitación | 120 | 54% |
+| Hedor | 30 | 53% |
+| Cabeza Roca | 112 | 53% |
+| Ojo Compuesto | 48 | 52% |
+| Velo Agua | 25 | 52% |
+| Robustez | 83 | 52% |
+| Aclimatación | 20 | 50% |
+| Sincronía | 66 | 48% |
+| Espíritu Vital | 64 | 48% |
+| Absorbe Agua | 87 | 48% |
+| Intimidación | 107 | 46% |
+| Absorbe Fuego | 158 | 45% |
+| Punto Tóxico | 168 | 45% |
+| Humedad | 70 | 43% |
+| Insonorizar | 53 | 42% |
+| Mudar | 133 | 41% |
+| Vista Lince | 178 | 40% |
+| Electricidad Estática | 99 | 39% |
+| Armadura Batalla | 23 | 39% |
+| Efecto Espora | 62 | 39% |
+| Madrugar | 53 | 38% |
+| Cura Natural | 40 | 38% |
+| Enjambre | 56 | 38% |
+| Gran Encanto | 120 | 36% |
+| Fuga | 99 | 35% |
+| Velo Arena | 88 | 30% |
+| Polvo Escudo | 62 | 29% |
+| Despiste | 55 | 27% |
+| Pararrayos | 43 | 26% |
+| Flexibilidad | 88 | 23% |
+| Corte Fuerte | 57 | 19% |
+| Trampa Arena | 28 | 14% |
+| Dicha | 20 | 5% |
+| Recogida | 22 | 5% |
 
 ## Por tipo (un Pokémon de dos tipos cuenta en los dos)
 
 | | Especies | Peleas | % de victorias |
 |---|---|---|---|
-| Dragón | 3 | 60 | 72% |
-| Acero | 2 | 76 | 70% |
-| Psíquico | 13 | 328 | 65% |
-| Planta | 14 | 384 | 64% |
-| Agua | 32 | 868 | 58% |
-| Eléctrico | 9 | 270 | 53% |
-| Veneno | 33 | 886 | 53% |
-| Fantasma | 3 | 92 | 51% |
-| Fuego | 12 | 312 | 50% |
-| Volador | 19 | 492 | 50% |
-| Roca | 11 | 296 | 47% |
-| Hielo | 5 | 124 | 43% |
-| Hada | 5 | 120 | 43% |
-| Lucha | 8 | 196 | 41% |
-| Normal | 22 | 610 | 38% |
-| Bicho | 12 | 302 | 37% |
-| Tierra | 14 | 364 | 35% |
+| Dragón | 3 | 68 | 72% |
+| Psíquico | 13 | 334 | 64% |
+| Planta | 14 | 390 | 62% |
+| Agua | 32 | 854 | 57% |
+| Fantasma | 3 | 76 | 54% |
+| Acero | 2 | 54 | 54% |
+| Veneno | 33 | 880 | 53% |
+| Roca | 11 | 284 | 53% |
+| Lucha | 8 | 240 | 51% |
+| Volador | 19 | 502 | 51% |
+| Fuego | 12 | 338 | 50% |
+| Hielo | 5 | 132 | 48% |
+| Eléctrico | 9 | 220 | 47% |
+| Hada | 5 | 146 | 40% |
+| Normal | 22 | 618 | 39% |
+| Tierra | 14 | 354 | 39% |
+| Bicho | 12 | 312 | 30% |
 
 ## Por ataque (los más usados)
 
@@ -252,84 +252,84 @@ Daño = %% de la vida del que lo recibe, sumado. Por uso = daño medio cada vez 
 
 | Ataque | Usos | Golpes | Daño total | Por uso | Lo usan |
 |---|---|---|---|---|---|
-| Placaje (`placaje`) | 3773 | 3200 | 13211 | 3.5 | Snorlax, Tauros, Golem, Venonat +18 |
-| Pistola Agua (`pistola_agua`) | 3246 | 2357 | 16195 | 5.0 | Squirtle, Slowpoke, Omanyte, Slowbro +11 |
-| Confusión (`confusion`) | 2821 | 1997 | 19793 | 7.0 | Hypno, Mr. Mime, Venonat, Alakazam +10 |
-| Mordisco (`mordisco`) | 2734 | 2037 | 16489 | 6.0 | Ekans, Arcanine, Flareon, Omanyte +17 |
-| Ácido (`acido`) | 1909 | 1261 | 8452 | 4.4 | Oddish, Bellsprout, Tentacruel, Arbok +3 |
-| Ascuas (`ascuas`) | 1768 | 1224 | 8857 | 5.0 | Magmar, Flareon, Charmander, Vulpix +5 |
-| Ataque Rápido (`ataque_rapido`) | 1511 | 1208 | 6655 | 4.4 | Rattata, Flareon, Raichu, Vulpix +7 |
-| Ataque Ala (`ataque_ala`) | 1431 | 1201 | 14278 | 10.0 | Scyther, Pidgey, Pidgeot, Pidgeotto +5 |
-| Burbuja (`burbuja`) | 1412 | 996 | 7593 | 5.4 | Squirtle, Poliwag, Seadra, Poliwhirl +4 |
-| Impactrueno (`impactrueno`) | 1301 | 977 | 7968 | 6.1 | Raichu, Jolteon, Magneton, Magnemite +2 |
-| Arañazo (`aranazo`) | 1150 | 895 | 4982 | 4.3 | Parasect, Psyduck, Paras, Persian +5 |
-| Doble Bofetón (`doble_bofeton`) | 1025 | 976 | 2794 | 2.7 | Wigglytuff, Jigglypuff, Poliwag, Poliwhirl +7 |
-| Residuos (`residuos`) | 958 | 724 | 6651 | 6.9 | Muk, Koffing, Grimer, Weezing |
-| Látigo Cepa (`latigo_cepa`) | 903 | 700 | 6245 | 6.9 | Bellsprout, Victreebel, Tangela, Weepinbell +3 |
-| Chispa (`chispa`) | 880 | 663 | 6633 | 7.5 | Voltorb, Magnemite, Electrode, Magneton |
-| Picotazo (`picotazo`) | 871 | 802 | 5650 | 6.5 | Spearow, Dodrio, Fearow, Farfetch’d +8 |
-| Hoja Afilada (`hoja_afilada`) | 802 | 586 | 5428 | 6.8 | Bellsprout, Victreebel, Ivysaur, Bulbasaur +1 |
-| Rayo Confuso (`rayo_confuso`) | 775 | 0 | 0 | 0.0 | Haunter, Lapras, Starmie, Gastly +3 |
-| Absorber (`absorber`) | 765 | 505 | 1607 | 2.1 | Oddish, Vileplume, Kabuto, Gloom |
-| Lanzarrocas (`lanzarrocas`) | 745 | 492 | 4800 | 6.4 | Golem, Onix, Geodude, Graveler |
-| Picotazo Veneno (`picotazo_veneno`) | 730 | 667 | 2633 | 3.6 | Ekans, Tentacruel, Ditto, Nidorina +10 |
-| Rayo Aurora (`rayo_aurora`) | 729 | 531 | 4448 | 6.1 | Cloyster, Dewgong, Shellder, Vaporeon |
-| Destructor (`destructor`) | 711 | 663 | 2916 | 4.1 | Hypno, Jigglypuff, Muk, Drowzee +5 |
-| Fortaleza (`fortaleza`) | 708 | 0 | 0 | 0.0 | Kakuna, Metapod, Pinsir |
-| Tornado (`tornado`) | 687 | 458 | 2991 | 4.4 | Butterfree, Articuno, Venomoth |
-| Disparo Demora (`disparo_demora`) | 615 | 0 | 0 | 0.0 | Caterpie, Weedle |
-| Metrónomo (`metronomo`) | 580 | 0 | 0 | 0.0 | Clefairy, Clefable, Mew |
-| Cuchillada (`cuchillada`) | 562 | 493 | 5111 | 9.1 | Scyther, Parasect, Paras, Dugtrio +7 |
-| Rapidez (`rapidez`) | 553 | 367 | 2956 | 5.3 | Staryu, Starmie, Magnemite, Electabuzz |
-| Furia Dragón (`furia_dragon`) | 498 | 411 | 3274 | 6.6 | Dragonite, Dratini, Dragonair, Ditto |
-| Pisotón (`pisoton`) | 492 | 427 | 3538 | 7.2 | Rapidash, Krabby, Rhyhorn, Ditto +5 |
-| Megaagotar (`megaagotar`) | 481 | 376 | 2329 | 4.8 | Vileplume, Tangela |
-| Anulación (`anulacion`) | 466 | 0 | 0 | 0.0 | Wigglytuff |
-| Azote (`azote`) | 437 | 430 | 917 | 2.1 | Magikarp |
-| Atizar (`atizar`) | 402 | 333 | 3146 | 7.8 | Tangela, Dragonite, Dratini, Lickitung +3 |
-| Ataque Arena (`ataque_arena`) | 395 | 0 | 0 | 0.0 | Flareon, Jolteon, Dugtrio, Kabuto +4 |
-| Disparo Lodo (`disparo_lodo`) | 392 | 269 | 2808 | 7.2 | Omanyte, Omastar, Kabuto |
-| Hipnosis (`hipnosis`) | 386 | 0 | 0 | 0.0 | Poliwag, Poliwhirl, Poliwrath, Exeggutor +1 |
-| Golpe Cuerpo (`golpe_cuerpo`) | 386 | 309 | 3203 | 8.3 | Snorlax, Jigglypuff, Poliwag, Poliwhirl +3 |
-| Cornada (`cornada`) | 386 | 358 | 3549 | 9.2 | Tauros, Seaking |
-| Polución (`polucion`) | 364 | 241 | 974 | 2.7 | Magmar, Koffing, Weezing |
-| Tinieblas (`tinieblas`) | 364 | 252 | 3804 | 10.5 | Haunter, Gastly, Gengar |
-| Viento Hielo (`viento_hielo`) | 355 | 565 | 3283 | 9.2 | Seel, Dewgong |
-| Sísmico (`sismico`) | 324 | 375 | 4846 | 15.0 | Machoke, Machamp, Mankey, Machop +3 |
-| Rayo Burbuja (`rayo_burbuja`) | 324 | 417 | 2657 | 8.2 | Tentacruel, Staryu, Tentacool |
-| Paralizador (`paralizador`) | 295 | 0 | 0 | 0.0 | Parasect, Venonat, Vileplume, Tangela +2 |
-| Chirrido (`chirrido`) | 288 | 0 | 0 | 0.0 | Muk, Onix, Voltorb, Psyduck +8 |
-| Ciclón (`ciclon`) | 273 | 275 | 1684 | 6.2 | Seadra, Dragonite, Dratini, Dragonair +2 |
-| Psíquico (`psiquico`) | 272 | 201 | 3983 | 14.6 | Hypno, Slowpoke, Alakazam, Drowzee +3 |
-| Pin Misil (`pin_misil`) | 259 | 471 | 1699 | 6.6 | Beedrill, Jolteon |
-| Agitacola (`agitacola`) | 257 | 0 | 0 | 0.0 | Rapidash, Raichu, Nidorina, Wartortle +7 |
-| Pico Taladro (`pico_taladro`) | 247 | 237 | 4105 | 16.6 | Spearow, Fearow, Doduo |
-| Gas Venenoso (`gas_venenoso`) | 246 | 3 | 6 | 0.0 | Hypno, Muk, Drowzee, Grimer |
-| Malicioso (`malicioso`) | 239 | 0 | 0 | 0.0 | Omastar, Horsea, Gyarados, Shellder +10 |
-| Perforador (`perforador`) | 238 | 213 | 1406 | 5.9 | Rhyhorn, Ditto, Rhydon |
-| Escupir (`escupir`) | 232 | 181 | 1093 | 4.7 | Ekans, Ditto, Victreebel |
-| Poder Oculto (`poder_oculto`) | 230 | 184 | 2224 | 9.7 | Abra |
-| Supersónico (`supersonico`) | 229 | 0 | 0 | 0.0 | Tentacruel, Cloyster, Butterfree, Tentacool +3 |
-| Agilidad (`agilidad`) | 219 | 0 | 0 | 0.0 | Beedrill, Articuno, Moltres, Hitmonchan |
-| Derribo (`derribo`) | 217 | 174 | 1861 | 8.6 | Rapidash, Seel, Ponyta, Growlithe |
-| Golpe Cabeza (`golpe_cabeza`) | 208 | 185 | 1518 | 7.3 | Snorlax, Slowpoke, Slowbro, Seel +2 |
-| Ataque Furia (`ataque_furia`) | 206 | 192 | 558 | 2.7 | Rapidash, Beedrill, Spearow, Dodrio +10 |
-| Cara Susto (`cara_susto`) | 203 | 0 | 0 | 0.0 | Charmander, Rhyhorn, Ditto, Charizard +4 |
-| Megapuño (`megapuno`) | 202 | 159 | 1846 | 9.1 | Kangaskhan, Mew |
-| Guillotina (`guillotina`) | 199 | 177 | 1490 | 7.5 | Krabby, Pinsir, Kingler |
-| Pantalla de Humo (`pantalla_de_humo`) | 190 | 0 | 0 | 0.0 | Magmar, Koffing, Weezing, Seadra |
-| Golpe Kárate (`golpe_karate`) | 185 | 178 | 1797 | 9.7 | Machoke, Mankey, Machop, Primeape +2 |
-| Fijar Blanco (`fijar_blanco`) | 180 | 0 | 0 | 0.0 | Magnemite, Magneton, Porygon |
-| Reducción (`reduccion`) | 177 | 0 | 0 | 0.0 | Clefable |
-| Lanzallamas (`lanzallamas`) | 172 | 126 | 2270 | 13.2 | Charmander, Vulpix, Charizard, Charmeleon |
-| Magnitud (`magnitud`) | 169 | 169 | 2382 | 14.1 | Geodude, Diglett, Dugtrio, Graveler +2 |
-| Luz Lunar (`luz_lunar`) | 164 | 0 | 0 | 0.0 | Oddish, Clefairy, Gloom |
-| Sorpresa (`sorpresa`) | 162 | 140 | 748 | 4.6 | Kangaskhan |
-| Comesueños (`comesuenos`) | 153 | 131 | 2075 | 13.6 | Haunter, Gastly, Gengar |
-| Doble Patada (`doble_patada`) | 142 | 222 | 900 | 6.3 | Jolteon, Nidoqueen |
-| Camelo (`camelo`) | 140 | 0 | 0 | 0.0 | Nidoran♀, Nidoran♂ |
-| Giro Rápido (`giro_rapido`) | 139 | 83 | 316 | 2.3 | Starmie |
-| Doble Ataque (`doble_ataque`) | 138 | 218 | 1058 | 7.7 | Beedrill |
-| Superdiente (`superdiente`) | 136 | 123 | 1598 | 11.8 | Rattata, Raticate |
-| Cascada (`cascada`) | 134 | 122 | 2085 | 15.6 | Goldeen, Ditto |
+| Placaje (`placaje`) | 2916 | 2478 | 10357 | 3.6 | Ivysaur, Weezing, Pidgey, Venonat +19 |
+| Confusión (`confusion`) | 2662 | 1872 | 17698 | 6.6 | Slowbro, Mr. Mime, Hypno, Alakazam +10 |
+| Pistola Agua (`pistola_agua`) | 2466 | 1729 | 13960 | 5.7 | Slowbro, Seadra, Horsea, Staryu +11 |
+| Mordisco (`mordisco`) | 2097 | 1557 | 12841 | 6.1 | Aerodactyl, Meowth, Golbat, Eevee +16 |
+| Doble Bofetón (`doble_bofeton`) | 2031 | 1875 | 5657 | 2.8 | Wigglytuff, Chansey, Mr. Mime, Jynx +6 |
+| Ascuas (`ascuas`) | 1932 | 1228 | 8765 | 4.5 | Magmar, Charizard, Moltres, Vulpix +6 |
+| Ataque Furia (`ataque_furia`) | 1500 | 1406 | 4482 | 3.0 | Fearow, Rhydon, Rapidash, Seaking +10 |
+| Ataque Ala (`ataque_ala`) | 1335 | 1074 | 13561 | 10.2 | Zubat, Moltres, Charizard, Aerodactyl +5 |
+| Burbuja (`burbuja`) | 1253 | 829 | 6687 | 5.3 | Seadra, Poliwag, Horsea, Squirtle +4 |
+| Ácido (`acido`) | 1215 | 793 | 5908 | 4.9 | Gloom, Oddish, Arbok, Bellsprout +3 |
+| Destructor (`destructor`) | 1192 | 1107 | 5343 | 4.5 | Chansey, Hypno, Jynx, Grimer +6 |
+| Ataque Rápido (`ataque_rapido`) | 1180 | 957 | 5959 | 5.1 | Raticate, Rattata, Vulpix, Pidgey +8 |
+| Impactrueno (`impactrueno`) | 1111 | 804 | 7174 | 6.5 | Raichu, Pikachu, Magneton, Magnemite +2 |
+| Arañazo (`aranazo`) | 1088 | 787 | 4729 | 4.3 | Parasect, Paras, Kabuto, Persian +5 |
+| Picotazo (`picotazo`) | 1053 | 973 | 6975 | 6.6 | Fearow, Seaking, Spearow, Doduo +8 |
+| Hoja Afilada (`hoja_afilada`) | 970 | 712 | 5954 | 6.1 | Victreebel, Ivysaur, Venusaur, Bulbasaur +1 |
+| Rayo Burbuja (`rayo_burbuja`) | 894 | 1071 | 5597 | 6.3 | Staryu, Tentacool, Tentacruel |
+| Anulación (`anulacion`) | 843 | 0 | 0 | 0.0 | Wigglytuff |
+| Látigo Cepa (`latigo_cepa`) | 835 | 629 | 5552 | 6.6 | Victreebel, Ivysaur, Venusaur, Tangela +3 |
+| Residuos (`residuos`) | 814 | 524 | 4013 | 4.9 | Weezing, Grimer, Ditto, Koffing +1 |
+| Lanzarrocas (`lanzarrocas`) | 756 | 418 | 5075 | 6.7 | Onix, Graveler, Geodude, Golem |
+| Picotazo Veneno (`picotazo_veneno`) | 754 | 665 | 2662 | 3.5 | Weedle, Sandshrew, Arbok, Ekans +9 |
+| Viento Hielo (`viento_hielo`) | 752 | 1090 | 5418 | 7.2 | Seel, Dewgong |
+| Disparo Lodo (`disparo_lodo`) | 624 | 441 | 3845 | 6.2 | Kabuto, Omastar, Omanyte |
+| Golpes Furia (`golpes_furia`) | 622 | 572 | 1604 | 2.6 | Sandshrew, Meowth, Nidorina, Diglett +3 |
+| Megaagotar (`megaagotar`) | 622 | 461 | 3108 | 5.0 | Tangela, Vileplume |
+| Golpe Kárate (`golpe_karate`) | 622 | 598 | 6122 | 9.8 | Machoke, Machop, Mankey, Primeape +1 |
+| Fortaleza (`fortaleza`) | 569 | 0 | 0 | 0.0 | Kakuna, Pinsir, Metapod |
+| Cuchillada (`cuchillada`) | 536 | 489 | 4868 | 9.1 | Parasect, Paras, Meowth, Sandshrew +7 |
+| Rayo Aurora (`rayo_aurora`) | 479 | 354 | 3180 | 6.6 | Cloyster, Shellder, Vaporeon, Dewgong |
+| Rayo Confuso (`rayo_confuso`) | 478 | 0 | 0 | 0.0 | Golbat, Haunter, Lapras, Ninetales +3 |
+| Azote (`azote`) | 463 | 454 | 934 | 2.0 | Magikarp |
+| Atizar (`atizar`) | 460 | 407 | 4341 | 9.4 | Tangela, Pikachu, Dratini, Dragonair +2 |
+| Chispa (`chispa`) | 455 | 315 | 3330 | 7.3 | Voltorb, Electrode, Magneton, Magnemite |
+| Golpe Cuerpo (`golpe_cuerpo`) | 450 | 351 | 3848 | 8.6 | Poliwag, Poliwhirl, Lapras, Snorlax +2 |
+| Tornado (`tornado`) | 447 | 260 | 1696 | 3.8 | Butterfree, Articuno, Venomoth |
+| Furia Dragón (`furia_dragon`) | 440 | 335 | 2825 | 6.4 | Dratini, Dragonair, Dragonite |
+| Disparo Demora (`disparo_demora`) | 435 | 0 | 0 | 0.0 | Weedle, Caterpie |
+| Absorber (`absorber`) | 431 | 277 | 1694 | 3.9 | Gloom, Kabuto, Oddish, Vileplume |
+| Rapidez (`rapidez`) | 416 | 292 | 2447 | 5.9 | Staryu, Magnemite, Starmie, Electabuzz |
+| Metrónomo (`metronomo`) | 406 | 0 | 0 | 0.0 | Clefable, Clefairy, Mew |
+| Rizo Defensa (`rizo_defensa`) | 395 | 0 | 0 | 0.0 | Wigglytuff |
+| Pisotón (`pisoton`) | 370 | 331 | 3191 | 8.6 | Rapidash, Kingler, Lickitung, Ponyta +4 |
+| Psíquico (`psiquico`) | 354 | 254 | 4683 | 13.2 | Hypno, Alakazam, Slowpoke, Kadabra +3 |
+| Cornada (`cornada`) | 339 | 300 | 3133 | 9.2 | Seaking, Tauros |
+| Polución (`polucion`) | 335 | 206 | 856 | 2.6 | Magmar, Weezing, Ditto, Koffing |
+| Pin Misil (`pin_misil`) | 317 | 564 | 1871 | 5.9 | Beedrill, Jolteon |
+| Hipnosis (`hipnosis`) | 314 | 0 | 0 | 0.0 | Poliwag, Poliwhirl, Poliwrath, Exeggutor |
+| Sísmico (`sismico`) | 304 | 321 | 4268 | 14.0 | Machoke, Mankey, Machop, Primeape +2 |
+| Gas Venenoso (`gas_venenoso`) | 258 | 0 | 0 | 0.0 | Hypno, Grimer, Ditto, Muk +1 |
+| Tinieblas (`tinieblas`) | 254 | 177 | 2724 | 10.7 | Haunter, Gengar, Gastly, Ditto |
+| Pico Taladro (`pico_taladro`) | 239 | 220 | 4090 | 17.1 | Fearow, Spearow, Doduo |
+| Ataque Arena (`ataque_arena`) | 222 | 0 | 0 | 0.0 | Sandshrew, Kabutops, Kabuto, Vaporeon +4 |
+| Paralizador (`paralizador`) | 213 | 0 | 0 | 0.0 | Parasect, Gloom, Venonat, Venomoth +2 |
+| Lanzallamas (`lanzallamas`) | 203 | 1031 | 3431 | 16.9 | Vulpix, Charmeleon |
+| Magnitud (`magnitud`) | 200 | 197 | 3005 | 15.0 | Dugtrio, Diglett, Graveler, Geodude +1 |
+| Derribo (`derribo`) | 195 | 149 | 1621 | 8.3 | Rapidash, Seel, Ponyta, Growlithe |
+| Ciclón (`ciclon`) | 192 | 194 | 1211 | 6.3 | Seadra, Horsea, Dratini, Dragonair +1 |
+| Comesueños (`comesuenos`) | 183 | 151 | 2628 | 14.4 | Haunter, Gengar, Gastly, Ditto |
+| Psicorrayo (`psicorrayo`) | 178 | 939 | 2556 | 14.4 | Butterfree, Porygon |
+| Poder Oculto (`poder_oculto`) | 178 | 146 | 1596 | 9.0 | Abra |
+| Escupir (`escupir`) | 174 | 138 | 902 | 5.2 | Victreebel, Ekans |
+| Golpe Cabeza (`golpe_cabeza`) | 174 | 157 | 1442 | 8.3 | Seel, Slowbro, Slowpoke, Snorlax +2 |
+| Chirrido (`chirrido`) | 173 | 0 | 0 | 0.0 | Voltorb, Meowth, Grimer, Ditto +8 |
+| Hoja Mágica (`hoja_magica`) | 171 | 106 | 1035 | 6.1 | Mr. Mime |
+| Alboroto (`alboroto`) | 162 | 123 | 1210 | 7.5 | Exeggcute, Dodrio, Ditto |
+| Carámbano (`carambano`) | 161 | 362 | 1505 | 9.3 | Shellder |
+| Viento Plata (`viento_plata`) | 160 | 121 | 1114 | 7.0 | Venomoth |
+| Superdiente (`superdiente`) | 155 | 137 | 1818 | 11.7 | Raticate, Rattata, Ditto |
+| Camelo (`camelo`) | 152 | 0 | 0 | 0.0 | Nidoran♂, Nidoran♀ |
+| Agilidad (`agilidad`) | 150 | 0 | 0 | 0.0 | Hitmonchan, Moltres, Beedrill, Articuno |
+| Tajo Cruzado (`tajo_cruzado`) | 147 | 112 | 2772 | 18.9 | Mankey, Machop, Primeape |
+| Sumisión (`sumision`) | 146 | 108 | 1503 | 10.3 | Poliwrath |
+| Polvo Veneno (`polvo_veneno`) | 139 | 0 | 0 | 0.0 | Exeggcute, Paras, Ditto |
+| Pantalla de Humo (`pantalla_de_humo`) | 139 | 0 | 0 | 0.0 | Seadra, Magmar, Weezing, Ditto +1 |
+| Guillotina (`guillotina`) | 137 | 110 | 1152 | 8.4 | Kingler, Pinsir, Krabby |
+| Megapuño (`megapuno`) | 134 | 104 | 1166 | 8.7 | Kangaskhan, Mew |
+| Rayo (`rayo`) | 127 | 54 | 1054 | 8.3 | Raichu, Pikachu |
+| Agitacola (`agitacola`) | 126 | 0 | 0 | 0.0 | Rattata, Nidorina, Rapidash, Wartortle +7 |
+| Bomba Huevo (`bomba_huevo`) | 120 | 102 | 575 | 4.8 | Chansey, Exeggutor |
 

@@ -190,6 +190,13 @@ func _ready() -> void:
 		add_child(mt)
 		mt.run.call_deferred()
 		return
+	if "--autotest-ai-pp" in OS.get_cmdline_user_args():
+		set_process(false)
+		var pt := AiPpTests.new()
+		pt.autotest = self
+		add_child(pt)
+		pt.run.call_deferred()
+		return
 	if "--autotest-ai-trainers" in OS.get_cmdline_user_args():
 		set_process(false)
 		var tat := TrainerAiTests.new()
