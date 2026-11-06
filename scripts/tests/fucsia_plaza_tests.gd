@@ -89,6 +89,26 @@ func run() -> void:
 	r["Esquivan al rival con la pelota (%d veces)" % game.dodges] = game.dodges >= 10
 	r["Hay goles (%d a %d)" % [game.score[0], game.score[1]]] = game.score[0] + game.score[1] >= 1
 	r["La pelota y los jugadores no se van de la cancha"] = in_bounds
+	# Una disputa: al que le roban queda aturdido 1 s, y el que robó sigue con la pelota.
+	var a: Variant = game.players[1]
+	var b: Variant = game.players[5]
+	game._pause = 0.0
+	game._take(a)
+	game._safe = 0.0
+	a.position = game.field.get_center()
+	b.position = a.position + Vector2(5, 0)
+	game.ball = a.position
+	b.tackle_cd = 0.0
+	b.stop = 0.0
+	var tries := 0
+	while game.carrier == a and tries < 60:
+		b.tackle_cd = 0.0
+		game._try_control(b)
+		tries += 1
+	r["Al que le roban la pelota queda aturdido y el otro sigue"] = game.carrier == b and is_equal_approx(a.stop, SoccerMatch.ROBBED_STUN)
+	var a_at: Vector2 = a.position
+	await get_tree().create_timer(0.5).timeout
+	r["Aturdido no se mueve ni va a buscarla"] = a.position == a_at and game._chaser(a.team) != a
 	r["Ningún equipo tiene siempre la pelota"] = game.kicks_of[0] >= game.kicks / 4 and game.kicks_of[1] >= game.kicks / 4
 	# Con vos cerca se frena.
 	var one: StoryNPC = walkers[0]

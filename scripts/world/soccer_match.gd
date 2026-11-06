@@ -46,6 +46,9 @@ const TACKLE_CHANCE := 0.3
 ## Recién agarrada la pelota no se la pueden sacar (si no, se la roban de un lado a otro sin parar).
 const SAFE_AFTER_TAKE := 0.9
 const TACKLE_COOLDOWN := 0.9
+## Al que le roban la pelota queda aturdido este rato (pedido del usuario): así no se la sacan uno al otro sin parar.
+const ROBBED_STUN := 1.0
+const ROBBED_ANIM := 0.7
 ## Cuánto sigue a la pelota cada uno desde su puesto, y cuánto se adelanta si su equipo la tiene.
 const FOLLOW_X := 0.5
 const FOLLOW_Y := 0.35
@@ -249,7 +252,7 @@ func _chaser(team: int) -> Player:
 	var best: Player = null
 	var best_d := INF
 	for p in players:
-		if p.team != team or p.keeper:
+		if p.team != team or p.keeper or p.stop > KICK_STOP:  # (el aturdido no: va otro)
 			continue
 		var d := p.position.distance_to(ball)
 		if d < best_d:
@@ -282,7 +285,11 @@ func _try_control(p: Player) -> void:
 			p.tackle_cd = TACKLE_COOLDOWN
 			if randf() < TACKLE_CHANCE:
 				steals += 1
+				var robbed := carrier
 				_take(p)
+				robbed.stop = ROBBED_STUN
+				robbed.velocity = Vector2.ZERO
+				robbed.sprite.play_once("Hurt", ROBBED_ANIM)
 		return
 	if d > CONTROL_RANGE or p.own_lock > 0.0 or ball_height > 7.0:
 		return
