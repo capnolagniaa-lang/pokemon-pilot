@@ -9,6 +9,8 @@ extends Node
 const FLAG := "mansion_interruptor"
 const HINT_FLAG := "mansion_pista_vista"
 const KEY_FLAG := "objeto_mansion_pokemon_s1_itemsecretkey"
+## Puertas que sobre el mapa parecen piso común: llevan una marca (WarpMark).
+const HIDDEN_WARPS := {"mansion_pokemon_2p": [Vector2i(27, 17)], "mansion_pokemon_1p": [Vector2i(19, 22), Vector2i(20, 22)]}
 ## Dónde se entra desde Isla Canela (la puerta; se aparece al lado).
 const ENTRANCE := Vector2i(8, 33)
 ## Estatuas: la celda de la base (la del cartel de FireRed); también sirve mirando la de arriba.
@@ -68,16 +70,25 @@ func _ready() -> void:
 	_roles = ZoneBuilder.load_roles()
 	world.story.register_interaction(_on_interact)
 	Events.zone_loaded.connect(func(z: ZoneEntry, node: Node):
-		if TILES.has(z.id) and GameState.has_flag(FLAG) and node is Zone:
-			apply(node, z.id, true))
+		if TILES.has(z.id) and node is Zone:
+			_mark_hidden_warps(node, z.id)
+			if GameState.has_flag(FLAG):
+				apply(node, z.id, true))
 	Events.zone_entered.connect(_hint_on_first_visit)
 	# Los pisos que ya estaban cargados al armar el mundo (partida guardada acá adentro) no avisan con zone_loaded.
-	if GameState.has_flag(FLAG):
-		for id in TILES:
-			var zone: Zone = world.streamer.zone_node(id)
-			if zone != null:
+	for id in TILES:
+		var zone: Zone = world.streamer.zone_node(id)
+		if zone != null:
+			_mark_hidden_warps(zone, id)
+			if GameState.has_flag(FLAG):
 				apply(zone, id, true)
 	_rescue_if_enclosed()
+
+
+func _mark_hidden_warps(zone: Zone, id: String) -> void:
+	for cell: Vector2i in HIDDEN_WARPS.get(id, []):
+		if not zone.has_node("WarpMark_%d_%d" % [cell.x, cell.y]):
+			WarpMark.attach(zone, cell)
 
 
 ## La primera vez que entrás: nada en el mapa dice que las estatuas son interruptores (pedido del usuario 2026-11-04).

@@ -57,6 +57,7 @@ func run() -> void:
 	if "--out" in args:
 		out = args[args.find("--out") + 1]
 		_write_plans(out, _reach(start, false))
+	await _hidden_warps(r)
 	await _saved_gym(r)
 	GameState.wilds_enabled = false
 	await _walk_it(r)
@@ -66,6 +67,16 @@ func run() -> void:
 		ok = ok and r[k]
 	print("[autotest-mansion] -> %s" % ("OK" if ok else "FALLO"))
 	get_tree().quit(0 if ok else 1)
+
+
+## Las puertas que parecen piso común tienen su marca, y las marcas no sobran: cada una está en una puerta de verdad.
+func _hidden_warps(r: Dictionary) -> void:
+	for id: String in MansionSwitches.HIDDEN_WARPS:
+		await world.story.teleport(id, entries[id].hub)
+		await get_tree().create_timer(0.3).timeout
+		var zone: Zone = world.streamer.zone_node(id)
+		for cell: Vector2i in MansionSwitches.HIDDEN_WARPS[id]:
+			r["Marca en la puerta invisible %s %s" % [id, str(cell)]] = zone.has_node("WarpMark_%d_%d" % [cell.x, cell.y]) and entries[id].warps.has(cell)
 
 
 ## Lo mismo en el gimnasio de Carmín: guardar con la barrera abierta y cargar adentro la tiene que dejar abierta.
