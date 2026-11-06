@@ -280,6 +280,12 @@ func _ready() -> void:
 		add_child(mn)
 		mn.run.call_deferred()
 		return
+	if "--autotest-fullscreen" in OS.get_cmdline_user_args():
+		set_process(false)
+		var fs := FullscreenTests.new()
+		add_child(fs)
+		fs.run.call_deferred()
+		return
 	if "--autotest-wheel" in OS.get_cmdline_user_args() or "--showcase-wheel" in OS.get_cmdline_user_args():
 		set_process(false)
 		var wh := WheelTests.new()

@@ -84,6 +84,8 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   el stick izquierdo marca y al soltar sale ese (Círculo o no marcar nada = no cambia). En combate y fuera; el tiempo va a ×0,2
   (`CombatFeedback.set_slowdown`), salvo online, donde muestra solo tu equipo de la pelea. Test `--autotest-wheel`. Gráficos elegidos entre ideas de Qwen: ruleta
   Pokébola de 6 gajos fijos y dibujo oscuro con filete dorado del joystick en Controles (`tools/make_wheel_art.py`).
+- **Pantalla completa (2026-11-05, pedido del usuario)**: F11 en cualquier momento o Esc → Opciones; se recuerda en esa PC
+  (`Controls.set_fullscreen`, `user://interfaz.cfg`). Test `--autotest-fullscreen`.
 - **Enseñar a todos (2026-11-04, pedido del usuario)**: al usar una MT en la Mochila hay un botón nuevo que se la enseña a
   todos los que pueden aprenderla, del equipo y de la Caja (`GameState.teach_all`). La MT no se gasta; los del equipo con
   las 4 ranuras llenas preguntan después si reemplazar uno. Test en `--autotest-equip`.

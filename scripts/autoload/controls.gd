@@ -31,6 +31,7 @@ const KEYS := {
 	"minimap": [KEY_TAB],  # mostrar u ocultar el minimapa (Minimap)
 	"battle_toggle": [KEY_F],
 	"pause": [KEY_ESCAPE],
+	"fullscreen": [KEY_F11],  # fija, no se configura (set_fullscreen)
 	## Solo con `-- --debug` (o desde el editor): suma un Pokémon al azar al equipo.
 	"debug_add_pokemon": [KEY_F9],
 	## Cruceta: el Pokémon anterior o el siguiente (el cambio directo 1-6 es del teclado).
@@ -131,6 +132,10 @@ var pad_name := ""
 ## {"btn": botón} o {"axis": [eje, sentido]}.
 var bindings := {"key": {}, "pad": {}}
 var config_path := "user://controles.cfg"
+## Pantalla completa (F11 u Opciones; de esta PC: `display_path`). Los menús abiertos se enteran por `fullscreen_changed`.
+signal fullscreen_changed(on: bool)
+var fullscreen := false
+var display_path := "user://interfaz.cfg"
 
 
 func _ready() -> void:
@@ -147,11 +152,18 @@ func _ready() -> void:
 	for action in UI_AXES:
 		_add_if_missing(action, _event_of({"axis": UI_AXES[action]}))
 	load_config()
+	var display := ConfigFile.new()
+	if not _automated() and display.load(display_path) == OK and display.get_value("ventana", "pantalla_completa", false):
+		fullscreen = true
+		_apply_fullscreen()
 	if not Input.get_connected_joypads().is_empty():
 		pad_name = Input.get_joy_name(Input.get_connected_joypads()[0])
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen") and not event.is_echo():
+		set_fullscreen(not fullscreen)
+		get_viewport().set_input_as_handled()
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		var woke: bool = event.pressed if event is InputEventJoypadButton else absf(event.axis_value) >= PAD_WAKE
 		if woke:
@@ -162,6 +174,23 @@ func _input(event: InputEvent) -> void:
 		gamepad = gamepad and not event.pressed
 	elif event is InputEventMouseMotion:
 		gamepad = gamepad and event.relative.length() < MOUSE_WAKE
+
+
+func set_fullscreen(on: bool) -> void:
+	if on == fullscreen:
+		return
+	fullscreen = on
+	_apply_fullscreen()
+	var cfg := ConfigFile.new()
+	cfg.load(display_path)  # (en el mismo archivo está el minimapa)
+	cfg.set_value("ventana", "pantalla_completa", on)
+	cfg.save(display_path)
+	fullscreen_changed.emit(on)
+
+
+func _apply_fullscreen() -> void:
+	if DisplayServer.get_name() != "headless":
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
 
 
 func _add_if_missing(action: String, ev: InputEvent) -> void:

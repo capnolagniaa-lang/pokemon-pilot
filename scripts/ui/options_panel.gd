@@ -1,10 +1,11 @@
 extends Control
-## Opciones editables en partida: dificultad de la IA, volumen y servidor.
+## Opciones editables en partida: dificultad de la IA, pantalla completa, volumen y servidor.
 
 signal closed
 
 var _first: Control
 var _diff_buttons: Dictionary = {}
+var fullscreen_button: CheckButton
 
 
 func _ready() -> void:
@@ -38,6 +39,13 @@ func _ready() -> void:
 		if b.button_pressed or _first == null:
 			_first = b
 	# (Entrenadores vivos: sacado de las opciones por ahora, pedido del usuario 2026-10-29.)
+	# Pantalla completa (de esta PC, no de la partida; también con F11).
+	fullscreen_button = CheckButton.new()
+	fullscreen_button.text = "Pantalla completa (F11)"
+	fullscreen_button.button_pressed = Controls.fullscreen
+	fullscreen_button.toggled.connect(Controls.set_fullscreen)
+	Controls.fullscreen_changed.connect(fullscreen_button.set_pressed_no_signal)
+	box.add_child(fullscreen_button)
 	# Volumen (de esta PC, no de la partida): user://audio.cfg (Sound).
 	box.add_child(UiStyle.label("Volumen", 16))
 	for vol in [["Música", "music_volume"], ["Efectos", "sfx_volume"], ["Gritos", "cry_volume"]]:
