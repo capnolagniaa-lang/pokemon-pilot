@@ -8,11 +8,24 @@ const NOTICE_RADIUS := 40.0
 ## 1 = arriba, 2 = costado (izquierda; la derecha es espejada).
 const SPRITES_DIR := "res://art/pret/characters/"
 
+const WALK_SPEED := 30.0
+const WALK_STEP_TIME := 0.16
+const WALK_CELLS_MAX := 5
+const REST_MIN := 1.0
+const REST_MAX := 4.5
+## Cuadros de caminar de las hojas de FireRed: abajo, arriba, costado.
+const WALK_FRAMES := [[3, 0, 4, 0], [5, 1, 6, 1], [7, 2, 8, 2]]
+
 static var _index: Dictionary = {}
 
 var data: NpcData
 var facing := Vector2i.DOWN
 var _look_timer := 0.0
+var _rest := 0.0
+## Dónde puede caminar (en coordenadas del mundo; lo pone StoryDirector desde NpcData.wander_rect).
+var wander_area := Rect2()
+var _walk_left := 0.0
+var _step := 0.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var name_label: Label = $Name
@@ -31,6 +44,7 @@ func _ready() -> void:
 	facing = data.facing
 	_apply_facing()
 	_look_timer = randf_range(1.5, 4.0)
+	_rest = randf_range(0.0, REST_MAX)
 
 
 static func _frames_index() -> Dictionary:
@@ -54,6 +68,57 @@ func _process(delta: float) -> void:
 			_look_timer = randf_range(1.5, 4.0)
 			facing = [Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP].pick_random()
 			_apply_facing()
+
+
+## Los que caminan (NpcData.wander_rect): un tramo en línea recta, un descanso. Con vos cerca se quedan a hablarte.
+func _physics_process(delta: float) -> void:
+	if wander_area.size == Vector2.ZERO:
+		return
+	var player: Node2D = get_tree().get_first_node_in_group("trainer")
+	if player != null and player.global_position.distance_to(global_position) < NOTICE_RADIUS:
+		_stop_walking()
+		return
+	if _walk_left <= 0.0:
+		_rest -= delta
+		if _rest <= 0.0:
+			_start_walking()
+		return
+	velocity = Vector2(facing) * WALK_SPEED
+	move_and_slide()
+	_walk_left -= WALK_SPEED * delta
+	_step += delta
+	_animate_walk()
+	if get_real_velocity().length() < WALK_SPEED * 0.5 or not wander_area.has_point(global_position):
+		_stop_walking()
+
+
+func _start_walking() -> void:
+	_rest = randf_range(REST_MIN, REST_MAX)
+	var f: Vector2i = [Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP].pick_random()
+	var length := randi_range(1, WALK_CELLS_MAX) * 16.0
+	# Hasta dónde puede ir sin salirse de su rectángulo.
+	while length > 0.0 and not wander_area.has_point(global_position + Vector2(f) * length):
+		length -= 16.0
+	if length <= 0.0:
+		return
+	facing = f
+	_apply_facing()
+	_walk_left = length
+
+
+func _stop_walking() -> void:
+	if _walk_left > 0.0:
+		_walk_left = 0.0
+		velocity = Vector2.ZERO
+		_apply_facing()
+
+
+func _animate_walk() -> void:
+	if sprite.hframes < 9:
+		return
+	var row: int = 0 if facing.y > 0 else (1 if facing.y < 0 else 2)
+	sprite.frame = WALK_FRAMES[row][int(_step / WALK_STEP_TIME) % 4]
+	sprite.flip_h = facing.x > 0
 
 
 ## "¡!" sobre la cabeza (un entrenador que te vio).

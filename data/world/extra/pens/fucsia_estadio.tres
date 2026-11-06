@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ExtraPen" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/extra_pen.gd" id="1_p"]
+
+[resource]
+script = ExtResource("1_p")
+id = "fucsia_estadio"
+zone_id = "ciudad_fucsia"
+area = Rect2i(61, 55, 16, 7)
+species = PackedStringArray("pichu", "togepi", "igglybuff", "cleffa", "azurill", "skitty", "marill", "eevee", "teddiursa", "pikachu")

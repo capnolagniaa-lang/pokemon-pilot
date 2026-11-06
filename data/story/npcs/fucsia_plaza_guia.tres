@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NpcData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/npc_data.gd" id="1_n"]
+[ext_resource type="Script" path="res://scripts/resources/npc_talk.gd" id="2_t"]
+
+[sub_resource type="Resource" id="Talk_0"]
+script = ExtResource("2_t")
+lines = PackedStringArray("Este es el mini estadio de Fucsia: acá paran los Pokémon más chiquitos.", "No pelean, solo pasean. Se miran desde afuera, ¡que no se asusten!")
+
+[resource]
+script = ExtResource("1_n")
+id = "fucsia_plaza_guia"
+display_name = "Cuidadora"
+zone_id = "ciudad_fucsia"
+cell = Vector2i(67, 65)
+gfx = "woman_1"
+facing = Vector2i(0, 1)
+look_around = true
+talks = Array[ExtResource("2_t")]([SubResource("Talk_0")])

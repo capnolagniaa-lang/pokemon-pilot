@@ -52,6 +52,8 @@ func refresh() -> void:
 			npc = NPCScene.instantiate()
 			npc.data = data
 			npc.global_position = zone.to_global(zone.ground.map_to_local(data.cell))
+			if data.wander_rect.size != Vector2i.ZERO:
+				npc.wander_area = Rect2(zone.to_global(Vector2(data.wander_rect.position * 16)), Vector2(data.wander_rect.size * 16))
 			world.entities.add_child(npc)
 			npcs[data.id] = npc
 		elif not should and is_instance_valid(npc):
