@@ -206,7 +206,7 @@ func showcase() -> void:
 ##   godot --path . --quit-after 160 --write-movie out/f.png --fixed-fps 30 -- --showcase-cave
 func showcase_cave() -> void:
 	GameState.new_game(DB.species["charmander"])
-	for zone_id in ["mt_moon", "tunel_roca", "islas_espuma", "torre_pokemon_4p"]:
+	for zone_id in ["mt_moon", "tunel_roca", "islas_espuma", "torre_pokemon_4p", "mansion_pokemon_2p"]:
 		await _start(zone_id, Vector2i(10, 10))
 		world.get_node("UI").visible = false
 		var zone: Node2D = world.streamer.loaded.get(zone_id)

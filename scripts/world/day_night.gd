@@ -49,6 +49,9 @@ const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.
 ## La Torre Pokémon: igual de fría pero menos oscura (pedido del usuario 2026-11-01: "se ve muy oscura").
 const DIM_CAVES := ["torre_pokemon"]
 const CAVE_DIM := [0.0, Color(0.46, 0.46, 0.60), Vector3(0.96, 0.98, 1.08), 0.92, 1.08, 0.48, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
+## La Mansión Pokémon: una casa, clara y cálida aunque esté abandonada (pedido del usuario 2026-11-06: "que no se vea oscura").
+const LIT_CAVES := ["mansion_pokemon"]
+const CAVE_LIT := [0.0, Color(0.96, 0.92, 0.86), Vector3(1.02, 1.00, 0.96), 1.12, 1.05, 0.34, Color(1.0, 0.90, 0.70), 0.0, 0.0, 0.0]
 const CAVE_PLAYER_LIGHT := Color(0.80, 0.88, 1.0)
 const CAVE_PLAYER_ENERGY := 0.38
 const CAVE_PLAYER_RADIUS := 64.0
@@ -74,6 +77,7 @@ var indoor := false
 ## Cueva (bioma "cueva"): oscura aunque sea de día.
 var in_cave := false
 var _dim_cave := false
+var _lit_cave := false
 var phase := ""
 
 var _world: Node
@@ -104,6 +108,7 @@ func _enter(z: ZoneEntry) -> void:
 	indoor = z.interior
 	in_cave = z.biome == "cueva"
 	_dim_cave = in_cave and DIM_CAVES.any(func(p: String) -> bool: return z.id.begins_with(p))
+	_lit_cave = in_cave and LIT_CAVES.any(func(p: String) -> bool: return z.id.begins_with(p))
 
 
 func hour() -> float:
@@ -155,7 +160,7 @@ func apply() -> void:
 	casts_shadows = not indoor and not arena_on
 	var cave := in_cave and not arena_on
 	var painted: bool = arena_on and _world.arena.arena_data != null and _world.arena.arena_data.painting != null
-	var lk: Array = (CAVE_DIM if _dim_cave else CAVE) if cave else (PAINTED if painted else INDOOR if not casts_shadows else look_at(h))
+	var lk: Array = (CAVE_LIT if _lit_cave else CAVE_DIM if _dim_cave else CAVE) if cave else (PAINTED if painted else INDOOR if not casts_shadows else look_at(h))
 	var sun := sun_at(h)
 	_update_player_light(cave)
 	RenderingServer.set_default_clear_color(CAVE_CLEAR if cave
