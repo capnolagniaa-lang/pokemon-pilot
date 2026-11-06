@@ -7,6 +7,6 @@
 script = ExtResource("1_b")
 id = "fucsia_fuente"
 zone_id = "ciudad_fucsia"
-cell = Vector2i(51, 42)
+cell = Vector2i(38, 44)
 size = Vector2i(4, 3)
 texture = ExtResource("2_t")

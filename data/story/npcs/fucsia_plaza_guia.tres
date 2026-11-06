@@ -5,14 +5,14 @@
 
 [sub_resource type="Resource" id="Talk_0"]
 script = ExtResource("2_t")
-lines = PackedStringArray("Este es el mini estadio de Fucsia: acá paran los Pokémon más chiquitos.", "No pelean, solo pasean. Se miran desde afuera, ¡que no se asusten!")
+lines = PackedStringArray("¡Bienvenido al estadio de Fucsia! Hoy juegan Celeste contra Azul.", "Se juega todo el día. ¡Los Hitmonlee patean tan fuerte que no dejan entrar a nadie a la cancha!")
 
 [resource]
 script = ExtResource("1_n")
 id = "fucsia_plaza_guia"
-display_name = "Cuidadora"
+display_name = "Boletera"
 zone_id = "ciudad_fucsia"
-cell = Vector2i(67, 65)
+cell = Vector2i(62, 63)
 gfx = "woman_1"
 facing = Vector2i(0, 1)
 look_around = true

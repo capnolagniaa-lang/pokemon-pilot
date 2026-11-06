@@ -144,8 +144,8 @@ $G --path . --write-movie out/m.png --fixed-fps 30 -- --overview   # vista de to
 $G --headless --path . --quit-after 20000 -- --autotest-map-editor  # editor de mapas (ida y vuelta, pinceles, UI...)
 $G --headless --path . --quit-after 20000 -- --autotest-stamps      # sellos: sin agujeros, colisión, puertas, deshacer
 $G --headless --path . --quit-after 20000 -- --autotest-encounters  # salvajes: tablas, %, áreas pintadas, agua, editor
-$G --headless --path . --quit-after 30000 -- --autotest-fucsia-plaza  # plaza y mini estadio de Fucsia: colisión, se llega a todo, gente y Pokémon paseando
-$G --path . --quit-after 120 --write-movie out/f.png --fixed-fps 30 -- --showcase-fucsia-plaza  # la plaza y el estadio
+$G --headless --path . --quit-after 30000 -- --autotest-fucsia-plaza  # plaza y estadio de Fucsia: colisión, se llega a todo, gente y Pokémon paseando, el partido
+$G --path . --quit-after 120 --write-movie out/f.png --fixed-fps 30 -- --showcase-fucsia-plaza  # el estadio con el partido
 $G --headless --path . --quit-after 400000 -- --autotest-water-wilds  # salvajes del agua, zona por zona, navegando (`--only <zona>`)
 $G --headless --path . --quit-after 6000 -- --autotest-ledges       # salientes: se bajan saltando, no se suben
 $G --headless --path . --quit-after 20000 -- --autotest-bounds      # límites: no se sale al vacío, se llega a todo, sin atajos
@@ -364,7 +364,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   resolución del juego: a ×1 quedaba muy pixelado y el cuarto de 15×10, chico; `ExtraBuilding` con `walkable` = piso sin colisión, debajo de todos, achicado y suave si es más grande que sus celdas; `TownMap.zone_image` la usa para el minimapa) y los tiles quedan solo para la colisión
   (`tools/build_online_interior.py`: `PLAN` y `--pintura`). Vendedor, enfermera y recepcionista juntos en el mostrador.
   Plazas (puesto de panchos + parrilla, con sus personas) en las ciudades grandes: `tools/build_plazas.py`.
-  **Plaza y mini estadio de Fucsia** (`tools/build_plaza_fucsia.py`; fuente, banco y estadio de Qwen, `art_src/fucsia/`): para llenar el campo vacío. `NpcData.wander_rect` = persona que camina sola en ese rectángulo (se frena con vos cerca); `ExtraPen` + `PenPokemon` = Pokémon de adorno que pasean en un corral (`data/world/extra/pens/`; no pelean, no se atrapan).
+  **Plaza y estadio de Fucsia** (`tools/build_plaza_fucsia.py`; fuente, banco y estadio de Qwen, `art_src/fucsia/`): para llenar el campo vacío. `ExtraPitch` + `SoccerMatch` = partido de adorno (8 Hitmonlee con camiseta, `shaders/jersey.gdshader`: pinta el color de la piel de cierta altura para abajo, sin tocar las hojas; el que lleva la pelota esquiva al rival de adelante y pasa al compañero libre con el camino despejado, los demás buscan espacios; goles y marcador). `NpcData.wander_rect` = persona que camina sola en ese rectángulo (se frena con vos cerca); `ExtraPen` + `PenPokemon` = Pokémon de adorno que pasean en un corral (`data/world/extra/pens/`; no pelean, no se atrapan).
 - **Mapa del menú** (Esc → Mapa): `TownMap` (`scripts/world/town_map.gd`) dibuja la región en miniatura **desde las
   capas de tiles de las zonas reales** (4 px por celda; la primera vez que se abre, en el hilo principal) y calcula dónde van los
   interiores/cuevas/Bosque Verde (en la puerta por la que se entra, siguiendo las puertas), los íconos de Centro/Tienda/

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ExtraPitch" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/extra_pitch.gd" id="1_p"]
+
+[resource]
+script = ExtResource("1_p")
+id = "fucsia_estadio"
+zone_id = "ciudad_fucsia"
+species_id = "hitmonlee"
+players_per_team = 4
+field = Rect2(874.6, 719.7, 345.3, 206.0)
+goal_half = 25.6

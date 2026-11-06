@@ -7,7 +7,7 @@
 script = ExtResource("1_b")
 id = "fucsia_piso"
 zone_id = "ciudad_fucsia"
-cell = Vector2i(44, 23)
-size = Vector2i(27, 43)
+cell = Vector2i(31, 23)
+size = Vector2i(37, 41)
 texture = ExtResource("2_t")
 walkable = true

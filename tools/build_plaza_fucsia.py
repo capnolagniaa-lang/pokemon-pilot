@@ -1,8 +1,9 @@
-"""Plaza con fuente y mini estadio de Ciudad Fucsia (pedido del usuario 2026-11-06: el campo de abajo estaba vacío).
+"""Plaza con fuente y estadio de fútbol de Ciudad Fucsia (pedido del usuario 2026-11-06: el campo de abajo estaba vacío).
 Todo como agregados de `ExtraContent`, sin tocar la zona importada:
   - sprites/props/fucsia_{piso,fuente,banco,estadio}.png (fuente, banco y estadio de Qwen 2.1, en art_src/fucsia/; el piso,
     con el mismo color de la calle)
-  - data/world/extra/buildings/fucsia_*.tres, data/world/extra/pens/fucsia_estadio.tres (los Pokémon que pasean)
+  - data/world/extra/buildings/fucsia_*.tres, data/world/extra/pens/fucsia_estadio.tres (los Pokémon chicos que pasean) y
+    data/world/extra/pitches/fucsia_estadio.tres (los Hitmonlee que juegan al fútbol: SoccerMatch)
   - data/story/npcs/fucsia_plaza_*.tres (la gente que camina por la plaza, NpcData.wander_rect)
 Correrlo de nuevo pisa esos archivos.
 
@@ -16,25 +17,29 @@ import sys
 from PIL import Image
 
 ZONE = "ciudad_fucsia"
-PLAZA = (44, 36, 18, 16)  # x, y, ancho, alto, en celdas locales
+PLAZA = (31, 35, 18, 16)  # x, y, ancho, alto, en celdas locales (con el puesto de panchos adentro)
 # Caminos: de la calle a la plaza, y de la plaza a la entrada del estadio.
-PATHS = [(50, 23, 4, 13), (54, 52, 3, 14), (54, 64, 17, 2)]
-FOUNTAIN = (51, 42, 4, 3)
-BENCHES = [(46, 38), (57, 38), (46, 43), (57, 43), (46, 49), (57, 49)]
-STADIUM = (58, 53, 22, 11)
-FIELD = (61, 55, 16, 7)
+PATHS = [(43, 23, 4, 12), (45, 51, 3, 13), (45, 62, 23, 2)]
+FOUNTAIN = (38, 44, 4, 3)
+BENCHES = [(33, 42), (45, 37), (45, 42), (33, 48), (45, 48), (38, 49)]
+STADIUM = (50, 40, 31, 22)
+# Dónde están las líneas de la cancha y el arco, como parte del dibujo (de art_src/fucsia/estadio.png).
+LINES = (0.149, 0.219, 0.848, 0.823)
+GOAL_HALF = 0.075
+# Los Pokémon chicos pasean en el pasto de abajo de la plaza.
+FIELD = (32, 52, 12, 9)
 PETS = ["pichu", "togepi", "igglybuff", "cleffa", "azurill", "skitty", "marill", "eevee", "teddiursa", "pikachu"]
 # Color de la calle de Fucsia y del pasto de al lado (de la captura del juego).
 ROAD = (238, 226, 135)
 EDGE = (172, 215, 150)
 WALKERS = [
-    ("nene", "Nene", "boy", (48, 41), ["¡Dicen que si tirás una moneda en la fuente te sale un shiny!", "Yo ya tiré tres. Nada todavía."]),
-    ("nena", "Nena", "little_girl", (56, 46), ["¿Viste el estadio? Ahí viven los Pokémon chiquitos.", "¡Yo quiero un Togepi!"]),
-    ("chica", "Chica", "lass", (49, 47), ["Antes esto era puro campo. Ahora da gusto venir a sentarse un rato."]),
-    ("pibe", "Pibe", "youngster", (58, 40), ["Vengo a correr todas las mañanas. Dos vueltas a la fuente y ya estoy cansado."]),
-    ("senor", "Señor", "gentleman", (53, 39), ["La Zona Safari queda ahí arriba, pero yo prefiero la plaza: acá nadie te corre."]),
+    ("nene", "Nene", "boy", (35, 42), ["¡Dicen que si tirás una moneda en la fuente te sale un shiny!", "Yo ya tiré tres. Nada todavía."]),
+    ("nena", "Nena", "little_girl", (43, 46), ["¿Viste los Pokémon chiquitos en el pasto? ¡Yo quiero un Togepi!"]),
+    ("chica", "Chica", "lass", (36, 48), ["Antes esto era puro campo. Ahora da gusto venir a sentarse un rato."]),
+    ("pibe", "Pibe", "youngster", (43, 42), ["¡Yo hincho por los de celeste y blanco! Los Hitmonlee juegan todo el día, no se cansan nunca."]),
+    ("senor", "Señor", "gentleman", (37, 42), ["La Zona Safari queda ahí arriba, pero yo prefiero la plaza: acá nadie te corre."]),
 ]
-GUIDE = ("guia", "Cuidadora", "woman_1", (67, 65), ["Este es el mini estadio de Fucsia: acá paran los Pokémon más chiquitos.", "No pelean, solo pasean. Se miran desde afuera, ¡que no se asusten!"])
+GUIDE = ("guia", "Boletera", "woman_1", (62, 63), ["¡Bienvenido al estadio de Fucsia! Hoy juegan Celeste contra Azul.", "Se juega todo el día. ¡Los Hitmonlee patean tan fuerte que no dejan entrar a nadie a la cancha!"])
 
 BUILDING = """[gd_resource type="Resource" script_class="ExtraBuilding" format=3]
 
@@ -58,6 +63,20 @@ id = "fucsia_estadio"
 zone_id = "%s"
 area = Rect2i(%d, %d, %d, %d)
 species = PackedStringArray(%s)
+"""
+
+PITCH = """[gd_resource type="Resource" script_class="ExtraPitch" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/extra_pitch.gd" id="1_p"]
+
+[resource]
+script = ExtResource("1_p")
+id = "fucsia_estadio"
+zone_id = "%s"
+species_id = "hitmonlee"
+players_per_team = 4
+field = Rect2(%.1f, %.1f, %.1f, %.1f)
+goal_half = %.1f
 """
 
 PERSON = """[gd_resource type="Resource" script_class="NpcData" format=3]
@@ -146,7 +165,7 @@ def main(root):
     pad_width(root, "fucsia_fuente.png", FOUNTAIN[2] * 16)
     prop(root, "banco.png", "fucsia_banco.png", 26, 12)
     pad_width(root, "fucsia_banco.png", 32)
-    prop(root, "estadio.png", "fucsia_estadio.png", STADIUM[3] * 16, 48)
+    prop(root, "estadio.png", "fucsia_estadio.png", 341, 64)
     cell, size = floor(root)
     building(root, "piso", cell, size, "fucsia_piso", True)
     building(root, "fuente", FOUNTAIN[:2], FOUNTAIN[2:], "fucsia_fuente")
@@ -155,6 +174,13 @@ def main(root):
     building(root, "estadio_dibujo", STADIUM[:2], STADIUM[2:], "fucsia_estadio", True)
     building(root, "estadio", STADIUM[:2], STADIUM[2:])  # sin dibujo: no se entra
     write(root, "data/world/extra/pens/fucsia_estadio.tres", PEN % (ZONE, FIELD[0], FIELD[1], FIELD[2], FIELD[3], quote(PETS)))
+    # La cancha: las líneas del dibujo, ya centrado en sus celdas (como lo pone ExtraContent).
+    drawn = Image.open(os.path.join(root, "sprites/props/fucsia_estadio.png")).size
+    x0 = STADIUM[0] * 16 + (STADIUM[2] * 16 - drawn[0]) // 2
+    y0 = STADIUM[1] * 16 + (STADIUM[3] * 16 - drawn[1]) // 2
+    left, top, right, bottom = LINES
+    write(root, "data/world/extra/pitches/fucsia_estadio.tres", PITCH % (
+        ZONE, x0 + left * drawn[0], y0 + top * drawn[1], (right - left) * drawn[0], (bottom - top) * drawn[1], GOAL_HALF * drawn[1]))
     rect = "wander_rect = Rect2i(%d, %d, %d, %d)\n" % PLAZA
     for pid, name, gfx, at, lines in WALKERS:
         write(root, "data/story/npcs/fucsia_plaza_%s.tres" % pid, PERSON.format(

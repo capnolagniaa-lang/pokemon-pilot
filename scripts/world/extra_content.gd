@@ -9,6 +9,7 @@ extends RefCounted
 const ZONES_DIR := "res://data/world/extra/zones"
 const BUILDINGS_DIR := "res://data/world/extra/buildings"
 const PENS_DIR := "res://data/world/extra/pens"
+const PITCHES_DIR := "res://data/world/extra/pitches"
 ## Marca de las puertas agregadas (para sacarlas al guardar la región).
 const EXTRA_KEY := "extra"
 ## Meta de la zona con las celdas sólidas de los edificios (la lee MapRules.cell_physics).
@@ -16,6 +17,7 @@ const SOLID_META := "extra_solid"
 
 static var buildings: Array[ExtraBuilding] = []
 static var pens: Array[ExtraPen] = []
+static var pitches: Array[ExtraPitch] = []
 static var zone_ids: PackedStringArray = []
 
 
@@ -24,6 +26,8 @@ static func apply(world: WorldData) -> void:
 	buildings.clear()
 	pens.clear()
 	pens.assign(_load_dir(PENS_DIR, "ExtraPen"))
+	pitches.clear()
+	pitches.assign(_load_dir(PITCHES_DIR, "ExtraPitch"))
 	zone_ids.clear()
 	var by_id := {}
 	for z in world.zones:
@@ -119,6 +123,9 @@ static func attach(zone: Node2D, entry: ZoneEntry, world: WorldData) -> void:
 		for sid in pen.species:
 			if DB.species.has(sid):
 				holder.add_child(PenPokemon.make(DB.species[sid], area))
+	for pitch in pitches:
+		if pitch.zone_id == entry.id and not zone.has_node("Pitch_" + pitch.id):
+			zone.add_child(SoccerMatch.make(pitch))
 
 
 static func _load_dir(dir: String, cls: String) -> Array:

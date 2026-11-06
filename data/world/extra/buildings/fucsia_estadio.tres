@@ -6,5 +6,5 @@
 script = ExtResource("1_b")
 id = "fucsia_estadio"
 zone_id = "ciudad_fucsia"
-cell = Vector2i(58, 53)
-size = Vector2i(22, 11)
+cell = Vector2i(50, 40)
+size = Vector2i(31, 22)
