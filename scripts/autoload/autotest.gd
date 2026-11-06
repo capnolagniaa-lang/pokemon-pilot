@@ -190,6 +190,13 @@ func _ready() -> void:
 		add_child(mt)
 		mt.run.call_deferred()
 		return
+	if "--autotest-cinnabar-gym" in OS.get_cmdline_user_args():
+		set_process(false)
+		var cg := CinnabarGymTests.new()
+		cg.autotest = self
+		add_child(cg)
+		cg.run.call_deferred()
+		return
 	if "--autotest-ai-pp" in OS.get_cmdline_user_args():
 		set_process(false)
 		var pt := AiPpTests.new()

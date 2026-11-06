@@ -34,6 +34,7 @@ var evolutions: EvolutionDirector
 var field_moves: FieldMoves
 var vermilion_puzzle: VermilionGymPuzzle
 var mansion_switches: MansionSwitches
+var cinnabar_quiz: CinnabarGymQuiz
 var lifts: Lifts
 var balloon: BalloonTravel
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
@@ -111,6 +112,9 @@ func _ready() -> void:
 	mansion_switches = MansionSwitches.new()  # las estatuas-interruptor de la Mansión Pokémon
 	mansion_switches.name = "MansionSwitches"
 	add_child(mansion_switches)
+	cinnabar_quiz = CinnabarGymQuiz.new()  # las puertas con preguntas del gimnasio de Isla Canela
+	cinnabar_quiz.name = "CinnabarGymQuiz"
+	add_child(cinnabar_quiz)
 	lifts = Lifts.new()  # ascensores (Escondite Rocket con la Llave Ascensor, Silph, Gran Almacén)
 	lifts.name = "Lifts"
 	add_child(lifts)
