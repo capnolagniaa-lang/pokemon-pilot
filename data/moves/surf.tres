@@ -18,3 +18,4 @@ knockback = 260.0
 recovery = 0.4
 speed = 150.0
 radius = 65.25
+ride_range = 120.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3]
+[gd_scene load_steps=32 format=3]
 
 [ext_resource type="Script" path="res://scripts/creatures/creature.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/creatures/creature_sprite.gd" id="2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_controlled.gd" id="12"]
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_cast.gd" id="13"]
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_dash.gd" id="14"]
+[ext_resource type="Script" path="res://scripts/creatures/states/creature_ride.gd" id="ride"]
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_stunned.gd" id="15"]
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_fainted.gd" id="16"]
 [ext_resource type="Script" path="res://scripts/creatures/states/creature_wander.gd" id="17"]
@@ -103,6 +104,9 @@ script = ExtResource("13")
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("14")
+
+[node name="Ride" type="Node" parent="StateMachine"]
+script = ExtResource("ride")
 
 [node name="Stunned" type="Node" parent="StateMachine"]
 script = ExtResource("15")

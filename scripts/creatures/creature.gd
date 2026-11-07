@@ -449,7 +449,7 @@ func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
 		return false
 	if not can_act() or slot < 0 or slot >= moves.slots.size() or moves.slots[slot] == null:
 		return false
-	if moves.slots[slot].kind in [MoveData.Kind.DASH, MoveData.Kind.LUNGE] and not statuses.can_move():
+	if (moves.slots[slot].kind in [MoveData.Kind.DASH, MoveData.Kind.LUNGE] or moves.slots[slot].ride_range > 0.0) and not statuses.can_move():
 		return false
 	var used := moves.consume(slot)
 	if used.is_empty():
@@ -592,6 +592,9 @@ func release_move(msg: Dictionary) -> void:
 				get_parent().add_child(p)
 				p.launch(hit, global_position + Vector2(0, -8) + d * 8.0, d)
 		MoveData.Kind.AREA:
+			if m.ride_range > 0.0:
+				machine.transition_to("ride", {"hit": hit, "to": ride_point(m, msg.get("point", Vector2.INF), aim), "recovery": recovery})
+				return
 			var a := AreaEffect.new()
 			get_parent().add_child(a)
 			a.trigger(hit, global_position + Vector2(0, -6))
@@ -697,6 +700,13 @@ func swing_melee(msg: Dictionary, from_state: bool = true) -> void:
 
 
 ## Dónde cae una zona: en el punto apuntado (limitado al alcance), en el objetivo, o delante.
+## Adónde llega Surf: al punto apuntado, sin pasarse de su alcance.
+func ride_point(m: MoveData, point: Vector2, aim: Vector2) -> Vector2:
+	if point == Vector2.INF:
+		point = target.global_position if is_instance_valid(target) else global_position + aim * m.ride_range
+	return global_position + (point - global_position).limit_length(m.ride_range)
+
+
 func zone_point(m: MoveData, point: Vector2, aim: Vector2) -> Vector2:
 	if point == Vector2.INF:
 		point = target.global_position if is_instance_valid(target) else global_position + aim * m.placement_range * 0.6

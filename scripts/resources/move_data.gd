@@ -81,6 +81,8 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 
 @export_group("Área")
 @export var radius: float = 48.0
+## Surf: viaja montado hasta el punto apuntado, a lo sumo esta distancia, y recién ahí golpea (estado "ride"). 0 = sale donde está.
+@export var ride_range: float = 0.0
 
 @export_group("Embestida")
 @export var dash_time: float = 0.22
@@ -184,7 +186,7 @@ func reach() -> float:
 		Kind.DASH:
 			return 520.0 * dash_time + 12.0
 		Kind.AREA:
-			return radius * 0.85
+			return ride_range + radius * 0.5 if ride_range > 0.0 else radius * 0.85
 		Kind.MELEE:
 			return melee_range + swing_radius + melee_step
 		Kind.ZONE:

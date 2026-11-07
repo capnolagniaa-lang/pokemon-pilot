@@ -54,10 +54,14 @@ func physics_update(delta: float) -> void:
 		if _move.kind == MoveData.Kind.PROJECTILE and _move.speed > 0.0:
 			off += actor.target.velocity * (off.length() / (_move.speed * Projectile.SPEED_MULT)) * CombatBody.difficulty().lead
 		_aim = off.normalized()
+		if _move.ride_range > 0.0:
+			_msg["point"] = actor.target.global_position  # (Surf va adonde estás al soltarlo)
 	actor.facing = _aim
 	actor.telegraph.direction = _aim
 	if _move.kind == MoveData.Kind.ZONE:
 		actor.telegraph.position = actor.zone_point(_move, _msg.get("point", Vector2.INF), _aim) - actor.global_position
+	elif _move.ride_range > 0.0:
+		actor.telegraph.position = actor.ride_point(_move, _msg.get("point", Vector2.INF), _aim) - actor.global_position
 	actor.move(dir, actor.speed() * MOVE_FACTOR)
 	if _time >= _move.cast_time:
 		_msg["aim"] = _aim

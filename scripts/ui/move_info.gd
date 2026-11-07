@@ -28,7 +28,10 @@ static func what_it_does(m: MoveData) -> String:
 			if m.trail_duration > 0.0:
 				s.append("Deja una estela en el suelo que lastima a los que la pisan.")
 		MoveData.Kind.AREA:
-			s.append("Suelta una onda a tu alrededor que golpea a todos los que estén cerca.")
+			if m.ride_range > 0.0:
+				s.append("Viajás montado en una ola hasta donde apuntás y, al llegar, revienta y golpea a todos los que estén cerca.")
+			else:
+				s.append("Suelta una onda a tu alrededor que golpea a todos los que estén cerca.")
 		MoveData.Kind.SHIELD:
 			s.append("Te cubrís durante %.1f s: los golpes te hacen un %d%% del daño." % [m.duration, roundi(Health.SHIELD_FACTOR * 100.0)])
 		MoveData.Kind.MELEE:

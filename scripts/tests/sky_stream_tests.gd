@@ -60,6 +60,8 @@ func run() -> void:
 	r["El chorro se dibuja con la hoja"] = cone != null and cone._stream != null and cone._stream.is_playing()
 	await _until(func(): return me.machine.current_name() != "channel", 2.0)
 	r["Pega varias veces (%d)" % hits[0]] = hits[0] >= 3
+	foe.queue_free()
+	await _surf()
 
 	var ok: bool = r.values().all(func(v): return v)
 	for key in r:
@@ -83,6 +85,65 @@ func showcase() -> void:
 		me.use_slot(1, aim, foe.global_position)
 		print("[showcase] ", id, " cuadro ", Engine.get_frames_drawn())
 		await get_tree().create_timer(1.8).timeout
+
+
+## Surf: viaja arriba de la ola hasta donde apuntás y golpea recién ahí.
+func _surf() -> void:
+	var me: Creature = world.companion
+	var surf: MoveData = DB.moves["surf"]
+	me.moves.slots[1] = surf
+	me.moves.reset_cooldown(1)
+	me.moves.set_pp(me.moves.max_pp())
+	me.machine.transition_to(me.default_state())
+	var finder := BalanceTests.new()
+	finder.world = world
+	me.global_position = finder._open_spot()  # (sin paredes en el camino)
+	finder.free()
+	await get_tree().physics_frame
+	var from := me.global_position
+	var near: Creature = autotest._dummy(world, "snorlax", from + Vector2(20, 0))  # queda atrás al llegar
+	var goal: Creature = autotest._dummy(world, "snorlax", from + Vector2(110, 0))
+	var near0: float = near.instance.hp
+	var goal0: float = goal.instance.hp
+	await get_tree().physics_frame
+	r["Surf llega más lejos que antes"] = surf.reach() > surf.radius
+	r["Surf sale"] = me.use_slot(1, Vector2.RIGHT, from + Vector2(110, 0))
+	await _until(func(): return me.machine.current_name() == "ride", 1.5)
+	r["Surf: después de cargar viaja"] = me.machine.current_name() == "ride"
+	r["Surf: va arriba de la ola"] = me.sprite.lift > 0.0 and me.get_children().any(func(c): return c is VfxSprite)
+	r["Surf: mientras viaja no pega"] = is_equal_approx(near.instance.hp, near0) and is_equal_approx(goal.instance.hp, goal0)
+	await _until(func(): return me.machine.current_name() != "ride", 1.5)
+	r["Surf: termina donde apuntaste (%.0f px)" % me.global_position.distance_to(from + Vector2(110, 0))] = me.global_position.distance_to(from + Vector2(110, 0)) < 12.0
+	await get_tree().create_timer(0.2).timeout
+	r["Surf: al llegar golpea al que está ahí"] = goal.instance.hp < goal0
+	r["Surf: al que quedó lejos, atrás, no"] = is_equal_approx(near.instance.hp, near0)
+	r["Surf: se baja de la ola"] = is_zero_approx(me.sprite.lift) and not me.get_children().any(func(c): return c is VfxSprite and not c.is_queued_for_deletion())
+	near.queue_free()
+	goal.queue_free()
+	await _until(func(): return me.machine.current_name() == me.default_state(), 2.0)
+	# Apuntar lejos no lo pasa de su alcance; apuntar cerca, va cerca.
+	var start := me.global_position
+	r["Surf: no se pasa de su alcance"] = me.ride_point(surf, start + Vector2(900, 0), Vector2.RIGHT).distance_to(start) <= surf.ride_range + 0.5
+	r["Surf: apuntando cerca va cerca"] = me.ride_point(surf, start + Vector2(30, 0), Vector2.RIGHT).distance_to(start) < 31.0
+	r["Surf: la explicación lo cuenta"] = "ola" in MoveInfo.what_it_does(surf)
+
+
+func showcase_surf() -> void:
+	world = await autotest._setup_kit_world("squirtle")
+	var me: Creature = world.companion
+	me.instance.level = 50
+	var foe: Creature = autotest._dummy(world, "snorlax", me.global_position + Vector2(100, 0))
+	world.get_node("UI").visible = false
+	for i in 3:
+		me.moves.slots[1] = DB.moves["surf"]
+		me.moves.reset_cooldown(1)
+		me.moves.set_pp(me.moves.max_pp())
+		foe.health.heal(9999.0)
+		print("[showcase] surf cuadro ", Engine.get_frames_drawn())
+		me.use_slot(1, (foe.global_position - me.global_position).normalized(), foe.global_position)
+		await get_tree().create_timer(2.0).timeout
+		me.global_position = foe.global_position + Vector2(-100, 0)
+	get_tree().quit()
 
 
 func _strike() -> SkyStrike:
