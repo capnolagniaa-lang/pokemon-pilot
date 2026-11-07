@@ -40,6 +40,33 @@ func run() -> void:
 	await get_tree().create_timer(0.4).timeout
 	t.autopilot = Vector2.ZERO
 	r["Puede moverse por el agua"] = fm.surfing and world.tags_at(t.global_position).has("agua")
+	# La montura mira hacia donde vas y nada mientras avanza (antes: un cuadro fijo mirando abajo).
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	r["La montura mira abajo si vas abajo"] = fm.mount_row == 0
+	for look in [[Vector2.LEFT, 6], [Vector2.UP, 4], [Vector2.RIGHT, 2]]:
+		t.facing = look[0]
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		r["La montura se da vuelta: %s" % look[0]] = fm.mount_row == look[1]
+	var seen := {}
+	var back: Vector2 = t.global_position
+	for i in 40:
+		fm._mount_from = back + Vector2(1.0, 1.0)  # (como si viniera de abajo a la derecha, sin salir del agua)
+		await get_tree().physics_frame
+		seen[(fm._mount.texture as AtlasTexture).region.position.x] = true
+	r["La montura sigue el movimiento en diagonal"] = fm.mount_row == 5
+	r["La montura nada mientras avanza (cambia de cuadro)"] = seen.size() > 1
+	t.facing = Vector2.DOWN
+	for sp_id in ["squirtle", "lapras", "tentacool", "magikarp"]:
+		var a: Dictionary = DB.anims_of(DB.species[sp_id])
+		for row in 8:
+			var img: Image = DB.texture(a["Walk"]["file"]).get_image()
+			if img.is_compressed():
+				img.decompress()
+			var part: Image = img.get_region(Rect2i(0, row * int(a["Walk"]["h"]), int(a["Walk"]["w"]), int(a["Walk"]["h"])))
+			if part.is_invisible():
+				r["La hoja de %s tiene la fila %d" % [sp_id, row]] = false
 
 	# --- Pelea en el agua ---
 	r["Modos: Agua nada, Volador/Fantasma/levita flota, el resto montado"] = \

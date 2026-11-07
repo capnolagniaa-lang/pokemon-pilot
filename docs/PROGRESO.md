@@ -89,6 +89,7 @@ Bitácora viva. Se actualiza al cerrar cada etapa (y antes de que se termine el 
   el stick izquierdo marca y al soltar sale ese (Círculo o no marcar nada = no cambia). En combate y fuera; el tiempo va a ×0,2
   (`CombatFeedback.set_slowdown`), salvo online, donde muestra solo tu equipo de la pelea. Test `--autotest-wheel`. Gráficos elegidos entre ideas de Qwen: ruleta
   Pokébola de 6 gajos fijos y dibujo oscuro con filete dorado del joystick en Controles (`tools/make_wheel_art.py`).
+- **Montura de Surf (2026-11-06, pedido del usuario)**: el Pokémon que te lleva por el agua mira hacia donde vas (8 direcciones; quieto, hacia donde te diste vuelta) y nada con su animación de caminar mientras avanza; antes era un cuadro fijo mirando abajo.
 - **Pesca (2026-11-06, pedido del usuario)**: 21 puntos de pesca (cartel con un pescadito y burbujas: `data/world/pesca_puntos.json`,
   elegidos sobre el mapa, se llega sin Surf). E frente al agua: tirás la línea, pica ("¡!", 0,8 s para apretar) y frenás la aguja en lo
   verde (más chico y rápido con los raros); sale una pelea normal contra un salvaje. Qué se pesca = FireRed por zona y caña

@@ -49,9 +49,17 @@ var strength := false
 var _push_time := 0.0
 var _pushing := false
 var _mount: Sprite2D
+## La fila de la hoja (dirección) y el cuadro de la montura, que mira hacia donde vas.
+var mount_row := 0
+var _mount_dir := Vector2.DOWN
+var _mount_time := 0.0
+var _mount_from := Vector2.ZERO
 var _sprite_y := 0.0
 ## Cómo pelea en el agua el Pokémon que está afuera ("" = fuera de combate).
 var water_mode := ""
+## Por cuadro: menos que esto es estar quieto, y más, un salto (una puerta, un fundido), no un paso.
+const MOUNT_MOVING := 0.2
+const MOUNT_JUMP := 40.0
 ## Al subir al agua, un ratito sin chequear si pisó tierra (todavía está saliendo de la orilla).
 var _surf_grace := 0.0
 var _water_check := 0.0
@@ -233,12 +241,44 @@ func _show_mount(on: bool) -> void:
 		t.add_child(_mount)
 	_mount.visible = on
 	if on:
-		_mount.texture = DB.idle_frame_of(mount_species())
+		_mount_dir = t.facing
+		_mount_from = t.global_position
+		_mount_time = 0.0
 		_mount.position = Vector2(0, -6)
+		_animate_mount(0.0)
 		_sprite_y = t.sprite.position.y
 		t.sprite.position.y = _sprite_y - 8.0
 	else:
 		t.sprite.position.y = _sprite_y
+
+
+## Mira hacia donde se mueve el entrenador (en 8 direcciones) o hacia donde se dio vuelta, y nada mientras avanza.
+func _animate_mount(delta: float) -> void:
+	var t: Trainer = world.trainer
+	var moved: Vector2 = t.global_position - _mount_from
+	_mount_from = t.global_position
+	var moving: bool = moved.length() > MOUNT_MOVING and moved.length() < MOUNT_JUMP
+	if moving:
+		_mount_dir = moved.normalized()
+	elif _mount_dir.dot(t.facing) <= 0.0:
+		_mount_dir = t.facing
+	_mount_time += delta
+	var anims: Dictionary = DB.anims_of(mount_species())
+	var anim: Dictionary = anims.get("Walk" if moving else "Idle", anims.get("Idle", {}))
+	if anim.is_empty():
+		_mount.texture = DB.idle_frame_of(mount_species())
+		return
+	var sheet: Texture2D = DB.texture(anim["file"])
+	var w: float = anim["w"]
+	var h: float = anim["h"]
+	var single: bool = sheet.get_height() < h * 8.0  # (una sola fila: mira a la izquierda y se espeja)
+	mount_row = 0 if single else CreatureSprite.row_for(_mount_dir)
+	_mount.flip_h = single and _mount_dir.x > 0.3
+	if not _mount.texture is AtlasTexture:
+		_mount.texture = AtlasTexture.new()
+	var at: AtlasTexture = _mount.texture
+	at.atlas = sheet
+	at.region = Rect2(CreatureSprite.frame_at(anim["durations"], _mount_time, true) * w, mount_row * h, w, h)
 
 
 ## El que te lleva por el agua: el primero de agua del equipo (o la montura de siempre).
@@ -294,6 +334,8 @@ func _physics_process(delta: float) -> void:
 	var t: Trainer = world.trainer
 	if surfing:
 		_mount_for_arena()
+		if is_instance_valid(_mount) and _mount.visible:
+			_animate_mount(delta)
 	if surfing and not _in_arena():
 		_surf_grace -= delta
 		if water_mode == "montado" and is_instance_valid(world.companion):

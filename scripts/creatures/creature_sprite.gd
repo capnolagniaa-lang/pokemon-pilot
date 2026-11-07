@@ -187,10 +187,15 @@ func _total(anim_name: String) -> int:
 
 
 func _frame(durations: Array, loop: bool) -> int:
+	return frame_at(durations, _time, loop)
+
+
+## Cuadro de una animación PMD (duraciones en 1/60 s) a los `time` segundos.
+static func frame_at(durations: Array, time: float, loop: bool) -> int:
 	var total := 0
 	for d in durations:
 		total += d
-	var t := int(_time * 60.0)
+	var t := int(time * 60.0)
 	t = t % total if loop else mini(t, total - 1)
 	var acc := 0
 	for i in durations.size():
@@ -202,6 +207,10 @@ func _frame(durations: Array, loop: bool) -> int:
 
 ## Fila PMD según la dirección: abajo, abajo-der, der, arriba-der, arriba, arriba-izq, izq, abajo-izq.
 func _row(facing: Vector2) -> int:
+	return row_for(facing)
+
+
+static func row_for(facing: Vector2) -> int:
 	return posmod(int(round((PI / 2.0 - facing.angle()) / (PI / 4.0))), 8)
 
 
