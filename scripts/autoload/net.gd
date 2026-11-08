@@ -63,9 +63,39 @@ func _start_server() -> void:
 		get_tree().quit(1)
 
 
-## Conectarse a la sala con el nombre y el equipo de la partida actual.
+## Conectarse a la sala con el nombre y el equipo de la partida actual (y el token de la sesión anterior, por si se
+## había cortado en plena pelea: el servidor la retoma).
 func go_online() -> Error:
-	return client.join(address, port, {"version": game_version(), "name": display_name(), "team": team_summary()})
+	return client.join(address, port, {"version": game_version(), "name": display_name(), "team": team_summary(),
+		"token": client.session_token})
+
+
+## Entre intentos de reconexión.
+const RETRY_EVERY := 1.5
+var reconnecting := false
+
+
+## Se cortó la conexión: intenta volver a entrar hasta `seconds` s (varios intentos). Devuelve si quedó conectado.
+## Si estabas en una pelea, `client.resumed` dice si el servidor la retomó.
+func reconnect(seconds: float) -> bool:
+	if reconnecting:
+		return false
+	reconnecting = true
+	var t0 := Time.get_ticks_msec()
+	while Time.get_ticks_msec() - t0 < seconds * 1000.0:
+		if go_online() == OK:
+			while client.state == "connecting":
+				if Time.get_ticks_msec() - t0 > seconds * 1000.0:
+					client.close()  # (se acabó el tiempo en medio de un intento)
+					break
+				await get_tree().process_frame
+			if is_online():
+				break
+			if client.state == "rejected":
+				break
+		await get_tree().create_timer(RETRY_EVERY).timeout
+	reconnecting = false
+	return is_online()
 
 
 func challenge(to_id: int, count: int) -> void:

@@ -1,7 +1,7 @@
 class_name OnlineSyncTests
 extends Node
 ## Autotest de la pelea online a fondo (docs/ONLINE_INFORME.md): lo que viaja por la red y cómo se queda sincronizado.
-##   godot --headless --path . --quit-after 400000 -- --autotest-online-sync [--only paquetes|equipo|formas|lag|varias|mundo]
+##   godot --headless --path . --quit-after 400000 -- --autotest-online-sync [--only paquetes|equipo|formas|lag|varias|reconexion|mundo]
 ## Partes:
 ##   · Paquetes de teclas (NetCombatInput): un toque de un solo cuadro no se pierde (contadores), y la basura se ignora.
 ##   · Equipo trucho (clean_battle_team): nivel, habilidad, ataques que no aprende, IV, vida, apodo.
@@ -9,6 +9,8 @@ extends Node
 ##     clima, mejora propia): el aviso "use", el golpe, y que la copia del rival (`force_move`) lo haga igual.
 ##   · Red con demora y pérdida simuladas: los toques llegan igual y los hechos llegan en orden.
 ##   · Varias peleas a la vez: lugares distintos, clima por pelea, todas terminan, cuánto tarda el servidor por cuadro.
+##   · Reconexión: se cae uno en plena pelea → la pelea se congela y se lo espera (token de sesión); vuelve con otro id y
+##     sigue; no vuelve a tiempo → gana el otro; se caen los dos → termina; un token viejo no retoma nada.
 ##   · Con el mundo: la vida en el aviso "send", la gracia de los estados, el golpe fuerte corta la carga de la copia, y
 ##     si se corta la conexión en plena pelea la arena se cierra y se puede caminar.
 
@@ -60,6 +62,8 @@ func run() -> void:
 		await _lag_tests()
 	if only in ["", "varias"]:
 		await _many_tests()
+	if only in ["", "reconexion"]:
+		await _reconnect_tests()
 	if only in ["", "mundo"]:
 		await _world_tests()
 	_results()
@@ -401,10 +405,13 @@ func _many_tests() -> void:
 			drivers[k].send(to.normalized() if to.length() > 26.0 else Vector2.ZERO, to, foe.p, 0b1111)
 		await get_tree().physics_frame
 		t += get_physics_process_delta_time()
-		frames += 1
-		physics_ms += Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000.0
+		if t > 1.0:  # (el primer segundo es la carga: aparecen 12 Pokémon)
+			frames += 1
+			physics_ms += Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000.0
 	var avg_ms := physics_ms / maxf(1.0, frames)
 	print("[online-sync] %d peleas a la vez: %.1f ms de física por cuadro en promedio, terminaron en %.0f s" % [N, avg_ms, t])
+	# (el aviso "end" llega un cuadro después de que el servidor cierra la pelea)
+	await _until(func(): return pairs.all(func(p): return ev[p[0]].any(func(e): return e.t == "end")), 3.0)
 	var ends := pairs.map(func(p): return ev[p[0]].filter(func(e): return e.t == "end").size())
 	r["Varias: las %d terminan solas, cada una con su ganador (%s)" % [N, str(ends)]] = server.battles.is_empty() \
 		and ends.all(func(n): return n == 1)
@@ -422,6 +429,116 @@ func _many_tests() -> void:
 		p[0].close()
 		p[1].close()
 	await _until(func(): return server.players.is_empty())
+
+
+# --- Reconexión -----------------------------------------------------------------------------------
+
+func _reconnect_tests() -> void:
+	server.reconnect_grace = 4.0
+	var a := _join("RA", "Ana")
+	var b := _join("RB", "Beto")
+	await _until(func(): return a.state == "online" and b.state == "online", 10.0)
+	r["Reconexión: al entrar llega un token de sesión"] = a.session_token.length() == 16 and b.session_token.length() == 16 \
+		and a.session_token != b.session_token and not a.resumed
+	var mid := await _start_match(a, b, [CreatureInstance.create(DB.species["pikachu"], 20)],
+		[CreatureInstance.create(DB.species["eevee"], 20), CreatureInstance.create(DB.species["rattata"], 20)])
+	if mid == 0:
+		r["Reconexión: arranca la pelea"] = false
+		return
+	await get_tree().create_timer(NetMatch.COUNTDOWN + 0.3).timeout
+	var nm: NetMatch = server.battles[mid]
+	var token := b.session_token
+	var old_id := b.my_id
+	var time_before := nm.time
+	# Se cae B: la pelea se congela, A recibe "hold" y el servidor guarda a B.
+	ev[a].clear()
+	b.close()
+	await _until(func(): return nm.held, 5.0)
+	await get_tree().create_timer(0.5).timeout
+	var holds: Array = ev[a].filter(func(e): return e.t == "hold")
+	r["Reconexión: se cae uno y la pelea se congela (el otro recibe \"hold\" con los segundos de espera)"] = nm.held \
+		and holds.size() == 1 and int(holds[0].side) == old_id and is_equal_approx(float(holds[0].seconds), 4.0) \
+		and server.battles.has(mid) and server._absent.size() == 1
+	r["Reconexión: congelada, el tiempo de la pelea no corre"] = is_equal_approx(nm.time, time_before) \
+		or nm.time - time_before < 0.1
+	r["Reconexión: el que se cayó desaparece de la lista y el otro sigue \"peleando\""] = server.players.size() >= 1 \
+		and not server.players.any(func(p): return p.id == old_id) and _entry(server, a.my_id).get("status") == "peleando"
+	# Vuelve B con su token (otro id de red): la pelea sigue, los dos reciben "resume" con el id nuevo.
+	var b2 := _peer("RB2")
+	b2.join("127.0.0.1", PORT, {"version": Net.game_version(), "name": "Beto", "team": [], "token": token})
+	await _until(func(): return b2.state == "online", 10.0)
+	await _until(func(): return ev[a].any(func(e): return e.t == "resume") and ev[b2].any(func(e): return e.t == "resume"), 5.0)
+	var res_a: Array = ev[a].filter(func(e): return e.t == "resume")
+	var res_b: Array = ev[b2].filter(func(e): return e.t == "resume")
+	r["Reconexión: vuelve con el token y el servidor lo retoma (welcome con resumed, mismo token)"] = b2.resumed \
+		and b2.session_token == token and b2.my_id != old_id
+	r["Reconexión: los dos reciben \"resume\" con el id nuevo y cómo está cada lado"] = res_a.size() == 1 and res_b.size() == 1 \
+		and int(res_a[0].side) == b2.my_id and int(res_a[0].was) == old_id and res_a[0].sides.has(a.my_id) \
+		and res_a[0].sides.has(b2.my_id) and res_a[0].sides[b2.my_id].index == 0
+	r["Reconexión: la pelea sigue con el id nuevo (sides, matches, sin congelar)"] = not nm.held and nm.sides.has(b2.my_id) \
+		and not nm.sides.has(old_id) and server.matches[mid].b == b2.my_id and nm.process_mode == Node.PROCESS_MODE_INHERIT
+	await _until(func(): return st[b2].has(b2.my_id) and st[a].has(b2.my_id), 5.0)
+	r["Reconexión: las fotos siguen llegando a los dos, con el id nuevo"] = st[b2].has(b2.my_id) and st[a].has(b2.my_id) \
+		and not st[a].has(old_id)
+	# B2 manda teclas y cambios con su id nuevo: el servidor los toma.
+	var d := Driver.new(b2, mid)
+	for i in 10:
+		d.send(Vector2.RIGHT, Vector2.RIGHT, Vector2.INF, 0)
+		await get_tree().physics_frame
+	var moved: bool = (nm.sides[b2.my_id].creature as Creature).velocity.length() > 1.0 or not nm.sides[b2.my_id].packet.is_empty()
+	b2.send_battle_switch(mid, 1)
+	await _until(func(): return nm.sides[b2.my_id].index == 1, 3.0)
+	r["Reconexión: con el id nuevo manda teclas y cambia de Pokémon"] = moved and nm.sides[b2.my_id].index == 1
+	# Se cae de nuevo y no vuelve: a los 4 s gana A, con el motivo de siempre.
+	ev[a].clear()
+	b2.close()
+	await _until(func(): return nm.held, 5.0)
+	await _until(func(): return not server.battles.has(mid), 10.0)
+	var ends: Array = ev[a].filter(func(e): return e.t == "end")
+	r["Reconexión: no vuelve en la espera: gana el otro (\"se desconectó\")"] = ends.size() == 1 and int(ends[0].winner) == a.my_id \
+		and "se desconectó" in str(ends[0].reason) and server._absent.is_empty() \
+		and _entry(server, a.my_id).get("status") == "libre"
+	# Un token vencido no retoma nada: entra como uno nuevo.
+	var b3 := _peer("RB3")
+	b3.join("127.0.0.1", PORT, {"version": Net.game_version(), "name": "Beto", "team": [{"species": "eevee", "level": 20}], "token": token})
+	await _until(func(): return b3.state == "online", 10.0)
+	r["Reconexión: con un token vencido se entra como nuevo (sin pelea, token nuevo)"] = b3.state == "online" and not b3.resumed \
+		and b3.session_token != token and _entry(server, b3.my_id).get("status") == "libre"
+	# Se caen los dos: la pelea termina sin esperar a nadie.
+	var mid2 := await _start_match(a, b3, [CreatureInstance.create(DB.species["pikachu"], 20)],
+		[CreatureInstance.create(DB.species["eevee"], 20)])
+	r["Reconexión: arranca otra pelea"] = mid2 > 0
+	if mid2 > 0:
+		var nm2: NetMatch = server.battles[mid2]
+		a.close()
+		await _until(func(): return nm2.held, 5.0)
+		b3.close()
+		await _until(func(): return not server.battles.has(mid2), 5.0)
+		r["Reconexión: se caen los dos: la pelea termina al toque"] = not server.battles.has(mid2) and server._absent.is_empty()
+	# El servidor todavía no notó el corte (la conexión vieja sigue abierta) y el jugador ya vuelve: igual lo retoma.
+	var c := _join("RC", "Cata")
+	var e := _join("RE", "Eli")
+	await _until(func(): return c.state == "online" and e.state == "online", 10.0)
+	var mid3 := await _start_match(c, e, [CreatureInstance.create(DB.species["pikachu"], 20)],
+		[CreatureInstance.create(DB.species["eevee"], 20)])
+	if mid3 > 0:
+		var nm3: NetMatch = server.battles[mid3]
+		var c_old := c.my_id
+		var c2 := _peer("RC2")
+		c2.join("127.0.0.1", PORT, {"version": Net.game_version(), "name": "Cata", "team": [], "token": c.session_token})
+		await _until(func(): return c2.state == "online", 10.0)
+		await _until(func(): return ev[e].any(func(x): return x.t == "resume"), 5.0)
+		r["Reconexión: vuelve antes de que el servidor note el corte: corta la conexión vieja y retoma"] = c2.resumed \
+			and nm3.sides.has(c2.my_id) and not nm3.sides.has(c_old) and not nm3.held \
+			and ev[e].any(func(x): return x.t == "hold") and ev[e].any(func(x): return x.t == "resume")
+		nm3.finish(c2.my_id, "")
+		await _until(func(): return not server.battles.has(mid3), 5.0)
+		c2.close()
+		e.close()
+	server.reconnect_grace = NetPeer.RECONNECT_GRACE
+	for p in [a, b, b2, b3, c]:
+		p.close()
+	await _until(func(): return server.players.is_empty(), 10.0)
 
 
 # --- Con el mundo ---------------------------------------------------------------------------------
@@ -489,13 +606,61 @@ func _world_tests() -> void:
 	r["Mundo: el golpe fuerte que avisa el servidor corta el canalizado de la copia"] = channeling \
 		and foe.machine.current_name() == "stunned"
 	await get_tree().create_timer(0.5).timeout
+	# Se te corta la conexión en plena pelea: tu pantalla se congela y reconecta sola; el servidor te retoma, Gary ve
+	# "hold" y "resume", y seguís con otro id de red.
+	var my_old := Net.client.my_id
+	var my_token := Net.client.session_token
+	ev[gary].clear()
+	Net.client._drop("Se cortó la conexión con el servidor.")
+	await get_tree().process_frame
+	var froze := battle.held and battle._reconnecting and not Net.is_online()
+	await _until(func(): return Net.is_online() and not battle.held, 20.0)
+	await get_tree().create_timer(0.3).timeout
+	var came_back := Net.is_online() and Net.client.resumed and Net.client.session_token == my_token and Net.client.my_id != my_old
+	r["Mundo: se te corta la conexión: la pelea se congela, reconecta sola y sigue (otro id, mismo token)"] = froze and came_back \
+		and battle.active and not battle.held and battle._end.is_empty() and is_instance_valid(battle.foe) \
+		and is_instance_valid(world.companion) and world.companion.process_mode == Node.PROCESS_MODE_INHERIT
+	r["Mundo: Gary ve \"hold\" y \"resume\" con tu id nuevo"] = ev[gary].any(func(e): return e.t == "hold" and int(e.side) == my_old) \
+		and ev[gary].any(func(e): return e.t == "resume" and int(e.side) == Net.client.my_id and int(e.was) == my_old)
+	var srv_match: NetMatch = server.battles.get(mid)
+	r["Mundo: el servidor sigue la misma pelea con tu id nuevo"] = srv_match != null and not srv_match.held \
+		and srv_match.sides.has(Net.client.my_id) and not srv_match.sides.has(my_old)
+	# Gary se cae y no vuelve: la pelea se congela en tu pantalla y a los pocos segundos ganás.
+	server.reconnect_grace = 2.0
+	gary.close()
+	await _until(func(): return battle.held, 5.0)
+	var held_for_gary := battle.held and is_instance_valid(battle.foe) and battle.foe.process_mode == Node.PROCESS_MODE_DISABLED
+	await _until(func(): return not battle._end.is_empty(), 10.0)
+	r["Mundo: se cae el rival: tu pantalla se congela y, si no vuelve, ganás"] = held_for_gary and not battle.held \
+		and battle.result == "win" and "se desconectó" in str(battle._end.get("reason", ""))
+	await _until(func(): return not battle.active and not world.trainer.locked and not world.story.busy, 15.0)
+	server.reconnect_grace = NetPeer.RECONNECT_GRACE
+	# Otra pelea, y se cae el servidor entero: se intenta volver un rato (acá, poco) y después se da por perdida.
+	gary = _join("Gary2", "Gary", [{"species": "magikarp", "level": 3}])
+	await _until(func(): return gary.state == "online" and Net.players.size() == 2, 10.0)
+	world.online.open_lobby()
+	await get_tree().process_frame
+	lobby = world.online.screen
+	chose[0] = 0
+	gary.match_choose.connect(func(mid2, _o, _c, _t): chose[0] = mid2)
+	gary.send_challenge(Net.client.my_id, 3)
+	await _until(func(): return not lobby.incoming.is_empty())
+	lobby.accept_incoming()
+	await _until(func(): return lobby.step == "elegir" and chose[0] != 0)
+	lobby.toggle_pick(0)
+	lobby.confirm_pick()
+	gary.send_choice(chose[0], [CreatureInstance.create(DB.species["magikarp"], 3), CreatureInstance.create(DB.species["magikarp"], 3)])
+	await _until(func(): return battle.active and battle._going, 20.0)
+	r["Mundo: segunda pelea arranca"] = battle.active and battle._going
+	battle.reconnect_for = 3.0
 	# Se corta la conexión en plena pelea: la arena se cierra, se puede caminar y la sala queda offline.
 	var t0 := Time.get_ticks_msec()
 	server.close()
 	await _until(func(): return not battle.active, 30.0)
 	var took := (Time.get_ticks_msec() - t0) / 1000.0
-	r["Mundo: se cae el servidor en plena pelea: la pelea se cierra sola (%.1f s), sin quedar trabado" % took] = not battle.active \
-		and battle.result == "lose" and not Net.is_online() and took < 25.0
+	r["Mundo: se cae el servidor en plena pelea: se intenta volver y después se cierra sola (%.1f s), sin quedar trabado" % took] = \
+		not battle.active and battle.result == "lose" and not Net.is_online() and took < 25.0 \
+		and "No se pudo volver" in str(battle._end.get("reason", ""))
 	await _until(func(): return not world.trainer.locked and not world.story.busy, 10.0)
 	var zone: ZoneEntry = world.streamer.world_data.zone_at(world.trainer.global_position)
 	r["Mundo: vuelve al Centro y puede caminar"] = not world.trainer.locked and zone != null and zone.id.begins_with("centro_online") \

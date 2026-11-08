@@ -60,7 +60,6 @@ arregló, qué queda y qué cubre la suite nueva `--autotest-online-sync`.
 ### Pendientes (no se tocaron: son decisiones de diseño o trabajo más grande)
 | Prioridad | Qué | Detalle |
 |---|---|---|
-| Alta | **Reconexión** | No existe: 8 s sin paquetes (un microcorte de wifi) = pelea perdida. El plan decía "esperar 15 s". Propuesta en §3. |
 | Alta | **Tus propios ataques pueden diferir del servidor** | Tu copia dispara con tus teclas y el servidor con las que le llegan. Si la recarga o los PP difieren (otra escala de vida, un `hit` que te frenó antes en el servidor), uno ataca y el otro no. El aviso `use` de tu lado hoy se ignora. Propuesta: usarlo para **reconciliar** (si el servidor usó y tu copia no, hacerlo con `force_move`; si tu copia usó y el servidor no avisó en ~250 ms, cancelar el efecto visual). |
 | Media | **Transformación, Metrónomo, Espejo, Ayuda** | El servidor cambia los ataques (`fight_moves_changed`) o tira uno al azar; la copia del rival no sabe cuál: `force_move` de un ataque que no está en sus ranuras devuelve `false` y no se ve nada. Propuesta: que el `use` lleve también el ataque real tirado (`cast_other`) y que la copia lo haga con `cast_other`. |
 | Media | **Sustituto, cambios de tipo/stats de la pelea** | `sub_hp`, `fight_types`, `fight_stats` no viajan: la barra y "No le afecta" pueden no coincidir. Propuesta: sumar `sub` y `types` a la foto. |
@@ -71,17 +70,31 @@ arregló, qué queda y qué cubre la suite nueva `--autotest-online-sync`.
 | Baja | **Seguridad entre amigos** | No hay límite de mensajes por segundo (un cliente puede inundar `challenge`/`update_team`), `set_status` deja fingir "peleando", y `choose_team` acepta diccionarios grandes. Suficiente para amigos; si el servidor queda público, poner tope por peer. |
 | Baja | **`Events.party_changed` durante la pelea** | La EXP de cada debilitado dispara `refresh_team` (un `update_team` + `player_list` a todos) en plena pelea. Inofensivo; se podría postergar al final. |
 
+### Reconexión con gracia (hecha el 2026-11-08, decisión del usuario)
+Antes: 8 s sin paquetes (un microcorte de wifi) = pelea perdida al instante. Ahora:
+- **Token de sesión**: el `welcome` trae un token al azar (`NetPeer.session_token`); el cliente lo vuelve a presentar en el
+  `hello` al reconectar. `PROTOCOL` 8.
+- **Servidor** (`NetPeer._absent`, `RECONNECT_GRACE` 15 s): si uno se desconecta en plena pelea, en vez de darle la pelea
+  al otro la **congela** (`NetMatch.hold`: `process_mode` apagado, no corre ni el tiempo ni los Pokémon) y manda `hold`
+  al que quedó. Si el que se fue vuelve con su token, su lugar pasa al id de red nuevo (`NetMatch.rebind`, con alias para
+  lo que quedó atado al viejo: timers, señales de las criaturas), los dos reciben `resume` (id nuevo, id viejo y cómo
+  está cada lado: quién está afuera, dónde y con cuánta vida) y sigue. Si no vuelve en 15 s, gana el otro con el motivo
+  de siempre ("se desconectó"). Si se caen los dos, termina al toque. Si vuelve antes de que el servidor note el corte
+  (la conexión vieja sigue abierta), se corta la vieja y se retoma igual. Un token vencido entra como jugador nuevo.
+- **Cliente** (`OnlineBattle`): al perder la conexión (`NetPeer.lost`) congela tu pantalla (`_set_held`: tu Pokémon, el
+  del rival y los disparos en el aire con `process_mode` apagado), muestra "reconectando..." y `Net.reconnect(20 s)`
+  reintenta cada 1,5 s; con `welcome.resumed` espera el `resume`, que acomoda cada lado y descongela. Si no se pudo
+  volver, o el servidor ya no tenía la pelea, se da por perdida y se cierra la arena como antes. El que se queda ve
+  "se lo espera hasta 15 s" y la pelea congelada; con el `resume` el id del rival pasa a ser el nuevo.
+- Tests: parte `reconexion` de la suite y dos escenarios en `mundo` (se te corta a vos; se cae el rival y no vuelve).
+
 ## 3. Propuestas de mejora (por impacto)
-1. **Reconexión con gracia (15 s)**: el servidor guarda la partida del que se cayó (`_by_id` con una marca "ausente") y
-   pausa su `NetCombatInput`; si vuelve a entrar con el mismo nombre y un token que le dio el `welcome`, retoma la pelea
-   (le manda `start` + `send` de los dos + la foto). El cliente, al perder la conexión, reintenta cada 2 s mientras muestra
-   "Reconectando..." en la arena. Esto cambia el flujo de desconexión (hoy: pierde al instante): **preguntar al usuario**.
-2. **Reconciliar tus ataques con el `use` del servidor** (ver pendientes). Es el desvío más visible que queda.
-3. **Secuencia en las fotos** y descartar las viejas; con eso también se puede interpolar entre dos fotos en vez de
+1. **Reconciliar tus ataques con el `use` del servidor** (ver pendientes). Es el desvío más visible que queda.
+2. **Secuencia en las fotos** y descartar las viejas; con eso también se puede interpolar entre dos fotos en vez de
    acercarse con `lerp` (movimiento del rival más suave con 100 ms de ping).
-4. **`use` con el ataque real** (Metrónomo, Transformación, Espejo) y `sub`/tipos en la foto.
-5. **Tope de mensajes por peer** y lista de la sala con diffs (si el servidor se abre a más gente).
-6. **Nivel 50 opcional y lo de la O-6** (chat rápido, verse en la sala) quedan como estaban en el plan.
+3. **`use` con el ataque real** (Metrónomo, Transformación, Espejo) y `sub`/tipos en la foto.
+4. **Tope de mensajes por peer** y lista de la sala con diffs (si el servidor se abre a más gente).
+5. **Nivel 50 opcional y lo de la O-6** (chat rápido, verse en la sala) quedan como estaban en el plan.
 
 ## 4. Qué cubre la suite nueva (`--autotest-online-sync`)
 - **Paquetes**: toque de un cuadro que llega solo con el contador; mismo contador no vale dos veces; contadores que suben
@@ -104,5 +117,6 @@ arregló, qué queda y qué cubre la suite nueva `--autotest-online-sync`.
   `--autotest-burrow` (Excavar online) y `--autotest-save-sync` (partidas en el servidor).
 
 ## 5. Para publicar
-`PROTOCOL` pasó a 7 (paquete de teclas con contadores, `send` con vida): hay que sacar zip nuevo y subirlo al servidor
+`PROTOCOL` pasó a 8 (7: paquete de teclas con contadores, `send` con vida; 8: token de sesión en `hello`/`welcome`, avisos
+`hold` y `resume`): hay que sacar zip nuevo y subirlo al servidor
 (`build_portable.py` + `subir_servidor.bat`), si no los clientes viejos no entran ("otra versión"). No se desplegó nada.

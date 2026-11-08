@@ -21,7 +21,7 @@ signal battle_state_received(match_id: int, state: Dictionary)
 signal battle_event_received(match_id: int, ev: Dictionary)
 
 ## Sube cuando cambian los mensajes: un juego viejo y uno nuevo no se entienden.
-const PROTOCOL := 7  # (4: el cambio 1-6 es el lugar en el equipo elegido; 5: aviso "use" de cada ataque, sin orden por rol; 6: Excavar en dos tiempos, dos avisos "use"; 7: contadores de toques en las teclas y la vida en el aviso "send")
+const PROTOCOL := 8  # (4: el cambio 1-6 es el lugar en el equipo elegido; 5: aviso "use" de cada ataque, sin orden por rol; 6: Excavar en dos tiempos, dos avisos "use"; 7: contadores de toques en las teclas y la vida en el aviso "send"; 8: reconexión: token de sesión en hello/welcome, avisos "hold" y "resume")
 const DEFAULT_PORT := 24680
 const MAX_PLAYERS := 32
 const NAME_MAX := 16
@@ -39,6 +39,9 @@ const ANSWER_TIMEOUT := 20.0
 ## Tiempo para elegir equipo (el cliente elige solo al terminar; el servidor espera un poco más y si no, cancela).
 const CHOOSE_TIMEOUT := 30.0
 const CHOOSE_GRACE := 5.0
+## Reconexión (decisión del usuario 2026-11-08): al que se le corta la conexión en plena pelea, el servidor le guarda la
+## partida este tiempo, con la pelea congelada para los dos; si vuelve (con su token de sesión), sigue donde estaba.
+const RECONNECT_GRACE := 15.0
 
 var is_server := false
 ## Cliente: "offline", "connecting", "online", "rejected".
@@ -51,6 +54,18 @@ var my_id := 0
 var _by_id: Dictionary = {}
 ## Servidor: id → segundos sin presentarse.
 var _pending: Dictionary = {}
+## Servidor: id → token de sesión (lo que el jugador presenta para volver a su pelea si se le corta la conexión).
+var _tokens: Dictionary = {}
+## Servidor: token → {entry, match, old_id, t}: jugadores que se cayeron en plena pelea y todavía pueden volver.
+var _absent: Dictionary = {}
+## (Var para que el autotest la achique.)
+var reconnect_grace := RECONNECT_GRACE
+## Cliente: mi token de sesión (lo da el servidor en welcome; se vuelve a presentar al reconectar).
+var session_token := ""
+## Cliente: al último welcome, ¿volví a una pelea que había dejado a medias?
+var resumed := false
+## Cliente: la última desconexión fue sin querer (se cortó, no se encontró el servidor), no un close().
+var lost := false
 ## (Var para que el autotest lo achique.)
 var hello_timeout := HELLO_TIMEOUT
 var _api: SceneMultiplayer
@@ -130,6 +145,15 @@ func _process(delta: float) -> void:
 		m.t += delta
 		if not m.ready and m.t > choose_timeout + CHOOSE_GRACE:
 			_cancel_match(mid, "No se eligió el equipo a tiempo.")
+	for token in _absent.keys():
+		var ab: Dictionary = _absent[token]
+		ab.t += delta
+		if ab.t > reconnect_grace:
+			_absent.erase(token)
+			var mid: int = ab.match
+			if battles.has(mid) and matches.has(mid):
+				_log("partida %d: %s no volvió en %d s" % [mid, ab.entry.name, int(reconnect_grace)])
+				battles[mid].finish(_other(matches[mid], ab.old_id), "%s se desconectó." % ab.entry.name)
 
 
 func _on_peer_connected(id: int) -> void:
@@ -147,7 +171,10 @@ func _on_peer_disconnected(id: int) -> void:
 	if _by_id.has(id):
 		_log("se fue %s (%d)" % [_by_id[id].name, id])
 		var who: String = _by_id[id].name
+		var entry: Dictionary = _by_id[id]
+		var token: String = str(_tokens.get(id, ""))
 		_by_id.erase(id)  # antes de avisar: que no se le mande nada al que se fue
+		_tokens.erase(id)
 		for from in _challenges.keys():
 			var c: Dictionary = _challenges[from]
 			if from == id:
@@ -159,15 +186,49 @@ func _on_peer_disconnected(id: int) -> void:
 		for mid in matches.keys():
 			if id in [matches[mid].a, matches[mid].b]:
 				if battles.has(mid):
-					battles[mid].finish(_other(matches[mid], id), "%s se desconectó." % who)
+					_hold_battle(mid, id, entry, token)
 				else:
 					_cancel_match(mid, "%s se desconectó." % who, id)
 		_broadcast_players()
 
 
+## Se cayó uno en plena pelea: la pelea se congela y se lo espera `reconnect_grace` s (si ya se estaba esperando al otro,
+## no hay a quién esperar: se termina sin ganador).
+func _hold_battle(mid: int, id: int, entry: Dictionary, token: String) -> void:
+	var nm: NetMatch = battles[mid]
+	var other := _other(matches[mid], id)
+	var other_absent: bool = _absent.values().any(func(ab): return ab.match == mid)
+	if other_absent or token == "":
+		for t in _absent.keys():
+			if _absent[t].match == mid:
+				_absent.erase(t)
+		nm.finish(other if token != "" else 0, "Los dos se desconectaron." if other_absent else "%s se desconectó." % entry.name)
+		return
+	_absent[token] = {"entry": entry, "match": mid, "old_id": id, "t": 0.0}
+	_log("partida %d: se espera a %s hasta %d s" % [mid, entry.name, int(reconnect_grace)])
+	nm.hold(id, reconnect_grace)
+
+
+## Volvió uno que se había caído: su lugar pasa al id nuevo, le mandamos cómo está la pelea y sigue para los dos.
+func _resume_battle(ab: Dictionary, new_id: int) -> void:
+	var mid: int = ab.match
+	var old_id: int = ab.old_id
+	if not battles.has(mid) or not matches.has(mid):
+		return
+	var m: Dictionary = matches[mid]
+	if m.a == old_id:
+		m.a = new_id
+	elif m.b == old_id:
+		m.b = new_id
+	var nm: NetMatch = battles[mid]
+	nm.rebind(old_id, new_id)
+	_log("partida %d: volvió %s (%d → %d)" % [mid, ab.entry.name, old_id, new_id])
+	nm.resume(new_id, old_id)
+
+
 ## Cliente → servidor: presentarse con la versión, el nombre y el equipo (resumen: especie y nivel).
 @rpc("any_peer", "reliable")
-func hello(version: String, protocol: int, player_name: String, team: Array) -> void:
+func hello(version: String, protocol: int, player_name: String, team: Array, token: String = "") -> void:
 	if not is_server:
 		return
 	var id := _api.get_remote_sender_id()
@@ -181,11 +242,40 @@ func hello(version: String, protocol: int, player_name: String, team: Array) -> 
 	if _by_id.size() >= MAX_PLAYERS:
 		_kick(id, "La sala está llena.")
 		return
+	# ¿Vuelve a una pelea que dejó a medias? (Si el servidor todavía no notó que su conexión vieja se cortó, la corta ya.)
+	if token != "":
+		var old := _owner_of_token(token)
+		if old > 0 and old != id:
+			var enet := _api.multiplayer_peer as ENetMultiplayerPeer
+			if enet != null and enet.get_peer(old) != null:
+				enet.get_peer(old).peer_disconnect_now()
+			_on_peer_disconnected(old)
+	if token != "" and _absent.has(token):
+		var ab: Dictionary = _absent[token]
+		_absent.erase(token)
+		var back: Dictionary = ab.entry
+		back.id = id
+		back.status = "peleando"
+		_by_id[id] = back
+		_tokens[id] = token
+		_log("volvió %s (%d) · %d conectados" % [back.name, id, _by_id.size()])
+		welcome.rpc_id(id, id, back.name, token, true)
+		_broadcast_players()
+		_resume_battle(ab, id)
+		return
 	var entry := {"id": id, "name": _unique_name(clean_name(player_name)), "team": clean_team(team), "status": "libre"}
 	_by_id[id] = entry
+	_tokens[id] = "%08x%08x" % [randi(), randi()]
 	_log("entró %s (%d) · %d conectados" % [entry.name, id, _by_id.size()])
-	welcome.rpc_id(id, id, entry.name)
+	welcome.rpc_id(id, id, entry.name, _tokens[id], false)
 	_broadcast_players()
+
+
+func _owner_of_token(token: String) -> int:
+	for id in _tokens:
+		if _tokens[id] == token:
+			return id
+	return 0
 
 
 ## Cliente → servidor: cambió su equipo (curó, subió de nivel...).
@@ -519,6 +609,8 @@ func join(address: String, port: int, hello_data: Dictionary) -> Error:
 		return err
 	is_server = false
 	_hello = hello_data
+	lost = false
+	resumed = false
 	_api.multiplayer_peer = peer
 	_connect_api()
 	if peer.get_peer(1) != null:
@@ -529,7 +621,8 @@ func join(address: String, port: int, hello_data: Dictionary) -> Error:
 
 
 func _on_connected() -> void:
-	hello.rpc_id(1, str(_hello.get("version", "")), PROTOCOL, str(_hello.get("name", "")), _hello.get("team", []))
+	hello.rpc_id(1, str(_hello.get("version", "")), PROTOCOL, str(_hello.get("name", "")), _hello.get("team", []),
+		str(_hello.get("token", "")))
 
 
 func _on_connection_failed() -> void:
@@ -543,10 +636,12 @@ func _on_server_disconnected() -> void:
 		_drop("Se cortó la conexión con el servidor.")
 
 
-## Servidor → cliente: entraste a la sala.
+## Servidor → cliente: entraste a la sala (`token` = tu sesión, para volver si se corta; `back` = volviste a tu pelea).
 @rpc("authority", "reliable")
-func welcome(id: int, final_name: String) -> void:
+func welcome(id: int, final_name: String, token: String, back: bool) -> void:
 	my_id = id
+	session_token = token
+	resumed = back
 	_set_state("online", "Conectado como %s." % final_name)
 
 
@@ -652,6 +747,7 @@ func send_status(status: String) -> void:
 
 
 func _drop(message: String) -> void:
+	lost = true
 	_clear_peer()
 	players = []
 	players_changed.emit(players)
@@ -675,9 +771,12 @@ func close() -> void:
 	if _api == null or _api.multiplayer_peer == null:
 		return
 	var was_client := not is_server and state != "offline"
+	lost = false
 	_clear_peer()
 	_by_id.clear()
 	_pending.clear()
+	_tokens.clear()
+	_absent.clear()
 	_challenges.clear()
 	matches.clear()
 	for nm in battles.values():

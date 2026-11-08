@@ -98,7 +98,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: tod
 $G --headless --path . --quit-after 60000 -- --autotest-updater   # actualizaciones automáticas (firma, bajar, comprobar, relanzar, sin conexión)
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
-$G --headless --path . --quit-after 400000 -- --autotest-online-sync  # pelea online a fondo: paquetes y toques perdidos, equipo trucho, cada forma de ataque (servidor + copia del rival), lag y pérdida simulados, 6 peleas a la vez, clima por pelea, se cae el servidor en plena pelea (docs/ONLINE_INFORME.md)
+$G --headless --path . --quit-after 400000 -- --autotest-online-sync  # pelea online a fondo: paquetes y toques perdidos, equipo trucho, cada forma de ataque (servidor + copia del rival), lag y pérdida simulados, 6 peleas a la vez, clima por pelea, reconexión (`--only reconexion`), se cae el servidor en plena pelea (docs/ONLINE_INFORME.md)
 $G --headless --path . --quit-after 200000 -- --autotest-room-walk  # camina cada celda a la que se llega de un lugar (`--zone`, def. centro_online; `--arena <id>` = una arena) + imagen de la colisión sobre el dibujo (`--out <png>`)
 $G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos y volar sin descubrir zonas
 $G --path . --quit-after 300 --write-movie out/f.png --fixed-fps 30 -- --showcase-gm-arena tierra  # la pelea de prueba `arena <nombre>` de la consola
@@ -428,7 +428,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   Versión = `Net.game_version()` (huella de ataques y especies: otro zip no entra). Si se cambia un mensaje, subir
   `NetPeer.PROTOCOL`. Plan: la pelea la simula el servidor con un `NetCombatInput`. **Hecho O-3**: la pelea (`NetMatch` en el servidor, `NetCombatInput`;
   `OnlineBattle` en el jugador imita la pelea con el combate de siempre, sin hurtbox, corrigiéndose con las fotos del
-  servidor; EXP vía CombatDirector; los ataques del rival llegan como evento `use` y se hacen con `Creature.force_move`, sin mirar recargas ni PP de la copia; los que maneja una persona no se reordenan por rol). **O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
+  servidor; EXP vía CombatDirector; los ataques del rival llegan como evento `use` y se hacen con `Creature.force_move`, sin mirar recargas ni PP de la copia; los que maneja una persona no se reordenan por rol). **Reconexión** (2026-11-08): el `welcome` da un token de sesión; si uno se desconecta en plena pelea el servidor la congela (`NetMatch.hold`, `NetPeer._absent`, `RECONNECT_GRACE` 15 s) y avisa `hold`; si vuelve con el token (`Net.reconnect`, `OnlineBattle._reconnect`, pantalla congelada con `_set_held`) su lugar pasa al id nuevo (`rebind`) y los dos reciben `resume`; si no, gana el otro. **O-2**: sala con desafíos y elección de equipo (`OnlineLobbyScreen`; en el
   servidor `match_started`, que escuchará la pelea de la O-3; servidor del juego fijo en `Net.OFFICIAL_SERVER`). **O-1**: Centro de Combate Online en
   Ciudad Verde (`OnlineDesk` = `world.online`, acción `online` de la recepcionista).
 - **Edificios y zonas agregados** (`ExtraContent`): `data/world/extra/zones/*.tres` (ZoneEntry) y

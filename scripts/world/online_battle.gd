@@ -26,6 +26,9 @@ const PREDICTED_WINDOW := 0.5
 ## Un estado que tu pantalla acaba de poner (una mejora propia, un estado que le pegaste al rival con tu copia) no se
 ## borra porque la foto del servidor todavía no lo tenga: la foto viene de hace una ida y vuelta.
 const STATUS_GRACE := 0.6
+## Se cortó la conexión en plena pelea: se intenta volver hasta este tiempo (el servidor te guarda la pelea
+## NetPeer.RECONNECT_GRACE s desde que nota el corte, que puede ser después que vos).
+const RECONNECT_FOR := 20.0
 
 var world: Node
 var active := false
@@ -49,6 +52,13 @@ var _prev_bits := 0
 var _applying_switch := false
 var _going := false
 var _end: Dictionary = {}
+## Congelada: se espera a alguien que se cayó (vos o el rival). Nadie se mueve ni manda teclas.
+var held := false
+var _frozen: Array = []
+var _reconnecting := false
+var _foe_index := -1
+## (Var para que el autotest lo achique.)
+var reconnect_for := RECONNECT_FOR
 ## Centro de Combate Online desde el que se entró (hay uno por ciudad: ahí se vuelve al terminar).
 var _back_zone := "centro_online"
 const DESK_FRONT := Vector2i(14, 7)  # frente al mostrador de la recepcionista (tools/build_online_interior.py)
@@ -74,6 +84,10 @@ func run(p_match_id: int, p_opponent: Dictionary, p_my_team: Array, p_foe_team: 
 	_end = {}
 	_state = {}
 	_going = false
+	held = false
+	_frozen = []
+	_reconnecting = false
+	_foe_index = -1
 	_press_seq = [0, 0, 0, 0]
 	_prev_bits = 0
 	if local_input == null:
@@ -203,7 +217,7 @@ func _physics_process(_delta: float) -> void:
 		foe.target = c  # (CombatDirector cuenta como enemigos a los que te apuntan)
 		if not foe.is_down() and not world.combat.enemies.has(foe):
 			world.combat.enemies.append(foe)  # que siga en sus enemigos: de ahí sale la EXP al debilitarlo
-	if _going and is_instance_valid(c) and not c.is_down() and local_input != null and _end.is_empty():
+	if _going and not held and is_instance_valid(c) and not c.is_down() and local_input != null and _end.is_empty():
 		if local_input.wants_dodge():
 			_dodge_seq += 1
 		var packet := NetCombatInput.pack(local_input, c, arena.global_position, _dodge_seq, _press_seq)
@@ -244,7 +258,7 @@ func intercepts_switch(index: int) -> bool:
 		return false
 	if index >= my_team.size():
 		Events.message_requested.emit("En esta pelea tenés %d Pokémon: teclas 1 a %d." % [my_team.size(), my_team.size()])
-	elif _going and _end.is_empty():
+	elif _going and _end.is_empty() and not held:
 		Net.battle_switch(match_id, index)
 	return true
 
@@ -290,7 +304,14 @@ func _on_event(mid: int, ev: Dictionary) -> void:
 				_switch_own(int(ev.index), at)
 			else:
 				_spawn_foe(int(ev.index), at, float(ev.get("hp", -1.0)))
+		"hold":  # se cayó el rival: la pelea se congela hasta que vuelva o se venza la espera
+			_set_held(true)
+			Events.message_requested.emit("Se cortó la conexión de %s: se lo espera hasta %d s..." % [
+				opponent.get("name", "tu rival"), int(ev.get("seconds", NetPeer.RECONNECT_GRACE))])
+		"resume":
+			_on_resume(ev)
 		"end":
+			_set_held(false)
 			_end = ev
 			result = "win" if int(ev.winner) == me else "lose"
 			var mine: Array = ev.get("hp", {}).get(me, [])
@@ -303,17 +324,89 @@ func _on_event(mid: int, ev: Dictionary) -> void:
 			done.emit(result)
 
 
-## Se cortó la conexión en plena pelea: el servidor le da la pelea al otro; acá se cierra la arena (antes quedaba
-## esperando un "end" que nunca llegaba, con el entrenador trabado en la arena).
+## Se cortó la conexión en plena pelea: se congela todo y se intenta volver (el servidor te guarda la pelea
+## NetPeer.RECONNECT_GRACE s). Si no se puede, la pelea se da por perdida y se cierra la arena (antes quedaba esperando
+## un "end" que nunca llegaba, con el entrenador trabado en la arena).
 func _on_net_state(s: String, _message: String) -> void:
-	if s == "online" or not active or arena == null or not _end.is_empty():
+	if s in ["online", "connecting"] or not active or arena == null or not _end.is_empty() or _reconnecting:
 		return
-	_end = {"t": "end", "winner": 0, "reason": "Se cortó la conexión con el servidor."}
+	if Net.client.lost and s == "offline":
+		_reconnect()
+	else:
+		_lost("Se cortó la conexión con el servidor.")
+
+
+func _reconnect() -> void:
+	_reconnecting = true
+	_set_held(true)
+	Events.message_requested.emit("Se cortó la conexión: reconectando...")
+	var ok: bool = await Net.reconnect(reconnect_for)
+	_reconnecting = false
+	if not active or not _end.is_empty():
+		return
+	if not ok:
+		_lost("No se pudo volver a conectar.")
+	elif not Net.client.resumed:
+		_lost("Tardaste mucho en volver: la pelea se dio por perdida.")
+	# (si volvió a la pelea, el "resume" del servidor la descongela)
+
+
+func _lost(reason: String) -> void:
+	_set_held(false)
+	_end = {"t": "end", "winner": 0, "reason": reason}
 	result = "lose"
 	for c in [world.companion, foe]:
 		if is_instance_valid(c):
 			c.input_source = null
 	done.emit(result)
+
+
+## El servidor retoma la pelea (volviste vos o volvió el rival, que ahora tiene otro id): cada lado queda como lo tiene
+## el servidor (quién está afuera, dónde, con cuánta vida) y se descongela.
+func _on_resume(ev: Dictionary) -> void:
+	if int(ev.get("was", 0)) == int(opponent.get("id", 0)) and int(ev.get("side", 0)) > 0:
+		opponent["id"] = int(ev.side)
+	var me: int = Net.client.my_id
+	var sides: Dictionary = ev.get("sides", {})
+	for id in sides:
+		var info: Dictionary = sides[id]
+		if not info.get("p") is Vector2:
+			continue
+		var at: Vector2 = arena.global_position + info.p
+		var index := int(info.get("index", -1))
+		if int(id) == me:
+			if my_team.find(GameState.active_index) != index:
+				_switch_own(index, at)
+			elif is_instance_valid(world.companion):
+				world.companion.global_position = at
+		elif index != _foe_index or not is_instance_valid(foe):
+			_spawn_foe(index, at, float(info.get("hp", -1.0)))
+		elif is_instance_valid(foe):
+			foe.global_position = at
+			_set_hp(foe, float(info.get("hp", foe.health.ratio())))
+	_set_held(false)
+	Events.message_requested.emit("¡Volvió la conexión: sigue la pelea!")
+
+
+## Congela o descongela la pelea en tu pantalla: tu Pokémon, el del rival y los disparos en el aire se quedan quietos.
+func _set_held(on: bool) -> void:
+	if on == held:
+		return
+	held = on
+	if on:
+		_frozen = []
+		for n in world.entities.get_children():
+			if (n is Creature and n in [world.companion, foe]) or n is Hitbox:
+				n.process_mode = Node.PROCESS_MODE_DISABLED
+				_frozen.append(n)
+		return
+	for n in _frozen:
+		if is_instance_valid(n):
+			n.process_mode = Node.PROCESS_MODE_INHERIT
+	_frozen = []
+	for c in [world.companion, foe]:
+		if is_instance_valid(c):
+			c.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _on_state(mid: int, st: Dictionary) -> void:
@@ -425,6 +518,7 @@ func _spawn_foe(index: int, at: Vector2, hp_ratio: float = -1.0) -> void:
 	if not world.combat.enemies.has(c):
 		world.combat.enemies.append(c)
 	foe = c
+	_foe_index = index
 	Events.message_requested.emit("¡%s saca a %s!" % [c.owner_name, inst.display_name()])
 
 

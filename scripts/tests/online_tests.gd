@@ -320,10 +320,14 @@ func _battle_tests(server: NetPeer, a: NetPeer, b: NetPeer) -> void:
 	b.send_choice(chose[0], [CreatureInstance.create(DB.species["eevee"], 10)])
 	await _until(func(): return not kinds.call(a, "start").is_empty())
 	var b_id := b.my_id
+	server.reconnect_grace = 2.0  # (la reconexión con gracia se prueba a fondo en --autotest-online-sync)
 	b.close()
+	await _until(func(): return not kinds.call(a, "hold").is_empty(), 5.0)
+	r["Se desconecta en plena pelea: el otro recibe \"hold\" y se lo espera"] = not kinds.call(a, "hold").is_empty() 		and server.battles.values().any(func(nm): return nm.held)
 	await _until(func(): return not kinds.call(a, "end").is_empty(), 12.0)
+	server.reconnect_grace = NetPeer.RECONNECT_GRACE
 	var end2: Dictionary = kinds.call(a, "end")[0] if not kinds.call(a, "end").is_empty() else {}
-	r["Se desconecta en plena pelea: gana el otro"] = end2.get("winner") == a.my_id and "desconectó" in str(end2.get("reason", ""))
+	r["Se desconecta en plena pelea y no vuelve: gana el otro"] = end2.get("winner") == a.my_id and "desconectó" in str(end2.get("reason", ""))
 	await _until(func(): return server.battles.is_empty())
 	r["...y la pelea se cierra en el servidor"] = server.battles.is_empty() and not server.players.any(func(p): return p.id == b_id)
 	# B vuelve a entrar para lo que sigue.

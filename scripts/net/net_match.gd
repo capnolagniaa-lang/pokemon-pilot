@@ -28,7 +28,11 @@ var arena: Node2D
 var sides: Dictionary = {}
 var time := 0.0
 var over := false
+## Congelada: se espera a uno que se cayó (NetPeer.RECONNECT_GRACE). No corre nada: ni el tiempo ni los Pokémon.
+var held := false
 var _snap := 0.0
+## Un jugador que volvió tiene otro id de red: el viejo → el nuevo (para lo que quedó atado al viejo).
+var _alias: Dictionary = {}
 
 
 ## `teams`: id → [CreatureInstance.to_dict con "hp_ratio"] (lo que eligió cada uno, ya limpio).
@@ -87,14 +91,16 @@ func _physics_process(delta: float) -> void:
 
 ## Las teclas de un jugador (paquete de NetCombatInput.pack).
 func set_input(id: int, packet: Array) -> void:
-	if sides.has(id):
+	id = _resolve(id)
+	if sides.has(id) and not held:
 		sides[id].input.set_packet(packet)
 		sides[id].packet = packet
 
 
 ## Un jugador pide cambiar de Pokémon (1-6). Devuelve si se hizo.
 func request_switch(id: int, index: int) -> bool:
-	if over or not sides.has(id) or time < COUNTDOWN:
+	id = _resolve(id)
+	if over or held or not sides.has(id) or time < COUNTDOWN:
 		return false
 	var s: Dictionary = sides[id]
 	if s.switch_cd > 0.0 or s.down or index == s.index or index < 0 or index >= s.team.size() or s.team[index].hp <= 0.0:
@@ -119,10 +125,59 @@ func state() -> Dictionary:
 	return out
 
 
+## Se cayó `id`: la pelea se congela (nadie se mueve, el tiempo no corre) hasta que vuelva o se venza la espera.
+func hold(id: int, seconds: float) -> void:
+	if over or held:
+		return
+	held = true
+	process_mode = Node.PROCESS_MODE_DISABLED
+	for s in sides.values():
+		s.input.enabled = false
+	event.emit({"t": "hold", "side": id, "seconds": seconds})
+
+
+## Volvió el que se había caído (ya con su id nuevo): los dos reciben cómo está cada lado y la pelea sigue.
+func resume(new_id: int, old_id: int) -> void:
+	if over or not held:
+		return
+	held = false
+	process_mode = Node.PROCESS_MODE_INHERIT
+	var info := {}
+	for id in sides:
+		var s: Dictionary = sides[id]
+		var c = s.creature  # (sin tipo: puede estar liberada)
+		if is_instance_valid(c):
+			info[id] = {"index": s.index, "p": c.global_position - arena.global_position,
+				"hp": c.instance.hp / maxf(1.0, c.instance.max_hp())}
+	event.emit({"t": "resume", "side": new_id, "was": old_id, "sides": info})
+	_snap = 0.0
+
+
+## El jugador `old_id` ahora es `new_id` (volvió a conectarse).
+func rebind(old_id: int, new_id: int) -> void:
+	if not sides.has(old_id) or old_id == new_id:
+		return
+	sides[new_id] = sides[old_id]
+	sides.erase(old_id)
+	_alias[old_id] = new_id
+	if a == old_id:
+		a = new_id
+	elif b == old_id:
+		b = new_id
+
+
+func _resolve(id: int) -> int:
+	while _alias.has(id):
+		id = _alias[id]
+	return id
+
+
 func finish(winner: int, reason: String) -> void:
 	if over:
 		return
 	over = true
+	held = false
+	process_mode = Node.PROCESS_MODE_INHERIT
 	CombatWeather.stop_for(self)  # (el clima es por pelea: dos a la vez no se pisan)
 	for id in sides:
 		sides[id].input.enabled = false
@@ -134,7 +189,8 @@ func finish(winner: int, reason: String) -> void:
 
 
 func _after_faint(id: int) -> void:
-	if over:
+	id = _resolve(id)
+	if over or not sides.has(id):
 		return
 	var next := _first_healthy(id)
 	if next < 0:
@@ -168,6 +224,7 @@ func _send(id: int, index: int, at: Vector2) -> void:
 
 
 func _on_damaged(amount: float, _hit: HitInfo, id: int, c: Creature) -> void:
+	id = _resolve(id)
 	if amount <= 0.0 or not is_instance_valid(c):
 		return
 	# Con el stagger y el empuje del golpe: el juego los aplica apenas llega el golpe, sin esperar la próxima foto.
@@ -177,6 +234,7 @@ func _on_damaged(amount: float, _hit: HitInfo, id: int, c: Creature) -> void:
 
 ## Atacó: los clientes lo muestran con este aviso (no con las teclas, que en su copia pueden no alcanzar).
 func _on_slot_used(slot: int, aim: Vector2, point: Vector2, id: int, c: Creature) -> void:
+	id = _resolve(id)
 	if not is_instance_valid(c) or slot < 0 or slot >= c.moves.slots.size() or c.moves.slots[slot] == null:
 		return
 	var ev := {"t": "use", "side": id, "m": c.moves.slots[slot].id, "aim": aim}
