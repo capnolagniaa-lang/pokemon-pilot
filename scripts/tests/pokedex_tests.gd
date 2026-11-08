@@ -91,12 +91,82 @@ func run() -> void:
 		and not dex._view.silhouette
 	r["Hoenn: 135 casillas"] = dex._cells.size() == 135
 	world.pause_menu.close()
+	_where_checks(r, world)
+	await get_tree().process_frame
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[pokedex] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-pokedex] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+
+## "Dónde aparece" (WildIndex): % de las tablas, sumas por zona, pesca, y la Pokédex con zonas visitadas y "???".
+func _where_checks(r: Dictionary, world: Node) -> void:
+	WildIndex.invalidate()
+	var t: EncounterTable = load("res://data/world/encounters/ruta1.tres")
+	var total := 0
+	var pidgey_w := 0
+	for e in t.entries:
+		if e.where == "pasto_alto":
+			total += e.weight
+			if e.species_id == "pidgey":
+				pidgey_w += e.weight
+	var expected := 100.0 * pidgey_w / maxf(1, total)
+	var got := -1.0
+	for p: Dictionary in WildIndex.for_species("pidgey"):
+		if p["zone"] == "ruta1" and p["kind"] == "pasto_alto" and p["area"] == "":
+			got = p["pct"]
+	r["Pidgey en Ruta 1, pasto alto: %.0f %% como su tabla (%.0f %%)" % [got, expected]] = pidgey_w > 0 and absf(got - expected) < 0.01
+	var over := []
+	var zones := 0
+	for z: ZoneEntry in DB.config.world.zones:
+		var sums := {}
+		for p: Dictionary in WildIndex.for_zone(z.id):
+			var k := "%s|%s|%s" % [p["kind"], p["rod"], p["area"]]
+			sums[k] = sums.get(k, 0.0) + p["pct"]
+		if not sums.is_empty():
+			zones += 1
+		for k in sums:
+			if sums[k] > 100.001 or sums[k] <= 0.0:
+				over.append("%s %s %.1f" % [z.id, k, sums[k]])
+	r["Los %% de cada lugar de una zona suman ≤ 100 (%d zonas con salvajes)" % zones] = over.is_empty() and zones > 50
+	if not over.is_empty():
+		print("[pokedex] sumas raras: ", over)
+	# Una fila "esa vez no sale nadie" cuenta para el total: en Ciudad Celeste lo de un lugar con una suma < 100.
+	var nobody := false
+	for z in ["ciudad_celeste"]:
+		var tc := EncounterTable.for_zone(DB.config.world.zones.filter(func(e): return e.id == z)[0])
+		for e in tc.entries:
+			if e.species_id == "":
+				var s := 0.0
+				for p: Dictionary in WildIndex.for_zone(z):
+					if p["kind"] == e.where and p["area"] == "" and p["rod"] == "":
+						s += p["pct"]
+				nobody = s < 99.99
+	r["Una fila sin especie baja el % de las demás (Ciudad Celeste)"] = nobody
+	var fished := WildIndex.for_species("magikarp").filter(func(p): return p["kind"] == "pesca")
+	r["Pesca por caña: Magikarp con Caña Vieja en %d lugares" % fished.size()] = \
+		fished.any(func(p): return p["rod"] == "vieja" and is_equal_approx(p["pct"], 100.0))
+	r["Una especie que no sale salvaje (Mew) no tiene lugares"] = WildIndex.for_species("mew").is_empty()
+
+	# En la Pokédex: Ruta 1 visitada con nombre; una zona sin visitar como "???".
+	var sp: SpeciesData = DB.species["pidgey"]
+	GameState.mark_seen(sp)
+	GameState.visited_zones.clear()
+	GameState.visited_zones["ruta1"] = true
+	world.pause_menu.try_open()
+	world.pause_menu._open_pokedex()
+	var dex: Control = world.pause_menu._stack[-1]
+	dex._show_detail(sp)
+	var texts := _texts(dex._detail)
+	var lines: Array = dex.where_lines("pidgey")
+	r["Pokédex: \"Dónde aparece\" con Ruta 1 y su %"] = "Dónde aparece" in texts and "Ruta 1" in texts \
+		and ("Pasto alto %d %%" % roundi(expected)) in texts and lines[0][0] == "Ruta 1"
+	r["Pokédex: las zonas sin visitar salen como ??? (con su %%, %d)" % (lines.size() - 1)] = lines.size() > 1 \
+		and lines.slice(1).all(func(l): return l[0].begins_with("???") and not l[2]) and not ("Ruta 2\n" in texts)
+	dex._show_detail(DB.species["mew"])
+	world.pause_menu.close()
 
 
 func _texts(node: Node) -> String:
@@ -114,12 +184,22 @@ func showcase() -> void:
 	for id in ["bulbasaur", "pidgey", "rattata", "vulpix", "pikachu", "gengar", "dragonite"]:
 		GameState.mark_seen(DB.species[id])
 	GameState.mark_fought(DB.species["pidgey"])
+	GameState.mark_seen(DB.species["magikarp"])
+	for z in ["pueblo_paleta", "ruta1", "ciudad_verde", "ruta2", "bosque_verde", "ruta22", "ciudad_carmin"]:
+		GameState.visited_zones[z] = true
 	await get_tree().create_timer(0.3).timeout
 	world.pause_menu.try_open()
 	world.pause_menu._open_pokedex()
 	await get_tree().create_timer(1.0).timeout
 	var dex: Control = world.pause_menu._stack[-1]
 	dex._cells[15].grab_focus()  # Pidgey (luchado)
+	await get_tree().create_timer(1.2).timeout
+	var scroll: ScrollContainer = dex._detail.get_parent()
+	scroll.scroll_vertical = 420  # "Dónde aparece"
+	await get_tree().create_timer(1.2).timeout
+	dex._cells[128].grab_focus()  # Magikarp: Surf y pesca con cada caña
+	await get_tree().process_frame
+	scroll.scroll_vertical = 330
 	await get_tree().create_timer(1.2).timeout
 	dex._cells[1].grab_focus()  # Ivysaur (no visto)
 	await get_tree().create_timer(1.2).timeout

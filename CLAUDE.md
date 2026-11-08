@@ -135,7 +135,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-evolution # evoluciones:
 $G --path . --quit-after 330 --write-movie out/f.png --fixed-fps 30 -- --showcase-evolution  # Charmander → Charmeleon
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-mart  # pantalla de compra y de venta
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-capture  # lanzar bola, Mochila, Caja
-$G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex
+$G --headless --path . --quit-after 60000 -- --autotest-pokedex  # 386 especies (datos, salen y usan sus ataques) + Pokédex + "Dónde aparece" (% de las tablas, suman ≤ 100, pesca, zonas sin visitar como ???)
 $G --path . --quit-after 900 --write-movie out/f.png --fixed-fps 30 -- --showcase-pokedex  # vitrina de la Pokédex
 $G --headless --path . --quit-after 30000 -- --autotest-anims    # animaciones de combate (Shoot, Charge, Strike, Hop, Faint, Sleep...)
 $G --path . --quit-after 220 --write-movie out/f.png --fixed-fps 30 -- --showcase-sleep  # dormidos: respiran, "z", ojos cerrados, los dos lados
@@ -447,6 +447,7 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   normal) vía `DB.anims_of(sp, shiny)` / `portrait_of(sp, shiny)`, `CreatureSprite.shiny` y `PokemonAnimView.shiny`.
   `ShinySparkle` (destello + `audio/efectos/shiny.wav`) al aparecer; `CreatureInstance.label()` = nombre con ★ (menús).
   Test `--autotest-shiny`. Las hojas retocadas a mano (Sleep con ojos cerrados, golpes de Qwen) en shiny son las originales.
+- **Pokédex, "Dónde aparece"** (2026-11-08): `WildIndex` (`scripts/world/wild_index.gd`, estático, en caché; `invalidate()` si cambian las tablas) = por especie, zona + forma (pasto alto, suelo, Surf, pesca por caña, área pintada) + % contra el total de su lugar (las filas sin especie cuentan) + niveles; lo usa `PokedexScreen.where_lines` y `build_wild_docs.gd` (`rows_with_pct`). Las zonas que no visitaste salen como "???" con su % (decisión del usuario), las iguales juntas ("??? ×4"). `EncounterEntry.time` todavía no filtra: no se muestra día/noche.
 - **Captura, Mochila y Caja** (`docs/PLAN_CAPTURA_MOCHILA.md`): `ItemData` en `data/items/` (de
   `tools/fetch_items.py`); `GameState.bag`/`selected_ball`/`quick_item`/`box`/`field_picked`; `PlayerItems` (nodo del
   mundo: E lanza `BallThrow`, C usa el objeto rápido; una bola errada queda en el piso como `FieldItem` `thrown`, 120 s, y

@@ -204,6 +204,7 @@ func _show_detail(sp: SpeciesData) -> void:
 			parts.append("Evoluciona en " + ", ".join(sp.evolutions.map(func(e): return Evolution.describe(e))))
 		_detail.add_child(UiStyle.label(" · ".join(parts), 14, UiStyle.ACCENT))
 	_add_kit(sp)
+	_add_where(sp)
 	if not GameState.has_fought(sp):
 		_detail.add_child(UiStyle.label("Peleá contra él para conocer sus estadísticas.", 14, UiStyle.TEXT_DIM))
 		return
@@ -248,6 +249,61 @@ func _add_kit(sp: SpeciesData) -> void:
 		_detail.add_child(row)
 		_detail.add_child(_wrapped(MoveInfo.what_it_does(m), 13))
 		_detail.add_child(_wrapped(" · ".join(Summary.describe(m)), 13, UiStyle.TEXT_DIM))
+
+
+## Dónde sale como salvaje (WildIndex): una línea por zona con cada forma de encontrarlo, su % y niveles. Las
+## zonas que todavía no visitaste salen como "???" (con su %: sabés que hay otro lugar, no cuál; decisión del
+## usuario 2026-11-08).
+func _add_where(sp: SpeciesData) -> void:
+	_detail.add_child(UiStyle.label("Dónde aparece", 15, UiStyle.ACCENT))
+	var lines := where_lines(sp.id)
+	if lines.is_empty():
+		_detail.add_child(_wrapped("No se lo encuentra suelto: se consigue de otra forma (regalo, evolución, encuentro único...).", 13, UiStyle.TEXT_DIM))
+		return
+	for l: Array in lines:
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 10)
+		var name := UiStyle.label(l[0], 14, UiStyle.TEXT if l[2] else UiStyle.TEXT_DIM)
+		name.custom_minimum_size.x = 200
+		name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		row.add_child(name)
+		var what := UiStyle.label(l[1], 13, UiStyle.TEXT if l[2] else UiStyle.TEXT_DIM)
+		what.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		what.custom_minimum_size.x = 330
+		row.add_child(what)
+		_detail.add_child(row)
+
+
+## [[zona o "???", "Pasto alto 45 % · Nv. 2-5 / Surf ...", visitada]], las visitadas primero.
+static func where_lines(species_id: String) -> Array:
+	var by_zone := {}
+	var order := []
+	for p: Dictionary in WildIndex.for_species(species_id):
+		if not by_zone.has(p["zone"]):
+			by_zone[p["zone"]] = []
+			order.append(p)
+		by_zone[p["zone"]].append("%s %s · Nv. %s" % [WildIndex.kind_label(p), _pct(p["pct"]),
+			str(p["min"]) if p["min"] == p["max"] else "%d-%d" % [p["min"], p["max"]]])
+	var seen := []
+	var unseen := []
+	var unseen_count := {}  # los "???" iguales van en una sola línea ("??? ×4")
+	for p: Dictionary in order:
+		var text := "\n".join(by_zone[p["zone"]])
+		if GameState.visited_zones.has(p["zone"]):
+			seen.append([p["name"], text, true])
+		elif unseen_count.has(text):
+			unseen_count[text] += 1
+		else:
+			unseen_count[text] = 1
+			unseen.append(["???", text, false])
+	for l: Array in unseen:
+		if unseen_count[l[1]] > 1:
+			l[0] = "??? ×%d" % unseen_count[l[1]]
+	return seen + unseen
+
+
+static func _pct(v: float) -> String:
+	return ("%.1f %%" % v) if v < 1.0 else ("%d %%" % roundi(v))
 
 
 func _wrapped(text: String, size: int, color: Color = UiStyle.TEXT) -> Label:

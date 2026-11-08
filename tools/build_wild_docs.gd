@@ -33,13 +33,11 @@ func _init() -> void:
 		lines.append("")
 		lines.append("| Especie | Dónde | Peso | % en ese lugar | Niveles | Kit | Temperamento |")
 		lines.append("|---|---|---|---|---|---|---|")
-		var totals := {}
-		for e in t.entries:
-			totals[e.where] = totals.get(e.where, 0) + e.weight
-		for e in t.entries:
+		for r: Dictionary in WildIndex.rows_with_pct(t.entries):  # el mismo % que la Pokédex
+			var e: EncounterEntry = r["entry"]
 			var sp: SpeciesData = _species(e.species_id)
-			var name := sp.display_name if sp != null else "¿%s?" % e.species_id
-			var pct := 100.0 * e.weight / maxf(1, totals[e.where])
+			var name := (sp.display_name if sp != null else "¿%s?" % e.species_id) if e.species_id != "" else "(nadie)"
+			var pct: float = r["pct"]
 			lines.append("| %s | %s | %d | %.0f%% | %d-%d | %s | %s |" % [name, EncounterTable.WHERE.get(e.where, e.where), e.weight, pct,
 				e.min_level, e.max_level, _kit_label(sp), _temp(sp)])
 			_note(species_levels, e.species_id, e.min_level, e.max_level, z.display_name)
