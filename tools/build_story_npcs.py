@@ -47,7 +47,7 @@ TALKS = {
         "El Profesor Oak es una eminencia. Medio despistado, pero una eminencia."])]),
     # --- Ruta 1 ---
     # (pedido del usuario 2026-11-08: fumándose un porro en su descanso; NpcProp lo dibuja)
-    ("ruta1", "MartClerk"): dict(name="Empleado de la Tienda", prop="porro", talks=[
+    ("ruta1", "MartClerk"): dict(name="Empleado de la Tienda", prop="porro", head_text="TOY RE LOCO", pace_cells=3, talks=[
         dict(forbids=["muestra_pocion"], set_flags=["muestra_pocion"], give={"pocion": 1}, lines=["Eeeh... ¿qué hacés, pibe? Tranqui, tranqui.", "Trabajo en la Tienda Pokémon de Ciudad Verde... Estoy en mi descanso, ¿viste?", "Me mandaron a repartir muestras gratis. Pero mirá qué linda está la ruta... da para quedarse.", "Tomá, llevate una Poción. Y no le digas a mi jefe que me viste acá, ¿eh?"]),
         dict(lines=["Uh... ¿ya te di la Poción, no? Se me mezcla todo.", "Si necesitás Poké Balls pasate por la Tienda. Yo vuelvo... en un rato."])]),
     ("ruta1", "Boy"): dict(name="Chico", talks=[dict(lines=[
@@ -1425,6 +1425,10 @@ def npc_tres(npc_id, zone, n, spec):
             extra.append("%s = %s" % (key, psa(spec[key])))
     if spec.get("prop"):
         extra.append("prop = " + gd_str(spec["prop"]))  # lo que tiene en la mano (NpcProp)
+    if spec.get("head_text"):
+        extra.append("head_text = " + gd_str(spec["head_text"]))  # texto fijo sobre la cabeza (StoryNPC)
+    if spec.get("pace_cells"):
+        extra.append("pace_cells = %d" % spec["pace_cells"])  # corre de un lado a otro sacudiendo la cabeza
     head = ['[gd_resource type="Resource" script_class="NpcData" format=3]', ""] + ext.lines()
     return "\n".join(head + ["",
         "\n\n".join(subs), "",

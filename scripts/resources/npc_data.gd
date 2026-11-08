@@ -15,6 +15,11 @@ extends Resource
 @export var look_around: bool = false
 ## Algo que tiene en la mano, dibujado por NpcProp ("porro": el empleado de la Tienda en la Ruta 1). Vacío = nada.
 @export var prop: String = ""
+## Texto fijo sobre la cabeza, que se balancea y cambia de color ("TOY RE LOCO": el empleado de la Ruta 1). Vacío = nada.
+@export var head_text: String = ""
+## Corre de un lado a otro (izquierda-derecha) hasta estas celdas de su lugar, sacudiendo la cabeza (el empleado de la
+## Ruta 1). 0 = no. Con vos cerca se frena (para que le puedas hablar), pero la cabeza no para.
+@export var pace_cells: int = 0
 ## Camina sola adentro de este rectángulo (celdas locales de la zona); tamaño 0 = se queda en su lugar.
 @export var wander_rect: Rect2i = Rect2i()
 ## Solo aparece si están todas estas banderas / desaparece si está alguna de estas (bloqueos que se abren).

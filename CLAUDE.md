@@ -357,7 +357,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   `StoryDirector.try_interact()` antes de lanzar la bola. Personas: `tools/build_story_npcs.py` (desde los NPC de
   `frlg_maps.json` + sprites de `tools/fetch_npc_sprites.py`). `NpcData.prop` = algo en la mano dibujado por código
   (`NpcProp`, `scripts/fx/npc_prop.gd`, lo agrega `StoryNPC`; en `TALKS` va como `prop=`): "porro" (el empleado de la
-  Tienda en la Ruta 1, pedido del usuario 2026-11-08: brasa, humo y una pitada cada tanto). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
+  Tienda en la Ruta 1, pedido del usuario 2026-11-08: brasa, humo y una pitada cada tanto). `NpcData.head_text` = texto fijo
+  sobre la cabeza, arriba del nombre, que se balancea y cambia de color (el mismo empleado: "TOY RE LOCO"; `head_text=`). `NpcData.pace_cells` = corre de un lado a otro hasta esas celdas
+  de su lugar sacudiendo la cabeza; con vos cerca se frena para la charla (`pace_cells=`). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
 - **Combate contra entrenadores en arena** (E-1, `docs/PLAN_ENTRENADORES.md`): `TrainerBattle` (`world.arena`): fundido a
   una arena aparte (`ArenaData` en `data/arenas/`, escena = zona de tiles en `scenes/world/arenas/`, ambientación
   `ArenaDecor`; **arenas pintadas** con Qwen (2026-11-03, "MUY EPICAS": todas: el campo, los 8 gimnasios, el Alto Mando, el estadio del torneo y las de lugares): `ArenaData.painting`

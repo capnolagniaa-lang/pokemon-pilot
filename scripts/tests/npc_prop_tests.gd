@@ -31,6 +31,36 @@ func run() -> void:
 	r["Los demás no tienen nada en la mano"] = boy == null or boy.get_node_or_null("Prop") == null
 	r["Sigue dando la Poción de muestra"] = clerk.data.talks[0].give_items.has("pocion") \
 		and "Poción" in " ".join(clerk.data.talks[0].lines)
+	var head: Label = clerk.get_node_or_null("HeadText")
+	var y0: float = head.position.y if head != null else 0.0
+	await get_tree().create_timer(0.4).timeout
+	r["Dice TOY RE LOCO arriba de la cabeza (y se balancea)"] = head != null and head.text == "TOY RE LOCO" and head.visible \
+		and head.position.y < clerk.name_label.position.y and not is_equal_approx(head.position.y, y0)
+	r["Los demás no tienen texto en la cabeza"] = boy == null or boy.get_node_or_null("HeadText") == null
+	# Corre de un lado a otro sacudiendo la cabeza (lejos tuyo), y con vos cerca se frena.
+	world.trainer.global_position = clerk.global_position + Vector2(0, 120)
+	var home: Vector2 = clerk._pace_home if clerk._pace_home != Vector2.INF else clerk.global_position
+	var xs: Array[float] = []
+	var shakes: Array[float] = []
+	for i in 180:
+		await get_tree().physics_frame
+		xs.append(clerk.global_position.x - home.x)
+		shakes.append(clerk.sprite.rotation)
+	var span: float = xs.max() - xs.min()
+	var turns := 0
+	for i in range(2, xs.size()):
+		if signf(xs[i] - xs[i - 1]) != signf(xs[i - 1] - xs[i - 2]) and absf(xs[i] - xs[i - 1]) > 0.1:
+			turns += 1
+	r["Corre de un lado a otro (%.0f px, %d vueltas) sin irse de su lugar" % [span, turns]] = span > 40.0 and turns >= 2 \
+		and xs.all(func(x): return absf(x) <= clerk.data.pace_cells * 16.0 + 4.0)
+	r["Va sacudiendo la cabeza"] = shakes.max() > NpcProp.SHAKE_TEST and shakes.min() < -NpcProp.SHAKE_TEST
+	world.trainer.global_position = clerk.global_position + Vector2(0, 20)
+	for i in 10:
+		await get_tree().physics_frame
+	var at := clerk.global_position
+	for i in 20:
+		await get_tree().physics_frame
+	r["Con vos cerca se frena (para la charla)"] = clerk.global_position.distance_to(at) < 1.0
 	_results()
 
 
@@ -42,7 +72,7 @@ func showcase() -> void:
 		return
 	var prop: NpcProp = clerk.get_node("Prop")
 	prop._puff_in = 1.2
-	world.trainer.global_position = clerk.global_position + Vector2(-60, 30)  # (lejos: que no se dé vuelta a mirarlo)
+	world.trainer.global_position = clerk.global_position + Vector2(-60, 60)  # (lejos: que no se frene ni se dé vuelta)
 	world.camera.target = clerk
 	world.camera.zoom = Vector2(4, 4)
 	world.camera.snap()

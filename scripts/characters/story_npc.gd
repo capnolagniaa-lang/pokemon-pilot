@@ -29,6 +29,19 @@ var _step := 0.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var name_label: Label = $Name
+## El texto fijo sobre la cabeza (NpcData.head_text), o null.
+var head_label: Label
+var _head_time := 0.0
+## Dónde va el texto sobre la cabeza (justo arriba; más arriba cuando se ve el nombre) y cuánto se balancea.
+const HEAD_TEXT_Y := -42.0
+const HEAD_TEXT_Y_NAMED := -56.0
+const HEAD_BOB := 1.5
+## Los que corren de un lado a otro (NpcData.pace_cells): velocidad, sacudida de cabeza (radianes y veces por segundo).
+const PACE_SPEED := 75.0
+const SHAKE := 0.14
+const SHAKE_SPEED := 17.0
+var _pace_home := Vector2.INF
+var _pace_dir := 1.0
 
 
 func _ready() -> void:
@@ -48,6 +61,19 @@ func _ready() -> void:
 		prop.name = "Prop"
 		prop.setup(data.prop, self)
 		add_child(prop)
+	if data.head_text != "":
+		head_label = Label.new()
+		head_label.name = "HeadText"
+		head_label.text = data.head_text
+		head_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		head_label.add_theme_font_size_override("font_size", 10)
+		head_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
+		head_label.add_theme_constant_override("outline_size", 4)
+		head_label.size = Vector2(140, 14)
+		head_label.position = Vector2(-70, HEAD_TEXT_Y)
+		head_label.pivot_offset = Vector2(70, 7)
+		head_label.z_index = 30  # (encima de las copas de los árboles)
+		add_child(head_label)
 	_look_timer = randf_range(1.5, 4.0)
 	_rest = randf_range(0.0, REST_MAX)
 
@@ -61,6 +87,12 @@ static func _frames_index() -> Dictionary:
 
 
 func _process(delta: float) -> void:
+	if head_label != null:
+		# Se balancea despacio y va cambiando de color, medio en otra.
+		_head_time += delta
+		head_label.position.y = (HEAD_TEXT_Y_NAMED if name_label.visible else HEAD_TEXT_Y) + sin(_head_time * 2.2) * HEAD_BOB
+		head_label.rotation = sin(_head_time * 1.3) * 0.08
+		head_label.add_theme_color_override("font_color", Color.from_hsv(fmod(_head_time * 0.12, 1.0), 0.55, 1.0))
 	var player: Node2D = get_tree().get_first_node_in_group("trainer")
 	var near := player != null and player.global_position.distance_to(global_position) < NOTICE_RADIUS
 	# El nombre, solo el del más cercano (en un mostrador con tres juntos se pisaban).
@@ -77,6 +109,9 @@ func _process(delta: float) -> void:
 
 ## Los que caminan (NpcData.wander_rect): un tramo en línea recta, un descanso. Con vos cerca se quedan a hablarte.
 func _physics_process(delta: float) -> void:
+	if data.pace_cells > 0:
+		_pace(delta)
+		return
 	if wander_area.size == Vector2.ZERO:
 		return
 	var player: Node2D = get_tree().get_first_node_in_group("trainer")
@@ -95,6 +130,28 @@ func _physics_process(delta: float) -> void:
 	_animate_walk()
 	if get_real_velocity().length() < WALK_SPEED * 0.5 or not wander_area.has_point(global_position):
 		_stop_walking()
+
+
+## Corre de un lado a otro de su lugar sacudiendo la cabeza (NpcData.pace_cells). Si choca con algo, se da vuelta.
+func _pace(delta: float) -> void:
+	if _pace_home == Vector2.INF:
+		_pace_home = global_position
+	_step += delta
+	sprite.rotation = sin(_step * SHAKE_SPEED) * SHAKE  # la cabeza, para todos lados (desde los pies: se sacude entero)
+	var player: Node2D = get_tree().get_first_node_in_group("trainer")
+	if player != null and player.global_position.distance_to(global_position) < NOTICE_RADIUS:
+		velocity = Vector2.ZERO
+		return  # te mira (_process) y se queda para la charla
+	var reach := data.pace_cells * 16.0
+	var off := global_position.x - _pace_home.x
+	if (off >= reach and _pace_dir > 0.0) or (off <= -reach and _pace_dir < 0.0):
+		_pace_dir = -_pace_dir
+	facing = Vector2i(int(_pace_dir), 0)
+	velocity = Vector2(_pace_dir * PACE_SPEED, (_pace_home.y - global_position.y) * 4.0)
+	move_and_slide()
+	if get_real_velocity().x * _pace_dir < PACE_SPEED * 0.3:
+		_pace_dir = -_pace_dir  # algo en el camino: para el otro lado
+	_animate_walk()
 
 
 func _start_walking() -> void:

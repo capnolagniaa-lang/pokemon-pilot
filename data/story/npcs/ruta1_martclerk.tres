@@ -24,4 +24,6 @@ gfx = "clerk"
 facing = Vector2i(0, 1)
 look_around = true
 prop = "porro"
+head_text = "TOY RE LOCO"
+pace_cells = 3
 talks = Array[ExtResource("2_t")]([SubResource("Talk_0"), SubResource("Talk_1")])

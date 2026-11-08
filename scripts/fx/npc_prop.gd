@@ -13,6 +13,8 @@ const SMOKE := Color(0.82, 0.84, 0.86)
 const PAPER := Color(0.96, 0.94, 0.88)
 const EMBER := Color(1.0, 0.42, 0.12)
 const LIGHT_TEX := preload("res://art/fx/soft_shadow.tres")
+## (Para el test de la sacudida de cabeza de StoryNPC: un poco menos que StoryNPC.SHAKE.)
+const SHAKE_TEST := 0.08
 
 var kind := "porro"
 var npc: Node2D
