@@ -330,6 +330,7 @@ func _team_of(entry: Dictionary) -> Array[CreatureInstance]:
 	for m in entry["team"]:
 		if DB.species.has(m[0]):
 			out.append(CreatureInstance.create_rival(DB.species[m[0]], m[1]))
+	TrainerMovesets.equip_team(out, str(entry.get("name", "")))  # (los de FireRed, como sus líderes, con sus ataques; los demás, MT desde Nv. 30)
 	return out
 
 

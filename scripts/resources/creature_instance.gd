@@ -164,11 +164,16 @@ func types() -> Array[ElementType]:
 
 
 ## Los mejores de lo que sabe: hasta RIVAL_ATTACKS de daño (los que más estiman, de tipos distintos si se puede) y lo
-## mejor de estado en lo que quede; si no tiene de estado, más de daño.
-func best_equipment() -> Array[MoveData]:
+## mejor de estado en lo que quede; si no tiene de estado, más de daño. `extra` = más ataques para elegir (las MT de su
+## especie, para los entrenadores desde cierto nivel: TrainerMovesets).
+func best_equipment(extra: Array = []) -> Array[MoveData]:
 	var attacks: Array[MoveData] = []
 	var others: Array[MoveData] = []
-	for m in learned_moves():
+	var known := learned_moves()
+	for m in extra:
+		if m != null and not known.has(m):
+			known.append(m)
+	for m in known:
 		if m.does_nothing():
 			continue
 		(attacks if m.power * m.power_mult > 0.0 else others).append(m)

@@ -20,6 +20,7 @@ static func create(data: TrainerData) -> TrainerState:
 	for mon in data.starting_team:
 		if mon != null and mon.species != null:
 			s.team.append(CreatureInstance.create_rival(mon.species, mon.level))
+	TrainerMovesets.equip_team(s.team, data.display_name)
 	return s
 
 

@@ -122,6 +122,7 @@ $G --headless --path . --quit-after 30000 -- --autotest-ai-steer  # IA que rodea
 $G --headless --path . --quit-after 30000 -- --autotest-ai-mind  # IA-1: elegir ataque por situación, tipos, reacción humana, aviso de ataques fuertes
 $G --headless --path . --quit-after 30000 -- --autotest-ai-threat  # S-0: lee la amenaza (disparo, carga, Rayo, chorro), paso al costado vs. rodar, y bajo fuego no viene de frente
 $G --headless --path . --quit-after 30000 -- --autotest-sparring   # S-1: grabar peleas de arena (ajuste, GM `sparring`, JSON con muestras, hechos y marcas)
+$G --headless --path . --quit-after 3000 -- --autotest-trainer-moves  # ataques de entrenadores: FireRed mejorado (líderes...) y MT desde Nv. 30 (`--out docs/ENTRENADORES_ATAQUES.md` rearma la tabla)
 $G --headless --path . --fixed-fps 60 --quit-after 60000 -- --autotest-ai-pp  # H-1: la IA junta PP en vez de tirar un ataque malo, remate barato, pelea real con y sin paciencia
 $G --headless --path . --quit-after 60000 -- --autotest-ai-trainers  # IA-4: estilo por clase, cambio por tipos, Superpoción, guion de líderes (Misty de verdad)
 $G --headless --path . --quit-after 60000 -- --autotest-wild-life  # IA-5: dormir en su hora, despertarlos, respeto, manadas, rodear, cazador y presa, curiosidad
@@ -259,7 +260,14 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   palabras, armado desde su `MoveData` (forma, carga, combo, zona, estados con `status_text`); lo muestran la ficha
   (Movimientos), `MoveLearnScreen` y la Pokédex.
 - **Equipamiento de los rivales** (2026-11-04): salvajes, entrenadores y torneo salen con `CreatureInstance.create_rival` = `best_equipment` (hasta `RIVAL_ATTACKS` 3 de daño + lo mejor de
-  estado, `utility_rank`); tus Pokémon, con `create` = `default_equipment` (los últimos 4 por nivel).
+  estado, `utility_rank`); tus Pokémon, con `create` = `default_equipment` (los últimos 4 por nivel). **Entrenadores**
+  (decisión del usuario 2026-11-08, `TrainerMovesets`, `scripts/world/trainer_movesets.gd`; lo llaman `StoryDirector.fight`,
+  `TrainerState`, el torneo y la arena GM): los 118 equipos que FireRed arma a mano (líderes, Alto Mando, rival, Giovanni...;
+  `data/source/trainer_movesets.json` de `tools/fetch_frlg_movesets.py`, de pret `trainer_parties.h`) llevan sus ataques
+  **"FireRed mejorado"**: los de FireRed (MT incluidas), cambiando a lo sumo `MAX_SWAPS` 2 por Pokémon (el relleno `FILLER`
+  y los de daño flojos, por otro de daño) y llenando huecos; reemplazos de nivel y, desde `TM_LEVEL` 30, de MT. El equipo se
+  reconoce por especie y nivel (desempata el nombre del entrenador). Los comunes: `best_equipment(tm_moves)` desde Nv. 30.
+  Tabla para revisar: `docs/ENTRENADORES_ATAQUES.md` (la genera el test).
 - **Excavar en dos tiempos** (`Burrow`, `MoveData.burrow_time` = 4 s en `data/moves/excavar.tres`; pedido del usuario 2026-11-04): el primer toque lo mete bajo tierra (`Creature.burrow`: invisible, invulnerable, sin hurtbox, pasa por debajo de los demás, +10 % de velocidad, sin otros ataques ni esquive); el segundo, con la tecla ya soltada (`armed`), lo saca golpeando alrededor (`SkyStrike` sin espera) y recién ahí arranca la recarga; si no, sale solo. La IA va hasta abajo tuyo y sale (`creature_attack`) y no le tira a alguien bajo tierra. Online: dos avisos "use"; la copia del rival espera el aviso (`remote`), y la foto del servidor trae `bw`: si tu pantalla no coincide por más de 0,5 s, manda el servidor (`OnlineBattle.sync_burrow`). El Excavar del jefe Onix (`excavar_onix`, sin `burrow_time`) sigue saliendo donde apunta. Gráficos en `DigFx` (hojas `sprites/fx/moves/excavar_entrada|monticulo|salida|impacto.png`, de Qwen 2.1 + `tools/fx_from_strip.py`): se hunde cortado a la altura de los pies, el montículo viaja dejando tierra removida y la salida es una erupción.
 - **Rayo y Lanzallamas** (pedido del usuario 2026-11-05): Rayo = zona que cae del cielo a los 0,55 s (`SkyStrike`, hojas `rayo_marca|caida`, para todo golpe eléctrico del cielo); Lanzallamas = chorro sostenido como Psicorrayo (`ChannelCone`, 0,9 s, 130 px, 14°; hoja `<id>_chorro`, `DB.vfx_part`, estirada al largo del cono). Hechos en `data/moves`, a mano. **Surf** (pedido del usuario 2026-11-06): `MoveData.ride_range` + estado `ride` (`creature_ride.gd`): después de cargar viaja montado en la ola hasta el punto apuntado (`Creature.ride_point`), una pared lo frena antes, y recién al llegar golpea alrededor (`AreaEffect`); no pega en el camino.
 - **Ataques nuevos**: con ranura libre se equipa solo (`CreatureInstance.auto_equip`); con las 4 llenas,

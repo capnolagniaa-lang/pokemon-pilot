@@ -183,6 +183,13 @@ func _ready() -> void:
 		else:
 			(an.showcase_sleep if "--showcase-sleep" in OS.get_cmdline_user_args() else an.run).call_deferred()
 		return
+	if "--autotest-trainer-moves" in OS.get_cmdline_user_args():
+		set_process(false)
+		var tmv := TrainerMovesTests.new()
+		tmv.autotest = self
+		add_child(tmv)
+		tmv.run.call_deferred()
+		return
 	if "--autotest-sparring" in OS.get_cmdline_user_args():
 		set_process(false)
 		var sp := SparringTests.new()

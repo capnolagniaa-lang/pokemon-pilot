@@ -419,6 +419,7 @@ func fight(data: NpcData, texture: Texture2D = null, no_blackout: bool = false) 
 	for m in td.starting_team:
 		if m.requires_flag == "" or GameState.has_flag(m.requires_flag):
 			team.append(CreatureInstance.create_rival(m.species, m.level))
+	TrainerMovesets.equip_team(team, td.display_name)  # ataques de FireRed mejorados, o lo mejor con MT desde Nv. 30
 	if texture == null and ResourceLoader.exists("res://art/pret/characters/%s.png" % data.gfx):
 		texture = load("res://art/pret/characters/%s.png" % data.gfx)
 	var r: String = await world.arena.start({"name": td.display_name, "title": td.title, "team": team,
