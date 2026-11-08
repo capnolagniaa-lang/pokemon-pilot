@@ -183,6 +183,13 @@ func _ready() -> void:
 		else:
 			(an.showcase_sleep if "--showcase-sleep" in OS.get_cmdline_user_args() else an.run).call_deferred()
 		return
+	if "--autotest-sparring" in OS.get_cmdline_user_args():
+		set_process(false)
+		var sp := SparringTests.new()
+		sp.autotest = self
+		add_child(sp)
+		sp.run.call_deferred()
+		return
 	if "--autotest-ai-threat" in OS.get_cmdline_user_args():
 		set_process(false)
 		var tt := AiThreatTests.new()

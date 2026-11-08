@@ -15,6 +15,7 @@ const HELP := [
 	["hora <0-23>", "cambia la hora del día"],
 	["ir <zona> [x,y]", "te lleva a una zona (a su plaza o a esa celda)"],
 	["arena [nombre] [nivel]", "pelea de prueba en esa arena contra un entrenador al azar (3 Pokémon; nivel = el del tuyo). Sin nombre: la lista. Perder no te manda al Centro"],
+	["sparring [arena] [nivel]", "como arena (por defecto, el campo), pero graba la pelea para entrenar la IA (F8 marca un momento tonto; queda en user://sparring)"],
 	["volar", "cámara libre para mirar el mapa: WASD, Shift = rápido, rueda = zoom, Esc vuelve. No descubre nada"],
 	["limpiar", "borra la consola"],
 ]
@@ -56,6 +57,8 @@ func run(line: String) -> String:
 			return _go(args)
 		"arena":
 			return _arena(args)
+		"sparring":
+			return _sparring(args)
 	return "No conozco «%s». Escribí ayuda." % parts[0]
 
 
@@ -263,6 +266,18 @@ func _arena(args: Array) -> String:
 		"texture": tex, "no_blackout": true})
 	return "Peleando en %s contra %s (Nv. %d): %s." % [arena.display_name, who, lvl,
 		", ".join(team.map(func(m): return m.species.display_name))]
+
+
+## Pelea de prueba que además se graba (SparringRecorder, docs/PLAN_SPARRING_IA.md S-1).
+func _sparring(args: Array) -> String:
+	var words := args.duplicate()
+	if words.is_empty() or str(words[0]).is_valid_int():
+		words.push_front("campo")
+	var answer := _arena(words)
+	if not answer.begins_with("Peleando"):
+		return answer
+	world.sparring.armed = true
+	return "Grabando: %s" % answer
 
 
 func _fly() -> String:

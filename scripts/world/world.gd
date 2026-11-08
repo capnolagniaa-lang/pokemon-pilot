@@ -39,6 +39,8 @@ var lifts: Lifts
 var balloon: BalloonTravel
 ## Combates contra entrenadores en su arena (docs/PLAN_ENTRENADORES.md, E-1).
 var arena: TrainerBattle
+## Graba las peleas contra entrenadores para entrenar la IA (docs/PLAN_SPARRING_IA.md, S-1).
+var sparring: SparringRecorder
 ## Minimapa de arriba a la derecha (Tab).
 var minimap: Minimap
 ## Pesca (puntos de pesca, E frente al agua).
@@ -88,6 +90,9 @@ func _ready() -> void:
 	arena = TrainerBattle.new()
 	arena.name = "TrainerBattle"
 	add_child(arena)
+	sparring = SparringRecorder.new()  # graba las peleas de arena si está prendido (ajuste "Grabar peleas" o GM `sparring`)
+	sparring.name = "SparringRecorder"
+	add_child(sparring)
 	story = StoryDirector.new()
 	story.name = "StoryDirector"
 	add_child(story)

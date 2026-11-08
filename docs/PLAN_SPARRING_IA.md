@@ -48,7 +48,7 @@ mantienen su temperamento y heredan solo S-0); grabar en sparring y en las pelea
 | Fase | Qué | Cómo se prueba |
 |---|---|---|
 | **S-0. Acciones que faltan** ✅ (2026-11-08) | `CombatBody.sidestep(dir)`: paso al costado de 1-2 celdas sin gastar el esquive (es moverse, con prioridad sobre el modo). `threat()` en la mente: qué amenaza viene (proyectil en línea, carga apuntándote, canalizado barriendo, zona marcada encima, cuerpo a cuerpo a punto de salir) con su dirección y tiempo. `try_dodge` pasa a `react_to_threat`: según la amenaza y la dificultad elige **sidestep** (lo común), **esquivar** (lo fuerte o lo que no se puede evitar caminando) o nada. **Aprender a no comerse disparos**: si en los últimos ~3 s recibió ≥ 2 golpes viniendo de frente (`_mode == approach`), cambia a rodear o a esperar tu recarga (`window_open`), con un emote. | Test nuevo `--autotest-ai-threat`: un bot dispara en línea y la IA sale de la línea sin gastar el esquive; carga apuntada → se corre; zona marcada → sale del área; 3 disparos de frente → deja de venir de frente. Bot vs IA: golpes recibidos viniendo de frente bajan. |
-| **S-1. Grabar sparring** | Modo sparring (desde la consola GM `sparring <especie> [nivel]`, o un ajuste "Grabar peleas" en Opciones que graba también las peleas de entrenador normales): cada pelea contra vos se guarda en `user://sparring/<fecha>.json`: por cuadro (10 por segundo) la **situación** de cada lado (posición, distancia, estado de la máquina, vida, PP, recargas, proyectiles en el aire, amenaza detectada) y las **acciones** (tu input: dirección, esquive, ranura, apuntado; de la IA: modo, slot, sidestep/esquive) y los **hechos** (golpe, quién lo dio, si el que lo recibió venía de frente, esquive con o sin ataque que evitar). Tecla de marca (por ejemplo F8) para "esto fue tonto": guarda la marca con los últimos 5 s. | `--autotest-sparring`: una pelea con bot graba el archivo y tiene las columnas esperadas; el tamaño por minuto es razonable. |
+| **S-1. Grabar sparring** ✅ (2026-11-08) | Modo sparring (desde la consola GM `sparring <especie> [nivel]`, o un ajuste "Grabar peleas" en Opciones que graba también las peleas de entrenador normales): cada pelea contra vos se guarda en `user://sparring/<fecha>.json`: por cuadro (10 por segundo) la **situación** de cada lado (posición, distancia, estado de la máquina, vida, PP, recargas, proyectiles en el aire, amenaza detectada) y las **acciones** (tu input: dirección, esquive, ranura, apuntado; de la IA: modo, slot, sidestep/esquive) y los **hechos** (golpe, quién lo dio, si el que lo recibió venía de frente, esquive con o sin ataque que evitar). Tecla de marca (por ejemplo F8) para "esto fue tonto": guarda la marca con los últimos 5 s. | `--autotest-sparring`: una pelea con bot graba el archivo y tiene las columnas esperadas; el tamaño por minuto es razonable. |
 | **S-2. Informe** | `tools/sparring_report.py` (Python sin dependencias): lee los JSON y escribe `docs/SPARRING_INFORME.md`: por pelea y en total, los **errores de la IA** (golpes recibidos viniendo de frente, ataques tuyos telegrafiados que no evitó, esquives al vacío, PP gastados en ataques que no llegaron, segundos quieta), tus **patrones** (distancia típica por especie, cuánto sidestep hacés, cuándo entrás), y tus marcas F8 con lo que pasaba. Es lo que se mira para ajustar los parámetros de S-0 por dificultad. | Correrlo sobre las grabaciones del test. |
 | **S-3. Política imitada** | `tools/sparring_policy.py` discretiza la situación (distancia en 5 bandas, qué hace el rival en 6 estados, tu vida en 3, tus fuertes listos o no, amenaza sí/no y de qué lado) y cuenta tus acciones → `data/ai/politica_jugador.json` (situación → frecuencia de cada acción: approach/retreat/strafe izq/der/sidestep/dodge/attack). `MovementPolicy` en el juego: en `creature_attack` el modo y los sidesteps salen de la tabla cuando hay datos suficientes para esa situación (≥ N muestras); si no, las reglas de hoy. Mezcla por dificultad: Fácil 30 % tabla, Normal 60 %, Difícil 85 % (y los líderes siempre tabla). Especies cuerpo a cuerpo y de distancia usan tablas separadas (tu forma de jugar cambia con lo que llevás). | `--autotest-ai-policy`: con una tabla armada a mano la IA hace lo que dice la tabla; con la tabla real, bot vs IA mide que no empeore el porcentaje de victorias de la batería de balance más de X puntos (humana, no tonta). Y jugarlo. |
 | **S-4. Ciclo** | Jugás 10-20 peleas → informe → política nueva → se compara contra la anterior (la batería y tus marcas) → commit del JSON. Se repite cada tanto. La política viaja en el zip como cualquier dato (no se aprende en la PC de los amigos). | — |
@@ -79,10 +79,25 @@ también dicen cuánto duran tus ráfagas y tus respiros.
 - Test `--autotest-ai-threat` (busca un tramo despejado del pueblo y arma 6 escenarios).
 - Lo que **no** cambió: puntería, elección de ataque, PP, temperamentos, el esquive leído de IA-7.
 
+### S-1, cómo quedó
+- `SparringRecorder` (`world.sparring`, `scripts/creatures/ai/sparring_recorder.gd`) graba las peleas de arena contra
+  entrenadores cuando el ajuste **"Grabar peleas"** está prendido (Esc → Opciones → Ajustes del juego → Sparring;
+  `record_fights`, apagado por defecto, se guarda con la partida) o cuando la consola GM arma la pelea con
+  **`sparring [arena] [nivel]`** (por defecto el campo; `armed`, se apaga al terminar). No graba salvajes ni online.
+- Un JSON por pelea en `user://sparring/<fecha>_<entrenador>.json` (~2 KB por segundo): cabecera (versión, fecha,
+  dificultad, arena, entrenador, tu Pokémon con ataques y habilidad, el equipo rival, resultado, duración), **muestras**
+  a 10 por segundo (`columns`: tiempo, distancia y, por lado, posición relativa a la arena, velocidad, estado de la
+  máquina, vida, PP, ranuras listas como bits, stagger, estados; del rival además el modo del estado de ataque, la
+  amenaza que ve y si se está cuidando; proyectiles en el aire), **hechos** (`use` de cada ataque, `slot` con la amenaza
+  que había, `hit` con si el que lo recibió venía de frente, `dodge` con la amenaza que había al esquivar, `faint`,
+  `send` al salir otro Pokémon, `wary`) y **marcas** (F8, tecla fija como F11: "esto fue tonto", guarda el tiempo).
+- Avisos en pantalla al empezar ("Grabando la pelea...") y al terminar ("Pelea grabada: archivo").
+- Test `--autotest-sparring`. Lo que sigue: **S-2**, `tools/sparring_report.py` sobre estos archivos.
+
 ## 4. Decisiones abiertas (preguntar al usuario)
 
 Resueltas el 2026-11-08 (ver arriba): imitación solo para entrenadores y líderes; se graba en sparring y en las peleas
-normales con el ajuste apagado por defecto; S-0 primero. Próximo paso: **S-1** (grabar).
+normales con el ajuste apagado por defecto; S-0 primero. S-0 y S-1 hechas. Próximo paso: **S-2** (el informe).
 
 ## 5. Qué no cambia
 - La IA **no hace trampa**: la política imitada solo mira lo que una persona vería (sigue el criterio de IA-7).

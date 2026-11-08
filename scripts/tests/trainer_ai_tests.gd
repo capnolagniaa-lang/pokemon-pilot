@@ -218,8 +218,9 @@ func _reads(r: Dictionary) -> void:
 		var was: float = after.moves.dodge_cooldown
 		after.mind._watching = mine
 		after.mind._on_move(repeat)
-		await get_tree().create_timer(CombatBody.difficulty().reaction * TacticalMind.READ_REACT + 0.1).timeout
-		r["Repetís el ataque: esquiva antes (Alto Mando)"] = after.moves.dodge_cooldown > was or after.mind._read_dodge_at < 0.0
+		# (la lectura se usa en cuanto puede actuar: si justo estaba rodando o dando un paso al costado, un poco después)
+		await _until(func(): return not is_instance_valid(after) or after.mind._read_dodge_at < 0.0 or after.moves.dodge_cooldown > was, 1.0)
+		r["Repetís el ataque: esquiva antes (Alto Mando)"] = is_instance_valid(after) and (after.moves.dodge_cooldown > was or after.mind._read_dodge_at < 0.0)
 		after.mind._watching = null
 	await _finish(arena)
 	GameState.party.resize(1)
