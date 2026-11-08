@@ -159,10 +159,10 @@ func run() -> void:
 	daylight = world.get_node("Daylight")
 	await get_tree().process_frame
 	var cave_lights: CaveLights = world.streamer.loaded["mt_moon"].get_node_or_null("CaveLights")
-	r["En Mt. Moon al mediodía: oscuro y frío (oscuridad %.2f)" % dn.darkness] = dn.in_cave and dn.darkness > 0.9 		and daylight.color.b > daylight.color.r + 0.1
+	r["En Mt. Moon al mediodía: oscuro y frío (oscuridad %.2f)" % dn.darkness] = dn.in_cave and dn.darkness > 0.6 		and daylight.color.b > daylight.color.r + 0.1
 	r["Mt. Moon tiene antorchas y cristales (%d luces)" % (cave_lights.spots.size() if cave_lights else 0)] = 		cave_lights != null and cave_lights.spots.size() >= 5 		and cave_lights.spots.any(func(s): return s[1] == "antorcha") and cave_lights.spots.any(func(s): return s[1] == "cristales")
 	var lamp: PointLight2D = world.trainer.get_node_or_null("CaveLight")
-	r["En la cueva el entrenador lleva una luz chica"] = lamp != null and lamp.visible
+	r["En la cueva el entrenador lleva una luz"] = lamp != null and lamp.visible
 	r["Una ciudad no tiene luces de cueva"] = world.streamer.loaded.values().all(
 		func(z): return z.name == "mt_moon" or z.get_node_or_null("CaveLights") == null or z.zone_id.begins_with("mt_moon"))
 

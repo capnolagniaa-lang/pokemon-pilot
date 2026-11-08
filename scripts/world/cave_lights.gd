@@ -6,15 +6,15 @@ extends Node2D
 ## suelo (la celda sólida con suelo justo abajo), separadas por SPACING celdas, en un orden fijo por zona (siempre en
 ## el mismo lugar). Son decorado: no chocan. Antorcha = luz cálida que titila; cristales = luz fría y quieta.
 
-const SPACING := 9                      # celdas mínimas entre dos luces
+const SPACING := 6                      # celdas mínimas entre dos luces (9 hasta el 2026-11-08: muy pocas)
 const Z := -5                           # sobre el suelo y la pared, debajo de los personajes
 const TORCH_PATH := "res://sprites/props/antorcha.png"
 const CRYSTAL_PATH := "res://sprites/props/cristales.png"
 const TORCH_COLOR := Color(1.0, 0.50, 0.16)
 const CRYSTAL_COLOR := Color(0.45, 0.80, 1.0)
 const TORCH_ENERGY := 0.62
-const CRYSTAL_ENERGY := 0.42
-const RADIUS := 5.0                     # celdas que alumbra (aprox.)
+const CRYSTAL_ENERGY := 0.5
+const RADIUS := 6.5                     # celdas que alumbra (aprox.)
 ## Qué pone cada cueva (por prefijo del id): solo cristales (hielo), solo antorchas (velas de la Torre, la Mansión)
 ## o mezcla (el resto: 1 de cada 3, cristales).
 const ONLY_CRYSTALS := ["islas_espuma"]

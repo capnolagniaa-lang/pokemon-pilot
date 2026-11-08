@@ -44,17 +44,18 @@ const INDOOR := [12.0, Color(1.00, 0.98, 0.95), Vector3(1.04, 1.01, 0.93), 1.28,
 ## del gimnasio de Brock quedaba saturada de amarillo).
 const PAINTED := [12.0, Color(1, 1, 1), Vector3(1, 1, 1), 1.0, 1.03, 0.3, Color(1, 1, 1), 0.0, 0.0, 0.0]
 ## Las cuevas (bioma "cueva"): oscuras y frías (pedido del usuario 2026-10-28); alumbran las antorchas y los cristales
-## (CaveLights) y una luz chica alrededor del entrenador (CAVE_PLAYER_LIGHT).
-const CAVE := [0.0, Color(0.30, 0.36, 0.50), Vector3(0.94, 1.00, 1.10), 0.88, 1.10, 0.62, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
+## (CaveLights) y una luz alrededor del entrenador (CAVE_PLAYER_LIGHT). Más claras desde el 2026-11-08 (pedido del usuario:
+## "hay MUY poca luz"; antes Color(0.30, 0.36, 0.50) y viñeta 0,62: lejos de una antorcha no se veía el piso).
+const CAVE := [0.0, Color(0.42, 0.46, 0.60), Vector3(0.95, 1.00, 1.08), 0.90, 1.08, 0.50, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
 ## La Torre Pokémon: igual de fría pero menos oscura (pedido del usuario 2026-11-01: "se ve muy oscura").
 const DIM_CAVES := ["torre_pokemon"]
-const CAVE_DIM := [0.0, Color(0.46, 0.46, 0.60), Vector3(0.96, 0.98, 1.08), 0.92, 1.08, 0.48, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
+const CAVE_DIM := [0.0, Color(0.52, 0.52, 0.66), Vector3(0.96, 0.98, 1.08), 0.92, 1.07, 0.44, Color(0.6, 0.7, 1.0), 0.0, 0.0, 0.0]
 ## La Mansión Pokémon: una casa, clara y cálida aunque esté abandonada (pedido del usuario 2026-11-06: "que no se vea oscura").
 const LIT_CAVES := ["mansion_pokemon"]
 const CAVE_LIT := [0.0, Color(0.96, 0.92, 0.86), Vector3(1.02, 1.00, 0.96), 1.12, 1.05, 0.34, Color(1.0, 0.90, 0.70), 0.0, 0.0, 0.0]
 const CAVE_PLAYER_LIGHT := Color(0.80, 0.88, 1.0)
-const CAVE_PLAYER_ENERGY := 0.38
-const CAVE_PLAYER_RADIUS := 64.0
+const CAVE_PLAYER_ENERGY := 0.5
+const CAVE_PLAYER_RADIUS := 112.0
 ## Lo que se ve afuera del mapa (el vacío): en las cuevas, casi negro.
 const CAVE_CLEAR := Color(0.02, 0.02, 0.04)
 ## Daylight más claro que el de la noche (para medir la oscuridad). La noche es luz de luna plateada (pedido del
@@ -195,7 +196,7 @@ func apply() -> void:
 		Events.time_changed.emit(h, now)
 
 
-## Luz chica y fría alrededor del entrenador en las cuevas (si no, no se ve el camino entre antorcha y antorcha).
+## Luz fría alrededor del entrenador en las cuevas (si no, no se ve el camino entre antorcha y antorcha).
 func _update_player_light(on: bool) -> void:
 	var trainer: Node2D = _world.get("trainer")
 	if trainer == null:
