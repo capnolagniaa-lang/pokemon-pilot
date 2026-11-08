@@ -43,6 +43,11 @@ func _ready() -> void:
 	name_label.visible = false
 	facing = data.facing
 	_apply_facing()
+	if data.prop != "":
+		var prop := NpcProp.new()  # lo que tiene en la mano (después del sprite: se dibuja encima)
+		prop.name = "Prop"
+		prop.setup(data.prop, self)
+		add_child(prop)
 	_look_timer = randf_range(1.5, 4.0)
 	_rest = randf_range(0.0, REST_MAX)
 

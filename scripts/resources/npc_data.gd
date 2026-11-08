@@ -13,6 +13,8 @@ extends Resource
 @export var facing: Vector2i = Vector2i.DOWN
 ## Mira para los costados de vez en cuando.
 @export var look_around: bool = false
+## Algo que tiene en la mano, dibujado por NpcProp ("porro": el empleado de la Tienda en la Ruta 1). Vacío = nada.
+@export var prop: String = ""
 ## Camina sola adentro de este rectángulo (celdas locales de la zona); tamaño 0 = se queda en su lugar.
 @export var wander_rect: Rect2i = Rect2i()
 ## Solo aparece si están todas estas banderas / desaparece si está alguna de estas (bloqueos que se abren).

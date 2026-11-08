@@ -128,6 +128,8 @@ $G --headless --path . --quit-after 60000 -- --autotest-ai-trainers  # IA-4: est
 $G --headless --path . --quit-after 60000 -- --autotest-wild-life  # IA-5: dormir en su hora, despertarlos, respeto, manadas, rodear, cazador y presa, curiosidad
 $G --path . --quit-after 400 --write-movie out/f.png --fixed-fps 30 -- --showcase-wild-ai  # un salvaje de cada temperamento
 $G --headless --path . --quit-after 20000 -- --autotest-trainers  # entrenadores vivos (E-0: interruptor, NPC, guardado)
+$G --headless --path . --quit-after 20000 -- --autotest-npc-prop  # lo que una persona tiene en la mano (el porro del empleado de la Ruta 1: humo, pitada, lado)
+$G --path . --quit-after 160 --write-movie out/f.png --fixed-fps 30 -- --showcase-npc-prop  # el empleado de la Ruta 1 fumando, de cerca
 $G --path . --quit-after 200 --write-movie out/f.png --fixed-fps 30 -- --showcase-trainers  # los 3 en Ruta 1
 $G --headless --path . --quit-after 30000 -- --autotest-capture   # captura (fórmula, lanzar, escapar, Caja, guardado)
 $G --headless --path . --quit-after 30000 -- --autotest-bag       # mochila (curas, ranura rápida, objetos del mapa, botín)
@@ -353,7 +355,9 @@ archivo** en `audio/musica|efectos|gritos`, tabla `data/audio/musica.json`; escu
   hasta el final. El HUD se esconde con cualquier diálogo (`Events.dialog_started`) y se vuelve casi transparente si
   alguien queda detrás de la franja de abajo (`battle_hud.gd`, `something_behind`). **E contextual**: `PlayerItems` llama a
   `StoryDirector.try_interact()` antes de lanzar la bola. Personas: `tools/build_story_npcs.py` (desde los NPC de
-  `frlg_maps.json` + sprites de `tools/fetch_npc_sprites.py`). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
+  `frlg_maps.json` + sprites de `tools/fetch_npc_sprites.py`). `NpcData.prop` = algo en la mano dibujado por código
+  (`NpcProp`, `scripts/fx/npc_prop.gd`, lo agrega `StoryNPC`; en `TALKS` va como `prop=`): "porro" (el empleado de la
+  Tienda en la Ruta 1, pedido del usuario 2026-11-08: brasa, humo y una pitada cada tanto). Teclas 1-6 = cambiar de Pokémon (`CombatDirector.switch_to`).
 - **Combate contra entrenadores en arena** (E-1, `docs/PLAN_ENTRENADORES.md`): `TrainerBattle` (`world.arena`): fundido a
   una arena aparte (`ArenaData` en `data/arenas/`, escena = zona de tiles en `scenes/world/arenas/`, ambientación
   `ArenaDecor`; **arenas pintadas** con Qwen (2026-11-03, "MUY EPICAS": todas: el campo, los 8 gimnasios, el Alto Mando, el estadio del torneo y las de lugares): `ArenaData.painting`

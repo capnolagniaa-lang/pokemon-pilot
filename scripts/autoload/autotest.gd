@@ -183,6 +183,13 @@ func _ready() -> void:
 		else:
 			(an.showcase_sleep if "--showcase-sleep" in OS.get_cmdline_user_args() else an.run).call_deferred()
 		return
+	if "--autotest-npc-prop" in OS.get_cmdline_user_args() or "--showcase-npc-prop" in OS.get_cmdline_user_args():
+		set_process(false)
+		var npt := NpcPropTests.new()
+		npt.autotest = self
+		add_child(npt)
+		(npt.showcase if "--showcase-npc-prop" in OS.get_cmdline_user_args() else npt.run).call_deferred()
+		return
 	if "--autotest-trainer-moves" in OS.get_cmdline_user_args():
 		set_process(false)
 		var tmv := TrainerMovesTests.new()

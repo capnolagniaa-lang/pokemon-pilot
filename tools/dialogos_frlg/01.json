@@ -1,8 +1,7 @@
 {
  "pueblo_paleta/SignLady": {"lines": ["Yo también estoy criando Pokémon.", "Cuando se hagan fuertes, me van a poder cuidar."]},
  "pueblo_paleta/FatMan": {"lines": ["¡La tecnología es increíble!", "Ahora podés guardar objetos y Pokémon en la PC y sacarlos cuando quieras."]},
- "ruta1/MartClerk": {"talks": [["¡Hola! Trabajo en una Tienda Pokémon.", "Somos una cadena re práctica: vendemos de todo un poco.", "Vení a visitarnos a Ciudad Verde.", "¡Ya sé! Te doy una muestra gratis. ¡Tomá!"],
-                                ["Si necesitás Poké Balls para atrapar Pokémon, pasate por la Tienda."]]},
+ "ruta1/MartClerk": {"talks": [["Eeeh... ¿qué hacés, pibe? Tranqui, tranqui.", "Trabajo en la Tienda Pokémon de Ciudad Verde... Estoy en mi descanso, ¿viste?", "Me mandaron a repartir muestras gratis. Pero mirá qué linda está la ruta... da para quedarse.", "Tomá, llevate una Poción. Y no le digas a mi jefe que me viste acá, ¿eh?"], ["Uh... ¿ya te di la Poción, no? Se me mezcla todo.", "Si necesitás Poké Balls pasate por la Tienda. Yo vuelvo... en un rato."]]},
  "ruta1/Boy": {"lines": ["¿Ves esos bordes al costado del camino?", "Da un poco de miedo, pero se puede saltar desde arriba.", "Así volvés a Pueblo Paleta más rápido."]},
  "ciudad_verde/OldMan": {"lines": ["Este gimnasio siempre está cerrado.", "¿Quién será el líder?"]},
  "ciudad_verde/TutorialOldMan": {"lines": ["¡Eh! ¡Por acá no se pasa!", "¡Esto es propiedad privada!", "(El señor está de malhumor, tirado en el medio del camino.)"]},
