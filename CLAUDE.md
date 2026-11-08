@@ -98,6 +98,7 @@ $G --headless --path . --quit-after 60000 -- --autotest-equip     # equipar: tod
 $G --headless --path . --quit-after 60000 -- --autotest-updater   # actualizaciones automáticas (firma, bajar, comprobar, relanzar, sin conexión)
 $G --headless --path . --quit-after 90000 -- --autotest-online    # online O-0: servidor + clientes en un proceso, Net, modo --server
 $G --headless --path . --quit-after 90000 -- --autotest-online-building  # O-1: Centro de Combate Online (edificio, puerta, interior, enfermera, tienda, recepcionista)
+$G --headless --path . --quit-after 400000 -- --autotest-online-sync  # pelea online a fondo: paquetes y toques perdidos, equipo trucho, cada forma de ataque (servidor + copia del rival), lag y pérdida simulados, 6 peleas a la vez, clima por pelea, se cae el servidor en plena pelea (docs/ONLINE_INFORME.md)
 $G --headless --path . --quit-after 200000 -- --autotest-room-walk  # camina cada celda a la que se llega de un lugar (`--zone`, def. centro_online; `--arena <id>` = una arena) + imagen de la colisión sobre el dibujo (`--out <png>`)
 $G --headless --path . --quit-after 30000 -- --autotest-gm  # consola de Game Master (Ctrl+Shift+G): comandos y volar sin descubrir zonas
 $G --path . --quit-after 300 --write-movie out/f.png --fixed-fps 30 -- --showcase-gm-arena tierra  # la pelea de prueba `arena <nombre>` de la consola

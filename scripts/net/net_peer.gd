@@ -21,7 +21,7 @@ signal battle_state_received(match_id: int, state: Dictionary)
 signal battle_event_received(match_id: int, ev: Dictionary)
 
 ## Sube cuando cambian los mensajes: un juego viejo y uno nuevo no se entienden.
-const PROTOCOL := 6  # (4: el cambio 1-6 es el lugar en el equipo elegido; 5: aviso "use" de cada ataque, sin orden por rol; 6: Excavar en dos tiempos, dos avisos "use")
+const PROTOCOL := 7  # (4: el cambio 1-6 es el lugar en el equipo elegido; 5: aviso "use" de cada ataque, sin orden por rol; 6: Excavar en dos tiempos, dos avisos "use"; 7: contadores de toques en las teclas y la vida en el aviso "send")
 const DEFAULT_PORT := 24680
 const MAX_PLAYERS := 32
 const NAME_MAX := 16
@@ -69,6 +69,13 @@ var choose_timeout := CHOOSE_TIMEOUT
 var host_battles := true
 ## Servidor: peleas en curso, id de partida → NetMatch.
 var battles: Dictionary = {}
+## Cada pelea del servidor va a `ARENA_GAP` px de las demás (lugar libre: una pelea larga no se encima con la 17.ª).
+const ARENA_GAP := 4000.0
+const ARENA_BASE := Vector2(-60000, -60000)
+## Solo para los tests: red simulada. Demora (ms) con la que se procesa lo que llega de la pelea (fotos, hechos y teclas) y
+## proporción de paquetes sin garantía (fotos, teclas) que se pierden.
+var sim_latency_ms := 0
+var sim_loss := 0.0
 
 
 func _enter_tree() -> void:
@@ -92,6 +99,7 @@ func host(port: int = DEFAULT_PORT, version: String = "") -> Error:
 		return err
 	is_server = true
 	_version = version
+	_api.server_relay = false  # los clientes no se hablan entre ellos a través del servidor (solo con él)
 	_api.multiplayer_peer = peer
 	_connect_api()
 	_log("servidor escuchando en el puerto %d (versión %s)" % [port, version])
@@ -287,29 +295,57 @@ func _start_battle(m: Dictionary) -> void:
 	var nm := NetMatch.new()
 	nm.name = "Match%d" % m.id
 	nm.setup(m.id, m.a, m.b, m.teams)
-	nm.position = Vector2(-60000 + (m.id % 16) * 4000, -60000)
+	nm.position = ARENA_BASE + Vector2(_free_arena_slot() * ARENA_GAP, 0.0)
 	nm.event.connect(func(ev: Dictionary):
 		for p in [m.a, m.b]:
-			if _by_id.has(p):
+			if _can_send(p):
 				battle_event.rpc_id(p, m.id, ev))
 	nm.snapshot.connect(func(st: Dictionary):
 		for p in [m.a, m.b]:
-			if _by_id.has(p):
+			if _can_send(p):
 				battle_state.rpc_id(p, m.id, st))
 	nm.finished.connect(func(winner: int, reason: String):
 		_log("partida %d: ganó %s%s" % [m.id, _name_of(winner), " (%s)" % reason if reason != "" else ""])
 		battles.erase(m.id)
 		nm.queue_free.call_deferred()
 		end_match(m.id))
+	nm.set_meta("arena_slot", int((nm.position.x - ARENA_BASE.x) / ARENA_GAP))
 	battles[m.id] = nm
 	add_child(nm)
+
+
+## El primer lugar que no ocupa ninguna pelea viva.
+func _free_arena_slot() -> int:
+	var used := battles.values().filter(func(nm): return is_instance_valid(nm)).map(func(nm): return int(nm.get_meta("arena_slot", -1)))
+	var k := 0
+	while used.has(k):
+		k += 1
+	return k
 
 
 ## Cliente → servidor: mis teclas en la pelea (NetCombatInput.pack). Muchas por segundo: sin garantía, en orden.
 @rpc("any_peer", "unreliable_ordered")
 func battle_input(match_id: int, packet: Array) -> void:
-	if is_server and battles.has(match_id):
-		battles[match_id].set_input(_api.get_remote_sender_id(), packet)
+	if not is_server or not battles.has(match_id) or not packet is Array:
+		return
+	var from := _api.get_remote_sender_id()
+	_simulated(false, func():
+		if battles.has(match_id):
+			battles[match_id].set_input(from, packet))
+
+
+## Red simulada (tests): corre `what` ya, o con la demora y la pérdida configuradas. Devuelve si lo corrió o lo programó.
+func _simulated(reliable: bool, what: Callable) -> bool:
+	if sim_latency_ms <= 0 and sim_loss <= 0.0:
+		what.call()
+		return true
+	if not reliable and sim_loss > 0.0 and randf() < sim_loss:
+		return false
+	if sim_latency_ms <= 0:
+		what.call()
+	else:
+		get_tree().create_timer(sim_latency_ms / 1000.0).timeout.connect(what)
+	return true
 
 
 ## Cliente → servidor: cambiar de Pokémon (1-6).
@@ -322,13 +358,13 @@ func battle_switch(match_id: int, index: int) -> void:
 ## Servidor → cliente: foto de la pelea.
 @rpc("authority", "unreliable_ordered")
 func battle_state(match_id: int, st: Dictionary) -> void:
-	battle_state_received.emit(match_id, st)
+	_simulated(false, func(): battle_state_received.emit(match_id, st))
 
 
 ## Servidor → cliente: un hecho de la pelea.
 @rpc("authority", "reliable")
 func battle_event(match_id: int, ev: Dictionary) -> void:
-	battle_event_received.emit(match_id, ev)
+	_simulated(true, func(): battle_event_received.emit(match_id, ev))
 
 
 ## Servidor: terminó la partida (la llama la pelea, O-3): los dos quedan libres.
@@ -401,6 +437,11 @@ static func clean_battle_team(team: Array, count: int) -> Array:
 		var inst := CreatureInstance.from_dict(d)
 		if inst == null or inst.hp <= 0.0:
 			continue
+		# Habilidad de su especie (una ajena cambiaría la pelea) y apodo corto y limpio (los demás lo ven en pantalla).
+		var ok_abilities: Array = inst.species.abilities.map(func(a): return a.id)
+		if not ok_abilities.is_empty() and inst.ability not in ok_abilities:
+			inst.ability = ok_abilities[0]
+		inst.nickname = clean_name(inst.nickname).substr(0, 12) if inst.nickname.strip_edges() != "" else ""
 		var clean := inst.to_dict()
 		clean["hp_ratio"] = clampf(float(d.get("hp_ratio", inst.hp / maxf(1.0, inst.max_hp()))), 0.01, 1.0)
 		out.append(clean)
@@ -410,8 +451,22 @@ static func clean_battle_team(team: Array, count: int) -> Array:
 func _broadcast_players() -> void:
 	players = _by_id.values()
 	for id in _by_id:
-		player_list.rpc_id(id, players)
+		if _can_send(id):
+			player_list.rpc_id(id, players)
 	players_changed.emit(players)
+
+
+## ¿Se le puede mandar algo a ese peer? (Uno que se está yendo ya no tiene canales: mandarle llena la consola de errores.)
+func _can_send(id: int) -> bool:
+	if not is_server:
+		return false
+	if not _by_id.has(id):
+		return false
+	var enet := _api.multiplayer_peer as ENetMultiplayerPeer
+	if enet == null:
+		return false
+	var p := enet.get_peer(id)
+	return p != null and p.get_state() == ENetPacketPeer.STATE_CONNECTED
 
 
 func _kick(id: int, reason: String) -> void:
@@ -569,8 +624,16 @@ func send_choice(match_id: int, team: Array) -> void:
 
 
 func send_battle_input(match_id: int, packet: Array) -> void:
-	if state == "online":
+	if state == "online" and _server_reachable():
 		battle_input.rpc_id(1, match_id, packet)
+
+
+## Cliente: el servidor sigue conectado del lado de ENet (si se cayó, hasta que ENet lo note no se le manda nada).
+func _server_reachable() -> bool:
+	var enet := _api.multiplayer_peer as ENetMultiplayerPeer
+	if enet == null or enet.get_peer(1) == null:
+		return false
+	return enet.get_peer(1).get_state() == ENetPacketPeer.STATE_CONNECTED
 
 
 func send_battle_switch(match_id: int, index: int) -> void:

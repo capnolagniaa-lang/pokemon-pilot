@@ -8,6 +8,8 @@ extends Node
 ##  · Arena: lo mismo, salvo tipos Roca, Tierra y Acero.
 ## Se guarda en estáticas para que `Damage` y las habilidades lo lean sin conocer el mundo; el nodo (hijo de la raíz, uno
 ## solo) hace correr el tiempo y dibuja el efecto en pantalla.
+## **Un clima por ámbito** (2026-11-08): el juego del jugador es el ámbito 0 (`current`); en el servidor online cada pelea
+## (`NetMatch`) es el suyo, así dos peleas a la vez no se pisan el clima (`scope_of`, `kind_for`).
 
 const DURATION := 20.0
 const BOOST := 1.5
@@ -26,8 +28,11 @@ const INFO := {
 		"tint": Color(0.75, 0.6, 0.3, 0.2)},
 }
 
+## El clima del ámbito 0 (el juego del jugador; lo leen los tests y lo que no tiene criatura a mano).
 static var current := ""
 static var time_left := 0.0
+## Ámbito → {"kind", "time_left", "source"}.
+static var scopes: Dictionary = {}
 
 var _tick := 0.0
 var _soak := 0.0
@@ -45,14 +50,19 @@ static func start(kind: String, by: Creature) -> void:
 		node = CombatWeather.new()
 		node.name = NODE_NAME
 		root.add_child(node)
-	current = kind
-	time_left = DURATION
-	node._source = by
-	node._show(kind)
+	var scope := scope_of(by)
+	scopes[scope] = {"kind": kind, "time_left": DURATION, "source": by}
+	if scope == 0:
+		current = kind
+		time_left = DURATION
+		node._source = by
+		node._show(kind)
 	Events.signature_triggered.emit(by, INFO[kind]["text"], INFO[kind]["color"])
 
 
+## Corta el clima del juego del jugador (ámbito 0).
 static func stop(tree: SceneTree) -> void:
+	scopes.erase(0)
 	current = ""
 	time_left = 0.0
 	var node := tree.root.get_node_or_null(NODE_NAME) as CombatWeather
@@ -60,11 +70,39 @@ static func stop(tree: SceneTree) -> void:
 		node._clear_fx()
 
 
-## Cuánto cambia el clima el daño de un ataque de ese tipo.
-static func damage_mult(element: ElementType) -> float:
-	if current == "" or element == null:
+## Corta el clima del ámbito de ese nodo (una pelea del servidor al terminar).
+static func stop_for(n: Node) -> void:
+	var scope := scope_of(n)
+	if scope == 0:
+		if n.is_inside_tree():
+			stop(n.get_tree())
+		return
+	scopes.erase(scope)
+
+
+## El ámbito de un nodo: la pelea del servidor (NetMatch) que lo contiene, o 0 (el juego del jugador).
+static func scope_of(n: Node) -> int:
+	var p := n
+	while p != null:
+		if p is NetMatch:
+			return p.get_instance_id()
+		p = p.get_parent()
+	return 0
+
+
+## El clima que le toca a esa criatura ("" = ninguno).
+static func kind_for(n: Node) -> String:
+	if n == null or not is_instance_valid(n):
+		return current
+	return str(scopes.get(scope_of(n), {}).get("kind", ""))
+
+
+## Cuánto cambia el clima el daño de un ataque de ese tipo. `by` = quién lo tira (su ámbito); sin él, el del jugador.
+static func damage_mult(element: ElementType, by: Node = null) -> float:
+	var kind := kind_for(by) if by != null else current
+	if kind == "" or element == null:
 		return 1.0
-	var info: Dictionary = INFO[current]
+	var info: Dictionary = INFO[kind]
 	if info.get("boost", "") == element.id:
 		return BOOST
 	if info.get("nerf", "") == element.id:
@@ -73,7 +111,8 @@ static func damage_mult(element: ElementType) -> float:
 
 
 static func hurts(c: Creature) -> bool:
-	return current != "" and INFO[current].has("immune") and not _has_type(c, INFO[current]["immune"])
+	var kind := kind_for(c)
+	return kind != "" and INFO[kind].has("immune") and not _has_type(c, INFO[kind]["immune"])
 
 
 static func _has_type(c: Creature, ids: Array) -> bool:
@@ -85,7 +124,7 @@ static func _has_type(c: Creature, ids: Array) -> bool:
 
 ## Cuánto le conviene a `actor` largar ese clima (0 = no le conviene; lo usa TacticalMind).
 static func value_for(kind: String, actor: Creature, foe: Creature) -> float:
-	if current == kind or not INFO.has(kind):
+	if kind_for(actor) == kind or not INFO.has(kind):
 		return 0.0
 	var info: Dictionary = INFO[kind]
 	if info.has("immune"):
@@ -97,11 +136,17 @@ static func value_for(kind: String, actor: Creature, foe: Creature) -> float:
 
 
 func _process(delta: float) -> void:
-	if current == "":
+	if scopes.is_empty():
 		return
-	time_left -= delta
-	if time_left <= 0.0:
-		stop(get_tree())
+	for scope in scopes.keys():
+		scopes[scope]["time_left"] -= delta
+		if scopes[scope]["time_left"] <= 0.0:
+			if scope == 0:
+				stop(get_tree())
+			else:
+				scopes.erase(scope)
+	time_left = float(scopes.get(0, {}).get("time_left", 0.0))
+	if scopes.is_empty():
 		return
 	_tick += delta
 	_soak += delta
@@ -115,21 +160,24 @@ func _process(delta: float) -> void:
 		return
 	for n in get_tree().get_nodes_in_group("creatures"):
 		var c := n as Creature
-		if c == null or c.is_down() or not _fighting(c):
+		if c == null or c.is_down():
+			continue
+		var kind := kind_for(c)
+		if kind == "" or not _fighting(c, scopes.get(scope_of(c), {}).get("source")):
 			continue
 		if hit_now and hurts(c):
 			c.take_status_damage(c.health.max_hp() * STORM_DAMAGE)
-		if soak_now and current == "lluvia" and DB.statuses.has("empapado") and not _has_type(c, ["agua"]):
+		if soak_now and kind == "lluvia" and DB.statuses.has("empapado") and not _has_type(c, ["agua"]):
 			c.statuses.apply(DB.statuses["empapado"])
 
 
 ## Los que están peleando, no todos los salvajes del mapa (el que lo tiró y su rival cuentan desde el primer momento).
-func _fighting(c: Creature) -> bool:
+func _fighting(c: Creature, source) -> bool:
 	if c.engaged():
 		return true
-	if not is_instance_valid(_source):
+	if not is_instance_valid(source):
 		return false
-	return c == _source or c == _source.target
+	return c == source or c == source.target
 
 
 func _show(kind: String) -> void:

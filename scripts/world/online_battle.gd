@@ -23,6 +23,9 @@ const START_TIMEOUT := 10.0
 const HITSTOP_NORMAL := 0.045
 const HITSTOP_STRONG := 0.09
 const PREDICTED_WINDOW := 0.5
+## Un estado que tu pantalla acaba de poner (una mejora propia, un estado que le pegaste al rival con tu copia) no se
+## borra porque la foto del servidor todavía no lo tenga: la foto viene de hace una ida y vuelta.
+const STATUS_GRACE := 0.6
 
 var world: Node
 var active := false
@@ -40,6 +43,9 @@ var _foe_input := _make_foe_input()
 var _start: Dictionary = {}
 var _state: Dictionary = {}
 var _dodge_seq := 0
+## Contadores de toques por ranura y los bits del cuadro anterior (NetCombatInput.count_presses).
+var _press_seq: Array = [0, 0, 0, 0]
+var _prev_bits := 0
 var _applying_switch := false
 var _going := false
 var _end: Dictionary = {}
@@ -52,6 +58,7 @@ func _ready() -> void:
 	world = get_parent().get_parent() if get_parent() is OnlineDesk else get_parent()
 	Events.online_battle_event.connect(_on_event)
 	Events.online_battle_state.connect(_on_state)
+	Events.online_state_changed.connect(_on_net_state)
 
 
 ## La pelea entera: arena, cuenta regresiva, pelea, cartel y vuelta al edificio. Devuelve "win" o "lose".
@@ -67,6 +74,8 @@ func run(p_match_id: int, p_opponent: Dictionary, p_my_team: Array, p_foe_team: 
 	_end = {}
 	_state = {}
 	_going = false
+	_press_seq = [0, 0, 0, 0]
+	_prev_bits = 0
 	if local_input == null:
 		local_input = world.combat.input_source
 	var t: Trainer = world.trainer
@@ -110,7 +119,8 @@ func run(p_match_id: int, p_opponent: Dictionary, p_my_team: Array, p_foe_team: 
 	await world.arena.fade_to(0.0)
 	t.locked = false
 	active = false
-	Net.refresh_team()
+	if Net.is_online():
+		Net.refresh_team()
 	return result
 
 
@@ -196,7 +206,10 @@ func _physics_process(_delta: float) -> void:
 	if _going and is_instance_valid(c) and not c.is_down() and local_input != null and _end.is_empty():
 		if local_input.wants_dodge():
 			_dodge_seq += 1
-		Net.battle_input(match_id, NetCombatInput.pack(local_input, c, arena.global_position, _dodge_seq))
+		var packet := NetCombatInput.pack(local_input, c, arena.global_position, _dodge_seq, _press_seq)
+		_prev_bits = NetCombatInput.count_presses(_prev_bits, int(packet[3]), _press_seq)
+		packet[5] = NetCombatInput.pack_presses(_press_seq)
+		Net.battle_input(match_id, packet)
 	_correct(c, Net.client.my_id, OWN_SLACK, OWN_LERP)
 	_correct(foe, int(opponent.get("id", 0)), 0.0, FOE_LERP)
 
@@ -256,6 +269,9 @@ func _on_event(mid: int, ev: Dictionary) -> void:
 					c.knockback = ev.kb
 				if not guessed:
 					c.sprite.flash()
+				# Un golpe fuerte corta una carga, un canalizado o la ola de Surf (como lo hizo el servidor: Creature._on_hit).
+				if ev.get("kb") is Vector2 and (ev.kb as Vector2).length() >= Creature.STAGGER_KNOCKBACK 						and c.machine.current_name() in ["cast", "channel", "ride"]:
+					c.stun(0.25)
 				Events.creature_damaged.emit(c, float(ev.amount) * c.health.max_hp(), null)
 				_drop_projectiles_near(c.global_position)
 		"use":  # el rival atacó (el tuyo ya atacó en tu pantalla, con tus teclas)
@@ -273,7 +289,7 @@ func _on_event(mid: int, ev: Dictionary) -> void:
 			if int(ev.side) == me:
 				_switch_own(int(ev.index), at)
 			else:
-				_spawn_foe(int(ev.index), at)
+				_spawn_foe(int(ev.index), at, float(ev.get("hp", -1.0)))
 		"end":
 			_end = ev
 			result = "win" if int(ev.winner) == me else "lose"
@@ -285,6 +301,19 @@ func _on_event(mid: int, ev: Dictionary) -> void:
 				if is_instance_valid(c):
 					c.input_source = null
 			done.emit(result)
+
+
+## Se cortó la conexión en plena pelea: el servidor le da la pelea al otro; acá se cierra la arena (antes quedaba
+## esperando un "end" que nunca llegaba, con el entrenador trabado en la arena).
+func _on_net_state(s: String, _message: String) -> void:
+	if s == "online" or not active or arena == null or not _end.is_empty():
+		return
+	_end = {"t": "end", "winner": 0, "reason": "Se cortó la conexión con el servidor."}
+	result = "lose"
+	for c in [world.companion, foe]:
+		if is_instance_valid(c):
+			c.input_source = null
+	done.emit(result)
 
 
 func _on_state(mid: int, st: Dictionary) -> void:
@@ -344,8 +373,13 @@ func _sync_statuses(c: Creature, ids: Array) -> void:
 		if not c.statuses.has_status(id) and DB.statuses.has(id):
 			c.statuses.apply(DB.statuses[id])
 	for id in c.statuses.active.keys():
-		if id not in ids:
-			c.statuses.cure(c.statuses.active[id].status)
+		if id in ids:
+			continue
+		var e: Dictionary = c.statuses.active[id]
+		var st: StatusEffect = e.status
+		if e.time != INF and st.duration > 0.0 and e.time > st.duration - STATUS_GRACE:
+			continue  # recién puesto acá: la foto del servidor es de antes
+		c.statuses.cure(st)
 
 
 ## `index` = lugar en el equipo de la pelea (el orden en que los elegiste), no en tu equipo.
@@ -364,16 +398,19 @@ func _switch_own(index: int, at: Vector2) -> void:
 			c.input_source = null
 
 
-func _spawn_foe(index: int, at: Vector2) -> void:
-	if is_instance_valid(foe):
-		world.combat.enemies.erase(foe)
-		foe.queue_free()
+## `hp_ratio` = la vida que tiene ahora según el servidor (si no viene, la de cuando eligió el equipo).
+func _spawn_foe(index: int, at: Vector2, hp_ratio: float = -1.0) -> void:
 	if index < 0 or index >= foe_team.size():
 		return
 	var inst := CreatureInstance.from_dict(foe_team[index])
 	if inst == null:
 		return
-	inst.hp = clampf(float(foe_team[index].get("hp_ratio", 1.0)), 0.01, 1.0) * inst.max_hp()
+	if is_instance_valid(foe):
+		world.combat.enemies.erase(foe)
+		foe.queue_free()
+	if hp_ratio < 0.0:
+		hp_ratio = float(foe_team[index].get("hp_ratio", 1.0))
+	inst.hp = clampf(hp_ratio, 0.01, 1.0) * inst.max_hp()
 	var c: Creature = WildSpawner.CreatureScene.instantiate()
 	c.instance = inst
 	c.team = Creature.Team.WILD

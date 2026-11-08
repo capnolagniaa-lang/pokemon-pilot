@@ -142,7 +142,7 @@ func _tick(delta: float) -> void:
 	if heal <= 0.0 and not data.params.has("wet_speed"):
 		return
 	var world := creature.get_tree().get_first_node_in_group("world")
-	_wet = CombatWeather.current == "lluvia"
+	_wet = CombatWeather.kind_for(creature) == "lluvia"
 	if world != null and not _wet:
 		var tags: PackedStringArray = world.tags_at(creature.global_position) if world.has_method("tags_at") else PackedStringArray()
 		var st = world.reactions.state_at(creature.global_position) if world.get("reactions") != null else null

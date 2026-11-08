@@ -196,9 +196,14 @@ func slot_of(m: MoveData) -> int:
 
 
 ## `soon` = sin mirar la recarga ni los PP: se podría usar, si espera (`seconds_until_ready`).
+## El próximo ataque sale sin mirar recarga, pausa ni PP (la copia del rival en la pelea online: lo decidió el servidor,
+## `Creature.force_move`; su barra puede ser más chica que el costo). Se apaga solo al usarlo.
+var force_next := false
+
+
 func can_use(slot: int, soon: bool = false) -> bool:
 	return slot >= 0 and slot < slots.size() and slots[slot] != null \
-		and (soon or (cooldowns[slot] <= 0.0 and gap_left <= 0.0 and has_pp(slot))) \
+		and (soon or force_next or (cooldowns[slot] <= 0.0 and gap_left <= 0.0 and has_pp(slot))) \
 		and not heal_blocked(slot) and not status_locked(slot)
 
 
@@ -316,6 +321,7 @@ func consume(slot: int) -> Array:
 		return []
 	var m := slots[slot]
 	var step := 0
+	force_next = false
 	last_used = slot
 	gap_left = float(GameState.setting("attack_gap"))
 	if m.combo_steps <= 1 or _combo_step[slot] == 0:

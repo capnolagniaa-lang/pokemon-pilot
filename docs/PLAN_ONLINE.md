@@ -94,6 +94,16 @@ para desafiarlo.
 | **O-4** ✅ | Resultado: EXP para cada uno, vuelta al edificio (hecho junto con la O-3; se guarda como siempre, desde el menú). | Autotest: la EXP sube como en un combate en el mundo. |
 | **O-5** ✅ | Poner el servidor: `build_portable.py --server` (un ejecutable de servidor), guía para correrlo en una PC (con el puerto abierto en el router) o en un servidor en la nube gratis (Oracle Cloud Always Free). Dirección del servidor en Opciones (con una por defecto). | Probarlo de verdad con un amigo. |
 | O-6 (después) | Predicción del movimiento propio, ping en pantalla, chat rápido o emotes, sala compartida (verse caminando), nivel 50 opcional. | — |
+| O-7 (propuesta, ver informe) | Reconexión con 15 s de gracia, reconciliar los ataques propios con el `use` del servidor, secuencia en las fotos e interpolación, `use` con el ataque real (Metrónomo, Transformación), tope de mensajes por peer. | `--autotest-online-sync` |
+
+## Revisión a fondo (2026-11-08): `docs/ONLINE_INFORME.md`
+Mapa completo de una pelea, 10 bugs arreglados (el más grave: si se cortaba la conexión en plena pelea quedabas trabado
+en la arena para siempre; además, toques de un cuadro que se perdían con la red, clima global entre peleas del servidor,
+arenas que se encimaban, paquetes con basura, `server_relay`, habilidades ajenas, parpadeo de estados, cargas que no se
+cortaban en la copia, vida vieja al volver a salir), pendientes y propuestas ordenadas por impacto (reconexión con gracia,
+reconciliar tus ataques con el `use` del servidor, secuencia en las fotos, `use` con el ataque real de Metrónomo /
+Transformación) y la suite nueva **`--autotest-online-sync`** (`NetPeer.sim_latency_ms` / `sim_loss` simulan la red).
+`PROTOCOL` 7: hay que publicar versión.
 
 ## Hecho: parte de la O-6 (2026-10-29, pedido del usuario)
 - **Tu golpe se ve al instante**: el rival en tu pantalla tiene hurtbox, pero conectada a `OnlineBattle._on_predicted_hit`

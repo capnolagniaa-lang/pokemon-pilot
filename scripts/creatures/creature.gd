@@ -550,7 +550,8 @@ func force_move(move_id: String, aim: Vector2, point: Vector2 = Vector2.INF) -> 
 		return true
 	hitstun_left = 0.0
 	moves.reset_cooldown(slot)
-	moves.set_pp(maxf(moves.pp(), moves.pp_cost(slot)))
+	moves.set_pp(moves.max_pp())
+	moves.force_next = true  # (la barra de esta copia puede ser más chica que el costo: nivel bajo con un ataque caro)
 	if machine.current_name() != "controlled":
 		machine.transition_to("controlled")
 	var used := use_slot(slot, aim, point)

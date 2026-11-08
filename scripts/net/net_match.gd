@@ -123,6 +123,7 @@ func finish(winner: int, reason: String) -> void:
 	if over:
 		return
 	over = true
+	CombatWeather.stop_for(self)  # (el clima es por pelea: dos a la vez no se pisan)
 	for id in sides:
 		sides[id].input.enabled = false
 	var hp := {}
@@ -161,7 +162,9 @@ func _send(id: int, index: int, at: Vector2) -> void:
 	s.creature = c
 	s.index = index
 	s.down = false
-	event.emit({"t": "send", "side": id, "index": index, "p": at - arena.global_position})
+	# Con la vida que tiene ahora (la que eligió al principio ya es vieja si vuelve a salir).
+	event.emit({"t": "send", "side": id, "index": index, "p": at - arena.global_position,
+		"hp": c.instance.hp / maxf(1.0, c.instance.max_hp())})
 
 
 func _on_damaged(amount: float, _hit: HitInfo, id: int, c: Creature) -> void:
