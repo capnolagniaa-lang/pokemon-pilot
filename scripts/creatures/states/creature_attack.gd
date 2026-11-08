@@ -8,6 +8,9 @@ extends State
 ## Memoria corta (IA-2, TacticalMind): castiga cuando tenés tus ataques fuertes en recarga, se aleja más si peleás
 ## de cerca, con poca vida huye / se juega todo / se cubre según el temperamento, y a veces amaga (finta).
 ## Juntando PP (TacticalMind.saving, H-1): no ataca; si le falta bastante se aleja y da vueltas, sin dejar de esquivar.
+## Bajo fuego (S-0, docs/PLAN_SPARRING_IA.md): si se come golpes viniendo de frente, deja de venir de frente un rato
+## ("wary"): los de distancia rodean, los de cuerpo a cuerpo esperan más lejos y entran recién con tus fuertes en recarga
+## o con vos expuesto, y cuando entran lo hacen en zigzag. Los pasos al costado y esquives los decide CombatBody.
 
 ## Si no tiene temperamento (no debería pasar), huye con menos de esto.
 @export var flee_below := 0.25
@@ -33,17 +36,30 @@ const MELEE_ENTER := 0.45
 const CONTACT := 18.0
 ## Juntando PP se queda por lo menos a esta distancia.
 const SAVE_DISTANCE := 90.0
+## Bajo fuego (TacticalMind.wary, S-0): los de cuerpo a cuerpo esperan a WARY_SPACING.
+const WARY_SPACING := 95.0
+## Para notar cuándo la mente se acaba de poner a cubierto (cambia de lado y deja de venir de frente).
+var _seen_wary := 0
 
 
 func enter(_msg: Dictionary = {}) -> void:
 	_attack_timer = randf_range(0.3, 0.8) * CombatBody.difficulty().attack_interval_mult
 	_cancel_tell()
+	_seen_wary = actor.mind.wary_count
 
 
 func exit() -> void:
 	_cancel_tell()
 	if actor.mind != null:
 		actor.mind.saving = false
+
+
+func wary() -> bool:
+	if actor.mind.wary_count != _seen_wary:
+		_seen_wary = actor.mind.wary_count
+		_strafe = -_strafe
+		_mode = "strafe"
+	return actor.mind.wary()
 
 
 func _cancel_tell() -> void:
@@ -107,6 +123,11 @@ func physics_update(delta: float) -> void:
 			return
 	if actor.body.try_dodge():
 		return
+	var step: Vector2 = actor.body.sidestep_dir()
+	if step != Vector2.ZERO:  # paso al costado en curso (S-0)
+		actor.move(actor.body.steer(step), actor.speed() * CombatBody.SIDESTEP_SPEED)
+		actor.facing = dir
+		return
 	var escape: Vector2 = actor.body.hazard_escape()
 	if escape != Vector2.ZERO:
 		actor.move(escape, actor.speed())
@@ -122,6 +143,10 @@ func physics_update(delta: float) -> void:
 		var ideal := _ideal_range()
 		if actor.mind.window_open() and dist > MELEE_RANGE:
 			_mode = "approach"  # tus ataques fuertes están en recarga: se te viene encima
+		elif wary() and dist < 200.0 and actor.body.clear_shot(t):
+			_mode = "strafe"  # bajo fuego: no viene de frente, rodea
+			if randf() < 0.5:
+				_strafe = -_strafe
 		elif dist > ideal * 1.3 or (dist > 40.0 and not actor.body.clear_shot(t)):
 			_mode = "approach"  # lejos, o con una pared/árbol en el medio: se acerca rodeando
 		elif dist < ideal * 0.6 and ideal > MELEE_RANGE:
@@ -132,6 +157,8 @@ func physics_update(delta: float) -> void:
 			_strafe = -_strafe
 
 	_attack_timer -= delta
+	if _attack_timer <= 0.0 and wary() and _ideal_range() <= MELEE_RANGE and dist > MELEE_SPACING:
+		_attack_timer = 0.3  # bajo fuego, un cuerpo a cuerpo no se tira de lejos (la embestida es venir de frente): espera
 	if _attack_timer <= 0.0 and not t.is_burrowed():  # (no le tira a alguien que está bajo tierra)
 		if _choose_attack(dist):
 			_attack_timer = randf_range(0.5, 1.1) * CombatBody.difficulty().attack_interval_mult * _pace()
@@ -152,13 +179,19 @@ func physics_update(delta: float) -> void:
 		_mode = _melee_mode(dist)
 		speed_k = 0.95 if _mode == "approach" else (0.6 if _mode == "retreat" else 0.35)
 	var move := Vector2.ZERO
+	var spacing := WARY_SPACING if wary() else MELEE_SPACING
 	match _mode:
 		"approach":
-			move = dir if dist > CONTACT else Vector2.ZERO
+			if dist <= CONTACT:
+				move = Vector2.ZERO
+			elif wary():
+				move = (dir + dir.orthogonal() * _strafe * 0.9).normalized()  # bajo fuego entra en zigzag, no en línea
+			else:
+				move = dir
 		"retreat":
 			move = -dir
 		"hold":
-			move = dir.orthogonal() * _strafe * 0.6 + dir * clampf((dist - MELEE_SPACING) / 20.0, -0.6, 0.6)
+			move = dir.orthogonal() * _strafe * 0.6 + dir * clampf((dist - spacing) / 20.0, -0.6, 0.6)
 		_:
 			move = dir.orthogonal() * _strafe * 0.8 + dir * 0.15
 	var flank: Vector2 = actor.mind.flank_point(_ideal_range())
@@ -190,6 +223,10 @@ func _melee_mode(dist: float) -> String:
 		return "approach"  # una pared o un árbol en el medio: la rodea
 	if _backoff > 0.0:
 		return "retreat" if dist < MELEE_SPACING else "hold"
+	if wary() and dist > MELEE_SPACING:
+		# Bajo fuego y todavía lejos: espera a WARY_SPACING, de costado; entra recién con tus fuertes en recarga o con vos
+		# expuesto (wary() ya lo mira) y, si entra, en zigzag. Ya pegado pelea normal: irse sería meterse en la línea de tiro.
+		return "hold" if dist < WARY_SPACING * 1.5 else "approach"
 	if _attack_timer <= MELEE_ENTER or actor.mind.window_open() or actor.mind.all_in:
 		return "approach"
 	if dist < MELEE_SPACING * 0.75:

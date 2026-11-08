@@ -99,12 +99,214 @@ var _save_blocked_until := -1.0
 var _save_emote_at := -100.0
 
 
+## Bajo fuego (S-0, docs/PLAN_SPARRING_IA.md): con FRONT_HITS golpes del rival en FRONT_WINDOW s mientras venía de frente
+## (acercándose, embistiendo), se cuida WARY_MIN-WARY_MAX s (`wary()`): no viene en línea recta hasta que se le abra una
+## ventana de verdad.
+const FRONT_HITS := 2
+const FRONT_WINDOW := 3.0
+const WARY_MIN := 2.5
+const WARY_MAX := 4.5
+## Estados del rival en los que sí conviene entrar aunque se esté cuidando (el respiro de después de un ataque no).
+const REAL_OPENINGS := ["cast", "channel", "stunned"]
+
+var _front_hits: Array[float] = []
+var wary_until := -1.0
+## Cuántas veces se puso a cubierto (lo leen el estado de ataque, el test y, después, el sparring).
+var wary_count := 0
+
+
 func _init(p_actor: Creature) -> void:
 	actor = p_actor
+	actor.damage_received.connect(_on_damaged)
+
+
+## Le pegaron: si venía de frente (acercándose o embistiendo hacia el rival) lo anota; dos seguidos y se cuida.
+func _on_damaged(amount: float, hit: HitInfo) -> void:
+	if amount <= 0.0 or hit == null or not is_instance_valid(actor.target) or hit.attacker != actor.target:
+		return
+	var to: Vector2 = actor.target.global_position - actor.global_position
+	var closing: bool = to.length() > 1.0 and actor.velocity.length() > 5.0 and actor.velocity.normalized().dot(to.normalized()) > 0.5
+	if not closing:
+		return
+	var now: float = actor.now()
+	_front_hits.append(now)
+	while not _front_hits.is_empty() and now - _front_hits[0] >= FRONT_WINDOW:
+		_front_hits.pop_front()
+	if _front_hits.size() >= FRONT_HITS:
+		_front_hits.clear()
+		wary_until = now + randf_range(WARY_MIN, WARY_MAX)
+		wary_count += 1
+
+
+## Se está cuidando de los disparos del rival (y no hay ventana, ni se juega todo, ni el rival está expuesto de verdad:
+## cargando, canalizando o aturdido). La ventana acá es solo sus fuertes en recarga.
+func wary() -> bool:
+	if actor.now() >= wary_until or all_in or strong_on_cooldown():
+		return false
+	var t: Creature = actor.target
+	return not (is_instance_valid(t) and t.machine.current_name() in REAL_OPENINGS)
 
 
 static func difficulty() -> AiDifficulty:
 	return CombatBody.difficulty()
+
+
+# --- La amenaza que viene (S-0, docs/PLAN_SPARRING_IA.md) ---
+
+## Radio del cuerpo para saber si algo lo toca, y margen de seguridad al salir. El cuerpo (hurtbox) está a BODY_OFFSET
+## de los pies, igual que de donde salen los disparos: lo que vuela se compara ahí; lo del piso (zonas), en los pies.
+const BODY_RADIUS := 10.0
+const BODY_OFFSET := Vector2(0, -8)
+const THREAT_MARGIN := 6.0
+## Hasta dónde ve venir un disparo.
+const SEE_THREAT := 220.0
+## Un golpe cuerpo a cuerpo que viene a esta distancia ya es amenaza.
+const MELEE_THREAT := 70.0
+const MELEE_STATES := ["step", "lunge"]
+
+
+## La amenaza más urgente que viene hacia el actor, o {} si no hay. Lo que una persona ve: un disparo en línea
+## ("shot"), una carga apuntada o marcada en el piso ("cast"), una zona que está por caer o en la que está parado
+## ("zone"), un chorro barriendo ("beam") o un golpe cuerpo a cuerpo que está saliendo ("melee").
+##   key: con qué se decide una sola vez (el nodo, o "cast"/"melee") · eta: segundos hasta que pega · out: hacia
+##   dónde salir · clear: cuánto hay que correrse para quedar afuera · strong: tira o corta cargas (mejor esquivar).
+func threat() -> Dictionary:
+	var best := {}
+	var feet: Vector2 = actor.global_position
+	var me: Vector2 = feet + BODY_OFFSET
+	var parent := actor.get_parent()
+	if parent == null:
+		return best
+	for n in parent.get_children():
+		var th := {}
+		if n is Projectile:
+			th = _shot_threat(n, me)
+		elif n is SkyStrike:
+			th = _sky_threat(n, feet)
+		elif n is ChannelCone:
+			th = _beam_threat(n, me)
+		elif n is GroundZone:
+			th = _ground_threat(n, feet)
+		if not th.is_empty() and (best.is_empty() or th.eta < best.eta):
+			best = th
+	var t: Creature = actor.target
+	if is_instance_valid(t) and not t.is_down():
+		var mine: Array = [_cast_threat(t, me, feet), _melee_threat(t, me)]
+		for n in t.get_children():  # (el chorro de un canalizado cuelga del que lo tira)
+			if n is ChannelCone:
+				mine.append(_beam_threat(n, me))
+		for th in mine:
+			if not th.is_empty() and (best.is_empty() or th.eta < best.eta):
+				best = th
+	return best
+
+
+func _shot_threat(p: Projectile, me: Vector2) -> Dictionary:
+	if p.hit == null or p.hit.team == actor.team or p.hit.move == null or p.velocity.length() < 1.0:
+		return {}
+	var rel := me - p.global_position
+	var v := p.velocity.normalized()
+	var along := rel.dot(v)
+	if along <= 0.0 or rel.length() > SEE_THREAT:
+		return {}
+	var side := rel.cross(v)  # distancia (con signo) a la línea del disparo
+	var hitw := p.radius + BODY_RADIUS + THREAT_MARGIN
+	if absf(side) > hitw:
+		return {}
+	var perp := v.orthogonal()
+	var out := perp if rel.dot(perp) >= 0.0 else -perp  # hacia el lado al que ya está corrido
+	return {"kind": "shot", "key": p, "source": p, "dir": v, "out": out, "eta": along / p.velocity.length(),
+		"clear": hitw - absf(side) + 2.0, "strong": p.hit.move.knockback >= Creature.STAGGER_KNOCKBACK}
+
+
+func _sky_threat(s: SkyStrike, me: Vector2) -> Dictionary:
+	if s.hit == null or s.hit.team == actor.team or s.time_left() <= 0.0:
+		return {}
+	var d := me.distance_to(s.global_position)
+	if d > s.radius + BODY_RADIUS:
+		return {}
+	var out := (me - s.global_position).normalized() if d > 1.0 else Vector2.RIGHT.rotated(randf() * TAU)
+	return {"kind": "zone", "key": s, "source": s, "dir": -out, "out": out, "eta": s.time_left(),
+		"clear": s.radius + BODY_RADIUS - d + 4.0, "strong": s.hit.move != null and s.hit.move.knockback >= Creature.STAGGER_KNOCKBACK}
+
+
+func _ground_threat(g: GroundZone, me: Vector2) -> Dictionary:
+	if g.hit == null or g.hit.team == actor.team:
+		return {}
+	var d := me.distance_to(g.global_position)
+	if d > g.radius + BODY_RADIUS * 0.5:
+		return {}
+	var out := (me - g.global_position).normalized() if d > 1.0 else Vector2.RIGHT.rotated(randf() * TAU)
+	return {"kind": "zone", "key": g, "source": g, "dir": -out, "out": out, "eta": 0.1,
+		"clear": g.radius + BODY_RADIUS - d + 4.0, "strong": false}
+
+
+func _beam_threat(c: ChannelCone, me: Vector2) -> Dictionary:
+	if c.hit == null or c.hit.team == actor.team or c.hit.move == null:
+		return {}
+	var rel := me - (c.global_position if c.position != Vector2.ZERO else c.global_position + BODY_OFFSET)
+	var d := rel.length()
+	var m: MoveData = c.hit.move
+	var length := m.cone_length * c.hit.area_mult
+	if d < 1.0 or d > length + BODY_RADIUS:
+		return {}
+	var half := deg_to_rad(m.cone_angle_deg * 0.5)
+	var ang := absf(c.direction.angle_to(rel))
+	var body_ang := atan2(BODY_RADIUS, d)
+	if ang > half + body_ang + 0.25:
+		return {}
+	var side := rel.cross(c.direction)
+	var out := c.direction.orthogonal() * (1.0 if side >= 0.0 else -1.0)
+	return {"kind": "beam", "key": c, "source": c, "dir": c.direction, "out": out, "eta": 0.05,
+		"clear": maxf(10.0, d * sin(half + body_ang) - absf(side) + 6.0), "strong": false}
+
+
+## El rival carga algo (estado "cast"): su telegrafiado dice adónde va. En línea: estoy en la franja; en círculo: adentro.
+func _cast_threat(t: Creature, me: Vector2, feet: Vector2) -> Dictionary:
+	if t.machine.current_name() != "cast" or t.last_move == null or t.telegraph == null:
+		return {}
+	var tg: Telegraph = t.telegraph
+	var m: MoveData = t.last_move
+	var left: float = maxf(0.0, 1.0 - tg.progress) * m.cast_time
+	var strong: bool = m.knockback >= Creature.STAGGER_KNOCKBACK or m.power >= 80.0
+	if tg.shape == Telegraph.Shape.LINE:
+		var rel := me - (t.global_position + BODY_OFFSET)
+		var along := rel.dot(tg.direction)
+		if along < 0.0 or along > tg.length + BODY_RADIUS:
+			return {}
+		var side := rel.cross(tg.direction)
+		var hitw := tg.width * 0.5 + BODY_RADIUS + THREAT_MARGIN
+		if absf(side) > hitw:
+			return {}
+		var perp := tg.direction.orthogonal()
+		var out := perp if rel.dot(perp) >= 0.0 else -perp
+		var fly := along / (m.speed * Projectile.SPEED_MULT) if m.kind == MoveData.Kind.PROJECTILE and m.speed > 0.0 else 0.0
+		return {"kind": "cast", "key": "cast", "source": t, "dir": tg.direction, "out": out, "eta": left + fly,
+			"clear": hitw - absf(side) + 2.0, "strong": strong}
+	if tg.shape == Telegraph.Shape.CIRCLE:
+		var center: Vector2 = t.global_position + tg.position
+		var d := feet.distance_to(center)
+		if d > tg.radius + BODY_RADIUS:
+			return {}
+		var out := (feet - center).normalized() if d > 1.0 else (feet - t.global_position).normalized()
+		return {"kind": "cast", "key": "cast", "source": t, "dir": -out, "out": out, "eta": left,
+			"clear": tg.radius + BODY_RADIUS - d + 4.0, "strong": strong}
+	return {}
+
+
+## El rival está soltando un golpe cuerpo a cuerpo hacia acá (dio el paso o embiste).
+func _melee_threat(t: Creature, me: Vector2) -> Dictionary:
+	if t.machine.current_name() not in MELEE_STATES or t.last_move == null:
+		return {}
+	var rel := me - t.global_position
+	var d := rel.length()
+	if d > MELEE_THREAT or d < 1.0 or t.facing.dot(rel / d) < 0.6:
+		return {}
+	var perp := t.facing.orthogonal()
+	var side := rel.cross(t.facing)
+	var out := ((perp if side >= 0.0 else -perp) - t.facing * 0.6).normalized()  # al costado y un poco para atrás
+	return {"kind": "melee", "key": "melee", "source": t, "dir": t.facing, "out": out, "eta": 0.12,
+		"clear": 22.0, "strong": t.last_move.knockback >= Creature.STAGGER_KNOCKBACK}
 
 
 # --- Memoria corta (IA-2) ---
@@ -224,6 +426,14 @@ func window_open() -> bool:
 		return false
 	if t.machine.current_name() == "recovery":
 		return true
+	return strong_on_cooldown()
+
+
+## El rival tiene todos sus ataques fuertes en recarga (sin contar el respiro de después de cada ataque).
+func strong_on_cooldown() -> bool:
+	var t: Creature = actor.target
+	if not is_instance_valid(t) or t.moves == null:
+		return false
 	var strong := 0
 	for slot in MoveUser.SLOT_COUNT:
 		var m: MoveData = t.moves.slots[slot]

@@ -52,6 +52,11 @@ func strike(p_hit: HitInfo, center: Vector2, extra_delay: float = 0.0, p_burrowe
 		Events.camera_shake.emit(2.0)
 
 
+## Segundos hasta que cae (0 si ya cayó). Lo lee la IA para salir del círculo a tiempo (TacticalMind.threat).
+func time_left() -> float:
+	return maxf(0.0, delay - _time)
+
+
 func _physics_process(delta: float) -> void:
 	_time += delta
 	if not _struck and _time >= delay:

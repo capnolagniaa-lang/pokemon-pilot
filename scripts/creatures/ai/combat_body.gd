@@ -7,9 +7,25 @@ extends RefCounted
 ## del salvaje o, más adelante, las órdenes del entrenador).
 
 var actor: Creature
-## Disparos vistos: proyectil -> [cuándo lo vio (s), si decidió esquivarlo]. Esquiva recién pasado el tiempo de
-## reacción de la dificultad (docs/PLAN_IA.md, IA-1).
+## Amenazas vistas (TacticalMind.threat): clave -> [cuándo reacciona (s), si va a esquivar, si va a dar el paso].
+## Decide una vez por amenaza al verla y reacciona recién pasado el tiempo de reacción de la dificultad (IA-1).
 var _checked: Dictionary = {}
+## Paso al costado en curso (S-0, docs/PLAN_SPARRING_IA.md): hacia dónde y cuánto le falta.
+var _step_dir := Vector2.ZERO
+var _step_left := 0.0
+## Velocidad del paso (× la de caminar) y cuánto se corre como mínimo y como máximo.
+const SIDESTEP_SPEED := 1.1
+const SIDESTEP_MIN := 16.0
+## Esquiva (rueda) recién cuando falta esto para que pegue: la invulnerabilidad del esquive dura poco, antes se
+## desperdicia (y una persona tampoco rueda medio segundo antes).
+const DODGE_WINDOW := 0.26
+## Un ataque fuerte que llega antes de este múltiplo del tiempo del paso se rueda en vez de caminar (con más tiempo, el paso).
+const STRONG_STEP_MARGIN := 3.0
+const SIDESTEP_MAX := 40.0
+## Probabilidad de dar el paso al costado: base + la de esquivar × 1,5 (es barato: una persona lo hace casi siempre).
+const SIDESTEP_BASE := 0.25
+## (Tests: imprime cada decisión.)
+static var debug_threats := false
 ## Ataques que necesitan línea libre hasta el objetivo (los frena una pared).
 const NEEDS_SHOT := [MoveData.Kind.PROJECTILE, MoveData.Kind.CHANNEL, MoveData.Kind.WHIP]
 ## A qué distancia ve venir un disparo y a cuál ya es tarde para pensarlo.
@@ -92,33 +108,96 @@ func use(slot: int) -> bool:
 	return actor.use_slot(slot, dir, point)
 
 
-## Esquiva proyectiles enemigos que vienen hacia él: decide una vez por proyectil (dodge_chance) al verlo venir, y
-## esquiva recién pasado su tiempo de reacción (`AiDifficulty.reaction`, ±30 %), si sigue viniendo.
+## Reacciona a la amenaza que viene (TacticalMind.threat: disparo, carga apuntada, zona, chorro, golpe): decide una
+## vez por amenaza al verla (esquivar con `dodge_chance` + bonus; dar el paso con SIDESTEP_BASE + eso × 1,5) y actúa
+## recién pasado su tiempo de reacción (`AiDifficulty.reaction`, ±30 %). Si alcanza con caminar, da un **paso al
+## costado** (lo que hace una persona casi siempre, sin gastar el esquive); si es fuerte o ya no hay tiempo, **esquiva**.
+## Devuelve si hizo algo este cuadro. (Nombre histórico: antes solo esquivaba proyectiles.)
 func try_dodge() -> bool:
 	var now := actor.now()
 	if actor.mind.read_dodge_due() and actor.moves.can_dodge():  # el ataque que repetís: se lo veía venir (IA-7)
 		var line: Vector2 = actor.target.global_position - actor.global_position
 		return actor.dodge(line.orthogonal().normalized() * (1.0 if randf() < 0.5 else -1.0))
-	for p in _checked.keys():
-		if not is_instance_valid(p):
-			_checked.erase(p)
-	for p in actor.get_parent().get_children():
-		if not p is Projectile or p.hit == null or p.hit.team == actor.team:
-			continue
-		var rel: Vector2 = actor.global_position - p.global_position
-		if p.velocity.dot(rel) <= 0.0:
-			continue
-		if not _checked.has(p):
-			if rel.length() < SEE_SHOT:
-				var react := difficulty().reaction * randf_range(0.7, 1.3)
-				_checked[p] = [now + react, randf() < difficulty().dodge_chance + actor.mind.dodge_bonus()]
-			continue
-		var seen: Array = _checked[p]
-		if seen[1] and now >= seen[0] and rel.length() < DODGE_SHOT and actor.moves.can_dodge():
+	var th: Dictionary = actor.mind.threat()
+	for k in _checked.keys():
+		if k is String:
+			if not th.get("key") is String or th.key != k:
+				_checked.erase(k)  # (una carga o un golpe que ya pasó: la próxima se decide de nuevo)
+		elif not is_instance_valid(k):
+			_checked.erase(k)
+	if th.is_empty():
+		return false
+	var key = th.key
+	if not _checked.has(key):
+		var react := difficulty().reaction * randf_range(0.7, 1.3)
+		var chance: float = difficulty().dodge_chance + actor.mind.dodge_bonus()
+		var step_chance: float = clampf(SIDESTEP_BASE + chance * 1.5, 0.0, 0.95) if difficulty().dodge_chance > 0.0 else SIDESTEP_BASE * 0.6
+		_checked[key] = [now + react, randf() < chance, randf() < step_chance]
+		return false
+	var seen: Array = _checked[key]
+	if now < seen[0] or (not seen[1] and not seen[2]):
+		return false
+	var will_dodge: bool = seen[1]
+	var will_step: bool = seen[2]
+	var eta := float(th.eta)
+	var step_time: float = clampf(float(th.clear), SIDESTEP_MIN, SIDESTEP_MAX) / maxf(1.0, actor.speed() * SIDESTEP_SPEED)
+	var can_step_out: bool = eta > step_time * 1.3
+	var dodge_ok: bool = will_dodge and actor.moves.can_dodge()
+	if debug_threats and (eta <= DODGE_WINDOW or can_step_out):
+		print("[cuerpo] %s: amenaza %s (%s) eta %.2f paso %.2f s (clear %.0f) sale caminando %s esquiva %s paso? %s fuerte %s" % [actor.name,
+			th.kind, str(key), eta, step_time, th.clear, can_step_out, dodge_ok, will_step, th.strong])
+	# Con tiempo de sobra, un paso al costado (lo normal). Lo fuerte (tira, corta cargas) que viene justo, o lo que no se
+	# alcanza caminando, se esquiva rodando, recién cuando está por pegar; si no puede rodar (recarga, tambaleando), el
+	# paso igual (mejor tarde que de frente).
+	var roll_it: bool = dodge_ok and (not can_step_out or (bool(th.strong) and eta < step_time * STRONG_STEP_MARGIN))
+	if will_step and can_step_out and not roll_it:
+		if sidestep(th.out, float(th.clear)):
 			seen[1] = false
-			var perp: Vector2 = p.velocity.orthogonal().normalized()
-			return actor.dodge(perp if randf() < 0.5 else -perp)
-	return false
+			seen[2] = false
+			return true
+		if not dodge_ok:
+			seen[1] = false
+			seen[2] = false
+			return false
+		roll_it = true  # no hay lugar para el paso (arrinconado): rueda
+	if roll_it:
+		if eta > DODGE_WINDOW:
+			return false  # todavía no: espera a que esté por pegar (sigue decidido)
+		if actor.dodge(th.out):
+			seen[1] = false
+			seen[2] = false
+			return true
+	seen[1] = false
+	seen[2] = false
+	return (will_step or will_dodge) and sidestep(th.out, float(th.clear))
+
+
+## Paso al costado: se corre `clear` px hacia `dir` caminando (sin gastar el esquive). Si de ese lado hay algo sólido,
+## prueba el otro. El estado lo ejecuta con `sidestep_dir()` mientras dura.
+func sidestep(dir: Vector2, clear: float) -> bool:
+	# (tambaleando por un golpe también se puede caminar, despacio: Creature.move lo frena solo)
+	if dir.length() < 0.1 or actor.health.is_dead() or actor.is_burrowed() or not actor.statuses.can_move() 			or actor.machine.current_name() not in ["controlled", "attack", "chase", "wander", "idle"]:
+		return false
+	var d := dir.normalized()
+	if actor.test_move(actor.global_transform, d * PROBE):
+		d = -d
+		if actor.test_move(actor.global_transform, d * PROBE):
+			return false
+	_step_dir = d
+	_step_left = clampf(clear, SIDESTEP_MIN, SIDESTEP_MAX) / maxf(1.0, actor.speed() * SIDESTEP_SPEED)
+	return true
+
+
+## Hacia dónde va el paso al costado en curso (ZERO si no hay). Llamarlo una vez por cuadro de física.
+func sidestep_dir() -> Vector2:
+	if _step_left <= 0.0:
+		return Vector2.ZERO
+	_step_left -= actor.get_physics_process_delta_time()
+	return _step_dir
+
+
+func sidestepping() -> bool:
+	return _step_left > 0.0
 
 
 ## Si está parado en una celda peligrosa, hacia dónde salir; ZERO si está bien. Peligrosa (TacticalMind.danger_at):

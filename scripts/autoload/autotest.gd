@@ -183,6 +183,13 @@ func _ready() -> void:
 		else:
 			(an.showcase_sleep if "--showcase-sleep" in OS.get_cmdline_user_args() else an.run).call_deferred()
 		return
+	if "--autotest-ai-threat" in OS.get_cmdline_user_args():
+		set_process(false)
+		var tt := AiThreatTests.new()
+		tt.autotest = self
+		add_child(tt)
+		tt.run.call_deferred()
+		return
 	if "--autotest-ai-mind" in OS.get_cmdline_user_args():
 		set_process(false)
 		var mt := AiMindTests.new()

@@ -153,6 +153,14 @@ Pedido del usuario: "que identifique cómo estoy jugando y adopte patrones". Sin
 - **Por clase** (`reads`, `switch_types`, `max_switches`): impaciente 0,1/0/0 · rocket 0,2/0,2/1 · aguante 0,25/0,25/1 · estratega 0,5/0,8/2 · líder 0,7/0,7/3 · élite 1/1/4.
 - Los salvajes no estudian qué repetís.
 
+## Sparring: leer la amenaza y no venir de frente (S-0, hecha 2026-11-08)
+Queja del usuario: "se me viene encima aunque le dispare, y con el botón de esquivar no hace sidesteps". Plan completo en
+`docs/PLAN_SPARRING_IA.md` (S-0 a S-4: después vienen grabar las peleas contra vos, el informe y la política imitada).
+Hecho: `TacticalMind.threat()` (disparo en línea, carga apuntada, zona marcada, chorro, golpe saliendo), paso al costado
+sin gastar el esquive (`CombatBody.sidestep`), rodar solo para lo fuerte que viene justo y recién cuando está por pegar
+(`DODGE_WINDOW`), y `TacticalMind.wary()`: dos golpes viniendo de frente en 3 s y deja de venir de frente (rodea, espera
+tu recarga, entra en zigzag). Test `--autotest-ai-threat`.
+
 ## Programa "IA humana" (pedido del usuario 2026-11-05; H-1 hecha, H-2 a H-4 propuestas)
 
 Queja: gasta los ataques caros mientras va ganando, nunca junta PP y sigue atacando, así que termina usando ataques que no le sirven en vez de esperar.
