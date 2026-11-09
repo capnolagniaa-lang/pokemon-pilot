@@ -62,6 +62,8 @@ signal signature_triggered(creature: Node, text: String, color: Color)
 signal interaction_triggered(creature: Node, interaction: StatusInteraction)
 ## Un elemento impactó el mundo en una posición (lo usa el entorno reactivo en la Etapa 3).
 signal element_impact(element: ElementType, position: Vector2, radius: float)
+## Dos proyectiles de bandos contrarios chocaron (Projectile.clash). `axis` va de A hacia B; `strong` = el choque grande.
+signal projectiles_clashed(parent: Node, at: Vector2, a: ElementType, b: ElementType, axis: Vector2, strong: bool)
 ## Una embestida chocó contra un objeto del entorno (las rocas frágiles se rompen si `power` alcanza).
 signal env_object_struck(object: Node, power: float)
 ## El entorno reaccionó en una posición (vapor, puente de hielo...): texto flotante.

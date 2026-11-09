@@ -218,6 +218,17 @@ func _ready() -> void:
 		add_child(mt)
 		mt.run.call_deferred()
 		return
+	if "--autotest-clash" in OS.get_cmdline_user_args() or "--showcase-clash" in OS.get_cmdline_user_args():
+		set_process(false)
+		var cl := ClashTests.new()
+		cl.autotest = self
+		add_child(cl)
+		var clash_args := OS.get_cmdline_user_args()
+		if "--scenario" in clash_args:
+			cl.scenario.call_deferred(clash_args[clash_args.find("--scenario") + 1])
+		else:
+			(cl.showcase if "--showcase-clash" in clash_args else cl.run).call_deferred()
+		return
 	if "--autotest-cinnabar-gym" in OS.get_cmdline_user_args():
 		set_process(false)
 		var cg := CinnabarGymTests.new()

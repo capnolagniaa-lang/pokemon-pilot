@@ -45,6 +45,13 @@ y viven solo en ComfyUI.
    ataque con sprite". **Ojo**: `tools/make_vfx.py` pisa las hojas que genera; si reemplazás una, sacala de su tabla.
    El script necesita Pillow (el Python del sistema lo tiene; si no, el `python_embeded` de ComfyUI).
 
+### Hojas en grises que el juego tiñe (choque de proyectiles, 2026-11-07)
+El destello y el anillo del choque (`sprites/fx/clash/destello.png`, `anillo.png`; tiras originales en
+`art_src/fx_choque/`) se hicieron con Qwen-Image 2.1 (`tools/comfy/qwen21_run.py`) como **una tira de 6 cuadros en blanco
+y gris sobre negro**, y se pasaron con `tools/fx_from_strip.py <tira> <hoja> --frames 6 --size 64 --bg black --cut 40`.
+El color lo pone el juego (`shaders/clash_tint.gdshader`: cada mitad con el color de un ataque, centro blanco). Sirve
+para cualquier efecto que dependa de dos tipos: una sola hoja en grises en vez de una por combinación.
+
 ## Árboles y pasto alto del juego: probado y descartado (2026-10-28)
 Se probó reemplazar el árbol y el pasto alto de FireRed por unos redibujados con Qwen (estilo HeartGold/SoulSilver),
 con un interruptor en Ajustes. Al usuario no le gustaron y se sacaron. Todo (`TilePack`, `tools/tile_pack.py`, el árbol

@@ -1,6 +1,6 @@
 class_name Projectile
 extends Hitbox
-## Proyectil de un ataque: vuela, choca con paredes (capa 1) o con la hurtbox enemiga.
+## Proyectil de un ataque: vuela, choca con paredes (capa 1), con la hurtbox enemiga o con un proyectil enemigo (`clash`).
 ## Colores del ElementType: halo y cuerpo con `color`, centro con `core_color` (el fuego es rojizo, no blanco).
 
 const LIGHT_TEX := preload("res://art/fx/soft_shadow.tres")
@@ -22,6 +22,16 @@ var _vfx: VfxSprite
 ## (mismo alcance: dura menos) y su zona de impacto es un poco más grande que el dibujo.
 const SPEED_MULT := 1.25
 const HIT_PAD := 2.0
+## Choque de proyectiles (pedido del usuario 2026-11-07): gana el más fuerte, con potencia × efectividad de tipos. Si la
+## diferencia es menor a CLASH_TIE se destruyen los dos; si no, el otro desaparece y el que gana sigue con menos daño (nunca
+## menos de CLASH_MIN_LEFT). Desde CLASH_RING_POWER de potencia el choque es el grande (con anillo). Dos de distintos
+## Pokémon del mismo bando se destruyen los dos, sin importar la potencia (decisión del usuario). Los del mismo Pokémon no
+## chocan: un abanico se destruiría solo al salir.
+const CLASH_TIE := 1.25
+const CLASH_MIN_LEFT := 0.25
+const CLASH_RING_POWER := 60.0
+## Lo que le queda de fuerza después de ganar un choque.
+var clash_left := 1.0
 
 
 func launch(p_hit: HitInfo, from: Vector2, dir: Vector2) -> void:
@@ -64,6 +74,9 @@ func _physics_process(delta: float) -> void:
 		_vfx.rotation = velocity.angle()  # sigue la dirección aunque lo desvíe el viento
 	if hit.move.deflects_projectiles:
 		Projectile.deflect_around(get_parent(), hit.team, global_position, radius + 4.0)
+	_try_clash()
+	if _dead:
+		return
 	if _time >= life:
 		_impact()
 	queue_redraw()
@@ -81,6 +94,50 @@ static func deflect_around(parent: Node, team: int, center: Vector2, p_radius: f
 			p.velocity = away.normalized() * p.velocity.length()
 			p.deflected = true
 			Fx.burst(parent, p.global_position, Color(0.85, 0.9, 1.2), 6, 40.0)
+
+
+func _try_clash() -> void:
+	for p in get_parent().get_children():
+		if p is Projectile and p != self and not p._dead and p.hit != null and p.hit.attacker != hit.attacker \
+				and p.global_position.distance_squared_to(global_position) <= pow(p.radius + radius, 2.0):
+			Projectile.clash(self, p)
+			if _dead:
+				return
+
+
+## Fuerza contra ese otro proyectil. Los que no tienen potencia (los que solo dejan un estado) cuentan 1: pierden siempre.
+func clash_strength(other: Projectile) -> float:
+	var m := hit.move
+	var other_type: Array[ElementType] = [other.hit.move.element]
+	var eff: float = DB.type_chart.get_multiplier(m.element, other_type) if DB.type_chart != null else 1.0
+	return maxf(m.power * m.power_mult * TacticalMind.hits_of(m) * eff * clash_left, 1.0)
+
+
+static func clash(a: Projectile, b: Projectile) -> void:
+	var sa := a.clash_strength(b)
+	var sb := b.clash_strength(a)
+	var at: Vector2 = a.global_position.lerp(b.global_position, 0.5)
+	var axis: Vector2 = (b.global_position - a.global_position).normalized()
+	if axis == Vector2.ZERO:
+		axis = a.velocity.normalized()
+	var top := maxf(a.hit.move.power * a.hit.move.power_mult, b.hit.move.power * b.hit.move.power_mult)
+	Events.projectiles_clashed.emit(a.get_parent(), at, a.hit.move.element, b.hit.move.element, axis, top >= CLASH_RING_POWER)
+	if a.hit.team == b.hit.team or maxf(sa, sb) / minf(sa, sb) < CLASH_TIE:
+		a._impact()
+		b._impact()
+	elif sa > sb:
+		a._won_clash(sb / sa)
+		b._impact()
+	else:
+		b._won_clash(sa / sb)
+		a._impact()
+
+
+func _won_clash(lost: float) -> void:
+	var left := maxf(1.0 - lost, CLASH_MIN_LEFT)
+	clash_left *= left
+	hit = hit.copy()  # (los otros disparos del mismo ataque no pierden nada)
+	hit.damage_mult *= left
 
 
 func _impact() -> void:

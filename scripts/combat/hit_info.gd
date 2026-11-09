@@ -45,6 +45,25 @@ static func from(user: Node, p_move: MoveData) -> HitInfo:
 	return h
 
 
+## Una copia, para cambiarle algo a un solo proyectil (los de un mismo ataque comparten el HitInfo).
+func copy() -> HitInfo:
+	var h := HitInfo.new()
+	h.move = move
+	h.attacker = attacker
+	h.attacker_level = attacker_level
+	h.attack = attack
+	h.attacker_types = attacker_types
+	h.origin = origin
+	h.team = team
+	h.damage_mult = damage_mult
+	h.area_mult = area_mult
+	h.knockback = knockback
+	h.extra_status = extra_status
+	h.extra_status_chance = extra_status_chance
+	h.effectiveness = effectiveness
+	return h
+
+
 ## Clave de "quién y con qué" de un golpe (para los cráteres de cada ataque): "<id del Pokémon>:<id del ataque>".
 static func source_key(h: HitInfo) -> String:
 	var who: int = h.attacker.get_instance_id() if is_instance_valid(h.attacker) else 0

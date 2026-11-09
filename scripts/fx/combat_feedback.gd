@@ -4,6 +4,12 @@ extends Node2D
 
 const HITSTOP_NORMAL := 0.045
 const HITSTOP_STRONG := 0.09
+## Choque de proyectiles: hojas en grises de Qwen (docs/COMFYUI.md), teñidas con el color de cada ataque.
+const CLASH_FLASH := "res://sprites/fx/clash/destello.png"
+const CLASH_RING := "res://sprites/fx/clash/anillo.png"
+const CLASH_SHADER := preload("res://shaders/clash_tint.gdshader")
+const CLASH_SMALL := 40.0
+const CLASH_HITSTOP := 0.05
 
 var _base_time_scale := 1.0
 var _hitstop_until := 0  # msec (reloj real)
@@ -13,6 +19,7 @@ var _slowdown := 1.0  # cámara lenta de la ruleta de Pokémon
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Events.creature_damaged.connect(_on_damaged)
+	Events.projectiles_clashed.connect(_on_clash)
 	Events.status_applied.connect(_on_status)
 	Events.interaction_triggered.connect(_on_interaction)
 	Events.signature_triggered.connect(func(c, text, col): _float_text(c.global_position + Vector2(-12, -48), text, col, 11))
@@ -38,6 +45,33 @@ func set_slowdown(mult: float) -> void:
 		Engine.time_scale = base * 0.05
 	else:
 		Engine.time_scale = base
+
+
+## Choque de proyectiles: destello (y anillo atrás en los grandes), cada mitad con el color de su ataque.
+func _on_clash(parent: Node, at: Vector2, a: ElementType, b: ElementType, axis: Vector2, strong: bool) -> void:
+	if not is_instance_valid(parent):
+		return
+	if strong:
+		_clash_sprite(parent, CLASH_RING, at, a, b, axis, 64.0, 4)
+	_clash_sprite(parent, CLASH_FLASH, at, a, b, axis, 64.0 if strong else CLASH_SMALL, 5)
+	Sound.sfx("golpe", -2.0 if strong else -6.0, 1.25 if strong else 1.5)
+	Events.camera_shake.emit(3.0 if strong else 1.0)
+	if strong:
+		Events.hitstop.emit(CLASH_HITSTOP)
+
+
+func _clash_sprite(parent: Node, path: String, at: Vector2, a: ElementType, b: ElementType, axis: Vector2, size: float, z: int) -> void:
+	var frames: SpriteFrames = DB.vfx_sheet(path)
+	if frames == null:
+		Fx.burst(parent, at, a.color, 12, 70.0)
+		return
+	var s: VfxSprite = VfxSprite.burst(parent, frames, at, 0.0, size, z)
+	var mat := ShaderMaterial.new()
+	mat.shader = CLASH_SHADER
+	mat.set_shader_parameter("color_a", Vector3(a.color.r, a.color.g, a.color.b))
+	mat.set_shader_parameter("color_b", Vector3(b.color.r, b.color.g, b.color.b))
+	mat.set_shader_parameter("axis", axis)
+	s.material = mat
 
 
 func _on_damaged(c: Creature, amount: float, hit: HitInfo) -> void:
