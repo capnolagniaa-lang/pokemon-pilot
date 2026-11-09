@@ -204,6 +204,13 @@ func _ready() -> void:
 		add_child(sp)
 		sp.run.call_deferred()
 		return
+	if "--autotest-ai-trace" in OS.get_cmdline_user_args() or "--showcase-ai-overlay" in OS.get_cmdline_user_args():
+		set_process(false)
+		var at := AiTraceTests.new()
+		at.autotest = self
+		add_child(at)
+		(at.showcase if "--showcase-ai-overlay" in OS.get_cmdline_user_args() else at.run).call_deferred()
+		return
 	if "--autotest-ai-threat" in OS.get_cmdline_user_args():
 		set_process(false)
 		var tt := AiThreatTests.new()

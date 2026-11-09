@@ -54,6 +54,7 @@ func run() -> void:
 
 	# --- Superpoción ---
 	var foe: Creature = arena.foe
+	arena._retreat_checked[foe.instance] = true  # (con 20 % de vida a veces lo retiraba en vez de curarlo: el test fallaba al azar)
 	foe.instance.hp = foe.instance.max_hp() * 0.2
 	var before := foe.instance.hp
 	arena.potions_left = 1

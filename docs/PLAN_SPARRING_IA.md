@@ -97,7 +97,10 @@ también dicen cuánto duran tus ráfagas y tus respiros.
 ## 4. Decisiones abiertas (preguntar al usuario)
 
 Resueltas el 2026-11-08 (ver arriba): imitación solo para entrenadores y líderes; se graba en sparring y en las peleas
-normales con el ajuste apagado por defecto; S-0 primero. S-0 y S-1 hechas. Próximo paso: **S-2** (el informe).
+normales con el ajuste apagado por defecto; S-0 primero. S-0 y S-1 hechas. **S-2 hecha (2026-11-09)** dentro de la Fase 1 de
+`docs/IA_AUDITORIA.md`: `tools/sparring_report.py` → `docs/SPARRING_INFORME.md` (peleas con las métricas de `AiFightStats`,
+totales, errores de la IA, tus costumbres y tus marcas F8 con los 5 s anteriores). Los JSON pasan a la versión 2 (`metrics` y
+hechos `ia` = decisiones del rival). S-3 queda como posible consideración más del cerebro de utilidad (Fase 3).
 
 ## 5. Qué no cambia
 - La IA **no hace trampa**: la política imitada solo mira lo que una persona vería (sigue el criterio de IA-7).

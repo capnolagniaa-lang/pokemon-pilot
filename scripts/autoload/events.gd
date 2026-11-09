@@ -54,6 +54,9 @@ signal battle_ended()
 signal move_used(user: Node, move: MoveData)
 signal creature_damaged(creature: Node, amount: float, hit: HitInfo)
 signal creature_fainted(creature: Node)
+## La IA decidió algo (AiTrace.note; solo con el registro, el overlay o una pelea de arena midiéndose): `what` = qué
+## ("modo", "ataque", "paso", "cambio"...) y `data` sus datos.
+signal ai_decided(actor: Node, what: String, data: Dictionary)
 signal status_applied(creature: Node, status: StatusEffect)
 signal status_removed(creature: Node, status: StatusEffect)
 ## Una mecánica de firma hizo algo destacable (Mar Llamas, Descarga...): texto flotante.

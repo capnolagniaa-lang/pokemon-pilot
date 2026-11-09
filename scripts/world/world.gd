@@ -41,6 +41,8 @@ var balloon: BalloonTravel
 var arena: TrainerBattle
 ## Graba las peleas contra entrenadores para entrenar la IA (docs/PLAN_SPARRING_IA.md, S-1).
 var sparring: SparringRecorder
+## Registro, overlay y métricas de la IA de entrenadores (docs/IA_AUDITORIA.md, Fase 1).
+var ai_debug: AiDebug
 ## Minimapa de arriba a la derecha (Tab).
 var minimap: Minimap
 ## Pesca (puntos de pesca, E frente al agua).
@@ -93,6 +95,9 @@ func _ready() -> void:
 	sparring = SparringRecorder.new()  # graba las peleas de arena si está prendido (ajuste "Grabar peleas" o GM `sparring`)
 	sparring.name = "SparringRecorder"
 	add_child(sparring)
+	ai_debug = AiDebug.new()  # métricas de cada pelea de arena; registro y overlay con la consola GM (`ia`)
+	ai_debug.name = "AiDebug"
+	add_child(ai_debug)
 	story = StoryDirector.new()
 	story.name = "StoryDirector"
 	add_child(story)

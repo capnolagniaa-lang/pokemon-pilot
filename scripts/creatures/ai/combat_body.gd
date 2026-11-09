@@ -117,7 +117,10 @@ func try_dodge() -> bool:
 	var now := actor.now()
 	if actor.mind.read_dodge_due() and actor.moves.can_dodge():  # el ataque que repetís: se lo veía venir (IA-7)
 		var line: Vector2 = actor.target.global_position - actor.global_position
-		return actor.dodge(line.orthogonal().normalized() * (1.0 if randf() < 0.5 else -1.0))
+		var read_ok: bool = actor.dodge(line.orthogonal().normalized() * (1.0 if randf() < 0.5 else -1.0))
+		if read_ok:
+			AiTrace.note(actor, "lectura", {"amenaza": "lo que repetís"})
+		return read_ok
 	var th: Dictionary = actor.mind.threat()
 	for k in _checked.keys():
 		if k is String:
@@ -133,6 +136,9 @@ func try_dodge() -> bool:
 		var chance: float = difficulty().dodge_chance + actor.mind.dodge_bonus()
 		var step_chance: float = clampf(SIDESTEP_BASE + chance * 1.5, 0.0, 0.95) if difficulty().dodge_chance > 0.0 else SIDESTEP_BASE * 0.6
 		_checked[key] = [now + react, randf() < chance, randf() < step_chance]
+		if AiTrace.enabled():
+			AiTrace.note(actor, "ve", {"amenaza": th.kind, "eta": snappedf(float(th.eta), 0.01), "reaccion": snappedf(react, 0.01),
+				"esquivaria": _checked[key][1], "paso": _checked[key][2], "fuerte": th.strong})
 		return false
 	var seen: Array = _checked[key]
 	if now < seen[0] or (not seen[1] and not seen[2]):
@@ -154,6 +160,7 @@ func try_dodge() -> bool:
 		if sidestep(th.out, float(th.clear)):
 			seen[1] = false
 			seen[2] = false
+			AiTrace.note(actor, "paso", {"amenaza": th.kind, "eta": snappedf(eta, 0.01)})
 			return true
 		if not dodge_ok:
 			seen[1] = false
@@ -166,10 +173,14 @@ func try_dodge() -> bool:
 		if actor.dodge(th.out):
 			seen[1] = false
 			seen[2] = false
+			AiTrace.note(actor, "esquive", {"amenaza": th.kind, "eta": snappedf(eta, 0.01)})
 			return true
 	seen[1] = false
 	seen[2] = false
-	return (will_step or will_dodge) and sidestep(th.out, float(th.clear))
+	var late: bool = (will_step or will_dodge) and sidestep(th.out, float(th.clear))
+	if late:
+		AiTrace.note(actor, "paso", {"amenaza": th.kind, "eta": snappedf(eta, 0.01), "por": "tarde"})
+	return late
 
 
 ## Paso al costado: se corre `clear` px hacia `dir` caminando (sin gastar el esquive). Si de ese lado hay algo sólido,

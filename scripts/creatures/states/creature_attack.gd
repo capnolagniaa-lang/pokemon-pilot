@@ -40,6 +40,9 @@ const SAVE_DISTANCE := 90.0
 const WARY_SPACING := 95.0
 ## Para notar cuándo la mente se acaba de poner a cubierto (cambia de lado y deja de venir de frente).
 var _seen_wary := 0
+## Para el registro (AiTrace): por qué está en el modo actual y el último modo anotado.
+var _why := ""
+var _logged_mode := ""
 
 
 func enter(_msg: Dictionary = {}) -> void:
@@ -118,8 +121,10 @@ func physics_update(delta: float) -> void:
 					actor.mind.feints += 1
 					_attack_timer = 0.25
 					_mode = "approach"
+					AiTrace.note(actor, "finta", {"ataque": _move_name(slot)})
 				else:
 					actor.body.use(slot)
+					AiTrace.note(actor, "ataque", {"ataque": _move_name(slot), "por": "tras el aviso"})
 			return
 	if actor.body.try_dodge():
 		return
@@ -141,20 +146,27 @@ func physics_update(delta: float) -> void:
 	if _think <= 0.0:
 		_think = randf_range(0.4, 0.9) * CombatBody.difficulty().think_interval_mult
 		var ideal := _ideal_range()
+		var why := ""
 		if actor.mind.window_open() and dist > MELEE_RANGE:
 			_mode = "approach"  # tus ataques fuertes están en recarga: se te viene encima
+			why = "ventana"
 		elif wary() and dist < 200.0 and actor.body.clear_shot(t):
 			_mode = "strafe"  # bajo fuego: no viene de frente, rodea
+			why = "bajo fuego"
 			if randf() < 0.5:
 				_strafe = -_strafe
 		elif dist > ideal * 1.3 or (dist > 40.0 and not actor.body.clear_shot(t)):
 			_mode = "approach"  # lejos, o con una pared/árbol en el medio: se acerca rodeando
+			why = "lejos" if dist > ideal * 1.3 else "sin tiro"
 		elif dist < ideal * 0.6 and ideal > MELEE_RANGE:
 			_mode = "retreat"  # los de distancia se alejan; los de cuerpo a cuerpo no retroceden solos
+			why = "muy cerca"
 		else:
 			_mode = "strafe"
+			why = "a su distancia"
 		if randf() < 0.2:
 			_strafe = -_strafe
+		_why = why
 
 	_attack_timer -= delta
 	if _attack_timer <= 0.0 and wary() and _ideal_range() <= MELEE_RANGE and dist > MELEE_SPACING:
@@ -174,10 +186,15 @@ func physics_update(delta: float) -> void:
 	var speed_k := 0.95 if _mode == "approach" else 0.8
 	if actor.mind.saving and actor.mind.save_left() >= TacticalMind.SAVE_BACK_OFF:
 		_mode = "retreat" if dist < maxf(_ideal_range(), SAVE_DISTANCE) else "strafe"
+		_why = "juntando PP"
 		speed_k = 0.85
 	elif _ideal_range() <= MELEE_RANGE:
 		_mode = _melee_mode(dist)
+		_why = "cuerpo a cuerpo"
 		speed_k = 0.95 if _mode == "approach" else (0.6 if _mode == "retreat" else 0.35)
+	if _mode != _logged_mode and AiTrace.enabled():
+		_logged_mode = _mode
+		AiTrace.note(actor, "modo", {"modo": _mode, "por": _why, "dist": roundi(dist)})
 	var move := Vector2.ZERO
 	var spacing := WARY_SPACING if wary() else MELEE_SPACING
 	match _mode:
@@ -279,9 +296,13 @@ func _choose_attack(dist: float) -> bool:
 		var opener: int = actor.body.gap_closer(dist)
 		if opener >= 0 and dist > 40.0 and actor.body.use(opener):
 			actor.mind.last_slot = opener
+			AiTrace.note(actor, "ataque", {"ataque": _move_name(opener), "por": "apertura", "dist": roundi(dist)})
 			return true
+	var was_saving: bool = actor.mind.saving
 	var slot: int = actor.mind.pick(dist)
 	if slot < 0:
+		if actor.mind.saving and not was_saving and AiTrace.enabled():
+			AiTrace.note(actor, "juntar", {"falta": snappedf(actor.mind.save_left(), 0.1), "top": AiTrace.top3(actor)})
 		return false
 	actor.mind.last_slot = slot
 	var tell: float = CombatBody.difficulty().telegraph
@@ -289,5 +310,20 @@ func _choose_attack(dist: float) -> bool:
 		_tell_slot = slot
 		_tell_left = tell
 		actor.sprite.tell_left = tell
+		if AiTrace.enabled():
+			AiTrace.note(actor, "aviso", {"ataque": _move_name(slot), "por": actor.mind.last_reason, "dist": roundi(dist), "top": AiTrace.top3(actor)})
 		return true
-	return actor.body.use(slot)
+	var used: bool = actor.body.use(slot)
+	if used and AiTrace.enabled():
+		AiTrace.note(actor, "ataque", {"ataque": _move_name(slot), "por": actor.mind.last_reason, "dist": roundi(dist), "top": AiTrace.top3(actor)})
+	return used
+
+
+## Modo de movimiento actual ("approach", "strafe"...; lo lee el overlay).
+func mode() -> String:
+	return _mode
+
+
+func _move_name(slot: int) -> String:
+	var m: MoveData = actor.moves.slots[slot] if slot >= 0 and slot < actor.moves.slots.size() else null
+	return m.display_name if m != null else "?"

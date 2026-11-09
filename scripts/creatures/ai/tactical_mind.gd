@@ -97,6 +97,10 @@ var _save_slot := -1
 var _save_since := 0.0
 var _save_blocked_until := -1.0
 var _save_emote_at := -100.0
+## La última elección de ataque (lo leen el registro y el overlay, AiTrace): puntaje de cada ranura y por qué salió
+## ("remate", "elige", "junta" o "nada").
+var last_scores: Array[float] = [0.0, 0.0, 0.0, 0.0]
+var last_reason := ""
 
 
 ## Bajo fuego (S-0, docs/PLAN_SPARRING_IA.md): con FRONT_HITS golpes del rival en FRONT_WINDOW s mientras venía de frente
@@ -667,12 +671,15 @@ func pick(dist: float) -> int:
 		var s := score(slot, dist, shot)
 		scores.append(s)
 		top = maxf(top, s)
+	last_scores = scores
 	var finisher := _finisher(scores)
 	if finisher >= 0:
 		saving = false
+		last_reason = "remate"
 		return finisher
 	saving = _wants_to_save(dist, shot, scores)
 	if saving:
+		last_reason = "junta"
 		return -1
 	for slot in MoveUser.SLOT_COUNT:
 		if scores[slot] <= 0.0:
@@ -682,6 +689,7 @@ func pick(dist: float) -> int:
 		if v > best_value:
 			best_value = v
 			best = slot
+	last_reason = "elige" if best >= 0 else "nada"
 	return best
 
 

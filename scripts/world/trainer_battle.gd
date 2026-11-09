@@ -281,6 +281,10 @@ func _send_next(skip: CreatureInstance = null, pick: CreatureInstance = null) ->
 		Events.camera_shake.emit(5.0)  # el último del líder entra con todo
 	_entered_at = _clock
 	_engage()
+	if AiTrace.enabled():
+		var why := "elegido" if pick != null else ("el mejor contra el tuyo" if style != null and style.smart_next else "el siguiente")
+		var vs: float = TacticalMind.matchup_score(next, world.companion, _known()) if is_instance_valid(world.companion) else 0.0
+		AiTrace.note(c, "saca", {"pokemon": next.display_name(), "por": why, "cruce": snappedf(vs, 0.01)})
 	if _healthy_left() == 1:
 		_moment(LeaderMoment.Trigger.LAST_MON)
 
@@ -392,7 +396,9 @@ func _maybe_retreat() -> bool:
 	_retreat_checked[inst] = true
 	var other := foe_team.any(func(m): return m != inst and m.hp > m.max_hp() * 0.5)
 	if not other or randf() >= style.retreat:
+		AiTrace.note(foe, "no retira", {"por": "sin otro sano" if not other else "tirada", "vida": snappedf(foe.health.ratio(), 0.01)})
 		return false
+	AiTrace.note(foe, "retira", {"vida": snappedf(foe.health.ratio(), 0.01)})
 	_withdraw(_best_against(world.companion, inst) if style.smart_next else null)
 	return true
 
@@ -414,10 +420,17 @@ func _maybe_switch() -> bool:
 		return false
 	_switch_checked[key] = true
 	var best := _best_against(me, foe.instance)
-	if best == null or TacticalMind.matchup_score(best, me, _known()) < now_score * SWITCH_EDGE or randf() >= style.switch_types:
+	var best_score: float = TacticalMind.matchup_score(best, me, _known()) if best != null else 0.0
+	if best == null or best_score < now_score * SWITCH_EDGE or randf() >= style.switch_types:
+		if AiTrace.enabled():
+			var why := "no tiene otro" if best == null else ("ninguno mucho mejor" if best_score < now_score * SWITCH_EDGE else "tirada")
+			AiTrace.note(foe, "no cambia", {"por": why, "cruce": snappedf(now_score, 0.01), "mejor": snappedf(best_score, 0.01),
+				"respuesta": you_swapped})
 		return false
 	_switches += 1
 	_last_switch = _clock
+	AiTrace.note(foe, "cambio", {"sale": foe.instance.display_name(), "entra": best.display_name(),
+		"cruce": snappedf(now_score, 0.01), "nuevo": snappedf(best_score, 0.01), "respuesta": you_swapped})
 	_withdraw(best)
 	return true
 
@@ -433,6 +446,7 @@ func _maybe_potion() -> void:
 		return
 	_potion_used[foe.instance] = true
 	potions_left -= 1
+	AiTrace.note(foe, "pocion", {"vida": snappedf(foe.health.ratio(), 0.01), "quedan": potions_left})
 	foe.health.heal(POTION_HP * CreatureInstance.hp_scale())
 	foe.stun(POTION_STUN)
 	Fx.burst(world.entities, foe.global_position + Vector2(0, -8), Color(0.6, 1.4, 0.7), 12, 34.0)
@@ -495,6 +509,7 @@ func play_moment(m: LeaderMoment) -> void:
 	if not is_instance_valid(foe):
 		return
 	var color: Color = foe.instance.species.primary_type().color
+	AiTrace.note(foe, "momento", {"cuando": LeaderMoment.Trigger.keys()[m.trigger], "frase": m.line})
 	if m.line != "":
 		Events.signature_triggered.emit(foe, m.line, color)
 		Events.message_requested.emit("%s: «%s»" % [foe_name, m.line])

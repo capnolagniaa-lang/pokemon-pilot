@@ -8,7 +8,7 @@ extends Node
 
 const DIR := "user://sparring"
 const RATE := 0.1
-const VERSION := 1
+const VERSION := 2  # 2: + `metrics` (AiFightStats) y hechos "ia" (decisiones del rival, AiTrace)
 ## Tecla fija para marcar un momento (como F11 para pantalla completa): no se configura.
 const MARK_KEY := KEY_F8
 ## Qué hay en cada muestra (una fila por `RATE` s; posiciones relativas a la arena, en px; velocidades en px/s).
@@ -38,6 +38,7 @@ func _ready() -> void:
 	Events.move_used.connect(_on_move_used)
 	Events.creature_damaged.connect(_on_damaged)
 	Events.creature_fainted.connect(_on_fainted)
+	Events.ai_decided.connect(_on_ai_decided)
 
 
 func should_record() -> bool:
@@ -72,6 +73,9 @@ func _on_ended(result: String, _kind: String) -> void:
 	armed = false
 	data["result"] = result
 	data["duration"] = _t
+	var dbg: AiDebug = world.get("ai_debug")
+	if dbg != null:
+		data["metrics"] = dbg.stats.to_dict()  # (docs/IA_AUDITORIA.md, Fase 1)
 	_unhook_all()
 	last_file = _save()
 	if last_file != "":
@@ -176,6 +180,17 @@ func _on_damaged(c: Node, amount: float, hit: HitInfo) -> void:
 		closing = cr.velocity.normalized().dot((attacker.global_position - cr.global_position).normalized()) > 0.5
 	_event({"k": "hit", "who": who, "move": hit.move.id if hit.move else "", "amount": snappedf(amount / maxf(1.0, cr.health.max_hp()), 0.001),
 		"closing": closing, "hp": snappedf(cr.health.ratio(), 0.01)})
+
+
+## Lo que decidió la IA del rival (AiTrace): va con los hechos como "ia", para que el informe lo muestre.
+func _on_ai_decided(actor: Node, what: String, info: Dictionary) -> void:
+	if not recording or world.arena == null or not world.arena._fighting or actor != world.arena.foe:
+		return
+	var ev := info.duplicate()
+	ev.erase("t")
+	ev["what"] = what
+	ev["k"] = "ia"
+	_event(ev)
 
 
 func _on_fainted(c: Node) -> void:

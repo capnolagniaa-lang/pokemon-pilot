@@ -16,6 +16,7 @@ const HELP := [
 	["ir <zona> [x,y]", "te lleva a una zona (a su plaza o a esa celda)"],
 	["arena [nombre] [nivel]", "pelea de prueba en esa arena contra un entrenador al azar (3 Pokémon; nivel = el del tuyo). Sin nombre: la lista. Perder no te manda al Centro"],
 	["sparring [arena] [nivel]", "como arena (por defecto, el campo), pero graba la pelea para entrenar la IA (F8 marca un momento tonto; queda en user://sparring)"],
+	["ia [ver|log|eco]", "mirar la IA: ver = overlay con su situación, ataques y lo que te lee; log = registro de cada decisión en user://ia_log; eco = también a la consola. Sin nada: cómo está"],
 	["volar", "cámara libre para mirar el mapa: WASD, Shift = rápido, rueda = zoom, Esc vuelve. No descubre nada"],
 	["limpiar", "borra la consola"],
 ]
@@ -59,6 +60,8 @@ func run(line: String) -> String:
 			return _arena(args)
 		"sparring":
 			return _sparring(args)
+		"ia", "ai":
+			return _ai(args)
 	return "No conozco «%s». Escribí ayuda." % parts[0]
 
 
@@ -279,6 +282,30 @@ func _sparring(args: Array) -> String:
 		return answer
 	world.sparring.armed = true
 	return "Grabando: %s" % answer
+
+
+## Herramientas para mirar la IA (AiDebug, docs/IA_AUDITORIA.md Fase 1): `ia ver`, `ia log`, `ia eco` prenden o apagan.
+func _ai(args: Array) -> String:
+	var dbg: AiDebug = world.get("ai_debug")
+	if dbg == null:
+		return "No hay herramientas de IA en este mundo."
+	if args.is_empty():
+		var st := "Overlay %s · registro %s · eco %s" % ["prendido" if AiTrace.overlay_on else "apagado",
+			("prendido (" + ProjectSettings.globalize_path(dbg.log_path) + ")") if AiTrace.log_on else "apagado",
+			"prendido" if AiTrace.echo else "apagado"]
+		if not dbg.last_stats.is_empty():
+			st += "
+Última pelea: " + JSON.stringify(dbg.last_stats)
+		return st
+	match norm(str(args[0])):
+		"ver", "overlay":
+			return dbg.set_overlay(not AiTrace.overlay_on)
+		"log", "registro":
+			return dbg.set_log(not AiTrace.log_on)
+		"eco", "echo":
+			AiTrace.echo = not AiTrace.echo
+			return "Eco de la IA a la consola %s." % ("prendido" if AiTrace.echo else "apagado")
+	return "Uso: ia [ver|log|eco]"
 
 
 func _fly() -> String:
