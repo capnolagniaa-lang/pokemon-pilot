@@ -78,6 +78,9 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 ## Cantidad de proyectiles y apertura del abanico en grados.
 @export var projectile_count: int = 1
 @export var spread_deg: float = 0.0
+## > 0: en vez de un proyectil sale un rayo instantáneo de este largo (`BeamStrike`, Rayo Solar), que golpea a todos en la
+## línea a la vez y lo corta la primera pared.
+@export var beam_length: float = 0.0
 
 @export_group("Área")
 @export var radius: float = 48.0
@@ -182,7 +185,7 @@ func does_nothing() -> bool:
 func reach() -> float:
 	match kind:
 		Kind.PROJECTILE:
-			return speed * lifetime * 0.85
+			return beam_length * 0.95 if beam_length > 0.0 else speed * lifetime * 0.85
 		Kind.DASH:
 			return 520.0 * dash_time + 12.0
 		Kind.AREA:

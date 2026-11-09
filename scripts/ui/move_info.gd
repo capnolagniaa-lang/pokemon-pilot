@@ -14,7 +14,9 @@ static func what_it_does(m: MoveData) -> String:
 	var s: Array[String] = []
 	match m.kind:
 		MoveData.Kind.PROJECTILE:
-			if m.projectile_count > 1:
+			if m.beam_length > 0.0:
+				s.append("Suelta un rayo instantáneo hacia donde apuntás: golpea a todos los que estén en la línea, hasta la primera pared.")
+			elif m.projectile_count > 1:
 				s.append("Dispara un abanico de %d proyectiles hacia donde apuntás." % m.projectile_count)
 			else:
 				s.append("Dispara un proyectil hacia donde apuntás.")

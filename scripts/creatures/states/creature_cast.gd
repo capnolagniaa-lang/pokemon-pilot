@@ -8,6 +8,7 @@ var _msg: Dictionary
 var _move: MoveData
 var _aim := Vector2.RIGHT
 var _time := 0.0
+var _gather: VfxSprite
 
 
 func enter(msg: Dictionary = {}) -> void:
@@ -18,6 +19,12 @@ func enter(msg: Dictionary = {}) -> void:
 	actor.sprite.charge_color = _move.element.color
 	actor.sprite.charge = 0.0
 	actor.sprite.play_charge(_move.cast_time)
+	_gather = null
+	var gather_sheet := DB.vfx_part(_move, "carga") if _move.beam_length > 0.0 else null
+	if gather_sheet != null:  # Rayo Solar: la luz se junta adelante del Pokémon
+		_gather = VfxSprite.attach(actor, gather_sheet)
+		_gather.z_index = 5
+		_gather.position = Vector2(0, -8) + _aim * 10.0
 	match _move.kind:
 		MoveData.Kind.AREA:
 			actor.telegraph.show_circle(_move.radius, _move.element.color)
@@ -34,6 +41,8 @@ func exit() -> void:
 	actor.sprite.charge = -1.0
 	actor.sprite.stop_forced("Charge")
 	actor.telegraph.clear()
+	if is_instance_valid(_gather):
+		_gather.queue_free()
 
 
 func physics_update(delta: float) -> void:
@@ -51,13 +60,16 @@ func physics_update(delta: float) -> void:
 	elif is_instance_valid(actor.target):
 		var off: Vector2 = actor.target.global_position - actor.global_position
 		# Al soltar un disparo, la IA anticipa hacia dónde va el rival (como con los disparos sin carga).
-		if _move.kind == MoveData.Kind.PROJECTILE and _move.speed > 0.0:
+		if _move.kind == MoveData.Kind.PROJECTILE and _move.speed > 0.0 and _move.beam_length <= 0.0:  # (un rayo llega al instante)
 			off += actor.target.velocity * (off.length() / (_move.speed * Projectile.SPEED_MULT)) * CombatBody.difficulty().lead
 		_aim = off.normalized()
 		if _move.ride_range > 0.0:
 			_msg["point"] = actor.target.global_position  # (Surf va adonde estás al soltarlo)
 	actor.facing = _aim
 	actor.telegraph.direction = _aim
+	if is_instance_valid(_gather):
+		_gather.position = Vector2(0, -8) + _aim * 10.0
+		_gather.scale = Vector2.ONE * lerpf(0.5, 1.0, k)
 	if _move.kind == MoveData.Kind.ZONE:
 		actor.telegraph.position = actor.zone_point(_move, _msg.get("point", Vector2.INF), _aim) - actor.global_position
 	elif _move.ride_range > 0.0:

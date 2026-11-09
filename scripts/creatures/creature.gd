@@ -585,6 +585,13 @@ func release_move(msg: Dictionary) -> void:
 	var recovery := m.recovery
 	match m.kind:
 		MoveData.Kind.PROJECTILE:
+			if m.beam_length > 0.0:
+				var b := BeamStrike.new()
+				get_parent().add_child(b)
+				b.fire(hit, global_position + Vector2(0, -8) + aim * 6.0, aim)
+				if recovery > 0.0 and not msg.get("no_recovery", false):
+					machine.transition_to("recovery", {"time": recovery})
+				return
 			var n := maxi(1, m.projectile_count)
 			for k in n:
 				var ang := 0.0 if n == 1 else deg_to_rad(lerpf(-m.spread_deg / 2.0, m.spread_deg / 2.0, k / float(n - 1)))

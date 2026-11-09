@@ -62,6 +62,7 @@ func run() -> void:
 	r["Pega varias veces (%d)" % hits[0]] = hits[0] >= 3
 	foe.queue_free()
 	await _surf()
+	await _solar()
 
 	var ok: bool = r.values().all(func(v): return v)
 	for key in r:
@@ -126,6 +127,81 @@ func _surf() -> void:
 	r["Surf: no se pasa de su alcance"] = me.ride_point(surf, start + Vector2(900, 0), Vector2.RIGHT).distance_to(start) <= surf.ride_range + 0.5
 	r["Surf: apuntando cerca va cerca"] = me.ride_point(surf, start + Vector2(30, 0), Vector2.RIGHT).distance_to(start) < 31.0
 	r["Surf: la explicación lo cuenta"] = "ola" in MoveInfo.what_it_does(surf)
+
+
+## Rayo Solar: carga y después un rayo instantáneo que pega a todos en la línea a la vez, hasta la primera pared.
+func _solar() -> void:
+	var me: Creature = world.companion
+	var solar: MoveData = DB.moves["rayo_solar"]
+	r["Rayo Solar es un rayo con carga"] = solar.beam_length > 0.0 and solar.cast_time > 0.5
+	me.moves.slots[1] = solar
+	me.moves.reset_cooldown(1)
+	me.moves.set_pp(me.moves.max_pp())
+	me.machine.transition_to(me.default_state())
+	var finder := BalanceTests.new()
+	finder.world = world
+	me.global_position = finder._open_spot()
+	finder.free()
+	await get_tree().physics_frame
+	var from := me.global_position
+	var near: Creature = autotest._dummy(world, "snorlax", from + Vector2(50, 0))
+	var far: Creature = autotest._dummy(world, "snorlax", from + Vector2(solar.beam_length - 20.0, 0))
+	var side: Creature = autotest._dummy(world, "snorlax", from + Vector2(100, 50))
+	var hp := [near.instance.hp, far.instance.hp, side.instance.hp]
+	await get_tree().physics_frame
+	r["Rayo Solar sale"] = me.use_slot(1, Vector2.RIGHT)
+	await get_tree().physics_frame
+	r["Rayo Solar: primero carga, marcando la línea"] = me.machine.current_name() == "cast" and me.telegraph.shape == Telegraph.Shape.LINE
+	await get_tree().create_timer(solar.cast_time * 0.8).timeout
+	r["Rayo Solar: mientras carga no pega"] = is_equal_approx(near.instance.hp, hp[0]) and is_equal_approx(far.instance.hp, hp[1])
+	await _until(func(): return near.instance.hp < hp[0], 1.0)
+	var t0 := Time.get_ticks_msec()
+	await _until(func(): return far.instance.hp < hp[1], 0.5)
+	r["Rayo Solar: pega a los dos de la línea casi a la vez (%d ms)" % (Time.get_ticks_msec() - t0)] = far.instance.hp < hp[1] and Time.get_ticks_msec() - t0 < 60
+	r["Rayo Solar: no es un proyectil"] = not me.get_parent().get_children().any(func(c): return c is Projectile)
+	r["Rayo Solar: al de costado no"] = is_equal_approx(side.instance.hp, hp[2])
+	for c in [near, far, side]:
+		c.queue_free()
+	await _until(func(): return me.machine.current_name() == me.default_state(), 2.0)
+	# Una pared lo corta: un rayo hacia abajo desde una celda libre al lado de algo sólido.
+	var wall := StaticBody2D.new()
+	wall.collision_layer = 1
+	var ws := CollisionShape2D.new()
+	ws.shape = RectangleShape2D.new()
+	ws.shape.size = Vector2(16, 60)
+	wall.add_child(ws)
+	wall.global_position = from + Vector2(80, 0)
+	world.entities.add_child(wall)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	var len := BeamStrike.reach_from(me, from, Vector2.RIGHT, solar.beam_length)
+	r["Rayo Solar: una pared lo corta (%.0f px)" % len] = len < 80.0 and len > 60.0
+	wall.queue_free()
+	r["Rayo Solar: la explicación lo cuenta"] = "rayo instantáneo" in MoveInfo.what_it_does(solar)
+
+
+func showcase_solar() -> void:
+	world = await autotest._setup_kit_world("bulbasaur")
+	var me: Creature = world.companion
+	me.instance.level = 50
+	var finder := BalanceTests.new()
+	finder.world = world
+	me.global_position = finder._open_spot() + Vector2(-80, 0)
+	finder.free()
+	world.trainer.global_position = me.global_position + Vector2(70, -50)
+	var foe: Creature = autotest._dummy(world, "snorlax", me.global_position + Vector2(110, 0))
+	var foe2: Creature = autotest._dummy(world, "snorlax", me.global_position + Vector2(170, 4))
+	world.get_node("UI").visible = false
+	for i in 3:
+		me.moves.slots[1] = DB.moves["rayo_solar"]
+		me.moves.reset_cooldown(1)
+		me.moves.set_pp(me.moves.max_pp())
+		foe.health.heal(9999.0)
+		foe2.health.heal(9999.0)
+		print("[showcase] rayo solar cuadro ", Engine.get_frames_drawn())
+		me.use_slot(1, Vector2.RIGHT)
+		await get_tree().create_timer(2.2).timeout
+	get_tree().quit()
 
 
 func showcase_surf() -> void:
