@@ -22,7 +22,8 @@ const SECTIONS := [
 		["wild_mult", "Cantidad de salvajes (×)", 0.0, 3.0, 0.1, "×%.1f"],
 		["time_lock", "Hora fija (todo a la izquierda: el tiempo corre)", -1.0, 23.5, 0.5, "%.1f h", "Corre"],
 	]],
-	["Sparring (entrenar la IA, docs/PLAN_SPARRING_IA.md)", [
+	["IA de entrenadores (docs/IA_AUDITORIA.md)", [
+		["ai_brain_new", "IA nueva de entrenadores (en prueba): decide comparando opciones, te ve con retraso y no espía tus recargas"],
 		["record_fights", "Grabar las peleas contra entrenadores (F8 marca un momento para revisar; quedan en la carpeta sparring del juego)"],
 	]],
 	["IA personalizada (se usa con la dificultad «Personalizada»)", [

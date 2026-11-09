@@ -131,6 +131,16 @@ var mind: TacticalMind:
 		if mind == null:
 			mind = TacticalMind.new(self)
 		return mind
+## Cerebro de utilidad de la IA nueva de entrenadores (Fase 3 de docs/IA_AUDITORIA.md; ver UtilityBrain). Solo existe
+## si esta criatura lo usa (`uses_new_brain`).
+var brain: UtilityBrain:
+	get:
+		if _brain == null:
+			_brain = UtilityBrain.new(self)
+		return _brain
+var _brain: UtilityBrain
+## Fuerza un cerebro sin mirar el ajuste: "nueva" o "clasica" (la batería de balance y los tests). Vacío = lo normal.
+var brain_override := ""
 ## Lo que ve de su rival, con retraso y sin trampas (IA nueva, Fase 2 de docs/IA_AUDITORIA.md; ver Perception).
 var perception: Perception:
 	get:
@@ -197,6 +207,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		_hitstun_grace = maxf(0.0, _hitstun_grace - delta)
 	spook_left = maxf(0.0, spook_left - delta)
+	if _brain != null:
+		perception.tick()  # (el cerebro nuevo mira aunque esté cargando o recuperándose)
 
 
 ## Adentro de una Pokébola (mientras tiembla): invisible, quieto y sin recibir golpes.
@@ -205,6 +217,19 @@ func set_captured(inside: bool) -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED if inside else Node.PROCESS_MODE_INHERIT
 	hurtbox.set_deferred("monitorable", not inside)
 	collision_layer = 0 if inside else (BODY_LAYER_ALLY if team == Team.ALLY else BODY_LAYER_WILD)
+
+
+## Si esta criatura pelea con el cerebro nuevo (UtilityBrain): solo los Pokémon de entrenador (y la batería de balance
+## con `brain_override`). Lo decide el ajuste "IA nueva de entrenadores" o el `AIProfile.brain` de su estilo.
+func uses_new_brain() -> bool:
+	if brain_override != "":
+		return brain_override == "nueva"
+	if owner_name == "" or trainer_style == null:
+		return false
+	var prof := AIProfile.of(self)
+	if prof.brain in ["nueva", "clasica"]:
+		return prof.brain == "nueva"
+	return bool(GameState.setting("ai_brain_new"))
 
 
 func now() -> float:

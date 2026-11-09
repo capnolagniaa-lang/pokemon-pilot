@@ -123,7 +123,9 @@ func _measure(delta: float) -> void:
 		return
 	var dist := me.global_position.distance_to(foe.global_position)
 	var mode := ""
-	if foe.machine.current_name() == "attack":
+	if foe.machine.current_name() == "attack" and foe._brain != null and foe.uses_new_brain():
+		mode = foe.brain.move_name()
+	elif foe.machine.current_name() == "attack":
 		var st: Node = foe.get_node_or_null("StateMachine/Attack")
 		if st != null and st.has_method("mode"):
 			mode = st.mode()
@@ -279,7 +281,9 @@ func overlay_text() -> String:
 	lines.append("IA · %s Nv. %d · %s · %s" % [c.instance.display_name(), c.instance.level, style_id, GameState.difficulty_id()])
 	var mode := c.machine.current_name()
 	var st: Node = c.get_node_or_null("StateMachine/Attack")
-	if mode == "attack" and st != null and st.has_method("mode"):
+	if mode == "attack" and c._brain != null and c.uses_new_brain():
+		mode = "attack/" + c.brain.move_name()
+	elif mode == "attack" and st != null and st.has_method("mode"):
 		mode = "attack/" + st.mode()
 	var dist := c.global_position.distance_to(t.global_position) if t != null else -1.0
 	var flags: PackedStringArray = []
@@ -306,6 +310,10 @@ func overlay_text() -> String:
 	lines.append("Te lee: %s" % prediction_text(mind))
 	if situation != null:
 		lines.append("IA nueva (ve hace %.2f s): %s" % [c.perception.age(), situation.to_text()])
+	if c.uses_new_brain():
+		lines.append("Cerebro nuevo: " + c.brain.describe())
+		if world.arena != null and world.arena.active and world.arena.coach != null and not world.arena.coach.chosen.is_empty():
+			lines.append("Entrenador: %s (%d%%)" % [world.arena.coach.chosen.name, roundi(float(world.arena.coach.chosen.p) * 100.0)])
 	if fighting and c == _overlay_target() and world.arena != null and world.arena.active:
 		lines.append("Pelea: " + stats.summary())
 	if not recent.is_empty():

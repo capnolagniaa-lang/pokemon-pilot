@@ -60,6 +60,9 @@ var _player_mon: CreatureInstance
 var _last_switch := -100.0
 ## Lo que el equipo rival fue viendo de cómo jugás (IA-7): sigue al cambiar de Pokémon.
 var _memory := FoeMemory.new()
+## El entrenador de la IA nueva (UtilityCoach, Fase 3 de docs/IA_AUDITORIA.md): piensa en lugar de `think` si la pelea usa
+## el cerebro nuevo.
+var coach: UtilityCoach
 var _entered_at := 0.0
 var _clock := 0.0
 var _think_timer := 0.0
@@ -130,6 +133,7 @@ func start(opts: Dictionary) -> String:
 	_player_mon = null
 	_last_switch = -100.0
 	_memory = FoeMemory.new()
+	coach = UtilityCoach.new(self)
 	arena_data = load("res://data/arenas/%s.tres" % opts.get("arena_id", "arena_campo"))
 	var t: Trainer = world.trainer
 	t.autopilot = Vector2.ZERO
@@ -367,10 +371,13 @@ func _physics_process(delta: float) -> void:
 	if _think_timer <= 0.0:
 		_think_timer = 0.4
 		think()
+	if is_instance_valid(foe) and _new_ai():
+		coach.tick()
 	# Sacaste a otro (CombatDirector ya le cambió el objetivo al rival: se nota por tu Pokémon).
 	if c.instance != _player_mon:
 		if _player_mon != null:
 			_player_swapped_at = _clock
+			coach.poke()
 		_player_mon = c.instance
 
 
@@ -380,8 +387,8 @@ func think() -> void:
 	if not is_instance_valid(foe) or foe.is_down():
 		return
 	_moment(LeaderMoment.Trigger.HP_BELOW)
-	if not is_instance_valid(foe):
-		return
+	if not is_instance_valid(foe) or _new_ai():
+		return  # (con la IA nueva decide el UtilityCoach)
 	if not foe.statuses.flag("traps") and (_maybe_retreat() or _maybe_switch()):
 		return
 	_maybe_potion()
@@ -435,14 +442,42 @@ func _maybe_switch() -> bool:
 	return true
 
 
-## Lo que sabe de tus ataques: null = todo (te estudió), o lo que te vio.
+## Lo que sabe de tus ataques: null = todo (te estudió), o lo que te vio. La IA nueva nunca te estudió (sin trampas).
 func _known() -> FoeMemory:
-	return null if style != null and style.knows_moves else _memory
+	return null if style != null and style.knows_moves and not _new_ai() else _memory
+
+
+## Esta pelea usa la IA nueva (el ajuste "IA nueva de entrenadores" o el `AIProfile.brain` de su estilo).
+func _new_ai() -> bool:
+	var prof: AIProfile = style.profile if style != null and style.profile != null else AIProfile.current()
+	if prof.brain in ["nueva", "clasica"]:
+		return prof.brain == "nueva"
+	return bool(GameState.setting("ai_brain_new"))
+
+
+## Cambio decidido por el UtilityCoach: sale `inst`.
+func coach_switch(inst: CreatureInstance) -> void:
+	if not is_instance_valid(foe) or inst == null:
+		return
+	var before := TacticalMind.matchup_score(foe.instance, world.companion, _memory)
+	var after := TacticalMind.matchup_score(inst, world.companion, _memory)
+	_switches += 1
+	_last_switch = _clock
+	AiTrace.note(foe, "cambio", {"sale": foe.instance.display_name(), "entra": inst.display_name(),
+		"cruce": snappedf(before, 0.01), "nuevo": snappedf(after, 0.01), "respuesta": _player_swapped_at > _entered_at})
+	_withdraw(inst)
 
 
 ## Superpoción a su Pokémon con poca vida (una por Pokémon, mientras le queden): se cura y queda expuesto un instante.
 func _maybe_potion() -> void:
 	if potions_left <= 0 or _potion_used.has(foe.instance) or foe.health.ratio() > POTION_BELOW:
+		return
+	use_potion()
+
+
+## Superpoción a su Pokémon: se cura y queda expuesto un instante (la usan `_maybe_potion` y el UtilityCoach).
+func use_potion() -> void:
+	if potions_left <= 0 or not is_instance_valid(foe) or _potion_used.has(foe.instance):
 		return
 	_potion_used[foe.instance] = true
 	potions_left -= 1

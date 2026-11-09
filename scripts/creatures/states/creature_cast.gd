@@ -57,6 +57,15 @@ func physics_update(delta: float) -> void:
 		if aim.length() > 4.0:
 			_aim = aim.normalized()
 		_msg["point"] = actor.input_source.aim_point(actor)
+	elif is_instance_valid(actor.target) and actor.uses_new_brain():
+		# Cerebro nuevo: apunta adonde cree que vas a estar (lo que vio, con retraso), no adonde estás.
+		var fly := 0.0
+		if _move.kind == MoveData.Kind.PROJECTILE and _move.speed > 0.0 and _move.beam_length <= 0.0:
+			fly = actor.global_position.distance_to(actor.perception.predicted_pos()) / (_move.speed * Projectile.SPEED_MULT)
+		var seen: Vector2 = actor.perception.predicted_pos(maxf(0.0, _move.cast_time - _time) + fly)
+		_aim = (seen - actor.global_position).normalized()
+		if _move.ride_range > 0.0 or _move.kind == MoveData.Kind.ZONE:
+			_msg["point"] = seen
 	elif is_instance_valid(actor.target):
 		var off: Vector2 = actor.target.global_position - actor.global_position
 		# Al soltar un disparo, la IA anticipa hacia dónde va el rival (como con los disparos sin carga).

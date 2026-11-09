@@ -76,7 +76,7 @@ const PAGES := [
 	]],
 	["Lo que podés modificar", [
 		"Esc → Opciones: dificultad de la IA (Fácil, Normal, Difícil o Personalizado) y el volumen.",
-		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y recibís, vida de los Pokémon, cantidad de salvajes, hora fija e IA personalizada.",
+		"Esc → Opciones → Ajustes del juego (se guardan con cada partida): experiencia, dinero de los premios, facilidad de captura, daño que hacés y recibís, vida de los Pokémon, cantidad de salvajes, hora fija, IA personalizada, la IA nueva de entrenadores (en prueba) y grabar las peleas contra entrenadores.",
 		"Ajustes → Sparring: grabar tus peleas contra entrenadores para entrenar la IA (F8 marca un momento para revisar).",
 		"Tus 4 ataques, la Pokébola que lanzás y el objeto rápido de la C.",
 		"Varias partidas con nombre, cada una con sus ajustes.",

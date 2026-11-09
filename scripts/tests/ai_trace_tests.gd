@@ -3,7 +3,7 @@ extends Node
 ## Autotest de la Fase 1 de la IA nueva (docs/IA_AUDITORIA.md): registro de decisiones (`AiTrace`), overlay y métricas
 ## por pelea (`AiFightStats`, `AiDebug`), y que el JSON de sparring las guarde.
 ##   godot --headless --path . --quit-after 60000 -- --autotest-ai-trace
-##   godot --path . --quit-after 240 --write-movie out/f.png --fixed-fps 30 -- --showcase-ai-overlay  (el overlay en una pelea)
+##   godot --path . --quit-after 240 --write-movie out/f.png --fixed-fps 30 -- --showcase-ai-overlay  (el overlay en una pelea; `--new-brain` = con la IA nueva)
 
 var autotest: Node
 var world: Node
@@ -118,6 +118,8 @@ func showcase() -> void:
 	world.respawn_companion()
 	await get_tree().physics_frame
 	world.ai_debug.set_overlay(true)
+	if "--new-brain" in OS.get_cmdline_user_args():
+		GameState.set_setting("ai_brain_new", true)  # (con la IA nueva de entrenadores)
 	await _fight(["rattata", "pidgey", "caterpie"])
 	var shoot := 0.0
 	while true:

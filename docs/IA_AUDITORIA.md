@@ -266,8 +266,8 @@ peleas) comparando clásica vs nueva, `docs/PLAN_IA.md` y `PROGRESO.md` actualiz
 | 0. Auditoría | ✅ 2026-11-09 | este documento |
 | 1. Instrumentación | ✅ 2026-11-09 | ver abajo |
 | 2. Percepción + situación | ✅ 2026-11-09 | ver abajo |
-| 3. Utility AI | próxima | |
-| 4. Modelo del jugador | — | |
+| 3. Utility AI | ✅ 2026-11-09 | ver abajo; falta jugarla |
+| 4. Modelo del jugador | próxima | |
 | 5. Castigos, esquivas, lecturas | — | falta el resto del texto del pedido |
 
 ### Fase 1, cómo quedó
@@ -323,6 +323,46 @@ peleas) comparando clásica vs nueva, `docs/PLAN_IA.md` y `PROGRESO.md` actualiz
   sigue peleando igual hasta que exista el cerebro nuevo (Fase 3), y ahí se elige con el ajuste `ai_brain`.
 - Test `--autotest-ai-perception` (perfiles, retraso medido en las tres dificultades, el disparo visto con retraso, que no
   espía tus recargas aunque cambien, cada situación armada, el cambio sugerido y el overlay).
+
+### Fase 3, cómo quedó
+- **Cómo se elige**: ajuste de partida **"IA nueva de entrenadores (en prueba)"** (`ai_brain_new`, Esc → Opciones → Ajustes del
+  juego → IA de entrenadores; apagado por defecto). `AIProfile.brain` ("ajuste" / "nueva" / "clasica") lo pisa por perfil;
+  `Creature.brain_override` lo fuerza (batería, tests). Solo los Pokémon de entrenador (`Creature.uses_new_brain`): los
+  salvajes siempre con la clásica. Con el ajuste apagado no se crea nada nuevo y la clásica pelea igual que antes.
+- **Pokémon — `UtilityBrain`** (`Creature.brain`; lo llama el estado `attack` en lugar de su lógica): cada vez que piensa lee la
+  `Situation` y puntúa **atacar con cada ranura** (valor de `TacticalMind.move_value` en modo `perceived`, normalizado contra
+  su mejor ataque; × `punish_skill` si te ve expuesto, más a los rápidos; + remate con el más barato; − riesgo = carga +
+  recuperación si tenés con qué castigar; × 0,5 si le viene un ataque; ahorro de PP; aguante/contragolpe de su clase; ritmo
+  `attack_gap`), **juntar PP**, **acercarse** (lejos, entrar a pegar si es cuerpo a cuerpo, tu ventana, una pared en el
+  medio; menos bajo fuego, con un ataque encima, con poca vida o saliendo de pegar), **alejarse**, **rodear** por cada lado
+  (no contra una pared), **mantener la distancia** y **salir del rincón**. A cada opción le descuenta lo que repitió hace poco
+  (`repeat_penalty`, con vida media `repeat_half_life`) y elige con **softmax** (`temperature` ÷ `smarts_mult` de su clase).
+  Si elige atacar, igual elige con qué moverse. Piensa cada `think_mean` × lognormal(`think_sigma`) × su `pace` × la fase de
+  **ráfaga o respiro** (`tempo_swing`, cambia cada 1,5-3,5 s), o enseguida si le pegan, te ve expuesto o cambia la situación.
+  **Reacciona** a lo que ve venir (`Perception.threat`, ya con retraso): decide una vez por amenaza (`evade_skill`, + 0,15
+  si es fuerte); paso al costado si hay tiempo, rueda si es fuerte o no llega caminando, recién al final. **Apunta** adonde
+  cree que vas a estar (`Perception.predicted_pos`, también al soltar una carga: `creature_cast`), con el error de puntería
+  de la dificultad. Los fuertes sin carga se siguen avisando y pueden ser finta (`AiDifficulty.telegraph`, `feint_chance`).
+  Bajo fuego (2 golpes viniendo de frente en 3 s) deja de venir de frente 2-4 s. Las celdas peligrosas son solo las que se
+  ven (no supone lo que le harías con tus ataques, como la clásica).
+- **Entrenador — `UtilityCoach`** (`TrainerBattle.coach`; con la IA nueva `think` solo corre el guion del líder): cada 0,5-1 s
+  (o enseguida si cambiaste o a su Pokémon le sacaron más de 20 %) puntúa **mantener** (+ histéresis, según el cruce),
+  **cambiar** a cada uno del banco (cuánto mejora el cruce con lo que te vio, × `switch_types`; + salvar al golpeado; +
+  responder a tu cambio; casi nada si ya gana) y **Superpoción** (con menos de 45 %; arriesgada con vos encima). Softmax
+  más frío (× 0,6). Cambiar tiene costo: no en plena carga, golpe o recuperación, `SWITCH_GAP` entre cambios, el líder
+  guarda a su último. **Sin `knows_moves`** (también al elegir quién sale).
+- **`AIProfile`** suma `brain`, `temperature` (Fácil 0,4 · Normal 0,2 · Difícil 0,1), `repeat_penalty` (0,2 / 0,35 / 0,45),
+  `repeat_half_life` 3 s, `think_mean` (0,6 / 0,45 / 0,35 s) y `think_sigma`, `attack_gap` (0,85 / 0,6 / 0,45 s),
+  `tempo_swing`, `evade_skill` (0,3 / 0,6 / 0,85) y `punish_skill` (1,1 / 1,3 / 1,5). **Valores a ojo**: se ajustan jugando y
+  con la batería.
+- **Overlay y registro**: "Cerebro nuevo: eligió X · top 3 con utilidad y probabilidad · T" y "Entrenador: ..."; se anotan
+  "decide", "entrenador", "bajo fuego" y los "ve"/"paso"/"esquive" del cerebro nuevo.
+- **Batería**: `--autotest-balance --brain duelo` = tu bando con la nueva contra la clásica (cada especie pelea con las dos);
+  `--brain nueva` = las dos con la nueva.
+- Test `--autotest-ai-utility`: ajuste y perfiles, softmax frío/tibio, penalidad que se olvida, ritmo variable, que no lea
+  nada prohibido, decisiones por situación (lejos → acercarse; te ve recuperándote al lado → pegarte; a pocos PP → juntar;
+  acorralado → salir), que reaccione a un disparo (3 de 3 con `evade_skill` 1), el entrenador (cambia a Oddish, se queda con
+  el cruce a favor, Superpoción con vos lejos) y una pelea viva contra un bot (decide seguido, ataca, varía).
 
 ## 7. Decisiones
 

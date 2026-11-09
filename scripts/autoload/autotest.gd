@@ -204,6 +204,13 @@ func _ready() -> void:
 		add_child(sp)
 		sp.run.call_deferred()
 		return
+	if "--autotest-ai-utility" in OS.get_cmdline_user_args():
+		set_process(false)
+		var au := AiUtilityTests.new()
+		au.autotest = self
+		add_child(au)
+		au.run.call_deferred()
+		return
 	if "--autotest-ai-perception" in OS.get_cmdline_user_args():
 		set_process(false)
 		var ap := AiPerceptionTests.new()

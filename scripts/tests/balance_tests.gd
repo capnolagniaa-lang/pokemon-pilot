@@ -11,6 +11,9 @@ extends Node
 ## Desde las habilidades (2026-10-28) cada uno pelea con su habilidad (al azar, como en los juegos) y: `--equip juego` =
 ## lo que trae un rival (CreatureInstance.create_rival); `--equip mejores` = los 4 que más daño estiman de todo lo que
 ## aprende hasta ese nivel o por MT (pedido del usuario: "hay que utilizar lo mejor que puede aprender").
+## `--brain clasica|nueva|duelo` (IA nueva, docs/IA_AUDITORIA.md Fase 3): los dos con la IA clásica (por defecto), los dos con
+## el cerebro nuevo (UtilityBrain), o **duelo** = tu bando con el cerebro nuevo contra el otro con la clásica (cada pareja
+## pelea dos veces cambiando de lado, así cada especie pelea una vez con cada IA): cuenta cuántas gana cada IA.
 ## `--fixed-fps 60` hace que corra lo más rápido que da la PC (sin esperar al reloj real): sin eso va a velocidad normal.
 
 const CreatureScene := preload("res://scenes/creatures/creature.tscn")
@@ -21,7 +24,9 @@ var autotest: Node
 var world: Node
 var spot := Vector2.ZERO
 var opts := {"fights": 400, "level": 40, "bst": 60, "seed": 1, "species": "", "arena": false, "timeout": 60.0,
-	"equip": "juego", "out": ""}
+	"equip": "juego", "out": "", "brain": "clasica"}
+## Duelo de IA: victorias de la nueva, de la clásica y empates.
+var duel := {"nueva": 0, "clasica": 0, "empate": 0}
 
 ## Por especie: {fights, wins, timeouts, time_win, hp_left, dealt, taken, secs}
 var by_species := {}
@@ -67,7 +72,8 @@ func run() -> void:
 			await _fight(a if side == 0 else b, b if side == 0 else a, fights)
 			fights += 1
 		if fights % 20 == 0:
-			print("[balance] %d/%d peleas (%.0f s)" % [fights, opts["fights"], (Time.get_ticks_msec() - t0) / 1000.0])
+			print("[balance] %d/%d peleas (%.0f s)%s" % [fights, opts["fights"], (Time.get_ticks_msec() - t0) / 1000.0,
+				(" · IA nueva %d, clásica %d, empates %d" % [duel.nueva, duel.clasica, duel.empate]) if opts["brain"] == "duelo" else ""])
 	_write_report(fights, (Time.get_ticks_msec() - t0) / 1000.0)
 	print("[autotest-balance] -> OK")
 	get_tree().quit(0)
@@ -125,6 +131,8 @@ func _fight(a: SpeciesData, b: SpeciesData, n: int) -> void:
 		var w := cb if ca.is_down() else ca
 		winner = w.instance.species.id
 		hp_left = clampf(w.instance.hp / w.instance.max_hp(), 0.0, 1.0)
+	if opts["brain"] == "duelo":
+		duel["empate" if winner == "" else ("clasica" if ca.is_down() else "nueva")] += 1
 	_note(a.id, ca, cb, winner, t, hp_left)
 	_note(b.id, cb, ca, winner, t, hp_left)
 	for c in [ca, cb]:  # por habilidad (la que le tocó en esta pelea)
@@ -151,6 +159,11 @@ func _spawn(sp: SpeciesData, team: int, pos: Vector2, temp: Temperament) -> Crea
 		_note_set(sp.id, c.instance.equipped_moves)
 	c.team = team
 	c.ai_fighter = true
+	match str(opts["brain"]):
+		"nueva":
+			c.brain_override = "nueva"
+		"duelo":
+			c.brain_override = "nueva" if team == Creature.Team.ALLY else "clasica"
 	c.temperament = temp
 	c.position = pos
 	world.entities.add_child(c)
@@ -286,6 +299,13 @@ func _write_report(fights: int, secs: float) -> void:
 		if r.contains(",empate,"):
 			timeouts += 1
 	L.append("Empates por tiempo (%d s): %d de %d (%.0f%%)." % [int(opts["timeout"]), timeouts / 2, fights / 2, 100.0 * timeouts / maxf(1, rows.size() - 1)])
+	if opts["brain"] != "clasica":
+		L.append("")
+		L.append("**IA**: %s." % ({"nueva": "los dos con el cerebro nuevo (UtilityBrain)", "duelo": "duelo, tu bando con el cerebro nuevo contra la clásica"}[opts["brain"]]))
+		if opts["brain"] == "duelo":
+			var decided: int = duel.nueva + duel.clasica
+			L.append("Duelo: la IA nueva ganó **%d**, la clásica **%d**, empates %d (la nueva gana el %.0f%% de las que se definen)." % [
+				duel.nueva, duel.clasica, duel.empate, 100.0 * duel.nueva / maxf(1, decided)])
 	L.append("")
 	var ids := by_species.keys()
 	ids.sort_custom(func(x, y): return _rate(x) > _rate(y))

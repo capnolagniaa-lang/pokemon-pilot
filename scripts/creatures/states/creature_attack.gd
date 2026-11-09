@@ -46,6 +46,8 @@ var _logged_mode := ""
 
 
 func enter(_msg: Dictionary = {}) -> void:
+	if actor.uses_new_brain():
+		actor.brain.on_enter()
 	_attack_timer = randf_range(0.3, 0.8) * CombatBody.difficulty().attack_interval_mult
 	_cancel_tell()
 	_seen_wary = actor.mind.wary_count
@@ -53,6 +55,8 @@ func enter(_msg: Dictionary = {}) -> void:
 
 func exit() -> void:
 	_cancel_tell()
+	if actor._brain != null:
+		actor._brain.on_exit()
 	if actor.mind != null:
 		actor.mind.saving = false
 
@@ -92,6 +96,9 @@ func physics_update(delta: float) -> void:
 		transition("chase")
 		return
 	actor.mind.observe()
+	if actor.uses_new_brain():  # IA nueva de entrenadores (Fase 3 de docs/IA_AUDITORIA.md): decide el cerebro de utilidad
+		actor.brain.update(delta)
+		return
 	var temp: Temperament = actor.temperament
 	var flee_at: float = temp.flee_below if temp != null else flee_below
 	var plan: String = actor.mind.low_hp_plan()

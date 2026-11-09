@@ -526,7 +526,8 @@ func score(slot: int, dist: float, shot: bool) -> float:
 
 
 ## Lo que vale esa ranura a esa distancia, sin mirar los PP (0 = no sirve). `soon` = aunque todavía no se pueda pagar.
-func move_value(slot: int, dist: float, shot: bool, soon: bool = false) -> float:
+## `perceived` = lo pide el cerebro nuevo: no mira en vivo si estás expuesto (eso lo lee él con retraso) ni repite.
+func move_value(slot: int, dist: float, shot: bool, soon: bool = false, perceived: bool = false) -> float:
 	var m: MoveData = actor.moves.slots[slot]
 	if m == null or m.does_nothing() or actor.moves.status_locked(slot) or not actor.body.fits(slot, dist, soon):
 		return 0.0  # (los que todavía no hacen nada en combate, ni los intenta)
@@ -542,7 +543,7 @@ func move_value(slot: int, dist: float, shot: bool, soon: bool = false) -> float
 		value = m.power * m.power_mult * hits_of(m) * stab * eff * stat_edge(m, t) * ability_mult(m, t) * env_mult(m, t) * actor.moves.role_damage(m)
 		if value <= 0.0:
 			return 0.0  # su habilidad lo absorbe
-		if exposed(t):
+		if not perceived and exposed(t):
 			value *= PUNISH
 	elif m.status != null and is_instance_valid(t) and t.statuses.has_status(m.status.id):
 		return 0.0  # ya lo tiene
@@ -565,7 +566,7 @@ func move_value(slot: int, dist: float, shot: bool, soon: bool = false) -> float
 			return 0.0
 	elif m.kind in [MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF] and low_hp_plan() == "cuidado":
 		value *= 2.5  # con poca vida y cauteloso: se cubre o se cura
-	if slot == last_slot:
+	if slot == last_slot and not perceived:
 		value *= REPEAT
 	return value
 
