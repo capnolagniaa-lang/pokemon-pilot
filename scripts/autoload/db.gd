@@ -14,6 +14,7 @@ var species: Dictionary = {}  # id -> SpeciesData
 var statuses: Dictionary = {}  # id -> StatusEffect
 var interactions: Dictionary = {}  # nombre de archivo -> StatusInteraction
 var difficulties: Dictionary = {}  # id -> AiDifficulty (facil, normal, dificil)
+var ai_profiles: Dictionary = {}  # id de la dificultad -> AIProfile (IA nueva de entrenadores, docs/IA_AUDITORIA.md)
 var env_states: Dictionary = {}  # id -> EnvCellState (entorno reactivo: ardiendo, mojado...)
 var reactions: Dictionary = {}  # id -> ReactionRule
 var temperaments: Dictionary = {}  # id -> Temperament (agresivo, territorial, timido, curioso)
@@ -48,6 +49,7 @@ func _ready() -> void:
 	temperaments = _load_dir("res://data/ai/temperaments", "Temperament")
 	trainer_styles = _load_dir("res://data/ai/trainer_styles", "TrainerStyle")
 	leader_scripts = _load_dir("res://data/ai/leader_scripts", "LeaderScript")
+	ai_profiles = _load_dir("res://data/ai/profiles", "AIProfile")
 	if ResourceLoader.exists("res://data/ai/wild_life.tres"):
 		wild_life = load("res://data/ai/wild_life.tres")
 	trainers = _load_dir("res://data/trainers", "TrainerData")

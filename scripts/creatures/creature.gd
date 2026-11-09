@@ -131,6 +131,12 @@ var mind: TacticalMind:
 		if mind == null:
 			mind = TacticalMind.new(self)
 		return mind
+## Lo que ve de su rival, con retraso y sin trampas (IA nueva, Fase 2 de docs/IA_AUDITORIA.md; ver Perception).
+var perception: Perception:
+	get:
+		if perception == null:
+			perception = Perception.new(self)
+		return perception
 
 var _clock := 0.0
 

@@ -33,3 +33,5 @@ extends Resource
 @export var potions: int = 0
 ## Qué hace con poca vida (como Temperament.low_hp).
 @export var low_hp: Temperament.LowHp = Temperament.LowHp.CAREFUL
+## Perillas propias de la IA nueva para esta clase (docs/IA_AUDITORIA.md); vacío = las de la dificultad.
+@export var profile: AIProfile

@@ -265,8 +265,8 @@ peleas) comparando clásica vs nueva, `docs/PLAN_IA.md` y `PROGRESO.md` actualiz
 |---|---|---|
 | 0. Auditoría | ✅ 2026-11-09 | este documento |
 | 1. Instrumentación | ✅ 2026-11-09 | ver abajo |
-| 2. Percepción + situación | próxima | |
-| 3. Utility AI | — | |
+| 2. Percepción + situación | ✅ 2026-11-09 | ver abajo |
+| 3. Utility AI | próxima | |
 | 4. Modelo del jugador | — | |
 | 5. Castigos, esquivas, lecturas | — | falta el resto del texto del pedido |
 
@@ -296,6 +296,33 @@ peleas) comparando clásica vs nueva, `docs/PLAN_IA.md` y `PROGRESO.md` actualiz
   vitrina `--showcase-ai-overlay`. Los tests de IA de antes siguen OK (`ai-mind`, `ai-threat`, `ai-pp`, `ai-trainers`,
   `ai-steer`, `sparring`, `gm`, `wild-ai`). `ai-trainers` fallaba a veces al azar (con 20 % de vida a veces retiraba al
   Pokémon en vez de usar la Superpoción): arreglado en el test.
+
+### Fase 2, cómo quedó
+- **`AIProfile`** (`scripts/resources/ai_profile.gd`, `data/ai/profiles/{facil,normal,dificil}.tres`, `DB.ai_profiles` por id
+  de la dificultad; la "personalizada" usa el de Normal; un `TrainerStyle.profile` lo pisa para esa clase): por ahora el
+  **retraso de percepción** (Fácil 0,4 s · Normal 0,25 · Difícil 0,15, siempre entre 0,15 y 0,4) y su variación (± 0,06 /
+  0,04 / 0,03, cambia cada 0,5 s). Las fases que siguen le suman sus perillas.
+- **`Perception`** (`Creature.perception`, `scripts/creatures/ai/perception.gd`): cada cuadro guarda una foto de lo que se
+  ve del rival (posición, velocidad, hacia dónde mira, estado, barra de vida, si tambalea, si puede actuar, si está bajo
+  tierra, qué ataque está tirando y la amenaza que viene) y la IA lee la de hace `delay()`. `threat()` = la amenaza vista,
+  con el tiempo que pasó descontado; `predicted_pos(ahead)` = dónde cree que vas a estar; `foe_exposed()`.
+  **Sin trampas**: tus recargas y tus PP se **estiman** con lo que te vio tirar (`move_released`, recién pasado el retraso)
+  y las reglas del juego (`rule_cooldown`, costo de PP, barra = 100 + 4 × nivel, recarga de la barra en pelea):
+  `est_ready_in(m)`, `est_pp()`, `strong_down_est()`, `window_est()`. Lo que no te vio usar lo supone listo. El test
+  revisa que el código de `Perception` y `Situation` no toque `Input`, tu `input_source`, tus `cooldowns`, `has_pp` ni tu
+  `moves`.
+- **`Situation`** (`scripts/creatures/ai/situation.gd`, `Situation.read(actor, perception, banco)`): táctica = neutral
+  cerca (≤ 60 px) / media / lejos (más allá del alcance de sus ataques, mínimo 160 px), **castigar** (te ve expuesto y tiene
+  algo listo que llega), **le viene un ataque** (≤ 0,6 s), **acorralado** (3 de 8 direcciones tapadas a 28 px), **poca vida**
+  (< 35 %), **rematar** (un ataque listo te saca lo que te queda × 1,1). Mandan en ese orden: entrante > rematar > castigar >
+  acorralado > poca vida > la banda neutral. Estratégica = cruce (`matchup_score` con lo que te vio, **sin
+  `knows_moves`**), el mejor del banco y si conviene cambiar (los criterios de `TrainerBattle`), sus ataques listos, tus PP
+  estimados. `to_text()` / `to_dict()`.
+- **Overlay y registro**: con `ia ver`, el rival que se mira percibe y lee su situación como lo va a hacer el cerebro nuevo
+  (línea "IA nueva (ve hace X s)") y cada cambio de táctica se anota ("situacion"). **La IA de hoy no usa nada de esto**:
+  sigue peleando igual hasta que exista el cerebro nuevo (Fase 3), y ahí se elige con el ajuste `ai_brain`.
+- Test `--autotest-ai-perception` (perfiles, retraso medido en las tres dificultades, el disparo visto con retraso, que no
+  espía tus recargas aunque cambien, cada situación armada, el cambio sugerido y el overlay).
 
 ## 7. Decisiones
 

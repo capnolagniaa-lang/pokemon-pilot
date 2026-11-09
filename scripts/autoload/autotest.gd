@@ -204,6 +204,13 @@ func _ready() -> void:
 		add_child(sp)
 		sp.run.call_deferred()
 		return
+	if "--autotest-ai-perception" in OS.get_cmdline_user_args():
+		set_process(false)
+		var ap := AiPerceptionTests.new()
+		ap.autotest = self
+		add_child(ap)
+		ap.run.call_deferred()
+		return
 	if "--autotest-ai-trace" in OS.get_cmdline_user_args() or "--showcase-ai-overlay" in OS.get_cmdline_user_args():
 		set_process(false)
 		var at := AiTraceTests.new()

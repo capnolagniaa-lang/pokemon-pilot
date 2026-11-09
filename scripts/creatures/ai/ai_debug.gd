@@ -30,6 +30,9 @@ var _label: Label
 var _overlay_in := 0.0
 var _companion: Creature
 var _your_mon: CreatureInstance
+## La situación que lee la IA nueva del rival que mira el overlay (Fase 2: Perception + Situation) y la última anotada.
+var situation: Situation
+var _situation_logged := -1
 
 
 func _ready() -> void:
@@ -96,6 +99,7 @@ func _physics_process(delta: float) -> void:
 	if fighting and world.arena != null and world.arena._fighting:
 		_measure(delta)
 	if AiTrace.overlay_on:
+		_perceive()
 		_overlay_in -= delta
 		if _overlay_in <= 0.0:
 			_overlay_in = OVERLAY_RATE
@@ -246,6 +250,23 @@ func _overlay_target() -> Creature:
 	return null
 
 
+## Con el overlay prendido, el rival que se mira percibe y lee su situación como lo hará el cerebro nuevo (Fase 2). No
+## cambia lo que hace: la IA de hoy no usa nada de esto.
+func _perceive() -> void:
+	var c := _overlay_target()
+	if c == null:
+		situation = null
+		return
+	c.perception.tick()
+	var bench: Array = []
+	if world.arena != null and world.arena.active and c == world.arena.foe:
+		bench = world.arena.foe_team
+	situation = Situation.read(c, c.perception, bench)
+	if situation.primary != _situation_logged:
+		_situation_logged = situation.primary
+		AiTrace.note(c, "situacion", situation.to_dict())
+
+
 ## El texto del overlay (público para el test).
 func overlay_text() -> String:
 	var c := _overlay_target()
@@ -283,6 +304,8 @@ func overlay_text() -> String:
 	var top := AiTrace.top3(c)
 	lines.append("Top: %s (%s)" % [" · ".join(top) if not top.is_empty() else "—", mind.last_reason if mind.last_reason != "" else "—"])
 	lines.append("Te lee: %s" % prediction_text(mind))
+	if situation != null:
+		lines.append("IA nueva (ve hace %.2f s): %s" % [c.perception.age(), situation.to_text()])
 	if fighting and c == _overlay_target() and world.arena != null and world.arena.active:
 		lines.append("Pelea: " + stats.summary())
 	if not recent.is_empty():
