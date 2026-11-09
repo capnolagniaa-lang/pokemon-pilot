@@ -204,6 +204,13 @@ func _ready() -> void:
 		add_child(sp)
 		sp.run.call_deferred()
 		return
+	if "--autotest-ai-model" in OS.get_cmdline_user_args():
+		set_process(false)
+		var am := AiModelTests.new()
+		am.autotest = self
+		add_child(am)
+		am.run.call_deferred()
+		return
 	if "--autotest-ai-utility" in OS.get_cmdline_user_args():
 		set_process(false)
 		var au := AiUtilityTests.new()

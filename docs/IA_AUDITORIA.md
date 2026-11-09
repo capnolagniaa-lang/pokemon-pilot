@@ -267,8 +267,8 @@ peleas) comparando clásica vs nueva, `docs/PLAN_IA.md` y `PROGRESO.md` actualiz
 | 1. Instrumentación | ✅ 2026-11-09 | ver abajo |
 | 2. Percepción + situación | ✅ 2026-11-09 | ver abajo |
 | 3. Utility AI | ✅ 2026-11-09 | ver abajo; falta jugarla |
-| 4. Modelo del jugador | próxima | |
-| 5. Castigos, esquivas, lecturas | — | falta el resto del texto del pedido |
+| 4. Modelo del jugador | ✅ 2026-11-09 | ver abajo |
+| 5. Castigos, esquivas, lecturas | próxima | falta el resto del texto del pedido |
 
 ### Fase 1, cómo quedó
 - **`AiTrace`** (`scripts/creatures/ai/ai_trace.gd`): `AiTrace.note(actor, qué, datos)` → `Events.ai_decided`. Lo llaman el estado
@@ -367,6 +367,44 @@ peleas) comparando clásica vs nueva, `docs/PLAN_IA.md` y `PROGRESO.md` actualiz
   nada prohibido, decisiones por situación (lejos → acercarse; te ve recuperándote al lado → pegarte; a pocos PP → juntar;
   acorralado → salir), que reaccione a un disparo (3 de 3 con `evade_skill` 1), el entrenador (cambia a Oddish, se queda con
   el cruce a favor, Superpoción con vos lejos) y una pelea viva contra un bot (decide seguido, ataca, varía).
+
+### Fase 4, cómo quedó
+- **`PlayerModel`** (`scripts/creatures/ai/player_model.gd`, en `FoeMemory.model`: lo comparte todo el equipo del
+  entrenador). Solo cuenta lo que se ve: tus ataques al salir (`move_released`), tus esquives (`dodged`, con el lado
+  respecto de la línea de él hacia vos), tus pasos al costado (cuánto te corriste en la foto de `Perception`) y tus cambios.
+  Cada conteo **se desvanece** (pesa la mitad pasada `AIProfile.memory_half_life`: Fácil 15 s · Normal 30 · Difícil 60) y
+  cada predicción trae su **confianza** = casos / (casos + `adapt_k`) (Fácil 7 · Normal 3,5 · Difícil 2: con 4 casos,
+  Difícil confía 0,65 y Fácil 0,35). Reloj común del equipo: `PlayerModel.clock()` (cuadros de física).
+  - **Secuencias**: n-gramas de 2 y 3 de tus acciones ("atk:<ataque>", "esq", "cambio"); `predict_next` usa el trigrama si
+    ya vio ese par, si no el bigrama, si no lo que más hacés (con la mitad de confianza).
+  - **Cómo respondés** a cada clase de ataque suyo ("aviso", "carga", "disparo", "cuerpo", "zona", "area"): esquive a la
+    izquierda / derecha / atrás, paso a un lado, le pegás o nada. El cerebro abre la observación al tirar o avisar y la
+    cierra a los 0,7 s.
+  - **Dónde atacás**: qué ataque usás a cada distancia y tu distancia favorita.
+  - **Contracambios**: si cambiás dentro de 4 s después de que él cambia.
+- **Cómo lo usa el cerebro nuevo** (todo × `reads()` = `AIProfile.read_skill` (0,35 / 0,7 / 1) × `TrainerStyle.reads` de su
+  clase, y siempre con azar: nunca seguro):
+  - **Apunta adonde vas a esquivar**: con probabilidad = lo seguro que está × su confianza × cuánto lee, corre la puntería
+    55 px (si rodás) o 26 px (si das un paso) hacia ese lado; también al soltar una carga (`aim_bias` en `creature_cast`).
+  - **Amaga más** si esquivás al ver el aviso (+ hasta 0,35 de finta).
+  - **Se anticipa a tu próximo ataque**: si predice un golpe cuerpo a cuerpo tuyo y está a tiro, alejarse vale más; si es un
+    disparo, rodear; si tu ataque deja una recuperación larga, ataca menos para castigarla.
+  - **Tu distancia favorita**: no se queda donde más pegás.
+  - **Entrenador**: si contracambiás, cambiar rinde menos.
+- **Lo que predice cambia cómo se mueve, no cuánto ataca** (`read_bonus`, `_pick_move`): la primera versión le sumaba a
+  moverse y le restaba a atacar en la misma elección, y atacaba menos. Y solo corre la puntería si ir a un lado es más
+  probable que quedarse o ir al otro (contra alguien que esquiva para cualquier lado no se la juega).
+- **Duelos contra la clásica** (400 peleas, semilla 5, Difícil): primera versión 161 a 217; con los dos arreglos **172 a 212**
+  (45 %); el cerebro nuevo **sin** el modelo (`--no-reads`) 153 a 220. El modelo ayuda, pero la batería tiene mucho ruido
+  entre corridas (el mismo cerebro sin modelo dio 183 a 196 en la Fase 3): con 400 peleas, 20-30 victorias de diferencia
+  entran en el azar. Contra la clásica el modelo aprende poco (no tiene costumbres fijas); está pensado para una persona.
+- Overlay: línea "Te modela: próximo: X 80 % (conf 0,7, trigrama) · al aviso: esq_der 75 % · contracambiás 50 %"; registro:
+  "aprende" (tu respuesta a cada ataque) y "lee" (cuando corre la puntería).
+- Test `--autotest-ai-model`: desvanecimiento, bigrama, trigrama que resuelve lo que el bigrama no, adaptarse a un patrón
+  nuevo, confianza por dificultad, respuestas, contracambio, que no lea nada prohibido, que el cerebro anote tus ataques y
+  tu respuesta, que corra la puntería (34 de 40, siempre hacia el lado correcto), que una clase que no lee no lo use, más
+  fintas, alejarse si predice tu Placaje, menos cambios si contracambiás, y una **pelea viva contra un bot que siempre esquiva
+  a la derecha**: lo aprende (84 %, confianza 0,85) y le corre la puntería.
 
 ## 7. Decisiones
 

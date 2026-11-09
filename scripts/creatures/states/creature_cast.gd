@@ -62,7 +62,7 @@ func physics_update(delta: float) -> void:
 		var fly := 0.0
 		if _move.kind == MoveData.Kind.PROJECTILE and _move.speed > 0.0 and _move.beam_length <= 0.0:
 			fly = actor.global_position.distance_to(actor.perception.predicted_pos()) / (_move.speed * Projectile.SPEED_MULT)
-		var seen: Vector2 = actor.perception.predicted_pos(maxf(0.0, _move.cast_time - _time) + fly)
+		var seen: Vector2 = actor.perception.predicted_pos(maxf(0.0, _move.cast_time - _time) + fly) + actor.brain.aim_bias
 		_aim = (seen - actor.global_position).normalized()
 		if _move.ride_range > 0.0 or _move.kind == MoveData.Kind.ZONE:
 			_msg["point"] = seen

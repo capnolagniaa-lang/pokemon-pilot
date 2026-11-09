@@ -10,6 +10,8 @@ const HABIT_WINDOW := 6
 const HABIT_MIN := 4
 const HABIT_SHARE := 0.6
 
+## Lo que aprende la IA nueva de cómo jugás (PlayerModel, Fase 4 de docs/IA_AUDITORIA.md).
+var model := PlayerModel.new()
 var dodge_sides: Array[int] = []
 var ranged_seen: Array[bool] = []
 var _recent: Array[MoveData] = []
@@ -51,6 +53,7 @@ func habit() -> MoveData:
 
 
 func clear() -> void:
+	model.clear()
 	dodge_sides.clear()
 	ranged_seen.clear()
 	_recent.clear()

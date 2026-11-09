@@ -33,6 +33,14 @@ extends Resource
 ## Cuánto aprovecha una ventana tuya (multiplica el valor de pegarte cuando estás expuesto).
 @export var punish_skill: float = 1.3
 
+@export_group("Modelo del jugador (Fase 4)")
+## En cuántos segundos pesa la mitad lo que vio de vos (más = recuerda más).
+@export var memory_half_life: float = 30.0
+## Cuántos casos necesita para confiar a medias en una costumbre tuya (menos = se adapta más rápido).
+@export var adapt_k: float = 3.5
+## Cuánto usa lo que predice (0..1; se multiplica por `TrainerStyle.reads` de su clase).
+@export_range(0.0, 1.0) var read_skill: float = 0.7
+
 ## Retraso tolerado como mínimo y máximo (el usuario pidió 0,15 a 0,4 según la dificultad).
 const MIN_DELAY := 0.15
 const MAX_DELAY := 0.4

@@ -14,6 +14,7 @@ extends Node
 ## `--brain clasica|nueva|duelo` (IA nueva, docs/IA_AUDITORIA.md Fase 3): los dos con la IA clásica (por defecto), los dos con
 ## el cerebro nuevo (UtilityBrain), o **duelo** = tu bando con el cerebro nuevo contra el otro con la clásica (cada pareja
 ## pelea dos veces cambiando de lado, así cada especie pelea una vez con cada IA): cuenta cuántas gana cada IA.
+## `--no-reads`: el cerebro nuevo sin usar el modelo del jugador (Fase 4), para ver qué aporta.
 ## `--fixed-fps 60` hace que corra lo más rápido que da la PC (sin esperar al reloj real): sin eso va a velocidad normal.
 
 const CreatureScene := preload("res://scenes/creatures/creature.tscn")
@@ -24,7 +25,7 @@ var autotest: Node
 var world: Node
 var spot := Vector2.ZERO
 var opts := {"fights": 400, "level": 40, "bst": 60, "seed": 1, "species": "", "arena": false, "timeout": 60.0,
-	"equip": "juego", "out": "", "brain": "clasica"}
+	"equip": "juego", "out": "", "brain": "clasica", "no-reads": false}
 ## Duelo de IA: victorias de la nueva, de la clásica y empates.
 var duel := {"nueva": 0, "clasica": 0, "empate": 0}
 
@@ -40,6 +41,7 @@ var _fight_dealt := {}
 
 func run() -> void:
 	_read_args()
+	UtilityBrain.reads_off = bool(opts["no-reads"])  # (--no-reads: el cerebro nuevo sin el modelo del jugador)
 	seed(int(opts["seed"]))
 	var pool := _pool()
 	print("[balance] %d especies · %d peleas · nivel %d · ±%d de stats base · %s" % [pool.size(), opts["fights"],

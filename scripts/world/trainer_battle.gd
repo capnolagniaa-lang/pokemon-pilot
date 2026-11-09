@@ -463,6 +463,7 @@ func coach_switch(inst: CreatureInstance) -> void:
 	var after := TacticalMind.matchup_score(inst, world.companion, _memory)
 	_switches += 1
 	_last_switch = _clock
+	_memory.model.note_ai_switch(PlayerModel.clock())
 	AiTrace.note(foe, "cambio", {"sale": foe.instance.display_name(), "entra": inst.display_name(),
 		"cruce": snappedf(before, 0.01), "nuevo": snappedf(after, 0.01), "respuesta": _player_swapped_at > _entered_at})
 	_withdraw(inst)

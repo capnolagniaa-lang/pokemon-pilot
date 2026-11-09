@@ -16,3 +16,6 @@ attack_gap = 0.45
 tempo_swing = 0.3
 evade_skill = 0.85
 punish_skill = 1.5
+memory_half_life = 60.0
+adapt_k = 2.0
+read_skill = 1.0

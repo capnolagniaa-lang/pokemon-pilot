@@ -59,6 +59,21 @@ var _last_primary := -1
 var _was_exposed := false
 var _hit_flag := false
 var _saving := false
+## Fase 4 (modelo del jugador): a quién mira, el ataque suyo cuya respuesta está esperando ver, y el corrimiento de la
+## puntería hacia donde cree que vas a esquivar (lo usa también `creature_cast` al soltar una carga).
+var _watched: Creature
+var _watched_inst: CreatureInstance
+var _pending := {}
+var aim_bias := Vector2.ZERO
+## Lo último que predijo de vos (para el overlay).
+var last_prediction := {}
+## Cuánto esperar para ver cómo respondiste a un ataque suyo.
+const RESPONSE_WINDOW := 0.7
+## Corrimiento al lado al que vas a esquivar (px): rodando o con un paso.
+const READ_DODGE_PX := 55.0
+const READ_STEP_PX := 26.0
+## Batería de balance (`--no-reads`): el cerebro nuevo sin usar el modelo del jugador, para comparar.
+static var reads_off := false
 
 
 func _init(p_actor: Creature) -> void:
@@ -111,6 +126,8 @@ func update(delta: float) -> void:
 	p.tick()
 	var now := actor.now()
 	situation = Situation.read(actor, p)
+	_watch_foe(t)
+	_resolve_pending()
 	var dist := situation.dist if situation.foe_seen else actor.global_position.distance_to(t.global_position)
 	var foe_pos: Vector2 = p.predicted_pos(0.0) if situation.foe_seen else t.global_position
 	var dir := (foe_pos - actor.global_position).normalized()
@@ -124,7 +141,7 @@ func update(delta: float) -> void:
 			if _tell_left <= 0.0:
 				var slot := _tell_slot
 				_cancel_tell()
-				if randf() < difficulty().feint_chance:
+				if randf() < difficulty().feint_chance + _feint_bonus():
 					AiTrace.note(actor, "finta", {"ataque": _move_name(slot)})
 					_next_think = now + 0.2
 				else:
@@ -178,10 +195,7 @@ func _decide(now: float, dist: float) -> void:
 	if pick.act == Act.ATTACK:
 		_saving = false
 		_start_attack(int(pick.slot))
-		# y se sigue moviendo con la mejor opción de movimiento
-		var moves := options.filter(func(o): return o.act != Act.ATTACK and o.act != Act.WAIT)
-		if not moves.is_empty():
-			_set_move(softmax_pick(moves, temperature()).act)
+		_set_move(_pick_move(int(_move_act)))  # y se sigue moviendo (con lo que predice de vos)
 	elif pick.act == Act.WAIT:
 		if not _saving:
 			actor.emote("...", 0.8)
@@ -189,10 +203,22 @@ func _decide(now: float, dist: float) -> void:
 		_set_move(Act.RETREAT if dist < maxf(_ideal_range(), 90.0) else (Act.STRAFE_L if _strafe_side < 0.0 else Act.STRAFE_R))
 	else:
 		_saving = false
-		_set_move(int(pick.act))
+		_set_move(_pick_move(int(pick.act)))
 	if AiTrace.enabled():
 		AiTrace.note(actor, "decide", {"elige": pick.name, "p": snappedf(float(pick.p), 0.01), "situacion": situation.to_dict().tactica,
 			"top": options.slice(0, 3).map(func(o): return "%s %.2f (%d%%)" % [o.name, o.u, roundi(float(o.p) * 100.0)])})
+
+
+## Elige con qué moverse entre las opciones de movimiento, ahora sí con lo que predice de vos (`read_bonus`). Sin
+## opciones, `fallback`.
+func _pick_move(fallback: int) -> int:
+	var moves: Array = []
+	for o in options:
+		if int(o.act) != Act.ATTACK and int(o.act) != Act.WAIT:
+			moves.append({"act": o.act, "name": o.name, "u": float(o.u) + float(o.get("read_bonus", 0.0))})
+	if moves.is_empty():
+		return fallback
+	return int(softmax_pick(moves, temperature()).act)
 
 
 func _set_move(act: int) -> void:
@@ -372,6 +398,7 @@ func evaluate(dist: float) -> Array[Dictionary]:
 	out.append({"act": Act.HOLD, "slot": -1, "name": ACT_NAMES[Act.HOLD], "u": hold})
 	if s.cornered:
 		out.append({"act": Act.REPOSITION, "slot": -1, "name": ACT_NAMES[Act.REPOSITION], "u": 0.7})
+	_apply_reads(out, dist, melee)
 	# Penalidad por repetir y orden.
 	for o in out:
 		o.u = float(o.u) * (1.0 - prof.repeat_penalty * recent_share(o.name, now))
@@ -431,6 +458,7 @@ func _start_attack(slot: int) -> void:
 		_tell_slot = slot
 		_tell_left = tell
 		actor.sprite.tell_left = tell
+		_open_pending("aviso")
 		return
 	_fire(slot)
 
@@ -451,7 +479,9 @@ func _fire(slot: int) -> bool:
 			flight = m.strike_delay if m.zone_strike else 0.2
 		MoveData.Kind.LUNGE, MoveData.Kind.DASH, MoveData.Kind.MELEE:
 			flight = 0.1
-	var aim_at: Vector2 = p.predicted_pos(m.cast_time + flight)
+	_open_pending(attack_context(m))
+	aim_bias = _read_bias(m, here)
+	var aim_at: Vector2 = p.predicted_pos(m.cast_time + flight) + aim_bias
 	var err := deg_to_rad(difficulty().aim_error_deg)
 	var off := aim_at - actor.global_position
 	var dir := off.normalized().rotated(randf_range(-err, err))
@@ -594,6 +624,221 @@ func _cancel_tell() -> void:
 func _move_name(slot: int) -> String:
 	var m: MoveData = actor.moves.slots[slot] if slot >= 0 and slot < actor.moves.slots.size() else null
 	return m.display_name if m != null else "?"
+
+
+# --- Modelo del jugador (Fase 4) ---
+
+func model() -> PlayerModel:
+	return actor.mind.memory.model
+
+
+## Cuánto usa lo que predice: el `read_skill` del perfil por lo que lee su clase.
+func reads() -> float:
+	var st: TrainerStyle = actor.trainer_style
+	return clampf(profile().read_skill * (st.reads if st != null else 0.6), 0.0, 1.0)
+
+
+func _hl() -> float:
+	return profile().memory_half_life
+
+
+func _k() -> float:
+	return profile().adapt_k
+
+
+## Clase de un ataque suyo para saber cómo le respondés.
+static func attack_context(m: MoveData) -> String:
+	if TacticalMind.needs_tell(m):
+		return "aviso"
+	if m.cast_time > 0.0:
+		return "carga"
+	match m.kind:
+		MoveData.Kind.PROJECTILE, MoveData.Kind.WHIP, MoveData.Kind.CHANNEL:
+			return "disparo"
+		MoveData.Kind.ZONE:
+			return "zona"
+		MoveData.Kind.AREA:
+			return "area"
+	return "cuerpo"
+
+
+## Empieza a mirar a tu Pokémon (y anota si lo cambiaste).
+func _watch_foe(t: Creature) -> void:
+	if t == _watched:
+		if is_instance_valid(t) and t.instance != _watched_inst:
+			_watched_inst = t.instance
+			_on_foe_switched()
+		return
+	if is_instance_valid(_watched):
+		if _watched.move_released.is_connected(_on_foe_move):
+			_watched.move_released.disconnect(_on_foe_move)
+		if _watched.dodged.is_connected(_on_foe_dodged):
+			_watched.dodged.disconnect(_on_foe_dodged)
+	var was := _watched_inst
+	_watched = t
+	_watched_inst = t.instance if is_instance_valid(t) else null
+	if is_instance_valid(t):
+		t.move_released.connect(_on_foe_move)
+		t.dodged.connect(_on_foe_dodged)
+	if was != null and _watched_inst != null and was != _watched_inst:
+		_on_foe_switched()
+
+
+func _on_foe_switched() -> void:
+	var now := PlayerModel.clock()
+	model().note_action("cambio", now, _hl())
+	model().note_switch(now, _hl())
+
+
+func _on_foe_move(m: MoveData) -> void:
+	if m == null or not is_instance_valid(actor):
+		return
+	var now := PlayerModel.clock()
+	model().note_action("atk:" + m.id, now, _hl())
+	if situation != null and situation.foe_seen:
+		model().note_attack_at(band_of(situation.dist), m.id, now, _hl())
+	if not _pending.is_empty():
+		_pending["hit_back"] = true
+
+
+func _on_foe_dodged() -> void:
+	if not is_instance_valid(_watched) or not is_instance_valid(actor):
+		return
+	model().note_action("esq", PlayerModel.clock(), _hl())
+	if not _pending.is_empty() and str(_pending.get("dodged", "")) == "":
+		var side := PlayerModel.side_of(_watched.last_dodge_dir, _watched.global_position - actor.global_position)
+		_pending["dodged"] = "esq_" + (side if side in ["izq", "der"] else "atras")
+
+
+static func band_of(dist: float) -> String:
+	if dist <= Situation.CLOSE:
+		return "cerca"
+	return "media" if dist <= Situation.FAR_MIN else "lejos"
+
+
+## Le tiró algo (o lo avisó): mira cómo respondés en los próximos RESPONSE_WINDOW s.
+func _open_pending(ctx: String) -> void:
+	if not _pending.is_empty() or situation == null or not situation.foe_seen:
+		return
+	var at: Vector2 = actor.perception.foe().get("pos", actor.target.global_position)
+	_pending = {"ctx": ctx, "until": actor.now() + RESPONSE_WINDOW, "from": at, "line": at - actor.global_position, "dodged": ""}
+
+
+func _resolve_pending() -> void:
+	if _pending.is_empty() or actor.now() < float(_pending.until):
+		return
+	var outcome: String = _pending.dodged
+	if outcome == "":
+		var now_pos: Vector2 = actor.perception.foe().get("pos", _pending.from)
+		var moved: Vector2 = now_pos - _pending.from
+		var across := absf(moved.dot((_pending.line as Vector2).normalized().orthogonal()))
+		if across > 18.0:
+			outcome = "paso_" + PlayerModel.side_of(moved, _pending.line)
+			if not outcome in ["paso_izq", "paso_der"]:
+				outcome = "nada"
+		elif _pending.get("hit_back", false):
+			outcome = "pega"
+		else:
+			outcome = "nada"
+	model().note_response(_pending.ctx, outcome, PlayerModel.clock(), _hl())
+	AiTrace.note(actor, "aprende", {"a": _pending.ctx, "respondiste": outcome})
+	_pending = {}
+
+
+## Corrimiento de la puntería hacia el lado al que cree que vas a esquivar este ataque (ZERO si no te tiene leído o esta
+## vez no se la juega). Solo conviene si ir a ese lado es **más probable que todo lo demás** (quedarte, ir al otro lado):
+## la probabilidad de jugársela es esa ventaja × lo seguro que está × cuánto lee. Contra alguien que esquiva para cualquier
+## lado no corre la puntería (antes sí, y erraba más: duelo de la batería 2026-11-09).
+func _read_bias(m: MoveData, foe_at: Vector2) -> Vector2:
+	if m.kind in [MoveData.Kind.AREA, MoveData.Kind.SHIELD, MoveData.Kind.SELF_BUFF]:
+		return Vector2.ZERO
+	var ctx := attack_context(m)
+	var pr := model().predict_response(ctx, PlayerModel.clock(), _hl(), _k())
+	if pr.is_empty():
+		return Vector2.ZERO
+	var side_p := {"izq": 0.0, "der": 0.0}
+	var dodge_p := {"izq": 0.0, "der": 0.0}
+	for o in pr.dist:
+		var key := str(o)
+		for s in ["izq", "der"]:
+			if key.ends_with(s) and (key.begins_with("esq_") or key.begins_with("paso_")):
+				side_p[s] += float(pr.dist[o])
+				if key.begins_with("esq_"):
+					dodge_p[s] += float(pr.dist[o])
+	var side := "der" if side_p.der >= side_p.izq else "izq"
+	var other := "izq" if side == "der" else "der"
+	var stay: float = 1.0 - side_p.der - side_p.izq
+	var edge: float = float(side_p[side]) - maxf(stay, float(side_p[other]))
+	if reads_off or edge <= 0.0 or randf() >= edge * float(pr.conf) * reads():
+		return Vector2.ZERO
+	var best := ("esq_" if float(dodge_p[side]) * 2.0 >= float(side_p[side]) else "paso_") + side
+	var best_p: float = side_p[side]
+	var line := foe_at - actor.global_position
+	var px := READ_DODGE_PX if best.begins_with("esq") else READ_STEP_PX
+	AiTrace.note(actor, "lee", {"a": ctx, "esperas": best, "p": snappedf(best_p, 0.01), "conf": snappedf(float(pr.conf), 0.01)})
+	return PlayerModel.side_dir(best, line) * px
+
+
+## Más fintas si suele esquivar al ver el aviso (esquiva al vacío y queda a tiro).
+func _feint_bonus() -> float:
+	if reads_off:
+		return 0.0
+	var ev := model().evade_share("aviso", PlayerModel.clock(), _hl(), _k())
+	return 0.35 * float(ev[0]) * float(ev[1]) * reads()
+
+
+## Lo que predice de vos cambia **cómo se mueve** (no cuánto ataca): si viene un ataque tuyo conocido, se corre antes;
+## si sabe a qué distancia te gusta pelear, no se queda ahí. Va en `read_bonus` de cada opción de movimiento, que solo
+## cuenta al elegir con qué moverse (`_pick_move`). Antes sumaba directo a la utilidad y competía con los ataques: atacaba
+## menos y perdía la carrera de daño (duelo de la batería 2026-11-09: 161 a 217).
+func _apply_reads(out: Array[Dictionary], dist: float, melee: bool) -> void:
+	var now := PlayerModel.clock()
+	var r := 0.0 if reads_off else reads()
+	var pred := model().predict_next(now, _hl(), _k())
+	last_prediction = pred
+	if not pred.is_empty() and str(pred.outcome).begins_with("atk:"):
+		var m: MoveData = DB.moves.get(str(pred.outcome).trim_prefix("atk:"))
+		var x := float(pred.p) * float(pred.conf) * r
+		if m != null and x > 0.2 and m.power > 0.0:
+			for o in out:
+				match int(o.act):
+					Act.RETREAT:
+						if m.kind in TacticalMind.MELEE_KINDS and dist < m.reach() + 25.0:
+							o["read_bonus"] = float(o.get("read_bonus", 0.0)) + 0.35 * x  # viene tu golpe: se sale del alcance
+					Act.STRAFE_L, Act.STRAFE_R:
+						if float(o.u) > 0.0:
+							o["read_bonus"] = float(o.get("read_bonus", 0.0)) + (0.3 if m.kind in TacticalMind.RANGED_KINDS else 0.15) * x
+	var fav := model().favorite_band(now, _hl(), _k())
+	if not fav.is_empty() and float(fav.p) > 0.55:
+		var x := float(fav.p) * float(fav.conf) * r
+		var here := band_of(dist)
+		if fav.outcome == here:
+			for o in out:
+				if int(o.act) == Act.RETREAT and here == "cerca" and not melee:
+					o["read_bonus"] = float(o.get("read_bonus", 0.0)) + 0.3 * x  # ahí es donde más pegás: no quedarse
+				elif int(o.act) == Act.APPROACH and here == "lejos" and melee:
+					o["read_bonus"] = float(o.get("read_bonus", 0.0)) + 0.25 * x
+
+
+## Lo que cree de vos, en una línea (overlay).
+func prediction_text() -> String:
+	var now := PlayerModel.clock()
+	var parts: PackedStringArray = []
+	if not last_prediction.is_empty():
+		var tok := str(last_prediction.outcome)
+		var name := tok
+		if tok.begins_with("atk:") and DB.moves.has(tok.trim_prefix("atk:")):
+			name = DB.moves[tok.trim_prefix("atk:")].display_name
+		parts.append("próximo: %s %d%% (conf %.2f, %s)" % [name, roundi(float(last_prediction.p) * 100.0), float(last_prediction.conf),
+			last_prediction.get("from", "")])
+	for ctx in ["aviso", "disparo", "carga"]:
+		var pr := model().predict_response(ctx, now, _hl(), _k())
+		if not pr.is_empty() and float(pr.conf) > 0.3:
+			parts.append("al %s: %s %d%%" % [ctx, pr.outcome, roundi(float(pr.p) * 100.0)])
+	var cs := model().counter_switch(now, _hl(), _k())
+	if float(cs[1]) > 0.3:
+		parts.append("contracambiás %d%%" % roundi(float(cs[0]) * 100.0))
+	return " · ".join(parts) if not parts.is_empty() else "todavía nada"
 
 
 ## El movimiento que está haciendo ("rodear izq."...).

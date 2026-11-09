@@ -312,6 +312,7 @@ func overlay_text() -> String:
 		lines.append("IA nueva (ve hace %.2f s): %s" % [c.perception.age(), situation.to_text()])
 	if c.uses_new_brain():
 		lines.append("Cerebro nuevo: " + c.brain.describe())
+		lines.append("Te modela: " + c.brain.prediction_text())
 		if world.arena != null and world.arena.active and world.arena.coach != null and not world.arena.coach.chosen.is_empty():
 			lines.append("Entrenador: %s (%d%%)" % [world.arena.coach.chosen.name, roundi(float(world.arena.coach.chosen.p) * 100.0)])
 	if fighting and c == _overlay_target() and world.arena != null and world.arena.active:

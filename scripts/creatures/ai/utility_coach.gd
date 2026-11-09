@@ -44,6 +44,10 @@ func tick() -> void:
 	if _hp_seen - hp > 0.2:
 		poke()  # le pegaron fuerte
 	_hp_seen = hp
+	var pm: PlayerModel = foe.mind.memory.model
+	if pm._ai_switch_at > 0.0 and PlayerModel.clock() - pm._ai_switch_at > PlayerModel.COUNTER_WINDOW:
+		pm.note_no_counter(PlayerModel.clock(), AIProfile.of(foe).memory_half_life)  # cambió y no le respondiste
+		pm._ai_switch_at = -100.0
 	if battle._clock < _next:
 		return
 	_next = battle._clock + randf_range(THINK.x, THINK.y)
@@ -103,6 +107,9 @@ func evaluate() -> Array[Dictionary]:
 				u += 0.15  # responder a tu cambio
 			if sit.matchup >= Situation.SWITCH_STAY:
 				u *= 0.4  # le viene ganando: cambiar es un lujo
+			if foe.uses_new_brain():
+				var cs := foe.mind.memory.model.counter_switch(PlayerModel.clock(), foe.brain._hl(), foe.brain._k())
+				u *= 1.0 - 0.5 * float(cs[0]) * float(cs[1]) * foe.brain.reads()  # si contracambiás, cambiar rinde menos
 			out.append({"kind": "cambiar", "name": "cambiar a " + inst.display_name(), "u": u, "inst": inst})
 	# Superpoción.
 	if battle.potions_left > 0 and not battle._potion_used.has(foe.instance) and hp < POTION_FROM:
