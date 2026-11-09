@@ -359,6 +359,10 @@ peleas) comparando clásica vs nueva, `docs/PLAN_IA.md` y `PROGRESO.md` actualiz
   "decide", "entrenador", "bajo fuego" y los "ve"/"paso"/"esquive" del cerebro nuevo.
 - **Batería**: `--autotest-balance --brain duelo` = tu bando con la nueva contra la clásica (cada especie pelea con las dos);
   `--brain nueva` = las dos con la nueva.
+- **Primer duelo** (2026-11-09, `--brain duelo --fights 400 --seed 5`, Difícil, nivel 40, 11 min): la nueva ganó **183**, la
+  clásica **196**, 21 empates (5 %, contra ~2 % de la batería normal): **parejas** (48 % de las que se definen; la diferencia
+  está dentro del azar con 379 peleas). Ojo: la clásica juega con ventajas que la nueva no tiene (te ve sin retraso, sabe tus
+  recargas). Queda en la clásica por defecto hasta que la nueva gane jugando y en la batería (ajustar perillas, Fases 4-5).
 - Test `--autotest-ai-utility`: ajuste y perfiles, softmax frío/tibio, penalidad que se olvida, ritmo variable, que no lea
   nada prohibido, decisiones por situación (lejos → acercarse; te ve recuperándote al lado → pegarte; a pocos PP → juntar;
   acorralado → salir), que reaccione a un disparo (3 de 3 con `evade_skill` 1), el entrenador (cambia a Oddish, se queda con
