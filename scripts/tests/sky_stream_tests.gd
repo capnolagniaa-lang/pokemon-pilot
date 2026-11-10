@@ -63,6 +63,7 @@ func run() -> void:
 	foe.queue_free()
 	await _surf()
 	await _solar()
+	await _whip()
 
 	var ok: bool = r.values().all(func(v): return v)
 	for key in r:
@@ -241,3 +242,61 @@ func _until(cond: Callable, seconds: float) -> void:
 	while left > 0.0 and not cond.call():
 		await get_tree().physics_frame
 		left -= get_physics_process_delta_time()
+
+
+## Látigo Cepa: látigo de rango medio que deja aturdido un ratito al primero que alcanza.
+func _whip() -> void:
+	var me: Creature = world.companion
+	var whip: MoveData = DB.moves["latigo_cepa"]
+	r["Látigo Cepa es un látigo de rango medio"] = whip.kind == MoveData.Kind.WHIP and whip.whip_length >= 80.0 and whip.whip_length <= 110.0
+	me.moves.slots[1] = whip
+	me.moves.reset_cooldown(1)
+	me.moves.set_pp(me.moves.max_pp())
+	me.machine.transition_to(me.default_state())
+	var finder := BalanceTests.new()
+	finder.world = world
+	me.global_position = finder._open_spot()
+	finder.free()
+	await get_tree().physics_frame
+	var from := me.global_position
+	var foe: Creature = autotest._dummy(world, "snorlax", from + Vector2(80, 0), false)
+	var far: Creature = autotest._dummy(world, "snorlax", from + Vector2(0, 140))
+	foe.machine.transition_to("controlled")
+	await get_tree().physics_frame
+	var hp0: float = foe.instance.hp
+	r["Látigo Cepa sale"] = me.use_slot(1, Vector2.RIGHT)
+	await _until(func(): return foe.instance.hp < hp0, 0.6)
+	r["Látigo Cepa: pega a media distancia"] = foe.instance.hp < hp0
+	await get_tree().physics_frame
+	r["Látigo Cepa: lo deja aturdido"] = foe.machine.current_name() == "stunned"
+	var t0 := Time.get_ticks_msec()
+	await _until(func(): return foe.machine.current_name() != "stunned", 1.5)
+	var ms := Time.get_ticks_msec() - t0
+	r["Látigo Cepa: el aturdido dura poco (%d ms)" % ms] = ms > 150 and ms < 600
+	r["Látigo Cepa: al que está lejos no"] = far.instance.hp == far.instance.max_hp() or is_equal_approx(far.instance.hp, far.health.max_hp())
+	foe.queue_free()
+	far.queue_free()
+	await _until(func(): return me.machine.current_name() == me.default_state(), 2.0)
+
+
+func showcase_whip() -> void:
+	world = await autotest._setup_kit_world("bulbasaur")
+	var me: Creature = world.companion
+	me.instance.level = 30
+	var finder := BalanceTests.new()
+	finder.world = world
+	me.global_position = finder._open_spot() + Vector2(-50, 0)
+	finder.free()
+	world.trainer.global_position = me.global_position + Vector2(40, -50)
+	var foe: Creature = autotest._dummy(world, "rattata", me.global_position + Vector2(85, 0), false)
+	world.get_node("UI").visible = false
+	for i in 4:
+		me.moves.slots[1] = DB.moves["latigo_cepa"]
+		me.moves.reset_cooldown(1)
+		me.moves.set_pp(me.moves.max_pp())
+		foe.health.heal(9999.0)
+		foe.global_position = me.global_position + Vector2(85, (i % 2) * 20 - 10)
+		print("[showcase] latigo cepa cuadro ", Engine.get_frames_drawn())
+		me.use_slot(1, (foe.global_position - me.global_position).normalized())
+		await get_tree().create_timer(1.3).timeout
+	get_tree().quit()

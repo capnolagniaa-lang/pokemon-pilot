@@ -3,16 +3,18 @@
 [ext_resource type="Resource" path="res://data/types/planta.tres" id="1_x2xf0"]
 [ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2_aww45"]
 [ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3_aww45"]
+[ext_resource type="Resource" path="res://data/status/azotado.tres" id="4_az"]
 
 [resource]
 script = ExtResource("2_aww45")
 id = "latigo_cepa"
 display_name = "Látigo Cepa"
 element = ExtResource("1_x2xf0")
-kind = 1
+kind = 8
 power = 45.0
-cooldown = 1.6500000000000001
-knockback = 220.0
+cooldown = 1.65
+knockback = 90.0
 recovery = 0.15
-speed = 150.0
-radius = 45.0
+statuses_on_hit = Array[ExtResource("3_aww45")]([ExtResource("4_az")])
+whip_length = 95.0
+whip_width = 10.0

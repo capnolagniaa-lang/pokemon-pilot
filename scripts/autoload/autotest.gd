@@ -347,12 +347,14 @@ func _ready() -> void:
 		add_child(ww)
 		ww.run.call_deferred()
 		return
-	if "--autotest-sky-stream" in OS.get_cmdline_user_args() or "--showcase-sky-stream" in OS.get_cmdline_user_args() or "--showcase-surf" in OS.get_cmdline_user_args() or "--showcase-solar" in OS.get_cmdline_user_args():
+	if "--autotest-sky-stream" in OS.get_cmdline_user_args() or "--showcase-sky-stream" in OS.get_cmdline_user_args() or "--showcase-surf" in OS.get_cmdline_user_args() or "--showcase-solar" in OS.get_cmdline_user_args() or "--showcase-whip" in OS.get_cmdline_user_args():
 		set_process(false)
 		var st := SkyStreamTests.new()
 		st.autotest = self
 		add_child(st)
-		if "--showcase-solar" in OS.get_cmdline_user_args():
+		if "--showcase-whip" in OS.get_cmdline_user_args():
+			st.showcase_whip.call_deferred()
+		elif "--showcase-solar" in OS.get_cmdline_user_args():
 			st.showcase_solar.call_deferred()
 		elif "--showcase-surf" in OS.get_cmdline_user_args():
 			st.showcase_surf.call_deferred()
