@@ -78,7 +78,7 @@
     },
     "cementerio": {
       "name": "Cementerio",
-      "rooms": ["sala_cementerio_1", "sala_cementerio_2", "sala_cementerio_3", "sala_cementerio_4", "sala_cementerio_5", "sala_cementerio_6"],
+      "rooms": ["sala_cementerio_p1", "sala_cementerio_p2", "sala_cementerio_p3"],
       "common": ["gastly", "shuppet", "duskull", "misdreavus", "sableye", "cubone", "murkrow", "zubat", "houndour", "spinarak"],
       "strong": ["haunter", "banette", "dusclops", "marowak", "golbat"]
     }

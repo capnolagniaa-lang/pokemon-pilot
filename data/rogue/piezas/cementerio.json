@@ -1,0 +1,20 @@
+{
+  "lapida": {"kind": "solida", "base": [21, 9], "sink": 2, "size": [25, 34], "foot": -6},
+  "lapida_cruz": {"kind": "solida", "base": [21, 9], "sink": 2, "size": [25, 42], "foot": -1},
+  "lapida_rota": {"kind": "solida", "base": [26, 11], "sink": 2, "size": [31, 30], "foot": 4},
+  "mausoleo": {"kind": "solida", "base": [80, 34], "sink": 5, "size": [94, 124], "foot": -2},
+  "angel": {"kind": "solida", "base": [27, 12], "sink": 2, "size": [32, 66], "foot": 0},
+  "arbol_seco": {"kind": "solida", "base": [18, 10], "sink": 2, "size": [78, 92], "foot": 0},
+  "arbol_viejo": {"kind": "solida", "base": [44, 18], "sink": 4, "size": [120, 156], "foot": -2},
+  "reja": {"kind": "solida", "base": [44, 8], "sink": 2, "size": [97, 30], "foot": 0},
+  "farol": {"kind": "solida", "base": [10, 8], "sink": 2, "size": [13, 72], "foot": 0},
+  "ataud": {"kind": "solida", "base": [18, 8], "sink": 2, "size": [21, 36], "foot": 0},
+  "fosa": {"kind": "solida", "base": [31, 13], "sink": 3, "size": [37, 46], "foot": 0},
+  "calabaza": {"kind": "solida", "base": [15, 8], "sink": 2, "size": [18, 18], "foot": 0},
+  "velas": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [7, 14]},
+  "flores": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [18, 12]},
+  "banco": {"kind": "solida", "base": [24, 10], "sink": 2, "size": [28, 28], "foot": -10},
+  "altar": {"kind": "solida", "base": [41, 17], "sink": 2, "size": [48, 48], "foot": 0},
+  "campana": {"kind": "solida", "base": [34, 14], "sink": 2, "size": [40, 42], "foot": 2},
+  "hojas": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [26, 12]}
+}
