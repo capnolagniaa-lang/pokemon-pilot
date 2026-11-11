@@ -634,6 +634,19 @@ func showcase() -> void:
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 	_dialogs()
+	if args.has("--still"):  # toma fija para comparar pinturas: sin enemigos, tu Pokémon en una celda (--still x,y)
+		var cell := Vector2i(22, 30)
+		if args.find("--still") + 1 < args.size() and args[args.find("--still") + 1].contains(","):
+			var xy: PackedStringArray = args[args.find("--still") + 1].split(",")
+			cell = Vector2i(int(xy[0]), int(xy[1]))
+		for f in world.rogue.foes:
+			f.visible = false
+			f.process_mode = Node.PROCESS_MODE_DISABLED
+		world.companion.global_position = world.rogue._cell_pos(cell)
+		world.trainer.global_position = world.companion.global_position + Vector2(-16, 10)
+		world.camera.snap()
+		await get_tree().create_timer(60.0).timeout
+		return
 	var bot := RogueBot.new(world)
 	bot.keep_distance = 70.0
 	world.combat.input_source = bot

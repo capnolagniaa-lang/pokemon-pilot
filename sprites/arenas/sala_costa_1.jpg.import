@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qubveqlc57km"
-path="res://.godot/imported/sala_costa_1.png-c3b4a88db2902a6e6e8439cf7a843223.ctex"
+uid="uid://doyrh6rd3bge8"
+path="res://.godot/imported/sala_costa_1.jpg-b1c9181483303a677ca2ffe5b9420a1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/arenas/sala_costa_1.png"
-dest_files=["res://.godot/imported/sala_costa_1.png-c3b4a88db2902a6e6e8439cf7a843223.ctex"]
+source_file="res://sprites/arenas/sala_costa_1.jpg"
+dest_files=["res://.godot/imported/sala_costa_1.jpg-b1c9181483303a677ca2ffe5b9420a1c.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

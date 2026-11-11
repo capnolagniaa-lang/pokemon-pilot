@@ -523,7 +523,8 @@ func _painted(id: String, _cfg: Dictionary) -> void:
 	if str(cfg.get("name", "")) != "":
 		a.display_name = cfg.name
 	a.scene_path = "%s/%s.tscn" % [ARENAS_DIR, id]
-	a.painting = load("res://sprites/arenas/%s.png" % id)
+	var hd := "res://sprites/arenas/%s.jpg" % id  # (alta resolución: tools/refine_arenas.py)
+	a.painting = load(hd if ResourceLoader.exists(hd) else "res://sprites/arenas/%s.png" % id)
 	var cells: Dictionary = cfg.cells
 	a.foe_trainer_cell = Vector2i(int(cells.foe_trainer[0]), int(cells.foe_trainer[1]))
 	a.foe_mon_cell = Vector2i(int(cells.foe_mon[0]), int(cells.foe_mon[1]))

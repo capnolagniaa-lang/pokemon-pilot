@@ -573,6 +573,7 @@
   },
   "sala_bosque_1": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Ancient forest clearing: lush light-green meadow grass with clover, tiny white and yellow flowers, darker tufts and worn dirt patches, soft shafts of sunlight; grey mossy boulders, mossy fallen logs and stumps, trees, overgrown stone ruins, tents, a stone shrine, ponds of clear blue water with lily pads; a thick dark wall of giant trees with roots, vines, ferns and glowing blue mushrooms around the room.",
     "name": "El claro",
     "size": [
       40,
@@ -641,6 +642,7 @@
   },
   "sala_bosque_2": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Ancient forest clearing: lush light-green meadow grass with clover, tiny white and yellow flowers, darker tufts and worn dirt patches, soft shafts of sunlight; grey mossy boulders, mossy fallen logs and stumps, trees, overgrown stone ruins, tents, a stone shrine, ponds of clear blue water with lily pads; a thick dark wall of giant trees with roots, vines, ferns and glowing blue mushrooms around the room.",
     "name": "Las ruinas",
     "size": [
       40,
@@ -709,6 +711,7 @@
   },
   "sala_bosque_3": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Ancient forest clearing: lush light-green meadow grass with clover, tiny white and yellow flowers, darker tufts and worn dirt patches, soft shafts of sunlight; grey mossy boulders, mossy fallen logs and stumps, trees, overgrown stone ruins, tents, a stone shrine, ponds of clear blue water with lily pads; a thick dark wall of giant trees with roots, vines, ferns and glowing blue mushrooms around the room.",
     "name": "El corazón del bosque",
     "size": [
       40,
@@ -777,6 +780,7 @@
   },
   "sala_volcan_1": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Volcano crater: pale tan volcanic ash and beige cracked rock ground with crisp fine cracks, pebbles and scorched patches, lit by a warm orange glow; black basalt boulders with glowing red cracks, obsidian spikes, pools and lakes of glowing orange lava with black rims, charred dead trees, dark bones and skeletons, dark stone ruins and forges; tall black volcanic cliffs with streams of glowing lava around the room.",
     "name": "El campo de ceniza",
     "size": [
       40,
@@ -849,6 +853,7 @@
   },
   "sala_volcan_2": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Volcano crater: pale tan volcanic ash and beige cracked rock ground with crisp fine cracks, pebbles and scorched patches, lit by a warm orange glow; black basalt boulders with glowing red cracks, obsidian spikes, pools and lakes of glowing orange lava with black rims, charred dead trees, dark bones and skeletons, dark stone ruins and forges; tall black volcanic cliffs with streams of glowing lava around the room.",
     "name": "Las fumarolas",
     "size": [
       40,
@@ -921,6 +926,7 @@
   },
   "sala_volcan_3": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Volcano crater: pale tan volcanic ash and beige cracked rock ground with crisp fine cracks, pebbles and scorched patches, lit by a warm orange glow; black basalt boulders with glowing red cracks, obsidian spikes, pools and lakes of glowing orange lava with black rims, charred dead trees, dark bones and skeletons, dark stone ruins and forges; tall black volcanic cliffs with streams of glowing lava around the room.",
     "name": "El templo quemado",
     "size": [
       40,
@@ -993,6 +999,8 @@
   },
   "sala_costa_1": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Tropical beach cove: natural golden-beige sand with crisp fine wind ripples, small dunes with soft shadows, seashells, pebbles and damp darker patches; dark grey sea rocks with barnacles, lush palm trees with detailed fronds, driftwood logs, wooden boats and piers, coral, crates, stone ruins, clear turquoise tide pools and lagoons with white foam edges; tall dark wet rock cliffs with seaweed and small waterfalls around the room.",
+    "hd_sat": 0.7,
     "name": "La caleta",
     "size": [
       40,
@@ -1064,6 +1072,8 @@
   },
   "sala_costa_2": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Tropical beach cove: natural golden-beige sand with crisp fine wind ripples, small dunes with soft shadows, seashells, pebbles and damp darker patches; dark grey sea rocks with barnacles, lush palm trees with detailed fronds, driftwood logs, wooden boats and piers, coral, crates, stone ruins, clear turquoise tide pools and lagoons with white foam edges; tall dark wet rock cliffs with seaweed and small waterfalls around the room.",
+    "hd_sat": 0.7,
     "name": "Los charcos de marea",
     "size": [
       40,
@@ -1135,6 +1145,8 @@
   },
   "sala_costa_3": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Tropical beach cove: natural golden-beige sand with crisp fine wind ripples, small dunes with soft shadows, seashells, pebbles and damp darker patches; dark grey sea rocks with barnacles, lush palm trees with detailed fronds, driftwood logs, wooden boats and piers, coral, crates, stone ruins, clear turquoise tide pools and lagoons with white foam edges; tall dark wet rock cliffs with seaweed and small waterfalls around the room.",
+    "hd_sat": 0.7,
     "name": "El naufragio",
     "size": [
       40,
@@ -1206,6 +1218,7 @@
   },
   "sala_cueva_1": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Underground cave: warm light-brown packed earth floor with small stones, gravel and crisp fine cracks, warm lantern light; dark grey stalagmites and boulders, glowing blue and violet crystals, glowing mushrooms, mine carts, rails, wooden beams and crates, fossil bones, dark underground water, buried stone ruins; dark rough cave rock walls with crystals and stalactites around the room.",
     "name": "La galería",
     "size": [
       40,
@@ -1278,6 +1291,7 @@
   },
   "sala_cueva_2": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Underground cave: warm light-brown packed earth floor with small stones, gravel and crisp fine cracks, warm lantern light; dark grey stalagmites and boulders, glowing blue and violet crystals, glowing mushrooms, mine carts, rails, wooden beams and crates, fossil bones, dark underground water, buried stone ruins; dark rough cave rock walls with crystals and stalactites around the room.",
     "name": "La mina vieja",
     "size": [
       40,
@@ -1350,6 +1364,7 @@
   },
   "sala_cueva_3": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Underground cave: warm light-brown packed earth floor with small stones, gravel and crisp fine cracks, warm lantern light; dark grey stalagmites and boulders, glowing blue and violet crystals, glowing mushrooms, mine carts, rails, wooden beams and crates, fossil bones, dark underground water, buried stone ruins; dark rough cave rock walls with crystals and stalactites around the room.",
     "name": "La gruta de cristal",
     "size": [
       40,
@@ -1422,6 +1437,7 @@
   },
   "sala_hielo_1": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Frozen ice cavern: bright white snow with soft pale-blue drifts, sparkles and smooth pale ice patches; dark blue-grey boulders, tall teal ice crystal spikes, dark green pine trees, frozen logs, dark freezing water, ice ruins, statues and a throne, braziers with blue flames; tall dark navy ice cliffs with icicles and frozen waterfalls around the room.",
     "name": "El campo nevado",
     "size": [
       40,
@@ -1490,6 +1506,7 @@
   },
   "sala_hielo_2": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Frozen ice cavern: bright white snow with soft pale-blue drifts, sparkles and smooth pale ice patches; dark blue-grey boulders, tall teal ice crystal spikes, dark green pine trees, frozen logs, dark freezing water, ice ruins, statues and a throne, braziers with blue flames; tall dark navy ice cliffs with icicles and frozen waterfalls around the room.",
     "name": "El lago helado",
     "size": [
       40,
@@ -1558,6 +1575,7 @@
   },
   "sala_hielo_3": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Frozen ice cavern: bright white snow with soft pale-blue drifts, sparkles and smooth pale ice patches; dark blue-grey boulders, tall teal ice crystal spikes, dark green pine trees, frozen logs, dark freezing water, ice ruins, statues and a throne, braziers with blue flames; tall dark navy ice cliffs with icicles and frozen waterfalls around the room.",
     "name": "Las ruinas heladas",
     "size": [
       40,
@@ -1626,6 +1644,7 @@
   },
   "sala_cementerio_1": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Haunted graveyard at night under bright moonlight: pale lavender-purple grass with violet dirt patches, tiny pale flowers and dry leaves; dark grey tombstones, stone crosses, mausoleums, angel statues, coffins and sarcophagi, black dead twisted trees, iron lamp posts with a small orange light, iron fences, carved pumpkins, candles, chapel ruins; black dead trees, spiked iron fences and crumbling stone walls around the room.",
     "name": "Las lápidas",
     "size": [
       40,
@@ -1697,6 +1716,7 @@
   },
   "sala_cementerio_2": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Haunted graveyard at night under bright moonlight: pale lavender-purple grass with violet dirt patches, tiny pale flowers and dry leaves; dark grey tombstones, stone crosses, mausoleums, angel statues, coffins and sarcophagi, black dead twisted trees, iron lamp posts with a small orange light, iron fences, carved pumpkins, candles, chapel ruins; black dead trees, spiked iron fences and crumbling stone walls around the room.",
     "name": "El mausoleo",
     "size": [
       40,
@@ -1768,6 +1788,7 @@
   },
   "sala_cementerio_3": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Haunted graveyard at night under bright moonlight: pale lavender-purple grass with violet dirt patches, tiny pale flowers and dry leaves; dark grey tombstones, stone crosses, mausoleums, angel statues, coffins and sarcophagi, black dead twisted trees, iron lamp posts with a small orange light, iron fences, carved pumpkins, candles, chapel ruins; black dead trees, spiked iron fences and crumbling stone walls around the room.",
     "name": "El jardín marchito",
     "size": [
       40,
@@ -1839,6 +1860,7 @@
   },
   "sala_bosque_4": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Ancient forest clearing: lush light-green meadow grass with clover, tiny white and yellow flowers, darker tufts and worn dirt patches, soft shafts of sunlight; grey mossy boulders, mossy fallen logs and stumps, trees, overgrown stone ruins, tents, a stone shrine, ponds of clear blue water with lily pads; a thick dark wall of giant trees with roots, vines, ferns and glowing blue mushrooms around the room.",
     "name": "La laguna",
     "size": [
       40,
@@ -1907,6 +1929,7 @@
   },
   "sala_bosque_5": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Ancient forest clearing: lush light-green meadow grass with clover, tiny white and yellow flowers, darker tufts and worn dirt patches, soft shafts of sunlight; grey mossy boulders, mossy fallen logs and stumps, trees, overgrown stone ruins, tents, a stone shrine, ponds of clear blue water with lily pads; a thick dark wall of giant trees with roots, vines, ferns and glowing blue mushrooms around the room.",
     "name": "El campamento abandonado",
     "size": [
       40,
@@ -1975,6 +1998,7 @@
   },
   "sala_bosque_6": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Ancient forest clearing: lush light-green meadow grass with clover, tiny white and yellow flowers, darker tufts and worn dirt patches, soft shafts of sunlight; grey mossy boulders, mossy fallen logs and stumps, trees, overgrown stone ruins, tents, a stone shrine, ponds of clear blue water with lily pads; a thick dark wall of giant trees with roots, vines, ferns and glowing blue mushrooms around the room.",
     "name": "El santuario",
     "size": [
       40,
@@ -2043,6 +2067,7 @@
   },
   "sala_volcan_4": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Volcano crater: pale tan volcanic ash and beige cracked rock ground with crisp fine cracks, pebbles and scorched patches, lit by a warm orange glow; black basalt boulders with glowing red cracks, obsidian spikes, pools and lakes of glowing orange lava with black rims, charred dead trees, dark bones and skeletons, dark stone ruins and forges; tall black volcanic cliffs with streams of glowing lava around the room.",
     "name": "El lago de lava",
     "size": [
       40,
@@ -2115,6 +2140,7 @@
   },
   "sala_volcan_5": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Volcano crater: pale tan volcanic ash and beige cracked rock ground with crisp fine cracks, pebbles and scorched patches, lit by a warm orange glow; black basalt boulders with glowing red cracks, obsidian spikes, pools and lakes of glowing orange lava with black rims, charred dead trees, dark bones and skeletons, dark stone ruins and forges; tall black volcanic cliffs with streams of glowing lava around the room.",
     "name": "El cementerio de dragones",
     "size": [
       40,
@@ -2187,6 +2213,7 @@
   },
   "sala_volcan_6": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Volcano crater: pale tan volcanic ash and beige cracked rock ground with crisp fine cracks, pebbles and scorched patches, lit by a warm orange glow; black basalt boulders with glowing red cracks, obsidian spikes, pools and lakes of glowing orange lava with black rims, charred dead trees, dark bones and skeletons, dark stone ruins and forges; tall black volcanic cliffs with streams of glowing lava around the room.",
     "name": "La forja",
     "size": [
       40,
@@ -2259,6 +2286,8 @@
   },
   "sala_costa_4": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Tropical beach cove: natural golden-beige sand with crisp fine wind ripples, small dunes with soft shadows, seashells, pebbles and damp darker patches; dark grey sea rocks with barnacles, lush palm trees with detailed fronds, driftwood logs, wooden boats and piers, coral, crates, stone ruins, clear turquoise tide pools and lagoons with white foam edges; tall dark wet rock cliffs with seaweed and small waterfalls around the room.",
+    "hd_sat": 0.7,
     "name": "El muelle",
     "size": [
       40,
@@ -2330,6 +2359,8 @@
   },
   "sala_costa_5": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Tropical beach cove: natural golden-beige sand with crisp fine wind ripples, small dunes with soft shadows, seashells, pebbles and damp darker patches; dark grey sea rocks with barnacles, lush palm trees with detailed fronds, driftwood logs, wooden boats and piers, coral, crates, stone ruins, clear turquoise tide pools and lagoons with white foam edges; tall dark wet rock cliffs with seaweed and small waterfalls around the room.",
+    "hd_sat": 0.7,
     "name": "El arrecife",
     "size": [
       40,
@@ -2401,6 +2432,8 @@
   },
   "sala_costa_6": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Tropical beach cove: natural golden-beige sand with crisp fine wind ripples, small dunes with soft shadows, seashells, pebbles and damp darker patches; dark grey sea rocks with barnacles, lush palm trees with detailed fronds, driftwood logs, wooden boats and piers, coral, crates, stone ruins, clear turquoise tide pools and lagoons with white foam edges; tall dark wet rock cliffs with seaweed and small waterfalls around the room.",
+    "hd_sat": 0.7,
     "name": "El faro caído",
     "size": [
       40,
@@ -2472,6 +2505,7 @@
   },
   "sala_cueva_4": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Underground cave: warm light-brown packed earth floor with small stones, gravel and crisp fine cracks, warm lantern light; dark grey stalagmites and boulders, glowing blue and violet crystals, glowing mushrooms, mine carts, rails, wooden beams and crates, fossil bones, dark underground water, buried stone ruins; dark rough cave rock walls with crystals and stalactites around the room.",
     "name": "El lago subterráneo",
     "size": [
       40,
@@ -2544,6 +2578,7 @@
   },
   "sala_cueva_5": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Underground cave: warm light-brown packed earth floor with small stones, gravel and crisp fine cracks, warm lantern light; dark grey stalagmites and boulders, glowing blue and violet crystals, glowing mushrooms, mine carts, rails, wooden beams and crates, fossil bones, dark underground water, buried stone ruins; dark rough cave rock walls with crystals and stalactites around the room.",
     "name": "El fósil",
     "size": [
       40,
@@ -2616,6 +2651,7 @@
   },
   "sala_cueva_6": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Underground cave: warm light-brown packed earth floor with small stones, gravel and crisp fine cracks, warm lantern light; dark grey stalagmites and boulders, glowing blue and violet crystals, glowing mushrooms, mine carts, rails, wooden beams and crates, fossil bones, dark underground water, buried stone ruins; dark rough cave rock walls with crystals and stalactites around the room.",
     "name": "El templo enterrado",
     "size": [
       40,
@@ -2688,6 +2724,7 @@
   },
   "sala_hielo_4": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Frozen ice cavern: bright white snow with soft pale-blue drifts, sparkles and smooth pale ice patches; dark blue-grey boulders, tall teal ice crystal spikes, dark green pine trees, frozen logs, dark freezing water, ice ruins, statues and a throne, braziers with blue flames; tall dark navy ice cliffs with icicles and frozen waterfalls around the room.",
     "name": "El lago roto",
     "size": [
       40,
@@ -2756,6 +2793,7 @@
   },
   "sala_hielo_5": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Frozen ice cavern: bright white snow with soft pale-blue drifts, sparkles and smooth pale ice patches; dark blue-grey boulders, tall teal ice crystal spikes, dark green pine trees, frozen logs, dark freezing water, ice ruins, statues and a throne, braziers with blue flames; tall dark navy ice cliffs with icicles and frozen waterfalls around the room.",
     "name": "El bosque nevado",
     "size": [
       40,
@@ -2824,6 +2862,7 @@
   },
   "sala_hielo_6": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Frozen ice cavern: bright white snow with soft pale-blue drifts, sparkles and smooth pale ice patches; dark blue-grey boulders, tall teal ice crystal spikes, dark green pine trees, frozen logs, dark freezing water, ice ruins, statues and a throne, braziers with blue flames; tall dark navy ice cliffs with icicles and frozen waterfalls around the room.",
     "name": "El trono de hielo",
     "size": [
       40,
@@ -2892,6 +2931,7 @@
   },
   "sala_cementerio_4": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Haunted graveyard at night under bright moonlight: pale lavender-purple grass with violet dirt patches, tiny pale flowers and dry leaves; dark grey tombstones, stone crosses, mausoleums, angel statues, coffins and sarcophagi, black dead twisted trees, iron lamp posts with a small orange light, iron fences, carved pumpkins, candles, chapel ruins; black dead trees, spiked iron fences and crumbling stone walls around the room.",
     "name": "La capilla",
     "size": [
       40,
@@ -2963,6 +3003,7 @@
   },
   "sala_cementerio_5": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Haunted graveyard at night under bright moonlight: pale lavender-purple grass with violet dirt patches, tiny pale flowers and dry leaves; dark grey tombstones, stone crosses, mausoleums, angel statues, coffins and sarcophagi, black dead twisted trees, iron lamp posts with a small orange light, iron fences, carved pumpkins, candles, chapel ruins; black dead trees, spiked iron fences and crumbling stone walls around the room.",
     "name": "El árbol viejo",
     "size": [
       40,
@@ -3034,6 +3075,7 @@
   },
   "sala_cementerio_6": {
     "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "hd": "Haunted graveyard at night under bright moonlight: pale lavender-purple grass with violet dirt patches, tiny pale flowers and dry leaves; dark grey tombstones, stone crosses, mausoleums, angel statues, coffins and sarcophagi, black dead twisted trees, iron lamp posts with a small orange light, iron fences, carved pumpkins, candles, chapel ruins; black dead trees, spiked iron fences and crumbling stone walls around the room.",
     "name": "La cripta",
     "size": [
       40,
@@ -3105,6 +3147,7 @@
   },
   "castillo_mew": {
     "_modo": "Castillo de Mew: el lugar donde empieza el Modo Desafío (RogueRun, pedido del usuario 2026-11-11). No es una arena de pelea: se camina. player = donde aparecés, foe_mon = donde flota Mew, foe_trainer = el centro de la tarima redonda de abajo (el portal gira encima, sprites/props/portal_mew.png; pisarla con un Pokémon elegido lo cruza; `open` la deja caminable). La escalera de arriba va a la planta alta: choca, y RogueRun pone la barrera y el mensaje (STAIRS_AT).",
+    "hd": "Grand hall of an ancient mystical castle: bright pale sky-blue marble tile floor with crisp tile lines and soft reflections, a long turquoise carpet with ornate trim running up the center; a grand dark stone staircase with balustrades at the top, tall wooden bookshelves full of books, glowing pink stained glass windows, hanging purple banners, dark stone pillars, dark stone cat statues on pedestals, stone braziers with pink flames, a round raised dark stone dais with a ring of glowing magenta runes, a small altar with candles, a wooden table with open books and a globe; tall dark purple-black castle stone walls.",
     "name": "Castillo de Mew",
     "size": [
       40,

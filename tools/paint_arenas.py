@@ -7,6 +7,8 @@ data/arenas/pinturas.json:
     water (rectángulos de pileta). Con `auto` = las celdas claras (pasto, tierra, piso) unidas al centro son piso y lo
     oscuro choca; después se abren los rectángulos `open`, se cierran los `solid` y se ponen los `water`. Con
     `auto_color` (salas del Modo Desafío, con obstáculos pintados) el plano sale por color: ver color_plan.
+  - `hd` (salas del Modo Desafio y castillo de Mew) = la pintura del juego la hace tools/refine_arenas.py en alta
+    resolucion (sprites/arenas/<id>.jpg) y este script solo arma el plano; `floor_tex` quedo sin uso (se veia granulada);
   - `floor_tex` (opcional) = textura de suelo que se mezcla sobre el piso (ver texture_floor), `floor_tone`, `floor_amount`;
   - `brillo` (opcional) aclara la pintura al copiarla (1,35 = un 35 % más clara);
   - `scale` agranda la arena: todas las celdas y rectángulos del JSON (que se marcan sobre la grilla de `size`) se
@@ -183,6 +185,10 @@ def build(root, arena_id, cfg):
     if os.path.exists(old):
         os.remove(old)
     dst = os.path.join(root, "sprites/arenas/%s.png" % arena_id)
+    if cfg.get("hd"):
+        # La pintura del juego es la de alta resolucion (sprites/arenas/<id>.jpg, de tools/refine_arenas.py): aca solo el plano.
+        print("%-26s %dx%d, %d de piso, %d de agua (pintura HD aparte)" % (arena_id, w, h, sum(r.count(".") for r in rows), len(water)))
+        return
     if cfg.get("floor_tex"):
         img = texture_floor(img, cfg, root)
         if cfg.get("brillo", 1.0) == 1.0:
