@@ -203,6 +203,10 @@ func run() -> void:
 	await _until(func(): return world.arena._fighting or run.result != "", 25.0)
 	r["Después de la última sala: el Líder Brock en su gimnasio"] = world.arena._fighting and world.arena.foe_name == f["boss"]["name"] \
 		and world.arena.arena_data.id == f["boss"]["arena"] and world.arena.leader
+	await get_tree().create_timer(0.5).timeout
+	world.camera.force_update_scroll()
+	var cam_off: float = world.camera.get_screen_center_position().distance_to(world.companion.global_position)
+	r["La cámara está en el gimnasio, sobre tu Pokémon (a %d px)" % int(cam_off)] = cam_off < 220.0
 	var boss_onix := false
 	var guard := 0.0
 	while world.arena.active and world.arena.result == "" and guard < 60.0:

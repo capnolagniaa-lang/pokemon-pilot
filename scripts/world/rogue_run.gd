@@ -188,6 +188,7 @@ func _play_room(index: int) -> void:
 	if last:
 		await world.arena.fade_to(1.0)
 		world.arena.release_room()  # (el jefe arma su propia arena)
+		_limit_camera(false)  # (su arena está en otro lado: con el límite de las salas la cámara se quedaba en el bosque)
 
 
 ## Sala limpia: recupera algo de vida y se abre el portón de arriba (en la última, la puerta al jefe).
