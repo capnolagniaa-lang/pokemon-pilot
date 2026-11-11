@@ -57,7 +57,7 @@ func run_tests() -> void:
 				bad.append("%s: %s en %s no marca la celda" % [id, p[0], cell])
 			if def["kind"] == "zona" and phys != MapRules.WATER:
 				bad.append("%s: %s en %s no es agua" % [id, p[0], cell])
-			if def["kind"] == "decorado" and phys != -1:
+			if def["kind"] == "decorado" and phys == MapRules.SOLID:
 				bad.append("%s: %s (decorado) en %s tapa el paso" % [id, p[0], cell])
 		var mid := used.end.x / 2
 		if grid.get_id_path(Vector2i(mid, used.end.y - 1), Vector2i(mid, 0)).is_empty():

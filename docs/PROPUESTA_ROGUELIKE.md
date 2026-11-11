@@ -501,6 +501,15 @@ dibuja 1 a 1 con filtro nearest. Distinto del plan: las paredes van en la misma 
 como piezas. **Frenado** hasta que el usuario compare. Para ajustar con su opinión: densidad y escala de las piezas, y el
 piso (hoy arena lisa con decorado suelto).
 
+**Hecho: P-1 en la Costa, por escenas** (2026-11-11, pedido del usuario: composición con sentido). El generador
+(`tools/build_piece_rooms.py`) coloca **escenas** con ancla (orilla / borde / arena) y miembros relativos, en vez de
+piezas sueltas; marcos con mar de verdad; decorado repartido con criterio. Cambios respecto del plan de 10.3: las
+"plantillas de composición" son el **tema de la sala** (su lista de escenas, la primera protagonista); se genera fuera
+del juego y cada sala guarda su semilla. **Para convertir otro bioma** hay que pensar primero sus escenas (qué va con
+qué y pegado a qué): volcán = río de lava con puente y rocas incandescentes en sus bordes, fumarolas agrupadas, esqueleto
+con huesos alrededor; hielo = lago helado con cristales en la orilla, bosquecito de pinos, cabaña con leña y pozo...
+**Frenado** hasta que el usuario apruebe la Costa.
+
 ### 10.7 Preguntas abiertas para el usuario
 1. **Bioma de muestra**: ¿Costa (donde se vio el problema) o Bosque?
 2. **Generar fuera del juego o al entrar**: ¿salas revisadas a mano (30 por bioma, por ejemplo) o infinitas?

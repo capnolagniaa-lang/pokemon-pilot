@@ -84,7 +84,8 @@ static func make(biome: String, id: String, def: Dictionary, flipped := false) -
 	var base: Array = def["base"]
 	# El sprite parado: sus pies (el centro de la base) en el origen del nodo.
 	spr.centered = false
-	spr.position = Vector2(-tex.get_width() / 2.0, -tex.get_height() + float(base[1]) / 2.0 + float(def.get("sink", 0.0)))
+	var foot := float(def.get("foot", 0.0)) * (-1.0 if flipped else 1.0)  # (dónde pisa el dibujo, respecto de su centro)
+	spr.position = Vector2(-tex.get_width() / 2.0 - foot, -tex.get_height() + float(base[1]) / 2.0 + float(def.get("sink", 0.0)))
 	body.add_child(spr)
 	var shape := CollisionPolygon2D.new()
 	shape.polygon = ellipse(float(base[0]) / 2.0, float(base[1]) / 2.0)

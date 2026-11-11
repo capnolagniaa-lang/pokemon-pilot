@@ -75,8 +75,10 @@ def color_plan(img, w, h, cfg):
                     hue = hh * 360.0
                     if vv * 255.0 < min_v:
                         continue
-                    if has_water and 165.0 <= hue <= 250.0 and ss >= 0.25:
+                    if has_water and 150.0 <= hue <= 250.0 and ss >= 0.25:
                         water_n += 1
+                    elif has_water and cfg.get("foam") and ss < 0.22 and vv > 0.78:
+                        water_n += 1  # (la espuma de la rompiente es agua, no una pared blanca)
                     elif any_hue or (hue_lo <= hue <= hue_hi and min_s <= ss <= max_s):
                         floor_n += 1
             if has_water and water_n >= 64 * part:
@@ -134,9 +136,26 @@ def texture_floor(img, cfg, root):
     return Image.blend(base, out, float(cfg.get("floor_amount", 1.0)))
 
 
+def water_in_sprite(root, biome, pid, flipped):
+    """Mascara de agua de una pieza "zona": sus pixeles celestes (las pozas tienen forma irregular y borde de rocas)."""
+    import colorsys
+    im = Image.open(os.path.join(root, "sprites/rogue/piezas/%s/%s.png" % (biome, pid))).convert("RGBA")
+    if flipped:
+        im = im.transpose(Image.FLIP_LEFT_RIGHT)
+    px = im.load()
+    mask = set()
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, b, a = px[x, y]
+            hh, ss, vv = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
+            if a > 128 and 150.0 <= hh * 360.0 <= 250.0 and ss >= 0.25:
+                mask.add((x, y))
+    return mask, im.size
+
+
 def piece_water(root, arena_id, w, h):
-    """Salas por piezas (data/rogue/salas/<id>.json): las celdas de agua de sus piezas "zona" (charcos, lagunas) = las
-    que tienen el centro adentro de la elipse `base` de la pieza. El resto de la sala es el plano del marco."""
+    """Salas por piezas (data/rogue/salas/<id>.json): las celdas de agua de sus piezas "zona" (charcos, pozas) = las
+    que tienen al menos la mitad de sus pixeles sobre el celeste del dibujo. El resto de la sala es el plano del marco."""
     path = os.path.join(root, "data/rogue/salas/%s.json" % arena_id)
     if not os.path.exists(path):
         return set()
@@ -147,11 +166,12 @@ def piece_water(root, arena_id, w, h):
         d = catalog.get(piece[0])
         if not d or d["kind"] != "zona":
             continue
-        rx, ry = max(d["base"][0] / 2.0, 1.0), max(d["base"][1] / 2.0, 1.0)
-        for cy in range(h):
-            for cx in range(w):
-                x, y = (cx + 0.5) * 16 - piece[1], (cy + 0.5) * 16 - piece[2]
-                if (x * x) / (rx * rx) + (y * y) / (ry * ry) <= 1.0:
+        mask, (sw, sh) = water_in_sprite(root, room["biome"], piece[0], len(piece) > 3 and piece[3])
+        x0, y0 = piece[1] - sw // 2, piece[2] - sh // 2
+        for cy in range(max(0, y0 // 16), min(h, (y0 + sh) // 16 + 1)):
+            for cx in range(max(0, x0 // 16), min(w, (x0 + sw) // 16 + 1)):
+                n = sum(1 for j in range(16) for i in range(16) if (cx * 16 + i - x0, cy * 16 + j - y0) in mask)
+                if n >= 128:
                     out.add((cx, cy))
     return out
 
@@ -183,6 +203,16 @@ def build(root, arena_id, cfg):
         water -= cells_of(cfg.get("open", []), k)  # (el paso abierto a mano es piso aunque la pintura ponga agua ahi)
     floor -= cells_of(cfg.get("solid", []), k)
     water |= cells_of(cfg.get("water", []), k)
+    if cfg.get("deep"):  # mar: el agua a mas de `deep` celdas de la orilla es profunda y no se pasa
+        dist = {c: 0 for c in floor}
+        queue = deque(dist)
+        while queue:
+            x, y = queue.popleft()
+            for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if n in water and n not in dist:
+                    dist[n] = dist[(x, y)] + 1
+                    queue.append(n)
+        water = {c for c in water if dist.get(c, 99) <= int(cfg["deep"])}
     water |= piece_water(root, arena_id, w, h) & floor  # (agua de las piezas "zona", solo donde habia piso)
     floor -= water
     rows = ["".join("~" if (x, y) in water else "." if (x, y) in floor else "#" for x in range(w)) for y in range(h)]

@@ -3147,8 +3147,8 @@
   },
   "sala_costa_p1": {
     "_modo": "Sala POR PIEZAS del Modo Desafío (sección 10 de docs/PROPUESTA_ROGUELIKE.md): el fondo es el marco del bioma (`src`, piso + paredes) pasado a pixel art a la resolución del juego (`pixel` = [ancho, alto, colores]) y los obstáculos son objetos sueltos (data/rogue/salas/<id>.json, RoomPieces); el agua de sus charcos sale de esas piezas. Celdas reales (sin `scale`).",
-    "name": "La caleta",
-    "src": "marco_costa",
+    "name": "La caleta del pescador",
+    "src": "marco_costa_mar_der",
     "pixel": [
       1024,
       768,
@@ -3161,14 +3161,16 @@
     "auto": null,
     "auto_color": {
       "hue": [
-        35,
+        30,
         65
       ],
-      "min_s": 0.3,
-      "min_v": 150,
+      "min_s": 0.2,
+      "min_v": 120,
       "part": 0.6,
-      "water": false
+      "water": true,
+      "foam": true
     },
+    "deep": 5,
     "border": 1,
     "open": [
       [
@@ -3212,7 +3214,7 @@
       44,
       30
     ],
-    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. The whole inside is a very wide flat open floor of soft pale golden-beige beach sand with gentle wind ripples, small subtle dunes and a few tiny pebbles: completely empty, no objects on the sand at all, no rocks, no trees, no water pools. The room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants, with two small waterfalls. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. The whole RIGHT third of the room is open sea: a natural curving shoreline runs from top to bottom, with white foam where small waves break, then shallow bright turquoise water, then deeper blue water at the right edge. The left two thirds are a wide flat sandy beach. The sand has natural variation: pale dry golden-beige sand inland with gentle dune ripples, a band of darker wet tan sand along the water, and thin wavy tide lines. The beach is completely empty: no rocks, no trees, no boats, no plants, no objects on the sand at all. The other sides are enclosed by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap in the cliffs at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
     "seed": 701,
     "px": [
       2048,
@@ -3222,7 +3224,7 @@
   "sala_costa_p2": {
     "_modo": "Sala POR PIEZAS del Modo Desafío (sección 10 de docs/PROPUESTA_ROGUELIKE.md): el fondo es el marco del bioma (`src`, piso + paredes) pasado a pixel art a la resolución del juego (`pixel` = [ancho, alto, colores]) y los obstáculos son objetos sueltos (data/rogue/salas/<id>.json, RoomPieces); el agua de sus charcos sale de esas piezas. Celdas reales (sin `scale`).",
     "name": "El naufragio",
-    "src": "marco_costa",
+    "src": "marco_costa_mar_izq",
     "pixel": [
       1024,
       768,
@@ -3235,14 +3237,16 @@
     "auto": null,
     "auto_color": {
       "hue": [
-        35,
+        30,
         65
       ],
-      "min_s": 0.3,
-      "min_v": 150,
+      "min_s": 0.2,
+      "min_v": 120,
       "part": 0.6,
-      "water": false
+      "water": true,
+      "foam": true
     },
+    "deep": 5,
     "border": 1,
     "open": [
       [
@@ -3286,7 +3290,7 @@
       44,
       30
     ],
-    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. The whole inside is a very wide flat open floor of soft pale golden-beige beach sand with gentle wind ripples, small subtle dunes and a few tiny pebbles: completely empty, no objects on the sand at all, no rocks, no trees, no water pools. The room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants, with two small waterfalls. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. The whole LEFT third of the room is open sea: a natural curving shoreline runs from top to bottom, with white foam where small waves break, then shallow bright turquoise water, then deeper blue water at the left edge. The right two thirds are a wide flat sandy beach. The sand has natural variation: pale dry golden-beige sand inland with gentle dune ripples, a band of darker wet tan sand along the water, and thin wavy tide lines. The beach is completely empty: no rocks, no trees, no boats, no plants, no objects on the sand at all. The other sides are enclosed by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap in the cliffs at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
     "seed": 701,
     "px": [
       2048,
@@ -3295,8 +3299,8 @@
   },
   "sala_costa_p3": {
     "_modo": "Sala POR PIEZAS del Modo Desafío (sección 10 de docs/PROPUESTA_ROGUELIKE.md): el fondo es el marco del bioma (`src`, piso + paredes) pasado a pixel art a la resolución del juego (`pixel` = [ancho, alto, colores]) y los obstáculos son objetos sueltos (data/rogue/salas/<id>.json, RoomPieces); el agua de sus charcos sale de esas piezas. Celdas reales (sin `scale`).",
-    "name": "Los charcos de marea",
-    "src": "marco_costa",
+    "name": "Las pozas de marea",
+    "src": "marco_costa_ensenada",
     "pixel": [
       1024,
       768,
@@ -3309,14 +3313,16 @@
     "auto": null,
     "auto_color": {
       "hue": [
-        35,
+        30,
         65
       ],
-      "min_s": 0.3,
-      "min_v": 150,
+      "min_s": 0.2,
+      "min_v": 120,
       "part": 0.6,
-      "water": false
+      "water": true,
+      "foam": true
     },
+    "deep": 5,
     "border": 1,
     "open": [
       [
@@ -3360,7 +3366,7 @@
       44,
       30
     ],
-    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. The whole inside is a very wide flat open floor of soft pale golden-beige beach sand with gentle wind ripples, small subtle dunes and a few tiny pebbles: completely empty, no objects on the sand at all, no rocks, no trees, no water pools. The room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants, with two small waterfalls. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. A natural sea inlet comes in from the RIGHT edge and forms a rounded bay that reaches to the right-center of the room: irregular curving shoreline with white foam, shallow bright turquoise water and deeper blue water toward the right edge. Wide flat sandy beach all around the bay on the left, top and bottom. The sand has natural variation: pale dry golden-beige sand inland with gentle dune ripples, a band of darker wet tan sand along the water, and thin wavy tide lines. The beach is completely empty: no rocks, no trees, no boats, no plants, no objects on the sand at all. The other sides are enclosed by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap in the cliffs at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
     "seed": 701,
     "px": [
       2048,

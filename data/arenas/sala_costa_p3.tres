@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_mpm3l")
 id = "sala_costa_p3"
-display_name = "Los charcos de marea"
+display_name = "Las pozas de marea"
 scene_path = "res://scenes/world/arenas/sala_costa_p3.tscn"
 foe_trainer_cell = Vector2i(32, 5)
 player_cell = Vector2i(32, 43)
