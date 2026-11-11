@@ -47,10 +47,16 @@ const TRAINER_MAX_DIST := 300.0
 ## El castillo de Mew (ArenaData pintada; no se pelea: se camina).
 const HUB_ARENA := "castillo_mew"
 const HUB_ORIGIN := Vector2(-80000, -30000)
-## Centro del arco de la pintura (px desde la esquina de la sala): ahí gira el portal. Se cruza pisando delante.
-const PORTAL_AT := Vector2(316, 42)
-const PORTAL_STEP := Vector2(316, 86)
-const PORTAL_RADIUS := 14.0
+## Centro de la tarima redonda de abajo (px desde la esquina de la sala): ahí gira el portal. Se cruza pisándola.
+const PORTAL_AT := Vector2(320, 362)
+const PORTAL_STEP := Vector2(320, 364)
+const PORTAL_RADIUS := 20.0
+## Pie de la escalera a la planta alta (arriba, al medio): cerrada hasta avanzar en la historia del modo
+## (RogueProgress, bandera STAIRS_FLAG; todavía no hay planta alta). Acercarse o apretar E ahí da el mensaje.
+const STAIRS_AT := Vector2(320, 146)
+const STAIRS_WIDTH := 76.0
+const STAIRS_REACH := 22.0
+const STAIRS_FLAG := "planta_alta"
 const MEW_REACH := 34.0
 const MEW_STORY: Array[String] = [
 	"(Una voz suave te habla adentro de la cabeza.)",
@@ -60,7 +66,7 @@ const MEW_STORY: Array[String] = [
 	"Los Pokémon salvajes atacan a cualquiera que se les cruce. Y los entrenadores, hasta los líderes de gimnasio, pelean para él sin darse cuenta.",
 	"Yo solo no puedo contra eso. Pero vos sí: del otro lado del portal está el mundo corrompido, y a cada entrenador que venzas lo vas a despertar.",
 	"Si caés, te traigo de vuelta acá. Y a cada Pokémon que rescates con una Pokébola lo voy a cuidar en el castillo: la próxima vez vas a poder salir con él.",
-	"Elegí a un compañero y cruzá el portal. El mundo te necesita.",
+	"Elegí a un compañero y pisá el portal de la tarima. El mundo te necesita.",
 ]
 
 var world: Node
@@ -95,8 +101,10 @@ var hub: Zone
 var hub_data: ArenaData
 var mew: PenPokemon
 var portal: RoguePortal
+var barrier: RogueBarrier
 var select_layer: CanvasLayer
 var _warned := 0.0
+var _warned_stairs := 0.0
 var _rng := RandomNumberGenerator.new()
 
 
@@ -250,6 +258,11 @@ func _hub() -> void:
 	portal.position = hub.global_position + PORTAL_AT
 	portal.lit = not GameState.party.is_empty()
 	world.entities.add_child(portal)
+	if not stairs_open():
+		barrier = RogueBarrier.new()
+		barrier.width = STAIRS_WIDTH
+		barrier.position = hub.global_position + STAIRS_AT
+		world.entities.add_child(barrier)
 	world.camera.snap()
 	_refresh_label()
 	await get_tree().process_frame
@@ -271,10 +284,34 @@ func near_mew() -> bool:
 	return in_hub() and is_instance_valid(mew) and world.trainer.global_position.distance_to(mew.global_position) <= MEW_REACH
 
 
-## La E en el castillo (la llama PlayerItems): hablar con Mew si está cerca.
+## La escalera a la planta alta se abre al avanzar en la historia del modo (todavía no hay forma: queda la condición).
+static func stairs_open() -> bool:
+	return RogueProgress.has_flag(STAIRS_FLAG)
+
+
+## ¿Estás al pie de la escalera?
+func near_stairs() -> bool:
+	if not in_hub() or not is_instance_valid(hub):
+		return false
+	var d: Vector2 = world.trainer.global_position - (hub.global_position + STAIRS_AT)
+	return absf(d.x) <= STAIRS_WIDTH / 2.0 and d.y >= -8.0 and d.y <= STAIRS_REACH
+
+
+func stairs_message() -> String:
+	if stairs_open():
+		return "La escalera está abierta, pero arriba todavía no hay nada."
+	return "Mew: «Todavía no podés subir. La planta alta se va a abrir cuando avances del otro lado del portal.»"
+
+
+## La E en el castillo (la llama PlayerItems): hablar con Mew si está cerca, o mirar la escalera.
 func hub_interact() -> void:
-	if near_mew() and not world.story.busy and not world.story.dialog.active and select_layer == null:
+	if world.story.busy or world.story.dialog.active or select_layer != null:
+		return
+	if near_mew():
 		talk_to_mew()
+	elif near_stairs():
+		_warned_stairs = 3.0
+		Events.message_requested.emit(stairs_message())
 
 
 ## Mew: la primera vez cuenta la historia entera; después, una línea (y la historia de nuevo si la pedís). Al final abre
@@ -341,9 +378,13 @@ func choose(sp: SpeciesData) -> void:
 ## Pisaste delante del arco: con un Pokémon elegido, el portal te lleva a la primera sala; sin uno, Mew te frena.
 func _hub_process(delta: float) -> void:
 	_warned = maxf(0.0, _warned - delta)
+	_warned_stairs = maxf(0.0, _warned_stairs - delta)
 	if world.story.busy or world.story.dialog.active or select_layer != null or not is_instance_valid(hub):
 		return
 	var t: Trainer = world.trainer
+	if near_stairs() and _warned_stairs <= 0.0 and t.global_position.y <= hub.global_position.y + STAIRS_AT.y + 10.0:
+		_warned_stairs = 4.0  # (chocaste contra la barrera)
+		Events.message_requested.emit(stairs_message())
 	if t.global_position.distance_to(hub.global_position + PORTAL_STEP) > PORTAL_RADIUS:
 		return
 	if GameState.party.is_empty():
@@ -373,6 +414,9 @@ func _unload_hub() -> void:
 		mew.queue_free()
 	if is_instance_valid(portal):
 		portal.queue_free()
+	if is_instance_valid(barrier):
+		barrier.queue_free()
+	barrier = null
 	mew = null
 	portal = null
 	world.arena.release_room()
@@ -783,7 +827,7 @@ func _refresh_label() -> void:
 	if _label != null and phase == "castillo":
 		_label.visible = true
 		_label.text = "Castillo de Mew  ·  %s" % ("Hablá con Mew (%s) para elegir a tu Pokémon" % Controls.label("capture")
-			if GameState.party.is_empty() else "Cruzá el portal del fondo para empezar")
+			if GameState.party.is_empty() else "Pisá el portal de la tarima para empezar")
 		return
 	if _label == null or room_index < 0:
 		return

@@ -125,6 +125,12 @@ func run() -> void:
 		and walk < hub_used.size.x * hub_used.size.y and MapRules.cell_physics(run.hub, run.hub_data.player_cell) == -1 \
 		and MapRules.cell_physics(run.hub, run.hub_data.foe_trainer_cell) == -1 \
 		and MapRules.cell_physics(run.hub, Vector2i(0, 0)) != -1
+	r["La escalera a la planta alta está: choca, con su barrera, cerrada hasta avanzar (bandera del progreso)"] = \
+		is_instance_valid(run.barrier) and not RogueRun.stairs_open() and not RogueProgress.has_flag(RogueRun.STAIRS_FLAG) \
+		and MapRules.cell_physics(run.hub, run.hub.ground.local_to_map(RogueRun.STAIRS_AT + Vector2(0, -24))) != -1 \
+		and MapRules.cell_physics(run.hub, run.hub.ground.local_to_map(RogueRun.STAIRS_AT + Vector2(0, 14))) == -1
+	r["El portal está abajo (en la tarima) y la escalera arriba"] = RogueRun.PORTAL_AT.y > run._hub_pos(run.hub_data.player_cell).y - run.hub.global_position.y \
+		and RogueRun.STAIRS_AT.y < run.mew.global_position.y - run.hub.global_position.y
 	await _until(func(): return world.story.dialog.active, 6.0)
 	var d: DialogBox = world.story.dialog
 	r["La primera vez Mew te recibe y cuenta la historia (Mewtwo corrompió el mundo)"] = d.active and d._speaker.text.contains("Mew") \
@@ -140,6 +146,14 @@ func run() -> void:
 	tr0.global_position = run.hub.global_position + RogueRun.PORTAL_STEP
 	await get_tree().create_timer(0.5).timeout
 	r["Sin Pokémon elegido el portal no te lleva"] = run.in_hub() and not run.active and GameState.party.is_empty()
+	var said: Array[String] = []
+	var hear := func(text: String): said.append(text)
+	Events.message_requested.connect(hear)
+	tr0.global_position = run.hub.global_position + RogueRun.STAIRS_AT + Vector2(0, 6)
+	await get_tree().create_timer(0.4).timeout
+	r["Al pie de la escalera: «Todavía no podés subir» y no pasás"] = run.near_stairs() and said.any(func(t): return t.contains("Todavía no podés subir")) \
+		and run.in_hub() and tr0.global_position.y > run.hub.global_position.y + RogueRun.STAIRS_AT.y - 10.0
+	Events.message_requested.disconnect(hear)
 	tr0.global_position = run.mew.global_position + Vector2(0, 20)
 	await get_tree().process_frame
 	answers = [0]  # "Elegir a mi Pokémon"
@@ -566,7 +580,7 @@ func showcase_castle() -> void:
 	run.select_layer.get_child(0).start(DB.species["charmander"])
 	await get_tree().create_timer(0.8).timeout
 	world.trainer.autopilot = Vector2.ZERO
-	var goal: Vector2 = run.hub.global_position + RogueRun.PORTAL_STEP + Vector2(0, 40)
+	var goal: Vector2 = run.hub.global_position + RogueRun.PORTAL_STEP + Vector2(0, -44)
 	while world.trainer.global_position.distance_to(goal) > 4.0:
 		world.trainer.global_position = world.trainer.global_position.move_toward(goal, 1.2)
 		world.trainer.facing = Vector2.UP

@@ -120,6 +120,8 @@ def build(root, arena_id, cfg):
         floor -= rim
         water -= rim
     floor |= cells_of(cfg.get("open", []), k)
+    if cfg.get("auto_color") is not None:
+        water -= cells_of(cfg.get("open", []), k)  # (el paso abierto a mano es piso aunque la pintura ponga agua ahi)
     floor -= cells_of(cfg.get("solid", []), k)
     water |= cells_of(cfg.get("water", []), k)
     floor -= water

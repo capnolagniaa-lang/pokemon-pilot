@@ -322,6 +322,12 @@ portón, sin fundido) y con obstáculos pintados cuya colisión sale sola de la 
    dice al perder); al terminar una partida se vuelve al castillo sin Pokémon; se puede cambiar de Pokémon antes de
    cruzar. Para más adelante: que los Pokémon rescatados se vean paseando por el castillo, y Mewtwo como jefe final.
 
+4. **Hecho — repintado y castillo nuevo** (usuario, mismo día, al ver las pinturas): las 18 salas más pintorescas (más
+   elementos por bioma, bordes decorados, luz); el castillo con más estructuras, **el portal abajo** (tarima redonda con
+   runas) y **una escalera a la planta alta bloqueada hasta avanzar en la historia** (bandera `planta_alta` del progreso
+   del modo; todavía sin planta alta). Decidido sin preguntar: la barrera es una cortina de luz y el aviso lo da Mew;
+   qué abre la escalera (¿ganarle a Brock?, ¿N entrenadores despertados?) queda para definir con el usuario.
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y

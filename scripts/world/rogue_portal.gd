@@ -1,11 +1,13 @@
 class_name RoguePortal
 extends Node2D
 ## El portal del castillo de Mew (Modo Desafío, RogueRun): un remolino pintado con Qwen (sprites/props/portal_mew.png)
-## que gira y late adentro del arco. Es solo el dibujo: RogueRun mira si llegaste.
+## que gira y late acostado sobre la tarima redonda de abajo. Es solo el dibujo: RogueRun mira si llegaste.
 
 const TEXTURE := "res://sprites/props/portal_mew.png"
-## Tamaño en pantalla (px del juego): entra en el arco de la pintura.
-const SIZE := 46.0
+## Tamaño en pantalla (px del juego): entra en la tarima de la pintura.
+const SIZE := 84.0
+## Acostado en el piso (la sala se ve desde arriba en 3/4).
+const FLAT := 0.58
 
 ## Apagado (todavía no elegiste Pokémon): más chico y oscuro.
 var lit := false
@@ -31,7 +33,10 @@ func _layer(tex: Texture2D, additive: bool) -> Sprite2D:
 		var m := CanvasItemMaterial.new()
 		m.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 		s.material = m
-	add_child(s)
+	var tilt := Node2D.new()  # (el giro va adentro, el aplastado afuera: gira como un disco acostado)
+	tilt.scale = Vector2(1.0, FLAT)
+	add_child(tilt)
+	tilt.add_child(s)
 	return s
 
 

@@ -581,11 +581,12 @@
     "scale": 1.6,
     "auto": null,
     "auto_color": {
-      "min_v": 95,
+      "min_v": 50,
       "min_s": 0.3,
       "part": 0.6,
-      "water": false
+      "water": true
     },
+    "border": 1,
     "brillo": 1.15,
     "open": [
       [
@@ -629,11 +630,11 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open clearing of bright light-green grass with patches of worn dirt and small flowers. Scattered inside the clearing as obstacles: six big grey mossy boulders, three fallen tree trunks lying on the grass, four cut tree stumps and two lone big dark-leaved trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a straight dirt path comes in through a gap at the very bottom center edge and leaves through a gap between two huge trees at the very top center edge. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 31,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a deep ancient forest dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open clearing of bright light-green grass with lighter and darker green patches, clover, tiny white and yellow flowers and a few worn dirt patches, with soft shafts of sunlight falling on it. Scattered inside as obstacles: six big grey mossy boulders, three fallen dark tree trunks covered in moss and mushrooms, four dark cut tree stumps, two lone big dark-leaved trees and a small dark stone shrine. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick dark wall of giant ancient trees with twisted roots, hanging vines, ferns, glowing blue mushrooms and deep shadowed undergrowth. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 141,
     "px": [
-      2048,
-      1536
+      1600,
+      1200
     ]
   },
   "sala_bosque_2": {
@@ -646,11 +647,12 @@
     "scale": 1.6,
     "auto": null,
     "auto_color": {
-      "min_v": 95,
+      "min_v": 50,
       "min_s": 0.3,
       "part": 0.6,
       "water": true
     },
+    "border": 1,
     "brillo": 1.15,
     "open": [
       [
@@ -694,11 +696,11 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open glade of bright grass and pale dirt with the ruins of an ancient temple. Scattered inside the glade as obstacles: many broken grey stone pillars, low crumbled grey stone wall segments, toppled grey statues and big grey rubble blocks, plus two small clear blue ponds. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a straight dirt path comes in through a gap at the very bottom center edge and leaves through a gap between two huge trees at the very top center edge. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 32,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a deep ancient forest dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open clearing of bright light-green grass with lighter and darker green patches, moss, tiny flowers and old half-buried pale paving stones, with soft shafts of sunlight. Scattered inside as obstacles: ten broken grey stone pillars and statues of an overgrown ruin wrapped in ivy, five big grey mossy boulders, a collapsed grey stone arch, and three small ponds of bright blue water with lily pads. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick dark wall of giant ancient trees with twisted roots, hanging vines, ferns, glowing blue mushrooms and deep shadowed undergrowth. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 142,
     "px": [
-      2048,
-      1536
+      1600,
+      1200
     ]
   },
   "sala_bosque_3": {
@@ -711,11 +713,12 @@
     "scale": 1.6,
     "auto": null,
     "auto_color": {
-      "min_v": 62,
+      "min_v": 50,
       "min_s": 0.3,
       "part": 0.6,
-      "water": false
+      "water": true
     },
+    "border": 1,
     "brillo": 1.15,
     "open": [
       [
@@ -759,11 +762,11 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open hollow of bright yellow-green moss and pale dirt deep in an old forest, shafts of golden light. Scattered inside the hollow as obstacles: giant twisted dark roots crossing the ground, five huge dark old tree trunks, big grey rocks, and clusters of giant glowing blue and orange mushrooms. At the top center the path climbs worn stone steps under a rough stone arch. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a straight dirt path comes in through a gap at the very bottom center edge and leaves through a gap between two huge trees at the very top center edge. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 31,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a deep ancient forest dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open clearing of bright light-green grass and moss with lighter and darker green patches, ferns and tiny glowing flowers. Scattered inside as obstacles: one enormous dark ancient tree trunk with huge roots near the upper left, many thick dark gnarled roots crossing the ground, five big grey mossy boulders, clusters of giant dark-capped mushrooms, and two small ponds of bright blue water. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick dark wall of giant ancient trees with twisted roots, hanging vines, ferns, glowing blue mushrooms and deep shadowed undergrowth. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 143,
     "px": [
-      2048,
-      1536
+      1600,
+      1200
     ]
   },
   "sala_volcan_1": {
@@ -828,8 +831,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a volcano dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale sandy tan volcanic ash and light beige cracked rock. Scattered inside as obstacles: seven big black basalt boulders, four jagged dark obsidian spikes, three small round pools of glowing orange lava with black rims, and three charred black dead trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with thin glowing red cracks; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 41,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a volcano crater dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open field of pale sandy tan volcanic ash and light beige cracked rock, with lighter and darker tan patches, fine cracks and small scattered pebbles, lit by a warm orange glow. Scattered inside as obstacles: seven big black basalt boulders with glowing red cracks, four jagged dark obsidian spikes, a short winding river of glowing orange lava with black rims on the left side, three round pools of glowing orange lava with black rims, a huge dark skeleton ribcage of a beast, and three charred black dead trees. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with rivers of glowing orange lava running down them, glowing red cracks and drifting smoke. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 144,
     "px": [
       1600,
       1200
@@ -898,8 +901,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a volcano dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale sandy tan volcanic ash and light beige cracked rock. Scattered inside as obstacles: five small black rock cones venting dark smoke, six black basalt boulders, four small round pools of glowing orange lava with black rims, and a few piles of dark charred rubble. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with thin glowing red cracks; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 42,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a volcano crater dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open field of pale sandy tan volcanic ash and light beige cracked rock, with lighter and darker tan patches, fine cracks and small pebbles, lit by a warm orange glow. Scattered inside as obstacles: six small black rock cones venting dark smoke, six black basalt boulders with glowing red cracks, four round pools of glowing orange lava with black rims, dark animal skulls and bones, and piles of dark charred rubble with glowing embers. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with rivers of glowing orange lava running down them, glowing red cracks and drifting smoke. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 145,
     "px": [
       1600,
       1200
@@ -968,8 +971,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a volcano dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale sandy tan stone slabs dusted with light beige ash. Scattered inside as obstacles: eight broken dark charcoal-black stone pillars of a ruined fire temple, three black dragon statues, two rectangular basins of glowing orange lava with black rims, and four black basalt boulders. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with thin glowing red cracks; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 43,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a volcano crater dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open court of pale sandy tan carved stone slabs dusted with light beige ash, with lighter and darker tan tiles and fine cracks, lit by a warm orange glow. Scattered inside as obstacles: eight broken dark charcoal-black stone pillars of a ruined fire temple, three black dragon statues, two rectangular basins of glowing orange lava with black rims, four black iron braziers with fire, and four black basalt boulders. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with rivers of glowing orange lava running down them, glowing red cracks and drifting smoke. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 146,
     "px": [
       1600,
       1200
@@ -1037,8 +1040,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright light-yellow beach sand. Scattered inside as obstacles: six big dark grey sea rocks, four dark-green palm trees, three dark brown driftwood logs, and four small round tide pools of bright blue water. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 44,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open beach of bright light-yellow sand with lighter and slightly darker yellow patches, gentle ripples, scattered seashells, starfish and small pebbles, under bright sunlight. Scattered inside as obstacles: six big dark grey sea rocks with barnacles, five dark-green palm trees with coconuts, three dark brown driftwood logs, a dark wooden broken rowboat, and five round tide pools of bright blue water. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed, barnacles and dark jungle plants, with small waterfalls. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 147,
     "px": [
       1600,
       1200
@@ -1106,8 +1109,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright light-yellow beach sand with seashells. Scattered inside as obstacles: seven tide pools of bright blue water of different sizes, five dark grey barnacle-covered rocks, two dark wooden wrecked rowboats, and three dark-green palm trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 45,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open beach of bright light-yellow sand with lighter and slightly darker yellow patches, gentle ripples, many seashells, starfish and small pebbles, under bright sunlight. Scattered inside as obstacles: eight tide pools of bright blue water of different sizes with dark rocky rims, six dark grey barnacle-covered rocks, dark red coral clusters, two dark wooden wrecked rowboats, and four dark-green palm trees. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed, barnacles and dark jungle plants, with small waterfalls. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 148,
     "px": [
       1600,
       1200
@@ -1175,8 +1178,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright light-yellow beach sand. Scattered inside as obstacles: the dark brown broken wooden hull of a small shipwreck in two pieces, six dark wooden crates and barrels, five dark grey sea rocks, a dark iron anchor, and three round pools of bright blue water. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 46,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open beach of bright light-yellow sand with lighter and slightly darker yellow patches, gentle ripples, seashells and small pebbles, under bright sunlight. Scattered inside as obstacles: the big dark brown broken wooden hull of a shipwreck in two pieces with a fallen mast, eight dark wooden crates and barrels, a dark treasure chest, five dark grey sea rocks, a big dark iron anchor with chain, three dark-green palm trees and three round pools of bright blue water. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed, barnacles and dark jungle plants, with small waterfalls. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 149,
     "px": [
       1600,
       1200
@@ -1198,10 +1201,11 @@
         50
       ],
       "min_s": 0.3,
-      "min_v": 90,
+      "min_v": 50,
       "part": 0.6,
       "water": false
     },
+    "brillo": 1.15,
     "open": [
       [
         19,
@@ -1244,8 +1248,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a underground cave dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of warm light-brown packed earth and sandy dirt. Scattered inside as obstacles: eight tall dark grey stalagmites, six big dark grey boulders, and four clusters of dark blue crystals. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 47,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a deep underground cave dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open cavern floor of warm light-brown packed earth and sandy dirt, with lighter and darker brown patches, small pebbles and fine cracks, lit by warm lantern light. Scattered inside as obstacles: nine tall dark grey stalagmites, six big dark grey boulders, five clusters of dark blue glowing crystals, and patches of dark glowing-capped mushrooms. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow, with glowing blue crystals, glowing cyan mushrooms and dripping stalactites along it. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 150,
     "px": [
       1600,
       1200
@@ -1267,10 +1271,11 @@
         50
       ],
       "min_s": 0.3,
-      "min_v": 90,
+      "min_v": 50,
       "part": 0.6,
       "water": false
     },
+    "brillo": 1.15,
     "open": [
       [
         19,
@@ -1313,8 +1318,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a underground cave dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of warm light-brown packed earth and sandy dirt. Scattered inside as obstacles: three dark rusty grey mine carts, short broken pieces of dark rail track, five dark wooden support posts, six big dark grey boulders, and three piles of dark grey rubble. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 48,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a deep underground cave dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open cavern floor of warm light-brown packed earth and sandy dirt, with lighter and darker brown patches, small pebbles and fine cracks, lit by warm lantern light. Scattered inside as obstacles: four dark rusty grey mine carts full of dark ore, curved pieces of dark rail track, six dark wooden support beams with hanging lanterns, dark wooden crates and barrels, six big dark grey boulders, and piles of dark grey rubble with pickaxes. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow, with glowing blue crystals, glowing cyan mushrooms and dripping stalactites along it. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 151,
     "px": [
       1600,
       1200
@@ -1336,10 +1341,11 @@
         50
       ],
       "min_s": 0.3,
-      "min_v": 90,
+      "min_v": 50,
       "part": 0.6,
       "water": false
     },
+    "brillo": 1.15,
     "open": [
       [
         19,
@@ -1382,8 +1388,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a underground cave dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of warm light-brown packed earth and sandy dirt. Scattered inside as obstacles: seven big clusters of dark violet-blue crystals, five dark grey stalagmites, and five big dark grey boulders. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 49,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a deep underground cave dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open cavern floor of warm light-brown packed earth and sandy dirt, with lighter and darker brown patches, small pebbles and fine cracks, lit by a soft violet glow. Scattered inside as obstacles: nine big clusters of dark violet-blue glowing crystals of different sizes, six dark grey stalagmites, five big dark grey boulders, and patches of dark glowing-capped mushrooms. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow, with glowing blue crystals, glowing cyan mushrooms and dripping stalactites along it. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 152,
     "px": [
       1600,
       1200
@@ -1448,8 +1454,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright white snow. Scattered inside as obstacles: seven big dark blue-grey boulders, five tall dark teal ice crystal spikes, four dark green pine trees with no snow on them, and three dark frozen logs. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 50,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open field of bright white snow with very subtle pale drifts, footprints-free, sparkling. Scattered inside as obstacles: seven big dark blue-grey boulders, six tall dark teal ice crystal spikes, five dark green pine trees with no snow on them, three dark frozen logs, and a dark frozen stone well. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow, with hanging icicles, dark frozen waterfalls and dark snow-free pine trees. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 153,
     "px": [
       1600,
       1200
@@ -1514,8 +1520,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright white snow and very pale white-blue ice. Scattered inside as obstacles: eight tall dark teal ice crystal spikes, six big dark blue-grey boulders, and four dark frozen tree stumps. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 51,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open field of bright white snow and very pale white ice, sparkling. Scattered inside as obstacles: nine tall dark teal ice crystal spikes of different sizes, six big dark blue-grey boulders, four dark frozen tree stumps, three dark green pine trees with no snow on them, and a dark wrecked wooden sled. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow, with hanging icicles, dark frozen waterfalls and dark snow-free pine trees. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 154,
     "px": [
       1600,
       1200
@@ -1580,8 +1586,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright white snow. Scattered inside as obstacles: seven broken dark slate-blue stone pillars of a frozen ruin, three dark stone statues, five dark blue-grey boulders, and three tall dark teal ice crystal spikes. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 52,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open court of bright white snow over very pale white stone tiles, sparkling. Scattered inside as obstacles: eight broken dark slate-blue stone pillars of a frozen ruin, three dark stone statues encased in dark teal ice, five dark blue-grey boulders, four tall dark teal ice crystal spikes, and two dark iron braziers with blue flames. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow, with hanging icicles, dark frozen waterfalls and dark snow-free pine trees. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 155,
     "px": [
       1600,
       1200
@@ -1649,8 +1655,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a haunted graveyard dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale lavender-purple grass and light violet dirt under moonlight. Scattered inside as obstacles: ten dark grey tombstones in small groups, three black dead twisted trees, two dark stone coffins, and three short pieces of black iron fence. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences and deep black shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 53,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a haunted graveyard at night dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open lawn of pale lavender-purple grass and light violet dirt under bright moonlight, with lighter and darker lavender patches and tiny pale flowers. Scattered inside as obstacles: fourteen dark grey tombstones and stone crosses in small groups, four black dead twisted trees, two dark stone coffins, three dark iron lamp posts with a small orange light, and short pieces of black iron fence. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences with spikes, crumbling dark stone walls and deep black shadow, with a few small glowing orange lanterns hanging on it. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 156,
     "px": [
       1600,
       1200
@@ -1718,8 +1724,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a haunted graveyard dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale lavender-purple grass and light violet dirt under moonlight. Scattered inside as obstacles: two small dark grey stone mausoleums, six dark grey tombstones, four dark stone angel statues, and three black dead twisted trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences and deep black shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 54,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a haunted graveyard at night dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open lawn of pale lavender-purple grass and light violet dirt under bright moonlight, with lighter and darker lavender patches and tiny pale flowers. Scattered inside as obstacles: two dark grey stone mausoleums with columns, eight dark grey tombstones, four dark stone angel statues, three black dead twisted trees, and three dark iron lamp posts with a small orange light. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences with spikes, crumbling dark stone walls and deep black shadow, with a few small glowing orange lanterns hanging on it. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 157,
     "px": [
       1600,
       1200
@@ -1787,8 +1793,8 @@
       28,
       19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a haunted graveyard dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale lavender-purple grass and light violet dirt under moonlight. Scattered inside as obstacles: a dry dark stone fountain, five dark grey broken stone benches, six black dead bushes, four dark grey tombstones and three black dead twisted trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences and deep black shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 55,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of one large combat room of a haunted graveyard at night dungeon for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open lawn of pale lavender-purple grass and light violet dirt under bright moonlight, with lighter and darker lavender patches and tiny pale flowers. Scattered inside as obstacles: a big dry dark stone fountain, five dark grey broken stone benches, eight black dead rose bushes, six dark grey tombstones, four black dead twisted trees, a dark stone gazebo ruin and three dark iron lamp posts with a small orange light. The big obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them, and the center of the room stays open. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences with spikes, crumbling dark stone walls and deep black shadow, with a few small glowing orange lanterns hanging on it. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The open floor is bright and clearly lighter than the dark walls and the dark obstacles. Lush rich detail everywhere, varied textures, dramatic lighting and atmosphere, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 158,
     "px": [
       1600,
       1200
@@ -1796,7 +1802,7 @@
     "border": 1
   },
   "castillo_mew": {
-    "_modo": "Castillo de Mew: el lugar donde empieza el Modo Desafío (RogueRun, pedido del usuario 2026-11-11). No es una arena de pelea: se camina. player = donde aparecés, foe_mon = donde flota Mew, foe_trainer = el piso frente al arco (pisarlo con un Pokémon elegido cruza el portal; el portal se dibuja aparte, sprites/props/portal_mew.png, adentro del arco).",
+    "_modo": "Castillo de Mew: el lugar donde empieza el Modo Desafío (RogueRun, pedido del usuario 2026-11-11). No es una arena de pelea: se camina. player = donde aparecés, foe_mon = donde flota Mew, foe_trainer = el centro de la tarima redonda de abajo (el portal gira encima, sprites/props/portal_mew.png; pisarla con un Pokémon elegido lo cruza; `open` la deja caminable). La escalera de arriba va a la planta alta: choca, y RogueRun pone la barrera y el mensaje (STAIRS_AT).",
     "name": "Castillo de Mew",
     "size": [
       40,
@@ -1814,37 +1820,44 @@
       "water": false
     },
     "border": 1,
-    "open": [],
+    "open": [
+      [
+        16,
+        20,
+        8,
+        6
+      ]
+    ],
     "solid": [],
     "floor": 1,
     "wall": 35008,
     "rocks": [],
     "cells": {
       "foe_trainer": [
-        19,
-        6
+        20,
+        22
       ],
       "foe_mon": [
-        19,
-        13
+        20,
+        11
       ],
       "player_mon": [
-        19,
-        17
+        20,
+        14
       ],
       "player": [
-        19,
-        18
+        20,
+        15
       ]
     },
     "field": [
       8,
-      7,
+      9,
       24,
       18
     ],
-    "prompt": "Pixel art, top-down 3/4 view of the great hall of an ancient mystical castle floating in the sky, for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright pale sky-blue marble tiles, with a long light turquoise carpet running straight up the center from the bottom to the top. Along the left and right sides stand two rows of tall dark grey stone pillars, four on each side, and between them four dark stone braziers burning with small pink flames. At the very top center, against the back wall, stands one tall wide empty dark stone archway, a gate frame with only pitch black darkness inside it, on three dark stone steps. The whole hall is enclosed on every side by tall dark purple-black castle stone walls with glowing pink stained glass windows on the back wall; the entrance is a gap in the wall at the very bottom center edge. The open floor is bright, flat and clearly lighter than the dark walls, the pillars and the archway. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 71,
+    "prompt": "Highly detailed picturesque pixel art, top-down 3/4 view of the grand hall of an ancient mystical castle floating in the sky, for a 2D action RPG like a 16-bit JRPG map, seen from above, 4:3, completely empty: nobody in it. The floor is a very wide open hall of bright pale sky-blue marble tiles with subtle lighter and darker tiles, and a long light turquoise carpet running straight up the center. At the very top center, against the back wall, a grand wide dark stone staircase with dark balustrades climbs up to an upper floor gallery with a dark railing. On both sides of the staircase, against the back wall: tall dark wooden bookshelves full of books, glowing pink stained glass windows and hanging dark purple banners with a pink emblem. Along the left and right sides of the hall stand two rows of tall dark grey stone pillars, dark stone statues of sitting cats on pedestals, and dark stone braziers burning with pink flames. In the lower center of the floor there is one large round raised dais of dark stone, a circular platform with a ring of glowing magenta runes carved around it and an empty dark center. A small dark stone altar with candles stands on the left side and a dark wooden table with open books and a globe stands on the right side. The whole hall is enclosed on every side by tall dark purple-black castle stone walls. The open floor is bright and clearly lighter than the dark walls, the stairs, the pillars, the furniture and the dais. Rich detail everywhere, dramatic lighting, soft pink glow, deep shadows under every object, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no animals, no text, no letters.",
+    "seed": 172,
     "px": [
       1600,
       1200
