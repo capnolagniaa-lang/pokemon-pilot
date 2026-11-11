@@ -1,0 +1,311 @@
+class_name RogueRewards
+extends Node
+## Las recompensas de sala del Modo Desafío (R-3 de docs/PROPUESTA_ROGUELIKE.md; hijo de RogueRun, `world.rogue.rewards`).
+## Cada sala limpia da UNA recompensa, de un tipo: la de la primera sala es fija (`first`) y la de las siguientes la
+## elegís vos entre dos puertas con ícono (RogueRewardDoor) antes de pasar. Tipos (`TYPES`; números y pesos en
+## data/rogue/desafio.json → `rewards`):
+##  · bendicion: un legendario te ofrece 3 (RogueBoons, R-2).      · caramelo: +1 nivel a una bendición que tengas.
+##  · mt: cambiás un ataque por otro que tu Pokémon puede aprender. · proteina: más vida máxima por toda la partida.
+##  · dinero: plata para la Tienda.                                 · tienda: gastarla (Poción, Poké Ball, cura, bendición).
+##  · centro: cura buena parte de la vida y llena los PP.
+## Para sumar un tipo: una fila en TYPES, su peso en el JSON, su rama en `grant` y su ícono en sprites/ui/premios/.
+
+const ICONS := "res://sprites/ui/premios/%s.png"
+## id -> [nombre, qué da (para el cartel de la puerta y la pantalla)]
+const TYPES := {
+	"bendicion": ["Bendición", "Un legendario te ofrece 3 bendiciones."],
+	"caramelo": ["Caramelo Raro", "Sube un nivel a una de tus bendiciones."],
+	"mt": ["MT", "Cambiás un ataque por otro que tu Pokémon puede aprender."],
+	"proteina": ["Más PS", "Más vida máxima por el resto de la partida."],
+	"dinero": ["Dinero", "Plata para gastar en la Tienda."],
+	"tienda": ["Tienda", "Gastás tu dinero: Poción, Poké Ball, curarte o una bendición."],
+	"centro": ["Centro Pokémon", "Recuperás buena parte de la vida y todos los PP."],
+}
+
+## La MT no ofrece ataques más fuertes que esto (un Hiperrayo en la sala 2 gana la partida solo).
+const TM_MAX_POWER := 100.0
+
+var run: Node
+var world: Node
+var _rng := RandomNumberGenerator.new()
+## Lo último que se dio (texto; tests y el cartel).
+var last_text := ""
+
+
+func _ready() -> void:
+	run = get_parent()
+	world = run.get_parent()
+	_rng.randomize()
+
+
+func cfg() -> Dictionary:
+	return run.floor_data.get("rewards", {})
+
+
+static func type_name(id: String) -> String:
+	return TYPES[id][0] if TYPES.has(id) else id
+
+
+static func icon_of(id: String) -> String:
+	return ICONS % id
+
+
+func _mine() -> CreatureInstance:
+	return GameState.active()
+
+
+# --- Qué se puede ofrecer -------------------------------------------------------------------------------------------
+
+## ¿Tiene sentido ofrecer ese tipo ahora? (Caramelo Raro sin bendiciones, Tienda sin plata, MT sin nada que aprender...)
+func available(id: String) -> bool:
+	match id:
+		"caramelo":
+			return not run.boons.owned().is_empty()
+		"tienda":
+			return GameState.money >= cheapest()
+		"mt":
+			return not tm_candidates().is_empty()
+	return TYPES.has(id)
+
+
+func cheapest() -> int:
+	var best := 999999
+	for item: Dictionary in cfg().get("shop", []):
+		best = mini(best, int(item["price"]))
+	return best
+
+
+## Las recompensas de las puertas: `count` tipos distintos, al azar por peso, de los que se pueden ofrecer.
+func options(rng: RandomNumberGenerator = null, count: int = 2) -> Array[String]:
+	if rng == null:
+		rng = _rng
+	var weights: Dictionary = cfg().get("weights", {})
+	var pool: Array = TYPES.keys().filter(func(id): return available(id) and float(weights.get(id, 0.0)) > 0.0)
+	var out: Array[String] = []
+	while out.size() < count and not pool.is_empty():
+		var total := 0.0
+		for id in pool:
+			total += float(weights[id])
+		var pick := rng.randf() * total
+		for id: String in pool:
+			pick -= float(weights[id])
+			if pick <= 0.0:
+				out.append(id)
+				pool.erase(id)
+				break
+	return out
+
+
+# --- Dar la recompensa ----------------------------------------------------------------------------------------------
+
+## Da la recompensa de ese tipo (las que hay que elegir abren su pantalla y esperan). Si ese tipo ya no se puede
+## (p. ej. Caramelo Raro sin bendiciones), da una bendición.
+func grant(id: String) -> void:
+	if not available(id):
+		id = "bendicion"
+	last_text = ""
+	match id:
+		"bendicion":
+			await _boon()
+		"caramelo":
+			await _candy()
+		"mt":
+			await _tm()
+		"proteina":
+			_protein()
+		"dinero":
+			_money()
+		"tienda":
+			await _shop()
+		"centro":
+			_center()
+	if last_text != "":
+		Events.message_requested.emit(last_text)
+
+
+## Un legendario te ofrece 3 bendiciones y elegís una.
+func _boon() -> void:
+	var o: Dictionary = run.boons.offer()
+	if o["options"].is_empty():
+		return
+	run.boon_screen = BoonScreen.open(run, run.boons, o)
+	var i: int = await run.boon_screen.chosen
+	run.boon_screen = null
+	run.boons.take(o["options"][i]["id"], o["options"][i]["rarity"])
+	last_text = ""  # (take ya lo anuncia)
+
+
+## Caramelo Raro: +1 nivel a una de tus bendiciones (te muestra hasta 3).
+func _candy() -> void:
+	var boons: RogueBoons = run.boons
+	var mine: Array = boons.owned().duplicate()
+	mine.shuffle()
+	mine = mine.slice(0, 3)
+	var cards: Array = []
+	for e: Dictionary in mine:
+		var b: BoonData = DB.boons[e["id"]]
+		var rar: Dictionary = boons.rarity(e["rarity"])
+		cards.append({"icon": BoonScreen.ICONS % b.id, "title": b.display_name,
+			"tag": "Nv. %d → %d" % [int(e["level"]), int(e["level"]) + 1], "tag_color": Color(rar["color"][0], rar["color"][1], rar["color"][2]),
+			"text": boons.describe(b, e["rarity"], int(e["level"]) + 1)})
+	var i: int = await _ask("Caramelo Raro", "Elegí una de tus bendiciones: sube un nivel.", cards, Color(0.45, 0.7, 1.0))
+	boons.level_up(mine[i]["id"])
+	last_text = "%s subió a Nv. %d." % [DB.boons[mine[i]["id"]].display_name, int(mine[i]["level"])]
+
+
+## Los ataques de daño que tu Pokémon puede aprender (por nivel, a cualquier nivel, o por MT) y no tiene puestos.
+func tm_candidates() -> Array[MoveData]:
+	var out: Array[MoveData] = []
+	var inst := _mine()
+	if inst == null:
+		return out
+	var known: Array = []
+	for e in inst.species.learnset_entries():
+		if e != null and e.move != null:
+			known.append(e.move)
+	known.append_array(inst.species.tm_moves)
+	var names := {}
+	for m in inst.equipped_moves:
+		if m != null:
+			names[m.display_name] = true
+	for m: MoveData in known:
+		if m != null and not names.has(m.display_name) and m.power > 0.0 and m.power <= TM_MAX_POWER \
+				and m.category != MoveData.Category.STATUS and not m.does_nothing():
+			names[m.display_name] = true
+			out.append(m)
+	return out
+
+
+## MT: elegís uno de 3 ataques nuevos y después a cuál de los tuyos reemplaza.
+func _tm() -> void:
+	var inst := _mine()
+	var pool := tm_candidates()
+	pool.shuffle()
+	var picks: Array[MoveData] = []
+	picks.assign(pool.slice(0, 3))
+	var i: int = await _ask("MT", "Elegí un ataque nuevo para %s." % inst.species.display_name, picks.map(_move_card), Color(1.0, 0.85, 0.3))
+	var move: MoveData = picks[i]
+	var cards: Array = []
+	var slots: Array[int] = []
+	for s in CreatureInstance.SLOT_COUNT:
+		var cur: MoveData = inst.equipped_moves[s] if s < inst.equipped_moves.size() else null
+		slots.append(s)
+		if cur == null:
+			cards.append({"icon": icon_of("mt"), "title": "Ranura libre", "tag": "Ataque %d" % (s + 1), "text": "Lo pone acá, sin sacar nada."})
+		else:
+			var card: Dictionary = _move_card(cur)
+			card["text"] = "%s.\n%s" % [card["tag"], card["text"]]
+			card["tag"] = "Ataque %d  ·  %s" % [s + 1, Controls.label(Controls.SLOT_ACTIONS[s])]
+			card["tag_color"] = UiStyle.TEXT_DIM
+			cards.append(card)
+	var j: int = await _ask("¿A cuál reemplaza %s?" % move.display_name, "El ataque que elijas se pierde por esta partida.", cards, Color(1.0, 0.85, 0.3))
+	replace_move(slots[j], move)
+	last_text = "%s aprendió %s." % [inst.species.display_name, move.display_name]
+
+
+func _move_card(m: MoveData) -> Dictionary:
+	return {"icon": icon_of("mt"), "title": m.display_name, "tag": "%s  ·  Potencia %d" % [m.element.display_name if m.element != null else "", roundi(m.power)],
+		"tag_color": m.element.color if m.element != null else UiStyle.TEXT_DIM, "text": MoveInfo.what_it_does(m)}
+
+
+## Pone ese ataque en la ranura de tu Pokémon (y en el que está peleando).
+func replace_move(slot: int, move: MoveData) -> void:
+	var inst := _mine()
+	while inst.equipped_moves.size() < CreatureInstance.SLOT_COUNT:
+		inst.equipped_moves.append(null)
+	inst.equipped_moves[slot] = move
+	var c: Creature = world.companion
+	if is_instance_valid(c) and c.instance == inst:
+		c.moves.setup(inst)
+	Events.equipment_changed.emit(inst)
+
+
+## Más PS: sube la vida máxima de tu Pokémon por toda la partida (y te da esa vida ahora).
+func _protein() -> void:
+	var inst := _mine()
+	var pct := float(cfg().get("proteina", 0.15))
+	var before := inst.max_hp()
+	inst.hp_mult *= 1.0 + pct
+	inst.hp = minf(inst.max_hp(), inst.hp + (inst.max_hp() - before))
+	_refresh_health()
+	last_text = "¡Más PS! La vida máxima de %s subió %d %%." % [inst.species.display_name, roundi(pct * 100.0)]
+
+
+func _money() -> void:
+	var span: Array = cfg().get("dinero", [80, 120])
+	var amount := _rng.randi_range(int(span[0]), int(span[1]))
+	GameState.money += amount
+	last_text = "Encontraste $%d (tenés $%d)." % [amount, GameState.money]
+
+
+## Centro Pokémon: cura parte de la vida y llena los PP.
+func _center() -> void:
+	var inst := _mine()
+	var pct := float(cfg().get("centro", 0.6))
+	inst.hp = minf(inst.max_hp(), inst.hp + inst.max_hp() * pct)
+	var c: Creature = world.companion
+	if is_instance_valid(c):
+		c.moves.set_pp(c.moves.max_pp())
+		c.statuses.clear()
+		Fx.burst(world.entities, c.global_position + Vector2(0, -8), Color(1.5, 0.8, 1.2), 18, 46.0)
+	_refresh_health()
+	last_text = "Centro Pokémon: %s recuperó %d %% de la vida y todos los PP." % [inst.species.display_name, roundi(pct * 100.0)]
+
+
+## La Tienda: comprás lo que quieras mientras te alcance; "Salir" cierra.
+func _shop() -> void:
+	var bought: Array[String] = []
+	while true:
+		var items: Array = cfg().get("shop", [])
+		var cards: Array = []
+		for item: Dictionary in items:
+			cards.append({"icon": _shop_icon(item), "title": str(item["name"]), "tag": "$%d" % int(item["price"]),
+				"tag_color": UiStyle.ACCENT, "text": str(item["text"]), "disabled": GameState.money < int(item["price"])})
+		cards.append({"icon": icon_of("dinero"), "title": "Salir", "tag": "Te quedan $%d" % GameState.money, "text": "Seguir con la partida."})
+		var i: int = await _ask("Tienda", "Tenés $%d. Comprá lo que quieras." % GameState.money, cards, Color(0.5, 0.75, 1.0))
+		if i >= items.size():
+			break
+		buy(items[i])
+		bought.append(str(items[i]["name"]))
+		if str(items[i]["id"]) == "bendicion":
+			await _boon()
+	last_text = "Compraste: %s." % ", ".join(bought) if not bought.is_empty() else ""
+
+
+## Compra un artículo de la Tienda (si alcanza la plata). La bendición la ofrece `_shop` después.
+func buy(item: Dictionary) -> bool:
+	var price := int(item["price"])
+	if GameState.money < price:
+		return false
+	GameState.money -= price
+	match str(item["id"]):
+		"cura":
+			var inst := _mine()
+			inst.hp = minf(inst.max_hp(), inst.hp + inst.max_hp() * float(item.get("heal", 0.4)))
+			_refresh_health()
+		"bendicion":
+			pass
+		_:
+			GameState.add_item(str(item["id"]))
+	return true
+
+
+func _shop_icon(item: Dictionary):
+	var id := str(item["id"])
+	if DB.items.has(id) and DB.items[id].icon != null:
+		return DB.items[id].icon
+	return icon_of("centro" if id == "cura" else id)
+
+
+func _refresh_health() -> void:
+	var c: Creature = world.companion
+	if is_instance_valid(c):
+		c.health.changed.emit(c.instance.hp, c.health.max_hp())
+
+
+## Abre la pantalla de tarjetas y espera la elección (queda en `run.reward_screen` para los tests y el bot).
+func _ask(title: String, subtitle: String, cards: Array, tint: Color) -> int:
+	run.reward_screen = RewardScreen.open(run, title, subtitle, cards, tint)
+	var i: int = await run.reward_screen.chosen
+	run.reward_screen = null
+	return i

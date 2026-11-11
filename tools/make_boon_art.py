@@ -1,4 +1,5 @@
-"""Arte de las bendiciones del Modo Desafío (R-2): pasa las pinturas de Qwen-Image 2.1 de art_src/bendiciones/ al juego.
+"""Arte de las bendiciones (R-2) y de las recompensas de sala (R-3) del Modo Desafío: pasa las pinturas de Qwen-Image
+2.1 de art_src/bendiciones/ y art_src/premios/ al juego (los de premios, todos como ícono: sprites/ui/premios/).
   - banner_<dador>.png (1536x640) -> sprites/ui/bendiciones/<dador>.png (1280 de ancho);
   - <bendición>.png (768x768, un emblema sobre negro) -> sprites/ui/bendiciones/iconos/<bendición>.png: recortado al
     dibujo, con el negro vuelto transparente, a 96x96.
@@ -49,7 +50,16 @@ def main(root):
         else:
             icon(os.path.join(src, f), os.path.join(dst, "iconos", name + ".png"))
         n += 1
-    print("%d imágenes" % n)
+    # Recompensas de sala (R-3): art_src/premios/<tipo>.png -> sprites/ui/premios/<tipo>.png (y el arco, puerta.png).
+    src = os.path.join(root, "art_src/premios")
+    dst = os.path.join(root, "sprites/ui/premios")
+    if os.path.isdir(src):
+        os.makedirs(dst, exist_ok=True)
+        for f in sorted(os.listdir(src)):
+            if f.endswith(".png"):
+                icon(os.path.join(src, f), os.path.join(dst, f))
+                n += 1
+    print("%d imagenes" % n)
 
 
 if __name__ == "__main__":

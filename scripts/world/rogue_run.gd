@@ -61,6 +61,9 @@ const MEW_REACH := 34.0
 ## Fichas de ataque (R-1): cuánto dura una y cuánto descansa el que la tuvo antes de pedir otra (así rotan).
 const TOKEN_HOLD := 2.6
 const TOKEN_REST := 1.4
+## Puertas de recompensa (R-3): a cuántas columnas del camino y en qué fila (desde arriba) aparecen.
+const REWARD_DOOR_SIDE := 7
+const REWARD_DOOR_ROW := 13
 const MEW_STORY: Array[String] = [
 	"(Una voz suave te habla adentro de la cabeza.)",
 	"Llegaste. Te estaba esperando.",
@@ -107,6 +110,12 @@ var _clock := 0.0
 ## Las bendiciones de la partida (R-2) y la pantalla de elección abierta (o null).
 var boons: RogueBoons
 var boon_screen: BoonScreen
+## Las recompensas de sala (R-3): el director, la pantalla de tarjetas abierta (o null), las puertas con ícono que hay
+## ahora y qué da cada sala (índice de sala -> tipo; la primera sale de `rewards.first`).
+var rewards: RogueRewards
+var reward_screen: RewardScreen
+var reward_doors: Array[RogueRewardDoor] = []
+var room_rewards: Array[String] = []
 var _boon_row: HBoxContainer
 var hub: Zone
 var hub_data: ArenaData
@@ -235,6 +244,9 @@ func _ready() -> void:
 	boons.name = "Boons"
 	add_child(boons)
 	boons.changed.connect(_refresh_boons)
+	rewards = RogueRewards.new()
+	rewards.name = "Rewards"
+	add_child(rewards)
 	_build_label()
 	world.arena.set_black(true)
 	if GameState.rogue.get("hub", false):
@@ -496,7 +508,13 @@ func _play_room(index: int) -> void:
 		_refresh_label()
 		await get_tree().create_timer(WAVE_DELAY).timeout
 	rooms_cleared += 1
-	await _reward()
+	await _reward(index)
+	if not last and not _player_down():
+		await _choose_next(index)
+	if _player_down():
+		result = "lose"
+		phase = "fin"
+		return
 	_room_cleared(last)
 	phase = "puerta"
 	_refresh_label()
@@ -513,20 +531,92 @@ func _play_room(index: int) -> void:
 		_limit_camera(false)  # (su arena está en otro lado: con el límite de las salas la cámara se quedaba en el bosque)
 
 
-## La recompensa de la sala (R-2): un legendario te ofrece 3 bendiciones y elegís una (el juego queda en pausa).
-func _reward() -> void:
+## La recompensa de la sala (R-3): la del tipo que tocaba (la primera, fija; las demás, la que elegiste en la puerta).
+func _reward(index: int) -> void:
 	if _player_down():
 		return
 	phase = "premio"
 	_refresh_label()
-	var o: Dictionary = boons.offer()
-	if o["options"].is_empty():
-		return
-	boon_screen = BoonScreen.open(self, boons, o)
-	var i: int = await boon_screen.chosen
-	boon_screen = null
-	boons.take(o["options"][i]["id"], o["options"][i]["rarity"])
+	GameState.money += int(floor_data.get("rewards", {}).get("room_money", 0))
+	await rewards.grant(reward_of(index))
 	phase = ""
+	_refresh_label()
+
+
+## El tipo de recompensa de esa sala.
+func reward_of(index: int) -> String:
+	if index < room_rewards.size() and room_rewards[index] != "":
+		return room_rewards[index]
+	return str(floor_data.get("rewards", {}).get("first", "bendicion"))
+
+
+## Sala limpia y recompensa cobrada: aparecen dos puertas con ícono frente al paso; pisar una con tu Pokémon elige qué
+## va a dar la sala siguiente (R-3). `GameState.rogue["rewards"]` (tests) fija la primera opción de cada sala.
+func _choose_next(index: int) -> void:
+	var opts: Array[String] = rewards.options()
+	var forced: Array = GameState.rogue.get("rewards", [])
+	if index + 1 < forced.size() and RogueRewards.TYPES.has(forced[index + 1]):
+		opts.erase(forced[index + 1])
+		opts.push_front(forced[index + 1])
+		opts = opts.slice(0, 1 if GameState.rogue.get("single_door", false) else 2)  # (el bot del test: una sola puerta)
+	if opts.is_empty():
+		return
+	var cells := door_cells(room, opts.size())
+	for i in opts.size():
+		var d := RogueRewardDoor.new()
+		d.reward = opts[i]
+		d.text = RogueRewards.type_name(opts[i])
+		d.icon_path = RogueRewards.icon_of(opts[i])
+		d.position = _cell_pos(cells[i])
+		world.entities.add_child(d)
+		reward_doors.append(d)
+		Fx.burst(world.entities, d.global_position + Vector2(0, -10), Color(1.4, 0.9, 1.6), 14, 50.0)
+	phase = "eleccion"
+	_refresh_label()
+	Events.message_requested.emit("Elegí una puerta: es lo que te va a dar la próxima sala.")
+	var picked := ""
+	while picked == "":
+		if _player_down():
+			break
+		var c: Creature = world.companion
+		for d in reward_doors:
+			if is_instance_valid(d) and c.global_position.distance_to(d.global_position) <= DOOR_RADIUS:
+				picked = d.reward
+		await get_tree().physics_frame
+	for d in reward_doors:
+		if is_instance_valid(d):
+			if d.reward == picked:
+				Fx.burst(world.entities, d.global_position + Vector2(0, -10), Color(1.6, 1.3, 0.6), 18, 60.0)
+			d.queue_free()
+	reward_doors.clear()
+	if picked != "":
+		while room_rewards.size() <= index + 1:
+			room_rewards.append("")
+		room_rewards[index + 1] = picked
+		Events.message_requested.emit("Próxima sala: %s." % RogueRewards.type_name(picked))
+	phase = ""
+
+
+## Dónde van las puertas de recompensa: a los costados del camino, unas filas adentro del paso de arriba, en piso libre.
+static func door_cells(zone: Zone, count: int) -> Array[Vector2i]:
+	var xs := _opening(zone, 0)
+	var cx: int = xs[xs.size() / 2] if not xs.is_empty() else zone.ground.get_used_rect().end.x / 2
+	var out: Array[Vector2i] = []
+	for i in count:
+		var side := -1 if i % 2 == 0 else 1
+		var want := Vector2i(cx + side * REWARD_DOOR_SIDE, REWARD_DOOR_ROW)
+		var best := want
+		var best_d := 99999
+		for dy in range(-4, 7):
+			for dx in range(-5, 6):
+				var cell := want + Vector2i(dx, dy)
+				var dist := absi(dx) + absi(dy)
+				if dist < best_d and MapRules.cell_physics(zone, cell) == -1 and not out.has(cell) \
+						and (out.is_empty() or absi(cell.x - out[0].x) >= 5):
+					best_d = dist
+					best = cell
+		out.append(best)
+	return out
 
 
 ## Sala limpia: recupera algo de vida y se abre el portón de arriba (en la última, la puerta al jefe).
@@ -563,6 +653,8 @@ func entered(index: int) -> bool:
 
 ## Hacia dónde hay que ir con la sala limpia: el paso de arriba (o la puerta del jefe en la última). INF si no toca.
 func exit_point() -> Vector2:
+	if phase == "eleccion" and not reward_doors.is_empty() and is_instance_valid(reward_doors[0]):
+		return reward_doors[0].global_position  # (los bots: la primera puerta)
 	if phase != "puerta" or not is_instance_valid(room):
 		return Vector2.INF
 	if is_instance_valid(door):
@@ -701,6 +793,10 @@ func _unload_chain() -> void:
 	if is_instance_valid(door):
 		door.queue_free()
 	door = null
+	for d in reward_doors:
+		if is_instance_valid(d):
+			d.queue_free()
+	reward_doors.clear()
 	world.arena.release_room()
 	_limit_camera(false)
 	for zone in chain:
@@ -727,7 +823,7 @@ func _gate(zone: Zone, row: int, shown: bool) -> RogueGate:
 
 
 ## Columnas libres de una fila de la sala (el paso, en las filas de arriba y de abajo).
-func _opening(zone: Zone, row: int) -> Array[int]:
+static func _opening(zone: Zone, row: int) -> Array[int]:
 	var out: Array[int] = []
 	var used := zone.ground.get_used_rect()
 	var mid := used.end.x / 2
@@ -940,12 +1036,15 @@ func _refresh_label() -> void:
 	if _label == null or room_index < 0:
 		return
 	var rooms: Array = floor_data["rooms"]
-	var text := "%s  ·  Sala %d/%d  ·  Bolas: %d" % [rooms[room_index]["biome_name"], room_index + 1, rooms.size(), GameState.item_count("poke_ball")]
+	var text := "%s  ·  Sala %d/%d  ·  Bolas: %d  ·  $%d" % [rooms[room_index]["biome_name"], room_index + 1, rooms.size(),
+		GameState.item_count("poke_ball"), GameState.money]
 	match phase:
 		"oleada":
 			text += "  ·  Oleada %d/%d  ·  Quedan %d" % [wave_index + 1, rooms[room_index]["waves"].size(), foes.size()]
 		"premio":
 			text += "  ·  ¡Sala limpia!"
+		"eleccion":
+			text += "  ·  Elegí una puerta: la recompensa de la próxima sala"
 		"puerta":
 			text += "  ·  ¡Sala limpia! Seguí por el camino de arriba"
 		"jefe":

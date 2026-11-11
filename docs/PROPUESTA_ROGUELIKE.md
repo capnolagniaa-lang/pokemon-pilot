@@ -342,6 +342,14 @@ frases de los legendarios tienen personalidad (Zapdos soberbio, Articuno sereno,
 jugarlo**: qué bendiciones se sienten y cuáles no, y si conviene que el esquive con bendición sea tan fuerte. Las dobles
 (Zapdos + Articuno...) y más dadores (Mew, Kyogre...) quedan para R-5.
 
+**Hecho: R-3** (2026-11-11): recompensas de sala (Bendición, Caramelo Raro, MT, Más PS, Dinero, Tienda, Centro) y dos
+puertas con ícono para elegir la de la sala siguiente. Decidido sin preguntar: como las salas van encadenadas (un solo
+paso arriba), **las puertas son dos arcos que aparecen frente al paso** y eligen la recompensa, no el camino; **Tienda y
+Centro son recompensas**, no salas aparte; la MT no ofrece ataques de más de 100 de potencia; el ataque reemplazado se
+pierde por esa partida; la evolución y la Piedra Eterna como recompensa (decisión 5) quedan para más adelante, junto con
+los objetos equipados y el pacto de Missingno. **Frenado acá** (el usuario pidió seguir hasta R-3): hay que jugar R-1,
+R-2 y R-3 juntas antes de R-4 (mejoras permanentes en el castillo de Mew, Revivir, qué abre la escalera).
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y

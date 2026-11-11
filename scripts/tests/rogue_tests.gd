@@ -22,7 +22,7 @@ class RogueBot extends BotCombatInput:
 		var run: RogueRun = world.rogue
 		var goal: Vector2 = run.exit_point()
 		if world.combat.enemies.is_empty() and goal != Vector2.INF:
-			return _walk(actor, run.room, goal, not is_instance_valid(run.door))
+			return _walk(actor, run.room, goal, run.phase == "puerta" and not is_instance_valid(run.door))
 		if actor.health.ratio() < 0.45 and GameState.item_count("pocion") > 0:
 			world.items.use_quick_item()
 		return super(actor)
@@ -40,6 +40,19 @@ class RogueBot extends BotCombatInput:
 				if MapRules.cell_physics(zone, cell) != -1:
 					_grid.set_point_solid(cell, true)
 		var from: Vector2i = zone.ground.local_to_map(zone.to_local(actor.global_position))
+		if _grid.is_in_boundsv(from) and _grid.is_point_solid(from):
+			# (un empujón lo dejó pegado a un obstáculo: sale hacia la celda libre más cercana)
+			var best := from
+			var best_d := 999.0
+			for dy in range(-2, 3):
+				for dx in range(-2, 3):
+					var cell := from + Vector2i(dx, dy)
+					var d: float = zone.to_global(zone.ground.map_to_local(cell)).distance_to(actor.global_position)
+					if _grid.is_in_boundsv(cell) and not _grid.is_point_solid(cell) and d < best_d:
+						best_d = d
+						best = cell
+			if best != from:
+				return (zone.to_global(zone.ground.map_to_local(best)) - actor.global_position).normalized()
 		var to: Vector2i = zone.ground.local_to_map(zone.to_local(goal))
 		if through and (from.y <= to.y + 1 or not _grid.is_in_boundsv(from)):
 			return Vector2.UP
@@ -164,6 +177,8 @@ func run() -> void:
 	if run.select_layer != null:
 		run.select_layer.get_child(0).start(DB.species["squirtle"])
 	GameState.rogue["biomes"] = BOT_BIOMES
+	GameState.rogue["rewards"] = BOT_REWARDS
+	GameState.rogue["single_door"] = true
 	await get_tree().process_frame
 	var mine: CreatureInstance = GameState.active()
 	r["Arrancás con un solo Pokémon de Nv. %d, %d Pociones y 2 Pokébolas" % [f["level"], f["potions"]]] = GameState.party.size() == 1 \
@@ -287,6 +302,8 @@ func run() -> void:
 		await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("title_screen.tscn"), 30.0)
 		RogueRun.begin(DB.species["squirtle"])
 		GameState.rogue["biomes"] = BOT_BIOMES
+		GameState.rogue["rewards"] = BOT_REWARDS
+		GameState.rogue["single_door"] = true
 		mine = GameState.active()
 		get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 		await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
@@ -316,8 +333,9 @@ func run() -> void:
 	var fired := 0
 	for id in run.boons.triggers:
 		fired += int(run.boons.triggers[id])
-	r["Cada sala limpia dio a elegir una bendición (%s) y pelearon con ellas (%d veces se dispararon)" % [
-		", ".join(run.boons.owned().map(func(e): return e["id"])), fired]] = run.boons.owned().size() == rooms.size() and fired > 0
+	r["Las salas de bendición dieron a elegir una (%s) y pelearon con ellas (%d veces se dispararon)" % [
+		", ".join(run.boons.owned().map(func(e): return e["id"])), fired]] = run.boons.owned().size() == 3 and fired >= 0
+	r["Las recompensas de cada sala fueron las de la puerta elegida (%s)" % ", ".join(range(rooms.size()).map(func(i): return run.reward_of(i)))] = 		range(rooms.size()).all(func(i): return run.reward_of(i) == BOT_REWARDS[i]) and GameState.money >= 15 * rooms.size()
 	r["Los salvajes dan EXP (Nv. %d → %d)" % [level0, mine.level]] = mine.level > level0
 
 	# --- El jefe: Brock, en su gimnasio, con Onix de jefe ---
@@ -393,6 +411,8 @@ func run() -> void:
 
 
 ## Los biomas de la partida del bot (fijos, para que el test sea parejo): mezcla salas de biomas distintos en la cadena.
+## Y las recompensas (la primera puerta de cada sala): 3 bendiciones, un Centro y Más PS.
+const BOT_REWARDS := ["bendicion", "bendicion", "centro", "proteina", "bendicion"]
 const BOT_BIOMES := ["bosque", "volcan", "cueva", "volcan", "cueva"]
 
 
@@ -502,6 +522,10 @@ func _check_arenas(f: Dictionary, r: Dictionary) -> void:
 				why = "la entrada o la puerta del jefe caen en algo sólido"
 			elif spawn < 60:
 				why = "poco lugar para los enemigos (%d)" % spawn
+			else:  # las puertas de recompensa (R-3): en piso libre y con camino desde la entrada
+				for cell in RogueRun.door_cells(zone, 2):
+					if MapRules.cell_physics(zone, cell) != -1 or grid.get_id_path(Vector2i(mid, used.end.y - 1), cell).is_empty():
+						why = "una puerta de recompensa cae en %s, sin camino" % cell
 			if why != "":
 				bad.append("%s: %s" % [id, why])
 			zone.queue_free()
@@ -551,6 +575,9 @@ func _dialogs() -> void:
 			return
 		if w.get("rogue") != null and is_instance_valid(w.rogue.boon_screen):
 			w.rogue.boon_screen.choose(0)  # (la bendición de la sala: la primera)
+			continue
+		if w.get("rogue") != null and is_instance_valid(w.rogue.reward_screen):
+			w.rogue.reward_screen.choose(w.rogue.reward_screen.last_enabled())  # (Tienda: "Salir"; lo demás, la última)
 			continue
 		var d: DialogBox = w.story.dialog
 		if d.active:

@@ -244,6 +244,25 @@ func run_tests() -> void:
 		roundi(up * 100), roundi(second * 100), roundi(next_room * 100)]] = is_equal_approx(up, 0.5) and is_equal_approx(second, 0.2) and is_equal_approx(next_room, 0.5)
 	me.instance.hp = me.instance.max_hp()
 
+	# --- Con un golpe de verdad (no avisado a mano): tu Pokémon le pega a un muñeco ---
+	_only("aliento_polar")
+	_reset()
+	boons.triggers.clear()
+	me.process_mode = Node.PROCESS_MODE_INHERIT
+	a.process_mode = Node.PROCESS_MODE_INHERIT  # (apagado no recibe golpes)
+	a.global_position = me.global_position + Vector2(18, 0)
+	var real_t := 0.0
+	while real_t < 6.0 and not boons.triggers.has("aliento_polar"):
+		me.use_slot(0, Vector2.RIGHT, a.global_position)
+		a.global_position = me.global_position + Vector2(18, 0)
+		me.health.heal(9999.0)
+		await get_tree().physics_frame
+		real_t += get_physics_process_delta_time()
+	a.process_mode = Node.PROCESS_MODE_DISABLED
+	r["Un golpe de verdad de tu Pokémon dispara la bendición (Aliento Polar, a los %.1f s; el muñeco quedó en %d %%)" % [real_t,
+		roundi(100.0 * a.instance.hp / a.instance.max_hp())]] = boons.triggers.has("aliento_polar") and a.instance.hp < a.instance.max_hp()
+	me.process_mode = Node.PROCESS_MODE_DISABLED
+
 	# --- Tener, subir de nivel, la pantalla y los íconos ---
 	GameState.rogue["boons"] = []
 	boons.take("sobrecarga", "comun")
