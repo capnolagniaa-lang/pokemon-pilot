@@ -75,7 +75,7 @@ static func make(biome: String, id: String, def: Dictionary, flipped := false) -
 		flat.z_index = -6 if kind == "zona" else -5  # sobre la pintura del piso (-7), debajo de personas y Pokémon
 		flat.add_child(spr)  # (centrado en su punto)
 		if kind == "zona":
-			spr.material = water_material()  # el agua de la poza se mueve
+			spr.material = water_material(biome)  # el agua de la poza se mueve
 		flat.set_meta("piece", id)
 		return flat
 	var body := StaticBody2D.new()
@@ -101,10 +101,26 @@ const WATER_SHADER := "res://shaders/pixel_water.gdshader"
 const WATER_STRENGTH := 1.0
 
 
-static func water_material() -> ShaderMaterial:
+## Cómo se mueve el líquido de cada bioma: [fuerza, pasos por segundo, brillo, ¿lava?]. Sin fila = quieto (el hielo).
+const LIQUIDS := {
+	"costa": [1.0, 7.0, 0.14, false],
+	"bosque": [0.7, 6.0, 0.10, false],
+	"cueva": [0.6, 5.0, 0.12, false],
+	"volcan": [0.9, 4.0, 0.22, true],
+}
+
+
+## El material del líquido de ese bioma, o null si ahí no se mueve nada.
+static func water_material(biome: String = "costa") -> ShaderMaterial:
+	if not LIQUIDS.has(biome):
+		return null
+	var k: Array = LIQUIDS[biome]
 	var m := ShaderMaterial.new()
 	m.shader = load(WATER_SHADER)
-	m.set_shader_parameter("strength", WATER_STRENGTH)
+	m.set_shader_parameter("strength", float(k[0]) * WATER_STRENGTH)
+	m.set_shader_parameter("fps", float(k[1]))
+	m.set_shader_parameter("glow", float(k[2]))
+	m.set_shader_parameter("lava", bool(k[3]))
 	return m
 
 

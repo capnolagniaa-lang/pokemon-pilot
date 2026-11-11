@@ -51,7 +51,7 @@
     },
     "volcan": {
       "name": "Volcán",
-      "rooms": ["sala_volcan_1", "sala_volcan_2", "sala_volcan_3", "sala_volcan_4", "sala_volcan_5", "sala_volcan_6"],
+      "rooms": ["sala_volcan_p1", "sala_volcan_p2", "sala_volcan_p3"],
       "common": ["vulpix", "growlithe", "ponyta", "slugma", "numel", "houndour", "magby", "geodude", "torkoal", "cyndaquil", "torchic"],
       "strong": ["magmar", "houndoom", "camerupt", "magcargo", "quilava", "combusken", "charmeleon"]
     },

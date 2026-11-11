@@ -8,6 +8,8 @@ shader_type canvas_item;
 uniform float strength : hint_range(0.0, 2.0) = 1.0;
 uniform float fps : hint_range(1.0, 30.0) = 7.0;
 uniform float glow : hint_range(0.0, 1.0) = 0.14;
+// true = el líquido es lava (naranja), no agua: mismos movimientos, sin espuma.
+uniform bool lava = false;
 
 varying vec4 tint;
 
@@ -16,6 +18,9 @@ void vertex() {
 }
 
 bool is_water(vec4 c) {
+	if (lava) {
+		return c.a > 0.5 && c.r > 0.7 && c.g > 0.18 && c.g < c.r * 0.82 && c.b < c.g * 0.75;
+	}
 	return c.a > 0.5 && c.b > c.r * 1.25 && c.g > c.r * 1.05 && c.b > 0.25;
 }
 
@@ -49,7 +54,7 @@ void fragment() {
 			if (wave > 0.965 && hash(floor(cell / vec2(3.0, 1.0)) + floor(t * 1.5)) > 0.62) {
 				col.rgb += vec3(glow) * strength;
 			}
-		} else if (is_foam(base)) {
+		} else if (!lava && is_foam(base)) {
 			// Espuma: la que toca el agua se abre y se cierra de a manchitas.
 			vec4 a = texture(TEXTURE, (cell + vec2(3.0, 0.0) + 0.5) * px);
 			vec4 b = texture(TEXTURE, (cell + vec2(-3.0, 0.0) + 0.5) * px);

@@ -15,7 +15,7 @@ art_src/arenas/<marco>.png) y, con la semilla de la sala:
   4. valida que todo el piso quede conectado de la entrada a la salida (si no, prueba otra semilla).
 Escribe data/rogue/salas/<id>.json (lo lee RoomPieces) y una vista previa en --preview <carpeta>.
 
-Uso: python -I -B tools/build_piece_rooms.py . [--preview <carpeta>] [<id> ...]
+Uso: python -I -B tools/build_piece_rooms.py . [--preview <carpeta>] <bioma o id de sala> ...   (datos: tools/piece_room_data.py)
 Después: paint_arenas.py . <id> → godot --import → build_arenas.gd -- --only <id>
 """
 import json
@@ -33,55 +33,40 @@ import paint_arenas  # noqa: E402
 T = 16
 W, H = 64, 48
 
-# Escena -> ancla + miembros [pieza, dx, dy, azar px, opcional]. En las de "orilla", +x es hacia el agua.
-SCENES = {
-    "naufragio": {"anchor": "orilla", "members": [
-        ["naufragio", 0, 0, 0], ["ancla", 78, 34, 6], ["mastil", -96, 30, 8], ["barril", 64, -34, 5], ["barril", 84, -22, 5],
-        ["cajas", -84, -30, 6], ["tablas", 30, 52, 8], ["tablas", -46, 58, 8], ["madera", 108, 52, 8], ["barril", -116, 4, 6, True]]},
-    "campamento": {"anchor": "orilla", "members": [
-        ["bote", 0, 0, 0], ["remo", 14, 26, 4], ["red_pesca", -78, -34, 6], ["fogata", -50, 30, 5], ["canasta", -92, 16, 5],
-        ["cajas", -124, -16, 6], ["madera", -30, 44, 5], ["tronco", -70, 62, 8, True]]},
-    "palmeral": {"anchor": "borde", "members": [
-        ["palmera", 0, 0, 5], ["palmera_inclinada", 44, 22, 8], ["palmera_baja", -38, 26, 8], ["palmera", 86, -4, 8, True],
-        ["cocos", 16, 34, 6], ["cocos", -22, 44, 6, True], ["pasto_duna", 30, 8, 8], ["pasto_duna", -14, 14, 8],
-        ["pasto_duna", 62, 30, 8], ["pasto_duna", -50, 6, 8]]},
-    "poza_a": {"anchor": "arena", "members": [
-        ["poza_a", 0, 0, 0], ["roca_percebes", -70, -8, 6], ["roca_chica", 58, -30, 6], ["coral", 44, 40, 6], ["estrella", -30, 40, 5],
-        ["concha", 62, 12, 5], ["cangrejo", -52, 28, 6], ["piedritas", 20, -44, 6]]},
-    "poza_b": {"anchor": "arena", "members": [
-        ["poza_b", 0, 0, 0], ["roca_percebes", 74, -10, 6], ["roca_chica", -64, 26, 6], ["coral", -50, -34, 6], ["estrella", 40, 44, 5],
-        ["concha", -20, 48, 5], ["cangrejo", 60, 34, 6], ["piedritas", -70, -6, 6]]},
-    "laguna": {"anchor": "arena", "members": [
-        ["laguna", 0, 0, 0], ["roca_chica", 76, 16, 6], ["coral", -66, 22, 6], ["roca_chica", -58, -34, 6], ["estrella", 30, 52, 5],
-        ["concha", -30, 54, 5], ["piedritas", 64, -36, 6]]},
-    "rocas": {"anchor": "borde", "members": [
-        ["roca_grande", 0, 0, 0], ["roca_percebes", 54, 26, 6], ["roca_chica", -44, 22, 6], ["roca_chica", 22, 46, 6, True],
-        ["piedritas", -20, 44, 6], ["piedritas", 80, 46, 6], ["algas", 40, 52, 6]]},
-    "rocas_orilla": {"anchor": "orilla", "members": [
-        ["roca_percebes", 0, 0, 0], ["roca_chica", 48, 20, 6], ["roca_chica", -40, 18, 6], ["coral", 30, -24, 6, True],
-        ["piedritas", 10, 34, 6], ["algas", 60, 40, 6]]},
-    "charco": {"anchor": "arena", "members": [
-        ["charco", 0, 0, 0], ["roca_chica", 40, -14, 5], ["concha", -36, 20, 5], ["estrella", 26, 30, 5]]},
-}
+from piece_room_data import BIOMES  # noqa: E402
 
-# Sala -> (nombre, marco, semilla, escenas en orden de importancia: la primera es la protagonista)
-ROOMS = {
-    "sala_costa_p1": ("La caleta del pescador", "marco_costa_mar_der", 11,
-                      ["campamento", "palmeral", "palmeral", "rocas_orilla", "rocas", "charco"]),
-    "sala_costa_p2": ("El naufragio", "marco_costa_mar_izq", 23,
-                      ["naufragio", "rocas_orilla", "palmeral", "rocas", "charco", "palmeral"]),
-    "sala_costa_p3": ("Las pozas de marea", "marco_costa_ensenada", 37,
-                      ["poza_a", "poza_b", "laguna", "rocas_orilla", "palmeral", "rocas"]),
-}
-BIOME = "costa"
-# El plano del marco (mismo criterio que la entrada de la sala en pinturas.json).
-FRAME_COLOR = {"hue": [30, 65], "min_s": 0.2, "min_v": 120, "part": 0.6, "water": True, "foam": True}
+# Todas las salas: id -> (nombre, marco, semilla, escenas, bioma)
+ROOMS = {rid: tuple(room) + (biome,) for biome, d in BIOMES.items() for rid, room in d["rooms"].items()}
 OPEN = [(30, 0, 4, 10), (30, 40, 4, 8)]
 
 
-def frame_plan(root, frame):
+def lava_cells(img):
+    """Las celdas de lava de un marco de volcán (naranja muy saturado y brillante): no se pisan, pero son "la orilla"."""
+    import colorsys
+    small = img.convert("RGB").resize((W * 4, H * 4), Image.BOX)
+    px = small.load()
+    out = set()
+    for y in range(H):
+        for x in range(W):
+            n = 0
+            for j in range(4):
+                for i in range(4):
+                    r, g, b = px[x * 4 + i, y * 4 + j]
+                    hh, ss, vv = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
+                    if (hh * 360.0 < 42.0 or hh * 360.0 > 345.0) and ss > 0.78 and vv > 0.6:
+                        n += 1
+            if n >= 8:
+                out.add((x, y))
+    return out
+
+
+def frame_plan(root, frame, cfg):
+    """(piso, líquido) del marco: el líquido es el agua (se pisa la de la orilla) o, en el volcán, la lava (no se pisa)."""
     img = Image.open(os.path.join(root, "art_src/arenas/%s.png" % frame))
-    floor, water = paint_arenas.color_plan(img, W, H, FRAME_COLOR)
+    floor, water = paint_arenas.color_plan(img, W, H, cfg["color"])
+    if cfg.get("lava"):
+        water = lava_cells(img)
+        floor -= water
     rim = {(x, y) for x in range(W) for y in range(H) if x < 1 or y < 1 or x >= W - 1 or y >= H - 1}
     floor -= rim
     water -= rim
@@ -135,16 +120,20 @@ def connected(floor, blocked):
 
 
 def build(root, rid, attempt=0):
-    name, frame, seed, scenes = ROOMS[rid]
+    name, frame, seed, scenes, biome = ROOMS[rid]
+    cfg = BIOMES[biome]
+    SCENES = cfg["scenes"]
     rng = random.Random(seed * 1000 + attempt)
-    catalog = json.load(open(os.path.join(root, "data/rogue/piezas/%s.json" % BIOME), encoding="utf8"))
-    floor, sea = frame_plan(root, frame)
+    catalog = json.load(open(os.path.join(root, "data/rogue/piezas/%s.json" % biome), encoding="utf8"))
+    floor, sea = frame_plan(root, frame, cfg)
     walls = {(x, y) for x in range(W) for y in range(H)} - floor - sea
     d_sea = distance(list(sea), floor | sea)
     d_wall = distance(list(walls), floor | walls)
     # Donde no va nada sólido: los pasos de entrada y salida (con margen), el frente de las puertas de recompensa y el centro.
     keep = {(x, y) for x in range(26, 38) for y in list(range(0, 14)) + list(range(36, H))}
     keep |= {(x, y) for x in range(22, 42) for y in range(11, 16)}
+    if cfg.get("trail"):  # el sendero pintado del marco, de la entrada a la salida
+        keep |= {(x, y) for x in range(29, 35) for y in range(H)}
     centre = {(x, y) for x in range(W) for y in range(H) if ((x - 32) / 10.0) ** 2 + ((y - 25) / 6.5) ** 2 <= 1.0}
     sea_side = 1 if sum(x for x, _ in sea) / max(1, len(sea)) > W / 2 else -1
     solid, wet, used = set(), set(), set()  # celdas sólidas, de agua de piezas y "ocupadas" (con margen entre escenas)
@@ -178,6 +167,8 @@ def build(root, rid, attempt=0):
             for k, m in enumerate(scene["members"]):
                 pid, dx, dy, jit = m[0], m[1], m[2], m[3]
                 optional = k > 0  # (solo la primera, la protagonista de la escena, es obligatoria)
+                if pid not in catalog:
+                    continue
                 d = catalog[pid]
                 x = round(ax + (-dx if mirror else dx) + rng.uniform(-jit, jit))
                 y = round(ay + dy + rng.uniform(-jit, jit))
@@ -236,19 +227,22 @@ def build(root, rid, attempt=0):
             pool = [(w2, c2) for w2, c2 in pool if abs(c2[0] - c[0]) + abs(c2[1] - c[1]) > 3]
 
     calm = lambda c: 0.15 if c in centre else 1.0
-    scatter("linea_marea", 7, lambda c: 1.0 if d_sea.get(c, 99) == 2 else 0.0)
-    scatter("concha", 12, lambda c: calm(c) * (3.0 if d_sea.get(c, 99) <= 4 else 0.4))
-    scatter("estrella", 6, lambda c: calm(c) * (3.0 if d_sea.get(c, 99) <= 3 else 0.2))
-    scatter("algas", 7, lambda c: calm(c) * (3.0 if d_sea.get(c, 99) <= 3 else 0.3))
-    scatter("cangrejo", 4, lambda c: calm(c) * (2.0 if d_sea.get(c, 99) <= 5 else 0.3))
-    scatter("pasto_duna", 14, lambda c: 3.0 if d_wall.get(c, 99) <= 2 and d_sea.get(c, 99) > 5 and c not in keep else 0.0)
-    scatter("piedritas", 8, lambda c: calm(c) * (2.0 if d_wall.get(c, 99) <= 3 else 0.3))
-    scatter("madera", 4, lambda c: calm(c) * (2.0 if d_sea.get(c, 99) <= 4 else 0.2))
-    return {"name": name, "frame": frame, "seed": seed * 1000 + attempt, "scenes": [s for s in scenes if s not in missing],
+    rules = {
+        "linea": lambda c: 1.0 if d_sea.get(c, 99) == 2 else 0.0,
+        "liquido": lambda c: calm(c) * (3.0 if d_sea.get(c, 99) <= 4 else 0.3),
+        "pared": lambda c: 3.0 if d_wall.get(c, 99) <= 2 and d_sea.get(c, 99) > 5 and c not in keep else 0.0,
+        "roca": lambda c: calm(c) * (2.0 if d_wall.get(c, 99) <= 3 else 0.3),
+        "suelto": lambda c: calm(c),
+    }
+    for pid, count, rule in cfg.get("decor", []):
+        if pid in catalog:
+            scatter(pid, count, rules[rule])
+    return {"name": name, "frame": frame, "biome": biome, "seed": seed * 1000 + attempt, "scenes": [s for s in scenes if s not in missing],
             "missing": missing, "pieces": pieces}
 
 
 def preview(root, rid, room, out_dir):
+    BIOME = room["biome"]
     catalog = json.load(open(os.path.join(root, "data/rogue/piezas/%s.json" % BIOME), encoding="utf8"))
     bg = Image.open(os.path.join(root, "art_src/arenas/%s.png" % room["frame"])).convert("RGB").resize((W * T, H * T), Image.BOX).convert("RGBA")
     order = sorted(room["pieces"], key=lambda p: ({"zona": 0, "decorado": 1, "solida": 2}[catalog[p[0]]["kind"]], p[2]))
@@ -268,9 +262,36 @@ def preview(root, rid, room, out_dir):
     bg.convert("RGB").save(os.path.join(out_dir, rid + ".png"))
 
 
+def ensure_entry(root, rid, room):
+    """La entrada de la sala en data/arenas/pinturas.json (la crea si falta, antes de la del castillo; si ya está, no la
+    toca): su marco como `src`, pixel art 1 a 1 y el `auto_color` de su bioma."""
+    path = os.path.join(root, "data/arenas/pinturas.json")
+    raw = open(path, encoding="utf8", newline="").read()
+    if '"%s": {' % rid in raw:
+        return
+    cfg = BIOMES[room["biome"]]
+    meta_path = os.path.join(root, "art_src/arenas/%s.json" % room["frame"])
+    meta = json.load(open(meta_path, encoding="utf8")) if os.path.exists(meta_path) else {}
+    entry = {
+        "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+        "name": room["name"], "src": room["frame"], "pixel": [W * T, H * T, 128], "size": [W, H], "auto": None,
+        "auto_color": cfg["color"], "border": 1, "open": [list(r) for r in OPEN], "solid": [], "floor": 1, "wall": 35008,
+        "rocks": [], "cells": {"foe_trainer": [32, 5], "foe_mon": [32, 18], "player_mon": [32, 40], "player": [32, 43]},
+        "field": [10, 10, 44, 30], "prompt": meta.get("prompt", ""), "seed": meta.get("seed", 0), "px": [2048, 1536]}
+    if cfg.get("deep"):
+        entry["deep"] = cfg["deep"]
+    body = json.dumps({rid: entry}, ensure_ascii=False, indent=2)[1:-1].rstrip("\n").lstrip("\n")
+    i = raw.index('  "castillo_mew": {')
+    raw = raw[:i] + body + ",\n" + raw[i:]
+    json.loads(raw)
+    open(path, "w", encoding="utf8", newline="").write(raw)
+
+
 def main(root, args):
     out_dir = args[args.index("--preview") + 1] if "--preview" in args else ""
-    only = [a for a in args if a in ROOMS]
+    only = [a for a in args if a in ROOMS] + [rid for rid, r in ROOMS.items() if r[4] in args]
+    if not only:
+        sys.exit("decí qué salas o qué bioma armar (p. ej. volcan, o sala_costa_p1): no se rearma todo sin pedirlo")
     for rid in ROOMS:
         if only and rid not in only:
             continue
@@ -285,10 +306,11 @@ def main(root, args):
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w", encoding="utf8", newline="\n") as f:
             f.write('{\n  "biome": "%s",\n  "name": %s,\n  "frame": "%s",\n  "seed": %d,\n  "scenes": %s,\n  "pieces": [\n'
-                    % (BIOME, json.dumps(room["name"], ensure_ascii=False), room["frame"], room["seed"], json.dumps(room["scenes"]))
+                    % (room["biome"], json.dumps(room["name"], ensure_ascii=False), room["frame"], room["seed"], json.dumps(room["scenes"]))
                     + ",\n".join("    " + json.dumps(p) for p in room["pieces"]) + "\n  ]\n}\n")
         print("%-16s %-24s %d piezas, escenas: %s%s" % (rid, room["name"], len(room["pieces"]), ", ".join(room["scenes"]),
               "  (faltó: %s)" % ", ".join(room["missing"]) if room["missing"] else ""))
+        ensure_entry(root, rid, room)
         if out_dir:
             preview(root, rid, room, out_dir)
 

@@ -1,0 +1,20 @@
+{
+  "roca_chica": {"kind": "solida", "base": [23, 10], "sink": 2, "size": [27, 26], "foot": -1},
+  "roca": {"kind": "solida", "base": [58, 24], "sink": 4, "size": [68, 64], "foot": 0},
+  "roca_grande": {"kind": "solida", "base": [78, 33], "sink": 5, "size": [92, 112], "foot": -2},
+  "obsidiana": {"kind": "solida", "base": [31, 13], "sink": 2, "size": [36, 60], "foot": -1},
+  "fumarola": {"kind": "solida", "base": [48, 21], "sink": 3, "size": [57, 72], "foot": 0},
+  "azufre": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [30, 18]},
+  "esqueleto": {"kind": "solida", "base": [112, 48], "sink": 5, "size": [132, 124], "foot": -26},
+  "craneo": {"kind": "solida", "base": [34, 14], "sink": 2, "size": [40, 40], "foot": -12},
+  "huesos": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [19, 16]},
+  "arbol_quemado": {"kind": "solida", "base": [16, 10], "sink": 2, "size": [81, 106], "foot": 0},
+  "tronco_carbon": {"kind": "solida", "base": [41, 17], "sink": 3, "size": [48, 36], "foot": -13},
+  "brasas": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [19, 14]},
+  "horno": {"kind": "solida", "base": [79, 33], "sink": 4, "size": [93, 112], "foot": 0},
+  "yunque": {"kind": "solida", "base": [37, 15], "sink": 2, "size": [43, 44], "foot": 1},
+  "carbon": {"kind": "solida", "base": [39, 17], "sink": 2, "size": [46, 34], "foot": -5},
+  "losa": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [24, 20]},
+  "ceniza": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [24, 14]},
+  "cristal_fuego": {"kind": "solida", "base": [43, 18], "sink": 2, "size": [51, 54], "foot": -1}
+}

@@ -210,6 +210,7 @@ func _add_painting() -> void:
 	var native: bool = spr.scale.is_equal_approx(Vector2.ONE)
 	spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if native else CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	if native:
-		spr.material = RoomPieces.water_material()  # el mar del marco se mueve (solo los píxeles de agua y espuma)
+		# El líquido del marco se mueve (solo los píxeles de agua, espuma o lava), según el bioma de la sala.
+		spr.material = RoomPieces.water_material(str(RoomPieces.load_room(data.id).get("biome", "")))
 	spr.z_index = -7  # sobre el suelo y el agua; el hollín, los charcos y los cráteres (-6) van encima
 	get_parent().add_child.call_deferred(spr)
