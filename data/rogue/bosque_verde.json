@@ -1,0 +1,51 @@
+{
+  "_doc": "Modo Desafío (roguelike), piso 1 (R-0 de docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida (sobre el normal del juego: acá se sube de nivel adentro); settings = ajustes del juego que pisa el modo (GameState.setting; pp_regen 2 = la barra de PP se llena al doble: contra oleadas, con la normal se pasa media pelea sin poder atacar); offer = cuántos Pokémon te ofrecen (al azar de starters). rooms: arena = ArenaData de la sala (data/arenas, pintada: data/arenas/pinturas.json), waves = oleadas, cada una una lista de [especie, nivel]. boss = pelea de entrenador (TrainerBattle) al final.",
+  "name": "Bosque Verde",
+  "level": 10,
+  "potions": 3,
+  "heal_on_clear": 0.4,
+  "exp_mult": 3.0,
+  "settings": {"pp_regen": 2.0},
+  "offer": 3,
+  "starters": ["charmander", "squirtle", "bulbasaur", "pikachu", "pidgey", "rattata", "nidoran_m", "nidoran_f", "mankey",
+    "sandshrew", "vulpix", "growlithe", "poliwag", "machop", "bellsprout", "oddish", "eevee", "meowth", "psyduck",
+    "spearow", "ekans"],
+  "rooms": [
+    {
+      "arena": "sala_bosque_1",
+      "name": "El claro",
+      "waves": [
+        [["caterpie", 3], ["weedle", 3]],
+        [["pidgey", 4], ["rattata", 4], ["caterpie", 3]]
+      ]
+    },
+    {
+      "arena": "sala_bosque_2",
+      "name": "Las ruinas",
+      "waves": [
+        [["weedle", 4], ["weedle", 4], ["pidgey", 5]],
+        [["rattata", 5], ["oddish", 5], ["metapod", 4]],
+        [["pikachu", 6], ["pidgey", 5]]
+      ]
+    },
+    {
+      "arena": "sala_bosque_3",
+      "name": "El corazón del bosque",
+      "waves": [
+        [["kakuna", 5], ["weedle", 5], ["rattata", 6]],
+        [["pikachu", 6], ["oddish", 5], ["pidgey", 5]],
+        [["beedrill", 7], ["butterfree", 7]]
+      ]
+    }
+  ],
+  "boss": {
+    "name": "Brock",
+    "title": "Líder",
+    "gfx": "brock",
+    "arena": "arena_gimnasio_roca",
+    "trainer_id": "ciudad_plateada_gimnasio_brock",
+    "team": [["geodude", 11], ["onix", 13]],
+    "door": "Gimnasio de Plateada",
+    "defeat": "¡Me ganaste con un solo Pokémon! Eso no se ve todos los días."
+  }
+}

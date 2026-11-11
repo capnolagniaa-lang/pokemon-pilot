@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Texture2D" path="res://sprites/arenas/sala_bosque_2.png" id="1_asq0l"]
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="2_hjf4j"]
+
+[resource]
+script = ExtResource("2_hjf4j")
+id = "sala_bosque_2"
+display_name = "Las ruinas"
+scene_path = "res://scenes/world/arenas/sala_bosque_2.tscn"
+foe_trainer_cell = Vector2i(20, 6)
+player_cell = Vector2i(20, 27)
+foe_mon_cell = Vector2i(20, 11)
+player_mon_cell = Vector2i(20, 23)
+field = Rect2i(8, 9, 25, 15)
+painting = ExtResource("1_asq0l")

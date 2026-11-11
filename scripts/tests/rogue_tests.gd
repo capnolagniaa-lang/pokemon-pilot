@@ -1,0 +1,270 @@
+class_name RogueTests
+extends Node
+## Autotest del Modo Desafío (roguelike, docs/PROPUESTA_ROGUELIKE.md, R-0): un bot completa las 3 salas del Bosque Verde
+## y llega a Brock.   godot --headless --path . --quit-after 400000 -- --autotest-rogue-rooms
+## Vitrina (la elección y las 3 salas con el bot peleando):
+##   godot --path . --quit-after 1500 --write-movie out/f.png --fixed-fps 30 -- --showcase-rogue
+
+var autotest: Node
+var world: Node
+var answers: Array = []
+## El bot juega al azar: si cae, prueba de nuevo (hasta estos intentos).
+const ATTEMPTS := 3
+
+
+## El bot de siempre, que además elige ataques de daño, toma la Poción con poca vida y, con la sala limpia, camina
+## hasta la puerta.
+class RogueBot extends BotCombatInput:
+	func move_dir(actor: Creature) -> Vector2:
+		var door: Node2D = world.rogue.door
+		if world.combat.enemies.is_empty() and is_instance_valid(door):
+			# La puerta está al fondo de un pasillo angosto: primero se pone debajo de ella y después sube derecho.
+			var goal: Vector2 = door.global_position
+			if absf(actor.global_position.x - goal.x) > 6.0:
+				goal = Vector2(goal.x, maxf(actor.global_position.y, goal.y + 72.0))
+			return actor.body.steer((goal - actor.global_position).normalized(), goal)
+		if actor.health.ratio() < 0.45 and GameState.item_count("pocion") > 0:
+			world.items.use_quick_item()
+		return super(actor)
+
+	## Como una persona: tira los ataques que hacen daño (no gasta la barra en Látigo o Refugio) y que puede pagar.
+	func wants_slot(slot: int) -> bool:
+		var now := Time.get_ticks_msec() / 1000.0
+		if now - _choice_time > 0.35:
+			_choice_time = now
+			_choice = -1
+			var c: Creature = world.companion
+			if is_instance_valid(c):
+				var good: Array[int] = []
+				for i in c.moves.moves.size():
+					var m: MoveData = c.moves.moves[i]
+					if m != null and m.category != MoveData.Category.STATUS and m.power > 0.0 and c.moves.has_pp(i):
+						good.append(i)
+				if not good.is_empty():
+					_choice = good[randi() % good.size()]
+		return slot == _choice
+
+
+func run() -> void:
+	var r := {}
+	var saves_before := _save_times()
+	var slot_before := SaveManager.slot_path
+	var f := RogueRun.load_floor()
+	var rooms: Array = f["rooms"]
+
+	# --- El título y la elección ---
+	var layer := CanvasLayer.new()
+	layer.layer = 100
+	add_child(layer)
+	var title: Control = load("res://scenes/ui/title_screen.tscn").instantiate()
+	layer.add_child(title)
+	await get_tree().process_frame
+	r["El título tiene el botón \"Modo Desafío\""] = title.find_children("*", "Button", true, false).any(func(b): return b.text == "Modo Desafío")
+	title.queue_free()
+	var select: Control = load("res://scenes/ui/rogue_select.tscn").instantiate()
+	layer.add_child(select)
+	await get_tree().process_frame
+	var ids: Array = select.options.map(func(s): return s.id)
+	var distinct := {}
+	for id in ids:
+		distinct[id] = true
+	r["Te ofrece 3 Pokémon distintos de la lista del piso (%s)" % ", ".join(ids)] = select.cards.size() == 3 and distinct.size() == 3 \
+		and ids.all(func(id): return id in f["starters"])
+	layer.queue_free()
+
+	# --- Empezar: equipo temporal, nada de la historia ---
+	RogueRun.begin(DB.species["charmander"])
+	var mine: CreatureInstance = GameState.active()
+	r["Arrancás con un solo Pokémon de Nv. %d y %d Pociones" % [f["level"], f["potions"]]] = GameState.party.size() == 1 \
+		and mine.level == int(f["level"]) and GameState.bag == {"pocion": int(f["potions"])} and not GameState.rogue.is_empty()
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
+	var run: RogueRun = world.rogue
+	_dialogs()
+	var bot := RogueBot.new(world)
+	bot.keep_distance = 70.0
+	world.combat.input_source = bot
+	world.companion.input_source = bot
+	SaveManager.slot_path = "user://saves/autotest_desafio.json"
+	r["En el Modo Desafío no se guarda"] = not SaveManager.save_game() and not FileAccess.file_exists("user://saves/autotest_desafio.json")
+	SaveManager.slot_path = slot_before
+	r["Sin tutorial ni salvajes del mundo"] = not world.pause_menu.is_open() and not GameState.wilds_enabled
+	r["La sala 1 es una arena pintada aparte, sin salida"] = run.room_data.id == rooms[0]["arena"] and run.room_data.painting != null \
+		and world.arena.active and run.room.get_node_or_null("Bounds") != null and world.combat.arena_lock
+	r["Manejás a tu Pokémon (el entrenador se queda en la entrada)"] = world.companion.player_controlled and world.trainer.locked \
+		and world.camera.target == world.companion
+	r["La primera oleada sale entera, lejos tuyo y ya peleando"] = run.foes.size() == rooms[0]["waves"][0].size() \
+		and run.foes.all(_spawned_ok.bind(run))
+	r["Con enemigos vivos no hay puerta"] = not is_instance_valid(run.door)
+
+	# --- El bot juega las 3 salas ---
+	var waves_seen := {}  # "sala:oleada" -> cuántos salieron
+	var door_early := false
+	var healed := false
+	var hp_low := 0.0
+	var last_phase := ""
+	var level0 := mine.level
+	var t := 0.0
+	var attempt := 1
+	while true:
+		t = 0.0
+		while t < 330.0 and run.result == "" and run.phase != "jefe":
+			await _bot_frame(run, mine, bot, waves_seen)
+			if run.phase == "oleada":
+				if is_instance_valid(run.door):
+					door_early = true
+				hp_low = mine.hp
+			if run.phase == "puerta" and last_phase != "puerta" and mine.hp > hp_low:
+				healed = true
+			last_phase = run.phase
+			t += get_physics_process_delta_time()
+		if run.result != "lose" or attempt >= ATTEMPTS:
+			break
+		# El bot juega al azar y a veces cae (como cualquiera): prueba de nuevo desde el principio, como haría una persona.
+		print("[desafio]       (intento %d: el bot cayó en la sala %d; va de nuevo)" % [attempt, run.room_index + 1])
+		attempt += 1
+		answers = [0]  # "Jugar otra vez"
+		await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn"), 30.0)
+		RogueRun.begin(DB.species["charmander"])
+		mine = GameState.active()
+		get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+		await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
+		run = world.rogue
+		_dialogs()
+		bot = RogueBot.new(world)
+		bot.keep_distance = 70.0
+		world.combat.input_source = bot
+		waves_seen.clear()
+		last_phase = ""
+	var all_waves := true
+	for i in rooms.size():
+		for w in rooms[i]["waves"].size():
+			if waves_seen.get("%d:%d" % [i, w], 0) != rooms[i]["waves"][w].size():
+				all_waves = false
+	r["El bot limpia las 3 salas (%d de %d en %d s; vida %d %%; intento %d de %d)" % [run.rooms_cleared, rooms.size(), int(t),
+		int(100.0 * mine.hp / mine.max_hp()), attempt, ATTEMPTS]] = run.rooms_cleared == rooms.size() and run.result == ""
+	r["Salieron todas las oleadas de cada sala, completas"] = all_waves
+	r["La puerta se abre recién con la sala limpia"] = not door_early
+	r["Limpiar una sala cura un poco"] = healed
+	r["Los salvajes dan EXP (Nv. %d → %d)" % [level0, mine.level]] = mine.level > level0
+
+	# --- El jefe: Brock, en su gimnasio, con Onix de jefe ---
+	await _until(func(): return world.arena._fighting or run.result != "", 25.0)
+	r["Después de la última sala: el Líder Brock en su gimnasio"] = world.arena._fighting and world.arena.foe_name == f["boss"]["name"] \
+		and world.arena.arena_data.id == f["boss"]["arena"] and world.arena.leader
+	var boss_onix := false
+	var guard := 0.0
+	while world.arena.active and world.arena.result == "" and guard < 60.0:
+		await _until(func(): return not world.arena.active or (is_instance_valid(world.arena.foe) and not world.arena.foe.is_down()), 6.0)
+		if is_instance_valid(world.arena.foe):
+			if world.arena.foe.instance.species.id == "onix" and world.arena.foe.instance.boss:
+				boss_onix = true
+			world.arena.foe.health.apply_damage(99999.0)
+		await get_tree().create_timer(0.3).timeout
+		guard += 0.3
+	r["Su Onix sale como jefe"] = boss_onix
+	answers = [1]  # "Volver al título"
+	await _until(func(): return run.result != "", 30.0)
+	r["Ganarle a Brock = desafío superado"] = run.result == "win"
+	await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("title_screen.tscn"), 30.0)
+	r["Al terminar volvés al título y el modo queda apagado"] = get_tree().current_scene != null \
+		and get_tree().current_scene.scene_file_path.ends_with("title_screen.tscn") and GameState.rogue.is_empty()
+
+	# --- Perder: si tu Pokémon cae, se termina ---
+	RogueRun.begin(DB.species["pidgey"])
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
+	run = world.rogue
+	_dialogs()
+	answers = [0]  # "Jugar otra vez"
+	world.companion.health.apply_damage(99999.0)
+	await _until(func(): return run.result != "", 10.0)
+	r["Si tu Pokémon se debilita, se termina la partida"] = run.result == "lose" and run.rooms_cleared == 0
+	await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn"), 30.0)
+	r["\"Jugar otra vez\" te lleva a elegir de nuevo"] = get_tree().current_scene != null \
+		and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn")
+	var saves_after := _save_times()
+	var untouched := SaveManager.slot_path == slot_before
+	for file: String in saves_before:  # (otras pruebas corriendo a la vez crean y borran las suyas: se miran las que ya estaban)
+		if saves_after.has(file) and saves_after[file] != saves_before[file]:
+			untouched = false
+	r["No se tocó ninguna partida guardada"] = untouched
+
+	var ok := r.values().all(func(v): return v)
+	for key in r:
+		print("[desafio] %s %s" % ["OK   " if r[key] else "FALLO", key])
+	print("[autotest-rogue-rooms] -> ", "OK" if ok else "FALLO")
+	get_tree().quit(0 if ok else 1)
+
+
+## Un cuadro del bot en las salas: anota cuántos salieron en cada oleada y le devuelve el control si cambió de cuerpo.
+func _bot_frame(run: RogueRun, mine: CreatureInstance, bot: BotCombatInput, waves_seen: Dictionary) -> void:
+	if run.phase == "oleada":
+		var key := "%d:%d" % [run.room_index, run.wave_index]
+		waves_seen[key] = maxi(waves_seen.get(key, 0), run.foes.size())
+	if "--rogue-log" in OS.get_cmdline_user_args() and Engine.get_physics_frames() % 300 == 0 and is_instance_valid(world.companion):
+		print("  sala %d oleada %d %s · yo %d%% PP %d · %s" % [run.room_index + 1, run.wave_index + 1, run.phase,
+			int(100.0 * mine.hp / mine.max_hp()), int(world.companion.moves.pp()), ", ".join(run.foes.map(func(e): return "%s %d%%" % [
+			e.instance.species.id, int(100.0 * e.health.ratio())]))])
+	if is_instance_valid(world.companion) and world.companion.input_source != bot:
+		world.companion.input_source = bot
+	await get_tree().physics_frame
+
+
+## Las partidas guardadas de esta PC: archivo -> cuándo se modificó.
+func _save_times() -> Dictionary:
+	var out := {}
+	for file in DirAccess.get_files_at("user://saves"):
+		out[file] = FileAccess.get_modified_time("user://saves/" + file)
+	return out
+
+
+func _spawned_ok(e: Creature, run: RogueRun) -> bool:
+	var entrance := run._cell_pos(run.room_data.player_mon_cell)
+	return e.target == world.companion and world.combat.enemies.has(e) 		and e.global_position.distance_to(entrance) >= RogueRun.SPAWN_MIN_DIST - 1.0
+
+
+func _world() -> Node:
+	var s := get_tree().current_scene
+	world = s if s != null and s.scene_file_path.ends_with("world.tscn") else null
+	return world
+
+
+## Avanza los diálogos y contesta las preguntas con `answers` (en orden) mientras exista este mundo.
+func _dialogs() -> void:
+	var w := world
+	while is_instance_valid(w) and w.is_inside_tree():
+		await get_tree().create_timer(0.1).timeout
+		if not is_instance_valid(w) or not w.is_inside_tree():
+			return
+		var d: DialogBox = w.story.dialog
+		if d.active:
+			if d._choosing:
+				d.choose(answers.pop_front() if not answers.is_empty() else 0)
+			else:
+				d.advance()
+
+
+func _until(cond: Callable, timeout: float) -> void:
+	var t := 0.0
+	while t < timeout and not cond.call():
+		await get_tree().process_frame
+		t += get_process_delta_time()
+
+
+## Vitrina: la pantalla de elección y después el bot jugando las salas.
+func showcase() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/rogue_select.tscn")
+	await get_tree().create_timer(2.0).timeout
+	RogueRun.begin(DB.species["charmander"])
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
+	_dialogs()
+	var bot := RogueBot.new(world)
+	bot.keep_distance = 70.0
+	world.combat.input_source = bot
+	while is_instance_valid(world) and world.rogue.result == "":
+		if is_instance_valid(world.companion):
+			world.companion.input_source = bot
+			world.companion.instance.hp = maxf(world.companion.instance.hp, world.companion.instance.max_hp() * 0.5)  # (que llegue a mostrar todo)
+		await get_tree().physics_frame

@@ -61,6 +61,9 @@ func try_open() -> bool:
 		return false  # (en la historia sí: antes del laboratorio también se puede guardar y mirar la Guía)
 	for name in _buttons:
 		_buttons[name].visible = not in_battle or name in BATTLE_ENTRIES
+	if not GameState.rogue.is_empty():  # Modo Desafío: siempre se puede abandonar; no hay nada que guardar
+		_buttons["Volver al título"].visible = true
+		_buttons["Guardar"].visible = false
 	if _dex_button != null:
 		_dex_button.visible = GameState.has_pokedex() and not in_battle
 	if _map_button != null:
@@ -234,6 +237,16 @@ func _save() -> void:
 
 
 func _to_title() -> void:
+	if not GameState.rogue.is_empty():
+		var q := ConfirmDialog.ask(self, "¿Abandonar el desafío y volver al título?", ["Abandonar", "Cancelar"])
+		q.chosen.connect(func(i: int):
+			if i != 0:
+				_first.grab_focus()
+				return
+			GameState.rogue = {}
+			get_tree().paused = false
+			get_tree().change_scene_to_file(TITLE_SCENE))
+		return
 	var d := ConfirmDialog.ask(self, "¿Guardar antes de volver al título?", ["Guardar y salir", "Salir sin guardar", "Cancelar"])
 	d.chosen.connect(func(i: int):
 		if i == 2:

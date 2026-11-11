@@ -162,7 +162,7 @@ func _send_file(path: String) -> void:
 
 ## Cómo viene la partida que se está jugando, sin guardarla.
 func send_live(world: Node) -> void:
-	if not active or not GameState.test_tournament.is_empty() or GameState.party.is_empty():
+	if not active or not GameState.test_tournament.is_empty() or not GameState.rogue.is_empty() or GameState.party.is_empty():
 		return
 	var data := GameState.to_dict()
 	var zone: ZoneEntry = world.trainer_zone()

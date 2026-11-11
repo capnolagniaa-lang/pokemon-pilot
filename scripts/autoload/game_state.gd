@@ -55,6 +55,9 @@ var box: Array[CreatureInstance] = []
 var story_flags: Dictionary = {}
 ## Modo de prueba del torneo (desde el título): {"cup": id}. No se guarda nada mientras está (SaveManager).
 var test_tournament: Dictionary = {}
+## Modo Desafío (roguelike, docs/PROPUESTA_ROGUELIKE.md; RogueRun): {} si no se está jugando. Como el modo de prueba del
+## torneo: equipo temporal armado desde el título, no se guarda nada mientras está.
+var rogue: Dictionary = {}
 ## Torneo en curso (docs/PLAN_TORNEO.md, T-2): {} si no hay. Lo maneja Tournament; si guardás en medio del
 ## torneo se abandona (no se guarda).
 var tournament: Dictionary = {}
@@ -197,6 +200,7 @@ func new_game(starter: SpeciesData) -> void:
 	money = STARTING_MONEY
 	tournament = {}
 	test_tournament = {}
+	rogue = {}
 	wilds_enabled = true  # "Probar el torneo" los apaga: una partida nueva los vuelve a tener
 	Events.party_changed.emit()
 	Events.game_started.emit()
@@ -604,6 +608,7 @@ func _trainers_dict() -> Dictionary:
 func from_dict(d: Dictionary, warnings: Array = []) -> bool:
 	wilds_enabled = true  # idem al cargar una partida (después de "Probar el torneo")
 	test_tournament = {}
+	rogue = {}
 	var members: Array[CreatureInstance] = []
 	var raw = d.get("party", [])
 	if raw is Array:

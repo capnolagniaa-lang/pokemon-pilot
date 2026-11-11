@@ -80,6 +80,8 @@ func _exists(key: String) -> bool:
 
 ## Botín: a veces un salvaje debilitado suelta un objeto.
 func _on_fainted(c: Node) -> void:
+	if not GameState.rogue.is_empty():
+		return  # Modo Desafío: sin botín suelto (las recompensas de sala van aparte)
 	if not c is Creature or c.team != Creature.Team.WILD or drop_table == null or randf() >= drop_table.drop_chance:
 		return
 	drop(c.global_position, drop_table.pick())

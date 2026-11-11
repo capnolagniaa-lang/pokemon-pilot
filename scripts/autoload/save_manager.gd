@@ -38,6 +38,9 @@ func save_game() -> bool:
 	if not GameState.test_tournament.is_empty():
 		Events.message_requested.emit("En el modo de prueba del torneo no se guarda.")
 		return false
+	if not GameState.rogue.is_empty():
+		Events.message_requested.emit("En el Modo Desafío no se guarda.")
+		return false
 	if not can_save():
 		Events.message_requested.emit("No se puede guardar durante un combate.")
 		return false

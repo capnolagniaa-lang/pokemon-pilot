@@ -586,6 +586,32 @@ func _fade_to(a: float) -> void:
 	await tw.finished
 
 
+## Cartel grande del medio (también lo usa el Modo Desafío).
+func banner(text: String, sub: String, time: float) -> void:
+	await _show_banner(text, sub, time)
+
+
+## Pantalla en negro de una (sin fundido): para arrancar ya tapado.
+func set_black(on: bool) -> void:
+	_fade.color.a = 1.0 if on else 0.0
+
+
+## Sala sin entrenador (Modo Desafío, RogueRun): mientras dura, el mundo se porta como en una arena (luz de arena
+## pintada, sin minimapa, E y C andan, no hay desmayo total) aunque acá no haya ninguna pelea de entrenador. La sala la
+## carga y la saca el que la pide; `release_room` antes de un `start` de verdad.
+func host_room(zone: Zone, data: ArenaData) -> void:
+	active = true
+	_fighting = false
+	result = ""
+	arena = zone
+	arena_data = data
+
+
+func release_room() -> void:
+	active = false
+	arena = null
+
+
 func _show_banner(text: String, sub: String, time: float) -> void:
 	_banner.text = text
 	_sub.text = sub

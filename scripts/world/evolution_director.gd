@@ -43,9 +43,10 @@ func _process(_delta: float) -> void:
 	_show(queue.pop_front())
 
 
-## Momento tranquilo: sin combate ni arena, sin diálogo ni puerta, sin menú (árbol en pausa).
+## Momento tranquilo: sin combate ni arena, sin diálogo ni puerta, sin menú (árbol en pausa). En el Modo Desafío nunca:
+## ahí la evolución y los ataques nuevos van a ser recompensas de sala (docs/PROPUESTA_ROGUELIKE.md).
 func can_show() -> bool:
-	return not get_tree().paused and not world.combat.in_battle and not world.arena.active and not world.story.busy \
+	return GameState.rogue.is_empty() and not get_tree().paused and not world.combat.in_battle and not world.arena.active and not world.story.busy \
 		and not world.story.dialog.active and not world.warps.busy
 
 

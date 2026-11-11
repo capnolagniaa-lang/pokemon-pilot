@@ -28,6 +28,8 @@ var ledges: LedgeJumper
 var story: StoryDirector
 ## Torneo de Ciudad Plateada (docs/PLAN_TORNEO.md).
 var tournament: Tournament
+## Modo Desafío (roguelike): cadena de salas con oleadas y jefe (docs/PROPUESTA_ROGUELIKE.md, R-0).
+var rogue: RogueRun
 var mart: Mart
 var online: OnlineDesk
 var evolutions: EvolutionDirector
@@ -104,6 +106,9 @@ func _ready() -> void:
 	tournament = Tournament.new()
 	tournament.name = "Tournament"
 	add_child(tournament)
+	rogue = RogueRun.new()
+	rogue.name = "RogueRun"
+	add_child(rogue)
 	mart = Mart.new()  # el mercado: Tiendas Pokémon (data/shops)
 	mart.name = "Mart"
 	add_child(mart)
