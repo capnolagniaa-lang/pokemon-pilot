@@ -350,6 +350,11 @@ pierde por esa partida; la evolución y la Piedra Eterna como recompensa (decisi
 los objetos equipados y el pacto de Missingno. **Frenado acá** (el usuario pidió seguir hasta R-3): hay que jugar R-1,
 R-2 y R-3 juntas antes de R-4 (mejoras permanentes en el castillo de Mew, Revivir, qué abre la escalera).
 
+**Hecho — salas en juego y 18 más** (usuario, 2026-11-11, al ver capturas del juego): textura de suelo pintada por
+bioma mezclada sobre el piso de cada sala (el piso liso era de la pintura, no del juego), 6 salas por bioma (36) con
+composiciones distintas, y cámara abierta en el castillo. Decidido sin preguntar: el zoom de las salas de pelea no se
+tocó (es el del jugador, con la rueda); si igual se ven "de cerca", la opción es abrirlo solo en el modo.
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y

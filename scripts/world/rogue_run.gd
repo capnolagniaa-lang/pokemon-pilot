@@ -57,6 +57,9 @@ const STAIRS_AT := Vector2(320, 146)
 const STAIRS_WIDTH := 76.0
 const STAIRS_REACH := 22.0
 const STAIRS_FLAG := "planta_alta"
+## Zoom de la cámara en el castillo (pedido del usuario 2026-11-11: que jugando se vean el portal de abajo y la escalera
+## de arriba): más abierto que el de siempre, justo el ancho de la sala. Al cruzar el portal vuelve el tuyo.
+const HUB_ZOOM := 2.0
 const MEW_REACH := 34.0
 ## Fichas de ataque (R-1): cuánto dura una y cuánto descansa el que la tuvo antes de pedir otra (así rotan).
 const TOKEN_HOLD := 2.6
@@ -270,6 +273,7 @@ func _hub() -> void:
 	decor.setup(hub_data)
 	world.arena.host_room(hub, hub_data)  # luz de arena pintada, sin minimapa
 	_limit_camera(true, [hub])
+	world.camera.zoom = Vector2.ONE * HUB_ZOOM
 	var t: Trainer = world.trainer
 	t.autopilot = Vector2.ZERO
 	t.follow_target = null
@@ -448,6 +452,7 @@ func _unload_hub() -> void:
 	portal = null
 	world.arena.release_room()
 	_limit_camera(false)
+	world.camera.zoom = Vector2.ONE * world.camera.zoom_goal
 	if is_instance_valid(hub):
 		hub.queue_free()
 	hub = null

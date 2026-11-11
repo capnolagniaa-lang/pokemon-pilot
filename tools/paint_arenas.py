@@ -7,6 +7,7 @@ data/arenas/pinturas.json:
     water (rectángulos de pileta). Con `auto` = las celdas claras (pasto, tierra, piso) unidas al centro son piso y lo
     oscuro choca; después se abren los rectángulos `open`, se cierran los `solid` y se ponen los `water`. Con
     `auto_color` (salas del Modo Desafío, con obstáculos pintados) el plano sale por color: ver color_plan.
+  - `floor_tex` (opcional) = textura de suelo que se mezcla sobre el piso (ver texture_floor), `floor_tone`, `floor_amount`;
   - `brillo` (opcional) aclara la pintura al copiarla (1,35 = un 35 % más clara);
   - `scale` agranda la arena: todas las celdas y rectángulos del JSON (que se marcan sobre la grilla de `size`) se
     multiplican y la arena queda de size × scale celdas, con la misma pintura dibujada más grande.
@@ -80,21 +81,55 @@ def color_plan(img, w, h, cfg):
                 wet.add((x, y))
             elif floor_n >= 64 * part:
                 ok.add((x, y))
-    start = (w // 2, h // 2)
-    if start not in ok:  # (un obstaculo justo en el medio: la celda de piso mas cercana)
-        start = min(ok, key=lambda c: abs(c[0] - start[0]) + abs(c[1] - start[1]))
-    seen = {start}
-    queue = deque(seen)
-    while queue:
-        x, y = queue.popleft()
-        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            n = (x + dx, y + dy)
-            if n in ok and n not in seen:
-                seen.add(n)
-                queue.append(n)
+    # El piso es el pedazo conectado mas grande (con una laguna o un arbol en el medio de la sala, el centro no sirve
+    # de punto de partida: se quedaba con la islita).
+    seen, left = set(), set(ok)
+    while left:
+        part = {left.pop()}
+        queue = deque(part)
+        while queue:
+            x, y = queue.popleft()
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                n = (x + dx, y + dy)
+                if n in left:
+                    left.discard(n)
+                    part.add(n)
+                    queue.append(n)
+        if len(part) > len(seen):
+            seen = part
     wet = {c for c in wet if any((c[0] + dx, c[1] + dy) in seen or (c[0] + dx, c[1] + dy) in wet
                                  for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))}
     return seen, wet
+
+
+def texture_floor(img, cfg, root):
+    """Textura de piso (2026-11-11, pedido del usuario: en juego el piso de las salas se veia de un color liso, porque
+    Qwen pinta el suelo casi plano y jugando se ve sobre todo suelo). `floor_tex` del JSON = una pintura de suelo visto
+    desde arriba (art_src/arenas/texturas/<nombre>.png, del tamano de la sala) que se mezcla SOLO sobre los pixeles de
+    piso (la misma regla de color de `auto_color`, pixel a pixel, con el borde suavizado): el piso pasa a ser
+    pintura x textura / promedio de la textura (conserva la luz y el tono de la pintura y suma el detalle), corrido
+    `floor_tone` (0-1) hacia el color propio de la textura. El plano de colision se saca siempre de la pintura original."""
+    from PIL import ImageChops, ImageFilter, ImageStat
+    ac = cfg.get("auto_color") or {}
+    tex = Image.open(os.path.join(root, "art_src/arenas/texturas/%s.png" % cfg["floor_tex"])).convert("RGB").resize(img.size, Image.LANCZOS)
+    if cfg.get("floor_boost", 1.6) != 1.0:  # (las texturas de Qwen salen suaves: se les sube el contraste)
+        from PIL import ImageEnhance
+        tex = ImageEnhance.Contrast(tex).enhance(float(cfg.get("floor_boost", 1.6)))
+    base = img.convert("RGB")
+    h, s, v = base.convert("HSV").split()
+    lo, hi = [x * 255.0 / 360.0 for x in ac.get("hue", [25.0, 150.0])]
+    min_s, max_s, min_v = ac.get("min_s", 0.3) * 255.0, ac.get("max_s", 1.0) * 255.0, ac.get("min_v", 95)
+    mask = v.point(lambda x: 255 if x >= min_v else 0)
+    if not ac.get("any_hue"):
+        mask = ImageChops.multiply(mask, h.point(lambda x: 255 if lo <= x <= hi else 0))
+        mask = ImageChops.multiply(mask, s.point(lambda x: 255 if min_s <= x <= max_s else 0))
+    mask = mask.filter(ImageFilter.MinFilter(5)).filter(ImageFilter.GaussianBlur(2.5))  # (no pisa el borde de los objetos)
+    mean = ImageStat.Stat(tex).mean
+    detail = Image.merge("RGB", [ImageChops.multiply(bc, tc).point(lambda x, m=m: min(255, int(x * 255.0 / max(m, 1.0))))
+                                 for bc, tc, m in zip(base.split(), tex.split(), mean)])
+    detail = Image.blend(detail, tex, float(cfg.get("floor_tone", 0.25)))
+    out = Image.composite(detail, base, mask)
+    return Image.blend(base, out, float(cfg.get("floor_amount", 1.0)))
 
 
 def cells_of(rects, k):
@@ -148,10 +183,14 @@ def build(root, arena_id, cfg):
     if os.path.exists(old):
         os.remove(old)
     dst = os.path.join(root, "sprites/arenas/%s.png" % arena_id)
+    if cfg.get("floor_tex"):
+        img = texture_floor(img, cfg, root)
+        if cfg.get("brillo", 1.0) == 1.0:
+            img.save(dst)
     if cfg.get("brillo", 1.0) != 1.0:  # las muy oscuras (Surge, el Escondite): en plena pelea no se veía el piso
         from PIL import ImageEnhance
         ImageEnhance.Brightness(img.convert("RGB")).enhance(float(cfg["brillo"])).save(dst)
-    else:
+    elif not cfg.get("floor_tex"):
         shutil.copyfile(src, dst)
     print("%-26s %dx%d, %d de piso, %d de agua" % (arena_id, w, h, sum(r.count(".") for r in rows), len(water)))
 
