@@ -546,6 +546,12 @@ nuevas respecto de la Costa: escenas **en hilera** (tumbas, columnas, bancos: mi
 que siguen un **camino** del marco (vía, sendero) y zonas con efecto propio (lava). El agua en movimiento
 (`shaders/pixel_water.gdshader`) sirve para la lava (más lenta y con más brillo) y el agua helada.
 
+**Hecho: los otros 5 biomas** (2026-11-11, el usuario aprobó la Costa): Volcán, Bosque, Cueva, Gruta Helada y Cementerio
+con las escenas de 10.9. Lo que quedó distinto del plan: las hileras y la vía de mina se armaron con miembros a paso
+fijo dentro de la escena (no hizo falta nada nuevo en el generador); el sendero del marco se respeta con `trail`; el
+"vado" de losas sobre la lava no se hizo (la lava es pared). **Pendiente**: efecto propio de la lava (quemar) y del
+hielo (resbalar), retirar del repo las 36 salas pintadas, y ajustar con el usuario densidad y tamaños al jugarlo.
+
 ### 10.7 Preguntas abiertas para el usuario
 1. **Bioma de muestra**: ¿Costa (donde se vio el problema) o Bosque?
 2. **Generar fuera del juego o al entrar**: ¿salas revisadas a mano (30 por bioma, por ejemplo) o infinitas?
