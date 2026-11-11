@@ -72,7 +72,7 @@
     },
     "hielo": {
       "name": "Gruta Helada",
-      "rooms": ["sala_hielo_1", "sala_hielo_2", "sala_hielo_3", "sala_hielo_4", "sala_hielo_5", "sala_hielo_6"],
+      "rooms": ["sala_hielo_p1", "sala_hielo_p2", "sala_hielo_p3"],
       "common": ["swinub", "seel", "snorunt", "spheal", "sneasel", "smoochum", "delibird", "shellder", "zubat"],
       "strong": ["jynx", "dewgong", "piloswine", "sealeo", "glalie", "cloyster"]
     },

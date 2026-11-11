@@ -1,0 +1,20 @@
+{
+  "pino": {"kind": "solida", "base": [18, 10], "sink": 3, "size": [76, 126], "foot": 0},
+  "pino_chico": {"kind": "solida", "base": [14, 9], "sink": 2, "size": [46, 70], "foot": 0},
+  "roca_chica": {"kind": "solida", "base": [22, 9], "sink": 2, "size": [26, 26], "foot": 0},
+  "roca_grande": {"kind": "solida", "base": [81, 34], "sink": 4, "size": [95, 90], "foot": 0},
+  "cristal_chico": {"kind": "solida", "base": [28, 12], "sink": 2, "size": [33, 40], "foot": 0},
+  "cristal_grande": {"kind": "solida", "base": [57, 24], "sink": 3, "size": [67, 98], "foot": 1},
+  "cabana": {"kind": "solida", "base": [140, 59], "sink": 5, "size": [165, 152], "foot": 2},
+  "lena": {"kind": "solida", "base": [41, 17], "sink": 2, "size": [48, 40], "foot": 0},
+  "pozo": {"kind": "solida", "base": [47, 20], "sink": 3, "size": [55, 78], "foot": -1},
+  "trineo": {"kind": "solida", "base": [48, 21], "sink": 2, "size": [57, 42], "foot": -14},
+  "columna": {"kind": "solida", "base": [29, 12], "sink": 2, "size": [34, 78], "foot": 0},
+  "estatua": {"kind": "solida", "base": [47, 20], "sink": 3, "size": [55, 98], "foot": 0},
+  "brasero": {"kind": "solida", "base": [14, 9], "sink": 2, "size": [37, 52], "foot": -1},
+  "pesca": {"kind": "solida", "base": [31, 13], "sink": 2, "size": [37, 46], "foot": 3},
+  "agujero": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [26, 26]},
+  "tronco": {"kind": "solida", "base": [44, 19], "sink": 3, "size": [52, 36], "foot": -14},
+  "nieve": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [20, 14]},
+  "tocon": {"kind": "solida", "base": [23, 10], "sink": 2, "size": [27, 24], "foot": 0}
+}
