@@ -52,11 +52,15 @@ def color_plan(img, w, h, cfg):
     musgo, tierra), unidas al centro; lo gris (rocas, ruinas), lo marron oscuro (troncos, raices) y lo oscuro (arboles)
     choca; con `water` true, lo celeste es agua de verdad. Cada celda se decide por mayoria de sus 64 muestras.
     Claves: min_v (brillo minimo 0-255), min_s (saturacion minima 0-1), part (parte de la celda que tiene que ser piso),
-    water (bool)."""
+    water (bool). Para los otros biomas (2026-11-11): hue = [desde, hasta] del color del piso (por defecto 25-150: pasto y
+    tierra; arena 35-65, ceniza 25-60, pasto violeta 235-300), max_s (saturacion maxima: la lava no es piso) y any_hue
+    (nieve: todo lo muy claro es piso, sea del color que sea)."""
     import colorsys
     small = img.convert("RGB").resize((w * 8, h * 8), Image.BOX)
     px = small.load()
     min_v, min_s, part = cfg.get("min_v", 95), cfg.get("min_s", 0.3), cfg.get("part", 0.6)
+    hue_lo, hue_hi = cfg.get("hue", [25.0, 150.0])
+    max_s, any_hue, has_water = cfg.get("max_s", 1.0), cfg.get("any_hue", False), cfg.get("water", False)
     ok, wet = set(), set()
     for y in range(h):
         for x in range(w):
@@ -68,11 +72,11 @@ def color_plan(img, w, h, cfg):
                     hue = hh * 360.0
                     if vv * 255.0 < min_v:
                         continue
-                    if 165.0 <= hue <= 250.0 and ss >= 0.25:
+                    if has_water and 165.0 <= hue <= 250.0 and ss >= 0.25:
                         water_n += 1
-                    elif 25.0 <= hue <= 150.0 and ss >= min_s:
+                    elif any_hue or (hue_lo <= hue <= hue_hi and min_s <= ss <= max_s):
                         floor_n += 1
-            if cfg.get("water") and water_n >= 64 * part:
+            if has_water and water_n >= 64 * part:
                 wet.add((x, y))
             elif floor_n >= 64 * part:
                 ok.add((x, y))
@@ -110,6 +114,11 @@ def build(root, arena_id, cfg):
     water = set()
     if cfg.get("auto_color") is not None:
         floor, water = color_plan(img, w, h, cfg["auto_color"])
+    edge = int(cfg.get("border", 0))  # (el borde de la sala choca siempre, pinte lo que pinte Qwen ahi)
+    if edge > 0:
+        rim = {(x, y) for x in range(w) for y in range(h) if x < edge or y < edge or x >= w - edge or y >= h - edge}
+        floor -= rim
+        water -= rim
     floor |= cells_of(cfg.get("open", []), k)
     floor -= cells_of(cfg.get("solid", []), k)
     water |= cells_of(cfg.get("water", []), k)

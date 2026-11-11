@@ -74,11 +74,13 @@ func run() -> void:
 	var saves_before := _save_times()
 	var slot_before := SaveManager.slot_path
 	var f := RogueRun.load_floor()
-	var rooms: Array = f["rooms"]
+	var rooms: Array = f["slots"]  # (después, las salas que le tocaron a la partida)
 	# El progreso del modo (desbloqueos) va a un archivo de prueba: el de verdad no se toca.
 	var real_before := FileAccess.get_file_as_string(RogueProgress.DEFAULT_PATH) if FileAccess.file_exists(RogueProgress.DEFAULT_PATH) else ""
 	DirAccess.remove_absolute(RogueProgress.TEST_PATH)
-	r["El piso tiene 5 salas antes del jefe"] = rooms.size() == 5
+	r["La partida tiene 5 salas antes del jefe"] = rooms.size() == 5
+	_check_plans(f, r)
+	await _check_arenas(f, r)
 
 	# --- El título y la elección ---
 	var layer := CanvasLayer.new()
@@ -102,13 +104,17 @@ func run() -> void:
 	layer.queue_free()
 
 	# --- Empezar: equipo temporal, nada de la historia ---
-	RogueRun.begin(DB.species["charmander"])
+	RogueRun.begin(DB.species["squirtle"])
+	GameState.rogue["biomes"] = BOT_BIOMES
 	var mine: CreatureInstance = GameState.active()
 	r["Arrancás con un solo Pokémon de Nv. %d, %d Pociones y 2 Pokébolas" % [f["level"], f["potions"]]] = GameState.party.size() == 1 \
 		and mine.level == int(f["level"]) and GameState.bag == {"pocion": int(f["potions"]), "poke_ball": 2} and not GameState.rogue.is_empty()
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 	var run: RogueRun = world.rogue
+	rooms = run.floor_data["rooms"]
+	r["Las salas le tocaron de los biomas pedidos (%s)" % ", ".join(rooms.map(func(x): return x["arena"]))] = \
+		rooms.map(func(x): return x["biome"]) == BOT_BIOMES
 	_dialogs()
 	var bot := RogueBot.new(world)
 	bot.keep_distance = 70.0
@@ -172,8 +178,8 @@ func run() -> void:
 	await get_tree().create_timer(0.3).timeout
 	r["Atrapar a un salvaje (%s) lo desbloquea como inicial y se guarda aparte" % prey_id] = RogueProgress.is_unlocked(prey_id) \
 		and FileAccess.file_exists(RogueProgress.TEST_PATH) and RogueProgress.path() == RogueProgress.TEST_PATH
-	r["En esa partida seguís con tu único Pokémon y la oleada sigue con uno menos"] = GameState.party.size() == 1 and GameState.box.is_empty() \
-		and run.foes.filter(func(e): return is_instance_valid(e) and not e.is_queued_for_deletion()).size() == foes_before - 1
+	r["En esa partida seguís con tu único Pokémon y el atrapado ya no está en la sala"] = GameState.party.size() == 1 and GameState.box.is_empty() \
+		and (not is_instance_valid(prey) or prey.is_queued_for_deletion()) and foes_before >= 1
 	world.items._cooldown = 0.0
 	r["Sin bolas no hay tercer tiro"] = GameState.item_count("poke_ball") == 0 and world.items.throw_ball(tr.global_position + Vector2(30, 0)) == null
 	var offered: Array = RogueRun.offer().map(func(s): return s.id)
@@ -218,11 +224,13 @@ func run() -> void:
 		attempt += 1
 		answers = [0]  # "Jugar otra vez"
 		await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn"), 30.0)
-		RogueRun.begin(DB.species["charmander"])
+		RogueRun.begin(DB.species["squirtle"])
+		GameState.rogue["biomes"] = BOT_BIOMES
 		mine = GameState.active()
 		get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 		await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 		run = world.rogue
+		rooms = run.floor_data["rooms"]
 		_dialogs()
 		bot = RogueBot.new(world)
 		bot.keep_distance = 70.0
@@ -274,9 +282,16 @@ func run() -> void:
 
 	# --- Perder: si tu Pokémon cae, se termina ---
 	RogueRun.begin(DB.species["pidgey"])
+	var mixed := ["cementerio", "hielo", "costa", "volcan", "cueva"]
+	GameState.rogue["biomes"] = mixed
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 	run = world.rogue
+	var pool: Array = f["biomes"]["cementerio"]["common"]
+	r["Una partida con 5 biomas distintos: se cargan en cadena y la primera oleada es del Cementerio (%s)" % ", ".join(
+		run.foes.map(func(e): return e.instance.species.id))] = run.chain.size() == 5 \
+		and run.floor_data["rooms"].map(func(x): return x["biome"]) == mixed \
+		and run.foes.all(func(e): return e.instance.species.id in pool) and "Cementerio" in run._label.text
 	_dialogs()
 	answers = [0]  # "Jugar otra vez"
 	world.companion.health.apply_damage(99999.0)
@@ -302,6 +317,123 @@ func run() -> void:
 		print("[desafio] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-rogue-rooms] -> ", "OK" if ok else "FALLO")
 	get_tree().quit(0 if ok else 1)
+
+
+## Los biomas de la partida del bot (fijos, para que el test sea parejo): mezcla salas de biomas distintos en la cadena.
+const BOT_BIOMES := ["bosque", "volcan", "cueva", "volcan", "cueva"]
+
+
+## Las salas de una partida salen al azar por bioma: 300 partidas armadas.
+func _check_plans(f: Dictionary, r: Dictionary) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 7
+	var ok_size := true
+	var ok_unique := true
+	var ok_change := true
+	var ok_species := true
+	var ok_levels := true
+	var ok_strong := true
+	var seen := {}
+	for n in 300:
+		var plan: Array = RogueRun.plan_rooms(f, rng)
+		ok_size = ok_size and plan.size() == f["slots"].size()
+		var arenas := {}
+		for i in plan.size():
+			var room: Dictionary = plan[i]
+			var biome: Dictionary = f["biomes"][room["biome"]]
+			var slot: Dictionary = f["slots"][i]
+			seen[room["biome"]] = true
+			arenas[room["arena"]] = true
+			ok_unique = ok_unique and room["arena"] in biome["rooms"]
+			if i > 0 and plan[i - 1]["biome"] == room["biome"]:
+				ok_change = false
+			ok_size = ok_size and room["waves"].size() == slot["waves"].size()
+			for w in room["waves"].size():
+				var strong: bool = slot.get("strong_last", false) and w == room["waves"].size() - 1
+				ok_size = ok_size and room["waves"][w].size() == int(slot["waves"][w])
+				for m in room["waves"][w]:
+					if not (m[0] in (biome["strong"] if strong else biome["common"])) or not DB.species.has(m[0]):
+						ok_species = false
+					if int(m[1]) < int(slot["levels"][0]) or int(m[1]) > int(slot["levels"][1]):
+						ok_levels = false
+					if strong and int(m[1]) != int(slot["levels"][1]):
+						ok_strong = false
+		ok_unique = ok_unique and arenas.size() == plan.size()
+	r["Hay %d biomas y en 300 partidas salen todos (%s)" % [f["biomes"].size(), ", ".join(seen.keys())]] = f["biomes"].size() >= 6 \
+		and seen.size() == f["biomes"].size()
+	r["Cada partida: 5 salas con las oleadas de su casillero"] = ok_size
+	r["No se repite una sala en la misma partida y cada una es de su bioma"] = ok_unique
+	r["Dos salas seguidas no son del mismo bioma"] = ok_change
+	r["Los Pokémon de cada sala son los de su bioma"] = ok_species
+	r["Los niveles suben con la posición de la sala"] = ok_levels
+	r["La última oleada de las salas finales es de los fuertes del bioma"] = ok_strong
+	var all_species := true
+	for b: String in f["biomes"]:
+		for id in f["biomes"][b]["common"] + f["biomes"][b]["strong"]:
+			if not DB.species.has(id):
+				all_species = false
+	r["Todas las especies de los biomas existen"] = all_species
+
+
+## Cada arena de cada bioma sirve para encadenar: mismo ancho, pintada, con el paso en el medio de arriba y de abajo,
+## camino de un paso al otro y lugar para que salgan los enemigos.
+func _check_arenas(f: Dictionary, r: Dictionary) -> void:
+	var bad: Array[String] = []
+	var count := 0
+	var width := -1
+	for b: String in f["biomes"]:
+		for id: String in f["biomes"][b]["rooms"]:
+			count += 1
+			var data: ArenaData = load("res://data/arenas/%s.tres" % id)
+			var zone: Zone = load(data.scene_path).instantiate()
+			zone.position = Vector2(-300000, -300000)
+			add_child(zone)
+			await get_tree().physics_frame
+			var used: Rect2i = zone.ground.get_used_rect()
+			if width < 0:
+				width = used.size.x
+			var top: Array[int] = []
+			var bottom: Array[int] = []
+			var grid := AStarGrid2D.new()
+			grid.region = used
+			grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+			grid.update()
+			var mid := used.end.x / 2
+			for cell in zone.ground.get_used_cells():
+				var free := MapRules.cell_physics(zone, cell) == -1
+				grid.set_point_solid(cell, not free)
+				if free and absi(cell.x - mid) <= RogueRun.OPENING_REACH:
+					if cell.y == 0:
+						top.append(cell.x)
+					elif cell.y == used.end.y - 1:
+						bottom.append(cell.x)
+			var spawn := 0
+			var fr: Rect2i = data.field
+			for y in range(fr.position.y, fr.end.y, 2):
+				for x in range(fr.position.x, fr.end.x, 2):
+					if MapRules.cell_physics(zone, Vector2i(x, y)) == -1:
+						spawn += 1
+			var why := ""
+			if used.size.x != width:
+				why = "ancho %d" % used.size.x
+			elif data.painting == null:
+				why = "sin pintura"
+			elif top.size() < 2 or bottom.size() < 2:
+				why = "sin paso (arriba %d, abajo %d)" % [top.size(), bottom.size()]
+			elif not top.has(mid) or not bottom.has(mid):
+				why = "el paso no está en el medio"
+			elif grid.get_id_path(Vector2i(mid, used.end.y - 1), Vector2i(mid, 0)).is_empty():
+				why = "no hay camino de abajo a arriba"
+			elif MapRules.cell_physics(zone, data.player_mon_cell) != -1 or MapRules.cell_physics(zone, data.player_cell) != -1 \
+					or MapRules.cell_physics(zone, data.foe_trainer_cell) != -1:
+				why = "la entrada o la puerta del jefe caen en algo sólido"
+			elif spawn < 60:
+				why = "poco lugar para los enemigos (%d)" % spawn
+			if why != "":
+				bad.append("%s: %s" % [id, why])
+			zone.queue_free()
+	r["Las %d arenas de los biomas sirven para encadenar (mismo ancho, paso en el medio, camino, lugar)%s" % [count,
+		"" if bad.is_empty() else " — " + "; ".join(bad)]] = bad.is_empty() and count >= 18
 
 
 ## Un cuadro del bot en las salas: anota cuántos salieron en cada oleada y le devuelve el control si cambió de cuerpo.
@@ -363,7 +495,10 @@ func _until(cond: Callable, timeout: float) -> void:
 func showcase() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/rogue_select.tscn")
 	await get_tree().create_timer(2.0).timeout
-	RogueRun.begin(DB.species["charmander"])
+	RogueRun.begin(DB.species["squirtle"])
+	var args := OS.get_cmdline_user_args()
+	if args.has("--biomes") and args.find("--biomes") + 1 < args.size():  # p. ej. --biomes volcan,costa,cueva,hielo,cementerio
+		GameState.rogue["biomes"] = Array(args[args.find("--biomes") + 1].split(","))
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 	_dialogs()

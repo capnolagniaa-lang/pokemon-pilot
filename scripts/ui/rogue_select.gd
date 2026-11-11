@@ -28,7 +28,7 @@ func _ready() -> void:
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(title)
 	var sub := UiStyle.label("%s: %d salas con oleadas de salvajes y, al final, %s %s.\nUn solo Pokémon de Nv. %d, %d Pociones y %d Pokébolas. Si se debilita, se termina.\nAtrapar un Pokémon lo desbloquea como inicial para las próximas partidas (tenés %d)." % [
-		f["name"], f["rooms"].size(), f["boss"]["title"], f["boss"]["name"], int(f["level"]), int(f["potions"]), int(f.get("balls", 0)),
+		"De bioma en bioma", f["slots"].size(), f["boss"]["title"], f["boss"]["name"], int(f["level"]), int(f["potions"]), int(f.get("balls", 0)),
 		RogueProgress.unlocked().size()], 16, UiStyle.TEXT_DIM)
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(sub)

@@ -1,0 +1,75 @@
+{
+  "_doc": "Modo Desafío (roguelike; docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; balls = Pokébolas por partida (cada una es un tiro: la errada se pierde; atrapar desbloquea la especie como inicial, RogueProgress); heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida; settings = ajustes del juego que pisa el modo (pp_regen 2 = la barra de PP se llena al doble); offer = cuántos Pokémon te ofrecen, de los desbloqueados. slots = las salas de la partida, en orden: levels = [mínimo, máximo] de los enemigos, waves = cuántos salen en cada oleada, strong_last = la última oleada es de los fuertes del bioma. biomes = cada sala sale de un bioma al azar (RogueRun.plan_rooms: sin repetir sala y, si se puede, sin repetir el bioma de la anterior): rooms = sus arenas pintadas (data/arenas, pinturas.json; todas del mismo ancho y con el paso en el medio de la primera y la última fila), common/strong = los Pokémon característicos. boss = pelea de entrenador (TrainerBattle) al final.",
+  "name": "Modo Desafío",
+  "level": 10,
+  "potions": 4,
+  "balls": 2,
+  "heal_on_clear": 0.5,
+  "exp_mult": 3.0,
+  "settings": {"pp_regen": 2.0},
+  "offer": 3,
+  "slots": [
+    {"levels": [3, 4], "waves": [2, 3]},
+    {"levels": [4, 5], "waves": [3, 3]},
+    {"levels": [5, 6], "waves": [3, 3]},
+    {"levels": [6, 7], "waves": [3, 3, 2], "strong_last": true},
+    {"levels": [8, 9], "waves": [3, 3, 2], "strong_last": true}
+  ],
+  "biomes": {
+    "bosque": {
+      "name": "Bosque Verde",
+      "rooms": ["sala_bosque_1", "sala_bosque_2", "sala_bosque_3"],
+      "common": ["caterpie", "weedle", "pidgey", "rattata", "oddish", "bellsprout", "paras", "venonat", "spearow", "pikachu", "metapod", "kakuna", "wurmple", "seedot", "hoothoot", "ledyba", "spinarak", "sunkern"],
+      "strong": ["beedrill", "butterfree", "pidgeotto", "gloom", "weepinbell", "ariados", "nuzleaf", "ledian"]
+    },
+    "volcan": {
+      "name": "Volcán",
+      "rooms": ["sala_volcan_1", "sala_volcan_2", "sala_volcan_3"],
+      "common": ["vulpix", "growlithe", "ponyta", "slugma", "numel", "houndour", "magby", "geodude", "torkoal", "cyndaquil", "torchic"],
+      "strong": ["magmar", "houndoom", "camerupt", "magcargo", "quilava", "combusken", "charmeleon"]
+    },
+    "costa": {
+      "name": "Costa",
+      "rooms": ["sala_costa_1", "sala_costa_2", "sala_costa_3"],
+      "common": ["poliwag", "psyduck", "krabby", "shellder", "staryu", "horsea", "tentacool", "wingull", "corphish", "marill", "wooper", "goldeen", "slowpoke", "totodile", "mudkip"],
+      "strong": ["wartortle", "kingler", "seadra", "pelipper", "poliwhirl", "golduck", "crawdaunt", "croconaw"]
+    },
+    "cueva": {
+      "name": "Cueva",
+      "rooms": ["sala_cueva_1", "sala_cueva_2", "sala_cueva_3"],
+      "common": ["zubat", "geodude", "sandshrew", "diglett", "machop", "aron", "makuhita", "whismur", "cubone", "rhyhorn", "nosepass", "larvitar"],
+      "strong": ["graveler", "golbat", "sandslash", "machoke", "dugtrio", "lairon", "loudred", "onix"]
+    },
+    "hielo": {
+      "name": "Gruta Helada",
+      "rooms": ["sala_hielo_1", "sala_hielo_2", "sala_hielo_3"],
+      "common": ["swinub", "seel", "snorunt", "spheal", "sneasel", "smoochum", "delibird", "shellder", "zubat"],
+      "strong": ["jynx", "dewgong", "piloswine", "sealeo", "glalie", "cloyster"]
+    },
+    "cementerio": {
+      "name": "Cementerio",
+      "rooms": ["sala_cementerio_1", "sala_cementerio_2", "sala_cementerio_3"],
+      "common": ["gastly", "shuppet", "duskull", "misdreavus", "sableye", "cubone", "murkrow", "zubat", "houndour", "spinarak"],
+      "strong": ["haunter", "banette", "dusclops", "marowak", "golbat"]
+    }
+  },
+  "boss": {
+    "name": "Brock",
+    "title": "Líder",
+    "gfx": "brock",
+    "arena": "arena_gimnasio_roca",
+    "trainer_id": "ciudad_plateada_gimnasio_brock",
+    "team": [
+      [
+        "geodude",
+        11
+      ],
+      [
+        "onix",
+        13
+      ]
+    ],
+    "door": "Gimnasio de Plateada",
+    "defeat": "¡Me ganaste con un solo Pokémon! Eso no se ve todos los días."
+  }
+}

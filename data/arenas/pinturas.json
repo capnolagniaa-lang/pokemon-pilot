@@ -765,5 +765,1034 @@
       2048,
       1536
     ]
+  },
+  "sala_volcan_1": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "El campo de ceniza",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        25,
+        60
+      ],
+      "min_s": 0.2,
+      "max_s": 0.75,
+      "min_v": 130,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a volcano dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale sandy tan volcanic ash and light beige cracked rock. Scattered inside as obstacles: seven big black basalt boulders, four jagged dark obsidian spikes, three small round pools of glowing orange lava with black rims, and three charred black dead trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with thin glowing red cracks; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 41,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_volcan_2": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "Las fumarolas",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        25,
+        60
+      ],
+      "min_s": 0.2,
+      "max_s": 0.75,
+      "min_v": 130,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a volcano dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale sandy tan volcanic ash and light beige cracked rock. Scattered inside as obstacles: five small black rock cones venting dark smoke, six black basalt boulders, four small round pools of glowing orange lava with black rims, and a few piles of dark charred rubble. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with thin glowing red cracks; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 42,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_volcan_3": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "El templo quemado",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        25,
+        60
+      ],
+      "min_s": 0.2,
+      "max_s": 0.75,
+      "min_v": 130,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a volcano dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale sandy tan stone slabs dusted with light beige ash. Scattered inside as obstacles: eight broken dark charcoal-black stone pillars of a ruined fire temple, three black dragon statues, two rectangular basins of glowing orange lava with black rims, and four black basalt boulders. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall black volcanic rock cliffs with thin glowing red cracks; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 43,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_costa_1": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "La caleta",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        35,
+        65
+      ],
+      "min_s": 0.3,
+      "min_v": 150,
+      "part": 0.6,
+      "water": true
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright light-yellow beach sand. Scattered inside as obstacles: six big dark grey sea rocks, four dark-green palm trees, three dark brown driftwood logs, and four small round tide pools of bright blue water. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 44,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_costa_2": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "Los charcos de marea",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        35,
+        65
+      ],
+      "min_s": 0.3,
+      "min_v": 150,
+      "part": 0.6,
+      "water": true
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright light-yellow beach sand with seashells. Scattered inside as obstacles: seven tide pools of bright blue water of different sizes, five dark grey barnacle-covered rocks, two dark wooden wrecked rowboats, and three dark-green palm trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 45,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_costa_3": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "El naufragio",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        35,
+        65
+      ],
+      "min_s": 0.3,
+      "min_v": 150,
+      "part": 0.6,
+      "water": true
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a tropical sea cove dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright light-yellow beach sand. Scattered inside as obstacles: the dark brown broken wooden hull of a small shipwreck in two pieces, six dark wooden crates and barrels, five dark grey sea rocks, a dark iron anchor, and three round pools of bright blue water. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 46,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_cueva_1": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "La galería",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        20,
+        50
+      ],
+      "min_s": 0.3,
+      "min_v": 90,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a underground cave dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of warm light-brown packed earth and sandy dirt. Scattered inside as obstacles: eight tall dark grey stalagmites, six big dark grey boulders, and four clusters of dark blue crystals. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 47,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_cueva_2": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "La mina vieja",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        20,
+        50
+      ],
+      "min_s": 0.3,
+      "min_v": 90,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a underground cave dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of warm light-brown packed earth and sandy dirt. Scattered inside as obstacles: three dark rusty grey mine carts, short broken pieces of dark rail track, five dark wooden support posts, six big dark grey boulders, and three piles of dark grey rubble. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 48,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_cueva_3": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "La gruta de cristal",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        20,
+        50
+      ],
+      "min_s": 0.3,
+      "min_v": 90,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a underground cave dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of warm light-brown packed earth and sandy dirt. Scattered inside as obstacles: seven big clusters of dark violet-blue crystals, five dark grey stalagmites, and five big dark grey boulders. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of dark grey-black rough cave rock in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 49,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_hielo_1": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "El campo nevado",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 215,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright white snow. Scattered inside as obstacles: seven big dark blue-grey boulders, five tall dark teal ice crystal spikes, four dark green pine trees with no snow on them, and three dark frozen logs. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 50,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_hielo_2": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "El lago helado",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 215,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright white snow and very pale white-blue ice. Scattered inside as obstacles: eight tall dark teal ice crystal spikes, six big dark blue-grey boulders, and four dark frozen tree stumps. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 51,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_hielo_3": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "Las ruinas heladas",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 215,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a frozen ice cavern dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright white snow. Scattered inside as obstacles: seven broken dark slate-blue stone pillars of a frozen ruin, three dark stone statues, five dark blue-grey boulders, and three tall dark teal ice crystal spikes. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of tall dark navy-blue ice cliffs in deep shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 52,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_cementerio_1": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "Las lápidas",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        235,
+        300
+      ],
+      "min_s": 0.15,
+      "min_v": 150,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a haunted graveyard dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale lavender-purple grass and light violet dirt under moonlight. Scattered inside as obstacles: ten dark grey tombstones in small groups, three black dead twisted trees, two dark stone coffins, and three short pieces of black iron fence. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences and deep black shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 53,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_cementerio_2": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "El mausoleo",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        235,
+        300
+      ],
+      "min_s": 0.15,
+      "min_v": 150,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a haunted graveyard dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale lavender-purple grass and light violet dirt under moonlight. Scattered inside as obstacles: two small dark grey stone mausoleums, six dark grey tombstones, four dark stone angel statues, and three black dead twisted trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences and deep black shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 54,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
+  },
+  "sala_cementerio_3": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "El jardín marchito",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        235,
+        300
+      ],
+      "min_s": 0.15,
+      "min_v": 150,
+      "part": 0.6,
+      "water": false
+    },
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a haunted graveyard dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of pale lavender-purple grass and light violet dirt under moonlight. Scattered inside as obstacles: a dry dark stone fountain, five dark grey broken stone benches, six black dead bushes, four dark grey tombstones and three black dead twisted trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick wall of black dead twisted trees, dark iron fences and deep black shadow; a straight path comes in through a gap at the very bottom center edge and leaves through a gap at the very top center edge. The open floor is bright, flat and clearly lighter than the dark walls and the obstacles. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 55,
+    "px": [
+      1600,
+      1200
+    ],
+    "border": 1
   }
 }

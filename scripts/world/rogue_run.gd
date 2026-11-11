@@ -1,7 +1,7 @@
 class_name RogueRun
 extends Node
 ## Modo Desafío (roguelike estilo Hades, docs/PROPUESTA_ROGUELIKE.md; R-0, la rebanada vertical): desde el título elegís
-## un Pokémon entre 3 y bajás por una cadena de salas (un piso: data/rogue/<piso>.json). En cada sala salen oleadas de
+## un Pokémon entre 3 y bajás por una cadena de salas (data/rogue/desafio.json), cada una de un bioma al azar (plan_rooms). En cada sala salen oleadas de
 ## salvajes; al debilitar a todos se abre el portón de arriba y pasás caminando a la siguiente: **las salas están
 ## encadenadas** (pedido del usuario 2026-11-11: más grandes, encadenadas y con obstáculos), cargadas todas juntas una
 ## arriba de la otra, sin fundido entre ellas; al entrar a una, el portón se cierra detrás. Después de la última sala, la
@@ -17,7 +17,7 @@ extends Node
 
 signal finished(result: String)
 
-const FLOOR_PATH := "res://data/rogue/bosque_verde.json"
+const FLOOR_PATH := "res://data/rogue/desafio.json"
 const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 const SELECT_SCENE := "res://scenes/ui/rogue_select.tscn"
 ## Las salas se cargan acá: lejos del mundo y de las arenas de TrainerBattle (el jefe usa la suya).
@@ -90,6 +90,48 @@ static func offer() -> Array[SpeciesData]:
 	return out
 
 
+## Las salas de una partida (pedido del usuario 2026-11-11: "cada sala que te toca tiene rng del bioma y los pokemon que
+## aparecen ahí son característicos del bioma"): por cada casillero de `slots`, un bioma al azar (si se puede, distinto
+## al de la sala anterior), una de sus arenas que no haya salido todavía y sus oleadas, con Pokémon de ese bioma y los
+## niveles del casillero. `forced` = biomas elegidos a mano, uno por sala (tests). Devuelve, por sala:
+## {arena, name, biome, biome_name, waves: [[[especie, nivel], ...], ...]}.
+static func plan_rooms(f: Dictionary, rng: RandomNumberGenerator, forced: Array = []) -> Array:
+	var out: Array = []
+	var used := {}
+	var last := ""
+	var biomes: Dictionary = f["biomes"]
+	for i in f["slots"].size():
+		var slot: Dictionary = f["slots"][i]
+		var free: Array = biomes.keys().filter(func(b): return biomes[b]["rooms"].any(func(a): return not used.has(a)))
+		if free.is_empty():  # (más salas que arenas: se repite)
+			used.clear()
+			free = biomes.keys()
+		var other: Array = free.filter(func(b): return b != last)
+		var id: String = (other if not other.is_empty() else free)[rng.randi() % (other if not other.is_empty() else free).size()]
+		if i < forced.size() and biomes.has(forced[i]):
+			id = forced[i]
+		var biome: Dictionary = biomes[id]
+		var arenas: Array = biome["rooms"].filter(func(a): return not used.has(a))
+		if arenas.is_empty():
+			arenas = biome["rooms"]
+		var arena: String = arenas[rng.randi() % arenas.size()]
+		used[arena] = true
+		last = id
+		var data: ArenaData = load("res://data/arenas/%s.tres" % arena)
+		var waves: Array = []
+		var lo := int(slot["levels"][0])
+		var hi := int(slot["levels"][1])
+		for w in slot["waves"].size():
+			var strong: bool = slot.get("strong_last", false) and w == slot["waves"].size() - 1
+			var pool: Array = (biome["strong"] if strong else biome["common"]).filter(func(sp): return DB.species.has(sp))
+			var wave: Array = []
+			for n in int(slot["waves"][w]):
+				wave.append([pool[rng.randi() % pool.size()], hi if strong else rng.randi_range(lo, hi)])
+			waves.append(wave)
+		out.append({"arena": arena, "name": data.display_name, "biome": id, "biome_name": str(biome["name"]), "waves": waves})
+	return out
+
+
 ## Deja el estado del juego listo para una partida del modo con ese Pokémon (equipo temporal; no se guarda nada). Después
 ## hay que cambiar a la escena del mundo: RogueRun arranca solo.
 static func begin(sp: SpeciesData) -> void:
@@ -122,6 +164,7 @@ func _ready() -> void:
 		set_physics_process(false)
 		return
 	floor_data = load_floor()
+	floor_data["rooms"] = plan_rooms(floor_data, _rng, GameState.rogue.get("biomes", []))
 	_build_label()
 	world.arena.set_black(true)
 	_run.call_deferred()
@@ -157,7 +200,7 @@ func _play_room(index: int) -> void:
 	var last := index == total - 1
 	_enter_room(index)
 	_refresh_label()
-	var title := "%s  ·  Sala %d de %d" % [str(floor_data["name"]).to_upper(), index + 1, total]
+	var title := "%s  ·  Sala %d de %d" % [str(cfg["biome_name"]).to_upper(), index + 1, total]
 	if index == 0:
 		await world.arena.banner(title, str(cfg.get("name", "")), 1.4)
 	else:  # (venís caminando: el cartel no frena nada)
@@ -273,7 +316,7 @@ func _finish() -> void:
 	world.trainer.locked = true
 	var total: int = floor_data["rooms"].size()
 	if result == "win":
-		await world.arena.banner("¡DESAFÍO SUPERADO!", "%s: %d salas y %s" % [floor_data["name"], total, floor_data["boss"]["name"]], 2.4)
+		await world.arena.banner("¡DESAFÍO SUPERADO!", "%d salas y %s" % [total, floor_data["boss"]["name"]], 2.4)
 	else:
 		await world.arena.banner("Tu Pokémon se debilitó...", "Llegaste hasta %s" % (
 			str(floor_data["boss"]["name"]) if rooms_cleared >= total else "la sala %d de %d" % [mini(rooms_cleared + 1, total), total]), 2.4)
@@ -521,7 +564,7 @@ func _refresh_label() -> void:
 	if _label == null or room_index < 0:
 		return
 	var rooms: Array = floor_data["rooms"]
-	var text := "%s  ·  Sala %d/%d  ·  Bolas: %d" % [floor_data["name"], room_index + 1, rooms.size(), GameState.item_count("poke_ball")]
+	var text := "%s  ·  Sala %d/%d  ·  Bolas: %d" % [rooms[room_index]["biome_name"], room_index + 1, rooms.size(), GameState.item_count("poke_ball")]
 	match phase:
 		"oleada":
 			text += "  ·  Oleada %d/%d  ·  Quedan %d" % [wave_index + 1, rooms[room_index]["waves"].size(), foes.size()]

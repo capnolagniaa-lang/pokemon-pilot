@@ -307,8 +307,12 @@ portón, sin fundido) y con obstáculos pintados cuya colisión sale sola de la 
    con tu único Pokémon); 2 Pokébolas por partida = 2 tiros con la fórmula normal (la errada se pierde). Progreso en
    `user://desafio.json` (`RogueProgress`). Decidido sin preguntar: se desbloquea la especie tal cual se atrapó (un
    Beedrill desbloquea a Beedrill, no a Weedle) y atrapar a uno que ya tenías igual lo saca de la sala.
-2. **Pendiente — biomas**: muchas salas pintadas por bioma (bosque, fuego, agua y más), cada sala de la partida sale al
-   azar con Pokémon característicos del bioma.
+2. **Hecho — biomas**: 6 biomas × 3 salas pintadas (Bosque Verde, Volcán, Costa, Cueva, Gruta Helada, Cementerio); cada
+   sala de la partida sale de un bioma al azar con Pokémon característicos y niveles según la posición
+   (`data/rogue/desafio.json`, `RogueRun.plan_rooms`). Decidido sin preguntar: dos salas seguidas nunca son del mismo
+   bioma; las dos últimas salas cierran con una oleada de evoluciones del bioma; el jefe sigue siendo Brock sea cual sea
+   el camino. Para más adelante: central eléctrica, pradera, pantano; pisos con más detalle (los nuevos son lisos);
+   peligros propios del bioma (lava que quema, hielo que resbala).
 3. **Pendiente — castillo de Mew**: Mewtwo corrompió el mundo; aparecés en un castillo donde Mew te cuenta la historia,
    elegís el inicial y un portal arranca la partida. **Reemplaza al hub del laboratorio de Oak** de la sección de hub.
 
