@@ -57,7 +57,7 @@ func try_open() -> bool:
 	# En combate (también contra entrenadores y en el torneo) se abre reducido: Mochila, Equipo y Cerrar; la pelea
 	# queda en pausa mientras está abierto (pedido del usuario 2026-10-26).
 	in_battle = world != null and world.combat.in_battle
-	if GameState.party.is_empty() and not GameState.has_flag("historia"):
+	if GameState.party.is_empty() and not GameState.has_flag("historia") and GameState.rogue.is_empty():
 		return false  # (en la historia sí: antes del laboratorio también se puede guardar y mirar la Guía)
 	for name in _buttons:
 		_buttons[name].visible = not in_battle or name in BATTLE_ENTRIES

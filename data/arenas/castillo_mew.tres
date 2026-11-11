@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Texture2D" path="res://sprites/arenas/castillo_mew.png" id="1_6lrbk"]
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="2_vj2nu"]
+
+[resource]
+script = ExtResource("2_vj2nu")
+id = "castillo_mew"
+display_name = "Castillo de Mew"
+scene_path = "res://scenes/world/arenas/castillo_mew.tscn"
+foe_trainer_cell = Vector2i(19, 6)
+player_cell = Vector2i(19, 18)
+foe_mon_cell = Vector2i(19, 13)
+player_mon_cell = Vector2i(19, 17)
+field = Rect2i(8, 7, 24, 18)
+painting = ExtResource("1_6lrbk")

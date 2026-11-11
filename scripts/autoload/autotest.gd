@@ -40,12 +40,16 @@ func _ready() -> void:
 		add_child(ar)
 		(ar.showcase if "--showcase-arena-rules" in OS.get_cmdline_user_args() else ar.run).call_deferred()
 		return
-	if "--autotest-rogue-rooms" in OS.get_cmdline_user_args() or "--showcase-rogue" in OS.get_cmdline_user_args():
+	if "--autotest-rogue-rooms" in OS.get_cmdline_user_args() or "--showcase-rogue" in OS.get_cmdline_user_args() \
+			or "--showcase-rogue-castle" in OS.get_cmdline_user_args():
 		set_process(false)
 		var rg := RogueTests.new()
 		rg.autotest = self
 		add_child(rg)
-		(rg.showcase if "--showcase-rogue" in OS.get_cmdline_user_args() else rg.run).call_deferred()
+		if "--showcase-rogue-castle" in OS.get_cmdline_user_args():
+			rg.showcase_castle.call_deferred()
+		else:
+			(rg.showcase if "--showcase-rogue" in OS.get_cmdline_user_args() else rg.run).call_deferred()
 		return
 	if "--autotest-slots" in OS.get_cmdline_user_args():
 		set_process(false)

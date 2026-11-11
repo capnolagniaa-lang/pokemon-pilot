@@ -5,6 +5,8 @@ extends Control
 const WORLD_SCENE := "res://scenes/world/world.tscn"
 const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 
+## Abierta desde el castillo de Mew (RogueRun): elegir avisa al castillo en vez de arrancar la partida.
+var hub: RogueRun
 var options: Array[SpeciesData] = []
 var cards: Array[Button] = []
 
@@ -13,7 +15,7 @@ func _ready() -> void:
 	theme = UiStyle.theme()
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	var bg := ColorRect.new()
-	bg.color = Color(0.05, 0.09, 0.07)
+	bg.color = Color(0.05, 0.09, 0.07) if hub == null else Color(0.06, 0.04, 0.12, 0.88)
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(bg)
 	var f := RogueRun.load_floor()
@@ -49,10 +51,10 @@ func _ready() -> void:
 	root.add_child(actions)
 	if RogueProgress.unlocked().size() > options.size():  # (con 3 o menos no hay otros para ofrecer)
 		var again := UiStyle.button("Otros tres", 200)
-		again.pressed.connect(func(): get_tree().reload_current_scene())
+		again.pressed.connect(func(): hub.open_select() if hub != null else get_tree().reload_current_scene())
 		actions.add_child(again)
 	var back := UiStyle.button("Volver", 200)
-	back.pressed.connect(func(): get_tree().change_scene_to_file(TITLE_SCENE))
+	back.pressed.connect(_back)
 	actions.add_child(back)
 	if not cards.is_empty():
 		UiStyle.focus_later(cards[0])
@@ -94,10 +96,21 @@ func _card(sp: SpeciesData, level: int) -> Button:
 
 
 func start(sp: SpeciesData) -> void:
+	if hub != null:
+		hub.choose(sp)
+		return
 	RogueRun.begin(sp)
 	get_tree().change_scene_to_file(WORLD_SCENE)
 
 
+func _back() -> void:
+	if hub != null:
+		hub.close_select()
+	else:
+		get_tree().change_scene_to_file(TITLE_SCENE)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().change_scene_to_file(TITLE_SCENE)
+		get_viewport().set_input_as_handled()
+		_back()

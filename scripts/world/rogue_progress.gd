@@ -21,15 +21,24 @@ static func path() -> String:
 	return DEFAULT_PATH
 
 
+## El archivo, leído ({} si no está o está roto: se arranca de los de base, sin romper nada).
+static func _read() -> Dictionary:
+	if not FileAccess.file_exists(path()):
+		return {}
+	var d = JSON.parse_string(FileAccess.get_file_as_string(path()))
+	return d if d is Dictionary else {}
+
+
+static func _write(d: Dictionary) -> void:
+	var f := FileAccess.open(path(), FileAccess.WRITE)
+	if f != null:
+		f.store_string(JSON.stringify(d, "  "))
+
+
 ## Las especies desbloqueadas, en el orden en que se consiguieron (primero las de base).
 static func unlocked() -> Array[String]:
 	var out: Array[String] = BASE.duplicate()
-	if not FileAccess.file_exists(path()):
-		return out
-	var d = JSON.parse_string(FileAccess.get_file_as_string(path()))
-	if not d is Dictionary:
-		return out  # (archivo roto: se arranca de los de base, sin romper nada)
-	for id in d.get("unlocked", []):
+	for id in _read().get("unlocked", []):
 		if id is String and DB.species.has(id) and not out.has(id):
 			out.append(id)
 	return out
@@ -45,7 +54,21 @@ static func unlock(id: String) -> bool:
 	if list.has(id) or not DB.species.has(id):
 		return false
 	list.append(id)
-	var f := FileAccess.open(path(), FileAccess.WRITE)
-	if f != null:
-		f.store_string(JSON.stringify({"unlocked": list}, "  "))
+	var d := _read()
+	d["unlocked"] = list
+	_write(d)
 	return true
+
+
+## Cosas que ya pasaron una vez (p. ej. "intro": Mew ya te contó la historia).
+static func has_flag(flag: String) -> bool:
+	return flag in _read().get("flags", [])
+
+
+static func set_flag(flag: String) -> void:
+	var d := _read()
+	var flags: Array = d.get("flags", [])
+	if not flags.has(flag):
+		flags.append(flag)
+		d["flags"] = flags
+		_write(d)

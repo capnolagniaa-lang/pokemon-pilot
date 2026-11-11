@@ -45,7 +45,9 @@ func _process(delta: float) -> void:
 		return
 	if _aiming:
 		_update_aim(delta)
-	if Input.is_action_just_pressed("capture"):
+	if Input.is_action_just_pressed("capture") and world.get("rogue") != null and world.rogue.in_hub():
+		world.rogue.hub_interact()  # (castillo de Mew: la E habla con Mew; ahí no se tiran bolas)
+	elif Input.is_action_just_pressed("capture"):
 		# E contextual (docs/PLAN_HISTORIA.md): si hay alguien al lado, habla; si no, lanza la Pokébola.
 		if story == null or not story.try_interact():
 			if world.get("fishing") != null and world.fishing.try_near():

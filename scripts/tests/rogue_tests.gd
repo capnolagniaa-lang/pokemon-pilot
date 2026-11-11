@@ -103,19 +103,66 @@ func run() -> void:
 	r["Con solo 3 desbloqueados no hay \"Otros tres\""] = not select.find_children("*", "Button", true, false).any(func(b): return b.text == "Otros tres")
 	layer.queue_free()
 
-	# --- Empezar: equipo temporal, nada de la historia ---
-	RogueRun.begin(DB.species["squirtle"])
+	# --- El castillo de Mew: aparecés ahí, Mew cuenta la historia, elegís y cruzás el portal ---
+	RogueRun.enter_hub()
+	r["Desde el título se entra al castillo sin Pokémon todavía"] = GameState.party.is_empty() and GameState.rogue.get("hub", false)
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.in_hub() and is_instance_valid(world.rogue.portal), 20.0)
+	var run: RogueRun = world.rogue
+	var tr0: Trainer = world.trainer
+	r["Aparecés en el castillo de Mew (pintado), caminando vos"] = is_instance_valid(run.hub) and run.hub_data.painting != null \
+		and tr0.global_position.distance_to(run._hub_pos(run.hub_data.player_cell)) < 4.0 and not world.combat.in_battle \
+		and not is_instance_valid(world.companion)
+	r["Ahí están Mew y el portal (apagado hasta que elijas)"] = is_instance_valid(run.mew) \
+		and run.mew.get_node("Sprite").species.id == "mew" and is_instance_valid(run.portal) and not run.portal.lit \
+		and load(RoguePortal.TEXTURE) != null
+	var walk := 0
+	var hub_used: Rect2i = run.hub.ground.get_used_rect()
+	for cell in run.hub.ground.get_used_cells():
+		if MapRules.cell_physics(run.hub, cell) == -1:
+			walk += 1
+	r["El castillo se camina: %d celdas libres, con paredes (%d × %d)" % [walk, hub_used.size.x, hub_used.size.y]] = walk > 300 \
+		and walk < hub_used.size.x * hub_used.size.y and MapRules.cell_physics(run.hub, run.hub_data.player_cell) == -1 \
+		and MapRules.cell_physics(run.hub, run.hub_data.foe_trainer_cell) == -1 \
+		and MapRules.cell_physics(run.hub, Vector2i(0, 0)) != -1
+	await _until(func(): return world.story.dialog.active, 6.0)
+	var d: DialogBox = world.story.dialog
+	r["La primera vez Mew te recibe y cuenta la historia (Mewtwo corrompió el mundo)"] = d.active and d._speaker.text.contains("Mew") \
+		and RogueRun.MEW_STORY.any(func(l): return l.contains("Mewtwo") and l.contains("corrompió")) and world.trainer.locked
+	_dialogs()
+	await _until(func(): return run.select_layer != null, 30.0)
+	await get_tree().process_frame
+	var hub_select: Control = run.select_layer.get_child(0) if run.select_layer != null else null
+	r["Al terminar de contarla se abre la elección, con los desbloqueados"] = hub_select != null and hub_select.cards.size() == 3 \
+		and RogueProgress.has_flag("intro") and hub_select.options.map(func(sp): return sp.id) == ["charmander", "squirtle", "bulbasaur"]
+	run.close_select()
+	await get_tree().process_frame
+	tr0.global_position = run.hub.global_position + RogueRun.PORTAL_STEP
+	await get_tree().create_timer(0.5).timeout
+	r["Sin Pokémon elegido el portal no te lleva"] = run.in_hub() and not run.active and GameState.party.is_empty()
+	tr0.global_position = run.mew.global_position + Vector2(0, 20)
+	await get_tree().process_frame
+	answers = [0]  # "Elegir a mi Pokémon"
+	run.hub_interact()
+	await _until(func(): return run.select_layer != null, 10.0)
+	await get_tree().process_frame
+	r["Hablándole de nuevo (E) se elige sin repetir la historia"] = run.select_layer != null and run.near_mew()
+	if run.select_layer != null:
+		run.select_layer.get_child(0).start(DB.species["squirtle"])
 	GameState.rogue["biomes"] = BOT_BIOMES
+	await get_tree().process_frame
 	var mine: CreatureInstance = GameState.active()
 	r["Arrancás con un solo Pokémon de Nv. %d, %d Pociones y 2 Pokébolas" % [f["level"], f["potions"]]] = GameState.party.size() == 1 \
-		and mine.level == int(f["level"]) and GameState.bag == {"pocion": int(f["potions"]), "poke_ball": 2} and not GameState.rogue.is_empty()
-	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
-	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
-	var run: RogueRun = world.rogue
+		and mine != null and mine.level == int(f["level"]) and GameState.bag == {"pocion": int(f["potions"]), "poke_ball": 2}
+	r["El elegido te sigue por el castillo y el portal se prende"] = is_instance_valid(world.companion) \
+		and world.companion.instance == mine and run.portal.lit and run.in_hub() and run.select_layer == null and not world.trainer.locked
+	tr0.global_position = run.hub.global_position + RogueRun.PORTAL_STEP
+	await _until(func(): return run.phase == "oleada", 25.0)
+	r["Pisar el portal con un Pokémon arranca la partida (el castillo se descarga)"] = run.active and not is_instance_valid(run.hub) \
+		and not is_instance_valid(run.mew) and not GameState.rogue.has("hub") and not GameState.rogue.is_empty()
 	rooms = run.floor_data["rooms"]
 	r["Las salas le tocaron de los biomas pedidos (%s)" % ", ".join(rooms.map(func(x): return x["arena"]))] = \
 		rooms.map(func(x): return x["biome"]) == BOT_BIOMES
-	_dialogs()
 	var bot := RogueBot.new(world)
 	bot.keep_distance = 70.0
 	world.combat.input_source = bot
@@ -222,8 +269,8 @@ func run() -> void:
 		# El bot juega al azar y a veces cae (como cualquiera): prueba de nuevo desde el principio, como haría una persona.
 		print("[desafio]       (intento %d: el bot cayó en la sala %d; va de nuevo)" % [attempt, run.room_index + 1])
 		attempt += 1
-		answers = [0]  # "Jugar otra vez"
-		await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn"), 30.0)
+		answers = [1]  # "Volver al título"
+		await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("title_screen.tscn"), 30.0)
 		RogueRun.begin(DB.species["squirtle"])
 		GameState.rogue["biomes"] = BOT_BIOMES
 		mine = GameState.active()
@@ -293,16 +340,23 @@ func run() -> void:
 		and run.floor_data["rooms"].map(func(x): return x["biome"]) == mixed \
 		and run.foes.all(func(e): return e.instance.species.id in pool) and "Cementerio" in run._label.text
 	_dialogs()
-	answers = [0]  # "Jugar otra vez"
+	answers = [0]  # "Volver al castillo"
 	world.companion.health.apply_damage(99999.0)
 	await _until(func(): return run.result != "", 10.0)
 	r["Si tu Pokémon se debilita, se termina la partida"] = run.result == "lose" and run.rooms_cleared == 0
-	await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn"), 30.0)
-	r["\"Jugar otra vez\" te lleva a elegir de nuevo"] = get_tree().current_scene != null \
-		and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn")
+	var old_world := world
+	await _until(func(): return _world() != null and world != old_world and world.get("rogue") != null and world.rogue.in_hub() \
+		and is_instance_valid(world.rogue.portal), 40.0)
+	run = world.rogue if world != null else run
+	r["\"Volver al castillo\": Mew te trae de vuelta, sin Pokémon, a elegir de nuevo"] = world != null and world != old_world \
+		and run.in_hub() and GameState.party.is_empty() and is_instance_valid(run.mew)
+	await get_tree().create_timer(1.5).timeout
+	r["La segunda vez Mew no repite la historia sola"] = not world.story.dialog.active and not world.trainer.locked
+	run.open_select()
 	await get_tree().process_frame
-	r["Con más de 3 desbloqueados aparece \"Otros tres\""] = get_tree().current_scene.find_children("*", "Button", true, false).any(
+	r["Con más de 3 desbloqueados aparece \"Otros tres\""] = run.select_layer != null and run.select_layer.find_children("*", "Button", true, false).any(
 		func(b): return b.text == "Otros tres")
+	run.close_select()
 	DirAccess.remove_absolute(RogueProgress.TEST_PATH)
 	r["El progreso de verdad del modo no se tocó"] = real_before == (FileAccess.get_file_as_string(RogueProgress.DEFAULT_PATH) if FileAccess.file_exists(RogueProgress.DEFAULT_PATH) else "")
 	var saves_after := _save_times()
@@ -489,6 +543,35 @@ func _until(cond: Callable, timeout: float) -> void:
 	while t < timeout and not cond.call():
 		await get_tree().process_frame
 		t += get_process_delta_time()
+
+
+## Vitrina del castillo de Mew: aparecés, Mew cuenta la historia, la elección y el portal prendido.
+##   godot --path . --quit-after 420 --write-movie out/f.png --fixed-fps 30 -- --showcase-rogue-castle
+func showcase_castle() -> void:
+	DirAccess.remove_absolute(RogueProgress.TEST_PATH)
+	RogueRun.enter_hub()
+	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.in_hub() and is_instance_valid(world.rogue.portal), 20.0)
+	var run: RogueRun = world.rogue
+	await _until(func(): return world.story.dialog.active, 6.0)
+	await get_tree().create_timer(2.5).timeout
+	for i in 3:
+		world.story.dialog.advance()
+		await get_tree().create_timer(0.15).timeout
+		world.story.dialog.advance()
+		await get_tree().create_timer(1.6).timeout
+	_dialogs()
+	await _until(func(): return run.select_layer != null, 30.0)
+	await get_tree().create_timer(1.5).timeout
+	run.select_layer.get_child(0).start(DB.species["charmander"])
+	await get_tree().create_timer(0.8).timeout
+	world.trainer.autopilot = Vector2.ZERO
+	var goal: Vector2 = run.hub.global_position + RogueRun.PORTAL_STEP + Vector2(0, 40)
+	while world.trainer.global_position.distance_to(goal) > 4.0:
+		world.trainer.global_position = world.trainer.global_position.move_toward(goal, 1.2)
+		world.trainer.facing = Vector2.UP
+		await get_tree().physics_frame
+	await get_tree().create_timer(60.0).timeout
 
 
 ## Vitrina: la pantalla de elección y después el bot jugando las salas.

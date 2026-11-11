@@ -1794,5 +1794,62 @@
       1200
     ],
     "border": 1
+  },
+  "castillo_mew": {
+    "_modo": "Castillo de Mew: el lugar donde empieza el Modo Desafío (RogueRun, pedido del usuario 2026-11-11). No es una arena de pelea: se camina. player = donde aparecés, foe_mon = donde flota Mew, foe_trainer = el piso frente al arco (pisarlo con un Pokémon elegido cruza el portal; el portal se dibuja aparte, sprites/props/portal_mew.png, adentro del arco).",
+    "name": "Castillo de Mew",
+    "size": [
+      40,
+      30
+    ],
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        150,
+        205
+      ],
+      "min_s": 0.08,
+      "min_v": 150,
+      "part": 0.6,
+      "water": false
+    },
+    "border": 1,
+    "open": [],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        19,
+        6
+      ],
+      "foe_mon": [
+        19,
+        13
+      ],
+      "player_mon": [
+        19,
+        17
+      ],
+      "player": [
+        19,
+        18
+      ]
+    },
+    "field": [
+      8,
+      7,
+      24,
+      18
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of the great hall of an ancient mystical castle floating in the sky, for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open floor of bright pale sky-blue marble tiles, with a long light turquoise carpet running straight up the center from the bottom to the top. Along the left and right sides stand two rows of tall dark grey stone pillars, four on each side, and between them four dark stone braziers burning with small pink flames. At the very top center, against the back wall, stands one tall wide empty dark stone archway, a gate frame with only pitch black darkness inside it, on three dark stone steps. The whole hall is enclosed on every side by tall dark purple-black castle stone walls with glowing pink stained glass windows on the back wall; the entrance is a gap in the wall at the very bottom center edge. The open floor is bright, flat and clearly lighter than the dark walls, the pillars and the archway. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 71,
+    "px": [
+      1600,
+      1200
+    ],
+    "portal_prompt": "Pixel art, one round swirling magical portal vortex seen from the front, perfectly centered, a spiral of violet, magenta and cyan energy turning into a bright white-pink glowing center, with small sparks around its edge. Pure flat black background, nothing else: no frame, no arch, no ground, no text. Crisp pixels.",
+    "portal_seed": 72
   }
 }

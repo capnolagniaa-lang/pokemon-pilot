@@ -313,8 +313,14 @@ portón, sin fundido) y con obstáculos pintados cuya colisión sale sola de la 
    bioma; las dos últimas salas cierran con una oleada de evoluciones del bioma; el jefe sigue siendo Brock sea cual sea
    el camino. Para más adelante: central eléctrica, pradera, pantano; pisos con más detalle (los nuevos son lisos);
    peligros propios del bioma (lava que quema, hielo que resbala).
-3. **Pendiente — castillo de Mew**: Mewtwo corrompió el mundo; aparecés en un castillo donde Mew te cuenta la historia,
-   elegís el inicial y un portal arranca la partida. **Reemplaza al hub del laboratorio de Oak** de la sección de hub.
+3. **Hecho — castillo de Mew**: Mewtwo corrompió el mundo (salvajes y entrenadores); aparecés en un castillo pintado
+   donde Mew te cuenta la historia, elegís el inicial (de los desbloqueados) y el portal del fondo arranca la partida.
+   **Reemplaza al hub del laboratorio de Oak** de este documento (sección del hub): lo que ahí iba en el laboratorio
+   (mejoras permanentes, Pokédex del modo, legendarios que visitan) va a ir en el castillo. Decidido sin preguntar: la
+   historia entera sale sola solo la primera vez (después Mew ofrece elegir o contarla de nuevo); atrapar = "rescatar"
+   (Mew cuida al Pokémon en el castillo, por eso queda como inicial); vencer a un entrenador lo "despierta" (Brock lo
+   dice al perder); al terminar una partida se vuelve al castillo sin Pokémon; se puede cambiar de Pokémon antes de
+   cruzar. Para más adelante: que los Pokémon rescatados se vean paseando por el castillo, y Mewtwo como jefe final.
 
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.

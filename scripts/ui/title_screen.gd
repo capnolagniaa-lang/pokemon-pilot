@@ -118,7 +118,9 @@ func _build_menu() -> void:
 	new_game.pressed.connect(_on_new_game)
 	_menu.add_child(new_game)
 	var rogue := UiStyle.button("Modo Desafío", 340)
-	rogue.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/rogue_select.tscn"))
+	rogue.pressed.connect(func():  # aparecés en el castillo de Mew: ahí se elige el Pokémon y se cruza el portal
+		RogueRun.enter_hub()
+		get_tree().change_scene_to_file("res://scenes/world/world.tscn"))
 	_menu.add_child(rogue)
 	var test := UiStyle.button("Probar el torneo (prueba)", 340)
 	test.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/tournament_test.tscn"))

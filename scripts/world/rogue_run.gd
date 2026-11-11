@@ -13,13 +13,17 @@ extends Node
 ##    tools/paint_arenas.py, `auto_color`): `player_cell`/`player_mon_cell` = la entrada de la primera,
 ##    `foe_trainer_cell` = la puerta del jefe en la última, `field` = donde aparecen los enemigos. El paso de una sala a
 ##    otra es el hueco libre del medio de su primera y de su última fila (todas del mismo ancho).
-## Todavía sin bendiciones, recompensas ni hub (R-1 en adelante).
+## **El castillo de Mew** (pedido del usuario 2026-11-11): antes de la partida aparecés en un castillo pintado donde Mew
+## te cuenta que Mewtwo corrompió el mundo; ahí elegís a tu Pokémon (de los desbloqueados) y el portal del fondo arranca
+## la partida. `GameState.rogue["hub"]` = estás en el castillo (fase "castillo"); `enter_hub()` lo prepara desde el título.
+## Todavía sin bendiciones ni recompensas (R-1 en adelante).
 
 signal finished(result: String)
 
 const FLOOR_PATH := "res://data/rogue/desafio.json"
 const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
 const SELECT_SCENE := "res://scenes/ui/rogue_select.tscn"
+const WORLD_SCENE := "res://scenes/world/world.tscn"
 ## Las salas se cargan acá: lejos del mundo y de las arenas de TrainerBattle (el jefe usa la suya).
 const ROOM_ORIGIN := Vector2(-80000, -40000)
 ## Pausa entre que cae el último de una oleada y sale la siguiente.
@@ -40,6 +44,24 @@ const ENTER_DELAY := 0.9
 const OPENING_REACH := 6
 ## Si el entrenador quedó más lejos que esto de tu Pokémon (trabado en un obstáculo), aparece al lado.
 const TRAINER_MAX_DIST := 300.0
+## El castillo de Mew (ArenaData pintada; no se pelea: se camina).
+const HUB_ARENA := "castillo_mew"
+const HUB_ORIGIN := Vector2(-80000, -30000)
+## Centro del arco de la pintura (px desde la esquina de la sala): ahí gira el portal. Se cruza pisando delante.
+const PORTAL_AT := Vector2(316, 42)
+const PORTAL_STEP := Vector2(316, 86)
+const PORTAL_RADIUS := 14.0
+const MEW_REACH := 34.0
+const MEW_STORY: Array[String] = [
+	"(Una voz suave te habla adentro de la cabeza.)",
+	"Llegaste. Te estaba esperando.",
+	"Soy Mew. Este castillo es el único lugar al que él todavía no llegó.",
+	"Mewtwo, el Pokémon que crearon a partir de mí, se cansó de obedecer. Su mente cubrió el mundo entero y lo corrompió.",
+	"Los Pokémon salvajes atacan a cualquiera que se les cruce. Y los entrenadores, hasta los líderes de gimnasio, pelean para él sin darse cuenta.",
+	"Yo solo no puedo contra eso. Pero vos sí: del otro lado del portal está el mundo corrompido, y a cada entrenador que venzas lo vas a despertar.",
+	"Si caés, te traigo de vuelta acá. Y a cada Pokémon que rescates con una Pokébola lo voy a cuidar en el castillo: la próxima vez vas a poder salir con él.",
+	"Elegí a un compañero y cruzá el portal. El mundo te necesita.",
+]
 
 var world: Node
 var floor_data: Dictionary = {}
@@ -68,6 +90,13 @@ var door: RogueDoor
 var rooms_cleared := 0
 var _label: Label
 var _engage_in := 0.0
+## El castillo: la sala, Mew, el portal y la pantalla de elección (abierta o null).
+var hub: Zone
+var hub_data: ArenaData
+var mew: PenPokemon
+var portal: RoguePortal
+var select_layer: CanvasLayer
+var _warned := 0.0
 var _rng := RandomNumberGenerator.new()
 
 
@@ -132,11 +161,30 @@ static func plan_rooms(f: Dictionary, rng: RandomNumberGenerator, forced: Array 
 	return out
 
 
+## Desde el título: deja el juego listo para aparecer en el castillo de Mew, sin Pokémon todavía (se elige ahí). Después
+## hay que cambiar a la escena del mundo.
+static func enter_hub() -> void:
+	GameState.new_game(DB.species[RogueProgress.BASE[0]])
+	GameState.party.clear()
+	GameState.active_index = 0
+	GameState.bag = {}
+	GameState.money = 0
+	GameState.wilds_enabled = false
+	GameState.set_flag("tutorial_visto")
+	GameState.rogue = {"hub": true}
+	Events.party_changed.emit()
+
+
 ## Deja el estado del juego listo para una partida del modo con ese Pokémon (equipo temporal; no se guarda nada). Después
 ## hay que cambiar a la escena del mundo: RogueRun arranca solo.
 static func begin(sp: SpeciesData) -> void:
-	var f := load_floor()
 	GameState.new_game(sp)
+	equip(sp)
+
+
+## El equipo y los ajustes de una partida del modo con ese Pokémon (sin reiniciar el juego: en el castillo ya está limpio).
+static func equip(sp: SpeciesData) -> void:
+	var f := load_floor()
 	GameState.party.clear()
 	GameState.party.append(CreatureInstance.create(sp, int(f["level"])))
 	GameState.active_index = 0
@@ -164,13 +212,178 @@ func _ready() -> void:
 		set_physics_process(false)
 		return
 	floor_data = load_floor()
-	floor_data["rooms"] = plan_rooms(floor_data, _rng, GameState.rogue.get("biomes", []))
 	_build_label()
 	world.arena.set_black(true)
-	_run.call_deferred()
+	if GameState.rogue.get("hub", false):
+		_hub.call_deferred()
+	else:
+		_run.call_deferred()
+
+
+# --- El castillo de Mew ---------------------------------------------------------------------------------------------
+
+## Aparecés en el castillo: caminás vos (sin pelea), Mew flota en el medio y el portal espera en el arco del fondo.
+func _hub() -> void:
+	phase = "castillo"
+	await get_tree().process_frame
+	hub_data = load("res://data/arenas/%s.tres" % HUB_ARENA)
+	hub = load(hub_data.scene_path).instantiate()
+	hub.position = HUB_ORIGIN
+	world.get_node("YSort/Zones").add_child(hub)
+	var decor := ArenaDecor.new()
+	hub.add_child(decor)
+	decor.setup(hub_data)
+	world.arena.host_room(hub, hub_data)  # luz de arena pintada, sin minimapa
+	_limit_camera(true, [hub])
+	var t: Trainer = world.trainer
+	t.autopilot = Vector2.ZERO
+	t.follow_target = null
+	t.locked = false
+	t.global_position = _hub_pos(hub_data.player_cell)
+	t.trail = [t.global_position]
+	t.facing = Vector2.UP
+	var spot := _hub_pos(hub_data.foe_mon_cell)
+	mew = PenPokemon.make(DB.species["mew"], Rect2(spot - Vector2(14, 5), Vector2(28, 10)))
+	mew.position = spot
+	world.entities.add_child(mew)
+	portal = RoguePortal.new()
+	portal.position = hub.global_position + PORTAL_AT
+	portal.lit = not GameState.party.is_empty()
+	world.entities.add_child(portal)
+	world.camera.snap()
+	_refresh_label()
+	await get_tree().process_frame
+	await world.arena.fade_to(0.0)
+	if not RogueProgress.has_flag("intro") and phase == "castillo":
+		await talk_to_mew()  # la primera vez te recibe él
+
+
+func _hub_pos(cell: Vector2i) -> Vector2:
+	return hub.to_global(hub.ground.map_to_local(cell))
+
+
+func in_hub() -> bool:
+	return phase == "castillo"
+
+
+## ¿Estás al lado de Mew? (la E le habla)
+func near_mew() -> bool:
+	return in_hub() and is_instance_valid(mew) and world.trainer.global_position.distance_to(mew.global_position) <= MEW_REACH
+
+
+## La E en el castillo (la llama PlayerItems): hablar con Mew si está cerca.
+func hub_interact() -> void:
+	if near_mew() and not world.story.busy and not world.story.dialog.active and select_layer == null:
+		talk_to_mew()
+
+
+## Mew: la primera vez cuenta la historia entera; después, una línea (y la historia de nuevo si la pedís). Al final abre
+## la elección del Pokémon.
+func talk_to_mew() -> void:
+	var story: StoryDirector = world.story
+	story.lock()
+	var d: DialogBox = story.dialog
+	var first := not RogueProgress.has_flag("intro")
+	var tell := first
+	if not first:
+		var pick: int = await d.ask("Mew", "¿Listo para cruzar? El portal te espera.", PackedStringArray(
+			["Elegir a mi Pokémon", "Contame de nuevo qué pasó", "Nada"]))
+		if pick == 2 or not in_hub():
+			story.unlock()
+			return
+		tell = pick == 1
+	if tell:
+		await d.say("Mew", PackedStringArray(MEW_STORY))
+		RogueProgress.set_flag("intro")
+	if not in_hub():
+		story.unlock()
+		return
+	open_select()
+
+
+## La pantalla de elección (la misma de siempre, encima del castillo). Queda trabado el entrenador hasta cerrarla.
+func open_select() -> void:
+	close_select(false)
+	world.story.lock()
+	select_layer = CanvasLayer.new()
+	select_layer.layer = 11
+	add_child(select_layer)
+	var screen: Control = load(SELECT_SCENE).instantiate()
+	screen.hub = self
+	select_layer.add_child(screen)
+
+
+func close_select(unlock := true) -> void:
+	if is_instance_valid(select_layer):
+		select_layer.queue_free()
+	select_layer = null
+	if unlock:
+		world.story.unlock()
+
+
+## Elegiste (o cambiaste) a tu Pokémon: queda armada la partida y te sigue por el castillo; falta cruzar el portal.
+func choose(sp: SpeciesData) -> void:
+	var forced: Array = GameState.rogue.get("biomes", [])
+	equip(sp)
+	GameState.rogue["hub"] = true
+	if not forced.is_empty():
+		GameState.rogue["biomes"] = forced
+	close_select()
+	world.respawn_companion()
+	if is_instance_valid(portal):
+		portal.lit = true
+	if is_instance_valid(world.companion):
+		Fx.burst(world.entities, world.companion.global_position + Vector2(0, -8), Color(1.5, 1.0, 1.5), 14, 40.0)
+	Events.message_requested.emit("%s va con vos. Cruzá el portal cuando quieras." % sp.display_name)
+	_refresh_label()
+
+
+## Pisaste delante del arco: con un Pokémon elegido, el portal te lleva a la primera sala; sin uno, Mew te frena.
+func _hub_process(delta: float) -> void:
+	_warned = maxf(0.0, _warned - delta)
+	if world.story.busy or world.story.dialog.active or select_layer != null or not is_instance_valid(hub):
+		return
+	var t: Trainer = world.trainer
+	if t.global_position.distance_to(hub.global_position + PORTAL_STEP) > PORTAL_RADIUS:
+		return
+	if GameState.party.is_empty():
+		if _warned <= 0.0:
+			_warned = 3.0
+			Events.message_requested.emit("Mew: «Solo no. Primero elegí a un compañero.»")
+		return
+	_depart()
+
+
+func _depart() -> void:
+	phase = ""
+	var t: Trainer = world.trainer
+	t.locked = true
+	t.autopilot = Vector2.ZERO
+	Events.camera_shake.emit(3.0)
+	Fx.burst(world.entities, portal.global_position, Color(1.6, 0.9, 1.8), 26, 80.0)
+	await world.arena.fade_to(1.0)
+	_unload_hub()
+	GameState.rogue.erase("hub")
+	_run()
+
+
+func _unload_hub() -> void:
+	close_select(false)
+	if is_instance_valid(mew):
+		mew.queue_free()
+	if is_instance_valid(portal):
+		portal.queue_free()
+	mew = null
+	portal = null
+	world.arena.release_room()
+	_limit_camera(false)
+	if is_instance_valid(hub):
+		hub.queue_free()
+	hub = null
 
 
 func _run() -> void:
+	floor_data["rooms"] = plan_rooms(floor_data, _rng, GameState.rogue.get("biomes", []))
 	active = true
 	result = ""
 	rooms_cleared = 0
@@ -321,9 +534,13 @@ func _finish() -> void:
 		await world.arena.banner("Tu Pokémon se debilitó...", "Llegaste hasta %s" % (
 			str(floor_data["boss"]["name"]) if rooms_cleared >= total else "la sala %d de %d" % [mini(rooms_cleared + 1, total), total]), 2.4)
 	finished.emit(result)
-	var again: int = await world.story.dialog.ask("Modo Desafío", "¿Y ahora?", PackedStringArray(["Jugar otra vez", "Volver al título"]))
+	var again: int = await world.story.dialog.ask("Modo Desafío", "¿Y ahora?", PackedStringArray(["Volver al castillo", "Volver al título"]))
 	GameState.rogue = {}
-	get_tree().change_scene_to_file(SELECT_SCENE if again == 0 else TITLE_SCENE)
+	if again == 0:
+		enter_hub()
+		get_tree().change_scene_to_file(WORLD_SCENE)
+	else:
+		get_tree().change_scene_to_file(TITLE_SCENE)
 
 
 # --- Salas encadenadas ----------------------------------------------------------------------------------------------
@@ -453,12 +670,12 @@ func _row_y(zone: Zone, row: int) -> float:
 
 
 ## La cámara no muestra más allá de las pinturas de las salas.
-func _limit_camera(on: bool) -> void:
+func _limit_camera(on: bool, zones: Array = chain) -> void:
 	var cam: Camera2D = world.camera
 	var rect := Rect2(Vector2(-10000000, -10000000), Vector2(20000000, 20000000))
-	if on and not chain.is_empty():
+	if on and not zones.is_empty():
 		rect = Rect2()
-		for zone in chain:
+		for zone: Zone in zones:
 			var used := zone.ground.get_used_rect()
 			var r := Rect2(zone.global_position + Vector2(used.position * Zone.TILE), Vector2(used.size * Zone.TILE))
 			rect = r if rect.size == Vector2.ZERO else rect.merge(r)
@@ -524,6 +741,8 @@ func _engage() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if phase == "castillo":
+		_hub_process(delta)
 	if not active:
 		return
 	var c: Creature = world.companion
@@ -561,6 +780,11 @@ func _build_label() -> void:
 
 
 func _refresh_label() -> void:
+	if _label != null and phase == "castillo":
+		_label.visible = true
+		_label.text = "Castillo de Mew  ·  %s" % ("Hablá con Mew (%s) para elegir a tu Pokémon" % Controls.label("capture")
+			if GameState.party.is_empty() else "Cruzá el portal del fondo para empezar")
+		return
 	if _label == null or room_index < 0:
 		return
 	var rooms: Array = floor_data["rooms"]
