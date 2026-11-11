@@ -473,3 +473,113 @@ revisar). Recomendado: **(a)** primero; (b) después si se quiere, con el mismo 
 3. **Qué pasa con las 36 pintadas**: ¿se retiran, o quedan como salas especiales (con su versión en alta resolución)?
 4. **Peligros**: ¿la lava quema y el agua helada frena desde el primer paso, o primero solo lo visual?
 5. **Estilo de las piezas**: ¿pintura "HD-2D" como la prueba de Costa 1 o más cerca del pixel art de los sprites?
+
+---
+
+## 11. Etapa aparte: objetos equipados, suerte, reroll y mejoras enemigas (plan, sin implementar; usuario, 2026-11-11)
+
+Sale de mirar cómo lo hace PokéRogue. **No se implementa hasta que el usuario lo pida**; va después de la prueba de la
+Costa y es independiente de "Salas por piezas" (sección 10).
+
+### 11.1 Decisiones ya tomadas por el usuario
+- **Objetos equipados**: 3 ranuras por Pokémon. Con las 3 llenas, uno nuevo reemplaza a otro (elegís cuál). Un
+  repetido sube de nivel el que ya tenés.
+- **Suerte**: sale de la Pokédex del modo: cuantas más especies desbloqueadas por captura, más suerte; un inicial shiny
+  suma extra. Mejora la rareza de lo que te ofrecen (bendiciones y objetos): cada opción tiene una chance de subir un
+  escalón de rareza, como en PokéRogue.
+- **Reroll**: en toda pantalla de "elegí 1 de 3" (bendiciones y objetos), pagado con el dinero de la partida. El costo
+  se duplica con cada reroll seguido en la misma pantalla y sube con las salas. En las puertas no hay reroll.
+
+### 11.2 Qué hay hoy (para no romperlo)
+- `RogueRewards` (`world.rogue.rewards`): 7 tipos, `options()` sortea 2 con los pesos fijos de `rewards.weights`
+  (`data/rogue/desafio.json`) y `available()` ya saca lo que no sirve (Caramelo sin bendiciones, Tienda sin plata, MT sin
+  candidatos). `grant()` da la recompensa; las que se eligen usan `RewardScreen` (tarjetas) o `BoonScreen`.
+- `RogueBoons`: efectos por señales de tu Pokémon (`hit_dealt`, `dodged`, `damage_received`) y `creature_fainted`, datos
+  en `BoonData` (`effect` + `params` + `scaled`), rarezas con peso y multiplicador en `bendiciones.json`, nivel por
+  repetida. Estado en `GameState.rogue["boons"]`.
+- `RogueProgress` (`user://desafio.json`): especies desbloqueadas y banderas. `CreatureInstance.hp_mult` y
+  `Creature.attack_gate` (R-1). El dinero de la partida es `GameState.money`.
+
+### 11.3 Contenido
+**1. Pesos por necesidad** (reemplaza los pesos fijos). `RogueRewards.weight_of(tipo)` = peso base × factor según tu
+situación al limpiar la sala:
+
+| Tipo | Factor |
+|---|---|
+| Centro | ×(0,3 a 3) según la vida que te falta (con la vida casi entera, casi no sale; bajo 40 %, sale seguro) |
+| Tienda | 0 si no te alcanza para nada; ×1,5 si te alcanza para 2 cosas o más |
+| MT | ×1,5 si hay un candidato claramente mejor que tu ataque más flojo (potencia, STAB); 0 sin candidatos |
+| Caramelo Raro | 0 sin bendiciones; crece con cuántas tenés |
+| Poké Ball (nuevo tipo) | ×2 si te queda 1 o ninguna; ×0,3 con 3 o más |
+| Objeto | ×0,3 con las 3 ranuras en nivel máximo; ×1,5 con ranuras vacías |
+| Dinero, Más PS, Bendición | base (la Bendición sigue siendo la más común) |
+
+Regla dura: **nunca ofrecer algo inútil** (ya existe con `available`; se extiende a los tipos nuevos).
+
+**2. Recompensa "Objeto"** (puerta con su ícono, artículo de la Tienda y **garantizado después de un jefe**): te ofrecen 3
+con rareza (las 4 de las bendiciones) y elegís uno. Son objetos reales de Pokémon adaptados al tiempo real, **solo de la
+partida**:
+
+| Objeto | Efecto en tiempo real | Efecto del motor |
+|---|---|---|
+| Restos | regenera vida cada segundo en combate | `regen` (nuevo, por tiempo) |
+| Campana Concha | cura un % del daño que hacés | `lifesteal` (nuevo, en `hit_dealt`) |
+| Cinta Focus | sobrevivís un golpe mortal con 1 PS, una vez por sala | `phoenix` con otro umbral / `lethal_guard` |
+| Garra Rápida | el esquive recarga antes | `stat` dodge_cooldown (nuevo) |
+| Roca del Rey | chance de stagger extra al pegar | `hit_status` con un estado corto ("Azotado") |
+| Periscopio | chance de golpe crítico (+50 %) | `crit` (nuevo: daño de más al azar) |
+| Carbón, Agua Mística, Imán, Semilla Milagro... | +daño de ese tipo | `bonus_type` (nuevo); **solo se ofrecen los del tipo de tus ataques** |
+| Vidasfera | +daño, perdés un poco de vida al pegar | `bonus_all` + costo |
+| Casco Dentado | daña al que te pega cuerpo a cuerpo | `thorns` (ya existe) |
+| Pañuelo Elegido | +velocidad de movimiento | `stat` speed (nuevo) |
+| Baya Zidra | cura al bajar de 50 %, se repone por sala | `phoenix` (ya existe, otros números) |
+| Cascabel Alivio / Huevo Suerte | más EXP | `stat` exp (ajuste de la partida) |
+| Moneda Amuleto | más dinero por sala | `stat` money |
+
+- **Se reusa el motor de las bendiciones**: mismo `effect` + `params` + `scaled`, con origen "objeto". Lo más simple es que
+  `RogueBoons` recorra dos listas (`GameState.rogue["boons"]` y `GameState.rogue["items"]`) y que los datos de objeto sean
+  `BoonData` con `giver = "objeto"` y un campo `item_id` (para usar el `ItemData` y el ícono de `sprites/items` cuando
+  existan; los que falten, ícono pintado). Así un efecto nuevo sirve para las dos cosas.
+- **Efectos nuevos que hacen falta**: por tiempo (`regen`), robo de vida, crítico, bonus por tipo de ataque y los de
+  "stat" (velocidad, recarga del esquive, EXP, dinero). Los de stat necesitan ganchos chicos en el combate central
+  (hoy `Creature.speed()` y `MoveUser.dodge_cooldown` solo miran la firma): proponer un multiplicador genérico por
+  criatura (`Creature.run_mods`, vacío fuera del modo), en vez de un `if` por objeto.
+- **3 ranuras**: `GameState.rogue["items"]` = hasta 3 `{id, rarity, level}`. Con las 3 llenas, después de elegir se abre
+  la pantalla de tarjetas con tus 3 para elegir cuál se va (o "no cambiar"). Repetido = +1 nivel, sin gastar ranura.
+- **Que se vean**: íconos en el HUD de la partida (al lado de las bendiciones, con otro marco) y una sección "Objetos" en
+  Equipo del menú de pausa con nombre, nivel y descripción (también para las bendiciones, que hoy solo son íconos).
+
+**3. Suerte y reroll.**
+- `RogueProgress.luck()` = puntos por especies desbloqueadas (por ejemplo 1 cada 5, con tope) + extra si el inicial de
+  esta partida es shiny. Cada punto da a **cada opción ofrecida** una chance de subir un escalón de rareza
+  (`RogueBoons.roll_rarity(suerte)`); la suerte se muestra en el castillo (al elegir) y en la pantalla de elección.
+- Reroll: botón en `BoonScreen` y en la pantalla de objetos, con el costo a la vista. Costo = base × 2^(rerolls seguidos
+  en esa pantalla) × (1 + salas limpiadas × factor). Sin plata, apagado. No se puede en las puertas ni en Caramelo/MT.
+  Los pesos del sorteo no cambian al rerollear (solo se vuelve a tirar).
+
+**4. Mejoras de los enemigos al avanzar** (el "pool enemigo" de PokéRogue): desde cierta sala, los élite (la oleada
+fuerte) y el Pokémon del jefe llevan **un modificador visible** (ícono sobre su barra de vida y su nombre en el cartel):
+Furioso (+daño), Blindado (aguanta más), Ardiente / Eléctrico (quema o paraliza al golpear), Regenerador (se cura un
+poco). Así la dificultad sube con algo más que el nivel. Se arma con el mismo motor, enganchado a la criatura enemiga
+(un `RogueBoons` chico por enemigo, o el motor generalizado a "dueño" cualquiera): es la parte que obliga a que el motor
+deje de asumir que el dueño es tu Pokémon. Datos en `desafio.json`: desde qué sala, cuántos, y la lista con pesos.
+
+### 11.4 Pasos (cada uno con su autotest, el juego ejecutable y commit propio)
+| Paso | Qué | Autotest |
+|---|---|---|
+| **O-a** | Pesos por necesidad (`weight_of`), tipo "Poké Ball", y reroll en `BoonScreen` (costo, duplicación, tope por plata) | `--autotest-rogue-rewards` ampliado: con la vida baja el Centro sale casi siempre; sin plata no hay reroll; el costo se duplica |
+| O-b | Objetos equipables: datos, 6-8 objetos con los efectos que ya existen + los nuevos (`regen`, robo de vida, crítico, bonus por tipo), 3 ranuras con reemplazo, nivel por repetido, puerta/Tienda/tras el jefe, HUD y Equipo | `--autotest-rogue-items` (cada objeto hace lo que dice; ranuras; solo se ofrecen potenciadores de tus tipos) |
+| O-c | Suerte (`RogueProgress.luck`, shiny) aplicada a bendiciones y objetos; se muestra en el castillo y en la pantalla | en 5000 tiradas, más suerte = más raras; con 0 de suerte no cambia nada de hoy |
+| O-d | Mejoras enemigas: motor con dueño cualquiera, 4-5 modificadores, ícono sobre la barra, desde qué sala | `--autotest-rogue-foes` (el modificador hace lo que dice y se ve; antes de la sala N no hay) |
+
+### 11.5 Dudas de diseño que quedan
+1. **Objetos y bendiciones repetidos**: ¿tope de nivel (por ejemplo 3) para que "las 3 ranuras al máximo" exista de verdad?
+2. **Reemplazo**: al cambiar un objeto, ¿el que sale se pierde o da algo de plata?
+3. **Suerte**: ¿cuenta todas las especies desbloqueadas o solo las atrapadas (sin los 3 iniciales)? ¿Tope?
+4. **Shiny**: hoy el inicial sale shiny 1 de cada 1024 como cualquiera; ¿alcanza o hay que poder desbloquear la versión
+   shiny (atrapando un shiny en una partida) para elegirla?
+5. **Reroll**: costo base (¿$30?) y si la Tienda también lo tiene.
+6. **Mejoras enemigas**: ¿desde la sala 3? ¿El jefe (Brock) también, o solo los élite por ahora?
+7. **Objetos con costo** (Vidasfera): ¿van, o por ahora solo objetos sin contra?
+8. **Tras el jefe**: hoy después de Brock termina la partida; el "objeto garantizado tras el jefe" tiene sentido recién
+   cuando haya un segundo piso. ¿Se deja preparado o se espera a los pisos?
