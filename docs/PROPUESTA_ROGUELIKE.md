@@ -370,3 +370,106 @@ tocó (es el del jugador, con la rueda); si igual se ven "de cerca", la opción 
   (`CombatDirector.enemies`, manadas) y los golpes cuerpo a cuerpo ya pegan a todos los que toca el arco.
 - **No estaba**: el PP como maná. Medido con el bot en R-0: contra 3 a la vez la barra normal deja la mitad de la pelea
   sin poder atacar; el modo la llena al doble (`pp_regen` 2). Es la perilla a mirar primero al jugarlo.
+
+---
+
+## 10. Etapa aparte: "Salas por piezas" (plan, sin implementar; acordado con el usuario el 2026-11-11)
+
+**Por qué.** Hoy cada sala es **una pintura entera** de Qwen (1600×1200 para 1024×768 px de juego) y la colisión sale de
+esa pintura por color (`auto_color`). Dio 36 salas rápido, pero tiene techo: el suelo sale liso o granulado, con el zoom
+del juego se ve pixelado, los objetos son parte del fondo (tu Pokémon nunca pasa *por detrás* de una palmera), no
+reaccionan (no se queman ni se rompen) y cada sala nueva es otra pintura a revisar. La prueba de alta resolución con
+Costa 1 mejora mucho la nitidez, pero no cambia nada de lo demás. La alternativa es armar las salas como Hades: **un
+fondo + objetos sueltos**.
+
+### 10.1 Cómo es una sala por piezas
+- **Piso**: una textura de fondo por bioma en alta resolución (grande, sin repetición visible, o 2-3 variantes), pintada
+  una sola vez y revisada con el zoom del juego. Encima, **manchas de decorado sin colisión** (conchas, flores, grietas,
+  charcos secos, huesitos) para que dos salas del mismo bioma no tengan el mismo suelo.
+- **Obstáculos = piezas**: cada una es un sprite pintado con Qwen en alta resolución, **con fondo transparente y el origen
+  en los pies** (como todas las entidades del juego), dentro del y-sort del mundo: lo que está más abajo tapa a lo que
+  está más arriba, así se pasa por detrás de una palmera o una columna. Colisión con **la forma de su base** (no el
+  rectángulo de toda la imagen) y, si corresponde, tags de entorno como cualquier `EnvObject`: `inflamable` (árbol, tronco,
+  carpa), `fragil` (roca que se rompe con una embestida, cajas), `pesado`, `conductor`.
+- **Zonas de líquido**: agua, lava y hielo roto no son piezas sólidas sino **zonas** (forma + borde pintado): el agua es
+  agua de verdad (moja, frena, conduce: lo que ya hace la capa `Water`), la lava quema al pisarla y el agua helada frena.
+  Así aparecen los peligros propios de cada bioma que quedaron pendientes.
+- **Paredes**: el borde de la sala también por bioma: tramos rectos, esquinas y el tramo con el paso (arriba y abajo),
+  para que el encadenado de hoy siga igual (mismo ancho, paso en el medio).
+- **La grilla sigue debajo**: las celdas de la zona se marcan desde las piezas colocadas (sólido, agua, tags), así
+  `ReactionSystem`, `MapRules`, los caminos de la IA (`find_path`), los puntos de aparición y `door_cells` no cambian.
+
+### 10.2 Las piezas del catálogo
+`data/rogue/piezas/<bioma>/<id>.tres` (recurso nuevo, p. ej. `RoomPiece`): sprite, tamaño en celdas de su base, forma de
+colisión, tags, categoría y cuántas admite una sala. Categorías:
+
+| Categoría | Ejemplos (Costa) | Colisión | Cuántas por sala |
+|---|---|---|---|
+| Chica | roca chica, caja, barril, coral | 1×1 a 2×1 | 6-10 |
+| Mediana | roca con percebes, palmera, tronco, bote | 2×2 a 4×2 | 4-7 |
+| Grande / protagonista | naufragio, faro caído, muelle | 6×4 o más | 0-1 |
+| Zona | charco de marea, laguna | agua (no sólida) | 1-4 |
+| Decorado | conchas, estrellas de mar, algas, huellas | ninguna | 10-25 |
+| Pared | recta, esquina, con paso | sólida | las que hagan falta |
+
+Para empezar alcanzan **~12 piezas por bioma** (4 chicas, 4 medianas, 1 grande, 2 zonas, y un juego de decorado que va en
+una sola hoja) más las paredes. Con 6 biomas son unas 70-80 piezas más 6 pisos.
+
+### 10.3 El generador
+`RoomBuilder.build(bioma, semilla, tipo)` arma una sala sorteando piezas con reglas:
+1. Pone las paredes y deja libres el paso de entrada y el de salida, con un margen delante de cada uno.
+2. Elige una **plantilla de composición** (centro libre con cosas en los bordes; una protagonista en el centro con anillo
+   libre alrededor; dos mitades con un pasillo; laguna al costado...) para que no todas sean "cosas desparramadas".
+3. Coloca la pieza grande (si la plantilla la pide), después zonas, medianas y chicas, respetando distancias mínimas
+   entre piezas (que pase un Pokémon grande) y un **área jugable** libre mínima.
+4. **Valida**: todo el piso conectado desde la entrada hasta la salida (`MapRules` / el mismo recorrido de celdas de
+   `--autotest-room-walk`), lugar para que aparezcan las oleadas y para las dos puertas de recompensa. Si falla, prueba
+   con otra semilla.
+5. Decorado sin colisión por encima, con densidad por bioma.
+
+Con **semilla** fija la sala es siempre la misma (tests y capturas). Dos opciones de cuándo se genera: **(a) fuera del
+juego** (el generador escribe la escena y su `ArenaData`, como hoy `build_arenas.gd`: fácil de revisar y de arreglar a
+mano, y se pueden guardar las 30 mejores semillas por bioma) o **(b) al entrar a la partida** (salas infinitas, pero sin
+revisar). Recomendado: **(a)** primero; (b) después si se quiere, con el mismo generador.
+
+### 10.4 Qué se reusa y qué se reemplaza
+- **Se reusa tal cual**: `RogueRun` (encadenado, portones, oleadas, esbirros y fichas), bendiciones, recompensas y
+  puertas, biomas y sus Pokémon (`data/rogue/desafio.json`), el castillo de Mew, los tests del modo.
+- **Se reemplaza**: la pintura entera + `auto_color` como fuente de las salas (quedan para el castillo y las arenas de
+  gimnasio, que son una sola imagen fija y están bien así). `ArenaDecor._add_painting` pasa a dibujar el piso del bioma.
+- **Convivencia**: las 36 salas pintadas siguen funcionando mientras tanto. Cada bioma en `desafio.json` lista sus salas:
+  al convertir un bioma, sus salas por piezas se suman a esa lista (o la reemplazan) sin tocar los demás. Se puede comparar
+  una pintada contra una por piezas en la misma partida.
+
+### 10.5 Pasos (cada uno con su autotest y el juego ejecutable)
+| Paso | Qué | Cómo se prueba |
+|---|---|---|
+| **P-0** | **Bioma de muestra** (Costa): piso en alta resolución, ~12 piezas con fondo transparente y colisión de base, paredes, y 3 salas armadas a mano con esas piezas para ver el resultado | `--showcase-rogue --biomes costa` + captura; el usuario compara contra las pintadas |
+| P-1 | `RoomPiece` + `RoomBuilder` con semilla, plantillas y validación; 10 salas de Costa generadas | `--autotest-rogue-builder` (200 semillas: conectadas, con lugar, sin piezas encimadas) |
+| P-2 | Piezas con vida: se pasa por detrás (y-sort), tags de entorno (se queman, se rompen), agua/lava como zonas con efecto | `--autotest-rogue-pieces` + jugarlo |
+| P-3 | Los otros 5 biomas (piso + piezas + paredes) | el test de P-1 por bioma + capturas |
+| P-4 | Retirar las salas pintadas (o dejarlas como "salas especiales") y, si gusta, generar al entrar | `--autotest-rogue-rooms` completo |
+
+**P-0 es el que decide**: si el bioma de muestra no se ve claramente mejor que las pintadas, no se sigue.
+
+### 10.6 Riesgos
+- **Cantidad de arte**: ~80 piezas + 6 pisos + paredes. Qwen las pinta de a una en ~15 s, pero cada una hay que
+  recortarla y revisarla. Mitigación: hojas de varias piezas por prompt y un script de recorte (como `prop_from_image.py`).
+- **Recorte del fondo**: Qwen no devuelve transparencia; hay que pintar sobre un color plano y recortar. Las piezas con
+  bordes finos (palmeras, árboles secos, rejas) son las difíciles; la sombra conviene dibujarla aparte por código
+  (`SunShadow` / `blob_shadow`), no pintada.
+- **Coherencia de estilo** entre piezas pintadas por separado (luz, escala, grosor de línea): fijar un prompt base por
+  bioma y pintar las piezas de una misma categoría juntas.
+- **Paredes**: es la parte que más se nota si queda mal (uniones entre tramos). Alternativa barata: una sola pintura de
+  "marco" por bioma con el centro vacío.
+- **Rendimiento**: 5 salas encadenadas × ~40 nodos por sala = ~200 sprites con colisión; no debería ser problema, pero
+  medirlo. Si hace falta, las salas lejanas se cargan al acercarse.
+- **Choque con la IA**: hoy los obstáculos son celdas enteras; con formas de base más chicas hay que confirmar que
+  `CombatBody.steer` y `find_path` no se traben en las esquinas (el test de recorrido lo cubre).
+
+### 10.7 Preguntas abiertas para el usuario
+1. **Bioma de muestra**: ¿Costa (donde se vio el problema) o Bosque?
+2. **Generar fuera del juego o al entrar**: ¿salas revisadas a mano (30 por bioma, por ejemplo) o infinitas?
+3. **Qué pasa con las 36 pintadas**: ¿se retiran, o quedan como salas especiales (con su versión en alta resolución)?
+4. **Peligros**: ¿la lava quema y el agua helada frena desde el primer paso, o primero solo lo visual?
+5. **Estilo de las piezas**: ¿pintura "HD-2D" como la prueba de Costa 1 o más cerca del pixel art de los sprites?
