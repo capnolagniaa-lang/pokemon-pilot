@@ -5,7 +5,8 @@ data/arenas/pinturas.json:
   - el plano, resuelto, a data/arenas/planos/<id>.json, que lee tools/build_arenas.gd para armar la escena:
     `rows` ("." piso, "#" choca, "~" agua de verdad: moja, frena y conduce), floor/wall (metatiles), rocks, cells, field,
     water (rectángulos de pileta). Con `auto` = las celdas claras (pasto, tierra, piso) unidas al centro son piso y lo
-    oscuro choca; después se abren los rectángulos `open`, se cierran los `solid` y se ponen los `water`.
+    oscuro choca; después se abren los rectángulos `open`, se cierran los `solid` y se ponen los `water`. Con
+    `auto_color` (salas del Modo Desafío, con obstáculos pintados) el plano sale por color: ver color_plan.
   - `brillo` (opcional) aclara la pintura al copiarla (1,35 = un 35 % más clara);
   - `scale` agranda la arena: todas las celdas y rectángulos del JSON (que se marcan sobre la grilla de `size`) se
     multiplican y la arena queda de size × scale celdas, con la misma pintura dibujada más grande.
@@ -46,6 +47,52 @@ def auto_plan(img, w, h, threshold):
     return seen
 
 
+def color_plan(img, w, h, cfg):
+    """Plano por color (salas con obstaculos pintados; `auto_color` del JSON): piso = celdas claras y de color (pasto,
+    musgo, tierra), unidas al centro; lo gris (rocas, ruinas), lo marron oscuro (troncos, raices) y lo oscuro (arboles)
+    choca; con `water` true, lo celeste es agua de verdad. Cada celda se decide por mayoria de sus 64 muestras.
+    Claves: min_v (brillo minimo 0-255), min_s (saturacion minima 0-1), part (parte de la celda que tiene que ser piso),
+    water (bool)."""
+    import colorsys
+    small = img.convert("RGB").resize((w * 8, h * 8), Image.BOX)
+    px = small.load()
+    min_v, min_s, part = cfg.get("min_v", 95), cfg.get("min_s", 0.3), cfg.get("part", 0.6)
+    ok, wet = set(), set()
+    for y in range(h):
+        for x in range(w):
+            floor_n = water_n = 0
+            for j in range(8):
+                for i in range(8):
+                    r, g, b = px[x * 8 + i, y * 8 + j]
+                    hh, ss, vv = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
+                    hue = hh * 360.0
+                    if vv * 255.0 < min_v:
+                        continue
+                    if 165.0 <= hue <= 250.0 and ss >= 0.25:
+                        water_n += 1
+                    elif 25.0 <= hue <= 150.0 and ss >= min_s:
+                        floor_n += 1
+            if cfg.get("water") and water_n >= 64 * part:
+                wet.add((x, y))
+            elif floor_n >= 64 * part:
+                ok.add((x, y))
+    start = (w // 2, h // 2)
+    if start not in ok:  # (un obstaculo justo en el medio: la celda de piso mas cercana)
+        start = min(ok, key=lambda c: abs(c[0] - start[0]) + abs(c[1] - start[1]))
+    seen = {start}
+    queue = deque(seen)
+    while queue:
+        x, y = queue.popleft()
+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            n = (x + dx, y + dy)
+            if n in ok and n not in seen:
+                seen.add(n)
+                queue.append(n)
+    wet = {c for c in wet if any((c[0] + dx, c[1] + dy) in seen or (c[0] + dx, c[1] + dy) in wet
+                                 for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))}
+    return seen, wet
+
+
 def cells_of(rects, k):
     out = set()
     for x0, y0, rw, rh in rects:
@@ -60,9 +107,13 @@ def build(root, arena_id, cfg):
     src = os.path.join(root, "art_src/arenas/%s.png" % arena_id)
     img = Image.open(src)
     floor = auto_plan(img, w, h, cfg["auto"]) if cfg.get("auto") is not None else set()
+    water = set()
+    if cfg.get("auto_color") is not None:
+        floor, water = color_plan(img, w, h, cfg["auto_color"])
     floor |= cells_of(cfg.get("open", []), k)
     floor -= cells_of(cfg.get("solid", []), k)
-    water = cells_of(cfg.get("water", []), k)
+    water |= cells_of(cfg.get("water", []), k)
+    floor -= water
     rows = ["".join("~" if (x, y) in water else "." if (x, y) in floor else "#" for x in range(w)) for y in range(h)]
     pt = lambda p: [round(p[0] * k), round(p[1] * k)]
     rect = lambda r: [round(r[0] * k), round(r[1] * k), round((r[0] + r[2]) * k) - round(r[0] * k),
@@ -76,6 +127,7 @@ def build(root, arena_id, cfg):
         "cells": {name: pt(p) for name, p in cfg["cells"].items()},
         "field": rect(cfg["field"]),
         "water": [rect(r) for r in cfg.get("water", [])],
+        "water_cells": sorted([x, y] for x, y in water - cells_of(cfg.get("water", []), k)),  # (las del plano por color)
     }
     os.makedirs(os.path.join(root, "data/arenas/planos"), exist_ok=True)
     os.makedirs(os.path.join(root, "sprites/arenas"), exist_ok=True)

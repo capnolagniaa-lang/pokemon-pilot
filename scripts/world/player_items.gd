@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 		if story == null or not story.try_interact():
 			if world.get("fishing") != null and world.fishing.try_near():
 				pass  # en un punto de pesca, la E pesca
-			elif world.get("arena") != null and world.arena.active:
+			elif world.get("arena") != null and world.arena.active and not _rogue_room():
 				Events.message_requested.emit("¡No se puede atrapar al Pokémon de otro entrenador!")
 			else:
 				if Controls.gamepad:
@@ -62,6 +62,12 @@ func _process(delta: float) -> void:
 
 
 # --- Apuntar con joystick -------------------------------------------------------------------------------------------------
+
+## En una sala del Modo Desafío (RogueRun): los de las oleadas son salvajes, no de un entrenador.
+func _rogue_room() -> bool:
+	var rogue = world.get("rogue")
+	return rogue != null and rogue.active and rogue.phase != "jefe" and rogue.phase != "fin"
+
 
 func is_aiming() -> bool:
 	return _aiming

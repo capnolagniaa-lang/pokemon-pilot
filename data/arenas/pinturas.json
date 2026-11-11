@@ -572,24 +572,31 @@
     "sketch": "art_src/arenas/arena_torneo_boceto.png"
   },
   "sala_bosque_1": {
-    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): foe_trainer = la puerta de salida, player/player_mon = la entrada, field = donde aparecen los enemigos.",
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
     "name": "El claro",
     "size": [
       40,
       30
     ],
-    "auto": 55,
-    "brillo": 1.2,
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "min_v": 95,
+      "min_s": 0.3,
+      "part": 0.6,
+      "water": false
+    },
+    "brillo": 1.15,
     "open": [
       [
         19,
-        4,
+        0,
         2,
-        5
+        6
       ],
       [
         19,
-        24,
+        25,
         2,
         5
       ]
@@ -601,7 +608,7 @@
     "cells": {
       "foe_trainer": [
         20,
-        6
+        3
       ],
       "foe_mon": [
         20,
@@ -609,7 +616,7 @@
       ],
       "player_mon": [
         20,
-        23
+        25
       ],
       "player": [
         20,
@@ -617,150 +624,44 @@
       ]
     },
     "field": [
-      8,
-      9,
-      25,
-      15
+      6,
+      6,
+      28,
+      19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A wide flat open clearing of bright light-green grass with patches of worn dirt and small flowers, a few mossy boulders and a fallen log near the edges, soft sunbeams through the leaves. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a dirt path comes in through a gap at the bottom center and leaves through a gap between two huge trees at the top center. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 21
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open clearing of bright light-green grass with patches of worn dirt and small flowers. Scattered inside the clearing as obstacles: six big grey mossy boulders, three fallen tree trunks lying on the grass, four cut tree stumps and two lone big dark-leaved trees. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a straight dirt path comes in through a gap at the very bottom center edge and leaves through a gap between two huge trees at the very top center edge. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 31,
+    "px": [
+      2048,
+      1536
+    ]
   },
   "sala_bosque_2": {
-    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): foe_trainer = la puerta de salida, player/player_mon = la entrada, field = donde aparecen los enemigos.",
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
     "name": "Las ruinas",
     "size": [
       40,
       30
     ],
-    "auto": 55,
-    "brillo": 1.2,
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "min_v": 95,
+      "min_s": 0.3,
+      "part": 0.6,
+      "water": true
+    },
+    "brillo": 1.15,
     "open": [
       [
         19,
-        4,
+        0,
         2,
-        5
-      ],
-      [
-        19,
-        24,
-        2,
-        5
-      ]
-    ],
-    "solid": [
-      [
-        17,
-        11,
-        1,
-        1
-      ],
-      [
-        22,
-        11,
-        1,
-        1
-      ],
-      [
-        15,
-        13,
-        1,
-        1
-      ],
-      [
-        24,
-        13,
-        1,
-        1
-      ],
-      [
-        15,
-        16,
-        1,
-        1
-      ],
-      [
-        24,
-        16,
-        1,
-        1
-      ],
-      [
-        17,
-        18,
-        1,
-        1
-      ],
-      [
-        22,
-        18,
-        1,
-        1
-      ]
-    ],
-    "floor": 1,
-    "wall": 35008,
-    "rocks": [],
-    "cells": {
-      "foe_trainer": [
-        20,
         6
       ],
-      "foe_mon": [
-        20,
-        11
-      ],
-      "player_mon": [
-        20,
-        23
-      ],
-      "player": [
-        20,
-        27
-      ]
-    },
-    "field": [
-      8,
-      9,
-      25,
-      15
-    ],
-    "prompt": "Pixel art, top-down 3/4 view of one combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A wide flat open glade of bright grass and pale dirt around the remains of an ancient mossy stone circle: low broken pillars near the edges, cracked flagstones in the middle, a shallow clear pond in one corner, ferns and big roots at the borders, misty green light. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a dirt path comes in through a gap at the bottom center and leaves through a gap between two huge trees at the top center. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 21,
-    "water": [
-      [
-        29,
-        9,
-        3,
-        2
-      ],
-      [
-        6,
-        22,
-        3,
-        2
-      ]
-    ]
-  },
-  "sala_bosque_3": {
-    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): foe_trainer = la puerta de salida, player/player_mon = la entrada, field = donde aparecen los enemigos.",
-    "name": "El corazón del bosque",
-    "size": [
-      40,
-      30
-    ],
-    "auto": 55,
-    "brillo": 1.2,
-    "open": [
       [
         19,
-        3,
-        2,
-        5
-      ],
-      [
-        19,
-        24,
+        25,
         2,
         5
       ]
@@ -772,7 +673,7 @@
     "cells": {
       "foe_trainer": [
         20,
-        5
+        3
       ],
       "foe_mon": [
         20,
@@ -780,7 +681,7 @@
       ],
       "player_mon": [
         20,
-        23
+        25
       ],
       "player": [
         20,
@@ -788,12 +689,81 @@
       ]
     },
     "field": [
-      8,
-      9,
-      25,
-      15
+      6,
+      6,
+      28,
+      19
     ],
-    "prompt": "Pixel art, top-down 3/4 view of one combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A wide flat open hollow of bright moss and pale dirt deep in an old forest, with clusters of big glowing blue and orange mushrooms and giant twisted roots near the edges, fireflies, shafts of golden light; at the top center the path climbs worn stone steps under a rough stone arch toward the mountains. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a dirt path comes in through a gap at the bottom center and leaves through a gap between two huge trees at the top center. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
-    "seed": 21
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open glade of bright grass and pale dirt with the ruins of an ancient temple. Scattered inside the glade as obstacles: many broken grey stone pillars, low crumbled grey stone wall segments, toppled grey statues and big grey rubble blocks, plus two small clear blue ponds. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a straight dirt path comes in through a gap at the very bottom center edge and leaves through a gap between two huge trees at the very top center edge. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 32,
+    "px": [
+      2048,
+      1536
+    ]
+  },
+  "sala_bosque_3": {
+    "_modo": "Sala del Modo Desafío (RogueRun, data/rogue): se cargan encadenadas, una arriba de la otra; el paso es el hueco del medio de la primera y de la última fila (open). auto_color = el plano sale de la pintura por color (obstáculos y agua). player/player_mon = la entrada (en la primera sala), foe_trainer = la puerta del jefe (en la última), field = donde aparecen los enemigos.",
+    "name": "El corazón del bosque",
+    "size": [
+      40,
+      30
+    ],
+    "scale": 1.6,
+    "auto": null,
+    "auto_color": {
+      "min_v": 62,
+      "min_s": 0.3,
+      "part": 0.6,
+      "water": false
+    },
+    "brillo": 1.15,
+    "open": [
+      [
+        19,
+        0,
+        2,
+        6
+      ],
+      [
+        19,
+        25,
+        2,
+        5
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        20,
+        3
+      ],
+      "foe_mon": [
+        20,
+        11
+      ],
+      "player_mon": [
+        20,
+        25
+      ],
+      "player": [
+        20,
+        27
+      ]
+    },
+    "field": [
+      6,
+      6,
+      28,
+      19
+    ],
+    "prompt": "Pixel art, top-down 3/4 view of one large combat room of a forest dungeon for a 2D action RPG, seen from above like a game map, 4:3, completely empty: nobody in it. A very wide flat open hollow of bright yellow-green moss and pale dirt deep in an old forest, shafts of golden light. Scattered inside the hollow as obstacles: giant twisted dark roots crossing the ground, five huge dark old tree trunks, big grey rocks, and clusters of giant glowing blue and orange mushrooms. At the top center the path climbs worn stone steps under a rough stone arch. The obstacles are spread all over the open floor, well apart from each other, leaving wide open lanes between them. The whole room is enclosed on every side by a thick dark wall of dense giant trees and deep shadowed undergrowth; a straight dirt path comes in through a gap at the very bottom center edge and leaves through a gap between two huge trees at the very top center edge. The open floor is bright and clearly lighter than the dark tree walls. Rich detailed shading, crisp pixels, no blur. Empty scene with no people, no characters, no creatures, no figures, no text, no letters.",
+    "seed": 31,
+    "px": [
+      2048,
+      1536
+    ]
   }
 }

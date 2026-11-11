@@ -2,13 +2,17 @@ class_name RogueRun
 extends Node
 ## Modo Desafío (roguelike estilo Hades, docs/PROPUESTA_ROGUELIKE.md; R-0, la rebanada vertical): desde el título elegís
 ## un Pokémon entre 3 y bajás por una cadena de salas (un piso: data/rogue/<piso>.json). En cada sala salen oleadas de
-## salvajes; al debilitar a todos se abre la puerta de arriba y, caminando hasta ella con tu Pokémon, pasás a la
-## siguiente. Después de la última sala, el jefe (una pelea de entrenador de las de siempre: TrainerBattle).
+## salvajes; al debilitar a todos se abre el portón de arriba y pasás caminando a la siguiente: **las salas están
+## encadenadas** (pedido del usuario 2026-11-11: más grandes, encadenadas y con obstáculos), cargadas todas juntas una
+## arriba de la otra, sin fundido entre ellas; al entrar a una, el portón se cierra detrás. Después de la última sala, la
+## puerta del jefe (una pelea de entrenador de las de siempre: TrainerBattle).
 ##  · Un solo Pokémon, a nivel fijo: si cae, se termina la partida (decisiones del usuario 2026-11-11).
 ##  · No toca la partida de la historia y no se guarda nada (GameState.rogue, como el modo de prueba del torneo).
-##  · Manejás siempre a tu Pokémon (CombatDirector.arena_lock): el entrenador se queda en la entrada.
-##  · Las salas son arenas pintadas (ArenaData + pintura de Qwen): `player_cell`/`player_mon_cell` = la entrada,
-##    `foe_trainer_cell` = la puerta de salida, `field` = donde aparecen los enemigos.
+##  · Manejás siempre a tu Pokémon (CombatDirector.arena_lock); el entrenador lo sigue.
+##  · Las salas son arenas pintadas (ArenaData + pintura de Qwen, con los obstáculos sacados de la pintura:
+##    tools/paint_arenas.py, `auto_color`): `player_cell`/`player_mon_cell` = la entrada de la primera,
+##    `foe_trainer_cell` = la puerta del jefe en la última, `field` = donde aparecen los enemigos. El paso de una sala a
+##    otra es el hueco libre del medio de su primera y de su última fila (todas del mismo ancho).
 ## Todavía sin bendiciones, recompensas ni hub (R-1 en adelante).
 
 signal finished(result: String)
@@ -25,6 +29,17 @@ const SPAWN_MIN_DIST := 96.0
 ## A esta distancia de la puerta abierta pasás a la sala siguiente.
 const DOOR_RADIUS := 20.0
 const ENEMY_COLOR := Color(1.0, 0.4, 0.35)
+## Fila (desde arriba) del portón de salida de una sala, y fila (desde abajo) del que se cierra detrás tuyo al entrar.
+const GATE_ROW := 1
+const BACK_GATE_ROW := 2
+## Entraste a una sala cuando tu Pokémon está a estas filas de su borde de abajo.
+const ENTER_ROWS := 5
+## Respiro entre que entrás a una sala y sale la primera oleada.
+const ENTER_DELAY := 0.9
+## El paso está en el medio: se buscan celdas libres hasta estas columnas del centro.
+const OPENING_REACH := 6
+## Si el entrenador quedó más lejos que esto de tu Pokémon (trabado en un obstáculo), aparece al lado.
+const TRAINER_MAX_DIST := 300.0
 
 var world: Node
 var floor_data: Dictionary = {}
@@ -36,8 +51,16 @@ var wave_index := -1
 var phase := ""
 ## "" mientras se juega; al terminar "win" o "lose".
 var result := ""
+## La sala en la que estás (y su ArenaData).
 var room: Zone
 var room_data: ArenaData
+## Todas las salas del piso, cargadas en fila (la primera abajo), y sus datos.
+var chain: Array[Zone] = []
+var chain_data: Array[ArenaData] = []
+## Sala -> su portón de arriba (se abre al limpiarla).
+var gates: Dictionary = {}
+var _back_gate: RogueGate
+var _boss_done := false
 ## Los enemigos vivos de la oleada.
 var foes: Array[Creature] = []
 var door: RogueDoor
@@ -104,6 +127,12 @@ func _run() -> void:
 	result = ""
 	rooms_cleared = 0
 	await get_tree().process_frame
+	_load_chain()
+	_enter_room(0)
+	_place_at_start()
+	_refresh_label()
+	await get_tree().process_frame
+	await world.arena.fade_to(0.0)
 	var rooms: Array = floor_data["rooms"]
 	for i in rooms.size():
 		await _play_room(i)
@@ -114,18 +143,21 @@ func _run() -> void:
 	await _finish()
 
 
-## Una sala: entrar, las oleadas, la puerta.
+## Una sala: el cartel, las oleadas y, limpia, el paso a la siguiente (caminando) o la puerta del jefe (la última).
 func _play_room(index: int) -> void:
-	room_index = index
 	wave_index = -1
 	phase = ""
 	var cfg: Dictionary = floor_data["rooms"][index]
 	var total: int = floor_data["rooms"].size()
-	_load_room(str(cfg["arena"]))
+	var last := index == total - 1
+	_enter_room(index)
 	_refresh_label()
-	await get_tree().process_frame
-	await world.arena.fade_to(0.0)
-	await world.arena.banner("%s  ·  Sala %d de %d" % [str(floor_data["name"]).to_upper(), index + 1, total], str(cfg.get("name", "")), 1.4)
+	var title := "%s  ·  Sala %d de %d" % [str(floor_data["name"]).to_upper(), index + 1, total]
+	if index == 0:
+		await world.arena.banner(title, str(cfg.get("name", "")), 1.4)
+	else:  # (venís caminando: el cartel no frena nada)
+		world.arena.banner(title, str(cfg.get("name", "")), 1.2)
+		await get_tree().create_timer(ENTER_DELAY).timeout
 	var waves: Array = cfg["waves"]
 	for w in waves.size():
 		wave_index = w
@@ -143,21 +175,22 @@ func _play_room(index: int) -> void:
 		_refresh_label()
 		await get_tree().create_timer(WAVE_DELAY).timeout
 	rooms_cleared += 1
-	_room_cleared(index == total - 1)
+	_room_cleared(last)
 	phase = "puerta"
 	_refresh_label()
-	while not _at_door():
+	while not (_at_door() if last else entered(index + 1)):
 		if _player_down():  # (veneno, quemadura o el fuego del pasto después de la última oleada)
 			result = "lose"
 			phase = "fin"
 			return
 		await get_tree().physics_frame
 	phase = ""
-	await world.arena.fade_to(1.0)
-	_unload_room()
+	if last:
+		await world.arena.fade_to(1.0)
+		world.arena.release_room()  # (el jefe arma su propia arena)
 
 
-## Sala limpia: recupera algo de vida y se abre la puerta de arriba.
+## Sala limpia: recupera algo de vida y se abre el portón de arriba (en la última, la puerta al jefe).
 func _room_cleared(last: bool) -> void:
 	var c: Creature = world.companion
 	var part := float(floor_data.get("heal_on_clear", 0.0))
@@ -166,16 +199,39 @@ func _room_cleared(last: bool) -> void:
 		Fx.burst(world.entities, c.global_position + Vector2(0, -8), Color(0.6, 1.4, 0.7), 12, 34.0)
 	Events.camera_shake.emit(3.0)
 	Events.message_requested.emit("¡Sala limpia! Se abrió el paso%s." % (" al " + str(floor_data["boss"]["door"]) if last else ""))
-	door = RogueDoor.new()
-	door.position = _cell_pos(room_data.foe_trainer_cell)
-	door.text = str(floor_data["boss"]["door"]) if last else "Siguiente sala"
-	world.entities.add_child(door)
+	if last:
+		door = RogueDoor.new()
+		door.position = _cell_pos(room_data.foe_trainer_cell)
+		door.text = str(floor_data["boss"]["door"])
+		world.entities.add_child(door)
+	elif is_instance_valid(gates.get(room_index)):
+		gates[room_index].open()
 
 
 func _at_door() -> bool:
 	var c: Creature = world.companion
 	return is_instance_valid(door) and is_instance_valid(c) and not c.is_down() \
 		and c.global_position.distance_to(door.global_position) <= DOOR_RADIUS
+
+
+## Tu Pokémon ya pasó a la sala `index` (cruzó el paso y está unas celdas adentro).
+func entered(index: int) -> bool:
+	var c: Creature = world.companion
+	if index >= chain.size() or not is_instance_valid(c) or c.is_down():
+		return false
+	return c.global_position.y < _row_y(chain[index], _rows(chain[index]) - ENTER_ROWS)
+
+
+## Hacia dónde hay que ir con la sala limpia: el paso de arriba (o la puerta del jefe en la última). INF si no toca.
+func exit_point() -> Vector2:
+	if phase != "puerta" or not is_instance_valid(room):
+		return Vector2.INF
+	if is_instance_valid(door):
+		return door.global_position
+	var xs := _opening(room, 0)
+	if xs.is_empty():
+		return Vector2.INF
+	return room.to_global(room.ground.map_to_local(Vector2i(xs[xs.size() / 2], 0)))
 
 
 ## El jefe del piso: una pelea de entrenador de las de siempre, en su arena (con su kit de jefe y su guion).
@@ -194,7 +250,8 @@ func _play_boss() -> void:
 		"no_blackout": true, "trainer_ids": [str(boss.get("trainer_id", ""))], "vs": boss["gfx"],
 		"vs_color": team[0].species.primary_type().color if not team.is_empty() else ENEMY_COLOR,
 		"defeat_lines": PackedStringArray([str(boss.get("defeat", "¡Me ganaste!"))])})
-	world.arena.set_black(true)  # (volvió al vacío donde estaba la última sala: no hay nada que mostrar)
+	world.arena.set_black(true)  # (volvió a la última sala, ya vacía: no hay nada que mostrar)
+	_boss_done = true
 	result = "win" if r == "win" else "lose"
 	phase = "fin"
 
@@ -204,9 +261,9 @@ func _finish() -> void:
 	phase = "fin"
 	active = false
 	_label.visible = false
-	if is_instance_valid(room):
+	if not _boss_done:
 		await world.arena.fade_to(1.0)
-		_unload_room()
+	_unload_chain()
 	world.trainer.locked = true
 	var total: int = floor_data["rooms"].size()
 	if result == "win":
@@ -220,20 +277,52 @@ func _finish() -> void:
 	get_tree().change_scene_to_file(SELECT_SCENE if again == 0 else TITLE_SCENE)
 
 
-# --- Salas --------------------------------------------------------------------------------------------------------
+# --- Salas encadenadas ----------------------------------------------------------------------------------------------
 
-func _load_room(arena_id: String) -> void:
-	room_data = load("res://data/arenas/%s.tres" % arena_id)
-	room = load(room_data.scene_path).instantiate()
-	room.position = ROOM_ORIGIN
-	world.get_node("YSort/Zones").add_child(room)
-	ZoneBounds.seal(room)  # de la sala no se sale
-	var decor := ArenaDecor.new()
-	room.add_child(decor)
-	decor.setup(room_data)
-	world.reactions.register_zone(room)  # entorno reactivo y reglas de arena
-	world.arena.host_room(room, room_data)
+## Carga todas las salas del piso pegadas una arriba de la otra (la primera, abajo): el paso de arriba de cada una
+## empalma con el de abajo de la siguiente. Cada paso arranca cerrado con un portón; los dos extremos, con una pared.
+func _load_chain() -> void:
+	var at := ROOM_ORIGIN
+	var rooms: Array = floor_data["rooms"]
+	for i in rooms.size():
+		var data: ArenaData = load("res://data/arenas/%s.tres" % rooms[i]["arena"])
+		var zone: Zone = load(data.scene_path).instantiate()
+		var size := Vector2(zone.get_node("Ground").get_used_rect().end * Zone.TILE)
+		at.y -= size.y
+		zone.position = at
+		world.get_node("YSort/Zones").add_child(zone)
+		var decor := ArenaDecor.new()
+		zone.add_child(decor)
+		decor.setup(data)
+		world.reactions.register_zone(zone)  # entorno reactivo y reglas de arena
+		chain.append(zone)
+		chain_data.append(data)
+		if i < rooms.size() - 1:
+			gates[i] = _gate(zone, GATE_ROW, true)
+	_gate(chain[0], _rows(chain[0]) - 1, false)  # por la entrada no se sale
+	_gate(chain[-1], 0, false)  # ni por arriba de la última (ahí está la puerta del jefe)
 	_limit_camera(true)
+
+
+## Pasás a la sala `index`: es la que cuenta para la luz y las reglas de arena, y el paso por el que viniste se cierra.
+func _enter_room(index: int) -> void:
+	if room_index == index and is_instance_valid(room):
+		return
+	room_index = index
+	room = chain[index]
+	room_data = chain_data[index]
+	world.arena.host_room(room, room_data)
+	if index == 0:
+		return
+	_back_gate = _gate(room, _rows(room) - BACK_GATE_ROW, true)
+	Events.camera_shake.emit(2.0)
+	var t: Trainer = world.trainer
+	if is_instance_valid(world.companion) and t.global_position.y > _back_gate.global_position.y - 10.0:
+		_bring_trainer()  # (venía atrás: que no quede del otro lado del portón)
+
+
+## Vos y tu Pokémon en la entrada de la primera sala; desde ahí lo manejás a él y el entrenador lo sigue.
+func _place_at_start() -> void:
 	var t: Trainer = world.trainer
 	t.autopilot = Vector2.ZERO
 	t.global_position = _cell_pos(room_data.player_cell)
@@ -250,10 +339,17 @@ func _load_room(arena_id: String) -> void:
 		world.combat.take_control(c)
 	else:
 		world.combat.start_battle()
+	t.follow_target = c  # (salas largas: te sigue, como fuera de las arenas)
 	world.camera.snap()
 
 
-func _unload_room() -> void:
+func _bring_trainer() -> void:
+	var t: Trainer = world.trainer
+	t.global_position = world.companion.global_position + Vector2(0, 14)
+	t.trail = [t.global_position]
+
+
+func _unload_chain() -> void:
 	for f in foes:
 		if is_instance_valid(f):
 			f.queue_free()
@@ -264,19 +360,59 @@ func _unload_room() -> void:
 	door = null
 	world.arena.release_room()
 	_limit_camera(false)
-	if is_instance_valid(room):
-		world.reactions.unregister_zone(room)
-		room.queue_free()
+	for zone in chain:
+		if is_instance_valid(zone):
+			world.reactions.unregister_zone(zone)
+			zone.queue_free()  # (los portones son hijos de su sala)
+	chain.clear()
+	chain_data.clear()
+	gates.clear()
 	room = null
 
 
-## La cámara no muestra más allá de la pintura de la sala (la entrada y la puerta están pegadas al borde).
+## Un portón (o una pared invisible) que tapa el paso de esa fila de la sala.
+func _gate(zone: Zone, row: int, shown: bool) -> RogueGate:
+	var xs := _opening(zone, row)
+	var g := RogueGate.new()
+	g.shown = shown
+	if xs.is_empty():
+		xs = [zone.ground.get_used_rect().end.x / 2]
+	g.width = float(xs[-1] - xs[0] + 3) * Zone.TILE
+	g.position = zone.ground.map_to_local(Vector2i(xs[0], row)) + Vector2(float(xs[-1] - xs[0]) * Zone.TILE / 2.0, 0)
+	zone.add_child(g)
+	return g
+
+
+## Columnas libres de una fila de la sala (el paso, en las filas de arriba y de abajo).
+func _opening(zone: Zone, row: int) -> Array[int]:
+	var out: Array[int] = []
+	var used := zone.ground.get_used_rect()
+	var mid := used.end.x / 2
+	for x in range(used.position.x, used.end.x):
+		if MapRules.cell_physics(zone, Vector2i(x, row)) == -1 and absi(x - mid) <= OPENING_REACH:
+			out.append(x)
+	return out
+
+
+func _rows(zone: Zone) -> int:
+	return zone.ground.get_used_rect().end.y
+
+
+## Altura (global) del centro de una fila de la sala.
+func _row_y(zone: Zone, row: int) -> float:
+	return zone.to_global(zone.ground.map_to_local(Vector2i(0, row))).y
+
+
+## La cámara no muestra más allá de las pinturas de las salas.
 func _limit_camera(on: bool) -> void:
 	var cam: Camera2D = world.camera
 	var rect := Rect2(Vector2(-10000000, -10000000), Vector2(20000000, 20000000))
-	if on and is_instance_valid(room):
-		var used := room.ground.get_used_rect()
-		rect = Rect2(room.global_position + Vector2(used.position * Zone.TILE), Vector2(used.size * Zone.TILE))
+	if on and not chain.is_empty():
+		rect = Rect2()
+		for zone in chain:
+			var used := zone.ground.get_used_rect()
+			var r := Rect2(zone.global_position + Vector2(used.position * Zone.TILE), Vector2(used.size * Zone.TILE))
+			rect = r if rect.size == Vector2.ZERO else rect.merge(r)
 	cam.limit_left = int(rect.position.x)
 	cam.limit_top = int(rect.position.y)
 	cam.limit_right = int(rect.end.x)
@@ -339,7 +475,13 @@ func _engage() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not active or phase != "oleada":
+	if not active:
+		return
+	var c: Creature = world.companion
+	if phase in ["oleada", "puerta", ""] and is_instance_valid(c) and not c.is_down() and not chain.is_empty() \
+			and world.trainer.global_position.distance_to(c.global_position) > TRAINER_MAX_DIST:
+		_bring_trainer()
+	if phase != "oleada":
 		return
 	foes = foes.filter(func(f): return is_instance_valid(f) and not f.is_down())
 	_engage_in -= delta
@@ -378,7 +520,7 @@ func _refresh_label() -> void:
 		"oleada":
 			text += "  ·  Oleada %d/%d  ·  Quedan %d" % [wave_index + 1, rooms[room_index]["waves"].size(), foes.size()]
 		"puerta":
-			text += "  ·  ¡Sala limpia! Andá a la puerta de arriba"
+			text += "  ·  ¡Sala limpia! Seguí por el camino de arriba"
 		"jefe":
 			text = "%s  ·  %s %s" % [floor_data["name"], floor_data["boss"]["title"], floor_data["boss"]["name"]]
 	_label.text = text

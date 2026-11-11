@@ -297,6 +297,8 @@ seguir después de jugar R-1.
 8. **Multijugador**: no por ahora.
 
 **Hecho: R-0** (ver `docs/PROGRESO.md` y CLAUDE.md, "Modo Desafío"). Frenado hasta que el usuario lo juegue.
+Después de R-0 (mismo día, pedido del usuario): salas más grandes (64×48), **encadenadas** (se pasa caminando por un
+portón, sin fundido) y con obstáculos pintados cuya colisión sale sola de la pintura.
 
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.

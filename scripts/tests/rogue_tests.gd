@@ -13,19 +13,43 @@ const ATTEMPTS := 3
 
 
 ## El bot de siempre, que además elige ataques de daño, toma la Poción con poca vida y, con la sala limpia, camina
-## hasta la puerta.
+## hasta el paso de arriba (o la puerta del jefe) rodeando los obstáculos, y sigue hasta entrar a la sala siguiente.
 class RogueBot extends BotCombatInput:
+	var _grid: AStarGrid2D
+	var _grid_room: Zone
+
 	func move_dir(actor: Creature) -> Vector2:
-		var door: Node2D = world.rogue.door
-		if world.combat.enemies.is_empty() and is_instance_valid(door):
-			# La puerta está al fondo de un pasillo angosto: primero se pone debajo de ella y después sube derecho.
-			var goal: Vector2 = door.global_position
-			if absf(actor.global_position.x - goal.x) > 6.0:
-				goal = Vector2(goal.x, maxf(actor.global_position.y, goal.y + 72.0))
-			return actor.body.steer((goal - actor.global_position).normalized(), goal)
+		var run: RogueRun = world.rogue
+		var goal: Vector2 = run.exit_point()
+		if world.combat.enemies.is_empty() and goal != Vector2.INF:
+			return _walk(actor, run.room, goal, not is_instance_valid(run.door))
 		if actor.health.ratio() < 0.45 and GameState.item_count("pocion") > 0:
 			world.items.use_quick_item()
 		return super(actor)
+
+	## Un paso del camino por celdas hasta `goal`; con `through`, al llegar sigue derecho para arriba (el paso a la otra sala).
+	func _walk(actor: Creature, zone: Zone, goal: Vector2, through: bool) -> Vector2:
+		if zone != _grid_room:
+			_grid_room = zone
+			_grid = AStarGrid2D.new()
+			_grid.region = zone.ground.get_used_rect()
+			_grid.cell_size = Vector2(Zone.TILE, Zone.TILE)
+			_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
+			_grid.update()
+			for cell in zone.ground.get_used_cells():
+				if MapRules.cell_physics(zone, cell) != -1:
+					_grid.set_point_solid(cell, true)
+		var from: Vector2i = zone.ground.local_to_map(zone.to_local(actor.global_position))
+		var to: Vector2i = zone.ground.local_to_map(zone.to_local(goal))
+		if through and (from.y <= to.y + 1 or not _grid.is_in_boundsv(from)):
+			return Vector2.UP
+		if not _grid.is_in_boundsv(from) or from == to:
+			return (goal - actor.global_position).normalized()
+		var path := _grid.get_id_path(from, to)
+		if path.size() < 2:
+			return (goal - actor.global_position).normalized()
+		var next: Vector2 = zone.to_global(zone.ground.map_to_local(path[1]))
+		return (next - actor.global_position).normalized()
 
 	## Como una persona: tira los ataques que hacen daño (no gasta la barra en Látigo o Refugio) y que puede pagar.
 	func wants_slot(slot: int) -> bool:
@@ -89,17 +113,31 @@ func run() -> void:
 	r["En el Modo Desafío no se guarda"] = not SaveManager.save_game() and not FileAccess.file_exists("user://saves/autotest_desafio.json")
 	SaveManager.slot_path = slot_before
 	r["Sin tutorial ni salvajes del mundo"] = not world.pause_menu.is_open() and not GameState.wilds_enabled
-	r["La sala 1 es una arena pintada aparte, sin salida"] = run.room_data.id == rooms[0]["arena"] and run.room_data.painting != null \
-		and world.arena.active and run.room.get_node_or_null("Bounds") != null and world.combat.arena_lock
-	r["Manejás a tu Pokémon (el entrenador se queda en la entrada)"] = world.companion.player_controlled and world.trainer.locked \
-		and world.camera.target == world.companion
+	r["Las 3 salas están cargadas en cadena, una arriba de la otra, con sus portones cerrados"] = run.chain.size() == rooms.size() \
+		and run.chain[1].global_position.y < run.chain[0].global_position.y and run.chain[2].global_position.y < run.chain[1].global_position.y \
+		and run.gates.size() == rooms.size() - 1 and run.gates.values().all(func(g): return is_instance_valid(g))
+	r["La sala 1 es una arena pintada (%d × %d celdas)" % [run.room.ground.get_used_rect().size.x, run.room.ground.get_used_rect().size.y]] = \
+		run.room_data.id == rooms[0]["arena"] and run.room_data.painting != null and world.arena.active and world.combat.arena_lock \
+		and run.room.ground.get_used_rect().size.x >= 60
+	var solid_inside := 0
+	var fr: Rect2i = run.room_data.field
+	for y in range(fr.position.y, fr.end.y):
+		for x in range(fr.position.x, fr.end.x):
+			if MapRules.cell_physics(run.room, Vector2i(x, y)) != -1:
+				solid_inside += 1
+	r["Hay obstáculos adentro de la sala (%d celdas que chocan)" % solid_inside] = solid_inside >= 30
+	r["Manejás a tu Pokémon y el entrenador lo sigue"] = world.companion.player_controlled and world.trainer.locked \
+		and world.camera.target == world.companion and world.trainer.follow_target == world.companion
 	r["La primera oleada sale entera, lejos tuyo y ya peleando"] = run.foes.size() == rooms[0]["waves"][0].size() \
 		and run.foes.all(_spawned_ok.bind(run))
-	r["Con enemigos vivos no hay puerta"] = not is_instance_valid(run.door)
+	r["Con enemigos vivos el portón está cerrado"] = is_instance_valid(run.gates[0])
 
 	# --- El bot juega las 3 salas ---
 	var waves_seen := {}  # "sala:oleada" -> cuántos salieron
 	var door_early := false
+	var faded := false
+	var closed_behind := 0
+	var seen_room := 0
 	var healed := false
 	var hp_low := 0.0
 	var last_phase := ""
@@ -111,9 +149,17 @@ func run() -> void:
 		while t < 330.0 and run.result == "" and run.phase != "jefe":
 			await _bot_frame(run, mine, bot, waves_seen)
 			if run.phase == "oleada":
-				if is_instance_valid(run.door):
+				if is_instance_valid(run.door) or (run.gates.has(run.room_index) and not is_instance_valid(run.gates[run.room_index])):
 					door_early = true
 				hp_low = mine.hp
+			if run.rooms_cleared < rooms.size() and world.arena._fade.color.a > 0.05:
+				if not faded:
+					print("[desafio]       (fundido en la sala %d, fase '%s')" % [run.room_index + 1, run.phase])
+				faded = true  # (entre sala y sala no hay fundido: solo al ir al jefe, con las 3 limpias)
+			if run.room_index != seen_room:
+				seen_room = run.room_index
+				if is_instance_valid(run._back_gate) and world.companion.global_position.y < run._back_gate.global_position.y:
+					closed_behind += 1
 			if run.phase == "puerta" and last_phase != "puerta" and mine.hp > hp_low:
 				healed = true
 			last_phase = run.phase
@@ -136,6 +182,9 @@ func run() -> void:
 		world.combat.input_source = bot
 		waves_seen.clear()
 		last_phase = ""
+		faded = false
+		closed_behind = 0
+		seen_room = 0
 	var all_waves := true
 	for i in rooms.size():
 		for w in rooms[i]["waves"].size():
@@ -144,7 +193,9 @@ func run() -> void:
 	r["El bot limpia las 3 salas (%d de %d en %d s; vida %d %%; intento %d de %d)" % [run.rooms_cleared, rooms.size(), int(t),
 		int(100.0 * mine.hp / mine.max_hp()), attempt, ATTEMPTS]] = run.rooms_cleared == rooms.size() and run.result == ""
 	r["Salieron todas las oleadas de cada sala, completas"] = all_waves
-	r["La puerta se abre recién con la sala limpia"] = not door_early
+	r["El portón (y la puerta del jefe) se abren recién con la sala limpia"] = not door_early
+	r["Se pasa de una sala a la otra caminando, sin fundido"] = not faded
+	r["Al entrar a una sala el portón se cierra detrás (%d de %d)" % [closed_behind, rooms.size() - 1]] = closed_behind == rooms.size() - 1
 	r["Limpiar una sala cura un poco"] = healed
 	r["Los salvajes dan EXP (Nv. %d → %d)" % [level0, mine.level]] = mine.level > level0
 

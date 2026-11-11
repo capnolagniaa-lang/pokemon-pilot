@@ -511,6 +511,8 @@ func _painted(id: String, _cfg: Dictionary) -> void:
 			ZoneBuilder.set_metatile(g, Vector2i(x, y), int(cfg.wall) if row[x] == "#" else int(cfg.floor))
 	for r in cfg.get("water", []):  # agua de verdad (la de la pintura se ve encima)
 		_pool(root.get_node("Water"), Rect2i(int(r[0]), int(r[1]), int(r[2]), int(r[3])))
+	for c in cfg.get("water_cells", []):  # agua suelta sacada de la pintura por color (paint_arenas.py, `auto_color`)
+		ZoneBuilder.set_metatile(root.get_node("Water"), Vector2i(int(c[0]), int(c[1])), CG + 17)
 	for p in cfg.get("rocks", []):
 		ZoneBuilder.add_object(root, ROCK, Vector2i(int(p[0]), int(p[1])))
 	root.set("hand_edited", true)
