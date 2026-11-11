@@ -223,7 +223,7 @@ def build(root, rid, attempt=0):
                 pick -= w
                 if pick <= 0:
                     break
-            pieces.append([pid, round((c[0] + rng.random()) * T), round((c[1] + rng.random()) * T), rng.random() < 0.5])
+            pieces.append([pid, c[0] * T + rng.randrange(1, T - 1), c[1] * T + rng.randrange(1, T - 1), rng.random() < 0.5])  # (adentro de su celda)
             pool = [(w2, c2) for w2, c2 in pool if abs(c2[0] - c[0]) + abs(c2[1] - c[1]) > 3]
 
     calm = lambda c: 0.15 if c in centre else 1.0
@@ -237,6 +237,8 @@ def build(root, rid, attempt=0):
     for pid, count, rule in cfg.get("decor", []):
         if pid in catalog:
             scatter(pid, count, rules[rule])
+    # El decorado que quedó debajo de la base de una pieza sólida (puesta después) no se ve: se saca.
+    pieces = [p for p in pieces if catalog[p[0]]["kind"] != "decorado" or (int(p[1] // T), int(p[2] // T)) not in solid]
     return {"name": name, "frame": frame, "biome": biome, "seed": seed * 1000 + attempt, "scenes": [s for s in scenes if s not in missing],
             "missing": missing, "pieces": pieces}
 

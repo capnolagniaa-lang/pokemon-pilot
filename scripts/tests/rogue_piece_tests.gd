@@ -115,6 +115,8 @@ func _check_biome(f: Dictionary, biome: String) -> void:
 	var tall: StaticBody2D = null
 	var wide: StaticBody2D = null
 	for n: StaticBody2D in solids:
+		if not catalog.has(n.get_meta("piece")):
+			continue  # (pieza de una sala de otro bioma de la cadena)
 		var spr: Sprite2D = n.get_node("Sprite")
 		var base: Array = catalog[n.get_meta("piece")]["base"]
 		if float(base[0]) <= 24.0 and (tall == null or spr.position.y < tall.get_node("Sprite").position.y):

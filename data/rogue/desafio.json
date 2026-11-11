@@ -47,7 +47,7 @@
   "biomes": {
     "bosque": {
       "name": "Bosque Verde",
-      "rooms": ["sala_bosque_1", "sala_bosque_2", "sala_bosque_3", "sala_bosque_4", "sala_bosque_5", "sala_bosque_6"],
+      "rooms": ["sala_bosque_p1", "sala_bosque_p2", "sala_bosque_p3"],
       "common": ["caterpie", "weedle", "pidgey", "rattata", "oddish", "bellsprout", "paras", "venonat", "spearow", "pikachu", "metapod", "kakuna", "wurmple", "seedot", "hoothoot", "ledyba", "spinarak", "sunkern"],
       "strong": ["beedrill", "butterfree", "pidgeotto", "gloom", "weepinbell", "ariados", "nuzleaf", "ledian"]
     },

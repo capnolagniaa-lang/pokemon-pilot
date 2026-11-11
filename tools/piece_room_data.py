@@ -86,10 +86,10 @@ BIOMES = {
         "deep": 4, "trail": True,
         "scenes": {
             "campamento": {"anchor": "arena", "members": [
-                ["fogata", 0, 0, 0], ["carpa", -76, -40, 6], ["asiento", 44, 26, 5], ["asiento", -46, 36, 5], ["lena", 76, -26, 6],
+                ["fogata", 0, 0, 0], ["carpa", -96, -44, 6], ["asiento", 48, 28, 5], ["asiento", -50, 40, 5], ["lena", 90, -30, 6],
                 ["tocon", 96, 22, 6], ["hongos", -100, 10, 8]]},
             "ruinas": {"anchor": "borde", "members": [
-                ["arco_ruina", 0, 0, 0], ["columna_rota", 76, 22, 5], ["columna_rota", -70, 24, 5], ["estatua", 30, 62, 6],
+                ["arco_ruina", 0, 0, 0], ["columna_rota", 96, 24, 5], ["columna_rota", -92, 26, 5], ["estatua", 30, 70, 6],
                 ["columna_rota", 130, 26, 5], ["helecho", -30, 50, 8], ["hongos", 100, 54, 8], ["helecho", 60, 48, 8]]},
             "arboleda": {"anchor": "borde", "members": [
                 ["arbol", 0, 0, 5], ["arbol_b", 58, 26, 8], ["arbol", -54, 32, 8], ["arbusto", 22, 54, 6], ["helecho", -20, 60, 8],
@@ -98,7 +98,7 @@ BIOMES = {
                 ["estanque", 0, 0, 0], ["juncos", -66, -22, 6], ["juncos", 60, -32, 6], ["juncos", 44, 48, 6], ["roca_chica", -60, 32, 6],
                 ["tronco_caido", 86, 34, 8], ["flores", -30, 60, 8]]},
             "santuario": {"anchor": "borde", "members": [
-                ["altar", 0, 0, 0], ["farol_piedra", -48, 28, 4], ["farol_piedra", 48, 28, 4], ["flores", 0, 46, 5], ["estatua", -100, 12, 6],
+                ["altar", 0, 0, 0], ["farol_piedra", -62, 30, 4], ["farol_piedra", 62, 30, 4], ["flores", 0, 46, 5], ["estatua", -100, 12, 6],
                 ["flores", -30, 54, 6], ["helecho", 86, 16, 8]]},
             "talado": {"anchor": "borde", "members": [
                 ["tocon_hacha", 0, 0, 0], ["tocon", 48, 22, 6], ["tocon", -44, 26, 6], ["lena", 76, -8, 6], ["tronco_caido", 12, 54, 8],
