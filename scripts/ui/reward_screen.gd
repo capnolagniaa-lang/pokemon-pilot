@@ -12,12 +12,16 @@ var title := ""
 var subtitle := ""
 var tint := UiStyle.ACCENT
 var cards: Array[Button] = []
+## Reroll pagado (RogueRewards): costo, o -1 si esta pantalla no lo tiene. Elegirlo avisa `chosen(-1)`.
+var reroll_cost := -1
+var reroll: Button
 var _done := false
 var _was_paused := false
 
 
-static func open(parent: Node, p_title: String, p_subtitle: String, p_cards: Array, p_tint: Color = UiStyle.ACCENT) -> RewardScreen:
+static func open(parent: Node, p_title: String, p_subtitle: String, p_cards: Array, p_tint: Color = UiStyle.ACCENT, p_reroll := -1) -> RewardScreen:
 	var s := RewardScreen.new()
+	s.reroll_cost = p_reroll
 	s.title = p_title
 	s.subtitle = p_subtitle
 	s.cards_data = p_cards
@@ -56,7 +60,7 @@ func _ready() -> void:
 	line.size = Vector2(600, 2)
 	root.add_child(line)
 	var row := HBoxContainer.new()
-	row.position = Vector2(20, 214)
+	row.position = Vector2(20, 206)
 	row.size = Vector2(1240, 400)
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 16)
@@ -70,6 +74,18 @@ func _ready() -> void:
 		if not b.disabled:
 			UiStyle.focus_later(b)
 			break
+	_reroll_button(root)
+
+
+## El botón de cambiar las opciones (reroll pagado). Apagado si no alcanza la plata.
+func _reroll_button(root: Control) -> void:
+	if reroll_cost < 0:
+		return
+	reroll = UiStyle.button("Cambiar las opciones  ·  $%d  (tenés $%d)" % [reroll_cost, GameState.money], 420)
+	reroll.position = Vector2(430, 668)
+	reroll.disabled = GameState.money < reroll_cost
+	reroll.pressed.connect(choose.bind(-1))
+	root.add_child(reroll)
 
 
 func _card(index: int, data: Dictionary, width: float) -> Button:
@@ -117,6 +133,12 @@ func _card(index: int, data: Dictionary, width: float) -> Button:
 
 ## Elegir una tarjeta (también lo llaman los tests y el bot). Las apagadas no se pueden.
 func choose(index: int) -> void:
+	if index == -1 and not _done and reroll != null and not reroll.disabled:
+		_done = true
+		get_tree().paused = _was_paused
+		chosen.emit(-1)
+		queue_free()
+		return
 	if _done or index < 0 or index >= cards.size() or cards[index].disabled:
 		return
 	_done = true

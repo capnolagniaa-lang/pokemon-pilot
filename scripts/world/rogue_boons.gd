@@ -333,18 +333,33 @@ func offer(rng: RandomNumberGenerator = null, giver_id: String = "") -> Dictiona
 	return {"giver": giver_id, "options": options, "line": lines[rng.randi() % lines.size()]}
 
 
-func roll_rarity(rng: RandomNumberGenerator = null) -> String:
+## La suerte de esta partida (RogueProgress.luck: especies atrapadas + inicial shiny). `GameState.rogue["luck"]` la fija (tests).
+func luck() -> int:
+	if GameState.rogue.has("luck"):
+		return int(GameState.rogue["luck"])
+	var inst := GameState.active()
+	return RogueProgress.luck(inst != null and inst.shiny)
+
+
+## Sortea una rareza por peso; con suerte, cada punto da `LUCK_STEP` de subir un escalón (con 0 no cambia nada).
+func roll_rarity(rng: RandomNumberGenerator = null, p_luck: int = -1) -> String:
 	if rng == null:
 		rng = _rng
+	if p_luck < 0:
+		p_luck = luck()
 	var total := 0.0
 	for r: Dictionary in config["rarities"]:
 		total += float(r["weight"])
 	var pick := rng.randf() * total
-	for r: Dictionary in config["rarities"]:
-		pick -= float(r["weight"])
+	var index := 0
+	for i in config["rarities"].size():
+		pick -= float(config["rarities"][i]["weight"])
 		if pick <= 0.0:
-			return r["id"]
-	return config["rarities"][0]["id"]
+			index = i
+			break
+	if p_luck > 0 and index < config["rarities"].size() - 1 and rng.randf() < float(p_luck) * RogueProgress.LUCK_STEP:
+		index += 1
+	return config["rarities"][index]["id"]
 
 
 # --- Los efectos ----------------------------------------------------------------------------------------------------

@@ -60,6 +60,24 @@ static func unlock(id: String) -> bool:
 	return true
 
 
+## Suerte (paso O-c de docs/PROPUESTA_ROGUELIKE.md, decisión del usuario 2026-11-11): sale de la Pokédex del modo. Un
+## punto cada `LUCK_EVERY` especies desbloqueadas **por captura** (los 3 de base no cuentan), hasta `LUCK_CAP`; un inicial
+## shiny suma `LUCK_SHINY` aparte. Cada punto le da a cada opción ofrecida (bendiciones y objetos) `LUCK_STEP` de
+## probabilidad de subir un escalón de rareza (RogueBoons.roll_rarity).
+const LUCK_EVERY := 3
+const LUCK_CAP := 6
+const LUCK_SHINY := 2
+const LUCK_STEP := 0.04
+
+
+static func caught_count() -> int:
+	return maxi(0, unlocked().size() - BASE.size())
+
+
+static func luck(shiny := false) -> int:
+	return mini(LUCK_CAP, caught_count() / LUCK_EVERY) + (LUCK_SHINY if shiny else 0)
+
+
 ## Cosas que ya pasaron una vez (p. ej. "intro": Mew ya te contó la historia).
 static func has_flag(flag: String) -> bool:
 	return flag in _read().get("flags", [])

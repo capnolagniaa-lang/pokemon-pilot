@@ -382,7 +382,14 @@ además "Esbirros más duros" y "Mejoras enemigas ya" (no subir niveles de las o
   (8) "garantizado tras el jefe" espera a que haya un segundo piso. Distinto de la tabla de 11.3: la Cinta Focus da
   invulnerabilidad breve bajo 25 % (no "1 PS"), y los de stat usan un único gancho (`Creature.speed_bonus`) más ajustes
   de la partida (EXP, plata), en vez de `run_mods`.
-- **Pendiente de la sección 11**: pesos por necesidad y reroll (O-a) y suerte por Pokédex (O-c).
+- **Hecho — pesos por necesidad, reroll y suerte** (pasos O-a y O-c): `weight_of`, tipo "Poké Ball", reroll pagado en
+  bendiciones y objetos, y suerte por Pokédex del modo. Decidido sin preguntar (dudas 3, 4 y 5 de 11.5): la suerte
+  cuenta solo los atrapados (1 punto cada 3, tope 6) y +2 con inicial shiny, 4 % por punto de subir un escalón; el
+  shiny sale como siempre (1 de 1024), sin desbloqueo aparte; reroll base $30, +25 % por sala limpiada, y la Tienda no
+  lo tiene. Además, con menos de 40 % de vida una puerta es siempre el Centro (el plan decía "sale seguro").
+  **Con esto la sección 11 quedó entera** (O-a, O-b, O-c y O-d). Lo que sigue para definir con el usuario al jugarlo:
+  si la dificultad quedó en su punto (perillas en `desafio.json`: `exp_mult`, `minion_hp`, `attackers`, `champions`,
+  `mods`), objetos con contra (Vidasfera), y R-4.
 
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
@@ -548,7 +555,7 @@ que siguen un **camino** del marco (vía, sendero) y zonas con efecto propio (la
 
 ---
 
-## 11. Etapa aparte: objetos equipados, suerte, reroll y mejoras enemigas (plan, sin implementar; usuario, 2026-11-11)
+## 11. Etapa aparte: objetos equipados, suerte, reroll y mejoras enemigas (**hecho el 2026-11-11**: ver sección 9; usuario, 2026-11-11)
 
 Sale de mirar cómo lo hace PokéRogue. **No se implementa hasta que el usuario lo pida**; va después de la prueba de la
 Costa y es independiente de "Salas por piezas" (sección 10).

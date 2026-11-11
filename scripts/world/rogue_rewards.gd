@@ -24,8 +24,11 @@ const TYPES := {
 	"tienda": ["Tienda", "Gastás tu dinero: Poción, Poké Ball, curarte o una bendición."],
 	"centro": ["Centro Pokémon", "Recuperás buena parte de la vida y todos los PP."],
 	"objeto": ["Objeto", "Elegís 1 de 3 objetos para equiparle a tu Pokémon."],
+	"bola": ["Poké Ball", "Una Poké Ball más: un tiro para atrapar (y desbloquear) a un Pokémon."],
 }
 
+## Con menos vida que esto, una de las puertas es siempre el Centro Pokémon.
+const LOW_HP := 0.4
 ## La MT no ofrece ataques más fuertes que esto (un Hiperrayo en la sala 2 gana la partida solo).
 const TM_MAX_POWER := 100.0
 
@@ -81,13 +84,57 @@ func cheapest() -> int:
 	return best
 
 
-## Las recompensas de las puertas: `count` tipos distintos, al azar por peso, de los que se pueden ofrecer.
+## **Pesos por necesidad** (paso O-a de la sección 11 de la propuesta): el peso de un tipo en las puertas = su peso base
+## × un factor según cómo venís. Con la vida casi entera el Centro casi no sale y bajo 40 % sale ×3; la Tienda pesa más
+## si te alcanza para dos cosas; la MT, si hay un ataque claramente mejor que el más flojo tuyo; el Caramelo crece con
+## las bendiciones que tenés; la Poké Ball, si te queda una o ninguna; el Objeto, con ranuras libres (y casi nada con
+## las 3 al máximo). Nunca se ofrece algo inútil (`available`).
+func weight_of(id: String) -> float:
+	var base := float(cfg().get("weights", {}).get(id, 0.0))
+	if base <= 0.0 or not available(id):
+		return 0.0
+	var inst := _mine()
+	match id:
+		"centro":
+			var ratio: float = inst.hp / maxf(1.0, inst.max_hp()) if inst != null else 1.0
+			return base * lerpf(3.0, 0.3, clampf((ratio - 0.4) / 0.5, 0.0, 1.0))
+		"tienda":
+			var prices: Array = cfg().get("shop", []).map(func(x): return int(x["price"]))
+			prices.sort()
+			return base * (1.5 if prices.size() >= 2 and GameState.money >= prices[0] + prices[1] else 1.0)
+		"mt":
+			var worst := 999.0
+			for m in inst.equipped_moves:
+				if m != null:
+					worst = minf(worst, m.power if m.category != MoveData.Category.STATUS else 0.0)
+			return base * (1.5 if tm_candidates().any(func(m): return m.power >= worst + 20.0) else 1.0)
+		"caramelo":
+			return base * minf(2.0, 0.5 + 0.25 * float(run.boons.owned().filter(func(e): return int(e["level"]) < RogueBoons.MAX_LEVEL).size()))
+		"bola":
+			var balls := GameState.item_count("poke_ball")
+			return base * (2.0 if balls <= 1 else (0.3 if balls >= 3 else 1.0))
+		"objeto":
+			var items: Array = run.boons.items()
+			if items.size() < RogueBoons.ITEM_SLOTS:
+				return base * 1.5
+			return base * (0.3 if items.all(func(e): return int(e["level"]) >= RogueBoons.MAX_LEVEL) else 1.0)
+	return base
+
+
+## Las recompensas de las puertas: `count` tipos distintos, al azar por peso (`weight_of`), de los que se pueden ofrecer.
 func options(rng: RandomNumberGenerator = null, count: int = 2) -> Array[String]:
 	if rng == null:
 		rng = _rng
-	var weights: Dictionary = cfg().get("weights", {})
-	var pool: Array = TYPES.keys().filter(func(id): return available(id) and float(weights.get(id, 0.0)) > 0.0)
+	var weights := {}
+	for id: String in TYPES:
+		if weight_of(id) > 0.0:
+			weights[id] = weight_of(id)
+	var pool: Array = weights.keys()
 	var out: Array[String] = []
+	var inst := _mine()
+	if inst != null and inst.hp < inst.max_hp() * LOW_HP and pool.has("centro"):  # con poca vida, una puerta es el Centro seguro
+		out.append("centro")
+		pool.erase("centro")
 	while out.size() < count and not pool.is_empty():
 		var total := 0.0
 		for id in pool:
@@ -127,19 +174,37 @@ func grant(id: String) -> void:
 			_center()
 		"objeto":
 			await _item()
+		"bola":
+			GameState.add_item("poke_ball")
+			last_text = "Una Poké Ball más (tenés %d)." % GameState.item_count("poke_ball")
 	if last_text != "":
 		Events.message_requested.emit(last_text)
 
 
-## Un legendario te ofrece 3 bendiciones y elegís una.
+## **Reroll** (paso O-a; decisión del usuario 2026-11-11): en las pantallas de "elegí 1 de 3" (bendiciones y objetos)
+## se pueden cambiar las opciones pagando con la plata de la partida. El costo se duplica con cada reroll seguido en la
+## misma pantalla y sube con las salas limpiadas (`rewards.reroll`: base y room_step). En las puertas no hay.
+func reroll_cost(times: int) -> int:
+	var c: Dictionary = cfg().get("reroll", {})
+	return roundi(float(c.get("base", 30)) * pow(2.0, float(times)) * (1.0 + float(run.rooms_cleared) * float(c.get("room_step", 0.25))))
+
+
+## Un legendario te ofrece 3 bendiciones y elegís una (o pagás para que te ofrezcan otras).
 func _boon() -> void:
-	var o: Dictionary = run.boons.offer()
-	if o["options"].is_empty():
-		return
-	run.boon_screen = BoonScreen.open(run, run.boons, o)
-	var i: int = await run.boon_screen.chosen
-	run.boon_screen = null
-	run.boons.take(o["options"][i]["id"], o["options"][i]["rarity"])
+	var rerolls := 0
+	while true:
+		var o: Dictionary = run.boons.offer()
+		if o["options"].is_empty():
+			return
+		run.boon_screen = BoonScreen.open(run, run.boons, o, reroll_cost(rerolls))
+		var i: int = await run.boon_screen.chosen
+		run.boon_screen = null
+		if i < 0:  # reroll
+			GameState.money -= reroll_cost(rerolls)
+			rerolls += 1
+			continue
+		run.boons.take(o["options"][i]["id"], o["options"][i]["rarity"])
+		break
 	last_text = ""  # (take ya lo anuncia)
 
 
@@ -291,14 +356,24 @@ func _shop() -> void:
 ## (te dan plata por él) o lo guardás en la Mochila sin equipar.
 func _item() -> void:
 	var boons: RogueBoons = run.boons
-	var opts: Array = boons.offer_items()
-	if opts.is_empty():
-		return
-	var cards: Array = []
-	for o: Dictionary in opts:
-		var mine: Dictionary = boons.entry(o["id"])
-		cards.append(item_card(o["id"], o["rarity"], int(mine.get("level", 0)) + 1, not mine.is_empty()))
-	var i: int = await _ask("Objeto", "Elegí uno. Tu Pokémon lleva hasta %d; los repetidos suben de nivel." % RogueBoons.ITEM_SLOTS, cards, RogueBoons.ITEM_COLOR)
+	var opts: Array = []
+	var i := -1
+	var rerolls := 0
+	while i < 0:
+		opts = boons.offer_items()
+		if opts.is_empty():
+			return
+		var cards: Array = []
+		for o: Dictionary in opts:
+			var mine: Dictionary = boons.entry(o["id"])
+			cards.append(item_card(o["id"], o["rarity"], int(mine.get("level", 0)) + 1, not mine.is_empty()))
+		run.reward_screen = RewardScreen.open(run, "Objeto", "Elegí uno. Tu Pokémon lleva hasta %d; los repetidos suben de nivel.%s" % [
+			RogueBoons.ITEM_SLOTS, "  ·  Suerte %d" % boons.luck() if boons.luck() > 0 else ""], cards, RogueBoons.ITEM_COLOR, reroll_cost(rerolls))
+		i = await run.reward_screen.chosen
+		run.reward_screen = null
+		if i < 0:
+			GameState.money -= reroll_cost(rerolls)
+			rerolls += 1
 	var pick: Dictionary = opts[i]
 	var to_stash := false
 	if boons.entry(pick["id"]).is_empty() and boons.slots_full():

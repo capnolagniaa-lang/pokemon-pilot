@@ -70,6 +70,12 @@ func _ready() -> void:
 		add_child(ri)
 		(ri.showcase if "--showcase-rogue-items" in OS.get_cmdline_user_args() else ri.run_tests).call_deferred()
 		return
+	if "--autotest-rogue-odds" in OS.get_cmdline_user_args():
+		set_process(false)
+		var ro := RogueOddsTests.new()
+		add_child(ro)
+		ro.run_tests.call_deferred()
+		return
 	if "--autotest-rogue-evolution" in OS.get_cmdline_user_args():
 		set_process(false)
 		var re := RogueEvolutionTests.new()

@@ -1109,6 +1109,8 @@ func _refresh_label() -> void:
 		_label.visible = true
 		_label.text = "Castillo de Mew  ·  %s" % ("Hablá con Mew (%s) para elegir a tu Pokémon" % Controls.label("capture")
 			if GameState.party.is_empty() else "Pisá el portal de la tarima para empezar")
+		if boons != null and (RogueProgress.caught_count() > 0 or boons.luck() > 0):
+			_label.text += "  ·  Pokémon rescatados: %d  ·  Suerte %d" % [RogueProgress.caught_count(), boons.luck()]
 		return
 	if _label == null or room_index < 0:
 		return

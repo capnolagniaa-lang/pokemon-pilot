@@ -11,12 +11,16 @@ const ICONS := "res://sprites/ui/bendiciones/iconos/%s.png"
 var boons: RogueBoons
 var offer: Dictionary = {}
 var cards: Array[Button] = []
+## Reroll pagado (RogueRewards): costo, o -1 si no hay. Elegirlo avisa `chosen(-1)`.
+var reroll_cost := -1
+var reroll: Button
 var _done := false
 var _was_paused := false
 
 
-static func open(parent: Node, p_boons: RogueBoons, p_offer: Dictionary) -> BoonScreen:
+static func open(parent: Node, p_boons: RogueBoons, p_offer: Dictionary, p_reroll := -1) -> BoonScreen:
 	var s := BoonScreen.new()
+	s.reroll_cost = p_reroll
 	s.boons = p_boons
 	s.offer = p_offer
 	parent.add_child(s)
@@ -81,14 +85,14 @@ func _ready() -> void:
 	say.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_outline(say, 6)
 	root.add_child(say)
-	var pick := UiStyle.label("Elegí una bendición", 20, UiStyle.ACCENT)
+	var pick := UiStyle.label("Elegí una bendición" + ("  ·  Suerte %d" % boons.luck() if boons.luck() > 0 else ""), 20, UiStyle.ACCENT)
 	pick.position = Vector2(0, 268)
 	pick.size = Vector2(1280, 28)
 	pick.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(pick)
 	var row := HBoxContainer.new()
-	row.position = Vector2(40, 306)
-	row.size = Vector2(1200, 380)
+	row.position = Vector2(40, 300)
+	row.size = Vector2(1200, 360)
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 22)
 	root.add_child(row)
@@ -98,6 +102,18 @@ func _ready() -> void:
 		cards.append(b)
 	if not cards.is_empty():
 		UiStyle.focus_later(cards[0])
+	_reroll_button(root)
+
+
+## El botón de cambiar las opciones (reroll pagado). Apagado si no alcanza la plata.
+func _reroll_button(root: Control) -> void:
+	if reroll_cost < 0:
+		return
+	reroll = UiStyle.button("Cambiar las opciones  ·  $%d  (tenés $%d)" % [reroll_cost, GameState.money], 420)
+	reroll.position = Vector2(430, 668)
+	reroll.disabled = GameState.money < reroll_cost
+	reroll.pressed.connect(choose.bind(-1))
+	root.add_child(reroll)
 
 
 func _outline(l: Label, size: int) -> void:
@@ -112,7 +128,7 @@ func _card(index: int, option: Dictionary) -> Button:
 	var mine: Dictionary = boons.entry(boon.id)
 	var level := int(mine.get("level", 0)) + 1  # (si ya la tenés, la tarjeta muestra el nivel que pasaría a tener)
 	var b := Button.new()
-	b.custom_minimum_size = Vector2(380, 370)
+	b.custom_minimum_size = Vector2(380, 356)
 	b.pressed.connect(choose.bind(index))
 	var box := VBoxContainer.new()
 	box.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -152,6 +168,12 @@ func _card(index: int, option: Dictionary) -> Button:
 
 ## Elegir una tarjeta (también lo llaman los tests y el bot).
 func choose(index: int) -> void:
+	if index == -1 and not _done and reroll != null and not reroll.disabled:
+		_done = true
+		get_tree().paused = _was_paused
+		chosen.emit(-1)
+		queue_free()
+		return
 	if _done or index < 0 or index >= offer["options"].size():
 		return
 	_done = true

@@ -104,6 +104,13 @@ def main(root):
     canvas = Image.new("RGBA", (96, 96), (0, 0, 0, 0))
     canvas.paste(big, ((96 - big.width) // 2, (96 - big.height) // 2), big)
     canvas.save(os.path.join(root, "sprites/ui/premios/objeto.png"))
+    ball = Image.open(os.path.join(root, "sprites/items/poke-ball.png")).convert("RGBA")
+    ball = ball.crop(ball.getbbox())
+    k = max(1, 84 // max(ball.size))
+    big = ball.resize((ball.width * k, ball.height * k), Image.NEAREST)
+    canvas = Image.new("RGBA", (96, 96), (0, 0, 0, 0))
+    canvas.paste(big, ((96 - big.width) // 2, (96 - big.height) // 2), big)
+    canvas.save(os.path.join(root, "sprites/ui/premios/bola.png"))
     print("%d objetos" % len(ITEMS))
 
 
