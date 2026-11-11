@@ -178,6 +178,10 @@ func physics_update(delta: float) -> void:
 	_attack_timer -= delta
 	if _attack_timer <= 0.0 and wary() and _ideal_range() <= MELEE_RANGE and dist > MELEE_SPACING:
 		_attack_timer = 0.3  # bajo fuego, un cuerpo a cuerpo no se tira de lejos (la embestida es venir de frente): espera
+	if _attack_timer <= 0.0 and actor.attack_gate.is_valid() and not actor.attack_gate.call(actor):
+		_attack_timer = 0.6  # sin ficha de ataque (oleadas del Modo Desafío): no tira, rodea y vuelve a pedir
+		if _mode == "approach" and dist < _ideal_range() * 1.3:
+			_mode = "strafe"
 	if _attack_timer <= 0.0 and not t.is_burrowed():  # (no le tira a alguien que está bajo tierra)
 		if _choose_attack(dist):
 			_attack_timer = randf_range(0.5, 1.1) * CombatBody.difficulty().attack_interval_mult * _pace()

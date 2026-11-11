@@ -38,6 +38,9 @@ var fight_types: Array[ElementType] = []
 var fight_stats: CreatureInstance = null
 ## Pokémon jefe (el de un líder de gimnasio con SpeciesData.boss_kit): pelea con el kit de jefe. No se guarda.
 var boss := false
+## Vida propia de esta criatura sobre la escala de la partida (no se guarda): los esbirros de las oleadas del Modo
+## Desafío tienen menos (RogueRun, `minion_hp`). Después de cambiarla hay que acomodar `hp`.
+var hp_mult := 1.0
 ## PP actuales (el maná de los ataques, MoveUser; pedido del usuario 2026-10-31). -1 = llenos. No se guarda: al cargar
 ## la partida o curarse vuelven a estar llenos.
 var pp := -1.0
@@ -390,7 +393,7 @@ func stat(name: String) -> int:
 
 
 func max_hp() -> float:
-	return stat("hp") * hp_scale()
+	return stat("hp") * hp_scale() * hp_mult
 
 
 # --- Experiencia ---------------------------------------------------------------

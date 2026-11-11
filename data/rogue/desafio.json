@@ -1,5 +1,5 @@
 {
-  "_doc": "Modo Desafío (roguelike; docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; balls = Pokébolas por partida (cada una es un tiro: la errada se pierde; atrapar desbloquea la especie como inicial, RogueProgress); heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida; settings = ajustes del juego que pisa el modo (pp_regen 2 = la barra de PP se llena al doble); offer = cuántos Pokémon te ofrecen, de los desbloqueados. slots = las salas de la partida, en orden: levels = [mínimo, máximo] de los enemigos, waves = cuántos salen en cada oleada, strong_last = la última oleada es de los fuertes del bioma. biomes = cada sala sale de un bioma al azar (RogueRun.plan_rooms: sin repetir sala y, si se puede, sin repetir el bioma de la anterior): rooms = sus arenas pintadas (data/arenas, pinturas.json; todas del mismo ancho y con el paso en el medio de la primera y la última fila), common/strong = los Pokémon característicos. boss = pelea de entrenador (TrainerBattle) al final.",
+  "_doc": "Modo Desafío (roguelike; docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; balls = Pokébolas por partida (cada una es un tiro: la errada se pierde; atrapar desbloquea la especie como inicial, RogueProgress); heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida; settings = ajustes del juego que pisa el modo (pp_regen 2 = la barra de PP se llena al doble); offer = cuántos Pokémon te ofrecen, de los desbloqueados. Esbirros y fichas (R-1): minion_hp = vida de un enemigo de oleada sobre la normal (los de la oleada fuerte, élites, van con la vida entera), minion_moves = con cuántos ataques de daño pelea, attackers = cuántos pueden atacar a la vez (los demás rodean). slots = las salas de la partida, en orden: levels = [mínimo, máximo] de los enemigos, waves = cuántos salen en cada oleada, strong_last = la última oleada es de los fuertes del bioma. biomes = cada sala sale de un bioma al azar (RogueRun.plan_rooms: sin repetir sala y, si se puede, sin repetir el bioma de la anterior): rooms = sus arenas pintadas (data/arenas, pinturas.json; todas del mismo ancho y con el paso en el medio de la primera y la última fila), common/strong = los Pokémon característicos. boss = pelea de entrenador (TrainerBattle) al final.",
   "name": "Modo Desafío",
   "level": 10,
   "potions": 4,
@@ -8,12 +8,15 @@
   "exp_mult": 3.0,
   "settings": {"pp_regen": 2.0},
   "offer": 3,
+  "minion_hp": 0.45,
+  "minion_moves": 2,
+  "attackers": 3,
   "slots": [
-    {"levels": [3, 4], "waves": [2, 3]},
-    {"levels": [4, 5], "waves": [3, 3]},
-    {"levels": [5, 6], "waves": [3, 3]},
-    {"levels": [6, 7], "waves": [3, 3, 2], "strong_last": true},
-    {"levels": [8, 9], "waves": [3, 3, 2], "strong_last": true}
+    {"levels": [3, 4], "waves": [3, 4]},
+    {"levels": [4, 5], "waves": [4, 4]},
+    {"levels": [5, 6], "waves": [4, 5]},
+    {"levels": [6, 7], "waves": [4, 5, 2], "strong_last": true},
+    {"levels": [8, 9], "waves": [5, 5, 2], "strong_last": true}
   ],
   "biomes": {
     "bosque": {

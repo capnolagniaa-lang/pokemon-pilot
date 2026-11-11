@@ -37,6 +37,10 @@ signal move_released(move: MoveData)
 ## Usó una ranura (antes de la carga, si tiene): la pelea online se lo cuenta a los clientes.
 signal slot_used(slot: int, aim: Vector2, point: Vector2)
 
+## Permiso para atacar que pide la IA antes de tirar (Callable(criatura) -> bool; vacío = siempre). Lo usan las oleadas
+## del Modo Desafío para las "fichas de ataque": solo unos pocos atacan a la vez y los demás rodean (RogueRun).
+var attack_gate := Callable()
+
 ## Datos de la criatura (especie, nivel, vida). Se asigna antes de agregarla al árbol.
 var instance: CreatureInstance
 var team: int = Team.ALLY

@@ -328,6 +328,11 @@ portón, sin fundido) y con obstáculos pintados cuya colisión sale sola de la 
    del modo; todavía sin planta alta). Decidido sin preguntar: la barrera es una cortina de luz y el aviso lo da Mew;
    qué abre la escalera (¿ganarle a Brock?, ¿N entrenadores despertados?) queda para definir con el usuario.
 
+**Hecho: R-1** (2026-11-11): esbirros con 45 % de vida y 2 ataques de daño, élites en la oleada fuerte, oleadas más
+grandes y 3 fichas de ataque que rotan. Decidido sin preguntar: la "mente barata" quedó en recortarles los ataques (la
+`TacticalMind` de salvaje se mantiene: con 5-7 enemigos no hubo problema de rendimiento); los golpes cuerpo a cuerpo ya
+pegaban a todos los que toca el arco, y el stagger no se tocó (verlo jugando).
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y

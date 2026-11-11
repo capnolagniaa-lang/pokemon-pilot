@@ -95,6 +95,8 @@ func use(slot: int) -> bool:
 	var t: Creature = actor.target
 	if not is_instance_valid(t):
 		return false
+	if actor.attack_gate.is_valid() and not actor.attack_gate.call(actor):
+		return false  # sin ficha de ataque (oleadas del Modo Desafío): ni la apertura ni el ataque avisado salen
 	var err := deg_to_rad(difficulty().aim_error_deg)
 	var off: Vector2 = t.global_position - actor.global_position
 	var m: MoveData = actor.moves.slots[slot]

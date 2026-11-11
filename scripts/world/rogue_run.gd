@@ -58,6 +58,9 @@ const STAIRS_WIDTH := 76.0
 const STAIRS_REACH := 22.0
 const STAIRS_FLAG := "planta_alta"
 const MEW_REACH := 34.0
+## Fichas de ataque (R-1): cuánto dura una y cuánto descansa el que la tuvo antes de pedir otra (así rotan).
+const TOKEN_HOLD := 2.6
+const TOKEN_REST := 1.4
 const MEW_STORY: Array[String] = [
 	"(Una voz suave te habla adentro de la cabeza.)",
 	"Llegaste. Te estaba esperando.",
@@ -96,6 +99,10 @@ var door: RogueDoor
 var rooms_cleared := 0
 var _label: Label
 var _engage_in := 0.0
+## Fichas de ataque: criatura -> hasta cuándo la tiene; y hasta cuándo descansa el que ya la usó (reloj `_clock`).
+var tokens: Dictionary = {}
+var _token_rest: Dictionary = {}
+var _clock := 0.0
 ## El castillo: la sala, Mew, el portal y la pantalla de elección (abierta o null).
 var hub: Zone
 var hub_data: ArenaData
@@ -162,8 +169,8 @@ static func plan_rooms(f: Dictionary, rng: RandomNumberGenerator, forced: Array 
 			var strong: bool = slot.get("strong_last", false) and w == slot["waves"].size() - 1
 			var pool: Array = (biome["strong"] if strong else biome["common"]).filter(func(sp): return DB.species.has(sp))
 			var wave: Array = []
-			for n in int(slot["waves"][w]):
-				wave.append([pool[rng.randi() % pool.size()], hi if strong else rng.randi_range(lo, hi)])
+			for n in int(slot["waves"][w]):  # [especie, nivel, ¿élite?]: los fuertes van con la vida entera
+				wave.append([pool[rng.randi() % pool.size()], hi if strong else rng.randi_range(lo, hi), strong])
 			waves.append(wave)
 		out.append({"arena": arena, "name": data.display_name, "biome": id, "biome_name": str(biome["name"]), "waves": waves})
 	return out
@@ -745,6 +752,9 @@ func _spawn_wave(list: Array) -> void:
 		var c: Creature = WildSpawner.CreatureScene.instantiate()
 		c.instance = CreatureInstance.create_rival(DB.species[m[0]], int(m[1]))
 		c.instance.roll_ivs()
+		if not (m.size() > 2 and m[2]):
+			make_minion(c.instance, floor_data)
+		c.attack_gate = can_attack
 		c.team = Creature.Team.WILD
 		c.temperament = DB.temperaments.get("entrenador")  # pelean hasta el final: ni huyen ni sueltan la pelea
 		c.position = _cell_pos(cell)
@@ -753,6 +763,41 @@ func _spawn_wave(list: Array) -> void:
 		foes.append(c)
 		Fx.burst(world.entities, c.global_position, ENEMY_COLOR, 16, 55.0)
 	_engage()
+
+
+## Esbirro de oleada (R-1): poca vida propia (`minion_hp` × la de siempre) y solo sus `minion_moves` ataques de daño
+## más fuertes (sin los de estado: mente simple). Los élite (la oleada fuerte) no pasan por acá.
+static func make_minion(inst: CreatureInstance, f: Dictionary) -> void:
+	inst.hp_mult = float(f.get("minion_hp", 1.0))
+	inst.hp = inst.max_hp()
+	var keep: Array[MoveData] = []
+	for mv: MoveData in inst.equipped_moves:
+		if mv != null and mv.power > 0.0 and mv.category != MoveData.Category.STATUS and keep.size() < int(f.get("minion_moves", 4)):
+			keep.append(mv)
+	if not keep.is_empty():
+		inst.equipped_moves = keep
+
+
+## Fichas de ataque (R-1; `Creature.attack_gate` de cada enemigo de la oleada): a lo sumo `attackers` atacan a la vez.
+## El que consigue una ficha la tiene TOKEN_HOLD s; después descansa TOKEN_REST s y le toca a otro. Los demás rodean.
+func can_attack(c: Creature) -> bool:
+	var limit := int(floor_data.get("attackers", 0))
+	if limit <= 0:
+		return true
+	for k in tokens.keys():
+		if not is_instance_valid(k) or k.is_down() or float(tokens[k]) <= _clock:
+			if is_instance_valid(k):
+				_token_rest[k] = _clock + TOKEN_REST
+			tokens.erase(k)
+	for k in _token_rest.keys():
+		if not is_instance_valid(k) or float(_token_rest[k]) <= _clock:
+			_token_rest.erase(k)
+	if tokens.has(c):
+		return true
+	if tokens.size() >= limit or _token_rest.has(c):
+		return false
+	tokens[c] = _clock + TOKEN_HOLD
+	return true
 
 
 ## Celdas donde puede aparecer un enemigo: piso libre de la cancha de la sala, lejos de tu Pokémon y separadas entre sí.
@@ -785,6 +830,7 @@ func _engage() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_clock += delta
 	if phase == "castillo":
 		_hub_process(delta)
 	if not active:

@@ -40,6 +40,12 @@ func _ready() -> void:
 		add_child(ar)
 		(ar.showcase if "--showcase-arena-rules" in OS.get_cmdline_user_args() else ar.run).call_deferred()
 		return
+	if "--autotest-rogue-waves" in OS.get_cmdline_user_args():
+		set_process(false)
+		var rw := RogueWaveTests.new()
+		add_child(rw)
+		rw.run.call_deferred()
+		return
 	if "--autotest-rogue-rooms" in OS.get_cmdline_user_args() or "--showcase-rogue" in OS.get_cmdline_user_args() \
 			or "--showcase-rogue-castle" in OS.get_cmdline_user_args():
 		set_process(false)
