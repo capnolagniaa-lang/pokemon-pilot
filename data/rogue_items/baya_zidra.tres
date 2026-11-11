@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "baya_zidra"
+display_name = "Baya Zidra"
+giver = "objeto"
+slot = "pasiva"
+effect = "phoenix"
+params = {
+"below": 0.5,
+"heal": 0.15,
+"word": "¡Baya Zidra!"
+}
+scaled = PackedStringArray("heal")
+text = "Una vez por sala, al bajar de 50 % de vida recuperás {heal%}."
+icon_path = "res://sprites/items/sitrus-berry.png"

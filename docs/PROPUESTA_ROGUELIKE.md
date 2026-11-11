@@ -366,13 +366,23 @@ además "Esbirros más duros" y "Mejoras enemigas ya" (no subir niveles de las o
   por ahora es automática por nivel y Esc la frena. Decidido sin preguntar: la evolución **no** se desbloquea como
   inicial (solo lo atrapado: si no, cada inicial regalaría toda su línea).
 
-- **Hecho — menos EXP y más dificultad** (paso O-d de la sección 11 incluido): EXP ×0,7 (antes ×3), esbirros con 55 %
+- **Hecho — menos EXP y más dificultad** (paso O-d de la sección 11 incluido): EXP ×0,8 (antes ×3), esbirros con 50 %
   de vida y 4 fichas de ataque, mejoras enemigas visibles (Furioso, Blindado, Ardiente, Eléctrico, Regenerador) en
   campeones, élites y los Pokémon de Brock, y bendiciones ~30 % más flojas. Números de antes y después y cómo le fue al
   bot: `docs/PROGRESO.md`. Decidido sin preguntar (dudas 6 de 11.5): las mejoras arrancan en la sala 4 (donde aparecen
   los élite) y **Brock también las lleva**; además de los élite, un esbirro "campeón" por oleada lleva una (si no, en
   las salas 4-5 solo se veían en la última oleada); Blindado es más vida (no reducción de daño) y Furioso suma daño
   aparte (no toca la fórmula central); los íconos son pixel art hecho por código (16×16), no pintados.
+
+- **Hecho — objetos equipables** (paso O-b de la sección 11): recompensa "Objeto" (puerta, Tienda), 28 objetos reales
+  con el motor de las bendiciones, 3 ranuras con reemplazo, repetido = nivel, y todo visible (Mochila "De la partida",
+  pestaña "Partida" de la ficha, HUD). Dudas de 11.5 resueltas con los defaults: (1) tope de nivel 3, también para las
+  bendiciones (el Caramelo Raro ya no ofrece las que están al máximo); (2) el reemplazado da plata (`item_sell` 20 ×
+  rareza × nivel) y además se puede guardar sin equipar o vender desde la Mochila; (7) objetos con contra, después;
+  (8) "garantizado tras el jefe" espera a que haya un segundo piso. Distinto de la tabla de 11.3: la Cinta Focus da
+  invulnerabilidad breve bajo 25 % (no "1 PS"), y los de stat usan un único gancho (`Creature.speed_bonus`) más ajustes
+  de la partida (EXP, plata), en vez de `run_mods`.
+- **Pendiente de la sección 11**: pesos por necesidad y reroll (O-a) y suerte por Pokédex (O-c).
 
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.

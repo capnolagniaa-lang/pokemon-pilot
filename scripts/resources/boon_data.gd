@@ -19,6 +19,13 @@ extends Resource
 @export var scaled: PackedStringArray = []
 ## Texto de la tarjeta. `{clave}` = el valor, `{clave%}` = como porcentaje, `{tecla}` = la tecla de su ranura.
 @export_multiline var text: String = ""
+## Solo los objetos equipables (`giver` = "objeto", data/rogue_items, de tools/build_rogue_items.py): su ícono de
+## sprites/items. Las bendiciones usan sprites/ui/bendiciones/iconos/<id>.png.
+@export var icon_path: String = ""
+
+
+func is_item() -> bool:
+	return giver == "objeto"
 
 
 ## El número de la ranura de ataque (0-3), o -1 si no es de una ranura.

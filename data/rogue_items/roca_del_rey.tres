@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "roca_del_rey"
+display_name = "Roca del Rey"
+giver = "objeto"
+slot = "pasiva"
+effect = "hit_status"
+params = {
+"slot": -1,
+"status": "azotado",
+"chance": 0.1
+}
+scaled = PackedStringArray("chance")
+text = "Tus golpes tienen {chance%} de dejar al enemigo sin poder actuar un instante."
+icon_path = "res://sprites/items/kings-rock.png"

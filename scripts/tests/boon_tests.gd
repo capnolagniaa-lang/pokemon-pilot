@@ -299,7 +299,7 @@ func run_tests() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	r["Elegir una la suma, saca la pausa y aparece su ícono arriba"] = picked[0] == 1 and not get_tree().paused and boons.has(o2["options"][1]["id"]) \
-		and run._boon_row.get_child_count() == 1
+		and run._boon_row.get_child_count() == RogueBoons.ITEM_SLOTS + 2
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:
@@ -312,7 +312,7 @@ func run_tests() -> void:
 ## Solo esa bendición, común.
 func _only(id: String) -> void:
 	GameState.rogue["boons"] = [{"id": id, "rarity": "comun", "level": 1}]
-	boons._thorns_ready = 0.0
+	boons._thorns.clear()
 
 
 ## Los muñecos en su lugar, sanos y sin estados.

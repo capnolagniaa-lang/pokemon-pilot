@@ -28,6 +28,7 @@ var story_triggers: Dictionary = {}  # id -> StoryTrigger (historia, data/story/
 var fight_styles: Dictionary = {}  # especie -> FightStyle (combate de arena, data/estilos)
 var abilities: Dictionary = {}  # id -> SignatureData (habilidades, data/abilities)
 var boons: Dictionary = {}  # id -> BoonData (bendiciones del Modo Desafío, data/boons)
+var rogue_items: Dictionary = {}  # id -> BoonData (objetos equipables del Modo Desafío, data/rogue_items)
 var type_chart: TypeChart
 var config: GameConfig
 
@@ -49,6 +50,7 @@ func _ready() -> void:
 	reactions = _load_dir("res://data/environment/reactions", "ReactionRule")
 	temperaments = _load_dir("res://data/ai/temperaments", "Temperament")
 	boons = _load_dir("res://data/boons", "BoonData")
+	rogue_items = _load_dir("res://data/rogue_items", "BoonData")
 	trainer_styles = _load_dir("res://data/ai/trainer_styles", "TrainerStyle")
 	leader_scripts = _load_dir("res://data/ai/leader_scripts", "LeaderScript")
 	ai_profiles = _load_dir("res://data/ai/profiles", "AIProfile")

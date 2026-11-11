@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "casco_dentado"
+display_name = "Casco Dentado"
+giver = "objeto"
+slot = "pasiva"
+effect = "thorns"
+params = {
+"status": "",
+"cooldown": 2.0,
+"power": 0.5
+}
+scaled = PackedStringArray("power")
+text = "El que te pega recibe {power} de daño (una vez cada 2 s)."
+icon_path = "res://sprites/items/rocky-helmet.png"

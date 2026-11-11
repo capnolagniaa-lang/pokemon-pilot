@@ -25,7 +25,7 @@ func run_tests() -> void:
 	if not ResourceLoader.exists(RogueRewardDoor.ARCH):
 		missing.append("arco de la puerta")
 	r["Hay %d tipos de recompensa, cada uno con su ícono y su peso, y el arco de la puerta%s" % [RogueRewards.TYPES.size(),
-		"" if missing.is_empty() else " — falta: " + "; ".join(missing)]] = missing.is_empty() and RogueRewards.TYPES.size() == 7
+		"" if missing.is_empty() else " — falta: " + "; ".join(missing)]] = missing.is_empty() and RogueRewards.TYPES.size() == 8
 
 	RogueRun.begin(DB.species["squirtle"])
 	GameState.rogue["biomes"] = ["bosque", "cueva", "volcan", "hielo", "costa"]
@@ -56,8 +56,8 @@ func run_tests() -> void:
 	for n in 800:
 		for id in rewards.options(rng):
 			seen[id] = int(seen.get(id, 0)) + 1
-	r["Con bendiciones y plata salen los 7 tipos, de a 2 distintos; la Bendición es la más común (%d de 1600)" % seen.get("bendicion", 0)] = \
-		seen.size() == 7 and seen.values().all(func(v): return v > 0) and seen.keys().all(func(id): return seen["bendicion"] >= seen[id])
+	r["Con bendiciones y plata salen los 8 tipos, de a 2 distintos; la Bendición es la más común (%d de 1600)" % seen.get("bendicion", 0)] = \
+		seen.size() == 8 and seen.values().all(func(v): return v > 0) and seen.keys().all(func(id): return seen["bendicion"] >= seen[id])
 
 	# --- Cada recompensa ---
 	GameState.money = 0
@@ -116,8 +116,8 @@ func run_tests() -> void:
 	await _until(func(): return is_instance_valid(run.reward_screen), 3.0)
 	await get_tree().process_frame
 	var shop: RewardScreen = run.reward_screen
-	var shop_ok: bool = shop.cards.size() == cfg["shop"].size() + 1 and shop.cards[3].disabled and not shop.cards[0].disabled
-	shop.choose(3)  # (la bendición, $110: no alcanza)
+	var shop_ok: bool = shop.cards.size() == cfg["shop"].size() + 1 and shop.cards[4].disabled and not shop.cards[0].disabled
+	shop.choose(4)  # (la bendición, $110: no alcanza)
 	await get_tree().process_frame
 	var still: bool = is_instance_valid(run.reward_screen) and run.reward_screen == shop and GameState.money == 100
 	shop.choose(0)  # Poción, $40

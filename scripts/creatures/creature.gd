@@ -57,6 +57,8 @@ var swims := false:
 		collision_mask = (collision_mask & ~2) if v else (collision_mask | 2)
 ## Velocidad mientras nada (FieldMoves: el que pelea montado sobre el Pokémon de Surf va más lento).
 var swim_mult := 1.0
+## Multiplicador de velocidad puesto desde afuera (Modo Desafío: objetos como el Pañuelo Elegido). 1 = nada.
+var speed_bonus := 1.0
 ## Tu Pokémon mientras lo controlás en combate.
 var player_controlled := false
 ## Pelea sola con la IA de los salvajes aunque sea de tu equipo (la batería de balance: dos IA peleando entre sí).
@@ -308,7 +310,7 @@ func speed() -> float:
 		m *= swim_mult
 	if is_burrowed():
 		m *= Burrow.SPEED_MULT
-	return move_speed_for(instance.stat("speed")) * m
+	return move_speed_for(instance.stat("speed")) * m * speed_bonus
 
 
 # --- Combate de arena (docs/PLAN_IDENTIDAD_COMBATE.md "Combate de arena") ----------------------------------

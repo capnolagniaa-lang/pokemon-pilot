@@ -7,6 +7,12 @@ signal closed
 
 const POCKETS := [["Objetos", ItemData.Pocket.ITEMS], ["Pokéballs", ItemData.Pocket.BALLS], ["Objetos clave", ItemData.Pocket.KEY]]
 
+## Bolsillo "De la partida" (Modo Desafío): objetos equipados y guardados, bendiciones y mejoras (RogueKitView).
+const RUN_POCKET := -1
+## Los bolsillos que se muestran: los de siempre y, en el Modo Desafío, primero el de la partida.
+var pockets: Array = POCKETS.duplicate()
+var _run: RogueRun
+var _run_row := {}
 var _pocket := 0
 var _pocket_buttons: Array[Button] = []
 var _list: VBoxContainer
@@ -15,6 +21,7 @@ var _status: Label
 var _chooser: PanelContainer
 var _selected: ItemData
 var _rows: Array[Button] = []
+var _money: Label
 
 
 func _ready() -> void:
@@ -29,8 +36,11 @@ func _ready() -> void:
 	head.add_theme_constant_override("separation", 10)
 	root.add_child(head)
 	head.add_child(UiStyle.label("MOCHILA", 26, UiStyle.ACCENT))
-	for i in POCKETS.size():
-		var b := UiStyle.button(POCKETS[i][0], 150)
+	_run = RogueKitView.run_of(get_tree())
+	if _run != null and not GameState.party.is_empty():
+		pockets.push_front(["De la partida", RUN_POCKET])
+	for i in pockets.size():
+		var b := UiStyle.button(pockets[i][0], 150)
 		b.toggle_mode = true
 		b.focus_mode = Control.FOCUS_NONE
 		b.pressed.connect(_show_pocket.bind(i))
@@ -39,7 +49,8 @@ func _ready() -> void:
 	var spacer := Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	head.add_child(spacer)
-	head.add_child(UiStyle.label("$%d" % GameState.money, 22, UiStyle.ACCENT))  # dinero (docs/PLAN_TORNEO.md)
+	_money = UiStyle.label("$%d" % GameState.money, 22, UiStyle.ACCENT)  # dinero (docs/PLAN_TORNEO.md)
+	head.add_child(_money)
 	var body := HBoxContainer.new()
 	body.add_theme_constant_override("separation", 16)
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -81,7 +92,10 @@ func _show_pocket(i: int) -> void:
 	for c in _list.get_children():
 		c.queue_free()
 	_rows.clear()
-	var items := GameState.pocket_items(POCKETS[i][1])
+	if int(pockets[i][1]) == RUN_POCKET:
+		_show_run()
+		return
+	var items := GameState.pocket_items(pockets[i][1])
 	if items.is_empty():
 		_list.add_child(UiStyle.label("(vacío)", 16, UiStyle.TEXT_DIM))
 		_show_detail(null)
@@ -109,6 +123,31 @@ func _show_pocket(i: int) -> void:
 		_rows.append(b)
 	var keep := _rows.filter(func(r): return r.text.begins_with(_selected.display_name)) if _selected != null else []
 	UiStyle.focus_later(keep[0] if not keep.is_empty() else _rows[0])
+
+
+## El bolsillo "De la partida" del Modo Desafío: todo lo que llevás, con equipar / desequipar / cambiar de ranura / vender.
+func _show_run() -> void:
+	_selected = null
+	_rows = RogueKitView.fill_list(_list, _run, _show_run_detail)
+	var keep := _rows.filter(func(r): return r.get_meta("row")["kind"] == _run_row.get("kind") and r.get_meta("row")["index"] == _run_row.get("index"))
+	var first: Button = keep[0] if not keep.is_empty() else _rows[0]
+	_show_run_detail(first.get_meta("row"), false)
+	UiStyle.focus_later(first)
+
+
+func _show_run_detail(row: Dictionary, focus_actions: bool) -> void:
+	_run_row = row
+	for c in _detail.get_children():
+		c.queue_free()
+	var actions := RogueKitView.fill_detail(_detail, _run, row, true, _run_changed)
+	if focus_actions and not actions.is_empty():
+		actions[0].grab_focus()
+
+
+func _run_changed(text: String) -> void:
+	_status.text = text
+	_money.text = "$%d" % GameState.money
+	refresh()
 
 
 func _show_detail(it: ItemData, focus_actions: bool = false) -> void:
@@ -254,13 +293,13 @@ func back() -> bool:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_TAB:
-		_show_pocket((_pocket + 1) % POCKETS.size())
+		_show_pocket((_pocket + 1) % pockets.size())
 		get_viewport().set_input_as_handled()
 
 
 ## R1 / L1 (MenuNav).
 func menu_tab(step: int) -> void:
-	_show_pocket(posmod(_pocket + step, POCKETS.size()))
+	_show_pocket(posmod(_pocket + step, pockets.size()))
 
 
 ## Abierta con el menú de combate (pelea en pausa).

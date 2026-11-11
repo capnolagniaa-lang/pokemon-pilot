@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "restos"
+display_name = "Restos"
+giver = "objeto"
+slot = "pasiva"
+effect = "regen"
+params = {
+"pct": 0.006
+}
+scaled = PackedStringArray("pct")
+text = "Mientras peleás recuperás {pct%1} de tu vida por segundo."
+icon_path = "res://sprites/items/leftovers.png"

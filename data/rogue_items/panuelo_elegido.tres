@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "panuelo_elegido"
+display_name = "Pañuelo Elegido"
+giver = "objeto"
+slot = "pasiva"
+effect = "speed"
+params = {
+"pct": 0.1
+}
+scaled = PackedStringArray("pct")
+text = "Te movés {pct%} más rápido."
+icon_path = "res://sprites/items/choice-scarf.png"

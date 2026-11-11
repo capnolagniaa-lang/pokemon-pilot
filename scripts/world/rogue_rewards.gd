@@ -8,6 +8,9 @@ extends Node
 ##  · mt: cambiás un ataque por otro que tu Pokémon puede aprender. · proteina: más vida máxima por toda la partida.
 ##  · dinero: plata para la Tienda.                                 · tienda: gastarla (Poción, Poké Ball, cura, bendición).
 ##  · centro: cura buena parte de la vida y llena los PP.
+##  · objeto: elegís 1 de 3 objetos equipables (RogueBoons: 3 ranuras; con las 3 llenas, reemplaza a uno o va a la Mochila).
+## Lo que no es bendición ni objeto (Más PS, la MT) queda anotado en `GameState.rogue["upgrades"]` para que se vea en el
+## menú de pausa (`upgrades()`).
 ## Para sumar un tipo: una fila en TYPES, su peso en el JSON, su rama en `grant` y su ícono en sprites/ui/premios/.
 
 const ICONS := "res://sprites/ui/premios/%s.png"
@@ -20,6 +23,7 @@ const TYPES := {
 	"dinero": ["Dinero", "Plata para gastar en la Tienda."],
 	"tienda": ["Tienda", "Gastás tu dinero: Poción, Poké Ball, curarte o una bendición."],
 	"centro": ["Centro Pokémon", "Recuperás buena parte de la vida y todos los PP."],
+	"objeto": ["Objeto", "Elegís 1 de 3 objetos para equiparle a tu Pokémon."],
 }
 
 ## La MT no ofrece ataques más fuertes que esto (un Hiperrayo en la sala 2 gana la partida solo).
@@ -60,7 +64,9 @@ func _mine() -> CreatureInstance:
 func available(id: String) -> bool:
 	match id:
 		"caramelo":
-			return not run.boons.owned().is_empty()
+			return run.boons.owned().any(func(e): return int(e["level"]) < RogueBoons.MAX_LEVEL)
+		"objeto":
+			return not run.boons.item_pool().is_empty()
 		"tienda":
 			return GameState.money >= cheapest()
 		"mt":
@@ -119,6 +125,8 @@ func grant(id: String) -> void:
 			await _shop()
 		"centro":
 			_center()
+		"objeto":
+			await _item()
 	if last_text != "":
 		Events.message_requested.emit(last_text)
 
@@ -138,7 +146,7 @@ func _boon() -> void:
 ## Caramelo Raro: +1 nivel a una de tus bendiciones (te muestra hasta 3).
 func _candy() -> void:
 	var boons: RogueBoons = run.boons
-	var mine: Array = boons.owned().duplicate()
+	var mine: Array = boons.owned().filter(func(e): return int(e["level"]) < RogueBoons.MAX_LEVEL)
 	mine.shuffle()
 	mine = mine.slice(0, 3)
 	var cards: Array = []
@@ -199,7 +207,10 @@ func _tm() -> void:
 			card["tag_color"] = UiStyle.TEXT_DIM
 			cards.append(card)
 	var j: int = await _ask("¿A cuál reemplaza %s?" % move.display_name, "El ataque que elijas se pierde por esta partida.", cards, Color(1.0, 0.85, 0.3))
+	var old: MoveData = inst.equipped_moves[slots[j]] if slots[j] < inst.equipped_moves.size() else null
 	replace_move(slots[j], move)
+	note_upgrade("mt", "MT: %s" % move.display_name, "Aprendió %s%s." % [move.display_name,
+		" en lugar de %s" % old.display_name if old != null else ""], false)
 	last_text = "%s aprendió %s." % [inst.species.display_name, move.display_name]
 
 
@@ -228,12 +239,14 @@ func _protein() -> void:
 	inst.hp_mult *= 1.0 + pct
 	inst.hp = minf(inst.max_hp(), inst.hp + (inst.max_hp() - before))
 	_refresh_health()
+	var e := note_upgrade("proteina", "Más PS", "", true)
+	e["text"] = "Vida máxima +%d %% (×%d)." % [roundi((pow(1.0 + pct, int(e["count"])) - 1.0) * 100.0), int(e["count"])]
 	last_text = "¡Más PS! La vida máxima de %s subió %d %%." % [inst.species.display_name, roundi(pct * 100.0)]
 
 
 func _money() -> void:
 	var span: Array = cfg().get("dinero", [80, 120])
-	var amount := _rng.randi_range(int(span[0]), int(span[1]))
+	var amount := roundi(float(_rng.randi_range(int(span[0]), int(span[1]))) * (1.0 + run.boons.stat("money")))
 	GameState.money += amount
 	last_text = "Encontraste $%d (tenés $%d)." % [amount, GameState.money]
 
@@ -269,7 +282,75 @@ func _shop() -> void:
 		bought.append(str(items[i]["name"]))
 		if str(items[i]["id"]) == "bendicion":
 			await _boon()
+		elif str(items[i]["id"]) == "objeto":
+			await _item()
 	last_text = "Compraste: %s." % ", ".join(bought) if not bought.is_empty() else ""
+
+
+## Objeto: te ofrecen 3 con rareza y elegís uno. Repetido = sube de nivel. Con las 3 ranuras llenas elegís cuál sale
+## (te dan plata por él) o lo guardás en la Mochila sin equipar.
+func _item() -> void:
+	var boons: RogueBoons = run.boons
+	var opts: Array = boons.offer_items()
+	if opts.is_empty():
+		return
+	var cards: Array = []
+	for o: Dictionary in opts:
+		var mine: Dictionary = boons.entry(o["id"])
+		cards.append(item_card(o["id"], o["rarity"], int(mine.get("level", 0)) + 1, not mine.is_empty()))
+	var i: int = await _ask("Objeto", "Elegí uno. Tu Pokémon lleva hasta %d; los repetidos suben de nivel." % RogueBoons.ITEM_SLOTS, cards, RogueBoons.ITEM_COLOR)
+	var pick: Dictionary = opts[i]
+	var to_stash := false
+	if boons.entry(pick["id"]).is_empty() and boons.slots_full():
+		var slots: Array = boons.items().duplicate()
+		var swap: Array = []
+		for e: Dictionary in slots:
+			var card := item_card(e["id"], e["rarity"], int(e["level"]), false)
+			card["tag"] = "Sale  ·  te dan $%d" % boons.sell_value(e)
+			swap.append(card)
+		swap.append({"icon": icon_of("objeto"), "title": "Guardarlo en la Mochila", "tag": "Sin equipar", "text": "No reemplaza a ninguno. Lo podés equipar después desde la Mochila del menú de pausa."})
+		var j: int = await _ask("¿A cuál reemplaza %s?" % DB.rogue_items[pick["id"]].display_name, "Tus %d ranuras están llenas." % RogueBoons.ITEM_SLOTS, swap, RogueBoons.ITEM_COLOR)
+		if j < slots.size():
+			var at: int = boons.items().find(slots[j])
+			boons.sell_item(slots[j])
+			boons.items().insert(clampi(at, 0, boons.items().size()), {"id": pick["id"], "rarity": pick["rarity"], "level": 1})
+			boons._items_changed()
+			last_text = "%s reemplazó a %s." % [DB.rogue_items[pick["id"]].display_name, DB.rogue_items[slots[j]["id"]].display_name]
+			return
+		to_stash = true
+	boons.take_item(pick["id"], pick["rarity"], to_stash)
+	last_text = ""  # (take_item ya lo anuncia)
+
+
+## La tarjeta de un objeto (también la usa el menú de pausa).
+func item_card(id: String, rarity: String, level: int, upgrade: bool) -> Dictionary:
+	var boons: RogueBoons = run.boons
+	var d: BoonData = DB.rogue_items[id]
+	var rar: Dictionary = boons.rarity(rarity)
+	level = mini(level, RogueBoons.MAX_LEVEL)
+	return {"icon": d.icon_path, "title": d.display_name, "tag": str(rar["name"]) + ("  ·  sube a Nv. %d" % level if upgrade else ""),
+		"tag_color": Color(rar["color"][0], rar["color"][1], rar["color"][2]), "text": boons.describe(d, rarity, level)}
+
+
+## Lo que conseguiste en la partida que no es bendición ni objeto (Más PS, MT): [{id, title, text, icon, count}].
+func upgrades() -> Array:
+	if not GameState.rogue.has("upgrades"):
+		GameState.rogue["upgrades"] = []
+	return GameState.rogue["upgrades"]
+
+
+## Anota una mejora de la partida. Con `stack`, las del mismo tipo se juntan en una sola (con su cuenta).
+func note_upgrade(id: String, title: String, text: String, stack: bool) -> Dictionary:
+	if stack:
+		for e: Dictionary in upgrades():
+			if e["id"] == id:
+				e["count"] = int(e["count"]) + 1
+				run.boons.changed.emit()
+				return e
+	var fresh := {"id": id, "title": title, "text": text, "icon": icon_of(id), "count": 1}
+	upgrades().append(fresh)
+	run.boons.changed.emit()
+	return fresh
 
 
 ## Compra un artículo de la Tienda (si alcanza la plata). La bendición la ofrece `_shop` después.
@@ -283,7 +364,7 @@ func buy(item: Dictionary) -> bool:
 			var inst := _mine()
 			inst.hp = minf(inst.max_hp(), inst.hp + inst.max_hp() * float(item.get("heal", 0.4)))
 			_refresh_health()
-		"bendicion":
+		"bendicion", "objeto":
 			pass
 		_:
 			GameState.add_item(str(item["id"]))
@@ -294,7 +375,7 @@ func _shop_icon(item: Dictionary):
 	var id := str(item["id"])
 	if DB.items.has(id) and DB.items[id].icon != null:
 		return DB.items[id].icon
-	return icon_of("centro" if id == "cura" else id)
+	return icon_of("centro" if id == "cura" else id)  # (bendicion y objeto tienen el suyo en sprites/ui/premios)
 
 
 func _refresh_health() -> void:

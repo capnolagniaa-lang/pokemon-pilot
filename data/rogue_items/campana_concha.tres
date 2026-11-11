@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "campana_concha"
+display_name = "Campana Concha"
+giver = "objeto"
+slot = "pasiva"
+effect = "lifesteal"
+params = {
+"pct": 0.06
+}
+scaled = PackedStringArray("pct")
+text = "Te curás {pct%} del daño que hacés con tus ataques."
+icon_path = "res://sprites/items/shell-bell.png"

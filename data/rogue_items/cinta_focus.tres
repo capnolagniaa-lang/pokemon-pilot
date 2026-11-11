@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "cinta_focus"
+display_name = "Cinta Focus"
+giver = "objeto"
+slot = "pasiva"
+effect = "guard"
+params = {
+"below": 0.25,
+"time": 1.6
+}
+scaled = PackedStringArray("time")
+text = "Una vez por sala, al bajar de 25 % de vida aguantás: nada te hace daño por {time} s."
+icon_path = "res://sprites/items/focus-band.png"

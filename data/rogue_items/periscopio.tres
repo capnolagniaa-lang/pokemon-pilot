@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "periscopio"
+display_name = "Periscopio"
+giver = "objeto"
+slot = "pasiva"
+effect = "crit"
+params = {
+"chance": 0.12,
+"pct": 0.5
+}
+scaled = PackedStringArray("chance")
+text = "Tus golpes tienen {chance%} de ser críticos: 50 % más de daño."
+icon_path = "res://sprites/items/scope-lens.png"

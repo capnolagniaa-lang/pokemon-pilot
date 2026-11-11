@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "moneda_amuleto"
+display_name = "Moneda Amuleto"
+giver = "objeto"
+slot = "pasiva"
+effect = "money"
+params = {
+"pct": 0.5
+}
+scaled = PackedStringArray("pct")
+text = "Cada sala limpia y cada bolsa de dinero te dan {pct%} más de plata."
+icon_path = "res://sprites/items/amulet-coin.png"

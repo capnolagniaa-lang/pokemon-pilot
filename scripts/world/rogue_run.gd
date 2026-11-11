@@ -563,7 +563,7 @@ func _reward(index: int) -> void:
 		return
 	phase = "premio"
 	_refresh_label()
-	GameState.money += int(floor_data.get("rewards", {}).get("room_money", 0))
+	GameState.money += roundi(float(floor_data.get("rewards", {}).get("room_money", 0)) * (1.0 + boons.stat("money")))
 	await rewards.grant(reward_of(index))
 	phase = ""
 	_refresh_label()
@@ -1050,35 +1050,52 @@ func _build_label() -> void:
 	_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(_label)
 	_boon_row = HBoxContainer.new()  # las bendiciones que tenés, chiquitas, arriba a la izquierda
-	_boon_row.position = Vector2(10, 58)
+	_boon_row.position = Vector2(14, 92)
 	_boon_row.add_theme_constant_override("separation", 3)
 	_boon_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(_boon_row)
 	_refresh_boons()
 
 
-## Los íconos de las bendiciones de la partida (con su nivel si subió).
+## Los íconos de lo que llevás en la partida, arriba a la izquierda: primero los objetos equipados (marco dorado; las
+## ranuras vacías se ven), después las bendiciones (marco del color de su rareza) y las mejoras (Más PS); con su nivel.
 func _refresh_boons() -> void:
 	if _boon_row == null or boons == null:
 		return
 	for c in _boon_row.get_children():
 		c.queue_free()
-	for e: Dictionary in boons.owned():
-		var path: String = BoonScreen.ICONS % e["id"]
-		var rar: Dictionary = boons.rarity(e["rarity"])
+	if GameState.party.is_empty() or in_hub():
+		return
+	var shown: Array = []
+	for i in RogueBoons.ITEM_SLOTS:
+		shown.append(boons.items()[i] if i < boons.items().size() else {})
+	var gap := Control.new()
+	gap.custom_minimum_size = Vector2(6, 0)
+	for e: Dictionary in shown + [{"gap": true}] + boons.owned() + rewards.upgrades().filter(func(u): return u["id"] == "proteina"):
+		if e.has("gap"):
+			_boon_row.add_child(gap)
+			continue
+		var is_item: bool = e.is_empty() or DB.rogue_items.has(e.get("id", ""))
+		var path: String = "" if e.is_empty() else (str(e["icon"]) if e.has("icon") else RogueBoons.icon_of(e["id"]))
+		var rar: Dictionary = boons.rarity(e.get("rarity", "comun"))
 		var slot := PanelContainer.new()
 		slot.self_modulate = Color(rar["color"][0], rar["color"][1], rar["color"][2], 0.9)
+		if is_item:
+			slot.add_theme_stylebox_override("panel", UiStyle.box(Color(0.1, 0.08, 0.02, 0.75), Color(RogueBoons.ITEM_COLOR, 0.95 if not e.is_empty() else 0.4), 2, 2))
+			slot.self_modulate = Color.WHITE
 		slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		var icon := TextureRect.new()
 		icon.custom_minimum_size = Vector2(26, 26)
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		if ResourceLoader.exists(path):
+		icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if is_item else CanvasItem.TEXTURE_FILTER_PARENT_NODE
+		if path != "" and ResourceLoader.exists(path):
 			icon.texture = load(path)
 		slot.add_child(icon)
-		if int(e["level"]) > 1:
-			var lv := UiStyle.label(str(e["level"]), 11, UiStyle.ACCENT)
+		var count := int(e.get("level", e.get("count", 1)))
+		if count > 1:
+			var lv := UiStyle.label(str(count), 11, UiStyle.ACCENT)
 			lv.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.95))
 			lv.add_theme_constant_override("outline_size", 4)
 			lv.size_flags_horizontal = Control.SIZE_SHRINK_END

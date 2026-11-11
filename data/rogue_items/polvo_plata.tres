@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "polvo_plata"
+display_name = "Polvo Plata"
+giver = "objeto"
+slot = "pasiva"
+effect = "bonus_type"
+params = {
+"type": "bicho",
+"pct": 0.12
+}
+scaled = PackedStringArray("pct")
+text = "Tus ataques de tipo Bicho hacen {pct%} más de daño."
+icon_path = "res://sprites/items/silver-powder.png"

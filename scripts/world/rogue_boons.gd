@@ -12,13 +12,24 @@ extends Node
 ## Para sumar una bendición: una fila en tools/build_boons.py. Para un efecto nuevo: una función `_fx_<effect>` acá.
 
 const CONFIG_PATH := "res://data/rogue/bendiciones.json"
+## **Objetos equipables** (paso O-b de la sección 11 de la propuesta; decisiones del usuario 2026-11-11): son `BoonData`
+## con `giver` = "objeto" (data/rogue_items, de tools/build_rogue_items.py) y usan este mismo motor. Hasta `ITEM_SLOTS`
+## equipados en `GameState.rogue["items"]` (los que hacen efecto) y los demás guardados en `GameState.rogue["stash"]`
+## (la Mochila de la partida: se equipan, desequipan, cambian de ranura o se venden desde el menú de pausa). Un
+## repetido sube de nivel el que ya tenés, hasta `MAX_LEVEL` (también las bendiciones).
+const ITEM_SLOTS := 3
+const MAX_LEVEL := 3
+const ITEM_COLOR := Color(1.0, 0.82, 0.3)
+## Cada cuánto curan los de regeneración (Restos).
+const REGEN_TICK := 1.0
 
 var run: Node
 var world: Node
 var config: Dictionary = {}
 var _creature: Creature
-var _thorns_ready := 0.0
-var _phoenix_used := false
+var _used: Dictionary = {}  # id -> ya se usó en esta sala (los de "una vez por sala")
+var _thorns: Dictionary = {}  # id -> cuándo vuelve a estar
+var _regen := 0.0
 ## Bendición de esquive -> cuándo vuelve a estar (las de `cooldown`: si no, esquivar seguido limpiaba la sala).
 var _dodge_ready: Dictionary = {}
 var _clock := 0.0
@@ -51,14 +62,177 @@ func owned() -> Array:
 
 
 func has(id: String) -> bool:
-	return owned().any(func(e): return e["id"] == id)
+	return not entry(id).is_empty()
 
 
+## La entrada {id, rarity, level} de una bendición o de un objeto (equipado o guardado) que tenés.
 func entry(id: String) -> Dictionary:
-	for e: Dictionary in owned():
+	for e: Dictionary in owned() + items() + stash():
 		if e["id"] == id:
 			return e
 	return {}
+
+
+## Los datos de una bendición o de un objeto.
+static func data_of(id: String) -> BoonData:
+	return DB.boons.get(id, DB.rogue_items.get(id))
+
+
+static func icon_of(id: String) -> String:
+	var d := data_of(id)
+	return d.icon_path if d != null and d.icon_path != "" else "res://sprites/ui/bendiciones/iconos/%s.png" % id
+
+
+# --- Objetos equipables ---------------------------------------------------------------------------------------------
+
+## Los equipados (hacen efecto), en orden de ranura.
+func items() -> Array:
+	if not GameState.rogue.has("items"):
+		GameState.rogue["items"] = []
+	return GameState.rogue["items"]
+
+
+## Los guardados en la Mochila de la partida (no hacen efecto hasta equiparlos).
+func stash() -> Array:
+	if not GameState.rogue.has("stash"):
+		GameState.rogue["stash"] = []
+	return GameState.rogue["stash"]
+
+
+func slots_full() -> bool:
+	return items().size() >= ITEM_SLOTS
+
+
+## Te quedás con un objeto. Devuelve qué pasó: "nivel" (ya lo tenías: sube uno), "equipado" (fue a una ranura libre) o
+## "guardado" (las 3 llenas: quedó en la Mochila; RogueRewards pregunta antes si querés reemplazar uno).
+func take_item(id: String, rarity: String = "comun", to_stash := false) -> String:
+	if not DB.rogue_items.has(id):
+		return ""
+	var e := entry(id)
+	var what := "nivel"
+	if not e.is_empty():
+		e["level"] = mini(MAX_LEVEL, int(e["level"]) + 1)
+		if rarity_index(rarity) > rarity_index(e["rarity"]):
+			e["rarity"] = rarity
+	elif slots_full() or to_stash:
+		stash().append({"id": id, "rarity": rarity, "level": 1})
+		what = "guardado"
+	else:
+		items().append({"id": id, "rarity": rarity, "level": 1})
+		what = "equipado"
+	Events.message_requested.emit("Objeto: %s%s" % [DB.rogue_items[id].display_name, " (subió de nivel)" if what == "nivel" else (
+		" (en la Mochila)" if what == "guardado" else "")])
+	_items_changed()
+	return what
+
+
+## Pasa un objeto guardado a una ranura libre.
+func equip_item(stash_index: int) -> bool:
+	if stash_index < 0 or stash_index >= stash().size() or slots_full():
+		return false
+	items().append(stash().pop_at(stash_index))
+	_items_changed()
+	return true
+
+
+## Saca un objeto equipado y lo guarda en la Mochila.
+func unequip_item(slot: int) -> bool:
+	if slot < 0 or slot >= items().size():
+		return false
+	stash().append(items().pop_at(slot))
+	_items_changed()
+	return true
+
+
+## Cambia un objeto equipado de ranura (dir = -1 o +1).
+func move_item(slot: int, dir: int) -> bool:
+	var to := slot + dir
+	if slot < 0 or slot >= items().size() or to < 0 or to >= items().size():
+		return false
+	var e = items()[slot]
+	items()[slot] = items()[to]
+	items()[to] = e
+	_items_changed()
+	return true
+
+
+## Cambia un objeto equipado por uno guardado.
+func swap_item(slot: int, stash_index: int) -> bool:
+	if slot < 0 or slot >= items().size() or stash_index < 0 or stash_index >= stash().size():
+		return false
+	var e = items()[slot]
+	items()[slot] = stash()[stash_index]
+	stash()[stash_index] = e
+	_items_changed()
+	return true
+
+
+## Lo que te dan por un objeto al venderlo o reemplazarlo (crece con la rareza y el nivel).
+func sell_value(e: Dictionary) -> int:
+	return int(run.floor_data.get("rewards", {}).get("item_sell", 20)) * (1 + rarity_index(e["rarity"])) * int(e["level"])
+
+
+## Vende un objeto (equipado o guardado): se va y te da plata.
+func sell_item(e: Dictionary) -> int:
+	var value := sell_value(e)
+	items().erase(e)
+	stash().erase(e)
+	GameState.money += value
+	_items_changed()
+	return value
+
+
+func _items_changed() -> void:
+	_apply_stats()
+	changed.emit()
+
+
+## Lo que suman tus objetos y bendiciones de ese efecto de "número" (speed, exp, money, dodge_cd): la suma de sus `pct`.
+func stat(effect: String) -> float:
+	var total := 0.0
+	for b: BoonData in _mine(effect):
+		total += value(b, "pct")
+	return total
+
+
+## Los que cambian un número del juego (velocidad de tu Pokémon, EXP de la partida) se aplican al cambiar lo que llevás.
+func _apply_stats() -> void:
+	if is_instance_valid(_creature):
+		_creature.speed_bonus = 1.0 + stat("speed")
+	if run != null and not run.floor_data.is_empty():
+		GameState.set_setting("exp_mult", float(DB.config.exp_multiplier) * float(run.floor_data.get("exp_mult", 1.0)) * (1.0 + stat("exp")))
+
+
+## Los objetos que te pueden ofrecer: los que no tenés al máximo; de los potenciadores de tipo, solo los del tipo de
+## alguno de tus ataques de daño.
+func item_pool() -> Array:
+	var types := {}
+	var inst := GameState.active()
+	if inst != null:
+		for m in inst.equipped_moves:
+			if m != null and m.power > 0.0 and m.element != null:
+				types[m.element.id] = true
+	var out: Array = []
+	for d: BoonData in DB.rogue_items.values():
+		if int(entry(d.id).get("level", 0)) >= MAX_LEVEL:
+			continue
+		if d.effect == "bonus_type" and not types.has(str(d.params.get("type", ""))):
+			continue
+		out.append(d)
+	out.sort_custom(func(a, b): return a.id < b.id)
+	return out
+
+
+## Una oferta de objetos: hasta `options`, distintos, cada uno con su rareza.
+func offer_items(rng: RandomNumberGenerator = null) -> Array:
+	if rng == null:
+		rng = _rng
+	var pool := item_pool()
+	var out: Array = []
+	for n in mini(int(config["options"]), pool.size()):
+		var d: BoonData = pool.pop_at(rng.randi() % pool.size())
+		out.append({"id": d.id, "rarity": roll_rarity(rng)})
+	return out
 
 
 ## Te quedás con una bendición (o, si ya la tenías, sube un nivel y se queda con la mejor rareza).
@@ -69,7 +243,7 @@ func take(id: String, rarity: String = "comun") -> void:
 	if e.is_empty():
 		owned().append({"id": id, "rarity": rarity, "level": 1})
 	else:
-		e["level"] = int(e["level"]) + 1
+		e["level"] = mini(MAX_LEVEL, int(e["level"]) + 1)
 		if rarity_index(rarity) > rarity_index(e["rarity"]):
 			e["rarity"] = rarity
 	Events.message_requested.emit("Bendición: %s" % DB.boons[id].display_name)
@@ -78,7 +252,7 @@ func take(id: String, rarity: String = "comun") -> void:
 
 func level_up(id: String) -> bool:
 	var e := entry(id)
-	if e.is_empty():
+	if e.is_empty() or int(e["level"]) >= MAX_LEVEL:
 		return false
 	e["level"] = int(e["level"]) + 1
 	changed.emit()
@@ -122,6 +296,7 @@ func describe(boon: BoonData, rarity_id: String = "comun", level: int = 1) -> St
 		if not (boon.params[key] is float or boon.params[key] is int):
 			continue
 		var v := value_of(boon, key, rarity_id, level)
+		out = out.replace("{%s%%1}" % key, ("%.1f %%" % (v * 100.0)).replace(".", ","))
 		out = out.replace("{%s%%}" % key, "%d %%" % roundi(v * 100.0))
 		out = out.replace("{%s}" % key, str(roundi(_power(v))) if key == "power" else str(snappedf(v, 0.1)))
 	var action := ""
@@ -149,7 +324,7 @@ func offer(rng: RandomNumberGenerator = null, giver_id: String = "") -> Dictiona
 	mine.sort_custom(func(a, b): return a.id < b.id)
 	var pool: Array = mine.filter(func(b): return not has(b.id))
 	if pool.is_empty():
-		pool = mine
+		pool = mine.filter(func(b): return int(entry(b.id).get("level", 0)) < MAX_LEVEL)
 	var options: Array = []
 	for n in mini(int(config["options"]), pool.size()):
 		var b: BoonData = pool.pop_at(rng.randi() % pool.size())
@@ -179,6 +354,13 @@ func _physics_process(delta: float) -> void:
 	var c: Creature = world.companion if world != null else null
 	if c != _creature:
 		_attach(c)
+	_regen += delta
+	if _regen >= REGEN_TICK:
+		_regen = 0.0
+		if is_instance_valid(_creature) and not _creature.is_down() and run.phase in ["oleada", "jefe"] and _creature.health.ratio() < 1.0:
+			for b: BoonData in _mine("regen"):
+				_note(b)
+				_creature.health.heal(_creature.instance.max_hp() * value(b, "pct") * REGEN_TICK)
 
 
 func _attach(c: Creature) -> void:
@@ -192,17 +374,23 @@ func _attach(c: Creature) -> void:
 		c.hit_dealt.connect(_on_hit)
 		c.dodged.connect(_on_dodged)
 		c.damage_received.connect(_on_damaged)
+	_apply_stats()
 
 
 ## Empieza una sala: lo que es "una vez por sala" vuelve a estar.
 func room_started() -> void:
-	_phoenix_used = false
+	_used.clear()
+
+
+## Lo que hace efecto ahora: tus bendiciones y tus objetos equipados (los guardados, no).
+func active_entries() -> Array:
+	return owned() + items()
 
 
 func _mine(effect: String) -> Array:
 	var out: Array = []
-	for e: Dictionary in owned():
-		var b: BoonData = DB.boons.get(e["id"])
+	for e: Dictionary in active_entries():
+		var b: BoonData = data_of(e["id"])
 		if b != null and b.effect == effect:
 			out.append(b)
 	return out
@@ -240,6 +428,8 @@ func _note(boon: BoonData) -> void:
 
 
 func _color(boon: BoonData) -> Color:
+	if not config["givers"].has(boon.giver):
+		return ITEM_COLOR
 	var c: Array = config["givers"][boon.giver]["color"]
 	return Color(c[0], c[1], c[2])
 
@@ -264,7 +454,7 @@ func _blast(boon: BoonData, at: Vector2, amount: float, skip: Creature = null) -
 
 
 func _on_hit(target: Creature, hit: HitInfo, damage: float) -> void:
-	if not is_instance_valid(target) or hit == null or hit.move == null or damage <= 0.0 or owned().is_empty():
+	if not is_instance_valid(target) or hit == null or hit.move == null or damage <= 0.0 or active_entries().is_empty():
 		return
 	var slot: int = _creature.moves.slots.find(hit.move)
 	var was_full: bool = target.instance.hp + damage >= target.instance.max_hp() - 0.5
@@ -277,6 +467,18 @@ func _on_hit(target: Creature, hit: HitInfo, damage: float) -> void:
 		if b.params["statuses"].any(func(s): return target.statuses.has_status(s)):
 			_note(b)
 			bonus += damage * value(b, "pct")
+	for b: BoonData in _mine("bonus_type"):
+		if hit.move.element != null and hit.move.element.id == str(b.params["type"]):
+			_note(b)
+			bonus += damage * value(b, "pct")
+	for b: BoonData in _mine("crit"):
+		if _rng.randf() <= value(b, "chance"):
+			_note(b)
+			bonus += damage * float(b.params["pct"])
+			Events.signature_triggered.emit(_creature, "¡Crítico!", _color(b))
+	for b: BoonData in _mine("lifesteal"):
+		_note(b)
+		_creature.health.heal(damage * value(b, "pct"))
 	for b: BoonData in _mine("first_strike"):
 		if was_full:
 			_note(b)
@@ -305,6 +507,9 @@ func _on_hit(target: Creature, hit: HitInfo, damage: float) -> void:
 func _on_dodged() -> void:
 	if not is_instance_valid(_creature):
 		return
+	for b: BoonData in _mine("dodge_cd"):
+		_note(b)
+		_creature.moves.dodge_cooldown *= maxf(0.2, 1.0 - value(b, "pct"))
 	for b: BoonData in _mine("dodge_blast"):
 		if _clock < float(_dodge_ready.get(b.id, 0.0)):
 			continue
@@ -316,25 +521,35 @@ func _on_dodged() -> void:
 func _on_damaged(amount: float, hit: HitInfo) -> void:
 	if not is_instance_valid(_creature) or amount <= 0.0:
 		return
-	if hit != null and hit.attacker is Creature and _clock >= _thorns_ready:
+	if hit != null and hit.attacker is Creature:
 		for b: BoonData in _mine("thorns"):
-			_thorns_ready = _clock + float(b.params["cooldown"])
+			if _clock < float(_thorns.get(b.id, 0.0)):
+				continue
+			_thorns[b.id] = _clock + float(b.params["cooldown"])
 			_note(b)
 			_status(hit.attacker, b.params["status"])
 			_hurt(hit.attacker, _power(value(b, "power")))
-			Events.signature_triggered.emit(_creature, "¡Coraza!", _color(b))
-	if not _phoenix_used and not _creature.is_down():
-		for b: BoonData in _mine("phoenix"):
-			if _creature.health.ratio() < float(b.params["below"]):
-				_phoenix_used = true
-				_note(b)
-				_creature.health.heal(_creature.instance.max_hp() * value(b, "heal"))
-				Fx.burst(world.entities, _creature.global_position + Vector2(0, -8), Color(1.8, 1.0, 0.4), 26, 70.0)
-				Events.signature_triggered.emit(_creature, "¡Ave Fénix!", _color(b))
+			Events.signature_triggered.emit(_creature, "¡Casco Dentado!" if b.is_item() else "¡Coraza!", _color(b))
+	if _creature.is_down():
+		return
+	for b: BoonData in _mine("phoenix"):
+		if not _used.has(b.id) and _creature.health.ratio() < float(b.params["below"]):
+			_used[b.id] = true
+			_note(b)
+			_creature.health.heal(_creature.instance.max_hp() * value(b, "heal"))
+			Fx.burst(world.entities, _creature.global_position + Vector2(0, -8), Color(1.8, 1.0, 0.4), 26, 70.0)
+			Events.signature_triggered.emit(_creature, str(b.params.get("word", "¡Ave Fénix!")), _color(b))
+	for b: BoonData in _mine("guard"):
+		if not _used.has(b.id) and _creature.health.ratio() < float(b.params["below"]):
+			_used[b.id] = true
+			_note(b)
+			_creature.health.invulnerable_time = maxf(_creature.health.invulnerable_time, value(b, "time"))
+			Fx.burst(world.entities, _creature.global_position + Vector2(0, -8), Color(1.6, 1.5, 1.0), 20, 60.0)
+			Events.signature_triggered.emit(_creature, "¡Cinta Focus!", _color(b))
 
 
 func _on_fainted(c: Node) -> void:
-	if not (c is Creature) or c.team == Creature.Team.ALLY or not is_instance_valid(_creature) or owned().is_empty():
+	if not (c is Creature) or c.team == Creature.Team.ALLY or not is_instance_valid(_creature) or active_entries().is_empty():
 		return
 	for b: BoonData in _mine("kill_pp"):
 		_note(b)

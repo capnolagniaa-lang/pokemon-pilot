@@ -43,6 +43,11 @@ func _ready() -> void:
 	_moves_tab.add_theme_constant_override("separation", 10)
 	_tabs.add_child(_moves_tab)
 	_build_moves()
+	var run := RogueKitView.run_of(get_tree())
+	if run != null and party_index == GameState.active_index:  # Modo Desafío: objetos, bendiciones y mejoras de la partida
+		var kit := RogueKitView.summary_tab(run)
+		kit.name = "Partida"
+		_tabs.add_child(kit)
 	_tabs.tab_changed.connect(func(_i): _wire_tabs())
 	_wire_tabs()
 	UiStyle.focus_later(_tabs.get_tab_bar())
