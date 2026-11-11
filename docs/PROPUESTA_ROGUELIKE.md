@@ -478,6 +478,21 @@ revisar). Recomendado: **(a)** primero; (b) después si se quiere, con el mismo 
 - **Choque con la IA**: hoy los obstáculos son celdas enteras; con formas de base más chicas hay que confirmar que
   `CombatBody.steer` y `find_path` no se traben en las esquinas (el test de recorrido lo cubre).
 
+### 10.8 Decisiones y estado (2026-11-11)
+El usuario decidió **no repintar las 36 salas** y pasar a esta etapa. Respuestas: muestra = **Costa**; estilo = **pixel
+art cercano al de los sprites** (limpio, a la resolución del juego, sin grano); las pintadas **se retiran bioma por
+bioma** a medida que se convierten. Decidido sin preguntar: salas **generadas fuera del juego y revisadas**; en el primer
+paso el agua de los charcos ya es agua de verdad (moja, frena, conduce) y la lava/hielo quedan para cuando se conviertan
+esos biomas.
+
+**Hecho: P-0** (ver `docs/PROGRESO.md` y CLAUDE.md): Costa con marco en pixel art 1 a 1, 16 piezas y 3 salas armadas a
+mano, y-sort, colisión por elipse de base y grilla debajo. Cómo se llegó al pixel art limpio: Qwen pinta "pixel art" con
+píxeles falsos de tamaño irregular; se pinta grande (marco 2048×1536, piezas 1024) y **se achica a la resolución del
+juego promediando y con paleta chica sin tramado** (`prop_from_image.py` para las piezas, `pixel` para el marco), y se
+dibuja 1 a 1 con filtro nearest. Distinto del plan: las paredes van en la misma pintura que el piso (el "marco"), no
+como piezas. **Frenado** hasta que el usuario compare. Para ajustar con su opinión: densidad y escala de las piezas, y el
+piso (hoy arena lisa con decorado suelto).
+
 ### 10.7 Preguntas abiertas para el usuario
 1. **Bioma de muestra**: ¿Costa (donde se vio el problema) o Bosque?
 2. **Generar fuera del juego o al entrar**: ¿salas revisadas a mano (30 por bioma, por ejemplo) o infinitas?

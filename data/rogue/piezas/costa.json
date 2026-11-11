@@ -1,0 +1,18 @@
+{
+  "roca_chica": {"kind": "solida", "base": [21, 9], "sink": 2, "size": [25, 26]},
+  "roca_percebes": {"kind": "solida", "base": [48, 20], "sink": 4, "size": [56, 52]},
+  "roca_grande": {"kind": "solida", "base": [51, 22], "sink": 5, "size": [60, 80]},
+  "palmera": {"kind": "solida", "base": [16, 10], "sink": 2, "size": [55, 96]},
+  "tronco": {"kind": "solida", "base": [42, 18], "sink": 3, "size": [49, 34]},
+  "bote": {"kind": "solida", "base": [42, 18], "sink": 4, "size": [49, 46]},
+  "cajas": {"kind": "solida", "base": [21, 9], "sink": 3, "size": [25, 46]},
+  "barril": {"kind": "solida", "base": [19, 8], "sink": 2, "size": [22, 30]},
+  "coral": {"kind": "solida", "base": [23, 10], "sink": 2, "size": [27, 32]},
+  "naufragio": {"kind": "solida", "base": [95, 40], "sink": 8, "size": [112, 130]},
+  "ancla": {"kind": "solida", "base": [28, 12], "sink": 3, "size": [33, 44]},
+  "charco": {"kind": "zona", "base": [55, 46], "sink": 0, "size": [69, 64]},
+  "laguna": {"kind": "zona", "base": [122, 86], "sink": 0, "size": [153, 120]},
+  "concha": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [9, 9]},
+  "estrella": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [11, 11]},
+  "algas": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [19, 12]}
+}

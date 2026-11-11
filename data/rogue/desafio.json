@@ -47,7 +47,7 @@
     },
     "costa": {
       "name": "Costa",
-      "rooms": ["sala_costa_1", "sala_costa_2", "sala_costa_3", "sala_costa_4", "sala_costa_5", "sala_costa_6"],
+      "rooms": ["sala_costa_p1", "sala_costa_p2", "sala_costa_p3"],
       "common": ["poliwag", "psyduck", "krabby", "shellder", "staryu", "horsea", "tentacool", "wingull", "corphish", "marill", "wooper", "goldeen", "slowpoke", "totodile", "mudkip"],
       "strong": ["wartortle", "kingler", "seadra", "pelipper", "poliwhirl", "golduck", "crawdaunt", "croconaw"]
     },

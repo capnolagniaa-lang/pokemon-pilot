@@ -3145,6 +3145,228 @@
     ],
     "border": 1
   },
+  "sala_costa_p1": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (sección 10 de docs/PROPUESTA_ROGUELIKE.md): el fondo es el marco del bioma (`src`, piso + paredes) pasado a pixel art a la resolución del juego (`pixel` = [ancho, alto, colores]) y los obstáculos son objetos sueltos (data/rogue/salas/<id>.json, RoomPieces); el agua de sus charcos sale de esas piezas. Celdas reales (sin `scale`).",
+    "name": "La caleta",
+    "src": "marco_costa",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        35,
+        65
+      ],
+      "min_s": 0.3,
+      "min_v": 150,
+      "part": 0.6,
+      "water": false
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. The whole inside is a very wide flat open floor of soft pale golden-beige beach sand with gentle wind ripples, small subtle dunes and a few tiny pebbles: completely empty, no objects on the sand at all, no rocks, no trees, no water pools. The room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants, with two small waterfalls. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 701,
+    "px": [
+      2048,
+      1536
+    ]
+  },
+  "sala_costa_p2": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (sección 10 de docs/PROPUESTA_ROGUELIKE.md): el fondo es el marco del bioma (`src`, piso + paredes) pasado a pixel art a la resolución del juego (`pixel` = [ancho, alto, colores]) y los obstáculos son objetos sueltos (data/rogue/salas/<id>.json, RoomPieces); el agua de sus charcos sale de esas piezas. Celdas reales (sin `scale`).",
+    "name": "El naufragio",
+    "src": "marco_costa",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        35,
+        65
+      ],
+      "min_s": 0.3,
+      "min_v": 150,
+      "part": 0.6,
+      "water": false
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. The whole inside is a very wide flat open floor of soft pale golden-beige beach sand with gentle wind ripples, small subtle dunes and a few tiny pebbles: completely empty, no objects on the sand at all, no rocks, no trees, no water pools. The room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants, with two small waterfalls. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 701,
+    "px": [
+      2048,
+      1536
+    ]
+  },
+  "sala_costa_p3": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (sección 10 de docs/PROPUESTA_ROGUELIKE.md): el fondo es el marco del bioma (`src`, piso + paredes) pasado a pixel art a la resolución del juego (`pixel` = [ancho, alto, colores]) y los obstáculos son objetos sueltos (data/rogue/salas/<id>.json, RoomPieces); el agua de sus charcos sale de esas piezas. Celdas reales (sin `scale`).",
+    "name": "Los charcos de marea",
+    "src": "marco_costa",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        35,
+        65
+      ],
+      "min_s": 0.3,
+      "min_v": 150,
+      "part": 0.6,
+      "water": false
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a tropical sea cove, seen from above, 4:3. The whole inside is a very wide flat open floor of soft pale golden-beige beach sand with gentle wind ripples, small subtle dunes and a few tiny pebbles: completely empty, no objects on the sand at all, no rocks, no trees, no water pools. The room is enclosed on every side by a thick wall of tall dark brown wet rock cliffs covered in dark seaweed and dark jungle plants, with two small waterfalls. A straight sand path comes in through a gap in the cliffs at the very bottom center edge and leaves through a gap at the very top center edge. The sand is clearly lighter than the dark cliffs. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 701,
+    "px": [
+      2048,
+      1536
+    ]
+  },
   "castillo_mew": {
     "_modo": "Castillo de Mew: el lugar donde empieza el Modo Desafío (RogueRun, pedido del usuario 2026-11-11). No es una arena de pelea: se camina. player = donde aparecés, foe_mon = donde flota Mew, foe_trainer = el centro de la tarima redonda de abajo (el portal gira encima, sprites/props/portal_mew.png; pisarla con un Pokémon elegido lo cruza; `open` la deja caminable). La escalera de arriba va a la planta alta: choca, y RogueRun pone la barrera y el mensaje (STAIRS_AT).",
     "hd": "Grand hall of an ancient mystical castle: bright pale sky-blue marble tile floor with crisp tile lines and soft reflections, a long turquoise carpet with ornate trim running up the center; a grand dark stone staircase with balustrades at the top, tall wooden bookshelves full of books, glowing pink stained glass windows, hanging purple banners, dark stone pillars, dark stone cat statues on pedestals, stone braziers with pink flames, a round raised dark stone dais with a ring of glowing magenta runes, a small altar with candles, a wooden table with open books and a globe; tall dark purple-black castle stone walls.",

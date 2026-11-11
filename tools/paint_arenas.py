@@ -134,6 +134,28 @@ def texture_floor(img, cfg, root):
     return Image.blend(base, out, float(cfg.get("floor_amount", 1.0)))
 
 
+def piece_water(root, arena_id, w, h):
+    """Salas por piezas (data/rogue/salas/<id>.json): las celdas de agua de sus piezas "zona" (charcos, lagunas) = las
+    que tienen el centro adentro de la elipse `base` de la pieza. El resto de la sala es el plano del marco."""
+    path = os.path.join(root, "data/rogue/salas/%s.json" % arena_id)
+    if not os.path.exists(path):
+        return set()
+    room = json.load(open(path, encoding="utf8"))
+    catalog = json.load(open(os.path.join(root, "data/rogue/piezas/%s.json" % room["biome"]), encoding="utf8"))
+    out = set()
+    for piece in room["pieces"]:
+        d = catalog.get(piece[0])
+        if not d or d["kind"] != "zona":
+            continue
+        rx, ry = max(d["base"][0] / 2.0, 1.0), max(d["base"][1] / 2.0, 1.0)
+        for cy in range(h):
+            for cx in range(w):
+                x, y = (cx + 0.5) * 16 - piece[1], (cy + 0.5) * 16 - piece[2]
+                if (x * x) / (rx * rx) + (y * y) / (ry * ry) <= 1.0:
+                    out.add((cx, cy))
+    return out
+
+
 def cells_of(rects, k):
     out = set()
     for x0, y0, rw, rh in rects:
@@ -145,7 +167,7 @@ def cells_of(rects, k):
 def build(root, arena_id, cfg):
     k = float(cfg.get("scale", 1.0))
     w, h = round(cfg["size"][0] * k), round(cfg["size"][1] * k)
-    src = os.path.join(root, "art_src/arenas/%s.png" % arena_id)
+    src = os.path.join(root, "art_src/arenas/%s.png" % cfg.get("src", arena_id))  # (`src`: varias salas con el mismo marco)
     img = Image.open(src)
     floor = auto_plan(img, w, h, cfg["auto"]) if cfg.get("auto") is not None else set()
     water = set()
@@ -161,6 +183,7 @@ def build(root, arena_id, cfg):
         water -= cells_of(cfg.get("open", []), k)  # (el paso abierto a mano es piso aunque la pintura ponga agua ahi)
     floor -= cells_of(cfg.get("solid", []), k)
     water |= cells_of(cfg.get("water", []), k)
+    water |= piece_water(root, arena_id, w, h) & floor  # (agua de las piezas "zona", solo donde habia piso)
     floor -= water
     rows = ["".join("~" if (x, y) in water else "." if (x, y) in floor else "#" for x in range(w)) for y in range(h)]
     pt = lambda p: [round(p[0] * k), round(p[1] * k)]
@@ -185,6 +208,14 @@ def build(root, arena_id, cfg):
     if os.path.exists(old):
         os.remove(old)
     dst = os.path.join(root, "sprites/arenas/%s.png" % arena_id)
+    if cfg.get("pixel"):
+        # Pixel art a la resolucion del juego (salas por piezas): la pintura se achica a `pixel` = [ancho, alto, colores]
+        # promediando y con paleta chica sin tramado; en el juego va 1 a 1 (un pixel = un pixel de los sprites).
+        pw, ph, colors = cfg["pixel"]
+        small = img.convert("RGB").resize((pw, ph), Image.BOX)
+        small.quantize(colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).convert("RGB").save(dst)
+        print("%-26s %dx%d, %d de piso, %d de agua (pixel art %dx%d)" % (arena_id, w, h, sum(r.count(".") for r in rows), len(water), pw, ph))
+        return
     if cfg.get("hd"):
         # La pintura del juego es la de alta resolucion (sprites/arenas/<id>.jpg, de tools/refine_arenas.py): aca solo el plano.
         print("%-26s %dx%d, %d de piso, %d de agua (pintura HD aparte)" % (arena_id, w, h, sum(r.count(".") for r in rows), len(water)))

@@ -206,6 +206,8 @@ func _add_painting() -> void:
 	spr.texture = data.painting
 	spr.centered = false
 	spr.scale = size / data.painting.get_size()
-	spr.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	# Pixel art a la resolución del juego (salas por piezas del Modo Desafío): 1 a 1 y sin suavizar, como los sprites.
+	var native: bool = spr.scale.is_equal_approx(Vector2.ONE)
+	spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if native else CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	spr.z_index = -7  # sobre el suelo y el agua; el hollín, los charcos y los cráteres (-6) van encima
 	get_parent().add_child.call_deferred(spr)

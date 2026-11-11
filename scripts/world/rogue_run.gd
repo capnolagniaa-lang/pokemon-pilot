@@ -94,6 +94,8 @@ var room_data: ArenaData
 ## Todas las salas del piso, cargadas en fila (la primera abajo), y sus datos.
 var chain: Array[Zone] = []
 var chain_data: Array[ArenaData] = []
+## Los objetos sueltos de las salas por piezas (RoomPieces): viven en el y-sort de las entidades y se van con la cadena.
+var pieces: Array[Node2D] = []
 ## Sala -> su portón de arriba (se abre al limpiarla).
 var gates: Dictionary = {}
 var _back_gate: RogueGate
@@ -758,6 +760,7 @@ func _load_chain() -> void:
 		var decor := ArenaDecor.new()
 		zone.add_child(decor)
 		decor.setup(data)
+		pieces.append_array(RoomPieces.populate(world.entities, zone, data.id))  # (sala por piezas: sus objetos sueltos)
 		world.reactions.register_zone(zone)  # entorno reactivo y reglas de arena
 		chain.append(zone)
 		chain_data.append(data)
@@ -832,6 +835,10 @@ func _unload_chain() -> void:
 		if is_instance_valid(zone):
 			world.reactions.unregister_zone(zone)
 			zone.queue_free()  # (los portones son hijos de su sala)
+	for piece in pieces:
+		if is_instance_valid(piece):
+			piece.queue_free()
+	pieces.clear()
 	chain.clear()
 	chain_data.clear()
 	gates.clear()
