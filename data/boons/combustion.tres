@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "combustion"
+display_name = "Combustión"
+giver = "moltres"
+slot = "pasiva"
+effect = "kill_blast"
+params = {
+"need": "quemado",
+"power": 1.1,
+"radius": 46.0,
+"status": "quemado",
+"status_chance": 0.5,
+"element": "fuego",
+"word": "¡Combustión!"
+}
+scaled = PackedStringArray("power")
+text = "Los Quemados explotan al caer: {power} de daño a los enemigos que tengan cerca."

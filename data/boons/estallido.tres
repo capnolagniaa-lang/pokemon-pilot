@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "estallido"
+display_name = "Estallido Ígneo"
+giver = "moltres"
+slot = "ataque4"
+effect = "hit_blast"
+params = {
+"slot": 3,
+"pct": 0.4,
+"radius": 36.0,
+"status": "quemado",
+"status_chance": 0.6,
+"element": "fuego",
+"word": "¡Estallido!"
+}
+scaled = PackedStringArray("pct")
+text = "Donde pega tu Ataque 4 ({tecla}) hay una explosión: {pct%} del daño de más a él y a los que estén cerca, y suele quemar."

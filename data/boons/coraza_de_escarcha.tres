@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "coraza_de_escarcha"
+display_name = "Coraza de Escarcha"
+giver = "articuno"
+slot = "pasiva"
+effect = "thorns"
+params = {
+"status": "frenado",
+"cooldown": 5.0,
+"power": 0.4
+}
+scaled = PackedStringArray("power")
+text = "El que te pega queda Frenado y recibe {power} de daño (una vez cada 5 s)."

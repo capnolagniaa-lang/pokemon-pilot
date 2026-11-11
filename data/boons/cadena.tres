@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "cadena"
+display_name = "Rayo en Cadena"
+giver = "zapdos"
+slot = "pasiva"
+effect = "chain"
+params = {
+"status": "paralizado",
+"pct": 0.4,
+"range": 70.0
+}
+scaled = PackedStringArray("pct")
+text = "Pegarle a un Paralizado hace saltar una chispa al enemigo más cercano: {pct%} del daño."

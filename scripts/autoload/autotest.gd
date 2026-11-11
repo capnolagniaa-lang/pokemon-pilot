@@ -40,6 +40,12 @@ func _ready() -> void:
 		add_child(ar)
 		(ar.showcase if "--showcase-arena-rules" in OS.get_cmdline_user_args() else ar.run).call_deferred()
 		return
+	if "--autotest-boons" in OS.get_cmdline_user_args() or "--showcase-boons" in OS.get_cmdline_user_args():
+		set_process(false)
+		var bt := BoonTests.new()
+		add_child(bt)
+		(bt.showcase if "--showcase-boons" in OS.get_cmdline_user_args() else bt.run_tests).call_deferred()
+		return
 	if "--autotest-rogue-waves" in OS.get_cmdline_user_args():
 		set_process(false)
 		var rw := RogueWaveTests.new()

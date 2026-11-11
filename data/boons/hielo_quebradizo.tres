@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "hielo_quebradizo"
+display_name = "Hielo Quebradizo"
+giver = "articuno"
+slot = "pasiva"
+effect = "bonus_vs_status"
+params = {
+"statuses": ["congelado", "frenado", "escarcha"],
+"pct": 0.25
+}
+scaled = PackedStringArray("pct")
+text = "Hacés {pct%} más de daño a los Frenados, con Escarcha o Congelados."

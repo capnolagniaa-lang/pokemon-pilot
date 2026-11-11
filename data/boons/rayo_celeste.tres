@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "rayo_celeste"
+display_name = "Rayo Celeste"
+giver = "zapdos"
+slot = "ataque2"
+effect = "hit_blast"
+params = {
+"slot": 1,
+"pct": 0.35,
+"radius": 30.0,
+"status": "paralizado",
+"status_chance": 0.2,
+"element": "electrico",
+"word": "¡Rayo!"
+}
+scaled = PackedStringArray("pct")
+text = "Donde pega tu Ataque 2 ({tecla}) cae un rayo: {pct%} del daño de más a él y a los que estén cerca."

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "estela_helada"
+display_name = "Estela Helada"
+giver = "articuno"
+slot = "esquive"
+effect = "dodge_blast"
+params = {
+"power": 0.45,
+"radius": 44.0,
+"status": "frenado",
+"status_chance": 1.0,
+"element": "hielo",
+"word": "¡Escarcha!"
+}
+scaled = PackedStringArray("power")
+text = "Al esquivar ({tecla}) dejás una ráfaga helada: Frenado y {power} de daño a los que tenías cerca."

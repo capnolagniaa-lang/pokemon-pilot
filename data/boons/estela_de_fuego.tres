@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "estela_de_fuego"
+display_name = "Estela de Fuego"
+giver = "moltres"
+slot = "esquive"
+effect = "dodge_blast"
+params = {
+"power": 0.6,
+"radius": 42.0,
+"status": "quemado",
+"status_chance": 0.8,
+"element": "fuego",
+"word": "¡Llamas!"
+}
+scaled = PackedStringArray("power")
+text = "Al esquivar ({tecla}) dejás una llamarada: {power} de daño a los que tenías cerca y casi siempre los quema."

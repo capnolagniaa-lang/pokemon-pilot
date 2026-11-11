@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "aliento_polar"
+display_name = "Aliento Polar"
+giver = "articuno"
+slot = "pasiva"
+effect = "first_strike"
+params = {
+"pct": 0.45
+}
+scaled = PackedStringArray("pct")
+text = "Tu primer golpe a un enemigo con la vida entera hace {pct%} más de daño."

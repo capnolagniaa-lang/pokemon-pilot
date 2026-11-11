@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "ventisca"
+display_name = "Ventisca"
+giver = "articuno"
+slot = "ataque3"
+effect = "hit_blast"
+params = {
+"slot": 2,
+"pct": 0.25,
+"radius": 38.0,
+"status": "frenado",
+"status_chance": 1.0,
+"element": "hielo",
+"word": "¡Ventisca!"
+}
+scaled = PackedStringArray("pct")
+text = "Donde pega tu Ataque 3 ({tecla}) estalla una ventisca: Frenado y {pct%} del daño a los que estén cerca."

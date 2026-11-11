@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "golpe_estatico"
+display_name = "Golpe Estático"
+giver = "zapdos"
+slot = "ataque1"
+effect = "hit_status"
+params = {
+"slot": 0,
+"status": "paralizado",
+"chance": 0.3
+}
+scaled = PackedStringArray("chance")
+text = "Tus golpes con el Ataque 1 ({tecla}) tienen {chance%} de dejar Paralizado."

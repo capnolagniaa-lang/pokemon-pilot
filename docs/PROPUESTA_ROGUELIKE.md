@@ -333,6 +333,15 @@ grandes y 3 fichas de ataque que rotan. Decidido sin preguntar: la "mente barata
 `TacticalMind` de salvaje se mantiene: con 5-7 enemigos no hubo problema de rendimiento); los golpes cuerpo a cuerpo ya
 pegaban a todos los que toca el arco, y el stagger no se tocó (verlo jugando).
 
+**Hecho: R-2** (2026-11-11): bendiciones de Zapdos, Articuno y Moltres (6 cada uno), 4 rarezas, pantalla de elección.
+Decidido sin preguntar: por ahora **cada sala limpia da una bendición** (R-3 la vuelve una de varias recompensas); las
+bendiciones no modifican los `MoveData` ni usan las firmas viejas: se enganchan a las señales de tu Pokémon (golpe,
+esquive, daño recibido, enemigo caído) y aplican los estados que ya existen, así no tocan el combate central; el daño
+de más de una bendición no dispara otras (sin cadenas infinitas); repetida = sube de nivel (+35 % a sus números); las
+frases de los legendarios tienen personalidad (Zapdos soberbio, Articuno sereno, Moltres eufórico). **Para el usuario al
+jugarlo**: qué bendiciones se sienten y cuáles no, y si conviene que el esquive con bendición sea tan fuerte. Las dobles
+(Zapdos + Articuno...) y más dadores (Mew, Kyogre...) quedan para R-5.
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y

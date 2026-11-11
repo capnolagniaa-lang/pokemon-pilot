@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "toque_gelido"
+display_name = "Toque Gélido"
+giver = "articuno"
+slot = "ataque1"
+effect = "hit_status"
+params = {
+"slot": 0,
+"status": "escarcha",
+"chance": 0.5
+}
+scaled = PackedStringArray("chance")
+text = "Tus golpes con el Ataque 1 ({tecla}) tienen {chance%} de sumar Escarcha (con 5 se congela)."

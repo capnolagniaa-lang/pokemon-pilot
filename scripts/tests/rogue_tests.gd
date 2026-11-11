@@ -313,6 +313,11 @@ func run() -> void:
 	r["Se pasa de una sala a la otra caminando, sin fundido"] = not faded
 	r["Al entrar a una sala el portón se cierra detrás (%d de %d)" % [closed_behind, rooms.size() - 1]] = closed_behind == rooms.size() - 1
 	r["Limpiar una sala cura un poco"] = healed
+	var fired := 0
+	for id in run.boons.triggers:
+		fired += int(run.boons.triggers[id])
+	r["Cada sala limpia dio a elegir una bendición (%s) y pelearon con ellas (%d veces se dispararon)" % [
+		", ".join(run.boons.owned().map(func(e): return e["id"])), fired]] = run.boons.owned().size() == rooms.size() and fired > 0
 	r["Los salvajes dan EXP (Nv. %d → %d)" % [level0, mine.level]] = mine.level > level0
 
 	# --- El jefe: Brock, en su gimnasio, con Onix de jefe ---
@@ -544,6 +549,9 @@ func _dialogs() -> void:
 		await get_tree().create_timer(0.1).timeout
 		if not is_instance_valid(w) or not w.is_inside_tree():
 			return
+		if w.get("rogue") != null and is_instance_valid(w.rogue.boon_screen):
+			w.rogue.boon_screen.choose(0)  # (la bendición de la sala: la primera)
+			continue
 		var d: DialogBox = w.story.dialog
 		if d.active:
 			if d._choosing:

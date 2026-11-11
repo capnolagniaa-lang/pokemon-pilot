@@ -27,6 +27,7 @@ var npcs: Dictionary = {}  # id -> NpcData (historia, data/story/npcs)
 var story_triggers: Dictionary = {}  # id -> StoryTrigger (historia, data/story/triggers)
 var fight_styles: Dictionary = {}  # especie -> FightStyle (combate de arena, data/estilos)
 var abilities: Dictionary = {}  # id -> SignatureData (habilidades, data/abilities)
+var boons: Dictionary = {}  # id -> BoonData (bendiciones del Modo Desafío, data/boons)
 var type_chart: TypeChart
 var config: GameConfig
 
@@ -47,6 +48,7 @@ func _ready() -> void:
 	env_states = _load_dir("res://data/environment/states", "EnvCellState")
 	reactions = _load_dir("res://data/environment/reactions", "ReactionRule")
 	temperaments = _load_dir("res://data/ai/temperaments", "Temperament")
+	boons = _load_dir("res://data/boons", "BoonData")
 	trainer_styles = _load_dir("res://data/ai/trainer_styles", "TrainerStyle")
 	leader_scripts = _load_dir("res://data/ai/leader_scripts", "LeaderScript")
 	ai_profiles = _load_dir("res://data/ai/profiles", "AIProfile")

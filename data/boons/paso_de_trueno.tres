@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BoonData" format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/boon_data.gd" id="1_boon"]
+
+[resource]
+script = ExtResource("1_boon")
+id = "paso_de_trueno"
+display_name = "Paso de Trueno"
+giver = "zapdos"
+slot = "esquive"
+effect = "dodge_blast"
+params = {
+"power": 0.7,
+"radius": 42.0,
+"status": "paralizado",
+"status_chance": 0.5,
+"element": "electrico",
+"word": "¡Descarga!"
+}
+scaled = PackedStringArray("power")
+text = "Al esquivar ({tecla}) soltás una descarga: {power} de daño a los que tenías cerca y la mitad de las veces los paraliza."

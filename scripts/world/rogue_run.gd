@@ -104,6 +104,10 @@ var tokens: Dictionary = {}
 var _token_rest: Dictionary = {}
 var _clock := 0.0
 ## El castillo: la sala, Mew, el portal y la pantalla de elección (abierta o null).
+## Las bendiciones de la partida (R-2) y la pantalla de elección abierta (o null).
+var boons: RogueBoons
+var boon_screen: BoonScreen
+var _boon_row: HBoxContainer
 var hub: Zone
 var hub_data: ArenaData
 var mew: PenPokemon
@@ -227,6 +231,10 @@ func _ready() -> void:
 		set_physics_process(false)
 		return
 	floor_data = load_floor()
+	boons = RogueBoons.new()
+	boons.name = "Boons"
+	add_child(boons)
+	boons.changed.connect(_refresh_boons)
 	_build_label()
 	world.arena.set_black(true)
 	if GameState.rogue.get("hub", false):
@@ -459,6 +467,7 @@ func _run() -> void:
 func _play_room(index: int) -> void:
 	wave_index = -1
 	phase = ""
+	boons.room_started()
 	var cfg: Dictionary = floor_data["rooms"][index]
 	var total: int = floor_data["rooms"].size()
 	var last := index == total - 1
@@ -487,6 +496,7 @@ func _play_room(index: int) -> void:
 		_refresh_label()
 		await get_tree().create_timer(WAVE_DELAY).timeout
 	rooms_cleared += 1
+	await _reward()
 	_room_cleared(last)
 	phase = "puerta"
 	_refresh_label()
@@ -501,6 +511,22 @@ func _play_room(index: int) -> void:
 		await world.arena.fade_to(1.0)
 		world.arena.release_room()  # (el jefe arma su propia arena)
 		_limit_camera(false)  # (su arena está en otro lado: con el límite de las salas la cámara se quedaba en el bosque)
+
+
+## La recompensa de la sala (R-2): un legendario te ofrece 3 bendiciones y elegís una (el juego queda en pausa).
+func _reward() -> void:
+	if _player_down():
+		return
+	phase = "premio"
+	_refresh_label()
+	var o: Dictionary = boons.offer()
+	if o["options"].is_empty():
+		return
+	boon_screen = BoonScreen.open(self, boons, o)
+	var i: int = await boon_screen.chosen
+	boon_screen = null
+	boons.take(o["options"][i]["id"], o["options"][i]["rarity"])
+	phase = ""
 
 
 ## Sala limpia: recupera algo de vida y se abre el portón de arriba (en la última, la puerta al jefe).
@@ -867,6 +893,42 @@ func _build_label() -> void:
 	_label.add_theme_constant_override("outline_size", 6)
 	_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(_label)
+	_boon_row = HBoxContainer.new()  # las bendiciones que tenés, chiquitas, arriba a la izquierda
+	_boon_row.position = Vector2(10, 58)
+	_boon_row.add_theme_constant_override("separation", 3)
+	_boon_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(_boon_row)
+	_refresh_boons()
+
+
+## Los íconos de las bendiciones de la partida (con su nivel si subió).
+func _refresh_boons() -> void:
+	if _boon_row == null or boons == null:
+		return
+	for c in _boon_row.get_children():
+		c.queue_free()
+	for e: Dictionary in boons.owned():
+		var path: String = BoonScreen.ICONS % e["id"]
+		var rar: Dictionary = boons.rarity(e["rarity"])
+		var slot := PanelContainer.new()
+		slot.self_modulate = Color(rar["color"][0], rar["color"][1], rar["color"][2], 0.9)
+		slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var icon := TextureRect.new()
+		icon.custom_minimum_size = Vector2(26, 26)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		if ResourceLoader.exists(path):
+			icon.texture = load(path)
+		slot.add_child(icon)
+		if int(e["level"]) > 1:
+			var lv := UiStyle.label(str(e["level"]), 11, UiStyle.ACCENT)
+			lv.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.95))
+			lv.add_theme_constant_override("outline_size", 4)
+			lv.size_flags_horizontal = Control.SIZE_SHRINK_END
+			lv.size_flags_vertical = Control.SIZE_SHRINK_END
+			slot.add_child(lv)
+		_boon_row.add_child(slot)
 
 
 func _refresh_label() -> void:
@@ -882,6 +944,8 @@ func _refresh_label() -> void:
 	match phase:
 		"oleada":
 			text += "  ·  Oleada %d/%d  ·  Quedan %d" % [wave_index + 1, rooms[room_index]["waves"].size(), foes.size()]
+		"premio":
+			text += "  ·  ¡Sala limpia!"
 		"puerta":
 			text += "  ·  ¡Sala limpia! Seguí por el camino de arriba"
 		"jefe":
