@@ -514,6 +514,7 @@ func _play_room(index: int) -> void:
 		await get_tree().create_timer(WAVE_DELAY).timeout
 	rooms_cleared += 1
 	await _reward(index)
+	await _evolve()
 	if not last and not _player_down():
 		await _choose_next(index)
 	if _player_down():
@@ -544,6 +545,29 @@ func _reward(index: int) -> void:
 	_refresh_label()
 	GameState.money += int(floor_data.get("rewards", {}).get("room_money", 0))
 	await rewards.grant(reward_of(index))
+	phase = ""
+	_refresh_label()
+
+
+## Sala limpia: si tu Pokémon llegó al nivel, evoluciona acá (pedido del usuario 2026-11-11: "no evoluciona en el medio
+## de la run"), y después los ataques nuevos que no entraron ("¿reemplazar uno?"). Conserva bendiciones, objetos, Más PS,
+## ataques y la vida en proporción; sale con la forma nueva en el mismo lugar y lo seguís manejando.
+func _evolve() -> void:
+	var evo: EvolutionDirector = world.evolutions
+	if _player_down() or not evo.pending():
+		return
+	phase = "evolucion"
+	_refresh_label()
+	var old: Creature = world.companion
+	var at := old.global_position
+	old.statuses.clear()  # (que no lo voltee un veneno mientras mira la pantalla)
+	await evo.show_pending(true)
+	var c: Creature = world.companion
+	if is_instance_valid(c) and c != old:
+		c.global_position = at
+		world.combat.take_control(c)
+		world.trainer.follow_target = c
+		Fx.burst(world.entities, at + Vector2(0, -8), Color(1.6, 1.6, 1.8), 22, 60.0)
 	phase = ""
 	_refresh_label()
 
@@ -1047,6 +1071,8 @@ func _refresh_label() -> void:
 		"oleada":
 			text += "  ·  Oleada %d/%d  ·  Quedan %d" % [wave_index + 1, rooms[room_index]["waves"].size(), foes.size()]
 		"premio":
+			text += "  ·  ¡Sala limpia!"
+		"evolucion":
 			text += "  ·  ¡Sala limpia!"
 		"eleccion":
 			text += "  ·  Elegí una puerta: la recompensa de la próxima sala"

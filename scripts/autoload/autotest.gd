@@ -52,6 +52,12 @@ func _ready() -> void:
 		add_child(rr)
 		(rr.showcase if "--showcase-rogue-rewards" in OS.get_cmdline_user_args() else rr.run_tests).call_deferred()
 		return
+	if "--autotest-rogue-evolution" in OS.get_cmdline_user_args():
+		set_process(false)
+		var re := RogueEvolutionTests.new()
+		add_child(re)
+		re.run_tests.call_deferred()
+		return
 	if "--autotest-rogue-waves" in OS.get_cmdline_user_args():
 		set_process(false)
 		var rw := RogueWaveTests.new()

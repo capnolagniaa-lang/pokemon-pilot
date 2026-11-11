@@ -43,19 +43,34 @@ func _process(_delta: float) -> void:
 	_show(queue.pop_front())
 
 
-## Momento tranquilo: sin combate ni arena, sin diálogo ni puerta, sin menú (árbol en pausa). En el Modo Desafío nunca:
-## ahí la evolución y los ataques nuevos van a ser recompensas de sala (docs/PROPUESTA_ROGUELIKE.md).
+## Momento tranquilo: sin combate ni arena, sin diálogo ni puerta, sin menú (árbol en pausa). En el Modo Desafío no
+## salen solas (ahí siempre se está "en pelea"): RogueRun las muestra con `show_pending` cuando limpiás una sala.
 func can_show() -> bool:
 	return GameState.rogue.is_empty() and not get_tree().paused and not world.combat.in_battle and not world.arena.active and not world.story.busy \
 		and not world.story.dialog.active and not world.warps.busy
 
 
-func _show(entry: Array) -> void:
+## ¿Hay una evolución o un ataque nuevo esperando?
+func pending() -> bool:
+	return not queue.is_empty() or not moves.queue.is_empty()
+
+
+## Muestra ya todo lo que espera (evoluciones y después ataques nuevos), sin mirar `can_show`: lo llama el Modo Desafío
+## en su momento tranquilo (sala limpia, antes de elegir puerta). Con `keep_ratio` la vida queda en la misma proporción.
+func show_pending(keep_ratio := false) -> void:
+	while not queue.is_empty():
+		await _show(queue.pop_front(), keep_ratio)
+	while not moves.queue.is_empty():
+		await moves._show(moves.queue.pop_front())
+
+
+func _show(entry: Array, keep_ratio := false) -> void:
 	var inst: CreatureInstance = entry[0]
 	var to: SpeciesData = entry[1]
 	if not GameState.party.has(inst) or to.evolves_from != inst.species.id:
 		return  # ya evolucionó o no está en el equipo
 	showing = true
+	var was_locked: bool = world.trainer.locked
 	world.trainer.locked = true
 	screen = EvolutionScreen.new()
 	screen.speed = speed
@@ -65,7 +80,10 @@ func _show(entry: Array) -> void:
 	screen.queue_free()
 	if evolved:
 		var from := inst.species
+		var ratio := inst.hp / maxf(1.0, inst.max_hp())
 		var learned := inst.evolve_into(to)
+		if keep_ratio:
+			inst.hp = maxf(1.0, inst.max_hp() * ratio)
 		for m in learned:
 			if inst.auto_equip(m):
 				Events.equipment_changed.emit(inst)
@@ -76,6 +94,6 @@ func _show(entry: Array) -> void:
 		Events.evolved.emit(inst, from, to)
 		if is_instance_valid(world.companion) and world.companion.instance == inst:
 			world.respawn_companion()  # sale con la forma nueva (sprite, kit y stats)
-	world.trainer.locked = false
+	world.trainer.locked = was_locked
 	showing = false
 	done.emit(inst, evolved)

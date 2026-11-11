@@ -355,6 +355,17 @@ bioma mezclada sobre el piso de cada sala (el piso liso era de la pintura, no de
 composiciones distintas, y cámara abierta en el castillo. Decidido sin preguntar: el zoom de las salas de pelea no se
 tocó (es el del jugador, con la rueda); si igual se ven "de cerca", la opción es abrirlo solo en el modo.
 
+**Después de jugar R-1 a R-3 (usuario, 2026-11-11)**: "hay que arreglar que el pokemon no evoluciona en el medio de la
+run. La dificultad es bastante sencilla, deberían darme menos experiencia los pokemon. Los objetos que agarro no aparecen
+en la mochila ni puedo equiparlos en los pokemon. Y se siente relativamente fácil y mucho más con las mejoras." Eligió
+además "Esbirros más duros" y "Mejoras enemigas ya" (no subir niveles de las oleadas ni recortar la curación). En etapas:
+
+- **Hecho — evolución en la partida**: evoluciona al llegar al nivel, con la sala limpia (después de la recompensa, antes
+  de las puertas), conservando bendiciones, Más PS, ataques y la vida en proporción; ahí mismo sale el cartel de ataque
+  nuevo si tenía las 4 ranuras llenas. **Cambia la decisión 5** (evolución como recompensa de sala con Piedra Eterna):
+  por ahora es automática por nivel y Esc la frena. Decidido sin preguntar: la evolución **no** se desbloquea como
+  inicial (solo lo atrapado: si no, cada inicial regalaría toda su línea).
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y

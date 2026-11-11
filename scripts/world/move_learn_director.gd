@@ -46,6 +46,7 @@ func _show(entry: Array) -> void:
 		return
 	showing = true
 	var world: Node = _evolutions.world
+	var was_locked: bool = world.trainer.locked
 	world.trainer.locked = true
 	screen = MoveLearnScreen.new()
 	screen.setup(inst, m)
@@ -57,6 +58,6 @@ func _show(entry: Array) -> void:
 		inst.equip(slot, m)
 		Events.equipment_changed.emit(inst)
 		Events.message_requested.emit("¡%s dejó de usar %s y equipó %s!" % [inst.display_name(), old.display_name, m.display_name])
-	world.trainer.locked = false
+	world.trainer.locked = was_locked
 	showing = false
 	done.emit(inst, m, slot)
