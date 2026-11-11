@@ -300,6 +300,18 @@ seguir después de jugar R-1.
 Después de R-0 (mismo día, pedido del usuario): salas más grandes (64×48), **encadenadas** (se pasa caminando por un
 portón, sin fundido) y con obstáculos pintados cuya colisión sale sola de la pintura.
 
+**Después de jugarlo hasta Brock (usuario, 2026-11-11)**, en tres etapas:
+1. **Hecho — run más larga y captura**: 5 salas antes de Brock; desbloqueo permanente (de entrada solo Charmander,
+   Squirtle y Bulbasaur; te ofrecen 3 de lo desbloqueado, al azar si hay más); **capturar solo desbloquea esa especie
+   como inicial** para las próximas partidas (reemplaza por ahora al "asistente" de la decisión 7: en esa partida seguís
+   con tu único Pokémon); 2 Pokébolas por partida = 2 tiros con la fórmula normal (la errada se pierde). Progreso en
+   `user://desafio.json` (`RogueProgress`). Decidido sin preguntar: se desbloquea la especie tal cual se atrapó (un
+   Beedrill desbloquea a Beedrill, no a Weedle) y atrapar a uno que ya tenías igual lo saca de la sala.
+2. **Pendiente — biomas**: muchas salas pintadas por bioma (bosque, fuego, agua y más), cada sala de la partida sale al
+   azar con Pokémon característicos del bioma.
+3. **Pendiente — castillo de Mew**: Mewtwo corrompió el mundo; aparecés en un castillo donde Mew te cuenta la historia,
+   elegís el inicial y un portal arranca la partida. **Reemplaza al hub del laboratorio de Oak** de la sección de hub.
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y

@@ -1,7 +1,7 @@
 class_name RogueTests
 extends Node
-## Autotest del Modo Desafío (roguelike, docs/PROPUESTA_ROGUELIKE.md, R-0): un bot completa las 3 salas del Bosque Verde
-## y llega a Brock.   godot --headless --path . --quit-after 400000 -- --autotest-rogue-rooms
+## Autotest del Modo Desafío (roguelike, docs/PROPUESTA_ROGUELIKE.md): desbloqueos, las 2 Pokébolas, y un bot completa
+## las salas y llega a Brock.   godot --headless --path . --quit-after 400000 -- --autotest-rogue-rooms
 ## Vitrina (la elección y las 3 salas con el bot peleando):
 ##   godot --path . --quit-after 1500 --write-movie out/f.png --fixed-fps 30 -- --showcase-rogue
 
@@ -9,7 +9,7 @@ var autotest: Node
 var world: Node
 var answers: Array = []
 ## El bot juega al azar: si cae, prueba de nuevo (hasta estos intentos).
-const ATTEMPTS := 3
+const ATTEMPTS := 4
 
 
 ## El bot de siempre, que además elige ataques de daño, toma la Poción con poca vida y, con la sala limpia, camina
@@ -75,6 +75,10 @@ func run() -> void:
 	var slot_before := SaveManager.slot_path
 	var f := RogueRun.load_floor()
 	var rooms: Array = f["rooms"]
+	# El progreso del modo (desbloqueos) va a un archivo de prueba: el de verdad no se toca.
+	var real_before := FileAccess.get_file_as_string(RogueProgress.DEFAULT_PATH) if FileAccess.file_exists(RogueProgress.DEFAULT_PATH) else ""
+	DirAccess.remove_absolute(RogueProgress.TEST_PATH)
+	r["El piso tiene 5 salas antes del jefe"] = rooms.size() == 5
 
 	# --- El título y la elección ---
 	var layer := CanvasLayer.new()
@@ -92,15 +96,16 @@ func run() -> void:
 	var distinct := {}
 	for id in ids:
 		distinct[id] = true
-	r["Te ofrece 3 Pokémon distintos de la lista del piso (%s)" % ", ".join(ids)] = select.cards.size() == 3 and distinct.size() == 3 \
-		and ids.all(func(id): return id in f["starters"])
+	r["De entrada te ofrece a Charmander, Squirtle y Bulbasaur (%s)" % ", ".join(ids)] = select.cards.size() == 3 \
+		and ids == ["charmander", "squirtle", "bulbasaur"]
+	r["Con solo 3 desbloqueados no hay \"Otros tres\""] = not select.find_children("*", "Button", true, false).any(func(b): return b.text == "Otros tres")
 	layer.queue_free()
 
 	# --- Empezar: equipo temporal, nada de la historia ---
 	RogueRun.begin(DB.species["charmander"])
 	var mine: CreatureInstance = GameState.active()
-	r["Arrancás con un solo Pokémon de Nv. %d y %d Pociones" % [f["level"], f["potions"]]] = GameState.party.size() == 1 \
-		and mine.level == int(f["level"]) and GameState.bag == {"pocion": int(f["potions"])} and not GameState.rogue.is_empty()
+	r["Arrancás con un solo Pokémon de Nv. %d, %d Pociones y 2 Pokébolas" % [f["level"], f["potions"]]] = GameState.party.size() == 1 \
+		and mine.level == int(f["level"]) and GameState.bag == {"pocion": int(f["potions"]), "poke_ball": 2} and not GameState.rogue.is_empty()
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 	var run: RogueRun = world.rogue
@@ -113,8 +118,12 @@ func run() -> void:
 	r["En el Modo Desafío no se guarda"] = not SaveManager.save_game() and not FileAccess.file_exists("user://saves/autotest_desafio.json")
 	SaveManager.slot_path = slot_before
 	r["Sin tutorial ni salvajes del mundo"] = not world.pause_menu.is_open() and not GameState.wilds_enabled
-	r["Las 3 salas están cargadas en cadena, una arriba de la otra, con sus portones cerrados"] = run.chain.size() == rooms.size() \
-		and run.chain[1].global_position.y < run.chain[0].global_position.y and run.chain[2].global_position.y < run.chain[1].global_position.y \
+	var stacked := true
+	for i in range(1, run.chain.size()):
+		if run.chain[i].global_position.y >= run.chain[i - 1].global_position.y:
+			stacked = false
+	r["Las %d salas están cargadas en cadena, una arriba de la otra, con sus portones cerrados" % rooms.size()] = run.chain.size() == rooms.size() \
+		and stacked \
 		and run.gates.size() == rooms.size() - 1 and run.gates.values().all(func(g): return is_instance_valid(g))
 	r["La sala 1 es una arena pintada (%d × %d celdas)" % [run.room.ground.get_used_rect().size.x, run.room.ground.get_used_rect().size.y]] = \
 		run.room_data.id == rooms[0]["arena"] and run.room_data.painting != null and world.arena.active and world.combat.arena_lock \
@@ -132,8 +141,46 @@ func run() -> void:
 		and run.foes.all(_spawned_ok.bind(run))
 	r["Con enemigos vivos el portón está cerrado"] = is_instance_valid(run.gates[0])
 
-	# --- El bot juega las 3 salas ---
-	var waves_seen := {}  # "sala:oleada" -> cuántos salieron
+	# --- Las 2 Pokébolas: cada una es un tiro; atrapar desbloquea la especie como inicial ---
+	var waves_seen := {"0:0": run.foes.size()}  # "sala:oleada" -> cuántos salieron
+	var tr: Trainer = world.trainer
+	var b1: BallThrow = world.items.throw_ball(tr.global_position + Vector2(40, -30))
+	await _until(func(): return not is_instance_valid(b1) or b1.result != "", 5.0)
+	await get_tree().create_timer(0.6).timeout
+	r["Una bola errada se pierde: no queda en el piso y te queda 1"] = get_tree().get_nodes_in_group("field_items").is_empty() \
+		and GameState.item_count("poke_ball") == 1
+	await _until(func(): return not run.foes.is_empty(), 10.0)
+	var prey: Creature = run.foes[0]
+	var prey_id: String = prey.instance.species.id
+	var foes_before := run.foes.size()
+	GameState.set_setting("catch_mult", 100000.0)  # (para el test: que esta entre seguro; la fórmula es la de siempre)
+	world.items._cooldown = 0.0
+	prey.global_position = tr.global_position + Vector2(36, 0)
+	var b2: BallThrow = world.items.throw_ball(prey.global_position)
+	var caught := [false]
+	if b2 != null:
+		b2.finished.connect(func(res: String): caught[0] = res == "caught")
+	var spot: Vector2 = prey.global_position
+	var wait := 0.0
+	while wait < 8.0 and is_instance_valid(b2) and b2.result == "":
+		if is_instance_valid(prey) and prey.visible:
+			prey.global_position = spot  # (que no se corra mientras vuela la bola)
+			prey.health.heal(9999.0)
+		await get_tree().physics_frame
+		wait += get_physics_process_delta_time()
+	GameState.set_setting("catch_mult", 1.0)
+	await get_tree().create_timer(0.3).timeout
+	r["Atrapar a un salvaje (%s) lo desbloquea como inicial y se guarda aparte" % prey_id] = RogueProgress.is_unlocked(prey_id) \
+		and FileAccess.file_exists(RogueProgress.TEST_PATH) and RogueProgress.path() == RogueProgress.TEST_PATH
+	r["En esa partida seguís con tu único Pokémon y la oleada sigue con uno menos"] = GameState.party.size() == 1 and GameState.box.is_empty() \
+		and run.foes.filter(func(e): return is_instance_valid(e) and not e.is_queued_for_deletion()).size() == foes_before - 1
+	world.items._cooldown = 0.0
+	r["Sin bolas no hay tercer tiro"] = GameState.item_count("poke_ball") == 0 and world.items.throw_ball(tr.global_position + Vector2(30, 0)) == null
+	var offered: Array = RogueRun.offer().map(func(s): return s.id)
+	r["El progreso se lee del archivo: ahora hay 4 y te ofrece 3 de ellos"] = RogueProgress.unlocked() == ["charmander", "squirtle", "bulbasaur", prey_id] \
+		and offered.size() == 3 and offered.all(func(id): return RogueProgress.is_unlocked(id))
+
+	# --- El bot juega las salas ---
 	var door_early := false
 	var faded := false
 	var closed_behind := 0
@@ -146,7 +193,7 @@ func run() -> void:
 	var attempt := 1
 	while true:
 		t = 0.0
-		while t < 330.0 and run.result == "" and run.phase != "jefe":
+		while t < 600.0 and run.result == "" and run.phase != "jefe":
 			await _bot_frame(run, mine, bot, waves_seen)
 			if run.phase == "oleada":
 				if is_instance_valid(run.door) or (run.gates.has(run.room_index) and not is_instance_valid(run.gates[run.room_index])):
@@ -190,7 +237,7 @@ func run() -> void:
 		for w in rooms[i]["waves"].size():
 			if waves_seen.get("%d:%d" % [i, w], 0) != rooms[i]["waves"][w].size():
 				all_waves = false
-	r["El bot limpia las 3 salas (%d de %d en %d s; vida %d %%; intento %d de %d)" % [run.rooms_cleared, rooms.size(), int(t),
+	r["El bot limpia las salas (%d de %d en %d s; vida %d %%; intento %d de %d)" % [run.rooms_cleared, rooms.size(), int(t),
 		int(100.0 * mine.hp / mine.max_hp()), attempt, ATTEMPTS]] = run.rooms_cleared == rooms.size() and run.result == ""
 	r["Salieron todas las oleadas de cada sala, completas"] = all_waves
 	r["El portón (y la puerta del jefe) se abren recién con la sala limpia"] = not door_early
@@ -238,6 +285,11 @@ func run() -> void:
 	await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn"), 30.0)
 	r["\"Jugar otra vez\" te lleva a elegir de nuevo"] = get_tree().current_scene != null \
 		and get_tree().current_scene.scene_file_path.ends_with("rogue_select.tscn")
+	await get_tree().process_frame
+	r["Con más de 3 desbloqueados aparece \"Otros tres\""] = get_tree().current_scene.find_children("*", "Button", true, false).any(
+		func(b): return b.text == "Otros tres")
+	DirAccess.remove_absolute(RogueProgress.TEST_PATH)
+	r["El progreso de verdad del modo no se tocó"] = real_before == (FileAccess.get_file_as_string(RogueProgress.DEFAULT_PATH) if FileAccess.file_exists(RogueProgress.DEFAULT_PATH) else "")
 	var saves_after := _save_times()
 	var untouched := SaveManager.slot_path == slot_before
 	for file: String in saves_before:  # (otras pruebas corriendo a la vez crean y borran las suyas: se miran las que ya estaban)

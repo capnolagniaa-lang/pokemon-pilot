@@ -66,6 +66,11 @@ func _miss() -> void:
 	_phase = "done"
 	result = "miss"
 	finished.emit(result)
+	if not GameState.rogue.is_empty():  # Modo Desafío: cada bola es un tiro de verdad; la errada se pierde
+		Fx.burst(get_parent(), global_position, Color(1.3, 1.3, 1.3), 8, 30.0)
+		Events.message_requested.emit("La Pokébola se perdió. Te quedan %d." % GameState.item_count(ball.id))
+		queue_free()
+		return
 	var rest := global_position + (to - from).normalized() * 10.0 + Vector2(0, 2)
 	var tw := create_tween()
 	tw.tween_property(self, "global_position", rest, 0.25)
@@ -119,8 +124,20 @@ func _caught(c: Creature) -> void:
 	_phase = "done"
 	finished.emit(result)
 	var inst := c.instance
-	var where := GameState.add_caught(inst)
 	Fx.burst(get_parent(), global_position + Vector2(0, -4), Color(1.6, 1.5, 0.6), 12, 40.0)
+	if not GameState.rogue.is_empty():
+		# Modo Desafío: no se suma al equipo (seguís con tu único Pokémon); queda desbloqueado como inicial.
+		var fresh := RogueProgress.unlock(inst.species.id)
+		Events.message_requested.emit("¡Atrapaste a %s! %s" % [inst.species.display_name,
+			"Desde ahora lo podés elegir como inicial." if fresh else "Ya lo tenías como inicial."])
+		Events.pokemon_caught.emit(inst, "desafio")
+		c.queue_free()
+		var fade := create_tween()
+		fade.tween_interval(0.6)
+		fade.tween_property(self, "modulate:a", 0.0, 0.3)
+		fade.tween_callback(queue_free)
+		return
+	var where := GameState.add_caught(inst)
 	Events.message_requested.emit("¡Atrapaste a %s!%s" % [inst.species.display_name,
 		"" if where == "equipo" else " Como el equipo está lleno, fue a la Caja."])
 	Events.pokemon_caught.emit(inst, where)

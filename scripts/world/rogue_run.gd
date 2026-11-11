@@ -77,11 +77,13 @@ static func load_floor() -> Dictionary:
 	return JSON.parse_string(FileAccess.get_file_as_string(FLOOR_PATH))
 
 
-## Los Pokémon que te ofrecen al empezar (al azar entre los del piso).
+## Los Pokémon que te ofrecen al empezar: de los desbloqueados (RogueProgress). Hasta `offer`, todos, en su orden; con
+## más, esa cantidad al azar.
 static func offer() -> Array[SpeciesData]:
 	var f := load_floor()
-	var ids: Array = f["starters"].filter(func(id): return DB.species.has(id))
-	ids.shuffle()
+	var ids: Array = RogueProgress.unlocked().filter(func(id): return DB.species.has(id))
+	if ids.size() > int(f["offer"]):
+		ids.shuffle()
 	var out: Array[SpeciesData] = []
 	for id in ids.slice(0, int(f["offer"])):
 		out.append(DB.species[id])
@@ -97,6 +99,9 @@ static func begin(sp: SpeciesData) -> void:
 	GameState.party.append(CreatureInstance.create(sp, int(f["level"])))
 	GameState.active_index = 0
 	GameState.bag = {"pocion": int(f["potions"])}
+	if int(f.get("balls", 0)) > 0:
+		GameState.bag["poke_ball"] = int(f["balls"])
+	GameState.selected_ball = "poke_ball"
 	GameState.quick_item = "pocion"
 	GameState.money = 0
 	GameState.wilds_enabled = false
@@ -516,7 +521,7 @@ func _refresh_label() -> void:
 	if _label == null or room_index < 0:
 		return
 	var rooms: Array = floor_data["rooms"]
-	var text := "%s  ·  Sala %d/%d" % [floor_data["name"], room_index + 1, rooms.size()]
+	var text := "%s  ·  Sala %d/%d  ·  Bolas: %d" % [floor_data["name"], room_index + 1, rooms.size(), GameState.item_count("poke_ball")]
 	match phase:
 		"oleada":
 			text += "  ·  Oleada %d/%d  ·  Quedan %d" % [wave_index + 1, rooms[room_index]["waves"].size(), foes.size()]

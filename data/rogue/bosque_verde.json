@@ -1,15 +1,13 @@
 {
-  "_doc": "Modo Desafío (roguelike), piso 1 (R-0 de docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida (sobre el normal del juego: acá se sube de nivel adentro); settings = ajustes del juego que pisa el modo (GameState.setting; pp_regen 2 = la barra de PP se llena al doble: contra oleadas, con la normal se pasa media pelea sin poder atacar); offer = cuántos Pokémon te ofrecen (al azar de starters). rooms: arena = ArenaData de la sala (data/arenas, pintada: data/arenas/pinturas.json), waves = oleadas, cada una una lista de [especie, nivel]. boss = pelea de entrenador (TrainerBattle) al final.",
+  "_doc": "Modo Desafío (roguelike), piso 1 (R-0 de docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida (sobre el normal del juego: acá se sube de nivel adentro); settings = ajustes del juego que pisa el modo (GameState.setting; pp_regen 2 = la barra de PP se llena al doble: contra oleadas, con la normal se pasa media pelea sin poder atacar); offer = cuántos Pokémon te ofrecen, de los desbloqueados (RogueProgress: al principio Charmander, Squirtle y Bulbasaur; atrapar uno en una partida lo suma); balls = Pokébolas por partida (cada una es un tiro: la errada se pierde). rooms: arena = ArenaData de la sala (data/arenas, pintada: data/arenas/pinturas.json), waves = oleadas, cada una una lista de [especie, nivel]. boss = pelea de entrenador (TrainerBattle) al final.",
   "name": "Bosque Verde",
   "level": 10,
-  "potions": 3,
-  "heal_on_clear": 0.4,
+  "potions": 4,
+  "heal_on_clear": 0.5,
   "exp_mult": 3.0,
   "settings": {"pp_regen": 2.0},
   "offer": 3,
-  "starters": ["charmander", "squirtle", "bulbasaur", "pikachu", "pidgey", "rattata", "nidoran_m", "nidoran_f", "mankey",
-    "sandshrew", "vulpix", "growlithe", "poliwag", "machop", "bellsprout", "oddish", "eevee", "meowth", "psyduck",
-    "spearow", "ekans"],
+  "balls": 2,
   "rooms": [
     {
       "arena": "sala_bosque_1",
@@ -24,8 +22,7 @@
       "name": "Las ruinas",
       "waves": [
         [["weedle", 4], ["weedle", 4], ["pidgey", 5]],
-        [["rattata", 5], ["oddish", 5], ["metapod", 4]],
-        [["pikachu", 6], ["pidgey", 5]]
+        [["rattata", 5], ["oddish", 5], ["metapod", 4]]
       ]
     },
     {
@@ -33,8 +30,25 @@
       "name": "El corazón del bosque",
       "waves": [
         [["kakuna", 5], ["weedle", 5], ["rattata", 6]],
-        [["pikachu", 6], ["oddish", 5], ["pidgey", 5]],
-        [["beedrill", 7], ["butterfree", 7]]
+        [["pikachu", 6], ["oddish", 6], ["pidgey", 6]]
+      ]
+    },
+    {
+      "arena": "sala_bosque_1",
+      "name": "El claro profundo",
+      "waves": [
+        [["spearow", 7], ["rattata", 7], ["bellsprout", 6]],
+        [["pikachu", 7], ["oddish", 7], ["pidgey", 7]],
+        [["pidgeotto", 8], ["metapod", 7]]
+      ]
+    },
+    {
+      "arena": "sala_bosque_2",
+      "name": "Las ruinas del enjambre",
+      "waves": [
+        [["kakuna", 8], ["weedle", 7], ["venonat", 8]],
+        [["paras", 8], ["oddish", 8], ["pikachu", 8]],
+        [["beedrill", 9], ["butterfree", 9]]
       ]
     }
   ],

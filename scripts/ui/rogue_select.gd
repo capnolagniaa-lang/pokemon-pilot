@@ -1,6 +1,6 @@
 extends Control
-## Modo Desafío (roguelike, docs/PROPUESTA_ROGUELIKE.md, R-0): desde el título, elegís uno de 3 Pokémon ofrecidos al
-## azar y arranca la partida (RogueRun). No toca la partida de la historia ni guarda nada.
+## Modo Desafío (roguelike, docs/PROPUESTA_ROGUELIKE.md): desde el título, elegís uno de 3 Pokémon de los que tenés
+## desbloqueados (RogueProgress; con más de 3, al azar) y arranca la partida (RogueRun). No toca la partida de la historia.
 
 const WORLD_SCENE := "res://scenes/world/world.tscn"
 const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
@@ -27,8 +27,9 @@ func _ready() -> void:
 	var title := UiStyle.label("MODO DESAFÍO", 34, UiStyle.ACCENT)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(title)
-	var sub := UiStyle.label("%s: %d salas con oleadas de salvajes y, al final, %s %s.\nUn solo Pokémon de Nv. %d y %d Pociones. Si se debilita, se termina. No se guarda nada." % [
-		f["name"], f["rooms"].size(), f["boss"]["title"], f["boss"]["name"], int(f["level"]), int(f["potions"])], 16, UiStyle.TEXT_DIM)
+	var sub := UiStyle.label("%s: %d salas con oleadas de salvajes y, al final, %s %s.\nUn solo Pokémon de Nv. %d, %d Pociones y %d Pokébolas. Si se debilita, se termina.\nAtrapar un Pokémon lo desbloquea como inicial para las próximas partidas (tenés %d)." % [
+		f["name"], f["rooms"].size(), f["boss"]["title"], f["boss"]["name"], int(f["level"]), int(f["potions"]), int(f.get("balls", 0)),
+		RogueProgress.unlocked().size()], 16, UiStyle.TEXT_DIM)
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(sub)
 	var pick := UiStyle.label("Elegí a tu Pokémon:", 20)
@@ -46,9 +47,10 @@ func _ready() -> void:
 	actions.alignment = BoxContainer.ALIGNMENT_CENTER
 	actions.add_theme_constant_override("separation", 10)
 	root.add_child(actions)
-	var again := UiStyle.button("Otros tres", 200)
-	again.pressed.connect(func(): get_tree().reload_current_scene())
-	actions.add_child(again)
+	if RogueProgress.unlocked().size() > options.size():  # (con 3 o menos no hay otros para ofrecer)
+		var again := UiStyle.button("Otros tres", 200)
+		again.pressed.connect(func(): get_tree().reload_current_scene())
+		actions.add_child(again)
 	var back := UiStyle.button("Volver", 200)
 	back.pressed.connect(func(): get_tree().change_scene_to_file(TITLE_SCENE))
 	actions.add_child(back)
