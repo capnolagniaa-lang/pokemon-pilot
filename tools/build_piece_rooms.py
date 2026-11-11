@@ -67,6 +67,21 @@ def frame_plan(root, frame, cfg):
     if cfg.get("lava"):
         water = lava_cells(img)
         floor -= water
+    # El líquido que cuenta para ubicar las escenas es la masa más grande (un borde celeste de la pared no es "la orilla").
+    best, left = set(), set(water)
+    while left:
+        part = {left.pop()}
+        queue = deque(part)
+        while queue:
+            x, y = queue.popleft()
+            for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if n in left:
+                    left.discard(n)
+                    part.add(n)
+                    queue.append(n)
+        if len(part) > len(best):
+            best = part
+    water = best if len(best) >= 40 else set()
     rim = {(x, y) for x in range(W) for y in range(H) if x < 1 or y < 1 or x >= W - 1 or y >= H - 1}
     floor -= rim
     water -= rim

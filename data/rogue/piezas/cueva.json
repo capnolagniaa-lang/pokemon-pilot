@@ -1,0 +1,22 @@
+{
+  "estalagmita": {"kind": "solida", "base": [18, 10], "sink": 2, "size": [28, 74], "foot": -1},
+  "estalagmitas": {"kind": "solida", "base": [86, 36], "sink": 3, "size": [101, 86], "foot": 0},
+  "roca_chica": {"kind": "solida", "base": [24, 10], "sink": 2, "size": [28, 24], "foot": 1},
+  "roca_grande": {"kind": "solida", "base": [84, 36], "sink": 4, "size": [99, 86], "foot": 0},
+  "cristal_chico": {"kind": "solida", "base": [29, 12], "sink": 2, "size": [34, 38], "foot": 0},
+  "cristal_grande": {"kind": "solida", "base": [60, 25], "sink": 3, "size": [70, 92], "foot": 1},
+  "cristal_violeta": {"kind": "solida", "base": [62, 26], "sink": 3, "size": [73, 88], "foot": 0},
+  "vagoneta": {"kind": "solida", "base": [48, 20], "sink": 3, "size": [56, 60], "foot": -4},
+  "via": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [79, 14]},
+  "tope": {"kind": "solida", "base": [36, 15], "sink": 2, "size": [42, 50], "foot": -4},
+  "mineral": {"kind": "solida", "base": [55, 23], "sink": 2, "size": [65, 44], "foot": -2},
+  "viga": {"kind": "solida", "base": [46, 19], "sink": 2, "size": [54, 98], "foot": -18},
+  "cajas": {"kind": "solida", "base": [42, 18], "sink": 2, "size": [50, 54], "foot": 0},
+  "herramientas": {"kind": "solida", "base": [32, 14], "sink": 2, "size": [38, 40], "foot": 0},
+  "farol": {"kind": "solida", "base": [10, 8], "sink": 2, "size": [21, 54], "foot": 0},
+  "fosil": {"kind": "solida", "base": [140, 59], "sink": 4, "size": [165, 98], "foot": 0},
+  "andamio": {"kind": "solida", "base": [61, 26], "sink": 3, "size": [72, 98], "foot": -14},
+  "hongos": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [13, 16]},
+  "esquirlas": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [8, 12]},
+  "piedritas": {"kind": "decorado", "base": [0, 0], "sink": 0, "size": [14, 12]}
+}

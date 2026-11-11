@@ -3826,6 +3826,663 @@
     ],
     "deep": 4
   },
+  "sala_cueva_p1": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "La mina vieja",
+    "src": "marco_cueva_galeria",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        15,
+        50
+      ],
+      "min_s": 0.25,
+      "min_v": 80,
+      "part": 0.6,
+      "water": true,
+      "foam": true
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a deep underground cave, seen from above, 4:3. The floor is a wide flat cavern floor of warm light-brown packed earth with lighter and darker patches, small pebbles and fine cracks, lit by warm lantern light. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of dark grey-black rough cave rock in deep shadow. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1049,
+    "px": [
+      2048,
+      1536
+    ],
+    "deep": 4
+  },
+  "sala_cueva_p2": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "La excavación",
+    "src": "marco_cueva_lago_izq",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        15,
+        50
+      ],
+      "min_s": 0.25,
+      "min_v": 80,
+      "part": 0.6,
+      "water": true,
+      "foam": true
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a deep underground cave, seen from above, 4:3. The floor is a wide flat cavern floor of warm light-brown packed earth with small pebbles and fine cracks. The whole LEFT third of the room is an underground lake of glowing bright turquoise-blue water with a natural irregular rocky shoreline. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of dark grey-black rough cave rock in deep shadow. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1047,
+    "px": [
+      2048,
+      1536
+    ],
+    "deep": 4
+  },
+  "sala_cueva_p3": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "La veta de cristal",
+    "src": "marco_cueva_lago_der",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "hue": [
+        15,
+        50
+      ],
+      "min_s": 0.25,
+      "min_v": 80,
+      "part": 0.6,
+      "water": true,
+      "foam": true
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a deep underground cave, seen from above, 4:3. The floor is a wide flat cavern floor of warm light-brown packed earth with small pebbles and fine cracks. The whole RIGHT third of the room is an underground lake of glowing bright turquoise-blue water with a natural irregular rocky shoreline. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of dark grey-black rough cave rock in deep shadow. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1048,
+    "px": [
+      2048,
+      1536
+    ],
+    "deep": 4
+  },
+  "sala_hielo_p1": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "La cabaña",
+    "src": "marco_hielo_claro",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 200,
+      "part": 0.6,
+      "water": true
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a frozen ice cavern, seen from above, 4:3. The floor is a wide flat field of bright white snow with very subtle pale drifts, sparkling. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of tall dark navy-blue ice cliffs in deep shadow with icicles. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1072,
+    "px": [
+      2048,
+      1536
+    ],
+    "deep": 6
+  },
+  "sala_hielo_p2": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "El lago helado",
+    "src": "marco_hielo_lago_der",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 200,
+      "part": 0.6,
+      "water": true
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a frozen ice cavern, seen from above, 4:3. The floor is a wide flat field of bright white snow. The whole RIGHT third of the room is a frozen lake of smooth saturated sky-blue ice with white cracks and a natural curving snowy shoreline. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of tall dark navy-blue ice cliffs in deep shadow with icicles. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1070,
+    "px": [
+      2048,
+      1536
+    ],
+    "deep": 6
+  },
+  "sala_hielo_p3": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "Las ruinas heladas",
+    "src": "marco_hielo_lago_izq",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 200,
+      "part": 0.6,
+      "water": true
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a frozen ice cavern, seen from above, 4:3. The floor is a wide flat field of bright white snow. The whole LEFT third of the room is a frozen lake of smooth saturated sky-blue ice with white cracks and a natural curving snowy shoreline. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of tall dark navy-blue ice cliffs in deep shadow with icicles. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1071,
+    "px": [
+      2048,
+      1536
+    ],
+    "deep": 6
+  },
+  "sala_cementerio_p1": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "Las hileras",
+    "src": "marco_cementerio_sendero",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 110,
+      "part": 0.6,
+      "water": false
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a haunted graveyard at night under bright moonlight, seen from above, 4:3. The floor is a wide flat lawn of pale lavender-purple grass. A straight path of pale grey flagstones runs up the center from the bottom gap to the top gap. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of black dead twisted trees, dark iron fences with spikes and crumbling dark stone walls. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1091,
+    "px": [
+      2048,
+      1536
+    ]
+  },
+  "sala_cementerio_p2": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "El árbol viejo",
+    "src": "marco_cementerio_cantero",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 110,
+      "part": 0.6,
+      "water": false
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a haunted graveyard at night under bright moonlight, seen from above, 4:3. The floor is a wide flat lawn of pale lavender-purple grass. A path of pale grey flagstones comes from the bottom gap, goes around a round central lawn in a ring, and continues to the top gap. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of black dead twisted trees, dark iron fences with spikes and crumbling dark stone walls. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1092,
+    "px": [
+      2048,
+      1536
+    ]
+  },
+  "sala_cementerio_p3": {
+    "_modo": "Sala POR PIEZAS del Modo Desafío (tools/build_piece_rooms.py, datos en tools/piece_room_data.py): fondo = el marco `src` en pixel art 1 a 1 (`pixel`), obstáculos = data/rogue/salas/<id>.json (RoomPieces).",
+    "name": "La capilla",
+    "src": "marco_cementerio_prado",
+    "pixel": [
+      1024,
+      768,
+      128
+    ],
+    "size": [
+      64,
+      48
+    ],
+    "auto": null,
+    "auto_color": {
+      "any_hue": true,
+      "min_s": 0.0,
+      "min_v": 110,
+      "part": 0.6,
+      "water": false
+    },
+    "border": 1,
+    "open": [
+      [
+        30,
+        0,
+        4,
+        10
+      ],
+      [
+        30,
+        40,
+        4,
+        8
+      ]
+    ],
+    "solid": [],
+    "floor": 1,
+    "wall": 35008,
+    "rocks": [],
+    "cells": {
+      "foe_trainer": [
+        32,
+        5
+      ],
+      "foe_mon": [
+        32,
+        18
+      ],
+      "player_mon": [
+        32,
+        40
+      ],
+      "player": [
+        32,
+        43
+      ]
+    },
+    "field": [
+      10,
+      10,
+      44,
+      30
+    ],
+    "prompt": "Clean detailed 16-bit pixel art, GBA and Nintendo DS RPG map style, top-down 3/4 view of one large EMPTY room of a haunted graveyard at night under bright moonlight, seen from above, 4:3. The floor is a wide flat lawn of pale lavender-purple grass with lighter and darker lavender patches and light violet dirt patches. The room is completely empty: no objects, no rocks, no trees, no plants, nothing standing on the floor. It is enclosed by a thick wall of black dead twisted trees, dark iron fences with spikes and crumbling dark stone walls. A straight path comes in through a gap in the wall at the very bottom center edge and leaves through a gap in the wall at the very top center edge. The floor is clearly lighter than the dark walls. Crisp pixels, limited palette, no blur. No characters, no creatures, no text.",
+    "seed": 1093,
+    "px": [
+      2048,
+      1536
+    ]
+  },
   "castillo_mew": {
     "_modo": "Castillo de Mew: el lugar donde empieza el Modo Desafío (RogueRun, pedido del usuario 2026-11-11). No es una arena de pelea: se camina. player = donde aparecés, foe_mon = donde flota Mew, foe_trainer = el centro de la tarima redonda de abajo (el portal gira encima, sprites/props/portal_mew.png; pisarla con un Pokémon elegido lo cruza; `open` la deja caminable). La escalera de arriba va a la planta alta: choca, y RogueRun pone la barrera y el mensaje (STAIRS_AT).",
     "hd": "Grand hall of an ancient mystical castle: bright pale sky-blue marble tile floor with crisp tile lines and soft reflections, a long turquoise carpet with ornate trim running up the center; a grand dark stone staircase with balustrades at the top, tall wooden bookshelves full of books, glowing pink stained glass windows, hanging purple banners, dark stone pillars, dark stone cat statues on pedestals, stone braziers with pink flames, a round raised dark stone dais with a ring of glowing magenta runes, a small altar with candles, a wooden table with open books and a globe; tall dark purple-black castle stone walls.",

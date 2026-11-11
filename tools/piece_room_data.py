@@ -134,16 +134,16 @@ BIOMES = {
                 ["estalagmitas", 0, 0, 0], ["estalagmita", 54, 28, 6], ["estalagmita", -46, 24, 6], ["roca_chica", 22, 48, 6],
                 ["piedritas", -30, 46, 8], ["piedritas", 80, 48, 8]]},
             "excavacion": {"anchor": "arena", "members": [
-                ["fosil", 0, 0, 0], ["andamio", -86, -22, 6], ["herramientas", 66, 32, 6], ["cajas", 96, -12, 6], ["farol", -44, 48, 6],
+                ["fosil", 0, 0, 0], ["andamio", -112, -22, 6], ["herramientas", 90, 36, 6], ["cajas", 124, -12, 6], ["farol", -44, 48, 6],
                 ["piedritas", 30, 50, 8]]},
             "hongos_agua": {"anchor": "orilla", "members": [
                 ["roca_grande", 0, 0, 0], ["hongos", 44, 20, 6], ["hongos", -30, 40, 6], ["cristal_chico", 20, -40, 6], ["roca_chica", -44, 20, 6],
                 ["hongos", 60, 44, 6], ["hongos", 10, 54, 6]]},
         },
         "rooms": {
-            "sala_cueva_p1": ("La mina vieja", "marco_cueva_galeria", 101, ["mina", "apuntalado", "veta", "estalagmitas", "estalagmitas"]),
-            "sala_cueva_p2": ("La excavación", "marco_cueva_lago_izq", 113, ["excavacion", "hongos_agua", "veta", "estalagmitas", "apuntalado"]),
-            "sala_cueva_p3": ("La veta de cristal", "marco_cueva_lago_der", 127, ["veta", "veta", "hongos_agua", "estalagmitas", "mina"]),
+            "sala_cueva_p1": ("La mina vieja", "marco_cueva_galeria", 101, ["mina", "apuntalado", "veta", "estalagmitas", "estalagmitas", "veta", "apuntalado"]),
+            "sala_cueva_p2": ("La excavación", "marco_cueva_lago_izq", 113, ["excavacion", "hongos_agua", "veta", "estalagmitas", "apuntalado", "estalagmitas", "veta"]),
+            "sala_cueva_p3": ("La veta de cristal", "marco_cueva_lago_der", 127, ["veta", "veta", "hongos_agua", "estalagmitas", "mina", "apuntalado", "estalagmitas"]),
         },
         "decor": [("piedritas", 14, "roca"), ("hongos", 8, "liquido"), ("esquirlas", 8, "pared"), ("hongos", 5, "pared")],
     },
@@ -152,7 +152,7 @@ BIOMES = {
         "deep": 6,
         "scenes": {
             "cabana": {"anchor": "borde", "members": [
-                ["cabana", 0, 0, 0], ["lena", 86, 32, 6], ["pozo", -96, 32, 6], ["trineo", 44, 66, 8], ["tocon", 118, 54, 6],
+                ["cabana", 0, 0, 0], ["lena", 112, 36, 6], ["pozo", -124, 36, 6], ["trineo", 50, 74, 8], ["tocon", 150, 60, 6],
                 ["nieve", -50, 60, 8], ["nieve", 130, 20, 8]]},
             "pinar": {"anchor": "borde", "members": [
                 ["pino", 0, 0, 5], ["pino", 54, 26, 8], ["pino_chico", -44, 30, 8], ["pino_chico", 90, 44, 8], ["nieve", 20, 48, 8],
@@ -163,18 +163,18 @@ BIOMES = {
             "pesca": {"anchor": "orilla", "members": [
                 ["pesca", 0, 0, 0], ["agujero", 44, 8, 4], ["tronco", -54, 26, 6], ["brasero", -34, -32, 6], ["lena", -90, 4, 6]]},
             "ruinas": {"anchor": "arena", "members": [
-                ["estatua", 0, 0, 0], ["columna", -66, 18, 4], ["columna", 66, 18, 4], ["columna", -112, 40, 4], ["columna", 112, 40, 4],
-                ["brasero", -34, 50, 4], ["brasero", 34, 50, 4]]},
+                ["estatua", 0, 0, 0], ["columna", -84, 18, 4], ["columna", 84, 18, 4], ["columna", -140, 44, 4], ["columna", 140, 44, 4],
+                ["brasero", -44, 56, 4], ["brasero", 44, 56, 4]]},
             "ventisquero": {"anchor": "borde", "members": [
                 ["roca_grande", 0, 0, 0], ["roca_chica", 54, 26, 6], ["roca_chica", -44, 26, 6], ["nieve", 20, 50, 8], ["nieve", 90, 44, 8],
                 ["cristal_chico", -80, 44, 8]]},
         },
         "rooms": {
-            "sala_hielo_p1": ("La cabaña", "marco_hielo_claro", 131, ["cabana", "pinar", "pinar", "ventisquero", "ruinas"]),
+            "sala_hielo_p1": ("La cabaña", "marco_hielo_claro", 131, ["cabana", "pinar", "pinar", "ventisquero", "ruinas", "ventisquero", "pinar"]),
             "sala_hielo_p2": ("El lago helado", "marco_hielo_lago_der", 149, ["pesca", "cristales", "cristales", "pinar", "ventisquero", "pinar"]),
-            "sala_hielo_p3": ("Las ruinas heladas", "marco_hielo_lago_izq", 157, ["ruinas", "cristales", "pinar", "ventisquero", "pesca"]),
+            "sala_hielo_p3": ("Las ruinas heladas", "marco_hielo_lago_izq", 157, ["ruinas", "cristales", "pinar", "ventisquero", "pesca", "pinar", "cristales"]),
         },
-        "decor": [("nieve", 14, "pared"), ("tocon", 3, "roca"), ("cristal_chico", 4, "linea")],
+        "decor": [("nieve", 22, "pared"), ("nieve", 10, "suelto"), ("tocon", 3, "roca"), ("cristal_chico", 4, "linea")],
     },
     "cementerio": {
         "color": {"any_hue": True, "min_s": 0.0, "min_v": 110, "part": 0.6, "water": False},
