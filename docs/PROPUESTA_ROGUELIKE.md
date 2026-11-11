@@ -510,6 +510,25 @@ qué y pegado a qué): volcán = río de lava con puente y rocas incandescentes 
 con huesos alrededor; hielo = lago helado con cristales en la orilla, bosquecito de pinos, cabaña con leña y pozo...
 **Frenado** hasta que el usuario apruebe la Costa.
 
+### 10.9 Escenas de los otros biomas (referencias miradas el 2026-11-11; plan, sin implementar)
+Pedido del usuario: que los demás biomas también "tengan sentido". Miré mapas top-down de juegos y tilesets de cada tema
+(búsquedas de imágenes, solo para composición: no se bajó arte ajeno). Lo que se repite en los buenos mapas y cómo pasarlo
+a escenas (ancla → miembros). En todos: **un elemento que ordena la sala** (río, sendero, hilera, vía) y lo demás se
+acomoda respecto de él; la vegetación o las rocas en grupos contra las paredes; el centro libre.
+
+| Bioma | Lo que ordena la sala (marco) | Escenas (qué va con qué) | Zonas / peligro |
+|---|---|---|---|
+| **Volcán** | Un **río de lava** que cruza o bordea (marcos: lava a un costado, río que serpentea con un vado de piedra, lago de lava al fondo) | *Vado*: losas de basalto cruzando la lava + rocas incandescentes en las dos orillas. *Fumarolas*: 3-4 conos juntos con ceniza y azufre amarillo alrededor. *Osario*: esqueleto grande + huesos sueltos + cráneo, lejos de la lava. *Árboles quemados*: troncos carbonizados en grupo con brasas a los pies. *Forja*: horno contra la pared + yunque + carbón + herramientas. *Desprendimiento*: rocas negras de grande a chica cayendo desde la pared. | Lava = zona que quema al pisarla; rocas incandescentes al borde |
+| **Bosque** | Un **sendero de tierra** entre la entrada y la salida, y un **arroyo o estanque** (marcos: arroyo a un costado con piedras para cruzar, claro con estanque, claro seco) | *Campamento*: fogata en el centro del grupo + carpa + troncos para sentarse + leña apilada, junto al sendero. *Ruinas*: arco caído + columnas rotas en fila + estatua, con hiedra y hongos alrededor. *Arboleda*: 3-5 árboles juntos contra la pared con raíces, helechos y hongos. *Estanque*: juncos y nenúfares en el borde + rocas musgosas + un tronco caído que entra al agua. *Santuario*: altar contra la pared + dos faroles de piedra a los lados + ofrendas. *Tocones*: tocones + hacha + troncos cortados (un claro talado). | Agua baja (moja); pasto alto que se prende |
+| **Cueva** | Una **vía de mina** que entra por un lado y termina en un tope, o un **río subterráneo** (marcos: vía curva, lago oscuro al costado, galería seca con columnas) | *Mina*: vía + vagoneta al final + tope + pila de mineral + farol. *Apuntalado*: vigas contra la pared con faroles + cajas + picos y palas. *Veta de cristales*: cristales de grande a chico pegados a la pared + esquirlas en el piso. *Estalagmitas*: 3-5 juntas de distinto alto + goteras/charquitos. *Excavación*: fósil a medio desenterrar + andamio + cepillos y cajas. *Hongos*: colonia de hongos brillantes junto al agua. | Agua oscura (moja); rocas frágiles |
+| **Gruta helada** | Un **lago congelado** o una **grieta de agua** (marcos: lago helado al costado con orilla de nieve, río helado que cruza con un puente de hielo, claro nevado) | *Cabaña*: cabaña en ruinas contra la pared + leña apilada + pozo + trineo. *Pinar*: 3-5 pinos juntos con nieve amontonada a los pies. *Cristales*: púas de hielo de grande a chica junto al lago. *Pesca en el hielo*: agujero en el lago + banquito + balde + caña. *Ruinas heladas*: columnas en fila + estatua dentro de un bloque de hielo + brasero azul. *Ventisquero*: rocas con nieve encima y carámbanos. | Hielo que resbala o agua helada que frena |
+| **Cementerio** | Un **sendero de piedra** de la entrada a la salida y las tumbas **en hileras**, no sueltas (marcos: sendero recto con canteros, sendero que rodea un cantero central, sin sendero con niebla) | *Hilera de tumbas*: 4-6 lápidas alineadas, con flores marchitas, una vela y una torcida. *Parcela cercada*: reja en U + 2-3 tumbas adentro + farol en la esquina. *Mausoleo*: mausoleo contra la pared + dos estatuas de ángel a los lados de su puerta + escalones. *Árbol viejo*: árbol seco grande + farolitos colgando + calabazas y hojas a los pies. *Capilla*: ruina con bancos en dos filas mirando al altar + campana caída. *Fosa abierta*: fosa + pala + montículo de tierra + ataúd. | Niebla (visual); nada que frene |
+
+Para cada bioma hace falta: 2-3 marcos, ~20-30 piezas (varias se comparten entre escenas) y sus `SCENES`/`ROOMS`. Cosas
+nuevas respecto de la Costa: escenas **en hilera** (tumbas, columnas, bancos: miembros repetidos a paso fijo), escenas
+que siguen un **camino** del marco (vía, sendero) y zonas con efecto propio (lava). El agua en movimiento
+(`shaders/pixel_water.gdshader`) sirve para la lava (más lenta y con más brillo) y el agua helada.
+
 ### 10.7 Preguntas abiertas para el usuario
 1. **Bioma de muestra**: ¿Costa (donde se vio el problema) o Bosque?
 2. **Generar fuera del juego o al entrar**: ¿salas revisadas a mano (30 por bioma, por ejemplo) o infinitas?

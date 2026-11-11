@@ -74,6 +74,8 @@ static func make(biome: String, id: String, def: Dictionary, flipped := false) -
 		flat.name = id
 		flat.z_index = -6 if kind == "zona" else -5  # sobre la pintura del piso (-7), debajo de personas y Pokémon
 		flat.add_child(spr)  # (centrado en su punto)
+		if kind == "zona":
+			spr.material = water_material()  # el agua de la poza se mueve
 		flat.set_meta("piece", id)
 		return flat
 	var body := StaticBody2D.new()
@@ -91,6 +93,19 @@ static func make(biome: String, id: String, def: Dictionary, flipped := false) -
 	shape.polygon = ellipse(float(base[0]) / 2.0, float(base[1]) / 2.0)
 	body.add_child(shape)
 	return body
+
+
+## El material del agua en movimiento (shaders/pixel_water.gdshader): ondulación, brillos y espuma en pixel art.
+## `WATER_STRENGTH` = cuánto se mueve (0 = quieta).
+const WATER_SHADER := "res://shaders/pixel_water.gdshader"
+const WATER_STRENGTH := 1.0
+
+
+static func water_material() -> ShaderMaterial:
+	var m := ShaderMaterial.new()
+	m.shader = load(WATER_SHADER)
+	m.set_shader_parameter("strength", WATER_STRENGTH)
+	return m
 
 
 static func ellipse(rx: float, ry: float, points := 12) -> PackedVector2Array:
