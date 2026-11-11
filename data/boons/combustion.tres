@@ -11,7 +11,7 @@ slot = "pasiva"
 effect = "kill_blast"
 params = {
 "need": "quemado",
-"power": 1.1,
+"power": 0.8,
 "radius": 46.0,
 "status": "quemado",
 "status_chance": 0.5,

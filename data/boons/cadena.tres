@@ -11,7 +11,7 @@ slot = "pasiva"
 effect = "chain"
 params = {
 "status": "paralizado",
-"pct": 0.4,
+"pct": 0.3,
 "range": 70.0
 }
 scaled = PackedStringArray("pct")

@@ -52,6 +52,18 @@ func _ready() -> void:
 		add_child(rr)
 		(rr.showcase if "--showcase-rogue-rewards" in OS.get_cmdline_user_args() else rr.run_tests).call_deferred()
 		return
+	if "--autotest-rogue-balance" in OS.get_cmdline_user_args():
+		set_process(false)
+		var rb := RogueBalanceTests.new()
+		add_child(rb)
+		rb.run.call_deferred()
+		return
+	if "--autotest-rogue-foes" in OS.get_cmdline_user_args() or "--showcase-rogue-foes" in OS.get_cmdline_user_args():
+		set_process(false)
+		var rf := RogueFoeTests.new()
+		add_child(rf)
+		(rf.showcase if "--showcase-rogue-foes" in OS.get_cmdline_user_args() else rf.run_tests).call_deferred()
+		return
 	if "--autotest-rogue-evolution" in OS.get_cmdline_user_args():
 		set_process(false)
 		var re := RogueEvolutionTests.new()

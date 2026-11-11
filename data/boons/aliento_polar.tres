@@ -10,7 +10,7 @@ giver = "articuno"
 slot = "pasiva"
 effect = "first_strike"
 params = {
-"pct": 0.45
+"pct": 0.3
 }
 scaled = PackedStringArray("pct")
 text = "Tu primer golpe a un enemigo con la vida entera hace {pct%} más de daño."

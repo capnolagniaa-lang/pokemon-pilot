@@ -10,7 +10,7 @@ giver = "zapdos"
 slot = "pasiva"
 effect = "kill_pp"
 params = {
-"pct": 0.12
+"pct": 0.06
 }
 scaled = PackedStringArray("pct")
 text = "Cada enemigo que cae te devuelve {pct%} de la barra de PP."

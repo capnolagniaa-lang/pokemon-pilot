@@ -11,10 +11,10 @@ slot = "ataque4"
 effect = "hit_blast"
 params = {
 "slot": 3,
-"pct": 0.4,
+"pct": 0.3,
 "radius": 36.0,
 "status": "quemado",
-"status_chance": 0.6,
+"status_chance": 0.4,
 "element": "fuego",
 "word": "¡Estallido!"
 }

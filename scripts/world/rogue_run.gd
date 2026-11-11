@@ -120,6 +120,8 @@ var boon_screen: BoonScreen
 var rewards: RogueRewards
 var reward_screen: RewardScreen
 var reward_doors: Array[RogueRewardDoor] = []
+## Las mejoras de los enemigos (élites, campeones y el jefe): RogueFoeMods.
+var foe_mods: RogueFoeMods
 var room_rewards: Array[String] = []
 var _boon_row: HBoxContainer
 var hub: Zone
@@ -136,7 +138,20 @@ var _rng := RandomNumberGenerator.new()
 # --- Armar la partida (desde el título) ---------------------------------------------------------------------------
 
 static func load_floor() -> Dictionary:
-	return JSON.parse_string(FileAccess.get_file_as_string(FLOOR_PATH))
+	var f: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(FLOOR_PATH))
+	for a in OS.get_cmdline_user_args():  # (medir variantes sin tocar el archivo: --rogue-set=minion_hp=0.5,attackers=3)
+		if a.begins_with("--rogue-set="):
+			for pair in a.trim_prefix("--rogue-set=").split(","):
+				var kv: PackedStringArray = pair.split("=")
+				if kv.size() == 2 and f.has(kv[0]):
+					f[kv[0]] = float(kv[1])
+				elif kv.size() == 2 and kv[0] == "no_mods":
+					f.erase("foe_mods")
+					for s: Dictionary in f["slots"]:
+						s.erase("champions")
+						s.erase("mods")
+					f["boss"].erase("mods")
+	return f
 
 
 ## Los Pokémon que te ofrecen al empezar: de los desbloqueados (RogueProgress). Hasta `offer`, todos, en su orden; con
@@ -252,6 +267,9 @@ func _ready() -> void:
 	rewards = RogueRewards.new()
 	rewards.name = "Rewards"
 	add_child(rewards)
+	foe_mods = RogueFoeMods.new()
+	foe_mods.name = "FoeMods"
+	add_child(foe_mods)
 	_build_label()
 	world.arena.set_black(true)
 	if GameState.rogue.get("hub", false):
@@ -706,6 +724,7 @@ func _play_boss() -> void:
 		if DB.species.has(m[0]):
 			team.append(CreatureInstance.create_rival(DB.species[m[0]], int(m[1])))
 	TrainerMovesets.equip_team(team, str(boss["name"]))
+	foe_mods.assign_boss(team)
 	var gfx := "res://art/pret/characters/%s.png" % boss["gfx"]
 	var r: String = await world.arena.start({"name": boss["name"], "title": boss["title"], "team": team,
 		"arena_id": boss["arena"], "texture": load(gfx) if ResourceLoader.exists(gfx) else null, "leader": true,
@@ -903,6 +922,7 @@ func _cell_pos(cell: Vector2i) -> Vector2:
 ## Saca una oleada: cada [especie, nivel] aparece en una celda libre de la sala, lejos de tu Pokémon, ya peleando.
 func _spawn_wave(list: Array) -> void:
 	var cells := spawn_cells()
+	var order := 0  # (los primeros esbirros de la oleada son los "campeones": llevan una mejora)
 	for m in list:
 		if not DB.species.has(m[0]) or cells.is_empty():
 			continue
@@ -910,8 +930,12 @@ func _spawn_wave(list: Array) -> void:
 		var c: Creature = WildSpawner.CreatureScene.instantiate()
 		c.instance = CreatureInstance.create_rival(DB.species[m[0]], int(m[1]))
 		c.instance.roll_ivs()
-		if not (m.size() > 2 and m[2]):
+		var elite: bool = m.size() > 2 and m[2]
+		if not elite:
 			make_minion(c.instance, floor_data)
+		foe_mods.assign(c.instance, foe_mods.roll(foe_mods.count_for(room_index, elite, order), foe_mods.level_for(room_index)))
+		if not elite:
+			order += 1
 		c.attack_gate = can_attack
 		c.team = Creature.Team.WILD
 		c.temperament = DB.temperaments.get("entrenador")  # pelean hasta el final: ni huyen ni sueltan la pelea

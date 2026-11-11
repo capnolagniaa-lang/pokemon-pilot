@@ -239,11 +239,27 @@ func _draw_enemy() -> void:
 	draw_string(font, Vector2(x, r.position.y + 24), "%s %s  Nv. %d" % [e.instance.species.display_name, "de " + e.owner_name if e.owner_name != "" else "salvaje", e.instance.level], HORIZONTAL_ALIGNMENT_LEFT, -1, 16)
 	var ratio := e.health.ratio()
 	_bar(Rect2(x, r.position.y + 34, 300, 10), ratio, _hp_color(ratio))
+	_draw_foe_mods(e, Vector2(x, r.position.y + 58))
 	if not e.statuses.active.is_empty():
 		var s: StatusEffect = e.statuses.active.values()[-1]["status"]
 		draw_string(font, Vector2(x, r.position.y + 58), s.display_name.to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1, 11, s.color)
 	if enemies.size() > 1:
 		draw_string(font, Vector2(x, r.position.y + 58), "+%d" % (enemies.size() - 1), HORIZONTAL_ALIGNMENT_RIGHT, 300, 12)
+
+
+## Modo Desafío: las mejoras del enemigo (RogueFoeMods: Furioso, Blindado...), con su ícono, en su cartel.
+func _draw_foe_mods(e: Creature, at: Vector2) -> void:
+	var rogue = _world.get("rogue")
+	if rogue == null or rogue.get("foe_mods") == null or e.instance == null:
+		return
+	var x := at.x + 96.0
+	for m: Dictionary in RogueFoeMods.of(e):
+		var path := RogueFoeMods.icon_of(m["id"])
+		if ResourceLoader.exists(path):
+			draw_texture_rect(load(path), Rect2(x, at.y - 13, 16, 16), false)
+		var text: String = rogue.foe_mods.mod_name(m["id"]).to_upper()
+		draw_string(font, Vector2(x + 19, at.y), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, rogue.foe_mods.color_of(m["id"]))
+		x += 24.0 + font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 11).x
 
 
 ## Arriba a la derecha (debajo del rival): los que podés sacar en esta pelea, con su tecla de cambio (pedido del usuario

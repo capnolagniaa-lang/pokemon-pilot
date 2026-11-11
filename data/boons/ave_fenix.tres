@@ -11,7 +11,7 @@ slot = "pasiva"
 effect = "phoenix"
 params = {
 "below": 0.25,
-"heal": 0.3
+"heal": 0.2
 }
 scaled = PackedStringArray("heal")
 text = "Una vez por sala, si tu vida baja de 25 %, recuperás {heal%} de golpe."

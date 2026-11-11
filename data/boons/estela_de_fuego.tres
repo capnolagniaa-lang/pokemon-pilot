@@ -10,12 +10,13 @@ giver = "moltres"
 slot = "esquive"
 effect = "dodge_blast"
 params = {
-"power": 0.6,
+"power": 0.4,
 "radius": 42.0,
+"cooldown": 3.0,
 "status": "quemado",
-"status_chance": 0.8,
+"status_chance": 0.5,
 "element": "fuego",
 "word": "¡Llamas!"
 }
 scaled = PackedStringArray("power")
-text = "Al esquivar ({tecla}) dejás una llamarada: {power} de daño a los que tenías cerca y casi siempre los quema."
+text = "Al esquivar ({tecla}) dejás una llamarada: {power} de daño a los que tenías cerca y la mitad de las veces los quema (una vez cada 3 s)."

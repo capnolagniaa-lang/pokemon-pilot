@@ -366,6 +366,14 @@ además "Esbirros más duros" y "Mejoras enemigas ya" (no subir niveles de las o
   por ahora es automática por nivel y Esc la frena. Decidido sin preguntar: la evolución **no** se desbloquea como
   inicial (solo lo atrapado: si no, cada inicial regalaría toda su línea).
 
+- **Hecho — menos EXP y más dificultad** (paso O-d de la sección 11 incluido): EXP ×0,7 (antes ×3), esbirros con 55 %
+  de vida y 4 fichas de ataque, mejoras enemigas visibles (Furioso, Blindado, Ardiente, Eléctrico, Regenerador) en
+  campeones, élites y los Pokémon de Brock, y bendiciones ~30 % más flojas. Números de antes y después y cómo le fue al
+  bot: `docs/PROGRESO.md`. Decidido sin preguntar (dudas 6 de 11.5): las mejoras arrancan en la sala 4 (donde aparecen
+  los élite) y **Brock también las lleva**; además de los élite, un esbirro "campeón" por oleada lleva una (si no, en
+  las salas 4-5 solo se veían en la última oleada); Blindado es más vida (no reducción de daño) y Furioso suma daño
+  aparte (no toca la fórmula central); los íconos son pixel art hecho por código (16×16), no pintados.
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y

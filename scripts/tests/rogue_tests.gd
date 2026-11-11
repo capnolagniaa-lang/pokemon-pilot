@@ -196,6 +196,10 @@ func run() -> void:
 	bot.keep_distance = 70.0
 	world.combat.input_source = bot
 	world.companion.input_source = bot
+	# (Este test mira que la partida ande de punta a punta, no la dificultad: el bot no esquiva, así que recibe menos
+	# daño. La dificultad se mide con --autotest-rogue-balance.)
+	GameState.set_setting("taken_mult", BOT_TAKEN)
+	world.evolutions.speed = 12.0
 	SaveManager.slot_path = "user://saves/autotest_desafio.json"
 	r["En el Modo Desafío no se guarda"] = not SaveManager.save_game() and not FileAccess.file_exists("user://saves/autotest_desafio.json")
 	SaveManager.slot_path = slot_before
@@ -313,6 +317,8 @@ func run() -> void:
 		bot = RogueBot.new(world)
 		bot.keep_distance = 70.0
 		world.combat.input_source = bot
+		GameState.set_setting("taken_mult", BOT_TAKEN)
+		world.evolutions.speed = 12.0
 		waves_seen.clear()
 		last_phase = ""
 		faded = false
@@ -412,6 +418,7 @@ func run() -> void:
 
 ## Los biomas de la partida del bot (fijos, para que el test sea parejo): mezcla salas de biomas distintos en la cadena.
 ## Y las recompensas (la primera puerta de cada sala): 3 bendiciones, un Centro y Más PS.
+const BOT_TAKEN := 0.4
 const BOT_REWARDS := ["bendicion", "bendicion", "centro", "proteina", "bendicion"]
 const BOT_BIOMES := ["bosque", "volcan", "cueva", "volcan", "cueva"]
 
@@ -578,6 +585,10 @@ func _dialogs() -> void:
 			continue
 		if w.get("rogue") != null and is_instance_valid(w.rogue.reward_screen):
 			w.rogue.reward_screen.choose(w.rogue.reward_screen.last_enabled())  # (Tienda: "Salir"; lo demás, la última)
+			continue
+		var learn: MoveLearnDirector = w.evolutions.moves
+		if learn.showing and is_instance_valid(learn.screen):
+			learn.screen.finished.emit(-1)  # ("¿reemplazar un ataque?": no)
 			continue
 		var d: DialogBox = w.story.dialog
 		if d.active:

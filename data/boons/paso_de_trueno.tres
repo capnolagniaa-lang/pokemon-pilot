@@ -10,12 +10,13 @@ giver = "zapdos"
 slot = "esquive"
 effect = "dodge_blast"
 params = {
-"power": 0.7,
+"power": 0.45,
 "radius": 42.0,
+"cooldown": 3.0,
 "status": "paralizado",
-"status_chance": 0.5,
+"status_chance": 0.35,
 "element": "electrico",
 "word": "¡Descarga!"
 }
 scaled = PackedStringArray("power")
-text = "Al esquivar ({tecla}) soltás una descarga: {power} de daño a los que tenías cerca y la mitad de las veces los paraliza."
+text = "Al esquivar ({tecla}) soltás una descarga: {power} de daño a los que tenías cerca y a veces los paraliza (una vez cada 3 s)."

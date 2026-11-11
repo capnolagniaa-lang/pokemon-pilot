@@ -11,7 +11,7 @@ slot = "ataque3"
 effect = "hit_blast"
 params = {
 "slot": 2,
-"pct": 0.25,
+"pct": 0.2,
 "radius": 38.0,
 "status": "frenado",
 "status_chance": 1.0,

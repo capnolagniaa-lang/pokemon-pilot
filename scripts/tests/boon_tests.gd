@@ -147,24 +147,25 @@ func run_tests() -> void:
 	_only("rayo_celeste")
 	_reset()
 	var d := _hit(a, 1, 20.0)
-	r["Rayo Celeste: 35 %% del daño de más al golpeado (%.1f) y al de al lado (%.1f); al lejano nada (%.1f)" % [d[0], d[1], d[2]]] = \
-		is_equal_approx(d[0], 7.0) and is_equal_approx(d[1], 7.0) and is_zero_approx(d[2])
+	r["Rayo Celeste: parte del daño de más al golpeado (%.1f) y al de al lado (%.1f); al lejano nada (%.1f)" % [d[0], d[1], d[2]]] = \
+		is_equal_approx(d[0], 20.0 * float(DB.boons["rayo_celeste"].params["pct"])) and is_equal_approx(d[1], d[0]) and is_zero_approx(d[2])
 	_reset()
 	d = _hit(a, 0, 20.0)
 	r["Rayo Celeste: con otro ataque no cae"] = is_zero_approx(d[0] + d[1] + d[2])
 	_only("ventisca")
 	_reset()
 	d = _hit(a, 2, 20.0)
-	r["Ventisca (Ataque 3): frena a los de alrededor y les hace 25 %% (%.1f)" % d[1]] = is_equal_approx(d[1], 5.0) and a.statuses.has_status("frenado") \
+	r["Ventisca (Ataque 3): frena a los de alrededor y les hace parte del daño (%.1f)" % d[1]] = is_equal_approx(d[1], 20.0 * float(DB.boons["ventisca"].params["pct"])) and a.statuses.has_status("frenado") \
 		and b.statuses.has_status("frenado") and not c.statuses.has_status("frenado")
 	_only("estallido")
 	_reset()
 	d = _hit(a, 3, 20.0)
-	r["Estallido Ígneo (Ataque 4): 40 %% a él y al de al lado (%.1f, %.1f)" % [d[0], d[1]]] = is_equal_approx(d[0], 8.0) and is_equal_approx(d[1], 8.0) and is_zero_approx(d[2])
+	r["Estallido Ígneo (Ataque 4): parte del daño a él y al de al lado (%.1f, %.1f)" % [d[0], d[1]]] = is_equal_approx(d[0], 20.0 * float(DB.boons["estallido"].params["pct"])) and is_equal_approx(d[1], d[0]) and is_zero_approx(d[2])
 	# Esquive
 	for id in ["paso_de_trueno", "estela_helada", "estela_de_fuego"]:
 		_only(id)
 		_reset()
+		boons._dodge_ready.clear()
 		var before := _hp()
 		me.dodged.emit()
 		var after := _hp()
@@ -173,7 +174,11 @@ func run_tests() -> void:
 			is_equal_approx(before[0] - after[0], want) and is_equal_approx(before[1] - after[1], want) and is_equal_approx(before[2], after[2])
 	_only("estela_helada")
 	_reset()
+	boons._dodge_ready.clear()
 	me.dodged.emit()
+	var hp_cd := _hp()
+	me.dodged.emit()
+	r["Las de esquive tienen recarga: esquivar dos veces seguidas no la dispara de nuevo"] = is_equal_approx(hp_cd[0], _hp()[0]) 		and float(DB.boons["estela_helada"].params["cooldown"]) >= 2.0
 	r["Estela Helada: además los deja Frenados"] = a.statuses.has_status("frenado") and b.statuses.has_status("frenado") and not c.statuses.has_status("frenado")
 	# Más daño a los que tienen un estado
 	for pair in [["sobrecarga", "paralizado"], ["hielo_quebradizo", "frenado"], ["brasas", "quemado"]]:
@@ -191,20 +196,20 @@ func run_tests() -> void:
 	var no_chain := _hit(a, 0, 20.0)
 	a.statuses.apply(DB.statuses["paralizado"], 1.0, me)
 	d = _hit(a, 0, 20.0)
-	r["Rayo en Cadena: pegarle a un Paralizado le salta 40 %% al más cercano (%.1f), no al lejano" % d[1]] = is_equal_approx(d[1], 8.0) and is_zero_approx(d[2]) \
+	r["Rayo en Cadena: pegarle a un Paralizado le salta parte del daño al más cercano (%.1f), no al lejano" % d[1]] = is_equal_approx(d[1], 20.0 * float(DB.boons["cadena"].params["pct"])) and is_zero_approx(d[2]) \
 		and is_zero_approx(no_chain[1])
 	# Primer golpe
 	_only("aliento_polar")
 	_reset()
 	d = _hit(a, 0, 20.0, true)
 	var again := _hit(a, 0, 20.0, true)
-	r["Aliento Polar: +45 %% al primer golpe a uno con la vida entera (%.1f), no al segundo (%.1f)" % [d[0], again[0]]] = is_equal_approx(d[0], 9.0) and is_zero_approx(again[0])
+	r["Aliento Polar: daño de más al primer golpe a uno con la vida entera (%.1f), no al segundo (%.1f)" % [d[0], again[0]]] = is_equal_approx(d[0], 20.0 * float(DB.boons["aliento_polar"].params["pct"])) and is_zero_approx(again[0])
 	# Al caer un enemigo
 	_only("pila")
 	me.moves.set_pp(me.moves.max_pp() * 0.5)
 	boons._on_fainted(c)
-	r["Pila Cargada: un enemigo que cae devuelve 12 %% de la barra de PP (%d %%)" % roundi(100.0 * me.moves.pp() / me.moves.max_pp())] = \
-		is_equal_approx(me.moves.pp(), me.moves.max_pp() * 0.62)
+	r["Pila Cargada: un enemigo que cae devuelve parte de la barra de PP (%d %%)" % roundi(100.0 * me.moves.pp() / me.moves.max_pp())] = \
+		is_equal_approx(me.moves.pp(), me.moves.max_pp() * (0.5 + float(DB.boons["pila"].params["pct"])))
 	_only("combustion")
 	_reset()
 	var hp0 := _hp()
@@ -214,7 +219,7 @@ func run_tests() -> void:
 	boons._on_fainted(a)
 	var hp2 := _hp()
 	r["Combustión: un Quemado que cae explota (%.1f al de al lado); uno sin quemar, no" % (hp1[1] - hp2[1])] = is_equal_approx(hp0[1], hp1[1]) \
-		and is_equal_approx(hp1[1] - hp2[1], 1.1 * power) and is_equal_approx(hp1[2], hp2[2])
+		and is_equal_approx(hp1[1] - hp2[1], float(DB.boons["combustion"].params["power"]) * power) and is_equal_approx(hp1[2], hp2[2])
 	# Cuando te pegan
 	_only("coraza_de_escarcha")
 	_reset()
@@ -240,8 +245,8 @@ func run_tests() -> void:
 	boons.room_started()
 	me.damage_received.emit(1.0, null)
 	var next_room: float = me.instance.hp / me.instance.max_hp()
-	r["Ave Fénix: bajo 25 %% de vida recuperás 30 %% (quedó en %d %%), una vez por sala (la segunda %d %%, en otra sala %d %%)" % [
-		roundi(up * 100), roundi(second * 100), roundi(next_room * 100)]] = is_equal_approx(up, 0.5) and is_equal_approx(second, 0.2) and is_equal_approx(next_room, 0.5)
+	r["Ave Fénix: bajo 25 %% de vida recuperás una parte (quedó en %d %%), una vez por sala (la segunda %d %%, en otra sala %d %%)" % [
+		roundi(up * 100), roundi(second * 100), roundi(next_room * 100)]] = is_equal_approx(up, 0.2 + float(DB.boons["ave_fenix"].params["heal"])) and is_equal_approx(second, 0.2) and is_equal_approx(next_room, up)
 	me.instance.hp = me.instance.max_hp()
 
 	# --- Con un golpe de verdad (no avisado a mano): tu Pokémon le pega a un muñeco ---

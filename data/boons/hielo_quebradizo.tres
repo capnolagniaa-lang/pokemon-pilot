@@ -11,7 +11,7 @@ slot = "pasiva"
 effect = "bonus_vs_status"
 params = {
 "statuses": ["congelado", "frenado", "escarcha"],
-"pct": 0.25
+"pct": 0.18
 }
 scaled = PackedStringArray("pct")
 text = "Hacés {pct%} más de daño a los Frenados, con Escarcha o Congelados."

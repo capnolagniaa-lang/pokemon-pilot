@@ -19,6 +19,8 @@ var config: Dictionary = {}
 var _creature: Creature
 var _thorns_ready := 0.0
 var _phoenix_used := false
+## Bendición de esquive -> cuándo vuelve a estar (las de `cooldown`: si no, esquivar seguido limpiaba la sala).
+var _dodge_ready: Dictionary = {}
 var _clock := 0.0
 var _rng := RandomNumberGenerator.new()
 ## Cuántas veces se disparó cada bendición en esta partida (tests y, más adelante, el resumen del final).
@@ -304,6 +306,9 @@ func _on_dodged() -> void:
 	if not is_instance_valid(_creature):
 		return
 	for b: BoonData in _mine("dodge_blast"):
+		if _clock < float(_dodge_ready.get(b.id, 0.0)):
+			continue
+		_dodge_ready[b.id] = _clock + float(b.params.get("cooldown", 0.0))
 		_note(b)
 		_blast(b, _creature.global_position, _power(value(b, "power")))
 
