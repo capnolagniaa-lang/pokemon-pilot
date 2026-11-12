@@ -28,6 +28,15 @@ base y 212 aisladas después. Cada ajuste de abajo salió de un dato, no a ojo.
 **Global: el bot que esquiva 70 % pasó de ganarle a Brock 26 % (84 de 321) a 20 % (65 de 322)**, y llega igual que antes
 (43 % → 45 %). Queda dentro del objetivo de 15-25 % sin progreso permanente.
 
+### Comprobación sobre las salas finales (2026-11-12, tercera línea base)
+Después de estos ajustes la otra sesión rearmó otra vez las 36 salas (paso más ancho, paredes sólidas, orilla sin hilera
+sólida). Se corrió otra línea base entera sobre esas salas, sin tocar ningún número: **324 partidas, llega a Brock 41 %
+(132) y le gana 23 % (73)**; Squirtle 64 %, Bulbasaur 4 %, Charmander 0 %. Sigue dentro del objetivo de 15-25 %, así que
+no se ajustó nada más. Las tres líneas base (26 % antes; 20 % y 23 % después) tienen un margen de ±5 puntos cada una: el
+efecto de los ajustes es real pero chico, y la diferencia entre iniciales sigue siendo lo que más pesa. Al bot se le
+trabó el camino 12 veces en 324 partidas (antes del primer arreglo de las salas eran ~85 en 657) y ninguna partida quedó
+trabada en plena oleada.
+
 ### Criterio (bot contra persona)
 El bot esquiva 70 % de lo que ve venir pero elige ataques al azar, no apunta, no guarda PP, no arma combinaciones de
 bendiciones y gasta las Pociones apenas baja de 45 %. Una persona atenta juega mejor: mi estimación es que quien ya
