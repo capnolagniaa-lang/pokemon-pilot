@@ -136,6 +136,11 @@ func _ready() -> void:
 	balloon = BalloonTravel.new()  # globos aerostáticos entre ciudades
 	balloon.name = "BalloonTravel"
 	add_child(balloon)
+	if View3D.wanted():  # PRUEBA (rama mundo3d): el mundo dibujado en 3D
+		var v3 := View3D.new()
+		v3.name = "View3D"
+		add_child(v3)
+		v3.setup.call_deferred(self)
 	day_night = DayNight.new()
 	day_night.name = "DayNight"
 	add_child(day_night)
@@ -209,7 +214,7 @@ func _ready() -> void:
 ## Corriendo un autotest, una vitrina o la vista de la región (sin tutorial ni nada que frene).
 static func _automated() -> bool:
 	for a in OS.get_cmdline_user_args():
-		if a.begins_with("--autotest") or a.begins_with("--showcase") or a == "--overview":
+		if a.begins_with("--autotest") or a.begins_with("--showcase") or a == "--overview" or a == "--no-tutorial":
 			return true
 	return false
 
