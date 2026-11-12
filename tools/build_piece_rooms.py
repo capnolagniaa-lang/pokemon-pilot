@@ -110,7 +110,11 @@ def distance(sources, allowed):
     return out
 
 
+CELL_GROW = 7.0  # (igual que RoomPieces.CELL_GROW: se marca toda celda que la base toca)
+
+
 def base_cells(d, x, y, grow=0.0):
+    grow += CELL_GROW if d["kind"] == "solida" else 0.0
     rx, ry = max(d["base"][0] / 2.0, 1.0) + grow, max(d["base"][1] / 2.0, 1.0) + grow
     out = set()
     for cy in range(int((y - ry) // T), int((y + ry) // T) + 1):

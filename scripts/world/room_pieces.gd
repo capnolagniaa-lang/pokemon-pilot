@@ -132,11 +132,16 @@ static func ellipse(rx: float, ry: float, points := 12) -> PackedVector2Array:
 	return out
 
 
-## Las celdas que tapa la base de una pieza sólida puesta en `at` (px de la sala): aquellas cuyo centro cae en la elipse.
+## Las celdas que tapa la base de una pieza sólida puesta en `at` (px de la sala): toda celda que la elipse toca
+## (la elipse agrandada `CELL_GROW` px: si se marcaran solo las de centro adentro, el colisionador sobresalía de las
+## celdas sólidas y los caminos por celdas, de la IA y de los bots, rozaban la pieza y se trababan).
+const CELL_GROW := 7.0
+
+
 static func base_cells(def: Dictionary, at: Vector2) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
-	var rx := maxf(float(def["base"][0]) / 2.0, 1.0)
-	var ry := maxf(float(def["base"][1]) / 2.0, 1.0)
+	var rx := maxf(float(def["base"][0]) / 2.0, 1.0) + CELL_GROW
+	var ry := maxf(float(def["base"][1]) / 2.0, 1.0) + CELL_GROW
 	var t := float(Zone.TILE)
 	for cy in range(floori((at.y - ry) / t), floori((at.y + ry) / t) + 1):
 		for cx in range(floori((at.x - rx) / t), floori((at.x + rx) / t) + 1):
