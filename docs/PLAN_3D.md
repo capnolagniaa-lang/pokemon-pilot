@@ -16,6 +16,31 @@ los Pokémon que aparecen en ese tramo. El juego 2D sigue en `main`, jugable, si
 
 Scripts: `tools/model3d/` de la rama `mundo3d` (`concepts.py`, `run_trellis.py`, `blender_views.py`).
 
+## ESTADO VIGENTE (2026-11-12): en pausa hasta que el usuario avise
+
+El usuario aprobó el enfoque y pidió dejarlo en espera: necesita la placa para otras cosas. **No correr nada que use la
+placa (ComfyUI, renders de Godot) hasta que diga de retomar.** Orden acordado al retomar: **primero el mundo** (verlo
+lindo y con colisiones), después los Pokémon.
+
+**Hecho** (todo en la rama `mundo3d`, carpeta `../pokemon-tiempo-real-3d`):
+- Modelos: `models3d/casa.glb`, `arbol.glb`, `bulbasaur.glb`. Conceptos sin convertir: `art_src/model3d/laboratorio.png`
+  y `art_src/model3d/pokemon/` (Charmander, Squirtle, Caterpie).
+- `tools/export_plan3d.gd`: saca el plano de una zona del mapa 2D (`data/plan3d/<zona>.json`: qué hay en cada celda,
+  qué choca, puertas). Hecho para Pueblo Paleta.
+- `scenes/proto3d/town3d.tscn` (`scripts/proto3d/town3d.gd`): arma la zona en 3D desde su plano: suelo con camino y
+  bosque, agua, árboles (solo el borde del bosque), cercos, carteles, flores, casas en su lugar, colisión celda por
+  celda y cámara en tercera persona con brazo que no atraviesa cosas. Corrió una vez: se ve el pueblo y la colisión
+  frena al personaje.
+- Instalado fuera del repo: Blender 4.5 en `tools/blender/`, modelos de TRELLIS.2 en ComfyUI.
+
+**Lo primero al retomar** (etapa 3D-2, mundo):
+1. Convertir el laboratorio a 3D (`run_trellis.py`, unos 20 minutos) y revisar Paleta completa: hoy el laboratorio es
+   una caja blanca y el recorrido de demostración se traba contra un cartel.
+2. Pulir Paleta hasta que se vea linda: escala de las casas, buzones, flores y carteles con modelo propio, borde del
+   mundo, pasto con volumen, salientes con altura.
+3. Sumar Ruta 1 (pasto alto, salientes) y Ciudad Verde, y la unión entre zonas.
+4. Recién ahí, el proyecto nuevo (3D-0) y los Pokémon (3D-1).
+
 ## Qué se trae del juego 2D y qué se hace de nuevo
 
 | Se trae tal cual | Se reescribe para 3D |
