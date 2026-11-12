@@ -48,37 +48,37 @@
   "biomes": {
     "bosque": {
       "name": "Bosque Verde",
-      "rooms": ["sala_bosque_p1", "sala_bosque_p2", "sala_bosque_p3"],
+      "rooms": ["sala_bosque_p1", "sala_bosque_p2", "sala_bosque_p3", "sala_bosque_p4", "sala_bosque_p5", "sala_bosque_p6"],
       "common": ["caterpie", "weedle", "pidgey", "rattata", "oddish", "bellsprout", "paras", "venonat", "spearow", "pikachu", "metapod", "kakuna", "wurmple", "seedot", "hoothoot", "ledyba", "spinarak", "sunkern"],
       "strong": ["beedrill", "butterfree", "pidgeotto", "gloom", "weepinbell", "ariados", "nuzleaf", "ledian"]
     },
     "volcan": {
       "name": "Volcán",
-      "rooms": ["sala_volcan_p1", "sala_volcan_p2", "sala_volcan_p3"],
+      "rooms": ["sala_volcan_p1", "sala_volcan_p2", "sala_volcan_p3", "sala_volcan_p4", "sala_volcan_p5", "sala_volcan_p6"],
       "common": ["vulpix", "growlithe", "ponyta", "slugma", "numel", "houndour", "magby", "geodude", "torkoal", "cyndaquil", "torchic"],
       "strong": ["magmar", "houndoom", "camerupt", "magcargo", "quilava", "combusken", "charmeleon"]
     },
     "costa": {
       "name": "Costa",
-      "rooms": ["sala_costa_p1", "sala_costa_p2", "sala_costa_p3"],
+      "rooms": ["sala_costa_p1", "sala_costa_p2", "sala_costa_p3", "sala_costa_p4", "sala_costa_p5", "sala_costa_p6"],
       "common": ["poliwag", "psyduck", "krabby", "shellder", "staryu", "horsea", "tentacool", "wingull", "corphish", "marill", "wooper", "goldeen", "slowpoke", "totodile", "mudkip"],
       "strong": ["wartortle", "kingler", "seadra", "pelipper", "poliwhirl", "golduck", "crawdaunt", "croconaw"]
     },
     "cueva": {
       "name": "Cueva",
-      "rooms": ["sala_cueva_p1", "sala_cueva_p2", "sala_cueva_p3"],
+      "rooms": ["sala_cueva_p1", "sala_cueva_p2", "sala_cueva_p3", "sala_cueva_p4", "sala_cueva_p5", "sala_cueva_p6"],
       "common": ["zubat", "geodude", "sandshrew", "diglett", "machop", "aron", "makuhita", "whismur", "cubone", "rhyhorn", "nosepass", "larvitar"],
       "strong": ["graveler", "golbat", "sandslash", "machoke", "dugtrio", "lairon", "loudred", "onix"]
     },
     "hielo": {
       "name": "Gruta Helada",
-      "rooms": ["sala_hielo_p1", "sala_hielo_p2", "sala_hielo_p3"],
+      "rooms": ["sala_hielo_p1", "sala_hielo_p2", "sala_hielo_p3", "sala_hielo_p4", "sala_hielo_p5", "sala_hielo_p6"],
       "common": ["swinub", "seel", "snorunt", "spheal", "sneasel", "smoochum", "delibird", "shellder", "zubat"],
       "strong": ["jynx", "dewgong", "piloswine", "sealeo", "glalie", "cloyster"]
     },
     "cementerio": {
       "name": "Cementerio",
-      "rooms": ["sala_cementerio_p1", "sala_cementerio_p2", "sala_cementerio_p3"],
+      "rooms": ["sala_cementerio_p1", "sala_cementerio_p2", "sala_cementerio_p3", "sala_cementerio_p4", "sala_cementerio_p5", "sala_cementerio_p6"],
       "common": ["gastly", "shuppet", "duskull", "misdreavus", "sableye", "cubone", "murkrow", "zubat", "houndour", "spinarak"],
       "strong": ["haunter", "banette", "dusclops", "marowak", "golbat"]
     }

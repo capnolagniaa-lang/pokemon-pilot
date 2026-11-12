@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArenaData" format=3]
+
+[ext_resource type="Texture2D" path="res://sprites/arenas/sala_volcan_p4.png" id="1_b2m6p"]
+[ext_resource type="Script" path="res://scripts/resources/arena_data.gd" id="2_6irtl"]
+
+[resource]
+script = ExtResource("2_6irtl")
+id = "sala_volcan_p4"
+display_name = "Los árboles quemados"
+scene_path = "res://scenes/world/arenas/sala_volcan_p4.tscn"
+foe_trainer_cell = Vector2i(32, 5)
+player_cell = Vector2i(32, 43)
+foe_mon_cell = Vector2i(32, 18)
+player_mon_cell = Vector2i(32, 40)
+field = Rect2i(10, 10, 44, 30)
+painting = ExtResource("1_b2m6p")

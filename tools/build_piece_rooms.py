@@ -32,6 +32,9 @@ import paint_arenas  # noqa: E402
 
 T = 16
 W, H = 64, 48
+# Celdas de piso de una sala "amplia" (se llena del todo) y cuánto del decorado suelto de la tabla se pone.
+FULL_FLOOR = 1900
+DECOR_K = 0.7
 
 from piece_room_data import BIOMES  # noqa: E402
 
@@ -134,8 +137,9 @@ def connected(floor, blocked):
     return (32, 1) in seen, len(seen) / float(len(free))
 
 
-def build(root, rid, attempt=0):
+def build(root, rid, attempt=0, rotate=0):
     name, frame, seed, scenes, biome = ROOMS[rid]
+    scenes = list(scenes[rotate:]) + list(scenes[:rotate])  # (si la protagonista no entra, prueba con la siguiente)
     cfg = BIOMES[biome]
     SCENES = cfg["scenes"]
     rng = random.Random(seed * 1000 + attempt)
@@ -149,7 +153,11 @@ def build(root, rid, attempt=0):
     keep |= {(x, y) for x in range(22, 42) for y in range(11, 16)}
     if cfg.get("trail"):  # el sendero pintado del marco, de la entrada a la salida
         keep |= {(x, y) for x in range(29, 35) for y in range(H)}
-    centre = {(x, y) for x in range(W) for y in range(H) if ((x - 32) / 10.0) ** 2 + ((y - 25) / 6.5) ** 2 <= 1.0}
+    # Cuánto se llena la sala depende de su piso (pedido del usuario 2026-11-11: "algunas salas se sienten MUY cargadas"):
+    # con mar, lago o lava grande queda menos lugar, así que van menos escenas y menos decorado. `room_k` = 1 con
+    # FULL_FLOOR celdas de piso o más; el centro (el espacio de pelea) queda siempre libre de sólidos.
+    room_k = max(0.45, min(1.0, len(floor) / float(FULL_FLOOR)))
+    centre = {(x, y) for x in range(W) for y in range(H) if ((x - 32) / 12.0) ** 2 + ((y - 25) / 8.0) ** 2 <= 1.0}
     sea_side = 1 if sum(x for x, _ in sea) / max(1, len(sea)) > W / 2 else -1
     solid, wet, used = set(), set(), set()  # celdas sólidas, de agua de piezas y "ocupadas" (con margen entre escenas)
     pieces, anchors = [], []
@@ -173,7 +181,7 @@ def build(root, rid, attempt=0):
         options = spots(scene["anchor"])
         rng.shuffle(options)
         for cx, cy in options[:120]:
-            if any(abs(cx - ax) + abs(cy - ay) < 13 for ax, ay in anchors):
+            if any(abs(cx - ax) + abs(cy - ay) < 15 for ax, ay in anchors):
                 continue  # (las escenas, separadas entre sí)
             ax, ay = (cx + 0.5) * T, (cy + 0.5) * T
             # "+x" de la escena = hacia el agua (orilla) o hacia el centro de la sala (borde): se espeja si hace falta.
@@ -220,9 +228,10 @@ def build(root, rid, attempt=0):
             return True
         return False
 
+    scenes = scenes[:max(3, round(len(scenes) * room_k))]
     missing = [sid for sid in scenes if not try_scene(sid)]
-    if scenes[0] in missing:
-        return None  # sin la protagonista no hay sala
+    if (scenes[0] in missing and attempt < 40) or len(scenes) - len(missing) < 2:
+        return None  # sin la protagonista no hay sala (pasados 40 intentos, se acepta la que tenga 2 escenas o más)
     # Decorado suelto, con criterio.
     free = [c for c in floor if c not in solid and c not in wet]
 
@@ -250,8 +259,8 @@ def build(root, rid, attempt=0):
         "suelto": lambda c: calm(c),
     }
     for pid, count, rule in cfg.get("decor", []):
-        if pid in catalog:
-            scatter(pid, count, rules[rule])
+        if pid in catalog and catalog[pid]["kind"] == "decorado":  # (suelto va solo lo que no choca)
+            scatter(pid, max(1, round(count * room_k * DECOR_K)), rules[rule])
     # El decorado que quedó debajo de la base de una pieza sólida (puesta después) no se ve: se saca.
     pieces = [p for p in pieces if catalog[p[0]]["kind"] != "decorado" or (int(p[1] // T), int(p[2] // T)) not in solid]
     return {"name": name, "frame": frame, "biome": biome, "seed": seed * 1000 + attempt, "scenes": [s for s in scenes if s not in missing],
@@ -313,12 +322,26 @@ def main(root, args):
         if only and rid not in only:
             continue
         room = None
-        for attempt in range(40):
+        best = None
+        for attempt in range(60):
             room = build(root, rid, attempt)
+            if room is not None and (best is None or len(room["missing"]) < len(best["missing"])):
+                best = room
             if room is not None and not room["missing"]:
                 break
+            if attempt >= 39 and best is not None and best["scenes"][0] == ROOMS[rid][3][0]:
+                break
+        rotate = 1
+        while best is None and rotate < len(ROOMS[rid][3]):
+            for attempt in range(20):
+                best = build(root, rid, attempt, rotate)
+                if best is not None:
+                    break
+            rotate += 1
+        room = best
         if room is None:
-            sys.exit("%s: no se pudo armar" % rid)
+            print("%s: NO se pudo armar (queda como estaba)" % rid)
+            continue
         path = os.path.join(root, "data/rogue/salas/%s.json" % rid)
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w", encoding="utf8", newline="\n") as f:

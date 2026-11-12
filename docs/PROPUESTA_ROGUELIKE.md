@@ -552,6 +552,11 @@ fijo dentro de la escena (no hizo falta nada nuevo en el generador); el sendero 
 "vado" de losas sobre la lava no se hizo (la lava es pared). **Pendiente**: efecto propio de la lava (quemar) y del
 hielo (resbalar), retirar del repo las 36 salas pintadas, y ajustar con el usuario densidad y tamaños al jugarlo.
 
+**Hecho después** (2026-11-11/12): 6 salas por bioma (36), densidad proporcional al piso (el usuario las sintió muy
+cargadas; se eligió sacar objetos antes que agrandar las salas, que obligaba a repintar los 18 marcos) y retiro de las 36
+salas pintadas. Decidido sin preguntar: las 3 salas nuevas de cada bioma reusan sus 3 marcos con otro tema y otra semilla
+(más variedad de marcos queda para después); el castillo de Mew no se tocó (es una sola sala, pintada en alta resolución).
+
 ### 10.7 Preguntas abiertas para el usuario
 1. **Bioma de muestra**: ¿Costa (donde se vio el problema) o Bosque?
 2. **Generar fuera del juego o al entrar**: ¿salas revisadas a mano (30 por bioma, por ejemplo) o infinitas?

@@ -40,7 +40,7 @@ func _check_biome(f: Dictionary, biome: String) -> void:
 		kinds[d["kind"]] = int(kinds.get(d["kind"], 0)) + 1
 	r[tag + "El catálogo tiene %d piezas con su sprite (%s)%s" % [catalog.size(), kinds, "" if missing.is_empty() else " — falta: " + ", ".join(missing)]] = \
 		catalog.size() >= 12 and missing.is_empty() and kinds.get("solida", 0) >= 8 and kinds.get("decorado", 0) >= 2
-	r[tag + "Usa %d salas por piezas (%s)" % [rooms.size(), ", ".join(rooms)]] = rooms.size() >= 3
+	r[tag + "Usa %d salas por piezas (%s)" % [rooms.size(), ", ".join(rooms)]] = rooms.size() >= 6
 
 	var other := ""
 	for b: String in f["biomes"]:
@@ -68,7 +68,7 @@ func _check_biome(f: Dictionary, biome: String) -> void:
 		var zone: Zone = run.chain[i]
 		var room := RoomPieces.load_room(id)
 		total += room["pieces"].size()
-		if room.get("scenes", []).size() < 4:
+		if room.get("scenes", []).size() < 2:
 			scenes_ok = false
 		var tex: Texture2D = run.chain_data[i].painting
 		var used: Rect2i = zone.ground.get_used_rect()
@@ -101,16 +101,16 @@ func _check_biome(f: Dictionary, biome: String) -> void:
 		if run.spawn_cells().size() < 40 and i == 0:
 			bad.append("%s: poco lugar para las oleadas" % id)
 	r[tag + "El fondo es pixel art 1 a 1 (sin suavizar)"] = native and seen_rooms == 3
-	r[tag + "Las %d piezas de sus 3 salas están puestas, en el y-sort de las entidades" % total] = total >= 120 \
+	r[tag + "Las %d piezas de sus 3 salas están puestas, en el y-sort de las entidades" % total] = total >= 80 \
 		and run.pieces.filter(func(n): return n.get_parent() == world.entities).size() >= total
-	r[tag + "Cada sala está armada con 4 escenas o más"] = scenes_ok
+	r[tag + "Cada sala está armada con escenas (2 o más; menos en las que tienen poco piso)"] = scenes_ok
 	r[tag + "La grilla sigue debajo (sólido, agua, decorado libre), hay camino, entrada y puertas libres%s" % (
 		"" if bad.is_empty() else " — " + "; ".join(bad.slice(0, 6)))] = bad.is_empty()
 	var solids := run.pieces.filter(func(n): return n is StaticBody2D)
 	var shapes_ok: bool = solids.all(func(n): return n.collision_layer == RoomPieces.WORLD_LAYER \
 		and n.get_children().any(func(c): return c is CollisionPolygon2D and c.polygon.size() >= 8) \
 		and n.get_node("Sprite").texture_filter == CanvasItem.TEXTURE_FILTER_NEAREST)
-	r[tag + "Las sólidas chocan con la forma de su base (%d)" % solids.size()] = solids.size() >= 30 and shapes_ok
+	r[tag + "Las sólidas chocan con la forma de su base (%d)" % solids.size()] = solids.size() >= 20 and shapes_ok
 	# Se pasa por detrás de la más alta: su dibujo sube desde los pies; parado detrás no se choca.
 	var tall: StaticBody2D = null
 	var wide: StaticBody2D = null
