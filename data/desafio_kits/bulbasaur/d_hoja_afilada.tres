@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_hoja_afilada"
+display_name = "Hoja Afilada"
+element = ExtResource("2")
+kind = 0
+category = 0
+power = 55.0
+power_mult = 0.7
+cooldown = 4.0
+knockback = 110.0
+speed = 340.0
+lifetime = 0.6
+size = 5.0
+projectile_count = 2
+spread_deg = 14.0

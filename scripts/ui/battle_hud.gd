@@ -135,7 +135,9 @@ func _draw_party(c: Creature, in_battle: bool) -> void:
 	var t := inst.species.primary_type()
 	var tag := t.display_name.to_upper()
 	var ab := inst.ability_data()
-	if inst.boss and inst.species.boss_kit != null and inst.species.boss_kit.signature != null:
+	if inst.rogue_kit != null and inst.rogue_kit.role != "":
+		tag = "%s · %s" % [inst.rogue_kit.role.to_upper(), tag]
+	elif inst.boss and inst.species.boss_kit != null and inst.species.boss_kit.signature != null:
 		tag = "JEFE · %s · %s" % [inst.species.boss_kit.signature.display_name.to_upper(), tag]
 	elif ab != null:
 		tag = "%s · %s" % [ab.display_name.to_upper(), tag]
@@ -193,7 +195,8 @@ func _draw_moves(c: Creature) -> void:
 		draw_rect(Rect2(r.position, Vector2(r.size.x, 5)), m.element.color)
 		draw_string(font, r.position + Vector2(6, 22), Controls.slot_key(i), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(1, 1, 1, 0.75))
 		draw_string(font, r.position + Vector2(6, 46), m.display_name, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 14 if m.display_name.length() <= 11 else 12)
-		var kind: String = MoveUser.ROLE_NAMES[i] if MoveUser.roles_on() else KIND.get(m.kind, "")
+		var kit: Kit = c.moves.kit
+		var kind: String = MoveUser.ROLE_NAMES[i] if MoveUser.roles_on() or kit != null else KIND.get(m.kind, "")
 		var info := "%s · %ss" % [kind, _secs(c.moves.slot_cooldown(i, m.cooldown))]
 		var cost: float = c.moves.pp_cost(i)
 		if cost > 0.0:
@@ -202,6 +205,17 @@ func _draw_moves(c: Creature) -> void:
 				draw_rect(r, Color(0.1, 0.15, 0.4, 0.55))
 		elif MoveUser.pp_on() and MoveUser.roles_on() and i == MoveUser.BASIC_SLOT:
 			info = "%s · gratis" % kind
+		if kit != null and i == MoveUser.BASIC_SLOT:
+			info = "Básico · gratis"
+		elif kit != null and i == MoveUser.ULT_SLOT:  # la definitiva se llena pegando y recibiendo golpes
+			var charge: float = c.moves.ult()
+			info = "Definitiva · %s" % ("¡LISTA!" if charge >= 1.0 else "%d %%" % floori(charge * 100.0))
+			var glow := Color(1.0, 0.85, 0.3) if charge >= 1.0 else Color(0.85, 0.7, 0.35)
+			if charge < 1.0:
+				draw_rect(r, Color(0, 0, 0, 0.45))
+			else:
+				draw_rect(r.grow(1.0), Color(1.0, 0.85, 0.3, 0.55 + 0.35 * sin(Time.get_ticks_msec() * 0.008)), false, 2.0)
+			_bar(Rect2(r.position.x + 6, r.end.y - 14, r.size.x - 12, 6), charge, glow)
 		draw_string(font, r.position + Vector2(6, 68), info, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 8, 10, Color(1, 1, 1, 0.6))
 		if m.cast_time > 0.0:  # ícono de carga
 			draw_arc(r.position + Vector2(r.size.x - 12, 36), 4.5, -PI / 2.0, PI, 12, Color(1, 1, 1, 0.8), 1.5)
@@ -213,8 +227,15 @@ func _draw_moves(c: Creature) -> void:
 	var d := Rect2(412 + 4 * 112, size.y - 104, 62, 88)
 	_panel(d)
 	draw_string(font, d.position + Vector2(0, 30), Controls.label("dodge"), HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 11, Color(1, 1, 1, 0.75))
-	draw_string(font, d.position + Vector2(0, 54), "Esquive", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 12)
-	var dk := c.moves.dodge_cooldown / (MoveUser.DODGE_COOLDOWN * float(GameState.setting("cooldown_mult")))
+	var mob: MoveData = c.moves.kit.mobility if c.moves.kit != null else null
+	if mob != null:
+		draw_rect(Rect2(d.position, Vector2(d.size.x, 5)), mob.element.color)
+		var words := mob.display_name.split(" ")
+		for w in words.size():
+			draw_string(font, d.position + Vector2(0, 50 + w * 12), words[w], HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 10)
+	else:
+		draw_string(font, d.position + Vector2(0, 54), "Esquive", HORIZONTAL_ALIGNMENT_CENTER, d.size.x, 12)
+	var dk := c.moves.dodge_cooldown / c.moves.dodge_total
 	if dk > 0.0:
 		draw_rect(Rect2(d.position.x, d.end.y - d.size.y * dk, d.size.x, d.size.y * dk), Color(0, 0, 0, 0.55))
 

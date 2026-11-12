@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_pistola_agua"
+display_name = "Pistola Agua"
+element = ExtResource("2")
+kind = 0
+category = 1
+power = 40.0
+power_mult = 0.6
+cooldown = 0.55
+knockback = 150.0
+speed = 280.0
+lifetime = 0.5
+size = 4.0
+skip_element_status = true

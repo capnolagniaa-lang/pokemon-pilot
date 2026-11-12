@@ -613,6 +613,7 @@ func release_move(msg: Dictionary) -> void:
 	if m.resource_scaling > 0.0 and signature != null:
 		hit.damage_mult *= 1.0 + m.resource_scaling * msg.get("spent", 0.0) / signature.data.max_value
 	move_released.emit(m)
+	_body_vfx(m, aim)
 	if m.special != "":
 		SpecialMoves.run(m, self)
 	if m.cleanse_self:  # Giro Rápido: se saca de encima los problemas de estado
@@ -712,6 +713,29 @@ func release_move(msg: Dictionary) -> void:
 		machine.transition_to("recovery", {"time": recovery})
 
 
+## Efecto con sprite pegado al cuerpo mientras dura el ataque (hoja `sprites/fx/moves/<id>_cuerpo.png`): el giro de una
+## embestida, el domo de un escudo, la liana de un salto. Sin hoja no hace nada.
+func _body_vfx(m: MoveData, aim: Vector2) -> void:
+	var sheet := DB.vfx_part(m, "cuerpo")
+	if sheet == null:
+		return
+	var time := m.dash_time
+	var turned := m.kind in [MoveData.Kind.DASH, MoveData.Kind.LUNGE]
+	if m.kind == MoveData.Kind.LUNGE:
+		time = m.lunge_range / maxf(m.lunge_speed, 1.0)
+	elif m.kind == MoveData.Kind.SELF_BUFF:
+		time = m.self_status.duration if m.self_status != null else m.duration
+	elif m.kind == MoveData.Kind.SHIELD:
+		time = m.duration
+	var s := VfxSprite.attach(self, sheet, aim.angle() if turned else 0.0)
+	s.position = Vector2(0, -8)
+	s.z_index = 1
+	NightLight.compensate(s)
+	var tw := s.create_tween()  # (atado al sprite: si el Pokémon desaparece antes, no queda nada colgado)
+	tw.tween_interval(time + 0.05)
+	tw.tween_callback(s.queue_free)
+
+
 ## Cuánto se adelanta antes del golpe cuerpo a cuerpo: `melee_step`, o menos si hay un rival adelante más cerca
 ## (frena justo donde el corte lo alcanza). Enraizado no avanza.
 func melee_advance(m: MoveData, aim: Vector2) -> float:
@@ -779,6 +803,8 @@ func _track_zone(m: MoveData, zone: Node) -> void:
 func dodge(dir: Vector2, aim: Vector2 = Vector2.ZERO) -> bool:
 	if not can_act() or not statuses.can_move() or statuses.flag("no_dodge"):
 		return false
+	if moves.kit != null and moves.kit.mobility != null:
+		return _kit_mobility(dir, aim)
 	# Salto de cráter: hacia donde apunta el mouse y, si ahí no hay pozo, hacia donde camina (WASD).
 	var landing := crater_jump_target(aim.normalized()) if aim.length() > 4.0 else Vector2.INF
 	if landing == Vector2.INF and dir.length() > 0.1:
@@ -796,6 +822,27 @@ func dodge(dir: Vector2, aim: Vector2 = Vector2.ZERO) -> bool:
 	last_dodge_dir = dir if dir.length() > 0.1 else facing
 	machine.transition_to("dash", {"dir": last_dodge_dir, "time": DODGE_TIME, "attack": false})
 	dodged.emit()
+	return true
+
+
+## Espacio con un kit del Modo Desafío: en vez del esquive sale el movimiento de movilidad del kit (una embestida va
+## hacia donde caminás; una que se lanza a un punto, hacia donde apuntás). Su recarga es la del esquive.
+func _kit_mobility(dir: Vector2, aim: Vector2) -> bool:
+	var m: MoveData = moves.kit.mobility
+	if not moves.consume_dodge(m.cooldown):
+		return false
+	var look := aim.normalized() if aim.length() > 0.01 else facing
+	var walking := dir.length() > 0.1 and not dir.is_equal_approx(aim)
+	var go := dir.normalized() if walking else (-look if moves.kit.mobility_back else look)
+	var point := global_position + (aim if aim.length() > 4.0 else look * m.lunge_range)
+	if m.kind == MoveData.Kind.LUNGE:
+		go = look
+	health.invulnerable_time = maxf(health.invulnerable_time, DODGE_TIME)
+	last_dodge_dir = go
+	last_move = m
+	Events.move_used.emit(self, m)
+	dodged.emit()
+	release_move({"move": m, "aim": go, "step": 0, "point": point})
 	return true
 
 
@@ -833,6 +880,8 @@ func _on_hit(hit: HitInfo) -> void:
 		mult *= attacker.signature.damage_mult_against(hit, self)
 	if signature != null:
 		mult *= signature.damage_taken_mult(hit)
+	if hit.move.bonus_vs_status != "" and statuses.active.has(hit.move.bonus_vs_status):
+		mult *= hit.move.bonus_vs_mult
 	var combo := {}
 	if GameState.setting("combos") and attacker != null and hit.move.power > 0.0 and attacker.arena_rules():
 		combo = attacker.register_hit(self, hit)  # cadena de golpes y combos con nombre

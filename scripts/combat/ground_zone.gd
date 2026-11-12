@@ -16,6 +16,8 @@ var _tick_left := 0.0
 var _inside: Dictionary = {}  # criatura -> segundos seguidos adentro
 var _expiring := false
 var _spores: CPUParticles2D
+## Zona con sprite (hoja `<id>_zona`): no se dibujan los círculos llenos.
+var _sheet: VfxSprite
 ## Esporas inflamables prendidas fuego (ver ignite).
 var burning := false
 
@@ -53,6 +55,11 @@ func place(p_hit: HitInfo, center: Vector2) -> void:
 	_spores.color_ramp = ramp
 	_spores.z_index = 4
 	add_child(_spores)
+	var sheet := DB.vfx_part(m, "zona")
+	if sheet != null:
+		_sheet = VfxSprite.attach(self, sheet, 0.0, radius * 2.2)
+		_sheet.z_index = 4
+		_spores.amount = maxi(4, _spores.amount / 3)
 	Events.element_impact.emit(m.element, center, radius)
 	if m.zone_flammable:
 		Events.element_impact.connect(_on_element_impact)
@@ -149,9 +156,13 @@ func _physics_process(delta: float) -> void:
 func _draw() -> void:
 	var fade := clampf((duration - _time) / 0.4, 0.0, 1.0) * clampf(_time / 0.2, 0.0, 1.0)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, 0.75))
-	draw_circle(Vector2.ZERO, radius, Color(color.r, color.g, color.b, 0.3 * fade))
-	draw_circle(Vector2.ZERO, radius * 0.6, Color(color.r, color.g, color.b, 0.18 * fade))
-	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 40, Color(color.r * 1.3, color.g * 1.3, color.b * 1.3, 0.85 * fade), 1.5)
+	if _sheet != null:
+		_sheet.modulate.a = fade
+		draw_arc(Vector2.ZERO, radius, 0.0, TAU, 40, Color(color.r * 1.3, color.g * 1.3, color.b * 1.3, 0.35 * fade), 1.0)
+	else:
+		draw_circle(Vector2.ZERO, radius, Color(color.r, color.g, color.b, 0.3 * fade))
+		draw_circle(Vector2.ZERO, radius * 0.6, Color(color.r, color.g, color.b, 0.18 * fade))
+		draw_arc(Vector2.ZERO, radius, 0.0, TAU, 40, Color(color.r * 1.3, color.g * 1.3, color.b * 1.3, 0.85 * fade), 1.5)
 	if hit.move.knockback > 0.0:
 		# Remolino: arcos que giran (viento que empuja hacia afuera).
 		for k in 3:

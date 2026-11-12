@@ -60,6 +60,9 @@ const STAIRS_FLAG := "planta_alta"
 ## Zoom de la cámara en el castillo (pedido del usuario 2026-11-11: que jugando se vean el portal de abajo y la escalera
 ## de arriba): más abierto que el de siempre, justo el ancho de la sala. Al cruzar el portal vuelve el tuyo.
 const HUB_ZOOM := 2.0
+## En las salas la cámara va bien de arriba (pedido del usuario 2026-11-12: "que se vea bastante de más arriba"): se ve
+## casi todo el ancho de la sala. La rueda acerca desde ahí.
+const ROOM_ZOOM := 1.5
 const MEW_REACH := 34.0
 ## Fichas de ataque (R-1): cuánto dura una y cuánto descansa el que la tuvo antes de pedir otra (así rotan).
 const TOKEN_HOLD := 2.6
@@ -235,6 +238,7 @@ static func equip(sp: SpeciesData) -> void:
 	var f := load_floor()
 	GameState.party.clear()
 	GameState.party.append(CreatureInstance.create(sp, int(f["level"])))
+	RogueKits.apply(GameState.party[0])  # kit de 5 teclas, si su línea tiene uno
 	GameState.active_index = 0
 	GameState.bag = {"pocion": int(f["potions"])}
 	if int(f.get("balls", 0)) > 0:
@@ -472,7 +476,7 @@ func _unload_hub() -> void:
 	portal = null
 	world.arena.release_room()
 	_limit_camera(false)
-	world.camera.zoom = Vector2.ONE * world.camera.zoom_goal
+	_room_camera()
 	if is_instance_valid(hub):
 		hub.queue_free()
 	hub = null
@@ -788,6 +792,7 @@ func _load_chain() -> void:
 	_gate(chain[0], _rows(chain[0]) - 1, false)  # por la entrada no se sale
 	_gate(chain[-1], 0, false)  # ni por arriba de la última (ahí está la puerta del jefe)
 	_limit_camera(true)
+	_room_camera()
 
 
 ## Pasás a la sala `index`: es la que cuenta para la luz y las reglas de arena, y el paso por el que viniste se cierra.
@@ -962,6 +967,13 @@ static func make_minion(inst: CreatureInstance, f: Dictionary) -> void:
 
 ## Fichas de ataque (R-1; `Creature.attack_gate` de cada enemigo de la oleada): a lo sumo `attackers` atacan a la vez.
 ## El que consigue una ficha la tiene TOKEN_HOLD s; después descansa TOKEN_REST s y le toca a otro. Los demás rodean.
+## La cámara de las salas: alejada (`ROOM_ZOOM`); con la rueda se puede acercar.
+func _room_camera() -> void:
+	world.camera.zoom_floor = ROOM_ZOOM
+	world.camera.zoom_goal = ROOM_ZOOM
+	world.camera.zoom = Vector2.ONE * ROOM_ZOOM
+
+
 func can_attack(c: Creature) -> bool:
 	var limit := int(floor_data.get("attackers", 0))
 	if limit <= 0:

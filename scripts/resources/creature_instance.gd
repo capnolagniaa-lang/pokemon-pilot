@@ -44,6 +44,10 @@ var hp_mult := 1.0
 ## PP actuales (el maná de los ataques, MoveUser; pedido del usuario 2026-10-31). -1 = llenos. No se guarda: al cargar
 ## la partida o curarse vuelven a estar llenos.
 var pp := -1.0
+## Kit de 5 teclas del Modo Desafío (`RogueKits`; null = pelea con sus ataques equipados). No se guarda.
+var rogue_kit: Kit = null
+## Carga de la definitiva de ese kit, de 0 a 1 (se llena pegando y recibiendo golpes).
+var ult := 0.0
 ## Para más adelante (Etapa 6): apodo y naturaleza. Vacíos por ahora.
 @export var nickname: String = ""
 @export var nature: String = ""
@@ -290,6 +294,8 @@ func _pad_slots() -> void:
 ## Movimientos del learnset con nivel en (desde, hasta]: los que aprendió al subir de nivel.
 func moves_learned_between(from_level: int, to_level: int) -> Array[MoveData]:
 	var out: Array[MoveData] = []
+	if rogue_kit != null:  # con kit fijo no aprende ataques por nivel
+		return out
 	for e in species.learnset_entries():
 		if e.level > from_level and e.level <= to_level and not out.has(e.move):
 			out.append(e.move)
@@ -472,6 +478,8 @@ func evolve_into(to: SpeciesData) -> Array[MoveData]:
 			taught_moves.append(m)
 	hp = maxf(0.0 if hp <= 0.0 else 1.0, max_hp() - lost)
 	var fresh: Array[MoveData] = []
+	if rogue_kit != null:  # el kit se hereda tal cual
+		return fresh
 	for e in species.learnset_entries():
 		if e.level == level and e.move != null and not known.has(e.move) and not fresh.has(e.move):
 			fresh.append(e.move)

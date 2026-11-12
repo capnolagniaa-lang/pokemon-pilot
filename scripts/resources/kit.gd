@@ -15,3 +15,12 @@ const SLOT_COUNT := 4
 @export var signature: SignatureData
 ## Los 4 ataques, en el orden de las teclas (Clic izq., Clic der., Q, R).
 @export var moves: Array[MoveData] = []
+
+@export_group("Kit del Modo Desafío (5 teclas)")
+## Rol a la vista: "A distancia", "Cuerpo a cuerpo", "Híbrido", "Tanque". En un kit del Modo Desafío (`RogueKits`,
+## data/desafio_kits) las 4 de `moves` son básico, habilidad, habilidad y definitiva.
+@export var role: String = ""
+## El movimiento de Espacio: reemplaza al esquive genérico (cada Pokémon se mueve a su manera).
+@export var mobility: MoveData
+## Sin dirección de caminata sale hacia atrás de donde apunta (retirada), no hacia adelante.
+@export var mobility_back: bool = false

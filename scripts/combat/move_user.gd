@@ -63,6 +63,16 @@ var gap_left := 0.0
 var _combo_step: Array[int] = []
 var _combo_timer: Array[float] = []
 
+## Kit de 5 teclas del Modo Desafío (`CreatureInstance.rogue_kit`; null = lo de siempre). Con kit: Clic izq. = básico
+## gratis, Clic der. y Q = habilidades (gastan PP), Espacio = `kit.mobility` en vez del esquive, R = definitiva, que no
+## gasta ni recarga: se usa con la barra llena (`ult()`), y la barra se llena pegando y recibiendo golpes.
+var kit: Kit = null
+## Recarga completa del esquive o de la movilidad en curso (para la interfaz).
+var dodge_total := DODGE_COOLDOWN
+## Daño hecho (o recibido) que llena la definitiva, en vidas propias: 1,6 vidas de daño hecho, o 1,2 recibidas.
+const ULT_PER_DEALT := 1.6
+const ULT_PER_TAKEN := 1.2
+
 
 ## Las ranuras salen de los movimientos equipados de la criatura (CreatureInstance.equipped_moves).
 func setup(instance: CreatureInstance) -> void:
@@ -71,7 +81,14 @@ func setup(instance: CreatureInstance) -> void:
 	var source: Array[MoveData] = instance.equipped_moves
 	if instance.boss and instance.species.boss_kit != null:
 		source = instance.species.boss_kit.moves  # el jefe pelea con su kit
-	if roles_on() and not _player_owned():
+	kit = instance.rogue_kit
+	if kit != null:
+		source = kit.moves
+		var c := get_parent()
+		if c != null and c.has_signal("hit_dealt") and not c.hit_dealt.is_connected(_on_kit_dealt):
+			c.hit_dealt.connect(_on_kit_dealt)
+			c.damage_received.connect(_on_kit_taken)
+	elif roles_on() and not _player_owned():
 		source = by_role(source)  # rivales y salvajes: el más flojo de básico, el más fuerte de definitiva
 	slots.clear()
 	for i in SLOT_COUNT:
@@ -144,7 +161,7 @@ func basic_interval() -> float:
 
 ## Multiplicador de daño por el rol de la tecla donde está el ataque.
 func role_damage(m: MoveData) -> float:
-	if m == null or not roles_on():
+	if m == null or kit != null or not roles_on():
 		return 1.0
 	var slot := slots.find(m)
 	if slot == BASIC_SLOT:
@@ -156,6 +173,8 @@ func role_damage(m: MoveData) -> float:
 
 ## Recarga completa del ataque de una ranura, con su rol y el ajuste de ritmo (para la interfaz y la IA).
 func slot_cooldown(slot: int, base: float) -> float:
+	if kit != null:
+		return base * float(GameState.setting("cooldown_mult"))  # la recarga escrita en el ataque, tal cual
 	if roles_on() and slot == BASIC_SLOT:
 		base = minf(base, basic_interval())
 	elif pp_on():
@@ -203,7 +222,7 @@ var force_next := false
 
 func can_use(slot: int, soon: bool = false) -> bool:
 	return slot >= 0 and slot < slots.size() and slots[slot] != null \
-		and (soon or force_next or (cooldowns[slot] <= 0.0 and gap_left <= 0.0 and has_pp(slot))) \
+		and (soon or force_next or (cooldowns[slot] <= 0.0 and gap_left <= 0.0 and has_pp(slot) and ult_ready(slot))) \
 		and not heal_blocked(slot) and not status_locked(slot)
 
 
@@ -296,6 +315,8 @@ func pp_cost(slot: int) -> float:
 	if not pp_on() or slot < 0 or slot >= slots.size() or slots[slot] == null:
 		return 0.0
 	var m := slots[slot]
+	if kit != null and slot in [BASIC_SLOT, ULT_SLOT]:
+		return 0.0
 	if roles_on() and slot == BASIC_SLOT:
 		return roundf(pp_cost_of(m) * role_damage(m))
 	if is_heal(m):
@@ -323,6 +344,8 @@ func consume(slot: int) -> Array:
 	var step := 0
 	force_next = false
 	last_used = slot
+	if kit != null and slot == ULT_SLOT:
+		set_ult(0.0)
 	gap_left = float(GameState.setting("attack_gap"))
 	if m.combo_steps <= 1 or _combo_step[slot] == 0:
 		# (un combo gasta una vez, al empezar; un canalizado, una parte: el resto mientras dura, `channel_drain`)
@@ -362,11 +385,43 @@ func can_dodge() -> bool:
 	return dodge_cooldown <= 0.0
 
 
-func consume_dodge() -> bool:
+func consume_dodge(base: float = DODGE_COOLDOWN) -> bool:
 	if dodge_cooldown > 0.0:
 		return false
-	dodge_cooldown = DODGE_COOLDOWN * float(GameState.setting("cooldown_mult"))
+	dodge_cooldown = base * float(GameState.setting("cooldown_mult"))
+	dodge_total = maxf(dodge_cooldown, 0.01)
 	return true
+
+
+# --- Definitiva del kit ---
+
+func ult() -> float:
+	var inst := _instance()
+	return clampf(inst.ult, 0.0, 1.0) if inst != null else 0.0
+
+
+func set_ult(value: float) -> void:
+	var inst := _instance()
+	if inst != null:
+		inst.ult = clampf(value, 0.0, 1.0)
+
+
+## Sin kit, o en otra ranura, siempre; la definitiva del kit, con la barra llena.
+func ult_ready(slot: int) -> bool:
+	return kit == null or slot != ULT_SLOT or ult() >= 1.0
+
+
+func _on_kit_dealt(_target, hit: HitInfo, damage: float) -> void:
+	var inst := _instance()
+	if kit == null or inst == null or damage <= 0.0 or (hit != null and hit.move == slots[ULT_SLOT]):
+		return  # (la definitiva no se carga a sí misma)
+	set_ult(inst.ult + damage / (inst.max_hp() * ULT_PER_DEALT))
+
+
+func _on_kit_taken(amount: float, _hit) -> void:
+	var inst := _instance()
+	if kit != null and inst != null and amount > 0.0:
+		set_ult(inst.ult + amount / (inst.max_hp() * ULT_PER_TAKEN))
 
 
 func cooldown_ratio(slot: int) -> float:

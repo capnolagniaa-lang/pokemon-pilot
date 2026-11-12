@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/drenado.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_drenadoras"
+display_name = "Drenadoras"
+element = ExtResource("2")
+kind = 5
+category = 2
+power = 0.0
+cooldown = 7.0
+knockback = 0.0
+zone_radius = 26.0
+zone_duration = 8.0
+placement_range = 110.0
+zone_traps = false
+zone_tick = 0.5
+zone_max_count = 2
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])

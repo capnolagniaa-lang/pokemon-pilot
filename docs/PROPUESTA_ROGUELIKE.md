@@ -687,6 +687,24 @@ deje de asumir que el dueño es tu Pokémon. Datos en `desafio.json`: desde qué
 
 ---
 
+## 13. Kits de 5 teclas (decisión del usuario 2026-11-12; referencia: Pokémon Arena 2D)
+
+El usuario vio un video de Pokémon Arena 2D y pidió ese combate para el modo: "todo básicamente menos la evolución en
+pelea" (la evolución sigue por nivel), solo con Pokémon de la primera generación, y kits **nuevos** (no los de la era de
+kits) que tengan sentido con cómo juega cada Pokémon. Se van viendo de a tandas con él.
+
+- **Formato**: Clic izq. básico (gratis, recarga corta) · Clic der. habilidad de daño · Q habilidad de control o
+  utilidad · Espacio movilidad propia (reemplaza al esquive, cuenta como esquive para las bendiciones) · R definitiva
+  (sin costo ni recarga: con la barra llena; se llena con 1,6 vidas propias de daño hecho o 1,2 de daño recibido,
+  `MoveUser.ULT_PER_DEALT/TAKEN`). Rol a la vista: A distancia, Cuerpo a cuerpo, Híbrido, Tanque.
+- **Dónde está**: `Kit` (campos `role`, `mobility`, `mobility_back`), `RogueKits.of/apply`, `CreatureInstance.rogue_kit`
+  y `ult`, `MoveUser.kit`, `Creature._kit_mobility`; datos en `data/desafio_kits/<especie base>/` generados por
+  `tools/build_desafio_kits.py` (tabla `KITS`; pisa los .tres). Efectos: `tools/make_desafio_vfx.py`.
+- **Tipos**: ajuste `flat_types` (lo prende `desafio.json`): ventaja ×1,25, desventaja e inmunidad ×0,8 (`Damage.flat`).
+- **Hechos**: Charmander, Squirtle, Bulbasaur (y sus evoluciones, por herencia).
+- **Falta**: kits de los enemigos de los biomas (tanda por bioma), la IA usándolos, definitiva mejorada al evolucionar,
+  y volver a correr la batería de balance.
+
 ## 12. Progreso permanente entre partidas (alternativas, **sin implementar**; usuario, 2026-11-11)
 
 Pedido del usuario: "Brock tiene que sentirse difícil de vencer en las primeras run ya que la idea es manejar algo de

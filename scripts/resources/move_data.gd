@@ -65,6 +65,10 @@ enum Category { PHYSICAL, SPECIAL, STATUS }
 ## No aplica el estado de su elemento al pegar (Burbuja no empapa aunque sea de agua).
 @export var skip_element_status: bool = false
 
+## Pega más contra un rival que tiene este estado (id; "" = no): Colmillo Ígneo contra un quemado.
+@export var bonus_vs_status: String = ""
+@export var bonus_vs_mult: float = 1.0
+
 @export_group("Recurso de firma")
 ## Cuánto recurso de la mecánica de firma consume (-1 = todo lo que haya).
 @export var resource_cost: float = 0.0

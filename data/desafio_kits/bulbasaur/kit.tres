@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Kit" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bulbasaur/d_latigo_cepa.tres" id="3"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bulbasaur/d_hoja_afilada.tres" id="4"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bulbasaur/d_drenadoras.tres" id="5"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bulbasaur/d_rayo_solar.tres" id="6"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bulbasaur/d_liana.tres" id="7"]
+
+[resource]
+script = ExtResource("1")
+archetype = "control"
+preferred_range = 70.0
+moves = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")])
+role = "Híbrido"
+mobility = ExtResource("7")
+mobility_back = false

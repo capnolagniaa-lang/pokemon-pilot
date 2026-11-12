@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "cegado"
+display_name = "Cegado"
+color = Color(0.55, 0.55, 0.6, 1)
+duration = 2.0
+speed_mult = 0.85
+aim_jitter_deg = 40.0
+tint_strength = 0.3
+fx_amount = 5
+fx_gravity = -12.0
+fx_size = 1.6
+element = ExtResource("2")

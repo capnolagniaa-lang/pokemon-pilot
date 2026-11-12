@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_colmillo_igneo"
+display_name = "Colmillo Ígneo"
+element = ExtResource("2")
+kind = 4
+category = 0
+power = 65.0
+cooldown = 4.0
+knockback = 220.0
+final_knockback = 220.0
+melee_step = 34.0
+melee_range = 16.0
+swing_radius = 13.0
+recovery = 0.15
+bonus_vs_status = "quemado"
+bonus_vs_mult = 2.0

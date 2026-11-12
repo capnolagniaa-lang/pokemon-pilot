@@ -17,6 +17,8 @@ var target: Node2D
 var _shake := 0.0
 ## El zoom al que va la cámara (la rueda lo cambia; se llega suave).
 var zoom_goal := MAX_ZOOM
+## Hasta dónde se puede alejar (el Modo Desafío lo baja en las salas: `RogueRun.ROOM_ZOOM`).
+var zoom_floor := MIN_ZOOM
 var _zooming := false  # solo se anima lo que pidió la rueda (las vitrinas ponen el zoom a mano)
 
 
@@ -39,7 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func set_zoom_goal(z: float) -> void:
-	z = clampf(z, MIN_ZOOM, MAX_ZOOM)
+	z = clampf(z, zoom_floor, MAX_ZOOM)
 	if is_equal_approx(z, zoom_goal):
 		return
 	zoom_goal = z

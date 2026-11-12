@@ -72,8 +72,8 @@ func available(id: String) -> bool:
 			return not run.boons.item_pool().is_empty()
 		"tienda":
 			return GameState.money >= cheapest()
-		"mt":
-			return not tm_candidates().is_empty()
+		"mt":  # (con kit fijo no se cambian ataques)
+			return GameState.active() != null and GameState.active().rogue_kit == null and not tm_candidates().is_empty()
 	return TYPES.has(id)
 
 
