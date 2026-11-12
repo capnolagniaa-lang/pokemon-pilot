@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_pin_misil"
+display_name = "Pin Misil"
+element = ExtResource("2")
+kind = 0
+category = 0
+power = 25.0
+power_mult = 0.65
+cooldown = 2.4
+knockback = 50.0
+speed = 330.0
+lifetime = 0.55
+size = 3.0
+projectile_count = 3
+spread_deg = 18.0

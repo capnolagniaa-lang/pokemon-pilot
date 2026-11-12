@@ -123,7 +123,7 @@ func run_tests() -> void:
 	r["Los Pokémon de Brock también: %s" % ", ".join(team.map(func(t): return "%s (%s)" % [t.species.display_name,
 		", ".join(RogueFoeMods.of(t).map(func(m): return mods.mod_name(m["id"])))]))] = \
 		range(team.size()).all(func(i): return RogueFoeMods.of(team[i]).size() == int(f["boss"]["mods"][i]) + f["boss"]["fixed_mods"].size()) \
-		and team.all(func(t): return RogueFoeMods.of(t).any(func(m): return m["id"] == "curtido"))
+		and team.all(func(t): return f["boss"]["fixed_mods"].all(func(id): return RogueFoeMods.of(t).any(func(m): return m["id"] == id)))
 	foe = await _one("curtido", 1)
 	foe.process_mode = Node.PROCESS_MODE_DISABLED
 	var strong := HitInfo.new()

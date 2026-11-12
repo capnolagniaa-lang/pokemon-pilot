@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Kit" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bellsprout/d_latigazo.tres" id="3"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bellsprout/d_hoja_filo.tres" id="4"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bellsprout/d_constriccion.tres" id="5"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bellsprout/d_tormenta_hojas.tres" id="6"]
+[ext_resource type="Resource" path="res://data/desafio_kits/bellsprout/d_resorte.tres" id="7"]
+
+[resource]
+script = ExtResource("1")
+archetype = "espaciador"
+preferred_range = 80.0
+moves = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")])
+role = "A distancia"
+mobility = ExtResource("7")
+mobility_back = true

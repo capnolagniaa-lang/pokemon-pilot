@@ -18,7 +18,7 @@ static func resolve(hit: HitInfo, defender: CreatureInstance) -> float:
 	var power := move.power * move.power_mult
 	var base := (2.0 * hit.attacker_level / 5.0 + 2.0) * power * hit.attack / d / 50.0 + 2.0 * move.power_mult
 	var stab := STAB if move.element in hit.attacker_types else 1.0
-	return base * stab * hit.effectiveness * hit.damage_mult * CombatWeather.damage_mult(move.element, hit.attacker) * randf_range(0.85, 1.0)
+	return base * stab * hit.effectiveness * hit.damage_mult * CombatWeather.damage_mult(move.element, hit.attacker if is_instance_valid(hit.attacker) else null) * randf_range(0.85, 1.0)
 
 
 ## Tipos aplanados (ajuste "flat_types", lo prende el Modo Desafío; decisión del usuario 2026-11-12: que el tipo ayude

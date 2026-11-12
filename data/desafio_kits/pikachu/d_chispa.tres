@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/electrico.tres" id="2"]
+[ext_resource type="Resource" path="res://data/status/paralizado.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = "d_chispa"
+display_name = "Chispa"
+element = ExtResource("2")
+kind = 1
+category = 0
+power = 55.0
+cooldown = 2.4
+knockback = 160.0
+dash_time = 0.2
+dash_hits = true
+invulnerable_time = 0.15
+status = ExtResource("3")
+status_chance = 0.3

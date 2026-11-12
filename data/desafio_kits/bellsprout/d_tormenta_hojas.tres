@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_tormenta_hojas"
+display_name = "Tormenta de Hojas"
+element = ExtResource("2")
+kind = 0
+category = 1
+power = 60.0
+power_mult = 0.5
+cooldown = 1.0
+cast_time = 0.4
+knockback = 120.0
+speed = 320.0
+lifetime = 0.6
+size = 5.0
+projectile_count = 7
+spread_deg = 70.0

@@ -15,6 +15,9 @@ import sys
 
 from PIL import Image, ImageDraw
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import desafio_vfx_bosque  # noqa: E402
+
 FIRE = [(120, 28, 12), (214, 64, 20), (250, 130, 30), (255, 200, 70), (255, 244, 190)]
 WATER = [(24, 60, 130), (40, 110, 200), (90, 170, 240), (170, 220, 255), (240, 250, 255)]
 LEAF = [(26, 70, 30), (50, 120, 44), (96, 176, 60), (170, 224, 100), (236, 250, 190)]
@@ -260,11 +263,11 @@ def main(root, contact=""):
         "d_hidrobomba_chorro": hidrobomba_chorro(root),
         "d_burbujas": Image.open(os.path.join(dest, "burbuja.png")).convert("RGBA"),
     }
+    sheets.update(desafio_vfx_bosque.build(root))  # los kits del Bosque: generadores genéricos por forma y paleta
     for name, im in sheets.items():
         im.save(os.path.join(dest, name + ".png"))
-        print(name, im.size)
     if contact:
-        zoom = 3
+        zoom = 2
         w = max(im.width for im in sheets.values()) * zoom
         h = sum(im.height * zoom + 6 for im in sheets.values())
         board = Image.new("RGBA", (w, h), (58, 92, 60, 255))

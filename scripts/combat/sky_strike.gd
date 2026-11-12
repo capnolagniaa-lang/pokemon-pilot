@@ -91,6 +91,10 @@ func _fall() -> void:
 		VfxSprite.burst(get_parent(), bolt_sheet, global_position + Vector2(0, -BOLT_GROUND)).modulate = BOLT_GLOW
 	if is_instance_valid(_mark):
 		_mark.queue_free()
+	if not _is_bolt():  # lo que cae que no es un rayo (un huevo): su hoja `<id>_caida`, si tiene
+		var drop := DB.vfx_part(hit.move, "caida")
+		if drop != null:
+			VfxSprite.burst(get_parent(), drop, global_position + Vector2(0, -6), 0.0, radius * 2.4)
 	var light := PointLight2D.new()
 	light.texture = LIGHT_TEX
 	light.color = color

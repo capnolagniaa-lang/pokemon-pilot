@@ -934,6 +934,7 @@ func _spawn_wave(list: Array) -> void:
 		var cell: Vector2i = cells.pop_at(_rng.randi() % cells.size())
 		var c: Creature = WildSpawner.CreatureScene.instantiate()
 		c.instance = CreatureInstance.create_rival(DB.species[m[0]], int(m[1]))
+		RogueKits.apply(c.instance)  # los enemigos también pelean con el kit de su línea, si tiene
 		c.instance.roll_ivs()
 		var elite: bool = m.size() > 2 and m[2]
 		if not elite:
@@ -957,6 +958,10 @@ func _spawn_wave(list: Array) -> void:
 static func make_minion(inst: CreatureInstance, f: Dictionary) -> void:
 	inst.hp_mult = float(f.get("minion_hp", 1.0))
 	inst.hp = inst.max_hp()
+	if inst.rogue_kit != null:  # con kit: el básico y la primera habilidad (sin control ni definitiva)
+		inst.kit_limit = clampi(int(f.get("minion_moves", 4)), 1, 4)
+		inst.equipped_moves = inst.rogue_kit.moves.slice(0, inst.kit_limit)
+		return
 	var keep: Array[MoveData] = []
 	for mv: MoveData in inst.equipped_moves:
 		if mv != null and mv.power > 0.0 and mv.category != MoveData.Category.STATUS and keep.size() < int(f.get("minion_moves", 4)):

@@ -100,9 +100,9 @@
         13
       ]
     ],
-    "mods": [1, 2],
-    "fixed_mods": ["curtido"],
-    "mod_level": 2,
+    "mods": [0, 1],
+    "fixed_mods": [],
+    "mod_level": 1,
     "door": "Gimnasio de Plateada",
     "defeat": "¿Qué...? ¿Qué estaba haciendo? Sentía una voz en la cabeza... Gracias. Me la sacaste de encima."
   }

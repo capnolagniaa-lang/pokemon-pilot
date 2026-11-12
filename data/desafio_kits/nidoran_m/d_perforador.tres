@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_perforador"
+display_name = "Perforador"
+element = ExtResource("2")
+kind = 7
+category = 0
+power = 130.0
+cooldown = 1.0
+cast_time = 0.4
+knockback = 200.0
+lunge_range = 100.0
+lunge_speed = 460.0
+followup_delay = 0.12
+followup_power_mult = 0.4
+followup_knockback = 280.0
+execute_below = 0.2

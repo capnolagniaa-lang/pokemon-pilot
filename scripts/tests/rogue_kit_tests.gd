@@ -5,8 +5,13 @@ extends Node
 ##   godot --headless --path . --fixed-fps 60 --quit-after 120000 -- --autotest-rogue-kits
 ##   godot --path . --quit-after 1500 --write-movie out/f.png --fixed-fps 30 -- --showcase-rogue-kits  (los 3 kits en acción)
 
-const SPECIES := ["charmander", "squirtle", "bulbasaur"]
-const EVOLVED := {"charmander": "charizard", "squirtle": "wartortle", "bulbasaur": "ivysaur"}
+const SPECIES := ["charmander", "squirtle", "bulbasaur", "caterpie", "weedle", "pidgey", "rattata", "oddish", "bellsprout", "paras",
+	"venonat", "spearow", "pikachu", "exeggcute", "nidoran_f", "nidoran_m", "mankey", "scyther"]
+## Una evolución de cada línea: usa el kit de su preevolución.
+const EVOLVED := {"charmander": "charizard", "squirtle": "wartortle", "bulbasaur": "ivysaur", "caterpie": "butterfree",
+	"weedle": "beedrill", "pidgey": "pidgeotto", "rattata": "raticate", "oddish": "gloom", "bellsprout": "weepinbell",
+	"paras": "parasect", "venonat": "venomoth", "spearow": "fearow", "pikachu": "raichu", "exeggcute": "exeggutor",
+	"nidoran_f": "nidorina", "nidoran_m": "nidorino", "mankey": "primeape"}
 
 var world: Node
 var r := {}
@@ -19,7 +24,8 @@ func run_tests() -> void:
 		var ok: bool = kit != null and kit.moves.size() == 4 and kit.moves.all(func(m): return m != null) and kit.mobility != null \
 			and kit.role != ""
 		r["%s tiene kit: %s" % [id.capitalize(), _kit_text(kit)]] = ok
-		r["%s: su evolución (%s) usa el mismo kit" % [id.capitalize(), EVOLVED[id]]] = RogueKits.of(DB.species[EVOLVED[id]]) == kit
+		if EVOLVED.has(id):
+			r["%s: su evolución (%s) usa el mismo kit" % [id.capitalize(), EVOLVED[id]]] = RogueKits.of(DB.species[EVOLVED[id]]) == kit
 		if kit == null:
 			continue
 		var missing: Array = []
@@ -27,7 +33,8 @@ func run_tests() -> void:
 			if not _has_animation(m):
 				missing.append(m.display_name)
 		r["%s: todos sus ataques tienen animación propia%s" % [id.capitalize(), "" if missing.is_empty() else " (faltan: %s)" % ", ".join(missing)]] = missing.is_empty()
-	r["Un Pokémon sin kit en su línea no cambia (Pidgey)"] = RogueKits.of(DB.species["pidgey"]) == null
+	r["Un Pokémon sin kit en su línea no cambia (Geodude)"] = RogueKits.of(DB.species["geodude"]) == null
+	_minions()
 	r["Fuera del modo los tipos pesan lo de siempre"] = is_equal_approx(Damage.flat(2.0), 2.0) and is_equal_approx(Damage.flat(0.0), 0.0)
 	var plain := CreatureInstance.create(DB.species["charmander"], 10)
 	r["Fuera del modo Charmander no tiene kit"] = plain.rogue_kit == null
@@ -53,7 +60,7 @@ func _kit_text(kit: Kit) -> String:
 
 ## ¿Tiene alguna hoja de efecto que no sea la genérica de su tipo? (cuerpo, zona, pegada al Pokémon, chorro o rayo)
 func _has_animation(m: MoveData) -> bool:
-	for part in ["zona", "cuerpo", "chorro", "rayo"]:
+	for part in ["zona", "cuerpo", "chorro", "rayo", "caida"]:
 		if DB.vfx_part(m, part) != null:
 			return true
 	if DB.vfx_sheet("res://sprites/fx/moves/%s.png" % m.id) != null:
@@ -76,6 +83,27 @@ func _start(id: String) -> RogueRun:
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada" \
 		and is_instance_valid(world.companion) and not world.rogue.foes.is_empty(), 25.0)
 	return world.rogue
+
+
+## Los enemigos del modo: con kit si su línea tiene; el esbirro, solo el básico y la primera habilidad; el élite, todo.
+func _minions() -> void:
+	var f := RogueRun.load_floor()
+	var minion := CreatureInstance.create_rival(DB.species["rattata"], 5)
+	RogueKits.apply(minion)
+	RogueRun.make_minion(minion, f)
+	var c := Creature.new()
+	var elite := CreatureInstance.create_rival(DB.species["scyther"], 12)
+	RogueKits.apply(elite)
+	var mu := MoveUser.new()
+	mu.setup(minion)
+	var used: Array = mu.moves.map(func(m): return m.display_name)
+	r["Un esbirro con kit pelea con el básico y la primera habilidad (Rattata: %s)" % ", ".join(used)] = minion.rogue_kit != null 		and mu.moves.size() == int(f["minion_moves"]) and mu.slots[0] == minion.rogue_kit.moves[0] and mu.slots[3] == null 		and mu.moves.all(func(m): return m.power > 0.0)
+	var eu := MoveUser.new()
+	eu.setup(elite)
+	r["Un élite con kit tiene las 4 teclas y su definitiva espera la barra (Scyther)"] = eu.moves.size() == 4 and not eu.ult_ready(3)
+	mu.free()
+	eu.free()
+	c.free()
 
 
 ## Un enemigo quieto al lado, que no ataca ni se muere.
@@ -122,8 +150,9 @@ func _play(id: String) -> void:
 	var count := func(_t, _h, dmg): if dmg > 0.0: hits[0] += 1
 	me.hit_dealt.connect(count)
 	var t := 0.0
+	var near := Vector2(20, 0) if kit.moves[0].kind == MoveData.Kind.MELEE else Vector2(46, 0)  # (un golpe: pegado)
 	while t < 4.0 and inst.ult <= 0.0:
-		_hold(me, foe, Vector2(46, 0))
+		_hold(me, foe, near)
 		me.use_slot(0, foe.global_position - me.global_position, foe.global_position)
 		await get_tree().physics_frame
 		t += get_physics_process_delta_time()
@@ -136,7 +165,7 @@ func _play(id: String) -> void:
 		var before := me.moves.pp()
 		var used := me.use_slot(slot, foe.global_position - me.global_position, foe.global_position)
 		r["%s: %s sale, gasta PP y queda en recarga" % [name, kit.moves[slot].display_name]] = used and me.moves.pp() < before \
-			and me.moves.cooldowns[slot] > 0.5
+			and me.moves.cooldowns[slot] > 0.1
 		await _wait(1.0, me, foe)
 	# Movilidad
 	await _ready_to_act(me, foe)
@@ -157,6 +186,10 @@ func _play(id: String) -> void:
 	var ult_dmg := [0.0]  # (por el aviso del golpe y no por la vida: un muñeco Regenerador se cura al instante)
 	var tally := func(_t, h, dmg): if h != null and h.move == kit.moves[3]: ult_dmg[0] += dmg
 	me.hit_dealt.connect(tally)
+	var out := [false]
+	var seen := func(m): if m == kit.moves[3]: out[0] = true
+	me.move_released.connect(seen)
+	var harmless: bool = kit.moves[3].power <= 0.0  # (una definitiva de estado: Espora)
 	var fired := false
 	for attempt in 3:  # (si un salvaje le corta la carga, la barra queda y se prueba de nuevo)
 		await _ready_to_act(me, foe)
@@ -164,12 +197,17 @@ func _play(id: String) -> void:
 		inst.ult = 1.0
 		me.moves.reset_cooldown(3)
 		fired = me.use_slot(3, foe.global_position - me.global_position, foe.global_position)
-		await _wait(2.4, me, foe, false, 50.0)
-		if ult_dmg[0] > 0.0:
+		# (un chorro gira hacia el mouse: el muñeco lo sigue; lo demás tiene que alcanzarlo donde está)
+		var ultm: MoveData = kit.moves[3]
+		if ultm.cast_time > 0.0:  # (mientras carga apunta al mouse: el muñeco se queda adelante hasta que sale)
+			await _wait(ultm.cast_time + 0.03, me, foe, false, 46.0)
+		await _wait(2.4, me, foe, false, 50.0 if ultm.kind == MoveData.Kind.CHANNEL else 0.0)
+		if ult_dmg[0] > 0.0 or (harmless and out[0]):
 			break
 	var after_use := inst.ult
 	me.hit_dealt.disconnect(tally)
-	r["%s: con la barra llena sale %s, la vacía y pega (%d de daño)" % [name, kit.moves[3].display_name, int(ult_dmg[0])]] = 		fired and is_zero_approx(after_use) and ult_dmg[0] > 0.0
+	me.move_released.disconnect(seen)
+	r["%s: con la barra llena sale %s, la vacía y pega (%d de daño)" % [name, kit.moves[3].display_name, int(ult_dmg[0])]] = 		fired and out[0] and after_use < 0.5 and (ult_dmg[0] > 0.0 or harmless)
 	# Subir de nivel no le cambia los ataques
 	GameState.grant_exp(inst, 4000)
 	r["%s: al subir de nivel (Nv. %d) sigue con su kit" % [name, inst.level]] = inst.level > 10 and inst.equipped_moves == kit.moves \

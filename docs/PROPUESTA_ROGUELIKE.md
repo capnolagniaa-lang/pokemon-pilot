@@ -702,6 +702,9 @@ kits) que tengan sentido con cómo juega cada Pokémon. Se van viendo de a tanda
   `tools/build_desafio_kits.py` (tabla `KITS`; pisa los .tres). Efectos: `tools/make_desafio_vfx.py`.
 - **Tipos**: ajuste `flat_types` (lo prende `desafio.json`): ventaja ×1,25, desventaja e inmunidad ×0,8 (`Damage.flat`).
 - **Hechos**: Charmander, Squirtle, Bulbasaur (y sus evoluciones, por herencia).
+- **Bosque (2026-11-12)**: 15 líneas más (`tools/desafio_kits_bosque.py`), y los enemigos del modo usan el kit de su
+  línea (esbirro: básico + primera habilidad; élite: todo). Ritmo general en `build_desafio_kits.py`: `BASIC_MULT` 1,2 y
+  `ABILITY_CD` 0,6, medidos con el bot (ver docs/ROGUE_BALANCE_NOTAS.md).
 - **Falta**: kits de los enemigos de los biomas (tanda por bioma), la IA usándolos, definitiva mejorada al evolucionar,
   y volver a correr la batería de balance.
 

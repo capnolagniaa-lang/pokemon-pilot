@@ -60,3 +60,24 @@ de llegar, `attackers` (4 → 3) y `minion_hp`.
   colisión de piezas corregida). El "después" corrió entero sobre las salas nuevas.
 - **Política "rareza"** (elegir siempre la mejor rareza) y simulaciones "con X de entrada": están hechas en la batería
   pero no se corrieron tandas largas.
+
+## 2026-11-12 — Kits de 5 teclas, tipos aplanados y solo 1ª generación (tandas chicas)
+
+Cambió casi todo lo que medía la batería (especies de los biomas, tipos ×1,25 / ×0,8, tu Pokémon con kit, enemigos del
+Bosque con kit), así que las líneas base de arriba ya no valen. Lo medido, con tandas de 9 a 27 partidas (margen ±10
+puntos o más):
+
+| Paso | Llega a Brock | Le gana |
+|---|---|---|
+| Kits como se propusieron (básico ×0,55-0,65) | 0 de 6 | 0 |
+| Básico ×1,0 y recargas ×0,75 | 1 de 9 | 0 |
+| + el bot elige entre las teclas listas (antes una al azar cada 0,35 s: con kit casi siempre en recarga) | 1 de 12 | 0 |
+| Básico ×1,2, recargas ×0,6, definitiva carga con 1,2 vidas hechas / 0,9 recibidas | 10 de 24 | 0 |
+| + Brock sin Curtido | 8 de 24 | 0 |
+| + Brock con mejoras [0, 1] de nivel 1 (antes [1, 2] de nivel 2) | 14 de 27 | 4 (15 %) |
+
+Lectura: antes a Brock se le ganaba casi solo con Squirtle por el ×2 de Agua; con los tipos aplanados eso desaparece y
+Brock tiene que ser más liviano. Por inicial (última tanda, 9 cada uno): Squirtle 3 de 4 llegadas, Bulbasaur 1 de 8,
+Charmander 0 de 2 (y muere 3 veces en la primera sala). **Pendiente**: tanda larga con `tools/rogue_balance.py`,
+mirar a Charmander, y los objetos/bendiciones aislados de nuevo (los de tipo y los de esquive cambian de valor con los
+kits).

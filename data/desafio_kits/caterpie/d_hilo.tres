@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_hilo"
+display_name = "Hilo"
+element = ExtResource("2")
+kind = 7
+category = 0
+power = 15.0
+cooldown = 2.1
+knockback = 40.0
+lunge_range = 95.0
+lunge_speed = 400.0
+followup_delay = 0.1
+followup_power_mult = 0.5

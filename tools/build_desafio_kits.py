@@ -13,9 +13,15 @@ Orden de `moves`: básico (Clic izq., gratis), habilidad (Clic der.), habilidad 
 import os
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from desafio_kits_bosque import KITS_BOSQUE  # noqa: E402
+
 KIND = {"PROJECTILE": 0, "DASH": 1, "AREA": 2, "SHIELD": 3, "MELEE": 4, "ZONE": 5, "CHANNEL": 6, "LUNGE": 7, "WHIP": 8,
         "SELF_BUFF": 9}
 CAT = {"fisico": 0, "especial": 1, "estado": 2}
+
+BASIC_MULT = 1.2
+ABILITY_CD = 0.6
 
 # Estados propios de los kits: id -> (tipo, campos)
 STATUSES = {
@@ -109,10 +115,11 @@ def tres(script_class, script, fields, raw=()):
     for k, v in fields.items():
         if isinstance(v, str) and v.startswith("st:"):
             s = ref('Resource', 'res://data/status/%s.tres' % v[3:])
-        elif isinstance(v, str) and v.startswith("[st:"):
+        elif isinstance(v, str) and v.startswith("[st:"):  # "[st:a,b]" = varios
             ref('Script', 'res://scripts/resources/status_effect.gd')
             s = 'Array[ExtResource("%d")]([%s])' % (ext.index(('Script', 'res://scripts/resources/status_effect.gd')) + 1,
-                                                  ref('Resource', 'res://data/status/%s.tres' % v[4:-1]))
+                                                  ", ".join(ref('Resource', 'res://data/status/%s.tres' % x)
+                                                            for x in v[4:-1].split(",")))
         elif isinstance(v, str) and v.startswith("type:"):
             s = ref('Resource', 'res://data/types/%s.tres' % v[5:])
         elif isinstance(v, str) and v.startswith("res:"):
@@ -148,6 +155,9 @@ def move_fields(m):
 
 
 def main(root):
+    KITS.update(KITS_BOSQUE)
+    ids = [m["id"] for k in KITS.values() for m in k["moves"] + [k["mobility"]]]
+    assert len(ids) == len(set(ids)), "ids repetidos: %s" % sorted(x for x in ids if ids.count(x) > 1)
     for sid, (elem, fields) in STATUSES.items():
         f = dict(id=sid)
         f.update(fields)
@@ -155,6 +165,11 @@ def main(root):
         write(os.path.join(root, "data/status/%s.tres" % sid), tres("StatusEffect", "status_effect", f))
     for sp, kit in KITS.items():
         base = "data/desafio_kits/%s" % sp
+        # Ritmo general (se ajusta acá para todos; medido con --autotest-rogue-balance): cuánto pega el básico sobre su
+        # potencia y cuánto duran las recargas de las habilidades y la movilidad sobre lo escrito en la tabla.
+        kit["moves"][0]["power_mult"] = BASIC_MULT
+        for m in kit["moves"][1:3] + [kit["mobility"]]:
+            m["cooldown"] = round(m["cooldown"] * ABILITY_CD, 2)
         paths = []
         for m in kit["moves"] + [kit["mobility"]]:
             write(os.path.join(root, base, m["id"] + ".tres"), tres("MoveData", "move_data", move_fields(m)))

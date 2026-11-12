@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_tajo_cruzado"
+display_name = "Tajo Cruzado"
+element = ExtResource("2")
+kind = 4
+category = 0
+power = 120.0
+cooldown = 1.0
+cast_time = 0.3
+knockback = 340.0
+final_knockback = 340.0
+melee_step = 50.0
+melee_range = 18.0
+swing_radius = 20.0
+recovery = 0.25

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4"]
+[ext_resource type="Resource" path="res://data/status/herido.tres" id="5"]
+
+[resource]
+script = ExtResource("1")
+id = "d_mordisco_toxico"
+display_name = "Mordisco Tóxico"
+element = ExtResource("2")
+kind = 7
+category = 0
+power = 100.0
+cooldown = 1.0
+cast_time = 0.3
+knockback = 140.0
+lunge_range = 100.0
+lunge_speed = 440.0
+followup_delay = 0.14
+followup_power_mult = 0.5
+followup_knockback = 220.0
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4"), ExtResource("5")])

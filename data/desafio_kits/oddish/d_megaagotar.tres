@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/planta.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_megaagotar"
+display_name = "Megaagotar"
+element = ExtResource("2")
+kind = 6
+category = 1
+power = 90.0
+power_mult = 0.22
+cooldown = 1.0
+cast_time = 0.3
+knockback = 40.0
+channel_time = 1.2
+cone_angle_deg = 30.0
+cone_length = 95.0
+tick_interval = 0.15
+drain = 0.6

@@ -54,6 +54,12 @@ func wants_slot(slot: int) -> bool:
 	if now - _choice_time > 0.35:
 		_choice_time = now
 		_choice = randi() % MoveUser.SLOT_COUNT
+		if is_instance_valid(_actor) and _actor.moves.kit != null:
+			# Con kit de 5 teclas (Modo Desafío) casi todo está en recarga o es la definitiva sin cargar: elige entre lo
+			# que está listo, y si hay una habilidad o la definitiva, la prefiere al básico (como haría cualquiera).
+			var ready: Array = range(MoveUser.SLOT_COUNT).filter(func(i): return _actor.moves.can_use(i))
+			var special: Array = ready.filter(func(i): return i != MoveUser.BASIC_SLOT)
+			_choice = special.pick_random() if not special.is_empty() and randf() < 0.6 else (MoveUser.BASIC_SLOT if ready.has(MoveUser.BASIC_SLOT) else -1)
 	return slot == _choice
 
 

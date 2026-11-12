@@ -70,8 +70,8 @@ var kit: Kit = null
 ## Recarga completa del esquive o de la movilidad en curso (para la interfaz).
 var dodge_total := DODGE_COOLDOWN
 ## Daño hecho (o recibido) que llena la definitiva, en vidas propias: 1,6 vidas de daño hecho, o 1,2 recibidas.
-const ULT_PER_DEALT := 1.6
-const ULT_PER_TAKEN := 1.2
+const ULT_PER_DEALT := 1.2
+const ULT_PER_TAKEN := 0.9
 
 
 ## Las ranuras salen de los movimientos equipados de la criatura (CreatureInstance.equipped_moves).
@@ -92,7 +92,7 @@ func setup(instance: CreatureInstance) -> void:
 		source = by_role(source)  # rivales y salvajes: el más flojo de básico, el más fuerte de definitiva
 	slots.clear()
 	for i in SLOT_COUNT:
-		slots.append(source[i] if i < source.size() else null)
+		slots.append(source[i] if i < source.size() and (kit == null or i < instance.kit_limit) else null)
 	cooldowns.resize(SLOT_COUNT)
 	cooldowns.fill(0.0)
 	cooldown_total.resize(SLOT_COUNT)

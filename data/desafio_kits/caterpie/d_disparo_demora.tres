@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/seda.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_disparo_demora"
+display_name = "Disparo Demora"
+element = ExtResource("2")
+kind = 0
+category = 1
+power = 30.0
+power_mult = 1.2
+cooldown = 0.6
+knockback = 30.0
+speed = 260.0
+lifetime = 0.6
+size = 4.0
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])

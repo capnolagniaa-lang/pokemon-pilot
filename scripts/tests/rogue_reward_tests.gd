@@ -27,7 +27,7 @@ func run_tests() -> void:
 	r["Hay %d tipos de recompensa, cada uno con su ícono y su peso, y el arco de la puerta%s" % [RogueRewards.TYPES.size(),
 		"" if missing.is_empty() else " — falta: " + "; ".join(missing)]] = missing.is_empty() and RogueRewards.TYPES.size() == 9
 
-	RogueRun.begin(DB.species["pikachu"])  # (uno sin kit de 5 teclas: con kit no hay MT)
+	RogueRun.begin(DB.species["geodude"])  # (uno sin kit de 5 teclas: con kit no hay MT)
 	GameState.rogue["biomes"] = ["bosque", "cueva", "volcan", "hielo", "costa"]
 	GameState.rogue["rewards"] = ["bendicion", "dinero"]
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")

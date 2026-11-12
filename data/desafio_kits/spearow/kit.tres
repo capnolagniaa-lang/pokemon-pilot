@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Kit" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2"]
+[ext_resource type="Resource" path="res://data/desafio_kits/spearow/d_picotazo.tres" id="3"]
+[ext_resource type="Resource" path="res://data/desafio_kits/spearow/d_ataque_furia.tres" id="4"]
+[ext_resource type="Resource" path="res://data/desafio_kits/spearow/d_malicioso.tres" id="5"]
+[ext_resource type="Resource" path="res://data/desafio_kits/spearow/d_pico_taladro.tres" id="6"]
+[ext_resource type="Resource" path="res://data/desafio_kits/spearow/d_persecucion.tres" id="7"]
+
+[resource]
+script = ExtResource("1")
+archetype = "bruiser"
+preferred_range = 28.0
+moves = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")])
+role = "Cuerpo a cuerpo"
+mobility = ExtResource("7")
+mobility_back = false

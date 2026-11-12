@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/lucha.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/frenado.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_patada_baja"
+display_name = "Patada Baja"
+element = ExtResource("2")
+kind = 4
+category = 0
+power = 50.0
+cooldown = 2.1
+knockback = 120.0
+final_knockback = 120.0
+melee_step = 30.0
+swing_radius = 16.0
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])

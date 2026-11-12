@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/bicho.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_doble_ataque"
+display_name = "Doble Ataque"
+element = ExtResource("2")
+kind = 7
+category = 0
+power = 90.0
+cooldown = 1.0
+cast_time = 0.3
+knockback = 120.0
+lunge_range = 120.0
+lunge_speed = 480.0
+followup_delay = 0.15
+followup_power_mult = 1.0
+followup_knockback = 260.0
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])

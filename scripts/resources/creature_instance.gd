@@ -48,6 +48,8 @@ var pp := -1.0
 var rogue_kit: Kit = null
 ## Carga de la definitiva de ese kit, de 0 a 1 (se llena pegando y recibiendo golpes).
 var ult := 0.0
+## Cuántas teclas del kit usa, desde el básico (4 = todas; los esbirros del modo, menos: `RogueRun.make_minion`).
+var kit_limit := 4
 ## Para más adelante (Etapa 6): apodo y naturaleza. Vacíos por ahora.
 @export var nickname: String = ""
 @export var nature: String = ""

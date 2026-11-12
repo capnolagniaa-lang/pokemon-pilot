@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/normal.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_ataque_furia"
+display_name = "Ataque Furia"
+element = ExtResource("2")
+kind = 4
+category = 0
+power = 22.0
+cooldown = 2.4
+knockback = 40.0
+final_knockback = 200.0
+melee_step = 24.0
+combo_steps = 3
+combo_window = 0.7
+combo_step_cooldown = 0.2

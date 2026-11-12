@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_puas_toxicas"
+display_name = "Púas Tóxicas"
+element = ExtResource("2")
+kind = 5
+category = 0
+power = 20.0
+power_mult = 0.3
+cooldown = 4.8
+knockback = 0.0
+zone_radius = 30.0
+zone_duration = 6.0
+placement_range = 90.0
+zone_traps = false
+zone_tick = 0.5
+zone_max_count = 2
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])
