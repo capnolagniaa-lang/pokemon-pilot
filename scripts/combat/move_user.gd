@@ -344,8 +344,6 @@ func consume(slot: int) -> Array:
 	var step := 0
 	force_next = false
 	last_used = slot
-	if kit != null and slot == ULT_SLOT:
-		set_ult(0.0)
 	gap_left = float(GameState.setting("attack_gap"))
 	if m.combo_steps <= 1 or _combo_step[slot] == 0:
 		# (un combo gasta una vez, al empezar; un canalizado, una parte: el resto mientras dura, `channel_drain`)

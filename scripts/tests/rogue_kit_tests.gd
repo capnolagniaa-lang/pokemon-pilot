@@ -157,9 +157,17 @@ func _play(id: String) -> void:
 	var ult_dmg := [0.0]  # (por el aviso del golpe y no por la vida: un muñeco Regenerador se cura al instante)
 	var tally := func(_t, h, dmg): if h != null and h.move == kit.moves[3]: ult_dmg[0] += dmg
 	me.hit_dealt.connect(tally)
-	var fired := me.use_slot(3, foe.global_position - me.global_position, foe.global_position)
+	var fired := false
+	for attempt in 3:  # (si un salvaje le corta la carga, la barra queda y se prueba de nuevo)
+		await _ready_to_act(me, foe)
+		me.statuses.clear()
+		inst.ult = 1.0
+		me.moves.reset_cooldown(3)
+		fired = me.use_slot(3, foe.global_position - me.global_position, foe.global_position)
+		await _wait(2.4, me, foe, false, 50.0)
+		if ult_dmg[0] > 0.0:
+			break
 	var after_use := inst.ult
-	await _wait(2.4, me, foe, false, 50.0)
 	me.hit_dealt.disconnect(tally)
 	r["%s: con la barra llena sale %s, la vacía y pega (%d de daño)" % [name, kit.moves[3].display_name, int(ult_dmg[0])]] = 		fired and is_zero_approx(after_use) and ult_dmg[0] > 0.0
 	# Subir de nivel no le cambia los ataques

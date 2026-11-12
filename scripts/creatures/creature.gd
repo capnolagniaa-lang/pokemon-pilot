@@ -613,6 +613,8 @@ func release_move(msg: Dictionary) -> void:
 	if m.resource_scaling > 0.0 and signature != null:
 		hit.damage_mult *= 1.0 + m.resource_scaling * msg.get("spent", 0.0) / signature.data.max_value
 	move_released.emit(m)
+	if moves.kit != null and m == moves.slots[MoveUser.ULT_SLOT]:
+		moves.set_ult(0.0)  # la definitiva se gasta al salir: si le cortan la carga, la barra queda
 	_body_vfx(m, aim)
 	if m.special != "":
 		SpecialMoves.run(m, self)
