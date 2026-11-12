@@ -18,6 +18,11 @@ const CATALOG := "res://data/rogue/piezas/%s.json"
 const ROOM := "res://data/rogue/salas/%s.json"
 ## Capa de colisión "mundo" (frena a personas, Pokémon y disparos, como una pared).
 const WORLD_LAYER := 1
+## El paso entre salas: las mismas columnas y los mismos px en todas (tools/paint_arenas.py: GATE_COLS, GATE_X0/X1; ahí
+## se corrige también la pintura del marco para que el hueco quede en ese lugar).
+const GATE_COLS := Vector2i(29, 35)
+const GATE_X0 := 464
+const GATE_X1 := 560
 
 
 static func has_room(arena_id: String) -> bool:
@@ -56,6 +61,16 @@ static func populate(parent: Node, zone: Zone, arena_id: String) -> Array[Node2D
 			for cell in base_cells(def, at):
 				solid[cell] = true
 	zone.set_meta(ExtraContent.SOLID_META, solid)
+	# Los umbrales de piedra de sus dos pasos (arriba y abajo): en la unión con otra sala forman un portal.
+	var rows: int = zone.ground.get_used_rect().end.y
+	for side in [1, -1]:
+		var th := RogueThreshold.new()
+		th.width = float(GATE_X1 - GATE_X0)
+		th.side = side
+		th.position = zone.global_position + Vector2((GATE_X0 + GATE_X1) / 2.0, 6.0 if side == 1 else float(rows * Zone.TILE) - 6.0)
+		th.set_meta("piece", "umbral")
+		parent.add_child(th)
+		out.append(th)
 	return out
 
 

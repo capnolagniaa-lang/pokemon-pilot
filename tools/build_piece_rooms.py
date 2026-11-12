@@ -40,7 +40,7 @@ from piece_room_data import BIOMES  # noqa: E402
 
 # Todas las salas: id -> (nombre, marco, semilla, escenas, bioma)
 ROOMS = {rid: tuple(room) + (biome,) for biome, d in BIOMES.items() for rid, room in d["rooms"].items()}
-OPEN = [(30, 0, 4, 10), (30, 40, 4, 8)]
+OPEN = [(29, 0, 6, 10), (29, 40, 6, 8)]  # (solo informativo en pinturas.json: el paso lo pone paint_arenas.pixel_plan)
 
 
 def lava_cells(img):
@@ -66,7 +66,8 @@ def lava_cells(img):
 def frame_plan(root, frame, cfg):
     """(piso, líquido) del marco: el líquido es el agua (se pisa la de la orilla) o, en el volcán, la lava (no se pisa)."""
     img = Image.open(os.path.join(root, "art_src/arenas/%s.png" % frame))
-    floor, water = paint_arenas.color_plan(img, W, H, cfg["color"])
+    # El mismo plano que arma paint_arenas.py para la sala: marco corregido, paredes por medida y pasos en su lugar.
+    img, floor, water = paint_arenas.pixel_plan(img, {"pixel": [W * T, H * T, 128], "auto_color": cfg["color"]}, W, H)
     if cfg.get("lava"):
         water = lava_cells(img)
         floor -= water
@@ -85,13 +86,6 @@ def frame_plan(root, frame, cfg):
         if len(part) > len(best):
             best = part
     water = best if len(best) >= 40 else set()
-    rim = {(x, y) for x in range(W) for y in range(H) if x < 1 or y < 1 or x >= W - 1 or y >= H - 1}
-    floor -= rim
-    water -= rim
-    for x0, y0, w, h in OPEN:
-        cells = {(x, y) for x in range(x0, x0 + w) for y in range(y0, y0 + h)}
-        floor |= cells
-        water -= cells
     return floor, water
 
 
@@ -128,7 +122,7 @@ def base_cells(d, x, y, grow=0.0):
 def connected(floor, blocked):
     free = floor - blocked
     start = (32, H - 2)
-    if start not in free or (32, 1) not in free:
+    if start not in free or (32, 1) not in free:  # (el paso, en paint_arenas.GATE_COLS)
         return False, 0.0
     seen = {start}
     queue = deque(seen)
@@ -153,7 +147,7 @@ def build(root, rid, attempt=0, rotate=0):
     d_sea = distance(list(sea), floor | sea)
     d_wall = distance(list(walls), floor | walls)
     # Donde no va nada sólido: los pasos de entrada y salida (con margen), el frente de las puertas de recompensa y el centro.
-    keep = {(x, y) for x in range(26, 38) for y in list(range(0, 14)) + list(range(36, H))}
+    keep = {(x, y) for x in range(25, 39) for y in list(range(0, 15)) + list(range(35, H))}
     keep |= {(x, y) for x in range(22, 42) for y in range(11, 16)}
     if cfg.get("trail"):  # el sendero pintado del marco, de la entrada a la salida
         keep |= {(x, y) for x in range(29, 35) for y in range(H)}
@@ -274,7 +268,8 @@ def build(root, rid, attempt=0, rotate=0):
 def preview(root, rid, room, out_dir):
     BIOME = room["biome"]
     catalog = json.load(open(os.path.join(root, "data/rogue/piezas/%s.json" % BIOME), encoding="utf8"))
-    bg = Image.open(os.path.join(root, "art_src/arenas/%s.png" % room["frame"])).convert("RGB").resize((W * T, H * T), Image.BOX).convert("RGBA")
+    bg = paint_arenas.pixel_frame(Image.open(os.path.join(root, "art_src/arenas/%s.png" % room["frame"])),
+                                  {"pixel": [W * T, H * T, 128], "auto_color": BIOMES[BIOME]["color"]})[0].convert("RGBA")
     order = sorted(room["pieces"], key=lambda p: ({"zona": 0, "decorado": 1, "solida": 2}[catalog[p[0]]["kind"]], p[2]))
     for p in order:
         d = catalog[p[0]]

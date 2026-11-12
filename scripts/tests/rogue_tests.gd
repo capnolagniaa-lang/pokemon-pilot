@@ -653,6 +653,10 @@ func showcase() -> void:
 		for f in world.rogue.foes:
 			f.visible = false
 			f.process_mode = Node.PROCESS_MODE_DISABLED
+		if args.has("--open"):  # los portones abiertos (para ver la unión entre dos salas)
+			for g in world.rogue.gates.values():
+				if is_instance_valid(g):
+					g.queue_free()
 		world.companion.global_position = world.rogue._cell_pos(cell)
 		world.trainer.global_position = world.companion.global_position + Vector2(-16, 10)
 		world.camera.snap()

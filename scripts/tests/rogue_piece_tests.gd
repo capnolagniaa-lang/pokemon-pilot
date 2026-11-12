@@ -19,12 +19,47 @@ func run_tests() -> void:
 			await _check_biome(f, biome)
 			done.append(biome)
 	r["Biomas por piezas revisados: %s" % ", ".join(done)] = done.has("costa") or only != ""
+	if only == "":
+		_check_gates(f)
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[piezas] %s %s" % ["OK   " if r[key] else "FALLO", key])
 	print("[autotest-rogue-pieces] -> ", "OK" if ok else "FALLO")
 	GameState.rogue = {}
 	get_tree().quit(0 if ok else 1)
+
+
+## El paso entre salas (bug del usuario 2026-11-12: el corredor de una sala daba contra la pared de la siguiente): en
+## TODA sala por piezas el hueco de arriba y el de abajo están en las mismas columnas, en el plano y en la pintura, así
+## cualquier sala empalma con cualquier otra.
+func _check_gates(f: Dictionary) -> void:
+	var cols: Array = range(RoomPieces.GATE_COLS.x, RoomPieces.GATE_COLS.y)
+	var ids: Array[String] = []
+	var bad: Array[String] = []
+	for biome: String in f["biomes"]:
+		for id: String in f["biomes"][biome]["rooms"]:
+			if not RoomPieces.has_room(id):
+				continue
+			ids.append(id)
+			var rows: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/arenas/planos/%s.json" % id))["rows"]
+			# Por celdas: en las filas del borde (y unas más adentro, toda la pared) lo único libre es el paso, entero.
+			for y in [0, 1, 2, rows.size() - 3, rows.size() - 2, rows.size() - 1]:  # (la pared más fina mide 3 filas)
+				var free: Array = range(str(rows[y]).length()).filter(func(x): return str(rows[y])[x] == ".")
+				if free != cols:
+					bad.append("%s fila %d: libre en %s" % [id, y, free])
+			# Por píxeles: en la pintura, el piso del paso llega al borde (es el umbral de piedra, igual en todas) y a los
+			# costados hay pared (más oscura).
+			var img: Image = (load("res://sprites/arenas/%s.png" % id) as Texture2D).get_image()
+			for y in [2, img.get_height() - 3]:
+				for x in range(RoomPieces.GATE_X0 + 6, RoomPieces.GATE_X1 - 6, 10):
+					var c := img.get_pixel(x, y)
+					# (la paleta reducida de cada sala tiñe un poco la piedra: se compara la luminosidad, no el color)
+					if absf(c.get_luminance() - 0.44) > 0.2:
+						bad.append("%s: en (%d, %d) el paso no es piso de umbral (%s)" % [id, x, y, c.to_html(false)])
+						break
+	var pairs := ids.size() * ids.size()
+	r["El paso está en las mismas columnas (%d-%d) en las %d salas, en el plano y en la pintura: empalman los %d pares posibles%s" % [
+		cols[0], cols[-1], ids.size(), pairs, "" if bad.is_empty() else " — " + "; ".join(bad.slice(0, 5))]] = bad.is_empty() and ids.size() >= 36
 
 
 func _check_biome(f: Dictionary, biome: String) -> void:
@@ -138,6 +173,28 @@ func _check_biome(f: Dictionary, biome: String) -> void:
 		await get_tree().physics_frame
 		t += get_physics_process_delta_time()
 	r[tag + "%s frena: empujando contra su base no se la atraviesa" % wide.get_meta("piece")] = me.global_position.y > wide.global_position.y + 3.0
+	# El paso de una sala a la de arriba (de otro bioma), a pie: por el borde izquierdo y por el derecho del corredor.
+	var z0: Zone = run.chain[0]
+	var z1: Zone = run.chain[1]
+	for g in run.gates.values():
+		if is_instance_valid(g):
+			g.open()
+	await get_tree().physics_frame
+	var crossed := 0
+	for gx: float in [RoomPieces.GATE_X0 + 10.0, RoomPieces.GATE_X1 - 10.0]:
+		me.global_position = z0.global_position + Vector2(gx, 150.0)
+		var tt := 0.0
+		while tt < 4.0 and me.global_position.y > z1.global_position.y + float(z1.ground.get_used_rect().end.y * Zone.TILE) - 110.0:
+			me.velocity = Vector2(0, -110)
+			me.move_and_slide()
+			await get_tree().physics_frame
+			tt += get_physics_process_delta_time()
+		if me.global_position.y <= z1.global_position.y + float(z1.ground.get_used_rect().end.y * Zone.TILE) - 110.0 \
+				and absf(me.global_position.x - (z0.global_position.x + gx)) < 6.0:
+			crossed += 1
+	r[tag + "Se cruza a pie a la sala de arriba (%s → %s) por los dos bordes del corredor, derecho" % [run.chain_data[0].id, run.chain_data[1].id]] = crossed == 2
+	var thresholds := run.pieces.filter(func(n): return n is RogueThreshold)
+	r[tag + "Cada sala por piezas tiene su umbral de piedra arriba y abajo (%d)" % thresholds.size()] = thresholds.size() >= 6
 	var count := run.pieces.size()
 	run._unload_chain()
 	await get_tree().process_frame

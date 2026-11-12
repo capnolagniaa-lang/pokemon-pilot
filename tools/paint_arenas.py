@@ -153,6 +153,141 @@ def water_in_sprite(root, biome, pid, flipped):
     return mask, im.size
 
 
+# --- Salas por piezas: el paso entre salas se genera por código (2026-11-12) -----------------------------------------
+# Bug que encontró el usuario jugando: el corredor de una sala daba contra la pared de la siguiente. La colisión del
+# paso estaba siempre en las mismas columnas, pero cada marco tenía el hueco PINTADO donde Qwen lo puso. Ahora, en toda
+# sala `pixel`, el hueco de arriba y el de abajo se llevan al mismo lugar y al mismo ancho (GATE_X0..GATE_X1 px = las
+# columnas GATE_COLS), en la pintura y en el plano, y el piso del paso se funde a piedra neutra hacia el borde para que
+# el cambio de bioma no quede cortado en seco. Además las cuatro paredes chocan enteras por medida (no por color: el
+# borde nevado de los acantilados de hielo contaba como piso).
+GATE_COLS = (29, 35)          # columnas del paso [desde, hasta)
+GATE_X0, GATE_X1 = 464, 560   # lo mismo en px de la sala (1024 de ancho)
+GATE_STONE = (118, 112, 106)  # el piso neutro del umbral
+GATE_FADE = 44                # px del borde en los que el piso del paso se funde a piedra
+
+
+def _px_kind(r, g, b, ac):
+    """'f' piso, 'w' agua o 'x' pared, con la misma regla que color_plan (un píxel)."""
+    import colorsys
+    hh, ss, vv = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
+    hue = hh * 360.0
+    if vv * 255.0 < ac.get("min_v", 95):
+        return "x"
+    if ac.get("water") and 150.0 <= hue <= 250.0 and ss >= 0.25:
+        return "w"
+    if ac.get("water") and ac.get("foam") and ss < 0.22 and vv > 0.78:
+        return "w"
+    lo, hi = ac.get("hue", [25.0, 150.0])
+    if ac.get("any_hue") or (lo <= hue <= hi and ac.get("min_s", 0.3) <= ss <= ac.get("max_s", 1.0)):
+        return "f"
+    return "x"
+
+
+def _wall_depth(px, ac, along, across_at, length, flip, limit=200):
+    """Grosor de una pared, en px: en cada línea de `along`, el último píxel de pared antes de `limit`; la mediana."""
+    depths = []
+    for a in along:
+        last = 0
+        for d in range(0, limit, 2):
+            x, y = across_at(a, (length - 1 - d) if flip else d)
+            r, g, b = px[x, y]
+            if _px_kind(r, g, b, ac) == "x" and not (r > 170 and g < r * 0.75 and b < g):  # (la lava no es pared)
+                last = d + 2
+        depths.append(last)
+    depths.sort()
+    return depths[len(depths) * 3 // 10] if depths else 0  # (de las más finas: lo dudoso lo decide el color)
+
+
+def pixel_frame(img, cfg):
+    """El marco de una sala `pixel`, a la resolución del juego y con los dos pasos en su lugar. Devuelve
+    (imagen RGB, [arriba, abajo, izquierda, derecha] = grosor de cada pared en px)."""
+    pw, ph = cfg["pixel"][0], cfg["pixel"][1]
+    ac = cfg["auto_color"]
+    im = img.convert("RGB").resize((pw, ph), Image.BOX)
+    px = im.load()
+    cols = [x for x in range(120, pw - 120, 24) if not (GATE_X0 - 110 <= x <= GATE_X1 + 110)]
+    rows = list(range(140, ph - 140, 24))
+    top = _wall_depth(px, ac, cols, lambda a, d: (a, d), ph, False)
+    bottom = _wall_depth(px, ac, cols, lambda a, d: (a, d), ph, True)
+    left = _wall_depth(px, ac, rows, lambda a, d: (d, a), pw, False)
+    right = _wall_depth(px, ac, rows, lambda a, d: (d, a), pw, True)
+    for band, flip in ((top, False), (bottom, True)):
+        if band < 16:
+            continue
+        y0, y1 = (ph - band - 10, ph) if flip else (0, band + 10)
+        # El hueco pintado: las columnas que son piso en casi toda la franja de pared (la corrida más cercana al medio).
+        ys = [(ph - 1 - d) if flip else d for d in range(4, max(8, band - 6), 3)]
+        open_x = [x for x in range(200, pw - 200) if sum(1 for y in ys if _px_kind(*px[x, y], ac) != "x") >= len(ys) * 0.7]
+        runs, start = [], None
+        for x in open_x + [10 ** 6]:
+            if start is None:
+                start = prev = x
+            elif x != prev + 1:
+                runs.append((start, prev))
+                start = x
+            prev = x
+        runs = [r for r in runs if r[1] - r[0] >= 24]
+        if runs:  # (si el hueco pintado no se reconoce, un portón negro por ejemplo, se abre igual: ver abajo)
+            gx0, gx1 = min(runs, key=lambda r: abs((r[0] + r[1]) / 2.0 - pw / 2.0))
+            pad = 30
+            box = (max(0, gx0 - pad), y0, min(pw, gx1 + pad), y1)
+            patch = im.crop(box)
+            k = max(0.6, min(1.9, (GATE_X1 - GATE_X0) / float(gx1 - gx0)))
+            patch = patch.resize((max(8, round(patch.width * k)), patch.height), Image.NEAREST)
+            # Donde estaba el hueco va pared (un tramo de al lado, espejado); después, el hueco en su lugar.
+            w0 = box[2] - box[0]
+            sx = box[0] - w0 if box[0] - w0 >= 60 else box[2]
+            wall = im.crop((sx, y0, sx + w0, y1)).transpose(Image.FLIP_LEFT_RIGHT)
+            im.paste(wall, (box[0], y0))
+            cx = (GATE_X0 + GATE_X1) // 2
+            im.paste(patch, (cx - patch.width // 2, y0))
+        px = im.load()
+        # El paso es piso sí o sí: lo que quedó oscuro adentro (un hueco pintado negro o más angosto) se rellena con el
+        # piso de la sala (la franja de justo adentro, repetida).
+        inner = (band + 14) if not flip else (ph - band - 15)
+        for d in range(band + 4):
+            y = (ph - 1 - d) if flip else d
+            for x in range(GATE_X0, GATE_X1):
+                if _px_kind(*px[x, y], ac) == "x":
+                    src_y = inner + (d % 24) * (1 if not flip else -1)
+                    px[x, y] = px[x, max(0, min(ph - 1, src_y))]
+        # El piso del paso se funde a piedra neutra hacia el borde de la sala.
+        for d in range(GATE_FADE):
+            y = (ph - 1 - d) if flip else d
+            a = 0.9 * (1.0 - d / float(GATE_FADE))
+            for x in range(GATE_X0 - 6, GATE_X1 + 6):
+                r, g, b = px[x, y]
+                if _px_kind(r, g, b, ac) == "x" and not (GATE_X0 <= x < GATE_X1):
+                    continue
+                shade = 0.86 if ((x // 16 + d // 12) % 2 == 0) else 1.0  # losas
+                px[x, y] = tuple(int(c * (1.0 - a) + n * shade * a) for c, n in zip((r, g, b), GATE_STONE))
+    return im, [top, bottom, left, right]
+
+
+def pixel_plan(img, cfg, w, h):
+    """(imagen del marco, piso, agua) de una sala `pixel`: el plano por color sobre el marco ya corregido, con las cuatro
+    paredes enteras y los dos pasos en GATE_COLS."""
+    im, (top, bottom, left, right) = pixel_frame(img, cfg)
+    floor, water = color_plan(im, w, h, cfg["auto_color"])
+    t = 16.0
+    wall = {(x, y) for x in range(w) for y in range(h)
+            if (y + 0.5) * t < top or (y + 0.5) * t > h * t - bottom or (x + 0.5) * t < left or (x + 0.5) * t > w * t - right
+            or x < 1 or y < 1 or x >= w - 1 or y >= h - 1}
+    floor -= wall
+    water -= wall
+    # La orilla: una celda mitad arena y mitad agua no es pared (quedaba una hilera sólida entre la playa y el mar).
+    for c in [(x, y) for x in range(w) for y in range(h)]:
+        if c in floor or c in water or c in wall:
+            continue
+        near = [(c[0] + 1, c[1]), (c[0] - 1, c[1]), (c[0], c[1] + 1), (c[0], c[1] - 1)]
+        if any(n in floor for n in near) and any(n in water for n in near):
+            water.add(c)
+    gate = {(x, y) for x in range(*GATE_COLS) for y in list(range(0, int(top // t) + 3)) + list(range(h - int(bottom // t) - 3, h))}
+    floor |= gate
+    water -= gate
+    return im, floor, water
+
+
 def piece_water(root, arena_id, w, h):
     """Salas por piezas (data/rogue/salas/<id>.json): las celdas de agua de sus piezas "zona" (charcos, pozas) = las
     que tienen al menos la mitad de sus pixeles sobre el celeste del dibujo. El resto de la sala es el plano del marco."""
@@ -191,7 +326,11 @@ def build(root, arena_id, cfg):
     img = Image.open(src)
     floor = auto_plan(img, w, h, cfg["auto"]) if cfg.get("auto") is not None else set()
     water = set()
-    if cfg.get("auto_color") is not None:
+    pixel_img = None
+    if cfg.get("pixel"):
+        pixel_img, floor, water = pixel_plan(img, cfg, w, h)
+        cfg = dict(cfg, border=0, open=[])  # (las paredes y los pasos ya los puso pixel_plan)
+    elif cfg.get("auto_color") is not None:
         floor, water = color_plan(img, w, h, cfg["auto_color"])
     edge = int(cfg.get("border", 0))  # (el borde de la sala choca siempre, pinte lo que pinte Qwen ahi)
     if edge > 0:
@@ -242,7 +381,7 @@ def build(root, arena_id, cfg):
         # Pixel art a la resolucion del juego (salas por piezas): la pintura se achica a `pixel` = [ancho, alto, colores]
         # promediando y con paleta chica sin tramado; en el juego va 1 a 1 (un pixel = un pixel de los sprites).
         pw, ph, colors = cfg["pixel"]
-        small = img.convert("RGB").resize((pw, ph), Image.BOX)
+        small = pixel_img
         small.quantize(colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).convert("RGB").save(dst)
         print("%-26s %dx%d, %d de piso, %d de agua (pixel art %dx%d)" % (arena_id, w, h, sum(r.count(".") for r in rows), len(water), pw, ph))
         return
