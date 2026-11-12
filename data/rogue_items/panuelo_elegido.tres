@@ -10,7 +10,7 @@ giver = "objeto"
 slot = "pasiva"
 effect = "speed"
 params = {
-"pct": 0.1
+"pct": 0.15
 }
 scaled = PackedStringArray("pct")
 text = "Te movés {pct%} más rápido."

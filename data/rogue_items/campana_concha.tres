@@ -10,7 +10,7 @@ giver = "objeto"
 slot = "pasiva"
 effect = "lifesteal"
 params = {
-"pct": 0.06
+"pct": 0.05
 }
 scaled = PackedStringArray("pct")
 text = "Te curás {pct%} del daño que hacés con tus ataques."

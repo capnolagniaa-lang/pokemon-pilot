@@ -59,7 +59,7 @@ func run_tests() -> void:
 			distinct = false
 		for m in got:
 			seen[m["id"]] = true
-	r["El sorteo da mejoras distintas y en 200 tiradas salen todas (%s)" % ", ".join(seen.keys())] = distinct and seen.size() == list.size()
+	r["El sorteo da mejoras distintas y en 200 tiradas salen todas (%s)" % ", ".join(seen.keys())] = distinct and seen.size() == list.values().filter(func(x): return float(x["weight"]) > 0.0).size()
 	r["A más nivel, más número (Furioso: %s → %s)" % [mods.describe("furioso", 1), mods.describe("furioso", 2)]] = \
 		mods.value("furioso", 2) > mods.value("furioso", 1) and mods.describe("furioso", 1).contains("%")
 
@@ -122,7 +122,22 @@ func run_tests() -> void:
 	mods.assign_boss(team)
 	r["Los Pokémon de Brock también: %s" % ", ".join(team.map(func(t): return "%s (%s)" % [t.species.display_name,
 		", ".join(RogueFoeMods.of(t).map(func(m): return mods.mod_name(m["id"])))]))] = \
-		range(team.size()).all(func(i): return RogueFoeMods.of(team[i]).size() == int(f["boss"]["mods"][i])) and RogueFoeMods.of(team[-1]).size() >= 1
+		range(team.size()).all(func(i): return RogueFoeMods.of(team[i]).size() == int(f["boss"]["mods"][i]) + f["boss"]["fixed_mods"].size()) \
+		and team.all(func(t): return RogueFoeMods.of(t).any(func(m): return m["id"] == "curtido"))
+	foe = await _one("curtido", 1)
+	foe.process_mode = Node.PROCESS_MODE_DISABLED
+	var strong := HitInfo.new()
+	strong.effectiveness = 2.0
+	foe.instance.hp = foe.instance.max_hp() * 0.5
+	foe.damage_received.emit(20.0, strong)
+	var back: float = foe.instance.hp - foe.instance.max_hp() * 0.5
+	var weak := HitInfo.new()
+	weak.effectiveness = 1.0
+	foe.instance.hp = foe.instance.max_hp() * 0.5
+	foe.damage_received.emit(20.0, weak)
+	r["Curtido (jefes): de un golpe súper efectivo de 20 recupera %.1f; de uno normal, nada" % back] = is_equal_approx(back, 20.0 * mods.value("curtido", 1)) \
+		and is_equal_approx(foe.instance.hp, foe.instance.max_hp() * 0.5)
+	GameState.rogue.erase("force_mods")
 	var out := CreatureInstance.create_rival(DB.species["rattata"], 5)
 	r["Fuera del modo nadie lleva mejoras"] = RogueFoeMods.of(out).is_empty()
 

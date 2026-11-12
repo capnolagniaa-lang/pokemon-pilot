@@ -11,9 +11,9 @@ slot = "pasiva"
 effect = "thorns"
 params = {
 "status": "",
-"cooldown": 2.0,
-"power": 0.5
+"cooldown": 2.5,
+"power": 0.35
 }
 scaled = PackedStringArray("power")
-text = "El que te pega recibe {power} de daño (una vez cada 2 s)."
+text = "El que te pega recibe {power} de daño (una vez cada 2,5 s)."
 icon_path = "res://sprites/items/rocky-helmet.png"

@@ -12,7 +12,7 @@ effect = "hit_status"
 params = {
 "slot": -1,
 "status": "azotado",
-"chance": 0.1
+"chance": 0.14
 }
 scaled = PackedStringArray("chance")
 text = "Tus golpes tienen {chance%} de dejar al enemigo sin poder actuar un instante."

@@ -10,7 +10,7 @@ giver = "objeto"
 slot = "pasiva"
 effect = "crit"
 params = {
-"chance": 0.12,
+"chance": 0.18,
 "pct": 0.5
 }
 scaled = PackedStringArray("chance")

@@ -10,7 +10,7 @@ giver = "objeto"
 slot = "pasiva"
 effect = "regen"
 params = {
-"pct": 0.006
+"pct": 0.005
 }
 scaled = PackedStringArray("pct")
 text = "Mientras peleás recuperás {pct%1} de tu vida por segundo."

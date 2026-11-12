@@ -11,7 +11,7 @@ slot = "pasiva"
 effect = "phoenix"
 params = {
 "below": 0.5,
-"heal": 0.15,
+"heal": 0.2,
 "word": "¡Baya Zidra!"
 }
 scaled = PackedStringArray("heal")

@@ -391,6 +391,17 @@ además "Esbirros más duros" y "Mejoras enemigas ya" (no subir niveles de las o
   si la dificultad quedó en su punto (perillas en `desafio.json`: `exp_mult`, `minion_hp`, `attackers`, `champions`,
   `mods`), objetos con contra (Vidasfera), y R-4.
 
+- **Hecho — batería de balance y ajustes con datos** (usuario, 2026-11-11: "correr el modo muchísimas veces... nerfear
+  lo que esté roto... Brock difícil en las primeras run... experiencia desafiante"): `tools/rogue_balance.py` y
+  `docs/ROGUE_BALANCE_INFORME.md` (1.518 partidas; conclusiones y antes/después de cada ajuste en
+  `docs/ROGUE_BALANCE_NOTAS.md`). Decidido sin preguntar: (1) el objetivo se mide con el bot que esquiva 70 %: 15-25 %
+  de victorias contra Brock sin progreso permanente (quedó en 20 %); (2) la diferencia entre iniciales se achicó con
+  una mejora fija de jefe, **Curtido** (aguanta lo súper efectivo), en vez de subirle el nivel a Brock, que castigaba
+  más a Charmander; (3) **no se facilitaron las salas para Charmander** (0 % contra Brock): queda como el caso que el
+  progreso permanente tiene que resolver; (4) solo se tocaron números con dato detrás; lo que el bot no sabe juzgar
+  (velocidad, críticos) se subió poco y quedó anotado como "sin medir bien"; (5) el progreso permanente NO se
+  implementó: alternativas en la sección 12.
+
 ### Correcciones a este documento (revisado contra el código el 2026-11-11)
 - Los **kits están apagados** desde el 2026-10-28: el "arma" es especie + habilidad de 3ª gen + los 4 ataques elegidos.
   Las evoluciones ya no cambian la forma de pelear, y solo Onix, Starmie y Raichu tienen kit de jefe (Articuno, Zapdos y
@@ -673,3 +684,89 @@ deje de asumir que el dueño es tu Pokémon. Datos en `desafio.json`: desde qué
 7. **Objetos con costo** (Vidasfera): ¿van, o por ahora solo objetos sin contra?
 8. **Tras el jefe**: hoy después de Brock termina la partida; el "objeto garantizado tras el jefe" tiene sentido recién
    cuando haya un segundo piso. ¿Se deja preparado o se espera a los pisos?
+
+---
+
+## 12. Progreso permanente entre partidas (alternativas, **sin implementar**; usuario, 2026-11-11)
+
+Pedido del usuario: "Brock tiene que sentirse difícil de vencer en las primeras run ya que la idea es manejar algo de
+economía que queda para la siguiente run (todavía no definí cómo) y que desbloquee diferentes cosas para siempre en tus
+runs, como por ejemplo MT para enseñarle a tus pokemons, objetos de entrada, mejoras de ataques etcétera. Y necesitamos
+que sea una experiencia desafiante". **No está definido ni implementado**: acá van tres formas concretas de hacerlo, una
+recomendación y las preguntas. La dificultad base ya se dejó dura a propósito (ver `docs/ROGUE_BALANCE_INFORME.md`) para
+que esto sea lo que incline la balanza.
+
+### 12.1 Qué hay hoy para apoyarse
+- `RogueProgress` (`user://desafio.json`): especies desbloqueadas por captura, banderas (`intro`, `planta_alta`) y la
+  suerte (1 punto cada 3 rescatados). Es el lugar natural para guardar la moneda y lo comprado.
+- El castillo de Mew: hub caminable con una **escalera a la planta alta bloqueada** (la tienda permanente puede ser esa
+  planta, o un NPC en la planta baja).
+- En la partida ya existen: dinero de la run (`GameState.money`), MT como recompensa (`RogueRewards._tm`), objetos con
+  3 ranuras, bendiciones con nivel, Pociones y Poké Balls iniciales (`desafio.json`).
+- La batería de balance ya simula "con X de entrada": `--give id,id` (objetos o bendiciones desde la sala 1) y
+  `--rogue-set=potions=6,level=11` (números del piso). Cuando exista el progreso permanente, cada desbloqueo se mide
+  antes de ponerle precio.
+
+### 12.2 Alternativa A — "Fragmentos de Mew" (una moneda, tienda única; estilo Hades: Oscuridad + Espejo)
+- **Moneda**: Fragmentos. Se ganan en la partida y **se conservan aunque pierdas**: 1 por sala limpiada, 2 por cada
+  élite de la última oleada, 5 por vencer al jefe, +3 la primera vez que rescatás una especie. Una partida que muere en
+  la sala 3 deja ~3; una que le gana a Brock, ~15. El dinero de la run ($) se sigue perdiendo al terminar.
+- **Dónde se gasta**: Mew, en el castillo (un menú "Recuerdos de Mew"). Cada mejora tiene niveles con precio creciente.
+- **Qué se compra** (ejemplos con costo orientativo):
+  | Rama | Mejora | Niveles | Efecto |
+  |---|---|---|---|
+  | Supervivencia | Mochila más grande | 3 (5/10/20) | +1 Poción inicial por nivel |
+  | Supervivencia | Segundo aliento | 1 (40) | Revivís una vez por partida con 30 % de vida (el "Revivir" de R-4) |
+  | Poder | Objeto de entrada | 3 (15/30/60) | Arrancás eligiendo 1 de 3 objetos comunes / raros / épicos |
+  | Poder | Entrenamiento | 3 (10/20/40) | +1 nivel inicial por nivel (10 → 13) |
+  | Técnica | MT conocidas | por MT (8-25) | Esa MT queda **aprendida para siempre**: al empezar, si tu inicial la puede aprender, la podés poner en lugar de un ataque |
+  | Técnica | Mejora de ataque | 2 por ranura (20/40) | El ataque de esa ranura arranca con +10 % / +20 % de daño |
+  | Fortuna | Bolsillo | 3 (5/10/20) | +$30 iniciales por nivel |
+  | Fortuna | Buen ojo | 2 (25/50) | +1 de suerte por nivel (se suma a la de la Pokédex) |
+- **A favor**: una sola moneda, fácil de entender; perder siempre deja algo; se balancea con una tabla de precios.
+- **En contra**: es la más "genérica"; si los precios son bajos, en 10 partidas el modo queda regalado (hay que medir).
+
+### 12.3 Alternativa B — "Medallas y recuerdos" (dos monedas: una se farmea, la otra se gana)
+- **Fragmentos** (como en A, pero pocos): pagan cosas chicas y repetibles (Pociones iniciales, dinero inicial, +nivel).
+- **Medallas**: una por cada jefe vencido **por primera vez con cada inicial** (Brock con Charmander ≠ Brock con
+  Squirtle), y por hitos ("ganarle a Brock sin Pociones", "limpiar una sala sin recibir daño"). Son pocas y no se
+  farmean. Pagan lo grande: ranura de objeto de entrada, "MT aprendida para siempre", mejora de ataque, Revivir, y
+  **abren la escalera del castillo** (bandera `planta_alta`: con 1 medalla).
+- **A favor**: lo fuerte se gana jugando bien, no repitiendo; empuja a probar otros iniciales (más variedad, y los
+  iniciales difíciles —hoy Charmander contra Brock— valen la pena); la dificultad se puede sostener más tiempo.
+- **En contra**: más cosas que explicar; hay que diseñar los hitos; un jugador trabado en Brock no consigue Medallas
+  y solo le quedan las mejoras chicas (hay que cuidar que esas alcancen para destrabarlo).
+
+### 12.4 Alternativa C — "El castillo crece" (sin tienda: desbloqueos por lo que hacés, y elegís un equipo de inicio)
+- **Sin moneda**. Cada cosa se desbloquea por un logro concreto y queda en una colección:
+  - **MT**: la primera vez que elegís una MT como recompensa en una partida, esa MT queda "conocida". Antes de cruzar
+    el portal armás tu **equipo de inicio** con puntos de carga (por ejemplo 3 puntos: una MT conocida cuesta 1-2).
+  - **Objetos de entrada**: un objeto que llevaste hasta vencer a un jefe queda en la vitrina del castillo; podés
+    arrancar con uno de la vitrina (cuesta puntos de carga según su rareza).
+  - **Mejoras de ataque**: usar un ataque N veces a lo largo de las partidas le sube la "maestría" (+5 % por rango).
+  - **Puntos de carga**: 3 de base; +1 por cada jefe distinto vencido.
+- **A favor**: es la más "Pokémon" (coleccionar y armar equipo) y la que mejor se lleva con la captura que ya
+  desbloquea iniciales; cada partida deja algo distinto según lo que elegiste.
+- **En contra**: la más cara de construir (pantalla de equipo de inicio, vitrina, maestrías) y la más difícil de
+  balancear (el jugador elige combinaciones; hay que medir muchas con la batería).
+
+### 12.5 Recomendación
+**B**, empezando por su mitad simple: implementar primero los Fragmentos con 4-5 mejoras chicas (Pociones, dinero,
+nivel, suerte, Revivir caro) y la primera Medalla (vencer a Brock) que abre la planta alta y da la primera "MT
+aprendida para siempre" y la primera ranura de objeto de entrada. Motivos: (1) el pedido es que **las primeras
+partidas sean difíciles y lo permanente incline la balanza**: con dos monedas, lo chico ayuda a llegar a Brock y lo
+grande llega recién al vencerlo, así el jefe sigue siendo un hito; (2) se construye por partes sin tirar nada (A es
+"B sin Medallas"); (3) la batería ya puede medir cada mejora (`--give`, `--rogue-set`) antes de ponerle precio.
+Objetivo medible que propongo: con el bot que esquiva 70 %, ganarle a Brock ~15-25 % sin nada comprado, ~40-50 % con
+las mejoras chicas al máximo y ~65-75 % con todo (una persona juega mejor que el bot: ver el criterio en el informe).
+
+### 12.6 Preguntas para el usuario
+1. ¿Una moneda (A), dos (B) o colección sin moneda (C)? ¿O B empezando por lo simple, como recomiendo?
+2. ¿Perder deja moneda? (Recomiendo que sí, poca: si no, las primeras partidas no dejan nada y frustran.)
+3. Las MT "para siempre": ¿se compran de una lista fija, o solo las que ya elegiste alguna vez en una partida?
+4. "Mejoras de ataques": ¿más daño parejo (+10 %), o cambios de forma (más alcance, menos recarga, un estado extra)?
+   Lo segundo es más divertido y más caro; se puede montar sobre el motor de bendiciones.
+5. Objetos de entrada: ¿elegís 1 de 3 al azar, o armás tu equipo con lo que ya conseguiste?
+6. ¿Qué abre la escalera del castillo: vencer a Brock, o juntar N Medallas/Fragmentos?
+7. ¿El progreso es por inicial (cada Pokémon con sus mejoras) o general? (General es más simple; por inicial alarga.)
+8. ¿Hace falta un "modo difícil" que apague lo permanente (para quien ya lo completó)?

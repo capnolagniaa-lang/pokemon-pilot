@@ -6,6 +6,8 @@ extends Node
 ## cabeza, `RogueFoeBadge`, y el nombre en el cartel del rival), que crecen con las salas:
 ##  · furioso: pega más fuerte.            · blindado: más vida.
 ##  · ardiente / electrico: al golpear puede quemar / paralizar.   · regenerador: se cura solo.
+##  · curtido (solo jefes, `boss.fixed_mods`; peso 0 = no sale al azar): los golpes súper efectivos le hacen menos.
+##    Sale de medir (docs/ROGUE_BALANCE_INFORME.md): con Squirtle se le ganaba a Brock 84 % de las veces que se llegaba.
 ## Datos en data/rogue/desafio.json → `foe_mods` (lista con peso y números, `level_step`) y, por sala (`slots`):
 ## `champions` = cuántos esbirros de cada oleada común llevan uno, `mods` = cuántos lleva cada élite, `mod_level` = su
 ## nivel (valor × (1 + level_step × (nivel − 1))). El jefe: `boss.mods` (uno por Pokémon de su equipo) y `boss.mod_level`.
@@ -77,7 +79,7 @@ func roll(count: int, level: int, rng: RandomNumberGenerator = null) -> Array:
 		rng = _rng
 	if count > 0 and GameState.rogue.has("force_mods"):  # (tests: estos, tal cual)
 		return GameState.rogue["force_mods"].duplicate(true)
-	var pool: Array = list().keys()
+	var pool: Array = list().keys().filter(func(id): return float(list()[id].get("weight", 1.0)) > 0.0)
 	var out: Array = []
 	while out.size() < count and not pool.is_empty():
 		var total := 0.0
@@ -125,8 +127,14 @@ func assign(inst: CreatureInstance, mods: Array) -> void:
 func assign_boss(team: Array) -> void:
 	var boss: Dictionary = run.floor_data.get("boss", {})
 	var counts: Array = boss.get("mods", [])
-	for i in mini(team.size(), counts.size()):
-		assign(team[i], roll(int(counts[i]), int(boss.get("mod_level", 1))))
+	for i in team.size():
+		var mods: Array = []
+		for id in boss.get("fixed_mods", []):  # las que lleva siempre todo su equipo
+			if list().has(id):
+				mods.append({"id": id, "level": int(boss.get("mod_level", 1))})
+		if i < counts.size():
+			mods.append_array(roll(int(counts[i]), int(boss.get("mod_level", 1))))
+		assign(team[i], mods)
 
 
 func _physics_process(delta: float) -> void:
@@ -154,6 +162,8 @@ func _physics_process(delta: float) -> void:
 func _hook(c: Creature) -> void:
 	_hooked[c] = true
 	c.hit_dealt.connect(_on_hit.bind(c))
+	if of(c).any(func(m): return m["id"] == "curtido"):
+		c.damage_received.connect(_on_hurt.bind(c))
 	var badge := RogueFoeBadge.new()
 	badge.setup(self, c)
 	c.add_child(badge)
@@ -173,6 +183,16 @@ func _on_hit(target: Creature, hit: HitInfo, damage: float, c: Creature) -> void
 				if DB.statuses.has(status) and _rng.randf() <= value(m["id"], level):
 					target.statuses.apply(DB.statuses[status], 1.0, c)
 					_note(m["id"])
+
+
+## Curtido: de un golpe súper efectivo recupera una parte (si no lo volteó).
+func _on_hurt(amount: float, hit: HitInfo, c: Creature) -> void:
+	if hit == null or amount <= 0.0 or hit.effectiveness <= 1.0 or not is_instance_valid(c) or c.is_down():
+		return
+	for m: Dictionary in of(c):
+		if m["id"] == "curtido":
+			c.health.heal(amount * minf(0.8, value("curtido", int(m["level"]))))
+			_note("curtido")
 
 
 func _note(id: String) -> void:
