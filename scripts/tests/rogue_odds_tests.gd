@@ -155,7 +155,7 @@ func run_tests() -> void:
 	inst.shiny = true
 	var shiny_luck := boons.luck()
 	inst.shiny = false
-	for n in 40:
+	for n in 150:  # (solo cuentan las de la primera generación)
 		RogueProgress.unlock(DB.species.keys()[n])
 	r["La suerte de la partida cuenta el shiny (%d) y la de la Pokédex tiene tope (%d)" % [shiny_luck, RogueProgress.luck()]] = shiny_luck == 2 + RogueProgress.LUCK_SHINY \
 		and RogueProgress.luck() == RogueProgress.LUCK_CAP

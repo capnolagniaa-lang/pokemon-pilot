@@ -39,9 +39,18 @@ static func _write(d: Dictionary) -> void:
 static func unlocked() -> Array[String]:
 	var out: Array[String] = BASE.duplicate()
 	for id in _read().get("unlocked", []):
-		if id is String and DB.species.has(id) and not out.has(id):
+		if id is String and DB.species.has(id) and not out.has(id) and in_mode(id):
 			out.append(id)
 	return out
+
+
+## El modo es solo de la primera generación (decisión del usuario 2026-11-12): una especie de otra región que
+## hubiera quedado desbloqueada de antes no se ofrece (queda en el archivo, por si vuelve).
+const MAX_DEX := 151
+
+
+static func in_mode(id: String) -> bool:
+	return DB.species.has(id) and DB.species[id].dex <= MAX_DEX
 
 
 static func is_unlocked(id: String) -> bool:
@@ -51,7 +60,7 @@ static func is_unlocked(id: String) -> bool:
 ## Desbloquea una especie como inicial. Devuelve true si era nueva.
 static func unlock(id: String) -> bool:
 	var list := unlocked()
-	if list.has(id) or not DB.species.has(id):
+	if list.has(id) or not in_mode(id):
 		return false
 	list.append(id)
 	var d := _read()
