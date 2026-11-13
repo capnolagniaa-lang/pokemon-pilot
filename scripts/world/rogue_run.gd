@@ -103,6 +103,10 @@ var pieces: Array[Node2D] = []
 var gates: Dictionary = {}
 var _back_gate: RogueGate
 var _boss_done := false
+## Tramos de la partida (pedido del usuario 2026-11-13: hasta el tercer líder): cada uno son sus salas y su líder.
+## El primero es `slots` + `boss` del JSON; los demás, `more_acts`. `act` = en cuál vas.
+var act := 0
+var _acts: Array = []
 ## Los enemigos vivos de la oleada.
 var foes: Array[Creature] = []
 var door: RogueDoor
@@ -514,10 +518,54 @@ func _unload_hub() -> void:
 
 
 func _run() -> void:
-	floor_data["rooms"] = plan_rooms(floor_data, _rng, GameState.rogue.get("biomes", []))
+	_acts = acts_of(floor_data)
+	var count := clampi(int(GameState.rogue.get("acts", _acts.size())), 1, _acts.size())  # (tests: un solo tramo)
+	_acts = _acts.slice(0, count)
 	active = true
 	result = ""
 	rooms_cleared = 0
+	for a in _acts.size():
+		await start_act(a)
+		var rooms: Array = floor_data["rooms"]
+		for i in rooms.size():
+			await _play_room(i)
+			if result != "":
+				break
+		if result != "" or not await _play_boss() or a == _acts.size() - 1:
+			break
+		await _between_acts()
+	await _finish()
+
+
+## Los tramos de la partida: [{slots, boss}, ...].
+static func acts_of(f: Dictionary) -> Array:
+	var out: Array = [{"slots": f["slots"], "boss": f["boss"]}]
+	for a in f.get("more_acts", []):
+		out.append(a)
+	return out
+
+
+## Arma el tramo `a`: sus salas (otra tanda de biomas al azar) y su líder. Del segundo en adelante descarga las salas
+## del anterior y te deja en la entrada de las nuevas.
+func start_act(a: int) -> void:
+	if _acts.is_empty():
+		_acts = acts_of(floor_data)
+	act = a
+	floor_data["slots"] = _acts[a]["slots"]
+	floor_data["boss"] = _acts[a]["boss"]
+	floor_data["rooms"] = plan_rooms(floor_data, _rng, GameState.rogue.get("biomes", []) if a == 0 else [])
+	if a > 0:
+		for e in foes:
+			if is_instance_valid(e):
+				e.queue_free()
+		foes.clear()
+		_unload_chain()
+		room_index = -1
+		wave_index = -1
+		room_rewards.clear()
+		_boss_done = false
+		result = ""
+		active = true
 	await get_tree().process_frame
 	_load_chain()
 	_enter_room(0)
@@ -525,14 +573,16 @@ func _run() -> void:
 	_refresh_label()
 	await get_tree().process_frame
 	await world.arena.fade_to(0.0)
-	var rooms: Array = floor_data["rooms"]
-	for i in rooms.size():
-		await _play_room(i)
-		if result != "":
-			break
-	if result == "":
-		await _play_boss()
-	await _finish()
+
+
+## Le ganaste a un líder y quedan más: la medalla, todo el equipo curado y a las salas que siguen.
+func _between_acts() -> void:
+	var boss: Dictionary = floor_data["boss"]
+	GameState.heal_party()
+	Events.party_changed.emit()
+	var next: Dictionary = _acts[act + 1]["boss"]
+	await world.arena.banner("¡%s!" % str(boss.get("badge", "Medalla")).to_upper(),
+		"Tu equipo se recupera. Siguiente: %s %s" % [str(next["title"]), str(next["name"])], 2.4)
 
 
 ## Una sala: el cartel, las oleadas y, limpia, el paso a la siguiente (caminando) o la puerta del jefe (la última).
@@ -758,7 +808,7 @@ func exit_point() -> Vector2:
 
 
 ## El jefe del piso: una pelea de entrenador de las de siempre, en su arena (con su kit de jefe y su guion).
-func _play_boss() -> void:
+func _play_boss() -> bool:
 	phase = "jefe"
 	_refresh_label()
 	var boss: Dictionary = floor_data["boss"]
@@ -776,8 +826,13 @@ func _play_boss() -> void:
 		"defeat_lines": PackedStringArray([str(boss.get("defeat", "¡Me ganaste!"))])})
 	world.arena.set_black(true)  # (volvió a la última sala, ya vacía: no hay nada que mostrar)
 	_boss_done = true
-	result = "win" if r == "win" else "lose"
-	phase = "fin"
+	var won := r == "win"
+	if not won:
+		result = "lose"
+	elif _acts.is_empty() or act >= _acts.size() - 1:  # (con más líderes por delante la partida sigue: todavía no hay resultado)
+		result = "win"
+	phase = "fin" if result != "" else "medalla"
+	return won
 
 
 ## Cartel del final y de vuelta: otra partida o el título.
@@ -790,11 +845,13 @@ func _finish() -> void:
 	_unload_chain()
 	world.trainer.locked = true
 	var total: int = floor_data["rooms"].size()
+	var in_act: int = rooms_cleared - act * total  # (las salas limpias de este tramo)
 	if result == "win":
-		await world.arena.banner("¡DESAFÍO SUPERADO!", "%d salas y %s" % [total, floor_data["boss"]["name"]], 2.4)
+		await world.arena.banner("¡DESAFÍO SUPERADO!", "%d salas y %s" % [rooms_cleared, ", ".join(_acts.map(func(a): return str(a["boss"]["name"])))], 2.4)
 	else:
 		await world.arena.banner("Tu Pokémon se debilitó...", "Llegaste hasta %s" % (
-			str(floor_data["boss"]["name"]) if rooms_cleared >= total else "la sala %d de %d" % [mini(rooms_cleared + 1, total), total]), 2.4)
+			str(floor_data["boss"]["name"]) if in_act >= total else "la sala %d de %d%s" % [mini(in_act + 1, total), total,
+				"" if _acts.size() <= 1 else " (antes de %s)" % str(floor_data["boss"]["name"])]), 2.4)
 	finished.emit(result)
 	var again: int = await world.story.dialog.ask("Modo Desafío", "¿Y ahora?", PackedStringArray(["Volver al castillo", "Volver al título"]))
 	GameState.rogue = {}

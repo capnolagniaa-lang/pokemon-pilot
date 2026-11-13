@@ -727,6 +727,11 @@ kits) que tengan sentido con cómo juega cada Pokémon. Se van viendo de a tanda
 - Esbirros: nivel más cerca del tuyo y 80 % de la vida, para que aguanten 3-4 básicos en vez de 1-2.
 - Pendiente: que el jefe use kits, más variedad de objetos en el élite, ajustar la dificultad con más partidas.
 
+### 13.4 Hasta el tercer líder (2026-11-13)
+Tres tramos de 5 salas + líder: Brock, Misty, Lt. Surge. Entre tramos, medalla y cura completa. Los Pokémon de los líderes
+siguen con sus ataques de siempre (y su kit de jefe: Onix, Starmie, Raichu). Pendiente: medir el balance de los tramos 2
+y 3, decidir si se puede atrapar un compañero más por tramo y si la Tienda/objetos escalan.
+
 ### 13.2 Segunda mirada al video de Pokémon Arena 2D (2026-11-13)
 Lo que se ve y se dice en el video (transcripción entera + capturas), para ir tomando ideas. **Nada de esto está hecho.**
 - **Números**: primera fase con ~120 PS; el básico saca 3-5 (2,5-4 % de la vida: unos 25-40 básicos por pelea); habilidades

@@ -33,6 +33,8 @@ var rows: Array = []
 var policy := "azar"
 var dodge := 0.7
 var taken := 1.0
+## Cuántos tramos juega (1 = hasta Brock; 3 = hasta Lt. Surge).
+var acts := 1
 var give: Array = []
 var tag := ""
 var json_path := ""
@@ -91,6 +93,7 @@ func run() -> void:
 	policy = _arg(args, "--policy", "azar")
 	dodge = float(_arg(args, "--dodge", "0.7"))
 	taken = float(_arg(args, "--taken", _arg(args, "--skill", "1.0")))
+	acts = int(_arg(args, "--acts", "1"))
 	give = Array(_arg(args, "--give", "").split(",", false))
 	tag = _arg(args, "--tag", ",".join(give))
 	json_path = _arg(args, "--json", "")
@@ -122,6 +125,7 @@ func run() -> void:
 
 func _one(species: String) -> Dictionary:
 	RogueRun.begin(DB.species[species])
+	GameState.rogue["acts"] = acts  # (por defecto 1: la batería mide hasta Brock; `--acts 3` = la partida entera)
 	GameState.set_setting("taken_mult", taken)
 	var mine: CreatureInstance = GameState.active()
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
@@ -152,7 +156,7 @@ func _one(species: String) -> Dictionary:
 	var helped: Array = []
 	var walk_phase := ""
 	var walk_since := 0.0
-	while _clock < RUN_LIMIT and run_.result == "":
+	while _clock < RUN_LIMIT * float(acts) and run_.result == "":
 		if run_.phase != walk_phase or run_.phase not in ["eleccion", "puerta"]:
 			walk_phase = run_.phase
 			walk_since = _clock

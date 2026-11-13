@@ -116,6 +116,15 @@ func run() -> void:
 	r["Lleva un objeto que se ve (%s) y hace efecto (%s)" % [str(bmods[0].get("name", "")) if not bmods.is_empty() else "-",
 		run.foe_mods.describe(bmods[0]["id"], bmods[0]["level"]) if not bmods.is_empty() else "-"]] = bmods.size() == 1 		and DB.rogue_items.has(str(boss.instance.get_meta("rogue_item", ""))) and ResourceLoader.exists(str(bmods[0].get("icon", ""))) 		and run.foe_mods.list().has(bmods[0]["id"])
 
+	# --- Tramos: hasta el tercer líder, con la misma cantidad de salas antes de cada uno ---
+	var all: Array = RogueRun.acts_of(RogueRun.load_floor())
+	var bosses: Array = all.map(func(a): return str(a["boss"]["name"]))
+	r["La partida tiene 3 tramos (%s) con %d salas cada uno y una sala de élite en cada tramo" % [", ".join(bosses), all[0]["slots"].size()]] = 		bosses == ["Brock", "Misty", "Lt. Surge"] and all.all(func(a): return a["slots"].size() == all[0]["slots"].size() 		and a["slots"].filter(func(s): return s.get("duel", false)).size() == 1)
+	r["Cada líder tiene su gimnasio, su retrato, su equipo y su medalla"] = all.all(func(a): return 		ResourceLoader.exists("res://data/arenas/%s.tres" % a["boss"]["arena"]) and ResourceLoader.exists("res://sprites/vs/%s.png" % a["boss"]["gfx"]) 		and ResourceLoader.exists("res://art/pret/characters/%s.png" % a["boss"]["gfx"]) and DB.npcs.has(a["boss"]["trainer_id"]) 		and a["boss"]["team"].all(func(m): return DB.species.has(m[0])) and str(a["boss"].get("badge", "")) != "")
+	r["Los niveles suben de tramo en tramo"] = int(all[1]["slots"][0]["levels"][0]) > int(all[0]["slots"][-1]["levels"][1]) 		and int(all[2]["slots"][0]["levels"][0]) > int(all[1]["slots"][-1]["levels"][1])
+	await run.start_act(1)
+	r["El segundo tramo arma salas nuevas hacia Misty y te deja en la entrada de la primera"] = run.act == 1 		and run.floor_data["boss"]["name"] == "Misty" and run.chain.size() == all[1]["slots"].size() and run.room_index == 0 		and is_instance_valid(world.companion) and int(run.floor_data["rooms"][0]["waves"][0][0][1]) >= int(all[1]["slots"][0]["levels"][0]) 		and world.companion.global_position.distance_to(run._cell_pos(run.room_data.player_mon_cell)) < 40.0
+
 	var ok := r.values().all(func(v): return v)
 	for key in r:
 		print("[oleadas] %s %s" % ["OK   " if r[key] else "FALLO", key])

@@ -176,7 +176,7 @@ func run() -> void:
 	r["Hablándole de nuevo (E) se elige sin repetir la historia"] = run.select_layer != null and run.near_mew()
 	if run.select_layer != null:
 		run.select_layer.get_child(0).start(DB.species["squirtle"])
-	GameState.rogue["biomes"] = BOT_BIOMES
+	GameState.rogue["biomes"] = BOT_BIOMES; GameState.rogue["acts"] = 1  # (este test juega hasta Brock)
 	GameState.rogue["rewards"] = BOT_REWARDS
 	GameState.rogue["first_reward"] = "bendicion"  # (las bendiciones ya no salen solas: 2026-11-13)
 	GameState.rogue["single_door"] = true
@@ -317,7 +317,7 @@ func run() -> void:
 		attempt += 1
 		answers = [1]  # "Volver al título"
 		await _until(func(): return get_tree().current_scene != null and get_tree().current_scene.scene_file_path.ends_with("title_screen.tscn"), 30.0)
-		RogueRun.begin(DB.species["squirtle"])
+		RogueRun.begin(DB.species["squirtle"]); GameState.rogue["acts"] = 1
 		GameState.rogue["biomes"] = BOT_BIOMES
 		GameState.rogue["rewards"] = BOT_REWARDS
 		GameState.rogue["first_reward"] = "bendicion"  # (las bendiciones ya no salen solas: 2026-11-13)
@@ -652,7 +652,7 @@ func showcase_castle() -> void:
 func showcase() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/rogue_select.tscn")
 	await get_tree().create_timer(2.0).timeout
-	RogueRun.begin(DB.species["squirtle"])
+	RogueRun.begin(DB.species["squirtle"]); GameState.rogue["acts"] = 1
 	var args := OS.get_cmdline_user_args()
 	if args.has("--biomes") and args.find("--biomes") + 1 < args.size():  # p. ej. --biomes volcan,costa,cueva,hielo,cementerio
 		GameState.rogue["biomes"] = Array(args[args.find("--biomes") + 1].split(","))
