@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_premonicion_abra"
+display_name = "Premonición"
+element = ExtResource("2")
+kind = 5
+category = 1
+power = 125.0
+cooldown = 1.0
+knockback = 240.0
+zone_radius = 52.0
+placement_range = 150.0
+zone_strike = true
+strike_delay = 0.7

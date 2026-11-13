@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/roca.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_poder_pasado_omanyte"
+display_name = "Poder Pasado"
+element = ExtResource("2")
+kind = 5
+category = 1
+power = 80.0
+power_mult = 0.6
+cooldown = 1.0
+knockback = 180.0
+zone_radius = 30.0
+placement_range = 140.0
+zone_strike = true
+strike_delay = 0.4
+strike_count = 5
+strike_spread = 50.0

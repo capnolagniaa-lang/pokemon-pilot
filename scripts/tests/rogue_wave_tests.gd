@@ -20,7 +20,7 @@ func run() -> void:
 	RogueRun.make_minion(minion, f)
 	r["Un esbirro tiene %d %% de la vida (%d contra %d) y arranca lleno" % [int(100.0 * float(f["minion_hp"])), int(minion.max_hp()), int(full_hp)]] = \
 		is_equal_approx(minion.max_hp(), full_hp * float(f["minion_hp"])) and is_equal_approx(minion.hp, minion.max_hp()) \
-		and float(f["minion_hp"]) < 0.7
+		and float(f["minion_hp"]) < 1.0
 	var moves: Array = minion.equipped_moves.filter(func(m): return m != null)
 	r["Y pelea con a lo sumo %d ataques, todos de daño (%s)" % [int(f["minion_moves"]), ", ".join(moves.map(func(m): return m.display_name))]] = \
 		moves.size() >= 1 and moves.size() <= int(f["minion_moves"]) and moves.all(func(m): return m.power > 0.0)
@@ -32,7 +32,7 @@ func run() -> void:
 	for i in plan.size():
 		var slot: Dictionary = f["slots"][i]
 		for w in plan[i]["waves"].size():
-			var strong: bool = slot.get("strong_last", false) and w == plan[i]["waves"].size() - 1
+			var strong: bool = slot.get("duel", false) or (slot.get("strong_last", false) and w == plan[i]["waves"].size() - 1)
 			if plan[i]["waves"][w].size() > limit:
 				bigger = true
 			for m in plan[i]["waves"][w]:
@@ -40,6 +40,8 @@ func run() -> void:
 					elite_ok = false
 	r["En el plan, solo la oleada fuerte es de élites (vida entera)"] = elite_ok
 	r["Ninguna oleada del plan pasa de 3 enemigos a la vez"] = not bigger and limit <= 3
+	var duels: Array = plan.filter(func(room): return room.get("duel", false))
+	r["El plan tiene una sala de élite: una sola oleada de un solo Pokémon, de los fuertes de su bioma"] = duels.size() == 1 		and duels[0]["waves"].size() == 1 and duels[0]["waves"][0].size() == 1 		and f["biomes"][duels[0]["biome"]]["strong"].has(duels[0]["waves"][0][0][0])
 
 	# --- En una sala: 7 esbirros contra vos, que no hacés nada ---
 	RogueRun.begin(DB.species["squirtle"])
@@ -99,6 +101,20 @@ func run() -> void:
 	r["Los que no tienen ficha esperan alrededor, no encima (a %d px en promedio)" % int(avg)] = avg > 40.0
 	run.floor_data["attackers"] = 0
 	r["Con el límite en 0 atacan todos"] = foes.all(func(e): return not is_instance_valid(e) or run.can_attack(e))
+
+	# --- Sala de élite: uno solo, de tu nivel, con kit entero y un objeto puesto ---
+	for e: Creature in run.foes.duplicate():
+		if is_instance_valid(e):
+			e.queue_free()
+	run.foes.clear()
+	GameState.active().level = 14
+	run._spawn_wave([["scyther", 9, true, "duelo"]])
+	await get_tree().physics_frame
+	var boss: Creature = run.foes[0] if run.foes.size() == 1 else null
+	var bmods: Array = RogueFoeMods.of(boss) if boss != null else []
+	r["El élite del duelo sale solo, a tu nivel (%d), con la vida entera y las 4 teclas de su kit" % (boss.instance.level if boss != null else 0)] = 		boss != null and boss.instance.level == 14 and boss.instance.hp_mult >= 1.0 and boss.instance.rogue_kit != null 		and boss.instance.equipped_moves.size() == 4 and boss.instance.kit_limit == 4
+	r["Lleva un objeto que se ve (%s) y hace efecto (%s)" % [str(bmods[0].get("name", "")) if not bmods.is_empty() else "-",
+		run.foe_mods.describe(bmods[0]["id"], bmods[0]["level"]) if not bmods.is_empty() else "-"]] = bmods.size() == 1 		and DB.rogue_items.has(str(boss.instance.get_meta("rogue_item", ""))) and ResourceLoader.exists(str(bmods[0].get("icon", ""))) 		and run.foe_mods.list().has(bmods[0]["id"])
 
 	var ok := r.values().all(func(v): return v)
 	for key in r:

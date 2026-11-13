@@ -275,10 +275,10 @@ func _draw_foe_mods(e: Creature, at: Vector2) -> void:
 		return
 	var x := at.x + 96.0
 	for m: Dictionary in RogueFoeMods.of(e):
-		var path := RogueFoeMods.icon_of(m["id"])
+		var path: String = m.get("icon", RogueFoeMods.icon_of(m["id"]))
 		if ResourceLoader.exists(path):
 			draw_texture_rect(load(path), Rect2(x, at.y - 13, 16, 16), false)
-		var text: String = rogue.foe_mods.mod_name(m["id"]).to_upper()
+		var text: String = str(m.get("name", rogue.foe_mods.mod_name(m["id"]))).to_upper()
 		draw_string(font, Vector2(x + 19, at.y), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, rogue.foe_mods.color_of(m["id"]))
 		x += 24.0 + font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 11).x
 

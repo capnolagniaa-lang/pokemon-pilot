@@ -17,6 +17,7 @@ from PIL import Image, ImageDraw
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import desafio_vfx_bosque  # noqa: E402
+import desafio_vfx_resto  # noqa: E402
 
 FIRE = [(120, 28, 12), (214, 64, 20), (250, 130, 30), (255, 200, 70), (255, 244, 190)]
 WATER = [(24, 60, 130), (40, 110, 200), (90, 170, 240), (170, 220, 255), (240, 250, 255)]
@@ -264,6 +265,7 @@ def main(root, contact=""):
         "d_burbujas": Image.open(os.path.join(dest, "burbuja.png")).convert("RGBA"),
     }
     sheets.update(desafio_vfx_bosque.build(root))  # los kits del Bosque: generadores genéricos por forma y paleta
+    sheets.update(desafio_vfx_resto.build(root))  # los otros 5 biomas: la hoja sale de la forma y el tipo del ataque
     for name, im in sheets.items():
         im.save(os.path.join(dest, name + ".png"))
     if contact:

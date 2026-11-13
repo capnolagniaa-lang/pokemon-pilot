@@ -6,12 +6,23 @@ extends Node
 ##   godot --path . --quit-after 1500 --write-movie out/f.png --fixed-fps 30 -- --showcase-rogue-kits  (los 3 kits en acción)
 
 const SPECIES := ["charmander", "squirtle", "bulbasaur", "caterpie", "weedle", "pidgey", "rattata", "oddish", "bellsprout", "paras",
-	"venonat", "spearow", "pikachu", "exeggcute", "nidoran_f", "nidoran_m", "mankey", "scyther"]
+	"venonat", "spearow", "pikachu", "exeggcute", "nidoran_f", "nidoran_m", "mankey", "scyther",
+	# Volcán, Costa, Cueva, Hielo y Cementerio (tools/desafio_kits_resto.py)
+	"vulpix", "growlithe", "ponyta", "geodude", "koffing", "grimer", "cubone", "rhyhorn", "doduo", "magmar",
+	"poliwag", "psyduck", "krabby", "shellder", "staryu", "horsea", "tentacool", "goldeen", "slowpoke", "magikarp", "omanyte",
+	"kabuto", "zubat", "sandshrew", "diglett", "machop", "clefairy", "onix", "seel", "jynx", "lapras", "gastly", "drowzee",
+	"ekans", "abra", "meowth"]
 ## Una evolución de cada línea: usa el kit de su preevolución.
 const EVOLVED := {"charmander": "charizard", "squirtle": "wartortle", "bulbasaur": "ivysaur", "caterpie": "butterfree",
 	"weedle": "beedrill", "pidgey": "pidgeotto", "rattata": "raticate", "oddish": "gloom", "bellsprout": "weepinbell",
 	"paras": "parasect", "venonat": "venomoth", "spearow": "fearow", "pikachu": "raichu", "exeggcute": "exeggutor",
-	"nidoran_f": "nidorina", "nidoran_m": "nidorino", "mankey": "primeape"}
+	"nidoran_f": "nidorina", "nidoran_m": "nidorino", "mankey": "primeape", "vulpix": "ninetales", "growlithe": "arcanine",
+	"ponyta": "rapidash", "geodude": "graveler", "koffing": "weezing", "grimer": "muk", "cubone": "marowak", "rhyhorn": "rhydon",
+	"doduo": "dodrio", "poliwag": "poliwhirl", "psyduck": "golduck", "krabby": "kingler", "shellder": "cloyster",
+	"staryu": "starmie", "horsea": "seadra", "tentacool": "tentacruel", "goldeen": "seaking", "slowpoke": "slowbro",
+	"magikarp": "gyarados", "omanyte": "omastar", "kabuto": "kabutops", "zubat": "golbat", "sandshrew": "sandslash",
+	"diglett": "dugtrio", "machop": "machoke", "clefairy": "clefable", "seel": "dewgong", "gastly": "haunter",
+	"drowzee": "hypno", "ekans": "arbok", "abra": "kadabra", "meowth": "persian"}
 
 var world: Node
 var r := {}
@@ -33,7 +44,7 @@ func run_tests() -> void:
 			if not _has_animation(m):
 				missing.append(m.display_name)
 		r["%s: todos sus ataques tienen animación propia%s" % [id.capitalize(), "" if missing.is_empty() else " (faltan: %s)" % ", ".join(missing)]] = missing.is_empty()
-	r["Un Pokémon sin kit en su línea no cambia (Geodude)"] = RogueKits.of(DB.species["geodude"]) == null
+	r["Un Pokémon sin kit en su línea no cambia (Chikorita)"] = RogueKits.of(DB.species["chikorita"]) == null
 	_minions()
 	r["Fuera del modo los tipos pesan lo de siempre"] = is_equal_approx(Damage.flat(2.0), 2.0) and is_equal_approx(Damage.flat(0.0), 0.0)
 	var plain := CreatureInstance.create(DB.species["charmander"], 10)

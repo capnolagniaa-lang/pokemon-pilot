@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_latigo_toxico_tentacool"
+display_name = "Látigo Tóxico"
+element = ExtResource("2")
+kind = 8
+category = 0
+power = 50.0
+cooldown = 2.4
+knockback = 60.0
+whip_length = 95.0
+whip_width = 9.0
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])

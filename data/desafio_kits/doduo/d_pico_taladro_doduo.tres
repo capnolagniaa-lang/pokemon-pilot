@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/volador.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_pico_taladro_doduo"
+display_name = "Pico Taladro"
+element = ExtResource("2")
+kind = 1
+category = 0
+power = 110.0
+cooldown = 1.0
+cast_time = 0.3
+knockback = 300.0
+dash_time = 0.35
+dash_hits = true
+invulnerable_time = 0.35
+recovery = 0.25

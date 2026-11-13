@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/veneno.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/envenenado.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_bomba_lodo_koffing"
+display_name = "Bomba Lodo"
+element = ExtResource("2")
+kind = 5
+category = 1
+power = 65.0
+cooldown = 2.7
+knockback = 200.0
+zone_radius = 34.0
+placement_range = 130.0
+zone_strike = true
+strike_delay = 0.45
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])

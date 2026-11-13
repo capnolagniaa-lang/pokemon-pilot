@@ -91,3 +91,8 @@ Charmander 0 de 3. Sigue pendiente la tanda larga y mirar por qué solo Squirtle
 ×1,2 → llega 12, gana 3 (11 %); freno ×0,7 + vida ×1,2 → llega 14, gana 2 (7 %); **freno ×0,7 + vida ×1,1 → llega 14
 (52 %), gana 4 (15 %)**. Con más vida las salas no cambian pero Brock se hace largo y el bot pierde. Sigue ganando solo
 Squirtle.
+
+**2026-11-13, kits en todos los biomas + sala de élite + esbirros duros.** 27 partidas por tanda. Niveles 5-10 y esbirros
+al 90 %, oleadas de antes: llega 0. Menos oleadas, niveles 5-9, esbirros al 80 %: llega 2, gana 1. + cura 50 % y un solo
+élite en la cuarta: **llega 11 (41 %), gana 2 (7 %)**. + 5 Pociones y EXP ×0,9 (lo que quedó): llega 7, gana 2 (misma
+zona, dentro del ruido). El duelo de élite lo pasa la mayoría; mueren en la cuarta y la quinta. Falta una tanda larga.

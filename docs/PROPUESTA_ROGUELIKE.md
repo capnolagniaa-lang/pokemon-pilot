@@ -719,6 +719,14 @@ kits) que tengan sentido con cómo juega cada Pokémon. Se van viendo de a tanda
   equipo; hay 2 Poké Balls por partida).
 - Le gusta la arena de Pokémon Arena 2D; volver a ver el video para ataques y ritmo.
 
+### 13.3 Kits de todos los biomas, sala de élite y esbirros más duros (2026-11-13)
+- Los 36 kits que faltaban están hechos con el mismo criterio que los del Bosque (básico, habilidad de daño, habilidad de
+  control, definitiva, movilidad para alejarse). Se escriben por forma en `tools/desafio_kits_resto.py`.
+- Sala de élite = `"duel": true` en un slot: uno solo, a tu nivel (`RogueRun.duel_level`), kit entero y un objeto de
+  `duel.items` (el objeto que se ve + la mejora enemiga que hace su efecto).
+- Esbirros: nivel más cerca del tuyo y 80 % de la vida, para que aguanten 3-4 básicos en vez de 1-2.
+- Pendiente: que el jefe use kits, más variedad de objetos en el élite, ajustar la dificultad con más partidas.
+
 ### 13.2 Segunda mirada al video de Pokémon Arena 2D (2026-11-13)
 Lo que se ve y se dice en el video (transcripción entera + capturas), para ir tomando ideas. **Nada de esto está hecho.**
 - **Números**: primera fase con ~120 PS; el básico saca 3-5 (2,5-4 % de la vida: unos 25-40 básicos por pelea); habilidades

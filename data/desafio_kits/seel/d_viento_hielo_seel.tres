@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/hielo.tres" id="2"]
+[ext_resource type="Resource" path="res://data/status/frenado.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = "d_viento_hielo_seel"
+display_name = "Viento Hielo"
+element = ExtResource("2")
+kind = 0
+category = 1
+power = 40.0
+cooldown = 0.55
+knockback = 50.0
+speed = 300.0
+lifetime = 0.6
+size = 4.0
+status = ExtResource("3")
+status_chance = 0.25
+power_mult = 1.2

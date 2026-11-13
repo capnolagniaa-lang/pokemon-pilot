@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Kit" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/kit.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="2"]
+[ext_resource type="Resource" path="res://data/desafio_kits/rhyhorn/d_cornada_rhyhorn.tres" id="3"]
+[ext_resource type="Resource" path="res://data/desafio_kits/rhyhorn/d_derribo_rhyhorn.tres" id="4"]
+[ext_resource type="Resource" path="res://data/desafio_kits/rhyhorn/d_cara_susto_rhyhorn.tres" id="5"]
+[ext_resource type="Resource" path="res://data/desafio_kits/rhyhorn/d_perforador_rhyhorn.tres" id="6"]
+[ext_resource type="Resource" path="res://data/desafio_kits/rhyhorn/d_trote_rhyhorn.tres" id="7"]
+
+[resource]
+script = ExtResource("1")
+archetype = "tanque"
+preferred_range = 34.0
+moves = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")])
+role = "Tanque"
+mobility = ExtResource("7")
+mobility_back = true

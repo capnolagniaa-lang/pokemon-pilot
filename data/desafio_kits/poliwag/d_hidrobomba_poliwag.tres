@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/agua.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "d_hidrobomba_poliwag"
+display_name = "Hidrobomba"
+element = ExtResource("2")
+kind = 0
+category = 1
+power = 110.0
+cooldown = 1.0
+cast_time = 0.6
+knockback = 220.0
+beam_length = 220.0
+size = 7.0
+recovery = 0.25

@@ -201,6 +201,12 @@ static func plan_rooms(f: Dictionary, rng: RandomNumberGenerator, forced: Array 
 		var waves: Array = []
 		var lo := int(slot["levels"][0])
 		var hi := int(slot["levels"][1])
+		if slot.get("duel", false):  # sala de élite: uno solo, de los fuertes del bioma (nivel y objeto al salir)
+			var strong_pool: Array = biome["strong"].filter(func(sp): return DB.species.has(sp))
+			waves.append([[strong_pool[rng.randi() % strong_pool.size()], hi, true, "duelo"]])
+			out.append({"arena": arena, "name": data.display_name, "biome": id, "biome_name": str(biome["name"]),
+				"waves": waves, "duel": true})
+			continue
 		for w in slot["waves"].size():
 			var strong: bool = slot.get("strong_last", false) and w == slot["waves"].size() - 1
 			var pool: Array = (biome["strong"] if strong else biome["common"]).filter(func(sp): return DB.species.has(sp))
@@ -540,6 +546,8 @@ func _play_room(index: int) -> void:
 	_enter_room(index)
 	_refresh_label()
 	var title := "%s  ·  Sala %d de %d" % [str(cfg["biome_name"]).to_upper(), index + 1, total]
+	if cfg.get("duel", false):
+		title += "  ·  DUELO DE ÉLITE"
 	if index == 0:
 		await world.arena.banner(title, str(cfg.get("name", "")), 1.4)
 	else:  # (venís caminando: el cartel no frena nada)
@@ -551,7 +559,8 @@ func _play_room(index: int) -> void:
 		_spawn_wave(waves[w])
 		phase = "oleada"
 		_refresh_label()
-		Events.message_requested.emit("¡Oleada %d de %d!" % [w + 1, waves.size()])
+		if not cfg.get("duel", false):  # (el duelo se anuncia solo: quién es y qué objeto lleva)
+			Events.message_requested.emit("¡Oleada %d de %d!" % [w + 1, waves.size()])
 		while not _player_down() and not foes.is_empty():
 			await get_tree().physics_frame
 		if _player_down():
@@ -963,13 +972,17 @@ func _spawn_wave(list: Array) -> void:
 			continue
 		var cell: Vector2i = cells.pop_at(_rng.randi() % cells.size())
 		var c: Creature = WildSpawner.CreatureScene.instantiate()
-		c.instance = CreatureInstance.create_rival(DB.species[m[0]], int(m[1]))
+		var duel: bool = m.size() > 3 and str(m[3]) == "duelo"
+		c.instance = CreatureInstance.create_rival(DB.species[m[0]], duel_level() if duel else int(m[1]))
 		RogueKits.apply(c.instance)  # los enemigos también pelean con el kit de su línea, si tiene
 		c.instance.roll_ivs()
 		var elite: bool = m.size() > 2 and m[2]
 		if not elite:
 			make_minion(c.instance, floor_data)
-		foe_mods.assign(c.instance, foe_mods.roll(foe_mods.count_for(room_index, elite, order), foe_mods.level_for(room_index)))
+		if duel:
+			_arm_duelist(c.instance)
+		else:
+			foe_mods.assign(c.instance, foe_mods.roll(foe_mods.count_for(room_index, elite, order), foe_mods.level_for(room_index)))
 		if not elite:
 			order += 1
 		c.attack_gate = can_attack
@@ -981,6 +994,35 @@ func _spawn_wave(list: Array) -> void:
 		foes.append(c)
 		Fx.burst(world.entities, c.global_position, ENEMY_COLOR, 16, 55.0)
 	_engage()
+
+
+## Sala de élite (pedido del usuario 2026-11-13): un solo Pokémon, **de tu mismo nivel**, con el kit entero y un objeto
+## puesto. `duel` del JSON: `hp` = su vida sobre la normal, `items` = [{item, mod, level}]: el objeto que se ve (uno de
+## `DB.rogue_items`) y la mejora enemiga que hace su efecto (`RogueFoeMods`).
+func duel_level() -> int:
+	var top := 1
+	for inst: CreatureInstance in GameState.party:
+		top = maxi(top, inst.level)
+	return top
+
+
+func _arm_duelist(inst: CreatureInstance) -> void:
+	var cfg: Dictionary = floor_data.get("duel", {})
+	var items: Array = cfg.get("items", []).filter(func(e): return foe_mods.list().has(e.get("mod", "")))
+	inst.hp_mult *= float(cfg.get("hp", 1.0))
+	inst.hp = inst.max_hp()
+	if items.is_empty():
+		return
+	var e: Dictionary = items[_rng.randi() % items.size()]
+	var item: BoonData = DB.rogue_items.get(str(e.get("item", "")))
+	var mod := {"id": str(e["mod"]), "level": int(e.get("level", 1))}
+	if item != null:
+		mod["icon"] = item.icon_path
+		mod["name"] = item.display_name
+		inst.set_meta("rogue_item", item.id)
+	foe_mods.assign(inst, [mod])
+	Events.message_requested.emit("¡%s de élite! Lleva %s: %s" % [inst.species.display_name,
+		str(mod.get("name", foe_mods.mod_name(mod["id"]))), foe_mods.describe(mod["id"], mod["level"]).to_lower()])
 
 
 ## Esbirro de oleada (R-1): poca vida propia (`minion_hp` × la de siempre) y solo sus `minion_moves` ataques de daño

@@ -17,6 +17,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from desafio_kits_bosque import KITS_BOSQUE  # noqa: E402
+from desafio_kits_resto import KITS_RESTO  # noqa: E402
 
 KIND = {"PROJECTILE": 0, "DASH": 1, "AREA": 2, "SHIELD": 3, "MELEE": 4, "ZONE": 5, "CHANNEL": 6, "LUNGE": 7, "WHIP": 8,
         "SELF_BUFF": 9}
@@ -157,6 +158,7 @@ def move_fields(m):
 
 def main(root):
     KITS.update(KITS_BOSQUE)
+    KITS.update(KITS_RESTO)  # Volcán, Costa, Cueva, Hielo y Cementerio
     ids = [m["id"] for k in KITS.values() for m in k["moves"] + [k["mobility"]]]
     assert len(ids) == len(set(ids)), "ids repetidos: %s" % sorted(x for x in ids if ids.count(x) > 1)
     for sid, (elem, fields) in STATUSES.items():

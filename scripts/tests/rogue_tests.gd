@@ -463,7 +463,7 @@ func _check_plans(f: Dictionary, r: Dictionary) -> void:
 				ok_change = false
 			ok_size = ok_size and room["waves"].size() == slot["waves"].size()
 			for w in room["waves"].size():
-				var strong: bool = slot.get("strong_last", false) and w == room["waves"].size() - 1
+				var strong: bool = slot.get("duel", false) or (slot.get("strong_last", false) and w == room["waves"].size() - 1)
 				ok_size = ok_size and room["waves"][w].size() == int(slot["waves"][w])
 				for m in room["waves"][w]:
 					if not (m[0] in (biome["strong"] if strong else biome["common"])) or not DB.species.has(m[0]):

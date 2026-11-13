@@ -536,7 +536,7 @@ func _on_dodged() -> void:
 func _on_damaged(amount: float, hit: HitInfo) -> void:
 	if not is_instance_valid(_creature) or amount <= 0.0:
 		return
-	if hit != null and hit.attacker is Creature:
+	if hit != null and is_instance_valid(hit.attacker) and hit.attacker is Creature:
 		for b: BoonData in _mine("thorns"):
 			if _clock < float(_thorns.get(b.id, 0.0)):
 				continue

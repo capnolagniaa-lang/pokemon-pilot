@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/dormido.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_hipnosis_poliwag"
+display_name = "Hipnosis"
+element = ExtResource("2")
+kind = 0
+category = 2
+power = 0.0
+cooldown = 6.0
+knockback = 0.0
+speed = 160.0
+lifetime = 0.8
+size = 6.0
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/psiquico.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/resources/status_effect.gd" id="3"]
+[ext_resource type="Resource" path="res://data/status/desorientado.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+id = "d_psiquico_psyduck"
+display_name = "Psíquico"
+element = ExtResource("2")
+kind = 2
+category = 1
+power = 110.0
+cooldown = 1.0
+cast_time = 0.5
+knockback = 260.0
+radius = 92.0
+recovery = 0.3
+statuses_on_hit = Array[ExtResource("3")]([ExtResource("4")])

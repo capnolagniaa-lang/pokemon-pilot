@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/move_data.gd" id="1"]
+[ext_resource type="Resource" path="res://data/types/fuego.tres" id="2"]
+[ext_resource type="Resource" path="res://data/status/quemado.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = "d_nitrocarga_ponyta"
+display_name = "Nitrocarga"
+element = ExtResource("2")
+kind = 1
+category = 0
+power = 55.0
+cooldown = 2.4
+knockback = 200.0
+dash_time = 0.22
+dash_hits = true
+invulnerable_time = 0.15
+trail_power = 20.0
+trail_status = ExtResource("3")
+trail_status_chance = 0.5
+trail_duration = 2.0

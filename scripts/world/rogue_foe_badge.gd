@@ -18,7 +18,7 @@ func setup(p_mods: RogueFoeMods, c: Creature) -> void:
 	z_index = 30
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	for m: Dictionary in RogueFoeMods.of(c):
-		var path := RogueFoeMods.icon_of(m["id"])
+		var path: String = m.get("icon", RogueFoeMods.icon_of(m["id"]))  # (un élite de duelo muestra su objeto)
 		textures.append(load(path) if ResourceLoader.exists(path) else null)
 		colors.append(mods.color_of(m["id"]))
 
