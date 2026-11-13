@@ -192,7 +192,13 @@ static func plan_rooms(f: Dictionary, rng: RandomNumberGenerator, forced: Array 
 			free = biomes.keys()
 		var other: Array = free.filter(func(b): return b != last)
 		var id: String = (other if not other.is_empty() else free)[rng.randi() % (other if not other.is_empty() else free).size()]
-		if i < forced.size() and biomes.has(forced[i]):
+		# Sala con guion (recorrido del anime, pedido del usuario 2026-11-13): el casillero fija su bioma (`biome`), su
+		# episodio (`title`) y quién sale (`fixed` = oleadas con especies, "x!" = élite; `rival` = un entrenador que
+		# manda a los suyos de a uno). Con el bioma forzado a mano (tests) el casillero vuelve a ser al azar.
+		var scripted: bool = not (i < forced.size() and biomes.has(forced[i]))
+		if scripted and biomes.has(str(slot.get("biome", ""))):
+			id = str(slot["biome"])
+		if not scripted:
 			id = forced[i]
 		var biome: Dictionary = biomes[id]
 		var arenas: Array = biome["rooms"].filter(func(a): return not used.has(a))
@@ -205,6 +211,26 @@ static func plan_rooms(f: Dictionary, rng: RandomNumberGenerator, forced: Array 
 		var waves: Array = []
 		var lo := int(slot["levels"][0])
 		var hi := int(slot["levels"][1])
+		var episode: String = str(slot.get("title", "")) if scripted else ""
+		if scripted and slot.has("rival"):  # un rival del anime: los suyos de a uno, a tu nivel; el último lleva objeto
+			var team: Array = slot["rival"]["team"].filter(func(sp): return DB.species.has(sp))
+			for k in team.size():
+				waves.append([[team[k], hi, true, "duelo" if k == team.size() - 1 else "rival"]])
+			out.append({"arena": arena, "name": data.display_name, "biome": id, "biome_name": str(biome["name"]),
+				"waves": waves, "duel": true, "rival": str(slot["rival"].get("name", "")), "episode": episode})
+			continue
+		if scripted and slot.has("fixed"):
+			for list in slot["fixed"]:
+				var wave: Array = []
+				for entry in list:
+					var elite: bool = str(entry).ends_with("!")
+					var sp: String = str(entry).trim_suffix("!")
+					if DB.species.has(sp):
+						wave.append([sp, hi if elite else rng.randi_range(lo, hi), elite])
+				waves.append(wave)
+			out.append({"arena": arena, "name": data.display_name, "biome": id, "biome_name": str(biome["name"]),
+				"waves": waves, "episode": episode})
+			continue
 		if slot.get("duel", false):  # sala de élite: uno solo, de los fuertes del bioma (nivel y objeto al salir)
 			var strong_pool: Array = biome["strong"].filter(func(sp): return DB.species.has(sp))
 			waves.append([[strong_pool[rng.randi() % strong_pool.size()], hi, true, "duelo"]])
@@ -537,6 +563,16 @@ func _run() -> void:
 	await _finish()
 
 
+## El mismo piso sin el guion del anime (biome, title, fixed, rival de cada casillero): salas al azar, como antes. Lo usan
+## los tests del sorteo de biomas.
+static func unscripted(f: Dictionary) -> Dictionary:
+	var out := f.duplicate(true)
+	for slot: Dictionary in out["slots"]:
+		for key in ["biome", "title", "fixed", "rival"]:
+			slot.erase(key)
+	return out
+
+
 ## Los tramos de la partida: [{slots, boss}, ...].
 static func acts_of(f: Dictionary) -> Array:
 	var out: Array = [{"slots": f["slots"], "boss": f["boss"]}]
@@ -597,11 +633,14 @@ func _play_room(index: int) -> void:
 	_refresh_label()
 	var title := "%s  ·  Sala %d de %d" % [str(cfg["biome_name"]).to_upper(), index + 1, total]
 	if cfg.get("duel", false):
-		title += "  ·  DUELO DE ÉLITE"
+		title += "  ·  RIVAL" if str(cfg.get("rival", "")) != "" else "  ·  DUELO DE ÉLITE"
+	var sub: String = str(cfg.get("episode", ""))  # (recorrido del anime: el episodio de la sala)
+	if sub == "":
+		sub = str(cfg.get("name", ""))
 	if index == 0:
-		await world.arena.banner(title, str(cfg.get("name", "")), 1.4)
+		await world.arena.banner(title, sub, 1.4)
 	else:  # (venís caminando: el cartel no frena nada)
-		world.arena.banner(title, str(cfg.get("name", "")), 1.2)
+		world.arena.banner(title, sub, 1.2)
 		await get_tree().create_timer(ENTER_DELAY).timeout
 	var waves: Array = cfg["waves"]
 	for w in waves.size():
@@ -611,6 +650,8 @@ func _play_room(index: int) -> void:
 		_refresh_label()
 		if not cfg.get("duel", false):  # (el duelo se anuncia solo: quién es y qué objeto lleva)
 			Events.message_requested.emit("¡Oleada %d de %d!" % [w + 1, waves.size()])
+		elif w == 0 and str(cfg.get("rival", "")) != "":
+			Events.message_requested.emit("¡%s te desafía! Tiene %d Pokémon." % [str(cfg["rival"]).capitalize() if str(cfg["rival"]).begins_with("el ") else str(cfg["rival"]), waves.size()])
 		while not _player_down() and not foes.is_empty():
 			await get_tree().physics_frame
 		if _player_down():
@@ -1029,15 +1070,19 @@ func _spawn_wave(list: Array) -> void:
 			continue
 		var cell: Vector2i = cells.pop_at(_rng.randi() % cells.size())
 		var c: Creature = WildSpawner.CreatureScene.instantiate()
-		var duel: bool = m.size() > 3 and str(m[3]) == "duelo"
+		var tag: String = str(m[3]) if m.size() > 3 else ""
+		var duel: bool = tag == "duelo" or tag == "rival"
 		c.instance = CreatureInstance.create_rival(DB.species[m[0]], duel_level() if duel else int(m[1]))
 		RogueKits.apply(c.instance)  # los enemigos también pelean con el kit de su línea, si tiene
 		c.instance.roll_ivs()
 		var elite: bool = m.size() > 2 and m[2]
 		if not elite:
 			make_minion(c.instance, floor_data)
-		if duel:
+		if tag == "duelo":
 			_arm_duelist(c.instance)
+		elif tag == "rival":  # (los primeros Pokémon de un rival: a tu nivel y con su vida, sin objeto)
+			c.instance.hp_mult *= float(floor_data.get("duel", {}).get("hp", 1.0))
+			c.instance.hp = c.instance.max_hp()
 		else:
 			foe_mods.assign(c.instance, foe_mods.roll(foe_mods.count_for(room_index, elite, order), foe_mods.level_for(room_index)))
 		if not elite:

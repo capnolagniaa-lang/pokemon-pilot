@@ -1,5 +1,5 @@
 {
-  "_doc": "(2026-11-13, pedido del usuario: nunca más de 3 enemigos a la vez, así que las oleadas son de a lo sumo 3 y hay más oleadas; al principio solo primeras fases: los evolucionados van en strong, que sale en las dos últimas salas; las bendiciones están apagadas con peso 0 y sin venderse en la Tienda: quedan los objetos.) Modo Desafío (roguelike; docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; balls = Pokébolas por partida (cada una es un tiro: la errada se pierde; atrapar desbloquea la especie como inicial, RogueProgress); heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida; settings = ajustes del juego que pisa el modo (pp_regen 2 = la barra de PP se llena al doble); offer = cuántos Pokémon te ofrecen, de los desbloqueados. Esbirros y fichas (R-1): minion_hp = vida de un enemigo de oleada sobre la normal (los de la oleada fuerte, élites, van con la vida entera), minion_moves = con cuántos ataques de daño pelea, attackers = cuántos pueden atacar a la vez (los demás rodean). Mejoras enemigas (RogueFoeMods): foe_mods.list = cada una con su peso, su número (value) y su texto, level_step = cuánto suma cada nivel; por sala (slots): champions = cuántos esbirros de cada oleada común llevan una, mods = cuántas lleva cada élite, mod_level = su nivel; boss.mods = cuántas lleva cada Pokémon del jefe, boss.fixed_mods = las que lleva siempre todo su equipo (curtido: aguanta lo súper efectivo; peso 0 = no sale al azar) y boss.mod_level. Recompensas de sala (R-3, RogueRewards): rewards.first = la de la primera sala; room_money = plata por sala limpia; weights = peso de cada tipo en las puertas (bendicion, caramelo, mt, proteina, dinero, tienda, centro, objeto); los pesos son la base: RogueRewards.weight_of los multiplica según cómo venís (vida, plata, ranuras, bolas); reroll = cambiar las opciones de bendiciones y objetos: base × 2^(rerolls seguidos) × (1 + salas limpiadas × room_step); item_sell = plata base por un objeto reemplazado o vendido (× rareza × nivel); proteina = cuánta vida máxima suma; dinero = [mínimo, máximo]; centro = parte de la vida que cura; shop = lo que vende la Tienda. slots = las salas de la partida, en orden: levels = [mínimo, máximo] de los enemigos, waves = cuántos salen en cada oleada, strong_last = la última oleada es de los fuertes del bioma. biomes = cada sala sale de un bioma al azar (RogueRun.plan_rooms: sin repetir sala y, si se puede, sin repetir el bioma de la anterior): rooms = sus arenas pintadas (data/arenas, pinturas.json; todas del mismo ancho y con el paso en el medio de la primera y la última fila), common/strong = los Pokémon característicos. Sala de élite (pedido del usuario 2026-11-13): un slot con duel = true es un solo Pokémon de los fuertes del bioma, de tu mismo nivel, con el kit entero y un objeto puesto; duel.hp = su vida sobre la normal, duel.items = el objeto que se ve (DB.rogue_items) y la mejora enemiga que hace su efecto, con su nivel. boss = pelea de entrenador (TrainerBattle) al final. Tramos (pedido del usuario 2026-11-13: hasta el tercer líder): slots + boss son el primero (Brock); more_acts = los que siguen (Misty, Lt. Surge), cada uno con sus slots (misma cantidad de salas) y su boss; boss.badge = el cartel al ganarle. Entre tramos el equipo se cura entero.",
+  "_doc": "(2026-11-13, pedido del usuario: nunca más de 3 enemigos a la vez, así que las oleadas son de a lo sumo 3 y hay más oleadas; al principio solo primeras fases: los evolucionados van en strong, que sale en las dos últimas salas; las bendiciones están apagadas con peso 0 y sin venderse en la Tienda: quedan los objetos.) Modo Desafío (roguelike; docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; balls = Pokébolas por partida (cada una es un tiro: la errada se pierde; atrapar desbloquea la especie como inicial, RogueProgress); heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida; settings = ajustes del juego que pisa el modo (pp_regen 2 = la barra de PP se llena al doble); offer = cuántos Pokémon te ofrecen, de los desbloqueados. Esbirros y fichas (R-1): minion_hp = vida de un enemigo de oleada sobre la normal (los de la oleada fuerte, élites, van con la vida entera), minion_moves = con cuántos ataques de daño pelea, attackers = cuántos pueden atacar a la vez (los demás rodean). Mejoras enemigas (RogueFoeMods): foe_mods.list = cada una con su peso, su número (value) y su texto, level_step = cuánto suma cada nivel; por sala (slots): champions = cuántos esbirros de cada oleada común llevan una, mods = cuántas lleva cada élite, mod_level = su nivel; boss.mods = cuántas lleva cada Pokémon del jefe, boss.fixed_mods = las que lleva siempre todo su equipo (curtido: aguanta lo súper efectivo; peso 0 = no sale al azar) y boss.mod_level. Recompensas de sala (R-3, RogueRewards): rewards.first = la de la primera sala; room_money = plata por sala limpia; weights = peso de cada tipo en las puertas (bendicion, caramelo, mt, proteina, dinero, tienda, centro, objeto); los pesos son la base: RogueRewards.weight_of los multiplica según cómo venís (vida, plata, ranuras, bolas); reroll = cambiar las opciones de bendiciones y objetos: base × 2^(rerolls seguidos) × (1 + salas limpiadas × room_step); item_sell = plata base por un objeto reemplazado o vendido (× rareza × nivel); proteina = cuánta vida máxima suma; dinero = [mínimo, máximo]; centro = parte de la vida que cura; shop = lo que vende la Tienda. slots = las salas de la partida, en orden: levels = [mínimo, máximo] de los enemigos, waves = cuántos salen en cada oleada, strong_last = la última oleada es de los fuertes del bioma. biomes = cada sala sale de un bioma al azar (RogueRun.plan_rooms: sin repetir sala y, si se puede, sin repetir el bioma de la anterior): rooms = sus arenas pintadas (data/arenas, pinturas.json; todas del mismo ancho y con el paso en el medio de la primera y la última fila), common/strong = los Pokémon característicos. Sala de élite (pedido del usuario 2026-11-13): un slot con duel = true es un solo Pokémon de los fuertes del bioma, de tu mismo nivel, con el kit entero y un objeto puesto; duel.hp = su vida sobre la normal, duel.items = el objeto que se ve (DB.rogue_items) y la mejora enemiga que hace su efecto, con su nivel. boss = pelea de entrenador (TrainerBattle) al final. Recorrido del anime (pedido del usuario 2026-11-13; datos en data/source/anime_kanto.json): cada casillero puede fijar biome, title (el episodio, sale en el cartel), fixed (oleadas con especies; \"x!\" = élite con vida y kit enteros) o rival ({name, team}: sus Pokémon de a uno, a tu nivel, el último con objeto); waves queda para cuando el bioma se fuerza a mano (tests), que vuelve la sala al azar. Lt. Surge pelea solo con Raichu, como en el anime. Tramos (pedido del usuario 2026-11-13: hasta el tercer líder): slots + boss son el primero (Brock); more_acts = los que siguen (Misty, Lt. Surge), cada uno con sus slots (misma cantidad de salas) y su boss; boss.badge = el cartel al ganarle. Entre tramos el equipo se cura entero.",
   "name": "Modo Desafío",
   "level": 10,
   "potions": 5,
@@ -46,11 +46,16 @@
     {"item": "iman", "mod": "electrico", "level": 2}
   ]},
   "slots": [
-    {"levels": [5, 6], "waves": [3, 2]},
-    {"levels": [6, 7], "waves": [3, 3]},
-    {"levels": [7, 8], "waves": [1], "duel": true},
-    {"levels": [7, 8], "waves": [3, 3, 1], "strong_last": true, "champions": 1, "mods": 1},
-    {"levels": [8, 9], "waves": [3, 3, 2], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2}
+    {"levels": [5, 6], "waves": [3, 2], "biome": "bosque", "title": "EP 1 · La bandada de Spearow",
+     "fixed": [["spearow", "spearow", "spearow"], ["spearow", "spearow", "pidgey"]]},
+    {"levels": [6, 7], "waves": [3, 3], "biome": "bosque", "title": "EP 2 · El Equipo Rocket ataca el Centro Pokémon",
+     "fixed": [["rattata", "pidgey", "rattata"], ["ekans!", "koffing!"]]},
+    {"levels": [7, 8], "waves": [3, 3, 1], "strong_last": true, "champions": 1, "mods": 1, "biome": "bosque",
+     "title": "EP 3 · El Bosque Verde", "fixed": [["caterpie", "weedle", "caterpie"], ["weedle", "pidgey", "caterpie"], ["pidgeotto!"]]},
+    {"levels": [7, 8], "waves": [1], "duel": true, "champions": 1, "mods": 1, "biome": "bosque", "title": "EP 4 · El desafío del samurái",
+     "rival": {"name": "el Samurái", "team": ["metapod", "pinsir"]}},
+    {"levels": [8, 9], "waves": [3, 3, 2], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2, "biome": "bosque",
+     "title": "EP 4 · El enjambre de Beedrill", "fixed": [["weedle", "kakuna", "weedle"], ["kakuna", "weedle", "kakuna"], ["beedrill!", "beedrill!"]]}
   ],
   "biomes": {
     "bosque": {
@@ -116,11 +121,16 @@
   "more_acts": [
     {
       "slots": [
-        {"levels": [10, 11], "waves": [3, 2]},
-        {"levels": [11, 12], "waves": [3, 3]},
-        {"levels": [12, 13], "waves": [1], "duel": true},
-        {"levels": [12, 13], "waves": [3, 3, 1], "strong_last": true, "champions": 1, "mods": 1},
-        {"levels": [13, 14], "waves": [3, 3, 2], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2}
+        {"levels": [10, 11], "waves": [3, 2], "biome": "cueva", "title": "EP 6 · Monte Luna: la bandada de Zubat",
+         "fixed": [["zubat", "zubat", "zubat"], ["zubat", "zubat", "geodude"]]},
+        {"levels": [11, 12], "waves": [3, 3], "biome": "cueva", "title": "EP 6 · Las cuevas del Monte Luna",
+         "fixed": [["sandshrew", "paras", "geodude"], ["paras", "zubat", "sandshrew"]]},
+        {"levels": [12, 13], "waves": [1], "duel": true, "biome": "cueva", "title": "EP 6 · El Equipo Rocket quiere la Piedra Lunar",
+         "rival": {"name": "Jessie y James", "team": ["ekans", "koffing"]}},
+        {"levels": [12, 13], "waves": [3, 3, 1], "strong_last": true, "champions": 1, "mods": 1, "biome": "cueva",
+         "title": "EP 6 · Los Clefairy y la Piedra Lunar", "fixed": [["clefairy", "zubat", "clefairy"], ["clefairy", "geodude", "clefairy"], ["clefable!"]]},
+        {"levels": [13, 14], "waves": [3, 3, 2], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2, "biome": "costa",
+         "title": "EP 7 · Las flores acuáticas de Ciudad Celeste", "fixed": [["goldeen", "horsea", "goldeen"], ["seel", "goldeen", "horsea"], ["seaking!", "seel!"]]}
       ],
       "boss": {
         "name": "Misty", "title": "Líder", "gfx": "misty", "arena": "arena_gimnasio_agua",
@@ -133,17 +143,22 @@
     },
     {
       "slots": [
-        {"levels": [15, 16], "waves": [3, 2]},
-        {"levels": [16, 17], "waves": [3, 3]},
-        {"levels": [17, 18], "waves": [1], "duel": true},
-        {"levels": [17, 18], "waves": [3, 3, 1], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2},
-        {"levels": [18, 19], "waves": [3, 3, 2], "strong_last": true, "champions": 2, "mods": 1, "mod_level": 2}
+        {"levels": [15, 16], "waves": [1], "duel": true, "biome": "volcan", "title": "EP 8 · El camino a la Liga Pokémon",
+         "rival": {"name": "A.J.", "team": ["rattata", "sandshrew"]}},
+        {"levels": [16, 17], "waves": [3, 3, 1], "strong_last": true, "champions": 1, "mods": 1, "biome": "bosque",
+         "title": "EP 10 · Bulbasaur y la aldea oculta", "fixed": [["oddish", "rattata", "paras"], ["oddish", "bellsprout", "oddish"], ["bulbasaur!"]]},
+        {"levels": [17, 18], "waves": [3, 3, 1], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2, "biome": "volcan",
+         "title": "EP 11 · Charmander, el Pokémon abandonado", "fixed": [["spearow", "spearow", "spearow"], ["spearow", "fearow", "spearow"], ["charmander!"]]},
+        {"levels": [17, 18], "waves": [3, 3, 1], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2, "biome": "costa",
+         "title": "EP 12 · El Escuadrón Squirtle", "fixed": [["squirtle", "squirtle", "squirtle"], ["squirtle", "goldeen", "squirtle"], ["squirtle!"]]},
+        {"levels": [18, 19], "waves": [3, 3, 2], "strong_last": true, "champions": 2, "mods": 1, "mod_level": 2, "biome": "costa",
+         "title": "EP 13 · El misterio del faro", "fixed": [["krabby", "krabby", "krabby"], ["krabby", "shellder", "krabby"], ["kingler!", "krabby!"]]}
       ],
       "boss": {
         "name": "Lt. Surge", "title": "Líder", "gfx": "lt_surge", "arena": "arena_gimnasio_electrico",
         "trainer_id": "ciudad_carmin_gimnasio_ltsurge",
-        "team": [["voltorb", 20], ["pikachu", 20], ["raichu", 23]],
-        "mods": [0, 0, 1], "fixed_mods": [], "mod_level": 2,
+        "team": [["raichu", 24]],
+        "mods": [2], "fixed_mods": [], "mod_level": 2,
         "badge": "Medalla Trueno", "door": "Gimnasio de Carmín",
         "defeat": "¡Maldición! Era como estar otra vez en la guerra, con alguien dándome órdenes adentro de la cabeza. Buen trabajo, soldado."
       }

@@ -26,6 +26,12 @@ func run() -> void:
 		moves.size() >= 1 and moves.size() <= int(f["minion_moves"]) and moves.all(func(m): return m.power > 0.0)
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 3
+	var story: Array = RogueRun.plan_rooms(f, rng)  # el recorrido del anime, tal cual está escrito
+	var eps: Array = story.map(func(room): return str(room.get("episode", "")))
+	var samurai: Array = story.filter(func(room): return str(room.get("rival", "")) != "")
+	r["El primer tramo sigue el anime: %s" % " / ".join(eps)] = eps.all(func(e): return e.begins_with("EP ")) 		and story[0]["waves"][0].all(func(m): return m[0] == "spearow") and story.all(func(room): return room["biome"] == "bosque") 		and story.all(func(room): return room["waves"].all(func(w): return w.size() <= 3))
+	r["Un rival del anime manda a los suyos de a uno y el último es el del objeto (%s)" % (str(samurai[0]["rival"]) if samurai.size() == 1 else "-")] = 		samurai.size() == 1 and samurai[0]["waves"].size() == 2 and samurai[0]["waves"].all(func(w): return w.size() == 1) 		and str(samurai[0]["waves"][0][0][3]) == "rival" and str(samurai[0]["waves"][1][0][3]) == "duelo" and samurai[0]["waves"][1][0][0] == "pinsir"
+	f = RogueRun.unscripted(f)
 	var plan: Array = RogueRun.plan_rooms(f, rng)
 	var elite_ok := true
 	var bigger := false

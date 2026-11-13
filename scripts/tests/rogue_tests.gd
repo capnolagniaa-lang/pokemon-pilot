@@ -448,6 +448,7 @@ func _check_plans(f: Dictionary, r: Dictionary) -> void:
 	var ok_levels := true
 	var ok_strong := true
 	var seen := {}
+	f = RogueRun.unscripted(f)  # (el sorteo de biomas: sin el guion del anime)
 	for n in 300:
 		var plan: Array = RogueRun.plan_rooms(f, rng)
 		ok_size = ok_size and plan.size() == f["slots"].size()

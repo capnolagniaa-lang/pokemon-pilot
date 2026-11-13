@@ -732,6 +732,13 @@ Tres tramos de 5 salas + líder: Brock, Misty, Lt. Surge. Entre tramos, medalla 
 siguen con sus ataques de siempre (y su kit de jefe: Onix, Starmie, Raichu). Pendiente: medir el balance de los tramos 2
 y 3, decidir si se puede atrapar un compañero más por tramo y si la Tienda/objetos escalan.
 
+### 13.5 El recorrido del anime (2026-11-13)
+Decisión del usuario: los rivales y las salas salen del anime, "literal"; se prueba con los 3 primeros líderes antes de
+extender a las 8 medallas y la Liga. Cada casillero de `desafio.json` fija bioma, episodio, oleadas y, si toca, un rival.
+Lo que el anime no da (cuántos enemigos, niveles) lo pone el modo. Para seguir: Sabrina (EP 15-24), Erika (25-26), Koga
+(27-32), Blaine (33-59), el Gimnasio de Verde con Jessie y James (60-63) y la Liga Añil (64-81); con 9 tramos conviene
+bajar a 3 salas por tramo. Falta mostrar al rival en la sala (hoy es solo el cartel y sus Pokémon).
+
 ### 13.2 Segunda mirada al video de Pokémon Arena 2D (2026-11-13)
 Lo que se ve y se dice en el video (transcripción entera + capturas), para ir tomando ideas. **Nada de esto está hecho.**
 - **Números**: primera fase con ~120 PS; el básico saca 3-5 (2,5-4 % de la vida: unos 25-40 básicos por pelea); habilidades
