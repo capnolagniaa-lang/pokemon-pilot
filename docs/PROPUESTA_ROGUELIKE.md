@@ -708,6 +708,15 @@ kits) que tengan sentido con cómo juega cada Pokémon. Se van viendo de a tanda
 - **Falta**: kits de los enemigos de los biomas (tanda por bioma), la IA usándolos, definitiva mejorada al evolucionar,
   y volver a correr la batería de balance.
 
+### 13.1 Ajustes del usuario (2026-11-13)
+- Espacio = movilidad para **mantener la distancia** (nada que se lance hacia el rival).
+- La definitiva se carga al hacer y recibir daño (ya era así; queda como regla).
+- Salas con **a lo sumo 3 enemigos** a la vez; al principio solo **primeras fases**.
+- **Bendiciones fuera por ahora**; quedan los objetos.
+- "Hasta Brock, poder atrapar a un Pokémon": **a definir** (hoy atrapar desbloquea la especie como inicial y no se suma al
+  equipo; hay 2 Poké Balls por partida).
+- Le gusta la arena de Pokémon Arena 2D; volver a ver el video para ataques y ritmo.
+
 ## 12. Progreso permanente entre partidas (alternativas, **sin implementar**; usuario, 2026-11-11)
 
 Pedido del usuario: "Brock tiene que sentirse difícil de vencer en las primeras run ya que la idea es manejar algo de

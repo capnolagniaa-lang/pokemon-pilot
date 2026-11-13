@@ -600,7 +600,8 @@ func _evolve() -> void:
 func reward_of(index: int) -> String:
 	if index < room_rewards.size() and room_rewards[index] != "":
 		return room_rewards[index]
-	return str(floor_data.get("rewards", {}).get("first", "bendicion"))
+	# (la primera sala: `rewards.first`; los tests la fijan con `GameState.rogue["first_reward"]`)
+	return str(GameState.rogue.get("first_reward", floor_data.get("rewards", {}).get("first", "objeto")))
 
 
 ## Sala limpia y recompensa cobrada: aparecen dos puertas con ícono frente al paso; pisar una con tu Pokémon elige qué

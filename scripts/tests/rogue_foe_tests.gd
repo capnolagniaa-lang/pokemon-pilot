@@ -17,7 +17,7 @@ func run_tests() -> void:
 	var f := RogueRun.load_floor()
 	r["Menos EXP que en la historia (×%.1f; antes ×3): no se dispara de nivel" % float(f["exp_mult"])] = float(f["exp_mult"]) <= 1.0
 	r["Esbirros más duros: %d %% de vida (antes 45) y hasta %d atacando a la vez (antes 3)" % [roundi(100.0 * float(f["minion_hp"])), int(f["attackers"])]] = \
-		float(f["minion_hp"]) > 0.45 and float(f["minion_hp"]) < 1.0 and int(f["attackers"]) == 4
+		float(f["minion_hp"]) > 0.45 and float(f["minion_hp"]) < 1.0 and int(f["attackers"]) >= 3
 	var list: Dictionary = f["foe_mods"]["list"]
 	var missing: Array[String] = []
 	for id: String in list:

@@ -39,7 +39,7 @@ func run() -> void:
 				if bool(m[2]) != strong:
 					elite_ok = false
 	r["En el plan, solo la oleada fuerte es de élites (vida entera)"] = elite_ok
-	r["Hay oleadas de más de %d enemigos (ahí cuentan las fichas)" % limit] = bigger
+	r["Ninguna oleada del plan pasa de 3 enemigos a la vez"] = not bigger and limit <= 3
 
 	# --- En una sala: 7 esbirros contra vos, que no hacés nada ---
 	RogueRun.begin(DB.species["squirtle"])

@@ -14,6 +14,7 @@ func run_tests() -> void:
 	RogueRun.begin(DB.species["charmander"])
 	GameState.rogue["biomes"] = ["bosque", "cueva", "volcan", "hielo", "costa"]
 	GameState.rogue["rewards"] = ["dinero", "dinero"]
+	GameState.rogue["first_reward"] = "bendicion"  # (las bendiciones ya no salen solas: 2026-11-13)
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 	run = world.rogue

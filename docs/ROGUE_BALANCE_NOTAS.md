@@ -81,3 +81,8 @@ Brock tiene que ser más liviano. Por inicial (última tanda, 9 cada uno): Squir
 Charmander 0 de 2 (y muere 3 veces en la primera sala). **Pendiente**: tanda larga con `tools/rogue_balance.py`,
 mirar a Charmander, y los objetos/bendiciones aislados de nuevo (los de tipo y los de esquive cambian de valor con los
 kits).
+
+**2026-11-13.** Movilidad solo para tomar distancia (ya no pega ni entra): 24 partidas, llega 6, gana 2 (tanda floja,
+dentro del ruido). Después, oleadas de hasta 3 con más oleadas, `attackers` 3, sin bendiciones y primera sala = Objeto:
+**27 partidas, llega 15 (56 %), gana 5 (19 %)**; las 5 victorias son de Squirtle (5 de 5 llegadas), Bulbasaur 0 de 7 y
+Charmander 0 de 3. Sigue pendiente la tanda larga y mirar por qué solo Squirtle le gana a Brock.

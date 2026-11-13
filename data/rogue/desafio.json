@@ -1,5 +1,5 @@
 {
-  "_doc": "Modo Desafío (roguelike; docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; balls = Pokébolas por partida (cada una es un tiro: la errada se pierde; atrapar desbloquea la especie como inicial, RogueProgress); heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida; settings = ajustes del juego que pisa el modo (pp_regen 2 = la barra de PP se llena al doble); offer = cuántos Pokémon te ofrecen, de los desbloqueados. Esbirros y fichas (R-1): minion_hp = vida de un enemigo de oleada sobre la normal (los de la oleada fuerte, élites, van con la vida entera), minion_moves = con cuántos ataques de daño pelea, attackers = cuántos pueden atacar a la vez (los demás rodean). Mejoras enemigas (RogueFoeMods): foe_mods.list = cada una con su peso, su número (value) y su texto, level_step = cuánto suma cada nivel; por sala (slots): champions = cuántos esbirros de cada oleada común llevan una, mods = cuántas lleva cada élite, mod_level = su nivel; boss.mods = cuántas lleva cada Pokémon del jefe, boss.fixed_mods = las que lleva siempre todo su equipo (curtido: aguanta lo súper efectivo; peso 0 = no sale al azar) y boss.mod_level. Recompensas de sala (R-3, RogueRewards): rewards.first = la de la primera sala; room_money = plata por sala limpia; weights = peso de cada tipo en las puertas (bendicion, caramelo, mt, proteina, dinero, tienda, centro, objeto); los pesos son la base: RogueRewards.weight_of los multiplica según cómo venís (vida, plata, ranuras, bolas); reroll = cambiar las opciones de bendiciones y objetos: base × 2^(rerolls seguidos) × (1 + salas limpiadas × room_step); item_sell = plata base por un objeto reemplazado o vendido (× rareza × nivel); proteina = cuánta vida máxima suma; dinero = [mínimo, máximo]; centro = parte de la vida que cura; shop = lo que vende la Tienda. slots = las salas de la partida, en orden: levels = [mínimo, máximo] de los enemigos, waves = cuántos salen en cada oleada, strong_last = la última oleada es de los fuertes del bioma. biomes = cada sala sale de un bioma al azar (RogueRun.plan_rooms: sin repetir sala y, si se puede, sin repetir el bioma de la anterior): rooms = sus arenas pintadas (data/arenas, pinturas.json; todas del mismo ancho y con el paso en el medio de la primera y la última fila), common/strong = los Pokémon característicos. boss = pelea de entrenador (TrainerBattle) al final.",
+  "_doc": "(2026-11-13, pedido del usuario: nunca más de 3 enemigos a la vez, así que las oleadas son de a lo sumo 3 y hay más oleadas; al principio solo primeras fases: los evolucionados van en strong, que sale en las dos últimas salas; las bendiciones están apagadas con peso 0 y sin venderse en la Tienda: quedan los objetos.) Modo Desafío (roguelike; docs/PROPUESTA_ROGUELIKE.md; lo lee RogueRun). level = nivel con el que arranca tu Pokémon; potions = Pociones para toda la partida; balls = Pokébolas por partida (cada una es un tiro: la errada se pierde; atrapar desbloquea la especie como inicial, RogueProgress); heal_on_clear = parte de la vida que recupera al limpiar una sala; exp_mult = multiplicador de EXP de la partida; settings = ajustes del juego que pisa el modo (pp_regen 2 = la barra de PP se llena al doble); offer = cuántos Pokémon te ofrecen, de los desbloqueados. Esbirros y fichas (R-1): minion_hp = vida de un enemigo de oleada sobre la normal (los de la oleada fuerte, élites, van con la vida entera), minion_moves = con cuántos ataques de daño pelea, attackers = cuántos pueden atacar a la vez (los demás rodean). Mejoras enemigas (RogueFoeMods): foe_mods.list = cada una con su peso, su número (value) y su texto, level_step = cuánto suma cada nivel; por sala (slots): champions = cuántos esbirros de cada oleada común llevan una, mods = cuántas lleva cada élite, mod_level = su nivel; boss.mods = cuántas lleva cada Pokémon del jefe, boss.fixed_mods = las que lleva siempre todo su equipo (curtido: aguanta lo súper efectivo; peso 0 = no sale al azar) y boss.mod_level. Recompensas de sala (R-3, RogueRewards): rewards.first = la de la primera sala; room_money = plata por sala limpia; weights = peso de cada tipo en las puertas (bendicion, caramelo, mt, proteina, dinero, tienda, centro, objeto); los pesos son la base: RogueRewards.weight_of los multiplica según cómo venís (vida, plata, ranuras, bolas); reroll = cambiar las opciones de bendiciones y objetos: base × 2^(rerolls seguidos) × (1 + salas limpiadas × room_step); item_sell = plata base por un objeto reemplazado o vendido (× rareza × nivel); proteina = cuánta vida máxima suma; dinero = [mínimo, máximo]; centro = parte de la vida que cura; shop = lo que vende la Tienda. slots = las salas de la partida, en orden: levels = [mínimo, máximo] de los enemigos, waves = cuántos salen en cada oleada, strong_last = la última oleada es de los fuertes del bioma. biomes = cada sala sale de un bioma al azar (RogueRun.plan_rooms: sin repetir sala y, si se puede, sin repetir el bioma de la anterior): rooms = sus arenas pintadas (data/arenas, pinturas.json; todas del mismo ancho y con el paso en el medio de la primera y la última fila), common/strong = los Pokémon característicos. boss = pelea de entrenador (TrainerBattle) al final.",
   "name": "Modo Desafío",
   "level": 10,
   "potions": 4,
@@ -10,7 +10,7 @@
   "offer": 3,
   "minion_hp": 0.5,
   "minion_moves": 2,
-  "attackers": 4,
+  "attackers": 3,
   "foe_mods": {
     "level_step": 0.5,
     "list": {
@@ -23,9 +23,9 @@
     }
   },
   "rewards": {
-    "first": "bendicion",
+    "first": "objeto",
     "room_money": 15,
-    "weights": {"bendicion": 40, "caramelo": 12, "mt": 14, "proteina": 12, "dinero": 10, "tienda": 10, "centro": 12, "objeto": 22, "bola": 8},
+    "weights": {"bendicion": 0, "caramelo": 12, "mt": 14, "proteina": 12, "dinero": 10, "tienda": 10, "centro": 12, "objeto": 22, "bola": 8},
     "reroll": {"base": 30, "room_step": 0.25},
     "item_sell": 20,
     "proteina": 0.15,
@@ -35,22 +35,21 @@
       {"id": "pocion", "name": "Poción", "price": 40, "text": "Una Poción más para la partida."},
       {"id": "poke_ball", "name": "Poké Ball", "price": 60, "text": "Un tiro más para atrapar (y desbloquear) a un Pokémon."},
       {"id": "cura", "name": "Curación", "price": 35, "heal": 0.4, "text": "Recuperás 40 % de la vida ahora."},
-      {"id": "objeto", "name": "Objeto", "price": 90, "text": "Elegís 1 de 3 objetos para equiparle a tu Pokémon."},
-      {"id": "bendicion", "name": "Bendición", "price": 110, "text": "Un legendario te ofrece 3 bendiciones."}
+      {"id": "objeto", "name": "Objeto", "price": 90, "text": "Elegís 1 de 3 objetos para equiparle a tu Pokémon."}
     ]
   },
   "slots": [
-    {"levels": [3, 4], "waves": [3, 4]},
-    {"levels": [4, 5], "waves": [4, 4]},
-    {"levels": [5, 6], "waves": [4, 5]},
-    {"levels": [6, 7], "waves": [4, 5, 2], "strong_last": true, "champions": 1, "mods": 1},
-    {"levels": [8, 9], "waves": [5, 5, 2], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2}
+    {"levels": [3, 4], "waves": [3, 3]},
+    {"levels": [4, 5], "waves": [3, 3, 2]},
+    {"levels": [5, 6], "waves": [3, 3, 3]},
+    {"levels": [6, 7], "waves": [3, 3, 3, 2], "strong_last": true, "champions": 1, "mods": 1},
+    {"levels": [8, 9], "waves": [3, 3, 3, 2], "strong_last": true, "champions": 1, "mods": 1, "mod_level": 2}
   ],
   "biomes": {
     "bosque": {
       "name": "Bosque Verde",
       "rooms": ["sala_bosque_p1", "sala_bosque_p2", "sala_bosque_p3", "sala_bosque_p4", "sala_bosque_p5", "sala_bosque_p6"],
-      "common": ["caterpie", "weedle", "pidgey", "rattata", "oddish", "bellsprout", "paras", "venonat", "spearow", "pikachu", "metapod", "kakuna", "exeggcute", "nidoran_f", "nidoran_m", "mankey"],
+      "common": ["caterpie", "weedle", "pidgey", "rattata", "oddish", "bellsprout", "paras", "venonat", "spearow", "pikachu", "exeggcute", "nidoran_f", "nidoran_m", "mankey"],
       "strong": ["beedrill", "butterfree", "pidgeotto", "gloom", "weepinbell", "parasect", "venomoth", "scyther"]
     },
     "volcan": {

@@ -30,6 +30,7 @@ func run_tests() -> void:
 	RogueRun.begin(DB.species["geodude"])  # (uno sin kit de 5 teclas: con kit no hay MT)
 	GameState.rogue["biomes"] = ["bosque", "cueva", "volcan", "hielo", "costa"]
 	GameState.rogue["rewards"] = ["bendicion", "dinero"]
+	GameState.rogue["first_reward"] = "bendicion"  # (las bendiciones ya no salen solas: 2026-11-13)
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 	run = world.rogue
@@ -49,15 +50,15 @@ func run_tests() -> void:
 		for id in o:
 			seen[id] = true
 	r["Sin bendiciones ni plata, las puertas nunca ofrecen Caramelo Raro ni Tienda (salen: %s)" % ", ".join(seen.keys())] = pairs_ok \
-		and not seen.has("caramelo") and not seen.has("tienda") and seen.has("bendicion") and seen.has("mt") and seen.has("centro")
+		and not seen.has("caramelo") and not seen.has("tienda") and not seen.has("bendicion") and seen.has("objeto") and seen.has("mt") and seen.has("centro")
 	run.boons.take("sobrecarga")
 	GameState.money = 500
 	seen.clear()
 	for n in 800:
 		for id in rewards.options(rng):
 			seen[id] = int(seen.get(id, 0)) + 1
-	r["Con bendiciones y plata salen los 9 tipos, de a 2 distintos; la Bendición es la más común (%d de 1600)" % seen.get("bendicion", 0)] = \
-		seen.size() == 9 and seen.values().all(func(v): return v > 0) and seen.keys().all(func(id): return seen["bendicion"] >= seen[id])
+	r["Con plata salen los otros 8 tipos, de a 2 distintos, y nunca la Bendición (apagada: 2026-11-13); el Objeto es el más común (%d de 1600)" % seen.get("objeto", 0)] = \
+		seen.size() == 8 and not seen.has("bendicion") and seen.values().all(func(v): return v > 0) and seen.keys().all(func(id): return seen["objeto"] >= seen[id])
 
 	# --- Cada recompensa ---
 	GameState.money = 0
@@ -109,17 +110,18 @@ func run_tests() -> void:
 		offered.size() == 3 and slot_cards == 4 and inst.equipped_moves[2] != null and inst.equipped_moves[2].display_name == want \
 		and me.moves.slots[2] == inst.equipped_moves[2] and inst.equipped_moves[0] == old_moves[0] and inst.equipped_moves[1] == old_moves[1]
 	# Tienda
-	GameState.money = 100
+	GameState.money = 80  # (alcanza para la Poción y no para el Objeto, $90)
 	var potions := GameState.item_count("pocion")
 	var balls := GameState.item_count("poke_ball")
 	_grant("tienda")
 	await _until(func(): return is_instance_valid(run.reward_screen), 3.0)
 	await get_tree().process_frame
 	var shop: RewardScreen = run.reward_screen
-	var shop_ok: bool = shop.cards.size() == cfg["shop"].size() + 1 and shop.cards[4].disabled and not shop.cards[0].disabled
-	shop.choose(4)  # (la bendición, $110: no alcanza)
+	var shop_ok: bool = shop.cards.size() == cfg["shop"].size() + 1 and shop.cards[3].disabled and not shop.cards[0].disabled 		and not cfg["shop"].any(func(x): return x["id"] == "bendicion")  # (las bendiciones ya no se venden: 2026-11-13)
+	shop.choose(3)  # (el Objeto, $90: no alcanza)
 	await get_tree().process_frame
-	var still: bool = is_instance_valid(run.reward_screen) and run.reward_screen == shop and GameState.money == 100
+	var still: bool = is_instance_valid(run.reward_screen) and run.reward_screen == shop and GameState.money == 80
+	GameState.money = 100
 	shop.choose(0)  # Poción, $40
 	await _until(func(): return is_instance_valid(run.reward_screen) and run.reward_screen != shop, 3.0)
 	await get_tree().process_frame
@@ -230,6 +232,7 @@ func showcase() -> void:
 	RogueRun.begin(DB.species["charmander"])
 	GameState.rogue["biomes"] = ["cementerio", "bosque", "volcan", "hielo", "costa"]
 	GameState.rogue["rewards"] = ["bendicion", "tienda"]
+	GameState.rogue["first_reward"] = "bendicion"  # (las bendiciones ya no salen solas: 2026-11-13)
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 	await _until(func(): return _world() != null and world.get("rogue") != null and world.rogue.phase == "oleada", 20.0)
 	run = world.rogue

@@ -178,6 +178,7 @@ func run() -> void:
 		run.select_layer.get_child(0).start(DB.species["squirtle"])
 	GameState.rogue["biomes"] = BOT_BIOMES
 	GameState.rogue["rewards"] = BOT_REWARDS
+	GameState.rogue["first_reward"] = "bendicion"  # (las bendiciones ya no salen solas: 2026-11-13)
 	GameState.rogue["single_door"] = true
 	await get_tree().process_frame
 	var mine: CreatureInstance = GameState.active()
@@ -307,6 +308,7 @@ func run() -> void:
 		RogueRun.begin(DB.species["squirtle"])
 		GameState.rogue["biomes"] = BOT_BIOMES
 		GameState.rogue["rewards"] = BOT_REWARDS
+		GameState.rogue["first_reward"] = "bendicion"  # (las bendiciones ya no salen solas: 2026-11-13)
 		GameState.rogue["single_door"] = true
 		mine = GameState.active()
 		get_tree().change_scene_to_file("res://scenes/world/world.tscn")
