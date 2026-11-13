@@ -1,0 +1,2305 @@
+{
+ "_doc": "Peleas de Ash en el anime, primera temporada (EP001-EP082, hasta la Liga Añil). Relevado el 2026-11-13 desde WikiDex (Bulbapedia bloquea las consultas automáticas) con notas propias; varias entradas tienen detalles de memoria o sin confirmar, dicho en su nota. kind: gym, league, rival, trainer, rocket, wild, other. Especies con el id del juego.",
+ "episodes": [
+  {
+   "ep": "EP001",
+   "title_en": "Pokémon - I Choose You!",
+   "title_es": "¡Pokémon, te elijo a ti! (ES) / ¡Pokémon, yo te elijo! (LA)",
+   "place": "Pallet Town / Route 1",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Pidgey",
+     "kind": "wild",
+     "opponent_team": [
+      "pidgey"
+     ],
+     "ash_team": [],
+     "result": "lose",
+     "badge": "",
+     "notes": "Capture attempt with no Pokémon fighting (Pikachu refuses); Pidgey breaks out, hits Ash with Gust and Sand Attack and flies away."
+    },
+    {
+     "opponent": "Wild Spearow flock",
+     "kind": "wild",
+     "opponent_team": [
+      "spearow"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Ash angers a Spearow with a rock and the flock chases them; Pikachu's storm-boosted Thunder Shock drives the whole flock off."
+    }
+   ]
+  },
+  {
+   "ep": "EP002",
+   "title_en": "Pokémon Emergency!",
+   "title_es": "Emergencia Pokémon (ES/LA)",
+   "place": "Viridian City Pokémon Center",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "ekans",
+      "koffing"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "First Team Rocket fight; borrowed Pidgey and Rattata of the Center flee without fighting, the Center's Pikachu group helps, and Ash pedals Misty's bike to charge Pikachu, whose shock ignites Koffing's gas and blows up the Center."
+    }
+   ]
+  },
+  {
+   "ep": "EP003",
+   "title_en": "Ash Catches a Pokémon",
+   "title_es": "Ash atrapa un Pokémon (ES) / Ash captura un Pokémon (LA)",
+   "place": "Viridian Forest",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Caterpie",
+     "kind": "wild",
+     "opponent_team": [
+      "caterpie"
+     ],
+     "ash_team": [],
+     "result": "caught",
+     "badge": "",
+     "notes": "Caught with a plain Poké Ball throw (thrown at the end of EP002), no battle; Ash's first catch."
+    },
+    {
+     "opponent": "Wild Pidgeotto",
+     "kind": "wild",
+     "opponent_team": [
+      "pidgeotto"
+     ],
+     "ash_team": [
+      "caterpie",
+      "pikachu"
+     ],
+     "result": "caught",
+     "badge": "",
+     "notes": "Caterpie is beaten badly and recalled; Pikachu weakens Pidgeotto with Thunder Shock and Ash catches it."
+    },
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "ekans",
+      "koffing"
+     ],
+     "ash_team": [
+      "pidgeotto",
+      "caterpie"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Two-on-one: Pidgeotto is worn down, then Caterpie wraps Ekans, Koffing and Meowth with String Shot and tackles them; Caterpie evolves into Metapod afterwards."
+    }
+   ]
+  },
+  {
+   "ep": "EP004",
+   "title_en": "Challenge of the Samurai",
+   "title_es": "El reto del samurái (ES) / El desafío del samurái (LA)",
+   "place": "Viridian Forest",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Weedle",
+     "kind": "wild",
+     "opponent_team": [
+      "weedle"
+     ],
+     "ash_team": [
+      "pidgeotto"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Pidgeotto weakens it, but Samurai interrupts and the Weedle escapes before the ball is thrown."
+    },
+    {
+     "opponent": "Samurai",
+     "kind": "trainer",
+     "opponent_team": [
+      "pinsir",
+      "metapod"
+     ],
+     "ash_team": [
+      "pidgeotto",
+      "metapod"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Pinsir beats Pidgeotto, then hurts its pincers on Ash's hardened Metapod; the Metapod vs Metapod Harden stalemate is cut short by a Beedrill swarm."
+    },
+    {
+     "opponent": "Wild Beedrill swarm",
+     "kind": "wild",
+     "opponent_team": [
+      "beedrill"
+     ],
+     "ash_team": [
+      "pikachu",
+      "metapod",
+      "butterfree"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Pikachu shocks one Beedrill away; later Metapod blocks a stinger, evolves into Butterfree and puts the swarm (and Team Rocket) to sleep with Sleep Powder."
+    }
+   ]
+  },
+  {
+   "ep": "EP005",
+   "title_en": "Showdown in Pewter City",
+   "title_es": "Combate en la Ciudad Plateada (ES) / ¡Batalla en Ciudad Plateada! (LA)",
+   "place": "Pewter City Gym",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Brock",
+     "kind": "gym",
+     "opponent_team": [
+      "onix"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Onix shrugs off Thunder Shock and squeezes Pikachu with Bind until Ash surrenders."
+    },
+    {
+     "opponent": "Brock",
+     "kind": "gym",
+     "opponent_team": [
+      "geodude",
+      "onix"
+     ],
+     "ash_team": [
+      "pidgeotto",
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "Boulder Badge",
+     "notes": "Rematch with a supercharged Pikachu: Geodude beats Pidgeotto, Pikachu beats Geodude, the sparks set off the sprinklers and soak Onix, but Ash refuses to finish it; Brock hands him the badge later anyway."
+    }
+   ]
+  },
+  {
+   "ep": "EP006",
+   "title_en": "Clefairy and the Moon Stone",
+   "title_es": "Clefairy y la Piedra Lunar (ES) / Clefairy y la Roca Lunar (LA)",
+   "place": "Mt. Moon",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Zubat flock",
+     "kind": "wild",
+     "opponent_team": [
+      "zubat"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Pikachu's Thunder Shock stops the Zubat attacking Seymour (Brock catches one right after)."
+    },
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "ekans",
+      "koffing"
+     ],
+     "ash_team": [
+      "butterfree"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Tag battle with Brock's Zubat: Supersonic confuses them and Butterfree's Whirlwind blows Team Rocket out of the cave."
+    },
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "koffing"
+     ],
+     "ash_team": [
+      "pidgeotto"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "At the Moon Stone cave: Pidgeotto clears Koffing's Smokescreen but Team Rocket has already run off with the stone (Brock's Onix chases them; the Clefairy's Metronome finishes Team Rocket, not Ash)."
+    }
+   ]
+  },
+  {
+   "ep": "EP007",
+   "title_en": "The Water Flowers of Cerulean City",
+   "title_es": "Las flores acuáticas de Ciudad Celeste (ES/LA)",
+   "place": "Cerulean City Gym",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Misty",
+     "kind": "gym",
+     "opponent_team": [
+      "staryu",
+      "starmie"
+     ],
+     "ash_team": [
+      "butterfree",
+      "pidgeotto"
+     ],
+     "result": "interrupted",
+     "badge": "Cascade Badge",
+     "notes": "Pikachu refuses to fight Misty; Staryu dunks Butterfree, Pidgeotto has Starmie on the ropes when Team Rocket breaks in. The sisters give Ash the badge for saving the Gym."
+    },
+    {
+     "opponent": "Team Rocket (Jessie, James and Meowth)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "No Rocket Pokémon fight: they use a giant vacuum machine to suck up the pool's Pokémon and Pikachu electrifies the water to blast them away."
+    }
+   ]
+  },
+  {
+   "ep": "EP008",
+   "title_en": "The Path to the Pokémon League",
+   "title_es": "El camino hacia la Liga Pokémon (ES) / El camino a la Liga Pokémon (LA)",
+   "place": "Road to Vermilion City / A.J.'s unofficial Gym",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Unnamed trainer",
+     "kind": "trainer",
+     "opponent_team": [
+      "rattata"
+     ],
+     "ash_team": [
+      "pidgeotto"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Ash's tenth straight win on the road; the nine earlier ones are only mentioned, not shown."
+    },
+    {
+     "opponent": "A.J.",
+     "kind": "trainer",
+     "opponent_team": [
+      "sandshrew"
+     ],
+     "ash_team": [
+      "pidgeotto",
+      "butterfree"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Unlicensed Gym, no badge; A.J.'s single Sandshrew wins (his 99th win) and Pikachu refuses to battle. Butterfree's loss is confirmed by the source; Pidgeotto's part in the fight is unclear there (listed from memory)."
+    }
+   ]
+  },
+  {
+   "ep": "EP009",
+   "title_en": "The School of Hard Knocks",
+   "title_es": "La escuela de los golpes duros (ES/LA)",
+   "place": "Pokémon Tech",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Giselle",
+     "kind": "trainer",
+     "opponent_team": [
+      "cubone"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Pikachu wins without electricity: it twists Cubone's skull helmet, bites and scratches, and Cubone's own Bonemerang comes back and hits it."
+    }
+   ]
+  },
+  {
+   "ep": "EP010",
+   "title_en": "Bulbasaur and the Hidden Village",
+   "title_es": "Bulbasaur y la aldea oculta (ES) / Bulbasaur y la aldea secreta (LA)",
+   "place": "Hidden Village (forest on the way to Vermilion City)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Bulbasaur",
+     "kind": "wild",
+     "opponent_team": [
+      "bulbasaur"
+     ],
+     "ash_team": [
+      "butterfree"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Bulbasaur protects a wild Oddish, blows Butterfree's Sleep Powder back and knocks it out with a tackle."
+    },
+    {
+     "opponent": "Team Rocket (Jessie, James and Meowth)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pidgeotto"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "No Rocket Pokémon fight: they attack the village from their balloon with a vacuum and Pidgeotto's Gust turns it against them."
+    },
+    {
+     "opponent": "Bulbasaur (village guardian)",
+     "kind": "wild",
+     "opponent_team": [
+      "bulbasaur"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "caught",
+     "badge": "",
+     "notes": "Agreed one-on-one match so Bulbasaur can join Ash; Pikachu survives Vine Whip and Tackle and wins with an electric attack."
+    }
+   ]
+  },
+  {
+   "ep": "EP011",
+   "title_en": "Charmander – The Stray Pokémon",
+   "title_es": "Charmander, el Pokémon perdido (ES) / Charmander, el Pokémon abandonado (LA)",
+   "place": "Route 24",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Abandoned Charmander",
+     "kind": "wild",
+     "opponent_team": [
+      "charmander"
+     ],
+     "ash_team": [],
+     "result": "lose",
+     "badge": "",
+     "notes": "Two Poké Ball throws with no battle: it bats the first away and breaks out of the second (it still belongs to Damian)."
+    },
+    {
+     "opponent": "Wild Spearow flock",
+     "kind": "wild",
+     "opponent_team": [
+      "spearow"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "In the rain, Pikachu's Thunder Shock scares off the Spearow pecking at the weakened Charmander."
+    },
+    {
+     "opponent": "Team Rocket (Jessie, James and Meowth)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Pit trap and rubber suits make Pikachu's shock useless and it gets bagged; Charmander (not yet Ash's) steps in and its Flamethrower routs them. No Rocket Pokémon fight."
+    },
+    {
+     "opponent": "Damian",
+     "kind": "trainer",
+     "opponent_team": [],
+     "ash_team": [
+      "pikachu",
+      "charmander"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Not a real battle: Damian tries to reclaim Charmander, gets burned and shocked and runs; Charmander then joins Ash."
+    }
+   ]
+  },
+  {
+   "ep": "EP012",
+   "title_en": "Here Comes the Squirtle Squad",
+   "title_es": "Aquí llega el Escuadrón Squirtle (ES) / ¡El Escuadrón Squirtle! (LA)",
+   "place": "Road to Vermilion City (unnamed town)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Squirtle Squad",
+     "kind": "wild",
+     "opponent_team": [
+      "squirtle"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Pikachu shocks one of the five Squirtle, then Officer Jenny's siren makes the gang run."
+    },
+    {
+     "opponent": "Squirtle Squad and a wild Goldeen",
+     "kind": "wild",
+     "opponent_team": [
+      "squirtle",
+      "goldeen"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "A Squirtle tackles Pikachu into the lake and a wild Goldeen's Horn Attack throws it out; the group ends up tied up by the Squad."
+    },
+    {
+     "opponent": "Team Rocket (Jessie, James and Meowth)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "squirtle"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Team Rocket bombs from the balloon (no Pokémon); the Squad leader obeys Ash and its Water Gun brings the balloon down, then it joins Ash."
+    }
+   ]
+  },
+  {
+   "ep": "EP013",
+   "title_en": "Mystery at the Lighthouse",
+   "title_es": "Misterio en el faro (ES) / ¡El Misterio del Faro! (LA)",
+   "place": "Beach near Bill's Lighthouse",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Krabby",
+     "kind": "wild",
+     "opponent_team": [
+      "krabby"
+     ],
+     "ash_team": [],
+     "result": "caught",
+     "badge": "",
+     "notes": "No Pokémon battle: Ash pokes it with a stick, gets pinched and catches it with one ball; as his seventh Pokémon it is sent to Professor Oak."
+    }
+   ]
+  },
+  {
+   "ep": "EP014",
+   "title_en": "Electric Shock Showdown",
+   "title_es": "Competición de descarga eléctrica (ES) / ¡Duelo Eléctrico! (LA)",
+   "place": "Vermilion City Gym",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Lt. Surge",
+     "kind": "gym",
+     "opponent_team": [
+      "raichu"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Raichu overpowers Pikachu with Mega Punch, Mega Kick and a huge electric attack; Pikachu ends up in the Pokémon Center and refuses the Thunder Stone."
+    },
+    {
+     "opponent": "Lt. Surge",
+     "kind": "gym",
+     "opponent_team": [
+      "raichu"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "Thunder Badge",
+     "notes": "Rematch won on speed: Pikachu dodges Body Slam, uses Agility, grounds Raichu's electricity with its tail and finishes the tired Raichu."
+    }
+   ]
+  },
+  {
+   "ep": "EP015",
+   "title_en": "Battle Aboard the St. Anne",
+   "title_es": "Combate a bordo del St. Anne (ES) / ¡Duelo a bordo del Santa Ana! (LA)",
+   "place": "S.S. Anne (Vermilion City harbor)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Gentleman",
+     "kind": "trainer",
+     "opponent_team": [
+      "raticate"
+     ],
+     "ash_team": [
+      "butterfree"
+     ],
+     "result": "draw",
+     "badge": "",
+     "notes": "Butterfree is winning (Stun Spore) when the Gentleman recalls Raticate and calls it a draw; he then trades Raticate for Butterfree, undone at the end of the episode."
+    },
+    {
+     "opponent": "Team Rocket grunts (with Jessie, James and Meowth)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pikachu",
+      "charmander",
+      "pidgeotto",
+      "raticate"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Mass brawl: grunts use vacuum packs to steal Poké Balls and all trainers on board fight back together; Ash sends the traded Raticate instead of Butterfree. The source does not list the Rocket side's Pokémon; Bulbasaur and Squirtle may also have taken part (not confirmed)."
+    }
+   ]
+  },
+  {
+   "ep": "EP016",
+   "title_en": "Pokémon Shipwreck",
+   "title_es": "El naufragio Pokémon (ES) / ¡Naufragio Pokémon! (LA)",
+   "place": "Sunken S.S. Anne / open sea",
+   "notes": "",
+   "battles": []
+  },
+  {
+   "ep": "EP017",
+   "title_en": "Island of the Giant Pokémon",
+   "title_es": "La isla de los Pokémon gigantes (ES/LA)",
+   "place": "Giant Pokémon Island (Pokémon Land)",
+   "notes": "",
+   "battles": []
+  },
+  {
+   "ep": "EP018",
+   "title_en": "Beauty and the Beach",
+   "title_es": "",
+   "place": "Porta Vista",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie, James and Meowth)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pidgeotto",
+      "charmander"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "No Rocket Pokémon fight: they attack with a Gyarados submarine and a missile; Pidgeotto carries Charmander, whose Flamethrower makes the missile turn back on the sub."
+    }
+   ]
+  },
+  {
+   "ep": "EP019",
+   "title_en": "Tentacool & Tentacruel",
+   "title_es": "Tentacool y Tentacruel (ES/LA)",
+   "place": "Porta Vista",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Tentacool swarm and giant Tentacruel",
+     "kind": "wild",
+     "opponent_team": [
+      "tentacool",
+      "tentacruel"
+     ],
+     "ash_team": [
+      "pikachu",
+      "pidgeotto",
+      "squirtle",
+      "bulbasaur",
+      "butterfree"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Ash's whole team (with Misty's and Brock's Pokémon) cannot stop the swarm wrecking the city; it ends when Misty talks the giant Tentacruel down."
+    }
+   ]
+  },
+  {
+   "ep": "EP020",
+   "title_en": "The Ghost of Maiden's Peak",
+   "title_es": "El fantasma de Maiden's Peak (ES) / El fantasma del Pico de la Doncella (LA)",
+   "place": "Maiden's Peak",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Gastly (wild, posing as the maiden's ghost)",
+     "kind": "wild",
+     "opponent_team": [
+      "gastly"
+     ],
+     "ash_team": [
+      "pikachu",
+      "charmander",
+      "squirtle",
+      "bulbasaur"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Gastly counters each of Ash's Pokémon with illusions (including fake Venusaur and Blastoise fused together) and is never beaten; sunrise forces it to leave."
+    }
+   ]
+  },
+  {
+   "ep": "EP021",
+   "title_en": "Bye Bye Butterfree",
+   "title_es": "Adiós Butterfree",
+   "place": "Cliffs on the way to Saffron City (Butterfree mating grounds)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie, James, Meowth)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "butterfree",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Rocket nets the Butterfree flock from a helicopter and uses no Pokemon; Butterfree tears the net open and Pikachu, riding Butterfree, shocks the helicopter down. Ash then releases Butterfree."
+    }
+   ]
+  },
+  {
+   "ep": "EP022",
+   "title_en": "Abra and the Psychic Showdown",
+   "title_es": "Abra y el enfrentamiento psíquico (ES) / Abra y el duelo psíquico (LA)",
+   "place": "Saffron City Gym",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Sabrina",
+     "kind": "gym",
+     "opponent_team": [
+      "abra",
+      "kadabra"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Abra evolves into Kadabra mid-battle, turns Pikachu's electricity back and throws it around with psychic power; Ash forfeits."
+    }
+   ]
+  },
+  {
+   "ep": "EP023",
+   "title_en": "The Tower of Terror",
+   "title_es": "La torre del terror",
+   "place": "Pokemon Tower, Lavender Town",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Haunter (with Gastly and Gengar around)",
+     "kind": "wild",
+     "opponent_team": [
+      "haunter"
+     ],
+     "ash_team": [
+      "charmander"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Charmander's Leer does nothing and Haunter's Lick paralyzes it; no winner, the ghosts just want to play and Haunter later follows Ash willingly (not caught in a ball fight)."
+    }
+   ]
+  },
+  {
+   "ep": "EP024",
+   "title_en": "Haunter versus Kadabra",
+   "title_es": "Haunter versus Kadabra (ES) / Haunter contra Kadabra (LA)",
+   "place": "Saffron City Gym",
+   "notes": "A first rematch attempt is abandoned before any attack because Haunter vanishes and Ash runs away.",
+   "battles": [
+    {
+     "opponent": "Sabrina",
+     "kind": "gym",
+     "opponent_team": [
+      "kadabra"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "Marsh Badge",
+     "notes": "Pikachu trades hits with Kadabra (which heals with Recover); Haunter never fights but makes Sabrina laugh, and Kadabra, linked to her, collapses laughing, so Ash is declared winner."
+    }
+   ]
+  },
+  {
+   "ep": "EP025",
+   "title_en": "Primeape Goes Bananas",
+   "title_es": "Primeape se vuelve loco",
+   "place": "Route between Saffron City and Celadon City",
+   "notes": "Ash first throws a ball at the Mankey without battling and misses (catches a rice ball).",
+   "battles": [
+    {
+     "opponent": "Wild Primeape (Mankey that evolved after James kicked it)",
+     "kind": "wild",
+     "opponent_team": [
+      "primeape"
+     ],
+     "ash_team": [
+      "pikachu",
+      "squirtle",
+      "bulbasaur",
+      "charmander"
+     ],
+     "result": "caught",
+     "badge": "",
+     "notes": "Pikachu, Squirtle and Bulbasaur fail; Charmander learns Rage, bites its fist and finishes with Flamethrower, then Ash catches it."
+    }
+   ]
+  },
+  {
+   "ep": "EP026",
+   "title_en": "Pokémon Scent-sation!",
+   "title_es": "Perfume Pokémon (ES) / ¡Aromas Pokémon! (LA)",
+   "place": "Celadon City Gym",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Erika",
+     "kind": "gym",
+     "opponent_team": [
+      "tangela",
+      "weepinbell",
+      "gloom"
+     ],
+     "ash_team": [
+      "bulbasaur",
+      "charmander",
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "Rainbow Badge",
+     "notes": "3v3: Tangela beats Bulbasaur, Charmander beats Weepinbell, Gloom's stench beats Charmander; Pikachu is sent out but Team Rocket's bomb sets the Gym on fire. Badge given next day for rescuing Gloom, not for winning."
+    }
+   ]
+  },
+  {
+   "ep": "EP027",
+   "title_en": "Hypno's Naptime",
+   "title_es": "Siesta hipnótica (ES) / La siesta de Hypno (LA)",
+   "place": "HopHopHop Town",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie, James, Meowth)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pidgeotto"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Pidgeotto's Gust together with Misty's Staryu sends Rocket flying; source does not say which Rocket Pokemon (if any) fought. Pikachu is asleep from Hypno's Hypnosis."
+    }
+   ]
+  },
+  {
+   "ep": "EP028",
+   "title_en": "Pokémon Fashion Flash",
+   "title_es": "La última moda Pokémon (ES) / Moda Pokémon (LA)",
+   "place": "Scissor Street (Breeders' Lane)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie, James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "ekans",
+      "koffing"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Tag fight alongside Brock's Geodude; Pikachu and Geodude get blinded by Koffing's Sludge, and it is Suzie's Vulpix with Fire Spin that actually blasts Rocket off."
+    }
+   ]
+  },
+  {
+   "ep": "EP029",
+   "title_en": "The Punchy Pokémon",
+   "title_es": "El Pokémon boxeador (ES) / El Pokémon golpeador (LA)",
+   "place": "P1 Grand Prix arena (Fighting-type tournament)",
+   "notes": "Ash's semifinal is not shown/described in the source.",
+   "battles": [
+    {
+     "opponent": "Anthony",
+     "kind": "trainer",
+     "opponent_team": [
+      "hitmonchan"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Informal challenge before the tournament; Pikachu in boxing gloves is knocked out by Hitmonchan."
+    },
+    {
+     "opponent": "Unnamed Trainer (P1 Grand Prix, first round)",
+     "kind": "trainer",
+     "opponent_team": [
+      "machop"
+     ],
+     "ash_team": [
+      "primeape"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Machop throws Primeape out of the ring, Ash catches it, and Primeape comes back to win with Scratch and Mega Kick."
+    },
+    {
+     "opponent": "Team Rocket (Jessie as trainer, with Giant's stolen Hitmonlee) - P1 Grand Prix final",
+     "kind": "rocket",
+     "opponent_team": [
+      "hitmonlee"
+     ],
+     "ash_team": [
+      "primeape"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Primeape endures Hitmonlee's kicks and wins with Seismic Toss, becoming P1 champion (belt, no badge); Ash leaves Primeape with Anthony afterwards."
+    }
+   ]
+  },
+  {
+   "ep": "EP030",
+   "title_en": "Sparks Fly for Magnemite",
+   "title_es": "Saltan chispas por Magnemite (ES) / Hurra por Magnemite (LA)",
+   "place": "Gringey City power plant",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Wild Muk (leader of a Grimer swarm)",
+     "kind": "wild",
+     "opponent_team": [
+      "muk",
+      "grimer"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "caught",
+     "badge": "",
+     "notes": "Pikachu's Thundershock alone is not enough; a wild Magnemite joins in and the combined shock weakens Muk, which Ash catches and sends to Professor Oak."
+    }
+   ]
+  },
+  {
+   "ep": "EP031",
+   "title_en": "Dig Those Diglett!",
+   "title_es": "Aplasta a esos Diglett (ES) / ¡Saquen a esos Diglett! (LA)",
+   "place": "Mountain dam construction site on the way to Fuchsia City",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie, James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Ekans and Koffing evolve this episode; Arbok dodges Pikachu's attack, then the wild Diglett and Dugtrio knock out Arbok and Weezing themselves. Ash's other Pokemon are sent out but do not act."
+    }
+   ]
+  },
+  {
+   "ep": "EP032",
+   "title_en": "The Ninja Poké-Showdown",
+   "title_es": "El Poké-enfrentamiento ninja (ES) / El duelo Pokémon ninja (LA)",
+   "place": "Fuchsia Gym (ninja mansion)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Aya (Koga's sister)",
+     "kind": "trainer",
+     "opponent_team": [
+      "venonat"
+     ],
+     "ash_team": [
+      "bulbasaur"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "1v1 warm-up inside the mansion; Bulbasaur wins with Leech Seed."
+    },
+    {
+     "opponent": "Koga",
+     "kind": "gym",
+     "opponent_team": [
+      "venonat",
+      "venomoth",
+      "golbat"
+     ],
+     "ash_team": [
+      "pidgeotto",
+      "charmander"
+     ],
+     "result": "win",
+     "badge": "Soul Badge",
+     "notes": "Venonat evolves into Venomoth and beats Pidgeotto with Stun Spore and Sleep Powder; Charmander's bout is cut off by Team Rocket, then on resuming Koga switches to Golbat and Charmander beats it with Flamethrower and Fire Spin."
+    },
+    {
+     "opponent": "Team Rocket (Jessie, James, Meowth)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "pikachu",
+      "charmander"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Rocket breaks into the Gym match and glues the heroes' Pokemon in sticky webs; Misty's Psyduck, not Ash, blasts them off. Exact Pokemon exchange is only loosely described in the source."
+    }
+   ]
+  },
+  {
+   "ep": "EP033",
+   "title_en": "The Flame Pokémon-athon!",
+   "title_es": "La Llama Pokémon-athon (ES) / ¡La gran carrera! (LA)",
+   "place": "Laramie Ranch (Big P Pokemon Race)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Lara Laramie",
+     "kind": "trainer",
+     "opponent_team": [
+      "growlithe"
+     ],
+     "ash_team": [
+      "charmander"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Misunderstanding over a Tauros herd: Growlithe blocks Charmander's Ember and matches its Flamethrower, then both back off with no winner."
+    },
+    {
+     "opponent": "Dario (Big P Pokemon Race)",
+     "kind": "other",
+     "opponent_team": [
+      "dodrio"
+     ],
+     "ash_team": [
+      "ponyta",
+      "rapidash",
+      "pikachu",
+      "squirtle"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "A race, not a battle: Ash rides Lara's Ponyta (Pikachu riding Squirtle is a second entry); Dodrio pecks Ponyta near the end, Ponyta evolves into Rapidash and wins by a nose."
+    },
+    {
+     "opponent": "Team Rocket (Jessie, James, hired by Dario)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "pikachu",
+      "squirtle",
+      "ponyta"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Mid-race sabotage: Arbok's Glare paralyzes Pikachu and Squirtle, Weezing's Sludge blinds Misty's Starmie; Ponyta's flames ignite Weezing's gas and blast Rocket off."
+    }
+   ]
+  },
+  {
+   "ep": "EP034",
+   "title_en": "The Kangaskhan Kid",
+   "title_es": "El niño Kangaskhan (ES) / El chico Kangaskhan (LA)",
+   "place": "Pokemon reserve next to the Safari Zone",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Kangaskhan robot)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "bulbasaur",
+      "squirtle",
+      "charmander",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Fight against a mecha, no Rocket Pokemon: Vine Whip and Skull Bash bounce off, then a gas leak plus Charmander's fire sets it ablaze and Tommy's parents crash a helicopter into it."
+    }
+   ]
+  },
+  {
+   "ep": "EP035",
+   "title_en": "The Legend of Dratini",
+   "title_es": "",
+   "place": "Safari Zone",
+   "notes": "BANNED/UNAIRED outside Japan (guns); the English title is the commonly used unofficial one. No dub, so no official Spanish title.",
+   "battles": [
+    {
+     "opponent": "Wild Tauros herd",
+     "kind": "wild",
+     "opponent_team": [
+      "tauros"
+     ],
+     "ash_team": [],
+     "result": "caught",
+     "badge": "",
+     "notes": "Not a fight: battling is forbidden in the Safari Zone, and every Safari Ball Ash throws during a catching contest with Team Rocket hits a stampeding Tauros, giving him 30 Tauros (sources say 29 or 30)."
+    }
+   ]
+  },
+  {
+   "ep": "EP036",
+   "title_en": "The Bridge Bike Gang",
+   "title_es": "La banda de la bici del puente (ES) / La banda del puente (LA)",
+   "place": "Bike bridge to Sunny Town",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Chopper (Bridge Bike Gang leader)",
+     "kind": "trainer",
+     "opponent_team": [
+      "golem"
+     ],
+     "ash_team": [
+      "bulbasaur",
+      "charmander"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Golem shrugs off Vine Whip and knocks out Bulbasaur; Charmander's fire does no damage but heats Golem's rock body so much that Chopper cannot ride it and recalls it."
+    }
+   ]
+  },
+  {
+   "ep": "EP037",
+   "title_en": "Ditto's Mysterious Mansion",
+   "title_es": "La misteriosa mansión de Ditto (ES) / La misteriosa mansión Ditto (LA)",
+   "place": "House of Imite (Duplica's mansion)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Duplica",
+     "kind": "trainer",
+     "opponent_team": [
+      "ditto"
+     ],
+     "ash_team": [
+      "bulbasaur"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Ditto transforms into Bulbasaur and beats the real one with Vine Whip."
+    }
+   ]
+  },
+  {
+   "ep": "EP038",
+   "title_en": "Electric Soldier Porygon",
+   "title_es": "",
+   "place": "Matcha City Pokemon Center / inside the Pokemon transfer system",
+   "notes": "BANNED/UNAIRED outside Japan after its single Japanese broadcast (seizure incident); English title is the usual translation of Dennou Senshi Porygon. No Spanish title.",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie, James, Meowth, with a stolen Porygon)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing",
+      "porygon"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Inside cyberspace Pikachu attacks Rocket so that Akihabara's Porygon can deal with their Porygon; later Pikachu shocks antivirus missiles. Source is vague on the exact exchanges (Arbok/Weezing mostly fight the Porygon), treat team lists as approximate."
+    }
+   ]
+  },
+  {
+   "ep": "EP039",
+   "title_en": "Pikachu's Goodbye",
+   "title_es": "El adiós de Pikachu (ES) / Adiós Pikachu (LA)",
+   "place": "Forest with a colony of wild Pikachu",
+   "notes": "No battle: Pikachu only breaks Team Rocket's net and pops their balloon.",
+   "battles": []
+  },
+  {
+   "ep": "EP040",
+   "title_en": "The Battling Eevee Brothers",
+   "title_es": "Los combatientes hermanos Eevee (ES) / Los belicosos hermanos Eevee (LA)",
+   "place": "Stone Town, at the foot of Evolution Mountain",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie, James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "squirtle",
+      "pikachu",
+      "pidgeotto"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Chase after Rocket steals the party's Pokemon and evolution stones; Ash's three help, but the brothers' Vaporeon, Jolteon and Flareon fall and it is Mikey's unevolved Eevee (Take Down) that settles it. Rocket flees, so the 'win' is shared rather than Ash's own."
+    }
+   ]
+  },
+  {
+   "ep": "EP041",
+   "title_en": "Wake Up Snorlax!",
+   "title_es": "Despierta, Snorlax (ES) / ¡Despierta, Snorlax! (LA)",
+   "place": "Unnamed village with a dried-up river",
+   "notes": "Ash also throws a Poke Ball at the sleeping wild Snorlax without battling; it bounces off its belly.",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie, James, Meowth)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok"
+     ],
+     "ash_team": [
+      "pidgeotto"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Barely a fight: Jessie sends out Arbok and Pidgeotto's Gust blows the whole trio away."
+    }
+   ]
+  },
+  {
+   "ep": "EP042",
+   "title_en": "Showdown at Dark City",
+   "title_es": "Enfrentamiento en Ciudad Tenebrosa (ES) / Duelo en Ciudad Oscura (LA)",
+   "place": "Dark City",
+   "notes": "Two unofficial gyms (Yas and Kaz) fight over the town. Ash's direct role in the Scyther scene differs between sources.",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie and James, in Kaz Gym uniforms)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Restaurant brawl fought together with Misty's Starmie and Brock's Vulpix; Vulpix's fire sends Team Rocket flying."
+    },
+    {
+     "opponent": "Yas (Yas Gym leader)",
+     "kind": "trainer",
+     "opponent_team": [
+      "scyther"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Try-out at the Yas Gym; Scyther slices Pikachu's ketchup bottle, goes wild at the red and is recalled. One source does not record Pikachu actually attacking (partly unverified)."
+    },
+    {
+     "opponent": "Yas Gym and Kaz Gym (Yas's Scyther, Kaz's Electabuzz and their members)",
+     "kind": "other",
+     "opponent_team": [
+      "scyther",
+      "electabuzz"
+     ],
+     "ash_team": [
+      "bulbasaur",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Bulbasaur douses both with red ketchup so they knock each other out; Pikachu's Thunder then shocks the gym members."
+    }
+   ]
+  },
+  {
+   "ep": "EP043",
+   "title_en": "The March of the Exeggutor Squad",
+   "title_es": "La marcha del escuadrón Exeggutor",
+   "place": "Carnival town and Leaf Forest",
+   "notes": "Charmander evolves into Charmeleon at the end.",
+   "battles": [
+    {
+     "opponent": "Wild Exeggutor herd",
+     "kind": "wild",
+     "opponent_team": [
+      "exeggutor"
+     ],
+     "ash_team": [
+      "bulbasaur",
+      "charmander",
+      "squirtle"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Ash is hypnotized by the magician Melvin's Exeggcute and weakens the herd so Melvin can catch them (Melvin catches them, not Ash)."
+    },
+    {
+     "opponent": "Stampede of hypnotized Exeggutor",
+     "kind": "other",
+     "opponent_team": [
+      "exeggutor"
+     ],
+     "ash_team": [
+      "bulbasaur",
+      "squirtle",
+      "charmander"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Water and Grass attacks do nothing and both are recalled; Charmander's Flamethrower, helped by Melvin's fire trick, snaps the herd out of it."
+    }
+   ]
+  },
+  {
+   "ep": "EP044",
+   "title_en": "The Problem with Paras",
+   "title_es": "El problema con Paras",
+   "place": "Mossgreen Village",
+   "notes": "Ash tries to lose on purpose so Cassandra's Paras can gain experience and evolve. Team Rocket also throws a fight against Paras (without Ash).",
+   "battles": [
+    {
+     "opponent": "Cassandra",
+     "kind": "trainer",
+     "opponent_team": [
+      "paras"
+     ],
+     "ash_team": [
+      "pikachu",
+      "squirtle",
+      "charmeleon"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Unwanted win: Paras collapses even to very weak attacks, then disobedient Charmeleon's Flamethrower makes it run away."
+    },
+    {
+     "opponent": "Cassandra (rematch)",
+     "kind": "trainer",
+     "opponent_team": [
+      "paras",
+      "parasect"
+     ],
+     "ash_team": [
+      "pikachu",
+      "charmeleon"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Pikachu throws the match; Charmeleon ignores Ash, torches the cheering Team Rocket, gets hit by Paras, which evolves, and is put to sleep by Parasect's Spore."
+    }
+   ]
+  },
+  {
+   "ep": "EP045",
+   "title_en": "The Song of Jigglypuff",
+   "title_es": "La canción de Jigglypuff",
+   "place": "Neon Town",
+   "notes": "Misty tries to catch the wild Jigglypuff with Staryu (not Ash).",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [],
+     "result": "win",
+     "badge": "",
+     "notes": "UNVERIFIED DETAILS: source only says Arbok and Weezing fight the heroes and Team Rocket is sent flying; Bulbasaur's Vine Whip is listed as used but not against whom."
+    }
+   ]
+  },
+  {
+   "ep": "EP046",
+   "title_en": "Attack of the Prehistoric Pokémon",
+   "title_es": "El ataque de los Pokémon prehistóricos",
+   "place": "Grampa Canyon",
+   "notes": "Charmeleon evolves into Charizard. Fossil Pokémon: Omanyte, Omastar, Kabuto, Kabutops, Aerodactyl. Ash keeps the egg that later hatches into Togepi.",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "squirtle"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Ash and Squirtle try to stop the dynamite; Pikachu's shock sets it off and everyone falls into the cave."
+    },
+    {
+     "opponent": "Wild Kabutops (with the other fossil Pokémon)",
+     "kind": "wild",
+     "opponent_team": [
+      "kabutops"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Thundershock does nothing and Kabutops slashes back; the fossils flee when Aerodactyl shows up."
+    },
+    {
+     "opponent": "Wild Aerodactyl",
+     "kind": "wild",
+     "opponent_team": [
+      "aerodactyl"
+     ],
+     "ash_team": [
+      "charmeleon",
+      "charizard"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Charmeleon evolves out of pride and chases Aerodactyl, which carries Ash off; Jigglypuff's Sing puts everyone to sleep and Aerodactyl falls back into the pit."
+    }
+   ]
+  },
+  {
+   "ep": "EP047",
+   "title_en": "A Chansey Operation",
+   "title_es": "Operación Chansey (ES) / Una operación Chansey (LA)",
+   "place": "Human hospital (unnamed town)",
+   "notes": "No real battle: Arbok and Weezing refuse to attack Chansey and Team Rocket is thrown out with stretchers.",
+   "battles": []
+  },
+  {
+   "ep": "EP048",
+   "title_en": "Holy Matrimony!",
+   "title_es": "Sagrado matrimonio (ES) / ¡Santo matrimonio! (LA)",
+   "place": "James's family mansion",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Jessebelle",
+     "kind": "trainer",
+     "opponent_team": [
+      "vileplume"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Fought alongside James's Growlithe (Growlie), whose Flamethrower with Pikachu's Thundershock beats Vileplume; earlier its Stun Spore had paralyzed everyone."
+    }
+   ]
+  },
+  {
+   "ep": "EP049",
+   "title_en": "So Near, Yet So Farfetch'd",
+   "title_es": "Tan cerca y aun así tan Farfetch'd (ES) / Tan cerca y aún tan Farfetch'd (LA)",
+   "place": "Forest and river (unnamed)",
+   "notes": "Keith is a thief who uses Farfetch'd to swap Poké Balls. Misty's Psyduck later beats Farfetch'd (Misty's battle, not Ash's).",
+   "battles": [
+    {
+     "opponent": "Keith",
+     "kind": "trainer",
+     "opponent_team": [
+      "farfetchd"
+     ],
+     "ash_team": [
+      "bulbasaur"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Farfetch'd dodges Tackle, parries Vine Whip with its leek and wins using Agility."
+    }
+   ]
+  },
+  {
+   "ep": "EP050",
+   "title_en": "Who Gets to Keep Togepi?",
+   "title_es": "¿Quién conseguirá quedarse con Togepi? (ES) / ¿Quién se queda con Togepi? (LA)",
+   "place": "Small town Pokémon Center (unnamed)",
+   "notes": "Mini tournament for Togepi: Ash beats Misty, Meowth beats Brock's Onix, Ash beats Meowth; Togepi still stays with Misty.",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "pidgeotto",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Fight over the stolen egg; Pidgeotto's Gust clears Weezing's gas and grabs the egg, Pikachu shocks them."
+    },
+    {
+     "opponent": "Misty",
+     "kind": "other",
+     "opponent_team": [
+      "psyduck"
+     ],
+     "ash_team": [
+      "bulbasaur"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Tournament semifinal; Psyduck pops out uninvited and Bulbasaur wins by licking and tickling it with its vines."
+    },
+    {
+     "opponent": "Meowth (Team Rocket)",
+     "kind": "rocket",
+     "opponent_team": [
+      "meowth"
+     ],
+     "ash_team": [],
+     "result": "win",
+     "badge": "",
+     "notes": "Tournament final, Ash wins. UNVERIFIED: the sources read do not say which Pokémon Ash used (probably Pikachu)."
+    }
+   ]
+  },
+  {
+   "ep": "EP051",
+   "title_en": "Bulbasaur's Mysterious Garden",
+   "title_es": "El jardín misterioso de Bulbasaur (ES) / ¡El jardín secreto de Bulbasaur! (LA)",
+   "place": "Forest and the Mysterious Garden",
+   "notes": "Bulbasaur refuses to evolve and learns Solar Beam. A wild Venusaur lashes at Bulbasaur but there is no real battle.",
+   "battles": [
+    {
+     "opponent": "Hiker",
+     "kind": "trainer",
+     "opponent_team": [
+      "rhyhorn"
+     ],
+     "ash_team": [
+      "bulbasaur"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Bulbasaur is nearly knocked out by Take Down, refuses to be recalled, pins Rhyhorn with Razor Leaf and finishes with Vine Whip."
+    },
+    {
+     "opponent": "Team Rocket (balloon with a vacuum)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "bulbasaur"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Team Rocket sucks up the Ivysaur, Venusaur and Pikachu with a machine; Bulbasaur's first Solar Beam blasts the balloon away."
+    }
+   ]
+  },
+  {
+   "ep": "EP052",
+   "title_en": "Princess vs. Princess",
+   "title_es": "Princesa contra princesa (ES) / ¡Princesa contra princesa! (LA)",
+   "place": "Princess Festival town",
+   "notes": "Ash does not battle. Misty borrows his Pikachu and Bulbasaur (plus Brock's Vulpix) for the festival tournament; in the final vs Jessie, Pikachu beats Arbok, Weezing and Meowth, then Lickitung beats Pikachu, Bulbasaur and Vulpix, and Misty's Psyduck wins it with Confusion. Jessie catches Lickitung in this episode.",
+   "battles": []
+  },
+  {
+   "ep": "EP053",
+   "title_en": "The Purr-fect Hero",
+   "title_es": "El perrrfecto héroe (ES) / ¡El héroe perfecto! (LA)",
+   "place": "Town with a school (unnamed)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "pidgeotto"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Fought together with Brock's Onix; a wild Meowth splits a boulder falling on Ash and the boy Timmy. Source does not say who hit whom."
+    }
+   ]
+  },
+  {
+   "ep": "EP054",
+   "title_en": "The Case of the K-9 Caper!",
+   "title_es": "El caso de la travesura K-9 (ES) / El caso de la policía K-nina (LA)",
+   "place": "Police K-9 training ground",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie controlling Officer Jenny's Growlithe with a voice changer)",
+     "kind": "rocket",
+     "opponent_team": [
+      "growlithe"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Pikachu shocks the pack of Growlithe until it is exhausted; they stop when they recognize the real Jenny, and Team Rocket runs."
+    }
+   ]
+  },
+  {
+   "ep": "EP055",
+   "title_en": "Pokémon Paparazzi",
+   "title_es": "Paparazzi de Pokémon (ES) / Paparazzi Pokémon (LA)",
+   "place": "Countryside, river and waterfall (unnamed)",
+   "notes": "Debut of the photographer Todd Snap.",
+   "battles": [
+    {
+     "opponent": "Team Rocket",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "bulbasaur"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "No Rocket Pokémon named by the source; Bulbasaur frees the trapped Pikachu with Razor Leaf and drives Team Rocket into the river with Vine Whip."
+    }
+   ]
+  },
+  {
+   "ep": "EP056",
+   "title_en": "The Ultimate Test",
+   "title_es": "El examen final (ES) / La prueba máxima (LA)",
+   "place": "Pokémon League Admissions Exam center",
+   "notes": "Exam battle uses random loaned Pokémon, not Ash's own. James (also taking the exam) gets Pikachu, Charizard and Ivysaur, loses to Graveler and is disqualified.",
+   "battles": [
+    {
+     "opponent": "Pokémon League examiner",
+     "kind": "other",
+     "opponent_team": [
+      "flareon",
+      "jolteon",
+      "vaporeon"
+     ],
+     "ash_team": [
+      "weezing",
+      "arbok",
+      "meowth"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Loaned team: Weezing beats Flareon by igniting its own Smog, Arbok falls to Jolteon's Thunder, Meowth is frozen by Vaporeon's Ice Beam; Ash fails the exam."
+    },
+    {
+     "opponent": "Team Rocket (James with loaned Pokémon)",
+     "kind": "rocket",
+     "opponent_team": [
+      "pikachu",
+      "charizard",
+      "ivysaur"
+     ],
+     "ash_team": [
+      "weezing",
+      "arbok",
+      "meowth"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "The loaned Pokémon turn on Team Rocket and Ash's loaned Weezing blasts them off with Explosion; whether the two loaned trios actually fought each other is not clear in the sources."
+    }
+   ]
+  },
+  {
+   "ep": "EP057",
+   "title_en": "The Breeding Center Secret",
+   "title_es": "El secreto del centro de crianza (ES) / El secreto del centro de entrenamiento (LA)",
+   "place": "Breeding Center (unnamed city)",
+   "notes": "Debut of Butch and Cassidy. James gets Victreebel back.",
+   "battles": [
+    {
+     "opponent": "Cassidy (Team Rocket)",
+     "kind": "rocket",
+     "opponent_team": [
+      "raticate"
+     ],
+     "ash_team": [
+      "pikachu",
+      "bulbasaur"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Pikachu drops Raticate easily with Thunderbolt; Bulbasaur then ties up the fleeing Butch and Cassidy with Vine Whip (no Pokémon opposing it)."
+    }
+   ]
+  },
+  {
+   "ep": "EP058",
+   "title_en": "Riddle Me This",
+   "title_es": "A ver si aciertas este (ES) / Descíframe esto (LA)",
+   "place": "Cinnabar Island (Gym inside the volcano)",
+   "notes": "Gym battle continues in EP059.",
+   "battles": [
+    {
+     "opponent": "Team Rocket",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pidgeotto",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Team Rocket tries to steal Pokémon from the lab; Pikachu rides Pidgeotto to drive them off. No Rocket Pokémon named by the sources."
+    },
+    {
+     "opponent": "Blaine",
+     "kind": "gym",
+     "opponent_team": [
+      "ninetales",
+      "rhydon",
+      "magmar"
+     ],
+     "ash_team": [
+      "squirtle",
+      "charizard",
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "3 vs 3 over lava: Ninetales beats Squirtle with Fire Spin, Charizard refuses to fight Rhydon and is counted out, Pikachu beats Rhydon by shocking its horn; episode ends with Pikachu cornered by Magmar's Fire Blast."
+    }
+   ]
+  },
+  {
+   "ep": "EP059",
+   "title_en": "Volcanic Panic",
+   "title_es": "Pánico volcánico (ES) / ¡Pánico volcánico! (LA)",
+   "place": "Cinnabar Island Gym and volcano summit",
+   "notes": "Team Rocket freezes Magmar and destabilizes the volcano; everyone works together to stop the eruption (not a battle).",
+   "battles": [
+    {
+     "opponent": "Blaine",
+     "kind": "gym",
+     "opponent_team": [
+      "magmar"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "End of the EP058 match: Pikachu barely avoids falling into the lava after Fire Blast and Ash forfeits."
+    },
+    {
+     "opponent": "Blaine (rematch)",
+     "kind": "gym",
+     "opponent_team": [
+      "magmar"
+     ],
+     "ash_team": [
+      "charizard"
+     ],
+     "result": "win",
+     "badge": "Volcano Badge",
+     "notes": "1 vs 1 on top of the volcano; Charizard chooses to fight, matches Magmar's fire, is dragged toward the lava and wins with Submission and Seismic Toss."
+    }
+   ]
+  },
+  {
+   "ep": "EP060",
+   "title_en": "Beach Blank-Out Blastoise",
+   "title_es": "Durmiendo con Blastoise en la playa (ES) / ¡El problema con Blastoise! (LA)",
+   "place": "Island of Squirtle, Wartortle and Blastoise near Cinnabar",
+   "notes": "Jigglypuff stuck in Blastoise's cannon keeps everyone asleep.",
+   "battles": [
+    {
+     "opponent": "Team Rocket (mechanical Gyarados submarine)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pikachu",
+      "squirtle"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Pikachu and Squirtle's combined attacks wake the wild Blastoise, which with the Squirtle and Wartortle destroys the machine; no live Rocket Pokémon fight."
+    }
+   ]
+  },
+  {
+   "ep": "EP061",
+   "title_en": "The Misty Mermaid",
+   "title_es": "Misty la sirena (ES) / ¡Misty la sirena! (LA)",
+   "place": "Cerulean City Gym (pool)",
+   "notes": "Underwater ballet show. Misty leaves Horsea and Starmie at the Gym. The sisters' Seel evolves into Dewgong and beats Arbok.",
+   "battles": [
+    {
+     "opponent": "Team Rocket (Jessie and James)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "squirtle",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Fought in the pool beside Misty's and her sisters' Pokémon; Weezing sinks at once, Seel/Dewgong beats Arbok and Pikachu's Thunderbolt throws Team Rocket out. Squirtle's own matchup with Arbok has no stated result."
+    }
+   ]
+  },
+  {
+   "ep": "EP062",
+   "title_en": "Clefairy Tales",
+   "title_es": "Cuentos de Clefairy (ES) / ¡Una historia de Clefairy! (LA)",
+   "place": "Unnamed city and the Clefairy spaceship",
+   "notes": "Clefairy steal items and take Pikachu to power their ship; Jigglypuff fights the Clefairy, not Ash's Pokémon.",
+   "battles": [
+    {
+     "opponent": "Team Rocket (fake alien UFO)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pidgeotto"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Team Rocket grabs Pikachu from a fake saucer and Pidgeotto brings it down; no Rocket Pokémon fight according to the source."
+    }
+   ]
+  },
+  {
+   "ep": "EP063",
+   "title_en": "The Battle of the Badge",
+   "title_es": "El combate de la medalla / ¡La batalla por la medalla!",
+   "place": "Viridian City Gym",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Jessie (Team Rocket, standing in as Viridian Gym Leader, with James and Meowth)",
+     "kind": "gym",
+     "opponent_team": [
+      "machamp",
+      "kingler",
+      "rhydon",
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "squirtle",
+      "bulbasaur",
+      "pidgeotto",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "Earth Badge",
+     "notes": "Jessie uses Giovanni's Machamp, Kingler and Rhydon on a rigged field that shocks the trainer; Squirtle and Bulbasaur are beaten, Pidgeotto takes down Rhydon, Jessie cheats by adding Arbok and Weezing and Pikachu finishes them all. Gary's earlier loss to Giovanni is not Ash's battle."
+    }
+   ]
+  },
+  {
+   "ep": "EP064",
+   "title_en": "It's Mr. Mime Time",
+   "title_es": "Es la hora de Mr. Mime / ¡La hora de Mr. Mime!",
+   "place": "Pallet Town and a travelling Pokémon circus",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (rubber tank, no Pokémon sent out)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pikachu",
+      "charizard",
+      "mr_mime"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Not a Pokémon-vs-Pokémon fight: Pikachu's electricity does nothing to the rubber tank, Charizard refuses to obey, and the wild Mr. Mime (which ends up living with Ash's mother) walls Team Rocket in with Barrier."
+    }
+   ]
+  },
+  {
+   "ep": "EP065",
+   "title_en": "Holiday Hi-Jynx",
+   "title_es": "Navidades Jynx / Una navidad con Jynx",
+   "place": "A beach, then the North Pole (Santa's workshop)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Jynx (Santa's, mistaken for a wild one)",
+     "kind": "wild",
+     "opponent_team": [
+      "jynx"
+     ],
+     "ash_team": [
+      "pikachu",
+      "charmander"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Capture attempt that fails: Jynx knocks out Pikachu with a kiss, Charmander dazes it, and the thrown Poké Ball is blocked with Santa's boot. Charmander appears because the episode was made to air before it evolved."
+    },
+    {
+     "opponent": "Jessie and James (Team Rocket)",
+     "kind": "rocket",
+     "opponent_team": [
+      "weezing"
+     ],
+     "ash_team": [
+      "charmander"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Weezing is sent out against Charmander at the workshop; the fight is settled when Santa's Lapras freezes Team Rocket's submarine. Exact exchange between Weezing and Charmander not detailed by the source."
+    }
+   ]
+  },
+  {
+   "ep": "EP066",
+   "title_en": "Snow Way Out!",
+   "title_es": "Salida de la nieve / ¡Perdidos en la nieve!",
+   "place": "Snowy mountain",
+   "notes": "",
+   "battles": []
+  },
+  {
+   "ep": "EP067",
+   "title_en": "Showdown at the Po-ké Corral",
+   "title_es": "Espectáculo en el Poké-corral / ¡Duelo en el Poké-Corral!",
+   "place": "Professor Oak's Laboratory, Pallet Town",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Gary Oak",
+     "kind": "rival",
+     "opponent_team": [],
+     "ash_team": [],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Ash and Gary are about to battle but an explosion caused by Team Rocket stops it before any Pokémon fights."
+    },
+    {
+     "opponent": "Team Rocket",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "tauros"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Ash's herd of 30 Tauros stampedes and sends Team Rocket flying; no Team Rocket Pokémon is confirmed as fighting."
+    }
+   ]
+  },
+  {
+   "ep": "EP068",
+   "title_en": "The Evolution Solution",
+   "title_es": "La solución de la evolución / ¡La solución de la evolución!",
+   "place": "Seafoam Island (Professor Westwood V's lab)",
+   "notes": "",
+   "battles": []
+  },
+  {
+   "ep": "EP069",
+   "title_en": "The Pi-Kahuna",
+   "title_es": "La Pi-Kahuna / ¡La Pi-Kahuna!",
+   "place": "Seafoam Island beach",
+   "notes": "",
+   "battles": []
+  },
+  {
+   "ep": "EP070",
+   "title_en": "Make Room for Gloom",
+   "title_es": "Haced sitio a Gloom / ¡Hagan espacio para Gloom!",
+   "place": "Xanadu Nursery, near Pallet Town",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Jessie and James (Team Rocket)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok",
+      "weezing"
+     ],
+     "ash_team": [
+      "bulbasaur"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Partly unverified: Arbok and Weezing are actually beaten by Florinda's Gloom (Solar Beam); Ash's Bulbasaur only attacks with Vine Whip and ties Team Rocket up. The source does not say Bulbasaur fought a specific Pokémon."
+    }
+   ]
+  },
+  {
+   "ep": "EP071",
+   "title_en": "Lights, Camera, Quack-tion!",
+   "title_es": "Luces, cámara y cuack-ción / Luces, cámara, ¡acción!",
+   "place": "Campsite by a lake (film shoot)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Katrina",
+     "kind": "trainer",
+     "opponent_team": [
+      "raichu"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Pikachu vs Raichu is cut short when Team Rocket swoops in with a net and grabs Raichu by mistake; no winner."
+    }
+   ]
+  },
+  {
+   "ep": "EP072",
+   "title_en": "Go West Young Meowth",
+   "title_es": "Ve al oeste, joven Meowth / Ve al oeste, Meowth",
+   "place": "Pallet Town and Hollywood",
+   "notes": "",
+   "battles": []
+  },
+  {
+   "ep": "EP073",
+   "title_en": "To Master the Onixpected!",
+   "title_es": "El maestro de lo Onixperado / ¡Dominar lo Onixperado!",
+   "place": "Mountain where Bruno of the Elite Four trains",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Giant wild Onix",
+     "kind": "wild",
+     "opponent_team": [
+      "onix"
+     ],
+     "ash_team": [
+      "pikachu",
+      "squirtle"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Pikachu's electricity does nothing and Squirtle is knocked out (Misty's Staryu and Brock's Onix also fail); Bruno calms the Onix bare-handed by pulling out a Sandslash stuck in it and catches it himself. Ash never battles Bruno."
+    }
+   ]
+  },
+  {
+   "ep": "EP074",
+   "title_en": "The Ancient Puzzle of Pokémopolis",
+   "title_es": "El antiguo rompecabezas de Pokémopolis / El misterio de Pokémopolis",
+   "place": "Ruins of Pokémopolis",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Brock (sparring)",
+     "kind": "other",
+     "opponent_team": [
+      "vulpix"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Training match; Jigglypuff gets in the way of both attacks and it ends with no winner."
+    },
+    {
+     "opponent": "Giant Gengar and giant Alakazam",
+     "kind": "wild",
+     "opponent_team": [
+      "gengar",
+      "alakazam"
+     ],
+     "ash_team": [
+      "pidgeotto",
+      "pikachu"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Pidgeotto is swallowed up by the giant Gengar, Poké Balls are useless and Pikachu can only distract them; a giant Jigglypuff ends it by singing everyone to sleep."
+    }
+   ]
+  },
+  {
+   "ep": "EP075",
+   "title_en": "Bad to the Bone",
+   "title_es": "Malo hasta la médula / Malo hasta los huesos",
+   "place": "Forest on the road to the Indigo Plateau",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Otoshi",
+     "kind": "trainer",
+     "opponent_team": [
+      "marowak"
+     ],
+     "ash_team": [
+      "bulbasaur",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Battle with all eight badges at stake; Marowak beats Bulbasaur and Pikachu then beats Marowak. Otoshi cannot pay up because Team Rocket stole his badges. Otoshi's later fight with Team Rocket (Doduo, Marowak vs Arbok) is his, not Ash's."
+    }
+   ]
+  },
+  {
+   "ep": "EP076",
+   "title_en": "All Fired Up!",
+   "title_es": "¡A todo gas! / ¡Todos prendidos!",
+   "place": "Indigo Plateau (torch relay)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Team Rocket (machine holding Moltres's flame, no Pokémon confirmed)",
+     "kind": "rocket",
+     "opponent_team": [],
+     "ash_team": [
+      "pikachu",
+      "bulbasaur",
+      "squirtle"
+     ],
+     "result": "interrupted",
+     "badge": "",
+     "notes": "Not a real Pokémon battle: Pikachu and Bulbasaur fail to take the torch flame back from Team Rocket's robot and Squirtle only puts out fire; how the scuffle ends is not detailed by the source."
+    }
+   ]
+  },
+  {
+   "ep": "EP077",
+   "title_en": "Round One - Begin!",
+   "title_es": "Comienza la primera ronda / La primera ronda comienza",
+   "place": "Indigo Plateau, Water Field",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Mandi",
+     "kind": "league",
+     "opponent_team": [
+      "exeggutor",
+      "seadra",
+      "golbat"
+     ],
+     "ash_team": [
+      "krabby",
+      "kingler"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Round 1, water field, 3 vs 3: Krabby beats Exeggutor, evolves into Kingler and then sweeps Seadra and Golbat (Hyper Beam) for a 3-0. Krabby and Kingler are the same Pokémon; Ash's other two were never sent out."
+    }
+   ]
+  },
+  {
+   "ep": "EP078",
+   "title_en": "Fire and Ice",
+   "title_es": "Fuego y hielo",
+   "place": "Indigo Plateau, Rock Field and Ice Field",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Unnamed trainer",
+     "kind": "league",
+     "opponent_team": [
+      "nidorino"
+     ],
+     "ash_team": [
+      "squirtle"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Round 2, rock field: only the last bout is shown, Squirtle beating Nidorino; the other two Pokémon on each side were never revealed."
+    },
+    {
+     "opponent": "Pete Pebbleman",
+     "kind": "league",
+     "opponent_team": [
+      "cloyster",
+      "arcanine"
+     ],
+     "ash_team": [
+      "kingler",
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Round 3, ice field, 3 vs 3 joined with each side already down one unrevealed Pokémon: Kingler cracks Cloyster, Arcanine beats Kingler and melts the ice, Pikachu beats Arcanine from the water."
+    }
+   ]
+  },
+  {
+   "ep": "EP079",
+   "title_en": "The Fourth Round Rumble",
+   "title_es": "La sonada cuarta ronda / La cuarta ronda, tiembla",
+   "place": "Indigo Plateau, Grass Field",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Jeanette Fisher",
+     "kind": "league",
+     "opponent_team": [
+      "beedrill",
+      "scyther",
+      "bellsprout"
+     ],
+     "ash_team": [
+      "bulbasaur",
+      "pikachu",
+      "muk"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Round 4, grass field, 3 vs 3: Bulbasaur beats Beedrill and Scyther, then Bellsprout beats both Bulbasaur and Pikachu (grounds the electricity), and Muk shrugs off its hits and wins with Body Slam, 3-2."
+    }
+   ]
+  },
+  {
+   "ep": "EP080",
+   "title_en": "A Friend In Deed",
+   "title_es": "Un amigo de verdad / Amigos y héroes",
+   "place": "Indigo Plateau (league village and mountain road)",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Jessie and James (Team Rocket)",
+     "kind": "rocket",
+     "opponent_team": [
+      "arbok"
+     ],
+     "ash_team": [
+      "pikachu"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Fought inside Team Rocket's moving truck together with Ritchie's Pikachu (Sparky); both Pikachu confuse Arbok with Agility and blow up the cab with Thunderbolt. Ash meets Ritchie here; no league match this episode."
+    }
+   ]
+  },
+  {
+   "ep": "EP081",
+   "title_en": "Friend and Foe Alike",
+   "title_es": "Igual amigos que enemigos / Amigos y enemigos por igual",
+   "place": "Indigo Plateau, Indigo Stadium",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Jessie and James (Team Rocket)",
+     "kind": "rocket",
+     "opponent_team": [
+      "weezing"
+     ],
+     "ash_team": [
+      "squirtle",
+      "bulbasaur",
+      "pikachu",
+      "pidgeotto"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Running escape rather than a set battle: Team Rocket kidnaps Ash before his match, his Pokémon break him out and hold them off (Weezing uses Smog), leaving them exhausted and Ash almost late."
+    },
+    {
+     "opponent": "Ritchie",
+     "kind": "league",
+     "opponent_team": [
+      "butterfree",
+      "charmander",
+      "pikachu"
+     ],
+     "ash_team": [
+      "squirtle",
+      "pikachu",
+      "charizard"
+     ],
+     "result": "lose",
+     "badge": "",
+     "notes": "Round 5 (top 16), Indigo Stadium main field, 3 vs 3: Butterfree (Happy) puts Squirtle to sleep, Pikachu beats Butterfree, Charmander (Zippo) beats tired Pikachu, Charizard beats Charmander, then Charizard lies down and refuses to fight Ritchie's Pikachu (Sparky) and the referee gives Ritchie the match 3-2."
+    }
+   ]
+  },
+  {
+   "ep": "EP082",
+   "title_en": "Friends to the End",
+   "title_es": "Amigos hasta el final / Amigos hasta el fin",
+   "place": "Indigo Plateau",
+   "notes": "",
+   "battles": [
+    {
+     "opponent": "Jessie, James and Meowth (Team Rocket)",
+     "kind": "rocket",
+     "opponent_team": [
+      "weezing"
+     ],
+     "ash_team": [
+      "pikachu",
+      "pidgeotto",
+      "bulbasaur",
+      "squirtle"
+     ],
+     "result": "win",
+     "badge": "",
+     "notes": "Ash and Ritchie team up after Team Rocket traps the trainers in a pit and cages the Pikachu in an electricity-absorbing cage, which overloads and blows up. Ash has no league match here (Ritchie loses to Assunta in the next round; closing ceremony)."
+    }
+   ]
+  }
+ ]
+}
