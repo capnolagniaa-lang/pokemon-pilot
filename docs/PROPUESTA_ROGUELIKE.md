@@ -739,6 +739,9 @@ Lo que se ve y se dice en el video (transcripción entera + capturas), para ir t
 - **Arena**: coliseo ovalado en ruinas, piso de piedra con pasto, **vacío** (sin obstáculos), con muros todo alrededor;
   la cámara casi no se mueve y muestra la arena casi entera, con los Pokémon chicos.
 - **IA**: da vueltas alrededor y se come los básicos; por eso se le gana fácil.
+- **Hecho de esta lista (2026-11-13)**: pegar te frena, los carteles (habilidad, definitiva, "¡Definitiva lista!") y vida
+  ×1,1. Queda: disparos con personalidad (que persigan), la arena tipo coliseo, la ficha con daño y recarga antes de
+  pelear.
 
 ## 12. Progreso permanente entre partidas (alternativas, **sin implementar**; usuario, 2026-11-11)
 

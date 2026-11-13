@@ -86,3 +86,8 @@ kits).
 dentro del ruido). Después, oleadas de hasta 3 con más oleadas, `attackers` 3, sin bendiciones y primera sala = Objeto:
 **27 partidas, llega 15 (56 %), gana 5 (19 %)**; las 5 victorias son de Squirtle (5 de 5 llegadas), Bulbasaur 0 de 7 y
 Charmander 0 de 3. Sigue pendiente la tanda larga y mirar por qué solo Squirtle le gana a Brock.
+
+**2026-11-13, ritmo.** El básico frena al que lo tira y vida general más alta, 27 partidas por tanda: freno ×0,6 + vida
+×1,2 → llega 12, gana 3 (11 %); freno ×0,7 + vida ×1,2 → llega 14, gana 2 (7 %); **freno ×0,7 + vida ×1,1 → llega 14
+(52 %), gana 4 (15 %)**. Con más vida las salas no cambian pero Brock se hace largo y el bot pierde. Sigue ganando solo
+Squirtle.

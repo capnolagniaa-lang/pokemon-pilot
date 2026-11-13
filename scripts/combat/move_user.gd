@@ -401,7 +401,10 @@ func ult() -> float:
 func set_ult(value: float) -> void:
 	var inst := _instance()
 	if inst != null:
+		var was_full := inst.ult >= 1.0
 		inst.ult = clampf(value, 0.0, 1.0)
+		if kit != null and not was_full and inst.ult >= 1.0 and get_parent().get("player_controlled") == true:
+			Events.signature_triggered.emit(get_parent(), "¡Definitiva lista!", Color(1.0, 0.85, 0.3))
 
 
 ## Sin kit, o en otra ranura, siempre; la definitiva del kit, con la barra llena.

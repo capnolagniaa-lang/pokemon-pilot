@@ -153,13 +153,18 @@ func _play(id: String) -> void:
 	var count := func(_t, _h, dmg): if dmg > 0.0: hits[0] += 1
 	me.hit_dealt.connect(count)
 	var t := 0.0
+	me.attack_slow_left = 0.0
+	var free_speed := me.speed()
+	var slowed := false
 	var near := Vector2(20, 0) if kit.moves[0].kind == MoveData.Kind.MELEE else Vector2(46, 0)  # (un golpe: pegado)
 	while t < 4.0 and inst.ult <= 0.0:
 		_hold(me, foe, near)
-		me.use_slot(0, foe.global_position - me.global_position, foe.global_position)
+		if me.use_slot(0, foe.global_position - me.global_position, foe.global_position):
+			slowed = slowed or (me.attack_slow_left > 0.0 and me.speed() < free_speed * 0.8)
 		await get_tree().physics_frame
 		t += get_physics_process_delta_time()
 	r["%s: el básico (%s) pega y carga la definitiva (%d %%)" % [name, kit.moves[0].display_name, int(inst.ult * 100.0)]] = hits[0] > 0 and inst.ult > 0.0
+	r["%s: tirar el básico lo frena un momento" % name] = slowed
 	# Habilidades
 	for slot in [1, 2]:
 		await _ready_to_act(me, foe)
@@ -219,6 +224,7 @@ func _play(id: String) -> void:
 		if ult_dmg[0] > 0.0 or (harmless and out[0]):
 			break
 	var after_use := inst.ult
+	r["%s: la definitiva se canta en pantalla" % name] = _world().get_node("CombatFeedback").last_banner == kit.moves[3].display_name
 	me.hit_dealt.disconnect(tally)
 	me.move_released.disconnect(seen)
 	r["%s: con la barra llena sale %s, la vacía y pega (%d de daño)" % [name, kit.moves[3].display_name, int(ult_dmg[0])]] = 		fired and out[0] and after_use < 0.5 and (ult_dmg[0] > 0.0 or harmless)

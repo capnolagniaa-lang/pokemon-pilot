@@ -59,6 +59,11 @@ var swims := false:
 var swim_mult := 1.0
 ## Multiplicador de velocidad puesto desde afuera (Modo Desafío: objetos como el Pañuelo Elegido). 1 = nada.
 var speed_bonus := 1.0
+## Kits del Modo Desafío: tirar el básico te frena un momento (como en Pokémon Arena 2D: hay que elegir entre pegar y
+## escapar; pedido del usuario 2026-11-13). Vale igual para los enemigos con kit.
+const KIT_BASIC_SLOW := 0.7
+const KIT_BASIC_SLOW_TIME := 0.42
+var attack_slow_left := 0.0
 ## Tu Pokémon mientras lo controlás en combate.
 var player_controlled := false
 ## Pelea sola con la IA de los salvajes aunque sea de tu equipo (la batería de balance: dos IA peleando entre sí).
@@ -213,6 +218,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_hitstun_grace = maxf(0.0, _hitstun_grace - delta)
 	spook_left = maxf(0.0, spook_left - delta)
+	attack_slow_left = maxf(0.0, attack_slow_left - delta)
 	if _brain != null:
 		perception.tick()  # (el cerebro nuevo mira aunque esté cargando o recuperándose)
 
@@ -310,6 +316,8 @@ func speed() -> float:
 		m *= swim_mult
 	if is_burrowed():
 		m *= Burrow.SPEED_MULT
+	if attack_slow_left > 0.0:
+		m *= KIT_BASIC_SLOW
 	return move_speed_for(instance.stat("speed")) * m * speed_bonus
 
 
@@ -503,6 +511,8 @@ func use_slot(slot: int, aim: Vector2, point: Vector2 = Vector2.INF) -> bool:
 		spent = signature.consume(m.resource_cost)
 	Events.move_used.emit(self, m)
 	last_move = m
+	if moves.kit != null and m == moves.slots[0]:
+		attack_slow_left = KIT_BASIC_SLOW_TIME
 	if m.weather != "":
 		CombatWeather.start(m.weather, self)
 	slot_used.emit(slot, facing, point)

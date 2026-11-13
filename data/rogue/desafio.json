@@ -6,7 +6,7 @@
   "balls": 2,
   "heal_on_clear": 0.35,
   "exp_mult": 0.8,
-  "settings": {"pp_regen": 2.0, "flat_types": true},
+  "settings": {"pp_regen": 2.0, "flat_types": true, "hp_scale": 3.3},
   "offer": 3,
   "minion_hp": 0.5,
   "minion_moves": 2,

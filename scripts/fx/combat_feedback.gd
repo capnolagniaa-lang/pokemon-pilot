@@ -14,6 +14,10 @@ const CLASH_HITSTOP := 0.05
 var _base_time_scale := 1.0
 var _hitstop_until := 0  # msec (reloj real)
 var _slowdown := 1.0  # cámara lenta de la ruleta de Pokémon
+## Lo último que se cantó en pantalla (kits del Modo Desafío): el cartelito de una habilidad y el cartel de una definitiva.
+var last_callout := ""
+var last_banner := ""
+var _banner_layer: CanvasLayer
 
 
 func _ready() -> void:
@@ -24,6 +28,7 @@ func _ready() -> void:
 	Events.interaction_triggered.connect(_on_interaction)
 	Events.signature_triggered.connect(func(c, text, col): _float_text(c.global_position + Vector2(-12, -48), text, col, 11))
 	Events.creature_fainted.connect(_on_fainted)
+	Events.move_used.connect(_on_move_used)
 	Events.hitstop.connect(_hitstop)
 	Events.env_reaction.connect(func(at, text): _float_text(at + Vector2(-14, -26), text, Color(0.95, 0.95, 1.0), 10))
 
@@ -131,6 +136,59 @@ func _on_interaction(c: Creature, it: StatusInteraction) -> void:
 func _on_fainted(c: Creature) -> void:
 	Fx.burst(c.get_parent(), c.global_position + Vector2(0, -8), Color(1.5, 1.5, 1.5), 18, 50.0)
 	Events.camera_shake.emit(3.0)
+
+
+## Kits del Modo Desafío: todo se canta en pantalla (pedido del usuario 2026-11-13, como en Pokémon Arena 2D). Una
+## habilidad o la movilidad, con un cartelito sobre el que la tira; la definitiva, con el nombre cruzando la pantalla.
+## El básico no (sale dos veces por segundo).
+func _on_move_used(user: Node, m: MoveData) -> void:
+	var c := user as Creature
+	if c == null or m == null or c.moves == null or c.moves.kit == null or c.moves.slots.size() <= MoveUser.ULT_SLOT:
+		return
+	if m == c.moves.slots[0]:
+		return
+	var col := m.element.color.lightened(0.35) if m.element != null else Color.WHITE
+	if m == c.moves.slots[MoveUser.ULT_SLOT]:
+		_ult_banner(m.display_name, col)
+		Events.camera_shake.emit(2.5)
+		return
+	last_callout = m.display_name
+	_float_text(c.global_position + Vector2(-14, -46), "¡%s!" % m.display_name, col, 8)
+
+
+func _ult_banner(text: String, col: Color) -> void:
+	last_banner = text
+	if is_instance_valid(_banner_layer):
+		_banner_layer.queue_free()
+	var layer := CanvasLayer.new()
+	layer.layer = 9
+	add_child(layer)
+	_banner_layer = layer
+	var flash := ColorRect.new()
+	flash.color = Color(col.r, col.g, col.b, 0.22)
+	flash.set_anchors_preset(Control.PRESET_FULL_RECT)
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(flash)
+	var view := get_viewport().get_visible_rect().size
+	var l := Label.new()
+	l.text = "¡%s!" % text
+	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	l.add_theme_font_size_override("font_size", maxi(18, int(view.y * 0.085)))
+	l.add_theme_color_override("font_color", col.lightened(0.3))
+	l.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.95))
+	l.add_theme_constant_override("outline_size", maxi(4, int(view.y * 0.014)))
+	l.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	l.size = Vector2(view.x, view.y * 0.14)
+	l.position = Vector2(0.0, view.y * 0.2)
+	l.pivot_offset = l.size * 0.5
+	l.scale = Vector2.ONE * 1.5
+	layer.add_child(l)
+	var tw := layer.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(l, "scale", Vector2.ONE, 0.16).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tw.tween_property(flash, "color:a", 0.0, 0.35)
+	tw.tween_property(l, "modulate:a", 0.0, 0.3).set_delay(0.85)
+	tw.chain().tween_callback(layer.queue_free)
 
 
 func _hitstop(duration: float) -> void:
