@@ -140,6 +140,9 @@ func _play(id: String) -> void:
 		is_zero_approx(me.moves.pp_cost(0)) and me.moves.pp_cost(1) > 0.0 and me.moves.pp_cost(2) > 0.0 and is_zero_approx(me.moves.pp_cost(3))
 	r["%s: la MT no sale de recompensa con kit" % name] = not run.rewards.available("mt")
 	var foe := _dummy(run, me, Vector2(46, 0))
+	var pointer := AimAt.new()  # (sin esto apunta al mouse, que en un test está en cualquier lado)
+	pointer.foe = foe
+	me.input_source = pointer
 	await _wait(0.3)
 	var aim := Vector2.RIGHT * 46.0
 	# Definitiva: vacía no sale
@@ -180,6 +183,17 @@ func _play(id: String) -> void:
 		and me.global_position.distance_to(from) > 12.0 and is_equal_approx(me.moves.dodge_total, kit.mobility.cooldown) and dodged[0]
 	r["%s: en recarga no sale de nuevo" % name] = not me.dodge(Vector2.LEFT, Vector2.RIGHT * 60.0)
 	await _wait(0.6)
+	# Quieto y apuntando al rival: Espacio lo aleja (la movilidad es para tomar distancia, no para entrar)
+	await _ready_to_act(me, foe)
+	me.moves.dodge_cooldown = 0.0
+	foe.global_position = me.global_position + Vector2(-46, 0)  # (del otro lado: atrás queda el camino por el que vino)
+	var before := me.global_position
+	var toward: Vector2 = foe.global_position - me.global_position
+	me.dodge(toward, toward)  # (así llega del teclado cuando no caminás: la dirección es la del mouse)
+	await _wait(0.5)
+	var back: float = (me.global_position - before).dot(-toward.normalized())  # (lo que retrocedió; el rival puede seguirlo)
+	r["%s: quieto, %s te aleja del rival (%d px hacia atrás)" % [name, kit.mobility.display_name, int(back)]] = back > 12.0 		and kit.mobility.kind == MoveData.Kind.DASH and kit.mobility_back
+	await _wait(0.4)
 	# Definitiva llena
 	await _ready_to_act(me, foe)
 	inst.ult = 1.0
@@ -225,14 +239,24 @@ func _hold(me: Creature, foe: Creature, at: Vector2) -> void:
 	me.health.heal(999999.0)
 
 
+## Te saca los problemas de estado que te pegó el muñeco (paraliza o envenena por contacto: cortaría la prueba), sin
+## tocar las mejoras propias del kit.
+func _clean(me: Creature) -> void:
+	for sid in me.statuses.active.keys():
+		if ItemData.BAD_STATUSES.has(sid):
+			me.statuses.cure(me.statuses.active[sid]["status"])
+
+
 func _ready_to_act(me: Creature, foe: Creature) -> void:
 	var t := 0.0
 	while t < 4.0 and not (me.can_act() and me.statuses.can_move()):
 		await get_tree().physics_frame
 		t += get_physics_process_delta_time()
+	_clean(me)
 	if is_instance_valid(foe):
 		foe.statuses.clear()
 		foe.global_position = me.global_position + Vector2(46, 0)
+		foe.stun(8.0)  # (es un enemigo con IA: si no, esquiva lo que ve venir)
 	me.facing = Vector2.RIGHT
 
 
@@ -244,6 +268,7 @@ func _wait(time: float, me: Creature = null, foe: Creature = null, heal := true,
 		t += get_physics_process_delta_time()
 		if me != null and is_instance_valid(me):
 			me.health.heal(999999.0)
+			_clean(me)
 		if heal and foe != null and is_instance_valid(foe):
 			foe.health.heal(999999.0)
 		if follow > 0.0 and is_instance_valid(me) and is_instance_valid(foe):
@@ -278,6 +303,30 @@ func showcase() -> void:
 			await _wait(2.4 if step == 3 else (0.5 if step == 0 else 1.5), me, foe, true, 70.0 if step == 3 else 0.0)
 	GameState.rogue = {}
 	get_tree().quit(0)
+
+
+## Órdenes de prueba: no camina ni aprieta nada y apunta siempre al muñeco (las cargas y los chorros siguen a donde
+## apunta el jugador).
+class AimAt extends CombatInput:
+	var foe: Creature
+
+	func move_dir(_a: Creature) -> Vector2:
+		return Vector2.ZERO
+
+	func aim(actor: Creature) -> Vector2:
+		return foe.global_position - actor.global_position if is_instance_valid(foe) else actor.facing * 40.0
+
+	func aim_point(actor: Creature) -> Vector2:
+		return foe.global_position if is_instance_valid(foe) else actor.global_position + actor.facing * 40.0
+
+	func wants_slot(_slot: int) -> bool:
+		return false
+
+	func wants_dodge() -> bool:
+		return false
+
+	func tick(_actor: Creature, _delta: float) -> void:
+		pass
 
 
 func _world() -> Node:

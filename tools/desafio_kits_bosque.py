@@ -13,7 +13,8 @@ def M(id, name, element, kind, category, **kw):
 
 
 def dash(id, name, element, cooldown=3.5, time=0.2, inv=0.3, **kw):
-    """Movilidad que no pega."""
+    """Movilidad (Espacio): sirve para tomar distancia, no para entrar (pedido del usuario 2026-11-13). No pega, va hacia
+    donde caminás y, quieto, hacia atrás de donde apuntás (`mobility_back`)."""
     return M(id, name, element, "DASH", "estado", power=0.0, cooldown=cooldown, knockback=0.0, dash_time=time,
              dash_hits=False, invulnerable_time=inv, **kw)
 
@@ -32,11 +33,10 @@ KITS_BOSQUE = {
             M("d_red_pegajosa", "Red Pegajosa", "bicho", "AREA", "especial", power=70.0, cooldown=1.0, cast_time=0.45,
               knockback=60.0, radius=80.0, recovery=0.25, statuses_on_hit="[st:enraizado]"),
         ],
-        mobility=M("d_hilo", "Hilo", "bicho", "LUNGE", "fisico", power=15.0, cooldown=3.5, knockback=40.0,
-                   lunge_range=95.0, lunge_speed=400.0, followup_delay=0.1, followup_power_mult=0.5),
+        mobility=dash("d_hilo", "Hilo", "bicho", time=0.22),
     ),
     "weedle": dict(
-        role="Cuerpo a cuerpo", archetype="desgaste", preferred_range=30.0, mobility_back=False,
+        role="Cuerpo a cuerpo", archetype="desgaste", preferred_range=30.0, mobility_back=True,
         moves=[
             M("d_picotazo_veneno", "Picotazo Veneno", "veneno", "MELEE", "fisico", power=35.0, power_mult=0.65,
               cooldown=0.55, knockback=70.0, final_knockback=70.0, melee_step=26.0, status="st:envenenado",
@@ -50,8 +50,7 @@ KITS_BOSQUE = {
               knockback=120.0, lunge_range=120.0, lunge_speed=480.0, followup_delay=0.15, followup_power_mult=1.0,
               followup_knockback=260.0, statuses_on_hit="[st:envenenado]"),
         ],
-        mobility=M("d_arremetida", "Arremetida", "bicho", "DASH", "fisico", power=25.0, cooldown=3.5, knockback=90.0,
-                   dash_time=0.2, dash_hits=True, invulnerable_time=0.25),
+        mobility=dash("d_arremetida", "Reptar", "bicho"),
     ),
     "pidgey": dict(
         role="A distancia", archetype="hostigador", preferred_range=90.0, mobility_back=True,
@@ -69,7 +68,7 @@ KITS_BOSQUE = {
         mobility=dash("d_vuelo_corto", "Vuelo Corto", "volador", cooldown=3.0, time=0.28, inv=0.38),
     ),
     "rattata": dict(
-        role="Cuerpo a cuerpo", archetype="asesino", preferred_range=28.0, mobility_back=False,
+        role="Cuerpo a cuerpo", archetype="asesino", preferred_range=28.0, mobility_back=True,
         moves=[
             M("d_mordisco", "Mordisco", "normal", "MELEE", "fisico", power=40.0, power_mult=0.6, cooldown=0.5,
               knockback=70.0, final_knockback=70.0, melee_step=28.0),
@@ -115,7 +114,7 @@ KITS_BOSQUE = {
         mobility=dash("d_resorte", "Resorte", "planta"),
     ),
     "paras": dict(
-        role="Tanque", archetype="control", preferred_range=34.0, mobility_back=False,
+        role="Tanque", archetype="control", preferred_range=34.0, mobility_back=True,
         moves=[
             M("d_aranazo", "Arañazo", "normal", "MELEE", "fisico", power=40.0, power_mult=0.6, cooldown=0.55,
               knockback=70.0, final_knockback=70.0, melee_step=26.0),
@@ -146,7 +145,7 @@ KITS_BOSQUE = {
         mobility=dash("d_revoloteo", "Revoloteo", "bicho", time=0.22),
     ),
     "spearow": dict(
-        role="Cuerpo a cuerpo", archetype="bruiser", preferred_range=28.0, mobility_back=False,
+        role="Cuerpo a cuerpo", archetype="bruiser", preferred_range=28.0, mobility_back=True,
         moves=[
             M("d_picotazo", "Picotazo", "volador", "MELEE", "fisico", power=35.0, power_mult=0.6, cooldown=0.45,
               knockback=70.0, final_knockback=70.0, melee_step=28.0),
@@ -157,8 +156,7 @@ KITS_BOSQUE = {
             M("d_pico_taladro", "Pico Taladro", "volador", "DASH", "fisico", power=110.0, cooldown=1.0, cast_time=0.3,
               knockback=300.0, dash_time=0.35, dash_hits=True, invulnerable_time=0.35, recovery=0.25),
         ],
-        mobility=M("d_persecucion", "Persecución", "siniestro", "LUNGE", "fisico", power=25.0, cooldown=3.5,
-                   knockback=60.0, lunge_range=100.0, lunge_speed=440.0, followup_delay=0.1, followup_power_mult=0.5),
+        mobility=dash("d_persecucion", "Vuelo Rasante", "volador", time=0.22),
     ),
     "pikachu": dict(
         role="A distancia", archetype="hostigador", preferred_range=90.0, mobility_back=True,
@@ -192,7 +190,7 @@ KITS_BOSQUE = {
         mobility=dash("d_rodar", "Rodar", "normal", time=0.25),
     ),
     "nidoran_f": dict(
-        role="Tanque", archetype="tanque", preferred_range=30.0, mobility_back=False,
+        role="Tanque", archetype="tanque", preferred_range=30.0, mobility_back=True,
         moves=[
             M("d_aranazo_nido", "Arañazo", "normal", "MELEE", "fisico", power=40.0, power_mult=0.6, cooldown=0.55,
               knockback=70.0, final_knockback=70.0, melee_step=26.0),
@@ -204,11 +202,10 @@ KITS_BOSQUE = {
               cast_time=0.3, knockback=140.0, lunge_range=100.0, lunge_speed=440.0, followup_delay=0.14,
               followup_power_mult=0.5, followup_knockback=220.0, statuses_on_hit="[st:envenenado,herido]"),
         ],
-        mobility=M("d_embate", "Embate", "normal", "DASH", "fisico", power=20.0, cooldown=3.5, knockback=110.0,
-                   dash_time=0.2, dash_hits=True, invulnerable_time=0.25),
+        mobility=dash("d_embate", "Salto Atrás", "normal"),
     ),
     "nidoran_m": dict(
-        role="Cuerpo a cuerpo", archetype="bruiser", preferred_range=30.0, mobility_back=False,
+        role="Cuerpo a cuerpo", archetype="bruiser", preferred_range=30.0, mobility_back=True,
         moves=[
             M("d_picotazo_nido", "Picotazo", "volador", "MELEE", "fisico", power=35.0, power_mult=0.6, cooldown=0.5,
               knockback=70.0, final_knockback=70.0, melee_step=28.0),
@@ -223,7 +220,7 @@ KITS_BOSQUE = {
         mobility=dash("d_brinco", "Brinco", "normal"),
     ),
     "mankey": dict(
-        role="Cuerpo a cuerpo", archetype="bruiser", preferred_range=28.0, mobility_back=False,
+        role="Cuerpo a cuerpo", archetype="bruiser", preferred_range=28.0, mobility_back=True,
         moves=[
             M("d_golpe_karate", "Golpe Kárate", "lucha", "MELEE", "fisico", power=45.0, power_mult=0.6, cooldown=0.5,
               knockback=80.0, final_knockback=80.0, melee_step=28.0),
@@ -235,11 +232,10 @@ KITS_BOSQUE = {
               knockback=340.0, final_knockback=340.0, melee_step=50.0, melee_range=18.0, swing_radius=20.0,
               recovery=0.25),
         ],
-        mobility=M("d_salto_mono", "Salto Mono", "lucha", "LUNGE", "fisico", power=20.0, cooldown=3.2, knockback=60.0,
-                   lunge_range=110.0, lunge_speed=440.0, followup_delay=0.1, followup_power_mult=0.5),
+        mobility=dash("d_salto_mono", "Salto Mono", "lucha", cooldown=3.2, time=0.22),
     ),
     "scyther": dict(
-        role="Cuerpo a cuerpo", archetype="velocista", preferred_range=30.0, mobility_back=False,
+        role="Cuerpo a cuerpo", archetype="velocista", preferred_range=30.0, mobility_back=True,
         moves=[
             M("d_corte_furia", "Corte Furia", "bicho", "MELEE", "fisico", power=40.0, power_mult=0.65, cooldown=0.4,
               knockback=60.0, final_knockback=60.0, melee_step=30.0, swing_radius=14.0),

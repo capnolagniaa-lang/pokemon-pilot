@@ -6,13 +6,13 @@
 [resource]
 script = ExtResource("1")
 id = "d_arremetida"
-display_name = "Arremetida"
+display_name = "Reptar"
 element = ExtResource("2")
 kind = 1
-category = 0
-power = 25.0
+category = 2
+power = 0.0
 cooldown = 2.1
-knockback = 90.0
+knockback = 0.0
 dash_time = 0.2
-dash_hits = true
-invulnerable_time = 0.25
+dash_hits = false
+invulnerable_time = 0.3

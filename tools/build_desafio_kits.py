@@ -8,7 +8,9 @@ evolutiva (la evolución usa el de su preevolución: RogueKits.of). Editar la ta
 tools/make_desafio_vfx.py.
 
 Orden de `moves`: básico (Clic izq., gratis), habilidad (Clic der.), habilidad (Q), definitiva (R, con la barra llena).
-`mobility` = Espacio (en vez del esquive).
+`mobility` = Espacio (en vez del esquive): siempre algo para **tomar distancia** (pedido del usuario 2026-11-13), nunca
+una embestida hacia el rival: va hacia donde caminás y, quieto, hacia atrás de donde apuntás. El Giro Rápido de Squirtle es
+el único que pega al pasar (y empuja).
 """
 import os
 import sys
@@ -54,7 +56,7 @@ KITS = {
                       trail_power=20.0, trail_status="st:quemado", trail_status_chance=0.5, trail_duration=2.0),
     ),
     "squirtle": dict(
-        role="Tanque", archetype="tanque", preferred_range=55.0, mobility_back=False,
+        role="Tanque", archetype="tanque", preferred_range=55.0, mobility_back=True,
         moves=[
             dict(id="d_pistola_agua", display_name="Pistola Agua", element="agua", kind="PROJECTILE", category="especial",
                  power=40.0, power_mult=0.6, cooldown=0.55, knockback=150.0, speed=280.0, lifetime=0.5, size=4.0,
@@ -73,7 +75,7 @@ KITS = {
                       cleanse_self=True),
     ),
     "bulbasaur": dict(
-        role="Híbrido", archetype="control", preferred_range=70.0, mobility_back=False,
+        role="Híbrido", archetype="control", preferred_range=70.0, mobility_back=True,
         moves=[
             dict(id="d_latigo_cepa", display_name="Látigo Cepa", element="planta", kind="WHIP", category="fisico",
                  power=45.0, power_mult=0.6, cooldown=0.65, knockback=50.0, whip_length=80.0, whip_width=8.0),
@@ -87,9 +89,8 @@ KITS = {
                  power=120.0, cooldown=1.0, cast_time=0.8, knockback=240.0, beam_length=260.0, size=8.0, recovery=0.3,
                  bonus_vs_status="drenado", bonus_vs_mult=1.4),
         ],
-        mobility=dict(id="d_liana", display_name="Liana", element="planta", kind="LUNGE", category="fisico",
-                      power=30.0, cooldown=4.0, knockback=60.0, lunge_range=110.0, lunge_speed=420.0,
-                      followup_delay=0.12, followup_power_mult=0.6, followup_knockback=140.0),
+        mobility=dict(id="d_liana", display_name="Liana", element="planta", kind="DASH", category="estado",
+                      power=0.0, cooldown=4.0, knockback=0.0, dash_time=0.24, dash_hits=False, invulnerable_time=0.3),
     ),
 }
 

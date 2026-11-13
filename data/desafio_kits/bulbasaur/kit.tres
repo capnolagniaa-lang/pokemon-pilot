@@ -15,4 +15,4 @@ preferred_range = 70.0
 moves = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")])
 role = "Híbrido"
 mobility = ExtResource("7")
-mobility_back = false
+mobility_back = true
