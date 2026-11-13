@@ -719,6 +719,27 @@ kits) que tengan sentido con cómo juega cada Pokémon. Se van viendo de a tanda
   equipo; hay 2 Poké Balls por partida).
 - Le gusta la arena de Pokémon Arena 2D; volver a ver el video para ataques y ritmo.
 
+### 13.2 Segunda mirada al video de Pokémon Arena 2D (2026-11-13)
+Lo que se ve y se dice en el video (transcripción entera + capturas), para ir tomando ideas. **Nada de esto está hecho.**
+- **Números**: primera fase con ~120 PS; el básico saca 3-5 (2,5-4 % de la vida: unos 25-40 básicos por pelea); habilidades
+  con recarga de 2,5-3,5 s; Espacio ~3 s. Las nuestras: básico 0,5 s, habilidades 2,4 s, Espacio ~2 s (parecido).
+- **El básico es el centro de la pelea** ("lo más roto son los básicos"): se gana apuntándolos bien y manteniendo distancia;
+  las habilidades son para armar la jugada (Bola Sombra → Hipnosis → Bomba Lodo).
+- **Pegar te frena**: "cuando salte dejo de pegar, que me muevo más rápido". Tirar básicos baja la velocidad: hay que elegir
+  entre pegar y escapar.
+- **Todo se canta en pantalla**: el nombre del ataque en un cartelito sobre el que lo tira, la definitiva con el nombre
+  gigante cruzando la pantalla y un destello, "¡Definitivo listo!", "¡Quemado!", "¡Paralizado!" flotando.
+- **Avisos en el piso**: anillos donde va a caer Trueno, círculo de la zona antes de que pegue.
+- **Definitivas**: se cortan si te pegan fuerte mientras cargás; hay movimientos que te sacan del piso un instante (Vuelo)
+  y sirven para esquivar la definitiva rival; la de Crobat (4 embestidas en X, envenena y aturde) es la más temida.
+- **Estados simples y que pesan**: quemado y envenenado matan de a poco (lo remataron con veneno), paralizado frena.
+- **Roles a la vista**: etiqueta ("A distancia", "Híbrido"), una frase de cómo juega ("Trampas y castigo") y, antes de
+  pelear, la lista de las 5 teclas con daño y recarga de cada una. Snorlax: el doble de vida y lento.
+- **Disparos con personalidad**: Bola Sombra te persigue, Hipnosis es un área, Excavar/Fortaleza como respuesta.
+- **Arena**: coliseo ovalado en ruinas, piso de piedra con pasto, **vacío** (sin obstáculos), con muros todo alrededor;
+  la cámara casi no se mueve y muestra la arena casi entera, con los Pokémon chicos.
+- **IA**: da vueltas alrededor y se come los básicos; por eso se le gana fácil.
+
 ## 12. Progreso permanente entre partidas (alternativas, **sin implementar**; usuario, 2026-11-11)
 
 Pedido del usuario: "Brock tiene que sentirse difícil de vencer en las primeras run ya que la idea es manejar algo de
