@@ -713,6 +713,8 @@ kits) que tengan sentido con cómo juega cada Pokémon. Se van viendo de a tanda
 - La definitiva se carga al hacer y recibir daño (ya era así; queda como regla).
 - Salas con **a lo sumo 3 enemigos** a la vez; al principio solo **primeras fases**.
 - **Bendiciones fuera por ahora**; quedan los objetos.
+- **Definido (2026-11-13): se suma al equipo de esa partida**, uno solo (`RogueRun.recruit`): a tu nivel, con su kit, se
+  cambia con 1/2 y la partida se pierde con los dos caídos. Lo de abajo era la duda:
 - "Hasta Brock, poder atrapar a un Pokémon": **a definir** (hoy atrapar desbloquea la especie como inicial y no se suma al
   equipo; hay 2 Poké Balls por partida).
 - Le gusta la arena de Pokémon Arena 2D; volver a ver el video para ataques y ritmo.

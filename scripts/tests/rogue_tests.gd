@@ -259,8 +259,20 @@ func run() -> void:
 	await get_tree().create_timer(0.3).timeout
 	r["Atrapar a un salvaje (%s) lo desbloquea como inicial y se guarda aparte" % prey_id] = RogueProgress.is_unlocked(prey_id) \
 		and FileAccess.file_exists(RogueProgress.TEST_PATH) and RogueProgress.path() == RogueProgress.TEST_PATH
-	r["En esa partida seguís con tu único Pokémon y el atrapado ya no está en la sala"] = GameState.party.size() == 1 and GameState.box.is_empty() \
-		and (not is_instance_valid(prey) or prey.is_queued_for_deletion()) and foes_before >= 1
+	# El atrapado se suma al equipo de esa partida (decisión del usuario 2026-11-13): uno solo, a tu nivel y con su kit.
+	var mate: CreatureInstance = GameState.party[1] if GameState.party.size() > 1 else null
+	r["El atrapado se suma a tu equipo en esa partida (a tu nivel, vida entera, con el kit de su línea) y ya no está en la sala"] = 		GameState.party.size() == 2 and GameState.box.is_empty() and mate != null and mate.species.id == prey_id 		and mate.level == GameState.party[0].level and is_equal_approx(mate.hp, mate.max_hp()) and is_equal_approx(mate.hp_mult, 1.0) 		and mate.rogue_kit == RogueKits.of(mate.species) and mate.kit_limit == 4 		and (not is_instance_valid(prey) or prey.is_queued_for_deletion()) and foes_before >= 1
+	r["Con un compañero ya no se suma otro"] = not RogueRun.can_recruit() and not RogueRun.recruit(CreatureInstance.create(DB.species["rattata"], 5)) 		and GameState.party.size() == 2
+	if mate != null:
+		world.combat._switch_cd = 0.0
+		var switched: bool = world.combat.switch_to(1)
+		await get_tree().create_timer(0.3).timeout
+		r["Se cambia al compañero en plena sala y lo manejás"] = switched and world.companion.instance == mate and world.companion.player_controlled
+		world.companion.health.apply_damage(99999.0)
+		await _until(func(): return is_instance_valid(world.companion) and world.companion.instance == GameState.party[0], 4.0)
+		await get_tree().create_timer(0.3).timeout
+		r["Si cae el que estás usando sale el otro solo y la partida sigue"] = world.companion.instance == GameState.party[0] 			and world.companion.player_controlled and run.result == "" and mate.hp <= 0.0
+		mate.hp = mate.max_hp()  # (para lo que sigue del recorrido)
 	world.items._cooldown = 0.0
 	r["Sin bolas no hay tercer tiro"] = GameState.item_count("poke_ball") == 0 and world.items.throw_ball(tr.global_position + Vector2(30, 0)) == null
 	var offered: Array = RogueRun.offer().map(func(s): return s.id)

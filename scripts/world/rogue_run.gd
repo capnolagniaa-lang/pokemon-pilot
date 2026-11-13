@@ -255,6 +255,31 @@ static func equip(sp: SpeciesData) -> void:
 	Events.party_changed.emit()
 
 
+## Cuántos Pokémon podés llevar en una partida: el inicial y **uno** que atrapes antes de Brock.
+const TEAM_SIZE := 2
+
+
+## ¿Se puede sumar todavía un compañero en esta partida?
+static func can_recruit() -> bool:
+	return not GameState.rogue.is_empty() and not GameState.party.is_empty() and GameState.party.size() < TEAM_SIZE
+
+
+## Suma al equipo de la partida al Pokémon atrapado (decisión del usuario 2026-11-13). Entra como uno tuyo: al nivel del
+## que venías usando, con la vida entera, sin lo que tenía de enemigo (vida de esbirro, mejoras) y con el kit completo de
+## su línea si tiene. Devuelve false si ya llevás a tu compañero.
+static func recruit(caught: CreatureInstance) -> bool:
+	if not can_recruit():
+		return false
+	var lead := GameState.active() if GameState.active() != null else GameState.party[0]
+	var inst := CreatureInstance.create(caught.species, lead.level)
+	inst.shiny = caught.shiny
+	RogueKits.apply(inst)
+	GameState.party.append(inst)
+	GameState.rogue["recruit"] = caught.species.id
+	Events.party_changed.emit()
+	return true
+
+
 # --- La partida -----------------------------------------------------------------------------------------------
 
 func _ready() -> void:
@@ -679,6 +704,10 @@ func _room_cleared(last: bool) -> void:
 	var part := float(floor_data.get("heal_on_clear", 0.0))
 	if is_instance_valid(c) and part > 0.0:
 		c.health.heal(c.instance.max_hp() * part)
+		for inst: CreatureInstance in GameState.party:  # el que espera afuera también (y si había caído, vuelve)
+			if inst != c.instance:
+				inst.hp = minf(inst.max_hp(), maxf(inst.hp, 0.0) + inst.max_hp() * part)
+		Events.party_changed.emit()
 		Fx.burst(world.entities, c.global_position + Vector2(0, -8), Color(0.6, 1.4, 0.7), 12, 34.0)
 	Events.camera_shake.emit(3.0)
 	Events.message_requested.emit("¡Sala limpia! Se abrió el paso%s." % (" al " + str(floor_data["boss"]["door"]) if last else ""))
@@ -1035,6 +1064,7 @@ func _physics_process(delta: float) -> void:
 		_hub_process(delta)
 	if not active:
 		return
+	_relieve()
 	var c: Creature = world.companion
 	if phase in ["oleada", "puerta", ""] and is_instance_valid(c) and not c.is_down() and not chain.is_empty() \
 			and world.trainer.global_position.distance_to(c.global_position) > TRAINER_MAX_DIST:
@@ -1049,8 +1079,25 @@ func _physics_process(delta: float) -> void:
 		_refresh_label()
 
 
+## La partida se pierde recién cuando no queda nadie en pie (con un compañero atrapado, sale el otro: `_relieve`).
 func _player_down() -> bool:
+	if GameState.party.any(func(i): return i != null and i.hp > 0.0):
+		return false
 	return not is_instance_valid(world.companion) or world.companion.is_down()
+
+
+## El que estabas manejando cayó y te queda otro: sale solo.
+func _relieve() -> void:
+	var c: Creature = world.companion
+	if GameState.party.size() < 2 or (is_instance_valid(c) and not c.is_down()) or phase in ["jefe", "fin", "castillo"]:
+		return
+	for i in GameState.party.size():
+		if i != GameState.active_index and GameState.party[i].hp > 0.0:
+			world.combat._switch_cd = 0.0
+			if world.combat.switch_to(i) and is_instance_valid(world.companion):
+				world.combat.take_control(world.companion)  # (al caer el otro se cortó la pelea: se retoma con este)
+				_engage()
+			return
 
 
 # --- Cartel de arriba ---------------------------------------------------------------------------------------------

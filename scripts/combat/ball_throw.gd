@@ -126,10 +126,14 @@ func _caught(c: Creature) -> void:
 	var inst := c.instance
 	Fx.burst(get_parent(), global_position + Vector2(0, -4), Color(1.6, 1.5, 0.6), 12, 40.0)
 	if not GameState.rogue.is_empty():
-		# Modo Desafío: no se suma al equipo (seguís con tu único Pokémon); queda desbloqueado como inicial.
+		# Modo Desafío: queda desbloqueado como inicial y, si todavía no sumaste a nadie en esta partida, pelea con vos
+		# hasta el final (decisión del usuario 2026-11-13: un compañero por partida, `RogueRun.recruit`).
 		var fresh := RogueProgress.unlock(inst.species.id)
-		Events.message_requested.emit("¡Atrapaste a %s! %s" % [inst.species.display_name,
-			"Desde ahora lo podés elegir como inicial." if fresh else "Ya lo tenías como inicial."])
+		var joined := RogueRun.recruit(inst)
+		var note := "Desde ahora lo podés elegir como inicial." if fresh else "Ya lo tenías como inicial."
+		if joined:
+			note = "¡Se suma a tu equipo! Cambiá con %s y %s. %s" % [Controls.label("switch_1"), Controls.label("switch_2"), note]
+		Events.message_requested.emit("¡Atrapaste a %s! %s" % [inst.species.display_name, note])
 		Events.pokemon_caught.emit(inst, "desafio")
 		c.queue_free()
 		var fade := create_tween()
